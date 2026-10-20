@@ -163,6 +163,9 @@
 .menuMain {
   width: 100%;
   min-width: 0;
+  /* The card is as tall as its content, centred in the window (the legacy «main» minimum height stretched it). */
+  min-height: 0;
+  padding: 0;
   display: grid;
   justify-items: center;
   outline: none;

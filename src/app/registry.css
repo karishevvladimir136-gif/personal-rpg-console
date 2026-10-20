@@ -264,3 +264,26 @@ details > summary {
   min-height: 60px;
   font-size: 19px;
 }
+/* Fix run after session 2 (items 2, 22): on a big monitor the home card grows with the window. */
+@media (min-width: 2200px) {
+  .main-menu-scene {
+    width: min(100%, 1000px);
+    padding: 88px 72px 76px;
+  }
+  .main-menu-scene h1 {
+    font-size: 72px;
+  }
+  .main-menu-scene > p {
+    font-size: 25px;
+  }
+  .menu-ornament {
+    font-size: 88px;
+  }
+  .main-menu-links {
+    width: min(100%, 560px);
+  }
+  .main-menu-links .button {
+    min-height: 72px;
+    font-size: 23px;
+  }
+}

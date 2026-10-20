@@ -858,6 +858,9 @@ button.holderAvatar:not(:disabled) {
   .linkButton {
     font-size: 15.5px;
   }
+  .lists {
+    column-width: 360px;
+  }
 }
 @media (max-width: 1500px) {
   .grid {
