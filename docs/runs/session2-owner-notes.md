@@ -1028,3 +1028,9 @@ whose thinking alone may use most of them — an «unparsed» digest may simply 
     `time_words` — «morning» written at 12:00. Do: a council line is a light call — the companion's dossier, the
     scene and the last exchanges, not the whole world; depth low/medium; streamed; no tools except notes and time;
     the speaker is never a listener; polling backs off while a turn streams and `/play` gets cheaper.
+    Follow-up (owner, 21:51: «он явно тупит — у нас вроде был этот самый отдых?»): the council answer was right — the
+    long-rest move had failed (item 73) and nothing of it was committed, so it was still noon of day 2 with 12 HP;
+    the owner believed the rest had happened. Do: a failed turn says plainly that nothing changed in the game and
+    offers to resend the same move (the draft is kept). The `time_words` flag on this turn was a false positive
+    («с утра» at noon means «since morning»). The answer itself reasoned well (why the clerk named the buyer, where
+    the wounded man would go, where to catch the buyer with the iron); the gloves and the strap again.
