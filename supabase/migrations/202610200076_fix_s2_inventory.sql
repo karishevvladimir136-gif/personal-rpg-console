@@ -7,6 +7,9 @@
 --     spells tab), the companions' sheets from their stat blocks; schema 1 stays valid as it was.
 --  4. The loop's record applier accepts an entity's character_sheet (the DM's sheet path: level up, prepared spells,
 --     a companion's sheet from its block; the hero's own sheet only with a reason, checked in TypeScript).
+--  5. New records get the model from the start: a new hero's doll is the eleven slots (the bootstrap's slot function
+--     returns them), and a thing inserted with the bootstrap's kind 'possession' gets the kind its name says
+--     (rpg_private.guess_item_kind — the same stems as guessKind in src/lib/inventory/model.ts).
 begin;
 
 -- 1. The place storage -------------------------------------------------------------------------------------------
@@ -122,6 +125,32 @@ do $$ declare d text; begin
  execute d;
 end $$;
 
-revoke all on function rpg_private.universal_slots(text),rpg_private.sheet_spell_valid(jsonb),rpg_private.sheet_valid(jsonb) from public,anon,authenticated;
+-- 5. New records ---------------------------------------------------------------------------------------------------
+create or replace function rpg_private.bootstrap_humanoid_slots(lang text) returns jsonb
+language sql immutable set search_path='' as $$ select rpg_private.universal_slots(lang) $$;
+
+create function rpg_private.guess_item_kind(name text) returns text language sql immutable set search_path='' as $$
+ select case
+  when n ~ '(зель|эликсир|potion|elixir|свиток|scroll)' then 'consumable'
+  when n ~ '(стрел|болт|пул|дротик|arrow|bolt|bullet)' then 'ammunition'
+  when n ~ '(кольц|перстен|амулет|медальон|ожерел|ring|amulet|necklace|pendant)' then 'jewelry'
+  when n ~ '(^|[^а-яё])щит|shield' then 'shield'
+  when n ~ '(кольчу|доспех|латы|кирас|бригантин|armor|armour|mail|breastplate)' then 'armor'
+  when n ~ '(плащ|мантия|роба|шляп|капюшон|сапог|ботин|перчат|рубах|куртк|cloak|robe|hat|boots|gloves|shirt|coat)' then 'clothing'
+  when n ~ '(меч|кинжал|нож|топор|секир|булав|молот|копь|посох|лук|арбалет|сабл|скимитар|рапир|пистол|гарпун|sword|dagger|knife|axe|mace|hammer|spear|staff|bow|crossbow|scimitar|rapier|pistol)' then 'weapon'
+  when n ~ '(набор|инструмент|отмычк|kit|tools|picks)' then 'tool'
+  else 'gear' end
+ from (select lower(name) n) x
+$$;
+
+create function rpg_private.item_kind_from_name() returns trigger language plpgsql set search_path='' as $$ begin
+ if new.category='possession' then new.category:=rpg_private.guess_item_kind(new.name); end if;
+ return new;
+end $$;
+create trigger rpg_items_kind_from_name before insert on public.rpg_items
+ for each row when (new.category='possession') execute function rpg_private.item_kind_from_name();
+
+revoke all on function rpg_private.universal_slots(text),rpg_private.sheet_spell_valid(jsonb),rpg_private.sheet_valid(jsonb),
+  rpg_private.guess_item_kind(text),rpg_private.item_kind_from_name() from public,anon,authenticated;
 
 commit;

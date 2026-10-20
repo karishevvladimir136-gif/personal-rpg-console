@@ -2,7 +2,7 @@
 -- (docs/runs/fix-s2-inventory-design.md §10). Idempotent: a converted record is left as it is. Only these rows change;
 -- scenes, turns, saves and private state are never touched.
 --  1. Kinds: an item of a kind the model does not know (the bootstrap's 'possession') gets the kind its name says
---     (rpg_private.guess_item_kind, the same stems as guessKind in src/lib/inventory/model.ts), else 'gear'.
+--     (rpg_private.guess_item_kind of migration 76, the same stems as guessKind in the model), else 'gear'.
 --  2. The doll: a person record (hero, companion, NPC) with the older slots gets the eleven; what it wears stays on —
 --     neck and talisman → Амулет, ring1/ring2 → the left and right ring, the rest by the same id; a thing whose new slot
 --     does not take its kind takes the slot's kind; «Ноги» is gone, so a thing worn there comes off (kept in the
@@ -15,19 +15,6 @@
 --     two entries of one coin summed — so the DM's «золотые» and an older «зм» are one balance (coinOf in the model).
 begin;
 
-create function rpg_private.guess_item_kind(name text) returns text language sql immutable set search_path='' as $$
- select case
-  when n ~ '(зель|эликсир|potion|elixir|свиток|scroll)' then 'consumable'
-  when n ~ '(стрел|болт|пул|дротик|arrow|bolt|bullet)' then 'ammunition'
-  when n ~ '(кольц|перстен|амулет|медальон|ожерел|ring|amulet|necklace|pendant)' then 'jewelry'
-  when n ~ '(^|[^а-яё])щит|shield' then 'shield'
-  when n ~ '(кольчу|доспех|латы|кирас|бригантин|armor|armour|mail|breastplate)' then 'armor'
-  when n ~ '(плащ|мантия|роба|шляп|капюшон|сапог|ботин|перчат|рубах|куртк|cloak|robe|hat|boots|gloves|shirt|coat)' then 'clothing'
-  when n ~ '(меч|кинжал|нож|топор|секир|булав|молот|копь|посох|лук|арбалет|сабл|скимитар|рапир|пистол|гарпун|sword|dagger|knife|axe|mace|hammer|spear|staff|bow|crossbow|scimitar|rapier|pistol)' then 'weapon'
-  when n ~ '(набор|инструмент|отмычк|kit|tools|picks)' then 'tool'
-  else 'gear' end
- from (select lower(name) n) x
-$$;
 
 -- 1. Kinds ----------------------------------------------------------------------------------------------------------
 update public.rpg_items set category=rpg_private.guess_item_kind(name),revision=revision+1,updated_at=now()
@@ -136,6 +123,6 @@ do $$ declare e record; k text; code text; v integer; next jsonb; begin
  end loop;
 end $$;
 
-revoke all on function rpg_private.guess_item_kind(text),rpg_private.coin_code(text,text) from public,anon,authenticated;
+revoke all on function rpg_private.coin_code(text,text) from public,anon,authenticated;
 
 commit;
