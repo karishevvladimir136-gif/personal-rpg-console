@@ -248,3 +248,9 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+/* Fix run after session 2 (item 22): the campaign list and the new-campaign wizard use a big monitor's width. */
+@media (min-width: 2200px) {
+  .page {
+    max-width: 1800px;
+  }
+}

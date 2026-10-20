@@ -120,9 +120,8 @@ test("F2 item 5: nothing on the owner's screens is under 13px; helper and muted 
   walk("src");
   const small = [];
   for (const file of files) {
-    // World Lab (left untouched by this stage), the Adventures screen (another worker's in this run) and the combat
-    // rules of the 2D Live session are outside this pass.
-    if (file.includes("/world-lab/") || file.includes("/components/adventures/")) continue;
+    // World Lab (left untouched by this stage) and the combat rules of the 2D Live session are outside this pass.
+    if (file.includes("/world-lab/")) continue;
     const text = src(file);
     for (const block of text.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
       const selector = block[1].replace(/\/\*[\s\S]*?\*\//g, "").trim();
@@ -183,6 +182,10 @@ test("F2 item 22: the shell fills the window — the full-height sticky menu, th
   assert.match(css, /\.app > \.main \{\n    min-height: calc\(100dvh - 32px\);/);
   assert.match(css, /@media \(min-width: 2200px\) \{\n  \.app \{\n    grid-template-columns: 300px minmax\(0, 1fr\);/);
   assert.match(src("scripts/fix-s2-screenshots.mjs"), /\[1440, 900, "900p"\], \[1920, 1080, "1080p"\], \[2560, 1440, "1440p"\], \[390, 844, "phone"\]/);
+});
+
+test("F item 22: the campaign list and the new-campaign wizard widen on a big monitor", () => {
+  assert.match(src("src/components/registry/library.module.css"), /@media \(min-width: 2200px\) \{\s*\.page \{\s*max-width: 1800px;/);
 });
 
 test("F2 item 25: the Library's document — Markdown read safely, one panel, no system paragraphs, «Загрузить файл» as a link, history behind «Версии»", async () => {

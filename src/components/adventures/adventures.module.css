@@ -126,7 +126,7 @@
 }
 .badge {
   display: inline-flex;
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.06em;
   border: 1px solid #806742;
   padding: 0.3rem 0.5rem;
@@ -255,11 +255,11 @@
 }
 .sheetReviewHeader { display: flex; justify-content: space-between; align-items: start; gap: 1rem; flex-wrap: wrap; }
 .sheetReviewHeader h3 { margin: 0; color: #f0d8aa; font: 1.45rem Georgia, serif; }
-.sheetMode { padding: 0.35rem 0.55rem; border: 1px solid #8f734d; border-radius: 2rem; color: #dec79d; font-size: 0.8rem; }
+.sheetMode { padding: 0.35rem 0.55rem; border: 1px solid #8f734d; border-radius: 2rem; color: #dec79d; font-size: 0.8125rem; }
 .sheetBackground { margin: 0; max-width: 70ch; line-height: 1.6; white-space: pre-wrap; }
 .sheetAttributes, .sheetAttributeEdits { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0.5rem; }
 .sheetAttributes div { display: grid; justify-items: center; gap: 0.2rem; padding: 0.65rem 0.2rem; border: 1px solid #6e5a40; border-radius: 0.35rem; background: #0d1519; }
-.sheetAttributes span { color: #c4ad84; font-size: 0.75rem; letter-spacing: 0.08em; }
+.sheetAttributes span { color: #c4ad84; font-size: 0.8125rem; letter-spacing: 0.08em; }
 .sheetAttributes strong { color: #f2dcb5; font: 1.35rem Georgia, serif; }
 .sheetAttributeEdits .field input { width: 100%; }
 .sheetFacts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: 0.8rem; }
@@ -267,8 +267,8 @@
 .sheetFacts ul { margin: 0.35rem 0 0; padding-left: 1.2rem; line-height: 1.5; }
 .sheetMechanics { display: grid; gap: 0.3rem; padding-top: 0.8rem; border-top: 1px solid #786447; }
 .currentAdventure { margin-bottom: 1.2rem; padding: clamp(1.1rem, 2.7vw, 1.7rem); border: 1px solid #91734c; border-radius: 0.6rem; background: radial-gradient(circle at top right, #74583145, transparent 45%), linear-gradient(140deg, #202729, #101719); color: #e7decf; }
-.currentAdventureHeading { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; color: #ceb480; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; }
-.currentAdventureHeading small { color: #bad4bc; font-size: 0.7rem; }
+.currentAdventureHeading { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; color: #ceb480; font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.12em; }
+.currentAdventureHeading small { color: #bad4bc; font-size: 0.8125rem; }
 .currentAdventure h2 { margin: 0.7rem 0; color: #f1d6a7; font: clamp(1.4rem, 2.8vw, 1.9rem) Georgia, serif; }
 .currentAdventure p { max-width: 68ch; line-height: 1.6; white-space: pre-wrap; }
 .currentAdventureLeads { margin: 1rem 0; padding-top: 0.8rem; border-top: 1px solid #6a5a41; }
@@ -290,7 +290,7 @@
   display: block;
   margin-bottom: 0.6rem;
   color: #cfb382;
-  font-size: 0.72rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
