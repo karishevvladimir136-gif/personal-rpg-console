@@ -916,3 +916,16 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     owner wants («не Мэри Сью»). Do: `roll` refuses a formula with a modifier when `skill` or `modifierField` is given
     (or strips it with a hint); the card shows every addend so a double count is visible; the report lists every
     hero roll whose total ≠ die + sheet + listed bonuses.
+
+67. **The DM decided for the hero** (owner, 20:55: «странный диалог. и ДМ решил за Джеймса»). The hero ordered the
+    sergeant to put down the burned horse, take the papers to read on the way and gallop back to the merchant. The
+    sergeant refused (fine — a companion has his own will), but then the narration settled the dispute itself: a
+    line with an ambiguous subject that reads as the hero giving in, the party riding back at a walk instead of the
+    declared gallop, and the papers never read. The companion's real argument (the horse is worth about half a
+    year of a guard's pay; a farrier in Beregost; the caravan can pick it up) was given as the narrator's aside about
+    what he «knows», while his spoken reason was pity. The owner liked the idea itself («про продать коня — хорошая
+    идея»). Same family as 50 (time cost paid without asking) and 51 (a question to the hero must end the turn).
+    Do: when a companion objects to the hero's order, the companion says his argument aloud and the turn ends on
+    that objection — the narration never accepts, changes or replaces the hero's declared action or its manner
+    (gallop, read on the way); every declared sub-action is either shown or explicitly deferred. Probe scene: an
+    order the companion disagrees with.
