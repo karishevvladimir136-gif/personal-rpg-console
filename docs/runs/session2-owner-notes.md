@@ -15,6 +15,25 @@ Each item: what he saw, what he wants. Fixed together after the session unless i
 - almost no moment where the DM got stuck or something the player wanted could not be done.
 His summary of what remains: «есть небольшие поправки к ДМ» — fixes, not a rebuild.
 
+## Key finding 2 — the app never gives the DM a hidden layer, and campaign creation forbids one (owner, 22:43: «а мы такого не давали в игру?»)
+
+No. In the chat campaign the DM had a DM-only secrets document written before play (the world's true cause, the
+factions' hidden aims, clocks, prepared clues) and a codex asking for 5–10 secrets per session. In the app:
+- campaign creation (`src/lib/server/adventure-bootstrap-provider.ts`, `bootstrapInstructions`) explicitly tells the
+  model: «Do not infer secret histories, hidden powers… Do not create a culprit, twist, hidden explanation…» and «Paid
+  work, rumors, motives and causes may remain unknown and be discovered through play» — a guardrail left from the
+  early design, when the app tried to stop the model from inventing facts;
+- the world form has no field for DM-only secrets; the world text is public canon;
+- the DM's private notes (`privateSecrets` in `dm-loop/context.ts`, a 3500-token budget) start empty and are filled
+  only by `note_world` during play — improvised turn by turn, so the plausible, mundane answer wins.
+Do (fix plan, first among the DM fixes): (1) remove the bootstrap's ban on hidden explanations; (2) a DM prep step at
+campaign start that writes the hidden layer into the private notes — the bigger truth behind the first case, the
+factions' hidden aims, 5–10 secrets not tied to places, clocks, one wondrous thread — never shown to the player;
+(3) an owner field «Тайны (видит только ведущий)» on the world and on the campaign, for when the owner writes the
+truth himself, as in the chat campaign, with an option not to show it to him; (4) the session digest keeps the layer
+current; (5) the mystery-and-wonder rule (item 82) in the DM's instructions. Probe: a fresh campaign — after the prep,
+the private notes hold a hidden truth, and in the first sessions clues to it appear without the truth being said.
+
 ## Key finding — the DM's instructions (owner: «запомни и запиши, иначе это бред»)
 
 Two causes of the dialogue problems in session 2, both in what the DM is told, not in the model:
