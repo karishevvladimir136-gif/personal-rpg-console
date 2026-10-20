@@ -219,7 +219,10 @@ async function playVariant(payload, turnNo, variant) {
   const store = createSnapshotTurnStore(crafted);
   const transport = [];
   const writerLive = args.dry ? null : guardedModel(variant.writer, budget, apiKey, transport, { salt: args.cacheSalt });
-  const bookkeeperLive = !args.dry && variant.bookkeeper ? guardedModel(variant.bookkeeper, budget, apiKey, transport, { salt: args.cacheSalt }) : null;
+  // Merge after session 2: Opus in both roles shares one guarded adapter — the usage cannot be told apart by model id,
+  // so a second adapter's reservations were never settled and held the budget.
+  const bookkeeperLive = !args.dry && variant.bookkeeper ? (variant.bookkeeper.modelId === variant.writer.modelId ? writerLive
+    : guardedModel(variant.bookkeeper, budget, apiKey, transport, { salt: args.cacheSalt })) : null;
   const writerModel = args.dry ? dryModel(variant.writer, "writer") : writerLive.model;
   const bookkeeperModel = variant.bookkeeper ? (args.dry ? dryModel(variant.bookkeeper, "bookkeeper") : bookkeeperLive.model) : null;
   const input = snapshotInput(crafted);
