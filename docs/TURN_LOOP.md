@@ -754,3 +754,26 @@ enters the repository, a log, a fixture or a test (the tests use synthetic place
   two replay bugs are fixed: the snapshot list names pre-migration-68 turns (migration 70 aliases the turns table
   `tr` in `rpg_turn_snapshots`), and the `--base` path reads the route's decoded `payload` (`lib/snapshots.mjs`).
 - Tests: `tests/voice-stage.test.mjs`; `tests/polish-group7.test.mjs`, `tests/polish3-split.test.mjs` updated.
+
+## 27. The lease of a long turn (the stuck-turn fix, session 2)
+
+A claim leases the turn for 300 s. Before migration 71 nothing renewed it, so a turn of more than five minutes (ten
+Opus requests at xhigh in the session 2 sandbox) hit the expired lease at the commit and again at the failure that
+followed: both answered `rpg_conflict`, and the row stayed `generating` with an expired lease. Its public turn showed
+`canRetry`, but the retry was refused (422), and the composer kept that refused command in the tab's journal and re-sent
+it on every later click, «Отказаться» included.
+
+- **Renewal** (migration `202610200071_dm_loop_turn_lease.sql`, a wrapper over `public.rpg_runtime`): every fenced
+  write of a dm-loop-v1 turn — `dm_tool`, `checkpoint`, `commit`, `fail` — first sets `lease_until = now()+300 s`
+  when the payload's token is the turn's current lease token and the turn is pending or generating, in the same
+  transaction (a refused write leaves the lease as it was). The token is the fence: a new claim replaces it, and a
+  cancel, a timeline switch or any end of the turn clears it, so only the current claimant renews. An expired lease
+  still lets another claim take the turn over; the old claimant's writes and failure are then refused as before.
+- **Retry of a stuck turn** (`retryClaimable` in `loop.ts`, used by `resumeDmLoopTurn`, `resumeTwoPassTurn` and
+  `resumeCampaignTurn`): a retry may claim a failed turn the server offers to retry, and a pending or generating turn
+  always: a live lease returns the turn unchanged, an expired one is taken over and resumed from the last checkpoint
+  (recorded receipts are replayed, dice are never rolled twice, a finished turn commits without a new request).
+- **The composer** (`dropRefusedCommand` in `client-state.ts`; `GameplayClientError.status`): a resume command the
+  server refused with a 4xx changed nothing and leaves the journal, so the next click sends the action chosen then;
+  a command whose outcome is unknown (no answer, 5xx) stays and is re-sent with the same identity, as before.
+- Tests: `tests/dm-loop-turn-lease.test.mjs`; `tests/integration-saves.test.mjs` lists migration 71.

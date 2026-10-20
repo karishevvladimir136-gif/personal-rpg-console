@@ -40,7 +40,7 @@ import { dmLoopTools } from "../tools.ts";
 import type { DmSplit } from "../settings.ts";
 import { DM_LOOP_RUNTIME, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopMeta, type DmLoopObservation,
   type DmLoopPin, type DmLoopReceipt, type DmLoopUsageEntry } from "../contracts.ts";
-import { continuation, executeDmLoopTurn, joinText, narrationNames, retriableRejection, thinkingAllowance, type DmLoopDependencies } from "../loop.ts";
+import { continuation, executeDmLoopTurn, joinText, narrationNames, retriableRejection, retryClaimable, thinkingAllowance, type DmLoopDependencies } from "../loop.ts";
 import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KEY } from "../time-words.ts";
 import { BOOKKEEPER_MARKER, bookkeeperBrief, bookkeeperSystem, createLedgerGate, rejectedCallsMessage, splitLedger, writerSystem } from "./prompts.ts";
 
@@ -584,7 +584,7 @@ export async function resumeTwoPassTurn(command: ResumeInput, deps: TwoPassDepen
     command.campaignId, command.operationId, command.timeline);
   if (["committed", "cancelled"].includes(current.status)) return current;
   if (command.action === "cancel") return deps.store.cancel(command);
-  requireRule(command.action === "retry" ? current.status === "failed" && current.canRetry : current.status === "awaiting_confirmation");
+  requireRule(command.action === "retry" ? retryClaimable(current) : current.status === "awaiting_confirmation");
   const claim = await deps.store.claim(command.campaignId, command.operationId);
   if (claim) requireClaimTimeline(claim, command.campaignId, command.operationId, command.timeline);
   return requireTurnTimeline(claim ? await executeTwoPassTurn(claim, deps, command)
@@ -632,7 +632,7 @@ export async function resumeCampaignTurn(command: ResumeInput, deps: CampaignTur
     command.campaignId, command.operationId, command.timeline);
   if (["committed", "cancelled"].includes(current.status)) return current;
   if (command.action === "cancel") return deps.store.cancel(command);
-  requireRule(command.action === "retry" ? current.status === "failed" && current.canRetry : current.status === "awaiting_confirmation");
+  requireRule(command.action === "retry" ? retryClaimable(current) : current.status === "awaiting_confirmation");
   const claim = await deps.store.claim(command.campaignId, command.operationId);
   if (claim) requireClaimTimeline(claim, command.campaignId, command.operationId, command.timeline);
   const played = claim ? (isSplitTurn(claim, deps.split) ? await executeTwoPassTurn(claim, twoPassDeps(deps), command) : await executeDmLoopTurn(claim, deps, command))

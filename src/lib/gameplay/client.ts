@@ -11,9 +11,12 @@ import type { CombatReadinessConfirmation, CombatReadinessProposal } from "./com
 
 export class GameplayClientError extends Error {
   code: string;
-  constructor(code = "unavailable") {
+  /** The HTTP status of a server answer; null when no answer arrived (the outcome is unknown). */
+  status: number | null;
+  constructor(code = "unavailable", status: number | null = null) {
     super(code);
     this.code = code;
+    this.status = status;
   }
 }
 export function gameplayErrorMessage(error: unknown) {
@@ -60,6 +63,7 @@ async function request<T>(path: string, body?: unknown): Promise<T> {
   if (!response.ok)
     throw new GameplayClientError(
       typeof value?.error?.code === "string" ? value.error.code : "unavailable",
+      response.status,
     );
   if (!value) throw new GameplayClientError();
   return value as T;
