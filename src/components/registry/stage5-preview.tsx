@@ -31,6 +31,7 @@ import { RegistryOwner } from "./owner-screen";
 import { RegistryPictures } from "./pictures-screen";
 import { SessionEnd } from "./session-end";
 import { previewDmView, previewOwnerPlay } from "@/lib/ui/preview/owner-fixture";
+import { previewNewCampaign } from "@/lib/ui/preview/new-campaign-fixture";
 import { Plate, useCopy } from "./primitives";
 import { PersistentGeneralSettings } from "../persistent-settings";
 import { DmCraftOwner } from "../dm-craft-owner";
@@ -85,6 +86,11 @@ export function Stage5Preview({ screen, lang, variant }: { screen: Stage5Screen;
   }, [sample, drawingPlace]);
   const drawing = useMemo(() => (drawingPlace ? new Set([...sample.drawing, drawingPlace]) : sample.drawing), [sample, drawingPlace]);
   const refresh = async () => {};
+  const wizard = useMemo(() => previewNewCampaign(sample.worlds), [sample]);
+  const wizardStep = variant.step ?? (flags.get("opening") === "1" ? 4 : flags.get("dm") === "1" ? 3 : flags.get("adventure") === "1" ? 2
+    : flags.get("hero") === "1" || flags.get("sheet") === "1" || flags.get("item") === "1" ? 1 : 0);
+  const wizardTransport = useMemo<AdventureTransport>(() => ({ worlds: async () => sample.worlds, read: refuse, send: refuse, createWorld: refuse, newHero: refuse }), [sample]);
+  const wizardBootstrap = useMemo<BootstrapTransport>(() => ({ proposeCharacter: refuse, createCharacter: refuse, proposeOpening: refuse, startOpening: refuse }), []);
   let content: ReactNode;
   if (screen in libraryScreens) {
     const body = screen === "menu" ? <MainMenu />
@@ -92,7 +98,14 @@ export function Stage5Preview({ screen, lang, variant }: { screen: Stage5Screen;
         <PersistentGeneralSettings preview={{ preferences: { language, largeText: flags.get("large") === "1", suggestions: false, revision: 1, updated_at: "2026-10-19T12:00:00.000Z" }, providers: previewProviders }} />
       ) : screen === "craft" ? <DmCraftOwner previewView={previewCraftView} previewOpenKey={flags.get("card") === "1" ? "afterglow-rhythm" : undefined} />
       : screen === "new-campaign" ? (
-        <RegistryNewCampaign worlds={sample.worlds} preview initialStep={variant.step ?? 0} onClose={() => {}} onCreated={refresh} />
+        // Fix run F: the wizard's steps (?created=1 the world just created, ?hero=1, ?sheet=1 the DM's sheet, ?item=1 a thing's fields open,
+        // ?adventure=1, ?dm=1, ?opening=1).
+        <RegistryNewCampaign worlds={sample.worlds} preview initialStep={wizardStep} onClose={() => {}} onCreated={refresh}
+          transport={wizardTransport} bootstrapTransport={wizardBootstrap} wizardPreview={{ createdWorld: flags.get("created") === "1",
+            heroDraft: flags.get("sheet") === "1" || flags.get("item") === "1" ? wizard.heroDraft : undefined,
+            openItem: flags.get("item") === "1" ? 4 : null, created: wizardStep >= 2 ? wizard.created : undefined,
+            catalog: wizardStep >= 2 ? wizard.catalog : undefined, adventure: wizardStep === 2 ? wizard.adventure : undefined,
+            openingDraft: wizardStep === 4 ? wizard.openingDraft : undefined }} />
       ) : (
         <RegistryCampaigns preview={{
           campaigns: [...sample.library],

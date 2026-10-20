@@ -1,12 +1,14 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { startMinutesFromText } from "../../lib/adventures/wizard-text";
 import type {
   BootstrapTransport,
+  OpeningDraft,
   OpeningReview,
   StartCommand,
 } from "../../lib/adventures/bootstrap-contracts";
-import { parseOpeningReview } from "../../lib/adventures/bootstrap-validation";
+import { initialOpeningReview, parseOpeningReview } from "../../lib/adventures/bootstrap-validation";
+import { applyOpeningAnswers } from "../../lib/adventures/opening-answers";
 import { bootstrapText, normalizeLines, OpeningReviewFields } from "./review";
 import { useBootstrap } from "./use-bootstrap";
 import styles from "../adventures/adventures.module.css";
@@ -19,7 +21,16 @@ export function OpeningBootstrap({
   onDirty,
   onStarted,
   onCancel,
+  wizard = false,
+  autoPropose = false,
+  previewDraft,
 }: {
+  /** A synthetic preview's opening, shown as proposed (nothing is sent). */
+  previewDraft?: OpeningDraft | null;
+  /** Fix run F (item 21): the wizard's last step — «Играть», plain words. */
+  wizard?: boolean;
+  /** Propose at once (the owner already pressed the wizard's button). */
+  autoPropose?: boolean;
   campaignId: string;
   start: StartCommand | null;
   language: "en" | "ru";
@@ -33,6 +44,7 @@ export function OpeningBootstrap({
       `rpg:bootstrap:opening:${campaignId}`,
       persistPending,
       transport,
+      previewDraft ? { draft: previewDraft, review: initialOpeningReview(previewDraft.proposal) } : undefined,
     ),
     c = bootstrapText(language);
   const draft = w.draft?.kind === "opening" ? w.draft : null,
@@ -48,16 +60,25 @@ export function OpeningBootstrap({
   const dirty = !!start || !!w.pending || !!draft;
   useEffect(() => onDirty(dirty), [dirty, onDirty]);
   useEffect(() => () => onDirty(false), [onDirty]);
+  // The wizard's «Предложить первую сцену» is the owner's click: the proposal starts once, without a second button.
+  const proposed = useRef(false);
+  useEffect(() => {
+    if (!autoPropose || proposed.current || !start || draft || w.pending || !w.ready || w.busy) return;
+    proposed.current = true;
+    void w.execute({ action: "opening.propose", input: start }, onStarted);
+  }, [autoPropose, start, draft, w, onStarted]);
   if (!start && !draft && !w.pending) return null;
-  const corrected = review
-    ? {
+  // Item 34: the owner's answers reach the opening's people (a name answer renames the person) before play;
+  // the server also pins every answer for the DM.
+  const corrected = review && draft
+    ? applyOpeningAnswers({
         ...review,
         actors: review.actors.map((a) => ({
           ...a,
           capabilities: normalizeLines(a.capabilities),
           limitations: normalizeLines(a.limitations),
         })),
-      }
+      }, draft.proposal.questions, language)
     : null;
   let allowed = false;
   try {
@@ -70,8 +91,8 @@ export function OpeningBootstrap({
   }
   return (
     <section className={styles.setup}>
-      <h2>{c.opening}</h2>
-      <p className={styles.intro}>{c.openingHelp}</p>
+      {!wizard && <h2>{c.opening}</h2>}
+      {!wizard && <p className={styles.intro}>{c.openingHelp}</p>}
       {draft && review ? (
         <form
           className={styles.form}
@@ -108,7 +129,7 @@ export function OpeningBootstrap({
               className={styles.primary}
               disabled={!allowed || w.busy || !!w.pending}
             >
-              {c.start}
+              {wizard ? (language === "ru" ? "Играть" : "Play") : c.start}
             </button>
             <button
               type="button"
@@ -124,7 +145,7 @@ export function OpeningBootstrap({
         </form>
       ) : !w.pending && start ? (
         <>
-          <p className={styles.muted}>{c.cost}</p>
+          <p className={styles.muted}>{wizard ? (language === "ru" ? "Ведущий кампании напишет первую сцену; это платный запрос к модели, обычно меньше минуты." : "The campaign's DM writes the first scene; a paid model request, usually under a minute.") : c.cost}</p>
           <div className={styles.actions}>
             <button
               className={styles.primary}
@@ -136,7 +157,7 @@ export function OpeningBootstrap({
                 )
               }
             >
-              {c.prepare}
+              {wizard ? (language === "ru" ? "Предложить первую сцену" : "Propose the first scene") : c.prepare}
             </button>
             <button disabled={w.busy} onClick={onCancel}>
               {c.cancel}

@@ -211,7 +211,7 @@ for (const language of ["en", "ru"])
     assert.match(html, /do not add new gameplay abilities|не добавляют новых игровых способностей/);
   });
 for (const language of ["en", "ru"])
-  test(`${language} ordinary Campaign path leads with Name / Who are you, no required mechanics, preserves Advanced starter`, () => {
+  test(`${language} ordinary Campaign path leads with Name / Who are you, no required mechanics, no developer intro and no old starter rules (fix run F, items 11 and 13)`, () => {
     const c = bootstrapText(language),
       f = fixture();
     const html = render(
@@ -227,11 +227,14 @@ for (const language of ["en", "ru"])
         persistPending: false,
       },
     );
-    for (const s of [c.name, c.who, c.intro, c.prepare, c.advanced, c.fighter])
+    for (const s of [c.name, c.who, c.prepare])
       assert.ok(
         html.includes(s.replaceAll("&", "&amp;").replaceAll("'", "&#x27;")),
         s,
       );
+    // The owner: «это надо убрать» — the developer intro and «Другие поддерживаемые правила» (the Level 1 Fighter).
+    for (const s of [c.intro, c.advanced, c.fighter])
+      assert.ok(!html.includes(s.replaceAll("&", "&amp;").replaceAll("'", "&#x27;")), s);
     assert.doesNotMatch(html, /<input[^>]+name="(?:hp|level|class|slots)"/);
     assert.equal((html.match(/<textarea/g) || []).length, 1);
   });
@@ -545,4 +548,28 @@ test("Normal wiring uses reviewed bootstrap, confirmed Start → Game, and keeps
     adventures,
     /await onSaved\(\);\s*await load\(\);\s*if\s*\(mounted.current\)/,
   );
+});
+
+// Fix run F (items 19, 20, 21): the one-pass hero's sheet on the review — readable, editable in place, every thing's
+// first line under its name and its kind and slot; the fields of a thing (kind, slot, damage, bonuses, attunement); the
+// note that the changes apply on creation; the wizard in story order.
+test("the hero sheet review: readable sheet, things with their first line, kind and slot, the item fields, «Изменения применятся при создании»", async () => {
+  const { previewNewCampaign } = await import("../src/lib/ui/preview/new-campaign-fixture.ts");
+  const { initialHeroReview } = await import("../src/lib/adventures/hero-draft.ts");
+  const sample = previewNewCampaign({ worlds: [{ id: id(600), versionId: id(601), version: 1, title: "Синтетический мир", premise: "Мир.", packVersionIds: [] }], packs: [] });
+  const draft = sample.heroDraft;
+  const review = initialHeroReview(draft.input, draft.proposal);
+  const { HeroSheetReview } = ui("components/bootstrap/hero-sheet.tsx");
+  const props = { value: review, onChange: noCall, language: "ru", questions: draft.proposal.questions, notes: draft.proposal.notes };
+  const html = render(HeroSheetReview, props);
+  for (const text of ["Интеллект", "+5", "Хиты (максимум)", "Класс доспеха", "Огненный шар", "Боевой посох", "надето · Основная рука", "Дубовый посох с медной оковкой.", "Кольцо (правая)", "Ячейки 1 круга", "зм · золотые монеты", "Изменения применятся при создании", "Что ведущий поправил или не смог сохранить", "По желанию"])
+    assert.ok(html.includes(text), text);
+  assert.ok(!html.includes("На набалдашнике"), "only the first line of a description is shown folded");
+  const open = render(HeroSheetReview, { ...props, initialOpen: 4 });
+  for (const text of ["Вид", "Слот на кукле", "Урон и свойства", "Бонусы · по одному в строке", "нужна настройка", "двуручное", "Заряды", "Убрать вещь"])
+    assert.ok(open.includes(text), text);
+  const { wizardSteps, depthRangeLabel } = await import("../src/lib/adventures/wizard-text.ts");
+  assert.deepEqual(wizardSteps("ru").map((step) => step.title), ["Мир", "Герой", "Приключение", "Ведущий", "Первая сцена"]);
+  assert.equal(depthRangeLabel({ min: "high", max: "xhigh" }, "ru"), "высокая — очень высокая");
+  assert.equal(depthRangeLabel({ min: "high", max: "high" }, "ru"), "высокая");
 });

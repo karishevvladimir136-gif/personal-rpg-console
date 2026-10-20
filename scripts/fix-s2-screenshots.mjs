@@ -19,12 +19,15 @@ const playwright = process.env.PLAYWRIGHT_MODULE ?? (existsSync("/opt/node-tools
 const { chromium } = await import(playwright ? pathToFileURL(join(playwright, "index.mjs")).href : "playwright");
 // The panels a desktop shot can scroll to: the text of the panel's heading (the first match).
 // Stage C: «game:turn», «game-combat:turn», «game-recording:turn» — the turn being told (its player's action).
-// Stage F: «settings:rules» — the campaign's rules in words and the checks and dice.
+// Stage F: «settings:rules» — the campaign's rules in words and the checks and dice; the hero sheet's things and the
+// opening's people.
 const ANCHORS = { dm: "Как ведущий работает", secrets: "Тайны (видит только ведущий)", memory: "Память ведущего", turn: "Киваю Мэг на того",
-  rules: "Правила этой кампании" };
+  rules: "Правила этой кампании", items: "нажми на вещь, чтобы поправить", people: "Люди в сцене" };
 // «game-recording» → /preview/stage-5/game?recording=1; «settings» → /preview/stage-5/settings.
 const urlOf = (name) => {
-  const [screen, ...flags] = name.split(":")[0].split("-");
+  // Stage F: «new-campaign» is one screen name with a dash («new-campaign-sheet» → /new-campaign?sheet=1).
+  const base0 = name.split(":")[0];
+  const [screen, ...flags] = base0.startsWith("new-campaign") ? ["new-campaign", ...base0.slice("new-campaign".length).split("-").filter(Boolean)] : base0.split("-");
   const query = new URLSearchParams(flags.map((flag) => [flag, "1"])).toString();
   return `${base}/preview/stage-5/${screen}${query ? `?${query}` : ""}`;
 };

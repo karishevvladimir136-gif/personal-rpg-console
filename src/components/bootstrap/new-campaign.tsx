@@ -8,7 +8,9 @@ import type {
 import type {
   BootstrapTransport,
   CreationReview,
+  HeroReview,
 } from "../../lib/adventures/bootstrap-contracts";
+import { HeroDraftReview } from "./hero-step";
 import { parseCreationReview } from "../../lib/adventures/bootstrap-validation";
 import { creationReviewForCommit } from "../../lib/adventures/bootstrap-review";
 import { capitalizedName, creationBlockedReason } from "../../lib/adventures/wizard-text";
@@ -53,23 +55,10 @@ export function NewCampaignForm(props: Props) {
       }
     });
   }, [props.persistPending]);
-  return (
-    <>
-      {advanced ? <NewHeroForm {...props} /> : <UniversalCampaign {...props} />}
-      <details className={styles.history}>
-        <summary>{c.advanced}</summary>
-        <div className={styles.actions}>
-          <button onClick={() => setAdvanced((v) => !v)}>
-            {advanced
-              ? props.language === "ru"
-                ? "Свободная кампания"
-                : "Free-form campaign"
-              : c.fighter}
-          </button>
-        </div>
-      </details>
-    </>
-  );
+  // Fix run F (item 13): the old «Другие поддерживаемые правила» (a Level 1 Fighter on the starter rules) is no longer
+  // offered — the hero of any system is built by the DM; only a pending Fighter request still opens to be recovered.
+  void c;
+  return advanced ? <NewHeroForm {...props} /> : <UniversalCampaign {...props} />;
 }
 function UniversalCampaign({
   language,
@@ -121,8 +110,12 @@ function UniversalCampaign({
     await onCreated();
   };
   const frozen = !workflow.ready || workflow.busy || !!workflow.pending;
-  const draft = workflow.draft?.kind === "creation" ? workflow.draft : null,
-    review = workflow.review as CreationReview | null;
+  const creationDraft = workflow.draft?.kind === "creation" ? workflow.draft : null;
+  // Fix run F: a draft of schema 3 (the hero built by the DM in one pass) opens on the readable sheet.
+  const heroProposal = creationDraft && creationDraft.proposal.schemaVersion === 3 ? creationDraft.proposal : null;
+  const legacyProposal = creationDraft && creationDraft.proposal.schemaVersion !== 3 ? creationDraft.proposal : null;
+  const draft = creationDraft && legacyProposal ? { ...creationDraft, proposal: legacyProposal } : null,
+    review = draft ? (workflow.review as CreationReview | null) : null;
   const corrected = review && draft
     ? creationReviewForCommit({
         ...review,
@@ -145,7 +138,6 @@ function UniversalCampaign({
   return (
     <section className={styles.panel}>
       <h2>{language === "ru" ? "Новая кампания" : "New Campaign"}</h2>
-      <p className={styles.intro}>{c.intro}</p>
       {created ? (
         <>
           <p role="status">{c.ready}</p>
@@ -163,7 +155,12 @@ function UniversalCampaign({
         </>
       ) : (
         <>
-          {draft && review ? (
+          {creationDraft && heroProposal && workflow.review ? (
+            <HeroDraftReview draft={{ draftId: creationDraft.draftId, input: creationDraft.input, proposal: heroProposal }} review={workflow.review as HeroReview}
+              onChange={workflow.setReview} worldTitle={worlds?.worlds.find((w) => w.id === creationDraft.input.worldId)?.title ?? ""}
+              frozen={frozen} busy={workflow.busy} error={workflow.error} onReset={workflow.resetProposal}
+              onCommit={(final) => void workflow.execute({ action: "creation.commit", input: { requestId: crypto.randomUUID(), draftId: creationDraft.draftId, review: final } }, committed)} />
+          ) : draft && review ? (
             <form
               className={styles.form}
               onSubmit={(e) => {

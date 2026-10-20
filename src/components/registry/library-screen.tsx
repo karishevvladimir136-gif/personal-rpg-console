@@ -9,16 +9,14 @@ import type { AdventureTransport } from "@/lib/adventures/client";
 import type { BootstrapTransport } from "@/lib/adventures/bootstrap-contracts";
 import { createAdventureTransport } from "@/lib/adventures/client";
 import { loadCampaign } from "@/lib/persistence/client";
-import { readJson } from "@/lib/persistence/client";
-import { dmTurnModels, loadDmSettings, saveDmSettings, type DmSettings } from "@/lib/gameplay/dm-settings-client";
+import { loadDmSettings, saveDmSettings, type DmSettings } from "@/lib/gameplay/dm-settings-client";
 import { characterViewModel } from "@/lib/character-view-model";
 import { currentPlace, currentSession, heroOf, sessionNumber } from "@/lib/ui/campaign-view";
 import { effortLabel } from "@/lib/ui/effort";
-import { NewCampaignForm } from "../bootstrap/new-campaign";
-import { wizardStartKey, type WizardStart } from "@/lib/adventures/wizard-text";
+import { CampaignWizard, type WizardPreview } from "../bootstrap/wizard";
 import { useWorkspaceData } from "../persistence-context";
 import { dmModelLabel } from "./shell";
-import { Art, Panel, Plate, registry as r, useCopy } from "./primitives";
+import { Art, Panel, registry as r, useCopy } from "./primitives";
 import s from "./library.module.css";
 
 export type LibraryPreview = {
@@ -30,11 +28,6 @@ export type LibraryPreview = {
 };
 
 const campaignHref = (id: string, screen: string) => `/campaigns/${encodeURIComponent(id)}/${screen}`;
-
-/** A model's own default effort (its capabilities' default, as the server resolves it). */
-function defaultEffort(entry: (typeof dmTurnModels)[number]) {
-  return entry.defaultEffort;
-}
 
 /** The previous closed session's recap: the "Previously in…" block. Hidden when absent. */
 export function previouslyIn(snapshot: CampaignSnapshot) {
@@ -230,10 +223,9 @@ function CampaignCard({ campaign, snapshot, settings, href, onSwitch, switching 
   );
 }
 
-/** Four steps over the existing bootstrap flow: World and Hero run the existing
- * creation form (world pick, free text, AI draft sheet review); DM and Start
- * follow once the campaign exists. */
-export function RegistryNewCampaign({ worlds, onClose, onCreated, preview = false, initialStep = 0, transport, bootstrapTransport }: {
+/** Fix run F (item 21): the new-campaign wizard in story order — Мир → Герой → Приключение → Ведущий → Первая сцена
+ * (src/components/bootstrap/wizard.tsx). The preview shows each step over synthetic records; nothing is sent. */
+export function RegistryNewCampaign({ worlds, onClose, onCreated, preview = false, initialStep = 0, transport, bootstrapTransport, wizardPreview }: {
   worlds: WorldCatalog | null;
   onClose: () => void;
   onCreated: () => Promise<void>;
@@ -241,135 +233,11 @@ export function RegistryNewCampaign({ worlds, onClose, onCreated, preview = fals
   initialStep?: number;
   transport?: AdventureTransport;
   bootstrapTransport?: BootstrapTransport;
+  wizardPreview?: WizardPreview;
 }) {
   const c = useCopy();
-  const workspace = useWorkspaceData();
-  const [step, setStep] = useState(initialStep);
-  const [known] = useState(() => new Set((workspace.data?.campaigns ?? []).map((row) => row.id)));
-  const [createdId, setCreatedId] = useState<string | null>(null);
-  const [model, setModel] = useState(dmTurnModels[0].modelId);
-  // The effort starts at the selected model's own default (the same one the server resolves).
-  const [effort, setEffort] = useState(() => defaultEffort(dmTurnModels[0]));
-  const [likes, setLikes] = useState("");
-  // Polish group 10: the start is a real choice; the phrase travels to the adventures screen.
-  const [startChoice, setStartChoice] = useState<WizardStart["choice"]>("dm");
-  const [startPhrase, setStartPhrase] = useState("");
-  const handoff = () => {
-    if (!createdId) return;
-    try { sessionStorage.setItem(wizardStartKey(createdId), JSON.stringify({ choice: startChoice, phrase: startPhrase.trim() })); } catch { /* the form is prefilled only when storage works */ }
-  };
-  const [saved, setSaved] = useState(false);
-  const [dirty, setDirty] = useState(false);
-  useEffect(() => {
-    if (createdId || preview) return;
-    const fresh = (workspace.data?.campaigns ?? []).find((row) => !known.has(row.id));
-    if (fresh) queueMicrotask(() => { setCreatedId(fresh.id); setStep(2); });
-  }, [workspace.data, known, createdId, preview]);
-  const steps = [
-    [c("Мир", "World"), c("существующий или новый", "existing or new")],
-    [c("Герой", "Hero"), c("своими словами", "in your own words")],
-    [c("Ведущий", "DM"), c("модель и глубина", "model and effort")],
-    [c("Начало", "Start"), c("первая сцена", "the first scene")],
-  ];
-  const entry = dmTurnModels.find((row) => row.modelId === model) ?? dmTurnModels[0];
-  const saveDm = async () => {
-    if (!createdId || preview) { setSaved(true); return; }
-    const current = await loadDmSettings(createdId);
-    await saveDmSettings(createdId, { expectedRevision: current.revision, runtime: "dm-loop-v1", dmTurn: { providerId: entry.providerId, modelId: entry.modelId, reasoning: effort } });
-    if (likes.trim()) {
-      try {
-        await readJson(`/api/campaigns/${encodeURIComponent(createdId)}/dossier`, { method: "POST", headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ action: "likes", playerLikes: likes.trim() }) });
-      } catch { /* the note can be written in the settings later */ }
-    }
-    setSaved(true);
-  };
   return (
-    <div className={s.page}>
-      <Plate eyebrow={c("Нулевая сессия", "Session zero")} title={c("Новая кампания", "New campaign")}
-        aside={<button type="button" className={r.btnGhost} onClick={() => { if (!dirty || window.confirm(c("Отменить несохранённое?", "Discard unsaved changes?"))) onClose(); }}>{c("Отмена", "Cancel")}</button>} />
-      <ol className={s.steps} aria-label={c("Шаги", "Steps")}>
-        {steps.map(([title, sub], index) => (
-          <li key={title}>
-            <span className={s.step} aria-current={index === step ? "step" : undefined} data-done={index < step}>
-              <span className={s.stepNum}>{index < step ? "✓" : index + 1}</span>
-              <span><b>{title}</b><span className={`${r.small} ${r.muted}`}>{sub}</span></span>
-            </span>
-          </li>
-        ))}
-      </ol>
-      <div className={s.newLayout}>
-        <section className={s.newMain}>
-          {step <= 1 && (
-            <div className={r.stack}>
-              <p className={r.note}>{c("Выбери мир, опиши героя своими словами — ведущий соберёт черновик листа по правилам кампании, ты его проверишь и поправишь.", "Pick a world and describe your hero in your own words — the DM drafts a sheet for the campaign's rules; you review and correct it.")}</p>
-              {preview ? (
-                <Panel>
-                  <p className={r.note}>{c("Предпросмотр: здесь работает существующая форма создания (мир → герой → черновик листа → проверка).", "Preview: the existing creation form runs here (world → hero → draft sheet → review).")}</p>
-                </Panel>
-              ) : (
-                <div className={s.legacyForm}>
-                  <NewCampaignForm language={c.language} onDirty={(value) => { setDirty(value); if (value) setStep(1); }}
-                    onCreated={onCreated} onCancel={onClose} initialWorlds={worlds ?? undefined} transport={transport} bootstrapTransport={bootstrapTransport} />
-                </div>
-              )}
-            </div>
-          )}
-          {step === 2 && (
-            <div className={r.stack}>
-              <h2 className={r.h2}>{c("Какой будет игра?", "What kind of game?")}</h2>
-              <div className={r.choices}>
-                {dmTurnModels.map((row) => (
-                  <button key={row.modelId} type="button" className={r.choice} aria-pressed={model === row.modelId} onClick={() => { setModel(row.modelId); setEffort(defaultEffort(row)); setSaved(false); }}>
-                    <span className={r.eyebrow}>{row.providerId === "anthropic" ? "Anthropic" : "OpenAI"}</span>
-                    <span className={r.choiceTitle}>{row.label}</span>
-                  </button>
-                ))}
-              </div>
-              <div className={r.segmented} role="group" aria-label={c("Глубина", "Effort")}>
-                {entry.efforts.map((value) => <button key={value} type="button" className={r.segment} aria-pressed={effort === value} onClick={() => { setEffort(value); setSaved(false); }}>{effortLabel(value, c.language)}</button>)}
-              </div>
-              <p className={r.note}>{c("Тон истории, правила бросков и книги правил настраиваются в настройках кампании; поменять можно в любой момент.", "Story tone, roll rules and rule books live in the campaign settings; change them any time.")}</p>
-              <div className={r.stack} style={{ gap: 6 }}>
-                <span className={r.eyebrow}>{c("Что мне нравится в играх", "What I enjoy in games")}</span>
-                <textarea rows={3} maxLength={2000} value={likes} onChange={(event) => { setLikes(event.target.value); setSaved(false); }}
-                  aria-label={c("Что мне нравится в играх", "What I enjoy in games")}
-                  placeholder={c("Темы, виды сцен, темп боёв — то, что ты сказал бы мастеру на нулевой сессии. Ведущий будет вести записку дальше; её можно править в настройках.", "Themes, kinds of scenes, the pace of fights — what you would tell the DM at session zero. The DM keeps the note from here; edit it in the settings.")} />
-              </div>
-              <div className={r.row}>
-                <button type="button" className={r.btnMain} onClick={() => void saveDm().then(() => setStep(3))}>{c("Дальше →", "Next →")}</button>
-                {saved && <span className={r.note}>{c("Сохранено", "Saved")}</span>}
-              </div>
-            </div>
-          )}
-          {step === 3 && (
-            <div className={r.stack}>
-              <h2 className={r.h2}>{c("С чего начнём?", "Where do we begin?")}</h2>
-              <div className={r.choices}>
-                <button type="button" className={r.choice} aria-pressed={startChoice === "dm"} onClick={() => setStartChoice("dm")}><span className={r.choiceTitle}>{c("Ведущий решает", "The DM decides")}</span><span className={r.muted}>{c("Сцена из мира и твоей истории — сюрприз.", "A scene from the world and your story — a surprise.")}</span></button>
-                <button type="button" className={r.choice} aria-pressed={startChoice === "mine"} onClick={() => setStartChoice("mine")}><span className={r.choiceTitle}>{c("Я опишу, где начинаю", "I describe where I start")}</span><span className={r.muted}>{c("Одна фраза — остальное ведущий.", "One sentence — the DM does the rest.")}</span></button>
-              </div>
-              {startChoice === "mine" && (
-                <textarea rows={3} maxLength={2000} value={startPhrase} onChange={(event) => setStartPhrase(event.target.value)}
-                  aria-label={c("Где начинается история", "Where the story begins")}
-                  placeholder={c("Например: «Утро на причале Скрипучей Гавани; я должен Марте сорок монет и жду её».", "For example: “Morning on the Creaking Harbour pier; I owe Marta forty coins and I am waiting for her.”")} />
-              )}
-              <p className={r.note}>{c("Дальше один экран: твоё начало уже вписано, ведущий предложит вступление, ты проверишь его и нажмёшь «Начать» — первая сцена откроется в игре.", "One screen next: your start is already filled in, the DM proposes the opening, you review it and press “Start” — the first scene opens in the game.")}</p>
-              {createdId ? <Link className={r.btnMain} href={`/campaigns/${encodeURIComponent(createdId)}/adventures`} onClick={handoff}>{c("Начать кампанию", "Start the campaign")}</Link>
-                : <button type="button" className={r.btnMain} disabled>{c("Начать кампанию", "Start the campaign")}</button>}
-            </div>
-          )}
-        </section>
-        <aside className={s.summary}>
-          <span className={r.eyebrow}>{c("Сводка", "Summary")}</span>
-          <div className={r.kv}>
-            <div><span>{c("Ведущий", "DM")}</span><span>{entry.label} · {effortLabel(effort, c.language)}</span></div>
-            <div><span>{c("Ход", "Turn")}</span><span>{c("новый", "new loop")}</span></div>
-            <div><span>{c("Картинки", "Pictures")}</span><span>{c("стиль мира", "world style")}</span></div>
-          </div>
-          <span className={r.note}>{c("Всё, кроме мира, можно поменять потом в настройках кампании.", "Everything but the world can change later in campaign settings.")}</span>
-        </aside>
-      </div>
-    </div>
+    <CampaignWizard language={c.language} worlds={worlds} onClose={onClose} onCreated={onCreated} initialStep={initialStep}
+      preview={preview ? wizardPreview ?? {} : null} transport={transport} bootstrapTransport={bootstrapTransport} />
   );
 }

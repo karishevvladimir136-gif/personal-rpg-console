@@ -5,6 +5,7 @@ import type {
   BootstrapDraft,
   BootstrapTransport,
   CreationReview,
+  HeroReview,
   OpeningReview,
 } from "../../lib/adventures/bootstrap-contracts";
 import {
@@ -17,12 +18,15 @@ import {
   parseCreationReview,
   parseOpeningReview,
 } from "../../lib/adventures/bootstrap-validation";
+import { heroReviewForCommit, parseHeroReview } from "../../lib/adventures/hero-draft";
 import { usePending } from "../adventures/use-pending";
 import { wizardCreationReview } from "../../lib/adventures/wizard-text";
 export function useBootstrap(
   key: string,
   persist: boolean,
   injected?: BootstrapTransport,
+  /** A synthetic preview's draft, shown when nothing is restored (never sent anywhere by itself). */
+  initial?: { draft: BootstrapDraft; review: CreationReview | HeroReview | OpeningReview },
 ) {
   const transport = useMemo(
     () => injected ?? createBootstrapTransport(),
@@ -34,8 +38,8 @@ export function useBootstrap(
   );
   const { pending, current, mounted, remember, ready } =
     usePending<BootstrapCommand>(`${key}:pending`, restore, persist);
-  const [draft, setDraft] = useState<BootstrapDraft | null>(null),
-    [review, setReview] = useState<CreationReview | OpeningReview | null>(null),
+  const [draft, setDraft] = useState<BootstrapDraft | null>(initial?.draft ?? null),
+    [review, setReview] = useState<CreationReview | HeroReview | OpeningReview | null>(initial?.review ?? null),
     [restored, setRestored] = useState(false);
   const [busy, setBusy] = useState(false),
     [error, setError] = useState(false),
@@ -52,7 +56,9 @@ export function useBootstrap(
           try {
             setReview(
               d.kind === "creation"
-                ? parseCreationReview(saved.review)
+                ? d.proposal.schemaVersion === 3
+                  ? parseHeroReview(heroReviewForCommit(saved.review))
+                  : parseCreationReview(saved.review)
                 : parseOpeningReview(saved.review),
             );
           } catch {

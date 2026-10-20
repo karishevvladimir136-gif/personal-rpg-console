@@ -49,11 +49,11 @@ export function bootstrapText(language: "en" | "ru") {
         location: "Начальное место",
         situation: "Видимая ситуация",
         narration: "Начало истории",
-        actors: "Новые видимые люди / существа",
+        actors: "Люди в сцене",
         actorsHelp:
-          "Не включайте героя или уже существующих персонажей. Герой уже существует и будет находиться в начальном месте.",
+          "Каждый станет записью кампании; имя и описание можно поправить. Героя здесь нет — он уже в сцене.",
         confirm:
-          "Я проверил начало: только открытые факты, без скрытого объяснения, исхода, награды или решений героя.",
+          "Я прочитал начало — можно играть.",
         pending:
           "Ответ пока не подтверждён. Восстановите тот же запрос; повторного обращения к ИИ не будет.",
         preparing: "Подготавливаем предложение…",
@@ -78,10 +78,10 @@ export function bootstrapText(language: "en" | "ru") {
         fighter: "Воин 1-го уровня · стартовые правила",
         opening: "Начало приключения",
         openingHelp:
-          "Сначала проверьте открытое начало. Приключение начнётся только после вашего утверждения.",
+          "Ведущий предлагает первую сцену; приключение начнётся, когда ты её утвердишь.",
         openingPreview: "Предложенное начало",
-        openingNeedsDetails: "Для начала нужны ещё открытые сведения. Заполните их ниже.",
-        openingCorrections: "Исправить детали начала",
+        openingNeedsDetails: "В сцене чего-то не хватает — заполни пустые поля ниже.",
+        openingCorrections: "Поправить сцену и людей",
         linesHelp: "По одному пункту в строке.",
       }
     : {
@@ -116,11 +116,11 @@ export function bootstrapText(language: "en" | "ru") {
         location: "Starting place",
         situation: "Visible situation",
         narration: "Opening narration",
-        actors: "New visible people / creatures",
+        actors: "People in the scene",
         actorsHelp:
-          "Do not include the protagonist or existing characters. Your protagonist already exists and will be present at the starting place.",
+          "Each becomes a record of the campaign; change any name or description. The hero is not listed — he is already there.",
         confirm:
-          "I reviewed this public opening: no hidden explanation, outcome, reward or decisions for the protagonist.",
+          "I have read the opening — let's play.",
         pending:
           "The response is not confirmed. Recover the same request; it will not call the AI again.",
         preparing: "Preparing proposal…",
@@ -145,10 +145,10 @@ export function bootstrapText(language: "en" | "ru") {
         fighter: "Level 1 Fighter · starter rules",
         opening: "Adventure opening",
         openingHelp:
-          "Review the public opening first. The Adventure starts only after your approval.",
+          "The DM proposes the first scene; the adventure starts when you approve it.",
         openingPreview: "Proposed opening",
-        openingNeedsDetails: "This opening still needs public details. Complete them below.",
-        openingCorrections: "Correct opening details",
+        openingNeedsDetails: "Something is missing in the scene — fill in the empty fields below.",
+        openingCorrections: "Change the scene and the people",
         linesHelp: "One entry per line.",
       };
 }

@@ -166,7 +166,8 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  /* Fix run F (item 21): five steps in story order. */
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 8px;
 }
 .step {

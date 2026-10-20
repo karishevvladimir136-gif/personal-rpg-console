@@ -31,6 +31,8 @@ export function WorldPicker({
   starter = false,
   persistPending = true,
   transport: injected,
+  wizard = false,
+  previewCreated = false,
 }: {
   language: "en" | "ru";
   worldId: string;
@@ -43,6 +45,10 @@ export function WorldPicker({
   starter?: boolean;
   persistPending?: boolean;
   transport?: AdventureTransport;
+  /** Fix run F (items 11, 12): the new-campaign wizard's world step — plain words, «Мир создан и выбран». */
+  wizard?: boolean;
+  /** A synthetic preview of the state right after «Создать мир». */
+  previewCreated?: boolean;
 }) {
   const c = adventureText(language),
     transport = useMemo(
@@ -56,6 +62,8 @@ export function WorldPicker({
     [error, setError] = useState(false),
     [creating, setCreating] = useState(false);
   const [creatingBusy, setCreatingBusy] = useState(false);
+  const [justCreated, setJustCreated] = useState<string | null>(null);
+  const ru = language === "ru";
   const load = useCallback(
     async (signal?: AbortSignal) => {
       setLoading(true);
@@ -105,6 +113,9 @@ export function WorldPicker({
     });
   }, [persistPending]);
   const chosen = catalog?.worlds.find((w) => w.id === worldId);
+  const fresh = !!chosen && (justCreated === chosen.id || (previewCreated && wizard));
+  // Item 12: «v1» is noise for a world with one version.
+  const versionTag = (w: PublicWorld) => (w.version > 1 ? (ru ? ` · версия ${w.version}` : ` · version ${w.version}`) : "");
   return (
     <div className={styles.world}>
       {loading && <p role="status">{c.loadingWorlds}</p>}
@@ -157,25 +168,30 @@ export function WorldPicker({
               ) : (
                 catalog.worlds.map((w) => (
                   <option key={w.id} value={w.id}>
-                    {w.title} · v{w.version}
+                    {w.title}{versionTag(w)}
                   </option>
                 ))
               )}
             </select>
           </label>
+          {fresh && chosen && (
+            <p className={styles.notice} role="status">
+              {ru ? `Мир создан и выбран: «${chosen.title}».` : `World created and selected: “${chosen.title}”.`}
+            </p>
+          )}
           {chosen && (
             <div className={styles.setup}>
-              <p>{chosen.premise}</p>
+              <p className={wizard ? styles.worldPremise : undefined}>{chosen.premise}</p>
               <p className={styles.muted}>
-                {starter && chosen.packVersionIds.length > 0
-                  ? c.foundationHelp
-                  : c.pinned}
+                {wizard
+                  ? ru ? "Этот текст ведущий видит в каждом ходе: при создании кампании он станет её документом канона." : "The DM sees this text on every turn: the new campaign keeps it as a canon document."
+                  : starter && chosen.packVersionIds.length > 0
+                    ? c.foundationHelp
+                    : c.pinned}
               </p>
             </div>
           )}
-          <p className={styles.muted}>
-            {starter ? c.simpleWorldHelp : c.worldHelp}
-          </p>
+          {starter && <p className={styles.muted}>{c.simpleWorldHelp}</p>}
           {creating ? (
             <WorldCreator
               language={language}
@@ -185,9 +201,11 @@ export function WorldPicker({
               persistPending={persistPending}
               onBusy={setCreatingBusy}
               onDirty={onDirty}
+              wizard={wizard}
               onCreated={(world) => {
                 setCatalog((old) => mergeCreatedWorld(old ?? catalog, world));
                 onSelect(world.id);
+                setJustCreated(world.id);
                 setCreating(false);
               }}
               onCancel={() => {
@@ -202,7 +220,7 @@ export function WorldPicker({
                 disabled={disabled || loading}
                 onClick={() => setCreating(true)}
               >
-                {c.worldCreate}
+                {chosen ? (ru ? "Ещё один мир…" : "Another world…") : c.worldCreate}
               </button>
             </div>
           )}
@@ -217,11 +235,13 @@ function WorldCreator({
   disabled,
   transport,
   persistPending = true,
+  wizard = false,
   onBusy,
   onDirty,
   onCreated,
   onCancel,
 }: {
+  wizard?: boolean;
   language: "en" | "ru";
   catalog: WorldCatalog;
   disabled: boolean;
@@ -296,7 +316,8 @@ function WorldCreator({
       onSubmit={(event) => {
         event.preventDefault();
         if (frozen) return;
-        if (!reviewing) setReviewing(true);
+        // The wizard creates in one step: the text the owner wrote is what he reviews.
+        if (!reviewing && !wizard) setReviewing(true);
         else {
           try {
             void send(
@@ -341,7 +362,7 @@ function WorldCreator({
               />
             </label>
             <label className={styles.field}>
-              {c.worldPremise}
+              {wizard ? (language === "ru" ? "Опишите мир — до 20 000 знаков" : "Describe the world — up to 20,000 characters") : c.worldPremise}
               <textarea
                 required
                 maxLength={20000}
@@ -351,6 +372,7 @@ function WorldCreator({
                 onChange={(e) => setPremise(e.target.value)}
               />
             </label>
+            {wizard && <p className={styles.muted}>{language === "ru" ? "Этот текст ведущий видит в каждом ходе." : "The DM sees this text on every turn."}</p>}
             {catalog.packs.length > 0 && (
               <details className={styles.advanced}>
                 <summary>{c.advancedFoundation}</summary>
@@ -410,7 +432,7 @@ function WorldCreator({
           type="submit"
           disabled={frozen || !title.trim() || !premise.trim()}
         >
-          {reviewing ? c.worldCreate : c.reviewWorld}
+          {reviewing || wizard ? c.worldCreate : c.reviewWorld}
         </button>
         {reviewing && (
           <button
