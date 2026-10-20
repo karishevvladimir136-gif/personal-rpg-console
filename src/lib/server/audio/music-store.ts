@@ -6,7 +6,9 @@ import { databaseError, PersistenceError } from "../errors";
 import { isUuid } from "../../persistence/validation";
 import { parseMusicPack, parseMusicSettings, parseMusicSettingsInput, parseMusicState, parseMusicTrack, type MusicState, type SceneSignalView } from "../../audio/contracts";
 import { generateFalMusic } from "../../audio/fal-music";
-import { createPack, MusicJobError, planPack, runNextTrack, storeUpload, type MusicJobContext, type MusicRpcAction } from "../../audio/music-job";
+import { createPack, MusicJobError, planAmbientPack, planPack, runNextTrack, storeUpload, type MusicJobContext, type MusicRpcAction } from "../../audio/music-job";
+import { isAmbientId } from "../../audio/ambient";
+import { latestCommittedTurn } from "../../audio/mood-select";
 import { MAX_TRACK_BYTES, sniffAudio, type AudioContentType } from "../../audio/models";
 import { isMoodId } from "../../audio/moods";
 import { signalFromPlay } from "../../audio/mood-select";
@@ -80,9 +82,11 @@ export async function generateMusicPack(campaignId: string, value: unknown) {
   const state = await stateOf(ctx);
   if (!state.generation.configured) throw new PersistenceError("not_configured");
   try {
-    const plan = planPack({ settings: state.settings, styleText: typeof value.styleText === "string" ? value.styleText : undefined,
-      moods: Array.isArray(value.moods) && value.moods.every(isMoodId) ? value.moods : undefined, model: typeof value.model === "string" ? value.model : undefined,
-      variants: typeof value.variants === "number" ? value.variants : undefined, newId: ctx.newId });
+    const common = { settings: state.settings, styleText: typeof value.styleText === "string" ? value.styleText : undefined, model: typeof value.model === "string" ? value.model : undefined,
+      variants: typeof value.variants === "number" ? value.variants : undefined, newId: ctx.newId };
+    const plan = value.layer === "ambient"
+      ? planAmbientPack({ ...common, kinds: Array.isArray(value.kinds) && value.kinds.every(isAmbientId) ? value.kinds : undefined })
+      : planPack({ ...common, moods: Array.isArray(value.moods) && value.moods.every(isMoodId) ? value.moods : undefined });
     if (plan.expectedUsdMicros > plan.capUsdMicros) throw new PersistenceError("conflict");
     await createPack(ctx, plan);
   } catch (error) {
@@ -155,5 +159,6 @@ export async function musicSceneSignal(campaignId: string): Promise<SceneSignalV
   await authorizeCampaign(campaignId);
   const [play, data] = await Promise.all([readPlay(campaignId), readPublicCampaign(campaignId)]);
   const signal = signalFromPlay({ turns: play.turns, encounters: play.encounters, worldMinutes: play.worldMinutes }, data);
-  return { ...signal, turnPending: play.turns.some((turn) => turn.status !== "committed" && turn.status !== "cancelled" && turn.status !== "failed") };
+  const narration = latestCommittedTurn(play)?.narration ?? null;
+  return { ...signal, narration: typeof narration === "string" ? narration.slice(-4000) : null, turnPending: play.turns.some((turn) => turn.status !== "committed" && turn.status !== "cancelled" && turn.status !== "failed") };
 }

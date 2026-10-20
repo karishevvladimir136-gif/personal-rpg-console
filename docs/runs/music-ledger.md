@@ -2,7 +2,7 @@
 
 Cap **$50** (the stage file says $40; the owner raised it to $50 in the session's task). Every fal request of the stage, counted at the list price before it is sent and settled after it returns (a failed request settles at the list price: fal may bill it). Validation probes — bodies the worker rejected before any generation — are recorded at $0; fal does not bill them. Times are UTC.
 
-**Total settled: $14.4000 of $50.**
+**Total settled: $19.8200 of $50.**
 
 | # | When | Kind | Model | What | Counted | Settled | Outcome |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -144,13 +144,58 @@ Cap **$50** (the stage file says $40; the owner raised it to $50 in the session'
 | 136 | 2026-10-20 16:51:14 | music | fal-ai/stable-audio-3/medium/text-to-audio | noir/sorrow#3 60s | $0.0400 | $0.0400 | ok 60.0s audio/mpeg 9s |
 | 137 | 2026-10-20 16:51:14 | music | fal-ai/lyria3/pro | noir/triumph#1 75s | $0.0800 | $0.0800 | ok 73.7s audio/mpeg 24s |
 | 138 | 2026-10-20 16:51:43 | music | google/lyria-3.5 | noir/triumph#2 75s | $0.1000 | $0.1000 | ok 76.8s audio/mpeg 25s |
-| 139 | 2026-10-20 16:52:24 | music | fal-ai/lyria3/pro | shov/explore#1 60s | $0.0800 | $0.0000 | dry |
-| 140 | 2026-10-20 16:52:24 | music | google/lyria-3.5 | shov/explore#2 60s | $0.1000 | $0.0000 | dry |
-| 141 | 2026-10-20 16:52:24 | music | fal-ai/lyria3/pro | shov/trade#1 60s | $0.0800 | $0.0000 | dry |
-| 142 | 2026-10-20 16:52:24 | music | google/lyria-3.5 | shov/trade#2 60s | $0.1000 | $0.0000 | dry |
-| 143 | 2026-10-20 16:52:42 | music | fal-ai/lyria3/pro | shov/explore#1 60s | $0.0800 | $0.0800 | ok 59.3s audio/mpeg 27s |
-| 144 | 2026-10-20 16:52:42 | music | google/lyria-3.5 | shov/explore#2 60s | $0.1000 | $0.1000 | ok 61.2s audio/mpeg 25s |
-| 145 | 2026-10-20 16:52:42 | music | fal-ai/lyria3/pro | shov/trade#1 60s | $0.0800 | $0.0800 | ok 59.0s audio/mpeg 19s |
-| 146 | 2026-10-20 16:53:12 | music | google/lyria-3.5 | shov/trade#2 60s | $0.1000 | $0.1000 | ok 62.8s audio/mpeg 29s |
-| 147 | 2026-10-20 16:53:43 | music | fal-ai/lyria3/pro | noir/travel#1 60s | $0.0800 | $0.0800 | ok 58.7s audio/mpeg 21s |
-| 148 | 2026-10-20 16:53:43 | music | google/lyria-3.5 | noir/travel#2 60s | $0.1000 | $0.1000 | ok 62.1s audio/mpeg 26s |
+| 139 | 2026-10-20 16:52:42 | music | fal-ai/lyria3/pro | shov/explore#1 60s | $0.0800 | $0.0800 | ok 59.3s audio/mpeg 27s |
+| 140 | 2026-10-20 16:52:42 | music | google/lyria-3.5 | shov/explore#2 60s | $0.1000 | $0.1000 | ok 61.2s audio/mpeg 25s |
+| 141 | 2026-10-20 16:52:42 | music | fal-ai/lyria3/pro | shov/trade#1 60s | $0.0800 | $0.0800 | ok 59.0s audio/mpeg 19s |
+| 142 | 2026-10-20 16:53:12 | music | google/lyria-3.5 | shov/trade#2 60s | $0.1000 | $0.1000 | ok 62.8s audio/mpeg 29s |
+| 143 | 2026-10-20 16:53:43 | music | fal-ai/lyria3/pro | noir/travel#1 60s | $0.0800 | $0.0800 | ok 58.7s audio/mpeg 21s |
+| 144 | 2026-10-20 16:53:43 | music | google/lyria-3.5 | noir/travel#2 60s | $0.1000 | $0.1000 | ok 62.1s audio/mpeg 26s |
+| 145 | 2026-10-20 17:27:35 | probe | fal-ai/elevenlabs/sound-effects | wrong-typed fields probe (known fields, output formats) | $0.0000 | $0.0000 | rejected before generation ($0) |
+| 146 | 2026-10-20 17:27:35 | probe | fal-ai/elevenlabs/sound-effects/v2 | wrong-typed fields probe (known fields incl. loop) | $0.0000 | $0.0000 | rejected before generation ($0) |
+| 147 | 2026-10-20 17:27:35 | probe | fal-ai/elevenlabs/sound-effects/v2 | range probe (duration 100 s, prompt_influence 5: rejected) | $0.0000 | $0.0000 | rejected before generation ($0) |
+| 148 | 2026-10-20 17:33:37 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/tavern#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 8s |
+| 149 | 2026-10-20 17:33:37 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/engine_room#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 7s |
+| 150 | 2026-10-20 17:34:17 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/market#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 11s |
+| 151 | 2026-10-20 17:34:18 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/town#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 9s |
+| 152 | 2026-10-20 17:34:18 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/village#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 7s |
+| 153 | 2026-10-20 17:34:18 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/forge#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 10s |
+| 154 | 2026-10-20 17:34:29 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/temple#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 6s |
+| 155 | 2026-10-20 17:34:29 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/library#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 10s |
+| 156 | 2026-10-20 17:34:29 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/room#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 9s |
+| 157 | 2026-10-20 17:34:29 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/cave#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 8s |
+| 158 | 2026-10-20 17:34:40 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/mine#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 8s |
+| 159 | 2026-10-20 17:34:40 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/sewer#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 7s |
+| 160 | 2026-10-20 17:34:40 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/forest_day#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 9s |
+| 161 | 2026-10-20 17:34:40 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/forest_night#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 10s |
+| 162 | 2026-10-20 17:34:51 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/field#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 7s |
+| 163 | 2026-10-20 17:34:51 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/mountain#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 8s |
+| 164 | 2026-10-20 17:34:51 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/river#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 8s |
+| 165 | 2026-10-20 17:34:51 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/shore#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 10s |
+| 166 | 2026-10-20 17:35:02 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/ship_deck#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 9s |
+| 167 | 2026-10-20 17:35:02 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/camp#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 10s |
+| 168 | 2026-10-20 17:35:02 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/ruins#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 7s |
+| 169 | 2026-10-20 17:35:02 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/swamp#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 8s |
+| 170 | 2026-10-20 17:35:13 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/desert#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 6s |
+| 171 | 2026-10-20 17:35:13 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/neon_city#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 8s |
+| 172 | 2026-10-20 17:35:13 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/rain#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 9s |
+| 173 | 2026-10-20 17:35:13 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/storm#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 7s |
+| 174 | 2026-10-20 17:35:23 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/wind#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 9s |
+| 175 | 2026-10-20 17:35:23 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/snow#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 7s |
+| 176 | 2026-10-20 17:35:23 | ambient | fal-ai/elevenlabs/sound-effects/v2 | shov/thunder#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 8s |
+| 177 | 2026-10-20 17:35:33 | ambient | fal-ai/stable-audio-25/text-to-audio | shov/forest_night#2 60s | $0.2000 | $0.2000 | ok 60.0s audio/wav 6s |
+| 178 | 2026-10-20 17:35:33 | ambient | fal-ai/stable-audio-25/text-to-audio | shov/engine_room#2 60s | $0.2000 | $0.2000 | ok 60.0s audio/wav 8s |
+| 179 | 2026-10-20 17:35:33 | ambient | fal-ai/stable-audio-25/text-to-audio | shov/cave#2 60s | $0.2000 | $0.2000 | ok 60.0s audio/wav 12s |
+| 180 | 2026-10-20 17:35:33 | ambient | fal-ai/stable-audio-25/text-to-audio | shov/shore#2 60s | $0.2000 | $0.2000 | ok 60.0s audio/wav 10s |
+| 181 | 2026-10-20 17:35:47 | ambient | fal-ai/elevenlabs/sound-effects/v2 | noir/neon_city#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 7s |
+| 182 | 2026-10-20 17:35:47 | ambient | fal-ai/elevenlabs/sound-effects/v2 | noir/town#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 8s |
+| 183 | 2026-10-20 17:35:47 | ambient | fal-ai/elevenlabs/sound-effects/v2 | noir/room#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 6s |
+| 184 | 2026-10-20 17:35:47 | ambient | fal-ai/elevenlabs/sound-effects/v2 | noir/shore#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 9s |
+| 185 | 2026-10-20 17:35:58 | ambient | fal-ai/elevenlabs/sound-effects/v2 | noir/sewer#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 10s |
+| 186 | 2026-10-20 17:35:58 | ambient | fal-ai/elevenlabs/sound-effects/v2 | noir/tavern#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 7s |
+| 187 | 2026-10-20 17:35:58 | ambient | fal-ai/elevenlabs/sound-effects/v2 | noir/market#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 9s |
+| 188 | 2026-10-20 17:35:58 | ambient | fal-ai/elevenlabs/sound-effects/v2 | noir/library#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 6s |
+| 189 | 2026-10-20 17:36:08 | ambient | fal-ai/elevenlabs/sound-effects/v2 | noir/ruins#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 8s |
+| 190 | 2026-10-20 17:36:08 | ambient | fal-ai/elevenlabs/sound-effects/v2 | noir/rain#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 9s |
+| 191 | 2026-10-20 17:36:08 | ambient | fal-ai/elevenlabs/sound-effects/v2 | noir/storm#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 6s |
+| 192 | 2026-10-20 17:36:08 | ambient | fal-ai/elevenlabs/sound-effects/v2 | noir/thunder#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 7s |
+| 193 | 2026-10-20 17:36:19 | ambient | fal-ai/elevenlabs/sound-effects/v2 | noir/wind#1 22s | $0.1100 | $0.1100 | ok 22.0s audio/mpeg 6s |

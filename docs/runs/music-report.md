@@ -18,7 +18,9 @@ each loops on itself with a three-second overlap placed before its fade-out; the
 plays before the first click. One control in the header: volume, mute, «Музыка выкл», pin a track, skip. The owner's
 own tracks (Suno and the like) upload with mood tags and mix with the pack. For the review: the same five moods on seven
 models, and the full soundtracks of «Мир Шва» and «Neon & Rain», as small MP3s with a table of what each file is.
-Paid: **$14.40 of the $50 cap** (the stage file said $40; the owner raised it to $50 in the task), every call in the ledger.
+Added the same day, on the owner's word: **the ambient layer** — the place's sound and the weather under the music (see its
+section). Paid: **$19.82 of the $50 cap** ($14.40 for the soundtracks and the review, within their $40; $5.42 for the ambient
+layer, within its $10), every call in the ledger.
 
 ## What to click first
 
@@ -62,7 +64,8 @@ submit (HTTP 422) is never queued and is settled at $0, any later failure stays 
 
 ## What changed, part by part
 
-**The library (migration 71, `202610210371_music_stage.sql`, additive).** `rpg_private.music_settings` per campaign
+**The library (`202610210301_music_stage.sql`, prefix `2026102103` as the stage asks — renumbered after the other
+branches' `202610200071` turn-lease fix appeared; additive).** `rpg_private.music_settings` per campaign
 (on/off, the model, takes per mood, the cap per pack, the style text), `rpg_private.music_packs` (one generation run of
 a world's — or, without a bound world, a campaign's — soundtrack: version, the style text it was written with, status,
 cost) and `rpg_private.music_tracks` (generated takes and uploads: moods, status queued → generating → ready/failed,
@@ -108,6 +111,37 @@ spend, the «why» log.
 `tests/integration-saves.test.mjs` (the migration list). The campaign page router was not needed. Not touched: the DM
 loop, the context, world records, pictures, video.
 
+## The ambient layer (the owner's addition of 2026-10-20)
+
+A second, quieter layer under the music: **the place's sound and the weather**, from the public records only. The place's
+sound comes from the current place's public name and description (the head word of the name decides first — «Комната
+над лавкой» is a room, «Лес у реки» a forest; then the whole name, then the description; built places before open
+country) and the hour (a forest at night, open country at night is a camp): **24 place kinds** — tavern, market, town,
+village, forge, temple, library, room, cave, mine, sewer, forest by day, forest at night, open country, mountains,
+river, sea shore, ship's deck (the open sky counts as the airship's deck in this world), engine room (steam engines),
+camp, ruins, swamp, desert, neon city. The weather comes from the committed turn's public narration and the place's
+description: **5 weathers** — rain, downpour, wind, snow, thunderstorm («громче» is not thunder); it holds for two turns
+after the word disappears, so one turn without the word is not the sun. Nothing hidden is read.
+
+Generation: once per world, on `fal-ai/elevenlabs/sound-effects/v2` — 22-second loops with the endpoint's own seamless
+`loop` flag (its fields read from the queue's validation reply: `text`, `duration_seconds` ≤ 22, `loop`,
+`prompt_influence` ≤ 1, `output_format`; the page says $0.002 a second, counted at $0.005) — and, for the owner's ear,
+60-second soundscapes on `fal-ai/stable-audio-25/text-to-audio` for four kinds (forest at night, engine room, cave,
+shore). The effects model delivers very quiet files (−40 to −65 LUFS): the player applies a make-up gain per loop from
+the decoded samples (up to ×40), the review copies are normalised to −23 LUFS. The ambient pack is a second pack of
+the same shape as the music's (`layer = 'ambient'`, tags are place kinds and weathers instead of moods, validated per
+layer in SQL), generated the same way — one request per call, counted against the cap before the request, in the
+background — and both layers may generate at the same time.
+
+In play: two more channels in the player (the place and the weather), each with its own crossfade and loop; the layer
+sits at 60 % under playing music and ducks under video like the music; its own switch and volume in the player's
+popover (the rain-cloud button) and a campaign switch in the settings; «Сгенерировать звуки мест» with the estimate
+(29 kinds × $0.11 ≈ $3.19 counted) and a progress grid. The session log's last column shows the layer on the 20-turn
+scene: the cave, then the airship's deck with wind and snow from the text, then Geneva.
+
+Review: `docs/runs/music-review/ambient/shov/` (24 place kinds + 5 weathers + 4 long soundscapes) and
+`ambient/noir/` (13 kinds a noir city needs), `kinds.md` in each. 47 loops, none failed; **$5.42** counted.
+
 ## The soundtracks and the session log
 
 - `docs/runs/music-review/shov/moods.md` and `noir/moods.md`: 15 moods × 2 takes + 7 ambient takes = 37 tracks a world,
@@ -121,16 +155,18 @@ loop, the context, world records, pictures, video.
 
 ## Checks
 
-typecheck pass · lint pass (zero warnings) · `tests/music-stage.test.mjs` 11/11 · build pass · screenshots of the
+typecheck pass · lint pass (zero warnings) · `tests/music-stage.test.mjs` 12/12 (the ambient layer included) · build pass · screenshots of the
 settings and game screens, desktop and phone, with the overflow check passing (`docs/screens/stage-5/settings-*.jpg`,
-`game-*.jpg`, `noir-*`) · the full suite: see `DEV_STATUS.md` (2 631 tests · 2 603 pass · 27 skipped · 1 fail (the stage-5 copy check: the word «Лиссабон» in the new settings block's hint, reworded in the closing commit; `tests/stage5-ui.test.mjs` green alone, 16/16)).
+`game-*.jpg`, `noir-*`) · the full suite on the final code: FULLSUITE2.
 
 ## Money
 
-Every call is in `docs/runs/music-ledger.md` (148 entries): 19 validation probes at $0; the comparison, 35 tracks
-and 8 attempts refused at submit ($0), **$8.10**; the «Мир Шва» pack $3.34 and the «Neon & Rain» pack $3.16 (37 tracks
-each; the three failed takes were re-run, and as the bench re-runs a mood whole, take 1 of those moods was rewritten too: $0.54). **Total $14.40 of $50.** Prices are list
-prices counted before each call and never under-counted (ACE-Step and ElevenLabs are counted at the higher of two
+Every call is in `docs/runs/music-ledger.md` (193 entries): 22 validation probes at $0; the comparison, 35
+tracks and 8 attempts refused at submit ($0), **$8.10**; the «Мир Шва» pack $3.34 and the «Neon & Rain» pack $3.16
+(37 tracks each; the three failed takes were re-run, and as the bench re-runs a mood whole, take 1 of those moods was
+rewritten too: $0.54); the ambient layer 47 loops **$5.42**. **Total $19.82 of $50** ($14.40 of the $40 for the
+soundtracks and the review, $5.42 of the $10 for the ambient layer). Prices are list prices counted before each call
+and never under-counted (ACE-Step, ElevenLabs Music and the sound-effects model are counted at the higher of two
 published figures), so the real bill is at or below this.
 
 ## Known limits and what the owner decides
@@ -147,6 +183,9 @@ published figures), so the real bill is at or below this.
 - **One pack per world**, as asked; a campaign without a bound world gets its own. The style text is per campaign in
   the settings and is copied into the pack it generates.
 - **The DM choosing a track** is read from its `nextTension` hint; no new DM tool, as the stage required.
+- **Ambient word lists** are stems in two languages; a place whose name and description name nothing known plays no
+  place sound (the last known one stays). The DM's `upsert_place` has no kind field, so the lists are the only source
+  until the records carry one.
 - Ambient sound and real-time Lyria are out of scope, as the stage said.
 - **Manual setup:** none beyond pulling the branch; the migration applies with the others. A `FAL_KEY` in `.env.local`
   is already there for pictures.

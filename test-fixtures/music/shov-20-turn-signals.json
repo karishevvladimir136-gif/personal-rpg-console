@@ -1,5 +1,6 @@
 {
   "note": "Synthetic public scene signals of the 20-turn «Мир Шва» scene (test-fixtures/stage-v/shov-scene.json), labelled by the session from the turns' public text the way finish_turn would record them: scene kinds, the server's tension reading, the DM's hint for the next turn, whether an encounter is active, the player's moment, the world clock. No private state.",
+  "placeDescriptions": { "cave": "Морская пещера дома Альвареш: пахнет мокрым камнем, маслом и жареной сардиной.", "sky": "Дирижабль «Бабка» идёт над Пиренеями.", "geneva": "Город под Швом: озеро, шпили, паровые трамваи на мостах; край складки." },
   "startMinutes": 1920,
   "secondsPerTurn": 70,
   "turns": [

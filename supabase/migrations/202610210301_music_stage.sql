@@ -1,7 +1,8 @@
 -- The music stage (docs/stages/STAGE_MUSIC.md): a soundtrack per world. Packs of
 -- instrumental, loop-friendly tracks generated once per world (and again when its
--- musical style changes), the owner's own uploaded tracks tagged with moods, and
--- campaign music settings. Additive only: nothing earlier changes. Music only
+-- musical style changes), the owner's own uploaded tracks tagged with moods, the
+-- ambient layer (place sounds and weathers, the owner's addition of 2026-10-20) as a
+-- second pack of the same shape, and campaign music settings. Additive only: nothing earlier changes. Music only
 -- follows what the public records show; a row never decides anything in the
 -- game and nothing here reads DM-private state. Logic lives in TypeScript; this
 -- file keeps the invariants (ownership, bounds, append-only history, status
@@ -11,6 +12,7 @@ begin;
 create table rpg_private.music_settings (
   campaign_id uuid primary key references public.rpg_campaigns(id),
   enabled boolean not null default true,
+  ambient boolean not null default true,
   model text not null default 'fal-ai/lyria3/pro' check (length(model) between 1 and 80),
   variants integer not null default 2 check (variants between 1 and 3),
   pack_cap_usd_micros integer not null default 8000000 check (pack_cap_usd_micros between 0 and 50000000),
@@ -28,6 +30,7 @@ create table rpg_private.music_packs (
   campaign_id uuid not null references public.rpg_campaigns(id),
   scope text not null check (scope in ('world','campaign')),
   scope_id uuid not null,
+  layer text not null default 'music' check (layer in ('music','ambient')),
   version integer not null check (version > 0),
   style_text text not null check (length(style_text) between 1 and 1200),
   model text not null check (length(model) between 1 and 80),
@@ -38,7 +41,7 @@ create table rpg_private.music_packs (
   cost_usd_micros integer not null default 0 check (cost_usd_micros >= 0),
   created_at timestamptz not null default now(),
   finished_at timestamptz,
-  unique (owner_id, scope, scope_id, version)
+  unique (owner_id, scope, scope_id, layer, version)
 );
 alter table rpg_private.music_packs enable row level security;
 revoke all on rpg_private.music_packs from public, anon, authenticated;
@@ -51,7 +54,9 @@ create table rpg_private.music_tracks (
   scope text not null check (scope in ('world','campaign')),
   scope_id uuid not null,
   source text not null check (source in ('generated','upload')),
-  moods jsonb not null check (jsonb_typeof(moods) = 'array' and jsonb_array_length(moods) between 1 and 15),
+  layer text not null default 'music' check (layer in ('music','ambient')),
+  -- Moods of a music track; place kinds and weathers of an ambient track.
+  moods jsonb not null check (jsonb_typeof(moods) = 'array' and jsonb_array_length(moods) between 1 and 24),
   variant integer not null default 1 check (variant between 1 and 9),
   ordinal integer not null default 0 check (ordinal >= 0),
   title text not null check (length(btrim(title)) between 1 and 120),
@@ -107,33 +112,38 @@ begin
 end $$;
 create trigger music_track_immutable before update or delete on rpg_private.music_tracks for each row execute function rpg_private.music_track_immutable();
 
-create function rpg_private.music_moods_valid(v jsonb) returns void
+create function rpg_private.music_moods_valid(v jsonb, layer text default 'music') returns void
 language plpgsql immutable set search_path='' as $$
 declare k text; begin
- perform rpg_private.assert(jsonb_typeof(v)='array' and jsonb_array_length(v) between 1 and 15);
+ perform rpg_private.assert(layer in ('music','ambient') and jsonb_typeof(v)='array' and jsonb_array_length(v) between 1 and 24);
  for k in select jsonb_array_elements_text(v) loop
-  perform rpg_private.assert(k in ('travel','explore','mystery','tension','combat','climax','quiet','warm','humor','trade','town','night','dread','sorrow','triumph'));
+  if layer='music' then
+   perform rpg_private.assert(k in ('travel','explore','mystery','tension','combat','climax','quiet','warm','humor','trade','town','night','dread','sorrow','triumph'));
+  else
+   perform rpg_private.assert(k in ('tavern','market','town','village','forge','temple','library','room','cave','mine','sewer','forest_day','forest_night','field','mountain','river','shore','ship_deck','engine_room','camp','ruins','swamp','desert','neon_city',
+     'rain','storm','wind','snow','thunder'));
+  end if;
  end loop;
  perform rpg_private.assert((select count(distinct x) from jsonb_array_elements_text(v) x)=jsonb_array_length(v));
 end $$;
 
 create function rpg_private.music_settings_json(cid uuid) returns jsonb
 language sql stable set search_path='' as $$
- select coalesce((select jsonb_build_object('enabled',s.enabled,'model',s.model,'variants',s.variants,'packCapUsdMicros',s.pack_cap_usd_micros,'styleText',s.style_text,'revision',s.revision)
+ select coalesce((select jsonb_build_object('enabled',s.enabled,'ambient',s.ambient,'model',s.model,'variants',s.variants,'packCapUsdMicros',s.pack_cap_usd_micros,'styleText',s.style_text,'revision',s.revision)
    from rpg_private.music_settings s where s.campaign_id=cid),
-  jsonb_build_object('enabled',true,'model','fal-ai/lyria3/pro','variants',2,'packCapUsdMicros',8000000,'styleText','','revision',0))
+  jsonb_build_object('enabled',true,'ambient',true,'model','fal-ai/lyria3/pro','variants',2,'packCapUsdMicros',8000000,'styleText','','revision',0))
 $$;
 
 create function rpg_private.music_pack_json(p rpg_private.music_packs) returns jsonb
 language sql immutable set search_path='' as $$
- select jsonb_build_object('id',p.id,'scope',p.scope,'scopeId',p.scope_id,'version',p.version,'styleText',p.style_text,'model',p.model,'moods',p.moods,
+ select jsonb_build_object('id',p.id,'scope',p.scope,'scopeId',p.scope_id,'layer',p.layer,'version',p.version,'styleText',p.style_text,'model',p.model,'moods',p.moods,
   'variants',p.variants,'capUsdMicros',p.cap_usd_micros,'status',p.status,'costUsdMicros',p.cost_usd_micros,'createdAt',p.created_at,'finishedAt',p.finished_at)
 $$;
 
 -- The player-visible projection: never the prompt, the seed or the storage path.
 create function rpg_private.music_track_json(t rpg_private.music_tracks) returns jsonb
 language sql immutable set search_path='' as $$
- select jsonb_build_object('id',t.id,'packId',t.pack_id,'scope',t.scope,'source',t.source,'moods',t.moods,'variant',t.variant,'title',t.title,'model',t.model,
+ select jsonb_build_object('id',t.id,'packId',t.pack_id,'scope',t.scope,'layer',t.layer,'source',t.source,'moods',t.moods,'variant',t.variant,'title',t.title,'model',t.model,
   'requestedSeconds',t.requested_seconds,'status',t.status,'hidden',t.hidden,'contentType',t.content_type,'bytes',t.bytes,'durationMs',t.duration_ms,
   'costUsdMicros',t.cost_usd_micros,'elapsedMs',t.elapsed_ms,'error',t.error,'createdAt',t.created_at,'readyAt',t.ready_at)
 $$;
@@ -156,8 +166,8 @@ create function public.rpg_music(p_owner_id uuid, p_campaign_id uuid, p_action t
 language plpgsql security definer set search_path='' as $$
 #variable_conflict use_variable
 declare
- settings jsonb; wid uuid; scope text; sid uuid; p rpg_private.music_packs%rowtype; t rpg_private.music_tracks%rowtype;
- ver integer; o jsonb; row jsonb; spent integer; expected integer;
+ settings jsonb; wid uuid; scope text; sid uuid; p rpg_private.music_packs%rowtype; a rpg_private.music_packs%rowtype; t rpg_private.music_tracks%rowtype;
+ ver integer; o jsonb; row jsonb; spent integer; expected integer; layer text;
 begin
  if p_owner_id is null or not exists(select 1 from rpg_private.owner_registry where user_id=p_owner_id)
    then raise exception 'rpg_forbidden' using errcode='42501'; end if;
@@ -171,47 +181,52 @@ begin
 
  if p_action='read' then
   perform rpg_private.fields(p_payload,'{}');
-  select * into p from rpg_private.music_packs x where x.owner_id=p_owner_id and x.scope=scope and x.scope_id=sid and x.status<>'cancelled' order by x.version desc limit 1;
+  select * into p from rpg_private.music_packs x where x.owner_id=p_owner_id and x.scope=scope and x.scope_id=sid and x.layer='music' and x.status<>'cancelled' order by x.version desc limit 1;
+  select * into a from rpg_private.music_packs x where x.owner_id=p_owner_id and x.scope=scope and x.scope_id=sid and x.layer='ambient' and x.status<>'cancelled' order by x.version desc limit 1;
   return jsonb_build_object(
    'campaignId',p_campaign_id,'worldId',wid,'scope',scope,'scopeId',sid,'settings',settings,
    'pack',case when p.id is null then null else rpg_private.music_pack_json(p) end,
-   'packs',coalesce((select jsonb_agg(rpg_private.music_pack_json(x) order by x.version) from rpg_private.music_packs x where x.owner_id=p_owner_id and x.scope=scope and x.scope_id=sid),'[]'),
+   'ambientPack',case when a.id is null then null else rpg_private.music_pack_json(a) end,
+   'packs',coalesce((select jsonb_agg(rpg_private.music_pack_json(x) order by x.layer,x.version) from rpg_private.music_packs x where x.owner_id=p_owner_id and x.scope=scope and x.scope_id=sid),'[]'),
    'tracks',coalesce((select jsonb_agg(rpg_private.music_track_json(x) order by x.created_at,x.ordinal,x.id) from rpg_private.music_tracks x
-     where x.owner_id=p_owner_id and x.scope=scope and x.scope_id=sid and (x.source='upload' or (p.id is not null and x.pack_id=p.id))),'[]'),
+     where x.owner_id=p_owner_id and x.scope=scope and x.scope_id=sid and (x.source='upload' or (p.id is not null and x.pack_id=p.id) or (a.id is not null and x.pack_id=a.id))),'[]'),
    'spentUsdMicros',(select coalesce(sum(x.cost_usd_micros),0) from rpg_private.music_tracks x where x.owner_id=p_owner_id and x.scope=scope and x.scope_id=sid));
  end if;
 
  if p_action='settings.save' then
-  perform rpg_private.fields(p_payload,array['expectedRevision','enabled','model','variants','packCapUsdMicros','styleText']);
+  perform rpg_private.fields(p_payload,array['expectedRevision','enabled','model','variants','packCapUsdMicros','styleText'],array['ambient']);
   if (p_payload->>'expectedRevision')::integer<>(settings->>'revision')::integer then raise exception 'rpg_conflict'; end if;
-  perform rpg_private.assert(jsonb_typeof(p_payload->'enabled')='boolean' and jsonb_typeof(p_payload->'model')='string' and length(p_payload->>'model') between 1 and 80
+  perform rpg_private.assert(jsonb_typeof(p_payload->'enabled')='boolean' and jsonb_typeof(p_payload->'model')='string'
+    and (not (p_payload ? 'ambient') or jsonb_typeof(p_payload->'ambient')='boolean') and length(p_payload->>'model') between 1 and 80
     and jsonb_typeof(p_payload->'variants')='number' and (p_payload->>'variants')::numeric between 1 and 3 and mod((p_payload->>'variants')::numeric,1)=0
     and jsonb_typeof(p_payload->'packCapUsdMicros')='number' and (p_payload->>'packCapUsdMicros')::numeric between 0 and 50000000 and mod((p_payload->>'packCapUsdMicros')::numeric,1)=0
     and jsonb_typeof(p_payload->'styleText')='string' and length(p_payload->>'styleText')<=1200);
-  insert into rpg_private.music_settings(campaign_id,enabled,model,variants,pack_cap_usd_micros,style_text,revision)
-   values(p_campaign_id,(p_payload->>'enabled')::boolean,p_payload->>'model',(p_payload->>'variants')::integer,(p_payload->>'packCapUsdMicros')::integer,p_payload->>'styleText',1)
-   on conflict(campaign_id) do update set enabled=excluded.enabled,model=excluded.model,variants=excluded.variants,pack_cap_usd_micros=excluded.pack_cap_usd_micros,
+  insert into rpg_private.music_settings(campaign_id,enabled,ambient,model,variants,pack_cap_usd_micros,style_text,revision)
+   values(p_campaign_id,(p_payload->>'enabled')::boolean,coalesce((p_payload->>'ambient')::boolean,(settings->>'ambient')::boolean),p_payload->>'model',(p_payload->>'variants')::integer,(p_payload->>'packCapUsdMicros')::integer,p_payload->>'styleText',1)
+   on conflict(campaign_id) do update set enabled=excluded.enabled,ambient=excluded.ambient,model=excluded.model,variants=excluded.variants,pack_cap_usd_micros=excluded.pack_cap_usd_micros,
     style_text=excluded.style_text,revision=rpg_private.music_settings.revision+1,updated_at=now();
   return rpg_private.music_settings_json(p_campaign_id);
  end if;
 
  if p_action='pack.create' then
   -- A new version of the scope's soundtrack with its queued tracks (prompts come from TypeScript).
-  perform rpg_private.fields(p_payload,array['id','styleText','model','moods','variants','capUsdMicros','tracks']);
-  perform rpg_private.assert(jsonb_typeof(p_payload->'styleText')='string' and length(p_payload->>'styleText') between 1 and 1200
+  perform rpg_private.fields(p_payload,array['id','styleText','model','moods','variants','capUsdMicros','tracks'],array['layer']);
+  layer:=coalesce(p_payload->>'layer','music');
+  perform rpg_private.assert(layer in ('music','ambient') and jsonb_typeof(p_payload->'styleText')='string' and length(p_payload->>'styleText') between 1 and 1200
     and jsonb_typeof(p_payload->'model')='string' and jsonb_typeof(p_payload->'tracks')='array' and jsonb_array_length(p_payload->'tracks') between 1 and 120
     and jsonb_typeof(p_payload->'variants')='number' and jsonb_typeof(p_payload->'capUsdMicros')='number');
-  perform rpg_private.music_moods_valid(p_payload->'moods');
-  if exists(select 1 from rpg_private.music_packs x where x.owner_id=p_owner_id and x.scope=scope and x.scope_id=sid and x.status='generating') then raise exception 'rpg_conflict'; end if;
-  select coalesce(max(x.version),0)+1 into ver from rpg_private.music_packs x where x.owner_id=p_owner_id and x.scope=scope and x.scope_id=sid;
-  insert into rpg_private.music_packs(id,owner_id,campaign_id,scope,scope_id,version,style_text,model,moods,variants,cap_usd_micros,status)
-   values((p_payload->>'id')::uuid,p_owner_id,p_campaign_id,scope,sid,ver,p_payload->>'styleText',p_payload->>'model',p_payload->'moods',(p_payload->>'variants')::integer,(p_payload->>'capUsdMicros')::integer,'generating')
+  perform rpg_private.music_moods_valid(p_payload->'moods',layer);
+  -- One generating pack per layer: the music and the ambient layer may write at the same time.
+  if exists(select 1 from rpg_private.music_packs x where x.owner_id=p_owner_id and x.scope=scope and x.scope_id=sid and x.layer=layer and x.status='generating') then raise exception 'rpg_conflict'; end if;
+  select coalesce(max(x.version),0)+1 into ver from rpg_private.music_packs x where x.owner_id=p_owner_id and x.scope=scope and x.scope_id=sid and x.layer=layer;
+  insert into rpg_private.music_packs(id,owner_id,campaign_id,scope,scope_id,layer,version,style_text,model,moods,variants,cap_usd_micros,status)
+   values((p_payload->>'id')::uuid,p_owner_id,p_campaign_id,scope,sid,layer,ver,p_payload->>'styleText',p_payload->>'model',p_payload->'moods',(p_payload->>'variants')::integer,(p_payload->>'capUsdMicros')::integer,'generating')
    returning * into p;
   for row, ver in select * from jsonb_array_elements(p_payload->'tracks') with ordinality loop
    perform rpg_private.fields(row,array['id','moods','variant','title','model','prompt','seed','requestedSeconds']);
-   perform rpg_private.music_moods_valid(row->'moods');
-   insert into rpg_private.music_tracks(id,owner_id,campaign_id,pack_id,scope,scope_id,source,moods,variant,ordinal,title,model,prompt,seed,requested_seconds,status)
-    values((row->>'id')::uuid,p_owner_id,p_campaign_id,p.id,scope,sid,'generated',row->'moods',(row->>'variant')::integer,ver,row->>'title',row->>'model',row->>'prompt',
+   perform rpg_private.music_moods_valid(row->'moods',layer);
+   insert into rpg_private.music_tracks(id,owner_id,campaign_id,pack_id,scope,scope_id,layer,source,moods,variant,ordinal,title,model,prompt,seed,requested_seconds,status)
+    values((row->>'id')::uuid,p_owner_id,p_campaign_id,p.id,scope,sid,layer,'generated',row->'moods',(row->>'variant')::integer,ver,row->>'title',row->>'model',row->>'prompt',
      nullif(row->>'seed','null')::integer,(row->>'requestedSeconds')::integer,'queued');
   end loop;
   return rpg_private.music_pack_json(p);
@@ -302,7 +317,9 @@ begin
 
  if p_action='track.tag' then
   perform rpg_private.fields(p_payload,array['id','moods'],array['title']);
-  perform rpg_private.music_moods_valid(p_payload->'moods');
+  select * into t from rpg_private.music_tracks x where x.id=(p_payload->>'id')::uuid and x.owner_id=p_owner_id and x.scope=scope and x.scope_id=sid;
+  if not found then raise exception 'rpg_not_found'; end if;
+  perform rpg_private.music_moods_valid(p_payload->'moods',t.layer);
   if p_payload ? 'title' then perform rpg_private.assert(jsonb_typeof(p_payload->'title')='string' and length(btrim(p_payload->>'title')) between 1 and 120); end if;
   update rpg_private.music_tracks x set moods=p_payload->'moods',title=coalesce(btrim(p_payload->>'title'),x.title)
    where x.id=(p_payload->>'id')::uuid and x.owner_id=p_owner_id and x.scope=scope and x.scope_id=sid returning x.* into t;
@@ -321,12 +338,12 @@ begin
  raise exception 'rpg_validation' using errcode='22023';
 end $$;
 
-revoke all on function rpg_private.music_pack_immutable(),rpg_private.music_track_immutable(),rpg_private.music_moods_valid(jsonb),rpg_private.music_settings_json(uuid),
+revoke all on function rpg_private.music_pack_immutable(),rpg_private.music_track_immutable(),rpg_private.music_moods_valid(jsonb,text),rpg_private.music_settings_json(uuid),
  rpg_private.music_pack_json(rpg_private.music_packs),rpg_private.music_track_json(rpg_private.music_tracks),rpg_private.music_pack_settle(uuid)
  from public,anon,authenticated;
 revoke all on function public.rpg_music(uuid,uuid,text,jsonb) from public,anon,authenticated;
 do $$ begin if exists(select 1 from pg_roles where rolname='service_role') then
- revoke all on function rpg_private.music_moods_valid(jsonb),rpg_private.music_settings_json(uuid),rpg_private.music_pack_json(rpg_private.music_packs),
+ revoke all on function rpg_private.music_moods_valid(jsonb,text),rpg_private.music_settings_json(uuid),rpg_private.music_pack_json(rpg_private.music_packs),
   rpg_private.music_track_json(rpg_private.music_tracks),rpg_private.music_pack_settle(uuid) from service_role;
  grant execute on function public.rpg_music(uuid,uuid,text,jsonb) to service_role;
 end if; end $$;

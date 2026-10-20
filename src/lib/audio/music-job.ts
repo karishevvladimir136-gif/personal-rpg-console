@@ -10,7 +10,9 @@ import { parseMusicPack, parseMusicTrack, type MusicPack, type MusicSettings, ty
 import { FalMusicError, type FalMusicResult } from "./fal-music.ts";
 import { AUDIO_EXTENSIONS, MAX_TRACK_BYTES, musicModel, musicPriceUsdMicros, requestedSeconds, sniffAudio, type MusicRequest } from "./models.ts";
 import { isMoodId, MOOD_IDS, mood, type MoodId } from "./moods.ts";
-import { cueSeconds, musicRequestFor } from "./prompts.ts";
+import { AMBIENT_IDS, ambientKind, ambientSeconds, isAmbientId, type AmbientId } from "./ambient.ts";
+import { AMBIENT_NEGATIVE_PROMPT, ambientRequestFor, cueSeconds, musicRequestFor, NEGATIVE_PROMPT } from "./prompts.ts";
+import type { MusicLayer, TrackTag } from "./contracts.ts";
 
 export type MusicRpcAction = "read" | "settings.save" | "pack.create" | "pack.cancel" | "track.next" | "track.update" | "upload.create" | "track.hide" | "track.tag" | "track.private";
 export type MusicJobContext = {
@@ -34,12 +36,13 @@ export const trackStoragePath = (campaignId: string, trackId: string, contentTyp
 
 export type PackPlan = {
   id: string;
+  layer: MusicLayer;
   styleText: string;
   model: string;
-  moods: MoodId[];
+  moods: TrackTag[];
   variants: number;
   capUsdMicros: number;
-  tracks: { id: string; moods: MoodId[]; variant: number; title: string; model: string; prompt: string; seed: number | null; requestedSeconds: number }[];
+  tracks: { id: string; moods: TrackTag[]; variant: number; title: string; model: string; prompt: string; seed: number | null; requestedSeconds: number }[];
   /** The list price of the whole plan, counted before anything is sent. */
   expectedUsdMicros: number;
 };
@@ -65,13 +68,39 @@ export function planPack(input: { settings: MusicSettings; styleText?: string; m
       expected += musicPriceUsdMicros(modelId, seconds);
     }
   });
-  return { id: input.newId(), styleText, model: modelId, moods, variants, capUsdMicros: input.settings.packCapUsdMicros, tracks, expectedUsdMicros: expected };
+  return { id: input.newId(), layer: "music", styleText, model: modelId, moods, variants, capUsdMicros: input.settings.packCapUsdMicros, tracks, expectedUsdMicros: expected };
+}
+
+export const DEFAULT_AMBIENT_MODEL = "fal-ai/elevenlabs/sound-effects/v2";
+
+/** The ambient pack: every place kind and weather × the takes, short seamless loops by default. */
+export function planAmbientPack(input: { settings: MusicSettings; styleText?: string; kinds?: AmbientId[]; model?: string; variants?: number; newId: () => string }): PackPlan {
+  const styleText = (input.styleText ?? input.settings.styleText).trim() || "a fantasy world";
+  if (styleText.length > 1200) throw new MusicJobError("validation");
+  const modelId = input.model ?? DEFAULT_AMBIENT_MODEL;
+  const model = musicModel(modelId);
+  if (!model) throw new MusicJobError("validation");
+  const kinds = input.kinds ?? [...AMBIENT_IDS];
+  if (!kinds.length || !kinds.every(isAmbientId) || new Set(kinds).size !== kinds.length) throw new MusicJobError("validation");
+  const variants = input.variants ?? 1;
+  if (!Number.isSafeInteger(variants) || variants < 1 || variants > 3) throw new MusicJobError("validation");
+  const tracks: PackPlan["tracks"] = [];
+  let expected = 0;
+  kinds.forEach((ambientId, index) => {
+    for (let variant = 1; variant <= variants; variant += 1) {
+      const seconds = requestedSeconds(model, ambientSeconds(modelId));
+      const request = ambientRequestFor({ styleText, ambientId, model: modelId, seconds, variant, seed: variant * 7 + index });
+      tracks.push({ id: input.newId(), moods: [ambientId], variant, title: `${ambientKind(ambientId).label.en} ${variant}`, model: modelId, prompt: request.prompt, seed: model.seed ? request.seed ?? null : null, requestedSeconds: seconds });
+      expected += musicPriceUsdMicros(modelId, seconds);
+    }
+  });
+  return { id: input.newId(), layer: "ambient", styleText, model: modelId, moods: kinds, variants, capUsdMicros: input.settings.packCapUsdMicros, tracks, expectedUsdMicros: expected };
 }
 
 export async function createPack(ctx: MusicJobContext, plan: PackPlan): Promise<MusicPack> {
-  const pack = parseMusicPack(await ctx.rpc("pack.create", { id: plan.id, styleText: plan.styleText, model: plan.model, moods: plan.moods, variants: plan.variants, capUsdMicros: plan.capUsdMicros, tracks: plan.tracks }));
+  const pack = parseMusicPack(await ctx.rpc("pack.create", { id: plan.id, layer: plan.layer, styleText: plan.styleText, model: plan.model, moods: plan.moods, variants: plan.variants, capUsdMicros: plan.capUsdMicros, tracks: plan.tracks }));
   if (!pack) throw new MusicJobError("unavailable");
-  ctx.log?.("music_pack_created", { campaignId: ctx.campaignId, packId: pack.id, tracks: plan.tracks.length, expectedUsdMicros: plan.expectedUsdMicros, model: plan.model });
+  ctx.log?.("music_pack_created", { campaignId: ctx.campaignId, packId: pack.id, layer: plan.layer, tracks: plan.tracks.length, expectedUsdMicros: plan.expectedUsdMicros, model: plan.model });
   return pack;
 }
 
@@ -99,7 +128,7 @@ export async function runNextTrack(ctx: MusicJobContext): Promise<RunOutcome> {
     ctx.log?.("music_track_cap", { campaignId: ctx.campaignId, trackId: next.id, capUsdMicros: next.capUsdMicros, packCostUsdMicros: next.packCostUsdMicros, expected });
     return { track: claimed, outcome: "cap" };
   }
-  const request: MusicRequest = { model: next.model, prompt: next.prompt, negativePrompt: musicRequestFor({ styleText: "x", moodId: next.moods[0], model: next.model }).negativePrompt, seconds: next.requestedSeconds, seed: next.seed, styleWords: [] };
+  const request: MusicRequest = { model: next.model, prompt: next.prompt, negativePrompt: next.layer === "ambient" ? AMBIENT_NEGATIVE_PROMPT : NEGATIVE_PROMPT, seconds: next.requestedSeconds, seed: next.seed, styleWords: [] };
   try {
     const result = await ctx.generate(request);
     const storagePath = trackStoragePath(ctx.campaignId, next.id, result.contentType);

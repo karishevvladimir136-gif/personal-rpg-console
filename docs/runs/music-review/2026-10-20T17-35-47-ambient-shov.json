@@ -1,0 +1,165 @@
+{
+  "kind": "ambient",
+  "world": "shov",
+  "styleText": "Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy.",
+  "model": "fal-ai/elevenlabs/sound-effects/v2",
+  "longModel": "fal-ai/stable-audio-25/text-to-audio",
+  "longKinds": [
+    "forest_night",
+    "engine_room",
+    "cave",
+    "shore"
+  ],
+  "kinds": [
+    "forest_night",
+    "engine_room",
+    "cave",
+    "shore"
+  ],
+  "variants": 2,
+  "startedAt": "2026-10-20T17:35:33.279Z",
+  "elapsedMs": 14472,
+  "spentUsdMicros": 800000,
+  "rows": [
+    {
+      "world": "shov",
+      "moodId": null,
+      "ambientId": "forest_night",
+      "modelId": "fal-ai/stable-audio-25/text-to-audio",
+      "variant": 2,
+      "requestedSeconds": 60,
+      "prompt": "Ambient sound, no music: a forest at night: crickets, an owl, a branch creaking, wind in the canopy. The world: Steampunk over the ruins of the Old World. Natural field-recording texture, steady and even, suitable as a quiet background loop. A steady ambience from the first second to the last, no intro, no fade-out, so it loops. Variation 2: a different mix of the same sounds.",
+      "negativePrompt": "music, melody, instruments, singing, voices with words, speech, abrupt ending, silence",
+      "seed": 14,
+      "expectedUsdMicros": 200000,
+      "ok": true,
+      "file": "docs/runs/music-review/ambient/shov/forest_night-2.mp3",
+      "providerContentType": "audio/wav",
+      "outputKeys": [
+        "audio",
+        "seed"
+      ],
+      "bytes": 10597102,
+      "elapsedMs": 5893,
+      "requestId": "01a15a61-fc32-76b0-9980-69ace975eeda",
+      "priceUsdMicros": 200000,
+      "seconds": 60.029388,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -27.3,
+      "lra": 10.7,
+      "peakDbfs": -0.4,
+      "seam": {
+        "headDb": -37.813776,
+        "tailDb": -39.157001,
+        "bodyDb": -30.1455
+      }
+    },
+    {
+      "world": "shov",
+      "moodId": null,
+      "ambientId": "engine_room",
+      "modelId": "fal-ai/stable-audio-25/text-to-audio",
+      "variant": 2,
+      "requestedSeconds": 60,
+      "prompt": "Ambient sound, no music: a steam engine room: pistons thumping in rhythm, hissing steam valves, boiler roar, metal clanks. The world: Steampunk over the ruins of the Old World. Natural field-recording texture, steady and even, suitable as a quiet background loop. A steady ambience from the first second to the last, no intro, no fade-out, so it loops. Variation 2: a different mix of the same sounds.",
+      "negativePrompt": "music, melody, instruments, singing, voices with words, speech, abrupt ending, silence",
+      "seed": 15,
+      "expectedUsdMicros": 200000,
+      "ok": true,
+      "file": "docs/runs/music-review/ambient/shov/engine_room-2.mp3",
+      "providerContentType": "audio/wav",
+      "outputKeys": [
+        "audio",
+        "seed"
+      ],
+      "bytes": 10597102,
+      "elapsedMs": 7988,
+      "requestId": "01a15a61-fc0c-7f90-96de-06413e15eb1f",
+      "priceUsdMicros": 200000,
+      "seconds": 60.029388,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -21.7,
+      "lra": 4.1,
+      "peakDbfs": -0.5,
+      "seam": {
+        "headDb": -20.36758,
+        "tailDb": -42.703443,
+        "bodyDb": -26.181833
+      }
+    },
+    {
+      "world": "shov",
+      "moodId": null,
+      "ambientId": "cave",
+      "modelId": "fal-ai/stable-audio-25/text-to-audio",
+      "variant": 2,
+      "requestedSeconds": 60,
+      "prompt": "Ambient sound, no music: a cave: dripping water, deep echoing drips, a faint underground draft, distant rumble. The world: Steampunk over the ruins of the Old World. Natural field-recording texture, steady and even, suitable as a quiet background loop. A steady ambience from the first second to the last, no intro, no fade-out, so it loops. Variation 2: a different mix of the same sounds.",
+      "negativePrompt": "music, melody, instruments, singing, voices with words, speech, abrupt ending, silence",
+      "seed": 16,
+      "expectedUsdMicros": 200000,
+      "ok": true,
+      "file": "docs/runs/music-review/ambient/shov/cave-2.mp3",
+      "providerContentType": "audio/wav",
+      "outputKeys": [
+        "audio",
+        "seed"
+      ],
+      "bytes": 10597102,
+      "elapsedMs": 12390,
+      "requestId": "01a15a61-fc4e-7422-827a-3c7def765279",
+      "priceUsdMicros": 200000,
+      "seconds": 60.029388,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -16.2,
+      "lra": 7.3,
+      "peakDbfs": -0.3,
+      "seam": {
+        "headDb": -32.762763,
+        "tailDb": -23.796751,
+        "bodyDb": -18.10445
+      }
+    },
+    {
+      "world": "shov",
+      "moodId": null,
+      "ambientId": "shore",
+      "modelId": "fal-ai/stable-audio-25/text-to-audio",
+      "variant": 2,
+      "requestedSeconds": 60,
+      "prompt": "Ambient sound, no music: a sea shore: waves rolling in, gulls, wind, rigging clinking in a harbour. The world: Steampunk over the ruins of the Old World. Natural field-recording texture, steady and even, suitable as a quiet background loop. A steady ambience from the first second to the last, no intro, no fade-out, so it loops. Variation 2: a different mix of the same sounds.",
+      "negativePrompt": "music, melody, instruments, singing, voices with words, speech, abrupt ending, silence",
+      "seed": 17,
+      "expectedUsdMicros": 200000,
+      "ok": true,
+      "file": "docs/runs/music-review/ambient/shov/shore-2.mp3",
+      "providerContentType": "audio/wav",
+      "outputKeys": [
+        "audio",
+        "seed"
+      ],
+      "bytes": 10597102,
+      "elapsedMs": 10281,
+      "requestId": "01a15a61-fc4f-7051-9a93-a7d9879b71c6",
+      "priceUsdMicros": 200000,
+      "seconds": 60.029388,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -14.7,
+      "lra": 9.3,
+      "peakDbfs": -0.6,
+      "seam": {
+        "headDb": -20.668334,
+        "tailDb": -21.90113,
+        "bodyDb": -18.812622
+      }
+    }
+  ]
+}
