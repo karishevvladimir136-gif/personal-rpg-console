@@ -1152,3 +1152,6 @@ report); the guard post's place record says «Раннее утро» — a time
     anchors are good now), name, where they are and how they stand with the hero, one line of fate, «unknown» when
     the hero does not know; then the open threads; then one «meanwhile» item delivered through an in-world channel
     (a report, a rumour, a letter). One digest per session (item 17 guard), shown once.
+    Owner confirmed (22:22, «ну вот да, всё это вот»): the «Ранее в…» as a dense list of facts with a trifle among
+    them, and the open hooks reduced to the quest and one promise while six live threads are missing — both are
+    his reading too, not only the planner's.
