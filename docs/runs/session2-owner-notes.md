@@ -1098,3 +1098,11 @@ report); the guard post's place record says «Раннее утро» — a time
     which hand does what («left hand pours, right hand holds the ash»); a cheap vision check after each frame
     (extra or missing limbs, wrong gear such as the shield) queues one automatic redraw or marks the frame for the
     owner; «Перерисовать» stays one click.
+    Follow-up (owner, 22:10: «тут хорошо, но слегка не соответствует сцене: у Джеймса не было фонаря, и он вроде
+    где-то прятался»): the raid frame (the sergeant gagging a guard, the mine yard behind) gave the hero an invented
+    lantern and stood him in the open with a glowing staff, while the turn had him hidden; and his face is clean
+    although two turns earlier he blackened it with ash paste — the frame that showed the camouflage was right,
+    the next one forgot it. Do: props come only from the records (the lantern, like the shield, is a hard «no»);
+    the shot carries the hero's position (hidden, behind what) and the light; a temporary look the story set
+    (soot on the face, a burned robe, bandages) is kept as the person's current appearance until the story removes
+    it, and the frame compiler sends it with the gear.
