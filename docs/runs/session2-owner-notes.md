@@ -901,3 +901,13 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
   to his promise (recorded as «Слово за Щепу»). Mage Armor AC 16 correct (13 + Dex 2 + robe 1). One bookkeeping
   question for the report: the hero went from 4 HP (the sergeant's potion) to «12 из 32» in this turn with no potion,
   rest or hit die told — check the receipts for an untold heal (and that his own potion is still counted).
+
+66. **Modifiers counted twice — the hero's rolls inflated** (seen 20:18). The Investigation check on the burned office:
+    the card says «Шляпа исследователя +1» and «7 + 15 = 22», but the hero's Investigation is +7 and the hat +1 → the
+    total should be 7 + 8 = 15. At 14:33 the same skill was right (18 + 8 = 26). The rerolled death save showed the
+    same kind of error (+1 ring counted as +2). Most likely the DM passes the sheet skill (`skill`, the server adds
+    +7) and also writes the number into the formula («1d20+7»), so the server adds it twice. Both outcomes stood this
+    time (15 meets DC 15; the death save passes at 11), but it silently inflates the hero — the opposite of what the
+    owner wants («не Мэри Сью»). Do: `roll` refuses a formula with a modifier when `skill` or `modifierField` is given
+    (or strips it with a hint); the card shows every addend so a double count is visible; the report lists every
+    hero roll whose total ≠ die + sheet + listed bonuses.
