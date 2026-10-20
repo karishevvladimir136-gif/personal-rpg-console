@@ -22,6 +22,7 @@ import { usePictures } from "./live-frames";
 import { effortLabel } from "@/lib/ui/effort";
 import { useChrome, useDmSettings, type CampaignScreenId } from "./shell";
 import { useAutopilot } from "./visual-autopilot";
+import { MusicBlock } from "./music-settings";
 import { Panel, Plate, registry as r, Segmented, Switch, useCopy, useSubjectImage, type SubjectRef } from "./primitives";
 import { OwnerSecretsPanel } from "./owner-secrets";
 import s from "./settings.module.css";
@@ -437,6 +438,8 @@ export function RegistrySettings({ data, more, preview }: {
         </div>
         <div className={s.column}>
           <PicturesBlock data={data} providers={providers} />
+          {/* The music stage: the soundtrack block. */}
+          <MusicBlock data={data} />
         </div>
       </div>
       {more && (

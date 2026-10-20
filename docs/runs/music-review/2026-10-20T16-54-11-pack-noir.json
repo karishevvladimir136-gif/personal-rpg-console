@@ -1,0 +1,84 @@
+{
+  "kind": "pack",
+  "world": "noir",
+  "styleText": "A rain-soaked neon noir city of stacked towers, syndicates and implants. Synthwave noir: muted trumpet and smoky saxophone over analog synth pads, slow brushed jazz drums, upright bass, tape hiss and rain on glass; late-night jazz in a Blade Runner city.",
+  "defaultModel": "fal-ai/lyria3/pro",
+  "perMood": {},
+  "moods": [
+    "travel"
+  ],
+  "variants": 2,
+  "startedAt": "2026-10-20T16:53:43.783Z",
+  "elapsedMs": 27786,
+  "spentUsdMicros": 180000,
+  "rows": [
+    {
+      "world": "noir",
+      "moodId": "travel",
+      "modelId": "fal-ai/lyria3/pro",
+      "variant": 1,
+      "requestedSeconds": 60,
+      "prompt": "Instrumental background music for a tabletop role-playing session. World and musical style: A rain-soaked neon noir city of stacked towers, syndicates and implants. Synthwave noir: muted trumpet and smoky saxophone over analog synth pads, slow brushed jazz drums, upright bass, tape hiss and rain on glass; late-night jazz in a Blade Runner city. Mood: a steady walking pace on an open road, light hopeful forward motion, the party on the move. Shaped to loop in the background: a steady texture from the first second, no long intro, no big final cadence, no fade-out, ending as it begins so it can repeat. Even dynamics; nothing sudden or jarring. No vocals, no lyrics, no singing. About 60 seconds long.",
+      "negativePrompt": "vocals, singing, lyrics, choir with words, spoken word, rap, voice, abrupt ending, applause, crowd noise, silence",
+      "seed": 1009,
+      "expectedUsdMicros": 80000,
+      "ok": true,
+      "file": "docs/runs/music-review/noir/travel-1.mp3",
+      "providerContentType": "audio/mpeg",
+      "outputKeys": [
+        "audio",
+        "lyrics"
+      ],
+      "bytes": 1415821,
+      "elapsedMs": 21225,
+      "requestId": "01a15a3b-b155-7b81-9c8f-a00ca5846252",
+      "priceUsdMicros": 80000,
+      "seconds": 58.697143,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -12.6,
+      "lra": 2.5,
+      "peakDbfs": -0.2,
+      "seam": {
+        "headDb": -56.66791,
+        "tailDb": -54.368436,
+        "bodyDb": -14.71092
+      }
+    },
+    {
+      "world": "noir",
+      "moodId": "travel",
+      "modelId": "google/lyria-3.5",
+      "variant": 2,
+      "requestedSeconds": 60,
+      "prompt": "Instrumental background music for a tabletop role-playing session. World and musical style: A rain-soaked neon noir city of stacked towers, syndicates and implants. Synthwave noir: muted trumpet and smoky saxophone over analog synth pads, slow brushed jazz drums, upright bass, tape hiss and rain on glass; late-night jazz in a Blade Runner city. Mood: a steady walking pace on an open road, light hopeful forward motion, the party on the move. Shaped to loop in the background: a steady texture from the first second, no long intro, no big final cadence, no fade-out, ending as it begins so it can repeat. Even dynamics; nothing sudden or jarring. No vocals, no lyrics, no singing. About 60 seconds long. Variation 2: a different motif and instrumentation from the first take, the same mood.",
+      "negativePrompt": "vocals, singing, lyrics, choir with words, spoken word, rap, voice, abrupt ending, applause, crowd noise, silence",
+      "seed": 2018,
+      "expectedUsdMicros": 100000,
+      "ok": true,
+      "file": "docs/runs/music-review/noir/travel-2.mp3",
+      "providerContentType": "audio/mpeg",
+      "outputKeys": [
+        "audio",
+        "lyrics"
+      ],
+      "bytes": 1495106,
+      "elapsedMs": 25781,
+      "requestId": "01a15a3b-b156-7341-93b5-559082547588",
+      "priceUsdMicros": 100000,
+      "seconds": 62.066939,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -13.5,
+      "lra": 1.1,
+      "peakDbfs": -0.4,
+      "seam": {
+        "headDb": -14.787607,
+        "tailDb": null,
+        "bodyDb": -14.714571
+      }
+    }
+  ]
+}

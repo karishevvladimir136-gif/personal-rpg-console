@@ -1,0 +1,144 @@
+/* The music stage: the shell's player control and its popover. */
+.wrap {
+  position: relative;
+}
+.popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 30;
+  width: min(320px, calc(100vw - 32px));
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+  background: linear-gradient(180deg, var(--leather-2), var(--leather));
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+.now {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.now b {
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.reason {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.35;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.slider {
+  flex: 1 1 120px;
+  min-width: 0;
+  accent-color: var(--brass);
+}
+.tools {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.tools button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 10px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--leather);
+  color: inherit;
+  font: inherit;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+.tools button[aria-pressed="true"] {
+  background: var(--brass-dim);
+  color: var(--ink);
+  border-color: var(--brass);
+}
+.tools button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+  margin-left: 2px;
+}
+.dotOn {
+  composes: dot;
+  background: var(--brass);
+  box-shadow: 0 0 6px var(--brass);
+}
+.locked {
+  font-size: 13px;
+  color: var(--brass);
+}
+/* The settings block: the moods of the pack as a compact grid. */
+.moods {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 6px;
+}
+.mood {
+  display: grid;
+  gap: 2px;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 13px;
+}
+.mood small {
+  color: var(--muted);
+  font-size: 13px;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  font-size: 13px;
+}
+.tags label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.tracks {
+  display: grid;
+  gap: 6px;
+}
+.track {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+}
+.track span:nth-child(2) {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.log {
+  display: grid;
+  gap: 2px;
+  font-size: 13px;
+  color: var(--muted);
+  max-height: 160px;
+  overflow: auto;
+}

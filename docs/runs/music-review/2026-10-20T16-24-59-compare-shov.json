@@ -1,0 +1,79 @@
+{
+  "kind": "compare",
+  "world": "shov",
+  "styleText": "Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy.",
+  "models": [
+    "fal-ai/lyria3/pro",
+    "google/lyria-3.5",
+    "elevenlabs/music/v2.5"
+  ],
+  "moods": [
+    "travel"
+  ],
+  "seconds": 60,
+  "startedAt": "2026-10-20T16:24:35.056Z",
+  "elapsedMs": 24765,
+  "spentUsdMicros": 980000,
+  "rows": [
+    {
+      "world": "shov",
+      "moodId": "travel",
+      "modelId": "fal-ai/lyria3/pro",
+      "variant": 1,
+      "requestedSeconds": 60,
+      "prompt": "Instrumental background music for a tabletop role-playing session. World and musical style: Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy. Mood: a steady walking pace on an open road, light hopeful forward motion, the party on the move. Shaped to loop in the background: a steady texture from the first second, no long intro, no big final cadence, no fade-out, ending as it begins so it can repeat. Even dynamics; nothing sudden or jarring. No vocals, no lyrics, no singing. About 60 seconds long.",
+      "negativePrompt": "vocals, singing, lyrics, choir with words, spoken word, rap, voice, abrupt ending, applause, crowd noise, silence",
+      "seed": null,
+      "expectedUsdMicros": 80000,
+      "ok": true,
+      "file": "docs/runs/music-review/compare/shov-travel-fal_ai_lyria3_pro.mp3",
+      "providerContentType": "audio/mpeg",
+      "outputKeys": [
+        "audio",
+        "lyrics"
+      ],
+      "bytes": 1446541,
+      "elapsedMs": 23652,
+      "requestId": "01a15a21-0302-70f1-9b84-c245986e0648",
+      "priceUsdMicros": 80000,
+      "seconds": 59.950958,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -11.8,
+      "lra": 4.2,
+      "peakDbfs": 0.3,
+      "seam": {
+        "headDb": -15.057011,
+        "tailDb": -42.521397,
+        "bodyDb": -14.272009
+      }
+    },
+    {
+      "world": "shov",
+      "moodId": "travel",
+      "modelId": "google/lyria-3.5",
+      "variant": 1,
+      "requestedSeconds": 60,
+      "prompt": "Instrumental background music for a tabletop role-playing session. World and musical style: Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy. Mood: a steady walking pace on an open road, light hopeful forward motion, the party on the move. Shaped to loop in the background: a steady texture from the first second, no long intro, no big final cadence, no fade-out, ending as it begins so it can repeat. Even dynamics; nothing sudden or jarring. No vocals, no lyrics, no singing. About 60 seconds long.",
+      "negativePrompt": "vocals, singing, lyrics, choir with words, spoken word, rap, voice, abrupt ending, applause, crowd noise, silence",
+      "seed": null,
+      "expectedUsdMicros": 100000,
+      "ok": false,
+      "error": "validation (HTTP 422: prompt: The content could not be processed because it contained material flagged by a content checker.)"
+    },
+    {
+      "world": "shov",
+      "moodId": "travel",
+      "modelId": "elevenlabs/music/v2.5",
+      "variant": 1,
+      "requestedSeconds": 60,
+      "prompt": "Instrumental background music for a tabletop role-playing session. World and musical style: Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy. Mood: a steady walking pace on an open road, light hopeful forward motion, the party on the move. Shaped to loop in the background: a steady texture from the first second, no long intro, no big final cadence, no fade-out, ending as it begins so it can repeat. Even dynamics; nothing sudden or jarring. No vocals, no lyrics, no singing.",
+      "negativePrompt": "vocals, singing, lyrics, choir with words, spoken word, rap, voice, abrupt ending, applause, crowd noise, silence",
+      "seed": null,
+      "expectedUsdMicros": 800000,
+      "ok": false,
+      "error": "validation (HTTP 422: : Value error, force_instrumental cannot be used with composition_plan)"
+    }
+  ]
+}
