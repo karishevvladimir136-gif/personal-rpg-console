@@ -56,13 +56,13 @@ B. Analysis — report.md, in RUSSIAN, short sections, numbers first. Parts 1–
     turn's first sentence), whether the hero's references were sent, frames drawn for out-of-game-only turns; every
     «Нарисовать кадр» request and its returned status (queued / existing / cap / no_text / waiting); the daily cap
     setting and today's count; place pictures reused on a return visit.
+24. Companions' sheets: the skills and attack numbers stored for each companion vs the 5e statblock it was made
+    from (the party cards show «Навык 0»), and which numbers the DM used in their rolls.
 25. Mystery and wonder (owner's main complaint): every private plan, DM note, Character Model line and world note that
     points beyond the visible case (who stands behind whom, the enemy mage's reasons and patrons, cults, artifacts,
     magic, anything strange) — quote it, and say whether any clue of it reached the player (turn numbers). Every
     search and every defeated enemy's belongings: what was found, against 5e treasure guidance for that challenge.
     The «Что мне нравится в играх» text the owner gave and whether the DM context carries it.
-24. Companions' sheets: the skills and attack numbers stored for each companion vs the 5e statblock it was made
-    from (the party cards show «Навык 0»), and which numbers the DM used in their rolls.
 
 Do not fix anything. When done, tell me in Russian: the folder path and a 5-line summary.
 ```
