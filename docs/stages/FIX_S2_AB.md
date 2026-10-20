@@ -135,7 +135,11 @@ The private facts are cut by `withinBudget` in storage order (3500 tokens; the s
 cannot fetch them. Do: (1) priority — the hidden layer, open threads, clocks, debts and promises first; closed scene notes
 last, newest first; (2) consolidation — at a fight's end and in the digest, closed per-round and setup notes fold into one
 line each (a cheap background call, off the turn's path); (3) a lookup — `query_state` (or a new `recall`) searches the
-archived facts by name or keyword; (4) a memory gauge in the owner panel and a log line per drop. Owner corrections given
+archived facts by name or keyword; (4) a memory gauge in the owner panel and a log line per drop; (5) validity on facts (the bi-temporal idea from
+Zep/Graphiti, applied to our own notes, no external store): a private fact or clock carries «true since / until» (a turn
+or a world time); the DM closes a fact instead of overwriting it («Тарр на складе — до хода 62»); closed facts rank last
+and fold first, and the recall tool can answer «what was true then». Decision after a market look (2026-10-20): no
+external memory platform — they extract chat facts and cannot hold secrets, budgets or game state; we keep Supabase. Owner corrections given
 out of game (the DC rule, the style rules) become owner-pinned facts — the DM's own «likes» rewrite dropped the DC rule at
 turn 56 (item 71).
 
