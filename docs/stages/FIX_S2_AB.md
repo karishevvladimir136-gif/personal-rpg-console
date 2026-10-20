@@ -133,6 +133,12 @@ turn 56 (item 71).
 - **`rest`** restores every rest-based resource in one call (both short rests restored nothing); the DM uses it instead
   of per-counter `resource` calls (73, report §20).
 - **«Твой момент»** never fired in 66 turns — find out why and fix or remove.
+- **The owner's rule decisions (23:19)** as campaign rule settings with these defaults, reflected in the `roll` tool and
+  the instructions: natural 20 on an ability check or save is an automatic success and natural 1 an automatic failure
+  (BG3), with no extra harm, death saves unchanged — the server decides success accordingly and the tool's hint no longer
+  tells the DM otherwise; drinking a potion is a bonus action; Heroic Inspiration — the DM grants it for strong play
+  (`finish_turn` or a `resource`), one at a time, shown on the hero panel, spent to reroll any of the hero's own dice —
+  alongside the preset's two rerolls a session.
 
 ### B4. The voice (key finding 1, items 38, 47, 69, 72)
 - Delete the humour recipe from `VOICE_LAYER_RU` (`dm-loop/voice.ts`); the owner's rule stands: no quips on someone

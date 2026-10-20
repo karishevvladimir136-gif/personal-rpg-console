@@ -35,7 +35,16 @@ roll told in the story; Bram and James on «ты»; the narrator never judges th
 82, wording approved 22:37); chronicle → gallery (item 80, proposal); session close as RPG-ending cards for long
 sessions, «meanwhile» through in-world channels (item 81).
 
+## Decided by the owner on 2026-10-19 23:19 (were open)
+
+- **Natural 1 and 20 on ability checks and saves: as in BG3** — 20 is an automatic success, 1 an automatic failure,
+  with no extra harm (no «cut his own hand»); death saves keep the 5e rule.
+- **Ambush: the planned opening goes first** — the signal or first strike of an ambush the party set happens before
+  initiative is rolled; then the fight runs in order.
+- **Drinking a healing potion is a bonus action** (BG3 and the 2024 rules).
+- **Luck: both** — the preset's rerolls stay (2 a session, visible) and the DM also grants Heroic Inspiration for strong
+  play, one at a time, spent to reroll any of the hero's own dice.
+
 ## Still open for the owner
 
-Natural 1 on checks (RAW / BG3 / house); Inspiration; ambush rule (the initiator acts first); bonus-action potions;
-rerolls as a visible luck resource; the gallery details (item 80); whether the owner wants to see the DM's hidden layer.
+The gallery details (item 80 — going ahead as proposed unless he objects); whether he wants to see the DM's hidden layer.

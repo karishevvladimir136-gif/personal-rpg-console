@@ -59,8 +59,9 @@ at 1920×1080 and 2560×1440, filling the window (item 33: «должно быт
   by the server, distances computed by the server and given to the DM as text; dragging the hero's token writes the
   intent into the action box; enemy cards with portraits, HP bars and what is known (unlocked by checks); an
   end-of-fight summary. No D&D rules hardcoded — the grid size and movement come from the campaign's system.
-- **Ambush** (item 54): 5e surprise as written; the owner's «the initiator acts first» house rule as a campaign option,
-  off until he decides.
+- **Ambush** (item 54, owner's decision 23:19): the planned opening of an ambush the party set — the signal, the first
+  strike — happens before initiative is rolled, then the fight runs in order; a campaign rule option, on by default
+  for this owner's campaigns (5e surprise still applies to the ambushed).
 - **Screen**: the action box grows with the text (item 42); the session transcript does not unfold under the play
   screen (item 57); the owner panel is not forced open during combat.
 Acceptance: a sandbox fight on the synthetic campaign recorded as screenshots per round; the owner's pass.
