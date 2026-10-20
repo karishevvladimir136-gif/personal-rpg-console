@@ -772,3 +772,16 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     Workaround given: copy the text, reload the page. Do: after a 409/422 the client re-reads the turn and, for a final
     failure, frees the composer; «Отказаться» must work on any non-committed turn (check why the cancel payload fails
     validation — the request shape vs `rpg_runtime('cancel')`), and a test covers conflict → cancel → new turn.
+    **Resolved by the local session (19:07) — the real cause, correcting the planner's guess above:** not a picture
+    write (the runtime revision stayed 450 = the turn's expected revision). The turn got a **300-second lease** at the
+    start and nothing renews it; it ran 5.1 min (xhigh, 10 requests), so the commit was refused (`rpg_conflict`) and
+    `store.fail` was refused by the same lease check — the row stayed `generating` with an expired lease. The public
+    turn then said `canRetry: true`, but `retry` requires `status = failed` → `requireRule` → 422. «Отказаться» never
+    reached the server: the client keeps the first failed command in its journal (tab `sessionStorage`) and re-sends it
+    on every later click, so each «Отказаться» re-sent the old «retry»; a reload keeps it (a new tab would not). The
+    page did re-read the turn after the 409. Unstuck through the app's own cancel route with a fresh command: status
+    `cancelled`, campaign revision unchanged, no other rows touched, no restart. Do (priority, all three): renew the
+    lease while a turn runs (heartbeat per model request) and size it from the depth; a lease-expired turn can still be
+    marked failed (by the owner of the operation) and is then retryable or cancellable; the client drops a failed
+    command from its journal so the next button sends its own action. Risk until then: the session-2 depth change puts
+    tense scenes at xhigh, so turns over 5 min will stick again — the local session keeps the recovery recipe.
