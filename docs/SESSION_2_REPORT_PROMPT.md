@@ -52,6 +52,12 @@ B. Analysis — report.md, in RUSSIAN, short sections, numbers first. Parts 1–
     (bolts), anything lost or untold; coins of every party member.
 22. Speed and money by depth: high vs xhigh — median/p90 turn time, cost, requests; depth reasons; total money lost on
     failed turns.
+23. Pictures: for every frame — the turn, trigger, the shot's moment and `who` list vs the lightbox caption (the
+    turn's first sentence), whether the hero's references were sent, frames drawn for out-of-game-only turns; every
+    «Нарисовать кадр» request and its returned status (queued / existing / cap / no_text / waiting); the daily cap
+    setting and today's count; place pictures reused on a return visit.
+24. Companions' sheets: the skills and attack numbers stored for each companion vs the 5e statblock it was made
+    from (the party cards show «Навык 0»), and which numbers the DM used in their rolls.
 
 Do not fix anything. When done, tell me in Russian: the folder path and a 5-line summary.
 ```
