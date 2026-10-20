@@ -1167,3 +1167,28 @@ report); the guard post's place record says «Раннее утро» — a time
     Owner confirmed (22:22, «ну вот да, всё это вот»): the «Ранее в…» as a dense list of facts with a trifle among
     them, and the open hooks reduced to the quest and one promise while six live threads are missing — both are
     his reading too, not only the planner's.
+
+82. **The main complaint about the DM: no big mystery, no wonder, stingy loot** (owner, 22:33). «Мало большой тайны —
+    даже намёков нет. Я прямо спрашивал: может, это заговор? Нет — колдуну грамоту, тому тракт. Ни загадочных
+    артефактов, ничего — а этим как раз славятся Забытые Королевства… хоть что-то должно быть.» At the search after
+    the mine fight nothing interesting turned up — no +1 talisman, no sword, only a scroll. The captives were kept
+    only to mine ore — not to dig up an artifact, not for a ritual. «Мы всё-таки фэнтези-мир, а не Kingdom Come:
+    Deliverance.» On the other side: no Mary Sue jump to the Underdark and saving the world — «но тут перекос в
+    другую сторону». As an adventure: «прям хорошо» — investigation, chase, action, tense fights. He asks to look at
+    the DM's private sheet: maybe there was more that never reached the screen.
+    Planner's first look at the causes (to verify in the report):
+    - our own prep pushed it down to earth: the setting text says the modules' plots are «only echoes and tavern
+      tales» and «the world lives by itself»; the rules guide says «magic items are rare: not in every shop and not
+      for any money» and «the world does not bend to the hero» — read by the DM as «keep magic scarce, motives
+      mundane»;
+    - nothing in the DM's instructions asks for a campaign-level secret seeded with clues, so the one mystery of
+      the arc was answered in full inside the session, and the captain even said the answer aloud («вот тебе и не
+      только деньги») — nothing was left to dig into;
+    - the setting's own fantastic threads were not used: the secret cult of Bhaal is in the world text, the
+      Amnian mage's licence is a canon hook into the Cowled Wizards, the Zhentarim named — none got a strange sign;
+    - treasure: 5e's treasure tables give a lair led by a mage and a bandit captain a hoard with a fair chance of
+      magic items; the DM gave a scroll.
+    Do (for the plan, owner to decide the wording): a mystery layer — one hidden truth per arc, larger than the
+    visible case, with clues in several places, each answer opening a deeper question; at least one touch of
+    wonder per session (an object, a sign, a place that the plain explanation does not cover); loot by the 5e
+    treasure guidance for the challenge, with the guide's «rare» meaning rare in shops, not in the loot.
