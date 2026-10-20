@@ -91,7 +91,7 @@ export function MusicBlock({ data }: { data: CampaignSnapshot }) {
           checked={settings?.enabled ?? true} disabled={preview || !settings || busy} onChange={(value) => void save({ enabled: value })} />
         <div>
           <span className={r.eyebrow}>{c("Музыкальный стиль мира", "The world's musical style")}</span>
-          <p className={r.note} style={{ margin: 0 }}>{c("Как звучит этот мир: инструменты, жанр, эпоха. Стимпанковский Лиссабон — не нуарный город. Используется в каждом треке саундтрака.", "How this world sounds: instruments, genre, era. A steampunk Lisbon is not a noir city. Used in every track of the soundtrack.")}</p>
+          <p className={r.note} style={{ margin: 0 }}>{c("Как звучит этот мир: инструменты, жанр, эпоха. Стимпанковский порт — не нуарный город. Используется в каждом треке саундтрака.", "How this world sounds: instruments, genre, era. A steampunk port is not a noir city. Used in every track of the soundtrack.")}</p>
           <textarea className={s.note} rows={4} maxLength={1200} disabled={preview || !settings} aria-label={c("Музыкальный стиль мира", "The world's musical style")}
             value={styleText} placeholder={suggestion} onChange={(event) => setStyleDraft(event.target.value)} />
           <div className={r.row}>

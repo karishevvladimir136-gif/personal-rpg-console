@@ -9,7 +9,7 @@ click, known limits); the Russian checklist `docs/runs/music-acceptance.md`; the
 the «Мир Шва» and «Neon & Rain» soundtracks as small MP3s with their mood tables); the 20-turn mood log
 `docs/runs/music-session-log.md`. Final checks: typecheck pass, lint pass (zero warnings), build pass, the stage's tests
 11/11, screenshots of the settings and game screens on desktop and phone with the overflow check passing, the full suite
-FULLSUITE. Paid: **$14.40 of the $50 cap** (every fal call, the free validation probes included, in
+2 631 tests · 2 603 pass · 27 skipped · 1 fail (the stage-5 copy check: the word «Лиссабон» in the new settings block's hint, reworded in the closing commit; `tests/stage5-ui.test.mjs` green alone, 16/16). Paid: **$14.40 of the $50 cap** (every fal call, the free validation probes included, in
 `docs/runs/music-ledger.md`).
 
 **The music stage in short (2026-10-20):** a soundtrack per world. The settings' music block generates a pack of

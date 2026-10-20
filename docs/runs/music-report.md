@@ -123,7 +123,7 @@ loop, the context, world records, pictures, video.
 
 typecheck pass · lint pass (zero warnings) · `tests/music-stage.test.mjs` 11/11 · build pass · screenshots of the
 settings and game screens, desktop and phone, with the overflow check passing (`docs/screens/stage-5/settings-*.jpg`,
-`game-*.jpg`, `noir-*`) · the full suite: see `DEV_STATUS.md` (FULLSUITE).
+`game-*.jpg`, `noir-*`) · the full suite: see `DEV_STATUS.md` (2 631 tests · 2 603 pass · 27 skipped · 1 fail (the stage-5 copy check: the word «Лиссабон» in the new settings block's hint, reworded in the closing commit; `tests/stage5-ui.test.mjs` green alone, 16/16)).
 
 ## Money
 
