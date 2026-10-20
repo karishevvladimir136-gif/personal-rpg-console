@@ -180,7 +180,7 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
     description: "Change a character's HP or a counter — a pool such as spell slots, hit dice, ki, stress. Never money (money) or things like potions and arrows (items). delta changes, set is exact, max sets the maximum; HP stays within 0..max and follows a roll receipt or a rule.",
     parameters: object({
       actorRef: ref("Whose resource."),
-      resource: str("hp, or a counter name in lowercase (stress, sanity, spell_slots_1, arrows).", 60),
+      resource: str("hp, or a counter: an identifier (stress, spell_slots_1, hit_dice) or its name in the campaign language (Ячейки 1 круга).", 60),
       delta: opt({ type: "integer", minimum: -L.maxResourceValue, maximum: L.maxResourceValue }),
       set: opt({ type: "integer", minimum: 0, maximum: L.maxResourceValue }),
       max: opt({ type: "integer", minimum: 0, maximum: L.maxResourceValue }),

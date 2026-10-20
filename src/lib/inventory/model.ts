@@ -179,6 +179,22 @@ export function counterLabel(entity: Profiled, key: string, language: unknown): 
   const text = key.replace(/^resource_/, "").replaceAll(/[_-]+/g, " ").trim();
   return text ? text.charAt(0).toLocaleUpperCase() + text.slice(1) : key;
 }
+const LATIN: Record<string, string> = { а: "a", б: "b", в: "v", г: "g", д: "d", е: "e", ё: "e", ж: "zh", з: "z", и: "i", й: "y", к: "k", л: "l", м: "m", н: "n", о: "o", п: "p", р: "r",
+  с: "s", т: "t", у: "u", ф: "f", х: "kh", ц: "ts", ч: "ch", ш: "sh", щ: "shch", ъ: "", ы: "y", ь: "", э: "e", ю: "yu", я: "ya" };
+/** Fix run F (item 32 b): a counter named in any language — «Ячейки 1 круга» is `spell_slots_1`, «Кости хитов» is
+ * `hit_dice`, any other name gets a Latin key made from it — and the name is kept as the label the player sees.
+ * A Latin identifier stays as it is (no label). Null: nothing usable. */
+export function counterKeyOf(name: string): { key: string; label: string | null } | null {
+  const text = name.trim().toLocaleLowerCase();
+  if (/^[a-z][a-z0-9_ -]{0,59}$/.test(text)) return { key: text.replace(/[\s-]+/g, "_"), label: null };
+  const shown = name.trim().slice(0, 60);
+  const slot = /(ячейк|слот)\D*([1-9])/u.exec(text);
+  if (slot) return { key: `spell_slots_${slot[2]}`, label: shown };
+  const pool = Object.entries(POOL_LABELS).find(([, [ru]]) => ru.toLocaleLowerCase() === text);
+  if (pool) return { key: pool[0], label: shown };
+  const latin = [...text].map((ch) => LATIN[ch] ?? ch).join("").replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 60);
+  return /^[a-z][a-z0-9_]{0,59}$/.test(latin) ? { key: latin, label: shown } : null;
+}
 /** Whether a counter has a real label (stored, a known pool or a slot level) — the rest are marked for renaming. */
 export function counterLabelled(entity: Profiled, key: string): boolean {
   // A record's «resource_stress» is the known pool «stress» (the noir sample's «?» on Stress).

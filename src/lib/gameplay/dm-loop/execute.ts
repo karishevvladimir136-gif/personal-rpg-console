@@ -7,7 +7,7 @@ import { randomInt } from "node:crypto";
 import type { JsonObject, TurnInput } from "../contracts.ts";
 import type { Entity, EquipmentSlot, Item, ItemDetail, PublicProfile, Quest, QuestDetail, Storage } from "../../persistence/contracts.ts";
 import { ITEM_KINDS, SLOT_REMAP, coinOf, counterLabel, counterLabelled, equipPlan, equippedBonuses, needsUniversalSlots, potionCounter, sameStack,
-  universalSlots, walletOfStorage } from "../../inventory/model.ts";
+  universalSlots, walletOfStorage, counterKeyOf } from "../../inventory/model.ts";
 import type { CheckAddend, RecordChange, RecordedCheck, RuntimeSource } from "../server-contracts.ts";
 import { recordServerRoll, stableGameplayId } from "../dice.ts";
 import { basicProfile } from "../mechanics/profile.ts";
@@ -1263,9 +1263,11 @@ function resourceTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoop
     return ok({ actor: actor.name, resource: "hp", before: current, after: next, max: maxHp, reason },
       `${actor.name}: HP ${current} → ${next}/${maxHp} (${reason})`, null, player);
   }
-  reject(/^[a-z][a-z0-9_ -]{0,59}$/.test(name), "Counter names are lowercase words or identifiers.");
-  const key = name.replace(/[\s-]+/g, "_");
-  const label = str(args.label);
+  // Fix run F (item 32 b): a counter named in the campaign language gets a Latin key; the name stays as its label.
+  const parsed = counterKeyOf(str(args.resource));
+  reject(parsed, "Counter names are words (any language) or identifiers.", "For example «Ячейки 1 круга», «Кости хитов» or hit_dice.");
+  const key = parsed.key;
+  const label = str(args.label) || parsed.label || "";
   // Fix run D (§1): a counter is a pool; money and things are never counters.
   reject(!key.startsWith("currency_"), "Money is not a counter.", "Use money (grant, transfer, spend) with the coin's name.");
   reject(!potionCounter(key, label) && !/^(arrows?|bolts?|ammo|ammunition)$/.test(key),

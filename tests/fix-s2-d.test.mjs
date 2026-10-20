@@ -423,3 +423,24 @@ test("D (migration 83): the starting things go on the doll at creation — weapo
     assert.equal((await f.one("select equipped_slot from public.rpg_items where campaign_id=$1 and name='Перчатки'", [c.cid])).equipped_slot, null);
   } finally { await c.f.db.close(); }
 });
+
+test("F (item 32 b): a counter named in the campaign language works — «Ячейки 1 круга» is spell_slots_1, any other name gets a Latin key and keeps its name", async () => {
+  const { counterKeyOf } = await import("../src/lib/inventory/model.ts");
+  assert.deepEqual(counterKeyOf("Ячейки 1 круга"), { key: "spell_slots_1", label: "Ячейки 1 круга" });
+  assert.deepEqual(counterKeyOf("Кости хитов"), { key: "hit_dice", label: "Кости хитов" });
+  assert.deepEqual(counterKeyOf("Очки удачи"), { key: "ochki_udachi", label: "Очки удачи" });
+  assert.deepEqual(counterKeyOf("stress"), { key: "stress", label: null });
+  assert.equal(counterKeyOf("!!!"), null);
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const finish = { name: "finish_turn", arguments: { sceneKinds: ["exploration"], spotlight: [], playerMoment: false, nextTension: "calm" } };
+    const done = await c.turn("Отдыхаю.", [{ text: "Ты переводишь дух. ", toolCalls: [
+      { name: "resource", arguments: { actorRef: c.hero, resource: "Ячейки 1 круга", set: 4, max: 4, reason: "лист героя" } },
+      { name: "resource", arguments: { actorRef: c.hero, resource: "Очки удачи", set: 3, reason: "лист героя" } }, finish] }]);
+    assert.equal(done.result.status, "committed", JSON.stringify(c.errors));
+    const hero = await c.f.one("select resources, public_profile from public.rpg_entities where id=$1", [c.hero]);
+    assert.equal(hero.resources.spell_slots_1, 4);
+    assert.equal(hero.resources.ochki_udachi, 3);
+    assert.equal(hero.public_profile.counterLabels.ochki_udachi, "Очки удачи");
+  } finally { await c.f.db.close(); }
+});
