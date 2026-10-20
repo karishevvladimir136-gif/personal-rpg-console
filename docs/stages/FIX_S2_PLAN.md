@@ -74,3 +74,13 @@ sessions, «meanwhile» through in-world channels (item 81).
 ## Still open for the owner
 
 The gallery details (item 80 — going ahead as proposed unless he objects).
+
+## Kept for later, decided 2026-10-20: co-op (two or more people, each with a hero)
+Not before the solo game is right. Design notes agreed with the owner (from the table and from Larian's co-op): a shared
+turn out of combat (every human's intent collected, one DM turn resolves them), initiative in combat with consecutive
+allies acting in one window; in a conversation one hero speaks and the others may whisper or interject; a hero whose
+player is away is run by the DM as a companion (drop-in/drop-out); per-player secrets in the hidden layer later; a
+split party later. Rule for every stage from now on: **never bake in «one player»** — where code touches the campaign's
+hero (sheet, doll, side panel, rolls, the writer's prompt), write it as «heroes run by people», a list that today has
+one entry. Nothing in the DM core, records, dice, combat, memory or the hidden layer needs to change for co-op; it is a
+layer on top (accounts and invites, who runs which character, intent collection, live updates).
