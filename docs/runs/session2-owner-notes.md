@@ -1194,5 +1194,5 @@ report); the guard post's place record says «Раннее утро» — a time
     item with a strange sigil and unknown properties, a ritual mark on a body, a cipher in the enemy's papers, an
     old seal deep in a mine (the planner first wrote «what the plain explanation does not cover» — the owner
     objected, 22:36: «мы ж в мире меча и магии — какое бытовое пояснение?»; right: magic is ordinary here, the
-    point is mystery and lore, not the unexplainable); loot by the 5e
+    point is mystery and lore, not the unexplainable; the owner approved this wording, 22:37: «ну вот да»); loot by the 5e
     treasure guidance for the challenge, with the guide's «rare» meaning rare in shops, not in the loot.
