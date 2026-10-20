@@ -868,3 +868,13 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     panel shows every participant's HP as a bar with numbers (BG3-style), updated by each damage roll; damage rolls
     appear in the turn timeline next to the hit (item 63) with dice and total; the guide drops «хиты скрыты».
     Mid-session: the owner can add one line to the DM guide asking for HP numbers and damage dice in the aside.
+
+65. **Enemy attacks resolve without the player — no chance for reactions** (owner, 19:47: «Гвоздь машет скимитаром, но
+    маг уходит за колесо… мы ж не кидали проверку»). RAW the attacker rolls against the hero's AC (no dodge check), and
+    NPC rolls are private, so the player saw neither the roll nor the AC it was against. The bigger gap: the enemies'
+    turns are played inside the DM's turn, so the hero never gets to use a reaction at the moment it matters — Shield
+    when hit, Counterspell against the Grey's Fireball (this time no 3rd-level slot was left), an opportunity attack.
+    The DM's aside even says «Щит (реакция) доступен», but nothing asks. Do: when an enemy hits the hero or casts at
+    him and the hero has a usable reaction, the turn pauses at that point («Кадрик попадает: 17 против КД 13 — ставишь
+    Щит?») with the reaction as one button, then continues; enemy attack rolls show in the round block (item 64);
+    mid-session workaround: the player pre-declares reactions in his action («если по мне попадут — Щит»).
