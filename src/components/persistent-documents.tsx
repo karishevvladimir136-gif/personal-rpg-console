@@ -29,6 +29,7 @@ import type {
 } from "@/lib/persistence/contracts";
 
 import { isReferenceMetadata } from "@/lib/persistence/reference-metadata";
+import { MarkdownView } from "./markdown-view";
 
 const statusLabels = {
   canon: "Canon",
@@ -161,28 +162,28 @@ function VersionHistory({
   );
 }
 
-export function DocumentEditor({
+/** One document draft: the title, status and text being edited, a file read into it, and its save and restore, each
+ * keeping one request identity until the server answers (shared by the Library's panel and the DM chat's guide). */
+function useDocumentDraft({
   record,
-  onSaved = () => {},
-  onDirty = () => {},
-  onSaving = () => {},
-  guide = false,
+  guide,
+  onSaved,
+  onDirty,
+  onSaving,
 }: {
   record?: DocumentRecord;
-  onSaved?: (id: string) => void;
-  onDirty?: (dirty: boolean) => void;
-  onSaving?: (saving: boolean) => void;
-  guide?: boolean;
+  guide: boolean;
+  onSaved: (id: string) => void;
+  onDirty: (dirty: boolean) => void;
+  onSaving: (saving: boolean) => void;
 }) {
-  const { t } = useLanguage();
-  const { campaignId, mutate, refresh } = useCampaignData();
+  const { campaignId, mutate } = useCampaignData();
   const scope = useCampaignDraftScope();
   const [draft, setDraft] = useState(() => documentDraft(record));
   const [baseline, setBaseline] = useState(() => documentDraft(record));
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [saved, setSaved] = useState(false);
-  const [history, setHistory] = useState(false);
   const [reading, setReading] = useState(false);
   const [fileReader] = useState(createDocumentFileReader);
   const fileInput = useRef<HTMLInputElement>(null);
@@ -309,6 +310,87 @@ export function DocumentEditor({
       onSaving(false);
     }
   };
+  /** Back to the saved record: the draft, its fence and any pending request are dropped. */
+  const discard = () => {
+    if (!record) return;
+    const next = documentDraft(record);
+    scope.reset();
+    setDraft(next);
+    setBaseline(next);
+    onDirty(false);
+    setSaved(false);
+    setError("");
+    attempt.current = null;
+  };
+  /** After the owner compared a newer saved version: keep the draft for the next revision. */
+  const keepDraft = () => {
+    if (!record || scope.stale) return;
+    const next = rebaseDocumentDraft(draft, record);
+    const latest = documentDraft(record);
+    setDraft(next);
+    setBaseline(latest);
+    onDirty(isDocumentDirty(next, latest));
+    setError("");
+    attempt.current = null;
+  };
+  return { draft, change, dirty, newer, saving, reading, error, saved, scope, fileInput, readFile, cancelFileRead, save, restore, discard, keepDraft };
+}
+
+type DocumentDraftState = ReturnType<typeof useDocumentDraft>;
+
+/** A newer saved version arrived while the owner edits: compare, then keep the draft only on purpose. */
+function NewerVersion({ record, state }: { record?: DocumentRecord; state: DocumentDraftState }) {
+  const { t } = useLanguage();
+  return (
+    <Panel title={t("A newer saved version is available")}>
+      <p>
+        {t(
+          "Your draft is unchanged. Compare the current saved text below, then discard your draft only if you choose.",
+        )}
+      </p>
+      <h3>{record?.title}</h3>
+      {record && <Badge>{t(statusLabels[record.status])}</Badge>}
+      <div className="persistence-document-body">{record?.body}</div>
+      <Button
+        disabled={state.scope.stale}
+        onClick={() => {
+          if (
+            !record ||
+            !window.confirm(
+              t(
+                "Keep your draft for the next revision? Nothing is written until you press Save new version.",
+              ),
+            )
+          )
+            return;
+          state.keepDraft();
+        }}
+      >
+        {t("Keep my draft for the next revision")}
+      </Button>
+    </Panel>
+  );
+}
+
+/** The DM chat's guide editor (the Library has its own panel, LibraryDocumentEditor). */
+export function DocumentEditor({
+  record,
+  onSaved = () => {},
+  onDirty = () => {},
+  onSaving = () => {},
+  guide = false,
+}: {
+  record?: DocumentRecord;
+  onSaved?: (id: string) => void;
+  onDirty?: (dirty: boolean) => void;
+  onSaving?: (saving: boolean) => void;
+  guide?: boolean;
+}) {
+  const { t } = useLanguage();
+  const { refresh } = useCampaignData();
+  const state = useDocumentDraft({ record, guide, onSaved, onDirty, onSaving });
+  const { draft, change, dirty, newer, saving, reading, error, saved, scope, fileInput } = state;
+  const [history, setHistory] = useState(false);
   return (
     <div className="persistent-documents">
       <Panel
@@ -334,7 +416,7 @@ export function DocumentEditor({
         <form
           onSubmit={(event) => {
             event.preventDefault();
-            void save();
+            void state.save();
           }}
         >
           <fieldset className="persistence-fields" disabled={saving || reading}>
@@ -382,7 +464,7 @@ export function DocumentEditor({
                 accept=".txt,.md,text/plain,text/markdown"
                 onChange={(event) => {
                   const file = event.target.files?.[0];
-                  if (file) void readFile(file);
+                  if (file) void state.readFile(file);
                 }}
               />
             </label>
@@ -392,42 +474,7 @@ export function DocumentEditor({
               )}
             </p>
             {error && <p role="alert">{t(error)}</p>}
-            {newer && (
-              <Panel title={t("A newer saved version is available")}>
-                <p>
-                  {t(
-                    "Your draft is unchanged. Compare the current saved text below, then discard your draft only if you choose.",
-                  )}
-                </p>
-                <h3>{record?.title}</h3>
-                {record && <Badge>{t(statusLabels[record.status])}</Badge>}
-                <div className="persistence-document-body">{record?.body}</div>
-                <Button
-                  disabled={scope.stale}
-                  onClick={() => {
-                    if (
-                      !record ||
-                      !window.confirm(
-                        t(
-                          "Keep your draft for the next revision? Nothing is written until you press Save new version.",
-                        ),
-                      )
-                    )
-                      return;
-                    if (scope.stale) return;
-                    const next = rebaseDocumentDraft(draft, record);
-                    const latest = documentDraft(record);
-                    setDraft(next);
-                    setBaseline(latest);
-                    onDirty(isDocumentDirty(next, latest));
-                    setError("");
-                    attempt.current = null;
-                  }}
-                >
-                  {t("Keep my draft for the next revision")}
-                </Button>
-              </Panel>
-            )}
+            {newer && <NewerVersion record={record} state={state} />}
             <div className="button-row">
               <Button
                 primary
@@ -445,16 +492,8 @@ export function DocumentEditor({
                     if (
                       !dirty ||
                       window.confirm(t("Discard your unsaved changes?"))
-                    ) {
-                      const next = documentDraft(record);
-                      scope.reset();
-                      setDraft(next);
-                      setBaseline(next);
-                      onDirty(false);
-                      setSaved(false);
-                      setError("");
-                      attempt.current = null;
-                    }
+                    )
+                      state.discard();
                   }}
                 >
                   {t("Use saved values")}
@@ -484,7 +523,7 @@ export function DocumentEditor({
                 "Reading file… Your draft stays unchanged until reading finishes.",
               )}
             </p>
-            <Button onClick={cancelFileRead}>{t("Cancel file read")}</Button>
+            <Button onClick={state.cancelFileRead}>{t("Cancel file read")}</Button>
           </div>
         )}
       </Panel>
@@ -497,7 +536,7 @@ export function DocumentEditor({
           <VersionHistory
             record={record}
             disabled={saving || reading || dirty || newer}
-            onRestore={restore}
+            onRestore={state.restore}
           />
         </>
       )}
@@ -505,26 +544,206 @@ export function DocumentEditor({
   );
 }
 
-export function PersistentLibrary({ reviewOnly = false }: { reviewOnly?: boolean } = {}) {
+// Fix run after session 2 (item 25): the Library's document is one panel. It reads cleanly (Markdown rendered);
+// «Изменить» turns the same panel into the editor (title, status, text, «Загрузить файл» as a small link); «Сохранить»
+// closes the panel back to the list with «Сохранено» on the saved row; the history waits behind a small «Версии»; no
+// system paragraphs. The panel opens only when a document is picked.
+
+/** The editor inside the Library's document panel. */
+export function LibraryDocumentEditor({
+  record,
+  guide = false,
+  onSaved,
+  onCancel,
+  onDirty = () => {},
+  onSaving = () => {},
+}: {
+  record?: DocumentRecord;
+  guide?: boolean;
+  onSaved: (id: string) => void;
+  onCancel: () => void;
+  onDirty?: (dirty: boolean) => void;
+  onSaving?: (saving: boolean) => void;
+}) {
+  const { t } = useLanguage();
+  const state = useDocumentDraft({ record, guide, onSaved, onDirty, onSaving });
+  const { draft, change, dirty, newer, saving, reading, error, scope, fileInput } = state;
+  return (
+    <form
+      className="library-editor"
+      onSubmit={(event) => {
+        event.preventDefault();
+        void state.save();
+      }}
+    >
+      <TimelineDraftNotice stale={scope.stale} />
+      <fieldset className="persistence-fields" disabled={saving || reading}>
+        <div className="library-editor-row">
+          <label className="field">
+            {t("Document title")}
+            <input
+              required
+              maxLength={200}
+              value={draft.title}
+              onChange={(event) => change({ title: event.target.value })}
+            />
+          </label>
+          <label className="field">
+            {t("Document status")}
+            <select
+              value={draft.status}
+              disabled={guide}
+              onChange={(event) =>
+                change({
+                  status: event.target.value as DocumentRecord["status"],
+                })
+              }
+            >
+              {Object.entries(statusLabels).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {t(label)}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <label className="field">
+          {t("Document text")}
+          <textarea
+            rows={18}
+            maxLength={200000}
+            value={draft.body}
+            onChange={(event) => change({ body: event.target.value })}
+          />
+        </label>
+        <div className="library-editor-tools">
+          <button
+            type="button"
+            className="text-link"
+            onClick={() => fileInput.current?.click()}
+          >
+            {t("Upload a file")}
+          </button>
+          <input
+            type="file"
+            hidden
+            ref={fileInput}
+            accept=".txt,.md,text/plain,text/markdown"
+            aria-label={t("Upload a file")}
+            onChange={(event) => {
+              const file = event.target.files?.[0];
+              if (file) void state.readFile(file);
+            }}
+          />
+          {reading && (
+            <>
+              <span role="status">
+                {t(
+                  "Reading file… Your draft stays unchanged until reading finishes.",
+                )}
+              </span>
+              <button type="button" className="text-link" onClick={state.cancelFileRead}>
+                {t("Cancel file read")}
+              </button>
+            </>
+          )}
+        </div>
+        {error && <p role="alert">{t(error)}</p>}
+        {newer && <NewerVersion record={record} state={state} />}
+        <div className="button-row">
+          <Button
+            primary
+            type="submit"
+            disabled={!dirty || !draft.title.trim() || newer}
+          >
+            {t(saving ? "Saving…" : "Save the document")}
+          </Button>
+          <Button
+            onClick={() => {
+              if (!dirty || window.confirm(t("Discard your unsaved changes?"))) {
+                state.discard();
+                onDirty(false);
+                onCancel();
+              }
+            }}
+          >
+            {t("Cancel")}
+          </Button>
+          {dirty && <span role="status" className="muted">{t("Unsaved changes")}</span>}
+        </div>
+      </fieldset>
+    </form>
+  );
+}
+
+/** «Версии»: the document's saved versions; restoring one writes a new current version. */
+function DocumentVersions({ record, onRestored }: { record: DocumentRecord; onRestored: () => void }) {
+  const { t } = useLanguage();
+  const state = useDocumentDraft({ record, guide: false, onSaved: () => {}, onDirty: () => {}, onSaving: () => {} });
+  return (
+    <>
+      {state.error && <p role="alert">{t(state.error)}</p>}
+      <VersionHistory
+        record={record}
+        disabled={state.saving || state.newer}
+        onRestore={async (version) => {
+          await state.restore(version);
+          onRestored();
+        }}
+      />
+    </>
+  );
+}
+
+export function PersistentLibrary({
+  reviewOnly = false,
+  initialDocumentId = null,
+  initialEditing = false,
+}: { reviewOnly?: boolean; initialDocumentId?: string | null; initialEditing?: boolean } = {}) {
   const { t } = useLanguage();
   const { data, loading, error, refresh, campaignId } = useCampaignData();
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(initialDocumentId);
   const [creating, setCreating] = useState(false);
+  const [editing, setEditing] = useState(initialEditing && !!initialDocumentId && !reviewOnly);
+  const [versions, setVersions] = useState(false);
   const [dirty, setDirty] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [saved, setSaved] = useState(false);
+  const [savedId, setSavedId] = useState<string | null>(null);
   const [filter, setFilter] = useState("All documents");
   const [search, setSearch] = useState("");
   const selected = data?.documents.find(
     (document) => document.id === selectedId && !isReferenceMetadata(document),
   );
-  const select = (id: string | null) => {
-    if (saving || (id === selectedId && creating === (id === null))) return;
-    if (dirty && !window.confirm(t("Discard your unsaved changes?"))) return;
-    setSaved(false);
+  const leaveEditor = () => {
+    if (saving) return false;
+    if (dirty && !window.confirm(t("Discard your unsaved changes?"))) return false;
     setDirty(false);
+    return true;
+  };
+  const select = (id: string | null) => {
+    if (id === selectedId && !creating) return;
+    if (!leaveEditor()) return;
+    setSavedId(null);
     setSelectedId(id);
     setCreating(id === null);
+    setEditing(id === null);
+    setVersions(false);
+  };
+  const close = () => {
+    if (!leaveEditor()) return;
+    setSelectedId(null);
+    setCreating(false);
+    setEditing(false);
+    setVersions(false);
+  };
+  // Saving closes the panel: back to the list with «Сохранено» on the saved row.
+  const afterSave = (id: string) => {
+    setDirty(false);
+    setSavedId(id);
+    setSelectedId(null);
+    setCreating(false);
+    setEditing(false);
+    setVersions(false);
   };
   const documents =
     data?.documents.filter(
@@ -542,6 +761,8 @@ export function PersistentLibrary({ reviewOnly = false }: { reviewOnly?: boolean
       rows: documents.filter((document) => document.status === status),
     }))
     .filter(({ rows }) => rows.length > 0);
+  const guide = !!selected && selected.id === data?.dmGuideDocumentId;
+  const panelOpen = creating || !!selected;
   return (
     <>
       <div className="page-heading">
@@ -557,7 +778,6 @@ export function PersistentLibrary({ reviewOnly = false }: { reviewOnly?: boolean
         )}
       </div>
       {loading && <p role="status">{t("Loading campaign documents…")}</p>}
-      {saved && <p role="status">{t("Document saved.")}</p>}
       {error && (
         <Panel>
           <p role="alert">{t(error)}</p>
@@ -579,8 +799,8 @@ export function PersistentLibrary({ reviewOnly = false }: { reviewOnly?: boolean
             value={search}
             onChange={(event) => setSearch(event.target.value)}
           />
-          <div className="settings-grid">
-            <div>
+          <div className={panelOpen ? "library-layout library-layout-open" : "library-layout"}>
+            <div className="library-list">
               {!documents.length && (
                 <Panel>
                   <p className="muted">
@@ -596,7 +816,7 @@ export function PersistentLibrary({ reviewOnly = false }: { reviewOnly?: boolean
                 <details
                   key={status}
                   className="rules-advanced"
-                  open={filter !== "All documents" || status === "canon"}
+                  open={filter !== "All documents" || status === "canon" || rows.some((row) => row.id === savedId || row.id === selectedId)}
                 >
                   <summary>
                     {t(statusLabels[status])} ({rows.length})
@@ -627,57 +847,70 @@ export function PersistentLibrary({ reviewOnly = false }: { reviewOnly?: boolean
                           {t("Revision {number}", { number: document.revision })}
                         </small>
                       </div>
-                      <Icon name="ChevronRight" />
+                      {savedId === document.id ? (
+                        <span className="document-saved" role="status">{t("Saved")}</span>
+                      ) : (
+                        <Icon name="ChevronRight" />
+                      )}
                     </button>
                   ))}
                 </details>
               ))}
             </div>
             {creating ? (
-              <DocumentEditor
-                key={`${campaignId}:new`}
-                onDirty={setDirty}
-                onSaving={setSaving}
-                onSaved={(id) => {
-                  setSelectedId(id);
-                  setCreating(false);
-                  setSaved(true);
-                }}
-              />
-            ) : selected ? (
-              <div>
-                <Panel title={selected.title}>
-                  <Badge>{t(statusLabels[selected.status])}</Badge>
-                  <div className="persistence-document-body">
-                    {selected.body || t("This version has no text.")}
-                  </div>
-                  {!reviewOnly && (
-                    <details className="rules-advanced">
-                      <summary>{t("Edit document")}</summary>
-                      <DocumentEditor
-                        key={`${campaignId}:${selected.id}`}
-                        record={selected}
-                        guide={selected.id === data.dmGuideDocumentId}
-                        onDirty={setDirty}
-                        onSaving={setSaving}
-                        onSaved={(id) => {
-                          setSelectedId(id);
-                          setSaved(true);
-                        }}
-                      />
-                    </details>
-                  )}
-                </Panel>
-              </div>
-            ) : (
-              <Panel title={t("Your campaign bookshelf")}>
-                <p>
-                  {t(
-                    "Choose a document to read or edit. Its saved history remains available here.",
-                  )}
-                </p>
+              <Panel className="document-panel" title={t("New Document")}>
+                <LibraryDocumentEditor
+                  key={`${campaignId}:new`}
+                  onDirty={setDirty}
+                  onSaving={setSaving}
+                  onSaved={afterSave}
+                  onCancel={close}
+                />
               </Panel>
-            )}
+            ) : selected ? (
+              <Panel
+                className="document-panel"
+                title={selected.title}
+                action={
+                  <span className="document-panel-actions">
+                    {!reviewOnly && !editing && (
+                      <Button onClick={() => { setVersions(false); setEditing(true); }}>{t("Edit this document")}</Button>
+                    )}
+                    <Button label={t("Close the document")} onClick={close}>
+                      <Icon name="X" />
+                    </Button>
+                  </span>
+                }
+              >
+                <div className="document-panel-bar">
+                  <Badge>{t(statusLabels[selected.status])}</Badge>
+                  <small>{t("Revision {number}", { number: selected.revision })}</small>
+                  {!reviewOnly && !editing && (
+                    <button type="button" className="text-link document-versions-link" aria-expanded={versions} onClick={() => setVersions(!versions)}>
+                      {t("Versions")}
+                    </button>
+                  )}
+                </div>
+                {editing ? (
+                  <LibraryDocumentEditor
+                    key={`${campaignId}:${selected.id}`}
+                    record={selected}
+                    guide={guide}
+                    onDirty={setDirty}
+                    onSaving={setSaving}
+                    onSaved={afterSave}
+                    onCancel={() => { setDirty(false); setEditing(false); }}
+                  />
+                ) : (
+                  <div className="persistence-document-body">
+                    {selected.body ? <MarkdownView text={selected.body} title={selected.title} /> : t(guide ? "The DM guide is empty. Press Edit to write it." : "This version has no text.")}
+                  </div>
+                )}
+                {versions && !editing && (
+                  <DocumentVersions key={selected.id} record={selected} onRestored={() => setVersions(false)} />
+                )}
+              </Panel>
+            ) : null}
           </div>
         </div>
       )}

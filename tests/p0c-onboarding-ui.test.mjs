@@ -606,7 +606,10 @@ test("Settings reorder basics/play preferences/premise and keep scoped engine pa
   }
 });
 
-test("live Library groups real public documents and keeps editing inside selected detail", () => {
+// Fix run after session 2 (item 25): one document panel — it opens only when a document is picked, reads the text as
+// Markdown, «Изменить» turns the same panel into the editor (no nested fold), and a save closes it back to the list
+// with «Сохранено» on the saved row.
+test("live Library groups real public documents; the picked document reads in one panel that turns into its editor", () => {
   for (const language of ["en", "ru"]) {
     const h = hooks();
     const record = {
@@ -643,7 +646,9 @@ test("live Library groups real public documents and keeps editing inside selecte
       "Reference",
       "Archived",
     ]);
-    assert.ok(!nodes.some((node) => node.type?.name === "DocumentEditor"));
+    const panelOf = (list) => list.find((node) => node.type?.name === "Panel" && node.props.className === "document-panel");
+    assert.ok(!panelOf(nodes), "no document panel until a document is picked");
+    assert.ok(!nodes.some((node) => node.type?.name === "LibraryDocumentEditor"));
     const row = nodes.find(
       (node) =>
         node.type === "button" && node.props.className === "document-row",
@@ -651,20 +656,24 @@ test("live Library groups real public documents and keeps editing inside selecte
     assert.ok(row);
     row.props.onClick();
     nodes = render();
-    assert.ok(
-      nodes.some(
-        (node) =>
-          node.props.className === "persistence-document-body" &&
-          node.props.children === record.body,
-      ),
-    );
-    assert.ok(
-      nodes.some(
-        (node) =>
-          node.type === "details" &&
-          walk(node).some((child) => child.type?.name === "DocumentEditor"),
-      ),
-    );
+    const body = nodes.find((node) => node.props.className === "persistence-document-body");
+    assert.equal(body?.props.children.type?.name, "MarkdownView", "the document reads as rendered Markdown");
+    assert.equal(body.props.children.props.text, record.body);
+    assert.ok(!nodes.some((node) => node.type?.name === "LibraryDocumentEditor"), "reading comes first");
+    assert.ok(!nodes.some((node) => node.type === "details" && walk(node).some((child) => child.type?.name === "LibraryDocumentEditor")), "no editor folded under the reader");
+    const edit = walk(panelOf(nodes).props.action).find((node) => node.type?.name === "Button" && !node.props.label);
+    assert.equal(edit.props.children, language === "ru" ? "Изменить" : "Edit this document");
+    edit.props.onClick();
+    nodes = render();
+    const editor = nodes.find((node) => node.type?.name === "LibraryDocumentEditor");
+    assert.ok(editor, "the same panel turns into the editor");
+    assert.equal(editor.props.record, record);
+    assert.ok(!nodes.some((node) => node.props.className === "persistence-document-body"));
+    editor.props.onSaved(record.id);
+    nodes = render();
+    assert.ok(!panelOf(nodes), "saving closes the document panel");
+    assert.ok(nodes.some((node) => node.props.className === "document-saved" && node.props.children === (language === "ru" ? "Сохранено" : "Saved")),
+      "«Сохранено» on the saved row");
   }
 });
 

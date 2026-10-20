@@ -26,10 +26,14 @@ import { ChronicleRoute } from "@/components/registry/chronicle";
 
 export default async function Page({
   params,
+  searchParams,
 }: {
   params: Promise<{ campaignId: string; screen: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { screen } = await params;
+  // Fix run after session 2 (item 26): «?doc=<id>» opens that document in the Library (the settings' DM guide link).
+  const doc = (await searchParams).doc;
   switch (screen) {
     // Polish 2 §6: the gallery and the visual bible are one «Картинки» page; the old addresses still open it.
     case "pictures":
@@ -66,7 +70,7 @@ export default async function Page({
     case "holdings":
       return <HoldingsRoute />;
     case "library":
-      return <PersistentLibrary />;
+      return <PersistentLibrary initialDocumentId={typeof doc === "string" ? doc : null} />;
     case "settings":
       return <SettingsRoute />;
     case "journal":
