@@ -1,5 +1,42 @@
 # Development status
 
+**Current milestone: the fixes after session 2, stages A → B → D → C → E → F** (`docs/stages/FIX_S2_RUN.md`) — **implementation
+done on `claude/session2-fixes-a-f-jh3krk`, waiting for the owner's acceptance** (`docs/runs/fix-s2-acceptance.md`, in
+Russian, per screen) **and the sandbox load from the owner's machine** (`docs/SANDBOX_LOAD_FIX_S2.md`: a dump first,
+the migrations, a production build, the one-time conversion and corrections, the replay of session 2's heavy turns).
+Based on `claude/session-2-prep` (`d74b6c6`) with the lease fix merged first; migrations 71–84 and 96, all additive
+(none edited; all below the 2D session's prefix `2026102102`). The owner report is `docs/runs/fix-s2-report.md` (per
+stage what changed, the numbers, the money and «Needs the owner»); the resume notes `docs/runs/fix-s2-progress.md`;
+every paid call in `docs/runs/fix-s2-ledger.md`.
+
+- **What was done:** A — no lost turns (the lease heartbeat while the model streams, the 32 000 output cap with one
+  continuation of a cut answer, honest failure texts and «Отправить этот ход ещё раз»), the cache inside the turn,
+  depth at the range's base, bundled rolls, lighter polling, the light party council, the digest guard, the owner
+  panel «Для владельца» (each turn's cost, requests, seconds; «Что видит ведущий»), the two-pass runtime with the
+  same fixes and the ledger checker; B — the hidden layer («Тайны (видит только ведущий)»), memory hygiene with fact
+  validity and «Память ведущего» presets, the table's rules on the server, native Russian instructions; D — the
+  inventory model (items, the eleven-slot doll, wallets, counters with labels, companions' stat blocks, the spells tab,
+  owner moves with history); C — the turn as one timeline (rolls in place, named pauses, the live continuation, every
+  addend with its source); E — frames that match their turn, the vision check, the gallery, the session close by
+  length; F — the new-campaign wizard in story order, the hero built by the campaign's DM in one pass, readable text
+  and screens that fill the window, «Мастерство Ведущего», the Library, the general and campaign settings.
+- **Key decisions:** the DM rolls for the companions (owner); session 3 plays «Opus пишет — Opus записывает» with the
+  ledger checker (owner); Russian instructions and «Память ведущего: стандарт» by default (the probes); the
+  continuation stays at the turn's depth (the lighter one lost a fight's outcome); combat and item 31 moved to the 2D
+  session; the hero is drafted by Claude Opus 5.5 at high.
+- **Checks:** the production build passes with no warnings on a clean worktree of the final code; the final typecheck,
+  zero-warning lint and full suite are running on that worktree (updated when they finish). Earlier stage suites: A
+  0 fail after its fixes, B 0 fail, C+D+E 0 fail (2725 tests); screenshots 104 for stage F at four sizes, zero overflow.
+- **Money:** $30.12 of the $50 cap (A+B $26.13 of $30; D $3.07; E $0.60; F $0.32).
+- **Known issues and what is left:** the decisions in the report's «Needs the owner»; the sandbox load and session 3
+  on the owner's machine; the `d2a-composition` cancellations (pre-existing, the same on the untouched base); the not-done
+  items listed per stage in the report (the sheet changed in words, joining the adventure's companions at the opening,
+  a second portrait angle).
+- **Next step:** the owner loads the branch into the sandbox with `docs/SANDBOX_LOAD_FIX_S2.md`, checks each screen
+  in the acceptance list and plays session 3.
+
+The sections below are each earlier stage's own closing status, kept unchanged.
+
 **Latest fix: the stuck long turn (session 2)** — **done on `claude/stage-fix-turn-lease`, waiting for the owner's
 check in the sandbox.** Branch from `claude/session-2-prep` (d74b6c6); migration 71 (`dm_loop_turn_lease`), additive.
 A dm-loop-v1 turn of more than five minutes (ten Opus requests at xhigh) found its 300 s claim lease expired at the

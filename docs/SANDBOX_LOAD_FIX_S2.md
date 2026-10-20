@@ -60,7 +60,7 @@ problem). Later starts without code changes: `--prod --no-build`. The migrations
 | 81 `fix_s2_turn_timeline` | where each roll sits in a saved turn; a paused turn's told text |
 | 82 `fix_s2_check_addends` | every part of a roll's modifier with its source |
 | 83 `fix_s2_starting_gear` | a new hero's starting things go on the doll |
-| 84–95 | stage F (the new-campaign flow, the screens) — see the report |
+| 84 `fix_s2_hero_one_pass` | a new hero built in one pass: each thing in its own slot on the doll, counters with labels, coins as the wallet |
 | 96 `fix_s2_owner_corrections` | defines the owner's one-time corrections (step 5) |
 
 Check: the app opens at http://127.0.0.1:3100/campaigns, and `.sandbox/app.log` has no error.
@@ -97,6 +97,8 @@ show both to the owner. It refuses to run before step 4 (the coins must be under
 - New defaults, already on: Russian «Инструкции ведущего», «Память ведущего: стандарт», «Броски спутников: ведущий».
 - «Тайны (видит только ведущий)»: empty unless the owner writes the world's truth there (the DM's prep builds on it).
 - Pictures: opening the game once stores the device's time zone; the daily picture limit then starts at midnight.
+- «Настройки → Крупный текст истории» if the story should read larger; the campaign's «Правила и кости» show the rules
+  from the DM guide's first line.
 
 ## 7. Replay session 2's heavy turns
 
