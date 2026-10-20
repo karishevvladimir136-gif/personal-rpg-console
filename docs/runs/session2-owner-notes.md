@@ -758,3 +758,10 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     cost of rolling one die per request: requests 2–8 were each one to three rolls at ≈130k input, $0.22–0.25 apiece,
     with no cache written inside the turn (cache share 0.55–0.64) — batch a round's rolls and put a cache breakpoint
     on the growing turn so continuations read it from cache.
+    Then (18:55) the owner pressed «Попробовать снова»: `POST …/turns/8a6f627f-…/resume` → 422 twice, and the screen
+    said «Действие требует уточнения или использует неподдерживаемые правила. Последствия не применены» — wrong and
+    frightening; nothing in his action was unsupported. The failure was logged `retryable:false`, yet the UI offered
+    «Попробовать снова», which cannot resume a conflicted turn; the way out is «Другие действия → Отказаться от этого
+    действия» and sending again. Do: offer «Попробовать снова» only for retryable failures, make it actually rerun (or
+    recommit) the turn; for a conflict say plainly «пока шёл ход, изменились записи (картинка); ход не сохранён —
+    отправьте ещё раз» with one button that resends the same text.
