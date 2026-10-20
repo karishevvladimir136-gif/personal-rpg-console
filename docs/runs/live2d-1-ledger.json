@@ -1,0 +1,651 @@
+{
+  "capUsd": 40,
+  "totalUsdMicros": 734744,
+  "note": "Every paid call of the 2D Live slice: reserved at its upper bound before it is sent, settled afterwards (OpenAI and Anthropic from the reply's own usage, fal at list price).",
+  "entries": [
+    {
+      "at": "2026-10-20T07:09:25.812Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "sheet ford",
+      "reservedUsdMicros": 36000,
+      "usdMicros": 9054,
+      "settled": true,
+      "usage": {
+        "inputTokens": 947,
+        "outputTokens": 716
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:09:31.519Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "scene ford",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 31535,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 409,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-20T07:10:05.395Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "check ford",
+      "reservedUsdMicros": 31600,
+      "usdMicros": 6464,
+      "settled": true,
+      "usage": {
+        "inputTokens": 2117,
+        "outputTokens": 223
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:10:07.604Z",
+      "kind": "anthropic",
+      "model": "claude-haiku-5-5",
+      "note": "locate ford",
+      "reservedUsdMicros": 1030,
+      "usdMicros": 273,
+      "settled": true,
+      "usage": {
+        "inputTokens": 1701,
+        "outputTokens": 205
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:10:18.852Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "sheet warehouse",
+      "reservedUsdMicros": 36000,
+      "usdMicros": 8862,
+      "settled": true,
+      "usage": {
+        "inputTokens": 971,
+        "outputTokens": 692
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:10:23.991Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "scene warehouse",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 31375,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 377,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-20T07:10:56.416Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "check warehouse",
+      "reservedUsdMicros": 31600,
+      "usdMicros": 9604,
+      "settled": true,
+      "usage": {
+        "inputTokens": 2077,
+        "outputTokens": 545
+      },
+      "outcome": "unparsable"
+    },
+    {
+      "at": "2026-10-20T07:10:59.939Z",
+      "kind": "anthropic",
+      "model": "claude-haiku-5-5",
+      "note": "locate warehouse",
+      "reservedUsdMicros": 1030,
+      "usdMicros": 264,
+      "settled": true,
+      "usage": {
+        "inputTokens": 1673,
+        "outputTokens": 193
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:11:01.291Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "sheet temple",
+      "reservedUsdMicros": 36000,
+      "usdMicros": 8358,
+      "settled": true,
+      "usage": {
+        "inputTokens": 944,
+        "outputTokens": 647
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:11:06.861Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "scene temple",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 31475,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 397,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-20T07:11:37.751Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "check temple",
+      "reservedUsdMicros": 31600,
+      "usdMicros": 5876,
+      "settled": true,
+      "usage": {
+        "inputTokens": 2073,
+        "outputTokens": 173
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:11:39.636Z",
+      "kind": "anthropic",
+      "model": "claude-haiku-5-5",
+      "note": "locate temple",
+      "reservedUsdMicros": 1030,
+      "usdMicros": 248,
+      "settled": true,
+      "usage": {
+        "inputTokens": 1665,
+        "outputTokens": 162
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:11:40.712Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "sheet mine-yard",
+      "reservedUsdMicros": 36000,
+      "usdMicros": 8434,
+      "settled": true,
+      "usage": {
+        "inputTokens": 907,
+        "outputTokens": 662
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:11:46.358Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "scene mine-yard",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 31405,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 383,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-20T07:12:21.804Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "check mine-yard",
+      "reservedUsdMicros": 31600,
+      "usdMicros": 7272,
+      "settled": true,
+      "usage": {
+        "inputTokens": 2111,
+        "outputTokens": 305
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:12:25.481Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "redraw mine-yard",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 31475,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 397,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-20T07:13:01.667Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "check mine-yard",
+      "reservedUsdMicros": 31600,
+      "usdMicros": 6052,
+      "settled": true,
+      "usage": {
+        "inputTokens": 2111,
+        "outputTokens": 183
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:13:04.343Z",
+      "kind": "anthropic",
+      "model": "claude-haiku-5-5",
+      "note": "locate mine-yard",
+      "reservedUsdMicros": 1030,
+      "usdMicros": 269,
+      "settled": true,
+      "usage": {
+        "inputTokens": 1682,
+        "outputTokens": 202
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:13:06.777Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "sheet forest-camp",
+      "reservedUsdMicros": 36000,
+      "usdMicros": 8986,
+      "settled": true,
+      "usage": {
+        "inputTokens": 948,
+        "outputTokens": 709
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:13:11.695Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "scene forest-camp",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 31430,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 388,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-20T07:13:45.254Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "check forest-camp",
+      "reservedUsdMicros": 31600,
+      "usdMicros": 6054,
+      "settled": true,
+      "usage": {
+        "inputTokens": 2102,
+        "outputTokens": 185
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:13:47.795Z",
+      "kind": "anthropic",
+      "model": "claude-haiku-5-5",
+      "note": "locate forest-camp",
+      "reservedUsdMicros": 1030,
+      "usdMicros": 274,
+      "settled": true,
+      "usage": {
+        "inputTokens": 1701,
+        "outputTokens": 207
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:13:49.467Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "sheet tavern",
+      "reservedUsdMicros": 36000,
+      "usdMicros": 10048,
+      "settled": true,
+      "usage": {
+        "inputTokens": 1044,
+        "outputTokens": 796
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:13:55.304Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "scene tavern",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 31480,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 398,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-20T07:14:25.557Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "check tavern",
+      "reservedUsdMicros": 31600,
+      "usdMicros": 6432,
+      "settled": true,
+      "usage": {
+        "inputTokens": 2111,
+        "outputTokens": 221
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:14:27.493Z",
+      "kind": "anthropic",
+      "model": "claude-haiku-5-5",
+      "note": "locate tavern",
+      "reservedUsdMicros": 1030,
+      "usdMicros": 272,
+      "settled": true,
+      "usage": {
+        "inputTokens": 1693,
+        "outputTokens": 206
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:14:33.482Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "sheet market",
+      "reservedUsdMicros": 36000,
+      "usdMicros": 9468,
+      "settled": true,
+      "usage": {
+        "inputTokens": 969,
+        "outputTokens": 753
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:14:38.776Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "scene market",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 31665,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 435,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-20T07:15:19.157Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "check market",
+      "reservedUsdMicros": 31600,
+      "usdMicros": 6448,
+      "settled": true,
+      "usage": {
+        "inputTokens": 2139,
+        "outputTokens": 217
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:15:21.932Z",
+      "kind": "anthropic",
+      "model": "claude-haiku-5-5",
+      "note": "locate market",
+      "reservedUsdMicros": 1030,
+      "usdMicros": 272,
+      "settled": true,
+      "usage": {
+        "inputTokens": 1707,
+        "outputTokens": 202
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:15:24.299Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "sheet guard-post",
+      "reservedUsdMicros": 36000,
+      "usdMicros": 8978,
+      "settled": true,
+      "usage": {
+        "inputTokens": 929,
+        "outputTokens": 712
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:15:29.625Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "scene guard-post",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 31480,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 398,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-20T07:15:59.218Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "check guard-post",
+      "reservedUsdMicros": 31600,
+      "usdMicros": 6376,
+      "settled": true,
+      "usage": {
+        "inputTokens": 2103,
+        "outputTokens": 217
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:16:01.188Z",
+      "kind": "anthropic",
+      "model": "claude-haiku-5-5",
+      "note": "locate guard-post",
+      "reservedUsdMicros": 1030,
+      "usdMicros": 270,
+      "settled": true,
+      "usage": {
+        "inputTokens": 1697,
+        "outputTokens": 201
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:16:02.840Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "region map",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 32945,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 691,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-20T07:16:40.179Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "seeds region",
+      "reservedUsdMicros": 29000,
+      "usdMicros": 9068,
+      "settled": true,
+      "usage": {
+        "inputTokens": 449,
+        "outputTokens": 817
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:19:20.946Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "sheet warehouse",
+      "reservedUsdMicros": 36000,
+      "usdMicros": 9072,
+      "settled": true,
+      "usage": {
+        "inputTokens": 971,
+        "outputTokens": 713
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:19:26.440Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "scene warehouse",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 31420,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 386,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-20T07:19:56.750Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "check warehouse",
+      "reservedUsdMicros": 31600,
+      "usdMicros": 7116,
+      "settled": true,
+      "usage": {
+        "inputTokens": 2093,
+        "outputTokens": 293
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:19:59.686Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "redraw warehouse",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 31500,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 402,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-20T07:20:29.176Z",
+      "kind": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "note": "check warehouse",
+      "reservedUsdMicros": 31600,
+      "usdMicros": 6286,
+      "settled": true,
+      "usage": {
+        "inputTokens": 2093,
+        "outputTokens": 210
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:20:31.520Z",
+      "kind": "anthropic",
+      "model": "claude-haiku-5-5",
+      "note": "locate warehouse",
+      "reservedUsdMicros": 1030,
+      "usdMicros": 264,
+      "settled": true,
+      "usage": {
+        "inputTokens": 1677,
+        "outputTokens": 193
+      },
+      "outcome": "ok"
+    },
+    {
+      "at": "2026-10-20T07:20:33.857Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "preview art hero.jpg",
+      "reservedUsdMicros": 165000,
+      "usdMicros": 52995,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 63,
+        "imageInputTokens": 0,
+        "outputTokens": 1756
+      }
+    },
+    {
+      "at": "2026-10-20T07:21:21.404Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "preview art tobin.jpg",
+      "reservedUsdMicros": 165000,
+      "usdMicros": 53000,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 64,
+        "imageInputTokens": 0,
+        "outputTokens": 1756
+      }
+    },
+    {
+      "at": "2026-10-20T07:22:08.579Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "preview art orm.jpg",
+      "reservedUsdMicros": 165000,
+      "usdMicros": 52955,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 55,
+        "imageInputTokens": 0,
+        "outputTokens": 1756
+      }
+    },
+    {
+      "at": "2026-10-20T07:23:00.504Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "preview art veresk.jpg",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 29895,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 81,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    }
+  ]
+}

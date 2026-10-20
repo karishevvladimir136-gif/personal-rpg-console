@@ -1,0 +1,2157 @@
+{
+  "rows": [
+    {
+      "key": "ford",
+      "name": "Кривой брод",
+      "kind": "scene",
+      "done": true,
+      "usdMicros": 47326,
+      "redraws": 0,
+      "files": [
+        "ford-06578a31.jpg"
+      ],
+      "sheet": {
+        "summary": "A shallow ford across a fast river. A stony shoal runs across the water, and the rushing current breaks against its rocks. Poles stuck upright in the water mark the shallower line for crossing. On the far bank the black stumps of piles from an old bridge stick out. On the near side stands a roadside post with a signpost arm that carries no writing. An old man sits by the post, mending a net. It is morning.",
+        "features": [
+          {
+            "key": "stony-shoal",
+            "label": "Каменистая отмель",
+            "kind": "feature",
+            "description": "a rocky shoal across the river where the fast water breaks over the stones",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "pole-markers",
+            "label": "Вешки из жердей",
+            "kind": "object",
+            "description": "upright wooden poles in the water marking the shallower path across",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "far-bank",
+            "label": "Тот берег",
+            "kind": "exit",
+            "description": "the far bank across the ford, reached by wading along the marked line",
+            "mustShow": true,
+            "targetLocationId": "2f1fc483-c70a-51b7-8a89-f5c5d29dff46"
+          },
+          {
+            "key": "old-bridge-piles",
+            "label": "Сваи старого моста",
+            "kind": "object",
+            "description": "black remnant piles of the old bridge sticking out on the far bank",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "signpost",
+            "label": "Придорожный столб",
+            "kind": "object",
+            "description": "a roadside post with a signpost arm that has no inscription",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "river",
+            "label": "Быстрая река",
+            "kind": "feature",
+            "description": "a fast-flowing river with water striking the stones",
+            "mustShow": false,
+            "targetLocationId": null
+          }
+        ],
+        "people": [
+          {
+            "name": "Старик Гром",
+            "entityId": "46b15709-ce0a-5edf-a45a-655ca27bfe8a",
+            "at": "signpost"
+          }
+        ],
+        "light": "Natural morning daylight over open water.",
+        "timeOfDay": "morning",
+        "never": [
+          "a standing or intact bridge",
+          "any text on the signpost",
+          "a boat or ferry",
+          "buildings or a mill",
+          "a crowd of people"
+        ],
+        "crowded": false
+      },
+      "sheetSource": "model",
+      "firstPass": {
+        "found": 5,
+        "required": 5,
+        "contradictions": [],
+        "people": false,
+        "missing": []
+      },
+      "final": {
+        "found": 5,
+        "required": 5,
+        "contradictions": [],
+        "people": false,
+        "missing": [],
+        "file": "ford-06578a31.jpg"
+      },
+      "pois": {
+        "total": 7,
+        "placed": 7,
+        "approximate": 3,
+        "invented": 0,
+        "rows": [
+          {
+            "id": "f399a130-1604-4a31-b106-5410232d6483",
+            "locationId": "06a982f0-8449-5119-b4d8-3625aad0eb38",
+            "key": "stony-shoal",
+            "kind": "feature",
+            "label": "Каменистая отмель",
+            "note": "a rocky shoal across the river where the fast water breaks over the stones",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.5,
+            "y": 0.33,
+            "confidence": 0.6,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:10:09.054Z"
+          },
+          {
+            "id": "eab7ea9c-984b-4b45-ba99-2ea7a752a0dd",
+            "locationId": "06a982f0-8449-5119-b4d8-3625aad0eb38",
+            "key": "pole-markers",
+            "kind": "object",
+            "label": "Вешки из жердей",
+            "note": "upright wooden poles in the water marking the shallower path across",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.6,
+            "y": 0.45,
+            "confidence": 0.5,
+            "approximate": true,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:10:09.054Z"
+          },
+          {
+            "id": "722a98ad-7623-4072-a216-b01421351dde",
+            "locationId": "06a982f0-8449-5119-b4d8-3625aad0eb38",
+            "key": "far-bank",
+            "kind": "exit",
+            "label": "Тот берег",
+            "note": "the far bank across the ford, reached by wading along the marked line",
+            "entityId": null,
+            "targetLocationId": "2f1fc483-c70a-51b7-8a89-f5c5d29dff46",
+            "x": 0.5,
+            "y": 0.2,
+            "confidence": 0.4,
+            "approximate": true,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:10:09.054Z"
+          },
+          {
+            "id": "990675dd-4978-4567-a56f-a461b8542829",
+            "locationId": "06a982f0-8449-5119-b4d8-3625aad0eb38",
+            "key": "old-bridge-piles",
+            "kind": "object",
+            "label": "Сваи старого моста",
+            "note": "black remnant piles of the old bridge sticking out on the far bank",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.82,
+            "y": 0.22,
+            "confidence": 0.6,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:10:09.054Z"
+          },
+          {
+            "id": "2ceb3f0b-ae39-4759-9afd-3b506128207b",
+            "locationId": "06a982f0-8449-5119-b4d8-3625aad0eb38",
+            "key": "signpost",
+            "kind": "object",
+            "label": "Придорожный столб",
+            "note": "a roadside post with a signpost arm that has no inscription",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.12,
+            "y": 0.38,
+            "confidence": 0.7,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:10:09.054Z"
+          },
+          {
+            "id": "7cf78e0e-1f2c-4db6-a8e4-8e452ac19ca1",
+            "locationId": "06a982f0-8449-5119-b4d8-3625aad0eb38",
+            "key": "river",
+            "kind": "feature",
+            "label": "Быстрая река",
+            "note": "a fast-flowing river with water striking the stones",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.6,
+            "y": 0.6,
+            "confidence": 0.5,
+            "approximate": true,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:10:09.054Z"
+          },
+          {
+            "id": "ec7ef1b9-d5c8-4b20-9422-23f6797e7fb1",
+            "locationId": "06a982f0-8449-5119-b4d8-3625aad0eb38",
+            "key": "person-starik-grom",
+            "kind": "person",
+            "label": "Старик Гром",
+            "note": "",
+            "entityId": "46b15709-ce0a-5edf-a45a-655ca27bfe8a",
+            "targetLocationId": null,
+            "x": 0.16,
+            "y": 0.44,
+            "confidence": 0.7,
+            "approximate": false,
+            "source": "sheet",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:10:09.054Z"
+          }
+        ]
+      },
+      "prompts": {
+        "first": "A wide establishing illustration of Кривой брод, a place in a role-playing story, seen from a slightly raised viewpoint so the whole layout reads at a glance. Pixels only show; nothing here is a game fact.\nThe place: A shallow ford across a fast river. A stony shoal runs across the water, and the rushing current breaks against its rocks. Poles stuck upright in the water mark the shallower line for crossing. On the far bank the black stumps of piles from an old bridge stick out. On the near side stands a roadside post with a signpost arm that carries no writing. An old man sits by the post, mending a net. It is morning.\nMUST SHOW, each clearly visible and separated from the others: a rocky shoal across the river where the fast water breaks over the stones (Каменистая отмель); upright wooden poles in the water marking the shallower path across (Вешки из жердей); the far bank across the ford, reached by wading along the marked line (Тот берег); black remnant piles of the old bridge sticking out on the far bank (Сваи старого моста); a roadside post with a signpost arm that has no inscription (Придорожный столб).\nAlso there, where the layout puts it: a fast-flowing river with water striking the stones.\nLight: Natural morning daylight over open water., morning.\nMUST NOT SHOW: no people, no figures, no faces, no silhouettes — the place is empty of people.\nMUST NOT SHOW: a standing or intact bridge; any text on the signpost; a boat or ferry; buildings or a mill; a crowd of people.\nNo text, letters, signs with writing, labels or captions anywhere. No clutter: the key objects stand apart with room around each.\nArt style: Painterly fantasy illustration, warm earthy palette, soft brushwork, clear readable shapes; no text on the picture.",
+        "redraw": null
+      },
+      "check": {
+        "model": "claude-sonnet-5-5",
+        "costUsdMicros": 6464,
+        "checkedAt": "2026-10-20T07:10:07.599Z",
+        "items": [
+          {
+            "key": "stony-shoal",
+            "visible": true,
+            "x": 0.5,
+            "y": 0.4,
+            "confidence": 0.93
+          },
+          {
+            "key": "pole-markers",
+            "visible": true,
+            "x": 0.75,
+            "y": 0.33,
+            "confidence": 0.92
+          },
+          {
+            "key": "far-bank",
+            "visible": true,
+            "x": 0.55,
+            "y": 0.15,
+            "confidence": 0.85
+          },
+          {
+            "key": "old-bridge-piles",
+            "visible": true,
+            "x": 0.85,
+            "y": 0.22,
+            "confidence": 0.9
+          },
+          {
+            "key": "signpost",
+            "visible": true,
+            "x": 0.13,
+            "y": 0.45,
+            "confidence": 0.95
+          }
+        ],
+        "contradictions": [],
+        "peopleInBackground": false
+      }
+    },
+    {
+      "key": "temple",
+      "name": "Храм Тихой Воды",
+      "kind": "scene",
+      "done": true,
+      "usdMicros": 45957,
+      "redraws": 0,
+      "files": [
+        "temple-7ab03871.jpg"
+      ],
+      "sheet": {
+        "summary": "A round temple with a domed roof. A well stands in the middle of the hall, and light falls on it through an opening in the dome. An altar of grey stone stands under the dome. Benches for pilgrims are set in the hall. Behind the altar is a low door to the crypt, which is bolted shut. The priestess Olga stands at the altar in silence. The place is calm and quiet.",
+        "features": [
+          {
+            "key": "well",
+            "label": "Колодец",
+            "kind": "object",
+            "description": "A well in the centre of the round hall, lit from above by the opening in the dome",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "altar",
+            "label": "Серый алтарь",
+            "kind": "object",
+            "description": "An altar of grey stone under the dome",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "crypt-door",
+            "label": "Дверь в крипту",
+            "kind": "exit",
+            "description": "A low door behind the altar, closed with a bolt",
+            "mustShow": true,
+            "targetLocationId": "96d81604-37aa-58f6-929d-0b8f6588e030"
+          },
+          {
+            "key": "dome",
+            "label": "Купол с отверстием",
+            "kind": "feature",
+            "description": "A dome over the hall with an opening in the top that lets light fall onto the well",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "benches",
+            "label": "Скамьи для паломников",
+            "kind": "object",
+            "description": "Benches for pilgrims set in the hall",
+            "mustShow": false,
+            "targetLocationId": null
+          }
+        ],
+        "people": [
+          {
+            "name": "Жрица Ольга",
+            "entityId": "ecdaa726-dbc7-5be4-87dd-d78f21195212",
+            "at": "altar"
+          }
+        ],
+        "light": "Daylight falling through the opening in the dome straight onto the well, leaving the edges of the hall dimmer",
+        "timeOfDay": "daytime",
+        "never": [
+          "a second door to the crypt",
+          "an open crypt door",
+          "pilgrims crowding the benches",
+          "candelabras or torches",
+          "statues of gods"
+        ],
+        "crowded": false
+      },
+      "sheetSource": "model",
+      "firstPass": {
+        "found": 4,
+        "required": 4,
+        "contradictions": [],
+        "people": false,
+        "missing": []
+      },
+      "final": {
+        "found": 4,
+        "required": 4,
+        "contradictions": [],
+        "people": false,
+        "missing": [],
+        "file": "temple-7ab03871.jpg"
+      },
+      "pois": {
+        "total": 6,
+        "placed": 6,
+        "approximate": 2,
+        "invented": 0,
+        "rows": [
+          {
+            "id": "36d8c647-bca2-4fbd-9b04-2430e880994b",
+            "locationId": "6e618257-7730-56a3-80de-2b61e7d7724c",
+            "key": "well",
+            "kind": "object",
+            "label": "Колодец",
+            "note": "A well in the centre of the round hall, lit from above by the opening in the dome",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.5,
+            "y": 0.67,
+            "confidence": 0.85,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:11:40.711Z"
+          },
+          {
+            "id": "d8944b34-67c6-4b42-8e83-4d123ca48eb0",
+            "locationId": "6e618257-7730-56a3-80de-2b61e7d7724c",
+            "key": "altar",
+            "kind": "object",
+            "label": "Серый алтарь",
+            "note": "An altar of grey stone under the dome",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.5,
+            "y": 0.56,
+            "confidence": 0.7,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:11:40.711Z"
+          },
+          {
+            "id": "a0a6345a-cd5f-48e2-855f-4940ad2b8a8a",
+            "locationId": "6e618257-7730-56a3-80de-2b61e7d7724c",
+            "key": "crypt-door",
+            "kind": "exit",
+            "label": "Дверь в крипту",
+            "note": "A low door behind the altar, closed with a bolt",
+            "entityId": null,
+            "targetLocationId": "96d81604-37aa-58f6-929d-0b8f6588e030",
+            "x": 0.5,
+            "y": 0.49,
+            "confidence": 0.55,
+            "approximate": true,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:11:40.711Z"
+          },
+          {
+            "id": "789f0a55-fbda-4f2e-9ef0-50ac0215d048",
+            "locationId": "6e618257-7730-56a3-80de-2b61e7d7724c",
+            "key": "dome",
+            "kind": "feature",
+            "label": "Купол с отверстием",
+            "note": "A dome over the hall with an opening in the top that lets light fall onto the well",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.5,
+            "y": 0.12,
+            "confidence": 0.7,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:11:40.711Z"
+          },
+          {
+            "id": "57ceaeee-6cce-42d3-825e-0ca58821b6de",
+            "locationId": "6e618257-7730-56a3-80de-2b61e7d7724c",
+            "key": "benches",
+            "kind": "object",
+            "label": "Скамьи для паломников",
+            "note": "Benches for pilgrims set in the hall",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.5,
+            "y": 0.75,
+            "confidence": 0.5,
+            "approximate": true,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:11:40.711Z"
+          },
+          {
+            "id": "d30236b0-dec4-478c-8f38-fa16ce75dee5",
+            "locationId": "6e618257-7730-56a3-80de-2b61e7d7724c",
+            "key": "person-zhrica-olga",
+            "kind": "person",
+            "label": "Жрица Ольга",
+            "note": "",
+            "entityId": "ecdaa726-dbc7-5be4-87dd-d78f21195212",
+            "targetLocationId": null,
+            "x": 0.54,
+            "y": 0.62,
+            "confidence": 0.7,
+            "approximate": false,
+            "source": "sheet",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:11:40.711Z"
+          }
+        ]
+      },
+      "prompts": {
+        "first": "A wide establishing illustration of Храм Тихой Воды, a place in a role-playing story, seen from a slightly raised viewpoint so the whole layout reads at a glance. Pixels only show; nothing here is a game fact.\nThe place: A round temple with a domed roof. A well stands in the middle of the hall, and light falls on it through an opening in the dome. An altar of grey stone stands under the dome. Benches for pilgrims are set in the hall. Behind the altar is a low door to the crypt, which is bolted shut. The priestess Olga stands at the altar in silence. The place is calm and quiet.\nMUST SHOW, each clearly visible and separated from the others: A well in the centre of the round hall, lit from above by the opening in the dome (Колодец); An altar of grey stone under the dome (Серый алтарь); A low door behind the altar, closed with a bolt (Дверь в крипту); A dome over the hall with an opening in the top that lets light fall onto the well (Купол с отверстием).\nAlso there, where the layout puts it: Benches for pilgrims set in the hall.\nLight: Daylight falling through the opening in the dome straight onto the well, leaving the edges of the hall dimmer, daytime.\nMUST NOT SHOW: no people, no figures, no faces, no silhouettes — the place is empty of people.\nMUST NOT SHOW: a second door to the crypt; an open crypt door; pilgrims crowding the benches; candelabras or torches; statues of gods.\nNo text, letters, signs with writing, labels or captions anywhere. No clutter: the key objects stand apart with room around each.\nArt style: Painterly fantasy illustration, warm earthy palette, soft brushwork, clear readable shapes; no text on the picture.",
+        "redraw": null
+      },
+      "check": {
+        "model": "claude-sonnet-5-5",
+        "costUsdMicros": 5876,
+        "checkedAt": "2026-10-20T07:11:39.633Z",
+        "items": [
+          {
+            "key": "well",
+            "visible": true,
+            "x": 0.5,
+            "y": 0.69,
+            "confidence": 0.95
+          },
+          {
+            "key": "altar",
+            "visible": true,
+            "x": 0.496,
+            "y": 0.57,
+            "confidence": 0.9
+          },
+          {
+            "key": "crypt-door",
+            "visible": true,
+            "x": 0.495,
+            "y": 0.49,
+            "confidence": 0.9
+          },
+          {
+            "key": "dome",
+            "visible": true,
+            "x": 0.5,
+            "y": 0.12,
+            "confidence": 0.95
+          }
+        ],
+        "contradictions": [],
+        "peopleInBackground": false
+      }
+    },
+    {
+      "key": "mine-yard",
+      "name": "Двор Старой Шахты",
+      "kind": "scene",
+      "done": true,
+      "usdMicros": 84907,
+      "redraws": 1,
+      "files": [
+        "mine-yard-0a237c17.jpg",
+        "mine-yard-c61156d5.jpg"
+      ],
+      "sheet": {
+        "summary": "An abandoned mine yard overgrown with weeds, lying in front of the boarded-up entrance to an adit. The entrance is nailed shut with planks crossed over it, and a rusted hoist stands above it. Nearby are a heap of barren rock (spoil heap), a watchman's hut with a collapsed roof, and a cart missing one wheel standing by the hut. The whole place looks long abandoned and quiet.",
+        "features": [
+          {
+            "key": "shtolnya-vhod",
+            "label": "Заколоченный вход в штольню",
+            "kind": "exit",
+            "description": "the adit entrance nailed shut with planks crossed over it",
+            "mustShow": true,
+            "targetLocationId": "48550758-020b-535f-8924-6d34ebb543c2"
+          },
+          {
+            "key": "podyomnik",
+            "label": "Ржавый подъёмник",
+            "kind": "object",
+            "description": "a hoist rusted through, standing over the entrance",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "storozhka",
+            "label": "Сторожка",
+            "kind": "feature",
+            "description": "a watchman's hut with a collapsed roof",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "telega",
+            "label": "Телега без колеса",
+            "kind": "object",
+            "description": "a cart missing one wheel, standing by the hut",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "otval",
+            "label": "Отвал пустой породы",
+            "kind": "feature",
+            "description": "a heap of barren rock at the edge of the yard",
+            "mustShow": false,
+            "targetLocationId": null
+          },
+          {
+            "key": "burian",
+            "label": "Бурьян",
+            "kind": "feature",
+            "description": "weeds overgrowing the yard",
+            "mustShow": false,
+            "targetLocationId": null
+          }
+        ],
+        "people": [],
+        "light": "Dim dusk light, no artificial sources.",
+        "timeOfDay": "dusk",
+        "never": [
+          "a lit lantern or fire",
+          "an open mine entrance",
+          "a second door or gate",
+          "people or animals",
+          "a intact roof on the hut",
+          "a cart with all wheels"
+        ],
+        "crowded": false
+      },
+      "sheetSource": "model",
+      "firstPass": {
+        "found": 4,
+        "required": 4,
+        "contradictions": [
+          "cart wheel count"
+        ],
+        "people": false,
+        "missing": []
+      },
+      "final": {
+        "found": 4,
+        "required": 4,
+        "contradictions": [],
+        "people": false,
+        "missing": [],
+        "file": "mine-yard-c61156d5.jpg"
+      },
+      "pois": {
+        "total": 6,
+        "placed": 6,
+        "approximate": 1,
+        "invented": 0,
+        "rows": [
+          {
+            "id": "bd46be51-e02d-4130-ab51-9b7dbac41644",
+            "locationId": "5b92a34d-4012-5859-99fa-f952b6578bac",
+            "key": "shtolnya-vhod",
+            "kind": "exit",
+            "label": "Заколоченный вход в штольню",
+            "note": "the adit entrance nailed shut with planks crossed over it",
+            "entityId": null,
+            "targetLocationId": "48550758-020b-535f-8924-6d34ebb543c2",
+            "x": 0.56,
+            "y": 0.44,
+            "confidence": 0.7,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:13:06.775Z"
+          },
+          {
+            "id": "6f4dadd9-32f3-4300-8f65-3f32fb9dbf77",
+            "locationId": "5b92a34d-4012-5859-99fa-f952b6578bac",
+            "key": "podyomnik",
+            "kind": "object",
+            "label": "Ржавый подъёмник",
+            "note": "a hoist rusted through, standing over the entrance",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.6,
+            "y": 0.25,
+            "confidence": 0.75,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:13:06.775Z"
+          },
+          {
+            "id": "3526d9c0-d2ac-4290-b58b-c600616e8f62",
+            "locationId": "5b92a34d-4012-5859-99fa-f952b6578bac",
+            "key": "storozhka",
+            "kind": "feature",
+            "label": "Сторожка",
+            "note": "a watchman's hut with a collapsed roof",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.86,
+            "y": 0.4,
+            "confidence": 0.7,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:13:06.775Z"
+          },
+          {
+            "id": "b113c506-94e0-4e5f-8c4a-4a16ae1d1ede",
+            "locationId": "5b92a34d-4012-5859-99fa-f952b6578bac",
+            "key": "telega",
+            "kind": "object",
+            "label": "Телега без колеса",
+            "note": "a cart missing one wheel, standing by the hut",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.84,
+            "y": 0.63,
+            "confidence": 0.6,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:13:06.775Z"
+          },
+          {
+            "id": "b62c0b82-7aac-4cdd-aa4f-68eb2923a6a8",
+            "locationId": "5b92a34d-4012-5859-99fa-f952b6578bac",
+            "key": "otval",
+            "kind": "feature",
+            "label": "Отвал пустой породы",
+            "note": "a heap of barren rock at the edge of the yard",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.2,
+            "y": 0.37,
+            "confidence": 0.65,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:13:06.775Z"
+          },
+          {
+            "id": "49b5829c-aba7-476b-bb31-83898046946c",
+            "locationId": "5b92a34d-4012-5859-99fa-f952b6578bac",
+            "key": "burian",
+            "kind": "feature",
+            "label": "Бурьян",
+            "note": "weeds overgrowing the yard",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.5,
+            "y": 0.8,
+            "confidence": 0.35,
+            "approximate": true,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:13:06.775Z"
+          }
+        ]
+      },
+      "prompts": {
+        "first": "A wide establishing illustration of Двор Старой Шахты, a place in a role-playing story, seen from a slightly raised viewpoint so the whole layout reads at a glance. Pixels only show; nothing here is a game fact.\nThe place: An abandoned mine yard overgrown with weeds, lying in front of the boarded-up entrance to an adit. The entrance is nailed shut with planks crossed over it, and a rusted hoist stands above it. Nearby are a heap of barren rock (spoil heap), a watchman's hut with a collapsed roof, and a cart missing one wheel standing by the hut. The whole place looks long abandoned and quiet.\nMUST SHOW, each clearly visible and separated from the others: the adit entrance nailed shut with planks crossed over it (Заколоченный вход в штольню); a hoist rusted through, standing over the entrance (Ржавый подъёмник); a watchman's hut with a collapsed roof (Сторожка); a cart missing one wheel, standing by the hut (Телега без колеса).\nAlso there, where the layout puts it: a heap of barren rock at the edge of the yard; weeds overgrowing the yard.\nLight: Dim dusk light, no artificial sources., dusk.\nMUST NOT SHOW: no people, no figures, no faces, no silhouettes — the place is empty of people.\nMUST NOT SHOW: a lit lantern or fire; an open mine entrance; a second door or gate; people or animals; a intact roof on the hut; a cart with all wheels.\nNo text, letters, signs with writing, labels or captions anywhere. No clutter: the key objects stand apart with room around each.\nArt style: Painterly fantasy illustration, warm earthy palette, soft brushwork, clear readable shapes; no text on the picture.",
+        "redraw": "A wide establishing illustration of Двор Старой Шахты, a place in a role-playing story, seen from a slightly raised viewpoint so the whole layout reads at a glance. Pixels only show; nothing here is a game fact.\nThe place: An abandoned mine yard overgrown with weeds, lying in front of the boarded-up entrance to an adit. The entrance is nailed shut with planks crossed over it, and a rusted hoist stands above it. Nearby are a heap of barren rock (spoil heap), a watchman's hut with a collapsed roof, and a cart missing one wheel standing by the hut. The whole place looks long abandoned and quiet.\nMUST SHOW, each clearly visible and separated from the others: the adit entrance nailed shut with planks crossed over it (Заколоченный вход в штольню); a hoist rusted through, standing over the entrance (Ржавый подъёмник); a watchman's hut with a collapsed roof (Сторожка); a cart missing one wheel, standing by the hut (Телега без колеса).\nAlso there, where the layout puts it: a heap of barren rock at the edge of the yard; weeds overgrowing the yard.\nLight: Dim dusk light, no artificial sources., dusk.\nMUST NOT SHOW: no people, no figures, no faces, no silhouettes — the place is empty of people.\nMUST NOT SHOW: a lit lantern or fire; an open mine entrance; a second door or gate; people or animals; a intact roof on the hut; a cart with all wheels.\nNo text, letters, signs with writing, labels or captions anywhere. No clutter: the key objects stand apart with room around each.\nThe previous attempt invented these; leave them out: cart wheel count.\nArt style: Painterly fantasy illustration, warm earthy palette, soft brushwork, clear readable shapes; no text on the picture."
+      },
+      "check": {
+        "model": "claude-sonnet-5-5",
+        "costUsdMicros": 6052,
+        "checkedAt": "2026-10-20T07:13:04.341Z",
+        "items": [
+          {
+            "key": "shtolnya-vhod",
+            "visible": true,
+            "x": 0.58,
+            "y": 0.4,
+            "confidence": 0.92
+          },
+          {
+            "key": "podyomnik",
+            "visible": true,
+            "x": 0.59,
+            "y": 0.15,
+            "confidence": 0.93
+          },
+          {
+            "key": "storozhka",
+            "visible": true,
+            "x": 0.85,
+            "y": 0.5,
+            "confidence": 0.88
+          },
+          {
+            "key": "telega",
+            "visible": true,
+            "x": 0.82,
+            "y": 0.63,
+            "confidence": 0.75
+          }
+        ],
+        "contradictions": [],
+        "peopleInBackground": false
+      }
+    },
+    {
+      "key": "forest-camp",
+      "name": "Лагерь у Чёрного Ручья",
+      "kind": "scene",
+      "done": true,
+      "usdMicros": 46744,
+      "redraws": 0,
+      "files": [
+        "forest-camp-6db1a34b.jpg"
+      ],
+      "sheet": {
+        "summary": "A small camp in a spruce grove beside a stream. A fire pit ringed with soot-blackened stones sits under a lean-to shelter made of spruce boughs. Horses are tied at a hitch line nearby. A path leads downhill from the camp to the water of the Black Stream. At night the hunter Birgir tends the fire, adding brushwood.",
+        "features": [
+          {
+            "key": "kostrishche",
+            "label": "Кострище",
+            "kind": "object",
+            "description": "a fire pit ringed with soot-blackened stones, with a small fire burning",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "naves",
+            "label": "Навес из еловых лап",
+            "kind": "feature",
+            "description": "a lean-to shelter made of spruce boughs over the fire pit",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "privyaz",
+            "label": "Привязь для лошадей",
+            "kind": "object",
+            "description": "a hitch line where the horses are tied and shift their feet",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "tropa-k-ruchyu",
+            "label": "Тропа к ручью",
+            "kind": "exit",
+            "description": "a path leading downhill from the camp to the water",
+            "mustShow": true,
+            "targetLocationId": "3a21e92c-8ce1-5977-a261-446e824a3ed4"
+          },
+          {
+            "key": "elnik",
+            "label": "Ельник",
+            "kind": "feature",
+            "description": "spruce trees surrounding the camp",
+            "mustShow": false,
+            "targetLocationId": null
+          },
+          {
+            "key": "hvorost",
+            "label": "Хворост",
+            "kind": "object",
+            "description": "brushwood used to feed the fire",
+            "mustShow": false,
+            "targetLocationId": null
+          }
+        ],
+        "people": [
+          {
+            "name": "Охотник Биргир",
+            "entityId": "695f476f-7234-563b-8695-31ceb6dfb904",
+            "at": "kostrishche"
+          }
+        ],
+        "light": "Firelight from the fire pit only, warm and flickering, with darkness among the spruces.",
+        "timeOfDay": "night",
+        "never": [
+          "a tent",
+          "a built cabin or wooden hut",
+          "a second campfire",
+          "a bridge over the stream",
+          "other people besides the hunter",
+          "daylight or sun"
+        ],
+        "crowded": false
+      },
+      "sheetSource": "model",
+      "firstPass": {
+        "found": 4,
+        "required": 4,
+        "contradictions": [],
+        "people": false,
+        "missing": []
+      },
+      "final": {
+        "found": 4,
+        "required": 4,
+        "contradictions": [],
+        "people": false,
+        "missing": [],
+        "file": "forest-camp-6db1a34b.jpg"
+      },
+      "pois": {
+        "total": 7,
+        "placed": 7,
+        "approximate": 2,
+        "invented": 0,
+        "rows": [
+          {
+            "id": "391fe21d-62a6-48e8-b81a-d2c607cfb078",
+            "locationId": "4a153d86-5442-5679-b4be-a1f892a4720b",
+            "key": "kostrishche",
+            "kind": "object",
+            "label": "Кострище",
+            "note": "a fire pit ringed with soot-blackened stones, with a small fire burning",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.42,
+            "y": 0.29,
+            "confidence": 0.85,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:13:49.465Z"
+          },
+          {
+            "id": "b1695cd8-c35c-4ac7-8a3a-7d79ec5a5813",
+            "locationId": "4a153d86-5442-5679-b4be-a1f892a4720b",
+            "key": "naves",
+            "kind": "feature",
+            "label": "Навес из еловых лап",
+            "note": "a lean-to shelter made of spruce boughs over the fire pit",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.37,
+            "y": 0.14,
+            "confidence": 0.7,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:13:49.465Z"
+          },
+          {
+            "id": "185a3fd9-b623-4bbb-ac3f-809f3fc704bf",
+            "locationId": "4a153d86-5442-5679-b4be-a1f892a4720b",
+            "key": "privyaz",
+            "kind": "object",
+            "label": "Привязь для лошадей",
+            "note": "a hitch line where the horses are tied and shift their feet",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.83,
+            "y": 0.23,
+            "confidence": 0.6,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:13:49.465Z"
+          },
+          {
+            "id": "1c8a9649-3a21-4772-bdf7-0616fb83c88f",
+            "locationId": "4a153d86-5442-5679-b4be-a1f892a4720b",
+            "key": "tropa-k-ruchyu",
+            "kind": "exit",
+            "label": "Тропа к ручью",
+            "note": "a path leading downhill from the camp to the water",
+            "entityId": null,
+            "targetLocationId": "3a21e92c-8ce1-5977-a261-446e824a3ed4",
+            "x": 0.68,
+            "y": 0.52,
+            "confidence": 0.5,
+            "approximate": true,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:13:49.465Z"
+          },
+          {
+            "id": "4c02689b-816c-4a9f-8259-fa6d9e34c53f",
+            "locationId": "4a153d86-5442-5679-b4be-a1f892a4720b",
+            "key": "elnik",
+            "kind": "feature",
+            "label": "Ельник",
+            "note": "spruce trees surrounding the camp",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.1,
+            "y": 0.4,
+            "confidence": 0.4,
+            "approximate": true,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:13:49.465Z"
+          },
+          {
+            "id": "40d8f369-9435-4060-a718-18ec781dde06",
+            "locationId": "4a153d86-5442-5679-b4be-a1f892a4720b",
+            "key": "hvorost",
+            "kind": "object",
+            "label": "Хворост",
+            "note": "brushwood used to feed the fire",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.22,
+            "y": 0.32,
+            "confidence": 0.6,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:13:49.465Z"
+          },
+          {
+            "id": "9a052690-83ae-4b40-85d9-00118ef930a4",
+            "locationId": "4a153d86-5442-5679-b4be-a1f892a4720b",
+            "key": "person-ohotnik-birgir",
+            "kind": "person",
+            "label": "Охотник Биргир",
+            "note": "",
+            "entityId": "695f476f-7234-563b-8695-31ceb6dfb904",
+            "targetLocationId": null,
+            "x": 0.46,
+            "y": 0.35,
+            "confidence": 0.85,
+            "approximate": false,
+            "source": "sheet",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:13:49.465Z"
+          }
+        ]
+      },
+      "prompts": {
+        "first": "A wide establishing illustration of Лагерь у Чёрного Ручья, a place in a role-playing story, seen from a slightly raised viewpoint so the whole layout reads at a glance. Pixels only show; nothing here is a game fact.\nThe place: A small camp in a spruce grove beside a stream. A fire pit ringed with soot-blackened stones sits under a lean-to shelter made of spruce boughs. Horses are tied at a hitch line nearby. A path leads downhill from the camp to the water of the Black Stream. At night the hunter Birgir tends the fire, adding brushwood.\nMUST SHOW, each clearly visible and separated from the others: a fire pit ringed with soot-blackened stones, with a small fire burning (Кострище); a lean-to shelter made of spruce boughs over the fire pit (Навес из еловых лап); a hitch line where the horses are tied and shift their feet (Привязь для лошадей); a path leading downhill from the camp to the water (Тропа к ручью).\nAlso there, where the layout puts it: spruce trees surrounding the camp; brushwood used to feed the fire.\nLight: Firelight from the fire pit only, warm and flickering, with darkness among the spruces., night.\nMUST NOT SHOW: no people, no figures, no faces, no silhouettes — the place is empty of people.\nMUST NOT SHOW: a tent; a built cabin or wooden hut; a second campfire; a bridge over the stream; other people besides the hunter; daylight or sun.\nNo text, letters, signs with writing, labels or captions anywhere. No clutter: the key objects stand apart with room around each.\nArt style: Painterly fantasy illustration, warm earthy palette, soft brushwork, clear readable shapes; no text on the picture.",
+        "redraw": null
+      },
+      "check": {
+        "model": "claude-sonnet-5-5",
+        "costUsdMicros": 6054,
+        "checkedAt": "2026-10-20T07:13:47.793Z",
+        "items": [
+          {
+            "key": "kostrishche",
+            "visible": true,
+            "x": 0.36,
+            "y": 0.29,
+            "confidence": 0.93
+          },
+          {
+            "key": "naves",
+            "visible": true,
+            "x": 0.31,
+            "y": 0.17,
+            "confidence": 0.92
+          },
+          {
+            "key": "privyaz",
+            "visible": true,
+            "x": 0.72,
+            "y": 0.2,
+            "confidence": 0.93
+          },
+          {
+            "key": "tropa-k-ruchyu",
+            "visible": true,
+            "x": 0.58,
+            "y": 0.5,
+            "confidence": 0.85
+          }
+        ],
+        "contradictions": [],
+        "peopleInBackground": false
+      }
+    },
+    {
+      "key": "tavern",
+      "name": "Таверна «Кривой Якорь»",
+      "kind": "scene",
+      "done": true,
+      "usdMicros": 48232,
+      "redraws": 0,
+      "files": [
+        "tavern-bca82d60.jpg"
+      ],
+      "sheet": {
+        "summary": "A low-ceilinged tavern called the Crooked Anchor, smoky and warm in the evening. A long bar counter runs through the room, with a door to the back yard behind it. A hearth stands against the far wall. A staircase leads up to the second floor, where the rooms are. Small barrels stand by the entrance. The landlady wipes the counter while a sailor sits by the hearth with an empty mug.",
+        "features": [
+          {
+            "key": "entrance",
+            "label": "Вход",
+            "kind": "entrance",
+            "description": "the tavern's front door, with small barrels beside it",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "stoika",
+            "label": "Длинная стойка",
+            "kind": "object",
+            "description": "a long wooden bar counter that the landlady wipes down",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "ochag",
+            "label": "Очаг",
+            "kind": "feature",
+            "description": "a hearth set against the far wall, with a seat beside it",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "lestnitsa",
+            "label": "Лестница наверх",
+            "kind": "exit",
+            "description": "a creaking staircase up to the second floor",
+            "mustShow": true,
+            "targetLocationId": "9aa0f125-39c5-5032-9acc-a220ef1a1841"
+          },
+          {
+            "key": "dver-vo-dvor",
+            "label": "Дверь во двор",
+            "kind": "exit",
+            "description": "a door behind the counter leading to the back yard, just slammed shut",
+            "mustShow": true,
+            "targetLocationId": "db93e5d6-7642-5685-aed9-4ed59c5bb18c"
+          },
+          {
+            "key": "bochonki",
+            "label": "Бочонки",
+            "kind": "object",
+            "description": "small barrels standing by the entrance",
+            "mustShow": false,
+            "targetLocationId": null
+          }
+        ],
+        "people": [
+          {
+            "name": "Хозяйка Магда",
+            "entityId": "5b0c9aad-1ab9-5a31-ba9e-8a953baf9914",
+            "at": "stoika"
+          },
+          {
+            "name": "Матрос Ульф",
+            "entityId": "ffa98c30-a210-597c-b4ac-772c039f7e14",
+            "at": "ochag"
+          }
+        ],
+        "light": "Warm firelight from the hearth in a smoky room, dim in the evening.",
+        "timeOfDay": "evening",
+        "never": [
+          "a second front door",
+          "other patrons or a crowd",
+          "a stage or musicians",
+          "a window onto the street not named in the records",
+          "a forge or other workshop"
+        ],
+        "crowded": false
+      },
+      "sheetSource": "model",
+      "firstPass": {
+        "found": 5,
+        "required": 5,
+        "contradictions": [],
+        "people": false,
+        "missing": []
+      },
+      "final": {
+        "found": 5,
+        "required": 5,
+        "contradictions": [],
+        "people": false,
+        "missing": [],
+        "file": "tavern-bca82d60.jpg"
+      },
+      "pois": {
+        "total": 8,
+        "placed": 8,
+        "approximate": 2,
+        "invented": 0,
+        "rows": [
+          {
+            "id": "dd6db0db-89b1-4f21-a8e2-901fc4c9230c",
+            "locationId": "8ebccbdc-e46c-5bf9-b496-9ce5f275a37b",
+            "key": "entrance",
+            "kind": "exit",
+            "label": "Вход",
+            "note": "the tavern's front door, with small barrels beside it",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.07,
+            "y": 0.45,
+            "confidence": 0.6,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:14:33.476Z"
+          },
+          {
+            "id": "f54ace6b-2bf0-4fed-8688-0abee374171b",
+            "locationId": "8ebccbdc-e46c-5bf9-b496-9ce5f275a37b",
+            "key": "stoika",
+            "kind": "object",
+            "label": "Длинная стойка",
+            "note": "a long wooden bar counter that the landlady wipes down",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.42,
+            "y": 0.55,
+            "confidence": 0.7,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:14:33.476Z"
+          },
+          {
+            "id": "efc6cae7-3cd0-4dcf-99ef-367a1c82351c",
+            "locationId": "8ebccbdc-e46c-5bf9-b496-9ce5f275a37b",
+            "key": "ochag",
+            "kind": "feature",
+            "label": "Очаг",
+            "note": "a hearth set against the far wall, with a seat beside it",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.88,
+            "y": 0.38,
+            "confidence": 0.6,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:14:33.476Z"
+          },
+          {
+            "id": "cfa3d0ad-7445-4712-b288-3b909ea3b040",
+            "locationId": "8ebccbdc-e46c-5bf9-b496-9ce5f275a37b",
+            "key": "lestnitsa",
+            "kind": "exit",
+            "label": "Лестница наверх",
+            "note": "a creaking staircase up to the second floor",
+            "entityId": null,
+            "targetLocationId": "9aa0f125-39c5-5032-9acc-a220ef1a1841",
+            "x": 0.93,
+            "y": 0.35,
+            "confidence": 0.6,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:14:33.476Z"
+          },
+          {
+            "id": "98febaf5-8be6-4e5a-af94-b11c18deeb13",
+            "locationId": "8ebccbdc-e46c-5bf9-b496-9ce5f275a37b",
+            "key": "dver-vo-dvor",
+            "kind": "exit",
+            "label": "Дверь во двор",
+            "note": "a door behind the counter leading to the back yard, just slammed shut",
+            "entityId": null,
+            "targetLocationId": "db93e5d6-7642-5685-aed9-4ed59c5bb18c",
+            "x": 0.53,
+            "y": 0.33,
+            "confidence": 0.5,
+            "approximate": true,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:14:33.476Z"
+          },
+          {
+            "id": "6d9b9356-5c21-4af0-a854-d899001eac11",
+            "locationId": "8ebccbdc-e46c-5bf9-b496-9ce5f275a37b",
+            "key": "bochonki",
+            "kind": "object",
+            "label": "Бочонки",
+            "note": "small barrels standing by the entrance",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.22,
+            "y": 0.67,
+            "confidence": 0.5,
+            "approximate": true,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:14:33.476Z"
+          },
+          {
+            "id": "70f504f5-8e2e-4ecb-83ff-48788bddca1f",
+            "locationId": "8ebccbdc-e46c-5bf9-b496-9ce5f275a37b",
+            "key": "person-hozyayka-magda",
+            "kind": "person",
+            "label": "Хозяйка Магда",
+            "note": "",
+            "entityId": "5b0c9aad-1ab9-5a31-ba9e-8a953baf9914",
+            "targetLocationId": null,
+            "x": 0.46,
+            "y": 0.61,
+            "confidence": 0.7,
+            "approximate": false,
+            "source": "sheet",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:14:33.476Z"
+          },
+          {
+            "id": "1eead155-467f-4443-bb7c-98c4fae74041",
+            "locationId": "8ebccbdc-e46c-5bf9-b496-9ce5f275a37b",
+            "key": "person-matros-ulf",
+            "kind": "person",
+            "label": "Матрос Ульф",
+            "note": "",
+            "entityId": "ffa98c30-a210-597c-b4ac-772c039f7e14",
+            "targetLocationId": null,
+            "x": 0.95,
+            "y": 0.44,
+            "confidence": 0.6,
+            "approximate": false,
+            "source": "sheet",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:14:33.476Z"
+          }
+        ]
+      },
+      "prompts": {
+        "first": "A wide establishing illustration of Таверна «Кривой Якорь», a place in a role-playing story, seen from a slightly raised viewpoint so the whole layout reads at a glance. Pixels only show; nothing here is a game fact.\nThe place: A low-ceilinged tavern called the Crooked Anchor, smoky and warm in the evening. A long bar counter runs through the room, with a door to the back yard behind it. A hearth stands against the far wall. A staircase leads up to the second floor, where the rooms are. Small barrels stand by the entrance. The landlady wipes the counter while a sailor sits by the hearth with an empty mug.\nMUST SHOW, each clearly visible and separated from the others: the tavern's front door, with small barrels beside it (Вход); a long wooden bar counter that the landlady wipes down (Длинная стойка); a hearth set against the far wall, with a seat beside it (Очаг); a creaking staircase up to the second floor (Лестница наверх); a door behind the counter leading to the back yard, just slammed shut (Дверь во двор).\nAlso there, where the layout puts it: small barrels standing by the entrance.\nLight: Warm firelight from the hearth in a smoky room, dim in the evening., evening.\nMUST NOT SHOW: no people, no figures, no faces, no silhouettes — the place is empty of people.\nMUST NOT SHOW: a second front door; other patrons or a crowd; a stage or musicians; a window onto the street not named in the records; a forge or other workshop.\nNo text, letters, signs with writing, labels or captions anywhere. No clutter: the key objects stand apart with room around each.\nArt style: Painterly fantasy illustration, warm earthy palette, soft brushwork, clear readable shapes; no text on the picture.",
+        "redraw": null
+      },
+      "check": {
+        "model": "claude-sonnet-5-5",
+        "costUsdMicros": 6432,
+        "checkedAt": "2026-10-20T07:14:27.491Z",
+        "items": [
+          {
+            "key": "entrance",
+            "visible": true,
+            "x": 0.09,
+            "y": 0.4,
+            "confidence": 0.9
+          },
+          {
+            "key": "stoika",
+            "visible": true,
+            "x": 0.45,
+            "y": 0.5,
+            "confidence": 0.93
+          },
+          {
+            "key": "ochag",
+            "visible": true,
+            "x": 0.7,
+            "y": 0.4,
+            "confidence": 0.93
+          },
+          {
+            "key": "lestnitsa",
+            "visible": true,
+            "x": 0.93,
+            "y": 0.25,
+            "confidence": 0.93
+          },
+          {
+            "key": "dver-vo-dvor",
+            "visible": true,
+            "x": 0.49,
+            "y": 0.3,
+            "confidence": 0.8
+          }
+        ],
+        "contradictions": [],
+        "peopleInBackground": false
+      }
+    },
+    {
+      "key": "market",
+      "name": "Рыночная площадь Белого Камня",
+      "kind": "scene",
+      "done": true,
+      "usdMicros": 47853,
+      "redraws": 0,
+      "files": [
+        "market-c1fb965f.jpg"
+      ],
+      "sheet": {
+        "summary": "The market square of Beliy Kamen is a busy open space. A well stands in the centre. Rows of stalls stand under striped awnings. At the town hall is the money changer's shop, where the changer Ivar sits. A herald's platform stands in the square, and an arch leads out to Blacksmiths' Street, from which the sound of hammers carries. A crowd gathers by the well, and the square is lively in the daytime.",
+        "features": [
+          {
+            "key": "well",
+            "label": "Колодец",
+            "kind": "feature",
+            "description": "a well in the centre of the square, with a crowd gathered around it",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "stalls",
+            "label": "Прилавки под навесами",
+            "kind": "feature",
+            "description": "rows of market stalls under striped awnings",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "changer-shop",
+            "label": "Лавка менялы",
+            "kind": "feature",
+            "description": "the money changer's shop beside the town hall, where Ivar sits",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "town-hall",
+            "label": "Ратуша",
+            "kind": "feature",
+            "description": "the town hall, next to which the changer's shop stands",
+            "mustShow": false,
+            "targetLocationId": null
+          },
+          {
+            "key": "herald-platform",
+            "label": "Помост глашатая",
+            "kind": "feature",
+            "description": "a raised platform where the herald stands",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "smiths-arch",
+            "label": "Арка на улицу Кузнецов",
+            "kind": "exit",
+            "description": "an arch leading out of the square to Blacksmiths' Street, with the sound of hammers coming through it",
+            "mustShow": true,
+            "targetLocationId": "a3117f4b-cfe2-5178-bf97-0e756363790c"
+          }
+        ],
+        "people": [
+          {
+            "name": "Меняла Ивар",
+            "entityId": "e74fe87b-d29f-5127-a932-b4a869263326",
+            "at": "changer-shop"
+          }
+        ],
+        "light": "Natural daylight in an open square, with the awnings casting stripes of shade over the stalls.",
+        "timeOfDay": "day",
+        "never": [
+          "a second arch or other exit from the square",
+          "a forge or smithy inside the square",
+          "a fountain instead of a well",
+          "an empty square without a crowd",
+          "a named herald or other invented character"
+        ],
+        "crowded": true
+      },
+      "sheetSource": "model",
+      "firstPass": {
+        "found": 5,
+        "required": 5,
+        "contradictions": [],
+        "people": false,
+        "missing": []
+      },
+      "final": {
+        "found": 5,
+        "required": 5,
+        "contradictions": [],
+        "people": false,
+        "missing": [],
+        "file": "market-c1fb965f.jpg"
+      },
+      "pois": {
+        "total": 7,
+        "placed": 7,
+        "approximate": 2,
+        "invented": 0,
+        "rows": [
+          {
+            "id": "43fe02bb-8e43-4c0c-a60e-3644f74aa44e",
+            "locationId": "5d96df3c-0f6b-5d40-a4dc-35b70e726a3e",
+            "key": "well",
+            "kind": "feature",
+            "label": "Колодец",
+            "note": "a well in the centre of the square, with a crowd gathered around it",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.45,
+            "y": 0.5,
+            "confidence": 0.8,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:15:24.294Z"
+          },
+          {
+            "id": "2db3acb8-3701-45fb-9eb6-647c7a67733b",
+            "locationId": "5d96df3c-0f6b-5d40-a4dc-35b70e726a3e",
+            "key": "stalls",
+            "kind": "feature",
+            "label": "Прилавки под навесами",
+            "note": "rows of market stalls under striped awnings",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.2,
+            "y": 0.35,
+            "confidence": 0.5,
+            "approximate": true,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:15:24.294Z"
+          },
+          {
+            "id": "10bb38e9-e5ed-4f99-936b-7f0c45f2e407",
+            "locationId": "5d96df3c-0f6b-5d40-a4dc-35b70e726a3e",
+            "key": "changer-shop",
+            "kind": "feature",
+            "label": "Лавка менялы",
+            "note": "the money changer's shop beside the town hall, where Ivar sits",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.82,
+            "y": 0.25,
+            "confidence": 0.6,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:15:24.294Z"
+          },
+          {
+            "id": "f642902b-5c14-45bf-a7ad-9d7501b2a3f7",
+            "locationId": "5d96df3c-0f6b-5d40-a4dc-35b70e726a3e",
+            "key": "town-hall",
+            "kind": "feature",
+            "label": "Ратуша",
+            "note": "the town hall, next to which the changer's shop stands",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.6,
+            "y": 0.15,
+            "confidence": 0.6,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:15:24.294Z"
+          },
+          {
+            "id": "c6e32e6c-efd0-43b0-a1ef-0a4d32cd83d7",
+            "locationId": "5d96df3c-0f6b-5d40-a4dc-35b70e726a3e",
+            "key": "herald-platform",
+            "kind": "feature",
+            "label": "Помост глашатая",
+            "note": "a raised platform where the herald stands",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.9,
+            "y": 0.45,
+            "confidence": 0.6,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:15:24.294Z"
+          },
+          {
+            "id": "1479c2a1-e0b8-4df8-979f-e7356815a817",
+            "locationId": "5d96df3c-0f6b-5d40-a4dc-35b70e726a3e",
+            "key": "smiths-arch",
+            "kind": "exit",
+            "label": "Арка на улицу Кузнецов",
+            "note": "an arch leading out of the square to Blacksmiths' Street, with the sound of hammers coming through it",
+            "entityId": null,
+            "targetLocationId": "a3117f4b-cfe2-5178-bf97-0e756363790c",
+            "x": 0.95,
+            "y": 0.2,
+            "confidence": 0.5,
+            "approximate": true,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:15:24.294Z"
+          },
+          {
+            "id": "a7e1687a-0717-4851-97e9-b267cb8767fa",
+            "locationId": "5d96df3c-0f6b-5d40-a4dc-35b70e726a3e",
+            "key": "person-menyala-ivar",
+            "kind": "person",
+            "label": "Меняла Ивар",
+            "note": "",
+            "entityId": "e74fe87b-d29f-5127-a932-b4a869263326",
+            "targetLocationId": null,
+            "x": 0.86,
+            "y": 0.31,
+            "confidence": 0.6,
+            "approximate": false,
+            "source": "sheet",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:15:24.294Z"
+          }
+        ]
+      },
+      "prompts": {
+        "first": "A wide establishing illustration of Рыночная площадь Белого Камня, a place in a role-playing story, seen from a slightly raised viewpoint so the whole layout reads at a glance. Pixels only show; nothing here is a game fact.\nThe place: The market square of Beliy Kamen is a busy open space. A well stands in the centre. Rows of stalls stand under striped awnings. At the town hall is the money changer's shop, where the changer Ivar sits. A herald's platform stands in the square, and an arch leads out to Blacksmiths' Street, from which the sound of hammers carries. A crowd gathers by the well, and the square is lively in the daytime.\nMUST SHOW, each clearly visible and separated from the others: a well in the centre of the square, with a crowd gathered around it (Колодец); rows of market stalls under striped awnings (Прилавки под навесами); the money changer's shop beside the town hall, where Ivar sits (Лавка менялы); a raised platform where the herald stands (Помост глашатая); an arch leading out of the square to Blacksmiths' Street, with the sound of hammers coming through it (Арка на улицу Кузнецов).\nAlso there, where the layout puts it: the town hall, next to which the changer's shop stands.\nLight: Natural daylight in an open square, with the awnings casting stripes of shade over the stalls., day.\nThe place is crowded: anonymous background figures, small and unidentifiable, no faces in focus.\nMUST NOT SHOW: a second arch or other exit from the square; a forge or smithy inside the square; a fountain instead of a well; an empty square without a crowd; a named herald or other invented character.\nNo text, letters, signs with writing, labels or captions anywhere. No clutter: the key objects stand apart with room around each.\nArt style: Painterly fantasy illustration, warm earthy palette, soft brushwork, clear readable shapes; no text on the picture.",
+        "redraw": null
+      },
+      "check": {
+        "model": "claude-sonnet-5-5",
+        "costUsdMicros": 6448,
+        "checkedAt": "2026-10-20T07:15:21.930Z",
+        "items": [
+          {
+            "key": "well",
+            "visible": true,
+            "x": 0.41,
+            "y": 0.55,
+            "confidence": 0.95
+          },
+          {
+            "key": "stalls",
+            "visible": true,
+            "x": 0.2,
+            "y": 0.35,
+            "confidence": 0.95
+          },
+          {
+            "key": "changer-shop",
+            "visible": true,
+            "x": 0.65,
+            "y": 0.33,
+            "confidence": 0.85
+          },
+          {
+            "key": "herald-platform",
+            "visible": true,
+            "x": 0.83,
+            "y": 0.45,
+            "confidence": 0.95
+          },
+          {
+            "key": "smiths-arch",
+            "visible": true,
+            "x": 0.92,
+            "y": 0.18,
+            "confidence": 0.85
+          }
+        ],
+        "contradictions": [],
+        "peopleInBackground": false
+      }
+    },
+    {
+      "key": "guard-post",
+      "name": "Застава у Южных ворот",
+      "kind": "scene",
+      "done": true,
+      "usdMicros": 47104,
+      "redraws": 0,
+      "files": [
+        "guard-post-45e604a9.jpg"
+      ],
+      "sheet": {
+        "summary": "A small stone guardhouse built into the South Gate. The portcullis is lowered and blocks the passage. Inside, a brazier burns where Sergeant Kassa warms his hands. A paper window, a small hatch for handing over documents, is set in the wall. A rack of spears stands against the wall, and a ladder leads up to the city wall. It is dawn, and the place is plain, cold and military.",
+        "features": [
+          {
+            "key": "reshetka",
+            "label": "Опущенная решётка",
+            "kind": "feature",
+            "description": "a lowered iron portcullis closing the gate passage",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "zharovnya",
+            "label": "Жаровня",
+            "kind": "object",
+            "description": "an iron brazier with glowing coals, where the sergeant warms his hands",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "okoshko",
+            "label": "Окошко для бумаг",
+            "kind": "object",
+            "description": "a small hatch in the stone wall for passing papers",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "kopya",
+            "label": "Стойка с копьями",
+            "kind": "object",
+            "description": "a wooden rack of spears standing against the wall",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "lestnica",
+            "label": "Лестница на стену",
+            "kind": "exit",
+            "description": "a ladder or stair leading up to the wall walk",
+            "mustShow": true,
+            "targetLocationId": "9553a564-69d5-550d-b2cf-1ce09dab6bc5"
+          },
+          {
+            "key": "storozhka",
+            "label": "Каменная сторожка",
+            "kind": "feature",
+            "description": "the stone guardhouse walls enclosing the post by the gate",
+            "mustShow": false,
+            "targetLocationId": null
+          }
+        ],
+        "people": [
+          {
+            "name": "Сержант Касса",
+            "entityId": "c44176d1-d5b5-581a-8d06-abe38011db3f",
+            "at": "zharovnya"
+          }
+        ],
+        "light": "Cold dawn light plus the red glow of the brazier.",
+        "timeOfDay": "dawn",
+        "never": [
+          "a raised portcullis",
+          "a second door or gate",
+          "a crowd of people",
+          "other guards",
+          "a forge or furnace"
+        ],
+        "crowded": false
+      },
+      "sheetSource": "model",
+      "firstPass": {
+        "found": 5,
+        "required": 5,
+        "contradictions": [],
+        "people": false,
+        "missing": []
+      },
+      "final": {
+        "found": 5,
+        "required": 5,
+        "contradictions": [],
+        "people": false,
+        "missing": [],
+        "file": "guard-post-45e604a9.jpg"
+      },
+      "pois": {
+        "total": 7,
+        "placed": 6,
+        "approximate": 0,
+        "invented": 0,
+        "rows": [
+          {
+            "id": "608bae54-9d77-45b7-8c94-ae2d1245ce00",
+            "locationId": "137e7724-1b41-5381-bc78-f36c276f22cc",
+            "key": "reshetka",
+            "kind": "feature",
+            "label": "Опущенная решётка",
+            "note": "a lowered iron portcullis closing the gate passage",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.27,
+            "y": 0.3,
+            "confidence": 0.95,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:16:02.837Z"
+          },
+          {
+            "id": "82f2c44c-2860-4bd5-a13d-e6b2ba7cc5db",
+            "locationId": "137e7724-1b41-5381-bc78-f36c276f22cc",
+            "key": "zharovnya",
+            "kind": "object",
+            "label": "Жаровня",
+            "note": "an iron brazier with glowing coals, where the sergeant warms his hands",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.507,
+            "y": 0.67,
+            "confidence": 0.95,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:16:02.837Z"
+          },
+          {
+            "id": "e4723f74-f20c-4267-9e36-5511ad4b4cf5",
+            "locationId": "137e7724-1b41-5381-bc78-f36c276f22cc",
+            "key": "okoshko",
+            "kind": "object",
+            "label": "Окошко для бумаг",
+            "note": "a small hatch in the stone wall for passing papers",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.64,
+            "y": 0.55,
+            "confidence": 0.85,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:16:02.837Z"
+          },
+          {
+            "id": "ec1b43ae-20ee-4d78-bd34-a4025bf141f6",
+            "locationId": "137e7724-1b41-5381-bc78-f36c276f22cc",
+            "key": "kopya",
+            "kind": "object",
+            "label": "Стойка с копьями",
+            "note": "a wooden rack of spears standing against the wall",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.745,
+            "y": 0.6,
+            "confidence": 0.93,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:16:02.837Z"
+          },
+          {
+            "id": "e54690f0-4b83-424a-94a1-1269d3d0e10c",
+            "locationId": "137e7724-1b41-5381-bc78-f36c276f22cc",
+            "key": "lestnica",
+            "kind": "exit",
+            "label": "Лестница на стену",
+            "note": "a ladder or stair leading up to the wall walk",
+            "entityId": null,
+            "targetLocationId": "9553a564-69d5-550d-b2cf-1ce09dab6bc5",
+            "x": 0.89,
+            "y": 0.5,
+            "confidence": 0.95,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:16:02.837Z"
+          },
+          {
+            "id": "a2bc18b4-782d-4f8f-ba7d-1dfdbc0c861b",
+            "locationId": "137e7724-1b41-5381-bc78-f36c276f22cc",
+            "key": "storozhka",
+            "kind": "feature",
+            "label": "Каменная сторожка",
+            "note": "the stone guardhouse walls enclosing the post by the gate",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": null,
+            "y": null,
+            "confidence": null,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:16:02.837Z"
+          },
+          {
+            "id": "2e72d9a1-d9ee-4f61-a998-b30c3bf93d5e",
+            "locationId": "137e7724-1b41-5381-bc78-f36c276f22cc",
+            "key": "person-serzhant-kassa",
+            "kind": "person",
+            "label": "Сержант Касса",
+            "note": "",
+            "entityId": "c44176d1-d5b5-581a-8d06-abe38011db3f",
+            "targetLocationId": null,
+            "x": 0.547,
+            "y": 0.73,
+            "confidence": 0.95,
+            "approximate": false,
+            "source": "sheet",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:16:02.837Z"
+          }
+        ]
+      },
+      "prompts": {
+        "first": "A wide establishing illustration of Застава у Южных ворот, a place in a role-playing story, seen from a slightly raised viewpoint so the whole layout reads at a glance. Pixels only show; nothing here is a game fact.\nThe place: A small stone guardhouse built into the South Gate. The portcullis is lowered and blocks the passage. Inside, a brazier burns where Sergeant Kassa warms his hands. A paper window, a small hatch for handing over documents, is set in the wall. A rack of spears stands against the wall, and a ladder leads up to the city wall. It is dawn, and the place is plain, cold and military.\nMUST SHOW, each clearly visible and separated from the others: a lowered iron portcullis closing the gate passage (Опущенная решётка); an iron brazier with glowing coals, where the sergeant warms his hands (Жаровня); a small hatch in the stone wall for passing papers (Окошко для бумаг); a wooden rack of spears standing against the wall (Стойка с копьями); a ladder or stair leading up to the wall walk (Лестница на стену).\nAlso there, where the layout puts it: the stone guardhouse walls enclosing the post by the gate.\nLight: Cold dawn light plus the red glow of the brazier., dawn.\nMUST NOT SHOW: no people, no figures, no faces, no silhouettes — the place is empty of people.\nMUST NOT SHOW: a raised portcullis; a second door or gate; a crowd of people; other guards; a forge or furnace.\nNo text, letters, signs with writing, labels or captions anywhere. No clutter: the key objects stand apart with room around each.\nArt style: Painterly fantasy illustration, warm earthy palette, soft brushwork, clear readable shapes; no text on the picture.",
+        "redraw": null
+      },
+      "check": {
+        "model": "claude-sonnet-5-5",
+        "costUsdMicros": 6376,
+        "checkedAt": "2026-10-20T07:16:01.185Z",
+        "items": [
+          {
+            "key": "reshetka",
+            "visible": true,
+            "x": 0.27,
+            "y": 0.3,
+            "confidence": 0.95
+          },
+          {
+            "key": "zharovnya",
+            "visible": true,
+            "x": 0.507,
+            "y": 0.67,
+            "confidence": 0.95
+          },
+          {
+            "key": "okoshko",
+            "visible": true,
+            "x": 0.64,
+            "y": 0.55,
+            "confidence": 0.85
+          },
+          {
+            "key": "kopya",
+            "visible": true,
+            "x": 0.745,
+            "y": 0.6,
+            "confidence": 0.93
+          },
+          {
+            "key": "lestnica",
+            "visible": true,
+            "x": 0.89,
+            "y": 0.5,
+            "confidence": 0.95
+          }
+        ],
+        "contradictions": [],
+        "peopleInBackground": false
+      }
+    },
+    {
+      "key": "region",
+      "kind": "region",
+      "done": true,
+      "usdMicros": 42013,
+      "file": "region-45c05a46.jpg",
+      "prompt": "A painted map of the region of Серый тракт, seen from high above at a slight angle, as a page of an illustrated atlas: terrain, forests, water, roads and settlements as small painted landmarks, with aged paper and ink at the edges.\nThe region: Дорога вдоль реки от Белого Камня на юг: заставы, броды, старые шахты в холмах и ельники у Чёрного Ручья.\nDraw these places as landmarks exactly where they are said to be (north is up, west is left): Рыночная площадь Белого Камня in the north: Площадь с колодцем в центре, рядами прилавков под навесами, лавкой менялы у ратуши, помостом глашатая и аркой на улицу К; Застава у Южных ворот in the north: Каменная сторожка при воротах: опущенная решётка, жаровня, стойка с копьями, лестница на стену, окошко для бумаг.; Склад Гребня in the west: Длинный дощатый склад у причала: ряды бочек и тюков, подъёмный ворот под потолком, конторка приказчика у входа, задняя д; Таверна «Кривой Якорь» near the centre: Низкая таверна с длинной стойкой, очагом у дальней стены, лестницей на второй этаж, дверью во двор за стойкой и бочонкам; Кривой брод near the centre: Мелкий брод через быструю реку: каменистая отмель, вешки из жердей, остатки старого моста на том берегу, придорожный сто; Храм Тихой Воды in the east: Круглый храм с колодцем посередине зала, алтарь из серого камня под куполом, скамьи для паломников, низкая дверь в крипт; Лагерь у Чёрного Ручья in the south: Стоянка в ельнике у ручья: кострище из камней, навес из еловых лап, привязь для лошадей, тропа вниз к воде.; Двор Старой Шахты in the south-east: Двор перед заколоченным входом в штольню: ржавый подъёмник, отвал пустой породы, сторожка с провалившейся крышей, телега.\nA road joins, in this order: Рыночная площадь Белого Камня → Застава у Южных ворот → Таверна «Кривой Якорь» → Кривой брод.\nLeave open ground between the landmarks; the app writes the names over the picture, so no written names on the map itself. Nothing beyond the places named: no extra towns, castles or ruins that the records do not know.\nNo text, letters, numbers, labels, a legend, a compass rose with letters or any writing anywhere on the map.\nArt style: Painterly fantasy illustration, warm earthy palette, soft brushwork, clear readable shapes; no text on the picture.",
+      "seedThemes": [
+        "Храм, где вода молчит",
+        "Лишний груз на Кривом броде",
+        "Шахтёр, который не умер",
+        "Долг хозяина «Кривого Якоря»",
+        "Огни у Чёрного Ручья"
+      ],
+      "seedCount": 5
+    },
+    {
+      "key": "warehouse",
+      "name": "Склад Гребня",
+      "kind": "scene",
+      "done": true,
+      "usdMicros": 85658,
+      "redraws": 1,
+      "files": [
+        "warehouse-5b98f4cd.jpg",
+        "warehouse-1c3bfc1f.jpg"
+      ],
+      "sheet": {
+        "summary": "A long plank-built warehouse beside the quay. Rows of barrels and bales stand along its length. A lifting winch hangs from the ceiling and creaks in the wind. The clerk's desk stands by the entrance, where the clerk checks tags on the bales. At the back a door opens onto the pier; it is ajar and lets in cold air. The air smells of tar and wet hemp.",
+        "features": [
+          {
+            "key": "entrance",
+            "label": "Вход",
+            "kind": "entrance",
+            "description": "The main entrance of the warehouse, near the clerk's desk",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "back-door",
+            "label": "Задняя дверь на пирс",
+            "kind": "exit",
+            "description": "A plank back door standing slightly ajar, leading out to the pier",
+            "mustShow": true,
+            "targetLocationId": "b7a5ecf7-ce62-57b2-96fe-4a3eee924631"
+          },
+          {
+            "key": "desk",
+            "label": "Конторка приказчика",
+            "kind": "object",
+            "description": "A clerk's desk by the entrance where bale tags are checked",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "winch",
+            "label": "Подъёмный ворот",
+            "kind": "object",
+            "description": "A lifting winch hanging under the ceiling",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "barrels",
+            "label": "Ряды бочек",
+            "kind": "feature",
+            "description": "Rows of barrels along the warehouse",
+            "mustShow": true,
+            "targetLocationId": null
+          },
+          {
+            "key": "bales",
+            "label": "Тюки с бирками",
+            "kind": "feature",
+            "description": "Bales of goods with tags attached",
+            "mustShow": false,
+            "targetLocationId": null
+          }
+        ],
+        "people": [
+          {
+            "name": "Приказчик Торм",
+            "entityId": "5758bdad-8bdb-5476-a2e6-7b4097967d28",
+            "at": "desk"
+          }
+        ],
+        "light": "Dim evening light with cold daylight from the ajar back door; no light sources are named.",
+        "timeOfDay": "evening",
+        "never": [
+          "a second entrance or extra doors",
+          "a forge or workshop",
+          "lanterns or torches",
+          "crowds of workers",
+          "stairs or a cellar hatch"
+        ],
+        "crowded": false
+      },
+      "sheetSource": "model",
+      "firstPass": {
+        "found": 5,
+        "required": 5,
+        "contradictions": [
+          "extra opening on the left"
+        ],
+        "people": false,
+        "missing": []
+      },
+      "final": {
+        "found": 5,
+        "required": 5,
+        "contradictions": [],
+        "people": false,
+        "missing": [],
+        "file": "warehouse-1c3bfc1f.jpg"
+      },
+      "pois": {
+        "total": 7,
+        "placed": 7,
+        "approximate": 1,
+        "invented": 0,
+        "rows": [
+          {
+            "id": "afd8cdb0-c55c-4a7b-aa75-2aab3f607208",
+            "locationId": "c7aa99f1-71c2-5316-805a-4bdcda0862ea",
+            "key": "entrance",
+            "kind": "exit",
+            "label": "Вход",
+            "note": "The main entrance of the warehouse, near the clerk's desk",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.2,
+            "y": 0.42,
+            "confidence": 0.5,
+            "approximate": true,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:20:33.727Z"
+          },
+          {
+            "id": "784ecebf-803b-439d-b3da-1a9b40c8f8a9",
+            "locationId": "c7aa99f1-71c2-5316-805a-4bdcda0862ea",
+            "key": "back-door",
+            "kind": "exit",
+            "label": "Задняя дверь на пирс",
+            "note": "A plank back door standing slightly ajar, leading out to the pier",
+            "entityId": null,
+            "targetLocationId": "b7a5ecf7-ce62-57b2-96fe-4a3eee924631",
+            "x": 0.77,
+            "y": 0.42,
+            "confidence": 0.6,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:20:33.727Z"
+          },
+          {
+            "id": "dc337d9f-191f-4a93-a27c-39a5bfed7e2a",
+            "locationId": "c7aa99f1-71c2-5316-805a-4bdcda0862ea",
+            "key": "desk",
+            "kind": "object",
+            "label": "Конторка приказчика",
+            "note": "A clerk's desk by the entrance where bale tags are checked",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.3,
+            "y": 0.6,
+            "confidence": 0.7,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:20:33.727Z"
+          },
+          {
+            "id": "65d01a0a-dec9-4a4c-83b3-99c6834264f9",
+            "locationId": "c7aa99f1-71c2-5316-805a-4bdcda0862ea",
+            "key": "winch",
+            "kind": "object",
+            "label": "Подъёмный ворот",
+            "note": "A lifting winch hanging under the ceiling",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.62,
+            "y": 0.12,
+            "confidence": 0.7,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:20:33.727Z"
+          },
+          {
+            "id": "9c1a443c-6ca0-4c0e-8588-b0aa466bb674",
+            "locationId": "c7aa99f1-71c2-5316-805a-4bdcda0862ea",
+            "key": "barrels",
+            "kind": "feature",
+            "label": "Ряды бочек",
+            "note": "Rows of barrels along the warehouse",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.45,
+            "y": 0.37,
+            "confidence": 0.6,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:20:33.727Z"
+          },
+          {
+            "id": "c1a028ca-38b8-4dfa-82dd-25daf78b6a94",
+            "locationId": "c7aa99f1-71c2-5316-805a-4bdcda0862ea",
+            "key": "bales",
+            "kind": "feature",
+            "label": "Тюки с бирками",
+            "note": "Bales of goods with tags attached",
+            "entityId": null,
+            "targetLocationId": null,
+            "x": 0.73,
+            "y": 0.66,
+            "confidence": 0.7,
+            "approximate": false,
+            "source": "locator",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:20:33.727Z"
+          },
+          {
+            "id": "ce7b1e2c-602f-4fab-95ee-372ad20cf795",
+            "locationId": "c7aa99f1-71c2-5316-805a-4bdcda0862ea",
+            "key": "person-prikazchik-torm",
+            "kind": "person",
+            "label": "Приказчик Торм",
+            "note": "",
+            "entityId": "5758bdad-8bdb-5476-a2e6-7b4097967d28",
+            "targetLocationId": null,
+            "x": 0.34,
+            "y": 0.66,
+            "confidence": 0.7,
+            "approximate": false,
+            "source": "sheet",
+            "hidden": false,
+            "updatedAt": "2026-10-20T07:20:33.727Z"
+          }
+        ]
+      },
+      "prompts": {
+        "first": "A wide establishing illustration of Склад Гребня, a place in a role-playing story, seen from a slightly raised viewpoint so the whole layout reads at a glance. Pixels only show; nothing here is a game fact.\nThe place: A long plank-built warehouse beside the quay. Rows of barrels and bales stand along its length. A lifting winch hangs from the ceiling and creaks in the wind. The clerk's desk stands by the entrance, where the clerk checks tags on the bales. At the back a door opens onto the pier; it is ajar and lets in cold air. The air smells of tar and wet hemp.\nMUST SHOW, each clearly visible and separated from the others: The main entrance of the warehouse, near the clerk's desk (Вход); A plank back door standing slightly ajar, leading out to the pier (Задняя дверь на пирс); A clerk's desk by the entrance where bale tags are checked (Конторка приказчика); A lifting winch hanging under the ceiling (Подъёмный ворот); Rows of barrels along the warehouse (Ряды бочек).\nAlso there, where the layout puts it: Bales of goods with tags attached.\nLight: Dim evening light with cold daylight from the ajar back door; no light sources are named., evening.\nMUST NOT SHOW: no people, no figures, no faces, no silhouettes — the place is empty of people.\nMUST NOT SHOW: a second entrance or extra doors; a forge or workshop; lanterns or torches; crowds of workers; stairs or a cellar hatch.\nNo text, letters, signs with writing, labels or captions anywhere. No clutter: the key objects stand apart with room around each.\nArt style: Painterly fantasy illustration, warm earthy palette, soft brushwork, clear readable shapes; no text on the picture.",
+        "redraw": "A wide establishing illustration of Склад Гребня, a place in a role-playing story, seen from a slightly raised viewpoint so the whole layout reads at a glance. Pixels only show; nothing here is a game fact.\nThe place: A long plank-built warehouse beside the quay. Rows of barrels and bales stand along its length. A lifting winch hangs from the ceiling and creaks in the wind. The clerk's desk stands by the entrance, where the clerk checks tags on the bales. At the back a door opens onto the pier; it is ajar and lets in cold air. The air smells of tar and wet hemp.\nMUST SHOW, each clearly visible and separated from the others: The main entrance of the warehouse, near the clerk's desk (Вход); A plank back door standing slightly ajar, leading out to the pier (Задняя дверь на пирс); A clerk's desk by the entrance where bale tags are checked (Конторка приказчика); A lifting winch hanging under the ceiling (Подъёмный ворот); Rows of barrels along the warehouse (Ряды бочек).\nAlso there, where the layout puts it: Bales of goods with tags attached.\nLight: Dim evening light with cold daylight from the ajar back door; no light sources are named., evening.\nMUST NOT SHOW: no people, no figures, no faces, no silhouettes — the place is empty of people.\nMUST NOT SHOW: a second entrance or extra doors; a forge or workshop; lanterns or torches; crowds of workers; stairs or a cellar hatch.\nNo text, letters, signs with writing, labels or captions anywhere. No clutter: the key objects stand apart with room around each.\nThe previous attempt invented these; leave them out: extra opening on the left.\nArt style: Painterly fantasy illustration, warm earthy palette, soft brushwork, clear readable shapes; no text on the picture."
+      },
+      "check": {
+        "model": "claude-sonnet-5-5",
+        "costUsdMicros": 6286,
+        "checkedAt": "2026-10-20T07:20:31.517Z",
+        "items": [
+          {
+            "key": "entrance",
+            "visible": true,
+            "x": 0.13,
+            "y": 0.3,
+            "confidence": 0.85
+          },
+          {
+            "key": "back-door",
+            "visible": true,
+            "x": 0.77,
+            "y": 0.42,
+            "confidence": 0.9
+          },
+          {
+            "key": "desk",
+            "visible": true,
+            "x": 0.31,
+            "y": 0.64,
+            "confidence": 0.9
+          },
+          {
+            "key": "winch",
+            "visible": true,
+            "x": 0.67,
+            "y": 0.1,
+            "confidence": 0.95
+          },
+          {
+            "key": "barrels",
+            "visible": true,
+            "x": 0.4,
+            "y": 0.37,
+            "confidence": 0.95
+          }
+        ],
+        "contradictions": [],
+        "peopleInBackground": false
+      }
+    }
+  ]
+}

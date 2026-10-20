@@ -143,11 +143,23 @@ export function checkRequest(sheet: SceneSheet, placeName: string) {
   ].filter(Boolean).join("\n");
   return { system, text, keys: must.map((row) => row.key) };
 }
+/** The last JSON object in a reply (a model may reason in prose before it). */
+function lastJsonObject(text: string): Record<string, unknown> | null {
+  const end = text.lastIndexOf("}");
+  if (end < 0) return null;
+  for (let start = text.lastIndexOf("{", end); start >= 0; start = text.lastIndexOf("{", start - 1)) {
+    try {
+      const value = JSON.parse(text.slice(start, end + 1));
+      if (value && typeof value === "object" && !Array.isArray(value)) return value as Record<string, unknown>;
+    } catch { /* an inner brace: widen */ }
+    if (start === 0) break;
+  }
+  return null;
+}
 export function parseCheckReply(text: string, keys: readonly string[], model: string, costUsdMicros: number, checkedAt: string): SceneCheck | null {
-  const start = text.indexOf("{"), end = text.lastIndexOf("}");
-  if (start < 0 || end <= start) return null;
+  const raw = lastJsonObject(text);
+  if (!raw || !("items" in raw)) return null;
   try {
-    const raw = JSON.parse(text.slice(start, end + 1)) as Record<string, unknown>;
     const items = Array.isArray(raw.items) ? raw.items : [];
     const byKey = new Map<string, Record<string, unknown>>();
     for (const row of items) if (row && typeof row === "object" && typeof (row as Record<string, unknown>).key === "string") byKey.set(String((row as Record<string, unknown>).key), row as Record<string, unknown>);

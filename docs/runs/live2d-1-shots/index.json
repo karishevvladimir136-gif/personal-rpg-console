@@ -1,0 +1,152 @@
+{
+  "takenAt": "2026-10-20T07:36:47.980Z",
+  "shots": [
+    {
+      "file": "world-1920.jpg",
+      "url": "/preview/live2d?level=world",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "region-1920.jpg",
+      "url": "/preview/live2d?level=region",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "region-travel-1920.jpg",
+      "url": "/preview/live2d?level=region&travel=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "town-1920.jpg",
+      "url": "/preview/live2d?level=town",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "district-1920.jpg",
+      "url": "/preview/live2d?level=district",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "scene-1920.jpg",
+      "url": "/preview/live2d?level=scene",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "scene-en-1920.jpg",
+      "url": "/preview/live2d?level=scene&lang=en",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "world-2560.jpg",
+      "url": "/preview/live2d?level=world",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 2560
+    },
+    {
+      "file": "region-2560.jpg",
+      "url": "/preview/live2d?level=region",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 2560
+    },
+    {
+      "file": "region-travel-2560.jpg",
+      "url": "/preview/live2d?level=region&travel=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 2560
+    },
+    {
+      "file": "town-2560.jpg",
+      "url": "/preview/live2d?level=town",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 2560
+    },
+    {
+      "file": "district-2560.jpg",
+      "url": "/preview/live2d?level=district",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 2560
+    },
+    {
+      "file": "scene-2560.jpg",
+      "url": "/preview/live2d?level=scene",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 2560
+    },
+    {
+      "file": "scene-en-2560.jpg",
+      "url": "/preview/live2d?level=scene&lang=en",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 2560
+    },
+    {
+      "file": "world-phone.jpg",
+      "url": "/preview/live2d?level=world",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "region-phone.jpg",
+      "url": "/preview/live2d?level=region",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "region-travel-phone.jpg",
+      "url": "/preview/live2d?level=region&travel=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "town-phone.jpg",
+      "url": "/preview/live2d?level=town",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "district-phone.jpg",
+      "url": "/preview/live2d?level=district",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "scene-phone.jpg",
+      "url": "/preview/live2d?level=scene",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "scene-en-phone.jpg",
+      "url": "/preview/live2d?level=scene&lang=en",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    }
+  ]
+}

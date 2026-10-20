@@ -61,21 +61,22 @@ export async function buildSheet(apiKey: string, source: SheetSource, options: C
   }
 }
 
-export type CheckResult = { check: SceneCheck | null; usage: Usage | null; costUsdMicros: number; elapsedMs: number; error: string | null };
+export type CheckResult = { check: SceneCheck | null; usage: Usage | null; costUsdMicros: number; elapsedMs: number; error: string | null; raw: string | null };
 export async function checkScene(apiKey: string, sheet: SceneSheet, placeName: string, picture: Image, options: CallOptions = {}): Promise<CheckResult> {
   const started = Date.now();
-  if (!apiKey) return { check: null, usage: null, costUsdMicros: 0, elapsedMs: 0, error: "not_configured" };
+  if (!apiKey) return { check: null, usage: null, costUsdMicros: 0, elapsedMs: 0, error: "not_configured", raw: null };
   const request = checkRequest(sheet, placeName);
   try {
+    // Room for the answer after any reasoning the model writes out; the JSON is the last object in the text.
     const { text, usage } = await messages(apiKey, {
-      model: CHECK_MODEL, max_tokens: 2500, output_config: { effort: "medium" }, system: request.system,
+      model: CHECK_MODEL, max_tokens: 6000, output_config: { effort: "medium" }, system: request.system,
       messages: [{ role: "user", content: [{ type: "text", text: "The illustration to check:" }, image(picture), { type: "text", text: request.text }] }],
     }, options.fetcher ?? fetch, options.timeoutMs ?? 60_000);
     const cost = costUsdMicros(CHECK_MODEL, usage);
     const check = parseCheckReply(text, request.keys, CHECK_MODEL, cost, new Date().toISOString());
-    return { check, usage, costUsdMicros: cost, elapsedMs: Date.now() - started, error: check ? null : "unparsable" };
+    return { check, usage, costUsdMicros: cost, elapsedMs: Date.now() - started, error: check ? null : "unparsable", raw: check ? null : text.slice(-600) };
   } catch (error) {
-    return { check: null, usage: null, costUsdMicros: 0, elapsedMs: Date.now() - started, error: String((error as Error)?.message ?? error).slice(0, 120) };
+    return { check: null, usage: null, costUsdMicros: 0, elapsedMs: Date.now() - started, error: String((error as Error)?.message ?? error).slice(0, 120), raw: null };
   }
 }
 

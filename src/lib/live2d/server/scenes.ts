@@ -139,10 +139,11 @@ export async function drawAndCheck(ctx: Live2dContext, pictures: PicturesContext
         if (score(again.check) <= score(check)) { pictureId = second.pictureId; image = second.image; check = again.check; }
       }
     }
+    // No check (the model failed or answered unreadably) is not a pass: the scene is flagged for the owner.
     const verdict = check ? sceneVerdict(sheet, check) : null;
-    const status = !check ? "checked" : verdict!.ok ? "checked" : "flagged";
+    const status = verdict?.ok ? "checked" : "flagged";
     const sideList = sideListOf(sheet, check);
-    await updateScene(ctx, { locationId, status, pictureId, check, sideList, redraws, error: checked.error && !check ? `check: ${checked.error}`.slice(0, 200) : null });
+    await updateScene(ctx, { locationId, status, pictureId, check, sideList, redraws, error: !check ? `check: ${checked.error ?? "unavailable"}`.slice(0, 200) : null });
     // The markers: the records' POIs placed by the cheap locator (the check's own positions serve the must-show items).
     const present = await presentIds(campaignId);
     const candidates = poiCandidates(sheet, snapshot, locationId, present);
