@@ -961,3 +961,10 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     30 feet is about ten paces. No effect this time (the hero passed two paces from the door), but the same slip
     would matter for Fireball, Hold Person or a crossbow's range. Do: the guide states one distance unit — feet, as
     in the rules, with paces only as «about a third» — and the battle map uses the same.
+
+71. **Hidden DC again — the out-of-game workaround wore off** (owner, 21:23: «снова проверка, но непонятно значение,
+    от которого нужно было выиграть»). An Intimidation check with advantage (11 · 12 → 12) showed «Неудача» with no
+    target number. Same cause as 39 (`showDc` off, toggle hidden under «Логика мира»); the owner's earlier note
+    asking for the DC in the roll title had dropped out of the context window. The app log does not record `dc`
+    either, so the session report must take DCs from the roll receipts. Do: DC visible by default for the hero's
+    checks; until then the rule lives in the owner's guide, not in a one-off note.
