@@ -7,7 +7,7 @@ import { Panel, registry as r, useCopy } from "./primitives";
 import s from "./settings.module.css";
 
 type Scope = "campaign" | "world";
-const PREVIEW_VIEW: DmSecretsView = { campaign: { body: "", revision: 0, title: null, available: true }, world: { body: "", revision: 0, title: "Мир Шва", available: true } };
+const PREVIEW_VIEW: DmSecretsView = { campaign: { body: "", revision: 0, title: null, available: true }, world: { body: "", revision: 0, title: null, available: true } };
 /** Fix run B1: «Тайны (видит только ведущий)» — the owner's own truth of the world and of this campaign, as in his chat
  * campaigns. The DM reads it as the highest authority after the owner's corrections and builds its hidden layer on it;
  * the player's screens never show it. The world's text is shared by every campaign of that world. */

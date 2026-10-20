@@ -235,7 +235,7 @@ test("§4 a named person who spoke without a profile is asked for in the next tu
     assert.match(askedNow, /Дуня spoke in the last turn without a speech profile: draft it this turn — note_character speech/, "the single loop is asked for the profile");
     assert.ok(askedNow.indexOf("spoke in the last turn") < askedNow.indexOf(VOICE_REMINDER_RU), "next to the reminder, before it");
     // The writer's wording points at the ledger.
-    const sourceTwo = (await c.row(second.input.operationId)).source;
+    const sourceTwo = { ...(await c.row(second.input.operationId)).source, dmOptions: { instructions: "en" } };
     const writer = buildDmLoopContext(sourceTwo, second.input, { role: "writer" });
     assert.match(writer.parts.now, /in the ledger's people line say how they speak/);
     // Drafted: the profile travels in the last block now; nothing is asked any more.
@@ -246,7 +246,7 @@ test("§4 a named person who spoke without a profile is asked for in the next tu
     assert.ok(now.indexOf("Speech profiles of the people") < now.indexOf(VOICE_REMINDER_RU), "the profiles stand right before the reminder");
     assert.ok(now.indexOf("Current state (before this turn") < now.indexOf("Speech profiles of the people"), "after the state");
     // A person not in the scene is not listed (the same source with nobody present).
-    const sourceThree = (await c.row(third.input.operationId)).source;
+    const sourceThree = { ...(await c.row(third.input.operationId)).source, dmOptions: { instructions: "en" } };
     const nobody = structuredClone(sourceThree);
     nobody.runtime.configuration = { ...nobody.runtime.configuration, presentEntityIds: [] };
     assert.doesNotMatch(buildDmLoopContext(nobody, third.input).parts.now, /Speech profiles of the people/);

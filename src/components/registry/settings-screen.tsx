@@ -396,19 +396,19 @@ export function RegistrySettings({ data, more, preview }: {
                   {data.settings.values.language === "ru" && (
                     <>
                       <span className={r.eyebrow}>{c("Инструкции ведущего", "DM instructions")}</span>
-                      <Segmented label={c("Инструкции ведущего", "DM instructions")} value={current?.options.instructions ?? "en"} disabled={saving || !current || !!chrome?.href}
+                      <Segmented label={c("Инструкции ведущего", "DM instructions")} value={current?.options.instructions ?? "ru"} disabled={saving || !current || !!chrome?.href}
                         options={[{ value: "ru", label: c("русские", "Russian") }, { value: "en", label: c("английские", "English") }]}
                         onChange={(value) => void saveDepth({ options: { instructions: value as DmSettings["options"]["instructions"] } })} />
-                      <p className={r.note} style={{ margin: 0 }}>{c("На каком языке ведущий читает свои правила. Русские написаны по-русски, а не переводом: меньше калек в речи. Учёт записей остаётся прежним.",
-                        "The language of the DM's own rules. The Russian ones are written in Russian, not translated: fewer calques in speech. The bookkeeping stays the same.")}</p>
+                      <p className={r.note} style={{ margin: 0 }}>{c("На каком языке ведущий читает свои правила. Русские написаны по-русски, а не переводом. На пробах с русскими речь чище (без калек, меньше рубленых абзацев), первое слово раньше, а записи так же точны — поэтому по умолчанию русские.",
+                        "The language of the DM's own rules. The Russian ones are written in Russian, not translated. On the probes the Russian ones gave cleaner speech (no calques, fewer choppy paragraphs), an earlier first word and records as exact — so they are the default.")}</p>
                     </>
                   )}
                   <span className={r.eyebrow}>{c("Память ведущего", "DM memory")}</span>
-                  <Segmented label={c("Память ведущего", "DM memory")} value={current?.options.memory ?? "compact"} disabled={saving || !current || !!chrome?.href}
+                  <Segmented label={c("Память ведущего", "DM memory")} value={current?.options.memory ?? "standard"} disabled={saving || !current || !!chrome?.href}
                     options={[{ value: "compact", label: c("компактно", "compact") }, { value: "standard", label: c("стандарт", "standard") }, { value: "wide", label: c("широко", "wide") }]}
                     onChange={(value) => void saveDepth({ options: { memory: value as DmSettings["options"]["memory"] } })} />
-                  <p className={r.note} style={{ margin: 0 }}>{c("Сколько последних сцен ведущий читает дословно: «компактно» — около 45 тысяч токенов (как раньше), «стандарт» — около 200 тысяч (весь запрос около 300 тысяч), «широко» — около 380 тысяч (около 500 тысяч). Шире — дороже первый ход сессии; более старое ведущий помнит по досье.",
-                    "How many recent scenes the DM reads verbatim: «compact» about 45 thousand tokens (as before), «standard» about 200 thousand (about 300 thousand for the whole request), «wide» about 380 thousand (about 500 thousand). Wider costs more on a session's first turn; the dossier keeps the older story.")}</p>
+                  <p className={r.note} style={{ margin: 0 }}>{c("Сколько последних сцен ведущий читает дословно. «Компактно» — около 45 тысяч токенов, примерно 30 последних ходов: на пробе ведущий не вспомнил сказанное 35 ходов назад. «Стандарт» — около 200 тысяч, примерно 120 ходов (больше сессии); по умолчанию. «Широко» — около 380 тысяч. Обычный ход: около $0,37 / $0,50 / $0,61; первый ход сессии: $0,95 / $2,07 / $3,48. Более старое ведущий помнит по досье и итогам сессий.",
+                    "How many recent scenes the DM reads verbatim. «Compact» about 45 thousand tokens, roughly the last 30 turns: on the probe the DM did not recall what was said 35 turns back. «Standard» about 200 thousand, roughly 120 turns (more than a session); the default. «Wide» about 380 thousand. An ordinary turn: about $0.37 / $0.50 / $0.61; a session's first turn: $0.95 / $2.07 / $3.48. The dossier and the session recaps keep the older story.")}</p>
                 </div>
                 <Switch title={c("Показывать мне тайны ведущего", "Show me the DM's secrets")} hint={c("Открывает тайный слой в «Для владельца → Что видит ведущий»: досье, заметки, планы. Это спойлеры. По умолчанию выключено.", "Opens the private layers in «For the owner → What the DM sees»: the dossier, notes, plans. These are spoilers. Off by default.")}
                   checked={!!current?.options.secretsVisible} disabled={saving || !current || !!chrome?.href} onChange={(value) => void saveDepth({ options: { secretsVisible: value } })} />

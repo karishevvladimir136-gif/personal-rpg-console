@@ -26,7 +26,7 @@ export function previewOwnerPlay(play: PlaySnapshot): PlaySnapshot {
 
 export const previewDmView: DmView = {
   turnNo: 46, operationId: "00000000-0000-4000-8000-000000000799", input: "Стреляю в главаря; Брам — по громиле, Тоби — по часовому.", mode: "game",
-  language: "ru", instructions: "en", memory: "compact", secretsVisible: false, totalTokens: 137_000,
+  language: "ru", instructions: "ru", memory: "standard", secretsVisible: false, totalTokens: 137_000,
   layers: [
     { key: "howToDm", tokens: 21_400, budgetTokens: 24_000, dropped: [], blocks: 1, cached: true, text: "(The role, the turn rules, the voice and the craft doctrine — the preview shows sizes only.)" },
     { key: "world", tokens: 57_800, budgetTokens: 60_000, dropped: [], blocks: 1, cached: true, text: "(The campaign, «Что мне нравится», the DM guide, the canon, the rules.)" },

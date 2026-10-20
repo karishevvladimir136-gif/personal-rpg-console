@@ -18,5 +18,9 @@ Cap $50 (stages A+B within $30); every paid run registers here before its first 
 | ledger-cases-20261020-085149 | AB | fix run A6: the ledger checker on session 2's known misses (synthetic) and controls | $0.10 | $0.0023 | yes |
 | prep-probe-20261020-101619 | AB | fix run B1: a fresh campaign's prep (the hidden layer) on Opus 5.5 at high | $3.00 | $0.4331 | yes |
 | real-replay-20261020-101759 | AB | real replay: 4 turns × O on Fix run B probes (seed b); voice live; craft live | $12.00 | $3.3218 | yes |
-| real-replay-20261020-102644 | AB | real replay: 4 turns × O on Fix run B probes (seed b); voice live; craft live | $11.27 | $0.0000 | no |
-| **Total** | | | **$30.0000 of $50** | |
+| real-replay-20261020-102644 | AB | real replay: 4 turns × O on Fix run B probes (seed b); voice live; craft live | $11.27 | $3.3792 | yes |
+| real-replay-20261020-103412 | AB | real replay: 2 turns × O on Fix run prep probes (seed p); voice live; craft live | $7.89 | $0.9467 | yes |
+| real-replay-20261020-103924 | AB | real replay: 2 turns × O on Fix run probes (seed a); voice live; craft live | $6.95 | $2.1106 | yes |
+| real-replay-20261020-110008 | AB | real replay: 1 turns × A on Fix run memory probe (seed m2, 60 turns); voice live; craft live | $2.70 | $0.0000 | yes |
+| real-replay-20261020-110036 | AB | real replay: 1 turns × A on Fix run memory probe (seed m2, 60 turns); voice live; craft live | $4.50 | $0.9706 | yes |
+| **Total** | | | **$26.1347 of $50** | |

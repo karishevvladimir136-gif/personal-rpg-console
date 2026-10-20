@@ -3,7 +3,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { loopCampaign } from "./dm-loop-fixture.mjs";
-import { buildDmLoopContext, privateNotesGauge } from "../src/lib/gameplay/dm-loop/context.ts";
+import { buildDmLoopContext, conversationHistory, estimateTokens, privateNotesGauge } from "../src/lib/gameplay/dm-loop/context.ts";
+import { DM_OPTION_DEFAULTS, MEMORY_PRESETS } from "../src/lib/gameplay/dm-loop/options.ts";
 import { archiveKey, parseNoteValue, privateNotes, rankNotes, recallNotes, serializeNote, HIDDEN_LAYER_KEY } from "../src/lib/gameplay/dm-loop/private-notes.ts";
 import { parsePrep, prepWrites } from "../src/lib/gameplay/dm-loop/hidden-layer.ts";
 import { DM_ROLE, TABLE_RULES, WRITER_ROLE } from "../src/lib/gameplay/dm-loop/roles.ts";
@@ -125,6 +126,7 @@ test("B1: the owner's «Тайны» (world and campaign) and the hidden layer h
     await c.dossier("private_notes", { set: many, remove: [] }, timeline);
     const source = (await c.f.one("select public.rpg_dossier($1,$2,'source','{}'::jsonb,null) r", [c.owner, c.cid])).r;
     assert.equal(source.dmSecrets.campaign, "Настоятель — сын убитого графа.");
+    source.dmOptions = { instructions: "en", memory: "compact" }; // the English headers and «компактно»'s budgets below
     const input = await c.input("Осматриваюсь.");
     const context = buildDmLoopContext(source, input);
     const tail = context.parts.tail;
@@ -153,13 +155,15 @@ test("B1/B3/B4: the table rules are in both roles; the bootstrap no longer forbi
 });
 
 // --- B4: «Инструкции ведущего: русские» ----------------------------------------------------------------
-test("B4: Russian instructions give a Russian campaign the native role, headers, table rules and nudges; English stays the default", async () => {
-  const c = await loopCampaign({ language: "ru" });
+test("B4: Russian instructions give a Russian campaign the native role, headers, table rules and nudges — the default since the probes; English by choice", async () => {
+  const c = await loopCampaign({ language: "ru", instructions: null });
   try {
     const source = (await c.f.one("select public.rpg_dossier($1,$2,'source','{}'::jsonb,null) r", [c.owner, c.cid])).r;
     const input = await c.input("Осматриваюсь.");
-    const en = buildDmLoopContext(source, input);
+    const en = buildDmLoopContext({ ...source, dmOptions: { instructions: "en" } }, input);
     assert.match(en.parts.howToDm, /^You are the game master/);
+    // The default (no choice stored): the native Russian instructions.
+    assert.match(buildDmLoopContext({ ...source, dmOptions: {} }, input).parts.howToDm, /^Ты ведёшь частную долгую ролевую кампанию/);
     const ruSource = { ...source, dmOptions: { instructions: "ru" } };
     const ru = buildDmLoopContext(ruSource, input);
     assert.match(ru.parts.howToDm, /^Ты ведёшь частную долгую ролевую кампанию/);
@@ -175,9 +179,7 @@ test("B4: Russian instructions give a Russian campaign the native role, headers,
     // An English campaign ignores the setting.
     const english = { ...ruSource, snapshot: { ...source.snapshot, settings: { ...source.snapshot.settings, values: { ...source.snapshot.settings.values, language: "en" } } } };
     assert.match(buildDmLoopContext(english, input).parts.howToDm, /^You are the game master/);
-    // The server's nudge comes in Russian: a roll with no outcome told is asked for it in Russian.
-    const before = await c.settings.read();
-    await c.settings.save({ expectedRevision: before.revision, runtime: "dm-loop-v1", dmTurn: before.dmTurn, options: { instructions: "ru" } });
+    // The server's nudge comes in Russian (the default): a roll with no outcome told is asked for it in Russian.
     const played = await c.turn("Взламываю замок.", [
       { text: "Ты опускаешься к замку. ", toolCalls: [{ name: "roll", arguments: { formula: "1d20+2", reason: "взлом замка", actorRef: c.hero, visibility: "player", difficulty: "normal" } }] },
       { text: "", toolCalls: [time(5), finish()] },
@@ -338,4 +340,25 @@ test("B2 (2): a fight's notes fold into a line each — only notes written durin
   assert.deepEqual((await proposeFolds("k", notes, "ru", { fetcher })).folds, []);
   assert.equal(combatEnded([{ call: { name: "combat", arguments: { action: "end" } }, result: { ok: true } }]), true);
   assert.equal(combatEnded([{ call: { name: "combat", arguments: { action: "start" } }, result: { ok: true } }]), false);
+});
+
+// --- A2/B2 follow-up: «Память ведущего» measured ----------------------------------------------------------------
+test("A2: «стандарт» is the default memory and Russian the default instructions; a wider window slides in bigger buckets, so its cached history is rewritten less often", () => {
+  assert.equal(DM_OPTION_DEFAULTS.memory, "standard");
+  assert.equal(DM_OPTION_DEFAULTS.instructions, "ru");
+  const scene = (i) => ({ role: "narration", body: `${String(i).padStart(4, "0")}:${"x".repeat(2000)}` });
+  const perRow = estimateTokens(`[narration] 9999:${"x".repeat(2000)}`) + 2;
+  for (const [memory, bucket] of [["compact", 16], ["standard", 40], ["wide", 72]]) {
+    assert.equal(MEMORY_PRESETS[memory].bucket, bucket);
+    const fits = Math.floor(MEMORY_PRESETS[memory].history / perRow);
+    const window = (rows) => conversationHistory({ snapshot: { scenes: Array.from({ length: rows }, (_, i) => scene(i)) }, dmOptions: { memory } });
+    assert.equal(window(fits).rows, fits, `${memory}: everything that fits stays`);
+    // One row past the budget drops a whole bucket; the start then holds while the story grows by less than a bucket.
+    const first = window(fits + 1);
+    assert.equal(first.rows, fits + 1 - bucket, `${memory}: one bucket leaves`);
+    const start = first.blocks[0].match(/\[narration\] (\d{4}):/)[1];
+    assert.equal(Number(start) % bucket, 0);
+    assert.equal(window(fits + bucket - 1).blocks[0].match(/\[narration\] (\d{4}):/)[1], start, `${memory}: the cached prefix holds for a bucket`);
+    assert.notEqual(window(fits + bucket + 1).blocks[0].match(/\[narration\] (\d{4}):/)[1], start, `${memory}: then it slides`);
+  }
 });

@@ -47,15 +47,28 @@ run's instruction names `claude/fix-s2`, so the work is on this branch instead, 
   0/6 controls flagged); the DM options in Settings; «Opus пишет — Opus записывает» as a choice; the owner screen's
   preview, Russian causes and phone cards; screenshots `docs/runs/fix-s2-shots/A-*`; the report's stage A section.
 
+- Stage A's clean-worktree full suite on `f54f317`: 2656 tests, 2624 pass, 27 skipped, 2 fail, 3 cancelled. The two
+  failures were a test of the game screen's runtime that did not know the new backoff poll (fixed in stage B: the test
+  loads the real poll on the window's timers); the three cancelled are `d2a-composition` tests that are cancelled the
+  same way on the untouched base (`a49c1e2`) — pre-existing, not this run's.
+- Stage B, part 1 (`01d7402`) and part 2 (`1232fbb`): B1 the hidden layer (the prep, «Тайны (видит только ведущий)»,
+  migration 74), B2 memory hygiene (validity, `recall`, folds, the gauge), B3 the rules on the server (every seen roll
+  told, natural 20/1, the doubled modifier, `rest`, person-named places, «Твой момент», Heroic Inspiration; migration
+  75), B4 the native Russian instructions (written by a Fable 5.1 subagent) and the voice layer.
+- Stage B, part 3 (this commit): the paid B probes in session 3's mode with both instruction languages, the prep probes,
+  the Russian fight and rest, the memory presets (simulated on a 300-turn campaign, the recall probe live at
+  «компактно»); defaults by the result — Russian instructions, «стандарт» memory; a wider window slides in bigger
+  steps; a roll is told as what happens, never as the die's number; the report's stage B section.
+
 ## In progress
 
-- Stage A's clean-worktree full suite on this commit.
+- Stage B: the screenshots and the clean-worktree full suite on the stage's last commit.
+- Stage D: the one-page inventory design note is being written by a Fable 5.1 subagent (in the background).
 
 ## Next
 
-- Stage B: B4's Russian instructions through a Fable subagent (in the background), B1 the hidden layer, B2 memory
-  hygiene (fact validity, the memory presets measured with the recall probes), B3 the rules, the B probes in both
-  instruction languages (A+B budget left: about $15). Then D → C → E → F.
+- Stage D from the design note (`docs/runs/fix-s2-inventory-design.md`), then C → E → F (stage D's budget: the run's
+  $50 cap less A+B's $26.13).
 
 ## Owner's instructions during the run
 

@@ -495,9 +495,10 @@ function varietyCounter(source: RuntimeSource, input: TurnInput): string {
  * the scenes and the exchanges. A block's text never changes once written (a committed turn is
  * history), so the cache finds the prefix up to the previous turn at the block boundaries and each
  * turn writes only its own rows. When the window is full, the oldest rows leave in buckets of
- * HISTORY_BUCKET, not one per turn: one rewrite every eight turns or so, instead of every turn. */
+ * HISTORY_BUCKET rows («компактно»; the wider presets slide in bigger buckets), not one per turn: one rewrite every
+ * eight turns or so, instead of every turn. */
 export const HISTORY_BUDGET = DOSSIER_BUDGETS.layer4.scenes + DOSSIER_BUDGETS.layer4.exchanges;
-export const HISTORY_BUCKET = 16;
+export const HISTORY_BUCKET = MEMORY_PRESETS.compact.bucket;
 /** Fix run A2 (item 23): the budgets of the campaign's «Память ведущего» preset (the DM options). */
 export function memoryBudgets(source: RuntimeSource) {
   return MEMORY_PRESETS[parseDmOptions(source.dmOptions).memory];
@@ -507,13 +508,14 @@ export function historyBudget(source: RuntimeSource): number {
 }
 export function conversationHistory(source: RuntimeSource): { blocks: string[]; dropped: string[]; used: number; rows: number; bodies: string[] } {
   const HISTORY_BUDGET = historyBudget(source);
+  const bucket = memoryBudgets(source).bucket;
   const rows = source.snapshot.scenes.map((row) => `[${row.role}] ${row.body}`);
   const bodies = source.snapshot.scenes.map((row) => row.body.replace(/\s+/g, " ").trim());
   const costs = rows.map((text) => estimateTokens(text) + 2);
   let start = rows.length, used = 0;
   while (start > 0 && used + costs[start - 1] <= HISTORY_BUDGET) { start--; used += costs[start]; }
   if (start > 0) {
-    start = Math.min(rows.length, Math.ceil(start / HISTORY_BUCKET) * HISTORY_BUCKET);
+    start = Math.min(rows.length, Math.ceil(start / bucket) * bucket);
     used = costs.slice(start).reduce((sum, cost) => sum + cost, 0);
   }
   const kept = rows.slice(start);

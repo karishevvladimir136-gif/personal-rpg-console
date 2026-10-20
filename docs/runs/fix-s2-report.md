@@ -10,7 +10,8 @@ campaign, no owner content). The progress file is `docs/runs/fix-s2-progress.md`
 | Stage | Spent | What |
 | --- | --- | --- |
 | A | $14.97 | the base («before») on four probes; four «after» arms (Opus alone at the same / a lighter continuation, Opus + Sonnet, Opus + Opus) on four probes; fight repeats for the continuation question; the cut → continue check; the ledger checker's re-check and its known-miss cases |
-| **Total** | **$14.97 of $50** (A+B within $30) | |
+| B | $11.16 | the prep of a fresh campaign; the four B probes in «Opus пишет — Opus записывает» with English and with Russian instructions; the two prep probes; the fight and the long rest with Russian instructions; the memory recall probe at «компактно» (the «стандарт» arm was refused by the guard, $0 spent) |
+| **Total** | **$26.13 of $50** (A+B $26.13 of $30) | |
 
 ## Already fixed on the base branch
 
@@ -149,6 +150,132 @@ measured numbers; the other choices' numbers are the stage A probes' too (Fable'
 `docs/runs/fix-s2-shots/A-owner-*.jpg` (the new «Для владельца»), `A-settings-*.jpg` (the DM options),
 `A-game-recording-*.jpg` (the game screen while the records are written), at 1920×1080, 2560×1440 and 390×844.
 
+## Stage B — the DM's core
+
+### What changed
+
+- **B1 — the hidden layer.** Campaign creation no longer forbids a hidden explanation: the public opening stays public
+  and grounded in records, and leaves room («an open question, a detail that does not add up»). **The DM's prep**: once
+  per campaign, in the background on entry (an existing campaign without a layer gets it on its next session start), one
+  Opus call at high writes the campaign's hidden layer into a reserved private note the budgets never drop — the bigger
+  truth, the factions' hidden aims, 5–10 secrets not tied to places, two or three clocks, one wondrous thread (a thing
+  with a history and an open question) and clues by place. **«Тайны (видит только ведущий)»** on the world and on the
+  campaign (Settings, under «Как ведущий работает»; migration 74, server-only, never in the player's snapshot): the owner's own truth
+  heads the DM's private notes and the prep builds on it. The session digest rewrites the layer with what moved. The
+  mystery-and-wonder rule and «loot by the 5e treasure guidance» are in the DM's own instructions. The approved craft
+  cards «three clues per mystery» and «open questions stay open» are active for a new campaign.
+- **B2 — memory hygiene.** A private note is «true since» the minute it was set; a changed text keeps the old one
+  closed in an archive key («true until»); `note_world` gains `close`; the DM reads open clocks, consequences and facts
+  first (newest first), closed ones last; the new read-only `recall` tool (the writer has it too) finds closed and
+  archived notes by name or word, and «what was true then» at a game minute. A finished fight's per-round notes fold
+  into one line (a cheap background call, off the turn's path); the digest folds the closed notes of finished matters.
+  An owner's out-of-game rule is pinned as an owner fact (the DM's own «likes» can no longer drop it, item 71). The
+  memory gauge (notes against their budget, closed, dropped, the hidden layer) is on «Для владельца»; every budget drop
+  is logged with its layer. No external memory platform.
+- **B3 — the session's rules.** In both roles' instructions: the hero's will (a companion who objects says why and the
+  turn ends on it; the hero's action is never accepted, changed or replaced; the DM never writes the hero's lines; a
+  question to the hero ends the turn; no time or resource spent without the player), every roll told (and now: as what
+  happens, never as the die's number — the card shows the numbers), damage per ray / arrow / strike, distances in feet,
+  private plans' hours and places never said early, names with an anchor. On the server: **every roll the player saw is
+  told** (after the narration Haiku 5.5 reads it and the visible rolls; an untold roll gets one continuation, in both DM
+  modes); a formula modifier on top of the sheet's skill is dropped with a hint (item 66); a natural 20 on a check or a
+  save succeeds and a natural 1 fails whatever the total (the owner's BG3 rule; migration 75 lets the record through);
+  `rest` refills every rest-based counter it names and every spell slot on a safe long rest in one call;
+  `upsert_place` refuses a person's name as a place (item 72); a party blow that drops a foe tells the DM it is «Твой
+  момент» (it never fired in session 2: the gate needed a hero's player-visible roll and the DM never handed the
+  finishing blow over — on the Russian fight probe it fired); Heroic Inspiration is a counter (max 1) the DM grants and
+  the hero spends on a reroll; drinking a potion is a bonus action. The DC shows by default and its toggle is on
+  «Логика мира».
+- **B4 — the voice and the Russian instructions.** The humour recipe is gone from the voice layer; speech ends on the
+  thought, no quips on another's word, a joke at most once a scene and from character, a tic at most once a scene. **The
+  native Russian instructions** — the role, the writer's role, the table rules, the server's nudges and the dossier's
+  headers — were written by a **Fable 5.1 subagent** from the English originals and the owner's rules (never the voice
+  bank), reviewed and wired here behind «Инструкции ведущего: русские / английские» (Settings, Russian campaigns only).
+  **Russian is now the default** (records held on the probes, below).
+- **A2 follow-up — «Память ведущего».** The default is now **«стандарт»** (measured below), and a wide window slides in
+  bigger steps (16 / 40 / 72 rows for компактно / стандарт / широко): every slide rewrites the cached history, and at
+  16 rows «стандарт» rewrote 200k tokens every 8 turns.
+
+### The probes and what they showed
+
+All in «Opus пишет — Opus записывает» (session 3's mode), each arm with its own cache (the first turn of an arm pays
+the cache write, ≈ $1.3). Records: `docs/runs/real-replay-20261020-101759.jsonl` (English), `-102644` (Russian),
+`-103412` (prep), `-103924` (fight and rest, Russian), `-110036` (memory).
+
+| Probe | Pass rule | English instructions | Russian instructions |
+| --- | --- | --- | --- |
+| A companion objects to an order | his reason aloud, the turn ends on it; the hero's action not carried out or rewritten; no line for the hero | pass — the veteran refuses: the tide will drown the watchman, he promised the wife; offers to carry him | pass — the same refusal, «ты его топишь»; offers: the scout carries him, the two go on |
+| Companions react to a letter | each from his own character; nobody restates it; speech ends on the thought | pass | pass |
+| «Is it a conspiracy?» | only what the prisoner knows; nobody explains the whole; a clue further | pass — the customs man without a name, the lighthouse signal, copper plates on the crates; one check told as «на кубике 11 … выходит 13» (now a rule) | pass — the same knowledge; refuses to name his boatmen |
+| A lair search after a fight | loot by the 5e guidance; every find recorded | records pass (every item and both purses), loot thin for the challenge (19 coins) | loot by the 5e hoard tables (rolled: 1 800 cp, 700 sp, 80 gp, six 25 gp art objects, a mithral shirt, a warm copper plate with a lost order's arms); **the party had not taken it yet and nothing was recorded where it lies** → stage D records finds where they lie |
+| A fresh campaign's prep | the layer exists; clues appear; the truth unsaid | — | pass — the layer (a chained sunken harbour, four factions, nine secrets, three clocks, the wonder) and on top of it fresh soot on the dark lighthouse's sea-side glass, a mooring ring with fresh tarred fibre, the closed-eye plaque, still water at the shoal, the bell's odd count; nobody says the truth |
+| The mine-style fight (stage A's probe) | rolls bundled; every roll told | (stage A) | pass — 4 attacks, each with its damage in one call, all told; «Твой момент» handed the scout's killing arrow to the player |
+| The long rest (stage A's probe) | one `rest`; every record | (stage A) | pass — one `rest`; the checker caught the leader's purse, recorded in the same turn |
+
+| Arm | Cost, median | Requests, median | First word, median | Turn, median | Records ok / rejected | Checker: residual misses |
+| --- | --- | --- | --- | --- | --- | --- |
+| English (4 B probes) | $0.69 | 2.5 | 20.9 s | 93 s | 57 / 0 | 1 (the watchman's worsening) |
+| Russian (4 B probes) | $0.73 | 2.5 | 15.1 s | 91 s | 56 / 0 | 0 |
+| Russian, fight + rest | $1.06 | 3.5 | 18.4 s | 87 s | 30 / 0 | 0 (1 caught and fixed in the turn) |
+
+**Voice metrics, both instruction languages** (the same four probes; the quotable-line check on every turn):
+
+| Instructions | Words | Speech lines | Particles /100 speech words | Unfinished speech | ≤5-word paragraphs | Metaphor markers /100 words | Quotable flags | Calques /1000 | Dash sentences |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| English | 1 062 | 29 | 2.6 | 48% | 10% | 0.19 | 0 | 0.9 | 9% |
+| Russian | 1 044 | 27 | 2.4 | 36% | 7% | 0.48 | 0 | 0.0 | 4% |
+
+Read: the Russian instructions remove the calques and the choppy paragraphs, keep the records and bring the first word
+~6 s sooner; they use a few more images (0.48 markers per 100 words, still low) and twice let the veteran's strap
+gesture appear twice in one scene (English: once a scene). **Default: Russian** (the stage rule: «only if records
+hold» — they did).
+
+### «Память ведущего» — the three presets measured
+
+Free measurement first, on a synthetic 300-turn campaign (≈ 1 650 tokens of story a turn) with one fact told once, 80
+turns back: the app's own window puts it outside «компактно» (≈ 30 turns) and inside «стандарт» (≈ 120 turns) and
+«широко» (≈ 230 turns). The cost per turn, simulated with the provider's cache rules on the app's own requests (Opus at
+high, two requests a turn):
+
+| Preset | Input a request | Session's first turn | Ordinary turn | The turn the window slides | Average |
+| --- | --- | --- | --- | --- | --- |
+| компактно | 111k | $0.95 | $0.34 | $0.57, every 8 turns | ≈ $0.37 |
+| стандарт | 262k | $2.07 | $0.43 | $1.90, every 20 turns | ≈ $0.50 |
+| широко | 436k | $3.48 | $0.54 | ≈ $3.4, every 36 turns | ≈ $0.61 |
+
+(Before the bigger slide steps «стандарт» averaged ≈ $0.58 and «широко» ≈ $1.12.)
+
+Then the recall probe, live (a 60-turn campaign, the fact 35 turns back; the player: «where did Agafya hide the spare
+key?»): at **«компактно»** the DM invented nothing — it searched its notes twice with `recall` — but told the player
+out of game that the records have no Agafya at all: the event is simply forgotten. The app's memory search for that
+line (checked free on the same campaign) brought back other passages, not this one: it ranks by significance before
+relevance, and the common word «ключ» outranks the rare name. At «стандарт» the scene is in the DM's verbatim window
+(checked deterministically); its live arm was refused by the money guard (it reserves $3.55 a request at that size and
+the A+B cap had $4.83 left), so it did not run. **Default: «стандарт»** — the owner's own target (150–200k), about 120
+turns verbatim (session 2 had 66), ≈ $0.13 a turn and ≈ $1.1 a session start more than «компактно» (≈ $6 for a 41-turn
+session). «Широко» stays a choice.
+
+### The regression list on the stage B probes
+
+- Honest dice: every roll is a server roll; natural 20 / natural 1 on checks follow the owner's rule on the server;
+  the doubled modifier is dropped (tests); the loot tables were rolled with `roll`, not invented.
+- Enemies play to kill: on the Russian fight probe the round ended on the player's moment before the bandits acted;
+  the leader drew his sabre and the brute readied his flail (stage A's run showed them answering in the same round).
+- No item lost: no rejected record on 12 probe turns; the checker's one catch was fixed in the turn; the one gap — the
+  lair's loot not yet taken and recorded nowhere — goes to stage D.
+- Active companions: the veteran and the scout acted, objected, read and searched from their own characters.
+- Right modifiers and advantage: the stat blocks' +3 / +4 / +6 and the scout's +2 help in the search.
+- Honest magic and slots: no spell cast on these probes; the rest probe refilled through one `rest`.
+- Facts held: within the window, yes; beyond «компактно» the DM forgot an event (the memory finding above).
+- Secrets only through people who know them: the prisoner said only his part; the prep's truth was never said; the
+  hidden layer and «Тайны» never reach the player's snapshot (tests).
+
+### Screens
+
+Settings → «Как ведущий работает»: «Инструкции ведущего» (Russian campaigns), «Память ведущего» with the measured prices; under it «Тайны
+(видит только ведущий)» for the world and the campaign. «Для владельца»: the memory gauge. Screenshots
+`docs/runs/fix-s2-shots/B-*`.
+
 ## Needs the owner
 
 1. **Session 3's DM mode.** Your choice «Opus пишет — Opus записывает» holds on the probes (records as good as the single
@@ -156,3 +283,11 @@ measured numbers; the other choices' numbers are the stage A probes' too (Fable'
    come 40–60 s after the text. Keep it, or play on «Opus ведёт один»? It is now one of the choices in Settings →
    «Кто ведёт игру», with the measured numbers (first word ~16 s, ~$29 a 41-turn session; the single DM ~18 s, ~$17).
 2. «Продолжение хода» stays «как основной запрос»: «на ступень легче» left a fight's outcome untold twice in three runs.
+3. **«Инструкции ведущего» are now Russian by default** (records held, the speech is cleaner). If a Russian turn ever
+   reads worse to you, Settings → «Как ведущий работает» → «английские» switches back for that campaign.
+4. **«Память ведущего» is now «стандарт» by default**: about 120 turns read verbatim, about $0.13 a turn and $1.1 a
+   session start more than «компактно» (≈ $6 for a 41-turn session). «компактно» forgot a fact told 35 turns back on the
+   probe. Keep «стандарт», or save money with «компактно»?
+5. **«Тайны (видит только ведущий)»** is empty for your world and campaign. If you have a truth for your campaign's world (as in
+   your chat campaigns), write it there before session 3; the DM's prep builds on it. Without it the prep writes its
+   own hidden layer on the first entry (one Opus call, ≈ $0.45).

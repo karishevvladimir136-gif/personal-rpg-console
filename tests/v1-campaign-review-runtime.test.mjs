@@ -53,20 +53,36 @@ function runtime(reviewOnly) {
       },
     },
   ).outputText;
+  const window = {
+    addEventListener: (name, callback) => events.push({ name, callback }),
+    removeEventListener: () => {},
+    setTimeout: (callback, interval) => {
+      timers.push({ callback, interval });
+      return timers.length;
+    },
+    clearTimeout: () => {},
+  };
+  // Fix run A3: the screen's poll is the shared backoff poll on the window's timers (the real module).
+  const poll = {};
+  vm.runInNewContext(
+    ts.transpileModule(
+      readFileSync(new URL("../src/lib/ui/backoff-poll.ts", import.meta.url), "utf8"),
+      { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } },
+    ).outputText,
+    { exports: poll, window },
+  );
+  stubs["@/lib/ui/backoff-poll"] = poll;
   vm.runInNewContext(output, {
     exports,
     require: (name) => {
       assert.ok(name in stubs, name);
       return stubs[name];
     },
-    window: {
+    window,
+    document: {
+      visibilityState: "visible",
       addEventListener: (name, callback) => events.push({ name, callback }),
       removeEventListener: () => {},
-      setInterval: (callback, interval) => {
-        timers.push({ callback, interval });
-        return 1;
-      },
-      clearInterval: () => {},
     },
   });
   const value =
@@ -98,10 +114,13 @@ test("ordinary gameplay keeps its default authorized load, focus refresh and unr
   assert.deepEqual(f.loads, [f.campaignId]);
   assert.deepEqual(
     f.events.map((e) => e.name),
-    ["rpg-gameplay-changed", "focus"],
+    ["rpg-gameplay-changed", "focus", "visibilitychange"],
   );
-  assert.equal(f.timers[0].interval, 2500);
+  assert.equal(f.timers[0].interval, 3000);
+  // Fix run A3: one read in flight — a focus while the first load runs joins it; after it, focus reads again.
+  await new Promise((resolve) => setImmediate(resolve));
   await f.events.find((e) => e.name === "focus").callback();
+  await new Promise((resolve) => setImmediate(resolve));
   assert.deepEqual(f.loads, [f.campaignId, f.campaignId]);
   f.cleanups.forEach((fn) => fn());
 });

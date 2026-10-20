@@ -23,11 +23,24 @@ export async function loopCampaign(options = {}) {
   // The opening may set the clock (polish group 10, migration 63): «Утро» starts at 8:00, not 00:00.
   if (options.startMinutes !== undefined && options.startMinutes !== null) f.openingCommit.input.startMinutes = options.startMinutes;
   await f.service.perform(f.openingCommit);
-  return attachLoop(f);
+  // Fix run B4: a Russian campaign's DM reads the native Russian instructions by default. The older tests check the
+  // English instructions' wording, so a Russian campaign here reads «английские» unless the test asks for the
+  // default (`instructions: null`) or for "ru"; a choice saved in the campaign's DM settings still wins, as in the app.
+  const instructions = options.instructions === undefined ? (options.language === "ru" ? "en" : null) : options.instructions;
+  return attachLoop(f, { instructions });
+}
+
+/** The turn's source with the harness's pinned DM options under the stored ones (fix run B4). */
+function withPinnedOptions(store, pins) {
+  if (!pins.instructions) return store;
+  return { ...store, claim: async (...args) => {
+    const claimed = await store.claim(...args);
+    return claimed ? { ...claimed, source: { ...claimed.source, dmOptions: { instructions: pins.instructions, ...(claimed.source.dmOptions ?? {}) } } } : claimed;
+  } };
 }
 
 /** The loop harness (stores, pin, scripted turns, state dumps) for the campaign `f` holds. */
-export async function attachLoop(f) {
+export async function attachLoop(f, pins = {}) {
   const foundation = await f.one("select world from rpg_private.world_foundations where campaign_id=$1", [f.cid]);
   const hero = foundation.world.actors.find((actor) => actor.control === "player").entityId;
   const npc = foundation.world.actors.find((actor) => actor.control === "autonomous")?.entityId ?? null;
@@ -95,7 +108,7 @@ export async function attachLoop(f) {
   };
   const deps = async (model, extra = {}) => {
     const timeline = await f.fence(f.cid);
-    const store = createRpcTurnStore(f.owner, rpc, null, timeline, false);
+    const store = withPinnedOptions(createRpcTurnStore(f.owner, rpc, null, timeline, false), pins);
     return {
       store, memory: createRpcMemoryStore(f.owner, memoryRpc, timeline), summaries,
       model: () => model,

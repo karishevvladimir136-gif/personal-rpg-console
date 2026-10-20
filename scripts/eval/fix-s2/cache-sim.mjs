@@ -8,7 +8,8 @@
 // The turn's own shape is modelled on session 2's medians (item 83): `--requests` per turn (2), each reply
 // `--reply` tokens of thinking + text + calls (3000) and `--results` tokens of tool results (600), turns
 // `--gap` seconds apart (150) and continuations 25 s apart. The live check of the same layout is replay-cost.mjs.
-//   node scripts/eval/fix-s2/cache-sim.mjs --snapshots scripts/eval/out/long-campaign-a.json [--from 1 --to 45] [--requests 2]
+// `--memory compact|standard|wide` sets «Память ведущего» on every snapshot (fix run A2/B2: the presets priced).
+//   node scripts/eval/fix-s2/cache-sim.mjs --snapshots scripts/eval/out/long-campaign-a.json [--from 1 --to 45] [--requests 2] [--memory standard]
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { registerHooks } from "node:module";
@@ -22,7 +23,7 @@ const hook = registerHooks({ resolve(specifier, context, nextResolve) {
 const { anthropicRequestBody } = await import("../../../src/lib/server/dm/model/anthropic.ts");
 hook.deregister();
 
-const args = { snapshots: null, from: 1, to: Infinity, requests: 2, reply: 3000, results: 600, gap: 150, output: 3000, json: false };
+const args = { snapshots: null, from: 1, to: Infinity, requests: 2, reply: 3000, results: 600, gap: 150, output: 3000, json: false, memory: null };
 for (let i = 2; i < process.argv.length; i++) {
   const flag = process.argv[i], value = () => process.argv[++i];
   if (flag === "--snapshots") args.snapshots = value();
@@ -34,12 +35,14 @@ for (let i = 2; i < process.argv.length; i++) {
   else if (flag === "--gap") args.gap = Number(value());
   else if (flag === "--output") args.output = Number(value());
   else if (flag === "--json") args.json = true;
+  else if (flag === "--memory") args.memory = value();
   else throw new Error(`unknown argument ${flag}`);
 }
 if (!args.snapshots) throw new Error("--snapshots <file> is required");
 const price = dmModels["anthropic/claude-opus-5-5"].price;
 const file = JSON.parse(await readFile(args.snapshots, "utf8"));
 const rows = file.snapshots.filter((row) => row.turnNo >= args.from && row.turnNo <= args.to);
+if (args.memory) for (const row of rows) row.payload.source = { ...row.payload.source, dmOptions: { ...(row.payload.source.dmOptions ?? {}), memory: args.memory } };
 
 /** The provider's view of a request: blocks in prefix order (tools, system, messages), each with its tokens,
  * the hash of the prefix up to it, and its breakpoint TTL when it carries one. */
@@ -115,14 +118,15 @@ const summary = (turns, label) => {
     cacheReadShare: Number((all.reduce((s, r) => s + r.read, 0) / all.reduce((s, r) => s + r.total, 0)).toFixed(3)),
     uncachedPerFirstRequestMedian: Math.round(median(turns.map((t) => t.requests[0].uncached))),
     uncachedPerContinuationMedian: continuations.length ? Math.round(median(continuations.map((r) => r.uncached))) : null,
-    writesPerTurnMedian: Math.round(median(turns.map((t) => t.requests.reduce((s, r) => s + r.write5m + r.write1h, 0)))) };
+    writesPerTurnMedian: Math.round(median(turns.map((t) => t.requests.reduce((s, r) => s + r.write5m + r.write1h, 0)))),
+    perTurn: turns.map((t) => ({ turnNo: t.turnNo, costUsd: Number(t.costUsd.toFixed(4)), writes: t.requests.reduce((s, r) => s + r.write5m + r.write1h, 0) })) };
 };
 const before = simulate("before");
 const after = simulate("after");
-const result = { snapshots: args.snapshots, turns: `${rows[0]?.turnNo}–${rows.at(-1)?.turnNo}`, model: "claude-opus-5-5 at high", shape: { requests: args.requests, reply: args.reply, results: args.results, output: args.output, gapSeconds: args.gap },
+const result = { snapshots: args.snapshots, turns: `${rows[0]?.turnNo}–${rows.at(-1)?.turnNo}`, model: "claude-opus-5-5 at high", memory: args.memory ?? "the snapshots' own", shape: { requests: args.requests, reply: args.reply, results: args.results, output: args.output, gapSeconds: args.gap },
   before: summary(before, "before (polish 2 layout)"), after: summary(after, "after (fix run A2)") };
 if (args.json) console.log(JSON.stringify(result, null, 2));
 else {
   console.log(`Cache simulation on ${args.snapshots}, turns ${result.turns}, ${result.model}; ${args.requests} request(s) a turn, reply ${args.reply} tok, results ${args.results} tok, output ${args.output} tok a request.`);
-  console.table([result.before, result.after]);
+  console.table([result.before, result.after].map((row) => Object.fromEntries(Object.entries(row).filter(([key]) => key !== "perTurn"))));
 }

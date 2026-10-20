@@ -10,8 +10,12 @@ import { ROOT } from "../../real-replay/lib/ledger.mjs";
 /** Plays `turns` scripted turns of the Russian harbour campaign. Returns the open campaign `c` (the caller
  * closes `c.f.db`), the snapshot rows (the state before each turn, as the app saves it at a commit),
  * `capture` (one more scripted turn whose snapshot is returned) and `decorate` (adds the synthetic canon
- * and DM guide of session-2 size to a snapshot). */
-export async function buildLongCampaign({ turns = 45, seed = "a", log = console.log } = {}) {
+ * and DM guide of session-2 size to a snapshot). For the memory presets (fix run A2/B2): `keepFrom` keeps
+ * only the snapshots from that turn on (a 300-turn campaign's every snapshot would be gigabytes), `lean`
+ * grows the records slower (an item every fourth turn, a place every ninth) so a long campaign's state stays
+ * near session 2's size, `scale` multiplies the narration's paragraphs, and `plant` ({turn, paragraph})
+ * puts one paragraph into that turn's narration only (the recall probe's fact). */
+export async function buildLongCampaign({ turns = 45, seed = "a", log = console.log, keepFrom = 1, lean = false, scale = 1, plant = null } = {}) {
   const args = { turns, seed };
   /** A small seeded random (mulberry32) so each seed is one stable campaign. */
   function seeded(text) {
@@ -56,7 +60,7 @@ export async function buildLongCampaign({ turns = 45, seed = "a", log = console.
     return parts.join("\n\n");
   }
   function narration(people, place) {
-    return Array.from({ length: between(5, 8) }, () => paragraph(pick(people), place)).join("\n\n");
+    return Array.from({ length: Math.round(between(5, 8) * scale) }, () => paragraph(pick(people), place)).join("\n\n");
   }
   const PLAYER = ["Расспрашиваю {name} о том, что видели ночью у отмели.", "Иду к месту «{place}» и осматриваюсь.", "Предлагаю {name} помочь с работой за долю.",
     "Показываю {name} {thing} и спрашиваю, откуда такое.", "Жду у склада до темноты и слежу, кто выходит.", "Спускаюсь под воду у баржи, проверяю трюм.",
@@ -100,12 +104,12 @@ export async function buildLongCampaign({ turns = 45, seed = "a", log = console.
       calls.push({ name: "note_world", arguments: { kind: "fact", key: `turn_${turn}_${pick(["setup", "round", "clue", "rumour"])}`, operation: "set",
         value: `${person.name}: ${pick(LINES)} ${pick(OUTCOMES)} Проверить у места «${place}».` } });
       // Loot and purchases (session 2 ended with dozens of items on the hero, the companions and the camp).
-      for (let n = 0; n < between(1, 2); n++)
+      for (let n = 0; n < (lean ? (turn % 4 === 0 ? 1 : 0) : between(1, 2)); n++)
         calls.push({ name: "item", arguments: { action: "create", name: `${pick(THINGS)} (${turn}.${n})`, category: pick(["gear", "tool", "misc", "consumable"]), ownerRef: c.hero,
           description: `Найдено у места «${place}». ${pick(OUTCOMES)}`, properties: pick(["вес 1 фунт", "можно продать за 3 монеты", "пахнет смолой", "клеймо гильдии на ручке"]) } });
-      if (turn % 3 === 1) calls.push({ name: "upsert_place", arguments: { localKey: `pl${turn}`, name: `${place} (${turn})`, status: pick(["known", "visited"]),
+      if (turn % (lean ? 9 : 3) === 1) calls.push({ name: "upsert_place", arguments: { localKey: `pl${turn}`, name: `${place} (${turn})`, status: pick(["known", "visited"]),
         description: `${pick(OPENERS)}. ${pick(OUTCOMES)} ${pick(LINES)}` } });
-      if (turn % 7 === 3) calls.push({ name: "quest", arguments: { action: "create", localKey: `q${turn}`, kind: pick(["thread", "quest", "promise"]), title: `${pick(["Огни", "Цепь", "Сторож", "Баржа", "Писарь"])} у места «${place}»`, description: pick(LINES) } });
+      if (turn % (lean ? 14 : 7) === 3) calls.push({ name: "quest", arguments: { action: "create", localKey: `q${turn}`, kind: pick(["thread", "quest", "promise"]), title: `${pick(["Огни", "Цепь", "Сторож", "Баржа", "Писарь"])} у места «${place}»`, description: pick(LINES) } });
       // The people present grow their models every turn (episodes, beliefs), as the DM did in session 2.
       for (const other of people.filter((row) => row !== fresh).slice(0, 2))
         calls.push({ name: "note_character", arguments: { actorRef: other.name, current: { goal: pick(["выяснить, кто платит контрабандистам", "спрятать улов", "найти свидетеля"]), stress: pick(["settled", "strained"]) },
@@ -113,8 +117,9 @@ export async function buildLongCampaign({ turns = 45, seed = "a", log = console.
           episodes: [{ meaning: `${pick(LINES)} Герой был рядом у места «${place}». ${pick(OUTCOMES)}`, cue: pick(["колокол", "туман", "запах смолы"]) }] } });
       calls.push({ name: "advance_time", arguments: { minutes: between(10, 90), reason: "разговор и дорога" } });
       calls.push({ name: "finish_turn", arguments: { sceneKinds: [pick(["conversation", "exploration", "mystery"])], spotlight: [person.name], playerMoment: false, nextTension: pick(["calm", "tense"]) } });
-      const { payload } = await capture(say, [{ text: narration(people, place), toolCalls: calls }]);
-      rows.push({ turnNo: turn, payload });
+      const text = plant?.turn === turn ? `${plant.paragraph}\n\n${narration(people, place)}` : narration(people, place);
+      const { payload } = await capture(say, [{ text, toolCalls: calls }]);
+      if (turn >= keepFrom) rows.push({ turnNo: turn, payload });
       if (turn % 10 === 0) log(`turn ${turn}: ${met.length} people met`);
     }
 

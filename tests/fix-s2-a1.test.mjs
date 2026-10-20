@@ -318,12 +318,12 @@ test("the DM options: stored as one object, merged key by key, defaults in TypeS
   const c = await loopCampaign();
   try {
     const before = await c.settings.read();
-    assert.deepEqual(before.options, { continuation: "same", instructions: "en", companionRolls: "dm", secretsVisible: false, memory: "compact" });
-    const saved = await c.settings.save({ expectedRevision: before.revision, runtime: "dm-loop-v1", dmTurn: before.dmTurn, options: { continuation: "lighter", memory: "standard" } });
+    assert.deepEqual(before.options, { continuation: "same", instructions: "ru", companionRolls: "dm", secretsVisible: false, memory: "standard" });
+    const saved = await c.settings.save({ expectedRevision: before.revision, runtime: "dm-loop-v1", dmTurn: before.dmTurn, options: { continuation: "lighter", memory: "wide" } });
     assert.equal(saved.options.continuation, "lighter");
-    assert.equal(saved.options.memory, "standard");
-    const again = await c.settings.save({ expectedRevision: saved.revision, runtime: "dm-loop-v1", dmTurn: saved.dmTurn, options: { instructions: "ru" } });
-    assert.deepEqual(again.options, { continuation: "lighter", instructions: "ru", companionRolls: "dm", secretsVisible: false, memory: "standard" }, "merged");
+    assert.equal(saved.options.memory, "wide");
+    const again = await c.settings.save({ expectedRevision: saved.revision, runtime: "dm-loop-v1", dmTurn: saved.dmTurn, options: { instructions: "en" } });
+    assert.deepEqual(again.options, { continuation: "lighter", instructions: "en", companionRolls: "dm", secretsVisible: false, memory: "wide" }, "merged");
     await assert.rejects(c.settings.save({ expectedRevision: again.revision, runtime: "dm-loop-v1", dmTurn: again.dmTurn, options: { continuation: "never" } }), /validation/);
     await assert.rejects(c.settings.save({ expectedRevision: again.revision, runtime: "dm-loop-v1", dmTurn: again.dmTurn, options: { memory: "huge" } }), /validation/);
     // The source of the next turn carries them; a lighter continuation runs one notch below the turn.
@@ -333,7 +333,7 @@ test("the DM options: stored as one object, merged key by key, defaults in TypeS
     ]);
     assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
     const row = await c.row(played.input.operationId);
-    assert.equal(row.source.dmOptions.memory, "standard");
+    assert.equal(row.source.dmOptions.memory, "wide");
     const pin = row.checkpoint.dmLoop.pin;
     assert.equal(played.model.requests[1].effort, pin.continuationEffort);
     assert.notEqual(pin.continuationEffort, pin.effort);

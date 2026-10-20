@@ -67,7 +67,8 @@ test("a turn appends its rows to the history: the earlier blocks are byte-identi
 test("the window slides in buckets: within the budget nothing is dropped; past it the oldest rows leave sixteen at a time", () => {
   // Fixed-width rows, so every row costs the same number of estimated tokens.
   const scene = (i, size = 400) => ({ role: "narration", body: `${String(i).padStart(3, "0")}:${"x".repeat(size)}` });
-  const source = (rows) => ({ snapshot: { scenes: rows } });
+  // «компактно» (HISTORY_BUDGET, buckets of HISTORY_BUCKET); the wider presets: the fix-s2 tests.
+  const source = (rows) => ({ snapshot: { scenes: rows }, dmOptions: { memory: "compact" } });
   const small = conversationHistory(source([scene(0), scene(1), scene(2)]));
   assert.equal(small.blocks.length, 3);
   assert.deepEqual(small.dropped, []);
