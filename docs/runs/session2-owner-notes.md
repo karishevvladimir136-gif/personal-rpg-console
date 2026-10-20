@@ -1086,3 +1086,9 @@ report); the guard post's place record says «Раннее утро» — a time
     works across frames. It was drawn for an out-of-game exchange (the «ты» agreement), so 78(c) holds — here it
     happened to read as «the scene holds still». The reply's opening «*(Вне игры…» was rendered with the asterisk
     and a drop cap on «(В» — the out-of-game reply styled as narration (see the note under item 1's key finding).
+    Follow-up to 78/79 (owner, 22:08): good — the sergeant crouching and drawing the route in the dirt, looking at
+    his own map (an action, not a pose). Again wrong — the camp-fire frame for a turn whose narration says the
+    prisoner looks «at the sergeant, at the fire, then at the mage» shows a hooded old wizard instead of James (78a,
+    second case: the narration's role word «мага» reached the shot), and the people sit as if posing for portraits
+    rather than talking («он как будто не беседует, а позирует для портрета») — 79. The sergeant's shield appears for
+    the third time.
