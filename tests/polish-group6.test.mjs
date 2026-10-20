@@ -51,7 +51,8 @@ test("the turn's changes are folded and lead with items and money; the goal fall
 test("one stage, one page scroll, a compact composer with icon tools; «Зацепки» and «Долги и обещания» in the sidebar", () => {
   const game = src("src/components/registry/game-screen.tsx");
   const css = src("src/components/registry/game.module.css");
-  assert.match(game, /stageFrameUrl \? \(/, "the live frame takes the stage once ready");
+  // Fix run E (item 77): the frame lives in its own turn; the stage shows the place.
+  assert.doesNotMatch(game, /stageFrameUrl/, "the frame is in its turn, not on the stage");
   assert.match(game, /<FramesPanel data=\{data\} play=\{play\} live=\{live\} stage /);
   assert.doesNotMatch(game, /К последнему ходу|Важный ход|Important turn|Открытые нити|Open threads|quickStats/);
   assert.match(game, /c\("Зацепки", "Leads"\)/);

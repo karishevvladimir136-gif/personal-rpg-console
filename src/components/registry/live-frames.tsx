@@ -303,7 +303,7 @@ export function TurnFrame({ turn }: { turn: { id: string; input: string; narrati
   const url = picture ? pictures.urlFor(picture) : null;
   if (!picture && !drawing) return null;
   return (
-    <figure className={f.turnFrame} data-testid="turn-frame">
+    <figure id={`turn-frame-${turn.id}`} className={f.turnFrame} data-testid="turn-frame">
       {url && picture ? (
         <button type="button" className={f.frameButton} aria-label={c("Открыть кадр крупно", "Open the frame large")} onClick={() => setOpen(true)}>
           {/* eslint-disable-next-line @next/next/no-img-element */}

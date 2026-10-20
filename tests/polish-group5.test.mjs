@@ -59,8 +59,12 @@ test("the frames panel hides every ready version of the turn and offers «Пок
 test("«Кадр сцены» acts on the Stage V frames; the legacy FRAME and video blocks leave the player's screen", () => {
   const game = src("src/components/registry/game-screen.tsx");
   assert.doesNotMatch(game, /CurrentSceneMediaFrame|CurrentSceneVideo|mediaOpen/);
-  assert.match(game, /pictures\.send\("pictures\.frame", \{ operationId: frameTurnId, trigger: "redraw" \}\)/);
-  assert.match(game, /getElementById\("registry-frames"\)\?\.scrollIntoView/);
+  // Fix run E (item 77): the frame of the last narrated turn, in that turn; the answer in words; no scroll through the campaign.
+  assert.match(game, /pictures\.send\("pictures\.frame", \{ operationId: turnId, trigger: "redraw" \}\)/);
+  assert.match(game, /setFrameNote\(frameStatusText\(/);
+  assert.match(game, /getElementById\(`turn-frame-\$\{turnId\}`\)\?\.scrollIntoView\(\{ behavior: "smooth", block: "nearest" \}\)/);
+  assert.doesNotMatch(game, /getElementById\("registry-frames"\)\?\.scrollIntoView/);
+  assert.match(src("src/components/gameplay-turn.tsx"), /\{turn\.mode === "game" && <TurnFrame turn=\{turn\} \/>\}/);
 });
 
 test("one picture path for every button: the portrait, figure, item, holding and place buttons draw through the Stage V store", () => {

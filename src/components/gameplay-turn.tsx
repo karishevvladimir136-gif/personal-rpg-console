@@ -5,6 +5,7 @@ import { useLanguage } from "./language-context";
 import { useCampaignData } from "./persistence-context";
 import { Badge, Button, Panel } from "./ui";
 import { TurnTimeline } from "./registry/turn-timeline";
+import { TurnFrame } from "./registry/live-frames";
 import { DmTeachReview } from "./dm-teach-review";
 import { errorMessage, readJson } from "@/lib/persistence/client";
 import type { TeachCommand } from "@/lib/dm-craft/contracts";
@@ -343,6 +344,8 @@ export function GameplayTurn({
           </Button>
         }
       />
+      {/* Fix run E (item 77): the frame of this turn, in this turn (none outside a picture board or for an out-of-game reply). */}
+      {turn.mode === "game" && <TurnFrame turn={turn} />}
       {turn.proposal && (
         <GameplayGuidanceProposal turn={turn} onSaved={onSaved} />
       )}

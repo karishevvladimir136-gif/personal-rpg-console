@@ -10,7 +10,7 @@ import type { LiveTurnView } from "@/lib/gameplay/live-turn-client";
 import type { LiveTrace } from "@/lib/ui/turn-timeline";
 import type { PublicAdventure } from "@/lib/adventures/contracts";
 import { isUnresolved } from "@/lib/gameplay/client-state";
-import { frameFor } from "@/lib/visual-frame/pictures";
+import { frameStatusText } from "@/lib/visual-frame/pictures";
 import { appendToComposerDraft, draftStorage } from "@/lib/ui/composer-draft";
 import { liveChanges, livePlayerMoment, liveTurnPhase, type LivePhase } from "@/lib/ui/live-turn-view";
 import { characterViewModel } from "@/lib/character-view-model";
@@ -115,6 +115,8 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   const setOoc = (next: boolean | ((value: boolean) => boolean)) =>
     setInputMode((current) => ((typeof next === "function" ? next(current === "ooc") : next) ? "ooc" : "game"));
   const [diceOpen, setDiceOpen] = useState(preview?.diceOpen ?? false);
+  // Fix run E (item 77): the frame button's answer in words.
+  const [frameNote, setFrameNote] = useState<string | null>(null);
   const [asideOpen, setAsideOpen] = useState(preview?.asideOpen ?? false);
   const [nonce, setNonce] = useState(0);
   // The streamed turn in flight, from the composer's own stream (one EventSource).
@@ -158,9 +160,10 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   );
   const live = preview ? preview.live ?? null : liveView;
   const pictures = usePictures();
+  // Fix run E (item 77): the button draws the frame of the last turn with narration (never a failed or out-of-game one);
+  // the frame appears in that turn, in place — the page never scrolls through the campaign — and every answer but
+  // «queued» is said in words.
   const frameTurnId = currentFrameTurnId(play, live);
-  const stageFrame = pictures && frameTurnId ? frameFor(pictures.board, frameTurnId).picture : null;
-  const stageFrameUrl = stageFrame && pictures ? pictures.urlFor(stageFrame) : null;
   const phase: LivePhase | null = live ? liveTurnPhase(live, play?.turns ?? []) : null;
   // A saved turn keeps its accepted changes on screen until the next turn starts.
   const liveIsLatest = !!live && (phase === "streaming" || latestTurn?.id === live.operationId);
@@ -215,12 +218,17 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
       <button type="button" className={r.iconBtn} disabled={!!preview || !pictures || !frameTurnId || pictures.board.settings.frames === "off"}
         aria-label={c("Кадр сцены", "Scene frame")} title={c("Нарисовать или перерисовать кадр этой сцены", "Draw or redraw the frame of this scene")}
         onClick={() => {
-          // Polish group 5: the button acts on the Stage V frames panel (draw or redraw the current frame).
-          if (pictures && frameTurnId) void pictures.send("pictures.frame", { operationId: frameTurnId, trigger: "redraw" }).catch(() => {});
-          document.getElementById("registry-frames")?.scrollIntoView({ behavior: "smooth", block: "start" });
+          if (!pictures || !frameTurnId) return;
+          const turnId = frameTurnId;
+          setFrameNote(null);
+          void pictures.send("pictures.frame", { operationId: turnId, trigger: "redraw" }).catch(() => ({ status: "error" })).then((result) => {
+            setFrameNote(frameStatusText((result as { status?: unknown } | null)?.status, c.language === "en" ? "en" : "ru"));
+            document.getElementById(`turn-frame-${turnId}`)?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          });
         }}>
         <ImageIcon size={18} aria-hidden="true" />
       </button>
+      {frameNote && <span className={r.note} role="status">{frameNote}</span>}
     </div>
   );
   // Who will answer: a small chip when the text names a companion (polish group 6), never a permanent row.
@@ -288,11 +296,8 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
     <div className={g.game}>
       <div className={g.column}>
         <section className={g.scene} aria-label={c("Сцена", "Scene")}>
-          {stageFrameUrl ? (
-            // The live frame takes the header's place once it is ready (polish group 6, STAGE_V §7.2).
-            // eslint-disable-next-line @next/next/no-img-element
-            <img className={g.sceneImage} src={stageFrameUrl} alt={c("Кадр этого хода", "Frame of this turn")} />
-          ) : place ? <Art subject={{ kind: "location", id: place.id }} name={place.name} className={g.sceneImage} position="center 40%" />
+          {/* Fix run E (item 77): the header shows the place; each frame lives in its own turn. */}
+          {place ? <Art subject={{ kind: "location", id: place.id }} name={place.name} className={g.sceneImage} position="center 40%" />
             : <div className={`${r.blankArt} ${g.sceneBlank}`} aria-hidden="true" />}
           <div className={g.sceneCaption}>
             <div className={r.stack} style={{ gap: 2 }}>
@@ -305,7 +310,7 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
           </div>
         </section>
         {/* Stage V: the frame of the current turn, drawn while the DM writes; past frames stay with their turns. */}
-        <FramesPanel data={data} play={play} live={live} stage chronicleHref={chrome?.href?.("chronicle" as CampaignScreenId) ?? `/campaigns/${encodeURIComponent(data.campaign.id)}/chronicle`} />
+        <FramesPanel data={data} play={play} live={live} stage chronicleHref={chrome?.href?.("pictures" as CampaignScreenId) ?? `/campaigns/${encodeURIComponent(data.campaign.id)}/pictures`} />
         {diceOpen && (
           <section id="registry-dice-tray" className={g.tray} aria-label={c("Лоток с кубами", "Dice tray")}>
             <span className={r.eyebrow}>{c("Быстрые броски", "Quick rolls")}</span>
