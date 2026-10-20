@@ -887,3 +887,12 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
   two hits landed but their damage was «deferred to the start of the next turn» — most likely the per-turn tool/check
   budget ran out; a combat round must be able to finish its own damage (one request per round, item 59). Good: the
   DM's turn ends on the right question — the hero is unconscious, the companion decides, the player may hint.
+- the hero's second death save (20:03): the owner spent one of the session's allowed rerolls («иначе кампания тут бы и
+  закончилась… жёстко, но зато честно»), and the companion then did exactly what the owner hinted — finished the enemy
+  (13 damage on 13 HP left), dragged the hero out of the caster's sight, poured a potion (4 HP, the minimum); the boss
+  withdrew. Owner: «у нас был тейк, чтобы не было Мэри Сью — это не Мэри Сью». Two display faults on the rerolled
+  card: the label still says «Провал на единице» though the new die is 10 (the natural-1 flag of the first roll was
+  not cleared), and «Кольцо малой защиты +1» with «10 + 2 = 12» counts +2 for a +1 ring (a death save has no other
+  modifier; the ring does apply — RAW, it is a saving throw). For item 37: the reroll the plan wanted to remove just
+  saved the campaign — decide with the owner whether it stays as a visible, limited luck resource (like Inspiration)
+  instead of a hidden preset.
