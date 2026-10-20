@@ -41,3 +41,11 @@ test("the app environment carries the AI keys but never the real project or owne
   assert.ok(!Object.values(env).includes("real-service") && !Object.values(env).includes("real-owner"));
   assert.equal(appEnvironment({}, new Map(), status, { id: "x", email: "e", password: "p" }, { fake: false }).RPG_DM_FAKE_MODEL, undefined);
 });
+
+test("fix run after session 2: --prod builds once and starts the production server (no dev server in play); --no-build reuses the last build", async () => {
+  const { readFileSync } = await import("node:fs");
+  const text = readFileSync(new URL("../scripts/sandbox-start.mjs", import.meta.url), "utf8");
+  if (!text.includes('options.prod ? [next, "start", "--port", String(APP_PORT), "--hostname", "127.0.0.1"]')) throw new Error("no production start");
+  if (!text.includes('await run(process.execPath, [next, "build"]')) throw new Error("no production build");
+  if (!text.includes('await startApp(env, { prod: flags.has("--prod"), build: !flags.has("--no-build") });')) throw new Error("flags not wired");
+});

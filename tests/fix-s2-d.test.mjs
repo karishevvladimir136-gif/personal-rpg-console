@@ -444,3 +444,26 @@ test("F (item 32 b): a counter named in the campaign language works — «Яче
     assert.equal(hero.public_profile.counterLabels.ochki_udachi, "Очки удачи");
   } finally { await c.f.db.close(); }
 });
+
+test("F (the owner's one-time corrections, migration 96): after the conversion the hero's wallet is 36 зм / 46 см and his healing potions one stack of 3; idempotent; refused before the conversion", async () => {
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const { f } = c;
+    await f.db.query("update public.rpg_entities set resources=resources||$2::jsonb where id=$1", [c.hero, JSON.stringify({ "currency_золотые": 60, "currency_см": 57, healing_potions: 2 })]);
+    await assert.rejects(f.one("select rpg_private.fix_s2_owner_corrections($1,36,46,3) r", [c.cid]), /rpg_conflict/, "coins not converted yet");
+    await f.one("select rpg_private.fix_s2_inventory_convert() r");
+    const done = (await f.one("select rpg_private.fix_s2_owner_corrections($1,36,46,3) r", [c.cid])).r;
+    assert.deepEqual(done.before, { gold: 60, silver: 57, potions: 2 }, "the counter of two became two potion items");
+    assert.deepEqual(done.after, { gold: 36, silver: 46, potions: 3 });
+    const hero = await f.one("select resources from public.rpg_entities where id=$1", [c.hero]);
+    assert.equal(hero.resources["currency_зм"], 36);
+    assert.equal(hero.resources["currency_см"], 46);
+    assert.equal(hero.resources.healing_potions, undefined);
+    const potions = (await f.db.query("select quantity, detail from public.rpg_items where campaign_id=$1 and owner_entity_id=$2 and name='Зелье лечения'", [c.cid, c.hero])).rows;
+    assert.equal(potions.length, 1);
+    assert.equal(potions[0].quantity, 3);
+    assert.equal(potions[0].detail.history.at(-1).event, "owner_corrected");
+    const again = (await f.one("select rpg_private.fix_s2_owner_corrections($1,36,46,3) r", [c.cid])).r;
+    assert.deepEqual(again.before, again.after, "idempotent");
+  } finally { await c.f.db.close(); }
+});

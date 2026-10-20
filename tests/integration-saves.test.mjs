@@ -46,6 +46,7 @@ const NEW_MIGRATIONS = [
   "202610200081_fix_s2_turn_timeline.sql",
   "202610200082_fix_s2_check_addends.sql",
   "202610200083_fix_s2_starting_gear.sql",
+  "202610200096_fix_s2_owner_corrections.sql",
 ];
 const pictures = (f, cid, action, payload = {}) =>
   f.one("select public.rpg_pictures($1,$2,$3,$4::jsonb) result", [f.owner, cid, action, JSON.stringify(payload)]).then((row) => row.result);

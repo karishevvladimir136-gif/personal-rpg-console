@@ -9,6 +9,8 @@
 //   node scripts/sandbox-start.mjs --stop     stop the app and the sandbox database (data kept)
 //   node scripts/sandbox-start.mjs --reset    stop and delete the sandbox data (asks nothing; sandbox only)
 //   --no-browser   do not open the browser      --no-app   database only
+//   --prod         a production build (`next build`, then `next start`) instead of the dev server: much less memory
+//                  and no compile pauses during play (fix run after session 2); --no-build reuses the last build
 import { execFile as execFileCallback, spawn } from "node:child_process";
 import { randomBytes } from "node:crypto";
 import { cpSync, existsSync, mkdirSync, openSync, readFileSync, rmSync, writeFileSync } from "node:fs";
@@ -263,14 +265,24 @@ async function stopApp() {
   await pollUntil(async () => !(await portHasListener(APP_PORT)), 20000, 500);
 }
 
-async function startApp(env) {
+async function startApp(env, options = {}) {
   const next = join(root, "node_modules", "next", "dist", "bin", "next");
   if (!existsSync(next)) throw new SandboxError("Application packages are missing: run `pnpm install` in this checkout first.");
   const state = await appProbe();
   if (state === "ours") { console.log(`The sandbox app is already running at ${APP_URL}.`); return; }
   if (state === "other") throw new SandboxError(`Port ${APP_PORT} is used by another program. Close it, or set RPG_SANDBOX_APP_PORT to a free port, then retry.`);
   const log = openSync(join(sandbox, "app.log"), "a");
-  const child = spawn(process.execPath, [next, "dev", "--webpack", "--port", String(APP_PORT), "--hostname", "127.0.0.1"],
+  if (options.prod && options.build !== false) {
+    console.log("Building the app for production (two to five minutes)...");
+    try { writeFileSync(join(sandbox, "build.log"), await run(process.execPath, [next, "build"], { timeout: 15 * 60 * 1000, env })); }
+    catch (error) {
+      writeFileSync(join(sandbox, "build.log"), String(error?.stdout ?? "") + String(error?.stderr ?? error?.message ?? error));
+      throw new SandboxError("The production build failed. See .sandbox/build.log.");
+    }
+  }
+  if (options.prod && !existsSync(join(root, ".next", "BUILD_ID"))) throw new SandboxError("No production build yet: start once with --prod (without --no-build).");
+  const child = spawn(process.execPath, options.prod ? [next, "start", "--port", String(APP_PORT), "--hostname", "127.0.0.1"]
+    : [next, "dev", "--webpack", "--port", String(APP_PORT), "--hostname", "127.0.0.1"],
     { cwd: root, env, detached: true, stdio: ["ignore", log, log], windowsHide: true });
   child.unref();
   writeFileSync(join(sandbox, "app.pid"), String(child.pid));
@@ -320,7 +332,7 @@ async function start() {
     const keys = ["ANTHROPIC_API_KEY", "OPENAI_API_KEY"].filter((key) => env[key]);
     if (!fake && !keys.length) console.log("No ANTHROPIC_API_KEY or OPENAI_API_KEY in .env.local: turns will fail. Start with --fake to play on the stand-in DM.");
     if (fake) console.log("Playing on the stand-in DM: no model is contacted and nothing is paid.");
-    await startApp(env);
+    await startApp(env, { prod: flags.has("--prod"), build: !flags.has("--no-build") });
     if (!flags.has("--no-browser")) openBrowser(`${APP_URL}/campaigns`);
     console.log(`The sandbox is open at ${APP_URL}/campaigns (Supabase Studio: ${status.get("STUDIO_URL") || `http://127.0.0.1:${PORTS.studio}`}).`);
   } else console.log(`The sandbox database is ready at ${status.get("API_URL")}.`);
