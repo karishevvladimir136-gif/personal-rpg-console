@@ -30,6 +30,26 @@
       "settled": true,
       "finishedAt": "2026-10-20T18:16:36.495Z",
       "record": "docs/runs/real-replay-20261020-181635.jsonl"
+    },
+    {
+      "run": "20261020-181543-loop-opus+opus-live-21-live2d-lair",
+      "what": "check 1: the lair in «Opus пишет — Opus записывает» with both checks (4 of 5 turns; the fifth stopped by the run's guard)",
+      "startedAt": "2026-10-20T18:27:22.613Z",
+      "reservedUsd": 3,
+      "spentUsd": 1.9819,
+      "settled": true,
+      "finishedAt": "2026-10-20T18:27:22.623Z",
+      "record": "docs/runs/20261020-181543-loop-opus+opus-live-21-live2d-lair.jsonl"
+    },
+    {
+      "run": "real-replay-20261020-182723",
+      "what": "real replay: 1 turns × O on Fix run probes (seed a); voice live; craft live",
+      "startedAt": "2026-10-20T18:27:23.280Z",
+      "reservedUsd": 3,
+      "spentUsd": 1.5041,
+      "settled": true,
+      "finishedAt": "2026-10-20T18:29:27.992Z",
+      "record": "docs/runs/real-replay-20261020-182723.jsonl"
     }
   ]
 }
