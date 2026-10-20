@@ -174,14 +174,15 @@ export function counterLabel(entity: Profiled, key: string, language: unknown): 
   if (typeof stored === "string" && stored.trim()) return stored.trim();
   const slot = /^spell_slots_(\d)$/.exec(key);
   if (slot) return ru ? `Ячейки ${slot[1]} круга` : `Level ${slot[1]} slots`;
-  const pool = POOL_LABELS[key];
+  const pool = POOL_LABELS[key] ?? POOL_LABELS[key.replace(/^resource_/, "")];
   if (pool) return pool[ru ? 0 : 1];
   const text = key.replace(/^resource_/, "").replaceAll(/[_-]+/g, " ").trim();
   return text ? text.charAt(0).toLocaleUpperCase() + text.slice(1) : key;
 }
 /** Whether a counter has a real label (stored, a known pool or a slot level) — the rest are marked for renaming. */
 export function counterLabelled(entity: Profiled, key: string): boolean {
-  return !!storedLabels(entity)[key] || /^spell_slots_\d$/.test(key) || key in POOL_LABELS;
+  // A record's «resource_stress» is the known pool «stress» (the noir sample's «?» on Stress).
+  return !!storedLabels(entity)[key] || /^spell_slots_\d$/.test(key) || key in POOL_LABELS || key.replace(/^resource_/, "") in POOL_LABELS;
 }
 /** A counter that is really a thing (potions) — the `resource` tool refuses it and the migration turns it into items. */
 export function potionCounter(key: string, label = ""): boolean {

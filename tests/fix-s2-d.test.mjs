@@ -331,3 +331,12 @@ test("D migration 78: the owner's saves carry an item's detail (an owner move's 
     await assert.rejects(f.mutation("entity.save", c.cid, { id: c.hero, ...fields, character_sheet: { ...sheet, level: 99 } }, saved.revision));
   } finally { await c.f.db.close(); }
 });
+
+test("D: a «resource_»-prefixed counter of a known pool has its name (the noir sample's Stress); the Holdings screen gets the game time", async () => {
+  const { counterLabel: label, counterLabelled: labelled } = await import("../src/lib/inventory/model.ts");
+  assert.equal(label({ public_profile: {} }, "resource_stress", "ru"), "Стресс");
+  assert.equal(labelled({ public_profile: {} }, "resource_stress"), true);
+  assert.equal(labelled({ public_profile: {} }, "resource_mystery"), false);
+  const { readFileSync } = await import("node:fs");
+  assert.match(readFileSync(new URL("../src/components/registry/routes.tsx", import.meta.url), "utf8"), /<RegistryHoldings data=\{data\} play=\{runtime\.play\} \/>/);
+});

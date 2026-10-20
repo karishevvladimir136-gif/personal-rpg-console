@@ -84,7 +84,9 @@ export function PicturesRoute() {
 }
 
 export function HoldingsRoute() {
-  return <RecordBoundary>{(data) => <RegistryHoldings data={data} />}</RecordBoundary>;
+  // Fix run D: the owner's moves write their history with the game time (`play`), not 0.
+  const runtime = useGameplayRuntime();
+  return <RecordBoundary>{(data) => <RegistryHoldings data={data} play={runtime.play} />}</RecordBoundary>;
 }
 
 export function SettingsRoute() {
