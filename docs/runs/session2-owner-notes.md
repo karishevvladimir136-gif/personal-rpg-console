@@ -815,3 +815,15 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     after a roll narrates that roll's outcome first; a check before finish_turn — every hero attack, spell or check
     rolled this turn is told in the narration (a hint back to the DM if not); the aside never carries an event the
     story did not show.
+
+61. **«Режь ему глотку, пока держу» became two crits and a live man** (owner, 19:17: «по Сому пришло два удара, 10 и
+    12 — он что, железобетонный? Как он может пережить два крита? …ход написан плохо»). The DM ran the order as
+    ordinary attacks: the bound, gagged, paralysed sergeant took two automatic crits (12 and 10 damage) and is «ранен»
+    — RAW for a 5e Veteran (58 HP), but the story told the blows as deadly («в бок под рёбра… входит глубоко»,
+    «тёмное толчками течёт»). Two faults: (a) the narration of a wound does not match the hit points left — a 10-point
+    hit on a 58-HP man is told like a killing stab; (b) the order was an execution of a helpless man, not a combat
+    exchange, and 5e (2014) has no coup-de-grâce rule, so the DM fell back to HP. Do: the guide says wounds are told in
+    proportion to the HP left (light / bloodied / badly hurt / down); owner decision pending on a house rule —
+    «Добивание беспомощного: если цель без сознания или парализована и не может сопротивляться, а у нападающего есть
+    время и клинок, удар в горло или сердце убивает сразу, без бросков»; the turn as a whole also lost the hero's
+    lightning (item 60).
