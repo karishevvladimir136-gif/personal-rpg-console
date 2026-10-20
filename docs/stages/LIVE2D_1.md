@@ -121,6 +121,13 @@ A round's independent rolls go in one message (one request per round where possi
   (the inventory records from the fix run's stage D);
 - phone layout: the map pans and zooms, the ribbon scrolls.
 
+**Optional rules module (from the Friends & Fables split — the engine applies mechanics, the AI narrates):** when the
+campaign's system describes them, the server applies to rolls what is pure arithmetic — a condition's advantage or
+disadvantage (blinded, prone, paralysed → auto-crit within 5 ft), resistance / immunity / vulnerability on damage, the
+crit's doubled dice, cover's AC bonus — and shows each applied rule on the card. The DM still decides what happens; the
+code does the sums. Off by default for systems without such descriptions; on for 5e campaigns. This removes the class
+of errors session 2 showed (a doubled modifier, three rays rolled as one).
+
 **Combat speed**: the continuation after a roll runs a notch lower in depth (the plan is already made); measure seconds
 per combat turn before and after on the probe fights.
 
