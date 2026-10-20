@@ -47,6 +47,10 @@ sessions, «meanwhile» through in-world channels (item 81).
 
 - **DM mode for session 3: «пишет — записывает», Opus writes and Opus records** (00:43), with the ledger checker (A6), unless the probes show worse records; Sonnet as the bookkeeper only if the probe table shows equal records.
 
+- **The hidden layer is the DM's own** (2026-10-20 08:35): the owner does not write «Тайны (видит только ведущий)» and does
+  not read the layer — «на Шве ведущий сам придумал и сам всё спрятал, в этом была сама идея». The field stays for an
+  optional one-line steer («пусть за этим стоит культ»), never the truth itself. The owner's view of the layer stays off.
+
 ## Still open for the owner
 
-The gallery details (item 80 — going ahead as proposed unless he objects); whether he wants to see the DM's hidden layer.
+The gallery details (item 80 — going ahead as proposed unless he objects).
