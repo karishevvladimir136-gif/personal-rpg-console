@@ -815,6 +815,11 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     after a roll narrates that roll's outcome first; a check before finish_turn — every hero attack, spell or check
     rolled this turn is told in the narration (a hint back to the DM if not); the aside never carries an event the
     story did not show.
+    Recurs after the guide's «каждый бросок — в рассказе» line (20:50, owner: «нет описания, где в морду коня
+    влетает снаряд»): the chase turn's text ends before the hero's Fire Bolt at Dirk's horse and the continuation starts
+    with «Вспышка гаснет…» — the hit itself is untold; the aside says «попал (23), 8 урона». And this hero attack showed
+    no roll card at all (only the Animal Handling check did). So a prompt line is not enough: the continuation rule and
+    the pre-finish check must be in code; the hero's attack rolls must always be cards (or timeline lines, item 63).
 
 61. **«Режь ему глотку, пока держу» became two crits and a live man** (owner, 19:17: «по Сому пришло два удара, 10 и
     12 — он что, железобетонный? Как он может пережить два крита? …ход написан плохо»). The DM ran the order as
