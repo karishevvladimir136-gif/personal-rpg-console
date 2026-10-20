@@ -22,6 +22,7 @@ import { effortLabel } from "@/lib/ui/effort";
 import { useChrome, useDmSettings, type CampaignScreenId } from "./shell";
 import { useAutopilot } from "./visual-autopilot";
 import { Panel, Plate, registry as r, Segmented, Switch, useCopy, useSubjectImage, type SubjectRef } from "./primitives";
+import { OwnerSecretsPanel } from "./owner-secrets";
 import s from "./settings.module.css";
 
 type ProviderInfo = { fal: { configured: boolean; persistence: boolean }; openai?: { configured: boolean } } | null;
@@ -392,6 +393,16 @@ export function RegistrySettings({ data, more, preview }: {
                     onChange={(value) => void saveDepth({ options: { continuation: value as DmSettings["options"]["continuation"] } })} />
                   <p className={r.note} style={{ margin: 0 }}>{c("Запрос после броска думает так же глубоко, как первый, или на ступень меньше. На пробах «на ступень легче» дважды из трёх раз оставил итог боя без рассказа, поэтому по умолчанию — как основной запрос.",
                     "The request after a roll thinks as deep as the first one, or one notch less. On the probes «one notch lighter» twice in three left the fight's outcome untold, so the default is «as the first request».")}</p>
+                  {data.settings.values.language === "ru" && (
+                    <>
+                      <span className={r.eyebrow}>{c("Инструкции ведущего", "DM instructions")}</span>
+                      <Segmented label={c("Инструкции ведущего", "DM instructions")} value={current?.options.instructions ?? "en"} disabled={saving || !current || !!chrome?.href}
+                        options={[{ value: "ru", label: c("русские", "Russian") }, { value: "en", label: c("английские", "English") }]}
+                        onChange={(value) => void saveDepth({ options: { instructions: value as DmSettings["options"]["instructions"] } })} />
+                      <p className={r.note} style={{ margin: 0 }}>{c("На каком языке ведущий читает свои правила. Русские написаны по-русски, а не переводом: меньше калек в речи. Учёт записей остаётся прежним.",
+                        "The language of the DM's own rules. The Russian ones are written in Russian, not translated: fewer calques in speech. The bookkeeping stays the same.")}</p>
+                    </>
+                  )}
                   <span className={r.eyebrow}>{c("Память ведущего", "DM memory")}</span>
                   <Segmented label={c("Память ведущего", "DM memory")} value={current?.options.memory ?? "compact"} disabled={saving || !current || !!chrome?.href}
                     options={[{ value: "compact", label: c("компактно", "compact") }, { value: "standard", label: c("стандарт", "standard") }, { value: "wide", label: c("широко", "wide") }]}
@@ -404,6 +415,7 @@ export function RegistrySettings({ data, more, preview }: {
               </div>
             </div>
           </Panel>
+          <OwnerSecretsPanel campaignId={data.campaign.id} preview={!!preview} />
           <Panel eyebrow={c("Правила и пределы кампании", "Rules and campaign limits")}>
             <div className={r.stack}>
               <div className={r.row}>

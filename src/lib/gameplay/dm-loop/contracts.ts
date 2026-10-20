@@ -125,6 +125,7 @@ export type DmLoopDiagnostic =
   | { kind: "cut_continued"; toolCalls: number }
   /** Fix run A6: the ledger checker's pass (the events without a record it found) and what stayed unrecorded. */
   | { kind: "cut_plain_retry" }
+  | { kind: "rolls_checked"; rolls: number; untold: number; costUsd: number; error: string | null }
   | { kind: "ledger_checked"; misses: string[]; costUsd: number; error: string | null }
   | { kind: "ledger_unrecorded"; chips: string[] }
   /** Fix run A3: a turn over $1, over four requests or over 32 000 output tokens, with its causes. */

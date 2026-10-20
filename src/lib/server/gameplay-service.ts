@@ -26,7 +26,9 @@ import { appendObservations } from "../gameplay/dm-loop/observations";
 import { saveTurnSnapshot } from "./turn-snapshots";
 import { scheduleQuotableCheck } from "./voice/quotable-check";
 import { checkLedger } from "../gameplay/dm-loop/ledger-check";
+import { checkRollsTold } from "../gameplay/dm-loop/roll-check";
 import { prepSchedulable, schedulePrep } from "./hidden-layer-prep";
+import { scheduleFightFold } from "./note-fold";
 import { markBoostUsed, readDmSettings, type DmSettings } from "./dm-settings";
 import { dossierService } from "./dossier";
 import { digestOnEntry, entryCheckDue } from "./session-digest";
@@ -151,7 +153,9 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
     bookkeeperModel: (selection: BookkeeperSelection) => createDmModel(selection),
     // Fix run A6: on «пишет — записывает», a cheap model compares the story with the records before the commit.
     ledgerCheck: (input) => checkLedger(process.env.ANTHROPIC_API_KEY ?? "", input),
-    afterCommit: async ({ operationId, playerLikes, ownerRule, boostUsed, playMinutes, input, source, narration }) => {
+    // Fix run B3 (item 60): every roll the player saw is told (both modes).
+    rollCheck: (input) => checkRollsTold(process.env.ANTHROPIC_API_KEY ?? "", input),
+    afterCommit: async ({ operationId, playerLikes, ownerRule, combatEnded, boostUsed, playMinutes, input, source, narration }) => {
       // Polish 3 §4: the state before this turn, with the campaign's rules of the moment, for the replay tool (never fails the turn).
       if (source && input) {
         const current = await settings().catch(() => null);
@@ -166,6 +170,8 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
       // Fix run B2: an owner's out-of-game rule is pinned (the highest authority, never dropped by a budget); a repeat is not.
       if (ownerRule && !(source?.snapshot.campaign.pinned_facts ?? []).some((pin) => pin.text.trim() === ownerRule.trim())) await dossier.pin(ownerRule).catch(() => {});
       if (boostUsed) await markBoostUsed(campaignId);
+      // Fix run B2 (2): a fight's notes fold into a line each, in the background.
+      if (combatEnded) scheduleFightFold(ownerId, campaignId, operationId);
       // Polish item 21: the campaign's play time counts real minutes of play.
       if (playMinutes > 0) await dossier.playTime(playMinutes).catch(() => {});
       // The World Engine mirror of the dossier's plans (a usable World Lab basis).

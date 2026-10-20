@@ -37,4 +37,5 @@ export const previewDmView: DmView = {
   ],
   craftCards: ["Три улики на каждую тайну", "Открытые вопросы остаются открытыми"],
   pinnedFacts: ["Сложность броска показывать игроку до броска."],
+  memoryGauge: { used: 3_300, budget: 3_500, notes: 41, closed: 9, dropped: 5, hiddenLayer: true },
 };

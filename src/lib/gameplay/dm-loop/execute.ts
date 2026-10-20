@@ -314,6 +314,10 @@ function bundledDamage(shadow: ShadowState, args: Args, ctx: ToolContext, roll: 
       applied = `; ${target.name} ${before} → ${after}/${max}`;
       const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
       if (controlled.has(target.id)) player = chip.hp(ctx.language, target.name, isHero(target), before, after, max, str(args.reason));
+      // Fix run B3 («Твой момент» never fired in session 2): the party's blow that drops a foe is the player's moment —
+      // the result says so, so the DM hands the finishing description over instead of writing it.
+      if (after === 0 && before > 0 && roll.actor && controlled.has(roll.actor.id) && !controlled.has(target.id))
+        value.playerMoment = `${target.name} drops: the player's moment. Narrate up to the blow, stop before the finishing description, ask the player how they do it («Как ты это делаешь?»), and set playerMoment in finish_turn.`;
     }
   }
   return { value, summary: `damage ${str(args.damage)}${critical ? " doubled" : ""}: ${total}${applied}`, player };
@@ -588,6 +592,13 @@ function linkPlaceToQuests(shadow: ShadowState, placeId: string, questRefs: unkn
   }
 }
 function upsertPlace(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
+  // Fix run B3 (item 72): a person's name is never a place («у Тарра» became a location in session 2).
+  if (args.name !== undefined) {
+    const name = str(args.name).trim().toLocaleLowerCase();
+    const person = shadow.snapshot.entities.find((row) => row.kind !== "faction" && row.name.trim().toLocaleLowerCase() === name);
+    reject(!person, `«${str(args.name)}» is a person's name (${person?.name ?? ""}), not a place.`,
+      "Name the place itself (the house, the workshop, the camp of that person), or record the person with upsert_character.");
+  }
   if (args.ref !== undefined) {
     const ref = shadow.resolve(args.ref, ["locations"], "ref");
     const place = shadow.location(ref.id)!;

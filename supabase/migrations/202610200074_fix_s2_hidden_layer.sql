@@ -20,10 +20,17 @@ revoke all on rpg_private.dm_secrets from public,anon,authenticated;
 
 create function public.rpg_dm_secrets(p_owner_id uuid,p_scope text,p_subject uuid,p_action text,p_payload jsonb default '{}')
 returns jsonb language plpgsql security definer set search_path='' as $$
-declare row_value rpg_private.dm_secrets%rowtype; begin
+declare row_value rpg_private.dm_secrets%rowtype; world_title text; begin
  if p_owner_id is null or not exists(select 1 from rpg_private.owner_registry where user_id=p_owner_id)
    then raise exception 'rpg_forbidden' using errcode='42501'; end if;
- perform rpg_private.assert(p_scope in ('campaign','world') and p_subject is not null and p_action in ('read','save'));
+ perform rpg_private.assert(p_scope in ('campaign','world','campaign_world') and p_subject is not null and p_action in ('read','save'));
+ -- 'campaign_world': the world this campaign is bound to (the owner's campaign screen edits its world's secrets).
+ if p_scope='campaign_world' then
+   if not exists(select 1 from public.rpg_campaigns c where c.id=p_subject) then raise exception 'rpg_not_found'; end if;
+   p_subject:=nullif(rpg_private.adventure_binding(p_subject)->>'worldId','')::uuid;
+   if p_subject is null then return jsonb_build_object('scope','world','subjectId',null,'title',null,'body','','revision',0,'updatedAt',null); end if;
+   p_scope:='world';
+ end if;
  if p_scope='campaign' and not exists(select 1 from public.rpg_campaigns c where c.id=p_subject) then raise exception 'rpg_not_found'; end if;
  if p_scope='world' and not exists(select 1 from rpg_private.adventure_world_versions w where w.id=p_subject) then raise exception 'rpg_not_found'; end if;
  if p_action='save' then
@@ -37,7 +44,8 @@ declare row_value rpg_private.dm_secrets%rowtype; begin
    perform rpg_private.fields(p_payload,'{}');
  end if;
  select * into row_value from rpg_private.dm_secrets s where s.scope=p_scope and s.subject_id=p_subject;
- return jsonb_build_object('scope',p_scope,'subjectId',p_subject,'body',coalesce(row_value.body,''),'revision',coalesce(row_value.revision,0),
+ if p_scope='world' then select w.title into world_title from rpg_private.adventure_world_versions w where w.id=p_subject order by w.version desc limit 1; end if;
+ return jsonb_build_object('scope',p_scope,'subjectId',p_subject,'title',world_title,'body',coalesce(row_value.body,''),'revision',coalesce(row_value.revision,0),
    'updatedAt',row_value.updated_at);
 end $$;
 revoke all on function public.rpg_dm_secrets(uuid,text,uuid,text,jsonb) from public,anon,authenticated;

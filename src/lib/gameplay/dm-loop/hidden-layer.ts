@@ -63,6 +63,7 @@ export function parsePrep(raw: string, language: "ru" | "en"): HiddenLayerPrep |
   }).filter((row) => row.key && row.label);
   const wonder = value.wonder && typeof value.wonder === "object" ? value.wonder as Record<string, unknown> : {};
   const clues = list(value.clues).slice(0, 6).map((row) => str(row, 300)).filter(Boolean);
+  const sentence = (text: string) => (/[.!?…»]$/.test(text) ? text : `${text}.`);
   const ru = language === "ru";
   const lines = [
     ru ? "Тайный слой кампании (подготовка ведущего; игрок этого не видит; правда открывается по уликам, никто не объясняет её целиком):"
@@ -71,7 +72,7 @@ export function parsePrep(raw: string, language: "ru" | "en"): HiddenLayerPrep |
     factions.length ? `${ru ? "Фракции и их скрытые цели" : "Factions and their hidden aims"}:\n${factions.map((row) => `- ${row.name}: ${row.aim}`).join("\n")}` : "",
     secrets.length ? `${ru ? "Тайны (не привязаны к месту)" : "Secrets (not tied to a place)"}:\n${secrets.map((row) => `- ${row}`).join("\n")}` : "",
     clocks.length ? `${ru ? "Часы" : "Clocks"}:\n${clocks.map((row) => `- ${row.key}: ${row.label} (${ru ? "делений" : "segments"} ${row.segments}; ${ru ? "когда заполнятся" : "when full"}: ${row.trigger || "—"})`).join("\n")}` : "",
-    str(wonder.thing, 300) ? `${ru ? "Чудо" : "The wonder"}: ${str(wonder.thing, 300)}. ${ru ? "История" : "Its history"}: ${str(wonder.history, 500)}. ${ru ? "Открытый вопрос" : "The open question"}: ${str(wonder.question, 300)}` : "",
+    str(wonder.thing, 300) ? `${ru ? "Чудо" : "The wonder"}: ${sentence(str(wonder.thing, 300))} ${ru ? "История" : "Its history"}: ${sentence(str(wonder.history, 500))} ${ru ? "Открытый вопрос" : "The open question"}: ${str(wonder.question, 300)}` : "",
     clues.length ? `${ru ? "Улики к правде" : "Clues to the truth"}:\n${clues.map((row) => `- ${row}`).join("\n")}` : "",
   ].filter(Boolean);
   let text = lines.join("\n");

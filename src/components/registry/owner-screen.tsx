@@ -106,6 +106,21 @@ export function DmViewPanel({ campaignId, preview }: { campaignId: string; previ
           </details>
         );
       })}
+      {view.memoryGauge && (() => {
+        const g = view.memoryGauge;
+        const share = g.budget ? Math.min(100, Math.round((g.used / g.budget) * 100)) : 0;
+        return (
+          <div className={o.layer}>
+            <div className={o.facts}>
+              <span className={o.layerName}>{c("Память ведущего: тайные заметки", "DM memory: private notes")}</span>
+              <span className={o.num}>{Math.round(g.used / 100) / 10}k / {Math.round(g.budget / 1000)}k</span>
+              <span className={o.bar} aria-hidden="true"><span className={`${o.barFill} ${g.dropped ? o.barOver : ""}`} style={{ display: "block", width: `${share}%` }} /></span>
+            </div>
+            <p className={o.help}>{c(`Заметок ${g.notes}, из них закрытых ${g.closed}; не поместилось в бюджет: ${g.dropped} (сначала уходят закрытые — их находит recall). Тайный слой кампании: ${g.hiddenLayer ? "есть" : "ещё нет"}.`,
+              `${g.notes} notes, ${g.closed} closed; left out by the budget: ${g.dropped} (closed ones go first — recall finds them). The campaign's hidden layer: ${g.hiddenLayer ? "present" : "not yet"}.`)}</p>
+          </div>
+        );
+      })()}
       <div className={r.stack}>
         <span className={r.eyebrow}>{c("Карточки мастерства на этот ход", "DM Craft cards for this turn")}</span>
         <span>{view.craftCards.length ? view.craftCards.join(" · ") : c("нет", "none")}</span>

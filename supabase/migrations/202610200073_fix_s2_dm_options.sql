@@ -62,7 +62,8 @@ revoke all on function rpg_private.runtime_source_before_dm_options(uuid,uuid,te
 
 -- A3: the public turn's stats name why a turn over $1 or four requests was expensive (the diagnostic's
 -- causes are engineering words — «rolls not bundled», «deep thinking» — never story content).
--- A6: the ledger checker's chips («не записано: …», built from the narration the player read) and its cost,
+-- A6: the ledger checker's chips («не записано: …», built from the narration the player read) and its cost (and the
+-- roll check's, B3),
 -- which joins the turn's cost (not its requests: those count the DM's own calls).
 alter function rpg_private.runtime_public_turn(rpg_private.turns) rename to runtime_public_turn_before_fix_s2;
 create function rpg_private.runtime_public_turn(t rpg_private.turns)
@@ -80,7 +81,7 @@ declare result jsonb:=rpg_private.runtime_public_turn_before_fix_s2(t); causes j
      where d->>'kind'='ledger_unrecorded' and jsonb_typeof(d->'chips')='array' limit 1;
    if chips is not null then result:=jsonb_set(result,'{stats,unrecorded}',chips); end if;
    select sum((d->>'costUsd')::numeric) into checker from jsonb_array_elements(coalesce(t.checkpoint#>'{dmLoop,diagnostics}','[]'::jsonb)) d
-     where d->>'kind'='ledger_checked' and jsonb_typeof(d->'costUsd')='number';
+     where d->>'kind' in ('ledger_checked','rolls_checked') and jsonb_typeof(d->'costUsd')='number';
    if checker>0 then
      result:=jsonb_set(result,'{stats,checkerUsd}',to_jsonb(checker));
      result:=jsonb_set(result,'{stats,costUsd}',to_jsonb(coalesce((result#>>'{stats,costUsd}')::numeric,0)+checker));

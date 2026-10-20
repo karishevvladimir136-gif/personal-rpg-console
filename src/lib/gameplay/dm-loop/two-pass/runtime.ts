@@ -29,6 +29,7 @@ import { DmModelError } from "../../../server/dm/model/contracts.ts";
 import { dmModelSpec, dmUsageCost } from "../../../model-runtime/dm-models.ts";
 import { buildDmLoopContext, instructionsRu, suspectedLiteralLeaks } from "../context.ts";
 import { NUDGES_RU } from "../roles-ru.ts";
+import { untoldRollsMessage, visibleRolls } from "../roll-check.ts";
 import { advanceLedger, parseLedger, serializeLedger } from "../ledger.ts";
 import { advanceMetrics, parseMetrics, serializeMetrics } from "../metrics.ts";
 import { chooseDepth, lowerEffort, parseDepthRange, parseDepthState, tensionSignals } from "../depth.ts";
@@ -42,7 +43,7 @@ import { dmLoopTools } from "../tools.ts";
 import type { DmSplit } from "../settings.ts";
 import { DM_LOOP_RUNTIME, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopMeta, type DmLoopObservation,
   type DmLoopPin, type DmLoopReceipt, type DmLoopUsageEntry } from "../contracts.ts";
-import { continuation, dmOutputCap, executeDmLoopTurn, joinText, leaseHeartbeat, narrationNames, plainCutMessage, retriableRejection, retryClaimable, type DmLoopDependencies } from "../loop.ts";
+import { combatEnded, continuation, dmOutputCap, executeDmLoopTurn, joinText, leaseHeartbeat, narrationNames, plainCutMessage, retriableRejection, retryClaimable, type DmLoopDependencies } from "../loop.ts";
 
 /** Fix run A6: what the writer is sent after a request the output cap cut (the loop's CUT_BY_CAP, with the ledger). */
 export const WRITER_CUT_BY_CAP = "Your last message was cut off by the output limit. Continue exactly where it stopped — do not repeat what is already written — finish the narration briefly, then close with the ledger. Keep your thinking short.";
@@ -461,6 +462,22 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
             await persist("generating");
             continue;
           }
+          // Fix run B3 (item 60): every roll the player saw is told — checked in code before the bookkeeper; one
+          // continuation (no new ledger) when the story skipped one.
+          if (deps.rollCheck && !asked("rolls_checked") && writerRequests + 1 < limits.modelRequestsPerTurn) {
+            const rolls = visibleRolls(loop.receipts);
+            if (rolls.length) {
+              const check = await deps.rollCheck({ narration: splitLedger(soFar).narration, rolls: rolls.map((roll) => roll.line), language })
+                .catch((error: unknown) => ({ untold: [] as number[], costUsdMicros: 0, error: String((error as Error)?.message ?? error).slice(0, 120) }));
+              diagnostic({ kind: "rolls_checked", rolls: rolls.length, untold: check.untold.length, costUsd: check.costUsdMicros / 1_000_000, error: check.error });
+              await persist("generating");
+              if (check.untold.length) {
+                loop.transcript.push({ role: "user", text: untoldRollsMessage(instructionsRu(source) ? "ru" : "en", check.untold.map((n) => rolls[n - 1].line), "writer") });
+                await persist("generating");
+                continue;
+              }
+            }
+          }
           break;
         }
       }
@@ -630,7 +647,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
         .map((turn) => Date.parse(turn.updated_at)).filter((ms) => Number.isFinite(ms));
       const since = previous.length ? Math.max(...previous) : Date.parse(claim.turn.public.created_at) || Date.now();
       const playMinutes = Math.max(1, Math.min(30, Math.round((Date.now() - since) / 60000)));
-      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, ownerRule: loop.meta?.ownerRule ?? null, boostUsed: !!pin.depth?.boosted, playMinutes, input, source: claim.source, narration }); }
+      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, ownerRule: loop.meta?.ownerRule ?? null, combatEnded: combatEnded(loop.receipts), boostUsed: !!pin.depth?.boosted, playMinutes, input, source: claim.source, narration }); }
       catch { /* a note or a flag never fails a committed turn */ }
     }
     return result;

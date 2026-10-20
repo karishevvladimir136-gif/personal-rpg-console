@@ -12,6 +12,27 @@ import { readFileSync } from "node:fs";
 
 const bootstrapInstructions = readFileSync(new URL("../src/lib/server/adventure-bootstrap-provider.ts", import.meta.url), "utf8");
 
+import { randomUUID } from "node:crypto";
+import { createScriptedDmModel } from "../src/lib/gameplay/dm-loop/scripted-model.ts";
+import { runCampaignTurn, resumeCampaignTurn, bookkeeperOf } from "../src/lib/gameplay/dm-loop/two-pass/index.ts";
+
+const OPUS = { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "high" };
+const LEDGER = "\n<ledger>\nвремя — 5 минут\nсцена — quiet; напряжение дальше: calm\n</ledger>";
+async function split(c) {
+  const current = await c.settings.read();
+  return c.settings.save({ expectedRevision: current.revision, runtime: "dm-loop-v1", dmTurn: OPUS, split: { writer: OPUS, bookkeeper: OPUS } });
+}
+async function campaignTurn(c, text, writerRounds, bookkeeperRounds, options = {}) {
+  const writer = createScriptedDmModel(writerRounds, { providerId: "anthropic", modelId: "claude-opus-5-5" });
+  const bookkeeper = createScriptedDmModel(bookkeeperRounds, { providerId: "anthropic", modelId: "claude-opus-5-5" });
+  const current = await c.settings.read();
+  const deps = { ...(await c.deps(writer, options.deps ?? {})), split: current.split, bookkeeper: bookkeeperOf(current.split), bookkeeperModel: () => bookkeeper };
+  const input = await c.input(text);
+  let result = await runCampaignTurn(input, deps);
+  for (let n = 0; result.status === "awaiting_confirmation" && n < 4; n++)
+    result = await resumeCampaignTurn({ commandId: randomUUID(), campaignId: c.cid, operationId: input.operationId, timeline: input.timeline, action: "continue", checkId: null }, deps);
+  return { input, result, writer, bookkeeper };
+}
 const finish = () => ({ name: "finish_turn", arguments: { sceneKinds: ["quiet"], spotlight: [], playerMoment: false, nextTension: "calm" } });
 const time = (minutes) => ({ name: "advance_time", arguments: { minutes, reason: "время идёт" } });
 const note = (key, value) => ({ name: "note_world", arguments: { kind: "fact", key, operation: "set", value } });
@@ -214,4 +235,107 @@ test("B3: one rest call refills the rest-based counters — the named ones, and 
     const receipt = (await c.row(long.input.operationId)).checkpoint.dmLoop.receipts.find((r) => r.call.name === "rest");
     assert.match(receipt.result.summary, /restored .*spell_slots_1 0→3/);
   } finally { await c.f.db.close(); }
+});
+
+test("B3 (item 60): a roll the player saw but the story did not tell gets one continuation, in both modes; a told one gets none", async () => {
+  const { parseUntold, untoldRollsMessage, visibleRolls } = await import("../src/lib/gameplay/dm-loop/roll-check.ts");
+  assert.deepEqual(parseUntold('{"untold":[2, 2, 9, "1"]}', 3), [1, 2]);
+  assert.deepEqual(parseUntold("нет", 3), []);
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const seen = [];
+    const rollCheck = async (input) => { seen.push(input); return { untold: seen.length === 1 ? [1] : [], costUsdMicros: 200, error: null }; };
+    c.forceDice([15]);
+    const played = await c.turn("Бью молнией в окно.", [
+      { text: "Ты складываешь пальцы для молнии. ", toolCalls: [{ name: "roll", arguments: { formula: "1d20+5", reason: "молния в окно", actorRef: c.hero, visibility: "player", dc: 12 } }] },
+      { text: "Гвоздь бежит на свет вспышки.", toolCalls: [time(1), finish()] },
+      { text: "Молния бьёт Серого в плечо — он отлетает от окна.", toolCalls: [finish()] },
+    ], { deps: { rollCheck } });
+    assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
+    assert.equal(seen.length, 1, "checked once");
+    assert.equal(seen[0].rolls.length, 1);
+    assert.match(played.model.requests[2].messages.at(-1).text, /^Эти броски игрок видел, а в рассказе их исхода нет|^The player saw these rolls/);
+    assert.match(played.result.narration, /Молния бьёт Серого в плечо/);
+    const kinds = (await c.row(played.input.operationId)).checkpoint.dmLoop.diagnostics.filter((d) => d.kind === "rolls_checked");
+    assert.deepEqual(kinds.map((d) => d.untold), [1]);
+    // The two-pass writer: the same check before the bookkeeper; the continuation adds no new ledger.
+    await split(c);
+    seen.length = 0;
+    const writer = await campaignTurn(c, "Стреляю в коня Дирка.", [
+      { text: "Ты вскидываешь руку. ", toolCalls: [{ name: "roll", arguments: { formula: "1d20+5", reason: "огненный снаряд в коня", actorRef: c.hero, visibility: "player", dc: 12 } }] },
+      { text: "Вспышка гаснет." + LEDGER },
+      { text: " Снаряд влетает коню в морду, и тот встаёт на дыбы." },
+    ], [{ text: "", toolCalls: [time(), finish()] }], { deps: { rollCheck } });
+    assert.equal(writer.result.status, "committed", JSON.stringify(c.errors));
+    assert.match(writer.writer.requests[2].messages.at(-1).text, /Новая ведомость не нужна|No new ledger is needed/);
+    assert.match((await c.row(writer.input.operationId)).narration, /Снаряд влетает коню в морду/);
+    assert.ok(!(await c.row(writer.input.operationId)).narration.includes("<ledger>"));
+    void visibleRolls; void untoldRollsMessage;
+  } finally { await c.f.db.close(); }
+});
+
+test("B3 (item 72): a person's name is refused as a place's name; the place itself is accepted", async () => {
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const met = await c.turn("Встречаю Тарра.", [{ text: "Тарр кивает. ", toolCalls: [
+      { name: "upsert_character", arguments: { localKey: "tarr", name: "Тарр", kind: "npc", present: true, description: "Скупщик." } }, time(1), finish()] }]);
+    assert.equal(met.result.status, "committed", JSON.stringify(c.errors));
+    const played = await c.turn("Иду к Тарру.", [{ text: "Ты идёшь к лавке. ", toolCalls: [
+      { name: "upsert_place", arguments: { name: "Тарр", description: "где живёт Тарр" } },
+      { name: "upsert_place", arguments: { name: "Лавка Тарра", description: "лавка у пристани" } }, time(5), finish()] }]);
+    const receipts = (await c.row(played.input.operationId)).checkpoint.dmLoop.receipts.filter((r) => r.call.name === "upsert_place");
+    assert.equal(receipts[0].result.ok, false);
+    assert.match(receipts[0].result.reason, /is a person's name \(Тарр\), not a place/);
+    assert.equal(receipts[1].result.ok, true);
+  } finally { await c.f.db.close(); }
+});
+
+test("B3 («Твой момент»): the hero's blow that drops a foe tells the DM it is the player's moment, and the moment is accepted", async () => {
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const met = await c.turn("На меня бросается разбойник.", [{ text: "Разбойник с ножом. ", toolCalls: [
+      { name: "upsert_character", arguments: { localKey: "thug", name: "Разбойник", kind: "npc", present: true, hp: 4, maxHp: 9 } }, time(1), finish()] }]);
+    assert.equal(met.result.status, "committed", JSON.stringify(c.errors));
+    const thug = (await c.state()).entities.find((e) => e.name === "Разбойник");
+    c.forceDice([15, 6]);
+    const played = await c.turn("Добиваю его посохом.", [
+      { text: "Ты замахиваешься. ", toolCalls: [{ name: "roll", arguments: { formula: "1d20+3", reason: "удар посохом", actorRef: c.hero, visibility: "player", kind: "attack", dc: 12, damage: "1d6+1", targetRef: thug.id } }] },
+      { text: "Посох идёт вниз — как ты это делаешь?", toolCalls: [time(1), { name: "finish_turn", arguments: { sceneKinds: ["combat"], spotlight: [], playerMoment: true, nextTension: "tense" } }] },
+    ]);
+    assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
+    const receipts = (await c.row(played.input.operationId)).checkpoint.dmLoop.receipts;
+    assert.match(receipts.find((r) => r.call.name === "roll").result.value.damage.playerMoment, /Разбойник drops: the player's moment/);
+    assert.equal(receipts.find((r) => r.call.name === "finish_turn").result.value.playerMoment, true);
+  } finally { await c.f.db.close(); }
+});
+
+test("B1: the approved craft cards «three clues per mystery» and «open questions stay open» are active for a new campaign's owner", async () => {
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const rows = await c.f.query(`select e.key, v.en->>'title' title from rpg_private.dm_craft_effective e
+      join rpg_private.dm_craft_versions v on v.owner_id=e.owner_id and v.key=e.key and v.id=e.active_version_id where e.owner_id=$1`, [c.owner]);
+    const titles = rows.map((row) => row.title ?? "").join(" | ");
+    assert.match(titles, /three clues per mystery/i, titles);
+    assert.ok(rows.some((row) => row.key === "open-questions-and-tics"), rows.map((row) => row.key).join(", "));
+    const world = (await c.f.one("select public.rpg_dm_secrets($1,'campaign_world',$2,'read','{}'::jsonb) r", [c.owner, c.cid])).r;
+    assert.equal(world.scope, "world", "the campaign's world (or none) is addressed through the campaign");
+  } finally { await c.f.db.close(); }
+});
+
+test("B2 (2): a fight's notes fold into a line each — only notes written during it, clocks kept, a fold open while any source is open", async () => {
+  const { fightNotes, foldWrites, parseFolds, proposeFolds } = await import("../src/lib/gameplay/dm-loop/note-fold.ts");
+  const { combatEnded } = await import("../src/lib/gameplay/dm-loop/loop.ts");
+  const state = { fact: { round_1: serializeNote("громила у двери", 900), round_2: serializeNote("часовой упал с крыши", 901), boss_fled: serializeNote("главарь ушёл к воде", 902),
+    old_debt: serializeNote("долг гильдии", 10), clock_deal: serializeNote("сделка маяка", 905) }, clock: { clock_deal: 2 } };
+  const notes = fightNotes(privateNotes(state), 1000);
+  assert.deepEqual(notes.map((n) => n.key).sort(), ["boss_fled", "clock_deal", "round_1", "round_2"], "the old debt is outside the fight; the clock itself stays");
+  const folds = parseFolds('{"folds":[{"keys":["fact:round_1","fact:round_2","fact:nope"],"line":"Бой у склада: часовой убит, громила ранен."},{"keys":["fact:boss_fled"],"line":"одна"}]}', notes);
+  assert.deepEqual(folds, [{ keys: [{ kind: "fact", key: "round_1" }, { kind: "fact", key: "round_2" }], line: "Бой у склада: часовой убит, громила ранен." }]);
+  const writes = foldWrites(folds, notes, "abcd1234", 1000, serializeNote);
+  assert.deepEqual(writes.remove, [{ kind: "fact", key: "round_1" }, { kind: "fact", key: "round_2" }]);
+  assert.deepEqual(parseNoteValue(writes.set[0].value), { text: "Бой у склада: часовой убит, громила ранен.", since: 900, until: null });
+  const fetcher = async () => new Response(JSON.stringify({ content: [{ type: "text", text: '{"folds":[]}' }], usage: { input_tokens: 500, output_tokens: 10 } }), { status: 200 });
+  assert.deepEqual((await proposeFolds("k", notes, "ru", { fetcher })).folds, []);
+  assert.equal(combatEnded([{ call: { name: "combat", arguments: { action: "end" } }, result: { ok: true } }]), true);
+  assert.equal(combatEnded([{ call: { name: "combat", arguments: { action: "start" } }, result: { ok: true } }]), false);
 });

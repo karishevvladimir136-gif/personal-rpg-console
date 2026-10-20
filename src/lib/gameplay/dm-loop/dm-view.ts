@@ -6,7 +6,7 @@
 // living dossier, the session's tail, «now») only when the owner opted in to see the DM's secrets.
 import type { TurnInput } from "../contracts.ts";
 import type { RuntimeSource } from "../server-contracts.ts";
-import { buildCouncilContext, buildDmLoopContext, estimateTokens } from "./context.ts";
+import { buildCouncilContext, buildDmLoopContext, estimateTokens, privateNotesGauge } from "./context.ts";
 import { parseDmOptions } from "./options.ts";
 
 export type DmViewLayer = { key: "howToDm" | "world" | "history" | "living" | "tail" | "now" | "council"; tokens: number; budgetTokens: number;
@@ -15,6 +15,8 @@ export type DmView = {
   turnNo: number | null; operationId: string; input: string; mode: string;
   language: "ru" | "en"; instructions: "ru" | "en"; memory: string; secretsVisible: boolean;
   totalTokens: number; layers: DmViewLayer[]; craftCards: string[]; pinnedFacts: string[];
+  /** Fix run B2 (4): the memory gauge — the private notes against their budget, how many are closed or were dropped. */
+  memoryGauge: { used: number; budget: number; notes: number; closed: number; dropped: number; hiddenLayer: boolean };
 };
 
 export function dmViewOf(source: RuntimeSource, input: TurnInput, turnNo: number | null = null): DmView {
@@ -42,5 +44,6 @@ export function dmViewOf(source: RuntimeSource, input: TurnInput, turnNo: number
     secretsVisible: options.secretsVisible, totalTokens: layers.reduce((total, layer) => total + layer.tokens, 0) + estimateTokens(context.user),
     layers, craftCards: context.craft.selected.map((card) => card.title),
     pinnedFacts: (source.snapshot.campaign.pinned_facts ?? []).map((pin) => pin.text),
+    memoryGauge: privateNotesGauge(source),
   };
 }

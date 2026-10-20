@@ -132,6 +132,37 @@
       "settled": true,
       "finishedAt": "2026-10-20T08:52:13.340Z",
       "record": "scripts/eval/fix-s2/ledger-cases.mjs (ledger-cases-20261020-085149)"
+    },
+    {
+      "run": "prep-probe-20261020-101619",
+      "what": "fix run B1: a fresh campaign's prep (the hidden layer) on Opus 5.5 at high",
+      "stage": "AB",
+      "startedAt": "2026-10-20T10:16:19.345Z",
+      "reservedUsd": 3,
+      "spentUsd": 0.4331,
+      "settled": true,
+      "finishedAt": "2026-10-20T10:17:29.890Z",
+      "record": "docs/runs/prep-probe-20261020-101619.json"
+    },
+    {
+      "run": "real-replay-20261020-101759",
+      "what": "real replay: 4 turns × O on Fix run B probes (seed b); voice live; craft live",
+      "stage": "AB",
+      "startedAt": "2026-10-20T10:17:59.880Z",
+      "reservedUsd": 12,
+      "spentUsd": 3.3218,
+      "settled": true,
+      "finishedAt": "2026-10-20T10:24:40.688Z",
+      "record": "docs/runs/real-replay-20261020-101759.jsonl"
+    },
+    {
+      "run": "real-replay-20261020-102644",
+      "what": "real replay: 4 turns × O on Fix run B probes (seed b); voice live; craft live",
+      "stage": "AB",
+      "startedAt": "2026-10-20T10:26:44.357Z",
+      "reservedUsd": 11.2724,
+      "spentUsd": 0,
+      "settled": false
     }
   ]
 }

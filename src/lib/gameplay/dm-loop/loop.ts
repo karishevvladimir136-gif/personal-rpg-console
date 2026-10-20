@@ -25,6 +25,7 @@ import { DmModelError } from "../../server/dm/model/contracts.ts";
 import { dmModelSpec, dmUsageCost } from "../../model-runtime/dm-models.ts";
 import { buildCouncilContext, buildDmLoopContext, COUNCIL_TOOLS, instructionsRu, suspectedLiteralLeaks } from "./context.ts";
 import { NUDGES_RU } from "./roles-ru.ts";
+import { untoldRollsMessage, visibleRolls, type RollCheckResult } from "./roll-check.ts";
 import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KEY } from "./time-words.ts";
 import { advanceLedger, parseLedger, serializeLedger } from "./ledger.ts";
 import { advanceMetrics, parseMetrics, serializeMetrics } from "./metrics.ts";
@@ -41,6 +42,8 @@ import { DM_LOOP_RUNTIME, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLo
 export { DM_LOOP_RUNTIME } from "./contracts.ts";
 
 export type DmLoopDependencies = {
+  /** Fix run B3 (item 60): the check that every roll the player saw is told (a cheap model; never fails the turn). */
+  rollCheck?: (input: { narration: string; rolls: string[]; language: "ru" | "en" }) => Promise<RollCheckResult>;
   store: TurnStore;
   memory: MemoryStore;
   summaries: SummaryProvider;
@@ -59,6 +62,8 @@ export type DmLoopDependencies = {
   afterCommit?: (event: { operationId: string; playerLikes: string | null; boostUsed: boolean;
     /** Fix run B2: the owner's standing out-of-game rule the DM recognised this turn (pinned as an owner fact). */
     ownerRule?: string | null;
+    /** Fix run B2 (2): the turn ended a fight (its notes fold in the background). */
+    combatEnded?: boolean;
     /** Polish item 21: real minutes of play this turn stands for (1–30), for the campaign's play time. */
     playMinutes: number;
     /** Polish 3 §4: the turn's literal input and the runtime source it started from (the state before the turn), for the snapshot. */
@@ -97,6 +102,12 @@ export function leaseHeartbeat(store: TurnStore, lease: TurnClaim["lease"], ever
   const timer = setInterval(() => { renew.call(store, lease).catch(() => { /* the fence decides at the next write */ }); }, everyMs);
   (timer as { unref?: () => void }).unref?.();
   return () => clearInterval(timer);
+}
+
+/** Fix run B2 (2): whether a turn's accepted records ended a fight. */
+export function combatEnded(receipts: DmLoopReceipt[]): boolean {
+  return receipts.some((receipt) => receipt.call.name === "combat" && receipt.result.ok &&
+    (typeof receipt.call.arguments === "object" && receipt.call.arguments !== null ? (receipt.call.arguments as { action?: unknown }).action === "end" : false));
 }
 
 /** Fix run A3: the limits past which a turn is named as expensive (the owner panel flags it too). */
@@ -434,198 +445,211 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
     let cutRecovery = loop.diagnostics.some((row) => row.kind === "cut_continued") && loop.transcript.at(-1)?.role === "user" &&
       (loop.transcript.at(-1) as { text?: string }).text === N.CUT_BY_CAP;
     let pendingCutNote = false;
+    // Fix run B3 (item 60): the request loop runs again once when the check finds a roll the player saw untold.
     for (;;) {
-      const last = loop.transcript.at(-1);
-      if (last?.role === "assistant" && last.toolCalls.length &&
-        last.toolCalls.some((call) => !loop.receipts.some((row) => row.call.id === call.id) ||
-          !loop.transcript.some((m) => m.role === "tool_results" && m.results.some((r) => r.callId === call.id)))) {
-        const pause = await executeCalls(last.toolCalls);
-        loop.transcript.push({ role: "tool_results", results: last.toolCalls.map((call) => {
-          const receipt = loop.receipts.find((row) => row.call.id === call.id)!;
-          return { callId: call.id, output: toolOutput(receipt, checkpoint.checks), isError: !receipt.result.ok };
-        }) });
-        if (pendingCutNote) {
-          pendingCutNote = false;
-          shadow.finished = false;
-          loop.transcript.push({ role: "user", text: N.CUT_BY_CAP });
-        }
-        // finish_turn ends the turn once narration exists; a model that calls it
-        // before writing (Opus tends to put text last) is asked for the text.
-        if (shadow.finished && !loop.text.trim()) {
-          shadow.finished = false;
-          loop.transcript.push({ role: "user", text: N.NARRATE_NOW });
-        } else if (shadow.finished && outcomePending && !outcomeAsked()) {
-          // Polish item 1: the turn ended on a roll with no narration after it; ask once for the outcome.
-          shadow.finished = false;
-          diagnostic({ kind: "outcome_asked" });
-          loop.transcript.push({ role: "user", text: N.PENDING_OUTCOME });
-        }
-        // The OpenAI habit of a finish_turn round of its own is folded into the
-        // final bookkeeping message (stage 3 §4); Opus batches finish_turn itself.
-        if (!shadow.finished && !pause && pin.providerId === "openai" && loop.text.trim() && foldsFinish(last.toolCalls, loop.receipts)) {
-          shadow.finished = true;
-          loop.meta ??= implicitMeta(loop.receipts);
-          diagnostic({ kind: "implicit_finish", calls: last.toolCalls.length });
-        }
-        // Polish 3 §3: every rejected record call of a message goes back once with the server's
-        // reason (the bake-off's misses: a field name, a faction that does not exist, a clock as text).
-        if (!pause && loop.text.trim() && !loop.diagnostics.some((row) => row.kind === "records_retry_asked") &&
-          loop.requests < limits.modelRequestsPerTurn - 1 && loop.receipts.length < limits.toolCallsPerTurn) {
-          const rejected = last.toolCalls.flatMap((call) => {
-            const receipt = loop.receipts.find((row) => row.call.id === call.id);
-            return receipt && !receipt.result.ok && retriableRejection(receipt.call) ? [{ name: call.name, reason: receipt.result.reason }] : [];
-          });
-          if (rejected.length) {
-            diagnostic({ kind: "records_retry_asked", calls: rejected.map((row) => row.name) });
-            loop.transcript.push({ role: "user", text: rejectedCallsMessage(rejected) });
+      for (;;) {
+        const last = loop.transcript.at(-1);
+        if (last?.role === "assistant" && last.toolCalls.length &&
+          last.toolCalls.some((call) => !loop.receipts.some((row) => row.call.id === call.id) ||
+            !loop.transcript.some((m) => m.role === "tool_results" && m.results.some((r) => r.callId === call.id)))) {
+          const pause = await executeCalls(last.toolCalls);
+          loop.transcript.push({ role: "tool_results", results: last.toolCalls.map((call) => {
+            const receipt = loop.receipts.find((row) => row.call.id === call.id)!;
+            return { callId: call.id, output: toolOutput(receipt, checkpoint.checks), isError: !receipt.result.ok };
+          }) });
+          if (pendingCutNote) {
+            pendingCutNote = false;
             shadow.finished = false;
+            loop.transcript.push({ role: "user", text: N.CUT_BY_CAP });
           }
-        }
-        await persist(pause ? "awaiting_confirmation" : "generating");
-        if (pause) {
-          live({ type: "status", status: "awaiting_confirmation" });
-          return store.getPublic(input.campaignId, operationId);
+          // finish_turn ends the turn once narration exists; a model that calls it
+          // before writing (Opus tends to put text last) is asked for the text.
+          if (shadow.finished && !loop.text.trim()) {
+            shadow.finished = false;
+            loop.transcript.push({ role: "user", text: N.NARRATE_NOW });
+          } else if (shadow.finished && outcomePending && !outcomeAsked()) {
+            // Polish item 1: the turn ended on a roll with no narration after it; ask once for the outcome.
+            shadow.finished = false;
+            diagnostic({ kind: "outcome_asked" });
+            loop.transcript.push({ role: "user", text: N.PENDING_OUTCOME });
+          }
+          // The OpenAI habit of a finish_turn round of its own is folded into the
+          // final bookkeeping message (stage 3 §4); Opus batches finish_turn itself.
+          if (!shadow.finished && !pause && pin.providerId === "openai" && loop.text.trim() && foldsFinish(last.toolCalls, loop.receipts)) {
+            shadow.finished = true;
+            loop.meta ??= implicitMeta(loop.receipts);
+            diagnostic({ kind: "implicit_finish", calls: last.toolCalls.length });
+          }
+          // Polish 3 §3: every rejected record call of a message goes back once with the server's
+          // reason (the bake-off's misses: a field name, a faction that does not exist, a clock as text).
+          if (!pause && loop.text.trim() && !loop.diagnostics.some((row) => row.kind === "records_retry_asked") &&
+            loop.requests < limits.modelRequestsPerTurn - 1 && loop.receipts.length < limits.toolCallsPerTurn) {
+            const rejected = last.toolCalls.flatMap((call) => {
+              const receipt = loop.receipts.find((row) => row.call.id === call.id);
+              return receipt && !receipt.result.ok && retriableRejection(receipt.call) ? [{ name: call.name, reason: receipt.result.reason }] : [];
+            });
+            if (rejected.length) {
+              diagnostic({ kind: "records_retry_asked", calls: rejected.map((row) => row.name) });
+              loop.transcript.push({ role: "user", text: rejectedCallsMessage(rejected) });
+              shadow.finished = false;
+            }
+          }
+          await persist(pause ? "awaiting_confirmation" : "generating");
+          if (pause) {
+            live({ type: "status", status: "awaiting_confirmation" });
+            return store.getPublic(input.campaignId, operationId);
+          }
+          if (shadow.finished) break;
+          continue;
         }
         if (shadow.finished) break;
-        continue;
-      }
-      if (shadow.finished) break;
-      if (loop.requests >= limits.modelRequestsPerTurn) {
-        diagnostic({ kind: "request_cap_reached", requests: loop.requests });
-        await persist("generating"); // (the commit keeps the checkpoint as last persisted)
-        break;
-      }
-      const lastRequest = loop.requests === limits.modelRequestsPerTurn - 1 || loop.receipts.length >= limits.toolCallsPerTurn;
-      if (lastRequest && last?.role !== "user") loop.transcript.push({ role: "user", text: N.WRAP_UP });
-      // Requests after the first (continuations after tool results) may run at
-      // the pinned continuation effort (stage 2b §3).
-      // Fix run A3: a request that answers «narrate the outcome» or «narrate now» thinks at the turn's own depth — on the
-      // lighter continuation the stage A probe's fight twice answered it with a bare finish_turn, the rolls never told.
-      const lastAsk = loop.transcript.at(-1);
-      const narrationAsked = lastAsk?.role === "user" && (lastAsk.text === N.PENDING_OUTCOME || lastAsk.text === N.NARRATE_NOW);
-      const planned = loop.requests > 0 && pin.continuationEffort && !narrationAsked ? pin.continuationEffort : pin.effort;
-      // Fix run A1: the request after a cut thinks one level lower (the plan is made; long thinking cut it).
-      const effort = cutRecovery ? lowerEffort(planned) : planned;
-      // Cache-safe depth (stage 4 §7): on OpenAI the request-level effort stays the
-      // campaign's configured level and the chosen one travels as an update item.
-      const anchor = pin.providerId === "openai" && pin.baseEffort ? pin.baseEffort : pin.effort;
-      const request: DmModelRequest = { system: context.system, messages: renderedTranscript(loop, checkpoint.checks),
-        toolset: council ? dmCouncilToolset : dmLoopToolset, effort, ...(effort !== anchor ? { turnEffort: anchor } : {}),
-        maxOutputTokens: dmOutputCap(), operationId, cacheKey: input.campaignId, cacheTurn: true };
-      const requestBytes = new TextEncoder().encode(JSON.stringify(request.system) + JSON.stringify(request.messages)).length;
-      observe({ type: "request_started", operationId, request: loop.requests + 1, requestBytes, cachedPrefixBytes: context.cachedPrefixBytes,
-        layers: context.system.map((block, index) => ({ bytes: new TextEncoder().encode(block.text).length,
-          hash: createHash("sha256").update(block.text).digest("hex").slice(0, 12),
-          tokens: context.layers[index]?.usedTokens ?? 0, budgetTokens: context.layers[index]?.budgetTokens ?? 0 })) });
-      const started = now();
-      let firstTextMs: number | null = null;
-      let firstWordMs: number | null = null;
-      let roundText = "";
-      // A text part that follows a tool call inside the same message is joined
-      // like the text of a new request: a paragraph break after a finished
-      // sentence, nothing after an interrupted one (polish, item 23 and the Мокей turn).
-      let partStart = true;
-      const toolCalls: DmToolCall[] = [];
-      let usage: DmLoopUsageEntry | null = null;
-      let stop: Extract<Awaited<ReturnType<DmModel["stream"]>> extends AsyncIterable<infer E> ? E : never, { type: "stop" }> | null = null;
-      const stopHeartbeat = leaseHeartbeat(store, lease, deps.heartbeatMs);
-      try {
-        for await (const event of model.stream(request)) {
-          if (event.type === "text_delta") {
-            if (firstTextMs === null) firstTextMs = Math.round(now() - started);
-            if (firstWordMs === null && event.text.trim() && !loop.text.trim() && !roundText.trim() &&
-              !loop.usage.some((entry) => entry.firstWordMs != null)) firstWordMs = Math.max(0, Date.now() - sentAt);
-            if (event.text.trim()) outcomePending = false;
-            // The live stream gets exactly what the saved narration will have
-            // between this request's text and the previous one (joinText).
-            if (partStart && roundText.trim()) {
-              const piece = continuation(roundText, event.text);
-              roundText += piece;
-              if (piece.trim()) partStart = false;
-              if (piece) live({ type: "text", text: piece });
-            } else {
-              const fresh = !roundText.trim();
-              roundText += event.text;
-              const piece = fresh ? continuation(loop.text, roundText) : event.text;
-              if (piece.trim()) partStart = false;
-              if (piece) live({ type: "text", text: piece });
+        if (loop.requests >= limits.modelRequestsPerTurn) {
+          diagnostic({ kind: "request_cap_reached", requests: loop.requests });
+          await persist("generating"); // (the commit keeps the checkpoint as last persisted)
+          break;
+        }
+        const lastRequest = loop.requests === limits.modelRequestsPerTurn - 1 || loop.receipts.length >= limits.toolCallsPerTurn;
+        if (lastRequest && last?.role !== "user") loop.transcript.push({ role: "user", text: N.WRAP_UP });
+        // Requests after the first (continuations after tool results) may run at
+        // the pinned continuation effort (stage 2b §3).
+        // Fix run A3: a request that answers «narrate the outcome» or «narrate now» thinks at the turn's own depth — on the
+        // lighter continuation the stage A probe's fight twice answered it with a bare finish_turn, the rolls never told.
+        const lastAsk = loop.transcript.at(-1);
+        const narrationAsked = lastAsk?.role === "user" && (lastAsk.text === N.PENDING_OUTCOME || lastAsk.text === N.NARRATE_NOW);
+        const planned = loop.requests > 0 && pin.continuationEffort && !narrationAsked ? pin.continuationEffort : pin.effort;
+        // Fix run A1: the request after a cut thinks one level lower (the plan is made; long thinking cut it).
+        const effort = cutRecovery ? lowerEffort(planned) : planned;
+        // Cache-safe depth (stage 4 §7): on OpenAI the request-level effort stays the
+        // campaign's configured level and the chosen one travels as an update item.
+        const anchor = pin.providerId === "openai" && pin.baseEffort ? pin.baseEffort : pin.effort;
+        const request: DmModelRequest = { system: context.system, messages: renderedTranscript(loop, checkpoint.checks),
+          toolset: council ? dmCouncilToolset : dmLoopToolset, effort, ...(effort !== anchor ? { turnEffort: anchor } : {}),
+          maxOutputTokens: dmOutputCap(), operationId, cacheKey: input.campaignId, cacheTurn: true };
+        const requestBytes = new TextEncoder().encode(JSON.stringify(request.system) + JSON.stringify(request.messages)).length;
+        observe({ type: "request_started", operationId, request: loop.requests + 1, requestBytes, cachedPrefixBytes: context.cachedPrefixBytes,
+          layers: context.system.map((block, index) => ({ bytes: new TextEncoder().encode(block.text).length,
+            hash: createHash("sha256").update(block.text).digest("hex").slice(0, 12),
+            tokens: context.layers[index]?.usedTokens ?? 0, budgetTokens: context.layers[index]?.budgetTokens ?? 0 })) });
+        const started = now();
+        let firstTextMs: number | null = null;
+        let firstWordMs: number | null = null;
+        let roundText = "";
+        // A text part that follows a tool call inside the same message is joined
+        // like the text of a new request: a paragraph break after a finished
+        // sentence, nothing after an interrupted one (polish, item 23 and the Мокей turn).
+        let partStart = true;
+        const toolCalls: DmToolCall[] = [];
+        let usage: DmLoopUsageEntry | null = null;
+        let stop: Extract<Awaited<ReturnType<DmModel["stream"]>> extends AsyncIterable<infer E> ? E : never, { type: "stop" }> | null = null;
+        const stopHeartbeat = leaseHeartbeat(store, lease, deps.heartbeatMs);
+        try {
+          for await (const event of model.stream(request)) {
+            if (event.type === "text_delta") {
+              if (firstTextMs === null) firstTextMs = Math.round(now() - started);
+              if (firstWordMs === null && event.text.trim() && !loop.text.trim() && !roundText.trim() &&
+                !loop.usage.some((entry) => entry.firstWordMs != null)) firstWordMs = Math.max(0, Date.now() - sentAt);
+              if (event.text.trim()) outcomePending = false;
+              // The live stream gets exactly what the saved narration will have
+              // between this request's text and the previous one (joinText).
+              if (partStart && roundText.trim()) {
+                const piece = continuation(roundText, event.text);
+                roundText += piece;
+                if (piece.trim()) partStart = false;
+                if (piece) live({ type: "text", text: piece });
+              } else {
+                const fresh = !roundText.trim();
+                roundText += event.text;
+                const piece = fresh ? continuation(loop.text, roundText) : event.text;
+                if (piece.trim()) partStart = false;
+                if (piece) live({ type: "text", text: piece });
+              }
+            } else if (event.type === "tool_call") {
+              partStart = true;
+              toolCalls.push({ id: event.id, name: event.name, arguments: event.arguments });
+            } else if (event.type === "usage") {
+              usage = { providerId: pin.providerId, modelId: pin.modelId, effort, ...event.usage,
+                costUsd: dmUsageCost(spec, event.usage), latencyMs: 0, firstTextMs, requestBytes, toolCalls: 0 };
+            } else if (event.type === "stop") {
+              stop = event;
             }
-          } else if (event.type === "tool_call") {
-            partStart = true;
-            toolCalls.push({ id: event.id, name: event.name, arguments: event.arguments });
-          } else if (event.type === "usage") {
-            usage = { providerId: pin.providerId, modelId: pin.modelId, effort, ...event.usage,
-              costUsd: dmUsageCost(spec, event.usage), latencyMs: 0, firstTextMs, requestBytes, toolCalls: 0 };
-          } else if (event.type === "stop") {
-            stop = event;
           }
-        }
-      } catch (error) {
-        if (error instanceof DmModelError) {
-          // Fix run A1 (item 32c): the provider's own reason (secrets filtered by the adapter) reaches the log.
-          diagnostic({ kind: "provider_error", errorKind: error.kind, httpStatus: error.detail.httpStatus ?? null,
-            providerCode: error.detail.providerCode ?? null, message: error.message.slice(0, 300) });
-          if (error.kind === "not_configured") throw new DmError("configuration");
-          if (error.kind === "provider_rejected" && cutRecovery && !loop.diagnostics.some((row) => row.kind === "cut_plain_retry") &&
-            plainCutMessage(loop.transcript, N.CUT_BY_CAP)) {
-            diagnostic({ kind: "cut_plain_retry" });
-            await persist("generating");
-            continue;
+        } catch (error) {
+          if (error instanceof DmModelError) {
+            // Fix run A1 (item 32c): the provider's own reason (secrets filtered by the adapter) reaches the log.
+            diagnostic({ kind: "provider_error", errorKind: error.kind, httpStatus: error.detail.httpStatus ?? null,
+              providerCode: error.detail.providerCode ?? null, message: error.message.slice(0, 300) });
+            if (error.kind === "not_configured") throw new DmError("configuration");
+            if (error.kind === "provider_rejected" && cutRecovery && !loop.diagnostics.some((row) => row.kind === "cut_plain_retry") &&
+              plainCutMessage(loop.transcript, N.CUT_BY_CAP)) {
+              diagnostic({ kind: "cut_plain_retry" });
+              await persist("generating");
+              continue;
+            }
+            if (error.kind === "provider_rejected" || error.kind === "fatal") throw new DmError("provider", false);
+            throw new DmError("provider", true);
           }
-          if (error.kind === "provider_rejected" || error.kind === "fatal") throw new DmError("provider", false);
           throw new DmError("provider", true);
+        } finally {
+          stopHeartbeat();
         }
-        throw new DmError("provider", true);
-      } finally {
-        stopHeartbeat();
-      }
-      requireRule(stop);
-      const entry: DmLoopUsageEntry = { ...(usage ?? { providerId: pin.providerId, modelId: pin.modelId, effort,
-        inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheWriteTokens: 0, reasoningTokens: null, costUsd: 0,
-        firstTextMs, requestBytes }), latencyMs: Math.round(now() - started), toolCalls: toolCalls.length, firstTextMs, firstWordMs };
-      loop.usage.push(entry);
-      loop.requests++;
-      observe({ type: "request_finished", operationId, request: loop.requests, usage: entry, stop: stop.reason });
-      cutRecovery = false;
-      const cut = stop.reason === "max_tokens";
-      // A request the cap cut before it wrote anything leaves no assistant message (an empty one is invalid).
-      if (roundText.trim() || toolCalls.length) loop.transcript.push({ role: "assistant", text: roundText, toolCalls, native: stop.native });
-      loop.text = joinText(loop.text, roundText);
-      await persist("generating");
-      if (stop.reason === "refusal") { diagnostic({ kind: "model_refusal", providerReason: stop.providerReason }); break; }
-      if (cut) {
-        diagnostic({ kind: "max_tokens", outputTokens: entry.outputTokens });
-        // Fix run A1 (items 32, 56, 73): a cut never fails the turn. Once per turn the model continues from
-        // the complete part (after the results of its complete calls, when it made any), one level lower.
-        if (!loop.diagnostics.some((row) => row.kind === "cut_continued") && loop.requests < limits.modelRequestsPerTurn) {
-          diagnostic({ kind: "cut_continued", toolCalls: toolCalls.length });
-          cutRecovery = true;
-          if (!toolCalls.length) {
-            loop.transcript.push({ role: "user", text: N.CUT_BY_CAP });
+        requireRule(stop);
+        const entry: DmLoopUsageEntry = { ...(usage ?? { providerId: pin.providerId, modelId: pin.modelId, effort,
+          inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheWriteTokens: 0, reasoningTokens: null, costUsd: 0,
+          firstTextMs, requestBytes }), latencyMs: Math.round(now() - started), toolCalls: toolCalls.length, firstTextMs, firstWordMs };
+        loop.usage.push(entry);
+        loop.requests++;
+        observe({ type: "request_finished", operationId, request: loop.requests, usage: entry, stop: stop.reason });
+        cutRecovery = false;
+        const cut = stop.reason === "max_tokens";
+        // A request the cap cut before it wrote anything leaves no assistant message (an empty one is invalid).
+        if (roundText.trim() || toolCalls.length) loop.transcript.push({ role: "assistant", text: roundText, toolCalls, native: stop.native });
+        loop.text = joinText(loop.text, roundText);
+        await persist("generating");
+        if (stop.reason === "refusal") { diagnostic({ kind: "model_refusal", providerReason: stop.providerReason }); break; }
+        if (cut) {
+          diagnostic({ kind: "max_tokens", outputTokens: entry.outputTokens });
+          // Fix run A1 (items 32, 56, 73): a cut never fails the turn. Once per turn the model continues from
+          // the complete part (after the results of its complete calls, when it made any), one level lower.
+          if (!loop.diagnostics.some((row) => row.kind === "cut_continued") && loop.requests < limits.modelRequestsPerTurn) {
+            diagnostic({ kind: "cut_continued", toolCalls: toolCalls.length });
+            cutRecovery = true;
+            if (!toolCalls.length) {
+              loop.transcript.push({ role: "user", text: N.CUT_BY_CAP });
+              await persist("generating");
+              continue;
+            }
+            pendingCutNote = true;
+          }
+        }
+        if (!toolCalls.length) {
+          if (outcomePending && !outcomeAsked() && loop.requests < limits.modelRequestsPerTurn) {
+            diagnostic({ kind: "outcome_asked" });
+            loop.transcript.push({ role: "user", text: N.PENDING_OUTCOME });
             await persist("generating");
             continue;
           }
-          pendingCutNote = true;
+          // Only a turn that made no tool call at all (the whole answer was text) is asked; a turn
+          // with bookkeeping keeps its implicit close (spotlight from the receipts), as before.
+          if (!shadow.finished && !loop.receipts.length && loop.text.trim() && stop.reason !== "max_tokens" && loop.requests < limits.modelRequestsPerTurn &&
+            !loop.diagnostics.some((row) => row.kind === "finish_asked")) {
+            diagnostic({ kind: "finish_asked" });
+            loop.transcript.push({ role: "user", text: N.FINISH_NOW });
+            await persist("generating");
+            continue;
+          }
+          break;
         }
       }
-      if (!toolCalls.length) {
-        if (outcomePending && !outcomeAsked() && loop.requests < limits.modelRequestsPerTurn) {
-          diagnostic({ kind: "outcome_asked" });
-          loop.transcript.push({ role: "user", text: N.PENDING_OUTCOME });
-          await persist("generating");
-          continue;
-        }
-        // Only a turn that made no tool call at all (the whole answer was text) is asked; a turn
-        // with bookkeeping keeps its implicit close (spotlight from the receipts), as before.
-        if (!shadow.finished && !loop.receipts.length && loop.text.trim() && stop.reason !== "max_tokens" && loop.requests < limits.modelRequestsPerTurn &&
-          !loop.diagnostics.some((row) => row.kind === "finish_asked")) {
-          diagnostic({ kind: "finish_asked" });
-          loop.transcript.push({ role: "user", text: N.FINISH_NOW });
-          await persist("generating");
-          continue;
-        }
-        break;
-      }
+      if (!deps.rollCheck || loop.diagnostics.some((row) => row.kind === "rolls_checked") || loop.requests >= limits.modelRequestsPerTurn || !loop.text.trim()) break;
+      const rolls = visibleRolls(loop.receipts);
+      if (!rolls.length) break;
+      const check = await deps.rollCheck({ narration: loop.text, rolls: rolls.map((roll) => roll.line), language })
+        .catch((error: unknown) => ({ untold: [] as number[], costUsdMicros: 0, error: String((error as Error)?.message ?? error).slice(0, 120) }));
+      diagnostic({ kind: "rolls_checked", rolls: rolls.length, untold: check.untold.length, costUsd: check.costUsdMicros / 1_000_000, error: check.error });
+      if (!check.untold.length) { await persist("generating"); break; }
+      loop.transcript.push({ role: "user", text: untoldRollsMessage(instructionsRu(source) ? "ru" : "en", check.untold.map((n) => rolls[n - 1].line), "dm") });
+      shadow.finished = false;
+      await persist("generating");
     }
     let narration = loop.text.trim();
     if (!narration) {
@@ -712,7 +736,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
         .map((turn) => Date.parse(turn.updated_at)).filter((ms) => Number.isFinite(ms));
       const since = previous.length ? Math.max(...previous) : Date.parse(claim.turn.public.created_at) || Date.now();
       const playMinutes = Math.max(1, Math.min(30, Math.round((Date.now() - since) / 60000)));
-      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, ownerRule: loop.meta?.ownerRule ?? null, boostUsed: !!pin.depth?.boosted, playMinutes, input, source: claim.source, narration }); }
+      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, ownerRule: loop.meta?.ownerRule ?? null, combatEnded: combatEnded(loop.receipts), boostUsed: !!pin.depth?.boosted, playMinutes, input, source: claim.source, narration }); }
       catch { /* a note or a flag never fails a committed turn */ }
     }
     return result;

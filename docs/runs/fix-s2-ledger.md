@@ -16,4 +16,7 @@ Cap $50 (stages A+B within $30); every paid run registers here before its first 
 | cut-probe-20261020-084311 | AB | fix run A1: the cut → continue path on the live provider (small caps) | $2.00 | $0.4317 | yes |
 | ledger-recheck-20261020-085021 | AB | fix run A6: the ledger checker with the records' state over the stage A probe records | $0.20 | $0.0107 | yes |
 | ledger-cases-20261020-085149 | AB | fix run A6: the ledger checker on session 2's known misses (synthetic) and controls | $0.10 | $0.0023 | yes |
-| **Total** | | | **$14.9727 of $50** | |
+| prep-probe-20261020-101619 | AB | fix run B1: a fresh campaign's prep (the hidden layer) on Opus 5.5 at high | $3.00 | $0.4331 | yes |
+| real-replay-20261020-101759 | AB | real replay: 4 turns × O on Fix run B probes (seed b); voice live; craft live | $12.00 | $3.3218 | yes |
+| real-replay-20261020-102644 | AB | real replay: 4 turns × O on Fix run B probes (seed b); voice live; craft live | $11.27 | $0.0000 | no |
+| **Total** | | | **$30.0000 of $50** | |
