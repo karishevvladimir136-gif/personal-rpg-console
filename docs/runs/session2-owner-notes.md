@@ -1294,3 +1294,21 @@ reached and the cause not in the log — earlier than the failed rest turn, so i
 button after 21:34, the 20:48 stop needs the frame request status logged; the HP rise from 4 to 12 was a potion in
 turn 49 (not untold). A local session also made a lease-renewal fix on `claude/stage-fix-turn-lease` (not pushed,
 not tested in the sandbox).
+
+84. **The DM's private sheet (answer to 82, from `private.md`; the report's item 25 was not in the version the
+    local session took).** Nothing bigger was there. The DM's «truth» notes: the raids are a rogue Amnian mage
+    without a licence (full name in the notes, surname never reached the player) with a band of deserters; the iron
+    buyer is a Zhentarim factor who wants a toll on the road; the informant is the merchant's clerk. All of it
+    reached the player through people who knew it. Forward threads it did keep for next time (notebook): an Alarm
+    ward on the mage's tent flap (he will know it was searched), the papers he carried off, where the carter takes
+    the iron north, the buyer's unpaid debt to the mage, the guard's promise for the prisoner. Telling detail: the
+    DM's own observations of the player say «ищет мотивы глубже денег: кто за кем стоит, зачем на самом деле» — it
+    saw what the owner wanted and had nothing in reserve (key finding 2). The owner's «Что мне нравится» text names
+    living people, consequences, tactical fights, companions, investigations, honest dice — not mystery, magic or
+    wonder; worth adding there too.
+
+85. **The dossier's facts layer overflows and silently drops facts** (report §20). The private-facts layer ran at
+    7.5k → 17.3k tokens against its 6k budget; from turn 31 facts fell out of the DM's context (e.g. the setup of
+    the second ambush). In a long campaign that is memory loss. Do: the layer keeps the facts that matter (open
+    threads, secrets, clocks) and folds closed scene notes (per-round fight notes, finished setups) into short
+    summaries; an overflow is logged and shown to the owner; the hidden layer of key finding 2 is never dropped.
