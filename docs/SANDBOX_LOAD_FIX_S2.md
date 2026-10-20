@@ -1,7 +1,9 @@
-# Loading the fixes after session 2 into the sandbox
+# Loading the session 3 candidate into the sandbox
 
-For the owner's local Claude Code session on the owner's PC (Windows). It loads the branch
-`claude/session2-fixes-a-f-jh3krk` into the **sandbox** (`docs/SANDBOX.md`: its own database on ports 44320–44327, the
+For the owner's local Claude Code session on the owner's PC (Windows). It loads the branch **`claude/s3-candidate`** —
+the fixes after session 2 (`claude/session2-fixes-a-f-jh3krk`), 2D Live with the combat screen
+(`claude/live2d-1-9lq5bf`) and the soundtrack (`claude/stage-music`) merged into one (`docs/runs/merge-s2-report.md`) —
+into the **sandbox** (`docs/SANDBOX.md`: its own database on ports 44320–44327, the
 app on http://127.0.0.1:3100). The owner's real project (ports 34320–34327, the app on :3000) is never touched. Do the
 steps in order; stop and tell the owner if one of them fails.
 
@@ -12,8 +14,8 @@ The sandbox holds session 2's campaign. Nothing below runs before this dump exis
 ```bat
 mkdir C:\Dev\rpg-exports\sandbox-backups
 docker ps --format "{{.Names}}" | findstr sandbox
-docker exec supabase_db_personal-rpg-console-sandbox pg_dump -U postgres -d postgres -Fc -f /tmp/before-fix-s2.dump
-docker cp supabase_db_personal-rpg-console-sandbox:/tmp/before-fix-s2.dump C:\Dev\rpg-exports\sandbox-backups\sandbox-YYYYMMDD-before-fix-s2.dump
+docker exec supabase_db_personal-rpg-console-sandbox pg_dump -U postgres -d postgres -Fc -f /tmp/before-s3-candidate.dump
+docker cp supabase_db_personal-rpg-console-sandbox:/tmp/before-s3-candidate.dump C:\Dev\rpg-exports\sandbox-backups\sandbox-YYYYMMDD-before-s3-candidate.dump
 dir C:\Dev\rpg-exports\sandbox-backups
 ```
 
@@ -26,9 +28,9 @@ the file copied back.
 
 ```bat
 node scripts/sandbox-start.mjs --stop
-git fetch origin claude/session2-fixes-a-f-jh3krk
-git checkout claude/session2-fixes-a-f-jh3krk
-git pull origin claude/session2-fixes-a-f-jh3krk
+git fetch origin claude/s3-candidate
+git checkout claude/s3-candidate
+git pull origin claude/s3-candidate
 pnpm install
 ```
 
@@ -43,7 +45,9 @@ node scripts/sandbox-start.mjs --prod
 
 (or `Start Sandbox.cmd --prod`). The launcher applies the pending migrations, builds the app (two to five minutes; the
 log is `.sandbox/build.log`) and runs `next start` on :3100 — no dev server during play (session 2's memory and latency
-problem). Later starts without code changes: `--prod --no-build`. The migrations this branch adds, all additive:
+problem). Later starts without code changes: `--prod --no-build`. The candidate adds migrations in **three ranges**, all
+additive, none edited, no number used twice: the fix run `202610200071`–`202610200084` and `202610200096`, 2D Live
+`202610210200`–`202610210201`, the music stage `202610210301`. They apply in name order with the others:
 
 | Migration | What |
 | --- | --- |
@@ -62,6 +66,9 @@ problem). Later starts without code changes: `--prod --no-build`. The migrations
 | 83 `fix_s2_starting_gear` | a new hero's starting things go on the doll |
 | 84 `fix_s2_hero_one_pass` | a new hero built in one pass: each thing in its own slot on the doll, counters with labels, coins as the wallet |
 | 96 `fix_s2_owner_corrections` | defines the owner's one-time corrections (step 5) |
+| 0200 `live2d` | the 2D tables: `live2d_settings`, `live2d_scenes` with `live2d_scene_versions`, `live2d_pois`, `live2d_region_maps`, `live2d_seeds` (private); the picture kinds `scene`, `region`, `battle`; the RPC `rpg_live2d` |
+| 0201 `live2d_battle` | the battlefield: `rpg_encounters.public_field` (old fights read as `{}`), `live2d_battle_maps` |
+| 0301 `music_stage` | the soundtrack and the ambient layer: `music_settings`, `music_packs` (music or ambient), `music_tracks` (private), the RPC `rpg_music`; the media bucket accepts audio up to 40 MB |
 
 Check: the app opens at http://127.0.0.1:3100/campaigns, and `.sandbox/app.log` has no error.
 
@@ -100,6 +107,20 @@ show both to the owner. It refuses to run before step 4 (the coins must be under
 - «Настройки → Крупный текст истории» if the story should read larger; the campaign's «Правила и кости» show the rules
   from the DM guide's first line.
 
+## 6a. 2D Live and the music — nothing to convert
+
+- **2D (the «2D» item after «Карта»).** The new tables start empty; nothing is converted. The region map and a scene's
+  picture are drawn on the owner's click (one picture each; the first region map also plants the private POI seeds with
+  one cheap call, ~$0.01). A fight the DM opens with `combat start` gets its grid; old encounters have no map and show
+  the zones view. The synthetic walk and fights need no database: `/preview/live2d?level=region|town|district|scene`
+  and the battle previews listed in `docs/runs/live2d-1-acceptance.md`.
+- **Music and place sounds (Настройки → Музыка).** No pack exists in the sandbox yet: what the cloud made are review
+  copies in `docs/runs/music-review/` (`shov/`, `noir/`, `compare/`, and `ambient/shov/`, `ambient/noir/` for the
+  place sounds and weather, each with its table). Either press «Сгенерировать саундтрак» for the session 3 campaign
+  (about 30 requests in the background, ≈ $2.40 at the list prices, cap $8 a pack by default) and «Сгенерировать звуки
+  мест» (24 places + 5 weathers, ≈ $3.19), both using the `FAL_KEY` already in `.env.local`, or upload chosen review
+  MP3s through «Свои треки» with their moods ticked — free. Nothing plays before the first click on the page.
+
 ## 7. Replay session 2's heavy turns
 
 Without touching the live campaign (the replay restores each turn's state into an in-memory copy and writes nothing
@@ -116,5 +137,5 @@ hold campaign text, so **do not commit them** (the repository is public); report
 
 ## 8. Then stop
 
-The owner accepts each screen with `docs/runs/fix-s2-acceptance.md` («принято» or notes) before anything is called
-done.
+The owner accepts each screen with the three checklists linked from `docs/runs/s3-acceptance.md` (the fixes, 2D Live,
+the music; «принято» or notes) before anything is called done.
