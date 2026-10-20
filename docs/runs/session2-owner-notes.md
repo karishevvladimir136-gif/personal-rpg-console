@@ -739,3 +739,17 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     under each. The panel stays open, so the play page grows by the whole session. Do: owner tools live on their own
     screen (or a drawer), not under the story; the transcript is a compact list (time, who, first line) that opens one
     record to correct; Russian headings; with items 24–25 (admin panels that «повылезали»).
+
+58. **A finished turn thrown away by a «conflict»** (owner, 18:51: «оно просчитало ход, там были хорошие идеи, и
+    какая-то … случилась»; screen: «Попробовать снова» and «Записи кампании изменились. Проверьте актуальное
+    состояние перед новым действием»). Operation `8a6f627f-…`: 10 model requests at xhigh over 5.1 min, 13 rolls,
+    then records (resource ×2, upsert_character ×3, item), the last request ended normally — and the commit failed:
+    `dm_loop_failed code=conflict`. Cost lost ≈ $2.80. The only other write in that window in app.log is a
+    `POST /api/visual-frame` (a `pictures.*` action — most likely the background picture job for the previous turn)
+    right as the turn began; the play page also polled `/play` every 1–2 s. Most likely a race: a picture record bumped
+    the campaign revision the turn was fenced on. Do (priority): picture and media writes must not move the revision
+    that fences turns (or the turn rebases when the concurrent change touches nothing it changed); a conflict at commit
+    retries the commit, not the whole turn with new dice; the narration already streamed is kept. Same turn shows the
+    cost of rolling one die per request: requests 2–8 were each one to three rolls at ≈130k input, $0.22–0.25 apiece,
+    with no cache written inside the turn (cache share 0.55–0.64) — batch a round's rolls and put a cache breakpoint
+    on the growing turn so continuations read it from cache.
