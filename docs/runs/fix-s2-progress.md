@@ -30,6 +30,11 @@ run's instruction names `claude/fix-s2`, so the work is on this branch instead, 
   (`docs/stages/LIVE2D_1.md`, branch `claude/live2d-1`) — skipped in stage F. This run's migrations stay below the prefix
   `2026102102`; `src/lib/live2d/` and `src/components/live2d/` are not touched (the new section at the end of
   `FIX_S2_CDEF.md`).
+- 2026-10-20 (later): stage C's combat items (the combat tool's rounds and turns, enemy HP, reactions, ambush, coup de
+  grâce, the battle map and the combat screen) also moved to the 2D session (`LIVE2D_1.md` Part 2). This run does not
+  touch `src/components/gameplay-combat.tsx`, `src/lib/gameplay/combat-exchange.ts` or the `combat` tool; stage C keeps
+  the turn timeline, the roll cards and the screen items; the B3 rules (damage per attack, every roll told) stay in B.
+  The owner now talks with the session in English.
 
 ## Open questions
 

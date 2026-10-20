@@ -47,24 +47,13 @@ at 1920×1080 and 2560×1440, filling the window (item 33: «должно быт
   the middle of a turn that is already telling.
 - **Roll cards** (items 43, 44): one card per hero roll the player makes; companions' and enemies' rolls as compact
   chips in place (the DM rolls for companions — owner's decision); every addend visible.
-- **Combat** (items 45, 46, 61, 64, 65 and the section «Combat — a separate stage»): the `combat` tool gets round and
-  turn advance and real per-combatant action/bonus/reaction state (today only start/position/end, resources fixed
-  1/1/1; the panel showed «Раунд 1» for the whole mine fight); enemy HP from stat blocks recorded at combat start and
-  decremented per hit; **enemy HP and damage visible, BG3-style** (bars with numbers — owner's decision); damage rolls
-  shown per attack; reactions — when an enemy attack would hit the hero and the hero has a reaction (Shield, an
-  opportunity attack), the turn pauses with a choice card; coup de grâce on a helpless target as an execution (the
-  guide's rule) with no HP exchange.
-- **The battle map** (the owner's design in the notes' combat section and his memory): an initiative ribbon with
-  portraits; a «Зоны / Карта» toggle with a top-down drawn background and portrait tokens on a 5-ft grid; positions held
-  by the server, distances computed by the server and given to the DM as text; dragging the hero's token writes the
-  intent into the action box; enemy cards with portraits, HP bars and what is known (unlocked by checks); an
-  end-of-fight summary. No D&D rules hardcoded — the grid size and movement come from the campaign's system.
-- **Ambush** (item 54, owner's decision 23:19): the planned opening of an ambush the party set — the signal, the first
-  strike — happens before initiative is rolled, then the fight runs in order; a campaign rule option, on by default
-  for this owner's campaigns (5e surprise still applies to the ambushed).
+- **Combat and the battle map moved to the 2D session** (`docs/stages/LIVE2D_1.md`, Part 2, owner 23:44 — «как в Friends
+  & Fables»): the combat tool's rounds and turns, conditions, enemy HP, the visible damage, reactions, the ambush rule,
+  coup de grâce, the battle map and the combat screen. This stage keeps the turn timeline, the roll cards and the
+  screen items below; the B3 rules (damage per attack, every roll told) stay in stage B.
 - **Screen**: the action box grows with the text (item 42); the session transcript does not unfold under the play
   screen (item 57); the owner panel is not forced open during combat.
-Acceptance: a sandbox fight on the synthetic campaign recorded as screenshots per round; the owner's pass.
+Acceptance: a recorded turn with rolls (hero card, companion chips, a named pause) as screenshots; the owner's pass.
 
 ## Stage E — pictures, the gallery, the session close
 
@@ -102,6 +91,7 @@ history window (23 — decide its size with stage A's cost numbers, not before).
 acceptance checklist.
 
 ## Living next to the 2D Live session (parallel, `docs/stages/LIVE2D_1.md`, branch `claude/live2d-1`)
-Item 31 (the region map; the location paintings as place illustrations) moved to the 2D session — skip it here. Leave
-`src/lib/live2d/`, `src/components/live2d/` and migrations with the prefix `2026102102` to it; keep this run's migrations
-below that prefix. The battle map stays here (stage C).
+Item 31 (the region map; the location paintings as place illustrations) and the whole combat screen with the battle map
+(stage C's combat items) moved to the 2D session — skip them here. Leave `src/lib/live2d/`, `src/components/live2d/`,
+`src/components/gameplay-combat.tsx`, `src/lib/gameplay/combat-exchange.ts`, the `combat` tool and migrations with the
+prefix `2026102102` to it; keep this run's migrations below that prefix.
