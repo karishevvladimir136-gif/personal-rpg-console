@@ -7,7 +7,8 @@ Each item: what he saw, what he wants. Fixed together after the session unless i
 
 «Мы сделали огромный шаг вперёд.» What he names as working — keep it working through every fix:
 - the session never broke down — play never had to stop (single turns did fail and were recovered: items 56, 58, 73);
-- fights were tense, fair and hard;
+- fights were tense, fair and hard; enemies really tried to kill the hero — and dropped him (22:50: «враги действительно
+  хотят убить героя, и убили-таки — это классно»); «импровизатор вышел очень сильный, и с правилами»;
 - no item was lost — the companions kept the loot (74);
 - the companions did not act dumb and were active; companions joined and left the party;
 - modifiers were applied (one exception found: 66), advantage was used when it should be and not otherwise;
