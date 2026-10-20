@@ -857,6 +857,9 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     in its place («Дальше» / reveal there). Display only: the dice stay honest (the DM still writes up to the roll, the
     server rolls, the DM continues from the result). Together with items 43 (compact round block), 53 (name the pause)
     and 60 (every roll told).
+    **Owner, 19:55: «это нужно править прям остро — ход выглядит как припадок эпилептика».** Moved into the first
+    stage («speed and reliability», item 59) as its sixth part: the turn timeline (this item) with the round block
+    (43), the named pause (53), damage and HP shown (64) and the reaction pause (65) — one coherent turn view.
 
 64. **Owner wants enemy hit points and damage on screen** (19:42: «нет отображения урона и нет ХП врагов — непонятно,
     сколько у кого… очень неудобно; но последствия фаербола показаны хорошо, вещь мощная»). The first turn after the
