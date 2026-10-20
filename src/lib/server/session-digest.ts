@@ -9,7 +9,7 @@ import { createDmModel } from "./dm/model";
 import { createMemoryStore } from "./memory/store";
 import { dmLoopPinFromProfile, dmLoopProfile } from "../production/dm-loop-pin";
 import { dmModelSpec, dmUsageCost, type DmEffort } from "../model-runtime/dm-models";
-import { buildDigestRequest, runDigest, unparsedReason } from "../gameplay/dm-loop/digest";
+import { buildDigestRequest, runDigest, sessionShape, unparsedReason } from "../gameplay/dm-loop/digest";
 import { EFFORT_ORDER } from "../gameplay/dm-loop/depth";
 import { DM_LOOP_RUNTIME } from "../gameplay/dm-loop/contracts";
 import { appendObservations } from "../gameplay/dm-loop/observations";
@@ -50,15 +50,17 @@ export async function digestClosedSession(campaignId: string, sessionId: string,
       const ended = memory.sessions.some((row) => row.sessionId === sessionId) || memory.currentBoundary?.sessionId === sessionId;
       if (!ended) return skip("the session is still open");
     }
-    const scenes = source.snapshot.scenes.filter((row) => row.session_id === sessionId).sort((a, b) => a.sequence - b.sequence)
-      .map((row) => ({ role: row.role, body: row.body }));
+    const rows = source.snapshot.scenes.filter((row) => row.session_id === sessionId).sort((a, b) => a.sequence - b.sequence);
+    const scenes = rows.map((row) => ({ role: row.role, body: row.body }));
+    // Fix run E (item 81): the session's length decides how it closes (cards after a long one).
+    const shape = sessionShape(rows);
     if (!scenes.some((row) => row.role === "narration")) return skip("the session has no narration to digest");
     const production = await readProductionSettings(campaignId);
     const pin = dmLoopPinFromProfile(dmLoopProfile(production.runtimePolicy, settings.dmTurn));
     // Fix run A4 (item 17): the digest thinks at the depth range's base (high at least), never at its top.
     const base = settings.depth ? settings.depth.min : pin.effort;
     const effort: DmEffort = EFFORT_ORDER[Math.max(EFFORT_ORDER.indexOf("high"), EFFORT_ORDER.indexOf(base))];
-    const request = buildDigestRequest(source, { id: session.id, title: session.title, scenes, startWorldMinutes: null, endWorldMinutes: source.runtime.worldMinutes }, effort);
+    const request = buildDigestRequest(source, { id: session.id, title: session.title, scenes, startWorldMinutes: null, endWorldMinutes: source.runtime.worldMinutes, shape }, effort);
     const model = createDmModel(pin);
     const result = await runDigest(model, request, source, source.runtime.worldMinutes, { operationId: randomUUID(), cacheKey: campaignId });
     const spec = dmModelSpec(pin.providerId, pin.modelId);
@@ -71,7 +73,7 @@ export async function digestClosedSession(campaignId: string, sessionId: string,
       return;
     }
     await dossier.digest({ sessionId, recap: result.digest.recap, title: result.digest.title, notebook: result.digest.notebook,
-      plans: result.digest.plans, stinger: result.digest.stinger,
+      plans: result.digest.plans, stinger: result.digest.stinger, ending: result.digest.ending,
       // Fix run A2: the digest's observations are appended to the DM's notes, never written over them.
       ...(result.digest.playerLikes ? { playerLikes: appendObservations(String(source.snapshot.campaign.dm_likes ?? ""), result.digest.playerLikes) } : {}) }, source.timeline);
     // Fix run B1/B2: the hidden layer kept current and the closed notes of finished matters folded (one line each,
@@ -89,7 +91,8 @@ export async function digestClosedSession(campaignId: string, sessionId: string,
         .catch((error) => console.info(JSON.stringify({ event: "session_digest_notes_failed", campaignId, sessionId, message: error instanceof Error ? error.message.slice(0, 200) : String(error) })));
     }
     console.info(JSON.stringify({ event: "session_digest", campaignId, sessionId, reason, model: pin.modelId, effort, requestTokens: request.tokens,
-      plans: result.digest.plans.length, stinger: result.digest.stinger.length > 0, hiddenLayer: !!result.digest.hiddenLayer, folds: folds.length,
+      plans: result.digest.plans.length, stinger: result.digest.stinger.length > 0, form: result.digest.ending.form, cards: result.digest.ending.cards.length,
+      threads: result.digest.ending.threads.length, turns: shape.turns, playMinutes: shape.playMinutes, hiddenLayer: !!result.digest.hiddenLayer, folds: folds.length,
       folded: folds.reduce((sum, fold) => sum + fold.keys.length, 0), costUsd: cost, latencyMs: Math.round(performance.now() - started) }));
     setStatus(campaignId, sessionId, { state: "done", reason: null, costUsd: cost });
   } catch (error) {

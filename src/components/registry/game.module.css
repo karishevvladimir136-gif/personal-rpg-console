@@ -576,6 +576,50 @@
   display: grid;
   gap: 4px;
 }
+/* Fix run E (item 81): the ending cards after a long session — one per person or group met, like an RPG's final slides. */
+.endingCards {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+}
+.endingCard {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.18);
+}
+.endingPortrait {
+  width: 72px;
+  height: 72px;
+  border-radius: 6px;
+  object-fit: cover;
+  display: grid;
+  place-items: center;
+  background: var(--leather-2);
+  color: var(--brass-hi);
+  font-family: var(--f-display);
+  font-size: 28px;
+}
+.endingText {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+.endingText strong {
+  font-family: var(--f-display);
+  font-size: 18px;
+  color: var(--brass-hi);
+}
+.endingText .sessionProse {
+  font-size: 16px;
+}
 
 /* Polish group 6: the compact composer sticks to the bottom; the tools are icons next to «Отправить». */
 .game :global(.gameplay-channel form) {

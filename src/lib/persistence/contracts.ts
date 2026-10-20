@@ -126,6 +126,23 @@ export type Session = ScopedRow & {
   recap: string;
   /** Polish item 11: the closing stinger «Тем временем…» the digest wrote (empty until then). */
   stinger?: string;
+  /** Fix run E (item 81): how the session closed, by its length (empty until the digest; older rows omit it). */
+  ending?: SessionEnding | Record<string, never>;
+};
+/** The session's ending: «что было» after a short session, the ending cards after a long one; the open threads;
+ * the in-world channel that carried «Тем временем». Only what the hero knows. */
+export type SessionEnding = {
+  version: 1;
+  form: "short" | "cards";
+  /** Short form: what happened, a few lines. */
+  lines: string[];
+  /** Long form: one card per person or group met this session; «неизвестно» where the hero does not know. */
+  cards: { entityId: string | null; name: string; where: string; standing: string; fate: string }[];
+  threads: string[];
+  /** How «Тем временем» reached the hero's world («донесение капитану стражи»); empty when there is none. */
+  channel: string;
+  turns: number;
+  playMinutes: number;
 };
 export type Scene = ScopedRow & {
   sequence: number;

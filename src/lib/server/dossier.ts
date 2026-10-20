@@ -79,7 +79,7 @@ export async function dossierService(ownerId: string, campaignId: string) {
     notebook: () => call(ownerId, campaignId, "notebook", {}).then(parseNotebook),
     /** The same source a turn claims (private state included); server-only. */
     source: () => call(ownerId, campaignId, "source", {}) as Promise<RuntimeSource & { timeline: TimelineFence }>,
-    digest: (payload: { sessionId: string; recap: string; title: string; notebook: string; plans: { key: string; value: string }[]; playerLikes?: string; stinger?: string }, timeline: unknown) =>
+    digest: (payload: { sessionId: string; recap: string; title: string; notebook: string; plans: { key: string; value: string }[]; playerLikes?: string; stinger?: string; ending?: import("../persistence/contracts").SessionEnding }, timeline: unknown) =>
       call(ownerId, campaignId, "digest", { requestId: randomUUID(), ...payload }, timeline),
     /** Fix run B1/B2: the server's background writes into the DM's private notes (the prep's hidden layer, the
      * digest's update of it, the folds of closed notes), fenced on the timeline, per key. */

@@ -10,6 +10,9 @@ import { continueSession, endSession, memoryErrorMessage } from "@/lib/memory/cl
 import { readJson } from "@/lib/persistence/client";
 import { createBackoffPoll } from "@/lib/ui/backoff-poll";
 import { journalOf, questsOf } from "@/lib/ui/campaign-view";
+import { anchorFor } from "@/lib/visual-frame/pictures";
+import type { SessionEnding } from "@/lib/persistence/contracts";
+import { usePictures } from "./live-frames";
 import { registry as r, useCopy } from "./primitives";
 import g from "./game.module.css";
 
@@ -17,6 +20,12 @@ import g from "./game.module.css";
 // digest as it lands — the chapter title, «Ранее в…», the open leads and the
 // closing stinger «Тем временем…» — with a retry, then opens the next session.
 // The legacy save table and its wording stay off the player's screen.
+// Fix run E (item 81, the owner's design): the form follows the session's length — after a short one «Что было» in a
+// few lines, after a long one the ending cards (portrait, where they are, how they stand with the hero, one line of
+// fate); then the open threads the digest gathered from all live threads; then «Тем временем» with its in-world channel.
+
+const endingOf = (value: unknown): SessionEnding | null =>
+  value && typeof value === "object" && (value as { version?: unknown }).version === 1 ? value as SessionEnding : null;
 
 type DigestStatus = { state: "running" | "done" | "failed" | "skipped"; reason: string | null; costUsd: number | null } | null;
 
@@ -25,6 +34,7 @@ export function SessionEnd({ sessionId, compact = false }: { sessionId: string |
   const router = useRouter();
   const { campaignId, data, refresh } = useCampaignData();
   const memory = useSessionMemory();
+  const pictures = usePictures();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [status, setStatus] = useState<DigestStatus>(null);
@@ -120,6 +130,13 @@ export function SessionEnd({ sessionId, compact = false }: { sessionId: string |
     ...journal.debts.map((entry) => ({ id: entry.quest.id, title: entry.quest.title, kind: c("долг", "debt") })),
     ...journal.promises.map((entry) => ({ id: entry.quest.id, title: entry.quest.title, kind: c("обещание", "promise") }))].slice(0, 8);
   const failed = status?.state === "failed" || status?.state === "skipped";
+  const ending = endingOf(session.ending);
+  const threads = ending?.threads.length ? ending.threads : null;
+  const portrait = (entityId: string | null) => {
+    if (!entityId || !pictures) return null;
+    const picture = anchorFor(pictures.board, { kind: "entity", id: entityId }, "portrait").picture;
+    return picture ? pictures.urlFor(picture) : null;
+  };
   return (
     <section className={g.sessionEnd} aria-label={c("Итог сессии", "Session summary")}>
       {!digested && !failed && (
@@ -148,7 +165,40 @@ export function SessionEnd({ sessionId, compact = false }: { sessionId: string |
             <span className={r.eyebrow}><BookOpen size={14} aria-hidden="true" /> {c("Ранее в…", "Previously in…")}</span>
             <p className={g.sessionProse}>{session.recap}</p>
           </div>
-          {leads.length > 0 && (
+          {ending?.form === "short" && ending.lines.length > 0 && (
+            <div>
+              <span className={r.eyebrow}>{c("Что было", "What happened")}</span>
+              <ul className={g.sessionLeads}>{ending.lines.map((line, index) => <li key={index}>{line}</li>)}</ul>
+            </div>
+          )}
+          {ending?.form === "cards" && ending.cards.length > 0 && (
+            <div>
+              <span className={r.eyebrow}>{c("Судьбы", "Fates")}</span>
+              <ul className={g.endingCards}>
+                {ending.cards.map((card, index) => {
+                  const url = portrait(card.entityId);
+                  return (
+                    <li key={`${card.entityId ?? card.name}-${index}`} className={g.endingCard}>
+                      {/* eslint-disable-next-line @next/next/no-img-element -- a private signed picture, as in the frames */}
+                      {url ? <img src={url} alt="" className={g.endingPortrait} /> : <span className={g.endingPortrait} aria-hidden="true">{card.name.slice(0, 1)}</span>}
+                      <div className={g.endingText}>
+                        <strong>{card.name}</strong>
+                        {card.where && <span className={r.note}>{card.where}</span>}
+                        {card.standing && <span className={r.chip}>{card.standing}</span>}
+                        <p className={g.sessionProse}>{card.fate}</p>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
+          {threads ? (
+            <div>
+              <span className={r.eyebrow}>{c("Открытые нити", "Open threads")}</span>
+              <ul className={g.sessionLeads}>{threads.map((line, index) => <li key={index}>{line}</li>)}</ul>
+            </div>
+          ) : leads.length > 0 && (
             <div>
               <span className={r.eyebrow}>{c("Открытые зацепки", "Open leads")}</span>
               <ul className={g.sessionLeads}>
@@ -158,7 +208,7 @@ export function SessionEnd({ sessionId, compact = false }: { sessionId: string |
           )}
           {session.stinger?.trim() ? (
             <div className={g.sessionStinger}>
-              <span className={r.eyebrow}>{c("Тем временем…", "Meanwhile…")}</span>
+              <span className={r.eyebrow}>{c("Тем временем…", "Meanwhile…")}{ending?.channel ? ` · ${ending.channel}` : ""}</span>
               <p className={g.sessionProse}>{session.stinger}</p>
             </div>
           ) : null}

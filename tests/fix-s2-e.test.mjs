@@ -12,6 +12,9 @@ import { correctionLine, frameCheckRequest, parseFrameCheck, checkFrame } from "
 import { fallbackShot, outOfGameOnly, parseShot, resolveWho, shotRequest, storyText } from "../src/lib/visual-frame/shot.ts";
 import { parsePicture, parsePictureSettings } from "../src/lib/visual-frame/pictures.ts";
 import { fixture, world } from "./phase35-storage-fixture.mjs";
+import { loopCampaign } from "./dm-loop-fixture.mjs";
+import { createScriptedDmModel } from "../src/lib/gameplay/dm-loop/scripted-model.ts";
+import { buildDigestRequest, parseDigest, sessionPeople, sessionShape, LONG_SESSION } from "../src/lib/gameplay/dm-loop/digest.ts";
 
 const src = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 const call = (f, cid, action, payload = {}, user = f.owner) =>
@@ -221,4 +224,93 @@ test("E wiring: the service refuses a frame for an out-of-game turn, resolves ro
   assert.match(service, /capRemaining\(board\) > 0/, "never past the daily cap");
   assert.match(service, /applyLookChange\(/);
   assert.match(src("src/lib/server/media/pictures-store.ts"), /isTimeZone\(value\.timeZone\) \? \{ timeZone: value\.timeZone \} : \{\}/);
+});
+
+// --- the session close (item 81) -------------------------------------------------------------------------------------
+test("E: the session's length decides its ending — «что было» after an hour, the cards after a long evening; pauses are not play", () => {
+  const at = (minute) => new Date(Date.UTC(2026, 9, 20, 18, 0) + minute * 60_000).toISOString();
+  const hour = Array.from({ length: 24 }, (_, index) => ({ role: index % 2 ? "narration" : "player", created_at: at(index * 2.5) }));
+  assert.deepEqual(sessionShape(hour), { turns: 12, playMinutes: 58, form: "short" });
+  const night = [...hour, { role: "player", created_at: at(60 * 14) }, { role: "narration", created_at: at(60 * 14 + 1) }];
+  assert.equal(sessionShape(night).form, "short", "a session left open overnight is not fourteen hours of play");
+  assert.equal(sessionShape(night).playMinutes, 58 + 15 + 1);
+  const long = Array.from({ length: 2 * LONG_SESSION.turns }, (_, index) => ({ role: index % 2 ? "narration" : "player", created_at: at(index) }));
+  assert.equal(sessionShape(long).form, "cards", "thirty turns");
+  const slow = Array.from({ length: 40 }, (_, index) => ({ role: index % 2 ? "narration" : "player", created_at: at(index * 5) }));
+  assert.equal(sessionShape(slow).turns, 20);
+  assert.equal(sessionShape(slow).form, "cards", "three hours and more");
+});
+
+test("E: the digest asks for the form the length decided — cards for the people met, open threads from all live threads, «Тем временем» through the world; the parser bounds it", async () => {
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const source = (await c.f.one("select public.rpg_dossier($1,$2,'source','{}'::jsonb,null) result", [c.owner, c.cid])).result;
+    const companion = source.snapshot.entities.find((row) => row.kind !== "player" && row.kind !== "faction");
+    assert.ok(companion, "the fixture has someone besides the hero");
+    const scenes = [{ role: "player", body: "Иду к костру." }, { role: "narration", body: `${companion.name} подсаживается к огню и молчит.` }];
+    assert.deepEqual(sessionPeople(source, scenes).map((row) => row.id), [companion.id]);
+    const session = { id: randomUUID(), title: "Вечер", scenes, startWorldMinutes: null, endWorldMinutes: source.runtime.worldMinutes };
+    const long = buildDigestRequest(source, { ...session, shape: { turns: 34, playMinutes: 250, form: "cards" } }, "high");
+    const text = long.messages[0].text, now = long.system.at(-1).text;
+    assert.match(text, /"cards": \[ \{ "entityId"/);
+    assert.doesNotMatch(text, /"lines":/);
+    assert.match(text, /three or four sentences looking forward — where the hero is now, what is at stake, what comes next; not a list of facts, no minor details/);
+    assert.match(text, /from all live threads of the story, not only the quest log/);
+    assert.match(text, /a guard's report to the captain, a rumour in the market, a letter, a messenger\. Not an all-seeing camera/);
+    assert.match(text, /it never answers a question the hero was left with/);
+    assert.match(now, /It was a long session: 34 turns, about 4\.2 hours of play\. Close it with the ending cards/);
+    assert.match(now, new RegExp(`PEOPLE OF THIS SESSION \\(ID — name\\): ${companion.id} — `));
+    const short = buildDigestRequest(source, { ...session, shape: { turns: 9, playMinutes: 50, form: "short" } }, "high");
+    assert.match(short.messages[0].text, /"lines": \["«what happened»: 3–5 short lines/);
+    assert.doesNotMatch(short.messages[0].text, /"cards":/);
+    assert.doesNotMatch(short.system.at(-1).text, /PEOPLE OF THIS SESSION/);
+
+    const reply = JSON.stringify({ recap: "Мы у заставы. Ставка — караван через шесть дней. Дальше — покупатель железа.", title: "Зелёный сургуч", notebook: "n", plans: [],
+      cards: [{ entityId: companion.id, name: companion.name, where: "у костра", standing: "доверяет", fate: "остаётся с отрядом" },
+        { entityId: randomUUID(), name: "Освобождённые пленники", where: "неизвестно", standing: "благодарны", fate: "ушли на юг" },
+        { entityId: null, name: "", where: "", standing: "", fate: "без имени" }],
+      threads: ["Раненый на свободе", "Покупатель железа", "Караван через шесть дней"], lines: ["не для длинной"],
+      stinger: "Стражник докладывает капитану: раненого видели на окраине.", channel: "донесение капитану стражи" });
+    const digest = parseDigest(reply, source, source.runtime.worldMinutes, long.shape, long.people);
+    assert.equal(digest.ending.form, "cards");
+    assert.deepEqual(digest.ending.cards.map((row) => row.entityId), [companion.id, null], "an unknown ID becomes a group card; a card without a name goes");
+    assert.deepEqual(digest.ending.lines, [], "no «что было» lines in the long form");
+    assert.equal(digest.ending.threads.length, 3);
+    assert.equal(digest.ending.channel, "донесение капитану стражи");
+    assert.equal(digest.ending.turns, 34);
+    const plain = parseDigest(JSON.stringify({ recap: "r", title: "t", notebook: "", plans: [], lines: ["Пришли к заставе."], stinger: "" , channel: "слух" }), source, 0);
+    assert.equal(plain.ending.form, "short", "older callers get the short form");
+    assert.deepEqual(plain.ending.lines, ["Пришли к заставе."]);
+    assert.equal(plain.ending.channel, "", "no channel without a stinger");
+
+    // Migration 80: rpg_dossier stores the ending with the recap; the public snapshot carries it; a digest without it keeps it.
+    const play = await (await c.deps(createScriptedDmModel([]))).store.readPlay(c.cid);
+    const sessionId = (await c.f.one("select current_session_id from public.rpg_public_state where campaign_id=$1", [c.cid])).current_session_id;
+    await c.f.memory(c.cid, "end", { requestId: randomUUID(), campaignId: c.cid, expectedRevision: play.revision, sessionId }, play.timeline);
+    await c.dossier("digest", { sessionId, recap: digest.recap, title: digest.title, notebook: digest.notebook, plans: [], stinger: digest.stinger, ending: digest.ending }, source.timeline);
+    const snapshot = await c.f.saves(c.cid, "campaign");
+    const stored = snapshot.sessions.find((row) => row.id === sessionId);
+    assert.equal(stored.ending.form, "cards");
+    assert.equal(stored.ending.cards[0].fate, "остаётся с отрядом");
+    await c.dossier("digest", { sessionId, recap: "r2", title: "t2", notebook: "", plans: [] }, source.timeline);
+    assert.equal((await c.f.saves(c.cid, "campaign")).sessions.find((row) => row.id === sessionId).ending.form, "cards", "kept");
+    assert.deepEqual((await c.f.one("select rpg_private.timeline_row_defaults('public.rpg_sessions') d")).d, { stinger: "", ending: {} });
+  } finally { await c.f.db.close(); }
+});
+
+test("E wiring: the session close shows «Что было» or the cards with portraits, the gathered threads and the channel of «Тем временем»", () => {
+  const view = src("src/components/registry/session-end.tsx");
+  assert.match(view, /c\("Что было", "What happened"\)/);
+  assert.match(view, /c\("Судьбы", "Fates"\)/);
+  assert.match(view, /anchorFor\(pictures\.board, \{ kind: "entity", id: entityId \}, "portrait"\)/);
+  assert.match(view, /c\("Открытые нити", "Open threads"\)/);
+  assert.match(view, /ending\?\.channel \? ` · \$\{ending\.channel\}` : ""/);
+  assert.match(src("src/lib/server/session-digest.ts"), /const shape = sessionShape\(rows\);/);
+  assert.match(src("src/lib/server/session-digest.ts"), /ending: result\.digest\.ending,/);
+});
+
+test("E (item 75): the party council never offers the hero as a listener, and the council's people are the companions", () => {
+  const composer = src("src/components/gameplay-composer.tsx");
+  assert.match(composer, /row\.id !== companionId && row\.kind !== "player" &&\s*play\.configuration\?\.presentEntityIds\.includes\(row\.id\)/);
+  assert.match(src("src/lib/ui/campaign-view.ts"), /export function partyOf[^]*?\.filter\(\(row\) => row\.kind === "companion"\)/);
 });
