@@ -106,6 +106,9 @@ test("E: the shot and the brief resolve role words, write the caption in the cam
   assert.match(prompt, /packed away, not in hand: Верёвка/);
   assert.match(prompt, /exactly two arms and two hands with five fingers each/);
   assert.doesNotMatch(prompt, /Эдрик|Хальвар/, "no name reaches the image model");
+  const prose = compileBriefPrompt({ brief: { ...brief, brief: `${brief.brief} He looks at Halvar.` }, people: [], references: [], style: "", modelId: "gpt-image-2.5-sunburst",
+    names: [{ name: "Хальвар", label: "the sergeant" }] });
+  assert.match(prose, /He looks at the sergeant\./, "a name in the brief's own prose (the probe's «looking at Lira») becomes the label");
   assert.equal(relabel("looks at Lira and at Halvar", [{ name: "Лира", label: "the scout" }, { name: "Хальвар", label: "the sergeant" }]), "looks at the scout and at the sergeant",
     "a name the model spelled in Latin letters goes too (the probe's «looks at Lira»)");
   const flux = compileBriefPrompt({ brief, style: "", modelId: "fal-ai/flux-2-pro", people: [{ key: SERGEANT, label: "the sergeant", pronoun: "they", appearance: "", gear: { worn: ["Длинный меч"], packed: [] } }], references: [] });
@@ -131,6 +134,9 @@ test("E: the vision check names limbs, gear the person does not have and open ey
   assert.match(request, /1\. the hero: wears or holds Посох; DOWN at 0 hit points — unconscious, eyes must be closed\./);
   assert.match(request, /an extra or a missing arm, hand or leg/);
   assert.match(request, /a weapon, a shield, a lantern, a torch/);
+  assert.match(request, /other figures the moment itself names \(a sentry, a figure in the distance, a crowd\) are fine/);
+  assert.match(src("src/lib/visual-frame/frame-check.ts"), /max_tokens: FRAME_CHECK_MAX_TOKENS/);
+  assert.ok((await import("../src/lib/visual-frame/frame-check.ts")).FRAME_CHECK_MAX_TOKENS >= 2000, "room for the model's thinking (700 was all thinking in the probe)");
   const verdict = parseFrameCheck('{"problems":["the hero has three hands","the sergeant holds a shield"],"gaze":[{"person":1,"looksAt":"up-right"},{"person":2,"looksAt":"the hero"},{"person":9,"looksAt":"x"}]}', people);
   assert.deepEqual(verdict.problems, ["the hero has three hands", "the sergeant holds a shield"]);
   assert.deepEqual(verdict.gaze, [{ key: HERO, looksAt: "up-right" }, { key: SERGEANT, looksAt: "the hero" }]);

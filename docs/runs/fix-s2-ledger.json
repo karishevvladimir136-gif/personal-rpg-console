@@ -231,6 +231,50 @@
       "settled": true,
       "finishedAt": "2026-10-20T12:46:50.750Z",
       "record": "docs/runs/real-replay-20261020-124524.jsonl"
+    },
+    {
+      "run": "picture-probe-20261020-134324",
+      "what": "fix run E: the frame rules on the live models (brief, picture, vision check) on synthetic scenes",
+      "stage": "E",
+      "startedAt": "2026-10-20T13:43:24.150Z",
+      "reservedUsd": 1.5,
+      "spentUsd": 0.1972,
+      "settled": true,
+      "finishedAt": "2026-10-20T13:47:04.253Z",
+      "record": "scripts/eval/fix-s2/picture-probe.mjs (picture-probe-20261020-134324)"
+    },
+    {
+      "run": "picture-probe-20261020-134837",
+      "what": "fix run E: the frame rules on the live models (brief, picture, vision check) on synthetic scenes",
+      "stage": "E",
+      "startedAt": "2026-10-20T13:48:37.184Z",
+      "reservedUsd": 1.5,
+      "spentUsd": 0.2322,
+      "settled": true,
+      "finishedAt": "2026-10-20T13:52:24.933Z",
+      "record": "scripts/eval/fix-s2/picture-probe.mjs (picture-probe-20261020-134837)"
+    },
+    {
+      "run": "frame-check-debug-20261020-135325",
+      "what": "fix run E: one raw vision-check call to see why its answer was unreadable (thinking used the 700-token cap)",
+      "stage": "E",
+      "startedAt": "2026-10-20T13:53:25.821Z",
+      "reservedUsd": 0.01,
+      "spentUsd": 0.0005,
+      "settled": true,
+      "finishedAt": "2026-10-20T13:53:25.824Z",
+      "record": "scratchpad check-raw.mjs (one Haiku call, 1810 in / 700 out)"
+    },
+    {
+      "run": "picture-recheck-20261020-135348",
+      "what": "fix run E: the vision check again on the probe's frames (the token cap raised)",
+      "stage": "E",
+      "startedAt": "2026-10-20T13:53:48.234Z",
+      "reservedUsd": 0.1,
+      "spentUsd": 0.0031,
+      "settled": true,
+      "finishedAt": "2026-10-20T13:54:14.923Z",
+      "record": "scripts/eval/fix-s2/picture-probe.mjs --recheck (picture-recheck-20261020-135348)"
     }
   ]
 }

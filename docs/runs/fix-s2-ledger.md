@@ -25,4 +25,8 @@ Cap $50 (stages A+B within $30); every paid run registers here before its first 
 | real-replay-20261020-110036 | AB | real replay: 1 turns × A on Fix run memory probe (seed m2, 60 turns); voice live; craft live | $4.50 | $0.9706 | yes |
 | real-replay-20261020-124207 | D | real replay: 1 turns × O on Fix run B probes (seed b); voice live; craft live | $5.00 | $1.6561 | yes |
 | real-replay-20261020-124524 | D | real replay: 1 turns × O on Fix run probes (seed a); voice live; craft live | $5.00 | $1.4154 | yes |
-| **Total** | | | **$29.2062 of $50** | |
+| picture-probe-20261020-134324 | E | fix run E: the frame rules on the live models (brief, picture, vision check) on synthetic scenes | $1.50 | $0.1972 | yes |
+| picture-probe-20261020-134837 | E | fix run E: the frame rules on the live models (brief, picture, vision check) on synthetic scenes | $1.50 | $0.2322 | yes |
+| frame-check-debug-20261020-135325 | E | fix run E: one raw vision-check call to see why its answer was unreadable (thinking used the 700-token cap) | $0.01 | $0.0005 | yes |
+| picture-recheck-20261020-135348 | E | fix run E: the vision check again on the probe's frames (the token cap raised) | $0.10 | $0.0031 | yes |
+| **Total** | | | **$29.6392 of $50** | |

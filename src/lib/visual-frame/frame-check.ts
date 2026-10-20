@@ -10,6 +10,8 @@ import { QUOTABLE_MODEL, QUOTABLE_PRICE_PER_MILLION } from "../gameplay/dm-loop/
 export const FRAME_CHECK_MODEL = QUOTABLE_MODEL;
 /** Anthropic takes images up to 5 MB; a bigger picture is not checked. */
 export const FRAME_CHECK_MAX_BYTES = 3_700_000;
+/** The answer's ceiling, thinking included. */
+export const FRAME_CHECK_MAX_TOKENS = 3000;
 
 export type FrameCheckPerson = { key: string; label: string; worn: string[]; packed: string[]; down: boolean };
 export type FrameCheckInput = { image: { bytes: Uint8Array; contentType: string }; people: FrameCheckPerson[]; moment: string };
@@ -27,7 +29,7 @@ export function frameCheckRequest(input: Omit<FrameCheckInput, "image">): string
     "- a person with an extra or a missing arm, hand or leg (three hands, a hand coming out of nowhere);",
     "- a weapon, a shield, a lantern, a torch or another clearly visible thing held or worn that the records above do not give that person (a thing that only lies in the scene is fine; a packed thing in hand is a mistake only when it is a shield or a light);",
     "- open eyes on a person who is down at 0 hit points;",
-    "- more or fewer people than listed, when the difference is plain.",
+    "- more or fewer of the listed people than listed, when the difference is plain; other figures the moment itself names (a sentry, a figure in the distance, a crowd) are fine.",
     "Do not report style, composition, small details, clothing colours or anything you are unsure about.",
     "Also say where each listed person looks: at another person (by label), at a thing, at the viewer, or a direction (up-right, up-left, down, far away).",
     "Answer with one JSON object only: {\"problems\":[\"...\"],\"gaze\":[{\"person\":1,\"looksAt\":\"...\"}]}; with no mistakes, \"problems\":[].",
@@ -65,7 +67,8 @@ export async function checkFrame(apiKey: string, input: FrameCheckInput, options
     const response = await (options.fetcher ?? fetch)("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-      body: JSON.stringify({ model: FRAME_CHECK_MODEL, max_tokens: 700, output_config: { effort: "low" }, messages: [{ role: "user", content: [
+      // The model thinks before it answers even at low effort; 700 tokens were all thinking in the probe (3 of 5 unreadable).
+      body: JSON.stringify({ model: FRAME_CHECK_MODEL, max_tokens: FRAME_CHECK_MAX_TOKENS, output_config: { effort: "low" }, messages: [{ role: "user", content: [
         { type: "image", source: { type: "base64", media_type: input.image.contentType, data: Buffer.from(input.image.bytes).toString("base64") } },
         { type: "text", text: frameCheckRequest(input) },
       ] }] }),

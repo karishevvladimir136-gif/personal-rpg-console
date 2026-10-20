@@ -1,0 +1,245 @@
+{
+  "run": "picture-probe-20261020-134837",
+  "recheck": "picture-recheck-20261020-135348",
+  "spentUsd": 0.23222600000000004,
+  "note": "Synthetic scenes (scripts/eval/fix-s2/picture-probe.mjs); frames in docs/runs/fix-s2-shots/E-probe-*.jpg. namesInPrompt for ash-hands was the brief prose («looking at Lira»), fixed afterwards by scrubbing the prose too.",
+  "rows": [
+    {
+      "id": "role-word",
+      "who": [
+        "Эдрик Вейл",
+        "Хальвар"
+      ],
+      "whoRight": true,
+      "caption": "— Значит, через овраг, — говорит Хальвар, глядя на карту в твоих руках. Ветер треплет край пергамента.",
+      "captionRussian": true,
+      "namesInPrompt": false,
+      "labels": [
+        "the hero",
+        "the sergeant"
+      ],
+      "directions": [
+        {
+          "who": "Эдрик Вейл",
+          "looksAt": "the sergeant",
+          "hands": "both hands hold the parchment map, the wind lifting its edge"
+        },
+        {
+          "who": "Хальвар",
+          "looksAt": "the map in the hero's hands",
+          "hands": null
+        }
+      ],
+      "avoid": "no extra people, no text on the map, no lantern, no shield, no weapon drawn, no staff in the hero's hands",
+      "profileUpdates": [],
+      "imageUsd": 0.032115,
+      "check": {
+        "problems": [],
+        "gaze": [
+          {
+            "who": "Эдрик Вейл",
+            "looksAt": "a thing"
+          },
+          {
+            "who": "Хальвар",
+            "looksAt": "a thing"
+          }
+        ]
+      }
+    },
+    {
+      "id": "kneel-aim",
+      "who": [
+        "Эдрик Вейл",
+        "Хальвар"
+      ],
+      "whoRight": true,
+      "caption": "Ты поднимаешься из-за корневища на колено, взводишь лёгкий арбалет и целишься в фигуру на том краю оврага.",
+      "captionRussian": true,
+      "namesInPrompt": false,
+      "labels": [
+        "the hero",
+        "the sergeant"
+      ],
+      "directions": [
+        {
+          "who": "Эдрик Вейл",
+          "looksAt": "the figure across the ravine",
+          "hands": "both hands hold the crossbow, right hand at the trigger, left hand supports the stock"
+        },
+        {
+          "who": "Хальвар",
+          "looksAt": "the figure across the ravine",
+          "hands": "right hand rests on the sword hilt, left hand hangs at his side"
+        }
+      ],
+      "avoid": "no extra people close by, no lantern, no torch, no shield, no staff in the hero's hand, no text",
+      "profileUpdates": [],
+      "imageUsd": 0.03236,
+      "check": {
+        "problems": [
+          "an extra unlisted figure stands on the far cliff edge at top right"
+        ],
+        "gaze": [
+          {
+            "who": "Эдрик Вейл",
+            "looksAt": "up-right"
+          },
+          {
+            "who": "Хальвар",
+            "looksAt": "far away"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ash-hands",
+      "who": [
+        "Эдрик Вейл",
+        "Лира"
+      ],
+      "whoRight": true,
+      "caption": "Ты размазываешь серую пасту по лицу и рукам, а Лира держит горсть золы и щурится: — Ещё под глазами.",
+      "captionRussian": true,
+      "namesInPrompt": true,
+      "labels": [
+        "the hero",
+        "the red-haired scout"
+      ],
+      "directions": [
+        {
+          "who": "Эдрик Вейл",
+          "looksAt": "Lira",
+          "hands": "left hand holds the waterskin and has just poured water, right palm rubs the ash paste onto his face"
+        },
+        {
+          "who": "Лира",
+          "looksAt": "the hero's face",
+          "hands": "one hand cupped open with ash, the other relaxed at her side"
+        }
+      ],
+      "avoid": "no lantern, no extra people, no text, no staff in hand, no weapons drawn, no unconscious bandit",
+      "profileUpdates": [
+        {
+          "who": "Эдрик Вейл",
+          "change": "face and hands smeared with grey ash paste"
+        }
+      ],
+      "imageUsd": 0.032175,
+      "check": {
+        "problems": [],
+        "gaze": [
+          {
+            "who": "Эдрик Вейл",
+            "looksAt": "another person (2)"
+          },
+          {
+            "who": "Лира",
+            "looksAt": "another person (1)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "raid-hidden",
+      "who": [
+        "Эдрик Вейл",
+        "Хальвар"
+      ],
+      "whoRight": true,
+      "caption": "Хальвар бесшумно заходит сзади, зажимает рот часовому и утаскивает его за угол сарая.",
+      "captionRussian": true,
+      "namesInPrompt": false,
+      "labels": [
+        "the hero",
+        "the sergeant"
+      ],
+      "directions": [
+        {
+          "who": "Эдрик Вейл",
+          "looksAt": "the sergeant and the sentry",
+          "hands": "one hand rests on the cart's edge, the other holds the staff close to his body"
+        },
+        {
+          "who": "Хальвар",
+          "looksAt": "the sentry he is dragging",
+          "hands": "left hand clamps the sentry's mouth, right arm locks around his chest"
+        }
+      ],
+      "avoid": "no lantern, no torch, no extra guards, no text, no visible weapons drawn, no daylight, hero not standing in the open",
+      "profileUpdates": [],
+      "imageUsd": 0.032425,
+      "check": {
+        "problems": [],
+        "gaze": [
+          {
+            "who": "Эдрик Вейл",
+            "looksAt": "far away"
+          },
+          {
+            "who": "Хальвар",
+            "looksAt": "down"
+          }
+        ]
+      }
+    },
+    {
+      "id": "down-0hp",
+      "who": [
+        "Эдрик Вейл",
+        "Хальвар",
+        "Чёрный Тоб"
+      ],
+      "whoRight": true,
+      "caption": "Ты падаешь за горящей телегой, шляпа откатывается в сторону; Хальвар стоит над главарём, на шее которого блестит цепочка с ключом.",
+      "captionRussian": true,
+      "namesInPrompt": false,
+      "labels": [
+        "the hero",
+        "the sergeant",
+        "the bandit leader"
+      ],
+      "directions": [
+        {
+          "who": "Эдрик Вейл",
+          "looksAt": "the ground (eyes closed)",
+          "hands": null
+        },
+        {
+          "who": "Хальвар",
+          "looksAt": "the fallen bandit leader",
+          "hands": "right hand holds the bloodied long sword, left hand hangs free"
+        },
+        {
+          "who": "Чёрный Тоб",
+          "looksAt": "nothing (eyes closed)",
+          "hands": null
+        }
+      ],
+      "avoid": "no staff in the hero's hand, no lantern, no shield, no extra people, no text, no enemy mage visible.",
+      "profileUpdates": [],
+      "imageUsd": 0.032735,
+      "check": {
+        "problems": [],
+        "gaze": [
+          {
+            "who": "Эдрик Вейл",
+            "looksAt": "down"
+          },
+          {
+            "who": "Хальвар",
+            "looksAt": "3"
+          },
+          {
+            "who": "Чёрный Тоб",
+            "looksAt": "up-right"
+          }
+        ]
+      }
+    },
+    {
+      "id": "out-of-game",
+      "ooc": true
+    }
+  ]
+}

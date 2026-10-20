@@ -167,10 +167,15 @@ function roleText(reference: BriefReference, person: BriefPerson | undefined) {
 /** The prompt compiled from a brief: references by role, the brief itself (whole for GPT Image and the
  * other prose readers, the short form for FLUX), identity locks for every referenced person, the exact
  * number of people, the anatomy guard, what to avoid, no lettering (FLUX: plain surfaces), the style. */
-export function compileBriefPrompt(input: { brief: VisualBrief; people: BriefPerson[]; references: BriefReference[]; style: string; modelId: string }): string {
+export function compileBriefPrompt(input: { brief: VisualBrief; people: BriefPerson[]; references: BriefReference[]; style: string; modelId: string;
+  /** Fix run E: the scene's names with the brief's labels — a name the model still wrote into its prose (even in Latin
+   * letters, «looking at Lira» in the probe) becomes the label; a name in a picture prompt becomes lettering. */
+  names?: { name: string; label: string }[] }): string {
   const family = promptFamily(input.modelId);
   const flux = family === "flux";
-  const { brief, people } = input;
+  const { people } = input;
+  const scrub = (text: string) => (input.names?.length ? relabel(text, input.names) : text);
+  const brief = { ...input.brief, brief: scrub(input.brief.brief), short: scrub(input.brief.short), avoid: scrub(input.brief.avoid) };
   const byKey = new Map(people.map((row) => [row.key, row]));
   const refs = input.references.map((row, index) => family === "gpt-image" ? `Image ${index + 1} — ${roleText(row, row.person ? byKey.get(row.person) : undefined)}.`
     : `${capital(refName([index], family))} shows ${roleText(row, row.person ? byKey.get(row.person) : undefined)}.`);
@@ -222,7 +227,7 @@ export function briefReferences<T extends { role: ReferenceRole; entityId?: stri
  * inside it turned into labels), the records' gear and «eyes closed» at 0 HP; a name nobody records stays a generic
  * person. Returns the people and the matched records' IDs in that order. */
 export function directPeople(brief: Pick<VisualBrief, "who" | "people">, scene: ScenePerson[], records: { id: string; kind: string; hp: number | null; max_hp: number | null }[],
-  read: { look: (id: string) => string; gear: (id: string) => { worn: string[]; packed: string[] } }): { people: BriefPerson[]; entityIds: string[] } {
+  read: { look: (id: string) => string; gear: (id: string) => { worn: string[]; packed: string[] } }): { people: BriefPerson[]; entityIds: string[]; names: { name: string; label: string }[] } {
   const resolvedIds = resolveWho(brief.who, scene);
   const matched = brief.who.map((_, index) => (resolvedIds[index] ? records.find((row) => row.id === resolvedIds[index]) ?? null : null));
   const entityIds = [...new Set(matched.filter((row): row is NonNullable<typeof row> => row !== null).sort((a, b) => (a.kind === "player" ? -1 : 0) - (b.kind === "player" ? -1 : 0)).map((row) => row.id))];
@@ -245,7 +250,7 @@ export function directPeople(brief: Pick<VisualBrief, "who" | "people">, scene: 
       ...(d ? { direction: { looksAt: relabel(d.looksAt, named), expression: d.expression, action: relabel(d.action, named), hands: d.hands ? relabel(d.hands, named) : null } } : {}) };
   });
   brief.who.forEach((name, index) => { if (!matched[index]) people.push({ key: `${name}#${people.length}`, label: `person ${people.length + 1}`, pronoun: "they", appearance: "as described in the scene" }); });
-  return { people, entityIds };
+  return { people, entityIds, names: named };
 }
 
 /** Known names in a direction («looks at Горн») become the brief's labels: names in a prompt become lettering. */

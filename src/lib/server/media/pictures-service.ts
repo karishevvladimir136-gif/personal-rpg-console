@@ -304,7 +304,7 @@ async function directFrame(ctx: PicturesContext, pictureId: string, input: { ope
   // The people of the brief, the hero first; identity references by role, in the fixed order.
   // Fix run E (items 78a, 79): role words resolve to the scene's people (the hero first); each person carries the
   // brief's direction (gaze, expression, action, hands) under the brief's own label, and the records' gear.
-  const { people, entityIds } = directPeople(brief, scene, snapshot.entities, { look: (id) => lookOf(board, snapshot, id), gear: (id) => gearOf(snapshot, id) });
+  const { people, entityIds, names } = directPeople(brief, scene, snapshot.entities, { look: (id) => lookOf(board, snapshot, id), gear: (id) => gearOf(snapshot, id) });
   const activeStyleRow = activeStyle(board);
   const placeAnchor = place ? anchorFor(board, { kind: "location", id: place.id }, "location").picture : null;
   const heroId = snapshot.entities.find((row) => row.kind === "player" && entityIds.includes(row.id))?.id ?? null;
@@ -319,7 +319,7 @@ async function directFrame(ctx: PicturesContext, pictureId: string, input: { ope
   // A redraw with the owner's comment: the previous frame of this turn goes back as the only reference, the change as an edit.
   const previousOfTurn = comment ? framesOfTurn(board, operationId).filter((p) => p.status === "ready" && p.id !== pictureId).at(-1) ?? null : null;
   const edit = comment && brief.edit && previousOfTurn;
-  const prompt = edit ? compileEditPrompt(brief.edit!, promptFamily(input.model)) : compileBriefPrompt({ brief, people, references: ordered, style, modelId: input.model });
+  const prompt = edit ? compileEditPrompt(brief.edit!, promptFamily(input.model)) : compileBriefPrompt({ brief, people, references: ordered, style, modelId: input.model, names });
   const referenceIds = edit ? [previousOfTurn!.id] : ordered.map((r) => r.id);
   await briefPictureRow(ctx, { id: pictureId, prompt, referenceIds, ...(brief.caption ? { caption: brief.caption } : {}), shot: {
     ...input.shot, who: brief.who.length ? brief.who : input.shot.who, brief,

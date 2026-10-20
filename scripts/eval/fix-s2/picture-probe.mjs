@@ -51,6 +51,30 @@ const SCENES = [
 ];
 
 const apiKey = providerKey("ANTHROPIC_API_KEY"), openaiKey = providerKey("OPENAI_API_KEY");
+// --recheck: only the vision check again, on the frames a previous run drew into --out (its probe.json); no new pictures.
+if (process.argv.includes("--recheck")) {
+  const { readFile } = await import("node:fs/promises");
+  const previous = JSON.parse(await readFile(join(out, "probe.json"), "utf8"));
+  const run = `picture-recheck-${new Date().toISOString().replace(/[-:]/g, "").replace(/\..+$/, "").replace("T", "-")}`;
+  const ledger = await openRun(run, budgetUsd, "fix run E: the vision check again on the probe's frames (the token cap raised)");
+  let spent = 0;
+  try {
+    for (const row of previous.rows.filter((r) => r.who && !r.ooc)) {
+      if (spent + CHECK_RESERVE_USD > ledger.budgetUsd) throw new Error("budget reached");
+      const item = SCENES.find((scene) => scene.id === row.id);
+      const ids = row.who.map((name) => records.find((r) => r.name === name).id);
+      const people = ids.map((id, index) => ({ key: id, label: row.labels[index] ?? `person ${index + 1}`, worn: [...records.find((r) => r.id === id).worn, ...(item.gain?.[id] ?? [])],
+        packed: records.find((r) => r.id === id).packed, down: (item.hp?.[id] ?? records.find((r) => r.id === id).hp) === 0 }));
+      const check = await checkFrame(apiKey, { image: { bytes: await readFile(join(out, `${row.id}.jpg`)), contentType: "image/jpeg" }, people, moment: row.caption ?? "" });
+      spent += check.costUsdMicros / 1_000_000;
+      row.check = check.verdict ? { problems: check.verdict.problems, gaze: check.verdict.gaze.map((g) => ({ who: records.find((r) => r.id === g.key)?.name, looksAt: g.looksAt })) } : { error: check.error };
+      console.log(`${row.id}: ${row.check.error ? `error ${row.check.error}` : `${row.check.problems.length ? row.check.problems.join("; ") : "no problems"} · gaze ${row.check.gaze.map((g) => `${g.who} → ${g.looksAt}`).join(", ")}`} (${check.elapsedMs} ms)`);
+    }
+  } finally { await ledger.settle(spent, `scripts/eval/fix-s2/picture-probe.mjs --recheck (${run})`); }
+  await writeFile(join(out, "probe.json"), JSON.stringify({ ...previous, recheck: run, rows: previous.rows }, null, 2), "utf8");
+  console.log(`spent $${spent.toFixed(4)} (${run})`);
+  process.exit(0);
+}
 if (!apiKey || !openaiKey) throw new Error("the Anthropic and OpenAI keys are needed in .env.local");
 const run = `picture-probe-${new Date().toISOString().replace(/[-:]/g, "").replace(/\..+$/, "").replace("T", "-")}`;
 const ledger = await openRun(run, budgetUsd, "fix run E: the frame rules on the live models (brief, picture, vision check) on synthetic scenes");
@@ -89,10 +113,10 @@ try {
       const id = scene.find((p) => p.name === update.who)?.id;
       if (id) changes.set(id, applyLookChange(changes.get(id) ?? [], update.change) ?? changes.get(id) ?? []);
     }
-    const { people, entityIds } = directPeople(brief, scene, records.map((r) => ({ ...r, hp: hp(r.id) })), {
+    const { people, entityIds, names } = directPeople(brief, scene, records.map((r) => ({ ...r, hp: hp(r.id) })), {
       look: (id) => [records.find((r) => r.id === id).look, (changes.get(id) ?? []).length ? `Now: ${changes.get(id).join("; ")}.` : ""].filter(Boolean).join(" "),
       gear: (id) => ({ worn: worn(id), packed: records.find((r) => r.id === id).packed }) });
-    const prompt = compileBriefPrompt({ brief, people, references: [], style: "Painterly fantasy illustration, muted earthy palette, cinematic light.", modelId: MODEL });
+    const prompt = compileBriefPrompt({ brief, people, references: [], style: "Painterly fantasy illustration, muted earthy palette, cinematic light.", modelId: MODEL, names });
     Object.assign(row, { who: entityIds.map((id) => records.find((r) => r.id === id).name), whoRight: item.expect.who.every((id) => entityIds.includes(id)) && entityIds[0] === HERO,
       caption: brief.caption, captionRussian: /[а-яё]/i.test(brief.caption ?? ""), labels: people.map((p) => p.label), directions: brief.people.map((d) => ({ who: d.who, looksAt: d.looksAt, hands: d.hands })),
       namesInPrompt: records.some((r) => r.name.split(" ").flatMap((part) => [part, ...latinSpellings(part)]).some((part) => part.length > 2 && prompt.toLowerCase().includes(part.toLowerCase()))), avoid: brief.avoid, profileUpdates: brief.profileUpdates });
