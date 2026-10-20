@@ -59,7 +59,12 @@ sessions, «meanwhile» through in-world channels (item 81).
    suite on the merge commit.
 2. The local session loads the merge into the sandbox by `docs/SANDBOX_LOAD_FIX_S2.md` (dump, migrations, production
    build, the one-time data corrections, the 2D migration).
-3. The owner's acceptance pass over every screen by the Russian checklists (fix run + 2D) — nothing is done until
+2b. **An independent audit (Ultracode)** on the merge: a separate cloud session with ultracode on walks every item of
+   `docs/runs/session2-owner-notes.md` (1–85 and the two key findings), both acceptance checklists and the stage docs,
+   and for each checks in the merged code and tests whether it is done as the owner phrased it; findings are
+   cross-verified by second agents; the output is a table (item → where in the code → confirmed / partial / missing →
+   what differs) plus a short list of things to fix before the owner looks. The planner filters it into a fix list.
+3. The owner's acceptance pass over every screen (after the audit — he looks at the game, not for gaps) by the Russian checklists (fix run + 2D) — nothing is done until
    «принято».
 4. **A prose check before real play**: a fresh test campaign in the sandbox on the new mode with the Russian
    instructions, 6–8 turns on the known probe situations (a companion talk, an objection to an order, an
