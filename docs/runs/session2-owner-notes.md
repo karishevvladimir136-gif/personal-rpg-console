@@ -1196,3 +1196,20 @@ report); the guard post's place record says «Раннее утро» — a time
     objected, 22:36: «мы ж в мире меча и магии — какое бытовое пояснение?»; right: magic is ordinary here, the
     point is mystery and lore, not the unexplainable; the owner approved this wording, 22:37: «ну вот да»); loot by the 5e
     treasure guidance for the challenge, with the guide's «rare» meaning rare in shops, not in the loot.
+    **Owner, 22:38: «запомни, чтобы оно при правке не потерялось».** Kept in project memory and here. The draft
+    section for the owner's rules guide (after «Рост», before «Термины»; about 150 tokens, the guide is near 4.7k of
+    6k), to carry into the fix plan and into every future world prep:
+
+        ## Тайна и чудо
+        - За видимым делом арки стоит скрытая правда крупнее его: кто за этим стоит на самом деле и зачем. Держи её
+          в своих записях и не раскрывай за одну сессию. Улики разложи по разным местам; каждый ответ открывает
+          вопрос глубже. Люди говорят только то, что сами знают и хотят сказать: ни один персонаж не объясняет
+          герою всю картину целиком.
+        - Хотя бы раз за сессию — магия с историей и открытым вопросом: чьё это, откуда, зачем. Например: вещь со
+          странным знаком и неизвестными свойствами, ритуальная метка, шифр, древняя печать там, где ей не место.
+        - Добыча — по таблицам сокровищ 5e для опасности встречи: в логове главаря и мага лежит клад, и в нём могут
+          быть магические вещи. «Редкость» магических предметов относится к лавкам, а не к кладам.
+
+    In the fix plan this also belongs in the DM's own instructions (not only the owner-editable guide), so a new
+    campaign gets it without the owner pasting it; and the world-prep template should stop saying the modules'
+    plots are «only echoes» without adding that the campaign has its own mystery.
