@@ -39,12 +39,22 @@ quiet scene with a companion. It changes smoothly and never gets in the way.
 - **Player.** Crossfades between moods with hysteresis (no switch on every turn), volume, mute, «музыка выкл», pin a
   track, skip. Music ducks under a video clip's own sound. Works on the phone; never autoplays before the first click,
   as browsers require.
-- Optional later layer, not in this stage: ambient sound (rain, a tavern, ship engines) and real-time generated music
-  (Lyria RealTime, experimental).
+- **Ambient layer (owner, 2026-10-20: «давай сразу»).** A second, quieter layer under the music: the place's sound
+  (a tavern, a forge, a forest at night, a stream, a mine, a ship, steam engines for a steampunk world) and the
+  weather (rain, wind) from the public place record and the scene's time of day; loops of 30–60 s, crossfaded, ducked
+  under music and video, its own volume and «выкл». Generated per place kind once (not per place): fal
+  `fal-ai/elevenlabs/sound-effects` for short seamless loops (check its loop flag), `fal-ai/stable-audio-25` for long
+  evolving soundscapes. The pack: 15–20 place kinds × 1–2 variants, plus 5–6 weathers. Never from hidden facts.
+- **Real-time music — an experiment inside this stage, not a dependency.** Google Lyria RealTime (Gemini API, a
+  separate key the owner adds as `APP_GOOGLE_API_KEY`; a persistent streaming session; experimental status) steered
+  by the same mood signal with smooth prompt transitions. Build it behind a setting «Живая музыка» with its own cap
+  ($10 of the stage's money); if it works and sounds better than the pack in the review, it ships as a mode; if the
+  API is unavailable, unstable or worse, report that and the pack stays the base — the game never depends on it.
+  Paid generation cap for the whole stage: **$60** (the pack and the review within $40, ambient $10, real-time $10).
 
 ## Checks
 
-Paid generation within **$40**, stopped by a guard; report every call's cost; synthetic worlds only. A review pack: the
+Paid generation within **$60** (see the caps above), stopped by a guard; report every call's cost; synthetic worlds only. A review pack: the
 «Мир Шва» and «Neon & Rain» soundtracks with their mood lists, and a 20-turn synthetic session log showing which mood
 played when and why. typecheck / lint / test / build pass; push `claude/stage-music` only, never `main`, never the owner's
 database. Report in English.
