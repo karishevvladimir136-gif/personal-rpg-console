@@ -978,3 +978,15 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     letter instead of a place. Do: motives and deductions are said as reason → consequence with every link; the
     report checks place and person names in each turn against the campaign's records. Canon used well: Amn's
     licence for arcane magic, Feldepost's, the Zhentarim.
+
+73. **Second max_tokens failure — on the long rest** (21:34, owner: «что снова?»). The move «long rest, in the morning
+    a council at the captain's» ran at high depth; request 1 wrote 20 tool calls (money, seven `resource` calls,
+    five `upsert_character`, `upsert_place`, two `quest`, three `note_world`, `note_character`) and stopped at
+    `max_tokens` with exactly 10000 output tokens (4000 thinking + 6000); request 2 then failed as «provider»,
+    `retryable: false` — the same chain as 56. About $0.44 lost. Two extra findings: the DM restored resources
+    one by one instead of calling `rest` once, and a scene-closing move (rest + time skip + quest and world
+    bookkeeping) is the heaviest kind of turn, so it is the first to hit the cap. Do (stage 1, already approved):
+    the output cap to the model maximum; on `max_tokens` with a cut tool call, drop the cut call and continue
+    instead of sending it to the provider; `rest` restores every rest-based resource in one call; bookkeeping
+    tools may run in a follow-up request after the story is shown. Previous turn's diagnostic also flagged
+    `time_words`: the text said «night» at 11:40.
