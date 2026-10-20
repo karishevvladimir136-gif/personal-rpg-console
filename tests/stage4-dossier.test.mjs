@@ -455,7 +455,8 @@ test("tool descriptions stay compact: sixteen tools, their descriptions under 6k
   const openai = JSON.stringify(dmLoopToolset.openai), anthropic = JSON.stringify(dmLoopToolset.anthropic);
   assert.equal(dmLoopToolset.openai.length, 16);
   // Stage 2b shipped about 5.6k (OpenAI) / 5.1k (Anthropic) estimated tokens; Stage 4 adds the dossier fields;
-  // the polish stage adds the roll's bonuses and the speech profile (the schema sits in the cached prefix).
-  assert.ok(estimateTokens(openai) < 9500, `openai tool schema ${estimateTokens(openai)} tokens`);
-  assert.ok(estimateTokens(anthropic) < 9500, `anthropic tool schema ${estimateTokens(anthropic)} tokens`);
+  // the polish stage adds the roll's bonuses and the speech profile (the schema sits in the cached prefix);
+  // 2D Live part 2 grows the combat tool to the fight's fifteen actions (about 2.6k of the total).
+  assert.ok(estimateTokens(openai) < 12000, `openai tool schema ${estimateTokens(openai)} tokens`);
+  assert.ok(estimateTokens(anthropic) < 12000, `anthropic tool schema ${estimateTokens(anthropic)} tokens`);
 });

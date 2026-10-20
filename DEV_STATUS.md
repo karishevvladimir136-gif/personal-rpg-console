@@ -1,19 +1,25 @@
 # Development status
 
 **Current stage (parallel to the session 2 fix run):** 2D Live, the first slice and the combat screen
-(`docs/stages/LIVE2D_1.md`, Parts 1 and 2) — **built on `claude/live2d-1-9lq5bf` (the cloud session's name for
-`claude/live2d-1`), waiting for the owner's pass over `docs/runs/live2d-1-acceptance.md`.** Branch from
+(`docs/stages/LIVE2D_1.md`, Parts 1 and 2) — **built and probed on `claude/live2d-1-9lq5bf` (the cloud session's name
+for `claude/live2d-1`), waiting for the owner's pass over `docs/runs/live2d-1-acceptance.md`.** Branch from
 `claude/session-2-prep` (`d74b6c6`); migrations `202610210200_live2d` and `202610210201_live2d_battle`, additive. The
 report is `docs/runs/live2d-1-report.md` (the probe numbers, the shared files touched, the proposals for the fix run,
 «Needs the owner»); the resume notes `docs/runs/live2d-1-progress.md`; the ledger `docs/runs/live2d-1-ledger.md`.
 Part 1: the painted region with travel and marker modes, the scene with checked hotspots (8/8 probe places at 100 %
 must-show after at most one redraw, 0 contradictions, 0 people in backgrounds, $0.057 a scene), the hierarchy world ›
 region › town › district › scene, private POI seeds. Part 2: the fight held on the server (grid, initiative, economy,
-conditions, enemy HP, features), the DM's battlefield block, the optional rules module on attacks, the battle screen
-with tokens, drag-to-intent, templates, reaction and end cards; two scripted fights through the real loop; the live DM
-probes and the suite on the frozen candidate are recorded in the report. The owner's turn-lease fix (`claude/stage-fix-turn-lease`, migration 71) is merged into this
-branch: a fight turn runs 100–200 s and the live probes needed it. The sections below are each earlier stage's own
-closing status, kept unchanged.
+conditions, enemy HP, features), the DM's battlefield block, the optional rules module on attacks (conditions, cover,
+crits, resistances, the point-blank ranged rule), the battle screen with tokens, drag-to-intent, templates, reaction and
+end cards; two scripted fights through the real loop; two live DM fights on Opus 5.5 (the ford 5/5 turns, the lair 4/5,
+the DM's distances, cover and light read back from the server's block with no contradiction; 77–106 s a turn, unchanged
+by a lower continuation depth). The owner's turn-lease fix (`claude/stage-fix-turn-lease`, migration 71) is merged into
+this branch: a fight turn runs 100–200 s and the live probes needed it. Checks on the frozen candidate: typecheck pass,
+lint pass (zero warnings), build pass, the slice's tests 34/34 (`tests/live2d-*.test.mjs`), 39 screenshots with zero
+overflow, the full suite 2 661 tests · 2 630 pass · 27 skipped · 3 cancelled (the D2a composition file, identical on the branch
+base: an environment artefact) · 1 fail (the tool-schema size bound in the dossier test, raised for the grown combat
+tool after trimming its schema; that file, the slice's and the dm-loop tests 84/84 green after). Paid: **$9.93 of the $40 cap** (`docs/runs/live2d-1-ledger.md`; no image calls in Part 2). The
+sections below are each earlier stage's own closing status, kept unchanged.
 
 **Latest fix: the stuck long turn (session 2)** — **done on `claude/stage-fix-turn-lease`, waiting for the owner's
 check in the sandbox.** Branch from `claude/session-2-prep` (d74b6c6); migration 71 (`dm_loop_turn_lease`), additive.

@@ -58,5 +58,6 @@ afterwards from the reply's own usage (OpenAI images, Anthropic) or fal's list p
 | 2026-10-20 08:18 | live ford fight, attempt 2 (turn failed at commit: the turn lease) | claude-opus-5-5 | $0.409 | $0.409 | ok |
 | 2026-10-20 08:18 | live ford fight, attempt 3 (turns failed at commit: a check on a foe not yet in the DB) | claude-opus-5-5 | $0.657 | $0.657 | ok |
 | 2026-10-20 08:18 | Part 2 live probe: the ford ambush (5 turns, Opus 5.5) | claude-opus-5-5 | $1.610 | $1.610 | ok |
+| 2026-10-20 08:26 | Part 2 comparison run: the ford with continuations at medium (the bench guard stopped the last turn at USD 2.5) | claude-opus-5-5 | $1.888 | $1.888 | ok |
 
-**Spent so far: $8.045 of $40** (52 calls).
+**Spent so far: $9.933 of $40** (53 calls).

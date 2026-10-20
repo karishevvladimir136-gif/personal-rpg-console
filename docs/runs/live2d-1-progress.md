@@ -27,12 +27,19 @@ Branch `claude/live2d-1-9lq5bf` (the session's own name for `claude/live2d-1`) f
   through the real loop (`tests/live2d-fights.test.mjs`), 18 battle screenshots. The owner's turn-lease fix
   (`claude/stage-fix-turn-lease`, migration 71) is merged: the first live fight attempts died on the expired lease.
 
+- Part 2 (probed) — the live DM fights: the ford 5/5 turns committed ($1.61, 77 s a turn), the lair 4/5 ($2.80, 106 s;
+  the bench guard cut the last turn), the comparison run with continuations at `medium` (79 s a turn: no change — the
+  first request and the tool rounds are the time). Findings fixed: the attack card's `targetId: null` for a foe created
+  the same turn, a move past the grid edge is leaving the field, the point-blank ranged rule for any adjacent hostile.
+  39 screenshots (`docs/runs/live2d-1-shots/index.json`), the report's Part 2 sections, the ledger at $9.93 of $40.
+
 ## In progress
-- Part 2 — the live DM probes (scenarios `20-live2d-ford`, `21-live2d-lair`, Opus 5.5, $3.50 each), then the report's
-  Part 2 section, the full suite on the frozen candidate, the final screenshots index.
+- none — the slice is built and probed; see the report's «Verification (Part 2)» for the suite on the frozen candidate.
 
 ## Next
-- Owner acceptance (`docs/runs/live2d-1-acceptance.md`); the proposals for the fix run in the report.
+- Owner acceptance (`docs/runs/live2d-1-acceptance.md`, sections 1–3); the proposals for the fix run in the report
+  (the scene sheet in the DM's context, seeds into the hidden layer, a DM scene tool; the fight prompt: resolve the
+  hero's declared action in the same turn, batch the combat calls).
 
 ## Open questions
-- none yet
+- none
