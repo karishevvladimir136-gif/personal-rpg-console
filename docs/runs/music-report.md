@@ -157,7 +157,7 @@ Review: `docs/runs/music-review/ambient/shov/` (24 place kinds + 5 weathers + 4 
 
 typecheck pass · lint pass (zero warnings) · `tests/music-stage.test.mjs` 12/12 (the ambient layer included) · build pass · screenshots of the
 settings and game screens, desktop and phone, with the overflow check passing (`docs/screens/stage-5/settings-*.jpg`,
-`game-*.jpg`, `noir-*`) · the full suite on the final code: FULLSUITE2.
+`game-*.jpg`, `noir-*`) · the full suite on the final code: 2 632 tests · 2 605 pass · 27 skipped · 0 fail.
 
 ## Money
 

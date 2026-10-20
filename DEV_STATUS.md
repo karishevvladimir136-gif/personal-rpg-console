@@ -10,7 +10,7 @@ ambient layer, what to click, known limits); the Russian checklist `docs/runs/mu
 «Neon & Rain» soundtracks, the ambient loops of both worlds, as small MP3s with their tables); the 20-turn mood log
 `docs/runs/music-session-log.md`. Final checks: typecheck pass, lint pass (zero warnings), build pass, the stage's tests
 12/12, screenshots of the settings and game screens on desktop and phone with the overflow check passing, the full
-suite FULLSUITE2. Paid: **$19.82 of the $50 cap** ($14.40 of $40 for the soundtracks and the review, $5.42 of $10 for
+suite 2 632 tests · 2 605 pass · 27 skipped · 0 fail. Paid: **$19.82 of the $50 cap** ($14.40 of $40 for the soundtracks and the review, $5.42 of $10 for
 the ambient layer; every fal call, the free validation probes included, in `docs/runs/music-ledger.md`).
 
 **The music stage in short (2026-10-20):** a soundtrack per world. The settings' music block generates a pack of
