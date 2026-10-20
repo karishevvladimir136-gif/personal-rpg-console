@@ -799,3 +799,8 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     cache breakpoint on the growing turn so each continuation reads ~95% from cache (today 0.55–0.64); (4) the lease
     renewed per request (item 58); (5) the session report charts turn time and cost by depth and by scene type.
     Mid-session workaround offered: set both ends of the depth range to «высокая».
+    **Owner decision (19:12): approved — (1) xhigh only for «важный ход», continuations after a roll at low depth;
+    (2) one request per round, attack with damage in one roll; (3) a cache breakpoint inside the turn** — together with
+    the lease renewal (item 58) and the output cap at the model's maximum (item 56). The owner set both ends of the
+    depth range to «высокая» for the rest of session 2. These five form the «speed and reliability» stage; it goes
+    first in the fix cycle, before the voice fix, because lost and stuck turns block play.
