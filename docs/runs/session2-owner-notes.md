@@ -1071,3 +1071,13 @@ Small, from the same screenshots: the party screen groups the sergeant, the scou
 лошади стражи» (a holding of horses listed as their home); both companion cards show «Навык 0» (a 5e Veteran and a
 Scout have real skills — Athletics, Perception, Stealth — so the DM's rolls for them may be at +0; check in the
 report); the guard post's place record says «Раннее утро» — a time of day stored in a place description.
+
+79. **Same face, same gaze in every frame** (owner, 22:05: «у героев всегда одно и то же выражение — Брам всегда
+    эпично смотрит наверх направо, абсолютно всегда; они редко смотрят на другого героя»). The frame he showed is
+    good otherwise (the gagged prisoner, the dead brute, the sergeant standing over them), but the sergeant again
+    looks up and to the right — the head angle and expression of his portrait anchor, which also faces right — and
+    again carries a shield he does not own (78). Likely cause: the face reference is copied with its pose and
+    expression, and the brief gives no eye-line. Do: references are for identity only (the prompt says not to copy
+    pose, gaze or expression from them); the shot director writes who looks at whom and each person's expression
+    for this moment; portrait anchors in a neutral, front or three-quarter pose, ideally two angles; the report's
+    picture check counts gaze direction per companion across frames.
