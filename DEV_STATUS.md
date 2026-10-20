@@ -24,7 +24,7 @@ resolution, the schema size, the probes, the money); the ledger `docs/runs/merge
   action — for the audit.
 - **Checks on the candidate** (`9cebbd5`, a clean worktree without `.env.local`): the full suite 2 795 tests · 2 768
   pass · 0 fail · 0 cancelled · 27 skipped; typecheck pass; lint pass (zero warnings); production build pass (no
-  warnings); the screenshot sets of the three branches regenerated from the merge (SHOTS_SHORT).
+  warnings); the screenshot sets of the three branches regenerated from the merge (fix-s2 184, 2D 39, music 8; zero overflow).
 - **Money:** $7.07 of the merge's $15 cap (check 1 $5.83 of ≤ $8, check 2 $1.24, check 3 $0).
 - **Known issues and what is left:** the owner's acceptance of the three checklists; the sandbox load and session 3 on
   the owner's machine; the `d2a-composition` cancellations (pre-existing); the rules module in the split and the two

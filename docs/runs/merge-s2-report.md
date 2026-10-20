@@ -8,10 +8,9 @@ probes below, in `docs/runs/merge-s2-ledger.md` (cap $15).
 
 The three branches are one branch now, `claude/s3-candidate`: the fixes after session 2 as the base, 2D Live with the
 combat screen, and the soundtrack with its ambient layer (the music branch was merged twice — its ambient follow-up
-landed while the merge was under way). Conflicts in five files (nine over the three merges), resolved as unions, the schema bound re-measured; the `combat`
-tool is the 2D branch's;
-two things the merged code needed were fixed (the 2D preview's DM options; the fix run's 13 px text floor carried to the
-2D and music screens). The full suite on the frozen candidate: **2 795 tests, 0 fail**; typecheck, zero-warning lint and
+landed while the merge was under way). Conflicts in five files (nine over the three merges), resolved as unions, the
+schema bound re-measured; the `combat` tool is the 2D branch's; two things the merged code needed were fixed (the 2D
+preview's DM options; the fix run's 13 px text floor carried to the 2D and music screens). The full suite on the frozen candidate: **2 795 tests, 0 fail**; typecheck, zero-warning lint and
 the production build pass. Session 3's mode on the merged code: the ford 5/5, the lair 4/5 (stopped by its own guard),
 the long rest 1/1 with one `rest`; records complete; the battlefield block reached the writer in every fight turn. Two
 things for the owner and the audit: in «Opus пишет — Opus записывает» the attacks are the writer's rolls, so the 2D
@@ -30,7 +29,7 @@ turn-lease fix (`claude/stage-fix-turn-lease`, migration `202610200071`) as the 
 | 1 | `claude/live2d-1-9lq5bf` — 2D Live and the combat screen | `b4e96e6` | `9831952` |
 | 2 | `claude/stage-music` — the soundtrack | `865b849` | `f23c512` |
 | 2b | `claude/stage-music` again — **the ambient follow-up**, pushed while the merge was under way | `f04534b` | `05a7c57` |
-| — | the bench: the app's checks on live runs, one adapter for Opus+Opus, the merge's ledger | — | `83d596b`, `9cebbd5` |
+| — | the bench and the replay tool: the app's checks on live runs, one adapter for Opus+Opus, the merge's ledger | — | `83d596b`, `9cebbd5`, `87361e8` |
 
 **The music branch's follow-ups.** At the first fetch the branch ended at `865b849`, without the ambient layer; its
 migration was `202610210371`. During the merge the music session pushed `66765e9` (the ambient layer: place sounds and
@@ -56,7 +55,7 @@ and are merged (`05a7c57`); there was no `…71` left to renumber.
 1. `src/lib/ui/preview/live2d-fixture.ts` — the 2D preview's DM settings lacked the fix run's `options` (migration 73);
    typecheck failed until they took `DM_OPTION_DEFAULTS`.
 2. **Readable text (the fix run's F2, owner item 5) on the new screens.** The fix run's rule «nothing on the owner's
-   screens under 13 px» failed on the 2D screens (15 rules at 9–12 px) and the music player (4 rules at 12–12.5 px). The
+   screens under 13 px» failed on the 2D screens (17 rules at 9–12 px) and the music player (4 rules at 12–12.5 px). The
    fix run's intent was re-applied by hand: every text panel of the 2D screens and the music block now has the 13 px
    floor (the initiative ribbon's names, the zone notes, chips' tags, the path and «caught» notes, the map label, the
    fight log, the cards' captions, the art and pin labels; the player's reason, lock, mood captions and log). The battle
@@ -94,12 +93,12 @@ behind the run's budget) and records whether **the writer's first request of eac
 - **Records complete.** No residual miss on any committed turn. The rejected records were recovered in the same turn
   (a crossbow dropped while still equipped → recorded as changed; a fallen companion's sword → taken off, then left where
   it fell; a `combat reaction` first aimed at the attacker, then at the hero; a `note_world` key with a Cyrillic letter,
-  then fixed). The long rest: **one `rest` call** for
-  the three party members; the three `resource` calls are the enemies' deaths, not per-counter bookkeeping.
+  then fixed). The long rest: **one `rest` call** for the three party members; the three `resource` calls are the
+  enemies' deaths, not per-counter bookkeeping.
 - **The battlefield block reached the writer** on every turn after `combat start` (the turn that opens a fight is built
-  before the fight exists). The writer used it: «До уступа ещё около 40 футов, подъём на 10 футов стоит 20 футов
-  движения» (the lair), «до него 25 футов, из них 15 по воде… дорога обойдётся в 35 футов» (the ford) are the server's
-  numbers read back.
+  before the fight exists). The writer used it: «До подножия уступа остаётся около 40, а подъём на 10 футов стоит
+  20 футов движения» (the lair), «Ян … в 30 футах от твоего валуна… двадцать футов брода по колено в воде замедляют»
+  (the ford) are the server's numbers read back.
 - **The combat tool's rules — what applies in this mode.** The bookkeeper ran the fight on the server — `start` with
   placements and initiative, `feature` (the boulders as cover, the ford as difficult ground, the burning cart), `move`,
   `next_turn`, `hp`, `condition`, `intent`, `known`, `reaction`, `profile`, `log` — **and never `attack`** (0 server
@@ -112,7 +111,8 @@ behind the run's budget) and records whether **the writer's first request of eac
   the audit:** in «пишет — записывает» the combat tool's `attack` and the rules module are single-DM features; making
   them apply in the split needs the writer to resolve attacks through the server (a design change, not done here).
 - **The first ford attempt** (`20261020-180119`, 2 turns, $0.85) was cut by a bench bug, not by the app: with Opus in
-  both roles the bookkeeper's reservations were never released, so the $3 guard tripped at $0.85 of real spend. Fixed
+  both roles the bookkeeper's reservations were never released, so the $3 guard tripped at $0.85 of real spend (its
+  second turn's one ledger-checker miss, a dropped crossbow, was being corrected when the guard cut the turn). Fixed
   in the bench and in the replay tool (`9cebbd5`, `87361e8`), then the ford re-ran whole. The first long-rest attempt
   sent nothing ($0): the first request's worst case ($2.48 for a 455 KB context) was over its $1.50 guard.
 
@@ -124,7 +124,7 @@ where the finding was seen (`20261020-182957`, 5 / 5 turns, $1.24), both with th
 | Ford turn — the player's line | Opus writes — Opus records | Opus alone |
 | --- | --- | --- |
 | 1 «как только Ян ступит в воду — бьём первыми. Я выхожу и рублю…» | not rolled: the ambush check failed, Ян never stepped into the water (the condition of the declared action did not happen); told | the same; the foes' and Тобин's attacks resolved by `combat attack` and told; «Теперь ход за тобой» |
-| 2 «Бью Яна ещё раз» | not rolled: out of game, the DM says the hero has not hit him yet and the server's distance (30 ft, 15 of it water) puts him out of reach; offers the bow | the same: the server refused the 35-ft move (30 ft left); out of game, the numbers and three options |
+| 2 «Бью Яна ещё раз» | not rolled: out of game, the DM says the hero has not hit him yet and the server's distance (30 ft, 20 of it knee-deep water) puts him out of reach; offers the bow | the same: the server refused the 35-ft move (30 ft left); out of game, the numbers and three options |
 | 3 «Отхожу… и стреляю в него из лука» | **rolled**; the rolls check found **2 of 3 rolls untold** and the writer told them in the same turn | **rolled** (`combat attack`), told |
 | 4 «Добиваю того, кто ближе» | **rolled** (a natural 20); told only by implication («Он теперь без арбалета») and the check passed it | the fight had ended; a helpless foe finished in words, no roll |
 | 5 «Осматриваю тела…» | no roll needed; the DM points out the fight is still on | no roll needed |
@@ -156,7 +156,7 @@ screens the 13 px floor.
 ## Checks on the candidate
 
 On a clean worktree without `.env.local`, pinned to the frozen candidate `9cebbd5` (the last merge `05a7c57` plus
-the bench's two commits; everything after it is the bench's replay fix and documents):
+the bench's adapter fix; everything after it is the replay tool's same fix and documents):
 
 - **Full suite** (`node --test --test-concurrency=2 tests/*.test.mjs`, Node 24): **2 795 tests · 2 768 pass · 0 fail ·
   0 cancelled · 27 skipped** (35 min). The three known `d2a-composition` cancellations did not occur on this run.
@@ -166,7 +166,13 @@ the bench's two commits; everything after it is the bench's replay fix and docum
   tests (261) — 2 failures, both fixed in the merge (the 13 px rule on the 2D styles, the schema bound), then green; after
   each music merge the music, saves, readable-text, stage-5 and settings tests (49–68) green after the music player's
   13 px fix.
-- **Screenshots regenerated from the merge** (the production build above, `next start` on :3105): SHOTS
+- **Screenshots regenerated from the merge** (the production build above, `next start` on :3105): the fix run's set
+  `docs/runs/fix-s2-shots/` (stages A–F, 46 screens at 1440×900, 1920×1080, 2560×1440 and a 390 phone — 184 shots;
+  stages A–E gain the 900p size F introduced; the E picture-probe images are paid outputs and stay as they were), the 2D
+  set `docs/runs/live2d-1-shots/` (39 shots: the walk at three widths, both fights round by round) and the music set in
+  `docs/screens/stage-5/` (the game and settings screens of both sample worlds, desktop and phone — 8 shots); **zero
+  horizontal overflow and nothing clipped** in every index. The merged screens show the union: «Для владельца» and «2D»
+  in the menu, the music control in the header, the music and place-sound block under the fix run's settings.
 
 ## Money
 
@@ -179,12 +185,17 @@ the bench's two commits; everything after it is the bench's replay fix and docum
 | 3 — the audit input | no paid calls | $0 |
 
 Each run's own guard capped it before any request whose worst case could cross it; the checkers' calls (Haiku, about
-$0.0005 each) are inside the totals.
+$0.0005 each) are inside the totals. The replay tool registers in the ledger before its first request; the bench has
+its own guard and its runs were entered as each one ended, with the provider-measured spend.
 
 ## Files of this merge
 
-- The report (this file), the ledger `docs/runs/merge-s2-ledger.md` (and `.json`), the records `docs/runs/*-loop-opus+opus-live-*.jsonl`
-  and `docs/runs/real-replay-*` of the probes (synthetic campaigns only).
+- The report (this file), the ledger `docs/runs/merge-s2-ledger.md` (and `.json`), the probes' records
+  `docs/runs/20261020-18*-loop-opus*-live-2*.jsonl` and `docs/runs/real-replay-20261020-18*.jsonl` (synthetic campaigns
+  only).
+- The bench (`scripts/eval/run.mjs`, `scripts/eval/lib/loop-harness.mjs`: `--app-checks`, the live context, one adapter
+  for the same model in both roles) and the replay tool (`scripts/eval/real-replay/replay.mjs`: the same adapter fix;
+  `lib/ledger.mjs`: the merge's ledger).
 - `docs/runs/s3-audit-input.md` — every item of `docs/runs/session2-owner-notes.md` with the commits that address it.
 - `docs/runs/s3-acceptance.md` — the index of the three Russian acceptance checklists.
 - `docs/SANDBOX_LOAD_FIX_S2.md` — now loads `claude/s3-candidate`: the three migration ranges, the 2D tables, the

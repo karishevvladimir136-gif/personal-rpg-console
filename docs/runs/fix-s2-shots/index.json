@@ -1,7 +1,28 @@
 {
   "base": "PREVIEW_URL",
-  "date": "2026-10-20T17:03:57.057Z",
+  "date": "2026-10-20T18:53:49.623Z",
   "shots": [
+    {
+      "stage": "A",
+      "file": "A-owner-900p.jpg",
+      "url": "/preview/stage-5/owner",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "A",
+      "file": "A-settings-900p.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "A",
+      "file": "A-game-recording-900p.jpg",
+      "url": "/preview/stage-5/game?recording=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
     {
       "stage": "A",
       "file": "A-owner-1080p.jpg",
@@ -67,21 +88,28 @@
     },
     {
       "stage": "B",
+      "file": "B-settings-secrets-900p.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "B",
+      "file": "B-settings-memory-900p.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "B",
+      "file": "B-owner-900p.jpg",
+      "url": "/preview/stage-5/owner",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "B",
       "file": "B-settings-secrets-1080p.jpg",
-      "url": "/preview/stage-5/settings",
-      "horizontalOverflowPx": 0,
-      "clippedPx": 0
-    },
-    {
-      "stage": "B",
-      "file": "B-settings-secrets-1440p.jpg",
-      "url": "/preview/stage-5/settings",
-      "horizontalOverflowPx": 0,
-      "clippedPx": 0
-    },
-    {
-      "stage": "B",
-      "file": "B-settings-secrets-phone.jpg",
       "url": "/preview/stage-5/settings",
       "horizontalOverflowPx": 0,
       "clippedPx": 0
@@ -95,7 +123,35 @@
     },
     {
       "stage": "B",
+      "file": "B-owner-1080p.jpg",
+      "url": "/preview/stage-5/owner",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "B",
+      "file": "B-settings-secrets-1440p.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "B",
       "file": "B-settings-memory-1440p.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "B",
+      "file": "B-owner-1440p.jpg",
+      "url": "/preview/stage-5/owner",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "B",
+      "file": "B-settings-secrets-phone.jpg",
       "url": "/preview/stage-5/settings",
       "horizontalOverflowPx": 0,
       "clippedPx": 0
@@ -109,22 +165,29 @@
     },
     {
       "stage": "B",
-      "file": "B-owner-1080p.jpg",
-      "url": "/preview/stage-5/owner",
-      "horizontalOverflowPx": 0,
-      "clippedPx": 0
-    },
-    {
-      "stage": "B",
-      "file": "B-owner-1440p.jpg",
-      "url": "/preview/stage-5/owner",
-      "horizontalOverflowPx": 0,
-      "clippedPx": 0
-    },
-    {
-      "stage": "B",
       "file": "B-owner-phone.jpg",
       "url": "/preview/stage-5/owner",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "C",
+      "file": "C-game-turn-900p.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "C",
+      "file": "C-game-combat-turn-900p.jpg",
+      "url": "/preview/stage-5/game?combat=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "C",
+      "file": "C-game-recording-turn-900p.jpg",
+      "url": "/preview/stage-5/game?recording=1",
       "horizontalOverflowPx": 0,
       "clippedPx": 0
     },
@@ -188,6 +251,55 @@
       "stage": "C",
       "file": "C-game-recording-turn-phone.jpg",
       "url": "/preview/stage-5/game?recording=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-character-900p.jpg",
+      "url": "/preview/stage-5/character",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-inventory-900p.jpg",
+      "url": "/preview/stage-5/inventory",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-character-spells-900p.jpg",
+      "url": "/preview/stage-5/character?spells=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-character-companion-900p.jpg",
+      "url": "/preview/stage-5/character?companion=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-inventory-card-900p.jpg",
+      "url": "/preview/stage-5/inventory?card=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-party-900p.jpg",
+      "url": "/preview/stage-5/party",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-holdings-900p.jpg",
+      "url": "/preview/stage-5/holdings",
       "horizontalOverflowPx": 0,
       "clippedPx": 0
     },
@@ -340,6 +452,34 @@
     },
     {
       "stage": "E",
+      "file": "E-gallery-900p.jpg",
+      "url": "/preview/stage-5/gallery",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
+      "file": "E-ending-900p.jpg",
+      "url": "/preview/stage-5/ending",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
+      "file": "E-ending-cards-900p.jpg",
+      "url": "/preview/stage-5/ending?cards=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
+      "file": "E-game-900p.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
       "file": "E-gallery-1080p.jpg",
       "url": "/preview/stage-5/gallery",
       "horizontalOverflowPx": 0,
@@ -356,6 +496,13 @@
       "stage": "E",
       "file": "E-ending-cards-1080p.jpg",
       "url": "/preview/stage-5/ending?cards=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
+      "file": "E-game-1080p.jpg",
+      "url": "/preview/stage-5/game",
       "horizontalOverflowPx": 0,
       "clippedPx": 0
     },
@@ -382,6 +529,13 @@
     },
     {
       "stage": "E",
+      "file": "E-game-1440p.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
       "file": "E-gallery-phone.jpg",
       "url": "/preview/stage-5/gallery",
       "horizontalOverflowPx": 0,
@@ -398,20 +552,6 @@
       "stage": "E",
       "file": "E-ending-cards-phone.jpg",
       "url": "/preview/stage-5/ending?cards=1",
-      "horizontalOverflowPx": 0,
-      "clippedPx": 0
-    },
-    {
-      "stage": "E",
-      "file": "E-game-1080p.jpg",
-      "url": "/preview/stage-5/game",
-      "horizontalOverflowPx": 0,
-      "clippedPx": 0
-    },
-    {
-      "stage": "E",
-      "file": "E-game-1440p.jpg",
-      "url": "/preview/stage-5/game",
       "horizontalOverflowPx": 0,
       "clippedPx": 0
     },
