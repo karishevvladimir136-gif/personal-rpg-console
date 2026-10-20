@@ -730,3 +730,12 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     `model-runtime/capabilities.ts` (128k for the current models) instead of 6,000 + `thinkingAllowance` (`loop.ts`),
     for every depth and both providers; the narration-length guidance stays in the prompt. Plus the continuation fix
     above. Log every turn over 32k output (tokens, seconds, cost) so a runaway is visible.
+
+57. **The whole session's transcript unfolds under the play screen** (owner, 18:49: «там внизу какая-то … — оно мне
+    почему-то выгрузило всё по игре»). Opening «Редактор кампании · для владельца» under the story shows the owner
+    tools (combat readiness, session as a record, «Правка точки продолжения», «Добавить запись в стенограмму»,
+    «Сессии») and then «Стенограмма»: every record of the session as a full card with «Исправить запись истории» —
+    the entire story a second time, with English headings («Player action», «DM») and «Записано с редакцией настроек N»
+    under each. The panel stays open, so the play page grows by the whole session. Do: owner tools live on their own
+    screen (or a drawer), not under the story; the transcript is a compact list (time, who, first line) that opens one
+    record to correct; Russian headings; with items 24–25 (admin panels that «повылезали»).
