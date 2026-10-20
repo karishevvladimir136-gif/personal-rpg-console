@@ -36,6 +36,9 @@ export function providerSettings(
   environment: Record<string, string | undefined>,
 ): ProviderSettings {
   const configured = Boolean(environment.OPENAI_API_KEY?.trim());
+  // Fix run after session 2 (item 4): whether each provider's key is set on the server — a flag only, never the key.
+  const keySet = (name: string): ProviderSettings["globalDefaultStatus"] =>
+    environment[name]?.trim() ? "configured_not_tested" : "unavailable";
   let globalDefault: ModelSelection | null = null;
   try {
     globalDefault = validateModelSelection(applicationModelSelection(environment));
@@ -44,12 +47,15 @@ export function providerSettings(
   }
   return {
     schemaVersion: 1,
+    // OpenAI stays first: the application model's provider (callers read it by id).
     providers: [
       {
         id: "openai",
         label: "OpenAI",
         status: configured ? "configured_not_tested" : "unavailable",
       },
+      { id: "anthropic", label: "Anthropic", status: keySet("ANTHROPIC_API_KEY") },
+      { id: "fal", label: "fal", status: keySet("FAL_KEY") },
     ],
     models: Object.entries(openAiModelCapabilities).map(([id, capability]) => ({
       providerId: "openai",

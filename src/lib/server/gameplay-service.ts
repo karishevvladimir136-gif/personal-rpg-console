@@ -266,7 +266,7 @@ export async function readPlay(campaignId: string) {
         settings.providers.globalDefault,
       ),
       providerAvailable: () =>
-        settings.providers.providers[0]?.status === "configured_not_tested",
+        settings.providers.providers.find((provider) => provider.id === "openai")?.status === "configured_not_tested",
     }).modelId;
   } catch {
     /* Keep unavailable explicit selection visible; never fall back. */

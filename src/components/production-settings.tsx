@@ -96,6 +96,8 @@ export function AIProviderSettings({
       lifecycle.current++;
     };
   }, [initialData, load]);
+  // Fix run after session 2 (item 4): who does what today — the provider keys (a flag, never the key), the Game
+  // Master and the pictures chosen per campaign, and the background OpenAI model named for what it still does.
   return (
     <Panel className={styles.settings}>
       <div className={styles.intro}>
@@ -103,54 +105,69 @@ export function AIProviderSettings({
           <h2>{c.aiTitle}</h2>
           <p>{c.aiIntro}</p>
         </div>
-        <Badge>{"OpenAI"}</Badge>
       </div>
       {busy && <p role="status">{c.loading}</p>}
       {error && <p role="alert">{c.loadError}</p>}
       {data && (
-        <div>
-          <h3>{c.providers}</h3>
-          {data.providers.map((provider) => (
-            <div className={styles.provider} key={provider.id}>
-              <strong>{provider.label}</strong>
-              <Status value={provider.status} />
-            </div>
-          ))}
-          <p className="muted">{c.statusHelp}</p>
-          <div className={styles.default}>
-            <h3>{c.globalDefault}</h3>
+        <div className={styles.who}>
+          <section aria-labelledby="ai-keys-title">
+            <h3 id="ai-keys-title">{c.keysTitle}</h3>
+            {data.providers.map((provider) => (
+              <div className={styles.provider} key={provider.id} data-testid={`provider-${provider.id}`}>
+                <strong>{provider.label}</strong>
+                <KeyStatus value={provider.status} />
+              </div>
+            ))}
+            <p className="muted">{c.keysHelp}</p>
+          </section>
+          <ul className={styles.roles}>
+            <li>{c.dmWho}</li>
+            <li>{c.picturesWho}</li>
+          </ul>
+          <section className={styles.default} aria-labelledby="ai-background-title">
+            <h3 id="ai-background-title">{c.backgroundTitle}</h3>
             <p>
               {data.globalDefault
                 ? `${data.globalDefault.modelId} · ${data.globalDefault.reasoning ?? c.modelDefault}`
                 : c.noDefault}
             </p>
-            <Status value={data.globalDefaultStatus} />
-            <p className="muted">{c.campaignHint}</p>
-          </div>
-          <h3>{c.supported}</h3>
-          <div className={styles.choices}>
-            {data.models.map((model) => (
-              <span
-                key={`${model.providerId}/${model.id}`}
-                className={styles.choice}
-              >
-                {model.label}
-              </span>
-            ))}
-          </div>
-          <details className={styles.overrides}>
-            <summary>{c.setupTitle}</summary>
-            <p className="muted">{c.setupIntro}</p>
-            <p className="muted">{c.setupSteps}</p>
-          </details>
+            <p className="muted">{c.backgroundUses}</p>
+            <details className={styles.overrides}>
+              <summary>{c.details}</summary>
+              <p className="muted">{c.supportedHelp}</p>
+              <div className={styles.choices}>
+                {data.models.map((model) => (
+                  <span
+                    key={`${model.providerId}/${model.id}`}
+                    className={styles.choice}
+                  >
+                    {model.label}
+                  </span>
+                ))}
+              </div>
+              <p className="muted">{c.setupSteps}</p>
+            </details>
+          </section>
         </div>
       )}
-      <div>
-        <Button disabled={busy} onClick={() => void refresh()}>
-          {error ? c.retryLoad : c.refresh}
-        </Button>
-      </div>
+      {error && (
+        <div>
+          <Button disabled={busy} onClick={() => void refresh()}>
+            {c.retryLoad}
+          </Button>
+        </div>
+      )}
     </Panel>
+  );
+}
+
+function KeyStatus({ value }: { value: ProviderSettings["globalDefaultStatus"] }) {
+  const { language } = useLanguage();
+  const c = wave2ConfigText(language);
+  return (
+    <span className={`${styles.status} ${value === "unavailable" ? styles.unavailable : ""}`}>
+      {value === "unavailable" ? c.keyMissing : c.keyPresent}
+    </span>
   );
 }
 

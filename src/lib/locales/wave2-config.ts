@@ -1,8 +1,20 @@
 import type { Language } from "../i18n.ts";
 
 const en = {
-  aiTitle: "AI Providers / Models",
-  aiIntro: "Choose the voice and reasoning behind your campaigns.",
+  aiTitle: "AI: who does what",
+  aiIntro: "Each campaign chooses its own Game Master and pictures. This page only shows which keys the server has.",
+  keysTitle: "Provider keys",
+  keyPresent: "key set",
+  keyMissing: "no key",
+  keysHelp:
+    "Keys live only in the server's settings file on your computer; this page shows whether a key is set, never the key. Opening it makes no AI requests.",
+  dmWho: "Game Master — in each campaign's settings (default Claude Opus 5.5).",
+  picturesWho: "Pictures — in each campaign's settings («Pictures»: OpenAI GPT Image or fal).",
+  backgroundTitle: "Background OpenAI model",
+  backgroundUses:
+    "Builds a world's canon in «Worlds», runs World Lab and the previous Astra turn, and writes the opening only for a campaign without a Game Master choice. Play itself never uses it.",
+  details: "More",
+  supportedHelp: "Models the background tasks can use:",
   providers: "Provider availability",
   configured: "Configured · not tested",
   unavailable: "Unavailable",
@@ -14,7 +26,7 @@ const en = {
   setupIntro:
     "The application reads its default from the server settings file.",
   setupSteps:
-    "Configure the OpenAI credential, default model and optional reasoning effort in the server settings, then restart the app. Refresh this panel to read the saved configuration.",
+    "The model and its reasoning effort are set in the server settings (OPENAI_DM_MODEL, OPENAI_DM_REASONING); after a change, restart the app.",
   campaignHint:
     "Campaigns inherit this default unless you choose a campaign model or a task override below.",
   supported: "Available model choices",
@@ -101,8 +113,20 @@ const en = {
     "Settings were saved, but the campaign view could not refresh. Refresh saved settings before continuing.",
 };
 const ru: Record<keyof typeof en, string> = {
-  aiTitle: "ИИ: провайдеры и модели",
-  aiIntro: "Выберите модели, которые ведут и осмысляют ваши кампании.",
+  aiTitle: "ИИ: кто что делает",
+  aiIntro: "Ведущего и картинки выбирает каждая кампания. Здесь видно только, какие ключи есть на сервере.",
+  keysTitle: "Ключи провайдеров",
+  keyPresent: "ключ есть",
+  keyMissing: "нет ключа",
+  keysHelp:
+    "Ключи лежат только в файле настроек сервера у тебя на компьютере; здесь видно, задан ли ключ, но не сам ключ. Открытие страницы не отправляет запросов к ИИ.",
+  dmWho: "Ведущий — в настройках каждой кампании (по умолчанию Claude Opus 5.5).",
+  picturesWho: "Картинки — в настройках кампании («Картинки»: OpenAI GPT Image или fal).",
+  backgroundTitle: "Фоновая модель OpenAI",
+  backgroundUses:
+    "Собирает канон мира в «Мирах», работает в «Мастерской мира» и на прежнем ходе Astra, пишет вступление только кампании без выбранного ведущего. В самой игре не участвует.",
+  details: "Подробнее",
+  supportedHelp: "Модели, доступные фоновым задачам:",
   providers: "Доступность провайдеров",
   configured: "Настроено · не проверено",
   unavailable: "Недоступно",
@@ -114,7 +138,7 @@ const ru: Record<keyof typeof en, string> = {
   setupIntro:
     "Приложение читает модель по умолчанию из файла настроек сервера.",
   setupSteps:
-    "Укажите ключ OpenAI, модель по умолчанию и при необходимости глубину рассуждений в настройках сервера, затем перезапустите приложение. Обновите эту панель, чтобы прочитать сохранённые настройки.",
+    "Модель и её глубина задаются в настройках сервера (OPENAI_DM_MODEL, OPENAI_DM_REASONING); после изменения перезапусти приложение.",
   campaignHint:
     "Кампании наследуют эту модель, пока вы не выберете другую модель кампании или отдельной задачи.",
   supported: "Доступные варианты моделей",
