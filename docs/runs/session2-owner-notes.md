@@ -1213,3 +1213,21 @@ report); the guard post's place record says «Раннее утро» — a time
     In the fix plan this also belongs in the DM's own instructions (not only the owner-editable guide), so a new
     campaign gets it without the owner pasting it; and the world-prep template should stop saying the modules'
     plots are «only echoes» without adding that the campaign has its own mystery.
+    Why it happened although the craft has mystery rules (owner, 22:41: «мы же это вроде в DM craft закладывали… и
+    ДМ в кампании в чате неплохо справлялся; там местами в power fantasy уходило — хотя в Мире Шва нет»). Planner:
+    - the craft cards from session 1 (TURN_LOOP §14: «three clues per mystery», «open questions stay open», secrets
+      never stated) tell the DM how to handle a mystery once one exists — clues, keep questions open, do not blurt
+      secrets. Nothing makes it create a hidden truth in the first place. Whether those six cards were active in this
+      campaign (they were seeded as pending versions; the session 2 prep asked for 22 active entries) — the report
+      checks;
+    - the chat campaign the owner compares with had that truth written before play: its world is built around a
+      mystery, its DM had a DM-only secrets document (the true cause, factions' hidden goals, clocks, prepared
+      clues) and a codex with «5–10 secrets per session, not tied to places», the three-clue rule and faction clocks.
+      The app campaign started with an empty private-notes layer and a public-canon world text, so every turn
+      improvised the most plausible local answer — and the plausible answer is the mundane one. The same structure
+      is likely why that campaign did not drift into power fantasy while others did;
+    - our prep pushed it further down to earth (see above).
+    Do (fix plan): a prep step before the first session and between sessions — the DM writes the campaign's hidden
+    layer into the private notes it already has (a secrets budget exists in the dossier): the bigger truth behind
+    the first case, the factions' hidden aims, 5–10 secrets not tied to places, clocks, one wondrous thread; the
+    session digest's notebook keeps it current; the mystery-and-wonder rule above goes into the DM's instructions.

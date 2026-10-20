@@ -62,7 +62,10 @@ B. Analysis — report.md, in RUSSIAN, short sections, numbers first. Parts 1–
     points beyond the visible case (who stands behind whom, the enemy mage's reasons and patrons, cults, artifacts,
     magic, anything strange) — quote it, and say whether any clue of it reached the player (turn numbers). Every
     search and every defeated enemy's belongings: what was found, against 5e treasure guidance for that challenge.
-    The «Что мне нравится в играх» text the owner gave and whether the DM context carries it.
+    The «Что мне нравится в играх» text the owner gave and whether the DM context carries it. DM Craft: which
+    entries and versions were active for this campaign (especially «three clues per mystery» and «open questions
+    stay open» from the polish stage — active or still pending); the private facts `clues_*` and `open_questions`,
+    if any; the private-notes (secrets) layer at the first turn and at the end — what the DM wrote there and when.
 
 Do not fix anything. When done, tell me in Russian: the folder path and a 5-line summary.
 ```
