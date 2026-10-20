@@ -720,8 +720,9 @@ export function PersistentLibrary({
     setDirty(false);
     return true;
   };
+  // `null` starts a new document; picking the open document (or «Новый документ» while writing one) changes nothing.
   const select = (id: string | null) => {
-    if (id === selectedId && !creating) return;
+    if (id === null ? creating : id === selectedId && !creating) return;
     if (!leaveEditor()) return;
     setSavedId(null);
     setSelectedId(id);

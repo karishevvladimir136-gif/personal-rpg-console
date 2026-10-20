@@ -674,6 +674,9 @@ test("live Library groups real public documents; the picked document reads in on
     assert.ok(!panelOf(nodes), "saving closes the document panel");
     assert.ok(nodes.some((node) => node.props.className === "document-saved" && node.props.children === (language === "ru" ? "Сохранено" : "Saved")),
       "«Сохранено» on the saved row");
+    nodes.find((node) => node.type?.name === "Button" && node.props.primary).props.onClick();
+    nodes = render();
+    assert.ok(nodes.some((node) => node.type?.name === "LibraryDocumentEditor" && !node.props.record), "«Новый документ» opens an empty editor");
   }
 });
 
