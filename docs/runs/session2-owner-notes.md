@@ -1016,3 +1016,15 @@ once by the owner, then the campaign stays closed until item 17's digest guard l
 `docs/SESSION_2_REPORT_PROMPT.md` into `C:\Dev\rpg-exports\session-2\`; the planner then writes the fix plan from the
 notes and the report. Hypothesis for item 17 to check in the report: the digest asks for 6000 output tokens at xhigh,
 whose thinking alone may use most of them — an «unparsed» digest may simply be a cut one.
+
+75. **Party council works, but one line to a companion is a full DM turn** (owner, 21:49: «даже разговор со
+    спутниками работает, правда отвечает он ебически медленно»). The owner asked the sergeant one question in «Совет
+    партии». Log: it ran as a normal dm-loop turn (`a90d436a…`, turn 66) — the whole 405 KB context (128.7k input
+    tokens), depth high («DM hint: tense»), first word at 22.7 s, done at 47.8 s, $0.30, four tools including
+    `advance_time`. The turn's stream connection closed after 24.7 s while the request ran to 45 s, so the answer
+    probably appeared only when the turn committed (check). Meanwhile the open game screen polled `GET …/play`
+    231 times in about 13 minutes, each taking 3–5 s of server time (item 62), plus a `MaxListenersExceededWarning`
+    on Gzip drain listeners. UI: the hero himself is offered as a «listener» in his own council. Diagnostic again:
+    `time_words` — «morning» written at 12:00. Do: a council line is a light call — the companion's dossier, the
+    scene and the last exchanges, not the whole world; depth low/medium; streamed; no tools except notes and time;
+    the speaker is never a listener; polling backs off while a turn streams and `/play` gets cheaper.
