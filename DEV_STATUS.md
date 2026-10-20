@@ -24,9 +24,11 @@ every paid call in `docs/runs/fix-s2-ledger.md`.
   ledger checker (owner); Russian instructions and «Память ведущего: стандарт» by default (the probes); the
   continuation stays at the turn's depth (the lighter one lost a fight's outcome); combat and item 31 moved to the 2D
   session; the hero is drafted by Claude Opus 5.5 at high.
-- **Checks:** the production build passes with no warnings on a clean worktree of the final code; the final typecheck,
-  zero-warning lint and full suite are running on that worktree (updated when they finish). Earlier stage suites: A
-  0 fail after its fixes, B 0 fail, C+D+E 0 fail (2725 tests); screenshots 104 for stage F at four sizes, zero overflow.
+- **Checks on the final code** (`b718733`, a clean worktree without `.env.local`): typecheck pass, lint pass (zero
+  warnings, `src tests scripts`), production build pass (no warnings), the full suite 2 749 tests · 2 719 pass · 0 fail ·
+  27 skipped · 3 cancelled (the `d2a-composition` cancellations, the same on the untouched base). Earlier stage suites:
+  A and B 0 fail after their fixes, C+D+E 0 fail (2 725 tests). Screenshots for every stage in `docs/runs/fix-s2-shots/`
+  (stage F: 26 screens at four sizes, zero overflow).
 - **Money:** $30.12 of the $50 cap (A+B $26.13 of $30; D $3.07; E $0.60; F $0.32).
 - **Known issues and what is left:** the decisions in the report's «Needs the owner»; the sandbox load and session 3
   on the owner's machine; the `d2a-composition` cancellations (pre-existing, the same on the untouched base); the not-done

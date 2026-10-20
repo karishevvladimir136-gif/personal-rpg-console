@@ -103,10 +103,14 @@ run's instruction names `claude/fix-s2`, so the work is on this branch instead, 
   acceptance checklist's sections 6–7, the report's stage F section, the sandbox guide, DEV_STATUS. Screenshots `F-*`
   (26 screens × 4 sizes) retaken on the merged code. The production build passes on a clean worktree of `b718733`.
 
+- The final checks on a clean worktree of `b718733` (the last code commit): typecheck pass, lint pass (zero warnings),
+  production build pass, the full suite 2749 tests, 2719 pass, 0 fail, 27 skipped, 3 cancelled (the `d2a-composition`
+  cancellations, the same on the untouched base). Stage F is done; the run is done. Money: $30.12 of $50.
+
 ## In progress
 
-- The final clean-worktree typecheck, lint and full suite on `b718733` (the last code commit). Money: $30.12 of $50
-  spent; nothing more is planned.
+- Nothing. The run stops here (FIX_S2_RUN.md): the owner's acceptance (`docs/runs/fix-s2-acceptance.md`) and the
+  sandbox load (`docs/SANDBOX_LOAD_FIX_S2.md`) are the owner's.
 
 ## Owner's instructions during the run
 

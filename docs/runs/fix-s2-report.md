@@ -560,6 +560,13 @@ game (with the frame drawing and with large text), character, inventory and its 
 - Secrets only through people who know them: the settings show only whether a key is set; the Library's text is never
   inserted as HTML; nothing DM-private reaches the new screens.
 
+## The final checks
+
+On a clean worktree of the last code commit (`b718733`, no `.env.local`): typecheck pass; lint pass with zero warnings
+(`src`, `tests`, `scripts`); the production build passes with no warnings; the full suite **2749 tests — 2719 pass,
+0 fail, 27 skipped, 3 cancelled** (the three `d2a-composition` tests are cancelled the same way on the untouched base,
+not this run's). Each stage's own clean suite: A and B 0 fail after their fixes, C + D + E 0 fail (2725 tests).
+
 ## Needs the owner
 
 1. **Session 3's DM mode.** Your choice «Opus пишет — Opus записывает» holds on the probes (records as good as the single
