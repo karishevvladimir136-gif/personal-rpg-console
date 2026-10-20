@@ -428,7 +428,7 @@ test("§2 §5 the wiring: the service routes by the campaign's choice, the compo
   assert.match(settings, /dmArchitectures\.map/);
   assert.match(settings, /Подробнее/);
   assert.match(settings, /label=\{c\("Писатель", "Writer"\)\}/);
-  assert.match(settings, /label=\{c\("Бухгалтер", "Bookkeeper"\)\}/);
+  assert.match(settings, /label=\{c\("Учётчик", "Bookkeeper"\)\}/);
   const bootstrap = src("src/lib/server/adventure-bootstrap.ts");
   assert.match(bootstrap, /settings\.split\?\.writer \?\? settings\.dmTurn/, "the opening is written by the writer");
   const pictures = src("src/lib/server/media/pictures-service.ts");

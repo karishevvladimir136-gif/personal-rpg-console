@@ -192,12 +192,12 @@ export function RegistrySettings({ data, more, preview }: {
                     </button>
                   ))}
                 </div>
-                <p className={r.note} style={{ margin: 0 }}>{c("Числа — медиана первого слова и цена сессии в 41 ход: пробы 20 октября после исправлений (у Fable — сравнение 17 октября). В паре писатель рассказывает и бросает кости, а бухгалтер записывает: текст приходит сразу, фишки — через 40–60 секунд, после записи и проверки записей. «Opus пишет — Opus записывает» — твой выбор для третьей сессии; «Opus ведёт один» — по умолчанию для новой кампании.",
+                <p className={r.note} style={{ margin: 0 }}>{c("Числа — медиана первого слова и цена сессии в 41 ход: пробы 20 октября после исправлений (у Fable — сравнение 17 октября). В паре писатель рассказывает и бросает кости, а учётчик записывает: текст приходит сразу, фишки — через 40–60 секунд, после записи и проверки записей. «Opus пишет — Opus записывает» — твой выбор для третьей сессии; «Opus ведёт один» — по умолчанию для новой кампании.",
                   "The numbers are the median first word and the cost of a 41-turn session: the probes of 20 October after the fixes (Fable's from the bake-off of 17 October). In a pair the writer narrates and rolls the dice while the bookkeeper records: the text arrives at once, the chips 40–60 seconds later, after the records and their check. «Opus writes — Opus records» is your choice for session 3; «Opus runs alone» is the default for a new campaign.")}</p>
                 <details>
                   <summary>{c("Подробнее", "More")}</summary>
                   <div className={r.stack} style={{ gap: 8 }}>
-                    <p className={r.note} style={{ margin: 0 }}>{c("Любая пара: писатель и бухгалтер по отдельности. Fable пишет только на высокой глубине (на очень высокой её цена и ожидание удваиваются); бухгалтер работает на своей постоянной глубине.",
+                    <p className={r.note} style={{ margin: 0 }}>{c("Любая пара: писатель и учётчик по отдельности. Fable пишет только на высокой глубине (на очень высокой её цена и ожидание удваиваются); учётчик работает на своей постоянной глубине.",
                       "Any pair: the writer and the bookkeeper separately. Fable writes at high only (extra high doubles its cost and wait); the bookkeeper runs at its own fixed effort.")}</p>
                     <Segmented label={c("Писатель", "Writer")} value={split?.writer.modelId ?? "single"} disabled={saving || !current}
                       options={[{ value: "single", label: c("нет пары", "no pair") }, ...dmWriterModels.map((row) => ({ value: row.modelId, label: row.label }))]}
@@ -209,10 +209,10 @@ export function RegistrySettings({ data, more, preview }: {
                       }} />
                     {split && (
                       <>
-                        <Segmented label={c("Бухгалтер", "Bookkeeper")} value={split.bookkeeper.modelId} disabled={saving}
+                        <Segmented label={c("Учётчик", "Bookkeeper")} value={split.bookkeeper.modelId} disabled={saving}
                           options={dmBookkeeperModels.map((row) => ({ value: row.modelId, label: row.label }))}
                           onChange={(value) => void saveSplit({ writer: split.writer, bookkeeper: { providerId: "anthropic", modelId: value, reasoning: split.bookkeeper.reasoning ?? "high" } })} />
-                        <Segmented label={c("Глубина бухгалтера", "Bookkeeper effort")} value={split.bookkeeper.reasoning ?? bookkeeperEntry?.defaultEffort ?? "high"} disabled={saving}
+                        <Segmented label={c("Глубина учётчика", "Bookkeeper effort")} value={split.bookkeeper.reasoning ?? bookkeeperEntry?.defaultEffort ?? "high"} disabled={saving}
                           options={(bookkeeperEntry?.efforts ?? ["medium", "high"]).map((value) => ({ value, label: effortLabel(value, c.language) }))}
                           onChange={(value) => void saveSplit({ writer: split.writer, bookkeeper: { ...split.bookkeeper, reasoning: value } })} />
                         {writerEntry && writerEntry.efforts.length > 1 && (
