@@ -275,6 +275,28 @@
       "settled": true,
       "finishedAt": "2026-10-20T13:54:14.923Z",
       "record": "scripts/eval/fix-s2/picture-probe.mjs --recheck (picture-recheck-20261020-135348)"
+    },
+    {
+      "run": "picture-shot-20261020-144551",
+      "what": "fix run E: the default frame path (shot, records frame, picture, check) on synthetic scenes",
+      "stage": "E",
+      "startedAt": "2026-10-20T14:45:51.523Z",
+      "reservedUsd": 0.5,
+      "spentUsd": 0.0979,
+      "settled": true,
+      "finishedAt": "2026-10-20T14:47:59.298Z",
+      "record": "scripts/eval/fix-s2/picture-probe.mjs --path shot (picture-shot-20261020-144551)"
+    },
+    {
+      "run": "picture-shot-20261020-144908",
+      "what": "fix run E: the default frame path (shot, records frame, picture, check) on synthetic scenes",
+      "stage": "E",
+      "startedAt": "2026-10-20T14:49:08.463Z",
+      "reservedUsd": 0.4,
+      "spentUsd": 0.0647,
+      "settled": true,
+      "finishedAt": "2026-10-20T14:50:29.741Z",
+      "record": "scripts/eval/fix-s2/picture-probe.mjs --path shot (picture-shot-20261020-144908)"
     }
   ]
 }

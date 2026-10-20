@@ -27,7 +27,7 @@ export function frameCheckRequest(input: Omit<FrameCheckInput, "image">): string
     input.people.length ? `The people the picture should show (${input.people.length}):\n${people.join("\n")}` : "The picture should show no people.",
     "Report only clear mistakes, each in a few words naming the person by the label above:",
     "- a person with an extra or a missing arm, hand or leg (three hands, a hand coming out of nowhere);",
-    "- a weapon, a shield, a lantern, a torch or another clearly visible thing held or worn that the records above do not give that person (a thing that only lies in the scene is fine; a packed thing in hand is a mistake only when it is a shield or a light);",
+    "- a weapon, a shield, a lantern, a torch or another light held or worn that the records above do not give that person (a thing that only lies in the scene is fine; clothes, belts, bags and jewellery are part of how a person looks and are fine; a packed thing in hand is a mistake only when it is a shield or a light);",
     "- open eyes on a person who is down at 0 hit points;",
     "- more or fewer of the listed people than listed, when the difference is plain; other figures the moment itself names (a sentry, a figure in the distance, a crowd) are fine.",
     "Do not report style, composition, small details, clothing colours or anything you are unsure about.",

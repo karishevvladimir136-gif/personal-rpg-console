@@ -208,6 +208,10 @@ async function requestFrameUnlogged(campaignId: string, value: unknown, schedule
   const model = modelForTier(tier, board.settings);
   // Fix run E (item 78a): «маг» is the hero — role words resolve to the scene's people, the hero first.
   const resolved = resolveWho(shot.who, scene);
+  // Names in the shot's own text become the prompt's labels (the shot model wrote «Halvar, the grey-haired sergeant»).
+  const shotLabels = [...shot.who.map((name, at) => ({ name, label: resolved[at] && snapshot.entities.find((row) => row.id === resolved[at])?.kind === "player" ? "the hero" : `person ${at + 1}` })),
+    ...scene.filter((person) => !resolved.includes(person.id)).map((person) => ({ name: person.name, label: "someone" }))];
+  const drawnShot: Shot = { ...shot, action: relabel(shot.action, shotLabels), where: relabel(shot.where, shotLabels), mood: relabel(shot.mood, shotLabels) };
   const entityIds = [...new Set([...resolved.filter((id): id is string => !!id), ...shotEntityIds(shot, snapshot.entities)])];
   const referenceIds = referencesForShot(board, { entityIds, locationId: snapshot.publicState.current_location_id, model });
   const place = snapshot.locations.find((row) => row.id === snapshot.publicState.current_location_id) ?? null;
@@ -220,14 +224,14 @@ async function requestFrameUnlogged(campaignId: string, value: unknown, schedule
   // The world clock through a side-effect-free read (readPlay can start a digest); a failure leaves the time out.
   const clock = await readWorldClock(campaignId).catch(() => ({ worldMinutes: null }));
   const compiled = compileRecordsFrame({
-    modelId: model, shot, style: styleTextFor(board, snapshot.settings.values.visualStyle), items: snapshot.items, maxReferences: maxReferencesFor(model),
+    modelId: model, shot: drawnShot, style: styleTextFor(board, snapshot.settings.values.visualStyle), items: snapshot.items, maxReferences: maxReferencesFor(model),
     worldMinutes: clock.worldMinutes,
     people: shot.who.map((name, index) => {
       const entity = (resolved[index] ? snapshot.entities.find((row) => row.id === resolved[index]) : null) ?? snapshot.entities.find((row) => nameMatches(row.name, name)) ?? null;
       // Fix run E (items 78, 79): the default path (the director off) carries the records' gear, 0 HP, the gaze and the hands too.
-      const gaze = shot.gaze?.find((row) => resolveWho([row.who], scene)[0] === entity?.id || row.who === name);
-      const labels = shot.who.map((other, at) => ({ name: other, label: resolved[at] && snapshot.entities.find((row) => row.id === resolved[at])?.kind === "player" ? "the hero" : `person ${at + 1}` }));
-      const direction = gaze || (index === 0 && shot.hands) ? { looksAt: gaze ? relabel(gaze.looksAt, labels) : "", expression: "", action: "", hands: index === 0 && shot.hands ? relabel(shot.hands, labels) : null } : undefined;
+      // Someone down at 0 HP has closed eyes and looks at nothing (the shot once gave a dead man «eyes open to the sky»).
+      const gaze = entity && isDown(entity) ? undefined : shot.gaze?.find((row) => resolveWho([row.who], scene)[0] === entity?.id || row.who === name);
+      const direction = gaze || (index === 0 && shot.hands) ? { looksAt: gaze ? relabel(gaze.looksAt, shotLabels) : "", expression: "", action: "", hands: index === 0 && shot.hands ? relabel(shot.hands, shotLabels) : null } : undefined;
       return { name, entity, appearance: entity ? lookOf(board, snapshot, entity.id) : "",
         ...(entity && ["player", "companion", "npc"].includes(entity.kind) ? { gear: gearOf(snapshot, entity.id), down: isDown(entity) } : {}), ...(direction ? { direction } : {}) };
     }),

@@ -29,4 +29,6 @@ Cap $50 (stages A+B within $30); every paid run registers here before its first 
 | picture-probe-20261020-134837 | E | fix run E: the frame rules on the live models (brief, picture, vision check) on synthetic scenes | $1.50 | $0.2322 | yes |
 | frame-check-debug-20261020-135325 | E | fix run E: one raw vision-check call to see why its answer was unreadable (thinking used the 700-token cap) | $0.01 | $0.0005 | yes |
 | picture-recheck-20261020-135348 | E | fix run E: the vision check again on the probe's frames (the token cap raised) | $0.10 | $0.0031 | yes |
-| **Total** | | | **$29.6392 of $50** | |
+| picture-shot-20261020-144551 | E | fix run E: the default frame path (shot, records frame, picture, check) on synthetic scenes | $0.50 | $0.0979 | yes |
+| picture-shot-20261020-144908 | E | fix run E: the default frame path (shot, records frame, picture, check) on synthetic scenes | $0.40 | $0.0647 | yes |
+| **Total** | | | **$29.8018 of $50** | |

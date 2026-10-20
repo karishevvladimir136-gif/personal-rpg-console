@@ -51,6 +51,72 @@ const SCENES = [
 ];
 
 const apiKey = providerKey("ANTHROPIC_API_KEY"), openaiKey = providerKey("OPENAI_API_KEY");
+// --path shot: the default path (the shot director off, as in session 2) — the short shot by Haiku from the paragraph,
+// the records frame (gaze and hands from the shot, the records' gear, 0 HP), the picture and the check; --only <id,id>.
+if (arg("--path") === "shot") {
+  const { shotRequest, parseShot, resolveWho } = await import("../../../src/lib/visual-frame/shot.ts");
+  const { compileRecordsFrame } = await import("../../../src/lib/visual-frame/prompt-compiler.ts");
+  const { relabel } = await import("../../../src/lib/visual-frame/brief.ts");
+  const { SHOT_PRICE } = { SHOT_PRICE: { input: 0.1, output: 0.5 } };
+  const run = `picture-shot-${new Date().toISOString().replace(/[-:]/g, "").replace(/\..+$/, "").replace("T", "-")}`;
+  const ledger = await openRun(run, budgetUsd, "fix run E: the default frame path (shot, records frame, picture, check) on synthetic scenes");
+  await mkdir(out, { recursive: true });
+  let spent = 0;
+  const rows = [];
+  const wanted = (arg("--only") ?? "").split(",").filter(Boolean);
+  try {
+    for (const item of SCENES.filter((scene) => !wanted.length || wanted.includes(scene.id))) {
+      if (outOfGameOnly(item.narration)) { rows.push({ id: item.id, ooc: true }); continue; }
+      const row = { id: item.id };
+      rows.push(row);
+      try {
+        const hp = (id) => item.hp?.[id] ?? records.find((r) => r.id === id).hp;
+        const worn = (id) => [...records.find((r) => r.id === id).worn, ...(item.gain?.[id] ?? [])];
+        const context = { heroName: records[0].name, names: records.slice(1).map((r) => r.name), placeName: item.place, language: "ru", people: scene.map(({ name, role }) => ({ name, role })) };
+        const request = shotRequest(storyText(item.narration), context);
+        if (spent + CHECK_RESERVE_USD > ledger.budgetUsd) throw new Error("budget reached");
+        const response = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
+          body: JSON.stringify({ model: "claude-haiku-5-5", max_tokens: 2000, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }), signal: AbortSignal.timeout(60_000) });
+        const value = await response.json().catch(() => null);
+        spent += ((value?.usage?.input_tokens ?? 0) * SHOT_PRICE.input + (value?.usage?.output_tokens ?? 0) * SHOT_PRICE.output) / 1_000_000;
+        const shot = parseShot((value?.content ?? []).filter((b) => b.type === "text").map((b) => b.text).join("\n"));
+        if (!shot) { row.error = `no shot (${response.status}, ${value?.stop_reason})`; continue; }
+        const resolved = resolveWho(shot.who, scene);
+        const labels = [...shot.who.map((name, at) => ({ name, label: resolved[at] === HERO ? "the hero" : `person ${at + 1}` })),
+          ...scene.filter((p) => !resolved.includes(p.id)).map((p) => ({ name: p.name, label: "someone" }))];
+        Object.assign(shot, { action: relabel(shot.action, labels), where: relabel(shot.where, labels), mood: relabel(shot.mood, labels) });
+        const people = shot.who.map((name, index) => {
+          const entity = resolved[index] ? records.find((r) => r.id === resolved[index]) : null;
+          const gaze = entity && hp(entity.id) === 0 ? undefined : shot.gaze?.find((g) => resolveWho([g.who], scene)[0] === entity?.id || g.who === name);
+          const direction = gaze || (index === 0 && shot.hands) ? { looksAt: gaze ? relabel(gaze.looksAt, labels) : "", expression: "", action: "", hands: index === 0 && shot.hands ? relabel(shot.hands, labels) : null } : undefined;
+          return { name, entity: entity ? { id: entity.id, kind: entity.kind, conditions: [] } : null, appearance: entity?.look ?? "",
+            ...(entity ? { gear: { worn: worn(entity.id), packed: entity.packed }, down: hp(entity.id) === 0 } : {}), ...(direction ? { direction } : {}) };
+        });
+        const { prompt } = compileRecordsFrame({ modelId: MODEL, shot, style: "Painterly fantasy illustration, muted earthy palette, cinematic light.", people, items: [], maxReferences: 6, references: [] });
+        await writeFile(join(out, `${item.id}.shot-prompt.txt`), prompt, "utf8");
+        Object.assign(row, { who: resolved.map((id) => records.find((r) => r.id === id)?.name ?? null), caption: shot.caption ?? null, gaze: shot.gaze ?? [], hands: shot.hands ?? null,
+          namesInPrompt: records.some((r) => r.name.split(" ").flatMap((part) => [part, ...latinSpellings(part)]).some((part) => part.length > 2 && prompt.toLowerCase().includes(part.toLowerCase()))) });
+        if (spent + IMAGE_RESERVE_USD > ledger.budgetUsd) throw new Error("budget reached");
+        const image = await generateOpenAIImage(openaiKey, { model: MODEL, prompt, width: 1344, height: 768, quality: "high", format: "jpeg", moderation: "low" });
+        spent += image.priceUsdMicros / 1_000_000;
+        await writeFile(join(out, `${item.id}.shot.jpg`), image.bytes);
+        const ids = [...new Set(resolved.filter(Boolean))];
+        const check = await checkFrame(apiKey, { image: { bytes: image.bytes, contentType: image.contentType },
+          people: ids.map((id) => ({ key: id, label: id === HERO ? "the hero" : `person ${shot.who.findIndex((_, at) => resolved[at] === id) + 1}`, worn: worn(id), packed: records.find((r) => r.id === id).packed, down: hp(id) === 0 })),
+          moment: shot.action });
+        spent += check.costUsdMicros / 1_000_000;
+        row.check = check.verdict ? { problems: check.verdict.problems, gaze: check.verdict.gaze.map((g) => ({ who: records.find((r) => r.id === g.key)?.name, looksAt: g.looksAt })) } : { error: check.error };
+      } catch (error) {
+        if (/budget reached/.test(String(error?.message))) throw error;
+        row.error = `${error?.code ?? "error"}: ${String(error?.detail ?? error?.message ?? error).slice(0, 160)}`;
+      }
+      await writeFile(join(out, "shot-probe.json"), JSON.stringify({ run, spentUsd: spent, rows }, null, 2), "utf8");
+    }
+  } finally { await ledger.settle(spent, `scripts/eval/fix-s2/picture-probe.mjs --path shot (${run})`); }
+  for (const row of rows) console.log(JSON.stringify(row));
+  console.log(`spent $${spent.toFixed(4)} (${run})`);
+  process.exit(0);
+}
 // --recheck: only the vision check again, on the frames a previous run drew into --out (its probe.json); no new pictures.
 if (process.argv.includes("--recheck")) {
   const { readFile } = await import("node:fs/promises");

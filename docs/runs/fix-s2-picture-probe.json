@@ -241,5 +241,198 @@
       "id": "out-of-game",
       "ooc": true
     }
-  ]
+  ],
+  "shotPath": {
+    "note": "The default path (the shot director off, as in session 2): the short shot (Haiku), the records frame, the picture, the check. First run found names in the shot text, a dead man with open eyes and a rope-belt false flag; fixed, then the two scenes re-run clean. Frames E-probe-shot-*.jpg.",
+    "first": {
+      "run": "picture-shot-20261020-144551",
+      "spentUsd": 0.09785690000000001,
+      "rows": [
+        {
+          "id": "role-word",
+          "who": [
+            "Хальвар",
+            "Эдрик Вейл"
+          ],
+          "caption": "Хальвар выслушивает мага и кивает: «Значит, через овраг», — глядя на карту в твоих руках.",
+          "gaze": [
+            {
+              "who": "Хальвар",
+              "looksAt": "the map"
+            },
+            {
+              "who": "Эдрик Вейл",
+              "looksAt": "Хальвар"
+            }
+          ],
+          "hands": "both hands hold the parchment map open, wind lifting its edge",
+          "namesInPrompt": true,
+          "check": {
+            "problems": [
+              "the hero wears a rope tied as a belt, but the records list rope only as packed away"
+            ],
+            "gaze": [
+              {
+                "who": "Хальвар",
+                "looksAt": "a thing (the map, down)"
+              },
+              {
+                "who": "Эдрик Вейл",
+                "looksAt": "a thing (the map, to the left)"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ash-hands",
+          "who": [
+            "Эдрик Вейл",
+            "Лира"
+          ],
+          "caption": "Ты льёшь воду из бурдюка себе на ладонь, смешиваешь с пеплом и размазываешь серую пасту по лицу и рукам. Лира держит перед тобой горсть золы и критически щурится: — Ещё под глазами.",
+          "gaze": [
+            {
+              "who": "Эдрик Вейл",
+              "looksAt": "his own palm, mixing the ash paste"
+            },
+            {
+              "who": "Лира",
+              "looksAt": "Эдрик Вейл's face"
+            }
+          ],
+          "hands": "left hand holds the wet palm of water, right hand smears the ash paste across his face; Лира holds a handful of ash out in front of him",
+          "namesInPrompt": false,
+          "check": {
+            "problems": [],
+            "gaze": [
+              {
+                "who": "Эдрик Вейл",
+                "looksAt": "down"
+              },
+              {
+                "who": "Лира",
+                "looksAt": "person 1"
+              }
+            ]
+          }
+        },
+        {
+          "id": "down-0hp",
+          "who": [
+            "Эдрик Вейл",
+            "Хальвар",
+            "Чёрный Тоб"
+          ],
+          "caption": "Ты падаешь за горящей телегой, вне взгляда вражеского мага; шляпа откатывается в сторону. Хальвар стоит над мёртвым главарём, клинок в крови.",
+          "gaze": [
+            {
+              "who": "Эдрик Вейл",
+              "looksAt": "the sergeant standing over the dead leader"
+            },
+            {
+              "who": "Хальвар",
+              "looksAt": "the dead leader's body"
+            },
+            {
+              "who": "Чёрный Тоб",
+              "looksAt": "nothing, eyes open to the sky"
+            }
+          ],
+          "hands": null,
+          "namesInPrompt": true,
+          "check": {
+            "problems": [
+              "person 3: eyes open while down at 0 hit points, eyes must be closed"
+            ],
+            "gaze": [
+              {
+                "who": "Эдрик Вейл",
+                "looksAt": "down"
+              },
+              {
+                "who": "Хальвар",
+                "looksAt": "person 3"
+              },
+              {
+                "who": "Чёрный Тоб",
+                "looksAt": "far away"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "rerun": {
+      "run": "picture-shot-20261020-144908",
+      "spentUsd": 0.06472520000000001,
+      "rows": [
+        {
+          "id": "role-word",
+          "who": [
+            "Хальвар",
+            "Эдрик Вейл"
+          ],
+          "caption": "Хальвар выслушивает мага и кивает. — Значит, через овраг, — говорит он, глядя на карту в твоих руках.",
+          "gaze": [
+            {
+              "who": "Хальвар",
+              "looksAt": "the map"
+            },
+            {
+              "who": "Эдрик Вейл",
+              "looksAt": "Хальвар"
+            }
+          ],
+          "hands": "left hand holds the edge of the map against the wind, right hand rests on the table",
+          "namesInPrompt": false,
+          "check": {
+            "problems": [],
+            "gaze": [
+              {
+                "who": "Хальвар",
+                "looksAt": "down"
+              },
+              {
+                "who": "Эдрик Вейл",
+                "looksAt": "person 1"
+              }
+            ]
+          }
+        },
+        {
+          "id": "down-0hp",
+          "who": [
+            "Эдрик Вейл",
+            "Хальвар"
+          ],
+          "caption": "Ты падаешь за горящей телегой, вне взгляда вражеского мага; шляпа откатывается в сторону. Хальвар стоит над мёртвым главарём, клинок в крови.",
+          "gaze": [
+            {
+              "who": "Эдрик Вейл",
+              "looksAt": "the enemy mage beyond the cart"
+            },
+            {
+              "who": "Хальвар",
+              "looksAt": "the dead bandit chief"
+            }
+          ],
+          "hands": null,
+          "namesInPrompt": false,
+          "check": {
+            "problems": [],
+            "gaze": [
+              {
+                "who": "Эдрик Вейл",
+                "looksAt": "closed eyes, looking at nothing"
+              },
+              {
+                "who": "Хальвар",
+                "looksAt": "down, at the dead bandit chief"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
 }
