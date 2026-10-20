@@ -50,7 +50,9 @@ Today: no breakpoint after the history (polish 2 §4 removed it to stop paying c
 «now» block and the turn's own messages (~40k tokens a request, growing) are paid at $4/M on every request, twice a turn
 on average. Rebuild the layout so the prefix only grows: stable layers, then the append-only history with a breakpoint
 at its end, then the volatile blocks; and a breakpoint inside the turn so a continuation (after a tool result) reads
-everything before it from the cache. Respect the provider's four-breakpoint limit; keep the one-hour TTL where the
+everything before it from the cache. The owner's «Что мне нравится» text is stable and belongs in the cached stable layer; the DM's own observations of the
+player stay in the tail, short, and are appended to — never rewritten whole (that rewrite dropped the owner's DC rule at
+turn 56, item 71). Respect the provider's four-breakpoint limit; keep the one-hour TTL where the
 owner's pauses exceed five minutes. Measure on the synthetic long campaign (40+ turns) before and after: cost per turn at
 high, cache read share, uncached input per request. Target: **≤ $0.45 per turn at high** and uncached input per
 continuation under 5k tokens. Put the numbers in the report.
