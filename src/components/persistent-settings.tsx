@@ -147,7 +147,7 @@ function PreferenceForm({ current }: { current: Preferences }) {
                 <p>
                   {t(
                     key === "largeText"
-                      ? "Give the narration a little more breathing room."
+                      ? "Story text on the game screen is larger."
                       : "Saved for future support. Free-form text is the primary way to play; generated action suggestions are not available yet.",
                   )}
                 </p>

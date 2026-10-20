@@ -110,6 +110,18 @@ export function SessionEnd({ sessionId, compact = false }: { sessionId: string |
     } finally { setBusy(false); }
   };
   if (!data || !sessionId || !session) return null;
+  if (!closed && compact) {
+    // Fix run after session 2 (item 30): beside the composer the button is the quietest of the tools — no box,
+    // no larger type; the full card (in the feed) keeps its framed form.
+    return (
+      <span className={g.sessionEndCompact}>
+        <button type="button" className={g.quietButton} disabled={busy || !memory.snapshot || !!memory.error} onClick={() => void end()}>
+          <Moon size={16} aria-hidden="true" />{c("Закончить сессию", "End the session")}
+        </button>
+        {error && <span role="alert" className={r.error}>{error}</span>}
+      </span>
+    );
+  }
   if (!closed) {
     return (
       <div className={g.sessionEnd}>

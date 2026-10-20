@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState, type DragEvent } from "react";
+import { useEffect, useRef, useState, type DragEvent } from "react";
 import { Backpack, BookOpen, FlaskConical, Gem, KeyRound, Package, Shield, Shirt, Sword, Target, Wrench, X, type LucideIcon } from "lucide-react";
 import type { CampaignSnapshot, Entity, Item, MutationInput } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
@@ -43,6 +43,26 @@ import s from "./character.module.css";
 
 type Tab = "char" | "inv" | "spells";
 const PEOPLE = ["player", "companion", "npc"];
+
+/** Fix run after session 2 (items 30, 33): an open item card closes on Escape and on a click outside it. A click on a
+ * thing (a row, a cell, a slot: `data-item-pick`) still opens that thing's card or closes its own; a click inside
+ * another dialog (the redraw drawer) or a part marked `data-keep-card` leaves the card alone. */
+export function useCardDismiss(open: boolean, close: () => void) {
+  const latest = useRef(close);
+  useEffect(() => { latest.current = close; });
+  useEffect(() => {
+    if (!open) return;
+    const key = (event: KeyboardEvent) => { if (event.key === "Escape") latest.current(); };
+    const outside = (event: PointerEvent) => {
+      const target = event.target instanceof Element ? event.target : null;
+      if (!target || target.closest("[data-item-pick], [role='dialog'], [data-keep-card]")) return;
+      latest.current();
+    };
+    window.addEventListener("keydown", key);
+    document.addEventListener("pointerdown", outside);
+    return () => { window.removeEventListener("keydown", key); document.removeEventListener("pointerdown", outside); };
+  }, [open]);
+}
 
 // --- the owner's moves: planned in src/lib/inventory/owner-moves.ts, sent here as owner corrections --------------
 type Status = { tone: "ok" | "error"; text: string } | null;
@@ -154,13 +174,8 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
   const [ask, setAsk] = useState<{ itemId: string; target: MoveTarget; label: string } | null>(null);
   const [dragId, setDragId] = useState<string | null>(null);
   const [redraw, setRedraw] = useState<{ kind: "entity" | "item"; id: string } | null>(null);
-  // The card closes on Escape (item 33: it no longer «вечно висит»).
-  useEffect(() => {
-    if (!card) return;
-    const close = (event: KeyboardEvent) => { if (event.key === "Escape") { setCard(null); setPicker(null); } };
-    window.addEventListener("keydown", close);
-    return () => window.removeEventListener("keydown", close);
-  }, [card]);
+  // The card closes on Escape (item 33: it no longer «вечно висит») and on a click outside it (item 30).
+  useCardDismiss(!!card, () => { setCard(null); setPicker(null); });
   const href = (screen: CampaignScreenId) => chrome?.href?.(screen) ?? `/campaigns/${encodeURIComponent(data.campaign.id)}/${screen}`;
   const entity = members.find((row) => row.id === selectedId) ?? members[0] ?? null;
   if (!entity) return <Panel><p className={r.empty}>{c("В кампании пока нет героя.", "This campaign has no hero yet.")}</p></Panel>;
@@ -573,7 +588,7 @@ function SlotButton({ slot, pressed, fits, onPick, onDrop, onDragStart, onDragEn
   const item = slot.item;
   const blocked = slot.blockedBy;
   return (
-    <button type="button" className={`${item ? s.slot : s.slotEmpty} ${fits ? s.slotFits : ""} ${over ? s.slotOver : ""}`} aria-pressed={pressed}
+    <button type="button" data-item-pick="" className={`${item ? s.slot : s.slotEmpty} ${fits ? s.slotFits : ""} ${over ? s.slotOver : ""}`} aria-pressed={pressed}
       aria-disabled={!item && !blocked} title={blocked ? c(`занято: ${blocked.name}`, `taken: ${blocked.name}`) : item?.name ?? slot.label}
       onClick={() => { if (item) onPick(item); else if (blocked) onPick(blocked); }}
       draggable={!!item} onDragStart={(event) => { if (!item) return; event.dataTransfer.setData("text/plain", item.id); event.dataTransfer.effectAllowed = "move"; onDragStart(item.id); }}
@@ -676,7 +691,7 @@ function ItemRow({ view, item, viewerId, pressed, onPick, onDragStart, onDragEnd
   const state = loan ? (loan.kind === "out" ? c(`${loan.status === "lent" ? "отдано" : "в залоге"}: ${loan.name}`, `${loan.status}: ${loan.name}`) : c(`взято у: ${loan.name}`, `borrowed from ${loan.name}`))
     : slot ? c(`надето: ${slot}`, `worn: ${slot}`) : null;
   return (
-    <button type="button" className={`${s.row} ${rarity ? rarityClass[rarity] : ""}`} aria-pressed={pressed} title={item.name} onClick={onPick}
+    <button type="button" data-item-pick="" className={`${s.row} ${rarity ? rarityClass[rarity] : ""}`} aria-pressed={pressed} title={item.name} onClick={onPick}
       draggable onDragStart={(event) => { event.dataTransfer.setData("text/plain", item.id); event.dataTransfer.effectAllowed = "move"; onDragStart(item.id); }} onDragEnd={onDragEnd}>
       <span className={s.rowArt}>{image.url || image.drawing ? <Art subject={{ kind: "item", id: item.id }} name={item.name} drawingLabel="…" /> : <Glyph size={18} aria-hidden="true" />}</span>
       <span className={s.rowText}>
@@ -714,7 +729,11 @@ function HpCorrection({ data, entity }: { data: CampaignSnapshot; entity: Entity
   const context = useOptionalCampaignData();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  // Fix run after session 2 (item 30): the manual corrections wait behind «Исправить хиты…» (the DM keeps the hit
+  // points in play); the buttons show only when the owner opens the correction.
+  const [open, setOpen] = useState(false);
   if (!context || entity.hp === null) return null;
+  if (!open) return <button type="button" className={s.linkButton} onClick={() => setOpen(true)}>{c("Исправить хиты…", "Correct hit points…")}</button>;
   const set = async (next: number) => {
     const hp = Math.max(0, entity.max_hp !== null ? Math.min(entity.max_hp, next) : next);
     if (hp === entity.hp || busy) return;
@@ -736,7 +755,9 @@ function HpCorrection({ data, entity }: { data: CampaignSnapshot; entity: Entity
         <button key={step} type="button" className={r.btnGhost} disabled={busy} onClick={() => void set(entity.hp! + step)}>{step > 0 ? `+${step}` : step}</button>
       ))}
       {entity.max_hp !== null && <button type="button" className={r.btnGhost} disabled={busy || entity.hp === entity.max_hp} onClick={() => void set(entity.max_hp!)}>{c("Полные", "Full")}</button>}
+      <button type="button" className={s.linkButton} onClick={() => setOpen(false)}>{c("Готово", "Done")}</button>
       {error && <span className={r.error} role="alert">{error}</span>}
+      <span className={r.note} style={{ flexBasis: "100%", margin: 0 }}>{c("Поправка владельца: записывается в историю записи; в игре хиты ведёт ведущий.", "An owner correction, kept in the record's history; in play the DM keeps the hit points.")}</span>
     </div>
   );
 }
@@ -878,7 +899,7 @@ export function ItemCell({ item, pressed, onPick }: { item: Item; pressed: boole
   const name = inventoryItemLabel(item.name).trim();
   const Glyph = CATEGORY_GLYPHS[categoryGlyphKey(item.category)];
   return (
-    <button type="button" className={`${r.cell} ${rarity ? rarityClass[rarity] : ""}`} aria-pressed={pressed} aria-label={item.name} title={item.name} onClick={onPick}>
+    <button type="button" data-item-pick="" className={`${r.cell} ${rarity ? rarityClass[rarity] : ""}`} aria-pressed={pressed} aria-label={item.name} title={item.name} onClick={onPick}>
       {image.url || image.drawing ? <Art subject={{ kind: "item", id: item.id }} name={item.name} className={s.cellArt} drawingLabel="…" />
         : name ? (
           <span className={s.cellText} aria-hidden="true">

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Home, PawPrint, Ship, Tent, X, type LucideIcon } from "lucide-react";
 import type { CampaignSnapshot, Entity } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
@@ -12,7 +12,7 @@ import { walletOfStorage } from "@/lib/inventory/model";
 import { planEquip, planMove, planUnequip, type MoveTarget } from "@/lib/inventory/owner-moves";
 import { RedrawAnchor } from "./redraw-anchor";
 import { useChrome, type CampaignScreenId } from "./shell";
-import { holdersOf, ItemCard, ItemCell, useOwnerMoves } from "./character-screen";
+import { holdersOf, ItemCard, ItemCell, useCardDismiss, useOwnerMoves } from "./character-screen";
 import { Art, Gauge, Panel, Plate, registry as r, useCopy, WalletLine, type Copy } from "./primitives";
 import s from "./holdings.module.css";
 
@@ -35,12 +35,8 @@ export function RegistryHoldings({ data, initialId, play = null }: { data: Campa
   const [itemId, setItemId] = useState<string | null>(null);
   const [redraw, setRedraw] = useState<{ kind: "entity" | "item"; id: string } | null>(null);
   const [notice, setNotice] = useState("");
-  useEffect(() => {
-    if (!itemId) return;
-    const close = (event: KeyboardEvent) => { if (event.key === "Escape") setItemId(null); };
-    window.addEventListener("keydown", close);
-    return () => window.removeEventListener("keydown", close);
-  }, [itemId]);
+  // Item 30: the card closes on Escape and on a click outside it.
+  useCardDismiss(!!itemId, () => setItemId(null));
   const selected = holdings.find((row) => row.id === selectedId) ?? holdings[0];
   const href = (screen: CampaignScreenId) => chrome?.href?.(screen) ?? `/campaigns/${encodeURIComponent(data.campaign.id)}/${screen}`;
   const title = holdingsNavLabel(holdings, c.language);

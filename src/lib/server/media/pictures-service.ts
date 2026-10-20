@@ -17,6 +17,7 @@ import {
   framesOfTurn,
   maxReferencesFor,
   modelForTier,
+  picturesOf,
   planAutopilot,
   profileFor,
   referencesForAnchor,
@@ -408,6 +409,12 @@ export async function requestAnchor(campaignId: string, value: unknown, schedule
   const board = await boardOf(ctx);
   const snapshot = await readCampaign(campaignId);
   const subject = { kind: value.subject.kind, id: value.subject.id } as PictureSubject;
+  // Fix run after session 2 (item 29): the opening's frame (the starting place's anchor) is asked for by the game
+  // screen; a second tab asking at the same time gets the picture already in work instead of a second paid one.
+  if (value.trigger === "autopilot" && subject.kind === "location" && value.composition === undefined) {
+    const inWork = picturesOf(board, subject, "location").find((row) => row.status === "queued" || row.status === "generating");
+    if (inWork) return { status: "queued" as const, picture: inWork };
+  }
   const picture = await queueAnchor(ctx, board, snapshot, subject, value.composition as PictureComposition | undefined, value.trigger as PictureTrigger,
     value.tier === "quality" || value.tier === "fast" ? value.tier : null);
   if (!picture) return { status: "cap" as const };

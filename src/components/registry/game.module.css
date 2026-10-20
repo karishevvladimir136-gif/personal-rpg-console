@@ -39,6 +39,12 @@
 .sceneBlank {
   height: 180px;
 }
+/* Item 29: «кадр сцены рисуется…» in the header reads at a glance, above the caption. */
+div.sceneImage {
+  align-content: start;
+  padding-top: 72px;
+  font-size: 16px;
+}
 .sceneCaption {
   position: absolute;
   left: 0;
@@ -496,6 +502,64 @@
   font-size: 16px;
   font-weight: 400;
 }
+/* Fix run after session 2 (items 6, 22): the story keeps a readable line — in ch, so a larger size keeps the
+   characters per line — grows a little on wide screens, and «Крупный текст истории» (the shell's .large-text)
+   makes the narration and the owner's words clearly larger. */
+.game :global(.gameplay-narration .prose),
+.game :global(.gameplay-live-turn .prose),
+.game :global(.gameplay-owner-words .prose),
+.opening {
+  max-width: 82ch;
+}
+@media (min-width: 1800px) {
+  .game :global(.gameplay-narration .prose),
+  .game :global(.gameplay-live-turn .prose),
+  .opening {
+    font-size: 18px;
+  }
+  .game :global(.gameplay-owner-words .prose) {
+    font-size: 17px;
+  }
+}
+@media (min-width: 2300px) {
+  .game :global(.gameplay-narration .prose),
+  .game :global(.gameplay-live-turn .prose),
+  .opening {
+    font-size: 19.5px;
+  }
+  .game :global(.gameplay-owner-words .prose) {
+    font-size: 18px;
+  }
+}
+:global(.large-text) .game :global(.gameplay-narration .prose),
+:global(.large-text) .game :global(.gameplay-live-turn .prose),
+:global(.large-text) .opening {
+  font-size: 21px;
+  line-height: 1.6;
+}
+:global(.large-text) .game :global(.gameplay-owner-words .prose) {
+  font-size: 18px;
+}
+@media (min-width: 2300px) {
+  :global(.large-text) .game :global(.gameplay-narration .prose),
+  :global(.large-text) .game :global(.gameplay-live-turn .prose),
+  :global(.large-text) .opening {
+    font-size: 23px;
+  }
+  :global(.large-text) .game :global(.gameplay-owner-words .prose) {
+    font-size: 20px;
+  }
+}
+@media (max-width: 760px) {
+  :global(.large-text) .game :global(.gameplay-narration .prose),
+  :global(.large-text) .game :global(.gameplay-live-turn .prose),
+  :global(.large-text) .opening {
+    font-size: 19.5px;
+  }
+  :global(.large-text) .game :global(.gameplay-owner-words .prose) {
+    font-size: 17.5px;
+  }
+}
 .resources {
   margin: 0;
 }
@@ -527,6 +591,36 @@
   }
 }
 
+/* Fix run after session 2 (item 30): «Закончить сессию» beside the composer — the quietest tool of the row. */
+.sessionEndCompact {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.quietButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--touch);
+  padding: 0 8px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--f-body);
+  font-size: 14px;
+  text-decoration: underline;
+  text-decoration-color: rgba(171, 154, 128, 0.4);
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.quietButton:hover:not(:disabled) {
+  color: var(--text);
+}
+.quietButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
 /* Polish item 11: the session's end — the chapter title, «Ранее в…», the open leads and the stinger. */
 .sessionEnd {
   display: grid;

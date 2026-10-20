@@ -35,7 +35,7 @@ import { GameplayCombat } from "../gameplay-combat";
 import { GameplayRest } from "../gameplay-actions";
 import { CombatReadiness } from "../combat-readiness";
 import { SessionMemoryPanel, SessionPendingCompanion } from "../session-memory";
-import { currentFrameTurnId, FramesPanel, usePictures } from "./live-frames";
+import { currentFrameTurnId, FramesPanel, useOpeningFrame, usePictures } from "./live-frames";
 import { SessionEnd } from "./session-end";
 import { useSessionMemory } from "../session-memory-runtime";
 import {
@@ -160,6 +160,8 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   );
   const live = preview ? preview.live ?? null : liveView;
   const pictures = usePictures();
+  // Fix run after session 2 (item 29): the approved opening gets its frame — the starting place's picture.
+  useOpeningFrame(data, preview ? null : play);
   // Fix run E (item 77): the button draws the frame of the last turn with narration (never a failed or out-of-game one);
   // the frame appears in that turn, in place — the page never scrolls through the campaign — and every answer but
   // «queued» is said in words.
@@ -297,7 +299,8 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
       <div className={g.column}>
         <section className={g.scene} aria-label={c("Сцена", "Scene")}>
           {/* Fix run E (item 77): the header shows the place; each frame lives in its own turn. */}
-          {place ? <Art subject={{ kind: "location", id: place.id }} name={place.name} className={g.sceneImage} position="center 40%" />
+          {/* Item 29: while the place's picture (the opening's frame) is in work the header says so. */}
+          {place ? <Art subject={{ kind: "location", id: place.id }} name={place.name} className={g.sceneImage} position="center 40%" drawingLabel={c("кадр сцены рисуется…", "drawing the scene…")} />
             : <div className={`${r.blankArt} ${g.sceneBlank}`} aria-hidden="true" />}
           <div className={g.sceneCaption}>
             <div className={r.stack} style={{ gap: 2 }}>
@@ -341,14 +344,15 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
         {!preview && play && !play.startupPending && (
           <section className={g.playerActions} aria-label={c("Действия игрока", "Player actions")}>
             <div className={r.row}>
-              {loopRuntime && <SessionEnd sessionId={session?.id ?? null} compact />}
               <Link className={r.btnGhost} href={href("camp")}>{c("Лагерь и отдых", "Camp and rest")}</Link>
               <Link className={r.btnGhost} href={`${href("journal")}?tab=Notes&compose=note`}>{c("Записать заметку", "Take note")}</Link>
               <Link className={r.btnGhost} href={`${href("journal")}?tab=Evidence`}>{c("Что я знаю?", "What do I know?")}</Link>
+              {/* Item 30: the quietest of the four, last in the row. */}
+              {loopRuntime && <SessionEnd sessionId={session?.id ?? null} compact />}
             </div>
             <span className={r.note}>{c(
-              "«Закончить сессию» — ведущий подведёт итог главы и покажет, что тем временем случилось. «Лагерь» — отдых и лечение. «Заметка» — твоя запись в журнал. «Что я знаю?» — улики и факты, которые герой уже узнал.",
-              "“End the session” — the DM sums up the chapter and shows what happened meanwhile. “Camp” — rest and healing. “Note” — your own journal entry. “What do I know?” — the clues and facts the hero has learned.")}</span>
+              "«Лагерь» — отдых и лечение. «Заметка» — твоя запись в журнал. «Что я знаю?» — улики и факты, которые герой уже узнал. «Закончить сессию» — ведущий подведёт итог главы и покажет, что тем временем случилось.",
+              "“Camp” — rest and healing. “Note” — your own journal entry. “What do I know?” — the clues and facts the hero has learned. “End the session” — the DM sums up the chapter and shows what happened meanwhile.")}</span>
           </section>
         )}
         {!preview && play && !play.startupPending && (

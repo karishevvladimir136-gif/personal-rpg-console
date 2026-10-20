@@ -67,6 +67,8 @@ type Chrome = {
   dmSettings?: DmSettings | null;
   libraryHref?: (screen: LibraryScreenId) => string;
   libraryCurrent?: LibraryScreenId;
+  /** Previews: «Крупный текст истории» without the saved preferences. */
+  largeText?: boolean;
 };
 const ChromeContext = createContext<Chrome | null>(null);
 export function RegistryChrome({ value, children }: { value: Chrome; children: ReactNode }) {
@@ -114,6 +116,10 @@ export function CampaignShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const snapshot = useOptionalCampaignData();
   const data = snapshot?.data ?? null;
+  // Fix run after session 2 (item 6): «Крупный текст истории» reaches today's game screen — the campaign shell
+  // carries the class the story's sizes read (game.module.css).
+  const workspace = useWorkspaceData();
+  const largeText = chrome?.largeText ?? !!workspace?.data?.preferences.largeText;
   const [drawer, setDrawer] = useState(false);
   const [minutes, setMinutes] = useState<number | null>(null);
   const clockValue = useMemo(() => ({ minutes, set: setMinutes }), [minutes]);
@@ -165,7 +171,7 @@ export function CampaignShell({ children }: { children: ReactNode }) {
   const tabs: NavItem[] = [primary[0], primary[1], primary[2], primary[4], primary[3]];
   return (
     <ClockContext.Provider value={clockValue}>
-      <div className={s.app}>
+      <div className={`${s.app} ${largeText ? "large-text" : ""}`}>
         <a className={s.skip} href="#main">{c("К содержимому", "Skip to content")}</a>
         <nav className={s.nav} aria-label={c("Разделы кампании", "Campaign sections")}>
           <Link className={s.brand} href={chrome?.libraryHref?.("campaigns") ?? "/campaigns"}>
@@ -266,7 +272,7 @@ export function LibraryShell({ children }: { children: ReactNode }) {
     { id: "dm-craft", label: c("Мастерство Ведущего", "DM Craft"), icon: Feather },
     { id: "settings", label: c("Настройки", "Settings"), icon: Settings },
   ];
-  const largeText = workspace?.data?.preferences.largeText;
+  const largeText = chrome?.largeText ?? workspace?.data?.preferences.largeText;
   // The home screen is the menu itself: no side menu or tab bar repeating its buttons, the card centred
   // in the window (owner, session 2: «оно раньше было по середине экрана»).
   if (current === "menu")

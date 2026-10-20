@@ -439,6 +439,23 @@ export function planAutopilot(snapshot: CampaignSnapshot, board: PictureBoard, l
   return next.slice(0, Math.min(limit, remaining));
 }
 
+/** Fix run after session 2 (item 29): the opening's frame. The approved opening is not a turn (a turn frame is briefed
+ * from a turn's narration), and the game screen's header shows the place the story is in — so the opening's frame is
+ * the starting place's anchor, asked for as soon as the opening shows: frames are on, the cap allows, no narrated game
+ * turn yet, and the place was never drawn or tried (one attempt; a failure is never retried on its own). */
+export function openingAnchorTarget(
+  board: Pick<PictureBoard, "pictures" | "settings" | "today">,
+  snapshot: Pick<CampaignSnapshot, "locations" | "publicState">,
+  turns: readonly { mode: string; status: string; narration: string | null }[],
+): string | null {
+  if (board.settings.frames === "off" || !capRemaining(board)) return null;
+  const placeId = snapshot.publicState.current_location_id;
+  const place = placeId ? snapshot.locations.find((row) => row.id === placeId) : null;
+  if (!place || !["known", "visited"].includes(place.status)) return null;
+  if (turns.some((turn) => turn.mode === "game" && turn.status === "committed" && !!turn.narration?.trim())) return null;
+  return picturesOf(board, { kind: "location", id: place.id }, "location").length ? null : place.id;
+}
+
 /** A restyle re-renders every anchor that exists in the old style plus the planned set; the old
  * picture stays until the new one is ready. Returns the plan and its price per tier. */
 export function restylePlan(snapshot: CampaignSnapshot, board: PictureBoard) {

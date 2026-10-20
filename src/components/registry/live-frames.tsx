@@ -7,7 +7,7 @@ import type { CampaignSnapshot } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
 import type { LiveTurnView } from "@/lib/gameplay/live-turn-client";
 import { defaultPicturesTransport, type PicturesAction, type PicturesTransport } from "@/lib/ui/pictures-client";
-import { emptyPictureBoard, frameCaptionOf, frameFor, framesOfTurn, frameStatusText, pictureUrl, styleReferenceUrl, type PictureBoard, type PictureStyle, type PublicPicture } from "@/lib/visual-frame/pictures";
+import { emptyPictureBoard, frameCaptionOf, frameFor, framesOfTurn, frameStatusText, openingAnchorTarget, pictureUrl, styleReferenceUrl, type PictureBoard, type PictureStyle, type PublicPicture } from "@/lib/visual-frame/pictures";
 import { firstParagraph, isKeyMoment, outOfGameOnly } from "@/lib/visual-frame/shot";
 import { registry as r, useCopy } from "./primitives";
 import f from "./live-frames.module.css";
@@ -101,6 +101,22 @@ function useLiveFrameTrigger(live: LiveTurnView | null, play: PlaySnapshot | nul
     }
     if (committed && isKeyMoment(live.changes, !!live.moment)) ask("key_moment");
   }, [live, play, pictures]);
+}
+
+/** Fix run after session 2 (item 29): once the opening is approved and shows, the starting place is drawn as the
+ * opening's frame (the scene header shows that place, «рисуется…» while it is in work). Once per place and visit;
+ * the server owns the cap and answers a second tab with the picture already in work. */
+export function useOpeningFrame(data: CampaignSnapshot, play: PlaySnapshot | null) {
+  const pictures = usePictures();
+  const asked = useRef<string | null>(null);
+  const target = pictures && pictures.loaded && !pictures.preview && play && !play.startupPending
+    ? openingAnchorTarget(pictures.board, data, play.turns) : null;
+  const send = pictures?.send;
+  useEffect(() => {
+    if (!target || !send || asked.current === target) return;
+    asked.current = target;
+    void send("pictures.anchor", { subject: { kind: "location", id: target }, trigger: "autopilot" }).catch(() => {});
+  }, [target, send]);
 }
 
 /** The turn whose frame the panel shows: the streaming turn, else the latest game turn with narration. Fix run E
