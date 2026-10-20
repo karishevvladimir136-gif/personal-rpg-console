@@ -55,9 +55,13 @@ player stay in the tail, short, and are appended to — never rewritten whole (t
 turn 56, item 71). Respect the provider's four-breakpoint limit; keep the one-hour TTL where the
 owner's pauses exceed five minutes. Measure on the synthetic long campaign (40+ turns) before and after: cost per turn at
 high, cache read share, uncached input per request. Then, with the cache working, widen the recent-scenes window (item 23; today 30k scenes + 15k exchanges): the owner's
-corrections and the recent story should be in the context verbatim, as in a chat — target 150–200k tokens of recent
-scenes as a campaign setting («Окно истории»), the structured dossier kept for what is older; measure cost per turn at
-each size and report it. Target at the default size: **≤ $0.45 per turn at high** and uncached input per
+corrections and the recent story should be in the context verbatim, as in a chat — as a campaign setting «Память ведущего» with three presets — «компактно» (today's budgets), «стандарт» (scenes 200k,
+private facts ×3, codex 50k, about 300k in all), «широко» (about 500k) — the structured dossier kept for what is older.
+Measure all three on the probes: cost per turn, first word, untold or forgotten facts, record errors, voice metrics;
+set the default by the result (the long-context studies — Chroma's context-rot report, lost-in-the-middle — say
+degradation is continuous, stale look-alike facts compound it and a focused extract beats a full transcript, so expect
+«стандарт» to win and «широко» to lose; prove it rather than assume it). Layout rule: stable layers first, the current
+turn last, history in the middle. Target at the default size: **≤ $0.45 per turn at high** and uncached input per
 continuation under 5k tokens. Put the numbers in the report.
 
 ### A3. Speed — depth and requests
