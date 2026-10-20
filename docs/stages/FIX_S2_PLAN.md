@@ -45,7 +45,7 @@ sessions, «meanwhile» through in-world channels (item 81).
 - **Luck: both** — the preset's rerolls stay (2 a session, visible) and the DM also grants Heroic Inspiration for strong
   play, one at a time, spent to reroll any of the hero's own dice.
 
-- **DM mode for session 3: «пишет — записывает»** (00:38), with the ledger checker (A6), unless the probes show worse records.
+- **DM mode for session 3: «пишет — записывает», Opus writes and Opus records** (00:43), with the ledger checker (A6), unless the probes show worse records; Sonnet as the bookkeeper only if the probe table shows equal records.
 
 ## Still open for the owner
 
