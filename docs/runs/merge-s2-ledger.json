@@ -50,6 +50,16 @@
       "settled": true,
       "finishedAt": "2026-10-20T18:29:27.992Z",
       "record": "docs/runs/real-replay-20261020-182723.jsonl"
+    },
+    {
+      "run": "20261020-182957-loop-opus-live-20-live2d-ford",
+      "what": "check 2: the ford with Opus alone (the 2D finding's own mode: server-resolved combat attack) with both checks (5 of 5 turns)",
+      "startedAt": "2026-10-20T18:36:21.064Z",
+      "reservedUsd": 2.5,
+      "spentUsd": 1.2355,
+      "settled": true,
+      "finishedAt": "2026-10-20T18:36:21.069Z",
+      "record": "docs/runs/20261020-182957-loop-opus-live-20-live2d-ford.jsonl"
     }
   ]
 }

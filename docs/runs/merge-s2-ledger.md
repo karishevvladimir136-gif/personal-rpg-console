@@ -9,4 +9,5 @@ Cap $15; every paid run registers here before its first request and settles when
 | real-replay-20261020-181635 |  | real replay: 1 turns × O on Fix run probes (seed a); voice live; craft live | $1.50 | $0.0000 | yes |
 | 20261020-181543-loop-opus+opus-live-21-live2d-lair |  | check 1: the lair in «Opus пишет — Opus записывает» with both checks (4 of 5 turns; the fifth stopped by the run's guard) | $3.00 | $1.9819 | yes |
 | real-replay-20261020-182723 |  | real replay: 1 turns × O on Fix run probes (seed a); voice live; craft live | $3.00 | $1.5041 | yes |
-| **Total** | | | **$5.8318 of $15** | |
+| 20261020-182957-loop-opus-live-20-live2d-ford |  | check 2: the ford with Opus alone (the 2D finding's own mode: server-resolved combat attack) with both checks (5 of 5 turns) | $2.50 | $1.2355 | yes |
+| **Total** | | | **$7.0673 of $15** | |
