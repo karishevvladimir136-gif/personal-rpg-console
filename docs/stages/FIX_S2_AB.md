@@ -73,6 +73,10 @@ continuation under 5k tokens. Put the numbers in the report.
   damage); when one result changes the situation (the target dropped), the next attack is declared after it. Measure
   seconds per turn and per combat turn before and after; the planner's estimate is a combat turn from 2–5 minutes down
   to about 40–70 seconds — report the real numbers.
+- **A turn's price in sight** (owner, 23:59: «ход за 2,5 доллара — это треш»): the owner panel shows each turn's cost,
+  requests and seconds; a turn over $1 or over 4 requests is logged as a diagnostic with its cause (rolls not batched,
+  a long continuation chain), and the report lists them. Re-measure the session 2 mine-fight shape on the probes:
+  target ≤ 3 requests and ≤ $0.60 for a round with several rolls.
 - **Polling**: the open game screen polled `/play` 231 times in 13 minutes at 3–5 s of server time each, and
   `dossier?view=digest` about once a second at the session end (items 62, 75, 81). Back off while a turn streams, stop
   when the tab is hidden, and make `/play` cheap (no heavy recompute per poll). Fix the `MaxListenersExceededWarning`
