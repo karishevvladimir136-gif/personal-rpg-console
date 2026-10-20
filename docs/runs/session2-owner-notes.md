@@ -968,3 +968,13 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     asking for the DC in the roll title had dropped out of the context window. The app log does not record `dc`
     either, so the session report must take DCs from the roll receipts. Do: DC visible by default for the hero's
     checks; until then the rule lives in the owner's guide, not in a one-off note.
+
+72. **A motive told as a riddle; a person's name used as a place** (owner, 21:33: «спорная логика»). The villain's
+    motive for taking the caravans whole (vanished caravans make the watch look helpless, so the merchants sign his
+    offer to guard the road for a toll — unlike bodies on the road, which point to ordinary bandits) came out as a
+    two-part aphorism with the key link missing and no object for «sign», so the conclusion did not follow. Two more
+    closing formulas followed in the same exchange (the captain's parallel, the sergeant's «and the debt
+    remains»), and the strap gesture again. The captain also named the road's end after the wounded man from the
+    letter instead of a place. Do: motives and deductions are said as reason → consequence with every link; the
+    report checks place and person names in each turn against the campaign's records. Canon used well: Amn's
+    licence for arcane magic, Feldepost's, the Zhentarim.
