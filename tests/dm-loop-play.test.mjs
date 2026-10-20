@@ -4,6 +4,7 @@ import { randomUUID } from "node:crypto";
 import { loopCampaign } from "./dm-loop-fixture.mjs";
 import { resumeDmLoopTurn } from "../src/lib/gameplay/dm-loop/loop.ts";
 import { DM_LOOP_DEFAULT_LIMITS } from "../src/lib/gameplay/dm-loop/limits.ts";
+import { DM_OPTION_DEFAULTS } from "../src/lib/gameplay/dm-loop/options.ts";
 
 test("a rejected call returns a reason and the turn continues; money, items and the hero stay consistent", async () => {
   const c = await loopCampaign();
@@ -208,7 +209,11 @@ test("talking to a companion is an ordinary turn with an addressee; identity is 
     const model = JSON.parse(state.dmState.npc[`character_${tam.id}`]);
     assert.equal(model.episodes.length, 1);
     assert.equal(model.identity.observableVoice, "Dry, quick jokes.");
-    assert.ok(talk.model.requests[0].system.at(-2).text.includes("Dry, quick jokes."), "the companion's model is in the session tail");
+    // Fix run A3: the council is a light call — how to DM (cached) and one block with the companion's model.
+    assert.equal(talk.model.requests[0].system.length, 2);
+    assert.ok(talk.model.requests[0].system.at(-1).text.includes("Dry, quick jokes."), "the companion's model is in the council block");
+    assert.equal(talk.model.requests[0].effort, "medium");
+    assert.deepEqual(talk.model.requests[0].toolset.tools.map((tool) => tool.name).sort(), ["advance_time", "finish_turn", "note_character", "note_world"]);
     assert.ok(talk.model.requests[0].messages[0].text.includes("The player speaks to Tam"));
     const fixed = await c.turn("Tam changes her mind about everything.", [
       { text: "Tam shrugs. ", toolCalls: [{ name: "note_character", arguments: { actorRef: tam.id, identity: { values: ["gold"] } } }] },
@@ -306,8 +311,8 @@ test("DM settings: runtime and model are editable; a turn pins the model at its 
   const c = await loopCampaign();
   try {
     assert.deepEqual(await c.settings.read(), { campaignId: c.cid, runtime: "dm-loop-v1", dmTurn: null,
-      limits: DM_LOOP_DEFAULT_LIMITS, customLimits: false, depth: { min: "high", max: "xhigh" }, notebookVisible: false, boostNext: false, voiceExamples: false, voiceMode: "off", voiceTokenCap: 30_000,
-      split: null, snapshotsKeep: null, revision: 0 });
+      limits: DM_LOOP_DEFAULT_LIMITS, customLimits: false, depth: { min: "high", max: "high" }, notebookVisible: false, boostNext: false, voiceExamples: false, voiceMode: "off", voiceTokenCap: 30_000,
+      split: null, snapshotsKeep: null, options: DM_OPTION_DEFAULTS, revision: 0 });
     const saved = await c.settings.save({ expectedRevision: 0, runtime: "dm-loop-v1",
       dmTurn: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "high" } });
     assert.equal(saved.revision, 1);

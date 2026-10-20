@@ -202,7 +202,11 @@ export type PublicTurn = {
   /** Owner-facing numbers of the turn (UI_DATA_NEEDS #5); no private content. */
   stats?: { requests: number; latencyMs: number; firstTextMs: number | null; costUsd: number; cacheReadShare: number | null; rejectedCalls: number; effort: string | null;
     /** Polish items 13–14: the first word from the player's send; the depth chosen and why. */
-    firstWordMs?: number | null; depthReason?: string | null; depthTension?: string | null };
+    firstWordMs?: number | null; depthReason?: string | null; depthTension?: string | null;
+    /** Fix run A3: why a turn over $1 or four requests was expensive (no private content). */
+    expensiveCauses?: string[];
+    /** Fix run A6: what the ledger checker still found unrecorded after the correction («не записано: …»), and its cost (included in costUsd). */
+    unrecorded?: string[]; checkerUsd?: number };
 };
 export type RestRecord = {
   id: string;

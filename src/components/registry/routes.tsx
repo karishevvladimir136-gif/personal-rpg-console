@@ -13,6 +13,7 @@ import { RegistryHoldings } from "./holdings-screen";
 import { RegistrySettings } from "./settings-screen";
 import { RegistryCampaigns } from "./library-screen";
 import { RegistryPictures } from "./pictures-screen";
+import { RegistryOwner } from "./owner-screen";
 import { PersistentMediaVisualFrame } from "../persistent-visual-frame";
 import { useCopy, registry as r } from "./primitives";
 
@@ -91,4 +92,14 @@ export function SettingsRoute() {
 
 export function CampaignsRoute() {
   return <RegistryCampaigns more={<PersistentCampaigns />} />;
+}
+
+/** Fix run A3/A5: the owner's screen — the price of each turn and «Что видит ведущий». */
+export function OwnerRoute() {
+  const runtime = useGameplayRuntime();
+  return (
+    <RecordBoundary>
+      {(data) => <RegistryOwner data={data} play={runtime.play} />}
+    </RecordBoundary>
+  );
 }

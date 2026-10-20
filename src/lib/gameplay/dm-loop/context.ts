@@ -37,7 +37,7 @@ import { DM_ROLE, dmTurnShape, WRITER_ROLE, writerTurnShape } from "./roles.ts";
 import { allPlans } from "./plans.ts";
 import { voiceExamplesBlock, voiceLayer, voiceReminder, VOICE_TOKEN_CAP_DEFAULT, VOICE_TOKEN_CAP_MAX, VOICE_TOKEN_CAP_MIN } from "./voice.ts";
 import { parseLedger, type AttentionLedger } from "./ledger.ts";
-import { parseDmOptions } from "./options.ts";
+import { MEMORY_PRESETS, parseDmOptions } from "./options.ts";
 
 const bytes = (text: string) => new TextEncoder().encode(text).length;
 const json = (value: unknown) => JSON.stringify(value);
@@ -265,7 +265,7 @@ function peopleModels(source: RuntimeSource, input: TurnInput, models: Models): 
     ? { label: row.name, text: `- ${row.name} (${row.id}, in the scene) — model: ${modelText(snapshot, model)}${signatureLine(model)}` }
     : tier === "relevant" ? { label: row.name, text: `- ${row.name} (${row.id}) — core: ${modelCore(source, model)}` }
       : { label: row.name, text: `- ${row.name} (${row.id}): ${clipChars(model.current.goal ?? model.identity.wants[0] ?? model.identity.observableVoice, 160)}` });
-  const budgeted = withinBudget(entries, DOSSIER_BUDGETS.layer3.models, "Character Models (private; full for people in the scene, the core for people mentioned or relevant, one line for the rest; identity is fixed, current state and episodes evolve with note_character):");
+  const budgeted = withinBudget(entries, memoryBudgets(source).models, "Character Models (private; full for people in the scene, the core for people mentioned or relevant, one line for the rest; identity is fixed, current state and episodes evolve with note_character):");
   const statblocks = Object.entries((source.privateState.npc as JsonObject | undefined) ?? {})
     .filter(([key, value]) => key.startsWith("statblock_") && typeof value === "string")
     .map(([key, value]) => { const actor = snapshot.entities.find((row) => row.id === key.slice("statblock_".length)); return actor ? `- ${actor.name}: ${clipChars(String(value), 600)}` : null; })
@@ -299,7 +299,7 @@ function codexOfPeople(source: RuntimeSource, input: TurnInput, models: Models):
       ...(profile.unmet ? { notMetYet: "the hero has not met this person; the player's screens hide them until your narration names them" } : {}) };
     return { label: row.name, text: `- ${json(head)}` };
   });
-  const budgeted = withinBudget(entries, DOSSIER_BUDGETS.layer3.codex, "Codex of people (public identity; their private Character Models are in the session tail):");
+  const budgeted = withinBudget(entries, memoryBudgets(source).codex, "Codex of people (public identity; their private Character Models are in the session tail):");
   // Dropped people still exist for the DM: names and IDs only.
   if (budgeted.dropped.length) {
     const names = rows.filter((r) => budgeted.dropped.includes(r.row.name)).map((r) => `${r.row.name} (${r.row.id})`);
@@ -376,7 +376,7 @@ function privateSecrets(source: RuntimeSource): Budgeted {
       entries.push({ label: `${kind}:${key}`, text: `- ${kind} ${key}: ${typeof value === "string" ? clipChars(value, 800) : json(value)}` });
     }
   }
-  return withinBudget(entries, DOSSIER_BUDGETS.layer3.secrets, "Private DM notes (never shown to the player; facts, clocks, consequences; update with note_world):");
+  return withinBudget(entries, memoryBudgets(source).secrets, "Private DM notes (never shown to the player; facts, clocks, consequences; update with note_world):");
 }
 
 function offScreenPlans(source: RuntimeSource): Budgeted {
@@ -486,9 +486,12 @@ function varietyCounter(source: RuntimeSource, input: TurnInput): string {
  * HISTORY_BUCKET, not one per turn: one rewrite every eight turns or so, instead of every turn. */
 export const HISTORY_BUDGET = DOSSIER_BUDGETS.layer4.scenes + DOSSIER_BUDGETS.layer4.exchanges;
 export const HISTORY_BUCKET = 16;
-/** Fix run A2 (item 23): the campaign's «Окно истории» (the DM options), the default 45 000. */
+/** Fix run A2 (item 23): the budgets of the campaign's «Память ведущего» preset (the DM options). */
+export function memoryBudgets(source: RuntimeSource) {
+  return MEMORY_PRESETS[parseDmOptions(source.dmOptions).memory];
+}
 export function historyBudget(source: RuntimeSource): number {
-  return parseDmOptions(source.dmOptions).historyWindow;
+  return memoryBudgets(source).history;
 }
 export function conversationHistory(source: RuntimeSource): { blocks: string[]; dropped: string[]; used: number; rows: number; bodies: string[] } {
   const HISTORY_BUDGET = historyBudget(source);
@@ -657,9 +660,10 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
   const lastCommitted = source.runtime.turns.filter((turn) => turn.status === "committed" && turn.id !== input.operationId).at(-1)?.id ?? null;
   const quotable = voiceOptions.layerOff ? "" : quotableLine(source.voiceFlags, lastCommitted, snapshot.settings.values.language === "ru" ? "ru" : "en");
   const tail = [tailBase, cardsText, timeLine, quotable].filter(Boolean).join("\n\n");
-  const stableBudget = DOSSIER_BUDGETS.layer3.party + DOSSIER_BUDGETS.layer3.codex + DOSSIER_BUDGETS.layer3.factions + Math.floor(DOSSIER_BUDGETS.layer3.journal / 2) +
+  const memory = memoryBudgets(source);
+  const stableBudget = DOSSIER_BUDGETS.layer3.party + memory.codex + DOSSIER_BUDGETS.layer3.factions + Math.floor(DOSSIER_BUDGETS.layer3.journal / 2) +
     DOSSIER_BUDGETS.layer3.pinned + DOSSIER_BUDGETS.layer3.notebook + DOSSIER_BUDGETS.layer3.adventure + DOSSIER_BUDGETS.layer3.memory;
-  const tailBudget = DOSSIER_BUDGETS.layer3.models + DOSSIER_BUDGETS.layer3.journal + DOSSIER_BUDGETS.layer3.secrets + DOSSIER_BUDGETS.layer3.plans +
+  const tailBudget = memory.models + DOSSIER_BUDGETS.layer3.journal + memory.secrets + DOSSIER_BUDGETS.layer3.plans +
     DOSSIER_BUDGETS.layer3.likes + DOSSIER_BUDGETS.layer3.ledger;
 
   // Layer 6 (polish 2 §4): the conversation so far as append-only blocks, between the world and the
@@ -700,6 +704,54 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
     craft: { selected: selectedCards, library: craft?.library ?? [] }, user, cachedPrefixBytes,
     totalBytes: cachedPrefixBytes + bytes(tail) + bytes(now) + bytes(user), layers, memoryQuery: memoryQueryFor(source, input) };
 }
+
+/** Fix run A3 (item 75): the party council — one line to a companion — is a light call. Session 2's ran
+ * a full turn (129k input tokens, 48 s, $0.30). The council reads only what a conversation needs: how to
+ * DM (the same cached layer 1, so its cache is shared with the turns), and one small block with the
+ * party, the speaker's and the listeners' Character Models, the scene (place, time, who is present), the
+ * open journal's titles and the last exchanges verbatim. */
+export const COUNCIL_HISTORY_TOKENS = 6000;
+export function buildCouncilContext(source: RuntimeSource, input: TurnInput): DmLoopContext {
+  const full = buildDmLoopContext(source, input);
+  const { snapshot, runtime } = source;
+  const models = storedModels(source);
+  const speaker = snapshot.entities.find((row) => row.id === input.companionId) ?? null;
+  const listeners = input.listenerIds.map((id) => snapshot.entities.find((row) => row.id === id)).filter((row): row is Entity => !!row && row.kind !== "player");
+  const place = snapshot.locations.find((row) => row.id === snapshot.publicState.current_location_id);
+  const present = new Set(runtime.configuration?.presentEntityIds ?? []);
+  const party = partyInShort(source);
+  const people = [speaker, ...listeners].filter((row): row is Entity => !!row).map((row) => {
+    const model = models.get(row.id);
+    return `- ${row.name} (${row.id}${row.id === speaker?.id ? ", speaks" : ", listens"}): ${clipChars(row.details, 400)}${model ? `\n  model: ${modelText(snapshot, model)}` : ""}`;
+  });
+  const rows = snapshot.scenes.map((row) => `[${row.role}] ${row.body}`);
+  const recent: string[] = [];
+  let used = 0;
+  for (let at = rows.length - 1; at >= 0; at--) {
+    const cost = estimateTokens(rows[at]) + 2;
+    if (used + cost > COUNCIL_HISTORY_TOKENS) break;
+    recent.unshift(rows[at]);
+    used += cost;
+  }
+  const journalTitles = snapshot.quests.filter((row) => row.status === "open").map((row) => `${row.kind ?? "quest"}: ${row.title}`).slice(0, 12);
+  const council = [
+    `Party council: the hero speaks with a companion between the story's turns. Answer as the companion, in their own voice, from what they know and want; one exchange; the listeners may add a line when it is theirs to say. Narrate nothing else: no new events, no rolls; record only what the talk changed (note_character, note_world) and the minutes it took (advance_time), then finish_turn.`,
+    party.text,
+    people.length ? `The people in this talk (their private Character Models — what they know, want and hide):\n${people.join("\n")}` : "",
+    `The scene: ${place ? `${place.name}. ` : ""}${worldDay(runtime.worldMinutes)}, ${partOfDay(runtime.worldMinutes, snapshot.campaign.language === "ru" ? "ru" : "en")}. Present: ${snapshot.entities.filter((row) => present.has(row.id)).map((row) => row.name).join(", ") || "the party"}.`,
+    journalTitles.length ? `Open journal (titles): ${journalTitles.join("; ")}` : "",
+    recent.length ? `The last exchanges, verbatim (oldest first):\n${recent.join("\n")}` : "",
+    speechProfilesBlock(source, input, models),
+  ].filter(Boolean).join("\n\n");
+  const system: DmSystemBlock[] = [{ text: full.parts.howToDm, cache: true, ttl: "1h" }, { text: council, cache: false }];
+  const layers: DossierLayerReport[] = [full.layers[0], { layer: 7, budgetTokens: COUNCIL_HISTORY_TOKENS + DOSSIER_BUDGETS.layer3.party + 8000, usedTokens: estimateTokens(council), dropped: [] }];
+  const cachedPrefixBytes = bytes(full.parts.howToDm);
+  return { ...full, system, layers, cachedPrefixBytes, totalBytes: cachedPrefixBytes + bytes(council) + bytes(full.user),
+    parts: { ...full.parts, world: "", history: [], living: "", tail: council, tailBase: council, now: "" } };
+}
+
+/** The tools of the party council: notes and time, then the close (fix run A3). */
+export const COUNCIL_TOOLS = ["note_character", "note_world", "advance_time", "finish_turn"] as const;
 
 /** Private strings (12+ characters) that appear literally in a public text and
  * are not themselves public. A diagnostic, never a turn failure (stage task §5).

@@ -340,6 +340,7 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
             <summary>{c("Редактор кампании · для владельца", "Campaign editor · for the owner")}</summary>
             <div className={r.stack}>
               <span className={r.note}>{c("Инструменты правки записей. В обычной игре они не нужны: ведущий ведёт всё сам. Каждый подписан — когда он может пригодиться.", "Tools for correcting the records. Ordinary play does not need them: the DM keeps everything. Each one says when it may be useful.")}</span>
+              <Link className={r.btnGhost} href={href("owner")}>{c("Цена ходов и что видит ведущий", "The price of turns and what the DM sees")}</Link>
               {play.rulesetId === "world-logic-v1" && (
                 <div className={r.stack}>
                   <span className={`${r.small} ${r.muted}`}>{c("Боевая готовность: утвердить боевые числа героя, если их не было при создании.", "Combat readiness: approve the hero's combat numbers if creation had none.")}</span>

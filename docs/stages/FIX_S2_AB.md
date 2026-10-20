@@ -55,9 +55,13 @@ player stay in the tail, short, and are appended to — never rewritten whole (t
 turn 56, item 71). Respect the provider's four-breakpoint limit; keep the one-hour TTL where the
 owner's pauses exceed five minutes. Measure on the synthetic long campaign (40+ turns) before and after: cost per turn at
 high, cache read share, uncached input per request. Then, with the cache working, widen the recent-scenes window (item 23; today 30k scenes + 15k exchanges): the owner's
-corrections and the recent story should be in the context verbatim, as in a chat — target 150–200k tokens of recent
-scenes as a campaign setting («Окно истории»), the structured dossier kept for what is older; measure cost per turn at
-each size and report it. Target at the default size: **≤ $0.45 per turn at high** and uncached input per
+corrections and the recent story should be in the context verbatim, as in a chat — as a campaign setting «Память ведущего» with three presets — «компактно» (today's budgets), «стандарт» (scenes 200k,
+private facts ×3, codex 50k, about 300k in all), «широко» (about 500k) — the structured dossier kept for what is older.
+Measure all three on the probes: cost per turn, first word, untold or forgotten facts, record errors, voice metrics;
+set the default by the result (the long-context studies — Chroma's context-rot report, lost-in-the-middle — say
+degradation is continuous, stale look-alike facts compound it and a focused extract beats a full transcript, so expect
+«стандарт» to win and «широко» to lose; prove it rather than assume it). Layout rule: stable layers first, the current
+turn last, history in the middle. Target at the default size: **≤ $0.45 per turn at high** and uncached input per
 continuation under 5k tokens. Put the numbers in the report.
 
 ### A3. Speed — depth and requests
@@ -105,6 +109,23 @@ would have shown them in a minute. Read-only, no secrets to the player (owner-on
 Log the returned status of every `pictures.frame` request (queued / existing / cap / no_text / waiting / off) — frames
 stopped after 20:48 with the daily cap not reached and nothing in the log said why (items 77, 83); log every dossier
 entry dropped by a budget with its layer (item 85); log the bootstrap's provider attempt and refusal reason (item 16).
+
+### A6. The two-pass runtime gets the same fixes, and the two modes are compared
+`src/lib/gameplay/dm-loop/two-pass/runtime.ts` (the «пишет — записывает» mode) has its own copy of the request loop:
+apply A1–A3 there too (the output cap, the max_tokens recovery, the lease heartbeat, the cache layout, bundled rolls,
+the continuation depth), with tests. Then run the stage's probes in both modes — «Opus ведёт один» and «Opus пишет —
+Sonnet записывает» (and Opus records, for the facts) — and put side by side: first word, full turn, cost, missed and
+wrong records, untold rolls, the voice metrics. The owner picks the default for session 3 from that table (polish 3's
+bake-off had the split at 15.7 s first word vs 24.7 s at the same cost, with equal record completeness; the agentic
+game master study found the narrator/archivist split raised story coherence — both are reasons to measure, not to
+assume).
+**Owner's decision (2026-10-20 00:38): session 3 runs on «пишет — записывает»** unless the probe table shows its records
+worse than the single DM's. To make that safe, add the **ledger checker**: after the bookkeeper commits, a cheap model
+(Haiku, like the quotable-line check, off the turn's path) compares the narration, the writer's ledger and the actual
+receipts — every take / drink / spend / give / wound / heal / learn in the story must have a matching record; a miss
+triggers one correcting bookkeeper call, and what still does not match becomes an owner chip («не записано: седло
+Дирка») and a log line. The checker's hits per session go into the report; the session 2 known misses (the saddle, three
+bandits' weapons, the key, a shot bolt) are the probe cases.
 
 ## Stage B — the DM's core
 

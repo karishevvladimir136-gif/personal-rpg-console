@@ -274,14 +274,14 @@ test("the DM options: stored as one object, merged key by key, defaults in TypeS
   const c = await loopCampaign();
   try {
     const before = await c.settings.read();
-    assert.deepEqual(before.options, { continuation: "same", instructions: "en", companionRolls: "dm", secretsVisible: false, historyWindow: 45000 });
-    const saved = await c.settings.save({ expectedRevision: before.revision, runtime: "dm-loop-v1", dmTurn: before.dmTurn, options: { continuation: "lighter", historyWindow: 150000 } });
+    assert.deepEqual(before.options, { continuation: "same", instructions: "en", companionRolls: "dm", secretsVisible: false, memory: "compact" });
+    const saved = await c.settings.save({ expectedRevision: before.revision, runtime: "dm-loop-v1", dmTurn: before.dmTurn, options: { continuation: "lighter", memory: "standard" } });
     assert.equal(saved.options.continuation, "lighter");
-    assert.equal(saved.options.historyWindow, 150000);
+    assert.equal(saved.options.memory, "standard");
     const again = await c.settings.save({ expectedRevision: saved.revision, runtime: "dm-loop-v1", dmTurn: saved.dmTurn, options: { instructions: "ru" } });
-    assert.deepEqual(again.options, { continuation: "lighter", instructions: "ru", companionRolls: "dm", secretsVisible: false, historyWindow: 150000 }, "merged");
+    assert.deepEqual(again.options, { continuation: "lighter", instructions: "ru", companionRolls: "dm", secretsVisible: false, memory: "standard" }, "merged");
     await assert.rejects(c.settings.save({ expectedRevision: again.revision, runtime: "dm-loop-v1", dmTurn: again.dmTurn, options: { continuation: "never" } }), /validation/);
-    await assert.rejects(c.settings.save({ expectedRevision: again.revision, runtime: "dm-loop-v1", dmTurn: again.dmTurn, options: { historyWindow: 123 } }), /validation/);
+    await assert.rejects(c.settings.save({ expectedRevision: again.revision, runtime: "dm-loop-v1", dmTurn: again.dmTurn, options: { memory: "huge" } }), /validation/);
     // The source of the next turn carries them; a lighter continuation runs one notch below the turn.
     const played = await c.turn("I ask about the work.", [
       { text: "She checks the board. ", toolCalls: [{ name: "roll", arguments: { formula: "2d6", reason: "her mood", actorRef: "dm", visibility: "private" } }] },
@@ -289,9 +289,105 @@ test("the DM options: stored as one object, merged key by key, defaults in TypeS
     ]);
     assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
     const row = await c.row(played.input.operationId);
-    assert.equal(row.source.dmOptions.historyWindow, 150000);
+    assert.equal(row.source.dmOptions.memory, "standard");
     const pin = row.checkpoint.dmLoop.pin;
     assert.equal(played.model.requests[1].effort, pin.continuationEffort);
     assert.notEqual(pin.continuationEffort, pin.effort);
   } finally { await c.f.db.close(); }
+});
+
+// --- A3: the party council is a light call ---------------------------------------------------------
+test("A3: a council line is a light call — the role layer and one small block, notes and time only, medium depth, the hero never a listener", async () => {
+  const c = await loopCampaign();
+  try {
+    const join = await c.turn("I hire Tam to come along.", [{ text: "Tam shoulders his pack. ", toolCalls: [
+      { name: "upsert_character", arguments: { localKey: "tam", name: "Tam", kind: "companion", party: true, present: true, description: "A dry, careful porter." } },
+      { name: "note_character", arguments: { actorRef: "tam", identity: { wants: ["get paid on time"], observableVoice: "Dry." } } }, finish()] }]);
+    assert.equal(join.result.status, "committed", JSON.stringify(c.errors));
+    const tam = (await c.state()).entities.find((row) => row.name === "Tam");
+    const played = await c.turn("Tam, what do you make of the organiser?", [{ text: "— Pays late, — Tam says.", toolCalls: [
+      { name: "advance_time", arguments: { minutes: 2, reason: "a word on the road" } }, finish()] }],
+      { mode: "companion", companionId: tam.id, listenerIds: [c.hero] });
+    assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
+    const request = played.model.requests[0];
+    assert.equal(request.system.length, 2, "the cached role layer and the council block");
+    assert.match(request.system[1].text, /Party council/);
+    assert.match(request.system[1].text, /Tam \(.*speaks\)[\s\S]*get paid on time/);
+    assert.doesNotMatch(request.system[1].text, /listens\)[^\n]*Garrick|Garrick \([^)]*listens/, "the hero is never a listener");
+    assert.deepEqual(request.toolset.tools.map((tool) => tool.name).sort(), ["advance_time", "finish_turn", "note_character", "note_world"]);
+    assert.equal(request.effort, "medium");
+    const full = join.model.requests[0];
+    assert.equal(request.system[0].text, full.system[0].text, "the role layer is the turns' own (its cache is shared)");
+    const bytes = (blocks) => blocks.reduce((sum, block) => sum + block.text.length, 0);
+    assert.ok(bytes(request.system) < bytes(full.system), "smaller than a full turn's request");
+  } finally { await c.f.db.close(); }
+});
+
+// --- A3: polling ---------------------------------------------------------------------------------
+test("A3: the poll never overlaps, grows its delay while it must poll, backs off harder after a failure and pauses in a hidden tab", async () => {
+  const { createBackoffPoll } = await import("../src/lib/ui/backoff-poll.ts");
+  const queue = [];
+  const timers = { set: (fn, ms) => { const handle = { fn, ms }; queue.push(handle); return handle; }, clear: (handle) => { const at = queue.indexOf(handle); if (at >= 0) queue.splice(at, 1); } };
+  let hidden = false, active = true, calls = 0, fail = false, release = null;
+  const run = () => { calls++; if (fail) return Promise.reject(new Error("503")); return new Promise((resolve) => { release = resolve; }); };
+  const poll = createBackoffPoll({ run, active: () => active, baseMs: 1000, maxMs: 8000, factor: 2, timers, hidden: () => hidden });
+  const step = async () => { const next = queue.shift(); await next.fn(); return next.ms; };
+  // The first tick starts a read that does not settle yet.
+  const first = queue.shift();
+  assert.equal(first.ms, 1000);
+  void first.fn();
+  await Promise.resolve();
+  assert.equal(calls, 1);
+  // A tick while the read runs schedules, never overlaps (the read has not settled yet).
+  release(); await new Promise((resolve) => setTimeout(resolve, 0));
+  assert.equal(queue[0].ms, 2000, "the delay grew after a poll that must go on");
+  fail = true;
+  await step();
+  assert.equal(queue[0].ms, 8000, "a failure backs off twice as hard (capped at twice the max)");
+  hidden = true; fail = false;
+  await step();
+  assert.equal(calls, 2, "a hidden tab is not polled");
+  assert.equal(queue[0].ms, 1000, "back to the base while hidden");
+  hidden = false; active = false;
+  await step();
+  assert.equal(calls, 2, "nothing to poll, nothing asked");
+  poll.kick();
+  assert.equal(queue.at(-1).ms, 0, "a kick asks now");
+  poll.stop();
+  assert.equal(queue.length, 0);
+});
+
+// --- A4: the digest -----------------------------------------------------------------------------
+test("A4: an unparsed digest names why; the digest gets the loop's ceiling", async () => {
+  const { unparsedReason, DIGEST_OUTPUT_TOKENS } = await import("../src/lib/gameplay/dm-loop/digest.ts");
+  assert.equal(DIGEST_OUTPUT_TOKENS, 32000);
+  assert.equal(unparsedReason("{\"recap\": \"Ранее", "max_tokens"), "cut by the output cap");
+  assert.equal(unparsedReason("", "end"), "no text in the answer");
+  assert.equal(unparsedReason("Ранее в кампании…", "end"), "no JSON object in the answer");
+  assert.match(unparsedReason("{\"recap\": \"x\"}", "end"), /lacks a recap or a title/);
+});
+
+test("A4: one digest per session at a time; no entry digest while one runs or after one failed; the entry check at most once a minute", async () => {
+  const guard = await import("../src/lib/gameplay/dm-loop/digest-guard.ts");
+  const now = 1_000_000;
+  assert.equal(guard.entryCheckDue("camp-a", now), true);
+  assert.equal(guard.entryCheckDue("camp-a", now + 30_000), false, "within the minute");
+  assert.equal(guard.entryCheckDue("camp-a", now + 61_000), true);
+  assert.equal(guard.entryCheckDue("camp-b", now + 30_000), true, "per campaign");
+  assert.equal(guard.entryDigestAllowed("camp-a", "s1"), true, "nothing known: allowed");
+  // The end digest is scheduled and starts; an entry digest that comes meanwhile is refused.
+  assert.equal(guard.digestSchedulable("camp-a", "s1"), true);
+  guard.setStatus("camp-a", "s1", { state: "running", reason: null, costUsd: null });
+  assert.equal(guard.digestSchedulable("camp-a", "s1"), false, "a scheduled digest blocks a second one");
+  assert.equal(guard.enterDigest("camp-a", "s1"), true);
+  assert.equal(guard.enterDigest("camp-a", "s1"), false, "never two runs");
+  assert.equal(guard.entryDigestAllowed("camp-a", "s1"), false);
+  guard.setStatus("camp-a", "s1", { state: "failed", reason: "unparsed", costUsd: 0.4 });
+  guard.leaveDigest("camp-a", "s1");
+  assert.equal(guard.entryDigestAllowed("camp-a", "s1"), false, "a failed digest is not retried on entry");
+  assert.equal(guard.digestSchedulable("camp-a", "s1"), true, "the owner's «Повторить» may schedule it");
+  // A «running» left by a schedule that never started does not block the retry.
+  guard.setStatus("camp-a", "s2", { state: "running", reason: null, costUsd: null });
+  guard.clearStaleRunning("camp-a", "s2");
+  assert.equal(guard.readDigestStatus("camp-a", "s2"), null);
 });

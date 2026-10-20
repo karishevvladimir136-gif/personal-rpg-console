@@ -9,6 +9,7 @@ import {
 } from "@/lib/memory/client-state";
 import type { TimelineFence } from "@/lib/saves/contracts";
 import { timelineKey } from "@/lib/saves/client-state";
+import { createBackoffPoll } from "@/lib/ui/backoff-poll";
 
 const readers = new Map<string, ReturnType<typeof makeReader>>();
 function makeReader(campaignId: string, timeline?: TimelineFence) {
@@ -20,7 +21,7 @@ function makeReader(campaignId: string, timeline?: TimelineFence) {
     timeline,
   );
   let subscribers = 0;
-  let timer: ReturnType<typeof setInterval> | null = null;
+  let poll: ReturnType<typeof createBackoffPoll> | null = null;
   const refresh = () => {
     void reader.refresh().catch(() => {});
   };
@@ -36,24 +37,25 @@ function makeReader(campaignId: string, timeline?: TimelineFence) {
         readers.set(key, entry);
         window.addEventListener("focus", refresh);
         window.addEventListener("rpg-gameplay-changed", gameplayChanged);
-        // Reads only. A pending recap never starts generation from a timer.
-        timer = setInterval(() => {
-          const snapshot = reader.getSnapshot().snapshot;
-          if (
-            snapshot?.currentBoundary?.state === "resuming" ||
-            snapshot?.sessions.some((row) =>
-              ["pending", "generating"].includes(row.recap.status),
-            )
-          )
-            refresh();
-        }, 2500);
+        // Reads only. A pending recap never starts generation from a timer. Fix run A3: a backing-off,
+        // never-overlapping poll that pauses in a hidden tab.
+        poll = createBackoffPoll({
+          run: () => reader.refresh(),
+          active: () => {
+            const snapshot = reader.getSnapshot().snapshot;
+            return snapshot?.currentBoundary?.state === "resuming" ||
+              !!snapshot?.sessions.some((row) => ["pending", "generating"].includes(row.recap.status));
+          },
+          baseMs: 2500,
+          maxMs: 20000,
+        });
       }
       return () => {
         unsubscribe();
         subscribers--;
         if (!subscribers) {
-          if (timer) clearInterval(timer);
-          timer = null;
+          poll?.stop();
+          poll = null;
           window.removeEventListener("focus", refresh);
           window.removeEventListener("rpg-gameplay-changed", gameplayChanged);
           readers.delete(key);

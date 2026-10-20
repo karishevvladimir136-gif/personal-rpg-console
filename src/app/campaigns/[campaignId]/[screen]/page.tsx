@@ -17,6 +17,7 @@ import {
   CodexRoute,
   HoldingsRoute,
   JournalRoute,
+  OwnerRoute,
   PartyRoute,
   PicturesRoute,
   SettingsRoute,
@@ -72,6 +73,8 @@ export default async function Page({
       return <JournalRoute />;
     case "chronicle":
       return <ChronicleRoute />;
+    case "owner":
+      return <OwnerRoute />;
     case "sessions":
     case "map":
       return <PersistentSecondaryPage screen={screen} />;

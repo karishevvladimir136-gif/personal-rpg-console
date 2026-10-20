@@ -123,6 +123,9 @@ export type DmLoopDiagnostic =
   | { kind: "time_words"; detail: string }
   /** Fix run A1 (items 32, 56, 73): the request after a cut by the output cap continues the turn once. */
   | { kind: "cut_continued"; toolCalls: number }
+  /** Fix run A6: the ledger checker's pass (the events without a record it found) and what stayed unrecorded. */
+  | { kind: "ledger_checked"; misses: string[]; costUsd: number; error: string | null }
+  | { kind: "ledger_unrecorded"; chips: string[] }
   /** Fix run A3: a turn over $1, over four requests or over 32 000 output tokens, with its causes. */
   | { kind: "expensive_turn"; costUsd: number; requests: number; outputTokens: number; latencyMs: number; causes: string[] }
   /** Fix run A1 (item 32c): the provider's own error (kind, HTTP status, code, the message with secrets filtered). */

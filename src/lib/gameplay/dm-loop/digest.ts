@@ -88,15 +88,29 @@ export function parseDigest(text: string, source: RuntimeSource, nowMinutes: num
     stinger: str(value.stinger, 2000) };
 }
 
+/** The digest's output ceiling, thinking included (fix run A4). */
+export const DIGEST_OUTPUT_TOKENS = 32_000;
+/** Why a digest answer could not be read, in one phrase for the log (item 17). */
+export function unparsedReason(text: string, stop: string | null): string {
+  if (stop === "max_tokens") return "cut by the output cap";
+  if (!text.trim()) return "no text in the answer";
+  if (text.indexOf("{") < 0) return "no JSON object in the answer";
+  return "the JSON object lacks a recap or a title, or does not parse";
+}
+
 /** Runs the digest request on the model and returns the parsed digest with the usage. */
 export async function runDigest(model: DmModel, request: ReturnType<typeof buildDigestRequest>, source: RuntimeSource, nowMinutes: number,
   options: { maxOutputTokens?: number; operationId?: string; cacheKey?: string } = {}) {
   let text = "";
   let usage: { inputTokens: number; outputTokens: number; cacheReadTokens: number; cacheWriteTokens: number; reasoningTokens: number | null } | null = null;
+  let stop: string | null = null;
+  // Fix run A4 (items 17, 81): 6 000 output tokens included the thinking, so an «unparsed» digest was
+  // most likely a cut one; it gets the loop's own ceiling.
   for await (const event of model.stream({ system: request.system, messages: request.messages, toolset: null, effort: request.effort,
-    maxOutputTokens: options.maxOutputTokens ?? 6000, operationId: options.operationId, cacheKey: options.cacheKey })) {
+    maxOutputTokens: options.maxOutputTokens ?? DIGEST_OUTPUT_TOKENS, operationId: options.operationId, cacheKey: options.cacheKey })) {
     if (event.type === "text_delta") text += event.text;
     else if (event.type === "usage") usage = event.usage;
+    else if (event.type === "stop") stop = event.reason;
   }
-  return { digest: parseDigest(text, source, nowMinutes), text, usage };
+  return { digest: parseDigest(text, source, nowMinutes), text, usage, stop };
 }

@@ -638,7 +638,8 @@ export function GameplayComposer({
               {data?.entities
                 .filter(
                   (row) =>
-                    row.id !== companionId &&
+                    // Fix run A3 (item 75): the hero speaks in the council and is never offered as a listener.
+                    row.id !== companionId && row.kind !== "player" &&
                     play.configuration?.presentEntityIds.includes(row.id),
                 )
                 .map((row) => (

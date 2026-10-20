@@ -35,7 +35,9 @@ export async function GET(_request: Request, context: { params: Promise<{ campai
         if (timer) clearTimeout(timer);
       },
     });
-    return new Response(stream, { headers: { "Content-Type": "text/event-stream", "Cache-Control": "private, no-store",
+    // Fix run A3 (item 75): «no-transform» keeps Next's gzip off the live stream — a compressed SSE buffers
+    // the text and piled a drain listener per write (the MaxListenersExceededWarning of session 2).
+    return new Response(stream, { headers: { "Content-Type": "text/event-stream", "Cache-Control": "private, no-store, no-transform",
       Connection: "keep-alive", "X-Accel-Buffering": "no" } });
   } catch (cause) {
     return gameplayErrorResponse(cause);

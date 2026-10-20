@@ -18,6 +18,7 @@ import {
   Contact,
   Ellipsis,
   Feather,
+  Gauge,
   FlaskConical,
   Globe,
   History,
@@ -57,7 +58,7 @@ import s from "./shell.module.css";
 export type CampaignScreenId =
   | "game" | "character" | "inventory" | "party" | "journal" | "codex" | "map" | "holdings"
   | "adventures" | "library" | "settings" | "sessions" | "saves" | "timeline" | "world"
-  | "dm-chat" | "gallery" | "frame" | "pictures" | "home" | "camp";
+  | "dm-chat" | "gallery" | "frame" | "pictures" | "home" | "camp" | "owner";
 
 type Chrome = {
   /** Synthetic previews route inside /preview and never fetch. */
@@ -142,6 +143,8 @@ export function CampaignShell({ children }: { children: ReactNode }) {
     { id: "world", label: c("Мастерская мира", "World Lab"), icon: FlaskConical },
     { id: "dm-chat", label: c("Чат с ведущим", "Chat with DM"), icon: MessageSquare },
     { id: "pictures", label: c("Картинки", "Pictures"), icon: ImageIcon },
+    // Fix run A3/A5: the owner's screen — what each turn cost, what the DM received.
+    { id: "owner", label: c("Для владельца", "For the owner"), icon: Gauge },
   ];
   const all = [...primary, ...secondary];
   const active = all.find((item) => item.id === current) ?? (current === "home" || current === "camp" ? primary.find((item) => item.id === "holdings") : undefined);

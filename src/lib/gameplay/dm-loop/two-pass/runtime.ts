@@ -30,7 +30,8 @@ import { dmModelSpec, dmUsageCost } from "../../../model-runtime/dm-models.ts";
 import { buildDmLoopContext, suspectedLiteralLeaks } from "../context.ts";
 import { advanceLedger, parseLedger, serializeLedger } from "../ledger.ts";
 import { advanceMetrics, parseMetrics, serializeMetrics } from "../metrics.ts";
-import { chooseDepth, parseDepthRange, parseDepthState, tensionSignals } from "../depth.ts";
+import { chooseDepth, lowerEffort, parseDepthRange, parseDepthState, tensionSignals } from "../depth.ts";
+import { ledgerChip, ledgerCorrectionMessage, type LedgerCheckResult } from "../ledger-check.ts";
 import { executeDmLoopTool } from "../execute.ts";
 import { chip } from "../receipt-text.ts";
 import type { PublicProfile } from "../../../persistence/contracts.ts";
@@ -41,6 +42,9 @@ import type { DmSplit } from "../settings.ts";
 import { DM_LOOP_RUNTIME, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopMeta, type DmLoopObservation,
   type DmLoopPin, type DmLoopReceipt, type DmLoopUsageEntry } from "../contracts.ts";
 import { continuation, dmOutputCap, executeDmLoopTurn, joinText, leaseHeartbeat, narrationNames, retriableRejection, retryClaimable, type DmLoopDependencies } from "../loop.ts";
+
+/** Fix run A6: what the writer is sent after a request the output cap cut (the loop's CUT_BY_CAP, with the ledger). */
+export const WRITER_CUT_BY_CAP = "Your last message was cut off by the output limit. Continue exactly where it stopped — do not repeat what is already written — finish the narration briefly, then close with the ledger. Keep your thinking short.";
 import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KEY } from "../time-words.ts";
 import { BOOKKEEPER_MARKER, bookkeeperBrief, bookkeeperSystem, createLedgerGate, rejectedCallsMessage, splitLedger, writerSystem } from "./prompts.ts";
 
@@ -55,6 +59,8 @@ export type TwoPassDependencies = DmLoopDependencies & {
   bookkeeper?: TwoPassBookkeeper | BookkeeperSelection;
   /** The adapter for a pinned bookkeeper selection (the app). */
   bookkeeperModel?: (selection: BookkeeperSelection) => DmModel;
+  /** Fix run A6: the ledger checker (Haiku in the app; a fake in tests) — absent: no check. */
+  ledgerCheck?: (input: { narration: string; ledger: string; receipts: DmLoopReceipt[]; language: "ru" | "en" }) => Promise<LedgerCheckResult>;
 };
 
 /** The writer's one tool and the bookkeeper's fifteen. */
@@ -169,7 +175,11 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       const lastLoopTurn = [...source.runtime.turns].reverse().find((turn) => turn.status === "committed" && turn.nextTension !== undefined && turn.id !== operationId);
       const signal = tensionSignals(source, input, lastLoopTurn?.nextTension ?? null);
       const depth = chooseDepth(range, writerEffort(selected.modelId, selected.effort), parseDepthState(source.privateState), signal, !fable && !!selected.boostNext);
-      loop.pin = { providerId: selected.providerId, modelId: selected.modelId, effort: writerEffort(selected.modelId, depth.effort),
+      const turnEffort = writerEffort(selected.modelId, depth.effort);
+      // Fix run A6 (A3): a lighter continuation runs the writer's requests after a roll one notch below the turn.
+      const continuationEffort = selected.continuation === "lighter" ? writerEffort(selected.modelId, lowerEffort(turnEffort)) : undefined;
+      loop.pin = { providerId: selected.providerId, modelId: selected.modelId, effort: turnEffort,
+        ...(continuationEffort && continuationEffort !== turnEffort ? { continuationEffort } : {}),
         ...(range && depth.effort !== selected.effort ? { baseEffort: selected.effort } : {}),
         runtime: DM_LOOP_RUNTIME, privacy: "single-narrator", limits: { ...(selected.limits ?? DM_LOOP_DEFAULT_LIMITS) },
         ...(range ? { depth: { min: range.min, max: range.max, tension: depth.tension, reason: depth.reason, boosted: !!selected.boostNext, streak: depth.streak } } : {}),
@@ -257,10 +267,15 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       return { narration: split.narration, ledger: split.ledger };
     };
     /** One model request of either pass; returns what came back. */
+    // Fix run A6: the writer's request after a cut by the output cap thinks one notch lower (as the loop's).
+    let writerCut = false;
     const request = async (phase: "writer" | "bookkeeper", messages: DmMessage[], firstRound: boolean) => {
       const model = phase === "writer" ? writer : bookkeeper;
       const spec = phase === "writer" ? writerSpec : bookkeeperSpec;
-      const effort = phase === "writer" ? pin.effort : pin.bookkeeper!.effort;
+      // Fix run A6: the writer's continuations (after a roll) take the pinned continuation depth (A3).
+      const writerEffort = !firstRound && pin.continuationEffort ? pin.continuationEffort : pin.effort;
+      const effort = phase === "writer" ? (writerCut ? lowerEffort(writerEffort) : writerEffort) : pin.bookkeeper!.effort;
+      writerCut = false;
       const system = phase === "writer" ? writerSystem(context) : bookkeeperSystem(context, languageName, bookkeeperText());
       const body: DmModelRequest = { system, messages, toolset: phase === "writer" ? writerToolset : bookkeeperToolset, effort,
         maxOutputTokens: dmOutputCap(), operationId, cacheKey: input.campaignId, cacheTurn: true };
@@ -340,7 +355,8 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       loop.usage.push(entry);
       loop.requests++;
       observe({ type: "request_finished", operationId, request: loop.requests, usage: entry, stop: stop.reason });
-      loop.transcript.push({ role: "assistant", text: roundText, toolCalls, native: stop.native });
+      // Fix run A6: a request the cap cut before it wrote anything leaves no (invalid) empty assistant message.
+      if (roundText.trim() || toolCalls.length) loop.transcript.push({ role: "assistant", text: roundText, toolCalls, native: stop.native });
       return { toolCalls, stop, roundText, shownRound };
     };
     /** Polish 3 §3: rejected record calls of the last message go back once with their reasons. */
@@ -401,7 +417,19 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
         loop.text = joinText(loop.text, round.shownRound);
         await persist("generating");
         if (round.stop.reason === "refusal") { diagnostic({ kind: "model_refusal", providerReason: round.stop.providerReason }); break; }
-        if (round.stop.reason === "max_tokens") diagnostic({ kind: "max_tokens", outputTokens: loop.usage.at(-1)?.outputTokens ?? 0 });
+        if (round.stop.reason === "max_tokens") {
+          diagnostic({ kind: "max_tokens", outputTokens: loop.usage.at(-1)?.outputTokens ?? 0 });
+          // Fix run A6 (as A1): a cut never fails the turn — once, the writer continues from the complete part.
+          if (!asked("cut_continued") && writerRequests + 1 < limits.modelRequestsPerTurn) {
+            diagnostic({ kind: "cut_continued", toolCalls: round.toolCalls.length });
+            writerCut = true;
+            if (!round.toolCalls.length) {
+              loop.transcript.push({ role: "user", text: WRITER_CUT_BY_CAP });
+              await persist("generating");
+              continue;
+            }
+          }
+        }
         if (!round.toolCalls.length) {
           if (outcomePending && !asked("outcome_asked") && writerRequests + 1 < limits.modelRequestsPerTurn) {
             diagnostic({ kind: "outcome_asked" });
@@ -448,7 +476,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
 
     // ---- The bookkeeper's pass --------------------------------------------
     const bookkeeperPart = () => loop.transcript.slice(markerAt);
-    for (;;) {
+    const runBookkeeper = async () => { for (;;) {
       const part = bookkeeperPart();
       const last = part.at(-1);
       if (last?.role === "assistant" && last.toolCalls.length &&
@@ -484,6 +512,32 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
         }
         break;
       }
+    } };
+    await runBookkeeper();
+    // Fix run A6: the ledger checker — the story against the records; one correcting bookkeeper call;
+    // what still does not match becomes the owner's chip. Never fails the turn.
+    if (deps.ledgerCheck && !asked("ledger_checked")) {
+      const writerText = loop.transcript.slice(0, markerAt).filter((m) => m.role === "assistant").reduce((text, m) => joinText(text, m.text), "");
+      const ledgerText = splitLedger(writerText).ledger;
+      const check = () => deps.ledgerCheck!({ narration: loop.text, ledger: ledgerText, receipts: loop.receipts, language }).catch((error: unknown) =>
+        ({ misses: [], usage: null, costUsdMicros: 0, elapsedMs: 0, error: String((error as Error)?.message ?? error).slice(0, 120) }));
+      const first = await check();
+      diagnostic({ kind: "ledger_checked", misses: first.misses.map((miss) => miss.event), costUsd: first.costUsdMicros / 1_000_000, error: first.error });
+      let remaining = first.misses;
+      if (first.misses.length && bookkeeperPart().filter((m) => m.role === "assistant").length < limits.modelRequestsPerTurn) {
+        loop.transcript.push({ role: "user", text: ledgerCorrectionMessage(first.misses) });
+        shadow.finished = false;
+        await persist("generating");
+        await runBookkeeper();
+        const second = await check();
+        diagnostic({ kind: "ledger_checked", misses: second.misses.map((miss) => miss.event), costUsd: second.costUsdMicros / 1_000_000, error: second.error });
+        remaining = second.error ? first.misses : second.misses;
+      }
+      if (remaining.length) {
+        diagnostic({ kind: "ledger_unrecorded", chips: remaining.map((miss) => ledgerChip(language, miss)) });
+        for (const miss of remaining) live({ type: "tool", name: "ledger_check", ok: false, summary: ledgerChip(language, miss) });
+      }
+      await persist("generating");
     }
     if (!loop.meta) { loop.meta = implicitMeta(loop.receipts); if (loop.receipts.some((r) => r.call.name !== "roll")) diagnostic({ kind: "implicit_finish", calls: loop.receipts.length }); }
     twoPass({ type: "two_pass", operationId, event: "bookkeeper_finished", atMs: Math.max(0, Date.now() - sentAt),
@@ -613,6 +667,9 @@ export function bookkeeperOf(split: DmSplit): BookkeeperSelection {
 function isSplitTurn(claim: TurnClaim, split: DmSplit | null): boolean {
   const pin: DmLoopPin | null = claim.turn.checkpoint.dmLoop?.pin ?? null;
   if (pin) return !!pin.bookkeeper;
+  // Fix run A6 (A3, item 75): a council line is the loop's light call on a split campaign too — it records
+  // only notes and time, so it needs no bookkeeper.
+  if (claim.turn.input.mode === "companion") return false;
   return !!split;
 }
 

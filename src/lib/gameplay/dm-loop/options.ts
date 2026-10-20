@@ -6,20 +6,28 @@
 //   - companionRolls (item 44): the DM rolls for the companions as compact lines ("dm") or the player gets
 //     their cards ("player");
 //   - secretsVisible (B1): the owner opted in to read the DM's hidden layer;
-//   - historyWindow (A2, item 23): «Окно истории» — the tokens of recent scenes and exchanges the DM reads
-//     verbatim (older story lives in the dossier and the recaps).
+//   - memory (A2, item 23): «Память ведущего» — how much the DM reads verbatim each turn: «компактно»
+//     (session 2's budgets), «стандарт» (recent scenes 200k, private facts ×3, codex 50k — about 300k in
+//     all) or «широко» (about 500k); older story lives in the dossier and the recaps. The default is set
+//     by the probes' result.
 export type DmOptions = {
   continuation: "same" | "lighter";
   instructions: "ru" | "en";
   companionRolls: "dm" | "player";
   secretsVisible: boolean;
-  historyWindow: number;
+  memory: DmMemoryPreset;
 };
-/** The sizes «Окно истории» offers (tokens of recent scenes; 45 000 is the window session 2 played with). */
-export const HISTORY_WINDOWS = [45_000, 100_000, 150_000, 200_000] as const;
-export const DM_OPTION_DEFAULTS: DmOptions = Object.freeze({ continuation: "same", instructions: "en", companionRolls: "dm", secretsVisible: false, historyWindow: 45_000 });
+export type DmMemoryPreset = "compact" | "standard" | "wide";
+/** The budgets (estimated tokens) of each «Память ведущего» preset: the recent scenes and exchanges read
+ * verbatim, the private facts, the codex of people and the Character Models of the session's tail. */
+export const MEMORY_PRESETS: Readonly<Record<DmMemoryPreset, { history: number; secrets: number; codex: number; models: number }>> = Object.freeze({
+  compact: { history: 45_000, secrets: 3_500, codex: 30_000, models: 16_000 },
+  standard: { history: 200_000, secrets: 10_500, codex: 50_000, models: 32_000 },
+  wide: { history: 380_000, secrets: 17_500, codex: 80_000, models: 48_000 },
+});
+export const DM_OPTION_DEFAULTS: DmOptions = Object.freeze({ continuation: "same", instructions: "en", companionRolls: "dm", secretsVisible: false, memory: "compact" });
 export const DM_OPTION_VALUES: { readonly [K in keyof DmOptions]: readonly DmOptions[K][] } = {
-  continuation: ["same", "lighter"], instructions: ["ru", "en"], companionRolls: ["dm", "player"], secretsVisible: [true, false], historyWindow: HISTORY_WINDOWS,
+  continuation: ["same", "lighter"], instructions: ["ru", "en"], companionRolls: ["dm", "player"], secretsVisible: [true, false], memory: ["compact", "standard", "wide"],
 };
 
 /** The stored options with the defaults filled in; an unknown key or value (a newer or older row) is ignored. */

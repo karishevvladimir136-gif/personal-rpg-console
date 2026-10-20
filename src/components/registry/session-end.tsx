@@ -8,6 +8,7 @@ import { useSessionMemory } from "../session-memory-runtime";
 import { notifyGameplayChanged } from "../gameplay-runtime";
 import { continueSession, endSession, memoryErrorMessage } from "@/lib/memory/client";
 import { readJson } from "@/lib/persistence/client";
+import { createBackoffPoll } from "@/lib/ui/backoff-poll";
 import { journalOf, questsOf } from "@/lib/ui/campaign-view";
 import { registry as r, useCopy } from "./primitives";
 import g from "./game.module.css";
@@ -35,21 +36,24 @@ export function SessionEnd({ sessionId, compact = false }: { sessionId: string |
   const digested = !!session?.recap.trim();
   const polling = closed && !digested;
   // While the digest runs, ask the server where it stands and refresh the records when it lands.
+  // Fix run A3/A4 (item 81): only the full card asks (the compact button beside the composer never polls),
+  // from 3 s growing to 15 s, never overlapping, and it stops once the digest is done or failed.
+  const settled = useRef(false);
   useEffect(() => {
-    if (!closed || digested || !sessionId) return;
+    if (compact || !closed || digested || !sessionId) return;
     let live = true;
+    settled.current = false;
     const tick = async () => {
-      try {
-        const result = await readJson<{ status: DigestStatus }>(`/api/campaigns/${encodeURIComponent(campaignId)}/dossier?view=digest&session=${encodeURIComponent(sessionId)}`);
-        if (!live) return;
-        setStatus(result.status);
-        if (result.status?.state === "done" || result.status === null) await refresh().catch(() => {});
-      } catch { /* the next tick asks again */ }
+      const result = await readJson<{ status: DigestStatus }>(`/api/campaigns/${encodeURIComponent(campaignId)}/dossier?view=digest&session=${encodeURIComponent(sessionId)}`);
+      if (!live) return;
+      setStatus(result.status);
+      if (result.status?.state === "failed" || result.status?.state === "skipped") settled.current = true;
+      if (result.status?.state === "done" || result.status === null) { settled.current = true; await refresh().catch(() => {}); }
     };
-    void tick();
-    const timer = window.setInterval(() => void tick(), 2500);
-    return () => { live = false; window.clearInterval(timer); };
-  }, [campaignId, closed, digested, refresh, sessionId]);
+    void tick().catch(() => {});
+    const poll = createBackoffPoll({ run: tick, active: () => !settled.current, baseMs: 3000, maxMs: 15000 });
+    return () => { live = false; poll.stop(); };
+  }, [campaignId, closed, compact, digested, refresh, sessionId]);
   const end = async () => {
     if (!memory.snapshot || !sessionId || busy) return;
     setBusy(true);
@@ -75,6 +79,7 @@ export function SessionEnd({ sessionId, compact = false }: { sessionId: string |
       const result = await readJson<{ status: DigestStatus }>(`/api/campaigns/${encodeURIComponent(campaignId)}/dossier`,
         { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "digest", sessionId }) });
       setStatus(result.status);
+      settled.current = false;
     } catch { setError(c("Не удалось запустить итог заново. Попробуй ещё раз через минуту.", "The digest could not be started again. Try again in a minute.")); }
     finally { setBusy(false); }
   };
@@ -106,6 +111,8 @@ export function SessionEnd({ sessionId, compact = false }: { sessionId: string |
       </div>
     );
   }
+  // Item 81: the chapter card shows once — in the feed; the compact button beside the composer steps aside.
+  if (compact) return null;
   const journal = journalOf(data);
   const quests = questsOf(data);
   const leads = [...quests.active.map((quest) => ({ id: quest.id, title: quest.title, kind: c("задание", "quest") })),

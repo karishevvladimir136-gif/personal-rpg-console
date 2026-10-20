@@ -23,11 +23,11 @@ import { compileToolset } from "../../server/dm/model/schema-compiler.ts";
 import type { DmMessage, DmModel, DmModelRequest, DmToolCall } from "../../server/dm/model/contracts.ts";
 import { DmModelError } from "../../server/dm/model/contracts.ts";
 import { dmModelSpec, dmUsageCost } from "../../model-runtime/dm-models.ts";
-import { buildDmLoopContext, suspectedLiteralLeaks } from "./context.ts";
+import { buildCouncilContext, buildDmLoopContext, COUNCIL_TOOLS, suspectedLiteralLeaks } from "./context.ts";
 import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KEY } from "./time-words.ts";
 import { advanceLedger, parseLedger, serializeLedger } from "./ledger.ts";
 import { advanceMetrics, parseMetrics, serializeMetrics } from "./metrics.ts";
-import { chooseDepth, lowerEffort, parseDepthRange, parseDepthState, tensionSignals, type DepthRange } from "./depth.ts";
+import { chooseDepth, EFFORT_ORDER, lowerEffort, parseDepthRange, parseDepthState, tensionSignals, type DepthRange } from "./depth.ts";
 import { executeDmLoopTool } from "./execute.ts";
 import { chip } from "./receipt-text.ts";
 import type { PublicProfile } from "../../persistence/contracts.ts";
@@ -70,6 +70,10 @@ export type DmLoopDependencies = {
 };
 
 export const dmLoopToolset = compileToolset(dmLoopTools);
+/** Fix run A3 (item 75): the party council's tools — notes, time, the close. */
+export const dmCouncilToolset = compileToolset(dmLoopTools.filter((tool) => (COUNCIL_TOOLS as readonly string[]).includes(tool.name)));
+/** The council thinks at medium (or the range's base when it is lower). */
+export const COUNCIL_EFFORT = "medium" as const;
 
 /** Fix run A1 (items 32, 56, 73): both providers count thinking against the output limit, and a
  * scene-closing turn at high or xhigh hit the old 6000 + allowance cap three times in session 2 —
@@ -309,7 +313,10 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       const range = parseDepthRange(selected.depth ?? null);
       const lastLoopTurn = [...source.runtime.turns].reverse().find((turn) => turn.status === "committed" && turn.nextTension !== undefined && turn.id !== operationId);
       const signal = tensionSignals(source, input, lastLoopTurn?.nextTension ?? null);
-      const depth = chooseDepth(range, selected.effort, parseDepthState(source.privateState), signal, !!selected.boostNext);
+      const chosen = chooseDepth(range, selected.effort, parseDepthState(source.privateState), signal, !!selected.boostNext);
+      // Fix run A3: a council line thinks at medium (or lower when the range's base is lower), never deep.
+      const councilEffort = EFFORT_ORDER.indexOf(range?.min ?? selected.effort) < EFFORT_ORDER.indexOf(COUNCIL_EFFORT) ? (range?.min ?? selected.effort) : COUNCIL_EFFORT;
+      const depth = input.mode === "companion" ? { ...chosen, effort: councilEffort, reason: "a council line (light call)" } : chosen;
       // Fix run A3: a lighter continuation is one notch below this turn's depth (xhigh → high, high → medium).
       const continuationEffort = selected.continuation === "lighter" ? lowerEffort(depth.effort) : selected.continuationEffort;
       loop.pin = { providerId: selected.providerId, modelId: selected.modelId, effort: depth.effort,
@@ -326,7 +333,8 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
     if (!spec) throw new DmError("configuration");
     const model = deps.model(pin);
     let informed: RuntimeSource = source;
-    try {
+    // Fix run A3: the council reads the scene and the last exchanges only — no memory retrieval.
+    if (input.mode !== "companion") try {
       // Memory query rewriting (plan §11): explicit questions with the names of
       // the scene's participants, mentioned entities and the open journal.
       informed = await withUnifiedMemory(source, input, memory, true, buildDmLoopContext(source, input).memoryQuery);
@@ -338,7 +346,8 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
     // Polish item 14: the first word is measured from the player's send (the durable begin), whatever request it comes in.
     const sentAt = Date.parse(claim.turn.public.created_at) || Date.now();
     const shadow = ShadowState.restore(source, operationId, loop.shadow);
-    const context = buildDmLoopContext(informed, input);
+    const council = input.mode === "companion";
+    const context = council ? buildCouncilContext(informed, input) : buildDmLoopContext(informed, input);
     const language: "ru" | "en" = source.snapshot.settings.values.language === "ru" ? "ru" : "en";
     const lastHint = [...source.runtime.turns].reverse().find((turn) => turn.status === "committed" && turn.nextTension !== undefined && turn.id !== operationId)?.nextTension ?? null;
     const turnTension = pin.depth?.tension ?? tensionSignals(source, input, lastHint).tension;
@@ -355,9 +364,13 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
     })();
     if (loop.transcript.length === 0) {
       loop.transcript.push({ role: "user", text: context.user });
+      // Fix run A5 (item 85): every budget drop reaches the log with its layer (it was in the checkpoint only).
       for (const layer of context.layers)
-        if (layer.dropped.length || layer.usedTokens > layer.budgetTokens)
-          loop.diagnostics.push({ kind: "dossier_budget", layer: layer.layer, budgetTokens: layer.budgetTokens, usedTokens: layer.usedTokens, dropped: layer.dropped });
+        if (layer.dropped.length || layer.usedTokens > layer.budgetTokens) {
+          const entry = { kind: "dossier_budget" as const, layer: layer.layer, budgetTokens: layer.budgetTokens, usedTokens: layer.usedTokens, dropped: layer.dropped };
+          loop.diagnostics.push(entry);
+          observe({ type: "diagnostic", operationId, diagnostic: entry });
+        }
     }
     const persist = async (status: "generating" | "awaiting_confirmation") => {
       loop.shadow = shadow.delta();
@@ -472,7 +485,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       // campaign's configured level and the chosen one travels as an update item.
       const anchor = pin.providerId === "openai" && pin.baseEffort ? pin.baseEffort : pin.effort;
       const request: DmModelRequest = { system: context.system, messages: renderedTranscript(loop, checkpoint.checks),
-        toolset: dmLoopToolset, effort, ...(effort !== anchor ? { turnEffort: anchor } : {}),
+        toolset: council ? dmCouncilToolset : dmLoopToolset, effort, ...(effort !== anchor ? { turnEffort: anchor } : {}),
         maxOutputTokens: dmOutputCap(), operationId, cacheKey: input.campaignId, cacheTurn: true };
       const requestBytes = new TextEncoder().encode(JSON.stringify(request.system) + JSON.stringify(request.messages)).length;
       observe({ type: "request_started", operationId, request: loop.requests + 1, requestBytes, cachedPrefixBytes: context.cachedPrefixBytes,

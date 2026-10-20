@@ -21,9 +21,12 @@
 // a record or a sample — the sample carries the variant's label and the passage count only).
 // After every committed turn of a paid run the quotable-line check (Haiku, part 5) reads the
 // narration's NPC lines; its flags go into the record and the sample for the metrics (--no-quotable skips it).
+// Fix run: --continuation same|lighter, --memory compact|standard|wide, --instructions ru|en set the DM options;
+// --label names the run's arm; --cache-salt <word> starts the arm from a cold provider cache; --ledger-check on|off (A6: the split's in-turn checker, and a residual check
+// of every committed turn in both modes).
 import { appendFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { randomBytes, randomUUID } from "node:crypto";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 import { providerKey } from "../lib/keys.mjs";
 import { runCampaignTurn, resumeCampaignTurn } from "../../../src/lib/gameplay/dm-loop/two-pass/index.ts";
 import { DM_LOOP_DEFAULT_LIMITS } from "../../../src/lib/gameplay/dm-loop/limits.ts";
@@ -31,6 +34,7 @@ import { DEFAULT_DEPTH_RANGE } from "../../../src/lib/gameplay/dm-loop/depth.ts"
 import { createSnapshotTurnStore, noMemory, seededRandom, snapshotInput } from "../../../src/lib/gameplay/replay/memory-store.ts";
 import { buildReplaySample } from "../../../src/lib/gameplay/replay/samples.ts";
 import { checkQuotableLines } from "../../../src/lib/gameplay/dm-loop/quotable.ts";
+import { checkLedger } from "../../../src/lib/gameplay/dm-loop/ledger-check.ts";
 import { VARIANTS, MODELS, createBudget, guardedModel, dryModel } from "./lib/models.mjs";
 import { openRun, ROOT, LEDGERS, DEFAULT_LEDGER } from "./lib/ledger.mjs";
 import { craftVariant } from "./lib/craft.mjs";
@@ -38,6 +42,11 @@ import { readExamplesFile, voiceVariant, VOICE_VARIANTS } from "./lib/voice.mjs"
 import { snapshotListOf, snapshotPayloadOf } from "./lib/snapshots.mjs";
 
 const args = { base: null, campaign: null, snapshots: null, turns: null, variants: ["A", "D"], budgetUsd: null, dry: false, out: null, craft: "live", maxContinues: 8,
+  // Fix run: «Продолжение хода», «Память ведущего», «Инструкции ведущего» (null: as the snapshot has them).
+  continuation: null, memory: null, instructions: null, label: null,
+  // Fix run A6: the ledger checker — in the split's runtime (as the app runs it) and once more on every committed
+  // turn of either mode («post»: the residual misses, the same measure for both modes); «off»: neither.
+  ledgerCheck: "on", cacheSalt: null,
   voice: "live", examplesFile: null, ledger: DEFAULT_LEDGER, quotable: true };
 for (let i = 2; i < process.argv.length; i++) {
   const flag = process.argv[i], value = () => process.argv[++i];
@@ -50,6 +59,12 @@ for (let i = 2; i < process.argv.length; i++) {
   else if (flag === "--dry") args.dry = true;
   else if (flag === "--out") args.out = value();
   else if (flag === "--craft") args.craft = value();
+  else if (flag === "--continuation") args.continuation = value();
+  else if (flag === "--memory") args.memory = value();
+  else if (flag === "--instructions") args.instructions = value();
+  else if (flag === "--label") args.label = value();
+  else if (flag === "--ledger-check") args.ledgerCheck = value();
+  else if (flag === "--cache-salt") args.cacheSalt = value();
   else if (flag === "--voice") args.voice = value();
   else if (flag === "--examples-file") args.examplesFile = value();
   else if (flag === "--ledger") args.ledger = value();
@@ -60,6 +75,10 @@ if (!args.turns?.length) throw new Error("--turns N,M is required");
 if (!args.snapshots && !(args.base && args.campaign)) throw new Error("--base <app> --campaign <id>, or --snapshots <file>, is required");
 for (const id of args.variants) if (!VARIANTS[id] && id !== "live") throw new Error(`unknown variant ${id}; variants: ${Object.keys(VARIANTS).join(", ")}, live`);
 if (!["live", "all", "none", "session1"].includes(args.craft)) throw new Error("--craft must be live, all, none or session1");
+if (args.continuation !== null && !["same", "lighter"].includes(args.continuation)) throw new Error("--continuation must be same or lighter");
+if (args.memory !== null && !["compact", "standard", "wide"].includes(args.memory)) throw new Error("--memory must be compact, standard or wide");
+if (args.instructions !== null && !["ru", "en"].includes(args.instructions)) throw new Error("--instructions must be ru or en");
+if (!["on", "off"].includes(args.ledgerCheck)) throw new Error("--ledger-check must be on or off");
 if (!VOICE_VARIANTS.includes(args.voice)) throw new Error(`--voice must be one of ${VOICE_VARIANTS.join(", ")}`);
 if (!LEDGERS[args.ledger]) throw new Error(`--ledger must be one of ${Object.keys(LEDGERS).join(", ")}`);
 if (!args.dry && !(args.budgetUsd > 0)) throw new Error("--budget-usd N (N > 0) is required for a paid run (or --dry)");
@@ -85,7 +104,11 @@ async function loadSnapshots() {
     const rows = Array.isArray(file) ? file : file.snapshots;
     // A file of payloads (synthetic.mjs) or of the route's answers (the owner's workaround: one ?turn=N answer per row).
     return { campaignId: file.campaignId ?? rows[0]?.input?.campaignId ?? rows[0]?.payload?.input?.campaignId ?? "synthetic", title: file.title ?? "synthetic campaign",
-      byTurn: new Map(rows.map((row, index) => [row.turnNo ?? index + 1, row.payload && !row.payload.schemaVersion ? row.payload : snapshotPayloadOf(row.payload ?? row)])) };
+      byTurn: new Map(rows.map((row, index) => {
+        const payload = row.payload && !row.payload.schemaVersion ? row.payload : snapshotPayloadOf(row.payload ?? row);
+        // Fix run: a probe file's row names its probe (probes.mjs); the record carries it.
+        return [row.turnNo ?? index + 1, row.probe ? { ...payload, probe: row.probe } : payload];
+      })) };
   }
   const listUrl = `${args.base}/api/campaigns/${encodeURIComponent(args.campaign)}/snapshots`;
   const list = snapshotListOf(await fetch(listUrl).then(async (response) => { if (!response.ok) throw new Error(`${listUrl}: HTTP ${response.status}`); return response.json(); }));
@@ -123,7 +146,7 @@ const apiKey = args.dry ? null : providerKey("ANTHROPIC_API_KEY");
 if (!args.dry && !apiKey) throw new Error("ANTHROPIC_API_KEY is needed (environment or .env.local)");
 const ledger = args.dry ? null : await openRun(runId, args.budgetUsd, `real replay: ${turns.length} turns × ${variants.map((v) => v.id).join("+")} on ${snapshots.title}; voice ${args.voice}; craft ${args.craft}`, args.ledger);
 const budget = createBudget(args.dry ? 0 : ledger.budgetUsd);
-const outDir = args.out ? join(ROOT, args.out) : join(ROOT, "docs", "samples", "real-replay", String(snapshots.campaignId).slice(0, 8));
+const outDir = args.out ? resolve(ROOT, args.out) : join(ROOT, "docs", "samples", "real-replay", String(snapshots.campaignId).slice(0, 8));
 await mkdir(outDir, { recursive: true });
 await write({ type: "run", run: runId, purpose: "polish 3 §4 / voice stage §7: blind samples on the owner's own turns", campaignId: snapshots.campaignId, title: snapshots.title,
   turns, variants: variants.map((v) => v.id), craft: args.craft, voice: args.voice, examplesPassages: examples?.passages ?? null, ledger: args.ledger, quotable: args.quotable && !args.dry,
@@ -144,6 +167,13 @@ try {
         record.quotable = { flags: check.flags, lines: check.lines, costUsd: Number((check.costUsdMicros / 1_000_000).toFixed(6)), error: check.error };
         record.costUsd = Number((record.costUsd + check.costUsdMicros / 1_000_000).toFixed(5));
       }
+      // Fix run A6: the residual misses of the committed records, the same check for both modes (a fraction of a cent).
+      if (record.outcome === "committed" && record.narration && args.ledgerCheck === "on" && !args.dry && !budget.exhausted) {
+        const post = await guardedLedgerCheck({ narration: record.narration, ledger: record.ledger ?? "", receipts: record.receipts,
+          language: payload.source.snapshot.settings.values.language === "ru" ? "ru" : "en" });
+        record.ledgerCheck = { ...record.ledgerCheck, post: { misses: post.misses, costUsd: Number((post.costUsdMicros / 1_000_000).toFixed(6)), error: post.error } };
+        record.costUsd = Number((record.costUsd + post.costUsdMicros / 1_000_000).toFixed(5));
+      }
       await write(record);
       if (record.outcome === "committed" && record.narration) {
         const sample = buildReplaySample(payload, record, { language: payload.source.snapshot.settings.values.language === "ru" ? "ru" : "en", campaignTitle: snapshots.title });
@@ -153,7 +183,8 @@ try {
       }
       console.log(`  turn ${turnNo} · ${variant.id} · voice ${args.voice}: ${record.outcome} · first word ${record.firstWordMs ?? "–"} ms · text ${record.textDoneMs ?? "–"} ms · records ${record.recordsDoneMs ?? "–"} ms` +
         ` · $${record.costUsd.toFixed(4)} · ${record.receipts.filter((r) => r.result.ok).length} accepted, ${record.receipts.filter((r) => !r.result.ok).length} rejected` +
-        `${record.quotable ? ` · quotable ${record.quotable.flags.length}/${record.quotable.lines}${record.quotable.error ? ` (${record.quotable.error})` : ""}` : ""}${record.outcome !== "committed" ? ` · ${record.errorCode ?? ""} ${record.exception ?? ""}` : ""}`);
+        `${record.quotable ? ` · quotable ${record.quotable.flags.length}/${record.quotable.lines}${record.quotable.error ? ` (${record.quotable.error})` : ""}` : ""}` +
+        `${record.ledgerCheck ? ` · ledger check: ${record.ledgerCheck.live.length ? `in turn ${record.ledgerCheck.live.map((c) => c.misses.length).join("→")}, ` : ""}after ${record.ledgerCheck.post?.misses.length ?? "–"}` : ""}${record.outcome !== "committed" ? ` · ${record.errorCode ?? ""} ${record.exception ?? ""}` : ""}`);
     }
     if (stopReason) break;
   }
@@ -171,13 +202,24 @@ Written by \`node scripts/eval/real-replay/replay.mjs\`; the record is \`docs/ru
 `, "utf8");
 console.log(`\n${written.length} sample(s) in ${outDir.replace(`${ROOT}/`, "")}; spent ${budget.spentUsd.toFixed(4)} USD${stopReason ? `; stopped: ${stopReason}` : ""}. Record: docs/runs/${runId}.jsonl`);
 
+/** The checker's call behind the run's budget (a cent reserved; its actual cost settled). */
+async function guardedLedgerCheck(input) {
+  const reserve = 0.01;
+  if (budget.spentUsd + budget.reservedUsd + reserve > budget.limitUsd) { budget.exhausted = true; return { misses: [], usage: null, costUsdMicros: 0, elapsedMs: 0, error: "eval_budget_reached" }; }
+  budget.reservedUsd += reserve;
+  try { const result = await checkLedger(apiKey, input); budget.spentUsd += result.costUsdMicros / 1_000_000; return result; }
+  finally { budget.reservedUsd -= reserve; }
+}
 /** One turn of one variant on an isolated copy of the snapshot. */
 async function playVariant(payload, turnNo, variant) {
   const crafted = voiceVariant(craftVariant(payload, args.craft), args.voice, examples);
+  // Fix run: the DM options of the variant (the turn's source carries them, migration 73).
+  if (args.memory || args.instructions)
+    crafted.source = { ...crafted.source, dmOptions: { ...(crafted.source.dmOptions ?? {}), ...(args.memory ? { memory: args.memory } : {}), ...(args.instructions ? { instructions: args.instructions } : {}) } };
   const store = createSnapshotTurnStore(crafted);
   const transport = [];
-  const writerLive = args.dry ? null : guardedModel(variant.writer, budget, apiKey, transport);
-  const bookkeeperLive = !args.dry && variant.bookkeeper ? guardedModel(variant.bookkeeper, budget, apiKey, transport) : null;
+  const writerLive = args.dry ? null : guardedModel(variant.writer, budget, apiKey, transport, { salt: args.cacheSalt });
+  const bookkeeperLive = !args.dry && variant.bookkeeper ? guardedModel(variant.bookkeeper, budget, apiKey, transport, { salt: args.cacheSalt }) : null;
   const writerModel = args.dry ? dryModel(variant.writer, "writer") : writerLive.model;
   const bookkeeperModel = variant.bookkeeper ? (args.dry ? dryModel(variant.bookkeeper, "bookkeeper") : bookkeeperLive.model) : null;
   const input = snapshotInput(crafted);
@@ -197,9 +239,10 @@ async function playVariant(payload, turnNo, variant) {
     model: () => writerModel,
     bookkeeperModel: () => bookkeeperModel,
     split, ...(split ? { bookkeeper: { providerId: split.bookkeeper.providerId, modelId: split.bookkeeper.modelId, effort: split.bookkeeper.reasoning } } : {}),
-    pin: async () => ({ providerId: variant.writer.providerId, modelId: variant.writer.modelId, effort: variant.effort,
+    pin: async () => ({ providerId: variant.writer.providerId, modelId: variant.writer.modelId, effort: variant.effort, ...(args.continuation ? { continuation: args.continuation } : {}),
       limits: crafted.settings?.limits ?? DM_LOOP_DEFAULT_LIMITS, depth: variant.writer.modelId === MODELS.fable.modelId ? null : (crafted.settings?.depth ?? DEFAULT_DEPTH_RANGE), boostNext: false }),
     random: seededRandom(operationId),
+    ...(variant.runtime === "two-pass" && args.ledgerCheck === "on" && !args.dry ? { ledgerCheck: guardedLedgerCheck } : {}),
     observe: (observation) => {
       observations.push(observation);
       if (observation.type === "live" && observation.event.type === "text" && observation.event.text.trim() && firstWordAt === null) firstWordAt = performance.now();
@@ -226,15 +269,18 @@ async function playVariant(payload, turnNo, variant) {
     type: "turn", run: runId, campaignId: snapshots.campaignId, operationId, turnNo, input: input.input,
     variant: { id: variant.id, label: variant.label, runtime: variant.runtime, writer: `${variant.writer.providerId}/${variant.writer.modelId}`,
       bookkeeper: variant.bookkeeper ? `${variant.bookkeeper.providerId}/${variant.bookkeeper.modelId}@${variant.bookkeeper.effort}` : null, effort: variant.effort, craft: args.craft,
+      continuation: args.continuation, memory: args.memory, instructions: args.instructions, label: args.label, cacheSalt: args.cacheSalt, probe: payload.probe ?? null,
       voice: args.voice, ...(examples ? { examplesPassages: examples.passages } : {}) },
     outcome: result?.status ?? "error", continues, errorCode: result?.failure ?? (thrown ? thrown.code ?? "exception" : null), exception: thrown ? String(thrown.message).slice(0, 200) : null,
     failure: observations.filter((o) => o.type === "failure").map((o) => ({ code: o.code, message: o.message })),
     narration: result?.status === "committed" ? result.narration : null,
     firstWordMs: firstWordAt === null ? null : Math.round(firstWordAt - started), textDoneMs: variant.runtime === "two-pass" ? textDone : (result?.status === "committed" ? durationMs : null),
     recordsDoneMs: result?.status === "committed" ? durationMs : null, durationMs, requests: usage.length,
-    costUsd: args.dry ? 0 : Number(sum("costUsd").toFixed(5)), cacheReadShare: sum("inputTokens") ? Number((sum("cacheReadTokens") / sum("inputTokens")).toFixed(3)) : null,
+    costUsd: args.dry ? 0 : Number((sum("costUsd") + (loop?.diagnostics ?? []).filter((d) => d.kind === "ledger_checked").reduce((total, d) => total + (d.costUsd ?? 0), 0)).toFixed(5)), cacheReadShare: sum("inputTokens") ? Number((sum("cacheReadTokens") / sum("inputTokens")).toFixed(3)) : null,
     tokens: { input: sum("inputTokens"), output: sum("outputTokens"), cached: sum("cacheReadTokens"), cacheWrite: sum("cacheWriteTokens"), cacheWrite1h: sum("cacheWrite1hTokens") },
     usage, receipts: loop?.receipts ?? [], diagnostics: loop?.diagnostics ?? [], effort: loop?.pin?.effort ?? null, tension: loop?.pin?.depth?.tension ?? null,
     ledger: twoPass.find((o) => o.event === "writer_finished")?.ledger ?? null, transport: transport.map((t) => ({ ...t })),
+    // Fix run A6: the in-turn checks of the split (first, then after the correction) and the chips left; the checker's cost is in costUsd.
+    ledgerCheck: { live: (loop?.diagnostics ?? []).filter((d) => d.kind === "ledger_checked"), unrecorded: (loop?.diagnostics ?? []).find((d) => d.kind === "ledger_unrecorded")?.chips ?? [] },
   };
 }

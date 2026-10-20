@@ -1,0 +1,23 @@
+/* Fix run A3/A5: the owner's screen — what each turn cost and what the DM received. Text sizes follow the
+   owner's readability rule (body 16px, helper text 14px or more). */
+.screen { display: grid; gap: 18px; font-size: 16px; }
+.table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.table th, .table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line, rgba(200, 170, 110, 0.18)); vertical-align: top; }
+.table th { font-size: 14px; color: var(--muted); font-weight: 500; }
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.flag { color: var(--ember, #e08a5b); font-weight: 600; }
+.help { font-size: 14px; color: var(--muted); line-height: 1.5; margin: 0; }
+.layer { border: 1px solid var(--line, rgba(200, 170, 110, 0.18)); border-radius: 10px; padding: 10px 14px; }
+.layer summary { cursor: pointer; display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; font-size: 16px; }
+.layerName { font-family: var(--f-display); font-size: 18px; }
+.bar { height: 8px; border-radius: 4px; background: rgba(200, 170, 110, 0.15); overflow: hidden; min-width: 120px; flex: 1 1 160px; }
+.barFill { height: 100%; background: var(--brass, #c9a227); }
+.barOver { background: var(--ember, #e08a5b); }
+.pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; line-height: 1.5; max-height: 420px; overflow: auto; margin: 10px 0 0;
+  background: rgba(0, 0, 0, 0.18); padding: 10px 12px; border-radius: 8px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 15px; }
+.facts b { font-weight: 600; }
+.tableWrap { overflow-x: auto; max-width: 100%; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.chip { font-size: 14px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--ember, #e08a5b); color: var(--ember, #e08a5b); white-space: nowrap; }
+@media (max-width: 600px) { .table { font-size: 14px; } .table th, .table td { padding: 6px; } }

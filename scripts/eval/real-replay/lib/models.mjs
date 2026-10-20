@@ -25,17 +25,31 @@ export const VARIANTS = {
   C: { id: "C", label: "Fable 5.1 writer + Opus 5.5 bookkeeper", runtime: "two-pass", writer: MODELS.fable, effort: "high", bookkeeper: { ...MODELS.opus, effort: "high" }, usdPerTurn: 0.67 },
   D: { id: "D", label: "Opus 5.5 writer + Sonnet 5.5 bookkeeper", runtime: "two-pass", writer: MODELS.opus, effort: "high", bookkeeper: { ...MODELS.sonnet, effort: "high" }, usdPerTurn: 0.28 },
   Dm: { id: "Dm", label: "Opus 5.5 writer + Sonnet 5.5 bookkeeper at medium", runtime: "two-pass", writer: MODELS.opus, effort: "high", bookkeeper: { ...MODELS.sonnet, effort: "medium" }, usdPerTurn: 0.26 },
+  // Fix run A6: Opus writes and Opus records (the facts' baseline of the split).
+  O: { id: "O", label: "Opus 5.5 writer + Opus 5.5 bookkeeper", runtime: "two-pass", writer: MODELS.opus, effort: "high", bookkeeper: { ...MODELS.opus, effort: "high" }, usdPerTurn: 0.40 },
 };
 
 export function createBudget(limitUsd) {
   return { limitUsd, spentUsd: 0, reservedUsd: 0, exhausted: false, requests: 0 };
 }
 
-export function guardedModel(selection, budget, apiKey, log) {
+/** Fix run: a run's cache salt — one neutral line before the first system block, so each arm of a comparison starts
+ * from a cold provider cache (the arms' prompts are otherwise byte-identical and the later arm would read the earlier
+ * arm's cache). Transport only: the app's request is otherwise unchanged. */
+function salted(init, salt) {
+  if (!salt || typeof init?.body !== "string") return init;
+  const body = JSON.parse(init.body);
+  if (!Array.isArray(body.system) || !body.system.length || typeof body.system[0].text !== "string") return init;
+  body.system[0] = { ...body.system[0], text: `Run ${salt}.\n${body.system[0].text}` };
+  return { ...init, body: JSON.stringify(body) };
+}
+
+export function guardedModel(selection, budget, apiKey, log, options = {}) {
   const spec = dmModels[`${selection.providerId}/${selection.modelId}`];
   if (!spec) throw new Error(`unknown model ${selection.providerId}/${selection.modelId}`);
   const reservations = new Map();
-  const fetcher = async (url, init) => {
+  const fetcher = async (url, rawInit) => {
+    const init = salted(rawInit, options.salt);
     const bytes = Buffer.byteLength(String(init?.body ?? ""), "utf8");
     const reservation = dmRequestReservation(spec, bytes, RESERVE_OUTPUT_TOKENS);
     if (budget.spentUsd + budget.reservedUsd + reservation > budget.limitUsd) {

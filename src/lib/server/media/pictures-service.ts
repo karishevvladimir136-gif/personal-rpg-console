@@ -142,6 +142,14 @@ function shotContext(snapshot: CampaignSnapshot): ShotContext {
 /** A frame for one turn. `live` while the narration streams (needs the first paragraph),
  * `committed` after a reload, `key_moment` once the turn is saved (better model), `redraw` by the owner. */
 export async function requestFrame(campaignId: string, value: unknown, schedule: Schedule = detached): Promise<FrameRequestResult> {
+  const result = await requestFrameUnlogged(campaignId, value, schedule);
+  // Fix run A5 (items 77, 83): every request's answer is in the log — frames stopped after 20:48 in
+  // session 2 with the daily cap not reached and nothing said why.
+  log("picture_frame_request", { campaignId, operationId: isRecord(value) ? value.operationId : null, trigger: isRecord(value) ? value.trigger : null,
+    status: result.status, ...(result.status === "queued" || result.status === "existing" ? { pictureId: result.picture.id } : {}) });
+  return result;
+}
+async function requestFrameUnlogged(campaignId: string, value: unknown, schedule: Schedule): Promise<FrameRequestResult> {
   if (!isRecord(value) || !isUuid(value.operationId) || !["live", "committed", "key_moment", "redraw"].includes(String(value.trigger)) ||
     (value.comment !== undefined && value.comment !== null && (typeof value.comment !== "string" || value.comment.length > 300)))
     throw new PersistenceError("validation");

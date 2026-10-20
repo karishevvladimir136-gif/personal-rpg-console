@@ -25,9 +25,10 @@ import { keepLiveTurnLedger, publishLiveTurnEvent } from "./dm/live-turns";
 import { appendObservations } from "../gameplay/dm-loop/observations.ts";
 import { saveTurnSnapshot } from "./turn-snapshots";
 import { scheduleQuotableCheck } from "./voice/quotable-check";
+import { checkLedger } from "../gameplay/dm-loop/ledger-check";
 import { markBoostUsed, readDmSettings, type DmSettings } from "./dm-settings";
 import { dossierService } from "./dossier";
-import { digestOnEntry } from "./session-digest";
+import { digestOnEntry, entryCheckDue } from "./session-digest";
 import { syncWorldFromDossier } from "./world-bridge";
 import { loopFeedbackProvider } from "../gameplay/dm-loop/feedback";
 import { readPublicCampaign } from "./public-campaign";
@@ -147,6 +148,8 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
         limits: current.limits, depth: current.depth, boostNext: current.boostNext, continuation: current.options.continuation };
     },
     bookkeeperModel: (selection: BookkeeperSelection) => createDmModel(selection),
+    // Fix run A6: on «пишет — записывает», a cheap model compares the story with the records before the commit.
+    ledgerCheck: (input) => checkLedger(process.env.ANTHROPIC_API_KEY ?? "", input),
     afterCommit: async ({ operationId, playerLikes, boostUsed, playMinutes, input, source, narration }) => {
       // Polish 3 §4: the state before this turn, with the campaign's rules of the moment, for the replay tool (never fails the turn).
       if (source && input) {
@@ -222,7 +225,9 @@ export async function readPlay(campaignId: string) {
     const key = choice.providerId === "anthropic" ? process.env.ANTHROPIC_API_KEY : process.env.OPENAI_API_KEY;
     // Stage 4 §4: on entry, a stale open session is closed and digested, a
     // closed one without «Ранее в…» gets its digest; never blocks the read.
-    if (!pending && key?.trim()) {
+    // Fix run A4: at most once a minute per campaign, never while a turn is unresolved (the poll is cheap now).
+    if (!pending && key?.trim() && !play.turns.some((turn) => turn.status === "pending" || turn.status === "generating" || turn.status === "awaiting_confirmation") &&
+      entryCheckDue(campaignId)) {
       try { await digestOnEntry(campaignId, await readPublicCampaign(campaignId), play, owner.user.id); }
       catch { /* the digest is a background courtesy */ }
     }
