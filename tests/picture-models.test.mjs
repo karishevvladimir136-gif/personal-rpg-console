@@ -143,7 +143,8 @@ test("prompt compiler: references by role in a fixed order, numbered for GPT Ima
   const gpt = compileFramePrompt(brief, "gpt-image");
   assert.match(gpt, /^Reference images: Image 1 — the man's face and hair \(keep exact\)\. Image 2 — the man's full figure and build/);
   assert.match(gpt, /Image 3 — the place \(setting only\)\. Image 4 — the art style \(style only\)\./);
-  assert.match(gpt, /Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change\./);
+  // Fix run E (item 79): identity only — the anchor's pose and gaze are not copied.
+  assert.match(gpt, /Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2\. That picture shows identity only: do not copy its pose, head angle, gaze or expression\./);
   const nano = compileFramePrompt(brief, "nano-banana");
   assert.match(nano, /^A cinematic story illustration of one moment: the docker reads a pencil note/);
   assert.match(nano, /The first image shows the man's face and hair/);

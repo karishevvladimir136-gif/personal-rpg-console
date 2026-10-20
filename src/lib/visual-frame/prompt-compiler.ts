@@ -145,9 +145,18 @@ export function compileFramePrompt(brief: FrameBrief, family: PromptFamily): str
       const anchor = positions.length ? ` (${refName(positions, family)})` : "";
       peopleLines.push(sentence(`${capital(person.label)}${anchor}: ${clean(person.appearance)}`));
       if (positions.length)
-        peopleLines.push(`Keep ${own} face, facial features, skin tone, hair, age and build exactly as in ${refName(positions, family)}; only ${own} pose, expression and the camera angle change.`);
+        // Fix run E (item 79): the reference gives identity only — the anchor's pose and gaze were copied into every frame.
+        peopleLines.push(`Keep ${own} face, facial features, skin tone, hair, age and build exactly as in ${refName(positions, family)}. ${flux
+          ? `That picture is for identity; ${own} pose, gaze and expression come from this scene.`
+          : "That picture shows identity only: do not copy its pose, head angle, gaze or expression."}`);
       const state = (person.state ?? []).map(clean).filter(Boolean);
       if (state.length) peopleLines.push(`Right now: ${state.join("; ")}. Show exactly this, nothing more and nothing less.`);
+      const d = person.direction;
+      const parts = d ? [d.looksAt ? `looks at ${clean(d.looksAt)}` : "", d.expression ? `expression: ${clean(d.expression)}` : "", clean(d.hands)].filter(Boolean) : [];
+      if (parts.length) peopleLines.push(sentence(`${capital(person.label)} ${parts.join("; ")}`));
+      if (person.gear && !flux) peopleLines.push(person.gear.worn.length
+        ? `${capital(person.label)} wears or holds only: ${listing(person.gear.worn.slice(0, 8))}${person.gear.packed.length ? `; packed away, not in hand: ${listing(person.gear.packed.slice(0, 8))}` : ""}. No other weapon, no shield, no lantern, no torch.`
+        : `${capital(person.label)} holds no weapon, shield, lantern or torch.`);
     }
     peopleLines.push(flux
       ? "Natural anatomy: every person has two arms and two hands with five fingers each."
@@ -240,8 +249,10 @@ export function compileRecordsFrame(input: {
   modelId: string;
   shot: Shot;
   style: string;
-  /** shot.who name → the matched public record, if any. */
-  people: { name: string; entity: { id: string; kind: string; conditions: string[] } | null; appearance: string }[];
+  /** shot.who name → the matched public record, if any. Fix run E: the records' gear (worn or held, packed away), down at
+   * 0 HP, and the shot's gaze and hands for this person. */
+  people: { name: string; entity: { id: string; kind: string; conditions: string[] } | null; appearance: string;
+    gear?: { worn: string[]; packed: string[] }; down?: boolean; direction?: BriefPerson["direction"] }[];
   items: { name: string; quantity: number; equipped_entity_id: string | null }[];
   references: { id: string; role: ReferenceRole; entityId?: string | null }[];
   maxReferences: number;
@@ -256,7 +267,9 @@ export function compileRecordsFrame(input: {
       label: hero ? "the hero" : `person ${index + 1}`,
       pronoun: "they",
       appearance: row.appearance || "as described in the scene",
-      state: [worn.length ? `they wear or carry ${listing(worn)}` : "", conditions.length ? `visible condition: ${conditions.join(", ")}` : ""].filter(Boolean),
+      state: [row.gear ? "" : worn.length ? `they wear or carry ${listing(worn)}` : "", conditions.length ? `visible condition: ${conditions.join(", ")}` : "",
+        row.down ? "down at 0 hit points: unconscious, eyes closed" : ""].filter(Boolean),
+      ...(row.gear ? { gear: row.gear } : {}), ...(row.direction ? { direction: row.direction } : {}),
     };
   });
   const keyOf = (entityId?: string | null) => (entityId ? people.find((row) => row.key === entityId)?.key : undefined);

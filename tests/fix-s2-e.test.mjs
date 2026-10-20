@@ -359,3 +359,29 @@ test("E (items 77, 80): the frame button says every answer in words; the gallery
   assert.match(autopilot, /\.\.\.\(zone \? \{ timeZone: zone \} : \{\}\)/, "every picture-settings save carries the device's zone");
   assert.match(autopilot, /Intl\.DateTimeFormat\(\)\.resolvedOptions\(\)\.timeZone/);
 });
+
+test("E (the default path, the director off): the shot gives gaze and hands; the records frame carries identity-only references, the records' gear, 0 HP and the direction", async () => {
+  const { compileRecordsFrame } = await import("../src/lib/visual-frame/prompt-compiler.ts");
+  const shot = parseShot(JSON.stringify({ who: ["Эдрик Вейл", "Хальвар"], action: "the hero kneels behind a root aiming a crossbow; the sergeant crouches beside him", where: "a ravine", angle: "low", mood: "cold dusk",
+    caption: "Ты целишься из-за корневища.", gaze: [{ who: "Эдрик Вейл", looksAt: "the figure across the ravine" }, { who: "Хальвар", looksAt: "Эдрик" }], hands: "left hand steadies the stock, right hand on the trigger" }));
+  assert.equal(shot.gaze.length, 2);
+  assert.equal(shot.hands, "left hand steadies the stock, right hand on the trigger");
+  assert.match(shotRequest("x", { heroName: "Эдрик", names: [], placeName: null, language: "ru" }).system, /never at the viewer/);
+  const people = [
+    { name: "Эдрик Вейл", entity: { id: HERO, kind: "player", conditions: [] }, appearance: "a young man", gear: { worn: ["Посох", "Лёгкий арбалет"], packed: ["Верёвка"] }, down: false,
+      direction: { looksAt: "the figure across the ravine", expression: "", action: "", hands: "left hand steadies the stock, right hand on the trigger" } },
+    { name: "Хальвар", entity: { id: SERGEANT, kind: "companion", conditions: [] }, appearance: "a grey veteran", gear: { worn: ["Длинный меч"], packed: [] }, down: true,
+      direction: { looksAt: "the hero", expression: "", action: "", hands: null } },
+  ];
+  const { prompt } = compileRecordsFrame({ modelId: "gpt-image-2.5-sunburst", shot, style: "", people, items: [], maxReferences: 6,
+    references: [{ id: "a", role: "face", entityId: HERO }, { id: "b", role: "face", entityId: SERGEANT }] });
+  assert.match(prompt, /That picture shows identity only: do not copy its pose, head angle, gaze or expression\./);
+  assert.match(prompt, /The hero looks at the figure across the ravine; left hand steadies the stock, right hand on the trigger\./);
+  assert.match(prompt, /The hero wears or holds only: Посох and Лёгкий арбалет; packed away, not in hand: Верёвка\. No other weapon, no shield, no lantern, no torch\./);
+  assert.match(prompt, /Person 2 looks at the hero\./);
+  assert.match(prompt, /down at 0 hit points: unconscious, eyes closed/);
+  assert.doesNotMatch(prompt, /Эдрик|Хальвар/);
+  const flux = compileRecordsFrame({ modelId: "fal-ai/flux-2-pro", shot, style: "", people, items: [], maxReferences: 4, references: [{ id: "a", role: "face", entityId: HERO }] }).prompt;
+  assert.doesNotMatch(flux, /do not|no shield/i, "FLUX reads no negatives");
+  assert.match(src("src/lib/server/media/pictures-service.ts"), /gear: gearOf\(snapshot, entity\.id\), down: isDown\(entity\)/);
+});

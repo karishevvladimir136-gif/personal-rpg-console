@@ -5,7 +5,10 @@
 // paragraph and public names.
 export type Shot = { who: string[]; action: string; where: string; angle: string; mood: string;
   /** Fix run E (item 78b): the moment this shot shows, in the campaign language (the frame's caption). */
-  caption?: string };
+  caption?: string;
+  /** Fix run E (item 79): where each person in `who` looks (by role, never a name) and which hand does what. */
+  gaze?: { who: string; looksAt: string }[];
+  hands?: string | null };
 export type ShotContext = { heroName: string | null; names: string[]; placeName: string | null; language: "ru" | "en";
   /** Fix run E (item 78a): who each known person is («James — the hero; a wizard»), so a role word in the
    * narration («маг», «сержант», «купец», «мальчишка») finds its person. */
@@ -43,10 +46,11 @@ export function shotRequest(paragraph: string, context: ShotContext) {
   const language = context.language === "ru" ? "Russian" : "English";
   const system = [
     "You turn one paragraph of a role-playing narration into a single picture shot for an illustrator.",
-    "Reply with one JSON object only, no prose: {\"who\":[...],\"action\":\"...\",\"where\":\"...\",\"angle\":\"...\",\"mood\":\"...\",\"caption\":\"...\"}.",
+    "Reply with one JSON object only, no prose: {\"who\":[...],\"action\":\"...\",\"where\":\"...\",\"angle\":\"...\",\"mood\":\"...\",\"caption\":\"...\",\"gaze\":[{\"who\":\"...\",\"looksAt\":\"...\"}],\"hands\":\"...\"|null}.",
     "who: the visible people or creatures in the frame, by the known names given below, at most 4 (an empty list for an empty scene). The text often calls a known person by a role or a description instead of the name (the mage, the sergeant, the merchant, the boy; маг, сержант, купец, мальчишка): find which known person that is from who they are — the hero first, then the party — and list that name; never list a role word.",
     "The narration speaks to the player's hero in the second person (you, your; ты, тебя, тебе, твой): when it does, the hero is in the frame — list the hero under the hero's name given below.",
-    "action: what is happening, one clause, concrete and visual, no inner thoughts, at most 200 characters; refer to people by appearance or role (\"the pilot\", \"a red-haired woman\"), never by name — names go in who only.",
+    "action: what is happening, one clause, concrete and visual, no inner thoughts, at most 200 characters, with where the hero is when the text says it (hidden behind a cart, kneeling, lying down); refer to people by appearance or role (\"the pilot\", \"a red-haired woman\"), never by name — names go in who only.",
+    "gaze: for each person in who, at whom or what they look in this moment, by role (\"the sergeant\", \"the map\"); people who talk or work together look at each other or at their task, never at the viewer. hands: when the action uses both hands, which hand does what (\"left hand pours, right hand holds the ash\"), else null.",
     "where: the visible place, at most 100 characters. angle: a camera note (close-up, medium shot, wide shot, low angle, over the shoulder…). mood: light and feeling, at most 60 characters.",
     `caption: the moment this shot shows, one sentence of at most 160 characters in ${language}, in the paragraph's own words where it can.`,
     `Use only what the paragraph says; never add facts, names, items or places that are not in it. Write the other values in English for the illustrator.`,
@@ -73,7 +77,11 @@ export function parseShot(text: string): Shot | null {
     const action = clean(v.action, 240);
     if (!action) return null;
     const caption = clean(v.caption, 200);
-    return { who, action, where: clean(v.where, 120), angle: clean(v.angle, 60) || "medium shot", mood: clean(v.mood, 60), ...(caption ? { caption } : {}) };
+    const gaze = Array.isArray(v.gaze) ? v.gaze.map((row) => ({ who: clean((row as Record<string, unknown>)?.who, 60), looksAt: clean((row as Record<string, unknown>)?.looksAt, 120) }))
+      .filter((row) => row.who && row.looksAt).slice(0, 4) : [];
+    const hands = clean(v.hands, 200) || null;
+    return { who, action, where: clean(v.where, 120), angle: clean(v.angle, 60) || "medium shot", mood: clean(v.mood, 60), ...(caption ? { caption } : {}),
+      ...(gaze.length ? { gaze } : {}), ...(hands ? { hands } : {}) };
   } catch {
     return null;
   }

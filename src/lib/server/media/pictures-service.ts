@@ -33,7 +33,7 @@ import {
 } from "../../visual-frame/pictures";
 import { fallbackShot, firstParagraph, outOfGameOnly, resolveWho, shotEntityIds, storyText, type ScenePerson, type Shot, type ShotContext } from "../../visual-frame/shot";
 import { compileAnchorPrompt, compileEditPrompt, compileRecordsFrame, promptFamily, timeOfDay, type BriefReference, type ReferenceRole } from "../../visual-frame/prompt-compiler";
-import { applyLookChange, briefReferences, compileBriefPrompt, directPeople, type BriefRequestInput, type VisualBrief } from "../../visual-frame/brief";
+import { applyLookChange, briefReferences, compileBriefPrompt, directPeople, relabel, type BriefRequestInput, type VisualBrief } from "../../visual-frame/brief";
 import { checkFrame, correctionLine, type FrameCheckPerson } from "../../visual-frame/frame-check";
 import { visualDocuments } from "../../visual-frame/model";
 import { buildShot } from "./shot-model";
@@ -224,7 +224,12 @@ async function requestFrameUnlogged(campaignId: string, value: unknown, schedule
     worldMinutes: clock.worldMinutes,
     people: shot.who.map((name, index) => {
       const entity = (resolved[index] ? snapshot.entities.find((row) => row.id === resolved[index]) : null) ?? snapshot.entities.find((row) => nameMatches(row.name, name)) ?? null;
-      return { name, entity, appearance: entity ? lookOf(board, snapshot, entity.id) : "" };
+      // Fix run E (items 78, 79): the default path (the director off) carries the records' gear, 0 HP, the gaze and the hands too.
+      const gaze = shot.gaze?.find((row) => resolveWho([row.who], scene)[0] === entity?.id || row.who === name);
+      const labels = shot.who.map((other, at) => ({ name: other, label: resolved[at] && snapshot.entities.find((row) => row.id === resolved[at])?.kind === "player" ? "the hero" : `person ${at + 1}` }));
+      const direction = gaze || (index === 0 && shot.hands) ? { looksAt: gaze ? relabel(gaze.looksAt, labels) : "", expression: "", action: "", hands: index === 0 && shot.hands ? relabel(shot.hands, labels) : null } : undefined;
+      return { name, entity, appearance: entity ? lookOf(board, snapshot, entity.id) : "",
+        ...(entity && ["player", "companion", "npc"].includes(entity.kind) ? { gear: gearOf(snapshot, entity.id), down: isDown(entity) } : {}), ...(direction ? { direction } : {}) };
     }),
     references: [...referenceIds, ...(heroFigure ? [heroFigure.id] : [])].map((id) => {
       const row = board.pictures.find((picture) => picture.id === id);
