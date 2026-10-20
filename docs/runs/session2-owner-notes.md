@@ -1312,3 +1312,16 @@ not tested in the sandbox).
     the second ambush). In a long campaign that is memory loss. Do: the layer keeps the facts that matter (open
     threads, secrets, clocks) and folds closed scene notes (per-round fight notes, finished setups) into short
     summaries; an overflow is logged and shown to the owner; the hidden layer of key finding 2 is never dropped.
+    Owner (23:01): «а как так — у нас же мега-память». Planner, from the code: nothing is deleted — every fact stays
+    in the database; what is cut is what the DM sees each turn. The dossier is built from fixed per-part budgets
+    (`DOSSIER_BUDGETS` in `dm-loop/context.ts`; private facts 3500 tokens), and `withinBudget` simply skips any entry
+    that no longer fits, in storage order, not by importance; `query_state` cannot fetch private facts, so a skipped
+    fact is invisible until it fits again. The overflow comes from hygiene, not capacity: the DM writes a new fact
+    per fight round and per setup (seven `mine_fight_r*`, four `creek_second_ambush_*`, …) and never closes them.
+    Within this session it did not hurt — the recent scenes (30k verbatim) and the Character Models carried the
+    facts (the report found them consistent); it will hurt from session 3, when those scenes leave the window and
+    only the facts remain. Do: (1) priority order — hidden layer, open threads, clocks, debts first, closed scene
+    notes last; (2) consolidation — at a fight's end and in the session digest the closed notes fold into one line
+    each (a cheap background call, not the turn); (3) a lookup — `query_state` (or a `recall` tool) can search the
+    archived facts by name or keyword, so nothing is out of reach; (4) a memory gauge in the owner panel
+    («память ведущего: 82%») and a log line on every drop.
