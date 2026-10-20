@@ -304,8 +304,10 @@
       "stage": "F",
       "startedAt": "2026-10-20T16:55:43.626Z",
       "reservedUsd": 2,
-      "spentUsd": 0,
-      "settled": false
+      "spentUsd": 0.3172,
+      "settled": true,
+      "finishedAt": "2026-10-20T16:57:52.814Z",
+      "record": "scripts/eval/fix-s2/hero-probe.mjs (hero-probe-20261020-165543)"
     }
   ]
 }
