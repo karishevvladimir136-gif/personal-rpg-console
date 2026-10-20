@@ -1092,3 +1092,9 @@ report); the guard post's place record says «Раннее утро» — a time
     second case: the narration's role word «мага» reached the shot), and the people sit as if posing for portraits
     rather than talking («он как будто не беседует, а позирует для портрета») — 79. The sergeant's shield appears for
     the third time.
+    Follow-up (owner, 22:09: «тут всё чётко, вот тут топ консистенси, но у Джеймса три руки»): the camouflage frame
+    (ash paste and water from the skin, the burned platform) matches the turn and keeps the hero exactly — but one
+    hand pours from the skin while two more cup the ash. Do: when the shot gives both hands a task, the brief says
+    which hand does what («left hand pours, right hand holds the ash»); a cheap vision check after each frame
+    (extra or missing limbs, wrong gear such as the shield) queues one automatic redraw or marks the frame for the
+    owner; «Перерисовать» stays one click.
