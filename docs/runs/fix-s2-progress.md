@@ -35,6 +35,11 @@ run's instruction names `claude/fix-s2`, so the work is on this branch instead, 
   touch `src/components/gameplay-combat.tsx`, `src/lib/gameplay/combat-exchange.ts` or the `combat` tool; stage C keeps
   the turn timeline, the roll cards and the screen items; the B3 rules (damage per attack, every roll told) stay in B.
   The owner now talks with the session in English.
+- 2026-10-20 (later): A3 gained bundled rolls (independent ones; an attack with its damage, a save with its effect),
+  lighter continuations as a campaign setting adopted only if the probes show no quality loss, and each turn's cost,
+  requests and seconds in the owner panel (a turn over $1 or 4 requests flagged with its cause); A5 gained the owner
+  screen «Что видит ведущий»; stage D gained the companion cards with the stat block's numbers; the run ends with
+  `docs/SANDBOX_LOAD_FIX_S2.md` (backup, migrations, a production build, the owner's data corrections, the replay).
 
 ## Open questions
 

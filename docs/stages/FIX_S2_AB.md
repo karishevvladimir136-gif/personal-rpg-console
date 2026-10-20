@@ -61,7 +61,22 @@ continuation under 5k tokens. Put the numbers in the report.
   shown.
 - **One request per round where the tools allow**: today each roll is its own request (the mine fight turn made 10
   requests of ~130k tokens). Let the DM make several independent rolls in one message (the server resolves them in
-  order and returns all results); a player-interactive roll still pauses.
+  order and returns all results); dependent pairs go in one call too — an attack with its damage, the damage applied
+  only if the attack hits (a crit doubles the dice); a save with its effect. A player-interactive roll still pauses.
+- **Continuations think less** (owner, 23:52 — «отличная идея»): the request after a tool result runs one notch lower in
+  depth than the turn's first request (xhigh → high, high → medium) — the plan is already made, the continuation tells
+  the result. The mechanism exists (`continuationEffort` in the pin, `loop.ts`). Owner (23:54): «а это не повредит
+  качеству?» — so it is adopted only if measured harmless: run the probes both ways (same depth vs one notch lower) and
+  compare the voice metrics, untold rolls, decisions made for the hero and record errors as well as the seconds; make it
+  a campaign setting («Продолжение хода: как основной запрос / на ступень легче») and set the default by the result.
+  Batch only rolls that do not depend on each other's outcome (two attacks on different targets, an attack with its
+  damage); when one result changes the situation (the target dropped), the next attack is declared after it. Measure
+  seconds per turn and per combat turn before and after; the planner's estimate is a combat turn from 2–5 minutes down
+  to about 40–70 seconds — report the real numbers.
+- **A turn's price in sight** (owner, 23:59: «ход за 2,5 доллара — это треш»): the owner panel shows each turn's cost,
+  requests and seconds; a turn over $1 or over 4 requests is logged as a diagnostic with its cause (rolls not batched,
+  a long continuation chain), and the report lists them. Re-measure the session 2 mine-fight shape on the probes:
+  target ≤ 3 requests and ≤ $0.60 for a round with several rolls.
 - **Polling**: the open game screen polled `/play` 231 times in 13 minutes at 3–5 s of server time each, and
   `dossier?view=digest` about once a second at the session end (items 62, 75, 81). Back off while a turn streams, stop
   when the tab is hidden, and make `/play` cheap (no heavy recompute per poll). Fix the `MaxListenersExceededWarning`
@@ -77,7 +92,11 @@ digest was retried on every entry, three at a time (item 17, $4.43). Add the gua
 runs or after one failed (the «Повторить» button stays); the card shows once. The digest asks for 6000 output tokens —
 check whether «unparsed» digests were cut by the cap (thinking counts against it) and give it room.
 
-### A5. Logging that the session needed
+### A5. Logging that the session needed, and «Что видит ведущий»
+An owner screen (under the owner panel) that shows exactly what the DM received on the last turn: each context layer
+with its token count and budget, what was dropped, the instruction language in force, the active craft cards, the
+pinned facts, the request count and cost. Both key findings of session 2 were found by reading code; this screen
+would have shown them in a minute. Read-only, no secrets to the player (owner-only route).
 Log the returned status of every `pictures.frame` request (queued / existing / cap / no_text / waiting / off) — frames
 stopped after 20:48 with the daily cap not reached and nothing in the log said why (items 77, 83); log every dossier
 entry dropped by a budget with its layer (item 85); log the bootstrap's provider attempt and refusal reason (item 16).
