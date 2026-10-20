@@ -340,3 +340,86 @@ test("D: a «resource_»-prefixed counter of a known pool has its name (the noir
   const { readFileSync } = await import("node:fs");
   assert.match(readFileSync(new URL("../src/components/registry/routes.tsx", import.meta.url), "utf8"), /<RegistryHoldings data=\{data\} play=\{runtime\.play\} \/>/);
 });
+
+test("D acceptance, the owner's side: hand out one potion of three, split the coins, equip the staff — each through the real saves; the DM sees the moves next turn", async () => {
+  const { planEquip, planMoney, planMove } = await import("../src/lib/inventory/owner-moves.ts");
+  const { randomUUID } = await import("node:crypto");
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const { f } = c;
+    const finish = { name: "finish_turn", arguments: { sceneKinds: ["exploration"], spotlight: [], playerMoment: false, nextTension: "calm" } };
+    const hired = await c.turn("Нанимаю Брама.", [{ text: "Брам кивает. ", toolCalls: [
+      { name: "upsert_character", arguments: { localKey: "bram", name: "Брам", kind: "companion", party: true, present: true, hp: 20, maxHp: 20 } },
+      { name: "advance_time", arguments: { minutes: 1, reason: "время" } }, finish] }]);
+    assert.equal(hired.result.status, "committed", JSON.stringify(c.errors));
+    const bram = (await f.one("select id from public.rpg_entities where campaign_id=$1 and name='Брам'", [c.cid])).id;
+    const bag = (await f.one("select id from public.rpg_storages where entity_id=$1 order by id limit 1", [c.hero])).id;
+    const item = (name, category, quantity) => f.mutation("item.save", c.cid, { name, category, quantity, description: "", mechanics: "", owner_entity_id: c.hero,
+      storage_id: bag, equipped_entity_id: null, equipped_slot: null, detail: {} });
+    const potions = await item("Зелье лечения", "consumable", 3);
+    const staff = await item("Посох", "weapon", 1);
+    await f.db.query("update public.rpg_entities set resources=resources||'{\"currency_зм\":10,\"currency_см\":3}'::jsonb where id=$1", [c.hero]);
+    const ctx = { language: "ru", at: 600, newId: () => randomUUID() };
+    const send = async (plan) => {
+      assert.equal(plan.ok, true, plan.reason);
+      const revisions = new Map();
+      for (const step of plan.steps) {
+        const saved = await f.mutation(step.operation, c.cid, step.payload, revisions.get(step.payload.id) ?? step.before?.revision ?? 0);
+        revisions.set(step.payload.id, saved.revision);
+      }
+    };
+    const snapshot = () => f.saves(c.cid, "campaign");
+    // 1. One potion of three to Брам.
+    await send(planMove(await snapshot(), potions.id, { entityId: bram }, 1, ctx));
+    const rows = (await f.db.query("select name,quantity,owner_entity_id,detail from public.rpg_items where campaign_id=$1 and name='Зелье лечения' order by quantity", [c.cid])).rows;
+    assert.deepEqual(rows.map((row) => [row.quantity, row.owner_entity_id]), [[1, bram], [2, c.hero]], "the stack split");
+    assert.ok(rows.every((row) => (row.detail.history ?? []).at(-1)?.event?.startsWith("owner_")), "both rows say the owner moved them");
+    // 2. Coins: four gold to Брам.
+    await send(planMoney(await snapshot(), c.hero, bram, { "зм": 4 }, ctx));
+    const wallet = async (id) => (await f.one("select resources from public.rpg_entities where id=$1", [id])).resources;
+    assert.equal((await wallet(c.hero))["currency_зм"], 6);
+    assert.equal((await wallet(bram))["currency_зм"], 4);
+    assert.equal((await wallet(c.hero))["currency_см"], 3, "the silver stays");
+    // 3. The staff in the hero's hand.
+    await send(planEquip(await snapshot(), staff.id, c.hero, {}, ctx));
+    const worn = await f.one("select equipped_entity_id,equipped_slot from public.rpg_items where id=$1", [staff.id]);
+    assert.deepEqual([worn.equipped_entity_id, worn.equipped_slot], [c.hero, "hand"]);
+    // The DM's next turn sees what the owner moved.
+    const { buildDmLoopContext } = await import("../src/lib/gameplay/dm-loop/context.ts");
+    const source = (await f.one("select public.rpg_dossier($1,$2,'source','{}'::jsonb,null) result", [c.owner, c.cid])).result;
+    const context = buildDmLoopContext(source, { operationId: randomUUID(), campaignId: c.cid, timeline: source.timeline, expectedRevision: source.runtime.revision, mode: "game",
+      input: "Дальше.", companionId: null, listenerIds: [], mechanic: null });
+    const text = context.system.map((block) => block.text).join("\n");
+    assert.match(text, /ownerMovesSinceYouLastTouchedThem/);
+    assert.match(text, /Зелье лечения/);
+  } finally { await c.f.db.close(); }
+});
+
+test("D (migration 83): the starting things go on the doll at creation — weapon in hand, armour on the body, hat, rings left then right; a stack, a second thing for a slot and the off hand beside a staff stay in the pack", async () => {
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const { f } = c;
+    await f.db.query("update public.rpg_items set equipped_entity_id=null,equipped_slot=null where equipped_entity_id=$1", [c.hero]);
+    // A new hero has the eleven slots before its things are written (migration 76's bootstrap).
+    await f.db.query("update public.rpg_entities set equipment_slots=rpg_private.universal_slots('ru') where id=$1", [c.hero]);
+    const bag = (await f.one("select id from public.rpg_storages where entity_id=$1 order by id limit 1", [c.hero])).id;
+    const names = ["Посох", "Кинжал", "Кольчужная рубаха", "Шляпа", "Кольцо защиты", "Перстень с печаткой", "Серебряное кольцо", "Сапоги", "Плащ с капюшоном", "Стрелы"];
+    for (const name of names) await f.db.query(`insert into public.rpg_items(id,campaign_id,name,category,quantity,description,mechanics,owner_entity_id,storage_id,equipped_entity_id,equipped_slot,detail,revision)
+      values(gen_random_uuid(),$1,$2,'possession',$3,'','',$4,$5,null,null,'{}',1)`, [c.cid, name, name === "Стрелы" ? 20 : 1, c.hero, bag]);
+    const rows = Object.fromEntries((await f.db.query("select name,category,equipped_slot from public.rpg_items where campaign_id=$1 and owner_entity_id=$2", [c.cid, c.hero])).rows.map((row) => [row.name, row]));
+    assert.equal(rows["Посох"].equipped_slot, "hand");
+    assert.equal(rows["Кинжал"].equipped_slot, null, "no off-hand weapon beside a staff");
+    assert.equal(rows["Кольчужная рубаха"].equipped_slot, "body");
+    assert.equal(rows["Шляпа"].equipped_slot, "head");
+    assert.equal(rows["Кольцо защиты"].equipped_slot, "ring_left");
+    assert.equal(rows["Перстень с печаткой"].equipped_slot, "ring_right");
+    assert.equal(rows["Серебряное кольцо"].equipped_slot, null, "two hands, two rings");
+    assert.equal(rows["Сапоги"].equipped_slot, "boots");
+    assert.equal(rows["Плащ с капюшоном"].equipped_slot, "cloak", "a cloak by its own word, not the hood's");
+    assert.equal(rows["Стрелы"].equipped_slot, null, "a stack stays in the pack");
+    // A thing the DM or the owner adds later with a real kind is never put on by itself.
+    await f.db.query(`insert into public.rpg_items(id,campaign_id,name,category,quantity,description,mechanics,owner_entity_id,storage_id,equipped_entity_id,equipped_slot,detail,revision)
+      values(gen_random_uuid(),$1,'Перчатки','clothing',1,'','',$2,$3,null,null,'{}',1)`, [c.cid, c.hero, bag]);
+    assert.equal((await f.one("select equipped_slot from public.rpg_items where campaign_id=$1 and name='Перчатки'", [c.cid])).equipped_slot, null);
+  } finally { await c.f.db.close(); }
+});
