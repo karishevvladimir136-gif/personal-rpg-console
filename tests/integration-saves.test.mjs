@@ -38,6 +38,8 @@ const NEW_MIGRATIONS = [
   "202610200073_fix_s2_dm_options.sql",
   "202610200074_fix_s2_hidden_layer.sql",
   "202610200075_fix_s2_table_rules.sql",
+  "202610200076_fix_s2_inventory.sql",
+  "202610200077_fix_s2_inventory_convert.sql",
 ];
 const pictures = (f, cid, action, payload = {}) =>
   f.one("select public.rpg_pictures($1,$2,$3,$4::jsonb) result", [f.owner, cid, action, JSON.stringify(payload)]).then((row) => row.result);
