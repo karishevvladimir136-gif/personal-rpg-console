@@ -35,6 +35,8 @@ export type PublicProfile = {
   homePlaceId?: string;
   /** Holding details of a transport, base or mount. */
   holding?: { features: { name: string; description: string }[]; armament: string; passengers: string[] };
+  /** Fix run D: the counters' names in the campaign language (key → label); no screen shows a raw key. */
+  counterLabels?: Record<string, string>;
   /** Polish: recorded by the DM ahead of the story; the hero has not met them yet,
    * so the player's screens keep them out until the narration names them. */
   unmet?: boolean;
@@ -84,16 +86,16 @@ export type Entity = ScopedRow & {
   conditions: string[];
   equipment_slots: EquipmentSlot[];
   /** Reviewed public profile. Historical entities and saves omit it or use NULL. */
-  character_sheet?: import("../adventures/bootstrap-contracts.ts").CharacterSheetV1 | null;
+  character_sheet?: import("../adventures/bootstrap-contracts.ts").CharacterSheetV1 | import("../inventory/sheet.ts").CharacterSheetV2 | null;
   /** Stage 4: hero-knowledge projection (never Character Model text). */
   public_profile?: PublicProfile;
 };
 export type Storage = ScopedRow & {
   name: string;
-  kind: "player" | "companion" | "camp" | "transport" | "merchant";
+  kind: "player" | "companion" | "camp" | "transport" | "merchant" | "place";
   entity_id: string | null;
-  /** Stage 4 (#12): a base's holding details. */
-  detail?: { holding?: PublicProfile["holding"] & { kind: "base"; description: string } };
+  /** Stage 4 (#12): a base's holding details. Fix run D: a place pile's location and any storage's coins. */
+  detail?: { holding?: PublicProfile["holding"] & { kind: "base"; description: string }; locationId?: string; wallet?: Record<string, number> };
 };
 export type Item = ScopedRow & {
   name: string;

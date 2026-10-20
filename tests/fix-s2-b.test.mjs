@@ -222,18 +222,18 @@ test("B3: one rest call refills the rest-based counters — the named ones, and 
     const setup = await c.turn("Колдую.", [{ text: "Ты тратишь силы. ", toolCalls: [
       { name: "resource", arguments: { actorRef: c.hero, resource: "spell_slots_1", set: 0, max: 3, reason: "заклинания" } },
       { name: "resource", arguments: { actorRef: c.hero, resource: "ki", set: 1, max: 4, reason: "приёмы" } },
-      { name: "resource", arguments: { actorRef: c.hero, resource: "arrows", set: 5, max: 20, reason: "стрелы" } }, time(5), finish()] }]);
+      { name: "resource", arguments: { actorRef: c.hero, resource: "stress", set: 5, max: 20, reason: "напряжение" } }, time(5), finish()] }]);
     assert.equal(setup.result.status, "committed", JSON.stringify(c.errors));
     const resources = async () => (await c.state()).entities.find((e) => e.id === c.hero).resources;
     const short = await c.turn("Короткий отдых.", [{ text: "Вы отдыхаете час. ", toolCalls: [{ name: "rest", arguments: { kind: "short", safe: true, restore: ["ki"] } }, finish()] }]);
     assert.equal(short.result.status, "committed", JSON.stringify(c.errors));
-    assert.deepEqual([(await resources()).ki, (await resources()).spell_slots_1, (await resources()).arrows], [4, 0, 5], "a short rest refills what it names");
+    assert.deepEqual([(await resources()).ki, (await resources()).spell_slots_1, (await resources()).stress], [4, 0, 5], "a short rest refills what it names");
     const unsafe = await c.turn("Ночь у костра.", [{ text: "Ночью тревожно. ", toolCalls: [{ name: "rest", arguments: { kind: "long", safe: false } }, finish()] }]);
     assert.equal(unsafe.result.status, "committed", JSON.stringify(c.errors));
     assert.equal((await resources()).spell_slots_1, 0, "an interrupted rest refills nothing");
     const long = await c.turn("Долгий отдых.", [{ text: "Ночь проходит спокойно. ", toolCalls: [{ name: "rest", arguments: { kind: "long", safe: true } }, finish()] }]);
     assert.equal(long.result.status, "committed", JSON.stringify(c.errors));
-    assert.deepEqual([(await resources()).spell_slots_1, (await resources()).arrows], [3, 5], "spell slots refilled; arrows are not rest-based");
+    assert.deepEqual([(await resources()).spell_slots_1, (await resources()).stress], [3, 5], "spell slots refilled; stress is not rest-based");
     const receipt = (await c.row(long.input.operationId)).checkpoint.dmLoop.receipts.find((r) => r.call.name === "rest");
     assert.match(receipt.result.summary, /restored .*spell_slots_1 0→3/);
   } finally { await c.f.db.close(); }

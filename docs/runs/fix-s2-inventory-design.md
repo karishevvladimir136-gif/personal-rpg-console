@@ -170,3 +170,19 @@ always wins. "Keep" marks what the current code already does right.
   11 см · 26 мм» with names on hover; the eleven-slot doll with «Надеть / Снять»; companions' sheets with the block's
   numbers; no «Экипаж и люди дома» for mounts; no raw key in any chip. Then the owner's sandbox pass — a checklist per
   screen and his «принято» before the stage is called done.
+
+## Implementation decisions (stage D, recorded after the note)
+The model above is built as written, with five storage choices that keep working systems and saves untouched:
+- **A character's wallet is its `currency_<code>` entries** (stored with the record's resources since polish group 8;
+  the database's non-negative checks already hold them). They are never shown, listed or edited as counters; the
+  screens and the DM read them as one wallet. A storage's coins (a place's pile, a base, saddlebags) are
+  `rpg_storages.detail.wallet`. No `wallet` columns — no data migration of money, saves restore as they are.
+- **The coin system is recognised from the coin words** already recorded (зм / золотые / gold …, `coinOf`), so a 5e
+  campaign gets the order of value and the full names without a new setting; migration 77 keeps older words under
+  the 5e codes. Attunement is limited to three (5e) wherever an item is marked as needing it.
+- **A place pile's location is `detail.locationId`** of a storage of kind `place` (migration 76 admits the kind).
+- **Counter labels live in the entity's public profile** (`counterLabels`), not a new column; a party member's new
+  counter is refused without its label.
+- **Owner moves are owner corrections** through the existing `item.save` / `entity.save` mutations, planned by the
+  shared rules (`equipPlan`, `sameStack`) and marked in the item's history (`owner_moved`, `owner_equipped` …); the
+  DM's current state lists the latest owner moves per thing («ownerMovesSinceYouLastTouchedThem»).

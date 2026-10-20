@@ -168,3 +168,139 @@ test("D migration 76: a place storage belongs to nobody; the sheet of schema 2 h
     if (v1) assert.equal(await valid(v1), true);
   } finally { await c.f.db.close(); }
 });
+
+// --- the DM's tools (the scripted acceptance scenario, the DM's side) ------------------------------------------------
+const time = (minutes = 1) => ({ name: "advance_time", arguments: { minutes, reason: "время" } });
+const finish = (kinds = ["exploration"]) => ({ name: "finish_turn", arguments: { sceneKinds: kinds, spotlight: [], playerMoment: false, nextTension: "calm" } });
+
+test("D scenario (the DM's side): gear from a stat block, bolts that merge and are spent per shot, the chest's coins lie here and are paid once, rings and a two-handed staff, potions are things, the hero's sheet with a reason, a mount with saddlebags", async () => {
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const receipts = async (played) => (await c.row(played.input.operationId)).checkpoint.dmLoop.receipts;
+    const items = async () => (await c.f.query("select id,name,category,quantity,owner_entity_id,storage_id,equipped_entity_id,equipped_slot,detail from public.rpg_items where campaign_id=$1 order by name", [c.cid]));
+    const entity = async (id) => c.f.one("select id,name,resources,equipment_slots,character_sheet,public_profile from public.rpg_entities where id=$1", [id]);
+    const find = async (name) => (await items()).find((row) => row.name === name);
+
+    // 1. A companion and a bandit from stat blocks.
+    const hired = await c.turn("Нанимаю Брама.", [{ text: "Брам берёт оружие. ", toolCalls: [
+      { name: "upsert_character", arguments: { localKey: "bram", name: "Брам", kind: "companion", party: true, present: true, hp: 58, maxHp: 58,
+        statblock: "Ветеран (5e): мультиатака, длинный меч +5 (1d8+3)",
+        gear: [{ name: "Длинный меч", kind: "weapon", equipped: true }, { name: "Кольчуга", kind: "armor", equipped: true }, { name: "Тяжёлый арбалет", kind: "weapon", properties: "1к10" }],
+        sheet: { level: 3, armorClass: 17, skills: ["Атлетика +5", "Восприятие +2"], attacks: ["Длинный меч +5, 1к8+3 рубящий"] } } },
+      { name: "upsert_character", arguments: { localKey: "bandit", name: "Бандит у костра", kind: "npc", present: true, hp: 11, maxHp: 11, statblock: "Бандит: атака скимитаром +3 (1d6+1)" } },
+      time(), finish(["combat"])] }]);
+    assert.equal(hired.result.status, "committed", JSON.stringify(c.errors));
+    const bramId = (await c.f.one("select id from public.rpg_entities where campaign_id=$1 and name='Брам'", [c.cid])).id;
+    assert.equal((await find("Длинный меч")).equipped_slot, "hand");
+    assert.equal((await find("Кольчуга")).equipped_slot, "body");
+    assert.equal((await find("Тяжёлый арбалет")).equipped_slot, null);
+    const bram = await entity(bramId);
+    assert.equal(bram.character_sheet.schemaVersion, 2);
+    assert.equal(bram.character_sheet.armorClass, 17);
+    assert.deepEqual(bram.equipment_slots.map((slot) => slot.id), universalSlots("ru").map((slot) => slot.id));
+    const banditReceipt = (await receipts(hired)).find((r) => r.call.arguments.name === "Бандит у костра");
+    assert.match(banditReceipt.result.value.gearHint, /carries no weapon/);
+
+    // 2. Bolts: two stacks of one thing merge; a shot spends one; none left → no shot.
+    c.forceDice([15]);
+    const shot = await c.turn("Стреляю в бандита.", [{ text: "Щелчок тетивы. ", toolCalls: [
+      { name: "item", arguments: { action: "create", localKey: "bolts", name: "Лёгкие болты", category: "ammunition", quantity: 9, ownerRef: c.hero } },
+      { name: "item", arguments: { action: "create", localKey: "bolts2", name: "Болты для лёгкого арбалета", category: "ammunition", quantity: 7, ownerRef: c.hero } },
+      { name: "roll", arguments: { formula: "1d20+5", reason: "Выстрел из лёгкого арбалета", actorRef: c.hero, visibility: "player", kind: "attack", dc: 12, ammunitionRef: "bolts" } }] },
+      { text: "Болт входит бандиту в плечо.", toolCalls: [time(), finish(["combat"])] }]);
+    assert.equal(shot.result.status, "committed", JSON.stringify({ errors: c.errors, failure: (await c.row(shot.input.operationId)).failure, result: shot.result }).slice(0, 2000));
+    const bolts = (await items()).filter((row) => row.category === "ammunition" && row.owner_entity_id === c.hero && row.quantity > 0);
+    assert.deepEqual(bolts.map((row) => [row.name, row.quantity]), [["Лёгкие болты", 15]], "one stack of 16, one bolt spent");
+    const rollReceipt = (await receipts(shot)).find((r) => r.call.name === "roll");
+    assert.deepEqual(rollReceipt.result.value.ammunition, { name: "Лёгкие болты", before: 16, after: 15 });
+    assert.match(rollReceipt.result.player, /Лёгкие болты: 16 → 15/);
+
+    // 3. The search: the chest's coins and the shirt lie here; a second grant from the chest is refused; taking is a transfer.
+    const search = await c.turn("Обыскиваем сундук.", [{ text: "В сундуке монеты и рубаха. ", toolCalls: [
+      { name: "money", arguments: { action: "grant", currency: "золотые", amount: 80, toRef: "here", reason: "сундук главаря", sourceRef: "сундук главаря" } },
+      { name: "item", arguments: { action: "create", name: "Мифриловая рубаха", category: "armor", ownerRef: "here", rarity: "magic" } },
+      { name: "money", arguments: { action: "grant", currency: "зм", amount: 80, toRef: "here", reason: "сундук главаря", sourceRef: "сундук главаря" } },
+      { name: "money", arguments: { action: "transfer", currency: "зм", amount: 80, fromRef: "here", toRef: c.hero } },
+      time(5), finish()] }]);
+    assert.equal(search.result.status, "committed", JSON.stringify(c.errors));
+    const moneyReceipts = (await receipts(search)).filter((r) => r.call.name === "money");
+    assert.deepEqual(moneyReceipts.map((r) => r.result.ok), [true, false, true]);
+    assert.match(moneyReceipts[1].result.reason, /Уже выплачено: 80 зм/);
+    const pile = await c.f.one("select id,kind,entity_id,detail from public.rpg_storages where campaign_id=$1 and kind='place'", [c.cid]);
+    const here = (await c.f.one("select current_location_id from public.rpg_public_state where campaign_id=$1", [c.cid])).current_location_id;
+    assert.equal(pile.detail.locationId, here);
+    assert.deepEqual(pile.detail.wallet, { "зм": 0 });
+    assert.equal((await find("Мифриловая рубаха")).storage_id, pile.id);
+    assert.equal((await entity(c.hero)).resources["currency_зм"], 80, "«золотые» are the 5e gold coins, «зм»");
+
+    // 4. Hand out and equip: the shirt to the hero; rings left and right; a two-handed staff takes the shield off; a ring's bonus on a save.
+    c.forceDice([10]);
+    const equip = await c.turn("Надеваю всё.", [{ text: "Рэй одевается. ", toolCalls: [
+      { name: "item", arguments: { action: "transfer", itemRef: "Мифриловая рубаха", ownerRef: c.hero } },
+      { name: "item", arguments: { action: "create", localKey: "ring1", name: "Кольцо защиты", category: "jewelry", ownerRef: c.hero, bonuses: [{ to: "спасброски", value: 1 }] } },
+      { name: "item", arguments: { action: "create", localKey: "ring2", name: "Кольцо тепла", category: "jewelry", ownerRef: c.hero } },
+      { name: "item", arguments: { action: "create", localKey: "staff", name: "Посох", category: "weapon", ownerRef: c.hero, hands: 2 } },
+      { name: "item", arguments: { action: "create", localKey: "shield", name: "Щит", category: "shield", ownerRef: c.hero } },
+      { name: "item", arguments: { action: "equip", itemRef: "ring1" } },
+      { name: "item", arguments: { action: "equip", itemRef: "ring2" } },
+      { name: "item", arguments: { action: "equip", itemRef: "shield" } },
+      { name: "item", arguments: { action: "equip", itemRef: "staff" } },
+      { name: "item", arguments: { action: "equip", itemRef: "shield" } },
+      { name: "roll", arguments: { formula: "1d20", reason: "Спасбросок Ловкости от огня", actorRef: c.hero, visibility: "player", kind: "save", dc: 13 } }] },
+      { text: "Рэй уходит от огня, не обжёгшись.", toolCalls: [time(), finish()] }]);
+    assert.equal(equip.result.status, "committed", JSON.stringify(c.errors));
+    const worn = Object.fromEntries((await items()).filter((row) => row.equipped_entity_id === c.hero).map((row) => [row.name, row.equipped_slot]));
+    assert.deepEqual(worn, { "Кольцо защиты": "ring_left", "Кольцо тепла": "ring_right", "Посох": "hand" });
+    const equips = (await receipts(equip)).filter((r) => r.call.name === "item" && r.call.arguments.action === "equip");
+    assert.equal(equips.at(-1).result.ok, false);
+    assert.match(equips.at(-1).result.reason, /Вторая рука занята: Посох/);
+    const save = (await receipts(equip)).find((r) => r.call.name === "roll");
+    assert.match(save.result.value.modifierSource, /Кольцо защиты \+1/);
+    assert.equal(save.result.value.total, 11, "the ring's +1 reaches the save");
+
+    // 5. Potions are things; the counter is refused. Money: a purchase; too much is refused.
+    const potion = await c.turn("Пью зелье и покупаю верёвку.", [{ text: "Глоток. ", toolCalls: [
+      { name: "resource", arguments: { actorRef: c.hero, resource: "healing_potions", set: 2, reason: "зелья" } },
+      { name: "item", arguments: { action: "create", localKey: "potion", name: "Зелье лечения", category: "consumable", quantity: 2, ownerRef: c.hero } },
+      { name: "item", arguments: { action: "consume", itemRef: "potion" } },
+      { name: "money", arguments: { action: "spend", currency: "зм", amount: 5, fromRef: c.hero, reason: "верёвка" } },
+      { name: "money", arguments: { action: "spend", currency: "зм", amount: 1000, fromRef: c.hero, reason: "корабль" } },
+      { name: "resource", arguments: { actorRef: c.hero, resource: "tusk_charges", set: 3, max: 3, reason: "клык" } },
+      time(), finish()] }]);
+    const potionReceipts = await receipts(potion);
+    assert.equal(potionReceipts[0].result.ok, false);
+    assert.match(potionReceipts[0].result.reason, /potions and ammunition are items/);
+    assert.equal((await find("Зелье лечения")).quantity, 1);
+    assert.equal((await entity(c.hero)).resources["currency_зм"], 75);
+    assert.equal(potionReceipts.filter((r) => r.call.name === "money")[1].result.ok, false);
+    assert.equal(potionReceipts.at(-3).result.ok, false, "a party counter without its name is refused");
+    assert.match(potionReceipts.at(-3).result.reason, /needs its name in the campaign language/);
+
+    // 6. The hero's sheet: only with a reason, only the sheet.
+    const level = await c.turn("Я вырос.", [{ text: "Рэй чувствует силу. ", toolCalls: [
+      { name: "upsert_character", arguments: { ref: c.hero, sheet: { level: 2, spells: [{ name: "Огненный шар", level: 3, prepared: true }] }, reason: "повышение уровня" } },
+      { name: "upsert_character", arguments: { ref: c.hero, name: "Новое имя" } },
+      { name: "upsert_character", arguments: { ref: c.hero, sheet: { level: 3 } } },
+      time(), finish()] }]);
+    const sheetReceipts = (await receipts(level)).filter((r) => r.call.name === "upsert_character");
+    assert.deepEqual(sheetReceipts.map((r) => r.result.ok), [true, false, false]);
+    assert.match(sheetReceipts[0].result.player, /^Лист героя: уровень .* → 2; заклинания: Огненный шар \(повышение уровня\)$/);
+    const hero = await entity(c.hero);
+    assert.equal(hero.character_sheet.schemaVersion, 2);
+    assert.equal(hero.character_sheet.level, 2);
+
+    // 7. A mount carries saddlebags, not riders; the crossbow goes into its bags; «here» is listed on request.
+    const mount = await c.turn("Покупаем лошадь.", [{ text: "Гнедая фыркает. ", toolCalls: [
+      { name: "holding", arguments: { action: "create", localKey: "horse", kind: "mount", name: "Гнедая", passengerRefs: [c.hero] } },
+      { name: "holding", arguments: { action: "create", localKey: "horse", kind: "mount", name: "Гнедая" } },
+      { name: "item", arguments: { action: "transfer", itemRef: "Тяжёлый арбалет", ownerRef: "horse" } },
+      { name: "query_state", arguments: { topic: "inventory", ref: "here" } },
+      time(), finish()] }]);
+    const mountReceipts = await receipts(mount);
+    assert.deepEqual(mountReceipts.slice(0, 4).map((r) => r.result.ok), [false, true, true, true]);
+    assert.match(mountReceipts[0].result.reason, /saddlebags, not riders/);
+    assert.equal(mountReceipts[3].result.value.place, pile.id ? (await c.f.one("select name from public.rpg_storages where id=$1", [pile.id])).name : null);
+    const horse = (await c.f.one("select id from public.rpg_entities where campaign_id=$1 and name='Гнедая'", [c.cid])).id;
+    assert.equal((await find("Тяжёлый арбалет")).owner_entity_id, horse);
+  } finally { await c.f.db.close(); }
+});

@@ -39,6 +39,7 @@ import { allPlans } from "./plans.ts";
 import { voiceExamplesBlock, voiceLayer, voiceReminder, VOICE_TOKEN_CAP_DEFAULT, VOICE_TOKEN_CAP_MAX, VOICE_TOKEN_CAP_MIN } from "./voice.ts";
 import { parseLedger, type AttentionLedger } from "./ledger.ts";
 import { MEMORY_PRESETS, parseDmOptions } from "./options.ts";
+import { itemMechanics, walletOfEntity, walletOfStorage } from "../../inventory/model.ts";
 
 const bytes = (text: string) => new TextEncoder().encode(text).length;
 const json = (value: unknown) => JSON.stringify(value);
@@ -368,7 +369,7 @@ function pinnedFacts(source: RuntimeSource): Budgeted {
 }
 
 const RESERVED_FACTS = new Set(["notebook", "notebook_session", "ledger", "variety", "metrics", "depth_state", TIME_CHECK_KEY, HIDDEN_LAYER_KEY]);
-const serverKept = (_kind: string, key: string) => key.startsWith("quest_reward_") || key.startsWith("holding_") || key.startsWith("plan_") || RESERVED_FACTS.has(key);
+const serverKept = (_kind: string, key: string) => key.startsWith("quest_reward_") || key.startsWith("paid_grant_") || key.startsWith("holding_") || key.startsWith("plan_") || RESERVED_FACTS.has(key);
 /** Fix run B1/B2: the owner's secrets and the hidden layer head the private notes and are never budget-dropped; the
  * notes follow in priority order (open clocks and consequences, open facts newest first, closed ones last) with their
  * validity, so a budget drops the closed notes first. */
@@ -530,16 +531,38 @@ function currentState(source: RuntimeSource, input: TurnInput): { text: string; 
   const present = new Set(config?.presentEntityIds ?? []);
   const controlled = new Set(config?.controlledEntityIds ?? []);
   const place = snapshot.locations.find((row) => row.id === snapshot.publicState.current_location_id);
-  const entities = snapshot.entities.filter((row) => row.kind !== "faction").map((row) => ({ id: row.id, name: row.name, kind: row.kind,
-    role: row.kind === "player" ? "hero" : controlled.has(row.id) ? "party" : undefined,
-    present: present.has(row.id), hp: row.hp, maxHp: row.max_hp, stats: row.stats, resources: row.resources,
-    conditions: row.conditions, slots: row.equipment_slots.map((slot) => slot.id), details: clipChars(row.details, 300),
-    ...(row.kind === "player" && row.character_sheet ? { sheet: row.character_sheet } : {}) }));
+  // Fix run D (§1, §2): a wallet, never currency counters; counters with their names; the sheet of schema 2.
+  const counters = (resources: Record<string, number>) => Object.fromEntries(Object.entries(resources).filter(([key]) => !key.startsWith("currency_")));
+  const entities = snapshot.entities.filter((row) => row.kind !== "faction").map((row) => {
+    const wallet = walletOfEntity(row);
+    const labels = row.public_profile?.counterLabels;
+    return { id: row.id, name: row.name, kind: row.kind,
+      role: row.kind === "player" ? "hero" : controlled.has(row.id) ? "party" : undefined,
+      present: present.has(row.id), hp: row.hp, maxHp: row.max_hp, stats: row.stats, resources: counters(row.resources),
+      ...(Object.keys(wallet).length ? { wallet } : {}), ...(labels && Object.keys(labels).length ? { counterLabels: labels } : {}),
+      conditions: row.conditions, slots: row.equipment_slots.map((slot) => slot.id), details: clipChars(row.details, 300),
+      ...((row.kind === "player" || controlled.has(row.id)) && row.character_sheet ? { sheet: row.character_sheet } : {}) };
+  });
   const factionRows = snapshot.entities.filter((row) => row.kind === "faction").map((row) => ({ id: row.id, name: row.name, kind: "faction" }));
-  const items = snapshot.items.filter((row) => row.quantity > 0).map((row) => ({ id: row.id, name: row.name,
-    category: row.category, quantity: row.quantity, owner: row.owner_entity_id, storage: row.storage_id,
-    equipped: row.equipped_slot, ...(row.rarity ? { rarity: row.rarity } : {}), description: clipChars(row.description, 300), properties: clipChars(row.mechanics, 300) }));
-  const storages = snapshot.storages.map((row) => ({ id: row.id, name: row.name, kind: row.kind, owner: row.entity_id, ...(row.detail?.holding ? { holding: row.detail.holding } : {}) }));
+  const items = snapshot.items.filter((row) => row.quantity > 0).map((row) => {
+    const mech = itemMechanics(row);
+    const detail = row.detail ?? {};
+    return { id: row.id, name: row.name,
+      category: row.category, quantity: row.quantity, owner: row.owner_entity_id, storage: row.storage_id,
+      equipped: row.equipped_slot, ...(row.rarity ? { rarity: row.rarity } : {}), description: clipChars(row.description, 300), properties: clipChars(row.mechanics, 300),
+      ...(mech.bonuses.length ? { bonuses: mech.bonuses } : {}), ...(mech.hands === 2 ? { hands: 2 } : {}), ...(mech.charges ? { charges: mech.charges } : {}),
+      ...(mech.attunement ? { attunement: true } : {}), ...(detail.status ? { status: detail.status, holder: detail.holderId ?? null } : {}) };
+  });
+  const storages = snapshot.storages.map((row) => {
+    const wallet = walletOfStorage(row);
+    return { id: row.id, name: row.name, kind: row.kind, owner: row.entity_id, ...(row.detail?.holding ? { holding: row.detail.holding } : {}),
+      ...(row.kind === "place" ? { place: row.detail?.locationId ?? null, here: row.detail?.locationId === place?.id } : {}),
+      ...(Object.keys(wallet).length ? { wallet } : {}) };
+  });
+  // Fix run D (§5): the owner's own moves since the DM last touched those things (the owner's word wins).
+  const ownerMoves = snapshot.items.filter((row) => row.quantity > 0 && (row.detail?.history ?? []).at(-1)?.event?.startsWith("owner_"))
+    .map((row) => ({ at: row.detail!.history!.at(-1)!.at, line: `${row.name}: ${row.detail!.history!.at(-1)!.note}` }))
+    .sort((a, b) => b.at - a.at).slice(0, 10).map((row) => row.line);
   const locations = snapshot.locations.map((row) => ({ id: row.id, name: row.name, status: row.status,
     current: row.id === place?.id, description: clipChars(row.description, 500), ...(row.detail?.questIds?.length ? { questIds: row.detail.questIds } : {}) }));
   const quests = snapshot.quests.filter((row) => row.status === "open").map((row) => ({ id: row.id, kind: row.kind ?? "quest", title: row.title }));
@@ -548,7 +571,8 @@ function currentState(source: RuntimeSource, input: TurnInput): { text: string; 
     participants: runtime.participants.filter((p) => p.encounter_id === row.id).map((p) => ({ entity: p.entity_id, name: p.public_name, position: p.public_position })) }));
   const state = { worldMinutes: runtime.worldMinutes, worldDay: worldDay(runtime.worldMinutes),
     timeOfDay: `${partOfDay(runtime.worldMinutes, snapshot.campaign.language === "ru" ? "ru" : "en")} (check every «morning / evening / since…» against this clock)`, currentPlace: place ? { id: place.id, name: place.name } : null,
-    characters: entities, factions: factionRows, items, storages, places: locations, openJournal: quests, activeEncounters: encounters,
+    characters: entities, factions: factionRows, items, storages, ...(ownerMoves.length ? { ownerMovesSinceYouLastTouchedThem: ownerMoves } : {}),
+    places: locations, openJournal: quests, activeEncounters: encounters,
     openRests: runtime.restRecords.filter((row) => row.status === "planned").map((row) => ({ id: row.id, kind: row.kind })) };
   // Polish 2 §4: the recent scenes and exchanges left this volatile block for the append-only history
   // (conversationHistory); «now» keeps only what changes — the state, the counters, the reminder.

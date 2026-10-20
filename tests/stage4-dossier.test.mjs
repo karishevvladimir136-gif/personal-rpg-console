@@ -124,7 +124,7 @@ test("signed counters: a stored <name>_min lets a counter go below zero in TypeS
   try {
     const played = await c.turn("The crowd turns on me.", [
       { text: "Boos. ", toolCalls: [
-        { name: "resource", arguments: { actorRef: c.hero, resource: "reputation", set: 0, reason: "a fresh face" } },
+        { name: "resource", arguments: { actorRef: c.hero, resource: "reputation", set: 0, label: "Reputation", reason: "a fresh face" } },
         { name: "resource", arguments: { actorRef: c.hero, resource: "reputation_min", set: 0, max: 0, reason: "placeholder" } },
         finish(),
       ] },
@@ -459,6 +459,9 @@ test("tool descriptions stay compact: seventeen tools, their descriptions under 
   // Stage 2b shipped about 5.6k (OpenAI) / 5.1k (Anthropic) estimated tokens; Stage 4 adds the dossier fields;
   // the polish stage adds the roll's bonuses and the speech profile (the schema sits in the cached prefix).
   // Fix run A3/B2/B3: the roll's damage, recall, note_world close, rest's restore, finish_turn's ownerRule (≈ +450).
-  assert.ok(estimateTokens(openai) < 10000, `openai tool schema ${estimateTokens(openai)} tokens`);
+  // Fix run D: the item's bonuses / hands / charges, money's source, the counter's label, the roll's ammunition and a
+  // character's gear and sheet (≈ +900 after trimming the longest descriptions); OpenAI's strict form spells out every
+  // optional field, so its ceiling is 11k (the schema sits in the cached prefix).
+  assert.ok(estimateTokens(openai) < 11000, `openai tool schema ${estimateTokens(openai)} tokens`);
   assert.ok(estimateTokens(anthropic) < 10000, `anthropic tool schema ${estimateTokens(anthropic)} tokens`);
 });

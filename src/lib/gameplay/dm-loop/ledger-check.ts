@@ -8,6 +8,7 @@
 // Session 2's known misses — the saddle, three bandits' weapons, the key, a shot bolt — are its probe cases.
 // This module is the pure part (the request, the parse); the call is `checkLedger` below.
 import type { DmLoopReceipt } from "./contracts.ts";
+import { walletLine, walletOfEntity, walletOfStorage } from "../../inventory/model.ts";
 import { QUOTABLE_MODEL, QUOTABLE_PRICE_PER_MILLION } from "./quotable.ts";
 
 export const LEDGER_CHECK_MODEL = QUOTABLE_MODEL;
@@ -18,17 +19,31 @@ export type LedgerMiss = { event: string; expected: string };
  * asked for arrows nobody tracks): the people on record and what the party's members track — counters and items. */
 export type LedgerCheckState = { people: string[]; tracked: string[] };
 type StateSource = { snapshot: { entities: { id: string; name: string; kind: string; resources?: Record<string, number> | null }[];
-  items: { name: string; quantity: number; owner_entity_id: string | null }[] }; runtime: { configuration?: { controlledEntityIds?: string[] } | null } };
+  items: { name: string; quantity: number; owner_entity_id: string | null; storage_id?: string }[];
+  storages?: { id: string; name: string; kind: string; detail?: { locationId?: string; wallet?: Record<string, number> } }[];
+  publicState?: { current_location_id?: string | null } | null; settings?: { values?: { language?: string } } | null };
+  runtime: { configuration?: { controlledEntityIds?: string[]; presentEntityIds?: string[] } | null } };
 export function ledgerCheckState(source: StateSource): LedgerCheckState {
   const party = new Set(source.runtime.configuration?.controlledEntityIds ?? []);
   for (const row of source.snapshot.entities) if (row.kind === "player") party.add(row.id);
   const names = new Map(source.snapshot.entities.map((row) => [row.id, row.name]));
   const people = source.snapshot.entities.filter((row) => row.kind !== "faction").map((row) => row.name).slice(0, 80);
   const counters = source.snapshot.entities.filter((row) => party.has(row.id))
-    .flatMap((row) => Object.entries(row.resources ?? {}).map(([key, value]) => `${row.name}: ${key} ${value}`));
+    .flatMap((row) => Object.entries(row.resources ?? {}).filter(([key]) => !key.startsWith("currency_")).map(([key, value]) => `${row.name}: ${key} ${value}`));
+  const language = source.snapshot.settings?.values?.language;
+  const wallets = source.snapshot.entities.filter((row) => party.has(row.id) && Object.values(walletOfEntity({ resources: row.resources ?? {} })).some((amount) => amount > 0))
+    .map((row) => `${row.name}: ${walletLine(walletOfEntity({ resources: row.resources ?? {} }), language)}`);
   const items = source.snapshot.items.filter((row) => row.quantity > 0 && row.owner_entity_id && party.has(row.owner_entity_id))
     .map((row) => `${names.get(row.owner_entity_id!) ?? "?"}: ${row.name} ×${row.quantity}`);
-  return { people, tracked: [...counters, ...items].slice(0, 120) };
+  // Fix run D (§4): what the people present carry and what lies here — a search lists them from the records.
+  const present = new Set(source.runtime.configuration?.presentEntityIds ?? []);
+  const carried = source.snapshot.items.filter((row) => row.quantity > 0 && row.owner_entity_id && present.has(row.owner_entity_id) && !party.has(row.owner_entity_id))
+    .map((row) => `${names.get(row.owner_entity_id!) ?? "?"} (present): ${row.name} ×${row.quantity}`);
+  const here = source.snapshot.publicState?.current_location_id ?? null;
+  const pile = (source.snapshot.storages ?? []).find((row) => row.kind === "place" && row.detail?.locationId === here);
+  const lying = pile ? [...source.snapshot.items.filter((row) => row.quantity > 0 && row.storage_id === pile.id).map((row) => `${pile.name}: ${row.name} ×${row.quantity}`),
+    ...(Object.keys(walletOfStorage(pile)).length ? [`${pile.name}: ${walletLine(walletOfStorage(pile), language)}`] : [])] : [];
+  return { people, tracked: [...counters, ...wallets, ...items, ...carried, ...lying].slice(0, 160) };
 }
 export type LedgerCheckResult = { misses: LedgerMiss[]; usage: { inputTokens: number; outputTokens: number } | null; costUsdMicros: number; elapsedMs: number; error: string | null };
 
@@ -40,8 +55,8 @@ export function recordLines(receipts: DmLoopReceipt[]): string[] {
 
 export function ledgerCheckRequest(input: { narration: string; ledger: string; records: string[]; language: "ru" | "en"; state?: LedgerCheckState }): { system: string; user: string } {
   const system = input.language === "ru"
-    ? `Ты проверяешь учёт хода ролевой игры. Тебе дают рассказ ведущего, его черновой список изменений (ledger) и записи, которые сервер принял. Найди события рассказа, у которых нет подходящей записи: герой или спутник что-то взял, нашёл, купил, отдал, потерял, выпил или съел, потратил или получил деньги, был ранен или вылечен, израсходовал заряды или стрелы, кто-то новый появился, время заметно прошло. Не отмечай то, что лишь упомянуто, обдумано или предложено, и то, что уже записано другими словами. Человек из списка «люди в записях» — не новый. Расход стрел, болтов, зарядов, зелий, еды отмечай только для того, что есть в списке «что ведёт партия». Отмечай только явные пропуски. Ответь одним JSON-объектом: {"misses":[{"event":"что случилось, словами рассказа (только то, что видел игрок), до десяти слов","expected":"какая запись нужна: item / money / resource / upsert_character / advance_time и что именно"}]}; если пропусков нет — {"misses":[]}.`
-    : `You check the bookkeeping of one turn of a role-playing game. You get the DM's narration, its draft list of changes (the ledger) and the records the server accepted. Find the events of the story that have no matching record: the hero or a companion took, found, bought, gave, lost, drank or ate something, spent or received money, was wounded or healed, used charges or arrows, someone new appeared, notable time passed. Do not flag what is only mentioned, considered or offered, nor what is already recorded in other words. A person on the PEOPLE ON RECORD list is not new. Flag the use of arrows, bolts, charges, potions or food only for what the TRACKED list holds. Flag only clear misses. Answer with one JSON object: {"misses":[{"event":"what happened, in the narration's words (only what the player read), up to ten words","expected":"the record needed: item / money / resource / upsert_character / advance_time and what exactly"}]}; with no misses, {"misses":[]}.`;
+    ? `Ты проверяешь учёт хода ролевой игры. Тебе дают рассказ ведущего, его черновой список изменений (ledger) и записи, которые сервер принял. Найди события рассказа, у которых нет подходящей записи: герой или спутник что-то взял, нашёл, купил, отдал, потерял, выпил или съел, потратил или получил деньги, был ранен или вылечен, израсходовал заряды или стрелы, кто-то новый появился, время заметно прошло. Не отмечай то, что лишь упомянуто, обдумано или предложено, и то, что уже записано другими словами. Человек из списка «люди в записях» — не новый. Найденное, что рассказ показывает лежащим (в сундуке, на теле), но никто ещё не взял, тоже требует записи там, где лежит (item create / money grant на «here»). Расход стрел, болтов, зарядов, зелий, еды отмечай только для того, что есть в списке «что ведёт партия». Отмечай только явные пропуски. Ответь одним JSON-объектом: {"misses":[{"event":"что случилось, словами рассказа (только то, что видел игрок), до десяти слов","expected":"какая запись нужна: item / money / resource / upsert_character / advance_time и что именно"}]}; если пропусков нет — {"misses":[]}.`
+    : `You check the bookkeeping of one turn of a role-playing game. You get the DM's narration, its draft list of changes (the ledger) and the records the server accepted. Find the events of the story that have no matching record: the hero or a companion took, found, bought, gave, lost, drank or ate something, spent or received money, was wounded or healed, used charges or arrows, someone new appeared, notable time passed. Do not flag what is only mentioned, considered or offered, nor what is already recorded in other words. A person on the PEOPLE ON RECORD list is not new. Loot the story shows lying (in a chest, on a body) that nobody took yet still needs a record where it lies (item create / money grant to "here"). Flag the use of arrows, bolts, charges, potions or food only for what the TRACKED list holds. Flag only clear misses. Answer with one JSON object: {"misses":[{"event":"what happened, in the narration's words (only what the player read), up to ten words","expected":"the record needed: item / money / resource / upsert_character / advance_time and what exactly"}]}; with no misses, {"misses":[]}.`;
   const user = [`NARRATION:\n${input.narration.slice(0, 16000)}`, `LEDGER:\n${input.ledger.slice(0, 6000) || "(none)"}`,
     `ACCEPTED RECORDS:\n${input.records.length ? input.records.map((line, index) => `${index + 1}. ${line}`).join("\n") : "(none)"}`,
     ...(input.state ? [`PEOPLE ON RECORD:\n${input.state.people.join("; ") || "(none)"}`, `TRACKED BY THE PARTY (counters and items):\n${input.state.tracked.join("\n") || "(nothing)"}`] : [])].join("\n\n");

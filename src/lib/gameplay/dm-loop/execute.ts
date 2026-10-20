@@ -5,7 +5,9 @@
 import { HIDDEN_LAYER_KEY, ARCHIVE_INFIX, archiveKey, parseNoteValue, privateNotes, recallNotes, serializeNote } from "./private-notes.ts";
 import { randomInt } from "node:crypto";
 import type { JsonObject, TurnInput } from "../contracts.ts";
-import type { Entity, EquipmentSlot, Item, ItemDetail, PublicProfile, Quest, QuestDetail } from "../../persistence/contracts.ts";
+import type { Entity, EquipmentSlot, Item, ItemDetail, PublicProfile, Quest, QuestDetail, Storage } from "../../persistence/contracts.ts";
+import { ITEM_KINDS, SLOT_REMAP, coinOf, counterLabel, counterLabelled, equipPlan, equippedBonuses, needsUniversalSlots, potionCounter, sameStack,
+  universalSlots, walletOfStorage } from "../../inventory/model.ts";
 import type { RecordChange, RecordedCheck, RuntimeSource } from "../server-contracts.ts";
 import { recordServerRoll, stableGameplayId } from "../dice.ts";
 import { basicProfile } from "../mechanics/profile.ts";
@@ -18,6 +20,7 @@ import { allPlans, duePlans, parsePlan, planKey, serializePlan, type OffScreenPl
 import { worldDay } from "./context.ts";
 import { ShadowState, ToolReject, reject } from "./shadow.ts";
 import { chip, currencyAmount, type ChipLanguage } from "./receipt-text.ts";
+import { patchSheet, sheetChanges, type AnySheet, type SheetPatch } from "../../inventory/sheet.ts";
 import type { DmLoopMeta, DmLoopReceipt, DmLoopReceiptResult, DmLoopTension, DmLoopToolCall } from "./contracts.ts";
 
 export type ToolContext = {
@@ -50,18 +53,31 @@ function ok(value: JsonObject, summary: string, check: RecordedCheck | null = nu
   return { ok: true, value, summary, check, player };
 }
 
+/** The doll of every person record (fix run D: the eleven slots of the inventory model). */
 export function humanoidSlots(language: string): EquipmentSlot[] {
-  const ru = language === "ru";
-  return [
-    { id: "head", label: ru ? "Голова" : "Head", accepts: ["armor", "clothing"] },
-    { id: "neck", label: ru ? "Шея / амулет" : "Neck / Amulet", accepts: ["accessory", "jewelry", "gear"] },
-    { id: "body", label: ru ? "Броня / плащ" : "Armor / Coat", accepts: ["armor", "clothing"] },
-    { id: "hand", label: ru ? "Основная рука" : "Main Hand", accepts: ["weapon", "tool"] },
-    { id: "offhand", label: ru ? "Вторая рука" : "Off Hand", accepts: ["weapon", "shield", "tool"] },
-    { id: "belt", label: ru ? "Пояс" : "Belt", accepts: ["gear", "clothing", "consumable"] },
-    { id: "legs", label: ru ? "Ноги" : "Legs", accepts: ["armor", "clothing"] },
-    { id: "boots", label: ru ? "Сапоги" : "Boots", accepts: ["armor", "clothing"] },
-  ];
+  return universalSlots(language);
+}
+/** A person record whose doll is older (or empty) gets the eleven slots; what it wears stays on where a slot of the
+ * new set takes it (neck → Амулет, ring1/ring2 → the rings), else it comes off and stays in the inventory. */
+function ensureUniversalSlots(shadow: ShadowState, entity: Entity): Entity {
+  if (!needsUniversalSlots(entity)) return entity;
+  const slots = universalSlots(shadow.snapshot.settings.values.language);
+  shadow.apply(entityChange(shadow, entity, { equipment_slots: slots as unknown as JsonObject[] }));
+  const used = new Set<string>();
+  for (const item of shadow.snapshot.items.filter((row) => row.campaign_id === shadow.campaignId && row.equipped_entity_id === entity.id)) {
+    const remapped = item.equipped_slot ? (item.equipped_slot in SLOT_REMAP ? SLOT_REMAP[item.equipped_slot] : item.equipped_slot) : null;
+    const slot = remapped ? slots.find((row) => row.id === remapped) : undefined;
+    if (!slot || used.has(slot.id)) {
+      shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values: { equipped_entity_id: null, equipped_slot: null } });
+      continue;
+    }
+    used.add(slot.id);
+    const values: JsonObject = {};
+    if (slot.id !== item.equipped_slot) values.equipped_slot = slot.id;
+    if (!slot.accepts.includes(item.category)) values.category = slot.accepts[0];
+    if (Object.keys(values).length) shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values });
+  }
+  return shadow.entity(entity.id)!;
 }
 
 // Polish item 10: the currency is the world's own word in the campaign language,
@@ -373,7 +389,37 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     modifier += capped;
     sources.push(...bonuses.map((b) => `${b.source} ${b.value >= 0 ? "+" : ""}${b.value}`));
   }
+  // Fix run D (§3): what the actor wears or holds adds its own bonuses, outside the fiction's cap, with the item as
+  // source; a fiction bonus naming the same item is dropped (session 2's ring counted twice).
+  if (actor) {
+    const worn = equippedBonuses(shadow.snapshot.items.filter((row) => row.campaign_id === shadow.campaignId), actor.id, `${str(args.reason)} ${str(args.skill)}`);
+    for (const bonus of worn) {
+      const itemName = bonus.source.replace(/\s[+-]\d+$/, "").toLocaleLowerCase();
+      const dup = bonuses.findIndex((row) => row.source.toLocaleLowerCase().includes(itemName));
+      if (dup >= 0) {
+        const [removed] = bonuses.splice(dup, 1);
+        const at = sources.indexOf(`${removed.source} ${removed.value >= 0 ? "+" : ""}${removed.value}`);
+        if (at >= 0) sources.splice(at, 1);
+        modifier -= removed.value;
+      }
+      modifier += bonus.value;
+      sources.push(bonus.source);
+    }
+  }
   reject(modifier >= -100 && modifier <= 100, "The total modifier must stay between -100 and +100.");
+  // Fix run D (§6): a ranged attack spends one arrow or bolt per roll, hit or miss; none left — no shot.
+  let ammunition: { name: string; before: number } | null = null;
+  if (args.ammunitionRef !== undefined) {
+    reject(actor, "Ammunition needs an actor (actorRef is \"dm\").");
+    const ammo = itemOf(shadow, args.ammunitionRef, "ammunitionRef");
+    reject(ammo.owner_entity_id === actor.id || itemDetail(ammo).holderId === actor.id, `${ammo.name} is not ${actor.name}'s.`);
+    reject(ammo.quantity >= 1, shadow.snapshot.settings.values.language === "ru" ? `${ammo.name}: не осталось ни одного.` : `${ammo.name}: none left.`,
+      "The shot cannot be made; narrate the empty quiver or another action.");
+    // The applier updates the row in place: the count before the shot is taken first.
+    ammunition = { name: ammo.name, before: ammo.quantity };
+    shadow.apply({ family: "items", id: ammo.id, expectedRevision: ammo.revision, values: { quantity: ammo.quantity - 1,
+      detail: withHistory(itemDetail(ammo), shadow.worldMinutes, "consumed", str(args.reason)) as unknown as JsonObject } });
+  }
   const advantage = (str(args.advantage) || "normal") as RecordedCheck["advantage"];
   reject(advantage === "normal" || formula.count === 1, "Advantage and disadvantage apply to a single die only.");
   const advantageReason = args.advantageReason !== undefined ? str(args.advantageReason) || null : null;
@@ -412,10 +458,11 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     const damage = bundledDamage(shadow, args, ctx, { actor, kind, dc, success: check.success, natural });
     const value: JsonObject = { formula: str(args.formula), reason, actor: actor.name, visibility,
       dice: [...check.dice], kept: check.kept, modifier, modifierSource: sourceText, bonuses, advantage, advantageReason,
-      difficulty, total: check.total, dc, success: check.success, natural, checkId: check.id, ...bonusLine(check.kept), ...(damage ? { damage: damage.value } : {}) };
+      difficulty, total: check.total, dc, success: check.success, natural, checkId: check.id, ...bonusLine(check.kept), ...(damage ? { damage: damage.value } : {}),
+      ...ammunitionValue(ammunition) };
     const rolledChip = visibility === "player"
       ? chip.roll(ctx.language, actor.name, actor.kind === "player", reason, check.total, dc, ctx.showDc, check.success, natural) : null;
-    const player = rolledChip ? withDamageChip(ctx.language, rolledChip, damage) : null;
+    const player = rolledChip ? withAmmunition(withDamageChip(ctx.language, rolledChip, damage), ammunition) : null;
     return ok(value, `${actor.name} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${check.total} vs ${dc} — ${check.success ? "success" : "failure"}${natural === "crit" ? " (natural 20)" : natural === "fumble" ? " (natural 1)" : ""}${damage ? `; ${damage.summary}` : ""}`, check, player);
   }
   const count = advantage === "normal" ? formula.count : 2;
@@ -430,12 +477,26 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   const damage = bundledDamage(shadow, args, ctx, { actor, kind: kindText, dc, success, natural });
   const value: JsonObject = { formula: str(args.formula), reason, actor: actor?.name ?? "DM", visibility,
     dice, kept, modifier, modifierSource: sourceText, bonuses, advantage, advantageReason, difficulty, total, dc, success, natural, ...bonusLine(natural ? kept : 0),
-    ...(damage ? { damage: damage.value } : {}) };
+    ...(damage ? { damage: damage.value } : {}), ...ammunitionValue(ammunition), ...rangedHint(shadow, actor, kindText, reason, ammunition) };
   const rolledChip = visibility === "player" && actor
     ? chip.roll(ctx.language, actor.name, actor.kind === "player", reason, total, dc, ctx.showDc, success, natural) : null;
   // A hit on the hero or a companion is theirs to see even when the attacker's roll is private.
-  const player = rolledChip ? withDamageChip(ctx.language, rolledChip, damage) : damage?.player ?? null;
+  const player = rolledChip ? withAmmunition(withDamageChip(ctx.language, rolledChip, damage), ammunition) : damage?.player ?? null;
   return ok(value, `${actor?.name ?? "The DM"} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${total}${dc !== null ? ` vs ${dc} — ${success ? "success" : "failure"}` : ""}${damage ? `; ${damage.summary}` : ""}`, null, player);
+}
+
+/** Fix run D: the arrows or bolts a shot spent, on the receipt and on the player's line («Болты: 20 → 19»). */
+function ammunitionValue(ammunition: { name: string; before: number } | null): JsonObject {
+  return ammunition ? { ammunition: { name: ammunition.name, before: ammunition.before, after: ammunition.before - 1 } } : {};
+}
+function withAmmunition(line: string, ammunition: { name: string; before: number } | null): string {
+  return ammunition ? `${line} · ${ammunition.name}: ${ammunition.before} → ${ammunition.before - 1}` : line;
+}
+/** A ranged attack without its ammunition while the actor carries some: the receipt reminds the DM. */
+function rangedHint(shadow: ShadowState, actor: Entity | null, kind: string, reason: string, ammunition: unknown): JsonObject {
+  if (!actor || ammunition || kind !== "attack" || !/(лук|арбалет|выстрел|стрел|болт|\bbow|crossbow|shot|arrow|bolt)/i.test(reason)) return {};
+  const quiver = shadow.snapshot.items.find((row) => row.campaign_id === shadow.campaignId && row.owner_entity_id === actor.id && row.category === "ammunition" && row.quantity > 0);
+  return quiver ? { ammunitionHint: `A shot spends ammunition: pass ammunitionRef ${quiver.id} (${quiver.name}, ${quiver.quantity} left) with the next ranged attack.` } : {};
 }
 
 /** The roll's chip with its damage («Атака посохом: 17 — получилось · урон 9»). */
@@ -452,7 +513,7 @@ function recall(shadow: ShadowState, args: Args): DmLoopReceiptResult {
   reject(query.length >= 2, "recall needs a query of two characters or more.");
   const at = args.atWorldMinutes !== undefined ? int(args.atWorldMinutes) : null;
   const state = shadow.source.privateState as Record<string, unknown>;
-  const notes = privateNotes(state, (_kind, key) => key.startsWith("quest_reward_") || key.startsWith("holding_") ||
+  const notes = privateNotes(state, (_kind, key) => key.startsWith("quest_reward_") || key.startsWith("paid_grant_") || key.startsWith("holding_") ||
     ["notebook", "notebook_session", "ledger", "variety", "metrics", "depth_state"].includes(key) || key.startsWith("plan_"));
   const plans = allPlans(shadow.source.privateState).map((plan) => ({ kind: "fact" as const, key: plan.key, archived: false,
     text: `plan (${plan.status}): ${plan.goal}${plan.consequence ? ` → ${plan.consequence}` : ""}`, since: plan.setAtWorldMinutes, until: plan.status === "open" ? null : plan.setAtWorldMinutes }));
@@ -475,6 +536,13 @@ function describeItems(shadow: ShadowState, owner: Entity | null) {
 }
 function queryState(shadow: ShadowState, args: Args): DmLoopReceiptResult {
   const topic = str(args.topic);
+  // Fix run D (§4): what lies at a place (or «here») and nobody carries.
+  const pile = args.ref !== undefined ? (() => { const storage = storageRefOf(shadow, args.ref, "ref"); return storage && storage.kind === "place" ? storage : null; })() : null;
+  if (pile) {
+    const items = shadow.snapshot.items.filter((row) => row.campaign_id === shadow.campaignId && row.storage_id === pile.id && row.quantity > 0)
+      .map((row) => ({ id: row.id, name: row.name, category: row.category, quantity: row.quantity, properties: row.mechanics }));
+    return ok({ place: pile.name, storageId: pile.id, items, money: walletOfStorage(pile) }, `Looked up what lies at ${pile.name}`);
+  }
   const who = args.ref !== undefined ? entityOf(shadow, args.ref, "ref") : null;
   const party = shadow.partyIds().map((id) => shadow.entity(id)!).filter(Boolean);
   const place = shadow.snapshot.publicState.current_location_id ? shadow.location(shadow.snapshot.publicState.current_location_id) : null;
@@ -503,13 +571,66 @@ function statsFrom(args: Args, base: Record<string, number>): Record<string, num
     next[str(entry.name).toLowerCase()] = entry.value;
   return next;
 }
+/** Fix run D (§4, item 36): a person made from a stat block gets what it carries as items at creation — weapons,
+ * armour, ammunition, things that matter — worn or held where `equipped`, so a search of the body lists them. */
+function giveGear(shadow: ShadowState, entity: Entity, gear: unknown): { created: string[]; notEquipped: string[] } {
+  const created: string[] = [], notEquipped: string[] = [];
+  if (!Array.isArray(gear) || !gear.length) return { created, notEquipped };
+  let owner = ensureUniversalSlots(shadow, entity);
+  const storageId = shadow.storageFor(owner).id;
+  for (const [index, raw] of (gear as Record<string, unknown>[]).slice(0, 12).entries()) {
+    const name = str(raw.name), kind = str(raw.kind);
+    if (!name || !(ITEM_KINDS as readonly string[]).includes(kind)) continue;
+    const quantity = Math.max(1, Math.min(L.maxItemQuantity, int(raw.quantity) ?? 1));
+    const id = shadow.newId(`gear:${owner.id}:${index}:${name}`);
+    if (shadow.item(id)) continue;
+    shadow.apply({ family: "items", id, expectedRevision: null, values: { name, category: kind, quantity, description: "", mechanics: str(raw.properties),
+      owner_entity_id: owner.id, storage_id: storageId, equipped_entity_id: null, equipped_slot: null,
+      detail: withHistory({}, shadow.worldMinutes, "created", "gear") as unknown as JsonObject } });
+    created.push(name);
+    if (raw.equipped === true) {
+      owner = shadow.entity(owner.id)!;
+      const plan = equipPlan(owner, shadow.snapshot.items.filter((row) => row.campaign_id === shadow.campaignId), shadow.item(id)!, null, shadow.snapshot.settings.values.language);
+      if (!plan.ok) { notEquipped.push(name); continue; }
+      for (const occupant of plan.unequip) { const now = shadow.item(occupant.id)!; shadow.apply({ family: "items", id: now.id, expectedRevision: now.revision, values: { equipped_entity_id: null, equipped_slot: null } }); }
+      const now = shadow.item(id)!;
+      shadow.apply({ family: "items", id, expectedRevision: now.revision, values: { equipped_entity_id: owner.id, equipped_slot: plan.slot.id } });
+    }
+  }
+  return { created, notEquipped };
+}
+/** The sheet fields of a call (fix run D §7, §9), or null when the call has none. */
+function sheetPatchOf(args: Args): SheetPatch | null {
+  if (!args.sheet || typeof args.sheet !== "object" || Array.isArray(args.sheet)) return null;
+  return args.sheet as SheetPatch;
+}
+/** A stat block that names attacks while the person carries no weapon: the receipt asks for the gear (item 36). */
+function gearHint(shadow: ShadowState, entity: Entity, statblock: string): JsonObject {
+  if (!/(атак|attack|мультиатак|multiattack|\+\d+\s*\()/i.test(statblock)) return {};
+  const armed = shadow.snapshot.items.some((row) => row.campaign_id === shadow.campaignId && row.owner_entity_id === entity.id && row.category === "weapon" && row.quantity > 0);
+  return armed ? {} : { gearHint: `${entity.name}'s stat block names attacks but the record carries no weapon: give gear (weapons, armour, ammunition) so a search finds them.` };
+}
 function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const language = shadow.snapshot.settings.values.language;
   const config = shadow.configuration();
   if (args.ref !== undefined) {
     const entity = entityOf(shadow, args.ref, "ref");
-    reject(entity.kind !== "player", `${entity.name} is the player's hero; the hero's record is not rewritten by the DM.`,
-      "Use resource for HP and counters, item for possessions.");
+    if (entity.kind === "player") {
+      // Fix run D (§9, item 18): the hero's sheet changes in play only through sheet with a reason; the rest of the
+      // hero's record is the owner's (HP and counters: resource; possessions: item).
+      const patch = sheetPatchOf(args);
+      const others = Object.keys(args).filter((key) => !["ref", "sheet", "reason"].includes(key) && args[key] !== undefined);
+      reject(patch && others.length === 0, `${entity.name} is the player's hero; only the sheet changes here (sheet with a reason).`,
+        "Use resource for HP and counters, item for possessions.");
+      const reason = str(args.reason);
+      reject(reason.length > 0, "A change of the hero's sheet needs a reason (shown to the player).");
+      const before = entity.character_sheet as AnySheet | null | undefined;
+      const sheet = patchSheet(before, patch!);
+      shadow.apply(entityChange(shadow, entity, { character_sheet: sheet as unknown as JsonObject }));
+      const changed = sheetChanges(before, sheet, ctx.language);
+      return ok({ id: entity.id, name: entity.name, sheet: changed }, `${entity.name}'s sheet: ${changed} (${reason})`, null,
+        `${ctx.language === "ru" ? "Лист героя" : "Hero's sheet"}: ${changed} (${reason})`);
+    }
     reject(entity.kind === "npc" || entity.kind === "companion" || entity.kind === "faction", `${entity.name} is a ${entity.kind}, not a character.`);
     const values: JsonObject = {};
     if (args.name !== undefined) values.name = str(args.name);
@@ -527,8 +648,11 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
       reject(maxHp !== null && hp !== null && hp >= 0 && hp <= maxHp, `HP ${hp} must stay within 0..${maxHp}.`);
       values.hp = hp; values.max_hp = maxHp;
     }
+    const patch = sheetPatchOf(args);
+    if (patch && entity.kind !== "faction") values.character_sheet = patchSheet(entity.character_sheet as AnySheet | null | undefined, patch) as unknown as JsonObject;
     if (Object.keys(values).length) shadow.apply(entityChange(shadow, entity, values));
     if (args.statblock !== undefined) shadow.setPrivate("npc", `statblock_${entity.id}`, str(args.statblock));
+    const gear = entity.kind !== "faction" ? giveGear(shadow, shadow.entity(entity.id)!, args.gear) : { created: [], notEquipped: [] };
     const wasInParty = config.controlledEntityIds.includes(entity.id);
     const present = args.present === undefined ? shadow.isPresent(entity.id) : !!args.present;
     const party = args.party === undefined ? wasInParty : !!args.party;
@@ -539,7 +663,9 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
     config.controlledEntityIds = party ? [...new Set([...config.controlledEntityIds, entity.id])] : config.controlledEntityIds.filter((id) => id !== entity.id);
     if (party) config.presentEntityIds = [...new Set([...config.presentEntityIds, entity.id])];
     shadow.setConfiguration(config);
-    return ok({ id: entity.id, name: (values.name as string) ?? entity.name, kind, present, party },
+    return ok({ id: entity.id, name: (values.name as string) ?? entity.name, kind, present, party,
+      ...(gear.created.length ? { gear: gear.created, ...(gear.notEquipped.length ? { notEquipped: gear.notEquipped } : {}) } : {}),
+      ...(args.statblock !== undefined && !gear.created.length ? gearHint(shadow, shadow.entity(entity.id)!, str(args.statblock)) : {}) },
       `${(values.name as string) ?? entity.name} updated`, null, party && !wasInParty ? chip.companionJoins(ctx.language, (values.name as string) ?? entity.name) : null);
   }
   const name = str(args.name);
@@ -558,19 +684,24 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
   reject(maxHp === null || (hp !== null && hp >= 0 && hp <= maxHp), `HP ${hp} must stay within 0..${maxHp}.`);
   reject(kind !== "faction" || (maxHp === null && args.party === undefined), "A faction has no hit points and never joins the party.");
   const profile = profilePatch(shadow, args, null, kind, str(args.description));
+  const patch = kind !== "faction" ? sheetPatchOf(args) : null;
   shadow.apply({ family: "entities", id, expectedRevision: null, values: {
     kind, name, details: str(args.description), hp: maxHp === null ? null : hp, max_hp: maxHp,
     stats: statsFrom(args, {}), resources: {}, conditions: [], equipment_slots: (kind === "faction" ? [] : humanoidSlots(language)) as unknown as JsonObject[],
     ...(profile ? { public_profile: profile as unknown as JsonObject } : {}),
+    ...(patch ? { character_sheet: patchSheet(null, patch) as unknown as JsonObject } : {}),
   } });
   shadow.bindLocalKey(key, { family: "entities", id });
   if (args.statblock !== undefined) shadow.setPrivate("npc", `statblock_${id}`, str(args.statblock));
+  const gear = kind !== "faction" ? giveGear(shadow, shadow.entity(id)!, args.gear) : { created: [], notEquipped: [] };
   const present = kind === "faction" ? false : args.present === undefined ? true : !!args.present;
   const party = kind === "companion" && (args.party === undefined ? true : !!args.party);
   if (present || party) config.presentEntityIds = [...new Set([...config.presentEntityIds, id])];
   if (party) config.controlledEntityIds = [...new Set([...config.controlledEntityIds, id])];
   shadow.setConfiguration(config);
   const value: JsonObject = { id, localKey: key, name, kind, present, party, created: true,
+    ...(gear.created.length ? { gear: gear.created, ...(gear.notEquipped.length ? { notEquipped: gear.notEquipped } : {}) } : {}),
+    ...(args.statblock !== undefined && !gear.created.length ? gearHint(shadow, shadow.entity(id)!, str(args.statblock)) : {}),
     ...(similar.length ? { hint: `Similar existing characters: ${similar.map((row) => `${row.name} (${row.id})`).join(", ")}. If this is the same person, update that record with ref instead.` } : {}) };
   // A faction the hero learned of shows at once; a person shows in the chips
   // only once the narration names them or they are present (the loop decides at commit).
@@ -692,8 +823,37 @@ function moveParty(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRec
 }
 
 // --- items -----------------------------------------------------------------
+/** Fix run D (§4): what lies at a place and nobody carries yet — a storage of kind 'place' tied to the location,
+ * created on demand («Здесь лежит: логово»). */
+function placeStorage(shadow: ShadowState, locationId: string): Storage {
+  const existing = shadow.snapshot.storages.filter((row) => row.campaign_id === shadow.campaignId && row.kind === "place" &&
+    (row.detail as { locationId?: string } | undefined)?.locationId === locationId).sort((a, b) => a.id.localeCompare(b.id))[0];
+  if (existing) return existing;
+  const place = shadow.location(locationId);
+  const ru = shadow.snapshot.settings.values.language === "ru";
+  const id = shadow.newId(`storage:place:${locationId}`);
+  shadow.apply({ family: "storages", id, expectedRevision: null, values: { name: `${ru ? "Здесь лежит" : "Lies here"}: ${place?.name ?? "?"}`.slice(0, 160), kind: "place",
+    entity_id: null, detail: { locationId } as unknown as JsonObject } });
+  return shadow.storage(id)!;
+}
+function hereStorage(shadow: ShadowState): Storage {
+  const current = shadow.snapshot.publicState.current_location_id;
+  reject(current, "The party is at no recorded place; record it first (upsert_place, move_party).");
+  return placeStorage(shadow, current);
+}
+const isHere = (value: unknown) => ["here", "здесь"].includes(str(value).toLowerCase());
+/** A place or a storage named by reference (a location → its pile; a storage → itself), or null for a person. */
+function storageRefOf(shadow: ShadowState, value: unknown, what: string): Storage | null {
+  if (isHere(value)) return hereStorage(shadow);
+  if (str(value).toLowerCase() === "camp") return shadow.campStorage();
+  const ref = shadow.resolve(value, ["entities", "storages", "locations"], what);
+  if (ref.family === "locations") return placeStorage(shadow, ref.id);
+  if (ref.family === "storages") return shadow.storage(ref.id)!;
+  return null;
+}
 function destinationOf(shadow: ShadowState, value: unknown, what: string): { entity: Entity | null; storageId: string; label: string } {
-  if (str(value).toLowerCase() === "camp") return { entity: null, storageId: shadow.campStorage().id, label: "the camp" };
+  const storage = storageRefOf(shadow, value, what);
+  if (storage) return { entity: null, storageId: storage.id, label: storage.kind === "camp" ? "the camp" : storage.name };
   const entity = entityOf(shadow, value, what);
   reject(entity.kind !== "faction", `${entity.name} is a faction; items belong to its people or a holding.`);
   return { entity, storageId: shadow.storageFor(entity).id, label: entity.name };
@@ -723,6 +883,26 @@ function withHistory(detail: ItemDetail, at: number, event: string, note: string
   return { ...detail, history };
 }
 const isHero = (entity: Entity | null | undefined) => !!entity && entity.kind === "player";
+/** Fix run D: the item's mechanics from the call (bonuses, hands, charges, attunement) into its detail. */
+function mechanicsDetail(args: Args, detail: ItemDetail): ItemDetail {
+  const next = { ...detail } as ItemDetail & Record<string, unknown>;
+  if (Array.isArray(args.bonuses)) next.bonuses = (args.bonuses as { to: unknown; value: unknown }[])
+    .map((row) => ({ to: str(row.to), value: int(row.value) ?? 0 })).filter((row) => row.to && row.value !== 0).slice(0, 4);
+  if (args.hands !== undefined) next.hands = int(args.hands) === 2 ? 2 : 1;
+  if (args.charges !== undefined && args.charges && typeof args.charges === "object") {
+    const charges = args.charges as { value: unknown; max: unknown };
+    const max = int(charges.max) ?? 0, value = int(charges.value) ?? 0;
+    reject(max >= 1 && value >= 0 && value <= max, "charges: value between 0 and max (max at least 1).");
+    next.charges = { value, max };
+  }
+  if (args.attunement !== undefined) next.attunement = args.attunement === true;
+  return next;
+}
+const MECHANIC_FIELDS = ["bonuses", "hands", "charges", "attunement"] as const;
+/** An identical stack of the same holder (fix run D, §6): the conservative rule of the model. */
+function stackFor(shadow: ShadowState, probe: Item): Item | null {
+  return shadow.snapshot.items.find((row) => row.campaign_id === shadow.campaignId && row.id !== probe.id && sameStack(probe, row)) ?? null;
+}
 function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const action = str(args.action);
   const l = ctx.language;
@@ -742,11 +922,24 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     shadow.counters.itemsCreated++;
     const rarity = args.rarity !== undefined ? str(args.rarity) : null;
     reject(rarity === null || (ITEM_RARITIES as readonly string[]).includes(rarity), `rarity: ${ITEM_RARITIES.join(", ")}.`);
+    const detail = mechanicsDetail(args, {});
+    // Fix run D (§6): an identical stack of the same holder grows instead of a second stack.
+    const probe = { id, campaign_id: shadow.campaignId, revision: 0, updated_at: "", name, category, quantity, description: str(args.description), mechanics: str(args.properties),
+      owner_entity_id: destination.entity?.id ?? null, storage_id: destination.storageId, equipped_entity_id: null, equipped_slot: null, rarity: rarity as Item["rarity"], detail } as Item;
+    const stack = MECHANIC_FIELDS.some((field) => args[field] !== undefined) ? null : stackFor(shadow, probe);
+    if (stack) {
+      shadow.apply({ family: "items", id: stack.id, expectedRevision: stack.revision, values: { quantity: stack.quantity + quantity,
+        detail: withHistory(itemDetail(stack), shadow.worldMinutes, "merged", `+${quantity} ${name}`) as unknown as JsonObject } });
+      shadow.bindLocalKey(key, { family: "items", id: stack.id });
+      return ok({ id: stack.id, localKey: key, name: stack.name, category, quantity: stack.quantity, added: quantity, mergedInto: stack.name, owner: destination.label },
+        `${destination.label} gets ${name}${quantity > 1 ? ` ×${quantity}` : ""} (now ${stack.quantity} × ${stack.name})`,
+        null, chip.itemGained(l, destination.label, isHero(destination.entity), stack.name, quantity, destination.entity === null));
+    }
     shadow.apply({ family: "items", id, expectedRevision: null, values: {
       name, category, quantity, description: str(args.description), mechanics: str(args.properties),
       owner_entity_id: destination.entity?.id ?? null, storage_id: destination.storageId,
       equipped_entity_id: null, equipped_slot: null, ...(rarity ? { rarity } : {}),
-      detail: withHistory({}, shadow.worldMinutes, "created", str(args.description)) as unknown as JsonObject } });
+      detail: withHistory(detail, shadow.worldMinutes, "created", str(args.description)) as unknown as JsonObject } });
     shadow.bindLocalKey(key, { family: "items", id });
     return ok({ id, localKey: key, name, category, quantity, owner: destination.label, ...(rarity ? { rarity } : {}) }, `${destination.label} gets ${name}${quantity > 1 ? ` ×${quantity}` : ""}`,
       null, chip.itemGained(l, destination.label, isHero(destination.entity), name, quantity, destination.entity === null));
@@ -776,9 +969,25 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
       return ok({ itemId: item.id, name: item.name, returned: true, to: destination.label }, `${item.name} returns to ${destination.label}`,
         null, chip.itemReturned(l, item.name, destination.label, isHero(destination.entity)));
     }
-    const splitId = shadow.newId(`split:${item.id}:${ctx.toolCalls}`);
     // The row object is updated in place by the applier: remember the giver first.
     const giver = item.owner_entity_id ? shadow.entity(item.owner_entity_id) ?? null : null;
+    // Fix run D (§6): the destination already holds the same thing — that stack grows; nothing is split off.
+    const arriving = { ...item, owner_entity_id: destination.entity?.id ?? null, storage_id: destination.storageId, equipped_entity_id: null, equipped_slot: null,
+      detail: detail.status ? {} : item.detail } as Item;
+    const stack = !detail.status ? stackFor(shadow, arriving) : null;
+    if (stack && stack.id !== item.id) {
+      shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values: { quantity: item.quantity - quantity,
+        detail: withHistory(detail, shadow.worldMinutes, "transferred", `${quantity} → ${destination.label}`) as unknown as JsonObject } });
+      const grown = shadow.item(stack.id)!;
+      const total = grown.quantity + quantity;
+      shadow.apply({ family: "items", id: grown.id, expectedRevision: grown.revision, values: { quantity: total,
+        detail: withHistory(itemDetail(grown), shadow.worldMinutes, "merged", `+${quantity} from ${giver?.name ?? "?"}`) as unknown as JsonObject } });
+      const hint = openJobHint(shadow, giver, destination.entity);
+      return ok({ itemId: grown.id, name: item.name, quantity, to: destination.label, mergedInto: grown.name, ...hint },
+        `${item.name}${quantity > 1 ? ` ×${quantity}` : ""} goes to ${destination.label} (now ${total})`,
+        null, chip.itemGiven(l, item.name, quantity, giver?.name ?? (l === "ru" ? "лагерь" : "the camp"), isHero(giver), destination.label, isHero(destination.entity), !!hint.openQuests));
+    }
+    const splitId = shadow.newId(`split:${item.id}:${ctx.toolCalls}`);
     const settled = settledItemTransfer(item, quantity, destination.entity?.id ?? (null as unknown as string), destination.storageId, splitId);
     for (const change of settled.changes) {
       if (change.id === splitId) change.values.owner_entity_id = destination.entity?.id ?? null;
@@ -844,12 +1053,13 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
         if (!fits) { values.equipped_entity_id = null; values.equipped_slot = null; }
       }
     }
-    reject(Object.keys(values).length > 0, "modify needs a new name, description, properties, category or rarity.");
+    const mechanics = MECHANIC_FIELDS.some((field) => args[field] !== undefined);
+    reject(Object.keys(values).length > 0 || mechanics, "modify needs a new name, description, properties, category, rarity, bonuses, hands, charges or attunement.");
     const note = str(args.reason);
     // The applier updates the row in place: remember the old name first.
     const previousName = item.name;
     const name = (values.name as string | undefined) ?? previousName;
-    values.detail = withHistory(itemDetail(item), shadow.worldMinutes, "modified", `${previousName}${name !== previousName ? ` → ${name}` : ""}${note ? ` — ${note}` : ""}`) as unknown as JsonObject;
+    values.detail = withHistory(mechanicsDetail(args, itemDetail(item)), shadow.worldMinutes, "modified", `${previousName}${name !== previousName ? ` → ${name}` : ""}${note ? ` — ${note}` : ""}`) as unknown as JsonObject;
     shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values });
     return ok({ itemId: item.id, name, previousName, changed: Object.keys(values).filter((k) => k !== "detail") }, `${previousName} changed${name !== previousName ? ` → ${name}` : ""}${note ? ` (${note})` : ""}`,
       null, chip.itemModified(l, previousName, name, note));
@@ -873,24 +1083,22 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     reject(!itemDetail(item).status, `${item.name} is ${itemDetail(item).status} (with ${holderName(itemDetail(item)) ?? "someone"}); it must come back first.`);
     let owner = shadow.entity(item.owner_entity_id)!;
     reject(item.quantity > 0, `${item.name} is used up.`);
-    if (!owner.equipment_slots.length && ["player", "companion", "npc"].includes(owner.kind)) {
-      // A character recorded before equipment existed gets the standard slots on first use.
-      shadow.apply(entityChange(shadow, owner, { equipment_slots: humanoidSlots(shadow.snapshot.settings.values.language) as unknown as JsonObject[] }));
-      owner = shadow.entity(owner.id)!;
+    // Fix run D (§3): a person's doll is the eleven slots; an older one converts on first use.
+    if (["player", "companion", "npc"].includes(owner.kind)) owner = ensureUniversalSlots(shadow, owner);
+    item = shadow.item(item.id)!;
+    reject((ITEM_KINDS as readonly string[]).includes(item.category), `${item.name} has the kind "${item.category}", which no slot takes.`,
+      `Set its kind first: item modify category (${ITEM_KINDS.join(", ")}).`);
+    const plan = equipPlan(owner, shadow.snapshot.items.filter((row) => row.campaign_id === shadow.campaignId), item, args.slot !== undefined ? str(args.slot) : null, shadow.snapshot.settings.values.language);
+    if (!plan.ok) throw new ToolReject(plan.reason, plan.hint ?? null);
+    for (const occupant of plan.unequip) {
+      const now = shadow.item(occupant.id)!;
+      shadow.apply({ family: "items", id: now.id, expectedRevision: now.revision, values: { equipped_entity_id: null, equipped_slot: null } });
     }
-    const slots = owner.equipment_slots.filter((slot) => slot.accepts.includes(item.category));
-    reject(slots.length > 0, `${owner.name} has no slot that takes a ${item.category}.`,
-      `Slots: ${owner.equipment_slots.map((slot) => `${slot.id} (${slot.accepts.join("/")})`).join(", ") || "none"}.`);
-    const taken = new Set(shadow.snapshot.items.filter((row) => row.equipped_entity_id === owner.id && row.id !== item.id).map((row) => row.equipped_slot));
-    const wanted = args.slot !== undefined ? str(args.slot) : null;
-    const slot = wanted ? slots.find((s) => s.id === wanted) : slots.find((s) => !taken.has(s.id)) ?? slots[0];
-    reject(slot, `${owner.name} has no slot "${wanted}" for a ${item.category}.`, `Fitting slots: ${slots.map((s) => s.id).join(", ")}.`);
-    const occupant = shadow.snapshot.items.find((row) => row.equipped_entity_id === owner.id && row.equipped_slot === slot.id && row.id !== item.id);
-    if (occupant) shadow.apply({ family: "items", id: occupant.id, expectedRevision: occupant.revision, values: { equipped_entity_id: null, equipped_slot: null } });
-    shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision,
-      values: { equipped_entity_id: owner.id, equipped_slot: slot.id, storage_id: shadow.storageFor(owner).id } });
-    return ok({ itemId: item.id, name: item.name, owner: owner.name, slot: slot.id, unequipped: occupant?.name ?? null },
-      `${owner.name} equips ${item.name} (${slot.label})`, null, chip.itemEquipped(l, owner.name, isHero(owner), item.name, slot.label));
+    const wearing = shadow.item(item.id)!;
+    shadow.apply({ family: "items", id: wearing.id, expectedRevision: wearing.revision,
+      values: { equipped_entity_id: owner.id, equipped_slot: plan.slot.id, storage_id: shadow.storageFor(owner).id } });
+    return ok({ itemId: item.id, name: item.name, owner: owner.name, slot: plan.slot.id, unequipped: plan.unequip.map((row) => row.name).join(", ") || null },
+      `${owner.name} equips ${item.name} (${plan.slot.label})`, null, chip.itemEquipped(l, owner.name, isHero(owner), item.name, plan.slot.label));
   }
   if (action === "unequip") {
     reject(item.equipped_entity_id, `${item.name} is not equipped.`);
@@ -920,38 +1128,77 @@ function mintMoney(shadow: ShadowState, amount: number, ctx: ToolContext, what: 
     "Let an existing character pay (transfer), reduce the sum, or spread it over several turns.");
   shadow.counters.moneyGranted += amount;
 }
+/** Fix run D (§2): who holds money — a character (its wallet entries) or a storage (a place's pile, a base, a
+ * mount's saddlebags: detail.wallet). */
+type Holder = { entity: Entity; storage: null; name: string } | { entity: null; storage: Storage; name: string };
+function holderOf(shadow: ShadowState, value: unknown, what: string): Holder {
+  const storage = storageRefOf(shadow, value, what);
+  if (storage) return { entity: null, storage, name: storage.name };
+  const entity = entityOf(shadow, value, what);
+  reject(entity.kind !== "faction", `${entity.name} is a faction; money belongs to its people or a holding.`);
+  return { entity, storage: null, name: entity.name };
+}
+function balanceOf(shadow: ShadowState, holder: Holder, label: string): number {
+  if (holder.entity) return moneyOf(shadow.entity(holder.entity.id)!, currencyKeyFor(label));
+  return walletOfStorage(shadow.storage(holder.storage.id)!)[label] ?? 0;
+}
+function setBalance(shadow: ShadowState, holder: Holder, label: string, amount: number) {
+  if (holder.entity) {
+    const now = shadow.entity(holder.entity.id)!;
+    setResources(shadow, now, { ...now.resources, [currencyKeyFor(label)]: amount });
+    return;
+  }
+  const now = shadow.storage(holder.storage.id)!;
+  const wallet = { ...walletOfStorage(now), [label]: amount };
+  shadow.apply({ family: "storages", id: now.id, expectedRevision: now.revision, values: { detail: { ...(now.detail ?? {}), wallet } as unknown as JsonObject } });
+}
+/** The coin's label: a 5e coin word → its code (зм, см…); any other currency → the campaign's canonical word. */
+function moneyLabel(shadow: ShadowState, word: unknown): string {
+  const coin = coinOf(str(word), shadow.snapshot.settings.values.language);
+  return coin ? coin.code : currencyKey(shadow, word).label;
+}
+const PAID_GRANT = "paid_grant_";
+/** Fix run D (§2, the mine's loot paid twice): the grants already paid, kept as private server facts. */
+function paidGrants(shadow: ShadowState): { source: string; reason: string; currency: string; amount: number; to: string }[] {
+  const bucket = shadow.source.privateState.fact;
+  if (!bucket || typeof bucket !== "object" || Array.isArray(bucket)) return [];
+  return Object.entries(bucket).filter(([key]) => key.startsWith(PAID_GRANT)).flatMap(([, value]) => {
+    try { return [JSON.parse(String(value))]; } catch { return []; }
+  });
+}
+const plainText = (value: string) => value.toLocaleLowerCase().replace(/[«»"'“”.,!?]/g, "").replace(/\s+/g, " ").trim();
 function moneyTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const action = str(args.action);
-  const { label, key } = currencyKey(shadow, args.currency);
+  const label = moneyLabel(shadow, args.currency);
   const amount = int(args.amount);
   reject(amount !== null && amount >= 1 && amount <= L.maxMoneyPerCall, `amount must be between 1 and ${L.maxMoneyPerCall}.`);
   const fmt = (n: number) => `${n} ${label}`;
   const sum = currencyAmount(ctx.language, amount, label);
   if (action === "transfer") {
-    const from = entityOf(shadow, args.fromRef, "fromRef");
-    const to = entityOf(shadow, args.toRef, "toRef");
-    reject(from.id !== to.id, "Payer and recipient are the same character.");
-    const have = moneyOf(from, key);
+    const from = holderOf(shadow, args.fromRef, "fromRef");
+    const to = holderOf(shadow, args.toRef, "toRef");
+    reject((from.entity?.id ?? from.storage?.id) !== (to.entity?.id ?? to.storage?.id), "Payer and recipient are the same.");
+    const have = balanceOf(shadow, from, label);
     reject(have >= amount, `Not enough ${label}: ${from.name} has ${have}, this needs ${amount}.`,
       have > 0 ? `Offer up to ${fmt(have)}, barter, or let the deal fail.` : null);
-    setResources(shadow, from, { ...from.resources, [key]: have - amount });
-    const toNow = shadow.entity(to.id)!;
-    setResources(shadow, toNow, { ...toNow.resources, [key]: moneyOf(toNow, key) + amount });
+    setBalance(shadow, from, label, have - amount);
+    const toBalance = balanceOf(shadow, to, label) + amount;
+    setBalance(shadow, to, label, toBalance);
     // A payment from a quest's issuer to its recipient after completion settles
     // that reward: the server keeps the reward paid exactly once either way.
-    const settled = shadow.snapshot.quests.find((quest) => quest.campaign_id === shadow.campaignId && quest.status === "complete" &&
-      (() => { const terms = rewardTerms(shadow, quest); return !!terms && !terms.paidOperationId && terms.issuerId === from.id && terms.currency === label; })());
+    const settled = from.entity ? shadow.snapshot.quests.find((quest) => quest.campaign_id === shadow.campaignId && quest.status === "complete" &&
+      (() => { const terms = rewardTerms(shadow, quest); return !!terms && !terms.paidOperationId && terms.issuerId === from.entity!.id && terms.currency === label; })()) : undefined;
     if (settled) {
       const terms = rewardTerms(shadow, settled)!;
       shadow.setPrivate("fact", `quest_reward_${settled.id}`, JSON.stringify({ ...terms, paidOperationId: shadow.operationId }));
     }
-    return ok({ currency: label, amount, from: from.name, to: to.name, fromBalance: have - amount, toBalance: moneyOf(toNow, key),
-      ...(settled ? { settlesQuest: settled.title, note: `This payment counts as the reward of "${settled.title}"; it will not be paid again.` } : openJobHint(shadow, from, to)) },
+    return ok({ currency: label, amount, from: from.name, to: to.name, fromBalance: have - amount, toBalance,
+      ...(settled ? { settlesQuest: settled.title, note: `This payment counts as the reward of "${settled.title}"; it will not be paid again.` } : openJobHint(shadow, from.entity, to.entity)) },
       `${from.name} pays ${to.name} ${fmt(amount)}${settled ? ` (reward for "${settled.title}")` : ""}`,
-      null, chip.moneyPaid(ctx.language, sum, from.name, isHero(from), to.name, isHero(to), settled ? settled.title : null));
+      null, chip.moneyPaid(ctx.language, sum, from.name, isHero(from.entity), to.name, isHero(to.entity), settled ? settled.title : null));
   }
   if (action === "grant") {
-    const to = entityOf(shadow, args.toRef, "toRef");
+    const to = holderOf(shadow, args.toRef, "toRef");
     const reason = str(args.reason);
     reject(reason.length > 0, "A grant needs a reason (a paid job, loot, a gift).");
     if (args.questRef !== undefined) {
@@ -961,18 +1208,28 @@ function moneyTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRec
         "Do not pay it again; the character may remember it was settled.");
       reject(false, `Use quest claim_reward for the reward of "${quest.title}"; it pays the agreed terms exactly once.`);
     }
+    // One source pays once (the chest, the body, the employer); the same reason, coin, amount and recipient too.
+    const source = args.sourceRef !== undefined ? plainText(str(args.sourceRef)) : "";
+    const before = paidGrants(shadow).find((row) => (source && row.source === source) ||
+      (row.reason === plainText(reason) && row.currency === label && row.amount === amount && row.to === to.name));
+    reject(!before || args.repeat === true,
+      ctx.language === "ru" ? `Уже выплачено: ${before?.amount} ${before?.currency} (${before?.reason}).` : `Already paid: ${before?.amount} ${before?.currency} (${before?.reason}).`,
+      "If this is new money from the same source, grant again with repeat: true and say why in reason; to move money that already exists, use transfer.");
     mintMoney(shadow, amount, ctx, "money grant");
-    setResources(shadow, to, { ...to.resources, [key]: moneyOf(to, key) + amount });
-    return ok({ currency: label, amount, to: to.name, balance: moneyOf(shadow.entity(to.id)!, key), reason }, `${to.name} receives ${fmt(amount)} (${reason})`,
-      null, chip.moneyReceived(ctx.language, sum, to.name, isHero(to), reason));
+    const balance = balanceOf(shadow, to, label) + amount;
+    setBalance(shadow, to, label, balance);
+    shadow.setPrivate("fact", `${PAID_GRANT}${shadow.operationId.slice(0, 8)}_${ctx.toolCalls}`,
+      JSON.stringify({ source, reason: plainText(reason), currency: label, amount, to: to.name }));
+    return ok({ currency: label, amount, to: to.name, balance, reason }, `${to.name} receives ${fmt(amount)} (${reason})`,
+      null, to.entity ? chip.moneyReceived(ctx.language, sum, to.name, isHero(to.entity), reason) : chip.moneyReceived(ctx.language, sum, to.name, false, reason));
   }
   reject(action === "spend", `Unknown money action "${action}".`);
-  const from = entityOf(shadow, args.fromRef, "fromRef");
-  const have = moneyOf(from, key);
+  const from = holderOf(shadow, args.fromRef, "fromRef");
+  const have = balanceOf(shadow, from, label);
   reject(have >= amount, `Not enough ${label}: ${from.name} has ${have}, this costs ${amount}.`);
-  setResources(shadow, from, { ...from.resources, [key]: have - amount });
+  setBalance(shadow, from, label, have - amount);
   return ok({ currency: label, amount, from: from.name, balance: have - amount, reason: str(args.reason) }, `${from.name} spends ${fmt(amount)}${args.reason ? ` (${str(args.reason)})` : ""}`,
-    null, chip.moneySpent(ctx.language, sum, from.name, isHero(from), str(args.reason)));
+    null, chip.moneySpent(ctx.language, sum, from.name, isHero(from.entity), str(args.reason)));
 }
 
 // --- resource --------------------------------------------------------------
@@ -997,7 +1254,20 @@ function resourceTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoop
   }
   reject(/^[a-z][a-z0-9_ -]{0,59}$/.test(name), "Counter names are lowercase words or identifiers.");
   const key = name.replace(/[\s-]+/g, "_");
+  const label = str(args.label);
+  // Fix run D (§1): a counter is a pool; money and things are never counters.
+  reject(!key.startsWith("currency_"), "Money is not a counter.", "Use money (grant, transfer, spend) with the coin's name.");
+  reject(!potionCounter(key, label) && !/^(arrows?|bolts?|ammo|ammunition)$/.test(key),
+    `${name} is a thing, not a counter: potions and ammunition are items.`, "Use item create (kind consumable or ammunition) and item consume.");
   const resources = { ...actor.resources };
+  // A party member's new counter reaches the player's screens: it comes with its name in the campaign language.
+  const party = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
+  reject(!party.has(actor.id) || key in resources || label.length > 0 || counterLabelled(actor, key) || /_(min|max)$/.test(key),
+    `A new counter of the party needs its name in the campaign language (label), shown to the player.`, `For example label «Кости хитов» for hit_dice.`);
+  if (label && actor.public_profile?.counterLabels?.[key] !== label) {
+    const profile = publicProfileOf(actor);
+    shadow.apply(entityChange(shadow, actor, { public_profile: { ...profile, counterLabels: { ...(profile.counterLabels ?? {}), [key]: label } } as unknown as JsonObject }));
+  }
   const current = Number(resources[key] ?? 0);
   const cap = max ?? (Number.isFinite(Number(resources[`${key}_max`])) && resources[`${key}_max`] !== undefined ? Number(resources[`${key}_max`]) : null);
   let next = set ?? current + (delta ?? 0);
@@ -1008,8 +1278,9 @@ function resourceTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoop
   resources[key] = next;
   setResources(shadow, actor, resources);
   const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
-  const player = controlled.has(actor.id) && !name.startsWith("currency_") && !name.endsWith("_min") && !name.endsWith("_max")
-    ? chip.counter(ctx.language, actor.name, isHero(actor), name, current, next, cap, reason) : null;
+  const shown = counterLabel(shadow.entity(actor.id)!, key, ctx.language);
+  const player = controlled.has(actor.id) && !name.endsWith("_min") && !name.endsWith("_max")
+    ? chip.counter(ctx.language, actor.name, isHero(actor), shown, current, next, cap, reason) : null;
   return ok({ actor: actor.name, resource: name, before: current, after: next, max: cap, reason },
     `${actor.name}: ${name} ${current} → ${next}${cap !== null ? `/${cap}` : ""} (${reason})`, null, player);
 }
@@ -1029,7 +1300,7 @@ function parseReward(shadow: ShadowState, value: unknown, issuerId: string | nul
   const terms: RewardTerms = { currency: null, amount: null, items: [], note: raw.note === undefined ? null : str(raw.note), issuerId, paidOperationId: null };
   if (raw.currency !== undefined || raw.amount !== undefined) {
     reject(raw.currency !== undefined && raw.amount !== undefined, "A money reward needs both currency and amount.");
-    terms.currency = currencyKey(shadow, raw.currency).label;
+    terms.currency = moneyLabel(shadow, raw.currency);
     terms.amount = int(raw.amount);
   }
   for (const item of (raw.items as { name: unknown; category: unknown; quantity: unknown; properties?: unknown }[] | undefined) ?? [])
@@ -1155,7 +1426,7 @@ function questTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRec
     `The reward of "${quest.title}" would exceed the campaign's ${ctx.limits.itemsPerTurn} new items per turn.`,
     "Pay it in a later turn.");
   if (terms.currency && terms.amount) {
-    const { key } = currencyKey(shadow, terms.currency);
+    const key = currencyKeyFor(moneyLabel(shadow, terms.currency));
     const issuer = terms.issuerId ? shadow.entity(terms.issuerId) : null;
     if (issuer && moneyOf(issuer, key) >= terms.amount) {
       setResources(shadow, issuer, { ...issuer.resources, [key]: moneyOf(issuer, key) - terms.amount });
@@ -1306,6 +1577,7 @@ function holdingTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopR
     const kind = str(args.kind);
     reject(["transport", "base", "mount"].includes(kind), "holding kind: transport, base or mount.");
     const key = localKey(args.localKey) ?? name.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "-").slice(0, 60);
+    reject(kind !== "mount" || args.passengerRefs === undefined, "A mount carries saddlebags, not riders; leave passengerRefs out.");
     const holding = holdingDetails(shadow, args, { features: [], armament: "", passengers: [] });
     if (kind === "base") {
       const id = shadow.newId(`storage:${key}`);
@@ -1343,6 +1615,8 @@ function holdingTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopR
   }
   const entity = shadow.entity(ref.id)!;
   reject(entity.kind === "transport" || entity.kind === "mount", `${entity.name} is a ${entity.kind}, not a holding.`);
+  reject(entity.kind !== "mount" || args.passengerRefs === undefined, `${entity.name} is a mount: it carries saddlebags, not riders.`,
+    "Riders are the party; put things in its saddlebags with item transfer (ownerRef: the mount).");
   if (action === "update") {
     const values: JsonObject = {};
     if (args.name !== undefined) values.name = str(args.name);

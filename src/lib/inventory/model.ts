@@ -97,11 +97,14 @@ const SLOT_WORDS: [string[], string[]][] = [
   [["boots"], ["сапог", "ботин", "башмак", "boots", "shoes"]],
   [["head"], ["шлем", "шляп", "капюшон", "корон", "диадем", "очки", "helm", "hat", "hood", "crown", "goggles"]],
   [["belt"], ["пояс", "ремен", "belt"]],
+  [["body"], ["кольчу", "доспех", "латы", "кирас", "бригантин", "панцир", "рубах", "куртк", "мантия", "роба", "камзол", "armor", "armour", "mail", "breastplate", "robe", "shirt", "coat", "jerkin"]],
 ];
-function slotsByName(name: string, fitting: EquipmentSlot[]): EquipmentSlot[] {
+function slotsByName(name: string, category: string, fitting: EquipmentSlot[]): EquipmentSlot[] {
   const n = name.toLocaleLowerCase();
   for (const [ids, words] of SLOT_WORDS)
     if (words.some((word) => n.includes(word))) { const named = fitting.filter((slot) => ids.includes(slot.id)); if (named.length) return named; }
+  // Armour or clothing the name says nothing about is worn on the body first.
+  if (category === "armor" || category === "clothing") return [...fitting].sort((a, b) => Number(b.id === "body") - Number(a.id === "body"));
   return fitting;
 }
 
@@ -119,7 +122,7 @@ export function equipPlan(owner: Pick<Entity, "id" | "name" | "equipment_slots">
   const twoHanded = itemMechanics(item).hands === 2;
   if (twoHanded && !fitting.some((slot) => slot.id === "hand"))
     return { ok: false, reason: ru ? `${item.name} — двуручная вещь, она берётся в основную руку.` : `${item.name} is two-handed; it goes in the main hand.` };
-  const named = slotsByName(item.name, fitting);
+  const named = slotsByName(item.name, item.category, fitting);
   const slot = twoHanded ? fitting.find((s) => s.id === "hand")!
     : wanted ? fitting.find((s) => s.id === wanted) : named.find((s) => !at(s.id)) ?? named[0];
   if (!slot) return { ok: false, reason: ru ? `Нет слота «${wanted}» для этой вещи.` : `No slot "${wanted}" for a ${item.category}.`, hint: `Fitting slots: ${fitting.map((s) => s.id).join(", ")}.` };

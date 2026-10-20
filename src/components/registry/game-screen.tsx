@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { sheetLines } from "@/lib/inventory/sheet";
 import { useState, type ReactNode } from "react";
 import { Dices, HelpCircle, Image as ImageIcon, Send, Sparkles, Users } from "lucide-react";
 import type { CampaignSnapshot, Entity, Scene } from "@/lib/persistence/contracts";
@@ -84,7 +85,7 @@ export function heroLine(data: CampaignSnapshot, hero: Entity, c: Copy) {
 
 /** Skills and spells exactly as the character's sheet lists them; absent when the sheet has none. */
 export function quickRolls(hero: Entity | null) {
-  const sheet = hero?.character_sheet;
+  const sheet = hero?.character_sheet ? sheetLines(hero.character_sheet) : null;
   if (!sheet) return [];
   const skills = sheet.skills.map((line) => {
     const match = /^(.*?)\s*([+−-]\s*\d+)$/u.exec(line.trim());

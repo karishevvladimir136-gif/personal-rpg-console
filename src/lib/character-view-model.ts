@@ -1,4 +1,5 @@
 import type { CharacterSheetV1 } from "./adventures/bootstrap-contracts.ts";
+import { sheetLines } from "./inventory/sheet.ts";
 import type { CampaignSnapshot, Entity, Item } from "./persistence/contracts.ts";
 import { equipmentForRecord } from "./persistence/record-model.ts";
 
@@ -34,7 +35,7 @@ export function characterViewModel(
   progress: CharacterProgress[] = [],
 ): CharacterViewModel {
   const reviewed = entity.character_sheet !== null && entity.character_sheet !== undefined;
-  const sheet: CharacterSheetV1 = entity.character_sheet ?? {
+  const sheet: CharacterSheetV1 = entity.character_sheet ? sheetLines(entity.character_sheet) : {
     schemaVersion: 1,
     mode: "narrative",
     role: null,
