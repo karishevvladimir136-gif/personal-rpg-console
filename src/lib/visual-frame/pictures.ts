@@ -49,6 +49,20 @@ export type PublicPicture = {
   error: string | null;
   createdAt: string;
   readyAt: string | null;
+  /** Fix run E (item 78b): the shot's own moment in the campaign language — what the picture shows. */
+  caption: string | null;
+  /** Fix run E (item 79): the vision check after the frame was drawn; null until it ran (or when it is off). */
+  review: PictureReview | null;
+};
+/** The cheap vision check of a drawn frame: problems in words (extra or missing limbs, gear the person does not
+ * have, open eyes at 0 HP), the automatic redraw it queued, if any, and where each person looks (the report counts it). */
+export type PictureReview = {
+  ok: boolean;
+  problems: string[];
+  /** The one automatic redraw a failed check queued; null when it only marked the frame (cap, a redraw already). */
+  redrawId: string | null;
+  gaze: { key: string; looksAt: string }[];
+  checkedAt: string;
 };
 export type PictureStyle = {
   id: string;
@@ -82,6 +96,8 @@ export type PictureSettings = {
   models: Partial<Record<PictureTier, PictureModelId>>;
   /** Polish 2 §3: the shot director writes a visual brief from the whole turn (off: the one-clause shot alone). */
   director: boolean;
+  /** Fix run E: the owner's time zone (the device's, sent with «Сохранить»): the daily count starts at its midnight. */
+  timeZone: string;
   revision: number;
 };
 /** Polish 2 §3: the visual profile of a named person or place — a full look, drafted once by the
@@ -101,7 +117,8 @@ export type PictureBoard = {
   campaignId: string;
   worldId: string | null;
   settings: PictureSettings;
-  today: { count: number; costUsdMicros: number };
+  /** `since`: the midnight the count started from (the owner's zone), when the database says. */
+  today: { count: number; costUsdMicros: number; since?: string | null };
   styles: PictureStyle[];
   pictures: PublicPicture[];
   profiles: VisualProfile[];
@@ -111,7 +128,7 @@ export const defaultPictureAutopilot: PictureAutopilot = {
   enabled: false, items: true, portraits: true, figures: true, places: true, holdings: true, autoAccept: true, provider: "fal",
 };
 /** Polish 3 §5 (the owner's second blind page, 2026-10-18): the shot director is off by default. */
-export const defaultPictureSettings: PictureSettings = { frames: "every", quality: "fast", dailyCap: 60, autopilot: defaultPictureAutopilot, models: {}, director: false, revision: 0 };
+export const defaultPictureSettings: PictureSettings = { frames: "every", quality: "fast", dailyCap: 60, autopilot: defaultPictureAutopilot, models: {}, director: false, timeZone: "UTC", revision: 0 };
 
 // Polish 2: the catalogue of picture models of both providers, one entry per model, and the
 // defaults per tier from the owner's blind picks (2026-10-17, docs/stages/POLISH_2.md §2):
@@ -176,7 +193,21 @@ export function parsePictureSettings(raw: unknown): PictureSettings {
     autopilot: parsePictureAutopilot(v.autopilot),
     models: parsePictureModels(v.models),
     director: typeof v.director === "boolean" ? v.director : false,
+    timeZone: isTimeZone(v.timeZone) ? v.timeZone : "UTC",
     revision: Number.isSafeInteger(v.revision) ? (v.revision as number) : 0,
+  };
+}
+/** The zone names the database takes (migration 79); the database also checks it knows the zone. */
+export const isTimeZone = (v: unknown): v is string => typeof v === "string" && /^[A-Za-z][A-Za-z0-9_+/-]{0,63}$/.test(v);
+export function parsePictureReview(raw: unknown): PictureReview | null {
+  if (!isRecord(raw) || typeof raw.ok !== "boolean") return null;
+  const text = (v: unknown, max: number) => (typeof v === "string" ? v.replace(/\s+/g, " ").trim().slice(0, max) : "");
+  return {
+    ok: raw.ok,
+    problems: Array.isArray(raw.problems) ? raw.problems.map((v) => text(v, 160)).filter(Boolean).slice(0, 6) : [],
+    redrawId: isUuid(raw.redrawId) ? raw.redrawId : null,
+    gaze: Array.isArray(raw.gaze) ? raw.gaze.filter(isRecord).map((row) => ({ key: text(row.key, 80), looksAt: text(row.looksAt, 80) })).filter((row) => row.key && row.looksAt).slice(0, 6) : [],
+    checkedAt: typeof raw.checkedAt === "string" ? raw.checkedAt : "",
   };
 }
 export function parsePicture(raw: unknown): PublicPicture | null {
@@ -191,6 +222,8 @@ export function parsePicture(raw: unknown): PublicPicture | null {
     width: intOrNull(raw.width), height: intOrNull(raw.height), costUsdMicros: Number.isSafeInteger(raw.costUsdMicros) ? (raw.costUsdMicros as number) : 0,
     elapsedMs: intOrNull(raw.elapsedMs), error: typeof raw.error === "string" ? raw.error : null, createdAt: raw.createdAt,
     readyAt: typeof raw.readyAt === "string" ? raw.readyAt : null,
+    caption: typeof raw.caption === "string" && raw.caption.trim() ? raw.caption.trim().slice(0, 300) : null,
+    review: parsePictureReview(raw.review),
   };
 }
 export function parsePictureStyle(raw: unknown): PictureStyle | null {
@@ -213,7 +246,8 @@ export function parsePictureBoard(raw: unknown): PictureBoard | null {
     campaignId: raw.campaignId,
     worldId: isUuid(raw.worldId) ? raw.worldId : null,
     settings: parsePictureSettings(raw.settings),
-    today: { count: Number.isSafeInteger(today.count) ? (today.count as number) : 0, costUsdMicros: Number.isSafeInteger(today.costUsdMicros) ? (today.costUsdMicros as number) : 0 },
+    today: { count: Number.isSafeInteger(today.count) ? (today.count as number) : 0, costUsdMicros: Number.isSafeInteger(today.costUsdMicros) ? (today.costUsdMicros as number) : 0,
+      since: typeof today.since === "string" ? today.since : null },
     styles: Array.isArray(raw.styles) ? raw.styles.map(parsePictureStyle).filter((row): row is PictureStyle => row !== null) : [],
     pictures: Array.isArray(raw.pictures) ? raw.pictures.map(parsePicture).filter((row): row is PublicPicture => row !== null) : [],
     profiles: Array.isArray(raw.profiles) ? raw.profiles.map(parseVisualProfile).filter((row): row is VisualProfile => row !== null) : [],

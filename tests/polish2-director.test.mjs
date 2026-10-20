@@ -40,7 +40,7 @@ test("the brief request carries the whole narration, the profiles, the state, th
   assert.match(user, /Known names: Рэй, Мокей, Марта\./);
   assert.match(user, /Рэй \(person\): a man of about 35–40, a former harbour diver Now: a borrowed grey linen shirt\./);
   assert.match(user, /Сарай сетевяза \(place\): a plank shed/);
-  assert.match(user, /Visible state from the records:\nРэй: wears or carries work jacket, revolver/);
+  assert.match(user, /Visible state from the records \(what each person wears, holds and carries — nothing else\):\nРэй: wears or carries work jacket, revolver/);
   assert.match(user, /The clock says: in the daytime\./);
   assert.match(user, /previous frame's brief \(for continuity\):\nThe hero kneels/);
   assert.match(user, /Owner's comment for the redraw \(one change to make\): сделай ночь/);

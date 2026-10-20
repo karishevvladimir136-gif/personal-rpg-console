@@ -34,7 +34,13 @@ export type VisualBrief = {
   profileUpdates: { who: string; change: string }[];
   /** Only for «Перерисовать» with the owner's comment: the one change, as an edit instruction. */
   edit: string | null;
+  /** Fix run E (item 78b): the moment the picture shows, in the campaign language — the frame's caption. */
+  caption: string | null;
+  /** Fix run E (item 79): each person's direction for this moment — gaze, expression, action, and which hand does
+   * what when both are busy (the three-handed James). By name from the known list; never printed as a name. */
+  people: BriefDirection[];
 };
+export type BriefDirection = { who: string; label: string; looksAt: string; expression: string; action: string; hands: string | null };
 export type BriefProfileInput = { name: string; kind: "person" | "place"; look: string; changes: string[] };
 export type BriefRequestInput = {
   /** The whole turn's narration the player has received (public text only). */
@@ -42,9 +48,11 @@ export type BriefRequestInput = {
   heroName: string | null;
   /** Public names (hero first) the brief may list under `who`. */
   names: string[];
+  /** Fix run E (item 78a): who each known person is, so a role word in the narration finds its person. */
+  people?: { name: string; role: string }[];
   placeName: string | null;
   profiles: BriefProfileInput[];
-  /** From the records: what each named person wears or carries now, visible conditions. */
+  /** From the records: what each named person wears or holds and carries packed away now, visible conditions. */
   state: { name: string; lines: string[] }[];
   clock: { timeOfDay: string | null };
   /** The previous frame's brief (continuity), if any. */
@@ -63,31 +71,37 @@ const clip = (text: string, max: number) => text.replace(/\r/g, "").trim().slice
 /** The request to the brief model: strict JSON, public facts only, nothing invented. */
 export function briefRequest(input: BriefRequestInput) {
   const names = [...new Set([input.heroName, ...input.names].filter((name): name is string => !!name))].slice(0, 16);
+  const language = input.language === "ru" ? "Russian" : "English";
   const system = [
     "You are the shot director of an illustrated role-playing campaign. You read one turn of the narration and write a visual brief for an illustrator who draws a single picture of it.",
     "Reply with one JSON object only, no prose around it:",
-    "{\"who\":[...],\"beat\":\"...\",\"brief\":\"...\",\"short\":\"...\",\"avoid\":\"...\",\"timeOfDay\":\"...\"|null,\"weather\":\"...\"|null,\"profileUpdates\":[{\"who\":\"...\",\"change\":\"...\"}],\"edit\":\"...\"|null}",
-    "who: the people in the chosen moment, by the known names given below (only those), at most 4; the narration speaks to the hero in the second person (you, your; ты, тебя, тебе, твой): when the hero is in the moment, list the hero's name.",
+    "{\"who\":[...],\"beat\":\"...\",\"caption\":\"...\",\"people\":[{\"who\":\"...\",\"label\":\"...\",\"looksAt\":\"...\",\"expression\":\"...\",\"action\":\"...\",\"hands\":\"...\"|null}],\"brief\":\"...\",\"short\":\"...\",\"avoid\":\"...\",\"timeOfDay\":\"...\"|null,\"weather\":\"...\"|null,\"profileUpdates\":[{\"who\":\"...\",\"change\":\"...\"}],\"edit\":\"...\"|null}",
+    "who: the people in the chosen moment, by the known names given below (only those), at most 4. The narration speaks to the hero in the second person (you, your; ты, тебя, тебе, твой): when the hero is in the moment, list the hero's name. It also calls known people by a role or a description instead of the name (the mage, the sergeant, the merchant, the boy; маг, сержант, купец, мальчишка): find which known person that is from who they are — very often the role word is the hero (the hero's class: «маг» is the hero when the hero is the mage), then a member of the party — and list that name. Never list a role word, never leave a known person out because the text used a role word.",
     "beat: one sentence naming the most visual moment of the whole turn — not simply its first sentence: the moment with the strongest action, gesture or reveal that a reader would want to see.",
-    "brief: 80–150 words of plain English prose, never more than 160, present tense, as a brief to an artist: the composition (foreground, middle, background); for each person in frame their pose, expression, what they hold, and only the clothes and visible state that matter now, exactly as the profiles and the state lines say (never invent a look; never change a stated look; do not restate a whole profile — the illustrator has the profiles and the reference pictures); the place — materials, light sources, layout; the time of day and the weather from the clock and the text; light and palette; the camera — distance, angle, lens feel; continuity with the previous frame when one is given (what is still there, what changed).",
-    "Refer to people by role or appearance (\"the hero\", \"the tavern keeper\", \"a red-haired woman\"), never by name — names are for `who` only. Say how many people are in frame.",
+    `caption: that same moment for the reader, one sentence of at most 160 characters in ${language}, in the narration's own words where it can — from the narration only, never from the private notes.`,
+    "people: one entry per person in `who`: label — how the brief calls this person (\"the hero\", \"the sergeant\", \"the bound prisoner\"); looksAt — at whom or what this person looks in this moment, by role (\"the sergeant\", \"the prisoner\", \"the map in his hands\", \"the fire\"); people who talk or work together look at each other or at their task, never at the viewer and never up into the distance unless the text says so; expression — this moment's expression in a few words (a person at 0 hit points or unconscious: eyes closed); action — what the body does, a concrete action, not a pose for a portrait; hands — when the action uses both hands or holds things, which hand does what (\"left hand pours from the waterskin, right hand holds the ash\"), else null.",
+    "brief: 80–150 words of plain English prose, never more than 160, present tense, as a brief to an artist: the composition (foreground, middle, background); where the hero is in the moment — in the open, hidden or behind what, standing, kneeling, lying — exactly as the narration has it (a hidden hero is drawn hidden); for each person in frame the action, gaze and expression above, what they hold, and only the clothes and visible state that matter now, exactly as the profiles and the state lines say (never invent a look; never change a stated look; do not restate a whole profile — the illustrator has the profiles and the reference pictures); the place — materials, light sources, layout; the light: what lights the scene and what lies in darkness, from the text and the clock; the time of day and the weather; light and palette; the camera — distance, angle, lens feel; continuity with the previous frame when one is given (what is still there, what changed).",
+    "Things in hands and on bodies come only from the state lines (what the person wears, holds or carries) and from what the narration shows them taking up this turn: never add a weapon, a shield, a lantern, a torch, a staff, a light or any other thing that neither gives; a thing carried packed away is not in hand unless the narration says so. Name in `avoid` the likely inventions this scene invites that the records do not have (\"no shield\", \"no lantern\").",
+    "Refer to people by role or appearance (\"the hero\", \"the tavern keeper\", \"a red-haired woman\"), never by name — names are for `who` and people[].who only. Say how many people are in frame. The reference pictures the illustrator has show identity only: never describe a pose, a head angle or a gaze taken from them.",
     "short: the same scene in at most 60 words, the subject and action first.",
-    "avoid: what must not appear (extra people, text, objects the scene does not have), one sentence.",
+    "avoid: what must not appear (extra people, text, objects the scene does not have, the inventions above), one sentence.",
     "timeOfDay / weather: from the clock given below and the text; null when neither says.",
-    "profileUpdates: only when the text itself changes a named person's or place's lasting look this turn (a wound, a bandage, a borrowed shirt, a shaved beard, a burnt room): the name from the known list and the change in one English clause; otherwise an empty list. Not for a momentary pose.",
+    "profileUpdates: only when the text itself changes a named person's or place's look this turn: a lasting change (a wound, a bandage, a borrowed shirt, a shaved beard, a burnt room) or a temporary look the story set (soot or ash paste on the face, a burned robe, mud, blood, a disguise): the name from the known list and the change in one English clause. When the text removes such a look (the face washed, the robe changed, the bandage off), write the change as \"no longer: \" and the look it removes. Otherwise an empty list. Not for a momentary pose or gesture.",
     "edit: null — unless an owner's comment is given below; then write that one change as a single edit instruction in English (\"make it night\", \"remove his helmet\"), and also fold it into the brief.",
-    "Use only what the narration, the profiles, the state lines and the clock say; never add facts, people, items or places that are not there. Write every value in English.",
+    "Use only what the narration, the profiles, the state lines and the clock say; never add facts, people, items or places that are not there. Write every value in English except the caption.",
   ].join("\n");
   const profiles = input.profiles.filter((row) => row.look.trim() || row.changes.length).map((row) =>
     `${row.name} (${row.kind === "person" ? "person" : "place"}): ${clip(row.look, 1200)}${row.changes.length ? ` Now: ${row.changes.map((change) => clip(change, 200)).join("; ")}.` : ""}`);
-  const state = input.state.filter((row) => row.lines.length).map((row) => `${row.name}: ${row.lines.map((line) => clip(line, 200)).join("; ")}`);
+  const state = input.state.filter((row) => row.lines.length).map((row) => `${row.name}: ${row.lines.map((line) => clip(line, 300)).join("; ")}`);
+  const roles = (input.people ?? []).filter((row) => row.role.trim()).slice(0, 16).map((row) => `${row.name} — ${clip(row.role, 200).replace(/\s+/g, " ")}`);
   const user = [
     input.heroName ? `The hero (addressed as "you"): ${input.heroName}.` : "",
     names.length ? `Known names: ${names.join(", ")}.` : "",
+    roles.length ? `Who they are:\n${roles.join("\n")}` : "",
     input.placeName ? `The scene is at: ${input.placeName}.` : "",
     input.clock.timeOfDay ? `The clock says: ${input.clock.timeOfDay}.` : "",
     profiles.length ? `Visual profiles:\n${profiles.join("\n")}` : "",
-    state.length ? `Visible state from the records:\n${state.join("\n")}` : "",
+    state.length ? `Visible state from the records (what each person wears, holds and carries — nothing else):\n${state.join("\n")}` : "",
     input.previous ? `The previous frame's brief (for continuity):\n${clip(input.previous, 1200)}` : "",
     input.ledger ? `The game master's private notes on what changed this turn (use only what is visible — clothes, wounds, things held or lost; never secrets, plans or anything the player has not seen):\n${clip(input.ledger, 1500)}` : "",
     input.style ? `Art style of the campaign (do not describe it; the illustrator has it): ${clip(input.style, 300)}` : "",
@@ -113,9 +127,14 @@ export function parseBrief(text: string): VisualBrief | null {
       const r = (row ?? {}) as Record<string, unknown>;
       return { who: str(r.who, 60), change: str(r.change, 240) };
     }).filter((row) => row.who && row.change).slice(0, 6) : [];
+    const people = Array.isArray(v.people) ? v.people.map((row) => {
+      const r = (row ?? {}) as Record<string, unknown>;
+      return { who: str(r.who, 60), label: str(r.label, 60), looksAt: str(r.looksAt, 120), expression: str(r.expression, 120), action: str(r.action, 240), hands: str(r.hands, 240) || null };
+    }).filter((row) => row.who && (row.looksAt || row.expression || row.action || row.hands)).slice(0, 4) : [];
     return {
       who, beat: str(v.beat, 300), brief, short: str(v.short, 600) || wordsOf(brief).slice(0, 60).join(" "), avoid: str(v.avoid, 300),
       timeOfDay: str(v.timeOfDay, 60) || null, weather: str(v.weather, 120) || null, profileUpdates: updates, edit: str(v.edit, 300) || null,
+      caption: str(v.caption, 200) || null, people,
     };
   } catch {
     return null;
@@ -162,9 +181,27 @@ export function compileBriefPrompt(input: { brief: VisualBrief; people: BriefPer
     const positions = input.references.map((row, index) => ({ row, index })).filter(({ row }) => row.person === person.key && row.role !== "place" && row.role !== "style").map(({ index }) => index);
     if (!positions.length) continue;
     const own = possessive(person.pronoun);
-    locks.push(`${capital(person.label)} is the person in ${refName(positions, family)}: keep ${own} face, facial features, skin tone, hair, age and build exactly as there; only ${own} pose, expression, clothes as the brief says and the camera angle change.`);
+    // Fix run E (item 79): the anchor's pose, head angle and gaze were copied into every frame (the sergeant
+    // always looking up and to the right): the reference gives identity only.
+    locks.push(`${capital(person.label)} is the person in ${refName(positions, family)}: keep ${own} face, facial features, skin tone, hair, age and build exactly as there. That picture shows identity only: do not copy its pose, head angle, gaze or expression — ${own} pose, gaze, expression and clothes follow this moment.`);
   }
-  locks.push(flux ? "Natural anatomy: every person has two arms and two hands with five fingers each." : "Every person has two arms and two hands with five fingers each; no extra or missing limbs.");
+  // Each person's direction for this moment and what the records give them to hold (items 78, 79: no invented shield or lantern).
+  const direction = people.map((person) => {
+    const d = person.direction;
+    if (!d) return "";
+    const parts = [d.action, d.looksAt ? `looks at ${d.looksAt}` : "", d.expression ? `expression: ${d.expression}` : "", d.hands ?? ""].map((part) => part.replace(/[.\s]+$/, "")).filter(Boolean);
+    return parts.length ? `${capital(person.label)}: ${parts.join("; ")}.` : "";
+  }).filter(Boolean);
+  const gear = people.map((person) => {
+    if (!person.gear) return "";
+    const worn = person.gear.worn.slice(0, 8), packed = person.gear.packed.slice(0, 8);
+    if (flux) return worn.length ? `${capital(person.label)}'s gear: ${worn.join(", ")}.` : "";
+    const has = worn.length ? `${capital(person.label)} wears or holds: ${worn.join(", ")}` : `${capital(person.label)} holds no weapon or tool of ${possessive(person.pronoun)} own`;
+    return `${has}${packed.length ? `; packed away, not in hand: ${packed.join(", ")}` : ""}. Besides what this moment puts in ${possessive(person.pronoun)} hands, nothing else: no other weapon, no shield, no lantern, no torch.`;
+  }).filter(Boolean);
+  const state = people.flatMap((person) => (person.state ?? []).filter(Boolean).slice(0, 3).map((line) => `${capital(person.label)}: ${line.replace(/[.\s]+$/, "")}.`));
+  locks.push(...direction, ...gear, ...state);
+  locks.push(flux ? "Natural anatomy: every person has two arms and two hands with five fingers each." : "Every person has exactly two arms and two hands with five fingers each; no extra or missing arms, hands or legs.");
   const avoid = brief.avoid && !flux ? `Do not show: ${brief.avoid.replace(/\.$/, "")}.` : "";
   const text = flux ? "All surfaces, clothing, signs and objects are plain and unmarked." : "No text, letters, numbers, logos, signs or watermarks anywhere in the picture.";
   const style = input.style.trim() ? `Art style: ${input.style.trim().slice(0, 800)}${/[.!]$/.test(input.style.trim()) ? "" : "."}` : "Art style: painterly illustration with cinematic light.";
@@ -177,6 +214,40 @@ export function compileBriefPrompt(input: { brief: VisualBrief; people: BriefPer
 export function briefReferences<T extends { role: ReferenceRole; entityId?: string | null }>(references: T[], people: Pick<BriefPerson, "key">[], max: number): (T & BriefReference)[] {
   const keyOf = (entityId?: string | null) => (entityId ? people.find((row) => row.key === entityId)?.key : undefined);
   return orderReferences(references.map((row) => ({ ...row, person: keyOf(row.entityId) })), people, max);
+}
+
+/** Known names in a direction («looks at Горн») become the brief's labels: names in a prompt become lettering. */
+export function relabel(text: string, people: { name: string; label: string }[]): string {
+  let out = text;
+  for (const person of people) {
+    for (const part of person.name.split(/\s+/).filter((word) => word.length >= 3)) {
+      const stem = part.length > 5 ? part.slice(0, part.length - 1) : part;
+      out = out.replace(new RegExp(`(?<!\\p{L})${stem.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\p{L}*`, "giu"), person.label);
+    }
+    out = out.replace(new RegExp(`(${person.label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})(\\s+\\1)+`, "gi"), "$1");
+  }
+  return out;
+}
+
+const keyWords = (text: string) => text.toLowerCase().split(/[^\p{L}]+/u).filter((word) => word.length >= 4 && !["with", "from", "that", "this", "their", "longer", "still", "anymore"].includes(word));
+const likeWord = (a: string, b: string) => a === b || (a.length >= 5 && b.length >= 5 && a.slice(0, 5) === b.slice(0, 5));
+/** Fix run E (item 79, the ash on James's face): a profile's story changes after one update — a new look joins
+ * them; «no longer: …» removes the change it names (most words in common, half at least). Null: nothing changes. */
+export function applyLookChange(changes: string[], change: string): string[] | null {
+  const removal = /^\s*no longer\s*[:,-]?\s*/i.exec(change);
+  if (removal) {
+    const gone = keyWords(change.slice(removal[0].length));
+    let best = -1, score = 0;
+    changes.forEach((row, index) => {
+      const own = keyWords(row);
+      const common = gone.filter((word) => own.some((mine) => likeWord(word, mine))).length;
+      const value = common / Math.max(1, Math.min(gone.length, own.length));
+      if (value > score) { score = value; best = index; }
+    });
+    return best >= 0 && score >= 0.5 ? changes.filter((_, index) => index !== best) : null;
+  }
+  if (changes.some((row) => row.toLowerCase() === change.toLowerCase())) return null;
+  return [...changes, change.slice(0, 300)].slice(-12);
 }
 
 /** Brief words for a stored record and a quick sanity check. */

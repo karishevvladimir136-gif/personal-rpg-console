@@ -44,6 +44,10 @@ export type BriefPerson = {
   appearance: string;
   /** Visible state now, from the records, each a full clause: "he wears …", "both his hands are wrapped in …". */
   state?: string[];
+  /** Fix run E: what the records give this person — worn or held, and packed away (never in hand unless the moment says). */
+  gear?: { worn: string[]; packed: string[] };
+  /** Fix run E: the brief's direction for this moment (gaze, expression, action, which hand does what). */
+  direction?: { looksAt: string; expression: string; action: string; hands: string | null };
 };
 export type FrameBrief = {
   shot: Shot;
@@ -183,7 +187,9 @@ export function compileAnchorPrompt(input: {
   const own = possessive(person.pronoun);
   const framing = input.composition === "figure"
     ? `A full-body character illustration of ${person.label}, standing in a relaxed pose, the whole figure visible from head to boots, arms down at ${own} sides, both hands empty, on a plain dark backdrop.`
-    : `A head-and-shoulders character portrait of ${person.label}, three-quarter view, expressive face, plain dark background.`;
+    // Fix run E (item 79): the portrait is every frame's face reference — a neutral pose, so frames do not inherit a
+    // dramatic gaze («Брам всегда эпично смотрит наверх направо»).
+    : `A head-and-shoulders character portrait of ${person.label}, front view turned slightly to a gentle three-quarter, head level, looking straight at the viewer, calm neutral expression, plain dark background.`;
   const carried = (input.carried ?? []).map(clean).filter(Boolean).slice(0, 8);
   const gear = carried.length
     ? `${capital(own)} gear, worn on the body, slung or hung from the belt and straps, not held in the hands: ${listing(carried)}.`

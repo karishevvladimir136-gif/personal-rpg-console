@@ -5,7 +5,7 @@ import { authorizeCampaign } from "../campaign-authorization";
 import { databaseError, PersistenceError } from "../errors";
 import { isUuid } from "../../persistence/validation";
 import { sniffImage, type FalReference } from "../../visual-frame/fal-image";
-import { parsePicture, parsePictureBoard, parsePictureSettings, parsePictureStyle, parseVisualProfile, stylePreset, type PictureBoard } from "../../visual-frame/pictures";
+import { isTimeZone, parsePicture, parsePictureBoard, parsePictureSettings, parsePictureStyle, parseVisualProfile, stylePreset, type PictureBoard } from "../../visual-frame/pictures";
 import { privatePicture, styleStoragePath, type PictureJobContext, type PictureRpcAction } from "../../visual-frame/picture-job";
 
 export { createPictureRow, loadReferences, pictureStoragePath, privatePicture, updatePictureRow } from "../../visual-frame/picture-job";
@@ -78,7 +78,7 @@ export async function savePictureSettings(campaignId: string, value: unknown) {
   if (!isRecord(value) || !Number.isSafeInteger(value.expectedRevision)) throw new PersistenceError("validation");
   const next = parsePictureSettings(value);
   const ctx = await picturesContext(campaignId);
-  return parsePictureSettings(await ctx.rpc("settings.save", { expectedRevision: value.expectedRevision, frames: next.frames, quality: next.quality, dailyCap: next.dailyCap, autopilot: next.autopilot, models: next.models, director: next.director }));
+  return parsePictureSettings(await ctx.rpc("settings.save", { expectedRevision: value.expectedRevision, frames: next.frames, quality: next.quality, dailyCap: next.dailyCap, autopilot: next.autopilot, models: next.models, director: next.director, ...(isTimeZone(value.timeZone) ? { timeZone: value.timeZone } : {}) }));
 }
 
 /** A style version: preset or custom text, an optional reference image (a data URL from the

@@ -21,7 +21,7 @@ export function previewPictureBoard(input: {
     timeline: input.timeline, version: 1, status: "ready", hidden: false, model: "fal-ai/flux-2/klein/9b", tier: "fast", trigger: "autopilot",
     styleVersionId: style.id, width: over.composition === "frame" || over.composition === "location" || over.composition === "holding" ? 1024 : over.composition === "figure" ? 576 : 1024,
     height: over.composition === "frame" || over.composition === "location" || over.composition === "holding" ? 576 : 1024, costUsdMicros: 17_000, elapsedMs: 1800, error: null,
-    createdAt: input.at(n), readyAt: input.at(n), ...over,
+    createdAt: input.at(n), readyAt: input.at(n), caption: null, review: null, ...over,
   });
   const pictures: PublicPicture[] = [
     ...input.anchors.map((row, index) => picture(index + 1, { id: row.id, kind: "anchor", subjectKind: row.subjectKind, subjectId: row.subjectId, composition: row.composition })),
@@ -35,7 +35,7 @@ export function previewPictureBoard(input: {
   return {
     board: {
       campaignId: input.campaignId, worldId: input.worldId,
-      settings: { frames: "every", quality: "fast", dailyCap: 60, autopilot: { enabled: true, items: true, portraits: true, figures: true, places: true, holdings: true, autoAccept: true, provider: "fal" }, models: {}, director: true, revision: 2 },
+      settings: { frames: "every", quality: "fast", dailyCap: 60, autopilot: { enabled: true, items: true, portraits: true, figures: true, places: true, holdings: true, autoAccept: true, provider: "fal" }, models: {}, director: true, timeZone: "UTC", revision: 2 },
       profiles: [],
       today: { count: pictures.length, costUsdMicros: input.todayCostUsdMicros ?? pictures.reduce((sum, row) => sum + row.costUsdMicros, 0) },
       styles: [style], pictures,

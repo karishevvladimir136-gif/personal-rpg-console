@@ -31,14 +31,15 @@ import {
   type PublicPicture,
   type VisualProfile,
 } from "../../visual-frame/pictures";
-import { fallbackShot, firstParagraph, shotEntityIds, type Shot, type ShotContext } from "../../visual-frame/shot";
+import { fallbackShot, firstParagraph, outOfGameOnly, resolveWho, shotEntityIds, storyText, type ScenePerson, type Shot, type ShotContext } from "../../visual-frame/shot";
 import { compileAnchorPrompt, compileEditPrompt, compileRecordsFrame, promptFamily, timeOfDay, type BriefPerson, type BriefReference, type ReferenceRole } from "../../visual-frame/prompt-compiler";
-import { briefReferences, compileBriefPrompt, type BriefRequestInput, type VisualBrief } from "../../visual-frame/brief";
+import { applyLookChange, briefReferences, compileBriefPrompt, relabel, type BriefRequestInput, type VisualBrief } from "../../visual-frame/brief";
+import { checkFrame, correctionLine, type FrameCheckPerson } from "../../visual-frame/frame-check";
 import { visualDocuments } from "../../visual-frame/model";
 import { buildShot } from "./shot-model";
 import { buildBrief, draftProfile } from "./brief-model";
 import { boardOf, picturesContext, type PicturesContext } from "./pictures-store";
-import { briefPictureRow, createPictureRow, privatePicture, runPictureJob as runJob } from "../../visual-frame/picture-job";
+import { briefPictureRow, createPictureRow, privatePicture, reviewPictureRow, runPictureJob as runJob } from "../../visual-frame/picture-job";
 
 // The Stage V frame engine. A turn never waits for a picture: every request
 // creates a queued row, answers at once, and the paid work runs after the
@@ -56,10 +57,10 @@ const log = (event: string, data: Record<string, unknown>) => console.info(JSON.
 
 export type FrameRequestResult =
   | { status: "queued" | "existing"; picture: PublicPicture }
-  | { status: "waiting" | "off" | "cap" | "no_text" };
+  | { status: "waiting" | "off" | "cap" | "no_text" | "ooc" };
 
 /** The public text of a turn: the live registry while it streams, the committed turn after. */
-async function turnText(campaignId: string, operationId: string): Promise<{ text: string; finished: boolean; changes: { name: string; ok: boolean; summary: string }[] }> {
+async function turnText(campaignId: string, operationId: string): Promise<{ text: string; finished: boolean; changes: { name: string; ok: boolean; summary: string }[]; mode: string | null }> {
   let text = "";
   let finished = false;
   const changes: { name: string; ok: boolean; summary: string }[] = [];
@@ -70,11 +71,10 @@ async function turnText(campaignId: string, operationId: string): Promise<{ text
     else if (event.type === "status" && event.status !== "generating") finished = true;
   });
   unsubscribe();
-  if (!text.trim()) {
-    const turn = await readTurn(campaignId, operationId);
-    if (turn.narration) return { text: turn.narration, finished: true, changes };
-  }
-  return { text, finished, changes };
+  // Fix run E (item 78c): the turn's mode decides too — an out-of-game question never gets a frame.
+  const turn = await readTurn(campaignId, operationId).catch((error) => { if (!text.trim()) throw error; return null; });
+  if (!text.trim() && turn?.narration) return { text: turn.narration, finished: true, changes, mode: turn.mode };
+  return { text, finished, changes, mode: turn?.mode ?? null };
 }
 /** Polish 2 §3: the whole turn's narration for the brief — the live registry followed until the
  * turn leaves «generating» (bounded), else the committed turn's text. Public text only. */
@@ -136,8 +136,31 @@ function shotContext(snapshot: CampaignSnapshot): ShotContext {
     names: snapshot.entities.filter((row) => row.id !== hero?.id && ["companion", "npc", "transport", "mount"].includes(row.kind)).map((row) => row.name).slice(0, 40),
     placeName: place?.name ?? null,
     language: snapshot.settings.values.language === "en" ? "en" : "ru",
+    people: scenePeople(snapshot).map((row) => ({ name: row.name, role: row.role })),
   };
 }
+const firstSentence = (text: string) => (text.replace(/\s+/g, " ").trim().split(/(?<=[.!?…])\s+/u)[0] ?? "").slice(0, 160);
+/** Fix run E (item 78a): who each known person is — the hero, then the party, then the rest; people the hero has
+ * not met stay out. Public records only: the kind, the sheet's role, the first sentence of the details. */
+function scenePeople(snapshot: CampaignSnapshot): ScenePerson[] {
+  const rank = (kind: string) => (kind === "player" ? 0 : kind === "companion" ? 1 : 2);
+  return snapshot.entities.filter((row) => ["player", "companion", "npc"].includes(row.kind) && !row.public_profile?.unmet)
+    .sort((a, b) => rank(a.kind) - rank(b.kind)).slice(0, 40).map((row) => ({
+      id: row.id, name: row.name, kind: row.kind,
+      role: [row.kind === "player" ? "the hero" : row.kind === "companion" ? "a companion of the party" : "", row.character_sheet?.role ?? "", firstSentence(row.details)].filter(Boolean).join("; ").slice(0, 240),
+    }));
+}
+/** Fix run E (items 78, 79): what the records give a person — worn or held (equipped), and packed away in their own
+ * possessions (a thing left in camp is not on them). The frame's gear comes only from here. */
+function gearOf(snapshot: CampaignSnapshot, entityId: string) {
+  const own = new Set(snapshot.storages.filter((row) => row.entity_id === entityId).map((row) => row.id));
+  const live = snapshot.items.filter((item) => item.quantity > 0);
+  return {
+    worn: live.filter((item) => item.equipped_entity_id === entityId).map((item) => item.name).slice(0, 8),
+    packed: live.filter((item) => !item.equipped_entity_id && item.owner_entity_id === entityId && own.has(item.storage_id)).map((item) => item.name).slice(0, 8),
+  };
+}
+const isDown = (entity: CampaignSnapshot["entities"][number]) => entity.hp === 0 && (entity.max_hp ?? 0) > 0;
 
 /** A frame for one turn. `live` while the narration streams (needs the first paragraph),
  * `committed` after a reload, `key_moment` once the turn is saved (better model), `redraw` by the owner. */
@@ -167,19 +190,25 @@ async function requestFrameUnlogged(campaignId: string, value: unknown, schedule
     if (same.length) return { status: "existing", picture: same.at(-1)! };
   }
   if (!capRemaining(board)) return { status: "cap" };
-  const { text, finished } = await turnText(campaignId, operationId);
-  const paragraph = paragraphFor(trigger, text, finished);
+  const { text, finished, mode } = await turnText(campaignId, operationId);
+  // Fix run E (item 78c): no frame for an out-of-game turn, nor for a reply that is only an out-of-game aside;
+  // an aside inside a story turn never reaches the shot.
+  if (mode === "ooc" || mode === "feedback" || (finished && outOfGameOnly(text))) return { status: "ooc" };
+  const paragraph = paragraphFor(trigger, storyText(text), finished);
   if (!paragraph) return { status: text.trim() ? "waiting" : "no_text" };
   const snapshot = await readCampaign(campaignId);
   if (!snapshot.timeline) throw new PersistenceError("conflict");
   const context = shotContext(snapshot);
+  const scene = scenePeople(snapshot);
   const built = await buildShot(process.env.ANTHROPIC_API_KEY ?? "", paragraph, context);
   const shot: Shot = built.shot ?? fallbackShot(paragraph, context);
   // Polish 2 (the owner's blind picks): live and committed frames on the live tier the owner chose
   // (Sunburst by default since polish 3); key moments and «Перерисовать» on the quality tier (Sunburst by default).
   const tier: PictureTier = trigger === "key_moment" || trigger === "redraw" ? "quality" : board.settings.quality;
   const model = modelForTier(tier, board.settings);
-  const entityIds = shotEntityIds(shot, snapshot.entities);
+  // Fix run E (item 78a): «маг» is the hero — role words resolve to the scene's people, the hero first.
+  const resolved = resolveWho(shot.who, scene);
+  const entityIds = [...new Set([...resolved.filter((id): id is string => !!id), ...shotEntityIds(shot, snapshot.entities)])];
   const referenceIds = referencesForShot(board, { entityIds, locationId: snapshot.publicState.current_location_id, model });
   const place = snapshot.locations.find((row) => row.id === snapshot.publicState.current_location_id) ?? null;
   const style = activeStyle(board);
@@ -193,8 +222,8 @@ async function requestFrameUnlogged(campaignId: string, value: unknown, schedule
   const compiled = compileRecordsFrame({
     modelId: model, shot, style: styleTextFor(board, snapshot.settings.values.visualStyle), items: snapshot.items, maxReferences: maxReferencesFor(model),
     worldMinutes: clock.worldMinutes,
-    people: shot.who.map((name) => {
-      const entity = snapshot.entities.find((row) => nameMatches(row.name, name)) ?? null;
+    people: shot.who.map((name, index) => {
+      const entity = (resolved[index] ? snapshot.entities.find((row) => row.id === resolved[index]) : null) ?? snapshot.entities.find((row) => nameMatches(row.name, name)) ?? null;
       return { name, entity, appearance: entity ? lookOf(board, snapshot, entity.id) : "" };
     }),
     references: [...referenceIds, ...(heroFigure ? [heroFigure.id] : [])].map((id) => {
@@ -208,7 +237,7 @@ async function requestFrameUnlogged(campaignId: string, value: unknown, schedule
     id: crypto.randomUUID(), kind: "frame", subjectKind: "turn", subjectId: operationId, composition: "frame", timeline: snapshot.timeline,
     tier, trigger, model, styleVersionId: style?.id ?? null,
     shot: { ...shot, meta: { source: built.source, model: built.source === "model" ? "claude-haiku-5-5" : null, usage: built.usage, costUsdMicros: built.costUsdMicros, elapsedMs: built.elapsedMs, error: built.error, paragraphChars: paragraph.length }, ...(comment ? { comment } : {}) },
-    prompt, referenceIds: compiled.referenceIds,
+    prompt, referenceIds: compiled.referenceIds, caption: shot.caption ?? null,
   });
   log("picture_frame_queued", { campaignId, operationId, pictureId: picture.id, trigger, tier, model, references: compiled.referenceIds.length, shotSource: built.source, shotMs: built.elapsedMs });
   // The shot director runs after the response: the brief from the whole turn (waiting for the narration
@@ -235,8 +264,10 @@ async function directFrame(ctx: PicturesContext, pictureId: string, input: { ope
   const apiKey = process.env.ANTHROPIC_API_KEY ?? "";
   if (!apiKey) return { costUsdMicros: 0 };
   const { operationId, trigger, comment } = input;
-  const narration = await wholeNarration(ctx.campaignId, operationId, trigger === "live" ? NARRATION_WAIT_MS : 0);
-  if (!narration.text.trim()) return { costUsdMicros: 0 };
+  const whole = await wholeNarration(ctx.campaignId, operationId, trigger === "live" ? NARRATION_WAIT_MS : 0);
+  // Fix run E (item 78c): out-of-game asides never reach the brief; a reply that is only an aside gets none.
+  const narration = { ...whole, text: storyText(whole.text) };
+  if (!narration.text.trim() || outOfGameOnly(whole.text)) return { costUsdMicros: 0 };
   // Fresh records and board: the turn may have added people and places, the autopilot anchors.
   const [snapshot, board, clock] = await Promise.all([readCampaign(ctx.campaignId), boardOf(ctx), readWorldClock(ctx.campaignId).catch(() => ({ worldMinutes: null }))]);
   const row = await privatePicture(ctx, pictureId);
@@ -247,12 +278,16 @@ async function directFrame(ctx: PicturesContext, pictureId: string, input: { ope
     const name = nameOfSubject(snapshot, profile);
     return name ? { name, kind: profile.subjectKind === "entity" ? "person" as const : "place" as const, look: profile.look, changes: profile.changes } : null;
   }).filter((row): row is NonNullable<typeof row> => row !== null);
-  const state = snapshot.entities.filter((row) => ["player", "companion", "npc"].includes(row.kind)).map((row) => {
-    const worn = snapshot.items.filter((item) => item.equipped_entity_id === row.id && item.quantity > 0).map((item) => item.name).slice(0, 8);
+  const scene = scenePeople(snapshot);
+  const state = scene.map((person) => {
+    const row = snapshot.entities.find((entity) => entity.id === person.id)!;
+    const gear = gearOf(snapshot, row.id);
     const conditions = row.conditions.filter(Boolean).slice(0, 4);
-    const lines = [worn.length ? `wears or carries ${worn.join(", ")}` : "", conditions.length ? `visible condition: ${conditions.join(", ")}` : ""].filter(Boolean);
+    const lines = [gear.worn.length ? `wears or holds ${gear.worn.join(", ")}` : "holds no weapon or tool of their own",
+      gear.packed.length ? `carries packed away (not in hand) ${gear.packed.join(", ")}` : "",
+      conditions.length ? `visible condition: ${conditions.join(", ")}` : "", isDown(row) ? "down at 0 hit points: unconscious, eyes closed" : ""].filter(Boolean);
     return { name: row.name, lines };
-  }).filter((row) => row.lines.length).slice(0, 12);
+  }).slice(0, 12);
   // Continuity: the newest ready frame of an earlier turn and its brief, if one was written.
   const previousFrame = [...board.pictures].filter((p) => p.kind === "frame" && p.status === "ready" && !p.hidden && p.subjectId !== operationId && p.createdAt < row.createdAt).sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0] ?? null;
   const previousBrief = previousFrame ? await privatePicture(ctx, previousFrame.id).then((p) => briefOf(p.shot)?.brief ?? null).catch(() => null) : null;
@@ -260,18 +295,34 @@ async function directFrame(ctx: PicturesContext, pictureId: string, input: { ope
   // Polish 3 §2: on a split turn the director starts at the writer's end (the «recording» status
   // finishes the narration wait) and reads the writer's ledger for clothes, wounds and items.
   const built = await buildBrief(apiKey, {
-    narration: narration.text, heroName: context.heroName, names: context.names, placeName: place?.name ?? null, profiles, state,
+    narration: narration.text, heroName: context.heroName, names: context.names, people: context.people, placeName: place?.name ?? null, profiles, state,
     clock: { timeOfDay: timeOfDay(clock.worldMinutes) }, previous: previousBrief, ledger: liveTurnLedger(operationId), style, comment, language: context.language,
   });
   log("picture_brief", { campaignId: ctx.campaignId, pictureId, trigger, ok: !!built.brief, ms: built.elapsedMs, costUsdMicros: built.costUsdMicros, error: built.error, narrationChars: narration.text.length, complete: narration.complete, words: built.brief ? built.brief.brief.split(/\s+/).length : 0 });
   if (!built.brief) return { costUsdMicros: built.costUsdMicros };
   const brief = built.brief;
   // The people of the brief, the hero first; identity references by role, in the fixed order.
-  const matched = brief.who.map((name) => snapshot.entities.find((row) => nameMatches(row.name, name)) ?? null);
+  // Fix run E (items 78a, 79): role words resolve to the scene's people (the hero first); each person carries the
+  // brief's direction (gaze, expression, action, hands) under the brief's own label, and the records' gear.
+  const resolvedIds = resolveWho(brief.who, scene);
+  const matched = brief.who.map((name, index) => (resolvedIds[index] ? snapshot.entities.find((row) => row.id === resolvedIds[index]) ?? null : null));
   const entityIds = [...new Set(matched.filter((row): row is NonNullable<typeof row> => row !== null).sort((a, b) => (a.kind === "player" ? -1 : 0) - (b.kind === "player" ? -1 : 0)).map((row) => row.id))];
-  const people: BriefPerson[] = entityIds.map((id, index) => {
+  const directionOf = (id: string) => brief.people.find((row) => resolveWho([row.who], scene)[0] === id) ?? null;
+  const labels = new Map<string, string>();
+  entityIds.forEach((id, index) => {
     const entity = snapshot.entities.find((row) => row.id === id)!;
-    return { key: id, label: entity.kind === "player" ? "the hero" : `person ${index + 1}`, pronoun: "they", appearance: lookOf(board, snapshot, id) };
+    const own = directionOf(id)?.label.toLowerCase().replace(/[^\p{L}\p{N}' -]/gu, "").trim() ?? "";
+    const hasName = own && scene.some((person) => relabel(own, [{ name: person.name, label: "\u0000" }]).includes("\u0000"));
+    const label = entity.kind === "player" ? "the hero" : own && !hasName && own !== "the hero" && ![...labels.values()].includes(own) ? own : `person ${index + 1}`;
+    labels.set(id, label.slice(0, 48));
+  });
+  const named = [...scene.map((person) => ({ name: person.name, label: labels.get(person.id) ?? "another person" }))];
+  const people: BriefPerson[] = entityIds.map((id) => {
+    const entity = snapshot.entities.find((row) => row.id === id)!;
+    const d = directionOf(id);
+    return { key: id, label: labels.get(id)!, pronoun: "they", appearance: lookOf(board, snapshot, id), gear: gearOf(snapshot, id),
+      state: isDown(entity) ? ["down at 0 hit points: unconscious, eyes closed"] : [],
+      ...(d ? { direction: { looksAt: relabel(d.looksAt, named), expression: d.expression, action: relabel(d.action, named), hands: d.hands ? relabel(d.hands, named) : null } } : {}) };
   });
   for (const name of brief.who) if (!matched[brief.who.indexOf(name)]) people.push({ key: `${name}#${people.length}`, label: `person ${people.length + 1}`, pronoun: "they", appearance: "as described in the scene" });
   const activeStyleRow = activeStyle(board);
@@ -290,21 +341,26 @@ async function directFrame(ctx: PicturesContext, pictureId: string, input: { ope
   const edit = comment && brief.edit && previousOfTurn;
   const prompt = edit ? compileEditPrompt(brief.edit!, promptFamily(input.model)) : compileBriefPrompt({ brief, people, references: ordered, style, modelId: input.model });
   const referenceIds = edit ? [previousOfTurn!.id] : ordered.map((r) => r.id);
-  await briefPictureRow(ctx, { id: pictureId, prompt, referenceIds, shot: {
+  await briefPictureRow(ctx, { id: pictureId, prompt, referenceIds, ...(brief.caption ? { caption: brief.caption } : {}), shot: {
     ...input.shot, who: brief.who.length ? brief.who : input.shot.who, brief,
     meta: { ...(isRecord(row.shot) && isRecord(row.shot.meta) ? row.shot.meta : {}), brief: { model: "claude-sonnet-5-5", usage: built.usage, costUsdMicros: built.costUsdMicros, elapsedMs: built.elapsedMs, narrationChars: narration.text.length, complete: narration.complete, edit: !!edit } },
     ...(comment ? { comment } : {}),
   } });
   log("picture_brief_applied", { campaignId: ctx.campaignId, pictureId, references: referenceIds.length, people: people.length, edit: !!edit });
   // The story changed a look: the change joins the person's or place's profile (the owner's text stays).
+  // Fix run E (item 79): a temporary look (ash on the face) stays until the story removes it («no longer: …»).
+  const changed = new Map<string, string[]>();
   for (const update of brief.profileUpdates) {
-    const entity = snapshot.entities.find((row) => nameMatches(row.name, update.who)) ?? null;
-    const location = entity ? null : snapshot.locations.find((row) => nameMatches(row.name, update.who)) ?? null;
-    const subject = entity ? { kind: "entity" as const, id: entity.id } : location ? { kind: "location" as const, id: location.id } : null;
+    const entityId = resolveWho([update.who], scene)[0];
+    const location = entityId ? null : snapshot.locations.find((row) => nameMatches(row.name, update.who)) ?? null;
+    const subject = entityId ? { kind: "entity" as const, id: entityId } : location ? { kind: "location" as const, id: location.id } : null;
     if (!subject) continue;
     const current = profileFor(board, subject);
-    if (current?.changes.some((change) => change.toLowerCase() === update.change.toLowerCase())) continue;
-    await ctx.rpc("profile.save", { id: crypto.randomUUID(), subjectKind: subject.kind, subjectId: subject.id, look: current?.look ?? "", changes: [...(current?.changes ?? []), update.change].slice(-12), source: "model" }).catch((error) =>
+    const key = `${subject.kind}:${subject.id}`;
+    const next = applyLookChange(changed.get(key) ?? current?.changes ?? [], update.change);
+    if (!next) continue;
+    changed.set(key, next);
+    await ctx.rpc("profile.save", { id: crypto.randomUUID(), subjectKind: subject.kind, subjectId: subject.id, look: current?.look ?? "", changes: next, source: "model" }).catch((error) =>
       log("profile_update_failed", { campaignId: ctx.campaignId, subject: subject.kind, message: String((error as Error)?.message ?? error).slice(0, 120) }));
   }
   return { costUsdMicros: built.costUsdMicros };
@@ -493,6 +549,13 @@ export async function restyleCampaign(campaignId: string, value: unknown, schedu
  * A ready anchor of a person or a place without a visual profile gets one drafted (polish 2 §3). */
 export async function runPictureJob(ctx: PicturesContext, pictureId: string, options: { extraCostUsdMicros?: number } = {}) {
   const picture = await runJob(ctx, pictureId, { apiKey: process.env.FAL_KEY ?? "", openAIApiKey: process.env.OPENAI_API_KEY ?? "", extraCostUsdMicros: options.extraCostUsdMicros });
+  if (picture?.status === "ready" && picture.kind === "frame") {
+    const redrawId = await reviewFrame(ctx, picture.id).catch((error) => {
+      log("picture_frame_check_failed", { campaignId: ctx.campaignId, pictureId, message: String((error as Error)?.message ?? error).slice(0, 200) });
+      return null;
+    });
+    if (redrawId) await runPictureJob(ctx, redrawId);
+  }
   if (picture?.status === "ready" && picture.kind === "anchor" && (picture.subjectKind === "entity" || picture.subjectKind === "location") && ["portrait", "figure", "location"].includes(picture.composition)) {
     try {
       const board = await boardOf(ctx);
@@ -503,4 +566,50 @@ export async function runPictureJob(ctx: PicturesContext, pictureId: string, opt
     }
   }
   return picture;
+}
+
+/** Fix run E (items 78, 79): the vision check of a drawn frame against the records — limbs, gear the person does not
+ * have, open eyes at 0 HP, and each person's gaze. A failed check queues one automatic redraw (the problems as
+ * corrections; never a second, never past the daily cap) or marks the frame for the owner. Returns the redraw's id. */
+async function reviewFrame(ctx: PicturesContext, pictureId: string): Promise<string | null> {
+  const apiKey = process.env.ANTHROPIC_API_KEY ?? "";
+  if (!apiKey) return null;
+  const row = await privatePicture(ctx, pictureId);
+  if (row.status !== "ready" || row.review || !row.storagePath) return null;
+  const image = await ctx.storage.get(row.storagePath);
+  if (!image) return null;
+  const snapshot = await readCampaign(ctx.campaignId);
+  const shot = isRecord(row.shot) ? row.shot : {};
+  const brief = briefOf(row.shot);
+  const scene = scenePeople(snapshot);
+  const who = Array.isArray(shot.who) ? shot.who.filter((name): name is string => typeof name === "string") : [];
+  const ids = [...new Set(resolveWho(who, scene).filter((id): id is string => !!id))];
+  const people: FrameCheckPerson[] = ids.map((id, index) => {
+    const entity = snapshot.entities.find((entity) => entity.id === id)!;
+    const label = entity.kind === "player" ? "the hero" : brief?.people.find((d) => resolveWho([d.who], scene)[0] === id)?.label || `person ${index + 1}`;
+    return { key: id, label, ...gearOf(snapshot, id), down: isDown(entity) };
+  });
+  const moment = brief?.beat || (typeof shot.action === "string" ? shot.action : "");
+  const result = await checkFrame(apiKey, { image, people, moment });
+  log("picture_frame_check", { campaignId: ctx.campaignId, pictureId, ok: result.verdict ? result.verdict.problems.length === 0 : null, problems: result.verdict?.problems.length ?? null,
+    ms: result.elapsedMs, costUsdMicros: result.costUsdMicros, error: result.error });
+  if (!result.verdict) return null;
+  const problems = result.verdict.problems;
+  const meta = isRecord(shot.meta) ? shot.meta : {};
+  let redrawId: string | null = null;
+  if (problems.length && typeof meta.autoRedrawOf !== "string" && snapshot.timeline) {
+    const board = await boardOf(ctx);
+    if (capRemaining(board) > 0) {
+      const redraw = await createPictureRow(ctx, {
+        id: crypto.randomUUID(), kind: "frame", subjectKind: "turn", subjectId: row.subjectId, composition: "frame", timeline: snapshot.timeline,
+        tier: row.tier, trigger: "redraw", model: row.model, styleVersionId: row.styleVersionId,
+        shot: { ...shot, meta: { ...meta, autoRedrawOf: pictureId, problems } }, prompt: `${row.prompt}\n${correctionLine(problems)}`.slice(0, 8000),
+        referenceIds: row.referenceIds, caption: row.caption,
+      }).catch((error) => { log("picture_auto_redraw_failed", { campaignId: ctx.campaignId, pictureId, message: String((error as Error)?.message ?? error).slice(0, 200) }); return null; });
+      redrawId = redraw?.id ?? null;
+      if (redrawId) log("picture_auto_redraw", { campaignId: ctx.campaignId, pictureId, redrawId, problems: problems.length });
+    }
+  }
+  await reviewPictureRow(ctx, { id: pictureId, review: { ok: problems.length === 0, problems, redrawId, gaze: result.verdict.gaze, checkedAt: new Date().toISOString(), costUsdMicros: result.costUsdMicros } });
+  return redrawId;
 }
