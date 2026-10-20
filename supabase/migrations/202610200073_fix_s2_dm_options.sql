@@ -68,6 +68,10 @@ alter function rpg_private.runtime_public_turn(rpg_private.turns) rename to runt
 create function rpg_private.runtime_public_turn(t rpg_private.turns)
 returns jsonb language plpgsql stable set search_path='' as $$
 declare result jsonb:=rpg_private.runtime_public_turn_before_fix_s2(t); causes jsonb; chips jsonb; checker numeric; begin
+ -- B2: recall is a read of the DM's private notes — never a change in the player's list.
+ if jsonb_typeof(result->'changes')='array' then
+   result:=jsonb_set(result,'{changes}',coalesce((select jsonb_agg(x.value) from jsonb_array_elements(result->'changes') x where x.value->>'tool'<>'recall'),'[]'::jsonb));
+ end if;
  if t.runtime_identity='dm-loop-v1' and t.status='committed' and jsonb_typeof(result->'stats')='object' then
    select d->'causes' into causes from jsonb_array_elements(coalesce(t.checkpoint#>'{dmLoop,diagnostics}','[]'::jsonb)) d
      where d->>'kind'='expensive_turn' and jsonb_typeof(d->'causes')='array' limit 1;

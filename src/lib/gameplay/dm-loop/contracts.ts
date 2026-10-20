@@ -157,6 +157,8 @@ export type DmLoopMeta = {
   playerLikes?: string | null;
   /** Self-reported: an NPC refused the hero this turn (the one model-reported metric of §6). */
   npcRefused?: boolean;
+  /** Fix run B2: an owner's standing out-of-game rule from this turn's input, pinned after the commit. */
+  ownerRule?: string | null;
 };
 
 /** The shadow state's delta, persisted at every checkpoint so a resume rebuilds

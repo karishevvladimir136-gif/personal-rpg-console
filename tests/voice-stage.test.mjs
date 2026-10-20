@@ -36,9 +36,9 @@ test("§1 the voice layer is native Russian prose of about 400–600 tokens, the
   assert.doesNotMatch(VOICE_LAYER_RU, /[A-Za-z]/, "no Latin letters");
   assert.ok(VOICE_LAYER_RU.split(/\n\s*\n/).length >= 4, "several paragraphs");
   // What it carries: the want, speaking is not answering, the particles, game information in narration,
-  // metaphors with the narrator, the owner's test, the tic once a scene, dark deadpan humour never explained, the «Э?» pause.
+  // metaphors with the narrator, the owner's test, the tic once a scene, no quips on another's word (fix run B4: the humour recipe is gone), the «Э?» pause.
   for (const needle of ["чего он хочет от героя", "Говорить — не значит отвечать", "же, ведь, -то, ну, вот, уж, небось, разве", "Цены, условия, риски — в рассказ",
-    "Сравнения остаются у рассказчика", "сказал бы это живой человек вслух, в лицо, в ту секунду?", "не чаще раза за сцену", "Юмор чёрный и сухой", "никто её не объясняет", "«Э?»"])
+    "Сравнения остаются у рассказчика", "сказал бы это живой человек вслух, в лицо, в ту секунду?", "не чаще раза за сцену", "Острот на чужие слова нет", "не афоризмом", "«Э?»"])
     assert.ok(VOICE_LAYER_RU.includes(needle), needle);
   for (const needle of ["чего человек хочет от героя сейчас", "Не отвечай на всё по порядку", "в рассказ, не в реплики", "в ту секунду?"])
     assert.ok(VOICE_REMINDER_RU.includes(needle), needle);

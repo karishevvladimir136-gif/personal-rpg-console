@@ -2,6 +2,7 @@
 // guards data integrity (ownership, quantities, balances, bounds, exact-once
 // rewards, fixed identities), never plausibility: the model is the DM.
 // A rejected call returns a reason the model can act on; the turn continues.
+import { HIDDEN_LAYER_KEY, ARCHIVE_INFIX, archiveKey, parseNoteValue, privateNotes, recallNotes, serializeNote } from "./private-notes.ts";
 import { randomInt } from "node:crypto";
 import type { JsonObject, TurnInput } from "../contracts.ts";
 import type { Entity, EquipmentSlot, Item, ItemDetail, PublicProfile, Quest, QuestDetail } from "../../persistence/contracts.ts";
@@ -13,7 +14,8 @@ import { parseCharacterModel, type CharacterEvidence, type CharacterModel } from
 import { validateToolArguments } from "../../server/dm/model/schema-compiler.ts";
 import { dmLoopLimits as L, type DmLoopTurnLimits } from "./limits.ts";
 import { dmLoopTools, ITEM_CATEGORIES, ITEM_RARITIES, QUEST_KINDS, RELATION_GROUPS, TENSION_CLASSES } from "./tools.ts";
-import { duePlans, parsePlan, planKey, serializePlan, type OffScreenPlan } from "./plans.ts";
+import { allPlans, duePlans, parsePlan, planKey, serializePlan, type OffScreenPlan } from "./plans.ts";
+import { worldDay } from "./context.ts";
 import { ShadowState, ToolReject, reject } from "./shadow.ts";
 import { chip, currencyAmount, type ChipLanguage } from "./receipt-text.ts";
 import type { DmLoopMeta, DmLoopReceipt, DmLoopReceiptResult, DmLoopTension, DmLoopToolCall } from "./contracts.ts";
@@ -321,7 +323,11 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   const formula = parseFormula(str(args.formula));
   const actorText = str(args.actorRef);
   const actor = actorText.toLowerCase() === "dm" ? null : entityOf(shadow, actorText, "actorRef");
-  let modifier = formula.modifier;
+  // Fix run B3 (item 66): the sheet's skill or stat already carries the bonus — a formula modifier on top of it was
+  // session 2's doubled modifier. It is dropped and the receipt says so.
+  const fromSheet = args.modifierField !== undefined || args.skill !== undefined;
+  const droppedModifier = fromSheet && formula.modifier !== 0 ? formula.modifier : 0;
+  let modifier = fromSheet ? 0 : formula.modifier;
   const sources: string[] = [];
   let modifierSource: string | null = null;
   if (args.modifierField !== undefined) {
@@ -382,8 +388,9 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   const sourceText = sources.join(", ") || null;
   const bonusLine = (die: number) => ({
     ...(die === 20 ? { hint: "A natural 20: the hero's moment. Narrate the success first and in full, plus a visible extra in their favour tied to what they tried; companions support, never take the beat." } : {}),
-    ...(die === 1 ? { hint: "A natural 1: a cost tied to what they tried (a lost tool, a worse position, noise), never a lecture." } : {}),
+    ...(die === 1 ? { hint: "A natural 1: the attempt fails — say how, with no extra harm beyond the failure (the table's rule)." } : {}),
     ...(clipped ? { note: `The fiction's bonuses are capped at ±${FICTION_BONUS_CAP} in total.` } : {}),
+    ...(droppedModifier ? { modifierDropped: `The formula's ${droppedModifier > 0 ? "+" : ""}${droppedModifier} was dropped: the sheet's skill or stat already gives the bonus (never both).` } : {}),
   });
   if (isCheck) {
     reject(ctx.checks.length < L.maxChecksPerTurn, `This turn already made ${L.maxChecksPerTurn} checks.`,
@@ -396,7 +403,8 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     };
     const rolled = recordServerRoll(ctx.input.operationId, proposal, modifier, 1, ctx.random);
     const natural: RecordedCheck["natural"] = rolled.kept === 20 ? "crit" : rolled.kept === 1 ? "fumble" : null;
-    const check: RecordedCheck = { ...rolled, natural };
+    // Fix run B3 (the owner's rule, BG3): on a check or a save a natural 20 succeeds and a natural 1 fails.
+    const check: RecordedCheck = { ...rolled, natural, success: natural === "crit" ? true : natural === "fumble" ? false : rolled.success };
     const damage = bundledDamage(shadow, args, ctx, { actor, kind, dc, success: check.success, natural });
     const value: JsonObject = { formula: str(args.formula), reason, actor: actor.name, visibility,
       dice: [...check.dice], kept: check.kept, modifier, modifierSource: sourceText, bonuses, advantage, advantageReason,
@@ -413,7 +421,8 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     : advantage === "advantage" ? Math.max(...dice) : Math.min(...dice);
   const total = kept + modifier;
   const natural = formula.count === 1 && formula.sides === 20 ? (kept === 20 ? "crit" : kept === 1 ? "fumble" : null) : null;
-  const success = dc === null ? null : total >= dc;
+  // Fix run B3: a natural 20 succeeds and a natural 1 fails against any difficulty (attacks already hit and miss so).
+  const success = dc === null ? null : natural === "crit" ? true : natural === "fumble" ? false : total >= dc;
   const damage = bundledDamage(shadow, args, ctx, { actor, kind: kindText, dc, success, natural });
   const value: JsonObject = { formula: str(args.formula), reason, actor: actor?.name ?? "DM", visibility,
     dice, kept, modifier, modifierSource: sourceText, bonuses, advantage, advantageReason, difficulty, total, dc, success, natural, ...bonusLine(natural ? kept : 0),
@@ -431,6 +440,22 @@ function withDamageChip(language: ChipLanguage, rolled: string, damage: ReturnTy
   const total = Number(damage.value.total ?? 0);
   const crit = damage.value.critical === true;
   return `${rolled} · ${language === "ru" ? `урон ${total}${crit ? " (крит, кости вдвойне)" : ""}` : `damage ${total}${crit ? " (critical, dice doubled)" : ""}`}${damage.player ? ` · ${damage.player}` : ""}`;
+}
+
+// --- recall (fix run B2) ------------------------------------------------------
+function recall(shadow: ShadowState, args: Args): DmLoopReceiptResult {
+  const query = str(args.query);
+  reject(query.length >= 2, "recall needs a query of two characters or more.");
+  const at = args.atWorldMinutes !== undefined ? int(args.atWorldMinutes) : null;
+  const state = shadow.source.privateState as Record<string, unknown>;
+  const notes = privateNotes(state, (_kind, key) => key.startsWith("quest_reward_") || key.startsWith("holding_") ||
+    ["notebook", "notebook_session", "ledger", "variety", "metrics", "depth_state"].includes(key) || key.startsWith("plan_"));
+  const plans = allPlans(shadow.source.privateState).map((plan) => ({ kind: "fact" as const, key: plan.key, archived: false,
+    text: `plan (${plan.status}): ${plan.goal}${plan.consequence ? ` → ${plan.consequence}` : ""}`, since: plan.setAtWorldMinutes, until: plan.status === "open" ? null : plan.setAtWorldMinutes }));
+  const found = recallNotes([...notes, ...plans], query, at);
+  return ok({ query, at, notes: found.map((note) => ({ kind: note.kind, key: note.key, text: note.text.slice(0, 1200),
+    since: note.since === null ? null : worldDay(note.since), until: note.until === null ? null : worldDay(note.until), open: note.until === null })) },
+    found.length ? `Recalled ${found.length} private note${found.length === 1 ? "" : "s"}` : "Nothing recalled");
 }
 
 // --- query_state -----------------------------------------------------------
@@ -1168,6 +1193,27 @@ function restTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
       recovered.push({ name: entity.name, before: entity.hp, after: healed, max: entity.max_hp });
     }
   }
+  // Fix run B3 (item 73, report §20): the rest refills the rest-based counters in the same call — those the DM names,
+  // and every spell slot on a safe long rest — up to each counter's own maximum (<name>_max).
+  const restoredCounters: JsonObject[] = [];
+  if (safe) {
+    const named = new Set(((args.restore as unknown[] | undefined) ?? []).map((name) => str(name).toLowerCase().replace(/[\s-]+/g, "_")));
+    for (const entity of participants) {
+      const resources = { ...(shadow.entity(entity.id)?.resources ?? entity.resources) };
+      let changed = false;
+      for (const key of Object.keys(resources)) {
+        if (key.endsWith("_max") || key.endsWith("_min") || key.startsWith("currency_")) continue;
+        const max = resources[`${key}_max`];
+        if (max === undefined || !Number.isFinite(Number(max))) continue;
+        if (!named.has(key) && !(kind === "long" && key.startsWith("spell_slots"))) continue;
+        if (Number(resources[key]) >= Number(max)) continue;
+        restoredCounters.push({ name: entity.name, counter: key, before: Number(resources[key]), after: Number(max) });
+        resources[key] = Number(max);
+        changed = true;
+      }
+      if (changed) setResources(shadow, shadow.entity(entity.id) ?? entity, resources);
+    }
+  }
   const consumed: JsonObject[] = [];
   for (const entry of (args.consume as { itemRef: unknown; quantity: number }[] | undefined) ?? []) {
     const item = itemOf(shadow, entry.itemRef, "consume.itemRef");
@@ -1181,8 +1227,8 @@ function restTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     public_outcome: { participants: participants.map((p) => p.name), recovered, consumed, minutes } } });
   const due = dueAfterTime(shadow, before);
   const heroId = shadow.hero().id;
-  return ok({ kind, safe, minutes, recovered, consumed, ...due },
-    `${kind === "long" ? "Long" : "Short"} rest (${minutes} min)${recovered.length ? `: ${recovered.map((r) => `${r.name} ${r.before}→${r.after}`).join(", ")}` : safe ? "" : ", no recovery"}${due.duePlans ? `; ${(due.duePlans as unknown[]).length} plan(s) due` : ""}`,
+  return ok({ kind, safe, minutes, recovered, restored: restoredCounters, consumed, ...due },
+    `${kind === "long" ? "Long" : "Short"} rest (${minutes} min)${recovered.length ? `: ${recovered.map((r) => `${r.name} ${r.before}→${r.after}`).join(", ")}` : safe ? "" : ", no recovery"}${restoredCounters.length ? `; restored ${restoredCounters.map((r) => `${r.name} ${r.counter} ${r.before}→${r.after}`).join(", ")}` : ""}${due.duePlans ? `; ${(due.duePlans as unknown[]).length} plan(s) due` : ""}`,
     null, chip.rest(ctx.language, kind, minutes, recovered.map((r) => ({ name: String(r.name), before: Number(r.before), after: Number(r.after), hero: participants.find((p) => p.name === r.name)?.id === heroId })), safe));
 }
 
@@ -1308,6 +1354,18 @@ function noteWorld(shadow: ShadowState, args: Args): DmLoopReceiptResult {
   const key = str(args.key);
   reject(!key.startsWith("character_") && !key.startsWith("quest_reward_") && !key.startsWith("statblock_") && !key.startsWith("holding_"),
     "That key prefix is reserved by the server.");
+  // Fix run B2 (5): a note is closed, never silently overwritten — «true until» now; recall still finds it.
+  if (str(args.operation) === "close") {
+    reject(kind !== "faction" && !planKey(key), "close is for a fact, a clock or a consequence (a plan is resolved with planStatus).",
+      "Resolve a plan with planStatus done or dropped.");
+    const own = kind === "clock" ? "fact" : kind;
+    const exists = shadow.privateValue(kind, key) !== null;
+    reject(exists, `There is no ${kind} note "${key}" to close.`);
+    const current = parseNoteValue(shadow.privateValue(own, key));
+    reject(current.until === null, `The ${kind} note "${key}" is already closed.`);
+    shadow.setPrivate(own, key, serializeNote(current.text || (kind === "clock" ? "(clock)" : ""), current.since, shadow.worldMinutes));
+    return ok({ kind, key, until: shadow.worldMinutes }, "DM note closed");
+  }
   if (str(args.operation) === "advance") {
     reject(kind === "clock", "Only a clock can be advanced.");
     const amount = int(args.amount);
@@ -1346,9 +1404,15 @@ function noteWorld(shadow: ShadowState, args: Args): DmLoopReceiptResult {
   if (kind === "clock")
     reject(/^\d{1,6}$/.test(value), `A clock's value is a whole number (its current position, for example "2"), not text: "${value.slice(0, 60)}".`,
       "Set the clock to a number, or advance it with operation \"advance\" and amount; keep its description in a fact note with the same key.");
-  reject(!["notebook", "notebook_session", "ledger", "variety", "metrics", "depth_state"].includes(key) && !key.startsWith("plan_"), "That key is kept by the server.");
-  shadow.setPrivate(kind, key, value);
-  return ok({ kind, key }, "DM note updated");
+  reject(!["notebook", "notebook_session", "ledger", "variety", "metrics", "depth_state", HIDDEN_LAYER_KEY].includes(key) && !key.startsWith("plan_") &&
+    !key.includes(ARCHIVE_INFIX), "That key is kept by the server.");
+  if (kind === "clock") { shadow.setPrivate(kind, key, value); return ok({ kind, key }, "DM note updated"); }
+  // Fix run B2 (5): «true since» now; a different text over an open note keeps the old one, closed, under an archive key.
+  const previous = parseNoteValue(shadow.privateValue(kind, key));
+  if (previous.text.trim() && previous.text !== value)
+    shadow.setPrivate(kind, archiveKey(key, shadow.worldMinutes), serializeNote(previous.text, previous.since, previous.until ?? shadow.worldMinutes));
+  shadow.setPrivate(kind, key, serializeNote(value, previous.text === value && previous.until === null ? previous.since ?? shadow.worldMinutes : shadow.worldMinutes));
+  return ok({ kind, key, since: shadow.worldMinutes }, "DM note updated");
 }
 
 function storedModel(shadow: ShadowState, actorId: string): CharacterModel | null {
@@ -1479,7 +1543,8 @@ function finishTurn(shadow: ShadowState, args: Args, ctx: ToolContext): { result
   const likes = { text: likesRaw ? likesRaw.slice(0, PLAYER_LIKES_CAP).trimEnd() : null, clipped: likesRaw.length > PLAYER_LIKES_CAP };
   const meta: DmLoopMeta = { sceneKinds: [...new Set((args.sceneKinds as DmLoopMeta["sceneKinds"]) ?? [])], spotlight: [...new Set(spotlight)],
     playerMoment: moment, playerMomentReason: moment ? gate!.reason : null, nextTension: tension, threads: [...new Set(threads)],
-    playerLikes: likes.text, npcRefused: !!args.npcRefused };
+    playerLikes: likes.text, npcRefused: !!args.npcRefused,
+    ownerRule: args.ownerRule !== undefined && str(args.ownerRule).trim() ? str(args.ownerRule).trim().slice(0, 300) : null };
   shadow.finished = true;
   const value: JsonObject = { recorded: true, playerMoment: moment,
     ...(likes.clipped ? { playerLikesClipped: `playerLikes was longer than ${PLAYER_LIKES_CAP} characters and was clipped; one or two short new lines are enough (they are appended).` } : {}),
@@ -1501,6 +1566,7 @@ export function executeDmLoopTool(shadow: ShadowState, call: DmLoopToolCall, ctx
     switch (call.name) {
       case "roll": executed = { result: roll(candidate, args, ctx) }; break;
       case "query_state": executed = { result: queryState(candidate, args) }; break;
+      case "recall": executed = { result: recall(candidate, args) }; break;
       case "upsert_character": executed = { result: upsertCharacter(candidate, args, ctx) }; break;
       case "upsert_place": executed = { result: upsertPlace(candidate, args, ctx) }; break;
       case "move_party": executed = { result: moveParty(candidate, args, ctx) }; break;

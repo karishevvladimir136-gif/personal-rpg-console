@@ -453,11 +453,12 @@ test("the World Engine bridge projects plans into threads; the state validates; 
   } finally { await c.f.db.close(); }
 });
 
-test("tool descriptions stay compact: sixteen tools, their descriptions under 6k tokens per provider", () => {
+test("tool descriptions stay compact: seventeen tools, their descriptions under 6k tokens per provider", () => {
   const openai = JSON.stringify(dmLoopToolset.openai), anthropic = JSON.stringify(dmLoopToolset.anthropic);
-  assert.equal(dmLoopToolset.openai.length, 16);
+  assert.equal(dmLoopToolset.openai.length, 17, "fix run B2 added recall");
   // Stage 2b shipped about 5.6k (OpenAI) / 5.1k (Anthropic) estimated tokens; Stage 4 adds the dossier fields;
   // the polish stage adds the roll's bonuses and the speech profile (the schema sits in the cached prefix).
-  assert.ok(estimateTokens(openai) < 9500, `openai tool schema ${estimateTokens(openai)} tokens`);
-  assert.ok(estimateTokens(anthropic) < 9500, `anthropic tool schema ${estimateTokens(anthropic)} tokens`);
+  // Fix run A3/B2/B3: the roll's damage, recall, note_world close, rest's restore, finish_turn's ownerRule (≈ +450).
+  assert.ok(estimateTokens(openai) < 10000, `openai tool schema ${estimateTokens(openai)} tokens`);
+  assert.ok(estimateTokens(anthropic) < 10000, `anthropic tool schema ${estimateTokens(anthropic)} tokens`);
 });

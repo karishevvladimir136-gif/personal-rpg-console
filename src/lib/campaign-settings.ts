@@ -261,7 +261,8 @@ export function createCampaignSettings(
     checkFrequency: "balanced",
     dicePresentation: "key-rolls",
     interactiveDice: true,
-    showDc: false,
+    // Fix run B3 (items 39, 71): the hero's check shows its difficulty by default.
+    showDc: true,
     visualStyle: "Cinematic noir",
     frameRatio: "16:9",
     videoDuration: "10 seconds",

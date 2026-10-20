@@ -423,9 +423,25 @@ function RulesAndPlayStyle({
             )}
           </section>
         </>
-      ) : managedRulesNote ? (
-        <p className="rules-canon-note">{managedRulesNote}</p>
-      ) : null}
+      ) : (
+        <>
+          {managedRulesNote ? <p className="rules-canon-note">{managedRulesNote}</p> : null}
+          {/* Fix run B3 (items 39, 71): a «Логика мира» campaign keeps its own dice settings managed, but the hero's
+              check difficulty stays the owner's choice here — the turn loop shows it on the roll card. */}
+          <section className="rules-section checks-dice-settings" aria-labelledby="show-dc-world-title">
+            <h3 id="show-dc-world-title">{t("Show DC")}</h3>
+            <div className="dice-setting">
+              <p id="show-dc-world-help" className="muted">
+                {t("DC is the target number required to succeed. Show it only for player-facing checks whose target may be disclosed.")}
+              </p>
+              <button type="button" role="switch" aria-checked={settings.showDc} aria-label={t("Show DC")} aria-describedby="show-dc-world-help"
+                className={`toggle ${settings.showDc ? "on" : ""}`} onClick={() => change({ type: "showDc", value: !settings.showDc })}>
+                <span />
+              </button>
+            </div>
+          </section>
+        </>
+      )}
       <section className="rules-section">
         <ChoiceGroup
           label={t("Story Structure")}

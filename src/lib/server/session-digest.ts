@@ -13,6 +13,7 @@ import { buildDigestRequest, runDigest, unparsedReason } from "../gameplay/dm-lo
 import { EFFORT_ORDER } from "../gameplay/dm-loop/depth";
 import { DM_LOOP_RUNTIME } from "../gameplay/dm-loop/contracts";
 import { appendObservations } from "../gameplay/dm-loop/observations";
+import { HIDDEN_LAYER_KEY, privateNotes, serializeNote } from "../gameplay/dm-loop/private-notes";
 import { clearStaleRunning, digestInFlight, digestSchedulable, enterDigest, entryDigestAllowed, leaveDigest, readDigestStatus, setStatus, type DigestStatus } from "../gameplay/dm-loop/digest-guard";
 import type { PlaySnapshot } from "../gameplay/contracts";
 import type { CampaignSnapshot } from "../persistence/contracts";
@@ -73,8 +74,23 @@ export async function digestClosedSession(campaignId: string, sessionId: string,
       plans: result.digest.plans, stinger: result.digest.stinger,
       // Fix run A2: the digest's observations are appended to the DM's notes, never written over them.
       ...(result.digest.playerLikes ? { playerLikes: appendObservations(String(source.snapshot.campaign.dm_likes ?? ""), result.digest.playerLikes) } : {}) }, source.timeline);
+    // Fix run B1/B2: the hidden layer kept current and the closed notes of finished matters folded (one line each,
+    // closed, with the span they covered); a failure here never undoes the digest.
+    const folds = result.digest.folds;
+    if (result.digest.hiddenLayer || folds.length) {
+      const notes = privateNotes(source.privateState);
+      const set = [...(result.digest.hiddenLayer ? [{ kind: "fact" as const, key: HIDDEN_LAYER_KEY, value: result.digest.hiddenLayer }] : []),
+        ...folds.map((fold, index) => {
+          const covered = notes.filter((note) => fold.keys.some((k) => k.kind === note.kind && k.key === note.key));
+          const since = Math.min(...covered.map((note) => note.since ?? Infinity)), until = Math.max(...covered.map((note) => note.until ?? 0));
+          return { kind: "fact" as const, key: `fold_${sessionId.slice(0, 8)}_${index}`, value: serializeNote(fold.line, Number.isFinite(since) ? since : null, until || source.runtime.worldMinutes) };
+        })];
+      await dossier.privateNotes({ set, remove: folds.flatMap((fold) => fold.keys) }, source.timeline)
+        .catch((error) => console.info(JSON.stringify({ event: "session_digest_notes_failed", campaignId, sessionId, message: error instanceof Error ? error.message.slice(0, 200) : String(error) })));
+    }
     console.info(JSON.stringify({ event: "session_digest", campaignId, sessionId, reason, model: pin.modelId, effort, requestTokens: request.tokens,
-      plans: result.digest.plans.length, stinger: result.digest.stinger.length > 0, costUsd: cost, latencyMs: Math.round(performance.now() - started) }));
+      plans: result.digest.plans.length, stinger: result.digest.stinger.length > 0, hiddenLayer: !!result.digest.hiddenLayer, folds: folds.length,
+      folded: folds.reduce((sum, fold) => sum + fold.keys.length, 0), costUsd: cost, latencyMs: Math.round(performance.now() - started) }));
     setStatus(campaignId, sessionId, { state: "done", reason: null, costUsd: cost });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);

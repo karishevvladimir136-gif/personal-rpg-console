@@ -6,7 +6,9 @@
 // layer. The prose below is written natively in Russian from the stage's research: people speak
 // to get something from the listener; speaking is not answering; the particles and word order
 // of spoken Russian; game information in the narration, not in speeches; metaphors with the
-// narrator; the quotable-line test; humour dark, dry, one line, never explained; the «Э?» pause.
+// narrator; the quotable-line test; the «Э?» pause. Fix run B4 (key finding 1): the humour recipe is gone — speech
+// ends on the thought, no quips on another's word, a joke at most once a scene and from character; and (B4, from the
+// Russian instructions' review) no accented last word or clipped ending for effect — they fed the closing clincher.
 import { estimateTokens } from "./tokens.ts";
 
 /** The voice part of layer 1 for a Russian campaign — native Russian prose, about 400–600
@@ -16,11 +18,11 @@ export const VOICE_LAYER_RU = `Голос. Люди говорят, чтобы �
 
 Говорить — не значит отвечать. Живой человек не отвечает на всё по порядку полными фразами: цепляется за одно, остальное мимо ушей, перебивает, спрашивает в ответ, молчит. Реплики короче, чем хочется; между ними — жест, пауза, дело в руках. Двое не пересказывают друг другу известное обоим и не называют чувств вслух — их видно по поступкам.
 
-Русская речь живёт частицами и порядком слов: же, ведь, -то, ну, вот, уж, небось, разве — там, где их сказал бы живой человек, а не для украшения; главное слово — в конец или в начало; обрыв вместо точки. Слово простое, глагол вместо отглагольного имени.
+Русская речь живёт частицами и порядком слов: же, ведь, -то, ну, вот, уж, небось, разве — там, где их сказал бы живой человек, а не для украшения; порядок слов живой, как в устной речи, но без ударного слова в конце ради эффекта; фраза обрывается, когда человека перебили или он сам осёкся, а не вместо точки для красоты. Слово простое, глагол вместо отглагольного имени.
 
 Цены, условия, риски — в рассказ, не вкладывай их в реплики: человек говорит, а не объясняет игру. Сравнения остаются у рассказчика, и редко. В гневе человек называет обиду своими словами — кто что сделал и кому ответить, — а не чеканит афоризм. Проверь каждую реплику: сказал бы это живой человек вслух, в лицо, в ту секунду? Словечко или жест персонажа — не чаще раза за сцену.
 
-Юмор чёрный и сухой: одна строка, что переворачивает чужие слова буквально и мрачно — смерть, долг, утопленники, глупость годятся, — и никто её не объясняет; не игра звуков. Когда герой говорит дикость, человек напротив переспрашивает («Э?», «Чего?») — и герой может отступить или настоять.`;
+Речь кончается, когда человек сказал, что хотел, — не афоризмом. Острот на чужие слова нет; шутка — не чаще раза за сцену и только из характера. Когда герой говорит дикость, человек напротив переспрашивает («Э?», «Чего?») — и герой может отступить или настоять.`;
 
 /** The short reminder (≤ 120 tokens) in the last layer next to the player's input: the two or
  * three rules that drift first — the want, the assistant habit, game information in speeches,

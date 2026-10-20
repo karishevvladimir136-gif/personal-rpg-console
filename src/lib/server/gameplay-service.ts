@@ -26,6 +26,7 @@ import { appendObservations } from "../gameplay/dm-loop/observations";
 import { saveTurnSnapshot } from "./turn-snapshots";
 import { scheduleQuotableCheck } from "./voice/quotable-check";
 import { checkLedger } from "../gameplay/dm-loop/ledger-check";
+import { prepSchedulable, schedulePrep } from "./hidden-layer-prep";
 import { markBoostUsed, readDmSettings, type DmSettings } from "./dm-settings";
 import { dossierService } from "./dossier";
 import { digestOnEntry, entryCheckDue } from "./session-digest";
@@ -150,7 +151,7 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
     bookkeeperModel: (selection: BookkeeperSelection) => createDmModel(selection),
     // Fix run A6: on «пишет — записывает», a cheap model compares the story with the records before the commit.
     ledgerCheck: (input) => checkLedger(process.env.ANTHROPIC_API_KEY ?? "", input),
-    afterCommit: async ({ operationId, playerLikes, boostUsed, playMinutes, input, source, narration }) => {
+    afterCommit: async ({ operationId, playerLikes, ownerRule, boostUsed, playMinutes, input, source, narration }) => {
       // Polish 3 §4: the state before this turn, with the campaign's rules of the moment, for the replay tool (never fails the turn).
       if (source && input) {
         const current = await settings().catch(() => null);
@@ -162,6 +163,8 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
       // Polish item 15: the DM's note lives next to the player's own words, never over them.
       // Fix run A2: and it is appended to the stored observations, never rewritten whole.
       if (playerLikes) await dossier.dmLikes(appendObservations(String(source?.snapshot.campaign.dm_likes ?? ""), playerLikes));
+      // Fix run B2: an owner's out-of-game rule is pinned (the highest authority, never dropped by a budget); a repeat is not.
+      if (ownerRule && !(source?.snapshot.campaign.pinned_facts ?? []).some((pin) => pin.text.trim() === ownerRule.trim())) await dossier.pin(ownerRule).catch(() => {});
       if (boostUsed) await markBoostUsed(campaignId);
       // Polish item 21: the campaign's play time counts real minutes of play.
       if (playMinutes > 0) await dossier.playTime(playMinutes).catch(() => {});
@@ -230,6 +233,9 @@ export async function readPlay(campaignId: string) {
       entryCheckDue(campaignId)) {
       try { await digestOnEntry(campaignId, await readPublicCampaign(campaignId), play, owner.user.id); }
       catch { /* the digest is a background courtesy */ }
+      // Fix run B1: the DM's prep writes the campaign's hidden layer once (before its first turn, or now for a campaign
+      // that has none); in the background, never twice at a time, a failed one retried an hour later at the soonest.
+      if (prepSchedulable(campaignId)) schedulePrep(campaignId, owner.user.id, play.turns.some((turn) => turn.status === "committed") ? "existing" : "first");
     }
     return { ...(pending ? { ...play, startupPending: true } : play), configured: !!key?.trim(), model: choice.modelId,
       rulesetId: settings.ruleset.id };

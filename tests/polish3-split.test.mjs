@@ -286,7 +286,7 @@ test("§3 rejected record calls go back once with their reasons, on both runtime
     assert.deepEqual(pairRow.checkpoint.dmLoop.receipts.map((r) => [r.call.name, r.result.ok]).slice(-2), [["note_world", true], ["finish_turn", true]]);
     // The field sheet names the exact fields in both roles' layer 1.
     const sheet = toolFieldSheet();
-    assert.match(sheet, /- note_world: kind \(fact \| clock \| faction \| consequence\), key, operation \(set \| advance\); optional: value, amount/);
+    assert.match(sheet, /- note_world: kind \(fact \| clock \| faction \| consequence\), key, operation \(set \| advance \| close\); optional: value, amount/);
     assert.match(sheet, /upsert_character has no «details»/);
     assert.match(single.model.requests[0].system[0].text, /Exact fields of the tools/);
     assert.match(pair.bookkeeper.requests[0].system[0].text, /Exact fields of the tools/);

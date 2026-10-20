@@ -23,7 +23,8 @@ import { compileToolset } from "../../server/dm/model/schema-compiler.ts";
 import type { DmMessage, DmModel, DmModelRequest, DmToolCall } from "../../server/dm/model/contracts.ts";
 import { DmModelError } from "../../server/dm/model/contracts.ts";
 import { dmModelSpec, dmUsageCost } from "../../model-runtime/dm-models.ts";
-import { buildCouncilContext, buildDmLoopContext, COUNCIL_TOOLS, suspectedLiteralLeaks } from "./context.ts";
+import { buildCouncilContext, buildDmLoopContext, COUNCIL_TOOLS, instructionsRu, suspectedLiteralLeaks } from "./context.ts";
+import { NUDGES_RU } from "./roles-ru.ts";
 import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KEY } from "./time-words.ts";
 import { advanceLedger, parseLedger, serializeLedger } from "./ledger.ts";
 import { advanceMetrics, parseMetrics, serializeMetrics } from "./metrics.ts";
@@ -56,6 +57,8 @@ export type DmLoopDependencies = {
   /** Stage 4 hooks after a commit (never block or fail the turn): the DM's
    * player-likes note, the used «important turn» flag. */
   afterCommit?: (event: { operationId: string; playerLikes: string | null; boostUsed: boolean;
+    /** Fix run B2: the owner's standing out-of-game rule the DM recognised this turn (pinned as an owner fact). */
+    ownerRule?: string | null;
     /** Polish item 21: real minutes of play this turn stands for (1–30), for the campaign's play time. */
     playMinutes: number;
     /** Polish 3 §4: the turn's literal input and the runtime source it started from (the state before the turn), for the snapshot. */
@@ -364,6 +367,9 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
     const council = input.mode === "companion";
     const context = council ? buildCouncilContext(informed, input) : buildDmLoopContext(informed, input);
     const language: "ru" | "en" = source.snapshot.settings.values.language === "ru" ? "ru" : "en";
+    // Fix run B4: the server's nudges in the instructions' language (compared by text on a resume, so chosen once).
+    const N = instructionsRu(source) ? { CUT_BY_CAP: NUDGES_RU.CUT_BY_CAP, WRAP_UP: NUDGES_RU.WRAP_UP, NARRATE_NOW: NUDGES_RU.NARRATE_NOW,
+      PENDING_OUTCOME: NUDGES_RU.PENDING_OUTCOME, FINISH_NOW: NUDGES_RU.FINISH_NOW } : { CUT_BY_CAP, WRAP_UP, NARRATE_NOW, PENDING_OUTCOME, FINISH_NOW };
     const lastHint = [...source.runtime.turns].reverse().find((turn) => turn.status === "committed" && turn.nextTension !== undefined && turn.id !== operationId)?.nextTension ?? null;
     const turnTension = pin.depth?.tension ?? tensionSignals(source, input, lastHint).tension;
     const showDc = !!(source.snapshot.settings.values as { showDc?: boolean }).showDc;
@@ -426,7 +432,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
     // Fix run A1: the request after a cut by the output cap (one level lower), and the note that goes
     // after the results of a cut message's complete calls.
     let cutRecovery = loop.diagnostics.some((row) => row.kind === "cut_continued") && loop.transcript.at(-1)?.role === "user" &&
-      (loop.transcript.at(-1) as { text?: string }).text === CUT_BY_CAP;
+      (loop.transcript.at(-1) as { text?: string }).text === N.CUT_BY_CAP;
     let pendingCutNote = false;
     for (;;) {
       const last = loop.transcript.at(-1);
@@ -441,18 +447,18 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
         if (pendingCutNote) {
           pendingCutNote = false;
           shadow.finished = false;
-          loop.transcript.push({ role: "user", text: CUT_BY_CAP });
+          loop.transcript.push({ role: "user", text: N.CUT_BY_CAP });
         }
         // finish_turn ends the turn once narration exists; a model that calls it
         // before writing (Opus tends to put text last) is asked for the text.
         if (shadow.finished && !loop.text.trim()) {
           shadow.finished = false;
-          loop.transcript.push({ role: "user", text: NARRATE_NOW });
+          loop.transcript.push({ role: "user", text: N.NARRATE_NOW });
         } else if (shadow.finished && outcomePending && !outcomeAsked()) {
           // Polish item 1: the turn ended on a roll with no narration after it; ask once for the outcome.
           shadow.finished = false;
           diagnostic({ kind: "outcome_asked" });
-          loop.transcript.push({ role: "user", text: PENDING_OUTCOME });
+          loop.transcript.push({ role: "user", text: N.PENDING_OUTCOME });
         }
         // The OpenAI habit of a finish_turn round of its own is folded into the
         // final bookkeeping message (stage 3 §4); Opus batches finish_turn itself.
@@ -490,13 +496,13 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
         break;
       }
       const lastRequest = loop.requests === limits.modelRequestsPerTurn - 1 || loop.receipts.length >= limits.toolCallsPerTurn;
-      if (lastRequest && last?.role !== "user") loop.transcript.push({ role: "user", text: WRAP_UP });
+      if (lastRequest && last?.role !== "user") loop.transcript.push({ role: "user", text: N.WRAP_UP });
       // Requests after the first (continuations after tool results) may run at
       // the pinned continuation effort (stage 2b §3).
       // Fix run A3: a request that answers «narrate the outcome» or «narrate now» thinks at the turn's own depth — on the
       // lighter continuation the stage A probe's fight twice answered it with a bare finish_turn, the rolls never told.
       const lastAsk = loop.transcript.at(-1);
-      const narrationAsked = lastAsk?.role === "user" && (lastAsk.text === PENDING_OUTCOME || lastAsk.text === NARRATE_NOW);
+      const narrationAsked = lastAsk?.role === "user" && (lastAsk.text === N.PENDING_OUTCOME || lastAsk.text === N.NARRATE_NOW);
       const planned = loop.requests > 0 && pin.continuationEffort && !narrationAsked ? pin.continuationEffort : pin.effort;
       // Fix run A1: the request after a cut thinks one level lower (the plan is made; long thinking cut it).
       const effort = cutRecovery ? lowerEffort(planned) : planned;
@@ -561,7 +567,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
             providerCode: error.detail.providerCode ?? null, message: error.message.slice(0, 300) });
           if (error.kind === "not_configured") throw new DmError("configuration");
           if (error.kind === "provider_rejected" && cutRecovery && !loop.diagnostics.some((row) => row.kind === "cut_plain_retry") &&
-            plainCutMessage(loop.transcript, CUT_BY_CAP)) {
+            plainCutMessage(loop.transcript, N.CUT_BY_CAP)) {
             diagnostic({ kind: "cut_plain_retry" });
             await persist("generating");
             continue;
@@ -595,7 +601,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
           diagnostic({ kind: "cut_continued", toolCalls: toolCalls.length });
           cutRecovery = true;
           if (!toolCalls.length) {
-            loop.transcript.push({ role: "user", text: CUT_BY_CAP });
+            loop.transcript.push({ role: "user", text: N.CUT_BY_CAP });
             await persist("generating");
             continue;
           }
@@ -605,7 +611,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       if (!toolCalls.length) {
         if (outcomePending && !outcomeAsked() && loop.requests < limits.modelRequestsPerTurn) {
           diagnostic({ kind: "outcome_asked" });
-          loop.transcript.push({ role: "user", text: PENDING_OUTCOME });
+          loop.transcript.push({ role: "user", text: N.PENDING_OUTCOME });
           await persist("generating");
           continue;
         }
@@ -614,7 +620,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
         if (!shadow.finished && !loop.receipts.length && loop.text.trim() && stop.reason !== "max_tokens" && loop.requests < limits.modelRequestsPerTurn &&
           !loop.diagnostics.some((row) => row.kind === "finish_asked")) {
           diagnostic({ kind: "finish_asked" });
-          loop.transcript.push({ role: "user", text: FINISH_NOW });
+          loop.transcript.push({ role: "user", text: N.FINISH_NOW });
           await persist("generating");
           continue;
         }
@@ -706,7 +712,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
         .map((turn) => Date.parse(turn.updated_at)).filter((ms) => Number.isFinite(ms));
       const since = previous.length ? Math.max(...previous) : Date.parse(claim.turn.public.created_at) || Date.now();
       const playMinutes = Math.max(1, Math.min(30, Math.round((Date.now() - since) / 60000)));
-      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, boostUsed: !!pin.depth?.boosted, playMinutes, input, source: claim.source, narration }); }
+      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, ownerRule: loop.meta?.ownerRule ?? null, boostUsed: !!pin.depth?.boosted, playMinutes, input, source: claim.source, narration }); }
       catch { /* a note or a flag never fails a committed turn */ }
     }
     return result;

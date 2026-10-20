@@ -126,7 +126,8 @@ test("a plain turn: the narration streams without the ledger, the bookkeeper's r
     assert.deepEqual(loop.usage.map((u) => u.modelId), ["claude-fable-5-1", "claude-opus-5-5"]);
     assert.ok(loop.transcript.some((m) => m.role === "user" && m.text.startsWith(BOOKKEEPER_MARKER)));
     // The writer saw only roll; the bookkeeper everything but roll, and the ledger in its brief.
-    assert.deepEqual(played.writer.requests[0].toolset.tools.map((t) => t.name), ["roll"]);
+    // Fix run B2: the writer also reads its private notes (recall), records nothing.
+    assert.deepEqual(played.writer.requests[0].toolset.tools.map((t) => t.name), ["roll", "recall"]);
     assert.ok(!played.bookkeeper.requests[0].toolset.tools.some((t) => t.name === "roll"));
     assert.ok(played.bookkeeper.requests[0].toolset.tools.some((t) => t.name === "finish_turn"));
     const brief = played.bookkeeper.requests[0].messages[0].text;

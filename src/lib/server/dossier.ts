@@ -81,6 +81,12 @@ export async function dossierService(ownerId: string, campaignId: string) {
     source: () => call(ownerId, campaignId, "source", {}) as Promise<RuntimeSource & { timeline: TimelineFence }>,
     digest: (payload: { sessionId: string; recap: string; title: string; notebook: string; plans: { key: string; value: string }[]; playerLikes?: string; stinger?: string }, timeline: unknown) =>
       call(ownerId, campaignId, "digest", { requestId: randomUUID(), ...payload }, timeline),
+    /** Fix run B1/B2: the server's background writes into the DM's private notes (the prep's hidden layer, the
+     * digest's update of it, the folds of closed notes), fenced on the timeline, per key. */
+    privateNotes: (payload: { set: { kind: "fact" | "clock" | "consequence"; key: string; value: string }[]; remove: { kind: "fact" | "clock" | "consequence"; key: string }[] }, timeline: unknown) =>
+      call(ownerId, campaignId, "private_notes", { requestId: randomUUID(), ...payload }, timeline),
+    /** Fix run B3: an owner's standing out-of-game rule, pinned as an owner fact (the owner removes it like any pin). */
+    pin: (text: string) => call(ownerId, campaignId, "pin", { requestId: randomUUID(), text: text.slice(0, 300) }),
     /** Voice stage part 5: the quotable-line check's flags of a committed turn (the per-turn log; the newest row feeds the next turn's tail). */
     voiceFlagsSave: (payload: { operationId: string; flags: { line: string; why: string }[]; lines: number; model: string | null; usage: unknown; costUsdMicros: number }) =>
       call(ownerId, campaignId, "voice_flags_save", { requestId: randomUUID(), ...payload }),

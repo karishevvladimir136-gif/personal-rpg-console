@@ -22,13 +22,13 @@ test("Checks & Dice defaults and every preference remain independent of difficul
   assert.equal(original.checkFrequency, "balanced");
   assert.equal(original.dicePresentation, "key-rolls");
   assert.equal(original.interactiveDice, true);
-  assert.equal(original.showDc, false);
+  assert.equal(original.showDc, true, "fix run B3: the hero's check shows its difficulty by default");
   let settings = original;
   for (const [type, values] of [
     ["checkFrequency", ["narrative", "full-rpg", "balanced"]],
     ["dicePresentation", ["hidden", "all-player-rolls", "key-rolls"]],
     ["interactiveDice", [false, true]],
-    ["showDc", [true, false]],
+    ["showDc", [false, true]],
   ]) {
     for (const value of values) {
       const previous = settings;

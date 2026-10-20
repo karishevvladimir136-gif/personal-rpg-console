@@ -33,7 +33,8 @@ export function craftCardsBlock(cards: ContextCard[]): string {
 }
 import { parseCharacterModel, type CharacterModel } from "../character-model.ts";
 import type { DmSystemBlock } from "../../server/dm/model/contracts.ts";
-import { DM_ROLE, dmTurnShape, WRITER_ROLE, writerTurnShape } from "./roles.ts";
+import { dmRoleText, dmTurnShape, writerRoleText, writerTurnShape } from "./roles.ts";
+import { campaignLanguageRu, DOCTRINE_HEADER_RU, HEADERS_RU } from "./roles-ru.ts";
 import { allPlans } from "./plans.ts";
 import { voiceExamplesBlock, voiceLayer, voiceReminder, VOICE_TOKEN_CAP_DEFAULT, VOICE_TOKEN_CAP_MAX, VOICE_TOKEN_CAP_MIN } from "./voice.ts";
 import { parseLedger, type AttentionLedger } from "./ledger.ts";
@@ -43,6 +44,7 @@ const bytes = (text: string) => new TextEncoder().encode(text).length;
 const json = (value: unknown) => JSON.stringify(value);
 
 import { estimateTokens } from "./tokens.ts";
+import { HIDDEN_LAYER_KEY, hiddenLayerOf, ownerSecretsText, privateNotes, rankNotes, type PrivateNote } from "./private-notes.ts";
 export { estimateTokens };
 const clipTokens = (text: string, maxTokens: number) => {
   if (estimateTokens(text) <= maxTokens) return text;
@@ -365,18 +367,28 @@ function pinnedFacts(source: RuntimeSource): Budgeted {
   return withinBudget(entries, DOSSIER_BUDGETS.layer3.pinned, "Owner-pinned facts (always true; the owner's word outranks everything but a later owner correction):");
 }
 
-const RESERVED_FACTS = new Set(["notebook", "notebook_session", "ledger", "variety", "metrics", "depth_state", TIME_CHECK_KEY]);
+const RESERVED_FACTS = new Set(["notebook", "notebook_session", "ledger", "variety", "metrics", "depth_state", TIME_CHECK_KEY, HIDDEN_LAYER_KEY]);
+const serverKept = (_kind: string, key: string) => key.startsWith("quest_reward_") || key.startsWith("holding_") || key.startsWith("plan_") || RESERVED_FACTS.has(key);
+/** Fix run B1/B2: the owner's secrets and the hidden layer head the private notes and are never budget-dropped; the
+ * notes follow in priority order (open clocks and consequences, open facts newest first, closed ones last) with their
+ * validity, so a budget drops the closed notes first. */
 function privateSecrets(source: RuntimeSource): Budgeted {
-  const entries: { label: string; text: string }[] = [];
-  for (const kind of ["fact", "clock", "consequence"] as const) {
-    const bucket = source.privateState[kind];
-    if (!bucket || typeof bucket !== "object" || Array.isArray(bucket)) continue;
-    for (const [key, value] of Object.entries(bucket)) {
-      if (key.startsWith("quest_reward_") || key.startsWith("holding_") || key.startsWith("plan_") || RESERVED_FACTS.has(key)) continue;
-      entries.push({ label: `${kind}:${key}`, text: `- ${kind} ${key}: ${typeof value === "string" ? clipChars(value, 800) : json(value)}` });
-    }
-  }
-  return withinBudget(entries, memoryBudgets(source).secrets, "Private DM notes (never shown to the player; facts, clocks, consequences; update with note_world):");
+  const owner = ownerSecretsText(source);
+  const layer = hiddenLayerOf(source);
+  const head = [owner ? `The owner's own secrets (DM-only; build on them, never contradict them):\n${owner}` : "", layer].filter(Boolean).join("\n\n");
+  const validity = (note: PrivateNote) => note.until !== null ? ` (closed — was true${note.since !== null ? ` from ${worldDay(note.since)}` : ""} until ${worldDay(note.until)})`
+    : note.since !== null ? ` (since ${worldDay(note.since)})` : "";
+  const entries = rankNotes(privateNotes(source.privateState, serverKept)).map((note) => ({ label: `${note.kind}:${note.key}`,
+    text: `- ${note.kind} ${note.key}${validity(note)}: ${clipChars(note.text, 800)}` }));
+  const notes = withinBudget(entries, memoryBudgets(source).secrets, "Private DM notes (never shown to the player; facts, clocks, consequences; set, advance or close them with note_world; recall finds closed and older ones):");
+  return { text: [head, notes.text].filter(Boolean).join("\n\n"), dropped: notes.dropped, used: notes.used + (head ? estimateTokens(head) : 0) };
+}
+/** Fix run B2 (4): the memory gauge of the owner panel — the private notes against their budget. */
+export function privateNotesGauge(source: RuntimeSource): { used: number; budget: number; notes: number; closed: number; dropped: number; hiddenLayer: boolean } {
+  const all = privateNotes(source.privateState, serverKept);
+  const result = privateSecrets(source);
+  return { used: result.used, budget: memoryBudgets(source).secrets, notes: all.length, closed: all.filter((note) => note.until !== null).length,
+    dropped: result.dropped.length, hiddenLayer: !!hiddenLayerOf(source) };
 }
 
 function offScreenPlans(source: RuntimeSource): Budgeted {
@@ -608,9 +620,11 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
   const voiceMode = source.voiceMode ?? (source.voiceExamplesOn ? "five" : "off");
   const voice = voiceLayer(language, source.voiceSamples, voiceMode, voiceOptions);
   const examples = voiceExamplesBlock(source.voiceSamples, voiceOptions.layerOff ? "off" : voiceMode, voiceOptions);
-  const howToDm = [role === "writer" ? WRITER_ROLE : DM_ROLE, role === "writer" ? writerTurnShape(language) : dmTurnShape(language), voice,
-    `Campaign language: ${language}. Narrate and voice characters in ${language}; keep established names in the campaign's spelling.`,
-    craft?.doctrine ? `DM Craft — how to run (the owner's approved doctrine):\n${craft.doctrine.title}\n${craft.doctrine.guidance}\nAvoid: ${craft.doctrine.avoid}` : "",
+  // Fix run B4: «Инструкции ведущего: русские» — the native Russian role, language line and headers for a Russian campaign.
+  const ru = instructionsRu(source);
+  const howToDm = [role === "writer" ? writerRoleText(ru) : dmRoleText(ru), role === "writer" ? writerTurnShape(language) : dmTurnShape(language), voice,
+    ru ? campaignLanguageRu() : `Campaign language: ${language}. Narrate and voice characters in ${language}; keep established names in the campaign's spelling.`,
+    craft?.doctrine ? `${ru ? DOCTRINE_HEADER_RU : "DM Craft — how to run (the owner's approved doctrine):"}\n${craft.doctrine.title}\n${craft.doctrine.guidance}\nAvoid: ${craft.doctrine.avoid}` : "",
     describeStyle((craft?.style ?? snapshot.settings.values.dmStyle ?? null) as Record<string, unknown> | null)].filter(Boolean).join("\n\n");
   layers.push({ layer: 1, budgetTokens: DOSSIER_BUDGETS.layer1 + (examples.mode === "all" ? Math.min(VOICE_TOKEN_CAP_MAX, Math.max(VOICE_TOKEN_CAP_MIN, source.voiceTokenCap ?? VOICE_TOKEN_CAP_DEFAULT)) : 0),
     usedTokens: estimateTokens(howToDm), dropped: examples.dropped ? [`voice examples: ${examples.dropped} passage(s) beyond the cap`] : [] });
@@ -700,9 +714,28 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
     { text: now, cache: false },
   ];
   const cachedPrefixBytes = bytes(howToDm) + bytes(world) + history.blocks.reduce((sum, text) => sum + bytes(text), 0) + bytes(living);
-  return { role, system, parts: { howToDm, world, history: history.blocks, living, tail, tailBase, now, timeLine },
+  const built: DmLoopContext = { role, system, parts: { howToDm, world, history: history.blocks, living, tail, tailBase, now, timeLine },
     craft: { selected: selectedCards, library: craft?.library ?? [] }, user, cachedPrefixBytes,
     totalBytes: cachedPrefixBytes + bytes(tail) + bytes(now) + bytes(user), layers, memoryQuery: memoryQueryFor(source, input) };
+  return ru ? localizedContext(built) : built;
+}
+
+/** Fix run B4: the Russian instructions read Russian section headers — one pass over the built blocks (the same text
+ * every turn, so the cached prefix stays byte-stable). */
+export function instructionsRu(source: RuntimeSource): boolean {
+  return source.snapshot.settings.values.language === "ru" && parseDmOptions(source.dmOptions).instructions === "ru";
+}
+const HEADER_PAIRS = Object.entries(HEADERS_RU).filter(([en]) => en !== "Avoid:").sort((a, b) => b[0].length - a[0].length);
+export function localizeHeaders(text: string): string {
+  let out = text;
+  for (const [en, ru] of HEADER_PAIRS) if (out.includes(en)) out = out.split(en).join(ru);
+  return out.split("\nAvoid: ").join(`\n${HEADERS_RU["Avoid:"]} `);
+}
+function localizedContext(context: DmLoopContext): DmLoopContext {
+  const L = localizeHeaders;
+  const parts = { ...context.parts, howToDm: L(context.parts.howToDm), world: L(context.parts.world), history: context.parts.history.map(L),
+    living: L(context.parts.living), tail: L(context.parts.tail), tailBase: L(context.parts.tailBase), now: L(context.parts.now) };
+  return { ...context, system: context.system.map((block) => ({ ...block, text: L(block.text) })), parts, user: L(context.user) };
 }
 
 /** Fix run A3 (item 75): the party council — one line to a companion — is a light call. Session 2's ran
@@ -734,15 +767,23 @@ export function buildCouncilContext(source: RuntimeSource, input: TurnInput): Dm
     used += cost;
   }
   const journalTitles = snapshot.quests.filter((row) => row.status === "open").map((row) => `${row.kind ?? "quest"}: ${row.title}`).slice(0, 12);
-  const council = [
-    `Party council: the hero speaks with a companion between the story's turns. Answer as the companion, in their own voice, from what they know and want; one exchange; the listeners may add a line when it is theirs to say. Narrate nothing else: no new events, no rolls; record only what the talk changed (note_character, note_world) and the minutes it took (advance_time), then finish_turn.`,
+  // Fix run B4: the council's own lines in Russian with «Инструкции ведущего: русские».
+  const ru = instructionsRu(source);
+  const presentNames = snapshot.entities.filter((row) => present.has(row.id)).map((row) => row.name).join(", ");
+  const sceneLine = ru
+    ? `Сцена: ${place ? `${place.name}. ` : ""}${worldDay(runtime.worldMinutes)}, ${partOfDay(runtime.worldMinutes, "ru")}. Здесь: ${presentNames || "отряд"}.`
+    : `The scene: ${place ? `${place.name}. ` : ""}${worldDay(runtime.worldMinutes)}, ${partOfDay(runtime.worldMinutes, snapshot.campaign.language === "ru" ? "ru" : "en")}. Present: ${presentNames || "the party"}.`;
+  const councilText = [
+    ru ? "Совет отряда: герой говорит со спутником между ходами истории. Отвечай за спутника его голосом, из того, что он знает и чего хочет; один обмен репликами; слушатели вставляют слово, когда это их дело. Больше ничего не рассказывай: ни новых событий, ни бросков; запиши только то, что изменил разговор (note_character, note_world), и минуты, которые он занял (advance_time), потом finish_turn."
+      : `Party council: the hero speaks with a companion between the story's turns. Answer as the companion, in their own voice, from what they know and want; one exchange; the listeners may add a line when it is theirs to say. Narrate nothing else: no new events, no rolls; record only what the talk changed (note_character, note_world) and the minutes it took (advance_time), then finish_turn.`,
     party.text,
     people.length ? `The people in this talk (their private Character Models — what they know, want and hide):\n${people.join("\n")}` : "",
-    `The scene: ${place ? `${place.name}. ` : ""}${worldDay(runtime.worldMinutes)}, ${partOfDay(runtime.worldMinutes, snapshot.campaign.language === "ru" ? "ru" : "en")}. Present: ${snapshot.entities.filter((row) => present.has(row.id)).map((row) => row.name).join(", ") || "the party"}.`,
-    journalTitles.length ? `Open journal (titles): ${journalTitles.join("; ")}` : "",
+    sceneLine,
+    journalTitles.length ? `${ru ? "Открытый журнал (заголовки)" : "Open journal (titles)"}: ${journalTitles.join("; ")}` : "",
     recent.length ? `The last exchanges, verbatim (oldest first):\n${recent.join("\n")}` : "",
     speechProfilesBlock(source, input, models),
   ].filter(Boolean).join("\n\n");
+  const council = ru ? localizeHeaders(councilText) : councilText;
   const system: DmSystemBlock[] = [{ text: full.parts.howToDm, cache: true, ttl: "1h" }, { text: council, cache: false }];
   const layers: DossierLayerReport[] = [full.layers[0], { layer: 7, budgetTokens: COUNCIL_HISTORY_TOKENS + DOSSIER_BUDGETS.layer3.party + 8000, usedTokens: estimateTokens(council), dropped: [] }];
   const cachedPrefixBytes = bytes(full.parts.howToDm);

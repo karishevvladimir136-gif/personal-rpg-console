@@ -62,6 +62,15 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
     }),
   },
   {
+    // Fix run B2 (3), (5): the private notes the dossier's budget left out, closed notes, and «what was true then».
+    name: "recall",
+    description: "Search your private notes and plans, closed and archived ones too, by a name or words; atWorldMinutes keeps only what was true then. Read-only. For a person, place or thread back after long absence, or a note missing from the dossier.",
+    parameters: object({
+      query: str("Words that must all match.", 200),
+      atWorldMinutes: opt({ type: "integer", minimum: 0, maximum: 100_000_000 }),
+    }),
+  },
+  {
     name: "upsert_character",
     description: "Create or update a non-player character, companion or faction the moment the story needs one: name, description, presence in the scene, optional stat block. A new companion joins the party when party is true. The player's hero cannot be rewritten here. If the name is close to an existing character the receipt returns that ID as a hint; you decide whether it is the same person. Public knowledge the hero has goes here too: relation (how this person stands to the hero, as the hero sees it), important (a person worth a Character Model and a portrait), attitude (a companion's observable attitude toward the hero), factionRef, homeRef. A faction is a record of kind faction with its public note as description and its standing in relation.",
     strict: { anthropic: false },
@@ -186,13 +195,14 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
   },
   {
     name: "rest",
-    description: "A short or long rest for the party (or listed participants). Time passes (60 / 480 minutes unless given), HP recovers by the campaign's recovery setting when the rest is safe, listed supplies are consumed, and a rest record is kept.",
+    description: "A short or long rest for the party (or listed participants) — one call for the whole rest, no resource call per counter. Time passes (60 / 480 minutes unless given); on a safe rest HP recovers by the campaign setting and the counters named in restore go back to their maximum (a safe long rest refills spell slots anyway); listed supplies are consumed.",
     parameters: object({
       kind: { type: "string", enum: ["short", "long"] },
       safe: { type: "boolean", description: "Your judgment: a safe rest recovers; an unsafe or interrupted one does not." },
       participantRefs: opt({ type: "array", maxItems: 20, items: ref("Participant.") }),
       consume: opt({ type: "array", maxItems: 10, items: object({ itemRef: ref("Supply used."), quantity: { type: "integer", minimum: 1, maximum: L.maxItemQuantity } }) }),
       minutes: opt({ type: "integer", minimum: 1, maximum: L.maxMinutesPerTurn }),
+      restore: opt({ type: "array", maxItems: 20, items: { type: "string", minLength: 1, maxLength: 60 }, description: "Counters this rest refills (ki, hit_dice…)." }),
     }),
   },
   {
@@ -232,11 +242,11 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
   {
     name: "note_world",
     strict: { anthropic: false },
-    description: "Private DM notes about the world: facts (set), clocks (set or advance by an amount), factions, consequences, and off-screen plans. Keys are stable identifiers (lowercase, dashes). A plan is a fact whose key starts with plan_: who pursues what, when it comes due (in game minutes from now), the consequence and whether the hero gets a fair warning; the receipts of advance_time, move_party and rest list the plans that came due, and you resolve a plan by setting planStatus. The player never sees these.",
+    description: "Private DM notes about the world: facts (set), clocks (set or advance by an amount), factions, consequences, and off-screen plans. Keys are stable identifiers (lowercase, dashes). A plan is a fact whose key starts with plan_: who pursues what, when it comes due (in game minutes from now), the consequence and whether the hero gets a fair warning; the receipts of advance_time, move_party and rest list the plans that came due, and you resolve a plan by setting planStatus. A note that stopped being true is closed (operation close), not overwritten; recall still finds it. The player never sees these.",
     parameters: object({
       kind: { type: "string", enum: ["fact", "clock", "faction", "consequence"] },
       key: { type: "string", minLength: 1, maxLength: 120, pattern: "^[a-zA-Z0-9_-]+$" },
-      operation: { type: "string", enum: ["set", "advance"] },
+      operation: { type: "string", enum: ["set", "advance", "close"] },
       value: opt(str("The note (set); for a plan: the goal and the steps in a few lines.", 2000)),
       amount: opt({ type: "integer", minimum: 0, maximum: 100, description: "Clock advance (advance)." }),
       actorRef: opt({ type: "string", minLength: 1, maxLength: 200, description: "Plan: who pursues it (a character or faction reference: an ID, a local key or an exact name), or \"world\" for a plan that belongs to nobody in particular (weather, the tide, the law)." }),
@@ -284,6 +294,7 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       threadRefs: opt({ type: "array", maxItems: 8, items: ref("A thread, debt, promise or quest this turn touched.") }),
       playerLikes: opt(str("A NEW observation of what the player enjoys (themes, scene kinds, pace), one or two short lines; it is appended to your notes (they are never rewritten whole), so only what the notes do not hold yet; up to 1200 characters (longer is clipped). The player's own words in the dossier are theirs — never repeat or rewrite them here.", L.maxLongText)),
       npcRefused: opt({ type: "boolean", description: "True when a character refused, bargained down or walked away from the hero this turn." }),
+      ownerRule: opt(str("Only a standing table rule the player wrote OUT OF GAME this turn, in one line; it becomes an owner-pinned fact. Never invented.", 300)),
     }),
   },
 ];

@@ -12,6 +12,7 @@ import type { DmMessage, DmModel, DmSystemBlock } from "../../server/dm/model/co
 import type { DmEffort } from "../../model-runtime/dm-models.ts";
 import { buildDmLoopContext, estimateTokens, worldDay } from "./context.ts";
 import { allPlans, serializePlan, type OffScreenPlan } from "./plans.ts";
+import { hiddenLayerOf, privateNotes } from "./private-notes.ts";
 
 export type SessionDigest = {
   recap: string;
@@ -21,6 +22,10 @@ export type SessionDigest = {
   playerLikes: string | null;
   /** Polish item 11: the closing stinger «Тем временем…» — one beat elsewhere, from an open plan. */
   stinger: string;
+  /** Fix run B1: the hidden layer rewritten with what the session moved (null: unchanged). */
+  hiddenLayer: string | null;
+  /** Fix run B2 (2): closed notes of one finished matter, folded into one line each. */
+  folds: { keys: { kind: "fact" | "clock" | "consequence"; key: string }[]; line: string }[];
 };
 
 export type DigestSession = { id: string; title: string; scenes: { role: string; body: string }[]; startWorldMinutes: number | null; endWorldMinutes: number };
@@ -32,9 +37,11 @@ const DIGEST_INSTRUCTIONS = `Between sessions. The session below has just ended.
   "notebook": "your private prep notebook for the next session, in the campaign language, up to 1500 characters: (1) what engaged the player this session; (2) two or three situations ready to offer next time — situations, not plot, no rails; (3) seeds planted earlier that are ripe now; (4) companions, threads, debts or promises that have not sounded for a while and deserve a scene; (5) for each mystery, which clues the player has met and the next clue to offer; (6) direct questions asked of or by the hero that are still unanswered",
   "plans": [ { "key": "plan_<existing or new key>", "actorId": "<entity ID or null>", "goal": "the plan and its next steps in a few lines", "dueWorldMinutes": <absolute game minute of the next step>, "consequence": "what lands if nobody interferes", "warning": "the fair warning the hero may notice, or empty", "status": "open|done|dropped" } ],
   "playerLikes": "one to three short NEW lines of YOUR observations of what the player enjoyed this session that your notes do not hold yet (they are appended to your notes, never replace them; never the player's own words), or null when nothing is new",
+  "hiddenLayer": "the campaign's hidden layer (your private notes begin with it) rewritten whole with what this session moved: which clues the hero found, which secrets came closer, the clocks advanced, a faction's aim that shifted — the same headings, in the campaign language, up to 5000 characters; null when the session changed nothing in it or the campaign has none",
+  "folds": [ { "keys": ["kind:key of two or more CLOSED private notes about one finished matter (a fight's rounds, a search's steps)"], "line": "one line that keeps what still matters of them, in the campaign language" } ],
   "stinger": "«Meanwhile…»: 3–6 sentences in the campaign language, a closing beat the player reads after the session — one scene elsewhere, built from an open off-screen plan whose warning the hero has not seen yet; it points at what is coming without revealing a secret, naming a hidden fact or deciding an outcome; written as story, no headings; empty string when no open plan fits"
 }
-Rules: advance the off-screen plans only for the game time that passed in this session (from its first to its last scene); the player's real-world absence moves nothing. Keep each person consistent with their Character Model. Plans you do not change may be omitted. Never put a secret into recap, title or stinger. End the session on a clear beat: the recap says where things stand, the stinger shows the world moving.`;
+Rules: fold only notes marked closed, never an open one, never the hidden layer; leave out "folds" when nothing is worth folding. Advance the off-screen plans only for the game time that passed in this session (from its first to its last scene); the player's real-world absence moves nothing. Keep each person consistent with their Character Model. Plans you do not change may be omitted. Never put a secret into recap, title or stinger. End the session on a clear beat: the recap says where things stand, the stinger shows the world moving.`;
 
 export function buildDigestRequest(source: RuntimeSource, session: DigestSession, effort: DmEffort): { system: DmSystemBlock[]; messages: DmMessage[]; effort: DmEffort; tokens: number } {
   // The same cached layers a turn uses (how to run, the world, the dossier); the
@@ -84,8 +91,20 @@ export function parseDigest(text: string, source: RuntimeSource, nowMinutes: num
       consequence: str(p.consequence, 400) || previous?.consequence || "", warning: str(p.warning, 400) || previous?.warning || "", status };
     plans.push({ key, value: serializePlan(plan) });
   }
+  // Fix run B2 (2): a fold names closed notes that exist; anything else is ignored.
+  const closedKeys = new Set(privateNotes(source.privateState).filter((note) => note.until !== null).map((note) => `${note.kind}:${note.key}`));
+  const folds: SessionDigest["folds"] = [];
+  for (const raw of Array.isArray(value.folds) ? value.folds.slice(0, 20) : []) {
+    if (!raw || typeof raw !== "object") continue;
+    const f = raw as Record<string, unknown>;
+    const keys = (Array.isArray(f.keys) ? f.keys : []).map((k) => String(k)).filter((k) => closedKeys.has(k))
+      .map((k) => { const at = k.indexOf(":"); return { kind: k.slice(0, at) as "fact" | "clock" | "consequence", key: k.slice(at + 1) }; });
+    const line = str(f.line, 600);
+    if (keys.length >= 2 && line) folds.push({ keys, line });
+  }
+  const layer = typeof value.hiddenLayer === "string" && value.hiddenLayer.trim() && hiddenLayerOf(source) ? value.hiddenLayer.trim().slice(0, 5800) : null;
   return { recap, title, notebook, plans, playerLikes: typeof value.playerLikes === "string" && value.playerLikes.trim() ? value.playerLikes.trim().slice(0, 2000) : null,
-    stinger: str(value.stinger, 2000) };
+    stinger: str(value.stinger, 2000), hiddenLayer: layer, folds };
 }
 
 /** The digest's output ceiling, thinking included (fix run A4). */

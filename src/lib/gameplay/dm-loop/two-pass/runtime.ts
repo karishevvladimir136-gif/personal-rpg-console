@@ -27,7 +27,8 @@ import { compileToolset } from "../../../server/dm/model/schema-compiler.ts";
 import type { DmEffort, DmMessage, DmModel, DmModelRequest, DmProviderId, DmToolCall } from "../../../server/dm/model/contracts.ts";
 import { DmModelError } from "../../../server/dm/model/contracts.ts";
 import { dmModelSpec, dmUsageCost } from "../../../model-runtime/dm-models.ts";
-import { buildDmLoopContext, suspectedLiteralLeaks } from "../context.ts";
+import { buildDmLoopContext, instructionsRu, suspectedLiteralLeaks } from "../context.ts";
+import { NUDGES_RU } from "../roles-ru.ts";
 import { advanceLedger, parseLedger, serializeLedger } from "../ledger.ts";
 import { advanceMetrics, parseMetrics, serializeMetrics } from "../metrics.ts";
 import { chooseDepth, lowerEffort, parseDepthRange, parseDepthState, tensionSignals } from "../depth.ts";
@@ -64,7 +65,9 @@ export type TwoPassDependencies = DmLoopDependencies & {
 };
 
 /** The writer's one tool and the bookkeeper's fifteen. */
-export const writerToolset = compileToolset(dmLoopTools.filter((tool) => tool.name === "roll"));
+/** The writer's tools: the dice, and (fix run B2) recall — a read of the private notes, nothing recorded. */
+export const isWriterTool = (name: string) => name === "roll" || name === "recall";
+export const writerToolset = compileToolset(dmLoopTools.filter((tool) => isWriterTool(tool.name)));
 export const bookkeeperToolset = compileToolset(dmLoopTools.filter((tool) => tool.name !== "roll"));
 
 /** Bench observations of the split, reported through `observe` beside the loop's own. The
@@ -237,7 +240,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
         if (loop.receipts.some((row) => row.call.id === call.id)) continue;
         const toolCall = { id: call.id, name: call.name, arguments: parseArguments(call) as DmLoopReceipt["call"]["arguments"] };
         // The writer may only roll; the bookkeeper never rolls (their toolsets say so; this guards a stray call).
-        const allowed = phase === "writer" ? call.name === "roll" : call.name !== "roll";
+        const allowed = phase === "writer" ? isWriterTool(call.name) : call.name !== "roll";
         const executed = allowed ? executeDmLoopTool(shadow, toolCall, { input, checks: checkpoint.checks, random,
           narrationSceneId, toolCalls: loop.receipts.length, limits, language, tension: turnTension, receipts: loop.receipts, showDc })
           : { result: { ok: false as const, reason: `The ${phase} has no tool "${call.name}".`, hint: null, summary: `${call.name}: not available in this pass` } };
@@ -268,13 +271,16 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
     };
     /** One model request of either pass; returns what came back. */
     // Fix run A6: the writer's request after a cut by the output cap thinks one notch lower (as the loop's).
+    // Fix run B4: the writer's nudges in the instructions' language (compared by text, so chosen once per turn).
+    const WN = instructionsRu(source) ? { CUT: NUDGES_RU.WRITER_CUT_BY_CAP, OUTCOME: NUDGES_RU.WRITER_PENDING_OUTCOME, LEDGER: NUDGES_RU.LEDGER_NOW }
+      : { CUT: WRITER_CUT_BY_CAP, OUTCOME: PENDING_OUTCOME, LEDGER: LEDGER_NOW };
     let writerCut = false;
     const request = async (phase: "writer" | "bookkeeper", messages: DmMessage[], firstRound: boolean) => {
       const model = phase === "writer" ? writer : bookkeeper;
       const spec = phase === "writer" ? writerSpec : bookkeeperSpec;
       // Fix run A6: the writer's continuations (after a roll) take the pinned continuation depth (A3).
       // Fix run A3: «narrate the outcome» is answered at the turn's own depth (the lighter one skipped the narration).
-      const asksOutcome = (() => { const lastAsk = messages.at(-1); return lastAsk?.role === "user" && lastAsk.text === PENDING_OUTCOME; })();
+      const asksOutcome = (() => { const lastAsk = messages.at(-1); return lastAsk?.role === "user" && lastAsk.text === WN.OUTCOME; })();
       const writerEffort = !firstRound && pin.continuationEffort && !asksOutcome ? pin.continuationEffort : pin.effort;
       const effort = phase === "writer" ? (writerCut ? lowerEffort(writerEffort) : writerEffort) : pin.bookkeeper!.effort;
       writerCut = false;
@@ -344,7 +350,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
             providerCode: error.detail.providerCode ?? null, message: error.message.slice(0, 300) });
           if (error.kind === "not_configured") throw new DmError("configuration");
           // Fix run A1/A6: the writer's request after a cut, refused — the cut message goes back once as plain text.
-          if (phase === "writer" && error.kind === "provider_rejected" && !asked("cut_plain_retry") && plainCutMessage(loop.transcript, WRITER_CUT_BY_CAP)) {
+          if (phase === "writer" && error.kind === "provider_rejected" && !asked("cut_plain_retry") && plainCutMessage(loop.transcript, WN.CUT)) {
             diagnostic({ kind: "cut_plain_retry" });
             await persist("generating");
             stopHeartbeat();
@@ -434,7 +440,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
             diagnostic({ kind: "cut_continued", toolCalls: round.toolCalls.length });
             writerCut = true;
             if (!round.toolCalls.length) {
-              loop.transcript.push({ role: "user", text: WRITER_CUT_BY_CAP });
+              loop.transcript.push({ role: "user", text: WN.CUT });
               await persist("generating");
               continue;
             }
@@ -443,7 +449,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
         if (!round.toolCalls.length) {
           if (outcomePending && !asked("outcome_asked") && writerRequests + 1 < limits.modelRequestsPerTurn) {
             diagnostic({ kind: "outcome_asked" });
-            loop.transcript.push({ role: "user", text: PENDING_OUTCOME });
+            loop.transcript.push({ role: "user", text: WN.OUTCOME });
             await persist("generating");
             continue;
           }
@@ -451,7 +457,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
           const soFar = loop.transcript.filter((m) => m.role === "assistant").reduce((text, m) => joinText(text, m.text), "");
           if (!splitLedger(soFar).found && loop.text.trim() && !asked("ledger_asked") && round.stop.reason !== "max_tokens" && writerRequests + 1 < limits.modelRequestsPerTurn) {
             diagnostic({ kind: "ledger_asked" });
-            loop.transcript.push({ role: "user", text: LEDGER_NOW });
+            loop.transcript.push({ role: "user", text: WN.LEDGER });
             await persist("generating");
             continue;
           }
@@ -513,7 +519,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       if (round.stop.reason === "refusal") { diagnostic({ kind: "model_refusal", providerReason: round.stop.providerReason }); break; }
       if (round.stop.reason === "max_tokens") diagnostic({ kind: "max_tokens", outputTokens: loop.usage.at(-1)?.outputTokens ?? 0 });
       if (!round.toolCalls.length) {
-        const bookkeeperReceipts = loop.receipts.filter((receipt) => receipt.call.name !== "roll");
+        const bookkeeperReceipts = loop.receipts.filter((receipt) => !isWriterTool(receipt.call.name));
         if (!bookkeeperReceipts.length && round.stop.reason !== "max_tokens" && !asked("finish_asked")) {
           diagnostic({ kind: "finish_asked" });
           loop.transcript.push({ role: "user", text: RECORDS_NOW });
@@ -550,10 +556,10 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       }
       await persist("generating");
     }
-    if (!loop.meta) { loop.meta = implicitMeta(loop.receipts); if (loop.receipts.some((r) => r.call.name !== "roll")) diagnostic({ kind: "implicit_finish", calls: loop.receipts.length }); }
+    if (!loop.meta) { loop.meta = implicitMeta(loop.receipts); if (loop.receipts.some((r) => !isWriterTool(r.call.name))) diagnostic({ kind: "implicit_finish", calls: loop.receipts.length }); }
     twoPass({ type: "two_pass", operationId, event: "bookkeeper_finished", atMs: Math.max(0, Date.now() - sentAt),
       requests: bookkeeperPart().filter((m) => m.role === "assistant").length,
-      calls: loop.receipts.filter((r) => r.call.name !== "roll").length, rejected: loop.receipts.filter((r) => r.call.name !== "roll" && !r.result.ok).length,
+      calls: loop.receipts.filter((r) => !isWriterTool(r.call.name)).length, rejected: loop.receipts.filter((r) => !isWriterTool(r.call.name) && !r.result.ok).length,
       finished: shadow.finished });
 
     // ---- The commit: the default loop's own tail ----------------------------
@@ -624,7 +630,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
         .map((turn) => Date.parse(turn.updated_at)).filter((ms) => Number.isFinite(ms));
       const since = previous.length ? Math.max(...previous) : Date.parse(claim.turn.public.created_at) || Date.now();
       const playMinutes = Math.max(1, Math.min(30, Math.round((Date.now() - since) / 60000)));
-      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, boostUsed: !!pin.depth?.boosted, playMinutes, input, source: claim.source, narration }); }
+      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, ownerRule: loop.meta?.ownerRule ?? null, boostUsed: !!pin.depth?.boosted, playMinutes, input, source: claim.source, narration }); }
       catch { /* a note or a flag never fails a committed turn */ }
     }
     return result;
