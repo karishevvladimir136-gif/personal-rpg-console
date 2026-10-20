@@ -88,11 +88,16 @@ run's instruction names `claude/fix-s2`, so the work is on this branch instead, 
   length (migration 80: the ending cards, the open threads, «Тем временем» through the world); the picture probe
   ($0.43); screenshots `E-*`.
 
+- Stages C, D and E's clean-worktree full suite on `91d5583` (their work is interleaved, so one suite covers the
+  three): 2725 tests, 2695 pass, 0 fail, 27 skipped, 3 cancelled (the `d2a-composition` cancellations, the same on the
+  untouched base). The default frame path's two follow-up commits (`9d1fcd2`, `39c42ee`) passed their focused tests;
+  the final suite covers them. Stages C, D and E are done.
+
 ## In progress
 
-- The clean-worktree full suite on `91d5583` (stages C, D and E together: their work is interleaved).
-- Stage F: the screens and settings items, the acceptance checklist in Russian, `docs/SANDBOX_LOAD_FIX_S2.md`, the
-  final report. Money left: $20.36 of $50.
+- Stage F: the screens and settings items (two workers: the new-campaign flow and one-pass hero; the screens and
+  settings), the acceptance checklist in Russian, `docs/SANDBOX_LOAD_FIX_S2.md`, the final report. Money left: $20.20
+  of $50.
 
 ## Owner's instructions during the run
 
