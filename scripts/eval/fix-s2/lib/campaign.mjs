@@ -34,7 +34,7 @@ export async function buildLongCampaign({ turns = 45, seed = "a", log = console.
   const ROLES = ["лодочник", "смотритель маяка", "водолаз из гильдии", "старая знахарка", "таможенный писарь", "контрабандист", "кузнец у моста", "хозяйка лавки снастей",
     "сторож складов", "мальчишка-посыльный", "капитан шхуны", "сборщик долгов", "звонарь часовни", "рыбачка с северного ряда", "помощник мастера гильдии"];
   const PLACES = ["Солёный причал", "Канатная улица", "Старая таможня", "маяк на Волнорезе", "Рыбный ряд", "кузня у моста", "часовня Тихой Воды", "склад смолы", "дом гильдии водолазов",
-    "отмель у Гнилых свай", "лавка снастей", "трактир «Сухой Якорь»", "лодочный сарай", "волнорез"];
+    "отмель у Гнилых свай", "лавка снастей", "трактир «Кривой Ключ»", "лодочный сарай", "волнорез"];
   const THINGS = ["медный ключ", "моток просмолённой верёвки", "шлемовое стекло", "свёрток с накладными", "складной нож", "фонарь с треснувшим стеклом", "кусок цепи с клеймом", "мешочек соли",
     "печать таможни", "записка в воске", "шерстяные рукавицы", "насосный клапан"];
   const shuffled = (list) => list.map((value) => [rand(), value]).sort((a, b) => a[0] - b[0]).map(([, value]) => value);
@@ -132,7 +132,7 @@ export async function buildLongCampaign({ turns = 45, seed = "a", log = console.
     const canonId = `00000000-0000-4000-8000-${String(1).padStart(12, "0")}`;
     const guideId = `00000000-0000-4000-8000-${String(2).padStart(12, "0")}`;
     snapshot.documents = [...(snapshot.documents ?? []).filter((doc) => doc.id !== canonId && doc.id !== guideId),
-      { id: canonId, campaign_id: snapshot.campaign.id, title: `Канон: Ржавое побережье (${args.seed})`, status: "canon", body: canonBody, current_version_id: canonId, revision: 1, updated_at: stamp },
+      { id: canonId, campaign_id: snapshot.campaign.id, title: `Канон: Солёная Коса (${args.seed})`, status: "canon", body: canonBody, current_version_id: canonId, revision: 1, updated_at: stamp },
       { id: guideId, campaign_id: snapshot.campaign.id, title: "Руководство ведущего", status: "reference", body: guideBody, current_version_id: guideId, revision: 1, updated_at: stamp }];
     snapshot.dmGuideDocumentId = guideId;
     return payload;

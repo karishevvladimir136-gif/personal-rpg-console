@@ -40,8 +40,8 @@ The broad lifecycle assertions exclude only this cache-generation field; the ded
 Bundled Node 24.19.0, explicit isolated worker directory, read-only integrated source override:
 
 ```powershell
-$env:FRAME_GROUNDING_REVIEW_ROOT='C:\Users\karis\.codex\worktrees\v1-timeline\personal-rpg-console'
-& 'C:\Users\karis\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' --test tests/media-frame-grounding-independent.test.mjs
+$env:FRAME_GROUNDING_REVIEW_ROOT='C:\Users\<owner>\.codex\worktrees\v1-timeline\personal-rpg-console'
+& 'C:\Users\<owner>\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' --test tests/media-frame-grounding-independent.test.mjs
 ```
 
 When integrated, the test defaults to its own repository root without the override.

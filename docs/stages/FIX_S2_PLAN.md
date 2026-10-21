@@ -1,7 +1,7 @@
 # Fixes after session 2 — the plan
 
 Source of truth for what to fix: `docs/runs/session2-owner-notes.md` (items 1–85, the two key findings at the top, the
-owner's verdict) and the session 2 report on the owner's PC (`C:\Dev\rpg-exports\session-2\report.md`, private — never
+owner's verdict) and the session 2 report on the owner's PC (`<exports>\session-2\report.md`, private — never
 copied into git). Item numbers below are the notes' numbers.
 
 ## What must keep working (the owner's verdict — the regression list for every stage)

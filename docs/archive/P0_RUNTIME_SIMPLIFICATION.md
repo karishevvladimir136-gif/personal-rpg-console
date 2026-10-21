@@ -94,7 +94,7 @@ Real derived-index overflow was deliberately exercised before background mainten
 
 The sequencing comparison models a legacy planner at 40ms plus narrator at 20ms versus a combined response at 55ms: **two responses / 60ms versus one response / 55ms**, with zero foreground summaries in both controlled fixtures. These explicitly modeled numbers are not measured live Astra latency or a speed forecast. Real timing, tokens and tier cost remain unmeasured for the unified path.
 
-Ignored focused evidence is under `test-results/p0-runtime/`. Integrated verification logs and safe offline byte/integrity results are outside Git at `C:/Users/karis/.codex/owner-backups/p0-live-playability/20261014-2331/`. Private captures in that external directory were not committed.
+Ignored focused evidence is under `test-results/p0-runtime/`. Integrated verification logs and safe offline byte/integrity results are outside Git at `C:/Users/<owner>/.codex/owner-backups/p0-live-playability/20261014-2331/`. Private captures in that external directory were not committed.
 
 ## Performance benchmark boundary
 

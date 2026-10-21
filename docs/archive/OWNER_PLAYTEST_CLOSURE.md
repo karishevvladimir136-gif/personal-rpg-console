@@ -206,7 +206,7 @@ No request headers, credentials or owner private prose are stored there.
 ### Responsive visual evidence
 
 All artifacts are under the ignored local directory:
-`C:/Users/karis/.codex/worktrees/owner-playtest-closure/personal-rpg-console/test-results/owner-playtest-closure/`.
+`C:/Users/<owner>/.codex/worktrees/owner-playtest-closure/personal-rpg-console/test-results/owner-playtest-closure/`.
 
 Before: `before-{game,character,inventory}-1920.jpg`, plus
 `before-{right-rail,equipment,inventory-cards}-1920.png`.

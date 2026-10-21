@@ -2,7 +2,7 @@
 
 Send to the local session on the owner's laptop (the one that runs the sandbox), after the voice stage (branch
 `claude/voice`; the stage's report is `docs/runs/voice-report.md`). The owner first saves the planner's converted bank
-file `bank.md` as `C:\dev\rpg-exports\voice\bank.md` — **outside the repository** (the repo is public: the bank never
+file `bank.md` as `<exports>\voice\bank.md` — **outside the repository** (the repo is public: the bank never
 goes into git, a log, a fixture or a sample).
 
 ```
@@ -23,7 +23,7 @@ never commit or push the bank, the converted file or the samples; never paste a 
    texts after the stage's final suite (owner-approved wording, 2026-10-18).
 
 2. The bank file. The planner already converted my bank into the repository's passage format and I saved it as
-   C:\dev\rpg-exports\voice\bank.md (outside the repo): 45 passages, each with one `## <kind>` line (торг, ссора, быт,
+   <exports>\voice\bank.md (outside the repo): 45 passages, each with one `## <kind>` line (торг, ссора, быт,
    драка, напряжение, подтекст, смешное, тишина, переход, байка, описание), separated by `---`, no source lines, about
    103 000 characters. Check that it exists and parses into 45 passages (report the counts only, not a word of the
    text). No conversion is needed. The «all» variant quotes the bank up to its token cap (30 000 estimated tokens by
@@ -37,7 +37,7 @@ never commit or push the bank, the converted file or the samples; never paste a 
    there (report the length only).
 
 4. Session 1's turns: the same eight as the writer page — the turns the transcript numbers 1, 16, 21, 23, 24, 34, 38
-   and 41 (C:\dev\rpg-exports\session-1\transcript.md; match by the player's input text where a number does not
+   and 41 (<exports>\session-1\transcript.md; match by the player's input text where a number does not
    match, as in the first replay, and say which). The snapshot list GET /api/campaigns/<id>/snapshots now lists every
    turn of session 1 (the voice stage fixed it) and the tool's --base path reads the route directly (fixed too): no
    workaround file is needed.
@@ -53,18 +53,18 @@ never commit or push the bank, the converted file or the samples; never paste a 
    read at run time from outside the repo and never copied into the samples; only the passage count is recorded):
    node scripts/eval/real-replay/replay.mjs --base http://127.0.0.1:3100 --campaign <id> --turns <the eight> --variants <W> --craft all --voice off   --budget-usd 2.5 --out docs/samples/real-replay/s1-voice-off
    node scripts/eval/real-replay/replay.mjs --base http://127.0.0.1:3100 --campaign <id> --turns <the eight> --variants <W> --craft all --voice layer --budget-usd 2.5 --out docs/samples/real-replay/s1-voice-layer
-   node scripts/eval/real-replay/replay.mjs --base http://127.0.0.1:3100 --campaign <id> --turns <the eight> --variants <W> --craft all --voice five  --examples-file C:\dev\rpg-exports\voice\bank.md --budget-usd 2.5 --out docs/samples/real-replay/s1-voice-five
-   node scripts/eval/real-replay/replay.mjs --base http://127.0.0.1:3100 --campaign <id> --turns <the eight> --variants <W> --craft all --voice all   --examples-file C:\dev\rpg-exports\voice\bank.md --budget-usd 2.5 --out docs/samples/real-replay/s1-voice-all
+   node scripts/eval/real-replay/replay.mjs --base http://127.0.0.1:3100 --campaign <id> --turns <the eight> --variants <W> --craft all --voice five  --examples-file <exports>\voice\bank.md --budget-usd 2.5 --out docs/samples/real-replay/s1-voice-five
+   node scripts/eval/real-replay/replay.mjs --base http://127.0.0.1:3100 --campaign <id> --turns <the eight> --variants <W> --craft all --voice all   --examples-file <exports>\voice\bank.md --budget-usd 2.5 --out docs/samples/real-replay/s1-voice-all
    If the writer is C (Fable writes), use --budget-usd 5 on each of the four runs and raise capUsd to 28 instead of 18.
    The «all» run's first turn writes the whole bank into the one-hour cache (dearer once, then almost free); if a run
    stops on its budget, say which turns it completed and do not restart it without asking me.
 
 8. The metrics, once per folder set:
    node scripts/eval/voice-metrics.mjs docs/samples/real-replay/s1-voice-off docs/samples/real-replay/s1-voice-layer docs/samples/real-replay/s1-voice-five docs/samples/real-replay/s1-voice-all
-   Save the table as C:\dev\rpg-exports\replay-2\metrics.md (outside the repo).
+   Save the table as <exports>\replay-2\metrics.md (outside the repo).
 
 9. Pack. Zip the four folders docs/samples/real-replay/s1-voice-* together with the runs' records
-   (docs/runs/real-replay-<time>.jsonl of each run) and metrics.md into C:\dev\rpg-exports\replay-2\samples.zip (create
+   (docs/runs/real-replay-<time>.jsonl of each run) and metrics.md into <exports>\replay-2\samples.zip (create
    the folder; it is outside the repo). Delete nothing; do not commit or push the samples. Then tell me in Russian:
    which turns were used, the writer, the cost of each run and the total, any turn that failed or was refused, the
    metrics table in one glance (which variant has more particles, fewer short paragraphs, fewer quotable flags), and

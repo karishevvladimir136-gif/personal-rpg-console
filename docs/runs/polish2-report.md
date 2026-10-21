@@ -203,7 +203,7 @@ records above with its usage and cost.
 6. **The three time-word misses** in the replay (s12, s14, s17) are the DM's judgment («утро» at midnight), the same class
    the polish run saw; material for the pending `time-and-clock` craft card, not code.
 7. **Session 2.** The branch is ready for the sandbox play; the local session then runs `docs/SESSION_REPORT_PROMPT.md`
-   into `C:\dev\rpg-exports\session-2\`.
+   into `<exports>\session-2\`.
 
 ## Known limits and environment notes
 

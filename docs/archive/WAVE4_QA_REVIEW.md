@@ -15,7 +15,7 @@ Only QA tests and this report are changed by this worker. Lead owns production r
 Final command:
 
 ```powershell
-$env:WAVE4_QA_SOURCE_ROOT = 'C:/Users/karis/OneDrive/Documents/GitHub/personal-rpg-console/.worktrees/production-wave4'
+$env:WAVE4_QA_SOURCE_ROOT = 'C:/Users/<owner>/OneDrive/Documents/GitHub/personal-rpg-console/.worktrees/production-wave4'
 node --test tests/wave4-qa-*.test.mjs tests/wave4-migration.test.mjs
 ```
 

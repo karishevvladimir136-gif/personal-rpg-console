@@ -24,16 +24,16 @@ try {
   await c.activateStage4Craft();
   const steps = scenario.steps.filter((step) => step.say !== undefined).slice(0, args.turns);
   const scripted = [
-    { text: "Ты оглядываешься: причал, лодки, Марта у кабака вытирает руки о передник.", toolCalls: [
-      { name: "upsert_character", arguments: { localKey: "marta", name: "Марта", kind: "npc", present: true, important: true, description: "хозяйка кабака «Сухой Якорь»" } },
+    { text: "Ты оглядываешься: причал, лодки, Ганна у кабака вытирает руки о передник.", toolCalls: [
+      { name: "upsert_character", arguments: { localKey: "ganna", name: "Ганна", kind: "npc", present: true, important: true, description: "хозяйка кабака «Кривой Ключ»" } },
       { name: "advance_time", arguments: { minutes: 10, reason: "оглядывается" } },
       { name: "finish_turn", arguments: { sceneKinds: ["exploration"], spotlight: ["marta"], playerMoment: false, nextTension: "calm" } } ] },
-    { text: "— Работа есть, — говорит Марта. — Сорок монет ты мне должен, помнишь.", toolCalls: [
-      { name: "quest", arguments: { action: "create", localKey: "debt", kind: "debt", title: "Долг Марте", description: "сорок монет", counterpartRef: "Марта" } },
+    { text: "— Работа есть, — говорит Ганна. — Сорок монет ты мне должен, помнишь.", toolCalls: [
+      { name: "quest", arguments: { action: "create", localKey: "debt", kind: "debt", title: "Долг Ганне", description: "сорок монет", counterpartRef: "Ганна" } },
       { name: "advance_time", arguments: { minutes: 15, reason: "разговор" } },
-      { name: "finish_turn", arguments: { sceneKinds: ["conversation"], spotlight: ["Марта"], playerMoment: false, nextTension: "tense" } } ] },
-    { text: "Мокей кивает на лодку: «Пойдём, пока прилив».", toolCalls: [
-      { name: "upsert_character", arguments: { localKey: "mokey", name: "Мокей", kind: "npc", present: true, description: "старый лодочник" } },
+      { name: "finish_turn", arguments: { sceneKinds: ["conversation"], spotlight: ["Ганна"], playerMoment: false, nextTension: "tense" } } ] },
+    { text: "Фрол кивает на лодку: «Пойдём, пока прилив».", toolCalls: [
+      { name: "upsert_character", arguments: { localKey: "frol", name: "Фрол", kind: "npc", present: true, description: "старый лодочник" } },
       { name: "advance_time", arguments: { minutes: 20, reason: "к лодке" } },
       { name: "finish_turn", arguments: { sceneKinds: ["travel"], spotlight: ["mokey"], playerMoment: false, nextTension: "calm" } } ] },
   ];

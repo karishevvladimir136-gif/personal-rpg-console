@@ -24,7 +24,7 @@ node scripts/eval/real-replay/replay.mjs --base http://127.0.0.1:3100 --campaign
 node scripts/eval/real-replay/synthetic.mjs --out scripts/eval/out/synthetic-snapshots.json          # a synthetic campaign's snapshots
 node scripts/eval/real-replay/replay.mjs --snapshots scripts/eval/out/synthetic-snapshots.json --turns 1,2 --variants A,D --dry
 # the voice stage (§7): the voice variants, the examples file outside the repo, the stage's ledger
-node scripts/eval/real-replay/replay.mjs --base http://127.0.0.1:3100 --campaign <id> --turns 1,16 --variants A --voice five --examples-file C:\dev\rpg-exports\voice\bank.md --budget-usd 3
+node scripts/eval/real-replay/replay.mjs --base http://127.0.0.1:3100 --campaign <id> --turns 1,16 --variants A --voice five --examples-file <exports>\voice\bank.md --budget-usd 3
 node scripts/eval/voice-metrics.mjs docs/samples/real-replay/<dir>                                    # the voice metrics per variant (§6)
 ```
 

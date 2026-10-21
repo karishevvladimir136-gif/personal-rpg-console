@@ -228,7 +228,7 @@ No other paid call was made (the fake benches, the screenshots and the suites ar
 5. **The time-word line**: the check now writes one line into the next turn's tail when the narration's time words
    disagree with the clock. The six misses of D (all «ночью» at 07:00–08:00 after a night scene) are what it is for.
 6. **Session 2**: play it in the sandbox on today's loop (the clean comparison with session 1); then the local session
-   runs `docs/SESSION_REPORT_PROMPT.md` into `C:\dev\rpg-exports\session-2\` and the replay tool on eight of its
+   runs `docs/SESSION_REPORT_PROMPT.md` into `<exports>\session-2\` and the replay tool on eight of its
    turns.
 7. **The existing campaigns' director switch** was turned off by migration 68 (your second blind page); turn it back
    on in «Картинки» if you want the brief.

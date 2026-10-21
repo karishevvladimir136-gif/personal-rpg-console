@@ -53,7 +53,7 @@ Ignored local logs/proof: `test-results/p0-integration/` (focused, full suite, t
 
 ## Screenshots
 
-Local folder: `C:/Users/karis/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/p0-joint-integration/`.
+Local folder: `C:/Users/<owner>/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/p0-joint-integration/`.
 
 - `game-before-start-en-desktop.png`, `adventure-review-en-desktop.png`, `opening-en-desktop.png`: fresh-path setup and first opening.
 - `game-en-desktop.png`, `game-en-mobile.png`, `game-ru-desktop.png`, `game-ru-mobile.png`: story and scripted turns.

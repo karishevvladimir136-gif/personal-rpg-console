@@ -41,15 +41,15 @@ Campaign: `ba1dadcc-1a0b-4661-b3d7-280babb2f1bf`; service budget: `4304da7c-9f0b
 | F1 | `abea2afd-0613-4e5b-bad1-41436eb5340f`, revision 1 | `f8c90b9b-3297-454b-9e56-eea678054370` | `2a63baba-61a8-408f-9a1c-15943a76dedf` |
 | F2 | `72b72c45-4e46-44f0-8e50-ca69d65e7601`, revision 1 | `fcee61a9-d35d-4c69-9c92-28f17092abc0` | `9df388fb-f596-4f91-b948-346157e38458` |
 
-[Immutable original response, request/scene/reference versions, usage, hashes and receipts](C:/Users/karis/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/frame-live-gate-20260928-run1/journal.json) and [bounded assessment](C:/Users/karis/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/frame-live-gate-20260928-run1/ASSESSMENT.json) retain the full public synthetic basis. Fixture digest: `34c7d4c008a490120fc441b5996ec111afa8578058a1abb0b934fa342b8e02ce`. F1 uses approved Ari/outfit A + style + current bridge + equipped compass. F2 uses the identical Ari/style versions + current courtyard and deliberately excludes the compass reference. F1 image hash: `56d4976d7ffb0f794fd35f4e33e7bdb83019c1249dd16891711c1c5cb8d31576`; F2: `969a8363702517ebd22df29092411d28907fb53fe3b912a609fc097b5c748605`. Original raw JSON responses are retained separately without any credential. The first process-only preparation ended on input closure with zero provider attempts; its separate synthetic dump/journal was retained and no paid result was reused.
+[Immutable original response, request/scene/reference versions, usage, hashes and receipts](C:/Users/<owner>/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/frame-live-gate-20260928-run1/journal.json) and [bounded assessment](C:/Users/<owner>/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/frame-live-gate-20260928-run1/ASSESSMENT.json) retain the full public synthetic basis. Fixture digest: `34c7d4c008a490120fc441b5996ec111afa8578058a1abb0b934fa342b8e02ce`. F1 uses approved Ari/outfit A + style + current bridge + equipped compass. F2 uses the identical Ari/style versions + current courtyard and deliberately excludes the compass reference. F1 image hash: `56d4976d7ffb0f794fd35f4e33e7bdb83019c1249dd16891711c1c5cb8d31576`; F2: `969a8363702517ebd22df29092411d28907fb53fe3b912a609fc097b5c748605`. Original raw JSON responses are retained separately without any credential. The first process-only preparation ended on input closure with zero provider attempts; its separate synthetic dump/journal was retained and no paid result was reused.
 
 ### F1 — first image
 
-![F1 — Bridge daylight](C:/Users/karis/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/frame-live-gate-20260928-run1/ba1dadcc-1a0b-4661-b3d7-280babb2f1bf/frames/f8c90b9b-3297-454b-9e56-eea678054370/output.png)
+![F1 — Bridge daylight](C:/Users/<owner>/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/frame-live-gate-20260928-run1/ba1dadcc-1a0b-4661-b3d7-280babb2f1bf/frames/f8c90b9b-3297-454b-9e56-eea678054370/output.png)
 
 ### F2 — failed grounding
 
-![F2 — unestablished distant settlement beyond the courtyard archway](C:/Users/karis/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/frame-live-gate-20260928-run1/ba1dadcc-1a0b-4661-b3d7-280babb2f1bf/frames/fcee61a9-d35d-4c69-9c92-28f17092abc0/output.png)
+![F2 — unestablished distant settlement beyond the courtyard archway](C:/Users/<owner>/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/frame-live-gate-20260928-run1/ba1dadcc-1a0b-4661-b3d7-280babb2f1bf/frames/fcee61a9-d35d-4c69-9c92-28f17092abc0/output.png)
 
 ## Authority and verification
 

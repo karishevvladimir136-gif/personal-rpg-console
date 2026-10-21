@@ -45,7 +45,7 @@ Working rules:
 At the end, write **`docs/runs/fix-s2-acceptance.md` in Russian** — the owner's acceptance pass in his sandbox: per screen
 and per feature, what changed, where to look, what to try (two to five lines each), with a box for «принято» or a note.
 The owner accepts each screen himself before anything is called done (his rule from session 2). Also write `docs/SANDBOX_LOAD_FIX_S2.md`: the local session's steps to load the branch into the owner's sandbox — a
-database dump first (into C:\Dev\rpg-exports\sandbox-backups\), migrations, a **production build** (the dev server was
+database dump first (into <exports>\sandbox-backups\), migrations, a **production build** (the dev server was
 the owner's memory and latency problem), the owner's one-time data corrections (hero money 60 → 36 gp, 57 → 46 sp;
 potions counter → items, 3), the replay of session 2's heavy turns. Then stop; the planner
 writes the local prompt that loads the branch into the sandbox and replays the heavy turns of session 2.

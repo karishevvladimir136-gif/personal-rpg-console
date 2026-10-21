@@ -5,18 +5,19 @@ the fixes after session 2 (`claude/session2-fixes-a-f-jh3krk`), 2D Live with the
 (`claude/live2d-1-9lq5bf`) and the soundtrack (`claude/stage-music`) merged into one (`docs/runs/merge-s2-report.md`) —
 into the **sandbox** (`docs/SANDBOX.md`: its own database on ports 44320–44327, the
 app on http://127.0.0.1:3100). The owner's real project (ports 34320–34327, the app on :3000) is never touched. Do the
-steps in order; stop and tell the owner if one of them fails.
+steps in order; stop and tell the owner if one of them fails. `<exports>` stands for the owner's exports folder on this
+PC (the one the earlier dumps went to; the repository does not name machine paths).
 
 ## 1. Back up the sandbox database first
 
 The sandbox holds session 2's campaign. Nothing below runs before this dump exists and is not empty.
 
 ```bat
-mkdir C:\Dev\rpg-exports\sandbox-backups
+mkdir <exports>\sandbox-backups
 docker ps --format "{{.Names}}" | findstr sandbox
 docker exec supabase_db_personal-rpg-console-sandbox pg_dump -U postgres -d postgres -Fc -f /tmp/before-s3-candidate.dump
-docker cp supabase_db_personal-rpg-console-sandbox:/tmp/before-s3-candidate.dump C:\Dev\rpg-exports\sandbox-backups\sandbox-YYYYMMDD-before-s3-candidate.dump
-dir C:\Dev\rpg-exports\sandbox-backups
+docker cp supabase_db_personal-rpg-console-sandbox:/tmp/before-s3-candidate.dump <exports>\sandbox-backups\sandbox-YYYYMMDD-before-s3-candidate.dump
+dir <exports>\sandbox-backups
 ```
 
 Use the database container's real name from the `docker ps` line (the sandbox's project id is

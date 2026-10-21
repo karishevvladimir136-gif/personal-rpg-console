@@ -53,8 +53,8 @@ The first 20-case run passed 19 checks; one test predicate accidentally matched 
 Bundled Node 24.19.0; explicit worker checkout and read-only integrated source override:
 
 ```powershell
-$env:FRAME_APPROVAL_REVIEW_ROOT='C:\Users\karis\.codex\worktrees\v1-timeline\personal-rpg-console'
-& 'C:\Users\karis\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' --test tests/media-frame-owner-approval-independent.test.mjs
+$env:FRAME_APPROVAL_REVIEW_ROOT='C:\Users\<owner>\.codex\worktrees\v1-timeline\personal-rpg-console'
+& 'C:\Users\<owner>\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' --test tests/media-frame-owner-approval-independent.test.mjs
 ```
 
 After integration, the test defaults to its own repository root. It uses the actual migration list and has no credentials or hosted database configuration.

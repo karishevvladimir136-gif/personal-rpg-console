@@ -21,7 +21,7 @@
   Финальный прогон шёл против отдельной сборки этой же ветки в отдельной папке без `.env.local`,
   без ключей и без базы (порт 3197; API отвечает `503 not_configured`).
 - Среда: Node.js v24.19.0 и pnpm 11.25.0 из локальной среды Codex
-  (`C:\Users\karis\.cache\codex-runtimes\codex-primary-runtime\…`); системного Node на PATH нет.
+  (`C:\Users\<owner>\.cache\codex-runtimes\codex-primary-runtime\…`); системного Node на PATH нет.
   Подробности по окружению — в разделе 6.
 
 ## 2. Стенд оценки

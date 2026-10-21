@@ -653,7 +653,7 @@ money spent; the pending DM Craft versions; «Needs the owner».
 
 Source: the read-only mission report of the owner's first sandbox session (`docs/SESSION_REPORT_PROMPT.md`): 41 turns,
 Opus 5.5 high…xhigh, Russian, ≈$19.6 (DM $14.56, pictures $1.52, legacy memory summaries ≈$3.50). The files live on
-the owner's laptop in `C:\dev\rpg-exports\session-1\` (outside the repo; `private.md` is PRIVATE). The numbers below
+the owner's laptop in `<exports>\session-1\` (outside the repo; `private.md` is PRIVATE). The numbers below
 come from them. What the report confirmed: 13 of 17 facts the DM relied on match the records exactly (debts, the
 pistol pledge, the shirts, the note, the signals, the hose length), the money arithmetic in the story is right to the
 coin, and all four mismatches are time-of-day words (item 18). Owner's verdict, for the research record: better than
@@ -862,7 +862,7 @@ short live smoke on the changed paths plus the cache and depth measurement of it
 replay is enough) within **$15**. Push `claude/polish` only, never `main`. Report in English.
 
 After the stage, the owner plays a new sandbox session and the local session runs `docs/SESSION_REPORT_PROMPT.md` on
-it (into `C:\dev\rpg-exports\session-2\`). Compare with session 1 (41 turns): money operations accepted (was 0 of 6), private rolls in chips (was 8), chips
+it (into `<exports>\session-2\`). Compare with session 1 (41 turns): money operations accepted (was 0 of 6), private rolls in chips (was 8), chips
 with English (was 298 of 304), hero rolls with a sheet modifier (was 0 of 13), «Твой момент» after a successful
 decisive roll (was 0 of 4), share of xhigh turns (was 23 of 41) and first-word median (was 38.2 s), cache writes as a
 share of the DM cost (was 57%), the digest with title, «Ранее в…» and stinger present (was absent), time-word

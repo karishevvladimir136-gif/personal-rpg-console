@@ -18,6 +18,7 @@ import { metricsReport, parseMetrics } from "../../../src/lib/gameplay/dm-loop/m
 import { naturalness as naturalnessOf } from "./naturalness.mjs";
 import { checkLedger } from "../../../src/lib/gameplay/dm-loop/ledger-check.ts";
 import { checkRollsTold } from "../../../src/lib/gameplay/dm-loop/roll-check.ts";
+import { providerKey } from "./keys.mjs";
 
 const hook = registerHooks({ resolve(specifier, context, nextResolve) {
   return specifier === "server-only"
@@ -247,7 +248,8 @@ export async function runLoopScenario(scenario, options) {
           // Polish 3 §6: the bookkeeper's effort may change from a given turn on (Sonnet at medium on turns 11–20).
           ...(options.bookkeeperSwitch && turnIndex >= options.bookkeeperSwitch.turn ? { effort: options.bookkeeperSwitch.effort } : {}) } } : {}),
         bookkeeperModel: () => bookkeeperModel,
-        ...(live && options.appChecks ? appChecks(options.budget, process.env.ANTHROPIC_API_KEY ?? options.apiKey) : {}) });
+        // Fix S3-pre E-4c: the app's key from .env.local (or the cloud's APP_ variable), never the shell's ANTHROPIC_API_KEY.
+        ...(live && options.appChecks ? appChecks(options.budget, options.apiKey ?? providerKey("ANTHROPIC_API_KEY")) : {}) });
         if (continuationEffort) {
           const pinned = deps.pin;
           deps.pin = async (claim) => ({ ...(await pinned(claim)), continuationEffort });

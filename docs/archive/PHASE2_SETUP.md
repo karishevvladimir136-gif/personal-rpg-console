@@ -21,7 +21,7 @@ Do this when the agent reports that deterministic integration is green and asks 
 
 1. Open [OpenAI Platform API keys](https://platform.openai.com/api-keys) in your browser and sign in. API billing is separate from a ChatGPT subscription. If the Platform says billing is required, use its Billing page to set up API billing and a spending budget you are comfortable with.
 2. Create a project API key using **Create new secret key**. Name it something recognizable, such as `Personal RPG Console local`. Keep the key in that browser until the next steps are ready. Do not send it to the agent.
-3. Open **File Explorer** and go to `C:\Users\karis\OneDrive\Documents\GitHub\personal-rpg-console`. Right-click `.env.local`, choose **Open with**, then **Notepad**. If it is not listed, use Notepad's **File → Open**, select **All files**, and open `.env.local` in that folder.
+3. Open **File Explorer** and go to `C:\Users\<owner>\OneDrive\Documents\GitHub\personal-rpg-console`. Right-click `.env.local`, choose **Open with**, then **Notepad**. If it is not listed, use Notepad's **File → Open**, select **All files**, and open `.env.local` in that folder.
 4. Preserve the existing lines. Add or replace these three lines locally:
 
    ```dotenv

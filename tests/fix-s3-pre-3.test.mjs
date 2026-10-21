@@ -148,3 +148,41 @@ test("2.3 A-62: a failed records read has its own words (not «save not confirme
   assert.match(src("src/components/persistence-context.tsx"), /setError\(readErrorMessage\(cause\)\)/);
   assert.match(src("src/components/gameplay-composer.tsx"), /cause\.code === "unavailable"\) \{\s+const stored = await loadTurn\(campaignId, attempt\.operationId\)\.catch\(\(\) => null\);\s+if \(stored\) \{ await accept\(stored\); return; \}/);
 });
+
+// ---- 2.5 privacy in the public repository --------------------------------------------------------------------------
+test("2.5 E-1a: the two fixtures that re-staged a campaign by name carry invented names, with their shapes kept", () => {
+  const scene = JSON.parse(src("test-fixtures/stage-v/shov-scene.json"));
+  assert.equal(scene.campaign, "Мир Разлома · «Старая Тётка»");
+  assert.equal(scene.hero, "Корвин Дейл");
+  assert.equal(scene.names.length, 9);
+  assert.equal(scene.turns.length, 20, "the 20-turn scene keeps its shape");
+  assert.ok(scene.turns.every((turn) => turn.place in scene.places && turn.input && turn.narration));
+  const replay = JSON.parse(src("scripts/eval/scenarios/19-polish-ru-replay.json"));
+  assert.equal(replay.fixture.world.title, "Солёная Коса");
+  assert.equal(replay.fixture.name, "Тарин");
+  assert.equal(replay.fixture.npc, "Ганна");
+  assert.equal(replay.steps.length, 30, "the 30-step replay keeps its shape");
+  assert.match(src("scripts/eval/real-replay/synthetic.mjs"), /name: "Ганна", kind: "npc"/, "the synthetic replay world follows the scenario");
+});
+
+test("2.5 E-1c: no tracked file names a Windows user's home or the exports folder (placeholders <owner>, <exports>)", async () => {
+  const { execFileSync } = await import("node:child_process");
+  let out;
+  try { out = execFileSync("git", ["grep", "-n", "-i", "-E", "C:[/\\\\]+Users[/\\\\]+[^<]|C:[/\\\\]+Dev[/\\\\]+rpg-exports"], { cwd: new URL("..", import.meta.url), encoding: "utf8" }); }
+  catch (error) { out = error.status === 1 ? "" : null; }
+  if (out === null) return; // no git here: nothing to scan
+  assert.equal(out.trim(), "", "a machine path is tracked");
+});
+
+test("2.5 E-4c: the eval tools take a key from .env.local or the cloud's APP_ variable, never the shell's own variable", async () => {
+  const { providerKey } = await import("../scripts/eval/lib/keys.mjs");
+  const name = "FIX_S3_PRE_TEST_KEY";
+  process.env[name] = "from-the-shell";
+  try {
+    assert.equal(providerKey(name), null, "the shell's variable is never read");
+    process.env[`APP_${name}`] = "from-the-cloud";
+    assert.equal(providerKey(name), "from-the-cloud");
+  } finally { delete process.env[name]; delete process.env[`APP_${name}`]; }
+  assert.match(src("scripts/eval/lib/loop-harness.mjs"), /appChecks\(options\.budget, options\.apiKey \?\? providerKey\("ANTHROPIC_API_KEY"\)\)/);
+  assert.doesNotMatch(src("scripts/eval/lib/loop-harness.mjs"), /process\.env\.ANTHROPIC_API_KEY/);
+});

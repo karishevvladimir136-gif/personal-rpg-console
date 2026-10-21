@@ -53,8 +53,8 @@ Reviewed integration checkout: `8905d98c33cd0160cbe06d0e9cde33c33bf4eb43` plus t
 Focused command from the isolated worker checkout:
 
 ```powershell
-$env:VIDEO_REVIEW_ROOT='C:/Users/karis/.codex/worktrees/v1-timeline/personal-rpg-console'
-& 'C:/Users/karis/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' --test tests/media-video-independent.test.mjs
+$env:VIDEO_REVIEW_ROOT='C:/Users/<owner>/.codex/worktrees/v1-timeline/personal-rpg-console'
+& 'C:/Users/<owner>/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' --test tests/media-video-independent.test.mjs
 ```
 
 Only the two owned QA files are committed. No production file, migration, shared fixture, status file, main checkout, credential or real provider result was changed by this worker.

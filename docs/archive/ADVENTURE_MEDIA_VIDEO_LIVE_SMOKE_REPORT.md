@@ -4,7 +4,7 @@ Date: September28,2026. Frozen application: `69b5b0b0975d40864e653d5d511c7d67f00
 
 ## Result and original owner-review media
 
-**One generation, technically successful; no second generation.** [Local EN/RU player](http://127.0.0.1:3103/review) shows the exact accepted F5 source and original clip. [Original MP4](C:/Users/karis/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/video-live-smoke-v1-20260928/68dd0026-fd83-420e-9edb-b3327acb74d1/videos/0d276ad2-54b1-4ac8-b57a-7f209ed6d52f/output.mp4) is retained unmodified,2,468,974 bytes, SHA256 `d0f105601bfae4317f476bac7ab2dd6e6035bdc13b1357572ecbfe546a9be1f0`. It is H264/AAC,1178×786,24fps,10.04 seconds (decoded241 frames,10.0416667s). MP4 full video/audio decode and browser playback pass. No setup/new payment/provider call is needed to review it.
+**One generation, technically successful; no second generation.** [Local EN/RU player](http://127.0.0.1:3103/review) shows the exact accepted F5 source and original clip. [Original MP4](C:/Users/<owner>/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/video-live-smoke-v1-20260928/68dd0026-fd83-420e-9edb-b3327acb74d1/videos/0d276ad2-54b1-4ac8-b57a-7f209ed6d52f/output.mp4) is retained unmodified,2,468,974 bytes, SHA256 `d0f105601bfae4317f476bac7ab2dd6e6035bdc13b1357572ecbfe546a9be1f0`. It is H264/AAC,1178×786,24fps,10.04 seconds (decoded241 frames,10.0416667s). MP4 full video/audio decode and browser playback pass. No setup/new payment/provider call is needed to review it.
 
 Independent bounded inspection compared the accepted source and frames at0/3/6/9.5s. The same standing subject, charcoal coat/rust scarf and sunset overlook remain recognizable, with gentle camera approach and minor hair/scarf motion. No obvious catastrophic replacement, additional major character, central item/event or private addition was observed. The requested audio is non-silent, fully decodes and has zero measured clipping; subjective sound/cinematic quality is not presumed accepted. The F5 younger/softer-face/text-reference qualifications remain. This finite sample does not prove universal consistency, anatomy, privacy or video quality.
 
@@ -29,7 +29,7 @@ One production queue POST, no automatic generation retry/fallback, with no-retry
 | Actual returned model identity | **Not provided**; only the exact requested endpoint is known |
 | Returned usage / invoice charge | **Not provided / unobserved** |
 
-Raw queue/status/result responses remain in [the evidence directory](C:/Users/karis/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/video-live-smoke-v1-20260928) as http-01-original.json through http-11-original.json. The original download is the preserved MP4. journal.json stores sanitized exact requests/receipts/times and prior-state comparison; PRE_DISPATCH_REVIEW.json freezes input/source/budget checks. No auth header/credential is logged.
+Raw queue/status/result responses remain in [the evidence directory](C:/Users/<owner>/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/video-live-smoke-v1-20260928) as http-01-original.json through http-11-original.json. The original download is the preserved MP4. journal.json stores sanitized exact requests/receipts/times and prior-state comparison; PRE_DISPATCH_REVIEW.json freezes input/source/budget checks. No auth header/credential is logged.
 
 ## Accepted source and exact attachment basis
 

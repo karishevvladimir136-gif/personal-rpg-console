@@ -40,7 +40,7 @@ This review has provider credentials removed and FRAME/VIDEO disabled. The exist
 Ordinary authenticated routes were checked at **1440×1000** and **390×844**. EN uses unchanged Garrick records; final RU uses existing Synthetic Mira records in the disposable rehearsal database, whose single Hand slot and Progression Off are genuine recorded differences. RU browser screenshots demonstrate localization and recorded-state restraint, rather than pretending to be Garrick's database. The deterministic EN/RU component fixtures additionally verify Garrick's three-slot/XP rendering. Final built-production EN desktop/mobile was separately confirmed.
 
 Screenshot folder:
-`C:/Users/karis/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/p0bd-character-correction/`
+`C:/Users/<owner>/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/p0bd-character-correction/`
 
 | View | Before reviewed b667 | Current correction |
 | --- | --- | --- |
@@ -110,7 +110,7 @@ Ordinary authenticated campaign routes were checked at **1440×1000** and **390�
 
 Screenshots and viewport measurements are saved under:
 
-`C:/Users/karis/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/p0bd-ui-review/`
+`C:/Users/<owner>/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/p0bd-ui-review/`
 
 | Screen | Before, EN | After, EN | After, RU |
 | --- | --- | --- | --- |

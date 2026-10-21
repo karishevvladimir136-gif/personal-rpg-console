@@ -13,8 +13,8 @@ The Phase 3.5 preview runs from the isolated `.worktrees/phase35-lead` checkout 
 If this preview stops, open PowerShell and run these two commands, one at a time. Leave that PowerShell window open:
 
 ```powershell
-Set-Location 'C:\Users\karis\OneDrive\Documents\GitHub\personal-rpg-console\.worktrees\phase35-lead'
-& 'C:\Users\karis\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3001
+Set-Location 'C:\Users\<owner>\OneDrive\Documents\GitHub\personal-rpg-console\.worktrees\phase35-lead'
+& 'C:\Users\<owner>\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3001
 ```
 
 This uses the prepared production build and ignored local configuration. It does not deploy anything. If PowerShell says port 3001 is already in use, try the preview URL before starting another process.

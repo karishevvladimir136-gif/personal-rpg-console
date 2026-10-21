@@ -53,7 +53,7 @@ One new image-generation provider call and one automated review provider call oc
 
 - Focused Map/media regression batch: **77/77 passed**, including the new disposable SQL recovery test. The final expanded SQL recovery test passed **6/6** on its own. TypeScript, zero-warning ESLint, and production webpack build passed.
 - The synthetic campaign's entity, item, public-state, Location, and encounter row fingerprints were identical before and after the fresh media lifecycle. The owner campaign was never used.
-- Browser evidence: `C:\Users\karis\.codex\artifacts\map-live-closure-20261007\map-draft-review.png`, `map-pixels-reviewed.png`, and `map-accepted-under-pin.png`. A read-only copy of the exact stored PNG is at `C:\Users\karis\.codex\artifacts\map-forensic-20261007\map-draft.png`.
+- Browser evidence: `C:\Users\<owner>\.codex\artifacts\map-live-closure-20261007\map-draft-review.png`, `map-pixels-reviewed.png`, and `map-accepted-under-pin.png`. A read-only copy of the exact stored PNG is at `C:\Users\<owner>\.codex\artifacts\map-forensic-20261007\map-draft.png`.
 - No main merge, owner database migration, owner gameplay action, or deployment occurred.
 
 **Result: MAP LIVE ACCEPTED** for the bounded one-place live media lifecycle. Any future multi-place map-art quality review is separate.
