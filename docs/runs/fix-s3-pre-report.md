@@ -183,9 +183,11 @@ a Russian fight carry no English word…».
   existing campaign gets its hidden layer…».
 
 ## Checks
-- Full suite on a clean worktree (no `.env.local`) at `81ef28a`: **see the line below** (filled when the run ends).
-- Typecheck pass; lint pass with zero warnings (one unused import removed after the suite's commit — no behaviour
-  change); production build pass.
+- Full suite on a clean worktree (no `.env.local`) at `da7a0dd`: **2 833 tests · 2 806 pass · 0 fail · 0 cancelled ·
+  27 skipped** (21 min). Typecheck pass; lint pass with zero warnings; production build pass, no warnings.
+- Two earlier full runs caught what the focused runs did not, and both were fixed before the run above: the
+  startup-gate test's module stubs did not know the new battle-schedule import, and the stage-5 guard caught «к20» in
+  the companion chip's UI code (a system's rule in code) — the chip now says «кубик».
 - The older tests updated for this stage's owner decisions: the hit record's band (`fix-s2-a1`), the DC migration
   (`phase3-upgrade`, `phase35-storage`), the restored «⚡ важный ход» (`polish-group6`), the 64 000 cap
   (`fix-s2-a1`, `fix-s2-a6`, `stage4-dossier`), the half-screen action box and the companion chip (`fix-s2-c-ui`), the

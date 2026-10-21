@@ -20,8 +20,8 @@ revision). Report: `docs/runs/fix-s3-pre-report.md`; ledger `docs/runs/fix-s3-pr
   passed every turn); the ledger check keeps thinking with a 3 000 ceiling; a declared action is asked for only when the
   hero rolled nothing (never a double attack); coup de grâce only on foes (the party keeps death saves); attacks in a
   fight's opening turn stay plain rolls (no battlefield yet).
-- **Checks** (a clean worktree without `.env.local`, at `81ef28a`): the full suite — FULL_SUITE_RESULT; typecheck pass;
-  lint pass, zero warnings (one unused import removed after that commit); production build pass.
+- **Checks** (a clean worktree without `.env.local`, at `da7a0dd`): the full suite 2 833 tests · 2 806 pass · 0 fail ·
+  0 cancelled · 27 skipped; typecheck pass; lint pass, zero warnings; production build pass, no warnings.
 - **Money:** $7.08 of the $20 cap (Part 1 probes $3.66, the roll/ledger-check validation $0.01, the memory pair $3.40).
 - **Known issues:** in session 3's mode the probes' median turn cost and seconds rose ($0.28 → $0.40 and $0.29 → $0.35;
   13–27 s longer; n = 1 each); the battle background needs a prepared scene; «компактно» memory failed the recall probe
