@@ -70,6 +70,76 @@
       "settled": true,
       "finishedAt": "2026-10-21T02:38:49.450Z",
       "record": "docs/runs/fix-s3-pre-report.md (2.6)"
+    },
+    {
+      "run": "real-replay-20261021-024824",
+      "what": "real replay: 1 turns × O on Fix run memory probe (seed s3, 60 turns); voice live; craft live",
+      "startedAt": "2026-10-21T02:48:24.379Z",
+      "reservedUsd": 1.5,
+      "spentUsd": 0,
+      "settled": true,
+      "finishedAt": "2026-10-21T02:48:24.983Z",
+      "record": "docs/runs/real-replay-20261021-024824.jsonl"
+    },
+    {
+      "run": "real-replay-20261021-024825",
+      "what": "real replay: 1 turns × O on Fix run memory probe (seed s3, 60 turns); voice live; craft live",
+      "startedAt": "2026-10-21T02:48:25.305Z",
+      "reservedUsd": 1.5,
+      "spentUsd": 0,
+      "settled": true,
+      "finishedAt": "2026-10-21T02:48:25.918Z",
+      "record": "docs/runs/real-replay-20261021-024825.jsonl"
+    },
+    {
+      "run": "real-replay-20261021-024834",
+      "what": "real replay: 1 turns × O on Fix run memory probe (seed s3, 60 turns); voice live; craft live",
+      "startedAt": "2026-10-21T02:48:34.632Z",
+      "reservedUsd": 4,
+      "spentUsd": 1.2485,
+      "settled": true,
+      "finishedAt": "2026-10-21T02:49:02.540Z",
+      "record": "docs/runs/real-replay-20261021-024834.jsonl"
+    },
+    {
+      "run": "real-replay-20261021-024902",
+      "what": "real replay: 1 turns × O on Fix run memory probe (seed s3, 60 turns); voice live; craft live",
+      "startedAt": "2026-10-21T02:49:02.872Z",
+      "reservedUsd": 4,
+      "spentUsd": 0,
+      "settled": true,
+      "finishedAt": "2026-10-21T02:49:03.498Z",
+      "record": "docs/runs/real-replay-20261021-024902.jsonl"
+    },
+    {
+      "run": "real-replay-20261021-024927",
+      "what": "real replay: 1 turns × O on Fix run memory probe (seed s3, 60 turns); voice live; craft live",
+      "startedAt": "2026-10-21T02:49:27.871Z",
+      "reservedUsd": 5,
+      "spentUsd": 1.3625,
+      "settled": true,
+      "finishedAt": "2026-10-21T02:49:40.380Z",
+      "record": "docs/runs/real-replay-20261021-024927.jsonl"
+    },
+    {
+      "run": "real-replay-20261021-024954",
+      "what": "real replay: 1 turns × O on Fix run memory probe (seed s3, 60 turns); voice live; craft live",
+      "startedAt": "2026-10-21T02:49:54.870Z",
+      "reservedUsd": 8,
+      "spentUsd": 0.5574,
+      "settled": true,
+      "finishedAt": "2026-10-21T02:51:17.253Z",
+      "record": "docs/runs/real-replay-20261021-024954.jsonl"
+    },
+    {
+      "run": "real-replay-20261021-025143",
+      "what": "real replay: 1 turns × O on Fix run memory probe (seed s3, 60 turns); voice live; craft live",
+      "startedAt": "2026-10-21T02:51:43.579Z",
+      "reservedUsd": 5,
+      "spentUsd": 0.235,
+      "settled": true,
+      "finishedAt": "2026-10-21T02:52:12.965Z",
+      "record": "docs/runs/real-replay-20261021-025143.jsonl"
     }
   ]
 }
