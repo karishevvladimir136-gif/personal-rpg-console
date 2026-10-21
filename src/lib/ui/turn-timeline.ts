@@ -111,6 +111,14 @@ function checkLine(check: VisibleCheck, heroId: string | null, ru: boolean) {
   return `${linePrefix(check, heroId)}${check.total} — ${verdict}`;
 }
 
+/** Fix S3-pre A-44: a companion's check line shows its d20 before the total («Восприятие: к20 14 → 17 против 15 —
+ * получилось»), so the chip reads who, what, the die, the total and the result. */
+function withDie(chip: { who: string | null; text: string }, check: VisibleCheck, ru: boolean) {
+  const prefix = check.reason?.trim() ? `${check.reason.trim()}: ` : "";
+  if (!chip.text.startsWith(prefix) || !chip.text.slice(prefix.length).startsWith(`${check.total}`) || !Number.isInteger(check.kept)) return chip;
+  return { ...chip, text: `${prefix}${ru ? "к20" : "d20"} ${check.kept} → ${chip.text.slice(prefix.length)}` };
+}
+
 function splitWho(line: string, party: string[]): { who: string | null; text: string } {
   const who = party.find((name) => name && line.startsWith(`${name}: `)) ?? null;
   return { who, text: who ? line.slice(who.length + 2) : line };
@@ -135,7 +143,7 @@ export function buildTurnTimeline(input: TimelineInput): { items: TimelineItem[]
       used.add(check.id);
       cursor = input.checks.indexOf(check) + 1;
       placed.push({ at, item: isCard(check) ? { kind: "card", key: `check:${check.id}`, check }
-        : { kind: "chip", key: `check:${check.id}`, ...splitWho(line.summary, [check.actorName]), tone: check.success ? "success" : "failure" } });
+        : { kind: "chip", key: `check:${check.id}`, ...withDie(splitWho(line.summary, [check.actorName]), check, ru), tone: check.success ? "success" : "failure" } });
       return;
     }
     const { who, text: rest } = splitWho(line.summary, input.party);
@@ -153,7 +161,7 @@ export function buildTurnTimeline(input: TimelineInput): { items: TimelineItem[]
     if (used.has(check.id)) continue;
     const at = traced ? text.length : null;
     placed.push({ at, item: isCard(check) ? { kind: "card", key: `check:${check.id}`, check }
-      : { kind: "chip", key: `check:${check.id}`, ...splitWho(checkLine(check, heroId, ru), [check.actorName]), tone: check.success ? "success" : "failure" } });
+      : { kind: "chip", key: `check:${check.id}`, ...withDie(splitWho(checkLine(check, heroId, ru), [check.actorName]), check, ru), tone: check.success ? "success" : "failure" } });
   }
   // Unknown places come first («действие — бросок — напечатал»); known ones in the order they were told.
   const ordered = placed.map((row, index) => ({ ...row, index }))

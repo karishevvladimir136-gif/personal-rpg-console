@@ -120,13 +120,13 @@ test("F2 item 5: nothing on the owner's screens is under 13px; helper and muted 
   walk("src");
   const small = [];
   for (const file of files) {
-    // World Lab (left untouched by this stage) and the combat rules of the 2D Live session are outside this pass.
-    if (file.includes("/world-lab/")) continue;
+    // Fix S3-pre A-5: World Lab and the old sheet's fold (.combat-stats) keep the floor too; the old combat screen's
+    // rules stay outside this pass.
     const text = src(file);
     for (const block of text.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
       const selector = block[1].replace(/\/\*[\s\S]*?\*\//g, "").trim();
       if (/::(before|after)/.test(selector)) continue;
-      if (file.endsWith("globals.css") && /combat|initiative/i.test(selector)) continue;
+      if (file.endsWith("globals.css") && /combat|initiative/i.test(selector) && !/combat-stats/.test(selector)) continue;
       // Merge after session 2: the 2D Live battle map's on-token badges (initiative, HP, condition letters, the
       // opportunity-attack flag, the phone token's initials) and the SVG's feature labels (grid units) are the map's
       // drawing, sized to the 44 px token; every text panel of the 2D screens keeps the 13 px floor.

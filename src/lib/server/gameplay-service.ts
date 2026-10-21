@@ -29,6 +29,7 @@ import { checkLedger } from "../gameplay/dm-loop/ledger-check";
 import { checkRollsTold } from "../gameplay/dm-loop/roll-check";
 import { awaitFirstTurnPrep, prepSchedulable, schedulePrep } from "./hidden-layer-prep";
 import { scheduleFightFold } from "./note-fold";
+import { scheduleBattleBackground } from "../live2d/server/battle-schedule";
 import { markBoostUsed, readDmSettings, type DmSettings } from "./dm-settings";
 import { dossierService } from "./dossier";
 import { digestOnEntry, entryCheckDue } from "./session-digest";
@@ -155,7 +156,7 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
     ledgerCheck: (input) => checkLedger(process.env.ANTHROPIC_API_KEY ?? "", input),
     // Fix run B3 (item 60): every roll the player saw is told (both modes).
     rollCheck: (input) => checkRollsTold(process.env.ANTHROPIC_API_KEY ?? "", input),
-    afterCommit: async ({ operationId, playerLikes, ownerRule, combatEnded, boostUsed, playMinutes, input, source, narration }) => {
+    afterCommit: async ({ operationId, playerLikes, ownerRule, combatEnded, combatStarted, boostUsed, playMinutes, input, source, narration }) => {
       // Polish 3 §4: the state before this turn, with the campaign's rules of the moment, for the replay tool (never fails the turn).
       if (source && input) {
         const current = await settings().catch(() => null);
@@ -172,6 +173,8 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
       if (boostUsed) await markBoostUsed(campaignId);
       // Fix run B2 (2): a fight's notes fold into a line each, in the background.
       if (combatEnded) scheduleFightFold(ownerId, campaignId, operationId);
+      // Fix S3-pre Part 3: a fight that starts on a prepared place gets its painted top-down background, in the background.
+      if (combatStarted) scheduleBattleBackground(ownerId, campaignId);
       // Polish item 21: the campaign's play time counts real minutes of play.
       if (playMinutes > 0) await dossier.playTime(playMinutes).catch(() => {});
       // The World Engine mirror of the dossier's plans (a usable World Lab basis).

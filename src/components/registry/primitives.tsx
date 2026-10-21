@@ -4,7 +4,7 @@ import { createContext, useContext, useState, type ReactNode } from "react";
 import { useLanguage } from "../language-context";
 import type { Rarity } from "@/lib/ui/rarity";
 import { displayLabel } from "@/lib/ui/labels";
-import { walletParts } from "@/lib/inventory/model";
+import { coinAmountWord, walletParts } from "@/lib/inventory/model";
 import s from "./registry.module.css";
 
 export { s as registry };
@@ -224,8 +224,9 @@ export function Avatar({ subject, name, small }: { subject: SubjectRef | null; n
   );
 }
 
-/** Fix S2, stage D (items 28, 33, 52): money is one line — «Кошелёк: 10 зм · 11 см · 26 мм» — in the order of value,
- * the coin's code in lower case with its full name on hover, zero coins hidden; never a counter. */
+/** Fix S2, stage D (items 28, 33, 52): money is one line — «Кошелёк: 10 золотых · 11 серебряных · 26 медных» — in the
+ * order of value, zero coins hidden; never a counter. Fix S3-pre A-33: the coin in words (the full name on hover was the
+ * only word, and a phone has no hover); the compact line (a panel's header) keeps the code. */
 export function WalletLine({ wallet, action, compact }: { wallet: Record<string, number>; action?: ReactNode; compact?: boolean }) {
   const c = useCopy();
   const parts = walletParts(wallet, c.language);
@@ -236,7 +237,8 @@ export function WalletLine({ wallet, action, compact }: { wallet: Record<string,
         {parts.length ? parts.map((part, index) => (
           <span key={part.label}>
             {index > 0 && <span aria-hidden="true" style={{ color: "var(--muted)" }}> · </span>}
-            {part.amount} <abbr title={part.title} style={{ textDecorationStyle: "dotted", cursor: "help" }}>{part.label}</abbr>
+            {part.amount} {compact ? <abbr title={part.title} style={{ textDecorationStyle: "dotted", cursor: "help" }}>{part.label}</abbr>
+              : <span title={part.title}>{coinAmountWord(part.label, part.amount, c.language)}</span>}
           </span>
         )) : <span className={s.muted}>{c("пусто", "empty")}</span>}
       </span>

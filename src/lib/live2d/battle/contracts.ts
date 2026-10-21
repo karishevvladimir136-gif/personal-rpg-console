@@ -167,3 +167,10 @@ export function foeHp(row: { public_resources: Record<string, unknown> }): { cur
   if (row.public_resources.side === "party" || !hp || typeof hp.current !== "number" || typeof hp.max !== "number") return null;
   return { current: hp.current, max: hp.max };
 }
+
+/** Fix S3-pre Part 3: the place of the open fight (its battlefield's `locationId`), whose painted top-down background
+ * the server prepares when a turn starts the fight; null without an active fight on a place. */
+export function battleLocationOf(encounters: readonly { status: string; public_field?: unknown }[]): string | null {
+  const active = encounters.find((row) => row.status === "active");
+  return active ? parseField(active.public_field).locationId : null;
+}

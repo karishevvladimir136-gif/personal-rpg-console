@@ -1179,7 +1179,7 @@ main {
 .combat-stats span {
   display: flex;
   justify-content: space-between;
-  font-size: 10px;
+  font-size: 13px;
   color: #a7b5b7;
 }
 .combat-stats b {

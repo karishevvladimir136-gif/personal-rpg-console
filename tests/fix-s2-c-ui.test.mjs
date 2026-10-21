@@ -73,7 +73,7 @@ test("one timeline in the order it was told: text → the companion's chip → t
   const { items, pause } = timeline({ text: trace.view.text, rolls: rollLines({ status: "generating" }, trace), checks: [bramShot, heroCheck], status: "recording" });
   assert.deepEqual(kinds(items), ["text", "chip:Bram", "text", "card", "text"]);
   assert.equal(items[0].text, "Bram does not ask twice.");
-  assert.equal(items[1].text, "crossbow at the brute: 20 — получилось · урон 1", "the chip keeps the server's line: what, the number, the outcome, the damage");
+  assert.equal(items[1].text, "crossbow at the brute: к20 17 → 20 — получилось · урон 1", "the chip keeps the server's line: what, the d20 (fix-s3-pre A-44), the number, the outcome, the damage");
   assert.equal(items[1].tone, "success");
   assert.equal(items[2].text, "The brute staggers. The captain watches you.");
   assert.equal(items[3].check.id, "c-hero");
@@ -197,7 +197,7 @@ test("the screen: the told turn inside the turn, the action box grows, the owner
   assert.match(game, /filter\(\(change\) => change\.name !== "roll"\)/, "the rolls are not repeated in the folded changes");
   const composer = src("src/components/gameplay-composer.tsx");
   assert.match(composer, /rows=\{mode === "feedback" \? 5 : 4\}/, "item 42: four lines to start");
-  assert.match(composer, /window\.innerHeight \/ 3/, "it grows to about a third of the screen, then scrolls");
+  assert.match(composer, /window\.innerHeight \/ 2/, "it grows to about half the screen, then scrolls (fix-s3-pre A-42)");
   assert.match(composer, /live=\{traceFor\(turn\.id\)\}/, "the stream is told inside its turn");
   assert.match(composer, /provisionalTurn\(sent\)/, "a sent turn is shown before its record reaches the screen");
   assert.doesNotMatch(composer, /setLive\(null\)/, "the told text is never dropped when the turn pauses or saves");
@@ -205,5 +205,7 @@ test("the screen: the told turn inside the turn, the action box grows, the owner
   assert.match(turn, /<TurnTimeline/);
   assert.doesNotMatch(turn, /turn\.checks\.map/, "no block of cards above the narration");
   const css = src("src/components/registry/game.module.css");
-  assert.match(css, /\.game :global\(\.gameplay-channel textarea\) \{[^}]*max-height: 34vh/);
+  assert.match(css, /\.game :global\(\.gameplay-channel textarea\) \{[^}]*max-height: 50vh/);
+  // Fix S3-pre A-42: the box's text follows the player's words in the story (wide screens, «Крупный текст истории»).
+  assert.match(css, /\n:global\(\.large-text\) \.game :global\(\.gameplay-channel textarea\) \{\n  font-size: 18px;/);
 });

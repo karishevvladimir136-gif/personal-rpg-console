@@ -511,6 +511,9 @@ div.sceneImage {
 .opening {
   max-width: 82ch;
 }
+.game :global(.gameplay-channel textarea) {
+  font-size: 17px;
+}
 @media (min-width: 1800px) {
   .game :global(.gameplay-narration .prose),
   .game :global(.gameplay-live-turn .prose),
@@ -563,13 +566,28 @@ div.sceneImage {
     font-size: 21.5px;
   }
 }
+/* Fix S3-pre A-42: the action box's text follows the player's words in the story. */
+@media (min-width: 2300px) {
+  .game :global(.gameplay-channel textarea) {
+    font-size: 18.5px;
+  }
+}
+:global(.large-text) .game :global(.gameplay-channel textarea) {
+  font-size: 18px;
+}
+@media (min-width: 2300px) {
+  :global(.large-text) .game :global(.gameplay-channel textarea) {
+    font-size: 21.5px;
+  }
+}
 @media (max-width: 760px) {
   :global(.large-text) .game :global(.gameplay-narration .prose),
   :global(.large-text) .game :global(.gameplay-live-turn .prose),
   :global(.large-text) .opening {
     font-size: 19.5px;
   }
-  :global(.large-text) .game :global(.gameplay-owner-words .prose) {
+  :global(.large-text) .game :global(.gameplay-owner-words .prose),
+  :global(.large-text) .game :global(.gameplay-channel textarea) {
     font-size: 17.5px;
   }
 }
@@ -742,12 +760,13 @@ div.sceneImage {
 .game :global(.gameplay-channel[data-preview="true"] form) {
   position: static;
 }
-/* Item 42: four lines to start, the story's size, growing with the text to a third of the screen, then scrolling. */
+/* Item 42: four lines to start, the story's size, growing with the text to about half the screen, then scrolling
+   (fix-s3-pre A-42: the owner asked for half; the size follows the player's words in the story on wide screens and in
+   «Крупный текст истории»). */
 .game :global(.gameplay-channel textarea) {
   min-height: calc(6em + 22px);
-  max-height: 34vh;
+  max-height: 50vh;
   resize: none;
-  font-size: 17px;
   line-height: 1.5;
   overflow-y: auto;
 }

@@ -66,6 +66,8 @@ export type DmLoopDependencies = {
     ownerRule?: string | null;
     /** Fix run B2 (2): the turn ended a fight (its notes fold in the background). */
     combatEnded?: boolean;
+    /** Fix S3-pre Part 3: the turn started a fight (its place's battle background is prepared in the background). */
+    combatStarted?: boolean;
     /** Polish item 21: real minutes of play this turn stands for (1–30), for the campaign's play time. */
     playMinutes: number;
     /** Polish 3 §4: the turn's literal input and the runtime source it started from (the state before the turn), for the snapshot. */
@@ -128,9 +130,13 @@ export function declaredLine(input: { mode: string; input: string }): string {
   return input.mode === "game" && declaresAction(input.input) ? input.input : "";
 }
 
+const combatAction = (receipts: DmLoopReceipt[], action: string) => receipts.some((receipt) => receipt.call.name === "combat" && receipt.result.ok &&
+  (typeof receipt.call.arguments === "object" && receipt.call.arguments !== null ? (receipt.call.arguments as { action?: unknown }).action === action : false));
 export function combatEnded(receipts: DmLoopReceipt[]): boolean {
-  return receipts.some((receipt) => receipt.call.name === "combat" && receipt.result.ok &&
-    (typeof receipt.call.arguments === "object" && receipt.call.arguments !== null ? (receipt.call.arguments as { action?: unknown }).action === "end" : false));
+  return combatAction(receipts, "end");
+}
+export function combatStarted(receipts: DmLoopReceipt[]): boolean {
+  return combatAction(receipts, "start");
 }
 
 /** Fix run A3: the limits past which a turn is named as expensive (the owner panel flags it too). */
@@ -785,7 +791,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
         .map((turn) => Date.parse(turn.updated_at)).filter((ms) => Number.isFinite(ms));
       const since = previous.length ? Math.max(...previous) : Date.parse(claim.turn.public.created_at) || Date.now();
       const playMinutes = Math.max(1, Math.min(30, Math.round((Date.now() - since) / 60000)));
-      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, ownerRule: loop.meta?.ownerRule ?? null, combatEnded: combatEnded(loop.receipts), boostUsed: !!pin.depth?.boosted, playMinutes, input, source: claim.source, narration }); }
+      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, ownerRule: loop.meta?.ownerRule ?? null, combatEnded: combatEnded(loop.receipts), combatStarted: combatStarted(loop.receipts), boostUsed: !!pin.depth?.boosted, playMinutes, input, source: claim.source, narration }); }
       catch { /* a note or a flag never fails a committed turn */ }
     }
     return result;

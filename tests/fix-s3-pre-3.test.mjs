@@ -77,7 +77,7 @@ test("2.3 KF-hidden-layer: the rebuild request builds on the owner's «Тайн�
   assert.equal(parseDigest(reply("я".repeat(9000)), source, 0).hiddenLayer.length, 5800);
   // The rebuild's instructions (the request itself is built by buildPrepRequest on a full source in tests/fix-s2-b).
   const hidden = src("src/lib/gameplay/dm-loop/hidden-layer.ts");
-  assert.match(hidden, /The owner has just written or changed his secrets for this campaign \(«Тайны»\)[\s\S]*rewrite it now so it builds on them and never contradicts them/);
+  assert.match(hidden, /The owner has just written or changed their secrets for this campaign \(«Тайны»\)[\s\S]*rewrite it now so it builds on them and never contradicts them/);
   assert.match(hidden, /Keep everything play has already established/);
   void buildPrepRequest;
 });

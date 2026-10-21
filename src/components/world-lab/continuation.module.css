@@ -20,7 +20,7 @@
   font-size: 1.3rem;
 }
 .badge {
-  font-size: 0.67rem;
+  font-size: 13px;
   letter-spacing: 0.12em;
   border: 1px solid #96764570;
   border-radius: 4px;
@@ -139,7 +139,7 @@
   padding: 0.5rem 1rem;
 }
 .events time {
-  font-size: 0.72rem;
+  font-size: 13px;
   color: #ae9974;
 }
 .events p {

@@ -61,10 +61,10 @@ function rememberTold(trace: LiveTrace) {
   while (toldTurns.size > 40) toldTurns.delete(toldTurns.keys().next().value!);
 }
 
-/** Item 42: the action box grows with the text up to about a third of the screen, then scrolls. */
+/** Item 42: the action box grows with the text up to about half the screen, then scrolls (fix-s3-pre A-42). */
 function growToText(area: HTMLTextAreaElement | null) {
   if (!area) return;
-  const cap = Math.max(160, Math.round(window.innerHeight / 3));
+  const cap = Math.max(160, Math.round(window.innerHeight / 2));
   area.style.height = "auto";
   const needed = area.scrollHeight + (area.offsetHeight - area.clientHeight);
   area.style.height = `${Math.min(needed, cap)}px`;

@@ -27,7 +27,7 @@ const PREP_INSTRUCTIONS = `Your private prep before the next session. This campa
 Two to five factions, two or three clocks (4–8 segments each). Mystery and wonder: the clues point at the truth from several sides, each answer opens a deeper question, and the wonder is magic with a past, not an unexplainable effect.`;
 
 /** Fix S3-pre (KF-hidden-layer): the owner saved «Тайны» after the layer was written — it is rebuilt on them. */
-const REBUILD_INSTRUCTIONS = `The owner has just written or changed his secrets for this campaign («Тайны»). Your hidden layer (in the private notes above) was written before them: rewrite it now so it builds on them and never contradicts them. Keep everything play has already established, and keep whatever of the current layer the story has already touched (a clue found, a faction met); change only what the owner's secrets change.`;
+const REBUILD_INSTRUCTIONS = `The owner has just written or changed their secrets for this campaign («Тайны»). Your hidden layer (in the private notes above) was written before them: rewrite it now so it builds on them and never contradicts them. Keep everything play has already established, and keep whatever of the current layer the story has already touched (a clue found, a faction met); change only what the owner's secrets change.`;
 
 /** The prep request: the cached layers a turn uses (how to DM, the world, the history, the dossier) without «now»,
  * the owner's secrets, and the instructions; `rebuild` rewrites an existing layer on the owner's new «Тайны». */

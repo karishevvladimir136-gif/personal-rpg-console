@@ -263,6 +263,17 @@ export function walletParts(wallet: Wallet, language: unknown): WalletPart[] {
   return [...merged.values()].sort((a, b) => (b.value ?? -1) - (a.value ?? -1) || a.index - b.index)
     .map(({ label, amount, title, value }) => ({ label, amount, title, value }));
 }
+/** Fix S3-pre A-33: the coin in words for its amount — «1 золотая», «3 золотые», «10 золотых»; «10 gold» — so the
+ * wallet reads without hovering; an unknown currency keeps its own label. */
+export function coinAmountWord(label: string, amount: number, language: unknown): string {
+  if (lang(language) === "ru") {
+    const stem = ({ пм: "платинов", зм: "золот", эм: "электрумов", см: "серебрян", мм: "медн" } as Record<string, string>)[label];
+    if (!stem) return label;
+    const n = Math.abs(amount) % 100, last = n % 10;
+    return stem + (last === 1 && n !== 11 ? "ая" : last >= 2 && last <= 4 && (n < 12 || n > 14) ? "ые" : "ых");
+  }
+  return ({ pp: "platinum", gp: "gold", ep: "electrum", sp: "silver", cp: "copper" } as Record<string, string>)[label] ?? label;
+}
 /** «Кошелёк: 10 зм · 11 см · 26 мм» (or «Кошелёк: пусто»). */
 export function walletLine(wallet: Wallet, language: unknown): string {
   const ru = lang(language) === "ru";

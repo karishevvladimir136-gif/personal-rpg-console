@@ -108,12 +108,51 @@ export function buildDigestRequest(source: RuntimeSource, session: DigestSession
   return { system, messages, effort, shape, people, tokens: system.reduce((sum, block) => sum + estimateTokens(block.text), 0) + estimateTokens(instructions) };
 }
 
-/** The model's JSON, validated and bounded; a malformed answer yields null (the digest is retried on the next entry). */
+/** Fix S3-pre A-17: the parse repair of a digest answer — trailing commas dropped, and an answer cut mid-way (the output
+ * cap, a dropped stream) closed at its last complete field: the open strings, arrays and objects of the kept part are
+ * closed in order. Null when nothing parses. Pure. */
+export function repairDigestJson(text: string): Record<string, unknown> | null {
+  const start = text.indexOf("{");
+  if (start < 0) return null;
+  const body = text.slice(start);
+  const object = (candidate: string) => {
+    try { const value: unknown = JSON.parse(candidate); return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : null; }
+    catch { return null; }
+  };
+  // As written first; a trailing comma is dropped only when that fails (a story's «, ]» inside a string stays).
+  const parse = (candidate: string) => object(candidate) ?? object(candidate.replace(/,\s*([}\]])/g, "$1"));
+  const end = body.lastIndexOf("}");
+  const whole = end > 0 ? parse(body.slice(0, end + 1)) : null;
+  if (whole) return whole;
+  // The commas outside strings, from the last one back: cut there and close what is open.
+  const commas: number[] = [];
+  let inString = false, escaped = false;
+  for (let i = 0; i < body.length; i++) {
+    const ch = body[i];
+    if (inString) { if (escaped) escaped = false; else if (ch === "\\") escaped = true; else if (ch === '"') inString = false; continue; }
+    if (ch === '"') inString = true; else if (ch === ",") commas.push(i);
+  }
+  for (const cut of commas.reverse().slice(0, 400)) {
+    const kept = body.slice(0, cut);
+    const stack: string[] = [];
+    let open = false, esc = false;
+    for (const ch of kept) {
+      if (open) { if (esc) esc = false; else if (ch === "\\") esc = true; else if (ch === '"') open = false; continue; }
+      if (ch === '"') open = true; else if (ch === "{") stack.push("}"); else if (ch === "[") stack.push("]"); else if (ch === "}" || ch === "]") stack.pop();
+    }
+    if (open) continue;
+    const value = parse(kept + stack.reverse().join(""));
+    if (value) return value;
+  }
+  return null;
+}
+
+/** The model's JSON, validated and bounded; a malformed answer is repaired once (A-17) and otherwise yields null (the
+ * digest is retried on the next entry). */
 export function parseDigest(text: string, source: RuntimeSource, nowMinutes: number, shape?: SessionShape, people?: { id: string; name: string }[]): SessionDigest | null {
-  const start = text.indexOf("{"), end = text.lastIndexOf("}");
-  if (start < 0 || end <= start) return null;
-  let value: Record<string, unknown>;
-  try { value = JSON.parse(text.slice(start, end + 1)); } catch { return null; }
+  const repaired = repairDigestJson(text);
+  if (!repaired) return null;
+  const value: Record<string, unknown> = repaired;
   if (!value || typeof value !== "object") return null;
   const str = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
   const recap = str(value.recap, 4000), title = str(value.title, 200), notebook = str(value.notebook, 6000);
