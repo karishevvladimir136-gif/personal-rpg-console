@@ -1,5 +1,35 @@
 # Development status
 
+**Current milestone: the fixes before session 3** (`docs/stages/FIX_S3_PRE.md` on `claude/handoff`) — **implementation
+done on `claude/s3-candidate`, waiting for the owner's acceptance** (`docs/runs/s3-acceptance.md`, the three Russian
+checklists, updated where a path changed) **and the sandbox load** (`docs/SANDBOX_LOAD_FIX_S2.md`, now four migration
+ranges: the stage adds `202610210401`–`403`, additive; `0402` turns «Показывать сложность (DC)» on in a new settings
+revision). Report: `docs/runs/fix-s3-pre-report.md`; ledger `docs/runs/fix-s3-pre-ledger.md`; measurements in
+`docs/RESEARCH_LOG.md`.
+
+- **What was done:** Part 1 — in «пишет — записывает» the writer's attacks in an open fight are resolved by the server's
+  battlefield (the same resolver as `combat attack`; a bare attack is refused); the «every roll told» check counts fight
+  cards, reads the player's declared actions and quotes the sentence that tells each roll. Part 2 — the owner's table
+  rules in code (wound bands, coup de grâce, the ambush's first move, strict natural 20/1 on rerolls, a potion's bonus
+  action, Heroic Inspiration one at a time); the fight's HP mirror follows every wound; the «Дальше» pause only while a
+  reroll is available; the 64 000 output cap and «⚡ важный ход»; saves from the sheet; the DC shown; the hidden-layer
+  prep's timing; «Тайны» as a one-line steer; the first turn's companions; the gallery over every turn; Russian on the
+  owner's screens; privacy fixes in the public repository; six of the smaller items. Part 3 — a fight's start orders the
+  place's painted battle background; the hidden layer of the owner's campaign confirmed armed and never shown.
+- **Key decisions:** the roll check runs with thinking off (at low effort it spent its whole allowance thinking and
+  passed every turn); the ledger check keeps thinking with a 3 000 ceiling; a declared action is asked for only when the
+  hero rolled nothing (never a double attack); coup de grâce only on foes (the party keeps death saves); attacks in a
+  fight's opening turn stay plain rolls (no battlefield yet).
+- **Checks** (a clean worktree without `.env.local`, at `81ef28a`): the full suite — FULL_SUITE_RESULT; typecheck pass;
+  lint pass, zero warnings (one unused import removed after that commit); production build pass.
+- **Money:** $7.08 of the $20 cap (Part 1 probes $3.66, the roll/ledger-check validation $0.01, the memory pair $3.40).
+- **Known issues:** in session 3's mode the probes' median turn cost and seconds rose ($0.28 → $0.40 and $0.29 → $0.35;
+  13–27 s longer; n = 1 each); the battle background needs a prepared scene; «компактно» memory failed the recall probe
+  and wrote a false note (the default stays «стандарт»); A-73, A-74, A-18, A-31 not done (a record shape, a data
+  migration, a schema change, a design decision); old names remain in past run records and design canvases.
+- **Next step:** the owner loads the candidate with `docs/SANDBOX_LOAD_FIX_S2.md`, accepts the checklists and plays
+  session 3; the report's «Needs the owner» lists six questions.
+
 **Current milestone: the session 3 candidate** (`docs/stages/MERGE_S2.md` on `claude/handoff`) — **merged on
 `claude/s3-candidate`, waiting for the owner's acceptance** (`docs/runs/s3-acceptance.md`, the index of the three
 Russian checklists) **and the sandbox load** (`docs/SANDBOX_LOAD_FIX_S2.md`, now for the candidate). One branch holds

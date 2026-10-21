@@ -46,9 +46,10 @@ node scripts/sandbox-start.mjs --prod
 
 (or `Start Sandbox.cmd --prod`). The launcher applies the pending migrations, builds the app (two to five minutes; the
 log is `.sandbox/build.log`) and runs `next start` on :3100 — no dev server during play (session 2's memory and latency
-problem). Later starts without code changes: `--prod --no-build`. The candidate adds migrations in **three ranges**, all
+problem). Later starts without code changes: `--prod --no-build`. The candidate adds migrations in **four ranges**, all
 additive, none edited, no number used twice: the fix run `202610200071`–`202610200084` and `202610200096`, 2D Live
-`202610210200`–`202610210201`, the music stage `202610210301`. They apply in name order with the others:
+`202610210200`–`202610210201`, the music stage `202610210301`, the fixes before session 3 `202610210401`–`202610210403`.
+They apply in name order with the others:
 
 | Migration | What |
 | --- | --- |
@@ -70,6 +71,9 @@ additive, none edited, no number used twice: the fix run `202610200071`–`20261
 | 0200 `live2d` | the 2D tables: `live2d_settings`, `live2d_scenes` with `live2d_scene_versions`, `live2d_pois`, `live2d_region_maps`, `live2d_seeds` (private); the picture kinds `scene`, `region`, `battle`; the RPC `rpg_live2d` |
 | 0201 `live2d_battle` | the battlefield: `rpg_encounters.public_field` (old fights read as `{}`), `live2d_battle_maps` |
 | 0301 `music_stage` | the soundtrack and the ambient layer: `music_settings`, `music_packs` (music or ambient), `music_tracks` (private), the RPC `rpg_music`; the media bucket accepts audio up to 40 MB |
+| 0401 `fix_s3_pre_reroll_natural` | a reroll keeps the natural 20 / 1 rule (the check's verdict recomputed), function bodies only |
+| 0402 `fix_s3_pre_show_dc` | **changes a setting**: every campaign stored with «Показывать сложность (DC)» off gets it on, in a new settings revision (the history keeps the old one, as a save from the screen would); new campaigns start with it on. Nothing else in the settings changes |
+| 0403 `fix_s3_pre_gallery_turns` | the gallery's own read over every committed game turn (a new owner-only function; `/play` untouched) |
 
 Check: the app opens at http://127.0.0.1:3100/campaigns, and `.sandbox/app.log` has no error.
 
@@ -103,7 +107,11 @@ show both to the owner. It refuses to run before step 4 (the coins must be under
 - «Кто ведёт игру»: **«Opus пишет — Opus записывает»** for session 3 (the owner's decision; see the report's «Needs the
   owner» 1 for the cost).
 - New defaults, already on: Russian «Инструкции ведущего», «Память ведущего: стандарт», «Броски спутников: ведущий».
-- «Тайны (видит только ведущий)»: empty unless the owner writes the world's truth there (the DM's prep builds on it).
+- «Тайны (видит только ведущий)»: now a one-line steer (up to 200 characters), empty unless the owner writes one; saving
+  it rebuilds the hidden layer once (≈$0.45).
+- The hidden layer of «Приключения начинаются»: the DM's prep writes it once, in the background, on the first open of the
+  game screen after the load (never from the Settings screen; ≈$0.45; a failed prep retries an hour later at the
+  soonest). It is never shown unless «Показывать мне тайны ведущего» is on. The app log shows `hidden_layer_prep`.
 - Pictures: opening the game once stores the device's time zone; the daily picture limit then starts at midnight.
 - «Настройки → Крупный текст истории» if the story should read larger; the campaign's «Правила и кости» show the rules
   from the DM guide's first line.
@@ -112,8 +120,9 @@ show both to the owner. It refuses to run before step 4 (the coins must be under
 
 - **2D (the «2D» item after «Карта»).** The new tables start empty; nothing is converted. The region map and a scene's
   picture are drawn on the owner's click (one picture each; the first region map also plants the private POI seeds with
-  one cheap call, ~$0.01). A fight the DM opens with `combat start` gets its grid; old encounters have no map and show
-  the zones view. The synthetic walk and fights need no database: `/preview/live2d?level=region|town|district|scene`
+  one cheap call, ~$0.01). A fight the DM opens with `combat start` gets its grid, and on a place whose scene was prepared its
+  painted top-down background is drawn in the background (one quality picture per place, under the daily limit; the
+  app log shows `live2d_battle_requested`); old encounters have no map and show the zones view. The synthetic walk and fights need no database: `/preview/live2d?level=region|town|district|scene`
   and the battle previews listed in `docs/runs/live2d-1-acceptance.md`.
 - **Music and place sounds (Настройки → Музыка).** No pack exists in the sandbox yet: what the cloud made are review
   copies in `docs/runs/music-review/` (`shov/`, `noir/`, `compare/`, and `ambient/shov/`, `ambient/noir/` for the
