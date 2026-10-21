@@ -50,6 +50,7 @@ import {
 import { sameTimeline, timelineChangedMessage } from "@/lib/saves/client-state";
 import { followLiveTurn, type LiveTurnView } from "@/lib/gameplay/live-turn-client";
 import { provisionalTurn, traceLive, type LiveTrace } from "@/lib/ui/turn-timeline";
+import { rerollsLeft } from "@/lib/gameplay/reroll-allowance";
 
 /** Stage C (item 63): the streams this page has seen told, by turn — a remounted composer keeps the order
  * of a told turn's rolls and text (the saved record has the text and the rolls, not where each came). */
@@ -146,6 +147,8 @@ export function GameplayComposer({
   companionRolls?: "dm" | "player";
 }) {
   const { campaignId, data } = useCampaignData();
+  // Fix S3-pre A-37: the rerolls the session still allows (the server's own count), for the «Дальше» pause and the card.
+  const rerolls = rerollsLeft(data?.settings?.values, play.turns, data?.publicState?.current_session_id ?? null);
   const scope = useCampaignDraftScope();
   const { t } = useLanguage();
   const memory = useSessionMemory();
@@ -580,6 +583,7 @@ export function GameplayComposer({
                 running={busy && trace?.view.operationId === turn.id}
                 recording={recording && trace?.view.operationId === turn.id}
                 companionRolls={companionRolls}
+                rerollsLeft={rerolls}
                 busy={
                   busy ||
                   timelineBlocked ||
@@ -610,6 +614,7 @@ export function GameplayComposer({
             running={busy && trace?.view.operationId === compactTurn.id}
             recording={recording}
             companionRolls={companionRolls}
+            rerollsLeft={rerolls}
             busy={
               busy ||
               timelineBlocked ||

@@ -19,6 +19,7 @@ import {
   GameplayClientError,
   gameplayErrorMessage,
 } from "@/lib/gameplay/client";
+import { heroicInspiration, rollPauseAvailable } from "@/lib/gameplay/reroll-allowance";
 import { sameTimeline, timelineKey } from "@/lib/saves/client-state";
 import type { LiveTrace } from "@/lib/ui/turn-timeline";
 import { SubjectAvatar } from "./visual-frame/subject-avatar";
@@ -251,6 +252,7 @@ export function GameplayTurn({
   live = null,
   running = false,
   companionRolls = "dm",
+  rerollsLeft,
 }: {
   turn: PublicTurn;
   busy: boolean;
@@ -266,6 +268,8 @@ export function GameplayTurn({
   running?: boolean;
   /** The DM option «Броски спутников» (item 44): chips by the DM, or cards for the player. */
   companionRolls?: "dm" | "player";
+  /** Fix S3-pre A-37: the rerolls the session still allows (null: unlimited); absent — not known here. */
+  rerollsLeft?: number | null;
 }) {
   const { t, language } = useLanguage();
   const { data } = useCampaignData();
@@ -278,9 +282,13 @@ export function GameplayTurn({
       : undefined;
   const heroId = data?.entities.find((row) => row.kind === "player")?.id ?? null;
   const party = data?.entities.filter((row) => row.kind === "companion").map((row) => row.name) ?? [];
-  // The server pauses for the player's roll when the dice are interactive or rerolls are allowed (and rolls are shown).
+  // Fix S3-pre A-37: the server pauses for the player's roll only while a reroll or the hero's Heroic Inspiration is
+  // available (and rolls are shown) — the same rule as pausesForPlayer.
   const dice = data?.settings?.values;
-  const rollsWait = !!dice && dice.dicePresentation !== "hidden" && (dice.interactiveDice || dice.difficulty?.rerolls !== "disabled");
+  const hero = data?.entities.find((row) => row.kind === "player") ?? null;
+  const left = rerollsLeft === undefined ? (dice?.difficulty?.rerolls === "disabled" ? 0 : null) : rerollsLeft;
+  const rollsWait = !!dice && dice.dicePresentation !== "hidden" && rollPauseAvailable(left, heroicInspiration(hero), true);
+  const rerollCount = dice?.difficulty?.rerolls === "limited" && typeof left === "number" ? { left, of: Number(dice.difficulty.rerollsPerSession ?? 0) } : null;
   const thinking = turn.status === "pending" || turn.status === "generating";
   // Polish group 6: one quiet indicator while the DM thinks; the cancel options come back
   // only when a turn has been thinking for a long while (or is no longer thinking).
@@ -334,6 +342,7 @@ export function GameplayTurn({
         party={party}
         companionRolls={companionRolls}
         rollsWait={rollsWait}
+        rerollCount={rerollCount}
         running={running}
         recording={recording}
         busy={busy}

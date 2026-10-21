@@ -183,6 +183,12 @@
   justify-self: start;
   font-size: 13px;
 }
+/* Fix S3-pre A-37: «перебросов осталось N из 2» on the hero's card while the turn waits. */
+.rerollCount {
+  justify-self: start;
+  font-size: 13px;
+  color: var(--muted);
+}
 
 @media (prefers-reduced-motion: reduce) {
   .caret,

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { sheetLines } from "@/lib/inventory/sheet";
 import { useState, type ReactNode } from "react";
-import { Dices, HelpCircle, Image as ImageIcon, Send, Sparkles, Users } from "lucide-react";
+import { Dices, HelpCircle, Image as ImageIcon, Send, Sparkles, Users, Zap } from "lucide-react";
 import type { CampaignSnapshot, Entity, Scene } from "@/lib/persistence/contracts";
 import type { PlaySnapshot, PublicTurn } from "@/lib/gameplay/contracts";
 import type { LiveTurnView } from "@/lib/gameplay/live-turn-client";
@@ -46,6 +46,7 @@ import {
   Transcript,
 } from "../persistent-game";
 import { useChrome, useDmSettings, useShellClock, type CampaignScreenId } from "./shell";
+import { saveDmSettings } from "@/lib/gameplay/dm-settings-client";
 import {
   Art,
   Avatar,
@@ -132,6 +133,17 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   const journal = journalOf(data);
   const session = currentSession(data);
   const dmSettings = useDmSettings(data.campaign.id);
+  // Fix S3-pre B-16 (the owner's decision): «⚡ важный ход» is back — the next turn takes the top of the depth range
+  // (the server's boostNext path, stage 4 §7; removed from the screen in polish group 6).
+  const [boost, setBoost] = useState<boolean | null>(null);
+  const boosted = boost ?? dmSettings?.boostNext ?? false;
+  const toggleBoost = async () => {
+    if (!dmSettings || preview) { setBoost((value) => !(value ?? false)); return; }
+    const next = !boosted;
+    setBoost(next);
+    try { await saveDmSettings(data.campaign.id, { expectedRevision: dmSettings.revision, runtime: dmSettings.runtime, dmTurn: dmSettings.dmTurn, boostNext: next }); }
+    catch { setBoost(!next); }
+  };
   const place = currentPlace(data);
   const combat = inCombat(play);
   const detected = combat || toWorld || ooc ? null : detectAddressee(draft, present.map((row) => row.entity));
@@ -230,6 +242,12 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
         }}>
         <ImageIcon size={18} aria-hidden="true" />
       </button>
+      {(dmSettings?.depth || preview) && (
+        <button type="button" className={boosted ? r.iconBtnOn : r.iconBtn} aria-pressed={boosted} aria-label={c("Важный ход", "Important turn")}
+          title={c("Важный ход: следующий ход ведущий обдумает на максимальной глубине", "Important turn: the DM thinks the next turn through at the top of the depth range")} onClick={() => void toggleBoost()}>
+          <Zap size={18} aria-hidden="true" />
+        </button>
+      )}
       {frameNote && <span className={r.note} role="status">{frameNote}</span>}
     </div>
   );

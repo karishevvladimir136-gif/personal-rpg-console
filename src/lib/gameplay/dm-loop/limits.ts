@@ -24,9 +24,10 @@ export const dmLoopLimits = {
   maxLongText: 4000,
   /** Narration characters per turn (SQL accepts 20000). */
   maxNarrationChars: 12_000,
-  /** Model output allowance per request, thinking included, for every depth (fix run A1, owner: «до
-   * предела»; 32 000 is what the 300-second lease allowed at ~95 tokens a second before the heartbeat). */
-  maxOutputTokens: 32_000,
+  /** Model output allowance per request, thinking included, for every depth, in both loops (the single DM's and the
+   * writer/bookkeeper's). Fix run A1 had 32 000 (what the 300-second lease allowed before the heartbeat); fix S3-pre
+   * B-16, the owner's decision of 2026-10-20 18:15: 64 000 — not the model's 128k, one runaway turn would cost too much. */
+  maxOutputTokens: 64_000,
   /** Character Model bounds: generous anti-garbage limits only (plan §9, pulled
    * forward in Stage 2b); the identity core stays protected by execute.ts. */
   characterModel: CHARACTER_MODEL_BOUNDS,

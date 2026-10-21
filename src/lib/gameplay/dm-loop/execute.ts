@@ -272,7 +272,7 @@ export function proficiencyValue(text: string): number {
 /** The bonus a skill named on the sheet gives: a numeric stat of that name, a
  * sheet line with a number («Плавание +2»), or the sheet's words (умеет / хорошо /
  * мастер → +2 / +4 / +6); the trade in the background counts as named. */
-export function sheetBonus(actor: Entity, skill: string): { value: number; source: string } | null {
+export function sheetBonus(actor: Entity, skill: string, kind: string | null = null): { value: number; source: string } | null {
   const wanted = normalizeSkill(skill);
   if (!wanted) return null;
   for (const [key, value] of Object.entries(actor.stats)) {
@@ -280,7 +280,10 @@ export function sheetBonus(actor: Entity, skill: string): { value: number; sourc
     if (normalizeSkill(key) === wanted || normalizeSkill(key).replaceAll("_", " ") === wanted) return { value, source: `${skill} ${value >= 0 ? "+" : ""}${value}` };
   }
   const sheet = actor.character_sheet;
-  const lines = [...(sheet?.skills ?? []), ...(sheet?.abilities ?? [])];
+  // Fix S3-pre A-9: a saving throw reads the sheet's own saves first («Ловкость +4»), then the skills and abilities.
+  const save = kind === "save" || /спасброс|saving throw|(^|[^\p{L}])save($|[^\p{L}])/iu.test(skill);
+  const saves = save && sheet && "saves" in sheet ? sheet.saves ?? [] : [];
+  const lines = [...saves, ...(sheet?.skills ?? []), ...(sheet?.abilities ?? [])];
   for (const line of lines) {
     if (!mentions(line, skill)) continue;
     const numbered = /^(.*?)\s*([+−-])\s*(\d+)\s*$/u.exec(line.trim());
@@ -343,6 +346,7 @@ function bundledDamage(shadow: ShadowState, args: Args, ctx: ToolContext, roll: 
       const before = target.hp ?? max;
       const after = Math.max(0, before - total);
       shadow.apply(entityChange(shadow, target, { hp: after, max_hp: max }));
+      mirrorFightHp(shadow, target, after, max, before - after, str(args.reason), roll.actor, ctx.language);
       value.applied = { target: target.name, before, after, max, band: hpBand(after, max) };
       applied = `; ${target.name} ${before} → ${after}/${max} (${hpBand(after, max)})`;
       const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
@@ -418,8 +422,9 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   if (weaponBonus === null && args.skill !== undefined) {
     reject(actor, "A sheet skill needs an actor (actorRef is \"dm\").");
     const skill = str(args.skill);
-    const bonus = sheetBonus(actor, skill);
-    const known = [...(actor.character_sheet?.skills ?? []), ...Object.keys(actor.stats).filter((key) => key !== "level")];
+    const bonus = sheetBonus(actor, skill, kindText);
+    const sheetSaves = kindText === "save" && actor.character_sheet && "saves" in actor.character_sheet ? actor.character_sheet.saves ?? [] : [];
+    const known = [...sheetSaves, ...(actor.character_sheet?.skills ?? []), ...Object.keys(actor.stats).filter((key) => key !== "level")];
     reject(bonus, `${actor.name}'s sheet names no skill or trade like "${skill}".`,
       `${known.length ? `The sheet names: ${known.slice(0, 12).join("; ")}. ` : ""}Use the sheet's own words, or roll without skill and give the fiction's bonuses with their sources.`);
     modifier += bonus.value;
@@ -1368,6 +1373,7 @@ function resourceTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoop
     let next = set ?? current + (delta ?? 0);
     next = Math.max(0, Math.min(maxHp, next));
     shadow.apply(entityChange(shadow, actor, { hp: next, max_hp: maxHp }));
+    mirrorFightHp(shadow, actor, next, maxHp, current - next, reason, null, ctx.language);
     const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
     // The hero's and the party's hit points are the player's business; an NPC's stay with the DM.
     const player = controlled.has(actor.id) && (current !== next || max !== null) ? chip.hp(ctx.language, actor.name, isHero(actor), current, next, maxHp, reason) : null;
@@ -1642,6 +1648,26 @@ function restTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
 }
 
 // --- combat ----------------------------------------------------------------
+/** Fix S3-pre B-6: a wound recorded outside combat attack (a roll's bundled damage, resource hp) moves the open fight's
+ * mirror too — the bars, the battlefield block and the fight's card read it — with a log line for the card. */
+function mirrorFightHp(shadow: ShadowState, target: Entity, after: number, max: number, damage: number, what: string, by: Entity | null, language: ChipLanguage) {
+  const fight = fightRows(shadow);
+  if (!fight.active) return;
+  const fighter = fight.rows().map(fight.fighterOf).find((row) => row.entityId === target.id);
+  if (!fighter) return;
+  if (!fight.partyIds.has(target.id)) {
+    fighter.combatant.hp = { current: after, max };
+    if (after === 0 && !fighter.combatant.conditions.some((c) => c === "dead" || c === "unconscious")) fighter.combatant.conditions = [...fighter.combatant.conditions, "unconscious"].slice(0, 12);
+    fight.saveFighter(fighter);
+  }
+  if (damage > 0) {
+    const field = fight.fieldOf();
+    field.log = [...field.log, { round: fight.active.round, actor: by?.name ?? "?", what: what || (language === "ru" ? "удар" : "hit"),
+      result: language === "ru" ? `${damage} урона → ${target.name}` : `${damage} damage → ${target.name}`, ref: null }].slice(-MAX_LOG);
+    fight.saveField(field);
+  }
+}
+
 /** Fix S3-pre B-3 (the owner's rule): drinking a potion in a fight is a bonus action — the drinker's «Бонусное» is spent
  * when it is their turn; already spent, the drink is recorded anyway and the receipt says so (never a rejection). */
 function potionBonusAction(shadow: ShadowState, item: Item, drinker: Entity | null): string | null {
@@ -2091,8 +2117,9 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
   if (action === "hp") {
     const { entity, fighter } = participantOf(args.actorRef, "actorRef");
     reject(!partyIds.has(entity.id), `${entity.name} is in the party: use resource hp.`);
-    const current = fighter.combatant.hp?.current ?? entity.hp ?? entity.max_hp ?? 0;
-    const max = int(args.max) ?? fighter.combatant.hp?.max ?? entity.max_hp ?? Math.max(1, current);
+    // Fix S3-pre B-6: the record first (a wound the writer's roll already applied is there), the mirror after it.
+    const current = entity.hp ?? fighter.combatant.hp?.current ?? entity.max_hp ?? 0;
+    const max = int(args.max) ?? entity.max_hp ?? fighter.combatant.hp?.max ?? Math.max(1, current);
     const next = Math.max(0, Math.min(max, args.set !== undefined ? int(args.set) ?? current : current + (int(args.delta) ?? 0)));
     fighter.combatant.hp = { current: next, max };
     const by = args.byRef !== undefined ? entityOf(shadow, args.byRef, "byRef") : null;

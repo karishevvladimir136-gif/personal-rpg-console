@@ -1396,6 +1396,7 @@
   "Start encounter": "Начать столкновение",
   "Round {number}": "Раунд {number}",
   "Action {action} · Move {move} · Reaction {reaction}": "Действие {action} · Движение {move} · Реакция {reaction}",
+  "Hit points {current}/{max}": "Хиты {current}/{max}",
   "Target": "Цель",
   "Position": "Позиция",
   "Confirm encounter action": "Подтвердить действие в столкновении",

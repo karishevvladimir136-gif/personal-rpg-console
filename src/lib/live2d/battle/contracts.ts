@@ -159,3 +159,11 @@ export function parseField(raw: unknown): Field {
 export const fieldJson = (field: Field): JsonObject => structuredClone(field) as unknown as JsonObject;
 /** A field that was never set up on a grid (old encounters, the Astra path): no map, zones only. */
 export const hasMap = (field: Field, placements: readonly Placement[]) => placements.some((row) => row.x !== null) || field.features.length > 0;
+
+/** Fix S3-pre B-6: a foe's hit points as the fight's mirror holds them, for the plain play screen's «Бой» panel (the
+ * party's live on their own sheets). */
+export function foeHp(row: { public_resources: Record<string, unknown> }): { current: number; max: number } | null {
+  const hp = row.public_resources.hp as { current?: unknown; max?: unknown } | null | undefined;
+  if (row.public_resources.side === "party" || !hp || typeof hp.current !== "number" || typeof hp.max !== "number") return null;
+  return { current: hp.current, max: hp.max };
+}

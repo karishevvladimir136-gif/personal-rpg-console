@@ -51,7 +51,7 @@ export function TurnPauseLine({ pause, action, note }: { pause: TurnPause; actio
 }
 
 /** The turn as one timeline: the told text, each roll in its place, the continuation, then the named pause. */
-export function TurnTimeline({ turn, trace, label, heroId, party, companionRolls = "dm", rollsWait = false, running = false, recording = false, busy, onCommand, continueAction }: {
+export function TurnTimeline({ turn, trace, label, heroId, party, companionRolls = "dm", rollsWait = false, rerollCount = null, running = false, recording = false, busy, onCommand, continueAction }: {
   turn: PublicTurn;
   trace: LiveTrace | null;
   /** The narration's eyebrow («Ведущий»; the game screen hides it). */
@@ -61,6 +61,8 @@ export function TurnTimeline({ turn, trace, label, heroId, party, companionRolls
   companionRolls?: "dm" | "player";
   /** The campaign's dice settings make the player's rolls wait for the player. */
   rollsWait?: boolean;
+  /** Fix S3-pre A-37: the session's rerolls left of its allowance, shown on the hero's card while the turn waits. */
+  rerollCount?: { left: number; of: number } | null;
   /** The player's «Дальше» or reroll for this turn is running. */
   running?: boolean;
   /** The composer knows the records are being written (the stream said so). */
@@ -99,10 +101,17 @@ export function TurnTimeline({ turn, trace, label, heroId, party, companionRolls
       case "card":
         return (
           <GameplayCheck key={item.key} check={item.check} ready={awaiting && item.check.interactive}
-            footer={awaiting && item.check.canReroll ? (
-              <button type="button" className={`text-link ${t.reroll}`} disabled={busy} onClick={() => onCommand("reroll", item.check.id)}>
-                {c("Запросить разрешённый переброс", "Request an allowed reroll")}
-              </button>
+            footer={awaiting && (item.check.canReroll || (rerollCount && item.check.actorId === heroId)) ? (
+              <>
+                {item.check.canReroll && (
+                  <button type="button" className={`text-link ${t.reroll}`} disabled={busy} onClick={() => onCommand("reroll", item.check.id)}>
+                    {c("Запросить разрешённый переброс", "Request an allowed reroll")}
+                  </button>
+                )}
+                {rerollCount && item.check.actorId === heroId && (
+                  <span className={t.rerollCount}>{c(`перебросов осталось ${rerollCount.left} из ${rerollCount.of}`, `rerolls left: ${rerollCount.left} of ${rerollCount.of}`)}</span>
+                )}
+              </>
             ) : null} />
         );
       case "pending":

@@ -36,7 +36,7 @@ async function campaignTurn(c, text, writerRounds, bookkeeperRounds, options = {
   return { input, result, writer, bookkeeper };
 }
 
-test("A6: the writer cut by the cap continues once from where it stopped, one notch lower; every request has the 32k cap and caches its turn", async () => {
+test("A6: the writer cut by the cap continues once from where it stopped, one notch lower; every request has the cap (64k since fix S3-pre B-16) and caches its turn", async () => {
   const c = await loopCampaign({ language: "ru" });
   try {
     await split(c);
@@ -47,7 +47,7 @@ test("A6: the writer cut by the cap continues once from where it stopped, one no
     assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
     const [first, second] = played.writer.requests;
     assert.equal(second.messages.at(-1).text, WRITER_CUT_BY_CAP);
-    assert.equal(first.maxOutputTokens, 32000);
+    assert.equal(first.maxOutputTokens, 64000);
     assert.equal(first.cacheTurn, true);
     assert.equal(played.bookkeeper.requests[0].cacheTurn, true);
     assert.notEqual(second.effort, first.effort, "one notch lower after the cut");

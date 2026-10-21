@@ -16,6 +16,7 @@ import type { RecordedCheck, RuntimeSource, TurnClaim, TurnStore } from "../serv
 import type { MemoryStore, SummaryProvider } from "../../memory/server-contracts.ts";
 import { withUnifiedMemory } from "../../memory/unified-context.ts";
 import { isDisplayedCheck, recordServerRoll, stableGameplayId, withNatural } from "../dice.ts";
+import { heroicInspiration, rerollsLeft, rollPauseAvailable } from "../reroll-allowance.ts";
 import { requireClaimTimeline, requireTurnTimeline } from "../timeline.ts";
 import { requireRule, safeTurnFailure, TurnError } from "../turn-errors.ts";
 import { DmError } from "../dm-errors.ts";
@@ -107,13 +108,16 @@ export function leaseHeartbeat(store: TurnStore, lease: TurnClaim["lease"], ever
 
 /** Fix run B2 (2): whether a turn's accepted records ended a fight. */
 /** Item 44 (the owner's decision, the DM option «Броски спутников»): a displayed check pauses the turn for the
- * player's dice (interactive dice or rerolls) only when it is the hero's, or a companion's while the player rolls for
+ * player's dice (fix S3-pre A-37: while a reroll or Heroic Inspiration is available) only when it is the hero's, or a companion's while the player rolls for
  * the companions; by default the DM rolls for them and their roll shows as a chip in place, without a pause. */
 export function pausesForPlayer(source: RuntimeSource, check: RecordedCheck): boolean {
   const values = source.snapshot.settings.values;
-  if (!isDisplayedCheck(source, check) || !(values.interactiveDice || values.difficulty.rerolls !== "disabled")) return false;
+  if (!isDisplayedCheck(source, check)) return false;
   const hero = source.snapshot.entities.find((row) => row.kind === "player");
-  return check.actorId === hero?.id || parseDmOptions(source.dmOptions).companionRolls === "player";
+  const heroRoll = check.actorId === hero?.id;
+  if (!heroRoll && parseDmOptions(source.dmOptions).companionRolls !== "player") return false;
+  // Fix S3-pre A-37 (the owner, 18:15): the pause holds only while a reroll or Heroic Inspiration is available.
+  return rollPauseAvailable(rerollsLeft(values, source.runtime.turns, source.snapshot.publicState.current_session_id ?? null), heroicInspiration(hero), heroRoll);
 }
 /** Fix S3-pre 2: the hero of the turn's campaign (the «every roll told» check marks the hero's own rolls). */
 export function heroIdOf(source: RuntimeSource): string | null {

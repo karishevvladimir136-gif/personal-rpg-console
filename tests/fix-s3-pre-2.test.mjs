@@ -12,6 +12,7 @@ import { DM_ROLE, WRITER_ROLE, TABLE_RULES } from "../src/lib/gameplay/dm-loop/r
 import { TABLE_RULES_RU, dmRoleRu, writerRoleRu } from "../src/lib/gameplay/dm-loop/roles-ru.ts";
 import { hpBand } from "../src/lib/gameplay/dm-loop/execute.ts";
 import { dmLoopTools } from "../src/lib/gameplay/dm-loop/tools.ts";
+import { readFileSync } from "node:fs";
 
 const finish = (kind = "other") => ({ name: "finish_turn", arguments: { sceneKinds: [kind], spotlight: [], playerMoment: false } });
 const receiptsOf = async (c, played) => (await c.row(played.input.operationId)).checkpoint.dmLoop.receipts;
@@ -126,5 +127,101 @@ test("2.1 B-3 and B-4: a potion in a fight spends the drinker's bonus action; He
     assert.equal(twice.result.ok, false, "one spend, one reroll");
     assert.match(twice.result.reason, /has no Heroic Inspiration to spend/);
     assert.equal((await c.state()).entities.find((row) => row.id === c.hero).resources.heroic_inspiration, 0);
+  } finally { await c.f.db.close(); }
+});
+
+// ---- 2.2 session 3's mode and the fight --------------------------------------------------------------------------
+test("2.2 B-6: a wound outside combat attack moves the fight's mirror (the bars, the block, the card); combat hp reads the record first", async () => {
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const opened = await c.turn("Бой.", [{ text: "Серый у стены. ", toolCalls: [
+      { name: "upsert_character", arguments: { localKey: "brute", name: "Серый", kind: "npc", present: true, hp: 20, maxHp: 20 } },
+      { name: "combat", arguments: { action: "start", summary: "Сарай", grid: { cols: 12, rows: 10 }, rules: true,
+        placements: [{ actorRef: c.hero, x: 2, y: 2, initiative: 15 }, { actorRef: "brute", x: 8, y: 2, initiative: 5 }], hp: [{ actorRef: "brute", current: 20, max: 20, ac: 14 }] } },
+      finish("combat")] }]);
+    assert.equal(opened.result.status, "committed", JSON.stringify(c.errors));
+    // A save with its damage (the writer's Fireball) — the bundled damage path, not combat attack.
+    const ball = await c.turn("Огненный шар в Серого.", [{ text: "Пламя. ", toolCalls: [
+      { name: "roll", arguments: { formula: "1d20", kind: "save", dc: 14, damage: "4d6", targetRef: "Серый", actorRef: "Серый", reason: "Огненный шар: спасбросок Ловкости", visibility: "private" } },
+      { name: "combat", arguments: { action: "hp", actorRef: "Серый", delta: -3, byRef: c.hero, reason: "ожог от телеги" } },
+      { name: "resource", arguments: { actorRef: "Серый", resource: "hp", delta: -2, reason: "дым" } },
+      finish("combat")] }], { dice: [5, 3, 3, 2, 2] });
+    assert.equal(ball.result.status, "committed", JSON.stringify(c.errors));
+    const [save, hp, resource] = await receiptsOf(c, ball);
+    assert.deepEqual(save.result.value.damage.applied, { target: "Серый", before: 20, after: 10, max: 20, band: "bloodied" });
+    assert.deepEqual([hp.result.value.before, hp.result.value.after], [10, 7], "combat hp starts from the record (10), not from a stale mirror (20)");
+    assert.deepEqual([resource.result.value.before, resource.result.value.after], [7, 5]);
+    const play = await c.f.runtime(c.cid, "play");
+    assert.equal(play.participants.find((row) => row.public_name === "Серый").public_resources.hp.current, 5, "the bars follow every wound");
+    const log = play.encounters.find((row) => row.status === "active").public_field.log.map((row) => row.result);
+    assert.deepEqual(log, ["10 урона → Серый", "3 урона → Серый", "2 урона → Серый"], "each wound is a line of the fight's card");
+    const { foeHp } = await import("../src/lib/live2d/battle/contracts.ts");
+    assert.deepEqual(foeHp({ public_resources: { side: "foe", hp: { current: 5, max: 20 } } }), { current: 5, max: 20 });
+    assert.equal(foeHp({ public_resources: { side: "party", hp: { current: 5, max: 20 } } }), null, "the party's HP lives on their sheets");
+    assert.match(readFileSync(new URL("../src/components/gameplay-combat.tsx", import.meta.url), "utf8"), /t\("Hit points \{current\}\/\{max\}", foeHp\(row\)!\)/, "the plain play screen's «Бой» panel shows the numbers");
+    assert.equal(JSON.parse(readFileSync(new URL("../src/lib/locales/ru.json", import.meta.url), "utf8"))["Hit points {current}/{max}"], "Хиты {current}/{max}");
+  } finally { await c.f.db.close(); }
+});
+
+test("2.2 A-37: the pause holds only while a reroll or Heroic Inspiration is available — the server rule and its client mirror agree", async () => {
+  const { rerollsLeft, rollPauseAvailable } = await import("../src/lib/gameplay/reroll-allowance.ts");
+  const limited = { difficulty: { rerolls: "limited", rerollsPerSession: 2 } };
+  const turns = (rolls) => rolls.map((rollNumber, i) => ({ session_id: i < 9 ? "s1" : "s0", checks: [{ rollNumber }] }));
+  assert.equal(rerollsLeft(limited, turns([1, 1]), "s1"), 2);
+  assert.equal(rerollsLeft(limited, turns([2, 1]), "s1"), 1);
+  assert.equal(rerollsLeft(limited, turns([3]), "s1"), 0, "one check rerolled twice spends both");
+  assert.equal(rerollsLeft(limited, [{ session_id: "s0", checks: [{ rollNumber: 3 }] }], "s1"), 2, "another session's rerolls do not count");
+  assert.equal(rerollsLeft({ difficulty: { rerolls: "unlimited" } }, [], "s1"), null);
+  assert.equal(rerollsLeft({ difficulty: { rerolls: "disabled" } }, [], "s1"), 0);
+  assert.deepEqual([rollPauseAvailable(1, 0, true), rollPauseAvailable(0, 0, true), rollPauseAvailable(0, 1, true), rollPauseAvailable(0, 1, false), rollPauseAvailable(null, 0, false)],
+    [true, false, true, false, true], "both spent → no pause; Heroic Inspiration pauses only the hero's own roll");
+  const client = readFileSync(new URL("../src/components/gameplay-turn.tsx", import.meta.url), "utf8");
+  assert.match(client, /rollPauseAvailable\(left, heroicInspiration\(hero\), true\)/, "the client mirror uses the same rule");
+  assert.match(readFileSync(new URL("../src/components/registry/turn-timeline.tsx", import.meta.url), "utf8"), /перебросов осталось \$\{rerollCount\.left\} из \$\{rerollCount\.of\}/);
+  // The real loop: two rerolls spent in the session, then a shown roll does not pause; Heroic Inspiration brings the pause back.
+  const c = await loopCampaign();
+  try {
+    const roll = (dc) => ({ name: "roll", arguments: { formula: "1d20", reason: "the climb", actorRef: c.hero, visibility: "player", dc, kind: "skill" } });
+    const first = await c.turn("I climb.", [{ text: "Up… ", toolCalls: [roll(12)] }, { text: "Done.", toolCalls: [finish("exploration")] }], { dice: [3], autoContinue: false });
+    assert.equal(first.result.status, "awaiting_confirmation");
+    for (const die of [4, 5]) { c.forceDice([die]); assert.equal((await reroll(c, first)).status, "awaiting_confirmation", JSON.stringify(c.errors)); }
+    assert.equal((await c.retry(first, "continue")).result.status, "committed");
+    const spent = await c.turn("I climb again.", [{ text: "Up… ", toolCalls: [roll(12)] }, { text: "Done.", toolCalls: [finish("exploration")] }], { dice: [9], autoContinue: false });
+    assert.deepEqual(spent.statuses, ["committed"], "both rerolls spent: the shown roll does not wait for «Дальше»");
+    await c.turn("A brave move.", [{ text: "Bold. ", toolCalls: [{ name: "resource", arguments: { actorRef: c.hero, resource: "heroic_inspiration", set: 1, reason: "bold" } }, finish()] }]);
+    const inspired = await c.turn("I climb once more.", [{ text: "Up… ", toolCalls: [roll(12)] }, { text: "Done.", toolCalls: [finish("exploration")] }], { dice: [9], autoContinue: false });
+    assert.equal(inspired.result.status, "awaiting_confirmation", "Heroic Inspiration in hand: the hero's roll waits again");
+  } finally { await c.f.db.close(); }
+});
+
+test("2.2 B-16: the output cap is 64 000 in both loops; the «⚡ важный ход» toggle is back on the game screen and saves boostNext", async () => {
+  const { dmLoopLimits } = await import("../src/lib/gameplay/dm-loop/limits.ts");
+  const { dmOutputCap } = await import("../src/lib/gameplay/dm-loop/loop.ts");
+  assert.equal(dmLoopLimits.maxOutputTokens, 64000);
+  assert.equal(dmOutputCap(), 64000);
+  assert.match(readFileSync(new URL("../src/lib/gameplay/dm-loop/two-pass/runtime.ts", import.meta.url), "utf8"), /maxOutputTokens: dmOutputCap\(\)/, "the writer and the bookkeeper take the same cap");
+  const screen = readFileSync(new URL("../src/components/registry/game-screen.tsx", import.meta.url), "utf8");
+  assert.match(screen, /aria-label=\{c\("Важный ход", "Important turn"\)\}/);
+  assert.match(screen, /saveDmSettings\(data\.campaign\.id, \{ expectedRevision: dmSettings\.revision, runtime: dmSettings\.runtime, dmTurn: dmSettings\.dmTurn, boostNext: next \}\)/);
+});
+
+test("2.2 A-9: a saving throw takes the sheet's save bonus", async () => {
+  const sheet = { schemaVersion: 2, mode: "structured_rpg", role: null, saves: ["Ловкость +4", "Мудрость +1"], skills: ["Восприятие +5", "Ловкость рук +6"] };
+  const actor = { stats: {}, character_sheet: sheet, details: "" };
+  const { sheetBonus } = await import("../src/lib/gameplay/dm-loop/execute.ts");
+  assert.deepEqual(sheetBonus(actor, "Ловкость", "save"), { value: 4, source: "Ловкость +4" });
+  assert.deepEqual(sheetBonus(actor, "спасбросок Мудрости"), { value: 1, source: "Мудрость +1" });
+  assert.deepEqual(sheetBonus(actor, "Восприятие", "skill"), { value: 5, source: "Восприятие +5" }, "a check keeps the skills");
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const played = await c.turn("Огненный шар.", [{ text: "Пламя. ", toolCalls: [
+      { name: "upsert_character", arguments: { localKey: "rogue", name: "Ловкач", kind: "npc", present: true, hp: 12, maxHp: 12, sheet: { saves: ["Ловкость +4"] } } },
+      { name: "roll", arguments: { formula: "1d20", kind: "save", skill: "Ловкость", dc: 14, actorRef: "rogue", reason: "Спасбросок Ловкости", visibility: "private" } },
+      finish("combat")] }], { dice: [11] });
+    assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
+    const save = (await receiptsOf(c, played))[1];
+    assert.equal(save.result.ok, true, save.result.reason);
+    assert.equal(save.result.value.modifier, 4, "the probe of the audit returned null here");
+    assert.equal(save.result.value.total, 15);
   } finally { await c.f.db.close(); }
 });

@@ -2,7 +2,7 @@
 // output cap.
 //   * the lease is renewed while a model request streams (migration 72, `lease_heartbeat`), only for the
 //     claimant that holds it;
-//   * one output ceiling of 32 000 tokens for every depth;
+//   * one output ceiling for every depth — 32 000 then; 64 000 since fix S3-pre B-16 (the owner, 2026-10-20 18:15);
 //   * a request the cap cut never fails the turn: the cut tool call is dropped by the adapter (never sent back
 //     to the provider), unsigned thinking too, and the loop continues once from the complete part;
 //   * a failed move says plainly that nothing changed in the game.
@@ -25,9 +25,9 @@ hook.deregister();
 const finish = (extra = {}) => ({ name: "finish_turn", arguments: { sceneKinds: ["conversation"], spotlight: [], playerMoment: false, ...extra } });
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-test("the output cap is one ceiling of 32 000 tokens for every depth; a cut request continues one level lower", () => {
-  assert.equal(dmLoopLimits.maxOutputTokens, 32000);
-  assert.equal(dmOutputCap(), 32000);
+test("the output cap is one ceiling of 64 000 tokens for every depth (fix S3-pre B-16); a cut request continues one level lower", () => {
+  assert.equal(dmLoopLimits.maxOutputTokens, 64000);
+  assert.equal(dmOutputCap(), 64000);
   assert.equal(lowerEffort("xhigh"), "high");
   assert.equal(lowerEffort("high"), "medium");
   assert.equal(lowerEffort("low"), "low");
@@ -96,7 +96,7 @@ test("a request cut by the cap with text only continues once from where it stopp
     const last = requests[1].messages.at(-1);
     assert.equal(last.role, "user");
     assert.equal(last.text, CUT_BY_CAP);
-    assert.equal(requests[1].maxOutputTokens, 32000);
+    assert.equal(requests[1].maxOutputTokens, 64000);
     const row = await c.row(played.input.operationId);
     assert.match(row.narration, /then the bell by the shaft rang twice/);
     const kinds = row.checkpoint.dmLoop.diagnostics.map((d) => d.kind);

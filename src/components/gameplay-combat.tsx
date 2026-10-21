@@ -11,6 +11,7 @@ import { useCampaignData } from "./persistence-context";
 import { Badge, Panel } from "./ui";
 import { RecordSelect } from "./persistent-records";
 import { GameplayMechanicAction } from "./gameplay-actions";
+import { foeHp } from "@/lib/live2d/battle/contracts";
 
 const actionLabels = {
   attack: "Attack",
@@ -134,6 +135,10 @@ export function GameplayCombat({
                 )}
                 {row.public_resources.withdrawn === true && (
                   <Badge>{t("Withdrawn")}</Badge>
+                )}
+                {/* Fix S3-pre B-6 (the owner: enemy HP visible, BG3-style) — on the plain play screen too. */}
+                {foeHp(row) && (
+                  <span className="gameplay-foe-hp">{t("Hit points {current}/{max}", foeHp(row)!)}</span>
                 )}
                 <span>
                   {t(
