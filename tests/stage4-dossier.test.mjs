@@ -260,8 +260,8 @@ test("depth per scene: the pin picks a level inside the range with hysteresis; �
     // Cache-safe switching (§7): on OpenAI the request-level effort stays the campaign's
     // configured level; the chosen depth travels as the per-request value.
     assert.equal(boosted.model.requests[0].turnEffort, "medium", "the configured level anchors the cached prefix");
-    // Fix run A1: one output ceiling for every depth (owner: «до предела»), thinking included.
-    assert.equal(boosted.model.requests[0].maxOutputTokens, 32000, "a deep turn gets room for its thinking");
+    // Fix run A1: one output ceiling for every depth (owner: «до предела»), thinking included; 64 000 since fix S3-pre B-16.
+    assert.equal(boosted.model.requests[0].maxOutputTokens, 64000, "a deep turn gets room for its thinking");
     assert.equal((await c.row(boosted.input.operationId)).checkpoint.dmLoop.pin.baseEffort, "medium");
     assert.equal((await c.settings.read()).boostNext, false, "the flag cleared after the turn");
     const calm = await c.turn("Another quiet walk.", [{ text: "Quiet. ", toolCalls: [finish({ nextTension: "tense" })] }]);
