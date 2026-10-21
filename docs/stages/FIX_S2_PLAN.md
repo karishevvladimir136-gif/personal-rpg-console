@@ -63,6 +63,13 @@ sessions, «meanwhile» through in-world channels (item 81).
   ambusher's round-1 action; the two fixtures that carry the owner's campaign names are renamed to invented ones; the
   Anthropic key rotated after the audit's grep incident.
 
+- **Decided 2026-10-20 20:55 (from the fix report's questions):** coup de grâce is **never** applied to the hero or the
+  companions — the whole party keeps 5e death saves; foes do not execute the player's people. A fight's start
+  **prepares the place's scene automatically** when none exists (one more paid picture), so every fight has the painted
+  background. Old session-1 names in past probe records and design canvases **stay** (synthetic runs, not the owner's
+  dialogue). The cost rise in session 3's mode ($0.06–0.12 a turn, n = 1) is accepted for session 3; measured again
+  after it. The four small items left (A-73, A-74, A-18, A-31) wait for after session 3.
+
 ## Before session 3 (owner, 08:40: «посмотрим все экраны до игры, чтобы избежать той проблемы»)
 
 1. Merge the two branches (`claude/session2-fixes-a-f-jh3krk` + `claude/live2d-1-9lq5bf`) — a cloud task with the full
