@@ -1,0 +1,25 @@
+{
+  "capUsd": 20,
+  "entries": [
+    {
+      "run": "20261021-013927-loop-opus+opus-high-live-20-live2d-ford",
+      "what": "part 1: the ford in «Opus пишет — Opus записывает», the writer's attacks through the server, both checks",
+      "startedAt": "2026-10-21T01:39:27.491Z",
+      "reservedUsd": 3,
+      "spentUsd": 1.9493,
+      "settled": true,
+      "finishedAt": "2026-10-21T01:49:02.718Z",
+      "record": "docs/runs/20261021-013927-loop-opus+opus-high-live-20-live2d-ford.jsonl"
+    },
+    {
+      "run": "20261021-014903-loop-opus+opus-high-live-21-live2d-lair",
+      "what": "part 1: the lair in «Opus пишет — Opus записывает», the writer's attacks through the server, both checks",
+      "startedAt": "2026-10-21T01:49:02.768Z",
+      "reservedUsd": 3.5,
+      "spentUsd": 1.7141,
+      "settled": true,
+      "finishedAt": "2026-10-21T01:58:13.143Z",
+      "record": "docs/runs/20261021-014903-loop-opus+opus-high-live-21-live2d-lair.jsonl"
+    }
+  ]
+}
