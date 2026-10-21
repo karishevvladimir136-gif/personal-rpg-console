@@ -15,7 +15,7 @@ import type { JsonObject as JsonObjectValue, PublicTurn, ResumeInput, TurnInput 
 import type { RecordedCheck, RuntimeSource, TurnClaim, TurnStore } from "../server-contracts.ts";
 import type { MemoryStore, SummaryProvider } from "../../memory/server-contracts.ts";
 import { withUnifiedMemory } from "../../memory/unified-context.ts";
-import { isDisplayedCheck, recordServerRoll, stableGameplayId } from "../dice.ts";
+import { isDisplayedCheck, recordServerRoll, stableGameplayId, withNatural } from "../dice.ts";
 import { requireClaimTimeline, requireTurnTimeline } from "../timeline.ts";
 import { requireRule, safeTurnFailure, TurnError } from "../turn-errors.ts";
 import { DmError } from "../dm-errors.ts";
@@ -356,7 +356,8 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
     if (command?.action === "reroll") {
       const check = checkpoint.checks.find((row) => row.id === command.checkId && isDisplayedCheck(source, row));
       requireRule(check && source.snapshot.settings.values.difficulty.rerolls !== "disabled");
-      const replacement = recordServerRoll(operationId, check, check.modifier, check.rollNumber + 1, random);
+      // Fix S3-pre B-1: the rerolled die decides its own natural label and verdict (BG3).
+      const replacement = withNatural(recordServerRoll(operationId, check, check.modifier, check.rollNumber + 1, random));
       checkpoint.checks = await store.reroll(lease, command, replacement);
       await store.checkpoint(lease, checkpoint, "awaiting_confirmation");
       return store.getPublic(input.campaignId, operationId);

@@ -9,7 +9,7 @@ import type { Entity, EquipmentSlot, Item, ItemDetail, PublicProfile, Quest, Que
 import { ITEM_KINDS, SLOT_REMAP, coinOf, counterLabel, counterLabelled, equipPlan, equippedBonuses, needsUniversalSlots, potionCounter, sameStack,
   universalSlots, walletOfStorage, counterKeyOf } from "../../inventory/model.ts";
 import type { CheckAddend, RecordChange, RecordedCheck, RuntimeSource } from "../server-contracts.ts";
-import { recordServerRoll, stableGameplayId } from "../dice.ts";
+import { recordServerRoll, stableGameplayId, withNatural } from "../dice.ts";
 import { basicProfile } from "../mechanics/profile.ts";
 import { settledItemTransfer } from "../../progression/settlement-core.ts";
 import { parseCharacterModel, type CharacterEvidence, type CharacterModel } from "../character-model.ts";
@@ -240,6 +240,8 @@ const localKey = (value: unknown) => (value === undefined ? null : str(value));
 
 // --- roll ------------------------------------------------------------------
 export const DIFFICULTY_LADDER = { easy: 8, normal: 10, hard: 13, very_hard: 16, nearly_impossible: 19 } as const;
+/** Fix S3-pre B-4: the hero's Heroic Inspiration counter (one at a time, spent by a reroll). */
+export const HEROIC_INSPIRATION = "heroic_inspiration";
 export type DifficultyWord = keyof typeof DIFFICULTY_LADDER;
 /** The sum of the fiction's bonuses never exceeds this (polish group 2 (e)). */
 export const FICTION_BONUS_CAP = 6;
@@ -298,6 +300,16 @@ export function sheetBonus(actor: Entity, skill: string): { value: number; sourc
   return null;
 }
 
+/** Fix S3-pre B-17 (the owner's rule): the wound follows the hit points left — the band word the receipts carry so the
+ * story tells a man at 1 HP as badly hurt, never as untouched. */
+export function hpBand(after: number, max: number): "unhurt" | "lightly wounded" | "bloodied" | "badly hurt" | "down" {
+  if (after <= 0) return "down";
+  if (after >= max) return "unhurt";
+  if (after * 4 <= max) return "badly hurt";
+  if (after * 2 <= max) return "bloodied";
+  return "lightly wounded";
+}
+
 /** Fix run A3: the damage of a bundled pair — an attack with its damage (rolled only on a hit; a natural
  * 20 doubles the dice, a natural 1 always misses) or a save with its effect (full on a failure, half on a
  * success with halfOnSave) — and its application to the target's hit points. One call instead of two
@@ -331,8 +343,8 @@ function bundledDamage(shadow: ShadowState, args: Args, ctx: ToolContext, roll: 
       const before = target.hp ?? max;
       const after = Math.max(0, before - total);
       shadow.apply(entityChange(shadow, target, { hp: after, max_hp: max }));
-      value.applied = { target: target.name, before, after, max };
-      applied = `; ${target.name} ${before} → ${after}/${max}`;
+      value.applied = { target: target.name, before, after, max, band: hpBand(after, max) };
+      applied = `; ${target.name} ${before} → ${after}/${max} (${hpBand(after, max)})`;
       const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
       if (controlled.has(target.id)) player = chip.hp(ctx.language, target.name, isHero(target), before, after, max, str(args.reason));
       // Fix run B3 («Твой момент» never fired in session 2): the party's blow that drops a foe is the player's moment —
@@ -456,6 +468,15 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     }
   }
   reject(modifier >= -100 && modifier <= 100, "The total modifier must stay between -100 and +100.");
+  // Fix S3-pre B-4: the player spends Heroic Inspiration — this roll is the reroll of the hero's die; the server spends it.
+  let inspired = false;
+  if (args.heroicInspiration === true) {
+    reject(actor && actor.kind === "player", "Heroic Inspiration rerolls the hero's own die: actorRef is the hero.");
+    const left = Number(actor.resources[HEROIC_INSPIRATION] ?? 0);
+    reject(left >= 1, `${actor.name} has no Heroic Inspiration to spend.`, "Without it the die stands; narrate its result.");
+    setResources(shadow, actor, { ...actor.resources, [HEROIC_INSPIRATION]: 0, [`${HEROIC_INSPIRATION}_max`]: 1 });
+    inspired = true;
+  }
   // Fix run D (§6): a ranged attack spends one arrow or bolt per roll, hit or miss; none left — no shot.
   let ammunition: { name: string; before: number } | null = null;
   if (args.ammunitionRef !== undefined) {
@@ -478,8 +499,8 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   const difficulty = args.difficulty !== undefined ? str(args.difficulty) as DifficultyWord : null;
   reject(difficulty === null || difficulty in DIFFICULTY_LADDER, `difficulty: ${Object.keys(DIFFICULTY_LADDER).join(", ")}.`);
   const dc = int(args.dc) ?? (difficulty ? DIFFICULTY_LADDER[difficulty] : null);
-  if (inFight) return fightRoll(shadow, args, ctx, inFight, { actor: actor!, formula, modifier, baseBonus, addends, bonuses, sourceText: sources.join(", ") || null,
-    dc, advantage, advantageReason, visibility, weapon: weaponText, named, droppedModifier, ammunition });
+  if (inFight) return withInspiration(fightRoll(shadow, args, ctx, inFight, { actor: actor!, formula, modifier, baseBonus, addends, bonuses, sourceText: sources.join(", ") || null,
+    dc, advantage, advantageReason, visibility, weapon: weaponText, named, droppedModifier, ammunition }), inspired, ctx.language);
   // Outside a fight, a weapon's damage from the sheet stands in for a damage the call does not give.
   if (named?.damage && args.damage === undefined) args = { ...args, damage: named.damage };
   // A recorded check (the Check DTO, the roll card, the interactive pause) is the
@@ -489,10 +510,10 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   const reason = str(args.reason);
   const sourceText = sources.join(", ") || null;
   const bonusLine = (die: number) => ({
-    ...(die === 20 ? { hint: "A natural 20: the hero's moment. Narrate the success first and in full, plus a visible extra in their favour tied to what they tried; companions support, never take the beat." } : {}),
+    ...(die === 20 ? { hint: "A natural 20: the attempt succeeds whatever the total — narrate the success first and in full; companions support, never take the beat." } : {}),
     ...(die === 1 ? { hint: "A natural 1: the attempt fails — say how, with no extra harm beyond the failure (the table's rule)." } : {}),
     ...(clipped ? { note: `The fiction's bonuses are capped at ±${FICTION_BONUS_CAP} in total.` } : {}),
-    ...(droppedModifier ? { modifierDropped: `The formula's ${droppedModifier > 0 ? "+" : ""}${droppedModifier} was dropped: the sheet's skill or stat already gives the bonus (never both).` } : {}),
+    ...(droppedModifier && droppedModifier !== weaponBonus ? { modifierDropped: `The formula's ${droppedModifier > 0 ? "+" : ""}${droppedModifier} was dropped: ${named && weaponBonus !== null ? `${named.source} gives the bonus` : "the sheet's skill or stat already gives the bonus"} (never both).` } : {}),
   });
   if (isCheck) {
     reject(ctx.checks.length < L.maxChecksPerTurn, `This turn already made ${L.maxChecksPerTurn} checks.`,
@@ -505,10 +526,9 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
       // The parts sum to the modifier (a fiction bonus over the cap shows its «cap» part); none when there is no modifier.
       ...(addends.length && addends.reduce((sum, row) => sum + row.value, 0) === modifier ? { addends: addends.slice(0, 10) } : {}),
     };
-    const rolled = recordServerRoll(ctx.input.operationId, proposal, modifier, 1, ctx.random);
-    const natural: RecordedCheck["natural"] = rolled.kept === 20 ? "crit" : rolled.kept === 1 ? "fumble" : null;
-    // Fix run B3 (the owner's rule, BG3): on a check or a save a natural 20 succeeds and a natural 1 fails.
-    const check: RecordedCheck = { ...rolled, natural, success: natural === "crit" ? true : natural === "fumble" ? false : rolled.success };
+    // Fix run B3 (the owner's rule, BG3): on a check or a save a natural 20 succeeds and a natural 1 fails (one helper with the reroll, fix S3-pre B-1).
+    const check = withNatural(recordServerRoll(ctx.input.operationId, proposal, modifier, 1, ctx.random));
+    const natural = check.natural ?? null;
     const damage = bundledDamage(shadow, args, ctx, { actor, kind, dc, success: check.success, natural });
     const value: JsonObject = { formula: str(args.formula), reason, actor: actor.name, visibility,
       dice: [...check.dice], kept: check.kept, modifier, modifierSource: sourceText, bonuses, advantage, advantageReason,
@@ -517,7 +537,7 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     const rolledChip = visibility === "player"
       ? chip.roll(ctx.language, actor.name, actor.kind === "player", reason, check.total, dc, ctx.showDc, check.success, natural) : null;
     const player = rolledChip ? withAmmunition(withDamageChip(ctx.language, rolledChip, damage), ammunition) : null;
-    return ok(value, `${actor.name} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${check.total} vs ${dc} — ${check.success ? "success" : "failure"}${natural === "crit" ? " (natural 20)" : natural === "fumble" ? " (natural 1)" : ""}${damage ? `; ${damage.summary}` : ""}`, check, player);
+    return withInspiration(ok(value, `${actor.name} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${check.total} vs ${dc} — ${check.success ? "success" : "failure"}${natural === "crit" ? " (natural 20)" : natural === "fumble" ? " (natural 1)" : ""}${damage ? `; ${damage.summary}` : ""}`, check, player), inspired, ctx.language);
   }
   const count = advantage === "normal" ? formula.count : 2;
   const dice = Array.from({ length: count }, () => ctx.random(1, formula.sides + 1));
@@ -536,7 +556,15 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     ? chip.roll(ctx.language, actor.name, actor.kind === "player", reason, total, dc, ctx.showDc, success, natural) : null;
   // A hit on the hero or a companion is theirs to see even when the attacker's roll is private.
   const player = rolledChip ? withAmmunition(withDamageChip(ctx.language, rolledChip, damage), ammunition) : damage?.player ?? null;
-  return ok(value, `${actor?.name ?? "The DM"} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${total}${dc !== null ? ` vs ${dc} — ${success ? "success" : "failure"}` : ""}${damage ? `; ${damage.summary}` : ""}`, null, player);
+  return withInspiration(ok(value, `${actor?.name ?? "The DM"} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${total}${dc !== null ? ` vs ${dc} — ${success ? "success" : "failure"}` : ""}${damage ? `; ${damage.summary}` : ""}`, null, player), inspired, ctx.language);
+}
+
+/** Fix S3-pre B-4: a roll that spent Heroic Inspiration says so on the receipt and on the player's line. */
+function withInspiration(result: DmLoopReceiptResult, inspired: boolean, language: ChipLanguage): DmLoopReceiptResult {
+  if (!inspired || !result.ok) return result;
+  const word = language === "ru" ? "Героическое вдохновение потрачено" : "Heroic Inspiration spent";
+  return { ...result, value: { ...result.value, heroicInspiration: { before: 1, after: 0 } }, summary: `${result.summary}; Heroic Inspiration spent (1 → 0)`,
+    player: result.player ? `${result.player} · ${word}` : word };
 }
 
 /** Fix S3-pre 1: the roll of an attack in the open fight — its bonus as the roll computed it, its armour class, cover,
@@ -1107,7 +1135,8 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     if (remaining === 0 && item.equipped_entity_id) { values.equipped_entity_id = null; values.equipped_slot = null; }
     values.detail = withHistory(itemDetail(item), shadow.worldMinutes, "consumed", str(args.reason)) as unknown as JsonObject;
     shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values });
-    return ok({ itemId: item.id, name: item.name, consumed: quantity, remaining }, `${ownerName(shadow, item)} uses ${item.name}${quantity > 1 ? ` ×${quantity}` : ""} (${remaining} left)`,
+    const bonus = potionBonusAction(shadow, item, owner);
+    return ok({ itemId: item.id, name: item.name, consumed: quantity, remaining, ...(bonus ? { bonusAction: bonus } : {}) }, `${ownerName(shadow, item)} uses ${item.name}${quantity > 1 ? ` ×${quantity}` : ""} (${remaining} left)${bonus ? `; ${bonus}` : ""}`,
       null, chip.itemUsed(l, ownerName(shadow, item), isHero(owner), item.name, quantity, remaining));
   }
   if (action === "lose") {
@@ -1364,8 +1393,11 @@ function resourceTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoop
     shadow.apply(entityChange(shadow, actor, { public_profile: { ...profile, counterLabels: { ...(profile.counterLabels ?? {}), [key]: label } } as unknown as JsonObject }));
   }
   const current = Number(resources[key] ?? 0);
-  const cap = max ?? (Number.isFinite(Number(resources[`${key}_max`])) && resources[`${key}_max`] !== undefined ? Number(resources[`${key}_max`]) : null);
+  // Fix S3-pre B-4 (the owner's rule): Heroic Inspiration is one at a time — the counter's maximum is 1 and a second grant is refused.
+  const inspiration = key === HEROIC_INSPIRATION;
+  const cap = inspiration ? 1 : max ?? (Number.isFinite(Number(resources[`${key}_max`])) && resources[`${key}_max`] !== undefined ? Number(resources[`${key}_max`]) : null);
   let next = set ?? current + (delta ?? 0);
+  if (inspiration) reject(!(current >= 1 && next >= 1), `${actor.name} already has Heroic Inspiration: one at a time.`, "Grant it again only after the player spends it (roll with heroicInspiration: true).");
   const floor = resourceFloor(resources, key);
   reject(next >= floor, `${actor.name}: ${name} is ${current}; it cannot drop below ${floor} (asked for ${next}).`,
     floor === 0 ? "A ruleset that keeps a signed counter stores its floor as <name>_min." : null);
@@ -1610,6 +1642,21 @@ function restTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
 }
 
 // --- combat ----------------------------------------------------------------
+/** Fix S3-pre B-3 (the owner's rule): drinking a potion in a fight is a bonus action — the drinker's «Бонусное» is spent
+ * when it is their turn; already spent, the drink is recorded anyway and the receipt says so (never a rejection). */
+function potionBonusAction(shadow: ShadowState, item: Item, drinker: Entity | null): string | null {
+  if (!drinker || !/(зель|potion|эликсир|elixir|снадоб)/iu.test(item.name)) return null;
+  const fight = fightRows(shadow);
+  if (!fight.active) return null;
+  const field = fight.fieldOf();
+  const fighter = fight.rows().map(fight.fighterOf).find((row) => row.entityId === drinker.id && row.participantId === field.activeParticipantId);
+  if (!fighter) return null;
+  if (!fighter.combatant.economy.bonus) return `${drinker.name}'s bonus action was already spent this turn (the drink is recorded)`;
+  fighter.combatant.economy.bonus = false;
+  fight.saveFighter(fighter);
+  return `${drinker.name}'s bonus action is spent (a potion is a bonus action)`;
+}
+
 // --- the fight's attack (2D Live part 2; fix S3-pre 1: the writer's attacks too) ----------------------
 /** The open fight's rows, as the combat tool and the writer's attacks read and save them. */
 function fightRows(shadow: ShadowState) {
@@ -1663,11 +1710,14 @@ function namedAttack(shadow: ShadowState, actor: Entity, weapon: string, memory:
 }
 
 /** A party member's armour class: the sheet's own number (schema 2) or the system's stat name (ac, КД, armour, defense). */
-function sheetArmourClass(entity: Entity): number | null {
+export function sheetArmourClass(entity: Entity): number | null {
   const sheet = entity.character_sheet;
   const fromSheet = sheet && "armorClass" in sheet && typeof sheet.armorClass === "number" ? sheet.armorClass : null;
   const stat = Object.entries(entity.stats).find(([key, value]) => /^(ac|кд|armou?r|armou?r_class|defen[cs]e|защита)$/i.test(key) && typeof value === "number")?.[1] ?? null;
-  return fromSheet ?? (typeof stat === "number" ? stat : null);
+  // Fix S3-pre 1 (the ford probe): a hero whose armour class is written only in words («кожаный доспех (КД 15)»).
+  const words = [entity.details, ...(sheet?.abilities ?? []), ...(sheet?.skills ?? []), sheet?.background ?? ""].join("\n");
+  const written = /(?:^|[^\p{L}])(?:КД|AC|armou?r class|класс доспеха)\s*[:=]?\s*(\d{1,2})(?!\d)/iu.exec(words);
+  return fromSheet ?? (typeof stat === "number" ? stat : written ? Number(written[1]) : null);
 }
 
 type FightAttackInput = {
@@ -1679,7 +1729,7 @@ type FightAttackInput = {
   addends?: CheckAddend[]; bonuses?: { source: string; value: number }[];
   fiction?: { advantage: "normal" | "advantage" | "disadvantage"; reason: string | null } | null;
 };
-type FightAttackResult = { value: JsonObject; summary: string; check: RecordedCheck | null; player: string; applied: { target: string; before: number; after: number; max: number } | null; totalDamage: number; hits: number };
+type FightAttackResult = { value: JsonObject; summary: string; check: RecordedCheck | null; player: string; applied: { target: string; before: number; after: number; max: number; band: string } | null; totalDamage: number; hits: number };
 
 /** One attack in the open fight, resolved on the server: distance and cover measured, the rules module applied and named, the
  * hit points taken (a foe's mirror and record, a party member's record), the log line written, the attacker's action spent. */
@@ -1716,7 +1766,7 @@ function fightAttack(shadow: ShadowState, ctx: ToolContext, fight: FightRows, fi
   const results: JsonObject[] = [];
   const playerLines: string[] = [];
   let recorded: RecordedCheck | null = null;
-  let totalDamage = 0, hits = 0;
+  let totalDamage = 0, hits = 0, coupDeGrace = false;
   const bonus = input.bonus;
   for (let i = 0; i < count; i++) {
     let kept: number, dice: number[];
@@ -1741,7 +1791,19 @@ function fightAttack(shadow: ShadowState, ctx: ToolContext, fight: FightRows, fi
     if (recorded && i === 0) recorded = { ...recorded, success: hit };
     let damage = 0;
     let damageRules: AppliedRule[] = [];
-    if (hit) {
+    // Fix S3-pre B-7 (the owner's rule, 2026-10-20 18:15): with the rules module on, a melee hit on an adjacent
+    // paralysed or unconscious foe is a coup de grâce — the blade at the throat kills outright, whatever the dice.
+    // A party member who is down keeps the 5e death saves (the rule is the party's blade on a helpless enemy).
+    const helpless = field.rules && hit && !ranged && feet !== null && feet <= 5 && !partyIds.has(target.id) && !coupDeGrace &&
+      !tf.combatant.conditions.includes("dead") && tf.combatant.conditions.some((c) => /paraly|парализ|unconscious|без сознания/iu.test(c));
+    if (helpless) {
+      coupDeGrace = true;
+      const left = tf.combatant.hp?.current ?? target.hp ?? target.max_hp ?? 0;
+      damage = Math.max(0, left);
+      damageRules = [{ rule: "helpless target within 5 ft", effect: "coup de grâce: dead" }];
+      totalDamage += damage;
+      hits++;
+    } else if (hit) {
       hits++;
       const roll = () => Array.from({ length: formula.count }, () => ctx.random(1, formula.sides + 1));
       const base = roll();
@@ -1753,24 +1815,26 @@ function fightAttack(shadow: ShadowState, ctx: ToolContext, fight: FightRows, fi
     }
     const applied = [...ruling.rules, ...damageRules];
     const rulesLine = applied.length ? ` (${rulesText(applied, l === "ru" ? "ru" : "en")})` : "";
-    const outcome = hit ? (l === "ru" ? `попал${crit ? ", крит!" : ""}, ${damage} урона` : `hit${crit ? ", crit!" : ""}, ${damage} damage`) : (l === "ru" ? `промах${kept === 1 ? " (единица)" : ""}` : `miss${kept === 1 ? " (natural 1)" : ""}`);
+    const outcome = helpless ? (l === "ru" ? "добит" : "finished off") : hit ? (l === "ru" ? `попал${crit ? ", крит!" : ""}, ${damage} урона` : `hit${crit ? ", crit!" : ""}, ${damage} damage`) : (l === "ru" ? `промах${kept === 1 ? " (единица)" : ""}` : `miss${kept === 1 ? " (natural 1)" : ""}`);
     playerLines.push(`${attacker.name} → ${target.name}: ${total} ${l === "ru" ? "против КД" : "vs AC"} ${ac! + ruling.acBonus} · ${outcome}${rulesLine}`);
-    results.push({ dice, kept, bonus, total, ac: ac! + ruling.acBonus, hit, crit, damage, damageType, rules: applied.map((row) => `${row.rule}: ${row.effect}`) });
-    const logLine: LogLine = { round: active.round, actor: attacker.name, what: input.reason || (ranged ? (l === "ru" ? "выстрел" : "shot") : (l === "ru" ? "удар" : "strike")), result: hit ? (l === "ru" ? `${total} против КД ${ac! + ruling.acBonus} · попал${crit ? ", крит!" : ""}, ${damage} урона → ${target.name}` : `${total} vs AC ${ac! + ruling.acBonus} · hit${crit ? ", crit!" : ""}, ${damage} damage → ${target.name}`) : (l === "ru" ? `${total} против КД ${ac! + ruling.acBonus} · промах` : `${total} vs AC ${ac! + ruling.acBonus} · miss`), ref: recorded?.id ?? null };
+    results.push({ dice, kept, bonus, total, ac: ac! + ruling.acBonus, hit, crit, damage, damageType, rules: applied.map((row) => `${row.rule}: ${row.effect}`), ...(helpless ? { coupDeGrace: true } : {}) });
+    const logLine: LogLine = { round: active.round, actor: attacker.name, what: input.reason || (ranged ? (l === "ru" ? "выстрел" : "shot") : (l === "ru" ? "удар" : "strike")), result: helpless ? (l === "ru" ? `добит → ${target.name}` : `finished off → ${target.name}`) : hit ? (l === "ru" ? `${total} против КД ${ac! + ruling.acBonus} · попал${crit ? ", крит!" : ""}, ${damage} урона → ${target.name}` : `${total} vs AC ${ac! + ruling.acBonus} · hit${crit ? ", crit!" : ""}, ${damage} damage → ${target.name}`) : (l === "ru" ? `${total} против КД ${ac! + ruling.acBonus} · промах` : `${total} vs AC ${ac! + ruling.acBonus} · miss`), ref: recorded?.id ?? null };
     field.log = [...field.log, logLine].slice(-MAX_LOG);
   }
   // The hit points: a foe's mirror and record, a party member's record (as resource hp would).
   let hpLine = "";
   let appliedHp: FightAttackResult["applied"] = null;
-  if (totalDamage > 0) {
+  if (totalDamage > 0 || coupDeGrace) {
     const current = tf.combatant.hp?.current ?? target.hp ?? target.max_hp ?? 0;
     const max = tf.combatant.hp?.max ?? target.max_hp ?? Math.max(1, current);
-    const next = Math.max(0, current - totalDamage);
+    const next = coupDeGrace ? 0 : Math.max(0, current - totalDamage);
     if (!partyIds.has(target.id)) tf.combatant.hp = { current: next, max };
     shadow.apply(entityChange(shadow, target, { hp: next, max_hp: max }));
-    if (next === 0 && !tf.combatant.conditions.includes("dead") && !tf.combatant.conditions.includes("unconscious")) tf.combatant.conditions = [...tf.combatant.conditions, partyIds.has(target.id) ? "dying" : "unconscious"];
-    hpLine = ` HP ${current} → ${next}/${max}${next === 0 ? (partyIds.has(target.id) ? " (down, dying: death saves follow)" : " (down)") : ""}`;
-    appliedHp = { target: target.name, before: current, after: next, max };
+    if (coupDeGrace) { tf.combatant.conditions = [...new Set([...tf.combatant.conditions.filter((c) => !/unconscious|без сознания|dying|при смерти/iu.test(c)), "dead"])].slice(0, 12); tf.combatant.active = false; }
+    else if (next === 0 && !tf.combatant.conditions.includes("dead") && !tf.combatant.conditions.includes("unconscious")) tf.combatant.conditions = [...tf.combatant.conditions, partyIds.has(target.id) ? "dying" : "unconscious"];
+    // Fix S3-pre B-17: the band word, so the story tells the wound the hit points left.
+    hpLine = ` HP ${current} → ${next}/${max} (${coupDeGrace ? "dead: coup de grâce" : next === 0 && partyIds.has(target.id) ? "down, dying: death saves follow" : hpBand(next, max)})`;
+    appliedHp = { target: target.name, before: current, after: next, max, band: coupDeGrace ? "dead" : hpBand(next, max) };
   }
   if (af.participantId === field.activeParticipantId) af.combatant.economy.action = false;
   fight.saveFighter(af);
@@ -1852,7 +1916,17 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
         public_position: placementJson(fighter.placement), public_resources: combatantJson(combatant) } });
       fighters.push(fighter);
     });
-    field.activeParticipantId = fighters[0]?.participantId ?? null;
+    // Fix S3-pre B-2 (the owner's rule): a planned ambush — the party's signal or first strike resolves before
+    // initiative: the ambusher (the hero) acts first, at turn 0, and the first next_turn goes to the top of the order,
+    // so the opening never spends the ambusher's round-1 action.
+    const ambusher = field.opening === "party" ? fighters.find((row) => row.entityId === heroId) ?? fighters.find((row) => row.combatant.side === "party") ?? null : null;
+    if (ambusher) for (const fighter of fighters) {
+      const now = fighter === ambusher;
+      if (fighter.combatant.active === now) continue;
+      fighter.combatant.active = now;
+      shadow.apply({ family: "encounter_participants", id: fighter.participantId, expectedRevision: null, values: { public_resources: combatantJson(fighter.combatant) } });
+    }
+    field.activeParticipantId = (ambusher ?? fighters[0])?.participantId ?? null;
     shadow.apply({ family: "encounters", id, expectedRevision: null, values: { public_field: fieldJson(field) } });
     const config = shadow.configuration();
     config.presentEntityIds = [...new Set([...config.presentEntityIds, ...participants.map((p) => p.id)])];
@@ -1866,8 +1940,8 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
     }
     void started;
     const order = fighters.map((row) => `${row.name}${row.combatant.initiative !== null ? ` (${row.combatant.initiative})` : ""}`);
-    return ok({ encounterId: id, order, active: fighters[0]?.name ?? null, grid: field.grid, mapped: fighters.some((row) => row.placement.x !== null) },
-      `Combat begins: ${order.join(", ")}${field.opening ? "; the party's planned opening resolves before initiative" : ""}`, null, chip.combatStart(l, participants.map((p) => p.name)));
+    return ok({ encounterId: id, order, active: (ambusher ?? fighters[0])?.name ?? null, grid: field.grid, mapped: fighters.some((row) => row.placement.x !== null), ...(ambusher ? { opening: ambusher.name } : {}) },
+      `Combat begins: ${order.join(", ")}${ambusher ? `; the party's planned opening resolves before initiative: ${ambusher.name} acts first (it does not spend the round-1 action), then next_turn goes to the top of the order` : ""}`, null, chip.combatStart(l, participants.map((p) => p.name)));
   }
   reject(active, "No encounter is active.", "Start one with combat start.");
   const field = fieldOf();
@@ -1953,7 +2027,9 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
     const alive = fighters.filter((row) => !row.combatant.withdrawn && !row.combatant.conditions.some((c) => c === "dead" || c === "fled"));
     reject(alive.length > 0, "Nobody is left to act.");
     const current = fighters.find((row) => row.participantId === field.activeParticipantId) ?? fighters.find((row) => row.combatant.active) ?? null;
-    const after = alive.filter((row) => !current || row.turnOrder > current.turnOrder);
+    // Fix S3-pre B-2: after an ambush's opening (turn 0 of round 1) the order starts at its top, in the same round.
+    const opening = field.opening === "party" && field.turnInRound === 0 && active.round === 1;
+    const after = opening ? alive : alive.filter((row) => !current || row.turnOrder > current.turnOrder);
     const next = after[0] ?? alive[0];
     let round = active.round;
     const wrapped = !after.length;

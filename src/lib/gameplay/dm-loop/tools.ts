@@ -57,6 +57,7 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       weapon: opt(str("kind attack: the weapon or spell as the attacker's sheet or gear names it (Меч, Огненный снаряд).", 80)),
       damageType: opt(str("kind attack: the damage type (огонь, рубящий, fire) for resistances.", 40)),
       ranged: opt({ type: "boolean", description: "kind attack: a ranged weapon or spell attack." }),
+      heroicInspiration: opt({ type: "boolean", description: "The player spends the hero's Heroic Inspiration: this roll rerolls that die of the hero's; the server spends it." }),
     }),
   },
   {

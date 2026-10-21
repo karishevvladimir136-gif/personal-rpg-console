@@ -117,7 +117,8 @@ export function rulesText(rules: readonly AppliedRule[], language: "ru" | "en"):
     "attacker prone": "атакующий лежит", "target unseen": "цель не видна", "target prone, within 5 ft": "цель лежит, вплотную", "target prone, beyond 5 ft": "цель лежит, издали",
     "target blinded": "цель ослеплена", "target restrained": "цель скована", "target stunned": "цель оглушена", "target petrified": "цель окаменела", "target paralysed": "цель парализована",
     "target unconscious": "цель без сознания", "attacker unseen": "атакующего не видно", "ranged attack within 5 ft": "дальняя атака вплотную",
-    "ranged attack with a hostile within 5 ft": "дальняя атака, враг вплотную", "the fiction": "по обстановке", "half cover": "укрытие наполовину",
+    "ranged attack with a hostile within 5 ft": "дальняя атака, враг вплотную", "the fiction": "по обстановке",
+    "helpless target within 5 ft": "беспомощная цель, вплотную", "coup de grâce: dead": "добит", "half cover": "укрытие наполовину",
     "three-quarters cover": "укрытие на три четверти", "advantage and disadvantage": "преимущество и помеха", "critical hit": "крит",
     advantage: "преимущество", disadvantage: "помеха", "cancel out": "взаимно гаснут", "no damage": "урона нет", "damage doubled": "урон удвоен", "damage halved": "урон вдвое меньше",
   };

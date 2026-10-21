@@ -54,8 +54,10 @@ test("the ford ambush: a planned opening, surprise, positions, an attack with th
     assert.equal(yan.public_resources.hp.current, 11);
     assert.equal(puzo.public_resources.ac, 13);
     // The battlefield block in the next turn's context: distances, the hero's movement, the ambush rule.
+    // Fix S3-pre B-2: the opening blow was the ambush's opening; the first next_turn starts round 1 at the top of the order (the hero, 15).
     const attack = await c.turn("Бью Яна мечом.", [
       { text: "Клинок идёт вниз. ", toolCalls: [
+        { name: "combat", arguments: { action: "next_turn" } },
         { name: "combat", arguments: { action: "move", actorRef: c.hero, x: 4, y: 6 } },
         { name: "combat", arguments: { action: "attack", actorRef: c.hero, targetRef: "Кривой Ян", attackBonus: 5, damage: "1d8+3", damageType: "slashing", reason: "Удар мечом по Яну" } },
         { name: "combat", arguments: { action: "next_turn" } },
@@ -71,6 +73,7 @@ test("the ford ambush: a planned opening, surprise, positions, an attack with th
     assert.match(context, /Задуманная засада/);
     receipts = await receiptsOf(c, attack);
     assert.ok(receipts.every((r) => r.result.ok), okSummaries(receipts));
+    assert.match(receipts.shift().result.player, /Раунд 1 · ходит /, "after the opening the order starts at its top, still round 1");
     const moved = receipts[0].result.value;
     assert.equal(moved.feet, 5);
     assert.equal(moved.movementLeft, 25);
@@ -229,5 +232,75 @@ test("the lair fight: a caster on a ledge, a burning cart as three-quarters cove
     assert.equal(receipts[1].result.ok, true);
     assert.deepEqual(receipts[1].result.value.crossed, ["горящая телега", "огонь у телеги"].filter((label) => receipts[1].result.value.crossed.includes(label)));
     assert.ok(receipts[1].result.value.crossed.includes("огонь у телеги"));
+  } finally { await c.f.db.close(); }
+});
+
+test("fix S3-pre B-7: with the rules module on, a melee hit on an adjacent unconscious foe is a coup de grâce — HP 0, dead, «добит»; a shot from afar is not", async () => {
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const opened = await c.turn("Бой.", [{ text: "Двое. ", toolCalls: [
+      { name: "upsert_character", arguments: { localKey: "a", name: "Ян", kind: "npc", present: true, hp: 11, maxHp: 11 } },
+      { name: "upsert_character", arguments: { localKey: "b", name: "Пузо", kind: "npc", present: true, hp: 9, maxHp: 9 } },
+      { name: "combat", arguments: { action: "start", summary: "Брод", grid: { cols: 12, rows: 10 }, rules: true,
+        placements: [{ actorRef: c.hero, x: 3, y: 5, initiative: 15 }, { actorRef: "a", x: 4, y: 5, initiative: 9 }, { actorRef: "b", x: 9, y: 5, initiative: 7 }],
+        hp: [{ actorRef: "a", current: 11, max: 11, ac: 12 }, { actorRef: "b", current: 9, max: 9, ac: 13 }] } },
+      { name: "combat", arguments: { action: "condition", actorRef: "a", add: ["unconscious"] } },
+      { name: "combat", arguments: { action: "condition", actorRef: "b", add: ["paralysed"] } },
+    ] }, { text: "Оба лежат. " }]);
+    assert.equal(opened.result.status, "committed", JSON.stringify(c.errors));
+    const finished = await c.turn("Добиваю Яна.", [
+      { text: "Клинок к горлу. ", toolCalls: [
+        { name: "combat", arguments: { action: "attack", actorRef: c.hero, targetRef: "Ян", attackBonus: 5, damage: "1d8+3", reason: "Добить Яна" } },
+        { name: "combat", arguments: { action: "attack", actorRef: c.hero, targetRef: "Пузо", attackBonus: 5, damage: "1d6+3", ranged: true, reason: "Стрела в Пузо" } },
+      ] },
+      { text: "Тихо. " },
+    ], { dice: [9, 3, 14, 2, 2] });
+    assert.equal(finished.result.status, "committed", JSON.stringify(c.errors));
+    const [blade, arrow] = await receiptsOf(c, finished);
+    assert.ok(blade.result.ok, blade.result.reason);
+    assert.equal(blade.result.value.attacks[0].coupDeGrace, true);
+    assert.equal(blade.result.value.attacks[0].damage, 11, "every hit point left");
+    assert.ok(blade.result.value.attacks[0].rules.includes("helpless target within 5 ft: coup de grâce: dead"));
+    assert.match(blade.result.player, /: \d+ против КД 12 · добит \(.*беспомощная цель, вплотную: добит\)/);
+    assert.match(blade.result.summary, /Ян HP 11 → 0\/11 \(dead: coup de grâce\)/);
+    assert.equal(arrow.result.value.attacks[0].coupDeGrace, undefined, "a ranged attack from 30 ft is an ordinary hit");
+    const play = await playOf(c);
+    const yan = play.participants.find((row) => row.public_name === "Ян");
+    assert.ok(yan.public_resources.conditions.includes("dead"));
+    assert.ok(!yan.public_resources.conditions.includes("unconscious"));
+    assert.equal(yan.public_resources.hp.current, 0);
+    assert.equal((await c.state()).entities.find((row) => row.name === "Ян").hp, 0);
+    assert.match(play.encounters.find((row) => row.status === "active").public_field.log.find((row) => /добит/.test(row.result)).result, /^добит → Ян$/);
+  } finally { await c.f.db.close(); }
+});
+
+test("fix S3-pre B-2: a planned ambush by a low-initiative hero — the hero opens at turn 0, the first next_turn goes to the top of the order, the round-1 action is the hero's own", async () => {
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const opened = await c.turn("Засада.", [{ text: "Ждём. ", toolCalls: [
+      { name: "upsert_character", arguments: { localKey: "a", name: "Ян", kind: "npc", present: true, hp: 11, maxHp: 11 } },
+      { name: "upsert_character", arguments: { localKey: "b", name: "Пузо", kind: "npc", present: true, hp: 9, maxHp: 9 } },
+      { name: "combat", arguments: { action: "start", summary: "Засада у брода", grid: { cols: 12, rows: 10 }, rules: true, opening: "party",
+        placements: [{ actorRef: c.hero, x: 3, y: 5, initiative: 3 }, { actorRef: "a", x: 4, y: 5, initiative: 15 }, { actorRef: "b", x: 9, y: 5, initiative: 10 }],
+        hp: [{ actorRef: "a", current: 11, max: 11, ac: 12 }, { actorRef: "b", current: 9, max: 9, ac: 13 }] } },
+      { name: "combat", arguments: { action: "attack", actorRef: c.hero, targetRef: "a", attackBonus: 5, damage: "1d8+3", reason: "Удар из засады" } },
+      { name: "combat", arguments: { action: "next_turn" } },
+      { name: "combat", arguments: { action: "next_turn" } },
+      { name: "combat", arguments: { action: "next_turn" } },
+    ] }, { text: "Бой. " }], { dice: [12, 4] });
+    assert.equal(opened.result.status, "committed", JSON.stringify(c.errors));
+    const receipts = await receiptsOf(c, opened);
+    assert.ok(receipts.every((r) => r.result.ok), okSummaries(receipts));
+    const start = receipts.find((r) => r.call.arguments.action === "start").result;
+    const heroName = start.value.opening;
+    assert.equal(start.value.active, heroName, "the ambusher acts first although the order puts the hero last");
+    assert.match(start.summary, /acts first \(it does not spend the round-1 action\), then next_turn goes to the top of the order/);
+    const strike = receipts.find((r) => r.call.arguments.action === "attack").result;
+    assert.equal(strike.value.attacks[0].hit, true, "the opening strike lands before initiative");
+    const turns = receipts.filter((r) => r.call.arguments.action === "next_turn").map((r) => r.result.player);
+    assert.deepEqual(turns, ["Раунд 1 · ходит Ян", "Раунд 1 · ходит Пузо", `Раунд 1 · ходит ${heroName}`], "the order from its top, all in round 1");
+    const play = await playOf(c);
+    const hero = play.participants.find((row) => row.entity_id === c.hero);
+    assert.equal(hero.public_resources.economy.action, true, "the opening did not spend the hero's round-1 action");
   } finally { await c.f.db.close(); }
 });

@@ -94,7 +94,7 @@ test("part 1: in the split, the writer's attack in an open fight is resolved on 
     assert.equal(value.attacks[0].hit, true);
     assert.equal(value.attacks[0].damage, 7, "1d6 (4) + 3");
     assert.ok(value.attacks[0].rules.includes("half cover: +2 AC"));
-    assert.deepEqual(value.damage.applied, { target: "Пузо", before: 9, after: 2, max: 9 });
+    assert.deepEqual(value.damage.applied, { target: "Пузо", before: 9, after: 2, max: 9, band: "badly hurt" });
     assert.equal(attack.result.check.kind, "attack", "the hero's attack is a card");
     assert.equal(attack.result.check.dc, 15);
     assert.equal(attack.result.check.success, true);
@@ -147,7 +147,7 @@ test("part 1: a bare attack in the fight is refused with the fix; an enemy's att
     assert.match(again.result.value.bonusKept, /лук: the bonus \+5 this fight already used is kept \(the formula's \+4 was dropped\)/);
     assert.equal(again.result.value.attacks[0].damage, 4, "(6 + 3) halved: Пузо resists «холод», the arrow is «холодом»");
     assert.ok(again.result.value.attacks[0].rules.some((row) => /resists холодом: damage halved/.test(row)));
-    assert.deepEqual(again.result.value.damage.applied, { target: "Пузо", before: 9, after: 5, max: 9 });
+    assert.deepEqual(again.result.value.damage.applied, { target: "Пузо", before: 9, after: 5, max: 9, band: "lightly wounded" });
     assert.match(again.result.player, new RegExp(`^${heroName} → Пузо: 17 против КД 15 · попал, 4 урона \\(укрытие наполовину: \\+2 к КД; сопротивление: холодом: урон вдвое меньше\\)$`));
   } finally { await c.f.db.close(); }
 });
@@ -257,5 +257,28 @@ test("part 1 (2): the split — the ford turn 4 shape (the hero's crit told only
     assert.equal(seen[0].playerInput, FORD.finish);
     assert.match(played.writer.requests[2].messages.at(-1).text, /^The player saw these rolls but the story does not tell their outcome:[\s\S]*No new ledger is needed\.$/);
     assert.match((await c.row(played.input.operationId)).narration, /Стрела пробивает Пузо руку/);
+  } finally { await c.f.db.close(); }
+});
+
+test("part 1 (the ford probe's two findings): a hero's armour class written only in words is found; the formula's bonus equal to the weapon's raises no note", async () => {
+  const { sheetArmourClass } = await import("../src/lib/gameplay/dm-loop/execute.ts");
+  const hero = (details, sheet = null, stats = {}) => ({ details, character_sheet: sheet, stats });
+  assert.equal(sheetArmourClass(hero("Наёмная мечница. Ношу меч, короткий лук и кожаный доспех (КД 15); 24 хита.")), 15);
+  assert.equal(sheetArmourClass(hero("A sellsword in leather (AC 13).")), 13);
+  assert.equal(sheetArmourClass(hero("КД 15", { schemaVersion: 2, mode: "structured_rpg", role: null, armorClass: 17 })), 17, "the sheet's number first");
+  assert.equal(sheetArmourClass(hero("Без доспеха.")), null);
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const played = await c.turn("Бой.", [{ text: "Громила замахивается. ", toolCalls: [
+      { name: "upsert_character", arguments: { localKey: "brute", name: "Громила", kind: "npc", present: true, hp: 20, maxHp: 20, sheet: { attacks: ["Дубина +3, 1d6+1 дробящий"], armorClass: 12 } } },
+      { name: "roll", arguments: { formula: "1d20+3", kind: "attack", weapon: "дубина", dc: 14, targetRef: c.hero, actorRef: "brute", reason: "Громила бьёт", visibility: "private" } },
+      { name: "roll", arguments: { formula: "1d20+5", kind: "attack", weapon: "дубина", dc: 14, targetRef: c.hero, actorRef: "brute", reason: "Громила бьёт снова", visibility: "private" } },
+      { name: "finish_turn", arguments: { sceneKinds: ["combat"], spotlight: [], playerMoment: false } }] }], { dice: [3, 4] });
+    assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
+    const [, same, other] = await receiptsOf(c, played);
+    assert.equal(same.result.value.modifier, 3, "the sheet's +3");
+    assert.equal(same.result.value.modifierDropped, undefined, "the formula said the same +3: nothing to note");
+    assert.equal(same.result.value.damage.formula, "1d6+1", "the damage from the sheet's line");
+    assert.match(other.result.value.modifierDropped, /The formula's \+5 was dropped: Дубина \+3, 1d6\+1 дробящий gives the bonus/);
   } finally { await c.f.db.close(); }
 });

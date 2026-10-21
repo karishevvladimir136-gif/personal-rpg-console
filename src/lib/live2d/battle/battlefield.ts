@@ -76,7 +76,10 @@ export function battlefieldText(input: { round: number; field: Field; fighters: 
     const target = input.fighters.find((row) => row.participantId === field.pendingReaction!.targetId);
     lines.push(l === "ru" ? `Ожидается реакция ${target?.name ?? ""}: ${field.pendingReaction.trigger}.` : `A reaction is pending for ${target?.name ?? ""}: ${field.pendingReaction.trigger}.`);
   }
-  if (field.opening) lines.push(l === "ru" ? "Задуманная засада: заявленное начало партии разыгрывается до инициативы." : "A planned ambush: the party's declared opening resolves before initiative.");
+  // Fix S3-pre B-2: the line holds while the opening is under way (turn 0 of round 1); the first next_turn starts the order at its top.
+  if (field.opening && field.turnInRound === 0 && input.round === 1) lines.push(l === "ru"
+    ? "Задуманная засада: заявленное начало партии разыгрывается до инициативы и не тратит действие первого раунда; потом next_turn — к началу очереди."
+    : "A planned ambush: the party's declared opening resolves before initiative and does not spend the round-1 action; then next_turn goes to the top of the order.");
   void input.heroId;
   return clip(lines.join("\n"), 2400);
 }

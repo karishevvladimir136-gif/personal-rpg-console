@@ -53,6 +53,14 @@ export function recordServerRoll(
   };
 }
 
+/** Fix S3-pre B-1 (the owner's rule, BG3): a d20 check's natural label and verdict from the die it kept — a natural 20
+ * succeeds and a natural 1 fails whatever the total. One rule for the first roll and for a reroll (a reroll used to
+ * re-score as total ≥ DC under the old die's label: a rerolled 20 against DC 30 came back a failure). */
+export function withNatural(check: RecordedCheck): RecordedCheck {
+  const natural: RecordedCheck["natural"] = check.kept === 20 ? "crit" : check.kept === 1 ? "fumble" : null;
+  return { ...check, natural, success: natural === "crit" ? true : natural === "fumble" ? false : check.total >= check.dc };
+}
+
 export function isDisplayedCheck(
   source: RuntimeSource,
   check: CheckProposal,
