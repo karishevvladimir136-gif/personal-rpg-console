@@ -115,8 +115,10 @@ export function bookkeeperBrief(args: { playerInput: string; narration: string; 
     const damageText = !damage ? "" : damage.hit !== true ? "; damage: a miss, nothing to record"
       : applied ? `; damage ${String(damage.total)} ALREADY APPLIED: ${String(applied.target)} ${String(applied.before)} → ${String(applied.after)}/${String(applied.max)} (do not record this damage again)`
       : `; damage ${String(damage.total)} to ${String(damage.target ?? "the target")} NOT applied (no hit points on record): record it with resource`;
+    // Fix S3-pre 1: an attack in the open fight was resolved on the battlefield — HP, log and the action already done.
+    const fight = value.resolvedBy === "fight" ? `; RESOLVED IN THE FIGHT by the server: ${receipt.result.summary.replace(/\s*Narrate it\.$/, "")} (hit points, the fight's log and the attacker's action already recorded: no combat attack, hp or log for it)` : "";
     return `- ${String(value.reason ?? "")}: ${String(value.actor ?? "")}, ${value.visibility === "player" ? "shown to the player" : "private"}` +
-      `${check ? `, dice ${check.dice.join("+")} total ${check.total}${check.success === null ? "" : check.success ? ", success" : ", failure"}` : ""}${damageText}`;
+      `${check ? `, dice ${check.dice.join("+")} total ${check.total}${check.success === null ? "" : check.success ? ", success" : ", failure"}` : ""}${damageText}${fight}`;
   });
   return [BOOKKEEPER_MARKER,
     `Player: ${args.playerInput}`,

@@ -348,16 +348,49 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   const formula = parseFormula(str(args.formula));
   const actorText = str(args.actorRef);
   const actor = actorText.toLowerCase() === "dm" ? null : entityOf(shadow, actorText, "actorRef");
+  const kindText = str(args.kind) || "skill";
+  // Fix S3-pre 1: in the open fight an attack is the fight's — resolved on the server against the battlefield and the
+  // rules module, whoever rolls it (the writer of «пишет — записывает» has only this dice tool), never a bare d20.
+  let inFight: { fight: FightRows; field: Field; fighters: BattleFighter[]; a: FightSide; t: FightSide } | null = null;
+  if (kindText === "attack") {
+    const fight = fightRows(shadow);
+    if (fight.active) {
+      reject(args.targetRef !== undefined, "In the open fight an attack names its target (targetRef) and carries its damage (damage); the server resolves it on the battlefield.",
+        "Roll each attack with kind attack, actorRef, targetRef, damage and the weapon or spell (weapon) — never a bare d20.");
+      const target = entityOf(shadow, args.targetRef, "targetRef");
+      const fighters = fight.rows().map(fight.fighterOf);
+      const tf = fighters.find((row) => row.entityId === target.id) ?? null;
+      if (tf) {
+        reject(actor, "In the open fight an attack names its attacker (actorRef), never \"dm\".");
+        const af = fighters.find((row) => row.entityId === actor.id) ?? null;
+        reject(af, `${actor.name} is not in this fight.`, "The bookkeeper adds a late arrival with combat place; narrate the attack after that.");
+        inFight = { fight, field: fight.fieldOf(), fighters, a: { entity: actor, fighter: af }, t: { entity: target, fighter: tf } };
+      }
+    }
+  }
+  // Fix S3-pre 1: an attack named by its weapon or spell takes the bonus and the damage from the sheet, the gear, or this fight.
+  const weaponText = kindText === "attack" ? str(args.weapon) : "";
+  const named = actor && weaponText ? namedAttack(shadow, actor, weaponText, inFight?.a.fighter.combatant ?? null) : null;
+  const weaponBonus = named?.bonus ?? null;
   // Fix run B3 (item 66): the sheet's skill or stat already carries the bonus — a formula modifier on top of it was
   // session 2's doubled modifier. It is dropped and the receipt says so.
-  const fromSheet = args.modifierField !== undefined || args.skill !== undefined;
+  const fromSheet = weaponBonus !== null || args.modifierField !== undefined || args.skill !== undefined;
   const droppedModifier = fromSheet && formula.modifier !== 0 ? formula.modifier : 0;
   let modifier = fromSheet ? 0 : formula.modifier;
+  /** The attack's own bonus (the formula's, the sheet's or the weapon's), without the fiction and the worn items: what a fight remembers. */
+  let baseBonus = modifier;
   const sources: string[] = [];
   let modifierSource: string | null = null;
   // Fix run C (item 66): each part of the modifier with its own source, for the roll card.
   const addends: CheckAddend[] = !fromSheet && formula.modifier ? [{ source: str(args.formula), value: formula.modifier, kind: "formula" }] : [];
-  if (args.modifierField !== undefined) {
+  if (weaponBonus !== null) {
+    modifier += weaponBonus;
+    baseBonus += weaponBonus;
+    modifierSource = `${named!.source} ${weaponBonus >= 0 ? "+" : ""}${weaponBonus}`;
+    sources.push(modifierSource);
+    addends.push({ source: named!.source, value: weaponBonus, kind: "sheet" });
+  }
+  if (weaponBonus === null && args.modifierField !== undefined) {
     reject(actor, "A sheet modifier needs an actor (actorRef is \"dm\").");
     const field = str(args.modifierField);
     const value = actor.stats[field];
@@ -365,11 +398,12 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
       `${actor.name} has no sheet stat "${field}".`,
       Object.keys(actor.stats).length ? `Known stats: ${Object.keys(actor.stats).join(", ")}.` : "The sheet has no numeric stats; pass skill (the skill or trade as the sheet names it) instead.");
     modifier += value;
+    baseBonus += value;
     modifierSource = `${field} ${value >= 0 ? "+" : ""}${value}`;
     sources.push(modifierSource);
     addends.push({ source: field, value, kind: "sheet" });
   }
-  if (args.skill !== undefined) {
+  if (weaponBonus === null && args.skill !== undefined) {
     reject(actor, "A sheet skill needs an actor (actorRef is \"dm\").");
     const skill = str(args.skill);
     const bonus = sheetBonus(actor, skill);
@@ -377,6 +411,7 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     reject(bonus, `${actor.name}'s sheet names no skill or trade like "${skill}".`,
       `${known.length ? `The sheet names: ${known.slice(0, 12).join("; ")}. ` : ""}Use the sheet's own words, or roll without skill and give the fiction's bonuses with their sources.`);
     modifier += bonus.value;
+    baseBonus += bonus.value;
     modifierSource = modifierSource ? `${modifierSource}, ${bonus.source}` : bonus.source;
     sources.push(bonus.source);
     addends.push({ source: bonus.source.replace(/\s[+−-]\d+$/u, "") || skill, value: bonus.value, kind: "sheet" });
@@ -443,7 +478,10 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   const difficulty = args.difficulty !== undefined ? str(args.difficulty) as DifficultyWord : null;
   reject(difficulty === null || difficulty in DIFFICULTY_LADDER, `difficulty: ${Object.keys(DIFFICULTY_LADDER).join(", ")}.`);
   const dc = int(args.dc) ?? (difficulty ? DIFFICULTY_LADDER[difficulty] : null);
-  const kindText = str(args.kind) || "skill";
+  if (inFight) return fightRoll(shadow, args, ctx, inFight, { actor: actor!, formula, modifier, baseBonus, addends, bonuses, sourceText: sources.join(", ") || null,
+    dc, advantage, advantageReason, visibility, weapon: weaponText, named, droppedModifier, ammunition });
+  // Outside a fight, a weapon's damage from the sheet stands in for a damage the call does not give.
+  if (named?.damage && args.damage === undefined) args = { ...args, damage: named.damage };
   // A recorded check (the Check DTO, the roll card, the interactive pause) is the
   // player's; an NPC's d20 against a difficulty resolves as a plain private roll
   // (a person created in this very message is not in the database yet).
@@ -499,6 +537,45 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   // A hit on the hero or a companion is theirs to see even when the attacker's roll is private.
   const player = rolledChip ? withAmmunition(withDamageChip(ctx.language, rolledChip, damage), ammunition) : damage?.player ?? null;
   return ok(value, `${actor?.name ?? "The DM"} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${total}${dc !== null ? ` vs ${dc} — ${success ? "success" : "failure"}` : ""}${damage ? `; ${damage.summary}` : ""}`, null, player);
+}
+
+/** Fix S3-pre 1: the roll of an attack in the open fight — its bonus as the roll computed it, its armour class, cover,
+ * rules and hit points from the battlefield (the same resolution as combat attack); the receipt keeps the roll's shape
+ * (actor, reason, damage with what was applied) so the bookkeeper's brief and the checks read it as any roll. */
+function fightRoll(shadow: ShadowState, args: Args, ctx: ToolContext, at: { fight: FightRows; field: Field; fighters: BattleFighter[]; a: FightSide; t: FightSide },
+  roll: { actor: Entity; formula: { count: number; sides: number; modifier: number }; modifier: number; baseBonus: number; addends: CheckAddend[]; bonuses: { source: string; value: number }[];
+    sourceText: string | null; dc: number | null; advantage: RecordedCheck["advantage"]; advantageReason: string | null; visibility: "player" | "private";
+    weapon: string; named: ReturnType<typeof namedAttack>; droppedModifier: number; ammunition: { name: string; before: number } | null }): DmLoopReceiptResult {
+  reject(roll.formula.count === 1 && roll.formula.sides === 20, "An attack is one d20 (1d20 with the bonus); its damage goes in damage, rolled by the server on a hit.");
+  const damage = str(args.damage) || roll.named?.damage || "";
+  reject(damage.length > 0, "In the open fight an attack carries its damage formula (damage: 1d8+3); the server rolls it only on a hit — never as a second roll.",
+    roll.weapon ? undefined : "Name the weapon or spell (weapon) to take its numbers from the sheet, or give damage.");
+  const reason = str(args.reason);
+  const ranged = args.ranged === true || args.ammunitionRef !== undefined;
+  const memory = roll.named?.from === "fight" ? roll.named : null;
+  const attack = fightAttack(shadow, ctx, at.fight, at.field, at.fighters, at.a, at.t, {
+    bonus: roll.modifier, ac: roll.dc, preferGiven: false, damage, damageType: str(args.damageType) || roll.named?.damageType || null, ranged, count: 1, reason,
+    addends: roll.addends, bonuses: roll.bonuses, fiction: { advantage: roll.advantage, reason: roll.advantageReason } });
+  // The fight remembers a weapon the sheet and the gear do not describe: the next attack with it keeps these numbers.
+  if (roll.weapon && !roll.named) {
+    const combatant = at.a.fighter.combatant;
+    combatant.attacks = [...(combatant.attacks ?? []).filter((row) => row.name.toLocaleLowerCase() !== roll.weapon.toLocaleLowerCase()),
+      { name: roll.weapon.slice(0, 80), bonus: roll.baseBonus, damage, damageType: str(args.damageType) || null }].slice(-8);
+    at.fight.saveFighter(at.a.fighter);
+  }
+  const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
+  const target = at.t.entity;
+  const value: JsonObject = { formula: str(args.formula), reason, actor: roll.actor.name, visibility: roll.visibility, resolvedBy: "fight", ...attack.value,
+    weapon: roll.weapon || null, modifier: roll.modifier, modifierSource: roll.sourceText, bonuses: roll.bonuses,
+    damage: { formula: damage, hit: attack.hits > 0, total: attack.totalDamage, target: target.name, ...(attack.applied ? { applied: attack.applied } : {}) },
+    ...(memory && roll.droppedModifier !== memory.bonus ? { bonusKept: `${roll.weapon}: the bonus ${memory.bonus! >= 0 ? "+" : ""}${memory.bonus} this fight already used is kept (the formula's ${roll.droppedModifier >= 0 ? "+" : ""}${roll.droppedModifier} was dropped).` }
+      : !memory && roll.droppedModifier && roll.droppedModifier !== roll.named?.bonus ? { modifierDropped: `The formula's ${roll.droppedModifier > 0 ? "+" : ""}${roll.droppedModifier} was dropped: ${roll.named ? `${roll.named.source} gives the bonus` : "the sheet's skill or stat already gives the bonus"} (never both).` } : {}),
+    ...(!roll.weapon ? { weaponHint: "Name the weapon or spell (weapon) with each attack: the server keeps its bonus for the rest of the fight." } : {}),
+    ...ammunitionValue(roll.ammunition) };
+  // Fix run B3: the party's blow that drops a foe is the player's moment.
+  if (attack.applied && attack.applied.after === 0 && attack.applied.before > 0 && controlled.has(roll.actor.id) && !controlled.has(target.id))
+    value.playerMoment = `${target.name} drops: the player's moment. Narrate up to the blow, stop before the finishing description, ask the player how they do it («Как ты это делаешь?»), and set playerMoment in finish_turn.`;
+  return ok(value, `${attack.summary}${roll.ammunition ? ` (${roll.ammunition.name} ${roll.ammunition.before} → ${roll.ammunition.before - 1})` : ""}`, attack.check, withAmmunition(attack.player, roll.ammunition));
 }
 
 /** Fix run D: the arrows or bolts a shot spent, on the receipt and on the player's line («Болты: 20 → 19»). */
@@ -1533,20 +1610,184 @@ function restTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
 }
 
 // --- combat ----------------------------------------------------------------
+// --- the fight's attack (2D Live part 2; fix S3-pre 1: the writer's attacks too) ----------------------
+/** The open fight's rows, as the combat tool and the writer's attacks read and save them. */
+function fightRows(shadow: ShadowState) {
+  const active = shadow.runtime.encounters.find((row) => row.status === "active") ?? null;
+  const partyIds = new Set(shadow.partyIds());
+  const rows = () => (active ? shadow.runtime.participants.filter((row) => row.encounter_id === active.id).sort((a, b) => a.turn_order - b.turn_order) : []);
+  const fighterOf = (row: EncounterParticipant): BattleFighter => ({ participantId: row.id, entityId: row.entity_id, name: row.public_name, turnOrder: row.turn_order,
+    combatant: parseCombatant(row.public_resources, { side: row.entity_id && partyIds.has(row.entity_id) ? "party" : "foe" }), placement: parsePlacement(row.public_position) });
+  const fieldOf = () => parseField((active as { public_field?: unknown } | null)?.public_field);
+  const saveField = (field: Field) => shadow.apply({ family: "encounters", id: active!.id, expectedRevision: null, values: { public_field: fieldJson(field) } });
+  const saveFighter = (fighter: BattleFighter) => shadow.apply({ family: "encounter_participants", id: fighter.participantId, expectedRevision: null,
+    values: { public_resources: combatantJson(fighter.combatant), public_position: placementJson(fighter.placement) } });
+  return { active, partyIds, rows, fighterOf, fieldOf, saveField, saveFighter };
+}
+type FightRows = ReturnType<typeof fightRows>;
+type FightSide = { entity: Entity; fighter: BattleFighter };
+
+/** Fix S3-pre 1: an attack line as the sheets and the gear write it («Меч +4, 1d8+2 рубящий», «+5 к попаданию,
+ * 1к12+3 рубящий»): the attack bonus, the damage formula and the damage type, whichever the line names. */
+export function parseAttackLine(text: string): { bonus: number | null; damage: string | null; damageType: string | null } {
+  const line = text.replace(/[−–]/g, "-");
+  const dice = /(\d{1,2})\s*[dкд]\s*(\d{1,4})(?:\s*([+-])\s*(\d{1,3}))?/iu.exec(line);
+  const damage = dice ? `${dice[1]}d${dice[2]}${dice[3] ? `${dice[3]}${dice[4]}` : ""}` : null;
+  const rest = dice ? `${line.slice(0, dice.index)} ${line.slice(dice.index + dice[0].length)}` : line;
+  const bonus = /(?:^|[\s,(:])([+-])\s?(\d{1,2})(?!\d)/u.exec(rest);
+  const words = dice ? line.slice(dice.index + dice[0].length).split(/[^\p{L}-]+/u).filter(Boolean).slice(0, 4) : [];
+  const damageType = words.find((word) => !/^(урон\p{L}*|damage|of|points?|к|to|на|и|and)$/iu.test(word))?.toLowerCase() ?? null;
+  return { bonus: bonus ? (bonus[1] === "-" ? -1 : 1) * Number(bonus[2]) : null, damage, damageType };
+}
+
+/** Fix S3-pre 1: the attack a weapon or spell name stands for — the attacker's sheet line, the properties of a weapon they
+ * carry, or the same attack earlier in this fight — so its numbers never drift between turns. */
+function namedAttack(shadow: ShadowState, actor: Entity, weapon: string, memory: Combatant | null): { bonus: number | null; damage: string | null; damageType: string | null; source: string; from: "sheet" | "gear" | "fight" } | null {
+  if (!weapon) return null;
+  const nameOf = (line: string) => line.split(/[+−–\-\d(,:]/u)[0]?.trim() ?? "";
+  const sheet = actor.character_sheet;
+  const lines = [...((sheet && "attacks" in sheet ? sheet.attacks : undefined) ?? [])];
+  for (const line of lines) {
+    if (!mentions(nameOf(line) || line, weapon) && !mentions(weapon, nameOf(line) || line)) continue;
+    const parsed = parseAttackLine(line);
+    if (parsed.bonus !== null || parsed.damage) return { ...parsed, source: line.trim().slice(0, 60), from: "sheet" };
+  }
+  const carried = shadow.snapshot.items.filter((row) => row.campaign_id === shadow.campaignId && row.quantity > 0 && row.owner_entity_id === actor.id && row.mechanics);
+  for (const item of carried) {
+    if (!mentions(item.name, weapon) && !mentions(weapon, item.name)) continue;
+    const parsed = parseAttackLine(item.mechanics ?? "");
+    if (parsed.bonus !== null || parsed.damage) return { ...parsed, source: item.name, from: "gear" };
+  }
+  const known = memory?.attacks?.find((row) => mentions(row.name, weapon) || mentions(weapon, row.name)) ?? null;
+  return known ? { bonus: known.bonus, damage: known.damage, damageType: known.damageType, source: known.name, from: "fight" } : null;
+}
+
+/** A party member's armour class: the sheet's own number (schema 2) or the system's stat name (ac, КД, armour, defense). */
+function sheetArmourClass(entity: Entity): number | null {
+  const sheet = entity.character_sheet;
+  const fromSheet = sheet && "armorClass" in sheet && typeof sheet.armorClass === "number" ? sheet.armorClass : null;
+  const stat = Object.entries(entity.stats).find(([key, value]) => /^(ac|кд|armou?r|armou?r_class|defen[cs]e|защита)$/i.test(key) && typeof value === "number")?.[1] ?? null;
+  return fromSheet ?? (typeof stat === "number" ? stat : null);
+}
+
+type FightAttackInput = {
+  bonus: number;
+  /** The armour class the call names; `preferGiven` (the combat tool) takes it over the profile, the writer's roll the other way round. */
+  ac: number | null; preferGiven: boolean;
+  damage: string; damageType: string | null; ranged: boolean; count: number; reason: string;
+  /** The writer's roll: the parts of the bonus for the card and the fiction's advantage. */
+  addends?: CheckAddend[]; bonuses?: { source: string; value: number }[];
+  fiction?: { advantage: "normal" | "advantage" | "disadvantage"; reason: string | null } | null;
+};
+type FightAttackResult = { value: JsonObject; summary: string; check: RecordedCheck | null; player: string; applied: { target: string; before: number; after: number; max: number } | null; totalDamage: number; hits: number };
+
+/** One attack in the open fight, resolved on the server: distance and cover measured, the rules module applied and named, the
+ * hit points taken (a foe's mirror and record, a party member's record), the log line written, the attacker's action spent. */
+function fightAttack(shadow: ShadowState, ctx: ToolContext, fight: FightRows, field: Field, fighters: BattleFighter[], a: FightSide, t: FightSide, input: FightAttackInput): FightAttackResult {
+  const l = ctx.language;
+  const active = fight.active!;
+  const { entity: attacker, fighter: af } = a;
+  const { entity: target, fighter: tf } = t;
+  reject(attacker.id !== target.id, "attack: the target is the attacker.");
+  const partyIds = fight.partyIds;
+  const sheetAc = partyIds.has(target.id) ? sheetArmourClass(target) : null;
+  const known = tf.combatant.ac ?? sheetAc;
+  const ac = input.preferGiven ? input.ac ?? known : known ?? input.ac;
+  reject(ac !== null, `attack needs ${target.name}'s armour class: ac here, or combat profile once.`, partyIds.has(target.id) ? "The sheet names no armour class stat; pass ac from the sheet's text." : undefined);
+  reject(input.damage.length > 0, "attack needs the damage formula (1d8+3).");
+  const formula = parseFormula(input.damage);
+  const count = Math.min(8, Math.max(1, input.count));
+  const ranged = input.ranged;
+  const damageType = input.damageType?.toLowerCase() || null;
+  const feet = distanceFeet(af.placement, tf.placement, field.grid.feetPerCell);
+  const look = af.placement.x !== null && af.placement.y !== null && tf.placement.x !== null && tf.placement.y !== null
+    ? sight(field, { x: af.placement.x, y: af.placement.y }, { x: tf.placement.x, y: tf.placement.y }) : null;
+  // 5e: a hostile able to act within 5 ft of the shooter puts a ranged attack at disadvantage (the server measures it).
+  const hostileAdjacent = ranged && af.placement.x !== null && af.placement.y !== null && adjacentIds(field, { x: af.placement.x, y: af.placement.y },
+    fighters.filter((f) => f.participantId !== af.participantId && f.combatant.side !== af.combatant.side && !f.combatant.conditions.some((c) => /dead|unconscious|paralysed|fled|мертв|без сознания|парализ/iu.test(c))).map((f) => ({ id: f.participantId, placement: f.placement }))).length > 0;
+  const fiction = input.fiction && input.fiction.advantage !== "normal" ? input.fiction : null;
+  const ruling = field.rules ? attackRuling({ attacker: af.combatant, target: tf.combatant, feet, cover: look?.cover ?? null, ranged, hostileAdjacent, fiction })
+    : { advantage: fiction?.advantage ?? "normal" as const, autoCrit: false, acBonus: 0, rules: [] as AppliedRule[], impossible: null as string | null };
+  reject(ruling.impossible === null, `${attacker.name} cannot attack ${target.name}: ${ruling.impossible}.`);
+  reject(!look || look.visible, `${attacker.name} has no line of sight to ${target.name} (${look?.blockedBy?.label ?? "a wall"}).`);
+  if (!ranged && feet !== null) reject(feet <= 10, `${target.name} is ${feet} ft away: out of melee reach (move first, or ranged: true).`);
+  const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
+  const visibleCard = controlled.has(attacker.id) && count === 1 && ctx.checks.length < L.maxChecksPerTurn;
+  const results: JsonObject[] = [];
+  const playerLines: string[] = [];
+  let recorded: RecordedCheck | null = null;
+  let totalDamage = 0, hits = 0;
+  const bonus = input.bonus;
+  for (let i = 0; i < count; i++) {
+    let kept: number, dice: number[];
+    if (visibleCard) {
+      // targetId stays null: the receipt store checks a target against the database, and a foe created this turn is not there yet (the name is in the reason).
+      const cover = ruling.acBonus ? [{ source: l === "ru" ? "укрытие цели" : "the target's cover", value: 0 }] : [];
+      const proposal = { index: ctx.checks.length, actorId: attacker.id, targetId: null, kind: "attack" as const, stat: "attack" as const, dc: ac! + ruling.acBonus, dcPublic: true, visibility: "player" as const,
+        important: true, uncertainty: "meaningful" as const, advantage: ruling.advantage, reason: input.reason || (l === "ru" ? `Атака: ${target.name}` : `Attack: ${target.name}`),
+        bonuses: [...(input.bonuses ?? []), ...cover], advantageReason: ruling.rules.length ? rulesText(ruling.rules, l === "ru" ? "ru" : "en") : null, difficulty: null, natural: null as RecordedCheck["natural"],
+        ...(input.addends?.length && input.addends.reduce((sum, row) => sum + row.value, 0) === bonus ? { addends: input.addends.slice(0, 10) } : {}) };
+      const rolled = recordServerRoll(ctx.input.operationId, proposal, bonus, 1, ctx.random);
+      recorded = { ...rolled, natural: rolled.kept === 20 ? "crit" : rolled.kept === 1 ? "fumble" : null };
+      kept = rolled.kept; dice = [...rolled.dice];
+    } else {
+      dice = Array.from({ length: ruling.advantage === "normal" ? 1 : 2 }, () => ctx.random(1, 21));
+      kept = ruling.advantage === "advantage" ? Math.max(...dice) : ruling.advantage === "disadvantage" ? Math.min(...dice) : dice[0];
+    }
+    const total = kept + bonus;
+    const hit = kept === 20 || (kept !== 1 && total >= ac! + ruling.acBonus);
+    const crit = kept === 20 || (hit && ruling.autoCrit);
+    // The card's verdict is the attack's: a natural 20 hits and a natural 1 misses whatever the total.
+    if (recorded && i === 0) recorded = { ...recorded, success: hit };
+    let damage = 0;
+    let damageRules: AppliedRule[] = [];
+    if (hit) {
+      hits++;
+      const roll = () => Array.from({ length: formula.count }, () => ctx.random(1, formula.sides + 1));
+      const base = roll();
+      if (field.rules) {
+        const ruled = damageRuling({ dice: base, modifier: formula.modifier, crit, critDice: crit ? roll() : undefined, damageType, target: tf.combatant });
+        damage = ruled.total; damageRules = ruled.rules;
+      } else damage = Math.max(0, base.reduce((sum, die) => sum + die, 0) + formula.modifier);
+      totalDamage += damage;
+    }
+    const applied = [...ruling.rules, ...damageRules];
+    const rulesLine = applied.length ? ` (${rulesText(applied, l === "ru" ? "ru" : "en")})` : "";
+    const outcome = hit ? (l === "ru" ? `попал${crit ? ", крит!" : ""}, ${damage} урона` : `hit${crit ? ", crit!" : ""}, ${damage} damage`) : (l === "ru" ? `промах${kept === 1 ? " (единица)" : ""}` : `miss${kept === 1 ? " (natural 1)" : ""}`);
+    playerLines.push(`${attacker.name} → ${target.name}: ${total} ${l === "ru" ? "против КД" : "vs AC"} ${ac! + ruling.acBonus} · ${outcome}${rulesLine}`);
+    results.push({ dice, kept, bonus, total, ac: ac! + ruling.acBonus, hit, crit, damage, damageType, rules: applied.map((row) => `${row.rule}: ${row.effect}`) });
+    const logLine: LogLine = { round: active.round, actor: attacker.name, what: input.reason || (ranged ? (l === "ru" ? "выстрел" : "shot") : (l === "ru" ? "удар" : "strike")), result: hit ? (l === "ru" ? `${total} против КД ${ac! + ruling.acBonus} · попал${crit ? ", крит!" : ""}, ${damage} урона → ${target.name}` : `${total} vs AC ${ac! + ruling.acBonus} · hit${crit ? ", crit!" : ""}, ${damage} damage → ${target.name}`) : (l === "ru" ? `${total} против КД ${ac! + ruling.acBonus} · промах` : `${total} vs AC ${ac! + ruling.acBonus} · miss`), ref: recorded?.id ?? null };
+    field.log = [...field.log, logLine].slice(-MAX_LOG);
+  }
+  // The hit points: a foe's mirror and record, a party member's record (as resource hp would).
+  let hpLine = "";
+  let appliedHp: FightAttackResult["applied"] = null;
+  if (totalDamage > 0) {
+    const current = tf.combatant.hp?.current ?? target.hp ?? target.max_hp ?? 0;
+    const max = tf.combatant.hp?.max ?? target.max_hp ?? Math.max(1, current);
+    const next = Math.max(0, current - totalDamage);
+    if (!partyIds.has(target.id)) tf.combatant.hp = { current: next, max };
+    shadow.apply(entityChange(shadow, target, { hp: next, max_hp: max }));
+    if (next === 0 && !tf.combatant.conditions.includes("dead") && !tf.combatant.conditions.includes("unconscious")) tf.combatant.conditions = [...tf.combatant.conditions, partyIds.has(target.id) ? "dying" : "unconscious"];
+    hpLine = ` HP ${current} → ${next}/${max}${next === 0 ? (partyIds.has(target.id) ? " (down, dying: death saves follow)" : " (down)") : ""}`;
+    appliedHp = { target: target.name, before: current, after: next, max };
+  }
+  if (af.participantId === field.activeParticipantId) af.combatant.economy.action = false;
+  fight.saveFighter(af);
+  fight.saveFighter(tf);
+  fight.saveField(field);
+  const summary = `${results.map((row, index) => `${count > 1 ? `#${index + 1}: ` : ""}${row.total} vs AC ${row.ac} — ${row.hit ? `hit${row.crit ? " (crit)" : ""}, ${row.damage} ${row.damageType ?? ""} damage` : "miss"}${(row.rules as string[]).length ? ` [${(row.rules as string[]).join("; ")}]` : ""}`).join("; ")}; ${target.name}${hpLine || " unhurt"}. Narrate it.`;
+  return { value: { attacker: attacker.name, target: target.name, feet, cover: look?.cover ?? null, rulesModule: field.rules, attacks: results, totalDamage, ...(recorded ? { checkId: recorded.id } : {}) },
+    summary: `${attacker.name} attacks ${target.name}: ${summary}`, check: recorded, player: playerLines.join("\n"), applied: appliedHp, totalDamage, hits };
+}
+
 function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   // 2D Live part 2: the fight's state lives in the encounter rows (the field on the encounter,
   // the combatant in each participant); the server measures, the DM and the system decide.
   const action = str(args.action);
   const l = ctx.language;
-  const active = shadow.runtime.encounters.find((row) => row.status === "active");
-  const partyIds = new Set(shadow.partyIds());
-  const rows = () => shadow.runtime.participants.filter((row) => row.encounter_id === active!.id).sort((a, b) => a.turn_order - b.turn_order);
-  const fighterOf = (row: EncounterParticipant): BattleFighter => ({ participantId: row.id, entityId: row.entity_id, name: row.public_name, turnOrder: row.turn_order,
-    combatant: parseCombatant(row.public_resources, { side: row.entity_id && partyIds.has(row.entity_id) ? "party" : "foe" }), placement: parsePlacement(row.public_position) });
-  const fieldOf = () => parseField((active as { public_field?: unknown } | undefined)?.public_field);
-  const saveField = (field: Field) => shadow.apply({ family: "encounters", id: active!.id, expectedRevision: null, values: { public_field: fieldJson(field) } });
-  const saveFighter = (fighter: BattleFighter) => shadow.apply({ family: "encounter_participants", id: fighter.participantId, expectedRevision: null,
-    values: { public_resources: combatantJson(fighter.combatant), public_position: placementJson(fighter.placement) } });
+  const fight = fightRows(shadow);
+  const { active, partyIds, rows, fighterOf, fieldOf, saveField, saveFighter } = fight;
   const participantOf = (ref: unknown, what: string) => {
     const entity = entityOf(shadow, ref, what);
     const row = rows().find((p) => p.entity_id === entity.id);
@@ -1746,89 +1987,11 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
   }
   if (action === "attack") {
     // The optional rules module (Part 2): the server measures and does the sums; the DM narrates.
-    const { entity: attacker, fighter: af } = participantOf(args.actorRef, "actorRef");
-    const { entity: target, fighter: tf } = participantOf(args.targetRef, "targetRef");
-    reject(attacker.id !== target.id, "attack: the target is the attacker.");
-    const bonus = int(args.attackBonus) ?? 0;
-    // A party member's armour class from the sheet when the DM gives none: the system's own stat name (ac, КД, armour, defense).
-    const sheetAc = partyIds.has(target.id) ? Object.entries(target.stats).find(([key, value]) => /^(ac|кд|armou?r|armou?r_class|defen[cs]e|защита)$/i.test(key) && typeof value === "number")?.[1] ?? null : null;
-    const ac = int(args.ac) ?? tf.combatant.ac ?? sheetAc;
-    reject(ac !== null, `attack needs ${target.name}'s armour class: ac here, or combat profile once.`, partyIds.has(target.id) ? "The sheet names no armour class stat; pass ac from the sheet's text." : undefined);
-    reject(str(args.damage).length > 0, "attack needs the damage formula (1d8+3).");
-    const formula = parseFormula(str(args.damage));
-    const count = Math.min(8, Math.max(1, int(args.count) ?? 1));
-    const ranged = args.ranged === true;
-    const damageType = str(args.damageType).toLowerCase() || null;
-    const feet = distanceFeet(af.placement, tf.placement, field.grid.feetPerCell);
-    const look = af.placement.x !== null && af.placement.y !== null && tf.placement.x !== null && tf.placement.y !== null
-      ? sight(field, { x: af.placement.x, y: af.placement.y }, { x: tf.placement.x, y: tf.placement.y }) : null;
-    // 5e: a hostile able to act within 5 ft of the shooter puts a ranged attack at disadvantage (the server measures it).
-    const hostileAdjacent = ranged && af.placement.x !== null && af.placement.y !== null && adjacentIds(field, { x: af.placement.x, y: af.placement.y },
-      fighters.filter((f) => f.participantId !== af.participantId && f.combatant.side !== af.combatant.side && !f.combatant.conditions.some((c) => /dead|unconscious|paralysed|fled|мертв|без сознания|парализ/iu.test(c))).map((f) => ({ id: f.participantId, placement: f.placement }))).length > 0;
-    const ruling = field.rules ? attackRuling({ attacker: af.combatant, target: tf.combatant, feet, cover: look?.cover ?? null, ranged, hostileAdjacent })
-      : { advantage: "normal" as const, autoCrit: false, acBonus: 0, rules: [] as AppliedRule[], impossible: null as string | null };
-    reject(ruling.impossible === null, `${attacker.name} cannot attack ${target.name}: ${ruling.impossible}.`);
-    reject(!look || look.visible, `${attacker.name} has no line of sight to ${target.name} (${look?.blockedBy?.label ?? "a wall"}).`);
-    if (!ranged && feet !== null) reject(feet <= 10, `${target.name} is ${feet} ft away: out of melee reach (move first, or ranged: true).`);
-    const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
-    const visibleCard = controlled.has(attacker.id) && count === 1 && ctx.checks.length < L.maxChecksPerTurn;
-    const results: JsonObject[] = [];
-    const playerLines: string[] = [];
-    let recorded: RecordedCheck | null = null;
-    let totalDamage = 0;
-    for (let i = 0; i < count; i++) {
-      let kept: number, dice: number[];
-      if (visibleCard) {
-        // targetId stays null: the receipt store checks a target against the database, and a foe created this turn is not there yet (the name is in the reason).
-        const proposal = { index: ctx.checks.length, actorId: attacker.id, targetId: null, kind: "attack" as const, stat: "attack" as const, dc: ac + ruling.acBonus, dcPublic: true, visibility: "player" as const,
-          important: true, uncertainty: "meaningful" as const, advantage: ruling.advantage, reason: str(args.reason) || (l === "ru" ? `Атака: ${target.name}` : `Attack: ${target.name}`),
-          bonuses: ruling.acBonus ? [{ source: l === "ru" ? "укрытие цели" : "the target's cover", value: 0 }] : [], advantageReason: ruling.rules.length ? rulesText(ruling.rules, l === "ru" ? "ru" : "en") : null, difficulty: null, natural: null as RecordedCheck["natural"] };
-        const rolled = recordServerRoll(ctx.input.operationId, proposal, bonus, 1, ctx.random);
-        recorded = { ...rolled, natural: rolled.kept === 20 ? "crit" : rolled.kept === 1 ? "fumble" : null };
-        kept = rolled.kept; dice = [...rolled.dice];
-      } else {
-        dice = Array.from({ length: ruling.advantage === "normal" ? 1 : 2 }, () => ctx.random(1, 21));
-        kept = ruling.advantage === "advantage" ? Math.max(...dice) : ruling.advantage === "disadvantage" ? Math.min(...dice) : dice[0];
-      }
-      const total = kept + bonus;
-      const hit = kept === 20 || (kept !== 1 && total >= ac + ruling.acBonus);
-      const crit = kept === 20 || (hit && ruling.autoCrit);
-      let damage = 0;
-      let damageRules: AppliedRule[] = [];
-      if (hit) {
-        const roll = () => Array.from({ length: formula.count }, () => ctx.random(1, formula.sides + 1));
-        const base = roll();
-        if (field.rules) {
-          const ruled = damageRuling({ dice: base, modifier: formula.modifier, crit, critDice: crit ? roll() : undefined, damageType, target: tf.combatant });
-          damage = ruled.total; damageRules = ruled.rules;
-        } else damage = Math.max(0, base.reduce((sum, die) => sum + die, 0) + formula.modifier);
-        totalDamage += damage;
-      }
-      const applied = [...ruling.rules, ...damageRules];
-      const rulesLine = applied.length ? ` (${rulesText(applied, l === "ru" ? "ru" : "en")})` : "";
-      const outcome = hit ? (l === "ru" ? `попал${crit ? ", крит!" : ""}, ${damage} урона` : `hit${crit ? ", crit!" : ""}, ${damage} damage`) : (l === "ru" ? `промах${kept === 1 ? " (единица)" : ""}` : `miss${kept === 1 ? " (natural 1)" : ""}`);
-      playerLines.push(`${attacker.name} → ${target.name}: ${total} ${l === "ru" ? "против КД" : "vs AC"} ${ac + ruling.acBonus} · ${outcome}${rulesLine}`);
-      results.push({ dice, kept, bonus, total, ac: ac + ruling.acBonus, hit, crit, damage, damageType, rules: applied.map((row) => `${row.rule}: ${row.effect}`) });
-      logLine(field, { round: active.round, actor: attacker.name, what: str(args.reason) || (ranged ? (l === "ru" ? "выстрел" : "shot") : (l === "ru" ? "удар" : "strike")), result: hit ? (l === "ru" ? `${total} против КД ${ac + ruling.acBonus} · попал${crit ? ", крит!" : ""}, ${damage} урона → ${target.name}` : `${total} vs AC ${ac + ruling.acBonus} · hit${crit ? ", crit!" : ""}, ${damage} damage → ${target.name}`) : (l === "ru" ? `${total} против КД ${ac + ruling.acBonus} · промах` : `${total} vs AC ${ac + ruling.acBonus} · miss`), ref: recorded?.id ?? null });
-    }
-    // The hit points: a foe's mirror and record, a party member's record (as resource hp would).
-    let hpLine = "";
-    if (totalDamage > 0) {
-      const current = tf.combatant.hp?.current ?? target.hp ?? target.max_hp ?? 0;
-      const max = tf.combatant.hp?.max ?? target.max_hp ?? Math.max(1, current);
-      const next = Math.max(0, current - totalDamage);
-      if (!partyIds.has(target.id)) tf.combatant.hp = { current: next, max };
-      shadow.apply(entityChange(shadow, target, { hp: next, max_hp: max }));
-      if (next === 0 && !tf.combatant.conditions.includes("dead") && !tf.combatant.conditions.includes("unconscious")) tf.combatant.conditions = [...tf.combatant.conditions, partyIds.has(target.id) ? "dying" : "unconscious"];
-      hpLine = ` HP ${current} → ${next}/${max}${next === 0 ? (partyIds.has(target.id) ? " (down, dying: death saves follow)" : " (down)") : ""}`;
-    }
-    if (af.participantId === field.activeParticipantId) af.combatant.economy.action = false;
-    saveFighter(af);
-    saveFighter(tf);
-    saveField(field);
-    const summary = `${results.map((row, index) => `${count > 1 ? `#${index + 1}: ` : ""}${row.total} vs AC ${row.ac} — ${row.hit ? `hit${row.crit ? " (crit)" : ""}, ${row.damage} ${row.damageType ?? ""} damage` : "miss"}${(row.rules as string[]).length ? ` [${(row.rules as string[]).join("; ")}]` : ""}`).join("; ")}; ${target.name}${hpLine || " unhurt"}. Narrate it.`;
-    return ok({ attacker: attacker.name, target: target.name, feet, cover: look?.cover ?? null, rulesModule: field.rules, attacks: results, totalDamage, ...(recorded ? { checkId: recorded.id } : {}) },
-      `${attacker.name} attacks ${target.name}: ${summary}`, recorded, playerLines.join("\n"));
+    const attacker = participantOf(args.actorRef, "actorRef");
+    const target = participantOf(args.targetRef, "targetRef");
+    const attack = fightAttack(shadow, ctx, fight, field, fighters, attacker, target, { bonus: int(args.attackBonus) ?? 0, ac: int(args.ac), preferGiven: true,
+      damage: str(args.damage), damageType: str(args.damageType) || null, ranged: args.ranged === true, count: int(args.count) ?? 1, reason: str(args.reason) });
+    return ok(attack.value, attack.summary, attack.check, attack.player);
   }
   if (action === "condition") {
     const { entity, fighter } = participantOf(args.actorRef, "actorRef");

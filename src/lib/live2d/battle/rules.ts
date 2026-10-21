@@ -33,6 +33,8 @@ export type AttackInput = {
   unseen?: boolean;
   /** A hostile able to act stands within 5 ft of the attacker (the server measures it): a ranged attack is at disadvantage. */
   hostileAdjacent?: boolean;
+  /** Fix S3-pre 1: advantage or disadvantage the DM names from the fiction (help, a feature), counted with the rest. */
+  fiction?: { advantage: Advantage; reason: string | null } | null;
 };
 export type AttackRuling = { advantage: Advantage; autoCrit: boolean; acBonus: number; rules: AppliedRule[]; impossible: string | null };
 
@@ -59,6 +61,10 @@ export function attackRuling(input: AttackInput): AttackRuling {
   if (has(t, PARALYSED) || has(t, UNCONSCIOUS)) { plus++; rules.push({ rule: has(t, PARALYSED) ? "target paralysed" : "target unconscious", effect: adjacent ? "advantage, auto-crit within 5 ft" : "advantage" }); }
   if (has(a, INVISIBLE)) { plus++; rules.push({ rule: "attacker unseen", effect: "advantage" }); }
   if (input.ranged && (adjacent || input.hostileAdjacent)) { minus++; rules.push({ rule: adjacent ? "ranged attack within 5 ft" : "ranged attack with a hostile within 5 ft", effect: "disadvantage" }); }
+  if (input.fiction && input.fiction.advantage !== "normal") {
+    if (input.fiction.advantage === "advantage") plus++; else minus++;
+    rules.push({ rule: input.fiction.reason || "the fiction", effect: input.fiction.advantage });
+  }
   const acBonus = input.cover === "half" ? 2 : input.cover === "three-quarters" ? 5 : 0;
   if (acBonus) rules.push({ rule: `${input.cover} cover`, effect: `+${acBonus} AC` });
   const impossible = input.cover === "full" ? "full cover: no line of attack" : has(a, INCAPACITATED) || has(a, PARALYSED) || has(a, UNCONSCIOUS) || has(a, STUNNED) ? "the attacker cannot act" : null;
@@ -79,7 +85,13 @@ export type DamageInput = {
   critDice?: number[];
 };
 export type DamageRuling = { total: number; rules: AppliedRule[] };
-const typeMatches = (list: readonly string[], type: string | null) => !!type && list.some((word) => word.toLowerCase() === type.toLowerCase() || new RegExp(`^${type.toLowerCase().slice(0, 4)}`, "iu").test(word));
+// Fix S3-pre 1: the damage types by meaning, in English and Russian (the stat block says «огонь», the attack «огнём»).
+const DAMAGE_TYPES: [string, RegExp][] = [["fire", /^(fire|огон|огн|пламен)/iu], ["cold", /^(cold|холод|мороз|лед|лёд|ледян)/iu], ["lightning", /^(lightning|молни|электр)/iu],
+  ["thunder", /^(thunder|гром|звук)/iu], ["acid", /^(acid|кисл)/iu], ["poison", /^(poison|яд|отрав)/iu], ["necrotic", /^(necrot|некрот)/iu], ["radiant", /^(radiant|излуч|свят|светом)/iu],
+  ["force", /^(force|сил(ов|ой|а\b))/iu], ["psychic", /^(psychic|психи)/iu], ["slashing", /^(slash|рубящ|руб)/iu], ["piercing", /^(pierc|колющ|кол)/iu], ["bludgeoning", /^(bludgeon|дробящ|дроб)/iu]];
+const damageKind = (word: string) => DAMAGE_TYPES.find(([, pattern]) => pattern.test(word.trim()))?.[0] ?? null;
+const typeMatches = (list: readonly string[], type: string | null) => !!type && list.some((word) => word.toLowerCase() === type.toLowerCase() ||
+  (damageKind(word) !== null && damageKind(word) === damageKind(type)) || new RegExp(`^${type.toLowerCase().slice(0, 4).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`, "iu").test(word));
 
 /** The damage after the crit's doubled dice and the target's resistances; each step named. */
 export function damageRuling(input: DamageInput): DamageRuling {
@@ -104,7 +116,8 @@ export function rulesText(rules: readonly AppliedRule[], language: "ru" | "en"):
     "attacker blinded": "атакующий ослеплён", "attacker restrained": "атакующий скован", "attacker poisoned": "атакующий отравлен", "attacker frightened": "атакующий напуган",
     "attacker prone": "атакующий лежит", "target unseen": "цель не видна", "target prone, within 5 ft": "цель лежит, вплотную", "target prone, beyond 5 ft": "цель лежит, издали",
     "target blinded": "цель ослеплена", "target restrained": "цель скована", "target stunned": "цель оглушена", "target petrified": "цель окаменела", "target paralysed": "цель парализована",
-    "target unconscious": "цель без сознания", "attacker unseen": "атакующего не видно", "ranged attack within 5 ft": "дальняя атака вплотную", "half cover": "укрытие наполовину",
+    "target unconscious": "цель без сознания", "attacker unseen": "атакующего не видно", "ranged attack within 5 ft": "дальняя атака вплотную",
+    "ranged attack with a hostile within 5 ft": "дальняя атака, враг вплотную", "the fiction": "по обстановке", "half cover": "укрытие наполовину",
     "three-quarters cover": "укрытие на три четверти", "advantage and disadvantage": "преимущество и помеха", "critical hit": "крит",
     advantage: "преимущество", disadvantage: "помеха", "cancel out": "взаимно гаснут", "no damage": "урона нет", "damage doubled": "урон удвоен", "damage halved": "урон вдвое меньше",
   };

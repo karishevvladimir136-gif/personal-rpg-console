@@ -31,6 +31,8 @@ export type Combatant = {
   resist: string[];
   immune: string[];
   vulnerable: string[];
+  /** Fix S3-pre 1: the attacks this fighter already made, by weapon or spell — a later attack with the same one keeps its numbers. */
+  attacks?: { name: string; bonus: number; damage: string | null; damageType: string | null }[];
   /** Kept for the older readers of the encounter panel. */
   defending: boolean;
   withdrawn: boolean;
@@ -104,6 +106,8 @@ export function parseCombatant(raw: unknown, fallback: { side: Side; active?: bo
     intent: isRecord(v.intent) && str(v.intent.text, 200) ? { text: str(v.intent.text, 200), noticedBy: typeof v.intent.noticedBy === "string" ? v.intent.noticedBy : null } : null,
     ac: typeof v.ac === "number" && Number.isFinite(v.ac) ? Math.round(v.ac) : null,
     resist: words(v.resist), immune: words(v.immune), vulnerable: words(v.vulnerable),
+    ...(Array.isArray(v.attacks) && v.attacks.length ? { attacks: v.attacks.flatMap((row) => (isRecord(row) && str(row.name, 80) && typeof row.bonus === "number" && Number.isFinite(row.bonus)
+      ? [{ name: str(row.name, 80), bonus: Math.round(row.bonus), damage: str(row.damage, 32) || null, damageType: str(row.damageType, 40) || null }] : [])).slice(0, 8) } : {}),
     defending: bool(v.defending, false),
     withdrawn: bool(v.withdrawn, false),
   };
@@ -111,6 +115,7 @@ export function parseCombatant(raw: unknown, fallback: { side: Side; active?: bo
 export function combatantJson(row: Combatant): JsonObject {
   return { ...row, deathSaves: row.deathSaves, hp: row.hp, intent: row.intent, known: row.known.map((line) => ({ ...line })),
     conditions: [...row.conditions], economy: { ...row.economy }, resist: [...row.resist], immune: [...row.immune], vulnerable: [...row.vulnerable],
+    ...(row.attacks?.length ? { attacks: row.attacks.map((attack) => ({ ...attack })) } : {}),
     // The old readers' numbers (the encounter panel of the game screen).
     action: row.economy.action ? 1 : 0, move: row.economy.moveFeet > 0 ? 1 : 0, reaction: row.economy.reaction ? 1 : 0 } as JsonObject;
 }

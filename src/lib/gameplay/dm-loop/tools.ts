@@ -36,7 +36,7 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
     // Polish group 2 added skill, difficulty, bonuses and advantageReason: past
     // Anthropic's 24 optional strict parameters, so the roll is non-strict there.
     strict: { anthropic: false },
-    description: "Roll dice on the server with a receipt: any formula (1d20+5, 2d6, 1d100). A single d20 with a difficulty is a check. A party member's check is the player's: the card shows the reason, each bonus with its source, advantage and why, the difficulty in words; an NPC's or the world's roll stays private. Bonuses: skill (the sheet's own words; the server reads the number, or +2 / +4 / +6 for named / good / master) or modifierField; bonuses [{source, value}] from the fiction (sum capped at ±6); worn items add their own. Difficulty: easy 8, normal 10, hard 13, very_hard 16, nearly_impossible 19. A natural 20 succeeds with a visible extra; a natural 1 fails, no extra harm.",
+    description: "Roll dice on the server with a receipt: any formula (1d20+5, 2d6, 1d100). A single d20 with a difficulty is a check. A party member's check is the player's: the card shows the reason, each bonus with its source, advantage and why, the difficulty in words; an NPC's or the world's roll stays private. Bonuses: skill (the sheet's own words; the server reads the number, or +2 / +4 / +6 for named / good / master) or modifierField; bonuses [{source, value}] from the fiction (sum capped at ±6); worn items add their own. Difficulty: easy 8, normal 10, hard 13, very_hard 16, nearly_impossible 19. A natural 20 succeeds; a natural 1 fails, no extra harm. An attack (kind attack): actorRef, targetRef, weapon (the weapon or spell — its bonus and damage come from the sheet, the gear or this fight), damage, damageType, ranged; while a fight is open the server resolves it on the battlefield — the target's armour class (dc only when none is known: the bare AC, never with cover), cover, distance, conditions, crits and resistances — takes the hit points and logs it; narrate the result.",
     parameters: object({
       formula: str("Dice formula like 1d20+3, 2d6, 1d100. Up to 20 dice of up to 1000 sides, optional +/- modifier.", 32),
       reason: str("The moment in words, in the campaign language: the skill or approach and what is at stake (for example «Скрытность: подслушать через щель»). Shown on the player's roll card.", L.maxShortText),
@@ -54,6 +54,9 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       targetRef: opt(ref("Who takes the damage: the attack's target; for a save the one who saves (the default). The server subtracts it from their hit points and returns what is left.")),
       halfOnSave: opt({ type: "boolean", description: "kind save with damage: a successful save still takes half (Fireball, Lightning Bolt)." }),
       ammunitionRef: opt(ref("A ranged attack: the actor's arrows or bolts; one is spent per roll, hit or miss.")),
+      weapon: opt(str("kind attack: the weapon or spell as the attacker's sheet or gear names it (Меч, Огненный снаряд).", 80)),
+      damageType: opt(str("kind attack: the damage type (огонь, рубящий, fire) for resistances.", 40)),
+      ranged: opt({ type: "boolean", description: "kind attack: a ranged weapon or spell attack." }),
     }),
   },
   {

@@ -26,7 +26,7 @@ import { dmModelSpec, dmUsageCost } from "../../model-runtime/dm-models.ts";
 import { buildCouncilContext, buildDmLoopContext, COUNCIL_TOOLS, instructionsRu, suspectedLiteralLeaks } from "./context.ts";
 import { parseDmOptions } from "./options.ts";
 import { NUDGES_RU } from "./roles-ru.ts";
-import { untoldRollsMessage, visibleRolls, type RollCheckResult } from "./roll-check.ts";
+import { declaresAction, untoldRollsMessage, visibleRolls, type RollCheckInput, type RollCheckResult } from "./roll-check.ts";
 import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KEY } from "./time-words.ts";
 import { advanceLedger, parseLedger, serializeLedger } from "./ledger.ts";
 import { advanceMetrics, parseMetrics, serializeMetrics } from "./metrics.ts";
@@ -44,7 +44,7 @@ export { DM_LOOP_RUNTIME } from "./contracts.ts";
 
 export type DmLoopDependencies = {
   /** Fix run B3 (item 60): the check that every roll the player saw is told (a cheap model; never fails the turn). */
-  rollCheck?: (input: { narration: string; rolls: string[]; language: "ru" | "en" }) => Promise<RollCheckResult>;
+  rollCheck?: (input: RollCheckInput) => Promise<RollCheckResult>;
   store: TurnStore;
   memory: MemoryStore;
   summaries: SummaryProvider;
@@ -115,6 +115,15 @@ export function pausesForPlayer(source: RuntimeSource, check: RecordedCheck): bo
   const hero = source.snapshot.entities.find((row) => row.kind === "player");
   return check.actorId === hero?.id || parseDmOptions(source.dmOptions).companionRolls === "player";
 }
+/** Fix S3-pre 2: the hero of the turn's campaign (the «every roll told» check marks the hero's own rolls). */
+export function heroIdOf(source: RuntimeSource): string | null {
+  return source.snapshot.entities.find((row) => row.kind === "player" && row.campaign_id === source.snapshot.campaign.id)?.id ?? null;
+}
+/** Fix S3-pre 2: the player's line when it declares an action a roll may decide (a game turn; a council line never). */
+export function declaredLine(input: { mode: string; input: string }): string {
+  return input.mode === "game" && declaresAction(input.input) ? input.input : "";
+}
+
 export function combatEnded(receipts: DmLoopReceipt[]): boolean {
   return receipts.some((receipt) => receipt.call.name === "combat" && receipt.result.ok &&
     (typeof receipt.call.arguments === "object" && receipt.call.arguments !== null ? (receipt.call.arguments as { action?: unknown }).action === "end" : false));
@@ -670,13 +679,17 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
         }
       }
       if (!deps.rollCheck || loop.diagnostics.some((row) => row.kind === "rolls_checked") || loop.requests >= limits.modelRequestsPerTurn || !loop.text.trim()) break;
-      const rolls = visibleRolls(loop.receipts);
-      if (!rolls.length) break;
-      const check = await deps.rollCheck({ narration: loop.text, rolls: rolls.map((roll) => roll.line), language })
-        .catch((error: unknown) => ({ untold: [] as number[], costUsdMicros: 0, error: String((error as Error)?.message ?? error).slice(0, 120) }));
-      diagnostic({ kind: "rolls_checked", rolls: rolls.length, untold: check.untold.length, costUsd: check.costUsdMicros / 1_000_000, error: check.error });
-      if (!check.untold.length) { await persist("generating"); break; }
-      loop.transcript.push({ role: "user", text: untoldRollsMessage(instructionsRu(source) ? "ru" : "en", check.untold.map((n) => rolls[n - 1].line), "dm") });
+      // Fix S3-pre 2: the fight's attack cards count; the hero's own rolls are marked; the player's declared actions are read.
+      const rolls = visibleRolls(loop.receipts, heroIdOf(source));
+      const declared = declaredLine(input);
+      if (!rolls.length && !declared) break;
+      const check = await deps.rollCheck({ narration: loop.text, rolls: rolls.map((roll) => roll.line), language, ...(declared ? { playerInput: declared } : {}),
+        heroRolls: rolls.flatMap((roll, index) => (roll.hero ? [index + 1] : [])) })
+        .catch((error: unknown): RollCheckResult => ({ untold: [], undeclared: [], costUsdMicros: 0, error: String((error as Error)?.message ?? error).slice(0, 120) }));
+      const undeclared = check.undeclared ?? [];
+      diagnostic({ kind: "rolls_checked", rolls: rolls.length, untold: check.untold.length, undeclared: undeclared.length, costUsd: check.costUsdMicros / 1_000_000, error: check.error });
+      if (!check.untold.length && !undeclared.length) { await persist("generating"); break; }
+      loop.transcript.push({ role: "user", text: untoldRollsMessage(instructionsRu(source) ? "ru" : "en", check.untold.map((n) => rolls[n - 1].line), "dm", undeclared) });
       shadow.finished = false;
       await persist("generating");
     }

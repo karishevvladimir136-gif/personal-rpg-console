@@ -4,48 +4,86 @@
 // So the check is in code: when the narration is complete, a cheap model (Haiku 5.5, as the quotable-line and ledger
 // checks) reads the narration and the rolls the player saw; a roll whose outcome the story does not tell gets one
 // continuation asking the DM to tell it, in order, without repeating the text. Never fails the turn.
+// Fix S3-pre 2 (the merge's checks 1 and 2): the attack cards of the fight count as rolls the player saw; the hero's
+// own decisive roll is told only by the narration itself (a companion's line or the card is not the event); and the
+// actions the player declared (an attack, a spell, a check) are each rolled or explained out of game — the 2D
+// session's finding was three turns narrated around declared attacks with nothing rolled.
 import type { DmLoopReceipt } from "./contracts.ts";
 import { QUOTABLE_MODEL, QUOTABLE_PRICE_PER_MILLION } from "./quotable.ts";
 
-export type RollCheckResult = { untold: number[]; costUsdMicros: number; error: string | null };
+export type RollCheckResult = { untold: number[]; undeclared?: string[]; costUsdMicros: number; error: string | null };
+export type RollCheckInput = { narration: string; rolls: string[]; language: "ru" | "en";
+  /** The player's line of this turn: the declared actions are read from it. */
+  playerInput?: string;
+  /** The numbers (1-based) of the rolls that are the hero's own. */
+  heroRolls?: number[] };
 
-/** The rolls the player saw this turn (a roll card or a hit on the party): one line each. */
-export function visibleRolls(receipts: DmLoopReceipt[]): { position: number; line: string }[] {
-  return receipts.filter((receipt) => receipt.call.name === "roll" && receipt.result.ok && !!receipt.result.player)
-    .map((receipt) => ({ position: receipt.position, line: `${receipt.result.ok ? receipt.result.summary : ""}`.slice(0, 300) }));
+const isAttackCard = (receipt: DmLoopReceipt) => receipt.call.name === "combat" && receipt.call.arguments.action === "attack";
+
+/** The rolls the player saw this turn (a roll card, a hit on the party, an attack card of the fight): one line each;
+ * `hero` marks the hero's own roll. */
+export function visibleRolls(receipts: DmLoopReceipt[], heroId: string | null = null): { position: number; line: string; hero: boolean }[] {
+  return receipts.filter((receipt) => (receipt.call.name === "roll" || isAttackCard(receipt)) && receipt.result.ok && !!receipt.result.player)
+    .map((receipt) => {
+      const result = receipt.result.ok ? receipt.result : null;
+      const hero = !!heroId && (result?.check?.actorId === heroId || receipt.call.arguments.actorRef === heroId);
+      return { position: receipt.position, line: `${result?.summary ?? ""}`.slice(0, 300), hero };
+    });
 }
 
-export function rollCheckRequest(input: { narration: string; rolls: string[]; language: "ru" | "en" }): { system: string; user: string } {
+/** Whether the player's line declares an action that a roll may decide (an attack, a spell, a check) — the gate of the
+ * declared-action check on a turn without rolls (the check costs about $0.0005 and a second). */
+export function declaresAction(text: string): boolean {
+  return /(^|[^\p{L}])(бь[юёе]|бить|удар|руб[лиь]|кол[юи]|реж[уь]|стреля|выстрел|атаку|напада|кида|броса[юе]|мета[юе]|колду|заклина|твор[юи]|наклады|каст|пыта[юе]|попроб|пробу[юе]|проверя|обыск|взлам|вскрыва|крад[уё]|подкрад|прячусь|пряч[уе]|лез[уе]|карабка|прыга|перепрыг|убежда|уговари|обманыва|запугива|добива|толка[юе]|хвата[юе]|сбива|метну|стрелу|attack|strike|hit|slash|stab|shoot|fire at|cast|try|attempt|search|pick the|sneak|hide|climb|jump|persuade|deceive|intimidate|grapple|shove)/iu.test(text);
+}
+
+export function rollCheckRequest(input: RollCheckInput): { system: string; user: string } {
+  const declared = !!input.playerInput?.trim();
   const system = input.language === "ru"
-    ? `Ты проверяешь рассказ ведущего ролевой игры. Игрок видел броски (они пронумерованы). Для каждого броска реши: рассказывает ли история его исход как событие — попал или промахнулся, сколько урона и куда, удалось или нет то, что пытались. Броска, исход которого в рассказе не показан (о нём только намерение, подготовка или следующее действие), — нет в рассказе. Ответь одним JSON-объектом: {"untold":[номера бросков без рассказа]}; если все рассказаны — {"untold":[]}.`
-    : `You check the narration of a role-playing game's turn. The player saw these rolls (numbered). For each roll decide whether the story tells its outcome as an event — hit or miss, how much damage and where, whether the attempt worked. A roll whose outcome the story never shows (only the intent, the preparation or the next actor) is untold. Answer with one JSON object: {"untold":[the numbers of the untold rolls]}; when every roll is told, {"untold":[]}.`;
-  return { system, user: `NARRATION:\n${input.narration.slice(0, 16000)}\n\nROLLS THE PLAYER SAW:\n${input.rolls.map((line, index) => `${index + 1}. ${line}`).join("\n")}` };
+    ? `Ты проверяешь рассказ ведущего ролевой игры. Игрок видел броски (они пронумерованы; «[герой]» — собственный бросок героя). Для каждого броска реши: рассказывает ли история его исход как событие — попал или промахнулся, сколько урона и куда, удалось или нет то, что пытались. Броска, исход которого в рассказе не показан (о нём только намерение, подготовка или следующее действие), — нет в рассказе. Для броска героя исход должен быть событием в самом рассказе: реплика спутника, карточка броска или намёк («он теперь без арбалета») — не рассказ.${declared ? ` Ещё прочти СТРОКУ ИГРОКА: какие действия героя (атака, заклинание, проверка) игрок заявил на этот ход? Действие, для которого нет броска в списке и про которое рассказ вне игры не говорит, почему оно не состоялось (условие не наступило, цель вне досягаемости, сначала нужно другое), — пропущено; действие, которое по рассказу случилось без броска, тоже пропущено.` : ""} Ответь одним JSON-объектом: {"untold":[номера бросков без рассказа]${declared ? `,"undeclared":["заявленное действие коротко, словами игрока"]` : ""}}; если всё на месте — {"untold":[]${declared ? `,"undeclared":[]` : ""}}.`
+    : `You check the narration of a role-playing game's turn. The player saw these rolls (numbered; "[hero]" marks the hero's own roll). For each roll decide whether the story tells its outcome as an event — hit or miss, how much damage and where, whether the attempt worked. A roll whose outcome the story never shows (only the intent, the preparation or the next actor) is untold. For the hero's own roll the outcome must be an event in the narration itself: a companion's line, the roll card or an implication ("he has no crossbow now") is not telling it.${declared ? ` Also read the PLAYER'S LINE: which actions of the hero (an attack, a spell, a check) did the player declare for this turn? An action with no roll for it in the list, and no out-of-game sentence in the story saying why it did not happen (the condition did not come, the target is out of reach, something else comes first), is missed; so is an action the story shows happening without a roll.` : ""} Answer with one JSON object: {"untold":[the numbers of the untold rolls]${declared ? `,"undeclared":["the declared action, briefly, in the player's words"]` : ""}}; when everything is in place, {"untold":[]${declared ? `,"undeclared":[]` : ""}}.`;
+  const heroRolls = new Set(input.heroRolls ?? []);
+  const rolls = input.rolls.length ? input.rolls.map((line, index) => `${index + 1}. ${heroRolls.has(index + 1) ? (input.language === "ru" ? "[герой] " : "[hero] ") : ""}${line}`).join("\n") : "(none)";
+  return { system, user: `${declared ? `PLAYER'S LINE:\n${input.playerInput!.slice(0, 2000)}\n\n` : ""}NARRATION:\n${input.narration.slice(0, 16000)}\n\nROLLS THE PLAYER SAW:\n${rolls}` };
 }
 
 export function parseUntold(text: string, count: number): number[] {
-  const start = text.indexOf("{"), end = text.lastIndexOf("}");
-  if (start < 0 || end <= start) return [];
-  try {
-    const value = JSON.parse(text.slice(start, end + 1)) as { untold?: unknown };
-    if (!Array.isArray(value.untold)) return [];
-    return [...new Set(value.untold.map((n) => Number(n)).filter((n) => Number.isInteger(n) && n >= 1 && n <= count))].sort((a, b) => a - b);
-  } catch { return []; }
+  return parseRollCheck(text, count).untold;
 }
 
-/** The continuation that asks for the untold rolls (the writer adds no new ledger; the single DM closes again). */
-export function untoldRollsMessage(language: "ru" | "en", rolls: string[], role: "dm" | "writer"): string {
+/** The checker's answer: the untold rolls' numbers and the declared actions left without a roll or a reason. */
+export function parseRollCheck(text: string, count: number): { untold: number[]; undeclared: string[] } {
+  const start = text.indexOf("{"), end = text.lastIndexOf("}");
+  if (start < 0 || end <= start) return { untold: [], undeclared: [] };
+  try {
+    const value = JSON.parse(text.slice(start, end + 1)) as { untold?: unknown; undeclared?: unknown };
+    const untold = Array.isArray(value.untold) ? [...new Set(value.untold.map((n) => Number(n)).filter((n) => Number.isInteger(n) && n >= 1 && n <= count))].sort((a, b) => a - b) : [];
+    const undeclared = Array.isArray(value.undeclared) ? [...new Set(value.undeclared.filter((row): row is string => typeof row === "string").map((row) => row.trim().slice(0, 160)).filter(Boolean))].slice(0, 4) : [];
+    return { untold, undeclared };
+  } catch { return { untold: [], undeclared: [] }; }
+}
+
+/** The continuation that asks for the untold rolls and the declared actions (the writer adds no new ledger; the single DM closes again). */
+export function untoldRollsMessage(language: "ru" | "en", rolls: string[], role: "dm" | "writer", undeclared: string[] = []): string {
   const list = rolls.map((line, index) => `${index + 1}) ${line}`).join("\n");
-  return language === "ru"
-    ? `Эти броски игрок видел, а в рассказе их исхода нет:\n${list}\nРасскажи исход каждого сейчас, по порядку, продолжая рассказ и не повторяя уже написанного. ${role === "writer" ? "Новая ведомость не нужна." : "Потом снова вызови finish_turn."}`
-    : `The player saw these rolls but the story does not tell their outcome:\n${list}\nTell each outcome now, in order, continuing the narration without repeating it. ${role === "writer" ? "No new ledger is needed." : "Then call finish_turn again."}`;
+  const actions = undeclared.map((line, index) => `${index + 1}) ${line}`).join("\n");
+  const close = role === "writer" ? (language === "ru" ? "Новая ведомость не нужна." : "No new ledger is needed.") : (language === "ru" ? "Потом снова вызови finish_turn." : "Then call finish_turn again.");
+  if (language === "ru") return [
+    rolls.length ? `Эти броски игрок видел, а в рассказе их исхода нет:\n${list}\nРасскажи исход каждого сейчас, по порядку, продолжая рассказ и не повторяя уже написанного.` : "",
+    undeclared.length ? `Игрок заявил эти действия героя, а ход их не бросил и не сказал, почему нет:\n${actions}\nБрось каждое сейчас (в бою — roll kind attack с целью) и расскажи исход — или одной строкой вне игры скажи, почему его не может быть. Воля героя — у игрока.` : "",
+    close].filter(Boolean).join("\n");
+  return [
+    rolls.length ? `The player saw these rolls but the story does not tell their outcome:\n${list}\nTell each outcome now, in order, continuing the narration without repeating it.` : "",
+    undeclared.length ? `The player declared these actions of the hero, and the turn neither rolled them nor said why not:\n${actions}\nRoll each now (in a fight: roll kind attack with its target) and tell the outcome — or say in one out-of-game line why it cannot happen. The hero's will is the player's.` : "",
+    close].filter(Boolean).join("\n");
 }
 
 type Fetcher = typeof fetch;
 /** One request to the cheap model, no retry; a failure is reported, never thrown. */
-export async function checkRollsTold(apiKey: string, input: { narration: string; rolls: string[]; language: "ru" | "en" },
+export async function checkRollsTold(apiKey: string, input: RollCheckInput,
   options: { fetcher?: Fetcher; timeoutMs?: number } = {}): Promise<RollCheckResult> {
-  if (!input.rolls.length || !input.narration.trim()) return { untold: [], costUsdMicros: 0, error: null };
-  if (!apiKey) return { untold: [], costUsdMicros: 0, error: "not_configured" };
+  if ((!input.rolls.length && !input.playerInput?.trim()) || !input.narration.trim()) return { untold: [], undeclared: [], costUsdMicros: 0, error: null };
+  if (!apiKey) return { untold: [], undeclared: [], costUsdMicros: 0, error: "not_configured" };
   const request = rollCheckRequest(input);
   try {
     const response = await (options.fetcher ?? fetch)("https://api.anthropic.com/v1/messages", {
@@ -57,9 +95,10 @@ export async function checkRollsTold(apiKey: string, input: { narration: string;
     const value = await response.json().catch(() => null) as { content?: { type: string; text?: string }[]; usage?: { input_tokens?: number; output_tokens?: number }; error?: { type?: string } } | null;
     if (!response.ok || !value) throw new Error(`HTTP ${response.status}${value?.error?.type ? `: ${value.error.type}` : ""}`);
     const text = (value.content ?? []).filter((block) => block.type === "text").map((block) => block.text ?? "").join("\n");
-    return { untold: parseUntold(text, input.rolls.length),
+    const parsed = parseRollCheck(text, input.rolls.length);
+    return { untold: parsed.untold, undeclared: input.playerInput?.trim() ? parsed.undeclared : [],
       costUsdMicros: Math.round((value.usage?.input_tokens ?? 0) * QUOTABLE_PRICE_PER_MILLION.input + (value.usage?.output_tokens ?? 0) * QUOTABLE_PRICE_PER_MILLION.output), error: null };
   } catch (error) {
-    return { untold: [], costUsdMicros: 0, error: String((error as Error)?.message ?? error).slice(0, 120) };
+    return { untold: [], undeclared: [], costUsdMicros: 0, error: String((error as Error)?.message ?? error).slice(0, 120) };
   }
 }
