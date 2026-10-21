@@ -403,6 +403,12 @@ export function GameplayComposer({
       try {
         await accept(await sendTurn(attempt));
       } catch (cause) {
+        // Fix S3-pre A-62: the answer did not arrive — the stored turn says what happened (it may be committed); when it
+        // cannot be read either, the attempt stays for «Повторить» (the outcome is unknown, so nothing is resent blindly).
+        if (cause instanceof GameplayClientError && cause.code === "unavailable") {
+          const stored = await loadTurn(campaignId, attempt.operationId).catch(() => null);
+          if (stored) { await accept(stored); return; }
+        }
         if (
           cause instanceof GameplayClientError &&
           [

@@ -83,7 +83,8 @@ export function RegistrySettings({ data, more, preview }: {
     const id = encodeURIComponent(data.campaign.id);
     readJson<DossierView>(`/api/campaigns/${id}/dossier`).then(setDossier, () => setDossier(null));
     readJson<{ campaign: string; account: string }>(`/api/campaigns/${id}/dossier?view=voice`).then(setVoice, () => setVoice(null));
-    readJson<PlaySnapshot>(`/api/campaigns/${id}/play`).then(setPlay, () => setPlay(null));
+    // Fix S3-pre: «?for=settings» — this read never starts the DM's prep (it runs from the game, and again on saving «Тайны»).
+    readJson<PlaySnapshot>(`/api/campaigns/${id}/play?for=settings`).then(setPlay, () => setPlay(null));
   }, [data.campaign.id, preview]);
   const notebookVisible = !preview && !!current?.notebookVisible;
   useEffect(() => {

@@ -158,6 +158,9 @@ export const HEADERS_RU: Readonly<Record<string, string>> = {
   "The last exchanges, verbatim (oldest first):":
     "Последние обмены репликами, дословно (старые первыми):",
   "Avoid:": "Чего избегать:",
+  // Fix S3-pre A-15: the first turn's line (context.ts FIRST_TURN_COMPANIONS).
+  "This is the campaign's first turn: the people the owner marked as going with the hero («С героем идут» / «Going with the hero» above) are recorded as companions in this turn — upsert_character kind companion, party true — with what the set-up says of them.":
+    "Это первый ход кампании: люди, которых владелец отметил как идущих с героем («С героем идут» выше), в этом ходу записываются как спутники — upsert_character kind companion, party true — с тем, что о них сказано в завязке.",
 };
 
 /** The campaign-language line of layer 1 for a Russian campaign (context.ts line 612). The last

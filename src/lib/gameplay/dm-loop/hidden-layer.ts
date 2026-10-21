@@ -26,9 +26,12 @@ const PREP_INSTRUCTIONS = `Your private prep before the next session. This campa
 }
 Two to five factions, two or three clocks (4–8 segments each). Mystery and wonder: the clues point at the truth from several sides, each answer opens a deeper question, and the wonder is magic with a past, not an unexplainable effect.`;
 
+/** Fix S3-pre (KF-hidden-layer): the owner saved «Тайны» after the layer was written — it is rebuilt on them. */
+const REBUILD_INSTRUCTIONS = `The owner has just written or changed his secrets for this campaign («Тайны»). Your hidden layer (in the private notes above) was written before them: rewrite it now so it builds on them and never contradicts them. Keep everything play has already established, and keep whatever of the current layer the story has already touched (a clue found, a faction met); change only what the owner's secrets change.`;
+
 /** The prep request: the cached layers a turn uses (how to DM, the world, the history, the dossier) without «now»,
- * the owner's secrets, and the instructions. */
-export function buildPrepRequest(source: RuntimeSource, effort: DmEffort): { system: DmSystemBlock[]; messages: DmMessage[]; effort: DmEffort; tokens: number } {
+ * the owner's secrets, and the instructions; `rebuild` rewrites an existing layer on the owner's new «Тайны». */
+export function buildPrepRequest(source: RuntimeSource, effort: DmEffort, rebuild = false): { system: DmSystemBlock[]; messages: DmMessage[]; effort: DmEffort; tokens: number } {
   const input: TurnInput = { operationId: "00000000-0000-4000-8000-000000000000", campaignId: source.snapshot.campaign.id,
     timeline: source.snapshot.timeline ?? source.runtime.timeline, expectedRevision: source.runtime.revision, mode: "game",
     input: "", companionId: null, listenerIds: [], mechanic: null };
@@ -36,8 +39,9 @@ export function buildPrepRequest(source: RuntimeSource, effort: DmEffort): { sys
   const owner = ownerSecretsText(source);
   const system: DmSystemBlock[] = [...context.system.slice(0, -1),
     { text: owner ? `The owner's own secrets for this campaign (DM-only; the highest authority after the owner's corrections):\n${owner}` : "The owner wrote no secrets of his own: the hidden layer is yours.", cache: false }];
-  const messages: DmMessage[] = [{ role: "user", text: PREP_INSTRUCTIONS }];
-  return { system, messages, effort, tokens: system.reduce((sum, block) => sum + estimateTokens(block.text), 0) + estimateTokens(PREP_INSTRUCTIONS) };
+  const text = rebuild ? `${REBUILD_INSTRUCTIONS}\n\n${PREP_INSTRUCTIONS.replace("This campaign has no hidden layer yet: write it now.", "Write the whole layer again.")}` : PREP_INSTRUCTIONS;
+  const messages: DmMessage[] = [{ role: "user", text }];
+  return { system, messages, effort, tokens: system.reduce((sum, block) => sum + estimateTokens(block.text), 0) + estimateTokens(text) };
 }
 
 export type HiddenLayerPrep = { text: string; clocks: { key: string; label: string; segments: number; trigger: string }[] };

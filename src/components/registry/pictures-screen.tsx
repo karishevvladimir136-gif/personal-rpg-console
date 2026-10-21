@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import type { CampaignSnapshot } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
 import { anchorFor, frameCaptionOf, galleryChapters, type PublicPicture } from "@/lib/visual-frame/pictures";
+import { galleryTurnsOr, parseGalleryTurns, type GalleryTurn } from "@/lib/visual-frame/gallery-turns";
+import { readJson } from "@/lib/persistence/client";
 import { FrameLightbox, usePictures, type LightboxEntry } from "./live-frames";
 import { RedrawAnchor } from "./redraw-anchor";
 import { useChrome } from "./shell";
@@ -33,9 +35,20 @@ export function RegistryPictures({ data, play = null, legacy }: { data: Campaign
   const places: Subject[] = data.locations.filter((row) => row.status !== "rumored").map((row) => ({ subject: { kind: "location", id: row.id }, name: row.name, detail: row.description }));
   const things: Subject[] = data.items.filter((row) => row.quantity > 0).map((row) => ({ subject: { kind: "item", id: row.id }, name: row.name, detail: row.description }));
   const board = pictures?.board ?? null;
+  // Fix S3-pre B-13 (the owner, item 80: «all frames by session»): the gallery's own read over every committed turn —
+  // /play carries only the last 64; the preview and a failed read keep the /play window.
+  const [ownTurns, setOwnTurns] = useState<GalleryTurn[] | null>(null);
+  useEffect(() => {
+    if (chrome?.href) return;
+    let live = true;
+    readJson<{ turns: unknown }>(`/api/campaigns/${encodeURIComponent(data.campaign.id)}/gallery`)
+      .then((value) => { if (live) setOwnTurns(parseGalleryTurns(value.turns)); }, () => {});
+    return () => { live = false; };
+  }, [data.campaign.id, chrome?.href]);
+  const turns = galleryTurnsOr(ownTurns, play?.turns ?? []);
   const drawn = (subject: SubjectRef) => board ? ["portrait", "figure", "holding", "location", "item", "atlas"].some((composition) => anchorFor(board, subject, composition as PublicPicture["composition"]).picture) : false;
   // The frames in story order by session (chapter); without the turns (a preview) the frames in the order drawn.
-  const chapters = board && play?.turns.length ? galleryChapters(data, play.turns, board) : [];
+  const chapters = board && turns.length ? galleryChapters(data, turns, board) : [];
   const loose: LightboxEntry[] = board && !chapters.length ? board.pictures.filter((row) => row.kind === "frame" && row.status === "ready" && !row.hidden)
     .sort((a, b) => a.createdAt.localeCompare(b.createdAt))
     .map((picture) => ({ turn: { id: picture.subjectId, input: "", narration: picture.caption }, picture })) : [];

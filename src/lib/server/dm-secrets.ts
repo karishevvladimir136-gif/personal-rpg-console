@@ -2,6 +2,7 @@ import "server-only";
 import { createClient } from "@supabase/supabase-js";
 import { authorizeCampaign } from "./campaign-authorization";
 import { PersistenceError, databaseError } from "./errors";
+import { scheduleSecretsPrep } from "./hidden-layer-prep";
 
 // Fix run B1: «Тайны (видит только ведущий)» — the owner's own DM-only text on the campaign and on its world
 // (migration 74). Owner-only through the campaign authorization; the turn's source carries them to the DM; the player's
@@ -31,7 +32,12 @@ export async function saveDmSecrets(campaignId: string, value: unknown): Promise
   const v = value && typeof value === "object" ? value as Record<string, unknown> : {};
   if ((v.scope !== "campaign" && v.scope !== "world") || typeof v.body !== "string" || v.body.length > DM_SECRETS_MAX_CHARS ||
     (v.expectedRevision !== undefined && !Number.isSafeInteger(v.expectedRevision))) throw new PersistenceError("validation");
+  const before = await readDmSecrets(campaignId).catch(() => null);
   await rpc(user.id, v.scope === "campaign" ? "campaign" : "campaign_world", campaignId, "save",
     { body: v.body, ...(v.expectedRevision !== undefined ? { expectedRevision: v.expectedRevision } : {}) });
-  return readDmSecrets(campaignId);
+  const saved = await readDmSecrets(campaignId);
+  // Fix S3-pre (KF-hidden-layer): «Тайны» that changed are built into the hidden layer — one prep, off the request's path.
+  const was = before ? (v.scope === "campaign" ? before.campaign.body : before.world.body) : null;
+  if (v.body.trim() && v.body.trim() !== (was ?? "").trim()) scheduleSecretsPrep(campaignId, user.id);
+  return saved;
 }

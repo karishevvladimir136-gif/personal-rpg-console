@@ -443,6 +443,9 @@ function attentionLedger(source: RuntimeSource, ledger: AttentionLedger): Budget
   return { text: clipTokens(text, DOSSIER_BUDGETS.layer3.ledger), dropped: [], used: Math.min(estimateTokens(text), DOSSIER_BUDGETS.layer3.ledger) };
 }
 
+/** Fix S3-pre A-15: the first turn's line (its Russian in HEADERS_RU, applied by localizeHeaders). */
+export const FIRST_TURN_COMPANIONS = "This is the campaign's first turn: the people the owner marked as going with the hero («С героем идут» / «Going with the hero» above) are recorded as companions in this turn — upsert_character kind companion, party true — with what the set-up says of them.";
+
 function adventureGuidance(source: RuntimeSource): Budgeted {
   const context = source.adventureContext as { title?: string; premise?: string; pacing?: { kind?: string; custom?: string | null }; boundaries?: string[] } | undefined;
   if (!context?.title) return { text: "", dropped: [], used: 0 };
@@ -452,7 +455,10 @@ function adventureGuidance(source: RuntimeSource): Budgeted {
   // Fix run F (item 15): the owner writes his adventure's set-up here (who goes with the hero, the job, the places) —
   // the whole text reaches every turn while the adventure is active, and what it states is established.
   const premise = clipTokens((context.premise ?? "").trim(), DOSSIER_BUDGETS.layer3.adventure - 400);
-  const text = `Active adventure «${context.title}» — the owner's set-up for it. What it states (the people, the places, who goes with the hero, the job) is established for this adventure; the pacing is guidance for density and convergence, never a timer or the player's decisions:\n${premise}\nPacing: ${pace}. Rewards: reward power follows the party's actual level and resources in the state; invent no reward power beyond what the world established; loot is what the place plausibly holds.`;
+  // Fix S3-pre A-15: the people the owner marked as going with the hero join the party in the campaign's first turn.
+  const firstTurn = !source.runtime.turns.some((turn) => turn.status === "committed" && turn.mode === "game");
+  const companions = firstTurn && /(С героем ид[уё]т|Going with the hero)/iu.test(context.premise ?? "") ? `\n${FIRST_TURN_COMPANIONS}` : "";
+  const text = `Active adventure «${context.title}» — the owner's set-up for it. What it states (the people, the places, who goes with the hero, the job) is established for this adventure; the pacing is guidance for density and convergence, never a timer or the player's decisions:\n${premise}\nPacing: ${pace}. Rewards: reward power follows the party's actual level and resources in the state; invent no reward power beyond what the world established; loot is what the place plausibly holds.${companions}`;
   return { text: clipTokens(text, DOSSIER_BUDGETS.layer3.adventure), dropped: [], used: Math.min(estimateTokens(text), DOSSIER_BUDGETS.layer3.adventure) };
 }
 

@@ -148,7 +148,8 @@ export function CampaignShell({ children }: { children: ReactNode }) {
   const secondary: NavItem[] = [
     { id: "sessions", label: c("Сессии", "Sessions"), icon: ScrollText },
     { id: "saves", label: c("Сейвы", "Saves"), icon: Bookmark },
-    { id: "timeline", label: c("Хроника и линии времени", "Timeline"), icon: History },
+    // Fix S3-pre B-13: the gallery took the chronicle's place (item 80); the chronicle stays reachable by its URL only.
+    { id: "timeline", label: c("Линии времени", "Timelines"), icon: History },
     { id: "world", label: c("Мастерская мира", "World Lab"), icon: FlaskConical },
     { id: "dm-chat", label: c("Чат с ведущим", "Chat with DM"), icon: MessageSquare },
     { id: "pictures", label: c("Картинки", "Pictures"), icon: ImageIcon },

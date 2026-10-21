@@ -10,30 +10,67 @@ import { dmModelSpec, dmUsageCost } from "../model-runtime/dm-models";
 import { DM_LOOP_RUNTIME } from "../gameplay/dm-loop/contracts";
 import { DIGEST_OUTPUT_TOKENS } from "../gameplay/dm-loop/digest";
 import { buildPrepRequest, hiddenLayerOf, parsePrep, prepWrites } from "../gameplay/dm-loop/hidden-layer";
+import { FIRST_TURN_PREP_WAIT_MS, prepDecision, type PrepTrigger } from "../gameplay/dm-loop/prep-schedule";
 
 // Fix run B1 (key finding 2): the DM's prep — once per campaign, before its first session or, for a campaign that has
 // none yet, on the next entry. One private call of the campaign's DM model at high; the hidden layer and its clocks go
-// into the private notes. Off the request's path (after the response); play never waits; never twice at a time; a
-// failed or unreadable prep is retried no sooner than an hour later (a paid call is not repeated on every poll).
-const running = new Set<string>();
+// into the private notes. Off the request's path (after the response); never twice at a time; a failed or unreadable
+// prep is retried no sooner than an hour later (a paid call is not repeated on every poll).
+// Fix S3-pre (KF-hidden-layer): never from the Settings screen's read; rebuilt once when the owner saves «Тайны»; a
+// brand-new campaign's first turn waits for it, once (src/lib/gameplay/dm-loop/prep-schedule.ts decides).
+type PrepReason = "first" | "existing" | "secrets";
+const running = new Map<string, Promise<void>>();
 const failedAt = new Map<string, number>();
 /** Campaigns known to have their layer (in this process): no source read for them on later entries. */
 const known = new Set<string>();
+/** Campaigns whose first turn already waited for the prep (one wait, once). */
+const waited = new Set<string>();
 const RETRY_AFTER_MS = 60 * 60 * 1000;
 
-export function prepSchedulable(campaignId: string, now = Date.now()): boolean {
-  return !known.has(campaignId) && !running.has(campaignId) && now - (failedAt.get(campaignId) ?? -Infinity) >= RETRY_AFTER_MS;
+const stateOf = (campaignId: string, now: number, committedTurns = 1) => ({ hasLayer: known.has(campaignId), running: running.has(campaignId),
+  failedRecently: now - (failedAt.get(campaignId) ?? -Infinity) < RETRY_AFTER_MS, waitedBefore: waited.has(campaignId), committedTurns });
+
+export function prepSchedulable(campaignId: string, now = Date.now(), trigger: PrepTrigger = "play"): boolean {
+  return prepDecision(trigger, stateOf(campaignId, now)) === "background";
+}
+
+function start(campaignId: string, ownerId: string, reason: PrepReason): Promise<void> {
+  const job = prepHiddenLayer(campaignId, ownerId, reason).finally(() => running.delete(campaignId));
+  running.set(campaignId, job);
+  return job;
 }
 
 export function schedulePrep(campaignId: string, ownerId: string, reason: "first" | "existing"): boolean {
   if (!prepSchedulable(campaignId)) return false;
-  running.add(campaignId);
-  const run = () => prepHiddenLayer(campaignId, ownerId, reason).finally(() => running.delete(campaignId));
+  const run = () => start(campaignId, ownerId, reason);
   try { after(run); } catch { void run(); }
   return true;
 }
 
-export async function prepHiddenLayer(campaignId: string, ownerId: string, reason: "first" | "existing"): Promise<void> {
+/** Fix S3-pre: the owner saved «Тайны» — the layer is rebuilt on them (or built, when there is none yet), off the request's path. */
+export function scheduleSecretsPrep(campaignId: string, ownerId: string): boolean {
+  const decision = prepDecision("secrets_saved", stateOf(campaignId, Date.now()));
+  if (decision === "none") return false;
+  failedAt.delete(campaignId);
+  known.delete(campaignId);
+  // "secrets" rebuilds a layer the source has (known in this process or not) and builds one when there is none.
+  const run = () => start(campaignId, ownerId, "secrets");
+  try { after(run); } catch { void run(); }
+  return true;
+}
+
+/** Fix S3-pre: a brand-new campaign's first turn waits for the prep — the running one, or one started now — once. */
+export async function awaitFirstTurnPrep(campaignId: string, ownerId: string, committedTurns: () => Promise<number>): Promise<void> {
+  if (known.has(campaignId) || waited.has(campaignId)) return;
+  if (prepDecision("first_turn", stateOf(campaignId, Date.now(), await committedTurns())) !== "wait") return;
+  waited.add(campaignId);
+  const job = running.get(campaignId) ?? start(campaignId, ownerId, "first");
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  await Promise.race([job, new Promise<void>((resolve) => { timer = setTimeout(resolve, FIRST_TURN_PREP_WAIT_MS); })]).catch(() => {});
+  if (timer) clearTimeout(timer);
+}
+
+export async function prepHiddenLayer(campaignId: string, ownerId: string, reason: PrepReason): Promise<void> {
   const started = performance.now();
   const skip = (why: string) => console.info(JSON.stringify({ event: "hidden_layer_prep_skipped", campaignId, reason, why }));
   try {
@@ -41,10 +78,10 @@ export async function prepHiddenLayer(campaignId: string, ownerId: string, reaso
     if (settings.runtime !== DM_LOOP_RUNTIME) return skip("the campaign does not play on the turn loop");
     const dossier = await dossierService(ownerId, campaignId);
     const source = await dossier.source();
-    if (hiddenLayerOf(source)) { known.add(campaignId); return; }
+    if (hiddenLayerOf(source) && reason !== "secrets") { known.add(campaignId); return; }
     const production = await readProductionSettings(campaignId);
     const pin = dmLoopPinFromProfile(dmLoopProfile(production.runtimePolicy, settings.split?.writer ?? settings.dmTurn));
-    const request = buildPrepRequest(source, "high");
+    const request = buildPrepRequest(source, "high", reason === "secrets" && !!hiddenLayerOf(source));
     const model = createDmModel(pin);
     let text = "", stop: string | null = null;
     let usage: Parameters<typeof dmUsageCost>[1] | null = null;

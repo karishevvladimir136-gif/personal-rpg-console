@@ -31,6 +31,13 @@ export function errorMessage(error: unknown) {
     ? error.message
     : safeMessages.unavailable;
 }
+/** Fix S3-pre A-62: a failed READ of the records is not a failed save — right after a committed turn it said
+ * «Не удалось подтвердить сохранение». Its own words; the other codes keep theirs. */
+export const RECORDS_READ_FAILED = "The campaign's records could not be refreshed. What you saved is safe; the page tries again.";
+export function readErrorMessage(error: unknown) {
+  const code = error instanceof ClientPersistenceError ? error.code : "unavailable";
+  return code === "unavailable" ? RECORDS_READ_FAILED : errorMessage(error);
+}
 export async function readJson<T>(url: string, init?: RequestInit): Promise<T> {
   let response: Response;
   try {

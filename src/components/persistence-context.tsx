@@ -16,6 +16,7 @@ import {
   loadWorkspace,
   saveMutation,
   errorMessage,
+  readErrorMessage,
   ClientPersistenceError,
 } from "@/lib/persistence/client";
 import {
@@ -74,7 +75,7 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
       }
     } catch (cause) {
       if (request === generation.current) {
-        setError(errorMessage(cause));
+        setError(readErrorMessage(cause));
       }
       throw cause;
     } finally {
@@ -137,7 +138,7 @@ export function CampaignDataProvider({
         setError("");
       }
     } catch (cause) {
-      if (request === generation.current) setError(errorMessage(cause));
+      if (request === generation.current) setError(readErrorMessage(cause));
       throw cause;
     } finally {
       if (request === generation.current) setLoading(false);
