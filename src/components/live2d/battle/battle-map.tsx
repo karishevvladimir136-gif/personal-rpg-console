@@ -7,6 +7,7 @@ import type { Feature } from "@/lib/live2d/battle/contracts";
 import { useCopy } from "../../registry/primitives";
 import { hpOf, initials, type BattleView } from "./battle-model";
 import s from "./battle.module.css";
+import { conditionWord, conditionsText } from "@/lib/live2d/battle/words";
 
 // The battle map (Part 2): the top-down picture under a 5-ft grid, the features
 // (cover, difficult ground, light, fire, walls, ledges), light and line of sight
@@ -117,7 +118,7 @@ export function BattleMap({ view, snapshot, art, portraitUrl, target, onTarget, 
             {lightSources.map((row) => row.cells.map(([x, y]) => <circle key={`${row.key}-${x}-${y}`} cx={x + 0.5} cy={y + 0.5} r={(row.dimRadiusFeet ?? (row.radiusFeet ?? (row.kind === "burning" ? 10 : 20)) * 2) / feetPerCell} fill={`url(#glow-${row.key})`} />))}
             <rect x={0} y={0} width={cols} height={rows} fill="url(#battle-grid)" />
             {field.features.map((row) => row.cells.map(([x, y]) => <rect key={`${row.key}-${x}-${y}`} className={row.kind === "cover" ? s.cover : row.kind === "difficult" ? s.difficult : row.kind === "burning" ? s.burning : row.kind === "wall" ? s.wall : row.kind === "elevation" ? s.elevation : s.hoverCell} x={x} y={y} width={1} height={1} data-feature={row.key} />))}
-            {field.features.filter((row) => row.kind !== "light").map((row) => { const [x, y] = row.cells[0]; return <text key={`l-${row.key}`} className={s.featureLabel} x={x + 0.1} y={y - 0.15}>{row.label}{row.cover ? ` · ${row.cover === "half" ? "½" : row.cover === "three-quarters" ? "¾" : "■"}` : ""}{row.heightFeet ? ` · +${row.heightFeet} ft` : ""}</text>; })}
+            {field.features.filter((row) => row.kind !== "light").map((row) => { const [x, y] = row.cells[0]; return <text key={`l-${row.key}`} className={s.featureLabel} x={x + 0.1} y={y - 0.15}>{row.label}{row.cover ? ` · ${row.cover === "half" ? "½" : row.cover === "three-quarters" ? "¾" : "■"}` : ""}{row.heightFeet ? ` · +${row.heightFeet} ${c("фт", "ft")}` : ""}</text>; })}
             {shade.blind.map((cell) => cellRect(cell, s.blind, `b${cell.x}-${cell.y}`))}
             {templateCells.map((cell) => cellRect(cell, s.template, `t${cell.x}-${cell.y}`))}
             {preview?.cells.map((cell) => cellRect(cell, `${s.pathCell} ${preview.over ? s.pathBad : ""}`, `p${cell.x}-${cell.y}`))}
@@ -133,13 +134,13 @@ export function BattleMap({ view, snapshot, art, portraitUrl, target, onTarget, 
               const classes = [s.token, row.combatant.side === "party" ? "ally" : "foe", row.combatant.side === "party" ? s.ally : s.foe, view.active?.participantId === row.participantId ? s.tokenActive : "", target === row.participantId ? s.tokenTarget : "", down ? s.tokenDown : "", isHero ? s.tokenHero : "", isHero && drag ? s.tokenDragging : ""].filter(Boolean).join(" ");
               return (
                 <button key={row.participantId} type="button" className={classes} data-token={row.participantId} data-cell={`${cell.x},${cell.y}`} style={{ left: pct(cell.x, cols), top: pct(cell.y, rows) }}
-                  aria-label={`${row.name}${hp ? ` · ${hp.current}/${hp.max}` : ""}${row.combatant.conditions.length ? ` · ${row.combatant.conditions.join(", ")}` : ""}${isHero ? ` · ${c("перетащи, чтобы наметить ход", "drag to plan a move")}` : ""}`}
+                  aria-label={`${row.name}${hp ? ` · ${hp.current}/${hp.max}` : ""}${row.combatant.conditions.length ? ` · ${conditionsText(row.combatant.conditions, c.language)}` : ""}${isHero ? ` · ${c("перетащи, чтобы наметить ход", "drag to plan a move")}` : ""}`}
                   onPointerDown={(event) => { if (isHero && heroCell && view.active?.participantId === hero?.participantId) { event.preventDefault(); event.stopPropagation(); setDrag(heroCell); } }}
                   onClick={(event) => { event.stopPropagation(); if (row.combatant.side !== "party") onTarget(target === row.participantId ? null : row.participantId); }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   {url ? <img className={s.tokenFace} src={url} alt="" /> : <span className={s.tokenFace} aria-hidden="true">{initials(row.name)}</span>}
                   {row.combatant.side !== "party" && hp && <><span className={s.hpBar} aria-hidden="true"><span className={s.hpFill} style={{ width: `${Math.max(0, Math.min(100, (hp.current / hp.max) * 100))}%` }} /></span><span className={s.hpNum}>{hp.current}/{hp.max}</span></>}
-                  {row.combatant.conditions.length > 0 && <span className={s.condChips} aria-hidden="true">{row.combatant.conditions.slice(0, 3).map((word) => <span key={word} className={s.condChip} title={word}>{word.slice(0, 2)}</span>)}</span>}
+                  {row.combatant.conditions.length > 0 && <span className={s.condChips} aria-hidden="true">{row.combatant.conditions.slice(0, 3).map((word) => <span key={word} className={s.condChip} title={conditionWord(word, c.language)}>{conditionWord(word, c.language).slice(0, 2)}</span>)}</span>}
                   {preview?.foes.includes(row.participantId) && <span className={s.oa}>{c("атака по возможности", "opportunity attack")}</span>}
                 </button>
               );

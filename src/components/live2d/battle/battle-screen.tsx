@@ -15,6 +15,7 @@ import { registry as r, useCopy } from "../../registry/primitives";
 import { activeEncounter, battleView, damageFloats, endedEncounter, hpOf, initials, latestCombatChanges, zoneRowOf, type BattleView } from "./battle-model";
 import { BattleMap, type Float, type Template } from "./battle-map";
 import s from "./battle.module.css";
+import { conditionWord, outcomeWord } from "@/lib/live2d/battle/words";
 
 // The combat screen (Part 2, «как в Friends & Fables»): the initiative ribbon,
 // the field as zones or as the map, the fight's log, the target's card, the
@@ -173,7 +174,7 @@ export function BattleScreen({ snapshot, play, board, images, preview = false, o
                 ))}
                 <span><i className={[s.dot, hero.combatant.economy.moveFeet > 0 ? "" : s.dotSpent].join(" ")} aria-hidden="true" />{c("Движение", "Movement")} {hero.combatant.economy.moveFeet} {c("фт", "ft")}</span>
               </div>
-              {hero.combatant.conditions.length > 0 && <div className={s.conds}>{hero.combatant.conditions.map((word) => <span key={word} className={r.chip}>{word}</span>)}</div>}
+              {hero.combatant.conditions.length > 0 && <div className={s.conds}>{hero.combatant.conditions.map((word) => <span key={word} className={r.chip}>{conditionWord(word, c.language)}</span>)}</div>}
               {hero.combatant.deathSaves && <span className={r.small}>{c("Спасброски от смерти", "Death saves")}: {"✓".repeat(hero.combatant.deathSaves.success)}{"○".repeat(Math.max(0, 3 - hero.combatant.deathSaves.success))} · {"✗".repeat(hero.combatant.deathSaves.fail)}{"○".repeat(Math.max(0, 3 - hero.combatant.deathSaves.fail))}</span>}
               <p className={`${r.small} ${r.muted}`} style={{ margin: 0 }}>{c("Опиши, что делаешь — кнопки только подсказки.", "Describe what you do — buttons are only hints.")}</p>
             </div>
@@ -212,7 +213,7 @@ function Zones({ view, snapshot, target, onTarget }: { view: BattleView; snapsho
                     {zone.feet !== null && <span className={s.chipTag}>{zone.feet} {c("фт", "ft")}</span>}
                     {zone.cover && <span className={s.chipTag}>{c("за укрытием", "behind cover")}</span>}
                     {zone.hidden && <span className={s.chipTag}>{c("не видно", "out of sight")}</span>}
-                    {fighter.combatant.conditions.slice(0, 2).map((word) => <span key={word} className={s.chipTag}>{word}</span>)}
+                    {fighter.combatant.conditions.slice(0, 2).map((word) => <span key={word} className={s.chipTag}>{conditionWord(word, c.language)}</span>)}
                   </button>
                 );
               }) : <span className={`${r.small} ${r.muted}`}>—</span>}
@@ -244,7 +245,7 @@ function TargetCard({ fighter, snapshot, portrait, view }: { fighter: BattleView
           <span className={s.barNum}>{hp.current} / {hp.max}</span>
         </>
       ) : <span className={`${r.small} ${r.muted}`}>{c("Хиты неизвестны", "Hit points unknown")}</span>}
-      {fighter.combatant.conditions.length > 0 && <div className={s.conds}>{fighter.combatant.conditions.map((word) => <span key={word} className={r.chip}>{word}</span>)}</div>}
+      {fighter.combatant.conditions.length > 0 && <div className={s.conds}>{fighter.combatant.conditions.map((word) => <span key={word} className={r.chip}>{conditionWord(word, c.language)}</span>)}</div>}
       {foe && (
         <>
           <span className={s.logTitle}>{c("Что известно", "What is known")}</span>
@@ -263,7 +264,8 @@ function TargetCard({ fighter, snapshot, portrait, view }: { fighter: BattleView
 function EndCard({ view }: { view: BattleView }) {
   const c = useCopy();
   const card = fightCard({ round: view.encounter.round, log: view.field.log, fighters: view.fighters });
-  const outcome = view.encounter.outcome ?? "";
+  // Fix S3-pre 2.4: the outcome in the campaign's words («победа», not «victory»).
+  const outcome = outcomeWord(view.encounter.outcome ?? "", c.language);
   return (
     <div className={[s.card, s.endCard].join(" ")} aria-label={c("Итог боя", "Fight card")} data-end-card="true">
       <div className={s.cardHead}><b>{c("Бой окончен", "The fight is over")}</b><span>{outcome}{view.encounter.public_summary ? ` · ${view.encounter.public_summary}` : ""}</span></div>

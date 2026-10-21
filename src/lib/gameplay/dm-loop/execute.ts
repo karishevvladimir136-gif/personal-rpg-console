@@ -27,6 +27,7 @@ import { combatantJson, DEFAULT_GRID, defaultEconomy, fieldJson, MAX_LOG, parseC
 import { adjacentIds, cellDistance, distanceFeet, insideGrid, moveCost, sight, zoneFrom } from "../../live2d/battle/geometry.ts";
 import { fightCard, type Fighter as BattleFighter } from "../../live2d/battle/battlefield.ts";
 import { attackRuling, damageRuling, rulesOnByDefault, rulesText, type AppliedRule } from "../../live2d/battle/rules.ts";
+import { conditionsText } from "../../live2d/battle/words.ts";
 
 export type ToolContext = {
   input: TurnInput;
@@ -234,7 +235,9 @@ function questOf(shadow: ShadowState, value: unknown, what: string): Quest {
   return quest;
 }
 function ownerName(shadow: ShadowState, item: Item): string {
-  return item.owner_entity_id ? shadow.entity(item.owner_entity_id)?.name ?? "someone" : "the camp";
+  // Fix S3-pre 2.4: the player's chips and the item's history read these words — in the campaign language.
+  const ru = shadow.snapshot.settings.values.language === "ru";
+  return item.owner_entity_id ? shadow.entity(item.owner_entity_id)?.name ?? (ru ? "кто-то" : "someone") : ru ? "лагерь" : "the camp";
 }
 const localKey = (value: unknown) => (value === undefined ? null : str(value));
 
@@ -712,7 +715,7 @@ function giveGear(shadow: ShadowState, entity: Entity, gear: unknown): { created
     if (shadow.item(id)) continue;
     shadow.apply({ family: "items", id, expectedRevision: null, values: { name, category: kind, quantity, description: "", mechanics: str(raw.properties),
       owner_entity_id: owner.id, storage_id: storageId, equipped_entity_id: null, equipped_slot: null,
-      detail: withHistory({}, shadow.worldMinutes, "created", "gear") as unknown as JsonObject } });
+      detail: withHistory({}, shadow.worldMinutes, "created", shadow.snapshot.settings.values.language === "ru" ? "снаряжение" : "gear") as unknown as JsonObject } });
     created.push(name);
     if (raw.equipped === true) {
       owner = shadow.entity(owner.id)!;
@@ -979,7 +982,7 @@ function storageRefOf(shadow: ShadowState, value: unknown, what: string): Storag
 }
 function destinationOf(shadow: ShadowState, value: unknown, what: string): { entity: Entity | null; storageId: string; label: string } {
   const storage = storageRefOf(shadow, value, what);
-  if (storage) return { entity: null, storageId: storage.id, label: storage.kind === "camp" ? "the camp" : storage.name };
+  if (storage) return { entity: null, storageId: storage.id, label: storage.kind === "camp" ? (shadow.snapshot.settings.values.language === "ru" ? "лагерь" : "the camp") : storage.name };
   const entity = entityOf(shadow, value, what);
   reject(entity.kind !== "faction", `${entity.name} is a faction; items belong to its people or a holding.`);
   return { entity, storageId: shadow.storageFor(entity).id, label: entity.name };
@@ -1107,7 +1110,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
       const grown = shadow.item(stack.id)!;
       const total = grown.quantity + quantity;
       shadow.apply({ family: "items", id: grown.id, expectedRevision: grown.revision, values: { quantity: total,
-        detail: withHistory(itemDetail(grown), shadow.worldMinutes, "merged", `+${quantity} from ${giver?.name ?? "?"}`) as unknown as JsonObject } });
+        detail: withHistory(itemDetail(grown), shadow.worldMinutes, "merged", l === "ru" ? `+${quantity} от ${giver?.name ?? "?"}` : `+${quantity} from ${giver?.name ?? "?"}`) as unknown as JsonObject } });
       const hint = openJobHint(shadow, giver, destination.entity);
       return ok({ itemId: grown.id, name: item.name, quantity, to: destination.label, mergedInto: grown.name, ...hint },
         `${item.name}${quantity > 1 ? ` ×${quantity}` : ""} goes to ${destination.label} (now ${total})`,
@@ -2110,9 +2113,11 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
     }
     if (add.includes("dead") || add.includes("unconscious")) { fighter.combatant.active = false; }
     saveFighter(fighter);
-    const words = fighter.combatant.conditions.join(", ") || (l === "ru" ? "без состояний" : "no conditions");
+    const words = fighter.combatant.conditions.join(", ") || "no conditions";
+    // Fix S3-pre 2.4: the player's chip in the campaign's words («при смерти»); the stored words stay English.
+    const shown = conditionsText(fighter.combatant.conditions, l) || (l === "ru" ? "без состояний" : "no conditions");
     const pipsText = fighter.combatant.deathSaves ? ` · ${fighter.combatant.deathSaves.success}✓/${fighter.combatant.deathSaves.fail}✗` : "";
-    return ok({ actor: entity.name, conditions: fighter.combatant.conditions, deathSaves: fighter.combatant.deathSaves }, `${entity.name}: ${words}${pipsText}`, null, `${entity.name}: ${words}${pipsText}`);
+    return ok({ actor: entity.name, conditions: fighter.combatant.conditions, deathSaves: fighter.combatant.deathSaves }, `${entity.name}: ${words}${pipsText}`, null, `${entity.name}: ${shown}${pipsText}`);
   }
   if (action === "hp") {
     const { entity, fighter } = participantOf(args.actorRef, "actorRef");
@@ -2277,7 +2282,8 @@ function holdingTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopR
     return ok({ id: entity.id, name: (values.name as string) ?? entity.name }, `${(values.name as string) ?? entity.name} updated`);
   }
   reject(action === "remove", `Unknown holding action "${action}".`);
-  shadow.apply(entityChange(shadow, entity, { conditions: [...new Set([...entity.conditions, "lost"])] }));
+  // Fix S3-pre 2.4: the holding's chip reads the condition — in the campaign's word (nothing matches on it).
+  shadow.apply(entityChange(shadow, entity, { conditions: [...new Set([...entity.conditions, ctx.language === "ru" ? "утрачено" : "lost"])] }));
   return ok({ id: entity.id, removed: true }, `${entity.name} is lost to the party`, null, chip.holding(ctx.language, entity.kind, entity.name, true));
 }
 

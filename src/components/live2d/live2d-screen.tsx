@@ -283,7 +283,7 @@ export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2
           <button type="button" onClick={() => setBattle(true)}>{c("Открыть карту боя", "Open the battle map")}</button>
         </div>
       )}
-      <Plate eyebrow={c("2D LIVE", "2D LIVE")} title={level === "scene" ? name(focusId) : level === "region" ? (view.anchorName || c("Известный край", "The known region")) : view.anchorName || c("Мир", "World")}
+      <Plate eyebrow={c("2D", "2D LIVE")} title={level === "scene" ? name(focusId) : level === "region" ? (view.anchorName || c("Известный край", "The known region")) : view.anchorName || c("Мир", "World")}
         sub={c("Ведущий решает, что случилось; записи помнят; экран только показывает.", "The DM decides what happened; the records remember; the screen only shows.")} />
       {crumbBar}
       {body}

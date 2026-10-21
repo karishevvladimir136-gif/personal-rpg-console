@@ -15,6 +15,7 @@ import { Panel, registry as r, Switch, useCopy } from "./primitives";
 import { useChrome } from "./shell";
 import m from "./music.module.css";
 import s from "./settings.module.css";
+import { moodReasonText, trackTitle } from "@/lib/audio/words";
 
 /** The music block of the settings screen (the music stage): the campaign's switch, the world's
  * musical style, the generation model and takes, the pack with its moods, the owner's own tracks. */
@@ -191,7 +192,7 @@ export function MusicBlock({ data }: { data: CampaignSnapshot }) {
               {uploads.map((row) => (
                 <div key={row.id} className={m.track}>
                   <span className={row.hidden ? r.badgeIron : r.badge}>{row.hidden ? c("скрыт", "hidden") : statusLabel(row.status)}</span>
-                  <span title={row.title}>{row.title} · {row.moods.map(tagLabel).join(", ")}{row.durationMs ? ` · ${Math.round(row.durationMs / 1000)} ${c("с", "s")}` : ""}</span>
+                  <span title={trackTitle(row.title, c.language)}>{trackTitle(row.title, c.language)} · {row.moods.map(tagLabel).join(", ")}{row.durationMs ? ` · ${Math.round(row.durationMs / 1000)} ${c("с", "s")}` : ""}</span>
                   <button type="button" className={r.btnGhost} disabled={preview} onClick={() => void trackAction("music.hide", { id: row.id, hidden: !row.hidden })}>{row.hidden ? c("Вернуть", "Show") : c("Скрыть", "Hide")}</button>
                 </div>
               ))}
@@ -205,7 +206,7 @@ export function MusicBlock({ data }: { data: CampaignSnapshot }) {
               {packTracks.map((row) => (
                 <div key={row.id} className={m.track}>
                   <span className={row.status === "failed" ? r.badgeRed : row.hidden ? r.badgeIron : row.status === "ready" ? r.badge : r.badgeAmber}>{row.hidden ? c("скрыт", "hidden") : statusLabel(row.status)}</span>
-                  <span title={row.title}>{row.title} · {musicModel(row.model ?? "")?.label ?? row.model}{row.durationMs ? ` · ${Math.round(row.durationMs / 1000)} ${c("с", "s")}` : ""} · {usd(row.costUsdMicros)}{row.error ? ` · ${row.error.split(":")[0]}` : ""}</span>
+                  <span title={trackTitle(row.title, c.language)}>{trackTitle(row.title, c.language)} · {musicModel(row.model ?? "")?.label ?? row.model}{row.durationMs ? ` · ${Math.round(row.durationMs / 1000)} ${c("с", "s")}` : ""} · {usd(row.costUsdMicros)}{row.error ? ` · ${row.error.split(":")[0]}` : ""}</span>
                   <button type="button" className={r.btnGhost} disabled={preview || row.status !== "ready"} onClick={() => void trackAction("music.hide", { id: row.id, hidden: !row.hidden })}>{row.hidden ? c("Вернуть", "Show") : c("Скрыть", "Hide")}</button>
                 </div>
               ))}
@@ -216,7 +217,7 @@ export function MusicBlock({ data }: { data: CampaignSnapshot }) {
         {music?.log.length ? (
           <details>
             <summary className={r.small}>{c("Почему играет то, что играет", "Why this music plays")}</summary>
-            <div className={m.log}>{[...music.log].reverse().slice(0, 20).map((row, i) => <span key={i}>{new Date(row.at).toLocaleTimeString()} · {moodLabel(row.mood, c.language)}{row.switched ? " ↺" : ""} · {row.reason}</span>)}</div>
+            <div className={m.log}>{[...music.log].reverse().slice(0, 20).map((row, i) => <span key={i}>{new Date(row.at).toLocaleTimeString()} · {moodLabel(row.mood, c.language)}{row.switched ? " ↺" : ""} · {moodReasonText(row.reason, c.language)}</span>)}</div>
           </details>
         ) : null}
         {note && <p className={r.error}>{note}</p>}

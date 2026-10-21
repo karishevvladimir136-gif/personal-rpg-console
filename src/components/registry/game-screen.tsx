@@ -59,6 +59,7 @@ import {
   type Copy,
 } from "./primitives";
 import g from "./game.module.css";
+import { counterLabel } from "@/lib/inventory/model";
 
 export type GamePreview = {
   play: PlaySnapshot;
@@ -270,7 +271,7 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   ) : (
     <>
       {runtime.loading && <p role="status" className={r.muted}>{c("Загружаю сохранённые ходы…", "Loading saved turns…")}</p>}
-      {runtime.error && <p role="alert" className={r.error}>{runtime.error}</p>}
+      {runtime.error && <p role="alert" className={r.error}>{c.t(runtime.error)}</p>}
       {play?.startupPending && (
         <div role="status" className={r.later}>
           <span>{c("Перед первым ходом закончи вступление приключения и настройку ведущего.", "Finish the adventure opening and DM setup before the first action.")}</span>
@@ -462,8 +463,9 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
                 <dl className={g.resources}>
                   {resources.slice(0, 6).map((resource) => (
                     <div key={resource.key} className={r.resRow}>
-                      <dt>{c.label(resource.label)}</dt>
-                      <dd>{resource.max ? <Pips left={resource.value} max={resource.max} label={c.label(resource.label)} /> : resource.value}</dd>
+                      {/* Fix S3-pre 2.4 (items 32, 52): the counter's own name in the campaign language, as the character screen shows it. */}
+                      <dt>{hero ? counterLabel(hero, resource.key, c.language) : c.label(resource.label)}</dt>
+                      <dd>{resource.max ? <Pips left={resource.value} max={resource.max} label={hero ? counterLabel(hero, resource.key, c.language) : c.label(resource.label)} /> : resource.value}</dd>
                     </div>
                   ))}
                   {money.map((row) => (

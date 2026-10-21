@@ -13,6 +13,7 @@ import { WebMusicPlayer, type Channel } from "@/lib/audio/web-player";
 import { registry as r, useCopy } from "./primitives";
 import { useChrome, type CampaignScreenId } from "./shell";
 import m from "./music.module.css";
+import { moodReasonText, trackTitle } from "@/lib/audio/words";
 
 // The music stage on the client: one provider per campaign in the shell. It keeps the
 // soundtrack state, the device preferences (volume, mute, off), polls the public scene
@@ -302,9 +303,10 @@ export function MusicControl({ campaignId, compact = false }: { campaignId: stri
   const enabled = prefs.enabled && (music?.state?.settings.enabled ?? true);
   const playing = enabled && !!music?.now;
   const silent = !enabled || prefs.muted;
-  const title = music?.now ? `${music.now.track.title} · ${moodLabel(music.now.moodUsed, c.language)}` : enabled ? c("Музыка", "Music") : c("Музыка выключена", "Music off");
+  // Fix S3-pre 2.4: the track's title and the mood's reason in the campaign's words (stored and logged in English).
+  const title = music?.now ? `${trackTitle(music.now.track.title, c.language)} · ${moodLabel(music.now.moodUsed, c.language)}` : enabled ? c("Музыка", "Music") : c("Музыка выключена", "Music off");
   const hasTracks = (music?.state?.tracks ?? []).some((row) => row.status === "ready" && !row.hidden);
-  const reason = music?.now ? (music.pinned ? c("закреплено", "pinned") : music.log.at(-1)?.reason ?? "") : "";
+  const reason = music?.now ? (music.pinned ? c("закреплено", "pinned") : moodReasonText(music.log.at(-1)?.reason ?? "", c.language)) : "";
   return (
     <div className={m.wrap} ref={wrap} data-testid="music-control">
       <button type="button" className={open ? r.iconBtnOn : r.iconBtn} aria-label={title} title={title} aria-expanded={open} aria-haspopup="dialog"
@@ -315,7 +317,7 @@ export function MusicControl({ campaignId, compact = false }: { campaignId: stri
         <div className={m.popover} role="dialog" aria-label={c("Музыка", "Music")}>
           <div className={m.now}>
             <span className={r.eyebrow}>{c("Сейчас играет", "Now playing")}<i className={playing ? m.dotOn : m.dot} aria-hidden="true" /></span>
-            <b>{music?.now ? music.now.track.title : hasTracks ? (enabled ? c("тишина", "silence") : c("выключено", "off")) : c("саундтрака ещё нет", "no soundtrack yet")}</b>
+            <b>{music?.now ? trackTitle(music.now.track.title, c.language) : hasTracks ? (enabled ? c("тишина", "silence") : c("выключено", "off")) : c("саундтрака ещё нет", "no soundtrack yet")}</b>
             <span className={m.reason}>
               {music?.now ? `${moodLabel(music.now.mood, c.language)}${music.now.moodUsed !== music.now.mood ? ` → ${moodLabel(music.now.moodUsed, c.language)}` : ""}` : null}
               {reason ? ` · ${reason}` : ""}

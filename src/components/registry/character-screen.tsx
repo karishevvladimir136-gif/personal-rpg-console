@@ -1002,6 +1002,7 @@ function historyWord(event: string, c: Copy) {
     owner_moved: ["перенесено", "moved"], owner_equipped: ["надето", "worn"], owner_unequipped: ["снято", "taken off"], owner_kind: ["вид", "kind"],
     created: ["появилось", "created"], transferred: ["передано", "handed over"], returned: ["вернулось", "returned"], lent: ["отдано на время", "lent"],
     pledged: ["в залог", "pledged"], consumed: ["израсходовано", "used up"], lost: ["утрачено", "lost"], modified: ["изменено", "changed"],
+    merged: ["объединено", "merged"],
   };
   const word = words[event];
   return word ? c(word[0], word[1]) : event;

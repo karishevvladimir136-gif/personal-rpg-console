@@ -40,6 +40,12 @@ export function momentTitle(check: VisibleCheck, t: (key: string) => string) {
 }
 
 const signed = (value: number) => `${value >= 0 ? "+" : "−"}${Math.abs(value)}`;
+/** Fix S3-pre 2.4 (row F-play-9): a sheet stat's key as a source («attack», «level») reads in the campaign's words. */
+function sourceLabel(source: string, label: (phrase: string) => string): string {
+  const capital = source.charAt(0).toLocaleUpperCase() + source.slice(1);
+  const viaCapital = label(capital);
+  return viaCapital !== capital ? viaCapital : label(source);
+}
 
 function D20({ value, phase, natural }: { value: number; phase: PlaybackPhase; natural: VisibleCheck["natural"] }) {
   const [face, setFace] = useState(0);
@@ -83,7 +89,7 @@ function Breakdown({ check, revealed }: { check: VisibleCheck; revealed: boolean
       {addends.length > 0 && (
         <ul className={turnStyles.addends} aria-label={c("Что прибавляется к кубу", "What adds to the die")}>
           {addends.map((addend, index) => (
-            <li key={index} className={turnStyles.addend}><b>{signed(addend.value)}</b><span className={turnStyles.addendSource}>{addend.source}</span></li>
+            <li key={index} className={turnStyles.addend}><b>{signed(addend.value)}</b><span className={turnStyles.addendSource}>{sourceLabel(addend.source, c.label)}</span></li>
           ))}
         </ul>
       )}
