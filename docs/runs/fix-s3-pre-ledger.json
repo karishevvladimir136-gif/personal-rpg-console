@@ -20,6 +20,56 @@
       "settled": true,
       "finishedAt": "2026-10-21T01:58:13.143Z",
       "record": "docs/runs/20261021-014903-loop-opus+opus-high-live-21-live2d-lair.jsonl"
+    },
+    {
+      "run": "rollcheck-ford4-1792549810310",
+      "what": "2.6: the roll check on the merge's ford turn 4 (Haiku), the old prompt vs the new, 5 runs each",
+      "startedAt": "2026-10-21T02:30:10.319Z",
+      "reservedUsd": 0.05,
+      "spentUsd": 0.0023,
+      "settled": true,
+      "finishedAt": "2026-10-21T02:30:31.968Z",
+      "record": "docs/runs/fix-s3-pre-report.md (2.6)"
+    },
+    {
+      "run": "rollcheck-ford4-1792549893361",
+      "what": "2.6: the roll check on the merge's ford turn 4 (Haiku), the old prompt vs the new, 5 runs each",
+      "startedAt": "2026-10-21T02:31:33.366Z",
+      "reservedUsd": 0.05,
+      "spentUsd": 0.0039,
+      "settled": true,
+      "finishedAt": "2026-10-21T02:32:07.495Z",
+      "record": "docs/runs/fix-s3-pre-report.md (2.6)"
+    },
+    {
+      "run": "rollcheck-ford4-1792550260356",
+      "what": "2.6: the roll check on the merge's ford turn 4 (Haiku), the old prompt vs the new, 5 runs each",
+      "startedAt": "2026-10-21T02:37:40.361Z",
+      "reservedUsd": 0.05,
+      "spentUsd": 0.002,
+      "settled": true,
+      "finishedAt": "2026-10-21T02:37:57.155Z",
+      "record": "docs/runs/fix-s3-pre-report.md (2.6)"
+    },
+    {
+      "run": "rollcheck-ford4-1792550282110",
+      "what": "2.6: the roll check on the merge's ford turn 4 (Haiku), the old prompt vs the new, 5 runs each",
+      "startedAt": "2026-10-21T02:38:02.118Z",
+      "reservedUsd": 0.05,
+      "spentUsd": 0.0021,
+      "settled": true,
+      "finishedAt": "2026-10-21T02:38:18.768Z",
+      "record": "docs/runs/fix-s3-pre-report.md (2.6)"
+    },
+    {
+      "run": "ledgercheck-1792550304385",
+      "what": "2.6: the ledger check on the stage's ford probe (Haiku), output ceiling 900 -> 3000, 5 turns",
+      "startedAt": "2026-10-21T02:38:24.389Z",
+      "reservedUsd": 0.05,
+      "spentUsd": 0.0033,
+      "settled": true,
+      "finishedAt": "2026-10-21T02:38:49.450Z",
+      "record": "docs/runs/fix-s3-pre-report.md (2.6)"
     }
   ]
 }

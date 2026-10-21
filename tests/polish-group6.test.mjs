@@ -54,7 +54,9 @@ test("one stage, one page scroll, a compact composer with icon tools; «Заце
   // Fix run E (item 77): the frame lives in its own turn; the stage shows the place.
   assert.doesNotMatch(game, /stageFrameUrl/, "the frame is in its turn, not on the stage");
   assert.match(game, /<FramesPanel data=\{data\} play=\{play\} live=\{live\} stage /);
-  assert.doesNotMatch(game, /К последнему ходу|Важный ход|Important turn|Открытые нити|Open threads|quickStats/);
+  // Fix S3-pre B-16 (the owner's decision): «⚡ Важный ход» is back as one icon toggle of the composer.
+  assert.doesNotMatch(game, /К последнему ходу|Открытые нити|Open threads|quickStats/);
+  assert.equal(game.match(/c\("Важный ход", "Important turn"\)/g)?.length, 1);
   assert.match(game, /c\("Зацепки", "Leads"\)/);
   assert.match(game, /c\("Долги и обещания", "Debts and promises"\)/);
   assert.match(game, /\{quests\.goal && \(/, "an empty goal panel is hidden");

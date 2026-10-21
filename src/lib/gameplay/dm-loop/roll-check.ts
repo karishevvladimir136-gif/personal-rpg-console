@@ -39,9 +39,12 @@ export function declaresAction(text: string): boolean {
 
 export function rollCheckRequest(input: RollCheckInput): { system: string; user: string } {
   const declared = !!input.playerInput?.trim();
+  // Fix S3-pre 2.6 (the paid check on the merge's ford turn 4): asked only «told or not», the checker passed a hero's
+  // critical shot that the story told through a companion's line; it now quotes the sentence that tells each roll,
+  // and an empty quote is an untold roll.
   const system = input.language === "ru"
-    ? `Ты проверяешь рассказ ведущего ролевой игры. Игрок видел броски (они пронумерованы; «[герой]» — собственный бросок героя). Для каждого броска реши: рассказывает ли история его исход как событие — попал или промахнулся, сколько урона и куда, удалось или нет то, что пытались. Броска, исход которого в рассказе не показан (о нём только намерение, подготовка или следующее действие), — нет в рассказе. Для броска героя исход должен быть событием в самом рассказе: реплика спутника, карточка броска или намёк («он теперь без арбалета») — не рассказ.${declared ? ` Ещё прочти СТРОКУ ИГРОКА: какие действия героя (атака, заклинание, проверка) игрок заявил на этот ход? Действие, для которого нет броска в списке и про которое рассказ вне игры не говорит, почему оно не состоялось (условие не наступило, цель вне досягаемости, сначала нужно другое), — пропущено; действие, которое по рассказу случилось без броска, тоже пропущено.` : ""} Ответь одним JSON-объектом: {"untold":[номера бросков без рассказа]${declared ? `,"undeclared":["заявленное действие коротко, словами игрока"]` : ""}}; если всё на месте — {"untold":[]${declared ? `,"undeclared":[]` : ""}}.`
-    : `You check the narration of a role-playing game's turn. The player saw these rolls (numbered; "[hero]" marks the hero's own roll). For each roll decide whether the story tells its outcome as an event — hit or miss, how much damage and where, whether the attempt worked. A roll whose outcome the story never shows (only the intent, the preparation or the next actor) is untold. For the hero's own roll the outcome must be an event in the narration itself: a companion's line, the roll card or an implication ("he has no crossbow now") is not telling it.${declared ? ` Also read the PLAYER'S LINE: which actions of the hero (an attack, a spell, a check) did the player declare for this turn? An action with no roll for it in the list, and no out-of-game sentence in the story saying why it did not happen (the condition did not come, the target is out of reach, something else comes first), is missed; so is an action the story shows happening without a roll.` : ""} Answer with one JSON object: {"untold":[the numbers of the untold rolls]${declared ? `,"undeclared":["the declared action, briefly, in the player's words"]` : ""}}; when everything is in place, {"untold":[]${declared ? `,"undeclared":[]` : ""}}.`;
+    ? `Ты проверяешь рассказ ведущего ролевой игры. Игрок видел броски (они пронумерованы; «[герой]» — собственный бросок героя). Для каждого броска найди в рассказе предложение, которое рассказывает его исход как событие — попал или промахнулся, сколько урона и куда, удалось или нет то, что пытались — и процитируй его. Если такого предложения нет (о броске только намерение, подготовка или следующее действие), цитата пустая. Для броска героя цитата должна показывать само действие героя и его исход («стрела Ярвен входит ему в плечо»); реплика спутника, реакция цели, последствие или намёк («он теперь без арбалета», «он шипит сквозь зубы») — не исход, цитата пустая.${declared ? ` Ещё прочти СТРОКУ ИГРОКА: какие действия героя (атака, заклинание, проверка) игрок заявил на этот ход? Действие, для которого нет броска в списке и про которое рассказ вне игры не говорит, почему оно не состоялось (условие не наступило, цель вне досягаемости, сначала нужно другое), — пропущено; действие, которое по рассказу случилось без броска, тоже пропущено.` : ""} Ответь одним JSON-объектом: {"rolls":[{"n":номер,"quote":"предложение из рассказа или пустая строка"}],"untold":[номера бросков с пустой цитатой]${declared ? `,"undeclared":["заявленное действие коротко, словами игрока"]` : ""}}.`
+    : `You check the narration of a role-playing game's turn. The player saw these rolls (numbered; "[hero]" marks the hero's own roll). For each roll find the sentence of the story that tells its outcome as an event — hit or miss, how much damage and where, whether the attempt worked — and quote it. When there is no such sentence (only the intent, the preparation or the next actor), the quote is empty. For the hero's own roll the quote must show the hero's action itself and its result ("her arrow takes him in the shoulder"); a companion's line, the target's reaction, an aftermath or an implication ("he has no crossbow now", "he hisses through his teeth") is not the outcome: the quote is empty.${declared ? ` Also read the PLAYER'S LINE: which actions of the hero (an attack, a spell, a check) did the player declare for this turn? An action with no roll for it in the list, and no out-of-game sentence in the story saying why it did not happen (the condition did not come, the target is out of reach, something else comes first), is missed; so is an action the story shows happening without a roll.` : ""} Answer with one JSON object: {"rolls":[{"n":number,"quote":"the sentence from the story, or an empty string"}],"untold":[the numbers of the rolls with an empty quote]${declared ? `,"undeclared":["the declared action, briefly, in the player's words"]` : ""}}.`;
   const heroRolls = new Set(input.heroRolls ?? []);
   const rolls = input.rolls.length ? input.rolls.map((line, index) => `${index + 1}. ${heroRolls.has(index + 1) ? (input.language === "ru" ? "[герой] " : "[hero] ") : ""}${line}`).join("\n") : "(none)";
   return { system, user: `${declared ? `PLAYER'S LINE:\n${input.playerInput!.slice(0, 2000)}\n\n` : ""}NARRATION:\n${input.narration.slice(0, 16000)}\n\nROLLS THE PLAYER SAW:\n${rolls}` };
@@ -56,8 +59,14 @@ export function parseRollCheck(text: string, count: number): { untold: number[];
   const start = text.indexOf("{"), end = text.lastIndexOf("}");
   if (start < 0 || end <= start) return { untold: [], undeclared: [] };
   try {
-    const value = JSON.parse(text.slice(start, end + 1)) as { untold?: unknown; undeclared?: unknown };
-    const untold = Array.isArray(value.untold) ? [...new Set(value.untold.map((n) => Number(n)).filter((n) => Number.isInteger(n) && n >= 1 && n <= count))].sort((a, b) => a - b) : [];
+    const value = JSON.parse(text.slice(start, end + 1)) as { untold?: unknown; undeclared?: unknown; rolls?: unknown };
+    // A roll whose quote is empty is untold too, whatever the list says (the quotes are the checker's evidence).
+    const quoted = Array.isArray(value.rolls) ? value.rolls.flatMap((row) => {
+      const r = row as { n?: unknown; quote?: unknown } | null;
+      return r && Number.isInteger(Number(r.n)) && typeof r.quote === "string" && !r.quote.trim() ? [Number(r.n)] : [];
+    }) : [];
+    const listed = Array.isArray(value.untold) ? value.untold.map((n) => Number(n)) : [];
+    const untold = [...new Set([...listed, ...quoted].filter((n) => Number.isInteger(n) && n >= 1 && n <= count))].sort((a, b) => a - b);
     const undeclared = Array.isArray(value.undeclared) ? [...new Set(value.undeclared.filter((row): row is string => typeof row === "string").map((row) => row.trim().slice(0, 160)).filter(Boolean))].slice(0, 4) : [];
     return { untold, undeclared };
   } catch { return { untold: [], undeclared: [] }; }
@@ -89,14 +98,19 @@ export async function checkRollsTold(apiKey: string, input: RollCheckInput,
     const response = await (options.fetcher ?? fetch)("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-      body: JSON.stringify({ model: QUOTABLE_MODEL, max_tokens: 300, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
+      // Fix S3-pre 2.6: no thinking. At low effort the model still thought, and on the quoting prompt it spent the
+      // whole allowance on it (899 of 900 tokens, no answer: the check passed every turn); without thinking the answer
+      // came in ~1 s and flagged the hero's untold critical shot of the merge's ford turn 4, 5 of 5.
+      body: JSON.stringify({ model: QUOTABLE_MODEL, max_tokens: 900, thinking: { type: "disabled" }, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
       signal: AbortSignal.timeout(options.timeoutMs ?? 20_000),
     });
     const value = await response.json().catch(() => null) as { content?: { type: string; text?: string }[]; usage?: { input_tokens?: number; output_tokens?: number }; error?: { type?: string } } | null;
     if (!response.ok || !value) throw new Error(`HTTP ${response.status}${value?.error?.type ? `: ${value.error.type}` : ""}`);
     const text = (value.content ?? []).filter((block) => block.type === "text").map((block) => block.text ?? "").join("\n");
     const parsed = parseRollCheck(text, input.rolls.length);
-    return { untold: parsed.untold, undeclared: input.playerInput?.trim() ? parsed.undeclared : [],
+    // A declared action is asked only on a turn where the hero rolled nothing: when the hero's roll is there, an untold
+    // one is the untold list's job — asking for the action too would roll the same attack twice.
+    return { untold: parsed.untold, undeclared: input.playerInput?.trim() && !input.heroRolls?.length ? parsed.undeclared : [],
       costUsdMicros: Math.round((value.usage?.input_tokens ?? 0) * QUOTABLE_PRICE_PER_MILLION.input + (value.usage?.output_tokens ?? 0) * QUOTABLE_PRICE_PER_MILLION.output), error: null };
   } catch (error) {
     return { untold: [], undeclared: [], costUsdMicros: 0, error: String((error as Error)?.message ?? error).slice(0, 120) };

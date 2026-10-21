@@ -751,12 +751,16 @@ test("Phase 3.5 autosave retention, policy recovery, authorization and populated
     );
     for (const file of old.files.slice(7))
       await old.db.exec(await readFile(new URL(file, old.folder), "utf8"));
+    // Fix S3-pre 2.3 (202610210402, the owner's decision A-39): the one settings change of the upgrade — showDc becomes
+    // true in a new revision; every other value stays.
+    const upgraded = await old.one(
+      "select to_jsonb(s) value from public.rpg_settings s where campaign_id=$1",
+      [cid],
+    );
+    assert.equal(before.value.values.showDc, false);
     assert.deepEqual(
-      await old.one(
-        "select to_jsonb(s) value from public.rpg_settings s where campaign_id=$1",
-        [cid],
-      ),
-      before,
+      { ...upgraded.value, updated_at: before.value.updated_at },
+      { ...before.value, values: { ...before.value.values, showDc: true }, revision: before.value.revision + 1 },
     );
     assert.equal((await old.saves(cid, "read")).timeline.epoch, 1);
     assert.deepEqual(

@@ -175,17 +175,39 @@ test("part 1 (2): the check's pieces — attack cards count, the hero's rolls ar
   const request = rollCheckRequest({ narration: "Ян падает.", rolls: rolls.map((row) => row.line), language: "ru", playerInput: FORD.press, heroRolls: [1] });
   assert.match(request.user, /^PLAYER'S LINE:\nБью Яна ещё раз/);
   assert.match(request.user, /1\. \[герой\] Ярвен attacks Ян/);
-  assert.match(request.system, /реплика спутника, карточка броска или намёк .* — не рассказ/, "an implied outcome is not told for the hero's roll");
+  assert.match(request.system, /реплика спутника, реакция цели, последствие или намёк .* — не исход, цитата пустая/, "an implied outcome is not told for the hero's roll");
   assert.match(request.system, /"undeclared"/);
-  assert.match(rollCheckRequest({ narration: "x", rolls: [], language: "en", playerInput: "I shoot him" }).system, /a companion's line, the roll card or an implication .* is not telling it.*PLAYER'S LINE/s);
+  assert.match(rollCheckRequest({ narration: "x", rolls: [], language: "en", playerInput: "I shoot him" }).system, /a companion's line, the target's reaction, an aftermath or an implication .* is not the outcome: the quote is empty.*PLAYER'S LINE/s);
   assert.doesNotMatch(rollCheckRequest({ narration: "x", rolls: ["a"], language: "en" }).system, /undeclared/, "no line, no declared-action question");
   assert.deepEqual(parseRollCheck('{"untold":[2,9],"undeclared":["бью Яна", "", 3]}', 2), { untold: [2], undeclared: ["бью Яна"] });
   assert.deepEqual(parseRollCheck("нет", 2), { untold: [], undeclared: [] });
+  // Fix S3-pre 2.6: the checker quotes; an empty quote is an untold roll whatever its list says.
+  assert.deepEqual(parseRollCheck('{"rolls":[{"n":1,"quote":"Стрела Тобина уходит в ельник."},{"n":2,"quote":" "}],"untold":[]}', 2), { untold: [2], undeclared: [] });
   const asked = untoldRollsMessage("ru", [], "writer", ["Бью Яна ещё раз"]);
   assert.match(asked, /^Игрок заявил эти действия героя, а ход их не бросил и не сказал, почему нет:\n1\) Бью Яна ещё раз\n.*roll kind attack.*Воля героя — у игрока\.\nНовая ведомость не нужна\.$/s);
   assert.match(untoldRollsMessage("en", ["r"], "dm", ["I shoot"]), /^The player saw these rolls.*\nThe player declared these actions.*\nThen call finish_turn again\.$/s);
   for (const line of Object.values(FORD)) assert.equal(declaresAction(line), true, line);
   assert.equal(declaresAction("Спасибо, Тобин. Идём дальше по дороге."), false, "a line with no action that a roll decides runs no check");
+});
+
+test("2.6: the roll check's request runs without thinking; a declared action is asked only when the hero rolled nothing; the ledger check has room to finish", async () => {
+  const { checkRollsTold } = await import("../src/lib/gameplay/dm-loop/roll-check.ts");
+  const { checkLedger, LEDGER_CHECK_MAX_TOKENS } = await import("../src/lib/gameplay/dm-loop/ledger-check.ts");
+  const sent = [];
+  const answer = (text) => async (_url, init) => { sent.push(JSON.parse(init.body)); return new Response(JSON.stringify({ content: [{ type: "text", text }], usage: { input_tokens: 1000, output_tokens: 150 } }), { status: 200 }); };
+  // The paid check on the merge's ford turn 4: at low effort the quoting prompt spent all 900 tokens thinking and answered nothing.
+  const reply = '{"rolls":[{"n":1,"quote":""},{"n":2,"quote":""}],"untold":[2],"undeclared":["Добиваю того, кто ближе"]}';
+  const withHero = await checkRollsTold("k", { narration: "— Он теперь без арбалета.", rolls: ["Пузо rolls 1d20+3: 20", "Ярвен rolls 1d20+5: 25 (natural 20)"], language: "ru", playerInput: FORD.finish, heroRolls: [2] }, { fetcher: answer(reply) });
+  assert.deepEqual(sent[0].thinking, { type: "disabled" });
+  assert.equal(sent[0].output_config.effort, "low");
+  assert.deepEqual(withHero.untold, [1, 2], "both empty quotes are untold");
+  assert.deepEqual(withHero.undeclared, [], "the hero's attack was rolled: telling it is the untold list's job — asking for it too would roll it twice");
+  const noHeroRoll = await checkRollsTold("k", { narration: "Ян пятится.", rolls: [], language: "ru", playerInput: FORD.press, heroRolls: [] }, { fetcher: answer('{"rolls":[],"untold":[],"undeclared":["Бью Яна ещё раз"]}') });
+  assert.deepEqual(noHeroRoll.undeclared, ["Бью Яна ещё раз"], "the 2D finding: nothing rolled — the declared attack is asked");
+  await checkLedger("k", { narration: "Ярвен берёт бляху.", ledger: "вещи — бляха", receipts: [], language: "ru" }, { fetcher: answer("{\"misses\":[]}") });
+  assert.equal(sent.at(-1).max_tokens, LEDGER_CHECK_MAX_TOKENS);
+  assert.ok(LEDGER_CHECK_MAX_TOKENS >= 3000, "2 of 5 ledger checks of the ford probe were cut empty at 900");
+  assert.equal(sent.at(-1).thinking, undefined, "the ledger check keeps its thinking (without it, it listed records that are there)");
 });
 
 test("part 1 (2): the single DM — the ford turn 3 shape (the hero's attack card alone) is checked now; the 2D finding (a declared attack narrated around) gets one continuation and is rolled", async () => {

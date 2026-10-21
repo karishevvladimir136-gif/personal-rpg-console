@@ -13,6 +13,8 @@ import { QUOTABLE_MODEL, QUOTABLE_PRICE_PER_MILLION } from "./quotable.ts";
 
 export const LEDGER_CHECK_MODEL = QUOTABLE_MODEL;
 export const LEDGER_CHECK_MAX_MISSES = 12;
+/** The answer's ceiling, thinking included. */
+export const LEDGER_CHECK_MAX_TOKENS = 3000;
 
 export type LedgerMiss = { event: string; expected: string };
 /** What the records already hold (the stage A probes: without it the checker took known companions for new people and
@@ -104,7 +106,10 @@ export async function checkLedger(apiKey: string, input: { narration: string; le
     const response = await (options.fetcher ?? fetch)("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-      body: JSON.stringify({ model: LEDGER_CHECK_MODEL, max_tokens: 900, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
+      // Fix S3-pre 2.6: the model thinks before it answers even at low effort; in 2 of 5 turns of the stage's ford probe
+      // 900 tokens were all thinking and the check returned nothing. Without thinking it listed non-misses (records that
+      // are there), so the thinking stays and gets room to finish.
+      body: JSON.stringify({ model: LEDGER_CHECK_MODEL, max_tokens: LEDGER_CHECK_MAX_TOKENS, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
       signal: AbortSignal.timeout(options.timeoutMs ?? 30_000),
     });
     const value = await response.json().catch(() => null) as { content?: { type: string; text?: string }[]; usage?: { input_tokens?: number; output_tokens?: number }; error?: { type?: string } } | null;

@@ -248,8 +248,9 @@ test("A3: an attack with its damage is one call — damage only on a hit, a natu
     assert.equal(crit.critical, true); assert.equal(crit.dice.length, 2, "a natural 20 doubles the dice"); assert.equal(crit.total, 4 + 3 + 2);
     assert.equal(hit.critical, false); assert.equal(hit.dice.length, 1); assert.equal(hit.total, 5 + 2);
     assert.equal(fumble.hit, false, "a natural 1 misses"); assert.equal(fumble.total, 0);
-    assert.deepEqual(crit.applied, { target: "Brute", before: 30, after: 21, max: 30 });
-    assert.deepEqual(hit.applied, { target: "Brute", before: 21, after: 14, max: 30 });
+    // Fix S3-pre (wounds in words): the record carries the band the player reads instead of the foe's numbers.
+    assert.deepEqual(crit.applied, { target: "Brute", before: 30, after: 21, max: 30, band: "lightly wounded" });
+    assert.deepEqual(hit.applied, { target: "Brute", before: 21, after: 14, max: 30, band: "bloodied" });
     assert.equal((await c.state()).entities.find((e) => e.name === "Brute").hp, 14, "the commit carries the damage");
     assert.equal(played.model.requests.length, 2, "one request for the round, one to close");
     assert.match(receipts[0].result.player, /урон 9|damage 9/);

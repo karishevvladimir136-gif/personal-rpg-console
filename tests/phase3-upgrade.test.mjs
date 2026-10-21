@@ -119,8 +119,11 @@ test("migration upgrades populated Phase 2 history without changing exact state 
     assert.equal(after.timeline.epoch, 1);
     assert.equal(afterB.timeline.epoch, 1);
     assert.notEqual(after.timeline.timelineId, afterB.timeline.timelineId);
-    assert.deepEqual(withoutServingFence(after, after.timeline), before);
-    assert.deepEqual(withoutServingFence(afterB, afterB.timeline), beforeB);
+    // Fix S3-pre 2.3 (202610210402, the owner's decision A-39): showDc becomes true in a new settings revision, and the
+    // settings' sync moves the runtime revision once; nothing else in the play state changes.
+    const shown = (state) => ({ ...state, revision: state.revision + 1 });
+    assert.deepEqual(withoutServingFence(after, after.timeline), shown(before));
+    assert.deepEqual(withoutServingFence(afterB, afterB.timeline), shown(beforeB));
     const memory = createRpcMemoryStore(owner, rpc("rpg_memory"));
     const selected = await memory.search({
       campaignId: a.campaignId,
