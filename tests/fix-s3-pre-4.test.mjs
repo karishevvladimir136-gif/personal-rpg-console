@@ -1,5 +1,5 @@
 // Fixes before session 3 (docs/stages/FIX_S3_PRE.md, «Smaller, do if cheap»): the pace in feet (A-70), the companion's
-// d20 on its chip and the «Броски спутников» switch on a screen (A-44), the wallet in words (A-33), the digest's parse
+// kept die on its chip and the «Броски спутников» switch on a screen (A-44), the wallet in words (A-33), the digest's parse
 // repair (A-17). The action box's half screen (A-42) is in tests/fix-s2-c-ui, the typography floor (A-5) in
 // tests/fix-s2-f2.
 import test from "node:test";
@@ -18,19 +18,19 @@ test("A-70: the distance rule gives the pace in feet, in both languages", () => 
   assert.match(TABLE_RULES_RU, /шаги — только как примерный перевод футов \(шаг — около трёх футов\)/);
 });
 
-test("A-44: a companion's chip shows its d20 before the total; the hero's roll stays a card; the switch is on the Settings screen", () => {
+test("A-44: a companion's chip shows its kept die before the total; the hero's roll stays a card; the switch is on the Settings screen", () => {
   const check = { id: "c1", kind: "skill", actorId: "bram", actorName: "Брам", dice: [14], kept: 14, modifier: 3, total: 17, success: true, dc: 15,
     advantage: "normal", interactive: false, reason: "Восприятие", natural: null };
   const base = { text: "Брам прислушивается.", checks: [check], heroId: "hero", party: ["Брам"], companionRolls: "dm", status: "committed", idle: false, language: "ru" };
   const told = buildTurnTimeline({ ...base, rolls: [{ summary: "Брам: Восприятие: 17 против 15 — получилось", at: 5 }] });
   const chip = told.items.find((item) => item.kind === "chip");
   assert.equal(chip.who, "Брам");
-  assert.equal(chip.text, "Восприятие: к20 14 → 17 против 15 — получилось", "who, what, the die, the total, the result");
+  assert.equal(chip.text, "Восприятие: кубик 14 → 17 против 15 — получилось", "who, what, the die, the total, the result");
   // A recorded check without its own line gets the die too.
   const bare = buildTurnTimeline({ ...base, rolls: [] }).items.find((item) => item.kind === "chip");
-  assert.equal(bare.text, "Восприятие: к20 14 → 17 — получилось");
+  assert.equal(bare.text, "Восприятие: кубик 14 → 17 — получилось");
   const english = buildTurnTimeline({ ...base, language: "en", rolls: [{ summary: "Брам: Восприятие: 17 vs 15 — success", at: 5 }] }).items.find((item) => item.kind === "chip");
-  assert.equal(english.text, "Восприятие: d20 14 → 17 vs 15 — success");
+  assert.equal(english.text, "Восприятие: die 14 → 17 vs 15 — success");
   // A plain line that is no recorded check (a hit on the party) is left as the server wrote it.
   const hit = buildTurnTimeline({ ...base, checks: [], rolls: [{ summary: "Брам: хиты 20 → 14 (крюк)", at: 5 }] }).items.find((item) => item.kind === "chip");
   assert.equal(hit.text, "хиты 20 → 14 (крюк)");

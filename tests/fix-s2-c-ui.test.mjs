@@ -73,7 +73,7 @@ test("one timeline in the order it was told: text → the companion's chip → t
   const { items, pause } = timeline({ text: trace.view.text, rolls: rollLines({ status: "generating" }, trace), checks: [bramShot, heroCheck], status: "recording" });
   assert.deepEqual(kinds(items), ["text", "chip:Bram", "text", "card", "text"]);
   assert.equal(items[0].text, "Bram does not ask twice.");
-  assert.equal(items[1].text, "crossbow at the brute: к20 17 → 20 — получилось · урон 1", "the chip keeps the server's line: what, the d20 (fix-s3-pre A-44), the number, the outcome, the damage");
+  assert.equal(items[1].text, "crossbow at the brute: кубик 17 → 20 — получилось · урон 1", "the chip keeps the server's line: what, the kept die (fix-s3-pre A-44), the number, the outcome, the damage");
   assert.equal(items[1].tone, "success");
   assert.equal(items[2].text, "The brute staggers. The captain watches you.");
   assert.equal(items[3].check.id, "c-hero");

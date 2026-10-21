@@ -111,12 +111,13 @@ function checkLine(check: VisibleCheck, heroId: string | null, ru: boolean) {
   return `${linePrefix(check, heroId)}${check.total} — ${verdict}`;
 }
 
-/** Fix S3-pre A-44: a companion's check line shows its d20 before the total («Восприятие: к20 14 → 17 против 15 —
- * получилось»), so the chip reads who, what, the die, the total and the result. */
+/** Fix S3-pre A-44: a companion's check line shows the kept die before the total («Восприятие: кубик 14 → 17 против
+ * 15 — получилось»), so the chip reads who, what, the die, the total and the result. The die is named without its
+ * system's size (the rules are knowledge, not code). */
 function withDie(chip: { who: string | null; text: string }, check: VisibleCheck, ru: boolean) {
   const prefix = check.reason?.trim() ? `${check.reason.trim()}: ` : "";
   if (!chip.text.startsWith(prefix) || !chip.text.slice(prefix.length).startsWith(`${check.total}`) || !Number.isInteger(check.kept)) return chip;
-  return { ...chip, text: `${prefix}${ru ? "к20" : "d20"} ${check.kept} → ${chip.text.slice(prefix.length)}` };
+  return { ...chip, text: `${prefix}${ru ? "кубик" : "die"} ${check.kept} → ${chip.text.slice(prefix.length)}` };
 }
 
 function splitWho(line: string, party: string[]): { who: string | null; text: string } {

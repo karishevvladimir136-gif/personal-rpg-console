@@ -14,7 +14,7 @@ Paid calls: **$7.08 of the $20 cap**, all in `docs/runs/fix-s3-pre-ledger.md`.
   first, strict BG3 natural 20/1 (also on a reroll), a potion in a fight costs the bonus action, Heroic Inspiration is
   one at a time.
 - Screens: DC shown (a migration turns it on), «Тайны» is a one-line hint, «Кадры» show every turn, «Линии времени» in
-  the menu, the fight's words in Russian, the wallet in words, the companion's d20 on its line, a «Броски спутников»
+  the menu, the fight's words in Russian, the wallet in words, the companion's kept die on its line, a «Броски спутников»
   switch, the action box up to half the screen, «⚡ важный ход» back.
 - The battle map's painted background is now ordered by itself when a fight starts on a place whose scene you prepared.
 - **Manual setup:** none beyond the sandbox load (`docs/SANDBOX_LOAD_FIX_S2.md`, now four migration ranges). Note that
@@ -150,7 +150,8 @@ a Russian fight carry no English word…».
 ### Smaller, done because cheap (`tests/fix-s3-pre-4.test.mjs` unless named)
 - A-42: the action box grows to half the screen; its text follows the player's words in the story on wide screens and
   in «Крупный текст истории» (`tests/fix-s2-c-ui.test.mjs`).
-- A-44: a companion's chip shows its d20 before the total («Восприятие: к20 14 → 17 против 15 — получилось»);
+- A-44: a companion's chip shows its kept die before the total («Восприятие: кубик 14 → 17 против 15 — получилось»;
+  the die is not named by its size, so the screen stays system-neutral);
   «Броски спутников» is a switch on the Settings screen.
 - A-33: the wallet reads in words with Russian plurals («10 золотых · 11 серебряных · 26 медных»); a panel header keeps
   the short code.
