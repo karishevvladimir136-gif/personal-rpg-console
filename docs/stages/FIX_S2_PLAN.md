@@ -53,6 +53,16 @@ sessions, «meanwhile» through in-world channels (item 81).
 
 - **Confirmed 2026-10-20 08:40:** session 3 on «Opus пишет — Opus записывает» (the $0.70 vs $0.40 difference accepted).
 
+- **Decided 2026-10-20 18:15 (from the audit's questions):** output cap **64 000** per turn (not 128k: one runaway Opus
+  turn would cost too much); the «Дальше» pause on the hero's shown roll **only while a reroll or Heroic Inspiration is
+  available**, with the remaining count shown; **coup de grâce on the server too** (an adjacent melee hit on a
+  paralysed/unconscious target in a grid fight kills outright), not prose alone. Settled by the planner from earlier
+  decisions, no new question: the DC shown on the existing campaign by migration; the «Тайны» field cut to a one-line
+  steer; the prep re-runs once when the owner saves «Тайны» and a new campaign's first turn waits for it; enemy HP
+  numbers also on the plain play screen; the gallery over all sessions; the ambush opening does not spend the
+  ambusher's round-1 action; the two fixtures that carry the owner's campaign names are renamed to invented ones; the
+  Anthropic key rotated after the audit's grep incident.
+
 ## Before session 3 (owner, 08:40: «посмотрим все экраны до игры, чтобы избежать той проблемы»)
 
 1. Merge the two branches (`claude/session2-fixes-a-f-jh3krk` + `claude/live2d-1-9lq5bf`) — a cloud task with the full
