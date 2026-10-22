@@ -33,6 +33,8 @@ export type Combatant = {
   vulnerable: string[];
   /** Fix S3-pre 1: the attacks this fighter already made, by weapon or spell — a later attack with the same one keeps its numbers. */
   attacks?: { name: string; bonus: number; damage: string | null; damageType: string | null }[];
+  /** Fix S3-pre (opening attacks): damage dealt before this person's hit points were on record; subtracted when they are. */
+  pendingDamage?: number;
   /** Kept for the older readers of the encounter panel. */
   defending: boolean;
   withdrawn: boolean;
@@ -69,6 +71,9 @@ export type Field = {
   rules: boolean;
   pendingReaction: PendingReaction;
   log: LogLine[];
+  /** Fix S3-pre (the owner's ask): the fight was opened by its first attack, before anyone set it up — no positions yet;
+   * `combat start` completes it (placements, initiative, stat blocks) instead of opening a second one. */
+  openedByAttack?: boolean;
 };
 
 export const DEFAULT_GRID = { cols: 24, rows: 18, feetPerCell: 5 } as const;
@@ -108,6 +113,7 @@ export function parseCombatant(raw: unknown, fallback: { side: Side; active?: bo
     resist: words(v.resist), immune: words(v.immune), vulnerable: words(v.vulnerable),
     ...(Array.isArray(v.attacks) && v.attacks.length ? { attacks: v.attacks.flatMap((row) => (isRecord(row) && str(row.name, 80) && typeof row.bonus === "number" && Number.isFinite(row.bonus)
       ? [{ name: str(row.name, 80), bonus: Math.round(row.bonus), damage: str(row.damage, 32) || null, damageType: str(row.damageType, 40) || null }] : [])).slice(0, 8) } : {}),
+    ...(typeof v.pendingDamage === "number" && v.pendingDamage > 0 ? { pendingDamage: Math.min(10_000, Math.round(v.pendingDamage)) } : {}),
     defending: bool(v.defending, false),
     withdrawn: bool(v.withdrawn, false),
   };
@@ -154,6 +160,7 @@ export function parseField(raw: unknown): Field {
     rules: v.rules === true,
     pendingReaction: reaction ? { targetId: String(reaction.targetId), trigger: str(reaction.trigger, 240), options: Array.isArray(reaction.options) ? reaction.options.map((row) => str(row, 120)).filter(Boolean).slice(0, 4) : [] } : null,
     log: Array.isArray(v.log) ? v.log.flatMap((row) => (isRecord(row) ? [{ round: int(row.round, 0), actor: str(row.actor, 80), what: str(row.what, 160), result: str(row.result, 160), ref: typeof row.ref === "string" ? row.ref : null }] : [])).slice(-MAX_LOG) : [],
+    ...(v.openedByAttack === true ? { openedByAttack: true } : {}),
   };
 }
 export const fieldJson = (field: Field): JsonObject => structuredClone(field) as unknown as JsonObject;

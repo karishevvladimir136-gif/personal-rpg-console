@@ -366,25 +366,52 @@ function bundledDamage(shadow: ShadowState, args: Args, ctx: ToolContext, roll: 
 function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const formula = parseFormula(str(args.formula));
   const actorText = str(args.actorRef);
-  const actor = actorText.toLowerCase() === "dm" ? null : entityOf(shadow, actorText, "actorRef");
   const kindText = str(args.kind) || "skill";
+  // Fix S3-pre (opening attacks): the first attack between two people opens the fight on the server, so the opening
+  // blows are the fight's too; a person it names before any record is recorded bare (the bookkeeper completes them).
+  // Only where the campaign's system has the rules module (the owner's 5e): elsewhere a fight would add nothing to the
+  // roll (and the plain roll's natural 20 still doubles the dice), so the fight opens with combat start as before.
+  let opened = false;
+  const rulesSystem = `${shadow.snapshot.settings.values.rulesSystem?.label ?? ""} ${shadow.snapshot.settings.values.rulesSystem?.id ?? ""}`;
+  if (kindText === "attack" && args.targetRef !== undefined && actorText.toLowerCase() !== "dm" && !fightRows(shadow).active && rulesOnByDefault(rulesSystem)) {
+    const a = fightPersonOf(shadow, actorText, "actorRef"), t = fightPersonOf(shadow, args.targetRef, "targetRef");
+    if (a && t) {
+      const attacker = recordFightPerson(shadow, ctx, a), target = recordFightPerson(shadow, ctx, t);
+      reject(attacker.id !== target.id, "attack: the target is the attacker.");
+      openFightOnAttack(shadow, ctx, attacker, target);
+      opened = true;
+    }
+  }
+  // A fight its first attack opened takes in the people the next blows of the opening name (no one set it up yet).
+  const openedFight = kindText === "attack" && !!fightRows(shadow).active && fightRows(shadow).fieldOf().openedByAttack === true;
+  const actorPerson = openedFight && actorText.toLowerCase() !== "dm" ? fightPersonOf(shadow, actorText, "actorRef") : null;
+  const actor = actorText.toLowerCase() === "dm" ? null : actorPerson ? recordFightPerson(shadow, ctx, actorPerson) : entityOf(shadow, actorText, "actorRef");
   // Fix S3-pre 1: in the open fight an attack is the fight's — resolved on the server against the battlefield and the
   // rules module, whoever rolls it (the writer of «пишет — записывает» has only this dice tool), never a bare d20.
   let inFight: { fight: FightRows; field: Field; fighters: BattleFighter[]; a: FightSide; t: FightSide } | null = null;
+  let joined: string[] = [];
   if (kindText === "attack") {
     const fight = fightRows(shadow);
     if (fight.active) {
       reject(args.targetRef !== undefined, "In the open fight an attack names its target (targetRef) and carries its damage (damage); the server resolves it on the battlefield.",
         "Roll each attack with kind attack, actorRef, targetRef, damage and the weapon or spell (weapon) — never a bare d20.");
-      const target = entityOf(shadow, args.targetRef, "targetRef");
-      const fighters = fight.rows().map(fight.fighterOf);
+      const lookup = openedFight ? fightPersonOf(shadow, args.targetRef, "targetRef") : null;
+      const target = lookup ? recordFightPerson(shadow, ctx, lookup) : entityOf(shadow, args.targetRef, "targetRef");
+      let fighters = fight.rows().map(fight.fighterOf);
+      const join = (entity: Entity) => {
+        joinFight(shadow, ctx, fight.active!.id, entity, Math.max(0, ...fighters.map((row) => row.turnOrder)) + 1, false);
+        joined.push(entity.name);
+        fighters = fight.rows().map(fight.fighterOf);
+      };
+      if (openedFight && !fighters.some((row) => row.entityId === target.id)) join(target);
       const tf = fighters.find((row) => row.entityId === target.id) ?? null;
       if (tf) {
         reject(actor, "In the open fight an attack names its attacker (actorRef), never \"dm\".");
+        if (openedFight && !fighters.some((row) => row.entityId === actor.id)) join(actor);
         const af = fighters.find((row) => row.entityId === actor.id) ?? null;
         reject(af, `${actor.name} is not in this fight.`, "The bookkeeper adds a late arrival with combat place; narrate the attack after that.");
         inFight = { fight, field: fight.fieldOf(), fighters, a: { entity: actor, fighter: af }, t: { entity: target, fighter: tf } };
-      }
+      } else joined = [];
     }
   }
   // Fix S3-pre 1: an attack named by its weapon or spell takes the bonus and the damage from the sheet, the gear, or this fight.
@@ -507,8 +534,13 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   const difficulty = args.difficulty !== undefined ? str(args.difficulty) as DifficultyWord : null;
   reject(difficulty === null || difficulty in DIFFICULTY_LADDER, `difficulty: ${Object.keys(DIFFICULTY_LADDER).join(", ")}.`);
   const dc = int(args.dc) ?? (difficulty ? DIFFICULTY_LADDER[difficulty] : null);
-  if (inFight) return withInspiration(fightRoll(shadow, args, ctx, inFight, { actor: actor!, formula, modifier, baseBonus, addends, bonuses, sourceText: sources.join(", ") || null,
-    dc, advantage, advantageReason, visibility, weapon: weaponText, named, droppedModifier, ammunition }), inspired, ctx.language);
+  if (inFight) {
+    const fought = fightRoll(shadow, args, ctx, inFight, { actor: actor!, formula, modifier, baseBonus, addends, bonuses, sourceText: sources.join(", ") || null,
+      dc, advantage, advantageReason, visibility, weapon: weaponText, named, droppedModifier, ammunition });
+    const note = [opened ? OPENED_FIGHT : "", joined.length ? `${joined.join(", ")} joined the fight its first attack opened.` : ""].filter(Boolean).join(" ");
+    return withInspiration(note && fought.ok ? { ...fought, value: { ...fought.value, ...(opened ? { openedFight: true } : {}), ...(joined.length ? { joinedFight: joined } : {}) },
+      summary: `${fought.summary} ${note}` } : fought, inspired, ctx.language);
+  }
   // Outside a fight, a weapon's damage from the sheet stands in for a damage the call does not give.
   if (named?.damage && args.damage === undefined) args = { ...args, damage: named.damage };
   // A recorded check (the Check DTO, the roll card, the interactive pause) is the
@@ -603,7 +635,8 @@ function fightRoll(shadow: ShadowState, args: Args, ctx: ToolContext, at: { figh
   const target = at.t.entity;
   const value: JsonObject = { formula: str(args.formula), reason, actor: roll.actor.name, visibility: roll.visibility, resolvedBy: "fight", ...attack.value,
     weapon: roll.weapon || null, modifier: roll.modifier, modifierSource: roll.sourceText, bonuses: roll.bonuses,
-    damage: { formula: damage, hit: attack.hits > 0, total: attack.totalDamage, target: target.name, ...(attack.applied ? { applied: attack.applied } : {}) },
+    damage: { formula: damage, hit: attack.hits > 0, total: attack.totalDamage, target: target.name, ...(attack.applied ? { applied: attack.applied } : {}),
+      ...(!attack.applied && attack.totalDamage > 0 && at.t.fighter.combatant.pendingDamage ? { pending: true } : {}) },
     ...(memory && roll.droppedModifier !== memory.bonus ? { bonusKept: `${roll.weapon}: the bonus ${memory.bonus! >= 0 ? "+" : ""}${memory.bonus} this fight already used is kept (the formula's ${roll.droppedModifier >= 0 ? "+" : ""}${roll.droppedModifier} was dropped).` }
       : !memory && roll.droppedModifier && roll.droppedModifier !== roll.named?.bonus ? { modifierDropped: `The formula's ${roll.droppedModifier > 0 ? "+" : ""}${roll.droppedModifier} was dropped: ${roll.named ? `${roll.named.source} gives the bonus` : "the sheet's skill or stat already gives the bonus"} (never both).` } : {}),
     ...(!roll.weapon ? { weaponHint: "Name the weapon or spell (weapon) with each attack: the server keeps its bonus for the rest of the fight." } : {}),
@@ -780,6 +813,8 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
     const patch = sheetPatchOf(args);
     if (patch && entity.kind !== "faction") values.character_sheet = patchSheet(entity.character_sheet as AnySheet | null | undefined, patch) as unknown as JsonObject;
     if (Object.keys(values).length) shadow.apply(entityChange(shadow, entity, values));
+    // Fix S3-pre (opening attacks): hit points given for the first time take the damage an opening attack already dealt.
+    const settled = entity.max_hp === null && values.max_hp !== undefined ? settlePendingDamage(shadow, shadow.entity(entity.id)!) : 0;
     if (args.statblock !== undefined) shadow.setPrivate("npc", `statblock_${entity.id}`, str(args.statblock));
     const gear = entity.kind !== "faction" ? giveGear(shadow, shadow.entity(entity.id)!, args.gear) : { created: [], notEquipped: [] };
     const wasInParty = config.controlledEntityIds.includes(entity.id);
@@ -793,21 +828,24 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
     if (party) config.presentEntityIds = [...new Set([...config.presentEntityIds, entity.id])];
     shadow.setConfiguration(config);
     return ok({ id: entity.id, name: (values.name as string) ?? entity.name, kind, present, party,
+      ...(settled ? { pendingDamage: `the ${settled} damage an opening attack dealt is subtracted: HP ${shadow.entity(entity.id)!.hp}/${shadow.entity(entity.id)!.max_hp}` } : {}),
       ...(gear.created.length ? { gear: gear.created, ...(gear.notEquipped.length ? { notEquipped: gear.notEquipped } : {}) } : {}),
       ...(args.statblock !== undefined && !gear.created.length ? gearHint(shadow, shadow.entity(entity.id)!, str(args.statblock)) : {}) },
       `${(values.name as string) ?? entity.name} updated`, null, party && !wasInParty ? chip.companionJoins(ctx.language, (values.name as string) ?? entity.name) : null);
   }
   const name = str(args.name);
   reject(name.length > 0, "A new character needs a name.");
-  reject(shadow.counters.charactersCreated < ctx.limits.charactersPerTurn,
+  // Fix S3-pre (opening attacks): the person this turn's first attack recorded bare is this one — completed, never doubled.
+  const bare = str(args.kind) !== "faction" ? fightPersonNamed(shadow, name) : null;
+  reject(bare || shadow.counters.charactersCreated < ctx.limits.charactersPerTurn,
     `This turn already introduced ${ctx.limits.charactersPerTurn} new characters, the campaign's limit per turn.`,
     "Refer to existing records with ref, or introduce the rest in a later turn.");
   const kind = str(args.kind) === "companion" ? "companion" : str(args.kind) === "faction" ? "faction" : "npc";
   const key = localKey(args.localKey) ?? name.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "-").slice(0, 60);
-  const similar = shadow.similarEntities(name).filter((row) => row.kind !== "player");
-  const id = shadow.newId(`entity:${key}`);
-  reject(!shadow.entity(id), `The local key "${key}" already names a character in this turn.`);
-  shadow.counters.charactersCreated++;
+  const similar = shadow.similarEntities(name).filter((row) => row.kind !== "player" && row.id !== bare?.id);
+  const id = bare?.id ?? shadow.newId(`entity:${key}`);
+  reject(bare || !shadow.entity(id), `The local key "${key}" already names a character in this turn.`);
+  if (!bare) shadow.counters.charactersCreated++;
   const maxHp = int(args.maxHp) ?? int(args.hp);
   const hp = int(args.hp) ?? maxHp;
   reject(maxHp === null || (hp !== null && hp >= 0 && hp <= maxHp), `HP ${hp} must stay within 0..${maxHp}.`);
@@ -820,8 +858,9 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
     ...(profile ? { public_profile: profile as unknown as JsonObject } : {}),
     ...(patch ? { character_sheet: patchSheet(null, patch) as unknown as JsonObject } : {}),
   } });
-  shadow.bindLocalKey(key, { family: "entities", id });
+  if (!bare || !shadow.localKeys.has(key)) shadow.bindLocalKey(key, { family: "entities", id });
   if (args.statblock !== undefined) shadow.setPrivate("npc", `statblock_${id}`, str(args.statblock));
+  const settled = bare ? settlePendingDamage(shadow, shadow.entity(id)!) : 0;
   const gear = kind !== "faction" ? giveGear(shadow, shadow.entity(id)!, args.gear) : { created: [], notEquipped: [] };
   const present = kind === "faction" ? false : args.present === undefined ? true : !!args.present;
   const party = kind === "companion" && (args.party === undefined ? true : !!args.party);
@@ -829,6 +868,7 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
   if (party) config.controlledEntityIds = [...new Set([...config.controlledEntityIds, id])];
   shadow.setConfiguration(config);
   const value: JsonObject = { id, localKey: key, name, kind, present, party, created: true,
+    ...(bare ? { completed: `${name} was recorded bare by this turn's first attack; this record completes them${settled ? ` (the ${settled} damage they took is subtracted: HP ${shadow.entity(id)!.hp}/${shadow.entity(id)!.max_hp})` : ""}.` } : {}),
     ...(gear.created.length ? { gear: gear.created, ...(gear.notEquipped.length ? { notEquipped: gear.notEquipped } : {}) } : {}),
     ...(args.statblock !== undefined && !gear.created.length ? gearHint(shadow, shadow.entity(id)!, str(args.statblock)) : {}),
     ...(similar.length ? { hint: `Similar existing characters: ${similar.map((row) => `${row.name} (${row.id})`).join(", ")}. If this is the same person, update that record with ref instead.` } : {}) };
@@ -1377,6 +1417,8 @@ function resourceTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoop
     next = Math.max(0, Math.min(maxHp, next));
     shadow.apply(entityChange(shadow, actor, { hp: next, max_hp: maxHp }));
     mirrorFightHp(shadow, actor, next, maxHp, current - next, reason, null, ctx.language);
+    // Fix S3-pre (opening attacks): hit points given for the first time take the damage an opening attack already dealt.
+    if (actor.max_hp === null && settlePendingDamage(shadow, shadow.entity(actor.id)!)) next = shadow.entity(actor.id)!.hp ?? next;
     const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
     // The hero's and the party's hit points are the player's business; an NPC's stay with the DM.
     const player = controlled.has(actor.id) && (current !== next || max !== null) ? chip.hp(ctx.language, actor.name, isHero(actor), current, next, maxHp, reason) : null;
@@ -1671,6 +1713,25 @@ function mirrorFightHp(shadow: ShadowState, target: Entity, after: number, max: 
   }
 }
 
+/** Fix S3-pre (opening attacks): the damage an opening attack dealt before the person's hit points were on record is
+ * subtracted once they are (the record and the fight's mirror); returns what was subtracted. */
+function settlePendingDamage(shadow: ShadowState, entity: Entity): number {
+  const fight = fightRows(shadow);
+  if (!fight.active || fight.partyIds.has(entity.id)) return 0;
+  const fighter = fight.rows().map(fight.fighterOf).find((row) => row.entityId === entity.id);
+  const pending = fighter?.combatant.pendingDamage ?? 0;
+  const now = shadow.entity(entity.id);
+  if (!fighter || pending <= 0 || !now || now.max_hp === null) return 0;
+  const before = now.hp ?? now.max_hp;
+  const after = Math.max(0, before - pending);
+  shadow.apply(entityChange(shadow, now, { hp: after, max_hp: now.max_hp }));
+  fighter.combatant.pendingDamage = undefined;
+  fighter.combatant.hp = { current: after, max: now.max_hp };
+  if (after === 0 && !fighter.combatant.conditions.some((c) => c === "dead" || c === "unconscious")) fighter.combatant.conditions = [...fighter.combatant.conditions, "unconscious"].slice(0, 12);
+  fight.saveFighter(fighter);
+  return before - after;
+}
+
 /** Fix S3-pre B-3 (the owner's rule): drinking a potion in a fight is a bonus action — the drinker's «Бонусное» is spent
  * when it is their turn; already spent, the drink is recorded anyway and the receipt says so (never a rejection). */
 function potionBonusAction(shadow: ShadowState, item: Item, drinker: Entity | null): string | null {
@@ -1702,6 +1763,81 @@ function fightRows(shadow: ShadowState) {
 }
 type FightRows = ReturnType<typeof fightRows>;
 type FightSide = { entity: Entity; fighter: BattleFighter };
+
+// --- the fight's opening attacks (fix S3-pre, the owner's ask after the probes) ---------------------------------
+// In «пишет — записывает» the writer rolls the opening blows before the bookkeeper's combat start: no battlefield
+// existed yet, so they skipped the rules (7 attacks over the two probes). In a system with the rules module the first
+// attack between two people now opens the fight on the server — the party and the two, no positions, the attacker acting — and
+// is resolved by it like every later blow; the bookkeeper's combat start completes that fight (placements, initiative,
+// stat blocks) instead of opening a second one; a person the attack names before anyone recorded them becomes a bare
+// record that the bookkeeper's upsert_character completes.
+
+/** Two names are one person when a word of each starts the same way (Russian declension: «Кривого Яна» is «Кривой Ян»). */
+function nearNames(a: string, b: string): boolean {
+  const stems = (name: string) => name.toLocaleLowerCase().split(/[^\p{L}\p{N}]+/u).filter((word) => word.length >= 3).map((word) => word.slice(0, Math.min(4, word.length - 1)));
+  const left = new Set(stems(a));
+  return stems(b).some((stem) => left.has(stem));
+}
+/** The id of a person an opening attack named before any record (upsert_character merges into it). */
+const fightPersonId = (shadow: ShadowState, name: string) => shadow.newId(`entity:fight:${name.toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu, "-").slice(0, 60)}`);
+/** A person created this turn by an opening attack, by name (the bookkeeper's upsert_character of the same person). */
+function fightPersonNamed(shadow: ShadowState, name: string): Entity | null {
+  const entity = shadow.entity(fightPersonId(shadow, name));
+  return entity && shadow.createdIds.has(entity.id) ? entity : null;
+}
+type FightPerson = { entity: Entity } | { name: string };
+/** Who an opening attack names: a record (by id, local key or name), or a person's name nobody holds yet (capitalised,
+ * near no one on record) to be recorded bare; null when it is neither (an object, «dm», a generic word): the plain roll stands. */
+function fightPersonOf(shadow: ShadowState, ref: unknown, what: string): FightPerson | null {
+  try { return { entity: entityOf(shadow, ref, what) }; } catch (error) {
+    const name = typeof ref === "string" ? ref.trim() : "";
+    if (!(error instanceof ToolReject) || !name || name.length > 60 || name.toLowerCase() === "dm" || /^[0-9a-f-]{8,}$/i.test(name) || !/^\p{Lu}/u.test(name)) return null;
+    const existing = fightPersonNamed(shadow, name);
+    if (existing) return { entity: existing };
+    const near = shadow.snapshot.entities.filter((row) => row.campaign_id === shadow.campaignId && row.kind !== "faction" && nearNames(row.name, name));
+    reject(!near.length, `${what}: nothing named "${name}" is on record; similar: ${near.map((row) => row.name).join(", ")}.`, "Name the person exactly as the records do.");
+    return { name };
+  }
+}
+function recordFightPerson(shadow: ShadowState, ctx: ToolContext, person: FightPerson): Entity {
+  if ("entity" in person) return person.entity;
+  reject(shadow.counters.charactersCreated < ctx.limits.charactersPerTurn, `This turn already introduced ${ctx.limits.charactersPerTurn} new characters, the campaign's limit per turn.`);
+  shadow.counters.charactersCreated++;
+  const id = fightPersonId(shadow, person.name);
+  shadow.apply({ family: "entities", id, expectedRevision: null, values: { kind: "npc", name: person.name, details: "", hp: null, max_hp: null, stats: {}, resources: {}, conditions: [],
+    equipment_slots: humanoidSlots(shadow.snapshot.settings.values.language) as unknown as JsonObject[] } });
+  const config = shadow.configuration();
+  config.presentEntityIds = [...new Set([...config.presentEntityIds, id])];
+  shadow.setConfiguration(config);
+  return shadow.entity(id)!;
+}
+/** One person joins the open fight at the end of the order (no position, the default economy). */
+function joinFight(shadow: ShadowState, ctx: ToolContext, encounterId: string, entity: Entity, turnOrder: number, active: boolean): BattleFighter {
+  const partyIds = new Set(shadow.partyIds());
+  const participantId = stableGameplayId(ctx.input.operationId, `dm-loop:participant:${encounterId}:${entity.id}`);
+  const combatant: Combatant = { initiative: null, active, side: partyIds.has(entity.id) ? "party" : "foe", economy: defaultEconomy(), conditions: [], deathSaves: null,
+    hp: !partyIds.has(entity.id) && entity.max_hp ? { current: entity.hp ?? entity.max_hp, max: entity.max_hp } : null, known: [], intent: null,
+    ac: null, resist: [], immune: [], vulnerable: [], defending: false, withdrawn: false };
+  const fighter: BattleFighter = { participantId, entityId: entity.id, name: entity.name, turnOrder, combatant, placement: { position: "nearby", x: null, y: null, z: 0 } };
+  shadow.apply({ family: "encounter_participants", id: participantId, expectedRevision: null, values: { encounter_id: encounterId, entity_id: entity.id, public_name: entity.name,
+    turn_order: turnOrder, public_position: placementJson(fighter.placement), public_resources: combatantJson(combatant) } });
+  const config = shadow.configuration();
+  config.presentEntityIds = [...new Set([...config.presentEntityIds, entity.id])];
+  shadow.setConfiguration(config);
+  return fighter;
+}
+/** The fight opened by its first attack (a system with the rules module): the attacker first, then the party, then the target. */
+function openFightOnAttack(shadow: ShadowState, ctx: ToolContext, actor: Entity, target: Entity): void {
+  const id = stableGameplayId(ctx.input.operationId, `dm-loop:encounter:${ctx.toolCalls}`);
+  const field: Field = { ...parseField({}), locationId: shadow.snapshot.publicState.current_location_id, openedByAttack: true, rules: true };
+  shadow.apply({ family: "encounters", id, expectedRevision: null, values: { status: "active", round: 1, outcome: null, settings_revision: shadow.snapshot.settings.revision,
+    public_summary: "", public_field: fieldJson(field) } });
+  const people = [...new Map([actor, ...shadow.partyIds().map((pid) => shadow.entity(pid)!).filter(Boolean), target].map((row) => [row.id, row])).values()];
+  const fighters = people.map((entity, index) => joinFight(shadow, ctx, id, entity, index + 1, index === 0));
+  field.activeParticipantId = fighters[0].participantId;
+  shadow.apply({ family: "encounters", id, expectedRevision: null, values: { public_field: fieldJson(field) } });
+}
+const OPENED_FIGHT = "This attack opened the fight on the server (no positions yet; the opening blows go by the fight's rules); combat start completes it (placements, initiative, stat blocks) with the rolls and the damage standing, and combat end closes it when it is over.";
 
 /** Fix S3-pre 1: an attack line as the sheets and the gear write it («Меч +4, 1d8+2 рубящий», «+5 к попаданию,
  * 1к12+3 рубящий»): the attack bonus, the damage formula and the damage type, whichever the line names. */
@@ -1853,7 +1989,14 @@ function fightAttack(shadow: ShadowState, ctx: ToolContext, fight: FightRows, fi
   // The hit points: a foe's mirror and record, a party member's record (as resource hp would).
   let hpLine = "";
   let appliedHp: FightAttackResult["applied"] = null;
-  if (totalDamage > 0 || coupDeGrace) {
+  // Fix S3-pre (opening attacks): a person with no hit points anywhere yet (recorded bare by an opening attack, or a
+  // record without its stat block) is never put down by arithmetic on nothing: the damage waits for their hit points.
+  const noHp = !tf.combatant.hp && target.hp === null && target.max_hp === null && !partyIds.has(target.id);
+  if (noHp && (totalDamage > 0 || coupDeGrace)) {
+    if (coupDeGrace) { tf.combatant.conditions = [...new Set([...tf.combatant.conditions, "dead"])].slice(0, 12); tf.combatant.active = false; }
+    else tf.combatant.pendingDamage = (tf.combatant.pendingDamage ?? 0) + totalDamage;
+    hpLine = coupDeGrace ? " dead: coup de grâce" : ` takes ${totalDamage} damage — no hit points on record yet: give their full hit points from the stat block (upsert_character, combat start hp or combat hp) and the server subtracts this damage`;
+  } else if (totalDamage > 0 || coupDeGrace) {
     const current = tf.combatant.hp?.current ?? target.hp ?? target.max_hp ?? 0;
     const max = tf.combatant.hp?.max ?? target.max_hp ?? Math.max(1, current);
     const next = coupDeGrace ? 0 : Math.max(0, current - totalDamage);
@@ -1908,39 +2051,53 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
   const wordList = (v: unknown) => (Array.isArray(v) ? v.map((row) => str(row).toLowerCase()).filter(Boolean).slice(0, 12) : []);
 
   if (action === "start") {
-    reject(!active, "An encounter is already active.", "End it first (combat end) or add positions.");
+    // Fix S3-pre (opening attacks): a fight this turn's first attack opened is completed here, never opened twice —
+    // its people, their wounds, conditions and spent actions and its log stand; the start adds what it sets up.
+    const opened = active && fieldOf().openedByAttack === true ? { encounter: active, field: fieldOf(), fighters: rows().map(fighterOf) } : null;
+    reject(!active || opened, "An encounter is already active.", "End it first (combat end) or add positions.");
     const refs = (args.participantRefs as unknown[] | undefined) ?? [];
     const placed = placementArgs("placements");
-    const participants = [...new Map([...shadow.partyIds().map((id) => shadow.entity(id)!), ...refs.map((ref) => entityOf(shadow, ref, "participantRefs")), ...placed.map((row) => row.entity)].map((e) => [e.id, e])).values()];
-    const id = stableGameplayId(ctx.input.operationId, `dm-loop:encounter:${ctx.toolCalls}`);
+    const participants = [...new Map([...shadow.partyIds().map((id) => shadow.entity(id)!), ...(opened?.fighters ?? []).flatMap((row) => (row.entityId && shadow.entity(row.entityId) ? [shadow.entity(row.entityId)!] : [])),
+      ...refs.map((ref) => entityOf(shadow, ref, "participantRefs")), ...placed.map((row) => row.entity)].map((e) => [e.id, e])).values()];
+    const id = opened?.encounter.id ?? stableGameplayId(ctx.input.operationId, `dm-loop:encounter:${ctx.toolCalls}`);
     const grid = args.grid && typeof args.grid === "object" ? args.grid as { cols?: unknown; rows?: unknown } : {};
     const field: Field = { ...parseField({ grid: { cols: int(grid.cols) ?? DEFAULT_GRID.cols, rows: int(grid.rows) ?? DEFAULT_GRID.rows }, ambient: args.ambient }),
-      locationId: shadow.snapshot.publicState.current_location_id, opening: args.opening === "party" ? "party" : null, activeParticipantId: null, turnInRound: 0, log: [], features: [], pendingReaction: null,
-      rules: typeof args.rules === "boolean" ? args.rules : rulesOnByDefault(`${shadow.snapshot.settings.values.rulesSystem?.label ?? ""} ${shadow.snapshot.settings.values.rulesSystem?.id ?? ""}`) };
+      locationId: opened?.field.locationId ?? shadow.snapshot.publicState.current_location_id, opening: args.opening === "party" ? "party" : null, activeParticipantId: null, turnInRound: 0,
+      log: opened?.field.log ?? [], features: [], pendingReaction: null,
+      rules: typeof args.rules === "boolean" ? args.rules : opened?.field.rules ?? rulesOnByDefault(`${shadow.snapshot.settings.values.rulesSystem?.label ?? ""} ${shadow.snapshot.settings.values.rulesSystem?.id ?? ""}`) };
     const surprised = new Set(((args.surprisedRefs as unknown[] | undefined) ?? []).map((ref) => entityOf(shadow, ref, "surprisedRefs").id));
     const hpRows = new Map(((args.hp as { actorRef: unknown; current: unknown; max: unknown; ac?: unknown; resist?: unknown; immune?: unknown; vulnerable?: unknown; moveMaxFeet?: unknown }[] | undefined) ?? [])
       .map((row) => [entityOf(shadow, row.actorRef, "hp.actorRef").id, { current: int(row.current) ?? 0, max: int(row.max) ?? 1, ac: int(row.ac), resist: wordList(row.resist), immune: wordList(row.immune), vulnerable: wordList(row.vulnerable), moveMaxFeet: int(row.moveMaxFeet) }]));
     const initiativeOf = new Map(placed.map((row) => [row.entity.id, row.initiative]));
     // Order: initiative totals when given (party first on ties), else the party first as before.
     const ordered = [...participants].sort((a, b) => ((initiativeOf.get(b.id) ?? -99) - (initiativeOf.get(a.id) ?? -99)) || (Number(partyIds.has(b.id)) - Number(partyIds.has(a.id))));
-    shadow.apply({ family: "encounters", id, expectedRevision: null, values: { status: "active", round: 1, outcome: null, settings_revision: shadow.snapshot.settings.revision, public_summary: str(args.summary), public_field: fieldJson(field) } });
+    shadow.apply({ family: "encounters", id, expectedRevision: null, values: { status: "active", round: opened?.encounter.round ?? 1, outcome: null, settings_revision: shadow.snapshot.settings.revision, public_summary: str(args.summary), public_field: fieldJson(field) } });
     const fighters: BattleFighter[] = [];
     ordered.forEach((entity, index) => {
       const place = placed.find((row) => row.entity.id === entity.id);
-      const side: Side = place?.side ?? (partyIds.has(entity.id) ? "party" : "foe");
+      const prior = opened?.fighters.find((row) => row.entityId === entity.id) ?? null;
+      const side: Side = place?.side ?? prior?.combatant.side ?? (partyIds.has(entity.id) ? "party" : "foe");
       const given = hpRows.get(entity.id) ?? null;
-      const hp = given ? { current: given.current, max: given.max } : side !== "party" && entity.max_hp ? { current: entity.hp ?? entity.max_hp, max: entity.max_hp } : null;
+      // The opening blows' damage stands: a stat block's full hit points never heal a wound this turn already dealt.
+      const wound = prior?.combatant.hp ?? null;
+      const pending = given ? prior?.combatant.pendingDamage ?? 0 : 0;
+      const current = given ? Math.max(0, Math.min(given.current, wound && wound.max === given.max ? wound.current : given.current) - pending) : null;
+      const hp = given ? { current: current!, max: given.max } : wound ?? (side !== "party" && entity.max_hp ? { current: entity.hp ?? entity.max_hp, max: entity.max_hp } : null);
       if (given) {
         reject(!partyIds.has(entity.id), `${entity.name} is in the party: their hit points go through resource.`);
-        shadow.apply(entityChange(shadow, entity, { hp: given.current, max_hp: given.max }));
+        shadow.apply(entityChange(shadow, entity, { hp: current, max_hp: given.max }));
       }
       const moveMax = given?.moveMaxFeet ?? 30;
-      const combatant: Combatant = { initiative: initiativeOf.get(entity.id) ?? null, active: index === 0, side,
-        economy: surprised.has(entity.id) ? { ...defaultEconomy(moveMax), action: false, bonus: false, reaction: false, moveFeet: 0 } : defaultEconomy(moveMax),
-        conditions: surprised.has(entity.id) ? ["surprised"] : [], deathSaves: null, hp, known: [], intent: null,
-        ac: given?.ac ?? null, resist: given?.resist ?? [], immune: given?.immune ?? [], vulnerable: given?.vulnerable ?? [], defending: false, withdrawn: false };
-      const participantId = stableGameplayId(ctx.input.operationId, `dm-loop:participant:${id}:${entity.id}`);
-      const fighter: BattleFighter = { participantId, entityId: entity.id, name: entity.name, turnOrder: index + 1, combatant, placement: { position: "nearby", x: place?.x ?? null, y: place?.y ?? null, z: place?.z ?? 0 } };
+      const economy = surprised.has(entity.id) ? { ...defaultEconomy(moveMax), action: false, bonus: false, reaction: false, moveFeet: 0 } : prior ? { ...prior.combatant.economy, moveMaxFeet: moveMax } : defaultEconomy(moveMax);
+      const conditions = [...new Set([...(prior?.combatant.conditions ?? []), ...(surprised.has(entity.id) ? ["surprised"] : []), ...(current === 0 && side !== "party" ? ["unconscious"] : [])])];
+      const combatant: Combatant = { initiative: initiativeOf.get(entity.id) ?? null, active: index === 0, side, economy, conditions, deathSaves: prior?.combatant.deathSaves ?? null, hp,
+        known: prior?.combatant.known ?? [], intent: prior?.combatant.intent ?? null, ...(prior?.combatant.attacks ? { attacks: prior.combatant.attacks } : {}),
+        ...(!given && prior?.combatant.pendingDamage ? { pendingDamage: prior.combatant.pendingDamage } : {}),
+        ac: given?.ac ?? prior?.combatant.ac ?? null, resist: given?.resist ?? prior?.combatant.resist ?? [], immune: given?.immune ?? prior?.combatant.immune ?? [],
+        vulnerable: given?.vulnerable ?? prior?.combatant.vulnerable ?? [], defending: false, withdrawn: false };
+      const participantId = prior?.participantId ?? stableGameplayId(ctx.input.operationId, `dm-loop:participant:${id}:${entity.id}`);
+      const fighter: BattleFighter = { participantId, entityId: entity.id, name: entity.name, turnOrder: index + 1, combatant,
+        placement: place ? { position: "nearby", x: place.x, y: place.y, z: place.z } : prior?.placement ?? { position: "nearby", x: null, y: null, z: 0 } };
       shadow.apply({ family: "encounter_participants", id: participantId, expectedRevision: null, values: { encounter_id: id, entity_id: entity.id, public_name: entity.name, turn_order: index + 1,
         public_position: placementJson(fighter.placement), public_resources: combatantJson(combatant) } });
       fighters.push(fighter);
@@ -1951,7 +2108,10 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
     const ambusher = field.opening === "party" ? fighters.find((row) => row.entityId === heroId) ?? fighters.find((row) => row.combatant.side === "party") ?? null : null;
     if (ambusher) for (const fighter of fighters) {
       const now = fighter === ambusher;
-      if (fighter.combatant.active === now) continue;
+      // The planned opening never spends the round-1 action — also when this turn's first attack was that opening.
+      const refresh = now && !!opened && !fighter.combatant.economy.action;
+      if (refresh) fighter.combatant.economy = { ...fighter.combatant.economy, action: true };
+      if (fighter.combatant.active === now && !refresh) continue;
       fighter.combatant.active = now;
       shadow.apply({ family: "encounter_participants", id: fighter.participantId, expectedRevision: null, values: { public_resources: combatantJson(fighter.combatant) } });
     }
@@ -1969,8 +2129,10 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
     }
     void started;
     const order = fighters.map((row) => `${row.name}${row.combatant.initiative !== null ? ` (${row.combatant.initiative})` : ""}`);
-    return ok({ encounterId: id, order, active: (ambusher ?? fighters[0])?.name ?? null, grid: field.grid, mapped: fighters.some((row) => row.placement.x !== null), ...(ambusher ? { opening: ambusher.name } : {}) },
-      `Combat begins: ${order.join(", ")}${ambusher ? `; the party's planned opening resolves before initiative: ${ambusher.name} acts first (it does not spend the round-1 action), then next_turn goes to the top of the order` : ""}`, null, chip.combatStart(l, participants.map((p) => p.name)));
+    return ok({ encounterId: id, order, active: (ambusher ?? fighters[0])?.name ?? null, grid: field.grid, mapped: fighters.some((row) => row.placement.x !== null), ...(ambusher ? { opening: ambusher.name } : {}),
+      ...(opened ? { completedOpenedFight: true } : {}) },
+      `Combat begins: ${order.join(", ")}${ambusher ? `; the party's planned opening resolves before initiative: ${ambusher.name} acts first (it does not spend the round-1 action), then next_turn goes to the top of the order` : ""}${opened ? "; the fight this turn's first attack opened is completed — its rolls, damage and log stand (never roll them again)" : ""}`,
+      null, chip.combatStart(l, participants.map((p) => p.name)));
   }
   reject(active, "No encounter is active.", "Start one with combat start.");
   const field = fieldOf();
@@ -2125,8 +2287,10 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
     // Fix S3-pre B-6: the record first (a wound the writer's roll already applied is there), the mirror after it.
     const current = entity.hp ?? fighter.combatant.hp?.current ?? entity.max_hp ?? 0;
     const max = int(args.max) ?? entity.max_hp ?? fighter.combatant.hp?.max ?? Math.max(1, current);
-    const next = Math.max(0, Math.min(max, args.set !== undefined ? int(args.set) ?? current : current + (int(args.delta) ?? 0)));
+    const pending = entity.max_hp === null && !fighter.combatant.hp ? fighter.combatant.pendingDamage ?? 0 : 0;
+    const next = Math.max(0, Math.min(max, args.set !== undefined ? int(args.set) ?? current : current + (int(args.delta) ?? 0)) - pending);
     fighter.combatant.hp = { current: next, max };
+    if (pending) fighter.combatant.pendingDamage = undefined;
     const by = args.byRef !== undefined ? entityOf(shadow, args.byRef, "byRef") : null;
     const damage = current - next;
     if (damage > 0) logLine(field, { round: active.round, actor: by?.name ?? "?", what: str(args.reason) || (l === "ru" ? "удар" : "hit"), result: l === "ru" ? `${damage} урона → ${entity.name}` : `${damage} damage → ${entity.name}`, ref: null });

@@ -103,7 +103,7 @@ test("Part 3: a turn that starts a fight asks for its place's painted battle bac
   assert.match(service, /if \(combatStarted\) scheduleBattleBackground\(ownerId, campaignId\);/);
   const schedule = src("src/lib/live2d/server/battle-schedule.ts");
   assert.match(schedule, /try \{ after\(run\); \} catch \{ void run\(\); \}/);
-  assert.match(schedule, /battleLocationOf\(source\.runtime\.encounters\)[\s\S]*prepareBattleMap\(campaignId, \{ locationId \}\)/);
+  assert.match(schedule, /battleLocationOf\(source\.runtime\.encounters\)[\s\S]*prepareBattleMap\(campaignId, \{ locationId \}, schedule\)/, "(a place without a scene gets it first: tests/fix-s3-pre-5)");
   const battle = src("src/lib/live2d/server/battle.ts");
   assert.match(battle, /if \(!scene \|\| !scene\.sheet\.features\.length\) return \{ status: "no_scene", locationId \};/);
   assert.match(battle, /existing\.sheetRevision === scene\.revision && existing\.status !== "failed" && value\.force !== true\) return \{ status: "existing", locationId \};/);

@@ -114,9 +114,10 @@ export function bookkeeperBrief(args: { playerInput: string; narration: string; 
     const applied = damage?.applied && typeof damage.applied === "object" ? damage.applied as Record<string, unknown> : null;
     const damageText = !damage ? "" : damage.hit !== true ? "; damage: a miss, nothing to record"
       : applied ? `; damage ${String(damage.total)} ALREADY APPLIED: ${String(applied.target)} ${String(applied.before)} → ${String(applied.after)}/${String(applied.max)} (do not record this damage again)`
+      : damage.pending === true ? `; damage ${String(damage.total)} to ${String(damage.target ?? "the target")} KEPT BY THE SERVER (no hit points on record yet): give their full hit points from the stat block and the server subtracts it — never record this damage yourself`
       : `; damage ${String(damage.total)} to ${String(damage.target ?? "the target")} NOT applied (no hit points on record): record it with resource`;
     // Fix S3-pre 1: an attack in the open fight was resolved on the battlefield — HP, log and the action already done.
-    const fight = value.resolvedBy === "fight" ? `; RESOLVED IN THE FIGHT by the server: ${receipt.result.summary.replace(/\s*Narrate it\.$/, "")} (hit points, the fight's log and the attacker's action already recorded: no combat attack, hp or log for it)` : "";
+    const fight = value.resolvedBy === "fight" ? `; RESOLVED IN THE FIGHT by the server: ${receipt.result.summary.replace(/\s*Narrate it\.$/, "")} (hit points, the fight's log and the attacker's action already recorded: no combat attack, hp or log for it)${value.openedFight === true ? "; this attack OPENED THE FIGHT: complete it with combat start (placements, initiative, the stat blocks' full hit points — the server subtracts the opening damage), never roll it again" : ""}` : "";
     return `- ${String(value.reason ?? "")}: ${String(value.actor ?? "")}, ${value.visibility === "player" ? "shown to the player" : "private"}` +
       `${check ? `, dice ${check.dice.join("+")} total ${check.total}${check.success === null ? "" : check.success ? ", success" : ", failure"}` : ""}${damageText}${fight}`;
   });
