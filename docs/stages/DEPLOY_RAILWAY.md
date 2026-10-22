@@ -5,8 +5,8 @@ process, GitHub deploys, streaming held open). Database and storage: a **new Sup
 sandbox** («personal-rpg-console-cloud-sandbox») — never the owner's real project in this stage. The owner's PC keeps the
 local sandbox for acceptance; the cloud instance is for session 3 if it proves itself, and for everything after.
 
-Cloud session (`docs/CLOUD.md`, environment `rpg-console`). Branch `claude/deploy-railway` from
-`origin/claude/session-2-prep` now; rebase onto `claude/s3-candidate` when the merge lands (the deploy files are
+Cloud session (`docs/CLOUD.md`, environment `rpg-console`, **Opus 5.5, ultracode off**). Branch `claude/deploy-railway`
+from **`origin/claude/s3-candidate`** (the merge and the pre-session-3 fixes have landed there; the deploy files are
 additive: Dockerfile/railway config, a health route, docs, scripts). Nothing to `main`. Report in English in
 `docs/runs/deploy-report.md`; talk to the owner in English, briefly. No paid model calls except the two live checks
 below (cap **$5**, ledger `docs/runs/deploy-ledger.md`).
@@ -30,7 +30,7 @@ destructive without the owner.
    `.dockerignore`; the list of environment variables with one line each on what it is and where it comes from
    (Supabase URL / anon / service keys, `APP_ANTHROPIC_API_KEY`, fal, the owner login, the base URL).
 2. **Supabase cloud sandbox**: a script and a written step list to create the project's schema from the repo's
-   migrations (all ranges, including 2026102102xx and 2026102103xx once the merge lands), the Storage buckets with the
+   migrations (all ranges as `docs/SANDBOX_LOAD_FIX_S2.md` lists them on the candidate: the fix run's 72–96, 2026102102xx, 2026102103xx, 202610210401–403), the Storage buckets with the
    same names and policies as the local sandbox, and to restore the owner's local sandbox dump into it
    (`C:\Dev\rpg-exports\sandbox-backups\`, the newest) so the campaign comes along; migrations are applied by the
    Supabase CLI from the owner's PC with his credentials, never from this session.
