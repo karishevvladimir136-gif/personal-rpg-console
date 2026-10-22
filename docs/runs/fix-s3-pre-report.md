@@ -269,7 +269,9 @@ existed and those attacks were plain rolls (7 over the two probes).
   covering the order and each stop condition, plus the wiring.
 
 ### Checks after the follow-ups
-- The full suite on a clean worktree at `5069793`, typecheck, zero-warning lint and the build: running; the results
-  replace this line when they are in. Focused runs so far: the fight, 2D, two-pass and attack suites 520 tests, 0 fail
-  after one wiring assertion was updated.
+- Full suite on a clean worktree (no `.env.local`) at `5069793`: **2 837 tests · 2 810 pass · 0 fail · 0 cancelled ·
+  27 skipped** (25 min). Typecheck pass; lint pass with zero warnings; production build pass, no warnings.
+- The older fight tests were not changed by the follow-ups: their campaigns are not 5e, so they keep the plain roll.
+  One wiring assertion of Part 3 (`fix-s3-pre-4`) now expects the scene step.
+- No paid calls; the stage's total stays $7.08 of $20.
 

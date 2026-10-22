@@ -24,7 +24,8 @@ revision). Report: `docs/runs/fix-s3-pre-report.md`; ledger `docs/runs/fix-s3-pr
   hero rolled nothing (never a double attack); coup de grâce only on foes (the party keeps death saves); the
   first-attack opening only in systems with the rules module (elsewhere the plain roll is unchanged); damage to a person
   without hit points waits on the server until their full hit points are given.
-- **Checks** (a clean worktree without `.env.local`): the follow-ups' full run at `5069793` is in progress (the stage itself: 2 833 tests · 2 806 pass · 0 fail at `da7a0dd`; typecheck, zero-warning lint and the build passed).
+- **Checks** (a clean worktree without `.env.local`): at `5069793` (with the follow-ups) the full suite 2 837 tests · 2 810 pass · 0 fail ·
+  0 cancelled · 27 skipped; typecheck pass; lint pass, zero warnings; production build pass, no warnings.
 - **Money:** $7.08 of the $20 cap (Part 1 probes $3.66, the roll/ledger-check validation $0.01, the memory pair $3.40).
 - **Known issues:** in session 3's mode the probes' median turn cost and seconds rose ($0.28 → $0.40 and $0.29 → $0.35;
   13–27 s longer; n = 1 each); in a 5e campaign a fight one blow ends stays open until the DM ends it; on a hosted
