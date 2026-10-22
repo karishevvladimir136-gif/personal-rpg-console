@@ -120,9 +120,10 @@ show both to the owner. It refuses to run before step 4 (the coins must be under
 
 - **2D (the «2D» item after «Карта»).** The new tables start empty; nothing is converted. The region map and a scene's
   picture are drawn on the owner's click (one picture each; the first region map also plants the private POI seeds with
-  one cheap call, ~$0.01). A fight the DM opens with `combat start` gets its grid, and on a place whose scene was prepared its
-  painted top-down background is drawn in the background (one quality picture per place, under the daily limit; the
-  app log shows `live2d_battle_requested`); old encounters have no map and show the zones view. The synthetic walk and fights need no database: `/preview/live2d?level=region|town|district|scene`
+  one cheap call, ~$0.01). A fight gets its grid, and its painted top-down background is drawn in the background — a place without a scene
+  gets its scene first, by the «Подготовить сцену» path (a quality picture each, under the daily limit; the app log
+  shows `live2d_battle_requested` with both steps); in a 5e campaign the fight's first attack opens it; old encounters
+  have no map and show the zones view. The synthetic walk and fights need no database: `/preview/live2d?level=region|town|district|scene`
   and the battle previews listed in `docs/runs/live2d-1-acceptance.md`.
 - **Music and place sounds (Настройки → Музыка).** No pack exists in the sandbox yet: what the cloud made are review
   copies in `docs/runs/music-review/` (`shov/`, `noir/`, `compare/`, and `ambient/shov/`, `ambient/noir/` for the

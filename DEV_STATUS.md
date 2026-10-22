@@ -15,16 +15,20 @@ revision). Report: `docs/runs/fix-s3-pre-report.md`; ledger `docs/runs/fix-s3-pr
   reroll is available; the 64 000 output cap and «⚡ важный ход»; saves from the sheet; the DC shown; the hidden-layer
   prep's timing; «Тайны» as a one-line steer; the first turn's companions; the gallery over every turn; Russian on the
   owner's screens; privacy fixes in the public repository; six of the smaller items. Part 3 — a fight's start orders the
-  place's painted battle background; the hidden layer of the owner's campaign confirmed armed and never shown.
+  place's painted battle background; the hidden layer of the owner's campaign confirmed armed and never shown. After
+  the stage (the owner's follow-ups): in a 5e campaign the fight's first attack opens it on the server, so the opening
+  blows go by the rules (`combat start` completes that fight; a person named before any record is recorded bare and
+  completed by the bookkeeper); a fight on a place without a scene prepares the scene first, then the background.
 - **Key decisions:** the roll check runs with thinking off (at low effort it spent its whole allowance thinking and
   passed every turn); the ledger check keeps thinking with a 3 000 ceiling; a declared action is asked for only when the
-  hero rolled nothing (never a double attack); coup de grâce only on foes (the party keeps death saves); attacks in a
-  fight's opening turn stay plain rolls (no battlefield yet).
-- **Checks** (a clean worktree without `.env.local`, at `da7a0dd`): the full suite 2 833 tests · 2 806 pass · 0 fail ·
-  0 cancelled · 27 skipped; typecheck pass; lint pass, zero warnings; production build pass, no warnings.
+  hero rolled nothing (never a double attack); coup de grâce only on foes (the party keeps death saves); the
+  first-attack opening only in systems with the rules module (elsewhere the plain roll is unchanged); damage to a person
+  without hit points waits on the server until their full hit points are given.
+- **Checks** (a clean worktree without `.env.local`): the follow-ups' full run at `5069793` is in progress (the stage itself: 2 833 tests · 2 806 pass · 0 fail at `da7a0dd`; typecheck, zero-warning lint and the build passed).
 - **Money:** $7.08 of the $20 cap (Part 1 probes $3.66, the roll/ledger-check validation $0.01, the memory pair $3.40).
 - **Known issues:** in session 3's mode the probes' median turn cost and seconds rose ($0.28 → $0.40 and $0.29 → $0.35;
-  13–27 s longer; n = 1 each); the battle background needs a prepared scene; «компактно» memory failed the recall probe
+  13–27 s longer; n = 1 each); in a 5e campaign a fight one blow ends stays open until the DM ends it; on a hosted
+  deployment a slow scene-and-background chain may be cut by the request's time limit; «компактно» memory failed the recall probe
   and wrote a false note (the default stays «стандарт»); A-73, A-74, A-18, A-31 not done (a record shape, a data
   migration, a schema change, a design decision); old names remain in past run records and design canvases.
 - **Next step:** the owner loads the candidate with `docs/SANDBOX_LOAD_FIX_S2.md`, accepts the checklists and plays

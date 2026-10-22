@@ -16,7 +16,10 @@ Paid calls: **$7.08 of the $20 cap**, all in `docs/runs/fix-s3-pre-ledger.md`.
 - Screens: DC shown (a migration turns it on), «Тайны» is a one-line hint, «Кадры» show every turn, «Линии времени» in
   the menu, the fight's words in Russian, the wallet in words, the companion's kept die on its line, a «Броски спутников»
   switch, the action box up to half the screen, «⚡ важный ход» back.
-- The battle map's painted background is now ordered by itself when a fight starts on a place whose scene you prepared.
+- A fight's start orders the battle map's painted background by itself; a place you never prepared gets its scene
+  first, by the same path as «Подготовить сцену» (after the stage, see the last section).
+- The fight's opening blows go through the rules too: in a 5e campaign the first attack opens the fight on the server
+  (after the stage, see the last section).
 - **Manual setup:** none beyond the sandbox load (`docs/SANDBOX_LOAD_FIX_S2.md`, now four migration ranges). Note that
   migration `202610210402` changes a setting on your campaign (DC on).
 
@@ -74,8 +77,9 @@ ledger miss.
   noise is large, but both medians rose: +$0.06–0.12 and +13–27 s a turn. Likely causes: a refused-and-redone attack
   costs a round (the AC case is fixed now); the fight's tool results are longer. Not trimmed in this stage (see «Needs
   the owner» 1).
-- **A limit:** attacks rolled in the same turn as `combat start` come before the battlefield exists (7 across both
-  probes), so they are plain rolls without the rules module. From the next turn on, every attack went through the fight.
+- **A limit (closed after the stage, see the last section):** attacks rolled in the same turn as `combat start` came
+  before the battlefield existed (7 across both probes), so they were plain rolls without the rules module. From the
+  next turn on, every attack went through the fight.
 
 ## Part 2 — the audit's findings
 
@@ -174,8 +178,9 @@ a Russian fight carry no English word…».
 - **The battle map's painted background was never requested in a live fight**: the map reads the place's top-down
   picture, and only a `battle.prepare` action asks for one, which no screen sent. Now a turn that starts a fight asks for
   it after the commit, off the turn's path (`src/lib/live2d/server/battle-schedule.ts`); `prepareBattleMap` keeps one
-  per place and sheet revision, needs the place's prepared scene (LIVE2D_1 Part 1) and respects the pictures' cap. Test:
-  «Part 3: a turn that starts a fight asks for its place's painted battle background…».
+  per place and sheet revision, needs the place's scene sheet (LIVE2D_1 Part 1) and respects the pictures' cap. Test:
+  «Part 3: a turn that starts a fight asks for its place's painted battle background…». A place without a scene now
+  gets one first (after the stage, see the last section).
 - **The hidden layer of «Приключения начинаются»**: confirmed armed — the first game-screen read after the sandbox load
   schedules the prep («existing»); the Settings read never does; a campaign with turns never makes a turn wait; once a
   layer exists nothing runs again. Never shown: the owner's «Что видит ведущий» carries only «a layer exists» unless
@@ -203,8 +208,68 @@ a Russian fight carry no English word…».
    foes should be able to execute your people too.
 3. **«Важные броски кидаю я» no longer pauses by itself**: the «Дальше» pause holds only while a reroll or Heroic
    Inspiration is available (A-37).
-4. **The battle background needs a prepared scene**: on a place without «Подготовить сцену» the fight is a grid on dark
-   ground. Should a fight's start prepare the scene too (one more paid picture)?
+4. ~~The battle background needs a prepared scene~~ — decided by the owner: a fight's start prepares the scene too
+   (done after the stage, see the last section).
 5. **Old names in history**: earlier runs' records and design canvases still carry session-1 names (E-1a covered the
    two fixtures that re-staged a campaign); they are past records in a public repository.
 6. Acceptance of the three checklists (`docs/runs/s3-acceptance.md`); implementation is complete, owner approval is not.
+
+## After the stage — the owner's two follow-ups
+
+### The fight's opening attacks go through the rules
+In «пишет — записывает» the writer rolls the opening blows before the bookkeeper's `combat start`, so no battlefield
+existed and those attacks were plain rolls (7 over the two probes).
+- **The first attack opens the fight on the server** (`src/lib/gameplay/dm-loop/execute.ts`, «the fight's opening
+  attacks»). That covers the attacker, the target and the party, with no positions yet and the attacker acting first.
+  The attack and every later blow of the opening are resolved by the same fight path as `combat attack`: the card, the
+  rules module, crits, resistances, the hit points on the map and on the record, and the log.
+- **A person the writer names before anyone recorded them** (the lair's case: the writer had to say «dm» for the two
+  bandits) is recorded bare: name only, no hit points.
+  - Damage dealt to them waits on the server and is subtracted as soon as their full hit points are given, whether by
+    `upsert_character`, `combat start` hp, `combat hp` or `resource hp`.
+  - The bookkeeper's `upsert_character` with the same name completes that record and never makes a second one.
+  - A name close to someone already on record («Кривого Яна» for «Кривой Ян») is refused with a hint to use the exact
+    name.
+  - A lowercase word («часовой») or «dm» creates no one, and the plain roll applies exactly as before.
+- **The bookkeeper's `combat start` completes that fight** instead of opening a second one:
+  - its placements, initiative, grid, light and stat blocks are added;
+  - the opening wounds, conditions, spent actions and log entries are kept;
+  - a stat block's full hit points never heal a wound the opening already dealt;
+  - a planned ambush still does not spend the ambusher's round-1 action.
+- The writer's instructions (en, ru) say: name the attacker and the target by their names, a new person too. The
+  bookkeeper's instructions and brief say: «this attack OPENED THE FIGHT: complete it with combat start», and damage to
+  a person with no hit points is «KEPT BY THE SERVER».
+- **Only in systems with the rules module** (D&D 5e, Pathfinder — your campaign). In a campaign of another system a
+  fight would add nothing to the roll, and the plain roll's natural 20 still doubles the dice. The attack stays as it
+  was, and the fight opens with `combat start` as before.
+- **What this changes in play:** in a 5e campaign any attack between two people outside a fight now opens one. If the
+  turn ends without a `combat start`, for example one blow kills a sentry, the fight stays open. The receipt tells the
+  DM to end it with `combat end`.
+- Tests: `tests/fix-s3-pre-5.test.mjs`:
+  - «opening attacks: in the split, the writer's first attack opens the fight…», which covers the ford's opening with
+    a new crossbowman, one fight, no duplicate person, the opening damage kept and the brief;
+  - «…the single DM's attack before its own combat start is the fight's too; a generic word or a near name never makes
+    a person; another system keeps the plain roll»;
+  - «the writer's and the bookkeeper's instructions say it».
+
+### A fight on a place nobody prepared gets its scene, then its painted background
+`src/lib/live2d/battle/background.ts` holds the order and `src/lib/live2d/server/battle-schedule.ts` the server calls.
+- After a turn that starts a fight, a place with a scene sheet gets its battle background as before.
+- A place that never had a scene gets one first, by the «Подготовить сцену» path (`prepareScene`). That means the sheet,
+  one quality picture, the vision check, at most one corrected redraw and the markers. The background starts only after
+  the scene's picture is done, so it draws on it.
+- Both steps keep the daily pictures' cap. A place not yet visited, the cap reached, or a scene already drawing stops
+  the chain. A scene that exists without a usable sheet is left for you to redraw.
+- The whole chain runs after the response inside the turn's request. Text play never waits for it.
+- **Cost:** for a new place, one scene (≈ one quality picture plus the cheap sheet and check calls) and one background
+  (one quality picture plus its check), both within the daily cap.
+- **Hosting limit:** on a hosted deployment with a time limit per request (Vercel, 300 s for the turn route), a slow
+  chain may be cut and leave the scene marked «drawing». On the sandbox's local `next start` there is no such limit.
+- Test: «battle background: a place nobody prepared gets its scene first (its picture done), then the background…»,
+  covering the order and each stop condition, plus the wiring.
+
+### Checks after the follow-ups
+- The full suite on a clean worktree at `5069793`, typecheck, zero-warning lint and the build: running; the results
+  replace this line when they are in. Focused runs so far: the fight, 2D, two-pass and attack suites 520 tests, 0 fail
+  after one wiring assertion was updated.
+
