@@ -36,7 +36,9 @@ for (const file of args.records) {
     const rolls = (row.diagnostics ?? []).find((d) => d.kind === "rolls_checked") ?? null;
     const base = { file, arm, probe, outcome: row.outcome, costUsd: row.costUsd,
       misses: row.ledgerCheck?.post ? row.ledgerCheck.post.misses.length : null, missesError: row.ledgerCheck?.post?.error ?? null,
-      rolls: rolls?.rolls ?? 0, untold: rolls ? rolls.untold : null, rejected: (row.receipts ?? []).filter((r) => !r.result?.ok).length };
+      rolls: rolls?.rolls ?? 0, untold: rolls ? rolls.untold : null, rejected: (row.receipts ?? []).filter((r) => !r.result?.ok).length,
+      // Findings S3 §7: the input tokens of the turn (every request), and how many of them came from the cache.
+      tokensIn: row.tokens?.input ?? null, tokensCached: row.tokens?.cached ?? null };
     turns.push(row.outcome === "committed" && row.narration ? { ...base, ...turnMarkers(row.narration, [...(names.get(probe) ?? []), ...fresh]) } : base);
   }
 }
@@ -56,10 +58,10 @@ const rows = [...groups.entries()].map(([key, list]) => {
     speakers: mean(done.map((t) => t.speakers)), asides: done.filter((t) => t.asideWords > 0).length, hedges: mean(done.map((t) => t.hedgesPer100Aside)),
     missTurns: done.filter((t) => t.misses > 0).length, misses: done.reduce((sum, t) => sum + (t.misses ?? 0), 0), checked: done.filter((t) => t.misses !== null).length,
     untoldTurns: done.filter((t) => t.untold > 0).length, rollTurns: done.filter((t) => t.rolls > 0).length, rejected: done.reduce((sum, t) => sum + t.rejected, 0),
-    costUsd: list.reduce((sum, t) => sum + (t.costUsd ?? 0), 0) };
+    tokensIn: mean(done.map((t) => t.tokensIn)), tokensCached: mean(done.map((t) => t.tokensCached)), costUsd: list.reduce((sum, t) => sum + (t.costUsd ?? 0), 0) };
 }).sort((a, b) => order.indexOf(a.probe) - order.indexOf(b.probe) || a.arm.localeCompare(b.arm));
 
 if (args.json) { console.log(JSON.stringify({ rows, turns }, null, 2)); process.exit(0); }
-console.log("| Scene | Arm | n (committed) | Narration words | Address to the hero /100 words | Distinct speakers | Out-of-game asides (hedges /100 words) | Records: turns with a residual miss (misses) | Rolls: turns with an untold roll / turns with rolls | Rejected calls | Cost |");
-console.log("| --- | --- | --- | ---: | ---: | ---: | --- | --- | --- | ---: | ---: |");
-for (const r of rows) console.log(`| ${r.probe} | ${r.arm} | ${r.n} (${r.committed}) | ${fmt(r.words, 0)} | ${fmt(r.address, 2)} | ${fmt(r.speakers)} | ${r.asides}${r.asides ? ` (${fmt(r.hedges)})` : ""} | ${r.missTurns} of ${r.checked} (${r.misses}) | ${r.untoldTurns} / ${r.rollTurns} | ${r.rejected} | $${r.costUsd.toFixed(2)} |`);
+console.log("| Scene | Arm | n (committed) | Narration words | Address to the hero /100 words | Distinct speakers | Out-of-game asides (hedges /100 words) | Records: turns with a residual miss (misses) | Rolls: turns with an untold roll / turns with rolls | Rejected calls | Input tokens / turn (from cache) | Cost |");
+console.log("| --- | --- | --- | ---: | ---: | ---: | --- | --- | --- | ---: | ---: | ---: |");
+for (const r of rows) console.log(`| ${r.probe} | ${r.arm} | ${r.n} (${r.committed}) | ${fmt(r.words, 0)} | ${fmt(r.address, 2)} | ${fmt(r.speakers)} | ${r.asides}${r.asides ? ` (${fmt(r.hedges)})` : ""} | ${r.missTurns} of ${r.checked} (${r.misses}) | ${r.untoldTurns} / ${r.rollTurns} | ${r.rejected} | ${fmt(r.tokensIn, 0)} (${fmt(r.tokensCached, 0)}) | $${r.costUsd.toFixed(2)} |`);

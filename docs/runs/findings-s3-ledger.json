@@ -30,6 +30,14 @@
       "settled": true,
       "finishedAt": "2026-10-23T08:47:22.429Z",
       "record": "docs/runs/real-replay-20261023-084544.jsonl"
+    },
+    {
+      "run": "real-replay-20261023-085648",
+      "what": "real replay: 12 turns × O on Fix run B probes (seed b); voice live; craft live",
+      "startedAt": "2026-10-23T08:56:48.415Z",
+      "reservedUsd": 5.5,
+      "spentUsd": 0,
+      "settled": false
     }
   ]
 }
