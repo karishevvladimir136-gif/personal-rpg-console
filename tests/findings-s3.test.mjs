@@ -130,3 +130,22 @@ test("§2: the digest and the prep ask for the DM's own first-person notes with 
     assert.match(src("src/lib/server/session-digest.ts"), /notebookFirstPer100: firstPersonPer100\(result\.digest\.notebook\)/);
   } finally { await c.f.db.close(); }
 });
+
+test("§1 measure: the register markers on a Russian turn — speech, address to the hero, speakers by the nominative, asides", async () => {
+  const { turnMarkers, speechOf } = await import("../scripts/eval/findings-s3/lib/markers.mjs");
+  const narration = [
+    "Ты ломаешь воск и читаешь вслух.",
+    "Брам подходит и смотрит через твоё плечо.",
+    "— Писаря на таможне два. — Он кивает на маяк. — Тебе решать, Рэй.",
+    "Тоби сглатывает.",
+    "— А «третья ночь» — это от чего считать? — он осекается и смотрит на Брама. — Вы как думаете?",
+    "*(Вне игры: возможно, я неверно прочёл, кого ты имел в виду; поправь меня.)*",
+  ].join("\n\n");
+  const pieces = speechOf(narration);
+  assert.equal(pieces.length, 4, "two pieces a line; the «…» inside a line never splits it; the aside is not speech");
+  const markers = turnMarkers(narration, ["Брам", "Тоби", "Сторож Ефим"]);
+  assert.deepEqual(markers.speakerNames.sort(), ["Брам", "Тоби"], "«смотрит на Брама» is not Брам speaking; the sentence before names the speaker");
+  assert.equal(markers.address, 2, "«Тебе», «Вы» in speech; the narrator's «Ты»/«твоё» and the aside's «ты» do not count");
+  assert.equal(markers.hedges, 1);
+  assert.ok(markers.asideWords > 5);
+});

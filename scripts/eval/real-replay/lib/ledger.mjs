@@ -25,6 +25,9 @@ export const LEDGERS = {
   // (FIX_S2_STAGE=G|V|B|D|A names the block; I is the integrated check at the end).
   fixs3accept: { file: join(ROOT, "docs", "runs", "fix-s3-accept-ledger.json"), capUsd: 15, label: "the fixes from the owner's acceptance pass",
     stageCaps: { G: 0.5, V: 2, B: 2.5, D: 4, A: 3, I: 3 }, markdown: join(ROOT, "docs", "runs", "fix-s3-accept-ledger.md") },
+  // The findings of 2026-10-22/23 (docs/stages/FINDINGS_S3.md): the DM's register before/after and one digest, $8.
+  findingss3: { file: join(ROOT, "docs", "runs", "findings-s3-ledger.json"), capUsd: 8, label: "the findings of session 3",
+    markdown: join(ROOT, "docs", "runs", "findings-s3-ledger.md") },
 };
 export const DEFAULT_LEDGER = "fixs2";
 export const LEDGER_FILE = LEDGERS[DEFAULT_LEDGER].file;

@@ -23,7 +23,8 @@
 // narration's NPC lines; its flags go into the record and the sample for the metrics (--no-quotable skips it).
 // Fix run: --continuation same|lighter, --memory compact|standard|wide, --instructions ru|en set the DM options;
 // --label names the run's arm; --cache-salt <word> starts the arm from a cold provider cache; --ledger-check on|off (A6: the split's in-turn checker, and a residual check
-// of every committed turn in both modes).
+// of every committed turn in both modes). Findings S3: --roll-check on runs the app's own «every roll told» check in the turn
+// (Haiku, cents; off by default, as before), so a probe measures it as the app plays it.
 import { appendFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { randomBytes, randomUUID } from "node:crypto";
 import { join, resolve } from "node:path";
@@ -35,6 +36,7 @@ import { createSnapshotTurnStore, noMemory, seededRandom, snapshotInput } from "
 import { buildReplaySample } from "../../../src/lib/gameplay/replay/samples.ts";
 import { checkQuotableLines } from "../../../src/lib/gameplay/dm-loop/quotable.ts";
 import { checkLedger, ledgerCheckState } from "../../../src/lib/gameplay/dm-loop/ledger-check.ts";
+import { checkRollsTold } from "../../../src/lib/gameplay/dm-loop/roll-check.ts";
 import { VARIANTS, MODELS, createBudget, guardedModel, dryModel } from "./lib/models.mjs";
 import { openRun, ROOT, LEDGERS, DEFAULT_LEDGER } from "./lib/ledger.mjs";
 import { craftVariant } from "./lib/craft.mjs";
@@ -46,7 +48,7 @@ const args = { base: null, campaign: null, snapshots: null, turns: null, variant
   continuation: null, memory: null, instructions: null, label: null,
   // Fix run A6: the ledger checker — in the split's runtime (as the app runs it) and once more on every committed
   // turn of either mode («post»: the residual misses, the same measure for both modes); «off»: neither.
-  ledgerCheck: "on", cacheSalt: null,
+  ledgerCheck: "on", rollCheck: "off", cacheSalt: null,
   voice: "live", examplesFile: null, ledger: DEFAULT_LEDGER, quotable: true };
 for (let i = 2; i < process.argv.length; i++) {
   const flag = process.argv[i], value = () => process.argv[++i];
@@ -64,6 +66,7 @@ for (let i = 2; i < process.argv.length; i++) {
   else if (flag === "--instructions") args.instructions = value();
   else if (flag === "--label") args.label = value();
   else if (flag === "--ledger-check") args.ledgerCheck = value();
+  else if (flag === "--roll-check") args.rollCheck = value();
   else if (flag === "--cache-salt") args.cacheSalt = value();
   else if (flag === "--voice") args.voice = value();
   else if (flag === "--examples-file") args.examplesFile = value();
@@ -79,6 +82,7 @@ if (args.continuation !== null && !["same", "lighter"].includes(args.continuatio
 if (args.memory !== null && !["compact", "standard", "wide"].includes(args.memory)) throw new Error("--memory must be compact, standard or wide");
 if (args.instructions !== null && !["ru", "en"].includes(args.instructions)) throw new Error("--instructions must be ru or en");
 if (!["on", "off"].includes(args.ledgerCheck)) throw new Error("--ledger-check must be on or off");
+if (!["on", "off"].includes(args.rollCheck)) throw new Error("--roll-check must be on or off");
 if (!VOICE_VARIANTS.includes(args.voice)) throw new Error(`--voice must be one of ${VOICE_VARIANTS.join(", ")}`);
 if (!LEDGERS[args.ledger]) throw new Error(`--ledger must be one of ${Object.keys(LEDGERS).join(", ")}`);
 if (!args.dry && !(args.budgetUsd > 0)) throw new Error("--budget-usd N (N > 0) is required for a paid run (or --dry)");
@@ -210,6 +214,14 @@ async function guardedLedgerCheck(input) {
   try { const result = await checkLedger(apiKey, input); budget.spentUsd += result.costUsdMicros / 1_000_000; return result; }
   finally { budget.reservedUsd -= reserve; }
 }
+/** Findings S3: the app's roll check under the run's budget (a reserve per request, settled with its cost). */
+async function guardedRollCheck(input) {
+  const reserve = 0.01;
+  if (budget.spentUsd + budget.reservedUsd + reserve > budget.limitUsd) { budget.exhausted = true; return { untold: [], undeclared: [], costUsdMicros: 0, error: "eval_budget_reached" }; }
+  budget.reservedUsd += reserve;
+  try { const result = await checkRollsTold(apiKey, input); budget.spentUsd += result.costUsdMicros / 1_000_000; return result; }
+  finally { budget.reservedUsd -= reserve; }
+}
 /** One turn of one variant on an isolated copy of the snapshot. */
 async function playVariant(payload, turnNo, variant) {
   const crafted = voiceVariant(craftVariant(payload, args.craft), args.voice, examples);
@@ -246,6 +258,7 @@ async function playVariant(payload, turnNo, variant) {
       limits: crafted.settings?.limits ?? DM_LOOP_DEFAULT_LIMITS, depth: variant.writer.modelId === MODELS.fable.modelId ? null : (crafted.settings?.depth ?? DEFAULT_DEPTH_RANGE), boostNext: false }),
     random: seededRandom(operationId),
     ...(variant.runtime === "two-pass" && args.ledgerCheck === "on" && !args.dry ? { ledgerCheck: guardedLedgerCheck } : {}),
+    ...(args.rollCheck === "on" && !args.dry ? { rollCheck: guardedRollCheck } : {}),
     observe: (observation) => {
       observations.push(observation);
       if (observation.type === "live" && observation.event.type === "text" && observation.event.text.trim() && firstWordAt === null) firstWordAt = performance.now();
@@ -281,7 +294,7 @@ async function playVariant(payload, turnNo, variant) {
     narration: result?.status === "committed" ? result.narration : null,
     firstWordMs: firstWordAt === null ? null : Math.round(firstWordAt - started), textDoneMs: variant.runtime === "two-pass" ? textDone : (result?.status === "committed" ? durationMs : null),
     recordsDoneMs: result?.status === "committed" ? durationMs : null, durationMs, requests: usage.length,
-    costUsd: args.dry ? 0 : Number((sum("costUsd") + (loop?.diagnostics ?? []).filter((d) => d.kind === "ledger_checked").reduce((total, d) => total + (d.costUsd ?? 0), 0)).toFixed(5)), cacheReadShare: sum("inputTokens") ? Number((sum("cacheReadTokens") / sum("inputTokens")).toFixed(3)) : null,
+    costUsd: args.dry ? 0 : Number((sum("costUsd") + (loop?.diagnostics ?? []).filter((d) => d.kind === "ledger_checked" || d.kind === "rolls_checked").reduce((total, d) => total + (d.costUsd ?? 0), 0)).toFixed(5)), cacheReadShare: sum("inputTokens") ? Number((sum("cacheReadTokens") / sum("inputTokens")).toFixed(3)) : null,
     tokens: { input: sum("inputTokens"), output: sum("outputTokens"), cached: sum("cacheReadTokens"), cacheWrite: sum("cacheWriteTokens"), cacheWrite1h: sum("cacheWrite1hTokens") },
     usage, receipts: loop?.receipts ?? [], diagnostics: loop?.diagnostics ?? [], effort: loop?.pin?.effort ?? null, tension: loop?.pin?.depth?.tension ?? null,
     ledger: twoPass.find((o) => o.event === "writer_finished")?.ledger ?? null, transport: transport.map((t) => ({ ...t })),
