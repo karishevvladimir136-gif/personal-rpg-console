@@ -2,40 +2,36 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type DragEvent } from "react";
-import { Backpack, BookOpen, FlaskConical, Gem, KeyRound, Package, Shield, Shirt, Sword, Target, Wrench, X, type LucideIcon } from "lucide-react";
+import { BookOpen, Package, X } from "lucide-react";
 import type { CampaignSnapshot, Entity, Item, MutationInput } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
 import { characterViewModel } from "@/lib/character-view-model";
-import { EQUIPPED_FILTER, inventoryCategoryLabel, inventoryItemLabel } from "@/lib/live-inventory-view";
-import { itemRarity } from "@/lib/ui/rarity";
 import { appendToComposerDraft, draftStorage } from "@/lib/ui/composer-draft";
 import {
-  dollLayout, equipmentOf, heroOf, holdingsNavLabel, holdingsOf, inventoryOf, mountsOf, partyOf, placePilesOf, sheetOf, statLabel,
-  type SheetView, type SlotView,
+  equipmentOf, heroOf, holdingsNavLabel, holdingsOf, inventoryOf, mountsOf, partyOf, placePilesOf, sheetOf, statLabel,
+  type SheetView,
 } from "@/lib/ui/campaign-view";
-import { castLine, ITEM_KINDS, itemMechanics, kindLabel, spellBook, walletOfEntity, walletParts, type SpellRecord, type Wallet } from "@/lib/inventory/model";
+import { castLine, ITEM_KINDS, spellBook, walletOfEntity, walletParts, type SpellRecord, type Wallet } from "@/lib/inventory/model";
+import type { KindGroupId } from "@/lib/inventory/grid";
 import type { SheetPatch } from "@/lib/inventory/sheet";
 import {
-  applyPlan, castSlot, concentrationOf, entityPayload, hasSpellSlots, loanMark, planEquip, planKind, planMoney, planMove, planSheet, planUnequip, sheetCounters, slotsFor,
+  applyPlan, castSlot, concentrationOf, entityPayload, hasSpellSlots, planEquip, planKind, planMoney, planMove, planSheet, planUnequip, sheetCounters,
   undoPayload, type MovePlan, type MoveStep, type MoveTarget,
 } from "@/lib/inventory/owner-moves";
+import type { PictureComposition } from "@/lib/visual-frame/pictures";
 import { ClientPersistenceError, createMutationAttempt } from "@/lib/persistence/client";
 import { useOptionalCampaignData } from "../persistence-context";
-import { anchorFor } from "@/lib/visual-frame/pictures";
 import { RedrawAnchor } from "./redraw-anchor";
-import { usePictures } from "./live-frames";
+import { Doll, InventoryGrid, ItemCard } from "./inventory-grid";
 import { useChrome, type CampaignScreenId } from "./shell";
 import {
   Art,
   Gauge,
   Panel,
   Pips,
-  RarityLegend,
-  rarityClass,
   registry as r,
   TabBar,
   useCopy,
-  useSubjectImage,
   WalletLine,
   type Copy,
 } from "./primitives";
@@ -168,12 +164,14 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
   const members = [hero, ...partyOf(view, play).map((row) => row.entity)].filter((row): row is Entity => !!row);
   const [selectedId, setSelectedId] = useState(preview?.memberId ?? hero?.id ?? members[0]?.id ?? null);
   const [tab, setTab] = useState<Tab>(initialTab);
-  const [filter, setFilter] = useState("");
+  // Fix S3-accept А1: one inventory at a time — the person picked above, or a mount's saddlebags / what lies here.
+  const [holderKey, setHolderKey] = useState<string | null>(null);
+  const [filter, setFilter] = useState<KindGroupId | "all">("all");
   const [card, setCard] = useState<{ itemId: string; holder: string } | null>(preview?.itemId ? { itemId: preview.itemId, holder: preview.memberId ?? hero?.id ?? "" } : null);
   const [picker, setPicker] = useState<{ itemId: string; wearerId: string; slot: string | null; kinds: string[]; reason: string; mode: "equip" | "kind" } | null>(null);
   const [ask, setAsk] = useState<{ itemId: string; target: MoveTarget; label: string } | null>(null);
   const [dragId, setDragId] = useState<string | null>(null);
-  const [redraw, setRedraw] = useState<{ kind: "entity" | "item"; id: string } | null>(null);
+  const [redraw, setRedraw] = useState<{ kind: "entity" | "item"; id: string; composition?: PictureComposition } | null>(null);
   // The card closes on Escape (item 33: it no longer «вечно висит») and on a click outside it (item 30).
   useCardDismiss(!!card, () => { setCard(null); setPicker(null); });
   const href = (screen: CampaignScreenId) => chrome?.href?.(screen) ?? `/campaigns/${encodeURIComponent(data.campaign.id)}/${screen}`;
@@ -186,6 +184,8 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
   const own = holders.find((holder) => holder.key === entity.id) ?? { key: entity.id, kind: "person" as const, entity, name: entity.name, tag: "",
     items: inventoryOf(view, entity.id), wallet: walletOfEntity(entity), target: { entityId: entity.id } };
   const people = holders.filter((holder) => holder.kind === "person" && holder.entity).map((holder) => holder.entity!);
+  // Fix S3-accept А1: the inventory tab shows one holder — the person picked above, or the mount or the pile picked there.
+  const bagHolder = tab === "inv" ? holders.find((holder) => holder.key === holderKey && holder.kind !== "person") ?? own : own;
   const spellsShown = sheet.spells.length > 0 || sheet.spellLines.length > 0 || hasSpellSlots(entity);
   const tabs = [
     { id: "char" as const, label: c("Персонаж", "Character") },
@@ -294,7 +294,7 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
   const dollSlots = equipmentOf(view, dollEntity);
   const doll = (
     <Doll entity={dollEntity} slots={dollSlots} figure={dollEntity.id === hero?.id ? preview?.figure ?? null : null} selectedId={selected?.id ?? null}
-      dragging={item(dragId)} onPick={(thing) => pick(thing, dollEntity.id)} onRedraw={() => setRedraw({ kind: "entity", id: dollEntity.id })}
+      dragging={item(dragId)} onPick={(thing) => pick(thing, dollEntity.id)} onRedraw={() => setRedraw({ kind: "entity", id: dollEntity.id, composition: "figure" })}
       onDragStart={setDragId} onDragEnd={() => setDragId(null)}
       onDrop={(slot, id) => { setDragId(null); const thing = item(id); if (thing) void equip(thing, dollEntity.id, slot); }} />
   );
@@ -303,39 +303,34 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
       <p className="prose" style={{ whiteSpace: "pre-wrap", margin: 0 }}>{entity.details}</p>
     </Panel>
   ) : null;
-  const categories = [...new Set(own.items.map((row) => row.category))];
-  const shown = own.items.filter((row) => !filter || (filter === EQUIPPED_FILTER ? row.equipped_entity_id === entity.id : row.category === filter));
+  // Fix S3-accept А1: the things as cells (as before the lists), one holder at a time, the type filter on top.
+  const grid = (holder: Holder) => (
+    <InventoryGrid view={view} items={holder.items} viewerId={holder.entity?.id ?? null} selectedId={selected?.id ?? null} filter={filter} onFilter={setFilter}
+      onPick={(thing) => pick(thing, holder.key)} onDragStart={setDragId} onDragEnd={() => setDragId(null)} dragging={!!dragId}
+      onDrop={holder.target ? (id) => dropOn(holder, id) : undefined} empty={holder.kind === "place" ? c("Ничего не лежит.", "Nothing lies here.") : undefined} />
+  );
   const inventory = (
     <Panel label={c("Инвентарь", "Inventory")} title={c("Вещи при себе", "Carried")} action={<WalletLine wallet={own.wallet} compact />}>
+      {grid(own)}
+    </Panel>
+  );
+  const bag = (
+    <Panel label={c("Инвентарь", "Inventory")} eyebrow={bagHolder.tag || undefined} title={bagHolder.name} className={s.bagPanel}>
       <div className={r.stack} style={{ gap: 10 }}>
-        {own.items.length > 0 && (
-          <div className={`${r.chips} ${s.filters}`} role="group" aria-label={c("Фильтр", "Filter")}>
-            <button type="button" className={r.chipButton} aria-pressed={!filter} onClick={() => setFilter("")}>{c("Всё", "All")}</button>
-            {own.items.some((row) => row.equipped_entity_id === entity.id) && (
-              <button type="button" className={r.chipButton} aria-pressed={filter === EQUIPPED_FILTER} onClick={() => setFilter(EQUIPPED_FILTER)}>{c.t("Equipped")}</button>
-            )}
-            {categories.map((category) => (
-              <button key={category} type="button" className={r.chipButton} aria-pressed={filter === category} onClick={() => setFilter(category)}>{capital(kindWord(category, c))}</button>
-            ))}
-          </div>
-        )}
-        <ItemRows view={view} items={shown} viewerId={entity.id} selectedId={selected?.id ?? null} onPick={(thing) => pick(thing, entity.id)}
-          onDragStart={setDragId} onDragEnd={() => setDragId(null)} onDrop={(id) => dropOn(own, id)} />
-        {own.items.some((row) => itemRarity(row)) && <RarityLegend />}
+        {bagHolder.kind === "person" && bagHolder.entity
+          ? <MoneyLine person={bagHolder.entity} people={people} onSend={(to, amounts) => moves.run(planMoney(view, bagHolder.entity!.id, to, amounts, ctx))} />
+          : <WalletLine wallet={bagHolder.wallet} />}
+        {grid(bagHolder)}
       </div>
     </Panel>
   );
-  const lists = (
-    <div className={s.lists}>
-      {holders.map((holder) => (
-        <HolderList key={holder.key} view={view} holder={holder} selectedId={selected?.id ?? null} people={people}
-          active={holder.key === entity.id} dragging={!!dragId}
-          onSelectMember={holder.kind === "person" && holder.entity ? () => { setSelectedId(holder.entity!.id); setFilter(""); } : undefined}
-          onPick={(thing) => pick(thing, holder.key)} onDragStart={setDragId} onDragEnd={() => setDragId(null)} onDrop={(id) => dropOn(holder, id)}
-          onSend={(from, to, amounts) => moves.run(planMoney(view, from, to, amounts, ctx))} />
-      ))}
-    </div>
-  );
+  // The switch above the sheet: the people; on the inventory tab also the mounts' saddlebags and what lies here. A thing
+  // dropped on a portrait goes to that holder (the drag between the old side-by-side lists, kept).
+  const extraHolders = tab === "inv" ? holders.filter((holder) => holder.kind !== "person") : [];
+  const switchDrop = (holder: Holder | undefined) => (holder?.target && tab === "inv" ? {
+    onDragOver: (event: DragEvent) => { event.preventDefault(); event.dataTransfer.dropEffect = "move"; },
+    onDrop: (event: DragEvent) => { event.preventDefault(); const id = event.dataTransfer.getData("text/plain"); if (id) dropOn(holder, id); },
+  } : {});
   const spells = <SpellsTab entity={entity} sheet={sheet} onCast={act} onPrepare={(spell, prepared) => void moves.run(planSheet(view, entity.id, { spells: [{ ...spell, prepared }] }, ctx))} />;
   const askItem = item(ask?.itemId ?? null);
   return (
@@ -345,12 +340,19 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
           <TabBar tabs={tabs} value={tab} onChange={setTab} label={c("Разделы листа", "Sheet sections")} wrap />
           <div className={`${r.tabs} ${r.tabsWrap}`}>{links.map((link) => <a key={link.id} className={r.tab} href={href(link.id)}>{link.label}</a>)}</div>
         </div>
-        {members.length > 1 && (
-          <div className={s.switcher} role="group" aria-label={c("Чей лист", "Whose sheet")}>
+        {members.length + extraHolders.length > 1 && (
+          <div className={s.switcher} role="group" aria-label={tab === "inv" ? c("Чей инвентарь", "Whose inventory") : c("Чей лист", "Whose sheet")}>
             {members.map((member) => (
-              <button key={member.id} type="button" className={s.member} aria-pressed={member.id === entity.id} aria-label={member.name} title={member.name}
-                onClick={() => { setSelectedId(member.id); setCard(null); setFilter(""); }}>
+              <button key={member.id} type="button" className={s.member} aria-pressed={member.id === entity.id && bagHolder.kind === "person"} aria-label={member.name} title={member.name}
+                onClick={() => { setSelectedId(member.id); setHolderKey(null); setCard(null); setFilter("all"); }} {...switchDrop(holders.find((holder) => holder.key === member.id))}>
                 <Art subject={{ kind: "entity", id: member.id }} name={member.name} position="center 25%" drawingLabel="…" />
+              </button>
+            ))}
+            {extraHolders.map((holder) => (
+              <button key={holder.key} type="button" className={`${s.member} ${holder.kind === "place" ? s.memberPlace : ""}`} aria-pressed={bagHolder.key === holder.key}
+                aria-label={`${holder.tag}: ${holder.name}`} title={`${holder.tag}: ${holder.name}`}
+                onClick={() => { setHolderKey(holder.key); setCard(null); setFilter("all"); }} {...switchDrop(holder)}>
+                {holder.entity ? <Art subject={{ kind: "entity", id: holder.entity.id }} name={holder.name} position="center 35%" drawingLabel="…" /> : <Package size={20} aria-hidden="true" />}
               </button>
             ))}
           </div>
@@ -372,7 +374,7 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
           {inventory}
         </div>
       )}
-      {tab === "inv" && <div className={s.gridInventory}>{doll}{lists}</div>}
+      {tab === "inv" && (bagHolder.kind === "person" ? <div className={s.gridInventory}>{doll}{bag}</div> : bag)}
       {tab === "spells" && <div className={s.gridSpells}>{spells}</div>}
       {selected && (
         <ItemCard key={selected.id} item={selected} view={view} viewerId={cardHolder.entity?.id ?? null} wearer={wearer}
@@ -397,7 +399,7 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
               <button type="button" className={r.iconBtn} aria-label={c("Закрыть", "Close")} onClick={() => setRedraw(null)}><X size={20} aria-hidden="true" /></button>
             </div>
             <p className={r.note}>{c("Старая картинка остаётся на месте, пока новая не готова и не принята. Прошлые версии сохраняются.", "The previous picture stays until the new one is ready and accepted. Earlier versions are kept.")}</p>
-            <RedrawAnchor data={data} subject={redraw} name={(redraw.kind === "entity" ? view.entities.find((row) => row.id === redraw.id)?.name : view.items.find((row) => row.id === redraw.id)?.name) ?? ""} />
+            <RedrawAnchor data={data} subject={{ kind: redraw.kind, id: redraw.id }} composition={redraw.composition} name={(redraw.kind === "entity" ? view.entities.find((row) => row.id === redraw.id)?.name : view.items.find((row) => row.id === redraw.id)?.name) ?? ""} />
           </aside>
         </>
       )}
@@ -410,9 +412,6 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
     </div>
   );
 }
-
-const kindWord = (kind: string, c: Copy) => ((ITEM_KINDS as readonly string[]).includes(kind) ? kindLabel(kind, c.language) : c.label(inventoryCategoryLabel(kind)));
-const capital = (text: string) => (text ? text.charAt(0).toLocaleUpperCase() + text.slice(1) : text);
 
 /** The sheet's counters (pools with their labels; a counter without a real label carries a quiet «?»). */
 function Counters({ counters }: { counters: ReturnType<typeof sheetCounters> }) {
@@ -550,159 +549,6 @@ export function MoneyLine({ person, people, onSend }: { person: Entity; people: 
         </form>
       )}
     </div>
-  );
-}
-
-/** The paper doll: the body down the left, jewellery and belt on the right, both hands under the figure. A slot takes
- * a drop of a thing (the kinds it accepts light up while dragging); a click opens the worn thing's card. */
-function Doll({ entity, slots, figure, selectedId, dragging, onPick, onRedraw, onDrop, onDragStart, onDragEnd }: {
-  entity: Entity; slots: SlotView[]; figure: string | null; selectedId: string | null; dragging: Item | null;
-  onPick: (item: Item) => void; onRedraw: () => void; onDrop: (slot: string, itemId: string) => void;
-  onDragStart: (id: string) => void; onDragEnd: () => void;
-}) {
-  const c = useCopy();
-  const layout = dollLayout(slots);
-  const slot = (row: SlotView) => (
-    <SlotButton key={row.id} slot={row} pressed={!!row.item && row.item.id === selectedId}
-      fits={!!dragging && row.accepts.includes(dragging.category)} onPick={onPick} onDrop={onDrop} onDragStart={onDragStart} onDragEnd={onDragEnd} />
-  );
-  return (
-    <Panel label={c("Снаряжение", "Equipment")} className={s.dollPanel}>
-      <div className={s.doll}>
-        <div className={s.slots}>{layout.left.map(slot)}</div>
-        <Figure entity={entity} figure={figure} onRedraw={onRedraw} />
-        <div className={s.slots}>{layout.right.map(slot)}</div>
-        {layout.hands.length > 0 && <div className={s.hands}>{layout.hands.map(slot)}</div>}
-      </div>
-      <p className={s.dollHint}>{c("Перетащите вещь на слот, чтобы надеть; со слота в список — чтобы снять.", "Drag a thing onto a slot to wear it; from a slot onto a list to take it off.")}</p>
-    </Panel>
-  );
-}
-
-function SlotButton({ slot, pressed, fits, onPick, onDrop, onDragStart, onDragEnd }: {
-  slot: SlotView; pressed: boolean; fits: boolean; onPick: (item: Item) => void; onDrop: (slot: string, itemId: string) => void;
-  onDragStart: (id: string) => void; onDragEnd: () => void;
-}) {
-  const c = useCopy();
-  const [over, setOver] = useState(false);
-  const item = slot.item;
-  const blocked = slot.blockedBy;
-  return (
-    <button type="button" data-item-pick="" className={`${item ? s.slot : s.slotEmpty} ${fits ? s.slotFits : ""} ${over ? s.slotOver : ""}`} aria-pressed={pressed}
-      aria-disabled={!item && !blocked} title={blocked ? c(`занято: ${blocked.name}`, `taken: ${blocked.name}`) : item?.name ?? slot.label}
-      onClick={() => { if (item) onPick(item); else if (blocked) onPick(blocked); }}
-      draggable={!!item} onDragStart={(event) => { if (!item) return; event.dataTransfer.setData("text/plain", item.id); event.dataTransfer.effectAllowed = "move"; onDragStart(item.id); }}
-      onDragEnd={onDragEnd}
-      onDragOver={(event) => { event.preventDefault(); event.dataTransfer.dropEffect = "move"; if (!over) setOver(true); }}
-      onDragLeave={() => setOver(false)}
-      onDrop={(event) => { event.preventDefault(); setOver(false); const id = event.dataTransfer.getData("text/plain"); if (id) onDrop(slot.id, id); }}>
-      <span className={s.slotIcon}>{item ? <Art subject={{ kind: "item", id: item.id }} name={item.name} /> : <Package size={18} aria-hidden="true" />}</span>
-      <span className={s.slotText}>
-        <span className={s.slotLabel}>{slot.label}</span>
-        <span className={s.slotName}>{item ? inventoryItemLabel(item.name) : blocked ? c(`занято: ${inventoryItemLabel(blocked.name)}`, `taken: ${inventoryItemLabel(blocked.name)}`) : c("пусто", "empty")}</span>
-      </span>
-    </button>
-  );
-}
-
-function Figure({ entity, figure, onRedraw }: { entity: Entity; figure: string | null; onRedraw: () => void }) {
-  const c = useCopy();
-  const image = useSubjectImage({ kind: "entity", id: entity.id });
-  // The doll shows the hero's full-figure anchor (Stage V) when one is ready; the portrait stays the fallback.
-  const pictures = usePictures();
-  const figureAnchor = pictures ? anchorFor(pictures.board, { kind: "entity", id: entity.id }, "figure").picture : null;
-  const fullFigure = figure ?? (figureAnchor && pictures ? pictures.urlFor(figureAnchor) : null);
-  return (
-    <div className={s.figure}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      {fullFigure ? <img src={fullFigure} alt={entity.name} style={{ objectFit: "cover", objectPosition: "center top" }} />
-        : <Art subject={{ kind: "entity", id: entity.id }} name={entity.name} position="center 20%" />}
-      <div className={s.figureTools}>
-        <button type="button" className={s.redraw} onClick={onRedraw} aria-label={c("Перерисовать портрет", "Redraw portrait")}>{c("Перерисовать", "Redraw")}</button>
-        {image.version && <span className={s.version}>{c(`версия ${image.version.replace("/", " из ")}`, `version ${image.version.replace("/", " of ")}`)}</span>}
-      </div>
-    </div>
-  );
-}
-
-/** One holder's list on the inventory tab: its name, its purse, its things; drop a thing here to hand it over. */
-function HolderList({ view, holder, selectedId, people, active, dragging, onSelectMember, onPick, onDragStart, onDragEnd, onDrop, onSend }: {
-  view: CampaignSnapshot; holder: Holder; selectedId: string | null; people: Entity[]; active: boolean; dragging: boolean;
-  onSelectMember?: () => void; onPick: (item: Item) => void; onDragStart: (id: string) => void; onDragEnd: () => void; onDrop: (id: string) => void;
-  onSend: (from: string, to: string, amounts: Record<string, number>) => Promise<boolean>;
-}) {
-  const c = useCopy();
-  return (
-    <section className={`${s.holder} ${active ? s.holderActive : ""} ${holder.kind === "place" ? s.holderPlace : ""}`} aria-label={`${holder.tag}: ${holder.name}`}>
-      <header className={s.holderHead}>
-        {holder.entity ? (
-          <button type="button" className={s.holderAvatar} onClick={onSelectMember} disabled={!onSelectMember} aria-label={holder.name} title={onSelectMember ? c("Показать лист", "Show the sheet") : holder.name}>
-            <Art subject={{ kind: "entity", id: holder.entity.id }} name={holder.name} position="center 25%" drawingLabel="…" />
-          </button>
-        ) : <span className={s.holderAvatar}><Package size={20} aria-hidden="true" /></span>}
-        <span className={s.holderTitle}>
-          <span className={r.eyebrow}>{holder.tag}</span>
-          <span className={s.holderName}>{holder.name}</span>
-        </span>
-        <span className={`${r.small} ${r.muted}`}>{holder.items.length}</span>
-      </header>
-      {holder.kind === "person" && holder.entity
-        ? <MoneyLine person={holder.entity} people={people} onSend={(to, amounts) => onSend(holder.entity!.id, to, amounts)} />
-        : <WalletLine wallet={holder.wallet} />}
-      <ItemRows view={view} items={holder.items} viewerId={holder.entity?.id ?? null} selectedId={selectedId} onPick={onPick}
-        onDragStart={onDragStart} onDragEnd={onDragEnd} onDrop={holder.target ? onDrop : undefined} dragging={dragging}
-        empty={holder.kind === "place" ? c("Ничего не лежит.", "Nothing lies here.") : undefined} />
-    </section>
-  );
-}
-
-/** Things as rows (the mockup's list): picture, name, kind and state (worn, lent, borrowed), quantity. Rows drag;
- * the list takes a drop when `onDrop` is given. */
-function ItemRows({ view, items, viewerId, selectedId, onPick, onDragStart, onDragEnd, onDrop, dragging = false, empty }: {
-  view: CampaignSnapshot; items: Item[]; viewerId: string | null; selectedId: string | null; onPick: (item: Item) => void;
-  onDragStart: (id: string) => void; onDragEnd: () => void; onDrop?: (id: string) => void; dragging?: boolean; empty?: string;
-}) {
-  const c = useCopy();
-  const [over, setOver] = useState(false);
-  const drop = onDrop ? {
-    onDragOver: (event: DragEvent) => { event.preventDefault(); event.dataTransfer.dropEffect = "move"; if (!over) setOver(true); },
-    onDragLeave: () => setOver(false),
-    onDrop: (event: DragEvent) => { event.preventDefault(); setOver(false); const id = event.dataTransfer.getData("text/plain"); if (id) onDrop(id); },
-  } : {};
-  return (
-    <div className={`${s.rows} ${over ? s.rowsOver : ""} ${dragging && onDrop ? s.rowsReady : ""}`} {...drop}>
-      {items.map((item) => <ItemRow key={item.id} view={view} item={item} viewerId={viewerId} pressed={item.id === selectedId} onPick={() => onPick(item)}
-        onDragStart={onDragStart} onDragEnd={onDragEnd} />)}
-      {!items.length && <p className={r.empty}>{empty ?? c("Здесь пока пусто.", "Nothing here yet.")}</p>}
-    </div>
-  );
-}
-
-function ItemRow({ view, item, viewerId, pressed, onPick, onDragStart, onDragEnd }: {
-  view: CampaignSnapshot; item: Item; viewerId: string | null; pressed: boolean; onPick: () => void; onDragStart: (id: string) => void; onDragEnd: () => void;
-}) {
-  const c = useCopy();
-  const rarity = itemRarity(item);
-  const image = useSubjectImage({ kind: "item", id: item.id });
-  const Glyph = CATEGORY_GLYPHS[categoryGlyphKey(item.category)];
-  const loan = viewerId ? loanMark(view, item, viewerId) : null;
-  const wearer = item.equipped_entity_id ? view.entities.find((row) => row.id === item.equipped_entity_id) ?? null : null;
-  const slot = wearer ? slotsFor(wearer, view.campaign.language).find((row) => row.id === item.equipped_slot)?.label ?? item.equipped_slot : null;
-  const state = loan ? (loan.kind === "out" ? c(`${loan.status === "lent" ? "отдано" : "в залоге"}: ${loan.name}`, `${loan.status}: ${loan.name}`) : c(`взято у: ${loan.name}`, `borrowed from ${loan.name}`))
-    : slot ? c(`надето: ${slot}`, `worn: ${slot}`) : null;
-  return (
-    <button type="button" data-item-pick="" className={`${s.row} ${rarity ? rarityClass[rarity] : ""}`} aria-pressed={pressed} title={item.name} onClick={onPick}
-      draggable onDragStart={(event) => { event.dataTransfer.setData("text/plain", item.id); event.dataTransfer.effectAllowed = "move"; onDragStart(item.id); }} onDragEnd={onDragEnd}>
-      <span className={s.rowArt}>{image.url || image.drawing ? <Art subject={{ kind: "item", id: item.id }} name={item.name} drawingLabel="…" /> : <Glyph size={18} aria-hidden="true" />}</span>
-      <span className={s.rowText}>
-        <span className={s.rowName}>{inventoryItemLabel(item.name)}</span>
-        <span className={s.rowMeta}>
-          {kindWord(item.category, c)}
-          {state && <span className={loan ? s.rowLoan : s.rowWorn}> · {state}</span>}
-        </span>
-      </span>
-      <span className={`${r.num} ${s.rowQty}`}>{item.quantity > 1 ? `×${item.quantity}` : ""}</span>
-    </button>
   );
 }
 
@@ -869,141 +715,4 @@ function SpellCard({ spell, book, castable, onCast, onPrepare }: { spell: SpellR
       </div>
     </div>
   );
-}
-
-// --- things ----------------------------------------------------------------------------------------------------
-/** A glyph for the kinds and the common category words records use; anything else gets the generic box. */
-const CATEGORY_GLYPHS: Record<string, LucideIcon> = {
-  weapon: Sword, armour: Shield, clothing: Shirt, jewelry: Gem, consumable: FlaskConical, tool: Wrench, ammunition: Target, key: KeyRound, gear: Backpack, other: Package,
-};
-const CATEGORY_WORDS: [RegExp, keyof typeof CATEGORY_GLYPHS][] = [
-  [/weapon|blade|firearm|gun/i, "weapon"],
-  [/armou?r|shield/i, "armour"],
-  [/cloth|wear/i, "clothing"],
-  [/jewel|accessor|ring|amulet/i, "jewelry"],
-  [/consum|potion|food|drink|ration|medic/i, "consumable"],
-  [/tool|kit|instrument/i, "tool"],
-  [/ammo|ammunition|round|arrow|bolt/i, "ammunition"],
-  [/quest|key|story|document|letter|evidence/i, "key"],
-  [/gear|pack|equipment|supply|travel/i, "gear"],
-];
-export function categoryGlyphKey(category: string): string {
-  return CATEGORY_WORDS.find(([pattern]) => pattern.test(category))?.[1] ?? "other";
-}
-
-/** Until an item has a picture its tile shows the short name with a category glyph;
- * the plain box stays only for items without a name. */
-export function ItemCell({ item, pressed, onPick }: { item: Item; pressed: boolean; onPick: () => void }) {
-  const rarity = itemRarity(item);
-  const image = useSubjectImage({ kind: "item", id: item.id });
-  const name = inventoryItemLabel(item.name).trim();
-  const Glyph = CATEGORY_GLYPHS[categoryGlyphKey(item.category)];
-  return (
-    <button type="button" data-item-pick="" className={`${r.cell} ${rarity ? rarityClass[rarity] : ""}`} aria-pressed={pressed} aria-label={item.name} title={item.name} onClick={onPick}>
-      {image.url || image.drawing ? <Art subject={{ kind: "item", id: item.id }} name={item.name} className={s.cellArt} drawingLabel="…" />
-        : name ? (
-          <span className={s.cellText} aria-hidden="true">
-            <Glyph size={14} />
-            <span className={s.cellName}>{name}</span>
-          </span>
-        ) : <Package size={26} aria-hidden="true" />}
-      {item.quantity > 1 && <span className={r.qty}>{item.quantity}</span>}
-    </button>
-  );
-}
-
-type Picker = { kinds: string[]; reason: string; mode: "equip" | "kind" };
-/** The item card: what the thing is and does, and the owner's moves — «Надеть / Снять» (with the kind picker),
- * «Отдать → …» (a part of a stack by number), «Использовать» (a line for the next turn). It opens on a click and
- * closes on a second click, the ×, or Escape. */
-export function ItemCard({ item, view, viewerId, wearer, targets, readOnly = false, busy = false, picker, onClose, onRedraw, onUse, onEquip, onUnequip, onKind, onPickKind, onMove }: {
-  item: Item; view: CampaignSnapshot; viewerId: string | null; wearer: Entity | null;
-  targets: { key: string; label: string; target: MoveTarget }[]; readOnly?: boolean; busy?: boolean; picker: Picker | null;
-  onClose: () => void; onRedraw: () => void; onUse?: () => void; onEquip?: () => void; onUnequip?: () => void; onKind?: () => void;
-  onPickKind?: (kind: string) => void; onMove: (target: MoveTarget, quantity: number | null) => void;
-}) {
-  const c = useCopy();
-  const image = useSubjectImage({ kind: "item", id: item.id });
-  const [count, setCount] = useState("");
-  const quantity = item.quantity > 1 && count ? Math.max(1, Math.min(item.quantity, Math.round(Number(count)) || item.quantity)) : null;
-  const mechanics = itemMechanics(item);
-  const loan = viewerId ? loanMark(view, item, viewerId) : null;
-  const worn = item.equipped_entity_id ? view.entities.find((row) => row.id === item.equipped_entity_id) ?? null : null;
-  const slot = worn ? slotsFor(worn, view.campaign.language).find((row) => row.id === item.equipped_slot)?.label ?? item.equipped_slot : null;
-  const history = (item.detail?.history ?? []).slice(-3).reverse();
-  return (
-    <aside className={s.inspector} role="dialog" aria-label={item.name}>
-      <div className={`${r.parchment} ${s.inspectorBody}`}>
-        <div className={s.card}>
-          <div className={s.cardArt}><Art subject={{ kind: "item", id: item.id }} name={item.name} drawingLabel={c("рисуется…", "drawing…")} /></div>
-          <button type="button" className={r.btnGhost} onClick={onRedraw}>{image.url ? c("Перерисовать", "Redraw") : c("Нарисовать", "Draw")}</button>
-        </div>
-        <div className={s.card}>
-          <div className={s.cardTop}>
-            <span className={r.eyebrow}>{[kindWord(item.category, c), item.quantity > 1 ? c(`${item.quantity} шт.`, `×${item.quantity}`) : null,
-              worn && slot ? c(`надето: ${worn.name} — ${slot}`, `worn: ${worn.name} — ${slot}`) : null].filter(Boolean).join(" · ")}</span>
-            <button type="button" className={s.cardClose} aria-label={c("Закрыть", "Close")} onClick={onClose}><X size={18} aria-hidden="true" /></button>
-          </div>
-          <span className={r.parchmentTitle}>{inventoryItemLabel(item.name)}</span>
-          {loan && <span className={s.cardLoan}>{loan.kind === "out" ? c(`${loan.status === "lent" ? "Отдано на время" : "В залоге"}: ${loan.name}`, `${loan.status === "lent" ? "Lent" : "Pledged"} to ${loan.name}`) : c(`Взято у: ${loan.name}`, `Borrowed from ${loan.name}`)}</span>}
-          {item.description && <span className={r.parchmentText}>{item.description}</span>}
-          {item.mechanics && <span className={r.parchmentText} style={{ fontStyle: "italic" }}>{item.mechanics}</span>}
-          {(mechanics.bonuses.length > 0 || mechanics.hands === 2 || mechanics.attunement || mechanics.charges) && (
-            <div className={s.cardFacts}>
-              {mechanics.bonuses.map((bonus) => <span key={`${bonus.to}${bonus.value}`} className={s.fact}>{bonus.value >= 0 ? "+" : ""}{bonus.value} {bonus.to}</span>)}
-              {mechanics.hands === 2 && <span className={s.fact}>{c("двуручное", "two-handed")}</span>}
-              {mechanics.attunement && <span className={s.fact}>{c("настройка", "attunement")}</span>}
-              {mechanics.charges && <span className={s.fact}>{c("заряды", "charges")} <Pips left={mechanics.charges.value} max={mechanics.charges.max} label={c("Заряды", "Charges")} /></span>}
-            </div>
-          )}
-          {history.length > 0 && (
-            <ul className={s.history} aria-label={c("История вещи", "The thing's history")}>
-              {history.map((entry, index) => <li key={`${entry.at}-${index}`}>{historyWord(entry.event, c)}{entry.note ? `: ${entry.note}` : ""}</li>)}
-            </ul>
-          )}
-          {!readOnly && (
-            <div className={r.row}>
-              {item.equipped_entity_id ? <button type="button" className={r.btnGhost} disabled={busy} onClick={onUnequip}>{c("Снять", "Take off")}</button>
-                : wearer && onEquip && <button type="button" className={r.btnGhost} disabled={busy} onClick={onEquip}>{wearer.id === item.owner_entity_id || !item.owner_entity_id ? c("Надеть", "Wear") : c(`Надеть на: ${wearer.name}`, `Put on ${wearer.name}`)}</button>}
-              {onUse && <button type="button" className={r.btnGhost} onClick={onUse}>{c("Использовать", "Use")}</button>}
-              {onKind && <button type="button" className={s.parchmentLink} onClick={onKind}>{c("Вид вещи…", "Kind…")}</button>}
-            </div>
-          )}
-          {picker && onPickKind && (
-            <div className={s.picker} role="group" aria-label={c("Вид вещи", "Kind of thing")}>
-              {picker.reason && <span className={s.pickerNote}>{picker.reason}</span>}
-              <div className={r.chips}>
-                {picker.kinds.map((kind) => <button key={kind} type="button" className={r.chipButton} aria-pressed={kind === item.category} disabled={busy} onClick={() => onPickKind(kind)}>{kindLabel(kind, c.language)}</button>)}
-              </div>
-            </div>
-          )}
-          {targets.length > 0 && (
-            <div className={s.give}>
-              <span className={r.eyebrow}>{readOnly ? c("Забрать →", "Take →") : c("Отдать →", "Give →")}</span>
-              {item.quantity > 1 && !loan && (
-                <label className={s.giveCount}>
-                  <input type="number" min={1} max={item.quantity} step={1} value={count} placeholder={String(item.quantity)} aria-label={c("Сколько", "How many")}
-                    onChange={(event) => setCount(event.target.value)} />
-                  <span className={r.small}>{c(`из ${item.quantity}`, `of ${item.quantity}`)}</span>
-                </label>
-              )}
-              <div className={r.row}>
-                {targets.map((target) => <button key={target.key} type="button" className={r.btnGhost} disabled={busy} onClick={() => onMove(target.target, quantity)}>{target.label}</button>)}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    </aside>
-  );
-}
-function historyWord(event: string, c: Copy) {
-  const words: Record<string, [string, string]> = {
-    owner_moved: ["перенесено", "moved"], owner_equipped: ["надето", "worn"], owner_unequipped: ["снято", "taken off"], owner_kind: ["вид", "kind"],
-    created: ["появилось", "created"], transferred: ["передано", "handed over"], returned: ["вернулось", "returned"], lent: ["отдано на время", "lent"],
-    pledged: ["в залог", "pledged"], consumed: ["израсходовано", "used up"], lost: ["утрачено", "lost"], modified: ["изменено", "changed"],
-    merged: ["объединено", "merged"],
-  };
-  const word = words[event];
-  return word ? c(word[0], word[1]) : event;
 }

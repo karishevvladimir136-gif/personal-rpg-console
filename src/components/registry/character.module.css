@@ -59,7 +59,7 @@
   min-width: 0;
   align-content: start;
 }
-/* «Инвентарь»: the doll and everyone's lists side by side (item 55). */
+/* «Инвентарь»: the doll and one holder's cells side by side (item 55; fix S3-accept А1: one inventory at a time). */
 .gridInventory {
   display: grid;
   grid-template-columns: minmax(420px, 0.95fr) minmax(0, 1.6fr);
@@ -324,158 +324,108 @@
   text-align: center;
 }
 
-/* Everyone's lists (the inventory tab). */
-/* Masonry by columns: a long list does not push the short ones (a mount, the place) off the screen. */
-.lists {
-  column-width: 290px;
-  column-gap: 12px;
-  min-width: 0;
-}
-.holder {
-  display: grid;
-  gap: 8px;
-  min-width: 0;
-  break-inside: avoid;
-  margin-bottom: 12px;
-  padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: linear-gradient(180deg, var(--leather-2), var(--leather));
-}
-.holder .row {
-  min-height: 44px;
-  grid-template-columns: 34px minmax(0, 1fr) auto;
-}
-.holder .rowArt {
-  width: 34px;
-  height: 34px;
-}
-.holderActive {
-  border-color: var(--brass-dim);
-  box-shadow: inset 0 0 0 1px rgba(207, 168, 96, 0.25);
-}
-.holderPlace {
-  border-style: dashed;
-  background: linear-gradient(180deg, rgba(42, 31, 22, 0.7), rgba(22, 17, 13, 0.7));
-}
-.holderHead {
-  display: grid;
-  grid-template-columns: 40px minmax(0, 1fr) auto;
-  gap: 10px;
-  align-items: center;
-}
-.holderAvatar {
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 1px solid var(--line-strong);
-  background: #120d0a;
-  display: grid;
-  place-items: center;
-  color: var(--brass-dim);
-}
-button.holderAvatar:not(:disabled) {
-  cursor: pointer;
-}
-.holderAvatar > img,
-.holderAvatar > div[role="img"] {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.holderTitle {
-  display: grid;
-  min-width: 0;
-}
-.holderName {
-  font-family: var(--f-display);
-  font-size: 17px;
-  font-weight: 700;
-  line-height: 1.15;
-  overflow-wrap: anywhere;
-}
-.rows {
-  display: grid;
-  gap: 4px;
-  min-height: 52px;
+/* Fix S3-accept А1: one holder's things as cells («клеточкой как раньше»), the type filter on top. */
+.bag {
+  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
   border-radius: 6px;
-  align-content: start;
   transition: background 0.15s, outline-color 0.15s;
 }
-.rowsReady {
+.bagReady {
   outline: 1px dashed rgba(207, 168, 96, 0.4);
   outline-offset: 3px;
 }
-.rowsOver {
+.bagOver {
   background: rgba(207, 168, 96, 0.1);
   outline: 1px solid var(--brass);
   outline-offset: 3px;
 }
-.row {
-  display: grid;
-  grid-template-columns: 40px minmax(0, 1fr) auto;
-  gap: 10px;
-  align-items: center;
-  text-align: left;
-  min-height: 50px;
-  padding: 4px 10px 4px 4px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: rgba(18, 13, 10, 0.55);
-  color: var(--text);
-  cursor: grab;
+.bagPanel {
   min-width: 0;
 }
-.row:hover {
-  border-color: var(--line-strong);
+.bag > button {
+  cursor: grab;
 }
-.row[aria-pressed="true"] {
-  border-color: var(--brass-hi);
-  background: var(--leather-hi);
+/* A worn thing: a brass edge and a check in the corner; a lent or borrowed one: an amber mark. */
+.cellWorn {
+  box-shadow: inset 0 0 0 1px var(--brass);
 }
-.rowArt {
-  width: 40px;
-  height: 40px;
+.cellMarkWorn,
+.cellMarkLoan {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 18px;
+  height: 18px;
   display: grid;
   place-items: center;
-  border-radius: 5px;
-  overflow: hidden;
-  background: #120d0a;
-  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.75);
+  pointer-events: none;
+}
+.cellMarkWorn {
+  color: var(--brass-hi);
+  border: 1px solid var(--brass);
+}
+.cellMarkLoan {
+  color: var(--amber);
+  border: 1px solid var(--amber);
+}
+.filterEmpty {
+  opacity: 0.45;
+}
+.filterCount {
+  margin-left: 5px;
+  font-family: var(--f-mono);
+  font-size: 13px;
   color: var(--brass-dim);
 }
-.rowArt > img,
-.rowArt > div[role="img"] {
+.memberPlace {
+  display: grid;
+  place-items: center;
+  color: var(--brass-dim);
+  border-style: dashed;
+}
+/* А5: until the full figure is ready, the portrait sits at the top of the frame at its own size, never stretched. */
+.figureWait {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: 10px;
+  padding: 18px 12px 64px;
+}
+.figurePortrait {
+  width: min(78%, 220px);
+  aspect-ratio: 3 / 4;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  background: #120d0a;
+}
+.figurePortrait > img,
+.figurePortrait > div[role="img"] {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  font-size: 15px;
 }
-.rowText {
-  display: grid;
-  min-width: 0;
+.figureNote {
+  font-size: 14px;
+  color: var(--brass-dim);
+  text-align: center;
 }
-.rowName {
-  font-size: 14.5px;
-  line-height: 1.2;
-  overflow-wrap: anywhere;
+/* А2: the history folds under «История» at the foot of the card. */
+.historyFold {
+  border-top: 1px solid rgba(42, 31, 22, 0.25);
+  padding-top: 6px;
 }
-.rowMeta {
-  font-size: 13px;
-  line-height: 1.3;
-  color: var(--muted);
+.historyFold > summary {
+  cursor: pointer;
+  font-size: 14px;
+  color: #7a5d2e;
 }
-.rowLoan {
-  color: var(--amber);
-}
-.rowWorn {
-  color: var(--brass);
-}
-.rowQty {
-  font-size: 13px;
-  color: var(--brass);
+.historyFold > .history {
+  margin-top: 6px;
 }
 .ask {
   display: flex;
@@ -837,19 +787,8 @@ button.holderAvatar:not(:disabled) {
   .list {
     font-size: 16.5px;
   }
-  .row {
-    grid-template-columns: 48px minmax(0, 1fr) auto;
-    min-height: 58px;
-  }
-  .rowArt {
-    width: 48px;
-    height: 48px;
-  }
-  .rowName {
-    font-size: 16.5px;
-  }
-  .rowMeta {
-    font-size: 14.5px;
+  .bag {
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
   }
   .filters > button {
     min-height: 34px;
@@ -857,9 +796,6 @@ button.holderAvatar:not(:disabled) {
   }
   .linkButton {
     font-size: 15.5px;
-  }
-  .lists {
-    column-width: 360px;
   }
 }
 @media (max-width: 1500px) {
@@ -924,9 +860,8 @@ button.holderAvatar:not(:disabled) {
     text-transform: none;
     overflow-wrap: normal;
   }
-  .lists {
-    column-width: auto;
-    column-count: 1;
+  .bag {
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
   }
   /* Touch screens have no drag: the card's «Надеть» and «Отдать →» do the same. */
   .dollHint {
