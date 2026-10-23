@@ -80,7 +80,7 @@ export function PreviewPictures({ board, images, children }: { board: PictureBoa
 /** Asks for a frame of the streaming turn once its first paragraph is complete, a committed
  * frame when a saved turn has none, and the better re-render on a key moment. Once per turn
  * and trigger; the server owns the settings, the cap and the text. */
-function useLiveFrameTrigger(live: LiveTurnView | null, play: PlaySnapshot | null, pictures: PicturesState | null) {
+export function useLiveFrameTrigger(live: LiveTurnView | null, play: PlaySnapshot | null, pictures: PicturesState | null) {
   const asked = useRef(new Set<string>());
   useEffect(() => {
     if (!pictures || pictures.preview || !live || !pictures.loaded) return;
