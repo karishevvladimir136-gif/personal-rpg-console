@@ -168,6 +168,18 @@ function castingAbility(role: string | null | undefined): Ability | null {
   return null;
 }
 
+/** The class's proficient saves from the role's words, for a sheet that lists none (the SRD classes). */
+function classSaves(role: string | null | undefined): Ability[] | null {
+  const text = role ?? "";
+  const table: [RegExp, Ability[]][] = [
+    [/волшеб|wizard|друид|druid|(?:^|[^\p{L}])маг(?:[^\p{L}]|$)/iu, ["intelligence", "wisdom"]], [/изобретат|artificer/iu, ["constitution", "intelligence"]],
+    [/жрец|жриц|cleric|колдун|warlock|паладин|paladin/iu, ["wisdom", "charisma"]], [/бард|bard/iu, ["dexterity", "charisma"]],
+    [/чародей|sorcer/iu, ["constitution", "charisma"]], [/плут|вор(?![\p{L}])|rogue/iu, ["dexterity", "intelligence"]],
+    [/следопыт|ranger|монах|monk/iu, ["strength", "dexterity"]], [/воин|воительниц|боец|fighter|варвар|barbarian/iu, ["strength", "constitution"]],
+  ];
+  return table.find(([words]) => words.test(text))?.[1] ?? null;
+}
+
 /** Armour class, saves, attack and proficiency of one person by the 5e rules, every number with its breakdown. */
 export function deriveSheet5e(input: DeriveInput): DerivedSheet {
   const ru = lang(input.language) === "ru";
@@ -176,7 +188,10 @@ export function deriveSheet5e(input: DeriveInput): DerivedSheet {
   const scores = sheet?.attributes ?? null;
   const mod = (ability: Ability) => (scores && Number.isFinite(scores[ability]) ? abilityMod(scores[ability]) : null);
   const worn = input.items.filter((item) => item.equipped_entity_id === entity.id && item.quantity > 0);
-  const armour = worn.find((item) => item.category === "armor" && item.equipped_slot === "body") ?? null;
+  const body = worn.find((item) => item.category === "armor" && item.equipped_slot === "body") ?? null;
+  // «Armor» on the body that names no base and no known armour but a bonus to AC (a robe recorded as armour) is a worn
+  // thing with a bonus, not armour.
+  const armour = body && !armourBase(body) && wornBonuses(body).ac ? null : body;
   const shield = worn.find((item) => item.category === "shield") ?? null;
   const lasting = (entity.conditions ?? []).map(effectOf).filter((effect): effect is Effect => !!effect && !effect.fightOnly);
   const fightEffects = (input.fight ?? []).map(effectOf).filter((effect): effect is Effect => !!effect);
@@ -244,24 +259,29 @@ export function deriveSheet5e(input: DeriveInput): DerivedSheet {
     if (stored !== null) attack = { value: stored, text: ru ? `${signed(stored)} по листу` : `${signed(stored)} from the sheet` };
   }
 
-  // Saves: the six when the scores are known (a save the sheet names keeps its number), else the sheet's lines.
+  // Saves: the six when the scores are known — a save the sheet names keeps its number, the others are the modifier;
+  // a sheet with no save lines takes its class's proficient saves (a class the words do not name: no saves shown).
   const saveBonuses = (ability: Ability) => worn.filter(applies).flatMap((item) => bonusOf.get(item.id)!.saves.filter((row) => row.ability === null || row.ability === ability)
     .map((row) => ({ name: item.name, value: row.value })));
   const lines = (sheet && "saves" in sheet ? sheet.saves : undefined) ?? [];
+  const byClass = lines.length ? null : classSaves(sheet?.role);
   const saves: DerivedSave[] = [];
-  for (const ability of ABILITIES) {
+  const profText = (m: number, short: string) => `${short} ${signed(m)} ${signed(proficiency!.value)} ${ru ? "мастерство" : "proficiency"}`;
+  for (const ability of lines.length || byClass ? ABILITIES : []) {
     const line = lines.find((row) => abilityIn(row.replace(/спасбросок|спасброски|saving throw|save/giu, " ")) === ability) ?? null;
     const written = line ? /([+−-])\s*(\d{1,2})\s*$/u.exec(line.trim()) : null;
     const stated = written ? (written[1] === "+" ? 1 : -1) * Number(written[2]) : null;
     const m = mod(ability);
     if (stated === null && m === null) continue;
     const short = ABILITY[ability].short[ru ? 0 : 1];
-    const head = stated === null ? `${short} ${signed(m!)}`
-      : m !== null && proficiency && stated === m + proficiency.value ? `${short} ${signed(m)} ${signed(proficiency.value)} ${ru ? "мастерство" : "proficiency"}`
+    const trained = stated === null && !!byClass?.includes(ability) && !!proficiency;
+    const base = stated ?? m! + (trained ? proficiency!.value : 0);
+    const head = trained ? profText(m!, short) : stated === null ? `${short} ${signed(m!)}`
+      : m !== null && proficiency && stated === m + proficiency.value ? profText(m, short)
         : m !== null && stated === m ? `${short} ${signed(m)}` : `${ru ? "по листу" : "from the sheet"} ${signed(stated)}`;
     const extra = saveBonuses(ability);
     const label = line ? line.trim().replace(/\s*[+−-]\s*\d{1,2}\s*$/u, "") : ABILITY[ability][ru ? "ru" : "en"];
-    saves.push({ ability, label, value: (stated ?? m!) + extra.reduce((sum, row) => sum + row.value, 0), text: [head, ...extra.map((row) => `${signed(row.value)} ${row.name}`)].join(" ") });
+    saves.push({ ability, label, value: base + extra.reduce((sum, row) => sum + row.value, 0), text: [head, ...extra.map((row) => `${signed(row.value)} ${row.name}`)].join(" ") });
   }
   return { ac, saves, attack, proficiency };
 }

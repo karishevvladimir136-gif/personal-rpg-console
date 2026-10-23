@@ -240,7 +240,10 @@ export function sheetPlates(data: Pick<CampaignSnapshot, "items" | "settings" | 
     if (derived.ac) plates.push({ key: "ac", label: words.ac, value: derived.ac.value, text: derived.ac.text, translated: true });
     if (sheet.speed) plates.push({ key: "speed", label: "Speed", value: sheet.speed, text: null, translated: false });
     if (derived.attack) plates.push({ key: "attack", label: words.attack, value: signed(derived.attack.value), text: derived.attack.text, translated: true });
+    const skill = stats.find(([key]) => key === "skill")?.[1];
     if (derived.proficiency) plates.push({ key: "skill", label: words.skill, value: signed(derived.proficiency.value), text: derived.proficiency.text, translated: true });
+    // A sheet with no level keeps the record's own «Навык» number, said where it comes from.
+    else if (skill) plates.push({ key: "skill", label: words.skill, value: signed(skill), text: data.campaign.language === "ru" ? `${signed(skill)} по листу` : `${signed(skill)} from the sheet`, translated: true });
   } else {
     if (sheet.armorClass !== null) plates.push({ key: "armorClass", label: "Armor class", value: sheet.armorClass, text: null, translated: false });
     if (sheet.speed) plates.push({ key: "speed", label: "Speed", value: sheet.speed, text: null, translated: false });

@@ -42,6 +42,10 @@ test("Г3: robe on/off → AC 13/12 (the robe counts with no armour and no shiel
   // A bonus recorded on the item (detail.bonuses) counts once, not again from its words.
   const ring = item("Кольцо защиты", "jewelry", "ring_right", "+1 к КД и спасброскам", { bonuses: [{ to: "КД", value: 1 }, { to: "спасброски", value: 1 }] });
   assert.equal(ac(hero(), [robe(), ring]).value, 14);
+  // The robe as the DM may have recorded it: kind «armor», its bonus and condition in detail.bonuses — still a robe, not armour.
+  const asArmour = item("Мантия боевого мага", "armor", "body", "", { bonuses: [{ to: "КД (без доспехов и щита)", value: 1 }] });
+  assert.equal(ac(hero(), [asArmour]).value, 13);
+  assert.equal(ac(hero(), [asArmour, item("Щит", "shield", "offhand")]).value, 14, "with a shield: 10 + 2 + 2, the robe off");
 });
 
 test("Г3: Mage Armor active → 15; Shield +5 until the caster's next turn (a fight condition)", () => {
@@ -75,6 +79,15 @@ test("Г3: the ring's +1 to all saves — the six saves derived, each explained"
   const wis = deriveSheet5e({ entity: hero(), items: [amulet], language: "ru" }).saves;
   assert.equal(wis.find((save) => save.ability === "wisdom").value, 6);
   assert.equal(wis.find((save) => save.ability === "charisma").value, 0);
+  // A sheet of schema 1 lists no saves: the class's proficient ones (a wizard: INT, WIS) add the proficiency.
+  const early = hero({ character_sheet: { schemaVersion: 1, mode: "structured_rpg", role: "Волшебница", background: "", level: 5, tier: null,
+    attributes: sheet().attributes, skills: [], abilities: [], limitations: [], spells: [] } });
+  const byClass = Object.fromEntries(deriveSheet5e({ entity: early, items: [ring], language: "ru" }).saves.map((save) => [save.ability, [save.value, save.text]]));
+  assert.deepEqual(byClass.intelligence, [8, "Инт +4 +3 мастерство +1 Кольцо малой защиты"]);
+  assert.deepEqual(byClass.wisdom, [5, "Мдр +1 +3 мастерство +1 Кольцо малой защиты"]);
+  assert.deepEqual(byClass.dexterity, [3, "Лов +2 +1 Кольцо малой защиты"]);
+  const unknown = hero({ character_sheet: { ...early.character_sheet, role: "Странник" } });
+  assert.deepEqual(deriveSheet5e({ entity: unknown, items: [], language: "ru" }).saves, [], "a class the words do not name: no saves guessed");
 });
 
 test("Г3: a non-5e campaign keeps its stored number; a sheet without DEX keeps it in 5e too", () => {
@@ -142,6 +155,10 @@ test("Г1: in a 5e campaign the plates read «КД», «Атака», «Навы
     ["Навык", "+3", "+3 мастерство · уровень 5"],
     ["Spell dc", 15, null],
   ], "the house-profile «Защита», «Атака», «Навык» are not repeated; other stats stay");
+  // A sheet without a level (the bootstrap's) keeps the record's «Навык» and «Атака», said where they come from.
+  const levelless = hero({ stats: { attack: 7, defense: 12, skill: 3 }, character_sheet: sheet({ level: null }) });
+  assert.deepEqual(sheetPlates(data([levelless], []), levelless, [["attack", 7], ["defense", 12], ["skill", 3]]).map((plate) => [plate.label, plate.value, plate.text]),
+    [["КД", 12, "10 + Ловкость 2 = 12"], ["Speed", "30 футов", null], ["Атака", "+7", "+7 по листу"], ["Навык", "+3", "+3 по листу"]]);
   assert.deepEqual(sheetLabels5e("ru"), { ac: "КД", attack: "Атака", skill: "Навык", saves: "Спасброски" });
   assert.deepEqual(sheetLabels5e("en").ac, "AC");
   // A fighter's attack: the better of STR and DEX; a worn thing's own bonus to attacks counts (a weapon's «+5 к попаданию» is its whole to-hit).
