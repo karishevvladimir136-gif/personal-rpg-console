@@ -14,6 +14,7 @@ import {
   capRemaining,
   compositionForEntity,
   COMPOSITIONS,
+  fatePortraitPlan,
   framesOfTurn,
   maxReferencesFor,
   modelForTier,
@@ -514,6 +515,37 @@ export async function autopilotStep(campaignId: string, schedule: Schedule = det
   if (!picture) return { status: "cap" as const };
   schedule(() => runPictureJob(ctx, picture.id));
   return { status: "queued" as const, picture, label: next.name };
+}
+
+/** Fix S3-accept Е1: the portraits the chapter's «Судьбы» cards still need, in one batch — at the close (the digest) and
+ * when the closed chapter is shown — each person once, within the cap; drawn one after another after the response. One
+ * batch per campaign at a time, so the digest's batch and the card's ask never queue a person twice. */
+const fateBatches = new Set<string>();
+export async function queueFatePortraits(campaignId: string, value: unknown, schedule: Schedule = detached) {
+  if (!isRecord(value) || !isUuid(value.sessionId)) throw new PersistenceError("validation");
+  if (fateBatches.has(campaignId)) return { status: "busy" as const, queued: [] as PublicPicture[] };
+  fateBatches.add(campaignId);
+  try {
+    const ctx = await picturesContext(campaignId);
+    const [board, snapshot] = await Promise.all([boardOf(ctx), readCampaign(campaignId)]);
+    const ending = snapshot.sessions.find((row) => row.id === value.sessionId)?.ending;
+    const cards = ending && "cards" in ending && ending.form === "cards" ? ending.cards : [];
+    const plan = fatePortraitPlan(board, snapshot, cards);
+    const queued: PublicPicture[] = [];
+    let remaining = capRemaining(board);
+    for (const row of plan) {
+      if (remaining <= 0) break;
+      const picture = await queueAnchor(ctx, { ...board, today: { ...board.today, count: board.settings.dailyCap - remaining } }, snapshot, row.subject, "portrait", "autopilot", null);
+      if (!picture) break;
+      queued.push(picture);
+      remaining -= 1;
+    }
+    log("picture_fates_queued", { campaignId, sessionId: value.sessionId, cards: cards.length, queued: queued.length });
+    if (queued.length) schedule(async () => { for (const picture of queued) await runPictureJob(ctx, picture.id); });
+    return { status: queued.length ? "queued" as const : "idle" as const, queued };
+  } finally {
+    fateBatches.delete(campaignId);
+  }
 }
 
 /** After a style change: re-render the anchor set in the background, within the daily cap,

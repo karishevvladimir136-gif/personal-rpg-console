@@ -6,7 +6,9 @@ import { parsePictureBoard, type PictureBoard } from "../visual-frame/pictures.t
 export type PicturesAction =
   | "pictures.frame" | "pictures.anchor" | "pictures.autopilot" | "pictures.restyle" | "pictures.settings"
   | "pictures.style.save" | "pictures.style.activate" | "pictures.style.clear" | "pictures.hide"
-  | "pictures.profile.save" | "pictures.profile.draft";
+  | "pictures.profile.save" | "pictures.profile.draft"
+  /** Fix S3-accept Е1: the «Судьбы» cards' missing portraits, one batch. */
+  | "pictures.fates";
 export type PicturesTransport = {
   board: (campaignId: string) => Promise<PictureBoard>;
   send: (action: PicturesAction, campaignId: string, input: unknown) => Promise<unknown>;

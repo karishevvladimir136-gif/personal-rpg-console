@@ -311,7 +311,8 @@ test("E wiring: the session close shows «Что было» or the cards with po
   const view = src("src/components/registry/session-end.tsx");
   assert.match(view, /c\("Что было", "What happened"\)/);
   assert.match(view, /c\("Судьбы", "Fates"\)/);
-  assert.match(view, /anchorFor\(pictures\.board, \{ kind: "entity", id: entityId \}, "portrait"\)/);
+  // Fix S3-accept Е1: the portrait «Люди» shows (an anchor or an earlier picture), through the shared resolver.
+  assert.match(view, /<Art subject=\{\{ kind: "entity", id: entityId \}\} name=\{card\.name\}/);
   assert.match(view, /c\("Открытые нити", "Open threads"\)/);
   assert.match(view, /ending\?\.channel \? ` · \$\{ending\.channel\}` : ""/);
   assert.match(src("src/lib/server/session-digest.ts"), /const shape = sessionShape\(rows\);/);

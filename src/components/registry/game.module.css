@@ -734,6 +734,27 @@ div.sceneImage {
   font-family: var(--f-display);
   font-size: 28px;
 }
+/* Fix S3-accept Е1: the portrait is a button («Перерисовать»); the picture fills it. */
+.endingPortraitButton {
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  cursor: pointer;
+}
+.endingPortraitButton:hover {
+  border-color: var(--brass);
+}
+.endingPortraitButton > img,
+.endingPortraitButton > div[role="img"] {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 4px;
+  box-sizing: border-box;
+}
+.endingPortraitButton > img {
+  padding: 0;
+}
 .endingText {
   display: grid;
   gap: 4px;

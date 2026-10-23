@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { BookOpen, Moon, RotateCcw, Sparkles } from "lucide-react";
+import { BookOpen, Moon, RotateCcw, Sparkles, X } from "lucide-react";
 import { useCampaignData } from "../persistence-context";
 import { useSessionMemory } from "../session-memory-runtime";
 import { notifyGameplayChanged } from "../gameplay-runtime";
@@ -10,10 +10,11 @@ import { continueSession, endSession, memoryErrorMessage } from "@/lib/memory/cl
 import { readJson } from "@/lib/persistence/client";
 import { createBackoffPoll } from "@/lib/ui/backoff-poll";
 import { journalOf, questsOf } from "@/lib/ui/campaign-view";
-import { anchorFor } from "@/lib/visual-frame/pictures";
+import { fateEntityId, fatePortraitPlan } from "@/lib/visual-frame/pictures";
 import type { SessionEnding } from "@/lib/persistence/contracts";
 import { usePictures } from "./live-frames";
-import { registry as r, useCopy } from "./primitives";
+import { Art, registry as r, useCopy } from "./primitives";
+import { RedrawAnchor } from "./redraw-anchor";
 import g from "./game.module.css";
 
 // «Закончить сессию» (polish item 11): closes the session, shows the Stage 4
@@ -45,6 +46,19 @@ export function SessionEnd({ sessionId, compact = false }: { sessionId: string |
   const closed = session?.status === "closed" || (!!boundary && boundary.state !== "continued");
   const digested = !!session?.recap.trim();
   const polling = closed && !digested;
+  // Fix S3-accept Е1: «Судьбы» show each person's portrait; the people without one are drawn in one batch — the digest
+  // asks at the close, and a chapter shown without them (closed before, or the batch met the cap) asks once more here.
+  const [redrawId, setRedrawId] = useState<string | null>(null);
+  const shownEnding = endingOf(session?.ending);
+  const fateCards = shownEnding?.form === "cards" ? shownEnding.cards : [];
+  const fatesDue = !compact && digested && !!data && !!pictures && pictures.loaded && !pictures.preview && fatePortraitPlan(pictures.board, data, fateCards).length > 0;
+  const fatesAsked = useRef<string | null>(null);
+  const sendPictures = pictures?.send;
+  useEffect(() => {
+    if (!fatesDue || !sessionId || !sendPictures || fatesAsked.current === sessionId) return;
+    fatesAsked.current = sessionId;
+    void sendPictures("pictures.fates", { sessionId }).catch(() => {});
+  }, [fatesDue, sessionId, sendPictures]);
   // While the digest runs, ask the server where it stands and refresh the records when it lands.
   // Fix run A3/A4 (item 81): only the full card asks (the compact button beside the composer never polls),
   // from 3 s growing to 15 s, never overlapping, and it stops once the digest is done or failed.
@@ -144,11 +158,7 @@ export function SessionEnd({ sessionId, compact = false }: { sessionId: string |
   const failed = status?.state === "failed" || status?.state === "skipped";
   const ending = endingOf(session.ending);
   const threads = ending?.threads.length ? ending.threads : null;
-  const portrait = (entityId: string | null) => {
-    if (!entityId || !pictures) return null;
-    const picture = anchorFor(pictures.board, { kind: "entity", id: entityId }, "portrait").picture;
-    return picture ? pictures.urlFor(picture) : null;
-  };
+  const redrawName = redrawId ? data.entities.find((row) => row.id === redrawId)?.name ?? "" : "";
   return (
     <section className={g.sessionEnd} aria-label={c("Итог сессии", "Session summary")}>
       {!digested && !failed && (
@@ -188,11 +198,17 @@ export function SessionEnd({ sessionId, compact = false }: { sessionId: string |
               <span className={r.eyebrow}>{c("Судьбы", "Fates")}</span>
               <ul className={g.endingCards}>
                 {ending.cards.map((card, index) => {
-                  const url = portrait(card.entityId);
+                  // The portrait «Люди» shows (an anchor or an earlier picture); «рисуется…» while the batch draws it;
+                  // a click opens «Перерисовать». A group (nobody on record) keeps its initial.
+                  const entityId = fateEntityId(card, data.entities);
                   return (
                     <li key={`${card.entityId ?? card.name}-${index}`} className={g.endingCard}>
-                      {/* eslint-disable-next-line @next/next/no-img-element -- a private signed picture, as in the frames */}
-                      {url ? <img src={url} alt="" className={g.endingPortrait} /> : <span className={g.endingPortrait} aria-hidden="true">{card.name.slice(0, 1)}</span>}
+                      {entityId ? (
+                        <button type="button" className={`${g.endingPortrait} ${g.endingPortraitButton}`} title={c("Перерисовать портрет", "Redraw the portrait")}
+                          aria-label={c(`${card.name}: перерисовать портрет`, `${card.name}: redraw the portrait`)} onClick={() => setRedrawId(entityId)}>
+                          <Art subject={{ kind: "entity", id: entityId }} name={card.name} position="center 25%" drawingLabel={c("рисуется…", "drawing…")} />
+                        </button>
+                      ) : <span className={g.endingPortrait} aria-hidden="true">{card.name.slice(0, 1)}</span>}
                       <div className={g.endingText}>
                         <strong>{card.name}</strong>
                         {card.where && <span className={r.note}>{card.where}</span>}
@@ -239,6 +255,18 @@ export function SessionEnd({ sessionId, compact = false }: { sessionId: string |
         )}
       </div>
       {error && <p role="alert" className={r.error}>{error}</p>}
+      {redrawId && (
+        <>
+          <button type="button" className={r.drawerScrim} aria-label={c("Закрыть", "Close")} onClick={() => setRedrawId(null)} />
+          <aside className={r.drawer} role="dialog" aria-modal="true" aria-label={c("Перерисовать", "Redraw")}>
+            <div className={r.panelHead}>
+              <h2 className={r.h2}>{c("Перерисовать", "Redraw")}</h2>
+              <button type="button" className={r.iconBtn} aria-label={c("Закрыть", "Close")} onClick={() => setRedrawId(null)}><X size={20} aria-hidden="true" /></button>
+            </div>
+            <RedrawAnchor data={data} subject={{ kind: "entity", id: redrawId }} name={redrawName} />
+          </aside>
+        </>
+      )}
     </section>
   );
 }
