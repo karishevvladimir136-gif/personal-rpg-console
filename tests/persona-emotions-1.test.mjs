@@ -228,4 +228,14 @@ test("a real conversation: the assistant's replies from an export, the markers b
   assert.ok(byTime.after.addressPer100 > byTime.before.addressPer100);
   assert.deepEqual(transcriptMarkers(lines, "Decide as you think best"), byTime);
   assert.throws(() => transcriptMarkers(lines, "a phrase that is not there"), /not found/);
+  // A claude.ai export is one line of JSON: the split still falls at the turn that holds the phrase.
+  const oneLine = JSON.stringify([{ name: "synthetic", chat_messages: [
+    { sender: "human", created_at: "2026-10-20T10:00:00Z", text: "Plan the import." },
+    { sender: "assistant", created_at: "2026-10-20T10:01:00Z", text: "Perhaps we could maybe try it." },
+    { sender: "human", created_at: "2026-10-21T09:00:00Z", text: "Decide as you think best." },
+    { sender: "assistant", created_at: "2026-10-21T09:01:00Z", content: [{ type: "text", text: "Do this: your import first." }] },
+  ] }]);
+  const split = transcriptMarkers(oneLine, "Decide as you think best");
+  assert.deepEqual([split.before.replies, split.after.replies], [1, 1]);
+  assert.deepEqual(transcriptMarkers(oneLine, "2026-10-21T00:00:00Z"), split);
 });

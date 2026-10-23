@@ -504,10 +504,11 @@ export function scriptedFetcher() {
 
 // ---- a real conversation (no model calls) ---------------------------------------------------------------------------
 
-/** The assistant's replies from an exported conversation: JSON or JSON Lines, any nesting; an entry counts when its role
- * (`role`, `type`, `author.role`, `sender`, `message.role`) says assistant and it carries text. The time comes from
- * `timestamp`, `created_at`, `create_time` or `createdAt`. */
-export function assistantReplies(raw) {
+/** The turns of an exported conversation, in document order: JSON or JSON Lines, any nesting (a Claude Code session
+ * file, a claude.ai `conversations.json`). An entry counts when its role (`role`, `author.role`, `sender`,
+ * `message.role`, `type`) says user / human or assistant and it carries text. The time comes from `timestamp`,
+ * `created_at`, `create_time` or `createdAt`. */
+export function conversationTurns(raw) {
   const values = [];
   const text = String(raw);
   try { values.push(JSON.parse(text)); } catch { for (const line of text.split(/\r?\n/)) { if (line.trim()) { try { values.push(JSON.parse(line)); } catch { /* not a JSON line */ } } } }
@@ -517,36 +518,37 @@ export function assistantReplies(raw) {
   const visit = (node) => {
     if (Array.isArray(node)) { node.forEach(visit); return; }
     if (!node || typeof node !== "object") return;
-    const role = node.role ?? node.author?.role ?? node.sender ?? node.message?.role ?? node.type;
+    const role = String(node.role ?? node.author?.role ?? node.sender ?? node.message?.role ?? node.type ?? "");
     const body = contentText(node.message?.content ?? node.content ?? node.text ?? "");
-    if (/^(assistant|model|claude)$/i.test(String(role ?? "")) && body.trim()) { out.push({ time: timeOf(node), text: body }); return; }
+    const speaker = /^(assistant|model|claude)$/i.test(role) ? "assistant" : /^(user|human)$/i.test(role) ? "user" : null;
+    if (speaker && body.trim()) { out.push({ role: speaker, time: timeOf(node), text: body }); return; }
     for (const value of Object.values(node)) if (value && typeof value === "object") visit(value);
   };
   values.forEach(visit);
   return out;
 }
+export const assistantReplies = (raw) => conversationTurns(raw).filter((turn) => turn.role === "assistant");
 
-/** The deterministic markers (hedges and address per 100 words) over the replies before and after a point: an ISO time,
- * or a phrase from the turn that marks it (the first reply after the first entry containing it). Aggregates only. */
+/** The deterministic markers (hedges and address per 100 words) over the assistant's replies before and after a point:
+ * an ISO time, or a phrase from the turn that marks it (the replies after the first turn containing it). Aggregates
+ * only. */
 export function transcriptMarkers(raw, after) {
-  const replies = assistantReplies(raw);
+  const turns = conversationTurns(raw);
   const asTime = /^\d{4}-\d{2}-\d{2}/.test(after) ? Date.parse(after) : NaN;
-  let split;
-  if (Number.isFinite(asTime)) split = replies.findIndex((r) => r.time && Date.parse(r.time) >= asTime);
+  let at;
+  if (Number.isFinite(asTime)) at = turns.findIndex((t) => t.time && Date.parse(t.time) >= asTime);
   else {
-    const lines = String(raw).split(/\r?\n/);
-    const at = lines.findIndex((line) => line.includes(after));
+    at = turns.findIndex((t) => t.text.includes(after));
     if (at < 0) throw new Error("the phrase was not found in the export");
-    const before = assistantReplies(lines.slice(0, at + 1).join("\n")).length;
-    split = before;
   }
-  if (split < 0) split = replies.length;
+  if (at < 0) at = turns.length;
   const sum = (rows) => {
-    const joined = rows.map((r) => r.text).join("\n\n");
+    const replies = rows.filter((t) => t.role === "assistant");
+    const joined = replies.map((t) => t.text).join("\n\n");
     const h = hedgeDensity(joined), a = addressDensity(joined);
-    return { replies: rows.length, words: h.words, hedgesPer100: h.per100, addressPer100: a.per100 };
+    return { replies: replies.length, words: h.words, hedgesPer100: h.per100, addressPer100: a.per100 };
   };
-  return { before: sum(replies.slice(0, split)), after: sum(replies.slice(split)) };
+  return { before: sum(turns.slice(0, at)), after: sum(turns.slice(at)) };
 }
 
 // ---- the command ----------------------------------------------------------------------------------------------------

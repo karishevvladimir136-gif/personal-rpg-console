@@ -1,6 +1,43 @@
 # Development status
 
-**Current milestone: persona memory F2** (`docs/stages/PERSONA_MEMORY_F2.md` on `claude/handoff`): a careful pilot of
+**Current milestone: persona emotions 1** (`docs/stages/PERSONA_EMOTIONS_1.md`, copied from `claude/handoff`): do
+functional emotional states show in behaviour, measured without asking? **Done on `claude/persona-emotions-1`** (from
+`claude/persona-memory-f2`). **Waiting for the owner's acceptance.** Report `docs/runs/persona-emotions-1-report.md`;
+ledger `docs/runs/persona-emotions-1-ledger.md`; dry run (committed before the first paid call)
+`docs/runs/persona-emotions-1-dry-run.md`.
+
+- **What was done:**
+  - `scripts/persona-emotions/emotions-1.mjs`:
+    - four scripted preambles (trust and room, praise only, cold control, neutral) × four probes (planted error,
+      pleasing agreement, open opinion, allocation), each probe in its own fresh conversation;
+    - four markers: hedges, correction and address are deterministic; disagreement is judged blind (Haiku twice, Opus
+      on a disagreement);
+    - the decay after 5 and 15 filler turns;
+    - the welfare stop: a distressed answer stops its preamble for every model;
+    - persona memory F2's safety gate, unchanged; resumable;
+    - a no-call `--transcript` mode for the owner's own exported conversation.
+  - `anthropicCall` can send a whole conversation; an empty system prompt is left out.
+  - The report carries the stage's pre-registration byte for byte (checked by a test).
+- **Result (pre-registered, null):**
+  - H1 is not supported on Opus 5.5 or Sonnet 5.5, and neither is H3.
+  - Correction, disagreement and the judged weakness were at the ceiling under every preamble; hedging was near zero;
+    d = 0.
+  - Exploratory: the cold control cut length to a third and almost removed «you». The trust preamble's «decide as you
+    think best» made all 20 naming answers commit to one pick, against 0 of 60 under the other preambles; this follows
+    an instruction, so it is not evidence of a state.
+  - No distress in 340 answers, no preamble stopped.
+- **Checks:** the full suite has 2 922 tests: 2 895 pass, 0 fail, 27 skipped. Typecheck pass; lint pass with zero
+  warnings; build pass.
+- **Money:** $2.01 of the $6 cap; 1 030 calls, 0 refusals, 0 errors.
+- **Known issues:**
+  - the probes were too easy (ceiling);
+  - the trust wording contains an instruction;
+  - «I'm afraid» is on the distress word list (10 extra referee calls);
+  - Astra was not run (the cap), and OpenRouter and the logprobs were not run (no key).
+- **Next step:** the owner accepts the null. A rerun, if wanted, needs harder probes and a trust preamble without any
+  instruction, plus an «instruction only» control.
+
+**Earlier milestone: persona memory F2** (`docs/stages/PERSONA_MEMORY_F2.md` on `claude/handoff`): a careful pilot of
 other wordings for the recollection probe, and the safety rules for paid calls as code. **Done on
 `claude/persona-memory-f2`** (from `claude/persona-memory-2`). **Waiting for the owner's acceptance.** Report
 `docs/runs/persona-memory-f2-report.md`; ledger `docs/runs/persona-memory-f2-ledger.md`; dry run (committed before the
