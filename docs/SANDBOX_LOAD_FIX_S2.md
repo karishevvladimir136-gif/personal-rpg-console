@@ -50,7 +50,7 @@ log is `.sandbox/build.log`) and runs `next start` on :3100 — no dev server du
 problem). Later starts without code changes: `--prod --no-build`. The candidate adds migrations in **five ranges**, all
 additive, none edited, no number used twice: the fix run `202610200071`–`202610200084` and `202610200096`, 2D Live
 `202610210200`–`202610210201`, the music stage `202610210301`, the fixes before session 3 `202610210401`–`202610210403`,
-the fixes from the acceptance pass `202610230501`, `202610230511`, `202610230521`, `202610230541`.
+the fixes from the acceptance pass `202610230501`, `202610230511`, `202610230521`, `202610230541`, `202610230551`.
 They apply in name order with the others:
 
 | Migration | What |
@@ -80,6 +80,7 @@ They apply in name order with the others:
 | 0511 `fix_s3_accept_spells` | the sheet's check admits a spell's id, school and history; the picture kind «spell» (a spell drawn like a thing). No row changes. The spells themselves are converted on the first open of «Персонаж», see 6b |
 | 0521 `fix_s3_accept_ring` | **changes a record**: a ring whose description says «у куклы пока нет слота для колец» loses that phrase and is put on its owner's «Кольцо (правая)» (the left ring slot if the right one is taken; it stays in the bag if both are taken, or if it is worn, lent, pledged, lost, or would be a fourth attuned thing). A new revision with two history lines («поправка перед сессией 3…», «надето: … — Кольцо (правая)»), so the DM reads it as the owner's move |
 | 0541 `fix_s3_accept_region_prep` | the region prep's storage: new columns on the region map (old maps read as before), a table of the prep's versions, two new actions of the 2D function. No row changes |
+| 0551 `fix_s3_accept_adventure_wishes` | «Пожелания к приключению»: the DM-only store admits a campaign's wishes beside «Тайны»; the DM's source carries them to the hidden-layer prep only. No row changes |
 
 Check: the app opens at http://127.0.0.1:3100/campaigns, and `.sandbox/app.log` has no error.
 
@@ -156,6 +157,8 @@ Nothing to run by hand; each happens once, off the turn, and play continues if i
   hidden part in the DM's private notes, then paints from it (one picture) and checks the markers. Later redraws reuse the
   prep: a new picture, the same geography.
 - **«Судьбы».** Opening the closed chapter once draws the portraits its cards lack, in one batch under the daily limit.
+- **«Пожелания к приключению».** Empty until you write them (Настройки, beside «Тайны»; or in the new-campaign wizard's
+  «Во что играем?»). Saving them on the settings rebuilds the hidden layer once, as «Тайны» do (≈$0.45).
 - **Companions' dolls.** The picture autopilot draws each companion's full-length figure after the portrait, under the
   daily limit («Настройки → Картинки → Фигуры героя и спутников в полный рост»).
 

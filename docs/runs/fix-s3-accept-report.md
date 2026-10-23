@@ -25,9 +25,12 @@ and the full suite on the merged candidate was green before any change (2 845 te
   portraits); a type filter; «Надеть» and «Использовать» only where they apply; history folded; your ring worn on
   «Кольцо (правая)»; companions get full-length figures on their dolls.
 - **«Судьбы».** Portraits instead of initials; the missing ones drawn in one batch.
+- **«Пожелания к приключению»** (added to the stage on 22.10 20:10): a second field beside «Тайны», only for the DM, any
+  length — what you want the adventure to be. The DM's hidden-layer prep builds on it; you will not see it in play.
 - **Manual setup:** none beyond the sandbox load (`docs/SANDBOX_LOAD_FIX_S2.md`, now five migration ranges). Two
   migrations change a record of yours: `202610230501` (the counter's name «Клык шамана») and `202610230521` (the ring).
-  Step 7 of the load is now your 6–8-turn test campaign on the production build, as you decided.
+  Step 7 of the load is now your 6–8-turn test campaign on the production build, as you decided. Six migrations in
+  all (`202610230501`, `…511`, `…521`, `…541`, `…551`), all additive.
 
 ## Money
 
@@ -180,6 +183,24 @@ and the full suite on the merged candidate was green before any change (2 845 te
   ones are queued as one batch after the digest is written, and once when a closed chapter is shown with portraits
   missing (`pictures.fates`); a click opens «Перерисовать».
 - Test: «Е1: «Судьбы» cards show the portrait from «Люди»…».
+
+## Ж — the owner's wishes for the adventure
+
+### Ж1 «Пожелания к приключению»
+- Migration `202610230551` (additive): the DM-only store of «Тайны» admits a campaign's `wishes`; `rpg_dm_secrets` reads
+  and saves them as `campaign_wishes` (owner-only, revisions, the store's 20 000 limit — free length); the DM's source
+  carries them as `dmSecrets.wishes`, server-only like «Тайны».
+- Only the hidden-layer prep reads them (`buildPrepRequest`, `ownerWishesText`): «a wish to build the hidden layer
+  toward, not an established fact; never quote it to the player». A turn's context does not carry them; the player's
+  snapshot and play never do. The rebuild's instructions name them beside «Тайны».
+- The settings: a separate block «Пожелания к приключению (видит только ведущий)» under «Тайны» (five rows, free length);
+  saving a changed text rebuilds the layer once, as «Тайны» do. «Тайны» keep their one-line steer.
+- The wizard: the same field on «Во что играем?», saved to the DM-only store (never into the adventure's text, which the
+  player's screens show) with `rebuild: false` — the campaign has no opening yet; its first prep reads the wishes.
+- Tests (`tests/fix-s3-accept-zh.test.mjs`): «Ж1: the prep's input contains «Пожелания к приключению»; the player's
+  snapshot never does» (PGlite: stored apart from «Тайны», owner-only, conflicts, the 20 000 bound; the source, the prep
+  request and its rebuild carry it; a turn's context, the player's snapshot, play and records do not), «Ж1: the field
+  beside «Тайны» on the settings and in the wizard…». The older «KF-hidden-layer» test follows the new `rebuild` guard.
 
 ## How it was done
 
