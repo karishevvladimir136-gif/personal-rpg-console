@@ -88,6 +88,13 @@ Order is by what breaks play, then what the owner will look at most. All of it i
 - **Е1 portraits on the «Судьбы» cards** instead of initials: people with a portrait in «Люди» use it; the rest are drawn
   in one batch at chapter close within the cap, «Перерисовать» on click.
 
+## Ж — added 2026-10-22 20:10 (owner's new-campaign brief needs room)
+- **Ж1 «Пожелания к приключению»** — a second owner-only field beside «Тайны» on the campaign settings and in the
+  new-campaign wizard: free length, a wish about the adventure (genre, tone, what should happen), never the truth
+  itself; it feeds the hidden-layer prep together with «Тайны» and the world; never reaches a player-visible payload.
+  «Тайны» keeps its one-line steer. Migration additive. Test: the prep's input contains the field; the player's
+  snapshot never does.
+
 ## Done when
 Probes green, suite green, the report lists each item with its test and the money; the owner reloads the sandbox by
 `docs/SANDBOX_LOAD_FIX_S2.md` and plays the 6–8-turn prose check before session 3.
