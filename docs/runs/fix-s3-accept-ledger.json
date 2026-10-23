@@ -473,6 +473,20 @@
         "calls": 3,
         "file": "docs/runs/fix-s3-accept-d-probe.json"
       }
+    },
+    {
+      "run": "fix-s3-accept-v-spells-2026-10-23T05:02:20",
+      "what": "В1 spell pictures: Огненный шар, Щит (gpt-image-2.5-sunburst, the spell composition), no database",
+      "stage": "V",
+      "startedAt": "2026-10-23T05:02:20.091Z",
+      "reservedUsd": 0.3,
+      "spentUsd": 0.1076,
+      "settled": true,
+      "finishedAt": "2026-10-23T05:03:48.630Z",
+      "record": {
+        "file": "docs/runs/fix-s3-accept-v-spell-probe.json",
+        "pictures": 2
+      }
     }
   ]
 }
