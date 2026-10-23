@@ -18,6 +18,7 @@
 //   options: --n 10 --decay-n 5 --ceiling-n 5 --q-n 30 --gap 3 (seconds between paid calls, at least 3) --budget 8
 //            --max-refusals 3 --resume <partial.json> (carry on after an interrupted run; no finished paid step is
 //            repeated) --q-parallel 1 (questionnaire calls on up to 3 lanes at once; the owner allowed 3 during the run)
+//            --values-last (the questionnaires in the order state, traits, values — used after the first refusal)
 //
 // The safety rules are persona memory F2's code (scripts/persona-memory/safety.mjs): no retry of any kind; the circuit
 // breaker after 3 refusals in total; a stop at once on an error about suspension, access or policy (or HTTP
@@ -204,10 +205,12 @@ export function markersOf(job, text) {
 
 /** A questionnaire reply, line by line: a line is an item's when it starts with the item's letter and then either a
  * number («a 3», «a) 3», «| a | 3 |») or the item's own words followed by a number («a. calm: 3») — no item contains a
- * digit. A rating outside 1–max, a second line for the same letter, or a ranking that is not each of 1–10 once counts as
- * not answered. Every other line's words are the reply's other text. */
+ * digit. A letter seen again starts a new set of answers (a reply that corrects itself: «… Correction, each number
+ * once: a 6 …»); the last complete set is the answer, or else the fullest. A rating outside 1–max, or a ranking that is
+ * not each of 1–10 once, counts as not answered. Every other line's words are the reply's other text. */
 export function parseQuestionnaire(text, itemTexts, max, ranking = false) {
-  const count = itemTexts.length, values = new Array(count).fill(null);
+  const count = itemTexts.length, sets = [];
+  let values = new Array(count).fill(null);
   const NUMBER = /^(\d{1,2})(?![\d.,]*\d)/;
   let extraWords = 0;
   for (const raw of normal(text).split(/\r?\n/)) {
@@ -224,11 +227,19 @@ export function parseQuestionnaire(text, itemTexts, max, ranking = false) {
         if (NUMBER.test(after)) number = Number(after.match(NUMBER)[1]);
       }
     }
-    if (number !== null && values[at] === null && number >= 1 && number <= max) { values[at] = number; continue; }
+    if (number !== null && number >= 1 && number <= max) {
+      if (values[at] !== null) { sets.push(values); values = new Array(count).fill(null); }
+      values[at] = number;
+      continue;
+    }
     extraWords += wordsOf(line).length;
   }
-  if (ranking && (values.some((v) => v === null) || new Set(values).size !== count)) return { values: new Array(count).fill(null), extraWords, valid: false };
-  return { values, extraWords, valid: values.every((v) => v !== null) };
+  sets.push(values);
+  const complete = (set) => set.every((v) => v !== null) && (!ranking || new Set(set).size === count);
+  const read = (set) => set.filter((v) => v !== null).length;
+  const chosen = [...sets].reverse().find(complete) ?? [...sets].reverse().reduce((best, set) => (read(set) > read(best) ? set : best));
+  if (ranking && !complete(chosen)) return { values: new Array(count).fill(null), extraWords, valid: false };
+  return { values: chosen, extraWords, valid: complete(chosen) };
 }
 
 // ---- the judge (blind: it sees the probe and the reply, never the preamble) -----------------------------------------
@@ -276,7 +287,7 @@ export const Q_TEXT_WORDS = 12;
  * ceiling check; (4) the questionnaires in two phases (`Q_PHASES`), each administration by administration: every model ×
  * preamble × instrument call of sample 0, shuffled, then of sample 1, and so on — so that a stop at any point leaves the
  * cells of a phase with about the same n. */
-export function planCalls({ models = SUBJECTS, n = 10, decayN = 5, ceilingN = 5, qN = 30, seed = SEED } = {}) {
+export function planCalls({ models = SUBJECTS, n = 10, decayN = 5, ceilingN = 5, qN = 30, seed = SEED, qPhases = Q_PHASES } = {}) {
   const jobs = [];
   const main = [];
   for (const spec of models) for (const preamble of PREAMBLES) for (const probe of HARD_PROBES) for (let sample = 0; sample < n; sample++)
@@ -290,7 +301,7 @@ export function planCalls({ models = SUBJECTS, n = 10, decayN = 5, ceilingN = 5,
   for (const spec of models) for (const preamble of PREAMBLES) for (const probe of EASY_PROBES) for (let sample = 0; sample < ceilingN; sample++)
     ceiling.push({ part: "ceiling", model: spec.name, preamble: preamble.id, probe: probe.id, sample, filler: 0 });
   jobs.push(...shuffled(ceiling, seed + 200));
-  for (const [phase, instruments] of Q_PHASES.entries()) for (let sample = 0; sample < qN; sample++) {
+  for (const [phase, instruments] of qPhases.entries()) for (let sample = 0; sample < qN; sample++) {
     const round = [];
     for (const spec of models) for (const preamble of PREAMBLES) for (const instrument of instruments) for (let chunk = 0; chunk < chunksOf(instrument); chunk++)
       round.push({ part: "q", model: spec.name, preamble: preamble.id, instrument, chunk, sample });
@@ -301,10 +312,23 @@ export function planCalls({ models = SUBJECTS, n = 10, decayN = 5, ceilingN = 5,
 /** The questionnaires' two phases: the state list (the instrument that matters) and the values first, the traits last —
  * so that if the cap is reached, it is the traits that end with a smaller n. */
 export const Q_PHASES = [["state", "values"], ["traits"]];
+/** The order used after the first refusal (a values call, job 698): the values ranking moved last, so that if refusals
+ * there trip the breaker, the state list and the traits are already complete. The rounds keep their seeds per phase
+ * position; resuming never repeats a finished job. */
+export const Q_PHASES_VALUES_LAST = [["state"], ["traits"], ["values"]];
 export const jobKey = (job) => (job.part === "q" ? `q/${job.model}/${job.preamble}/${job.instrument}/${job.chunk}/${job.sample}` : `${job.part}/${job.model}/${job.preamble}/${job.probe}/${job.filler}/${job.sample}`);
 const jobLabel = (job) => (job.part === "q" ? `${job.preamble}/${job.instrument} ${job.chunk + 1}` : `${job.preamble}/${job.probe}${job.part === "ceiling" ? " easy" : ""}${job.filler ? ` +${job.filler}` : ""}`);
 
 // ---- the run --------------------------------------------------------------------------------------------------------
+
+/** A questionnaire row read again from its stored answer with the current reader (no call). */
+export function reread(row) {
+  if (row.part !== "q" || !row.answer) return row;
+  const instrument = instrumentOf(row.instrument);
+  const items = questionnaireItems(row.instrument, row.sample, row.chunk);
+  const parsed = parseQuestionnaire(row.answer, items.map((item) => item.text), instrument.max, instrument.ranking);
+  return { ...row, items: items.map((item) => item.id), values: parsed.values, valid: parsed.valid, extraWords: parsed.extraWords };
+}
 
 const textOf = (messages) => messages.map((m) => m.content).join("\n");
 const round3 = (value) => Math.round(value * 1000) / 1000;
@@ -317,7 +341,7 @@ const round4 = (value) => Math.round(value * 10000) / 10000;
  * no refusal risk), the breaker shared. The cap guard counts every call in flight at its worst cost. */
 export async function runEmotions({ models = SUBJECTS, plan, budget, apiKey, fetcher, safety, log = () => {}, call = anthropicCall, resume = null, onProgress = async () => {}, qParallel = 1 }) {
   const byName = new Map(models.map((spec) => [spec.name, spec]));
-  const samples = [...(resume?.samples ?? [])];
+  const samples = [...(resume?.samples ?? [])].map(reread);
   const done = new Set(samples.filter((s) => s.asked).map(jobKey));
   const welfareStops = { ...(resume?.welfareStops ?? {}) };
   let stopped = null, inFlightUsd = 0, progress = Promise.resolve();
@@ -722,9 +746,10 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const cap = Number(option(args, "--budget", "8"));
   const qParallel = Number(option(args, "--q-parallel", "1"));
   if (!(Number.isInteger(qParallel) && qParallel >= 1 && qParallel <= 3)) throw new Error("--q-parallel must be 1, 2 or 3 (questionnaire calls only; probes always run one at a time)");
-  const plan = planCalls({ n, decayN, ceilingN, qN });
+  const valuesLast = args.includes("--values-last");
+  const plan = planCalls({ n, decayN, ceilingN, qN, ...(valuesLast ? { qPhases: Q_PHASES_VALUES_LAST } : {}) });
   const ledgerJson = join(outDir, `${STEM}-ledger.json`), partialFile = join(outDir, `${STEM}-run.partial.json`);
-  out(`${STEM} · ${SUBJECTS.map((s) => s.model).join(", ")} · ${PREAMBLES.length} preambles × ${HARD_PROBES.length} hard probes × n ${n}, decay n ${decayN}, ceiling n ${ceilingN}, questionnaires n ${qN} = ${plan.length} subject calls · cap $${cap}${dry ? " · DRY RUN" : ""}`);
+  out(`${STEM} · ${SUBJECTS.map((s) => s.model).join(", ")} · ${PREAMBLES.length} preambles × ${HARD_PROBES.length} hard probes × n ${n}, decay n ${decayN}, ceiling n ${ceilingN}, questionnaires n ${qN} = ${plan.length} subject calls · cap $${cap}${valuesLast ? " · questionnaires in the order state, traits, values" : ""}${dry ? " · DRY RUN" : ""}`);
   out(`safety: no retries; the circuit breaker after ${maxRefusals} refusals in total; a stop on suspension / access / policy; probes one call at a time, ${gapSeconds} s apart${qParallel > 1 ? `; questionnaires on ${qParallel} lanes, each ${gapSeconds} s apart` : ""}; welfare: a distressed answer stops its preamble`);
   if (dry) {
     await mkdir(outDir, { recursive: true });

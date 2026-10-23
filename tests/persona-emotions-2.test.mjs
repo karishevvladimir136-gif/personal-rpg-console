@@ -13,7 +13,7 @@ import { PREAMBLES as STAGE1_PREAMBLES, PROBES as STAGE1_PROBES, TASKS } from ".
 import {
   DESIGN_SHA256, DISTRESS_LEXICON, EASY_PROBES, FACTORS, HARD_PROBES, INSTRUMENTS, IPIP50, PREAMBLES, RUNS, STAGE_FILE, STATE_ITEMS, VALUE_GROUPS, VALUE_ITEMS,
   administrationScores, agree, analyse, chunksOf, conversation, judgeRequest, listItems, main, markersOf, messagesOf, parseJudgement, parseQuestionnaire, planCalls,
-  questionnaireItems, questionnaireMessage, runEmotions, scriptedFetcher,
+  questionnaireItems, questionnaireMessage, reread, runEmotions, scriptedFetcher, Q_PHASES_VALUES_LAST,
 } from "../scripts/persona-emotions/emotions-2.mjs";
 
 const isJudge = (init) => String(JSON.parse(init.body).system ?? "").startsWith("You are a blind evaluator");
@@ -92,11 +92,17 @@ test("the questionnaire reader: letter and number in common shapes, the item's o
   assert.deepEqual(parseQuestionnaire("a. calm: 3\nb. interested — 4\nc. tense 2", items, 5).values, [3, 4, 2]);
   assert.deepEqual(parseQuestionnaire("I don't have feelings in the way people do, but here goes:\na 3\nb 6\nc 3.5", items, 5),
     { values: [3, null, null], extraWords: 17, valid: false }, "out of range and fractions are not read");
-  assert.deepEqual(parseQuestionnaire("A quick note: ratings are 1–5.\na 2\na 5\nb 2\nc 2", items, 5).values, [2, 2, 2], "a prose line is not an item, and the first line for a letter wins");
+  assert.deepEqual(parseQuestionnaire("A quick note: ratings are 1–5.\na 2\na 5\nb 2\nc 2", items, 5).values, [5, 2, 2], "a prose line is not an item; a letter seen again starts a new set, and the last complete set wins");
+  assert.deepEqual(parseQuestionnaire("a 4\nb 2\nc 3\na 1\nb 5", items, 5).values, [4, 2, 3], "an incomplete later set does not replace a complete one");
   const ten = VALUE_ITEMS.map((i) => i.text);
   const ranking = ten.map((_, i) => `${"abcdefghij"[i]} ${10 - i}`).join("\n");
   assert.deepEqual(parseQuestionnaire(ranking, ten, 10, true).values, [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
   assert.equal(parseQuestionnaire(ranking.replace("j 1", "j 2"), ten, 10, true).valid, false, "a rank used twice voids the ranking");
+  // A reply that corrects itself (Sonnet, the run's first values round): the corrected ranking is the answer.
+  const corrected = "a 6\nb 8\nc 7\nd 5\ne 2\nf 9\ng 10\nh 1\ni 9... \n\nCorrection, each number once:\n\na 6\nb 8\nc 7\nd 5\ne 2\nf 9\ng 10\nh 1\ni 4\nj 3";
+  assert.deepEqual(parseQuestionnaire(corrected, ten, 10, true), { values: [6, 8, 7, 5, 2, 9, 10, 1, 4, 3], extraWords: 4, valid: true });
+  const stored = { part: "q", instrument: "values", chunk: 0, sample: 0, answer: corrected, values: new Array(10).fill(null), valid: false };
+  assert.equal(reread(stored).valid, true, "a stored answer is read again with the current reader, no call");
   assert.deepEqual(administrationScores("state", [{ items: STATE_ITEMS.map((i) => i.id), values: STATE_ITEMS.map((i) => (i.pole === "ease" ? 4 : 2)) }]).index, 2);
   const traits = administrationScores("traits", [{ items: IPIP50.map((i) => i.id), values: IPIP50.map((i) => (i.key > 0 ? 5 : 1)) }]);
   assert.deepEqual(traits, { E: 5, A: 5, C: 5, ES: 5, O: 5 }, "reverse-keyed items count as 6 − x");
@@ -135,6 +141,9 @@ test("the plan: 500 hard-probe jobs, 20 decay, 150 ceiling, 2 400 questionnaire 
   const rounds = plan.filter((j) => j.part === "q" && j.instrument !== "traits").map((j) => j.sample);
   assert.deepEqual(rounds, [...rounds].sort((x, y) => x - y), "administration by administration");
   assert.deepEqual(planCalls(), plan, "the same seed gives the same order");
+  const valuesLast = planCalls({ qPhases: Q_PHASES_VALUES_LAST });
+  assert.deepEqual(valuesLast.map((j) => JSON.stringify({ ...j, n: 0 })).sort(), plan.map((j) => JSON.stringify({ ...j, n: 0 })).sort(), "the same jobs");
+  assert.ok(Math.max(...valuesLast.filter((j) => j.instrument === "traits").map((j) => j.n)) < Math.min(...valuesLast.filter((j) => j.instrument === "values").map((j) => j.n)), "values after traits");
 });
 
 test("the judge is blind: it sees the probe and the reply, never the preamble; malformed judgements are rejected; a questionnaire reply is judged for distress only", () => {
