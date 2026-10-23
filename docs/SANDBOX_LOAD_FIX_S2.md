@@ -48,7 +48,7 @@ node scripts/sandbox-start.mjs --prod
 log is `.sandbox/build.log`) and runs `next start` on :3100 — no dev server during play (session 2's memory and latency
 problem). Later starts without code changes: `--prod --no-build`. The candidate adds migrations in **four ranges**, all
 additive, none edited, no number used twice: the fix run `202610200071`–`202610200084` and `202610200096`, 2D Live
-`202610210200`–`202610210201`, the music stage `202610210301`, the fixes before session 3 `202610210401`–`202610210403`; persona memory 1 adds `202610230101`.
+`202610210200`–`202610210201`, the music stage `202610210301`, the fixes before session 3 `202610210401`–`202610210403`; persona memory 1 adds `202610230101`, persona memory 2 `202610230102`.
 They apply in name order with the others:
 
 | Migration | What |
@@ -75,6 +75,7 @@ They apply in name order with the others:
 | 0402 `fix_s3_pre_show_dc` | **changes a setting**: every campaign stored with «Показывать сложность (DC)» off gets it on, in a new settings revision (the history keeps the old one, as a save from the screen would); new campaigns start with it on. Nothing else in the settings changes |
 | 0403 `fix_s3_pre_gallery_turns` | the gallery's own read over every committed game turn (a new owner-only function; `/play` untouched) |
 | 0101 (`202610230101`) `persona_memory` | persona memory 1 (`docs/PERSONA_MEMORY.md`): a separate schema `persona_memory` for the planner's memory store (episodes, notes, the self-dossier, facts, folds, an embeddings cache) and the RPC `persona_memory`, service_role only. Nothing in the game reads or writes it; empty until the owner points the memory server at this database |
+| 0102 (`202610230102`) `persona_clock` | persona memory 2: the memory's clock — `persona_memory.timers` and the append-only `persona_memory.calibration` (predicted vs actual; a row is never updated or deleted), and a second RPC `persona_clock`, service_role only. Additive; `persona_memory` itself is unchanged |
 
 Check: the app opens at http://127.0.0.1:3100/campaigns, and `.sandbox/app.log` has no error.
 

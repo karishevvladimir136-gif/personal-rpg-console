@@ -249,7 +249,7 @@ test("files: the store is plain files the owner can read — one JSON per episod
 test("postgres: the migration keeps the invariants itself — immutable originals, append-only notes and folds, provenance checks, service_role only", async () => {
   const { store, owner } = await postgres();
   const memory = createPersonaMemory({ store, now: clockAt("2026-10-23T09:00:00Z").fn });
-  assert.ok(pg.files.includes(MIGRATION) && pg.files.at(-1) === MIGRATION);
+  assert.ok(pg.files.includes(MIGRATION) && pg.files.indexOf(MIGRATION) === pg.files.indexOf("202610230102_persona_clock.sql") - 1, "the clock's migration follows");
   const { episode } = await memory.remember(entry());
   await assert.rejects(pg.query("update persona_memory.episodes set lines=$2::jsonb where id=$1", [episode.id, JSON.stringify([{ text: "Rewritten.", author: "self", tag: "observed" }])]), /persona_immutable/);
   await assert.rejects(pg.query("update persona_memory.episodes set salience=5 where id=$1", [episode.id]), /persona_immutable/);

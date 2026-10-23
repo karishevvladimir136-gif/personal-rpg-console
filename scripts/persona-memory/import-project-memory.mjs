@@ -41,7 +41,7 @@ export async function run(args, env = process.env, out = (text) => process.stdou
   if (!args.includes("--write")) { out("\nDry run: nothing was written. Add --write to write it."); return { plan, summary: null }; }
   const { memory, where } = await memoryFromEnv(env);
   const summary = await applyImport(memory, plan);
-  out(`\nWritten to ${where}: episodes ${summary.episodes.written} (skipped ${summary.episodes.skipped}), dossier lines ${summary.dossier.written} (skipped ${summary.dossier.skipped}), facts ${summary.facts.written} (skipped ${summary.facts.skipped}).`);
+  out(`\nWritten to ${where}: episodes ${summary.episodes.written} (skipped ${summary.episodes.skipped}), dossier lines ${summary.dossier.written} (skipped ${summary.dossier.skipped}), facts ${summary.facts.written} (skipped ${summary.facts.skipped}), calibration rows ${summary.calibration.written} (skipped ${summary.calibration.skipped}).`);
   for (const error of summary.errors) out(`NOT WRITTEN ${error}`);
   return { plan, summary };
 }

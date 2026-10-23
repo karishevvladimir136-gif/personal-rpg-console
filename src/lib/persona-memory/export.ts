@@ -1,8 +1,10 @@
 // Persona memory 1: the whole store as markdown — the owner can always read (and keep) everything the persona
-// remembers, with the provenance of every line, the validity of every entry, the folds and the closed lines.
+// remembers, with the provenance of every line, the validity of every entry, the folds and the closed lines — and
+// (persona memory 2) the calibration table with the running timers.
+import { calibrationMarkdown, type CalibrationRow, type Timer } from "./clock.ts";
 import { DOSSIER_SECTIONS, DOSSIER_SECTION_TITLES, editedByHand, type DossierLine, type Episode, type Fact, type Fold, type Line, type Quote } from "./schema.ts";
 
-export type ExportedStore = { files: Record<string, string>; text: string; counts: { episodes: number; dossier: number; facts: number; folds: number } };
+export type ExportedStore = { files: Record<string, string>; text: string; counts: { episodes: number; dossier: number; facts: number; folds: number; calibration: number; timers: number } };
 
 const when = (instant: string) => instant.replace("T", " ").replace(/:\d{2}\.\d{3}Z$/, "").replace(/ 00:00$/, "");
 const tagged = (line: Line) => `[${line.tag} · ${line.author}] ${line.text.replace(/\n+/g, " ⏎ ")}`;
@@ -34,7 +36,8 @@ export function dossierMarkdown(lines: DossierLine[]): string {
   return out.join("\n").trimEnd();
 }
 
-export function exportMarkdown(input: { episodes: Episode[]; dossier: DossierLine[]; facts: Fact[]; folds: Fold[]; at: string; unreadable?: string[] }): ExportedStore {
+export function exportMarkdown(input: { episodes: Episode[]; dossier: DossierLine[]; facts: Fact[]; folds: Fold[]; at: string; unreadable?: string[];
+  timers?: Timer[]; calibration?: CalibrationRow[]; timeZone?: string }): ExportedStore {
   const episodes = [...input.episodes].sort((a, b) => a.validFrom.localeCompare(b.validFrom));
   const foldsById = new Map(input.folds.map((fold) => [fold.id, fold]));
   const months = new Map<string, Episode[]>();
@@ -47,12 +50,15 @@ export function exportMarkdown(input: { episodes: Episode[]; dossier: DossierLin
   files["folds.md"] = ["# Folds", "", "A fold condenses episodes into summary lines; the episodes themselves are kept, marked «folded into».", "",
     ...(input.folds.length ? input.folds.map((fold) => [`## \`${fold.id}\` — ${when(fold.range.from ?? fold.recordedAt)} → ${when(fold.range.to ?? fold.recordedAt)} (recorded ${when(fold.recordedAt)})`, "",
       ...fold.summary.map((line) => `- ${tagged(line)}`), "", `Episodes: ${fold.episodeIds.map((id) => `\`${id}\``).join(", ")}${fold.cues.length ? ` · cues: ${fold.cues.join(", ")}` : ""}`, ""].join("\n")) : ["(none)"])].join("\n").trimEnd();
-  const counts = { episodes: episodes.length, dossier: input.dossier.length, facts: input.facts.length, folds: input.folds.length };
-  files["README.md"] = ["# Persona memory — export", "", `Exported ${when(input.at)}. Episodes ${counts.episodes}, dossier lines ${counts.dossier}, facts ${counts.facts}, folds ${counts.folds}.`, "",
+  const timers = input.timers ?? [], calibration = input.calibration ?? [];
+  files["calibration.md"] = calibrationMarkdown(calibration, input.timeZone ?? "UTC", timers.filter((timer) => timer.finishedAt === null));
+  const counts = { episodes: episodes.length, dossier: input.dossier.length, facts: input.facts.length, folds: input.folds.length, calibration: calibration.length, timers: timers.length };
+  files["README.md"] = ["# Persona memory — export", "", `Exported ${when(input.at)}. Episodes ${counts.episodes}, dossier lines ${counts.dossier}, facts ${counts.facts}, folds ${counts.folds}, calibration rows ${counts.calibration}, timers ${counts.timers}.`, "",
     "Every line carries its provenance: `[tag · author]` — tag `stated` (the owner's own words), `observed`, `inferred`; author `self` (the persona at the moment), `background` (a script or a background pass), `owner`.",
     "Entries are never rewritten: a later re-reading is a dated note; a closed entry or line keeps its text with the dates it was valid.",
     ...(input.unreadable?.length ? ["", `Files the store could not read (edited by hand into invalid JSON?): ${input.unreadable.join(", ")}`] : []),
-    "", "Files: `dossier.md`, `journal/<month>.md`, `facts.md`, `folds.md`."].join("\n");
-  const order = ["README.md", "dossier.md", ...[...months.keys()].map((month) => `journal/${month}.md`), "facts.md", "folds.md"];
+    "The calibration table (`calibration.md`) holds every timed estimate, predicted vs actual; no tool edits or removes a row.",
+    "", "Files: `dossier.md`, `journal/<month>.md`, `facts.md`, `folds.md`, `calibration.md`."].join("\n");
+  const order = ["README.md", "dossier.md", ...[...months.keys()].map((month) => `journal/${month}.md`), "facts.md", "folds.md", "calibration.md"];
   return { files, text: order.map((name) => files[name]).join("\n\n---\n\n"), counts };
 }

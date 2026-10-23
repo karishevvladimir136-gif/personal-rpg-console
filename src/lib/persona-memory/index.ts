@@ -4,6 +4,7 @@ export * from "./text.ts";
 export * from "./embed.ts";
 export * from "./export.ts";
 export * from "./memory.ts";
+export * from "./clock.ts";
 export type { PersonaStore } from "./store.ts";
 export { filesStore, parseDossierFile, renderDossierFile } from "./files-store.ts";
-export { postgresStore, sqlRpc, type PersonaRpc } from "./postgres-store.ts";
+export { postgresStore, rpcFunction, sqlRpc, type PersonaRpc } from "./postgres-store.ts";

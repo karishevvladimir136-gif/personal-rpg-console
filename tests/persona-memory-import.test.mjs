@@ -61,12 +61,13 @@ test("the script: a dry run prints the plan and writes nothing; --write writes; 
   assert.equal(dry.summary, null);
   assert.ok(printed.join("\n").includes("Dry run: nothing was written"));
   assert.ok(printed.join("\n").includes("EPISODE 2026-10-05 00:00 «The lantern ledger starts» salience 4"));
+  assert.ok(printed.join("\n").includes("CALIBRATION [observed · background] «The tile cache rewrite»: predicted 2 h, took 5 h 30 min"));
   assert.deepEqual(await readdir(dir), [], "the dry run did not touch the store");
 
   const written = await run(["--from", FIXTURE, "--write"], env, () => {});
-  assert.deepEqual(written.summary, { episodes: { written: 4, skipped: 0 }, dossier: { written: 4, skipped: 0 }, facts: { written: 5, skipped: 0 }, errors: [] });
+  assert.deepEqual(written.summary, { episodes: { written: 4, skipped: 0 }, dossier: { written: 4, skipped: 0 }, facts: { written: 5, skipped: 0 }, calibration: { written: 2, skipped: 0 }, errors: [] });
   const again = await run(["--from", FIXTURE, "--write"], env, () => {});
-  assert.deepEqual(again.summary, { episodes: { written: 0, skipped: 4 }, dossier: { written: 0, skipped: 4 }, facts: { written: 0, skipped: 5 }, errors: [] });
+  assert.deepEqual(again.summary, { episodes: { written: 0, skipped: 4 }, dossier: { written: 0, skipped: 4 }, facts: { written: 0, skipped: 5 }, calibration: { written: 0, skipped: 2 }, errors: [] });
 
   const memory = createPersonaMemory({ store: filesStore(dir) });
   const episodes = await memory.journalLatest(10);

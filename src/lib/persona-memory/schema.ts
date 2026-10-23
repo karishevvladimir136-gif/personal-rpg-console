@@ -119,8 +119,8 @@ export const validAt = (item: { validFrom: string; validTo: string | null }, at:
 
 const stamp = (instant: string) => instant.slice(0, 16).replace(/[-:]/g, "").replace("T", "_");
 export const newEpisodeId = (validFrom: string) => `ep_${stamp(validFrom)}_${randomBytes(3).toString("hex")}`;
-export const newId = (prefix: "fold" | "dl" | "fact", at: string) => `${prefix}_${stamp(at)}_${randomBytes(3).toString("hex")}`;
-export const ID_PATTERN = /^(ep|fold|dl|fact)_[a-z0-9_]{6,80}$/;
+export const newId = (prefix: "fold" | "dl" | "fact" | "tm" | "cal", at: string) => `${prefix}_${stamp(at)}_${randomBytes(3).toString("hex")}`;
+export const ID_PATTERN = /^(ep|fold|dl|fact|tm|cal)_[a-z0-9_]{6,80}$/;
 
 // ---- lines and provenance -------------------------------------------------------------------------------------------
 

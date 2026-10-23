@@ -4,8 +4,8 @@ A memory for the Claude that plans this project with you in the claude.ai Projec
 you keep by hand in the Project. This tool turns them into a small store that Claude itself reads and writes, through a
 **memory server**. You can read and edit the whole store at any time.
 
-Stage task: `docs/stages/PERSONA_MEMORY_1.md` (on `claude/handoff`). The report and its money:
-`docs/runs/persona-memory-1-report.md`.
+Stage tasks: `docs/stages/PERSONA_MEMORY_1.md` and `PERSONA_MEMORY_2.md` (on `claude/handoff`). The reports and their
+money: `docs/runs/persona-memory-1-report.md`, `docs/runs/persona-memory-2-report.md`.
 
 ## What it keeps
 
@@ -15,6 +15,8 @@ Stage task: `docs/stages/PERSONA_MEMORY_1.md` (on `claude/handoff`). The report 
 | **Self-dossier** | Who Claude is in this project: standing rules, its lean, how it speaks with you, what it is good and bad at, running references. | Claude, rarely. To change a line it replaces it; the old line is closed and kept, not deleted. |
 | **Facts** | The project facts, as in your area files now. | A newer fact with the same name closes the older one. |
 | **Folds** | A record that some old routine entries were condensed into a summary line. | Only on an explicit request. The original entries stay, marked "folded". A fold never touches the dossier. |
+| **Timers** | A task Claude is timing: its name, when it started, and Claude's estimate of when it will be done. | Claude starts and finishes them. A finished timer is closed, not deleted. |
+| **The calibration table** | One row per finished timer: what Claude predicted against what it really took. | Only the clock. No tool edits or removes a row, so a missed estimate stays on record. You can still edit the file by hand; the row then shows «edited by hand». |
 
 **Every line shows where it came from:** `[tag · author]`.
 - The tag says what kind of line it is: `stated` (your own words), `observed` (what happened) or `inferred` (Claude's reading).
@@ -33,6 +35,8 @@ You can open it with any editor:
 - `dossier.md` — the dossier
 - `facts.json` — the facts
 - `folds\` — the folds
+- `timers.json` — the timers
+- `calibration.jsonl` — the calibration table, one row per line
 
 To back it up, copy the folder. To put it somewhere else, set `PERSONA_MEMORY_DIR`. The folder is outside the
 repository, so nothing in it can reach git.
@@ -47,7 +51,10 @@ Claude Code starts the server itself. Register it once, in a terminal:
 claude mcp add persona-memory -s user -e PERSONA_MEMORY_DIR="C:\Users\<you>\persona-memory" -- node "C:\path\to\personal-rpg-console\scripts\persona-memory\server.mjs" --stdio
 ```
 
-Then `/mcp` in Claude Code should list `persona-memory` with eight tools.
+Then `/mcp` in Claude Code should list `persona-memory` with thirteen tools.
+
+Add `-e PERSONA_MEMORY_TIMEZONE=Europe/Moscow` (your own zone) so the clock shows your time; without it, it uses the
+computer's zone.
 
 ### For the claude.ai Project (custom connector)
 
@@ -61,7 +68,10 @@ below) and a secret token.
    ```
    PERSONA_MEMORY_TOKEN=<the token>
    PERSONA_MEMORY_DIR=C:\Users\<you>\persona-memory
+   PERSONA_MEMORY_TIMEZONE=Europe/Moscow
    ```
+   `PERSONA_MEMORY_TIMEZONE` is your own time zone (an IANA name). On a hosted server set it always: a server's own
+   zone is usually UTC.
 3. Start the server: `node --env-file=.env.persona scripts/persona-memory/server.mjs --http`. It prints
    `http listening on http://127.0.0.1:8787/mcp`.
    - It refuses to start without a token of 24 or more characters.
@@ -84,7 +94,7 @@ journal is empty.
 
 When a client connects, the server sends these instructions:
 
-- Begin every session by reading the latest journal entry and the dossier.
+- Begin every session by reading the time (`persona_now`), the latest journal entry and the dossier.
 - Write an episode at every milestone, not only at the end.
 - Never rewrite an entry; add a note instead.
 - Recall before guessing.
@@ -92,8 +102,10 @@ When a client connects, the server sends these instructions:
 - Keep the journal a working notebook, not a bond.
 - Never present an inference as your words.
 - Note it plainly if you start handing it the same kind of decision again and again.
+- Before estimating any duration, read the calibration table.
+- When starting a tracked task, start a timer with the estimate; when it reports, finish the timer.
 
-## The eight tools
+## The tools
 
 | Tool | What it does |
 | --- | --- |
@@ -104,7 +116,40 @@ When a client connects, the server sends these instructions:
 | `persona_note` | Adds a dated note to an entry; can close the entry. |
 | `persona_dossier_append` | Adds or replaces dossier lines. |
 | `persona_fold` | Condenses a date range (or listed entries) into summary lines Claude writes. By range it takes only entries of salience 3 or less; the originals stay. |
-| `persona_export` | The whole store as readable markdown, every line with its tag. You can ask Claude in the chat to show it. |
+| `persona_export` | The whole store as readable markdown, every line with its tag, the calibration table included. You can ask Claude in the chat to show it. |
+| `persona_now` | The time now, in ISO and on your clock with your zone, and how long since the last entry, when the last session was, which timers are running. Claude calls it at the start of a session. |
+| `persona_timer_start` | Starts timing a task with Claude's estimate: a duration («2 h», «90 min»), a time on your clock («18:30») or a date-time. |
+| `persona_timer_check` | How long a timer has run against its estimate, in plain words: «1 h 22 min elapsed; prediction not yet due». |
+| `persona_timer_finish` | Finishes a timer and writes «predicted vs actual» into the calibration table. Refused for a timer that was never started. |
+| `persona_calibration_read` | The calibration table: every timed estimate, how far off it was, and a summary («median 1.4× the estimate; 6 of 7 ran over»). |
+
+## The clock and the calibration table
+
+Claude has no sense of how long things take: inside a chat it cannot see the clock running. The clock gives it one.
+
+- **`persona_now`** answers with the time on your clock and the context, for example:
+  ```
+  Now: Friday 2026-10-23 09:05 (UTC+03:00) — the owner's zone Europe/Moscow · …
+  Last journal entry: «The day-first dates», Wednesday 2026-10-21 19:40 (UTC+03:00) — 1 day 13 h ago.
+  Last session: Wednesday 2026-10-21 19:40 (UTC+03:00) → 22:10 (UTC+03:00) (2 h 30 min, 3 writes); it ended 1 day 10 h ago.
+  No timer is running.
+  Calibration: 3 timed estimates: median actual ÷ predicted 2.50×; 2 ran over, 1 under, 0 on time; …
+  ```
+  A «session» is read from the store's own write times: writes less than three hours apart are one session.
+- **Timers.** When Claude starts a task worth timing, it starts a timer with its estimate. When the task is done (or
+  fails, or is dropped), it finishes the timer, with the real end time if that was earlier. Durations are counted on the
+  real clock, so a time zone or a summer-time change never bends them.
+- **The calibration table.** Every finished timer adds one row: the estimate, what it really took, how far off, the
+  ratio. The row is tagged `observed`: the clock measured it, Claude did not type it. Nothing in the tools can change or
+  remove a row; in Postgres the database itself refuses it. You see it in `persona_export` (`calibration.md`).
+- Before Claude estimates any duration, the instructions tell it to read the table, so an estimate that ran 2.5× long
+  last time is in front of it the next time.
+
+**Seeding from your notes.** The import (below) adds a row only where your own notes give both the estimate and what it
+took, for example «The tile cache rewrite: predicted 2 h, took 5 h 30 min» or «прогноз 40 мин, вышло 1 ч 50 мин». A
+general remark («my estimates run about a third short») stays a fact and adds no row. The research log's measured
+durations (session 2's 8.8 hours, for example) have no recorded estimate, so they add no row: the table starts empty
+unless your notes supply pairs.
 
 ## Importing your current memory files
 
@@ -122,6 +167,7 @@ You run this yourself, on your own export. Nothing of yours goes into git.
      the text.
    - A quote without «— he» / «— он» after it is not taken as your words.
    - A section without a date is listed as a warning and skipped.
+   - Lines marked `CALIBRATION` are estimate-and-actual pairs from your notes; they go into the calibration table.
 4. Write it: the same command with `--write` at the end. Running it again later skips everything already imported.
 
 ## The continuity test
@@ -158,7 +204,8 @@ result as a measurement, not a verdict.
 ## Where the store can live
 
 - **Files** (the default): needs nothing else.
-- **Postgres:** the sandbox's Supabase, migration `202610230101_persona_memory.sql`, schema `persona_memory`. Set:
+- **Postgres:** the sandbox's Supabase, migrations `202610230101_persona_memory.sql` and `202610230102_persona_clock.sql`,
+  schema `persona_memory`. Set:
   - `PERSONA_MEMORY_BACKEND=postgres`
   - `PERSONA_MEMORY_SUPABASE_URL`
   - `PERSONA_MEMORY_SUPABASE_SERVICE_KEY` (the service key, server only)

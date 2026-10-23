@@ -1,6 +1,7 @@
 // Persona memory 1, Part B: the memory server against the files backend with no database — MCP over stdio and over
-// Streamable HTTP with a bearer token, driven by the official MCP client. The eight tools, the instructions text, the
-// refusals (no token, a wrong token, the model writing as the owner), and no token in the log. Synthetic entries only.
+// Streamable HTTP with a bearer token, driven by the official MCP client. The tools (eight, and persona memory 2's five
+// for the clock), the instructions text, the refusals (no token, a wrong token, the model writing as the owner), and no
+// token in the log. Synthetic entries only.
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
@@ -15,7 +16,8 @@ import { PERSONA_TOOLS, SERVER_INSTRUCTIONS, callTool } from "../src/lib/persona
 
 const SERVER = new URL("../scripts/persona-memory/server.mjs", import.meta.url).pathname;
 const TOKEN = "synthetic-test-token-0123456789abcdef";
-const TOOL_NAMES = ["persona_remember", "persona_recall", "persona_journal_latest", "persona_dossier_read", "persona_dossier_append", "persona_note", "persona_fold", "persona_export"];
+const TOOL_NAMES = ["persona_remember", "persona_recall", "persona_journal_latest", "persona_dossier_read", "persona_dossier_append", "persona_note", "persona_fold", "persona_export",
+  "persona_now", "persona_timer_start", "persona_timer_check", "persona_timer_finish", "persona_calibration_read"];
 const dirs = [];
 const tempDir = async () => { const dir = await mkdtemp(join(tmpdir(), "persona-server-")); dirs.push(dir); return dir; };
 test.after(() => Promise.all(dirs.map((dir) => rm(dir, { recursive: true, force: true }))));
@@ -34,7 +36,7 @@ async function exercise(client) {
   assert.deepEqual(listed.tools.map((tool) => tool.name), TOOL_NAMES);
   assert.ok(listed.tools.every((tool) => tool.inputSchema.type === "object" && tool.description.length > 40));
   const instructions = client.getInstructions();
-  for (const phrase of ["persona_journal_latest", "persona_dossier_read", "at every milestone", "Never rewrite an entry", "add a note", "not a bond"])
+  for (const phrase of ["persona_now", "persona_journal_latest", "persona_dossier_read", "at every milestone", "Never rewrite an entry", "add a note", "not a bond", "persona_calibration_read"])
     assert.ok(instructions.includes(phrase), phrase);
 
   assert.match(textOf(await client.callTool({ name: "persona_journal_latest", arguments: {} })), /journal is empty/);
@@ -61,6 +63,14 @@ async function exercise(client) {
   const exported = textOf(await client.callTool({ name: "persona_export", arguments: {} }));
   for (const piece of ["# Persona memory — export", "# Self-dossier", "Re-read: still the right call.", "Folded into", "# Facts", "project.stage"]) assert.ok(exported.includes(piece), piece);
   assert.match(textOf(await client.callTool({ name: "persona_export", arguments: { part: "facts" } })), /^# Facts/);
+
+  // The clock over the transport: the time, a timer started and finished, the row it left.
+  assert.match(textOf(await client.callTool({ name: "persona_now", arguments: {} })), /^Now: .* — the owner's zone UTC/);
+  assert.equal((await client.callTool({ name: "persona_timer_finish", arguments: { name: "not started" } })).isError, true, "a finish without a start is refused");
+  assert.equal((await client.callTool({ name: "persona_timer_start", arguments: { name: "tile seams", predicted_finish: "1 h" } })).isError, false);
+  assert.match(textOf(await client.callTool({ name: "persona_timer_check", arguments: {} })), /«tile seams».*elapsed; prediction not yet due/);
+  assert.match(textOf(await client.callTool({ name: "persona_timer_finish", arguments: { name: "tile seams" } })), /^Finished «tile seams»: predicted 1 h, took under a minute/);
+  assert.match(textOf(await client.callTool({ name: "persona_calibration_read", arguments: {} })), /1 timed estimate:/);
 }
 
 function serverProcess(args, env) {
@@ -89,21 +99,21 @@ test("the tools in-process: every handler answers in markdown, refusals name the
   assert.equal((await callTool(memory, "nope", {})).isError, true);
 });
 
-test("stdio: Claude Code's transport runs the eight tools on the files backend with no database", { timeout: 60_000 }, async () => {
+test("stdio: Claude Code's transport runs the thirteen tools on the files backend with no database", { timeout: 60_000 }, async () => {
   const dir = await tempDir();
-  const transport = new StdioClientTransport({ command: process.execPath, args: [SERVER, "--stdio"], env: { PATH: process.env.PATH, HOME: process.env.HOME, PERSONA_MEMORY_DIR: dir }, stderr: "pipe" });
+  const transport = new StdioClientTransport({ command: process.execPath, args: [SERVER, "--stdio"], env: { PATH: process.env.PATH, HOME: process.env.HOME, PERSONA_MEMORY_DIR: dir, PERSONA_MEMORY_TIMEZONE: "UTC" }, stderr: "pipe" });
   let stderr = "";
   transport.stderr?.on("data", (chunk) => { stderr += chunk; });
   const client = new Client({ name: "persona-memory-test", version: "1.0.0" });
   await client.connect(transport);
   try { await exercise(client); } finally { await client.close(); }
-  assert.match(stderr, new RegExp(`stdio, files at ${dir.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
+  assert.match(stderr, new RegExp(`stdio, files at ${dir.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}, embeddings local-[^,]+, time zone UTC`));
   assert.match(stderr, /tool persona_remember ok/);
 });
 
-test("http: the bearer token is required, compared, never logged; the eight tools run over Streamable HTTP", { timeout: 60_000 }, async () => {
+test("http: the bearer token is required, compared, never logged; the thirteen tools run over Streamable HTTP", { timeout: 60_000 }, async () => {
   const dir = await tempDir();
-  const server = serverProcess(["--http", "--port", "0"], { PERSONA_MEMORY_DIR: dir, PERSONA_MEMORY_TOKEN: TOKEN });
+  const server = serverProcess(["--http", "--port", "0"], { PERSONA_MEMORY_DIR: dir, PERSONA_MEMORY_TOKEN: TOKEN, PERSONA_MEMORY_TIMEZONE: "UTC" });
   try {
     const url = await server.listening;
     assert.match(url, /^http:\/\/127\.0\.0\.1:\d+\/mcp$/, "bound to the loopback by default");
@@ -133,7 +143,7 @@ test("http: with PERSONA_MEMORY_PATH_TOKEN=1 the token may be the URL's last par
     const url = await server.listening;
     const client = new Client({ name: "persona-memory-test", version: "1.0.0" });
     await client.connect(new StreamableHTTPClientTransport(new URL(`${url}/${TOKEN}`)));
-    try { assert.equal((await client.listTools()).tools.length, 8); } finally { await client.close(); }
+    try { assert.equal((await client.listTools()).tools.length, 13); } finally { await client.close(); }
     assert.equal((await fetch(`${url}/not-the-token-not-the-token`, { method: "POST", body: "{}" })).status, 401);
     assert.ok(!server.stderr().includes(TOKEN));
   } finally { await server.stop(); }
@@ -173,9 +183,12 @@ test("the server's postgres backend: supabase-js calls the persona_memory RPC wi
     assert.match(where, /^postgres/);
     assert.equal((await callTool(memory, "persona_remember", episode())).isError, false);
     assert.match((await callTool(memory, "persona_recall", { query: "map tiles" })).text, /We cached the map tiles/);
+    assert.equal((await callTool(memory, "persona_timer_start", { name: "the clock over supabase-js", predicted_finish: "5 min" })).isError, false);
+    assert.match((await callTool(memory, "persona_timer_finish", { name: "the clock over supabase-js" })).text, /^Finished/);
+    assert.ok(seen.some((call) => call.path === "/rest/v1/rpc/persona_clock"), "the clock's actions go to their own RPC");
     const refused = await callTool(memory, "persona_note", { episodeId: "ep_20261020_0000_000000", lines: [{ text: "x", tag: "observed" }] });
     assert.equal(refused.isError, true);
-    assert.ok(seen.every((call) => call.path === "/rest/v1/rpc/persona_memory" && call.auth === "Bearer synthetic-service-key" && call.keys.join() === "p_action,p_owner_id,p_payload"));
+    assert.ok(seen.every((call) => /^\/rest\/v1\/rpc\/persona_(?:memory|clock)$/.test(call.path) && call.auth === "Bearer synthetic-service-key" && call.keys.join() === "p_action,p_owner_id,p_payload"));
     await assert.rejects(memoryFromEnv({ PERSONA_MEMORY_BACKEND: "postgres" }), /needs PERSONA_MEMORY_SUPABASE_URL, PERSONA_MEMORY_SUPABASE_SERVICE_KEY, PERSONA_MEMORY_OWNER_ID/);
   } finally { rest.close(); await f.db.close(); }
 });

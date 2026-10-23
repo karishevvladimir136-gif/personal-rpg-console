@@ -4,9 +4,12 @@
 // never overwrites a file. Postgres is the backend for atomicity across files (a fold marks every episode or none).
 //
 //   <root>/episodes/<id>.json   <root>/folds/<id>.json   <root>/dossier.md   <root>/facts.json   <root>/cache/
-import { mkdir, readdir, readFile, rename, stat, writeFile } from "node:fs/promises";
+//   <root>/timers.json   <root>/calibration.jsonl (persona memory 2: one row per line, only ever appended)
+import { appendFile, mkdir, readdir, readFile, rename, stat, writeFile } from "node:fs/promises";
 import { createHash, randomBytes } from "node:crypto";
 import { join } from "node:path";
+import type { CalibrationRow, Timer } from "./clock.ts";
+import { timerKey } from "./clock.ts";
 import type { PersonaStore } from "./store.ts";
 import { AUTHORS, DOSSIER_SECTIONS, DOSSIER_SECTION_TITLES, ID_PATTERN, PersonaMemoryError, TAGS,
   type DossierLine, type DossierSection, type Episode, type EpisodeNote, type Fact, type Fold } from "./schema.ts";
@@ -71,6 +74,16 @@ function normalizeEpisode(raw: Partial<Episode>): Episode | null {
     foldedInto: typeof raw.foldedInto === "string" ? raw.foldedInto : null, originalSha256: typeof raw.originalSha256 === "string" ? raw.originalSha256 : "" };
 }
 
+/** A calibration line the owner edited by hand still reads (its checksum then shows the edit); one without the
+ * numbers is unreadable. */
+function normalizeRow(raw: Partial<CalibrationRow>): CalibrationRow | null {
+  if (!raw || typeof raw !== "object" || typeof raw.id !== "string" || !ID_PATTERN.test(raw.id) || typeof raw.predictedMinutes !== "number" || typeof raw.actualMinutes !== "number") return null;
+  const text = (value: unknown) => (typeof value === "string" ? value : null);
+  return { ...raw, id: raw.id, timerId: text(raw.timerId), name: text(raw.name) ?? "", text: text(raw.text) ?? "", author: raw.author ?? "owner", tag: raw.tag ?? "observed",
+    startedAt: text(raw.startedAt), predictedFinish: text(raw.predictedFinish), actualFinish: text(raw.actualFinish), predictedMinutes: raw.predictedMinutes,
+    actualMinutes: raw.actualMinutes, notes: list(raw.notes), recordedAt: text(raw.recordedAt) ?? "1970-01-01T00:00:00.000Z", source: text(raw.source) ?? "owner", sha256: text(raw.sha256) ?? "" };
+}
+
 const episodeFile = (episode: Episode) => ({
   id: episode.id, recordedAt: episode.recordedAt, validFrom: episode.validFrom, validTo: episode.validTo, title: episode.title,
   salience: episode.salience, cues: episode.cues, lines: episode.lines, state: episode.state, quotes: episode.quotes, source: episode.source,
@@ -79,7 +92,7 @@ const episodeFile = (episode: Episode) => ({
 
 export function filesStore(root: string): PersonaStore & { root: string; unreadable: string[] } {
   const dirs = { episodes: join(root, "episodes"), folds: join(root, "folds"), cache: join(root, "cache") };
-  const dossierPath = join(root, "dossier.md"), factsPath = join(root, "facts.json");
+  const dossierPath = join(root, "dossier.md"), factsPath = join(root, "facts.json"), timersPath = join(root, "timers.json"), calibrationPath = join(root, "calibration.jsonl");
   let ready: Promise<void> | null = null;
   const prepare = () => (ready ??= Promise.all(Object.values(dirs).map((dir) => mkdir(dir, { recursive: true }))).then(() => undefined));
   let queue: Promise<unknown> = Promise.resolve();
@@ -127,6 +140,30 @@ export function filesStore(root: string): PersonaStore & { root: string; unreada
     }
   };
   const cachePath = (model: string) => join(dirs.cache, `embeddings-${model.replace(/[^a-z0-9.-]+/gi, "_")}.json`);
+  const readRows = async () => {
+    for (let at = unreadable.length - 1; at >= 0; at--) if (unreadable[at].startsWith("calibration.jsonl")) unreadable.splice(at, 1);
+    let text = "";
+    try { text = await readFile(calibrationPath, "utf8"); } catch (error) { if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error; }
+    const rows: CalibrationRow[] = [];
+    text.split(/\r?\n/).forEach((line, index) => {
+      if (!line.trim()) return;
+      let row: CalibrationRow | null = null;
+      try { row = normalizeRow(JSON.parse(line)); } catch { row = null; }
+      if (row) rows.push(row); else unreadable.push(`calibration.jsonl line ${index + 1}`);
+    });
+    return rows;
+  };
+  /** A row is only ever appended — after a newline, should a hand edit have left the last line without one. */
+  const appendRow = async (row: CalibrationRow) => {
+    let tail = "";
+    try { tail = (await readFile(calibrationPath, "utf8")).slice(-1); } catch (error) { if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error; }
+    await appendFile(calibrationPath, `${tail && tail !== "\n" ? "\n" : ""}${JSON.stringify(row)}\n`, "utf8");
+  };
+  /** The timers; one whose row is in the table is finished even if a crash came between the row and the timer's file. */
+  const readTimers = async () => {
+    const rows = new Map((await readRows()).filter((row) => row.timerId).map((row) => [row.timerId!, row]));
+    return (await readJson<Timer[]>(timersPath, [])).map((timer) => (timer.finishedAt === null && rows.has(timer.id) ? { ...timer, finishedAt: rows.get(timer.id)!.actualFinish } : timer));
+  };
 
   return {
     kind: "files",
@@ -172,6 +209,25 @@ export function filesStore(root: string): PersonaStore & { root: string; unreada
       const facts = await readJson<Fact[]>(factsPath, []);
       const next = facts.map((old) => (old.key === fact.key && old.validTo === null ? { ...old, validTo: fact.validFrom } : old));
       await atomic(factsPath, `${JSON.stringify([...next, fact], null, 2)}\n`);
+    }),
+    timers: () => serial(readTimers),
+    insertTimer: (timer: Timer) => serial(async () => {
+      const timers = await readTimers();
+      if (timers.some((item) => item.id === timer.id || (item.finishedAt === null && timerKey(item.name) === timerKey(timer.name)))) throw new PersonaMemoryError("conflict", `a timer «${timer.name}» is already running`);
+      await atomic(timersPath, `${JSON.stringify([...timers, timer], null, 2)}\n`);
+    }),
+    finishTimer: (timerId: string, finishedAt: string, row: CalibrationRow) => serial(async () => {
+      const timers = await readTimers();
+      const timer = timers.find((item) => item.id === timerId);
+      if (!timer) throw new PersonaMemoryError("not_found", `no timer ${timerId}`);
+      if (timer.finishedAt !== null || row.timerId !== timerId) throw new PersonaMemoryError("conflict", `timer ${timerId} is not running`);
+      await appendRow(row);
+      await atomic(timersPath, `${JSON.stringify(timers.map((item) => (item.id === timerId ? { ...item, finishedAt } : item)), null, 2)}\n`);
+    }),
+    calibration: () => serial(readRows),
+    appendCalibration: (row: CalibrationRow) => serial(async () => {
+      if ((await readRows()).some((item) => item.id === row.id)) throw new PersonaMemoryError("conflict", `row ${row.id} exists`);
+      await appendRow(row);
     }),
     embeddingsGet: (model: string, keys: string[]) => serial(async () => {
       const cache = await readJson<Record<string, number[]>>(cachePath(model), {});

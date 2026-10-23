@@ -2,14 +2,16 @@
 // Persona memory 1, Part B (docs/stages/PERSONA_MEMORY_1.md, owner's guide docs/PERSONA_MEMORY.md): the memory server.
 // MCP over stdio (Claude Code) and over Streamable HTTP with a bearer token (the claude.ai Project as a custom
 // connector). Tools: persona_remember, persona_recall, persona_journal_latest, persona_dossier_read,
-// persona_dossier_append, persona_note, persona_fold, persona_export (src/lib/persona-memory/tools.ts).
+// persona_dossier_append, persona_note, persona_fold, persona_export (src/lib/persona-memory/tools.ts); persona memory 2
+// adds the clock: persona_now, persona_timer_start, persona_timer_check, persona_timer_finish, persona_calibration_read.
 //
 //   node scripts/persona-memory/server.mjs --stdio
 //   PERSONA_MEMORY_TOKEN=… node scripts/persona-memory/server.mjs --http [--port 8787] [--host 127.0.0.1]
 //
 // Environment: PERSONA_MEMORY_BACKEND files (default) | postgres; PERSONA_MEMORY_DIR (files; default ~/persona-memory);
 // PERSONA_MEMORY_SUPABASE_URL, PERSONA_MEMORY_SUPABASE_SERVICE_KEY, PERSONA_MEMORY_OWNER_ID (postgres);
-// PERSONA_MEMORY_EMBEDDINGS local (default) | openai (with OPENAI_API_KEY); PERSONA_MEMORY_TOKEN (http);
+// PERSONA_MEMORY_EMBEDDINGS local (default) | openai (with OPENAI_API_KEY); PERSONA_MEMORY_TIMEZONE (the owner's IANA
+// zone, e.g. Europe/Moscow; default the machine's — a hosted server's is usually UTC); PERSONA_MEMORY_TOKEN (http);
 // PERSONA_MEMORY_PATH_TOKEN=1 also accepts the token as the last part of the URL (/mcp/<token>) for a client that
 // cannot send a header. No key or token is ever logged: the log has the transport, the tool names and the statuses.
 import { createServer } from "node:http";
@@ -21,7 +23,7 @@ import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
-import { createPersonaMemory, filesStore, localEmbedder, openAIEmbedder, postgresStore } from "../../src/lib/persona-memory/index.ts";
+import { createPersonaMemory, filesStore, localEmbedder, openAIEmbedder, postgresStore, rpcFunction } from "../../src/lib/persona-memory/index.ts";
 import { PERSONA_TOOLS, SERVER_INSTRUCTIONS, SERVER_NAME, SERVER_VERSION, callTool } from "../../src/lib/persona-memory/tools.ts";
 
 const log = (line) => process.stderr.write(`persona-memory: ${line}\n`);
@@ -53,7 +55,7 @@ export async function memoryFromEnv(env = process.env) {
     const { createClient } = await import("@supabase/supabase-js");
     const client = createClient(env.PERSONA_MEMORY_SUPABASE_URL, env.PERSONA_MEMORY_SUPABASE_SERVICE_KEY, { auth: { persistSession: false, autoRefreshToken: false } });
     store = postgresStore(async (action, payload) => {
-      const { data, error } = await client.rpc("persona_memory", { p_owner_id: env.PERSONA_MEMORY_OWNER_ID, p_action: action, p_payload: payload });
+      const { data, error } = await client.rpc(rpcFunction(action), { p_owner_id: env.PERSONA_MEMORY_OWNER_ID, p_action: action, p_payload: payload });
       if (error) throw new Error(error.message);
       return data;
     });
@@ -64,7 +66,8 @@ export async function memoryFromEnv(env = process.env) {
     if (!env.OPENAI_API_KEY) throw new Error("PERSONA_MEMORY_EMBEDDINGS=openai needs OPENAI_API_KEY");
     embedder = openAIEmbedder({ apiKey: env.OPENAI_API_KEY, model: env.PERSONA_MEMORY_EMBEDDINGS_MODEL || undefined });
   }
-  return { memory: createPersonaMemory({ store, embedder }), where: `${where}, embeddings ${embedder.model}` };
+  const memory = createPersonaMemory({ store, embedder, timeZone: env.PERSONA_MEMORY_TIMEZONE || undefined });
+  return { memory, where: `${where}, embeddings ${embedder.model}, time zone ${memory.timeZone}` };
 }
 
 export async function startStdio(memory) {

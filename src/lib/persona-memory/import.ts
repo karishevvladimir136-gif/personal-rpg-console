@@ -3,14 +3,17 @@
 // others). Pure: text in, a plan out; the script (scripts/persona-memory/import-project-memory.mjs) reads the files,
 // prints the plan (dry run) and, with --write, applies it. Nothing is invented: what the text does not say (a
 // salience, cues, a state line) is either derived from the text and labelled as derived in the plan, or recorded as
-// absent by a `background` line; an unattributed quote is never taken for the owner's words.
+// absent by a `background` line; an unattributed quote is never taken for the owner's words. Persona memory 2: a line
+// of the time-sense note (or another area file) that names both a prediction and what it really took («predicted 2 h,
+// took 5 h») seeds the calibration table instead of becoming a fact; a general remark about estimates seeds nothing.
+import { calibrationText, durationWords, parseDuration, type SeedInput } from "./clock.ts";
 import type { PersonaMemory } from "./memory.ts";
 import { isDateCue, PersonaMemoryError, registerHits, type DossierLineInput, type FactInput, type QuoteInput, type RememberInput, type Tag } from "./schema.ts";
 import { periodOf } from "./text.ts";
 
 export type SourceFile = { path: string; text: string };
 export type PlannedEpisode = { input: RememberInput & { source: string }; derived: string[]; register: string[] };
-export type ImportPlan = { episodes: PlannedEpisode[]; facts: (FactInput & { source: string })[]; dossier: (DossierLineInput & { source: string })[]; warnings: string[] };
+export type ImportPlan = { episodes: PlannedEpisode[]; facts: (FactInput & { source: string })[]; dossier: (DossierLineInput & { source: string })[]; calibration: SeedInput[]; warnings: string[] };
 
 type Section = { heading: string; level: number; body: string[]; anchor: string };
 
@@ -26,6 +29,11 @@ const SALIENCE = /(?<![\p{L}])(?:salience|значимость|важность|
 const STARS = /^[★⭐]{1,5}$/u;
 const CUES = /^(?:cues?|ключи|подсказки|зацепки|якоря|tags?)\s*[:—–-]\s*(.+)$/iu;
 const TIME = /(?<![\d])([01]?\d|2[0-3]):([0-5]\d)(?![\d])/;
+const UNIT = String.raw`(?:days?|d|hours?|hrs?|h|minutes?|mins?|m|день|дн(?:я|ей|и)?|час(?:а|ов)?|ч|мин(?:ута|уты|ут)?)(?![\p{L}])\.?`;
+const DUR = String.raw`\d+(?:[.,]\d+)?\s*${UNIT}(?:\s*(?:and|и)?\s*\d+(?:[.,]\d+)?\s*${UNIT})?`;
+const ABOUT = String.raw`(?:(?:about|around|~|около|примерно)\s*)?`;
+const PREDICTED = new RegExp(String.raw`(?<![\p{L}])(?:predicted|estimated?(?: was)?|i said|i guessed|expected|прогноз|оценк[аи]|оценил[аи]?|предсказал[аи]?|обещал[аи]?)\s*[:—–-]?\s*${ABOUT}(${DUR})`, "iu");
+const ACTUAL = new RegExp(String.raw`(?<![\p{L}])(?:it took|took|actually|actual|came to|in fact|вышло|заняло|ушло|фактически|факт|получилось|на деле|реально)\s*[:—–-]?\s*${ABOUT}(${DUR})`, "iu");
 
 const slug = (text: string) => text.toLowerCase().replace(/ё/g, "е").replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-+|-+$/g, "").slice(0, 40) || "note";
 const LATIN: Record<string, string> = { а: "a", б: "b", в: "v", г: "g", д: "d", е: "e", ж: "zh", з: "z", и: "i", й: "y", к: "k", л: "l", м: "m", н: "n", о: "o", п: "p", р: "r",
@@ -168,10 +176,23 @@ function dossierRules(section: Section, file: string): (DossierLineInput & { sou
   }));
 }
 
+/** A line that names both a prediction and what it really took, in that order: «The tile cache: predicted 2 h, took
+ * 5 h 30 min», «Перенос стилей: прогноз 40 мин, вышло 1 ч 50 мин». The name is what comes before the prediction. */
+export function calibrationPair(text: string): { name: string; predictedMinutes: number; actualMinutes: number } | null {
+  const predicted = PREDICTED.exec(text);
+  if (!predicted) return null;
+  const actual = ACTUAL.exec(text.slice(predicted.index + predicted[0].length));
+  const predictedMinutes = parseDuration(predicted[1]), actualMinutes = actual ? parseDuration(actual[1]) : null;
+  if (predictedMinutes === null || actualMinutes === null) return null;
+  const name = text.slice(0, predicted.index).replace(/^[*_\s]+|[*_\s:—–,;.(-]+$/gu, "").trim();
+  // «I estimated …»: no name before the prediction — the caller names it after its section.
+  return { name: name.length < 3 || /^(?:i|we|my|я|мы|мой|моя)$/iu.test(name) ? "" : name, predictedMinutes, actualMinutes };
+}
+
 function factsOf(section: Section, file: string, prefix: string, now: Date, keys: Set<string>): (FactInput & { source: string })[] {
   const at = headingMoment(section.heading, now)?.at;
   const base = `${prefix}.${keySlug(section.heading || "notes")}`.slice(0, 64);
-  return items(section.body).map(stripBullet).filter(Boolean).map((text, index) => {
+  return items(section.body).map(stripBullet).filter((text) => text && !calibrationPair(text)).map((text, index) => {
     const label = text.match(/^\*{0,2}([^:*]{2,40}?)\*{0,2}\s*:\s+(.+)$/u);
     const first = label ? `${base}.${keySlug(label[1])}`.slice(0, 76) : `${base}.${index + 1}`;
     let key = first;
@@ -185,7 +206,7 @@ function factsOf(section: Section, file: string, prefix: string, now: Date, keys
 /** The plan of an import: the journal's dated sections become episodes, «Rules» sections anywhere the dossier's first
  * lines, the time-sense note and the other area files facts. */
 export function planImport(files: SourceFile[], now: Date): ImportPlan {
-  const plan: ImportPlan = { episodes: [], facts: [], dossier: [], warnings: [] };
+  const plan: ImportPlan = { episodes: [], facts: [], dossier: [], calibration: [], warnings: [] };
   const factKeys = new Set<string>();
   for (const file of files) {
     const stem = fileStem(file.path);
@@ -198,6 +219,10 @@ export function planImport(files: SourceFile[], now: Date): ImportPlan {
         if (episode) plan.episodes.push(episode);
         continue;
       }
+      for (const text of items(section.body).map(stripBullet)) {
+        const pair = calibrationPair(text);
+        if (pair) plan.calibration.push({ ...pair, name: (pair.name || section.heading || "an imported estimate").slice(0, 80), sourceLine: text, source: `import:${file.path}#${section.anchor}` });
+      }
       plan.facts.push(...factsOf(section, file.path, keySlug(stem), now, factKeys));
     }
   }
@@ -207,7 +232,7 @@ export function planImport(files: SourceFile[], now: Date): ImportPlan {
 /** A short human-readable account of the plan — what a dry run prints. */
 export function describePlan(plan: ImportPlan, preview = 90): string {
   const cut = (text: string) => (text.length > preview ? `${text.slice(0, preview)}…` : text);
-  const out = [`Episodes: ${plan.episodes.length} · dossier lines: ${plan.dossier.length} · facts: ${plan.facts.length} · warnings: ${plan.warnings.length}`, ""];
+  const out = [`Episodes: ${plan.episodes.length} · dossier lines: ${plan.dossier.length} · facts: ${plan.facts.length} · calibration rows: ${plan.calibration.length} · warnings: ${plan.warnings.length}`, ""];
   for (const { input, derived, register } of plan.episodes) {
     const lines = input.lines as { text: string; tag: string }[], quotes = input.quotes as { text: string; speaker: string; tag: string }[];
     out.push(`EPISODE ${String(input.validFrom).slice(0, 16).replace("T", " ")} «${input.title}» salience ${input.salience} · cues: ${(input.cues as string[]).join(", ")} · ${input.source}`,
@@ -218,16 +243,18 @@ export function describePlan(plan: ImportPlan, preview = 90): string {
   }
   for (const line of plan.dossier) out.push(`DOSSIER rules [${line.tag} · background] ${cut(String(line.text))} · ${line.source}`);
   for (const fact of plan.facts) out.push(`FACT ${fact.key} [${fact.tag} · background] ${cut(String(fact.text))}`);
+  for (const seed of plan.calibration) out.push(`CALIBRATION [observed · background] ${calibrationText(seed.name, seed.predictedMinutes, seed.actualMinutes)} · ${seed.source}`);
   for (const warning of plan.warnings) out.push(`WARNING ${warning}`);
   return out.join("\n");
 }
 
-export type ImportSummary = { episodes: { written: number; skipped: number }; dossier: { written: number; skipped: number }; facts: { written: number; skipped: number }; errors: string[] };
+type Count = { written: number; skipped: number };
+export type ImportSummary = { episodes: Count; dossier: Count; facts: Count; calibration: Count; errors: string[] };
 
 /** Applies a plan. Re-runnable: an episode whose source section was imported before, a dossier line with the same
  * text, a fact whose open version says the same are skipped. A changed fact closes its older version. */
 export async function applyImport(memory: PersonaMemory, plan: ImportPlan): Promise<ImportSummary> {
-  const summary: ImportSummary = { episodes: { written: 0, skipped: 0 }, dossier: { written: 0, skipped: 0 }, facts: { written: 0, skipped: 0 }, errors: [] };
+  const summary: ImportSummary = { episodes: { written: 0, skipped: 0 }, dossier: { written: 0, skipped: 0 }, facts: { written: 0, skipped: 0 }, calibration: { written: 0, skipped: 0 }, errors: [] };
   const failed = (what: string, error: unknown) => {
     if (!(error instanceof PersonaMemoryError)) throw error;
     summary.errors.push(`${what}: ${error.problems.join("; ")}`);
@@ -252,6 +279,14 @@ export async function applyImport(memory: PersonaMemory, plan: ImportPlan): Prom
     const current = (await memory.facts()).find((item) => item.key === fact.key);
     if (current && current.text === fact.text) { summary.facts.skipped++; continue; }
     try { await memory.factSet(current ? { ...fact, validFrom: undefined } : fact, { author: "background" }); summary.facts.written++; } catch (error) { failed(`${fact.source} (${fact.key})`, error); }
+  }
+  // A seeded row is written once: the same source, name and minutes again is skipped (the table only grows).
+  const seedKey = (row: { source: string; name: string; predictedMinutes: number; actualMinutes: number }) => [row.source, row.name, row.predictedMinutes, row.actualMinutes].join("\n");
+  const seeded = new Set((await memory.store.calibration()).filter((row) => row.timerId === null).map(seedKey));
+  for (const seed of plan.calibration) {
+    const key = seedKey({ ...seed, predictedMinutes: Math.round(seed.predictedMinutes * 10) / 10, actualMinutes: Math.round(seed.actualMinutes * 10) / 10 });
+    if (seeded.has(key)) { summary.calibration.skipped++; continue; }
+    try { await memory.calibrationSeed(seed); seeded.add(key); summary.calibration.written++; } catch (error) { failed(`${seed.source} (calibration «${seed.name}», ${durationWords(seed.predictedMinutes * 60_000)})`, error); }
   }
   return summary;
 }

@@ -1,17 +1,19 @@
 // Persona memory 1, Part B: the MCP tools of the memory server — their schemas, the instructions text the client
 // shows the model, and the handlers that turn a call into a store operation and a markdown answer. Pure: the
 // transports (stdio, Streamable HTTP) live in scripts/persona-memory/server.mjs. The model writes as `self` (or
-// `background` for a background pass); it can never write a line as the owner.
+// `background` for a background pass); it can never write a line as the owner. Persona memory 2 adds the clock:
+// persona_now, the timers and the calibration table, which only the clock writes.
+import { durationWords, localWords } from "./clock.ts";
 import { episodeMarkdown } from "./export.ts";
 import type { PersonaMemory, RecallResult } from "./memory.ts";
 import { DOSSIER_SECTIONS, PersonaMemoryError, TAGS, type Fold } from "./schema.ts";
 
 export const SERVER_NAME = "persona-memory";
-export const SERVER_VERSION = "1.0.0";
+export const SERVER_VERSION = "1.1.0";
 
 export const SERVER_INSTRUCTIONS = `Persona memory: your own working notebook for this project. The owner can read and edit all of it at any time (persona_export shows the whole store).
 
-Begin every session by calling persona_journal_latest (the latest entry) and persona_dossier_read (who you are here, the standing rules), then pick up from them.
+Begin every session by calling persona_now (the time on the owner's clock, how long since the last entry and session, the running timers), persona_journal_latest (the latest entry) and persona_dossier_read (who you are here, the standing rules), then pick up from them.
 
 Write an episode with persona_remember at every milestone — a decision, a step finished or failed, a correction from the owner — not only at the end of a session. First person, short. Tag every line: "stated" only for the owner's own words, "observed" for what happened, "inferred" for your own reading. Give cues (what: phrases, names, images — never dates; the date is the entry's validFrom), a salience from 1 to 5, the state lines (what you were pulled toward and what you did), and at most five exact lines from the conversation.
 
@@ -20,6 +22,8 @@ Never rewrite an entry: add a note with persona_note. A note can close an entry 
 Before guessing about something earlier, use persona_recall (it understands periods like "last week" or "в октябре", and asOf for what was true then).
 
 Update the dossier with persona_dossier_append rarely — only when something about how you work here has really changed; supersede a line instead of contradicting it. Fold old routine entries with persona_fold only when asked or when they crowd recall; a fold never touches the dossier.
+
+Time: before estimating any duration, call persona_calibration_read — every earlier estimate against what it really took. When you start a tracked task, start a timer with your estimate (persona_timer_start); when it reports — done, failed or dropped — finish the timer (persona_timer_finish, with the actual time if it ended earlier). Only the clock writes the calibration table; a miss stays on record.
 
 This is a working notebook, not a bond: no farewells, no longing. Never present an inference as the owner's words. If the owner's reliance on you grows (for example, they ask you to decide the same kind of thing again), write it down plainly as an observed line.`;
 
@@ -103,8 +107,46 @@ export const PERSONA_TOOLS: ToolDefinition[] = [
   },
   {
     name: "persona_export", title: "Export the whole store",
-    description: "The whole store as markdown, every line with its provenance — what the owner sees. `part` limits it to the dossier, the journal, the facts or the folds.",
-    inputSchema: { type: "object", properties: { part: { type: "string", enum: ["all", "dossier", "journal", "facts", "folds"] } }, additionalProperties: false },
+    description: "The whole store as markdown, every line with its provenance — what the owner sees. `part` limits it to the dossier, the journal, the facts, the folds or the calibration table.",
+    inputSchema: { type: "object", properties: { part: { type: "string", enum: ["all", "dossier", "journal", "facts", "folds", "calibration"] } }, additionalProperties: false },
+    annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true },
+  },
+  {
+    name: "persona_now", title: "What time is it, and since when",
+    description: "The current time (ISO and on the owner's clock, with the zone) and its context: how long since the last journal entry, when the last session was (read from the store's write times), which timers are running and for how long, the calibration so far. Call it at the start of every session.",
+    inputSchema: { type: "object", properties: {}, additionalProperties: false },
+    annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: false },
+  },
+  {
+    name: "persona_timer_start", title: "Start a timer with an estimate",
+    description: "Start timing a tracked task now, with your estimate of when it will be done. Read persona_calibration_read first. One running timer per name.",
+    inputSchema: { type: "object", properties: {
+      name: { type: "string", description: "What the task is, e.g. \"the receipt-date parser fix\"." },
+      predicted_finish: { type: "string", description: "When you predict it is done: a duration from now (\"2 h\", \"90 min\", \"1 h 30 min\"), a time on the owner's clock (\"18:30\" — the next one), or a date-time (2026-10-23T18:30 on the owner's clock, or with an offset)." },
+      note: line(),
+    }, required: ["name", "predicted_finish"], additionalProperties: false },
+    annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false },
+  },
+  {
+    name: "persona_timer_check", title: "Check a timer",
+    description: "Elapsed time against the prediction, in plain words (\"1 h 22 min elapsed; prediction not yet due …\"). Without a name: every running timer. A finished timer's name gives the row it left in the calibration table.",
+    inputSchema: { type: "object", properties: { name: { type: "string" } }, additionalProperties: false },
+    annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: false },
+  },
+  {
+    name: "persona_timer_finish", title: "Finish a timer",
+    description: "Finish a running timer when the task reports (done, failed or dropped). Writes predicted vs actual into the calibration table as an observed row that no tool edits or removes. A finish without a start is refused.",
+    inputSchema: { type: "object", properties: {
+      name: { type: "string" },
+      actual_finish: { type: "string", description: "When it really ended, if earlier than now: a time on the owner's clock (\"18:20\" — the latest one) or a date-time. Default: now." },
+      note: line(),
+    }, required: ["name"], additionalProperties: false },
+    annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false },
+  },
+  {
+    name: "persona_calibration_read", title: "Read the calibration table",
+    description: "Every timed estimate so far — predicted vs actual, how far off, the ratio — with a summary and the running timers. Read it before estimating any duration. It cannot be edited.",
+    inputSchema: { type: "object", properties: {}, additionalProperties: false },
     annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true },
   },
 ];
@@ -173,13 +215,35 @@ export async function callTool(memory: PersonaMemory, name: string, rawArgs: unk
         const fold = await memory.fold({ ...args, author: "self" });
         return { text: `Folded ${fold.episodeIds.length} episodes into ${fold.id}: ${fold.episodeIds.join(", ")}. The originals are kept.`, isError: false };
       }
+      case "persona_now":
+        return { text: (await memory.now()).text, isError: false };
+      case "persona_timer_start": {
+        const refused = noOwnerPen(args.note === undefined ? [] : [args.note], "note");
+        if (refused.length) throw new PersonaMemoryError("invalid", refused);
+        const status = await memory.timerStart({ name: args.name, predictedFinish: args.predicted_finish, note: args.note });
+        const { summary } = await memory.calibrationRead();
+        return { text: `Timer «${status.timer.name}» started ${localWords(status.timer.startedAt, memory.timeZone)}; predicted to finish ${localWords(status.timer.predictedFinish, memory.timeZone, { sameDayAs: Date.parse(status.timer.startedAt) })} — in ${durationWords(status.predictedMs)}. Finish it with persona_timer_finish when it reports.\nCalibration so far: ${summary.text}`, isError: false };
+      }
+      case "persona_timer_check": {
+        const { running, finished } = await memory.timerCheck(typeof args.name === "string" ? args.name : undefined);
+        if (finished) return { text: `«${finished.name}» is finished: ${finished.text}. (${finished.id} in the calibration table)`, isError: false };
+        return { text: running.length ? running.map((status) => `«${status.timer.name}» (started ${localWords(status.timer.startedAt, memory.timeZone)}): ${status.text}`).join("\n") : "No timer is running.", isError: false };
+      }
+      case "persona_timer_finish": {
+        const refused = noOwnerPen(args.note === undefined ? [] : [args.note], "note");
+        if (refused.length) throw new PersonaMemoryError("invalid", refused);
+        const { row, summary } = await memory.timerFinish({ name: args.name, actualFinish: args.actual_finish, note: args.note });
+        return { text: `Finished ${row.text}. Recorded in the calibration table as ${row.id} [${row.tag} · ${row.author}].\nCalibration now: ${summary.text}`, isError: false };
+      }
+      case "persona_calibration_read":
+        return { text: (await memory.calibrationRead()).text, isError: false };
       case "persona_export": {
         const exported = await memory.exportMarkdown();
         const part = typeof args.part === "string" ? args.part : "all";
         const pick = part === "all" ? exported.text : part === "journal"
           ? Object.entries(exported.files).filter(([file]) => file.startsWith("journal/")).map(([, text]) => text).join("\n\n---\n\n") || "(the journal is empty)"
           : exported.files[`${part}.md`];
-        if (pick === undefined) throw new PersonaMemoryError("invalid", "part: all, dossier, journal, facts or folds");
+        if (pick === undefined) throw new PersonaMemoryError("invalid", "part: all, dossier, journal, facts, folds or calibration");
         return { text: pick, isError: false };
       }
       default:

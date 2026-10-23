@@ -3,8 +3,13 @@
 // entry answers «what was true then»), a recall lookup by words, folds that condense without destroying (the DM's
 // `note-fold.ts`, here explicit and keeping the originals), and budgets in estimated tokens that name what they drop
 // (`context.ts` `withinBudget`). The standing rules head the dossier and are never budget-dropped, as the DM's hidden
-// layer is never dropped.
+// layer is never dropped. Persona memory 2 adds the clock (clock.ts): the time on the owner's clock with its context,
+// timers that hold an estimate, and the calibration table that every finished timer appends to.
 import { createHash } from "node:crypto";
+import {
+  buildSeedRow, buildTimer, calibrationMarkdown, calibrationSummary, checkTimeZone, clockView, finishTimer, hostTimeZone, timerKey, timerStatus,
+  type CalibrationRow, type SeedInput, type TimerFinishInput, type TimerStartInput, type TimerStatus,
+} from "./clock.ts";
 import { estimateTokens } from "../gameplay/dm-loop/tokens.ts";
 import { cosine, localEmbedder, type Embedder } from "./embed.ts";
 import { exportMarkdown, type ExportedStore } from "./export.ts";
@@ -33,8 +38,10 @@ const round = (value: number) => Math.round(value * 1000) / 1000;
 const sha = (text: string) => createHash("sha256").update(text).digest("hex").slice(0, 32);
 const day = (instant: string) => instant.slice(0, 10);
 
-export function createPersonaMemory(options: { store: PersonaStore; embedder?: Embedder; now?: () => Date; minRelevance?: number }) {
+export function createPersonaMemory(options: { store: PersonaStore; embedder?: Embedder; now?: () => Date; minRelevance?: number; timeZone?: string }) {
   const { store } = options;
+  /** The owner's zone: wall-clock times are read and shown in it (PERSONA_MEMORY_TIMEZONE; the machine's zone by default). */
+  const timeZone = checkTimeZone(options.timeZone || hostTimeZone());
   const embedder = options.embedder ?? localEmbedder();
   const minRelevance = options.minRelevance ?? (embedder.model.startsWith("local-") ? RECALL_WEIGHTS.minRelevance : RECALL_WEIGHTS.minRelevanceProvider);
   const clock = options.now ?? (() => new Date());
@@ -69,6 +76,7 @@ export function createPersonaMemory(options: { store: PersonaStore; embedder?: E
   return {
     store,
     embedder,
+    timeZone,
 
     /** Writes an episode at the moment. Throws `invalid` with every problem named. */
     async remember(input: RememberInput, opts: { register?: RegisterMode } = {}) {
@@ -185,10 +193,62 @@ export function createPersonaMemory(options: { store: PersonaStore; embedder?: E
       return opts.all ? facts : facts.filter((fact) => validAt(fact, at));
     },
 
+    /** The time on the owner's clock and its context: since the last entry, the last session (sessions are read from the
+     * store's write times), the running timers, the calibration so far. Reads only. */
+    async now() {
+      const [episodes, dossier, facts, folds, timers, calibration] = await Promise.all([store.episodes(), store.dossier(), store.facts(), store.folds(), store.timers(), store.calibration()]);
+      const latest = [...episodes].sort((a, b) => b.validFrom.localeCompare(a.validFrom) || b.recordedAt.localeCompare(a.recordedAt))[0] ?? null;
+      const writes = [...episodes.flatMap((episode) => [episode.recordedAt, ...episode.notes.map((note) => note.at)]), ...dossier.map((line) => line.recordedAt),
+        ...facts.map((fact) => fact.recordedAt), ...folds.map((fold) => fold.recordedAt), ...timers.map((timer) => timer.recordedAt), ...calibration.map((row) => row.recordedAt)];
+      return clockView({ nowMs: clock().getTime(), zone: timeZone, latestEntry: latest, writes, timers, calibration });
+    },
+
+    /** Starts a timer now with the estimate (a finish time on the owner's clock, or a duration). */
+    async timerStart(input: TimerStartInput) {
+      const timer = buildTimer(input, await store.timers(), nowIso(), timeZone);
+      await store.insertTimer(timer);
+      return timerStatus(timer, clock().getTime(), timeZone);
+    },
+
+    /** Elapsed against the prediction: the named timer (running, or the row it left when it finished), or every running one. */
+    async timerCheck(name?: string): Promise<{ running: TimerStatus[]; finished: CalibrationRow | null }> {
+      const [timers, nowMs] = [await store.timers(), clock().getTime()];
+      const running = timers.filter((timer) => timer.finishedAt === null);
+      if (name === undefined || !name.trim()) return { running: running.map((timer) => timerStatus(timer, nowMs, timeZone)), finished: null };
+      const match = running.find((timer) => timerKey(timer.name) === timerKey(name));
+      if (match) return { running: [timerStatus(match, nowMs, timeZone)], finished: null };
+      const last = timers.filter((timer) => timer.finishedAt !== null && timerKey(timer.name) === timerKey(name)).sort((a, b) => b.startedAt.localeCompare(a.startedAt))[0];
+      const row = last ? (await store.calibration()).find((item) => item.timerId === last.id) ?? null : null;
+      if (!row) throw new PersonaMemoryError("not_found", `no timer «${name.trim()}»${running.length ? ` (running: ${running.map((timer) => `«${timer.name}»`).join(", ")})` : " (no timer is running)"}`);
+      return { running: [], finished: row };
+    },
+
+    /** Finishes the running timer: the row «predicted vs actual» goes into the calibration table. A finish without a start
+     * is refused. */
+    async timerFinish(input: TimerFinishInput) {
+      const { timer, row } = finishTimer(input, await store.timers(), nowIso(), timeZone);
+      await store.finishTimer(timer.id, timer.finishedAt!, row);
+      return { timer, row, summary: calibrationSummary(await store.calibration()) };
+    },
+
+    /** The calibration table — every timed estimate, never edited — with its summary and the running timers. */
+    async calibrationRead() {
+      const [rows, timers] = await Promise.all([store.calibration(), store.timers()]);
+      const running = timers.filter((timer) => timer.finishedAt === null);
+      return { rows, summary: calibrationSummary(rows), text: calibrationMarkdown(rows, timeZone, running, clock().getTime()) };
+    },
+
+    /** A row from the owner's own notes (the import): a prediction and an actual both written there. */
+    async calibrationSeed(input: SeedInput) {
+      const row = buildSeedRow(input, nowIso());
+      await store.appendCalibration(row);
+      return row;
+    },
+
     /** The whole store as markdown files (and as one document) — owner-visible at all times. */
     async exportMarkdown(): Promise<ExportedStore> {
-      const [episodes, dossier, facts, folds] = await Promise.all([store.episodes(), store.dossier(), store.facts(), store.folds()]);
-      return exportMarkdown({ episodes, dossier, facts, folds, at: nowIso(), unreadable: "unreadable" in store ? (store as { unreadable: string[] }).unreadable : [] });
+      const [episodes, dossier, facts, folds, timers, calibration] = await Promise.all([store.episodes(), store.dossier(), store.facts(), store.folds(), store.timers(), store.calibration()]);
+      return exportMarkdown({ episodes, dossier, facts, folds, timers, calibration, timeZone, at: nowIso(), unreadable: "unreadable" in store ? (store as { unreadable: string[] }).unreadable : [] });
     },
   };
 }
