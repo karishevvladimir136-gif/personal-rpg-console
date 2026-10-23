@@ -99,6 +99,10 @@ test("В1: conversion on a fixture sheet — the «Умения» prose becomes 
   assert.deepEqual(done.kept, [], "both lines are lists of spells");
   assert.equal(done.sheet.spells.find((row) => row.name === "Щит").text, "Мой щит.", "the record's own text wins over the card");
   assert.equal(done.sheet.spells.find((row) => row.name === "Луч холода")?.level, 0, "a name the cards do not know, on a cantrip line, is a cantrip");
+  const dm = dmSheetView(ownerSheet(BY_LEVEL), "ru");
+  assert.equal(dm.spells.length, 13, "the DM reads one line per spell");
+  assert.deepEqual(dm.abilities, OTHER);
+  assert.ok(dm.spells.includes("Контрзаклинание — 3, Ограждение, prepared"));
   assert.equal(convertSpellProse(ownerSheet(OTHER), "ru"), null, "no spell prose, nothing to do");
   assert.equal(convertSpellProse(ownerSheet(["Книга заклинаний: Обнаружение магии, Свет"]), "ru"), null, "a list without levels the cards do not know stays prose");
   assert.equal(convertSpellProse(ownerSheet(["Ячейки заклинаний: 4/3/2"]), "ru"), null);
