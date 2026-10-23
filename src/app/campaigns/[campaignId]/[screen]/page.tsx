@@ -22,7 +22,7 @@ import {
   SettingsRoute,
 } from "@/components/registry/routes";
 import { ChronicleRoute } from "@/components/registry/chronicle";
-import { LiveRoute } from "@/components/live2d/route";
+import { LiveRoute, MapRoute } from "@/components/live2d/route";
 
 export default async function Page({
   params,
@@ -78,8 +78,11 @@ export default async function Page({
       return <OwnerRoute />;
     case "live":
       return <LiveRoute />;
-    case "sessions":
+    // Fix S3-accept Д1: «Карта» opens the tree of places (the 2D screen at its deepest map level); the old atlas
+    // route is gone, its owner tools fold under the map's «Ещё».
     case "map":
+      return <MapRoute />;
+    case "sessions":
       return <PersistentSecondaryPage screen={screen} />;
     case "camp":
       return <PersistentSupporting screen={screen} />;

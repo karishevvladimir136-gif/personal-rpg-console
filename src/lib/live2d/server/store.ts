@@ -11,7 +11,9 @@ import { parseLive2dBoard, parseLive2dScene, parseLive2dSettings, parsePoi, pars
 
 export type Live2dRpcAction =
   | "read" | "settings.save" | "scene.save" | "scene.update" | "poi.replace" | "poi.save" | "region.save"
-  | "seed.plant" | "seed.list" | "seed.discover" | "battle.save";
+  | "seed.plant" | "seed.list" | "seed.discover" | "battle.save"
+  // Fix S3-accept Д3 (migration 202610230541): the region's prep (public part) and the owner's moved marker.
+  | "region.prep.save" | "region.marker.save";
 export type Live2dContext = {
   campaignId: string;
   ownerId: string;
@@ -66,6 +68,18 @@ export async function savePoi(ctx: Pick<Live2dContext, "rpc">, payload: unknown)
 }
 export async function saveRegionMap(ctx: Pick<Live2dContext, "rpc">, payload: unknown): Promise<RegionMap> {
   const row = parseRegionMap(await ctx.rpc("region.save", payload));
+  if (!row) throw new PersistenceError("unavailable");
+  return row;
+}
+/** Fix S3-accept Д3: the prep's public part on its map (fenced by the prep revision; every version kept). */
+export async function saveRegionPrep(ctx: Pick<Live2dContext, "rpc">, payload: unknown): Promise<RegionMap> {
+  const row = parseRegionMap(await ctx.rpc("region.prep.save", payload));
+  if (!row) throw new PersistenceError("unavailable");
+  return row;
+}
+/** Fix S3-accept Д3: the owner moves one marker of the painted region (fenced by the map revision). */
+export async function saveRegionMarker(ctx: Pick<Live2dContext, "rpc">, payload: unknown): Promise<RegionMap> {
+  const row = parseRegionMap(await ctx.rpc("region.marker.save", payload));
   if (!row) throw new PersistenceError("unavailable");
   return row;
 }

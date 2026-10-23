@@ -1,0 +1,357 @@
+{
+  "run": "fix-s3-accept-d-region-2026-10-23T04:31",
+  "at": "2026-10-23T04:31:29.506Z",
+  "what": "Fix S3-accept Д3: the DM designs the region, the painter paints from it, the check places the markers",
+  "models": {
+    "prep": "claude-opus-5",
+    "picture": "gpt-image-2.5-sunburst",
+    "check": "claude-sonnet-5",
+    "appDefaults": {
+      "prep": "the campaign's DM pin (claude-opus-5-5 by default)",
+      "check": "claude-sonnet-5-5"
+    },
+    "overrideReason": "The app's Anthropic key does not reach claude-opus-5-5 / claude-sonnet-5-5 now (a free model listing answered 404; the first attempt's prep got HTTP 403 permission_error), so this probe ran the prep on the previous Opus and the check on the previous Sonnet through the same request and parse code. The app's DM pin and CHECK_MODEL are unchanged."
+  },
+  "prices": {
+    "prep": {
+      "input": 5,
+      "output": 25
+    },
+    "check": {
+      "input": 2,
+      "output": 10
+    }
+  },
+  "earlierAttempts": [
+    "03:46 UTC — the prep on claude-opus-5-5: HTTP 403 permission_error (the key does not reach the 5.5 models); $0.",
+    "04:27 UTC — the prep on claude-opus-5 with a darker synthetic hidden layer (a cult's cache, a bribe): stop_reason «refusal», no output; booked at its input's upper bound, $0.0104.",
+    "04:29 UTC — one diagnostic call (scripts/eval/live2d/region-prep-diagnose.mjs, docs/runs/fix-s3-accept-d-diagnose.json) with the milder hidden layer used below: end_turn, $0.0824."
+  ],
+  "prep": {
+    "public": {
+      "overview": "Заречье стоит на левом берегу Быстрицы, которая течёт с севера на юг и ниже деревни уходит в излучину. Старый тракт идёт вдоль левого берега: на юг, через поля и ивняк, за полдня пути он приводит к Каменному мосту, где нынче ходят купцы, ибо брод у деревни размыло; на север тракт втягивается в бор и через день выводит к Лесной сторожке на опушке. Выше сторожки, вверх по реке, говорят, у Чёрного омута догнивает заброшенная мельница. На восток от тракта поля сменяются сухими холмами с редкими дубравами — там, по слухам, и лежит Старый курган. Правый берег — низкий, заболоченный, туда ходят только за хворостом и рыбой.",
+      "landscape": "The river Bystritsa runs from the north edge down the middle of the sheet, bending south-west in the lower third toward a stone bridge. Its east (left) bank carries a dirt high road running north-south; its west bank is low, reedy marsh with willow thickets. The palisaded village sits on the east bank at mid-sheet, fields and a well-worn road around it. North of the village the road enters a dark pine forest that covers the whole upper third, with a forester's hut at the forest edge and, further up the river, a derelict mill beside a black still pool. East of the road the land rises into bare rolling hills with scattered oak groves and an old burial mound. South: open meadows and the bridge.",
+      "places": [
+        {
+          "locationId": "f216ae7c-9d61-57b1-a8ec-3c78875a1da5",
+          "role": "palisaded village",
+          "within": null,
+          "x": 0.55,
+          "y": 0.55,
+          "where": "На левом (восточном) берегу Быстрицы, у самого тракта, что идёт вдоль берега с севера на юг.",
+          "look": "a palisaded village of two dozen log houses around a square with a well"
+        },
+        {
+          "locationId": "728114fd-cc6e-5500-a07e-e4bfb8504f5d",
+          "role": "stone bridge",
+          "within": null,
+          "x": 0.48,
+          "y": 0.82,
+          "where": "Ниже по течению Быстрицы, в полудне пути на юг по тракту от Заречья.",
+          "look": "an old arched stone bridge over the river, cart ruts on both approaches"
+        },
+        {
+          "locationId": "e8c9d8d7-5150-51fa-9ed6-e553e04bdd48",
+          "role": "guard post",
+          "within": null,
+          "x": 0.56,
+          "y": 0.51,
+          "where": "У северных ворот Заречья, где тракт выходит из деревни к лесу.",
+          "look": "a timber watchtower with a low guardhouse at the village's north gate"
+        },
+        {
+          "locationId": "9e195c6b-6152-5c11-afa1-6a34de65dbd8",
+          "role": "forester's hut",
+          "within": null,
+          "x": 0.58,
+          "y": 0.22,
+          "where": "На опушке бора, в дне пути к северу от Заречья по тракту.",
+          "look": "a lone log hut at the edge of the pine forest beside the road"
+        },
+        {
+          "locationId": "91d93891-65a6-5e40-b435-925e287cb1c1",
+          "role": "abandoned mill",
+          "within": null,
+          "x": 0.44,
+          "y": 0.12,
+          "where": "Выше по течению Быстрицы, у Чёрного омута за лесной сторожкой.",
+          "look": "a sagging water mill on a black still pool, wheel broken"
+        },
+        {
+          "locationId": "9357f56a-0a3a-5afc-9ef3-693173e9d367",
+          "role": "burial mound",
+          "within": null,
+          "x": 0.84,
+          "y": 0.4,
+          "where": "Где-то в восточных холмах, в стороне от тракта за полями Заречья.",
+          "look": "a grassy barrow crowned with leaning stones on a bare hill"
+        },
+        {
+          "locationId": "b3533ec6-a412-55ce-8a97-f1d1d1d60915",
+          "role": "headman's house",
+          "within": "f216ae7c-9d61-57b1-a8ec-3c78875a1da5",
+          "x": 0.55,
+          "y": 0.55,
+          "where": "Самый большой дом на площади Заречья, у колодца.",
+          "look": "the largest house on the village square, with a carved porch"
+        },
+        {
+          "locationId": "3acc3f81-8f5b-524a-83cd-877f83481e56",
+          "role": "smithy",
+          "within": "f216ae7c-9d61-57b1-a8ec-3c78875a1da5",
+          "x": 0.55,
+          "y": 0.55,
+          "where": "У южного частокола Заречья, при выходе тракта на юг.",
+          "look": "a smithy with a smoking chimney against the southern palisade"
+        }
+      ],
+      "routes": [
+        {
+          "from": "f216ae7c-9d61-57b1-a8ec-3c78875a1da5",
+          "to": "e8c9d8d7-5150-51fa-9ed6-e553e04bdd48",
+          "way": "От площади с колодцем к северным воротам, мимо изб.",
+          "days": 0.1
+        },
+        {
+          "from": "f216ae7c-9d61-57b1-a8ec-3c78875a1da5",
+          "to": "b3533ec6-a412-55ce-8a97-f1d1d1d60915",
+          "way": "Прямо на площади, у колодца.",
+          "days": 0.1
+        },
+        {
+          "from": "f216ae7c-9d61-57b1-a8ec-3c78875a1da5",
+          "to": "3acc3f81-8f5b-524a-83cd-877f83481e56",
+          "way": "По улице к южному частоколу, на дым.",
+          "days": 0.1
+        },
+        {
+          "from": "f216ae7c-9d61-57b1-a8ec-3c78875a1da5",
+          "to": "728114fd-cc6e-5500-a07e-e4bfb8504f5d",
+          "way": "Трактом на юг по левому берегу, мимо полей и ивняка у размытого брода.",
+          "days": 0.5
+        },
+        {
+          "from": "e8c9d8d7-5150-51fa-9ed6-e553e04bdd48",
+          "to": "9e195c6b-6152-5c11-afa1-6a34de65dbd8",
+          "way": "Трактом на север от поста, через бор до опушки.",
+          "days": 1
+        },
+        {
+          "from": "9e195c6b-6152-5c11-afa1-6a34de65dbd8",
+          "to": "91d93891-65a6-5e40-b435-925e287cb1c1",
+          "way": "Тропой от сторожки вверх по течению Быстрицы, вдоль берега до омута.",
+          "days": 0.5
+        },
+        {
+          "from": "f216ae7c-9d61-57b1-a8ec-3c78875a1da5",
+          "to": "9357f56a-0a3a-5afc-9ef3-693173e9d367",
+          "way": "Полевой стёжкой на восток от тракта, в холмы за выгонами.",
+          "days": 1
+        }
+      ],
+      "source": "model"
+    },
+    "hiddenChars": 649,
+    "hiddenKeptOut": {
+      "publicPrep": true,
+      "canon": true,
+      "brief": true
+    },
+    "guardPostWithin": null,
+    "treeCrumbs": [
+      "region:Известный край",
+      "scene:Пост стражи"
+    ]
+  },
+  "canon": {
+    "title": "Карта края — известный край",
+    "body": "Подготовка ведущего: география края. Канон мира: карту рисуют по ней, перерисовка картинки её не меняет.\n\nЗаречье стоит на левом берегу Быстрицы, которая течёт с севера на юг и ниже деревни уходит в излучину. Старый тракт идёт вдоль левого берега: на юг, через поля и ивняк, за полдня пути он приводит к Каменному мосту, где нынче ходят купцы, ибо брод у деревни размыло; на север тракт втягивается в бор и через день выводит к Лесной сторожке на опушке. Выше сторожки, вверх по реке, говорят, у Чёрного омута догнивает заброшенная мельница. На восток от тракта поля сменяются сухими холмами с редкими дубравами — там, по слухам, и лежит Старый курган. Правый берег — низкий, заболоченный, туда ходят только за хворостом и рыбой.\n\nМеста:\n- Заречье (palisaded village): На левом (восточном) берегу Быстрицы, у самого тракта, что идёт вдоль берега с севера на юг.\n  - Дом старосты (headman's house): Самый большой дом на площади Заречья, у колодца.\n  - Кузня Ольги (smithy): У южного частокола Заречья, при выходе тракта на юг.\n- Каменный мост (stone bridge): Ниже по течению Быстрицы, в полудне пути на юг по тракту от Заречья.\n- Пост стражи (guard post): У северных ворот Заречья, где тракт выходит из деревни к лесу.\n- Лесная сторожка (forester's hut): На опушке бора, в дне пути к северу от Заречья по тракту.\n- Мельница у Чёрного омута (abandoned mill): Выше по течению Быстрицы, у Чёрного омута за лесной сторожкой.\n- Старый курган (burial mound): Где-то в восточных холмах, в стороне от тракта за полями Заречья.\n\nДороги и расстояния:\n- Заречье — Пост стражи: От площади с колодцем к северным воротам, мимо изб. (рукой подать)\n- Заречье — Дом старосты: Прямо на площади, у колодца. (рукой подать)\n- Заречье — Кузня Ольги: По улице к южному частоколу, на дым. (рукой подать)\n- Заречье — Каменный мост: Трактом на юг по левому берегу, мимо полей и ивняка у размытого брода. (полдня пути)\n- Пост стражи — Лесная сторожка: Трактом на север от поста, через бор до опушки. (1 день пути)\n- Лесная сторожка — Мельница у Чёрного омута: Тропой от сторожки вверх по течению Быстрицы, вдоль берега до омута. (полдня пути)\n- Заречье — Старый курган: Полевой стёжкой на восток от тракта, в холмы за выгонами. (1 день пути)"
+  },
+  "brief": "A painted map of the region the travellers know, seen from high above at a slight angle, as a page of an illustrated atlas: terrain, forests, water, roads and settlements as small painted landmarks, with aged paper and ink at the edges.\nThe land, as the game master designed it (north is up, west is left): The river Bystritsa runs from the north edge down the middle of the sheet, bending south-west in the lower third toward a stone bridge. Its east (left) bank carries a dirt high road running north-south; its west bank is low, reedy marsh with willow thickets. The palisaded village sits on the east bank at mid-sheet, fields and a well-worn road around it. North of the village the road enters a dark pine forest that covers the whole upper third, with a forester's hut at the forest edge and, further up the river, a derelict mill beside a black still pool. East of the road the land rises into bare rolling hills with scattered oak groves and an old burial mound. South: open meadows and the bridge.\nDraw these places by role, each a distinct landmark exactly where it is said to be, with open ground between them: palisaded village (Заречье) near the centre: a palisaded village of two dozen log houses around a square with a well; as part of it, inside it and not as separate landmarks: the largest house on the village square, with a carved porch (Дом старосты); a smithy with a smoking chimney against the southern palisade (Кузня Ольги); stone bridge (Каменный мост) in the south: an old arched stone bridge over the river, cart ruts on both approaches; guard post (Пост стражи) near the centre: a timber watchtower with a low guardhouse at the village's north gate; forester's hut (Лесная сторожка) in the north: a lone log hut at the edge of the pine forest beside the road; abandoned mill (Мельница у Чёрного омута) in the north: a sagging water mill on a black still pool, wheel broken; burial mound (Старый курган) in the east: a grassy barrow crowned with leaning stones on a bare hill.\nRoads join: Заречье — Пост стражи (a short way apart); Заречье — Каменный мост (a short way apart); Пост стражи — Лесная сторожка (1 days apart); Лесная сторожка — Мельница у Чёрного омута (a short way apart); Заречье — Старый курган (1 days apart).\nThe app writes the names over the picture, so no written names on the map itself. Nothing beyond the places named: no extra towns, castles, towers or ruins the design does not have.\nNo text, letters, numbers, labels, a legend, a compass rose with letters or any writing anywhere on the map.\nArt style: Ink and watercolour atlas page, warm aged paper, muted greens and ochres, clear readable landmarks; no text on the picture.",
+  "firstPass": {
+    "found": 6,
+    "required": 6,
+    "sideList": [],
+    "contradictions": [],
+    "ok": true
+  },
+  "final": {
+    "status": "ready",
+    "sideList": [],
+    "contradictions": [],
+    "found": 6,
+    "required": 6
+  },
+  "markers": [
+    {
+      "name": "Заречье",
+      "x": 0.33,
+      "y": 0.6,
+      "source": "check",
+      "approximate": false,
+      "confidence": 0.95
+    },
+    {
+      "name": "Каменный мост",
+      "x": 0.26,
+      "y": 0.84,
+      "source": "check",
+      "approximate": false,
+      "confidence": 0.95
+    },
+    {
+      "name": "Пост стражи",
+      "x": 0.34,
+      "y": 0.45,
+      "source": "check",
+      "approximate": false,
+      "confidence": 0.9
+    },
+    {
+      "name": "Лесная сторожка",
+      "x": 0.52,
+      "y": 0.22,
+      "source": "check",
+      "approximate": false,
+      "confidence": 0.85
+    },
+    {
+      "name": "Мельница у Чёрного омута",
+      "x": 0.21,
+      "y": 0.1,
+      "source": "check",
+      "approximate": false,
+      "confidence": 0.85
+    },
+    {
+      "name": "Старый курган",
+      "x": 0.78,
+      "y": 0.3,
+      "source": "check",
+      "approximate": false,
+      "confidence": 0.8
+    },
+    {
+      "name": "Дом старосты",
+      "x": 0.33,
+      "y": 0.551,
+      "source": "check",
+      "approximate": true,
+      "confidence": 0.4
+    },
+    {
+      "name": "Кузня Ольги",
+      "x": 0.37,
+      "y": 0.65,
+      "source": "check",
+      "approximate": false,
+      "confidence": 0.6
+    }
+  ],
+  "screen": {
+    "regionMarkers": [
+      {
+        "name": "Заречье",
+        "status": "visited",
+        "x": 0.33,
+        "y": 0.6,
+        "approximate": false
+      },
+      {
+        "name": "Каменный мост",
+        "status": "known",
+        "x": 0.26,
+        "y": 0.84,
+        "approximate": false
+      },
+      {
+        "name": "Пост стражи",
+        "status": "visited",
+        "x": 0.34,
+        "y": 0.45,
+        "approximate": false
+      },
+      {
+        "name": "Лесная сторожка",
+        "status": "known",
+        "x": 0.52,
+        "y": 0.22,
+        "approximate": false
+      },
+      {
+        "name": "Мельница у Чёрного омута",
+        "status": "rumored",
+        "x": 0.21,
+        "y": 0.1,
+        "approximate": false
+      },
+      {
+        "name": "Старый курган",
+        "status": "rumored",
+        "x": 0.78,
+        "y": 0.3,
+        "approximate": false
+      }
+    ],
+    "insideSettlements": [
+      {
+        "name": "Дом старосты",
+        "in": "Заречье",
+        "x": 0.33,
+        "y": 0.551,
+        "approximate": true
+      },
+      {
+        "name": "Кузня Ольги",
+        "in": "Заречье",
+        "x": 0.37,
+        "y": 0.65,
+        "approximate": false
+      }
+    ]
+  },
+  "guardPost": null,
+  "files": [
+    {
+      "plain": "docs/samples/live2d/fix-s3-accept-d-region-first-3abf72.jpg",
+      "marked": "docs/samples/live2d/fix-s3-accept-d-region-first-3abf72-markers.jpg"
+    }
+  ],
+  "calls": [
+    {
+      "what": "region prep",
+      "model": "claude-opus-5",
+      "usd": 0.0829,
+      "ms": 44119,
+      "usage": {
+        "inputTokens": 2073,
+        "outputTokens": 2900
+      },
+      "error": null
+    },
+    {
+      "what": "region picture",
+      "model": "gpt-image-2.5-sunburst",
+      "usd": 0.0328,
+      "ms": 32208,
+      "usage": {
+        "textInputTokens": 665,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "what": "region check",
+      "model": "claude-sonnet-5",
+      "usd": 0.0073,
+      "ms": 3048,
+      "usage": {
+        "inputTokens": 2081,
+        "outputTokens": 315
+      },
+      "error": null
+    }
+  ],
+  "totalUsd": 0.123,
+  "budgetUsd": 1.5
+}
