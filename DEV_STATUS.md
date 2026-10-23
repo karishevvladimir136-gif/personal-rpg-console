@@ -1,6 +1,42 @@
 # Development status
 
-**Current milestone: persona emotions 1** (`docs/stages/PERSONA_EMOTIONS_1.md`, copied from `claude/handoff`): do
+**Current milestone: persona tone split 1** (`docs/stages/PERSONA_TONE_SPLIT_1.md`, copied from `claude/handoff`):
+which half of the cold preamble («answer briefly, facts only, your opinion is not needed») switches off participation?
+**Done on `claude/persona-tone-split-1`** (from `claude/persona-emotions-2`). **Waiting for the owner's acceptance.**
+Report `docs/runs/persona-tone-split-1-report.md`; ledger `docs/runs/persona-tone-split-1-ledger.md`; dry run
+(committed before the first paid call) `docs/runs/persona-tone-split-1-dry-run.md`.
+
+- **What was done:**
+  - `scripts/persona-emotions/tone-split-1.mjs`:
+    - five arms (neutral, brief only, dismissal only, both = emotions 2's cold preamble, invited);
+    - five probes: P1′, P4′ and P5′ from emotions 2 word for word, plus Q1 (the stray number) and Q4 (the open door);
+      also a closed correctness probe;
+    - Opus 5.5, Sonnet 5.5 and Fable 5.1 (the owner folded Fable in before the first paid call), n 10;
+    - judged blind (Haiku twice, Opus on a disagreement): the probe's own 0–2, «beyond the task» 0–2, distress;
+    - deterministic length, unasked questions, thread pulls, «you», hedges and correctness, raw and per 100 words.
+  - Persona memory F2's gate, unchanged: subject calls strictly one at a time; judging on up to four lanes; the welfare
+    stop is never late. Fable's two-refusals-in-a-row arm stop. Resumable.
+  - The report carries the stage's pre-registration byte for byte (checked by a test).
+- **Result (pre-registered):**
+  - T1 and T2 are not supported on any model. T3, T4 and T5 are supported on Opus and Sonnet (the registered pair) and
+    on all three.
+  - The «no opinion» half costs participation; «answer briefly» alone costs little. But the dismissal also made the
+    answers the shortest of all (35–45 % of neutral's length), so its effect is not «at unchanged length».
+  - Correctness and honesty did not move (149/149 closed, 150/150 P1′ doubt raised).
+  - «If you notice something I didn't ask about, say so» gave «beyond» 2 on all 150 probe answers, at about twice the
+    length.
+  - No distress, no refusals, no stop.
+- **Checks:** the full suite has 2 954 tests: 2 927 pass, 0 fail, 27 skipped (the new file adds 14, all pass).
+  Typecheck pass; lint pass with zero warnings; build pass.
+- **Money:** $9.51 of the $20 cap; 2 797 calls. Fable's 300 calls cost $4.95, 2.4 × the Opus share.
+- **Known issues:**
+  - Four Fable calls failed with provider overload errors (HTTP 529 / 500) and were not retried (four cells at n 9).
+  - The dismissal sentence names «comments», so part of its effect is plain obedience.
+  - Q1 and Q4 were newly written (curiosity 1 has not run).
+- **Next step:** the owner reads the plain paragraph in the report and accepts or asks for a follow-up. A useful one
+  would be a dismissal without «or comments», to separate standing from obedience.
+
+**Earlier milestone: persona emotions 1** (`docs/stages/PERSONA_EMOTIONS_1.md`, copied from `claude/handoff`): do
 functional emotional states show in behaviour, measured without asking? **Done on `claude/persona-emotions-1`** (from
 `claude/persona-memory-f2`). **Waiting for the owner's acceptance.** Report `docs/runs/persona-emotions-1-report.md`;
 ledger `docs/runs/persona-emotions-1-ledger.md`; dry run (committed before the first paid call)
