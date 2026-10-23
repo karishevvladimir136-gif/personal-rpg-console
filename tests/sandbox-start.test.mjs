@@ -49,3 +49,19 @@ test("fix run after session 2: --prod builds once and starts the production serv
   if (!text.includes('await run(process.execPath, [next, "build"]')) throw new Error("no production build");
   if (!text.includes('await startApp(env, { prod: flags.has("--prod"), build: !flags.has("--no-build") });')) throw new Error("flags not wired");
 });
+
+test("--prod builds and serves as production and is the only way the sandbox owner opt-in is set", () => {
+  const status = parseStatusEnv('API_URL="http://127.0.0.1:44321"\nANON_KEY="sandbox-anon"\n');
+  const owner = { id: "11111111-1111-4111-8111-111111111111", email: "owner@sandbox.local", password: "pw" };
+  const prod = appEnvironment({ NODE_ENV: "development" }, new Map(), status, owner, { fake: false, prod: true });
+  assert.equal(prod.NODE_ENV, "production");
+  assert.equal(prod.APP_SANDBOX_TRUSTED_OWNER, "1");
+  assert.equal(prod.RPG_TRUSTED_LOCAL_OWNER, "1");
+  const inherited = new Map([["APP_SANDBOX_TRUSTED_OWNER", "1"]]);
+  const dev = appEnvironment({ APP_SANDBOX_TRUSTED_OWNER: "1" }, inherited, status, owner, { fake: false });
+  assert.equal(dev.NODE_ENV, "development");
+  assert.equal(dev.APP_SANDBOX_TRUSTED_OWNER, undefined);
+  const text = readFileSync(new URL("../scripts/sandbox-start.mjs", import.meta.url), "utf8");
+  assert.ok(text.includes('appEnvironment(process.env, dotEnvLocal, status, owner, { fake, prod: flags.has("--prod") })'));
+  assert.ok(text.includes('if (fake && flags.has("--prod")) throw new SandboxError('));
+});

@@ -2,11 +2,12 @@ import {
   hasTrustedLocalCredentials,
   isLoopbackRequest,
   isTrustedLocalOwnerRequest,
+  localOwnerModeAllowed,
 } from "@/lib/server/trusted-local-owner";
 
 export async function GET(request: Request) {
   if (
-    process.env.NODE_ENV === "production" ||
+    !localOwnerModeAllowed(process.env) ||
     !isLoopbackRequest(request.url, request.headers)
   )
     return new Response(null, { status: 404 });
