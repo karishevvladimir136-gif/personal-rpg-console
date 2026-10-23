@@ -1,26 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import type { CampaignSnapshot } from "@/lib/persistence/contracts";
-import type { PlaySnapshot } from "@/lib/gameplay/contracts";
-import { loadPlay } from "@/lib/gameplay/client";
+import { useGameplayRuntime } from "../gameplay-runtime";
 import { RecordBoundary } from "../persistent-records";
 import { Live2dScreen } from "./live2d-screen";
 
-/** The «2D» screen of a live campaign: the records from the campaign provider, the play
- * snapshot (who is present, the turns' travel receipts) loaded beside them. */
+/** The «2D» screen of a live campaign: the records from the campaign provider, the play snapshot (who is present,
+ * the turns' travel receipts) beside them. Fix S3-accept Б4: through the play runtime «Игра» uses — a turn sent from
+ * the scene polls, refreshes and resumes exactly as there. */
 export function LiveRoute() {
   return <RecordBoundary>{(data) => <LiveWithPlay data={data} />}</RecordBoundary>;
 }
 
 function LiveWithPlay({ data }: { data: CampaignSnapshot }) {
-  const [play, setPlay] = useState<PlaySnapshot | null>(null);
-  const campaignId = data.campaign.id;
-  const revision = data.publicState.revision;
-  useEffect(() => {
-    let alive = true;
-    loadPlay(campaignId).then((next) => { if (alive) setPlay(next); }, () => {});
-    return () => { alive = false; };
-  }, [campaignId, revision]);
-  return <Live2dScreen snapshot={data} play={play} />;
+  const runtime = useGameplayRuntime();
+  return <Live2dScreen snapshot={data} play={runtime.play} onSaved={runtime.afterMutation} />;
 }

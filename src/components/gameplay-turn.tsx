@@ -253,6 +253,7 @@ export function GameplayTurn({
   running = false,
   companionRolls = "dm",
   rerollsLeft,
+  frame = true,
 }: {
   turn: PublicTurn;
   busy: boolean;
@@ -270,6 +271,8 @@ export function GameplayTurn({
   companionRolls?: "dm" | "player";
   /** Fix S3-pre A-37: the rerolls the session still allows (null: unlimited); absent — not known here. */
   rerollsLeft?: number | null;
+  /** Fix S3-accept Б4: the 2D scene shows the turn's frame in the picture itself, not again in the turn. */
+  frame?: boolean;
 }) {
   const { t, language } = useLanguage();
   const { data } = useCampaignData();
@@ -354,7 +357,7 @@ export function GameplayTurn({
         }
       />
       {/* Fix run E (item 77): the frame of this turn, in this turn (none outside a picture board or for an out-of-game reply). */}
-      {turn.mode === "game" && <TurnFrame turn={turn} />}
+      {turn.mode === "game" && frame && <TurnFrame turn={turn} />}
       {turn.proposal && (
         <GameplayGuidanceProposal turn={turn} onSaved={onSaved} />
       )}

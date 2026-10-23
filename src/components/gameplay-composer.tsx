@@ -118,6 +118,7 @@ export function GameplayComposer({
   onDraftText,
   resolveSend,
   companionRolls = "dm",
+  turnFrames = true,
 }: {
   play: PlaySnapshot;
   mode?: TurnMode;
@@ -145,6 +146,8 @@ export function GameplayComposer({
   showLiveView?: boolean;
   /** The DM option «Броски спутников» (item 44): the companions' rolls as chips ("dm") or cards ("player"). */
   companionRolls?: "dm" | "player";
+  /** Fix S3-accept Б4: false where the screen shows the turn's frame elsewhere (the 2D scene's picture). */
+  turnFrames?: boolean;
 }) {
   const { campaignId, data } = useCampaignData();
   // Fix S3-pre A-37: the rerolls the session still allows (the server's own count), for the «Дальше» pause and the card.
@@ -590,6 +593,7 @@ export function GameplayComposer({
                 recording={recording && trace?.view.operationId === turn.id}
                 companionRolls={companionRolls}
                 rerollsLeft={rerolls}
+                frame={turnFrames}
                 busy={
                   busy ||
                   timelineBlocked ||
@@ -621,6 +625,7 @@ export function GameplayComposer({
             recording={recording}
             companionRolls={companionRolls}
             rerollsLeft={rerolls}
+            frame={turnFrames}
             busy={
               busy ||
               timelineBlocked ||

@@ -21,8 +21,12 @@ export type SheetFeature = {
   /** The label in the campaign's language, as the player knows it. */
   label: string;
   kind: SheetFeatureKind;
-  /** What the illustrator draws (plain English, one clause). */
+  /** What the player reads on the hotspot — in the campaign's language since Fix S3-accept Б2 (older sheets: the
+   * illustrator's plain English clause, redone once into the campaign's language by the scene-language job). */
   description: string;
+  /** Fix S3-accept Б2: the same thing as one clause of plain English for the illustrator; absent on older sheets,
+   * whose description is that clause. */
+  brief?: string;
   mustShow: boolean;
   /** An exit leading to a known child or neighbour place, when the records name one. */
   targetLocationId: string | null;
@@ -32,7 +36,7 @@ export type SheetPerson = { name: string; entityId: string | null; at: string | 
 /** The scene sheet of a place: written once from the records and the narration before the place
  * is drawn, edited by the owner, read by the DM afterwards so later narration does not contradict it. */
 export type SceneSheet = {
-  /** One paragraph in plain English: the place as the records and the story describe it. */
+  /** One paragraph: the place as the records and the story describe it (the campaign's language since Fix S3-accept Б2). */
   summary: string;
   features: SheetFeature[];
   people: SheetPerson[];
@@ -43,6 +47,9 @@ export type SceneSheet = {
   never: string[];
   /** A crowded place (a market) may have background extras; otherwise the place is drawn empty. */
   crowded: boolean;
+  /** Fix S3-accept Б2: the language the player-facing text (summary, descriptions, light, never) is written in — set
+   * when it is the campaign's; absent on sheets written in plain English before (the one-time redo sets it). */
+  language?: "ru" | "en";
 };
 
 export type SceneStatus = "draft" | "drawing" | "checked" | "flagged" | "failed";
@@ -144,7 +151,8 @@ export function parseSheetFeature(raw: unknown): SheetFeature | null {
   if (!isRecord(raw) || !KEY_PATTERN.test(String(raw.key)) || !oneOf(SHEET_FEATURE_KINDS, raw.kind)) return null;
   const label = str(raw.label, 80);
   if (!label) return null;
-  return { key: String(raw.key), label, kind: raw.kind, description: str(raw.description, 240), mustShow: raw.mustShow === true,
+  const brief = str(raw.brief, 240);
+  return { key: String(raw.key), label, kind: raw.kind, description: str(raw.description, 240), ...(brief ? { brief } : {}), mustShow: raw.mustShow === true,
     targetLocationId: isUuid(raw.targetLocationId) ? raw.targetLocationId : null };
 }
 export function parseSceneSheet(raw: unknown): SceneSheet | null {
@@ -167,6 +175,7 @@ export function parseSceneSheet(raw: unknown): SceneSheet | null {
     timeOfDay: str(raw.timeOfDay, 40) || null,
     never: Array.isArray(raw.never) ? raw.never.map((row) => str(row, 120)).filter(Boolean).slice(0, 12) : [],
     crowded: raw.crowded === true,
+    ...(raw.language === "ru" || raw.language === "en" ? { language: raw.language } : {}),
   };
 }
 export function parseSceneCheck(raw: unknown): SceneCheck | null {

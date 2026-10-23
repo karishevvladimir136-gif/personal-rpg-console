@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent as
 import { BookOpen } from "lucide-react";
 import type { CampaignSnapshot } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
+import type { LiveTurnView } from "@/lib/gameplay/live-turn-client";
 import type { MapPlacement } from "@/lib/map/placement-contracts";
 import { loadMapLayout } from "@/lib/map/placement-client";
 import { appendToComposerDraft, draftStorage } from "@/lib/ui/composer-draft";
@@ -24,6 +25,8 @@ import b from "./battle/battle.module.css";
 import { useChrome, type CampaignScreenId } from "../registry/shell";
 import { Plate, registry as r, useCopy } from "../registry/primitives";
 import s from "./live2d.module.css";
+import { SceneFrame, ScenePlay } from "./scene-play";
+import { SceneMismatches } from "./scene-mismatches";
 
 // The 2D Live screen (docs/stages/LIVE2D_1.md): the painted region with the party
 // marker and travel, the town with its districts, the scene with hotspots. The
@@ -44,8 +47,10 @@ type Position = { level: Live2dLevel; focusId: string | null };
 const pct = (value: number) => `${(value * 100).toFixed(2)}%`;
 const busy = (board: Live2dBoard) => board.scenes.some((row) => row.status === "drawing") || board.regionMaps.some((row) => row.status === "drawing");
 
-export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2dTransport }: {
+export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2dTransport, onSaved }: {
   snapshot: CampaignSnapshot; play: PlaySnapshot | null; preview?: Live2dPreviewInput; transport?: Live2dTransport;
+  /** Fix S3-accept Б4: after a turn sent from the scene (the play runtime's refresh, as on «Игра»). */
+  onSaved?: () => Promise<void>;
 }) {
   const c = useCopy();
   const chrome = useChrome();
@@ -160,9 +165,12 @@ export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2
   const gliding = !!travel && travelProgress(travel, now) < 1;
 
   // Clicks become words in the action box.
+  const [sceneDraft, setSceneDraft] = useState(0);
   const intent = (text: string) => {
     if (preview) { setNote({ text: c(`В поле действия: «${text}»`, `In the action box: “${text}”`), kind: "ok" }); return; }
     const written = appendToComposerDraft(draftStorage(), { campaignId, mode: "game", companionId: null, timeline: snapshot.timeline, text });
+    // Fix S3-accept Б4: on the scene the action box stands under the picture — it re-reads the draft; no «Открыть текст».
+    if (written && level === "scene") { setSceneDraft((value) => value + 1); setNote(null); return; }
     setNote(written
       ? { text: c(`Записано в поле действия: «${text}». Ведущий решит.`, `Written into the action box: “${text}”. The DM decides.`), kind: "ok" }
       : { text: c("Ход ещё идёт: поле действия занято.", "A turn is in flight: the action box is busy."), kind: "warn" });
@@ -280,7 +288,7 @@ export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2
   } else {
     body = (
       <SceneLevel snapshot={snapshot} play={play} board={board} locationId={focusId} urlFor={urlFor} anchorUrl={anchorUrl} send={send} intent={intent}
-        editing={editing} setEditing={setEditing} preview={!!preview} setBoard={setBoard} />
+        editing={editing} setEditing={setEditing} preview={!!preview} setBoard={setBoard} onSaved={onSaved} draftNonce={sceneDraft} />
     );
   }
 
@@ -309,12 +317,13 @@ function Art({ src, className = s.art }: { src: string; className?: string }) {
   return <img className={className} src={src} alt="" />;
 }
 
-function SceneLevel({ snapshot, play, board, locationId, urlFor, anchorUrl, send, intent, editing, setEditing, preview, setBoard }: {
+function SceneLevel({ snapshot, play, board, locationId, urlFor, anchorUrl, send, intent, editing, setEditing, preview, setBoard, onSaved, draftNonce }: {
   snapshot: CampaignSnapshot; play: PlaySnapshot | null; board: Live2dBoard; locationId: string | null;
   urlFor: (pictureId: string | null) => string | null;
   anchorUrl: (subject: { kind: "entity" | "location"; id: string }, composition: PublicPicture["composition"]) => string | null;
   send: (action: Live2dAction, input: unknown) => Promise<unknown>; intent: (text: string) => void;
   editing: boolean; setEditing: (value: boolean) => void; preview: boolean; setBoard: (update: (prior: Live2dBoard) => Live2dBoard) => void;
+  onSaved?: () => Promise<void>; draftNonce: number;
 }) {
   const c = useCopy();
   const pictures = usePictures();
@@ -329,6 +338,8 @@ function SceneLevel({ snapshot, play, board, locationId, urlFor, anchorUrl, send
   const stage = useRef<HTMLDivElement>(null);
   const [drag, setDrag] = useState<{ id: string; x: number; y: number } | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
+  // Fix S3-accept Б4: the turn streaming from the action box under the scene (its frame lands in the picture).
+  const [live, setLive] = useState<LiveTurnView | null>(null);
   // «Подготовить сцену» answers only after the sheet (several seconds), so the button stays off until then;
   // the ref also stops a double click that lands before the re-render.
   const [preparing, setPreparing] = useState(false);
@@ -367,7 +378,7 @@ function SceneLevel({ snapshot, play, board, locationId, urlFor, anchorUrl, send
 
   const status = !scene ? null
     : scene.status === "drawing" ? { text: c("Сцена рисуется…", "The scene is being drawn…"), warn: false }
-    : scene.status === "flagged" ? { text: c("Картинка не сошлась с записями — проверь сцену. Чего нет, перечислено рядом.", "The picture did not match the records — check the scene. What is missing is listed beside it."), warn: true }
+    : scene.status === "flagged" ? { text: c("Картинка не сошлась с записями — проверь сцену. Что не сошлось, перечислено в «Ещё».", "The picture did not match the records — check the scene. What did not match is listed under «More»."), warn: true }
     : scene.status === "failed" ? { text: `${c("Сцену нарисовать не удалось", "The scene could not be drawn")}${scene.error ? `: ${scene.error}` : "."}`, warn: true }
     : scene.status === "draft" ? { text: c("Лист сцены готов; картинка ещё не нарисована.", "The scene sheet is ready; the picture is not drawn yet."), warn: false } : null;
   const price = usd(pictureCostUsdMicros("quality", "scene"));
@@ -406,6 +417,7 @@ function SceneLevel({ snapshot, play, board, locationId, urlFor, anchorUrl, send
             );
           })}
         </div>
+        {location.id === snapshot.publicState.current_location_id && <SceneFrame play={play} live={live} />}
       </div>
       {status && <p className={`${s.note} ${status.warn ? s.warn : ""}`} role="status">{status.text}</p>}
       {scene && scene.sideList.length > 0 && (
@@ -418,10 +430,12 @@ function SceneLevel({ snapshot, play, board, locationId, urlFor, anchorUrl, send
         </div>
       )}
       {pois.length === 0 && scene && scene.status !== "drawing" && <p className={`${r.small} ${r.muted}`}>{c("Точек пока нет: ничего из записей не найдено на картинке.", "No hotspots yet: nothing from the records was found in the picture.")}</p>}
+      <ScenePlay snapshot={snapshot} play={play} onSaved={onSaved} nonce={draftNonce} live={live} onLiveView={setLive} preview={preview} />
       {scene && (
         <details className={s.tools}>
           <summary>{c("Ещё", "More")}</summary>
           <div className={s.toolsBody}>
+            <SceneMismatches scene={scene} />
             <label className={s.field}>{c("Перерисовать с замечанием", "Redraw with a comment")}
               <input value={comment} onChange={(event) => setComment(event.target.value.slice(0, 300))} placeholder={c("Например: колодец ближе к центру", "For example: the well nearer the centre")} />
             </label>

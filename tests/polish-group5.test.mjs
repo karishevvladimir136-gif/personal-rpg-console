@@ -64,7 +64,9 @@ test("«Кадр сцены» acts on the Stage V frames; the legacy FRAME and v
   assert.match(game, /setFrameNote\(frameStatusText\(/);
   assert.match(game, /getElementById\(`turn-frame-\$\{turnId\}`\)\?\.scrollIntoView\(\{ behavior: "smooth", block: "nearest" \}\)/);
   assert.doesNotMatch(game, /getElementById\("registry-frames"\)\?\.scrollIntoView/);
-  assert.match(src("src/components/gameplay-turn.tsx"), /\{turn\.mode === "game" && <TurnFrame turn=\{turn\} \/>\}/);
+  // Fix S3-accept Б4: the 2D scene shows the turn's frame in its picture, so the turn there leaves it out (`frame` defaults to true).
+  assert.match(src("src/components/gameplay-turn.tsx"), /\{turn\.mode === "game" && frame && <TurnFrame turn=\{turn\} \/>\}/);
+  assert.match(src("src/components/gameplay-turn.tsx"), /frame = true,/);
 });
 
 test("one picture path for every button: the portrait, figure, item, holding and place buttons draw through the Stage V store", () => {

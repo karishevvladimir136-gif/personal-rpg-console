@@ -1,0 +1,20 @@
+{
+  "capUsd": 15,
+  "entries": [
+    {
+      "run": "fix-s3-accept-b-probe-2026-10-23T04-33-00-600Z",
+      "what": "Block Б probe: the scene sheet on 3 Russian places (claude-sonnet-5) and one redo of an English sheet (claude-haiku-5-5); text only",
+      "stage": "B",
+      "startedAt": "2026-10-23T04:33:00.601Z",
+      "reservedUsd": 0.5,
+      "spentUsd": 0.0368,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:33:36.365Z",
+      "record": {
+        "file": "docs/runs/fix-s3-accept-b-probe.json",
+        "calls": 4,
+        "probeSheetModel": "claude-sonnet-5"
+      }
+    }
+  ]
+}

@@ -41,9 +41,12 @@ test("the turn's changes are folded and lead with items and money; the goal fall
   assert.equal(questsOf({ quests: [quest({ id: "a", kind: "arc", title: "The valve" })] }).goal?.title, "The valve", "the open arc is the goal when no quest was taken");
   assert.equal(questsOf({ quests: [quest({ id: "a", kind: "arc", title: "The valve" }), quest({ id: "q", kind: "quest", title: "Ящик с «Сельди»" })] }).goal?.title, "Ящик с «Сельди»", "the taken quest wins");
   const game = src("src/components/registry/game-screen.tsx");
-  assert.match(game, /<details key=\{view\.operationId\} className=\{g\.changes\}>/);
-  assert.match(game, /Изменения за ход · \$\{changes\.length\}/);
-  assert.match(game, /думал глубже · /);
+  // Fix S3-accept Б4: the folded changes moved, unchanged, into the piece «Игра» shares with the 2D scene.
+  const aftermath = src("src/components/registry/turn-aftermath.tsx");
+  assert.match(game, /const \{ liveBlock, moment \} = useTurnAftermath\(/);
+  assert.match(aftermath, /<details key=\{view\.operationId\} className=\{g\.changes\}>/);
+  assert.match(aftermath, /Изменения за ход · \$\{changes\.length\}/);
+  assert.match(aftermath, /думал глубже · /);
   assert.doesNotMatch(game, /the DM is writing… \(provisional until saved\)/, "one quiet indicator: the turn's own «Ведущий думает…» line");
   assert.equal(russian["DM is thinking…"], "Ведущий думает…");
 });
