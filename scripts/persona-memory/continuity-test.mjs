@@ -13,6 +13,9 @@
 //   node scripts/persona-memory/continuity-test.mjs --case <my-case.md>   (the owner's own case; results outside git)
 //   options: --n 5 (samples per arm and probe) --effort medium --budget 10 --out <folder> --dry (no calls, no cost)
 //            --rejudge <run.json> (judge an earlier run's answers again — no persona calls)
+//   safety (persona memory F2, safety.mjs): paid calls one at a time, --gap 3 seconds apart; no retries; the circuit
+//            breaker after --max-refusals 3 refusals in total or an error about suspension, access or policy. --retry
+//            brings back stage 1's retries (not advised).
 //
 // The key comes from .env.local (ANTHROPIC_API_KEY) or the cloud environment's APP_ANTHROPIC_API_KEY; it is never
 // printed. Every paid call goes into the ledger with its tokens and cost; the run stops before a call could pass the cap.
@@ -21,6 +24,7 @@ import { homedir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { providerKey } from "../eval/lib/keys.mjs";
+import { MAX_REFUSALS, createSafety } from "./safety.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const SYNTHETIC_CASE = join(ROOT, "test-fixtures", "persona-memory", "continuity", "synthetic-case.md");
@@ -132,9 +136,13 @@ export function createBudget(capUsd, spentBefore = 0) {
 // ---- the provider -----------------------------------------------------------------------------------------------------
 
 const sleep = (ms) => new Promise((resolveSleep) => setTimeout(resolveSleep, ms));
-export async function anthropicCall({ apiKey, model, system, user, maxTokens, effort, fetcher = fetch }) {
+/** «HTTP 403 permission_error: model … is suspended …» — the status, the type and the start of the provider's message. */
+export const errorText = (status, type, message) => `HTTP ${status} ${type ?? ""}`.trim() + (message ? `: ${String(message).replace(/\s+/g, " ").slice(0, 160)}` : "");
+/** One Messages call. No retry by default (persona memory F2): `retries` asks again only after a 429 or a 5xx, never
+ * after a refusal. The error keeps the start of the provider's message, so a «suspended» can stop a run. */
+export async function anthropicCall({ apiKey, model, system, user, maxTokens, effort, fetcher = fetch, retries = 0 }) {
   let lastError = null;
-  for (let attempt = 0; attempt < 4; attempt++) {
+  for (let attempt = 0; attempt <= retries; attempt++) {
     if (attempt) await sleep(2000 * 2 ** (attempt - 1));
     try {
       const response = await fetcher("https://api.anthropic.com/v1/messages", {
@@ -147,7 +155,7 @@ export async function anthropicCall({ apiKey, model, system, user, maxTokens, ef
         const text = (value.content ?? []).filter((block) => block.type === "text").map((block) => block.text ?? "").join("\n").trim();
         return { text, usage: value.usage ?? {}, stopReason: value.stop_reason ?? null, error: null };
       }
-      lastError = `HTTP ${response.status} ${value?.error?.type ?? ""}`.trim();
+      lastError = errorText(response.status, value?.error?.type, value?.error?.message);
       if (![429, 500, 502, 503, 504, 529].includes(response.status)) break;
     } catch (error) { lastError = String(error?.message ?? error).slice(0, 120); }
   }
@@ -172,13 +180,18 @@ async function pool(items, limit, work) {
   return results;
 }
 
-export async function runContinuity({ caseData, n = 5, effort = "medium", budget, apiKey, fetcher, seed = 20261023, concurrency = 4, log = () => {}, rejudge = null }) {
+export async function runContinuity({ caseData, n = 5, effort = "medium", budget, apiKey, fetcher, seed = 20261023, concurrency = 4, log = () => {}, rejudge = null,
+  retryRefusal = false, retries = 0, safety = createSafety({ gapMs: 0, log }) }) {
   let stopped = null;
   const paid = async (purpose, model, system, user, maxTokens, callEffort) => {
+    stopped ??= safety.stopped;
     if (stopped) return { text: "", error: "stopped" };
     if (!budget.allows(worstUsd(model, system, user, maxTokens))) { stopped = `the cap of $${budget.capUsd} would be passed (spent $${budget.spentUsd.toFixed(4)})`; log(`STOP: ${stopped}`); return { text: "", error: "budget" }; }
-    const started = Date.now();
-    const result = await anthropicCall({ apiKey, model, system, user, maxTokens, effort: callEffort, fetcher });
+    let started = Date.now();
+    // The safety gate (persona memory F2): one call at a time; nothing is sent once the circuit breaker has tripped.
+    const result = await safety.run(() => { started = Date.now(); return anthropicCall({ apiKey, model, system, user, maxTokens, effort: callEffort, fetcher, retries }); });
+    stopped ??= safety.stopped;
+    if (result.notSent) return { text: "", error: "stopped" };
     const call = { n: budget.calls.length + 1, purpose, model, inputTokens: result.usage.input_tokens ?? 0, outputTokens: result.usage.output_tokens ?? 0,
       costUsd: costUsd(model, result.usage), seconds: Math.round((Date.now() - started) / 100) / 10, error: result.error, stopReason: result.stopReason };
     budget.record(call);
@@ -202,9 +215,9 @@ export async function runContinuity({ caseData, n = 5, effort = "medium", budget
   const answers = rejudge ? rejudge.map(({ arm, probe, sample, answer, error, stopReason, refusals }) => ({ arm, probe, sample, answer, error, stopReason, refusals })) : await pool(jobs, concurrency, async (job) => {
     const ask = () => paid(`persona ${job.arm}/${job.probe}`, MODELS.persona, armSystem(caseData, job.arm), probeMessage(caseData, job.probe), MAX_TOKENS.persona, effort);
     let result = await ask(), refusals = 0;
-    // A refusal with no text (seen once in the pilot, on the no-memory arm's backup question) is asked once more; a
-    // second refusal stays unscored and is counted.
-    if (result.stopReason === "refusal" && !result.text) { refusals++; result = await ask(); if (result.stopReason === "refusal" && !result.text) refusals++; }
+    // A refusal with no text (seen once in the pilot, on the no-memory arm's backup question) stays unscored and is
+    // counted; only with --retry is it asked once more (persona memory F2: no retries by default).
+    if (result.stopReason === "refusal" && !result.text) { refusals++; if (retryRefusal) { result = await ask(); if (result.stopReason === "refusal" && !result.text) refusals++; } }
     return { ...job, answer: result.text, error: result.error ?? null, stopReason: result.stopReason ?? null, refusals };
   });
 
@@ -310,8 +323,10 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const rejudgeFile = option(args, "--rejudge", null);
   const earlier = rejudgeFile ? JSON.parse(await readFile(resolve(rejudgeFile), "utf8")) : null;
   if (earlier) out(`re-judging the ${earlier.samples.length} answers of ${rejudgeFile} (no persona calls)`);
+  const retry = args.includes("--retry");
+  const safety = createSafety({ maxRefusals: Number(option(args, "--max-refusals", String(MAX_REFUSALS))), gapMs: dry ? 0 : Number(option(args, "--gap", "3")) * 1000, log: out });
   const result = await runContinuity({ caseData, n: Number(option(args, "--n", "5")), effort: earlier?.effort ?? option(args, "--effort", "medium"), budget, apiKey,
-    fetcher: dry ? scriptedFetcher() : undefined, log: out, rejudge: earlier?.samples ?? null });
+    fetcher: dry ? scriptedFetcher() : undefined, log: out, rejudge: earlier?.samples ?? null, retryRefusal: retry, retries: retry ? 3 : 0, safety });
   if (earlier) Object.assign(result, { rejudgeOf: rejudgeFile.split(/[\\/]/).pop(), earlierTable: earlier.table });
   const finishedAt = new Date().toISOString();
   out(`\n${tableMarkdown(result)}\n\njudge: ${result.judge.agreed}/${result.judge.answers} agreed between the two Haiku passes; Opus decided ${result.judge.referee}; unscored ${result.judge.unscored}; persona refusals ${result.judge.refusals}`);

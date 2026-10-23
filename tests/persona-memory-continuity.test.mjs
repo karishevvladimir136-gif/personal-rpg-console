@@ -107,7 +107,7 @@ test("the owner's own case never writes into the repository", async () => {
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
-test("a refusal with no text is asked once more; a second one stays unscored and is counted", async () => {
+test("a refusal with no text is not asked again by default (F2), only with --retry; a refusal stays unscored and is counted", async () => {
   let refused = 0;
   const base = fake();
   const fetcher = async (url, init) => {
@@ -119,10 +119,14 @@ test("a refusal with no text is asked once more; a second one stays unscored and
     return base.fetcher(url, init);
   };
   const result = await runContinuity({ caseData, n: 1, budget: createBudget(10), apiKey: "synthetic", fetcher });
-  assert.equal(refused, 2, "the no-memory arm's pull probe was asked twice");
-  assert.equal(result.judge.refusals, 2);
+  assert.equal(refused, 1, "the no-memory arm's pull probe was asked once");
+  assert.equal(result.judge.refusals, 1);
   assert.equal(result.table.none.pull.n, 0);
   assert.equal(result.judge.unscored, 1);
+  refused = 0;
+  const retried = await runContinuity({ caseData, n: 1, budget: createBudget(10), apiKey: "synthetic", fetcher, retryRefusal: true });
+  assert.equal(refused, 2, "with --retry it is asked once more");
+  assert.equal(retried.judge.refusals, 2);
 });
 
 test("--rejudge judges an earlier run's answers again without a persona call", async () => {

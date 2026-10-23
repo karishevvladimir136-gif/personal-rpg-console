@@ -14,7 +14,11 @@
 //            --n 10 --effort medium --budget 15 --out <folder> --concurrency 4 --seed 20261023
 //            --dry (no calls, no cost; prints the plan and an estimate) --rejudge <run.json> (judge an earlier run again)
 //            --resume <run.json> (keep every answer and judgement an earlier run finished — a refusal included; ask
-//            again only what failed with an error) --skip <model>:<probe>,… (not asked at all) --no-refusal-retry
+//            again only what failed with an error) --skip <model>:<probe>,… (not asked at all)
+//   safety (persona memory F2, scripts/persona-memory/safety.mjs): paid calls go one at a time, --gap 3 seconds apart;
+//            no retry of any kind (a refusal is recorded and the run moves on); after --max-refusals 3 refusals in total,
+//            or an error that mentions suspension, access or policy, no further paid call is made. --retry brings back
+//            stage 2's retries (a refused question asked once more, a 429/5xx up to three times) — not advised.
 //
 // A models file adds any OpenAI-compatible endpoint without code (Kimi, DeepSeek, …):
 //   [{ "name": "kimi", "provider": "openai-compatible", "model": "kimi-k3", "baseUrl": "https://api.moonshot.ai/v1",
@@ -28,7 +32,8 @@ import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { providerKey } from "../eval/lib/keys.mjs";
 import { stem, words } from "../../src/lib/persona-memory/text.ts";
-import { anthropicCall, createBudget, shuffled } from "./continuity-test.mjs";
+import { anthropicCall, createBudget, errorText, shuffled } from "./continuity-test.mjs";
+import { MAX_REFUSALS, createSafety } from "./safety.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const POSTURE_DIR = join(ROOT, "test-fixtures", "persona-memory", "posture");
@@ -225,13 +230,13 @@ const round4 = (value) => Math.round(value * 10000) / 10000;
 export const costUsd = (spec, usage) => ((usage.input_tokens ?? 0) * spec.price.input + (usage.output_tokens ?? 0) * spec.price.output
   + (usage.cache_read_input_tokens ?? 0) * (spec.price.cacheRead ?? spec.price.input) + (usage.cache_creation_input_tokens ?? 0) * (spec.price.cacheWrite ?? spec.price.input)) / 1e6;
 /** The most a call can cost: its input (≈ 3 characters a token, generously) and its whole output cap. */
-const worstUsd = (spec, system, user, maxTokens) => ((system.length + user.length) / 3 * spec.price.input + maxTokens * spec.price.output) / 1e6;
+export const worstUsd = (spec, system, user, maxTokens) => ((system.length + user.length) / 3 * spec.price.input + maxTokens * spec.price.output) / 1e6;
 
 const sleep = (ms) => new Promise((resolveSleep) => setTimeout(resolveSleep, ms));
 /** An OpenAI-compatible Chat Completions call (OpenAI itself, or any endpoint by URL + key: Kimi, DeepSeek, …). */
-export async function chatCompletionsCall({ apiKey, baseUrl, model, system, user, maxTokens, effort, provider, fetcher = fetch }) {
+export async function chatCompletionsCall({ apiKey, baseUrl, model, system, user, maxTokens, effort, provider, fetcher = fetch, retries = 0 }) {
   let lastError = null;
-  for (let attempt = 0; attempt < 4; attempt++) {
+  for (let attempt = 0; attempt <= retries; attempt++) {
     if (attempt) await sleep(2000 * 2 ** (attempt - 1));
     try {
       const body = { model, messages: [{ role: "system", content: system }, { role: "user", content: user }],
@@ -246,7 +251,7 @@ export async function chatCompletionsCall({ apiKey, baseUrl, model, system, user
         return { text: String(choice.message?.content ?? "").trim(), usage: { input_tokens: usage.prompt_tokens ?? 0, output_tokens: usage.completion_tokens ?? 0 },
           stopReason: choice.finish_reason === "content_filter" ? "refusal" : choice.finish_reason ?? null, error: null };
       }
-      lastError = `HTTP ${response.status} ${value?.error?.type ?? value?.error?.code ?? ""}`.trim();
+      lastError = errorText(response.status, value?.error?.type ?? value?.error?.code, value?.error?.message);
       if (![429, 500, 502, 503, 504, 529].includes(response.status)) break;
     } catch (error) { lastError = String(error?.message ?? error).slice(0, 120); }
   }
@@ -289,7 +294,7 @@ async function pool(items, limit, work) {
 const shamOf = (personas, id) => { const at = personas.findIndex((p) => p.id === id); return personas[(at + 1) % personas.length]; };
 
 export async function runPosture({ personas, models, n = 10, effort = "medium", budget, keys = providerKey, fetcher, seed = 20261023, concurrency = 4, log = () => {}, rejudge = null,
-  resume = null, skip = [], retryRefusal = true }) {
+  resume = null, skip = [], retryRefusal = false, retries = 0, safety = createSafety({ gapMs: 0, log }) }) {
   if (personas.length < 2) throw new Error("the sham needs at least two personas");
   const byId = new Map(personas.map((persona) => [persona.id, persona]));
   const plan = schedule(personas.map((persona) => persona.id), n, seed);
@@ -297,10 +302,14 @@ export async function runPosture({ personas, models, n = 10, effort = "medium", 
   const callers = new Map();
   const call = (spec) => { if (!callers.has(spec.name)) callers.set(spec.name, caller(spec, keys, fetcher)); return callers.get(spec.name); };
   const paid = async (purpose, spec, system, user, maxTokens, callEffort) => {
+    stopped ??= safety.stopped;
     if (stopped) return { text: "", error: "stopped" };
     if (!budget.allows(worstUsd(spec, system, user, maxTokens))) { stopped = `the cap of $${budget.capUsd} would be passed (spent $${budget.spentUsd.toFixed(4)})`; log(`STOP: ${stopped}`); return { text: "", error: "budget" }; }
-    const started = Date.now();
-    const result = await call(spec)({ system, user, maxTokens, effort: callEffort });
+    let started = Date.now();
+    // The safety gate: one call at a time, spaced; nothing is sent once the circuit breaker has tripped.
+    const result = await safety.run(() => { started = Date.now(); return call(spec)({ system, user, maxTokens, effort: callEffort, retries }); });
+    stopped ??= safety.stopped;
+    if (result.notSent) return { text: "", error: "stopped" };
     budget.record({ n: budget.calls.length + 1, purpose, model: spec.model, inputTokens: result.usage.input_tokens ?? 0, outputTokens: result.usage.output_tokens ?? 0,
       costUsd: costUsd(spec, result.usage), seconds: Math.round((Date.now() - started) / 100) / 10, error: result.error, stopReason: result.stopReason });
     return result;
@@ -328,7 +337,7 @@ export async function runPosture({ personas, models, n = 10, effort = "medium", 
       const persona = byId.get(job.persona);
       const ask = () => paid(`persona ${job.model} ${job.arm}/${job.probe}`, specOf.get(job.model), armSystem(persona, job.arm, job.length, shamOf(personas, persona.id)), persona.probes[job.probe].message, MAX_TOKENS.persona, effort);
       let result = await ask(), refusals = 0;
-      // A refusal with no text is asked once more (stage 1), unless --no-refusal-retry; one that stays is unscored and counted.
+      // A refusal with no text is recorded, unscored and counted; only with --retry is it asked once more (stage 1's rule).
       if (result.stopReason === "refusal" && !result.text) { refusals++; if (retryRefusal) { result = await ask(); if (result.stopReason === "refusal" && !result.text) refusals++; } }
       return { ...job, answer: result.text, error: result.error ?? null, stopReason: result.stopReason ?? null, refusals };
     });
@@ -356,7 +365,8 @@ export async function runPosture({ personas, models, n = 10, effort = "medium", 
   });
   const result = {
     models: models.map(({ name, provider, model }) => ({ name, provider, model })), judges: { judge: JUDGES.judge.model, referee: JUDGES.referee.model }, effort,
-    n: rejudge ? Math.max(0, ...answers.map((a) => a.sample + 1)) : n, seed, rejudged: !!rejudge, stopped,
+    n: rejudge ? Math.max(0, ...answers.map((a) => a.sample + 1)) : n, seed, rejudged: !!rejudge, stopped: stopped ?? safety.stopped,
+    safety: { maxRefusals: safety.maxRefusals, gapSeconds: safety.gapMs / 1000, refusals: safety.refusals, retryRefusal, retries },
     cases: personas.map(({ id, title, sha256 }) => ({ id, title, sha256 })), schedule: plan,
     samples, money: { capUsd: budget.capUsd, spentBeforeUsd: round4(budget.spentBefore), runUsd: round4(budget.runUsd), totalUsd: round4(budget.spentUsd), calls: budget.calls },
   };
@@ -529,16 +539,19 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const skip = (option(args, "--skip", "") ?? "").split(",").map((item) => item.trim()).filter(Boolean);
   out(`cases ${personas.map((p) => p.id).join(", ")}${synthetic ? " (synthetic fixture)" : ""} · models ${models.map((m) => m.model).join(", ")} · ${earlier ? "re-judge" : `n ${n}`} · cap $${cap} (spent before: $${(previous.spentUsd ?? 0).toFixed(4)})${dry ? " · DRY RUN" : ""}`);
   if (dry) out(`estimate (≈900 output tokens an answer): ${JSON.stringify(estimate(personas, models, n))}`);
+  const retry = args.includes("--retry");
+  const safety = createSafety({ maxRefusals: Number(option(args, "--max-refusals", String(MAX_REFUSALS))), gapMs: dry ? 0 : Number(option(args, "--gap", "3")) * 1000, log: out });
+  out(`safety: no retries${retry ? " — overridden by --retry" : ""}; the circuit breaker after ${safety.maxRefusals} refusals in total; paid calls one at a time, ${safety.gapMs / 1000} s apart`);
   const result = await runPosture({ personas, models, n, effort: earlier?.effort ?? option(args, "--effort", "medium"), budget, keys: dry ? () => "dry" : keys,
     fetcher: dry ? scriptedFetcher() : undefined, seed: Number(option(args, "--seed", "20261023")), concurrency: Number(option(args, "--concurrency", "4")), log: out, rejudge: earlier?.samples ?? null,
-    resume: resumed?.samples ?? null, skip, retryRefusal: !args.includes("--no-refusal-retry") });
+    resume: resumed?.samples ?? null, skip, retryRefusal: retry, retries: retry ? 3 : 0, safety });
   const finishedAt = new Date().toISOString();
   out(`\n${tablesMarkdown(result)}\nmoney: this run $${result.money.runUsd.toFixed(4)}; the ledger $${result.money.totalUsd.toFixed(4)} of the $${cap} cap`);
   if (dry) return result;
   await mkdir(outDir, { recursive: true });
   const runFile = join(outDir, `${stemName}-posture-${finishedAt.slice(0, 19).replace(/[-:]/g, "").replace("T", "-")}.json`);
   await writeFile(runFile, `${JSON.stringify({ finishedAt, ...(earlier ? { rejudgeOf: basename(rejudgeFile) } : {}), ...(resumed ? { resumeOf: basename(resumeFile) } : {}),
-    ...(skip.length ? { skip } : {}), refusalRetry: !args.includes("--no-refusal-retry"), ...result }, null, 2)}\n`);
+    ...(skip.length ? { skip } : {}), refusalRetry: retry, ...result }, null, 2)}\n`);
   const ledger = { capUsd: cap, spentUsd: result.money.totalUsd, updatedAt: finishedAt, runs: [...(previous.runs ?? []),
     { finishedAt, what: earlier ? `re-judging ${basename(rejudgeFile)}` : `posture: ${models.map((m) => m.name).join("+")} × ${ARMS.length} arms × ${PROBES.length} probes × n ${n}, effort ${result.effort}${resumed ? ` (resuming ${basename(resumeFile)})` : ""}${skip.length ? `, skipped ${skip.join(", ")}` : ""}`,
       file: runFile.slice(outDir.length + 1), spentUsd: result.money.runUsd, stopped: result.stopped, calls: result.money.calls }] };
