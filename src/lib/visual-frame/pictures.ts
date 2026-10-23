@@ -388,7 +388,10 @@ export function anchorSet(snapshot: CampaignSnapshot, autopilot: Pick<PictureAut
   if (autopilot.portraits) {
     for (const row of entities.filter((entity) => entity.kind === "player" || entity.kind === "companion")) {
       plan.push({ subject: { kind: "entity", id: row.id }, composition: "portrait", name: row.name, description: row.details, reason: "portrait" });
-      if (autopilot.figures && row.kind === "player")
+      // Fix S3-accept А5: every companion's doll gets a full-length figure like the hero's, not the portrait stretched —
+      // after that person's portrait (the figure's face reference), one at a time, within the cap; the brief is the
+      // record's look and what the person wears (queueAnchor's prompt).
+      if (autopilot.figures)
         plan.push({ subject: { kind: "entity", id: row.id }, composition: "figure", name: row.name, description: row.details, reason: "figure" });
     }
   }
@@ -455,6 +458,29 @@ export function openingAnchorTarget(
   if (!place || !["known", "visited"].includes(place.status)) return null;
   if (turns.some((turn) => turn.mode === "game" && turn.status === "committed" && !!turn.narration?.trim())) return null;
   return picturesOf(board, { kind: "location", id: place.id }, "location").length ? null : place.id;
+}
+
+const PEOPLE_KINDS = ["player", "companion", "npc"];
+/** Fix S3-accept Е1: who a «Судьбы» card shows — the person the digest named, else the one record of that exact name. */
+export function fateEntityId(card: { entityId: string | null; name: string }, entities: readonly Pick<Entity, "id" | "name" | "kind">[]): string | null {
+  if (card.entityId && entities.some((row) => row.id === card.entityId)) return card.entityId;
+  const name = card.name.trim().toLocaleLowerCase();
+  const named = entities.filter((row) => PEOPLE_KINDS.includes(row.kind) && row.name.trim().toLocaleLowerCase() === name);
+  return named.length === 1 ? named[0].id : null;
+}
+/** Fix S3-accept Е1: the portraits a chapter's «Судьбы» cards still need, drawn in one batch at the chapter's close: each
+ * person on a card without any portrait (never drawn or tried — «Люди» already shows the others), once, within the cap. */
+export function fatePortraitPlan(board: Pick<PictureBoard, "pictures" | "settings" | "today">, snapshot: Pick<CampaignSnapshot, "entities">,
+  cards: readonly { entityId: string | null; name: string }[]): AnchorPlan {
+  const plan: AnchorPlan = [];
+  for (const card of cards) {
+    const id = fateEntityId(card, snapshot.entities);
+    const row = id ? snapshot.entities.find((entity) => entity.id === id) : null;
+    if (!row || !PEOPLE_KINDS.includes(row.kind) || plan.some((step) => step.subject.id === row.id)) continue;
+    if (picturesOf(board, { kind: "entity", id: row.id }, "portrait").length) continue;
+    plan.push({ subject: { kind: "entity", id: row.id }, composition: "portrait", name: row.name, description: row.details, reason: "portrait" });
+  }
+  return plan.slice(0, capRemaining(board));
 }
 
 /** A restyle re-renders every anchor that exists in the old style plus the planned set; the old
