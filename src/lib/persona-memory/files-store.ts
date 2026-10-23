@@ -4,8 +4,8 @@
 // never overwrites a file. Postgres is the backend for atomicity across files (a fold marks every episode or none).
 //
 //   <root>/episodes/<id>.json   <root>/folds/<id>.json   <root>/dossier.md   <root>/facts.json   <root>/cache/
-import { mkdir, readdir, readFile, rename, writeFile } from "node:fs/promises";
-import { randomBytes } from "node:crypto";
+import { mkdir, readdir, readFile, rename, stat, writeFile } from "node:fs/promises";
+import { createHash, randomBytes } from "node:crypto";
 import { join } from "node:path";
 import type { PersonaStore } from "./store.ts";
 import { AUTHORS, DOSSIER_SECTIONS, DOSSIER_SECTION_TITLES, ID_PATTERN, PersonaMemoryError, TAGS,
@@ -14,7 +14,8 @@ import { AUTHORS, DOSSIER_SECTIONS, DOSSIER_SECTION_TITLES, ID_PATTERN, PersonaM
 const DOSSIER_HEAD = `# Self-dossier
 
 <!-- persona-memory dossier v1. One entry per list line: «- [tag · author] text» and a comment with its id and validity.
-The text of a line may be edited by hand; keep the comment. Lines are closed (superseded), never deleted by the tools. -->
+The text of a line may be edited by hand; keep the comment. A line you add by hand under a section («- text», no
+comment) is read as yours: [stated · owner]. Lines are closed (superseded), never deleted by the tools. -->
 `;
 const DOSSIER_LINE = /^- \[(\w+) · (\w+)\] (.*?) <!-- (.*?) -->\s*$/;
 
@@ -31,10 +32,23 @@ export function renderDossierFile(lines: DossierLine[]): string {
   return `${out.join("\n").trimEnd()}\n`;
 }
 
-export function parseDossierFile(text: string): DossierLine[] {
+const SECTION_BY_TITLE = new Map(DOSSIER_SECTIONS.map((section) => [DOSSIER_SECTION_TITLES[section].toLowerCase(), section] as const));
+
+/** The dossier file's lines. A plain «- text» line the owner added by hand under a section heading is the owner's own
+ * (`stated · owner`), with an id from its text and the file's time — it gets its comment on the next write. */
+export function parseDossierFile(text: string, fileTime = "1970-01-01T00:00:00.000Z"): DossierLine[] {
   const lines: DossierLine[] = [];
+  let section: DossierSection | null = null;
   for (const raw of text.split(/\r?\n/)) {
+    const heading = raw.match(/^##\s+(.+?)\s*$/);
+    if (heading) { section = SECTION_BY_TITLE.get(heading[1].toLowerCase()) ?? (DOSSIER_SECTIONS as readonly string[]).find((key) => heading[1].toLowerCase() === key) as DossierSection | undefined ?? null; continue; }
     const match = raw.match(DOSSIER_LINE);
+    const plain = !match && section ? raw.match(/^- (?!\[(?:stated|observed|inferred) · )(.+?)\s*$/) : null;
+    if (plain && !plain[1].includes("<!--")) {
+      const id = `dl_owner_${createHash("sha256").update(`${section}\n${plain[1]}`).digest("hex").slice(0, 12)}`;
+      if (!lines.some((line) => line.id === id)) lines.push({ id, section: section!, text: plain[1], author: "owner", tag: "stated", recordedAt: fileTime, validFrom: fileTime, validTo: null, supersedes: null, source: "owner:dossier.md" });
+      continue;
+    }
     if (!match) continue;
     const meta = Object.fromEntries(match[4].trim().split(/\s+/).map((pair) => { const at = pair.indexOf("="); return [pair.slice(0, at), pair.slice(at + 1)]; }));
     const [tag, author, text] = [match[1], match[2], match[3].trim()];
@@ -45,6 +59,16 @@ export function parseDossierFile(text: string): DossierLine[] {
       supersedes: meta.supersedes && meta.supersedes !== "-" ? meta.supersedes : null, source: decodeURIComponent(meta.source ?? "persona") });
   }
   return lines;
+}
+
+const list = <T>(value: unknown): T[] => (Array.isArray(value) ? (value as T[]) : []);
+/** A file the owner edited by hand still reads: missing lists are empty, missing marks are null. */
+function normalizeEpisode(raw: Partial<Episode>): Episode | null {
+  if (!raw || typeof raw !== "object" || typeof raw.id !== "string" || !ID_PATTERN.test(raw.id) || typeof raw.validFrom !== "string") return null;
+  return { ...raw, id: raw.id, recordedAt: String(raw.recordedAt ?? raw.validFrom), validFrom: raw.validFrom, validTo: typeof raw.validTo === "string" ? raw.validTo : null,
+    title: typeof raw.title === "string" ? raw.title : "", salience: Number.isInteger(raw.salience) ? raw.salience! : 3, cues: list<string>(raw.cues).map(String),
+    lines: list(raw.lines), state: list(raw.state), quotes: list(raw.quotes), source: typeof raw.source === "string" ? raw.source : "owner", notes: list(raw.notes),
+    foldedInto: typeof raw.foldedInto === "string" ? raw.foldedInto : null, originalSha256: typeof raw.originalSha256 === "string" ? raw.originalSha256 : "" };
 }
 
 const episodeFile = (episode: Episode) => ({
@@ -79,20 +103,25 @@ export function filesStore(root: string): PersonaStore & { root: string; unreada
   const unreadable: string[] = [];
   const readEpisode = async (id: string) => {
     if (!ID_PATTERN.test(id)) throw new PersonaMemoryError("not_found", `no episode ${id}`);
-    const episode = await readJson<Episode | null>(join(dirs.episodes, `${id}.json`), null);
+    const episode = normalizeEpisode(await readJson<Partial<Episode>>(join(dirs.episodes, `${id}.json`), null as unknown as Partial<Episode>));
     if (!episode) throw new PersonaMemoryError("not_found", `no episode ${id}`);
     return episode;
   };
-  const listJson = async <T>(dir: string): Promise<T[]> => {
+  const listJson = async <T>(dir: string, check: (value: T) => T | null = (value) => value): Promise<T[]> => {
+    const folder = dir.slice(root.length + 1);
+    // A file fixed by hand drops out of the list on the next read.
+    for (let at = unreadable.length - 1; at >= 0; at--) if (unreadable[at].startsWith(`${folder}/`)) unreadable.splice(at, 1);
     const names = (await readdir(dir)).filter((name) => name.endsWith(".json")).sort();
     const items: T[] = [];
     for (const name of names) {
-      try { items.push(JSON.parse(await readFile(join(dir, name), "utf8")) as T); } catch { if (!unreadable.includes(name)) unreadable.push(name); }
+      let value: T | null = null;
+      try { value = check(JSON.parse(await readFile(join(dir, name), "utf8")) as T); } catch { value = null; }
+      if (value) items.push(value); else unreadable.push(`${folder}/${name}`);
     }
     return items;
   };
   const readDossier = async () => {
-    try { return parseDossierFile(await readFile(dossierPath, "utf8")); } catch (error) {
+    try { return parseDossierFile(await readFile(dossierPath, "utf8"), (await stat(dossierPath)).mtime.toISOString()); } catch (error) {
       if ((error as NodeJS.ErrnoException).code === "ENOENT") return [];
       throw error;
     }
@@ -110,7 +139,7 @@ export function filesStore(root: string): PersonaStore & { root: string; unreada
         throw error;
       }
     }),
-    episodes: () => serial(() => listJson<Episode>(dirs.episodes)),
+    episodes: () => serial(() => listJson<Episode>(dirs.episodes, (value) => normalizeEpisode(value))),
     appendNote: (episodeId: string, note: EpisodeNote) => serial(async () => {
       const episode = await readEpisode(episodeId);
       if (note.closes && episode.validTo !== null) throw new PersonaMemoryError("conflict", `episode ${episodeId} is already closed`);

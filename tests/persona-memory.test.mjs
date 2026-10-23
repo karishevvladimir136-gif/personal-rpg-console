@@ -230,7 +230,20 @@ test("files: the store is plain files the owner can read — one JSON per episod
   assert.ok((await memory.exportMarkdown()).files["journal/2026-10.md"].includes("Edited by hand after recording"));
   await writeFile(join(dir, "episodes", "ep_20261001_0000_badbad.json"), "{ not json");
   await memory.journalLatest(5);
-  assert.ok((await memory.exportMarkdown()).files["README.md"].includes("ep_20261001_0000_badbad.json"), "an unreadable file is named, not silently dropped");
+  assert.ok((await memory.exportMarkdown()).files["README.md"].includes("episodes/ep_20261001_0000_badbad.json"), "an unreadable file is named, not silently dropped");
+  await rm(join(dir, "episodes", "ep_20261001_0000_badbad.json"));
+  assert.ok(!(await memory.exportMarkdown()).files["README.md"].includes("badbad"), "and leaves the list once it is gone");
+  // A file stripped of its lists by hand still reads, flagged as edited.
+  await writeFile(path, JSON.stringify({ id: stored.id, validFrom: stored.validFrom, lines: stored.lines }));
+  const [stripped] = await memory.journalLatest(1);
+  assert.deepEqual([stripped.notes, stripped.quotes, stripped.editedByHand], [[], [], true]);
+  await assert.doesNotReject(memory.recall("lantern ledger"), "recall reads it");
+  // A line the owner writes into the dossier by hand is read as the owner's own words, and keeps its id.
+  await writeFile(join(dir, "dossier.md"), `${await readFile(join(dir, "dossier.md"), "utf8")}\n- Ask before renaming anything.\n`);
+  const owned = (await memory.store.dossier()).find((line) => line.text === "Ask before renaming anything.");
+  assert.deepEqual([owned.author, owned.tag, owned.section], ["owner", "stated", "voice"]);
+  await memory.dossierAppend([{ section: "rules", text: "A later rule.", tag: "inferred" }]);
+  assert.ok((await memory.store.dossier()).some((line) => line.id === owned.id && line.author === "owner"), "the next write gives it its comment, same id");
 });
 
 test("postgres: the migration keeps the invariants itself — immutable originals, append-only notes and folds, provenance checks, service_role only", async () => {

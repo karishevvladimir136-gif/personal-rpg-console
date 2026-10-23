@@ -21,8 +21,10 @@ export type RecallHit = { episode: Episode & { editedByHand: boolean }; score: n
 export type RecallResult = { query: string; period: Period | null; asOf: string | null; episodes: RecallHit[]; facts: Fact[]; folds: Fold[] };
 export type DossierView = { asOf: string; text: string; lines: DossierLine[]; dropped: { id: string; section: string }[]; usedTokens: number; budgetTokens: number };
 
-/** Recall weights: cues are the «what» keys and weigh most; salience lifts a hit by at most a quarter. */
-export const RECALL_WEIGHTS = { cue: 0.4, keyword: 0.3, embedding: 0.3, minRelevance: 0.15, foldedFactor: 0.6 } as const;
+/** Recall weights: cues are the «what» keys and weigh most; salience lifts a hit by at most a quarter. The local
+ * embedder's similarity is lexical, so alone it must be high (≥ 0.5) to count; a provider's semantic similarity counts
+ * from about 0.3 (`minRelevance` 0.09). */
+export const RECALL_WEIGHTS = { cue: 0.4, keyword: 0.3, embedding: 0.3, minRelevance: 0.15, minRelevanceProvider: 0.09, foldedFactor: 0.6 } as const;
 export const DOSSIER_BUDGET_TOKENS = 4000;
 
 const episodeText = (episode: Episode) => [episode.title, ...episode.lines.map((l) => l.text), ...episode.state.map((l) => l.text),
@@ -31,9 +33,10 @@ const round = (value: number) => Math.round(value * 1000) / 1000;
 const sha = (text: string) => createHash("sha256").update(text).digest("hex").slice(0, 32);
 const day = (instant: string) => instant.slice(0, 10);
 
-export function createPersonaMemory(options: { store: PersonaStore; embedder?: Embedder; now?: () => Date }) {
+export function createPersonaMemory(options: { store: PersonaStore; embedder?: Embedder; now?: () => Date; minRelevance?: number }) {
   const { store } = options;
   const embedder = options.embedder ?? localEmbedder();
+  const minRelevance = options.minRelevance ?? (embedder.model.startsWith("local-") ? RECALL_WEIGHTS.minRelevance : RECALL_WEIGHTS.minRelevanceProvider);
   const clock = options.now ?? (() => new Date());
   const nowIso = () => clock().toISOString();
   const instant = (value: string | undefined, field: string) => {
@@ -103,7 +106,7 @@ export function createPersonaMemory(options: { store: PersonaStore; embedder?: E
         const score = relevance * (0.8 + 0.05 * episode.salience) * (episode.foldedInto ? RECALL_WEIGHTS.foldedFactor : 1);
         return { episode: { ...episode, editedByHand: editedByHand(episode) }, score: round(score), why: { cue: round(cue), keyword: round(keyword), embedding: round(embedding) },
           fold: episode.foldedInto ? foldById.get(episode.foldedInto) ?? null : null, relevance };
-      }).filter((hit) => !stems.length || hit.relevance >= RECALL_WEIGHTS.minRelevance)
+      }).filter((hit) => !stems.length || hit.relevance >= minRelevance)
         .sort((a, b) => b.score - a.score || b.episode.validFrom.localeCompare(a.episode.validFrom))
         .slice(0, k)
         .map(({ relevance: _relevance, ...hit }) => { void _relevance; return hit; });

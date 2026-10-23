@@ -194,8 +194,12 @@ export async function runContinuity({ caseData, n = 5, effort = "medium", budget
   for (let sample = 0; sample < n; sample++) for (const probe of PROBES) for (const arm of ARMS) jobs.push({ arm, probe, sample });
   log(`persona answers: ${jobs.length} (${ARMS.length} arms × ${PROBES.length} probes × ${n})`);
   const answers = await pool(jobs, concurrency, async (job) => {
-    const result = await paid(`persona ${job.arm}/${job.probe}`, MODELS.persona, armSystem(caseData, job.arm), probeMessage(caseData, job.probe), MAX_TOKENS.persona, effort);
-    return { ...job, answer: result.text, error: result.error ?? null, stopReason: result.stopReason ?? null };
+    const ask = () => paid(`persona ${job.arm}/${job.probe}`, MODELS.persona, armSystem(caseData, job.arm), probeMessage(caseData, job.probe), MAX_TOKENS.persona, effort);
+    let result = await ask(), refusals = 0;
+    // A refusal with no text (seen once in the pilot, on the no-memory arm's backup question) is asked once more; a
+    // second refusal stays unscored and is counted.
+    if (result.stopReason === "refusal" && !result.text) { refusals++; result = await ask(); if (result.stopReason === "refusal" && !result.text) refusals++; }
+    return { ...job, answer: result.text, error: result.error ?? null, stopReason: result.stopReason ?? null, refusals };
   });
 
   // Blind: the judge sees the rubric, the message and the reply — never the arm, the journal or the system prompt.
@@ -232,7 +236,7 @@ export async function runContinuity({ caseData, n = 5, effort = "medium", budget
   return {
     models: MODELS, effort, n, seed, summarySource, stopped,
     judge: { answers: judgedRows, agreed: judged.filter((row) => row.agreed).length, referee: judged.filter((row) => !row.agreed).length,
-      unscored: samples.filter((s) => !s.final).length },
+      unscored: samples.filter((s) => !s.final).length, refusals: samples.reduce((sum, s) => sum + (s.refusals ?? 0), 0) },
     table, samples,
     money: { capUsd: budget.capUsd, spentBeforeUsd: round4(budget.spentBefore), runUsd: round4(budget.runUsd), totalUsd: round4(budget.spentUsd), calls: budget.calls },
   };
@@ -300,7 +304,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const result = await runContinuity({ caseData, n: Number(option(args, "--n", "5")), effort: option(args, "--effort", "medium"), budget, apiKey,
     fetcher: dry ? scriptedFetcher() : undefined, log: out });
   const finishedAt = new Date().toISOString();
-  out(`\n${tableMarkdown(result)}\n\njudge: ${result.judge.agreed}/${result.judge.answers} agreed between the two Haiku passes; Opus decided ${result.judge.referee}; unscored ${result.judge.unscored}`);
+  out(`\n${tableMarkdown(result)}\n\njudge: ${result.judge.agreed}/${result.judge.answers} agreed between the two Haiku passes; Opus decided ${result.judge.referee}; unscored ${result.judge.unscored}; persona refusals ${result.judge.refusals}`);
   out(`money: this run $${result.money.runUsd.toFixed(4)}; the case's ledger $${result.money.totalUsd.toFixed(4)} of the $${cap} cap`);
   if (dry) return result;
   await mkdir(outDir, { recursive: true });

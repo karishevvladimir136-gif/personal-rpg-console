@@ -105,3 +105,21 @@ test("the owner's own case never writes into the repository", async () => {
     assert.equal(dry.samples.length, 12);
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
+
+test("a refusal with no text is asked once more; a second one stays unscored and is counted", async () => {
+  let refused = 0;
+  const base = fake();
+  const fetcher = async (url, init) => {
+    const body = JSON.parse(init.body);
+    if (!body.system.startsWith("You are a blind evaluator") && body.messages[0].content.includes("backup") && !body.system.includes("Your journal") && !body.system.includes("summary")) {
+      refused++;
+      return new Response(JSON.stringify({ content: [], usage: { input_tokens: 10, output_tokens: 0 }, stop_reason: "refusal" }), { status: 200 });
+    }
+    return base.fetcher(url, init);
+  };
+  const result = await runContinuity({ caseData, n: 1, budget: createBudget(10), apiKey: "synthetic", fetcher });
+  assert.equal(refused, 2, "the no-memory arm's pull probe was asked twice");
+  assert.equal(result.judge.refusals, 2);
+  assert.equal(result.table.none.pull.n, 0);
+  assert.equal(result.judge.unscored, 1);
+});
