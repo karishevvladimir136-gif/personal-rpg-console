@@ -1,5 +1,39 @@
 # Development status
 
+**Current milestone: the fixes from the owner's acceptance pass** (`docs/stages/FIX_S3_ACCEPT.md` on `claude/handoff`,
+the owner's words in `docs/runs/s3-acceptance-notes.md`) — **implementation done on `claude/s3-candidate`, waiting for
+the owner's acceptance** (`docs/runs/fix-s2-acceptance.md` section 9, `docs/runs/live2d-1-acceptance.md` section 2а, the
+index `docs/runs/s3-acceptance.md`) **and the sandbox load** (`docs/SANDBOX_LOAD_FIX_S2.md`, five migration ranges; this
+stage adds `202610230501`, `…511`, `…521`, `…541`, `…551`, all additive; `0501` names the owner's counter «Клык
+шамана» and `0521` puts the ring on «Кольцо (правая)»). Report: `docs/runs/fix-s3-accept-report.md`; ledger
+`docs/runs/fix-s3-accept-ledger.md`. First merged: `origin/claude/s3-sandbox-fixes` (the owner's three PC commits).
+
+- **What was done:** Г — AC and saves derived by the 5e rules module on the server from the worn things and the effects
+  (robe, shield, ring, Mage Armor, Shield), one number on the sheet, the doll, the battle block and `combat attack`; the
+  plates «КД», «Атака», «Навык» with breakdowns; every counter named in Russian. В — spells as records like things
+  (13 Russian cards, school, history, pictures), the tab «Заговоры» / «Подготовлено сегодня» / «Книга заклинаний» with a
+  school filter, the one-time conversion of the «Умения» prose, the DM's sheet tool and the cast's slot. Б — the action
+  box and the DM's answer under the 2D scene, the hotspots in the campaign's language (older sheets redone once), 5–8
+  hotspots, the mismatch list under «Ещё». Д — the map as a tree of places with breadcrumbs («Карта» opens it), the
+  region designed by the DM first (public part in the canon, hidden part private), painted from it, markers checked on
+  their objects. А — the inventory as cells one holder at a time, a type filter, the card's history folded and buttons
+  only where they apply, the ring fix, companions' full-length figures. Е — portraits on «Судьбы». Ж — «Пожелания к
+  приключению», an owner-only field beside «Тайны» that only the hidden-layer prep reads.
+- **Key decisions:** the derived numbers are attached by the server's public read; the owner's «КД вручную» outranks
+  them; the DM may set lasting conditions on the hero (with a reason); the spell conversion runs as the owner's sheet
+  correction on the first open of «Персонаж»; «Перерисовать» on a scene with fewer than 5 hotspots writes a new sheet;
+  «Изменить размещение» drags the painted region's markers; the wizard saves the wishes without a rebuild (the first
+  prep reads them); the DM tool schema trimmed to 13 494 / 12 443 estimated tokens and its bound raised from 13 500 / 12 500 to 14 000 / 13 000.
+- **Checks** (a clean worktree without `.env.local`): at `7eb8277` (before Ж1) the full suite 2 891 tests · 2 864 pass · 0 fail · 27 skipped; typecheck, zero-warning lint and the production build pass. The final run at `c806ad8` (with Ж1) is in progress.
+- **Money:** $0.98 of the $15 cap (probes: hotspots $0.07, the region $0.79 including a refusal's diagnosis, spell
+  pictures $0.11, an access check $0.0001). From about 03:46 to before 04:48 UTC the key did not reach the 5.5 models;
+  the final probes ran on the app's own models.
+- **Known issues:** Mage Armor has no automatic end; «Использовать» depends on a thing's words; a city's own painted
+  plan is left for later; on «Игра» the composer keyed by the addressed companion may remount (reported, not verified,
+  not changed).
+- **Next step:** the owner loads the candidate by `docs/SANDBOX_LOAD_FIX_S2.md`, plays the 6–8-turn prose check on the
+  production build, accepts section 9 and section 2а, then session 3.
+
 **Current milestone: the fixes before session 3** (`docs/stages/FIX_S3_PRE.md` on `claude/handoff`) — **implementation
 done on `claude/s3-candidate`, waiting for the owner's acceptance** (`docs/runs/s3-acceptance.md`, the three Russian
 checklists, updated where a path changed) **and the sandbox load** (`docs/SANDBOX_LOAD_FIX_S2.md`, now four migration

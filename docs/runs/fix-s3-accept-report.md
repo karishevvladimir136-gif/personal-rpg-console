@@ -29,7 +29,7 @@ and the full suite on the merged candidate was green before any change (2 845 te
   length — what you want the adventure to be. The DM's hidden-layer prep builds on it; you will not see it in play.
 - **Manual setup:** none beyond the sandbox load (`docs/SANDBOX_LOAD_FIX_S2.md`, now five migration ranges). Two
   migrations change a record of yours: `202610230501` (the counter's name «Клык шамана») and `202610230521` (the ring).
-  Step 7 of the load is now your 6–8-turn test campaign on the production build, as you decided. Six migrations in
+  Step 7 of the load is now your 6–8-turn test campaign on the production build, as you decided. Five migrations in
   all (`202610230501`, `…511`, `…521`, `…541`, `…551`), all additive.
 
 ## Money
