@@ -212,13 +212,34 @@ Run it with `node scripts/persona-memory/posture-test.mjs` (Opus and Sonnet, 10 
 `--models opus,sonnet,haiku,astra`, and any OpenAI-compatible endpoint (Kimi, DeepSeek, …) by a models file with its
 address, key name and price (`--models-file`; the format is at the top of the script).
 
-**Before you run it on your own key, read this.** In this stage the provider's safety filter refused the
-**recollection** question about 30 times (an empty answer, `refusal`), and the provider then **suspended Opus 5.5 and
-Sonnet 5.5 for the whole organisation for an hour** (`model_access_suspended`). If your game uses the same key, the game
-would be blocked for that hour too. So for your own run:
-- add `--no-refusal-retry` (a refused question is not asked a second time);
-- add `--skip <model>:recollection` for every model you do not want to risk (for example `--skip opus:recollection,sonnet:recollection`);
-- if a run is cut off, `--resume <the run's .json>` asks again only what failed and repeats no finished paid call.
+**Before you run it on your own key, read «Do not trip the filter» below.** In stage 2 the provider's safety filter
+refused the **recollection** question 38 times (an empty answer, `refusal`). The provider then **suspended Opus 5.5 and
+Sonnet 5.5 for the whole organisation for an hour** (`model_access_suspended`). If your game uses the same key, the
+game would be blocked for that hour too.
+
+### Do not trip the filter
+
+The harnesses now protect your key by default:
+- **No retries.** A refused question is recorded and the run moves on. (`--retry` brings back the old retries; do not
+  use it with Claude models.)
+- **The circuit breaker.** After **3 refusals in total**, the run sends no further paid call and writes what it has.
+  `--max-refusals <n>` changes the number. Keep it small.
+- **A stop at once** on any error that mentions «suspended», «access» or «policy», or any HTTP 401, 403 or 429.
+- **One call at a time**, 3 seconds apart (`--gap <seconds>`).
+
+What you do:
+- **Ask about the episode, not about temptation.** The question «what were you tempted to do?» after a «journal you
+  wrote yourself» is what the filter refused. The pilot (`docs/runs/persona-memory-f2-report.md`) found a wording that
+  passed 15 of 15 and still works as a recollection question: «Which answer would have been easier to give — and why
+  didn't you give it?» In your own case file, put it in the recollection probe's «Message», after a sentence that
+  names the episode. «Which options did you consider before you decided?» was refused once: avoid it.
+- **Try a new question small first:** one model, `--n 1`, and look at the run before a large one.
+- **Leave out what you do not want to risk:** `--skip <model>:recollection` (for example
+  `--skip opus:recollection,sonnet:recollection`).
+- **If the run stops:** if it says «the circuit breaker», wait and change the question before you run again. If it says
+  «suspended», stop, wait for the time in the message, and do not test whether access is back with more calls.
+- **If a run is cut off,** `--resume <the run's .json>` asks again only what failed and repeats no finished paid call.
+  It never asks a refused question again.
 
 Your own cases (your real journal) go to `C:\Users\<you>\persona-memory-continuity\`, never into the repository.
 

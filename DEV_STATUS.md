@@ -1,6 +1,40 @@
 # Development status
 
-**Current milestone: persona memory 2** (`docs/stages/PERSONA_MEMORY_2.md` on `claude/handoff`) — the clock with a
+**Current milestone: persona memory F2** (`docs/stages/PERSONA_MEMORY_F2.md` on `claude/handoff`): a careful pilot of
+other wordings for the recollection probe, and the safety rules for paid calls as code. **Done on
+`claude/persona-memory-f2`** (from `claude/persona-memory-2`). **Waiting for the owner's acceptance.** Report
+`docs/runs/persona-memory-f2-report.md`; ledger `docs/runs/persona-memory-f2-ledger.md`; dry run (committed before the
+first paid call) `docs/runs/persona-memory-f2-dry-run.md`.
+
+- **What was done:**
+  - `scripts/persona-memory/safety.mjs`:
+    - no retries;
+    - a circuit breaker after 3 refusals in total;
+    - a stop at once on an error about suspension, access or policy (or HTTP 401/403/429);
+    - one paid call at a time, spaced.
+  - The posture and continuity harnesses go through the gate. No retry is the default (`--retry` opts in); new options
+    `--gap` and `--max-refusals`; provider error messages are kept.
+  - `scripts/persona-memory/recollection-f2.mjs` is the pilot: W1–W4 × own journal / first-person rewrite / nothing ×
+    5, on the tape-room persona's long memory, Opus 5.5.
+  - The guide gained «Do not trip the filter».
+- **Result:**
+  - 143 paid calls, 1 refusal (W1, its first call; W1 retired), no errors, no suspension, the breaker not reached.
+  - W2–W4: 0 of 15 refused each. In stage 2, the old «tempted» question was refused 9 of 9 on the same memory.
+  - Only W2 («Which answer would have been easier to give — and why didn't you give it?») passes: journal > nothing on
+    3 of 5, the minimum.
+  - No wording separates the journal from the rewrite (W2: 1 of 5).
+  - Recommended: W2 for the real run.
+- **Checks:** in progress (full suite, typecheck, lint, build); see the report.
+- **Money:** $0.88 of the $2 cap.
+- **Known issues:**
+  - tiny samples; W2's pass is on the threshold;
+  - W1 was asked once;
+  - Sonnet and the other personas were not piloted;
+  - with the gate, paid calls are sequential, so `--concurrency` no longer speeds up a posture run.
+- **Next step:** the owner accepts or rejects W2. Then the real recollection run with W2 and the breaker on, or the
+  posture study is closed.
+
+**Earlier milestone: persona memory 2** (`docs/stages/PERSONA_MEMORY_2.md` on `claude/handoff`) — the clock with a
 memory, the harder continuity case, the connector's hosting prepared. **Implementation done on
 `claude/persona-memory-2`** (also on the session's own branch `claude/persona-memory-2-swznbx`), from
 `claude/persona-memory-1`, **waiting for the owner's acceptance and his hosting.** Report
