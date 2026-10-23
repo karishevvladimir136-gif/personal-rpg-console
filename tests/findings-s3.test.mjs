@@ -174,3 +174,13 @@ test("§7: the dose of the DM's own notes — the hidden layer holds 24 000 char
     assert.equal(parseDigest(reply(big), source, 0).hiddenLayer, big.trim(), "a 23 500-character layer passes whole");
   } finally { await c.f.db.close(); }
 });
+
+test("§1 probe finding: the stop on a companion's objection stands against a check's nudge or the DM's own second thought (rule and nudge, both languages)", async () => {
+  const { untoldRollsMessage } = await import("../src/lib/gameplay/dm-loop/roll-check.ts");
+  assert.match(DM_ROLE, /the turn ends there for the player to answer; a question put to the hero ends the turn\. That stop stands even when a check or your own second thought says the hero's declared action was left undone: say so in one line out of game and never play it for the player\./);
+  assert.match(WRITER_ROLE, /That stop stands even when a check or your own second thought/);
+  for (const text of [dmRoleText(true), writerRoleText(true)])
+    assert.match(text, /Эта остановка в силе, даже если проверка или твоё собственное сомнение говорят, что заявленное действие героя осталось недоигранным: скажи это одной строкой вне игры и не доигрывай за игрока\./);
+  assert.match(untoldRollsMessage("ru", [], "writer", ["уйти к барже"]), /Если ход остановился ради ответа игрока \(спутник вслух возразил, герою задан вопрос\), это и есть причина: скажи это одной строкой вне игры и не доигрывай действие\./);
+  assert.match(untoldRollsMessage("en", [], "dm", ["walk to the barge"]), /If the turn stopped for the player's answer \(a companion objected aloud, a question was put to the hero\), that is the reason: say so in one out-of-game line and do not play the action\./);
+});

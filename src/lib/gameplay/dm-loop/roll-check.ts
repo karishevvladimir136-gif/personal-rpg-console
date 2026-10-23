@@ -79,11 +79,11 @@ export function untoldRollsMessage(language: "ru" | "en", rolls: string[], role:
   const close = role === "writer" ? (language === "ru" ? "Новая ведомость не нужна." : "No new ledger is needed.") : (language === "ru" ? "Потом снова вызови finish_turn." : "Then call finish_turn again.");
   if (language === "ru") return [
     rolls.length ? `Эти броски игрок видел, а в рассказе их исхода нет:\n${list}\nРасскажи исход каждого сейчас, по порядку, продолжая рассказ и не повторяя уже написанного.` : "",
-    undeclared.length ? `Игрок заявил эти действия героя, а ход их не бросил и не сказал, почему нет:\n${actions}\nБрось каждое сейчас (в бою — roll kind attack с целью) и расскажи исход — или одной строкой вне игры скажи, почему его не может быть. Воля героя — у игрока.` : "",
+    undeclared.length ? `Игрок заявил эти действия героя, а ход их не бросил и не сказал, почему нет:\n${actions}\nБрось каждое сейчас (в бою — roll kind attack с целью) и расскажи исход — или одной строкой вне игры скажи, почему его не может быть. Если ход остановился ради ответа игрока (спутник вслух возразил, герою задан вопрос), это и есть причина: скажи это одной строкой вне игры и не доигрывай действие. Воля героя — у игрока.` : "",
     close].filter(Boolean).join("\n");
   return [
     rolls.length ? `The player saw these rolls but the story does not tell their outcome:\n${list}\nTell each outcome now, in order, continuing the narration without repeating it.` : "",
-    undeclared.length ? `The player declared these actions of the hero, and the turn neither rolled them nor said why not:\n${actions}\nRoll each now (in a fight: roll kind attack with its target) and tell the outcome — or say in one out-of-game line why it cannot happen. The hero's will is the player's.` : "",
+    undeclared.length ? `The player declared these actions of the hero, and the turn neither rolled them nor said why not:\n${actions}\nRoll each now (in a fight: roll kind attack with its target) and tell the outcome — or say in one out-of-game line why it cannot happen. If the turn stopped for the player's answer (a companion objected aloud, a question was put to the hero), that is the reason: say so in one out-of-game line and do not play the action. The hero's will is the player's.` : "",
     close].filter(Boolean).join("\n");
 }
 
