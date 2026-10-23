@@ -10,9 +10,10 @@ import { EQUIPPED_FILTER, inventoryCategoryLabel, inventoryItemLabel } from "@/l
 import { itemRarity } from "@/lib/ui/rarity";
 import { appendToComposerDraft, draftStorage } from "@/lib/ui/composer-draft";
 import {
-  dollLayout, equipmentOf, heroOf, holdingsNavLabel, holdingsOf, inventoryOf, mountsOf, partyOf, placePilesOf, sheetOf, statLabel,
+  dollLayout, equipmentOf, heroOf, holdingsNavLabel, holdingsOf, inventoryOf, mountsOf, partyOf, placePilesOf, sheetOf, sheetPlates,
   type SheetView, type SlotView,
 } from "@/lib/ui/campaign-view";
+import { derivedSheetOf, manualArmourClass, sheetLabels5e, signed, type DerivedSave } from "@/lib/live2d/battle/rules-5e";
 import { castLine, ITEM_KINDS, itemMechanics, kindLabel, spellBook, walletOfEntity, walletParts, type SpellRecord, type Wallet } from "@/lib/inventory/model";
 import type { SheetPatch } from "@/lib/inventory/sheet";
 import {
@@ -250,14 +251,10 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
   const selected = item(card?.itemId ?? null)?.quantity ? item(card?.itemId ?? null) : null;
   const cardHolder = holders.find((holder) => holder.key === card?.holder) ?? own;
   const wearer = cardHolder.entity && PEOPLE.includes(cardHolder.entity.kind) ? cardHolder.entity : entity;
-  const tiles: [string, string | number][] = [];
-  if (sheet.armorClass !== null) tiles.push([c.label("Armor class"), sheet.armorClass]);
-  if (sheet.speed) tiles.push([c.label("Speed"), sheet.speed]);
-  // Stub zeros never show («Навык 0» disappears); a number the sheet already gives is not repeated.
-  for (const [key, value] of model.derivedStats.filter(([, value]) => value !== 0)) {
-    const label = c.label(statLabel(key));
-    if (!tiles.some(([seen]) => seen === label)) tiles.push([label, value]);
-  }
+  // Fix S3-accept Г1: the plates from one selector — in 5e «КД», «Атака», «Навык» with their breakdowns (the server's
+  // numbers); stub zeros never show («Навык 0» disappears); a number the sheet already gives is not repeated.
+  const tiles = sheetPlates(view, entity, model.derivedStats).map((plate) => ({ ...plate, label: plate.translated ? plate.label : c.label(plate.label) }));
+  const derived = derivedSheetOf(view, entity);
   const counters = sheetCounters(entity, c.language);
   const stats = (
     <Panel label={c("Характеристики", "Characteristics")}>
@@ -274,7 +271,7 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
         <MoneyLine person={entity} people={people} onSend={(to, amounts) => moves.run(planMoney(view, entity.id, to, amounts, ctx))} />
         {tiles.length > 0 && (
           <div className={`${r.stats} ${s.stats} ${s.tiles}`}>
-            {tiles.map(([label, value]) => <div key={label} className={r.stat}><div className={r.statKey}>{label}</div><div className={`${r.statMain} ${typeof value === "string" ? s.statWords : ""}`}>{value}</div></div>)}
+            {tiles.map((plate) => <PlateTile key={plate.key} label={plate.label} value={plate.value} text={plate.text} />)}
           </div>
         )}
         {sheet.attributes.length > 0 && (
@@ -285,15 +282,17 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
           </div>
         )}
         <Counters counters={counters} />
-        <SheetLines sheet={sheet} skills={model.skills} />
-        <SheetEditor key={entity.id} sheet={sheet} busy={moves.busy} onSave={(patch) => moves.run(planSheet(view, entity.id, patch, ctx))} />
+        <SheetLines sheet={sheet} skills={model.skills} saves={derived?.saves} />
+        <SheetEditor key={entity.id} sheet={sheet} busy={moves.busy} ruledAc={derived?.ac && derived.ac.source !== "sheet" ? { manual: manualArmourClass(entity) } : null}
+          onSave={(patch, manualAc) => moves.run(planSheet(view, entity.id, patch, ctx, manualAc))} />
       </div>
     </Panel>
   );
   const dollEntity = entity;
   const dollSlots = equipmentOf(view, dollEntity);
+  const dollAc = derived?.ac ? { label: sheetLabels5e(c.language).ac, value: derived.ac.value, text: derived.ac.text } : null;
   const doll = (
-    <Doll entity={dollEntity} slots={dollSlots} figure={dollEntity.id === hero?.id ? preview?.figure ?? null : null} selectedId={selected?.id ?? null}
+    <Doll entity={dollEntity} slots={dollSlots} figure={dollEntity.id === hero?.id ? preview?.figure ?? null : null} selectedId={selected?.id ?? null} armour={dollAc}
       dragging={item(dragId)} onPick={(thing) => pick(thing, dollEntity.id)} onRedraw={() => setRedraw({ kind: "entity", id: dollEntity.id })}
       onDragStart={setDragId} onDragEnd={() => setDragId(null)}
       onDrop={(slot, id) => { setDragId(null); const thing = item(id); if (thing) void equip(thing, dollEntity.id, slot); }} />
@@ -435,9 +434,30 @@ function Counters({ counters }: { counters: ReturnType<typeof sheetCounters> }) 
   );
 }
 
-/** Skills, saves and attacks with their numbers, abilities and limitations — the hero's and a companion's alike. */
-export function SheetLines({ sheet, skills, compact = false }: { sheet: SheetView; skills?: string[]; compact?: boolean }) {
+/** Fix S3-accept Г1: a plate of the sheet's numbers; one the rules module explains shows how it is made on hover (title)
+ * and on a tap (the line under the number). */
+function PlateTile({ label, value, text }: { label: string; value: string | number; text: string | null }) {
+  const [open, setOpen] = useState(false);
+  const main = <div className={`${r.statMain} ${typeof value === "string" && !/^[+−-]?\d+$/u.test(value) ? s.statWords : ""}`}>{value}</div>;
+  if (!text) return <div className={r.stat}><div className={r.statKey}>{label}</div>{main}</div>;
+  return (
+    <button type="button" className={`${r.stat} ${s.plate}`} title={text} aria-expanded={open} onClick={() => setOpen(!open)}>
+      <div className={r.statKey}>{label}</div>{main}
+      {open && <div className={s.plateWhy}>{text}</div>}
+    </button>
+  );
+}
+
+/** Skills, saves and attacks with their numbers, abilities and limitations — the hero's and a companion's alike. Fix
+ * S3-accept Г3: in a 5e campaign the saves are the rules module's (the worn ring's +1 counted), each explained. */
+export function SheetLines({ sheet, skills, saves, compact = false }: { sheet: SheetView; skills?: string[]; saves?: DerivedSave[]; compact?: boolean }) {
   const c = useCopy();
+  const explained = saves && saves.length > 0 && (
+    <div>
+      <span className={r.eyebrow}>{c("Спасброски", "Saving throws")}</span>
+      {saves.map((save) => <SaveRow key={save.ability} save={save} />)}
+    </div>
+  );
   const numbered = (title: string, rows: string[]) => rows.length > 0 && (
     <div>
       <span className={r.eyebrow}>{title}</span>
@@ -453,7 +473,7 @@ export function SheetLines({ sheet, skills, compact = false }: { sheet: SheetVie
   return (
     <>
       {listed(c("Атаки", "Attacks"), sheet.attacks)}
-      {numbered(c("Спасброски", "Saving throws"), sheet.saves)}
+      {explained || numbered(c("Спасброски", "Saving throws"), sheet.saves)}
       {numbered(c("Навыки", "Skills"), skills ?? sheet.skills)}
       {!compact && listed(c("Умения", "Abilities"), sheet.abilities)}
       {!compact && listed(c("Слабости", "Limitations"), sheet.limitations)}
@@ -461,12 +481,28 @@ export function SheetLines({ sheet, skills, compact = false }: { sheet: SheetVie
   );
 }
 
+/** One derived save: its number, and how it is made on hover and on a tap. */
+function SaveRow({ save }: { save: DerivedSave }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <button type="button" className={`${s.skill} ${s.plateLine}`} title={save.text} aria-expanded={open} onClick={() => setOpen(!open)}>
+        <span>{save.label}</span><span className={s.skillValue}>{signed(save.value)}</span>
+      </button>
+      {open && <div className={s.plateWhy}>{save.text}</div>}
+    </>
+  );
+}
+
 /** «Изменить лист» (design §9): the owner corrects the level, the defence, the speed and the lines (one per line); the
- * sheet is saved with the record (schema 2) and the DM reads the edit next turn. */
-function SheetEditor({ sheet, busy, onSave }: { sheet: SheetView; busy: boolean; onSave: (patch: SheetPatch) => Promise<boolean> }) {
+ * sheet is saved with the record (schema 2) and the DM reads the edit next turn. Fix S3-accept Г3: where the 5e rules
+ * count the AC (`ruledAc`), the field is «КД вручную» — empty: by the rules; a number outranks them. */
+function SheetEditor({ sheet, busy, ruledAc, onSave }: { sheet: SheetView; busy: boolean; ruledAc: { manual: number | null } | null;
+  onSave: (patch: SheetPatch, manualAc?: number | null) => Promise<boolean> }) {
   const c = useCopy();
+  const ac = ruledAc ? ruledAc.manual : sheet.armorClass;
   const initial = {
-    level: sheet.level === null ? "" : String(sheet.level), armorClass: sheet.armorClass === null ? "" : String(sheet.armorClass), speed: sheet.speed ?? "",
+    level: sheet.level === null ? "" : String(sheet.level), armorClass: ac === null ? "" : String(ac), speed: sheet.speed ?? "",
     preparedMax: sheet.preparedMax === null ? "" : String(sheet.preparedMax),
     skills: sheet.skills.join("\n"), saves: sheet.saves.join("\n"), attacks: sheet.attacks.join("\n"), abilities: sheet.abilities.join("\n"),
   };
@@ -478,11 +514,12 @@ function SheetEditor({ sheet, busy, onSave }: { sheet: SheetView; busy: boolean;
   const save = async () => {
     const patch: SheetPatch = {};
     if (draft.level !== initial.level) patch.level = number(draft.level);
-    if (draft.armorClass !== initial.armorClass) patch.armorClass = number(draft.armorClass);
+    const acChanged = draft.armorClass !== initial.armorClass;
+    if (acChanged && !ruledAc) patch.armorClass = number(draft.armorClass);
     if (draft.speed !== initial.speed) patch.speed = draft.speed;
     if (draft.preparedMax !== initial.preparedMax) patch.preparedMax = number(draft.preparedMax);
     for (const key of ["skills", "saves", "attacks", "abilities"] as const) if (draft[key] !== initial[key]) patch[key] = rows(draft[key]);
-    if (await onSave(patch)) setOpen(false);
+    if (await onSave(patch, acChanged && ruledAc ? number(draft.armorClass) : undefined)) setOpen(false);
   };
   const field = (key: keyof typeof initial, label: string, kind: "number" | "text" | "lines") => (
     <label key={key} className={kind === "lines" ? s.editLines : s.splitField}>
@@ -494,7 +531,7 @@ function SheetEditor({ sheet, busy, onSave }: { sheet: SheetView; busy: boolean;
   return (
     <form className={s.split} onSubmit={(event) => { event.preventDefault(); void save(); }}>
       {field("level", c("Уровень", "Level"), "number")}
-      {field("armorClass", c.label("Armor class"), "number")}
+      {field("armorClass", ruledAc ? c("КД вручную (пусто — по правилам)", "AC by hand (empty: by the rules)") : c.label("Armor class"), "number")}
       {field("speed", c.label("Speed"), "text")}
       {(sheet.spells.length > 0 || sheet.preparedMax !== null) && field("preparedMax", c("Подготовлено максимум", "Prepared at most"), "number")}
       {field("attacks", c("Атаки — по строке", "Attacks — one per line"), "lines")}
@@ -555,10 +592,12 @@ export function MoneyLine({ person, people, onSend }: { person: Entity; people: 
 
 /** The paper doll: the body down the left, jewellery and belt on the right, both hands under the figure. A slot takes
  * a drop of a thing (the kinds it accepts light up while dragging); a click opens the worn thing's card. */
-function Doll({ entity, slots, figure, selectedId, dragging, onPick, onRedraw, onDrop, onDragStart, onDragEnd }: {
+function Doll({ entity, slots, figure, selectedId, dragging, onPick, onRedraw, onDrop, onDragStart, onDragEnd, armour = null }: {
   entity: Entity; slots: SlotView[]; figure: string | null; selectedId: string | null; dragging: Item | null;
   onPick: (item: Item) => void; onRedraw: () => void; onDrop: (slot: string, itemId: string) => void;
   onDragStart: (id: string) => void; onDragEnd: () => void;
+  /** Fix S3-accept Г3: the AC the worn things make (5e), the sheet's number. */
+  armour?: { label: string; value: number; text: string } | null;
 }) {
   const c = useCopy();
   const layout = dollLayout(slots);
@@ -567,7 +606,8 @@ function Doll({ entity, slots, figure, selectedId, dragging, onPick, onRedraw, o
       fits={!!dragging && row.accepts.includes(dragging.category)} onPick={onPick} onDrop={onDrop} onDragStart={onDragStart} onDragEnd={onDragEnd} />
   );
   return (
-    <Panel label={c("Снаряжение", "Equipment")} className={s.dollPanel}>
+    <Panel label={c("Снаряжение", "Equipment")} className={s.dollPanel}
+      action={armour ? <span className={r.badge} title={armour.text} data-doll-ac="">{armour.label} {armour.value}</span> : undefined}>
       <div className={s.doll}>
         <div className={s.slots}>{layout.left.map(slot)}</div>
         <Figure entity={entity} figure={figure} onRedraw={onRedraw} />

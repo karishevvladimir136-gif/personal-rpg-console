@@ -15,6 +15,7 @@ import type { PlaySnapshot, PublicTurn } from "../gameplay/contracts.ts";
 import { resourcePresentation } from "../resource-presentation.ts";
 import { coinOf, itemMechanics, universalSlots as modelUniversalSlots, walletOfEntity, walletOfStorage, type SpellRecord } from "../inventory/model.ts";
 import { slotsFor } from "../inventory/owner-moves.ts";
+import { derivedSheetOf, sheetLabels5e, signed } from "../live2d/battle/rules-5e.ts";
 
 export type Lang = "en" | "ru";
 const pick = (lang: Lang, ru: string, en: string) => (lang === "ru" ? ru : en);
@@ -220,6 +221,35 @@ export function sheetOf(entity: Pick<Entity, "character_sheet" | "stats">): Shee
     spellLines: schema === 1 ? lines(sheet?.spells) : [],
     preparedMax: number(sheet?.preparedMax),
   };
+}
+
+/** One plate of the sheet's numbers: its label (already in the language when `translated`, else the English source
+ * phrase for the catalogue), its value, and how it is made (the hover / tap line), when the rules module knows. */
+export type Plate = { key: string; label: string; value: string | number; text: string | null; translated: boolean };
+/** Fix S3-accept Г1: the stat block's keys a 5e campaign's plates already say («КД», «Атака», «Навык»). */
+const RULED_STATS = /^(ac|кд|armou?r|armou?r_class|defen[cs]e|защита|attack|skill|proficiency|proficiency_bonus|ac_manual)$/i;
+/** The sheet's plates (character sheet, party card, the hero line): in a 5e campaign «КД», «Атака», «Навык» from the
+ * rules module with their breakdowns (the server's numbers); otherwise the sheet's armour class, the speed and the
+ * record's stats as before — a stub zero never shows, a label already given is not repeated. */
+export function sheetPlates(data: Pick<CampaignSnapshot, "items" | "settings" | "campaign">, entity: Entity, stats: readonly (readonly [string, number])[]): Plate[] {
+  const sheet = sheetOf(entity);
+  const derived = derivedSheetOf(data, entity);
+  const plates: Plate[] = [];
+  if (derived) {
+    const words = sheetLabels5e(data.campaign.language);
+    if (derived.ac) plates.push({ key: "ac", label: words.ac, value: derived.ac.value, text: derived.ac.text, translated: true });
+    if (sheet.speed) plates.push({ key: "speed", label: "Speed", value: sheet.speed, text: null, translated: false });
+    if (derived.attack) plates.push({ key: "attack", label: words.attack, value: signed(derived.attack.value), text: derived.attack.text, translated: true });
+    if (derived.proficiency) plates.push({ key: "skill", label: words.skill, value: signed(derived.proficiency.value), text: derived.proficiency.text, translated: true });
+  } else {
+    if (sheet.armorClass !== null) plates.push({ key: "armorClass", label: "Armor class", value: sheet.armorClass, text: null, translated: false });
+    if (sheet.speed) plates.push({ key: "speed", label: "Speed", value: sheet.speed, text: null, translated: false });
+  }
+  for (const [key, value] of stats.filter(([key, value]) => value !== 0 && key !== "ac_manual" && !(derived && RULED_STATS.test(key)))) {
+    const label = statLabel(key);
+    if (!plates.some((plate) => plate.label === label)) plates.push({ key, label, value, text: null, translated: false });
+  }
+  return plates;
 }
 
 /** «Здесь лежит» (item 55, design §4): what lies at the party's place and nobody carries — storages of kind `place`

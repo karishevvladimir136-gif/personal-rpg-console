@@ -44,7 +44,9 @@ test("the character screen: the backstory block, the wallet line, numbers only w
   // Fix S2, stage D: the wallet is one line («Кошелёк: …», WalletLine) with «Разделить…», never per-key rows.
   assert.match(screen, /<MoneyLine person=\{entity\}/);
   assert.match(src("src/components/registry/primitives.tsx"), /export function WalletLine/);
-  assert.match(screen, /model\.derivedStats\.filter\(\(\[, value\]\) => value !== 0\)/, "stub zeros never show");
+  // Fix S3-accept Г1: the plates come from one selector (campaign-view's sheetPlates), which drops the stub zeros.
+  assert.match(screen, /sheetPlates\(view, entity, model\.derivedStats\)/);
+  assert.match(src("src/lib/ui/campaign-view.ts"), /stats\.filter\(\(\[key, value\]\) => value !== 0 && /, "stub zeros never show");
   assert.match(screen, /function HpCorrection/);
   assert.match(screen, /operation: "entity\.save"[\s\S]*correctionScope: "timeline"/, "an owner correction of the record");
   assert.match(screen, /const steps = \[-10, -5, -1, 1, 5, 10\]/);

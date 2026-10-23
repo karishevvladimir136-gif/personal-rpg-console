@@ -960,3 +960,32 @@ button.holderAvatar:not(:disabled) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Fix S3-accept Г1: a plate (and a save line) the 5e rules explain — the breakdown on hover (title) and on a tap. */
+.plate {
+  font: inherit;
+  color: inherit;
+  cursor: help;
+}
+.plate[aria-expanded="true"] {
+  border-color: var(--brass-dim);
+}
+.plateLine {
+  width: 100%;
+  background: none;
+  border: 0;
+  border-bottom: 1px dotted var(--line);
+  color: inherit;
+  font: inherit;
+  font-size: 14.5px;
+  text-align: left;
+  cursor: help;
+}
+.plateWhy {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--brass-dim);
+  padding: 2px 4px 4px;
+  overflow-wrap: anywhere;
+}
