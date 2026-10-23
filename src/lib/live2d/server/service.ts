@@ -4,7 +4,7 @@ import { isUuid } from "../../persistence/validation";
 import type { Schedule } from "../../server/media/pictures-service";
 import { MARKER_VISIBILITIES } from "../contracts";
 import { live2dContext, readLive2dBoard, savePoi, saveSettings } from "./store";
-import { prepareScene, redrawScene, saveSheet } from "./scenes";
+import { prepareScene, readBoardInLanguage, redrawScene, saveSheet } from "./scenes";
 import { drawRegionMap } from "./region";
 import { prepareBattleMap } from "./battle";
 
@@ -12,7 +12,7 @@ import { prepareBattleMap } from "./battle";
 // seeds have no action here on purpose (the hidden layer stays on the server).
 const isRecord = (v: unknown): v is Record<string, unknown> => !!v && typeof v === "object" && !Array.isArray(v);
 
-export { readLive2dBoard };
+export { readLive2dBoard, readBoardInLanguage };
 
 export async function live2dAction(campaignId: string, action: string, input: unknown, schedule: Schedule) {
   switch (action) {

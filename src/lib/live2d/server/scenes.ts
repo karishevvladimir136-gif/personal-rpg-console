@@ -9,10 +9,11 @@ import { createPictureRow, privatePicture } from "../../visual-frame/picture-job
 import { runPictureJob, type Schedule } from "../../server/media/pictures-service";
 import { activeStyle, anchorFor, capRemaining, modelForTier, styleTextFor } from "../../visual-frame/pictures";
 import { timeOfDay } from "../../visual-frame/prompt-compiler";
-import type { SceneCheck, SceneSheet, SheetFeature } from "../contracts";
+import type { Live2dBoard, SceneCheck, SceneSheet, SheetFeature } from "../contracts";
 import { parseSceneSheet, sceneOf } from "../contracts";
-import { fallbackSheet, joinConcurrentPrepare, placePois, poiCandidates, sceneBrief, sceneVerdict, sheetSourceOf, sideListOf } from "../scene";
+import { fallbackSheet, joinConcurrentPrepare, placePois, poiCandidates, sceneBrief, sceneVerdict, SHEET_MIN_FEATURES, sheetLanguageOf, sheetSourceOf, sideListOf } from "../scene";
 import { buildSheet, checkScene, locateScene, type Image } from "./vision";
+import { redoSceneLanguage } from "./scene-language-job";
 import { boardOf, live2dContext, replacePois, saveScene, updateScene, type Live2dContext } from "./store";
 
 // The scene of a place (slice item 3 and the quality rules): the records come
@@ -38,6 +39,17 @@ async function presentIds(campaignId: string): Promise<string[] | null> {
 
 export type PrepareResult = { status: "queued" | "existing" | "cap" | "not_visited" | "drawing"; locationId: string };
 
+/** The sheet from the records and the public narration by the model (the rule of 5–8 hotspots in the campaign's
+ * language, scene.ts), else the records alone; `model` says which. */
+async function writeSheet(campaignId: string, snapshot: CampaignSnapshot, locationId: string) {
+  const [present, clock] = await Promise.all([presentIds(campaignId), readWorldClock(campaignId).catch(() => ({ worldMinutes: null }))]);
+  const source = sheetSourceOf(snapshot, locationId, { presentIds: present ?? undefined, timeOfDay: timeOfDay(clock.worldMinutes) });
+  if (!source) throw new PersistenceError("not_found");
+  const built = await buildSheet(process.env.ANTHROPIC_API_KEY ?? "", source);
+  log("live2d_sheet", { campaignId, locationId, ok: !!built.sheet, ms: built.elapsedMs, costUsdMicros: built.costUsdMicros, usage: built.usage, error: built.error, features: built.sheet?.features.length ?? 0, asks: built.asks ?? 0, language: built.sheet?.language ?? null });
+  return { sheet: built.sheet ?? fallbackSheet(source), costUsdMicros: built.costUsdMicros, model: !!built.sheet };
+}
+
 /** «Подготовить сцену»: the sheet now (the records and the narration), the picture, the check and the
  * markers after the response. A place is drawn only once it was visited; a second call on a place
  * with a scene returns it unless `force`. */
@@ -57,17 +69,13 @@ export async function prepareScene(campaignId: string, value: unknown, schedule:
   const pictureBoard = await picturesBoardOf(pictures);
   if (!capRemaining(pictureBoard)) return { status: "cap", locationId };
   // The sheet: a model from the records and the public narration, else the records alone.
-  const [present, clock] = await Promise.all([presentIds(campaignId), readWorldClock(campaignId).catch(() => ({ worldMinutes: null }))]);
-  const source = sheetSourceOf(snapshot, locationId, { presentIds: present ?? undefined, timeOfDay: timeOfDay(clock.worldMinutes) });
-  if (!source) throw new PersistenceError("not_found");
   let sheet: SceneSheet, sheetCost = 0;
   if (existing && value.force === true && existing.sheet.features.length) {
     sheet = existing.sheet;
   } else {
-    const built = await buildSheet(process.env.ANTHROPIC_API_KEY ?? "", source);
-    sheetCost = built.costUsdMicros;
-    log("live2d_sheet", { campaignId, locationId, ok: !!built.sheet, ms: built.elapsedMs, costUsdMicros: built.costUsdMicros, usage: built.usage, error: built.error, features: built.sheet?.features.length ?? 0 });
-    sheet = built.sheet ?? fallbackSheet(source);
+    const written = await writeSheet(campaignId, snapshot, locationId);
+    sheet = written.sheet;
+    sheetCost = written.costUsdMicros;
   }
   let saved = existing && (value.force === true && existing.sheet.features.length) ? existing : null;
   if (!saved) {
@@ -94,10 +102,50 @@ export async function redrawScene(campaignId: string, value: unknown, schedule: 
   if (existing.status === "drawing") return { status: "drawing", locationId };
   const pictures = await picturesContext(campaignId);
   if (!capRemaining(await picturesBoardOf(pictures))) return { status: "cap", locationId };
+  // Fix S3-accept Б3: a sheet written before the rule with fewer hotspots than its minimum gets a new one from the model
+  // first — the picture is new anyway, so the new hotspots are drawn into it (the old sheet stays in the versions).
+  let sheet = existing.sheet, sheetCost = 0;
+  if (existing.sheet.features.length < SHEET_MIN_FEATURES) {
+    const written = await writeSheet(campaignId, await readCampaign(campaignId), locationId);
+    sheetCost = written.costUsdMicros;
+    if (written.model && written.sheet.features.length > existing.sheet.features.length)
+      sheet = (await saveScene(ctx, { locationId, sheet: written.sheet, source: "model", expectedRevision: existing.revision })).sheet;
+  }
   await updateScene(ctx, { locationId, status: "drawing", error: null });
   const comment = typeof value.comment === "string" && value.comment.trim() ? value.comment.trim() : null;
-  schedule(() => drawAndCheck(ctx, pictures, campaignId, locationId, existing.sheet, { comment, redraws: existing.redraws + 1, extraCostUsdMicros: 0 }));
+  schedule(() => drawAndCheck(ctx, pictures, campaignId, locationId, sheet, { comment, redraws: existing.redraws + 1, extraCostUsdMicros: sheetCost }));
   return { status: "queued", locationId };
+}
+
+/** Fix S3-accept Б2: the 2D screen's read of the board redoes, once, the text of the sheets written in plain English
+ * before the rule (scene-language-job.ts) — off the turn's path; the read waits for it a few seconds at most so the
+ * owner sees the hotspots in the campaign's language on the first look, and any failure returns the board as it is.
+ * Each scene revision is examined once per server process; a redone sheet carries its `language` and is never due again. */
+const languageExamined = new Set<string>();
+export async function readBoardInLanguage(campaignId: string, waitMs = 12_000): Promise<Live2dBoard> {
+  const ctx = await live2dContext(campaignId);
+  const board = await boardOf(ctx);
+  const mark = (scene: { locationId: string; revision: number }) => `${campaignId}:${scene.locationId}:${scene.revision}`;
+  const due = board.scenes.filter((scene) => !scene.sheet.language && scene.status !== "drawing" && !languageExamined.has(mark(scene)));
+  if (!due.length) return board;
+  for (const scene of due) languageExamined.add(mark(scene));
+  try {
+    const snapshot = await readCampaign(campaignId);
+    const language = sheetLanguageOf(snapshot);
+    const apiKey = process.env.ANTHROPIC_API_KEY ?? "";
+    const work = Promise.all(due.map(async (scene) => {
+      const result = await redoSceneLanguage(board, scene.locationId, { rpc: ctx.rpc, apiKey, language, placeName: snapshot.locations.find((row) => row.id === scene.locationId)?.name ?? "" });
+      if (result.status !== "skipped" || result.reason !== "in_language") log("live2d_scene_language", { campaignId, locationId: scene.locationId, ...result });
+      return result.status === "redone";
+    }));
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const waited = new Promise<null>((resolve) => { timer = setTimeout(() => resolve(null), waitMs); });
+    const redone = await Promise.race([work.then((rows) => rows.some(Boolean)), waited]).finally(() => clearTimeout(timer));
+    return redone ? await boardOf(ctx) : board;
+  } catch (error) {
+    log("live2d_scene_language", { campaignId, status: "failed", reason: String((error as Error)?.message ?? error).slice(0, 200) });
+    return board;
+  }
 }
 
 /** The owner's edit of the sheet (summary, light, never, the features' labels and must-show flags). */

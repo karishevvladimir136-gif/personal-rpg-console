@@ -14,14 +14,20 @@ const reply = (text, usage = { input_tokens: 1000, output_tokens: 200 }) => asyn
 const failing = async () => ({ ok: false, status: 529, json: async () => ({ error: { type: "overloaded_error" } }) });
 const picture = { bytes: new Uint8Array([0xff, 0xd8, 0xff, 0xdb, 1, 2, 3]), contentType: "image/jpeg" };
 const source = { place: { id: "p", name: "Брод", description: "Мелкий брод через реку." }, exits: [], present: [], passages: ["У брода вода бьёт по камням."], timeOfDay: "in the morning", language: "ru" };
-const sheetJson = JSON.stringify({ summary: "A ford.", features: [{ key: "shoal", label: "Отмель", kind: "feature", description: "a stony shoal", mustShow: true }, { key: "post", label: "Столб", kind: "object", description: "a signpost", mustShow: true }], people: [], light: "morning sun", timeOfDay: "morning", never: ["a bridge"], crowded: false });
+// Fix S3-accept Б2/Б3: a sheet that keeps the rule (5–8 hotspots, the player's text in the campaign's language) is asked once;
+// a short or English one is asked again (tests/fix-s3-accept-b.test.mjs).
+const feature = (key, label, kind, description, brief) => ({ key, label, kind, description, brief, mustShow: true });
+const sheetJson = JSON.stringify({ summary: "Мелкий брод.", features: [feature("shoal", "Отмель", "feature", "Каменистая отмель.", "a stony shoal"), feature("post", "Столб", "object", "Дорожный столб.", "a signpost"),
+  feature("bank", "Берег", "feature", "Пологий берег.", "a low bank"), feature("road", "Дорога", "exit", "Дорога к броду.", "the road to the ford"), feature("willow", "Ива", "object", "Старая ива.", "an old willow")],
+people: [], light: "утреннее солнце", timeOfDay: "morning", never: ["мост"], crowded: false });
 
 test("the sheet call: Sonnet, strict JSON, cost from the usage, soft failure", async () => {
   const fetcher = reply(sheetJson);
   const built = await buildSheet("key", source, { fetcher });
   assert.equal(reply.last.model, SHEET_MODEL);
   assert.match(reply.last.system, /never invent/);
-  assert.equal(built.sheet.features.length, 2);
+  assert.equal(built.sheet.features.length, 5);
+  assert.equal(built.asks, 1, "a sheet that keeps the rule is asked once");
   assert.equal(built.costUsdMicros, costUsdMicros(SHEET_MODEL, { inputTokens: 1000, outputTokens: 200 }));
   assert.equal(built.costUsdMicros, 4000, "1000 in at $2 + 200 out at $10 per million");
   const bad = await buildSheet("key", source, { fetcher: reply("not json") });

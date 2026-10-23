@@ -1,7 +1,8 @@
 // No "server-only" marker: the key is an argument, nothing here reads the environment, and the
 // probe script (scripts/eval/live2d) calls these helpers from Node directly.
 import type { SceneCheck, SceneSheet } from "../contracts.ts";
-import { checkRequest, locatorRequest, parseCheckReply, parseLocatorReply, parseSheetReply, sheetRequest, type Located, type PoiCandidate, type SheetSource } from "../scene.ts";
+import { checkRequest, finishSheet, locatorRequest, parseCheckReply, parseLocatorReply, parseSheetReply, sheetRequest, sheetRetryText, sheetScore, type Located, type PoiCandidate, type SheetSource } from "../scene.ts";
+import { parseRelangReply, relangRequest, type SheetLanguage } from "../scene-language.ts";
 
 // The 2D layer's model calls, all through the Anthropic Messages API directly
 // (no DM, no tools; the pattern of src/lib/server/media/brief-model.ts):
@@ -9,11 +10,13 @@ import { checkRequest, locatorRequest, parseCheckReply, parseLocatorReply, parse
 //   • the check — a strong vision model (Sonnet 5.5; it runs once per place): every
 //     must-show item visible and locatable, no contradicting object, no named people;
 //   • the locator — the cheap vision model (Haiku 5.5): positions for the records' POIs only;
-//   • the region's seeds — Sonnet 5.5: a few latent hooks, stored privately.
+//   • the region's seeds — Sonnet 5.5: a few latent hooks, stored privately;
+//   • Fix S3-accept Б2: the one-time redo of an older sheet's text in the campaign's language — Haiku 5.5 (cheap).
 // Every call reports its usage and cost; a failure fails soft (the caller falls back).
 export const SHEET_MODEL = "claude-sonnet-5-5";
 export const CHECK_MODEL = "claude-sonnet-5-5";
 export const LOCATOR_MODEL = "claude-haiku-5-5";
+export const RELANG_MODEL = "claude-haiku-5-5";
 /** Price per 1M tokens (docs/MODELS.md; image input counts as input tokens). */
 export const PRICE_PER_MILLION: Record<string, { input: number; output: number }> = {
   "claude-sonnet-5-5": { input: 2, output: 10 },
@@ -45,17 +48,48 @@ export async function messages(apiKey: string, body: unknown, fetcher: Fetcher, 
 }
 
 export type CallOptions = { fetcher?: Fetcher; timeoutMs?: number };
-export type SheetResult = { sheet: SceneSheet | null; usage: Usage | null; costUsdMicros: number; elapsedMs: number; error: string | null };
+export type SheetResult = { sheet: SceneSheet | null; usage: Usage | null; costUsdMicros: number; elapsedMs: number; error: string | null; asks?: number };
+const addUsage = (a: Usage, b: Usage): Usage => ({ inputTokens: a.inputTokens + b.inputTokens, outputTokens: a.outputTokens + b.outputTokens });
 export async function buildSheet(apiKey: string, source: SheetSource, options: CallOptions = {}): Promise<SheetResult> {
   const started = Date.now();
   if (!apiKey) return { sheet: null, usage: null, costUsdMicros: 0, elapsedMs: 0, error: "not_configured" };
   const request = sheetRequest(source);
+  const ask = (turns: { role: "user" | "assistant"; content: string }[]) => messages(apiKey, {
+    model: SHEET_MODEL, max_tokens: 3000, output_config: { effort: "low" }, system: request.system, messages: turns,
+  }, options.fetcher ?? fetch, options.timeoutMs ?? 40_000);
+  try {
+    const first = await ask([{ role: "user", content: request.user }]);
+    let usage = first.usage, sheet = parseSheetReply(first.text), asks = 1;
+    // Fix S3-accept Б3/Б2: a sheet short of the hotspots' minimum, or not in the campaign's language, is asked again once;
+    // the better answer by the rule stays (a failed second ask keeps the first).
+    const retry = sheet ? sheetRetryText(sheet, source.language) : null;
+    if (sheet && retry) {
+      try {
+        const second = await ask([{ role: "user", content: request.user }, { role: "assistant", content: first.text }, { role: "user", content: retry }]);
+        usage = addUsage(usage, second.usage);
+        asks = 2;
+        const again = parseSheetReply(second.text);
+        if (again && sheetScore(again, source.language) >= sheetScore(sheet, source.language)) sheet = again;
+      } catch { /* the first answer stands */ }
+    }
+    const done = sheet ? finishSheet(sheet, source.language) : null;
+    return { sheet: done, usage, costUsdMicros: costUsdMicros(SHEET_MODEL, usage), elapsedMs: Date.now() - started, error: done ? null : "unparsable", asks };
+  } catch (error) {
+    return { sheet: null, usage: null, costUsdMicros: 0, elapsedMs: Date.now() - started, error: String((error as Error)?.message ?? error).slice(0, 120) };
+  }
+}
+
+/** Fix S3-accept Б2: the one-time redo of an older sheet's player-facing text in the campaign's language (cheap model). */
+export async function relangSheet(apiKey: string, sheet: SceneSheet, placeName: string, language: SheetLanguage, options: CallOptions = {}): Promise<SheetResult> {
+  const started = Date.now();
+  if (!apiKey) return { sheet: null, usage: null, costUsdMicros: 0, elapsedMs: 0, error: "not_configured" };
+  const request = relangRequest(sheet, placeName, language);
   try {
     const { text, usage } = await messages(apiKey, {
-      model: SHEET_MODEL, max_tokens: 3000, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }],
-    }, options.fetcher ?? fetch, options.timeoutMs ?? 40_000);
-    const sheet = parseSheetReply(text);
-    return { sheet, usage, costUsdMicros: costUsdMicros(SHEET_MODEL, usage), elapsedMs: Date.now() - started, error: sheet ? null : "unparsable" };
+      model: RELANG_MODEL, max_tokens: 2500, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }],
+    }, options.fetcher ?? fetch, options.timeoutMs ?? 30_000);
+    const redone = parseRelangReply(text, sheet, language);
+    return { sheet: redone, usage, costUsdMicros: costUsdMicros(RELANG_MODEL, usage), elapsedMs: Date.now() - started, error: redone ? null : "unparsable" };
   } catch (error) {
     return { sheet: null, usage: null, costUsdMicros: 0, elapsedMs: Date.now() - started, error: String((error as Error)?.message ?? error).slice(0, 120) };
   }

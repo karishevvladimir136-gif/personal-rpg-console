@@ -4,7 +4,7 @@ import { errorResponse, publicJson } from "@/lib/persistence/route-response";
 import { exactKeys } from "@/lib/visual-frame/real-frame";
 import { PersistenceError } from "@/lib/server/errors";
 import type { Schedule } from "@/lib/server/media/pictures-service";
-import { live2dAction, readLive2dBoard } from "@/lib/live2d/server/service";
+import { live2dAction, readBoardInLanguage } from "@/lib/live2d/server/service";
 
 // The 2D board of a campaign (docs/stages/LIVE2D_1.md): GET the public projection
 // (never a seed, never a prompt), POST an owner's action. Paid work (a scene, a
@@ -18,7 +18,8 @@ const schedule: Schedule = (work) => after(() => work().catch((error) => console
 
 export async function GET(_request: Request, context: Context) {
   try {
-    return publicJson(await readLive2dBoard((await context.params).campaignId));
+    // Fix S3-accept Б2: the read redoes, once, a scene sheet written in plain English before the rule (failure-safe).
+    return publicJson(await readBoardInLanguage((await context.params).campaignId));
   } catch (cause) {
     return errorResponse(cause);
   }

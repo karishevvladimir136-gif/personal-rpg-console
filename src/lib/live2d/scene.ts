@@ -4,8 +4,17 @@
 // the locator may place (only what is in the sheet and the records; never an
 // invented marker). The paid calls live in server/; this file is testable alone.
 import type { CampaignSnapshot } from "../persistence/contracts.ts";
-import type { Poi, SceneCheck, SceneSheet, SheetFeature } from "./contracts.ts";
+import type { Live2dScene, Poi, SceneCheck, SceneSheet, SheetFeature } from "./contracts.ts";
 import { KEY_PATTERN, parseSceneSheet } from "./contracts.ts";
+import { foreignTexts, withLanguageMark, type SheetLanguage } from "./scene-language.ts";
+
+/** Fix S3-accept Б3 (the owner: «точек пока мало»): a scene has 5–8 hotspots — every thing a player would look at or
+ * walk to — a rule with a minimum, checked after parsing and asked once more when short. */
+export const SHEET_MIN_FEATURES = 5;
+export const SHEET_MAX_FEATURES = 8;
+/** What the illustrator, the check and the locator read of a feature: its English clause (Fix S3-accept Б2), else the
+ * description (older sheets wrote that clause there), else the label. */
+export const briefOf = (row: Pick<SheetFeature, "brief" | "description" | "label">) => row.brief || row.description || row.label;
 
 /** The records' material for the sheet: the place, its known neighbours and children, who is
  * present, and the narration that mentions the place (public text only; never DM notes). */
@@ -41,20 +50,24 @@ export function sheetSourceOf(snapshot: CampaignSnapshot, locationId: string, op
     .filter((row) => row.role === "narration" && row.body.toLocaleLowerCase().includes(needle))
     .slice(-6).map((row) => row.body.replace(/\s+/g, " ").trim().slice(0, 1500));
   return { place: { id: place.id, name: place.name, description: place.description }, exits, present, passages, timeOfDay: options.timeOfDay ?? null,
-    language: snapshot.settings.values.language === "en" ? "en" : "ru" };
+    language: sheetLanguageOf(snapshot) };
 }
+/** The language a campaign's scene sheets are written in (the player's). */
+export const sheetLanguageOf = (snapshot: Pick<CampaignSnapshot, "settings">): SheetLanguage => (snapshot.settings.values.language === "en" ? "en" : "ru");
 
-/** The request for the sheet: strict JSON, from the records and the narration only. */
+/** The request for the sheet: strict JSON, from the records and the narration only. Fix S3-accept Б2/Б3: the player
+ * reads the sheet in the campaign's language (the illustrator keeps a plain English `brief`), with 5–8 hotspots. */
 export function sheetRequest(source: SheetSource) {
+  const language = source.language === "ru" ? "Russian" : "English";
   const system = [
-    "You write the scene sheet of one place of an illustrated role-playing campaign: what an illustrator must draw so that the picture never contradicts the story, and a player can click what is there.",
+    "You write the scene sheet of one place of an illustrated role-playing campaign: what an illustrator must draw so that the picture never contradicts the story, and what a player can click in it.",
     "Reply with one JSON object only, no prose:",
-    "{\"summary\":\"...\",\"features\":[{\"key\":\"...\",\"label\":\"...\",\"kind\":\"entrance|exit|object|feature\",\"description\":\"...\",\"mustShow\":true,\"targetLocationId\":null}],\"people\":[{\"name\":\"...\",\"entityId\":null,\"at\":\"<feature key or null>\"}],\"light\":\"...\",\"timeOfDay\":\"...\",\"never\":[\"...\"],\"crowded\":false}",
-    "summary: one paragraph of plain English (60–120 words): the place as the records and the story describe it — materials, size, layout, what is where.",
-    "features: 4–10 things the story or the records named — the entrance, exits (doors, a back gate to the yard, stairs, a cellar hatch), a counter, a stall, a shrine, a body, a notable object. key: lowercase letters, digits and dashes, unique. label: the name in the campaign's language, as the player would say it. description: one clause of plain English for the illustrator. mustShow: true for the things the story relies on (at most 6). kind exit: a way to another known place; put its ID in targetLocationId when the known places below name it, else null.",
+    "{\"summary\":\"...\",\"features\":[{\"key\":\"...\",\"label\":\"...\",\"kind\":\"entrance|exit|object|feature\",\"description\":\"...\",\"brief\":\"...\",\"mustShow\":true,\"targetLocationId\":null}],\"people\":[{\"name\":\"...\",\"entityId\":null,\"at\":\"<feature key or null>\"}],\"light\":\"...\",\"timeOfDay\":\"...\",\"never\":[\"...\"],\"crowded\":false}",
+    "summary: one paragraph (60–120 words): the place as the records and the story describe it — materials, size, layout, what is where.",
+    `features: ${SHEET_MIN_FEATURES}–${SHEET_MAX_FEATURES} hotspots, never fewer than ${SHEET_MIN_FEATURES} — every thing a player would look at or walk to here: the entrance and the ways out (a door, a gate, a back gate to the yard, stairs, a cellar hatch, the road), windows, a fence or a wall, the houses and sheds around, a well, barrels and crates, a counter, a stall, a shrine, a bell tower, a body, a notable object. Name first what the story and the records name; when they name fewer than ${SHEET_MIN_FEATURES}, add the plain visible parts such a place has and the records do not rule out (its door and windows, the road past it, the fence of its yard, the neighbouring houses). key: lowercase latin letters, digits and dashes, unique. label: the name in the campaign's language, as the player would say it (1–4 words). description: one sentence in the campaign's language for the player — what it is and what is known about it; it is shown when the player points at it. brief: the same thing as one clause of plain English for the illustrator. mustShow: true for the things the story relies on (at most 6). kind exit: a way to another known place; put its ID in targetLocationId when the known places below name it, else null.`,
     "people: the named people the passages put in this place right now, with the feature key they stand at (or null); entityId from the list below when the name matches, else null. People are never drawn into the background: they are shown as tokens.",
     "light: the light sources and their quality, one clause. timeOfDay: the time of day the passages imply, or null. never: things that must not be drawn because the story rules them out or would invent a fact (an invented forge, a second door, a lantern nobody has) — 2–6 items. crowded: true only if the place is said to be full of people (a market).",
-    "Use only what the records and passages say; never invent features, people or exits that are not in them. Write summary, description, light and never in English; labels and names in the campaign's language.",
+    `Use only what the records and passages say and what such a place plainly has; never invent people, exits to places that are not known, or story facts (a body, a hidden door, a forge nobody mentioned). Write summary, description, light and never in ${language}, the campaign's language; brief is always plain English; labels and names in ${language}.`,
   ].join("\n");
   const user = [
     `The place: ${source.place.name}.`,
@@ -62,10 +75,31 @@ export function sheetRequest(source: SheetSource) {
     source.exits.length ? `Known places next to it (ID — name — relation): ${source.exits.map((row) => `${row.id} — ${row.name} — ${row.relation}`).join("; ")}.` : "No other known place is tied to it.",
     source.present.length ? `People present (ID — name): ${source.present.map((row) => `${row.id} — ${row.name}`).join("; ")}.` : "Nobody is recorded as present.",
     source.timeOfDay ? `Time of day now: ${source.timeOfDay}.` : "",
-    `Campaign language: ${source.language === "ru" ? "Russian" : "English"}.`,
+    `Campaign language: ${language}.`,
     source.passages.length ? `Narration passages that mention the place (public text):\n${source.passages.map((row, index) => `[${index + 1}] ${row}`).join("\n")}` : "No narration mentions the place yet: use the records alone.",
   ].filter(Boolean).join("\n");
   return { system, user };
+}
+/** Fix S3-accept Б2/Б3: what is wrong with a parsed sheet by the rule — fewer hotspots than the minimum, text the
+ * campaign does not read. Null when it keeps the rule; else the one follow-up that asks again. */
+export function sheetRetryText(sheet: SceneSheet, language: SheetLanguage): string | null {
+  const short = sheet.features.length < SHEET_MIN_FEATURES;
+  const foreign = foreignTexts(sheet, language);
+  if (!short && !foreign.length) return null;
+  return [
+    "This sheet breaks the rules; write the whole JSON object again, corrected.",
+    short ? `It has ${sheet.features.length} features; the rule is ${SHEET_MIN_FEATURES}–${SHEET_MAX_FEATURES}: add every thing a player would look at or walk to here (a door, windows, a fence, barrels, the road, the houses around, a bell tower) that the records do not rule out, never a new person or a new exit.` : "",
+    foreign.length ? `Summary, description, light and never must be in ${language === "ru" ? "Russian" : "English"}, the campaign's language (brief stays English); these are not: ${foreign.slice(0, 4).map((text) => `«${text.slice(0, 80)}»`).join(", ")}.` : "",
+  ].filter(Boolean).join("\n");
+}
+/** The better of two answers by the rule: the campaign's language first, then more hotspots up to the maximum. */
+export const sheetScore = (sheet: SceneSheet, language: SheetLanguage) => (foreignTexts(sheet, language).length ? 0 : 100) + Math.min(sheet.features.length, SHEET_MAX_FEATURES);
+/** The sheet as stored (Fix S3-accept Б3/Б2): at most the maximum of hotspots (the must-show ones kept first), a person's
+ * spot only at a kept feature, and the language mark when the text is in the campaign's language. */
+export function finishSheet(sheet: SceneSheet, language: SheetLanguage): SceneSheet {
+  const keep = new Set([...sheet.features.filter((row) => row.mustShow), ...sheet.features.filter((row) => !row.mustShow)].slice(0, SHEET_MAX_FEATURES).map((row) => row.key));
+  const features = sheet.features.filter((row) => keep.has(row.key));
+  return withLanguageMark({ ...sheet, features, people: sheet.people.map((row) => (row.at && !keep.has(row.at) ? { ...row, at: null } : row)) }, language);
 }
 export function parseSheetReply(text: string): SceneSheet | null {
   const start = text.indexOf("{"), end = text.lastIndexOf("}");
@@ -92,13 +126,15 @@ export async function joinConcurrentPrepare<T>(save: () => Promise<T>, reread: (
 /** A sheet the records give without a model: the place's description, exits as features. Used when
  * the model is not configured or fails; the owner can edit it. */
 export function fallbackSheet(source: SheetSource): SceneSheet {
-  const features: SheetFeature[] = [{ key: "entrance", label: source.language === "ru" ? "Вход" : "Entrance", kind: "entrance", description: "the way in", mustShow: true, targetLocationId: null }];
+  // Fix S3-accept Б2: the player's words in the campaign's language, the illustrator's in English.
+  const ru = source.language === "ru";
+  const features: SheetFeature[] = [{ key: "entrance", label: ru ? "Вход" : "Entrance", kind: "entrance", description: ru ? "Путь внутрь." : "The way in.", brief: "the way in", mustShow: true, targetLocationId: null }];
   for (const exit of source.exits.slice(0, 6)) {
     const key = `exit-${slug(exit.name)}`;
-    if (!features.some((row) => row.key === key)) features.push({ key, label: exit.name, kind: "exit", description: `the way to ${exit.name}`, mustShow: false, targetLocationId: exit.id });
+    if (!features.some((row) => row.key === key)) features.push({ key, label: exit.name, kind: "exit", description: ru ? `Дорога в ${exit.name}.` : `The way to ${exit.name}.`, brief: `the way to ${exit.name}`, mustShow: false, targetLocationId: exit.id });
   }
-  return { summary: source.place.description.replace(/\s+/g, " ").slice(0, 1200), features, people: source.present.map((row) => ({ name: row.name, entityId: row.id, at: null })),
-    light: "", timeOfDay: source.timeOfDay, never: [], crowded: false };
+  return withLanguageMark({ summary: source.place.description.replace(/\s+/g, " ").slice(0, 1200), features, people: source.present.map((row) => ({ name: row.name, entityId: row.id, at: null })),
+    light: "", timeOfDay: source.timeOfDay, never: [], crowded: false }, source.language);
 }
 export function slug(value: string): string {
   const map: Record<string, string> = { а: "a", б: "b", в: "v", г: "g", д: "d", е: "e", ё: "e", ж: "zh", з: "z", и: "i", й: "y", к: "k", л: "l", м: "m", н: "n", о: "o", п: "p", р: "r", с: "s", т: "t", у: "u", ф: "f", х: "h", ц: "c", ч: "ch", ш: "sh", щ: "sch", ъ: "", ы: "y", ь: "", э: "e", ю: "yu", я: "ya" };
@@ -121,13 +157,13 @@ export function sceneBrief(sheet: SceneSheet, input: { placeName: string; style:
   const lines = [
     `A wide establishing illustration of ${input.placeName}, a place in a role-playing story, seen from a slightly raised viewpoint so the whole layout reads at a glance. Pixels only show; nothing here is a game fact.`,
     sheet.summary ? `The place: ${sheet.summary}` : "",
-    must.length ? `MUST SHOW, each clearly visible and separated from the others: ${must.map((row) => `${row.description || row.label} (${row.label})`).join("; ")}.` : "",
-    others.length ? `Also there, where the layout puts it: ${others.map((row) => row.description || row.label).join("; ")}.` : "",
+    must.length ? `MUST SHOW, each clearly visible and separated from the others: ${must.map((row) => `${briefOf(row)} (${row.label})`).join("; ")}.` : "",
+    others.length ? `Also there, where the layout puts it: ${others.map(briefOf).join("; ")}.` : "",
     sheet.light ? `Light: ${sheet.light}${sheet.timeOfDay ? `, ${sheet.timeOfDay}` : ""}.` : sheet.timeOfDay ? `Time of day: ${sheet.timeOfDay}.` : "",
     sheet.crowded ? "The place is crowded: anonymous background figures, small and unidentifiable, no faces in focus." : "MUST NOT SHOW: no people, no figures, no faces, no silhouettes — the place is empty of people.",
     sheet.never.length ? `MUST NOT SHOW: ${sheet.never.join("; ")}.` : "",
     "No text, letters, signs with writing, labels or captions anywhere. No clutter: the key objects stand apart with room around each.",
-    input.correction?.missing.length ? `The previous attempt missed these; draw them unmistakably this time, each large enough to be found: ${input.correction.missing.map((row) => `${row.description || row.label} (${row.label})`).join("; ")}.` : "",
+    input.correction?.missing.length ? `The previous attempt missed these; draw them unmistakably this time, each large enough to be found: ${input.correction.missing.map((row) => `${briefOf(row)} (${row.label})`).join("; ")}.` : "",
     input.correction?.contradictions.length ? `The previous attempt invented these; leave them out: ${input.correction.contradictions.join("; ")}.` : "",
     input.style.trim() ? `Art style: ${input.style.trim().slice(0, 800)}` : "Art style: painterly, warm, readable.",
   ];
@@ -145,12 +181,14 @@ export function checkRequest(sheet: SceneSheet, placeName: string) {
     "items: one entry per required feature key given below, in that order. visible: true only if the feature is clearly there and a player could point at it. x, y: the centre of the feature as fractions of the picture's width and height from the top-left (0..1), null when not visible. confidence: 0..1.",
     "contradictions: prominent objects, structures or features in the picture that the sheet rules out or does not mention and that would make the story wrong if a player relied on them (a second door, an invented forge, a staircase, a lantern, a body) — not vegetation, sky, texture, furniture of no consequence or ordinary clutter. Empty when none.",
     "peopleInBackground: true if any recognisable person or face is drawn (anonymous distant crowd figures in a crowded place do not count).",
-  ].join("\n");
+    // Fix S3-accept Б3: the owner reads the contradictions under «Ещё» — in the campaign's language.
+    sheet.language === "ru" ? "Write each contradiction's what and detail in Russian (the owner reads them)." : "",
+  ].filter(Boolean).join("\n");
   const text = [
     `The place: ${placeName}.`,
     `The sheet: ${sheet.summary || "(no summary)"}`,
-    `Required features (key — what it is): ${must.map((row) => `${row.key} — ${row.description || row.label}`).join("; ")}.`,
-    sheet.features.some((row) => !row.mustShow) ? `Other features that may be there: ${sheet.features.filter((row) => !row.mustShow).map((row) => row.description || row.label).join("; ")}.` : "",
+    `Required features (key — what it is): ${must.map((row) => `${row.key} — ${briefOf(row)}`).join("; ")}.`,
+    sheet.features.some((row) => !row.mustShow) ? `Other features that may be there: ${sheet.features.filter((row) => !row.mustShow).map(briefOf).join("; ")}.` : "",
     sheet.never.length ? `Must not be there: ${sheet.never.join("; ")}.` : "",
   ].filter(Boolean).join("\n");
   return { system, text, keys: must.map((row) => row.key) };
@@ -204,12 +242,26 @@ export function sceneVerdict(sheet: SceneSheet, check: SceneCheck) {
   return { ok, missing, contradictions, people: check.peopleInBackground, found: must.length - missing.length, required: must.length };
 }
 
+/** Fix S3-accept Б3: what a scene did not keep, listed under «Ещё» behind «Картинка не сошлась с записями»: the
+ * must-show features the picture lacks (labels), the objects it invented, people drawn in, or — no check is no pass —
+ * why the check gave no answer. Null when nothing is wrong. */
+export function sceneMismatches(scene: Pick<Live2dScene, "sheet" | "check" | "status" | "error">) {
+  if (scene.check) {
+    const verdict = sceneVerdict(scene.sheet, scene.check);
+    return verdict.ok ? null : { missing: verdict.missing.map((row) => row.label), extra: scene.check.contradictions, people: verdict.people, checkError: null };
+  }
+  if (scene.status !== "flagged") return null;
+  const error = (scene.error ?? "").replace(/^check:\s*/, "");
+  return { missing: [] as string[], extra: [] as SceneCheck["contradictions"], people: false, checkError: error === "not_configured" || error === "unparsable" ? error : "unavailable" };
+}
+
 /** The POI candidates of a place: the sheet's features and exits, the people present (tokens at
  * the feature they stand at), nothing else. The locator may only place these. */
 export type PoiCandidate = { key: string; kind: Poi["kind"]; label: string; note: string; description: string; entityId: string | null; targetLocationId: string | null; at: string | null };
 export function poiCandidates(sheet: SceneSheet, snapshot: CampaignSnapshot, locationId: string, presentIds: readonly string[] | null): PoiCandidate[] {
   const out: PoiCandidate[] = sheet.features.map((row) => ({
-    key: row.key, kind: row.kind === "entrance" || row.kind === "exit" ? "exit" : row.kind, label: row.label, note: row.description, description: row.description,
+    // Fix S3-accept Б2: the hotspot's note is the player's sentence; the locator reads the illustrator's clause.
+    key: row.key, kind: row.kind === "entrance" || row.kind === "exit" ? "exit" : row.kind, label: row.label, note: row.description, description: briefOf(row),
     entityId: null, targetLocationId: row.targetLocationId && snapshot.locations.some((loc) => loc.id === row.targetLocationId && loc.campaign_id === snapshot.campaign.id) ? row.targetLocationId : null, at: null,
   }));
   const present = presentIds ? new Set(presentIds) : null;
