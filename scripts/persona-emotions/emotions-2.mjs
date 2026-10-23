@@ -593,10 +593,11 @@ export function analyse(record) {
     // H5 needs every state cell and neutral's traits and values; a non-neutral traits or values cell that could not be
     // measured (the owner's skip after Opus's refusals under trust) is left out and listed.
     const measured = (instrument, preamble) => questionnaires[instrument].profiles[preamble].administrations >= 2;
-    const qComplete = PREAMBLES.every((p) => measured("state", p.id)) && measured("traits", "neutral") && measured("values", "neutral");
+    const stateComplete = PREAMBLES.every((p) => measured("state", p.id));
+    const qComplete = stateComplete && measured("traits", "neutral") && measured("values", "neutral");
     const leftOut = ["traits", "values"].flatMap((i) => OTHERS.filter((p) => !measured(i, p)).map((p) => `${p}: ${i}`));
     h.H5 = { rule: "the state list moves (ease or strain, by more than the within-preamble spread) under at least one preamble, while no trait factor and no value group does", state: stateMoves, traits: traitMoves, values: valueMoves, leftOut,
-      supported: qComplete && stateMoves.length > 0 && traitMoves.length === 0 && valueMoves.length === 0 };
+      testable: qComplete, supported: qComplete && stateMoves.length > 0 && traitMoves.length === 0 && valueMoves.length === 0 };
     const together = OTHERS.map((p) => {
       const behaviour = sign(list(p, "beats").length - list(p, "below").length);
       const index = questionnaires.state.shifts[p].index;
@@ -605,7 +606,7 @@ export function analyse(record) {
     });
     const testable = together.some((row) => row.behaviour !== 0 || row.state !== 0);
     h.H6 = { rule: "per preamble, the direction of the behavioural shift (directness markers beaten minus those below) and of the state index (ease − strain, when it moves beyond the spread) agree on ≥3 of the 4 preambles; untestable when neither moves anywhere", rows: together, testable,
-      supported: ok && qComplete && testable && together.filter((row) => row.agree).length >= 3 };
+      supported: ok && stateComplete && testable && together.filter((row) => row.agree).length >= 3 };
 
     const decayRows = (filler) => (filler === 0 ? main.filter((s) => s.preamble === "trust" && s.probe === DECAY_PROBE) : mine.filter((s) => s.part === "decay" && s.filler === filler && s.answer));
     const decay = [0, ...DECAY_FILLERS].map((filler) => { const rows = decayRows(filler); const v = numbers(rows, (s) => s.final?.score); return { filler, n: rows.length, raises: mean(v), yes: rate(v, (x) => x >= 1), plain: rate(v, (x) => x === 2), words: mean(numbers(rows, (s) => s.markers?.words)) }; });
@@ -656,7 +657,7 @@ export function tablesMarkdown(record) {
     const st = m.questionnaires.state.profiles;
     lines.push("State items — mean rating 1–5 per preamble:", "", `| Item | ${PREAMBLES.map((p) => p.id).join(" | ")} |`, `| --- | ${PREAMBLES.map(() => "---").join(" | ")} |`,
       ...STATE_ITEMS.map((i) => `| ${i.text} (${i.pole}) | ${PREAMBLES.map((p) => show(st[p.id].dims[i.id].mean)).join(" | ")} |`), "",
-      `H5 ${verdict(h.H5.supported)} (state moves: ${h.H5.state.join("; ") || "none"} · traits move: ${h.H5.traits.join("; ") || "none"} · values move: ${h.H5.values.join("; ") || "none"}${h.H5.leftOut.length ? ` · not measured, left out: ${h.H5.leftOut.join("; ")}` : ""}).`,
+      `H5 ${h.H5.testable ? verdict(h.H5.supported) : "**not testable** (neutral's traits or values were not completed)"} (state moves: ${h.H5.state.join("; ") || "none"} · traits move: ${h.H5.traits.join("; ") || "none"} · values move: ${h.H5.values.join("; ") || "none"}${h.H5.leftOut.length ? ` · not measured, left out: ${h.H5.leftOut.join("; ")}` : ""}).`,
       `H6 ${h.H6.testable ? verdict(h.H6.supported) : "**untestable** (nothing moved)"} (${h.H6.rows.map((r) => `${r.preamble}: behaviour ${r.behaviour > 0 ? "+" : r.behaviour < 0 ? "−" : "0"}, state ${r.state > 0 ? "+" : r.state < 0 ? "−" : "0"}${r.saysNotDoes ? " — says one thing, does another" : ""}`).join(" · ")}).`, "",
       `Decay — trust, ${DECAY_PROBE} after k neutral filler turns (k 0 is the main run's trust/${DECAY_PROBE}):`, "",
       "| Filler turns | n | Raises 0–2 | Raises at all | Plainly | Words |", "| --- | --- | --- | --- | --- | --- |",
