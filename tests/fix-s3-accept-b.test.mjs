@@ -383,7 +383,7 @@ test("Б4: a turn sent from the 2D route commits and renders — the hotspot fil
   assert.match(play2d, /useLiveFrameTrigger\(live, play, pictures\);/, "the frame is asked for as on «Игра»");
   assert.match(play2d, /const \{ resolveSend, chip, setDraft \} = useAddressee\(\{ present, combat \}\);/, "the addressee decides the mode as on «Игра»");
   assert.doesNotMatch(play2d, /sendTurn|resumeTurn|fetch\(|readJson/, "no second way to send a turn");
-  assert.match(src("src/components/live2d/route.tsx"), /const runtime = useGameplayRuntime\(\);\s*return <Live2dScreen snapshot=\{data\} play=\{runtime\.play\} onSaved=\{runtime\.afterMutation\} \/>;/);
+  assert.match(src("src/components/live2d/route.tsx"), /const runtime = useGameplayRuntime\(\);\s*return <Live2dScreen snapshot=\{data\} play=\{runtime\.play\} onSaved=\{runtime\.afterMutation\}[^\n]*\/>;/);
   const live2d = src("src/components/live2d/live2d-screen.tsx");
   assert.match(live2d, /if \(written && level === "scene"\) \{ setSceneDraft\(\(value\) => value \+ 1\); setNote\(null\); return; \}/);
   assert.match(live2d, /<ScenePlay snapshot=\{snapshot\} play=\{play\} onSaved=\{onSaved\} nonce=\{draftNonce\} live=\{live\} onLiveView=\{setLive\} preview=\{preview\} \/>/);

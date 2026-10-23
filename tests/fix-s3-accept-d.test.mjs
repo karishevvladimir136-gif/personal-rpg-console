@@ -162,11 +162,15 @@ const load = loader();
 const { Live2dScreen } = load(resolve(root, "components/live2d/live2d-screen.tsx"));
 const { LanguageProvider } = load(resolve(root, "components/language-context.tsx"));
 const { PreviewPictures } = load(resolve(root, "components/registry/live-frames.tsx"));
+const { CampaignDataPreview } = load(resolve(root, "components/persistence-context.tsx"));
 const refuse = { board: () => assert.fail("render must not read"), send: () => assert.fail("render must not send") };
+// After the merge with Б4: the scene's action box reads the records, so the screen renders inside the records provider,
+// as the preview page and the app mount it.
 function render(preview, { snapshot = live2dSnapshot(), entry = "live", placements = live2dPlacements, board = live2dBoard, images = live2dPictures.images } = {}) {
   return renderToStaticMarkup(createElement(LanguageProvider, null,
-    createElement(PreviewPictures, { board: live2dPictures.board, images: live2dPictures.images },
-      createElement(Live2dScreen, { snapshot, play: live2dPlay(), transport: refuse, entry, tools: createElement("i", null, "TOOLS"), preview: { board, placements, images, ...preview } }))));
+    createElement(CampaignDataPreview, { snapshot, refresh: async () => {} },
+      createElement(PreviewPictures, { board: live2dPictures.board, images: live2dPictures.images },
+        createElement(Live2dScreen, { snapshot, play: live2dPlay(), transport: refuse, entry, tools: createElement("i", null, "TOOLS"), preview: { board, placements, images, ...preview } })))));
 }
 const attr = (html, name) => [...html.matchAll(new RegExp(`${name}="([^"]+)"`, "g"))].map((match) => match[1]).sort();
 
