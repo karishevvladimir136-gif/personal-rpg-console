@@ -219,3 +219,45 @@ test("2.4: the server-built player strings of a Russian fight carry no English w
     assert.ok(lines.some((line) => /Бой окончен: победа/.test(line)));
   } finally { await c.f.db.close(); }
 });
+
+// Fix S3-accept Г2 (docs/stages/FIX_S3_ACCEPT.md): the owner's sheet showed the counter «Shaman tusk» — its key made
+// readable. Every rendering of a counter names it through counterLabel (the campaign language), and the owner's counter
+// gets its Russian name once (migration 202610230501, written by shape, tested here on PGlite).
+test("Г2: every counter rendering names the counter in the campaign language — «Клык шамана», never «Shaman tusk»", async () => {
+  const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
+  const { counterLabel, counterLabelled } = await import("../src/lib/inventory/model.ts");
+  const { sheetCounters } = await import("../src/lib/inventory/owner-moves.ts");
+  const records = read("src/components/persistent-records.tsx");
+  assert.match(records, /<dt title=\{key\}>\{resourcePresentation\(key\)\.kind === "money" \? t\(resourcePresentation\(key\)\.label\) : counterLabel\(selected, key, language\)\}<\/dt>/, "the records' resource list");
+  assert.match(records, /\.map\(\(\[key, value\]\) => <div key=\{key\}><dt>\{counterLabel\(entity, key, language\)\}<\/dt>/, "the earlier sheet's «Resources»");
+  assert.match(records, /labelOf=\{entity \? \(key\) => \(resourcePresentation\(key\)\.kind === "money" \? t\(resourcePresentation\(key\)\.label\) : counterLabel\(entity, key, language\)\) : undefined\}/, "the record editor");
+  assert.doesNotMatch(records, /resources\)\.map\(\(\[key, value\]\) => \(\s*<div key=\{key\}>\s*<dt>\{key\}<\/dt>/, "no raw counter key");
+  assert.doesNotMatch(records, /kind === "resource"\)\.map\(\(\[key, value\]\) => <div key=\{key\}><dt>\{t\(resourcePresentation\(key\)\.label\)\}/);
+  assert.match(read("src/components/persistent-game.tsx"), /resourcePresentation\(key\)\.kind === "money" \? t\(resourcePresentation\(key\)\.label\) : counterLabel\(player, key, language\)/);
+  assert.match(read("src/components/registry/character-screen.tsx"), /const counters = sheetCounters\(entity, c\.language\);/);
+  assert.match(read("src/components/registry/game-screen.tsx"), /<dt>\{hero \? counterLabel\(hero, resource\.key, c\.language\) : c\.label\(resource\.label\)\}<\/dt>/);
+  assert.match(read("src/lib/inventory/owner-moves.ts"), /label: counterLabel\(entity, key, language\), labelled: counterLabelled\(entity, key\)/);
+  // The owner's counter with its name: the sheet's row reads Russian and loses the «?».
+  const tusk = { resources: { shaman_tusk: 2, shaman_tusk_max: 3 }, public_profile: { counterLabels: { shaman_tusk: "Клык шамана" } } };
+  assert.deepEqual(sheetCounters(tusk, "ru"), [{ key: "shaman_tusk", label: "Клык шамана", labelled: true, value: 2, max: 3 }]);
+  assert.equal(counterLabel({ public_profile: {} }, "shaman_tusk", "ru"), "Shaman tusk", "without the name: the key made readable, flagged «?»");
+  assert.equal(counterLabelled({ public_profile: {} }, "shaman_tusk"), false);
+  // The migration on a disposable campaign: by shape, once, a name already given untouched.
+  const { loopCampaign } = await import("./dm-loop-fixture.mjs");
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    await c.f.query("update public.rpg_entities set resources = resources || '{\"shaman_tusk\": 2, \"shaman_tusk_max\": 3}'::jsonb where id = $1", [c.hero]);
+    await c.f.query("update public.rpg_entities set resources = resources || '{\"shaman_tusk\": 1}'::jsonb, public_profile = public_profile || '{\"counterLabels\": {\"shaman_tusk\": \"Бивень\"}}'::jsonb where id = $1", [c.npc]);
+    const before = await c.f.one("select revision from public.rpg_entities where id = $1", [c.hero]);
+    const migration = readFileSync(new URL("../supabase/migrations/202610230501_fix_s3_accept_counter_label.sql", import.meta.url), "utf8");
+    await c.f.db.exec(migration);
+    const hero = await c.f.one("select revision, resources, public_profile from public.rpg_entities where id = $1", [c.hero]);
+    assert.equal(hero.public_profile.counterLabels.shaman_tusk, "Клык шамана");
+    assert.deepEqual([hero.resources.shaman_tusk, hero.resources.shaman_tusk_max], [2, 3], "the value and the maximum stay");
+    assert.equal(hero.revision, before.revision + 1);
+    assert.equal(counterLabel(hero, "shaman_tusk", "ru"), "Клык шамана");
+    assert.equal((await c.f.one("select public_profile from public.rpg_entities where id = $1", [c.npc])).public_profile.counterLabels.shaman_tusk, "Бивень", "a given name is kept");
+    await c.f.db.exec(migration);
+    assert.equal((await c.f.one("select revision from public.rpg_entities where id = $1", [c.hero])).revision, hero.revision, "idempotent");
+  } finally { await c.f.db.close(); }
+});

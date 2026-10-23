@@ -17,7 +17,7 @@ import { characterViewModel } from "@/lib/character-view-model";
 import {
   currentPlace,
   currentSession,
-  statLabel,
+  sheetPlates,
   heroOf,
   inCombat,
   journalOf,
@@ -86,7 +86,9 @@ export function heroLine(data: CampaignSnapshot, hero: Entity, c: Copy) {
   const model = characterViewModel(data, hero);
   const skills = quickRolls(hero).filter((roll) => roll.bonus !== "✦").slice(0, 3).map((roll) => roll.label.toLocaleLowerCase());
   const conditions = model.conditions.slice(0, 3);
-  const numbers = model.derivedStats.filter(([, value]) => value !== 0).slice(0, 3).map(([key, value]) => `${c.label(statLabel(key))} ${value}`);
+  // Fix S3-accept Г1: the sheet's plates (in 5e «КД 13 · Атака +7 · Навык +3», the server's numbers).
+  const numbers = sheetPlates(data, hero, model.derivedStats).filter((plate) => plate.key !== "speed").slice(0, 3)
+    .map((plate) => `${plate.translated ? plate.label : c.label(plate.label)} ${plate.value}`);
   return [...skills, ...conditions, ...(skills.length ? [] : numbers)].join(" · ");
 }
 

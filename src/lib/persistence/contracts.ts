@@ -89,6 +89,9 @@ export type Entity = ScopedRow & {
   character_sheet?: import("../adventures/bootstrap-contracts.ts").CharacterSheetV1 | import("../inventory/sheet.ts").CharacterSheetV2 | null;
   /** Stage 4: hero-knowledge projection (never Character Model text). */
   public_profile?: PublicProfile;
+  /** Fix S3-accept Г3: a person's 5e numbers (AC, saves, attack, proficiency) the server derived for the public read;
+   * never stored, never sent back. */
+  derived?: import("../live2d/battle/rules-5e.ts").DerivedSheet;
 };
 export type Storage = ScopedRow & {
   name: string;

@@ -8,6 +8,7 @@ import { characterDescription } from "./character-presentation";
 import type { CharacterSheetV1 } from "@/lib/adventures/bootstrap-contracts";
 import { characterViewModel, type CharacterProgress } from "@/lib/character-view-model";
 import { readableLabel, resourcePresentation } from "@/lib/resource-presentation";
+import { counterLabel } from "@/lib/inventory/model";
 import { CharacterEquipmentDoll, CharacterInventory } from "./phase0-character";
 import characterStyles from "./phase0-character.module.css";
 import styles from "./playtest-game-character.module.css";
@@ -300,10 +301,13 @@ function NumberRecords({
   label,
   values,
   onChange,
+  labelOf,
 }: {
   label: string;
   values: Record<string, number>;
   onChange: (values: Record<string, number>) => void;
+  /** Fix S3-accept Г2: a counter's name in the campaign language (the key stays on hover). */
+  labelOf?: (key: string) => string;
 }) {
   const { t } = useLanguage();
   const [name, setName] = useState("");
@@ -313,7 +317,7 @@ function NumberRecords({
       {Object.entries(values).map(([key, value]) => (
         <div className="form-grid" key={key}>
           <label className="field">
-            <span>{key}</span>
+            <span title={labelOf ? key : undefined}>{labelOf ? labelOf(key) : key}</span>
             <input
               type="number"
               step="any"
@@ -366,7 +370,7 @@ function EntityEditor({
   defaultKind: Entity["kind"];
   onClose: () => void;
 }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { campaignId } = useCampaignData();
   const initial = {
     name: entity?.name || "",
@@ -487,6 +491,7 @@ function EntityEditor({
             label={t("Recorded resources")}
             values={draft.resources}
             onChange={(resources) => setDraft({ ...draft, resources })}
+            labelOf={entity ? (key) => (resourcePresentation(key).kind === "money" ? t(resourcePresentation(key).label) : counterLabel(entity, key, language)) : undefined}
           />
           <h3>{t("Equipment profile")}</h3>
           {draft.kind === "npc" && (
@@ -1030,7 +1035,7 @@ function EntityCollection({
   players: boolean;
   reviewOnly?: boolean;
 }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const rows = data.entities.filter((row) =>
     players ? row.kind === "player" : row.kind === "companion",
   );
@@ -1177,7 +1182,8 @@ function EntityCollection({
                 <dl className="stats-list">
                   {Object.entries(selected.resources).map(([key, value]) => (
                     <div key={key}>
-                      <dt>{key}</dt>
+                      {/* Fix S3-accept Г2: a counter by its name in the campaign language, never its key. */}
+                      <dt title={key}>{resourcePresentation(key).kind === "money" ? t(resourcePresentation(key).label) : counterLabel(selected, key, language)}</dt>
                       <dd>{value}</dd>
                     </div>
                   ))}
@@ -1318,7 +1324,7 @@ function PlayerSheet({
   onSelect: (item: Item) => void;
   reviewOnly?: boolean;
 }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [section, setSection] = useState<CharacterSection>("character");
   const reviewedSheet = entity.character_sheet ?? null;
   const [factResult, setFactResult] = useState<{
@@ -1428,7 +1434,7 @@ function PlayerSheet({
                   <>
                     <h3 className="section-label">{t("Resources")}</h3>
                     <dl className="stats-list">
-                      {model.resources.filter(([key]) => resourcePresentation(key).kind === "resource").map(([key, value]) => <div key={key}><dt>{t(resourcePresentation(key).label)}</dt><dd>{value}</dd></div>)}
+                      {model.resources.filter(([key]) => resourcePresentation(key).kind === "resource").map(([key, value]) => <div key={key}><dt>{counterLabel(entity, key, language)}</dt><dd>{value}</dd></div>)}
                     </dl>
                   </>
                 )}

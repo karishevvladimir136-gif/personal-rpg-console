@@ -12,7 +12,7 @@ import { fightCard } from "@/lib/live2d/battle/battlefield";
 import { usePictures } from "../../registry/live-frames";
 import { useChrome, type CampaignScreenId } from "../../registry/shell";
 import { registry as r, useCopy } from "../../registry/primitives";
-import { activeEncounter, battleView, damageFloats, endedEncounter, hpOf, initials, latestCombatChanges, zoneRowOf, type BattleView } from "./battle-model";
+import { activeEncounter, armourOf, battleView, damageFloats, endedEncounter, hpOf, initials, latestCombatChanges, zoneRowOf, type BattleView } from "./battle-model";
 import { BattleMap, type Float, type Template } from "./battle-map";
 import s from "./battle.module.css";
 import { conditionWord, outcomeWord } from "@/lib/live2d/battle/words";
@@ -98,7 +98,8 @@ export function BattleScreen({ snapshot, play, board, images, preview = false, o
   const targetFighter = fighters.find((row) => row.participantId === target) ?? view.foes.find((row) => row.participantId === active?.participantId) ?? view.foes[0] ?? null;
   const reaction = field.pendingReaction ? fighters.find((row) => row.participantId === field.pendingReaction!.targetId) ?? null : null;
   const yourTurn = !!hero && active?.participantId === hero.participantId;
-  const logLines = [...field.log.map((row) => ({ key: `${row.round}:${row.actor}:${row.what}:${row.result}`, text: `${c("р.", "r.")} ${row.round} · ${row.actor} · ${row.what} → ${row.result}` })),
+  const heroAc = hero ? armourOf(hero, snapshot) : null;
+  const logLines =[...field.log.map((row) => ({ key: `${row.round}:${row.actor}:${row.what}:${row.result}`, text: `${c("р.", "r.")} ${row.round} · ${row.actor} · ${row.what} → ${row.result}` })),
     ...(latest?.lines ?? []).map((row, index) => ({ key: `t:${index}`, text: row.summary }))];
 
   return (
@@ -168,6 +169,8 @@ export function BattleScreen({ snapshot, play, board, images, preview = false, o
           {hero && (
             <div className={[s.card, yourTurn ? s.yourTurn : ""].join(" ")} aria-label={c("Твой ход", "Your turn")}>
               <div className={s.cardHead}><b>{yourTurn ? c(`Твой ход, ${hero.name}`, `Your turn, ${hero.name}`) : hero.name}</b>{!yourTurn && active && <span>{c("ходит", "to act")}: {active.name}</span>}</div>
+              {/* Fix S3-accept Г3: the hero's AC — the number `combat attack` uses (worn things, effects, Shield). */}
+              {heroAc && <span className={r.badge} title={heroAc.text || undefined} data-battle-ac="">{c("КД", "AC")} {heroAc.value}</span>}
               <div className={s.economy}>
                 {[[c("Действие", "Action"), hero.combatant.economy.action], [c("Бонусное", "Bonus"), hero.combatant.economy.bonus], [c("Реакция", "Reaction"), hero.combatant.economy.reaction]].map(([label, left]) => (
                   <span key={String(label)}><i className={[s.dot, left ? "" : s.dotSpent].join(" ")} aria-hidden="true" />{label}</span>

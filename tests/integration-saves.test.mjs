@@ -54,6 +54,7 @@ const NEW_MIGRATIONS = [
   "202610210401_fix_s3_pre_reroll_natural.sql",
   "202610210402_fix_s3_pre_show_dc.sql",
   "202610210403_fix_s3_pre_gallery_turns.sql",
+  "202610230501_fix_s3_accept_counter_label.sql",
 ];
 const pictures = (f, cid, action, payload = {}) =>
   f.one("select public.rpg_pictures($1,$2,$3,$4::jsonb) result", [f.owner, cid, action, JSON.stringify(payload)]).then((row) => row.result);

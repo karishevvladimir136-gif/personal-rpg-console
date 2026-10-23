@@ -28,6 +28,7 @@ import { adjacentIds, cellDistance, distanceFeet, insideGrid, moveCost, sight, z
 import { fightCard, type Fighter as BattleFighter } from "../../live2d/battle/battlefield.ts";
 import { attackRuling, damageRuling, rulesOnByDefault, rulesText, type AppliedRule } from "../../live2d/battle/rules.ts";
 import { conditionsText } from "../../live2d/battle/words.ts";
+import { deriveSheet5e, endsAtOwnTurn, isFifthEdition } from "../../live2d/battle/rules-5e.ts";
 
 export type ToolContext = {
   input: TurnInput;
@@ -766,6 +767,17 @@ function sheetPatchOf(args: Args): SheetPatch | null {
   if (!args.sheet || typeof args.sheet !== "object" || Array.isArray(args.sheet)) return null;
   return args.sheet as SheetPatch;
 }
+/** Fix S3-accept Г3: the record's public conditions after a call's add / remove (lasting effects such as «Доспехи
+ * мага», which the 5e rules module counts in the AC); null when the call names none or nothing changes. */
+function conditionsAfter(entity: Entity, raw: unknown): string[] | null {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+  const words = (value: unknown) => (Array.isArray(value) ? value.map((row) => str(row).slice(0, 60)).filter(Boolean).slice(0, 6) : []);
+  const { add, remove } = raw as { add?: unknown; remove?: unknown };
+  const gone = new Set(words(remove).map((word) => word.toLocaleLowerCase()));
+  const kept = entity.conditions.filter((word) => !gone.has(word.toLocaleLowerCase()));
+  const next = [...kept, ...words(add).filter((word) => !kept.some((row) => row.toLocaleLowerCase() === word.toLocaleLowerCase()))].slice(0, 12);
+  return next.length === entity.conditions.length && next.every((word, index) => word === entity.conditions[index]) ? null : next;
+}
 /** A stat block that names attacks while the person carries no weapon: the receipt asks for the gear (item 36). */
 function gearHint(shadow: ShadowState, entity: Entity, statblock: string): JsonObject {
   if (!/(атак|attack|мультиатак|multiattack|\+\d+\s*\()/i.test(statblock)) return {};
@@ -781,17 +793,21 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
       // Fix run D (§9, item 18): the hero's sheet changes in play only through sheet with a reason; the rest of the
       // hero's record is the owner's (HP and counters: resource; possessions: item).
       const patch = sheetPatchOf(args);
-      const others = Object.keys(args).filter((key) => !["ref", "sheet", "reason"].includes(key) && args[key] !== undefined);
-      reject(patch && others.length === 0, `${entity.name} is the player's hero; only the sheet changes here (sheet with a reason).`,
+      // Fix S3-accept Г3: and the hero's lasting effects (conditions), with the same reason.
+      const conditions = args.conditions !== undefined ? conditionsAfter(entity, args.conditions) : null;
+      const others = Object.keys(args).filter((key) => !["ref", "sheet", "reason", "conditions"].includes(key) && args[key] !== undefined);
+      reject((patch || args.conditions !== undefined) && others.length === 0, `${entity.name} is the player's hero; only the sheet and the conditions change here (with a reason).`,
         "Use resource for HP and counters, item for possessions.");
       const reason = str(args.reason);
-      reject(reason.length > 0, "A change of the hero's sheet needs a reason (shown to the player).");
+      reject(reason.length > 0, "A change of the hero's sheet or conditions needs a reason (shown to the player).");
       const before = entity.character_sheet as AnySheet | null | undefined;
-      const sheet = patchSheet(before, patch!);
-      shadow.apply(entityChange(shadow, entity, { character_sheet: sheet as unknown as JsonObject }));
-      const changed = sheetChanges(before, sheet, ctx.language);
-      return ok({ id: entity.id, name: entity.name, sheet: changed }, `${entity.name}'s sheet: ${changed} (${reason})`, null,
-        `${ctx.language === "ru" ? "Лист героя" : "Hero's sheet"}: ${changed} (${reason})`);
+      const sheet = patch ? patchSheet(before, patch) : null;
+      if (sheet || conditions) shadow.apply(entityChange(shadow, entity, { ...(sheet ? { character_sheet: sheet as unknown as JsonObject } : {}), ...(conditions ? { conditions } : {}) }));
+      const ru = ctx.language === "ru";
+      const changed = [sheet ? sheetChanges(before, sheet, ctx.language) : null,
+        conditions ? `${ru ? "состояния" : "conditions"}: ${conditions.join(", ") || (ru ? "нет" : "none")}` : null].filter(Boolean).join("; ") || (ru ? "без изменений" : "unchanged");
+      return ok({ id: entity.id, name: entity.name, sheet: changed, ...(conditions ? { conditions } : {}) }, `${entity.name}'s sheet: ${changed} (${reason})`, null,
+        `${ru ? "Лист героя" : "Hero's sheet"}: ${changed} (${reason})`);
     }
     reject(entity.kind === "npc" || entity.kind === "companion" || entity.kind === "faction", `${entity.name} is a ${entity.kind}, not a character.`);
     const values: JsonObject = {};
@@ -812,6 +828,8 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
     }
     const patch = sheetPatchOf(args);
     if (patch && entity.kind !== "faction") values.character_sheet = patchSheet(entity.character_sheet as AnySheet | null | undefined, patch) as unknown as JsonObject;
+    const conditions = entity.kind !== "faction" && args.conditions !== undefined ? conditionsAfter(entity, args.conditions) : null;
+    if (conditions) values.conditions = conditions;
     if (Object.keys(values).length) shadow.apply(entityChange(shadow, entity, values));
     // Fix S3-pre (opening attacks): hit points given for the first time take the damage an opening attack already dealt.
     const settled = entity.max_hp === null && values.max_hp !== undefined ? settlePendingDamage(shadow, shadow.entity(entity.id)!) : 0;
@@ -1905,8 +1923,12 @@ function fightAttack(shadow: ShadowState, ctx: ToolContext, fight: FightRows, fi
   const { entity: target, fighter: tf } = t;
   reject(attacker.id !== target.id, "attack: the target is the attacker.");
   const partyIds = fight.partyIds;
-  const sheetAc = partyIds.has(target.id) ? sheetArmourClass(target) : null;
-  const known = tf.combatant.ac ?? sheetAc;
+  // Fix S3-accept Г3: in a 5e campaign a party member's AC is derived — worn things, the record's effects (Mage Armor)
+  // and this fight's (Shield) — the number the sheet, the doll and the battle block show; another system keeps the sheet's.
+  const derived = partyIds.has(target.id) && isFifthEdition(shadow.snapshot.settings.values.rulesSystem)
+    ? deriveSheet5e({ entity: target, items: shadow.snapshot.items.filter((row) => row.campaign_id === shadow.campaignId), fight: tf.combatant.conditions, fightAc: tf.combatant.ac, language: l }).ac : null;
+  const sheetAc = partyIds.has(target.id) ? derived?.value ?? sheetArmourClass(target) : null;
+  const known = derived ? derived.value : tf.combatant.ac ?? sheetAc;
   const ac = input.preferGiven ? input.ac ?? known : known ?? input.ac;
   reject(ac !== null, `attack needs ${target.name}'s armour class: ac here, or combat profile once.`, partyIds.has(target.id) ? "The sheet names no armour class stat; pass ac from the sheet's text." : undefined);
   reject(input.damage.length > 0, "attack needs the damage formula (1d8+3).");
@@ -2233,6 +2255,8 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
     next.combatant.active = true;
     const paralysed = next.combatant.conditions.some((c) => /paralysed|unconscious|stunned|без сознания|парализ/i.test(c));
     next.combatant.economy = paralysed ? { ...defaultEconomy(next.combatant.economy.moveMaxFeet), action: false, bonus: false, reaction: false, moveFeet: 0 } : defaultEconomy(next.combatant.economy.moveMaxFeet);
+    // Fix S3-accept Г3: Shield lasts until the start of its caster's next turn — the server ends it here (5e).
+    if (isFifthEdition(shadow.snapshot.settings.values.rulesSystem)) next.combatant.conditions = next.combatant.conditions.filter((word) => !endsAtOwnTurn(word));
     saveFighter(next);
     field.activeParticipantId = next.participantId;
     field.turnInRound = wrapped ? 1 : field.turnInRound + 1;
