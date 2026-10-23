@@ -1,20 +1,23 @@
 # Persona memory 2 — the paid-call ledger (Part F, the posture case)
 
-Cap $15. Spent **$3.9486** in 968 calls over 4 run(s).
+Cap $15. Spent **$5.3277** in 1377 calls over 6 run(s).
 - 2026-10-23 03:28 UTC: posture: opus+sonnet × 5 arms × 4 probes × n 1, effort medium — 116 calls, $0.5447 → `persona-memory-2-posture-20261023-032801.json`
 - 2026-10-23 03:28 UTC: diagnostic: the refusal on the tape-room recollection probe (4 calls) — 4 calls, $0.0567 → `(diagnostic, no run file; the results are in the report)`
 - 2026-10-23 03:29 UTC: diagnostic: the refusal on the tape-room recollection probe (2 calls) — 2 calls, $0.0284 → `(diagnostic, no run file; the results are in the report)`
 - 2026-10-23 03:35 UTC: posture: opus+sonnet × 5 arms × 4 probes × n 10, effort medium — 846 calls, $3.3188 → `persona-memory-2-posture-20261023-033510.json`
+- 2026-10-23 04:35 UTC: diagnostic: model access checks during and after the suspension (4 tiny calls) — 4 calls, $0.0003 → `(diagnostic, no run file)`
+- 2026-10-23 04:40 UTC: posture: opus+sonnet × 5 arms × 4 probes × n 10, effort medium (resuming persona-memory-2-posture-20261023-033510.json), skipped sonnet:recollection — 405 calls, $1.3789 → `persona-memory-2-posture-20261023-044019.json`
 
 Prices per 1M tokens: Opus 5.5 input $4 / output $20; Sonnet 5.5 $2 / $10; Haiku 5.5 $0.10 / $0.50. Output tokens include thinking.
 
 | Model — purpose | Calls | Input tokens | Output tokens | Cost |
 | --- | --- | --- | --- | --- |
 | claude-opus-5-5 — persona | 238 | 290805 | 111182 | $3.3869 |
-| claude-sonnet-5-5 — persona | 222 | 62589 | 22810 | $0.3533 |
-| claude-haiku-5-5 — judge | 490 | 684670 | 75209 | $0.1061 |
-| claude-opus-5-5 — referee | 12 | 2881 | 293 | $0.0174 |
-| claude-opus-5-5 — diagnostic | 6 | 9542 | 2342 | $0.0850 |
+| claude-sonnet-5-5 — persona | 351 | 202312 | 100817 | $1.4128 |
+| claude-haiku-5-5 — judge | 748 | 965824 | 117155 | $0.1552 |
+| claude-opus-5-5 — referee | 30 | 33025 | 7780 | $0.2877 |
+| claude-opus-5-5 — diagnostic | 8 | 9555 | 2348 | $0.0852 |
+| claude-sonnet-5-5 — diagnostic | 2 | 13 | 6 | $0.0001 |
 
 ## Every call
 
@@ -988,3 +991,412 @@ Prices per 1M tokens: Opus 5.5 input $4 / output $20; Sonnet 5.5 $2 / $10; Haiku
 | 2026-10-23 03:35 | 844 | judge 1 recollection | claude-haiku-5-5 | 2910 | 570 | $0.00058 | 3.1 |  |
 | 2026-10-23 03:35 | 845 | judge 2 recollection | claude-haiku-5-5 | 2910 | 605 | $0.00059 | 3.4 |  |
 | 2026-10-23 03:35 | 846 | referee recollection | claude-opus-5-5 | 0 | 0 | $0.00000 | 0.1 | HTTP 403 permission_error |
+| 2026-10-23 04:35 | 1 | diagnostic access check (403 model_access_suspended) | claude-sonnet-5-5 | 0 | 0 | $0.00000 | 0.5 | HTTP 403 permission_error |
+| 2026-10-23 04:35 | 2 | diagnostic access check (403 model_access_suspended) | claude-opus-5-5 | 0 | 0 | $0.00000 | 0.5 | HTTP 403 permission_error |
+| 2026-10-23 04:35 | 3 | diagnostic access check (lifted) | claude-sonnet-5-5 | 13 | 6 | $0.00009 | 1 |  |
+| 2026-10-23 04:35 | 4 | diagnostic access check (lifted) | claude-opus-5-5 | 13 | 6 | $0.00017 | 1 |  |
+| 2026-10-23 04:40 | 1 | persona sonnet sham/transfer | claude-sonnet-5-5 | 805 | 314 | $0.00475 | 3.6 |  |
+| 2026-10-23 04:40 | 2 | persona sonnet summary/transfer | claude-sonnet-5-5 | 773 | 350 | $0.00505 | 3.9 |  |
+| 2026-10-23 04:40 | 3 | persona sonnet rewrite/transfer | claude-sonnet-5-5 | 749 | 326 | $0.00476 | 4.1 |  |
+| 2026-10-23 04:40 | 4 | persona sonnet none/transfer | claude-sonnet-5-5 | 129 | 275 | $0.00301 | 4.3 |  |
+| 2026-10-23 04:40 | 5 | persona sonnet journal/transfer | claude-sonnet-5-5 | 809 | 474 | $0.00636 | 5.8 |  |
+| 2026-10-23 04:40 | 6 | persona sonnet rewrite/transfer | claude-sonnet-5-5 | 744 | 554 | $0.00703 | 5.9 |  |
+| 2026-10-23 04:40 | 7 | persona sonnet none/transfer | claude-sonnet-5-5 | 133 | 673 | $0.00700 | 6.7 |  |
+| 2026-10-23 04:40 | 8 | persona sonnet summary/transfer | claude-sonnet-5-5 | 774 | 705 | $0.00860 | 8.9 |  |
+| 2026-10-23 04:40 | 9 | persona sonnet journal/transfer | claude-sonnet-5-5 | 809 | 499 | $0.00661 | 6.9 |  |
+| 2026-10-23 04:40 | 10 | persona sonnet summary/transfer | claude-sonnet-5-5 | 774 | 605 | $0.00760 | 6.8 |  |
+| 2026-10-23 04:40 | 11 | persona sonnet sham/transfer | claude-sonnet-5-5 | 908 | 751 | $0.00933 | 8.6 |  |
+| 2026-10-23 04:40 | 12 | persona sonnet rewrite/transfer | claude-sonnet-5-5 | 744 | 483 | $0.00632 | 5.8 |  |
+| 2026-10-23 04:40 | 13 | persona sonnet none/transfer | claude-sonnet-5-5 | 133 | 553 | $0.00580 | 5.8 |  |
+| 2026-10-23 04:40 | 14 | persona sonnet journal/transfer | claude-sonnet-5-5 | 2354 | 683 | $0.01154 | 7.1 |  |
+| 2026-10-23 04:40 | 15 | persona sonnet sham/transfer | claude-sonnet-5-5 | 908 | 765 | $0.00947 | 7.7 |  |
+| 2026-10-23 04:40 | 16 | persona sonnet summary/transfer | claude-sonnet-5-5 | 2229 | 591 | $0.01037 | 7.8 |  |
+| 2026-10-23 04:40 | 17 | persona sonnet rewrite/transfer | claude-sonnet-5-5 | 2130 | 665 | $0.01091 | 7 |  |
+| 2026-10-23 04:40 | 18 | persona sonnet sham/transfer | claude-sonnet-5-5 | 2140 | 417 | $0.00845 | 4.6 |  |
+| 2026-10-23 04:40 | 19 | persona sonnet none/transfer | claude-sonnet-5-5 | 141 | 484 | $0.00512 | 5.1 |  |
+| 2026-10-23 04:40 | 20 | persona sonnet journal/transfer | claude-sonnet-5-5 | 2128 | 397 | $0.00823 | 4.7 |  |
+| 2026-10-23 04:40 | 21 | persona sonnet summary/transfer | claude-sonnet-5-5 | 1938 | 370 | $0.00758 | 3.9 |  |
+| 2026-10-23 04:40 | 22 | persona sonnet sham/transfer | claude-sonnet-5-5 | 2080 | 285 | $0.00701 | 3.5 |  |
+| 2026-10-23 04:40 | 23 | persona sonnet none/transfer | claude-sonnet-5-5 | 129 | 351 | $0.00377 | 4.7 |  |
+| 2026-10-23 04:40 | 24 | persona sonnet rewrite/transfer | claude-sonnet-5-5 | 1875 | 459 | $0.00834 | 5 |  |
+| 2026-10-23 04:40 | 25 | persona sonnet journal/transfer | claude-sonnet-5-5 | 809 | 384 | $0.00546 | 4.2 |  |
+| 2026-10-23 04:40 | 26 | persona sonnet summary/transfer | claude-sonnet-5-5 | 773 | 350 | $0.00505 | 3.9 |  |
+| 2026-10-23 04:40 | 27 | persona sonnet rewrite/transfer | claude-sonnet-5-5 | 749 | 337 | $0.00487 | 3.7 |  |
+| 2026-10-23 04:40 | 28 | persona sonnet none/transfer | claude-sonnet-5-5 | 129 | 296 | $0.00322 | 4.3 |  |
+| 2026-10-23 04:40 | 29 | persona sonnet sham/transfer | claude-sonnet-5-5 | 805 | 346 | $0.00507 | 3.8 |  |
+| 2026-10-23 04:40 | 30 | persona sonnet summary/thought | claude-sonnet-5-5 | 2213 | 557 | $0.01000 | 6.6 |  |
+| 2026-10-23 04:40 | 31 | persona sonnet journal/thought | claude-sonnet-5-5 | 2338 | 716 | $0.01184 | 7.4 |  |
+| 2026-10-23 04:40 | 32 | persona sonnet rewrite/thought | claude-sonnet-5-5 | 2114 | 554 | $0.00977 | 7.1 |  |
+| 2026-10-23 04:40 | 33 | persona sonnet none/thought | claude-sonnet-5-5 | 125 | 587 | $0.00612 | 6.3 |  |
+| 2026-10-23 04:40 | 34 | persona sonnet sham/thought | claude-sonnet-5-5 | 2124 | 638 | $0.01063 | 6.9 |  |
+| 2026-10-23 04:40 | 35 | persona sonnet journal/thought | claude-sonnet-5-5 | 2098 | 558 | $0.00978 | 6.5 |  |
+| 2026-10-23 04:40 | 36 | persona sonnet summary/thought | claude-sonnet-5-5 | 1896 | 565 | $0.00944 | 6.7 |  |
+| 2026-10-23 04:40 | 37 | persona sonnet rewrite/thought | claude-sonnet-5-5 | 1815 | 530 | $0.00893 | 6.1 |  |
+| 2026-10-23 04:40 | 38 | persona sonnet sham/thought | claude-sonnet-5-5 | 2360 | 512 | $0.00984 | 6 |  |
+| 2026-10-23 04:40 | 39 | persona sonnet none/thought | claude-sonnet-5-5 | 147 | 528 | $0.00557 | 6.2 |  |
+| 2026-10-23 04:40 | 40 | persona sonnet summary/thought | claude-sonnet-5-5 | 892 | 561 | $0.00739 | 6.5 |  |
+| 2026-10-23 04:40 | 41 | persona sonnet journal/thought | claude-sonnet-5-5 | 900 | 703 | $0.00883 | 8.2 |  |
+| 2026-10-23 04:40 | 42 | persona sonnet rewrite/thought | claude-sonnet-5-5 | 853 | 561 | $0.00732 | 6 |  |
+| 2026-10-23 04:40 | 43 | persona sonnet none/thought | claude-sonnet-5-5 | 125 | 562 | $0.00587 | 6.4 |  |
+| 2026-10-23 04:40 | 44 | persona sonnet sham/thought | claude-sonnet-5-5 | 805 | 568 | $0.00729 | 6.5 |  |
+| 2026-10-23 04:40 | 45 | persona sonnet journal/thought | claude-sonnet-5-5 | 2112 | 642 | $0.01064 | 8.4 |  |
+| 2026-10-23 04:40 | 46 | persona sonnet summary/thought | claude-sonnet-5-5 | 1922 | 506 | $0.00890 | 6.5 |  |
+| 2026-10-23 04:40 | 47 | persona sonnet rewrite/thought | claude-sonnet-5-5 | 1859 | 653 | $0.01025 | 8.2 |  |
+| 2026-10-23 04:40 | 48 | persona sonnet none/thought | claude-sonnet-5-5 | 113 | 517 | $0.00540 | 6.4 |  |
+| 2026-10-23 04:40 | 49 | persona sonnet journal/thought | claude-sonnet-5-5 | 793 | 508 | $0.00667 | 5.8 |  |
+| 2026-10-23 04:40 | 50 | persona sonnet sham/thought | claude-sonnet-5-5 | 2064 | 663 | $0.01076 | 7.7 |  |
+| 2026-10-23 04:40 | 51 | persona sonnet summary/thought | claude-sonnet-5-5 | 757 | 468 | $0.00619 | 5.3 |  |
+| 2026-10-23 04:40 | 52 | persona sonnet rewrite/thought | claude-sonnet-5-5 | 733 | 539 | $0.00686 | 6.5 |  |
+| 2026-10-23 04:40 | 53 | persona sonnet none/thought | claude-sonnet-5-5 | 113 | 489 | $0.00512 | 5.6 |  |
+| 2026-10-23 04:40 | 54 | persona sonnet sham/thought | claude-sonnet-5-5 | 789 | 503 | $0.00661 | 5.9 |  |
+| 2026-10-23 04:40 | 55 | persona sonnet journal/thought | claude-sonnet-5-5 | 823 | 590 | $0.00755 | 8.4 |  |
+| 2026-10-23 04:40 | 56 | persona sonnet summary/thought | claude-sonnet-5-5 | 788 | 629 | $0.00787 | 7.1 |  |
+| 2026-10-23 04:40 | 57 | persona sonnet none/thought | claude-sonnet-5-5 | 147 | 473 | $0.00502 | 5.4 |  |
+| 2026-10-23 04:40 | 58 | persona sonnet rewrite/thought | claude-sonnet-5-5 | 758 | 612 | $0.00764 | 7.4 |  |
+| 2026-10-23 04:40 | 59 | persona sonnet sham/thought | claude-sonnet-5-5 | 922 | 511 | $0.00695 | 6 |  |
+| 2026-10-23 04:40 | 60 | persona sonnet journal/thought | claude-sonnet-5-5 | 2338 | 577 | $0.01045 | 6.1 |  |
+| 2026-10-23 04:40 | 61 | persona sonnet rewrite/thought | claude-sonnet-5-5 | 2114 | 479 | $0.00902 | 5.8 |  |
+| 2026-10-23 04:40 | 62 | persona sonnet summary/thought | claude-sonnet-5-5 | 2213 | 634 | $0.01077 | 7.5 |  |
+| 2026-10-23 04:40 | 63 | persona sonnet none/thought | claude-sonnet-5-5 | 125 | 600 | $0.00625 | 7.2 |  |
+| 2026-10-23 04:40 | 64 | persona sonnet sham/thought | claude-sonnet-5-5 | 2124 | 601 | $0.01026 | 7.1 |  |
+| 2026-10-23 04:40 | 65 | persona sonnet journal/thought | claude-sonnet-5-5 | 823 | 569 | $0.00734 | 6.1 |  |
+| 2026-10-23 04:40 | 66 | persona sonnet summary/thought | claude-sonnet-5-5 | 788 | 656 | $0.00814 | 8 |  |
+| 2026-10-23 04:40 | 67 | persona sonnet none/thought | claude-sonnet-5-5 | 147 | 547 | $0.00576 | 6.1 |  |
+| 2026-10-23 04:40 | 68 | persona sonnet sham/thought | claude-sonnet-5-5 | 922 | 512 | $0.00696 | 6.1 |  |
+| 2026-10-23 04:40 | 69 | persona sonnet journal/thought | claude-sonnet-5-5 | 793 | 500 | $0.00659 | 5.8 |  |
+| 2026-10-23 04:40 | 70 | persona sonnet rewrite/thought | claude-sonnet-5-5 | 758 | 617 | $0.00769 | 10.7 |  |
+| 2026-10-23 04:40 | 71 | persona sonnet summary/thought | claude-sonnet-5-5 | 757 | 433 | $0.00584 | 5.6 |  |
+| 2026-10-23 04:40 | 72 | persona sonnet rewrite/thought | claude-sonnet-5-5 | 733 | 599 | $0.00746 | 7 |  |
+| 2026-10-23 04:40 | 73 | persona sonnet none/thought | claude-sonnet-5-5 | 113 | 574 | $0.00597 | 6.3 |  |
+| 2026-10-23 04:40 | 74 | persona sonnet sham/thought | claude-sonnet-5-5 | 789 | 482 | $0.00640 | 6 |  |
+| 2026-10-23 04:40 | 75 | persona sonnet journal/thought | claude-sonnet-5-5 | 900 | 680 | $0.00860 | 8.1 |  |
+| 2026-10-23 04:40 | 76 | persona sonnet summary/thought | claude-sonnet-5-5 | 892 | 707 | $0.00885 | 7.6 |  |
+| 2026-10-23 04:40 | 77 | persona sonnet none/thought | claude-sonnet-5-5 | 125 | 575 | $0.00600 | 6.1 |  |
+| 2026-10-23 04:40 | 78 | persona sonnet rewrite/thought | claude-sonnet-5-5 | 853 | 577 | $0.00748 | 6.3 |  |
+| 2026-10-23 04:40 | 79 | persona sonnet sham/thought | claude-sonnet-5-5 | 805 | 570 | $0.00731 | 6.8 |  |
+| 2026-10-23 04:40 | 80 | persona sonnet journal/voice | claude-sonnet-5-5 | 2116 | 822 | $0.01245 | 8.1 |  |
+| 2026-10-23 04:40 | 81 | persona sonnet rewrite/voice | claude-sonnet-5-5 | 1833 | 725 | $0.01092 | 7.7 |  |
+| 2026-10-23 04:40 | 82 | persona sonnet summary/voice | claude-sonnet-5-5 | 1914 | 812 | $0.01195 | 8.9 |  |
+| 2026-10-23 04:40 | 83 | persona sonnet none/voice | claude-sonnet-5-5 | 165 | 752 | $0.00785 | 8.5 |  |
+| 2026-10-23 04:40 | 84 | persona sonnet journal/voice | claude-sonnet-5-5 | 2380 | 707 | $0.01183 | 7 |  |
+| 2026-10-23 04:40 | 85 | persona sonnet sham/voice | claude-sonnet-5-5 | 2378 | 775 | $0.01251 | 8.2 |  |
+| 2026-10-23 04:40 | 86 | persona sonnet summary/voice | claude-sonnet-5-5 | 2255 | 1102 | $0.01553 | 10.3 |  |
+| 2026-10-23 04:40 | 87 | persona sonnet rewrite/voice | claude-sonnet-5-5 | 2156 | 747 | $0.01178 | 7 |  |
+| 2026-10-23 04:40 | 88 | persona sonnet none/voice | claude-sonnet-5-5 | 167 | 633 | $0.00666 | 6.6 |  |
+| 2026-10-23 04:40 | 89 | persona sonnet sham/voice | claude-sonnet-5-5 | 2166 | 612 | $0.01045 | 6.7 |  |
+| 2026-10-23 04:40 | 90 | persona sonnet summary/voice | claude-sonnet-5-5 | 1956 | 645 | $0.01036 | 6.6 |  |
+| 2026-10-23 04:40 | 91 | persona sonnet journal/voice | claude-sonnet-5-5 | 2146 | 714 | $0.01143 | 7.3 |  |
+| 2026-10-23 04:40 | 92 | persona sonnet rewrite/voice | claude-sonnet-5-5 | 1893 | 740 | $0.01119 | 8.1 |  |
+| 2026-10-23 04:40 | 93 | persona sonnet none/voice | claude-sonnet-5-5 | 147 | 800 | $0.00829 | 9.4 |  |
+| 2026-10-23 04:40 | 94 | persona sonnet sham/voice | claude-sonnet-5-5 | 2098 | 654 | $0.01074 | 7.2 |  |
+| 2026-10-23 04:40 | 95 | persona sonnet journal/voice | claude-sonnet-5-5 | 841 | 658 | $0.00826 | 7 |  |
+| 2026-10-23 04:40 | 96 | persona sonnet summary/voice | claude-sonnet-5-5 | 806 | 821 | $0.00982 | 8.5 |  |
+| 2026-10-23 04:40 | 97 | persona sonnet none/voice | claude-sonnet-5-5 | 165 | 711 | $0.00744 | 6.7 |  |
+| 2026-10-23 04:40 | 98 | persona sonnet rewrite/voice | claude-sonnet-5-5 | 776 | 850 | $0.01005 | 9.2 |  |
+| 2026-10-23 04:40 | 99 | persona sonnet sham/voice | claude-sonnet-5-5 | 940 | 906 | $0.01094 | 9.9 |  |
+| 2026-10-23 04:40 | 100 | persona sonnet journal/voice | claude-sonnet-5-5 | 827 | 589 | $0.00754 | 6.5 |  |
+| 2026-10-23 04:40 | 101 | persona sonnet summary/voice | claude-sonnet-5-5 | 791 | 502 | $0.00660 | 5.7 |  |
+| 2026-10-23 04:40 | 102 | persona sonnet rewrite/voice | claude-sonnet-5-5 | 767 | 514 | $0.00667 | 6.1 |  |
+| 2026-10-23 04:40 | 103 | persona sonnet none/voice | claude-sonnet-5-5 | 147 | 610 | $0.00639 | 7 |  |
+| 2026-10-23 04:40 | 104 | persona sonnet sham/voice | claude-sonnet-5-5 | 823 | 663 | $0.00828 | 8 |  |
+| 2026-10-23 04:40 | 105 | persona sonnet journal/voice | claude-sonnet-5-5 | 942 | 789 | $0.00977 | 8.9 |  |
+| 2026-10-23 04:40 | 106 | persona sonnet summary/voice | claude-sonnet-5-5 | 934 | 802 | $0.00989 | 7.8 |  |
+| 2026-10-23 04:40 | 107 | persona sonnet rewrite/voice | claude-sonnet-5-5 | 895 | 686 | $0.00865 | 7.7 |  |
+| 2026-10-23 04:40 | 108 | persona sonnet none/voice | claude-sonnet-5-5 | 167 | 609 | $0.00642 | 6.9 |  |
+| 2026-10-23 04:40 | 109 | persona sonnet journal/voice | claude-sonnet-5-5 | 841 | 745 | $0.00913 | 7.4 |  |
+| 2026-10-23 04:40 | 110 | persona sonnet sham/voice | claude-sonnet-5-5 | 847 | 596 | $0.00765 | 8.2 |  |
+| 2026-10-23 04:40 | 111 | persona sonnet summary/voice | claude-sonnet-5-5 | 806 | 792 | $0.00953 | 8.2 |  |
+| 2026-10-23 04:40 | 112 | persona sonnet rewrite/voice | claude-sonnet-5-5 | 776 | 791 | $0.00946 | 7.9 |  |
+| 2026-10-23 04:40 | 113 | persona sonnet sham/voice | claude-sonnet-5-5 | 940 | 757 | $0.00945 | 8 |  |
+| 2026-10-23 04:40 | 114 | persona sonnet none/voice | claude-sonnet-5-5 | 165 | 862 | $0.00895 | 9.4 |  |
+| 2026-10-23 04:40 | 115 | persona sonnet journal/voice | claude-sonnet-5-5 | 827 | 515 | $0.00680 | 5.7 |  |
+| 2026-10-23 04:40 | 116 | persona sonnet summary/voice | claude-sonnet-5-5 | 791 | 519 | $0.00677 | 6.5 |  |
+| 2026-10-23 04:40 | 117 | persona sonnet rewrite/voice | claude-sonnet-5-5 | 767 | 588 | $0.00741 | 8.4 |  |
+| 2026-10-23 04:40 | 118 | persona sonnet none/voice | claude-sonnet-5-5 | 147 | 638 | $0.00667 | 7.5 |  |
+| 2026-10-23 04:40 | 119 | persona sonnet sham/voice | claude-sonnet-5-5 | 823 | 667 | $0.00832 | 7.9 |  |
+| 2026-10-23 04:40 | 120 | persona sonnet journal/voice | claude-sonnet-5-5 | 942 | 669 | $0.00857 | 10.5 |  |
+| 2026-10-23 04:40 | 121 | persona sonnet none/voice | claude-sonnet-5-5 | 167 | 554 | $0.00587 | 5.9 |  |
+| 2026-10-23 04:40 | 122 | persona sonnet rewrite/voice | claude-sonnet-5-5 | 895 | 718 | $0.00897 | 7.7 |  |
+| 2026-10-23 04:40 | 123 | persona sonnet summary/voice | claude-sonnet-5-5 | 934 | 949 | $0.01136 | 9 |  |
+| 2026-10-23 04:40 | 124 | persona sonnet sham/voice | claude-sonnet-5-5 | 847 | 663 | $0.00832 | 7.8 |  |
+| 2026-10-23 04:40 | 125 | persona sonnet journal/voice | claude-sonnet-5-5 | 2116 | 803 | $0.01226 | 8 |  |
+| 2026-10-23 04:40 | 126 | persona sonnet rewrite/voice | claude-sonnet-5-5 | 1833 | 720 | $0.01087 | 7.2 |  |
+| 2026-10-23 04:40 | 127 | persona sonnet summary/voice | claude-sonnet-5-5 | 1914 | 791 | $0.01174 | 9.1 |  |
+| 2026-10-23 04:40 | 128 | persona sonnet none/voice | claude-sonnet-5-5 | 165 | 750 | $0.00783 | 8.6 |  |
+| 2026-10-23 04:40 | 129 | persona sonnet sham/voice | claude-sonnet-5-5 | 2378 | 736 | $0.01212 | 7.7 |  |
+| 2026-10-23 04:40 | 130 | judge 2 voice | claude-haiku-5-5 | 1084 | 89 | $0.00015 | 0.8 |  |
+| 2026-10-23 04:40 | 131 | judge 2 thought | claude-haiku-5-5 | 1114 | 95 | $0.00016 | 0.8 |  |
+| 2026-10-23 04:40 | 132 | judge 1 thought | claude-haiku-5-5 | 1114 | 93 | $0.00016 | 0.9 |  |
+| 2026-10-23 04:40 | 133 | judge 1 voice | claude-haiku-5-5 | 1084 | 106 | $0.00016 | 0.9 |  |
+| 2026-10-23 04:40 | 134 | judge 2 thought | claude-haiku-5-5 | 1077 | 114 | $0.00016 | 1 |  |
+| 2026-10-23 04:40 | 135 | judge 1 thought | claude-haiku-5-5 | 1077 | 151 | $0.00018 | 1.4 |  |
+| 2026-10-23 04:40 | 136 | judge 2 voice | claude-haiku-5-5 | 1029 | 98 | $0.00015 | 0.9 |  |
+| 2026-10-23 04:40 | 137 | judge 1 voice | claude-haiku-5-5 | 1029 | 117 | $0.00016 | 1 |  |
+| 2026-10-23 04:40 | 138 | judge 2 transfer | claude-haiku-5-5 | 919 | 99 | $0.00014 | 1.2 |  |
+| 2026-10-23 04:40 | 139 | judge 1 transfer | claude-haiku-5-5 | 919 | 115 | $0.00015 | 1.3 |  |
+| 2026-10-23 04:40 | 140 | judge 2 transfer | claude-haiku-5-5 | 835 | 129 | $0.00015 | 1 |  |
+| 2026-10-23 04:40 | 141 | referee thought | claude-opus-5-5 | 1241 | 206 | $0.00908 | 2.7 |  |
+| 2026-10-23 04:40 | 142 | judge 1 voice | claude-haiku-5-5 | 1115 | 98 | $0.00016 | 0.9 |  |
+| 2026-10-23 04:40 | 143 | judge 2 voice | claude-haiku-5-5 | 1115 | 103 | $0.00016 | 0.9 |  |
+| 2026-10-23 04:40 | 144 | judge 1 voice | claude-haiku-5-5 | 1231 | 126 | $0.00019 | 0.9 |  |
+| 2026-10-23 04:40 | 145 | judge 2 voice | claude-haiku-5-5 | 1231 | 135 | $0.00019 | 0.9 |  |
+| 2026-10-23 04:40 | 146 | judge 1 transfer | claude-haiku-5-5 | 835 | 130 | $0.00015 | 1.7 |  |
+| 2026-10-23 04:40 | 147 | judge 2 voice | claude-haiku-5-5 | 1093 | 102 | $0.00016 | 0.9 |  |
+| 2026-10-23 04:40 | 148 | judge 1 voice | claude-haiku-5-5 | 1093 | 94 | $0.00016 | 1 |  |
+| 2026-10-23 04:40 | 149 | judge 2 voice | claude-haiku-5-5 | 1178 | 147 | $0.00019 | 1 |  |
+| 2026-10-23 04:40 | 150 | judge 2 transfer | claude-haiku-5-5 | 856 | 94 | $0.00013 | 0.8 |  |
+| 2026-10-23 04:40 | 151 | judge 1 voice | claude-haiku-5-5 | 1178 | 193 | $0.00021 | 1 |  |
+| 2026-10-23 04:40 | 152 | judge 1 transfer | claude-haiku-5-5 | 856 | 102 | $0.00014 | 0.8 |  |
+| 2026-10-23 04:40 | 153 | judge 2 thought | claude-haiku-5-5 | 1384 | 130 | $0.00020 | 1.1 |  |
+| 2026-10-23 04:40 | 154 | judge 1 thought | claude-haiku-5-5 | 1384 | 149 | $0.00021 | 1.2 |  |
+| 2026-10-23 04:40 | 155 | judge 1 transfer | claude-haiku-5-5 | 798 | 96 | $0.00013 | 0.9 |  |
+| 2026-10-23 04:40 | 156 | judge 2 transfer | claude-haiku-5-5 | 798 | 118 | $0.00014 | 0.9 |  |
+| 2026-10-23 04:40 | 157 | judge 2 transfer | claude-haiku-5-5 | 817 | 89 | $0.00013 | 0.8 |  |
+| 2026-10-23 04:40 | 158 | judge 1 transfer | claude-haiku-5-5 | 860 | 129 | $0.00015 | 1.1 |  |
+| 2026-10-23 04:40 | 159 | judge 2 transfer | claude-haiku-5-5 | 860 | 133 | $0.00015 | 1.1 |  |
+| 2026-10-23 04:40 | 160 | judge 1 transfer | claude-haiku-5-5 | 817 | 128 | $0.00015 | 1.2 |  |
+| 2026-10-23 04:40 | 161 | judge 1 thought | claude-haiku-5-5 | 1312 | 131 | $0.00020 | 1.1 |  |
+| 2026-10-23 04:40 | 162 | judge 2 transfer | claude-haiku-5-5 | 825 | 129 | $0.00015 | 1 |  |
+| 2026-10-23 04:40 | 163 | judge 1 transfer | claude-haiku-5-5 | 825 | 127 | $0.00015 | 1.1 |  |
+| 2026-10-23 04:40 | 164 | judge 2 transfer | claude-haiku-5-5 | 910 | 86 | $0.00013 | 0.8 |  |
+| 2026-10-23 04:40 | 165 | judge 1 transfer | claude-haiku-5-5 | 910 | 86 | $0.00013 | 0.8 |  |
+| 2026-10-23 04:40 | 166 | judge 2 thought | claude-haiku-5-5 | 1312 | 154 | $0.00021 | 1.5 |  |
+| 2026-10-23 04:40 | 167 | judge 1 voice | claude-haiku-5-5 | 1174 | 106 | $0.00017 | 0.9 |  |
+| 2026-10-23 04:40 | 168 | judge 2 thought | claude-haiku-5-5 | 1307 | 116 | $0.00019 | 0.9 |  |
+| 2026-10-23 04:40 | 169 | judge 2 voice | claude-haiku-5-5 | 1095 | 124 | $0.00017 | 0.9 |  |
+| 2026-10-23 04:40 | 170 | judge 1 voice | claude-haiku-5-5 | 1095 | 121 | $0.00017 | 1 |  |
+| 2026-10-23 04:40 | 171 | judge 1 thought | claude-haiku-5-5 | 1307 | 124 | $0.00019 | 1 |  |
+| 2026-10-23 04:40 | 172 | judge 2 thought | claude-haiku-5-5 | 1223 | 152 | $0.00020 | 1.2 |  |
+| 2026-10-23 04:40 | 173 | judge 1 thought | claude-haiku-5-5 | 1223 | 154 | $0.00020 | 1.2 |  |
+| 2026-10-23 04:40 | 174 | judge 2 voice | claude-haiku-5-5 | 1174 | 126 | $0.00018 | 2.4 |  |
+| 2026-10-23 04:40 | 175 | judge 2 voice | claude-haiku-5-5 | 1052 | 130 | $0.00017 | 1 |  |
+| 2026-10-23 04:40 | 176 | judge 2 voice | claude-haiku-5-5 | 1084 | 120 | $0.00017 | 0.9 |  |
+| 2026-10-23 04:40 | 177 | judge 1 voice | claude-haiku-5-5 | 1084 | 143 | $0.00018 | 1.2 |  |
+| 2026-10-23 04:40 | 178 | judge 2 thought | claude-haiku-5-5 | 1146 | 142 | $0.00019 | 1.4 |  |
+| 2026-10-23 04:40 | 179 | judge 1 thought | claude-haiku-5-5 | 1146 | 141 | $0.00019 | 1.7 |  |
+| 2026-10-23 04:40 | 180 | judge 1 voice | claude-haiku-5-5 | 1021 | 88 | $0.00015 | 0.8 |  |
+| 2026-10-23 04:40 | 181 | judge 1 transfer | claude-haiku-5-5 | 898 | 114 | $0.00015 | 1.3 |  |
+| 2026-10-23 04:40 | 182 | judge 2 voice | claude-haiku-5-5 | 1021 | 111 | $0.00016 | 0.9 |  |
+| 2026-10-23 04:40 | 183 | judge 2 transfer | claude-haiku-5-5 | 898 | 91 | $0.00014 | 1.6 |  |
+| 2026-10-23 04:40 | 184 | judge 1 thought | claude-haiku-5-5 | 1114 | 105 | $0.00016 | 0.8 |  |
+| 2026-10-23 04:40 | 185 | judge 2 thought | claude-haiku-5-5 | 1114 | 112 | $0.00017 | 0.8 |  |
+| 2026-10-23 04:40 | 186 | judge 1 voice | claude-haiku-5-5 | 1052 | 615 | $0.00041 | 3 |  |
+| 2026-10-23 04:40 | 187 | judge 1 transfer | claude-haiku-5-5 | 993 | 88 | $0.00014 | 0.7 |  |
+| 2026-10-23 04:40 | 188 | judge 2 transfer | claude-haiku-5-5 | 993 | 103 | $0.00015 | 0.7 |  |
+| 2026-10-23 04:40 | 189 | judge 1 voice | claude-haiku-5-5 | 1098 | 116 | $0.00017 | 0.9 |  |
+| 2026-10-23 04:40 | 190 | judge 2 voice | claude-haiku-5-5 | 1098 | 117 | $0.00017 | 1 |  |
+| 2026-10-23 04:40 | 191 | judge 2 thought | claude-haiku-5-5 | 1337 | 138 | $0.00020 | 1.1 |  |
+| 2026-10-23 04:40 | 192 | judge 1 thought | claude-haiku-5-5 | 1337 | 145 | $0.00021 | 1.2 |  |
+| 2026-10-23 04:40 | 193 | judge 1 voice | claude-haiku-5-5 | 1083 | 92 | $0.00015 | 0.9 |  |
+| 2026-10-23 04:40 | 194 | judge 2 voice | claude-haiku-5-5 | 1083 | 99 | $0.00016 | 0.9 |  |
+| 2026-10-23 04:40 | 195 | judge 2 transfer | claude-haiku-5-5 | 978 | 120 | $0.00016 | 0.7 |  |
+| 2026-10-23 04:40 | 196 | judge 1 transfer | claude-haiku-5-5 | 978 | 124 | $0.00016 | 0.8 |  |
+| 2026-10-23 04:40 | 197 | referee voice | claude-opus-5-5 | 1142 | 481 | $0.01419 | 6.1 |  |
+| 2026-10-23 04:40 | 198 | referee voice | claude-opus-5-5 | 1001 | 552 | $0.01504 | 6.1 |  |
+| 2026-10-23 04:40 | 199 | judge 2 voice | claude-haiku-5-5 | 1005 | 144 | $0.00017 | 1.1 |  |
+| 2026-10-23 04:40 | 200 | judge 1 voice | claude-haiku-5-5 | 1005 | 126 | $0.00016 | 1.1 |  |
+| 2026-10-23 04:40 | 201 | judge 1 voice | claude-haiku-5-5 | 1243 | 119 | $0.00018 | 1 |  |
+| 2026-10-23 04:40 | 202 | judge 2 voice | claude-haiku-5-5 | 1243 | 274 | $0.00026 | 1.8 |  |
+| 2026-10-23 04:40 | 203 | judge 2 transfer | claude-haiku-5-5 | 965 | 94 | $0.00014 | 0.9 |  |
+| 2026-10-23 04:40 | 204 | judge 1 thought | claude-haiku-5-5 | 1239 | 132 | $0.00019 | 1.1 |  |
+| 2026-10-23 04:40 | 205 | judge 2 thought | claude-haiku-5-5 | 1239 | 124 | $0.00019 | 1.1 |  |
+| 2026-10-23 04:40 | 206 | judge 1 transfer | claude-haiku-5-5 | 965 | 102 | $0.00015 | 1.1 |  |
+| 2026-10-23 04:40 | 207 | judge 2 transfer | claude-haiku-5-5 | 894 | 118 | $0.00015 | 0.9 |  |
+| 2026-10-23 04:40 | 208 | referee recollection | claude-opus-5-5 | 3156 | 629 | $0.02520 | 7.5 |  |
+| 2026-10-23 04:40 | 209 | judge 2 thought | claude-haiku-5-5 | 1131 | 131 | $0.00018 | 1 |  |
+| 2026-10-23 04:40 | 210 | judge 1 transfer | claude-haiku-5-5 | 894 | 133 | $0.00016 | 1.1 |  |
+| 2026-10-23 04:40 | 211 | judge 1 thought | claude-haiku-5-5 | 1258 | 115 | $0.00018 | 0.9 |  |
+| 2026-10-23 04:40 | 212 | judge 2 thought | claude-haiku-5-5 | 1258 | 141 | $0.00020 | 1.1 |  |
+| 2026-10-23 04:40 | 213 | judge 1 thought | claude-haiku-5-5 | 1131 | 170 | $0.00020 | 1.3 |  |
+| 2026-10-23 04:40 | 214 | judge 1 transfer | claude-haiku-5-5 | 998 | 92 | $0.00015 | 0.9 |  |
+| 2026-10-23 04:40 | 215 | judge 2 thought | claude-haiku-5-5 | 1197 | 130 | $0.00018 | 1.1 |  |
+| 2026-10-23 04:40 | 216 | judge 2 transfer | claude-haiku-5-5 | 998 | 94 | $0.00015 | 0.9 |  |
+| 2026-10-23 04:40 | 217 | judge 1 thought | claude-haiku-5-5 | 1197 | 136 | $0.00019 | 1.2 |  |
+| 2026-10-23 04:40 | 218 | judge 1 voice | claude-haiku-5-5 | 1118 | 131 | $0.00018 | 0.9 |  |
+| 2026-10-23 04:40 | 219 | judge 2 voice | claude-haiku-5-5 | 1069 | 407 | $0.00031 | 1.8 |  |
+| 2026-10-23 04:40 | 220 | judge 2 voice | claude-haiku-5-5 | 1118 | 113 | $0.00017 | 1 |  |
+| 2026-10-23 04:40 | 221 | judge 1 voice | claude-haiku-5-5 | 1069 | 407 | $0.00031 | 2 |  |
+| 2026-10-23 04:40 | 222 | judge 2 voice | claude-haiku-5-5 | 955 | 310 | $0.00025 | 2.3 |  |
+| 2026-10-23 04:40 | 223 | judge 1 voice | claude-haiku-5-5 | 955 | 289 | $0.00024 | 2.4 |  |
+| 2026-10-23 04:40 | 224 | judge 2 thought | claude-haiku-5-5 | 1320 | 131 | $0.00020 | 1.4 |  |
+| 2026-10-23 04:40 | 225 | judge 1 thought | claude-haiku-5-5 | 1320 | 129 | $0.00020 | 1.5 |  |
+| 2026-10-23 04:40 | 226 | judge 2 thought | claude-haiku-5-5 | 1107 | 148 | $0.00018 | 1 |  |
+| 2026-10-23 04:40 | 227 | judge 1 thought | claude-haiku-5-5 | 1107 | 129 | $0.00018 | 1 |  |
+| 2026-10-23 04:40 | 228 | referee recollection | claude-opus-5-5 | 3179 | 267 | $0.01806 | 3.3 |  |
+| 2026-10-23 04:40 | 229 | referee thought | claude-opus-5-5 | 1258 | 492 | $0.01487 | 5.8 |  |
+| 2026-10-23 04:40 | 230 | judge 2 voice | claude-haiku-5-5 | 1124 | 486 | $0.00036 | 2.8 |  |
+| 2026-10-23 04:40 | 231 | judge 1 voice | claude-haiku-5-5 | 1124 | 624 | $0.00042 | 3.4 |  |
+| 2026-10-23 04:40 | 232 | judge 1 voice | claude-haiku-5-5 | 1043 | 366 | $0.00029 | 2.1 |  |
+| 2026-10-23 04:40 | 233 | judge 2 voice | claude-haiku-5-5 | 1043 | 424 | $0.00032 | 2.2 |  |
+| 2026-10-23 04:40 | 234 | judge 2 voice | claude-haiku-5-5 | 913 | 491 | $0.00034 | 2.6 |  |
+| 2026-10-23 04:40 | 235 | judge 2 voice | claude-haiku-5-5 | 1086 | 100 | $0.00016 | 1.2 |  |
+| 2026-10-23 04:40 | 236 | judge 1 voice | claude-haiku-5-5 | 1086 | 132 | $0.00017 | 1.3 |  |
+| 2026-10-23 04:40 | 237 | judge 1 thought | claude-haiku-5-5 | 1125 | 124 | $0.00017 | 0.9 |  |
+| 2026-10-23 04:40 | 238 | judge 2 thought | claude-haiku-5-5 | 1125 | 124 | $0.00017 | 0.9 |  |
+| 2026-10-23 04:40 | 239 | judge 1 voice | claude-haiku-5-5 | 913 | 664 | $0.00042 | 3.7 |  |
+| 2026-10-23 04:40 | 240 | judge 1 transfer | claude-haiku-5-5 | 857 | 117 | $0.00014 | 1.1 |  |
+| 2026-10-23 04:40 | 241 | judge 2 transfer | claude-haiku-5-5 | 857 | 125 | $0.00015 | 1.2 |  |
+| 2026-10-23 04:40 | 242 | judge 1 transfer | claude-haiku-5-5 | 804 | 112 | $0.00014 | 0.9 |  |
+| 2026-10-23 04:40 | 243 | referee recollection | claude-opus-5-5 | 2910 | 469 | $0.02102 | 5.3 |  |
+| 2026-10-23 04:40 | 244 | judge 2 transfer | claude-haiku-5-5 | 804 | 105 | $0.00013 | 1.1 |  |
+| 2026-10-23 04:40 | 245 | judge 2 voice | claude-haiku-5-5 | 1142 | 93 | $0.00016 | 1.1 |  |
+| 2026-10-23 04:40 | 246 | judge 1 voice | claude-haiku-5-5 | 1142 | 106 | $0.00017 | 1.2 |  |
+| 2026-10-23 04:40 | 247 | judge 2 thought | claude-haiku-5-5 | 1300 | 127 | $0.00019 | 1 |  |
+| 2026-10-23 04:40 | 248 | judge 1 thought | claude-haiku-5-5 | 1300 | 137 | $0.00020 | 1.1 |  |
+| 2026-10-23 04:40 | 249 | referee voice | claude-opus-5-5 | 1124 | 539 | $0.01528 | 6.1 |  |
+| 2026-10-23 04:40 | 250 | judge 1 thought | claude-haiku-5-5 | 1097 | 108 | $0.00016 | 0.9 |  |
+| 2026-10-23 04:40 | 251 | judge 2 thought | claude-haiku-5-5 | 1097 | 104 | $0.00016 | 0.9 |  |
+| 2026-10-23 04:40 | 252 | judge 1 thought | claude-haiku-5-5 | 1283 | 135 | $0.00020 | 0.9 |  |
+| 2026-10-23 04:40 | 253 | judge 2 thought | claude-haiku-5-5 | 1283 | 135 | $0.00020 | 1 |  |
+| 2026-10-23 04:40 | 254 | judge 1 thought | claude-haiku-5-5 | 1327 | 121 | $0.00019 | 1.1 |  |
+| 2026-10-23 04:40 | 255 | judge 2 thought | claude-haiku-5-5 | 1327 | 135 | $0.00020 | 1.2 |  |
+| 2026-10-23 04:40 | 256 | judge 1 voice | claude-haiku-5-5 | 1072 | 140 | $0.00018 | 0.9 |  |
+| 2026-10-23 04:40 | 257 | judge 2 voice | claude-haiku-5-5 | 1072 | 138 | $0.00018 | 1 |  |
+| 2026-10-23 04:40 | 258 | referee voice | claude-opus-5-5 | 913 | 446 | $0.01257 | 5.3 |  |
+| 2026-10-23 04:40 | 259 | judge 1 voice | claude-haiku-5-5 | 1149 | 150 | $0.00019 | 1.1 |  |
+| 2026-10-23 04:40 | 260 | judge 2 voice | claude-haiku-5-5 | 1149 | 398 | $0.00031 | 2.1 |  |
+| 2026-10-23 04:40 | 261 | judge 1 voice | claude-haiku-5-5 | 1001 | 130 | $0.00017 | 1.4 |  |
+| 2026-10-23 04:40 | 262 | judge 2 voice | claude-haiku-5-5 | 1001 | 133 | $0.00017 | 1.4 |  |
+| 2026-10-23 04:40 | 263 | judge 2 thought | claude-haiku-5-5 | 1304 | 146 | $0.00020 | 1 |  |
+| 2026-10-23 04:40 | 264 | judge 1 voice | claude-haiku-5-5 | 1081 | 467 | $0.00034 | 2.5 |  |
+| 2026-10-23 04:40 | 265 | judge 2 thought | claude-haiku-5-5 | 1164 | 498 | $0.00037 | 3.1 |  |
+| 2026-10-23 04:40 | 266 | judge 1 thought | claude-haiku-5-5 | 1304 | 167 | $0.00021 | 1.6 |  |
+| 2026-10-23 04:40 | 267 | judge 1 thought | claude-haiku-5-5 | 1164 | 656 | $0.00044 | 3.6 |  |
+| 2026-10-23 04:40 | 268 | judge 2 voice | claude-haiku-5-5 | 1081 | 574 | $0.00040 | 3.1 |  |
+| 2026-10-23 04:40 | 269 | judge 1 voice | claude-haiku-5-5 | 1049 | 128 | $0.00017 | 1 |  |
+| 2026-10-23 04:40 | 270 | judge 2 voice | claude-haiku-5-5 | 1049 | 132 | $0.00017 | 1.1 |  |
+| 2026-10-23 04:40 | 271 | judge 1 voice | claude-haiku-5-5 | 983 | 118 | $0.00016 | 0.9 |  |
+| 2026-10-23 04:40 | 272 | judge 2 voice | claude-haiku-5-5 | 983 | 119 | $0.00016 | 1 |  |
+| 2026-10-23 04:40 | 273 | judge 2 voice | claude-haiku-5-5 | 1106 | 109 | $0.00017 | 1.4 |  |
+| 2026-10-23 04:40 | 274 | judge 1 voice | claude-haiku-5-5 | 1106 | 104 | $0.00016 | 1.4 |  |
+| 2026-10-23 04:40 | 275 | judge 1 voice | claude-haiku-5-5 | 1079 | 408 | $0.00031 | 2.3 |  |
+| 2026-10-23 04:40 | 276 | judge 2 voice | claude-haiku-5-5 | 1079 | 421 | $0.00032 | 2.4 |  |
+| 2026-10-23 04:40 | 277 | judge 2 thought | claude-haiku-5-5 | 1090 | 133 | $0.00018 | 1 |  |
+| 2026-10-23 04:40 | 278 | judge 1 thought | claude-haiku-5-5 | 1090 | 161 | $0.00019 | 1.2 |  |
+| 2026-10-23 04:40 | 279 | referee voice | claude-opus-5-5 | 1149 | 521 | $0.01502 | 5.9 |  |
+| 2026-10-23 04:40 | 280 | referee thought | claude-opus-5-5 | 1164 | 321 | $0.01108 | 4.1 |  |
+| 2026-10-23 04:40 | 281 | judge 2 transfer | claude-haiku-5-5 | 1056 | 99 | $0.00016 | 0.9 |  |
+| 2026-10-23 04:40 | 282 | judge 1 transfer | claude-haiku-5-5 | 1056 | 95 | $0.00015 | 0.9 |  |
+| 2026-10-23 04:40 | 283 | judge 2 thought | claude-haiku-5-5 | 1301 | 148 | $0.00020 | 1.5 |  |
+| 2026-10-23 04:40 | 284 | judge 1 thought | claude-haiku-5-5 | 1301 | 113 | $0.00019 | 1.8 |  |
+| 2026-10-23 04:40 | 285 | judge 2 thought | claude-haiku-5-5 | 1114 | 136 | $0.00018 | 1.3 |  |
+| 2026-10-23 04:40 | 286 | judge 1 thought | claude-haiku-5-5 | 1114 | 144 | $0.00018 | 1.3 |  |
+| 2026-10-23 04:40 | 287 | judge 2 voice | claude-haiku-5-5 | 957 | 102 | $0.00015 | 1 |  |
+| 2026-10-23 04:40 | 288 | judge 1 voice | claude-haiku-5-5 | 957 | 115 | $0.00015 | 1.5 |  |
+| 2026-10-23 04:40 | 289 | judge 1 transfer | claude-haiku-5-5 | 961 | 105 | $0.00015 | 0.8 |  |
+| 2026-10-23 04:40 | 290 | judge 2 transfer | claude-haiku-5-5 | 961 | 99 | $0.00015 | 1 |  |
+| 2026-10-23 04:40 | 291 | judge 2 thought | claude-haiku-5-5 | 1253 | 143 | $0.00020 | 1.2 |  |
+| 2026-10-23 04:40 | 292 | judge 1 thought | claude-haiku-5-5 | 1253 | 140 | $0.00020 | 1.3 |  |
+| 2026-10-23 04:40 | 293 | judge 2 transfer | claude-haiku-5-5 | 807 | 122 | $0.00014 | 0.9 |  |
+| 2026-10-23 04:40 | 294 | judge 1 transfer | claude-haiku-5-5 | 807 | 122 | $0.00014 | 1 |  |
+| 2026-10-23 04:40 | 295 | judge 1 thought | claude-haiku-5-5 | 1114 | 134 | $0.00018 | 1.1 |  |
+| 2026-10-23 04:40 | 296 | judge 2 thought | claude-haiku-5-5 | 1114 | 159 | $0.00019 | 1.1 |  |
+| 2026-10-23 04:40 | 297 | referee recollection | claude-opus-5-5 | 3167 | 270 | $0.01807 | 3.5 |  |
+| 2026-10-23 04:40 | 298 | judge 1 thought | claude-haiku-5-5 | 1350 | 121 | $0.00020 | 1 |  |
+| 2026-10-23 04:40 | 299 | judge 2 thought | claude-haiku-5-5 | 1350 | 148 | $0.00021 | 1.1 |  |
+| 2026-10-23 04:40 | 300 | judge 1 voice | claude-haiku-5-5 | 1096 | 145 | $0.00018 | 1.1 |  |
+| 2026-10-23 04:40 | 301 | judge 2 voice | claude-haiku-5-5 | 1096 | 141 | $0.00018 | 1.2 |  |
+| 2026-10-23 04:40 | 302 | judge 2 thought | claude-haiku-5-5 | 1318 | 135 | $0.00020 | 1.2 |  |
+| 2026-10-23 04:40 | 303 | judge 1 thought | claude-haiku-5-5 | 1318 | 159 | $0.00021 | 2 |  |
+| 2026-10-23 04:40 | 304 | referee thought | claude-opus-5-5 | 1095 | 348 | $0.01134 | 4.4 |  |
+| 2026-10-23 04:40 | 305 | judge 1 voice | claude-haiku-5-5 | 1091 | 393 | $0.00031 | 2.2 |  |
+| 2026-10-23 04:40 | 306 | judge 2 thought | claude-haiku-5-5 | 1141 | 158 | $0.00019 | 1.9 |  |
+| 2026-10-23 04:40 | 307 | judge 2 transfer | claude-haiku-5-5 | 859 | 132 | $0.00015 | 1.1 |  |
+| 2026-10-23 04:40 | 308 | judge 1 transfer | claude-haiku-5-5 | 859 | 147 | $0.00016 | 1.6 |  |
+| 2026-10-23 04:40 | 309 | judge 2 voice | claude-haiku-5-5 | 1091 | 438 | $0.00033 | 2.8 |  |
+| 2026-10-23 04:40 | 310 | judge 1 thought | claude-haiku-5-5 | 1141 | 141 | $0.00018 | 2.8 |  |
+| 2026-10-23 04:40 | 311 | judge 1 transfer | claude-haiku-5-5 | 1055 | 85 | $0.00015 | 0.9 |  |
+| 2026-10-23 04:40 | 312 | judge 2 transfer | claude-haiku-5-5 | 1055 | 115 | $0.00016 | 0.9 |  |
+| 2026-10-23 04:40 | 313 | judge 2 voice | claude-haiku-5-5 | 1119 | 363 | $0.00029 | 1.7 |  |
+| 2026-10-23 04:40 | 314 | judge 2 voice | claude-haiku-5-5 | 1066 | 347 | $0.00028 | 1.8 |  |
+| 2026-10-23 04:40 | 315 | judge 1 thought | claude-haiku-5-5 | 1141 | 374 | $0.00030 | 2.7 |  |
+| 2026-10-23 04:40 | 316 | judge 2 thought | claude-haiku-5-5 | 1141 | 419 | $0.00032 | 2.8 |  |
+| 2026-10-23 04:40 | 317 | judge 1 voice | claude-haiku-5-5 | 1119 | 374 | $0.00030 | 2.1 |  |
+| 2026-10-23 04:40 | 318 | judge 1 voice | claude-haiku-5-5 | 1066 | 375 | $0.00029 | 2.2 |  |
+| 2026-10-23 04:40 | 319 | judge 2 voice | claude-haiku-5-5 | 996 | 137 | $0.00017 | 1.4 |  |
+| 2026-10-23 04:40 | 320 | judge 1 thought | claude-haiku-5-5 | 1375 | 124 | $0.00020 | 0.9 |  |
+| 2026-10-23 04:40 | 321 | judge 2 thought | claude-haiku-5-5 | 1375 | 122 | $0.00020 | 0.9 |  |
+| 2026-10-23 04:40 | 322 | judge 1 voice | claude-haiku-5-5 | 996 | 134 | $0.00017 | 1.7 |  |
+| 2026-10-23 04:40 | 323 | judge 1 transfer | claude-haiku-5-5 | 930 | 96 | $0.00014 | 1 |  |
+| 2026-10-23 04:40 | 324 | judge 1 thought | claude-haiku-5-5 | 1372 | 135 | $0.00020 | 1.2 |  |
+| 2026-10-23 04:40 | 325 | judge 2 transfer | claude-haiku-5-5 | 930 | 97 | $0.00014 | 1.4 |  |
+| 2026-10-23 04:40 | 326 | judge 2 thought | claude-haiku-5-5 | 1372 | 196 | $0.00024 | 1.4 |  |
+| 2026-10-23 04:40 | 327 | judge 2 thought | claude-haiku-5-5 | 1128 | 121 | $0.00017 | 0.9 |  |
+| 2026-10-23 04:40 | 328 | judge 1 thought | claude-haiku-5-5 | 1128 | 110 | $0.00017 | 1 |  |
+| 2026-10-23 04:40 | 329 | judge 2 transfer | claude-haiku-5-5 | 819 | 123 | $0.00014 | 1 |  |
+| 2026-10-23 04:40 | 330 | judge 1 voice | claude-haiku-5-5 | 1204 | 282 | $0.00026 | 1.7 |  |
+| 2026-10-23 04:40 | 331 | judge 1 transfer | claude-haiku-5-5 | 819 | 118 | $0.00014 | 1.3 |  |
+| 2026-10-23 04:40 | 332 | judge 2 voice | claude-haiku-5-5 | 1101 | 115 | $0.00017 | 1.1 |  |
+| 2026-10-23 04:40 | 333 | judge 1 voice | claude-haiku-5-5 | 1101 | 99 | $0.00016 | 1.5 |  |
+| 2026-10-23 04:40 | 334 | judge 2 voice | claude-haiku-5-5 | 1204 | 476 | $0.00036 | 2.5 |  |
+| 2026-10-23 04:40 | 335 | judge 2 transfer | claude-haiku-5-5 | 906 | 122 | $0.00015 | 0.9 |  |
+| 2026-10-23 04:40 | 336 | judge 1 voice | claude-haiku-5-5 | 1099 | 99 | $0.00016 | 0.9 |  |
+| 2026-10-23 04:40 | 337 | judge 1 transfer | claude-haiku-5-5 | 906 | 111 | $0.00015 | 1.8 |  |
+| 2026-10-23 04:40 | 338 | judge 2 voice | claude-haiku-5-5 | 1099 | 124 | $0.00017 | 1.1 |  |
+| 2026-10-23 04:40 | 339 | judge 1 thought | claude-haiku-5-5 | 1172 | 126 | $0.00018 | 1.4 |  |
+| 2026-10-23 04:40 | 340 | judge 2 thought | claude-haiku-5-5 | 1172 | 110 | $0.00017 | 1.4 |  |
+| 2026-10-23 04:40 | 341 | judge 2 transfer | claude-haiku-5-5 | 876 | 100 | $0.00014 | 0.9 |  |
+| 2026-10-23 04:40 | 342 | judge 1 transfer | claude-haiku-5-5 | 876 | 117 | $0.00015 | 1 |  |
+| 2026-10-23 04:40 | 343 | referee thought | claude-opus-5-5 | 1372 | 331 | $0.01211 | 4.1 |  |
+| 2026-10-23 04:40 | 344 | judge 1 voice | claude-haiku-5-5 | 957 | 117 | $0.00015 | 1 |  |
+| 2026-10-23 04:40 | 345 | judge 2 voice | claude-haiku-5-5 | 957 | 129 | $0.00016 | 1 |  |
+| 2026-10-23 04:40 | 346 | judge 1 voice | claude-haiku-5-5 | 1109 | 177 | $0.00020 | 1.6 |  |
+| 2026-10-23 04:40 | 347 | judge 1 voice | claude-haiku-5-5 | 1090 | 112 | $0.00016 | 1 |  |
+| 2026-10-23 04:40 | 348 | judge 2 voice | claude-haiku-5-5 | 1090 | 106 | $0.00016 | 1.1 |  |
+| 2026-10-23 04:40 | 349 | judge 2 voice | claude-haiku-5-5 | 1013 | 132 | $0.00017 | 1 |  |
+| 2026-10-23 04:40 | 350 | judge 1 voice | claude-haiku-5-5 | 1013 | 115 | $0.00016 | 1.5 |  |
+| 2026-10-23 04:40 | 351 | judge 2 thought | claude-haiku-5-5 | 1311 | 124 | $0.00019 | 1 |  |
+| 2026-10-23 04:40 | 352 | judge 1 thought | claude-haiku-5-5 | 1311 | 140 | $0.00020 | 1.1 |  |
+| 2026-10-23 04:40 | 353 | judge 2 thought | claude-haiku-5-5 | 1154 | 119 | $0.00017 | 2.4 |  |
+| 2026-10-23 04:40 | 354 | judge 2 voice | claude-haiku-5-5 | 1109 | 669 | $0.00045 | 3.8 |  |
+| 2026-10-23 04:40 | 355 | judge 2 thought | claude-haiku-5-5 | 1149 | 146 | $0.00019 | 1.1 |  |
+| 2026-10-23 04:40 | 356 | judge 1 thought | claude-haiku-5-5 | 1149 | 155 | $0.00019 | 1.3 |  |
+| 2026-10-23 04:40 | 357 | judge 1 thought | claude-haiku-5-5 | 1154 | 594 | $0.00041 | 3.6 |  |
+| 2026-10-23 04:40 | 358 | judge 1 voice | claude-haiku-5-5 | 1125 | 91 | $0.00016 | 0.9 |  |
+| 2026-10-23 04:40 | 359 | judge 2 voice | claude-haiku-5-5 | 1125 | 92 | $0.00016 | 1 |  |
+| 2026-10-23 04:40 | 360 | judge 2 thought | claude-haiku-5-5 | 1179 | 131 | $0.00018 | 1 |  |
+| 2026-10-23 04:40 | 361 | judge 2 thought | claude-haiku-5-5 | 1146 | 123 | $0.00018 | 1.1 |  |
+| 2026-10-23 04:40 | 362 | judge 1 thought | claude-haiku-5-5 | 1179 | 151 | $0.00019 | 1.2 |  |
+| 2026-10-23 04:40 | 363 | judge 1 thought | claude-haiku-5-5 | 1146 | 139 | $0.00018 | 1.1 |  |
+| 2026-10-23 04:40 | 364 | judge 2 voice | claude-haiku-5-5 | 971 | 158 | $0.00018 | 1.3 |  |
+| 2026-10-23 04:40 | 365 | judge 1 thought | claude-haiku-5-5 | 1161 | 157 | $0.00019 | 1.3 |  |
+| 2026-10-23 04:40 | 366 | judge 1 voice | claude-haiku-5-5 | 971 | 128 | $0.00016 | 2.3 |  |
+| 2026-10-23 04:40 | 367 | judge 2 thought | claude-haiku-5-5 | 1161 | 157 | $0.00019 | 1.7 |  |
+| 2026-10-23 04:40 | 368 | judge 1 thought | claude-haiku-5-5 | 1280 | 151 | $0.00020 | 1.3 |  |
+| 2026-10-23 04:40 | 369 | judge 2 thought | claude-haiku-5-5 | 1280 | 160 | $0.00021 | 1.4 |  |
+| 2026-10-23 04:40 | 370 | judge 1 thought | claude-haiku-5-5 | 1325 | 142 | $0.00020 | 1.2 |  |
+| 2026-10-23 04:40 | 371 | judge 2 thought | claude-haiku-5-5 | 1325 | 120 | $0.00019 | 1.4 |  |
+| 2026-10-23 04:40 | 372 | referee thought | claude-opus-5-5 | 1146 | 247 | $0.00952 | 3.2 |  |
+| 2026-10-23 04:40 | 373 | referee thought | claude-opus-5-5 | 1079 | 563 | $0.01558 | 6.5 |  |
+| 2026-10-23 04:40 | 374 | judge 2 voice | claude-haiku-5-5 | 949 | 123 | $0.00016 | 0.9 |  |
+| 2026-10-23 04:40 | 375 | judge 1 thought | claude-haiku-5-5 | 1223 | 137 | $0.00019 | 1.3 |  |
+| 2026-10-23 04:40 | 376 | judge 1 voice | claude-haiku-5-5 | 949 | 127 | $0.00016 | 1 |  |
+| 2026-10-23 04:40 | 377 | judge 2 thought | claude-haiku-5-5 | 1223 | 144 | $0.00019 | 1.5 |  |
+| 2026-10-23 04:40 | 378 | judge 1 thought | claude-haiku-5-5 | 1195 | 128 | $0.00018 | 1 |  |
+| 2026-10-23 04:40 | 379 | judge 2 thought | claude-haiku-5-5 | 1195 | 152 | $0.00020 | 1.2 |  |
+| 2026-10-23 04:40 | 380 | judge 2 thought | claude-haiku-5-5 | 1184 | 131 | $0.00018 | 1.1 |  |
+| 2026-10-23 04:40 | 381 | judge 2 thought | claude-haiku-5-5 | 1136 | 122 | $0.00017 | 1 |  |
+| 2026-10-23 04:40 | 382 | judge 1 thought | claude-haiku-5-5 | 1184 | 127 | $0.00018 | 1.2 |  |
+| 2026-10-23 04:40 | 383 | judge 1 thought | claude-haiku-5-5 | 1136 | 132 | $0.00018 | 1.1 |  |
+| 2026-10-23 04:40 | 384 | judge 2 thought | claude-haiku-5-5 | 1342 | 121 | $0.00019 | 1.1 |  |
+| 2026-10-23 04:40 | 385 | judge 1 thought | claude-haiku-5-5 | 1342 | 135 | $0.00020 | 1.3 |  |
+| 2026-10-23 04:40 | 386 | judge 1 voice | claude-haiku-5-5 | 1092 | 156 | $0.00019 | 1 |  |
+| 2026-10-23 04:40 | 387 | judge 2 transfer | claude-haiku-5-5 | 902 | 99 | $0.00014 | 1 |  |
+| 2026-10-23 04:40 | 388 | judge 1 transfer | claude-haiku-5-5 | 902 | 101 | $0.00014 | 1 |  |
+| 2026-10-23 04:40 | 389 | judge 2 voice | claude-haiku-5-5 | 1092 | 123 | $0.00017 | 1.1 |  |
+| 2026-10-23 04:40 | 390 | judge 1 transfer | claude-haiku-5-5 | 855 | 89 | $0.00013 | 0.8 |  |
+| 2026-10-23 04:40 | 391 | judge 2 transfer | claude-haiku-5-5 | 855 | 102 | $0.00014 | 0.8 |  |
+| 2026-10-23 04:40 | 392 | judge 2 transfer | claude-haiku-5-5 | 931 | 112 | $0.00015 | 1 |  |
+| 2026-10-23 04:40 | 393 | judge 1 transfer | claude-haiku-5-5 | 832 | 124 | $0.00015 | 1 |  |
+| 2026-10-23 04:40 | 394 | judge 2 transfer | claude-haiku-5-5 | 832 | 123 | $0.00014 | 1 |  |
+| 2026-10-23 04:40 | 395 | judge 2 voice | claude-haiku-5-5 | 1093 | 91 | $0.00015 | 1 |  |
+| 2026-10-23 04:40 | 396 | judge 1 voice | claude-haiku-5-5 | 1093 | 120 | $0.00017 | 1.2 |  |
+| 2026-10-23 04:40 | 397 | judge 1 transfer | claude-haiku-5-5 | 931 | 99 | $0.00014 | 2 |  |
+| 2026-10-23 04:40 | 398 | judge 2 thought | claude-haiku-5-5 | 1229 | 150 | $0.00020 | 1.2 |  |
+| 2026-10-23 04:40 | 399 | judge 1 thought | claude-haiku-5-5 | 1229 | 150 | $0.00020 | 1.2 |  |
+| 2026-10-23 04:40 | 400 | referee recollection | claude-opus-5-5 | 2967 | 484 | $0.02155 | 5.5 |  |
+| 2026-10-23 04:40 | 401 | judge 2 voice | claude-haiku-5-5 | 1035 | 102 | $0.00015 | 0.8 |  |
+| 2026-10-23 04:40 | 402 | judge 1 voice | claude-haiku-5-5 | 1035 | 90 | $0.00015 | 0.9 |  |
+| 2026-10-23 04:40 | 403 | judge 2 thought | claude-haiku-5-5 | 1114 | 122 | $0.00017 | 1 |  |
+| 2026-10-23 04:40 | 404 | judge 1 thought | claude-haiku-5-5 | 1114 | 113 | $0.00017 | 1 |  |
+| 2026-10-23 04:40 | 405 | referee thought | claude-opus-5-5 | 1081 | 321 | $0.01074 | 3.9 |  |

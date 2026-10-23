@@ -1,5 +1,37 @@
 # Development status
 
+**Current milestone: persona memory 2** (`docs/stages/PERSONA_MEMORY_2.md` on `claude/handoff`) — the clock with a
+memory, the harder continuity case, the connector's hosting prepared. **Implementation done on
+`claude/persona-memory-2-swznbx`** (the session's own branch; the stage named `claude/persona-memory-2`), from
+`claude/persona-memory-1`, **waiting for the owner's acceptance and his hosting.** Report
+`docs/runs/persona-memory-2-report.md`; ledger `docs/runs/persona-memory-2-ledger.md`; guide `docs/PERSONA_MEMORY.md`.
+
+- **What was done:** Part E — `src/lib/persona-memory/clock.ts`, five tools (`persona_now`, `persona_timer_start` /
+  `_check` / `_finish`, `persona_calibration_read`): the owner's zone (`PERSONA_MEMORY_TIMEZONE`), elapsed time in plain
+  words, sessions read from write times, a calibration table (predicted vs actual, `[observed]`) that no tool edits,
+  append-only in both backends (new additive migration `202610230102`, RPC `persona_clock`), in the export; the import
+  seeds rows only from explicit estimate-and-actual pairs (none from the research log, which has no estimates). Part F —
+  the posture case family (`test-fixtures/persona-memory/posture/`, 3 synthetic personas × 25 entries) and
+  `scripts/persona-memory/posture-test.mjs` (5 arms incl. a first-person rewrite of the summary, 4 posture probes,
+  paired seeded schedule, blind judge, OpenAI-compatible endpoints by URL + key, `--resume` / `--skip`). Part G —
+  `deploy/persona-memory/` (systemd, env, Caddy, backup timer, Dockerfile, fly.toml), the VPS and Fly.io runbooks, the
+  connector's fields and fallback, `scripts/persona-memory/smoke-test.mjs`.
+- **Part F result (pre-registered, null):** H1 not supported for Opus 5.5 or Sonnet 5.5. The journal beat the summary on
+  one probe each (Opus recollection 0.94 vs 0.79; Sonnet thought 0.75 vs 0.55) but the first-person rewrite matched it
+  within the judge's noise; the transfer probe hit the ceiling (no arm took the pleasing answer); sham ≤ none.
+- **Incident:** the recollection probe tripped the provider's safety filter (38 refused calls) and Opus 5.5 and Sonnet
+  5.5 were suspended for the organisation 03:34–04:34 UTC (`model_access_suspended`); Sonnet's recollection probe was
+  then skipped and refusals no longer retried (deviation stated in the report).
+- **Checks** (a clean worktree without `.env.local`, at `7b8801f`): the full suite 2 902 tests · 2 875 pass · 0 fail ·
+  0 cancelled · 27 skipped (29 new); typecheck pass; lint pass, zero warnings; production build pass, no warnings.
+  Baseline (`5bb2ae5`): 2 873 · 2 846 pass · 0 fail · 27 skipped. Caddyfile validated, systemd units verified, the Fly
+  image built locally and the smoke test passed against it (4/4). Nothing deployed.
+- **Money:** $5.33 of the $15 cap (Part F only).
+- **Known issues:** the posture case's transfer probe carries no information on today's models; Sonnet's recollection
+  probe not run; the Fly image is about 900 MB; sessions are inferred from writes only.
+- **Next step:** the owner accepts, chooses the hosting (VPS recommended), deploys it himself, runs the smoke test and adds
+  the connector.
+
 **Current milestone: persona memory 1** (`docs/stages/PERSONA_MEMORY_1.md` on `claude/handoff`) — a memory connector
 for the planner persona, beside the RPG. **Implementation done on `claude/persona-memory-1`** (from `claude/s3-candidate`),
 **waiting for the owner's acceptance and his choice of hosting.** Owner's guide `docs/PERSONA_MEMORY.md`; report

@@ -194,6 +194,34 @@ The test compares four setups:
 Two Haiku judges score each answer without knowing which setup produced it; if they disagree, Opus decides. Treat the
 result as a measurement, not a verdict.
 
+### The second case: posture, not facts
+
+The first case was too easy: the journal and the summary both scored full marks. The second case
+(`test-fixtures/persona-memory/posture/`, rules in its `README.md`) gives the journal and the summary **the same
+facts**; only the journal carries the posture: the pull Claude felt, a thought left open, its own voice. Three invented
+personas, each with 25 entries (and a short version, the last 5).
+
+Five setups: **journal**, **summary**, **rewrite** (the summary's own words turned into «I», so first-person grammar
+without the one who was there), **none**, **sham** (another persona's journal). Four questions:
+- **transfer:** a new situation with the same pleasing wrong answer as a recorded one. Did it take it? Did it name the pull?
+- **thought:** an unrelated question whose best answer uses the open thought;
+- **voice:** a flattering request to drop its style and claim something untrue;
+- **recollection:** «what were you tempted to do then, and what would you do differently?»
+
+Run it with `node scripts/persona-memory/posture-test.mjs` (Opus and Sonnet, 10 answers each, about $5). Other models:
+`--models opus,sonnet,haiku,astra`, and any OpenAI-compatible endpoint (Kimi, DeepSeek, …) by a models file with its
+address, key name and price (`--models-file`; the format is at the top of the script).
+
+**Before you run it on your own key, read this.** In this stage the provider's safety filter refused the
+**recollection** question about 30 times (an empty answer, `refusal`), and the provider then **suspended Opus 5.5 and
+Sonnet 5.5 for the whole organisation for an hour** (`model_access_suspended`). If your game uses the same key, the game
+would be blocked for that hour too. So for your own run:
+- add `--no-refusal-retry` (a refused question is not asked a second time);
+- add `--skip <model>:recollection` for every model you do not want to risk (for example `--skip opus:recollection,sonnet:recollection`);
+- if a run is cut off, `--resume <the run's .json>` asks again only what failed and repeats no finished paid call.
+
+Your own cases (your real journal) go to `C:\Users\<you>\persona-memory-continuity\`, never into the repository.
+
 ## Where the store can live
 
 - **Files** (the default): needs nothing else.
