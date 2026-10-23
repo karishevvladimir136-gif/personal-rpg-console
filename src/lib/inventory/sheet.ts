@@ -3,7 +3,7 @@
 // NPC's sheet written from its 5e stat block, shown with the same view as the hero's. The limits are the database's
 // (rpg_private.sheet_valid, migration 76): lines up to 200 characters and each once, spells by name once.
 import type { CharacterSheetV1 } from "../adventures/bootstrap-contracts.ts";
-import type { SpellRecord } from "./model.ts";
+import { spellId, type SpellRecord } from "./model.ts";
 
 export type CharacterSheetV2 = {
   schemaVersion: 2;
@@ -26,8 +26,11 @@ export type CharacterSheetV2 = {
 export type AnySheet = CharacterSheetV1 | CharacterSheetV2;
 /** What a call may change: the fields given replace the stored ones; spells are added or updated by name. */
 export type SheetPatch = Partial<Pick<CharacterSheetV2, "level" | "armorClass" | "speed" | "skills" | "saves" | "attacks" | "abilities" | "preparedMax">> & {
-  spells?: SpellRecord[];
+  /** Fix S3-accept В1: a spell's `history` given as one line (the DM's «переписано со свитка») is appended to its history. */
+  spells?: (Omit<SpellRecord, "history"> & { history?: string[] | string })[];
 };
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+const HISTORY = 12;
 
 const LINE = 200;
 const lines = (value: unknown, max: number): string[] | undefined => {
@@ -43,7 +46,7 @@ const bounded = (value: unknown, lo: number, hi: number): number | null =>
   typeof value === "number" && Number.isInteger(value) && value >= lo && value <= hi ? value : null;
 const text = (value: unknown, max: number): string | undefined => (typeof value === "string" && value.trim() ? value.trim().slice(0, max) : undefined);
 
-function spell(raw: SpellRecord): SpellRecord | null {
+function spell(raw: NonNullable<SheetPatch["spells"]>[number]): SpellRecord | null {
   const name = text(raw?.name, 120);
   const level = bounded(raw?.level, 0, 9);
   if (!name || level === null) return null;
@@ -52,7 +55,18 @@ function spell(raw: SpellRecord): SpellRecord | null {
   const higher = text(raw.higherLevels, 800); if (higher) out.higherLevels = higher;
   const body = text(raw.text, 2400); if (body) out.text = body;
   for (const key of ["ritual", "concentration", "known", "prepared"] as const) if (typeof raw[key] === "boolean") out[key] = raw[key];
+  // Fix S3-accept В1: the id (its picture's subject), the school and the history (the database's limits, migration 202610230511).
+  if (typeof raw.id === "string" && UUID.test(raw.id)) out.id = raw.id.toLowerCase();
+  const school = text(raw.school, 60); if (school) out.school = school;
+  const history = (Array.isArray(raw.history) ? raw.history : [raw.history]).map((line) => text(line, 200)).filter((line): line is string => !!line);
+  if (history.length) out.history = [...new Set(history)].slice(-HISTORY);
   return out;
+}
+/** A spell written by a call: the stored fields it does not give stay; its history lines are added to the stored ones;
+ * it keeps its id (or gets the one its name gives). */
+function mergeSpell(stored: SpellRecord | undefined, row: SpellRecord): SpellRecord {
+  const history = [...new Set([...(stored?.history ?? []), ...(row.history ?? [])])].slice(-HISTORY);
+  return { ...(stored ?? {}), ...row, id: row.id ?? stored?.id ?? spellId(row.name), ...(history.length ? { history } : {}) };
 }
 
 /** The sheet after a patch: a schema-1 sheet (or none) becomes schema 2 with its lines kept. */
@@ -76,7 +90,7 @@ export function patchSheet(current: AnySheet | null | undefined, patch: SheetPat
     const byName = new Map((next.spells ?? []).map((row) => [row.name.toLocaleLowerCase(), row]));
     for (const raw of patch.spells) {
       const row = spell(raw);
-      if (row) byName.set(row.name.toLocaleLowerCase(), { ...(byName.get(row.name.toLocaleLowerCase()) ?? {}), ...row });
+      if (row) byName.set(row.name.toLocaleLowerCase(), mergeSpell(byName.get(row.name.toLocaleLowerCase()), row));
     }
     next.spells = [...byName.values()].slice(0, 160);
   }
