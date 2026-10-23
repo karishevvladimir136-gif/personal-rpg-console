@@ -219,8 +219,21 @@ the final probes ran on the app's own models.
 
 ## Checks
 
-Pending: the full suite on a clean worktree (no `.env.local`), typecheck, zero-warning lint and the production build
-are running on the integrated candidate; their results replace this line.
+- **Final, at `c806ad8`** (every block and Ж1; later commits are documents only), on a clean worktree without
+  `.env.local` and without the cloud's key variables: the full suite **2 893 tests · 2 866 pass · 0 fail · 0 cancelled ·
+  27 skipped** (33 min); typecheck pass; lint pass with zero warnings; the production build pass, no warnings.
+- Before Ж1, at `7eb8277`: 2 891 · 2 864 pass · 0 fail · 27 skipped; typecheck, lint and build pass. The run before it
+  (at `a6864b8`, the five blocks just merged) caught two tests that predated the merge of Б and Д (the 2D route's source
+  pattern; the records provider the scene's action box needs); both followed the merged screen, nothing in the code
+  changed.
+- The baseline on the candidate with the owner's three PC commits, before any change: 2 845 · 2 818 pass · 0 fail ·
+  27 skipped.
+- The DM tool schema re-measured after the merge: 17 tools, 13 494 (OpenAI) / 12 443 (Anthropic) estimated tokens; the
+  bound raised to 14 000 / 13 000 (`tests/stage4-dossier.test.mjs`).
+- The test fixtures apply every migration (the old «99» was all of them when written; this stage passes 99 files).
+- `docs/SANDBOX_LOAD_FIX_S2.md` re-checked against the final migration list (five ranges; `202610230501`–`551` listed,
+  `0501` and `0521` marked as changing a record); the two checklists updated where a path changed; the index lists what
+  changed. `package.json` and `pnpm-lock.yaml` have no `litellm` (or any new) dependency.
 
 ## Needs the owner
 

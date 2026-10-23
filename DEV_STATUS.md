@@ -24,7 +24,7 @@ stage adds `202610230501`, `…511`, `…521`, `…541`, `…551`, all additive;
   correction on the first open of «Персонаж»; «Перерисовать» on a scene with fewer than 5 hotspots writes a new sheet;
   «Изменить размещение» drags the painted region's markers; the wizard saves the wishes without a rebuild (the first
   prep reads them); the DM tool schema trimmed to 13 494 / 12 443 estimated tokens and its bound raised from 13 500 / 12 500 to 14 000 / 13 000.
-- **Checks** (a clean worktree without `.env.local`): at `7eb8277` (before Ж1) the full suite 2 891 tests · 2 864 pass · 0 fail · 27 skipped; typecheck, zero-warning lint and the production build pass. The final run at `c806ad8` (with Ж1) is in progress.
+- **Checks** (a clean worktree without `.env.local`): at `c806ad8` (every block and Ж1) the full suite 2 893 tests · 2 866 pass · 0 fail · 0 cancelled · 27 skipped; typecheck pass; lint pass, zero warnings; production build pass, no warnings.
 - **Money:** $0.98 of the $15 cap (probes: hotspots $0.07, the region $0.79 including a refusal's diagnosis, spell
   pictures $0.11, an access check $0.0001). From about 03:46 to before 04:48 UTC the key did not reach the 5.5 models;
   the final probes ran on the app's own models.
