@@ -149,7 +149,7 @@
   display: inline-flex;
   gap: 3px;
   font-family: var(--f-mono);
-  font-size: 12px;
+  font-size: 13px;
   color: var(--brass);
 }
 .marks abbr {
