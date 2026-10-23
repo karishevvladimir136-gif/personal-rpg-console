@@ -318,6 +318,17 @@ function SceneLevel({ snapshot, play, board, locationId, urlFor, anchorUrl, send
   const stage = useRef<HTMLDivElement>(null);
   const [drag, setDrag] = useState<{ id: string; x: number; y: number } | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
+  // «Подготовить сцену» answers only after the sheet (several seconds), so the button stays off until then;
+  // the ref also stops a double click that lands before the re-render.
+  const [preparing, setPreparing] = useState(false);
+  const preparingNow = useRef(false);
+  const prepare = useCallback(async (id: string) => {
+    if (preparingNow.current) return;
+    preparingNow.current = true;
+    setPreparing(true);
+    try { await send("scene.prepare", { locationId: id }); }
+    finally { preparingNow.current = false; setPreparing(false); }
+  }, [send]);
 
   const pointAt = (event: ReactPointerEvent) => {
     const bounds = stage.current?.getBoundingClientRect();
@@ -392,7 +403,7 @@ function SceneLevel({ snapshot, play, board, locationId, urlFor, anchorUrl, send
       {!scene && (
         <div className={s.strip}>
           <span>{c("Сцена этого места ещё не подготовлена: лист из записей, картинка, проверка.", "This place's scene is not prepared yet: a sheet from the records, the picture, the check.")}</span>
-          <button type="button" className={r.btnMain} onClick={() => void send("scene.prepare", { locationId: location.id })}>{c("Подготовить сцену", "Prepare the scene")} · {price}</button>
+          <button type="button" className={r.btnMain} disabled={preparing} aria-busy={preparing} onClick={() => void prepare(location.id)}>{c("Подготовить сцену", "Prepare the scene")} · {price}</button>
         </div>
       )}
       {pois.length === 0 && scene && scene.status !== "drawing" && <p className={`${r.small} ${r.muted}`}>{c("Точек пока нет: ничего из записей не найдено на картинке.", "No hotspots yet: nothing from the records was found in the picture.")}</p>}

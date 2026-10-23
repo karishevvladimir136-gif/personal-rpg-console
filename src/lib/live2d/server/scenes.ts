@@ -11,7 +11,7 @@ import { activeStyle, anchorFor, capRemaining, modelForTier, styleTextFor } from
 import { timeOfDay } from "../../visual-frame/prompt-compiler";
 import type { SceneCheck, SceneSheet, SheetFeature } from "../contracts";
 import { parseSceneSheet, sceneOf } from "../contracts";
-import { fallbackSheet, placePois, poiCandidates, sceneBrief, sceneVerdict, sheetSourceOf, sideListOf } from "../scene";
+import { fallbackSheet, joinConcurrentPrepare, placePois, poiCandidates, sceneBrief, sceneVerdict, sheetSourceOf, sideListOf } from "../scene";
 import { buildSheet, checkScene, locateScene, type Image } from "./vision";
 import { boardOf, live2dContext, replacePois, saveScene, updateScene, type Live2dContext } from "./store";
 
@@ -69,11 +69,17 @@ export async function prepareScene(campaignId: string, value: unknown, schedule:
     log("live2d_sheet", { campaignId, locationId, ok: !!built.sheet, ms: built.elapsedMs, costUsdMicros: built.costUsdMicros, usage: built.usage, error: built.error, features: built.sheet?.features.length ?? 0 });
     sheet = built.sheet ?? fallbackSheet(source);
   }
-  const saved = existing && (value.force === true && existing.sheet.features.length)
-    ? existing
-    : await saveScene(ctx, { locationId, sheet, source: "model", expectedRevision: existing ? existing.revision : null });
+  let saved = existing && (value.force === true && existing.sheet.features.length) ? existing : null;
+  if (!saved) {
+    const outcome = await joinConcurrentPrepare(
+      () => saveScene(ctx, { locationId, sheet, source: "model", expectedRevision: existing ? existing.revision : null }),
+      async () => sceneOf(await boardOf(ctx), locationId));
+    if ("joined" in outcome) return { status: "drawing", locationId };
+    saved = outcome.saved;
+  }
   await updateScene(ctx, { locationId, status: "drawing", error: null });
-  schedule(() => drawAndCheck(ctx, pictures, campaignId, locationId, saved.sheet, { comment: null, redraws: 0, extraCostUsdMicros: sheetCost }));
+  const sheetToDraw = saved.sheet;
+  schedule(() => drawAndCheck(ctx, pictures, campaignId, locationId, sheetToDraw, { comment: null, redraws: 0, extraCostUsdMicros: sheetCost }));
   return { status: "queued", locationId };
 }
 

@@ -77,6 +77,18 @@ export function parseSheetReply(text: string): SceneSheet | null {
     return null;
   }
 }
+/** A second «Подготовить сцену» on the same place that lost the race: both read «no scene» and built a
+ * sheet, the first saved first, so this save is refused as a conflict. The scene exists now and the first
+ * request is drawing it, so this one joins it («drawing»), never a 409. Any other failure, or a conflict
+ * with no scene on the re-read, stays an error. */
+export async function joinConcurrentPrepare<T>(save: () => Promise<T>, reread: () => Promise<unknown>): Promise<{ saved: T } | { joined: true }> {
+  try {
+    return { saved: await save() };
+  } catch (error) {
+    if ((error as { code?: unknown } | null)?.code !== "conflict" || !(await reread())) throw error;
+    return { joined: true };
+  }
+}
 /** A sheet the records give without a model: the place's description, exits as features. Used when
  * the model is not configured or fails; the owner can edit it. */
 export function fallbackSheet(source: SheetSource): SceneSheet {
