@@ -139,7 +139,8 @@ test("Г3: computed on the server — the public read carries each person's numb
   const screen = src("src/components/registry/character-screen.tsx");
   assert.match(screen, /const derived = derivedSheetOf\(view, entity\);/);
   assert.match(screen, /armour=\{dollAc\}/, "the doll shows the AC");
-  assert.match(screen, /action=\{armour \? <span className=\{r\.badge\} title=\{armour\.text\} data-doll-ac="">/);
+  // The doll lives in inventory-grid.tsx since А1 moved it there.
+  assert.match(src("src/components/registry/inventory-grid.tsx"), /action=\{armour \? <span className=\{r\.badge\} title=\{armour\.text\} data-doll-ac="">/);
   assert.match(src("src/components/live2d/battle/battle-model.ts"), /derivedSheetOf\(snapshot, entity, \{ conditions: fighter\.combatant\.conditions, ac: fighter\.combatant\.ac \}\)/);
   assert.match(src("src/components/live2d/battle/battle-screen.tsx"), /\{heroAc && <span className=\{r\.badge\} title=\{heroAc\.text \|\| undefined\} data-battle-ac="">\{c\("КД", "AC"\)\} \{heroAc\.value\}<\/span>\}/);
   assert.match(src("src/lib/gameplay/dm-loop/context.ts"), /counted: \{ \.\.\.\(derived\.ac \? \{ armourClass: derived\.ac\.value, how: derived\.ac\.text \} : \{\}\)/);

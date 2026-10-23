@@ -12,7 +12,8 @@ import { walletOfStorage } from "@/lib/inventory/model";
 import { planEquip, planMove, planUnequip, type MoveTarget } from "@/lib/inventory/owner-moves";
 import { RedrawAnchor } from "./redraw-anchor";
 import { useChrome, type CampaignScreenId } from "./shell";
-import { holdersOf, ItemCard, ItemCell, useCardDismiss, useOwnerMoves } from "./character-screen";
+import { holdersOf, useCardDismiss, useOwnerMoves } from "./character-screen";
+import { ItemCard, ItemCell } from "./inventory-grid";
 import { Art, Gauge, Panel, Plate, registry as r, useCopy, WalletLine, type Copy } from "./primitives";
 import s from "./holdings.module.css";
 

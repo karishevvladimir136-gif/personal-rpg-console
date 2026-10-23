@@ -22,7 +22,7 @@ import {
   signedPictureUrl,
   signedStyleReferenceUrl,
 } from "@/lib/server/media/pictures-store";
-import { autopilotStep, draftVisualProfile, requestAnchor, requestFrame, restyleCampaign, type Schedule } from "@/lib/server/media/pictures-service";
+import { autopilotStep, draftVisualProfile, queueFatePortraits, requestAnchor, requestFrame, restyleCampaign, type Schedule } from "@/lib/server/media/pictures-service";
 import { publicJson, errorResponse } from "@/lib/persistence/route-response";
 import { exactKeys } from "@/lib/visual-frame/real-frame";
 import { PersistenceError } from "@/lib/server/errors";
@@ -107,6 +107,7 @@ async function picturesAction(action: string, campaignId: string, input: unknown
     case "pictures.frame": return requestFrame(campaignId, input, schedule);
     case "pictures.anchor": return requestAnchor(campaignId, input, schedule);
     case "pictures.autopilot": return autopilotStep(campaignId, schedule);
+    case "pictures.fates": return queueFatePortraits(campaignId, input, schedule);
     case "pictures.restyle": return restyleCampaign(campaignId, input, schedule);
     case "pictures.settings": return savePictureSettings(campaignId, input);
     case "pictures.style.save": return savePictureStyle(campaignId, input);
