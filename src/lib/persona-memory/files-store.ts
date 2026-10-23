@@ -1,0 +1,158 @@
+// Persona memory 1: the plain-files backend — the store runs with no database. One JSON per episode and per fold, the
+// self-dossier as a markdown file the owner can read and edit, the facts as one JSON list, and a cache of embeddings.
+// Writes are atomic per file (a temporary file renamed into place) and serialized inside the process; a new episode
+// never overwrites a file. Postgres is the backend for atomicity across files (a fold marks every episode or none).
+//
+//   <root>/episodes/<id>.json   <root>/folds/<id>.json   <root>/dossier.md   <root>/facts.json   <root>/cache/
+import { mkdir, readdir, readFile, rename, writeFile } from "node:fs/promises";
+import { randomBytes } from "node:crypto";
+import { join } from "node:path";
+import type { PersonaStore } from "./store.ts";
+import { AUTHORS, DOSSIER_SECTIONS, DOSSIER_SECTION_TITLES, ID_PATTERN, PersonaMemoryError, TAGS,
+  type DossierLine, type DossierSection, type Episode, type EpisodeNote, type Fact, type Fold } from "./schema.ts";
+
+const DOSSIER_HEAD = `# Self-dossier
+
+<!-- persona-memory dossier v1. One entry per list line: «- [tag · author] text» and a comment with its id and validity.
+The text of a line may be edited by hand; keep the comment. Lines are closed (superseded), never deleted by the tools. -->
+`;
+const DOSSIER_LINE = /^- \[(\w+) · (\w+)\] (.*?) <!-- (.*?) -->\s*$/;
+
+export function renderDossierFile(lines: DossierLine[]): string {
+  const out = [DOSSIER_HEAD];
+  const meta = (line: DossierLine) => `<!-- id=${line.id} section=${line.section} recorded=${line.recordedAt} from=${line.validFrom} until=${line.validTo ?? "-"} supersedes=${line.supersedes ?? "-"} source=${encodeURIComponent(line.source)} -->`;
+  const entry = (line: DossierLine) => `- [${line.tag} · ${line.author}] ${line.text} ${meta(line)}`;
+  for (const section of DOSSIER_SECTIONS) {
+    const open = lines.filter((line) => line.section === section && line.validTo === null);
+    if (open.length) out.push(`## ${DOSSIER_SECTION_TITLES[section]}\n`, ...open.map(entry), "");
+  }
+  const closed = lines.filter((line) => line.validTo !== null);
+  if (closed.length) out.push("## Closed lines (kept as history)\n", ...closed.map(entry), "");
+  return `${out.join("\n").trimEnd()}\n`;
+}
+
+export function parseDossierFile(text: string): DossierLine[] {
+  const lines: DossierLine[] = [];
+  for (const raw of text.split(/\r?\n/)) {
+    const match = raw.match(DOSSIER_LINE);
+    if (!match) continue;
+    const meta = Object.fromEntries(match[4].trim().split(/\s+/).map((pair) => { const at = pair.indexOf("="); return [pair.slice(0, at), pair.slice(at + 1)]; }));
+    const [tag, author, text] = [match[1], match[2], match[3].trim()];
+    if (!(TAGS as readonly string[]).includes(tag) || !(AUTHORS as readonly string[]).includes(author) || !ID_PATTERN.test(meta.id ?? "")
+      || !(DOSSIER_SECTIONS as readonly string[]).includes(meta.section) || !text) continue;
+    lines.push({ id: meta.id, section: meta.section as DossierSection, text, author: author as DossierLine["author"], tag: tag as DossierLine["tag"],
+      recordedAt: meta.recorded, validFrom: meta.from, validTo: meta.until && meta.until !== "-" ? meta.until : null,
+      supersedes: meta.supersedes && meta.supersedes !== "-" ? meta.supersedes : null, source: decodeURIComponent(meta.source ?? "persona") });
+  }
+  return lines;
+}
+
+const episodeFile = (episode: Episode) => ({
+  id: episode.id, recordedAt: episode.recordedAt, validFrom: episode.validFrom, validTo: episode.validTo, title: episode.title,
+  salience: episode.salience, cues: episode.cues, lines: episode.lines, state: episode.state, quotes: episode.quotes, source: episode.source,
+  notes: episode.notes, foldedInto: episode.foldedInto, originalSha256: episode.originalSha256,
+});
+
+export function filesStore(root: string): PersonaStore & { root: string; unreadable: string[] } {
+  const dirs = { episodes: join(root, "episodes"), folds: join(root, "folds"), cache: join(root, "cache") };
+  const dossierPath = join(root, "dossier.md"), factsPath = join(root, "facts.json");
+  let ready: Promise<void> | null = null;
+  const prepare = () => (ready ??= Promise.all(Object.values(dirs).map((dir) => mkdir(dir, { recursive: true }))).then(() => undefined));
+  let queue: Promise<unknown> = Promise.resolve();
+  /** One operation at a time inside the process: reads see whole writes. */
+  const serial = <T>(work: () => Promise<T>): Promise<T> => {
+    const run = queue.then(async () => { await prepare(); return work(); });
+    queue = run.catch(() => undefined);
+    return run;
+  };
+  const atomic = async (path: string, text: string) => {
+    const temporary = `${path}.tmp-${process.pid}-${randomBytes(4).toString("hex")}`;
+    await writeFile(temporary, text, "utf8");
+    await rename(temporary, path);
+  };
+  const readJson = async <T>(path: string, fallback: T): Promise<T> => {
+    try { return JSON.parse(await readFile(path, "utf8")) as T; } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === "ENOENT") return fallback;
+      throw new PersonaMemoryError("unreadable", `${path.slice(root.length + 1)} is not valid JSON`);
+    }
+  };
+  const unreadable: string[] = [];
+  const readEpisode = async (id: string) => {
+    if (!ID_PATTERN.test(id)) throw new PersonaMemoryError("not_found", `no episode ${id}`);
+    const episode = await readJson<Episode | null>(join(dirs.episodes, `${id}.json`), null);
+    if (!episode) throw new PersonaMemoryError("not_found", `no episode ${id}`);
+    return episode;
+  };
+  const listJson = async <T>(dir: string): Promise<T[]> => {
+    const names = (await readdir(dir)).filter((name) => name.endsWith(".json")).sort();
+    const items: T[] = [];
+    for (const name of names) {
+      try { items.push(JSON.parse(await readFile(join(dir, name), "utf8")) as T); } catch { if (!unreadable.includes(name)) unreadable.push(name); }
+    }
+    return items;
+  };
+  const readDossier = async () => {
+    try { return parseDossierFile(await readFile(dossierPath, "utf8")); } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === "ENOENT") return [];
+      throw error;
+    }
+  };
+  const cachePath = (model: string) => join(dirs.cache, `embeddings-${model.replace(/[^a-z0-9.-]+/gi, "_")}.json`);
+
+  return {
+    kind: "files",
+    root,
+    unreadable,
+    insertEpisode: (episode) => serial(async () => {
+      const path = join(dirs.episodes, `${episode.id}.json`);
+      try { await writeFile(path, `${JSON.stringify(episodeFile(episode), null, 2)}\n`, { encoding: "utf8", flag: "wx" }); } catch (error) {
+        if ((error as NodeJS.ErrnoException).code === "EEXIST") throw new PersonaMemoryError("conflict", `episode ${episode.id} exists`);
+        throw error;
+      }
+    }),
+    episodes: () => serial(() => listJson<Episode>(dirs.episodes)),
+    appendNote: (episodeId: string, note: EpisodeNote) => serial(async () => {
+      const episode = await readEpisode(episodeId);
+      if (note.closes && episode.validTo !== null) throw new PersonaMemoryError("conflict", `episode ${episodeId} is already closed`);
+      const next = { ...episode, notes: [...(episode.notes ?? []), note], validTo: note.closes ?? episode.validTo };
+      await atomic(join(dirs.episodes, `${episodeId}.json`), `${JSON.stringify(episodeFile(next), null, 2)}\n`);
+      return next;
+    }),
+    insertFold: (fold: Fold) => serial(async () => {
+      const episodes = await Promise.all(fold.episodeIds.map(readEpisode));
+      const folded = episodes.filter((episode) => episode.foldedInto);
+      if (folded.length) throw new PersonaMemoryError("conflict", `already folded: ${folded.map((episode) => episode.id).join(", ")}`);
+      await writeFile(join(dirs.folds, `${fold.id}.json`), `${JSON.stringify(fold, null, 2)}\n`, { encoding: "utf8", flag: "wx" });
+      for (const episode of episodes) await atomic(join(dirs.episodes, `${episode.id}.json`), `${JSON.stringify(episodeFile({ ...episode, foldedInto: fold.id }), null, 2)}\n`);
+    }),
+    folds: () => serial(() => listJson<Fold>(dirs.folds)),
+    dossier: () => serial(readDossier),
+    appendDossier: (lines: DossierLine[]) => serial(async () => {
+      const current = await readDossier();
+      const byId = new Map(current.map((line) => [line.id, line]));
+      for (const line of lines) {
+        if (!line.supersedes) continue;
+        const old = byId.get(line.supersedes);
+        if (!old || old.validTo !== null) throw new PersonaMemoryError("conflict", `dossier line ${line.supersedes} is not open`);
+        byId.set(old.id, { ...old, validTo: line.validFrom });
+      }
+      await atomic(dossierPath, renderDossierFile([...byId.values(), ...lines]));
+    }),
+    facts: () => serial(() => readJson<Fact[]>(factsPath, [])),
+    setFact: (fact: Fact) => serial(async () => {
+      const facts = await readJson<Fact[]>(factsPath, []);
+      const next = facts.map((old) => (old.key === fact.key && old.validTo === null ? { ...old, validTo: fact.validFrom } : old));
+      await atomic(factsPath, `${JSON.stringify([...next, fact], null, 2)}\n`);
+    }),
+    embeddingsGet: (model: string, keys: string[]) => serial(async () => {
+      const cache = await readJson<Record<string, number[]>>(cachePath(model), {});
+      return new Map(keys.filter((key) => Array.isArray(cache[key])).map((key) => [key, cache[key]]));
+    }),
+    embeddingsPut: (model: string, entries: { key: string; vector: number[] }[]) => serial(async () => {
+      if (!entries.length) return;
+      const cache = await readJson<Record<string, number[]>>(cachePath(model), {});
+      for (const entry of entries) cache[entry.key] = entry.vector;
+      await atomic(cachePath(model), JSON.stringify(cache));
+    }),
+  };
+}
