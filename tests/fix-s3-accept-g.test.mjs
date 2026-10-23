@@ -171,7 +171,7 @@ test("Г1: in a 5e campaign the plates read «КД», «Атака», «Навы
   assert.match(screen, /<button type="button" className=\{`\$\{r\.stat\} \$\{s\.plate\}`\} title=\{text\} aria-expanded=\{open\} onClick=\{\(\) => setOpen\(!open\)\}>/);
   assert.match(screen, /\{open && <div className=\{s\.plateWhy\}>\{text\}<\/div>\}/);
   assert.match(screen, /const tiles = sheetPlates\(view, entity, model\.derivedStats\)/);
-  assert.match(screen, /<SheetLines sheet=\{sheet\} skills=\{model\.skills\} saves=\{derived\?\.saves\} \/>/);
+  assert.match(screen, /<SheetLines sheet=\{sheet\} skills=\{model\.skills\} saves=\{derived\?\.saves\} savesNeedLevel=\{derived\?\.savesNeedLevel\}/);
   assert.match(src("src/components/registry/party-screen.tsx"), /<span key=\{label\} className=\{r\.badge\} title=\{why \?\? undefined\}>\{label\} \{value\}<\/span>/);
   assert.match(src("src/components/registry/game-screen.tsx"), /const numbers = sheetPlates\(data, hero, model\.derivedStats\)/);
 });

@@ -124,8 +124,9 @@ export function endsAtOwnTurn(condition: string): boolean {
 export type Explained = { value: number; text: string };
 export type DerivedArmourClass = Explained & { source: "rules" | "manual" | "sheet" };
 export type DerivedSave = Explained & { ability: Ability; label: string };
-/** The 5e numbers of a sheet, each with its breakdown in the campaign language. */
-export type DerivedSheet = { ac: DerivedArmourClass | null; saves: DerivedSave[]; attack: Explained | null; proficiency: Explained | null };
+/** The 5e numbers of a sheet, each with its breakdown in the campaign language. `savesNeedLevel`: the class's
+ * proficient saves are known but the level is not (no saves are given; the sheet asks for the level). */
+export type DerivedSheet = { ac: DerivedArmourClass | null; saves: DerivedSave[]; attack: Explained | null; proficiency: Explained | null; savesNeedLevel: boolean };
 type Person = Pick<Entity, "id" | "kind" | "stats" | "conditions"> & { character_sheet?: Entity["character_sheet"] };
 export type DeriveInput = {
   entity: Person;
@@ -159,26 +160,40 @@ function proficiencyOf(entity: Person, ru: boolean): Explained | null {
   const value = 2 + Math.floor((level - 1) / 4);
   return { value, text: ru ? `${signed(value)} мастерство · уровень ${level}` : `${signed(value)} proficiency · level ${level}` };
 }
-/** The class's spellcasting ability from the role's words (wizard: INT; cleric, druid, ranger: WIS; bard, sorcerer, warlock, paladin: CHA). */
-function castingAbility(role: string | null | undefined): Ability | null {
-  const text = role ?? "";
-  if (/волшеб|wizard|изобретат|artificer|(?:^|[^\p{L}])маг(?:[^\p{L}]|$)/iu.test(text)) return "intelligence";
-  if (/жрец|жриц|друид|следопыт|cleric|druid|ranger/iu.test(text)) return "wisdom";
-  if (/бард|чародей|чародейк|колдун|колдунь|паладин|bard|sorcer|warlock|paladin/iu.test(text)) return "charisma";
+// --- the class ------------------------------------------------------------------------------------------------
+export type FifthClass = "wizard" | "artificer" | "cleric" | "druid" | "bard" | "paladin" | "ranger" | "rogue" | "fighter" | "barbarian" | "monk"
+  | "sorcerer" | "warlock";
+/** The SRD classes: the word that names each (one whole word, Russian or English, lower case), its two proficient saves
+ * and its spellcasting ability. */
+const CLASSES: { key: FifthClass; word: RegExp; saves: [Ability, Ability]; casting: Ability | null }[] = [
+  { key: "wizard", word: /^(?:маг|магесса|магичка|волшебни\p{L}*|wizards?)$/u, saves: ["intelligence", "wisdom"], casting: "intelligence" },
+  { key: "artificer", word: /^(?:изобретател\p{L}*|artificers?)$/u, saves: ["constitution", "intelligence"], casting: "intelligence" },
+  { key: "cleric", word: /^(?:жрец\p{L}*|жриц\p{L}*|clerics?)$/u, saves: ["wisdom", "charisma"], casting: "wisdom" },
+  { key: "druid", word: /^(?:друид\p{L}*|druids?)$/u, saves: ["intelligence", "wisdom"], casting: "wisdom" },
+  { key: "ranger", word: /^(?:следопыт\p{L}*|rangers?)$/u, saves: ["strength", "dexterity"], casting: "wisdom" },
+  { key: "bard", word: /^(?:бард|бардесса|bards?)$/u, saves: ["dexterity", "charisma"], casting: "charisma" },
+  { key: "paladin", word: /^(?:паладин\p{L}*|paladins?)$/u, saves: ["wisdom", "charisma"], casting: "charisma" },
+  { key: "sorcerer", word: /^(?:чародей\p{L}*|sorcer\p{L}*)$/u, saves: ["constitution", "charisma"], casting: "charisma" },
+  { key: "warlock", word: /^(?:колдун\p{L}*|warlocks?)$/u, saves: ["wisdom", "charisma"], casting: "charisma" },
+  { key: "rogue", word: /^(?:плут\p{L}*|вор|воровка|rogues?)$/u, saves: ["dexterity", "intelligence"], casting: null },
+  { key: "fighter", word: /^(?:воин|воительниц\p{L}*|боец|fighters?)$/u, saves: ["strength", "constitution"], casting: null },
+  { key: "barbarian", word: /^(?:варвар\p{L}*|barbarians?)$/u, saves: ["strength", "constitution"], casting: null },
+  { key: "monk", word: /^(?:монах|монахиня|монашка|monks?)$/u, saves: ["strength", "dexterity"], casting: null },
+];
+const classRow = (role: string | null | undefined) => {
+  for (const word of (role ?? "").toLocaleLowerCase().split(/[^\p{L}]+/u)) {
+    const row = word && CLASSES.find((entry) => entry.word.test(word));
+    if (row) return row;
+  }
   return null;
-}
-
-/** The class's proficient saves from the role's words, for a sheet that lists none (the SRD classes). */
-function classSaves(role: string | null | undefined): Ability[] | null {
-  const text = role ?? "";
-  const table: [RegExp, Ability[]][] = [
-    [/волшеб|wizard|друид|druid|(?:^|[^\p{L}])маг(?:[^\p{L}]|$)/iu, ["intelligence", "wisdom"]], [/изобретат|artificer/iu, ["constitution", "intelligence"]],
-    [/жрец|жриц|cleric|колдун|warlock|паладин|paladin/iu, ["wisdom", "charisma"]], [/бард|bard/iu, ["dexterity", "charisma"]],
-    [/чародей|sorcer/iu, ["constitution", "charisma"]], [/плут|вор(?![\p{L}])|rogue/iu, ["dexterity", "intelligence"]],
-    [/следопыт|ranger|монах|monk/iu, ["strength", "dexterity"]], [/воин|воительниц|боец|fighter|варвар|barbarian/iu, ["strength", "constitution"]],
-  ];
-  return table.find(([words]) => words.test(text))?.[1] ?? null;
-}
+};
+/** Findings S3, item 4: the class a role names — its first word that is a class, so a qualifier after it never decides
+ * («Маг школы Воплощения…», «Wizard of the Evocation school», «Колдун Великого Древнего», «Паладин ордена Друидов»). */
+export const classOf = (role: string | null | undefined): FifthClass | null => classRow(role)?.key ?? null;
+/** The class's spellcasting ability (wizard, artificer: INT; cleric, druid, ranger: WIS; bard, sorcerer, warlock, paladin: CHA). */
+const castingAbility = (role: string | null | undefined): Ability | null => classRow(role)?.casting ?? null;
+/** The class's proficient saves, for a sheet that lists none (the SRD classes). */
+const classSaves = (role: string | null | undefined): Ability[] | null => classRow(role)?.saves ?? null;
 
 /** Armour class, saves, attack and proficiency of one person by the 5e rules, every number with its breakdown. */
 export function deriveSheet5e(input: DeriveInput): DerivedSheet {
@@ -261,13 +276,16 @@ export function deriveSheet5e(input: DeriveInput): DerivedSheet {
 
   // Saves: the six when the scores are known — a save the sheet names keeps its number, the others are the modifier;
   // a sheet with no save lines takes its class's proficient saves (a class the words do not name: no saves shown).
+  // Findings S3, item 4: those need the proficiency bonus — without a level the sheet asks for it (`savesNeedLevel`)
+  // instead of showing the bare modifiers as the saves.
   const saveBonuses = (ability: Ability) => worn.filter(applies).flatMap((item) => bonusOf.get(item.id)!.saves.filter((row) => row.ability === null || row.ability === ability)
     .map((row) => ({ name: item.name, value: row.value })));
   const lines = (sheet && "saves" in sheet ? sheet.saves : undefined) ?? [];
   const byClass = lines.length ? null : classSaves(sheet?.role);
+  const savesNeedLevel = !!byClass && !!scores && !proficiency;
   const saves: DerivedSave[] = [];
   const profText = (m: number, short: string) => `${short} ${signed(m)} ${signed(proficiency!.value)} ${ru ? "мастерство" : "proficiency"}`;
-  for (const ability of lines.length || byClass ? ABILITIES : []) {
+  for (const ability of lines.length || (byClass && !savesNeedLevel) ? ABILITIES : []) {
     const line = lines.find((row) => abilityIn(row.replace(/спасбросок|спасброски|saving throw|save/giu, " ")) === ability) ?? null;
     const written = line ? /([+−-])\s*(\d{1,2})\s*$/u.exec(line.trim()) : null;
     const stated = written ? (written[1] === "+" ? 1 : -1) * Number(written[2]) : null;
@@ -283,7 +301,7 @@ export function deriveSheet5e(input: DeriveInput): DerivedSheet {
     const label = line ? line.trim().replace(/\s*[+−-]\s*\d{1,2}\s*$/u, "") : ABILITY[ability][ru ? "ru" : "en"];
     saves.push({ ability, label, value: base + extra.reduce((sum, row) => sum + row.value, 0), text: [head, ...extra.map((row) => `${signed(row.value)} ${row.name}`)].join(" ") });
   }
-  return { ac, saves, attack, proficiency };
+  return { ac, saves, attack, proficiency, savesNeedLevel };
 }
 
 const PEOPLE = new Set(["player", "companion", "npc"]);

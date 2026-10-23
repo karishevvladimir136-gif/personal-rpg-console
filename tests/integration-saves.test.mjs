@@ -59,6 +59,7 @@ const NEW_MIGRATIONS = [
   "202610230521_fix_s3_accept_ring.sql",
   "202610230541_fix_s3_accept_region_prep.sql",
   "202610230551_fix_s3_accept_adventure_wishes.sql",
+  "202610230601_findings_s3_old_sheet.sql",
 ];
 const pictures = (f, cid, action, payload = {}) =>
   f.one("select public.rpg_pictures($1,$2,$3,$4::jsonb) result", [f.owner, cid, action, JSON.stringify(payload)]).then((row) => row.result);

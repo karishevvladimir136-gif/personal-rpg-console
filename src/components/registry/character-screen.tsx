@@ -175,6 +175,8 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
   const [ask, setAsk] = useState<{ itemId: string; target: MoveTarget; label: string } | null>(null);
   const [dragId, setDragId] = useState<string | null>(null);
   const [redraw, setRedraw] = useState<{ kind: "entity" | "item"; id: string; composition?: PictureComposition } | null>(null);
+  // Findings S3, item 4: whose sheet editor is open, and whether it opened from «уровень не указан» (the level focused).
+  const [editing, setEditing] = useState<{ entityId: string; level: boolean } | null>(null);
   // The card closes on Escape (item 33: it no longer «вечно висит») and on a click outside it (item 30).
   useCardDismiss(!!card, () => { setCard(null); setPicker(null); });
   // Fix S3-accept В1: the party's «Умения» spell prose turns into spell records once (the owner's sheet correction).
@@ -287,8 +289,10 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
           </div>
         )}
         <Counters counters={counters} />
-        <SheetLines sheet={sheet} skills={model.skills} saves={derived?.saves} />
+        <SheetLines sheet={sheet} skills={model.skills} saves={derived?.saves} savesNeedLevel={derived?.savesNeedLevel}
+          onEditSheet={() => setEditing({ entityId: entity.id, level: true })} />
         <SheetEditor key={entity.id} sheet={sheet} busy={moves.busy} ruledAc={derived?.ac && derived.ac.source !== "sheet" ? { manual: manualArmourClass(entity) } : null}
+          open={editing?.entityId === entity.id} focusLevel={!!editing?.level} onOpen={() => setEditing({ entityId: entity.id, level: false })} onClose={() => setEditing(null)}
           onSave={(patch, manualAc) => moves.run(planSheet(view, entity.id, patch, ctx, manualAc))} />
       </div>
     </Panel>
@@ -453,13 +457,25 @@ function PlateTile({ label, value, text }: { label: string; value: string | numb
 }
 
 /** Skills, saves and attacks with their numbers, abilities and limitations — the hero's and a companion's alike. Fix
- * S3-accept Г3: in a 5e campaign the saves are the rules module's (the worn ring's +1 counted), each explained. */
-export function SheetLines({ sheet, skills, saves, compact = false }: { sheet: SheetView; skills?: string[]; saves?: DerivedSave[]; compact?: boolean }) {
+ * S3-accept Г3: in a 5e campaign the saves are the rules module's (the worn ring's +1 counted), each explained.
+ * Findings S3, item 4: a class's saves without a level read «уровень не указан», with «Изменить лист» where the sheet
+ * can be edited (`onEditSheet`). */
+export function SheetLines({ sheet, skills, saves, savesNeedLevel = false, onEditSheet, compact = false }: { sheet: SheetView; skills?: string[]; saves?: DerivedSave[];
+  savesNeedLevel?: boolean; onEditSheet?: () => void; compact?: boolean }) {
   const c = useCopy();
   const explained = saves && saves.length > 0 && (
     <div>
       <span className={r.eyebrow}>{c("Спасброски", "Saving throws")}</span>
       {saves.map((save) => <SaveRow key={save.ability} save={save} />)}
+    </div>
+  );
+  const levelUnset = !explained && savesNeedLevel && (
+    <div data-saves-level-unset="">
+      <span className={r.eyebrow}>{c("Спасброски", "Saving throws")}</span>
+      <div className={s.skill}>
+        <span className={r.muted}>{c("Уровень не указан", "Level not set")}</span>
+        {onEditSheet && <button type="button" className={s.linkButton} onClick={onEditSheet}>{c("Изменить лист", "Edit sheet")}</button>}
+      </div>
     </div>
   );
   const numbered = (title: string, rows: string[]) => rows.length > 0 && (
@@ -477,7 +493,7 @@ export function SheetLines({ sheet, skills, saves, compact = false }: { sheet: S
   return (
     <>
       {listed(c("Атаки", "Attacks"), sheet.attacks)}
-      {explained || numbered(c("Спасброски", "Saving throws"), sheet.saves)}
+      {explained || levelUnset || numbered(c("Спасброски", "Saving throws"), sheet.saves)}
       {numbered(c("Навыки", "Skills"), skills ?? sheet.skills)}
       {!compact && listed(c("Умения", "Abilities"), sheet.abilities)}
       {!compact && listed(c("Слабости", "Limitations"), sheet.limitations)}
@@ -500,9 +516,17 @@ function SaveRow({ save }: { save: DerivedSave }) {
 
 /** «Изменить лист» (design §9): the owner corrects the level, the defence, the speed and the lines (one per line); the
  * sheet is saved with the record (schema 2) and the DM reads the edit next turn. Fix S3-accept Г3: where the 5e rules
- * count the AC (`ruledAc`), the field is «КД вручную» — empty: by the rules; a number outranks them. */
-function SheetEditor({ sheet, busy, ruledAc, onSave }: { sheet: SheetView; busy: boolean; ruledAc: { manual: number | null } | null;
-  onSave: (patch: SheetPatch, manualAc?: number | null) => Promise<boolean> }) {
+ * count the AC (`ruledAc`), the field is «КД вручную» — empty: by the rules; a number outranks them. Findings S3, item
+ * 4: the screen opens it (`open`) from this link and from the saves block's «уровень не указан» (the level focused). */
+function SheetEditor({ open, focusLevel, onOpen, onClose, ...form }: SheetFormProps & { open: boolean; onOpen: () => void }) {
+  const c = useCopy();
+  if (!open) return <button type="button" className={s.linkButton} onClick={onOpen}>{c("Изменить лист…", "Edit the sheet…")}</button>;
+  return <SheetForm {...form} focusLevel={focusLevel} onClose={onClose} />;
+}
+type SheetFormProps = { sheet: SheetView; busy: boolean; ruledAc: { manual: number | null } | null; focusLevel: boolean; onClose: () => void;
+  onSave: (patch: SheetPatch, manualAc?: number | null) => Promise<boolean> };
+/** The open editor; its draft starts from the sheet each time it opens. */
+function SheetForm({ sheet, busy, ruledAc, focusLevel, onClose, onSave }: SheetFormProps) {
   const c = useCopy();
   const ac = ruledAc ? ruledAc.manual : sheet.armorClass;
   const initial = {
@@ -510,9 +534,7 @@ function SheetEditor({ sheet, busy, ruledAc, onSave }: { sheet: SheetView; busy:
     preparedMax: sheet.preparedMax === null ? "" : String(sheet.preparedMax),
     skills: sheet.skills.join("\n"), saves: sheet.saves.join("\n"), attacks: sheet.attacks.join("\n"), abilities: sheet.abilities.join("\n"),
   };
-  const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState(initial);
-  if (!open) return <button type="button" className={s.linkButton} onClick={() => { setDraft(initial); setOpen(true); }}>{c("Изменить лист…", "Edit the sheet…")}</button>;
   const number = (text: string) => (text.trim() === "" ? null : Math.round(Number(text)));
   const rows = (text: string) => text.split("\n").map((line) => line.trim()).filter(Boolean);
   const save = async () => {
@@ -523,13 +545,14 @@ function SheetEditor({ sheet, busy, ruledAc, onSave }: { sheet: SheetView; busy:
     if (draft.speed !== initial.speed) patch.speed = draft.speed;
     if (draft.preparedMax !== initial.preparedMax) patch.preparedMax = number(draft.preparedMax);
     for (const key of ["skills", "saves", "attacks", "abilities"] as const) if (draft[key] !== initial[key]) patch[key] = rows(draft[key]);
-    if (await onSave(patch, acChanged && ruledAc ? number(draft.armorClass) : undefined)) setOpen(false);
+    if (await onSave(patch, acChanged && ruledAc ? number(draft.armorClass) : undefined)) onClose();
   };
   const field = (key: keyof typeof initial, label: string, kind: "number" | "text" | "lines") => (
     <label key={key} className={kind === "lines" ? s.editLines : s.splitField}>
       <span className={r.eyebrow}>{label}</span>
       {kind === "lines" ? <textarea rows={Math.min(8, Math.max(3, draft[key].split("\n").length + 1))} value={draft[key]} onChange={(event) => setDraft({ ...draft, [key]: event.target.value })} />
-        : <input type={kind} inputMode={kind === "number" ? "numeric" : undefined} value={draft[key]} onChange={(event) => setDraft({ ...draft, [key]: event.target.value })} />}
+        : <input type={kind} inputMode={kind === "number" ? "numeric" : undefined} value={draft[key]} autoFocus={focusLevel && key === "level"}
+          onChange={(event) => setDraft({ ...draft, [key]: event.target.value })} />}
     </label>
   );
   return (
@@ -544,7 +567,7 @@ function SheetEditor({ sheet, busy, ruledAc, onSave }: { sheet: SheetView; busy:
       {field("abilities", c("Умения", "Abilities"), "lines")}
       <div className={r.row}>
         <button type="submit" className={r.btnMain} disabled={busy}>{c("Сохранить", "Save")}</button>
-        <button type="button" className={r.btnGhost} onClick={() => setOpen(false)}>{c("Отмена", "Cancel")}</button>
+        <button type="button" className={r.btnGhost} onClick={onClose}>{c("Отмена", "Cancel")}</button>
       </div>
     </form>
   );

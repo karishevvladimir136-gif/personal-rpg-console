@@ -134,7 +134,7 @@ function MemberCard({ data, entity, tag, canTalk, combat, onTalk, onRedraw }: {
   const sheet = sheetOf(entity);
   // Fix S3-accept Г1, Г3: the sheet's plates from one selector (in 5e «КД», «Атака», «Навык», the server's numbers, explained on hover).
   const tiles = sheetPlates(data, entity, model.derivedStats).map((plate) => [plate.translated ? plate.label : c.label(plate.label), plate.value, plate.text] as const);
-  const saves = derivedSheetOf(data, entity)?.saves;
+  const derived = derivedSheetOf(data, entity);
   const person = entity.kind === "player" || entity.kind === "companion";
   return (
     <article className={s.card}>
@@ -162,7 +162,7 @@ function MemberCard({ data, entity, tag, canTalk, combat, onTalk, onRedraw }: {
           </div>
         )}
         {person && <WalletLine wallet={walletOfEntity(entity)} />}
-        <div className={s.sheet}><SheetLines sheet={sheet} skills={model.skills} saves={saves} compact /></div>
+        <div className={s.sheet}><SheetLines sheet={sheet} skills={model.skills} saves={derived?.saves} savesNeedLevel={derived?.savesNeedLevel} compact /></div>
         {entity.kind === "companion" && companionAttitude(entity) && (
           <div className={r.stack} style={{ gap: 2 }}>
             <span className={r.eyebrow}>{c("К тебе", "Toward you")}</span>
