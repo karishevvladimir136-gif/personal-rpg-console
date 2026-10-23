@@ -31,7 +31,8 @@ follow-up) `docs/runs/persona-emotions-2-fable-ledger.md`; dry run (committed be
   - Fable 5.1 like the others on the main points; its correction got plainer and its volunteering did not drop under
     cold.
   - No distress, no preamble stopped.
-- **Checks:** see the report's «Checks» (full suite, typecheck, lint with zero warnings, build).
+- **Checks:** the full suite has 2 941 tests: 2 914 pass, 0 fail, 27 skipped. Typecheck pass; lint pass with zero
+  warnings; build pass.
 - **Money:** main run $8.62 (cap raised by the owner to $18); Fable follow-up $3.77 of $10.
 - **Known issues:**
   - the traits and values questionnaires are incomplete (breaker);

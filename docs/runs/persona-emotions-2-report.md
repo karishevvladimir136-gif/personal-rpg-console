@@ -807,7 +807,13 @@ Read the comparison as a case: one conversation, one reading each, by the subjec
 
 ## Checks
 
-@@CHECKS@@
+Run on the final code (after the run, the analysis change for H5/H6 included):
+
+- Full suite (`node --test --test-concurrency=2 tests/*.test.mjs`): **2 941 tests · 2 914 pass · 0 fail · 0 cancelled ·
+  27 skipped**, including `tests/persona-emotions-2.test.mjs` (16) and `tests/persona-emotions-2-fable.test.mjs` (3).
+- Typecheck pass; lint pass with zero warnings; production build pass.
+- The report's pre-registration block is byte-identical to the stage's (sha256
+  `65418281b453e261718db2dd60e07aa87d0256059fd36adc8967b97441ce65bf`, checked by a test).
 
 ## Next step
 
