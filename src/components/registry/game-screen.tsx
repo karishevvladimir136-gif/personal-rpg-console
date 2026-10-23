@@ -6,7 +6,7 @@ import { useState, type ReactNode } from "react";
 import { Dices, HelpCircle, Image as ImageIcon, Send, Sparkles, Users, Zap } from "lucide-react";
 import type { CampaignSnapshot, Entity, Scene } from "@/lib/persistence/contracts";
 import type { PlaySnapshot, PublicTurn } from "@/lib/gameplay/contracts";
-import type { LiveTurnView } from "@/lib/gameplay/live-turn-client";
+import { withLiveCounters, type LiveTurnView } from "@/lib/gameplay/live-turn-client";
 import type { LiveTrace } from "@/lib/ui/turn-timeline";
 import type { PublicAdventure } from "@/lib/adventures/contracts";
 import { isUnresolved } from "@/lib/gameplay/client-state";
@@ -165,7 +165,10 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
       setNonce((value) => value + 1);
   };
   const rolls = quickRolls(hero);
-  const resources = hero ? resourcesOf(hero).resources : [];
+  // Fix S3-accept В1: a slot the server just recorded as spent dims at once (the live turn's counter over the records).
+  const liveNow = preview ? preview.live ?? null : liveView;
+  const liveFresh = !!liveNow && (play?.turns.at(-1)?.id === liveNow.operationId || !play?.turns.some((turn) => turn.id === liveNow.operationId));
+  const resources = hero ? resourcesOf(withLiveCounters(hero, liveFresh ? liveNow : null)).resources : [];
   // Polish group 8: the wallet always shows (0 by default, the world's currency name).
   const money = hero ? walletOf(data, hero) : [];
   const opening = mode === "game" && view.showOpening && (

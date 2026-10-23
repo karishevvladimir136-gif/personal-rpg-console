@@ -484,7 +484,8 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
         observe({ type: "tool_receipt", operationId, receipt });
         // The player's stream carries only what the hero would notice, in the campaign language.
         if (receipt.result.ok && receipt.result.player)
-          live({ type: "tool", name: call.name, ok: true, summary: receipt.result.player, ...(typeof toolCall.arguments.action === "string" ? { action: toolCall.arguments.action } : {}) });
+          live({ type: "tool", name: call.name, ok: true, summary: receipt.result.player, ...(typeof toolCall.arguments.action === "string" ? { action: toolCall.arguments.action } : {}),
+            ...(executed.counter ? { counter: executed.counter } : {}) });
         if (call.name === "finish_turn" && executed.meta?.playerMoment) live({ type: "moment", reason: executed.meta.playerMomentReason ?? null });
       }
       return pause;

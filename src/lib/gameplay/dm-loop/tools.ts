@@ -107,8 +107,14 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
         saves: opt({ type: "array", maxItems: 12, items: str("Ловкость +4", 200) }),
         attacks: opt({ type: "array", maxItems: 12, items: str("Скимитар +5, 1к6+3 рубящий", 200) }),
         abilities: opt({ type: "array", maxItems: 40, items: str("A feature or trait.", 200) }),
-        spells: opt({ type: "array", maxItems: 160, items: object({ name: str("Spell.", 120), level: { type: "integer", minimum: 0, maximum: 9 }, prepared: opt({ type: "boolean" }),
-          ritual: opt({ type: "boolean" }), concentration: opt({ type: "boolean" }), text: opt(str("Time, range, duration, effect.", 2400)) }) }),
+        // Fix S3-accept В1: a spell is a record like a thing — added or updated by name; a 5e spell the app has a Russian card
+        // for gets the card's fields when the call leaves them out; history adds a line to the spell's own history.
+        spells: opt({ type: "array", maxItems: 160, description: "Added or updated by name (level 0 = a cantrip). known: written in the book / known; prepared: prepared today. A 5e spell the app has a card for gets its card's fields when they are left out.",
+          items: object({ name: str("Spell.", 120), level: { type: "integer", minimum: 0, maximum: 9 }, prepared: opt({ type: "boolean" }), known: opt({ type: "boolean" }),
+          school: opt(str("School in the campaign language (Воплощение).", 60)), castingTime: opt(str("1 действие.", 160)), range: opt(str("120 футов.", 160)),
+          components: opt(str("В, С, М (…).", 160)), duration: opt(str("Мгновенная; Концентрация, вплоть до 1 минуты.", 160)),
+          ritual: opt({ type: "boolean" }), concentration: opt({ type: "boolean" }), text: opt(str("What the spell does.", 2400)), higherLevels: opt(str("At higher levels.", 800)),
+          history: opt(str("One line of the spell's own history, shown to the player (выучено в Кормире, переписано со свитка).", 200)) }) }),
         preparedMax: opt({ type: "integer", minimum: 0, maximum: 60 }),
       }), description: "The sheet the screens show (a companion's from its stat block); fields given replace the stored ones." }),
       reason: opt(str("Why the hero's sheet changes (shown to the player).", L.maxShortText)),
@@ -189,6 +195,8 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       set: opt({ type: "integer", minimum: 0, maximum: L.maxResourceValue }),
       max: opt({ type: "integer", minimum: 0, maximum: L.maxResourceValue }),
       label: opt(str("A new counter's name in the campaign language (Кости хитов).", 60)),
+      // Fix S3-accept В1: the cast is recorded with its slot — the server checks the spell against the sheet.
+      spell: opt(str("A levelled spell cast with this slot (spell_slots_N, delta -1), as the sheet names it; the server checks it is on the sheet, prepared when the caster prepares, and of a level the slot allows.", 120)),
       reason: str("Why, shown to the player.", L.maxShortText),
     }),
   },

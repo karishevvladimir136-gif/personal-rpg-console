@@ -41,6 +41,8 @@ import { voiceExamplesBlock, voiceLayer, voiceReminder, VOICE_TOKEN_CAP_DEFAULT,
 import { parseLedger, type AttentionLedger } from "./ledger.ts";
 import { MEMORY_PRESETS, parseDmOptions } from "./options.ts";
 import { itemMechanics, walletOfEntity, walletOfStorage } from "../../inventory/model.ts";
+import { dmSheetView } from "../../inventory/spell-records.ts";
+import type { AnySheet } from "../../inventory/sheet.ts";
 
 const bytes = (text: string) => new TextEncoder().encode(text).length;
 const json = (value: unknown) => JSON.stringify(value);
@@ -138,7 +140,8 @@ function partyInShort(source: RuntimeSource): Budgeted {
   const party = snapshot.entities.filter((row) => row.kind === "player" || (row.kind === "companion" && controlled.has(row.id)));
   const entries = party.map((row) => {
     const profile = profileOf(row);
-    const sheet = row.character_sheet ? clipChars(json(row.character_sheet), 1500) : null;
+    // Fix S3-accept В1: the spells as one short line each (the prose of «Умения» read as converted), not the cards' texts.
+    const sheet = row.character_sheet ? clipChars(json(dmSheetView(row.character_sheet as AnySheet, snapshot.settings.values.language)), 1500) : null;
     const line = { id: row.id, name: row.name, role: row.kind === "player" ? "hero" : "companion", details: clipChars(row.details, 600),
       stats: row.stats, ...(sheet ? { sheet } : {}), ...(profile.attitude ? { attitudeToHero: profile.attitude.text } : {}),
       ...(profile.relation ? { relation: profile.relation } : {}), ...(profile.homePlaceId ? { home: profile.homePlaceId } : {}) };
@@ -552,7 +555,7 @@ function currentState(source: RuntimeSource, input: TurnInput): { text: string; 
       present: present.has(row.id), hp: row.hp, maxHp: row.max_hp, stats: row.stats, resources: counters(row.resources),
       ...(Object.keys(wallet).length ? { wallet } : {}), ...(labels && Object.keys(labels).length ? { counterLabels: labels } : {}),
       conditions: row.conditions, slots: row.equipment_slots.map((slot) => slot.id), details: clipChars(row.details, 300),
-      ...((row.kind === "player" || controlled.has(row.id)) && row.character_sheet ? { sheet: row.character_sheet } : {}) };
+      ...((row.kind === "player" || controlled.has(row.id)) && row.character_sheet ? { sheet: dmSheetView(row.character_sheet as AnySheet, snapshot.settings.values.language) } : {}) };
   });
   const factionRows = snapshot.entities.filter((row) => row.kind === "faction").map((row) => ({ id: row.id, name: row.name, kind: "faction" }));
   const items = snapshot.items.filter((row) => row.quantity > 0).map((row) => {

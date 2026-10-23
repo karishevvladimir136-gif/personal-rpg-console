@@ -261,7 +261,8 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
         if (loop.receipts.length === limits.toolCallsPerTurn) diagnostic({ kind: "tool_cap_reached", calls: loop.receipts.length });
         observe({ type: "tool_receipt", operationId, receipt });
         if (receipt.result.ok && receipt.result.player)
-          live({ type: "tool", name: call.name, ok: true, summary: receipt.result.player, ...(typeof toolCall.arguments.action === "string" ? { action: toolCall.arguments.action } : {}) });
+          live({ type: "tool", name: call.name, ok: true, summary: receipt.result.player, ...(typeof toolCall.arguments.action === "string" ? { action: toolCall.arguments.action } : {}),
+            ...("counter" in executed && executed.counter ? { counter: executed.counter } : {}) });
         if (call.name === "finish_turn" && "meta" in executed && executed.meta?.playerMoment) live({ type: "moment", reason: executed.meta.playerMomentReason ?? null });
       }
       return pause;
