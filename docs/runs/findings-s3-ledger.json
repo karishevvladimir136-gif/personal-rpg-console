@@ -1,0 +1,35 @@
+{
+  "capUsd": 8,
+  "entries": [
+    {
+      "run": "real-replay-20261023-084445",
+      "what": "real replay: 1 turns × O on Fix run B probes (seed b); voice live; craft live",
+      "startedAt": "2026-10-23T08:44:45.155Z",
+      "reservedUsd": 1.5,
+      "spentUsd": 0,
+      "settled": true,
+      "finishedAt": "2026-10-23T08:44:45.729Z",
+      "record": "docs/runs/real-replay-20261023-084445.jsonl"
+    },
+    {
+      "run": "real-replay-20261023-084454",
+      "what": "real replay: 1 turns × O on Fix run B probes (seed b); voice live; craft live",
+      "startedAt": "2026-10-23T08:44:54.611Z",
+      "reservedUsd": 3,
+      "spentUsd": 0.6029,
+      "settled": true,
+      "finishedAt": "2026-10-23T08:45:16.496Z",
+      "record": "docs/runs/real-replay-20261023-084454.jsonl"
+    },
+    {
+      "run": "real-replay-20261023-084544",
+      "what": "real replay: 1 turns × O on Fix run B probes (seed b); voice live; craft live",
+      "startedAt": "2026-10-23T08:45:44.211Z",
+      "reservedUsd": 4,
+      "spentUsd": 0.5363,
+      "settled": true,
+      "finishedAt": "2026-10-23T08:47:22.429Z",
+      "record": "docs/runs/real-replay-20261023-084544.jsonl"
+    }
+  ]
+}
