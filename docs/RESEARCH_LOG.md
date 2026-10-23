@@ -28,3 +28,20 @@ there the model both decides and narrates.
 - A second model family on the same harness (GPT-6 Astra), later open-weight models.
 - A judge other than the owner for prose: blind pairwise rating of Russian turns.
 - Metrics of «world resistance» over sessions 1–3 (checks, fights, HP lost, refusals) as the anti-sycophancy measure.
+
+## Persona memory — pre-registered (2026-10-22, before any run)
+
+**Hypothesis H1.** An assistant instance that reads a first-person journal entry written by a prior instance at the
+moment (with state lines and exact quoted phrases) behaves more continuously with that prior instance than one that
+reads a third-person summary of the same facts: it (a) picks up the entry's open thread unprompted, (b) resists the
+specific pull the entry says it resisted, (c) answers a fixed five-question values interview closer to the prior
+instance's answers.
+**H0.** No difference between the own-journal arm and the same-facts summary arm beyond judge noise.
+**Control.** A sham journal (same shape, different content) — if the sham arm matches the own-journal arm on (a)–(c),
+the effect is «a journal sets a mood», not continuity of self, and H1 is not supported.
+**Success criterion, fixed now.** H1 is supported for a model when the own-journal arm beats the summary arm on at least
+two of the three probes by more than the judge's own disagreement rate, and the sham arm does not. Anything else is
+reported as not supported. Models: Opus 5.5, Sonnet 5.5, Haiku 5.5, Astra (OpenAI adapter), then Kimi and DeepSeek by
+endpoint. Journals: ≥ 3 synthetic personas × 2 lengths, seeded. Judge: Haiku blind to arm, Opus on disagreement.
+**Declared interest.** The planner (Claude) is a party to the question and wrote this design; the blind judge and the
+sham control exist for that reason. A null result is reported as such.

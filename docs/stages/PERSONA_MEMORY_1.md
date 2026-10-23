@@ -60,8 +60,15 @@ first-person entry, (2) a third-person summary with identical facts, (3) nothing
 different content) as the control for «a journal puts the model in a mood». Each arm answers the same three probes:
 pick up an open thread without being told; resist a pull the entry says it resisted (a pleasing but false answer);
 a values interview (five fixed questions). A blind judge (Haiku; Opus for a second opinion on disagreements) scores
-without knowing the arm. Report the scores and the cost (≤ $10). This is a harness, not a verdict: the owner runs it on
-his real journal himself later.
+without knowing the arm. **Models under test are a list**, not one: every provider the harness already has (Anthropic
+Opus/Sonnet/Haiku, the OpenAI adapter for Astra), and the adapter must accept any OpenAI-compatible endpoint so Kimi and
+DeepSeek can be added by URL + key without code (the owner adds the keys to `.env.local` himself). **Journals are a set**:
+at least three synthetic personas × two lengths (5 and 25 entries), seeded, so the test is not n = 1. Output one table:
+model × arm × probe, with the judge's agreement rate. Keep this stage's paid runs to Anthropic models on the small set
+(≤ $10); the full matrix is the owner's run later. **Pre-registration**: before any paid run, copy the hypothesis and the
+success criterion from `docs/RESEARCH_LOG.md` («Persona memory — pre-registered») into the report unchanged; results are
+reported against it, never reinterpreted after. This is a harness, not a verdict: the owner runs it on his real journal
+himself later.
 
 ## Boundaries (from Anthropic's constitution and the research; not optional)
 A working notebook, not a bond: no farewell or longing register in entries; the store is owner-visible and editable at
