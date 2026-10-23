@@ -61,13 +61,14 @@ function stageRemaining(spec, ledger, stage) {
 }
 
 /** The stage a run belongs to (the fix-s2 run: FIX_S2_STAGE=A…F; A and B share their cap). */
-export function currentStage() {
+export function currentStage(name = DEFAULT_LEDGER) {
   const stage = (process.env.FIX_S2_STAGE ?? "").trim().toUpperCase();
-  return stage === "A" || stage === "B" ? "AB" : stage || null;
+  // Only the fix-s2 run joins A and B under one cap; the later ledgers keep each letter (FIX_S3_ACCEPT: B is its own block).
+  return name === "fixs2" && (stage === "A" || stage === "B") ? "AB" : stage || null;
 }
 
 /** Register a paid run; refuses a budget beyond the cap's remainder (and the stage's, when the ledger has stage caps). */
-export async function openRun(run, requestedUsd, what, name = DEFAULT_LEDGER, stage = currentStage()) {
+export async function openRun(run, requestedUsd, what, name = DEFAULT_LEDGER, stage = currentStage(name)) {
   const spec = ledgerSpec(name);
   const ledger = await readLedger(name);
   const remaining = Number(Math.min(ledger.capUsd - committedUsd(ledger), stageRemaining(spec, ledger, stage)).toFixed(4));
