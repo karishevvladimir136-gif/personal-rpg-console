@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type DragEvent } from "react";
-import { Backpack, BookOpen, FlaskConical, Gem, KeyRound, Package, Shield, Shirt, Sword, Target, Wrench, X, type LucideIcon } from "lucide-react";
+import { Backpack, FlaskConical, Gem, KeyRound, Package, Shield, Shirt, Sword, Target, Wrench, X, type LucideIcon } from "lucide-react";
 import type { CampaignSnapshot, Entity, Item, MutationInput } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
 import { characterViewModel } from "@/lib/character-view-model";
@@ -13,10 +13,10 @@ import {
   dollLayout, equipmentOf, heroOf, holdingsNavLabel, holdingsOf, inventoryOf, mountsOf, partyOf, placePilesOf, sheetOf, statLabel,
   type SheetView, type SlotView,
 } from "@/lib/ui/campaign-view";
-import { castLine, ITEM_KINDS, itemMechanics, kindLabel, spellBook, walletOfEntity, walletParts, type SpellRecord, type Wallet } from "@/lib/inventory/model";
+import { ITEM_KINDS, itemMechanics, kindLabel, walletOfEntity, walletParts, type Wallet } from "@/lib/inventory/model";
 import type { SheetPatch } from "@/lib/inventory/sheet";
 import {
-  applyPlan, castSlot, concentrationOf, entityPayload, hasSpellSlots, loanMark, planEquip, planKind, planMoney, planMove, planSheet, planUnequip, sheetCounters, slotsFor,
+  applyPlan, entityPayload, hasSpellSlots, loanMark, planEquip, planKind, planMoney, planMove, planSheet, planUnequip, sheetCounters, slotsFor,
   undoPayload, type MovePlan, type MoveStep, type MoveTarget,
 } from "@/lib/inventory/owner-moves";
 import { ClientPersistenceError, createMutationAttempt } from "@/lib/persistence/client";
@@ -25,6 +25,8 @@ import { anchorFor } from "@/lib/visual-frame/pictures";
 import { RedrawAnchor } from "./redraw-anchor";
 import { usePictures } from "./live-frames";
 import { useChrome, type CampaignScreenId } from "./shell";
+import { SpellsTab, useSpellConversion } from "./spells-tab";
+import { conversionPatch } from "@/lib/inventory/spell-records";
 import {
   Art,
   Gauge,
@@ -176,6 +178,9 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
   const [redraw, setRedraw] = useState<{ kind: "entity" | "item"; id: string } | null>(null);
   // The card closes on Escape (item 33: it no longer «вечно висит») and on a click outside it (item 30).
   useCardDismiss(!!card, () => { setCard(null); setPicker(null); });
+  // Fix S3-accept В1: the party's «Умения» spell prose turns into spell records once (the owner's sheet correction).
+  useSpellConversion({ view, people: members, play, preview: !!chrome?.href, busy: moves.busy, run: moves.run,
+    ctx: { language: view.campaign.language, at: play?.worldMinutes ?? 0, newId: () => crypto.randomUUID() } });
   const href = (screen: CampaignScreenId) => chrome?.href?.(screen) ?? `/campaigns/${encodeURIComponent(data.campaign.id)}/${screen}`;
   const entity = members.find((row) => row.id === selectedId) ?? members[0] ?? null;
   if (!entity) return <Panel><p className={r.empty}>{c("В кампании пока нет героя.", "This campaign has no hero yet.")}</p></Panel>;
@@ -186,7 +191,7 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
   const own = holders.find((holder) => holder.key === entity.id) ?? { key: entity.id, kind: "person" as const, entity, name: entity.name, tag: "",
     items: inventoryOf(view, entity.id), wallet: walletOfEntity(entity), target: { entityId: entity.id } };
   const people = holders.filter((holder) => holder.kind === "person" && holder.entity).map((holder) => holder.entity!);
-  const spellsShown = sheet.spells.length > 0 || sheet.spellLines.length > 0 || hasSpellSlots(entity);
+  const spellsShown = sheet.spells.length > 0 || sheet.spellLines.length > 0 || hasSpellSlots(entity) || !!conversionPatch(entity.character_sheet, view.campaign.language);
   const tabs = [
     { id: "char" as const, label: c("Персонаж", "Character") },
     { id: "inv" as const, label: c("Инвентарь", "Inventory") },
@@ -373,7 +378,7 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
         </div>
       )}
       {tab === "inv" && <div className={s.gridInventory}>{doll}{lists}</div>}
-      {tab === "spells" && <div className={s.gridSpells}>{spells}</div>}
+      {tab === "spells" && spells}
       {selected && (
         <ItemCard key={selected.id} item={selected} view={view} viewerId={cardHolder.entity?.id ?? null} wearer={wearer}
           readOnly={cardHolder.kind === "place"} busy={moves.busy}
@@ -758,115 +763,6 @@ function HpCorrection({ data, entity }: { data: CampaignSnapshot; entity: Entity
       <button type="button" className={s.linkButton} onClick={() => setOpen(false)}>{c("Готово", "Done")}</button>
       {error && <span className={r.error} role="alert">{error}</span>}
       <span className={r.note} style={{ flexBasis: "100%", margin: 0 }}>{c("Поправка владельца: записывается в историю записи; в игре хиты ведёт ведущий.", "An owner correction, kept in the record's history; in play the DM keeps the hit points.")}</span>
-    </div>
-  );
-}
-
-// --- the spells tab (item 49) ------------------------------------------------------------------------------------
-/** Cantrips, then each level with its slot pips and «подготовлено N»; the spellbook (known, not prepared) apart; the
- * spell being concentrated on; a card per spell with «Колдовать». Spells are the sheet's records, not code. */
-function SpellsTab({ entity, sheet, onCast, onPrepare }: { entity: Entity; sheet: SheetView; onCast: (text: string) => void; onPrepare: (spell: SpellRecord, prepared: boolean) => void }) {
-  const c = useCopy();
-  const book = spellBook(sheet.spells, entity.resources, c.language);
-  const preparing = sheet.preparedMax !== null || sheet.spells.some((spell) => spell.prepared !== undefined);
-  const castable = (spell: SpellRecord) => spell.level === 0 || !preparing || spell.prepared === true;
-  const spellbook = preparing ? sheet.spells.filter((spell) => spell.level > 0 && !spell.prepared).sort((a, b) => a.level - b.level || a.name.localeCompare(b.name)) : [];
-  const prepared = sheet.spells.filter((spell) => spell.level > 0 && spell.prepared).length;
-  const focus = concentrationOf(entity);
-  const [name, setName] = useState<string | null>(sheet.spells.find((spell) => spell.name === focus)?.name ?? sheet.spells.find(castable)?.name ?? null);
-  const chosen = sheet.spells.find((spell) => spell.name === name) ?? null;
-  const spellButton = (spell: SpellRecord) => (
-    <button key={spell.name} type="button" className={s.spell} aria-pressed={spell.name === chosen?.name} onClick={() => setName(spell.name)}>
-      <span>{spell.name}</span>
-      <span className={s.spellMarks}>
-        {spell.ritual && <abbr title={c("ритуал", "ritual")}>{c("Р", "R")}</abbr>}
-        {spell.concentration && <abbr title={c("концентрация", "concentration")}>{c("К", "C")}</abbr>}
-        {spell.name === focus && <span className={r.badgeAmber}>{c("сейчас", "now")}</span>}
-      </span>
-    </button>
-  );
-  return (
-    <>
-      <Panel title={c("Заклинания", "Spells")} eyebrow={entity.name}
-        action={preparing ? <span className={r.num}>{c(`подготовлено ${prepared} из ${sheet.preparedMax ?? prepared + spellbook.length}`, `prepared ${prepared} of ${sheet.preparedMax ?? prepared + spellbook.length}`)}</span> : undefined}>
-        <div className={r.stack}>
-          {focus && <p className={s.focus}>{c("Концентрация", "Concentration")}: <b>{focus}</b></p>}
-          {book.map((group) => {
-            const rows = group.spells.filter(castable);
-            return (
-              <section key={group.level} className={s.spellLevel} aria-label={group.label}>
-                <div className={s.spellHead}>
-                  <span className={s.spellLevelName}>{group.label}</span>
-                  {group.slots && <Pips left={group.slots.value} max={group.slots.max} label={group.label} />}
-                  {preparing && group.level > 0 && group.prepared > 0 && <span className={`${r.small} ${r.muted}`}>{c(`подготовлено ${group.prepared}`, `${group.prepared} prepared`)}</span>}
-                </div>
-                {rows.length ? <div className={s.spellList}>{rows.map(spellButton)}</div>
-                  : <p className={`${r.small} ${r.muted}`} style={{ margin: 0 }}>{group.level === 0 ? c("Заговоров нет.", "No cantrips.") : c("Нет подготовленных.", "None prepared.")}</p>}
-              </section>
-            );
-          })}
-          {spellbook.length > 0 && (
-            <section className={s.spellLevel} aria-label={c("Книга заклинаний", "Spellbook")}>
-              <div className={s.spellHead}><BookOpen size={16} aria-hidden="true" /><span className={s.spellLevelName}>{c("Книга заклинаний · не подготовлены", "Spellbook · not prepared")}</span></div>
-              <div className={s.spellList}>{spellbook.map(spellButton)}</div>
-            </section>
-          )}
-          {sheet.spellLines.length > 0 && (
-            <div><span className={r.eyebrow}>{c("Записано в листе", "On the sheet")}</span><ul className={s.list}>{sheet.spellLines.map((line) => <li key={line}>{line}</li>)}</ul></div>
-          )}
-          {!sheet.spells.length && !sheet.spellLines.length && <p className={r.empty}>{c("Заклинаний в листе пока нет.", "No spells on the sheet yet.")}</p>}
-        </div>
-      </Panel>
-      {chosen ? <SpellCard key={chosen.name} spell={chosen} book={book} castable={castable(chosen)} onCast={onCast} onPrepare={preparing && chosen.level > 0 ? (prepared) => onPrepare(chosen, prepared) : undefined} /> : <Panel><p className={r.empty}>{c("Выберите заклинание.", "Pick a spell.")}</p></Panel>}
-    </>
-  );
-}
-
-function SpellCard({ spell, book, castable, onCast, onPrepare }: { spell: SpellRecord; book: ReturnType<typeof spellBook>; castable: boolean; onCast: (text: string) => void;
-  /** The owner prepares a spell or puts it back in the book (a sheet edit). */
-  onPrepare?: (prepared: boolean) => void }) {
-  const c = useCopy();
-  const lowest = castSlot(spell, book);
-  const free = book.filter((row) => row.level >= spell.level && row.slots && row.slots.value > 0).map((row) => row.level);
-  const [level, setLevel] = useState<number | null>(null);
-  const slot = spell.level === 0 ? null : level !== null && free.includes(level) ? level : lowest;
-  const ritualOnly = spell.level > 0 && slot === null && spell.ritual;
-  const can = castable && (spell.level === 0 || slot !== null || ritualOnly);
-  const rows: [string, string | undefined][] = [
-    [c("Время накладывания", "Casting time"), spell.castingTime], [c("Дистанция", "Range"), spell.range], [c("Компоненты", "Components"), spell.components],
-    [c("Длительность", "Duration"), spell.duration], [c("Спасбросок / атака", "Save / attack"), spell.saveOrAttack], [c("Урон", "Damage"), spell.damage],
-  ];
-  return (
-    <div className={`${r.parchment} ${s.spellCard}`}>
-      <div className={s.card}>
-        <span className={r.eyebrow}>{[book.find((row) => row.level === spell.level)?.label ?? String(spell.level), spell.ritual ? c("ритуал", "ritual") : null,
-          spell.concentration ? c("концентрация", "concentration") : null].filter(Boolean).join(" · ")}</span>
-        <span className={r.parchmentTitle}>{spell.name}</span>
-        <dl className={s.spellFields}>
-          {rows.filter(([, value]) => value && value.trim()).map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
-        </dl>
-        {spell.text && <span className={r.parchmentText}>{spell.text}</span>}
-        {spell.higherLevels && <span className={r.parchmentText}><b>{c("На более высоких кругах. ", "At higher levels. ")}</b>{spell.higherLevels}</span>}
-        <div className={r.row}>
-          {spell.level > 0 && free.length > 1 && (
-            <label className={`${s.splitField} ${s.parchmentField}`}>
-              <span className={r.eyebrow}>{c("Ячейка", "Slot")}</span>
-              <select value={slot ?? ""} onChange={(event) => setLevel(Number(event.target.value))}>
-                {free.map((row) => <option key={row} value={row}>{book.find((group) => group.level === row)?.label ?? row}</option>)}
-              </select>
-            </label>
-          )}
-          <button type="button" className={r.btnGhost} disabled={!can} title={!castable ? c("Не подготовлено", "Not prepared") : !can ? c("Свободных ячеек нет", "No free slot") : undefined}
-            onClick={() => onCast(castLine(spell, slot, c.language))}>
-            {ritualOnly ? c("Колдовать ритуалом", "Cast as a ritual") : c("Колдовать", "Cast")}
-          </button>
-          {onPrepare && (
-            <button type="button" className={s.parchmentLink} onClick={() => onPrepare(!spell.prepared)}>
-              {spell.prepared ? c("Убрать в книгу", "Back to the book") : c("Подготовить", "Prepare")}
-            </button>
-          )}
-        </div>
-      </div>
     </div>
   );
 }
