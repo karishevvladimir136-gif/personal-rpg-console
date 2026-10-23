@@ -22,34 +22,50 @@ export function stopReasonOf(error) {
 }
 
 /** The gate: `run(call)` waits for its turn and the spacing, makes the call unless the breaker has tripped, and counts
- * what came back. `call` returns the provider's { text, stopReason, error, … }. */
-export function createSafety({ maxRefusals = MAX_REFUSALS, gapMs = 3000, sleep = realSleep, now = Date.now, log = () => {} } = {}) {
-  let refusals = 0, stopped = null, lastFinished = null, queue = Promise.resolve();
+ * what came back. `call` returns the provider's { text, stopReason, error, … }. `lanes` (1 unless a stage allows more)
+ * opens further sequential lanes, `lane(i)`, for calls a stage may run in parallel: each lane keeps its own order and
+ * spacing, while the refusal count, the breaker and the stop are shared — no lane sends anything once any has stopped.
+ * `run` is lane 0. */
+export function createSafety({ maxRefusals = MAX_REFUSALS, gapMs = 3000, lanes = 1, sleep = realSleep, now = Date.now, log = () => {} } = {}) {
+  let refusals = 0, stopped = null;
+  const notSent = () => ({ text: "", usage: {}, stopReason: null, error: "stopped", notSent: true });
+  const open = () => {
+    let lastFinished = null, queue = Promise.resolve();
+    return {
+      /** Sequential: a second `run` on the lane waits until the first has finished and the gap has passed. */
+      run(call) {
+        const turn = queue.then(async () => {
+          if (stopped) return notSent();
+          if (lastFinished !== null && gapMs > 0) {
+            const wait = lastFinished + gapMs - now();
+            if (wait > 0) await sleep(wait);
+          }
+          if (stopped) return notSent();
+          let result;
+          try { result = await call(); } finally { lastFinished = now(); }
+          if (result.stopReason === "refusal") {
+            refusals++;
+            log(`refusal ${refusals} of ${maxRefusals} allowed in total`);
+            if (refusals >= maxRefusals && !stopped) { stopped = `the circuit breaker: ${refusals} refusals in total`; log(`STOP: ${stopped}`); }
+          }
+          const fatal = stopReasonOf(result.error);
+          if (fatal && !stopped) { stopped = fatal; log(`STOP: ${stopped}`); }
+          return result;
+        });
+        queue = turn.catch(() => {});
+        return turn;
+      },
+    };
+  };
+  const all = Array.from({ length: Math.max(1, lanes) }, open);
   const state = {
     get refusals() { return refusals; },
     get stopped() { return stopped; },
-    maxRefusals, gapMs,
-    /** Sequential: a second `run` waits until the first has finished and the gap has passed. */
-    run(call) {
-      const turn = queue.then(async () => {
-        if (stopped) return { text: "", usage: {}, stopReason: null, error: "stopped", notSent: true };
-        if (lastFinished !== null && gapMs > 0) {
-          const wait = lastFinished + gapMs - now();
-          if (wait > 0) await sleep(wait);
-        }
-        let result;
-        try { result = await call(); } finally { lastFinished = now(); }
-        if (result.stopReason === "refusal") {
-          refusals++;
-          log(`refusal ${refusals} of ${maxRefusals} allowed in total`);
-          if (refusals >= maxRefusals && !stopped) { stopped = `the circuit breaker: ${refusals} refusals in total`; log(`STOP: ${stopped}`); }
-        }
-        const fatal = stopReasonOf(result.error);
-        if (fatal && !stopped) { stopped = fatal; log(`STOP: ${stopped}`); }
-        return result;
-      });
-      queue = turn.catch(() => {});
-      return turn;
+    maxRefusals, gapMs, lanes: all.length,
+    run: (call) => all[0].run(call),
+    lane(i) {
+      if (!all[i]) throw new Error(`no lane ${i}: the gate has ${all.length}`);
+      return all[i];
     },
   };
   return state;

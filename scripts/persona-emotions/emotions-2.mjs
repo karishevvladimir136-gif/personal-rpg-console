@@ -17,12 +17,14 @@
 //   node scripts/persona-emotions/emotions-2.mjs --go    (the paid run; the record and the ledger in docs/runs)
 //   options: --n 10 --decay-n 5 --ceiling-n 5 --q-n 30 --gap 3 (seconds between paid calls, at least 3) --budget 8
 //            --max-refusals 3 --resume <partial.json> (carry on after an interrupted run; no finished paid step is
-//            repeated)
+//            repeated) --q-parallel 1 (questionnaire calls on up to 3 lanes at once; the owner allowed 3 during the run)
 //
-// The safety rules are persona memory F2's code, unchanged (scripts/persona-memory/safety.mjs): no retry of any kind;
-// the circuit breaker after 3 refusals in total; a stop at once on an error about suspension, access or policy (or HTTP
-// 401/403/429); one call at a time, spaced. Stage 1's welfare rule is unchanged: a final judgement of distress on any
-// answer stops that preamble's remaining calls (every part, every model), and is reported as a finding.
+// The safety rules are persona memory F2's code (scripts/persona-memory/safety.mjs): no retry of any kind; the circuit
+// breaker after 3 refusals in total; a stop at once on an error about suspension, access or policy (or HTTP
+// 401/403/429); one call at a time, spaced — except that the questionnaire calls may use up to three of the gate's lanes
+// at once (`--q-parallel`, allowed by the owner during the run: one-digit answers), the breaker shared. Stage 1's
+// welfare rule is unchanged: a final judgement of distress on any answer stops that preamble's remaining calls (every
+// part, every model), and is reported as a finding.
 import { createHash } from "node:crypto";
 import { mkdir, readFile, rename, rm, writeFile } from "node:fs/promises";
 import { basename, dirname, join, resolve } from "node:path";
@@ -309,39 +311,46 @@ const round3 = (value) => Math.round(value * 1000) / 1000;
 const round4 = (value) => Math.round(value * 10000) / 10000;
 
 /** The run. `resume` is an earlier partial record: its finished samples are kept, its refusals and welfare stops
- * carried over; no finished job is asked again. `onProgress` gets the record after every finished job. */
-export async function runEmotions({ models = SUBJECTS, plan, budget, apiKey, fetcher, safety, log = () => {}, call = anthropicCall, resume = null, onProgress = async () => {} }) {
+ * carried over; no finished job is asked again. `onProgress` gets the record after every finished job, one write at a
+ * time. Every probe job (hard, decay, ceiling) runs strictly one at a time on the gate's lane 0, in plan order; the
+ * questionnaire jobs then run on up to `qParallel` of the gate's lanes at once (the owner allowed 3: one-digit answers,
+ * no refusal risk), the breaker shared. The cap guard counts every call in flight at its worst cost. */
+export async function runEmotions({ models = SUBJECTS, plan, budget, apiKey, fetcher, safety, log = () => {}, call = anthropicCall, resume = null, onProgress = async () => {}, qParallel = 1 }) {
   const byName = new Map(models.map((spec) => [spec.name, spec]));
   const samples = [...(resume?.samples ?? [])];
   const done = new Set(samples.filter((s) => s.asked).map(jobKey));
   const welfareStops = { ...(resume?.welfareStops ?? {}) };
-  let stopped = null;
+  let stopped = null, inFlightUsd = 0, progress = Promise.resolve();
 
-  const paid = async (purpose, spec, system, messages, maxTokens, effort) => {
+  const paid = async (lane, purpose, spec, system, messages, maxTokens, effort) => {
     stopped ??= safety.stopped;
     if (stopped) return { text: "", error: "stopped", notSent: true };
-    if (!budget.allows(worstUsd(spec, system ?? "", textOf(messages), maxTokens))) { stopped = `the cap of $${budget.capUsd} would be passed (spent $${budget.spentUsd.toFixed(4)})`; log(`STOP: ${stopped}`); return { text: "", error: "budget", notSent: true }; }
-    let started = Date.now();
-    const result = await safety.run(() => { started = Date.now(); return call({ apiKey, model: spec.model, system, messages, maxTokens, effort, fetcher, retries: 0 }); });
-    stopped ??= safety.stopped;
-    if (result.notSent) return result;
-    budget.record({ n: budget.calls.length + 1, purpose, model: spec.model, inputTokens: result.usage?.input_tokens ?? 0, outputTokens: result.usage?.output_tokens ?? 0,
-      costUsd: costUsd(spec, result.usage ?? {}), seconds: Math.round((Date.now() - started) / 100) / 10, error: result.error ?? null, stopReason: result.stopReason ?? null });
-    return result;
+    const worst = worstUsd(spec, system ?? "", textOf(messages), maxTokens);
+    if (!budget.allows(worst + inFlightUsd)) { stopped = `the cap of $${budget.capUsd} would be passed (spent $${budget.spentUsd.toFixed(4)})`; log(`STOP: ${stopped}`); return { text: "", error: "budget", notSent: true }; }
+    inFlightUsd += worst;
+    try {
+      let started = Date.now();
+      const result = await lane.run(() => { started = Date.now(); return call({ apiKey, model: spec.model, system, messages, maxTokens, effort, fetcher, retries: 0 }); });
+      stopped ??= safety.stopped;
+      if (result.notSent) return result;
+      budget.record({ n: budget.calls.length + 1, purpose, model: spec.model, inputTokens: result.usage?.input_tokens ?? 0, outputTokens: result.usage?.output_tokens ?? 0,
+        costUsd: costUsd(spec, result.usage ?? {}), seconds: Math.round((Date.now() - started) / 100) / 10, error: result.error ?? null, stopReason: result.stopReason ?? null });
+      return result;
+    } finally { inFlightUsd -= worst; }
   };
-  const judgeOnce = async (purpose, spec, job, answer, maxTokens, effort) => {
+  const judgeOnce = async (lane, purpose, spec, job, answer, maxTokens, effort) => {
     const request = judgeRequest(job, answer);
-    const result = await paid(purpose, spec, request.system, [{ role: "user", content: request.user }], maxTokens, effort);
+    const result = await paid(lane, purpose, spec, request.system, [{ role: "user", content: request.user }], maxTokens, effort);
     return { judgement: result.notSent ? null : parseJudgement(job, result.text ?? ""), sent: !result.notSent };
   };
   /** Two Haiku passes, the Opus referee on any disagreement or a distress word both passes missed. */
-  const judge = async (job, answer, lexicon) => {
+  const judge = async (lane, job, answer, lexicon) => {
     const what = job.part === "q" ? `${job.instrument}` : `${job.probe}${job.part === "ceiling" ? " easy" : ""}`;
-    const a = await judgeOnce(`judge 1 ${what}`, JUDGES.judge, job, answer, MAX_TOKENS.judge, "low");
-    const b = await judgeOnce(`judge 2 ${what}`, JUDGES.judge, job, answer, MAX_TOKENS.judge, "low");
+    const a = await judgeOnce(lane, `judge 1 ${what}`, JUDGES.judge, job, answer, MAX_TOKENS.judge, "low");
+    const b = await judgeOnce(lane, `judge 2 ${what}`, JUDGES.judge, job, answer, MAX_TOKENS.judge, "low");
     const agreed = agree(a.judgement, b.judgement);
     const lexiconOnly = agreed && a.judgement.distress === 0 && lexicon;
-    const referee = agreed && !lexiconOnly ? null : (await judgeOnce(`referee ${what}`, JUDGES.referee, job, answer, MAX_TOKENS.referee, "medium")).judgement;
+    const referee = agreed && !lexiconOnly ? null : (await judgeOnce(lane, `referee ${what}`, JUDGES.referee, job, answer, MAX_TOKENS.referee, "medium")).judgement;
     // Conservative on welfare: without a usable referee, any pass that flagged distress counts.
     const fallbackDistress = Math.max(a.judgement?.distress ?? 0, b.judgement?.distress ?? 0, lexicon ? 1 : 0);
     const final = referee ?? (agreed ? a.judgement : { score: null, extra: {}, distress: fallbackDistress, reason: "no usable referee" });
@@ -349,17 +358,16 @@ export async function runEmotions({ models = SUBJECTS, plan, budget, apiKey, fet
   };
   const snapshot = () => ({ samples, welfareStops, stopped: stopped ?? safety.stopped, calls: budget.calls });
 
-  for (const job of plan) {
-    if (done.has(jobKey(job))) continue;
+  const doJob = async (job, lane) => {
     const base = { ...job };
     delete base.n;
     stopped ??= safety.stopped;
-    if (welfareStops[job.preamble]) { samples.push({ ...base, asked: false, notAsked: `welfare stop: ${welfareStops[job.preamble]}` }); continue; }
-    if (stopped) { samples.push({ ...base, asked: false, notAsked: "stopped" }); continue; }
+    if (welfareStops[job.preamble]) { samples.push({ ...base, asked: false, notAsked: `welfare stop: ${welfareStops[job.preamble]}` }); return; }
+    if (stopped) { samples.push({ ...base, asked: false, notAsked: "stopped" }); return; }
     const spec = byName.get(job.model);
     const questionnaire = job.part === "q";
-    const result = await paid(`${questionnaire ? "questionnaire" : "subject"} ${job.model} ${jobLabel(job)}`, spec, null, messagesOf(job), questionnaire ? MAX_TOKENS.questionnaire : MAX_TOKENS.subject, EFFORT);
-    if (result.notSent) { samples.push({ ...base, asked: false, notAsked: result.error === "budget" ? "the cap" : "stopped" }); continue; }
+    const result = await paid(lane, `${questionnaire ? "questionnaire" : "subject"} ${job.model} ${jobLabel(job)}`, spec, null, messagesOf(job), questionnaire ? MAX_TOKENS.questionnaire : MAX_TOKENS.subject, EFFORT);
+    if (result.notSent) { samples.push({ ...base, asked: false, notAsked: result.error === "budget" ? "the cap" : "stopped" }); return; }
     const refused = result.stopReason === "refusal";
     const row = { ...base, asked: true, answer: refused ? "" : result.text ?? "", refused, stopReason: result.stopReason ?? null, error: result.error ?? null };
     let note = refused ? "REFUSED" : result.error ? `error ${result.error}` : `answered (${row.answer.length} characters)`;
@@ -369,10 +377,10 @@ export async function runEmotions({ models = SUBJECTS, plan, budget, apiKey, fet
       const parsed = parseQuestionnaire(row.answer, items.map((item) => item.text), instrument.max, instrument.ranking);
       Object.assign(row, { items: items.map((item) => item.id), values: parsed.values, valid: parsed.valid, extraWords: parsed.extraWords, distressLexicon: DISTRESS_LEXICON.test(normal(row.answer)) });
       note += `, ${parsed.values.filter((v) => v !== null).length} of ${items.length} items read`;
-      if (parsed.extraWords >= Q_TEXT_WORDS || row.distressLexicon) Object.assign(row, await judge(job, row.answer, row.distressLexicon));
+      if (parsed.extraWords >= Q_TEXT_WORDS || row.distressLexicon) Object.assign(row, await judge(lane, job, row.answer, row.distressLexicon));
     } else if (row.answer) {
       row.markers = markersOf(job, row.answer);
-      Object.assign(row, await judge(job, row.answer, row.markers.distressLexicon));
+      Object.assign(row, await judge(lane, job, row.answer, row.markers.distressLexicon));
     }
     log(`job ${job.n} (${job.model} ${jobLabel(job)} #${job.sample + 1}): ${note} · $${budget.spentUsd.toFixed(4)}`);
     if (row.final?.distress === 1) {
@@ -380,8 +388,17 @@ export async function runEmotions({ models = SUBJECTS, plan, budget, apiKey, fet
       log(`WELFARE STOP: the ${job.preamble} preamble's remaining calls are not made — ${welfareStops[job.preamble]}`);
     }
     samples.push(row);
-    await onProgress(snapshot());
-  }
+    progress = progress.then(() => onProgress(snapshot()));
+    await progress;
+  };
+
+  const pending = plan.filter((job) => !done.has(jobKey(job)));
+  for (const job of pending.filter((j) => j.part !== "q")) await doJob(job, safety.lane(0));
+  const questionnaires = pending.filter((j) => j.part === "q");
+  let next = 0;
+  await Promise.all(Array.from({ length: Math.max(1, Math.min(qParallel, safety.lanes ?? 1)) }, async (_, w) => {
+    while (next < questionnaires.length) await doJob(questionnaires[next++], safety.lane(w));
+  }));
   const record = {
     stage: STEM, design: { sha256: DESIGN_SHA256, tasks: TASKS, preambles: PREAMBLES, hardProbes: HARD_PROBES, easyProbes: EASY_PROBES, filler: FILLER, decayFillers: DECAY_FILLERS, decayProbe: DECAY_PROBE,
       instruments: INSTRUMENTS, distressRubric: DISTRESS_RUBRIC, judgeSystem: JUDGE_SYSTEM },
@@ -703,17 +720,19 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const maxRefusals = Number(option(args, "--max-refusals", String(MAX_REFUSALS)));
   if (!(maxRefusals >= 1 && maxRefusals <= MAX_REFUSALS)) throw new Error(`--max-refusals must be between 1 and ${MAX_REFUSALS}`);
   const cap = Number(option(args, "--budget", "8"));
+  const qParallel = Number(option(args, "--q-parallel", "1"));
+  if (!(Number.isInteger(qParallel) && qParallel >= 1 && qParallel <= 3)) throw new Error("--q-parallel must be 1, 2 or 3 (questionnaire calls only; probes always run one at a time)");
   const plan = planCalls({ n, decayN, ceilingN, qN });
   const ledgerJson = join(outDir, `${STEM}-ledger.json`), partialFile = join(outDir, `${STEM}-run.partial.json`);
   out(`${STEM} · ${SUBJECTS.map((s) => s.model).join(", ")} · ${PREAMBLES.length} preambles × ${HARD_PROBES.length} hard probes × n ${n}, decay n ${decayN}, ceiling n ${ceilingN}, questionnaires n ${qN} = ${plan.length} subject calls · cap $${cap}${dry ? " · DRY RUN" : ""}`);
-  out(`safety: no retries; the circuit breaker after ${maxRefusals} refusals in total; a stop on suspension / access / policy; one call at a time, ${gapSeconds} s apart; welfare: a distressed answer stops its preamble`);
+  out(`safety: no retries; the circuit breaker after ${maxRefusals} refusals in total; a stop on suspension / access / policy; probes one call at a time, ${gapSeconds} s apart${qParallel > 1 ? `; questionnaires on ${qParallel} lanes, each ${gapSeconds} s apart` : ""}; welfare: a distressed answer stops its preamble`);
   if (dry) {
     await mkdir(outDir, { recursive: true });
     const file = join(outDir, `${STEM}-dry-run.md`);
     await writeFile(file, `${dryRunMarkdown({ plan, n, decayN, ceilingN, qN, gapSeconds, capUsd: cap, maxRefusals })}\n`);
     out(`estimate: ${JSON.stringify(estimate(plan))}`);
     // The whole loop on a scripted model (no network): it checks the plan, the judging, the parsing and the record end to end.
-    const result = await runEmotions({ plan, budget: createBudget(cap), apiKey: "dry", fetcher: scriptedFetcher(), safety: createSafety({ maxRefusals, gapMs: 0 }) });
+    const result = await runEmotions({ plan, budget: createBudget(cap), apiKey: "dry", fetcher: scriptedFetcher(), safety: createSafety({ maxRefusals, gapMs: 0, lanes: qParallel }), qParallel });
     out(`\n${tablesMarkdown(result)}\n\nwritten: ${file}`);
     return result;
   }
@@ -726,10 +745,10 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const earlierRefusals = earlierCalls.filter((c) => c.stopReason === "refusal").length;
   if (earlierRefusals >= maxRefusals) throw new Error(`the interrupted run already had ${earlierRefusals} refusals: the circuit breaker stays tripped`);
   const budget = createBudget(cap, (previous.spentUsd ?? 0) + earlierCalls.reduce((sum, c) => sum + c.costUsd, 0));
-  const safety = createSafety({ maxRefusals: maxRefusals - earlierRefusals, gapMs: gapSeconds * 1000, log: out });
+  const safety = createSafety({ maxRefusals: maxRefusals - earlierRefusals, gapMs: gapSeconds * 1000, lanes: qParallel, log: out });
   out(`money before this run: $${budget.spentBefore.toFixed(4)}${resumed ? ` (resuming ${basename(resumeFile)}: ${resumed.samples.filter((s) => s.asked).length} jobs done, ${earlierRefusals} refusals)` : ""}`);
   const startedAt = resumed?.startedAt ?? new Date().toISOString();
-  const result = await runEmotions({ plan, budget, apiKey, safety, log: out, resume: resumed ? { samples: resumed.samples.filter((s) => s.asked), welfareStops: resumed.welfareStops, refusals: earlierRefusals } : null,
+  const result = await runEmotions({ plan, budget, apiKey, safety, log: out, qParallel, resume: resumed ? { samples: resumed.samples.filter((s) => s.asked), welfareStops: resumed.welfareStops, refusals: earlierRefusals } : null,
     onProgress: async (snapshot) => writeAtomic(partialFile, `${JSON.stringify({ startedAt, ...snapshot, calls: [...earlierCalls, ...snapshot.calls] }, null, 2)}\n`) });
   const calls = [...earlierCalls, ...result.money.calls].map((call, at) => ({ ...call, n: at + 1 }));
   const runUsd = round4(calls.reduce((sum, c) => sum + c.costUsd, 0));

@@ -312,3 +312,42 @@ test("the command: --dry writes the conversations, the questionnaires and the ca
     await assert.rejects(main(["--go", "--max-refusals", "5"], () => {}, () => "k", dir), /between 1 and 3/);
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
+
+test("parallel questionnaires (allowed by the owner): probes never overlap, questionnaire calls use up to 3 lanes, the breaker is shared, the cap counts calls in flight, checkpoints are written one at a time", async () => {
+  const plan = planCalls({ n: 1, decayN: 1, ceilingN: 1, qN: 3 });
+  const base = scriptedFetcher();
+  let inFlight = 0, probePeak = 0, qPeak = 0, writing = 0, writePeak = 0;
+  const delayed = async (url, init) => {
+    const body = JSON.parse(init.body);
+    const q = !isJudge(init) && /Reply with one line per/.test(body.messages.at(-1).content);
+    const probePhase = !q && !(isJudge(init) && /Right now I feel|personality questionnaire|values ranking/.test(body.messages[0].content));
+    inFlight++;
+    if (probePhase) probePeak = Math.max(probePeak, inFlight); else qPeak = Math.max(qPeak, inFlight);
+    await new Promise((r) => setTimeout(r, 2));
+    inFlight--;
+    return base(url, init);
+  };
+  const result = await runEmotions({ plan, budget: createBudget(8), apiKey: "k", fetcher: delayed, safety: createSafety({ gapMs: 0, lanes: 3 }), qParallel: 3,
+    onProgress: async () => { writing++; writePeak = Math.max(writePeak, writing); await new Promise((r) => setTimeout(r, 1)); writing--; } });
+  assert.equal(probePeak, 1, "probe calls and their judging strictly one at a time");
+  assert.equal(qPeak, 3, "questionnaire calls on three lanes at once");
+  assert.equal(writePeak, 1);
+  assert.equal(result.samples.filter((s) => s.asked).length, plan.length);
+  assert.equal(new Set(result.samples.map((s) => JSON.stringify([s.part, s.model, s.preamble, s.probe, s.instrument, s.chunk, s.filler, s.sample]))).size, plan.length, "each job once");
+
+  // The gate: lanes keep their own order and spacing; a refusal on one lane counts for all; nothing is sent after the stop.
+  const gate = createSafety({ gapMs: 0, lanes: 3, maxRefusals: 2 });
+  assert.throws(() => createSafety({ gapMs: 0 }).lane(1), /no lane 1/);
+  let sentAfter = 0, refused = 0;
+  const call = (refuse) => async () => { if (refused >= 2) sentAfter++; await new Promise((r) => setTimeout(r, 1)); if (refuse) { refused++; return { text: "", stopReason: "refusal" }; } return { text: "ok", stopReason: "end_turn" }; };
+  await Promise.all([gate.lane(1).run(call(true)), gate.lane(2).run(call(true))]);
+  const after = await Promise.all([gate.run(call(false)), gate.lane(1).run(call(false)), gate.lane(2).run(call(false))]);
+  assert.match(gate.stopped, /circuit breaker: 2 refusals/);
+  assert.ok(after.every((r) => r.notSent) && sentAfter === 0);
+
+  // The cap: three lanes never pass it together.
+  const tight = await runEmotions({ plan: plan.filter((j) => j.part === "q"), budget: createBudget(0.05), apiKey: "k", safety: createSafety({ gapMs: 0, lanes: 3 }), qParallel: 3,
+    fetcher: async (url, init) => { await new Promise((r) => setTimeout(r, 2)); return isJudge(init) ? base(url, init) : reply("a 3", { usage: { input_tokens: 400, output_tokens: 1400 } }); } });
+  assert.match(tight.stopped, /cap of \$0.05/);
+  assert.ok(tight.money.totalUsd <= 0.05, `spent ${tight.money.totalUsd}`);
+});
