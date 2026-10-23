@@ -194,7 +194,9 @@ test("the screen: the told turn inside the turn, the action box grows, the owner
   assert.doesNotMatch(game, /<details className=\{g\.more\} open=/, "item 57: the editor opens only when the owner opens it");
   assert.match(game, /<details className=\{g\.transcript\}>/, "the session transcript folds inside the editor");
   assert.match(game, /companionRolls=\{companionRolls\}/);
-  assert.match(game, /filter\(\(change\) => change\.name !== "roll"\)/, "the rolls are not repeated in the folded changes");
+  // Fix S3-accept Б4: the folded changes moved, unchanged, into the piece «Игра» shares with the 2D scene.
+  assert.match(game, /useTurnAftermath\(/);
+  assert.match(src("src/components/registry/turn-aftermath.tsx"), /filter\(\(change\) => change\.name !== "roll"\)/, "the rolls are not repeated in the folded changes");
   const composer = src("src/components/gameplay-composer.tsx");
   assert.match(composer, /rows=\{mode === "feedback" \? 5 : 4\}/, "item 42: four lines to start");
   assert.match(composer, /window\.innerHeight \/ 2/, "it grows to about half the screen, then scrolls (fix-s3-pre A-42)");

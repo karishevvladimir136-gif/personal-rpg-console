@@ -325,7 +325,7 @@
 .sceneFrameOpen { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
 .sceneFrameOpen img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
 .sceneFrameDrawing { display: grid; place-items: center; aspect-ratio: 16 / 10; padding: 8px; color: var(--muted); font-size: 13px; text-align: center; }
-.sceneFrame figcaption { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 2px 4px 2px 8px; color: #cbbf9f; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.sceneFrame figcaption { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 2px 4px 2px 8px; color: #cbbf9f; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
 .sceneFrame figcaption button { display: grid; place-items: center; width: 32px; height: 32px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
 .sceneFrame figcaption button:hover { color: var(--text); }
 /* Fix S3-accept Б3: what did not match the records, under «Ещё». */
