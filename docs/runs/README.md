@@ -10,6 +10,7 @@ From Stage 4 on, no paid run is thrown away. Every live bench run, probe and bli
 | `probe-depth-<time>.jsonl` | `node scripts/eval/probe-depth.mjs` | one request per effort step: cache read/write tokens, first word, cost (Stage 4 §7: does an effort change keep the cache) |
 | `probe-<time>.jsonl` | `node scripts/eval/probe-models.mjs` | the per-effort speed probe (first word, turn time, cost, cache share) |
 
+| `persona-memory-1-continuity-<time>.json`, `persona-memory-1-ledger.json` / `.md` | `node scripts/persona-memory/continuity-test.mjs` | persona memory 1, Part D: the three-arm continuity test on the synthetic case — every persona answer per arm and probe, both blind judge passes, the referee's score, the table, every paid call |
 | `music-review/*.json`, `music-ledger.json` / `.md`, `music-session-log.md` | `node scripts/music-bench.mjs compare|pack`, `node scripts/music-session-log.mjs` | the music stage: every fal music request (prompt, model, seed, price, time, the measured length, loudness and seam), the review MP3s in `music-review/`, the ledger of every paid call, the 20-turn mood log |
 
 `node scripts/eval/recompute.mjs docs/runs/<file>.jsonl` prints the run's report again and recomputes the resistance

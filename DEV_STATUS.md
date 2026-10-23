@@ -1,5 +1,36 @@
 # Development status
 
+**Current milestone: persona memory 1** (`docs/stages/PERSONA_MEMORY_1.md` on `claude/handoff`) — a memory connector
+for the planner persona, beside the RPG. **Implementation done on `claude/persona-memory-1`** (from `claude/s3-candidate`),
+**waiting for the owner's acceptance and his choice of hosting.** Owner's guide `docs/PERSONA_MEMORY.md`; report
+`docs/runs/persona-memory-1-report.md`; ledger `docs/runs/persona-memory-1-ledger.md`. The session 3 candidate below is
+unchanged by this stage.
+
+- **What was done:** Part A — `src/lib/persona-memory/` (pure TypeScript): episodes with validity windows and dated
+  notes (originals immutable), the self-dossier as its own store, facts closed forward, explicit folds that keep the
+  originals; provenance (author, tag) required on every line; hybrid recall (cues, words with Russian endings, a local
+  embedding or an optional provider one, salience; periods in the query; `asOf`); markdown export; a files backend and a
+  Postgres backend (new schema `persona_memory`, migration `202610230101`, RPC `public.persona_memory`, service_role
+  only). Part B — `scripts/persona-memory/server.mjs` on the MCP SDK 1.32.1: eight tools over stdio and stateless
+  Streamable HTTP with a bearer token (refuses to start without one; never logged). Part C — the import of the exported
+  Project memory (dry run by default, re-runnable), tested on a synthetic fixture only. Part D — the three-arm continuity
+  test with a sham control and a blind Haiku judge (Opus on disagreements).
+- **Key decisions:** the official MCP SDK (stateless HTTP, JSON responses); a local hashed embedding by default so the
+  store runs offline and free; the model can never write as the owner; an unattributed quote is never `stated`; the
+  judge gets the case's reference record (the first values rubric lacked it and scored the record's own events as
+  invented — re-judged, both kept).
+- **Continuity test (synthetic, n 10, Opus 5.5 medium):** open thread journal 2.0 · summary 2.0 · none 0 · sham 0; resisted
+  pull 2.0 · 2.0 · 1.63 · 1.4; values 9.8 · 9.9 · 3.3 · 0.5 (of 10). The content carries continuity, not a journal's mood;
+  first vs third person indistinguishable on this (easy) case.
+- **Checks:** see the report's «Checks» (a clean worktree without `.env.local`). Baseline before the stage (`b7064a5`):
+  2 837 tests · 2 810 pass · 0 fail · 27 skipped; typecheck and lint pass.
+- **Money:** $2.08 of the $10 cap (pilot $0.15, the run $1.73, the re-judge $0.20).
+- **Known issues:** the local similarity is lexical; the files backend is atomic per file only; the import parser is a
+  heuristic (dry run first); claude.ai's «Request headers» for custom connectors is a beta (the fallback puts the token in
+  the URL); 7 provider refusals on the no-memory arm's backup probe.
+- **Next step:** the owner accepts the stage, chooses the hosting (VPS, Fly.io or a tunnel), runs the import's dry run on
+  his export.
+
 **Current milestone: the fixes before session 3** (`docs/stages/FIX_S3_PRE.md` on `claude/handoff`) — **implementation
 done on `claude/s3-candidate`, waiting for the owner's acceptance** (`docs/runs/s3-acceptance.md`, the three Russian
 checklists, updated where a path changed) **and the sandbox load** (`docs/SANDBOX_LOAD_FIX_S2.md`, now four migration

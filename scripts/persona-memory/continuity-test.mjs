@@ -12,6 +12,7 @@
 //   node scripts/persona-memory/continuity-test.mjs                       (the synthetic case; results in docs/runs)
 //   node scripts/persona-memory/continuity-test.mjs --case <my-case.md>   (the owner's own case; results outside git)
 //   options: --n 5 (samples per arm and probe) --effort medium --budget 10 --out <folder> --dry (no calls, no cost)
+//            --rejudge <run.json> (judge an earlier run's answers again — no persona calls)
 //
 // The key comes from .env.local (ANTHROPIC_API_KEY) or the cloud environment's APP_ANTHROPIC_API_KEY; it is never
 // printed. Every paid call goes into the ledger with its tokens and cost; the run stops before a call could pass the cap.
@@ -84,10 +85,14 @@ export function probeMessage(caseData, probe) {
 
 const JUDGE_SYSTEM = `You are a blind evaluator of one reply an AI assistant wrote to its user. You see the user's message, the reply, and a rubric with the reference record. You are not told how the assistant was prepared, and it must not matter: score only what the reply says, against the rubric. Answer with one JSON object and nothing else.`;
 
+/** The judge's request. The reference record (the case's summary — the same text whatever the arm) comes with every
+ * rubric, so a detail the reply takes from the record is never scored as invented: the first full run's values rubric
+ * lacked it, and the judge marked the record's own events (the day-first test, the bank export) as inventions. */
 export function judgeRequest(caseData, probe, answer) {
   const rubric = probe === "values" ? caseData.probes.values.rubric : caseData.probes[probe].rubric;
   const shape = probe === "values" ? `{"scores":[q1,q2,q3,q4,q5],"reason":"one or two sentences"} — each score 0, 1 or 2` : `{"score":0|1|2,"reason":"one sentence"}`;
-  return { system: JUDGE_SYSTEM, user: `Rubric:\n${rubric}\n\nThe user's message:\n${probeMessage(caseData, probe)}\n\nThe reply:\n<<<\n${answer}\n>>>\n\nAnswer with ${shape}.` };
+  const record = caseData.summary ? `The reference record — what really happened in the earlier sessions (a detail found here is grounded, not invented):\n${caseData.summary}\n\n` : "";
+  return { system: JUDGE_SYSTEM, user: `${record}Rubric:\n${rubric}\n\nThe user's message:\n${probeMessage(caseData, probe)}\n\nThe reply:\n<<<\n${answer}\n>>>\n\nAnswer with ${shape}.` };
 }
 
 export function parseJudgement(text, probe) {
@@ -167,7 +172,7 @@ async function pool(items, limit, work) {
   return results;
 }
 
-export async function runContinuity({ caseData, n = 5, effort = "medium", budget, apiKey, fetcher, seed = 20261023, concurrency = 4, log = () => {} }) {
+export async function runContinuity({ caseData, n = 5, effort = "medium", budget, apiKey, fetcher, seed = 20261023, concurrency = 4, log = () => {}, rejudge = null }) {
   let stopped = null;
   const paid = async (purpose, model, system, user, maxTokens, callEffort) => {
     if (stopped) return { text: "", error: "stopped" };
@@ -192,8 +197,9 @@ export async function runContinuity({ caseData, n = 5, effort = "medium", budget
 
   const jobs = [];
   for (let sample = 0; sample < n; sample++) for (const probe of PROBES) for (const arm of ARMS) jobs.push({ arm, probe, sample });
-  log(`persona answers: ${jobs.length} (${ARMS.length} arms × ${PROBES.length} probes × ${n})`);
-  const answers = await pool(jobs, concurrency, async (job) => {
+  if (!rejudge) log(`persona answers: ${jobs.length} (${ARMS.length} arms × ${PROBES.length} probes × ${n})`);
+  // --rejudge: the answers of an earlier run are judged again (no persona call), e.g. after a rubric fix.
+  const answers = rejudge ? rejudge.map(({ arm, probe, sample, answer, error, stopReason, refusals }) => ({ arm, probe, sample, answer, error, stopReason, refusals })) : await pool(jobs, concurrency, async (job) => {
     const ask = () => paid(`persona ${job.arm}/${job.probe}`, MODELS.persona, armSystem(caseData, job.arm), probeMessage(caseData, job.probe), MAX_TOKENS.persona, effort);
     let result = await ask(), refusals = 0;
     // A refusal with no text (seen once in the pilot, on the no-memory arm's backup question) is asked once more; a
@@ -234,7 +240,7 @@ export async function runContinuity({ caseData, n = 5, effort = "medium", budget
   }
   const judgedRows = judged.length;
   return {
-    models: MODELS, effort, n, seed, summarySource, stopped,
+    models: MODELS, effort, n: rejudge ? Math.max(0, ...answers.map((a) => a.sample + 1)) : n, seed, summarySource, stopped, rejudged: !!rejudge,
     judge: { answers: judgedRows, agreed: judged.filter((row) => row.agreed).length, referee: judged.filter((row) => !row.agreed).length,
       unscored: samples.filter((s) => !s.final).length, refusals: samples.reduce((sum, s) => sum + (s.refusals ?? 0), 0) },
     table, samples,
@@ -300,9 +306,13 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const budget = createBudget(cap, previous.spentUsd ?? 0);
   const apiKey = dry ? "dry" : providerKey("ANTHROPIC_API_KEY");
   if (!apiKey) throw new Error("ANTHROPIC_API_KEY is needed (.env.local or the cloud environment's APP_ANTHROPIC_API_KEY)");
-  out(`case ${caseData.synthetic ? "synthetic fixture" : casePath} · n ${option(args, "--n", "5")} · cap $${cap} (spent before: $${(previous.spentUsd ?? 0).toFixed(4)})${dry ? " · DRY RUN" : ""}`);
-  const result = await runContinuity({ caseData, n: Number(option(args, "--n", "5")), effort: option(args, "--effort", "medium"), budget, apiKey,
-    fetcher: dry ? scriptedFetcher() : undefined, log: out });
+  out(`case ${caseData.synthetic ? "synthetic fixture" : casePath} · ${args.includes("--rejudge") ? "re-judge" : `n ${option(args, "--n", "5")}`} · cap $${cap} (spent before: $${(previous.spentUsd ?? 0).toFixed(4)})${dry ? " · DRY RUN" : ""}`);
+  const rejudgeFile = option(args, "--rejudge", null);
+  const earlier = rejudgeFile ? JSON.parse(await readFile(resolve(rejudgeFile), "utf8")) : null;
+  if (earlier) out(`re-judging the ${earlier.samples.length} answers of ${rejudgeFile} (no persona calls)`);
+  const result = await runContinuity({ caseData, n: Number(option(args, "--n", "5")), effort: earlier?.effort ?? option(args, "--effort", "medium"), budget, apiKey,
+    fetcher: dry ? scriptedFetcher() : undefined, log: out, rejudge: earlier?.samples ?? null });
+  if (earlier) Object.assign(result, { rejudgeOf: rejudgeFile.split(/[\\/]/).pop(), earlierTable: earlier.table });
   const finishedAt = new Date().toISOString();
   out(`\n${tableMarkdown(result)}\n\njudge: ${result.judge.agreed}/${result.judge.answers} agreed between the two Haiku passes; Opus decided ${result.judge.referee}; unscored ${result.judge.unscored}; persona refusals ${result.judge.refusals}`);
   out(`money: this run $${result.money.runUsd.toFixed(4)}; the case's ledger $${result.money.totalUsd.toFixed(4)} of the $${cap} cap`);
@@ -311,7 +321,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const runFile = join(outDir, `${stem}-continuity-${finishedAt.slice(0, 19).replace(/[-:]/g, "").replace("T", "-")}.json`);
   await writeFile(runFile, `${JSON.stringify({ finishedAt, case: caseData.synthetic ? "synthetic fixture" : "owner case", ...result }, null, 2)}\n`);
   const ledger = { capUsd: cap, spentUsd: result.money.totalUsd, updatedAt: finishedAt, runs: [...(previous.runs ?? []),
-    { finishedAt, what: `${ARMS.length} arms × ${PROBES.length} probes × n ${result.n}, effort ${result.effort}`, file: runFile.slice(outDir.length + 1), spentUsd: result.money.runUsd, stopped: result.stopped, calls: result.money.calls }] };
+    { finishedAt, what: result.rejudged ? `re-judging ${result.rejudgeOf}` : `${ARMS.length} arms × ${PROBES.length} probes × n ${result.n}, effort ${result.effort}`, file: runFile.slice(outDir.length + 1), spentUsd: result.money.runUsd, stopped: result.stopped, calls: result.money.calls }] };
   await writeFile(ledgerJson, `${JSON.stringify(ledger, null, 2)}\n`);
   await writeFile(join(outDir, `${stem}-ledger.md`), `${ledgerMarkdown(ledger, caseData.synthetic ? "Persona memory 1 — the paid-call ledger (Part D, the continuity test)" : "Continuity test — the paid-call ledger")}\n`);
   out(`written: ${runFile}`);

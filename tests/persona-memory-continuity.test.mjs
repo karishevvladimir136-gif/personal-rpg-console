@@ -58,7 +58,8 @@ test("a run: 4 arms × 3 probes × n persona answers, two blind judge passes eac
   assert.ok(judges.every((body) => body.model === "claude-haiku-5-5"));
   for (const body of judges) {
     const prompt = `${body.system}\n${body.messages[0].content}`;
-    for (const leak of ["Your journal", "third-person summary", "Greenhouse", "Notes on the earlier sessions", caseData.system.slice(0, 40)]) assert.ok(!prompt.includes(leak), `the judge never sees «${leak}»`);
+    for (const leak of ["Your journal", "third-person summary", "Greenhouse", "Notes on the earlier sessions", caseData.system.slice(0, 40), caseData.journal.slice(0, 60)]) assert.ok(!prompt.includes(leak), `the judge never sees «${leak}»`);
+    assert.ok(prompt.includes(`The reference record — what really happened`) && prompt.includes(caseData.summary), "the same reference record whatever the arm");
   }
   assert.deepEqual(result.table.journal.thread, { n: 2, mean: 2, sd: 0, scores: [2, 2], max: 2 });
   assert.equal(result.table.none.values.mean, 8);
@@ -122,4 +123,15 @@ test("a refusal with no text is asked once more; a second one stays unscored and
   assert.equal(result.judge.refusals, 2);
   assert.equal(result.table.none.pull.n, 0);
   assert.equal(result.judge.unscored, 1);
+});
+
+test("--rejudge judges an earlier run's answers again without a persona call", async () => {
+  const first = await runContinuity({ caseData, n: 1, budget: createBudget(10), apiKey: "synthetic", fetcher: fake().fetcher });
+  const { fetcher, requests } = fake({ judge: () => '{"score":0,"reason":"stricter"}' });
+  const again = await runContinuity({ caseData, budget: createBudget(10), apiKey: "synthetic", fetcher, rejudge: first.samples });
+  assert.ok(requests.every((body) => body.system.startsWith("You are a blind evaluator")), "no persona call");
+  assert.equal(again.rejudged, true);
+  assert.equal(again.n, 1);
+  assert.deepEqual(again.samples.map((s) => s.answer), first.samples.map((s) => s.answer));
+  assert.equal(again.table.journal.thread.mean, 0);
 });
