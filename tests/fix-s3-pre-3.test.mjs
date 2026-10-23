@@ -61,7 +61,7 @@ test("2.3 KF-hidden-layer: when the prep runs — never from Settings, rebuilt w
   const service = src("src/lib/server/gameplay-service.ts");
   assert.match(service, /options\.prep !== false && prepSchedulable\(campaignId\)/);
   assert.match(service, /if \(newOrdinary && input\.mode === "game"\)\s+await awaitFirstTurnPrep\(/);
-  assert.match(src("src/lib/server/dm-secrets.ts"), /if \(v\.body\.trim\(\) && v\.body\.trim\(\) !== \(was \?\? ""\)\.trim\(\)\) scheduleSecretsPrep\(campaignId, user\.id\)/);
+  assert.match(src("src/lib/server/dm-secrets.ts"), /if \(v\.rebuild !== false && v\.body\.trim\(\) && v\.body\.trim\(\) !== \(was \?\? ""\)\.trim\(\)\) scheduleSecretsPrep\(campaignId, user\.id\)/);
   assert.match(src("src/lib/server/hidden-layer-prep.ts"), /if \(hiddenLayerOf\(source\) && reason !== "secrets"\)/, "a rebuild runs although a layer exists");
 });
 

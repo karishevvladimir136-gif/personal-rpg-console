@@ -175,7 +175,7 @@ export type RuntimeSource = {
   /** Fix run (migration 73): the campaign's DM options as stored (parse with parseDmOptions). */
   dmOptions?: import("./contracts.ts").JsonObject;
   /** Fix run B1 (migration 74): the owner's «Тайны (видит только ведущий)» of the campaign and of its world — DM-only. */
-  dmSecrets?: { campaign: string; world: string };
+  dmSecrets?: { campaign: string; world: string; /** Fix S3-accept Ж1 (migration 202610230551): «Пожелания к приключению». */ wishes?: string };
   /** Voice stage part 5: the quotable-line check's newest flags (the line, why); quoted in the
    * next turn's tail only when they belong to the last committed turn. */
   voiceFlags?: { operationId: string; flags: { line: string; why: string }[] } | null;

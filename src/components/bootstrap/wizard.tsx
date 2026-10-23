@@ -22,6 +22,7 @@ import { effortLabel } from "../../lib/ui/effort";
 import { WorldPicker } from "../adventures/worlds";
 import { adventureText } from "../adventures/text";
 import { Plate, Segmented, registry as r } from "../registry/primitives";
+import { OWNER_WISHES_MAX_CHARS } from "../registry/owner-secrets";
 import { HeroStep, type HeroCreated } from "./hero-step";
 import { OpeningBootstrap } from "./opening";
 import lib from "../registry/library.module.css";
@@ -161,12 +162,14 @@ export function CampaignWizard({ language, worlds, onClose, onCreated, preview, 
             </div>
           )}
           {step === 2 && (
-            <AdventureStep language={language} initial={adventureDraft ?? (preview?.adventure ? { ...preview.adventure, pace: "evening", custom: "" } : null)} busy={busy} hasPrepared={!!adventureId}
+            <AdventureStep language={language} initial={adventureDraft ?? (preview?.adventure ? { ...preview.adventure, pace: "evening", custom: "", wishes: "" } : null)} busy={busy} hasPrepared={!!adventureId}
               onSave={async (setup, draft) => {
                 setAdventureDraft(draft);
                 if (preview || !campaignId) { setStep(3); return; }
                 setBusy(true); setError(null);
                 try {
+                  // Fix S3-accept Ж1: the wishes go to the owner-only store (no rebuild: the campaign's first prep reads them).
+                  if (draft.wishes.trim()) await saveWishes(campaignId, draft.wishes);
                   const current = await readCatalog();
                   const prepared = adventureId ? current.adventures.find((row) => row.id === adventureId && row.status === "prepared") : null;
                   // Back after a reload with empty fields: the saved adventure stays as it is.
@@ -295,8 +298,16 @@ function readProgressTitle(): string {
   return readProgress()?.worldTitle || "—";
 }
 
+/** Fix S3-accept Ж1: «Пожелания к приключению» to the owner-only store (the settings screen's route); `rebuild: false` —
+ * a campaign still in the wizard has no opening yet, and its first hidden-layer prep reads them. */
+async function saveWishes(campaignId: string, body: string) {
+  await readJson(`/api/campaigns/${encodeURIComponent(campaignId)}/dm-secrets`, { method: "PUT", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ scope: "wishes", body: body.trim(), rebuild: false }) });
+}
+
 const PACES: AdventurePacing["kind"][] = ["quick", "evening", "mini_arc", "open", "custom"];
-type AdventureDraft = { title: string; premise: string; companions: string; pace: AdventurePacing["kind"]; custom: string };
+// Fix S3-accept Ж1: `wishes` — «Пожелания к приключению», owner-only; saved to the DM-only store, never into the adventure.
+type AdventureDraft = { title: string; premise: string; companions: string; pace: AdventurePacing["kind"]; custom: string; wishes: string };
 function AdventureStep({ language, initial, busy, hasPrepared, onSave }: {
   language: Lang; initial: AdventureDraft | null; busy: boolean; hasPrepared: boolean;
   onSave: (setup: { title: string; premise: string; pacing: AdventurePacing }, draft: AdventureDraft) => Promise<void>;
@@ -308,6 +319,7 @@ function AdventureStep({ language, initial, busy, hasPrepared, onSave }: {
   const [companions, setCompanions] = useState(initial?.companions ?? "");
   const [pace, setPace] = useState<AdventurePacing["kind"]>(initial?.pace ?? "evening");
   const [custom, setCustom] = useState(initial?.custom ?? "");
+  const [wishes, setWishes] = useState(initial?.wishes ?? "");
   const paceLabel = (kind: AdventurePacing["kind"]) => ({ quick: t.quick, evening: t.evening, mini_arc: t.mini, open: t.open, custom: t.custom }[kind]);
   return (
     <form className={w.stack} onSubmit={(event) => {
@@ -316,7 +328,7 @@ function AdventureStep({ language, initial, busy, hasPrepared, onSave }: {
       // A custom pace needs its words; without them the adventure is open-ended.
       const pacing: AdventurePacing = pace === "custom" ? (custom.trim() ? { kind: "custom", custom: custom.trim() } : { kind: "open", custom: null }) : { kind: pace, custom: null };
       void onSave({ title: title.trim() || (ru ? "Первое приключение" : "First adventure"), premise: text.slice(0, 20000), pacing },
-        { title, premise, companions, pace, custom });
+        { title, premise, companions, pace, custom, wishes });
     }}>
       <h2 className={r.h2}>{ru ? "Во что играем?" : "What do we play?"}</h2>
       <label className={w.field}><span>{ru ? "Название приключения" : "Adventure title"}</span>
@@ -326,6 +338,10 @@ function AdventureStep({ language, initial, busy, hasPrepared, onSave }: {
           placeholder={ru ? "Завязка своими словами: где начинаем, какое дело, чего хочется — сколько угодно подробностей. Пусто — ведущий выберет начало сам."
             : "The set-up in your own words: where we start, what the job is, what you want — any detail. Empty — the DM picks the start."} /></label>
       <p className={w.help}>{ru ? "Весь этот текст ведущий видит в каждом ходе, пока идёт приключение." : "The DM sees all of this text on every turn while the adventure is active."}</p>
+      <label className={w.field}><span>{ru ? "Пожелания к приключению (видит только ведущий)" : "Wishes for the adventure (the DM only)"}</span>
+        <textarea rows={4} style={{ minHeight: 110 }} maxLength={OWNER_WISHES_MAX_CHARS} value={wishes} onChange={(event) => setWishes(event.target.value)}
+          placeholder={ru ? "Жанр, тон, что должно случиться — пожелание, не сама правда. Игрок этого не увидит; ведущий строит на этом тайный слой."
+            : "Genre, tone, what should happen — a wish, not the truth itself. The player never sees it; the DM builds the hidden layer on it."} /></label>
       <label className={w.field}><span>{ru ? "Кто идёт с героем (по желанию)" : "Who goes with the hero (optional)"}</span>
         <textarea rows={2} maxLength={1000} value={companions} onChange={(event) => setCompanions(event.target.value)}
           placeholder={ru ? "Например: два стражника тракта — Брам, ветеран, и Лис, новобранец." : "For example: two road wardens — Bram, a veteran, and Fox, a recruit."} /></label>

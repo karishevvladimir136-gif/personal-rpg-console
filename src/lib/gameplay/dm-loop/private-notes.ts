@@ -26,6 +26,11 @@ export function ownerSecretsText(source: Pick<RuntimeSource, "dmSecrets">): stri
   return [world ? `The world's secrets:\n${world}` : "", campaign ? `This campaign's secrets:\n${campaign}` : ""].filter(Boolean).join("\n\n");
 }
 
+/** Fix S3-accept Ж1: the owner's «Пожелания к приключению» (migration 202610230551) — a wish about the adventure (genre,
+ * tone, what should happen), never the truth itself. Only the hidden-layer prep reads it; never a turn, never the player. */
+export function ownerWishesText(source: Pick<RuntimeSource, "dmSecrets">): string {
+  return source.dmSecrets?.wishes?.trim() ?? "";
+}
 
 export type NoteKind = "fact" | "clock" | "consequence";
 export type PrivateNote = { kind: NoteKind; key: string; text: string; since: number | null; until: number | null; archived: boolean };

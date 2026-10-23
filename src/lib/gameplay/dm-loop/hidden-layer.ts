@@ -10,9 +10,9 @@ import type { RuntimeSource } from "../server-contracts.ts";
 import type { DmEffort } from "../../model-runtime/dm-models.ts";
 import type { DmMessage, DmSystemBlock } from "../../server/dm/model/contracts.ts";
 import { buildDmLoopContext, estimateTokens } from "./context.ts";
-import { HIDDEN_LAYER_KEY, ownerSecretsText } from "./private-notes.ts";
+import { HIDDEN_LAYER_KEY, ownerSecretsText, ownerWishesText } from "./private-notes.ts";
 
-export { HIDDEN_LAYER_KEY, hiddenLayerOf, ownerSecretsText } from "./private-notes.ts";
+export { HIDDEN_LAYER_KEY, hiddenLayerOf, ownerSecretsText, ownerWishesText } from "./private-notes.ts";
 export const HIDDEN_LAYER_MAX_CHARS = 6000;
 
 const PREP_INSTRUCTIONS = `Your private prep before the next session. This campaign has no hidden layer yet: write it now. It is your private truth of the campaign — the player never sees it. Ground it in the world, the canon, the owner's secrets (when given: build on them, never contradict them) and everything that has happened in play (never contradict an established fact or a person's model). Answer with one JSON object and nothing else, every text in the campaign language:
@@ -26,8 +26,9 @@ const PREP_INSTRUCTIONS = `Your private prep before the next session. This campa
 }
 Two to five factions, two or three clocks (4–8 segments each). Mystery and wonder: the clues point at the truth from several sides, each answer opens a deeper question, and the wonder is magic with a past, not an unexplainable effect.`;
 
-/** Fix S3-pre (KF-hidden-layer): the owner saved «Тайны» after the layer was written — it is rebuilt on them. */
-const REBUILD_INSTRUCTIONS = `The owner has just written or changed their secrets for this campaign («Тайны»). Your hidden layer (in the private notes above) was written before them: rewrite it now so it builds on them and never contradicts them. Keep everything play has already established, and keep whatever of the current layer the story has already touched (a clue found, a faction met); change only what the owner's secrets change.`;
+/** Fix S3-pre (KF-hidden-layer): the owner saved «Тайны» after the layer was written — it is rebuilt on them (Fix S3-accept Ж1: or
+ * «Пожелания к приключению»). */
+const REBUILD_INSTRUCTIONS = `The owner has just written or changed their secrets for this campaign («Тайны») or their wishes for the adventure («Пожелания к приключению»). Your hidden layer (in the private notes above) was written before them: rewrite it now so it builds on them and never contradicts them. Keep everything play has already established, and keep whatever of the current layer the story has already touched (a clue found, a faction met); change only what the owner's secrets change, and lean toward their wishes where play leaves room.`;
 
 /** The prep request: the cached layers a turn uses (how to DM, the world, the history, the dossier) without «now»,
  * the owner's secrets, and the instructions; `rebuild` rewrites an existing layer on the owner's new «Тайны». */
@@ -37,8 +38,12 @@ export function buildPrepRequest(source: RuntimeSource, effort: DmEffort, rebuil
     input: "", companionId: null, listenerIds: [], mechanic: null };
   const context = buildDmLoopContext(source, input);
   const owner = ownerSecretsText(source);
+  // Fix S3-accept Ж1: the owner's «Пожелания к приключению» feed the prep beside «Тайны» and the world — a wish to build
+  // on (genre, tone, what should happen), not a fact; the player never sees it.
+  const wishes = ownerWishesText(source);
   const system: DmSystemBlock[] = [...context.system.slice(0, -1),
-    { text: owner ? `The owner's own secrets for this campaign (DM-only; the highest authority after the owner's corrections):\n${owner}` : "The owner wrote no secrets of his own: the hidden layer is yours.", cache: false }];
+    { text: owner ? `The owner's own secrets for this campaign (DM-only; the highest authority after the owner's corrections):\n${owner}` : "The owner wrote no secrets of his own: the hidden layer is yours.", cache: false },
+    ...(wishes ? [{ text: `The owner's wishes for this adventure («Пожелания к приключению»; DM-only): what they hope it becomes — genre, tone, what should happen. A wish to build the hidden layer toward, not an established fact; never quote it to the player:\n${wishes}`, cache: false }] : [])];
   const text = rebuild ? `${REBUILD_INSTRUCTIONS}\n\n${PREP_INSTRUCTIONS.replace("This campaign has no hidden layer yet: write it now.", "Write the whole layer again.")}` : PREP_INSTRUCTIONS;
   const messages: DmMessage[] = [{ role: "user", text }];
   return { system, messages, effort, tokens: system.reduce((sum, block) => sum + estimateTokens(block.text), 0) + estimateTokens(text) };
