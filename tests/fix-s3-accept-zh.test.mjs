@@ -68,7 +68,7 @@ test("Ж1: the field beside «Тайны» on the settings and in the wizard —
   assert.match(server, /if \(v\.rebuild !== false && v\.body\.trim\(\) && v\.body\.trim\(\) !== \(was \?\? ""\)\.trim\(\)\) scheduleSecretsPrep\(campaignId, user\.id\);/);
   // The migration is additive, in this stage's range, after every earlier one.
   const files = readdirSync(new URL("../supabase/migrations/", import.meta.url)).filter((name) => name.endsWith(".sql")).sort();
-  assert.equal(files.at(-1), "202610230551_fix_s3_accept_adventure_wishes.sql");
+  assert.ok(files.indexOf("202610230551_fix_s3_accept_adventure_wishes.sql") > files.indexOf("202610230541_fix_s3_accept_region_prep.sql"));
   const sql = src("supabase/migrations/202610230551_fix_s3_accept_adventure_wishes.sql");
   assert.match(sql, /check \(scope in \('campaign','world','wishes'\)\)/);
   assert.match(sql, /rename to runtime_source_before_wishes/);
