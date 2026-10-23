@@ -1,8 +1,8 @@
 # Persona memory 2 — report
 
-Stage: `docs/stages/PERSONA_MEMORY_2.md` (on `claude/handoff`). The stage names the branch `claude/persona-memory-2`; this
-session can push only to its own branch, **`claude/persona-memory-2-swznbx`**, from `origin/claude/persona-memory-1`
-(`5bb2ae5`). Nothing went to `main`. Synthetic content only: no owner content entered git. The owner's guide is
+Stage: `docs/stages/PERSONA_MEMORY_2.md` (on `claude/handoff`). Branch **`claude/persona-memory-2`**, from
+`origin/claude/persona-memory-1` (`5bb2ae5`); the session's own branch `claude/persona-memory-2-swznbx` carries the
+same commits. Nothing went to `main`. Synthetic content only: no owner content entered git. The owner's guide is
 `docs/PERSONA_MEMORY.md`.
 
 **Status:** Parts E, F and G are implemented and checked (see «Checks»). They still need your acceptance. Nothing was

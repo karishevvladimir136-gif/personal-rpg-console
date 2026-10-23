@@ -2,7 +2,7 @@
 
 **Current milestone: persona memory 2** (`docs/stages/PERSONA_MEMORY_2.md` on `claude/handoff`) — the clock with a
 memory, the harder continuity case, the connector's hosting prepared. **Implementation done on
-`claude/persona-memory-2-swznbx`** (the session's own branch; the stage named `claude/persona-memory-2`), from
+`claude/persona-memory-2`** (also on the session's own branch `claude/persona-memory-2-swznbx`), from
 `claude/persona-memory-1`, **waiting for the owner's acceptance and his hosting.** Report
 `docs/runs/persona-memory-2-report.md`; ledger `docs/runs/persona-memory-2-ledger.md`; guide `docs/PERSONA_MEMORY.md`.
 
