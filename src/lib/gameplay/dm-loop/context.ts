@@ -41,6 +41,7 @@ import { voiceExamplesBlock, voiceLayer, voiceReminder, VOICE_TOKEN_CAP_DEFAULT,
 import { parseLedger, type AttentionLedger } from "./ledger.ts";
 import { MEMORY_PRESETS, parseDmOptions } from "./options.ts";
 import { itemMechanics, walletOfEntity, walletOfStorage } from "../../inventory/model.ts";
+import { deriveSheet5e, isFifthEdition } from "../../live2d/battle/rules-5e.ts";
 
 const bytes = (text: string) => new TextEncoder().encode(text).length;
 const json = (value: unknown) => JSON.stringify(value);
@@ -544,6 +545,14 @@ function currentState(source: RuntimeSource, input: TurnInput): { text: string; 
   const place = snapshot.locations.find((row) => row.id === snapshot.publicState.current_location_id);
   // Fix run D (§1, §2): a wallet, never currency counters; counters with their names; the sheet of schema 2.
   const counters = (resources: Record<string, number>) => Object.fromEntries(Object.entries(resources).filter(([key]) => !key.startsWith("currency_")));
+  // Fix S3-accept Г3: the party's AC and saves as the server counts them (5e: worn things and effects), the number the
+  // player's sheet shows and `combat attack` uses — the sheet's own armorClass is the old record.
+  const fifth = isFifthEdition(snapshot.settings?.values?.rulesSystem);
+  const counted = (row: Entity) => {
+    const derived = deriveSheet5e({ entity: row, items: snapshot.items, language: snapshot.campaign.language });
+    return { counted: { ...(derived.ac ? { armourClass: derived.ac.value, how: derived.ac.text } : {}),
+      ...(derived.saves.length ? { saves: Object.fromEntries(derived.saves.map((save) => [save.label, save.value])) } : {}) } };
+  };
   const entities = snapshot.entities.filter((row) => row.kind !== "faction").map((row) => {
     const wallet = walletOfEntity(row);
     const labels = row.public_profile?.counterLabels;
@@ -552,7 +561,8 @@ function currentState(source: RuntimeSource, input: TurnInput): { text: string; 
       present: present.has(row.id), hp: row.hp, maxHp: row.max_hp, stats: row.stats, resources: counters(row.resources),
       ...(Object.keys(wallet).length ? { wallet } : {}), ...(labels && Object.keys(labels).length ? { counterLabels: labels } : {}),
       conditions: row.conditions, slots: row.equipment_slots.map((slot) => slot.id), details: clipChars(row.details, 300),
-      ...((row.kind === "player" || controlled.has(row.id)) && row.character_sheet ? { sheet: row.character_sheet } : {}) };
+      ...((row.kind === "player" || controlled.has(row.id)) && row.character_sheet ? { sheet: row.character_sheet } : {}),
+      ...(fifth && (row.kind === "player" || controlled.has(row.id)) ? counted(row) : {}) };
   });
   const factionRows = snapshot.entities.filter((row) => row.kind === "faction").map((row) => ({ id: row.id, name: row.name, kind: "faction" }));
   const items = snapshot.items.filter((row) => row.quantity > 0).map((row) => {

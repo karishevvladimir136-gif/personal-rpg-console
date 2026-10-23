@@ -111,7 +111,11 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
           ritual: opt({ type: "boolean" }), concentration: opt({ type: "boolean" }), text: opt(str("Time, range, duration, effect.", 2400)) }) }),
         preparedMax: opt({ type: "integer", minimum: 0, maximum: 60 }),
       }), description: "The sheet the screens show (a companion's from its stat block); fields given replace the stored ones." }),
-      reason: opt(str("Why the hero's sheet changes (shown to the player).", L.maxShortText)),
+      // Fix S3-accept Г3: the record's lasting effects (Mage Armor) — the 5e rules module counts them in the AC.
+      conditions: opt({ ...object({ add: opt({ type: "array", maxItems: 6, items: str("A condition or a lasting effect («Доспехи мага»).", 60) }),
+        remove: opt({ type: "array", maxItems: 6, items: str("One to remove, as recorded.", 60) }) }),
+      description: "Public conditions and lasting spell effects on a character, the hero too (with a reason): «Доспехи мага», «Концентрация: Невидимость», «отравлен»; remove one when it ends (Mage Armor: 8 hours). In 5e the server counts Доспехи мага in the AC. Shield (Щит) is a fight condition (combat condition): +5 AC until its caster's next turn." }),
+      reason: opt(str("Why the hero's sheet or conditions change (shown to the player).", L.maxShortText)),
     }),
   },
   {

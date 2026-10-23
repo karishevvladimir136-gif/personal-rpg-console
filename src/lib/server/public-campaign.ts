@@ -7,6 +7,7 @@ import {
   publicMapVersionsAllowed,
 } from "../map/public-projection.ts";
 import type { MapPlacement } from "../map/placement-contracts.ts";
+import { withDerivedSheets } from "../live2d/battle/rules-5e.ts";
 import { requireOwner } from "./auth.ts";
 import { PersistenceError } from "./errors.ts";
 import { readMapPlacementsForSnapshot } from "./map-layout.ts";
@@ -23,9 +24,11 @@ async function visiblePlacements(snapshot: CampaignSnapshot): Promise<MapPlaceme
   }
 }
 
-/** The normal campaign DTO must not carry future map job facts across save loads. */
+/** The normal campaign DTO must not carry future map job facts across save loads. Fix S3-accept Г3: each person
+ * carries the 5e numbers the server derived from the worn things and the effects (the sheet, the doll and the fight
+ * read these). */
 export async function readPublicCampaign(campaignId: string): Promise<CampaignSnapshot> {
-  const snapshot = await readCampaign(campaignId);
+  const snapshot = withDerivedSheets(await readCampaign(campaignId));
   if (!snapshot.documents.some(isMapVisualMetadata) &&
     !snapshot.assets.some((row) => row.description.startsWith(MAP_VISUAL_ASSET_PREFIX)))
     return snapshot;
