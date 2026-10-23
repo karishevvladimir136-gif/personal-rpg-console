@@ -139,15 +139,16 @@ const sleep = (ms) => new Promise((resolveSleep) => setTimeout(resolveSleep, ms)
 /** «HTTP 403 permission_error: model … is suspended …» — the status, the type and the start of the provider's message. */
 export const errorText = (status, type, message) => `HTTP ${status} ${type ?? ""}`.trim() + (message ? `: ${String(message).replace(/\s+/g, " ").slice(0, 160)}` : "");
 /** One Messages call. No retry by default (persona memory F2): `retries` asks again only after a 429 or a 5xx, never
- * after a refusal. The error keeps the start of the provider's message, so a «suspended» can stop a run. */
-export async function anthropicCall({ apiKey, model, system, user, maxTokens, effort, fetcher = fetch, retries = 0 }) {
+ * after a refusal. The error keeps the start of the provider's message, so a «suspended» can stop a run. `messages`
+ * (persona emotions 1) sends a whole conversation instead of one user turn; an empty system prompt is left out. */
+export async function anthropicCall({ apiKey, model, system, user, messages, maxTokens, effort, fetcher = fetch, retries = 0 }) {
   let lastError = null;
   for (let attempt = 0; attempt <= retries; attempt++) {
     if (attempt) await sleep(2000 * 2 ** (attempt - 1));
     try {
       const response = await fetcher("https://api.anthropic.com/v1/messages", {
         method: "POST", headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-        body: JSON.stringify({ model, max_tokens: maxTokens, output_config: { effort }, system, messages: [{ role: "user", content: user }] }),
+        body: JSON.stringify({ model, max_tokens: maxTokens, output_config: { effort }, ...(system ? { system } : {}), messages: messages ?? [{ role: "user", content: user }] }),
         signal: AbortSignal.timeout(180_000),
       });
       const value = await response.json().catch(() => null);
