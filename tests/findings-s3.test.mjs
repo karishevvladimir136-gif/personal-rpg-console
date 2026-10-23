@@ -112,7 +112,7 @@ test("§2: the digest and the prep ask for the DM's own first-person notes with 
     assert.ok(text.includes(DM_NOTES_VOICE));
     assert.match(text, /"notebook": "your own notebook for the next session, in the campaign language and in the first person — notes to yourself, not a report — up to 1500 characters: what I planned/);
     assert.match(text, /one or two exact lines from this session, quoted, that carried its feeling/);
-    assert.match(text, /written under them as your own first-person notes, up to 5000 characters/);
+    assert.match(text, /written under them as your own first-person notes, up to 23000 characters/);
     assert.match(text, /"recap": "«Previously in…» in your own voice, in the campaign language, for the player: three or four sentences looking forward/, "the player's «Ранее в…» stays");
     assert.doesNotMatch(text, /homework/);
     const prep = buildPrepRequest(source, "high").messages[0].text;
@@ -148,4 +148,29 @@ test("§1 measure: the register markers on a Russian turn — speech, address to
   assert.equal(markers.address, 2, "«Тебе», «Вы» in speech; the narrator's «Ты»/«твоё» and the aside's «ты» do not count");
   assert.equal(markers.hedges, 1);
   assert.ok(markers.asideWords > 5);
+});
+
+test("§7: the dose of the DM's own notes — the hidden layer holds 24 000 characters (the SQL follows for that one note); the ledger stays", async () => {
+  const { HIDDEN_LAYER_MAX_CHARS } = await import("../src/lib/gameplay/dm-loop/hidden-layer.ts");
+  const { LEDGER_MAX_CHARS } = await import("../src/lib/gameplay/dm-loop/two-pass/prompts.ts");
+  const { parseDigest } = await import("../src/lib/gameplay/dm-loop/digest.ts");
+  assert.equal(HIDDEN_LAYER_MAX_CHARS, 24_000);
+  assert.equal(LEDGER_MAX_CHARS, 6000, "the writer's ledger keeps its budget");
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const play = await (await c.deps(createScriptedDmModel([]))).store.readPlay(c.cid);
+    const big = `Тайный слой кампании: ${"Я помню, как писарь отвёл глаза. ".repeat(700)}`.slice(0, 23_500);
+    await c.dossier("private_notes", { set: [{ kind: "fact", key: "hidden_layer", value: big }], remove: [] }, play.timeline);
+    await assert.rejects(c.dossier("private_notes", { set: [{ kind: "fact", key: "hidden_layer", value: "я".repeat(24_001) }], remove: [] }, play.timeline), /rpg_validation/);
+    await assert.rejects(c.dossier("private_notes", { set: [{ kind: "fact", key: "other_note", value: "я".repeat(6001) }], remove: [] }, play.timeline), /rpg_validation/,
+      "every other note keeps 6 000");
+    const source = (await c.f.one("select public.rpg_dossier($1,$2,'source','{}'::jsonb,null) result", [c.owner, c.cid])).result;
+    assert.equal(source.privateState.fact.hidden_layer.length, big.length);
+    const session = { id: randomUUID(), title: "Вечер", scenes: [{ role: "narration", body: "Тихо." }], startWorldMinutes: null, endWorldMinutes: source.runtime.worldMinutes, shape: { turns: 1, playMinutes: 5, form: "short" } };
+    const text = buildDigestRequest(source, session, "high").messages[0].text;
+    assert.match(text, /written under them as your own first-person notes, up to 23000 characters — where the room allows, keep more of the exact lines that carried a scene and more of your own reasoning/);
+    const reply = (layer) => JSON.stringify({ recap: "r", title: "t", notebook: "", plans: [], hiddenLayer: layer });
+    assert.equal(parseDigest(reply("я".repeat(30_000)), source, 0).hiddenLayer.length, HIDDEN_LAYER_MAX_CHARS - 200);
+    assert.equal(parseDigest(reply(big), source, 0).hiddenLayer, big.trim(), "a 23 500-character layer passes whole");
+  } finally { await c.f.db.close(); }
 });

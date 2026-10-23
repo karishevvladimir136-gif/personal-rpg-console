@@ -1,6 +1,6 @@
 # the findings of session 3 — the ledger of paid calls
 
-Cap $8; every paid run registers here before its first request and settles when it ends (written by `scripts/eval/real-replay/lib/ledger.mjs`).
+Cap $16; every paid run registers here before its first request and settles when it ends (written by `scripts/eval/real-replay/lib/ledger.mjs`).
 
 | Run | Stage | What | Reserved | Spent | Settled |
 | --- | --- | --- | --- | --- | --- |

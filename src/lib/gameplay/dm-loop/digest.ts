@@ -13,6 +13,7 @@ import type { DmEffort } from "../../model-runtime/dm-models.ts";
 import { buildDmLoopContext, estimateTokens, worldDay } from "./context.ts";
 import { allPlans, serializePlan, type OffScreenPlan } from "./plans.ts";
 import { hiddenLayerOf, privateNotes } from "./private-notes.ts";
+import { HIDDEN_LAYER_MAX_CHARS } from "./hidden-layer.ts";
 import { boundInnerVoice, INNER_VOICES_PER_CALL, peopleWithoutVoice } from "./inner-voice.ts";
 import type { SessionEnding } from "../../persistence/contracts.ts";
 import { nameStems } from "../../visual-frame/shot.ts";
@@ -75,7 +76,7 @@ ${ENDING_FIELDS[form]}
   "notebook": "your own notebook for the next session, in the campaign language and in the first person — notes to yourself, not a report — up to 1500 characters: what I planned for this session and how it went; what I noticed the player doing and enjoying; what I decided and why; what I left open — seeds that are ripe now, companions, threads, debts or promises that have not sounded for a while, each mystery's clues the player has met and the next one I will offer, questions asked of or by the hero still unanswered; two or three situations I can offer next time (situations, not plot, no rails); and one or two exact lines from this session, quoted, that carried its feeling",
   "plans": [ { "key": "plan_<existing or new key>", "actorId": "<entity ID or null>", "goal": "the plan and its next steps in a few lines", "dueWorldMinutes": <absolute game minute of the next step>, "consequence": "what lands if nobody interferes", "warning": "the fair warning the hero may notice, or empty", "status": "open|done|dropped" } ],
   "playerLikes": "one to three short NEW lines of YOUR observations of what the player enjoyed this session that your notes do not hold yet (they are appended to your notes, never replace them; never the player's own words), or null when nothing is new",
-  "hiddenLayer": "the campaign's hidden layer (your private notes begin with it) rewritten whole with what this session moved: which clues the hero found, which secrets came closer, the clocks advanced, a faction's aim that shifted — the same headings, in the campaign language, written under them as your own first-person notes, up to 5000 characters; null when the session changed nothing in it or the campaign has none",
+  "hiddenLayer": "the campaign's hidden layer (your private notes begin with it) rewritten whole with what this session moved: which clues the hero found, which secrets came closer, the clocks advanced, a faction's aim that shifted — the same headings, in the campaign language, written under them as your own first-person notes, up to ${HIDDEN_LAYER_MAX_CHARS - 1000} characters — where the room allows, keep more of the exact lines that carried a scene and more of your own reasoning (why you decided what you did), rather than a summary; null when the session changed nothing in it or the campaign has none",
   "folds": [ { "keys": ["kind:key of two or more CLOSED private notes about one finished matter (a fight's rounds, a search's steps)"], "line": "one line that keeps what still matters of them, in the campaign language" } ],
   "stinger": "«Meanwhile…»: 2–4 sentences in the campaign language — news that travels through the world and could reach the hero or the people around them: a guard's report to the captain, a rumour in the market, a letter, a messenger. Not an all-seeing camera: only what that channel could carry. It moves the story and may deepen an open question; it never answers a question the hero was left with, never names a hidden fact, never decides an outcome; written as story, no headings; empty string when nothing fits",
   "channel": "how the «Meanwhile» news travels, a few words in the campaign language (a report to the captain of the guard; a rumour on the market); empty with an empty stinger"${voices ? `,
@@ -210,7 +211,7 @@ export function parseDigest(text: string, source: RuntimeSource, nowMinutes: num
     const line = str(f.line, 600);
     if (keys.length >= 2 && line) folds.push({ keys, line });
   }
-  const layer = typeof value.hiddenLayer === "string" && value.hiddenLayer.trim() && hiddenLayerOf(source) ? value.hiddenLayer.trim().slice(0, 5800) : null;
+  const layer = typeof value.hiddenLayer === "string" && value.hiddenLayer.trim() && hiddenLayerOf(source) ? value.hiddenLayer.trim().slice(0, HIDDEN_LAYER_MAX_CHARS - 200) : null;
   // Fix run E (item 81): the ending, bounded; a card names a person of this session or nobody (a group).
   const form = shape?.form ?? "short";
   const lineList = (v: unknown, max: number, each: number) => (Array.isArray(v) ? v.map((row) => str(row, each).replace(/\s+/g, " ")).filter(Boolean).slice(0, max) : []);

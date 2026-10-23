@@ -14,7 +14,9 @@ import { HIDDEN_LAYER_KEY, ownerSecretsText, ownerWishesText } from "./private-n
 import { boundInnerVoice, innerVoiceWrites, INNER_VOICES_PER_CALL, peopleWithoutVoice } from "./inner-voice.ts";
 
 export { HIDDEN_LAYER_KEY, hiddenLayerOf, ownerSecretsText, ownerWishesText } from "./private-notes.ts";
-export const HIDDEN_LAYER_MAX_CHARS = 6000;
+/** Findings S3 §7 (the owner's decision): the dose of the DM's own notes — 24 000 characters (it was 6 000); state carries
+ * across sessions by text, raw and in volume. The SQL cap of this one note follows (migration 202610230611). */
+export const HIDDEN_LAYER_MAX_CHARS = 24_000;
 
 const PREP_INSTRUCTIONS = `Your own prep before the next session. This campaign has no hidden layer yet, and it is yours to write. It is your private truth of the campaign — the player never sees it — written in the first person, as your own notes (what I know is really going on, what I have decided each power is after, what I keep back and why), not a summary written about the game from outside. Ground it in the world, the canon, the owner's secrets (when given: build on them, never contradict them) and everything that has happened in play (never contradict an established fact or a person's model). Answer with one JSON object, every text in the campaign language (the server reads only the JSON):
 {

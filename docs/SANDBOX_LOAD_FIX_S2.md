@@ -51,7 +51,7 @@ problem). Later starts without code changes: `--prod --no-build`. The candidate 
 additive, none edited, no number used twice: the fix run `202610200071`–`202610200084` and `202610200096`, 2D Live
 `202610210200`–`202610210201`, the music stage `202610210301`, the fixes before session 3 `202610210401`–`202610210403`,
 the fixes from the acceptance pass `202610230501`, `202610230511`, `202610230521`, `202610230541`, `202610230551`, the
-findings of session 3 (`docs/stages/FINDINGS_S3.md`) `202610230601`. They apply in name order with the others:
+findings of session 3 (`docs/stages/FINDINGS_S3.md`) `202610230601`, `202610230611`. They apply in name order with the others:
 
 | Migration | What |
 | --- | --- |
@@ -82,6 +82,7 @@ findings of session 3 (`docs/stages/FINDINGS_S3.md`) `202610230601`. They apply 
 | 0541 `fix_s3_accept_region_prep` | the region prep's storage: new columns on the region map (old maps read as before), a table of the prep's versions, two new actions of the 2D function. No row changes |
 | 0551 `fix_s3_accept_adventure_wishes` | «Пожелания к приключению»: the DM-only store admits a campaign's wishes beside «Тайны»; the DM's source carries them to the hidden-layer prep only. No row changes |
 | 0601 `findings_s3_old_sheet` | **changes a record**: in «Приключения начинаются», the hero Джеймс Вордсден (his creation's sheet: no level, no save lines) gets level 5 — only the level, saved the way the owner's own «Изменить лист» saves (a new revision of the record and the owner-correction receipt). No save lines are written: his class (Маг → wizard) gives the proficient saves, Интеллект and Мудрость, at the level's proficiency (+3 at 5), and they follow the level later. The other lines, the stats, «КД вручную» stay. A sheet that already has a level is never touched; without that campaign nothing changes |
+| 0611 `findings_s3_notes_dose` | the DM's hidden layer (its own notes between sessions, written by the prep and rewritten by each session digest) may hold 24 000 characters instead of 6 000 — the owner's decision; every other private note keeps 6 000. The function that saves the notes is patched in place. No row changes |
 
 Check: the app opens at http://127.0.0.1:3100/campaigns, and `.sandbox/app.log` has no error.
 
