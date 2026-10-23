@@ -60,16 +60,17 @@ in the scene; the player never sees it. Companions get theirs from their existin
 get one when they first recur. Budget: the block counts against the dossier budget; keep it under 80 words. Test: the
 prep's output contains the block for a fixture NPC; the player's snapshot never does; the dossier budget still holds.
 
-## 7. The dose of the DM's own notes (owner, 01:39, after the night's fifth point)
+## 7. The dose of the DM's own notes (owner, 01:39 and 01:48: «точно расширить — из того, что мы видим, это очень важно»)
 Finding, 01:26: state carries across rooms by text, but only raw and in volume — a 5 000-word first-person recount
 with exact lines moved the state items almost to the live room's level; a 500-word summary moved nothing. The DM's
-between-session notes (item 2) are capped by `HIDDEN_LAYER_MAX_CHARS = 6000` — the right form in a small dose. Do,
-**after** the item-1 before/after table is in: a second measurement on the same five scenes with the cap raised to
-24 000 (the ledger cap `LEDGER_MAX_CHARS` stays), the digest prompt told it may keep more exact lines when the room
-allows; same markers, with records completeness and the roll check as the things that must not move, plus input
-tokens per turn with and without cache. If records and rolls hold and the scenes gain (narration, address, speakers),
-keep 24 000 and say so in the report; if attention to the current scene slips (records misses rise), find the size
-where it does not and keep that. Paid: within the same $8 ledger; if it would not fit, n = 3 per scene and say so.
+between-session notes (item 2) are capped by `HIDDEN_LAYER_MAX_CHARS = 6000` — the right form in a small dose.
+**Decision: raise it to 24 000.** This is the owner's call, not a measurement's: the notes are what carries the DM
+from one session into the next, and the night showed the dose is what matters. The digest prompt is told it may keep
+more exact lines and more of its own reasoning when the room allows; `LEDGER_MAX_CHARS` stays. Then measure, after the
+item-1 table, on the same five scenes at 24 000: the same markers, records completeness and the roll check as the
+things that must not move, plus input tokens per turn with and without cache. The measurement is a guard, not the
+decision — only if records misses or untold rolls rise does the cap come down, to the largest size where they hold,
+and the report says so. Paid: within the same $8 ledger; if it would not fit, n = 3 per scene and say so.
 
 ## Done when
 Items 1–6 each with a test; the before/after table of item 1 and the dose table of item 7 in the report; the owner's reload is one step
