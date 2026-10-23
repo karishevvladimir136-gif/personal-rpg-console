@@ -155,7 +155,30 @@ export const live2dBoard: Live2dBoard = {
     sideList: ["Часовня"], redraws: 1, error: null, updatedAt: at(3),
   }],
   pois: live2dPois,
-  regionMaps: [{ anchorId: I.region, pictureId: I.picRegion, signature: [I.ford, I.lodge, I.veresk].sort().join(","), status: "ready", updatedAt: at(2) }],
+  // Fix S3-accept Д3: the DM's prep of the region (public part), the markers the check placed on the picture.
+  regionMaps: [{ anchorId: I.region, pictureId: I.picRegion, signature: [I.ford, I.lodge, I.veresk].sort().join(","), status: "ready", updatedAt: at(2),
+    revision: 3, check: null, sideList: [], prepRevision: 1, prepDocumentId: id(122), picturePrepRevision: 1,
+    prep: {
+      overview: "Серый тракт идёт с юга на север вдоль Серой реки: Вереск на холме у реки, ниже по течению — Каменный брод, на севере, за вересковыми пустошами, — Зимовье Гарта.",
+      landscape: "A river runs from the north-east down to the south-west; heath and low hills on both banks; a road follows the east bank north to pine woods.",
+      places: [
+        { locationId: I.veresk, role: "hill town", within: null, x: 0.42, y: 0.36, where: "на холме у Серой реки", look: "a small walled town on a hill by the river" },
+        { locationId: I.market, role: "market square", within: I.veresk, x: 0.42, y: 0.36, where: "в сердце города", look: "an open square with a well" },
+        { locationId: I.wharf, role: "old wharf", within: I.veresk, x: 0.42, y: 0.36, where: "у реки, ниже площади", look: "rotten slipways at the riverside" },
+        { locationId: I.ford, role: "ford", within: null, x: 0.56, y: 0.6, where: "ниже по течению, полдня пути от Вереска", look: "flat stones across the river with an old watch hut" },
+        { locationId: I.lodge, role: "hunting lodge", within: null, x: 0.7, y: 0.28, where: "на севере тракта, за пустошами", look: "a log lodge at the edge of pine woods" },
+      ],
+      routes: [{ from: I.veresk, to: I.ford, way: "тракт вниз по реке", days: 0.5 }, { from: I.veresk, to: I.lodge, way: "тракт на север через пустоши", days: 2 }],
+      source: "model",
+    },
+    markers: [
+      { locationId: I.veresk, x: 0.43, y: 0.37, confidence: 0.92, source: "check", approximate: false },
+      { locationId: I.market, x: 0.44, y: 0.35, confidence: 0.7, source: "check", approximate: false },
+      { locationId: I.wharf, x: 0.4, y: 0.4, confidence: null, source: "prep", approximate: true },
+      { locationId: I.ford, x: 0.55, y: 0.61, confidence: 0.88, source: "check", approximate: false },
+      { locationId: I.lodge, x: 0.71, y: 0.27, confidence: 0.8, source: "check", approximate: false },
+    ],
+  }],
   battleMaps: [],
 };
 
