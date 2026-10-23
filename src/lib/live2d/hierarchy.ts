@@ -17,6 +17,9 @@ export type Live2dPin = {
   y: number;
   /** The place has child places (a town with districts, a district with houses). */
   hasChildren: boolean;
+  /** Fix S3-accept Д3: the spot is not known for sure («положение примерное»): the atlas never placed it, or the
+   * painted map could not show it. */
+  approximate?: boolean;
 };
 export type Live2dCrumb = { level: Live2dLevel; anchorId: string | null; name: string };
 export type Live2dView = {
@@ -62,6 +65,19 @@ function placementPath(projection: AtlasProjection, locationId: string | null) {
   return { own, region: region?.level === "region" ? region : null, world: world?.level === "world" ? world : null };
 }
 
+/** Fix S3-accept Д1: a nested atlas has saved region-level placements; a derived one (a child of a world-level place)
+ * never turns a flat campaign into a nested one. */
+const isFlat = (projection: AtlasProjection) => !projection.placements.some((row) => row.level === "region" && row.revision > 0);
+/** The atlas's own areas (the world and region levels of a nested atlas): a place's parent chain stops at them. */
+const areasOf = (projection: AtlasProjection) => new Set(isFlat(projection) ? [] : projection.placements.filter((row) => row.level !== "local").map((row) => row.location_id));
+/** Fix S3-accept Д1: the place's parents in the tree up to (not including) its region — the town, the district. */
+function placeChain(snapshot: CampaignSnapshot, projection: AtlasProjection, locationId: string): Known[] {
+  const areas = areasOf(projection);
+  const chain = parentChain(snapshot, locationId);
+  const cut = chain.findIndex((row) => areas.has(row.id));
+  return cut >= 0 ? chain.slice(0, cut) : chain;
+}
+
 /** A child's derived spot (around its parent) re-projected into the parent's own picture. */
 function childPin(snapshot: CampaignSnapshot, projection: AtlasProjection, parent: MapPlacement | null, child: Known, index: number, total: number): Live2dPin {
   const placement = projection.placements.find((row) => row.location_id === child.id);
@@ -84,13 +100,13 @@ function childPin(snapshot: CampaignSnapshot, projection: AtlasProjection, paren
  * null). Towns and districts are the records' parents (a place with child places). */
 export function live2dCrumbs(snapshot: CampaignSnapshot, placements: readonly MapPlacement[], focusId: string | null): Live2dCrumb[] {
   const projection = projectAtlas(snapshot, placements);
-  const chain = focusId ? parentChain(snapshot, focusId).reverse() : [];
+  const chain = focusId ? placeChain(snapshot, projection, focusId).reverse() : [];
   const top = chain[0]?.id ?? focusId;
   const path = placementPath(projection, top ?? null);
   const name = (id: string | null) => (id ? snapshot.locations.find((row) => row.id === id)?.name ?? "" : "");
   const crumbs: Live2dCrumb[] = [];
   const worlds = atlasLevelView(projection, "world", null, null).pins;
-  const flat = !projection.placements.some((row) => row.level === "region");
+  const flat = isFlat(projection);
   if (worlds.length && !flat) crumbs.push({ level: "world", anchorId: path.world?.location_id ?? null, name: name(path.world?.location_id ?? null) });
   crumbs.push({ level: "region", anchorId: flat ? null : path.region?.location_id ?? null, name: flat ? "" : name(path.region?.location_id ?? null) });
   // The focus is a region-level place itself: nothing below the region yet.
@@ -113,7 +129,7 @@ export function live2dView(snapshot: CampaignSnapshot, placements: readonly MapP
     return { locationId: location.id, name: location.name, status: location.status, x: row.x, y: row.y, hasChildren: hasChildren(location.id) };
   };
   const crumbs = live2dCrumbs(snapshot, placements, focusId);
-  const flat = !projection.placements.some((row) => row.level === "region");
+  const flat = isFlat(projection);
   const anchorName = anchorId ? byId.get(anchorId)?.name ?? "" : "";
   if (level === "world") {
     const pins = atlasLevelView(projection, "world", null, null).pins.map(toPin).filter((row): row is Live2dPin => row !== null);
@@ -122,11 +138,21 @@ export function live2dView(snapshot: CampaignSnapshot, placements: readonly MapP
   }
   if (level === "region") {
     // Flat: every world-level place is a mark of the known region. Otherwise the places under the region.
-    const pins = (flat ? atlasLevelView(projection, "world", null, null).pins
+    const placed = (flat ? atlasLevelView(projection, "world", null, null).pins
       : atlasLevelView(projection, "local", null, anchorId).pins.filter((row) => row.parent_location_id === anchorId))
       .map(toPin).filter((row): row is Live2dPin => row !== null)
       // Children of a town are shown inside the town, not on the region.
-      .filter((pin) => !parentChain(snapshot, pin.locationId).length);
+      .filter((pin) => !placeChain(snapshot, projection, pin.locationId).length)
+      // Fix S3-accept Д3: a spot the atlas derived (nobody placed it) is approximate.
+      .map((pin) => (projection.placements.find((row) => row.location_id === pin.locationId)?.revision ? pin : { ...pin, approximate: true }));
+    // Fix S3-accept Д3: every known place of the region appears — the ones the atlas never placed join the region
+    // the party is in, along the bottom edge, «положение примерное», until the region's prep or the picture places them.
+    const areas = areasOf(projection);
+    const here = flat || (anchorId !== null && anchorId === (crumbs.find((row) => row.level === "region")?.anchorId ?? null));
+    const unplaced = here ? known.filter((row) => !areas.has(row.id) && !placed.some((pin) => pin.locationId === row.id)
+      && !projection.placements.some((placement) => placement.location_id === row.id && placement.x !== null) && !placeChain(snapshot, projection, row.id).length) : [];
+    const pins = [...placed, ...unplaced.map((row, index): Live2dPin => ({ locationId: row.id, name: row.name, status: row.status,
+      x: Number(((index + 1) / (unplaced.length + 1)).toFixed(3)), y: 0.92, hasChildren: hasChildren(row.id), approximate: true }))];
     const town = crumbs.find((row) => row.level === "town");
     return { level, anchorId: flat ? null : anchorId, anchorName: flat ? "" : anchorName, pins, crumbs: crumbs.filter((row) => row.level === "world" || row.level === "region"),
       down: town ? { level: "town", anchorId: town.anchorId } : focusId && byId.has(focusId) ? { level: "scene", anchorId: focusId } : null };
@@ -149,6 +175,16 @@ export function live2dOpeningLevel(snapshot: CampaignSnapshot, placements: reado
   const place = locationId ? snapshot.locations.find((row) => row.id === locationId) : null;
   if (place?.status === "visited") return { level: "scene", anchorId: place.id };
   const last = crumbs.filter((row) => row.level !== "scene").at(-1);
+  return last ? { level: last.level, anchorId: last.anchorId } : { level: "region", anchorId: null };
+}
+
+/** Fix S3-accept Д1: where «Карта» opens — the deepest map level on the current place's path that has content
+ * (the town the party stands in, else its region); the scene is the leaf, one marker further down. */
+export function live2dMapOpening(snapshot: CampaignSnapshot, placements: readonly MapPlacement[], locationId: string | null): { level: Live2dLevel; anchorId: string | null } {
+  const levels = live2dCrumbs(snapshot, placements, locationId).filter((row) => row.level !== "scene");
+  for (const crumb of [...levels].reverse())
+    if (live2dView(snapshot, placements, crumb.level, crumb.anchorId, locationId).pins.length) return { level: crumb.level, anchorId: crumb.anchorId };
+  const last = levels.at(-1);
   return last ? { level: last.level, anchorId: last.anchorId } : { level: "region", anchorId: null };
 }
 

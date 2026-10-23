@@ -140,6 +140,16 @@
 .visitedPin .pinMark { background: var(--brass); }
 .rumoredPin .pinMark { border-style: dashed; background: transparent; }
 .trackedPin .pinMark { border-color: var(--verdigris); box-shadow: 0 0 0 3px #0008, 0 0 14px #64a99877; }
+/* Fix S3-accept Д3: visited bright, known by hearsay dim, a rumour dimmer; «положение примерное» dotted; a place
+   inside a settlement small, within it; a marker the owner drags. */
+.knownPin .pinLabel { opacity: .8; }
+.rumoredPin .pinLabel { opacity: .65; font-style: italic; }
+.approxPin .pinMark { border-style: dotted; }
+.innerPin { min-width: 32px; min-height: 32px; z-index: 3; }
+.innerPin .pinMark { width: 9px; height: 9px; border-width: 1.5px; box-shadow: 0 0 0 2px #0008; }
+.innerPin .pinLabel { font-size: 13px; padding: 1px 5px; }
+.pin[aria-pressed="true"] .pinLabel { background: #3a2c1fe6; color: var(--brass-hi); }
+.dragPin { cursor: grab; touch-action: none; }
 .pinLabel {
   padding: 2px 7px;
   border-radius: 4px;
@@ -277,6 +287,22 @@
   font-size: 14px;
 }
 .toolsBody { display: grid; gap: 12px; padding: 4px 12px 14px; }
+/* Fix S3-accept Д1: the map's «Ещё» sections and the chosen place's card. */
+.moreSection { display: grid; gap: 6px; min-width: 0; }
+.moreSection > b { font-family: var(--f-display); color: var(--brass-hi); font-weight: 600; }
+.moreList { margin: 0; padding-left: 18px; display: grid; gap: 3px; font-size: 14px; color: var(--text); }
+.placeCard {
+  display: grid;
+  gap: 6px;
+  justify-items: start;
+  padding: 10px 12px;
+  border: 1px solid var(--line-strong);
+  border-left: 3px solid var(--brass);
+  border-radius: 6px;
+  background: var(--leather);
+  color: var(--text);
+}
+.placeCard > b { font-family: var(--f-display); color: var(--brass-hi); }
 .field { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
 .field textarea, .field input {
   min-height: var(--touch);

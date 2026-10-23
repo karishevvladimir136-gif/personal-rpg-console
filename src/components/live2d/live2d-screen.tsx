@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import { BookOpen } from "lucide-react";
 import type { CampaignSnapshot } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
@@ -12,11 +12,14 @@ import { anchorFor, pictureCostUsdMicros, type PublicPicture } from "@/lib/visua
 import { usd } from "@/lib/visual-frame/fal-image";
 import { emptyLive2dBoard, regionMapOf, sceneOf, MARKER_VISIBILITIES, type Live2dBoard, type MarkerVisibility, type Poi, type SceneSheet } from "@/lib/live2d/contracts";
 import { defaultLive2dTransport, type Live2dAction, type Live2dTransport } from "@/lib/live2d/client";
-import { live2dCrumbs, live2dOpeningLevel, live2dView, parentChain, type Live2dLevel, type Live2dPin } from "@/lib/live2d/hierarchy";
+import { live2dCrumbs, live2dMapOpening, live2dOpeningLevel, live2dView, parentChain, type Live2dLevel, type Live2dPin } from "@/lib/live2d/hierarchy";
 import { markerLabel, trackedPlaceIds, visiblePins } from "@/lib/live2d/markers";
 import { placeIntent, poiIntent } from "@/lib/live2d/intents";
 import { scenePois } from "@/lib/live2d/scene";
 import { newPlacesSince, regionDrawInput } from "@/lib/live2d/region";
+import { withCanonParents } from "@/lib/live2d/region-prep";
+import { regionMapMarkers, type MapMarker } from "@/lib/live2d/region-marks";
+import { MapMore, PlaceCard } from "./map-more";
 import { routePath, startTravel, travelMinutesOf, travelPoint, travelProgress, type Travel } from "@/lib/live2d/travel";
 import { usePictures } from "../registry/live-frames";
 import { BattleScreen } from "./battle/battle-screen";
@@ -29,6 +32,10 @@ import s from "./live2d.module.css";
 // marker and travel, the town with its districts, the scene with hotspots. The
 // DM and the rules decide what happened; the records remember it; this screen
 // only shows it and turns clicks into intents in the action box.
+// Fix S3-accept Д1: the map is a tree of places — world → region → settlement → place → scene, each place under its
+// parent (the records', else the region prep's). «Карта» opens it at the deepest level with content, «2D» at the
+// current scene; down by marker, up by crumb; the scene (SceneLevel below) is the leaf. The old atlas's tools fold
+// under one «Ещё» on the map levels (map-more.tsx).
 
 export type Live2dPreviewInput = {
   board: Live2dBoard;
@@ -44,8 +51,12 @@ type Position = { level: Live2dLevel; focusId: string | null };
 const pct = (value: number) => `${(value * 100).toFixed(2)}%`;
 const busy = (board: Live2dBoard) => board.scenes.some((row) => row.status === "drawing") || board.regionMaps.some((row) => row.status === "drawing");
 
-export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2dTransport }: {
+export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2dTransport, entry = "live", tools }: {
   snapshot: CampaignSnapshot; play: PlaySnapshot | null; preview?: Live2dPreviewInput; transport?: Live2dTransport;
+  /** Fix S3-accept Д1: «Карта» opens the tree at its deepest level with content; «2D» at the current scene. */
+  entry?: "map" | "live";
+  /** The owner's record tools under the map's «Ещё» («Исправить записи», «что, если»), mounted by the route. */
+  tools?: ReactNode;
 }) {
   const c = useCopy();
   const chrome = useChrome();
@@ -115,20 +126,34 @@ export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2
     return picture ? urlFor(picture.id) : null;
   }, [pictures, urlFor]);
 
-  // Where the screen stands: the chosen level and focus, else the deepest level the records open.
-  const opening = useMemo(() => live2dOpeningLevel(snapshot, placements, currentId), [snapshot, placements, currentId]);
+  // Fix S3-accept Д1: the tree the map walks — the records' parents, and the region preps' where the records give none.
+  const tree = useMemo(() => withCanonParents(snapshot, board.regionMaps), [snapshot, board.regionMaps]);
+  // Where the screen stands: the chosen level and focus, else the deepest level the records open
+  // («Карта»: the deepest map level with content; «2D»: the current scene).
+  const opening = useMemo(() => (entry === "map" ? live2dMapOpening : live2dOpeningLevel)(tree, placements, currentId), [entry, tree, placements, currentId]);
   const level = position?.level ?? opening.level;
   const focusId = position ? position.focusId : currentId;
-  const crumbs = useMemo(() => live2dCrumbs(snapshot, placements, focusId), [snapshot, placements, focusId]);
+  const crumbs = useMemo(() => live2dCrumbs(tree, placements, focusId), [tree, placements, focusId]);
   const anchorId = level === "scene" ? focusId : crumbs.find((row) => row.level === level)?.anchorId ?? null;
-  const view = useMemo(() => live2dView(snapshot, placements, level, anchorId, focusId), [snapshot, placements, level, anchorId, focusId]);
+  const view = useMemo(() => live2dView(tree, placements, level, anchorId, focusId), [tree, placements, level, anchorId, focusId]);
   const tracked = useMemo(() => trackedPlaceIds(snapshot), [snapshot]);
   const language = c.language === "ru" ? "ru" : "en";
   const name = (locationId: string | null) => snapshot.locations.find((row) => row.id === locationId)?.name ?? "";
-  const topOf = useCallback((locationId: string | null) => (locationId ? parentChain(snapshot, locationId).at(-1)?.id ?? locationId : null), [snapshot]);
+  const names = useMemo(() => new Map(snapshot.locations.map((row) => [row.id, row.name])), [snapshot]);
+  const topOf = useCallback((locationId: string | null) => (locationId ? parentChain(tree, locationId).at(-1)?.id ?? locationId : null), [tree]);
+  // Fix S3-accept Д3: the region's markers — where the check found each place on the painted map, the places inside a settlement within it.
+  const regionAnchor = crumbs.find((row) => row.level === "region")?.anchorId ?? null;
+  const regionMarks = useMemo(() => regionMapMarkers(tree, live2dView(tree, placements, "region", regionAnchor, focusId).pins, regionMapOf(board, regionAnchor)),
+    [tree, placements, regionAnchor, focusId, board]);
+  // A place chosen on the map that has nothing below it yet: its card offers «Идём туда».
+  const [chosen, setChosen] = useState<string | null>(null);
+  // «Изменить размещение»: the owner drags the region's markers onto their objects.
+  const [marking, setMarking] = useState(false);
+  const [dragMark, setDragMark] = useState<{ id: string; x: number; y: number } | null>(null);
+  const mapStage = useRef<HTMLDivElement>(null);
 
   // Travel as presentation: the marker glides when the party's place changes.
-  const regionPins = useMemo(() => live2dView(snapshot, placements, "region", crumbs.find((row) => row.level === "region")?.anchorId ?? null, focusId).pins, [snapshot, placements, crumbs, focusId]);
+  const regionPins = regionMarks.pins;
   const pinOf = useCallback((locationId: string | null) => regionPins.find((row) => row.locationId === topOf(locationId)) ?? null, [regionPins, topOf]);
   // A preview may open mid-glide; a live campaign starts still.
   const [travel, setTravel] = useState<Travel | null>(() => {
@@ -167,11 +192,37 @@ export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2
       ? { text: c(`Записано в поле действия: «${text}». Ведущий решит.`, `Written into the action box: “${text}”. The DM decides.`), kind: "ok" }
       : { text: c("Ход ещё идёт: поле действия занято.", "A turn is in flight: the action box is busy."), kind: "warn" });
   };
-  const go = (next: Position) => { setPosition(next); setNote(null); setEditing(false); };
+  const go = (next: Position) => { setPosition(next); setNote(null); setEditing(false); setChosen(null); setMarking(false); };
+  // Fix S3-accept Д1: down by marker — a place with places inside opens as the next map level, a visited place opens
+  // its scene (the leaf); a place with nothing below yet is chosen, and its card offers «Идём туда».
   const openPin = (pin: Live2dPin) => {
     const location = snapshot.locations.find((row) => row.id === pin.locationId);
     if (pin.hasChildren) go({ level: level === "region" ? "town" : "district", focusId: pin.locationId });
     else if (location?.status === "visited") go({ level: "scene", focusId: pin.locationId });
+    else setChosen(chosen === pin.locationId ? null : pin.locationId);
+  };
+  // A place inside a settlement on the region: its scene when visited, else its settlement's own map with it chosen.
+  const openInner = (pin: MapMarker) => {
+    const location = snapshot.locations.find((row) => row.id === pin.locationId);
+    if (pin.hasChildren) go({ level: "district", focusId: pin.locationId });
+    else if (location?.status === "visited") go({ level: "scene", focusId: pin.locationId });
+    else { go({ level: "town", focusId: pin.locationId }); setChosen(pin.locationId); }
+  };
+  const pointOnMap = (event: ReactPointerEvent) => {
+    const bounds = mapStage.current?.getBoundingClientRect();
+    if (!bounds || !bounds.width || !bounds.height) return null;
+    return { x: Math.min(1, Math.max(0, (event.clientX - bounds.left) / bounds.width)), y: Math.min(1, Math.max(0, (event.clientY - bounds.top) / bounds.height)) };
+  };
+  const dropMark = (event: ReactPointerEvent) => {
+    if (!dragMark) return;
+    const point = pointOnMap(event) ?? dragMark;
+    const map = regionMapOf(board, regionAnchor);
+    setDragMark(null);
+    if (!map) return;
+    const x = Number(point.x.toFixed(3)), y = Number(point.y.toFixed(3));
+    const marker = { locationId: dragMark.id, x, y, confidence: null, source: "owner" as const, approximate: false };
+    setBoard((prior) => ({ ...prior, regionMaps: prior.regionMaps.map((row) => (row.anchorId === regionAnchor ? { ...row, markers: [...row.markers.filter((m) => m.locationId !== dragMark.id), marker] } : row)) }));
+    void send("region.marker.save", { anchorId: regionAnchor, locationId: dragMark.id, x, y, expectedRevision: map.revision });
   };
 
   const textLink = <Link className={s.textLink} href={href("game")}><BookOpen size={16} aria-hidden="true" />{c("Текст", "Text")}</Link>;
@@ -195,16 +246,46 @@ export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2
     void send("settings.save", { expectedRevision: board.settings.revision, markers: value });
   };
 
+  // One marker of a map level: visited bright, known dim, a rumour dashed, «положение примерное» dotted; a place inside a
+  // settlement small, within it. Down by marker (openPin / openInner); while «Изменить размещение» is on, a drag.
+  const marker = (pin: Live2dPin, options: { isCurrent: boolean; inner?: boolean; draggable?: boolean; onOpen: () => void }) => {
+    const at = dragMark?.id === pin.locationId ? dragMark : pin;
+    const status = pin.status === "visited" ? s.visitedPin : pin.status === "rumored" ? s.rumoredPin : s.knownPin;
+    const id = options.inner ? { "data-pin-inner": pin.locationId } : { "data-pin": pin.locationId };
+    return (
+      <button key={pin.locationId} type="button" {...id} aria-pressed={chosen === pin.locationId}
+        className={[s.pin, status, tracked.has(pin.locationId) ? s.trackedPin : "", pin.approximate ? s.approxPin : "", options.inner ? s.innerPin : "", options.draggable ? s.dragPin : ""].join(" ")}
+        style={{ left: pct(at.x), top: pct(at.y) }}
+        aria-label={`${pin.name}${options.isCurrent ? ` · ${c("вы здесь", "you are here")}` : ""}${pin.hasChildren ? ` · ${c("можно открыть", "can be opened")}` : ""}${pin.approximate ? ` · ${c("положение примерное", "position approximate")}` : ""}`}
+        onPointerDown={(event) => { if (options.draggable) { event.preventDefault(); setDragMark({ id: pin.locationId, x: pin.x, y: pin.y }); } }}
+        onClick={() => { if (!options.draggable) options.onOpen(); }}>
+        <span className={s.pinMark} aria-hidden="true" />
+        <span className={s.pinLabel}>{pin.name}</span>
+      </button>
+    );
+  };
+  const prepPlace = (locationId: string) => regionMapOf(board, regionAnchor)?.prep?.places.find((row) => row.locationId === locationId) ?? null;
+  const card = (pins: readonly Live2dPin[]) => {
+    const pin = pins.find((row) => row.locationId === chosen);
+    if (!pin) return null;
+    return <PlaceCard key={pin.locationId} pin={pin} where={prepPlace(pin.locationId)?.where ?? snapshot.locations.find((row) => row.id === pin.locationId)?.detail?.whereabouts ?? ""}
+      onGo={() => intent(placeIntent(pin.name, language))} onClose={() => setChosen(null)} />;
+  };
+
   let body: React.ReactNode;
   if (level === "world" || level === "region") {
     const regionMap = level === "region" ? regionMapOf(board, view.anchorId) : null;
     const art = level === "region" ? urlFor(regionMap?.pictureId ?? null) : view.anchorId ? anchorUrl({ kind: "location", id: view.anchorId }, "location") : null;
-    const shown = visiblePins(markers, view.pins, { currentId: topOf(currentId), destinationId: travel?.toId ?? null, trackedIds: tracked });
+    const marks = level === "region" ? regionMarks : { pins: view.pins, inner: [] as MapMarker[] };
+    const shown = visiblePins(markers, marks.pins, { currentId: topOf(currentId), destinationId: travel?.toId ?? null, trackedIds: tracked });
+    const inner = visiblePins(markers, marks.inner, { currentId, destinationId: null, trackedIds: tracked }).filter((pin) => shown.some((row) => row.locationId === (pin as MapMarker).parentId)) as MapMarker[];
     const party = level === "region" ? (gliding && travel ? travelPoint(travel, now) : pinOf(currentId)) : null;
     const fresh = regionMap ? newPlacesSince(regionMap.signature, view.pins) : [];
+    const draggable = marking && level === "region" && !!regionMap?.pictureId;
     body = (
       <>
-        <div className={s.stage} aria-label={c("Карта региона", "Region map")}>
+        <div ref={mapStage} className={s.stage} aria-label={c("Карта региона", "Region map")}
+          onPointerMove={(event) => { if (dragMark) { const point = pointOnMap(event); if (point) setDragMark({ ...dragMark, ...point }); } }} onPointerUp={dropMark} onPointerCancel={() => setDragMark(null)}>
           {art && <Art src={art} />}
           <div className={s.grain} aria-hidden="true" />
           <span className={s.artLabel}>{art ? c("Рисованная карта · условный фон", "Painted map · illustrative background") : c("Известные места · по записям", "Known places · from the records")}</span>
@@ -212,23 +293,12 @@ export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2
             {travel && (
               <svg className={s.route} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d={routePath(travel.from, travel.to)} /></svg>
             )}
-            {shown.map((pin) => {
-              const isCurrent = pin.locationId === topOf(currentId);
-              const status = pin.status === "visited" ? s.visitedPin : pin.status === "rumored" ? s.rumoredPin : s.knownPin;
-              return (
-                <button key={pin.locationId} type="button" className={[s.pin, status, tracked.has(pin.locationId) ? s.trackedPin : ""].join(" ")}
-                  style={{ left: pct(pin.x), top: pct(pin.y) }} data-pin={pin.locationId}
-                  aria-label={`${pin.name}${isCurrent ? ` · ${c("вы здесь", "you are here")}` : ""}${pin.hasChildren ? ` · ${c("можно открыть", "can be opened")}` : ""}`}
-                  onClick={() => (isCurrent && pin.hasChildren ? openPin(pin) : intent(placeIntent(pin.name, language)))}
-                  onDoubleClick={() => openPin(pin)}>
-                  <span className={s.pinMark} aria-hidden="true" />
-                  <span className={s.pinLabel}>{pin.name}</span>
-                </button>
-              );
-            })}
+            {shown.map((pin) => marker(pin, { isCurrent: pin.locationId === topOf(currentId), draggable, onOpen: () => openPin(pin) }))}
+            {inner.map((pin) => marker(pin, { isCurrent: pin.locationId === currentId, inner: true, draggable, onOpen: () => openInner(pin) }))}
             {party && <span className={[s.party, gliding ? s.partyGliding : ""].join(" ")} style={{ left: pct(party.x), top: pct(party.y) }} aria-hidden="true" />}
           </div>
         </div>
+        {card([...shown, ...inner])}
         <div className={s.strip}>
           {gliding && travel ? <b>{c("в пути", "on the way")}: {name(travel.fromId)} → {name(travel.toId)}</b> : currentId ? <b>{c("Вы", "You")}: {name(currentId)}</b> : null}
           {level === "region" && (
@@ -244,8 +314,19 @@ export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2
             </button>
           )}
         </div>
+        {regionMap?.status === "drawing" && <p className={s.note} role="status">{c("Карта рисуется: ведущий сначала продумывает край, потом художник рисует его по этому описанию.", "The map is being drawn: the DM designs the region first, then the painter paints from it.")}</p>}
+        {regionMap?.status === "flagged" && (
+          <p className={`${s.note} ${s.warn}`} role="status">{regionMap.check
+            ? c("Картинка не сошлась с подготовкой края: метки стоят там, где места нарисованы, а места внутри поселения — внутри него. Что не так, перечислено ниже.", "The picture did not match the region's prep: the markers sit where the places are drawn, a place inside a settlement within it. What is wrong is listed below.")
+            : c("Картинку не удалось проверить: метки стоят по подготовке края, примерно.", "The picture could not be checked: the markers follow the region's prep, approximately.")}</p>
+        )}
+        {regionMap && regionMap.sideList.length > 0 && (
+          <p className={s.sideList}><span style={{ border: 0, padding: 0, color: "var(--muted)" }}>{c("Не сошлось", "Did not match")}:</span>{regionMap.sideList.map((item) => <span key={item}>{item}</span>)}</p>
+        )}
         {fresh.length > 0 && <p className={`${s.note} ${s.warn}`}>{c("На карте появилось новое место", "A new place appeared on the map")}: {fresh.map((row) => row.name).join(", ")}. {c("Карту можно перерисовать.", "The map can be redrawn.")}</p>}
-        {shown.some((pin) => pin.hasChildren) && <p className={`${r.small} ${r.muted}`}>{c("Нажатие на место — «идём туда» в поле действия; двойное нажатие на город открывает его.", "Tap a place — “we go there” in the action box; double-tap a town to open it.")}</p>}
+        <p className={`${r.small} ${r.muted}`}>{c("Нажатие на место открывает его: поселение — его план с местами, посещённое место — сцену. Вверх — по крошкам. «Идём туда» — в карточке места.", "Tap a place to open it: a settlement opens its plan, a visited place its scene. Up by the crumbs. «We go there» is on the place's card.")}</p>
+        <MapMore level={level} regionMap={regionMap} names={names} marking={marking} canMark={level === "region" && !!regionMap?.pictureId} onMarking={setMarking}
+          documentHref={regionMap?.prepDocumentId ? `${href("library")}?doc=${encodeURIComponent(regionMap.prepDocumentId)}` : null} tools={tools} />
       </>
     );
   } else if (level === "town" || level === "district") {
@@ -258,23 +339,13 @@ export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2
           <div className={s.grain} aria-hidden="true" />
           <span className={s.artLabel}>{art ? c("Иллюстрация места", "Illustration of the place") : c("Известные части · по записям", "Known parts · from the records")}</span>
           <div className={s.layer}>
-            {shown.map((pin) => {
-              const location = snapshot.locations.find((row) => row.id === pin.locationId);
-              const hasScene = !!sceneOf(board, pin.locationId);
-              return (
-                <button key={pin.locationId} type="button" className={[s.pin, pin.status === "visited" ? s.visitedPin : pin.status === "rumored" ? s.rumoredPin : s.knownPin].join(" ")}
-                  style={{ left: pct(pin.x), top: pct(pin.y) }} data-pin={pin.locationId}
-                  aria-label={`${pin.name}${pin.locationId === currentId ? ` · ${c("вы здесь", "you are here")}` : ""}`}
-                  onClick={() => (pin.hasChildren || (location?.status === "visited" && (hasScene || pin.locationId === currentId)) ? openPin(pin) : intent(placeIntent(pin.name, language)))}>
-                  <span className={s.pinMark} aria-hidden="true" />
-                  <span className={s.pinLabel}>{pin.name}</span>
-                </button>
-              );
-            })}
+            {shown.map((pin) => marker(pin, { isCurrent: pin.locationId === currentId, onOpen: () => openPin(pin) }))}
             {currentId && shown.some((pin) => pin.locationId === currentId) && (() => { const pin = shown.find((row) => row.locationId === currentId)!; return <span className={s.party} style={{ left: pct(pin.x), top: pct(pin.y + 0.06) }} aria-hidden="true" />; })()}
           </div>
         </div>
+        {card(shown)}
         <div className={s.strip}><b>{view.anchorName}</b>{!shown.length && <span>{c("Известных частей пока нет.", "No known parts yet.")}</span>}</div>
+        <MapMore level={level} regionMap={null} names={names} marking={false} canMark={false} onMarking={setMarking} documentHref={null} tools={tools} />
       </>
     );
   } else {
@@ -294,7 +365,7 @@ export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2
           <button type="button" onClick={() => setBattle(true)}>{c("Открыть карту боя", "Open the battle map")}</button>
         </div>
       )}
-      <Plate eyebrow={c("2D", "2D LIVE")} title={level === "scene" ? name(focusId) : level === "region" ? (view.anchorName || c("Известный край", "The known region")) : view.anchorName || c("Мир", "World")}
+      <Plate eyebrow={entry === "map" ? c("Карта", "MAP") : c("2D", "2D LIVE")} title={level === "scene" ? name(focusId) : level === "region" ? (view.anchorName || c("Известный край", "The known region")) : view.anchorName || c("Мир", "World")}
         sub={c("Ведущий решает, что случилось; записи помнят; экран только показывает.", "The DM decides what happened; the records remember; the screen only shows.")} />
       {crumbBar}
       {body}
