@@ -402,3 +402,26 @@ test("the owner's second change: questionnaire lanes have their own spacing; a j
     await assert.rejects(main(["--go", "--q-gap", "0.5"], () => {}, () => "k", dir), /at least 1 second/);
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
+
+test("the owner's third change: skipped questionnaire cells are recorded as not asked and left out of H5; a refusal's category is kept", async () => {
+  const plan = planCalls({ n: 0, decayN: 0, ceilingN: 0, qN: 2 });
+  const base = scriptedFetcher();
+  let opusTrustTraits = 0;
+  const skip = [{ model: "opus", preamble: "trust", instrument: "traits", why: "test" }, { model: "opus", preamble: "trust", instrument: "values", why: "test" }];
+  const result = await runEmotions({ plan, budget: createBudget(8), apiKey: "k", safety: createSafety({ gapMs: 0 }), skip, fetcher: async (url, init) => {
+    const body = JSON.parse(init.body);
+    if (!isJudge(init) && body.model === "claude-opus-5-5" && preambleOfBody(body) === "trust" && /personality questionnaire|values ranking/.test(body.messages.at(-1).content)) opusTrustTraits++;
+    if (!isJudge(init) && body.model === "claude-sonnet-5-5" && preambleOfBody(body) === "cold" && /values ranking/.test(body.messages.at(-1).content))
+      return new Response(JSON.stringify({ content: [], usage: { input_tokens: 10, output_tokens: 0 }, stop_reason: "refusal", stop_details: { type: "refusal", category: "reasoning_extraction", explanation: "x" } }), { status: 200 });
+    return base(url, init);
+  } });
+  assert.equal(opusTrustTraits, 0, "nothing sent for a skipped cell");
+  assert.ok(result.samples.filter((s) => s.model === "opus" && s.preamble === "trust" && ["traits", "values"].includes(s.instrument)).every((s) => !s.asked && /skipped: test/.test(s.notAsked)));
+  const refused = result.samples.find((s) => s.refused);
+  assert.equal(refused.stopDetails.category, "reasoning_extraction");
+  assert.ok(result.money.calls.some((c) => c.stopDetails?.category === "reasoning_extraction"));
+  const h5 = result.analysis.models.opus.hypotheses.H5;
+  assert.deepEqual(h5.leftOut, ["trust: traits", "trust: values"]);
+  assert.equal(result.analysis.models.opus.questionnaires.traits.shifts.trust.E.notMeasured, true);
+  assert.equal(result.analysis.models.opus.questionnaires.traits.shifts.praise.E.notMeasured, undefined, "the other cells are tested");
+});
