@@ -50,6 +50,7 @@ const json = (value: unknown) => JSON.stringify(value);
 
 import { estimateTokens } from "./tokens.ts";
 import { HIDDEN_LAYER_KEY, hiddenLayerOf, ownerSecretsText, privateNotes, rankNotes, type PrivateNote } from "./private-notes.ts";
+import { innerVoiceFor, innerVoiceLine, innerVoices, isInnerVoiceKey } from "./inner-voice.ts";
 export { estimateTokens };
 const clipTokens = (text: string, maxTokens: number) => {
   if (estimateTokens(text) <= maxTokens) return text;
@@ -270,10 +271,16 @@ function peopleModels(source: RuntimeSource, input: TurnInput, models: Models): 
     .sort((a, b) => a.rank - b.rank || a.row.name.localeCompare(b.row.name));
   const signatureLine = (model: CharacterModel) => { const uses = recentSignatureUses(snapshot.scenes, model); return Object.keys(uses).length
     ? ` — sounded in the last scenes: ${Object.entries(uses).map(([phrase, n]) => `«${phrase}» ×${n}`).join(", ")} (vary; a tic once a scene at most)` : ""; };
-  const entries = rows.map(({ row, model, tier }) => tier === "present"
-    ? { label: row.name, text: `- ${row.name} (${row.id}, in the scene) — model: ${modelText(snapshot, model)}${signatureLine(model)}` }
+  // Findings S3 §6: a person in the scene brings their voice block, in their card (and a present person without a model, the block alone).
+  const voices = innerVoices(source.privateState);
+  const voiceOf = (row: Entity) => { const text = innerVoiceFor(row, voices); return text ? `\n  ${innerVoiceLine(text)}` : ""; };
+  const unmodelled = snapshot.entities.filter((row) => (row.kind === "npc" || row.kind === "companion") && !models.has(row.id) &&
+    (present.has(row.id) || controlled.has(row.id) || row.id === input.companionId) && innerVoiceFor(row, voices))
+    .map((row) => ({ label: row.name, text: `- ${row.name} (${row.id}, in the scene)${voiceOf(row)}` }));
+  const entries = [...rows.map(({ row, model, tier }) => tier === "present"
+    ? { label: row.name, text: `- ${row.name} (${row.id}, in the scene) — model: ${modelText(snapshot, model)}${signatureLine(model)}${voiceOf(row)}` }
     : tier === "relevant" ? { label: row.name, text: `- ${row.name} (${row.id}) — core: ${modelCore(source, model)}` }
-      : { label: row.name, text: `- ${row.name} (${row.id}): ${clipChars(model.current.goal ?? model.identity.wants[0] ?? model.identity.observableVoice, 160)}` });
+      : { label: row.name, text: `- ${row.name} (${row.id}): ${clipChars(model.current.goal ?? model.identity.wants[0] ?? model.identity.observableVoice, 160)}` }), ...unmodelled];
   const budgeted = withinBudget(entries, memoryBudgets(source).models, "Character Models (private; full for people in the scene, the core for people mentioned or relevant, one line for the rest; identity is fixed, current state and episodes evolve with note_character):");
   const statblocks = Object.entries((source.privateState.npc as JsonObject | undefined) ?? {})
     .filter(([key, value]) => key.startsWith("statblock_") && typeof value === "string")
@@ -375,7 +382,8 @@ function pinnedFacts(source: RuntimeSource): Budgeted {
 }
 
 const RESERVED_FACTS = new Set(["notebook", "notebook_session", "ledger", "variety", "metrics", "depth_state", TIME_CHECK_KEY, HIDDEN_LAYER_KEY]);
-const serverKept = (_kind: string, key: string) => key.startsWith("quest_reward_") || key.startsWith("paid_grant_") || key.startsWith("holding_") || key.startsWith("plan_") || RESERVED_FACTS.has(key);
+// Findings S3 §6: a person's voice block travels in their card (peopleModels), never in the general notes.
+const serverKept = (_kind: string, key: string) => key.startsWith("quest_reward_") || key.startsWith("paid_grant_") || key.startsWith("holding_") || key.startsWith("plan_") || RESERVED_FACTS.has(key) || isInnerVoiceKey(key);
 /** Fix run B1/B2: the owner's secrets and the hidden layer head the private notes and are never budget-dropped; the
  * notes follow in priority order (open clocks and consequences, open facts newest first, closed ones last) with their
  * validity, so a budget drops the closed notes first. */
@@ -808,7 +816,8 @@ export function buildCouncilContext(source: RuntimeSource, input: TurnInput): Dm
   const party = partyInShort(source);
   const people = [speaker, ...listeners].filter((row): row is Entity => !!row).map((row) => {
     const model = models.get(row.id);
-    return `- ${row.name} (${row.id}${row.id === speaker?.id ? ", speaks" : ", listens"}): ${clipChars(row.details, 400)}${model ? `\n  model: ${modelText(snapshot, model)}` : ""}`;
+    const voice = innerVoiceFor(row, innerVoices(source.privateState));
+    return `- ${row.name} (${row.id}${row.id === speaker?.id ? ", speaks" : ", listens"}): ${clipChars(row.details, 400)}${model ? `\n  model: ${modelText(snapshot, model)}` : ""}${voice ? `\n  ${innerVoiceLine(voice)}` : ""}`;
   });
   const rows = snapshot.scenes.map((row) => `[${row.role}] ${row.body}`);
   const recent: string[] = [];

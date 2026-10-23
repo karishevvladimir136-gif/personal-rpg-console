@@ -13,6 +13,7 @@ import type { DmEffort } from "../../model-runtime/dm-models.ts";
 import { buildDmLoopContext, estimateTokens, worldDay } from "./context.ts";
 import { allPlans, serializePlan, type OffScreenPlan } from "./plans.ts";
 import { hiddenLayerOf, privateNotes } from "./private-notes.ts";
+import { boundInnerVoice, INNER_VOICES_PER_CALL, peopleWithoutVoice } from "./inner-voice.ts";
 import type { SessionEnding } from "../../persistence/contracts.ts";
 import { nameStems } from "../../visual-frame/shot.ts";
 
@@ -30,6 +31,8 @@ export type SessionDigest = {
   folds: { keys: { kind: "fact" | "clock" | "consequence"; key: string }[]; line: string }[];
   /** Fix run E (item 81): how the session closes, by its length. */
   ending: SessionEnding;
+  /** Findings S3 §6: the voice blocks of the people the request named (a companion or a person who recurs, without one yet). */
+  voices: { entityId: string; inner: string }[];
 };
 
 export type DigestSession = { id: string; title: string; scenes: { role: string; body: string }[]; startWorldMinutes: number | null; endWorldMinutes: number;
@@ -62,7 +65,7 @@ const ENDING_FIELDS = {
   short: `  "lines": ["«what happened»: 3–5 short lines in the campaign language, the session's main beats only, each one sentence, nothing the hero does not know"],`,
   cards: `  "cards": [ { "entityId": "<ID from PEOPLE OF THIS SESSION, or null for a group>", "name": "the person or group as the hero knows them", "where": "where they are now as far as the hero knows, or «неизвестно» / «unknown»", "standing": "how they stand with the hero, a few words", "fate": "one line of their fate as of now, like the final slides of a role-playing game; «неизвестно» / «unknown» when the hero does not know" } ],`,
 };
-function digestInstructions(form: SessionEnding["form"]) {
+function digestInstructions(form: SessionEnding["form"], voices = false) {
   return `Between sessions. The session below has just ended. Write your notes between sessions in one pass: the player's parts (recap, title, the ending, threads, stinger) for the owner to read, and your own private parts (notebook, plans, hiddenLayer, playerLikes) the way a game master writes for themself — ${DM_NOTES_VOICE} Answer with a single JSON object (the server reads only the JSON):
 {
   "recap": "«Previously in…» in your own voice, in the campaign language, for the player: three or four sentences looking forward — where the hero is now, what is at stake, what comes next; not a list of facts, no minor details; nothing the hero does not know, no spoilers",
@@ -75,7 +78,8 @@ ${ENDING_FIELDS[form]}
   "hiddenLayer": "the campaign's hidden layer (your private notes begin with it) rewritten whole with what this session moved: which clues the hero found, which secrets came closer, the clocks advanced, a faction's aim that shifted — the same headings, in the campaign language, written under them as your own first-person notes, up to 5000 characters; null when the session changed nothing in it or the campaign has none",
   "folds": [ { "keys": ["kind:key of two or more CLOSED private notes about one finished matter (a fight's rounds, a search's steps)"], "line": "one line that keeps what still matters of them, in the campaign language" } ],
   "stinger": "«Meanwhile…»: 2–4 sentences in the campaign language — news that travels through the world and could reach the hero or the people around them: a guard's report to the captain, a rumour in the market, a letter, a messenger. Not an all-seeing camera: only what that channel could carry. It moves the story and may deepen an open question; it never answers a question the hero was left with, never names a hidden fact, never decides an outcome; written as story, no headings; empty string when nothing fits",
-  "channel": "how the «Meanwhile» news travels, a few words in the campaign language (a report to the captain of the guard; a rumour on the market); empty with an empty stinger"
+  "channel": "how the «Meanwhile» news travels, a few words in the campaign language (a report to the captain of the guard; a rumour on the market); empty with an empty stinger"${voices ? `,
+  "voices": [ { "entityId": "<ID from PEOPLE WITHOUT A VOICE OF THEIR OWN>", "inner": "that person in their own first-person words, three or four lines under 80 words, in the campaign language: what I want, what I fear, what I know and what I hide, how I talk — from their records and from how they spoke and acted so far" } ]` : ""}
 }
 Rules: fold only notes marked closed, never an open one, never the hidden layer; leave out "folds" when nothing is worth folding. Advance the off-screen plans only for the game time that passed in this session (from its first to its last scene); the player's real-world absence moves nothing. Keep each person consistent with their Character Model. Plans you do not change may be omitted. Never put a secret into recap, title, ${form === "cards" ? "cards" : "lines"}, threads or stinger. End the session on a clear beat: the recap says where things stand and what comes next, the stinger shows the world moving.`;
 }
@@ -95,7 +99,7 @@ export function firstPersonPer100(text: string): number {
 }
 
 export function buildDigestRequest(source: RuntimeSource, session: DigestSession, effort: DmEffort): { system: DmSystemBlock[]; messages: DmMessage[]; effort: DmEffort; tokens: number;
-  shape: SessionShape; people: { id: string; name: string }[] } {
+  shape: SessionShape; people: { id: string; name: string }[]; voicesFor: { id: string; name: string }[] } {
   // The same cached layers a turn uses (how to run, the world, the dossier); the
   // session's scenes and the time it covered take the place of the "now" layer.
   const input: TurnInput = { operationId: "00000000-0000-4000-8000-000000000000", campaignId: source.snapshot.campaign.id,
@@ -109,17 +113,22 @@ export function buildDigestRequest(source: RuntimeSource, session: DigestSession
   const openPlans = allPlans(source.privateState).filter((plan) => plan.status === "open");
   const shape = session.shape ?? { turns: session.scenes.filter((row) => row.role === "player").length, playMinutes: 0, form: "short" as const };
   const people = session.people ?? sessionPeople(source, session.scenes);
+  // Findings S3 §6: the companions and the people who recur (named in this session and in an earlier one) without a voice block yet.
+  const earlier = source.snapshot.scenes.filter((row) => row.session_id !== session.id).map((row) => ({ role: row.role, body: row.body }));
+  const before = new Set(sessionPeople(source, earlier).map((row) => row.id));
+  const voicesFor = peopleWithoutVoice(source, sessionPeople(source, session.scenes).filter((row) => before.has(row.id)).map((row) => row.id));
   const now = [`The session «${session.title}» (${session.id}) just ended. Game time it covered: ${span}. Current game time: ${worldDay(session.endWorldMinutes)} (minute ${session.endWorldMinutes}).`,
     `It was a ${shape.form === "cards" ? "long" : "short"} session: ${shape.turns} turns, about ${Math.max(1, Math.round(shape.playMinutes / 60 * 10) / 10)} hours of play. ${shape.form === "cards"
       ? "Close it with the ending cards: one card per person or group the hero met this session."
       : "Close it with «what happened» in a few lines; no cards."}`,
     shape.form === "cards" ? `PEOPLE OF THIS SESSION (ID — name): ${people.length ? people.map((row) => `${row.id} — ${row.name}`).join("; ") : "(none on record; cards for groups only)"}.` : "",
     openPlans.length ? `Open plans with their keys and due minutes: ${openPlans.map((p) => `${p.key} (actor ${p.actorId ?? "none"}, due minute ${p.dueWorldMinutes})`).join("; ")}.` : "No open plans yet; create a plan for every important antagonist and faction that has a goal.",
+    voicesFor.length ? `PEOPLE WITHOUT A VOICE OF THEIR OWN (ID — name; write each one's voice block): ${voicesFor.map((row) => `${row.id} — ${row.name}`).join("; ")}.` : "",
     `Scenes of the session (oldest first):\n${scenes || "(no scenes)"}`].filter(Boolean).join("\n\n");
-  const instructions = digestInstructions(shape.form);
+  const instructions = digestInstructions(shape.form, voicesFor.length > 0);
   const system: DmSystemBlock[] = [...prefix, { text: now, cache: false }];
   const messages: DmMessage[] = [{ role: "user", text: instructions }];
-  return { system, messages, effort, shape, people, tokens: system.reduce((sum, block) => sum + estimateTokens(block.text), 0) + estimateTokens(instructions) };
+  return { system, messages, effort, shape, people, voicesFor, tokens: system.reduce((sum, block) => sum + estimateTokens(block.text), 0) + estimateTokens(instructions) };
 }
 
 /** Fix S3-pre A-17: the parse repair of a digest answer — trailing commas dropped, and an answer cut mid-way (the output
@@ -163,7 +172,8 @@ export function repairDigestJson(text: string): Record<string, unknown> | null {
 
 /** The model's JSON, validated and bounded; a malformed answer is repaired once (A-17) and otherwise yields null (the
  * digest is retried on the next entry). */
-export function parseDigest(text: string, source: RuntimeSource, nowMinutes: number, shape?: SessionShape, people?: { id: string; name: string }[]): SessionDigest | null {
+export function parseDigest(text: string, source: RuntimeSource, nowMinutes: number, shape?: SessionShape, people?: { id: string; name: string }[],
+  voicesFor: { id: string }[] = []): SessionDigest | null {
   const repaired = repairDigestJson(text);
   if (!repaired) return null;
   const value: Record<string, unknown> = repaired;
@@ -216,7 +226,14 @@ export function parseDigest(text: string, source: RuntimeSource, nowMinutes: num
   const stinger = str(value.stinger, 2000);
   const ending: SessionEnding = { version: 1, form, lines: form === "short" ? lineList(value.lines, 6, 240) : [], cards, threads: lineList(value.threads, 10, 200),
     channel: stinger ? str(value.channel, 120) : "", turns: shape?.turns ?? 0, playMinutes: shape?.playMinutes ?? 0 };
-  return { recap, title, notebook, plans, playerLikes: typeof value.playerLikes === "string" && value.playerLikes.trim() ? value.playerLikes.trim().slice(0, 2000) : null,
+  // Findings S3 §6: a voice block only for a person the request named, bounded under 80 words.
+  const asked = new Set(voicesFor.map((row) => row.id));
+  const voices = (Array.isArray(value.voices) ? value.voices.slice(0, INNER_VOICES_PER_CALL) : []).flatMap((raw) => {
+    const v = raw && typeof raw === "object" ? raw as Record<string, unknown> : {};
+    const inner = boundInnerVoice(v.inner);
+    return typeof v.entityId === "string" && asked.has(v.entityId) && inner ? [{ entityId: v.entityId, inner }] : [];
+  });
+  return { voices, recap, title, notebook, plans, playerLikes: typeof value.playerLikes === "string" && value.playerLikes.trim() ? value.playerLikes.trim().slice(0, 2000) : null,
     stinger, hiddenLayer: layer, folds, ending };
 }
 
@@ -244,5 +261,5 @@ export async function runDigest(model: DmModel, request: ReturnType<typeof build
     else if (event.type === "usage") usage = event.usage;
     else if (event.type === "stop") stop = event.reason;
   }
-  return { digest: parseDigest(text, source, nowMinutes, request.shape, request.people), text, usage, stop };
+  return { digest: parseDigest(text, source, nowMinutes, request.shape, request.people, request.voicesFor), text, usage, stop };
 }
