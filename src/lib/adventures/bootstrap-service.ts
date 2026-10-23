@@ -100,6 +100,8 @@ export function createBootstrapService(
   rpc: BootstrapRpc,
   provider: BootstrapProvider,
   resolveProfile: (campaignId: string | null) => Promise<ExecutionProfile>,
+  // Fix S3 item 3: after a committed creation (the world's named rules system); the campaign stands without it.
+  afterCreation?: (created: { campaignId: string; world: import("./contracts.ts").PublicWorld }) => Promise<void>,
 ) {
   return {
     async perform(value: BootstrapCommand): Promise<unknown> {
@@ -175,11 +177,14 @@ export function createBootstrapService(
       if (creation) {
         const r = object(result, ["requestId", "campaignId", "heroId"]);
         ensure(r.requestId === command.input.requestId);
-        return {
+        const created = {
           requestId: uuid(r.requestId),
           campaignId: uuid(r.campaignId),
           heroId: uuid(r.heroId),
         };
+        if (afterCreation)
+          await afterCreation({ campaignId: created.campaignId, world: pinned.world }).catch(() => undefined);
+        return created;
       }
       const r = object(result, ["requestId", "snapshot"]);
       ensure(r.requestId === command.input.requestId);

@@ -13,6 +13,7 @@ import { dmArchitectureOf, dmArchitectures, dmBookkeeperModels, dmTurnModels, dm
   type DmSettings, type DmSplit } from "@/lib/gameplay/dm-settings-client";
 import { createMutationAttempt, readJson } from "@/lib/persistence/client";
 import { rulesInWords } from "@/lib/ui/rules-words";
+import { rulesSystemChoice } from "@/lib/rulesets/rules-system";
 import { useOptionalCampaignData } from "../persistence-context";
 import { usd } from "@/lib/visual-frame/fal-image";
 import { workshopJobs } from "@/lib/ui/visual-autopilot";
@@ -53,6 +54,7 @@ export function RegistrySettings({ data, more, preview }: {
   const [diceError, setDiceError] = useState("");
   // The preview keeps its toggles locally; the live screen shows the saved record.
   const shownDice = chrome?.href || !campaign ? diceValues : data.settings.values;
+  const rulesChoice = rulesSystemChoice(shownDice.rulesSystem);
   const changeDice = async (action: CampaignSettingsAction) => {
     if (diceBusy) return;
     const next = updateCampaignSettings(shownDice, action);
@@ -410,7 +412,16 @@ export function RegistrySettings({ data, more, preview }: {
               the checks and dice that act in play — shown for every rules system, never hidden behind «Логика мира».
               The per-turn record limits are guards on the server, not something the owner plays with. */}
           <Panel eyebrow={c("Правила и кости", "Rules and dice")} label={c("Правила и кости", "Rules and dice")}>
-            <div className={r.stack} data-testid="rules-and-dice">
+            <div className={r.stack} id="rules-and-dice" data-testid="rules-and-dice">
+              {/* Fix S3 item 3: the rules system — only its label changes, which the 5e module and the rules module read. */}
+              <div className={r.stack} style={{ gap: 4 }}>
+                <span className={r.eyebrow}>{c("Система правил", "Rules system")}</span>
+                <Segmented label={c("Система правил", "Rules system")} value={rulesChoice} disabled={diceBusy}
+                  options={[{ value: "world", label: c("Логика мира", "World Logic") }, { value: "dnd5e", label: "D&D 5e" }, { value: "pathfinder", label: "Pathfinder" }]}
+                  onChange={(value) => { if (value !== rulesChoice) void changeDice({ type: "rulesSystem", value }); }} />
+                <p className={r.note} style={{ margin: 0 }}>{c("5e-модуль: класс доспеха, спасброски и атаки считаются по правилам 5e из листа персонажа. Включается выбором D&D 5e.",
+                  "5e module: armour class, saving throws and attacks are counted by the 5e rules from the character sheet. Choosing D&D 5e turns it on.")}</p>
+              </div>
               <div className={r.stack} style={{ gap: 4 }}>
                 <span className={r.eyebrow}>{c("Правила этой кампании", "This campaign's rules")}</span>
                 <p className={s.rules}>{rules.line

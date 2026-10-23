@@ -40,6 +40,7 @@ function serverFixture({ replay = false } = {}) {
     "../model-runtime/defaults.ts": { applicationModelSelection: () => ({}) },
     "./model-runtime/profiles.ts": { executionProviderOptions: () => ({}) },
     "./dm-settings": { readDmSettings: async () => ({ dmTurn: null }) },
+    "./campaign-rules-system": { applyWorldRulesSystem: async () => {} },
   };
   const source = readFileSync(new URL("../src/lib/server/adventure-bootstrap.ts", import.meta.url), "utf8");
   const output = ts.transpileModule(source, { compilerOptions: {
