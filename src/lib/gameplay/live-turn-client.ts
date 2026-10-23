@@ -7,7 +7,9 @@ export type LiveTurnView = {
   operationId: string;
   text: string;
   /** The player's lines (campaign language) of the accepted calls the hero would notice. */
-  changes: { name: string; ok: boolean; summary: string; action?: string }[];
+  changes: { name: string; ok: boolean; summary: string; action?: string;
+    /** Fix S3-accept В1: a party member's counter the call left (a spent spell slot). */
+    counter?: { entityId: string; key: string; value: number; max: number | null } }[];
   /** finish_turn handed the decisive description to the player (server-checked, polish). */
   moment?: { reason: string | null } | null;
   /** `recording` (polish 3 §2): the text is complete, the bookkeeper records; the composer may open. */
@@ -16,6 +18,21 @@ export type LiveTurnView = {
   working?: ("roll" | "record" | "lookup")[];
 };
 
+/** Fix S3-accept В1: a record's counters with a running (or just saved) turn's accepted counters over them — the slot the
+ * server recorded as spent dims at once, before the commit's records arrive (they carry the same numbers). A failed or
+ * cancelled turn's changes are dropped, so nothing of it shows. */
+export function withLiveCounters<T extends { id: string; resources: Record<string, number> }>(entity: T, view: LiveTurnView | null): T {
+  if (!view || view.status === "failed" || view.status === "cancelled") return entity;
+  const rows = view.changes.filter((change) => change.ok && change.counter?.entityId === entity.id);
+  if (!rows.length) return entity;
+  const resources = { ...entity.resources };
+  for (const { counter } of rows) {
+    resources[counter!.key] = counter!.value;
+    if (counter!.max !== null) resources[`${counter!.key}_max`] = counter!.max;
+  }
+  return { ...entity, resources };
+}
+
 /** A status that ends the stream (`recording` keeps it open until the commit). */
 export const liveStatusEnds = (status: LiveTurnView["status"]) => status !== null && status !== "generating" && status !== "recording";
 
@@ -23,7 +40,8 @@ export const emptyLiveTurn = (operationId: string): LiveTurnView => ({ operation
 
 export function applyLiveEvent(view: LiveTurnView, event: DmLoopLiveEvent): LiveTurnView {
   if (event.type === "text") return { ...view, text: view.text + event.text };
-  if (event.type === "tool") return { ...view, changes: [...view.changes, { name: event.name, ok: event.ok, summary: event.summary, ...(event.action ? { action: event.action } : {}) }] };
+  if (event.type === "tool") return { ...view, changes: [...view.changes, { name: event.name, ok: event.ok, summary: event.summary, ...(event.action ? { action: event.action } : {}),
+    ...(event.counter ? { counter: event.counter } : {}) }] };
   if (event.type === "moment") return { ...view, moment: { reason: event.reason } };
   if (event.type === "working") return { ...view, working: event.tools };
   return { ...view, status: event.status };

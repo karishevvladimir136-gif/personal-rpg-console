@@ -20,7 +20,8 @@ import { allPlans, duePlans, parsePlan, planKey, serializePlan, type OffScreenPl
 import { worldDay } from "./context.ts";
 import { ShadowState, ToolReject, reject } from "./shadow.ts";
 import { chip, currencyAmount, type ChipLanguage } from "./receipt-text.ts";
-import { patchSheet, sheetChanges, type AnySheet, type SheetPatch } from "../../inventory/sheet.ts";
+import { patchSheet, sheetChanges, type AnySheet, type CharacterSheetV2, type SheetPatch } from "../../inventory/sheet.ts";
+import { convertSpellProse, withCard } from "../../inventory/spell-records.ts";
 import type { DmLoopMeta, DmLoopReceipt, DmLoopReceiptResult, DmLoopTension, DmLoopToolCall } from "./contracts.ts";
 import type { EncounterParticipant } from "../contracts.ts";
 import { combatantJson, DEFAULT_GRID, defaultEconomy, fieldJson, MAX_LOG, parseCombatant, parseFeature, parseField, parsePlacement, placementJson, type Combatant, type Field, type LogLine, type Side } from "../../live2d/battle/contracts.ts";
@@ -778,6 +779,13 @@ function conditionsAfter(entity: Entity, raw: unknown): string[] | null {
   const next = [...kept, ...words(add).filter((word) => !kept.some((row) => row.toLocaleLowerCase() === word.toLocaleLowerCase()))].slice(0, 12);
   return next.length === entity.conditions.length && next.every((word, index) => word === entity.conditions[index]) ? null : next;
 }
+/** Fix S3-accept В1: the sheet a call writes — from a stored sheet whose «Умения» still list spells read as converted
+ * (src/lib/inventory/spell-records.ts), with the call's fields, and every spell the app has a card for filled from it
+ * where its record leaves a field out (its own words win). */
+function sheetAfter(before: AnySheet | null | undefined, patch: SheetPatch, language: unknown): CharacterSheetV2 {
+  const next = patchSheet(convertSpellProse(before, language)?.sheet ?? before, patch);
+  return next.spells?.length ? { ...next, spells: next.spells.map((row) => withCard(row, language)) } : next;
+}
 /** A stat block that names attacks while the person carries no weapon: the receipt asks for the gear (item 36). */
 function gearHint(shadow: ShadowState, entity: Entity, statblock: string): JsonObject {
   if (!/(атак|attack|мультиатак|multiattack|\+\d+\s*\()/i.test(statblock)) return {};
@@ -801,10 +809,11 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
       const reason = str(args.reason);
       reject(reason.length > 0, "A change of the hero's sheet or conditions needs a reason (shown to the player).");
       const before = entity.character_sheet as AnySheet | null | undefined;
-      const sheet = patch ? patchSheet(before, patch) : null;
+      const sheet = patch ? sheetAfter(before, patch, ctx.language) : null;
       if (sheet || conditions) shadow.apply(entityChange(shadow, entity, { ...(sheet ? { character_sheet: sheet as unknown as JsonObject } : {}), ...(conditions ? { conditions } : {}) }));
       const ru = ctx.language === "ru";
-      const changed = [sheet ? sheetChanges(before, sheet, ctx.language) : null,
+      // The chip names the call's change, not the one-time conversion of the prose it started from.
+      const changed = [sheet ? sheetChanges(convertSpellProse(before, ctx.language)?.sheet ?? before, sheet, ctx.language) : null,
         conditions ? `${ru ? "состояния" : "conditions"}: ${conditions.join(", ") || (ru ? "нет" : "none")}` : null].filter(Boolean).join("; ") || (ru ? "без изменений" : "unchanged");
       return ok({ id: entity.id, name: entity.name, sheet: changed, ...(conditions ? { conditions } : {}) }, `${entity.name}'s sheet: ${changed} (${reason})`, null,
         `${ru ? "Лист героя" : "Hero's sheet"}: ${changed} (${reason})`);
@@ -827,7 +836,7 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
       values.hp = hp; values.max_hp = maxHp;
     }
     const patch = sheetPatchOf(args);
-    if (patch && entity.kind !== "faction") values.character_sheet = patchSheet(entity.character_sheet as AnySheet | null | undefined, patch) as unknown as JsonObject;
+    if (patch && entity.kind !== "faction") values.character_sheet = sheetAfter(entity.character_sheet as AnySheet | null | undefined, patch, ctx.language) as unknown as JsonObject;
     const conditions = entity.kind !== "faction" && args.conditions !== undefined ? conditionsAfter(entity, args.conditions) : null;
     if (conditions) values.conditions = conditions;
     if (Object.keys(values).length) shadow.apply(entityChange(shadow, entity, values));
@@ -874,7 +883,7 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
     kind, name, details: str(args.description), hp: maxHp === null ? null : hp, max_hp: maxHp,
     stats: statsFrom(args, {}), resources: {}, conditions: [], equipment_slots: (kind === "faction" ? [] : humanoidSlots(language)) as unknown as JsonObject[],
     ...(profile ? { public_profile: profile as unknown as JsonObject } : {}),
-    ...(patch ? { character_sheet: patchSheet(null, patch) as unknown as JsonObject } : {}),
+    ...(patch ? { character_sheet: sheetAfter(null, patch, ctx.language) as unknown as JsonObject } : {}),
   } });
   if (!bare || !shadow.localKeys.has(key)) shadow.bindLocalKey(key, { family: "entities", id });
   if (args.statblock !== undefined) shadow.setPrivate("npc", `statblock_${id}`, str(args.statblock));
@@ -1452,6 +1461,7 @@ function resourceTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoop
   reject(!key.startsWith("currency_"), "Money is not a counter.", "Use money (grant, transfer, spend) with the coin's name.");
   reject(!potionCounter(key, label) && !/^(arrows?|bolts?|ammo|ammunition)$/.test(key),
     `${name} is a thing, not a counter: potions and ammunition are items.`, "Use item create (kind consumable or ammunition) and item consume.");
+  const cast = args.spell !== undefined ? castSpell(actor, key, str(args.spell), delta, set, ctx.language) : null;
   const resources = { ...actor.resources };
   // A party member's new counter reaches the player's screens: it comes with its name in the campaign language.
   const party = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
@@ -1474,11 +1484,46 @@ function resourceTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoop
   resources[key] = next;
   setResources(shadow, actor, resources);
   const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
-  const shown = counterLabel(shadow.entity(actor.id)!, key, ctx.language);
+  const shown = `${cast ? `${cast.name} · ` : ""}${counterLabel(shadow.entity(actor.id)!, key, ctx.language)}`;
   const player = controlled.has(actor.id) && !name.endsWith("_min") && !name.endsWith("_max")
     ? chip.counter(ctx.language, actor.name, isHero(actor), shown, current, next, cap, reason) : null;
-  return ok({ actor: actor.name, resource: name, before: current, after: next, max: cap, reason },
-    `${actor.name}: ${name} ${current} → ${next}${cap !== null ? `/${cap}` : ""} (${reason})`, null, player);
+  return ok({ actor: actor.name, resource: name, before: current, after: next, max: cap, reason, ...(cast ? { spell: cast.name } : {}) },
+    `${actor.name}: ${cast ? `${cast.name} with ` : ""}${name} ${current} → ${next}${cap !== null ? `/${cap}` : ""} (${reason})`, null, player);
+}
+/** Fix S3-accept В1: a cast recorded with its slot — the spell is on the caster's sheet (prose «Умения» read as
+ * converted), levelled, of a level the slot allows, prepared when the caster prepares; the slot is spent, not set. */
+function castSpell(actor: Entity, key: string, spellName: string, delta: number | null, set: number | null, language: unknown): { name: string; level: number } {
+  const slot = /^spell_slots_([1-9])$/.exec(key);
+  reject(slot, `spell goes with a spell slot (spell_slots_N), not "${key}".`);
+  const sheet = (convertSpellProse(actor.character_sheet as AnySheet | null | undefined, language)?.sheet ?? actor.character_sheet) as AnySheet | null | undefined;
+  const spells = sheet?.schemaVersion === 2 ? sheet.spells ?? [] : [];
+  const key2 = (text: string) => text.toLocaleLowerCase().replace(/ё/g, "е").replace(/[«»"]/g, "").trim();
+  const spell = spells.find((row) => key2(row.name) === key2(spellName));
+  reject(spell, `${actor.name}'s sheet has no spell "${spellName}".`,
+    spells.length ? `The sheet's spells: ${spells.slice(0, 24).map((row) => row.name).join(", ")}.` : "Add it with upsert_character sheet (spells) and a reason first.");
+  reject(spell.level > 0, `${spell.name} is a cantrip: it spends no slot.`, "Narrate it without a resource call.");
+  reject(Number(slot[1]) >= spell.level, `${spell.name} is a level ${spell.level} spell; a level ${slot[1]} slot cannot cast it.`);
+  reject(set === null && (delta ?? 0) < 0, "A cast spends its slot: delta -1.");
+  const prepares = (sheet?.schemaVersion === 2 && sheet.preparedMax != null) || spells.some((row) => row.level > 0 && row.prepared !== undefined);
+  reject(!prepares || spell.prepared === true, `${spell.name} is in ${actor.name}'s book but not prepared today.`,
+    spell.ritual ? "As a ritual it is cast without a slot (no resource call); or prepare it on a long rest (upsert_character sheet with a reason)."
+      : "Prepare it on a long rest (upsert_character sheet with a reason), or cast a prepared spell.");
+  return { name: spell.name, level: spell.level };
+}
+/** Fix S3-accept В1: a party member's counter after an accepted `resource` call — the turn's live stream carries it, so
+ * the open screens dim a spent slot at once (the commit's records replace it). Null for HP and anyone else's counters. */
+export function liveCounterOf(shadow: ShadowState, args: Args): { entityId: string; key: string; value: number; max: number | null } | null {
+  try {
+    if (str(args.resource).toLowerCase() === "hp") return null;
+    const actor = entityOf(shadow, args.actorRef, "actorRef");
+    const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? []);
+    if (actor.kind !== "player" && !controlled.has(actor.id)) return null;
+    const key = counterKeyOf(str(args.resource))?.key;
+    const value = key ? Number(actor.resources[key]) : NaN;
+    if (!key || !Number.isFinite(value)) return null;
+    const max = Number(actor.resources[`${key}_max`]);
+    return { entityId: actor.id, key, value, max: Number.isFinite(max) ? max : null };
+  } catch { return null; }
 }
 
 // --- quests ----------------------------------------------------------------
@@ -2679,7 +2724,9 @@ function finishTurn(shadow: ShadowState, args: Args, ctx: ToolContext): { result
   return { result: ok(value, moment ? `Your moment: ${gate!.reason}` : gate ? `Turn recorded (player moment refused: ${gate.reason})` : "Turn recorded"), meta };
 }
 
-export type ExecutedTool = { result: DmLoopReceiptResult; meta?: DmLoopMeta };
+export type ExecutedTool = { result: DmLoopReceiptResult; meta?: DmLoopMeta;
+  /** Fix S3-accept В1: an accepted `resource` call's counter of a party member, for the live stream. */
+  counter?: { entityId: string; key: string; value: number; max: number | null } };
 
 /** Run one call. Shadow mutations of a rejected call are discarded. */
 export function executeDmLoopTool(shadow: ShadowState, call: DmLoopToolCall, ctx: ToolContext): ExecutedTool {
@@ -2699,7 +2746,7 @@ export function executeDmLoopTool(shadow: ShadowState, call: DmLoopToolCall, ctx
       case "move_party": executed = { result: moveParty(candidate, args, ctx) }; break;
       case "item": executed = { result: itemTool(candidate, args, ctx) }; break;
       case "money": executed = { result: moneyTool(candidate, args, ctx) }; break;
-      case "resource": executed = { result: resourceTool(candidate, args, ctx) }; break;
+      case "resource": { const result = resourceTool(candidate, args, ctx); const counter = liveCounterOf(candidate, args); executed = { result, ...(counter ? { counter } : {}) }; break; }
       case "quest": executed = { result: questTool(candidate, args, ctx) }; break;
       case "advance_time": executed = { result: advanceTime(candidate, args, ctx) }; break;
       case "rest": executed = { result: restTool(candidate, args, ctx) }; break;

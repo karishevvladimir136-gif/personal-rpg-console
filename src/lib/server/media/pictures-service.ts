@@ -23,6 +23,7 @@ import {
   referencesForAnchor,
   referencesForShot,
   restylePlan,
+  spellSubjects,
   styleTextFor,
   type PictureBoard,
   type PictureComposition,
@@ -402,7 +403,7 @@ async function draftProfileFor(ctx: PicturesContext, subject: { kind: "entity" |
 
 /** An anchor of a record: the autopilot's next picture, «Перерисовать», or a restyle. */
 export async function requestAnchor(campaignId: string, value: unknown, schedule: Schedule = detached) {
-  if (!isRecord(value) || !isRecord(value.subject) || !["entity", "item", "location"].includes(String(value.subject.kind)) || !isUuid(value.subject.id) ||
+  if (!isRecord(value) || !isRecord(value.subject) || !["entity", "item", "location", "spell"].includes(String(value.subject.kind)) || !isUuid(value.subject.id) ||
     !["redraw", "autopilot", "restyle", "manual"].includes(String(value.trigger)) || (value.composition !== undefined && !COMPOSITIONS.includes(value.composition as PictureComposition)))
     throw new PersistenceError("validation");
   const ctx = await picturesContext(campaignId);
@@ -440,6 +441,11 @@ async function queueAnchor(ctx: PicturesContext, board: PictureBoard, snapshot: 
     const row = snapshot.items.find((item) => item.id === subject.id);
     if (!row) throw new PersistenceError("not_found");
     name = row.name; description = row.description; chosen = "item";
+  } else if (subject.kind === "spell") {
+    // Fix S3-accept В1: a spell some person's sheet holds (the database checks it again), drawn as its sigil.
+    const row = spellSubjects(snapshot).find((spell) => spell.id === subject.id);
+    if (!row) throw new PersistenceError("not_found");
+    name = row.name; description = row.description; chosen = "spell";
   } else {
     const row = snapshot.locations.find((location) => location.id === subject.id);
     if (!row || !["known", "visited"].includes(row.status)) throw new PersistenceError("not_found");

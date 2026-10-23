@@ -21,8 +21,9 @@ import {
 import { OPENAI_IMAGE_MODELS, openAIImageModel, openAIImageTypicalUsdMicros, type OpenAIImageModelId } from "./openai-image.ts";
 
 export type PictureKind = "frame" | "anchor";
-export type PictureSubjectKind = "turn" | "entity" | "item" | "location";
-export type PictureComposition = "frame" | "portrait" | "figure" | "item" | "location" | "holding" | "atlas" | "scene" | "region" | "battle";
+// Fix S3-accept В1: «spell» — a spell on a person's sheet, drawn like a thing (its sigil or its effect).
+export type PictureSubjectKind = "turn" | "entity" | "item" | "location" | "spell";
+export type PictureComposition = "frame" | "portrait" | "figure" | "item" | "location" | "holding" | "atlas" | "scene" | "region" | "battle" | "spell";
 export type PictureTier = "fast" | "quality";
 export type PictureTrigger = "live" | "committed" | "key_moment" | "redraw" | "autopilot" | "restyle" | "manual";
 export type PictureStatus = "queued" | "generating" | "ready" | "failed";
@@ -164,9 +165,9 @@ export function parsePictureModels(raw: unknown): PictureSettings["models"] {
 }
 
 const KINDS: PictureKind[] = ["frame", "anchor"];
-const SUBJECT_KINDS: PictureSubjectKind[] = ["turn", "entity", "item", "location"];
+const SUBJECT_KINDS: PictureSubjectKind[] = ["turn", "entity", "item", "location", "spell"];
 // 2D Live (docs/stages/LIVE2D_1.md): «scene» — a place's clickable scene, «region» — the painted region map, «battle» — the top-down battle background.
-export const COMPOSITIONS: PictureComposition[] = ["frame", "portrait", "figure", "item", "location", "holding", "atlas", "scene", "region", "battle"];
+export const COMPOSITIONS: PictureComposition[] = ["frame", "portrait", "figure", "item", "location", "holding", "atlas", "scene", "region", "battle", "spell"];
 const TIERS: PictureTier[] = ["fast", "quality"];
 const TRIGGERS: PictureTrigger[] = ["live", "committed", "key_moment", "redraw", "autopilot", "restyle", "manual"];
 const STATUSES: PictureStatus[] = ["queued", "generating", "ready", "failed"];
@@ -375,7 +376,7 @@ export function compositionForEntity(entity: Pick<Entity, "kind">): PictureCompo
   return entity.kind === "transport" || entity.kind === "mount" ? "holding" : "portrait";
 }
 
-export type AnchorPlan = { subject: PictureSubject; composition: PictureComposition; name: string; description: string; reason: "holding" | "portrait" | "figure" | "place" | "item" }[];
+export type AnchorPlan = { subject: PictureSubject; composition: PictureComposition; name: string; description: string; reason: "holding" | "portrait" | "figure" | "place" | "item" | "spell" }[];
 /** The anchor set of a campaign: what the autopilot draws for a new world and what a
  * restyle re-renders. Most visible first; one picture per item type. */
 export function anchorSet(snapshot: CampaignSnapshot, autopilot: Pick<PictureAutopilot, "items" | "portraits" | "figures" | "places" | "holdings">): AnchorPlan {
@@ -403,8 +404,32 @@ export function anchorSet(snapshot: CampaignSnapshot, autopilot: Pick<PictureAut
       types.add(type);
       plan.push({ subject: { kind: "item", id: row.id }, composition: "item", name: row.name, description: row.description, reason: "item" });
     }
+    // Fix S3-accept В1: the party's spells are drawn like things, after them (one picture per spell id, under the same cap).
+    for (const spell of spellSubjects(snapshot)) plan.push({ subject: { kind: "spell", id: spell.id }, composition: "spell", name: spell.name, description: spell.description, reason: "spell" });
   }
   return plan;
+}
+/** Fix S3-accept В1: the spells of the hero and the companions that can have a picture (a record with an id), the hero's
+ * first, cantrips then by level; one per id (one spell two people know is one picture). The description is the card's. */
+export function spellSubjects(snapshot: Pick<CampaignSnapshot, "campaign" | "entities">): { id: string; name: string; description: string }[] {
+  const out = new Map<string, { id: string; name: string; description: string }>();
+  const people = snapshot.entities.filter((row) => row.campaign_id === snapshot.campaign.id && (row.kind === "player" || row.kind === "companion"))
+    .sort((a, b) => Number(b.kind === "player") - Number(a.kind === "player"));
+  for (const person of people) {
+    const sheet = person.character_sheet as { schemaVersion?: number; spells?: unknown } | null | undefined;
+    if (sheet?.schemaVersion !== 2 || !Array.isArray(sheet.spells)) continue;
+    const spells = (sheet.spells as { id?: unknown; name?: unknown; level?: unknown; school?: unknown; text?: unknown }[])
+      .filter((row) => isUuid(row?.id) && typeof row.name === "string" && Number.isInteger(row.level))
+      .sort((a, b) => (a.level as number) - (b.level as number));
+    for (const row of spells) {
+      if (out.has(row.id as string)) continue;
+      const school = typeof row.school === "string" ? row.school : "";
+      const text = typeof row.text === "string" ? row.text : "";
+      out.set(row.id as string, { id: row.id as string, name: row.name as string,
+        description: [`A spell${school ? ` of the school «${school}»` : ""}, ${row.level === 0 ? "a cantrip" : `level ${row.level}`}.`, text.slice(0, 900)].filter(Boolean).join(" ") });
+    }
+  }
+  return [...out.values()];
 }
 /** Items of the same type (normalized name + category) share one picture. */
 export function sharedItemAnchor(board: Pick<PictureBoard, "pictures">, snapshot: CampaignSnapshot, itemId: string) {

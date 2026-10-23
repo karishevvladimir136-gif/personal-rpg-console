@@ -465,6 +465,8 @@ test("tool descriptions stay compact: seventeen tools, their descriptions under 
   // 2D Live part 2 grows the combat tool to the fight's fifteen actions (about 2.6k of the total).
   // The session 3 candidate carries both: 17 tools at 12 855 (OpenAI) / 11 874 (Anthropic) estimated tokens, re-measured
   // after the merge (the fix run alone 10 529 / 9 835, the 2D branch alone 11 468 / 10 656).
-  assert.ok(estimateTokens(openai) < 13500, `openai tool schema ${estimateTokens(openai)} tokens`);
-  assert.ok(estimateTokens(anthropic) < 12500, `anthropic tool schema ${estimateTokens(anthropic)} tokens`);
+  // Fix S3-accept: the hero's lasting conditions (Г3) and spells as records with the cast's slot (В1) — 13 494 / 12 443
+  // after trimming both blocks' descriptions; the ceilings keep a margin of about 500.
+  assert.ok(estimateTokens(openai) < 14000, `openai tool schema ${estimateTokens(openai)} tokens`);
+  assert.ok(estimateTokens(anthropic) < 13000, `anthropic tool schema ${estimateTokens(anthropic)} tokens`);
 });
