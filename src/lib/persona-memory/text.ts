@@ -88,8 +88,8 @@ const RULES: Rule[] = [
   } },
 ];
 
-/** The first period a query names, and the query without it. `null` when it names none. */
-export function periodOf(query: string, now: Date): { period: Period; rest: string } | null {
+/** The first period a query names, the query without it, and where the period's words were. `null` when it names none. */
+export function periodOf(query: string, now: Date): { period: Period; rest: string; index: number; length: number } | null {
   const text = normalize(query);
   for (const rule of RULES) {
     for (const match of text.matchAll(new RegExp(rule.pattern.source, `${rule.pattern.flags}g`))) {
@@ -97,7 +97,7 @@ export function periodOf(query: string, now: Date): { period: Period; rest: stri
       if (!period || !Number.isFinite(Date.parse(period.from))) continue;
       // «in October», «в октябре»: the preposition left in front of the period is not a word to search for.
       const before = text.slice(0, match.index).replace(/(?:^|\s)(?:in|on|during|from|в|во|на)\s*$/u, " ");
-      return { period, rest: `${before} ${text.slice(match.index! + match[0].length)}`.replace(/\s+/g, " ").trim() };
+      return { period, rest: `${before} ${text.slice(match.index! + match[0].length)}`.replace(/\s+/g, " ").trim(), index: match.index!, length: match[0].length };
     }
   }
   return null;
