@@ -2,8 +2,9 @@
 
 For the owner's local Claude Code session on the owner's PC (Windows). It loads the branch **`claude/s3-candidate`** —
 the fixes after session 2 (`claude/session2-fixes-a-f-jh3krk`), 2D Live with the combat screen
-(`claude/live2d-1-9lq5bf`) and the soundtrack (`claude/stage-music`) merged into one (`docs/runs/merge-s2-report.md`) —
-into the **sandbox** (`docs/SANDBOX.md`: its own database on ports 44320–44327, the
+(`claude/live2d-1-9lq5bf`) and the soundtrack (`claude/stage-music`) merged into one (`docs/runs/merge-s2-report.md`), then
+the fixes before session 3 (`docs/runs/fix-s3-pre-report.md`) and the fixes from the owner's acceptance pass
+(`docs/runs/fix-s3-accept-report.md`) — into the **sandbox** (`docs/SANDBOX.md`: its own database on ports 44320–44327, the
 app on http://127.0.0.1:3100). The owner's real project (ports 34320–34327, the app on :3000) is never touched. Do the
 steps in order; stop and tell the owner if one of them fails. `<exports>` stands for the owner's exports folder on this
 PC (the one the earlier dumps went to; the repository does not name machine paths).
@@ -46,9 +47,10 @@ node scripts/sandbox-start.mjs --prod
 
 (or `Start Sandbox.cmd --prod`). The launcher applies the pending migrations, builds the app (two to five minutes; the
 log is `.sandbox/build.log`) and runs `next start` on :3100 — no dev server during play (session 2's memory and latency
-problem). Later starts without code changes: `--prod --no-build`. The candidate adds migrations in **four ranges**, all
+problem). Later starts without code changes: `--prod --no-build`. The candidate adds migrations in **five ranges**, all
 additive, none edited, no number used twice: the fix run `202610200071`–`202610200084` and `202610200096`, 2D Live
-`202610210200`–`202610210201`, the music stage `202610210301`, the fixes before session 3 `202610210401`–`202610210403`.
+`202610210200`–`202610210201`, the music stage `202610210301`, the fixes before session 3 `202610210401`–`202610210403`,
+the fixes from the acceptance pass `202610230501`, `202610230511`, `202610230521`, `202610230541`.
 They apply in name order with the others:
 
 | Migration | What |
@@ -74,6 +76,10 @@ They apply in name order with the others:
 | 0401 `fix_s3_pre_reroll_natural` | a reroll keeps the natural 20 / 1 rule (the check's verdict recomputed), function bodies only |
 | 0402 `fix_s3_pre_show_dc` | **changes a setting**: every campaign stored with «Показывать сложность (DC)» off gets it on, in a new settings revision (the history keeps the old one, as a save from the screen would); new campaigns start with it on. Nothing else in the settings changes |
 | 0403 `fix_s3_pre_gallery_turns` | the gallery's own read over every committed game turn (a new owner-only function; `/play` untouched) |
+| 0501 `fix_s3_accept_counter_label` | **changes a record**: in a Russian campaign, a person who keeps the counter `shaman_tusk` with no name gets the name «Клык шамана» (a new revision; the value and the maximum stay). A name already given is never touched |
+| 0511 `fix_s3_accept_spells` | the sheet's check admits a spell's id, school and history; the picture kind «spell» (a spell drawn like a thing). No row changes. The spells themselves are converted on the first open of «Персонаж», see 6b |
+| 0521 `fix_s3_accept_ring` | **changes a record**: a ring whose description says «у куклы пока нет слота для колец» loses that phrase and is put on its owner's «Кольцо (правая)» (the left ring slot if the right one is taken; it stays in the bag if both are taken, or if it is worn, lent, pledged, lost, or would be a fourth attuned thing). A new revision with two history lines («поправка перед сессией 3…», «надето: … — Кольцо (правая)»), so the DM reads it as the owner's move |
+| 0541 `fix_s3_accept_region_prep` | the region prep's storage: new columns on the region map (old maps read as before), a table of the prep's versions, two new actions of the 2D function. No row changes |
 
 Check: the app opens at http://127.0.0.1:3100/campaigns, and `.sandbox/app.log` has no error.
 
@@ -132,19 +138,34 @@ show both to the owner. It refuses to run before step 4 (the coins must be under
   мест» (24 places + 5 weathers, ≈ $3.19), both using the `FAL_KEY` already in `.env.local`, or upload chosen review
   MP3s through «Свои треки» with their moods ticked — free. Nothing plays before the first click on the page.
 
-## 7. Replay session 2's heavy turns
+## 6b. What happens by itself after this load (the acceptance pass's fixes)
 
-Without touching the live campaign (the replay restores each turn's state into an in-memory copy and writes nothing
-back), play the heavy turns of session 2 again in session 3's mode and compare cost, requests and records with the
-session 2 log. The planner's local prompt names the turns (the mine fight, the long rest, and the others it lists):
+Nothing to run by hand; each happens once, off the turn, and play continues if it fails.
 
-```bat
-set FIX_S2_STAGE=F
-node scripts/eval/real-replay/replay.mjs --base http://127.0.0.1:3100 --campaign <id> --turns <the planner's list> --variants O --ledger-check on --budget-usd <the planner's cap>
-```
+- **Spells.** The first open of «Персонаж» (any tab, no turn running) turns the spell lines of «Умения» into 13 spell
+  cards — one owner correction of the sheet (a new revision; the old sheet stays in the history), with the status line
+  «…: заклинания из «Умений» стали карточками (13).» Lines that are not spells stay. Spell pictures are drawn by the
+  picture autopilot after the things, under the same daily limit and the same «Вещи» switch.
+- **The armour class.** «КД» is counted from what is worn and the effects; nothing is converted. «Изменить лист…» →
+  «КД вручную» overrides it (empty = by the rules).
+- **2D scenes.** The first open of the 2D screen rewrites the hotspot notes of an English scene sheet in Russian (one
+  cheap call per scene, about $0.0003; a new sheet revision, the history keeps the English one). «Перерисовать» on a
+  scene with fewer than 5 hotspots writes a new sheet first (one call, about $0.012), then draws.
+- **The region map.** The existing map stays as it is. «Перерисовать карту региона» now asks the DM for the region's
+  prep first (once per region; about $0.05 on Opus 5.5), keeps its public part as a canon document «Карта края — …» and its
+  hidden part in the DM's private notes, then paints from it (one picture) and checks the markers. Later redraws reuse the
+  prep: a new picture, the same geography.
+- **«Судьбы».** Opening the closed chapter once draws the portraits its cards lack, in one batch under the daily limit.
+- **Companions' dolls.** The picture autopilot draws each companion's full-length figure after the portrait, under the
+  daily limit («Настройки → Картинки → Фигуры героя и спутников в полный рост»).
 
-Every paid run registers in the run's ledger and stops at its budget. The records go to `docs/runs/` locally — they
-hold campaign text, so **do not commit them** (the repository is public); report the numbers only.
+## 7. The prose check: a test campaign of 6–8 turns (instead of the replay)
+
+The owner's decision of 2026-10-22 (`docs/runs/s3-acceptance-notes.md`): session 2's replay is not needed. Instead,
+start the sandbox on the production build (step 3, `--prod`, which sets `APP_SANDBOX_TRUSTED_OWNER=1` for localhost
+only), create a **new test campaign** in the app, and play **6–8 turns** in session 3's mode («Opus пишет — Opus
+записывает»), at least one of them from the 2D scene and one with a spell. Read the prose; note the turns' cost on
+«Для владельца». Nothing is committed from the sandbox (the repository is public).
 
 ## 8. Then stop
 
