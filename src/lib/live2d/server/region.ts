@@ -20,7 +20,7 @@ import { hiddenLayerOf, ownerSecretsText, parseNoteValue } from "../../gameplay/
 import { regionMapOf, type RegionMap, type RegionPrep, type SceneCheck } from "../contracts";
 import { live2dView } from "../hierarchy";
 import { regionDrawDecision, regionSignature } from "../region";
-import { fallbackRegionPrep, mergeRegionPrep, missingFromPrep, regionCanonBody, regionCanonText, regionHiddenKey, regionPaintBrief, regionPlaceIds, regionPrepSource, withCanonParents } from "../region-prep";
+import { attachToSettlements, fallbackRegionPrep, mergeRegionPrep, missingFromPrep, regionCanonBody, regionCanonText, regionHiddenKey, regionPaintBrief, regionPlaceIds, regionPrepSource, withCanonParents } from "../region-prep";
 import { regionCheckItems, regionMarkers, regionVerdict, type RegionCheckItem } from "../region-marks";
 import { checkRegionMap, draftRegionPrep, type TextModel } from "./region-vision";
 import { draftSeeds, type Image } from "./vision";
@@ -173,14 +173,15 @@ async function dmTextModel(campaignId: string): Promise<TextModel> {
   const effort: DmEffort = spec?.reasoning.includes("medium") ? "medium" : pin.effort;
   const model = createDmModel(pin);
   return async (request) => {
-    let text = "";
+    let text = "", refusal: string | null = null;
     let usage: Parameters<typeof dmUsageCost>[1] | null = null;
     for await (const event of model.stream({ system: [{ text: request.system, cache: false }], messages: [{ role: "user", text: request.user }], toolset: null, effort,
       maxOutputTokens: request.maxOutputTokens, operationId: randomUUID(), cacheKey: campaignId })) {
       if (event.type === "text_delta") text += event.text;
       else if (event.type === "usage") usage = event.usage;
+      else if (event.type === "stop" && event.reason === "refusal") refusal = `refusal: ${event.providerReason ?? "unknown"}`;
     }
-    return { text, usage: usage ? { inputTokens: usage.inputTokens, outputTokens: usage.outputTokens } : null, costUsdMicros: usage && spec ? Math.round(dmUsageCost(spec, usage) * 1_000_000) : 0, model: pin.modelId };
+    return { text, usage: usage ? { inputTokens: usage.inputTokens, outputTokens: usage.outputTokens } : null, costUsdMicros: usage && spec ? Math.round(dmUsageCost(spec, usage) * 1_000_000) : 0, model: pin.modelId, refusal };
   };
 }
 
@@ -212,7 +213,9 @@ export async function prepareRegion(ctx: Live2dContext, snapshot: CampaignSnapsh
   log("live2d_region_prep", { campaignId: ctx.campaignId, anchorId, ok: !!result.draft, amend: !!existing?.prep, model: result.model, places: result.draft?.prep.places.length ?? 0,
     routes: result.draft?.prep.routes.length ?? 0, hiddenChars: result.draft?.hidden.length ?? 0, chars: result.chars, ms: result.elapsedMs, costUsdMicros: result.costUsdMicros, usage: result.usage, error: result.error });
   if (!result.draft) return { map: null, costUsdMicros: result.costUsdMicros };
-  const prep = existing?.prep ? mergeRegionPrep(existing.prep, result.draft.prep) : result.draft.prep;
+  // A place the canon's own words put at a settlement lies inside it (only the places this prep designs; known ones never move).
+  const prep = attachToSettlements(existing?.prep ? mergeRegionPrep(existing.prep, result.draft.prep) : result.draft.prep, input.names,
+    new Set(result.draft.prep.places.map((row) => row.locationId).filter((placeId) => !existing?.prep?.places.some((row) => row.locationId === placeId))));
   // The canon document (public; versioned like every document): written once, a new version on an amend.
   let documentId: string | null = null;
   try { documentId = await writeRegionCanon(snapshot, existing, prep, input.names, { regionName: input.regionName, language }); }

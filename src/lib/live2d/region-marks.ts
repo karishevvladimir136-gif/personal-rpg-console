@@ -36,14 +36,20 @@ export function regionCheckItems(prep: RegionPrep, names: ReadonlyMap<string, st
   }).filter((row) => row.x !== null).sort((a, b) => a.depth - b.depth);
 }
 
+/** The picture's size in pixels: the check asks for pixel positions of a picture whose size it is told (a vision model
+ * places a landmark far better in pixels than in fractions), converted back to fractions on parse. */
+export type PictureSize = { width: number; height: number };
 /** The check's request: the scenes' JSON shape (items, contradictions), worded for a painted map. */
-export function regionCheckRequest(items: readonly RegionCheckItem[], regionName: string) {
+export function regionCheckRequest(items: readonly RegionCheckItem[], regionName: string, size: PictureSize | null = null) {
   const required = items.filter((row) => row.required), optional = items.filter((row) => !row.required);
+  const position = size
+    ? `x, y: its centre in pixels from the top-left corner of the picture, which is ${size.width} pixels wide and ${size.height} pixels high (x from 0 to ${size.width}, y from 0 to ${size.height}); null when not visible.`
+    : "x, y: its centre as fractions of the picture's width and height from the top-left (0..1), null when not visible.";
   const system = [
     "You check a painted map of a region against the game master's design for an illustrated role-playing game. Be exact and literal: the app puts a marker on each place where you find it, and a player relies on it.",
     "Reply with one JSON object only, no prose:",
-    "{\"items\":[{\"key\":\"...\",\"visible\":true,\"x\":0.5,\"y\":0.5,\"confidence\":0.9}],\"contradictions\":[{\"what\":\"...\",\"detail\":\"...\"}],\"peopleInBackground\":false}",
-    "items: one entry per key given below, in that order. visible: true only if that landmark is clearly drawn and a player could point at it. x, y: its centre as fractions of the picture's width and height from the top-left (0..1), null when not visible. For a place said to be inside a settlement, give where it is drawn — inside the settlement if it is there, or wherever else it was drawn; null when the settlement shows no such part. confidence: 0..1.",
+    `{"items":[{"key":"...","visible":true,"x":${size ? Math.round(size.width / 2) : 0.5},"y":${size ? Math.round(size.height / 2) : 0.5},"confidence":0.9}],"contradictions":[{"what":"...","detail":"..."}],"peopleInBackground":false}`,
+    `items: one entry per key given below, in that order. visible: true only if that landmark is clearly drawn and a player could point at it. ${position} For a place said to be inside a settlement, give where it is drawn — inside the settlement if it is there, or wherever else it was drawn; null when the settlement shows no such part. confidence: 0..1.`,
     "contradictions: prominent settlements, castles, towers, bridges or other structures the design does not have, which a player would take for a real place — not terrain, forests, fields, rivers or roads. Empty when none.",
   ].join("\n");
   const text = [
@@ -55,8 +61,23 @@ export function regionCheckRequest(items: readonly RegionCheckItem[], regionName
 }
 const spotWords = (x: number, y: number) => `${y < 0.33 ? "north" : y > 0.66 ? "south" : "middle"}, ${x < 0.33 ? "west" : x > 0.66 ? "east" : "centre"}`;
 
-export function parseRegionCheck(text: string, items: readonly RegionCheckItem[], model: string, costUsdMicros: number, checkedAt: string): SceneCheck | null {
-  return parseCheckReply(text, items.map((row) => row.key), model, costUsdMicros, checkedAt);
+export function parseRegionCheck(text: string, items: readonly RegionCheckItem[], model: string, costUsdMicros: number, checkedAt: string, size: PictureSize | null = null): SceneCheck | null {
+  const keys = items.map((row) => row.key);
+  if (!size) return parseCheckReply(text, keys, model, costUsdMicros, checkedAt);
+  // Pixels back to fractions of the picture (the scenes' parser keeps only unit positions).
+  const end = text.lastIndexOf("}");
+  for (let start = text.lastIndexOf("{", end); start >= 0; start = text.lastIndexOf("{", start - 1)) {
+    let raw: unknown;
+    try { raw = JSON.parse(text.slice(start, end + 1)); } catch { if (start === 0) break; continue; }
+    if (!raw || typeof raw !== "object" || !Array.isArray((raw as { items?: unknown }).items)) { if (start === 0) break; continue; }
+    const unit = (value: unknown, span: number) => (typeof value === "number" && Number.isFinite(value) && value >= 0 && value <= span ? Number((value / span).toFixed(4)) : null);
+    const converted = { ...(raw as Record<string, unknown>), items: ((raw as { items: unknown[] }).items).map((row) => {
+      const r = row && typeof row === "object" ? row as Record<string, unknown> : {};
+      return { ...r, x: unit(r.x, size.width), y: unit(r.y, size.height) };
+    }) };
+    return parseCheckReply(JSON.stringify(converted), keys, model, costUsdMicros, checkedAt);
+  }
+  return null;
 }
 
 const distance = (a: { x: number; y: number }, b: { x: number; y: number }) => Math.hypot(a.x - b.x, a.y - b.y);

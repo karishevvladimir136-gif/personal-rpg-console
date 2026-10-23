@@ -65,54 +65,96 @@ export function regionPrepSource(snapshot: CampaignSnapshot, input: { anchorId: 
 }
 
 const SYSTEM = [
-  "You are the game master of a role-playing campaign, preparing the map of one region before an illustrator paints it. Design the region's geography in detail so that it never contradicts the records, the canon or the story so far: the land (relief, forests, coast, marsh), the rivers and which way they flow, the roads and paths, where each known settlement and place lies and what lies between them, and the distances in days of travel on foot. The illustrator paints from your design, the map's markers are placed by it, later narration keeps to it.",
+  // The opening line in the plainest words: the probe's model refused («cyber», a false positive) whenever the prompt
+  // opened with «You are the game master of a role-playing campaign, preparing the map…» (docs/runs/fix-s3-accept-d-bisect.json).
+  "You prepare one region of a fantasy story's world before an artist paints its map. Work out the region's geography in detail and keep it consistent with the records, the canon and the story so far: the land (hills, forests, coast, marsh), the rivers and which way they flow, the roads and paths, where each known settlement and place lies and what lies between them, and how many days it takes to walk from one to another. The artist paints from your design, the places are marked on the picture by it, and the story keeps to it later.",
   "Reply with one JSON object only, no prose:",
-  "{\"overview\":\"...\",\"landscape\":\"...\",\"places\":[{\"id\":\"<place ID>\",\"role\":\"...\",\"within\":null,\"x\":0.5,\"y\":0.5,\"where\":\"...\",\"look\":\"...\"}],\"routes\":[{\"from\":\"<place ID>\",\"to\":\"<place ID>\",\"way\":\"...\",\"days\":0.5}],\"hidden\":\"...\"}",
+  "{\"overview\":\"...\",\"landscape\":\"...\",\"places\":[{\"n\":1,\"role\":\"...\",\"within\":null,\"x\":0.5,\"y\":0.5,\"where\":\"...\",\"look\":\"...\"}],\"routes\":[{\"from\":1,\"to\":2,\"way\":\"...\",\"days\":0.5}],\"hidden\":\"...\"}",
   "overview: 3–6 sentences in the campaign language — the land, the rivers and roads, what lies between the settlements; only what the heroes know or could see from a road or a hilltop.",
   "landscape: the same land in plain English for the illustrator, one paragraph of 60–120 words, north is up: where the rivers run, where the forests, hills, coast and roads are.",
-  "places: one entry per known place listed below, by its ID — never a new place. role: what it is, 1–4 English words (village, walled town, guard post, stone bridge, ford, inn, mill, ruined tower, hunting lodge, district, house). within: the ID of the settlement or place it lies inside when it is part of one (a guard post in a village, a smithy in a town, a district of a city), else null; the records' parent wins when they give one. x, y: where it lies on the region's sheet as fractions from the top-left (0..1, north is up, west is left); a place inside a settlement takes the settlement's spot; both null only when nothing in the records or the story places it (a rumour of «somewhere in the hills»). where: one sentence in the campaign language — on which bank, by which road, how far from what. look: what the illustrator draws for it, one plain English clause (for a place inside a settlement, how it shows there: «a timber watchtower by the north gate»).",
-  "routes: the roads, rivers and paths between the places, each settlement reached by at least one: from and to by place ID, way in the campaign language (the road or river and what lies between), days of travel on foot as a number (0.1 for a short walk) or null when unknown.",
-  "hidden: what stays in your hidden layer, in the campaign language — secret places in the region, who really holds the roads, dangers the heroes have not met, how the region ties to the campaign's hidden truth. The player never sees it. Never put a secret into overview, landscape, where, look or way.",
-  "Ground everything in the records, the canon, the story so far and your private notes; never contradict them. Do not invent named settlements, castles or ruins the records do not have: the land between the places stays nameless terrain.",
+  "places: one entry per known place listed below, by its number n (1, 2, …) — never a new place. role: what it is, 1–4 English words (village, walled town, guard post, stone bridge, ford, inn, mill, ruined tower, hunting lodge, district, house). within: the number of the settlement or place it lies inside when it is part of one (a guard post in a village, a smithy in a town, a district of a city), else null; the records' parent wins when they give one. x, y: where it lies on the region's sheet as fractions from the top-left (0..1, north is up, west is left); a place inside a settlement takes the settlement's spot; both null only when nothing in the records or the story places it (a rumour of «somewhere in the hills»). where: one sentence in the campaign language — on which bank, by which road, how far from what. look: what the illustrator draws for it, one plain English clause (for a place inside a settlement, how it shows there: «a timber watchtower by the north gate»).",
+  "routes: the roads, rivers and paths between the places, each settlement reached by at least one: from and to by place number, way in the campaign language (the road or river and what lies between), days of travel on foot as a number (0.1 for a short walk) or null when unknown.",
+  "hidden: what stays in your hidden layer as the game master, in the campaign language — secret places in the region, who really holds the roads, dangers the heroes have not met, how the region ties to the story's mysteries. The players never see it. Keep every secret out of overview, landscape, where, look and way.",
+  "Ground everything in the records, the canon, the story so far and your own notes; never contradict them. Do not invent named settlements, castles or ruins the records do not have: the land between the places stays nameless terrain.",
 ].join("\n");
 const AMEND = "The region is already designed (below, «The region so far»). Keep every place exactly where it is and every route as it is. Design only the new places: reply with the same JSON shape holding the new places, the routes that reach them, and a hidden note about them (or an empty string); overview and landscape stay empty strings unless the new places change what the heroes know of the land.";
+/** Fix S3-accept Д3: the model works with place numbers (1, 2, …) — fewer tokens, and a prompt that reads as a game
+ * master's notes rather than a list of identifiers (the probe's previous model refused UUID- and «key»-laden requests
+ * as cyber content); the reply maps them back to the records' IDs. */
+const numberOf = (index: number) => index + 1;
 
 /** The DM's request: strict JSON from the records, the canon, the public narration and the DM's private notes. */
 export function regionPrepRequest(source: RegionPrepSource): { system: string; user: string } {
+  const key = new Map(source.places.map((row, index) => [row.id, numberOf(index)]));
   const name = (id: string | null) => source.places.find((row) => row.id === id)?.name ?? "";
   const designed = new Set(source.existing?.places.map((row) => row.locationId) ?? []);
-  const list = (rows: RegionPrepSourcePlace[]) => rows.map((row) => `${row.id} — ${row.name} — ${row.status}${row.parentId && name(row.parentId) ? ` — inside ${name(row.parentId)} (${row.parentId})` : ""}${row.whereabouts ? ` — ${row.whereabouts}` : ""}${row.description ? `: ${row.description}` : ""}`).join("\n");
+  const list = (rows: RegionPrepSourcePlace[]) => rows.map((row) => `${key.get(row.id)} — ${row.name} — ${row.status}${row.parentId && key.has(row.parentId) ? ` — inside ${name(row.parentId)} (${key.get(row.parentId)})` : ""}${row.whereabouts ? ` — ${row.whereabouts}` : ""}${row.description ? `: ${row.description}` : ""}`).join("\n");
   const fresh = source.places.filter((row) => !designed.has(row.id));
+  // The region so far, in the same numbers (a place outside this request's list is left out: it never moves anyway).
+  const keyed = (id: string | null) => (id ? key.get(id) ?? null : null);
+  const existing = source.existing ? { overview: source.existing.overview,
+    places: source.existing.places.filter((row) => key.has(row.locationId)).map((row) => ({ ...row, locationId: undefined, n: keyed(row.locationId), within: keyed(row.within) })),
+    routes: source.existing.routes.filter((row) => key.has(row.from) && key.has(row.to)).map((row) => ({ ...row, from: keyed(row.from), to: keyed(row.to) })) } : null;
   const user = [
     `Campaign: ${source.campaignTitle}. Campaign language: ${source.language === "ru" ? "Russian" : "English"}.`,
     source.region.name ? `The region: ${source.region.name}.${source.region.description ? ` ${source.region.description}` : ""}` : `The region the heroes travel (it has no name of its own in the records).${source.region.description ? ` ${source.region.description}` : ""}`,
-    source.existing ? `The region so far (keep it):\n${JSON.stringify({ overview: source.existing.overview, places: source.existing.places, routes: source.existing.routes })}` : "",
-    `${source.existing ? "New known places to design" : "Known places of the region"} (ID — name — status — parent — whereabouts: description):\n${list(source.existing ? fresh : source.places) || "(none)"}`,
-    source.existing && fresh.length < source.places.length ? `Already designed: ${source.places.filter((row) => designed.has(row.id)).map((row) => `${row.name} (${row.id})`).join(", ")}.` : "",
+    existing ? `The region so far (keep it):\n${JSON.stringify(existing)}` : "",
+    `${source.existing ? "New known places to design" : "Known places of the region"} (n — name — status — parent — whereabouts: description):\n${list(source.existing ? fresh : source.places) || "(none)"}`,
+    source.existing && fresh.length < source.places.length ? `Already designed: ${source.places.filter((row) => designed.has(row.id)).map((row) => `${row.name} (${key.get(row.id)})`).join(", ")}.` : "",
     source.canon.length ? `The canon (established facts of this world):\n${source.canon.map((doc) => `## ${doc.title}\n${doc.body}`).join("\n")}` : "",
     source.passages.length ? `Narration passages that name these places (public text, oldest first):\n${source.passages.map((row, index) => `[${index + 1}] ${row}`).join("\n")}` : "No narration names these places yet: use the records alone.",
-    source.hidden ? `Your private notes (DM-only; keep the geography consistent with them, never reveal them outside «hidden»):\n${source.hidden}` : "",
+    source.hidden ? `Your own notes as the game master for this campaign (the players do not see them; keep the land consistent with them, and put whatever of them touches this region only into «hidden»):\n${source.hidden}` : "",
   ].filter(Boolean).join("\n\n");
   return { system: source.existing ? `${SYSTEM}\n${AMEND}` : SYSTEM, user };
 }
 
-/** The reply as the prep's public part (only the listed places, by ID) and the hidden part; null when unreadable. */
+/** The reply as the prep's public part (only the listed places, by number or record ID) and the hidden part; null when
+ * unreadable. `placeIds` is the request's place list in its order (number N is its N-th place). */
 export function parseRegionPrepReply(text: string, placeIds: readonly string[]): RegionPrepDraft | null {
   const start = text.indexOf("{"), end = text.lastIndexOf("}");
   if (start < 0 || end <= start) return null;
   let raw: Record<string, unknown>;
   try { raw = JSON.parse(text.slice(start, end + 1)) as Record<string, unknown>; } catch { return null; }
   const allowed = new Set(placeIds);
+  const idOf = (value: unknown) => {
+    const number = typeof value === "number" ? value : typeof value === "string" && /^p?\d+$/.test(value.trim()) ? Number(value.trim().replace(/^p/, "")) : null;
+    return number !== null ? (Number.isInteger(number) ? placeIds[number - 1] ?? null : null) : value;
+  };
   const places = (Array.isArray(raw.places) ? raw.places : []).map((row) => {
     const r = row && typeof row === "object" ? row as Record<string, unknown> : {};
-    return { ...r, locationId: r.id ?? r.locationId };
+    return { ...r, locationId: idOf(r.n ?? r.id ?? r.locationId), within: idOf(r.within) };
   });
-  const prep = parseRegionPrep({ overview: raw.overview, landscape: raw.landscape, places, routes: raw.routes, source: "model" });
+  const routes = (Array.isArray(raw.routes) ? raw.routes : []).map((row) => {
+    const r = row && typeof row === "object" ? row as Record<string, unknown> : {};
+    return { ...r, from: idOf(r.from), to: idOf(r.to) };
+  });
+  const prep = parseRegionPrep({ overview: raw.overview, landscape: raw.landscape, places, routes, source: "model" });
   if (!prep) return null;
   prep.places = prep.places.filter((row) => allowed.has(row.locationId)).map((row) => (row.within && !allowed.has(row.within) ? { ...row, within: null } : row));
   prep.routes = prep.routes.filter((row) => allowed.has(row.from) && allowed.has(row.to));
   if (!prep.places.length && !prep.overview) return null;
-  return { prep, hidden: typeof raw.hidden === "string" ? raw.hidden.trim().slice(0, 5000) : "" };
+  const secrets = typeof raw.secrets === "string" ? raw.secrets : typeof raw.hidden === "string" ? raw.hidden : "";
+  return { prep, hidden: secrets.trim().slice(0, 5000) };
+}
+
+/** Fix S3-accept Д3: a place the prep puts at a settlement — on (nearly) the settlement's own spot, and its «where»
+ * names the settlement («у северных ворот Заречья») — lies inside it, even when the DM left `within` empty: the map
+ * draws it as part of the settlement and the tree puts it under it. A place with its own spot some way off stays a
+ * landmark of its own. (A rule in the prep's request said this too, but the probe's model refused the request as
+ * cyber content with it; the canon's own words decide it here, deterministically.) */
+export const AT_SETTLEMENT = 0.06;
+export function attachToSettlements(prep: RegionPrep, names: ReadonlyMap<string, string>, only: ReadonlySet<string> | null = null): RegionPrep {
+  const stem = (name: string) => name.toLocaleLowerCase().slice(0, Math.max(4, name.length - 2));
+  const hosts = prep.places.filter((row) => !row.within && row.x !== null && row.y !== null && names.get(row.locationId));
+  const places = prep.places.map((row) => {
+    if ((only && !only.has(row.locationId)) || row.within || row.x === null || row.y === null || !row.where) return row;
+    const where = row.where.toLocaleLowerCase();
+    const host = hosts.filter((other) => other.locationId !== row.locationId && Math.hypot(other.x! - row.x!, other.y! - row.y!) <= AT_SETTLEMENT && where.includes(stem(names.get(other.locationId)!)))
+      .sort((a, b) => Math.hypot(a.x! - row.x!, a.y! - row.y!) - Math.hypot(b.x! - row.x!, b.y! - row.y!))[0];
+    // Never under a place that itself lies inside this one.
+    return host && !prep.places.some((other) => other.locationId === host.locationId && other.within === row.locationId) ? { ...row, within: host.locationId, x: host.x, y: host.y } : row;
+  });
+  return { ...prep, places };
 }
 
 /** An amend keeps the region as designed: the places and routes already there stay exactly; only new ones join. */

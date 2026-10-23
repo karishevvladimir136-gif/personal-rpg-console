@@ -19,10 +19,10 @@ import { stableGameplayId } from "../src/lib/gameplay/dice.ts";
 import { createCampaignSettings } from "../src/lib/campaign-settings.ts";
 import { parseLive2dBoard, parseRegionMap, parseRegionPrep } from "../src/lib/live2d/contracts.ts";
 import { live2dCrumbs, live2dMapOpening, live2dOpeningLevel, live2dView } from "../src/lib/live2d/hierarchy.ts";
-import { canonParents, fallbackRegionPrep, mergeRegionPrep, missingFromPrep, parseRegionPrepReply, regionCanonBody, regionCanonText, regionHiddenKey, regionPaintBrief,
+import { attachToSettlements, canonParents, fallbackRegionPrep, mergeRegionPrep, missingFromPrep, parseRegionPrepReply, regionCanonBody, regionCanonText, regionHiddenKey, regionPaintBrief,
   regionPlaceIds, regionPrepRequest, regionPrepSource, withCanonParents } from "../src/lib/live2d/region-prep.ts";
 import { INNER_RADIUS, parseRegionCheck, regionCheckItems, regionCheckRequest, regionMapMarkers, regionMarkers, regionVerdict } from "../src/lib/live2d/region-marks.ts";
-import { draftRegionPrep, checkRegionMap } from "../src/lib/live2d/server/region-vision.ts";
+import { draftRegionPrep, checkRegionMap, imageSize } from "../src/lib/live2d/server/region-vision.ts";
 import { regionDrawDecision, regionDrawInput } from "../src/lib/live2d/region.ts";
 import { LIVE2D_IDS, live2dBoard, live2dPictures, live2dPlacements, live2dPlay, live2dSnapshot } from "../src/lib/ui/preview/live2d-fixture.ts";
 import { fixture, world } from "./phase35-storage-fixture.mjs";
@@ -222,14 +222,34 @@ test("Д3 the region's prep: the records, the canon and the public narration in;
   const source = regionPrepSource(snapshot, { anchorId: null, placeIds, hidden: "Тайный слой: контрабанда на мельнице.", existing: null });
   const request = regionPrepRequest(source);
   assert.match(request.system, /geography in detail/);
-  assert.match(request.system, /distances in days/);
+  assert.match(request.system, /how many days it takes to walk/);
   assert.match(request.system, /what stays in your hidden layer/);
-  assert.match(request.system, /Never put a secret into overview, landscape, where, look or way/);
-  assert.match(request.user, /Пост стражи — visited/);
-  assert.match(request.user, /Кузня — known — inside Березень/, "the records' parents");
+  assert.match(request.system, /Keep every secret out of overview, landscape, where, look and way/);
+  // A place the canon's words put at a settlement lies inside it, even when the DM left `within` empty.
+  const names = new Map(snapshot.locations.map((row) => [row.id, row.name]));
+  const loose = { overview: "", landscape: "", routes: [], source: "model", places: [
+    { locationId: id("village"), role: "village", within: null, x: 0.55, y: 0.55, where: "на левом берегу", look: "" },
+    { locationId: id("post"), role: "guard post", within: null, x: 0.56, y: 0.51, where: "у северных ворот Березеня", look: "" },
+    { locationId: id("bridge"), role: "bridge", within: null, x: 0.48, y: 0.82, where: "в полудне пути от Березеня", look: "" },
+    { locationId: id("mill"), role: "mill", within: null, x: 0.57, y: 0.53, where: "выше по реке", look: "" }] };
+  const attached = attachToSettlements(loose, names);
+  assert.deepEqual(attached.places.map((row) => [names.get(row.locationId), names.get(row.within) ?? null]),
+    [["Березень", null], ["Пост стражи", "Березень"], ["Каменный мост", null], ["Мельница на Ольховке", null]], "at the village and named so: inside; far off or not named: its own landmark");
+  assert.deepEqual([attached.places[1].x, attached.places[1].y], [0.55, 0.55], "drawn as part of the village");
+  assert.equal(attachToSettlements(loose, names, new Set([id("bridge")])).places[1].within, null, "an amend never touches the places already designed");
+  assert.match(src("src/lib/live2d/server/region.ts"), /const prep = attachToSettlements\(/, "the server applies it to every prep it saves");
+  assert.match(request.user, /\n\d+ — Пост стражи — visited/, "place numbers, never the records' IDs");
+  assert.ok(!request.user.includes(id("post")), "no record ID in the request");
+  assert.match(request.user, /Кузня — known — inside Березень \(\d+\)/, "the records' parents");
   assert.match(request.user, /у ворот — Пост стражи/, "the public narration that names the places");
   assert.match(request.user, /## Ольховский край/, "the canon");
-  assert.match(request.user, /Your private notes \(DM-only[^]*контрабанда/, "the DM reads its private notes; the prep keeps to them");
+  assert.match(request.user, /Your own notes as the game master[^]*контрабанда/, "the DM reads its private notes; the prep keeps to them");
+  // The reply by numbers maps back to the records: N is the request's N-th place.
+  const numberOf = (placeId) => source.places.findIndex((row) => row.id === placeId) + 1;
+  const byKeys = parseRegionPrepReply(JSON.stringify({ overview: "Река.", places: [{ n: numberOf(id("post")), role: "guard post", within: numberOf(id("village")), x: 0.3, y: 0.4, where: "у ворот", look: "a tower" }, { n: 99, role: "castle", x: 0.1, y: 0.1 }],
+    routes: [{ from: numberOf(id("village")), to: numberOf(id("bridge")), way: "тракт", days: 0.5 }], hidden: "тайна" }), source.places.map((row) => row.id));
+  assert.deepEqual(byKeys.prep.places.map((row) => [row.locationId, row.within]), [[id("post"), id("village")]], "numbers back to IDs; an unknown number is dropped");
+  assert.deepEqual([byKeys.prep.routes[0].from, byKeys.prep.routes[0].to, byKeys.hidden], [id("village"), id("bridge"), "тайна"]);
   const draft = parseRegionPrepReply(DM_REPLY, placeIds);
   assert.ok(!draft.prep.places.some((row) => row.locationId === id("invented")), "never a place the records do not have");
   assert.equal(draft.prep.routes.length, 1, "a road to an unknown place is dropped");
@@ -245,7 +265,7 @@ test("Д3 the region's prep: the records, the canon and the public narration in;
   assert.match(server, /dossier\.privateNotes\(\{ set: \[\{ kind: "fact", key: regionHiddenKey\(anchorId\), value \}\], remove: \[\] \}, snapshot\.timeline\)/, "the hidden part goes to the DM's private notes");
   assert.doesNotMatch(server, /log\([^)]*draft\.hidden[^.]/, "the log never carries the hidden text");
   // The canon document: the DM's public text, versioned like any document; the owner's edits are never overwritten.
-  const names = new Map(snapshot.locations.map((row) => [row.id, row.name]));
+  // (names: above)
   const canon = regionCanonText(draft.prep, names, { regionName: "", language: "ru" });
   assert.equal(canon.title, "Карта края — известный край");
   assert.match(canon.body, /Канон мира: карту рисуют по ней, перерисовка картинки её не меняет/);
@@ -342,6 +362,28 @@ test("Д3 the calls fail soft and report their cost; the chain: prep before the 
   assert.match(chain, /let prep: RegionPrep \| null = existing\?\.prep \?\? null/, "a redraw paints from the stored prep: the geography never changes");
   assert.match(chain, /!options\.force && !existing\?\.pictureId/, "the one corrected picture only on a first draw, never on the owner's forced redraw");
   assert.match(server, /expectedRevision: existing\?\.prepRevision \?\? 0, source: "model"/, "the prep is fenced by its revision");
+});
+
+test("Д3 the check asks for pixels of the picture's size (steadier than fractions in the probe) and reads them back as fractions", async () => {
+  const { snapshot } = village();
+  const names = new Map(snapshot.locations.map((row) => [row.id, row.name]));
+  const items = regionCheckItems(parseRegionPrepReply(DM_REPLY, snapshot.locations.map((row) => row.id)).prep, names);
+  const size = { width: 1344, height: 768 };
+  const request = regionCheckRequest(items, "", size);
+  assert.match(request.system, /in pixels from the top-left corner of the picture, which is 1344 pixels wide and 768 pixels high/);
+  assert.match(regionCheckRequest(items, "").system, /as fractions of the picture's width and height/, "without a size: the scenes' fractions");
+  const village0 = items.find((row) => row.name === "Березень").key;
+  const check = parseRegionCheck(`{"items":[{"key":"${village0}","visible":true,"x":672,"y":192,"confidence":0.9}],"contradictions":[]}`, items, "m", 0, AT, size);
+  assert.deepEqual(check.items.find((row) => row.key === village0), { key: village0, visible: true, x: 0.5, y: 0.25, confidence: 0.9 });
+  assert.equal(parseRegionCheck(`{"items":[{"key":"${village0}","visible":true,"x":2000,"y":10,"confidence":0.9}]}`, items, "m", 0, AT, size).items[0].visible, false, "a spot outside the picture is not a spot");
+  // The picture's size from its own header (PNG; JPEG by its frame marker).
+  const png = new Uint8Array(32); png.set([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 0, 0, 0, 13, 0x49, 0x48, 0x44, 0x52, 0, 0, 5, 64, 0, 0, 3, 0]);
+  assert.deepEqual(imageSize(png), { width: 1344, height: 768 });
+  const jpeg = new Uint8Array([0xff, 0xd8, 0xff, 0xe0, 0, 4, 0, 0, 0xff, 0xc0, 0, 17, 8, 3, 0, 5, 64, 3, 0, 0, 0, 0]);
+  assert.deepEqual(imageSize(jpeg), { width: 1344, height: 768 });
+  const vision = src("src/lib/live2d/server/region-vision.ts");
+  assert.match(vision, /const size = options\.coordinates === "fraction" \? null : imageSize\(picture\.bytes\);/, "pixels by default");
+  assert.match(vision, /const model = options\.model \?\? CHECK_MODEL;/, "the app checks with CHECK_MODEL; only a probe overrides it");
 });
 
 test("Д2 the forced redraw stays a real redraw that changes only the picture", () => {
