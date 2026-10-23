@@ -13,7 +13,7 @@ import type { CampaignSnapshot, Entity } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
 import { isUnresolved } from "@/lib/gameplay/client-state";
 import type { SheetView } from "@/lib/ui/campaign-view";
-import { castLine, spellBook, type SpellRecord } from "@/lib/inventory/model";
+import { castLine, counterLabel, spellBook, type SpellRecord } from "@/lib/inventory/model";
 import { castSlot, concentrationOf, planSheet, type MoveContext, type MovePlan } from "@/lib/inventory/owner-moves";
 import { conversionPatch, schoolKey, spellTabView, type SchoolKey, type SpellGroup } from "@/lib/inventory/spell-records";
 import { usd } from "@/lib/visual-frame/fal-image";
@@ -114,7 +114,7 @@ export function SpellsTab({ entity, sheet, onCast, onPrepare }: {
     <div key={group.level} className={s.level} aria-label={group.label}>
       <div className={s.levelHead}>
         <b>{group.label}</b>
-        {group.slots && <Pips left={group.slots.value} max={group.slots.max} label={c(`Ячейки ${group.level} круга`, `Level ${group.level} slots`)} />}
+        {group.slots && <Pips left={group.slots.value} max={group.slots.max} label={counterLabel(entity, group.slotKey, c.language)} />}
         {group.slots && <span className={r.small}>{c(`${group.slots.value} из ${group.slots.max}`, `${group.slots.value} of ${group.slots.max}`)}</span>}
       </div>
       {group.spells.length ? <div className={s.tiles}>{group.spells.map((spell) => tile(spell, toggles))}</div> : <p className={`${r.small} ${r.muted}`} style={{ margin: 0 }}>{empty}</p>}
@@ -129,9 +129,9 @@ export function SpellsTab({ entity, sheet, onCast, onPrepare }: {
           {focus && <p className={s.focus}>{c("Концентрация", "Concentration")}: <b>{focus}</b></p>}
           {pending && <p className={r.note} role="status">{c("Заклинания из «Умений» станут карточками, как только закончится ход.", "The spells in «Abilities» become cards as soon as the turn ends.")}</p>}
           {view.slots.length > 0 && (
-            <div className={s.slots} aria-label={c("Ячейки заклинаний", "Spell slots")}>
+            <div className={s.slots} aria-label={c("Слоты заклинаний", "Spell slots")}>
               {view.slots.map((group) => group.slots && (
-                <span key={group.level} className={s.slot}><b>{group.label}</b><Pips left={group.slots.value} max={group.slots.max} label={c(`Ячейки ${group.level} круга`, `Level ${group.level} slots`)} /></span>
+                <span key={group.level} className={s.slot}><b>{group.label}</b><Pips left={group.slots.value} max={group.slots.max} label={counterLabel(entity, group.slotKey, c.language)} /></span>
               ))}
             </div>
           )}

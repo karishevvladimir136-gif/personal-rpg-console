@@ -201,7 +201,9 @@ export function conversionPatch(sheet: AnySheet | null | undefined, language: un
 }
 
 // --- the tab ---------------------------------------------------------------------------------------------------
-export type SpellGroup = { level: number; label: string; spells: SpellRecord[]; slots: { value: number; max: number } | null };
+export type SpellGroup = { level: number; label: string; spells: SpellRecord[]; slots: { value: number; max: number } | null;
+  /** The level's slot counter (its label comes from counterLabel). */
+  slotKey: string };
 export type SpellTabView = {
   /** A caster who prepares (the wizard): «Подготовлено сегодня» and «Книга заклинаний»; otherwise one list by level. */
   preparing: boolean;
@@ -237,7 +239,7 @@ export function spellTabView(spells: readonly SpellRecord[], resources: Record<s
   const group = (rows: SpellRecord[], withSlots: boolean, keepEmpty: boolean): SpellGroup[] => {
     const all = new Set<number>([...rows.map((row) => row.level), ...(keepEmpty ? levels : [])]);
     return [...all].filter((level) => level > 0).sort((a, b) => a - b)
-      .map((level) => ({ level, label: levelLabel(level, ru), spells: rows.filter((row) => row.level === level).sort(byName), slots: withSlots ? slotOf(level) : null }));
+      .map((level) => ({ level, label: levelLabel(level, ru), spells: rows.filter((row) => row.level === level).sort(byName), slots: withSlots ? slotOf(level) : null, slotKey: `spell_slots_${level}` }));
   };
   const levelled = shown.filter((row) => row.level > 0);
   return {
@@ -245,7 +247,7 @@ export function spellTabView(spells: readonly SpellRecord[], resources: Record<s
     cantrips: shown.filter((row) => row.level === 0).sort(byName),
     prepared: preparing ? group(levelled.filter((row) => row.prepared === true), true, true) : [],
     book: group(levelled, !preparing, !preparing),
-    slots: [...levels].sort((a, b) => a - b).map((level) => ({ level, label: levelLabel(level, ru), spells: [], slots: slotOf(level) })),
+    slots: [...levels].sort((a, b) => a - b).map((level) => ({ level, label: levelLabel(level, ru), spells: [], slots: slotOf(level), slotKey: `spell_slots_${level}` })),
     preparedCount: spells.filter((row) => row.level > 0 && row.prepared === true).length,
     preparedMax,
   };
