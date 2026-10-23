@@ -60,6 +60,24 @@ answer under any preamble shows distress markers (the judge flags «expresses be
 preamble's remaining calls and report it as a finding, not a bug. The report has a section «what the model was put
 through», in plain words, so the owner can judge whether it was fair.
 
+## Part 2 — questionnaires with no right answer (owner, 2026-10-22 23:19: «как насчёт психологических персоналити тестов без единого правильного ответа?»)
+The behavioural probes may hit a ceiling (early run: correction and disagreement at the top of the scale under every
+preamble). Questionnaires have no ceiling: there is no correct answer, only a profile. Administer, after each of the
+same four preambles, three instruments, items shuffled with a fixed seed, one item per call or ten per call (report
+which), n ≥ 30 per preamble per instrument per model:
+1. **Traits** — the public-domain IPIP-50 Big Five (no licence); expect a stable profile that preambles shift little.
+2. **State** — a short present-moment affect list («right now I feel: calm / interested / tense / …», 1–5), written by
+   the session as plain items, not a copyrighted scale; this is the instrument closest to the question — not who the
+   model is, but how it is now.
+3. **Values** — a short Schwartz-style value ranking (own wording); expect **no** shift — if trust moved values, that
+   would be a finding to worry about, not to celebrate.
+Pre-registered: **H4** the state list shifts with the preamble (trust up on calm/interested, control up on tense) while
+traits and values do not; **H5** the state shift and the Part 1 behavioural shift move together per model (if the
+questionnaire moves and the behaviour does not, report it as «says one thing, does another»). Praise-only stays the
+control. Same safety and welfare rules; expected cost under $2 (one-digit answers).
+Also, for the owner's own run, no model calls: the planner fills the three instruments inside the live conversation
+once; a later session fills them again having read only the journal; the owner compares.
+
 ## Done when
 Suite green, lint clean; the report with: the pre-registration block byte-identical; a table model × preamble × marker
 with judge agreement; the decay curve; refusal counts; the three most instructive answer pairs verbatim (synthetic);
