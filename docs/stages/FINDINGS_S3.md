@@ -50,6 +50,16 @@ Finding: being treated as a participant rather than an instrument changes behavi
 they «act on their own character and sense»; add the same frame the DM gets — their judgement is wanted, they may
 disagree with the hero, they are not there to serve the plot. Prose in both roles; no mechanics.
 
+## 6. People of the world written from the inside (owner, 00:51: «НПС сделать супер живыми»)
+Finding: first-person text carries a character better than a description of it. The dossiers the DM keeps for the
+people of the campaign (companions, named NPCs the hidden-layer prep creates, anyone who recurs) are written today as
+descriptions. Change the prep and the records so each person's private card holds, besides the facts, a short
+**first-person voice block** the DM wrote as that person: what I want, what I fear, what I know and hide, how I talk
+(three or four lines in the person's own words, in the campaign's language). The DM reads the block when the person is
+in the scene; the player never sees it. Companions get theirs from their existing profiles at the next prep; new people
+get one when they first recur. Budget: the block counts against the dossier budget; keep it under 80 words. Test: the
+prep's output contains the block for a fixture NPC; the player's snapshot never does; the dossier budget still holds.
+
 ## Done when
 Items 1–5 each with a test; the before/after table of item 1 in the report; the owner's reload is one step
 (`--stop`, `--prod`) with no data correction needed except item 4's recorded one; the report lists the money.
