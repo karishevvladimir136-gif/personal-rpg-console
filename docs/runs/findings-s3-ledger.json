@@ -180,6 +180,16 @@
       "settled": true,
       "finishedAt": "2026-10-23T21:41:30.565Z",
       "record": "docs/runs/real-replay-20261023-213041.jsonl"
+    },
+    {
+      "run": "findings-s3-roll-recheck-20261023-214532",
+      "what": "findings S3 §7: the roll check on the final narrations of the item-1 «after» and the notes arms (Haiku 5.5)",
+      "startedAt": "2026-10-23T21:45:32.902Z",
+      "reservedUsd": 0.2,
+      "spentUsd": 0.0046,
+      "settled": true,
+      "finishedAt": "2026-10-23T21:46:18.480Z",
+      "record": "docs/runs/findings-s3-roll-recheck-20261023-214532.json"
     }
   ]
 }

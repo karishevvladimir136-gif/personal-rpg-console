@@ -186,3 +186,10 @@ test("§1 probe finding: the stop on a companion's objection stands against a ch
   assert.match(untoldRollsMessage("ru", [], "writer", ["уйти к барже"]), /Если ход остановился ради ответа игрока \(спутник вслух возразил, герою задан вопрос\), это и есть причина: скажи это одной строкой вне игры и не доигрывай действие\./);
   assert.match(untoldRollsMessage("en", [], "dm", ["walk to the barge"]), /If the turn stopped for the player's answer \(a companion objected aloud, a question was put to the hero\), that is the reason: say so in one out-of-game line and do not play the action\./);
 });
+
+test("§1 probe finding: every roll's outcome is said as an event — the hero's by the hero's own act, never left to a companion, a reaction or a hint (both languages, both roles)", () => {
+  for (const text of [DM_ROLE, WRITER_ROLE])
+    assert.match(text, /The outcome of every roll is said as an event in its own sentence: the hero's roll by what the hero does and what comes of it — never left to a companion who does it instead, to someone's reaction, a hint or an aftermath\. How it sounds is yours; that it is said is the rule\./);
+  for (const text of [dmRoleText(true), writerRoleText(true)])
+    assert.match(text, /Исход каждого броска сказан событием, отдельной фразой: бросок героя — тем, что сделал сам герой и что из этого вышло, а не спутником, который сделал это за него, не чьей-то реакцией, намёком или последствием\. Как это звучит — решаешь ты; что это сказано — правило\./);
+});
