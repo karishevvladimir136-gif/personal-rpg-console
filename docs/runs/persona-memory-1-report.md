@@ -187,11 +187,14 @@ There were no paid calls in Parts A–C.
 
 ## Checks
 
-On the final code, in a clean worktree without `.env.local`:
-- the full suite: (filled below);
-- typecheck: (filled below);
-- lint: (filled below);
-- production build: (filled below).
+On the final code (`a99e0f7`), in a clean worktree without `.env.local`:
+- the full suite (`node --test --test-concurrency=2 tests/*.test.mjs`): **2 873 tests · 2 846 pass · 0 fail · 0 cancelled ·
+  27 skipped**, the 36 new tests included;
+- typecheck: pass;
+- lint: pass, zero warnings (`--max-warnings=0`);
+- production build: pass, no warnings.
+
+The commit after `a99e0f7` changes documentation only: the guide's cost estimate and these numbers.
 
 The new tests:
 
@@ -204,7 +207,8 @@ The new tests:
 
 `tests/integration-saves.test.mjs` now includes the new migration in its order check.
 
-Baseline before any change (`b7064a5`, this VM with `.env.local`): (filled below).
+Baseline before any change (`b7064a5`, this VM with `.env.local`): 2 837 tests · 2 810 pass · 0 fail · 27 skipped;
+typecheck and lint pass.
 
 ## Known limits
 

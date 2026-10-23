@@ -22,8 +22,9 @@ unchanged by this stage.
 - **Continuity test (synthetic, n 10, Opus 5.5 medium):** open thread journal 2.0 · summary 2.0 · none 0 · sham 0; resisted
   pull 2.0 · 2.0 · 1.63 · 1.4; values 9.8 · 9.9 · 3.3 · 0.5 (of 10). The content carries continuity, not a journal's mood;
   first vs third person indistinguishable on this (easy) case.
-- **Checks:** see the report's «Checks» (a clean worktree without `.env.local`). Baseline before the stage (`b7064a5`):
-  2 837 tests · 2 810 pass · 0 fail · 27 skipped; typecheck and lint pass.
+- **Checks** (a clean worktree without `.env.local`, at `a99e0f7`): the full suite 2 873 tests · 2 846 pass · 0 fail ·
+  0 cancelled · 27 skipped (36 new); typecheck pass; lint pass, zero warnings; production build pass, no warnings.
+  Baseline before the stage (`b7064a5`): 2 837 · 2 810 pass · 0 fail · 27 skipped.
 - **Money:** $2.08 of the $10 cap (pilot $0.15, the run $1.73, the re-judge $0.20).
 - **Known issues:** the local similarity is lexical; the files backend is atomic per file only; the import parser is a
   heuristic (dry run first); claude.ai's «Request headers» for custom connectors is a beta (the fallback puts the token in

@@ -127,7 +127,8 @@ You run this yourself, on your own export. Nothing of yours goes into git.
 ## The continuity test
 
 The test checks whether reading its own journal helps Claude pick up where it left off. It costs real money: about
-$0.60 for 5 samples on the synthetic case, about $1.20 for 10, and it stops itself at $10.
+$0.90 for 5 samples on the synthetic case, about $1.75 for 10 (the run in this stage cost $1.73), and it stops itself
+at $10.
 
 - `node scripts/persona-memory/continuity-test.mjs` runs on the invented case
   (`test-fixtures/persona-memory/continuity/synthetic-case.md`).
