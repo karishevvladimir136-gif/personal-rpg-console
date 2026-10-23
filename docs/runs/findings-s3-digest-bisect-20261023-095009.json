@@ -1,0 +1,22 @@
+{
+  "run": "findings-s3-digest-bisect-20261023-095009",
+  "results": [
+    {
+      "variant": "old_instructions",
+      "stop": "max_tokens",
+      "chars": 0,
+      "start": "",
+      "costUsd": 0.1111,
+      "cacheRead": 55404
+    }
+  ],
+  "transport": [
+    {
+      "event": "http",
+      "model": "claude-opus-5-5",
+      "status": 200,
+      "requestBytes": 296411,
+      "latencyMs": 216
+    }
+  ]
+}

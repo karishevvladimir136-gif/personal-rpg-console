@@ -168,7 +168,8 @@ test("§7: the dose of the DM's own notes — the hidden layer holds 24 000 char
     assert.equal(source.privateState.fact.hidden_layer.length, big.length);
     const session = { id: randomUUID(), title: "Вечер", scenes: [{ role: "narration", body: "Тихо." }], startWorldMinutes: null, endWorldMinutes: source.runtime.worldMinutes, shape: { turns: 1, playMinutes: 5, form: "short" } };
     const text = buildDigestRequest(source, session, "high").messages[0].text;
-    assert.match(text, /written under them as your own first-person notes, up to 23000 characters — where the room allows, keep more of the exact lines that carried a scene and more of your own reasoning/);
+    assert.match(text, /written under them as your own first-person notes, up to 23000 characters — where the room allows, keep more of the exact lines that carried a scene and more of your plans with the reasons behind them, rather than a summary/);
+    assert.doesNotMatch(text, /your own reasoning/, "the words that made the model refuse the whole digest (the paid probe's bisect)");
     const reply = (layer) => JSON.stringify({ recap: "r", title: "t", notebook: "", plans: [], hiddenLayer: layer });
     assert.equal(parseDigest(reply("я".repeat(30_000)), source, 0).hiddenLayer.length, HIDDEN_LAYER_MAX_CHARS - 200);
     assert.equal(parseDigest(reply(big), source, 0).hiddenLayer, big.trim(), "a 23 500-character layer passes whole");

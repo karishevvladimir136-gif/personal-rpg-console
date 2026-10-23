@@ -70,6 +70,76 @@
       "settled": true,
       "finishedAt": "2026-10-23T09:41:43.235Z",
       "record": "docs/runs/real-replay-20261023-093617.jsonl"
+    },
+    {
+      "run": "findings-s3-digest-20261023-094839",
+      "what": "findings S3 §2: one session digest on the synthetic campaign (the DM's own notes in the first person), Opus 5.5 at high",
+      "startedAt": "2026-10-23T09:48:39.838Z",
+      "reservedUsd": 3.5,
+      "spentUsd": 0.541,
+      "settled": true,
+      "finishedAt": "2026-10-23T09:48:43.573Z",
+      "record": "docs/runs/findings-s3-digest-20261023-094839.json"
+    },
+    {
+      "run": "findings-s3-digest-bisect-20261023-094924",
+      "what": "findings S3 §2/§7: why the synthetic digest was refused — variants of its instructions, 200-token cap, Opus 5.5",
+      "startedAt": "2026-10-23T09:49:24.861Z",
+      "reservedUsd": 3,
+      "spentUsd": 0.1089,
+      "settled": true,
+      "finishedAt": "2026-10-23T09:49:28.367Z",
+      "record": "docs/runs/findings-s3-digest-bisect-20261023-094924.json"
+    },
+    {
+      "run": "findings-s3-digest-bisect-20261023-094943",
+      "what": "findings S3 §2/§7: why the synthetic digest was refused — variants of its instructions, 200-token cap, Opus 5.5",
+      "startedAt": "2026-10-23T09:49:43.113Z",
+      "reservedUsd": 3,
+      "spentUsd": 0.4307,
+      "settled": true,
+      "finishedAt": "2026-10-23T09:49:51.918Z",
+      "record": "docs/runs/findings-s3-digest-bisect-20261023-094943.json"
+    },
+    {
+      "run": "findings-s3-digest-bisect-20261023-095009",
+      "what": "findings S3 §2/§7: why the synthetic digest was refused — variants of its instructions, 200-token cap, Opus 5.5",
+      "startedAt": "2026-10-23T09:50:09.171Z",
+      "reservedUsd": 3,
+      "spentUsd": 0.1111,
+      "settled": true,
+      "finishedAt": "2026-10-23T09:50:14.634Z",
+      "record": "docs/runs/findings-s3-digest-bisect-20261023-095009.json"
+    },
+    {
+      "run": "findings-s3-digest-bisect-20261023-095026",
+      "what": "findings S3 §2/§7: why the synthetic digest was refused — variants of its instructions, 200-token cap, Opus 5.5",
+      "startedAt": "2026-10-23T09:50:26.794Z",
+      "reservedUsd": 3,
+      "spentUsd": 0.2255,
+      "settled": true,
+      "finishedAt": "2026-10-23T09:50:38.149Z",
+      "record": "docs/runs/findings-s3-digest-bisect-20261023-095026.json"
+    },
+    {
+      "run": "findings-s3-digest-bisect-20261023-095050",
+      "what": "findings S3 §2/§7: why the synthetic digest was refused — variants of its instructions, 200-token cap, Opus 5.5",
+      "startedAt": "2026-10-23T09:50:50.517Z",
+      "reservedUsd": 3,
+      "spentUsd": 0.1128,
+      "settled": true,
+      "finishedAt": "2026-10-23T09:50:55.730Z",
+      "record": "docs/runs/findings-s3-digest-bisect-20261023-095050.json"
+    },
+    {
+      "run": "findings-s3-digest-20261023-095117",
+      "what": "findings S3 §2: one session digest on the synthetic campaign (the DM's own notes in the first person), Opus 5.5 at high",
+      "startedAt": "2026-10-23T09:51:17.028Z",
+      "reservedUsd": 3.5,
+      "spentUsd": 0.2788,
+      "settled": true,
+      "finishedAt": "2026-10-23T09:52:47.987Z",
+      "record": "docs/runs/findings-s3-digest-20261023-095117.json"
     }
   ]
 }

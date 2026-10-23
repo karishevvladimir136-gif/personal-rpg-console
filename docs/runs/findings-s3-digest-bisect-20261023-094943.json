@@ -1,0 +1,67 @@
+{
+  "run": "findings-s3-digest-bisect-20261023-094943",
+  "results": [
+    {
+      "variant": "no_voices",
+      "stop": "refusal",
+      "chars": 0,
+      "start": "",
+      "costUsd": 0.1079,
+      "cacheRead": 55404
+    },
+    {
+      "variant": "no_first_person",
+      "stop": "refusal",
+      "chars": 0,
+      "start": "",
+      "costUsd": 0.1086,
+      "cacheRead": 55404
+    },
+    {
+      "variant": "neither",
+      "stop": "refusal",
+      "chars": 0,
+      "start": "",
+      "costUsd": 0.1077,
+      "cacheRead": 55404
+    },
+    {
+      "variant": "json_only",
+      "stop": "max_tokens",
+      "chars": 0,
+      "start": "",
+      "costUsd": 0.1065,
+      "cacheRead": 55404
+    }
+  ],
+  "transport": [
+    {
+      "event": "http",
+      "model": "claude-opus-5-5",
+      "status": 200,
+      "requestBytes": 297200,
+      "latencyMs": 230
+    },
+    {
+      "event": "http",
+      "model": "claude-opus-5-5",
+      "status": 200,
+      "requestBytes": 297488,
+      "latencyMs": 198
+    },
+    {
+      "event": "http",
+      "model": "claude-opus-5-5",
+      "status": 200,
+      "requestBytes": 296961,
+      "latencyMs": 171
+    },
+    {
+      "event": "http",
+      "model": "claude-opus-5-5",
+      "status": 200,
+      "requestBytes": 292647,
+      "latencyMs": 180
+    }
+  ]
+}
