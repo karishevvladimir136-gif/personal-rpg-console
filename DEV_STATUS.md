@@ -24,7 +24,12 @@ first paid call) `docs/runs/persona-memory-f2-dry-run.md`.
     3 of 5, the minimum.
   - No wording separates the journal from the rewrite (W2: 1 of 5).
   - Recommended: W2 for the real run.
-- **Checks:** in progress (full suite, typecheck, lint, build); see the report.
+- **Checks:**
+  - full suite: 2 910 tests · 2 880 pass · 0 fail · 3 cancelled · 27 skipped. The 3 cancelled are in
+    `tests/d2a-composition.test.mjs`, and they are cancelled the same way on the base `f837be8` in this environment;
+  - typecheck pass;
+  - lint pass, zero warnings;
+  - build pass, no warnings.
 - **Money:** $0.88 of the $2 cap.
 - **Known issues:**
   - tiny samples; W2's pass is on the threshold;

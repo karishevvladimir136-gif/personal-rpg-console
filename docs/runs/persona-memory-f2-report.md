@@ -161,7 +161,16 @@ Cap **$2**; spent **$0.8822** in 143 calls (every call is in `docs/runs/persona-
 
 ## Checks
 
-In progress at this commit (the full suite, typecheck, lint and build); the results follow in the next commit.
+On the final code, in this cloud session without `.env.local`:
+- the full suite (`node --test --test-concurrency=2 tests/*.test.mjs`): **2 910 tests · 2 880 pass · 0 fail ·
+  3 cancelled · 27 skipped** (the 8 new tests included);
+  - the 3 cancelled are in `tests/d2a-composition.test.mjs`, which this stage does not touch;
+  - they are cancelled the same way on the base commit `f837be8` in this environment, so they come from the
+    environment, not this change;
+- the persona-memory tests alone: 73 of 73 pass;
+- typecheck: pass;
+- lint: pass, zero warnings (`--max-warnings=0`);
+- production build: pass, no warnings.
 
 ## Limits
 
