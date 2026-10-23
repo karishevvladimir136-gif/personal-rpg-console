@@ -13,3 +13,7 @@ supabase/.temp/
 supabase/.branches/
 
 .sandbox/
+
+# Persona memory stores and exports kept by mistake inside the repository (the default lives in the home folder)
+/persona-memory/
+/persona-memory-export/
