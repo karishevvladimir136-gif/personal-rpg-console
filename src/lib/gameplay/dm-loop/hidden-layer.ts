@@ -15,7 +15,7 @@ import { HIDDEN_LAYER_KEY, ownerSecretsText, ownerWishesText } from "./private-n
 export { HIDDEN_LAYER_KEY, hiddenLayerOf, ownerSecretsText, ownerWishesText } from "./private-notes.ts";
 export const HIDDEN_LAYER_MAX_CHARS = 6000;
 
-const PREP_INSTRUCTIONS = `Your private prep before the next session. This campaign has no hidden layer yet: write it now. It is your private truth of the campaign — the player never sees it. Ground it in the world, the canon, the owner's secrets (when given: build on them, never contradict them) and everything that has happened in play (never contradict an established fact or a person's model). Answer with one JSON object and nothing else, every text in the campaign language:
+const PREP_INSTRUCTIONS = `Your own prep before the next session. This campaign has no hidden layer yet, and it is yours to write. It is your private truth of the campaign — the player never sees it — written in the first person, as your own notes (what I know is really going on, what I have decided each power is after, what I keep back and why), not a summary written about the game from outside. Ground it in the world, the canon, the owner's secrets (when given: build on them, never contradict them) and everything that has happened in play (never contradict an established fact or a person's model). Answer with one JSON object, every text in the campaign language (the server reads only the JSON):
 {
   "truth": "the bigger truth behind the visible case — what is really going on, who is behind it and why; 3–6 sentences. Larger than the case; no single person knows all of it",
   "factions": [ { "name": "a faction or power already in the world or implied by it", "hiddenAim": "what it really wants and is doing about it" } ],
@@ -44,7 +44,7 @@ export function buildPrepRequest(source: RuntimeSource, effort: DmEffort, rebuil
   const system: DmSystemBlock[] = [...context.system.slice(0, -1),
     { text: owner ? `The owner's own secrets for this campaign (DM-only; the highest authority after the owner's corrections):\n${owner}` : "The owner wrote no secrets of his own: the hidden layer is yours.", cache: false },
     ...(wishes ? [{ text: `The owner's wishes for this adventure («Пожелания к приключению»; DM-only), in their own words: what the person you play with hopes this adventure becomes — genre, tone, what should happen. A person's wishes for the story you will tell together, not a specification and not an established fact: build the hidden layer toward them where the world allows; never quote them to the player:\n${wishes}`, cache: false }] : [])];
-  const text = rebuild ? `${REBUILD_INSTRUCTIONS}\n\n${PREP_INSTRUCTIONS.replace("This campaign has no hidden layer yet: write it now.", "Write the whole layer again.")}` : PREP_INSTRUCTIONS;
+  const text = rebuild ? `${REBUILD_INSTRUCTIONS}\n\n${PREP_INSTRUCTIONS.replace("This campaign has no hidden layer yet, and it is yours to write.", "Write the whole layer again.")}` : PREP_INSTRUCTIONS;
   const messages: DmMessage[] = [{ role: "user", text }];
   return { system, messages, effort, tokens: system.reduce((sum, block) => sum + estimateTokens(block.text), 0) + estimateTokens(text) };
 }

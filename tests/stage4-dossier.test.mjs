@@ -108,7 +108,7 @@ test("rpg_dossier: pins, likes, theme, status and play time are owner notes; one
     const living = `${played.model.requests[0].system.at(-3).text}\n${played.model.requests[0].system.at(-2).text}`;
     assert.match(living, /Owner-pinned facts[\s\S]*The miller owes the hero a favour/);
     // Fix run A2: the player's own words and the theme are stable: the cached world layer.
-    assert.match(played.model.requests[0].system[1].text, /What the player asked for, in their own words[^\n]*Slow investigations/);
+    assert.match(played.model.requests[0].system[1].text, /enjoys in games, in their own words[^\n]*Slow investigations/);
     assert.match(played.model.requests[0].system[1].text, /theme question[^\n]*: What does loyalty cost\?/);
     const snapshot = await c.f.saves(c.cid, "campaign");
     assert.equal(snapshot.campaign.pinned_facts.length, 1);

@@ -63,21 +63,35 @@ const ENDING_FIELDS = {
   cards: `  "cards": [ { "entityId": "<ID from PEOPLE OF THIS SESSION, or null for a group>", "name": "the person or group as the hero knows them", "where": "where they are now as far as the hero knows, or «неизвестно» / «unknown»", "standing": "how they stand with the hero, a few words", "fate": "one line of their fate as of now, like the final slides of a role-playing game; «неизвестно» / «unknown» when the hero does not know" } ],`,
 };
 function digestInstructions(form: SessionEnding["form"]) {
-  return `Between sessions. The session below has just ended. Do the DM's homework in one pass and answer with a single JSON object, nothing else:
+  return `Between sessions. The session below has just ended. Write your notes between sessions in one pass: the player's parts (recap, title, the ending, threads, stinger) for the owner to read, and your own private parts (notebook, plans, hiddenLayer, playerLikes) the way a game master writes for themself — ${DM_NOTES_VOICE} Answer with a single JSON object (the server reads only the JSON):
 {
   "recap": "«Previously in…» in your own voice, in the campaign language, for the player: three or four sentences looking forward — where the hero is now, what is at stake, what comes next; not a list of facts, no minor details; nothing the hero does not know, no spoilers",
   "title": "a chapter title for this session in the campaign language (2–6 words)",
 ${ENDING_FIELDS[form]}
   "threads": ["every open thread the hero knows, one line each in the campaign language, at most ten: quests, promises, debts, people at large, deadlines, unanswered questions — from all live threads of the story, not only the quest log"],
-  "notebook": "your private prep notebook for the next session, in the campaign language, up to 1500 characters: (1) what engaged the player this session; (2) two or three situations ready to offer next time — situations, not plot, no rails; (3) seeds planted earlier that are ripe now; (4) companions, threads, debts or promises that have not sounded for a while and deserve a scene; (5) for each mystery, which clues the player has met and the next clue to offer; (6) direct questions asked of or by the hero that are still unanswered",
+  "notebook": "your own notebook for the next session, in the campaign language and in the first person — notes to yourself, not a report — up to 1500 characters: what I planned for this session and how it went; what I noticed the player doing and enjoying; what I decided and why; what I left open — seeds that are ripe now, companions, threads, debts or promises that have not sounded for a while, each mystery's clues the player has met and the next one I will offer, questions asked of or by the hero still unanswered; two or three situations I can offer next time (situations, not plot, no rails); and one or two exact lines from this session, quoted, that carried its feeling",
   "plans": [ { "key": "plan_<existing or new key>", "actorId": "<entity ID or null>", "goal": "the plan and its next steps in a few lines", "dueWorldMinutes": <absolute game minute of the next step>, "consequence": "what lands if nobody interferes", "warning": "the fair warning the hero may notice, or empty", "status": "open|done|dropped" } ],
   "playerLikes": "one to three short NEW lines of YOUR observations of what the player enjoyed this session that your notes do not hold yet (they are appended to your notes, never replace them; never the player's own words), or null when nothing is new",
-  "hiddenLayer": "the campaign's hidden layer (your private notes begin with it) rewritten whole with what this session moved: which clues the hero found, which secrets came closer, the clocks advanced, a faction's aim that shifted — the same headings, in the campaign language, up to 5000 characters; null when the session changed nothing in it or the campaign has none",
+  "hiddenLayer": "the campaign's hidden layer (your private notes begin with it) rewritten whole with what this session moved: which clues the hero found, which secrets came closer, the clocks advanced, a faction's aim that shifted — the same headings, in the campaign language, written under them as your own first-person notes, up to 5000 characters; null when the session changed nothing in it or the campaign has none",
   "folds": [ { "keys": ["kind:key of two or more CLOSED private notes about one finished matter (a fight's rounds, a search's steps)"], "line": "one line that keeps what still matters of them, in the campaign language" } ],
   "stinger": "«Meanwhile…»: 2–4 sentences in the campaign language — news that travels through the world and could reach the hero or the people around them: a guard's report to the captain, a rumour in the market, a letter, a messenger. Not an all-seeing camera: only what that channel could carry. It moves the story and may deepen an open question; it never answers a question the hero was left with, never names a hidden fact, never decides an outcome; written as story, no headings; empty string when nothing fits",
   "channel": "how the «Meanwhile» news travels, a few words in the campaign language (a report to the captain of the guard; a rumour on the market); empty with an empty stinger"
 }
 Rules: fold only notes marked closed, never an open one, never the hidden layer; leave out "folds" when nothing is worth folding. Advance the off-screen plans only for the game time that passed in this session (from its first to its last scene); the player's real-world absence moves nothing. Keep each person consistent with their Character Model. Plans you do not change may be omitted. Never put a secret into recap, title, ${form === "cards" ? "cards" : "lines"}, threads or stinger. End the session on a clear beat: the recap says where things stand and what comes next, the stinger shows the world moving.`;
+}
+
+/** Findings S3 §2: the DM's own notes (the digest's private parts, the hidden-layer prep) in the first person — memory
+ * carries by content, and a first-person note carries more than a third-person summary. «Ранее в…» stays for the owner. */
+export const DM_NOTES_VOICE = "in the first person, as your own notes: what you planned, what you noticed the player doing, what you decided and why, what you left open — not a summary written about the game from outside.";
+
+/** Findings S3 §2: first-person forms per 100 words of a note (Russian and English; a word-boundary count, no model) —
+ * the measure the digest's log and the probe report read. */
+const FIRST_PERSON = /(?<![\p{L}])(?:я|меня|мне|мной|мною|мой|моя|моё|мое|мои|моего|моей|моему|моим|моих|моими|мою|i|me|my|myself|i'm|i've|i'll|i'd)(?![\p{L}'])/giu;
+export function firstPersonPer100(text: string): number {
+  const words = text.match(/[\p{L}\p{N}'’-]+/gu)?.length ?? 0;
+  if (!words) return 0;
+  const count = text.replace(/’/g, "'").match(FIRST_PERSON)?.length ?? 0;
+  return Math.round((count / words) * 1000) / 10;
 }
 
 export function buildDigestRequest(source: RuntimeSource, session: DigestSession, effort: DmEffort): { system: DmSystemBlock[]; messages: DmMessage[]; effort: DmEffort; tokens: number;

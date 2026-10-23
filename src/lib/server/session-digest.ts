@@ -9,7 +9,7 @@ import { createDmModel } from "./dm/model";
 import { createMemoryStore } from "./memory/store";
 import { dmLoopPinFromProfile, dmLoopProfile } from "../production/dm-loop-pin";
 import { dmModelSpec, dmUsageCost, type DmEffort } from "../model-runtime/dm-models";
-import { buildDigestRequest, runDigest, sessionShape, unparsedReason } from "../gameplay/dm-loop/digest";
+import { buildDigestRequest, firstPersonPer100, runDigest, sessionShape, unparsedReason } from "../gameplay/dm-loop/digest";
 import { EFFORT_ORDER } from "../gameplay/dm-loop/depth";
 import { DM_LOOP_RUNTIME } from "../gameplay/dm-loop/contracts";
 import { appendObservations } from "../gameplay/dm-loop/observations";
@@ -99,6 +99,8 @@ export async function digestClosedSession(campaignId: string, sessionId: string,
     console.info(JSON.stringify({ event: "session_digest", campaignId, sessionId, reason, model: pin.modelId, effort, requestTokens: request.tokens,
       plans: result.digest.plans.length, stinger: result.digest.stinger.length > 0, form: result.digest.ending.form, cards: result.digest.ending.cards.length,
       threads: result.digest.ending.threads.length, turns: shape.turns, playMinutes: shape.playMinutes, hiddenLayer: !!result.digest.hiddenLayer, folds: folds.length,
+      // Findings S3 §2: the notebook's first-person forms per 100 words (the DM's own notes, not a summary).
+      notebookFirstPer100: firstPersonPer100(result.digest.notebook),
       folded: folds.reduce((sum, fold) => sum + fold.keys.length, 0), costUsd: cost, latencyMs: Math.round(performance.now() - started) }));
     setStatus(campaignId, sessionId, { state: "done", reason: null, costUsd: cost });
   } catch (error) {
