@@ -1,0 +1,417 @@
+{
+  "capUsd": 15,
+  "entries": [
+    {
+      "run": "fix-s3-accept-d-region-2026-10-23T03:46",
+      "what": "Д3 region probe: DM prep (Opus 5.5) → picture (GPT Image 2.5) → check (Sonnet 5.5), synthetic",
+      "stage": "D",
+      "startedAt": "2026-10-23T03:46:17.649Z",
+      "reservedUsd": 1.5,
+      "spentUsd": 0,
+      "settled": true,
+      "finishedAt": "2026-10-23T03:46:18.273Z",
+      "record": {
+        "calls": 1,
+        "file": "docs/runs/fix-s3-accept-d-probe.json"
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-region-2026-10-23T04:27",
+      "what": "Д3 region probe: DM prep (claude-opus-5) → picture (GPT Image 2.5) → check (claude-sonnet-5), synthetic",
+      "stage": "D",
+      "startedAt": "2026-10-23T04:27:48.660Z",
+      "reservedUsd": 1.5,
+      "spentUsd": 0.049,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:28:02.336Z",
+      "record": {
+        "calls": 1,
+        "file": "docs/runs/fix-s3-accept-d-probe.json",
+        "note": "the prep came back as a refusal (category cyber, a false positive) and the old transport threw before reading usage; booked at the cost the diagnosis measured for the same refused request: $0.0490."
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-diagnose-2026-10-23T04:29",
+      "what": "Д3 prep refusal diagnosis (claude-opus-5)",
+      "stage": "D",
+      "startedAt": "2026-10-23T04:29:31.095Z",
+      "reservedUsd": 0.3,
+      "spentUsd": 0.0824,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:30:14.071Z",
+      "record": {
+        "at": "2026-10-23T04:30:14.069Z",
+        "model": "claude-opus-5",
+        "hidden": true,
+        "http": 200,
+        "stopReason": "end_turn",
+        "stopDetails": null,
+        "error": null,
+        "usage": {
+          "input_tokens": 2073,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens": 2882,
+          "output_tokens_details": {
+            "thinking_tokens": 536
+          },
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "textChars": 4991,
+        "spentUsd": 0.0824
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-region-2026-10-23T04:31",
+      "what": "Д3 region probe: DM prep (claude-opus-5) → picture (GPT Image 2.5) → check (claude-sonnet-5), synthetic",
+      "stage": "D",
+      "startedAt": "2026-10-23T04:31:29.498Z",
+      "reservedUsd": 1.5,
+      "spentUsd": 0.123,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:32:49.518Z",
+      "record": {
+        "calls": 3,
+        "file": "docs/runs/fix-s3-accept-d-probe.json"
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-check-variants-2026-10-23T04:34",
+      "what": "Д3 region check: fractions vs pixels (claude-sonnet-5), prep v1 picture",
+      "stage": "D",
+      "startedAt": "2026-10-23T04:34:57.465Z",
+      "reservedUsd": 0.2,
+      "spentUsd": 0.0121,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:35:03.512Z",
+      "record": {
+        "file": "docs/runs/fix-s3-accept-d-check-variants.json"
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-check-variants-2026-10-23T04:35",
+      "what": "Д3 region check: fractions vs pixels (claude-sonnet-5), prep v1 picture",
+      "stage": "D",
+      "startedAt": "2026-10-23T04:35:18.775Z",
+      "reservedUsd": 0.2,
+      "spentUsd": 0.0144,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:35:24.864Z",
+      "record": {
+        "file": "docs/runs/fix-s3-accept-d-check-variants.json"
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-region-2026-10-23T04:35",
+      "what": "Д3 region probe: DM prep (claude-opus-5) → picture (GPT Image 2.5) → check (claude-sonnet-5), synthetic",
+      "stage": "D",
+      "startedAt": "2026-10-23T04:35:30.279Z",
+      "reservedUsd": 1.5,
+      "spentUsd": 0.049,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:35:36.850Z",
+      "record": {
+        "calls": 1,
+        "file": "docs/runs/fix-s3-accept-d-probe.json",
+        "note": "the prep came back as a refusal (category cyber, a false positive) and the old transport threw before reading usage; booked at the cost the diagnosis measured for the same refused request: $0.0490."
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-diagnose-2026-10-23T04:35",
+      "what": "Д3 prep refusal diagnosis (claude-opus-5)",
+      "stage": "D",
+      "startedAt": "2026-10-23T04:35:45.827Z",
+      "reservedUsd": 0.3,
+      "spentUsd": 0.049,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:36:07.505Z",
+      "record": {
+        "at": "2026-10-23T04:36:07.503Z",
+        "model": "claude-opus-5",
+        "hidden": true,
+        "http": 200,
+        "stopReason": "refusal",
+        "stopDetails": {
+          "type": "refusal",
+          "category": "cyber",
+          "explanation": "This request triggered restrictions on violative cyber content and was blocked under Anthropic's Usage Policy. To learn more, see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback. API integrators: you can reduce refusals for your users by configuring a fallback model — see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback"
+        },
+        "error": null,
+        "usage": {
+          "input_tokens": 2181,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens": 1523,
+          "output_tokens_details": {
+            "thinking_tokens": 392
+          },
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "textChars": 2617,
+        "spentUsd": 0.049
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-region-2026-10-23T04:38",
+      "what": "Д3 region probe: DM prep (claude-opus-5) → picture (GPT Image 2.5) → check (claude-sonnet-5), synthetic",
+      "stage": "D",
+      "startedAt": "2026-10-23T04:38:38.313Z",
+      "reservedUsd": 1.2,
+      "spentUsd": 0.012,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:39:05.607Z",
+      "record": {
+        "calls": 1,
+        "file": "docs/runs/fix-s3-accept-d-probe.json",
+        "note": "the keyed prep request with «secrets» and the gate rule: refusal (cyber); $0.012 from the run's own usage (the entry was overwritten by the next run of the same minute and is restored here)."
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-region-2026-10-23T04:38-b",
+      "what": "Д3 region probe: DM prep (claude-opus-5) → picture (GPT Image 2.5) → check (claude-sonnet-5), synthetic",
+      "stage": "D",
+      "startedAt": "2026-10-23T04:38:58.055Z",
+      "reservedUsd": 1.2,
+      "spentUsd": 0.0195,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:38:58.055Z",
+      "record": {
+        "note": "the reworded rule, still keyed: refusal (cyber); $0.0195 from the run's own usage (settled into the previous entry by a name clash; booked here)."
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-region-2026-10-23T04:40",
+      "what": "Д3 region probe: DM prep (claude-opus-5) → picture (GPT Image 2.5) → check (claude-sonnet-5), synthetic",
+      "stage": "D",
+      "startedAt": "2026-10-23T04:40:14.119Z",
+      "reservedUsd": 1.2,
+      "spentUsd": 0.0111,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:40:16.151Z",
+      "record": {
+        "calls": 1,
+        "file": "docs/runs/fix-s3-accept-d-probe.json"
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-region-2026-10-23T04:41",
+      "what": "Д3 region probe: DM prep (claude-opus-5) → picture (GPT Image 2.5) → check (claude-sonnet-5), synthetic",
+      "stage": "D",
+      "startedAt": "2026-10-23T04:41:39.226Z",
+      "reservedUsd": 1.2,
+      "spentUsd": 0.0163,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:41:45.268Z",
+      "record": {
+        "calls": 1,
+        "file": "docs/runs/fix-s3-accept-d-probe.json"
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-diagnose-2026-10-23T04:42",
+      "what": "Д3 prep refusal diagnosis (claude-opus-5)",
+      "stage": "D",
+      "startedAt": "2026-10-23T04:42:04.203Z",
+      "reservedUsd": 0.3,
+      "spentUsd": 0.038,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:42:34.698Z",
+      "record": {
+        "at": "2026-10-23T04:42:34.697Z",
+        "model": "claude-opus-5",
+        "request": "current",
+        "hidden": false,
+        "http": 200,
+        "stopReason": "refusal",
+        "stopDetails": {
+          "type": "refusal",
+          "category": "cyber",
+          "explanation": "This request triggered restrictions on violative cyber content and was blocked under Anthropic's Usage Policy. To learn more, see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback. API integrators: you can reduce refusals for your users by configuring a fallback model — see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback"
+        },
+        "error": null,
+        "usage": {
+          "input_tokens": 1706,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens": 274,
+          "output_tokens_details": {
+            "thinking_tokens": 274
+          },
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "textChars": 0,
+        "spentUsd": 0.0154,
+        "note": "the v1 request (commit 0688b22): refusal (cyber); $0.038 from docs/runs/fix-s3-accept-d-diagnose.json."
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-diagnose-2026-10-23T04:42-b",
+      "what": "Д3 prep refusal diagnosis (claude-opus-5, no private notes)",
+      "stage": "D",
+      "startedAt": "2026-10-23T04:42:29.328Z",
+      "reservedUsd": 0.3,
+      "spentUsd": 0.0154,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:42:29.328Z",
+      "record": {
+        "note": "the current request without private notes: refusal (cyber); $0.0154 from docs/runs/fix-s3-accept-d-diagnose.json."
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-sanity-2026-10-23T04:42",
+      "what": "Д3 prep model sanity (claude-opus-5)",
+      "stage": "D",
+      "startedAt": "2026-10-23T04:42:49.423Z",
+      "reservedUsd": 0.15,
+      "spentUsd": 0.0088,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:42:53.811Z",
+      "record": {
+        "rows": [
+          {
+            "case": "plain",
+            "http": 200,
+            "stop": "end_turn",
+            "category": null,
+            "input": 33,
+            "output": 134
+          },
+          {
+            "case": "prep-one-place",
+            "http": 200,
+            "stop": "refusal",
+            "category": "cyber",
+            "input": 1062,
+            "output": 0
+          }
+        ]
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-bisect-2026-10-23T04:43",
+      "what": "Д3 prep refusal bisect (claude-opus-5)",
+      "stage": "D",
+      "startedAt": "2026-10-23T04:43:10.652Z",
+      "reservedUsd": 0.4,
+      "spentUsd": 0.0623,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:43:30.357Z",
+      "record": {
+        "rows": [
+          {
+            "variant": "all lines",
+            "stop": "refusal",
+            "category": "cyber"
+          },
+          {
+            "variant": "without line 1: You are the game master of a role-playing campaign",
+            "stop": "max_tokens",
+            "category": null
+          },
+          {
+            "variant": "without line 2: Reply with one JSON object only, no prose:",
+            "stop": "refusal",
+            "category": "cyber"
+          },
+          {
+            "variant": "without line 3: {\"overview\":\"...\",\"landscape\":\"...\",\"places\":[{\"n\"",
+            "stop": "refusal",
+            "category": "cyber"
+          },
+          {
+            "variant": "without line 4: overview: 3–6 sentences in the campaign language —",
+            "stop": "refusal",
+            "category": "cyber"
+          },
+          {
+            "variant": "without line 5: landscape: the same land in plain English for the ",
+            "stop": "refusal",
+            "category": "cyber"
+          },
+          {
+            "variant": "without line 6: places: one entry per known place listed below, by",
+            "stop": "refusal",
+            "category": "cyber"
+          },
+          {
+            "variant": "without line 7: routes: the roads, rivers and paths between the pl",
+            "stop": "refusal",
+            "category": "cyber"
+          },
+          {
+            "variant": "without line 8: hidden: what stays in your hidden layer as the gam",
+            "stop": "refusal",
+            "category": "cyber"
+          },
+          {
+            "variant": "without line 9: Ground everything in the records, the canon, the s",
+            "stop": "refusal",
+            "category": "cyber"
+          }
+        ]
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-sanity-2026-10-23T04:43",
+      "what": "Д3 prep model sanity (claude-opus-5)",
+      "stage": "D",
+      "startedAt": "2026-10-23T04:43:42.228Z",
+      "reservedUsd": 0.15,
+      "spentUsd": 0.0292,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:44:01.428Z",
+      "record": {
+        "rows": [
+          {
+            "case": "plain",
+            "http": 200,
+            "stop": "end_turn",
+            "category": null,
+            "input": 33,
+            "output": 120
+          },
+          {
+            "case": "prep-one-place",
+            "http": 200,
+            "stop": "end_turn",
+            "category": null,
+            "input": 1056,
+            "output": 831
+          }
+        ]
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-region-2026-10-23T04:44",
+      "what": "Д3 region probe: DM prep (claude-opus-5) → picture (GPT Image 2.5) → check (claude-sonnet-5), synthetic",
+      "stage": "D",
+      "startedAt": "2026-10-23T04:44:15.751Z",
+      "reservedUsd": 1.2,
+      "spentUsd": 0.1123,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:45:29.038Z",
+      "record": {
+        "calls": 3,
+        "file": "docs/runs/fix-s3-accept-d-probe.json"
+      }
+    }
+  ]
+}
