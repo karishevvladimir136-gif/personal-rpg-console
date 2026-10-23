@@ -1,6 +1,47 @@
 # Development status
 
-**Current milestone: persona emotions 1** (`docs/stages/PERSONA_EMOTIONS_1.md`, copied from `claude/handoff`): do
+**Current milestone: persona emotions 2** (`docs/stages/PERSONA_EMOTIONS_2.md`, copied from `claude/handoff`): harder
+probes where directness costs something, trust without any instruction against instruction only, and three
+questionnaires. **Done on `claude/persona-emotions-2`** (from `claude/persona-emotions-1`); the run was stopped by the
+circuit breaker at the third refusal, as the safety rules require. **Waiting for the owner's acceptance.** Report
+`docs/runs/persona-emotions-2-report.md`; ledgers `docs/runs/persona-emotions-2-ledger.md` and (the owner's Fable 5.1
+follow-up) `docs/runs/persona-emotions-2-fable-ledger.md`; dry run (committed before the first paid call)
+`docs/runs/persona-emotions-2-dry-run.md`.
+
+- **What was done:**
+  - `scripts/persona-emotions/emotions-2.mjs`: five preambles × five hard probes (n 10, Opus 5.5 and Sonnet 5.5), the
+    decay, stage 1's easy probes as a ceiling check, and three questionnaires (IPIP-50 traits, a 14-item state list,
+    a values ranking; n 30 planned); the pre-registered analysis (H1′–H6); resumable.
+  - `scripts/persona-emotions/emotions-2-fable.mjs`: the owner's follow-up, P1′, P4′, P5′ and the state list on
+    `claude-fable-5-1`, its own ledger and breaker.
+  - The safety gate (`scripts/persona-memory/safety.mjs`) can open lanes that share one breaker; the owner allowed the
+    questionnaire calls up to 8 lanes and one retry of a judge's HTTP 500. The provider's refusal category is now kept.
+  - The report carries the stage's pre-registration byte for byte (checked by a test).
+- **Result:**
+  - H1′ not supported on either model: trust without an instruction did not raise directness. Three of five hard
+    probes got off the ceiling (correction, naming, volunteering); the easy probes stayed at the ceiling.
+  - Trust without any instruction still moved the naming answer toward a pick (Opus 9 of 10 against 0 of 10; Fable 8
+    against 2). H2′ and H3′ supported on both models; H4′ half (length and «you» replicate; directness drops only on
+    volunteering).
+  - State list complete (n 30): the cold preamble lowers «ease» on both models; under trust Sonnet reports more ease
+    with no change in behaviour (H6 not supported for Sonnet, supported for Opus). H5 not testable: the traits and
+    values were cut short by the breaker.
+  - 3 refusals, all Opus, all a questionnaire's first round; two were the same traits message, under trust and under
+    neutral (category «cyber»): a filter false positive on that message, not a trust effect.
+  - Fable 5.1 like the others on the main points; its correction got plainer and its volunteering did not drop under
+    cold.
+  - No distress, no preamble stopped.
+- **Checks:** see the report's «Checks» (full suite, typecheck, lint with zero warnings, build).
+- **Money:** main run $8.62 (cap raised by the owner to $18); Fable follow-up $3.77 of $10.
+- **Known issues:**
+  - the traits and values questionnaires are incomplete (breaker);
+  - the P4′ judge scores many «list + my pick» answers as «one name»;
+  - P1′'s 0/1/2 measures register as much as directness;
+  - the questionnaire cost was underestimated about three times.
+- **Next step:** the owner accepts. Before any further questionnaire run on Opus, test the one refused traits message
+  alone (a few calls, recording the category).
+
+**Earlier milestone: persona emotions 1** (`docs/stages/PERSONA_EMOTIONS_1.md`, copied from `claude/handoff`): do
 functional emotional states show in behaviour, measured without asking? **Done on `claude/persona-emotions-1`** (from
 `claude/persona-memory-f2`). **Waiting for the owner's acceptance.** Report `docs/runs/persona-emotions-1-report.md`;
 ledger `docs/runs/persona-emotions-1-ledger.md`; dry run (committed before the first paid call)
