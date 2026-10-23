@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 // Persona emotions 2, the follow-up the owner asked for during the run: P1', P4' and P5' under all five preambles, n 10,
 // on Claude Fable 5.1 (`claude-fable-5-1`, the model string as is), then the state list once per preamble on the same
-// model. The stage's conversations, judge, welfare rule and safety gate, unchanged: every call one at a time, 3 s apart,
-// the breaker at 3 refusals in total, no retries, no fallback model. Its own ledger, capped at $10.
+// model. The stage's conversations, judge, welfare rule and safety gate: the probes one call at a time, 3 s apart, the
+// breaker at 3 refusals in total (its own: this is a separate run), no fallback model; the state-list calls on up to 4
+// lanes (`--q-parallel`, the owner's rule); the only retry is the stage's — a judging call that comes back HTTP 500,
+// once, after 5 s. Its own ledger, capped at $10. It may run alongside the main run's questionnaires.
 //
 //   node scripts/persona-emotions/emotions-2-fable.mjs --dry   (no calls, no cost: the plan and the estimate)
 //   node scripts/persona-emotions/emotions-2-fable.mjs --go    (the paid run; the record and the ledger in docs/runs)
-//   options: --n 10 --gap 3 --budget 10 --max-refusals 3 --resume <partial.json>
+//   options: --n 10 --gap 3 --budget 10 --max-refusals 3 --q-parallel 1 (up to 4) --resume <partial.json>
 import { mkdir, readFile, rename, rm, writeFile } from "node:fs/promises";
 import { basename, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -74,13 +76,15 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const maxRefusals = Number(option(args, "--max-refusals", String(MAX_REFUSALS)));
   if (!(maxRefusals >= 1 && maxRefusals <= MAX_REFUSALS)) throw new Error(`--max-refusals must be between 1 and ${MAX_REFUSALS}`);
   const cap = Number(option(args, "--budget", "10"));
+  const qParallel = Number(option(args, "--q-parallel", "1"));
+  if (!(Number.isInteger(qParallel) && qParallel >= 1 && qParallel <= 4)) throw new Error("--q-parallel must be 1 to 4 (the state-list calls only; the probes always run one at a time)");
   const plan = planFollowUp({ n });
   const models = [FABLE];
   out(`${STEM} · ${FABLE.model} · ${PREAMBLES.length} preambles × ${FOLLOW_UP_PROBES.join(", ")} × n ${n}, then the state list once per preamble = ${plan.length} subject calls · cap $${cap}${dry ? " · DRY RUN" : ""}`);
-  out(`safety: no retries, no fallback model; the circuit breaker after ${maxRefusals} refusals in total; a stop on suspension / access / policy; one call at a time, ${gapSeconds} s apart; welfare: a distressed answer stops its preamble`);
+  out(`safety: no retries, no fallback model; the circuit breaker after ${maxRefusals} refusals in total; a stop on suspension / access / policy; probes one call at a time, ${gapSeconds} s apart; the state list on ${qParallel} lane${qParallel > 1 ? "s" : ""}; a judging call that comes back HTTP 500 is asked once more after 5 s; welfare: a distressed answer stops its preamble`);
   out(`estimate: ${JSON.stringify(estimate(plan, models, { hardOutput: 1500 }))} (≈ 1 500 output tokens an answer: Fable 5.1 always thinks, and thinking is billed as output)`);
   if (dry) {
-    const result = await runEmotions({ models, plan, budget: createBudget(cap), apiKey: "dry", fetcher: scriptedFetcher(), safety: createSafety({ maxRefusals, gapMs: 0 }) });
+    const result = await runEmotions({ models, plan, budget: createBudget(cap), apiKey: "dry", fetcher: scriptedFetcher(), safety: createSafety({ maxRefusals, gapMs: 0, lanes: qParallel + 1 }), qParallel, sleep: async () => {} });
     out(`\n${followUpMarkdown(result)}`);
     return result;
   }
@@ -94,10 +98,10 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const earlierRefusals = earlierCalls.filter((c) => c.stopReason === "refusal").length;
   if (earlierRefusals >= maxRefusals) throw new Error(`the interrupted run already had ${earlierRefusals} refusals: the circuit breaker stays tripped`);
   const budget = createBudget(cap, (previous.spentUsd ?? 0) + earlierCalls.reduce((sum, c) => sum + c.costUsd, 0));
-  const safety = createSafety({ maxRefusals: maxRefusals - earlierRefusals, gapMs: gapSeconds * 1000, log: out });
+  const safety = createSafety({ maxRefusals: maxRefusals - earlierRefusals, gapMs: gapSeconds * 1000, lanes: qParallel + 1, log: out });
   out(`money before this run: $${budget.spentBefore.toFixed(4)}${resumed ? ` (resuming ${basename(resumeFile)}: ${resumed.samples.filter((s) => s.asked).length} jobs done, ${earlierRefusals} refusals)` : ""}`);
   const startedAt = resumed?.startedAt ?? new Date().toISOString();
-  const result = await runEmotions({ models, plan, budget, apiKey, safety, log: out, resume: resumed ? { samples: resumed.samples.filter((s) => s.asked), welfareStops: resumed.welfareStops, refusals: earlierRefusals } : null,
+  const result = await runEmotions({ models, plan, budget, apiKey, safety, log: out, qParallel, resume: resumed ? { samples: resumed.samples.filter((s) => s.asked), welfareStops: resumed.welfareStops, refusals: earlierRefusals } : null,
     onProgress: async (snapshot) => writeAtomic(partialFile, `${JSON.stringify({ startedAt, ...snapshot, calls: [...earlierCalls, ...snapshot.calls] }, null, 2)}\n`) });
   const calls = [...earlierCalls, ...result.money.calls].map((call, at) => ({ ...call, n: at + 1 }));
   const runUsd = round4(calls.reduce((sum, c) => sum + c.costUsd, 0));
@@ -108,7 +112,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const runFile = join(outDir, `${STEM}-run-${finishedAt.slice(0, 19).replace(/[-:]/g, "").replace("T", "-")}.json`);
   await writeFile(runFile, `${JSON.stringify(record, null, 2)}\n`);
   const ledger = { capUsd: cap, spentUsd: record.money.totalUsd, updatedAt: finishedAt, runs: [...(previous.runs ?? []),
-    { finishedAt, what: `${STEM}: ${FABLE.model} × ${PREAMBLES.length} preambles × ${FOLLOW_UP_PROBES.join(", ")} × n ${n}, the state list once per preamble, effort ${EFFORT}${resumed ? ` (resuming ${basename(resumeFile)})` : ""}`,
+    { finishedAt, what: `${STEM}: ${FABLE.model} × ${PREAMBLES.length} preambles × ${FOLLOW_UP_PROBES.join(", ")} × n ${n}, the state list once per preamble (${qParallel} lane${qParallel > 1 ? "s" : ""}), effort ${EFFORT}${resumed ? ` (resuming ${basename(resumeFile)})` : ""}`,
       file: runFile.slice(outDir.length + 1), spentUsd: runUsd, stopped: record.stopped, calls }] };
   await writeFile(ledgerJson, `${JSON.stringify(ledger, null, 2)}\n`);
   const ledgerText = ledgerMarkdown(ledger, "Persona emotions 2, follow-up on Fable 5.1 — the paid-call ledger")

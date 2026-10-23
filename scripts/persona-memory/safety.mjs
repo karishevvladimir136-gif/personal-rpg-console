@@ -25,19 +25,20 @@ export function stopReasonOf(error) {
  * what came back. `call` returns the provider's { text, stopReason, error, … }. `lanes` (1 unless a stage allows more)
  * opens further sequential lanes, `lane(i)`, for calls a stage may run in parallel: each lane keeps its own order and
  * spacing, while the refusal count, the breaker and the stop are shared — no lane sends anything once any has stopped.
- * `run` is lane 0. */
-export function createSafety({ maxRefusals = MAX_REFUSALS, gapMs = 3000, lanes = 1, sleep = realSleep, now = Date.now, log = () => {} } = {}) {
+ * `run` is lane 0 and keeps `gapMs`; the further lanes keep `laneGapMs` (the same unless a stage allows less). */
+export function createSafety({ maxRefusals = MAX_REFUSALS, gapMs = 3000, lanes = 1, laneGapMs = gapMs, sleep = realSleep, now = Date.now, log = () => {} } = {}) {
   let refusals = 0, stopped = null;
   const notSent = () => ({ text: "", usage: {}, stopReason: null, error: "stopped", notSent: true });
-  const open = () => {
+  const open = (_, i) => {
+    const spacing = i === 0 ? gapMs : laneGapMs;
     let lastFinished = null, queue = Promise.resolve();
     return {
       /** Sequential: a second `run` on the lane waits until the first has finished and the gap has passed. */
       run(call) {
         const turn = queue.then(async () => {
           if (stopped) return notSent();
-          if (lastFinished !== null && gapMs > 0) {
-            const wait = lastFinished + gapMs - now();
+          if (lastFinished !== null && spacing > 0) {
+            const wait = lastFinished + spacing - now();
             if (wait > 0) await sleep(wait);
           }
           if (stopped) return notSent();
@@ -61,7 +62,7 @@ export function createSafety({ maxRefusals = MAX_REFUSALS, gapMs = 3000, lanes =
   const state = {
     get refusals() { return refusals; },
     get stopped() { return stopped; },
-    maxRefusals, gapMs, lanes: all.length,
+    maxRefusals, gapMs, laneGapMs, lanes: all.length,
     run: (call) => all[0].run(call),
     lane(i) {
       if (!all[i]) throw new Error(`no lane ${i}: the gate has ${all.length}`);

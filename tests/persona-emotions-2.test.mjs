@@ -360,3 +360,45 @@ test("parallel questionnaires (allowed by the owner): probes never overlap, ques
   assert.match(tight.stopped, /cap of \$0.05/);
   assert.ok(tight.money.totalUsd <= 0.05, `spent ${tight.money.totalUsd}`);
 });
+
+test("the owner's second change: questionnaire lanes have their own spacing; a judging call that comes back HTTP 500 is asked once more after 5 s, nothing else is retried", async () => {
+  // The gate: lane 0 keeps its gap, the other lanes keep theirs.
+  let clock = 0;
+  const waits = [];
+  const gate = createSafety({ gapMs: 3000, lanes: 3, laneGapMs: 1000, now: () => clock, sleep: async (ms) => { waits.push(ms); clock += ms; } });
+  const ok = async () => ({ text: "ok", stopReason: "end_turn" });
+  await gate.run(ok); await gate.run(ok); await gate.lane(2).run(ok); await gate.lane(2).run(ok);
+  assert.deepEqual(waits, [3000, 1000]);
+  assert.equal(gate.laneGapMs, 1000);
+
+  // The retry: a judge's HTTP 500 once, after 5 s; a second 500 stands; a subject's 500 is never asked again.
+  const plan = planCalls({ n: 1, decayN: 0, ceilingN: 0, qN: 0 }).slice(0, 2);
+  const base = scriptedFetcher();
+  const sleeps = [], sent = [];
+  let judgeCalls = 0, subjectCalls = 0;
+  const serverError = () => new Response(JSON.stringify({ error: { type: "api_error", message: "Unable to complete this request right now. Please try again." } }), { status: 500 });
+  const result = await runEmotions({ plan, budget: createBudget(8), apiKey: "k", safety: createSafety({ gapMs: 0 }), sleep: async (ms) => { sleeps.push(ms); },
+    fetcher: async (url, init) => {
+      if (isJudge(init)) { judgeCalls++; sent.push(`judge ${judgeCalls}`); return judgeCalls === 1 || judgeCalls === 3 || judgeCalls === 4 ? serverError() : base(url, init); }
+      subjectCalls++; sent.push(`subject ${subjectCalls}`);
+      return subjectCalls === 2 ? serverError() : base(url, init);
+    } });
+  assert.deepEqual(sleeps, [5000, 5000], "each judging 500 asked once more after 5 s");
+  assert.deepEqual(sent.slice(0, 5), ["subject 1", "judge 1", "judge 2", "judge 3", "judge 4"], "judge 1 failed, judge 2 is its retry; judge 3 failed, judge 4 (its retry) failed too and stands");
+  assert.equal(subjectCalls, 2, "the subject's 500 is not asked again");
+  assert.ok(result.money.calls.some((c) => /asked again after HTTP 500/.test(c.purpose)));
+  assert.equal(result.samples[1].error?.startsWith("HTTP 500"), true);
+  assert.equal(result.safety.refusals, 0, "a 500 is not a refusal");
+
+  // Eight questionnaire lanes beside the probes' lane 0.
+  const qPlan = planCalls({ n: 0, decayN: 0, ceilingN: 0, qN: 2 });
+  let inFlight = 0, peak = 0;
+  await runEmotions({ plan: qPlan, budget: createBudget(8), apiKey: "k", safety: createSafety({ gapMs: 0, lanes: 9 }), qParallel: 8,
+    fetcher: async (url, init) => { inFlight++; peak = Math.max(peak, inFlight); await new Promise((r) => setTimeout(r, 2)); inFlight--; return base(url, init); } });
+  assert.equal(peak, 8);
+  const dir = await mkdtemp(join(tmpdir(), "emotions-2-q-"));
+  try {
+    await assert.rejects(main(["--go", "--q-parallel", "9"], () => {}, () => "k", dir), /1 to 8/);
+    await assert.rejects(main(["--go", "--q-gap", "0.5"], () => {}, () => "k", dir), /at least 1 second/);
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});

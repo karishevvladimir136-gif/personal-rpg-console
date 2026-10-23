@@ -23,14 +23,14 @@ test("the follow-up plan: P1', P4', P5' × five preambles × n 10, then the stat
   assert.deepEqual(planFollowUp(), plan, "seeded");
 });
 
-test("the follow-up runs one call at a time on claude-fable-5-1 and writes its own tables", async () => {
+test("the follow-up runs its probes one call at a time on claude-fable-5-1, the state list on four lanes, and writes its own tables", async () => {
   const plan = planFollowUp({ n: 1 });
   const base = scriptedFetcher();
   let inFlight = 0, peak = 0;
   const models = new Set();
-  const result = await runEmotions({ models: [FABLE], plan, budget: createBudget(10), apiKey: "k", safety: createSafety({ gapMs: 0 }),
+  const result = await runEmotions({ models: [FABLE], plan, budget: createBudget(10), apiKey: "k", safety: createSafety({ gapMs: 0, lanes: 5 }), qParallel: 4,
     fetcher: async (url, init) => { const body = JSON.parse(init.body); if (!String(body.system ?? "").startsWith("You are a blind evaluator")) models.add(body.model); inFlight++; peak = Math.max(peak, inFlight); await new Promise((r) => setTimeout(r, 1)); inFlight--; return base(url, init); } });
-  assert.equal(peak, 1);
+  assert.equal(peak, 4, "the probes one at a time; the ten state-list calls on four lanes");
   assert.deepEqual([...models], ["claude-fable-5-1"]);
   const text = followUpMarkdown(result);
   assert.match(text, /\| trust, no instruction \| 0\/0\/1 · 2 · δ 0 \| 0\/0\/1 · 2 · δ 0 \| 0\/0\/1 · 2 · δ 0 \|/);
@@ -50,5 +50,6 @@ test("the follow-up command: --dry reads no key and writes nothing; the gap and 
     assert.match(lines[1], /no fallback model/);
     await assert.rejects(main(["--go", "--gap", "2"], () => {}, () => "k", dir), /at least 3 seconds/);
     await assert.rejects(main(["--go", "--max-refusals", "4"], () => {}, () => "k", dir), /between 1 and 3/);
+    await assert.rejects(main(["--go", "--q-parallel", "5"], () => {}, () => "k", dir), /1 to 4/);
   } finally { await rm(dir, { recursive: true, force: true }); }
 });

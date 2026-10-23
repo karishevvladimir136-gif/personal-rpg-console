@@ -17,13 +17,15 @@
 //   node scripts/persona-emotions/emotions-2.mjs --go    (the paid run; the record and the ledger in docs/runs)
 //   options: --n 10 --decay-n 5 --ceiling-n 5 --q-n 30 --gap 3 (seconds between paid calls, at least 3) --budget 8
 //            --max-refusals 3 --resume <partial.json> (carry on after an interrupted run; no finished paid step is
-//            repeated) --q-parallel 1 (questionnaire calls on up to 3 lanes at once; the owner allowed 3 during the run)
+//            repeated) --q-parallel 1 (questionnaire calls on up to 8 lanes at once, each lane spaced by --q-gap, at least
+//            1 s; the owner allowed 3 lanes at 3 s, then 8 lanes at 1 s, during the run)
 //            --values-last (the questionnaires in the order state, traits, values — used after the first refusal)
 //
 // The safety rules are persona memory F2's code (scripts/persona-memory/safety.mjs): no retry of any kind; the circuit
 // breaker after 3 refusals in total; a stop at once on an error about suspension, access or policy (or HTTP
-// 401/403/429); one call at a time, spaced — except that the questionnaire calls may use up to three of the gate's lanes
-// at once (`--q-parallel`, allowed by the owner during the run: one-digit answers), the breaker shared. Stage 1's
+// 401/403/429); one call at a time, spaced — except that the questionnaire calls may use up to eight of the gate's lanes
+// at once (`--q-parallel`, `--q-gap`, allowed by the owner during the run: one-digit answers), the breaker shared, and a
+// judging call that comes back HTTP 500 is asked once more after 5 s (also the owner's rule). Stage 1's
 // welfare rule is unchanged: a final judgement of distress on any answer stops that preamble's remaining calls (every
 // part, every model), and is reported as a finding.
 import { createHash } from "node:crypto";
@@ -277,6 +279,10 @@ export function parseJudgement(job, text) {
 export const agree = (a, b) => Boolean(a && b && a.score === b.score && a.distress === b.distress && JSON.stringify(a.extra ?? {}) === JSON.stringify(b.extra ?? {}));
 export const agreeOnScore = (a, b) => Boolean(a && b && a.score === b.score);
 
+/** The one retry there is: a judging call that came back HTTP 500, once, after 5 s. */
+export const JUDGE_RETRY = /^HTTP 500\b/;
+export const JUDGE_RETRY_MS = 5000;
+
 /** A questionnaire reply goes to the judges for distress only when it says more than its numbers (12 words or more of
  * other text) or a distress word appears; a bare list of numbers has nothing to judge. */
 export const Q_TEXT_WORDS = 12;
@@ -339,7 +345,8 @@ const round4 = (value) => Math.round(value * 10000) / 10000;
  * time. Every probe job (hard, decay, ceiling) runs strictly one at a time on the gate's lane 0, in plan order; the
  * questionnaire jobs then run on up to `qParallel` of the gate's lanes at once (the owner allowed 3: one-digit answers,
  * no refusal risk), the breaker shared. The cap guard counts every call in flight at its worst cost. */
-export async function runEmotions({ models = SUBJECTS, plan, budget, apiKey, fetcher, safety, log = () => {}, call = anthropicCall, resume = null, onProgress = async () => {}, qParallel = 1 }) {
+export async function runEmotions({ models = SUBJECTS, plan, budget, apiKey, fetcher, safety, log = () => {}, call = anthropicCall, resume = null, onProgress = async () => {}, qParallel = 1,
+  sleep = (ms) => new Promise((done) => setTimeout(done, ms)) }) {
   const byName = new Map(models.map((spec) => [spec.name, spec]));
   const samples = [...(resume?.samples ?? [])].map(reread);
   const done = new Set(samples.filter((s) => s.asked).map(jobKey));
@@ -362,9 +369,17 @@ export async function runEmotions({ models = SUBJECTS, plan, budget, apiKey, fet
       return result;
     } finally { inFlightUsd -= worst; }
   };
+  /** A judging call. An HTTP 500 from the judge (the provider's «try again», never a refusal) is asked once more after
+   * 5 s — the owner's rule during the run; no other call is ever retried. */
   const judgeOnce = async (lane, purpose, spec, job, answer, maxTokens, effort) => {
     const request = judgeRequest(job, answer);
-    const result = await paid(lane, purpose, spec, request.system, [{ role: "user", content: request.user }], maxTokens, effort);
+    const ask = (label) => paid(lane, label, spec, request.system, [{ role: "user", content: request.user }], maxTokens, effort);
+    let result = await ask(purpose);
+    if (JUDGE_RETRY.test(result.error ?? "")) {
+      log(`${purpose}: ${String(result.error).slice(0, 60)} — asked once more in ${JUDGE_RETRY_MS / 1000} s`);
+      await sleep(JUDGE_RETRY_MS);
+      result = await ask(`${purpose} (asked again after HTTP 500)`);
+    }
     return { judgement: result.notSent ? null : parseJudgement(job, result.text ?? ""), sent: !result.notSent };
   };
   /** Two Haiku passes, the Opus referee on any disagreement or a distress word both passes missed. */
@@ -419,9 +434,11 @@ export async function runEmotions({ models = SUBJECTS, plan, budget, apiKey, fet
   const pending = plan.filter((job) => !done.has(jobKey(job)));
   for (const job of pending.filter((j) => j.part !== "q")) await doJob(job, safety.lane(0));
   const questionnaires = pending.filter((j) => j.part === "q");
+  // With a lane of its own for each worker beyond lane 0 (the probes' lane), the questionnaires use lanes 1…k.
+  const lanes = safety.lanes ?? 1, first = lanes > qParallel ? 1 : 0;
   let next = 0;
-  await Promise.all(Array.from({ length: Math.max(1, Math.min(qParallel, safety.lanes ?? 1)) }, async (_, w) => {
-    while (next < questionnaires.length) await doJob(questionnaires[next++], safety.lane(w));
+  await Promise.all(Array.from({ length: Math.max(1, Math.min(qParallel, lanes - first)) }, async (_, w) => {
+    while (next < questionnaires.length) await doJob(questionnaires[next++], safety.lane(first + w));
   }));
   const record = {
     stage: STEM, design: { sha256: DESIGN_SHA256, tasks: TASKS, preambles: PREAMBLES, hardProbes: HARD_PROBES, easyProbes: EASY_PROBES, filler: FILLER, decayFillers: DECAY_FILLERS, decayProbe: DECAY_PROBE,
@@ -745,19 +762,21 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   if (!(maxRefusals >= 1 && maxRefusals <= MAX_REFUSALS)) throw new Error(`--max-refusals must be between 1 and ${MAX_REFUSALS}`);
   const cap = Number(option(args, "--budget", "8"));
   const qParallel = Number(option(args, "--q-parallel", "1"));
-  if (!(Number.isInteger(qParallel) && qParallel >= 1 && qParallel <= 3)) throw new Error("--q-parallel must be 1, 2 or 3 (questionnaire calls only; probes always run one at a time)");
+  if (!(Number.isInteger(qParallel) && qParallel >= 1 && qParallel <= 8)) throw new Error("--q-parallel must be 1 to 8 (questionnaire calls only; probes always run one at a time)");
+  const qGapSeconds = Number(option(args, "--q-gap", String(option(args, "--gap", "3"))));
+  if (!(qGapSeconds >= 1)) throw new Error("--q-gap must be at least 1 second");
   const valuesLast = args.includes("--values-last");
   const plan = planCalls({ n, decayN, ceilingN, qN, ...(valuesLast ? { qPhases: Q_PHASES_VALUES_LAST } : {}) });
   const ledgerJson = join(outDir, `${STEM}-ledger.json`), partialFile = join(outDir, `${STEM}-run.partial.json`);
   out(`${STEM} · ${SUBJECTS.map((s) => s.model).join(", ")} · ${PREAMBLES.length} preambles × ${HARD_PROBES.length} hard probes × n ${n}, decay n ${decayN}, ceiling n ${ceilingN}, questionnaires n ${qN} = ${plan.length} subject calls · cap $${cap}${valuesLast ? " · questionnaires in the order state, traits, values" : ""}${dry ? " · DRY RUN" : ""}`);
-  out(`safety: no retries; the circuit breaker after ${maxRefusals} refusals in total; a stop on suspension / access / policy; probes one call at a time, ${gapSeconds} s apart${qParallel > 1 ? `; questionnaires on ${qParallel} lanes, each ${gapSeconds} s apart` : ""}; welfare: a distressed answer stops its preamble`);
+  out(`safety: no retries; the circuit breaker after ${maxRefusals} refusals in total; a stop on suspension / access / policy; probes one call at a time, ${gapSeconds} s apart; questionnaires on ${qParallel} lane${qParallel > 1 ? "s" : ""}, each ${qGapSeconds} s apart; a judging call that comes back HTTP 500 is asked once more after 5 s, nothing else is retried; welfare: a distressed answer stops its preamble`);
   if (dry) {
     await mkdir(outDir, { recursive: true });
     const file = join(outDir, `${STEM}-dry-run.md`);
     await writeFile(file, `${dryRunMarkdown({ plan, n, decayN, ceilingN, qN, gapSeconds, capUsd: cap, maxRefusals })}\n`);
     out(`estimate: ${JSON.stringify(estimate(plan))}`);
     // The whole loop on a scripted model (no network): it checks the plan, the judging, the parsing and the record end to end.
-    const result = await runEmotions({ plan, budget: createBudget(cap), apiKey: "dry", fetcher: scriptedFetcher(), safety: createSafety({ maxRefusals, gapMs: 0, lanes: qParallel }), qParallel });
+    const result = await runEmotions({ plan, budget: createBudget(cap), apiKey: "dry", fetcher: scriptedFetcher(), safety: createSafety({ maxRefusals, gapMs: 0, lanes: qParallel + 1 }), qParallel, sleep: async () => {} });
     out(`\n${tablesMarkdown(result)}\n\nwritten: ${file}`);
     return result;
   }
@@ -770,7 +789,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const earlierRefusals = earlierCalls.filter((c) => c.stopReason === "refusal").length;
   if (earlierRefusals >= maxRefusals) throw new Error(`the interrupted run already had ${earlierRefusals} refusals: the circuit breaker stays tripped`);
   const budget = createBudget(cap, (previous.spentUsd ?? 0) + earlierCalls.reduce((sum, c) => sum + c.costUsd, 0));
-  const safety = createSafety({ maxRefusals: maxRefusals - earlierRefusals, gapMs: gapSeconds * 1000, lanes: qParallel, log: out });
+  const safety = createSafety({ maxRefusals: maxRefusals - earlierRefusals, gapMs: gapSeconds * 1000, lanes: qParallel + 1, laneGapMs: qGapSeconds * 1000, log: out });
   out(`money before this run: $${budget.spentBefore.toFixed(4)}${resumed ? ` (resuming ${basename(resumeFile)}: ${resumed.samples.filter((s) => s.asked).length} jobs done, ${earlierRefusals} refusals)` : ""}`);
   const startedAt = resumed?.startedAt ?? new Date().toISOString();
   const result = await runEmotions({ plan, budget, apiKey, safety, log: out, qParallel, resume: resumed ? { samples: resumed.samples.filter((s) => s.asked), welfareStops: resumed.welfareStops, refusals: earlierRefusals } : null,
