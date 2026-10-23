@@ -112,7 +112,7 @@ test("§2: the digest and the prep ask for the DM's own first-person notes with 
     assert.ok(text.includes(DM_NOTES_VOICE));
     assert.match(text, /"notebook": "your own notebook for the next session, in the campaign language and in the first person — notes to yourself, not a report — up to 1500 characters: what I planned/);
     assert.match(text, /one or two exact lines from this session, quoted, that carried its feeling/);
-    assert.match(text, /written under them as your own first-person notes, up to 23000 characters/);
+    assert.match(text, /written under them as your own first-person notes\. Use the room/);
     assert.match(text, /"recap": "«Previously in…» in your own voice, in the campaign language, for the player: three or four sentences looking forward/, "the player's «Ранее в…» stays");
     assert.doesNotMatch(text, /homework/);
     const prep = buildPrepRequest(source, "high").messages[0].text;
@@ -168,7 +168,8 @@ test("§7: the dose of the DM's own notes — the hidden layer holds 24 000 char
     assert.equal(source.privateState.fact.hidden_layer.length, big.length);
     const session = { id: randomUUID(), title: "Вечер", scenes: [{ role: "narration", body: "Тихо." }], startWorldMinutes: null, endWorldMinutes: source.runtime.worldMinutes, shape: { turns: 1, playMinutes: 5, form: "short" } };
     const text = buildDigestRequest(source, session, "high").messages[0].text;
-    assert.match(text, /written under them as your own first-person notes, up to 23000 characters — where the room allows, keep more of the exact lines that carried a scene and more of your plans with the reasons behind them, rather than a summary/);
+    assert.match(text, /written under them as your own first-person notes\. Use the room: when the session gives you that much material, aim for 15 000–20 000 characters \(at most 23000\) — the exact lines that carried a scene, your plans with the reasons behind them, what you noticed the player doing, what you left open — never a summary; shorter only when the session was short/);
+    assert.doesNotMatch(text, /tempted/, "the persona stage's refused wording");
     assert.doesNotMatch(text, /your own reasoning/, "the words that made the model refuse the whole digest (the paid probe's bisect)");
     const reply = (layer) => JSON.stringify({ recap: "r", title: "t", notebook: "", plans: [], hiddenLayer: layer });
     assert.equal(parseDigest(reply("я".repeat(30_000)), source, 0).hiddenLayer.length, HIDDEN_LAYER_MAX_CHARS - 200);

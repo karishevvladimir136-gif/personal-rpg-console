@@ -26,8 +26,9 @@ export const LEDGERS = {
   fixs3accept: { file: join(ROOT, "docs", "runs", "fix-s3-accept-ledger.json"), capUsd: 15, label: "the fixes from the owner's acceptance pass",
     stageCaps: { G: 0.5, V: 2, B: 2.5, D: 4, A: 3, I: 3 }, markdown: join(ROOT, "docs", "runs", "fix-s3-accept-ledger.md") },
   // The findings of 2026-10-22/23 (docs/stages/FINDINGS_S3.md): the DM's register before/after, one digest and the notes'
-  // dose (item 7) — $8, raised by the owner to $16 in total for items 1 and 7 (3 runs per scene, a shorter history).
-  findingss3: { file: join(ROOT, "docs", "runs", "findings-s3-ledger.json"), capUsd: 16, label: "the findings of session 3",
+  // dose (item 7) — $8, raised by the owner to $16 and then $20 in total (items 1 and 7 at 3 runs per scene, a shorter
+  // history; the objection re-measured after the rule fix; one more digest at the 15–20k dose).
+  findingss3: { file: join(ROOT, "docs", "runs", "findings-s3-ledger.json"), capUsd: 20, label: "the findings of session 3",
     markdown: join(ROOT, "docs", "runs", "findings-s3-ledger.md") },
 };
 export const DEFAULT_LEDGER = "fixs2";
