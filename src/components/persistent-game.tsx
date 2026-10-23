@@ -45,6 +45,7 @@ import {
 } from "./gameplay-composer";
 import { GameplayTurn } from "./gameplay-turn";
 import { resourcePresentation } from "@/lib/resource-presentation";
+import { counterLabel } from "@/lib/inventory/model";
 import {
   GameplayCamp,
   GameplayRest,
@@ -608,8 +609,9 @@ function LiveCharacterSummary({
       )}
       {Object.keys(player.resources).length > 0 && (
         <dl className={gameStyles.resources}>
+          {/* Fix S3-accept Г2: a counter by its name in the campaign language (counterLabel), money by its word. */}
           {Object.entries(player.resources).map(([key, value]) => (
-            <div key={key}><dt>{t(resourcePresentation(key).label)}</dt><dd>{value}</dd></div>
+            <div key={key}><dt>{resourcePresentation(key).kind === "money" ? t(resourcePresentation(key).label) : counterLabel(player, key, language)}</dt><dd>{value}</dd></div>
           ))}
         </dl>
       )}
