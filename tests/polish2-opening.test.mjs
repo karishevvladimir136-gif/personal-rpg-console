@@ -112,7 +112,7 @@ test("the bootstrap provider on an Anthropic profile: the same instructions and 
 
 test("migration 66: the SQL ticket takes the DM's Anthropic profile for world.compose only; creation and opening commit with it", async () => {
   // The fixture's default stops at migration 31 (the bootstrap's own era); this flow needs every migration.
-  const f = await setup(undefined, "en", 99);
+  const f = await setup(undefined, "en", Infinity);
   try {
     assert.ok(f.files.includes("202610170066_polish2_opening_dm.sql"));
     const profile = (selection, task = "world.compose") => ({ schemaVersion: 1, id: randomUUID(), policyRevision: 0, registryVersion: "openai-responses-v1", task, ...selection });
@@ -132,7 +132,7 @@ test("migration 66: the SQL ticket takes the DM's Anthropic profile for world.co
     assert.equal(event.event.payload.executionProfile.providerId, "anthropic");
     assert.equal(event.event.payload.executionProfile.modelId, "claude-opus-5-5");
     // A reply from another model than the ticket's still fails the SQL contract.
-    const g = await setup(undefined, "en", 99);
+    const g = await setup(undefined, "en", Infinity);
     try {
       g.profile = resolveExecutionProfile({ task: "world.compose", profileId: randomUUID(), globalDefault: opus });
       g.service = createBootstrapService(g.rpc, async (ticket) => ({ output: ticket.kind === "creation" ? g.creation : g.opening, usage: { model: "gpt-6-sol", inputTokens: 1, outputTokens: 1, latencyMs: 1, calls: 1 } }), async () => g.profile);

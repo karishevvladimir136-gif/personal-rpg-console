@@ -82,7 +82,7 @@ test("the wizard's start becomes the first adventure's draft", () => {
 });
 
 test("the opening commit sets the campaign clock once; a replay and a later commit leave it alone", async () => {
-  const f = await setup(examples.fantasy, "en", 99);
+  const f = await setup(examples.fantasy, "en", Infinity);
   try {
     await f.create();
     await f.proposeOpening();

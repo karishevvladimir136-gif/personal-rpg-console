@@ -17,7 +17,7 @@ const usage = { model: "fake", inputTokens: 0, outputTokens: 0, calls: 1, latenc
 export async function loopCampaign(options = {}) {
   // Polish: a bench scenario may bring its own world/hero/opening texts (`example`, the shape of
   // `examples.fantasy`) and language — the Russian replay plays a Russian campaign.
-  const f = await setup(options.example ?? undefined, options.language ?? "en", 99);
+  const f = await setup(options.example ?? undefined, options.language ?? "en", Infinity);
   await f.create();
   await f.proposeOpening();
   // The opening may set the clock (polish group 10, migration 63): «Утро» starts at 8:00, not 00:00.
