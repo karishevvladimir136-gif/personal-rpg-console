@@ -1,5 +1,31 @@
 # Development status
 
+**Current milestone: the findings of 2026-10-22/23 applied to the game** (`docs/stages/FINDINGS_S3.md` on
+`claude/handoff`, items 1–7) — **implementation done on `claude/s3-candidate`, waiting for the owner's acceptance and the
+sandbox load** (`docs/SANDBOX_LOAD_FIX_S2.md`: two new migrations, `202610230601` — Джеймс Вордсден's level 5 as the
+owner's recorded correction — and `202610230611` — the notes' dose; both additive). Report:
+`docs/runs/findings-s3-report.md`; ledger `docs/runs/findings-s3-ledger.md`; audit `docs/runs/findings-s3-audit.md`.
+`origin/claude/s3-sandbox-fixes-2` (the owner's PC) merged mid-stage (`7b50d45`), its tests green.
+
+- **What was done:** 1 — the DM's frame instead of orders in both roles and both languages (approved by the owner), the
+  word caps and «think briefly» gone, the owner's fields framed as a person's wishes; the probes' two slips made rules
+  (the stop on a companion's objection stands against a check's nudge; every roll's outcome said as an event, the
+  hero's by the hero). 2 — the DM's between-session notes in the first person. 3 — the rules system from the world's
+  description at creation, the choice on «Правила и кости», the «5e-модуль» chip. 4 — the class by the role's first
+  word, «Уровень не указан» with «Изменить лист», Вордсден's level 5. 5 — companions and people as participants. 6 —
+  first-person voice blocks in the people's private cards (prep and digest; DM-only). 7 — the hidden layer's dose
+  24 000 characters, the digest told to use 15–20k when the session gives that much.
+- **Key decisions:** the frame stays (longer prose, records held); voice blocks are private notes (no migration); the
+  rules-system setting changes its label only (the ruleset id the turn path reads stays); Вордсден's correction writes
+  the level only (the class gives the saves); «your own reasoning» and «tempted» stay out of the DM's prompts (the
+  provider's filter refused them — `docs/RESEARCH_LOG.md`).
+- **Checks** (a clean worktree without `.env.local`): at `1730b32` the full suite 2 921 tests · 2 894 pass · 0 fail · 0 cancelled · 27 skipped; typecheck pass; lint pass, zero warnings; production build pass, no warnings.
+- **Money:** $17.85 of the $20 cap.
+- **Known issues:** not measured for lack of money — the roll rule after it was written, item 7 on the objection and
+  the letter; the synthetic session gave a 7.5k layer, not 15–20k; the roll check's false alarm on objection turns.
+- **Next step:** the owner reloads the candidate (`--stop`, `--prod`), checks «Персонаж» (Вордсден, level 5, saves) and
+  the «5e-модуль» chip, plays; optionally ≈ $7 more to measure the roll rule and finish item 7.
+
 **Current milestone: the fixes from the owner's acceptance pass** (`docs/stages/FIX_S3_ACCEPT.md` on `claude/handoff`,
 the owner's words in `docs/runs/s3-acceptance-notes.md`) — **implementation done on `claude/s3-candidate`, waiting for
 the owner's acceptance** (`docs/runs/fix-s2-acceptance.md` section 9, `docs/runs/live2d-1-acceptance.md` section 2а, the
