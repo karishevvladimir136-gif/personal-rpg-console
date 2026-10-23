@@ -15,6 +15,23 @@
         "calls": 4,
         "probeSheetModel": "claude-sonnet-5"
       }
+    },
+    {
+      "run": "access-check-2026-10-23T05",
+      "what": "Model access check after the key question: one 1-token message each to claude-opus-5-5 (10 in / 1 out) and claude-sonnet-5-5 (10 in / 1 out), both HTTP 200",
+      "stage": "I",
+      "startedAt": "2026-10-23T04:49:23.843Z",
+      "reservedUsd": 0.01,
+      "spentUsd": 0.0001,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:49:23.845Z",
+      "record": {
+        "calls": 2,
+        "requestIds": [
+          "req_011CgJZfyWgFTAniKF3PW2K9",
+          "req_011CgJZg2HcDfVWtwHqn8ySv"
+        ]
+      }
     }
   ]
 }
