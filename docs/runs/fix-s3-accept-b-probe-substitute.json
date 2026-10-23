@@ -1,0 +1,323 @@
+{
+  "run": "fix-s3-accept-b-probe-2026-10-23T04-33-00-600Z",
+  "at": "2026-10-23T04:33:00.603Z",
+  "appSheetModel": "claude-sonnet-5-5",
+  "probeSheetModel": "claude-sonnet-5",
+  "relangModel": "claude-haiku-5-5",
+  "rule": "5–8 hotspots, player text in the campaign's language",
+  "places": [
+    {
+      "place": "Застава у Южных ворот",
+      "ok": true,
+      "error": null,
+      "asks": 1,
+      "costUsdMicros": 12336,
+      "usage": {
+        "inputTokens": 1163,
+        "outputTokens": 1001
+      },
+      "ms": 11963,
+      "features": 6,
+      "withinRule": true,
+      "languageMark": "ru",
+      "foreignTexts": [],
+      "hotspots": [
+        {
+          "key": "reshetka",
+          "label": "Решётка ворот",
+          "kind": "feature",
+          "mustShow": true,
+          "description": "Тяжёлая железная решётка опущена, перекрывая проезд через ворота.",
+          "brief": "lowered iron portcullis blocking the gate"
+        },
+        {
+          "key": "zharovnya",
+          "label": "Жаровня",
+          "kind": "object",
+          "mustShow": true,
+          "description": "Жаровня с тлеющими углями, у которой греется сержант Касса.",
+          "brief": "brazier with glowing coals"
+        },
+        {
+          "key": "stoika-kopiy",
+          "label": "Стойка с копьями",
+          "kind": "object",
+          "mustShow": true,
+          "description": "Деревянная стойка, где хранятся копья караула.",
+          "brief": "wooden rack holding spears"
+        },
+        {
+          "key": "okoshko",
+          "label": "Окошко для бумаг",
+          "kind": "object",
+          "mustShow": true,
+          "description": "Узкое окошко в стене сторожки, через которое проверяют документы путников.",
+          "brief": "small window slot for checking papers"
+        },
+        {
+          "key": "lestnitsa",
+          "label": "Лестница на стену",
+          "kind": "exit",
+          "mustShow": true,
+          "description": "Каменная лестница ведёт наверх, на городскую стену.",
+          "brief": "stone stairs leading up to the wall"
+        },
+        {
+          "key": "vorota",
+          "label": "Южные ворота",
+          "kind": "feature",
+          "mustShow": false,
+          "description": "Массивные городские ворота, перед которыми стоит сторожка.",
+          "brief": "massive city gate structure"
+        }
+      ],
+      "summary": "Каменная сторожка при Южных воротах встречает путников опущенной решёткой — путь закрыт до проверки бумаг. Внутри тесного помещения стоит жаровня, у которой греется стражник, рядом — стойка с копьями для караула. Узкое окошко для бумаг прорезано в стене для досмотра проезжающих. Каменная лестница ведёт наверх, на стену, откуда можно обозревать окрестности. Снаружи — тяжёлые ворота с опущенной решёткой, перекрывающие проезд.",
+      "light": "Слабый рассветный свет дополняется тусклым заревом углей жаровни.",
+      "never": [
+        "нет кузницы",
+        "нет фонаря, который никто не упоминал",
+        "решётка не поднята",
+        "нет второй двери или потайного хода"
+      ]
+    },
+    {
+      "place": "Двор Старой Шахты",
+      "ok": true,
+      "error": null,
+      "asks": 1,
+      "costUsdMicros": 11932,
+      "usage": {
+        "inputTokens": 1141,
+        "outputTokens": 965
+      },
+      "ms": 11238,
+      "features": 6,
+      "withinRule": true,
+      "languageMark": "ru",
+      "foreignTexts": [],
+      "hotspots": [
+        {
+          "key": "shtolnya-vhod",
+          "label": "Вход в штольню",
+          "kind": "exit",
+          "mustShow": true,
+          "description": "Заколоченный крест-накрест вход в штольню, за которым темнеет проход вглубь горы.",
+          "brief": "boarded-up mine entrance, planks nailed in a cross"
+        },
+        {
+          "key": "podyomnik",
+          "label": "Подъёмник",
+          "kind": "object",
+          "mustShow": true,
+          "description": "Ржавый подъёмный механизм над входом в штольню, насквозь проеденный коррозией.",
+          "brief": "rusted-through mine hoist structure above the entrance"
+        },
+        {
+          "key": "otval",
+          "label": "Отвал породы",
+          "kind": "feature",
+          "mustShow": true,
+          "description": "Куча пустой породы, оставшаяся от разработки шахты.",
+          "brief": "pile of waste rock from mining"
+        },
+        {
+          "key": "storozhka",
+          "label": "Сторожка",
+          "kind": "object",
+          "mustShow": true,
+          "description": "Ветхая сторожка с провалившейся крышей, стоящая у края двора.",
+          "brief": "dilapidated guard hut with collapsed roof"
+        },
+        {
+          "key": "telega",
+          "label": "Телега без колеса",
+          "kind": "object",
+          "mustShow": true,
+          "description": "Старая телега, лишившаяся одного колеса, стоит у сторожки.",
+          "brief": "old cart missing one wheel, next to the hut"
+        },
+        {
+          "key": "buryan",
+          "label": "Бурьян",
+          "kind": "feature",
+          "mustShow": false,
+          "description": "Густые заросли сорной травы покрывают весь двор.",
+          "brief": "thick overgrown weeds covering the yard"
+        }
+      ],
+      "summary": "Двор перед старой шахтой зарос густым бурьяном и давно заброшен. Вход в штольню заколочен крест-накрест досками, над ним возвышается насквозь проржавевший подъёмник. В стороне высится отвал пустой породы. У сторожки с провалившейся крышей стоит телега, лишившаяся одного колеса. Место пустынно и тихо, тронутое временем и запустением.",
+      "light": "Сумеречный, тускнеющий свет уходящего дня",
+      "never": [
+        "не рисовать людей во дворе",
+        "не рисовать открытый вход в штольню",
+        "не рисовать целую телегу с четырьмя колёсами",
+        "не придумывать кузницу или иные постройки"
+      ]
+    },
+    {
+      "place": "Храм Тихой Воды",
+      "ok": true,
+      "error": null,
+      "asks": 1,
+      "costUsdMicros": 12236,
+      "usage": {
+        "inputTokens": 1178,
+        "outputTokens": 988
+      },
+      "ms": 10105,
+      "features": 7,
+      "withinRule": true,
+      "languageMark": "ru",
+      "foreignTexts": [],
+      "hotspots": [
+        {
+          "key": "well",
+          "label": "Колодец",
+          "kind": "object",
+          "mustShow": true,
+          "description": "Каменный колодец в центре зала, на который падает свет из отверстия в куполе.",
+          "brief": "stone well in the centre of the hall, lit from the oculus"
+        },
+        {
+          "key": "altar",
+          "label": "Алтарь",
+          "kind": "object",
+          "mustShow": true,
+          "description": "Алтарь из серого камня под куполом, перед дверью в крипту.",
+          "brief": "grey stone altar beneath the dome"
+        },
+        {
+          "key": "crypt-door",
+          "label": "Дверь в крипту",
+          "kind": "exit",
+          "mustShow": true,
+          "description": "Низкая дверь за алтарём, ведущая в крипту; сейчас заперта на засов.",
+          "brief": "low door behind the altar leading to the crypt, barred shut"
+        },
+        {
+          "key": "benches",
+          "label": "Скамьи",
+          "kind": "feature",
+          "mustShow": false,
+          "description": "Скамьи для паломников вдоль стен храма.",
+          "brief": "benches for pilgrims along the walls"
+        },
+        {
+          "key": "dome",
+          "label": "Купол",
+          "kind": "feature",
+          "mustShow": true,
+          "description": "Круглый купол с отверстием, сквозь которое льётся дневной свет.",
+          "brief": "round dome with an oculus letting in daylight"
+        },
+        {
+          "key": "entrance",
+          "label": "Вход",
+          "kind": "entrance",
+          "mustShow": false,
+          "description": "Главный вход в круглый храм.",
+          "brief": "main entrance to the round temple"
+        },
+        {
+          "key": "walls",
+          "label": "Стены храма",
+          "kind": "feature",
+          "mustShow": false,
+          "description": "Каменные стены, окружающие круглый зал храма.",
+          "brief": "stone walls enclosing the round hall"
+        }
+      ],
+      "summary": "Круглый храм с куполом, в центре зала — каменный колодец, на который сквозь отверстие в куполе падает дневной свет. Перед колодцем стоит серый каменный алтарь, за ним — низкая дверь, ведущая в крипту, сейчас запертая на засов. Вдоль стен расставлены скамьи для паломников. Пол и стены сложены из камня, как подобает старому храму воды.",
+      "light": "Дневной свет падает сквозь отверстие в куполе прямо на колодец.",
+      "never": [
+        "нельзя рисовать открытую дверь в крипту — она заперта на засов",
+        "нельзя добавлять окна, которых нет в описании",
+        "нельзя изображать других людей кроме жрицы Ольги",
+        "нельзя добавлять очаг или иной источник огня"
+      ]
+    }
+  ],
+  "redo": {
+    "ok": true,
+    "error": null,
+    "costUsdMicros": 267,
+    "usage": {
+      "inputTokens": 411,
+      "outputTokens": 452
+    },
+    "ms": 2453,
+    "dueBefore": true,
+    "dueAfter": false,
+    "languageMark": "ru",
+    "features": [
+      {
+        "key": "portcullis",
+        "description": "Опущенная железная решётка Южных ворот.",
+        "brief": "The lowered iron portcullis of the south gate"
+      },
+      {
+        "key": "brazier",
+        "description": "Железная жаровня с горящими углями.",
+        "brief": "An iron brazier with glowing coals"
+      },
+      {
+        "key": "stairs",
+        "description": "Каменная лестница, ведущая наверх, на стену.",
+        "brief": "Stone stairs leading up to the wall walk"
+      }
+    ],
+    "summary": "Каменная сторожка у Южных ворот: опущена решётка, стоят жаровня и стойка для копий, ведёт лестница на стену, есть окно для бумаг.",
+    "light": "свет жаровни на рассвете",
+    "never": [
+      "вторые ворота",
+      "конюшня"
+    ]
+  },
+  "calls": [
+    {
+      "asked": "claude-sonnet-5-5",
+      "sent": "claude-sonnet-5",
+      "status": 200,
+      "servedBy": "claude-sonnet-5",
+      "usage": {
+        "input": 1163,
+        "output": 1001
+      },
+      "error": null
+    },
+    {
+      "asked": "claude-sonnet-5-5",
+      "sent": "claude-sonnet-5",
+      "status": 200,
+      "servedBy": "claude-sonnet-5",
+      "usage": {
+        "input": 1141,
+        "output": 965
+      },
+      "error": null
+    },
+    {
+      "asked": "claude-sonnet-5-5",
+      "sent": "claude-sonnet-5",
+      "status": 200,
+      "servedBy": "claude-sonnet-5",
+      "usage": {
+        "input": 1178,
+        "output": 988
+      },
+      "error": null
+    },
+    {
+      "asked": "claude-haiku-5-5",
+      "sent": "claude-haiku-5-5",
+      "status": 200,
+      "servedBy": "claude-haiku-5-5",
+      "usage": {
+        "input": 411,
+        "output": 452
+      },
+      "error": null
+    }
+  ],
+  "spentUsd": 0.0368
+}

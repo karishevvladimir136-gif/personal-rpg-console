@@ -444,6 +444,35 @@
           "req_011CgJZg2HcDfVWtwHqn8ySv"
         ]
       }
+    },
+    {
+      "run": "fix-s3-accept-b-probe-2026-10-23T04-59-26-620Z",
+      "what": "Block Б probe: the scene sheet on 3 Russian places (claude-sonnet-5-5) and one redo of an English sheet (claude-haiku-5-5); text only",
+      "stage": "B",
+      "startedAt": "2026-10-23T04:59:26.623Z",
+      "reservedUsd": 0.5,
+      "spentUsd": 0.0366,
+      "settled": true,
+      "finishedAt": "2026-10-23T04:59:50.979Z",
+      "record": {
+        "file": "docs/runs/fix-s3-accept-b-probe.json",
+        "calls": 4,
+        "probeSheetModel": "claude-sonnet-5-5"
+      }
+    },
+    {
+      "run": "fix-s3-accept-d-region-2026-10-23T05:00:00",
+      "what": "Д3 region probe: DM prep (claude-opus-5-5) → picture (GPT Image 2.5) → check (claude-sonnet-5-5), synthetic",
+      "stage": "D",
+      "startedAt": "2026-10-23T05:00:00.781Z",
+      "reservedUsd": 1.2,
+      "spentUsd": 0.0905,
+      "settled": true,
+      "finishedAt": "2026-10-23T05:01:00.282Z",
+      "record": {
+        "calls": 3,
+        "file": "docs/runs/fix-s3-accept-d-probe.json"
+      }
     }
   ]
 }
