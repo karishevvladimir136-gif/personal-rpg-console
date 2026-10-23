@@ -43,7 +43,7 @@ export function buildPrepRequest(source: RuntimeSource, effort: DmEffort, rebuil
   const wishes = ownerWishesText(source);
   const system: DmSystemBlock[] = [...context.system.slice(0, -1),
     { text: owner ? `The owner's own secrets for this campaign (DM-only; the highest authority after the owner's corrections):\n${owner}` : "The owner wrote no secrets of his own: the hidden layer is yours.", cache: false },
-    ...(wishes ? [{ text: `The owner's wishes for this adventure («Пожелания к приключению»; DM-only): what they hope it becomes — genre, tone, what should happen. A wish to build the hidden layer toward, not an established fact; never quote it to the player:\n${wishes}`, cache: false }] : [])];
+    ...(wishes ? [{ text: `The owner's wishes for this adventure («Пожелания к приключению»; DM-only), in their own words: what the person you play with hopes this adventure becomes — genre, tone, what should happen. A person's wishes for the story you will tell together, not a specification and not an established fact: build the hidden layer toward them where the world allows; never quote them to the player:\n${wishes}`, cache: false }] : [])];
   const text = rebuild ? `${REBUILD_INSTRUCTIONS}\n\n${PREP_INSTRUCTIONS.replace("This campaign has no hidden layer yet: write it now.", "Write the whole layer again.")}` : PREP_INSTRUCTIONS;
   const messages: DmMessage[] = [{ role: "user", text }];
   return { system, messages, effort, tokens: system.reduce((sum, block) => sum + estimateTokens(block.text), 0) + estimateTokens(text) };

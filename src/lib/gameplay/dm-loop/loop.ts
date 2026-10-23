@@ -181,7 +181,7 @@ export function plainCutMessage(transcript: DmMessage[], note: string): boolean 
   }
   return false;
 }
-export const CUT_BY_CAP = "Your last message was cut off by the output limit. Continue exactly where it stopped — do not repeat what is already written — finish the narration briefly, then send the final bookkeeping message with finish_turn. Keep your thinking short.";
+export const CUT_BY_CAP = "Your last message ran into the output limit and was cut off. Pick up exactly where it stopped — the text so far has already reached the player, so nothing needs repeating — bring the narration to its end, then send the final bookkeeping message with finish_turn. The limit is still close: spend little of it on thinking.";
 
 const WRAP_UP = "The tool budget of this turn is used up. Finish the narration now with what was accepted; make no further tool calls.";
 

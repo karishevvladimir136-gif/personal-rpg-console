@@ -46,7 +46,7 @@ import { DM_LOOP_RUNTIME, workOf, type DmLoopCheckpoint, type DmLoopLiveEvent, t
 import { combatEnded, combatStarted, continuation, declaredLine, dmOutputCap, executeDmLoopTurn, heroIdOf, joinText, leaseHeartbeat, narrationNames, pausesForPlayer, plainCutMessage, retriableRejection, retryClaimable, rollTextOffsets, type DmLoopDependencies } from "../loop.ts";
 
 /** Fix run A6: what the writer is sent after a request the output cap cut (the loop's CUT_BY_CAP, with the ledger). */
-export const WRITER_CUT_BY_CAP = "Your last message was cut off by the output limit. Continue exactly where it stopped — do not repeat what is already written — finish the narration briefly, then close with the ledger. Keep your thinking short.";
+export const WRITER_CUT_BY_CAP = "Your last message ran into the output limit and was cut off. Pick up exactly where it stopped — the text so far has already reached the player, so nothing needs repeating — bring the narration to its end, then close with the ledger. The limit is still close: spend little of it on thinking.";
 import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KEY } from "../time-words.ts";
 import { BOOKKEEPER_MARKER, bookkeeperBrief, bookkeeperSystem, createLedgerGate, rejectedCallsMessage, splitLedger, writerSystem } from "./prompts.ts";
 

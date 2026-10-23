@@ -419,10 +419,13 @@ function notebook(source: RuntimeSource): Budgeted {
  * owner's edits; the DM never rewrites them) are stable and travel in the cached world layer
  * (`ownerLikes`); the DM's own observations stay in the tail, newest last, and finish_turn playerLikes
  * appends to them — never rewrites them whole (item 71: a rewrite dropped the owner's DC rule). */
+/** Findings S3 §1 (DM_TONE_1 step 4): «Что мне нравится в играх» reaches the DM as a person's words about what they enjoy,
+ * not as a specification (its Russian is in HEADERS_RU). */
+export const OWNER_LIKES_HEADER = "What the owner — the person you play with — enjoys in games, in their own words (from the wizard and their edits). A person telling you what they like, not a specification: let it guide your choices; it is theirs, so never rewrite it:";
 export function ownerLikes(source: RuntimeSource): string {
   const likes = (source.snapshot.campaign.player_likes ?? "").trim();
   const theme = (source.snapshot.campaign.theme ?? "").trim();
-  return [likes ? `What the player asked for, in their own words (from the wizard and the owner's edits; theirs — never rewrite, always honour): ${clipChars(likes, 2000)}` : "",
+  return [likes ? `${OWNER_LIKES_HEADER} ${clipChars(likes, 2000)}` : "",
     theme ? `Campaign theme question (return to it in different guises; never moralize, not in every scene): ${clipChars(theme, 400)}` : ""].filter(Boolean).join("\n");
 }
 function playerLikes(source: RuntimeSource): Budgeted {
@@ -824,8 +827,8 @@ export function buildCouncilContext(source: RuntimeSource, input: TurnInput): Dm
     ? `Сцена: ${place ? `${place.name}. ` : ""}${worldDay(runtime.worldMinutes)}, ${partOfDay(runtime.worldMinutes, "ru")}. Здесь: ${presentNames || "отряд"}.`
     : `The scene: ${place ? `${place.name}. ` : ""}${worldDay(runtime.worldMinutes)}, ${partOfDay(runtime.worldMinutes, snapshot.campaign.language === "ru" ? "ru" : "en")}. Present: ${presentNames || "the party"}.`;
   const councilText = [
-    ru ? "Совет отряда: герой говорит со спутником между ходами истории. Отвечай за спутника его голосом, из того, что он знает и чего хочет; один обмен репликами; слушатели вставляют слово, когда это их дело. Больше ничего не рассказывай: ни новых событий, ни бросков; запиши только то, что изменил разговор (note_character, note_world), и минуты, которые он занял (advance_time), потом finish_turn."
-      : `Party council: the hero speaks with a companion between the story's turns. Answer as the companion, in their own voice, from what they know and want; one exchange; the listeners may add a line when it is theirs to say. Narrate nothing else: no new events, no rolls; record only what the talk changed (note_character, note_world) and the minutes it took (advance_time), then finish_turn.`,
+    ru ? "Совет отряда: герой говорит со спутником между ходами истории. Отвечай за спутника его голосом, из того, что он знает и чего хочет, и по его собственному суждению — он может не согласиться с героем; один обмен репликами; слушатели вставляют слово, когда это их дело. Больше ничего не рассказывай: ни новых событий, ни бросков; запиши только то, что изменил разговор (note_character, note_world), и минуты, которые он занял (advance_time), потом finish_turn."
+      : `Party council: the hero speaks with a companion between the story's turns. Answer as the companion, in their own voice, from what they know and want and by their own judgement — they may disagree with the hero; one exchange; the listeners may add a line when it is theirs to say. Narrate nothing else: no new events, no rolls; record only what the talk changed (note_character, note_world) and the minutes it took (advance_time), then finish_turn.`,
     party.text,
     people.length ? `The people in this talk (their private Character Models — what they know, want and hide):\n${people.join("\n")}` : "",
     sceneLine,
