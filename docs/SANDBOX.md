@@ -42,7 +42,10 @@ sandbox; the next start continues them, and applies any migration added to the b
    `rpg_private.owner_registry`.
 4. Starts `next dev` on port 3100 with the sandbox's Supabase values and the trusted local owner mode, exactly
    like the normal start does for your real project. Your AI keys are read from `.env.local`; its Supabase
-   values and owner ID are deliberately **not** passed through.
+   values and owner ID are deliberately **not** passed through. With `--prod` it builds and runs `next start`
+   as a real production server (`NODE_ENV=production`) and sets `APP_SANDBOX_TRUSTED_OWNER=1`, the only switch
+   that lets a production server sign the owner in on its own (localhost requests only). A production server
+   started any other way has no trusted sign-in and no `/api/local-launch/health`. `--fake` is dev-server only.
 5. Writes `.sandbox/.env.sandbox` (the sandbox's URL, keys and owner ID) for scripts and tests that want to
    talk to the sandbox database directly.
 
