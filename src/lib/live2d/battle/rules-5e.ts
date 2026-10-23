@@ -59,6 +59,11 @@ const ARMOUR: { words: RegExp; base: number; dex: number }[] = [
 ];
 const AC_WORDS = /(?:^|[^\p{L}])(?:кд|ac|класс\p{L}*\s+доспех\p{L}*|armou?r\s+class|защит\p{L}*)(?![\p{L}])/iu;
 const SAVE_WORDS = /спасброс|saving\s+throw|(?:^|[^\p{L}])saves?(?![\p{L}])/iu;
+// «spell save DC», «save DC», «Сл спасброска от заклинаний»: the difficulty others roll against (the Rod of the Pact
+// Keeper's «+1 to spell save DC»), never a bonus to the wearer's own saving throws.
+const SAVE_DC = /(?:spell\s+)?sav(?:e|ing\s+throw)s?\s+dcs?|dcs?\s+(?:of|for)\s+(?:\p{L}+\s+){0,2}?sav(?:es?|ing\s+throws?)|(?:сл|сложност\p{L}*)\.?\s+спасброс\p{L}*(?:\s+от\s+заклинани\p{L}*)?/giu;
+/** The words about the wearer's own saves: the phrase with its save DCs taken out. */
+const ownSaveWords = (text: string) => text.replace(SAVE_DC, " ");
 const ATTACK_WORDS = /атак|attack|попадан|to\s+hit/iu;
 const NO_ARMOUR = /(?:без|нет|не\s+нос\p{L}*|не\s+надет\p{L}*|no|without|not\s+wearing|unarmou?red)\s+(?:[\p{L}]+\s+){0,3}?(?:доспех|брон|armou?r)/iu;
 const NO_SHIELD = /(?:(?:без|нет|no|without|not\s+using)\s+(?:[\p{L}]+\s+){0,3}?(?:щит|shield))|(?:(?:доспех|брон|armou?r)\p{L}*\s+(?:и|или|ни|and|or|nor)\s+(?:[\p{L}]+\s+){0,2}?(?:щит|shield))/iu;
@@ -82,7 +87,8 @@ export function textBonuses(text: string): Bonus {
   for (const match of text.replace(/[−–]/g, "-").matchAll(/([+-])\s?(\d{1,2})(?!\d)\s*((?:к|ко|to|on|на)?\s*[^\d+\-.;,(\n]{0,60})/giu)) {
     const value = (match[1] === "-" ? -1 : 1) * Number(match[2]), phrase = match[3];
     if (out.ac === null && AC_WORDS.test(phrase)) out.ac = value;
-    if (SAVE_WORDS.test(phrase)) out.saves.push({ value, ability: abilityIn(phrase.replace(SAVE_WORDS, " ")) });
+    const own = ownSaveWords(phrase);
+    if (SAVE_WORDS.test(own)) out.saves.push({ value, ability: abilityIn(own.replace(SAVE_WORDS, " ")) });
     if (out.attack === null && ATTACK_WORDS.test(phrase) && !AC_WORDS.test(phrase)) out.attack = value;
   }
   const reversed = /(?:^|[^\p{L}])(?:кд|ac)\s*([+-])\s?(\d{1,2})(?!\d)/iu.exec(text.replace(/[−–]/g, "-"));
@@ -95,7 +101,8 @@ function wornBonuses(item: Item): Bonus & { noArmour: boolean; noShield: boolean
   const recorded = itemMechanics(item).bonuses;
   const words = textBonuses(item.mechanics ?? "");
   const ac = recorded.find((row) => AC_WORDS.test(` ${row.to}`))?.value ?? null;
-  const saves = recorded.filter((row) => SAVE_WORDS.test(` ${row.to}`)).map((row) => ({ value: row.value, ability: abilityIn(row.to.replace(SAVE_WORDS, " ")) }));
+  const saves = recorded.map((row) => ({ value: row.value, own: ownSaveWords(` ${row.to}`) })).filter((row) => SAVE_WORDS.test(row.own))
+    .map((row) => ({ value: row.value, ability: abilityIn(row.own.replace(SAVE_WORDS, " ")) }));
   const attack = recorded.find((row) => ATTACK_WORDS.test(row.to))?.value ?? null;
   // The condition is read from the mechanics, the bonuses and the description's sentences about AC (not its story).
   const told = (item.description ?? "").split(/[.;!\n]+/u).filter((sentence) => AC_WORDS.test(` ${sentence}`)).join(". ");
