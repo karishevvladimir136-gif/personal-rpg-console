@@ -1,0 +1,9 @@
+# Persona memory — the nightly backup: a tar of the store into /var/backups/persona-memory, kept 14 days. Your PC fetches
+# the files over SSH (docs/PERSONA_MEMORY.md, «Backups to your PC»). Readable by root and by your login user «owner».
+[Unit]
+Description=Persona memory: nightly tar of the store
+
+[Service]
+Type=oneshot
+UMask=0027
+ExecStart=/bin/sh -c 'mkdir -p /var/backups/persona-memory && tar -czf /var/backups/persona-memory/persona-memory-$(date +%%F).tar.gz -C /var/lib persona-memory && chgrp -R owner /var/backups/persona-memory && chmod 750 /var/backups/persona-memory && find /var/backups/persona-memory -name "persona-memory-*.tar.gz" -mtime +14 -delete'

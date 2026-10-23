@@ -1,0 +1,12 @@
+# Persona memory — runs persona-memory-backup.service every night at 03:30 (the server's clock, UTC).
+# Install: sudo cp persona-memory-backup.service persona-memory-backup.timer /etc/systemd/system/
+#          sudo systemctl daemon-reload && sudo systemctl enable --now persona-memory-backup.timer
+[Unit]
+Description=Persona memory: the nightly backup
+
+[Timer]
+OnCalendar=*-*-* 03:30:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

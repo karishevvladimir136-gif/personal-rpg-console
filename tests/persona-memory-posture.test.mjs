@@ -162,3 +162,25 @@ test("the owner's own cases never write into the repository; a dry run writes no
   assert.ok(printed[0].includes("DRY RUN") && printed.some((line) => line.startsWith("estimate")));
   assert.equal(result.money.runUsd, 0, "the scripted model costs nothing");
 });
+
+test("--resume keeps every finished answer and judgement (a refusal too), asks again only what failed, and gives a lost referee its call; --skip asks nothing", async () => {
+  const personas = await load();
+  const models = resolveModels(["opus", "sonnet"]);
+  const first = await runPosture({ personas, models, n: 1, budget: createBudget(15), keys: () => "dry", fetcher: scriptedFetcher() });
+  const samples = first.samples.map((s) => ({ ...s }));
+  const at = (model, probe, arm) => samples.find((s) => s.model === model && s.probe === probe && s.arm === arm);
+  Object.assign(at("sonnet", "voice", "journal"), { answer: "", error: "HTTP 403 permission_error", final: null, judgeA: null, judgeB: null, score: null });
+  Object.assign(at("opus", "recollection", "journal"), { answer: "", error: null, stopReason: "refusal", refusals: 2, final: null, judgeA: null, judgeB: null, score: null });
+  const lost = at("opus", "thought", "summary");
+  Object.assign(lost, { judgeB: { ...lost.judgeA, uses: lost.judgeA.uses === 2 ? 1 : 2 }, final: null, referee: null, agreed: false, score: null });
+  const budget = createBudget(15);
+  const again = await runPosture({ personas, models, n: 1, budget, keys: () => "dry", fetcher: scriptedFetcher(), resume: samples, skip: ["sonnet:recollection"] });
+  const purposes = budget.calls.map((call) => call.purpose).sort();
+  assert.deepEqual(purposes, ["judge 1 voice", "judge 2 voice", "persona sonnet journal/voice", "referee thought"], "only the failed answer, its judging, and the lost referee");
+  assert.equal(again.samples.find((s) => s.model === "opus" && s.probe === "recollection" && s.arm === "journal").stopReason, "refusal", "a refusal is never asked again");
+  assert.ok(again.samples.filter((s) => s.model === "sonnet" && s.probe === "recollection").every((s) => s.skipped && !s.answer));
+  assert.equal(again.analysis.sonnet.table.journal.recollection.skipped, 1);
+  assert.equal(again.analysis.sonnet.table.journal.recollection.unscored, 0);
+  assert.ok(again.samples.find((s) => s.model === "opus" && s.probe === "thought" && s.arm === "summary").final, "the referee decided");
+  await assert.rejects(runPosture({ personas, models, n: 1, seed: 7, budget: createBudget(15), keys: () => "dry", fetcher: scriptedFetcher(), resume: samples }), /schedule differs/);
+});

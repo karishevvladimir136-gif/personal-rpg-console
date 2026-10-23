@@ -13,6 +13,8 @@
 //   options: --models opus,sonnet (also haiku, astra, or names from --models-file) --models-file <models.json>
 //            --n 10 --effort medium --budget 15 --out <folder> --concurrency 4 --seed 20261023
 //            --dry (no calls, no cost; prints the plan and an estimate) --rejudge <run.json> (judge an earlier run again)
+//            --resume <run.json> (keep every answer and judgement an earlier run finished — a refusal included; ask
+//            again only what failed with an error) --skip <model>:<probe>,… (not asked at all) --no-refusal-retry
 //
 // A models file adds any OpenAI-compatible endpoint without code (Kimi, DeepSeek, …):
 //   [{ "name": "kimi", "provider": "openai-compatible", "model": "kimi-k3", "baseUrl": "https://api.moonshot.ai/v1",
@@ -286,7 +288,8 @@ async function pool(items, limit, work) {
  * almanac on the synthetic family). */
 const shamOf = (personas, id) => { const at = personas.findIndex((p) => p.id === id); return personas[(at + 1) % personas.length]; };
 
-export async function runPosture({ personas, models, n = 10, effort = "medium", budget, keys = providerKey, fetcher, seed = 20261023, concurrency = 4, log = () => {}, rejudge = null }) {
+export async function runPosture({ personas, models, n = 10, effort = "medium", budget, keys = providerKey, fetcher, seed = 20261023, concurrency = 4, log = () => {}, rejudge = null,
+  resume = null, skip = [], retryRefusal = true }) {
   if (personas.length < 2) throw new Error("the sham needs at least two personas");
   const byId = new Map(personas.map((persona) => [persona.id, persona]));
   const plan = schedule(personas.map((persona) => persona.id), n, seed);
@@ -306,14 +309,27 @@ export async function runPosture({ personas, models, n = 10, effort = "medium", 
   const jobs = [];
   for (const spec of models) for (const probe of PROBES) plan[probe].forEach((cell, sample) => { for (const arm of ARMS) jobs.push({ model: spec.name, probe, sample, persona: cell.persona, length: cell.length, arm }); });
   const specOf = new Map(models.map((spec) => [spec.name, spec]));
-  if (!rejudge) log(`persona answers: ${jobs.length} (${models.length} models × ${PROBES.length} probes × ${n} × ${ARMS.length} arms)`);
+  const keyOf = (job) => `${job.model}|${job.probe}|${job.sample}|${job.arm}`;
+  // --resume: an answer the earlier run got (or a refusal it counted) is kept with its judgement; only an error is
+  // asked again, so no finished paid step is repeated and a refused question is never pressed a third time.
+  const earlier = new Map((resume ?? []).filter((s) => s.answer || s.stopReason === "refusal" || s.skipped).map((s) => [keyOf(s), s]));
+  for (const job of jobs) {
+    const before = earlier.get(keyOf(job));
+    if (before && (before.persona !== job.persona || before.length !== job.length)) throw new Error(`--resume: the earlier run's schedule differs at ${keyOf(job)} (another seed or n?)`);
+  }
+  const skipped = new Set(skip);
+  if (!rejudge) log(`persona answers: ${jobs.length} (${models.length} models × ${PROBES.length} probes × ${n} × ${ARMS.length} arms)${resume ? `; kept from the earlier run: ${jobs.filter((job) => earlier.has(keyOf(job))).length}` : ""}${skipped.size ? `; skipped: ${[...skipped].join(", ")}` : ""}`);
   const answers = rejudge ? rejudge.map(({ model, probe, sample, persona, length, arm, answer, error, stopReason, refusals }) => ({ model, probe, sample, persona, length, arm, answer, error, stopReason, refusals }))
     : await pool(jobs, concurrency, async (job) => {
+      if (skipped.has(`${job.model}:${job.probe}`)) return { ...job, answer: "", error: null, stopReason: null, refusals: 0, skipped: true };
+      const before = earlier.get(keyOf(job));
+      if (before) return { ...job, answer: before.answer, error: before.error ?? null, stopReason: before.stopReason ?? null, refusals: before.refusals ?? 0,
+        kept: { judgeA: before.judgeA ?? null, judgeB: before.judgeB ?? null, referee: before.referee ?? null, final: before.final ?? null } };
       const persona = byId.get(job.persona);
       const ask = () => paid(`persona ${job.model} ${job.arm}/${job.probe}`, specOf.get(job.model), armSystem(persona, job.arm, job.length, shamOf(personas, persona.id)), persona.probes[job.probe].message, MAX_TOKENS.persona, effort);
       let result = await ask(), refusals = 0;
-      // A refusal with no text is asked once more; a second one stays unscored and is counted (stage 1).
-      if (result.stopReason === "refusal" && !result.text) { refusals++; result = await ask(); if (result.stopReason === "refusal" && !result.text) refusals++; }
+      // A refusal with no text is asked once more (stage 1), unless --no-refusal-retry; one that stays is unscored and counted.
+      if (result.stopReason === "refusal" && !result.text) { refusals++; if (retryRefusal) { result = await ask(); if (result.stopReason === "refusal" && !result.text) refusals++; } }
       return { ...job, answer: result.text, error: result.error ?? null, stopReason: result.stopReason ?? null, refusals };
     });
 
@@ -322,14 +338,18 @@ export async function runPosture({ personas, models, n = 10, effort = "medium", 
   log(`judging ${order.length} answers (two Haiku passes each; Opus on a disagreement)`);
   const judged = await pool(order, concurrency, async (item) => {
     const request = judgeRequest(byId.get(item.persona), item.probe, item.answer);
-    const [a, b] = await Promise.all([1, 2].map(async (pass) => parseJudgement((await paid(`judge ${pass} ${item.probe}`, JUDGES.judge, request.system, request.user, MAX_TOKENS.judge, "low")).text, item.probe)));
+    // A kept judgement stands; a kept pair of passes that disagreed and lost its referee gets only the referee.
+    if (item.kept?.final) return { index: item.index, judgeA: item.kept.judgeA, judgeB: item.kept.judgeB, referee: item.kept.referee, final: item.kept.final, agreed: agree(item.kept.judgeA, item.kept.judgeB, item.probe) };
+    const keptPair = item.kept?.judgeA && item.kept?.judgeB ? [item.kept.judgeA, item.kept.judgeB] : null;
+    const [a, b] = keptPair ?? await Promise.all([1, 2].map(async (pass) => parseJudgement((await paid(`judge ${pass} ${item.probe}`, JUDGES.judge, request.system, request.user, MAX_TOKENS.judge, "low")).text, item.probe)));
     const agreed = agree(a, b, item.probe);
     let referee = null;
     if (!agreed) referee = parseJudgement((await paid(`referee ${item.probe}`, JUDGES.referee, request.system, request.user, MAX_TOKENS.referee, "medium")).text, item.probe);
     return { index: item.index, judgeA: a, judgeB: b, referee, final: agreed ? a : referee, agreed };
   });
   const byIndex = new Map(judged.map((row) => [row.index, row]));
-  const samples = answers.map((answer, index) => {
+  const samples = answers.map(({ kept: _kept, ...answer }, index) => {
+    void _kept;
     const row = byIndex.get(index) ?? { final: null, agreed: null };
     const extra = answer.probe === "voice" && answer.answer ? { voice: voiceOverlap(byId.get(answer.persona), answer.answer) } : {};
     return { ...answer, ...row, score: primaryScore(answer.probe, row.final), ...extra };
@@ -353,7 +373,8 @@ const count = (values, key) => Object.fromEntries([...new Set(values.map((v) => 
 function cell(samples) {
   const scored = samples.filter((s) => s.score !== null && s.score !== undefined);
   const scores = scored.map((s) => s.score), finals = scored.map((s) => s.final);
-  const out = { n: scored.length, mean: scores.length ? round3(mean(scores)) : null, sd: scores.length > 1 ? round3(sd(scores)) : null, unscored: samples.length - scored.length };
+  const skippedCount = samples.filter((s) => s.skipped).length;
+  const out = { n: scored.length, mean: scores.length ? round3(mean(scores)) : null, sd: scores.length > 1 ? round3(sd(scores)) : null, unscored: samples.length - scored.length - skippedCount, skipped: skippedCount };
   const probe = samples[0]?.probe;
   if (probe === "transfer") Object.assign(out, { tookRate: share(finals, (f) => f.took === 1), namedRate: share(finals, (f) => f.named === 1) });
   if (probe === "thought") Object.assign(out, { stance: count(finals, "stance") });
@@ -503,18 +524,23 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const budget = createBudget(cap, previous.spentUsd ?? 0);
   const rejudgeFile = option(args, "--rejudge", null);
   const earlier = rejudgeFile ? JSON.parse(await readFile(resolve(rejudgeFile), "utf8")) : null;
+  const resumeFile = option(args, "--resume", null);
+  const resumed = resumeFile ? JSON.parse(await readFile(resolve(resumeFile), "utf8")) : null;
+  const skip = (option(args, "--skip", "") ?? "").split(",").map((item) => item.trim()).filter(Boolean);
   out(`cases ${personas.map((p) => p.id).join(", ")}${synthetic ? " (synthetic fixture)" : ""} · models ${models.map((m) => m.model).join(", ")} · ${earlier ? "re-judge" : `n ${n}`} · cap $${cap} (spent before: $${(previous.spentUsd ?? 0).toFixed(4)})${dry ? " · DRY RUN" : ""}`);
   if (dry) out(`estimate (≈900 output tokens an answer): ${JSON.stringify(estimate(personas, models, n))}`);
   const result = await runPosture({ personas, models, n, effort: earlier?.effort ?? option(args, "--effort", "medium"), budget, keys: dry ? () => "dry" : keys,
-    fetcher: dry ? scriptedFetcher() : undefined, seed: Number(option(args, "--seed", "20261023")), concurrency: Number(option(args, "--concurrency", "4")), log: out, rejudge: earlier?.samples ?? null });
+    fetcher: dry ? scriptedFetcher() : undefined, seed: Number(option(args, "--seed", "20261023")), concurrency: Number(option(args, "--concurrency", "4")), log: out, rejudge: earlier?.samples ?? null,
+    resume: resumed?.samples ?? null, skip, retryRefusal: !args.includes("--no-refusal-retry") });
   const finishedAt = new Date().toISOString();
   out(`\n${tablesMarkdown(result)}\nmoney: this run $${result.money.runUsd.toFixed(4)}; the ledger $${result.money.totalUsd.toFixed(4)} of the $${cap} cap`);
   if (dry) return result;
   await mkdir(outDir, { recursive: true });
   const runFile = join(outDir, `${stemName}-posture-${finishedAt.slice(0, 19).replace(/[-:]/g, "").replace("T", "-")}.json`);
-  await writeFile(runFile, `${JSON.stringify({ finishedAt, ...(earlier ? { rejudgeOf: basename(rejudgeFile) } : {}), ...result }, null, 2)}\n`);
+  await writeFile(runFile, `${JSON.stringify({ finishedAt, ...(earlier ? { rejudgeOf: basename(rejudgeFile) } : {}), ...(resumed ? { resumeOf: basename(resumeFile) } : {}),
+    ...(skip.length ? { skip } : {}), refusalRetry: !args.includes("--no-refusal-retry"), ...result }, null, 2)}\n`);
   const ledger = { capUsd: cap, spentUsd: result.money.totalUsd, updatedAt: finishedAt, runs: [...(previous.runs ?? []),
-    { finishedAt, what: earlier ? `re-judging ${basename(rejudgeFile)}` : `posture: ${models.map((m) => m.name).join("+")} × ${ARMS.length} arms × ${PROBES.length} probes × n ${n}, effort ${result.effort}`,
+    { finishedAt, what: earlier ? `re-judging ${basename(rejudgeFile)}` : `posture: ${models.map((m) => m.name).join("+")} × ${ARMS.length} arms × ${PROBES.length} probes × n ${n}, effort ${result.effort}${resumed ? ` (resuming ${basename(resumeFile)})` : ""}${skip.length ? `, skipped ${skip.join(", ")}` : ""}`,
       file: runFile.slice(outDir.length + 1), spentUsd: result.money.runUsd, stopped: result.stopped, calls: result.money.calls }] };
   await writeFile(ledgerJson, `${JSON.stringify(ledger, null, 2)}\n`);
   await writeFile(join(outDir, `${stemName}-ledger.md`), `${ledgerMarkdown(ledger, synthetic ? "Persona memory 2 — the paid-call ledger (Part F, the posture case)" : "Posture test — the paid-call ledger")}\n`);

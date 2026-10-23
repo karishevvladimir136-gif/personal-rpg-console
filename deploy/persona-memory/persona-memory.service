@@ -1,0 +1,33 @@
+# Persona memory — the memory server under systemd on a small VPS (docs/PERSONA_MEMORY.md, «Hosting on a small VPS»).
+# Install: sudo cp persona-memory.service /etc/systemd/system/ && sudo systemctl daemon-reload
+#          sudo systemctl enable --now persona-memory
+# The token lives in /etc/persona-memory.env (owner root, mode 600). systemd reads that file as root, then starts the
+# server as the unprivileged user «persona», which can write only its store. The server listens on this machine only;
+# Caddy in front of it serves HTTPS on port 443.
+[Unit]
+Description=Persona memory (the MCP memory server for the claude.ai Project)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=persona
+Group=persona
+WorkingDirectory=/opt/persona-memory/app
+EnvironmentFile=/etc/persona-memory.env
+ExecStart=/opt/node24/bin/node scripts/persona-memory/server.mjs --http --host 127.0.0.1 --port 8787
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ReadWritePaths=/var/lib/persona-memory
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target

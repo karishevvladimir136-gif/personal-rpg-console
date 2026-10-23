@@ -76,16 +76,9 @@ below) and a secret token.
    `http listening on http://127.0.0.1:8787/mcp`.
    - It refuses to start without a token of 24 or more characters.
    - It never writes the token into its log.
-   - `--port` and `--host` change the address; on a hosted machine behind HTTPS use `--host 0.0.0.0`.
-4. In claude.ai, open **Settings → Connectors → Add custom connector**:
-   - **URL:** `https://<your address>/mcp`
-   - **Request headers** (if the dialog shows this section): add `Authorization` with the value `Bearer <the token>`.
-5. Turn the connector on in the Project's chat (the tools menu).
-
-**If the dialog has no «Request headers» section:** this is a beta that not every account has yet. Add
-`PERSONA_MEMORY_PATH_TOKEN=1` to `.env.persona`, restart the server, and use the URL `https://<your address>/mcp/<the token>`.
-Be aware that the token is then part of the address. Anyone who sees the address can use the memory, so if it ever
-leaks, make a new token.
+   - `--port` and `--host` change the address. Behind Caddy on a VPS the server stays on `127.0.0.1`; in a container
+     (Fly.io) it uses `--host 0.0.0.0`.
+4. Host it (see «Hosting the server» below), then add it to the Project (see «Adding it to the claude.ai Project»).
 
 **Check:** ask Claude in the Project to «read your journal and dossier». The first time it should answer that the
 journal is empty.
@@ -216,15 +209,171 @@ result as a measurement, not a verdict.
 - **Better recall** (optional): `PERSONA_MEMORY_EMBEDDINGS=openai` with `OPENAI_API_KEY` uses OpenAI's similarity
   instead of the built-in one. It costs a fraction of a cent per entry, and each entry is sent once.
 
-## Hosting (not set up in this stage; your choice)
+## Hosting the server
 
-The claude.ai Project needs the HTTP server at an HTTPS address. Options:
+The claude.ai Project needs the HTTP server at an `https://` address. Nothing here was set up for you: you create the
+server and paste the token yourself. The files these steps copy are in `deploy/persona-memory/`.
 
-- **A small VPS** (a few dollars a month): runs the server around the clock; you look after the machine and its HTTPS
-  certificate.
-- **Fly.io:** a small app with a volume for the store folder; HTTPS is included, and the token is kept as a Fly secret.
-- **A tunnel from your PC** (for example Cloudflare Tunnel or Tailscale Funnel): nothing new to rent, and the store stays
-  on your disk; the Project can reach the memory only while your PC is on.
+| | A small VPS (recommended) | Fly.io | A tunnel from your PC |
+| --- | --- | --- | --- |
+| Who holds the token | only your server, in a file only root can read | Fly, as a «secret» | only your PC |
+| Who looks after the machine | you (updates, the firewall) | Fly | you |
+| Always on | yes | yes | only while the PC is on |
+| Cost | a few euros a month | a few dollars a month | nothing new |
+
+### Hosting on a small VPS (one page)
+
+You need: an SSH key on your PC (`C:\Users\<you>\.ssh\id_ed25519.pub`; make one with `ssh-keygen -t ed25519` if there is
+none), and the token from «For the claude.ai Project», step 1. Below, `203.0.113.7` stands for your server's address.
+
+1. **Create the server.** Hetzner Cloud → «Add Server»: a location near you, image **Debian**, the smallest shared plan
+   (**CX22** or equal), your SSH key. Note its IPv4 address.
+2. **Choose its name.** Your own domain (an `A` record pointing to the address), or the free name `203-0-113-7.sslip.io`
+   (the address with dashes), which needs no setup.
+3. **Prepare it.** In a terminal on your PC: `ssh root@203.0.113.7`, then:
+   ```
+   apt update && apt -y upgrade && apt -y install caddy ufw curl xz-utils rsync
+   useradd --system --home /var/lib/persona-memory --shell /usr/sbin/nologin persona
+   install -d -o persona -g persona -m 700 /var/lib/persona-memory
+   adduser --disabled-password --gecos "" owner
+   install -d -o owner -g owner -m 700 /home/owner/.ssh && install -o owner -g owner -m 600 /root/.ssh/authorized_keys /home/owner/.ssh/
+   ```
+   `persona` runs the server and can write only the store; `owner` is your login for fetching the backups.
+4. **Node 24** (the project's version, a long-term-support line):
+   ```
+   cd /tmp && curl -fsSLO https://nodejs.org/dist/latest-v24.x/SHASUMS256.txt
+   F=$(grep -o 'node-v24[^ ]*-linux-x64.tar.xz' SHASUMS256.txt) && curl -fsSLO https://nodejs.org/dist/latest-v24.x/$F
+   sha256sum -c --ignore-missing SHASUMS256.txt && tar -xJf $F -C /opt && mv /opt/${F%.tar.xz} /opt/node24
+   /opt/node24/bin/npm install -g pnpm@10 && /opt/node24/bin/node -v
+   ```
+5. **The server's files.** On your PC, in the project folder (this stage's branch checked out):
+   ```
+   git archive --format=tar.gz -o persona-memory-server.tar.gz HEAD package.json pnpm-lock.yaml pnpm-workspace.yaml src/lib/persona-memory src/lib/gameplay/dm-loop/tokens.ts scripts/persona-memory deploy/persona-memory
+   scp persona-memory-server.tar.gz root@203.0.113.7:/root/
+   ```
+   On the server:
+   ```
+   mkdir -p /opt/persona-memory/app && tar -xzf /root/persona-memory-server.tar.gz -C /opt/persona-memory/app
+   cd /opt/persona-memory/app && PATH=/opt/node24/bin:$PATH pnpm install --prod --frozen-lockfile
+   ```
+6. **The token, in a file only root can read.** Steps 6 to 10 run in `/opt/persona-memory/app` (`cd` there again if you
+   logged in anew).
+   ```
+   cp deploy/persona-memory/persona-memory.env.example /root/persona-memory.env && nano /root/persona-memory.env
+   ```
+   Paste the token, set your time zone, save (Ctrl+O, Enter, Ctrl+X), then:
+   ```
+   install -m 600 -o root -g root /root/persona-memory.env /etc/persona-memory.env && rm /root/persona-memory.env
+   ```
+7. **The server under systemd** (starts on boot, restarts if it stops):
+   ```
+   cp deploy/persona-memory/persona-memory.service /etc/systemd/system/
+   systemctl daemon-reload && systemctl enable --now persona-memory
+   journalctl -u persona-memory -n 5
+   ```
+   The last lines should say `http listening on http://127.0.0.1:8787/mcp`. The server listens on the machine only.
+8. **HTTPS with Caddy.** `cp deploy/persona-memory/Caddyfile /etc/caddy/Caddyfile`, then `nano /etc/caddy/Caddyfile`
+   and put your name in place of `203-0-113-7.sslip.io`. Then `systemctl reload caddy`. Caddy gets the certificate and
+   renews it by itself.
+9. **The firewall: 443 for everyone, SSH only for you.** Allow SSH before you turn it on, or you lock yourself out:
+   ```
+   ufw default deny incoming && ufw default allow outgoing
+   ufw allow 443/tcp
+   ufw allow from <your home IP> to any port 22 proto tcp
+   ufw enable
+   ```
+   If your home address changes, use `ufw limit 22/tcp` instead of the `from` line (SSH open, but rate-limited; your key
+   is the only way in). Port 80 stays closed: Caddy proves the certificate over 443. If you are ever locked out, Hetzner's
+   web console still works.
+10. **Nightly backups.** On the server:
+    ```
+    cp deploy/persona-memory/persona-memory-backup.service deploy/persona-memory/persona-memory-backup.timer /etc/systemd/system/
+    systemctl daemon-reload && systemctl enable --now persona-memory-backup.timer
+    systemctl start persona-memory-backup.service && ls -l /var/backups/persona-memory/
+    ```
+    At 03:30 (server time, UTC) it packs the store into `/var/backups/persona-memory/persona-memory-<date>.tar.gz` and
+    keeps 14 days. Your PC fetches them over SSH. Make a daily task in Windows Task Scheduler («Create Basic Task» →
+    Daily → «Start a program») with **one** of:
+    - rsync, if you have WSL: program `wsl`, arguments
+      `rsync -a owner@203.0.113.7:/var/backups/persona-memory/ /mnt/c/Users/<you>/persona-memory-backups/`
+      (WSL has its own `~/.ssh`: copy your key there once);
+    - without WSL, Windows' own `scp`: program `scp`, arguments
+      `owner@203.0.113.7:/var/backups/persona-memory/*.tar.gz C:\Users\<you>\persona-memory-backups\`
+
+    The task runs unattended, so the key must work without typing a passphrase: load it into the Windows `ssh-agent`, or
+    make a second key without a passphrase just for this login (add its `.pub` line to `/home/owner/.ssh/authorized_keys`). To restore: `systemctl stop persona-memory`, `tar -xzf persona-memory-<date>.tar.gz -C /var/lib`,
+    `chown -R persona:persona /var/lib/persona-memory`, `systemctl start persona-memory`.
+11. **Check it from your PC** (see «The smoke test» below). Then add the connector.
+
+To update the server later: repeat step 5 and `systemctl restart persona-memory`.
+
+### The alternative: Fly.io
+
+No machine to look after, but **Fly stores your token**: a Fly «secret» is kept encrypted by Fly and handed to the
+machine when it starts — Fly holds it, which is what you wanted to avoid after the Railway incident.
+
+1. Install `flyctl` (fly.io/docs, «Install flyctl») and run `fly auth login`.
+2. In the project folder, open `deploy/persona-memory/fly.toml`: give `app` a name of your own (your address becomes
+   `https://<app>.fly.dev`), choose the region, set your time zone.
+3. Create the app and its disk (1 GB is plenty):
+   ```
+   fly apps create <app>
+   fly volumes create persona_memory --size 1 --region fra --app <app>
+   ```
+4. The token: put the one line `PERSONA_MEMORY_TOKEN=<the token>` into a file `.env.fly` in the project folder, then
+   (PowerShell) `Get-Content .env.fly | fly secrets import --app <app>` and delete `.env.fly`. This keeps the token
+   out of your terminal's history.
+5. Deploy, from the project folder:
+   `fly deploy . --config deploy/persona-memory/fly.toml --dockerfile deploy/persona-memory/Dockerfile`.
+   The first deploy takes a few minutes (the image is about 900 MB: the project's production packages).
+6. Check it with the smoke test, address `https://<app>.fly.dev/mcp`.
+
+Backups: Fly snapshots the volume daily (`fly volumes snapshots list --app <app>`). A copy on your PC:
+`fly ssh console --app <app> -C "tar -czf /tmp/backup.tar.gz -C /data ."`, then
+`fly ssh sftp get /tmp/backup.tar.gz persona-memory-backup.tar.gz --app <app>`.
+
+### The smoke test (after deploying)
+
+From your PC, in the project folder, with the token in `.env.persona` (see «For the claude.ai Project»):
+
+```
+node --env-file=.env.persona scripts/persona-memory/smoke-test.mjs --url https://<your address>/mcp
+```
+
+It checks four things and prints PASS or FAIL for each:
+- `/health` answers;
+- a call **without** the token is refused (401);
+- a call with a **wrong** token is refused (401);
+- with the token, the connection works and `persona_now` answers with the time. If the zone shown is UTC, set
+  `PERSONA_MEMORY_TIMEZONE`.
+
+It ends with «All 4 checks passed.» It only reads (nothing is written to the memory) and never prints the token. With
+the token-in-the-address fallback add `--path-token`.
+
+### Adding it to the claude.ai Project (the connector)
+
+In claude.ai: **Settings → Connectors → «Add custom connector»**. The labels may differ slightly; what matters is the
+address and the header.
+
+| Field | What to put |
+| --- | --- |
+| Name | `Persona memory` |
+| Remote MCP server URL | `https://<your address>/mcp` (e.g. `https://203-0-113-7.sslip.io/mcp` or `https://<app>.fly.dev/mcp`) |
+| Advanced settings → OAuth Client ID, OAuth Client Secret | leave both empty (the server uses a token, not OAuth) |
+| Request headers (if the section is there) | header name `Authorization`, value `Bearer <the token>` — the word `Bearer`, one space, the token |
+
+Save, then in the Project's chat open the tools menu and turn **Persona memory** on. Check: ask «what time is it, and
+how long since your last journal entry?» — Claude should call `persona_now`.
+
+**If there is no «Request headers» section** (a beta not every account has): turn on the token-in-the-address fallback.
+On the VPS uncomment `PERSONA_MEMORY_PATH_TOKEN=1` in `/etc/persona-memory.env` and `systemctl restart persona-memory`;
+on Fly add `PERSONA_MEMORY_PATH_TOKEN = "1"` under `[env]` in `fly.toml` and deploy again. The URL becomes
+`https://<your address>/mcp/<the token>`, with the OAuth fields empty.
+**The risk:** the token is then part of the address. It sits in claude.ai's connector list as a plain address, and it
+can end up in screenshots, browser history and any log that records addresses (Caddy here keeps no access log — do not
+turn one on; on Fly, its own front proxy is not yours to check). Anyone who has the address can read and write the
+memory. If it may have leaked: make a new token, put it in the env file (or the Fly secret), restart, and update the
+connector's address. Run the smoke test with `--path-token`.
 
 ## Boundaries
 

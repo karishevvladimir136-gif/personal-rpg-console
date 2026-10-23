@@ -1,0 +1,32 @@
+# Persona memory on Fly.io (docs/PERSONA_MEMORY.md, «The alternative: Fly.io»). Deploy from the repository root:
+#   fly deploy . --config deploy/persona-memory/fly.toml --dockerfile deploy/persona-memory/Dockerfile
+# Change «app» to a name of your own (it becomes https://<app>.fly.dev) and the zone to yours. The token is NOT here:
+# it is a Fly secret (fly secrets set …), which means Fly stores it.
+app = "persona-memory-change-me"
+primary_region = "fra"
+
+[env]
+  PERSONA_MEMORY_DIR = "/data"
+  PERSONA_MEMORY_TIMEZONE = "Europe/Berlin"
+
+[[mounts]]
+  source = "persona_memory"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8787
+  force_https = true
+  auto_stop_machines = "off"
+  auto_start_machines = true
+  min_machines_running = 1
+
+  [[http_service.checks]]
+    grace_period = "15s"
+    interval = "30s"
+    method = "GET"
+    path = "/health"
+    timeout = "5s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"

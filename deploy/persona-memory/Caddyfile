@@ -1,0 +1,18 @@
+# Persona memory — HTTPS in front of the memory server (docs/PERSONA_MEMORY.md, «Hosting on a small VPS»).
+# Install: sudo cp Caddyfile /etc/caddy/Caddyfile && sudo systemctl reload caddy
+# Replace the name on the line below with your domain, or with the free sslip.io name of the server's address:
+# 203.0.113.7 becomes 203-0-113-7.sslip.io. Caddy gets and renews the certificate by itself.
+# Port 80 stays closed: the certificate is proved over 443 (the TLS-ALPN challenge), so the HTTP challenge is off.
+# There is no «log» line on purpose: if you ever use the token-in-the-address fallback, the address carries the token.
+{
+	auto_https disable_redirects
+}
+
+203-0-113-7.sslip.io {
+	tls {
+		issuer acme {
+			disable_http_challenge
+		}
+	}
+	reverse_proxy 127.0.0.1:8787
+}
