@@ -1,8 +1,8 @@
 // Findings S3, item 4 (docs/stages/FINDINGS_S3.md «Old sheets under the 5e module»): the class named by the role's first
 // class word; a class's saves without a level ask for the level («уровень не указан» with «Изменить лист») instead of
-// showing bare modifiers; the owner's hero of «Приключения начинаются» corrected once by a migration (level 5, the
-// wizard's Int and Wis saves) as an owner correction with its receipt. Pure functions, the screens by their source and
-// the migration on disposable PGlite.
+// showing bare modifiers; the owner's hero of «Приключения начинаются» corrected once by a migration (level 5 only — his
+// class gives the wizard's Int and Wis saves) as an owner correction with its receipt. Pure functions, the screens by
+// their source and the migration on disposable PGlite.
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
@@ -54,7 +54,7 @@ test("item 4: the old sheet without a level — no bare modifiers as saves, «le
   assert.equal(derive(hero(OLD_SHEET, { attack: 5, level: 5 })).savesNeedLevel, false);
 });
 
-test("item 4: with level 5 the wizard's Int and Wis saves carry the proficiency (+3); the corrected sheet reads the same", () => {
+test("item 4: with level 5 the wizard's Int and Wis saves carry the proficiency (+3); a sheet stating them reads the same", () => {
   // The level alone (the owner's «Изменить лист»): the class gives the proficient saves.
   const levelled = derive(hero(patchSheet(OLD_SHEET, { level: 5 })));
   assert.equal(levelled.savesNeedLevel, false);
@@ -65,10 +65,10 @@ test("item 4: with level 5 the wizard's Int and Wis saves carry the proficiency 
   assert.deepEqual(saves.strength, [-1, "Сил −1"]);
   assert.deepEqual(saves.dexterity, [2, "Лов +2"]);
   assert.deepEqual(saves.charisma, [0, "Хар +0"]);
-  // The migration's sheet: level 5 and the two save lines — the same numbers, explained as proficient.
-  const corrected = derive(hero(patchSheet(OLD_SHEET, { level: 5, saves: ["Спасбросок Интеллекта +6", "Спасбросок Мудрости +4"] })));
-  assert.deepEqual(byAbility(corrected.saves), saves);
-  assert.deepEqual(corrected.saves.map((save) => save.label).slice(3, 5), ["Спасбросок Интеллекта", "Спасбросок Мудрости"]);
+  // A sheet that states the same two lines keeps them and reads the same, explained as proficient.
+  const stated = derive(hero(patchSheet(OLD_SHEET, { level: 5, saves: ["Спасбросок Интеллекта +6", "Спасбросок Мудрости +4"] })));
+  assert.deepEqual(byAbility(stated.saves), saves);
+  assert.deepEqual(stated.saves.map((save) => save.label).slice(3, 5), ["Спасбросок Интеллекта", "Спасбросок Мудрости"]);
   // English: «Wizard of the Evocation school».
   const english = derive(hero(patchSheet({ ...OLD_SHEET, role: "Wizard of the Evocation school" }, { level: 5 })), "en");
   assert.deepEqual(byAbility(english.saves).intelligence, [6, "Int +3 +3 proficiency"]);
@@ -110,7 +110,7 @@ async function oldCampaign(f, title, sheet = OLD_SHEET, name = "Джеймс В�
   return { cid, hero };
 }
 
-test("item 4: the migration corrects «Приключения начинаются» once — level 5, Int and Wis saves — as the owner's correction with its receipt", async () => {
+test("item 4: the migration corrects «Приключения начинаются» once — level 5 only, the class gives Int and Wis — as the owner's correction with its receipt", async () => {
   // Every migration ran on the empty database (this one among them) without touching anything.
   const f = await fixture();
   try {
@@ -142,10 +142,9 @@ test("item 4: the migration corrects «Приключения начинаютс
     const after = await entity(own.hero);
     assert.equal(after.revision, 2, "a new revision of the record");
     assert.deepEqual(after.character_sheet, { schemaVersion: 2, mode: "structured_rpg", role: OLD_SHEET.role, background: OLD_SHEET.background, level: 5, tier: null,
-      attributes: OLD_SHEET.attributes, skills: OLD_SHEET.skills, abilities: OLD_SHEET.abilities, limitations: OLD_SHEET.limitations, spells: [],
-      saves: ["Спасбросок Интеллекта +6", "Спасбросок Мудрости +4"] });
-    assert.deepEqual(after.character_sheet, { ...patchSheet(OLD_SHEET, { level: 5, saves: ["Спасбросок Интеллекта +6", "Спасбросок Мудрости +4"] }) },
-      "the sheet the owner's «Изменить лист» would save");
+      attributes: OLD_SHEET.attributes, skills: OLD_SHEET.skills, abilities: OLD_SHEET.abilities, limitations: OLD_SHEET.limitations, spells: [] });
+    assert.deepEqual(after.character_sheet, { ...patchSheet(OLD_SHEET, { level: 5 }) }, "the sheet the owner's «Изменить лист» would save with the level 5");
+    assert.equal("saves" in after.character_sheet, false, "no save lines are stored: the class gives them");
     assert.deepEqual(after.stats, { attack: 5, defense: 12, skill: 3, ac_manual: 13 }, "the owner's AC by hand and the stats stay");
     assert.deepEqual([after.conditions, after.resources], [["Доспехи мага"], { focus: 2 }]);
     // The receipt: an owner's `entity.save` of the timeline, by a known request id, its payload the corrected record.
@@ -159,9 +158,18 @@ test("item 4: the migration corrects «Приключения начинаютс
     assert.ok(await f.one("select 1 from rpg_private.timeline_mutation_receipts where request_id=rpg_private.wave4_id($1,'findings-s3:old-sheet')", [own.hero]), "on the active timeline");
     assert.equal((await f.one("select authority from rpg_private.memory_public_sources where source_id=$1 and current and kind='entity'", [own.hero])).authority, "correction",
       "the DM's memory reads the record as the owner's correction");
-    // The 5e module reads the corrected sheet: Int and Wis proficient (+3).
-    const saves = byAbility(derive(hero(after.character_sheet, after.stats)).saves);
-    assert.deepEqual([saves.intelligence, saves.wisdom, saves.dexterity], [[6, "Инт +3 +3 мастерство"], [4, "Мдр +1 +3 мастерство"], [2, "Лов +2"]]);
+    // The 5e module reads the corrected record: the class (Маг → wizard) gives Int and Wis, proficient at +3.
+    const record = { ...hero(after.character_sheet, after.stats), conditions: after.conditions };
+    const derived = derivedSheetOf({ campaign: { id: CID, language: "ru" }, settings: { values: { rulesSystem: { id: "world-logic-v1", label: "D&D 5e (2014)" } } },
+      entities: [record], items: [], storages: [] }, record);
+    assert.equal(derived.savesNeedLevel, false);
+    assert.equal(derived.proficiency.text, "+3 мастерство · уровень 5");
+    const saves = byAbility(derived.saves);
+    assert.deepEqual([saves.intelligence, saves.wisdom, saves.dexterity, saves.strength], [[6, "Инт +3 +3 мастерство"], [4, "Мдр +1 +3 мастерство"], [2, "Лов +2"], [-1, "Сил −1"]]);
+    assert.deepEqual(byAbility(derive(hero(after.character_sheet, after.stats)).saves), saves, "deriveSheet5e alike");
+    // And they follow the level: at 9 the proficiency is +4.
+    const ninth = byAbility(derive(hero(patchSheet(after.character_sheet, { level: 9 }), after.stats)).saves);
+    assert.deepEqual([ninth.intelligence, ninth.wisdom], [[7, "Инт +3 +4 мастерство"], [5, "Мдр +1 +4 мастерство"]]);
 
     // Untouched: a hero whose sheet already has a level, the same hero in another campaign, a companion of that name,
     // a record the owner's save refuses.
@@ -185,6 +193,8 @@ test("item 4: the correction is an additive migration after every earlier one, d
   assert.match(sql, /perform public\.rpg_apply_mutation\(rpg_private\.wave4_id\(e\.id,'findings-s3:old-sheet'\),'entity\.save',c\.id,e\.revision,/, "the owner's own save path");
   assert.match(sql, /exception when others then\n\s+perform set_config\('request\.jwt\.claim\.sub',coalesce\(prior,''\),true\);\n\s+raise warning/, "a refusal never stops the load");
   assert.doesNotMatch(sql, /\bdelete\b|\bdrop\b|\btruncate\b|update public\./i, "nothing removed; no row written past the owner's save");
+  assert.match(sql, /s:=jsonb_set\(s,'\{level\}','5'::jsonb\);/);
+  assert.doesNotMatch(sql, /'saves'/, "only the level: no save lines written");
   const guide = src("docs/SANDBOX_LOAD_FIX_S2.md");
   assert.match(guide, /\| 0601 `findings_s3_old_sheet` \| \*\*changes a record\*\*/);
 });
