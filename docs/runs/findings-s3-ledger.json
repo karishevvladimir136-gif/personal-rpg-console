@@ -140,6 +140,46 @@
       "settled": true,
       "finishedAt": "2026-10-23T09:52:47.987Z",
       "record": "docs/runs/findings-s3-digest-20261023-095117.json"
+    },
+    {
+      "run": "findings-s3-digest-20261023-211940",
+      "what": "findings S3 §2: one session digest on the synthetic campaign (the DM's own notes in the first person), Opus 5.5 at high",
+      "startedAt": "2026-10-23T21:19:40.639Z",
+      "reservedUsd": 3.5,
+      "spentUsd": 0.7219,
+      "settled": true,
+      "finishedAt": "2026-10-23T21:21:22.274Z",
+      "record": "docs/runs/findings-s3-digest-20261023-211940.json"
+    },
+    {
+      "run": "real-replay-20261023-212215",
+      "what": "real replay: 3 turns × O on Fix run B probes (seed b); voice live; craft live",
+      "startedAt": "2026-10-23T21:22:15.705Z",
+      "reservedUsd": 3.5,
+      "spentUsd": 1.1388,
+      "settled": true,
+      "finishedAt": "2026-10-23T21:25:59.997Z",
+      "record": "docs/runs/real-replay-20261023-212215.jsonl"
+    },
+    {
+      "run": "real-replay-20261023-212600",
+      "what": "real replay: 3 turns × O on Fix run probes (seed a) — the notes of findings-s3-digest-20261023-211940 (7549 characters); voice live; craft live",
+      "startedAt": "2026-10-23T21:26:00.338Z",
+      "reservedUsd": 3.5,
+      "spentUsd": 1.2908,
+      "settled": true,
+      "finishedAt": "2026-10-23T21:30:41.514Z",
+      "record": "docs/runs/real-replay-20261023-212600.jsonl"
+    },
+    {
+      "run": "real-replay-20261023-213041",
+      "what": "real replay: 12 turns × O on Fix run B probes (seed b) — the notes of findings-s3-digest-20261023-211940 (7549 characters); voice live; craft live",
+      "startedAt": "2026-10-23T21:30:41.864Z",
+      "reservedUsd": 4.176,
+      "spentUsd": 2.0217,
+      "settled": true,
+      "finishedAt": "2026-10-23T21:41:30.565Z",
+      "record": "docs/runs/real-replay-20261023-213041.jsonl"
     }
   ]
 }
