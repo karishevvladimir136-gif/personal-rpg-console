@@ -21,6 +21,10 @@ export const LEDGERS = {
   // The fixes before session 3 (docs/stages/FIX_S3_PRE.md): part 1's probes and the two measurements of 2.6, $20.
   fixs3pre: { file: join(ROOT, "docs", "runs", "fix-s3-pre-ledger.json"), capUsd: 20, label: "the fixes before session 3",
     markdown: join(ROOT, "docs", "runs", "fix-s3-pre-ledger.md") },
+  // The fixes from the owner's acceptance pass (docs/stages/FIX_S3_ACCEPT.md): $15, each block within its own share
+  // (FIX_S2_STAGE=G|V|B|D|A names the block; I is the integrated check at the end).
+  fixs3accept: { file: join(ROOT, "docs", "runs", "fix-s3-accept-ledger.json"), capUsd: 15, label: "the fixes from the owner's acceptance pass",
+    stageCaps: { G: 0.5, V: 2, B: 2.5, D: 4, A: 3, I: 3 }, markdown: join(ROOT, "docs", "runs", "fix-s3-accept-ledger.md") },
 };
 export const DEFAULT_LEDGER = "fixs2";
 export const LEDGER_FILE = LEDGERS[DEFAULT_LEDGER].file;
