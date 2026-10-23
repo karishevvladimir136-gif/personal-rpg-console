@@ -14,6 +14,7 @@ import { executionProviderOptions } from "./model-runtime/profiles.ts";
 import type { BootstrapCommand } from "../adventures/bootstrap-contracts.ts";
 import { astraFirstCreationReviewReady } from "../adventures/astra-startup-review.ts";
 import { readDmSettings } from "./dm-settings";
+import { applyWorldRulesSystem } from "./campaign-rules-system";
 export async function performBootstrap(command: BootstrapCommand) {
   const campaignId =
     command.action === "creation.propose" ||
@@ -103,5 +104,7 @@ export async function performBootstrap(command: BootstrapCommand) {
         globalDefault: dmTurn ?? creationDm ?? applicationModelSelection(process.env),
       });
     },
+    // Fix S3 item 3: a world that names D&D 5e or Pathfinder gives the new campaign that rules system.
+    ({ campaignId: cid, world }) => applyWorldRulesSystem(cid, world),
   ).perform(command);
 }

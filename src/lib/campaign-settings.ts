@@ -1,4 +1,5 @@
 import type { Language } from "./i18n";
+import { withRulesSystemChoice, type RulesSystemChoice } from "./rulesets/rules-system.ts";
 
 export type DifficultyValues = {
   shortRestSupplyCost: number;
@@ -289,6 +290,8 @@ export type CampaignSettingsAction =
   | { type: "dicePresentation"; value: DicePresentation }
   | { type: "interactiveDice"; value: boolean }
   | { type: "showDc"; value: boolean }
+  // Fix S3 item 3: the rules system on «Правила и кости» (the label only; the ruleset id stays).
+  | { type: "rulesSystem"; value: RulesSystemChoice }
   | {
       type: "visualStyle" | "frameRatio" | "videoDuration" | "narrativeStyle";
       value: string;
@@ -318,6 +321,8 @@ export function updateCampaignSettings(
       ...settings,
       dmStyle: { ...effectiveDmStyle(settings), [action.key]: action.value },
     };
+  if (action.type === "rulesSystem")
+    return { ...settings, rulesSystem: withRulesSystemChoice(settings.rulesSystem, action.value) };
   if (action.type === "preset") {
     if (action.value === "custom") {
       return {
