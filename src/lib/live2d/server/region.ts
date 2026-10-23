@@ -10,13 +10,14 @@ import { activeStyle, capRemaining, modelForTier, styleTextFor } from "../../vis
 import { promptFamily } from "../../visual-frame/prompt-compiler";
 import { regionMapOf } from "../contracts";
 import { live2dView } from "../hierarchy";
-import { regionMapPrompt, regionSignature } from "../region";
+import { regionDrawDecision, regionMapPrompt, regionSignature } from "../region";
 import { draftSeeds } from "./vision";
 import { boardOf, listSeeds, live2dContext, plantSeed, saveRegionMap } from "./store";
 
 // The region map (slice item 1): a stable painted map of the region the party
 // travels, drawn once from the places the records know and the atlas layout,
-// redrawn only when a new place appears (the signature). With the first map of
+// redrawn when a new place appears (the signature) or on the owner's forced
+// «Перерисовать карту региона». With the first map of
 // an area the DM's hidden layer gets its seeds (slice item 5): a few latent
 // hooks, stored privately, never in the public board.
 
@@ -36,8 +37,8 @@ export async function drawRegionMap(campaignId: string, value: unknown, schedule
   if (!view.pins.length) return { status: "empty", anchorId };
   const signature = regionSignature(view.pins);
   const existing = regionMapOf(board, anchorId);
-  if (existing?.status === "drawing") return { status: "drawing", anchorId };
-  if (existing?.status === "ready" && existing.signature === signature && value.force !== true) return { status: "existing", anchorId };
+  const decision = regionDrawDecision(existing, signature, value.force === true);
+  if (decision !== "draw") return { status: decision, anchorId };
   const pictures = await picturesContext(campaignId);
   const pictureBoard = await picturesBoardOf(pictures);
   if (!capRemaining(pictureBoard)) return { status: "cap", anchorId };

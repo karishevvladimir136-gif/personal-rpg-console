@@ -16,7 +16,7 @@ import { live2dCrumbs, live2dOpeningLevel, live2dView, parentChain, type Live2dL
 import { markerLabel, trackedPlaceIds, visiblePins } from "@/lib/live2d/markers";
 import { placeIntent, poiIntent } from "@/lib/live2d/intents";
 import { scenePois } from "@/lib/live2d/scene";
-import { newPlacesSince } from "@/lib/live2d/region";
+import { newPlacesSince, regionDrawInput } from "@/lib/live2d/region";
 import { routePath, startTravel, travelMinutesOf, travelPoint, travelProgress, type Travel } from "@/lib/live2d/travel";
 import { usePictures } from "../registry/live-frames";
 import { BattleScreen } from "./battle/battle-screen";
@@ -91,6 +91,17 @@ export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2
       return null;
     }
   }, [preview, transport, campaignId, refresh, c]);
+  // A region map request answers in about half a second; the button stays off until then, so a double press
+  // never orders two paid pictures before the map says «drawing» (the ref also stops a click before the re-render).
+  const [regionSending, setRegionSending] = useState(false);
+  const regionSendingNow = useRef(false);
+  const drawRegion = useCallback(async (input: ReturnType<typeof regionDrawInput>) => {
+    if (regionSendingNow.current) return;
+    regionSendingNow.current = true;
+    setRegionSending(true);
+    try { await send("region.draw", input); }
+    finally { regionSendingNow.current = false; setRegionSending(false); }
+  }, [send]);
 
   const urlFor = useCallback((pictureId: string | null): string | null => {
     if (!pictureId) return null;
@@ -228,7 +239,7 @@ export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2
             </span>
           )}
           {level === "region" && (
-            <button type="button" className={r.btnGhost} disabled={regionMap?.status === "drawing"} onClick={() => void send("region.draw", { anchorId: view.anchorId })}>
+            <button type="button" className={r.btnGhost} disabled={regionSending || regionMap?.status === "drawing"} aria-busy={regionSending} onClick={() => void drawRegion(regionDrawInput(view.anchorId, regionMap))}>
               {regionMap?.status === "drawing" ? c("Карта рисуется…", "Drawing the map…") : regionMap?.pictureId ? c("Перерисовать карту региона", "Redraw the region map") : c("Нарисовать карту региона", "Draw the region map")} · {usd(pictureCostUsdMicros("quality", "region"))}
             </button>
           )}
