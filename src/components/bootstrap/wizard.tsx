@@ -19,6 +19,7 @@ import { dmTurnModels, loadDmSettings, saveDmSettings, type DmSettings } from ".
 import { DEFAULT_DEPTH_RANGE, EFFORT_ORDER, type DepthRange } from "../../lib/gameplay/dm-loop/depth";
 import { loadCampaign, readJson } from "../../lib/persistence/client";
 import { effortLabel } from "../../lib/ui/effort";
+import { detectRulesSystem } from "../../lib/rulesets/rules-system";
 import { WorldPicker } from "../adventures/worlds";
 import { adventureText } from "../adventures/text";
 import { Plate, Segmented, registry as r } from "../registry/primitives";
@@ -89,6 +90,8 @@ export function CampaignWizard({ language, worlds, onClose, onCreated, preview, 
   const [adventureDraft, setAdventureDraft] = useState<AdventureDraft | null>(null);
   const world: PublicWorld | null = catalogWorlds?.worlds.find((row) => row.id === worldId) ?? null;
   const entry = dmTurnModels.find((row) => row.modelId === model) ?? dmTurnModels[0];
+  // Fix S3 item 3: the rules system the world's description names — the server gives it to the campaign at creation.
+  const namedRules = world ? detectRulesSystem(`${world.title}\n${world.premise}`) : null;
 
   // A reload after the campaign exists comes back to the step it reached (the campaign is real; nothing is redone).
   useEffect(() => {
@@ -286,6 +289,7 @@ export function CampaignWizard({ language, worlds, onClose, onCreated, preview, 
             <div><span>{ru ? "Герой" : "Hero"}</span><span>{created ? [created.name, created.role].filter(Boolean).join(" · ") : "—"}</span></div>
             <div><span>{ru ? "Приключение" : "Adventure"}</span><span>{catalog?.adventures.find((row) => row.id === adventureId)?.title ?? (adventureId ? "✓" : "—")}</span></div>
             <div><span>{ru ? "Ведущий" : "DM"}</span><span>{entry.label} · {depthRangeLabel(depth, language)}</span></div>
+            <div><span>{ru ? "Правила" : "Rules"}</span><span>{!world ? "—" : namedRules ? `${namedRules.label} · ${ru ? "из описания мира" : "from the world's description"}` : ru ? "логика мира" : "World Logic"}</span></div>
             <div><span>{ru ? "Картинки" : "Pictures"}</span><span>{ru ? "стиль мира" : "world style"}</span></div>
           </div>
           <span className={w.help}>{ru ? "Всё, кроме мира, можно поменять потом в настройках кампании." : "Everything but the world can change later in campaign settings."}</span>

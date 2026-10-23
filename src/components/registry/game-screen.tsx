@@ -13,6 +13,7 @@ import { isUnresolved } from "@/lib/gameplay/client-state";
 import { frameStatusText } from "@/lib/visual-frame/pictures";
 import { appendToComposerDraft, draftStorage } from "@/lib/ui/composer-draft";
 import { characterViewModel } from "@/lib/character-view-model";
+import { isFifthEdition } from "@/lib/live2d/battle/rules-5e";
 import {
   currentPlace,
   currentSession,
@@ -144,6 +145,7 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   };
   const place = currentPlace(data);
   const combat = inCombat(play);
+  const fifthEdition = isFifthEdition(data.settings?.values?.rulesSystem);
   // Polish group 6: the addressee is read from the text («@Тамсин», «Тамсин, …»); «Миру» overrides it for this draft
   // (shared with the 2D scene since Fix S3-accept Б4).
   const { detected, resolveSend, chip: addresseeChip, setDraft } = useAddressee({ present: present.map((row) => row.entity), combat, off: ooc });
@@ -410,6 +412,13 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
                   {heroSummary(data, hero, c) && <div className={`${r.small} ${r.muted}`}>{heroSummary(data, hero, c)}</div>}
                   {heroLine(data, hero, c) && <div className={r.small} style={{ color: "var(--brass)" }}>{heroLine(data, hero, c)}</div>}
                 </div>
+              </div>
+              {/* Fix S3 item 3: whether the 5e module counts the hero's armour class, saves and attacks; switched on «Правила и кости». */}
+              <div className={r.chips}>
+                <Link className={r.chip} href={`${href("settings")}#rules-and-dice`} data-testid="rules-5e-chip"
+                  title={c("Переключается в «Настройки → Правила и кости»", "Switched in «Settings → Rules and dice»")}>
+                  {fifthEdition ? c("5e-модуль: включён", "5e module: on") : c("5e-модуль: выключен", "5e module: off")}
+                </Link>
               </div>
               {hero.hp !== null && <Gauge label={c("Хиты", "Hit points")} value={hero.hp} max={hero.max_hp} />}
               {(resources.length > 0 || money.length > 0) && (
