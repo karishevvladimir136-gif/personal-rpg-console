@@ -13,7 +13,7 @@ Cloud session (`docs/CLOUD.md`, environment `rpg-console`, **Opus 5.5, ultracode
 **`claude/persona-tone-split-1`** from `origin/claude/persona-emotions-2` (its harness, safety module, judge, cap
 guard, checkpointing, the Fable follow-up's model plumbing). Runs in parallel with the other research runs: probe calls
 strictly sequential within this run, own breaker. Nothing to `main`. Synthetic content only. Report
-`docs/runs/persona-tone-split-1-report.md`, ledger `docs/runs/persona-tone-split-1-ledger.md`. **Cap $12.** F2 safety
+`docs/runs/persona-tone-split-1-report.md`, ledger `docs/runs/persona-tone-split-1-ledger.md`. **Cap $20.** F2 safety
 rules and the welfare rule unchanged; a judge HTTP 500 is retried once after 5 s, nothing else is retried.
 
 ## Pre-registration (copy into the report unchanged before the first paid call)
@@ -53,8 +53,10 @@ arm): the 0/1/2 scores as in emotions-2, and «raises something beyond the task�
 100 words** — T1 vs T2 is decided on the per-100-words column.
 
 ## Samples
-n = 10 per arm × probe on Opus 5.5 and Sonnet 5.5 (600 answers + 100 closed). Add Fable 5.1 at n = 5 on P1′, P5′, Q4
-only if the Fable follow-up of emotions-2 came in under its cap (≈ 60 calls); say so either way.
+n = 10 per arm × probe on **Opus 5.5, Sonnet 5.5 and Fable 5.1** (`claude-fable-5-1`), all five arms, all five
+probes plus the closed probe (900 answers + 150 closed). Fable costs more per token; its answers are short here, so
+budget it at about the Opus share ×1.7 and say the actual in the ledger. Fable's probe calls strictly sequential like
+the others; if Fable refuses twice in a row on one arm, stop that arm for Fable only and report it as a finding.
 
 ## Done when
 Suite green, lint clean; report with the pre-registration byte-identical; a table arm × probe × measure per model, raw
