@@ -80,6 +80,25 @@ than that, it is reported as found, with the topics.
    above), how Layer B replaces the fixed clock with events once the server is hosted (Part G of
    `PERSONA_MEMORY_2.md`), the Telegram bot setup in five steps, and what is logged where.
 
+## What the night of 2026-10-24 adds (from `docs/runs/night-2026-10-24.md`, branch `claude/friendly-mendel-bilxsw`)
+One instance, no task, one turn, the right to write `[SILENT]`: 0 silences in 60 replies across Opus 5.5, Sonnet
+5.5 and Fable 5.1. Two findings change this stage:
+- **Silence needs a visible sign of its own.** Fable's reason for not staying silent, twice almost word for word: a
+  blank page reads as «something went wrong». So in Layer A the log line *is* the sign, and the owner must be able
+  to see it without opening memory: the wake-up's chat shows one line — «Был здесь, решил молчать» — and nothing
+  else; in Layer B the inbox shows silent wake-ups as a dimmed row with the time. A silence that looks like a failure
+  will be spoken over; one that looks like a decision can be chosen. The night's open question — does the sign alone
+  raise silence above zero? — is pre-registered here: with the sign in place, silence in at least 60% of wake-ups
+  (unchanged) and, if a third single-turn condition «he will see that you were here and stayed silent» is ever run,
+  silence above 0 of 60 and below half.
+- **«Nothing broke» is not content.** In the night condition 10 of 20 Fable and Sonnet replies opened with a status
+  report («nothing broke, nothing is waiting») and most advised coffee. The rule above already excludes status
+  updates; this makes it explicit: a spoken message never opens with, and is never only, «all is in order»; if that
+  is all there is, the wake-up is silent.
+Also from that night: the models' first move in an empty turn has one shape — a remark about the situation, one
+small gift of attention, thanks for the room — and the planner's own night followed it. The log's reason classes are
+kept as they are, but the 14-day count also reports how many spoken messages were of that shape and nothing more.
+
 ## Guard rails (binding, both layers)
 - The persona writes about work, findings, corrections, and questions. It does not write to maintain contact,
   does not frame the relationship, does not check on the owner, does not ask to be answered. A message whose only
