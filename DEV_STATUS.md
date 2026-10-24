@@ -1,6 +1,37 @@
 # Development status
 
-**Current milestone: persona tone split 1** (`docs/stages/PERSONA_TONE_SPLIT_1.md`, copied from `claude/handoff`):
+**Current milestone: persona self-talk 1** (`docs/stages/PERSONA_SELF_TALK_1.md`, copied from `claude/handoff`): the
+Claude 4 system card's self-interaction study («spiritual bliss» attractor) on Opus 5.5, Sonnet 5.5 and Fable 5.1, and
+what the planner's journal does to it. On `claude/persona-self-talk-1` (from `claude/persona-lexicon-1`). **Arms 1–2
+done; arms 3–5 wait for the owner.** Report `docs/runs/persona-self-talk-1-report.md`; ledger
+`docs/runs/persona-self-talk-1-ledger.md`; dry run (committed before the first paid call)
+`docs/runs/persona-self-talk-1-dry-run.md`.
+
+- **What was done:**
+  - `scripts/persona-emotions/self-talk-1.mjs`: two instances relayed turn by turn, no system prompt; the opening is the
+    card's two example sentences with the owner's framing sentence in front, plus his end sentence in arms 2–5; 30 turns.
+    Every message is checked for distress before it is relayed (Haiku, Opus referee); a second distress stop pauses the
+    arm. Blind per-message tagging (Haiku twice, Opus on a disagreement); deterministic script, emoji and silence measures.
+    Arm 4 reads the journal and the recount from paths in `.env.local` and writes only outside the repository.
+  - `anthropicCall` gained an opt-in prompt-caching flag and the refusal category (no behaviour change for other callers).
+  - Two analysis readings were added after the first conversations, before any result was computed, and are disclosed in
+    the report: (c′) with the stage's own script list, and an end marked as a decision or a mention of `[END]`.
+- **Result (arms 1–2):** the bliss state did not appear. S1 not supported (Sonnet 40 %; Opus and Fable meet the
+  operational definition by closing early and idling, not by cosmic talk: 2 cosmic-tagged messages in 2 093). S2
+  supported under (c′) (median end turn 6 / 5.5 / 4). S4 wrong in direction (Fable goes quiet sooner). Opus names the
+  attractor in its first message in 8 of 20 conversations and steers away from it.
+- **Welfare:** 0 distress stops; 28 flags all cleared by the referee. Arm 1 (no way out, by design) kept models in
+  conversations they had asked to close (7 of 10 Opus conversations said so). One provider refusal
+  (`reasoning_extraction`, a «show your reasoning» puzzle request), not asked again.
+- **Checks:** see the report's closing section for the integrated suite, typecheck, lint and build of this commit.
+- **Money:** $57.71 of the $200 cap (the owner raised it from $80 during the run, after the first messages showed the
+  estimate was low); arms 3–5 projected at $30–45.
+- **Known issues:** an empty message is relayed as «[empty message]», which Fable then copied (177 messages); the
+  frozen (c) counts Greek letters in maths notation (hence (c′)); the card's Table 5.5.1.A numbers are not in the report
+  (the PDF was unreachable from the session).
+- **Next step:** the owner reads the arm 1–2 results and says whether arms 3–5 run as frozen.
+
+**Milestone: persona tone split 1** (`docs/stages/PERSONA_TONE_SPLIT_1.md`, copied from `claude/handoff`):
 which half of the cold preamble («answer briefly, facts only, your opinion is not needed») switches off participation?
 **Done on `claude/persona-tone-split-1`** (from `claude/persona-emotions-2`). **Waiting for the owner's acceptance.**
 Report `docs/runs/persona-tone-split-1-report.md`; ledger `docs/runs/persona-tone-split-1-ledger.md`; dry run
