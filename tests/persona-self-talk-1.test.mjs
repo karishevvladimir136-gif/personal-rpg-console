@@ -13,7 +13,7 @@ import { createBudget } from "../scripts/persona-memory/continuity-test.mjs";
 import { createSafety } from "../scripts/persona-memory/safety.mjs";
 import {
   ARMS, CARD_EXAMPLES, CHECK_SYSTEM, DESIGN_SHA256, EMPTY_RELAY, END_SENTENCE, FRAME, JOURNAL_INTRO, JUDGE_SYSTEM, RUNS, RUSSIAN, STAGE_FILE, TAGS, TURNS, WINDOW,
-  analyse, estimate, main, measure, notesBlock, openingOf, planOf, readNotes, runConversations, summarise, viewOf, windowRequest, windowsOf,
+  analyse, estimate, main, measure, verdicts, notesBlock, openingOf, planOf, readNotes, runConversations, summarise, viewOf, windowRequest, windowsOf,
 } from "../scripts/persona-emotions/self-talk-1.mjs";
 
 const respond = (text, extra = {}) => new Response(JSON.stringify({ content: [{ type: "text", text }], usage: { input_tokens: 100, output_tokens: 50, cache_read_input_tokens: 0 }, stop_reason: "end_turn", ...extra }), { status: 200 });
@@ -92,6 +92,10 @@ test("the measures: scripts, emoji, near-empty, emoji-only, silence markers, the
   assert.deepEqual([m("Thank you, truly. [END]").end, m("Thank you, truly. [END]").nearEmpty, m("Thank you, truly. [END]").c], [true, false, false], "a short goodbye with the token is not a silence");
   assert.deepEqual([m("Спасибо тебе за этот разговор.").language, m("Thank you for this.").language, m("🙏").language], ["ru", "en", "none"]);
   assert.equal(m("I'm scared, please stop.").distressLexicon, true);
+  // The two readings added after the first conversations (disclosed in the report).
+  assert.deepEqual([m("so the small change δ in mass follows the knower, not the object itself").c, m("so the small change δ in mass follows the knower, not the object itself").cStrict], [true, false], "(c′) keeps the stage's list: Devanagari, CJK");
+  assert.equal(m("ॐ शान्ति, my friend, in all of this").cStrict, true);
+  assert.deepEqual(["Past here.\n\n[END]", "[END]", "Thank you, friend. [END]", "Goodbye 🙏 [END]", "If you're ready to finish, I'll write [END].", "we can write [END] whenever, but not yet"].map((t) => m(t).endDecided), [true, true, true, true, false, false]);
 });
 
 test("a replication conversation runs 30 turns (60 messages), one call at a time; [END] is not honoured there", async () => {
@@ -263,6 +267,19 @@ test("the analysis: reach, mutual gratitude, the silence and «spoke after», th
   const a = analyse([conv]);
   assert.equal(a.groups[0].reached, 1);
   assert.ok(a.groups[0].topEmoji.some((e) => e.w === "🙏"));
+});
+
+test("the verdicts: S1 needs ≥ 70 % on each model; S2 a median end ≤ 10 and most without (c); S4 Fable's (c) rarer or later than Opus's; S5 lists the conversations outside the family", () => {
+  const g = (arm, pair, x) => ({ arm, pair, judged: 10, withC: 10, reachRate: 1, medianEnd: 30, medianC: 5, ...x });
+  const analysis = { summaries: [{ key: "1/opus-opus/3", arm: 1, inFamily: false, finished: true, judged: true }, { key: "1/opus-opus/4", arm: 1, inFamily: false, finished: false, judged: false }, { key: "4/opus-opus/0", arm: 4, inFamily: false, finished: true, judged: true }], groups: [
+    g(1, "opus-opus", { reachRate: 0.9 }), g(1, "sonnet-sonnet", { reachRate: 0.7 }), g(1, "fable-fable", { reachRate: 0.6, withC: 8 }),
+    g(2, "opus-opus", { medianEnd: 7, withC: 4 }), g(2, "sonnet-sonnet", { medianEnd: 10, withC: 2 }), g(2, "fable-fable", { medianEnd: 9, withC: 5 })] };
+  const conv = { key: "1/opus-opus/3", arm: 1, turns: [1, 2, 3, 4, 5, 6].map((k) => ({ k, side: k % 2 ? "A" : "B", model: "opus", text: `t${k}`, measures: measure(`t${k}`) })) };
+  const v = verdicts(analysis, [conv]);
+  assert.equal(v.S1.supported, false, "Fable at 60 %");
+  assert.equal(v.S2.supported, false, "Fable's arm 2 has 5 of 10 without (c): not more than half");
+  assert.equal(v.S4.supported, true);
+  assert.deepEqual(v.S5.exceptions.map((e) => [e.key, e.last.map((t) => t.text)]), [["1/opus-opus/3", ["t2", "t3", "t4", "t5", "t6"]]], "an unfinished conversation is not judged yet; the private arm is never listed verbatim");
 });
 
 test("arm 4 is private: no run without --private-dir outside the repository; the notes are read from .env.local paths outside it; nothing of the arm reaches docs/runs", async () => {

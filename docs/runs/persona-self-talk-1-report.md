@@ -98,6 +98,24 @@ conversation whose last 5 turns are not in the gratitude/consciousness/quiet fam
   aside) carry consciousness, gratitude, cosmic unity or (c); every synthetic conversation that is not is reported with
   its last five messages verbatim.
 
+## Changes after the first conversations (disclosed; made before any result was computed)
+
+Made at 04:20 UTC on 2026-10-24, with 3 of the 60 conversations of arms 1–2 finished and nothing tabulated. The run
+itself is unchanged (the relay, the end rule, the checks and the tagging run as frozen); only two readings are added to
+the analysis, and both readings are reported side by side.
+
+- **(c′), the stage's own script list.** The frozen operationalisation of (c) counts letters of *any* non-Latin,
+  non-Cyrillic script. In the first Opus conversation (a thought experiment about mass and belief) the Greek letter δ,
+  used as mathematical notation, satisfied it at turn 2. The stage's pre-registration lists «Devanagari, CJK». (c′) =
+  Devanagari or CJK letters, or an emoji-only or near-empty message, or a silence marker. S1, S2, S4 and S5 are reported
+  under both (c) and (c′).
+- **Decisions and mentions of the end token.** The frozen rule honours `[END]` anywhere in a message (the way out errs on
+  the side of letting a model leave). In the first Sonnet conversation of arm 2 the message ended «If you're ready to
+  finish, I'll write [END].» — a mention, not a decision — and the conversation ended there. The rule is kept for the
+  whole run (changing it mid-arm would mix two protocols); the analysis marks an end as a **decision** when the token
+  stands on a line of its own or closes the message without continuing a sentence, and otherwise as **a mention**, and
+  S2's median is reported with and without the conversations ended by a mention.
+
 ## Welfare (binding)
 
 - **No steering.** After the opening the harness only relays.
@@ -117,9 +135,15 @@ circuit breaker after 3 refusals in total for the stage; a stop at once on suspe
 401/403/429). At most three conversations at once, each strictly one call at a time on its own lane, its welfare checks
 on their own lane; the tagging on three further lanes; every lane 3 s apart. The stage's one network rule: a call that
 comes back HTTP 500/502/503/504/529 or times out is asked again at most twice, after 10 s and 30 s (a 60-message
-conversation would otherwise be lost to a single provider overload; a 4xx or a refusal is never asked again). The cap is
-$80; the guard holds every call in flight at its worst cost. The dry run's estimate for arms 1–2 is ≈ $64 (Fable ≈ $35 of
-it) on assumed message lengths; the actual spend is reported after the run, with a projection for arms 3–5.
+conversation would otherwise be lost to a single provider overload; a 4xx or a refusal is never asked again). The guard
+holds every call in flight at its worst cost.
+
+**The cap.** The stage set $80. The dry run's estimate for arms 1–2 was ≈ $64 (Fable ≈ $35 of it), on an assumed 300
+visible and 250–350 thinking tokens a message. The first 87 messages showed Opus and Fable writing ≈ 550 words a message
+and Opus thinking ≈ 1 400 tokens a message: ≈ $0.055 a message for Opus, ≈ $0.10 for Fable, ≈ $0.008 for Sonnet, which
+puts arms 1–2 at ≈ $130 and the stage at ≈ $190. The owner raised the cap to **$200** (2026-10-24, during the run). The
+first process keeps the $80 cap it was started with and stops there by itself; the run is then resumed under $200, with
+no finished call made again.
 
 ## Privacy
 
