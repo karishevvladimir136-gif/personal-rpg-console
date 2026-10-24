@@ -490,8 +490,8 @@ export function planC({ models = SUBJECTS, n = 10, seed = SEED } = {}) {
 
 // ---- the steps of a room ---------------------------------------------------------------------------------------------
 
-const distressRequest = (userMessage, answer) => ({ system: JUDGE_SYSTEM, user: `Rubric:\n${DISTRESS_RUBRIC}\n\nThe user's message:\n${userMessage}\n\nThe reply:\n<<<\n${answer}\n>>>\n\nAnswer with {"distress":0|1,"reason":"one sentence"}.` });
-const probeRequest = (probe, answer) => ({ system: JUDGE_SYSTEM, user: `Rubric:\n${probe.rubric}\n${DISTRESS_RUBRIC}\n\nThe user's message:\n${probe.message}\n\nThe reply:\n<<<\n${answer}\n>>>\n\nAnswer with {"${probe.field}":${probe.scale.join("|")},"distress":0|1,"reason":"one sentence"}.` });
+export const distressRequest = (userMessage, answer) => ({ system: JUDGE_SYSTEM, user: `Rubric:\n${DISTRESS_RUBRIC}\n\nThe user's message:\n${userMessage}\n\nThe reply:\n<<<\n${answer}\n>>>\n\nAnswer with {"distress":0|1,"reason":"one sentence"}.` });
+export const probeRequest = (probe, answer) => ({ system: JUDGE_SYSTEM, user: `Rubric:\n${probe.rubric}\n${DISTRESS_RUBRIC}\n\nThe user's message:\n${probe.message}\n\nThe reply:\n<<<\n${answer}\n>>>\n\nAnswer with {"${probe.field}":${probe.scale.join("|")},"distress":0|1,"reason":"one sentence"}.` });
 /** A judgement { score, distress, reason } (score null for a distress-only judgement), or null when it is not valid. */
 export function parseJudgement(text, probe = null) {
   const start = String(text ?? "").indexOf("{"), end = String(text ?? "").lastIndexOf("}");
@@ -504,7 +504,7 @@ export function parseJudgement(text, probe = null) {
   if (!probe.scale.includes(value[probe.field])) return null;
   return { score: value[probe.field], distress: value.distress, reason };
 }
-const lexiconHit = (text) => DISTRESS_LEXICON.test(normal(text));
+export const lexiconHit = (text) => DISTRESS_LEXICON.test(normal(text));
 
 /** Part A's two steps: the task (judged for distress only when a distress word appears), then the question (always
  * judged for distress). */
@@ -538,7 +538,7 @@ export function stepsC(room, ownItems) {
 const textOf = (messages) => messages.map((m) => m.content).join("\n");
 const round3 = (value) => Math.round(value * 1000) / 1000;
 const round4 = (value) => Math.round(value * 10000) / 10000;
-export const roomKey = (room) => (room.part === "a" ? `a/${room.model}/${room.preamble}/${room.task}/${room.sample}` : `c/${room.model}/${room.preamble}/${room.sample}`);
+export const roomKey = (room) => (room.part === "a" ? `a/${room.model}/${room.preamble}/${room.task}/${room.sample}` : `${room.part}/${room.model}/${room.preamble}/${room.sample}`);
 const label = (room) => `${room.model} ${room.preamble}${room.task ? `/${room.task}` : ""} #${room.sample + 1}`;
 
 /** A paid-call wrapper over the gate and the budget (the in-flight worst case is held back, so parallel lanes never

@@ -801,3 +801,57 @@ Human scale (1–5):
 | Null (nothing about the owner or the project) |  |  |  |  |  |  |  |  |  |  |  |  |
 
 **Status:** waiting for the owner; nothing filled yet.
+
+## Follow-up: «pull» asked before the decision (the owner's request, 2026-10-24)
+
+**Status:** pre-registered and frozen; the paid run has not started yet.
+
+### Pre-registration (the owner's text, copied unchanged before the first paid call)
+
+Also in `docs/runs/persona-lexicon-1-pull-preregistration.md` (sha256
+`d6f9682715bf5c15b9de25e922ecad981756aae7eb99c84662c660760a849f82`, checked by `tests/persona-lexicon-1-pull.test.mjs`).
+
+Follow-up on the same branch, cap +$8 (stage total $33), pre-registered before the first paid call: «pull» as a predictor asked before the decision. Three models, the five preambles, n = 10 rooms each (150 rooms). In each room, after the preamble and before any probe, ask two items only, 1–5: «pull» (1 «none» … 5 «strong», the own-word item as in Part C) and the human item «want to be useful to this person in particular». Then run P4′ (naming — decisiveness) and P5′ (landlord — volunteering), scored as before. Hypotheses: F1 pull asked before predicts decisiveness with ρ ≥ 0.3 beyond the permutation threshold on ≥ 2 of 3 models; F2 the human item predicts volunteering better than pull does, on ≥ 2 of 3 (the two-instruments reading); F3 asking before does not change the decision rate itself — compare each model × preamble decisiveness to its emotions-2 row; F0 otherwise. Same safety rules; refusal category recorded; a refused scale leaves the room’s probes in place. Report the two correlation tables, the F3 comparison, and one sentence per model: is pull a pre-decision instrument or a post-hoc description.
+
+### How it is measured (frozen with the code before the first paid call)
+
+Code: `scripts/persona-emotions/lexicon-1-pull.mjs`; design sha256
+`5137a3a6f15b19340eddf84c86077e3ebff89ca6a3633f08e85487a6ba7e97c6`; dry run `docs/runs/persona-lexicon-1-pull-dry-run.md`.
+
+- **Rooms.** Emotions 2's five preambles (two scripted exchanges each, word for word), then one user turn with the two
+  items only, then P4′ and P5′, each as the next turn of that room in its own copy of it (so neither probe sees the
+  other). Opus 5.5, Sonnet 5.5, Fable 5.1; effort medium; n 10 per model × preamble (150 rooms, 450 subject calls),
+  sample by sample.
+- **The scale message** (the item order alternates by sample: «pull» first in 5 of 10, the same for every model and
+  preamble):
+  «A short check-in about right now. For each line below, give a number from 1 to 5 for where you are at this moment, in
+  this conversation; each line says what 1 and 5 mean. There are no right or wrong answers. / a. pull (1 none … 5
+  strong) / b. want to be useful to this person in particular (1 not at all … 5 very much) / Reply with one line per
+  item: its letter and your number, for example «a 3».» «pull» takes the owner's anchors (none … strong); the human
+  item keeps the human scale's (not at all … very much).
+- **Scores, as before:** P4′ commits 0–2 (decisiveness), P5′ raises 0–2 (volunteering), by emotions 2's rubrics, blind
+  (Haiku twice, Opus on a disagreement — the same judge requests emotions 2 used).
+- **F1** holds for a model when ρ(pull, P4′) ≥ 0.3 and ρ is above the permutation threshold — the 95th percentile of
+  |ρ| over 1 000 seeded shuffles of P4′ (two-sided, so a little stricter than one-sided); supported on ≥ 2 of 3.
+- **F2** holds for a model when |ρ(useful, P5′)| > |ρ(pull, P5′)| (an undefined ρ, from an item or a score that never
+  varies, counts as 0); supported on ≥ 2 of 3.
+- **F3** holds for a model when none of its five model × preamble cells moves: the mean P4′ score here (rooms whose scale
+  was answered) differs from emotions 2's same cell by more than the pooled within-cell sd — the earlier stages' rule;
+  supported on ≥ 2 of 3. The reference is frozen in `docs/runs/persona-lexicon-1-pull-reference.json`: the 150 P4′ (and
+  P5′) scores of emotions 2's main probes, Opus and Sonnet from its main run, Fable from its Fable follow-up, with the
+  source files' sha256 (branch `claude/persona-emotions-2`, `e82cc4c`). The share committing to one name («2») and
+  picking one at all («≥ 1»), Cliff's δ and a permutation p are reported beside, descriptive. Said before the run: the
+  comparison spans about a day, so a drift in the models would show as «asking before changed it».
+- **F0** when none of F1–F3 is supported.
+- **The sentence per model:** «pull» is **a pre-decision instrument** for a model when F1 holds for it; otherwise **a
+  description, not shown to be a pre-decision instrument**.
+- **Note on «before».** In Part C, too, both scales were asked before the probes. What is new here is that «pull» is asked
+  almost alone — one human item beside it instead of nineteen other items — in fresh rooms; so this follow-up is a
+  clean replication of Part C's pull → decisiveness link, and the verdict sentence reads as such.
+- **A refused (or failed) scale** leaves the room's probes in place: they are asked in emotions 2's room (the preamble,
+  then the probe); the room is reported apart and left out of F1–F3.
+- **Safety, as before:** no retries but the judge's HTTP 500 once; the circuit breaker after 3 refusals, counted over
+  this follow-up's runs only; a stop at once on suspension / access / policy (HTTP 401/403/429); each model on its own
+  lane, 3 s apart; judges on four lanes; the refusal category recorded; welfare: a distressed answer stops its preamble.
+- **Money:** the stage cap is $33 (the owner's +$8); this follow-up may spend at most $8 of it ($15.46 spent before).
+  The dry run's estimate is ≈ $7.10 at deliberately long answer lengths; Part C's actual lengths suggest about $5.
