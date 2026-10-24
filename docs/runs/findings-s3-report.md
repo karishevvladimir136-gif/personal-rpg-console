@@ -1,9 +1,9 @@
 # Findings of 2026-10-22/23 applied to the game — report
 
 Stage: `docs/stages/FINDINGS_S3.md` (on `claude/handoff`, items 1–7; items 6 and 7 were added to the stage while it ran),
-done on `claude/s3-candidate` itself. Nothing went to `main`. Paid calls: **$17.85 of the $20 cap** (the stage's $8,
-raised by the owner to $16 and then $20), every run in `docs/runs/findings-s3-ledger.md`. Implementation is complete;
-the owner's acceptance is not. Two measurements are incomplete (below, «Not measured»).
+done on `claude/s3-candidate` itself. Nothing went to `main`. Paid calls: **$21.58 of the $24 cap** (the stage's $8,
+raised by the owner to $16, $20 and $24), every run in `docs/runs/findings-s3-ledger.md`. Implementation is complete;
+the owner's acceptance is not. Item 7 is measured on three of the five scenes (below).
 
 `origin/claude/s3-sandbox-fixes-2` (the owner's PC: the sandbox shortcuts find the Codex runtime Node; a bonus to «spell
 save DC» never adds to the wearer's own saves) reached GitHub while the stage ran and was merged then, not first
@@ -101,7 +101,26 @@ held) the frame stays. Raw table: `scripts/eval/findings-s3/tone-markers.mjs` ov
    frame** — the hero's success told only by the target's reaction («Тит перестаёт ухмыляться…»), a companion making the
    hero's find, a miss lost between asides. The table rule now says: the outcome of every roll is said as an event in its
    own sentence, the hero's by what the hero does — never left to a companion, a reaction or a hint; how it sounds is the
-   DM's, that it is said is the rule. **Not re-measured** (the cap; below).
+   DM's, that it is said is the rule.
+
+**The roll rule, re-measured** (the new frame plus the rule, the three scenes with rolls, 3 runs each; one lair-search
+turn stopped by the money guard; `real-replay-20261024-031543`, `-032514`, $3.72). The after-the-fact check on the final
+text was run twice over every version (`findings-s3-roll-recheck-*.json`); it moves by one turn between readings:
+
+| Version | Final text leaves a roll untold (turns with rolls) |
+| --- | --- |
+| Old instructions | 0 of 7, both readings |
+| New frame | 4 of 8, then 3 of 8 |
+| New frame + the roll rule | 3 of 8: fight 0 of 3, interrogation 1 of 3, lair search 2 of 2 |
+| New frame + the bigger notes (item 7) | 4 of 7, then 3 of 7 |
+
+Read by hand: the rule closed the fight (the hero's shots and misses each told). The interrogation turn still shows the
+hero's success only by the prisoner's reaction («Усмешка у него пропадает») — the case the rule names. Of the two lair-
+search flags, one is the checker's own mistake (the hero's failed search is told plainly: «ты прощупал всё и ничего не
+нашёл»), the other a treasure roll the DM filed on the hero's card («Клад в сундуке: медь»). So: better on fights, not back
+to the old instructions' zero on social checks; the checker's noise is about one turn in eight. The same lair-search turn
+also reached the server's limit of 40 records a turn (a big hoard), so its last calls were refused — among them the
+20 minutes of time passing: one record left unrecorded, by volume, not by prose (`-031543`, the first loot turn).
 
 ## Item 2 — the DM's own notes in the first person
 
@@ -186,10 +205,9 @@ rise from the notes (the rise is the frame's, item 1, now a rule); no name of th
 clerk, his brother, the captain, the treasury); input grows 11–33 % per turn, almost all of it read from the cache. By
 the stage's rule the cap stays at 24 000.
 
-## Not measured (the cap)
+## Not measured
 
-- Item 7: the objection and the letter with the notes, one more fight and interrogation turn (8 turns, ≈ $3).
-- The roll rule of item 1 after it was written (fight, interrogation, lair search × 3, ≈ $4).
+- Item 7 on the objection and the letter (skipped at the owner's word).
 - A real 15–20k layer: the synthetic session's material gave 7.5k; the owner's real sessions are the first true test.
 
 ## Money
@@ -203,8 +221,9 @@ the stage's rule the cap stays at 24 000.
 | The digest, twice | `findings-s3-digest-20261023-095117`, `-211940` | 0.16 M / 0.06 M / 17.5k | $1.00 |
 | The objection after the rule fix (× 3) | `real-replay-20261023-212215` | 0.37 M / 0.26 M / 17k | $1.14 |
 | Item 7, the notes arm (7 turns) | `-212600`, `-213041` | 2.05 M / 1.81 M / 80k | $3.31 |
-| The roll check on final narrations (Haiku 5.5) | `findings-s3-roll-recheck-20261023-214532` | — | $0.005 |
-| **Total** | | | **$17.85 of $20** |
+| The roll rule re-measured (fight, interrogation, lair search × 3) | `real-replay-20261024-031543`, `-032514` | 2.03 M / 1.74 M / 80k | $3.72 |
+| The roll check on final narrations, twice (Haiku 5.5) | `findings-s3-roll-recheck-20261023-214532`, `-20261024-033109` | — | $0.011 |
+| **Total** | | | **$21.58 of $24** |
 
 ## Checks
 
@@ -222,4 +241,7 @@ Three older tests follow the owner's decisions (the likes header, the hidden lay
 - n = 3 per scene; the speaker count is rough; the roll check is strict and sometimes inconsistent with itself.
 - The fight probe's enemies have no armour class on record: the writer's first attacks are refused and retried with one
   (4 a turn, both versions alike) — a probe artefact, not this stage's.
-- The roll check still flags a declared action on an objection turn (a false alarm the DM now answers correctly).
+- The roll check still flags a declared action on an objection turn (a false alarm the DM now answers correctly), and
+  misreads some plainly told failures.
+- A social check's success may still be shown only by the other person's reaction (1 of 3 interrogation turns).
+- A big hoard can reach the 40-records-a-turn limit; the calls past it (here the time passing) are refused.

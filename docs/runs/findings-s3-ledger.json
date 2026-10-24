@@ -1,5 +1,5 @@
 {
-  "capUsd": 20,
+  "capUsd": 24,
   "entries": [
     {
       "run": "real-replay-20261023-084445",
@@ -190,6 +190,36 @@
       "settled": true,
       "finishedAt": "2026-10-23T21:46:18.480Z",
       "record": "docs/runs/findings-s3-roll-recheck-20261023-214532.json"
+    },
+    {
+      "run": "real-replay-20261024-031543",
+      "what": "real replay: 6 turns × O on Fix run B probes (seed b); voice live; craft live",
+      "startedAt": "2026-10-24T03:15:43.848Z",
+      "reservedUsd": 4.5,
+      "spentUsd": 2.3244,
+      "settled": true,
+      "finishedAt": "2026-10-24T03:25:13.953Z",
+      "record": "docs/runs/real-replay-20261024-031543.jsonl"
+    },
+    {
+      "run": "real-replay-20261024-032514",
+      "what": "real replay: 3 turns × O on Fix run probes (seed a); voice live; craft live",
+      "startedAt": "2026-10-24T03:25:14.417Z",
+      "reservedUsd": 3.8,
+      "spentUsd": 1.3957,
+      "settled": true,
+      "finishedAt": "2026-10-24T03:30:48.347Z",
+      "record": "docs/runs/real-replay-20261024-032514.jsonl"
+    },
+    {
+      "run": "findings-s3-roll-recheck-20261024-033109",
+      "what": "findings S3 §7: the roll check on the final narrations of the item-1 «after» and the notes arms (Haiku 5.5)",
+      "startedAt": "2026-10-24T03:31:09.785Z",
+      "reservedUsd": 0.2,
+      "spentUsd": 0.0063,
+      "settled": true,
+      "finishedAt": "2026-10-24T03:32:10.478Z",
+      "record": "docs/runs/findings-s3-roll-recheck-20261024-033109.json"
     }
   ]
 }

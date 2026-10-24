@@ -20,11 +20,13 @@ owner's recorded correction — and `202610230611` — the notes' dose; both add
   the level only (the class gives the saves); «your own reasoning» and «tempted» stay out of the DM's prompts (the
   provider's filter refused them — `docs/RESEARCH_LOG.md`).
 - **Checks** (a clean worktree without `.env.local`): at `1730b32` the full suite 2 921 tests · 2 894 pass · 0 fail · 0 cancelled · 27 skipped; typecheck pass; lint pass, zero warnings; production build pass, no warnings.
-- **Money:** $17.85 of the $20 cap.
-- **Known issues:** not measured for lack of money — the roll rule after it was written, item 7 on the objection and
-  the letter; the synthetic session gave a 7.5k layer, not 15–20k; the roll check's false alarm on objection turns.
+- **Money:** $21.58 of the $24 cap.
+- **Known issues:** the roll rule closed the fight's untold rolls (0 of 3) but a social check's success may still be told
+  only by the other's reaction (1 of 3); the roll check misreads some told failures; a big hoard can reach the
+  40-records-a-turn limit (the time passing was refused once); the synthetic session gave a 7.5k layer, not 15–20k;
+  item 7 not measured on the objection and the letter (skipped).
 - **Next step:** the owner reloads the candidate (`--stop`, `--prod`), checks «Персонаж» (Вордсден, level 5, saves) and
-  the «5e-модуль» chip, plays; optionally ≈ $7 more to measure the roll rule and finish item 7.
+  the «5e-модуль» chip, plays.
 
 **Current milestone: the fixes from the owner's acceptance pass** (`docs/stages/FIX_S3_ACCEPT.md` on `claude/handoff`,
 the owner's words in `docs/runs/s3-acceptance-notes.md`) — **implementation done on `claude/s3-candidate`, waiting for
