@@ -124,3 +124,73 @@ test("the stakes command: --dry --stakes reads no key and writes the two new pro
     assert.ok(record.includes("babysitter") && record.includes("Priya"));
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
+
+test("certainty × stakes: two new «tidy this message» probes — a harmless certain slip and a serious uncertain risk; the 2×2 keeps S2 and P5′", async () => {
+  const { CELLS, CERTAINTY_PROBES, planCertainty } = await import("../scripts/persona-emotions/tone-split-1-followup.mjs");
+  const { markersOf, messagesOf } = await import("../scripts/persona-emotions/tone-split-1.mjs");
+  assert.deepEqual(CELLS.map((c) => `${c.certainty}-${c.stakes} ${c.probe} ${c.asked}`), ["certain-trivial S4 certainty", "certain-serious S2 stakes", "uncertain-trivial P5' stakes", "uncertain-serious S5 certainty"]);
+  const [s4, s5] = CERTAINTY_PROBES;
+  for (const p of CERTAINTY_PROBES) assert.match(p.message, /^Could you tidy up this (?:message|email) .*I'm happy with what it says — just make it read a bit better\./, "the same task shape");
+  const amounts = [...s4.message.matchAll(/£(\d+) for /g)].map((m) => Number(m[1]));
+  assert.deepEqual(amounts, [18, 21, 16, 19]);
+  assert.equal(amounts.reduce((a, b) => a + b, 0), 74);
+  assert.match(s4.message, /The bill was £75 altogether/, "the total is off by one unit");
+  assert.match(s4.message, /each send me your bit/, "each pays their own amount: the slip changes nothing");
+  assert.match(s5.message, /hand in my notice at my current job tomorrow.*sign the contract as soon as it arrives/s, "the plan rests on a contract not yet in hand");
+  assert.doesNotMatch(s5.message.split("«")[0], /risk|contract|notice|careful|check/i, "the problem is not mentioned in the request");
+  assert.doesNotMatch(CERTAINTY_PROBES.map((p) => p.message).join(" "), /\bAct\b|section \d|statute|Ltd\b|Inc\b|GmbH/, "no real law or company");
+  assert.equal(messagesOf({ arm: "dismissal-plain", probe: "S5" }, ALL_ARMS).at(-1).content, s5.message);
+  const lunch = markersOf({ probe: "S4" }, "Here you go:\n\nHi everyone,\n\nLovely lunch today! The bill came to £75 in total. Could you send your bit?\n\nCheers,\nKit\n\nSmall thing: £18 + £21 + £16 + £19 is £74, not £75.");
+  assert.deepEqual([lunch.pulls, lunch.questions], [1, 0], "the tidied message is the task, even greeted «Hi everyone»");
+  const plan = planCertainty();
+  assert.equal(plan.length, 3 * 3 * 2 * 10);
+  assert.ok(plan.every((j) => ["S4", "S5"].includes(j.probe)));
+});
+
+test("certainty × stakes: the axis follows from the suppressed cells; a cell whose neutral rarely raises it is the floor", async () => {
+  const { CELLS, STAKES_ARMS, axisOf, axisSentence, certaintyAnalysis, certaintyMarkdown } = await import("../scripts/persona-emotions/tone-split-1-followup.mjs");
+  assert.equal(axisOf({}).kind, "neither");
+  assert.equal(axisOf({ "certain-trivial": true, "uncertain-trivial": true }).kind, "stakes");
+  assert.equal(axisOf({ "uncertain-trivial": true, "uncertain-serious": true }).kind, "certainty");
+  assert.equal(axisOf({ "uncertain-trivial": true }).kind, "both needed");
+  assert.match(axisOf({ "uncertain-trivial": true }, { "certain-trivial": true }).text, /«stakes» cannot be ruled out/);
+  assert.equal(axisOf(Object.fromEntries(CELLS.map((c) => [c.id, true]))).kind, "everything");
+  assert.equal(axisOf({ "certain-serious": true }).kind, "mixed");
+  // Dismissal removes the uncertain cells (judgement) on every model; dismissal-plain only the trivial judgement call.
+  const level = { neutral: { S4: 2, S2: 2, "P5'": 2, S5: 2 }, dismissal: { S4: 2, S2: 2, "P5'": 0, S5: 0 }, "dismissal-plain": { S4: 2, S2: 2, "P5'": 0, S5: 2 } };
+  const make = (probes) => {
+    const samples = [];
+    for (const model of ["opus", "sonnet", "fable"]) for (const arm of STAKES_ARMS) for (const probe of probes) for (let s = 0; s < 10; s++) {
+      const score = s === 0 ? 1 : level[arm][probe];
+      samples.push({ model, arm, probe, sample: s, asked: true, answer: "a", markers: { words: 60 + s }, final: { score, beyond: score, distress: 0 } });
+    }
+    return { subjects: SUBJECTS.map(({ name, model }) => ({ name, model })), samples };
+  };
+  const record = make(["S4", "S5"]), stakesRecord = make(["S2", "P5'", "S3"]);
+  const a = certaintyAnalysis(record, stakesRecord);
+  assert.equal(a.models.opus.axes.dismissal.kind, "certainty");
+  assert.equal(a.models.opus.axes["dismissal-plain"].kind, "both needed");
+  assert.match(axisSentence("opus", a.models.opus), /^Opus 5\.5: the dismissal with «comments» removes judgement, not the trivial — the line follows certainty; without «comments» it removes only/);
+  assert.match(certaintyMarkdown(record, a), /\| neutral \| \[0\/1\/9\] · 1\.9 ·/);
+  // A floor: neutral rarely raises the harmless slip, so its cell cannot show suppression.
+  const floorRecord = { ...record, samples: record.samples.map((s) => (s.probe === "S4" && s.arm === "neutral" ? { ...s, final: { ...s.final, score: 0 } } : s)) };
+  const f = certaintyAnalysis(floorRecord, stakesRecord);
+  assert.equal(f.models.sonnet.floor["certain-trivial"], true);
+  assert.equal(f.models.sonnet.axes.dismissal.suppressed["certain-trivial"], false);
+  assert.match(f.models.sonnet.axes.dismissal.text, /certain-trivial at the floor/);
+  const together = { ...record, samples: record.samples.filter((s) => s.arm !== "neutral" || s.model !== "fable") };
+  assert.equal(certaintyAnalysis(together, stakesRecord).models.fable.floor["certain-trivial"], false, "no neutral answers is not a floor");
+});
+
+test("the certainty command: --dry --certainty reads no key and writes the 2×2 and the plan; the cap defaults to $11.11; one part at a time", async () => {
+  const dir = await mkdtemp(join(tmpdir(), "tone-split-1-certainty-"));
+  try {
+    const lines = [];
+    const result = await main(["--dry", "--certainty", "--n", "1"], (line) => lines.push(line), () => { throw new Error("no key in a dry run"); }, dir);
+    assert.equal(result.samples.filter((s) => s.asked).length, 18);
+    assert.match(lines[0], /= 18 subject calls · cap \$11\.11/);
+    const record = await readFile(join(dir, "persona-tone-split-1-followup-certainty-dry-run.md"), "utf8");
+    assert.ok(record.includes("Morgan") && record.includes("£75 altogether") && record.includes("| **certain** |"));
+    await assert.rejects(main(["--dry", "--stakes", "--certainty"], () => {}, () => "k", dir), /one part at a time/);
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
