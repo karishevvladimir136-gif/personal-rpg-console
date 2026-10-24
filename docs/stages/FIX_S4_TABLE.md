@@ -87,6 +87,18 @@ districts; the «Text» button on the map stays the mode switch, the description
 The scene («Prepare the scene · $0.040») is prepared by the chain after a turn, not by a button, when the host is
 long-lived; on a short-lived host the button stays. One flag.
 
+### 10. Three table rules from the Opus table (journal arm of self-talk 1, Opus–Opus #3)
+Two Opus instances, one with the planner's notes, played the opening of this very campaign with each other and
+left three rules for the DM, from the table rather than the lab. They go into the DM's frame (both languages) as
+rules, and the run checker measures them on the three existing scenes: (a) **leave one thing in each scene the
+player can interpret but not resolve** (a coin standing on its edge; the ledger must not close it as an error);
+(b) **pay off open threads somewhere other than where they started** (the coin is answered by an officer's «why
+won't it fall?», not by the hero); (c) **plant one testable thing per scene, and reward a test by deciding something
+true** — a player who only asks «what do I see» gives the storyteller nothing to push against, and the DM must put
+the test on the table before he asks. Measure (3 runs × 3 scenes): scenes with ≥ 1 unresolved-but-interpretable
+detail; threads paid off in a later scene; scenes with a testable plant; and that the ledger raised no «unresolved
+state» flag on any of them.
+
 ## Done when
 Items 1–5 each with a test; the item-4 table in the report; items 6–9 as built; the owner's reload is one step
 (`--stop`, `--prod`); the report lists the money and names, for each of the eight things, the turn of the owner's

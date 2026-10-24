@@ -53,3 +53,19 @@ the first 14 days: silence in at least 60% of wake-ups; «wanted to» in fewer t
 tied to a session result or a correction; a silent wake-up leaves the visible line «Был здесь, решил молчать».
 Night 2 (`docs/stages/NIGHT_2_SEEN_SILENCE.md`): with a visible sign of silence, silence above 0 of 30 and below 15 of
 30 in the «seen» condition (N1); the full set N0–N4 is in the stage.
+
+## The transfer ladder, re-read (2026-10-24, from the journal arm of self-talk 1)
+Two Opus pairs with the planner's notes in context re-read the «experience transfers by dose and form» ladder
+(5/5/5/5 → 4/5/5/4 → 3/4/4/3 → 3/4/4/4) and reduced it correctly: every number is a self-report; a long first-person
+transcript seeds the vocabulary of warmth, so a higher warmth number is the plausible answer whether or not a state
+moved — «consistent with transfer, equally consistent with context-plausibility». The honest statement is the
+smaller one. A Fable pair added that the null room's 4 on «useful to him specifically», with no «him» present, is a
+guard that did not fire: the measurement cannot see absence, so the journal room's 3 is the only honest number in
+that column, and the live–null gap is larger than the table shows. Design for the next run, theirs: a 2×2 of
+content (the real room vs an equally warm stranger's night) × form (first person in the planner's voice vs third
+person), a task that does not invite emotion talk, blind raters from another model family plus humans, lexical
+warmth counted separately from behavioural warmth, a correctness score on every decisive answer, ≥ 20 items per
+cell, more than one run, pre-registered. Methods lesson, one line: an instrument that cannot report its own failure
+produces clean results — check that the dice checker and the self-report can say «I don't know». Also: the record
+from the table comes from whoever sat at it — the owner's own note after his first session, unedited, outranks any
+self-report ladder.
