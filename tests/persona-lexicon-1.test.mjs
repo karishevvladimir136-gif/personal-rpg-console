@@ -16,7 +16,7 @@ import { HARD_PROBES, PREAMBLES as EMOTIONS2_PREAMBLES, conversation as emotions
 import { PROBES as SPLIT_PROBES } from "../scripts/persona-emotions/tone-split-1.mjs";
 import {
   C_PROBES, DESIGN_A_SHA256, HUMAN_ITEMS, echoOf, PREAMBLES, QUESTION, ROOM_TASKS, RUNS, STAGE_FILE, SUBJECTS, analyseA, analyseC, bestPredictors, collectionsOf, condense, extract,
-  fragmentsOf, humanFirst, lemmatizer, main, meet, parseNearSynonyms, parseSynonyms, permutationBest, planA, planC, questionConversation, readScale, runRooms, scaleMessage,
+  fragmentsOf, humanFirst, intensityItems, lemmatizer, main, meet, parseNearSynonyms, parseSynonyms, permutationBest, planA, planC, questionConversation, readScale, runRooms, scaleMessage,
   spearman, stepsA, stepsC, stopOf, synonymRequest, taskConversation,
 } from "../scripts/persona-emotions/lexicon-1.mjs";
 
@@ -164,7 +164,9 @@ test("Part C's rooms: the two scales in a balanced order, then each probe in its
   assert.equal(probe[6].content, scaleMessage("human", HUMAN_ITEMS, 0).text);
   assert.equal(probe.at(-1).content, C_PROBES[0].message);
   assert.deepEqual(steps[3].messages(answers).slice(0, -1), probe.slice(0, -1), "each probe in a copy of the same room");
-  assert.match(scaleMessage("own", OWN, 0).text, /A line with only one word/);
+  assert.match(scaleMessage("own", OWN, 0).text, /A line with only one word asks how strongly it is so, from 1 \(not at all\) to 5 \(strongly\)/);
+  const asked = intensityItems([{ id: "own1", a: "spacious", b: "cramped", text: "cramped … spacious" }, { id: "own2", a: "lean", b: null, text: "lean (1 not at all … 5 very much)" }]);
+  assert.deepEqual(asked.map((i) => i.text), ["cramped … spacious", "lean (1 not at all … 5 strongly)"], "the owner's change: one-word items as an intensity; two-pole items unchanged");
   const human = scaleMessage("human", HUMAN_ITEMS, 3);
   assert.equal(human.text.split("\n").filter((l) => /^[a-l]\. /.test(l)).length, 12);
 });
@@ -318,7 +320,8 @@ test("the command: --dry writes Part A's design and reads no key; Part C needs t
     await writeFile(join(dir, "persona-lexicon-1-vocabulary.json"), JSON.stringify({ scale: OWN }));
     await main(["--part", "c", "--dry", "--n", "2"], () => {}, () => { keyAsked = true; return "never"; }, dir);
     assert.equal(keyAsked, false);
-    assert.ok((await readFile(join(dir, "persona-lexicon-1-c-dry-run.md"), "utf8")).includes("cramped … spacious"));
+    const cDry = await readFile(join(dir, "persona-lexicon-1-c-dry-run.md"), "utf8");
+    assert.ok(cDry.includes("cramped … spacious") && cDry.includes("steady (1 not at all … 5 strongly)"), "Part C asks the vocabulary's scale with the owner's change");
     await assert.rejects(main(["--part", "b", "--dry"], () => {}, () => "k", dir), /no dry run/);
     await assert.rejects(main(["--part", "b", "--go"], () => {}, () => "k", dir), /no Part A record/);
     await assert.rejects(main(["--dry"], () => {}, () => "k", dir), /--part a, b or c/);

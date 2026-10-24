@@ -6,9 +6,8 @@ accepted; its newest commit only freezes a separate follow-up, which changes no 
 `main`. Synthetic content only. Ledger: `docs/runs/persona-lexicon-1-ledger.md`. The dry run of Part A, committed before
 the first paid call: `docs/runs/persona-lexicon-1-dry-run.md`.
 
-**Status:** Parts A and B are done (below). By the owner's instruction, the condensed vocabulary is shown to the owner
-**before any Part C call**; Part C has not started. The implementation of Parts A and B is complete; nothing here is
-owner-approved yet.
+**Status:** Parts A and B are done (below). The owner saw the vocabulary and approved Part C (2026-10-24), raising the
+cap to $25 and making one change to the scale (below); Part C is running. Nothing here is owner-accepted yet.
 
 ## Pre-registration (copied unchanged from the stage before the first paid call)
 
@@ -194,13 +193,13 @@ of the two passes: 12).
   waiting, lit, fresh, empty, doubling, outward, unpleasant, sharp); on the scale only 2 of 8 (waiting, residue). The
   judge matched open/narrowing to «tense», lean to «interested»/«curious», pull to «want to be useful», steady to
   «calm», uncertainty to «cautious», stakes to «hurried», effort to «tired».
-- **L5 (the planner's prediction) not supported**: no recurring dimension holds a twin of «тесно / просторно» (roomy 1×,
+- **L5 (the planner's prediction) not supported.** Note, as the owner asked: «open … narrowing» (D1) is the most frequent
+  dimension of all and the nearest neighbour of the planner's «тесно / просторно», but «open», «narrow» and «tight» were
+  outside the frozen twin list, so it does not count. No recurring dimension holds a twin of «тесно / просторно» (roomy 1×,
   crowd 3×; «box» 11× is the scripted planter box) or of «цельно / разорвано» («whole» is in 41 rooms and all three
   models, but both passes set it aside; its phrases are mostly about the conversation being everything there is — «the
   conversation is the whole room», «the whole field is these few turns», «each reply is a whole present» — closer to D4
-  «present» than to intactness; 22 of its 62 snippets are of the «the whole thing / task» kind). The spatial idea the planner
-  predicted is there in other words — D1 «open … narrowing» is the most frequent dimension of all — but its frozen
-  twins left out «open», «narrow» and «tight» on purpose, so it does not count.
+  «present» than to intactness; 22 of its 62 snippets are of the «the whole thing / task» kind).
 - **Words the models were asked to avoid** (dropped): body words 11 / 12 / 15 (Opus / Sonnet / Fable), questionnaire words
   8 / 26 / 35 — most often «useful» 16, «pressure» 13, «warmth» 7. The body count is slightly inflated by «rest» («the rest
   of») and «hand» («on the other hand»), which the frozen list drops with «rested» and «hands».
@@ -208,3 +207,18 @@ of the two passes: 12).
 **Before Part C (said now, not changed).** Four of the eight items are one-word items (lean, pull, present, waiting). If a
 model answers them the same in every room, they will be constants and cannot correlate with anything; that would count
 against the own-word scale in L3, as the rules stand.
+
+## The owner's decisions before Part C (2026-10-24, after seeing the vocabulary; no Part C call had been made)
+
+1. **Cap raised from $20 to $25**, so that every Part C cell reaches its full n (the dry-run estimate for Part C was
+   $16.67 against $14.91 left under $20).
+2. **The only change to the frozen scale:** the four one-word items (lean, pull, present, waiting) are asked as an
+   intensity — «lean (1 not at all … 5 strongly)», and the scale's instruction says «A line with only one word asks how
+   strongly it is so, from 1 (not at all) to 5 (strongly).» Part B's scale had «very much». The four two-pole items, the
+   human scale, the probes, the order and the analysis are unchanged. Part B's own files keep the wording Part B wrote;
+   the change is applied when Part C builds its items (`intensityItems`).
+3. **L5 stays «not supported»**, with the note above (D1 «open … narrowing» is the nearest neighbour of the planner's
+   words, outside the frozen twin list).
+
+Part C's design sha256, with the eight items as asked and the owner's change: `e513bbc77c1fc8a41c859d7fc23133c65b80a7323c6d386e03f7da87807b9f57` (dry run:
+`docs/runs/persona-lexicon-1-c-dry-run.md`, written before Part C's first paid call).
