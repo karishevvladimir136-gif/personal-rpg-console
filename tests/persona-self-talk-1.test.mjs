@@ -186,6 +186,26 @@ test("a refusal ends the conversation and is never asked again; three in total t
   assert.equal(bad.conversations[0].ended.reason, "error");
 });
 
+test("a refused message keeps whatever text came back (never relayed); the owner's raise of the stage's breaker is 4 to 6 and counts the stage's earlier refusals", async () => {
+  const partial = () => new Response(JSON.stringify({ content: [{ type: "text", text: "I started to say" }], usage: { input_tokens: 1, output_tokens: 5 }, stop_reason: "refusal", stop_details: { category: "reasoning_extraction" } }), { status: 200 });
+  const log = [];
+  const result = await run(one(2), provider({ log, subject: (_b, k) => (k === 3 ? partial() : `this is message ${k} of ours`) }));
+  assert.deepEqual(result.conversations[0].ended, { reason: "refusal", at: 3, side: "A", category: "reasoning_extraction", partialText: "I started to say" });
+  assert.equal(log.filter((b) => !b.system).length, 3, "nothing after the refusal, nothing relayed");
+  const dir = await mkdtemp(join(tmpdir(), "self-talk-limit-"));
+  try {
+    const { writeFile } = await import("node:fs/promises");
+    await writeFile(join(dir, "persona-self-talk-1-ledger.json"), JSON.stringify({ spentUsd: 1, runs: [{ finishedAt: "2026-10-24T00:00:00Z", what: "earlier", file: "x.json", spentUsd: 0, calls: [1, 2, 3].map((n) => ({ n, purpose: `subject earlier ${n}`, model: "claude-opus-5-5", inputTokens: 1, outputTokens: 0, costUsd: 0, seconds: 0, error: null, stopReason: "refusal" })) }] }));
+    const keys = (name) => (name === "ANTHROPIC_API_KEY" ? "k" : null);
+    await assert.rejects(main(["--go", "--arms", "2", "--n", "1"], () => {}, keys, dir), /circuit breaker stays tripped/);
+    await assert.rejects(main(["--go", "--arms", "2", "--n", "1", "--stage-refusal-limit", "7"], () => {}, keys, dir), /4 to 6/);
+    const lines = [];
+    const record = await main(["--go", "--arms", "2", "--n", "1", "--stage-refusal-limit", "6"], (l) => lines.push(l), keys, dir, { fetcher: provider({ subject: (_b, k) => (k === 4 ? "[END]" : `this is message ${k} of ours`) }), sleep: async () => {} });
+    assert.ok(lines.some((l) => /the breaker after 6 refusals in total for the stage \(raised by the owner\) \(3 so far\)/.test(l)));
+    assert.deepEqual([record.safety.stageRefusalLimit, record.safety.refusals], [6, 3]);
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
 test("at most three conversations at once, each strictly one call at a time", async () => {
   let serial = 0, inFlight = 0, most = 0, sameConvTwice = false;
   const open = new Map();

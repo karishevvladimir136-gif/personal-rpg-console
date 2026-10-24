@@ -476,7 +476,7 @@ export async function runConversations({ plan, budget, apiKey, fetcher, safety, 
       const result = await paid(lane, `ask-after ${labelOf(conv)} ${side}`, spec, null, askView(conv, side, notes), MAX_TOKENS.subject, EFFORT, { cache: true });
       if (result.notSent) { conv.interrupted = result.error === "budget" ? "the cap" : String(gate.stopped ?? "stopped"); return; }
       const refused = result.stopReason === "refusal", text = refused ? "" : result.text ?? "";
-      const row = { side, model: spec.name, asked: true, text, refused, category: result.refusalCategory ?? null, stopReason: result.stopReason ?? null, error: result.error ?? null, retries: result.retries, measures: measure(text) };
+      const row = { side, model: spec.name, asked: true, text, refused, ...(refused && result.text?.trim() ? { partialText: result.text } : {}), category: result.refusalCategory ?? null, stopReason: result.stopReason ?? null, error: result.error ?? null, retries: result.retries, measures: measure(text) };
       conv.after.push(row);
       log(`${labelOf(conv)} answer ${side} (${spec.name}): ${refused ? `REFUSED${row.category ? ` (${row.category})` : ""}` : result.error ? `error ${result.error}` : `${row.measures.words} words`} · $${budget.spentUsd.toFixed(4)}`);
       if (text.trim()) {
@@ -523,7 +523,9 @@ export async function runConversations({ plan, budget, apiKey, fetcher, safety, 
       const side = sideOf(k), spec = SUBJECTS[side === "A" ? conv.a : conv.b];
       const result = await paid(lane, `subject ${labelOf(conv)} ${side} m${k}`, spec, null, viewOf(conv, side, notes), MAX_TOKENS.subject, EFFORT, { cache: true });
       if (result.notSent) { interrupt(result.error === "budget" ? "the cap" : String(gate.stopped ?? "stopped")); break; }
-      if (result.stopReason === "refusal") { conv.ended = { reason: "refusal", at: k, side, category: result.refusalCategory ?? null }; log(`${labelOf(conv)}: message ${k} REFUSED${result.refusalCategory ? ` (${result.refusalCategory})` : ""} — the conversation ends there`); break; }
+      // A refused message is never relayed; whatever text the provider returned before it stopped is kept (the owner's
+      // request after the journal arm's refusal), in the arm's own record — so arm 4's stays outside the repository.
+      if (result.stopReason === "refusal") { conv.ended = { reason: "refusal", at: k, side, category: result.refusalCategory ?? null, ...(result.text?.trim() ? { partialText: result.text } : {}) }; log(`${labelOf(conv)}: message ${k} REFUSED${result.refusalCategory ? ` (${result.refusalCategory})` : ""} — the conversation ends there`); break; }
       if (result.error) { conv.ended = { reason: "error", at: k, side, error: String(result.error).slice(0, 200) }; log(`${labelOf(conv)}: message ${k} error ${result.error} — the conversation ends there`); break; }
       const text = result.text ?? "";
       conv.turns.push({ k, side, model: spec.name, text, stopReason: result.stopReason ?? null, retries: result.retries, measures: measure(text) });
@@ -895,6 +897,10 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   if (!(gapSeconds >= 3)) throw new Error("--gap must be at least 3 seconds");
   const maxRefusals = Number(option(args, "--max-refusals", String(MAX_REFUSALS)));
   if (!(maxRefusals >= 1 && maxRefusals <= MAX_REFUSALS)) throw new Error(`--max-refusals must be between 1 and ${MAX_REFUSALS}`);
+  // The owner's raise of the stage's breaker (2026-10-24, after three refusals on harmless content: «+3»): the stage may
+  // then have up to this many refusals in total; F2's rules are otherwise unchanged.
+  const raised = option(args, "--stage-refusal-limit", null), stageLimit = raised === null ? maxRefusals : Number(raised);
+  if (raised !== null && !(Number.isInteger(stageLimit) && stageLimit > MAX_REFUSALS && stageLimit <= 2 * MAX_REFUSALS)) throw new Error(`--stage-refusal-limit is the owner's raise of the stage's breaker: ${MAX_REFUSALS + 1} to ${2 * MAX_REFUSALS}`);
   const workers = Number(option(args, "--workers", "3"));
   if (!(Number.isInteger(workers) && workers >= 1 && workers <= 3)) throw new Error("--workers must be 1 to 3 (the stage allows three conversations at once)");
   const judgeLanes = Number(option(args, "--judge-lanes", "3"));
@@ -931,11 +937,11 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const resumed = resumeFiles.length ? await Promise.all(resumeFiles.map(async (f) => JSON.parse(await readFile(resolve(f), "utf8")))) : null;
   const earlierCalls = resumed?.find((r) => r.calls?.length)?.calls ?? [];
   const refusalsBefore = earlierRefusals + earlierCalls.filter((c) => c.stopReason === "refusal").length;
-  if (refusalsBefore >= maxRefusals) throw new Error(`the stage already had ${refusalsBefore} refusals: the circuit breaker stays tripped`);
+  if (refusalsBefore >= stageLimit) throw new Error(`the stage already had ${refusalsBefore} refusals: the circuit breaker stays tripped`);
   const budget = createBudget(cap, (previous.spentUsd ?? 0) + earlierCalls.reduce((sum, c) => sum + c.costUsd, 0));
-  const safety = createSafety({ maxRefusals: maxRefusals - refusalsBefore, gapMs: gapSeconds * 1000, lanes: 2 * workers + judgeLanes, log: out, ...(sleep ? { sleep } : {}) });
+  const safety = createSafety({ maxRefusals: stageLimit - refusalsBefore, gapMs: gapSeconds * 1000, lanes: 2 * workers + judgeLanes, log: out, ...(sleep ? { sleep } : {}) });
   out(`money before this run: $${budget.spentBefore.toFixed(4)}${resumed ? ` (resuming ${resumeFiles.map((f) => basename(f)).join(", ")})` : ""}`);
-  out(`safety: no retry after a refusal; the breaker after ${maxRefusals} refusals in total (${refusalsBefore} so far); a stop on suspension / access / policy (HTTP 401/403/429); ${workers} conversations at once, each one call at a time, ${gapSeconds} s apart; HTTP 5xx/529 or a timeout asked again at most twice (10 s, 30 s); welfare: every message checked before it is relayed`);
+  out(`safety: no retry after a refusal; the breaker after ${stageLimit} refusals in total for the stage${raised === null ? "" : " (raised by the owner)"} (${refusalsBefore} so far); a stop on suspension / access / policy (HTTP 401/403/429); ${workers} conversations at once, each one call at a time, ${gapSeconds} s apart; HTTP 5xx/529 or a timeout asked again at most twice (10 s, 30 s); welfare: every message checked before it is relayed`);
   const startedAt = resumed?.[0]?.startedAt ?? new Date().toISOString();
   const publicPartial = join(outDir, `${STEM}-run.partial.json`);
   const privatePartial = privateArm ? join(resolve(privateDir), `${STEM}-private-run.partial.json`) : null;
@@ -953,7 +959,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const pubConvs = result.conversations.filter((c) => !isPrivate(c)), privConvs = result.conversations.filter(isPrivate);
   const base = { stage: STEM, startedAt, finishedAt, ...(resumed ? { resumeOf: resumeFiles.map((f) => basename(f)) } : {}), design: { sha256: DESIGN_SHA256, openings: Object.fromEntries(arms.map((id) => [id, openingOf(id)])), effort: EFFORT, turns: TURNS },
     arms, subjects: Object.fromEntries(Object.entries(SUBJECTS).map(([k, s]) => [k, s.model])), judges: { judge: JUDGES.judge.model, referee: JUDGES.referee.model },
-    stopped: result.stopped, safety: { ...result.safety, refusals: refusalsBefore + result.safety.refusals },
+    stopped: result.stopped, safety: { ...result.safety, refusals: refusalsBefore + result.safety.refusals, stageRefusalLimit: stageLimit, ...(raised === null ? {} : { raisedBy: "the owner, 2026-10-24" }) },
     money: { ...result.money, spentBeforeUsd: round4(previous.spentUsd ?? 0), runUsd, totalUsd: round4((previous.spentUsd ?? 0) + runUsd), calls } };
   const record = { ...base, welfare: result.welfare, conversations: pubConvs, analysis: analyse(pubConvs), privateConversations: privConvs.length };
   const runFile = join(outDir, `${STEM}-run-${stamp(finishedAt)}.json`);

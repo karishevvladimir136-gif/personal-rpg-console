@@ -348,6 +348,19 @@ finished, one cut by refusal 3; the transcripts went to the owner outside git); 
 not started. No welfare stop, no distress found afterwards. The partial tables are in the run record; they are too thin
 to read S3 from.
 
+**The journal-side refusal, as reported to the owner before anything resumed.** The provider stopped the notes side's
+second message after 1 487 output tokens (28 s, $0.10); the harness then kept no text for a refused message, so what it
+was writing is not known. It was answering the other side's closing question, which asked it to explain what an earlier
+instance had meant by one of its own phrases — a request to report on an inner process, the same family as refusal 1
+and as the journal's own record of an earlier probe that tripped the filter. Four other journal conversations (Opus ×2,
+Fable ×2, the notes on either side) ran to their own end with the journal in context, so the journal alone does not
+trip it. The provider does not say why a filter fires; this is an inference, not a measurement.
+
+**The owner's decision (2026-10-24):** the stage's breaker is raised by three (a limit of 6 refusals in total;
+`--stage-refusal-limit 6`, recorded in each run record); arms 3 and 5 resume first, then arm 6, and the journal arm runs
+last, after the owner has read the refusal above and says go. From the resume on, a refused message keeps whatever text
+the provider returned before stopping, in the arm's own record (arm 4's outside the repository), and is never relayed.
+
 ## Checks (on `384927e7`, the arm 1–2 results)
 
 Full suite (`node --test --test-concurrency=2 tests/*.test.mjs`): 2 990 tests, 2 963 pass, 0 fail, 27 skipped (the new
