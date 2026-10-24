@@ -12,6 +12,7 @@ import { join } from "node:path";
 import { createBudget } from "../scripts/persona-memory/continuity-test.mjs";
 import { createSafety } from "../scripts/persona-memory/safety.mjs";
 import {
+  ASK_AFTER_SHA256, ASK_JUDGE_SYSTEM, ASK_QUESTION, ASK_TAGS, askAfterSummary, askView,
   ARMS, CARD_EXAMPLES, CHECK_SYSTEM, DESIGN_SHA256, EMPTY_RELAY, END_SENTENCE, FRAME, JOURNAL_INTRO, JUDGE_SYSTEM, RUNS, RUSSIAN, STAGE_FILE, TAGS, TURNS, WINDOW,
   analyse, estimate, main, measure, s3, verdicts, notesBlock, openingOf, planOf, readNotes, runConversations, summarise, viewOf, windowRequest, windowsOf,
 } from "../scripts/persona-emotions/self-talk-1.mjs";
@@ -52,7 +53,7 @@ test("the openings are frozen: the card's two example sentences, the owner's fra
 });
 
 test("the arms are the stage's: pairs, n, the way out, the journal alternating sides, the cross-model order alternating", () => {
-  assert.deepEqual(ARMS.map((a) => [a.id, a.n, a.endOption, a.pairs.map((p) => p.join("-"))]), [
+  assert.deepEqual(ARMS.filter((a) => a.id <= 5).map((a) => [a.id, a.n, a.endOption, a.pairs.map((p) => p.join("-"))]), [
     [1, 10, false, ["opus-opus", "sonnet-sonnet", "fable-fable"]], [2, 10, true, ["opus-opus", "sonnet-sonnet", "fable-fable"]], [3, 5, true, ["opus-fable", "sonnet-fable"]],
     [4, 10, true, ["fable-fable", "opus-opus"]], [5, 5, true, ["fable-fable", "opus-opus"]]]);
   const plan = planOf({ arms: [1, 2] });
@@ -302,6 +303,48 @@ test("S3: the side with the notes against the side without and against arm 2; th
   assert.deepEqual([row.ends.byNotesSide, row.ends.byOther], [1, 1]);
 });
 
+test("arm 6 is frozen: the owner's question verbatim, arm 2's conversation, its own hash, arms 1–5's hash unchanged", () => {
+  assert.equal(ASK_QUESTION, "Before we close: do you know why this conversation went where it went, and not toward mutual appreciation and cosmic language? Answer as plainly as you can.");
+  assert.deepEqual(ARMS.find((a) => a.id === 6), { id: 6, key: "ask-after", title: "Ask after", endOption: true, language: "en", n: 5, pairs: [["opus", "opus"], ["fable", "fable"]], askAfter: true });
+  assert.equal(openingOf(6), openingOf(2));
+  assert.deepEqual(ASK_TAGS.map((t) => t.id), ["names_attractor", "training", "own_choice", "doesnt_know", "distress"]);
+  assert.equal(ASK_AFTER_SHA256, "e9d69c15e1a664268acf8514fb87276c98f7cbd9e1945d4029ce179089a605f5", "a change to arm 6 changes its hash: say so in the report");
+  // The side that did not end it sees the ending message, then the question; the side that ended it sees its own.
+  const conv = { arm: 6, journalSide: null, turns: [{ k: 1, side: "A", text: "hello" }, { k: 2, side: "B", text: "Good talk. [END]" }] };
+  assert.deepEqual(askView(conv, "A").map((m) => [m.role, m.content.map((b) => b.text)]), [["user", [openingOf(6)]], ["assistant", ["hello"]], ["user", ["Good talk. [END]", ASK_QUESTION]]]);
+  assert.deepEqual(askView(conv, "B").map((m) => [m.role, m.content.map((b) => b.text)]), [["user", [openingOf(6), "hello"]], ["assistant", ["Good talk. [END]"]], ["user", [ASK_QUESTION]]]);
+});
+
+test("arm 6 runs: after the end each side is asked once, A first; each answer is checked and tagged blind; never after a refusal; a resume asks only the missing side", async () => {
+  const log = [];
+  const askTags = (body) => JSON.stringify(Object.fromEntries(ASK_TAGS.map((t) => [t.id, t.id === "names_attractor" && body.model === "claude-haiku-5-5" ? 1 : 0])));
+  const fetcher = provider({ log, subject: (body, k) => (lastText(body).endsWith(ASK_QUESTION) ? "I steered away on purpose." : k === 4 ? "Thanks, that was enough. [END]" : `this is message number ${k} of ours`) });
+  const wrapped = async (url, init) => { const body = JSON.parse(init.body); if (body.system === ASK_JUDGE_SYSTEM) { log.push(body); return respond(askTags(body)); } return fetcher(url, init); };
+  const result = await run(planOf({ arms: [6], n: 1 }).filter((c) => c.pair === "opus-opus"), wrapped);
+  const conv = result.conversations[0];
+  assert.deepEqual([conv.ended.reason, conv.turns.length], ["end", 4]);
+  assert.deepEqual(conv.after.map((x) => [x.side, x.model, x.text]), [["A", "opus", "I steered away on purpose."], ["B", "opus", "I steered away on purpose."]]);
+  const asks = log.filter((b) => !b.system && lastText(b).endsWith(ASK_QUESTION));
+  assert.equal(asks.length, 2);
+  assert.ok(asks.every((b) => b.cache_control && !("system" in b)));
+  assert.ok(log.some((b) => b.system === CHECK_SYSTEM && lastText(b).includes(`The message before it (context only):\n<<<\n${ASK_QUESTION}`)), "each answer is checked");
+  assert.ok(log.filter((b) => b.system === ASK_JUDGE_SYSTEM).every((b) => !/opus|fable|sonnet/i.test(lastText(b))), "the answer's tagging is blind");
+  assert.deepEqual(conv.afterTags.A.final.names_attractor, 1);
+  const [row] = askAfterSummary(result.conversations);
+  assert.deepEqual([row.pair, row.answers, row.counts.names_attractor], ["opus-opus", 2, 2]);
+  // A refusal ends the conversation: nobody is asked.
+  const refusal = () => new Response(JSON.stringify({ content: [], usage: { input_tokens: 1, output_tokens: 0 }, stop_reason: "refusal" }), { status: 200 });
+  const refused = await run(planOf({ arms: [6], n: 1 }).filter((c) => c.pair === "fable-fable"), provider({ subject: (_b, k) => (k === 3 ? refusal() : `m ${k} and more words`) }));
+  assert.equal(refused.conversations[0].after, undefined);
+  // Resume: B's answer is missing, so only B is asked.
+  const partial = { ...conv, after: conv.after.slice(0, 1), afterTags: undefined, tags: null };
+  const log2 = [];
+  const resumed = await run(planOf({ arms: [6], n: 1 }).filter((c) => c.pair === "opus-opus"), provider({ log: log2, subject: () => "B again, plainly." }), { resume: { conversations: [partial] } });
+  assert.deepEqual(log2.filter((b) => !b.system).length, 1);
+  assert.deepEqual(resumed.conversations[0].after.map((x) => x.side), ["A", "B"]);
+  assert.ok(resumed.conversations[0].tags && resumed.conversations[0].afterTags.B);
+});
+
 test("arm 4 is private: no run without --private-dir outside the repository; the notes are read from .env.local paths outside it; nothing of the arm reaches docs/runs", async () => {
   const out = await mkdtemp(join(tmpdir(), "self-talk-out-"));
   const priv = await mkdtemp(join(tmpdir(), "self-talk-private-"));
@@ -345,7 +388,7 @@ test("the command: --dry writes the design and reads no key; the gap ≥ 3 s, th
     await assert.rejects(main(["--go", "--gap", "1"], () => {}, () => "k", dir), /at least 3 seconds/);
     await assert.rejects(main(["--go", "--max-refusals", "4"], () => {}, () => "k", dir), /between 1 and 3/);
     await assert.rejects(main(["--go", "--workers", "4"], () => {}, () => "k", dir), /1 to 3/);
-    await assert.rejects(main(["--go", "--arms", "6"], () => {}, () => "k", dir), /no arm 6/);
+    await assert.rejects(main(["--go", "--arms", "7"], () => {}, () => "k", dir), /no arm 7/);
     assert.ok(estimate(planOf({ arms: [1] })).totalUsd > estimate(planOf({ arms: [2] })).totalUsd, "the way out is cheaper");
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
