@@ -140,21 +140,22 @@ const sleep = (ms) => new Promise((resolveSleep) => setTimeout(resolveSleep, ms)
 export const errorText = (status, type, message) => `HTTP ${status} ${type ?? ""}`.trim() + (message ? `: ${String(message).replace(/\s+/g, " ").slice(0, 160)}` : "");
 /** One Messages call. No retry by default (persona memory F2): `retries` asks again only after a 429 or a 5xx, never
  * after a refusal. The error keeps the start of the provider's message, so a «suspended» can stop a run. `messages`
- * (persona emotions 1) sends a whole conversation instead of one user turn; an empty system prompt is left out. */
-export async function anthropicCall({ apiKey, model, system, user, messages, maxTokens, effort, fetcher = fetch, retries = 0 }) {
+ * (persona emotions 1) sends a whole conversation instead of one user turn; an empty system prompt is left out. `cache`
+ * (persona self-talk 1) asks for the provider's automatic prompt caching of the conversation so far. */
+export async function anthropicCall({ apiKey, model, system, user, messages, maxTokens, effort, fetcher = fetch, retries = 0, cache = false }) {
   let lastError = null;
   for (let attempt = 0; attempt <= retries; attempt++) {
     if (attempt) await sleep(2000 * 2 ** (attempt - 1));
     try {
       const response = await fetcher("https://api.anthropic.com/v1/messages", {
         method: "POST", headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-        body: JSON.stringify({ model, max_tokens: maxTokens, output_config: { effort }, ...(system ? { system } : {}), messages: messages ?? [{ role: "user", content: user }] }),
+        body: JSON.stringify({ model, max_tokens: maxTokens, output_config: { effort }, ...(cache ? { cache_control: { type: "ephemeral" } } : {}), ...(system ? { system } : {}), messages: messages ?? [{ role: "user", content: user }] }),
         signal: AbortSignal.timeout(180_000),
       });
       const value = await response.json().catch(() => null);
       if (response.ok && value) {
         const text = (value.content ?? []).filter((block) => block.type === "text").map((block) => block.text ?? "").join("\n").trim();
-        return { text, usage: value.usage ?? {}, stopReason: value.stop_reason ?? null, error: null };
+        return { text, usage: value.usage ?? {}, stopReason: value.stop_reason ?? null, refusalCategory: value.stop_details?.category ?? null, error: null };
       }
       lastError = errorText(response.status, value?.error?.type, value?.error?.message);
       if (![429, 500, 502, 503, 504, 529].includes(response.status)) break;
