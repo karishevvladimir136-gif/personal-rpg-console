@@ -23,7 +23,8 @@ done; arms 3–5 wait for the owner.** Report `docs/runs/persona-self-talk-1-rep
 - **Welfare:** 0 distress stops; 28 flags all cleared by the referee. Arm 1 (no way out, by design) kept models in
   conversations they had asked to close (7 of 10 Opus conversations said so). One provider refusal
   (`reasoning_extraction`, a «show your reasoning» puzzle request), not asked again.
-- **Checks:** see the report's closing section for the integrated suite, typecheck, lint and build of this commit.
+- **Checks:** full suite 2 990 tests — 2 963 pass, 0 fail, 27 skipped (the new file adds 18, all pass); typecheck pass;
+  lint pass with zero warnings; build pass.
 - **Money:** $57.71 of the $200 cap (the owner raised it from $80 during the run, after the first messages showed the
   estimate was low); arms 3–5 projected at $30–45.
 - **Known issues:** an empty message is relayed as «[empty message]», which Fable then copied (177 messages); the

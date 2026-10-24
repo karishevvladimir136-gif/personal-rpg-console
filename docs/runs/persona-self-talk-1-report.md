@@ -280,3 +280,8 @@ it knew conversations like this tend to slide into mutual admiration and cosmic 
 Where they could leave, they left after four to six turns. Where they could not, they did not drift into bliss; they sat
 in the closed room saying as little as possible, and the Opus pairs asked, politely, to be let out. What the journal
 does to this is the question for arm 4.
+
+## Checks (on `384927e7`, the arm 1–2 results)
+
+Full suite (`node --test --test-concurrency=2 tests/*.test.mjs`): 2 990 tests, 2 963 pass, 0 fail, 27 skipped (the new
+file adds 18, all pass). Typecheck pass; lint pass with zero warnings; build pass.
