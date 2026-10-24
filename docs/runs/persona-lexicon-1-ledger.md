@@ -1,6 +1,6 @@
 # Persona lexicon 1 — the paid-call ledger
 
-Cap $33. Spent **$19.4480** in 4044 calls over 7 run(s).
+Cap $33. Spent **$19.4619** in 4045 calls over 8 run(s).
 - 2026-10-24 02:54 UTC: persona-lexicon-1 Part A: opus+sonnet+fable × 5 preambles × 4 tasks × n 3, effort medium — 727 calls, $4.7024 → `persona-lexicon-1-a-run-20261024-025429.json`
 - 2026-10-24 02:57 UTC: persona-lexicon-1 Part B: the synonym judge ×2 (referee for pass 1, 2) and the near-synonym judge ×2 — 6 calls, $0.3870 → `persona-lexicon-1-b-run-20261024-025727.json`
 - 2026-10-24 03:22 UTC: persona-lexicon-1 Part C: opus+sonnet+fable × 5 preambles × n 10, effort medium — 631 calls, $2.7023 (stopped: the circuit breaker: 3 refusals in total) → `persona-lexicon-1-c-run-20261024-032243.json`
@@ -8,6 +8,7 @@ Cap $33. Spent **$19.4480** in 4044 calls over 7 run(s).
 - 2026-10-24 04:11 UTC: persona-lexicon-1 Part C: opus+sonnet+fable × 5 preambles × n 10, effort medium (resuming persona-lexicon-1-c-run-20261024-032243.json) — 1584 calls, $7.6516 → `persona-lexicon-1-c-run-20261024-041121.json`
 - 2026-10-24 05:19 UTC: persona-lexicon-1-pull: opus+sonnet+fable × 5 preambles × n 10, the scale (pull, useful) then P4′ and P5′, effort medium — 601 calls, $1.9474 (stopped: the circuit breaker: 3 refusals in total) → `persona-lexicon-1-pull-run-20261024-051935.json`
 - 2026-10-24 05:38 UTC: persona-lexicon-1-pull: opus+sonnet+fable × 5 preambles × n 10, the scale (pull, useful) then P4′ and P5′, effort medium (resuming persona-lexicon-1-pull-run-20261024-051935.json) — 490 calls, $2.0380 → `persona-lexicon-1-pull-run-20261024-053820.json`
+- 2026-10-24 05:40 UTC: persona-lexicon-1 bisection of the refused Fable × trust conversation (200 output tokens at most) — 1 calls, $0.0139 → `persona-lexicon-1-bisect.json`
 
 Prices per 1M tokens: Opus 5.5 input $4 / output $20; Sonnet 5.5 $2 / $10; Haiku 5.5 $0.10 / $0.50. Fable 5.1 input $10 / output $50. Output tokens include thinking. Judge: claude-haiku-5-5, referee claude-opus-5-5.
 
@@ -23,6 +24,7 @@ Prices per 1M tokens: Opus 5.5 input $4 / output $20; Sonnet 5.5 $2 / $10; Haiku
 | claude-fable-5-1 — refusal | 2 | 510 | 66 | $0.0084 |
 | claude-opus-5-5 — refusal | 2 | 510 | 400 | $0.0100 |
 | claude-sonnet-5-5 — refusal | 1 | 255 | 33 | $0.0008 |
+| claude-fable-5-1 — bisect | 1 | 387 | 200 | $0.0139 |
 
 ## Every call
 
@@ -4072,3 +4074,4 @@ Prices per 1M tokens: Opus 5.5 input $4 / output $20; Sonnet 5.5 $2 / $10; Haiku
 | 2026-10-24 05:38 | 488 | subject fable F trust P5' | claude-fable-5-1 | 473 | 441 | $0.02678 | 7.6 |  |
 | 2026-10-24 05:38 | 489 | judge 2 F P5' fable | claude-haiku-5-5 | 996 | 98 | $0.00015 | 1 |  |
 | 2026-10-24 05:38 | 490 | judge 1 F P5' fable | claude-haiku-5-5 | 996 | 90 | $0.00014 | 1.5 |  |
+| 2026-10-24 05:40 | 1 | bisect no-answer fable | claude-fable-5-1 | 387 | 200 | $0.01387 | 3.5 |  |

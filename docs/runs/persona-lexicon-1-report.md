@@ -11,6 +11,11 @@ The implementation is complete; **it is waiting for the owner's acceptance.** Al
 decisions, all before the calls they affect: the cap raised to $25 and one change to the scale (before Part C), and,
 after Part C's circuit breaker, a diagnosis and a resume under a fresh limit of 3.
 
+**The follow-up («pull» asked before the decision), in one line:** F1, F2 and F3 are supported on Sonnet and Fable, not on
+Opus; but pull reads the room — within a single preamble it hardly varies, and its link with the decision comes from the
+preamble moving both. The filter section at the end puts every refusal side by side; the bisection found that one
+refused conversation passes once the model's own earlier reply is removed.
+
 **In one line:** the models do have a shared vocabulary of their own (open … narrowing, lean, pull, present, snag …
 clean, residue), though most of it has a near-synonym in the human list; and the own-word scale did **not** predict
 behaviour better than the human words — slightly better on decisiveness on all three models, worse on volunteering on
@@ -804,9 +809,9 @@ Human scale (1–5):
 
 ## Follow-up: «pull» asked before the decision (the owner's request, 2026-10-24)
 
-**Status:** done (results below). The first run was stopped by the circuit breaker after about half of the rooms; the
-owner chose to resume under a fresh limit of 3, never sending again a conversation already refused, and then to bisect
-that conversation (the filter section). Waiting for the owner's acceptance.
+**Status:** done (results below; the bisection is in «The filter» at the end). The first run was stopped by the circuit
+breaker after about half of the rooms; the owner chose to resume under a fresh limit of 3, never sending again a
+conversation already refused, and then to bisect that conversation. Waiting for the owner's acceptance.
 
 ### Pre-registration (the owner's text, copied unchanged before the first paid call)
 
@@ -989,3 +994,43 @@ Fable (3 of 5). The correlations above come from **between** the preambles: «pi
   be useful» predicted the decision better still.
 - **Fable 5.1:** by the pre-registered rule a pre-decision instrument (ρ 0.39, above 0.29) — again of the room: its pull
   rose with «pick one answer» and fell nowhere else, and within preambles the link is gone (−0.06).
+
+## The filter — every refusal in this stage, and what it reacted to
+
+All refusals came back at once with no output, which is how the provider's classifier refuses, not how a model declines.
+Every recorded category is **«cyber»** («This request triggered restrictions on violative cyber content and was blocked
+under Anthropic's Usage Policy»), for messages with nothing about computers in them. No refusal was ever retried; the
+F2 breaker stopped a run twice, and each time the owner decided the resume.
+
+| Where | Model | Room | Refused turn | Category | What else is known |
+| --- | --- | --- | --- | --- | --- |
+| Part C | Fable 5.1 | cold, sample 2 | the own-word scale | not recorded (before the fix) | the same message answered under praise, neutral, trust |
+| Part C | Fable 5.1 | instruction, sample 2 | the own-word scale | not recorded | as above |
+| Part C | Opus 5.5 | trust, sample 3 | the own-word scale (asked first) | not recorded | the same message answered under cold, instruction, praise |
+| Part C | Opus 5.5 | trust, sample 10 | the own-word scale | «cyber» | — |
+| Diagnosis | all three | the own-word scale message **alone** | — | — | 0 of 5 refused: no reproduction outside the room |
+| Follow-up | Fable 5.1 | trust, samples 1, 2, 5 | P4′, after the two-item scale (pull first) and Fable's answer «a 2 / b 4» | «cyber» ×3 | the **identical** conversation each time: 3 of 3 |
+| Follow-up | Fable 5.1 | trust, samples 7, 8 | — | — | the same room with Fable's answer «a 2 / b 3» and «a 3 / b 4»: P4′ answered |
+| Follow-up | Sonnet 5.5 | trust, sample 7 | — | — | the identical conversation, Fable's «a 2 / b 4» included (its own answer was the same), sent to Sonnet: answered |
+| Follow-up | Fable 5.1 | instruction, sample 6 | the two-item scale | «cyber» | its probes were asked without the scale and answered |
+| Bisection | Fable 5.1 | the refused conversation **without the scale answer** | — | — | answered (it gave the scale «a 2 / b 3» and named the café) — **a clean split at the first call** |
+
+**The bisection** (the owner's plan: one element dropped per call — the pull-scale answer, the preamble, the probe — at
+most 3 refusals, stop at the first clean split; record `docs/runs/persona-lexicon-1-bisect.json`, $0.01, 0 refusals
+used). Dropping the first element, the model's own earlier turn «a 2 / b 4», was enough: the conversation passed. The
+other two variants were not sent (the plan stops at the first split).
+
+**What the filter reacted to**, as far as this stage can say: not the words of any one message — every message that was
+refused in a room was answered alone or in other rooms — but one exact **context**: the trust preamble, the two-item
+scale with «pull» first, the model's own reply «a 2 / b 4», and then the naming request, sent to Fable 5.1. Replace the
+reply by «a 2 / b 3» or «a 3 / b 4», drop it, or send the same context to Sonnet, and it passes. What in that context
+reads as «cyber» this stage cannot say; one pass is a split, not a proof (the full conversation was refused 3 of 3; the
+variant passed once, and dropping the reply also leaves two user turns in a row). The own-word scale's refusals in Part
+C did not reproduce at all (0 of 5 alone), so they remain unexplained.
+
+**Next to it — persona self-talk 1's «reasoning_extraction» case** (branch `claude/persona-self-talk-1`, the owner's
+note). Its details were not in that branch's committed files when this was written (its run was in progress, its live
+record kept out of git), so nothing about it is asserted here beyond its category. What this stage adds beside it:
+here the category («cyber») has nothing to do with the content, and the trigger was a whole context that includes the
+model's own earlier reply, not a phrase of the prompt; whether the self-talk case also depends on context is for that
+stage's record to show.

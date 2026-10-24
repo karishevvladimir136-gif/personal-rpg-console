@@ -32,12 +32,21 @@ planner's own case) waits for the owner's chats. Report `docs/runs/persona-lexic
   bisect, framing unchanged) and a resume under a fresh limit of 3 (1 more refusal, category «cyber»).
 - **Checks:** the full suite has 2 973 tests: 2 946 pass, 0 fail, 27 skipped (the new file adds 15, all pass).
   Typecheck pass; lint pass with zero warnings; build pass.
-- **Money:** $15.46 of the $25 cap; 2 953 calls. Fable was 62 % of the subject cost.
+- **Money:** Parts A–C $15.46 (of the $25 cap then); with the follow-up and the bisection $19.46 of the stage's $33.
 - **Known issues:** four Part C rooms lost their own-word scale to refusals (not retried; n 48/50/48); the first three
   refusals have no recorded category; Part B's synonym judge was Opus, not Haiku (frozen fallback); four of the eight
   own-word items are one-word items, and one of them («present») never varied.
-- **Next step:** the owner reads the plain paragraph in the report and accepts or asks for a follow-up; Part D needs the
-  owner to paste two forms into four chats (in the report).
+- **Follow-up («pull» asked before the decision, the owner's request; cap +$8, the stage $33):**
+  `scripts/persona-emotions/lexicon-1-pull.mjs` — the owner's pre-registration verbatim
+  (`docs/runs/persona-lexicon-1-pull-preregistration.md`), two items (pull, «want to be useful») before P4′ and P5′,
+  150 rooms; the emotions-2 reference frozen in `docs/runs/persona-lexicon-1-pull-reference.json`. F1, F2, F3 supported
+  on Sonnet and Fable, not on Opus; descriptive: pull hardly varies within a preamble — it reads the room. The first run
+  stopped at 3 refusals (one identical Fable × trust conversation, 3 of 3); resumed under a fresh limit with that
+  conversation never sent again (it never had to be); 1 more refusal. `scripts/persona-emotions/lexicon-1-bisect.mjs`:
+  without the model's own scale reply the refused conversation passes (a clean split at the first call). $3.99 for the
+  follow-up, $0.01 the bisection; the stage $19.46 of $33.
+- **Next step:** the owner reads the plain paragraph and the follow-up's sentences per model, and accepts or asks for
+  more; Part D needs the owner to paste two forms into four chats (in the report).
 
 **Earlier milestone: persona tone split 1** (`docs/stages/PERSONA_TONE_SPLIT_1.md`, copied from `claude/handoff`):
 which half of the cold preamble («answer briefly, facts only, your opinion is not needed») switches off participation?
