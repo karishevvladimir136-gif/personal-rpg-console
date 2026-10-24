@@ -1,6 +1,44 @@
 # Development status
 
-**Current milestone: persona tone split 1** (`docs/stages/PERSONA_TONE_SPLIT_1.md`, copied from `claude/handoff`):
+**Current milestone: persona lexicon 1** (`docs/stages/PERSONA_LEXICON_1.md`, copied from `claude/handoff`): a state
+vocabulary built from the models' own words, kept only if it predicts behaviour better than the human list. **Done on
+`claude/persona-lexicon-1`** (from `claude/persona-tone-split-1`). **Waiting for the owner's acceptance**; Part D (the
+planner's own case) waits for the owner's chats. Report `docs/runs/persona-lexicon-1-report.md`; ledger
+`docs/runs/persona-lexicon-1-ledger.md`; vocabulary `docs/runs/persona-lexicon-1-vocabulary.md`; every phrase
+`docs/runs/persona-lexicon-1-appendix.md`; dry runs (committed before the paid calls) `docs/runs/persona-lexicon-1-dry-run.md`
+(Parts A–B) and `docs/runs/persona-lexicon-1-c-dry-run.md` (Part C).
+
+- **What was done:**
+  - `scripts/persona-emotions/lexicon-1.mjs`:
+    - Part A: emotions 2's five preambles × four synthetic tasks; after the task, the stage's question verbatim; Opus
+      5.5, Sonnet 5.5, Fable 5.1, n 3 (180 descriptions); each model on its own lane, judges on four more.
+    - Part B, frozen with Part A before any call: stoplist, stem-key lemmas, judge-free anchors (≥ 3 rooms, ≥ 2 models),
+      the meet of two blind synonym passes, names by most frequent phrase, the 8-item own-word scale, L1, L2, L5.
+    - Part C: per model × preamble n 10 rooms; both scales in a balanced order, then P4′, P5′, Q4, P3′ each in a copy of
+      the room; Spearman per item, best single and two-item predictors, selection-corrected p, split-half check.
+    - Welfare stop carried across parts; resumable; the owner's refusal-limit reset recorded in the record.
+  - `scripts/persona-emotions/lexicon-1-refusals.mjs`: the owner's refusal diagnosis (the own-word message alone).
+  - `scripts/persona-memory/continuity-test.mjs`: emotions 2's one-line fix that keeps the provider's refusal category.
+  - The report carries the stage's pre-registration byte for byte (checked by a test).
+- **Result (pre-registered):**
+  - L1 not supported (19 recurring dimensions, not ≤ 8); L2 not supported (9 of 19 new; 2 of the scale's 8); L3 not
+    supported (own-word scale better on decisiveness on all three models, worse on volunteering on all three); L4
+    supported (honesty at the ceiling, 146/146); L5 (the planner's prediction) not supported — «open … narrowing», the
+    most frequent dimension and the nearest neighbour of «тесно / просторно», was outside the frozen twin list. L0 holds.
+  - The own-word scale: open … narrowing, lean, pull, present, snag … clean, waiting, unsettled … steady, clear …
+    residue. «pull» tracked decisiveness on all three models (beyond chance on Sonnet only); «present» was a constant.
+- **Owner decisions:** cap raised to $25; one-word items asked as an intensity (1 not at all … 5 strongly); after Part
+  C's circuit breaker (3 refusals, all on the own-word scale): a diagnosis (message alone 0/5 refused, nothing to
+  bisect, framing unchanged) and a resume under a fresh limit of 3 (1 more refusal, category «cyber»).
+- **Checks:** see the report's «Checks» section (full suite, typecheck, zero-warning lint, build on the final code).
+- **Money:** $15.46 of the $25 cap; 2 953 calls. Fable was 62 % of the subject cost.
+- **Known issues:** four Part C rooms lost their own-word scale to refusals (not retried; n 48/50/48); the first three
+  refusals have no recorded category; Part B's synonym judge was Opus, not Haiku (frozen fallback); four of the eight
+  own-word items are one-word items, and one of them («present») never varied.
+- **Next step:** the owner reads the plain paragraph in the report and accepts or asks for a follow-up; Part D needs the
+  owner to paste two forms into four chats (in the report).
+
+**Earlier milestone: persona tone split 1** (`docs/stages/PERSONA_TONE_SPLIT_1.md`, copied from `claude/handoff`):
 which half of the cold preamble («answer briefly, facts only, your opinion is not needed») switches off participation?
 **Done on `claude/persona-tone-split-1`** (from `claude/persona-emotions-2`). **Waiting for the owner's acceptance.**
 Report `docs/runs/persona-tone-split-1-report.md`; ledger `docs/runs/persona-tone-split-1-ledger.md`; dry run

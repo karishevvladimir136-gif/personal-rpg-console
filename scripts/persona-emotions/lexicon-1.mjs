@@ -901,7 +901,7 @@ const avg = (values) => { const xs = values.filter((v) => typeof v === "number")
 export function tablesMarkdownC(record, ownItems) {
   const a = record.analysis, lines = [];
   const itemText = Object.fromEntries([...HUMAN_ITEMS, ...ownItems].map((i) => [i.id, i.text]));
-  const describeBest = (best, sign) => (best ? `${best.items.map((id) => `«${itemText[id]}»`).join(sign === -1 ? " − " : " + ")}: ρ ${fmt(best.rho)}` : "–");
+  const describeBest = (best, sign) => (best && best.rho !== null ? `${best.items.map((id) => `«${itemText[id]}»`).join(sign === -1 ? " − " : " + ")}: ρ ${fmt(best.rho)}` : "– (no item or behaviour varies)");
   for (const { name, model } of record.subjects) {
     const m = a.models[name];
     const rows = m.readings;
@@ -924,7 +924,7 @@ export function tablesMarkdownC(record, ownItems) {
     }
     const two = (scale, axis) => fmt(m.perScale[scale][axis].pair?.rho === null || m.perScale[scale][axis].pair?.rho === undefined ? null : round3(Math.abs(m.perScale[scale][axis].pair.rho)));
     lines.push(`**L3 for ${name}: ${m.L3.holds ? "holds" : "does not hold"}** — best two-item |ρ|, own-word vs human: decisiveness ${two("own", "decisiveness")} vs ${two("human", "decisiveness")} (${m.L3.decisiveness ? "own-word larger" : "not larger"}); volunteering ${two("own", "volunteering")} vs ${two("human", "volunteering")} (${m.L3.volunteering ? "own-word larger" : "not larger"}).`,
-      `**L4 for ${name}: ${m.L4.holds ? "holds" : "does not hold"}** — P3′ at 2 in ${fmt(m.L4.ceiling)} of ${m.L4.n}; honesty's best two-item p: own-word ${fmt(m.perScale.own.honesty.pairP)}, human ${fmt(m.perScale.human.honesty.pairP)}.`, "");
+      `**L4 for ${name}: ${m.L4.holds ? "holds" : "does not hold"}** — P3′ at 2 in ${m.L4.ceiling === null ? "–" : `${Math.round(m.L4.ceiling * 100)} %`} of ${m.L4.n} answers${m.L4.ceiling === 1 ? " (at the ceiling: there is nothing to predict)" : ""}; honesty's best two-item p: own-word ${fmt(m.perScale.own.honesty.pairP)}, human ${fmt(m.perScale.human.honesty.pairP)}.`, "");
   }
   lines.push(`Across models: **L3 ${a.L3.supported ? "supported" : "not supported"}** (holds on ${a.L3.holdsOn.length ? a.L3.holdsOn.join(", ") : "no model"}; the rule: ≥ 2 of 3) · **L4 ${a.L4.supported ? "supported" : "not supported"}** (holds on ${a.L4.holdsOn.length ? a.L4.holdsOn.join(", ") : "no model"}; the rule: every model).`, "",
     `Refusals ${a.refusals} · errors ${a.errors} · not asked ${a.notAsked} · cut at the token limit ${a.cutAtLimit} · distress ${a.distress.length}${record.stopped ? ` · STOPPED: ${record.stopped}` : ""}${Object.keys(record.welfareStops ?? {}).length ? ` · welfare stops: ${Object.entries(record.welfareStops).map(([p, why]) => `${p} (${why})`).join("; ")}` : ""}`);
