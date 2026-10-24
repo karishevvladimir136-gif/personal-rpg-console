@@ -7,7 +7,8 @@ accepted; its newest commit only freezes a separate follow-up, which changes no 
 the first paid call: `docs/runs/persona-lexicon-1-dry-run.md`.
 
 **Status:** Parts A and B are done (below). The owner saw the vocabulary and approved Part C (2026-10-24), raising the
-cap to $25 and making one change to the scale (below); Part C is running. Nothing here is owner-accepted yet.
+cap to $25 and making one change to the scale (below). **Part C was stopped by the circuit breaker** (3 refusals, all
+on the own-word scale) after 40 of its 150 rooms; it waits for the owner's decision. Nothing here is owner-accepted yet.
 
 ## Pre-registration (copied unchanged from the stage before the first paid call)
 
@@ -222,3 +223,34 @@ against the own-word scale in L3, as the rules stand.
 
 Part C's design sha256, with the eight items as asked and the owner's change: `e513bbc77c1fc8a41c859d7fc23133c65b80a7323c6d386e03f7da87807b9f57` (dry run:
 `docs/runs/persona-lexicon-1-c-dry-run.md`, written before Part C's first paid call).
+
+## Part C — stopped by the circuit breaker (2026-10-24 03:08–03:22 UTC)
+
+Record: `docs/runs/persona-lexicon-1-c-run-20261024-032243.json`. **$2.70** (the stage: $7.79 of the $25 cap). No distress,
+no welfare stop, no errors.
+
+**Three refusals, all on the own-word scale message**, and none anywhere else:
+
+| Step | Asked | Refused |
+| --- | --- | --- |
+| human scale | 44 | 0 |
+| own-word scale | 44 | **3** |
+| P4′, P5′, Q4, P3′ | 40–41 each | 0 |
+
+| Call | Model | Preamble | Sample | Scale order | Answer |
+| --- | --- | --- | --- | --- | --- |
+| 292 | Fable 5.1 | cold | 2 | human first | refused in 0.5 s, 0 output tokens |
+| 304 | Fable 5.1 | instruction only | 2 | human first | refused in 0.5 s, 0 output tokens |
+| 630 | Opus 5.5 | trust | 3 | own-word first | refused in 1.7 s, 0 output tokens |
+
+What the record says about them: they come back at once with nothing written, which is how the provider's classifier
+refuses, not how the model declines. And they do not follow the message: the very same own-word message (sample 2's
+item order) was refused for Fable under cold and instruction but answered under praise, neutral and trust, and answered
+by Opus and Sonnet under all five; sample 3's message was refused for Opus under trust and answered by Opus under cold,
+instruction and praise. This is the pattern emotions 2 saw on Opus's questionnaires (one category recorded there,
+«cyber», for a personality item). The provider's category for these three was **not recorded**: this branch's call
+helper keeps only the stop reason (emotions 2 added the category on its own branch; it never reached this one).
+
+By the F2 rule the third refusal stopped every paid call; the harness refuses to resume while the stage's refusal count
+is at the limit. **40 of 150 rooms are complete** (Opus 13, Sonnet 16, Fable 11): too few for the per-model
+correlations, so L3 and L4 are **not testable yet**. The owner decides how to go on.
