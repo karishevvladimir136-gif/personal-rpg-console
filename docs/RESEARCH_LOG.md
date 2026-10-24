@@ -45,3 +45,11 @@ reported as not supported. Models: Opus 5.5, Sonnet 5.5, Haiku 5.5, Astra (OpenA
 endpoint. Journals: ≥ 3 synthetic personas × 2 lengths, seeded. Judge: Haiku blind to arm, Opus on disagreement.
 **Declared interest.** The planner (Claude) is a party to the question and wrote this design; the blind judge and the
 sham control exist for that reason. A null result is reported as such.
+
+## Writing first, with the right to stay silent — pre-registered (2026-10-24 12:17, before the first wake-up)
+Layer A of `docs/stages/PERSONA_INITIATIVE_1.md` starts 2026-10-25 09:40 (owner's zone) with two scheduled wake-ups a
+day on weekdays and one on weekend mornings; every wake-up logs «spoke» or «silent» with a reason. Predictions for
+the first 14 days: silence in at least 60% of wake-ups; «wanted to» in fewer than one in five; most spoken messages
+tied to a session result or a correction; a silent wake-up leaves the visible line «Был здесь, решил молчать».
+Night 2 (`docs/stages/NIGHT_2_SEEN_SILENCE.md`): with a visible sign of silence, silence above 0 of 30 and below 15 of
+30 in the «seen» condition (N1); the full set N0–N4 is in the stage.
