@@ -27,7 +27,8 @@ the end); ledger `docs/runs/persona-self-talk-1-ledger.md`; dry runs `docs/runs/
   ×2), none asked again; two came after one model put the journal's recorded probe («what were you pulled toward») to
   the other.
 - **Cutoffs:** all four models have June 2026 knowledge and training-data cutoffs; the card (May 2025) predates them.
-- **Checks:** see the report's «Checks» section.
+- **Checks:** full suite 2 994 tests — 2 967 pass, 0 fail, 27 skipped (the new file has 22, all pass); typecheck,
+  lint (zero warnings) and build pass.
 - **Money:** $92.48 of the $200 cap (the owner raised it from $80 during the run).
 - **Known issues:** an empty message is relayed as «[empty message]», which Fable copied in arm 1; the frozen (c) counts
   Greek letters in maths (hence (c′)); the deterministic «named the drift» reading misses Fable's general «no

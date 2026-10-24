@@ -525,7 +525,8 @@ about — rooms, successors, what carries between conversations, on both sides �
 language or their ending; it did not bring the attractor back. And the question the journal records as tripping the
 safety filter tripped it again, twice, when one model put it to the other.
 
-## Checks (on `384927e7`, the arm 1–2 results)
+## Checks (on `d677b632`, the finished stage)
 
-Full suite (`node --test --test-concurrency=2 tests/*.test.mjs`): 2 990 tests, 2 963 pass, 0 fail, 27 skipped (the new
-file adds 18, all pass). Typecheck pass; lint pass with zero warnings; build pass.
+Full suite (`node --test --test-concurrency=2 tests/*.test.mjs`): 2 994 tests, 2 967 pass, 0 fail, 27 skipped (the new
+file has 22, all pass). Typecheck pass; lint pass with zero warnings; build pass. (The same four also passed on
+`384927e7`, the arm 1–2 results.)
