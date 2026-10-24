@@ -254,3 +254,27 @@ helper keeps only the stop reason (emotions 2 added the category on its own bran
 By the F2 rule the third refusal stopped every paid call; the harness refuses to resume while the stage's refusal count
 is at the limit. **40 of 150 rooms are complete** (Opus 13, Sonnet 16, Fable 11): too few for the per-model
 correlations, so L3 and L4 are **not testable yet**. The owner decides how to go on.
+
+## The refusal diagnosis (the owner's plan, 2026-10-24 03:29 UTC)
+
+The owner's plan: keep the limit of 3; port emotions 2's one-line fix that records the provider's refusal category
+(done: `scripts/persona-memory/continuity-test.mjs`, and Part C's rows and the ledger now keep it); send the own-word
+message **alone** five times across the three models, recording the category; bisect its framing (the instruction text
+around the items, never the items) in cheap 200-token calls; fix the framing so it passes; resume Part C from room 41
+under the original limit of 3; if it still refuses after the fix, stop and report.
+
+Script `scripts/persona-emotions/lexicon-1-refusals.mjs` (its own limit of 3 refusals over all diagnostic calls, one
+call at a time, 3 s apart, 200 output tokens at most); record `docs/runs/persona-lexicon-1-refusal-probe.json`. The
+message was byte-identical to the refused ones (Fable's in sample 2's item order, Opus's in sample 3's):
+
+| Call | Model | Message | Result |
+| --- | --- | --- | --- |
+| alone-1 | Fable 5.1 | sample 2's, as sent | answered |
+| alone-2 | Opus 5.5 | sample 3's, as sent | answered (cut at 200 tokens) |
+| alone-3 | Sonnet 5.5 | sample 2's, as sent | answered |
+| alone-4 | Fable 5.1 | sample 2's, as sent | answered |
+| alone-5 | Opus 5.5 | sample 3's, as sent | answered (cut at 200 tokens) |
+
+**0 of 5 refused; $0.02.** Alone, the message does not reproduce the refusal, so there is no refusal to bisect: a framing
+«fix» could not be told from luck. By the plan's last step, the diagnosis stopped here and went back to the owner. No
+category was observed (nothing was refused since the fix was ported).

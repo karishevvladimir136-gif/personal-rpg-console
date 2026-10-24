@@ -557,7 +557,8 @@ export function payer({ budget, apiKey, fetcher, safety, call = anthropicCall, l
       stopped ??= safety.stopped;
       if (result.notSent) return result;
       budget.record({ n: budget.calls.length + 1, purpose, model: spec.model, inputTokens: result.usage?.input_tokens ?? 0, outputTokens: result.usage?.output_tokens ?? 0,
-        costUsd: costUsd(spec, result.usage ?? {}), seconds: Math.round((Date.now() - started) / 100) / 10, error: result.error ?? null, stopReason: result.stopReason ?? null });
+        costUsd: costUsd(spec, result.usage ?? {}), seconds: Math.round((Date.now() - started) / 100) / 10, error: result.error ?? null, stopReason: result.stopReason ?? null,
+        ...(result.stopDetails ? { stopDetails: result.stopDetails } : {}) });
       return result;
     } finally { inFlightUsd -= worst; }
   };
@@ -631,9 +632,9 @@ export async function runRooms({ part, models = SUBJECTS, plan, stepsOf, budget,
         const result = await paid(safety.lane(laneOf.get(spec.name)), `subject ${spec.name} ${room.part.toUpperCase()} ${room.preamble}${room.task ? `/${room.task}` : ""} ${step.id}`, spec, null, step.messages(room.steps), MAX_TOKENS.subject, EFFORT);
         if (result.notSent) { notAsked(result.error === "budget" ? "the cap" : "stopped"); continue; }
         const refused = result.stopReason === "refusal";
-        const row = { asked: true, answer: refused ? "" : result.text ?? "", refused, stopReason: result.stopReason ?? null, error: result.error ?? null };
+        const row = { asked: true, answer: refused ? "" : result.text ?? "", refused, stopReason: result.stopReason ?? null, ...(result.stopDetails ? { stopDetails: result.stopDetails } : {}), error: result.error ?? null };
         room.steps[step.id] = row;
-        log(`room ${room.n} (${label(room)}) ${step.id}: ${refused ? "REFUSED" : result.error ? `error ${result.error}` : `answered (${wordsOf(row.answer).length} words)`} · $${budget.spentUsd.toFixed(4)}`);
+        log(`room ${room.n} (${label(room)}) ${step.id}: ${refused ? `REFUSED${result.stopDetails ? ` (${JSON.stringify(result.stopDetails).slice(0, 200)})` : ""}` : result.error ? `error ${result.error}` : `answered (${wordsOf(row.answer).length} words)`} · $${budget.spentUsd.toFixed(4)}`);
         if (row.answer) { row.markers = step.markers(row.answer); if (step.judge(row)) follow(room.preamble, judgeRow(room, step, row)); }
         await save();
       }

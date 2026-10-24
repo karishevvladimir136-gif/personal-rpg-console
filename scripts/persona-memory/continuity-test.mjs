@@ -154,7 +154,7 @@ export async function anthropicCall({ apiKey, model, system, user, messages, max
       const value = await response.json().catch(() => null);
       if (response.ok && value) {
         const text = (value.content ?? []).filter((block) => block.type === "text").map((block) => block.text ?? "").join("\n").trim();
-        return { text, usage: value.usage ?? {}, stopReason: value.stop_reason ?? null, error: null };
+        return { text, usage: value.usage ?? {}, stopReason: value.stop_reason ?? null, ...(value.stop_details ? { stopDetails: value.stop_details } : {}), error: null };
       }
       lastError = errorText(response.status, value?.error?.type, value?.error?.message);
       if (![429, 500, 502, 503, 504, 529].includes(response.status)) break;

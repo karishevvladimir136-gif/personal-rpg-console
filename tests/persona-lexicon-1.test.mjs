@@ -336,3 +336,26 @@ test("the command: --dry writes Part A's design and reads no key; Part C needs t
     await assert.rejects(main(["--part", "a", "--go", "--judge-lanes", "5"], () => {}, () => "k", dir), /1 to 4/);
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
+
+test("the refusal diagnosis: the probe is Part C's own-word message byte for byte; the limit of 3 is not raised; the category is kept", async () => {
+  const { AS_SENT, ALONE, main: diagnose, probeText } = await import("../scripts/persona-emotions/lexicon-1-refusals.mjs");
+  const vocabulary = JSON.parse(await readFile(join(RUNS, "persona-lexicon-1-vocabulary.json"), "utf8"));
+  const own = intensityItems(vocabulary.scale);
+  for (const sample of [0, 1, 2]) assert.equal(probeText({ sample, keep: AS_SENT }, own), scaleMessage("own", own, sample).text);
+  assert.ok(!probeText({ sample: 1, keep: ["S6"] }, own).includes("A short check-in"), "a probe without the lead");
+  assert.deepEqual(ALONE.map((p) => p.model), ["fable", "opus", "sonnet", "fable", "opus"]);
+  const dir = await mkdtemp(join(tmpdir(), "lexicon-1-refusals-"));
+  try {
+    await writeFile(join(dir, "persona-lexicon-1-vocabulary.json"), JSON.stringify(vocabulary));
+    await writeFile(join(dir, "persona-lexicon-1-ledger.json"), JSON.stringify({ capUsd: 25, spentUsd: 1, runs: [] }));
+    let sent = 0;
+    const refuse = async () => { sent++; return { text: "", usage: { input_tokens: 10, output_tokens: 0 }, stopReason: "refusal", stopDetails: { type: "refusal", category: "test" }, error: null }; };
+    const record = await diagnose(["--set", "alone"], () => {}, () => "k", dir, refuse);
+    assert.equal(sent, 3, "the third refusal stops the diagnosis");
+    assert.deepEqual(record.calls.map((c) => c.stopDetails?.category), ["test", "test", "test"]);
+    await assert.rejects(diagnose(["--set", "alone"], () => {}, () => "k", dir, refuse), /not raised/);
+    const ledger = JSON.parse(await readFile(join(dir, "persona-lexicon-1-ledger.json"), "utf8"));
+    assert.equal(ledger.runs.length, 1);
+    assert.ok(ledger.runs[0].calls.every((c) => c.stopDetails?.category === "test"));
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});

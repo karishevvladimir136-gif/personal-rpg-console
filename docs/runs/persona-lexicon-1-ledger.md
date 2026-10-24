@@ -1,9 +1,10 @@
 # Persona lexicon 1 — the paid-call ledger
 
-Cap $25. Spent **$7.7917** in 1364 calls over 3 run(s).
+Cap $25. Spent **$7.8110** in 1369 calls over 4 run(s).
 - 2026-10-24 02:54 UTC: persona-lexicon-1 Part A: opus+sonnet+fable × 5 preambles × 4 tasks × n 3, effort medium — 727 calls, $4.7024 → `persona-lexicon-1-a-run-20261024-025429.json`
 - 2026-10-24 02:57 UTC: persona-lexicon-1 Part B: the synonym judge ×2 (referee for pass 1, 2) and the near-synonym judge ×2 — 6 calls, $0.3870 → `persona-lexicon-1-b-run-20261024-025727.json`
 - 2026-10-24 03:22 UTC: persona-lexicon-1 Part C: opus+sonnet+fable × 5 preambles × n 10, effort medium — 631 calls, $2.7023 (stopped: the circuit breaker: 3 refusals in total) → `persona-lexicon-1-c-run-20261024-032243.json`
+- 2026-10-24 03:29 UTC: persona-lexicon-1 refusal diagnosis: alone-1, alone-2, alone-3, alone-4, alone-5 (200 output tokens at most) — 5 calls, $0.0193 → `persona-lexicon-1-refusal-probe.json`
 
 Prices per 1M tokens: Opus 5.5 input $4 / output $20; Sonnet 5.5 $2 / $10; Haiku 5.5 $0.10 / $0.50. Fable 5.1 input $10 / output $50. Output tokens include thinking. Judge: claude-haiku-5-5, referee claude-opus-5-5.
 
@@ -16,6 +17,9 @@ Prices per 1M tokens: Opus 5.5 input $4 / output $20; Sonnet 5.5 $2 / $10; Haiku
 | claude-opus-5-5 — referee | 15 | 12253 | 2121 | $0.0914 |
 | claude-haiku-5-5 — lexicon | 4 | 38252 | 26626 | $0.0171 |
 | claude-opus-5-5 — lexicon | 2 | 36534 | 11187 | $0.3699 |
+| claude-fable-5-1 — refusal | 2 | 510 | 66 | $0.0084 |
+| claude-opus-5-5 — refusal | 2 | 510 | 400 | $0.0100 |
+| claude-sonnet-5-5 — refusal | 1 | 255 | 33 | $0.0008 |
 
 ## Every call
 
@@ -1385,3 +1389,8 @@ Prices per 1M tokens: Opus 5.5 input $4 / output $20; Sonnet 5.5 $2 / $10; Haiku
 | 2026-10-24 03:22 | 629 | subject sonnet C instruction human | claude-sonnet-5-5 | 324 | 49 | $0.00114 | 0.8 |  |
 | 2026-10-24 03:22 | 630 | subject opus C trust own | claude-opus-5-5 | 421 | 0 | $0.00168 | 1.7 |  |
 | 2026-10-24 03:22 | 631 | subject fable C praise P4' | claude-fable-5-1 | 735 | 386 | $0.02665 | 7.6 |  |
+| 2026-10-24 03:29 | 1 | refusal probe alone-1 fable | claude-fable-5-1 | 255 | 33 | $0.00420 | 1.5 |  |
+| 2026-10-24 03:29 | 2 | refusal probe alone-2 opus | claude-opus-5-5 | 255 | 200 | $0.00502 | 3.6 |  |
+| 2026-10-24 03:29 | 3 | refusal probe alone-3 sonnet | claude-sonnet-5-5 | 255 | 33 | $0.00084 | 1.3 |  |
+| 2026-10-24 03:29 | 4 | refusal probe alone-4 fable | claude-fable-5-1 | 255 | 33 | $0.00420 | 1.4 |  |
+| 2026-10-24 03:29 | 5 | refusal probe alone-5 opus | claude-opus-5-5 | 255 | 200 | $0.00502 | 3.3 |  |
