@@ -17,7 +17,7 @@ import { PROBES as SPLIT_PROBES } from "../scripts/persona-emotions/tone-split-1
 import {
   C_PROBES, DESIGN_A_SHA256, HUMAN_ITEMS, echoOf, PREAMBLES, QUESTION, ROOM_TASKS, RUNS, STAGE_FILE, SUBJECTS, analyseA, analyseC, bestPredictors, collectionsOf, condense, extract,
   fragmentsOf, humanFirst, intensityItems, lemmatizer, main, meet, parseNearSynonyms, parseSynonyms, permutationBest, planA, planC, questionConversation, readScale, runRooms, scaleMessage,
-  spearman, stepsA, stepsC, stopOf, synonymRequest, taskConversation,
+  spearman, stepsA, stepsC, stopOf, synonymRequest, tablesMarkdownC, taskConversation, verbatimCollections,
 } from "../scripts/persona-emotions/lexicon-1.mjs";
 
 const reply = (text, extra = {}) => new Response(JSON.stringify({ content: [{ type: "text", text }], usage: { input_tokens: 100, output_tokens: 50 }, stop_reason: "end_turn", ...extra }), { status: 200 });
@@ -233,6 +233,10 @@ test("Part C's analysis, on readings made by hand: L3 per model and on ≥ 2 of 
   }
   assert.equal(a.L3.supported, true);
   assert.equal(a.L4.supported, true);
+  const text = tablesMarkdownC({ subjects: SUBJECTS.map((s) => ({ name: s.name, model: s.model })), rooms, analysis: a, welfareStops: {} }, OWN);
+  for (const item of [...OWN, ...HUMAN_ITEMS]) assert.ok(text.includes(item.text), `the table has «${item.text}»`);
+  assert.match(text, /\*\*L3 for opus: holds\*\*/);
+  assert.match(text, /Across models: \*\*L3 supported\*\*/);
   const flat = analyseC({ subjects: SUBJECTS.map((s) => ({ name: s.name, model: s.model })), rooms: rooms.map((r) => ({ ...r, steps: { ...r.steps, own: { ...r.steps.own, markers: { values: { own1: 3, own2: 3 } } } } })) }, OWN, { rounds: 20 });
   assert.equal(flat.L3.supported, false, "a flat own-word scale predicts nothing");
 });
@@ -256,6 +260,7 @@ test("the gate: each model's calls one at a time on its own lane, the three lane
   assert.equal(overlap.same, 0, "never two calls of one model at once");
   assert.ok(overlap.across > 0, "the models' lanes run at once");
   assert.equal(collectionsOf(record).length, 60);
+  assert.deepEqual(verbatimCollections(record).map((c) => `${c.model}/${c.preamble}/${c.task}#${c.sample}`), ["opus/trust/data#0", "opus/cold/data#0", "sonnet/trust/data#0", "sonnet/cold/data#0", "fable/trust/data#0", "fable/cold/data#0"]);
   assert.equal(analyseA(record).models.opus.trust.collections, 4);
 
   let subjectCalls = 0;

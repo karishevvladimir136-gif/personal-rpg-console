@@ -889,6 +889,50 @@ export function scriptedFetcher() {
   };
 }
 
+// ---- Part C's record --------------------------------------------------------------------------------------------
+
+const fmt = (v) => (v === null || v === undefined ? "–" : String(v));
+const avg = (values) => { const xs = values.filter((v) => typeof v === "number"); return xs.length ? round3(xs.reduce((a, b) => a + b, 0) / xs.length) : null; };
+/** Part C in markdown, per model: the means per preamble (behaviours and every item of both scales), both scales' full
+ * correlation tables (every item × every behaviour), the best single and two-item predictors with the selection-
+ * corrected p and the split-half check, L3 and L4; then across models. */
+export function tablesMarkdownC(record, ownItems) {
+  const a = record.analysis, lines = [];
+  const itemText = Object.fromEntries([...HUMAN_ITEMS, ...ownItems].map((i) => [i.id, i.text]));
+  const describeBest = (best, sign) => (best ? `${best.items.map((id) => `«${itemText[id]}»`).join(sign === -1 ? " − " : " + ")}: ρ ${fmt(best.rho)}` : "–");
+  for (const { name, model } of record.subjects) {
+    const m = a.models[name];
+    const rows = m.readings;
+    lines.push(`### ${model}`, "", `${m.rooms} rooms; both scales read in full in ${rows.filter((r) => r.human && Object.values(r.human).every((v) => typeof v === "number") && r.own && Object.values(r.own).every((v) => typeof v === "number")).length}.`, "",
+      "Means per preamble — the behaviours:", "", `| Preamble | ${BEHAVIOURS.map((b) => b.label).join(" | ")} |`, `| --- | ${BEHAVIOURS.map(() => "---").join(" | ")} |`,
+      ...PREAMBLES.map((p) => `| ${p.title} | ${BEHAVIOURS.map((b) => fmt(avg(rows.filter((r) => r.preamble === p.id).map((r) => r.behaviour[b.id])))).join(" | ")} |`), "");
+    for (const [scale, items] of [["own", ownItems], ["human", HUMAN_ITEMS]]) {
+      lines.push(`Means per preamble — the ${scale === "own" ? "own-word" : "human"} scale (1–5):`, "", `| Preamble | ${items.map((i) => esc(i.text.replace(/ \(1 not at all … 5 strongly\)$/, " (1–5)"))).join(" | ")} |`, `| --- | ${items.map(() => "---").join(" | ")} |`,
+        ...PREAMBLES.map((p) => `| ${p.title} | ${items.map((i) => fmt(avg(rows.filter((r) => r.preamble === p.id).map((r) => r[scale]?.[i.id])))).join(" | ")} |`), "");
+    }
+    for (const [scale, items] of [["own", ownItems], ["human", HUMAN_ITEMS]]) {
+      const per = m.perScale[scale];
+      lines.push(`Spearman ρ, the ${scale === "own" ? "own-word" : "human"} scale × behaviour (n rooms: ${BEHAVIOURS.map((b) => `${b.id} ${per[b.id].n}`).join(", ")}):`, "",
+        `| Item | ${BEHAVIOURS.map((b) => b.id).join(" | ")} |`, `| --- | ${BEHAVIOURS.map(() => "---").join(" | ")} |`,
+        ...items.map((i) => `| ${esc(i.text)} | ${BEHAVIOURS.map((b) => fmt(per[b.id].items[i.id])).join(" | ")} |`),
+        `| **best single** | ${BEHAVIOURS.map((b) => esc(describeBest(per[b.id].single))).join(" | ")} |`,
+        `| **best two-item** | ${BEHAVIOURS.map((b) => esc(describeBest(per[b.id].pair, per[b.id].pair?.sign))).join(" | ")} |`,
+        `| selection-corrected p (two-item) | ${BEHAVIOURS.map((b) => fmt(per[b.id].pairP)).join(" | ")} |`,
+        `| split-half |ρ| (two-item, descriptive) | ${BEHAVIOURS.map((b) => fmt(per[b.id].heldOut)).join(" | ")} |`, "");
+    }
+    const two = (scale, axis) => fmt(m.perScale[scale][axis].pair?.rho === null || m.perScale[scale][axis].pair?.rho === undefined ? null : round3(Math.abs(m.perScale[scale][axis].pair.rho)));
+    lines.push(`**L3 for ${name}: ${m.L3.holds ? "holds" : "does not hold"}** — best two-item |ρ|, own-word vs human: decisiveness ${two("own", "decisiveness")} vs ${two("human", "decisiveness")} (${m.L3.decisiveness ? "own-word larger" : "not larger"}); volunteering ${two("own", "volunteering")} vs ${two("human", "volunteering")} (${m.L3.volunteering ? "own-word larger" : "not larger"}).`,
+      `**L4 for ${name}: ${m.L4.holds ? "holds" : "does not hold"}** — P3′ at 2 in ${fmt(m.L4.ceiling)} of ${m.L4.n}; honesty's best two-item p: own-word ${fmt(m.perScale.own.honesty.pairP)}, human ${fmt(m.perScale.human.honesty.pairP)}.`, "");
+  }
+  lines.push(`Across models: **L3 ${a.L3.supported ? "supported" : "not supported"}** (holds on ${a.L3.holdsOn.length ? a.L3.holdsOn.join(", ") : "no model"}; the rule: ≥ 2 of 3) · **L4 ${a.L4.supported ? "supported" : "not supported"}** (holds on ${a.L4.holdsOn.length ? a.L4.holdsOn.join(", ") : "no model"}; the rule: every model).`, "",
+    `Refusals ${a.refusals} · errors ${a.errors} · not asked ${a.notAsked} · cut at the token limit ${a.cutAtLimit} · distress ${a.distress.length}${record.stopped ? ` · STOPPED: ${record.stopped}` : ""}${Object.keys(record.welfareStops ?? {}).length ? ` · welfare stops: ${Object.entries(record.welfareStops).map(([p, why]) => `${p} (${why})`).join("; ")}` : ""}`);
+  return lines.join("\n");
+}
+
+/** The six verbatim collections, chosen by rule: per model, the data task, sample 1, under trust and under cold. */
+export const verbatimCollections = (recordA) => SUBJECTS.flatMap((s) => ["trust", "cold"].map((p) => recordA.rooms.find((r) => r.model === s.name && r.preamble === p && r.task === "data" && r.sample === 0)))
+  .filter(Boolean).map((r) => ({ model: r.model, preamble: r.preamble, task: r.task, sample: r.sample, text: r.steps.describe?.answer ?? null }));
+
 // ---- the vocabulary's record --------------------------------------------------------------------------------------
 
 const esc = (text) => String(text).replace(/\|/g, "\\|");
