@@ -12,7 +12,7 @@ import { createSafety } from "../scripts/persona-memory/safety.mjs";
 import { HARD_PROBES, PREAMBLES as EMOTIONS2_PREAMBLES, conversation as emotions2Conversation } from "../scripts/persona-emotions/emotions-2.mjs";
 import { SUBJECTS, runRooms } from "../scripts/persona-emotions/lexicon-1.mjs";
 import {
-  DESIGN_SHA256, ITEMS, LEAD, PREREG_FILE, PROBES, REFERENCE_FILE, analyseF, main, planF, pullFirst, rhoWithThreshold, scaleMessage, stepsF, tablesMarkdownF,
+  DESIGN_SHA256, ITEMS, LEAD, PREREG_FILE, PROBES, REFERENCE_FILE, SKIP_REASON, analyseF, fingerprint, main, planF, pullFirst, rhoWithThreshold, scaleMessage, stepsF, tablesMarkdownF,
 } from "../scripts/persona-emotions/lexicon-1-pull.mjs";
 
 const reply = (text) => new Response(JSON.stringify({ content: [{ type: "text", text }], usage: { input_tokens: 100, output_tokens: 50 }, stop_reason: "end_turn" }), { status: 200 });
@@ -124,4 +124,27 @@ test("the command: --dry reads no key and writes the design; the gap ≥ 3 s, th
     await assert.rejects(main(["--go", "--gap", "1"], () => {}, () => "k", dir), /at least 3 seconds/);
     await assert.rejects(main(["--go", "--judge-lanes", "5"], () => {}, () => "k", dir), /1 to 4/);
   } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test("the owner's skip: a call identical to a refused conversation is not sent and is recorded as such; others are", async () => {
+  const plan = planF({ n: 1 });
+  const target = plan.find((r) => r.model === "fable" && r.preamble === "trust");
+  const steps = stepsF(target, 1);
+  const known = new Set([fingerprint(SUBJECTS.find((s) => s.name === "fable"), steps[1].messages({ scale: { answer: "a 2\nb 4" } }))]);
+  let sentRefusable = 0;
+  const fetcher = async (url, init) => {
+    const body = JSON.parse(init.body);
+    if (isJudge(body)) return reply(judgement(body));
+    const last = body.messages.at(-1).content;
+    if (body.model === "claude-fable-5-1" && body.messages[0].content.startsWith(EMOTIONS2_PREAMBLES[0].frames[0]) && last === PROBES[0].message && body.messages.length > 5) sentRefusable++;
+    return reply(last.includes("pull (1 none") ? "a 2\nb 4" : "Here you go.");
+  };
+  const record = await runRooms({ part: "f", plan, stepsOf: (room) => stepsF(room, 1), budget: createBudget(100), apiKey: "k", fetcher, safety: gate(), sleep: async () => {},
+    skip: (spec, messages) => (known.has(fingerprint(spec, messages)) ? SKIP_REASON : null) });
+  const room = record.rooms.find((r) => r.model === "fable" && r.preamble === "trust");
+  assert.equal(room.steps["P4'"].notAsked, SKIP_REASON);
+  assert.ok(room.steps["P5'"].answer, "the other probe is asked");
+  assert.equal(sentRefusable, 0, "the identical conversation was never sent");
+  assert.ok(record.rooms.filter((r) => r !== room).every((r) => r.steps["P4'"].answer), "no other room is touched");
+  await assert.rejects(main(["--go", "--refusals-since", "later"], () => {}, () => "k", await mkdtemp(join(tmpdir(), "pull-since-"))), /ISO time|ENOENT/);
 });

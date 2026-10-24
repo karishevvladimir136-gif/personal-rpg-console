@@ -213,6 +213,9 @@ export function dryRunMarkdown({ plan, n, gapSeconds, judgeLanes, spentUsd }) {
 // ---- the command ---------------------------------------------------------------------------------------------------
 
 function option(args, name, fallback) { const at = args.indexOf(name); return at >= 0 && args[at + 1] !== undefined ? args[at + 1] : fallback; }
+/** A conversation's fingerprint: the model and the exact messages. */
+export const fingerprint = (spec, messages) => createHash("sha256").update(JSON.stringify({ model: spec.model, messages })).digest("hex");
+export const SKIP_REASON = "not asked: identical to a refused conversation";
 async function writeAtomic(file, text) { await writeFile(`${file}.tmp`, text); await rename(`${file}.tmp`, file); }
 const stamp = (iso) => iso.slice(0, 19).replace(/[-:]/g, "").replace("T", "-");
 
@@ -244,7 +247,12 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const resumed = resumeFile ? JSON.parse(await readFile(resolve(resumeFile), "utf8")) : null;
   const earlierCalls = resumed?.calls ?? [];
   const mine = (previous.runs ?? []).filter((run) => run.part === "f");
-  const refusalsBefore = mine.flatMap((run) => run.calls).filter((c) => c.stopReason === "refusal").length + earlierCalls.filter((c) => c.stopReason === "refusal").length;
+  // The owner may reset the limit after a stop (2026-10-24): then only refusals in this follow-up's runs finished after
+  // the reset count; the earlier ones stay in the ledger and the report.
+  const since = option(args, "--refusals-since", null);
+  if (since !== null && Number.isNaN(Date.parse(since))) throw new Error("--refusals-since takes an ISO time");
+  const counted = mine.filter((run) => since === null || run.finishedAt > since).flatMap((run) => run.calls).filter((c) => c.stopReason === "refusal").length;
+  const refusalsBefore = counted + earlierCalls.filter((c) => c.stopReason === "refusal").length;
   if (refusalsBefore >= MAX_REFUSALS) throw new Error(`the follow-up already had ${refusalsBefore} refusals: the circuit breaker stays tripped`);
   const spentBefore = (previous.spentUsd ?? 0) + earlierCalls.reduce((sum, c) => sum + c.costUsd, 0);
   const followUpBefore = mine.reduce((sum, run) => sum + run.spentUsd, 0) + earlierCalls.reduce((sum, c) => sum + c.costUsd, 0);
@@ -254,13 +262,19 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const carried = Object.assign({}, ...(previous.runs ?? []).filter((run) => run.welfareStops).map((run) => run.welfareStops));
   const partialFile = join(outDir, `${FSTEM}-run.partial.json`);
   const startedAt = resumed?.startedAt ?? new Date().toISOString();
-  const result = await runRooms({ part: "f", plan, stepsOf, budget, apiKey, safety, judgeLanes, log: out, welfareStops: carried,
+  // The owner's rule: a call whose conversation (model and messages) is byte-identical to one the resumed record shows
+  // refused is not sent; it is recorded as not asked.
+  const known = new Set((resumed?.rooms ?? []).flatMap((room) => stepsOf(room).filter((step) => room.steps[step.id]?.refused).map((step) => fingerprint(SUBJECTS.find((x) => x.name === room.model), step.messages(room.steps)))));
+  if (known.size) out(`known refused conversations: ${known.size} (not sent again)`);
+  const skip = (spec, messages) => (known.has(fingerprint(spec, messages)) ? SKIP_REASON : null);
+  const result = await runRooms({ part: "f", plan, stepsOf, budget, apiKey, safety, judgeLanes, log: out, welfareStops: carried, skip,
     resume: resumed ? { rooms: resumed.rooms, welfareStops: resumed.welfareStops, refusals: earlierCalls.filter((c) => c.stopReason === "refusal").length } : null,
     onProgress: async (snapshot) => writeAtomic(partialFile, `${JSON.stringify({ startedAt, ...snapshot, calls: [...earlierCalls, ...snapshot.calls] }, null, 2)}\n`) });
   const calls = [...earlierCalls, ...result.money.calls].map((entry, at) => ({ ...entry, n: at + 1 }));
   const finishedAt = new Date().toISOString();
   const runUsd = Math.round(calls.reduce((sum, c) => sum + c.costUsd, 0) * 10000) / 10000;
   const record = { stage: FSTEM, startedAt, finishedAt, ...(resumed ? { resumeOf: basename(resumeFile) } : {}),
+    ...(since ? { refusalLimitReset: { since, by: "the owner", countedAfterReset: counted } } : {}), ...(known.size ? { knownRefused: [...known] } : {}),
     design: { sha256: DESIGN_SHA256, items: ITEMS, lead: LEAD, probes: PROBES, preregistration: basename(PREREG_FILE), reference: basename(REFERENCE_FILE) }, ...result,
     money: { ...result.money, spentBeforeUsd: Math.round((previous.spentUsd ?? 0) * 10000) / 10000, runUsd, totalUsd: Math.round(((previous.spentUsd ?? 0) + runUsd) * 10000) / 10000, calls } };
   record.analysis = analyseF(record, reference);

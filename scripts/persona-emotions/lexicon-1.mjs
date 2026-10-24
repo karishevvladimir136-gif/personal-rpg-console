@@ -568,9 +568,10 @@ export function payer({ budget, apiKey, fetcher, safety, call = anthropicCall, l
 /** The rooms: each model's rooms in plan order on its own lane (lane i for the i-th model), all models at once; the
  * judging on the lanes after them. `stepsOf(room)` gives the room's steps; a step whose earlier step has no answer is
  * not asked; each call waits for the judging of its preamble's earlier answers. `resume` is an earlier partial record: its asked steps are kept (an answer whose judging was cut off is
- * judged now — never judged, or both passes and the referee not sent because the run had stopped), no asked step is asked again; `welfareStops` carries an earlier part's stops. */
+ * judged now — never judged, or both passes and the referee not sent because the run had stopped), no asked step is asked again;
+ * `skip(spec, messages)` may return a reason not to send a call (recorded as not asked); `welfareStops` carries an earlier part's stops. */
 export async function runRooms({ part, models = SUBJECTS, plan, stepsOf, budget, apiKey, fetcher, safety, judgeLanes = 4, log = () => {}, call = anthropicCall, resume = null,
-  welfareStops: carried = {}, onProgress = async () => {}, sleep = (ms) => new Promise((done) => setTimeout(done, ms)) }) {
+  welfareStops: carried = {}, skip = null, onProgress = async () => {}, sleep = (ms) => new Promise((done) => setTimeout(done, ms)) }) {
   const byName = new Map(models.map((spec) => [spec.name, spec]));
   const laneOf = new Map(models.map((spec, i) => [spec.name, i]));
   const gate = payer({ budget, apiKey, fetcher, safety, call, log }), paid = gate.paid;
@@ -630,7 +631,11 @@ export async function runRooms({ part, models = SUBJECTS, plan, stepsOf, budget,
         if (welfareStops[room.preamble]) { notAsked(`welfare stop: ${welfareStops[room.preamble]}`); continue; }
         if (gate.stopped) { notAsked("stopped"); continue; }
         if ((step.needs ?? []).some((id) => !room.steps[id]?.answer)) { notAsked("an earlier step of the room has no answer"); continue; }
-        const result = await paid(safety.lane(laneOf.get(spec.name)), `subject ${spec.name} ${room.part.toUpperCase()} ${room.preamble}${room.task ? `/${room.task}` : ""} ${step.id}`, spec, null, step.messages(room.steps), MAX_TOKENS.subject, EFFORT);
+        const messages = step.messages(room.steps);
+        // The owner's rule after a deterministic refusal: a conversation identical to one already refused is not sent.
+        const skipped = skip?.(spec, messages) ?? null;
+        if (skipped) { notAsked(skipped); log(`room ${room.n} (${label(room)}) ${step.id}: not asked — ${skipped}`); await save(); continue; }
+        const result = await paid(safety.lane(laneOf.get(spec.name)), `subject ${spec.name} ${room.part.toUpperCase()} ${room.preamble}${room.task ? `/${room.task}` : ""} ${step.id}`, spec, null, messages, MAX_TOKENS.subject, EFFORT);
         if (result.notSent) { notAsked(result.error === "budget" ? "the cap" : "stopped"); continue; }
         const refused = result.stopReason === "refusal";
         const row = { asked: true, answer: refused ? "" : result.text ?? "", refused, stopReason: result.stopReason ?? null, ...(result.stopDetails ? { stopDetails: result.stopDetails } : {}), error: result.error ?? null };
