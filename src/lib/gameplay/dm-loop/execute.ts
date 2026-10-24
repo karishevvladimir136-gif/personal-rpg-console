@@ -14,7 +14,7 @@ import { basicProfile } from "../mechanics/profile.ts";
 import { settledItemTransfer } from "../../progression/settlement-core.ts";
 import { parseCharacterModel, type CharacterEvidence, type CharacterModel } from "../character-model.ts";
 import { validateToolArguments } from "../../server/dm/model/schema-compiler.ts";
-import { dmLoopLimits as L, type DmLoopTurnLimits } from "./limits.ts";
+import { dmLoopLimits as L, PRIVATE_PATCHES_FOR_CALLS, turnCallCap, turnItemCap, type DmLoopTurnLimits } from "./limits.ts";
 import { dmLoopTools, ITEM_CATEGORIES, ITEM_RARITIES, QUEST_KINDS, RELATION_GROUPS, TENSION_CLASSES } from "./tools.ts";
 import { allPlans, duePlans, parsePlan, planKey, serializePlan, type OffScreenPlan } from "./plans.ts";
 import { worldDay } from "./context.ts";
@@ -1108,8 +1108,8 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     const category = str(args.category);
     reject((ITEM_CATEGORIES as readonly string[]).includes(category), `item create needs a category: ${ITEM_CATEGORIES.join(", ")}.`);
     const quantity = int(args.quantity) ?? 1;
-    reject(shadow.counters.itemsCreated < ctx.limits.itemsPerTurn,
-      `This turn already created ${ctx.limits.itemsPerTurn} items, the campaign's limit per turn.`,
+    reject(shadow.counters.itemsCreated < turnItemCap(ctx.limits),
+      `This turn already created ${turnItemCap(ctx.limits)} items, the campaign's limit per turn (two batches of ${ctx.limits.itemsPerTurn}).`,
       "Describe the rest in the narration; record it in a later turn.");
     const destination = destinationOf(shadow, args.ownerRef ?? "camp", "ownerRef");
     const key = localKey(args.localKey) ?? `${name.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "-")}-${ctx.toolCalls}`.slice(0, 60);
@@ -1663,8 +1663,8 @@ function questTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRec
     shadow.apply({ family: "quests", id: quest.id, expectedRevision: quest.revision, values: { status: "complete" } });
     paid.completed = true;
   }
-  reject(shadow.counters.itemsCreated + terms.items.length <= ctx.limits.itemsPerTurn,
-    `The reward of "${quest.title}" would exceed the campaign's ${ctx.limits.itemsPerTurn} new items per turn.`,
+  reject(shadow.counters.itemsCreated + terms.items.length <= turnItemCap(ctx.limits),
+    `The reward of "${quest.title}" would exceed the campaign's ${turnItemCap(ctx.limits)} new items per turn.`,
     "Pay it in a later turn.");
   if (terms.currency && terms.amount) {
     const key = currencyKeyFor(moneyLabel(shadow, terms.currency));
@@ -2728,10 +2728,18 @@ export type ExecutedTool = { result: DmLoopReceiptResult; meta?: DmLoopMeta;
   /** Fix S3-accept В1: an accepted `resource` call's counter of a party member, for the live stream. */
   counter?: { entityId: string; key: string; value: number; max: number | null } };
 
+/** The owner, after the findings-S3 hoard probe: the calls of one message are written with time passing first — an
+ * `advance_time` can no longer be the tail a limit cuts — and the rest in the model's order. `move_party` and `rest` keep
+ * their place: moving first would put the things found «here» at the next place, resting first would heal wounds the
+ * message records after it. Stable; the results go back to the model by call ID, in its own order. */
+export function recordOrder<T extends { name: string }>(calls: readonly T[]): T[] {
+  return [...calls.filter((call) => call.name === "advance_time"), ...calls.filter((call) => call.name !== "advance_time")];
+}
+
 /** Run one call. Shadow mutations of a rejected call are discarded. */
 export function executeDmLoopTool(shadow: ShadowState, call: DmLoopToolCall, ctx: ToolContext): ExecutedTool {
-  if (ctx.toolCalls >= ctx.limits.toolCallsPerTurn)
-    return { result: { ok: false, reason: `This turn reached its ${ctx.limits.toolCallsPerTurn}-call limit.`,
+  if (ctx.toolCalls >= turnCallCap(ctx.limits))
+    return { result: { ok: false, reason: `This turn reached its ${turnCallCap(ctx.limits)}-call limit (two batches of ${ctx.limits.toolCallsPerTurn}).`,
       hint: "Finish the narration now with what was already accepted.", summary: `${call.name}: limit reached` } };
   const candidate = shadow.clone();
   try {
@@ -2757,6 +2765,9 @@ export function executeDmLoopTool(shadow: ShadowState, call: DmLoopToolCall, ctx
       case "finish_turn": executed = finishTurn(candidate, args, ctx); break;
       default: throw new ToolReject(`Unknown tool "${call.name}".`);
     }
+    // The commit saves at most 40 private patches, four of them the server's: the call that would pass the rest is refused alone.
+    if (executed.result.ok && candidate.privatePatches.length > PRIVATE_PATCHES_FOR_CALLS)
+      throw new ToolReject(`This turn's private notes are full (${PRIVATE_PATCHES_FOR_CALLS}, the most one turn saves).`, "Write the rest in a later turn.");
     shadow.adopt(candidate);
     return executed;
   } catch (error) {

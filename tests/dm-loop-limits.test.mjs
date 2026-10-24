@@ -44,7 +44,7 @@ test("campaign limits are settings: defaults, custom values, keep, reset, and va
   } finally { await c.f.db.close(); }
 });
 
-test("the limits are pinned with the model when the turn starts and enforced per call from the pin", async () => {
+test("the limits are pinned with the model when the turn starts and enforced per call from the pin (time passing first, items in two batches — findings S3)", async () => {
   const c = await loopCampaign();
   try {
     await c.settings.save({ expectedRevision: 0, runtime: "dm-loop-v1", dmTurn: null, limits: SMALL });
@@ -55,6 +55,8 @@ test("the limits are pinned with the model when the turn starts and enforced per
         { name: "item", arguments: { action: "create", name: "Rope", category: "gear", ownerRef: c.hero } },
         { name: "item", arguments: { action: "create", name: "Lantern", category: "gear", ownerRef: c.hero } },
         { name: "item", arguments: { action: "create", name: "Tent", category: "gear", ownerRef: c.hero } },
+        { name: "item", arguments: { action: "create", name: "Torch", category: "gear", ownerRef: c.hero } },
+        { name: "item", arguments: { action: "create", name: "Map", category: "gear", ownerRef: c.hero } },
         { name: "money", arguments: { action: "grant", currency: "coins", amount: 8, toRef: c.hero, reason: "found" } },
         { name: "money", arguments: { action: "grant", currency: "coins", amount: 5, toRef: c.hero, reason: "found again" } },
         { name: "money", arguments: { action: "transfer", currency: "coins", amount: 3, fromRef: c.hero, toRef: "a" } },
@@ -68,23 +70,25 @@ test("the limits are pinned with the model when the turn starts and enforced per
     const row = await c.row(played.input.operationId);
     assert.deepEqual(row.checkpoint.dmLoop.pin.limits, SMALL);
     const results = row.checkpoint.dmLoop.receipts.map((r) => r.result);
-    assert.deepEqual(results.map((r) => r.ok), [true, false, true, true, false, true, false, true, true, false, true]);
-    assert.match(results[1].reason, /1 new characters/);
-    assert.match(results[4].reason, /2 items/);
-    assert.match(results[6].reason, /already created 8 in money.*10 per turn/);
-    assert.match(results[9].reason, /at most 30/);
+    // The message's time passing is written first; the items go on as a second batch of the limit (2 + 2), the fifth refused.
+    assert.deepEqual(row.checkpoint.dmLoop.receipts.slice(0, 2).map((r) => r.call.name), ["advance_time", "advance_time"]);
+    assert.deepEqual(results.map((r) => r.ok), [true, false, true, false, true, true, true, true, false, true, false, true, true]);
+    assert.match(results[1].reason, /at most 30/);
+    assert.match(results[3].reason, /1 new characters/);
+    assert.match(results[8].reason, /4 items.*two batches of 2/);
+    assert.match(results[10].reason, /already created 8 in money.*10 per turn/);
     // Transfers move money without creating it; the request cap ended the turn after two requests.
     assert.ok(row.checkpoint.dmLoop.diagnostics.some((d) => d.kind === "request_cap_reached"),
       JSON.stringify({ diagnostics: row.checkpoint.dmLoop.diagnostics, requests: row.checkpoint.dmLoop.requests, results: results.map((r) => r.summary) }));
     assert.equal(row.checkpoint.dmLoop.requests, 2);
     assert.equal(row.checkpoint.dmLoop.shadow.counters.moneyGranted, 8);
-    assert.equal(row.checkpoint.dmLoop.shadow.counters.itemsCreated, 2);
+    assert.equal(row.checkpoint.dmLoop.shadow.counters.itemsCreated, 4);
     assert.equal(row.checkpoint.dmLoop.shadow.counters.charactersCreated, 1);
     const state = await c.state();
     assert.equal(state.runtime.world_minutes, 20);
     assert.equal(state.entities.find((row) => row.id === c.hero).resources.currency_coins, 5);
     assert.equal(state.entities.filter((row) => ["Ann", "Bert"].includes(row.name)).length, 1);
-    assert.equal(state.items.filter((row) => ["Rope", "Lantern", "Tent"].includes(row.name)).length, 2);
+    assert.equal(state.items.filter((row) => ["Rope", "Lantern", "Tent", "Torch", "Map"].includes(row.name)).length, 4);
   } finally { await c.f.db.close(); }
 });
 

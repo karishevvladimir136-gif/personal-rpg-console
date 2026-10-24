@@ -93,6 +93,8 @@ export type DmLoopUsageEntry = {
 export type DmLoopDiagnostic =
   | { kind: "suspected_leak"; detail: string }
   | { kind: "tool_cap_reached"; calls: number }
+  /** Findings S3: the turn's calls passed the first batch of `toolCallsPerTurn`; the second batch goes on (limits.ts). */
+  | { kind: "record_batch"; calls: number }
   | { kind: "request_cap_reached"; requests: number }
   | { kind: "model_refusal"; providerReason: string | null }
   | { kind: "max_tokens"; outputTokens: number }

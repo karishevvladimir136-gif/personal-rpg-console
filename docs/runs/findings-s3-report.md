@@ -205,6 +205,27 @@ rise from the notes (the rise is the frame's, item 1, now a rule); no name of th
 clerk, his brother, the captain, the treasury); input grows 11–33 % per turn, almost all of it read from the cache. By
 the stage's rule the cap stays at 24 000.
 
+## After the report: a big find no longer loses its tail (the owner, before the load; no paid calls)
+
+The roll-rule probe's lair search reached the server's limit of 40 records a turn and lost its last calls — the 20
+minutes of time passing among them. Now (`src/lib/gameplay/dm-loop/limits.ts`, `execute.ts`, both runtimes):
+
+- **Time passing is written first.** Within each message the server writes `advance_time` before the other calls;
+  everything else keeps the model's order (`move_party` and `rest` too: moving first would put the things found «here»
+  at the next place, resting first would heal wounds the same message records). The results go back to the model by
+  call ID, in its own order.
+- **Two batches instead of a refused tail.** Past the first 40 calls the records go on as a second batch of 40; the
+  items-created limit counts the same way (two batches of 50 by default). Only past the second batch is a call refused
+  as before («Tool calls per batch (two batches a turn)» in the limits' labels).
+- **A guard the probe did not reach but the larger budget could:** the turn's commit saves at most 40 private patches,
+  four of them the server's own, so the DM's notes past 36 in one turn are refused one by one — before, the whole
+  turn would have failed at the commit.
+
+Tests: `tests/findings-s3-batches.test.mjs` — a fixture hoard of 60 items in «пишет — записывает» and on the single DM:
+time advances, `advance_time` is the first record written, all 60 items and the note land, the second batch is marked;
+and 45 notes in one turn: 36 saved, 9 refused alone, the turn commits. `tests/dm-loop-play.test.mjs` and
+`tests/dm-loop-limits.test.mjs` follow the new order and batches.
+
 ## Not measured
 
 - Item 7 on the objection and the letter (skipped at the owner's word).

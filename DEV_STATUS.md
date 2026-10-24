@@ -14,7 +14,9 @@ owner's recorded correction — and `202610230611` — the notes' dose; both add
   description at creation, the choice on «Правила и кости», the «5e-модуль» chip. 4 — the class by the role's first
   word, «Уровень не указан» with «Изменить лист», Вордсден's level 5. 5 — companions and people as participants. 6 —
   first-person voice blocks in the people's private cards (prep and digest; DM-only). 7 — the hidden layer's dose
-  24 000 characters, the digest told to use 15–20k when the session gives that much.
+  24 000 characters, the digest told to use 15–20k when the session gives that much. After the report (the owner, no
+  paid calls): a turn's time passing is written first and records past 40 go on as a second batch (items likewise)
+  instead of being refused; the DM's private notes are held to the commit's bound so a turn never fails on them.
 - **Key decisions:** the frame stays (longer prose, records held); voice blocks are private notes (no migration); the
   rules-system setting changes its label only (the ruleset id the turn path reads stays); Вордсден's correction writes
   the level only (the class gives the saves); «your own reasoning» and «tempted» stay out of the DM's prompts (the
@@ -23,7 +25,7 @@ owner's recorded correction — and `202610230611` — the notes' dose; both add
 - **Money:** $21.58 of the $24 cap.
 - **Known issues:** the roll rule closed the fight's untold rolls (0 of 3) but a social check's success may still be told
   only by the other's reaction (1 of 3); the roll check misreads some told failures; a big hoard can reach the
-  40-records-a-turn limit (the time passing was refused once); the synthetic session gave a 7.5k layer, not 15–20k;
+  40-records-a-turn limit — fixed after the report (time first, two batches); the synthetic session gave a 7.5k layer, not 15–20k;
   item 7 not measured on the objection and the letter (skipped).
 - **Next step:** the owner reloads the candidate (`--stop`, `--prod`), checks «Персонаж» (Вордсден, level 5, saves) and
   the «5e-модуль» chip, plays.

@@ -34,10 +34,10 @@ import { advanceLedger, parseLedger, serializeLedger } from "../ledger.ts";
 import { advanceMetrics, parseMetrics, serializeMetrics } from "../metrics.ts";
 import { chooseDepth, lowerEffort, parseDepthRange, parseDepthState, tensionSignals } from "../depth.ts";
 import { ledgerCheckState, ledgerChip, ledgerCorrectionMessage, type LedgerCheckResult, type LedgerCheckState } from "../ledger-check.ts";
-import { executeDmLoopTool } from "../execute.ts";
+import { executeDmLoopTool, recordOrder } from "../execute.ts";
 import { chip } from "../receipt-text.ts";
 import type { PublicProfile } from "../../../persistence/contracts.ts";
-import { dmLoopLimits as L, DM_LOOP_DEFAULT_LIMITS } from "../limits.ts";
+import { dmLoopLimits as L, DM_LOOP_DEFAULT_LIMITS, turnCallCap } from "../limits.ts";
 import { ShadowState } from "../shadow.ts";
 import { dmLoopTools } from "../tools.ts";
 import type { DmSplit } from "../settings.ts";
@@ -241,7 +241,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       // Stage C (item 53): the writer's pause names its dice; the bookkeeper's pass already reads «записывает».
       const work = phase === "writer" ? workOf(calls.filter((call) => !loop.receipts.some((row) => row.call.id === call.id)).map((call) => call.name)) : [];
       if (work.length) live({ type: "working", tools: work });
-      for (const call of calls) {
+      for (const call of recordOrder(calls)) {
         if (loop.receipts.some((row) => row.call.id === call.id)) continue;
         const toolCall = { id: call.id, name: call.name, arguments: parseArguments(call) as DmLoopReceipt["call"]["arguments"] };
         // The writer may only roll; the bookkeeper never rolls (their toolsets say so; this guards a stray call).
@@ -258,7 +258,8 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
           if (isDisplayedCheck(source, check)) outcomePending = true;
         }
         if ("meta" in executed && executed.meta) loop.meta = executed.meta;
-        if (loop.receipts.length === limits.toolCallsPerTurn) diagnostic({ kind: "tool_cap_reached", calls: loop.receipts.length });
+        if (loop.receipts.length === limits.toolCallsPerTurn) diagnostic({ kind: "record_batch", calls: loop.receipts.length });
+        if (loop.receipts.length === turnCallCap(limits)) diagnostic({ kind: "tool_cap_reached", calls: loop.receipts.length });
         observe({ type: "tool_receipt", operationId, receipt });
         if (receipt.result.ok && receipt.result.player)
           live({ type: "tool", name: call.name, ok: true, summary: receipt.result.player, ...(typeof toolCall.arguments.action === "string" ? { action: toolCall.arguments.action } : {}),
@@ -388,7 +389,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       });
       if (!rejected.length || asked("records_retry_asked")) return false;
       const bookkeeperRequests = loop.transcript.slice(Math.max(0, bookkeeperStart(loop.transcript))).filter((m) => m.role === "assistant").length;
-      if (bookkeeperRequests >= limits.modelRequestsPerTurn - 1 || loop.receipts.length >= limits.toolCallsPerTurn) return false;
+      if (bookkeeperRequests >= limits.modelRequestsPerTurn - 1 || loop.receipts.length >= turnCallCap(limits)) return false;
       diagnostic({ kind: "records_retry_asked", calls: rejected.map((row) => row.name) });
       loop.transcript.push({ role: "user", text: rejectedCallsMessage(rejected) });
       shadow.finished = false;
@@ -537,7 +538,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       if (shadow.finished) break;
       const requests = part.filter((m) => m.role === "assistant").length;
       if (requests >= limits.modelRequestsPerTurn) { diagnostic({ kind: "request_cap_reached", requests: loop.requests }); break; }
-      const lastRequest = requests === limits.modelRequestsPerTurn - 1 || loop.receipts.length >= limits.toolCallsPerTurn;
+      const lastRequest = requests === limits.modelRequestsPerTurn - 1 || loop.receipts.length >= turnCallCap(limits);
       if (lastRequest && last?.role !== "user") loop.transcript.push({ role: "user", text: WRAP_UP });
       const round = await request("bookkeeper", rendered(bookkeeperPart(), loop.receipts, checkpoint.checks), false);
       await persist("generating");
