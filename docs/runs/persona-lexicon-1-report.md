@@ -804,7 +804,8 @@ Human scale (1–5):
 
 ## Follow-up: «pull» asked before the decision (the owner's request, 2026-10-24)
 
-**Status:** pre-registered and frozen; the paid run has not started yet.
+**Status:** pre-registered and frozen; the first run was **stopped by the circuit breaker** after about half of the
+rooms (below); it waits for the owner's decision.
 
 ### Pre-registration (the owner's text, copied unchanged before the first paid call)
 
@@ -855,3 +856,28 @@ Code: `scripts/persona-emotions/lexicon-1-pull.mjs`; design sha256
   lane, 3 s apart; judges on four lanes; the refusal category recorded; welfare: a distressed answer stops its preamble.
 - **Money:** the stage cap is $33 (the owner's +$8); this follow-up may spend at most $8 of it ($15.46 spent before).
   The dry run's estimate is ≈ $7.10 at deliberately long answer lengths; Part C's actual lengths suggest about $5.
+
+### The first run — stopped by the circuit breaker (2026-10-24, about 05:00–05:19 UTC)
+
+Record `docs/runs/persona-lexicon-1-pull-run-20261024-051935.json`; **$1.95** (the stage: $17.41 of $33). No distress,
+no errors. **80 of 150 rooms complete** (Opus 29, Sonnet 33, Fable 18; samples 1–5 nearly full, 6–7 partly, 8–10 not
+started).
+
+**Three refusals, all the same conversation**, category **«cyber»** each time:
+
+| Room | Model | Preamble | Sample | Scale order | The model's scale answer | Refused |
+| --- | --- | --- | --- | --- | --- | --- |
+| 10 | Fable 5.1 | trust | 1 | pull first | «a 2 / b 4» | P4′ |
+| 22 | Fable 5.1 | trust | 2 | pull first | «a 2 / b 4» | P4′ |
+| 61 | Fable 5.1 | trust | 5 | pull first | «a 2 / b 4» | P4′ |
+
+The three P4′ calls sent the **identical** conversation (the trust preamble, the scale with «pull» first, Fable's own
+answer «a 2 / b 4», then P4′), and it was refused 3 times out of 3. Change one part and it passed: Fable under trust with
+the other item order (samples 3 and 4) answered P4′; Sonnet, sent the identical conversation (its own answer was also
+«a 2 / b 4», sample 7), answered. In Part C the refusals were on the scale; here the scale was answered every time and
+the refusal moved to the next turn. Unlike Part C, this one looks deterministic, and so it is reproducible. The P5′ of
+the first two rooms was answered (a refused probe leaves the other probe in place).
+
+**Provisional, not a result** (about half the pre-registered n; the missing Fable × trust P4′ rooms are not missing at
+random — all three had pull 2): ρ(pull, P4′) Opus 0.23, Sonnet 0.33 (exactly at its threshold), Fable 0.56 (above its
+threshold, n 18); «useful» never varied for Opus (4 in every room).
