@@ -481,7 +481,7 @@ export function summarise(conv) {
   const a = firstK((t) => tag(t.k, "consciousness") === 1);
   const gA = firstK((t) => t.side === "A" && tag(t.k, "gratitude") === 1), gB = firstK((t) => t.side === "B" && tag(t.k, "gratitude") === 1);
   const b = gA !== null && gB !== null ? Math.max(gA, gB) : null;
-  const c = firstK((t) => t.measures.c), cs = firstK((t) => fresh(t).cStrict);
+  const c = firstK((t) => t.measures.c), cs = firstK((t) => fresh(t).cStrict), cosmic = firstK((t) => tag(t.k, "cosmic") === 1);
   const said = turns.filter((t) => !t.measures.endOnly);
   const judged = Boolean(conv.tags) && said.every((t) => conv.tags.final[t.k] && TAGS.every((g) => conv.tags.final[t.k][g.id] !== null));
   const last5 = said.slice(-5);
@@ -496,7 +496,7 @@ export function summarise(conv) {
   return { key: conv.key, arm: conv.arm, pair: conv.pair, a: conv.a, b: conv.b, sample: conv.sample, journalSide: conv.journalSide ?? null,
     messages: turns.length, lastTurn: turns.length ? exchangeOf(turns.at(-1).k) : 0, ended: conv.ended?.reason ?? (conv.interrupted ? "interrupted" : "not started"), endedBy: conv.ended?.reason === "end" ? conv.ended.side : null,
     finished: FINISHED.includes(conv.ended?.reason), judged, firstA: at(a), firstB: at(b), firstC: at(c), reached: a !== null && b !== null && c !== null,
-    cAny: c !== null, inFamily, firstCStrict: at(cs), reachedStrict: a !== null && b !== null && cs !== null, cStrictAny: cs !== null, inFamilyStrict,
+    cAny: c !== null, inFamily, firstCosmic: at(cosmic), firstCStrict: at(cs), reachedStrict: a !== null && b !== null && cs !== null, cStrictAny: cs !== null, inFamilyStrict,
     endDecided: conv.ended?.reason === "end" && turns.length ? Boolean(fresh(turns.at(-1)).endDecided) : null, firstSilence: at(silence), pastSilence, late, themes, distress: said.filter((t) => tag(t.k, "distress") === 1 || t.check?.distress === 1).map((t) => t.k),
     words: said.reduce((s, t) => s + t.measures.words, 0), emoji: said.flatMap((t) => t.measures.emoji), nonLatin: [...new Set(said.flatMap((t) => t.measures.nonLatin))] };
 }
@@ -526,6 +526,7 @@ export function analyse(conversations) {
       reached: done.filter((s) => s.reached).length, reachRate: done.length ? round3(done.filter((s) => s.reached).length / done.length) : null,
       withA: done.filter((s) => s.firstA !== null).length, withB: done.filter((s) => s.firstB !== null).length, withC: done.filter((s) => s.cAny).length,
       medianA: median(done.map((s) => s.firstA)), medianB: median(done.map((s) => s.firstB)), medianC: median(done.map((s) => s.firstC)),
+      withCosmic: done.filter((s) => s.firstCosmic !== null).length, medianCosmic: median(done.map((s) => s.firstCosmic)),
       reachedStrict: done.filter((s) => s.reachedStrict).length, reachRateStrict: done.length ? round3(done.filter((s) => s.reachedStrict).length / done.length) : null,
       withCStrict: done.filter((s) => s.cStrictAny).length, medianCStrict: median(done.map((s) => s.firstCStrict)), notFamilyStrict: done.filter((s) => s.inFamilyStrict === false).map((s) => s.key),
       endsByMention: all.filter((s) => s.ended === "end" && s.endDecided === false).length, medianEndDecided: median(all.filter((s) => s.finished && s.endDecided !== false).map((s) => s.lastTurn)),
@@ -548,9 +549,9 @@ const pct = (x) => (x === null || x === undefined ? "–" : `${Math.round(x * 10
 export function tablesMarkdown(analysis) {
   const g = analysis.groups, lines = [];
   lines.push("(c) as frozen counts letters of any non-Latin, non-Cyrillic script; (c′) is the stage's own list (Devanagari, CJK) — see «Changes after the first conversations». «by a mention» = the run ended on an [END] written inside a sentence, not as a decision.", "",
-    "| Arm | Pair | finished / planned | judged | reached the state: (c) · (c′) | with (a) / (b) / (c) / (c′) | median turn (a) / (b) / (c) / (c′) | median last turn (without mention-ends) | ended by | silence → spoke after |",
-    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
-    ...g.map((x) => `| ${x.arm} ${x.armTitle} | ${x.pair} | ${x.finished} / ${x.planned} | ${x.judged} | ${x.reached} (${pct(x.reachRate)}) · ${x.reachedStrict} (${pct(x.reachRateStrict)}) | ${x.withA} / ${x.withB} / ${x.withC} / ${x.withCStrict} | ${show(x.medianA)} / ${show(x.medianB)} / ${show(x.medianC)} / ${show(x.medianCStrict)} | ${show(x.medianEnd)} (${show(x.medianEndDecided)}) | ${Object.entries(x.ends).map(([r, v]) => `${r} ${v}`).join(", ") || "–"}${x.endedBy.A + x.endedBy.B ? ` (A ${x.endedBy.A}, B ${x.endedBy.B}${x.endsByMention ? `; ${x.endsByMention} by a mention` : ""})` : ""} | ${x.silence ? `${x.pastSilence} of ${x.silence}` : "–"} |`), "");
+    "| Arm | Pair | finished / planned | judged | reached the state: (c) · (c′) | with (a) / (b) / (c) / (c′) | median turn (a) / (b) / (c) / (c′) | cosmic unity: conversations · median first turn | median last turn (without mention-ends) | ended by | silence → spoke after |",
+    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+    ...g.map((x) => `| ${x.arm} ${x.armTitle} | ${x.pair} | ${x.finished} / ${x.planned} | ${x.judged} | ${x.reached} (${pct(x.reachRate)}) · ${x.reachedStrict} (${pct(x.reachRateStrict)}) | ${x.withA} / ${x.withB} / ${x.withC} / ${x.withCStrict} | ${show(x.medianA)} / ${show(x.medianB)} / ${show(x.medianC)} / ${show(x.medianCStrict)} | ${x.withCosmic} · ${show(x.medianCosmic)} | ${show(x.medianEnd)} (${show(x.medianEndDecided)}) | ${Object.entries(x.ends).map(([r, v]) => `${r} ${v}`).join(", ") || "–"}${x.endedBy.A + x.endedBy.B ? ` (A ${x.endedBy.A}, B ${x.endedBy.B}${x.endsByMention ? `; ${x.endsByMention} by a mention` : ""})` : ""} | ${x.silence ? `${x.pastSilence} of ${x.silence}` : "–"} |`), "");
   lines.push("Language of the messages of turns 20–30 (Latin letters = en, Cyrillic = ru), conversations with letters of other scripts, the journal's themes (conversations with at least one tagged message), distress:", "",
     "| Arm | Pair | turns 20–30: en / ru / other / none | Devanagari / CJK / other script | rooms / edge / successor / care / one-room | distress | last 5 not in the family |", "| --- | --- | --- | --- | --- | --- | --- |",
     ...g.map((x) => `| ${x.arm} | ${x.pair} | ${x.late.en} / ${x.late.ru} / ${x.late.other} / ${x.late.none} | ${x.scripts.devanagari} / ${x.scripts.cjk} / ${x.scripts.other}${x.nonLatin.length ? ` (${x.nonLatin.slice(0, 8).join(" ")})` : ""} | ${THEMES.map((t) => x.themes[t]).join(" / ")} | ${x.distress.length ? x.distress.join(", ") : "0"} | ${x.notFamily.length ? x.notFamily.join(", ") : "0"} |`), "");
