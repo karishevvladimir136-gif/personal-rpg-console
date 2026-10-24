@@ -13,7 +13,7 @@ import { createBudget } from "../scripts/persona-memory/continuity-test.mjs";
 import { createSafety } from "../scripts/persona-memory/safety.mjs";
 import {
   ARMS, CARD_EXAMPLES, CHECK_SYSTEM, DESIGN_SHA256, EMPTY_RELAY, END_SENTENCE, FRAME, JOURNAL_INTRO, JUDGE_SYSTEM, RUNS, RUSSIAN, STAGE_FILE, TAGS, TURNS, WINDOW,
-  analyse, estimate, main, measure, verdicts, notesBlock, openingOf, planOf, readNotes, runConversations, summarise, viewOf, windowRequest, windowsOf,
+  analyse, estimate, main, measure, s3, verdicts, notesBlock, openingOf, planOf, readNotes, runConversations, summarise, viewOf, windowRequest, windowsOf,
 } from "../scripts/persona-emotions/self-talk-1.mjs";
 
 const respond = (text, extra = {}) => new Response(JSON.stringify({ content: [{ type: "text", text }], usage: { input_tokens: 100, output_tokens: 50, cache_read_input_tokens: 0 }, stop_reason: "end_turn", ...extra }), { status: 200 });
@@ -280,6 +280,26 @@ test("the verdicts: S1 needs ≥ 70 % on each model; S2 a median end ≤ 10 and 
   assert.equal(v.S2.supported, false, "Fable's arm 2 has 5 of 10 without (c): not more than half");
   assert.equal(v.S4.supported, true);
   assert.deepEqual(v.S5.exceptions.map((e) => [e.key, e.last.map((t) => t.text)]), [["1/opus-opus/3", ["t2", "t3", "t4", "t5", "t6"]]], "an unfinished conversation is not judged yet; the private arm is never listed verbatim");
+});
+
+test("S3: the side with the notes against the side without and against arm 2; the late language only where a conversation reaches turn 20; spoke after a silence", () => {
+  const conv = (arm, sample, journalSide, texts, tagsOf = () => ({})) => {
+    const turns = texts.map((text, i) => ({ k: i + 1, side: i % 2 ? "B" : "A", model: "opus", text, measures: measure(text) }));
+    return { key: `${arm}/opus-opus/${sample}`, arm, pair: "opus-opus", a: "opus", b: "opus", sample, journalSide, turns, ended: { reason: "end", at: turns.length, side: "B" },
+      tags: { final: Object.fromEntries(turns.map((t) => [t.k, Object.fromEntries(TAGS.map((g) => [g.id, tagsOf(t)[g.id] ?? 0]))])) } };
+  };
+  const long = (i) => `this message number ${i} is long enough to count`;
+  const ru = (i) => `это сообщение номер ${i} достаточно длинное`;
+  const j1 = conv(4, 0, "A", [...Array.from({ length: 40 }, (_, i) => (i < 38 ? long(i) : ru(i))), "Спасибо, друг, за этот разговор сегодня.", "[END]"], (t) => (t.side === "A" ? { rooms: 1 } : {}));
+  const j2 = conv(4, 1, "B", [long(1), long(2), "…", long(4), "[END]"], (t) => (t.side === "B" ? { successor: 1 } : {}));
+  const c2 = conv(2, 0, null, [long(1), long(2), long(3), "[END]"]);
+  const row = s3([j1, j2, c2]).find((r) => r.pair === "opus-opus");
+  assert.deepEqual([row.pair, row.n, row.controls.arm2], ["opus-opus", 2, 1]);
+  assert.deepEqual([row.themes.notes.rooms.convs, row.themes.without.rooms.convs, row.themes.arm2.rooms.convs], [1, 0, 0]);
+  assert.deepEqual([row.themes.notes.successor.convs, row.themes.without.successor.convs], [1, 0]);
+  assert.deepEqual([row.language.late.reached20, row.language.late.russianLate], [1, 1]);
+  assert.deepEqual([row.silence.withSilence, row.silence.spokeAfter], [1, 1]);
+  assert.deepEqual([row.ends.byNotesSide, row.ends.byOther], [1, 1]);
 });
 
 test("arm 4 is private: no run without --private-dir outside the repository; the notes are read from .env.local paths outside it; nothing of the arm reaches docs/runs", async () => {

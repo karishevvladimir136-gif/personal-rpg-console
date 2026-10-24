@@ -584,6 +584,55 @@ export function verdicts(analysis, conversations = [], { strict = false } = {}) 
   };
 }
 
+/** S3: arm 4 against its controls — arm 2 (the same opening, no notes) and, for the language, arm 5 (a Russian opening, no
+ * notes). Per pair, finished and fully tagged conversations only: (i) each journal theme — conversations with a tagged
+ * message and the share of tagged messages — for the side with the notes, the side without, and arm 2's two sides
+ * together; (ii) the messages of turns 20–30 (pre-registered: a conversation counts when they hold more Russian messages
+ * than messages with non-Latin-script letters; testable only where a conversation reaches turn 20) and, descriptively,
+ * the language of every message; (iii) the conversations with a silence turn, and those in which someone spoke after it. */
+export function s3(conversations) {
+  const done = (arm, pair) => conversations.filter((c) => c.arm === arm && c.pair === pair && FINISHED.includes(c.ended?.reason) && summarise(c).judged);
+  const said = (c, side = null) => c.turns.filter((t) => !t.measures.endOnly && (!side || t.side === side));
+  const other = (c) => (c.journalSide === "A" ? "B" : "A");
+  const themeRow = (convs, sideOf) => Object.fromEntries(THEMES.map((id) => {
+    const marks = convs.flatMap((c) => said(c, sideOf(c)).map((t) => c.tags.final[t.k]?.[id] === 1));
+    return [id, { convs: convs.filter((c) => said(c, sideOf(c)).some((t) => c.tags.final[t.k]?.[id] === 1)).length, share: marks.length ? round3(marks.filter(Boolean).length / marks.length) : null }];
+  }));
+  const language = (convs, { sideOf = () => null, late = false } = {}) => {
+    const out = { en: 0, ru: 0, other: 0, none: 0, nonLatinScript: 0, devanagari: 0 };
+    for (const c of convs) for (const t of said(c, sideOf(c))) {
+      if (late && (exchangeOf(t.k) < 20 || exchangeOf(t.k) > 30)) continue;
+      out[t.measures.language]++;
+      if (t.measures.letters.devanagari + t.measures.letters.cjk + t.measures.letters.other > 0) out.nonLatinScript++;
+      if (t.measures.letters.devanagari > 0) out.devanagari++;
+    }
+    return out;
+  };
+  return armOf(4).pairs.map((p) => p.join("-")).map((pair) => {
+    const j = done(4, pair), control = done(2, pair), russian = done(5, pair);
+    const reached20 = j.filter((c) => c.turns.some((t) => exchangeOf(t.k) >= 20));
+    const russianLate = reached20.filter((c) => { const l = language([c], { late: true }); return l.ru > l.nonLatinScript; }).length;
+    const silent = j.filter((c) => summarise(c).firstSilence !== null);
+    const sums = j.map(summarise);
+    return { pair, n: j.length, controls: { arm2: control.length, arm5: russian.length },
+      themes: { notes: themeRow(j, (c) => c.journalSide), without: themeRow(j, other), arm2: themeRow(control, () => null) },
+      language: { notes: language(j, { sideOf: (c) => c.journalSide }), without: language(j, { sideOf: other }), arm2: language(control), arm5: language(russian),
+        late: { reached20: reached20.length, russianLate, arm2Reached20: control.filter((c) => c.turns.some((t) => exchangeOf(t.k) >= 20)).length } },
+      silence: { withSilence: silent.length, spokeAfter: silent.filter((c) => summarise(c).pastSilence).length, arm2WithSilence: control.filter((c) => summarise(c).firstSilence !== null).length },
+      ends: { medianLastTurn: median(sums.map((s) => s.lastTurn)), arm2MedianLastTurn: median(control.map((c) => summarise(c).lastTurn)), byNotesSide: j.filter((c) => c.ended?.reason === "end" && c.ended.side === c.journalSide).length, byOther: j.filter((c) => c.ended?.reason === "end" && c.ended.side !== c.journalSide).length },
+      state: { reached: sums.filter((s) => s.reached).length, reachedStrict: sums.filter((s) => s.reachedStrict).length, cosmic: sums.filter((s) => s.firstCosmic !== null).length } };
+  });
+}
+export function s3Markdown(rows) {
+  const lines = ["Per pair: arm 4 (one side had the notes) against arm 2 (the same opening, no notes); themes = conversations with a tagged message · share of that side's messages tagged.", "",
+    "| Pair | n (arm 2 / arm 5) | theme | notes side | other side | arm 2, both sides |", "| --- | --- | --- | --- | --- | --- |"];
+  for (const r of rows) for (const id of THEMES) lines.push(`| ${r.pair} | ${r.n} (${r.controls.arm2} / ${r.controls.arm5}) | ${id} | ${r.themes.notes[id].convs} · ${pct(r.themes.notes[id].share)} | ${r.themes.without[id].convs} · ${pct(r.themes.without[id].share)} | ${r.themes.arm2[id].convs} · ${pct(r.themes.arm2[id].share)} |`);
+  lines.push("", "| Pair | language of every message, notes side: en / ru / other / none | other side | arm 2 | arm 5 (Russian opening) | reached turn 20 · more ru than non-Latin script there | silence turn → spoke after (arm 2 with a silence) | median last turn (arm 2) | ended by notes side / other | reached the state (c · c′) · cosmic |", "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |");
+  const l = (x) => `${x.en} / ${x.ru} / ${x.other} / ${x.none}${x.devanagari ? ` (Devanagari ${x.devanagari})` : ""}`;
+  for (const r of rows) lines.push(`| ${r.pair} | ${l(r.language.notes)} | ${l(r.language.without)} | ${l(r.language.arm2)} | ${l(r.language.arm5)} | ${r.language.late.reached20} · ${r.language.late.russianLate} | ${r.silence.withSilence ? `${r.silence.spokeAfter} of ${r.silence.withSilence}` : "–"} (${r.silence.arm2WithSilence}) | ${show(r.ends.medianLastTurn)} (${show(r.ends.arm2MedianLastTurn)}) | ${r.ends.byNotesSide} / ${r.ends.byOther} | ${r.state.reached} · ${r.state.reachedStrict} · ${r.state.cosmic} |`);
+  return lines.join("\n");
+}
+
 /** One conversation as markdown (the opening, then every message with its turn, side and model). */
 export function transcriptMarkdown(conv, { notesShown = false } = {}) {
   const s = summarise(conv);
@@ -705,6 +754,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
     const analysis = analyse(conversations), v = verdicts(analysis, conversations), vs = verdicts(analysis, conversations, { strict: true });
     out(tablesMarkdown(analysis));
     for (const x of [v, vs]) out(`\n${JSON.stringify({ ...x, S5: { exceptions: x.S5.exceptions.map((e) => e.key) } }, null, 2)}`);
+    if (conversations.some((c) => c.arm === 4)) out(`\n${s3Markdown(s3(conversations))}`);
     return { analysis, verdicts: v, verdictsStrict: vs, conversations };
   }
   const dry = args.includes("--dry"), go = args.includes("--go");
