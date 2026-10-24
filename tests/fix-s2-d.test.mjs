@@ -269,13 +269,16 @@ test("D scenario (the DM's side): gear from a stat block, bolts that merge and a
       { name: "resource", arguments: { actorRef: c.hero, resource: "tusk_charges", set: 3, max: 3, reason: "клык" } },
       time(), finish()] }]);
     const potionReceipts = await receipts(potion);
-    assert.equal(potionReceipts[0].result.ok, false);
-    assert.match(potionReceipts[0].result.reason, /potions and ammunition are items/);
+    // The message's time passing is written first (findings S3); the counter call is the first of the rest.
+    const counterCall = potionReceipts.find((r) => r.call.name === "resource");
+    assert.equal(counterCall.result.ok, false);
+    assert.match(counterCall.result.reason, /potions and ammunition are items/);
     assert.equal((await find("Зелье лечения")).quantity, 1);
     assert.equal((await entity(c.hero)).resources["currency_зм"], 75);
     assert.equal(potionReceipts.filter((r) => r.call.name === "money")[1].result.ok, false);
-    assert.equal(potionReceipts.at(-3).result.ok, false, "a party counter without its name is refused");
-    assert.match(potionReceipts.at(-3).result.reason, /needs its name in the campaign language/);
+    const tusk = potionReceipts.find((r) => r.call.name === "resource" && r.call.arguments.resource === "tusk_charges");
+    assert.equal(tusk.result.ok, false, "a party counter without its name is refused");
+    assert.match(tusk.result.reason, /needs its name in the campaign language/);
 
     // 6. The hero's sheet: only with a reason, only the sheet.
     const level = await c.turn("Я вырос.", [{ text: "Рэй чувствует силу. ", toolCalls: [
@@ -297,7 +300,7 @@ test("D scenario (the DM's side): gear from a stat block, bolts that merge and a
       { name: "item", arguments: { action: "transfer", itemRef: "Тяжёлый арбалет", ownerRef: "horse" } },
       { name: "query_state", arguments: { topic: "inventory", ref: "here" } },
       time(), finish()] }]);
-    const mountReceipts = await receipts(mount);
+    const mountReceipts = (await receipts(mount)).filter((r) => r.call.name !== "advance_time"); // time passing is written first
     assert.deepEqual(mountReceipts.slice(0, 4).map((r) => r.result.ok), [false, true, true, true]);
     assert.match(mountReceipts[0].result.reason, /saddlebags, not riders/);
     assert.equal(mountReceipts[3].result.value.place, pile.id ? (await c.f.one("select name from public.rpg_storages where id=$1", [pile.id])).name : null);

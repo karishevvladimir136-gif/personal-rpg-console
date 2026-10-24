@@ -32,7 +32,7 @@ import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KE
 import { advanceLedger, parseLedger, serializeLedger } from "./ledger.ts";
 import { advanceMetrics, parseMetrics, serializeMetrics } from "./metrics.ts";
 import { chooseDepth, EFFORT_ORDER, lowerEffort, parseDepthRange, parseDepthState, tensionSignals, type DepthRange } from "./depth.ts";
-import { executeDmLoopTool, recordOrder } from "./execute.ts";
+import { executeDmLoopTool, recordOrder, storyMinuteOf } from "./execute.ts";
 import { chip } from "./receipt-text.ts";
 import type { PublicProfile } from "../../persistence/contracts.ts";
 import { dmLoopLimits as L, DM_LOOP_DEFAULT_LIMITS, turnCallCap } from "./limits.ts";
@@ -207,6 +207,8 @@ export function foldsFinish(calls: DmToolCall[], receipts: DmLoopReceipt[]): boo
     // Stage 4 §3: a time receipt that lists off-screen plans now due keeps the
     // conversation open, so the DM advances them in the same turn.
     if (TIME_TOOLS.has(call.name) && Array.isArray((receipt.result.value as { duePlans?: unknown }).duePlans)) return false;
+    // Findings S3: so does a plan of this message that came due in its time passing (written first).
+    if (call.name === "note_world" && (receipt.result.value as { cameDue?: unknown }).cameDue) return false;
     if (BOOKKEEPING_TOOLS.has(call.name)) return true;
     const action = receipt.call.arguments.action;
     if (call.name === "item") return action === "create";
@@ -469,8 +471,11 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       for (const call of recordOrder(calls)) {
         if (loop.receipts.some((row) => row.call.id === call.id)) continue;
         const toolCall = { id: call.id, name: call.name, arguments: parseArguments(call) as DmLoopReceipt["call"]["arguments"] };
+        // Time passing is written first; the other calls keep the minute they had in the model's order.
+        shadow.recordAt = storyMinuteOf(call, calls, loop.receipts, shadow.worldMinutes);
         const executed = executeDmLoopTool(shadow, toolCall, { input, checks: checkpoint.checks, random,
           narrationSceneId, toolCalls: loop.receipts.length, limits, language, tension: turnTension, receipts: loop.receipts, showDc });
+        shadow.recordAt = null;
         const receipt = await recordDmTool(lease, loop.receipts.length, toolCall, executed.result);
         loop.receipts.push(receipt);
         if (executed.result.ok && executed.result.check) {

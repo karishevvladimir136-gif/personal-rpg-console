@@ -169,9 +169,14 @@ test("off-screen plans: the receipt of time passing lists plans that came due; t
     ]);
     const receipts = (await c.row(first.input.operationId)).checkpoint.dmLoop.receipts;
     assert.equal(receipts.length, 5, JSON.stringify(receipts.map((r) => [r.call.name, r.result.ok, r.result.reason])));
-    assert.equal(receipts[1].result.ok, true, receipts[1].result.reason);
-    assert.match(receipts[2].result.reason, /needs dueInMinutes/);
-    assert.equal(receipts[3].result.value.duePlans, undefined, "nothing due after half an hour");
+    // Findings S3: the message's time passing is written first; the rest keep the model's order.
+    const byKey = (key) => receipts.find((r) => r.call.name === "note_world" && r.call.arguments.key === key);
+    assert.equal(receipts[0].call.name, "advance_time");
+    assert.equal(byKey("plan_reeve_revenge").result.ok, true, byKey("plan_reeve_revenge").result.reason);
+    assert.match(byKey("plan_no_due").result.reason, /needs dueInMinutes/);
+    assert.equal(receipts[0].result.value.duePlans, undefined, "nothing due after half an hour");
+    assert.equal(byKey("plan_reeve_revenge").result.value.cameDue, undefined, "due in two days, not in this half hour");
+    assert.equal(byKey("plan_reeve_revenge").result.value.plan.dueWorldMinutes, 2 * 24 * 60, "stamped at the minute it had before the walk");
     const second = await c.turn("I travel three days to the capital and back.", [
       { text: "Three days of road. ", toolCalls: [
         { name: "advance_time", arguments: { minutes: 3 * 24 * 60, reason: "the road" } },

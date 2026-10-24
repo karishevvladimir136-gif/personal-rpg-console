@@ -87,6 +87,32 @@ test("a 60-item hoard on the single DM: time first, both batches, every item, an
   } finally { await c.f.db.close(); }
 });
 
+test("a plan set before the message's time passing that comes due in it says so itself, stamped at its own minute, and the turn stays open", async () => {
+  const c = await loopCampaign();
+  try {
+    const before = (await c.state()).runtime.world_minutes;
+    const played = await c.turn("I wait by the gate for an hour.", [
+      { text: "You wait. ", toolCalls: [
+        { name: "upsert_character", arguments: { localKey: "watch", name: "Gate watchman", kind: "npc", important: true } },
+        { name: "note_world", arguments: { kind: "fact", key: "plan_watch_report", operation: "set", actorRef: "watch", value: "The watchman reports the hero to the captain.", dueInMinutes: 10, consequence: "The captain knows." } },
+        // A bookkeeping message that closes with time passing would end the turn by itself (foldsFinish) — not when a plan came due.
+        { name: "advance_time", arguments: { minutes: 60, reason: "waiting" } }] },
+      { text: "The watchman is gone — off to the captain. ", toolCalls: [
+        { name: "note_world", arguments: { kind: "fact", key: "plan_watch_report", operation: "set", planStatus: "done" } },
+        { name: "finish_turn", arguments: { sceneKinds: ["quiet"], spotlight: [], playerMoment: false, nextTension: "calm" } }] },
+    ]);
+    assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
+    const receipts = (await c.row(played.input.operationId)).checkpoint.dmLoop.receipts;
+    assert.equal(receipts[0].call.name, "advance_time");
+    const plan = receipts.find((r) => r.call.arguments.key === "plan_watch_report" && r.call.arguments.planStatus === undefined);
+    assert.equal(plan.result.ok, true, plan.result.reason);
+    assert.equal(plan.result.value.plan.dueWorldMinutes, before + 10, "due ten minutes after the minute it was set in the story");
+    assert.equal(plan.result.value.cameDue.overdueMinutes, 50);
+    assert.match(plan.result.value.hint, /came due while this message's time passed/);
+    assert.ok(receipts.some((r) => r.call.arguments.planStatus === "done" && r.result.ok), "the DM got the next request and resolved it");
+  } finally { await c.f.db.close(); }
+});
+
 test("past the commit's 40 private patches (four are the server's) a note is refused on its own, and the turn commits", async () => {
   assert.equal(PRIVATE_PATCHES_FOR_CALLS, PRIVATE_PATCHES_PER_TURN - SERVER_PRIVATE_PATCHES);
   const c = await loopCampaign();

@@ -213,7 +213,9 @@ minutes of time passing among them. Now (`src/lib/gameplay/dm-loop/limits.ts`, `
 - **Time passing is written first.** Within each message the server writes `advance_time` before the other calls;
   everything else keeps the model's order (`move_party` and `rest` too: moving first would put the things found «here»
   at the next place, resting first would heal wounds the same message records). The results go back to the model by
-  call ID, in its own order.
+  call ID, in its own order. Every other call keeps the minute it had in the model's order — a note's «true since», a
+  plan's due time, an item's history — and a plan set before the time passing that comes due in it says so on its own
+  receipt (and keeps the turn open for the DM to advance it), as the time receipt used to.
 - **Two batches instead of a refused tail.** Past the first 40 calls the records go on as a second batch of 40; the
   items-created limit counts the same way (two batches of 50 by default). Only past the second batch is a call refused
   as before («Tool calls per batch (two batches a turn)» in the limits' labels).
@@ -223,8 +225,9 @@ minutes of time passing among them. Now (`src/lib/gameplay/dm-loop/limits.ts`, `
 
 Tests: `tests/findings-s3-batches.test.mjs` — a fixture hoard of 60 items in «пишет — записывает» and on the single DM:
 time advances, `advance_time` is the first record written, all 60 items and the note land, the second batch is marked;
-and 45 notes in one turn: 36 saved, 9 refused alone, the turn commits. `tests/dm-loop-play.test.mjs` and
-`tests/dm-loop-limits.test.mjs` follow the new order and batches.
+and 45 notes in one turn: 36 saved, 9 refused alone, the turn commits; a plan that comes due inside its message's time
+passing. Four older tests follow the new order (they looked results up by position) and the batches:
+`dm-loop-play`, `dm-loop-limits`, `fix-s2-d`, `stage4-dossier`.
 
 ## Not measured
 

@@ -167,7 +167,7 @@ function profilePatch(shadow: ShadowState, args: Args, entity: Entity | null, ki
   if (args.important !== undefined) { profile.important = !!args.important; touched = true; }
   if (args.attitude !== undefined) {
     reject(kind === "companion", "attitude belongs to a companion (what the hero observes of them).");
-    profile.attitude = { text: str(args.attitude), lastNoticed: String(shadow.worldMinutes) };
+    profile.attitude = { text: str(args.attitude), lastNoticed: String(shadow.now) };
     touched = true;
   }
   if (args.factionRef !== undefined) {
@@ -525,7 +525,7 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     // The applier updates the row in place: the count before the shot is taken first.
     ammunition = { name: ammo.name, before: ammo.quantity };
     shadow.apply({ family: "items", id: ammo.id, expectedRevision: ammo.revision, values: { quantity: ammo.quantity - 1,
-      detail: withHistory(itemDetail(ammo), shadow.worldMinutes, "consumed", str(args.reason)) as unknown as JsonObject } });
+      detail: withHistory(itemDetail(ammo), shadow.now, "consumed", str(args.reason)) as unknown as JsonObject } });
   }
   const advantage = (str(args.advantage) || "normal") as RecordedCheck["advantage"];
   reject(advantage === "normal" || formula.count === 1, "Advantage and disadvantage apply to a single die only.");
@@ -750,7 +750,7 @@ function giveGear(shadow: ShadowState, entity: Entity, gear: unknown): { created
     if (shadow.item(id)) continue;
     shadow.apply({ family: "items", id, expectedRevision: null, values: { name, category: kind, quantity, description: "", mechanics: str(raw.properties),
       owner_entity_id: owner.id, storage_id: storageId, equipped_entity_id: null, equipped_slot: null,
-      detail: withHistory({}, shadow.worldMinutes, "created", shadow.snapshot.settings.values.language === "ru" ? "снаряжение" : "gear") as unknown as JsonObject } });
+      detail: withHistory({}, shadow.now, "created", shadow.snapshot.settings.values.language === "ru" ? "снаряжение" : "gear") as unknown as JsonObject } });
     created.push(name);
     if (raw.equipped === true) {
       owner = shadow.entity(owner.id)!;
@@ -1125,7 +1125,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     const stack = MECHANIC_FIELDS.some((field) => args[field] !== undefined) ? null : stackFor(shadow, probe);
     if (stack) {
       shadow.apply({ family: "items", id: stack.id, expectedRevision: stack.revision, values: { quantity: stack.quantity + quantity,
-        detail: withHistory(itemDetail(stack), shadow.worldMinutes, "merged", `+${quantity} ${name}`) as unknown as JsonObject } });
+        detail: withHistory(itemDetail(stack), shadow.now, "merged", `+${quantity} ${name}`) as unknown as JsonObject } });
       shadow.bindLocalKey(key, { family: "items", id: stack.id });
       return ok({ id: stack.id, localKey: key, name: stack.name, category, quantity: stack.quantity, added: quantity, mergedInto: stack.name, owner: destination.label },
         `${destination.label} gets ${name}${quantity > 1 ? ` ×${quantity}` : ""} (now ${stack.quantity} × ${stack.name})`,
@@ -1135,7 +1135,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
       name, category, quantity, description: str(args.description), mechanics: str(args.properties),
       owner_entity_id: destination.entity?.id ?? null, storage_id: destination.storageId,
       equipped_entity_id: null, equipped_slot: null, ...(rarity ? { rarity } : {}),
-      detail: withHistory(detail, shadow.worldMinutes, "created", str(args.description)) as unknown as JsonObject } });
+      detail: withHistory(detail, shadow.now, "created", str(args.description)) as unknown as JsonObject } });
     shadow.bindLocalKey(key, { family: "items", id });
     return ok({ id, localKey: key, name, category, quantity, owner: destination.label, ...(rarity ? { rarity } : {}) }, `${destination.label} gets ${name}${quantity > 1 ? ` ×${quantity}` : ""}`,
       null, chip.itemGained(l, destination.label, isHero(destination.entity), name, quantity, destination.entity === null));
@@ -1161,7 +1161,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     if (returned) {
       // The pledged or lent thing comes back to its owner: title never moved.
       shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values: { storage_id: destination.storageId,
-        detail: withHistory({ ...detail, status: undefined, holderId: undefined, condition: undefined }, shadow.worldMinutes, "returned", holderName(detail) ?? "") as unknown as JsonObject } });
+        detail: withHistory({ ...detail, status: undefined, holderId: undefined, condition: undefined }, shadow.now, "returned", holderName(detail) ?? "") as unknown as JsonObject } });
       return ok({ itemId: item.id, name: item.name, returned: true, to: destination.label }, `${item.name} returns to ${destination.label}`,
         null, chip.itemReturned(l, item.name, destination.label, isHero(destination.entity)));
     }
@@ -1173,11 +1173,11 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     const stack = !detail.status ? stackFor(shadow, arriving) : null;
     if (stack && stack.id !== item.id) {
       shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values: { quantity: item.quantity - quantity,
-        detail: withHistory(detail, shadow.worldMinutes, "transferred", `${quantity} → ${destination.label}`) as unknown as JsonObject } });
+        detail: withHistory(detail, shadow.now, "transferred", `${quantity} → ${destination.label}`) as unknown as JsonObject } });
       const grown = shadow.item(stack.id)!;
       const total = grown.quantity + quantity;
       shadow.apply({ family: "items", id: grown.id, expectedRevision: grown.revision, values: { quantity: total,
-        detail: withHistory(itemDetail(grown), shadow.worldMinutes, "merged", l === "ru" ? `+${quantity} от ${giver?.name ?? "?"}` : `+${quantity} from ${giver?.name ?? "?"}`) as unknown as JsonObject } });
+        detail: withHistory(itemDetail(grown), shadow.now, "merged", l === "ru" ? `+${quantity} от ${giver?.name ?? "?"}` : `+${quantity} from ${giver?.name ?? "?"}`) as unknown as JsonObject } });
       const hint = openJobHint(shadow, giver, destination.entity);
       return ok({ itemId: grown.id, name: item.name, quantity, to: destination.label, mergedInto: grown.name, ...hint },
         `${item.name}${quantity > 1 ? ` ×${quantity}` : ""} goes to ${destination.label} (now ${total})`,
@@ -1189,7 +1189,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
       if (change.id === splitId) change.values.owner_entity_id = destination.entity?.id ?? null;
       else if (change.values.owner_entity_id === undefined && item.quantity === quantity) change.values.owner_entity_id = destination.entity?.id ?? null;
       // A moved thing is no longer pledged or lent by its former owner.
-      if (detail.status && change.id === item.id) change.values.detail = withHistory({ ...detail, status: undefined, holderId: undefined, condition: undefined }, shadow.worldMinutes, "transferred", destination.label) as unknown as JsonObject;
+      if (detail.status && change.id === item.id) change.values.detail = withHistory({ ...detail, status: undefined, holderId: undefined, condition: undefined }, shadow.now, "transferred", destination.label) as unknown as JsonObject;
       shadow.apply(change);
     }
     if (settled.split && args.localKey !== undefined) shadow.bindLocalKey(str(args.localKey), { family: "items", id: splitId });
@@ -1208,7 +1208,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     const remaining = item.quantity - quantity;
     const values: JsonObject = { quantity: remaining };
     if (remaining === 0 && item.equipped_entity_id) { values.equipped_entity_id = null; values.equipped_slot = null; }
-    values.detail = withHistory(itemDetail(item), shadow.worldMinutes, "consumed", str(args.reason)) as unknown as JsonObject;
+    values.detail = withHistory(itemDetail(item), shadow.now, "consumed", str(args.reason)) as unknown as JsonObject;
     shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values });
     const bonus = potionBonusAction(shadow, item, owner);
     return ok({ itemId: item.id, name: item.name, consumed: quantity, remaining, ...(bonus ? { bonusAction: bonus } : {}) }, `${ownerName(shadow, item)} uses ${item.name}${quantity > 1 ? ` ×${quantity}` : ""} (${remaining} left)${bonus ? `; ${bonus}` : ""}`,
@@ -1223,7 +1223,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     const remaining = item.quantity - quantity;
     const detail = itemDetail(item);
     const values: JsonObject = { quantity: remaining,
-      detail: withHistory({ ...detail, ...(remaining === 0 ? { status: "lost", note: reason, holderId: undefined, condition: undefined } : {}) }, shadow.worldMinutes, "lost", reason) as unknown as JsonObject };
+      detail: withHistory({ ...detail, ...(remaining === 0 ? { status: "lost", note: reason, holderId: undefined, condition: undefined } : {}) }, shadow.now, "lost", reason) as unknown as JsonObject };
     if (remaining === 0 && item.equipped_entity_id) { values.equipped_entity_id = null; values.equipped_slot = null; }
     shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values });
     return ok({ itemId: item.id, name: item.name, lost: quantity, remaining, reason }, `${ownerName(shadow, item)} loses ${item.name}${quantity > 1 ? ` ×${quantity}` : ""} (${reason})`,
@@ -1256,7 +1256,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     // The applier updates the row in place: remember the old name first.
     const previousName = item.name;
     const name = (values.name as string | undefined) ?? previousName;
-    values.detail = withHistory(mechanicsDetail(args, itemDetail(item)), shadow.worldMinutes, "modified", `${previousName}${name !== previousName ? ` → ${name}` : ""}${note ? ` — ${note}` : ""}`) as unknown as JsonObject;
+    values.detail = withHistory(mechanicsDetail(args, itemDetail(item)), shadow.now, "modified", `${previousName}${name !== previousName ? ` → ${name}` : ""}${note ? ` — ${note}` : ""}`) as unknown as JsonObject;
     shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values });
     return ok({ itemId: item.id, name, previousName, changed: Object.keys(values).filter((k) => k !== "detail") }, `${previousName} changed${name !== previousName ? ` → ${name}` : ""}${note ? ` (${note})` : ""}`,
       null, chip.itemModified(l, previousName, name, note));
@@ -1270,7 +1270,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     const condition = str(args.condition);
     const detail: ItemDetail = { ...itemDetail(item), status: action === "pledge" ? "pledged" : "lent", holderId: holder.id, condition };
     shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values: { storage_id: shadow.storageFor(holder).id,
-      detail: withHistory(detail, shadow.worldMinutes, action === "pledge" ? "pledged" : "lent", `${holder.name}${condition ? ` — ${condition}` : ""}`) as unknown as JsonObject } });
+      detail: withHistory(detail, shadow.now, action === "pledge" ? "pledged" : "lent", `${holder.name}${condition ? ` — ${condition}` : ""}`) as unknown as JsonObject } });
     return ok({ itemId: item.id, name: item.name, owner: ownerName(shadow, item), holder: holder.name, status: detail.status ?? null, condition: condition || null },
       `${item.name} ${action === "pledge" ? "pledged" : "lent"} to ${holder.name}${condition ? ` (${condition})` : ""}; ${ownerName(shadow, item)} keeps the title`,
       null, chip.itemPledged(l, action === "pledge" ? "pledge" : "loan", item.name, holder.name, condition));
@@ -2535,8 +2535,8 @@ function noteWorld(shadow: ShadowState, args: Args): DmLoopReceiptResult {
     reject(exists, `There is no ${kind} note "${key}" to close.`);
     const current = parseNoteValue(shadow.privateValue(own, key));
     reject(current.until === null, `The ${kind} note "${key}" is already closed.`);
-    shadow.setPrivate(own, key, serializeNote(current.text || (kind === "clock" ? "(clock)" : ""), current.since, shadow.worldMinutes));
-    return ok({ kind, key, until: shadow.worldMinutes }, "DM note closed");
+    shadow.setPrivate(own, key, serializeNote(current.text || (kind === "clock" ? "(clock)" : ""), current.since, shadow.now));
+    return ok({ kind, key, until: shadow.now }, "DM note closed");
   }
   if (str(args.operation) === "advance") {
     reject(kind === "clock", "Only a clock can be advanced.");
@@ -2556,16 +2556,21 @@ function noteWorld(shadow: ShadowState, args: Args): DmLoopReceiptResult {
     // Item 21: a plan that belongs to nobody (weather, the tide, the law) names "world".
     const worldActor = args.actorRef !== undefined && /^(the )?(world|мир|никто|nobody)$/i.test(str(args.actorRef));
     const actorId = worldActor ? null : args.actorRef !== undefined ? entityOf(shadow, args.actorRef, "actorRef").id : existing?.actorId ?? null;
-    const due = args.dueInMinutes !== undefined ? shadow.worldMinutes + (int(args.dueInMinutes) ?? 0)
-      : existing && (args.planStatus === undefined || status === "open") && existing.status === "open" ? existing.dueWorldMinutes : shadow.worldMinutes;
+    const due = args.dueInMinutes !== undefined ? shadow.now + (int(args.dueInMinutes) ?? 0)
+      : existing && (args.planStatus === undefined || status === "open") && existing.status === "open" ? existing.dueWorldMinutes : shadow.now;
     reject(status !== "open" || args.dueInMinutes !== undefined || (existing !== null && existing.status === "open"),
       "An open plan needs dueInMinutes: when its next step lands.", "Give dueInMinutes (game minutes from now), or resolve the plan with planStatus.");
-    const plan: OffScreenPlan = { key, actorId, goal, dueWorldMinutes: due, setAtWorldMinutes: shadow.worldMinutes,
+    const plan: OffScreenPlan = { key, actorId, goal, dueWorldMinutes: due, setAtWorldMinutes: shadow.now,
       consequence: args.consequence !== undefined ? str(args.consequence) : existing?.consequence ?? "",
       warning: args.warning !== undefined ? str(args.warning) : existing?.warning ?? "", status };
     shadow.setPrivate("fact", key, serializePlan(plan));
-    return ok({ kind, key, plan: { status, dueWorldMinutes: due, actor: actorId ? shadow.entity(actorId)?.name ?? null : null } },
-      status === "open" ? "DM plan updated" : "DM plan resolved");
+    // Findings S3: a plan set before the message's time passing (written first, recordOrder) that comes due in it is told
+    // here, as the time receipt would have listed it; the loop keeps the turn open for it (foldsFinish).
+    const cameDue = status === "open" && shadow.recordAt !== null && due <= shadow.worldMinutes;
+    return ok({ kind, key, plan: { status, dueWorldMinutes: due, actor: actorId ? shadow.entity(actorId)?.name ?? null : null },
+      ...(cameDue ? { cameDue: { overdueMinutes: shadow.worldMinutes - due },
+        hint: `This plan came due while this message's time passed (${shadow.worldMinutes - due} min ago). Advance it now in this turn: note_world planStatus, and play what reaches the hero.` } : {}) },
+      status === "open" ? (cameDue ? "DM plan updated; it came due as time passed" : "DM plan updated") : "DM plan resolved");
   }
   reject(args.actorRef === undefined && args.dueInMinutes === undefined && args.planStatus === undefined && args.consequence === undefined && args.warning === undefined,
     "actorRef, dueInMinutes, consequence, warning and planStatus belong to a plan: use a fact key that starts with plan_.");
@@ -2582,9 +2587,9 @@ function noteWorld(shadow: ShadowState, args: Args): DmLoopReceiptResult {
   // Fix run B2 (5): «true since» now; a different text over an open note keeps the old one, closed, under an archive key.
   const previous = parseNoteValue(shadow.privateValue(kind, key));
   if (previous.text.trim() && previous.text !== value)
-    shadow.setPrivate(kind, archiveKey(key, shadow.worldMinutes), serializeNote(previous.text, previous.since, previous.until ?? shadow.worldMinutes));
-  shadow.setPrivate(kind, key, serializeNote(value, previous.text === value && previous.until === null ? previous.since ?? shadow.worldMinutes : shadow.worldMinutes));
-  return ok({ kind, key, since: shadow.worldMinutes }, "DM note updated");
+    shadow.setPrivate(kind, archiveKey(key, shadow.now), serializeNote(previous.text, previous.since, previous.until ?? shadow.now));
+  shadow.setPrivate(kind, key, serializeNote(value, previous.text === value && previous.until === null ? previous.since ?? shadow.now : shadow.now));
+  return ok({ kind, key, since: shadow.now }, "DM note updated");
 }
 
 function storedModel(shadow: ShadowState, actorId: string): CharacterModel | null {
@@ -2729,11 +2734,27 @@ export type ExecutedTool = { result: DmLoopReceiptResult; meta?: DmLoopMeta;
   counter?: { entityId: string; key: string; value: number; max: number | null } };
 
 /** The owner, after the findings-S3 hoard probe: the calls of one message are written with time passing first — an
- * `advance_time` can no longer be the tail a limit cuts — and the rest in the model's order. `move_party` and `rest` keep
+ * `advance_time` can no longer be the tail a limit cuts — and the rest in the model's order (they may name records made
+ * earlier in the message by local key, so only the time passing, which names none, moves). `move_party` and `rest` keep
  * their place: moving first would put the things found «here» at the next place, resting first would heal wounds the
- * message records after it. Stable; the results go back to the model by call ID, in its own order. */
+ * message records after it. A plan set before the time passing that comes due in it says so itself (noteWorld). Stable;
+ * the results go back to the model by call ID, in its own order. */
 export function recordOrder<T extends { name: string }>(calls: readonly T[]): T[] {
   return [...calls.filter((call) => call.name === "advance_time"), ...calls.filter((call) => call.name !== "advance_time")];
+}
+
+/** The minute a call of the message is stamped at while its time passing is written first: the clock as it now stands,
+ * less the minutes of every accepted `advance_time` the model put after this call — so a note, a plan or an item's
+ * history keeps the minute it had in the model's own order. Null for the time passing itself (stamped by the clock). */
+export function storyMinuteOf(call: { id: string; name: string }, calls: readonly { id: string; name: string }[], receipts: readonly DmLoopReceipt[], clock: number): number | null {
+  if (call.name === "advance_time") return null;
+  const at = calls.findIndex((row) => row.id === call.id);
+  const later = calls.slice(at + 1).filter((row) => row.name === "advance_time").reduce((sum, row) => {
+    const receipt = receipts.find((entry) => entry.call.id === row.id);
+    const minutes = receipt?.result.ok ? Number((receipt.result.value as { minutes?: unknown }).minutes) : 0;
+    return sum + (Number.isFinite(minutes) ? minutes : 0);
+  }, 0);
+  return later > 0 ? clock - later : null;
 }
 
 /** Run one call. Shadow mutations of a rejected call are discarded. */

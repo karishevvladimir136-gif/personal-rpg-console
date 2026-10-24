@@ -34,7 +34,7 @@ import { advanceLedger, parseLedger, serializeLedger } from "../ledger.ts";
 import { advanceMetrics, parseMetrics, serializeMetrics } from "../metrics.ts";
 import { chooseDepth, lowerEffort, parseDepthRange, parseDepthState, tensionSignals } from "../depth.ts";
 import { ledgerCheckState, ledgerChip, ledgerCorrectionMessage, type LedgerCheckResult, type LedgerCheckState } from "../ledger-check.ts";
-import { executeDmLoopTool, recordOrder } from "../execute.ts";
+import { executeDmLoopTool, recordOrder, storyMinuteOf } from "../execute.ts";
 import { chip } from "../receipt-text.ts";
 import type { PublicProfile } from "../../../persistence/contracts.ts";
 import { dmLoopLimits as L, DM_LOOP_DEFAULT_LIMITS, turnCallCap } from "../limits.ts";
@@ -246,9 +246,12 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
         const toolCall = { id: call.id, name: call.name, arguments: parseArguments(call) as DmLoopReceipt["call"]["arguments"] };
         // The writer may only roll; the bookkeeper never rolls (their toolsets say so; this guards a stray call).
         const allowed = phase === "writer" ? isWriterTool(call.name) : call.name !== "roll";
+        // Time passing is written first; the other calls keep the minute they had in the model's order.
+        shadow.recordAt = storyMinuteOf(call, calls, loop.receipts, shadow.worldMinutes);
         const executed = allowed ? executeDmLoopTool(shadow, toolCall, { input, checks: checkpoint.checks, random,
           narrationSceneId, toolCalls: loop.receipts.length, limits, language, tension: turnTension, receipts: loop.receipts, showDc })
           : { result: { ok: false as const, reason: `The ${phase} has no tool "${call.name}".`, hint: null, summary: `${call.name}: not available in this pass` } };
+        shadow.recordAt = null;
         const receipt = await recordDmTool(lease, loop.receipts.length, toolCall, executed.result);
         loop.receipts.push(receipt);
         if (executed.result.ok && executed.result.check) {
