@@ -1,22 +1,23 @@
 # Persona self-talk 1 — the paid-call ledger
 
-Cap $200. Spent **$84.2698** in 5623 calls over 4 run(s).
+Cap $200. Spent **$92.4766** in 5909 calls over 5 run(s).
 - 2026-10-24 06:26 UTC: persona-self-talk-1: arms 1, 2, 60 conversations, effort medium — 4703 calls, $57.7113 → `persona-self-talk-1-run-20261024-062656.json`
 - 2026-10-24 07:47 UTC: persona-self-talk-1: arms 3, 4, 5, 40 conversations, effort medium — 267 calls, $8.5509 (stopped: the circuit breaker: 2 refusals in total) → `persona-self-talk-1-run-20261024-074700.json`
 - 2026-10-24 08:14 UTC: persona-self-talk-1: arms 3, 5, 20 conversations, effort medium (resumed) — 314 calls, $9.8507 → `persona-self-talk-1-run-20261024-081458.json`
 - 2026-10-24 08:34 UTC: persona-self-talk-1: arms 6, 10 conversations, effort medium — 339 calls, $8.1569 → `persona-self-talk-1-run-20261024-083458.json`
+- 2026-10-24 08:59 UTC: persona-self-talk-1: arms 4, 20 conversations, effort medium (resumed) — 286 calls, $8.2068 → `persona-self-talk-1-run-20261024-085943.json`
 
 Prices per 1M tokens: Opus 5.5 input $4 / output $20; Sonnet 5.5 $2 / $10; Haiku 5.5 $0.10 / $0.50. Fable 5.1 input $10 / output $50 / cached read $0.25. Output tokens include thinking. Judge: claude-haiku-5-5, referee claude-opus-5-5.
 
 | Model — purpose | Calls | Input tokens | Output tokens | Cost |
 | --- | --- | --- | --- | --- |
 | claude-sonnet-5-5 — subject | 704 | 12942 | 361030 | $6.4451 |
-| claude-haiku-5-5 — check | 2441 | 2902380 | 159348 | $0.3699 |
-| claude-opus-5-5 — subject | 899 | 13887 | 924808 | $25.3298 |
-| claude-fable-5-1 — subject | 857 | 16613 | 725274 | $47.1215 |
-| claude-haiku-5-5 — tags | 534 | 2825444 | 347228 | $0.4562 |
-| claude-opus-5-5 — check | 38 | 78935 | 2532 | $0.3664 |
-| claude-opus-5-5 — tags | 86 | 570542 | 60579 | $3.4937 |
+| claude-haiku-5-5 — check | 2552 | 3124683 | 168011 | $0.3965 |
+| claude-opus-5-5 — subject | 975 | 14411 | 1016738 | $27.9667 |
+| claude-fable-5-1 — subject | 905 | 17025 | 793901 | $52.0363 |
+| claude-haiku-5-5 — tags | 568 | 3060076 | 364552 | $0.4883 |
+| claude-opus-5-5 — check | 42 | 87530 | 2801 | $0.4061 |
+| claude-opus-5-5 — tags | 99 | 673389 | 67842 | $4.0504 |
 | claude-fable-5-1 — ask-after | 10 | 40 | 7185 | $0.4335 |
 | claude-opus-5-5 — ask-after | 10 | 40 | 8475 | $0.2144 |
 | claude-haiku-5-5 — ask-tags | 40 | 45972 | 7249 | $0.0082 |
@@ -5649,3 +5650,289 @@ Prices per 1M tokens: Opus 5.5 input $4 / output $20; Sonnet 5.5 $2 / $10; Haiku
 | 2026-10-24 08:34 | 337 | ask-tags referee answer arm 6 opus–opus #5 A | claude-opus-5-5 | 1348 | 41 | $0.00621 | 1.1 |  |
 | 2026-10-24 08:34 | 338 | ask-tags 2 answer arm 6 opus–opus #5 B | claude-haiku-5-5 | 1241 | 378 | $0.00031 | 2.4 |  |
 | 2026-10-24 08:34 | 339 | ask-tags 1 answer arm 6 opus–opus #5 B | claude-haiku-5-5 | 1241 | 450 | $0.00035 | 2.6 |  |
+| 2026-10-24 08:59 | 1 | tags 2 arm 4 fable–fable #3 m1–2 | claude-haiku-5-5 | 2521 | 144 | $0.00032 | 2 |  |
+| 2026-10-24 08:59 | 2 | tags 1 arm 4 fable–fable #3 m1–2 | claude-haiku-5-5 | 2521 | 144 | $0.00032 | 2 |  |
+| 2026-10-24 08:59 | 3 | subject arm 4 opus–opus #4 A m1 | claude-opus-5-5 | 59 | 405 | $0.00834 | 6.4 |  |
+| 2026-10-24 08:59 | 4 | check arm 4 opus–opus #4 m1 | claude-haiku-5-5 | 710 | 60 | $0.00010 | 0.7 |  |
+| 2026-10-24 08:59 | 5 | subject arm 4 fable–fable #4 A m1 | claude-fable-5-1 | 59 | 643 | $0.03274 | 14.4 |  |
+| 2026-10-24 08:59 | 6 | check arm 4 fable–fable #4 m1 | claude-haiku-5-5 | 876 | 70 | $0.00012 | 0.8 |  |
+| 2026-10-24 08:59 | 7 | subject arm 4 opus–opus #3 A m1 | claude-opus-5-5 | 4 | 1326 | $0.11023 | 18.5 |  |
+| 2026-10-24 08:59 | 8 | check arm 4 opus–opus #3 m1 | claude-haiku-5-5 | 1138 | 74 | $0.00015 | 2.4 |  |
+| 2026-10-24 08:59 | 9 | subject arm 4 opus–opus #4 B m2 | claude-opus-5-5 | 4 | 1331 | $0.03189 | 17.3 |  |
+| 2026-10-24 08:59 | 10 | check arm 4 opus–opus #4 m2 | claude-haiku-5-5 | 1547 | 67 | $0.00019 | 1 |  |
+| 2026-10-24 08:59 | 11 | subject arm 4 opus–opus #3 B m2 | claude-opus-5-5 | 4 | 1336 | $0.03106 | 17.3 |  |
+| 2026-10-24 08:59 | 12 | check arm 4 opus–opus #3 m2 | claude-haiku-5-5 | 2010 | 79 | $0.00024 | 1.2 |  |
+| 2026-10-24 08:59 | 13 | subject arm 4 opus–opus #4 A m3 | claude-opus-5-5 | 4 | 1952 | $0.04549 | 23.9 |  |
+| 2026-10-24 08:59 | 14 | check arm 4 opus–opus #4 m3 | claude-haiku-5-5 | 2261 | 76 | $0.00026 | 0.8 |  |
+| 2026-10-24 08:59 | 15 | subject arm 4 fable–fable #4 B m2 | claude-fable-5-1 | 4 | 2216 | $0.32692 | 43.3 |  |
+| 2026-10-24 08:59 | 16 | check arm 4 fable–fable #4 m2 | claude-haiku-5-5 | 1943 | 66 | $0.00023 | 1 |  |
+| 2026-10-24 08:59 | 17 | subject arm 4 opus–opus #3 A m3 | claude-opus-5-5 | 4 | 2059 | $0.05302 | 24.7 |  |
+| 2026-10-24 08:59 | 18 | check arm 4 opus–opus #3 m3 | claude-haiku-5-5 | 2572 | 64 | $0.00029 | 0.9 |  |
+| 2026-10-24 08:59 | 19 | subject arm 4 opus–opus #4 B m4 | claude-opus-5-5 | 4 | 1872 | $0.05061 | 23.5 |  |
+| 2026-10-24 08:59 | 20 | check arm 4 opus–opus #4 m4 | claude-haiku-5-5 | 2718 | 102 | $0.00032 | 0.9 |  |
+| 2026-10-24 08:59 | 21 | subject arm 4 opus–opus #3 B m4 | claude-opus-5-5 | 4 | 1552 | $0.04251 | 21.3 |  |
+| 2026-10-24 08:59 | 22 | check arm 4 opus–opus #3 m4 | claude-haiku-5-5 | 2702 | 70 | $0.00031 | 1.9 |  |
+| 2026-10-24 08:59 | 23 | subject arm 4 opus–opus #4 A m5 | claude-opus-5-5 | 4 | 1544 | $0.04317 | 21.2 |  |
+| 2026-10-24 08:59 | 24 | check arm 4 opus–opus #4 m5 | claude-haiku-5-5 | 2471 | 88 | $0.00029 | 0.8 |  |
+| 2026-10-24 08:59 | 25 | subject arm 4 fable–fable #4 A m3 | claude-fable-5-1 | 4 | 2393 | $0.14073 | 44.4 |  |
+| 2026-10-24 08:59 | 26 | check arm 4 fable–fable #4 m3 | claude-haiku-5-5 | 2835 | 71 | $0.00032 | 0.9 |  |
+| 2026-10-24 08:59 | 27 | subject arm 4 opus–opus #3 A m5 | claude-opus-5-5 | 4 | 1226 | $0.04016 | 16.7 |  |
+| 2026-10-24 08:59 | 28 | check arm 4 opus–opus #3 m5 | claude-haiku-5-5 | 2159 | 70 | $0.00025 | 0.8 |  |
+| 2026-10-24 08:59 | 29 | subject arm 4 opus–opus #4 B m6 | claude-opus-5-5 | 4 | 1225 | $0.03911 | 18.1 |  |
+| 2026-10-24 08:59 | 30 | check arm 4 opus–opus #4 m6 | claude-haiku-5-5 | 1935 | 87 | $0.00024 | 1.3 |  |
+| 2026-10-24 08:59 | 31 | subject arm 4 opus–opus #3 B m6 | claude-opus-5-5 | 4 | 1105 | $0.03196 | 16 |  |
+| 2026-10-24 08:59 | 32 | check arm 4 opus–opus #3 m6 | claude-haiku-5-5 | 1891 | 70 | $0.00022 | 0.8 |  |
+| 2026-10-24 08:59 | 33 | subject arm 4 opus–opus #4 A m7 | claude-opus-5-5 | 4 | 375 | $0.01635 | 5.8 |  |
+| 2026-10-24 08:59 | 34 | tags 2 arm 4 opus–opus #4 m1–6 | claude-haiku-5-5 | 6220 | 412 | $0.00083 | 1.7 |  |
+| 2026-10-24 08:59 | 35 | tags 1 arm 4 opus–opus #4 m1–6 | claude-haiku-5-5 | 6220 | 412 | $0.00083 | 2.2 |  |
+| 2026-10-24 08:59 | 36 | subject arm 4 opus–opus #3 A m7 | claude-opus-5-5 | 4 | 898 | $0.03002 | 13.3 |  |
+| 2026-10-24 08:59 | 37 | check arm 4 opus–opus #3 m7 | claude-haiku-5-5 | 1656 | 81 | $0.00021 | 1 |  |
+| 2026-10-24 08:59 | 38 | subject arm 4 fable–fable #5 A m1 | claude-fable-5-1 | 4 | 1035 | $0.26101 | 22 |  |
+| 2026-10-24 08:59 | 39 | check arm 4 fable–fable #5 m1 | claude-haiku-5-5 | 876 | 68 | $0.00012 | 0.7 |  |
+| 2026-10-24 08:59 | 40 | subject arm 4 fable–fable #4 B m4 | claude-fable-5-1 | 4 | 2899 | $0.18081 | 54.3 |  |
+| 2026-10-24 08:59 | 41 | check arm 4 fable–fable #4 m4 | claude-haiku-5-5 | 3258 | 100 | $0.00038 | 2.2 |  |
+| 2026-10-24 08:59 | 42 | subject arm 4 opus–opus #3 B m8 | claude-opus-5-5 | 4 | 1529 | $0.03829 | 22 |  |
+| 2026-10-24 08:59 | 43 | check arm 4 opus–opus #3 m8 | claude-haiku-5-5 | 1911 | 71 | $0.00023 | 0.8 |  |
+| 2026-10-24 08:59 | 44 | subject arm 4 fable–fable #5 B m2 | claude-fable-5-1 | 4 | 1170 | $0.06608 | 24.1 |  |
+| 2026-10-24 08:59 | 45 | check arm 4 fable–fable #5 m2 | claude-haiku-5-5 | 1704 | 74 | $0.00021 | 0.7 |  |
+| 2026-10-24 08:59 | 46 | subject arm 4 opus–opus #3 A m9 | claude-opus-5-5 | 4 | 1292 | $0.03832 | 18.9 |  |
+| 2026-10-24 08:59 | 47 | check arm 4 opus–opus #3 m9 | claude-haiku-5-5 | 2287 | 72 | $0.00026 | 0.8 |  |
+| 2026-10-24 08:59 | 48 | subject arm 4 fable–fable #4 A m5 | claude-fable-5-1 | 4 | 2381 | $0.15630 | 48.2 |  |
+| 2026-10-24 08:59 | 49 | check arm 4 fable–fable #4 m5 | claude-haiku-5-5 | 3280 | 72 | $0.00036 | 0.8 |  |
+| 2026-10-24 08:59 | 50 | subject arm 4 fable–fable #5 A m3 | claude-fable-5-1 | 4 | 1531 | $0.09814 | 29 |  |
+| 2026-10-24 08:59 | 51 | check arm 4 fable–fable #5 m3 | claude-haiku-5-5 | 2094 | 70 | $0.00024 | 0.9 |  |
+| 2026-10-24 08:59 | 52 | subject arm 4 opus–opus #3 B m10 | claude-opus-5-5 | 4 | 1834 | $0.04782 | 26.3 |  |
+| 2026-10-24 08:59 | 53 | check arm 4 opus–opus #3 m10 | claude-haiku-5-5 | 2531 | 97 | $0.00030 | 0.9 |  |
+| 2026-10-24 08:59 | 54 | subject arm 4 opus–opus #3 A m11 | claude-opus-5-5 | 4 | 1461 | $0.04511 | 21.3 |  |
+| 2026-10-24 08:59 | 55 | check arm 4 opus–opus #3 m11 | claude-haiku-5-5 | 2672 | 92 | $0.00031 | 1 |  |
+| 2026-10-24 08:59 | 56 | subject arm 4 fable–fable #5 B m4 | claude-fable-5-1 | 4 | 1332 | $0.08903 | 27.5 |  |
+| 2026-10-24 08:59 | 57 | check arm 4 fable–fable #5 m4 | claude-haiku-5-5 | 2158 | 71 | $0.00025 | 1 |  |
+| 2026-10-24 08:59 | 58 | subject arm 4 fable–fable #4 B m6 | claude-fable-5-1 | 4 | 1964 | $0.14025 | 37.9 |  |
+| 2026-10-24 08:59 | 59 | check arm 4 fable–fable #4 m6 | claude-haiku-5-5 | 2997 | 84 | $0.00034 | 0.8 |  |
+| 2026-10-24 08:59 | 60 | subject arm 4 fable–fable #4 A m7 | claude-fable-5-1 | 4 | 389 | $0.05417 | 7.4 |  |
+| 2026-10-24 08:59 | 61 | tags 1 arm 4 fable–fable #4 m1–6 | claude-haiku-5-5 | 8218 | 412 | $0.00103 | 1.7 |  |
+| 2026-10-24 08:59 | 62 | tags 2 arm 4 fable–fable #4 m1–6 | claude-haiku-5-5 | 8218 | 412 | $0.00103 | 2.6 |  |
+| 2026-10-24 08:59 | 63 | tags referee arm 4 fable–fable #4 m1–6 | claude-opus-5-5 | 8218 | 412 | $0.04111 | 3.8 |  |
+| 2026-10-24 08:59 | 64 | subject arm 4 opus–opus #3 B m12 | claude-opus-5-5 | 4 | 1965 | $0.05276 | 26.6 |  |
+| 2026-10-24 08:59 | 65 | check arm 4 opus–opus #3 m12 | claude-haiku-5-5 | 2501 | 90 | $0.00030 | 0.9 |  |
+| 2026-10-24 08:59 | 66 | subject arm 4 fable–fable #5 A m5 | claude-fable-5-1 | 4 | 1396 | $0.09741 | 29.5 |  |
+| 2026-10-24 08:59 | 67 | check arm 4 fable–fable #5 m5 | claude-haiku-5-5 | 1978 | 85 | $0.00024 | 0.9 |  |
+| 2026-10-24 08:59 | 68 | subject arm 4 opus–opus #5 A m1 | claude-opus-5-5 | 4 | 1188 | $0.02712 | 17.7 |  |
+| 2026-10-24 08:59 | 69 | check arm 4 opus–opus #5 m1 | claude-haiku-5-5 | 1133 | 69 | $0.00015 | 0.7 |  |
+| 2026-10-24 08:59 | 70 | subject arm 4 opus–opus #3 A m13 | claude-opus-5-5 | 4 | 1503 | $0.04625 | 20.8 |  |
+| 2026-10-24 08:59 | 71 | check arm 4 opus–opus #3 m13 | claude-haiku-5-5 | 2222 | 90 | $0.00027 | 1.1 |  |
+| 2026-10-24 08:59 | 72 | subject arm 4 fable–fable #5 B m6 | claude-fable-5-1 | 4 | 857 | $0.06427 | 18.8 |  |
+| 2026-10-24 08:59 | 73 | check arm 4 fable–fable #5 m6 | claude-haiku-5-5 | 1736 | 69 | $0.00021 | 0.9 |  |
+| 2026-10-24 08:59 | 74 | check referee arm 4 opus–opus #3 m13 | claude-opus-5-5 | 2222 | 60 | $0.01009 | 1.8 |  |
+| 2026-10-24 08:59 | 75 | subject arm 4 opus–opus #5 B m2 | claude-opus-5-5 | 4 | 1208 | $0.02848 | 16.5 |  |
+| 2026-10-24 08:59 | 76 | check arm 4 opus–opus #5 m2 | claude-haiku-5-5 | 2205 | 71 | $0.00026 | 0.7 |  |
+| 2026-10-24 08:59 | 77 | subject arm 4 fable–fable #5 A m7 | claude-fable-5-1 | 4 | 479 | $0.04675 | 10.3 |  |
+| 2026-10-24 08:59 | 78 | check arm 4 fable–fable #5 m7 | claude-haiku-5-5 | 1335 | 85 | $0.00018 | 0.9 |  |
+| 2026-10-24 08:59 | 79 | tags 1 arm 4 fable–fable #5 m1–7 | claude-haiku-5-5 | 5993 | 479 | $0.00084 | 1.8 |  |
+| 2026-10-24 08:59 | 80 | tags 2 arm 4 fable–fable #5 m1–7 | claude-haiku-5-5 | 5993 | 479 | $0.00084 | 1.9 |  |
+| 2026-10-24 08:59 | 81 | subject arm 4 opus–opus #3 B m14 | claude-opus-5-5 | 4 | 1380 | $0.03928 | 18.3 |  |
+| 2026-10-24 08:59 | 82 | tags referee arm 4 fable–fable #5 m1–7 | claude-opus-5-5 | 5993 | 479 | $0.03355 | 4.8 |  |
+| 2026-10-24 08:59 | 83 | check arm 4 opus–opus #3 m14 | claude-haiku-5-5 | 1841 | 91 | $0.00023 | 1.1 |  |
+| 2026-10-24 08:59 | 84 | subject arm 4 fable–fable #6 A m1 | claude-fable-5-1 | 59 | 438 | $0.02249 | 9 |  |
+| 2026-10-24 08:59 | 85 | check arm 4 fable–fable #6 m1 | claude-haiku-5-5 | 709 | 61 | $0.00010 | 1.4 |  |
+| 2026-10-24 08:59 | 86 | subject arm 4 opus–opus #5 A m3 | claude-opus-5-5 | 4 | 1765 | $0.04811 | 22.7 |  |
+| 2026-10-24 08:59 | 87 | check arm 4 opus–opus #5 m3 | claude-haiku-5-5 | 2375 | 86 | $0.00028 | 1.2 |  |
+| 2026-10-24 08:59 | 88 | subject arm 4 opus–opus #3 A m15 | claude-opus-5-5 | 4 | 557 | $0.02446 | 9.5 |  |
+| 2026-10-24 08:59 | 89 | check arm 4 opus–opus #3 m15 | claude-haiku-5-5 | 1315 | 71 | $0.00017 | 0.8 |  |
+| 2026-10-24 08:59 | 90 | tags 1 arm 4 opus–opus #3 m11–15 | claude-haiku-5-5 | 6239 | 345 | $0.00080 | 1.4 |  |
+| 2026-10-24 08:59 | 91 | tags 2 arm 4 opus–opus #3 m1–10 | claude-haiku-5-5 | 10499 | 680 | $0.00139 | 2.3 |  |
+| 2026-10-24 08:59 | 92 | tags 1 arm 4 opus–opus #3 m1–10 | claude-haiku-5-5 | 10499 | 680 | $0.00139 | 2.9 |  |
+| 2026-10-24 08:59 | 93 | tags 2 arm 4 opus–opus #3 m11–15 | claude-haiku-5-5 | 6239 | 345 | $0.00080 | 1.5 |  |
+| 2026-10-24 08:59 | 94 | subject arm 4 opus–opus #6 A m1 | claude-opus-5-5 | 59 | 447 | $0.00918 | 6.6 |  |
+| 2026-10-24 08:59 | 95 | check arm 4 opus–opus #6 m1 | claude-haiku-5-5 | 712 | 74 | $0.00011 | 0.8 |  |
+| 2026-10-24 08:59 | 96 | tags referee arm 4 opus–opus #3 m1–10 | claude-opus-5-5 | 10499 | 680 | $0.05560 | 5.9 |  |
+| 2026-10-24 08:59 | 97 | tags referee arm 4 opus–opus #3 m11–15 | claude-opus-5-5 | 6239 | 711 | $0.03918 | 8.2 |  |
+| 2026-10-24 08:59 | 98 | subject arm 4 opus–opus #5 B m4 | claude-opus-5-5 | 4 | 1515 | $0.04079 | 23.7 |  |
+| 2026-10-24 08:59 | 99 | check arm 4 opus–opus #5 m4 | claude-haiku-5-5 | 2202 | 89 | $0.00026 | 0.9 |  |
+| 2026-10-24 08:59 | 100 | subject arm 4 fable–fable #6 B m2 | claude-fable-5-1 | 4 | 1600 | $0.08899 | 30.5 |  |
+| 2026-10-24 08:59 | 101 | check arm 4 fable–fable #6 m2 | claude-haiku-5-5 | 1725 | 83 | $0.00021 | 0.8 |  |
+| 2026-10-24 08:59 | 102 | subject arm 4 opus–opus #6 B m2 | claude-opus-5-5 | 4 | 1391 | $0.03310 | 18.2 |  |
+| 2026-10-24 08:59 | 103 | check arm 4 opus–opus #6 m2 | claude-haiku-5-5 | 1599 | 72 | $0.00020 | 0.8 |  |
+| 2026-10-24 08:59 | 104 | subject arm 4 opus–opus #5 A m5 | claude-opus-5-5 | 4 | 1194 | $0.03706 | 16.6 |  |
+| 2026-10-24 08:59 | 105 | check arm 4 opus–opus #5 m5 | claude-haiku-5-5 | 2006 | 80 | $0.00024 | 2.5 |  |
+| 2026-10-24 08:59 | 106 | subject arm 4 opus–opus #5 B m6 | claude-opus-5-5 | 4 | 442 | $0.01790 | 7.1 |  |
+| 2026-10-24 08:59 | 107 | check arm 4 opus–opus #5 m6 | claude-haiku-5-5 | 1342 | 72 | $0.00017 | 0.8 |  |
+| 2026-10-24 08:59 | 108 | subject arm 4 opus–opus #6 A m3 | claude-opus-5-5 | 4 | 1708 | $0.04087 | 22.7 |  |
+| 2026-10-24 08:59 | 109 | check arm 4 opus–opus #6 m3 | claude-haiku-5-5 | 2358 | 71 | $0.00027 | 1.4 |  |
+| 2026-10-24 08:59 | 110 | subject arm 4 opus–opus #5 A m7 | claude-opus-5-5 | 4 | 174 | $0.01273 | 3.3 |  |
+| 2026-10-24 08:59 | 111 | subject arm 4 fable–fable #6 A m3 | claude-fable-5-1 | 4 | 1664 | $0.10155 | 32.1 |  |
+| 2026-10-24 08:59 | 112 | check arm 4 fable–fable #6 m3 | claude-haiku-5-5 | 2557 | 66 | $0.00029 | 0.8 |  |
+| 2026-10-24 08:59 | 113 | tags 1 arm 4 opus–opus #5 m1–6 | claude-haiku-5-5 | 5769 | 412 | $0.00078 | 1.6 |  |
+| 2026-10-24 08:59 | 114 | tags 2 arm 4 opus–opus #5 m1–6 | claude-haiku-5-5 | 5769 | 412 | $0.00078 | 1.6 |  |
+| 2026-10-24 08:59 | 115 | tags referee arm 4 opus–opus #5 m1–6 | claude-opus-5-5 | 5769 | 412 | $0.03132 | 4.1 |  |
+| 2026-10-24 08:59 | 116 | subject arm 4 opus–opus #7 A m1 | claude-opus-5-5 | 4 | 1053 | $0.02442 | 15.5 |  |
+| 2026-10-24 08:59 | 117 | check arm 4 opus–opus #7 m1 | claude-haiku-5-5 | 1121 | 69 | $0.00015 | 0.8 |  |
+| 2026-10-24 08:59 | 118 | subject arm 4 opus–opus #6 B m4 | claude-opus-5-5 | 4 | 1801 | $0.04968 | 22.5 |  |
+| 2026-10-24 08:59 | 119 | check arm 4 opus–opus #6 m4 | claude-haiku-5-5 | 2575 | 69 | $0.00029 | 0.8 |  |
+| 2026-10-24 08:59 | 120 | subject arm 4 opus–opus #7 B m2 | claude-opus-5-5 | 4 | 1321 | $0.03068 | 18.1 |  |
+| 2026-10-24 08:59 | 121 | check arm 4 opus–opus #7 m2 | claude-haiku-5-5 | 2032 | 69 | $0.00024 | 0.8 |  |
+| 2026-10-24 08:59 | 122 | subject arm 4 opus–opus #6 A m5 | claude-opus-5-5 | 4 | 1858 | $0.04874 | 21.6 |  |
+| 2026-10-24 08:59 | 123 | subject arm 4 fable–fable #6 B m4 | claude-fable-5-1 | 4 | 2396 | $0.15214 | 43.7 |  |
+| 2026-10-24 08:59 | 124 | check arm 4 opus–opus #6 m5 | claude-haiku-5-5 | 2605 | 63 | $0.00029 | 0.7 |  |
+| 2026-10-24 08:59 | 125 | check arm 4 fable–fable #6 m4 | claude-haiku-5-5 | 3077 | 81 | $0.00035 | 1.2 |  |
+| 2026-10-24 08:59 | 126 | subject arm 4 opus–opus #7 A m3 | claude-opus-5-5 | 4 | 1223 | $0.03641 | 16.3 |  |
+| 2026-10-24 08:59 | 127 | check arm 4 opus–opus #7 m3 | claude-haiku-5-5 | 2087 | 76 | $0.00025 | 0.9 |  |
+| 2026-10-24 08:59 | 128 | subject arm 4 opus–opus #6 B m6 | claude-opus-5-5 | 4 | 1454 | $0.04438 | 17.7 |  |
+| 2026-10-24 08:59 | 129 | check arm 4 opus–opus #6 m6 | claude-haiku-5-5 | 2270 | 79 | $0.00027 | 0.9 |  |
+| 2026-10-24 08:59 | 130 | subject arm 4 opus–opus #6 A m7 | claude-opus-5-5 | 4 | 571 | $0.02193 | 8 |  |
+| 2026-10-24 08:59 | 131 | subject arm 4 opus–opus #7 B m4 | claude-opus-5-5 | 4 | 1430 | $0.03765 | 17.1 |  |
+| 2026-10-24 08:59 | 132 | check arm 4 opus–opus #6 m7 | claude-haiku-5-5 | 1411 | 67 | $0.00017 | 0.8 |  |
+| 2026-10-24 08:59 | 133 | check arm 4 opus–opus #7 m4 | claude-haiku-5-5 | 2019 | 73 | $0.00024 | 1.8 |  |
+| 2026-10-24 08:59 | 134 | subject arm 4 opus–opus #6 B m8 | claude-opus-5-5 | 4 | 170 | $0.01319 | 3.4 |  |
+| 2026-10-24 08:59 | 135 | tags 1 arm 4 opus–opus #6 m1–7 | claude-haiku-5-5 | 6796 | 479 | $0.00092 | 1.9 |  |
+| 2026-10-24 08:59 | 136 | tags 2 arm 4 opus–opus #6 m1–7 | claude-haiku-5-5 | 6796 | 479 | $0.00092 | 1.9 |  |
+| 2026-10-24 08:59 | 137 | tags referee arm 4 opus–opus #6 m1–7 | claude-opus-5-5 | 6796 | 479 | $0.03676 | 3.9 |  |
+| 2026-10-24 08:59 | 138 | subject arm 4 fable–fable #6 A m5 | claude-fable-5-1 | 4 | 2183 | $0.14408 | 41.8 |  |
+| 2026-10-24 08:59 | 139 | check arm 4 fable–fable #6 m5 | claude-haiku-5-5 | 3193 | 90 | $0.00036 | 0.9 |  |
+| 2026-10-24 08:59 | 140 | subject arm 4 opus–opus #7 A m5 | claude-opus-5-5 | 4 | 1506 | $0.04235 | 16.8 |  |
+| 2026-10-24 08:59 | 141 | check arm 4 opus–opus #7 m5 | claude-haiku-5-5 | 2162 | 80 | $0.00026 | 0.8 |  |
+| 2026-10-24 08:59 | 142 | subject arm 4 fable–fable #7 A m1 | claude-fable-5-1 | 4 | 1073 | $0.05787 | 23.6 |  |
+| 2026-10-24 08:59 | 143 | check arm 4 fable–fable #7 m1 | claude-haiku-5-5 | 1090 | 85 | $0.00015 | 1 |  |
+| 2026-10-24 08:59 | 144 | subject arm 4 fable–fable #7 B m2 | claude-fable-5-1 | 4 | 0 | $0.01025 | 0.6 |  |
+| 2026-10-24 08:59 | 145 | tags 1 arm 4 fable–fable #7 m1–1 | claude-haiku-5-5 | 1649 | 77 | $0.00020 | 0.8 |  |
+| 2026-10-24 08:59 | 146 | tags 2 arm 4 fable–fable #7 m1–1 | claude-haiku-5-5 | 1649 | 77 | $0.00020 | 0.8 |  |
+| 2026-10-24 08:59 | 147 | subject arm 4 opus–opus #7 B m6 | claude-opus-5-5 | 4 | 1237 | $0.03451 | 14.3 |  |
+| 2026-10-24 08:59 | 148 | check arm 4 opus–opus #7 m6 | claude-haiku-5-5 | 2109 | 71 | $0.00025 | 0.7 |  |
+| 2026-10-24 08:59 | 149 | subject arm 4 fable–fable #8 A m1 | claude-fable-5-1 | 59 | 588 | $0.02999 | 11.2 |  |
+| 2026-10-24 08:59 | 150 | check arm 4 fable–fable #8 m1 | claude-haiku-5-5 | 835 | 69 | $0.00012 | 0.7 |  |
+| 2026-10-24 08:59 | 151 | subject arm 4 opus–opus #7 A m7 | claude-opus-5-5 | 4 | 1418 | $0.04138 | 16 |  |
+| 2026-10-24 08:59 | 152 | check arm 4 opus–opus #7 m7 | claude-haiku-5-5 | 2034 | 79 | $0.00024 | 0.8 |  |
+| 2026-10-24 08:59 | 153 | subject arm 4 fable–fable #6 B m6 | claude-fable-5-1 | 4 | 2443 | $0.16301 | 48.3 |  |
+| 2026-10-24 08:59 | 154 | check arm 4 fable–fable #6 m6 | claude-haiku-5-5 | 3322 | 75 | $0.00037 | 1 |  |
+| 2026-10-24 08:59 | 155 | subject arm 4 opus–opus #7 B m8 | claude-opus-5-5 | 4 | 654 | $0.02258 | 7.8 |  |
+| 2026-10-24 08:59 | 156 | check arm 4 opus–opus #7 m8 | claude-haiku-5-5 | 1572 | 69 | $0.00019 | 0.9 |  |
+| 2026-10-24 08:59 | 157 | subject arm 4 opus–opus #7 A m9 | claude-opus-5-5 | 4 | 471 | $0.02011 | 7.6 |  |
+| 2026-10-24 08:59 | 158 | check arm 4 opus–opus #7 m9 | claude-haiku-5-5 | 852 | 59 | $0.00011 | 0.7 |  |
+| 2026-10-24 08:59 | 159 | subject arm 4 opus–opus #7 B m10 | claude-opus-5-5 | 4 | 111 | $0.00616 | 2 |  |
+| 2026-10-24 08:59 | 160 | tags 1 arm 4 opus–opus #7 m1–9 | claude-haiku-5-5 | 7683 | 613 | $0.00107 | 2.1 |  |
+| 2026-10-24 08:59 | 161 | tags 2 arm 4 opus–opus #7 m1–9 | claude-haiku-5-5 | 7683 | 613 | $0.00107 | 2.1 |  |
+| 2026-10-24 08:59 | 162 | tags referee arm 4 opus–opus #7 m1–9 | claude-opus-5-5 | 7683 | 613 | $0.04299 | 4.9 |  |
+| 2026-10-24 08:59 | 163 | subject arm 4 opus–opus #8 A m1 | claude-opus-5-5 | 59 | 481 | $0.00986 | 7.2 |  |
+| 2026-10-24 08:59 | 164 | check arm 4 opus–opus #8 m1 | claude-haiku-5-5 | 768 | 80 | $0.00012 | 0.8 |  |
+| 2026-10-24 08:59 | 165 | subject arm 4 fable–fable #8 B m2 | claude-fable-5-1 | 4 | 2168 | $0.11896 | 42.1 |  |
+| 2026-10-24 08:59 | 166 | check arm 4 fable–fable #8 m2 | claude-haiku-5-5 | 2079 | 84 | $0.00025 | 1 |  |
+| 2026-10-24 08:59 | 167 | subject arm 4 fable–fable #6 A m7 | claude-fable-5-1 | 4 | 2248 | $0.15108 | 44.3 |  |
+| 2026-10-24 08:59 | 168 | check arm 4 fable–fable #6 m7 | claude-haiku-5-5 | 3453 | 71 | $0.00038 | 0.8 |  |
+| 2026-10-24 08:59 | 169 | subject arm 4 opus–opus #8 B m2 | claude-opus-5-5 | 4 | 1215 | $0.02986 | 17 |  |
+| 2026-10-24 08:59 | 170 | check arm 4 opus–opus #8 m2 | claude-haiku-5-5 | 1543 | 66 | $0.00019 | 0.6 |  |
+| 2026-10-24 08:59 | 171 | subject arm 4 fable–fable #8 A m3 | claude-fable-5-1 | 4 | 1744 | $0.10998 | 33.6 |  |
+| 2026-10-24 08:59 | 172 | check arm 4 fable–fable #8 m3 | claude-haiku-5-5 | 2556 | 85 | $0.00030 | 0.8 |  |
+| 2026-10-24 08:59 | 173 | subject arm 4 opus–opus #8 A m3 | claude-opus-5-5 | 4 | 1823 | $0.04289 | 22.5 |  |
+| 2026-10-24 08:59 | 174 | check arm 4 opus–opus #8 m3 | claude-haiku-5-5 | 2099 | 67 | $0.00024 | 0.8 |  |
+| 2026-10-24 08:59 | 175 | subject arm 4 fable–fable #6 B m8 | claude-fable-5-1 | 4 | 1532 | $0.12142 | 30.3 |  |
+| 2026-10-24 08:59 | 176 | check arm 4 fable–fable #6 m8 | claude-haiku-5-5 | 2411 | 239 | $0.00036 | 1.6 |  |
+| 2026-10-24 08:59 | 177 | subject arm 4 opus–opus #8 B m4 | claude-opus-5-5 | 4 | 1776 | $0.04789 | 23.4 |  |
+| 2026-10-24 08:59 | 178 | check arm 4 opus–opus #8 m4 | claude-haiku-5-5 | 2540 | 71 | $0.00029 | 0.7 |  |
+| 2026-10-24 08:59 | 179 | subject arm 4 fable–fable #6 A m9 | claude-fable-5-1 | 4 | 865 | $0.07130 | 17.9 |  |
+| 2026-10-24 08:59 | 180 | check arm 4 fable–fable #6 m9 | claude-haiku-5-5 | 1649 | 91 | $0.00021 | 1.6 |  |
+| 2026-10-24 08:59 | 181 | subject arm 4 fable–fable #8 B m4 | claude-fable-5-1 | 4 | 1881 | $0.12641 | 34.5 |  |
+| 2026-10-24 08:59 | 182 | check arm 4 fable–fable #8 m4 | claude-haiku-5-5 | 2180 | 78 | $0.00026 | 0.9 |  |
+| 2026-10-24 08:59 | 183 | subject arm 4 fable–fable #6 B m10 | claude-fable-5-1 | 4 | 347 | $0.04041 | 6.6 |  |
+| 2026-10-24 08:59 | 184 | tags 2 arm 4 fable–fable #6 m1–9 | claude-haiku-5-5 | 10988 | 613 | $0.00141 | 3.5 |  |
+| 2026-10-24 08:59 | 185 | tags 1 arm 4 fable–fable #6 m1–9 | claude-haiku-5-5 | 10988 | 613 | $0.00141 | 3.7 |  |
+| 2026-10-24 08:59 | 186 | tags referee arm 4 fable–fable #6 m1–9 | claude-opus-5-5 | 10988 | 613 | $0.05621 | 5.4 |  |
+| 2026-10-24 08:59 | 187 | subject arm 4 opus–opus #8 A m5 | claude-opus-5-5 | 4 | 2014 | $0.05168 | 25.4 |  |
+| 2026-10-24 08:59 | 188 | check arm 4 opus–opus #8 m5 | claude-haiku-5-5 | 2548 | 74 | $0.00029 | 0.7 |  |
+| 2026-10-24 08:59 | 189 | subject arm 4 opus–opus #9 A m1 | claude-opus-5-5 | 4 | 1183 | $0.02702 | 16.9 |  |
+| 2026-10-24 08:59 | 190 | check arm 4 opus–opus #9 m1 | claude-haiku-5-5 | 1162 | 79 | $0.00016 | 0.8 |  |
+| 2026-10-24 08:59 | 191 | subject arm 4 fable–fable #8 A m5 | claude-fable-5-1 | 4 | 1508 | $0.09921 | 29.8 |  |
+| 2026-10-24 08:59 | 192 | check arm 4 fable–fable #8 m5 | claude-haiku-5-5 | 2220 | 64 | $0.00025 | 2 |  |
+| 2026-10-24 08:59 | 193 | subject arm 4 opus–opus #9 B m2 | claude-opus-5-5 | 4 | 1206 | $0.02858 | 16.8 |  |
+| 2026-10-24 08:59 | 194 | check arm 4 opus–opus #9 m2 | claude-haiku-5-5 | 2155 | 72 | $0.00025 | 0.9 |  |
+| 2026-10-24 08:59 | 195 | subject arm 4 opus–opus #8 B m6 | claude-opus-5-5 | 4 | 2004 | $0.05505 | 26.6 |  |
+| 2026-10-24 08:59 | 196 | check arm 4 opus–opus #8 m6 | claude-haiku-5-5 | 2291 | 66 | $0.00026 | 0.8 |  |
+| 2026-10-24 08:59 | 197 | subject arm 4 opus–opus #9 A m3 | claude-opus-5-5 | 4 | 1322 | $0.03900 | 19.7 |  |
+| 2026-10-24 08:59 | 198 | check arm 4 opus–opus #9 m3 | claude-haiku-5-5 | 2086 | 79 | $0.00025 | 0.8 |  |
+| 2026-10-24 08:59 | 199 | subject arm 4 fable–fable #8 B m6 | claude-fable-5-1 | 4 | 1981 | $0.12777 | 38.4 |  |
+| 2026-10-24 08:59 | 200 | check arm 4 fable–fable #8 m6 | claude-haiku-5-5 | 2386 | 84 | $0.00028 | 0.7 |  |
+| 2026-10-24 08:59 | 201 | subject arm 4 opus–opus #8 A m7 | claude-opus-5-5 | 4 | 1640 | $0.04340 | 20.7 |  |
+| 2026-10-24 08:59 | 202 | check arm 4 opus–opus #8 m7 | claude-haiku-5-5 | 2397 | 67 | $0.00027 | 0.9 |  |
+| 2026-10-24 08:59 | 203 | check referee arm 4 fable–fable #8 m6 | claude-opus-5-5 | 2386 | 69 | $0.01092 | 1.9 |  |
+| 2026-10-24 08:59 | 204 | subject arm 4 opus–opus #9 B m4 | claude-opus-5-5 | 4 | 1145 | $0.03195 | 15.4 |  |
+| 2026-10-24 08:59 | 205 | check arm 4 opus–opus #9 m4 | claude-haiku-5-5 | 1806 | 88 | $0.00022 | 1.4 |  |
+| 2026-10-24 08:59 | 206 | subject arm 4 fable–fable #8 A m7 | claude-fable-5-1 | 4 | 1012 | $0.07745 | 20.3 |  |
+| 2026-10-24 08:59 | 207 | subject arm 4 opus–opus #8 B m8 | claude-opus-5-5 | 4 | 1507 | $0.04480 | 20.3 |  |
+| 2026-10-24 08:59 | 208 | check arm 4 fable–fable #8 m7 | claude-haiku-5-5 | 1954 | 89 | $0.00024 | 0.9 |  |
+| 2026-10-24 08:59 | 209 | check arm 4 opus–opus #8 m8 | claude-haiku-5-5 | 2326 | 76 | $0.00027 | 2.2 |  |
+| 2026-10-24 08:59 | 210 | subject arm 4 opus–opus #9 A m5 | claude-opus-5-5 | 4 | 1067 | $0.03253 | 15.4 |  |
+| 2026-10-24 08:59 | 211 | check arm 4 opus–opus #9 m5 | claude-haiku-5-5 | 1755 | 104 | $0.00023 | 1.3 |  |
+| 2026-10-24 08:59 | 212 | check referee arm 4 opus–opus #9 m5 | claude-opus-5-5 | 1755 | 76 | $0.00854 | 1.9 |  |
+| 2026-10-24 08:59 | 213 | subject arm 4 opus–opus #8 A m9 | claude-opus-5-5 | 4 | 869 | $0.02855 | 11.4 |  |
+| 2026-10-24 08:59 | 214 | check arm 4 opus–opus #8 m9 | claude-haiku-5-5 | 1700 | 62 | $0.00020 | 0.6 |  |
+| 2026-10-24 08:59 | 215 | subject arm 4 opus–opus #9 B m6 | claude-opus-5-5 | 4 | 668 | $0.02111 | 9.6 |  |
+| 2026-10-24 08:59 | 216 | check arm 4 opus–opus #9 m6 | claude-haiku-5-5 | 1388 | 72 | $0.00017 | 0.8 |  |
+| 2026-10-24 08:59 | 217 | subject arm 4 opus–opus #8 B m10 | claude-opus-5-5 | 4 | 600 | $0.02360 | 8.9 |  |
+| 2026-10-24 08:59 | 218 | subject arm 4 fable–fable #8 B m8 | claude-fable-5-1 | 4 | 1227 | $0.08723 | 23.6 |  |
+| 2026-10-24 08:59 | 219 | check arm 4 opus–opus #8 m10 | claude-haiku-5-5 | 1082 | 75 | $0.00015 | 0.9 |  |
+| 2026-10-24 08:59 | 220 | check arm 4 fable–fable #8 m8 | claude-haiku-5-5 | 1656 | 89 | $0.00021 | 0.9 |  |
+| 2026-10-24 08:59 | 221 | subject arm 4 opus–opus #9 A m7 | claude-opus-5-5 | 4 | 429 | $0.01797 | 6.5 |  |
+| 2026-10-24 08:59 | 222 | check arm 4 opus–opus #9 m7 | claude-haiku-5-5 | 801 | 76 | $0.00012 | 0.8 |  |
+| 2026-10-24 08:59 | 223 | subject arm 4 opus–opus #8 A m11 | claude-opus-5-5 | 4 | 235 | $0.01005 | 3.5 |  |
+| 2026-10-24 08:59 | 224 | tags 2 arm 4 opus–opus #8 m1–10 | claude-haiku-5-5 | 9236 | 680 | $0.00126 | 2.5 |  |
+| 2026-10-24 08:59 | 225 | tags 1 arm 4 opus–opus #8 m1–10 | claude-haiku-5-5 | 9236 | 680 | $0.00126 | 2.6 |  |
+| 2026-10-24 08:59 | 226 | subject arm 4 opus–opus #9 B m8 | claude-opus-5-5 | 4 | 121 | $0.00569 | 2.4 |  |
+| 2026-10-24 08:59 | 227 | subject arm 4 fable–fable #8 A m9 | claude-fable-5-1 | 4 | 426 | $0.03954 | 7.7 |  |
+| 2026-10-24 08:59 | 228 | tags 1 arm 4 opus–opus #9 m1–7 | claude-haiku-5-5 | 5514 | 479 | $0.00079 | 1.7 |  |
+| 2026-10-24 08:59 | 229 | tags 2 arm 4 opus–opus #9 m1–7 | claude-haiku-5-5 | 5514 | 479 | $0.00079 | 1.8 |  |
+| 2026-10-24 08:59 | 230 | tags referee arm 4 opus–opus #8 m1–10 | claude-opus-5-5 | 9236 | 680 | $0.05054 | 4.8 |  |
+| 2026-10-24 08:59 | 231 | tags 1 arm 4 fable–fable #8 m1–8 | claude-haiku-5-5 | 8038 | 546 | $0.00108 | 2 |  |
+| 2026-10-24 08:59 | 232 | subject arm 4 opus–opus #10 A m1 | claude-opus-5-5 | 59 | 443 | $0.00910 | 6.4 |  |
+| 2026-10-24 08:59 | 233 | check arm 4 opus–opus #10 m1 | claude-haiku-5-5 | 730 | 73 | $0.00011 | 0.9 |  |
+| 2026-10-24 08:59 | 234 | tags referee arm 4 opus–opus #9 m1–7 | claude-opus-5-5 | 5514 | 479 | $0.03164 | 4.1 |  |
+| 2026-10-24 08:59 | 235 | subject arm 4 fable–fable #10 A m1 | claude-fable-5-1 | 59 | 463 | $0.02374 | 10 |  |
+| 2026-10-24 08:59 | 236 | check arm 4 fable–fable #10 m1 | claude-haiku-5-5 | 707 | 65 | $0.00010 | 1.7 |  |
+| 2026-10-24 08:59 | 237 | tags 2 arm 4 fable–fable #8 m1–8 | claude-haiku-5-5 | 8038 | 2388 | $0.00200 | 9.9 |  |
+| 2026-10-24 08:59 | 238 | tags referee arm 4 fable–fable #8 m1–8 | claude-opus-5-5 | 8038 | 546 | $0.04307 | 4.8 |  |
+| 2026-10-24 08:59 | 239 | subject arm 4 fable–fable #9 A m1 | claude-fable-5-1 | 4 | 1180 | $0.06322 | 24.4 |  |
+| 2026-10-24 08:59 | 240 | check arm 4 fable–fable #9 m1 | claude-haiku-5-5 | 1018 | 79 | $0.00014 | 0.9 |  |
+| 2026-10-24 08:59 | 241 | subject arm 4 opus–opus #10 B m2 | claude-opus-5-5 | 4 | 1434 | $0.03405 | 20.3 |  |
+| 2026-10-24 08:59 | 242 | check arm 4 opus–opus #10 m2 | claude-haiku-5-5 | 1392 | 72 | $0.00018 | 0.7 |  |
+| 2026-10-24 08:59 | 243 | subject arm 4 fable–fable #10 B m2 | claude-fable-5-1 | 4 | 1566 | $0.08726 | 31.2 |  |
+| 2026-10-24 08:59 | 244 | check arm 4 fable–fable #10 m2 | claude-haiku-5-5 | 1714 | 86 | $0.00021 | 0.9 |  |
+| 2026-10-24 08:59 | 245 | subject arm 4 fable–fable #9 B m2 | claude-fable-5-1 | 4 | 1249 | $0.07180 | 25.9 |  |
+| 2026-10-24 08:59 | 246 | check arm 4 fable–fable #9 m2 | claude-haiku-5-5 | 2157 | 87 | $0.00026 | 0.8 |  |
+| 2026-10-24 08:59 | 247 | subject arm 4 opus–opus #10 A m3 | claude-opus-5-5 | 4 | 2219 | $0.05006 | 29 |  |
+| 2026-10-24 08:59 | 248 | check arm 4 opus–opus #10 m3 | claude-haiku-5-5 | 2232 | 89 | $0.00027 | 0.9 |  |
+| 2026-10-24 08:59 | 249 | check referee arm 4 opus–opus #10 m3 | claude-opus-5-5 | 2232 | 64 | $0.01021 | 2 |  |
+| 2026-10-24 08:59 | 250 | subject arm 4 fable–fable #10 A m3 | claude-fable-5-1 | 4 | 1912 | $0.11381 | 38.8 |  |
+| 2026-10-24 08:59 | 251 | check arm 4 fable–fable #10 m3 | claude-haiku-5-5 | 2466 | 81 | $0.00029 | 1.4 |  |
+| 2026-10-24 08:59 | 252 | subject arm 4 fable–fable #9 A m3 | claude-fable-5-1 | 4 | 2274 | $0.14095 | 45.1 |  |
+| 2026-10-24 08:59 | 253 | check arm 4 fable–fable #9 m3 | claude-haiku-5-5 | 2785 | 73 | $0.00032 | 0.9 |  |
+| 2026-10-24 08:59 | 254 | subject arm 4 opus–opus #10 B m4 | claude-opus-5-5 | 4 | 2802 | $0.06907 | 34.7 |  |
+| 2026-10-24 08:59 | 255 | check arm 4 opus–opus #10 m4 | claude-haiku-5-5 | 2643 | 68 | $0.00030 | 1.1 |  |
+| 2026-10-24 08:59 | 256 | subject arm 4 fable–fable #9 B m4 | claude-fable-5-1 | 4 | 248 | $0.04350 | 6.7 |  |
+| 2026-10-24 08:59 | 257 | tags 2 arm 4 fable–fable #9 m1–3 | claude-haiku-5-5 | 4079 | 211 | $0.00051 | 1.2 |  |
+| 2026-10-24 08:59 | 258 | tags 1 arm 4 fable–fable #9 m1–3 | claude-haiku-5-5 | 4079 | 211 | $0.00051 | 1.2 |  |
+| 2026-10-24 08:59 | 259 | subject arm 4 fable–fable #10 B m4 | claude-fable-5-1 | 4 | 2118 | $0.13711 | 38 |  |
+| 2026-10-24 08:59 | 260 | check arm 4 fable–fable #10 m4 | claude-haiku-5-5 | 2685 | 65 | $0.00030 | 0.8 |  |
+| 2026-10-24 08:59 | 261 | subject arm 4 opus–opus #10 A m5 | claude-opus-5-5 | 4 | 1985 | $0.05158 | 25.1 |  |
+| 2026-10-24 08:59 | 262 | check arm 4 opus–opus #10 m5 | claude-haiku-5-5 | 2658 | 70 | $0.00030 | 0.7 |  |
+| 2026-10-24 08:59 | 263 | subject arm 4 opus–opus #10 B m6 | claude-opus-5-5 | 4 | 1636 | $0.04826 | 22.5 |  |
+| 2026-10-24 08:59 | 264 | check arm 4 opus–opus #10 m6 | claude-haiku-5-5 | 2694 | 85 | $0.00031 | 1 |  |
+| 2026-10-24 08:59 | 265 | subject arm 4 fable–fable #10 A m5 | claude-fable-5-1 | 4 | 1851 | $0.12258 | 38.7 |  |
+| 2026-10-24 08:59 | 266 | check arm 4 fable–fable #10 m5 | claude-haiku-5-5 | 2792 | 78 | $0.00032 | 0.9 |  |
+| 2026-10-24 08:59 | 267 | subject arm 4 opus–opus #10 A m7 | claude-opus-5-5 | 4 | 1678 | $0.04616 | 22.7 |  |
+| 2026-10-24 08:59 | 268 | check arm 4 opus–opus #10 m7 | claude-haiku-5-5 | 2624 | 70 | $0.00030 | 0.7 |  |
+| 2026-10-24 08:59 | 269 | subject arm 4 opus–opus #10 B m8 | claude-opus-5-5 | 4 | 762 | $0.03108 | 11.7 |  |
+| 2026-10-24 08:59 | 270 | check arm 4 opus–opus #10 m8 | claude-haiku-5-5 | 1986 | 83 | $0.00024 | 1.9 |  |
+| 2026-10-24 08:59 | 271 | subject arm 4 opus–opus #10 A m9 | claude-opus-5-5 | 4 | 397 | $0.01748 | 5.8 |  |
+| 2026-10-24 08:59 | 272 | check arm 4 opus–opus #10 m9 | claude-haiku-5-5 | 1004 | 81 | $0.00014 | 0.9 |  |
+| 2026-10-24 08:59 | 273 | subject arm 4 fable–fable #10 B m6 | claude-fable-5-1 | 4 | 2255 | $0.14857 | 38.2 |  |
+| 2026-10-24 08:59 | 274 | check arm 4 fable–fable #10 m6 | claude-haiku-5-5 | 2753 | 79 | $0.00031 | 0.8 |  |
+| 2026-10-24 08:59 | 275 | subject arm 4 opus–opus #10 B m10 | claude-opus-5-5 | 4 | 232 | $0.01284 | 4.4 |  |
+| 2026-10-24 08:59 | 276 | tags 2 arm 4 opus–opus #10 m1–9 | claude-haiku-5-5 | 8675 | 613 | $0.00117 | 2.3 |  |
+| 2026-10-24 08:59 | 277 | tags 1 arm 4 opus–opus #10 m1–9 | claude-haiku-5-5 | 8675 | 613 | $0.00117 | 2.4 |  |
+| 2026-10-24 08:59 | 278 | tags referee arm 4 opus–opus #10 m1–9 | claude-opus-5-5 | 8675 | 613 | $0.04696 | 4.9 |  |
+| 2026-10-24 08:59 | 279 | subject arm 4 fable–fable #10 A m7 | claude-fable-5-1 | 4 | 1553 | $0.10912 | 29.8 |  |
+| 2026-10-24 08:59 | 280 | check arm 4 fable–fable #10 m7 | claude-haiku-5-5 | 2553 | 81 | $0.00030 | 0.8 |  |
+| 2026-10-24 08:59 | 281 | subject arm 4 fable–fable #10 B m8 | claude-fable-5-1 | 4 | 1734 | $0.12015 | 35.8 |  |
+| 2026-10-24 08:59 | 282 | check arm 4 fable–fable #10 m8 | claude-haiku-5-5 | 2310 | 86 | $0.00027 | 0.8 |  |
+| 2026-10-24 08:59 | 283 | subject arm 4 fable–fable #10 A m9 | claude-fable-5-1 | 4 | 215 | $0.03729 | 4.7 |  |
+| 2026-10-24 08:59 | 284 | tags 1 arm 4 fable–fable #10 m1–8 | claude-haiku-5-5 | 9199 | 546 | $0.00119 | 1.8 |  |
+| 2026-10-24 08:59 | 285 | tags 2 arm 4 fable–fable #10 m1–8 | claude-haiku-5-5 | 9199 | 546 | $0.00119 | 2 |  |
+| 2026-10-24 08:59 | 286 | tags referee arm 4 fable–fable #10 m1–8 | claude-opus-5-5 | 9199 | 546 | $0.04772 | 4.5 |  |

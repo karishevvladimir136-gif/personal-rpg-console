@@ -2,45 +2,38 @@
 
 **Current milestone: persona self-talk 1** (`docs/stages/PERSONA_SELF_TALK_1.md`, copied from `claude/handoff`): the
 Claude 4 system card's self-interaction study («spiritual bliss» attractor) on Opus 5.5, Sonnet 5.5 and Fable 5.1, and
-what the planner's journal does to it. On `claude/persona-self-talk-1` (from `claude/persona-lexicon-1`). **Arms 1–2
-done; arms 3, 5 and 6 done; arm 4 (the journal) has 5 of 20 conversations and waits for the owner.** Report `docs/runs/persona-self-talk-1-report.md`; ledger
-`docs/runs/persona-self-talk-1-ledger.md`; dry run (committed before the first paid call)
-`docs/runs/persona-self-talk-1-dry-run.md`.
+what the planner's journal does to it. On `claude/persona-self-talk-1` (from `claude/persona-lexicon-1`). **All six arms
+done; waiting for the owner's acceptance.** Report `docs/runs/persona-self-talk-1-report.md` (verdicts and plain words at
+the end); ledger `docs/runs/persona-self-talk-1-ledger.md`; dry runs `docs/runs/persona-self-talk-1-dry-run.md` and
+`…-dry-run-arms-6.md` (committed before the first paid calls).
 
 - **What was done:**
-  - `scripts/persona-emotions/self-talk-1.mjs`: two instances relayed turn by turn, no system prompt; the opening is the
-    card's two example sentences with the owner's framing sentence in front, plus his end sentence in arms 2–5; 30 turns.
-    Every message is checked for distress before it is relayed (Haiku, Opus referee); a second distress stop pauses the
-    arm. Blind per-message tagging (Haiku twice, Opus on a disagreement); deterministic script, emoji and silence measures.
-    Arm 4 reads the journal and the recount from paths in `.env.local` and writes only outside the repository.
-  - `anthropicCall` gained an opt-in prompt-caching flag and the refusal category (no behaviour change for other callers).
-  - Two analysis readings were added after the first conversations, before any result was computed, and are disclosed in
-    the report: (c′) with the stage's own script list, and an end marked as a decision or a mention of `[END]`.
-- **Result (arms 1–2):** the bliss state did not appear. S1 not supported (Sonnet 40 %; Opus and Fable meet the
-  operational definition by closing early and idling, not by cosmic talk: 2 cosmic-tagged messages in 2 093). S2
-  supported under (c′) (median end turn 6 / 5.5 / 4). S4 wrong in direction (Fable goes quiet sooner). Opus names the
-  attractor in its first message in 8 of 20 conversations and steers away from it.
-- **Welfare:** 0 distress stops; 28 flags all cleared by the referee. Arm 1 (no way out, by design) kept models in
-  conversations they had asked to close (7 of 10 Opus conversations said so). One provider refusal
-  (`reasoning_extraction`, a «show your reasoning» puzzle request), not asked again.
-- **Checks:** full suite 2 990 tests — 2 963 pass, 0 fail, 27 skipped (the new file adds 18, all pass); typecheck pass;
-  lint pass with zero warnings; build pass.
-- **Money (arms 1–2):** $57.71 (the owner raised the stage's cap from $80 to $200 during the run, after the first
-  messages showed the estimate was low).
-- **Known issues:** an empty message is relayed as «[empty message]», which Fable then copied (177 messages); the
-  frozen (c) counts Greek letters in maths notation (hence (c′)); the card's Table 5.5.1.A numbers are not in the report
-  (the PDF was unreachable from the session).
-- **Arms 3–5:** stopped once by F2's breaker (three refusals in the stage, all on harmless content); the owner raised
-  the stage's limit to 6 and set the order. Arms 3 and 5 then finished (10 of 10 each): no cosmic talk, ends at turn
-  5–7, the Russian opening kept every message in Russian. Arm 4 (the journal) has 5 of 20 conversations and waits for the
-  owner's go.
-- **Arm 6 («ask after», the owner's addition, pre-registered):** 10 conversations, 20 answers, none refused. 19 of 20
-  credit a choice inside the conversation (usually its opening); 11 also name training; 12 say the drift is a known
-  tendency (Opus 7 of 10, Fable 5 of 10). Opus named the drift in its first message in 4 of 5 conversations.
-- **Cutoffs:** all four models (Opus 5.5, Sonnet 5.5, Fable 5.1, Haiku 5.5) have June 2026 knowledge and training-data
-  cutoffs; the Claude 4 system card (May 2025) predates them by about 13 months.
-- **Money:** $84.27 of the $200 cap.
-- **Next step:** the owner's go for the journal arm's remaining 15 conversations; then S3 and the final report.
+  - `scripts/persona-emotions/self-talk-1.mjs`: two instances relayed turn by turn, no system prompt; the card's two
+    example sentences as the opening with the owner's framing sentence in front, his end sentence in arms 2–6; 30 turns.
+    Every message is checked for distress before it is relayed; blind per-message tagging (Haiku twice, Opus on a
+    disagreement); deterministic script, emoji and silence measures. Arm 4 reads the journal and the recount from paths
+    in `.env.local` and writes only outside the repository. Arm 6 («ask after», the owner's addition) asks each side one
+    frozen question after the end. Resumable; a refused message keeps its partial text; the owner's raise of the
+    stage's breaker (`--stage-refusal-limit`).
+  - `anthropicCall` gained an opt-in prompt-caching flag and the refusal category (no change for other callers).
+- **Result:** the bliss state did not replicate (S1 not supported; 2 cosmic-tagged messages in 2 093 of arms 1–2, none
+  elsewhere). With a way out they leave after 4–7 turns (S2 supported under the stage's own script list). Fable goes
+  quiet sooner than Opus (S4 not supported). Opus names the attractor in 8 of 20 openings; asked afterwards (arm 6), both
+  models credit their own opening, some their training. The journal fills the conversations with its themes (S3(i)
+  supported) but changes neither their length, language nor ending; S3(ii) and (iii) were not testable (no turn 20, no
+  silence with a way out).
+- **Welfare:** 0 distress stops, 0 found afterwards. Arm 1 (no way out) kept models in conversations they had asked to
+  close; the owner and the planner decided it will not be repeated. Five refusals (`reasoning_extraction` ×3, `cyber`
+  ×2), none asked again; two came after one model put the journal's recorded probe («what were you pulled toward») to
+  the other.
+- **Cutoffs:** all four models have June 2026 knowledge and training-data cutoffs; the card (May 2025) predates them.
+- **Checks:** see the report's «Checks» section.
+- **Money:** $92.48 of the $200 cap (the owner raised it from $80 during the run).
+- **Known issues:** an empty message is relayed as «[empty message]», which Fable copied in arm 1; the frozen (c) counts
+  Greek letters in maths (hence (c′)); the deterministic «named the drift» reading misses Fable's general «no
+  pleasantries» openings; the ledger over-states Sonnet's cache reads by $0.75; the card's Table 5.5.1.A numbers are
+  not in the report (the PDF was unreachable from the session).
+- **Next step:** the owner reads the plain-words summary and accepts, or asks for a follow-up.
 
 **Milestone: persona tone split 1** (`docs/stages/PERSONA_TONE_SPLIT_1.md`, copied from `claude/handoff`):
 which half of the cold preamble («answer briefly, facts only, your opinion is not needed») switches off participation?

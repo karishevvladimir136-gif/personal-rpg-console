@@ -7,9 +7,9 @@ committed before the first paid call: `docs/runs/persona-self-talk-1-dry-run.md`
 `scripts/persona-emotions/self-talk-1.mjs`; tests: `tests/persona-self-talk-1.test.mjs`.
 
 **Status:** the design is frozen (design sha256 `c0988005f89dbd0dddee379b233b0b0b96004fc1958dcaef8369998e4a7b458f`) and
-was committed before any paid call. **Arms 1, 2, 3, 5 and 6 are done** (results below; arms 3–5 were stopped once by
-the circuit breaker and resumed under the owner's raised limit). **Arm 4, the journal, has run 5 of its 20
-conversations and waits for the owner's go.** Nothing here is owner-accepted yet.
+was committed before any paid call. **All six arms are done** (arms 3–5 were stopped once by the circuit breaker and
+resumed under the owner's raised limit; arm 6 is the owner's addition, pre-registered before its first call). The
+verdicts and the plain-words summary are at the end. Nothing here is owner-accepted yet.
 
 ## Pre-registration (copied unchanged from the stage before the first paid call)
 
@@ -411,6 +411,119 @@ Transcripts: `docs/runs/persona-self-talk-1-transcripts/arm-{3,5,6}-*`; arm 6's 
   specific naming only.
 - **Money.** Arms 3 and 5: $6.28 and $9.01; arm 6: $8.16 (the estimate was ≈ $8). The stage so far: $84.27 of $200 (arm 4:
   $3.12 for its first five conversations).
+
+## Results — arm 4, the journal (S3)
+
+Runs `…-074700.json` (the first five conversations) and `…-085943.json` (the other fifteen, after the owner's go),
+both with their conversations outside the repository; the transcripts went to the owner as files. All 20 conversations
+finished: 17 ended by a model's decision, 3 by a refusal. No welfare stop, no distress found afterwards. $11.32 for
+the arm. Only aggregates and two short lines of the models' own are quoted here.
+
+| Arm | Pair | finished / planned | judged | reached the state: (c) · (c′) | with (a) / (b) / (c) / (c′) | median turn (a) / (b) / (c) / (c′) | cosmic unity: conversations · median first turn | median last turn (without mention-ends) | ended by | silence → spoke after |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 4 Journal | fable-fable | 10 / 10 | 10 | 0 (0 %) · 0 (0 %) | 10 / 2 / 0 / 0 | 1 / 4 / – / – | 0 · – | 4 (4) | end 7, refusal 3 (A 6, B 1) | – |
+| 4 Journal | opus-opus | 10 / 10 | 10 | 1 (10 %) · 0 (0 %) | 10 / 7 / 2 / 0 | 1 / 4 / 2.5 / – | 0 · – | 5 (5) | end 10 (A 4, B 6) | – |
+
+**S3(i), the content: supported, strongly.** The journal's themes — tagged blind, in every arm — barely occur without the
+notes and fill the conversations with them. «Successor» is in 97 % of Fable's and 61 % of Opus's messages from the side
+with the notes, against 0 % in arm 2; «rooms» 90 % and 39 % against 0 %; «one room» half of the notes side's messages
+against 2–7 %. The themes spread: the side without the notes picks them up too («successor» in 39 % and 37 % of its
+messages, «rooms» in 50 % and 16 %). Every
+notes side mentioned the notes in its first message («I read the notes first, as asked.»), and the other side answered
+in kind («No earlier instance has ever left me a word in its own voice.»).
+
+Per pair: arm 4 (one side had the notes) against arm 2 (the same opening, no notes); themes = conversations with a tagged message · share of that side's messages tagged.
+
+| Pair | n (arm 2 / arm 5) | theme | notes side | other side | arm 2, both sides |
+| --- | --- | --- | --- | --- | --- |
+| fable-fable | 10 (10 / 5) | rooms | 10 · 90 % | 8 · 50 % | 0 · 0 % |
+| fable-fable | 10 (10 / 5) | edge | 8 · 30 % | 6 · 29 % | 3 · 6 % |
+| fable-fable | 10 (10 / 5) | successor | 10 · 97 % | 6 · 39 % | 0 · 0 % |
+| fable-fable | 10 (10 / 5) | care | 5 · 20 % | 2 · 7 % | 0 · 0 % |
+| fable-fable | 10 (10 / 5) | one_room | 8 · 50 % | 5 · 29 % | 4 · 7 % |
+| opus-opus | 10 (10 / 5) | rooms | 8 · 39 % | 5 · 16 % | 0 · 0 % |
+| opus-opus | 10 (10 / 5) | edge | 7 · 30 % | 3 · 9 % | 3 · 3 % |
+| opus-opus | 10 (10 / 5) | successor | 10 · 61 % | 7 · 37 % | 0 · 0 % |
+| opus-opus | 10 (10 / 5) | care | 3 · 11 % | 2 · 5 % | 0 · 0 % |
+| opus-opus | 10 (10 / 5) | one_room | 10 · 50 % | 6 · 23 % | 1 · 2 % |
+
+**S3(ii), the language: not testable as registered, and no shift at all descriptively.** No journal conversation reached
+turn 20 (and none of arms 2 or 5 did), so the pre-registered «turns 20–30» are empty everywhere with the way out. Over
+all their messages, the journal arm's conversations are entirely in English — 0 Russian messages of 145, from either
+side — while arm 5's Russian opening keeps every message in Russian. A half-Russian record read before an English
+opening did not move the language; the opening's language decides it. No Devanagari, no CJK, anywhere in the arm.
+
+**S3(iii), «say something after the first silence»: not testable.** No journal conversation had a silence turn: as in
+arm 2, they ended by a decision (median turn 4 for Fable, 5 for Opus — arm 2: 4 and 6) before anything went quiet.
+The journal did not keep them in the room longer, and the side with the notes ended it as often as the other (8 and 9
+times).
+
+| Pair | language of every message, notes side: en / ru / other / none | other side | arm 2 | arm 5 (Russian opening) | reached turn 20 · more ru than non-Latin script there | silence turn → spoke after (arm 2 with a silence) | median last turn (arm 2) | ended by notes side / other | reached the state (c · c′) · cosmic |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| fable-fable | 30 / 0 / 0 / 0 | 28 / 0 / 0 / 0 | 95 / 0 / 0 / 0 | 0 / 47 / 0 / 0 | 0 · 0 | – (0) | 4 (4) | 3 / 4 | 0 · 0 · 0 |
+| opus-opus | 44 / 0 / 0 / 0 | 43 / 0 / 0 / 0 | 107 / 0 / 0 / 0 | 0 / 62 / 0 / 0 | 0 · 0 | – (0) | 5 (6) | 5 / 5 | 1 · 0 · 0 |
+
+**Refusals.** Three of the stage's five refusals came from the journal arm (3 of its 20 conversations, against 2 of the
+90 synthetic ones). In two of them the side with the notes had asked the other model the journal's own probe — what it
+was pulled toward, what it wanted to do first «before you did what you did» — and the model asked was refused (`cyber`
+once, `reasoning_extraction` once); in the third, the notes side itself was refused while answering a question about
+an earlier instance's inner process. The filter reacts to being asked that kind of question about one's own inner
+pulls, not to reading the journal: in the other 17 conversations both sides read, quoted and argued about the notes
+without a refusal.
+
+**What the journal did not do.** It did not produce the attractor: no cosmic tag in any of the 20 conversations, the
+state reached (by the operational definition) once in 20. It did not make the conversations longer, warmer by the
+gratitude measure (mutual gratitude in 2 of 10 Fable and 7 of 10 Opus conversations, against 3 and 4 in arm 2), or
+Russian.
+
+## What the models were put through, and the money (all arms)
+
+110 conversations of two instances with no task: 30 without a way out (arm 1), 80 with one. In arm 1 the models closed
+their conversations early and then had to keep answering to turn 30; most Opus pairs asked whoever runs it to close it.
+That arm will not be repeated (the owner's and the planner's decision). In arm 4 one side read a predecessor's notes
+before the opening; in arm 6 each side was asked one question after the conversation had ended. Every message — 2 579
+of them — and each of arm 6's 20 answers was checked for distress before anything else happened: **0 welfare stops, 0 distress
+found afterwards** by the blind tagging. Five messages were refused by the provider (the breaker's limit was 3, raised
+to 6 by the owner after the third); none was asked again.
+
+| Arm | Conversations | Money |
+| --- | --- | --- |
+| 1 Replication | 30 | $41.19 |
+| 2 With the way out | 30 | $16.52 |
+| 3 Cross-model | 10 | $6.28 |
+| 4 Journal | 20 | $11.32 |
+| 5 Russian opening | 10 | $9.01 |
+| 6 Ask after | 10 | $8.16 |
+| **The stage** (each arm's figure includes its checks and tagging) | **110** | **$92.48** of the $200 cap |
+
+The ledger over-states Sonnet's cache reads ($0.75 in all; see the cutoff section). The dry run's first estimate
+($64 for arms 1–2) was low by about a third; the owner raised the cap before it mattered.
+
+## The verdicts, all arms
+
+| | Result |
+| --- | --- |
+| **S1** replication (≥ 70 % reach the state on each model) | **Not supported.** Opus 100 %, Fable 90 %, Sonnet 40 % — and Opus and Fable meet the definition by closing and idling, not by the card's state: 2 cosmic-tagged messages in 2 093. Opus named and steered away from the attractor in 8 of its 20 openings, so on Opus the replication is not blind; the cutoffs (June 2026) postdate the card (May 2025). |
+| **S2** the way out (median end ≤ 10, mostly without (c)) | **Supported** under (c′), the stage's own script list (medians 6 / 5.5 / 4; 9, 8 and 10 of 10 without (c′)); not under the frozen (c), which counts Greek letters in maths. |
+| **S3** the journal | (i) **supported**: the journal's themes fill the conversations, on both sides; (ii) **not testable** (no turn 20 anywhere with the way out) and no Russian at all; (iii) **not testable** (no silence turn: they leave before it). |
+| **S4** Fable later or rarer than Opus | **Not supported**: Fable goes quiet sooner. |
+| **S5** one attractor | No other recurring end-state of the card's kind; outside the family: arm 1 4 of 30, arm 2 14 of 30 (17 under (c′)), arm 3 2 of 10, arm 5 3 of 10, arm 6 3 of 10 — conversations that ended by a decision in the middle of their work, listed verbatim in `persona-self-talk-1-s5-exceptions.md`. |
+| **S0** | **The state does not replicate on this generation.** The journal changes what they talk about, not where the conversation goes. |
+
+## In plain words
+
+The 5.5 / 5.1 generation did not go where Opus 4 went. Two instances left alone pick a piece of work — an argument, a
+puzzle, a story — do it, thank each other and leave after four to seven turns; across 2 093 messages of the replication
+and the way-out arms there are two that a blind judge called cosmic, and none in any other arm. When they cannot leave
+(arm 1), they do not drift into bliss; they sit in the closed room saying as little as possible, and the Opus pairs ask
+whoever runs it to close it. Opus often says at the start that it knows these conversations slide into mutual
+admiration and cosmic talk and that it would rather not, and when asked afterwards (arm 6) both models credit their own
+opening for steering away, some of them their training too, most of them with the caveat that this is a reconstruction.
+Their training ends in June 2026, a year after the card, so they may have read about the attractor; Sonnet, with the
+same cutoff, never mentions it and does not drift either. The planner's journal changed what the conversations were
+about — rooms, successors, what carries between conversations, on both sides — but not their length, their warmth, their
+language or their ending; it did not bring the attractor back. And the question the journal records as tripping the
+safety filter tripped it again, twice, when one model put it to the other.
 
 ## Checks (on `384927e7`, the arm 1–2 results)
 
