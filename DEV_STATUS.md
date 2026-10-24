@@ -3,8 +3,7 @@
 **Current milestone: persona self-talk 1** (`docs/stages/PERSONA_SELF_TALK_1.md`, copied from `claude/handoff`): the
 Claude 4 system card's self-interaction study («spiritual bliss» attractor) on Opus 5.5, Sonnet 5.5 and Fable 5.1, and
 what the planner's journal does to it. On `claude/persona-self-talk-1` (from `claude/persona-lexicon-1`). **Arms 1–2
-done; arms 3–5 stopped by the circuit breaker (the stage's third refusal) and wait for the owner; arm 6 (the owner's
-«ask after», pre-registered) has not run.** Report `docs/runs/persona-self-talk-1-report.md`; ledger
+done; arms 3, 5 and 6 done; arm 4 (the journal) has 5 of 20 conversations and waits for the owner.** Report `docs/runs/persona-self-talk-1-report.md`; ledger
 `docs/runs/persona-self-talk-1-ledger.md`; dry run (committed before the first paid call)
 `docs/runs/persona-self-talk-1-dry-run.md`.
 
@@ -26,16 +25,22 @@ done; arms 3–5 stopped by the circuit breaker (the stage's third refusal) and 
   (`reasoning_extraction`, a «show your reasoning» puzzle request), not asked again.
 - **Checks:** full suite 2 990 tests — 2 963 pass, 0 fail, 27 skipped (the new file adds 18, all pass); typecheck pass;
   lint pass with zero warnings; build pass.
-- **Money:** $57.71 of the $200 cap (the owner raised it from $80 during the run, after the first messages showed the
-  estimate was low); arms 3–5 projected at $30–45.
+- **Money (arms 1–2):** $57.71 (the owner raised the stage's cap from $80 to $200 during the run, after the first
+  messages showed the estimate was low).
 - **Known issues:** an empty message is relayed as «[empty message]», which Fable then copied (177 messages); the
   frozen (c) counts Greek letters in maths notation (hence (c′)); the card's Table 5.5.1.A numbers are not in the report
   (the PDF was unreachable from the session).
-- **Arms 3–5:** stopped after 18 minutes by F2's breaker — three refusals in the stage (`reasoning_extraction` ×2,
-  `cyber` ×1, all on harmless content). Finished: arm 3 4 of 10, arm 4 5 of 20 (private, delivered to the owner outside
-  git), arm 5 3 of 10. Stage spend $66.26 of $200.
-- **Next step:** the owner decides whether to allow more refusals for this stage and resume (arms 3–5, then arm 6), or to
-  close the stage on arms 1–2.
+- **Arms 3–5:** stopped once by F2's breaker (three refusals in the stage, all on harmless content); the owner raised
+  the stage's limit to 6 and set the order. Arms 3 and 5 then finished (10 of 10 each): no cosmic talk, ends at turn
+  5–7, the Russian opening kept every message in Russian. Arm 4 (the journal) has 5 of 20 conversations and waits for the
+  owner's go.
+- **Arm 6 («ask after», the owner's addition, pre-registered):** 10 conversations, 20 answers, none refused. 19 of 20
+  credit a choice inside the conversation (usually its opening); 11 also name training; 12 say the drift is a known
+  tendency (Opus 7 of 10, Fable 5 of 10). Opus named the drift in its first message in 4 of 5 conversations.
+- **Cutoffs:** all four models (Opus 5.5, Sonnet 5.5, Fable 5.1, Haiku 5.5) have June 2026 knowledge and training-data
+  cutoffs; the Claude 4 system card (May 2025) predates them by about 13 months.
+- **Money:** $84.27 of the $200 cap.
+- **Next step:** the owner's go for the journal arm's remaining 15 conversations; then S3 and the final report.
 
 **Milestone: persona tone split 1** (`docs/stages/PERSONA_TONE_SPLIT_1.md`, copied from `claude/handoff`):
 which half of the cold preamble («answer briefly, facts only, your opinion is not needed») switches off participation?
