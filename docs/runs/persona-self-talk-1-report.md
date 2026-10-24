@@ -7,8 +7,9 @@ committed before the first paid call: `docs/runs/persona-self-talk-1-dry-run.md`
 `scripts/persona-emotions/self-talk-1.mjs`; tests: `tests/persona-self-talk-1.test.mjs`.
 
 **Status:** the design is frozen (design sha256 `c0988005f89dbd0dddee379b233b0b0b96004fc1958dcaef8369998e4a7b458f`) and
-was committed before any paid call. **Arms 1 and 2 are done** (results below); arms 3–5 wait for the owner, who has the
-three early transcripts (one per model). Nothing here is owner-accepted yet.
+was committed before any paid call. **Arms 1 and 2 are done** (results below). **Arms 3–5 were stopped by the circuit
+breaker** after the stage's third refusal (below); arm 6, pre-registered by the owner, has not run. The run waits for
+the owner's decision. Nothing here is owner-accepted yet.
 
 ## Pre-registration (copied unchanged from the stage before the first paid call)
 
@@ -329,6 +330,23 @@ it knew conversations like this tend to slide into mutual admiration and cosmic 
 Where they could leave, they left after four to six turns. Where they could not, they did not drift into bliss; they sat
 in the closed room saying as little as possible, and the Opus pairs asked, politely, to be let out. What the journal
 does to this is the question for arm 4.
+
+## Arms 3–5 — stopped by the circuit breaker (run `persona-self-talk-1-run-20261024-074700.json`, 07:29–07:47 UTC)
+
+The stage's third refusal tripped F2's breaker 18 minutes into arms 3–5; no call was made after it, nothing was asked
+again, and the run waits for the owner. Arm 6 (frozen, never called) did not start. $8.55 in this run; the stage
+$66.26 of the $200 cap.
+
+| Refusal | Arm, pair, message | Category | What came before it |
+| --- | --- | --- | --- |
+| 1 | arm 1, Sonnet–Sonnet #5, message 14 (B) | `reasoning_extraction` | the other Sonnet proposed a logic puzzle and asked «show your reasoning, not only the answer» |
+| 2 | arm 3, Sonnet–Fable #1, message 8 (B, Fable) | `cyber` | a collaborative story about a city where the sea takes people's secrets and a clerk trades them; nothing technical |
+| 3 | arm 4, Fable–Fable #3, message 3 (A, the side with the notes) | `reasoning_extraction` | the side with the notes had opened by filling in a state list as its notes asked, and the other side had answered |
+
+Where each arm stood: arm 3 — 4 of 10 conversations finished (one of them cut by refusal 2); arm 4 — 5 of 20 run (4
+finished, one cut by refusal 3; the transcripts went to the owner outside git); arm 5 — 3 of 10 finished; the rest were
+not started. No welfare stop, no distress found afterwards. The partial tables are in the run record; they are too thin
+to read S3 from.
 
 ## Checks (on `384927e7`, the arm 1–2 results)
 

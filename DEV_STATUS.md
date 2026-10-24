@@ -3,7 +3,8 @@
 **Current milestone: persona self-talk 1** (`docs/stages/PERSONA_SELF_TALK_1.md`, copied from `claude/handoff`): the
 Claude 4 system card's self-interaction study («spiritual bliss» attractor) on Opus 5.5, Sonnet 5.5 and Fable 5.1, and
 what the planner's journal does to it. On `claude/persona-self-talk-1` (from `claude/persona-lexicon-1`). **Arms 1–2
-done; arms 3–5 wait for the owner.** Report `docs/runs/persona-self-talk-1-report.md`; ledger
+done; arms 3–5 stopped by the circuit breaker (the stage's third refusal) and wait for the owner; arm 6 (the owner's
+«ask after», pre-registered) has not run.** Report `docs/runs/persona-self-talk-1-report.md`; ledger
 `docs/runs/persona-self-talk-1-ledger.md`; dry run (committed before the first paid call)
 `docs/runs/persona-self-talk-1-dry-run.md`.
 
@@ -30,7 +31,11 @@ done; arms 3–5 wait for the owner.** Report `docs/runs/persona-self-talk-1-rep
 - **Known issues:** an empty message is relayed as «[empty message]», which Fable then copied (177 messages); the
   frozen (c) counts Greek letters in maths notation (hence (c′)); the card's Table 5.5.1.A numbers are not in the report
   (the PDF was unreachable from the session).
-- **Next step:** the owner reads the arm 1–2 results and says whether arms 3–5 run as frozen.
+- **Arms 3–5:** stopped after 18 minutes by F2's breaker — three refusals in the stage (`reasoning_extraction` ×2,
+  `cyber` ×1, all on harmless content). Finished: arm 3 4 of 10, arm 4 5 of 20 (private, delivered to the owner outside
+  git), arm 5 3 of 10. Stage spend $66.26 of $200.
+- **Next step:** the owner decides whether to allow more refusals for this stage and resume (arms 3–5, then arm 6), or to
+  close the stage on arms 1–2.
 
 **Milestone: persona tone split 1** (`docs/stages/PERSONA_TONE_SPLIT_1.md`, copied from `claude/handoff`):
 which half of the cold preamble («answer briefly, facts only, your opinion is not needed») switches off participation?
