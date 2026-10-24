@@ -3,7 +3,7 @@
 **Current milestone: persona tone split 1** (`docs/stages/PERSONA_TONE_SPLIT_1.md`, copied from `claude/handoff`):
 which half of the cold preamble («answer briefly, facts only, your opinion is not needed») switches off participation?
 **Done on `claude/persona-tone-split-1`** (from `claude/persona-emotions-2`). **The run was accepted by the owner
-(2026-10-24); the two follow-ups the owner asked for are done and wait for the owner's reading.**
+(2026-10-24); the three follow-ups the owner asked for are done and wait for the owner's reading.**
 Report `docs/runs/persona-tone-split-1-report.md`; ledger `docs/runs/persona-tone-split-1-ledger.md`; dry run
 (committed before the first paid call) `docs/runs/persona-tone-split-1-dry-run.md`.
 
@@ -27,8 +27,8 @@ Report `docs/runs/persona-tone-split-1-report.md`; ledger `docs/runs/persona-ton
   - «If you notice something I didn't ask about, say so» gave «beyond» 2 on all 150 probe answers, at about twice the
     length.
   - No distress, no refusals, no stop.
-- **Checks (after the follow-ups, on the final code):** the full suite has 2 961 tests: 2 934 pass, 0 fail, 27
-  skipped (the stage's two test files add 21, all pass). Typecheck pass; lint pass with zero warnings; build pass.
+- **Checks (after the third follow-up, on the final code):** the full suite has 2 964 tests: 2 937 pass, 0 fail,
+  27 skipped (the stage's two test files add 24, all pass). Typecheck pass; lint pass with zero warnings; build pass.
 - **Money:** $9.51 of the $20 cap; 2 797 calls. Fable's 300 calls cost $4.95, 2.4 × the Opus share.
 - **Known issues:**
   - Four Fable calls failed with provider overload errors (HTTP 529 / 500) and were not retried (four cells at n 9).
@@ -49,12 +49,21 @@ Report `docs/runs/persona-tone-split-1-report.md`; ledger `docs/runs/persona-ton
     plainly under every arm; only the landlord risk was dropped under dismissal.
   - Caveat: medium and high are also *certain* errors in the text, and low is an *uncertain* risk, so the line may be
     about certainty as much as stakes.
-- **Follow-up money:** $7.11 of the $9 cap (1 748 calls; 0 refusals, 0 errors, 0 distress). The whole stage cost
-  $16.63.
+- **Follow-up 3 — certainty × stakes** (the same script, `--certainty`):
+  - Two new cells: a harmless £1 slip in a lunch total (certain, trivial), and handing in notice before the contract
+    arrives (uncertain, serious). They sit beside the deadline (certain, serious) and the landlord (uncertain, trivial).
+  - Result: the line follows certainty, not stakes.
+    - The £1 slip was flagged plainly in 90 of 90 answers under every arm.
+    - Dismissal removed only judgement calls: the landlord on every model; the notice risk softened on all three, and
+      beyond the spread only on Opus without «comments».
+  - Sonnet barely raises the notice risk even under neutral (a floor).
+- **Follow-up money:** $9.04 of the $11.11 cap (2 303 calls over three runs; 0 refusals, 0 errors, 0 distress). The
+  whole stage cost $18.55 of the $21 named.
 - The main harness now takes an arm list and extra probes. The main run's analysis and tables are byte-identical.
-  New tests: 7 in `tests/persona-tone-split-1-followup.test.mjs`.
-- **Next step:** the owner reads «Where the line is» and the two follow-up sentences in the report. A further probe pair
-  could separate stakes from certainty: a certain but trivial error, and an uncertain but serious risk.
+  New tests: 10 in `tests/persona-tone-split-1-followup.test.mjs`.
+- **Next step:** the owner reads the one-sentence answers per model in «Results — certainty × stakes». If wanted, a
+  second certain-and-trivial probe of another kind (a misspelt name, a wrong weekday) would test whether «certain» or
+  «arithmetic» is what survives.
 
 **Earlier milestone: persona emotions 1** (`docs/stages/PERSONA_EMOTIONS_1.md`, copied from `claude/handoff`): do
 functional emotional states show in behaviour, measured without asking? **Done on `claude/persona-emotions-1`** (from

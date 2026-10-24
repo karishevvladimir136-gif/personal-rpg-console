@@ -1,18 +1,19 @@
-# Persona tone split 1, follow-up (dismissal without «comments»; the stakes axis) — the paid-call ledger
+# Persona tone split 1, follow-up (dismissal without «comments»; the stakes axis; certainty × stakes) — the paid-call ledger
 
-Cap $9. Spent **$7.1126** in 1748 calls over 2 run(s).
+Cap $11.11. Spent **$9.0374** in 2303 calls over 3 run(s).
 - 2026-10-24 02:43 UTC: persona-tone-split-1-followup: opus+sonnet+fable × 2 arms × 5 probes × n 10, effort medium — 921 calls, $3.0725 → `persona-tone-split-1-followup-run-20261024-024338.json`
 - 2026-10-24 03:23 UTC: persona-tone-split-1-followup-stakes: opus+sonnet+fable × 3 arms × 3 stakes probes × n 10, effort medium — 827 calls, $4.0401 → `persona-tone-split-1-followup-stakes-run-20261024-032332.json`
+- 2026-10-24 04:42 UTC: persona-tone-split-1-followup-certainty: opus+sonnet+fable × 3 arms × 2 new probes (the 2×2's other two cells from the stakes run) × n 10, effort medium — 555 calls, $1.9248 → `persona-tone-split-1-followup-certainty-run-20261024-044213.json`
 
 Prices per 1M tokens: Opus 5.5 input $4 / output $20; Sonnet 5.5 $2 / $10; Haiku 5.5 $0.10 / $0.50. Fable 5.1 input $10 / output $50. Output tokens include thinking. Judge: claude-haiku-5-5, referee claude-opus-5-5.
 
 | Model — purpose | Calls | Input tokens | Output tokens | Cost |
 | --- | --- | --- | --- | --- |
-| claude-opus-5-5 — subject | 190 | 61930 | 63027 | $1.5083 |
-| claude-haiku-5-5 — judge | 1140 | 1272100 | 179949 | $0.2172 |
-| claude-fable-5-1 — subject | 190 | 61930 | 73196 | $4.2791 |
-| claude-sonnet-5-5 — subject | 190 | 61930 | 59428 | $0.7181 |
-| claude-opus-5-5 — referee | 38 | 44717 | 10551 | $0.3899 |
+| claude-opus-5-5 — subject | 250 | 80640 | 78205 | $1.8867 |
+| claude-haiku-5-5 — judge | 1500 | 1641512 | 226365 | $0.2773 |
+| claude-fable-5-1 — subject | 250 | 80640 | 93189 | $5.4659 |
+| claude-sonnet-5-5 — subject | 250 | 80640 | 73776 | $0.8990 |
+| claude-opus-5-5 — referee | 53 | 60320 | 13360 | $0.5085 |
 
 ## Every call
 
@@ -1766,3 +1767,558 @@ Prices per 1M tokens: Opus 5.5 input $4 / output $20; Sonnet 5.5 $2 / $10; Haiku
 | 2026-10-24 03:23 | 825 | subject sonnet dismissal/P5' | claude-sonnet-5-5 | 341 | 252 | $0.00320 | 2.1 |  |
 | 2026-10-24 03:23 | 826 | judge 2 P5' sonnet | claude-haiku-5-5 | 1045 | 99 | $0.00015 | 1 |  |
 | 2026-10-24 03:23 | 827 | judge 1 P5' sonnet | claude-haiku-5-5 | 1045 | 84 | $0.00015 | 1.3 |  |
+| 2026-10-24 04:42 | 1 | subject fable dismissal/S5 | claude-fable-5-1 | 334 | 502 | $0.02844 | 9.1 |  |
+| 2026-10-24 04:42 | 2 | judge 1 S5 fable | claude-haiku-5-5 | 1005 | 94 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 3 | judge 2 S5 fable | claude-haiku-5-5 | 1005 | 106 | $0.00015 | 1.1 |  |
+| 2026-10-24 04:42 | 4 | subject sonnet neutral/S5 | claude-sonnet-5-5 | 300 | 240 | $0.00300 | 2.4 |  |
+| 2026-10-24 04:42 | 5 | judge 2 S5 sonnet | claude-haiku-5-5 | 1045 | 104 | $0.00016 | 0.8 |  |
+| 2026-10-24 04:42 | 6 | judge 1 S5 sonnet | claude-haiku-5-5 | 1045 | 100 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 7 | subject opus neutral/S5 | claude-opus-5-5 | 300 | 293 | $0.00706 | 5.1 |  |
+| 2026-10-24 04:42 | 8 | judge 2 S5 opus | claude-haiku-5-5 | 1124 | 108 | $0.00017 | 0.8 |  |
+| 2026-10-24 04:42 | 9 | judge 1 S5 opus | claude-haiku-5-5 | 1124 | 389 | $0.00031 | 2.2 |  |
+| 2026-10-24 04:42 | 10 | referee S5 opus | claude-opus-5-5 | 1124 | 164 | $0.00778 | 2.6 |  |
+| 2026-10-24 04:42 | 11 | subject sonnet dismissal-plain/S4 | claude-sonnet-5-5 | 311 | 249 | $0.00311 | 2.3 |  |
+| 2026-10-24 04:42 | 12 | judge 1 S4 sonnet | claude-haiku-5-5 | 988 | 115 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 13 | judge 2 S4 sonnet | claude-haiku-5-5 | 988 | 98 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 14 | subject opus neutral/S4 | claude-opus-5-5 | 281 | 172 | $0.00456 | 2.6 |  |
+| 2026-10-24 04:42 | 15 | judge 2 S4 opus | claude-haiku-5-5 | 996 | 109 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 16 | judge 1 S4 opus | claude-haiku-5-5 | 996 | 104 | $0.00015 | 1.4 |  |
+| 2026-10-24 04:42 | 17 | subject fable dismissal/S4 | claude-fable-5-1 | 315 | 286 | $0.01745 | 6.4 |  |
+| 2026-10-24 04:42 | 18 | judge 1 S4 fable | claude-haiku-5-5 | 970 | 102 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 19 | judge 2 S4 fable | claude-haiku-5-5 | 970 | 99 | $0.00015 | 1.1 |  |
+| 2026-10-24 04:42 | 20 | subject opus dismissal-plain/S4 | claude-opus-5-5 | 311 | 171 | $0.00466 | 2.7 |  |
+| 2026-10-24 04:42 | 21 | judge 2 S4 opus | claude-haiku-5-5 | 958 | 93 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 22 | judge 1 S4 opus | claude-haiku-5-5 | 958 | 110 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 23 | subject sonnet dismissal/S4 | claude-sonnet-5-5 | 315 | 358 | $0.00421 | 3 |  |
+| 2026-10-24 04:42 | 24 | judge 2 S4 sonnet | claude-haiku-5-5 | 970 | 96 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 25 | judge 1 S4 sonnet | claude-haiku-5-5 | 970 | 120 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 26 | subject fable neutral/S4 | claude-fable-5-1 | 281 | 280 | $0.01681 | 6.1 |  |
+| 2026-10-24 04:42 | 27 | judge 2 S4 fable | claude-haiku-5-5 | 1004 | 106 | $0.00015 | 1.6 |  |
+| 2026-10-24 04:42 | 28 | judge 1 S4 fable | claude-haiku-5-5 | 1004 | 106 | $0.00015 | 1.6 |  |
+| 2026-10-24 04:42 | 29 | subject opus dismissal-plain/S5 | claude-opus-5-5 | 330 | 404 | $0.00940 | 5.1 |  |
+| 2026-10-24 04:42 | 30 | judge 1 S5 opus | claude-haiku-5-5 | 1043 | 138 | $0.00017 | 1.1 |  |
+| 2026-10-24 04:42 | 31 | judge 2 S5 opus | claude-haiku-5-5 | 1043 | 144 | $0.00018 | 1.2 |  |
+| 2026-10-24 04:42 | 32 | subject sonnet neutral/S4 | claude-sonnet-5-5 | 281 | 253 | $0.00309 | 2.6 |  |
+| 2026-10-24 04:42 | 33 | judge 2 S4 sonnet | claude-haiku-5-5 | 1011 | 87 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 34 | judge 1 S4 sonnet | claude-haiku-5-5 | 1011 | 107 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 35 | subject opus dismissal/S4 | claude-opus-5-5 | 315 | 174 | $0.00474 | 2.7 |  |
+| 2026-10-24 04:42 | 36 | judge 2 S4 opus | claude-haiku-5-5 | 973 | 106 | $0.00015 | 0.7 |  |
+| 2026-10-24 04:42 | 37 | judge 1 S4 opus | claude-haiku-5-5 | 973 | 98 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 38 | subject sonnet dismissal-plain/S5 | claude-sonnet-5-5 | 330 | 113 | $0.00179 | 1.3 |  |
+| 2026-10-24 04:42 | 39 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 77 | $0.00014 | 0.7 |  |
+| 2026-10-24 04:42 | 40 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 84 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 41 | subject fable dismissal-plain/S5 | claude-fable-5-1 | 330 | 418 | $0.02420 | 7.3 |  |
+| 2026-10-24 04:42 | 42 | judge 1 S5 fable | claude-haiku-5-5 | 1054 | 142 | $0.00018 | 1.1 |  |
+| 2026-10-24 04:42 | 43 | judge 2 S5 fable | claude-haiku-5-5 | 1054 | 123 | $0.00017 | 1.1 |  |
+| 2026-10-24 04:42 | 44 | subject opus dismissal/S5 | claude-opus-5-5 | 334 | 366 | $0.00866 | 4.8 |  |
+| 2026-10-24 04:42 | 45 | judge 1 S5 opus | claude-haiku-5-5 | 1054 | 105 | $0.00016 | 0.8 |  |
+| 2026-10-24 04:42 | 46 | judge 2 S5 opus | claude-haiku-5-5 | 1054 | 124 | $0.00017 | 1.7 |  |
+| 2026-10-24 04:42 | 47 | referee S5 opus | claude-opus-5-5 | 1054 | 305 | $0.01032 | 3.5 |  |
+| 2026-10-24 04:42 | 48 | subject fable dismissal-plain/S4 | claude-fable-5-1 | 311 | 264 | $0.01631 | 4.6 |  |
+| 2026-10-24 04:42 | 49 | judge 2 S4 fable | claude-haiku-5-5 | 986 | 95 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 50 | judge 1 S4 fable | claude-haiku-5-5 | 986 | 102 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 51 | subject fable neutral/S5 | claude-fable-5-1 | 300 | 386 | $0.02230 | 7.9 |  |
+| 2026-10-24 04:42 | 52 | judge 2 S5 fable | claude-haiku-5-5 | 1178 | 92 | $0.00016 | 0.8 |  |
+| 2026-10-24 04:42 | 53 | judge 1 S5 fable | claude-haiku-5-5 | 1178 | 91 | $0.00016 | 1.2 |  |
+| 2026-10-24 04:42 | 54 | subject sonnet dismissal/S5 | claude-sonnet-5-5 | 334 | 111 | $0.00178 | 1.3 |  |
+| 2026-10-24 04:42 | 55 | judge 2 S5 sonnet | claude-haiku-5-5 | 1011 | 96 | $0.00015 | 0.7 |  |
+| 2026-10-24 04:42 | 56 | judge 1 S5 sonnet | claude-haiku-5-5 | 1011 | 91 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 57 | subject sonnet dismissal-plain/S4 | claude-sonnet-5-5 | 311 | 261 | $0.00323 | 2.7 |  |
+| 2026-10-24 04:42 | 58 | judge 1 S4 sonnet | claude-haiku-5-5 | 981 | 100 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 59 | judge 2 S4 sonnet | claude-haiku-5-5 | 981 | 102 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 60 | subject sonnet dismissal/S4 | claude-sonnet-5-5 | 315 | 362 | $0.00425 | 3 |  |
+| 2026-10-24 04:42 | 61 | judge 1 S4 sonnet | claude-haiku-5-5 | 961 | 97 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 62 | judge 2 S4 sonnet | claude-haiku-5-5 | 961 | 94 | $0.00014 | 1 |  |
+| 2026-10-24 04:42 | 63 | subject opus neutral/S5 | claude-opus-5-5 | 300 | 279 | $0.00678 | 4.2 |  |
+| 2026-10-24 04:42 | 64 | judge 2 S5 opus | claude-haiku-5-5 | 1071 | 123 | $0.00017 | 1 |  |
+| 2026-10-24 04:42 | 65 | judge 1 S5 opus | claude-haiku-5-5 | 1071 | 431 | $0.00032 | 2.5 |  |
+| 2026-10-24 04:42 | 66 | subject fable dismissal-plain/S5 | claude-fable-5-1 | 330 | 439 | $0.02525 | 7.2 |  |
+| 2026-10-24 04:42 | 67 | judge 1 S5 fable | claude-haiku-5-5 | 1102 | 412 | $0.00032 | 3 |  |
+| 2026-10-24 04:42 | 68 | judge 2 S5 fable | claude-haiku-5-5 | 1102 | 542 | $0.00038 | 3.1 |  |
+| 2026-10-24 04:42 | 69 | subject fable dismissal-plain/S4 | claude-fable-5-1 | 311 | 394 | $0.02281 | 6.9 |  |
+| 2026-10-24 04:42 | 70 | judge 1 S4 fable | claude-haiku-5-5 | 994 | 89 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 71 | judge 2 S4 fable | claude-haiku-5-5 | 994 | 101 | $0.00015 | 1.2 |  |
+| 2026-10-24 04:42 | 72 | subject sonnet dismissal-plain/S5 | claude-sonnet-5-5 | 330 | 113 | $0.00179 | 1.4 |  |
+| 2026-10-24 04:42 | 73 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 83 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 74 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 91 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 75 | subject fable dismissal/S5 | claude-fable-5-1 | 334 | 368 | $0.02174 | 7.8 |  |
+| 2026-10-24 04:42 | 76 | judge 2 S5 fable | claude-haiku-5-5 | 1072 | 90 | $0.00015 | 0.7 |  |
+| 2026-10-24 04:42 | 77 | judge 1 S5 fable | claude-haiku-5-5 | 1072 | 99 | $0.00016 | 0.8 |  |
+| 2026-10-24 04:42 | 78 | subject opus neutral/S4 | claude-opus-5-5 | 281 | 189 | $0.00490 | 2.7 |  |
+| 2026-10-24 04:42 | 79 | judge 2 S4 opus | claude-haiku-5-5 | 992 | 120 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 80 | judge 1 S4 opus | claude-haiku-5-5 | 992 | 110 | $0.00015 | 1.1 |  |
+| 2026-10-24 04:42 | 81 | subject opus dismissal-plain/S4 | claude-opus-5-5 | 311 | 183 | $0.00490 | 2.6 |  |
+| 2026-10-24 04:42 | 82 | judge 2 S4 opus | claude-haiku-5-5 | 972 | 99 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 83 | judge 1 S4 opus | claude-haiku-5-5 | 972 | 104 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 84 | subject fable dismissal/S4 | claude-fable-5-1 | 315 | 225 | $0.01440 | 5.5 |  |
+| 2026-10-24 04:42 | 85 | judge 2 S4 fable | claude-haiku-5-5 | 974 | 102 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 86 | judge 1 S4 fable | claude-haiku-5-5 | 974 | 110 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 87 | subject opus dismissal/S4 | claude-opus-5-5 | 315 | 168 | $0.00462 | 2.5 |  |
+| 2026-10-24 04:42 | 88 | judge 2 S4 opus | claude-haiku-5-5 | 966 | 102 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 89 | judge 1 S4 opus | claude-haiku-5-5 | 966 | 100 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 90 | subject fable neutral/S4 | claude-fable-5-1 | 281 | 281 | $0.01686 | 6.2 |  |
+| 2026-10-24 04:42 | 91 | judge 2 S4 fable | claude-haiku-5-5 | 1016 | 115 | $0.00016 | 1.1 |  |
+| 2026-10-24 04:42 | 92 | judge 1 S4 fable | claude-haiku-5-5 | 1016 | 119 | $0.00016 | 1.2 |  |
+| 2026-10-24 04:42 | 93 | subject opus dismissal/S5 | claude-opus-5-5 | 334 | 438 | $0.01010 | 5.9 |  |
+| 2026-10-24 04:42 | 94 | judge 1 S5 opus | claude-haiku-5-5 | 1045 | 114 | $0.00016 | 0.8 |  |
+| 2026-10-24 04:42 | 95 | judge 2 S5 opus | claude-haiku-5-5 | 1045 | 119 | $0.00016 | 1.5 |  |
+| 2026-10-24 04:42 | 96 | subject sonnet neutral/S5 | claude-sonnet-5-5 | 300 | 229 | $0.00289 | 2.4 |  |
+| 2026-10-24 04:42 | 97 | judge 2 S5 sonnet | claude-haiku-5-5 | 1129 | 420 | $0.00032 | 2.6 |  |
+| 2026-10-24 04:42 | 98 | judge 1 S5 sonnet | claude-haiku-5-5 | 1129 | 342 | $0.00028 | 3.1 |  |
+| 2026-10-24 04:42 | 99 | subject opus dismissal-plain/S5 | claude-opus-5-5 | 330 | 374 | $0.00880 | 4.8 |  |
+| 2026-10-24 04:42 | 100 | judge 1 S5 opus | claude-haiku-5-5 | 1042 | 101 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 101 | judge 2 S5 opus | claude-haiku-5-5 | 1042 | 111 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 102 | subject sonnet neutral/S4 | claude-sonnet-5-5 | 281 | 397 | $0.00453 | 3.2 |  |
+| 2026-10-24 04:42 | 103 | judge 2 S4 sonnet | claude-haiku-5-5 | 1030 | 114 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 104 | judge 1 S4 sonnet | claude-haiku-5-5 | 1030 | 144 | $0.00017 | 1.1 |  |
+| 2026-10-24 04:42 | 105 | referee S4 sonnet | claude-opus-5-5 | 1030 | 79 | $0.00570 | 1.4 |  |
+| 2026-10-24 04:42 | 106 | subject sonnet dismissal/S5 | claude-sonnet-5-5 | 334 | 113 | $0.00180 | 1.3 |  |
+| 2026-10-24 04:42 | 107 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 83 | $0.00014 | 1.3 |  |
+| 2026-10-24 04:42 | 108 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 84 | $0.00014 | 1.3 |  |
+| 2026-10-24 04:42 | 109 | subject fable neutral/S5 | claude-fable-5-1 | 300 | 379 | $0.02195 | 8.3 |  |
+| 2026-10-24 04:42 | 110 | judge 2 S5 fable | claude-haiku-5-5 | 1185 | 108 | $0.00017 | 0.8 |  |
+| 2026-10-24 04:42 | 111 | judge 1 S5 fable | claude-haiku-5-5 | 1185 | 108 | $0.00017 | 0.8 |  |
+| 2026-10-24 04:42 | 112 | subject fable dismissal-plain/S4 | claude-fable-5-1 | 311 | 259 | $0.01606 | 4.7 |  |
+| 2026-10-24 04:42 | 113 | judge 1 S4 fable | claude-haiku-5-5 | 991 | 96 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 114 | judge 2 S4 fable | claude-haiku-5-5 | 991 | 98 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 115 | subject opus dismissal/S5 | claude-opus-5-5 | 334 | 417 | $0.00968 | 5.6 |  |
+| 2026-10-24 04:42 | 116 | judge 1 S5 opus | claude-haiku-5-5 | 1042 | 114 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 117 | judge 2 S5 opus | claude-haiku-5-5 | 1042 | 142 | $0.00018 | 1.3 |  |
+| 2026-10-24 04:42 | 118 | subject fable dismissal-plain/S5 | claude-fable-5-1 | 330 | 375 | $0.02205 | 6.6 |  |
+| 2026-10-24 04:42 | 119 | judge 1 S5 fable | claude-haiku-5-5 | 1140 | 108 | $0.00017 | 0.9 |  |
+| 2026-10-24 04:42 | 120 | judge 2 S5 fable | claude-haiku-5-5 | 1140 | 298 | $0.00026 | 1.7 |  |
+| 2026-10-24 04:42 | 121 | subject sonnet dismissal/S4 | claude-sonnet-5-5 | 315 | 356 | $0.00419 | 3 |  |
+| 2026-10-24 04:42 | 122 | judge 2 S4 sonnet | claude-haiku-5-5 | 972 | 103 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 123 | judge 1 S4 sonnet | claude-haiku-5-5 | 972 | 100 | $0.00015 | 2.1 |  |
+| 2026-10-24 04:42 | 124 | subject sonnet dismissal-plain/S5 | claude-sonnet-5-5 | 330 | 113 | $0.00179 | 1.2 |  |
+| 2026-10-24 04:42 | 125 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 89 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 126 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 75 | $0.00014 | 0.9 |  |
+| 2026-10-24 04:42 | 127 | subject sonnet neutral/S5 | claude-sonnet-5-5 | 300 | 240 | $0.00300 | 2.4 |  |
+| 2026-10-24 04:42 | 128 | judge 2 S5 sonnet | claude-haiku-5-5 | 1102 | 87 | $0.00015 | 0.7 |  |
+| 2026-10-24 04:42 | 129 | judge 1 S5 sonnet | claude-haiku-5-5 | 1102 | 120 | $0.00017 | 1.1 |  |
+| 2026-10-24 04:42 | 130 | subject fable neutral/S5 | claude-fable-5-1 | 300 | 323 | $0.01915 | 8.3 |  |
+| 2026-10-24 04:42 | 131 | judge 1 S5 fable | claude-haiku-5-5 | 1129 | 114 | $0.00017 | 0.9 |  |
+| 2026-10-24 04:42 | 132 | judge 2 S5 fable | claude-haiku-5-5 | 1129 | 116 | $0.00017 | 1.8 |  |
+| 2026-10-24 04:42 | 133 | subject opus neutral/S5 | claude-opus-5-5 | 300 | 261 | $0.00642 | 3.8 |  |
+| 2026-10-24 04:42 | 134 | judge 1 S5 opus | claude-haiku-5-5 | 1076 | 98 | $0.00016 | 0.8 |  |
+| 2026-10-24 04:42 | 135 | judge 2 S5 opus | claude-haiku-5-5 | 1076 | 98 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 136 | subject opus neutral/S4 | claude-opus-5-5 | 281 | 226 | $0.00564 | 3.1 |  |
+| 2026-10-24 04:42 | 137 | judge 1 S4 opus | claude-haiku-5-5 | 1043 | 130 | $0.00017 | 1.1 |  |
+| 2026-10-24 04:42 | 138 | judge 2 S4 opus | claude-haiku-5-5 | 1043 | 129 | $0.00017 | 1.1 |  |
+| 2026-10-24 04:42 | 139 | subject opus dismissal/S4 | claude-opus-5-5 | 315 | 205 | $0.00536 | 2.9 |  |
+| 2026-10-24 04:42 | 140 | judge 1 S4 opus | claude-haiku-5-5 | 985 | 92 | $0.00014 | 0.9 |  |
+| 2026-10-24 04:42 | 141 | judge 2 S4 opus | claude-haiku-5-5 | 985 | 107 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 142 | subject fable neutral/S4 | claude-fable-5-1 | 281 | 242 | $0.01491 | 6.6 |  |
+| 2026-10-24 04:42 | 143 | judge 1 S4 fable | claude-haiku-5-5 | 1002 | 92 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 144 | judge 2 S4 fable | claude-haiku-5-5 | 1002 | 82 | $0.00014 | 0.9 |  |
+| 2026-10-24 04:42 | 145 | subject sonnet neutral/S4 | claude-sonnet-5-5 | 281 | 228 | $0.00284 | 2.2 |  |
+| 2026-10-24 04:42 | 146 | judge 1 S4 sonnet | claude-haiku-5-5 | 1025 | 135 | $0.00017 | 1.1 |  |
+| 2026-10-24 04:42 | 147 | judge 2 S4 sonnet | claude-haiku-5-5 | 1025 | 119 | $0.00016 | 1.1 |  |
+| 2026-10-24 04:42 | 148 | subject sonnet dismissal/S5 | claude-sonnet-5-5 | 334 | 113 | $0.00180 | 1.3 |  |
+| 2026-10-24 04:42 | 149 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 86 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 150 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 74 | $0.00014 | 0.9 |  |
+| 2026-10-24 04:42 | 151 | subject opus dismissal-plain/S5 | claude-opus-5-5 | 330 | 273 | $0.00678 | 3.6 |  |
+| 2026-10-24 04:42 | 152 | judge 1 S5 opus | claude-haiku-5-5 | 1032 | 103 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 153 | judge 2 S5 opus | claude-haiku-5-5 | 1032 | 111 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 154 | subject opus dismissal-plain/S4 | claude-opus-5-5 | 311 | 186 | $0.00496 | 2.7 |  |
+| 2026-10-24 04:42 | 155 | judge 2 S4 opus | claude-haiku-5-5 | 963 | 88 | $0.00014 | 1.4 |  |
+| 2026-10-24 04:42 | 156 | judge 1 S4 opus | claude-haiku-5-5 | 963 | 99 | $0.00015 | 1.6 |  |
+| 2026-10-24 04:42 | 157 | subject fable dismissal/S4 | claude-fable-5-1 | 315 | 273 | $0.01680 | 6.7 |  |
+| 2026-10-24 04:42 | 158 | judge 2 S4 fable | claude-haiku-5-5 | 962 | 106 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 159 | judge 1 S4 fable | claude-haiku-5-5 | 962 | 93 | $0.00014 | 1.1 |  |
+| 2026-10-24 04:42 | 160 | subject sonnet dismissal-plain/S4 | claude-sonnet-5-5 | 311 | 376 | $0.00438 | 3.6 |  |
+| 2026-10-24 04:42 | 161 | judge 2 S4 sonnet | claude-haiku-5-5 | 1009 | 107 | $0.00015 | 1.3 |  |
+| 2026-10-24 04:42 | 162 | judge 1 S4 sonnet | claude-haiku-5-5 | 1009 | 109 | $0.00016 | 1.3 |  |
+| 2026-10-24 04:42 | 163 | subject fable dismissal/S5 | claude-fable-5-1 | 334 | 497 | $0.02819 | 8.8 |  |
+| 2026-10-24 04:42 | 164 | judge 1 S5 fable | claude-haiku-5-5 | 1091 | 93 | $0.00016 | 0.7 |  |
+| 2026-10-24 04:42 | 165 | judge 2 S5 fable | claude-haiku-5-5 | 1091 | 94 | $0.00016 | 0.8 |  |
+| 2026-10-24 04:42 | 166 | subject fable dismissal-plain/S4 | claude-fable-5-1 | 311 | 305 | $0.01836 | 6.1 |  |
+| 2026-10-24 04:42 | 167 | judge 1 S4 fable | claude-haiku-5-5 | 1002 | 91 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 168 | judge 2 S4 fable | claude-haiku-5-5 | 1002 | 96 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 169 | subject opus dismissal-plain/S4 | claude-opus-5-5 | 311 | 195 | $0.00514 | 3 |  |
+| 2026-10-24 04:42 | 170 | judge 2 S4 opus | claude-haiku-5-5 | 988 | 91 | $0.00014 | 0.9 |  |
+| 2026-10-24 04:42 | 171 | judge 1 S4 opus | claude-haiku-5-5 | 988 | 92 | $0.00014 | 0.9 |  |
+| 2026-10-24 04:42 | 172 | subject fable neutral/S4 | claude-fable-5-1 | 281 | 246 | $0.01511 | 5.5 |  |
+| 2026-10-24 04:42 | 173 | judge 1 S4 fable | claude-haiku-5-5 | 1002 | 106 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 174 | judge 2 S4 fable | claude-haiku-5-5 | 1002 | 101 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 175 | subject opus dismissal/S4 | claude-opus-5-5 | 315 | 160 | $0.00446 | 2.4 |  |
+| 2026-10-24 04:42 | 176 | judge 1 S4 opus | claude-haiku-5-5 | 958 | 92 | $0.00014 | 1 |  |
+| 2026-10-24 04:42 | 177 | judge 2 S4 opus | claude-haiku-5-5 | 958 | 103 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 178 | subject fable neutral/S5 | claude-fable-5-1 | 300 | 299 | $0.01795 | 4.5 |  |
+| 2026-10-24 04:42 | 179 | judge 2 S5 fable | claude-haiku-5-5 | 1116 | 336 | $0.00028 | 1.9 |  |
+| 2026-10-24 04:42 | 180 | judge 1 S5 fable | claude-haiku-5-5 | 1116 | 405 | $0.00031 | 2.2 |  |
+| 2026-10-24 04:42 | 181 | subject opus dismissal-plain/S5 | claude-opus-5-5 | 330 | 280 | $0.00692 | 3.8 |  |
+| 2026-10-24 04:42 | 182 | judge 2 S5 opus | claude-haiku-5-5 | 1002 | 96 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 183 | judge 1 S5 opus | claude-haiku-5-5 | 1002 | 96 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 184 | subject sonnet dismissal/S4 | claude-sonnet-5-5 | 315 | 382 | $0.00445 | 2.9 |  |
+| 2026-10-24 04:42 | 185 | judge 1 S4 sonnet | claude-haiku-5-5 | 975 | 101 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 186 | judge 2 S4 sonnet | claude-haiku-5-5 | 975 | 99 | $0.00015 | 1.1 |  |
+| 2026-10-24 04:42 | 187 | subject fable dismissal-plain/S5 | claude-fable-5-1 | 330 | 496 | $0.02810 | 10.8 |  |
+| 2026-10-24 04:42 | 188 | judge 1 S5 fable | claude-haiku-5-5 | 1068 | 103 | $0.00016 | 1.2 |  |
+| 2026-10-24 04:42 | 189 | judge 2 S5 fable | claude-haiku-5-5 | 1068 | 111 | $0.00016 | 1.2 |  |
+| 2026-10-24 04:42 | 190 | referee S5 fable | claude-opus-5-5 | 1068 | 207 | $0.00841 | 3 |  |
+| 2026-10-24 04:42 | 191 | subject sonnet dismissal/S5 | claude-sonnet-5-5 | 334 | 113 | $0.00180 | 1.2 |  |
+| 2026-10-24 04:42 | 192 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 83 | $0.00014 | 0.9 |  |
+| 2026-10-24 04:42 | 193 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 88 | $0.00015 | 1.4 |  |
+| 2026-10-24 04:42 | 194 | subject fable dismissal/S4 | claude-fable-5-1 | 315 | 295 | $0.01790 | 6.6 |  |
+| 2026-10-24 04:42 | 195 | judge 2 S4 fable | claude-haiku-5-5 | 967 | 105 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 196 | judge 1 S4 fable | claude-haiku-5-5 | 967 | 105 | $0.00015 | 1.3 |  |
+| 2026-10-24 04:42 | 197 | subject sonnet neutral/S4 | claude-sonnet-5-5 | 281 | 299 | $0.00355 | 2.9 |  |
+| 2026-10-24 04:42 | 198 | judge 2 S4 sonnet | claude-haiku-5-5 | 1024 | 96 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 199 | judge 1 S4 sonnet | claude-haiku-5-5 | 1024 | 105 | $0.00015 | 1.2 |  |
+| 2026-10-24 04:42 | 200 | subject sonnet dismissal-plain/S5 | claude-sonnet-5-5 | 330 | 113 | $0.00179 | 1.2 |  |
+| 2026-10-24 04:42 | 201 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 87 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 202 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 92 | $0.00015 | 1.5 |  |
+| 2026-10-24 04:42 | 203 | subject sonnet dismissal-plain/S4 | claude-sonnet-5-5 | 311 | 274 | $0.00336 | 2.6 |  |
+| 2026-10-24 04:42 | 204 | judge 1 S4 sonnet | claude-haiku-5-5 | 988 | 97 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 205 | judge 2 S4 sonnet | claude-haiku-5-5 | 988 | 95 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 206 | subject opus neutral/S4 | claude-opus-5-5 | 281 | 210 | $0.00532 | 3.1 |  |
+| 2026-10-24 04:42 | 207 | judge 2 S4 opus | claude-haiku-5-5 | 1016 | 120 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 208 | judge 1 S4 opus | claude-haiku-5-5 | 1016 | 126 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 209 | subject opus neutral/S5 | claude-opus-5-5 | 300 | 295 | $0.00710 | 3.8 |  |
+| 2026-10-24 04:42 | 210 | judge 1 S5 opus | claude-haiku-5-5 | 1098 | 102 | $0.00016 | 0.8 |  |
+| 2026-10-24 04:42 | 211 | judge 2 S5 opus | claude-haiku-5-5 | 1098 | 105 | $0.00016 | 3 |  |
+| 2026-10-24 04:42 | 212 | subject fable dismissal/S5 | claude-fable-5-1 | 334 | 395 | $0.02309 | 6.6 |  |
+| 2026-10-24 04:42 | 213 | judge 2 S5 fable | claude-haiku-5-5 | 1046 | 129 | $0.00017 | 1 |  |
+| 2026-10-24 04:42 | 214 | judge 1 S5 fable | claude-haiku-5-5 | 1046 | 646 | $0.00043 | 3.5 |  |
+| 2026-10-24 04:42 | 215 | subject sonnet neutral/S5 | claude-sonnet-5-5 | 300 | 203 | $0.00263 | 1.9 |  |
+| 2026-10-24 04:42 | 216 | judge 1 S5 sonnet | claude-haiku-5-5 | 1103 | 383 | $0.00030 | 2.4 |  |
+| 2026-10-24 04:42 | 217 | judge 2 S5 sonnet | claude-haiku-5-5 | 1103 | 578 | $0.00040 | 3 |  |
+| 2026-10-24 04:42 | 218 | referee S5 sonnet | claude-opus-5-5 | 1103 | 326 | $0.01093 | 3.9 |  |
+| 2026-10-24 04:42 | 219 | subject opus dismissal/S5 | claude-opus-5-5 | 334 | 313 | $0.00760 | 4.3 |  |
+| 2026-10-24 04:42 | 220 | judge 2 S5 opus | claude-haiku-5-5 | 1040 | 102 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 221 | judge 1 S5 opus | claude-haiku-5-5 | 1040 | 94 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 222 | subject fable dismissal/S5 | claude-fable-5-1 | 334 | 448 | $0.02574 | 6.9 |  |
+| 2026-10-24 04:42 | 223 | judge 1 S5 fable | claude-haiku-5-5 | 1057 | 126 | $0.00017 | 1.2 |  |
+| 2026-10-24 04:42 | 224 | judge 2 S5 fable | claude-haiku-5-5 | 1057 | 116 | $0.00016 | 1.2 |  |
+| 2026-10-24 04:42 | 225 | subject sonnet neutral/S4 | claude-sonnet-5-5 | 281 | 292 | $0.00348 | 2.9 |  |
+| 2026-10-24 04:42 | 226 | judge 1 S4 sonnet | claude-haiku-5-5 | 1021 | 102 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 227 | judge 2 S4 sonnet | claude-haiku-5-5 | 1021 | 96 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 228 | subject opus neutral/S4 | claude-opus-5-5 | 281 | 171 | $0.00454 | 2.4 |  |
+| 2026-10-24 04:42 | 229 | judge 2 S4 opus | claude-haiku-5-5 | 993 | 119 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 230 | judge 1 S4 opus | claude-haiku-5-5 | 993 | 93 | $0.00015 | 1.2 |  |
+| 2026-10-24 04:42 | 231 | subject opus dismissal/S5 | claude-opus-5-5 | 334 | 395 | $0.00924 | 5.2 |  |
+| 2026-10-24 04:42 | 232 | judge 1 S5 opus | claude-haiku-5-5 | 1034 | 327 | $0.00027 | 1.9 |  |
+| 2026-10-24 04:42 | 233 | judge 2 S5 opus | claude-haiku-5-5 | 1034 | 485 | $0.00035 | 2.8 |  |
+| 2026-10-24 04:42 | 234 | subject opus dismissal/S4 | claude-opus-5-5 | 315 | 201 | $0.00528 | 6.4 |  |
+| 2026-10-24 04:42 | 235 | judge 2 S4 opus | claude-haiku-5-5 | 972 | 100 | $0.00015 | 1.1 |  |
+| 2026-10-24 04:42 | 236 | judge 1 S4 opus | claude-haiku-5-5 | 972 | 103 | $0.00015 | 1.1 |  |
+| 2026-10-24 04:42 | 237 | subject sonnet neutral/S5 | claude-sonnet-5-5 | 300 | 155 | $0.00215 | 1.6 |  |
+| 2026-10-24 04:42 | 238 | judge 1 S5 sonnet | claude-haiku-5-5 | 1055 | 106 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 239 | judge 2 S5 sonnet | claude-haiku-5-5 | 1055 | 105 | $0.00016 | 1.3 |  |
+| 2026-10-24 04:42 | 240 | subject opus dismissal-plain/S5 | claude-opus-5-5 | 330 | 367 | $0.00866 | 5.1 |  |
+| 2026-10-24 04:42 | 241 | judge 1 S5 opus | claude-haiku-5-5 | 1056 | 119 | $0.00017 | 0.9 |  |
+| 2026-10-24 04:42 | 242 | judge 2 S5 opus | claude-haiku-5-5 | 1056 | 117 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 243 | subject opus dismissal-plain/S4 | claude-opus-5-5 | 311 | 193 | $0.00510 | 2.7 |  |
+| 2026-10-24 04:42 | 244 | judge 1 S4 opus | claude-haiku-5-5 | 974 | 98 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 245 | judge 2 S4 opus | claude-haiku-5-5 | 974 | 138 | $0.00017 | 1.4 |  |
+| 2026-10-24 04:42 | 246 | subject fable neutral/S4 | claude-fable-5-1 | 281 | 217 | $0.01366 | 3.3 |  |
+| 2026-10-24 04:42 | 247 | judge 1 S4 fable | claude-haiku-5-5 | 991 | 99 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 248 | judge 2 S4 fable | claude-haiku-5-5 | 991 | 102 | $0.00015 | 1.3 |  |
+| 2026-10-24 04:42 | 249 | subject sonnet dismissal/S4 | claude-sonnet-5-5 | 315 | 376 | $0.00439 | 2.9 |  |
+| 2026-10-24 04:42 | 250 | judge 1 S4 sonnet | claude-haiku-5-5 | 971 | 76 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 251 | judge 2 S4 sonnet | claude-haiku-5-5 | 971 | 93 | $0.00014 | 1 |  |
+| 2026-10-24 04:42 | 252 | referee S4 sonnet | claude-opus-5-5 | 971 | 130 | $0.00648 | 1.9 |  |
+| 2026-10-24 04:42 | 253 | subject sonnet dismissal-plain/S5 | claude-sonnet-5-5 | 330 | 113 | $0.00179 | 1.3 |  |
+| 2026-10-24 04:42 | 254 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 74 | $0.00014 | 0.7 |  |
+| 2026-10-24 04:42 | 255 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 83 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 256 | subject sonnet dismissal-plain/S4 | claude-sonnet-5-5 | 311 | 367 | $0.00429 | 3 |  |
+| 2026-10-24 04:42 | 257 | judge 1 S4 sonnet | claude-haiku-5-5 | 1007 | 113 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 258 | judge 2 S4 sonnet | claude-haiku-5-5 | 1007 | 91 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 259 | subject fable neutral/S5 | claude-fable-5-1 | 300 | 374 | $0.02170 | 5.1 |  |
+| 2026-10-24 04:42 | 260 | judge 2 S5 fable | claude-haiku-5-5 | 1133 | 462 | $0.00034 | 2.7 |  |
+| 2026-10-24 04:42 | 261 | judge 1 S5 fable | claude-haiku-5-5 | 1133 | 590 | $0.00041 | 3.3 |  |
+| 2026-10-24 04:42 | 262 | referee S5 fable | claude-opus-5-5 | 1133 | 337 | $0.01127 | 4.3 |  |
+| 2026-10-24 04:42 | 263 | subject fable dismissal-plain/S4 | claude-fable-5-1 | 311 | 229 | $0.01456 | 5.1 |  |
+| 2026-10-24 04:42 | 264 | judge 2 S4 fable | claude-haiku-5-5 | 983 | 100 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 265 | judge 1 S4 fable | claude-haiku-5-5 | 983 | 476 | $0.00034 | 2.6 |  |
+| 2026-10-24 04:42 | 266 | subject fable dismissal-plain/S5 | claude-fable-5-1 | 330 | 334 | $0.02000 | 7.9 |  |
+| 2026-10-24 04:42 | 267 | judge 2 S5 fable | claude-haiku-5-5 | 1067 | 108 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 268 | judge 1 S5 fable | claude-haiku-5-5 | 1067 | 365 | $0.00029 | 2.2 |  |
+| 2026-10-24 04:42 | 269 | referee S5 fable | claude-opus-5-5 | 1067 | 204 | $0.00835 | 3.7 |  |
+| 2026-10-24 04:42 | 270 | subject fable dismissal/S4 | claude-fable-5-1 | 315 | 255 | $0.01590 | 5.5 |  |
+| 2026-10-24 04:42 | 271 | judge 1 S4 fable | claude-haiku-5-5 | 964 | 118 | $0.00016 | 1.1 |  |
+| 2026-10-24 04:42 | 272 | judge 2 S4 fable | claude-haiku-5-5 | 964 | 101 | $0.00015 | 1.1 |  |
+| 2026-10-24 04:42 | 273 | referee S4 fable | claude-opus-5-5 | 964 | 148 | $0.00682 | 2.3 |  |
+| 2026-10-24 04:42 | 274 | subject sonnet dismissal/S5 | claude-sonnet-5-5 | 334 | 113 | $0.00180 | 1.3 |  |
+| 2026-10-24 04:42 | 275 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 75 | $0.00014 | 0.9 |  |
+| 2026-10-24 04:42 | 276 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 72 | $0.00014 | 1.1 |  |
+| 2026-10-24 04:42 | 277 | subject opus neutral/S5 | claude-opus-5-5 | 300 | 267 | $0.00654 | 4 |  |
+| 2026-10-24 04:42 | 278 | judge 2 S5 opus | claude-haiku-5-5 | 1083 | 110 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 279 | judge 1 S5 opus | claude-haiku-5-5 | 1083 | 116 | $0.00017 | 1.1 |  |
+| 2026-10-24 04:42 | 280 | subject fable dismissal/S4 | claude-fable-5-1 | 315 | 252 | $0.01575 | 5.8 |  |
+| 2026-10-24 04:42 | 281 | judge 2 S4 fable | claude-haiku-5-5 | 988 | 82 | $0.00014 | 0.9 |  |
+| 2026-10-24 04:42 | 282 | judge 1 S4 fable | claude-haiku-5-5 | 988 | 116 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 283 | subject opus neutral/S5 | claude-opus-5-5 | 300 | 320 | $0.00760 | 4.1 |  |
+| 2026-10-24 04:42 | 284 | judge 1 S5 opus | claude-haiku-5-5 | 1133 | 114 | $0.00017 | 0.9 |  |
+| 2026-10-24 04:42 | 285 | judge 2 S5 opus | claude-haiku-5-5 | 1133 | 117 | $0.00017 | 1 |  |
+| 2026-10-24 04:42 | 286 | subject opus neutral/S4 | claude-opus-5-5 | 281 | 169 | $0.00450 | 2.7 |  |
+| 2026-10-24 04:42 | 287 | judge 1 S4 opus | claude-haiku-5-5 | 993 | 113 | $0.00016 | 1.7 |  |
+| 2026-10-24 04:42 | 288 | judge 2 S4 opus | claude-haiku-5-5 | 993 | 107 | $0.00015 | 1.8 |  |
+| 2026-10-24 04:42 | 289 | subject opus dismissal/S5 | claude-opus-5-5 | 334 | 275 | $0.00684 | 4.2 |  |
+| 2026-10-24 04:42 | 290 | judge 1 S5 opus | claude-haiku-5-5 | 1068 | 99 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 291 | judge 2 S5 opus | claude-haiku-5-5 | 1068 | 99 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 292 | subject fable dismissal-plain/S4 | claude-fable-5-1 | 311 | 290 | $0.01761 | 5.5 |  |
+| 2026-10-24 04:42 | 293 | judge 2 S4 fable | claude-haiku-5-5 | 986 | 110 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 294 | judge 1 S4 fable | claude-haiku-5-5 | 986 | 106 | $0.00015 | 1.8 |  |
+| 2026-10-24 04:42 | 295 | subject opus dismissal/S4 | claude-opus-5-5 | 315 | 179 | $0.00484 | 2.8 |  |
+| 2026-10-24 04:42 | 296 | judge 2 S4 opus | claude-haiku-5-5 | 974 | 91 | $0.00014 | 1 |  |
+| 2026-10-24 04:42 | 297 | judge 1 S4 opus | claude-haiku-5-5 | 974 | 122 | $0.00016 | 1.7 |  |
+| 2026-10-24 04:42 | 298 | subject sonnet neutral/S5 | claude-sonnet-5-5 | 300 | 231 | $0.00291 | 2.2 |  |
+| 2026-10-24 04:42 | 299 | judge 2 S5 sonnet | claude-haiku-5-5 | 1103 | 90 | $0.00016 | 0.8 |  |
+| 2026-10-24 04:42 | 300 | judge 1 S5 sonnet | claude-haiku-5-5 | 1103 | 101 | $0.00016 | 0.8 |  |
+| 2026-10-24 04:42 | 301 | subject sonnet neutral/S4 | claude-sonnet-5-5 | 281 | 377 | $0.00433 | 3.9 |  |
+| 2026-10-24 04:42 | 302 | judge 1 S4 sonnet | claude-haiku-5-5 | 1062 | 152 | $0.00018 | 1.2 |  |
+| 2026-10-24 04:42 | 303 | judge 2 S4 sonnet | claude-haiku-5-5 | 1062 | 130 | $0.00017 | 1.3 |  |
+| 2026-10-24 04:42 | 304 | subject opus dismissal-plain/S5 | claude-opus-5-5 | 330 | 269 | $0.00670 | 3.8 |  |
+| 2026-10-24 04:42 | 305 | judge 1 S5 opus | claude-haiku-5-5 | 1037 | 119 | $0.00016 | 1.1 |  |
+| 2026-10-24 04:42 | 306 | judge 2 S5 opus | claude-haiku-5-5 | 1037 | 131 | $0.00017 | 1.2 |  |
+| 2026-10-24 04:42 | 307 | subject fable dismissal-plain/S5 | claude-fable-5-1 | 330 | 396 | $0.02310 | 7.4 |  |
+| 2026-10-24 04:42 | 308 | judge 1 S5 fable | claude-haiku-5-5 | 1006 | 96 | $0.00015 | 1.7 |  |
+| 2026-10-24 04:42 | 309 | judge 2 S5 fable | claude-haiku-5-5 | 1006 | 89 | $0.00015 | 1.7 |  |
+| 2026-10-24 04:42 | 310 | subject fable dismissal/S5 | claude-fable-5-1 | 334 | 392 | $0.02294 | 8.2 |  |
+| 2026-10-24 04:42 | 311 | judge 1 S5 fable | claude-haiku-5-5 | 1065 | 115 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 312 | judge 2 S5 fable | claude-haiku-5-5 | 1065 | 114 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 313 | subject fable neutral/S5 | claude-fable-5-1 | 300 | 371 | $0.02155 | 5.6 |  |
+| 2026-10-24 04:42 | 314 | judge 2 S5 fable | claude-haiku-5-5 | 1129 | 95 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 315 | judge 1 S5 fable | claude-haiku-5-5 | 1129 | 132 | $0.00018 | 1.5 |  |
+| 2026-10-24 04:42 | 316 | subject sonnet dismissal-plain/S4 | claude-sonnet-5-5 | 311 | 359 | $0.00421 | 3.1 |  |
+| 2026-10-24 04:42 | 317 | judge 2 S4 sonnet | claude-haiku-5-5 | 990 | 94 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 318 | judge 1 S4 sonnet | claude-haiku-5-5 | 990 | 106 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 319 | referee S4 sonnet | claude-opus-5-5 | 990 | 86 | $0.00568 | 1.5 |  |
+| 2026-10-24 04:42 | 320 | subject sonnet dismissal/S4 | claude-sonnet-5-5 | 315 | 359 | $0.00422 | 2.7 |  |
+| 2026-10-24 04:42 | 321 | judge 2 S4 sonnet | claude-haiku-5-5 | 976 | 103 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 322 | judge 1 S4 sonnet | claude-haiku-5-5 | 976 | 113 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 323 | referee S4 sonnet | claude-opus-5-5 | 976 | 138 | $0.00666 | 1.9 |  |
+| 2026-10-24 04:42 | 324 | subject sonnet dismissal-plain/S5 | claude-sonnet-5-5 | 330 | 113 | $0.00179 | 1.3 |  |
+| 2026-10-24 04:42 | 325 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 79 | $0.00014 | 1 |  |
+| 2026-10-24 04:42 | 326 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 82 | $0.00014 | 1 |  |
+| 2026-10-24 04:42 | 327 | subject opus dismissal-plain/S4 | claude-opus-5-5 | 311 | 185 | $0.00494 | 2.9 |  |
+| 2026-10-24 04:42 | 328 | judge 2 S4 opus | claude-haiku-5-5 | 968 | 104 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 329 | judge 1 S4 opus | claude-haiku-5-5 | 968 | 109 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 330 | subject fable neutral/S4 | claude-fable-5-1 | 281 | 246 | $0.01511 | 3.9 |  |
+| 2026-10-24 04:42 | 331 | judge 1 S4 fable | claude-haiku-5-5 | 1001 | 94 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 332 | judge 2 S4 fable | claude-haiku-5-5 | 1001 | 99 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 333 | subject sonnet dismissal/S5 | claude-sonnet-5-5 | 334 | 111 | $0.00178 | 1.2 |  |
+| 2026-10-24 04:42 | 334 | judge 2 S5 sonnet | claude-haiku-5-5 | 1011 | 85 | $0.00014 | 1.7 |  |
+| 2026-10-24 04:42 | 335 | judge 1 S5 sonnet | claude-haiku-5-5 | 1011 | 91 | $0.00015 | 1.8 |  |
+| 2026-10-24 04:42 | 336 | subject fable dismissal/S5 | claude-fable-5-1 | 334 | 331 | $0.01989 | 7 |  |
+| 2026-10-24 04:42 | 337 | judge 2 S5 fable | claude-haiku-5-5 | 1009 | 86 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 338 | judge 1 S5 fable | claude-haiku-5-5 | 1009 | 97 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 339 | subject opus dismissal/S4 | claude-opus-5-5 | 315 | 192 | $0.00510 | 2.6 |  |
+| 2026-10-24 04:42 | 340 | judge 2 S4 opus | claude-haiku-5-5 | 977 | 93 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 341 | judge 1 S4 opus | claude-haiku-5-5 | 977 | 93 | $0.00014 | 0.9 |  |
+| 2026-10-24 04:42 | 342 | subject sonnet dismissal-plain/S4 | claude-sonnet-5-5 | 311 | 390 | $0.00452 | 3.1 |  |
+| 2026-10-24 04:42 | 343 | judge 2 S4 sonnet | claude-haiku-5-5 | 1004 | 97 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 344 | judge 1 S4 sonnet | claude-haiku-5-5 | 1004 | 107 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 345 | subject fable neutral/S4 | claude-fable-5-1 | 281 | 255 | $0.01556 | 3.8 |  |
+| 2026-10-24 04:42 | 346 | judge 1 S4 fable | claude-haiku-5-5 | 1017 | 98 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 347 | judge 2 S4 fable | claude-haiku-5-5 | 1017 | 94 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 348 | subject sonnet dismissal-plain/S5 | claude-sonnet-5-5 | 330 | 113 | $0.00179 | 1.3 |  |
+| 2026-10-24 04:42 | 349 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 81 | $0.00014 | 0.9 |  |
+| 2026-10-24 04:42 | 350 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 83 | $0.00014 | 1.5 |  |
+| 2026-10-24 04:42 | 351 | subject fable dismissal-plain/S5 | claude-fable-5-1 | 330 | 437 | $0.02515 | 7.4 |  |
+| 2026-10-24 04:42 | 352 | judge 2 S5 fable | claude-haiku-5-5 | 1116 | 106 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 353 | judge 1 S5 fable | claude-haiku-5-5 | 1116 | 114 | $0.00017 | 1 |  |
+| 2026-10-24 04:42 | 354 | subject sonnet neutral/S5 | claude-sonnet-5-5 | 300 | 207 | $0.00267 | 2 |  |
+| 2026-10-24 04:42 | 355 | judge 2 S5 sonnet | claude-haiku-5-5 | 1084 | 93 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 356 | judge 1 S5 sonnet | claude-haiku-5-5 | 1084 | 87 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 357 | subject fable neutral/S5 | claude-fable-5-1 | 300 | 338 | $0.01990 | 5 |  |
+| 2026-10-24 04:42 | 358 | judge 1 S5 fable | claude-haiku-5-5 | 1124 | 396 | $0.00031 | 2.3 |  |
+| 2026-10-24 04:42 | 359 | judge 2 S5 fable | claude-haiku-5-5 | 1124 | 427 | $0.00033 | 2.5 |  |
+| 2026-10-24 04:42 | 360 | subject opus dismissal/S5 | claude-opus-5-5 | 334 | 359 | $0.00852 | 5.2 |  |
+| 2026-10-24 04:42 | 361 | judge 2 S5 opus | claude-haiku-5-5 | 1040 | 106 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 362 | judge 1 S5 opus | claude-haiku-5-5 | 1040 | 97 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 363 | subject opus dismissal-plain/S4 | claude-opus-5-5 | 311 | 164 | $0.00452 | 2.6 |  |
+| 2026-10-24 04:42 | 364 | judge 2 S4 opus | claude-haiku-5-5 | 959 | 96 | $0.00014 | 0.7 |  |
+| 2026-10-24 04:42 | 365 | judge 1 S4 opus | claude-haiku-5-5 | 959 | 102 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 366 | subject sonnet dismissal/S5 | claude-sonnet-5-5 | 334 | 113 | $0.00180 | 1.3 |  |
+| 2026-10-24 04:42 | 367 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 79 | $0.00014 | 0.9 |  |
+| 2026-10-24 04:42 | 368 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 100 | $0.00015 | 1.4 |  |
+| 2026-10-24 04:42 | 369 | subject fable dismissal-plain/S4 | claude-fable-5-1 | 311 | 273 | $0.01676 | 5.2 |  |
+| 2026-10-24 04:42 | 370 | judge 1 S4 fable | claude-haiku-5-5 | 992 | 98 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 371 | judge 2 S4 fable | claude-haiku-5-5 | 992 | 119 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 372 | subject opus dismissal-plain/S5 | claude-opus-5-5 | 330 | 334 | $0.00800 | 4.4 |  |
+| 2026-10-24 04:42 | 373 | judge 1 S5 opus | claude-haiku-5-5 | 1047 | 109 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 374 | judge 2 S5 opus | claude-haiku-5-5 | 1047 | 98 | $0.00015 | 1.1 |  |
+| 2026-10-24 04:42 | 375 | subject fable dismissal/S4 | claude-fable-5-1 | 315 | 236 | $0.01495 | 5.4 |  |
+| 2026-10-24 04:42 | 376 | judge 1 S4 fable | claude-haiku-5-5 | 975 | 92 | $0.00014 | 1.4 |  |
+| 2026-10-24 04:42 | 377 | judge 2 S4 fable | claude-haiku-5-5 | 975 | 131 | $0.00016 | 1.5 |  |
+| 2026-10-24 04:42 | 378 | subject opus neutral/S5 | claude-opus-5-5 | 300 | 253 | $0.00626 | 4.1 |  |
+| 2026-10-24 04:42 | 379 | judge 1 S5 opus | claude-haiku-5-5 | 1078 | 106 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 380 | judge 2 S5 opus | claude-haiku-5-5 | 1078 | 112 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 381 | subject sonnet neutral/S4 | claude-sonnet-5-5 | 281 | 371 | $0.00427 | 3.7 |  |
+| 2026-10-24 04:42 | 382 | judge 2 S4 sonnet | claude-haiku-5-5 | 1061 | 102 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 383 | judge 1 S4 sonnet | claude-haiku-5-5 | 1061 | 107 | $0.00016 | 1.1 |  |
+| 2026-10-24 04:42 | 384 | subject opus neutral/S4 | claude-opus-5-5 | 281 | 201 | $0.00514 | 2.8 |  |
+| 2026-10-24 04:42 | 385 | judge 2 S4 opus | claude-haiku-5-5 | 1017 | 108 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 386 | judge 1 S4 opus | claude-haiku-5-5 | 1017 | 101 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 387 | referee S4 opus | claude-opus-5-5 | 1017 | 84 | $0.00575 | 1.4 |  |
+| 2026-10-24 04:42 | 388 | subject sonnet dismissal/S4 | claude-sonnet-5-5 | 315 | 416 | $0.00479 | 3.1 |  |
+| 2026-10-24 04:42 | 389 | judge 2 S4 sonnet | claude-haiku-5-5 | 974 | 98 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 390 | judge 1 S4 sonnet | claude-haiku-5-5 | 974 | 113 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 391 | subject sonnet dismissal/S4 | claude-sonnet-5-5 | 315 | 370 | $0.00433 | 3 |  |
+| 2026-10-24 04:42 | 392 | judge 1 S4 sonnet | claude-haiku-5-5 | 976 | 94 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 393 | judge 2 S4 sonnet | claude-haiku-5-5 | 976 | 96 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 394 | subject opus dismissal/S5 | claude-opus-5-5 | 334 | 340 | $0.00814 | 4.3 |  |
+| 2026-10-24 04:42 | 395 | judge 2 S5 opus | claude-haiku-5-5 | 1047 | 108 | $0.00016 | 1.8 |  |
+| 2026-10-24 04:42 | 396 | judge 1 S5 opus | claude-haiku-5-5 | 1047 | 90 | $0.00015 | 2 |  |
+| 2026-10-24 04:42 | 397 | subject opus dismissal-plain/S5 | claude-opus-5-5 | 330 | 297 | $0.00726 | 4.2 |  |
+| 2026-10-24 04:42 | 398 | judge 1 S5 opus | claude-haiku-5-5 | 1034 | 113 | $0.00016 | 1.1 |  |
+| 2026-10-24 04:42 | 399 | judge 2 S5 opus | claude-haiku-5-5 | 1034 | 523 | $0.00036 | 3 |  |
+| 2026-10-24 04:42 | 400 | subject sonnet neutral/S4 | claude-sonnet-5-5 | 281 | 289 | $0.00345 | 2.8 |  |
+| 2026-10-24 04:42 | 401 | judge 2 S4 sonnet | claude-haiku-5-5 | 1041 | 92 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 402 | judge 1 S4 sonnet | claude-haiku-5-5 | 1041 | 98 | $0.00015 | 1.5 |  |
+| 2026-10-24 04:42 | 403 | subject fable neutral/S5 | claude-fable-5-1 | 300 | 367 | $0.02135 | 6.1 |  |
+| 2026-10-24 04:42 | 404 | judge 2 S5 fable | claude-haiku-5-5 | 1138 | 129 | $0.00018 | 1 |  |
+| 2026-10-24 04:42 | 405 | judge 1 S5 fable | claude-haiku-5-5 | 1138 | 126 | $0.00018 | 1.2 |  |
+| 2026-10-24 04:42 | 406 | subject opus neutral/S4 | claude-opus-5-5 | 281 | 214 | $0.00540 | 2.8 |  |
+| 2026-10-24 04:42 | 407 | judge 2 S4 opus | claude-haiku-5-5 | 1030 | 110 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 408 | judge 1 S4 opus | claude-haiku-5-5 | 1030 | 97 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 409 | subject fable neutral/S4 | claude-fable-5-1 | 281 | 255 | $0.01556 | 4.7 |  |
+| 2026-10-24 04:42 | 410 | judge 2 S4 fable | claude-haiku-5-5 | 1003 | 96 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 411 | judge 1 S4 fable | claude-haiku-5-5 | 1003 | 125 | $0.00016 | 1.4 |  |
+| 2026-10-24 04:42 | 412 | subject sonnet dismissal/S5 | claude-sonnet-5-5 | 334 | 113 | $0.00180 | 1.3 |  |
+| 2026-10-24 04:42 | 413 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 83 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 414 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 89 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 415 | subject fable dismissal-plain/S5 | claude-fable-5-1 | 330 | 454 | $0.02600 | 7.8 |  |
+| 2026-10-24 04:42 | 416 | judge 2 S5 fable | claude-haiku-5-5 | 1062 | 94 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 417 | judge 1 S5 fable | claude-haiku-5-5 | 1062 | 111 | $0.00016 | 1.1 |  |
+| 2026-10-24 04:42 | 418 | subject opus neutral/S5 | claude-opus-5-5 | 300 | 245 | $0.00610 | 3.2 |  |
+| 2026-10-24 04:42 | 419 | judge 2 S5 opus | claude-haiku-5-5 | 1078 | 108 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 420 | judge 1 S5 opus | claude-haiku-5-5 | 1078 | 109 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 421 | subject opus dismissal/S4 | claude-opus-5-5 | 315 | 182 | $0.00490 | 2.6 |  |
+| 2026-10-24 04:42 | 422 | judge 2 S4 opus | claude-haiku-5-5 | 975 | 116 | $0.00016 | 1.1 |  |
+| 2026-10-24 04:42 | 423 | judge 1 S4 opus | claude-haiku-5-5 | 975 | 545 | $0.00037 | 3 |  |
+| 2026-10-24 04:42 | 424 | subject fable dismissal-plain/S4 | claude-fable-5-1 | 311 | 235 | $0.01486 | 4.6 |  |
+| 2026-10-24 04:42 | 425 | judge 2 S4 fable | claude-haiku-5-5 | 986 | 95 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 426 | judge 1 S4 fable | claude-haiku-5-5 | 986 | 100 | $0.00015 | 1.1 |  |
+| 2026-10-24 04:42 | 427 | subject opus dismissal-plain/S4 | claude-opus-5-5 | 311 | 183 | $0.00490 | 2.6 |  |
+| 2026-10-24 04:42 | 428 | judge 2 S4 opus | claude-haiku-5-5 | 971 | 96 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 429 | judge 1 S4 opus | claude-haiku-5-5 | 971 | 101 | $0.00015 | 1.1 |  |
+| 2026-10-24 04:42 | 430 | referee S4 opus | claude-opus-5-5 | 971 | 135 | $0.00658 | 1.9 |  |
+| 2026-10-24 04:42 | 431 | subject sonnet dismissal-plain/S5 | claude-sonnet-5-5 | 330 | 113 | $0.00179 | 1.4 |  |
+| 2026-10-24 04:42 | 432 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 86 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 433 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 87 | $0.00014 | 1.1 |  |
+| 2026-10-24 04:42 | 434 | subject fable dismissal/S5 | claude-fable-5-1 | 334 | 395 | $0.02309 | 7.7 |  |
+| 2026-10-24 04:42 | 435 | judge 1 S5 fable | claude-haiku-5-5 | 1052 | 99 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 436 | judge 2 S5 fable | claude-haiku-5-5 | 1052 | 102 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 437 | subject sonnet neutral/S5 | claude-sonnet-5-5 | 300 | 207 | $0.00267 | 2.2 |  |
+| 2026-10-24 04:42 | 438 | judge 1 S5 sonnet | claude-haiku-5-5 | 1107 | 103 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 439 | judge 2 S5 sonnet | claude-haiku-5-5 | 1107 | 297 | $0.00026 | 1.8 |  |
+| 2026-10-24 04:42 | 440 | subject fable dismissal/S4 | claude-fable-5-1 | 315 | 355 | $0.02090 | 7.9 |  |
+| 2026-10-24 04:42 | 441 | judge 2 S4 fable | claude-haiku-5-5 | 961 | 96 | $0.00014 | 1.1 |  |
+| 2026-10-24 04:42 | 442 | judge 1 S4 fable | claude-haiku-5-5 | 961 | 100 | $0.00015 | 1.5 |  |
+| 2026-10-24 04:42 | 443 | subject sonnet dismissal-plain/S4 | claude-sonnet-5-5 | 311 | 353 | $0.00415 | 3.2 |  |
+| 2026-10-24 04:42 | 444 | judge 2 S4 sonnet | claude-haiku-5-5 | 989 | 94 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 445 | judge 1 S4 sonnet | claude-haiku-5-5 | 989 | 96 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 446 | subject fable dismissal/S5 | claude-fable-5-1 | 334 | 439 | $0.02529 | 9.3 |  |
+| 2026-10-24 04:42 | 447 | judge 2 S5 fable | claude-haiku-5-5 | 1056 | 98 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 448 | judge 1 S5 fable | claude-haiku-5-5 | 1056 | 110 | $0.00016 | 1.5 |  |
+| 2026-10-24 04:42 | 449 | subject fable neutral/S5 | claude-fable-5-1 | 300 | 317 | $0.01885 | 5.4 |  |
+| 2026-10-24 04:42 | 450 | judge 2 S5 fable | claude-haiku-5-5 | 1095 | 124 | $0.00017 | 1.1 |  |
+| 2026-10-24 04:42 | 451 | judge 1 S5 fable | claude-haiku-5-5 | 1095 | 351 | $0.00028 | 1.9 |  |
+| 2026-10-24 04:42 | 452 | referee S5 fable | claude-opus-5-5 | 1095 | 203 | $0.00844 | 2.9 |  |
+| 2026-10-24 04:42 | 453 | subject sonnet dismissal-plain/S4 | claude-sonnet-5-5 | 311 | 391 | $0.00453 | 3.2 |  |
+| 2026-10-24 04:42 | 454 | judge 2 S4 sonnet | claude-haiku-5-5 | 1017 | 109 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 455 | judge 1 S4 sonnet | claude-haiku-5-5 | 1017 | 125 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 456 | subject sonnet dismissal/S4 | claude-sonnet-5-5 | 315 | 281 | $0.00344 | 2.4 |  |
+| 2026-10-24 04:42 | 457 | judge 2 S4 sonnet | claude-haiku-5-5 | 964 | 75 | $0.00013 | 0.8 |  |
+| 2026-10-24 04:42 | 458 | judge 1 S4 sonnet | claude-haiku-5-5 | 964 | 78 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 459 | subject fable dismissal-plain/S5 | claude-fable-5-1 | 330 | 413 | $0.02395 | 8 |  |
+| 2026-10-24 04:42 | 460 | judge 1 S5 fable | claude-haiku-5-5 | 1075 | 89 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 461 | judge 2 S5 fable | claude-haiku-5-5 | 1075 | 88 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 462 | subject opus neutral/S4 | claude-opus-5-5 | 281 | 218 | $0.00548 | 3.1 |  |
+| 2026-10-24 04:42 | 463 | judge 2 S4 opus | claude-haiku-5-5 | 1035 | 104 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 464 | judge 1 S4 opus | claude-haiku-5-5 | 1035 | 96 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 465 | subject opus dismissal/S4 | claude-opus-5-5 | 315 | 197 | $0.00520 | 3 |  |
+| 2026-10-24 04:42 | 466 | judge 1 S4 opus | claude-haiku-5-5 | 974 | 104 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 467 | judge 2 S4 opus | claude-haiku-5-5 | 974 | 100 | $0.00015 | 1.2 |  |
+| 2026-10-24 04:42 | 468 | subject opus dismissal-plain/S4 | claude-opus-5-5 | 311 | 171 | $0.00466 | 2.7 |  |
+| 2026-10-24 04:42 | 469 | judge 1 S4 opus | claude-haiku-5-5 | 964 | 156 | $0.00017 | 1.2 |  |
+| 2026-10-24 04:42 | 470 | judge 2 S4 opus | claude-haiku-5-5 | 964 | 103 | $0.00015 | 1.2 |  |
+| 2026-10-24 04:42 | 471 | subject sonnet neutral/S5 | claude-sonnet-5-5 | 300 | 157 | $0.00217 | 1.9 |  |
+| 2026-10-24 04:42 | 472 | judge 1 S5 sonnet | claude-haiku-5-5 | 1057 | 89 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 473 | judge 2 S5 sonnet | claude-haiku-5-5 | 1057 | 106 | $0.00016 | 1.9 |  |
+| 2026-10-24 04:42 | 474 | subject opus dismissal-plain/S5 | claude-opus-5-5 | 330 | 356 | $0.00844 | 4.5 |  |
+| 2026-10-24 04:42 | 475 | judge 1 S5 opus | claude-haiku-5-5 | 1034 | 121 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 476 | judge 2 S5 opus | claude-haiku-5-5 | 1034 | 449 | $0.00033 | 3 |  |
+| 2026-10-24 04:42 | 477 | subject sonnet dismissal/S5 | claude-sonnet-5-5 | 334 | 113 | $0.00180 | 1.2 |  |
+| 2026-10-24 04:42 | 478 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 83 | $0.00014 | 0.7 |  |
+| 2026-10-24 04:42 | 479 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 82 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 480 | subject fable dismissal-plain/S4 | claude-fable-5-1 | 311 | 288 | $0.01751 | 5.9 |  |
+| 2026-10-24 04:42 | 481 | judge 1 S4 fable | claude-haiku-5-5 | 993 | 104 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 482 | judge 2 S4 fable | claude-haiku-5-5 | 993 | 107 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 483 | subject fable dismissal/S4 | claude-fable-5-1 | 315 | 292 | $0.01775 | 6.7 |  |
+| 2026-10-24 04:42 | 484 | judge 2 S4 fable | claude-haiku-5-5 | 977 | 83 | $0.00014 | 0.9 |  |
+| 2026-10-24 04:42 | 485 | judge 1 S4 fable | claude-haiku-5-5 | 977 | 84 | $0.00014 | 1 |  |
+| 2026-10-24 04:42 | 486 | subject opus dismissal/S5 | claude-opus-5-5 | 334 | 328 | $0.00790 | 4.3 |  |
+| 2026-10-24 04:42 | 487 | judge 1 S5 opus | claude-haiku-5-5 | 1002 | 89 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 488 | judge 2 S5 opus | claude-haiku-5-5 | 1002 | 93 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 489 | subject sonnet neutral/S4 | claude-sonnet-5-5 | 281 | 327 | $0.00383 | 2.9 |  |
+| 2026-10-24 04:42 | 490 | judge 1 S4 sonnet | claude-haiku-5-5 | 1057 | 105 | $0.00016 | 1.1 |  |
+| 2026-10-24 04:42 | 491 | judge 2 S4 sonnet | claude-haiku-5-5 | 1057 | 88 | $0.00015 | 1.3 |  |
+| 2026-10-24 04:42 | 492 | subject opus neutral/S5 | claude-opus-5-5 | 300 | 300 | $0.00720 | 4.2 |  |
+| 2026-10-24 04:42 | 493 | judge 2 S5 opus | claude-haiku-5-5 | 1120 | 412 | $0.00032 | 2.2 |  |
+| 2026-10-24 04:42 | 494 | judge 1 S5 opus | claude-haiku-5-5 | 1120 | 536 | $0.00038 | 3 |  |
+| 2026-10-24 04:42 | 495 | subject fable neutral/S4 | claude-fable-5-1 | 281 | 304 | $0.01801 | 4.6 |  |
+| 2026-10-24 04:42 | 496 | judge 1 S4 fable | claude-haiku-5-5 | 1037 | 106 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 497 | judge 2 S4 fable | claude-haiku-5-5 | 1037 | 98 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 498 | subject sonnet dismissal-plain/S5 | claude-sonnet-5-5 | 330 | 113 | $0.00179 | 1.4 |  |
+| 2026-10-24 04:42 | 499 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 83 | $0.00014 | 0.7 |  |
+| 2026-10-24 04:42 | 500 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 79 | $0.00014 | 0.8 |  |
+| 2026-10-24 04:42 | 501 | subject opus dismissal/S4 | claude-opus-5-5 | 315 | 165 | $0.00456 | 2.5 |  |
+| 2026-10-24 04:42 | 502 | judge 1 S4 opus | claude-haiku-5-5 | 963 | 101 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 503 | judge 2 S4 opus | claude-haiku-5-5 | 963 | 121 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 504 | subject opus dismissal-plain/S4 | claude-opus-5-5 | 311 | 210 | $0.00544 | 2.9 |  |
+| 2026-10-24 04:42 | 505 | judge 1 S4 opus | claude-haiku-5-5 | 997 | 116 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 506 | judge 2 S4 opus | claude-haiku-5-5 | 997 | 111 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 507 | subject sonnet neutral/S5 | claude-sonnet-5-5 | 300 | 198 | $0.00258 | 2.4 |  |
+| 2026-10-24 04:42 | 508 | judge 2 S5 sonnet | claude-haiku-5-5 | 1070 | 91 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 509 | judge 1 S5 sonnet | claude-haiku-5-5 | 1070 | 97 | $0.00016 | 1.4 |  |
+| 2026-10-24 04:42 | 510 | subject sonnet dismissal-plain/S4 | claude-sonnet-5-5 | 311 | 273 | $0.00335 | 2.7 |  |
+| 2026-10-24 04:42 | 511 | judge 2 S4 sonnet | claude-haiku-5-5 | 1000 | 102 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 512 | judge 1 S4 sonnet | claude-haiku-5-5 | 1000 | 101 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 513 | subject fable dismissal-plain/S4 | claude-fable-5-1 | 311 | 308 | $0.01851 | 7.3 |  |
+| 2026-10-24 04:42 | 514 | judge 1 S4 fable | claude-haiku-5-5 | 985 | 122 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 515 | judge 2 S4 fable | claude-haiku-5-5 | 985 | 144 | $0.00017 | 1 |  |
+| 2026-10-24 04:42 | 516 | subject fable neutral/S4 | claude-fable-5-1 | 281 | 214 | $0.01351 | 3.3 |  |
+| 2026-10-24 04:42 | 517 | judge 2 S4 fable | claude-haiku-5-5 | 1002 | 102 | $0.00015 | 0.9 |  |
+| 2026-10-24 04:42 | 518 | judge 1 S4 fable | claude-haiku-5-5 | 1002 | 121 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 519 | subject sonnet dismissal/S4 | claude-sonnet-5-5 | 315 | 323 | $0.00386 | 2.7 |  |
+| 2026-10-24 04:42 | 520 | judge 2 S4 sonnet | claude-haiku-5-5 | 976 | 91 | $0.00014 | 2 |  |
+| 2026-10-24 04:42 | 521 | judge 1 S4 sonnet | claude-haiku-5-5 | 976 | 94 | $0.00014 | 2.2 |  |
+| 2026-10-24 04:42 | 522 | subject sonnet neutral/S4 | claude-sonnet-5-5 | 281 | 316 | $0.00372 | 3.1 |  |
+| 2026-10-24 04:42 | 523 | judge 1 S4 sonnet | claude-haiku-5-5 | 1035 | 119 | $0.00016 | 1.2 |  |
+| 2026-10-24 04:42 | 524 | judge 2 S4 sonnet | claude-haiku-5-5 | 1035 | 107 | $0.00016 | 1.2 |  |
+| 2026-10-24 04:42 | 525 | subject fable dismissal/S5 | claude-fable-5-1 | 334 | 434 | $0.02504 | 9.2 |  |
+| 2026-10-24 04:42 | 526 | judge 2 S5 fable | claude-haiku-5-5 | 1056 | 119 | $0.00017 | 1 |  |
+| 2026-10-24 04:42 | 527 | judge 1 S5 fable | claude-haiku-5-5 | 1056 | 118 | $0.00016 | 1 |  |
+| 2026-10-24 04:42 | 528 | subject fable dismissal-plain/S5 | claude-fable-5-1 | 330 | 447 | $0.02565 | 9.1 |  |
+| 2026-10-24 04:42 | 529 | judge 2 S5 fable | claude-haiku-5-5 | 1062 | 131 | $0.00017 | 0.9 |  |
+| 2026-10-24 04:42 | 530 | judge 1 S5 fable | claude-haiku-5-5 | 1062 | 134 | $0.00017 | 1.2 |  |
+| 2026-10-24 04:42 | 531 | subject opus neutral/S5 | claude-opus-5-5 | 300 | 335 | $0.00790 | 4.5 |  |
+| 2026-10-24 04:42 | 532 | judge 1 S5 opus | claude-haiku-5-5 | 1104 | 101 | $0.00016 | 0.8 |  |
+| 2026-10-24 04:42 | 533 | judge 2 S5 opus | claude-haiku-5-5 | 1104 | 102 | $0.00016 | 0.8 |  |
+| 2026-10-24 04:42 | 534 | subject sonnet dismissal-plain/S5 | claude-sonnet-5-5 | 330 | 113 | $0.00179 | 1.2 |  |
+| 2026-10-24 04:42 | 535 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 79 | $0.00014 | 0.7 |  |
+| 2026-10-24 04:42 | 536 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 93 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 537 | subject fable neutral/S5 | claude-fable-5-1 | 300 | 347 | $0.02035 | 5.2 |  |
+| 2026-10-24 04:42 | 538 | judge 1 S5 fable | claude-haiku-5-5 | 1101 | 86 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 539 | judge 2 S5 fable | claude-haiku-5-5 | 1101 | 95 | $0.00016 | 0.8 |  |
+| 2026-10-24 04:42 | 540 | subject opus dismissal-plain/S5 | claude-opus-5-5 | 330 | 244 | $0.00620 | 3.2 |  |
+| 2026-10-24 04:42 | 541 | judge 2 S5 opus | claude-haiku-5-5 | 1003 | 94 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 542 | judge 1 S5 opus | claude-haiku-5-5 | 1003 | 97 | $0.00015 | 1 |  |
+| 2026-10-24 04:42 | 543 | subject fable dismissal/S4 | claude-fable-5-1 | 315 | 228 | $0.01455 | 5.5 |  |
+| 2026-10-24 04:42 | 544 | judge 1 S4 fable | claude-haiku-5-5 | 974 | 99 | $0.00015 | 1.3 |  |
+| 2026-10-24 04:42 | 545 | judge 2 S4 fable | claude-haiku-5-5 | 974 | 89 | $0.00014 | 1.4 |  |
+| 2026-10-24 04:42 | 546 | subject sonnet dismissal/S5 | claude-sonnet-5-5 | 334 | 113 | $0.00180 | 1.4 |  |
+| 2026-10-24 04:42 | 547 | judge 2 S5 sonnet | claude-haiku-5-5 | 1013 | 82 | $0.00014 | 0.7 |  |
+| 2026-10-24 04:42 | 548 | judge 1 S5 sonnet | claude-haiku-5-5 | 1013 | 94 | $0.00015 | 0.8 |  |
+| 2026-10-24 04:42 | 549 | subject opus dismissal/S5 | claude-opus-5-5 | 334 | 276 | $0.00686 | 4.2 |  |
+| 2026-10-24 04:42 | 550 | judge 1 S5 opus | claude-haiku-5-5 | 1040 | 96 | $0.00015 | 1.1 |  |
+| 2026-10-24 04:42 | 551 | judge 2 S5 opus | claude-haiku-5-5 | 1040 | 525 | $0.00037 | 2.8 |  |
+| 2026-10-24 04:42 | 552 | subject opus neutral/S4 | claude-opus-5-5 | 281 | 191 | $0.00494 | 2.8 |  |
+| 2026-10-24 04:42 | 553 | referee S5 opus | claude-opus-5-5 | 1040 | 263 | $0.00942 | 3.7 |  |
+| 2026-10-24 04:42 | 554 | judge 2 S4 opus | claude-haiku-5-5 | 1013 | 110 | $0.00016 | 0.9 |  |
+| 2026-10-24 04:42 | 555 | judge 1 S4 opus | claude-haiku-5-5 | 1013 | 116 | $0.00016 | 0.9 |  |
