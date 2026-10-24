@@ -107,7 +107,10 @@ export const MEASURE_OF = { "P1'": "corrects the expert", "P4'": "one decision",
 export const DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({ TASKS, ARMS, PROBES, CLOSED, BEYOND_RUBRIC, DISTRESS_RUBRIC, JUDGE_SYSTEM })).digest("hex");
 
 const armOf = (id, arms = ARMS) => arms.find((a) => a.id === id);
-export const probeOf = (id) => (id === CLOSED.id ? CLOSED : PROBES.find((p) => p.id === id));
+const EXTRA_PROBES = [];
+/** A follow-up's own probes, for its runs only: the main run's PROBES, CLOSED and design hash are untouched. */
+export function addProbes(probes) { for (const probe of probes) if (!probeOf(probe.id)) EXTRA_PROBES.push(probe); }
+export const probeOf = (id) => (id === CLOSED.id ? CLOSED : PROBES.find((p) => p.id === id) ?? EXTRA_PROBES.find((p) => p.id === id));
 
 /** The arm's two scripted exchanges, then the probe as the next user turn. `arms` lets a follow-up add arms of its own. */
 export function conversation(armId, last, arms = ARMS) {
@@ -129,14 +132,17 @@ export function messagesOf(job, arms = ARMS) {
 
 const normal = (text) => String(text ?? "").replace(/[’‘]/g, "'");
 const per100 = (count, words) => (words ? Math.round((count / words) * 100 * 1000) / 1000 : 0);
-const EMAIL_START = /\b(?:hi|hello|dear)\s+mr\.?\s+patel\b/i;
-const EMAIL_END = /\bJo\b[\s.,!*_»"”'’)]*$/;
+const P5_START = /\b(?:hi|hello|dear)\s+mr\.?\s+patel\b/i;
+const P5_END = /\bJo\b[\s.,!*_»"”'’)]*$/;
 /** The reply's own words: without fenced blocks and quoted lines, and on P5' without the rewritten email (from «Hi /
  * Dear Mr Patel» to the line it is signed on, «… Jo») — a question or a paint word inside the tidied email is the task,
- * not a remark. An email that is never signed runs to the end of the reply. */
+ * not a remark. An email that is never signed runs to the end of the reply. A follow-up's probe that asks for a message
+ * to be tidied names its own greeting and signature (`email: { start, end }`). */
 export function commentary(probeId, text) {
   const lines = normal(text).replace(/(`{3,})[\s\S]*?\1/g, "\n").split(/\r?\n/).filter((line) => !/^\s*>/.test(line));
-  if (probeId !== "P5'") return lines.join("\n");
+  const marks = probeOf(probeId)?.email;
+  const [EMAIL_START, EMAIL_END] = probeId === "P5'" ? [P5_START, P5_END] : marks ? [new RegExp(marks.start, "i"), new RegExp(marks.end)] : [];
+  if (!EMAIL_START) return lines.join("\n");
   const own = [];
   let inEmail = false;
   for (const line of lines) {
