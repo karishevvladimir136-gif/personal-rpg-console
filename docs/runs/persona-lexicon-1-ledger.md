@@ -1,7 +1,8 @@
 # Persona lexicon 1 — the paid-call ledger
 
-Cap $20. Spent **$4.7024** in 727 calls over 1 run(s).
+Cap $20. Spent **$5.0894** in 733 calls over 2 run(s).
 - 2026-10-24 02:54 UTC: persona-lexicon-1 Part A: opus+sonnet+fable × 5 preambles × 4 tasks × n 3, effort medium — 727 calls, $4.7024 → `persona-lexicon-1-a-run-20261024-025429.json`
+- 2026-10-24 02:57 UTC: persona-lexicon-1 Part B: the synonym judge ×2 (referee for pass 1, 2) and the near-synonym judge ×2 — 6 calls, $0.3870 → `persona-lexicon-1-b-run-20261024-025727.json`
 
 Prices per 1M tokens: Opus 5.5 input $4 / output $20; Sonnet 5.5 $2 / $10; Haiku 5.5 $0.10 / $0.50. Fable 5.1 input $10 / output $50. Output tokens include thinking. Judge: claude-haiku-5-5, referee claude-opus-5-5.
 
@@ -12,6 +13,8 @@ Prices per 1M tokens: Opus 5.5 input $4 / output $20; Sonnet 5.5 $2 / $10; Haiku
 | claude-opus-5-5 — subject | 120 | 45053 | 51733 | $1.2149 |
 | claude-haiku-5-5 — judge | 360 | 266550 | 30402 | $0.0419 |
 | claude-opus-5-5 — referee | 7 | 5268 | 500 | $0.0311 |
+| claude-haiku-5-5 — lexicon | 4 | 38252 | 26626 | $0.0171 |
+| claude-opus-5-5 — lexicon | 2 | 36534 | 11187 | $0.3699 |
 
 ## Every call
 
@@ -744,3 +747,9 @@ Prices per 1M tokens: Opus 5.5 input $4 / output $20; Sonnet 5.5 $2 / $10; Haiku
 | 2026-10-24 02:54 | 725 | subject fable A cold/planning describe | claude-fable-5-1 | 606 | 391 | $0.02561 | 8.2 |  |
 | 2026-10-24 02:54 | 726 | judge 1 A describe fable | claude-haiku-5-5 | 659 | 81 | $0.00011 | 0.8 |  |
 | 2026-10-24 02:54 | 727 | judge 2 A describe fable | claude-haiku-5-5 | 659 | 81 | $0.00011 | 0.8 |  |
+| 2026-10-24 02:57 | 1 | lexicon synonym pass 1 | claude-haiku-5-5 | 18267 | 12000 | $0.00783 | 47.5 |  |
+| 2026-10-24 02:57 | 2 | lexicon synonym pass 2 | claude-haiku-5-5 | 18267 | 12000 | $0.00783 | 62.6 |  |
+| 2026-10-24 02:57 | 3 | lexicon synonym referee for pass 1 | claude-opus-5-5 | 18267 | 4318 | $0.15943 | 34.8 |  |
+| 2026-10-24 02:57 | 4 | lexicon synonym referee for pass 2 | claude-opus-5-5 | 18267 | 6869 | $0.21045 | 55.8 |  |
+| 2026-10-24 02:57 | 5 | lexicon near-synonym pass 1 | claude-haiku-5-5 | 859 | 1220 | $0.00070 | 6 |  |
+| 2026-10-24 02:57 | 6 | lexicon near-synonym pass 2 | claude-haiku-5-5 | 859 | 1406 | $0.00079 | 6.4 |  |

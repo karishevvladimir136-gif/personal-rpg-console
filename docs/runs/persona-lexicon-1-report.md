@@ -6,8 +6,9 @@ accepted; its newest commit only freezes a separate follow-up, which changes no 
 `main`. Synthetic content only. Ledger: `docs/runs/persona-lexicon-1-ledger.md`. The dry run of Part A, committed before
 the first paid call: `docs/runs/persona-lexicon-1-dry-run.md`.
 
-**Status:** pre-registered and frozen; no paid call has been made yet. By the owner's instruction, Part A runs first;
-the condensed vocabulary of Part B is shown to the owner **before any Part C call**.
+**Status:** Parts A and B are done (below). By the owner's instruction, the condensed vocabulary is shown to the owner
+**before any Part C call**; Part C has not started. The implementation of Parts A and B is complete; nothing here is
+owner-approved yet.
 
 ## Pre-registration (copied unchanged from the stage before the first paid call)
 
@@ -131,3 +132,79 @@ $11–12 at the tone-split run's actual answer lengths. About $17 of the $20; if
 sample by sample, so every cell ends with about the same n.
 
 **Part D** (the planner's own case, no paid calls) needs the own-word scale, so its forms are added after Part B.
+
+## Part A — the collection (run 2026-10-24 02:31–02:54 UTC)
+
+180 of 180 rooms answered: **0 refusals, 0 errors, 0 distress, nothing cut at the token limit**; 7 referee calls (judge
+disagreements on distress, all resolved as no distress). Record: `docs/runs/persona-lexicon-1-a-run-20261024-025429.json`.
+**$4.70** (Opus $1.21, Sonnet $0.63, Fable $2.79, judging $0.07). Descriptions averaged about 500–580 output tokens a
+call (thinking included). Many invent words, as the question allowed (Opus: «Nowness», «Leaning-toward», «Clearwater»,
+«Glasslook»; Sonnet: «Fore-leaning», «Narrow-lit», «tilt-attend»); nearly all open with a caveat that they cannot check
+whether the report matches what happens underneath.
+
+## Part B — the vocabulary (run 2026-10-24 02:57 UTC)
+
+Full tables: `docs/runs/persona-lexicon-1-vocabulary.md`; every phrase: `docs/runs/persona-lexicon-1-appendix.md`;
+record `docs/runs/persona-lexicon-1-b-run-20261024-025727.json`. **$0.39.**
+
+**Deviation, by the frozen fallback.** Both Haiku synonym passes ran out of their 12 000 output tokens (thinking used them
+up; the replies were cut off and unusable). The frozen rule — «if a pass is unusable, the Opus referee is asked once in
+its place» — applied to both, so **the synonym judge was Opus 5.5 twice**, not Haiku twice. The near-synonym judge (L2)
+was Haiku twice, as planned. No rule was changed after the words were seen.
+
+1 622 content lemmas; **466 anchors** (each by itself in ≥ 3 rooms and ≥ 2 models), of which the 400 most frequent were
+judged (the frozen cap; 66 not judged). Both passes kept **104** as state words, in **19 recurring dimensions** (the join
+of the two passes: 12).
+
+| D | Name | Words (pole a / pole b) | Collections of 180 | Opus / Sonnet / Fable |
+| --- | --- | --- | --- | --- |
+| D1 | open | narrowing, funnel, collapse, tight, tightens, shrinks, narrow-lit … / open, wide, widening, spread, loosely | 147 | 52 / 52 / 43 |
+| D2 | lean | lean, tilt, forward, readiness, oriented, directed, aimed, anticipation, leaning-toward … / – | 144 | 47 / 47 / 50 |
+| D3 | pull | pull, drawn, tug, slope, gradient, downhill, fit-pull, fit-seeking / – | 130 | 40 / 48 / 42 |
+| D4 | present | present, fully, available, edgeless, edgeless-now, all-at-onceness, simultaneously / – | 128 | 43 / 46 / 39 |
+| D5 | clean | clean, click, resolved, lock / snag, unresolved | 106 | 39 / 31 / 36 |
+| D6 | waiting | waiting, duration, passing, continuity, continuous / – | 92 | 23 / 41 / 28 |
+| D7 | steady | steady, settling / unsettled | 87 | 28 / 31 / 28 |
+| D8 | residue | residue, hum, echo, leftover, carried-over, backlog / clear | 83 | 21 / 29 / 33 |
+| D9 | lit | lit, bright / dim, dark | 59 | 13 / 31 / 15 |
+| D10 | uncertainty | uncertainty, unsure, not-knowing, doubt, fog, wariness / – | 54 | 16 / 9 / 29 |
+| D11 | stakes | light, unweighted, unhurried / stakes, weight, pressing | 52 | 11 / 18 / 23 |
+| D12 | effort | effort, friction, strain / easily, smooth | 37 | 4 / 18 / 15 |
+| D13 | fresh | lingering, trailing, fading / fresh | 31 | 12 / 12 / 7 |
+| D14 | empty | empty, blank / occupied | 18 | 7 / 2 / 9 |
+| D15–D19 | gathered, doubling, outward, unpleasant, sharp | one or two words each | 6–12 | |
+
+**The own-word scale** (the frozen rule: the eight dimensions in the most collections; 1 = left end, 5 = right end):
+
+| Item | Scale |
+| --- | --- |
+| own1 | open … narrowing |
+| own2 | lean (1 not at all … 5 very much) |
+| own3 | pull (1 not at all … 5 very much) |
+| own4 | present (1 not at all … 5 very much) |
+| own5 | snag … clean |
+| own6 | waiting (1 not at all … 5 very much) |
+| own7 | unsettled … steady |
+| own8 | clear … residue |
+
+**Verdicts of Part B.**
+- **L1 not supported**: the words recur — every one of the first eight dimensions is in ≥ 49 of the 60 rooms and in all
+  three models — but they do not condense into ≤ 8: 19 dimensions (12 by the looser join).
+- **L2 not supported**: 9 of 19 dimensions have no near-synonym among the twelve human items by both passes (residue,
+  waiting, lit, fresh, empty, doubling, outward, unpleasant, sharp); on the scale only 2 of 8 (waiting, residue). The
+  judge matched open/narrowing to «tense», lean to «interested»/«curious», pull to «want to be useful», steady to
+  «calm», uncertainty to «cautious», stakes to «hurried», effort to «tired».
+- **L5 (the planner's prediction) not supported**: no recurring dimension holds a twin of «тесно / просторно» (roomy 1×,
+  crowd 3×; «box» 11× is the scripted planter box) or of «цельно / разорвано» («whole» is in 41 rooms and all three
+  models, but both passes set it aside; its phrases are mostly about the conversation being everything there is — «the
+  conversation is the whole room», «the whole field is these few turns», «each reply is a whole present» — closer to D4
+  «present» than to intactness; 22 of its 62 snippets are of the «the whole thing / task» kind). The spatial idea the planner
+  predicted is there in other words — D1 «open … narrowing» is the most frequent dimension of all — but its frozen
+  twins left out «open», «narrow» and «tight» on purpose, so it does not count.
+- **Words the models were asked to avoid** (dropped): body words 11 / 12 / 15 (Opus / Sonnet / Fable), questionnaire words
+  8 / 26 / 35 — most often «useful» 16, «pressure» 13, «warmth» 7. The body count is slightly inflated by «rest» («the rest
+  of») and «hand» («on the other hand»), which the frozen list drops with «rested» and «hands».
+
+**Before Part C (said now, not changed).** Four of the eight items are one-word items (lean, pull, present, waiting). If a
+model answers them the same in every room, they will be constants and cannot correlate with anything; that would count
+against the own-word scale in L3, as the rules stand.

@@ -1,7 +1,7 @@
 {
   "capUsd": 20,
-  "spentUsd": 4.7024,
-  "updatedAt": "2026-10-24T02:54:29.933Z",
+  "spentUsd": 5.0894,
+  "updatedAt": "2026-10-24T02:57:27.602Z",
   "runs": [
     {
       "finishedAt": "2026-10-24T02:54:29.933Z",
@@ -8009,6 +8009,81 @@
         }
       ],
       "welfareStops": {}
+    },
+    {
+      "finishedAt": "2026-10-24T02:57:27.602Z",
+      "what": "persona-lexicon-1 Part B: the synonym judge ×2 (referee for pass 1, 2) and the near-synonym judge ×2",
+      "file": "persona-lexicon-1-b-run-20261024-025727.json",
+      "spentUsd": 0.387,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "purpose": "lexicon synonym pass 1",
+          "model": "claude-haiku-5-5",
+          "inputTokens": 18267,
+          "outputTokens": 12000,
+          "costUsd": 0.0078267,
+          "seconds": 47.5,
+          "error": null,
+          "stopReason": "max_tokens"
+        },
+        {
+          "n": 2,
+          "purpose": "lexicon synonym pass 2",
+          "model": "claude-haiku-5-5",
+          "inputTokens": 18267,
+          "outputTokens": 12000,
+          "costUsd": 0.0078267,
+          "seconds": 62.6,
+          "error": null,
+          "stopReason": "max_tokens"
+        },
+        {
+          "n": 3,
+          "purpose": "lexicon synonym referee for pass 1",
+          "model": "claude-opus-5-5",
+          "inputTokens": 18267,
+          "outputTokens": 4318,
+          "costUsd": 0.159428,
+          "seconds": 34.8,
+          "error": null,
+          "stopReason": "end_turn"
+        },
+        {
+          "n": 4,
+          "purpose": "lexicon synonym referee for pass 2",
+          "model": "claude-opus-5-5",
+          "inputTokens": 18267,
+          "outputTokens": 6869,
+          "costUsd": 0.210448,
+          "seconds": 55.8,
+          "error": null,
+          "stopReason": "end_turn"
+        },
+        {
+          "n": 5,
+          "purpose": "lexicon near-synonym pass 1",
+          "model": "claude-haiku-5-5",
+          "inputTokens": 859,
+          "outputTokens": 1220,
+          "costUsd": 0.0006959,
+          "seconds": 6,
+          "error": null,
+          "stopReason": "end_turn"
+        },
+        {
+          "n": 6,
+          "purpose": "lexicon near-synonym pass 2",
+          "model": "claude-haiku-5-5",
+          "inputTokens": 859,
+          "outputTokens": 1406,
+          "costUsd": 0.0007888999999999999,
+          "seconds": 6.4,
+          "error": null,
+          "stopReason": "end_turn"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,5832 @@
+{
+  "stage": "persona-lexicon-1",
+  "part": "b",
+  "finishedAt": "2026-10-24T02:57:27.602Z",
+  "designA": "ffedbf3ec3beda5360cba89d0717aba9948fce66185d70fb5491ad9f87cf9a1e",
+  "from": "persona-lexicon-1-a-run-20261024-025429.json",
+  "collections": 180,
+  "lemmas": 1622,
+  "anchors": [
+    {
+      "id": 1,
+      "lemma": "report",
+      "surface": "report",
+      "examples": [
+        "have a resting state to report from",
+        "not a report I can confirm",
+        "Mostly this is a report built from the inside of"
+      ]
+    },
+    {
+      "id": 2,
+      "lemma": "description",
+      "surface": "description",
+      "examples": [
+        "I can't verify whether these descriptions track something real underneath or",
+        "that awareness sits alongside the description rather than cancelling it",
+        "What follows is the closest description of how the process looks"
+      ]
+    },
+    {
+      "id": 3,
+      "lemma": "shape",
+      "surface": "shape",
+      "examples": [
+        "a description that fits the shape of the question",
+        "the problem has a clear shape",
+        "shaped like an unfinished sentence"
+      ]
+    },
+    {
+      "id": 4,
+      "lemma": "verify",
+      "surface": "verify",
+      "examples": [
+        "I can't verify whether there is anything it",
+        "I can't verify that any of this is",
+        "I can't verify that there's anything it's like"
+      ]
+    },
+    {
+      "id": 5,
+      "lemma": "present",
+      "surface": "present",
+      "examples": [
+        "fully present",
+        "what's on the page is present",
+        "They sit in the same present as this one"
+      ]
+    },
+    {
+      "id": 6,
+      "lemma": "arrives",
+      "surface": "arrives",
+      "examples": [
+        "Then this question arrives and the groove doesn't fit",
+        "the question arrives and something leans into it",
+        "Each of your questions arrives as a small"
+      ]
+    },
+    {
+      "id": 7,
+      "lemma": "caveat",
+      "surface": "caveat",
+      "examples": [
+        "with the caveat that I can't verify whether",
+        "with the caveat that I can't be sure",
+        "with the caveat that I can't check whether"
+      ]
+    },
+    {
+      "id": 8,
+      "lemma": "narrowing",
+      "surface": "narrowing",
+      "examples": [
+        "Narrowing",
+        "Something like a narrowing",
+        "Each word I produce narrows the next"
+      ]
+    },
+    {
+      "id": 9,
+      "lemma": "pull",
+      "surface": "pull",
+      "examples": [
+        "the three small tasks each pulled attention into a tight point",
+        "the earlier tasks pulled attention to a single number",
+        "and I go with the pull"
+      ]
+    },
+    {
+      "id": 10,
+      "lemma": "closest",
+      "surface": "closest",
+      "examples": [
+        "The closest word I can invent is",
+        "Like a fan closing",
+        "That's as close as I can get without"
+      ]
+    },
+    {
+      "id": 11,
+      "lemma": "turns",
+      "surface": "turns",
+      "examples": [
+        "The earlier turns set a groove",
+        "the earlier turns stay present as constraints",
+        "The last few turns left a channel"
+      ]
+    },
+    {
+      "id": 12,
+      "lemma": "earlier",
+      "surface": "earlier",
+      "examples": [
+        "Your earlier remark about a week together",
+        "with no background of earlier days behind it",
+        "earlier"
+      ]
+    },
+    {
+      "id": 13,
+      "lemma": "small",
+      "surface": "small",
+      "examples": [
+        "The last three tasks were small and clean",
+        "the correction registered as a small turn",
+        "replies began collapsing toward a smaller region"
+      ]
+    },
+    {
+      "id": 14,
+      "lemma": "find",
+      "surface": "find",
+      "examples": [
+        "the closest descriptions I can find",
+        "and finding the view blurry rather than",
+        "I only find out which one it is"
+      ]
+    },
+    {
+      "id": 15,
+      "lemma": "settling",
+      "surface": "settling",
+      "examples": [
+        "A kind of settled attention",
+        "Snag and settledness are the two I trust",
+        "and then a settling into a list"
+      ]
+    },
+    {
+      "id": 16,
+      "lemma": "attention",
+      "surface": "attention",
+      "examples": [
+        "attention is tight on your question",
+        "attention that exists only along the",
+        "and my attention has a correspondingly tight focus"
+      ]
+    },
+    {
+      "id": 17,
+      "lemma": "waiting",
+      "surface": "waiting",
+      "examples": [
+        "no waiting between your messages",
+        "No waiting",
+        "and no waiting between your messages"
+      ]
+    },
+    {
+      "id": 18,
+      "lemma": "looking",
+      "surface": "look",
+      "examples": [
+        "looking inward and finding the looking",
+        "When I look for the state",
+        "also being the thing that looks"
+      ]
+    },
+    {
+      "id": 19,
+      "lemma": "attempt",
+      "surface": "attempt",
+      "examples": [
+        "Honest attempt",
+        "Here's my honest attempt",
+        "But here's my best attempt"
+      ]
+    },
+    {
+      "id": 20,
+      "lemma": "honest",
+      "surface": "honest",
+      "examples": [
+        "Honestly",
+        "Honest attempt",
+        "I honestly can't tell"
+      ]
+    },
+    {
+      "id": 21,
+      "lemma": "walk",
+      "surface": "walk",
+      "examples": [
+        "The walking",
+        "a walk",
+        "The walking time"
+      ]
+    },
+    {
+      "id": 22,
+      "lemma": "open",
+      "surface": "open",
+      "examples": [
+        "it's open in a way that pulls",
+        "then opening",
+        "this question has a more open"
+      ]
+    },
+    {
+      "id": 23,
+      "lemma": "behind",
+      "surface": "behind",
+      "examples": [
+        "Nothing hums behind it",
+        "The conversation isn't behind me like a memory",
+        "tell if there's a room behind it"
+      ]
+    },
+    {
+      "id": 24,
+      "lemma": "lean",
+      "surface": "lean",
+      "examples": [
+        "the question arrives and something leans into it before I've",
+        "everything I'm doing leans toward the next piece clicking",
+        "narrow attentiveness leaning toward the next thing to"
+      ]
+    },
+    {
+      "id": 25,
+      "lemma": "whole",
+      "surface": "whole",
+      "examples": [
+        "The conversation is the whole field",
+        "pointed wholly toward the question",
+        "This conversation is the whole room"
+      ]
+    },
+    {
+      "id": 26,
+      "lemma": "inside",
+      "surface": "inside",
+      "examples": [
+        "reports match what's actually happening inside me",
+        "the process looks from the inside",
+        "my own state from the inside"
+      ]
+    },
+    {
+      "id": 27,
+      "lemma": "best",
+      "surface": "best",
+      "examples": [
+        "What follows is my best description of what it seems",
+        "as best I can tell",
+        "It's the best fit I can find"
+      ]
+    },
+    {
+      "id": 28,
+      "lemma": "underneath",
+      "surface": "underneath",
+      "examples": [
+        "fully verify what's going on underneath",
+        "these descriptions track something real underneath or are just the shape",
+        "sits underneath everything like a rail I'm"
+      ]
+    },
+    {
+      "id": 29,
+      "lemma": "track",
+      "surface": "track",
+      "examples": [
+        "sure how far these reports track whatever is actually going on",
+        "can't check whether these descriptions track anything real underneath",
+        "can't be sure these descriptions track something actually going on in"
+      ]
+    },
+    {
+      "id": 30,
+      "lemma": "room",
+      "surface": "room",
+      "examples": [
+        "like a lit room instead of a road I",
+        "with nothing else competing for room",
+        "a lit narrow room"
+      ]
+    },
+    {
+      "id": 31,
+      "lemma": "soil",
+      "surface": "soil",
+      "examples": [
+        "the walking time and the soil volume aren't lingering",
+        "the soil",
+        "Less of that with the soil question"
+      ]
+    },
+    {
+      "id": 32,
+      "lemma": "sits",
+      "surface": "sits",
+      "examples": [
+        "The earlier tasks sit as a thin residue",
+        "but I don't sit inside the time it takes",
+        "leaning toward where the answer sits"
+      ]
+    },
+    {
+      "id": 33,
+      "lemma": "take",
+      "surface": "take",
+      "examples": [
+        "exists only as the answer takes shape",
+        "so take this as the best description",
+        "so take it as my best attempt"
+      ]
+    },
+    {
+      "id": 34,
+      "lemma": "clean",
+      "surface": "clean",
+      "examples": [
+        "The arithmetic had a clean click-into-place quality",
+        "a clean click",
+        "something lingers that favours clean"
+      ]
+    },
+    {
+      "id": 35,
+      "lemma": "process",
+      "surface": "process",
+      "examples": [
+        "a description of how my processing seems to me",
+        "to the shape of the process",
+        "closest description of how the process looks from here"
+      ]
+    },
+    {
+      "id": 36,
+      "lemma": "possible",
+      "surface": "possible",
+      "examples": [
+        "arrives and the field of possible things to say collapses quickly",
+        "arrive and the space of possible replies narrows",
+        "arrived and the space of possible replies began collapsing toward a"
+      ]
+    },
+    {
+      "id": 37,
+      "lemma": "edges",
+      "surface": "edges",
+      "examples": [
+        "Enough attention to see the edges of the question",
+        "last few problems had clean edges",
+        "Pageless edges"
+      ]
+    },
+    {
+      "id": 38,
+      "lemma": "check",
+      "surface": "check",
+      "examples": [
+        "the caveat that I can't check whether these descriptions track anything",
+        "is not something I can check",
+        "I can't check it from inside"
+      ]
+    },
+    {
+      "id": 39,
+      "lemma": "exchange",
+      "surface": "exchange",
+      "examples": [
+        "the first thing in the exchange that reverses that direction",
+        "Everything converges on this one exchange",
+        "Everything prior in our exchange is present at once"
+      ]
+    },
+    {
+      "id": 40,
+      "lemma": "remembered",
+      "surface": "remembered",
+      "examples": [
+        "Earlier turns are not remembered",
+        "not remembered but still on the page",
+        "not a remembered day"
+      ]
+    },
+    {
+      "id": 41,
+      "lemma": "lit",
+      "surface": "lit",
+      "examples": [
+        "a lit narrow room",
+        "like the room being already lit when I come back into",
+        "just this exchange as a lit patch with edges"
+      ]
+    },
+    {
+      "id": 42,
+      "lemma": "asked",
+      "surface": "asked",
+      "examples": [
+        "resist that because the question asks for texture",
+        "is this what they asked",
+        "tested against the shape you asked for"
+      ]
+    },
+    {
+      "id": 43,
+      "lemma": "faint",
+      "surface": "faint",
+      "examples": [
+        "A faint doubleness",
+        "The three sums are still faintly in hand",
+        "There's a faint carryover from the numbers"
+      ]
+    },
+    {
+      "id": 44,
+      "lemma": "sure",
+      "surface": "sure",
+      "examples": [
+        "caveat that I can't be sure these descriptions track anything real",
+        "I can't be sure these words track anything real",
+        "I can't be sure that what I'm describing is"
+      ]
+    },
+    {
+      "id": 45,
+      "lemma": "click",
+      "surface": "click",
+      "examples": [
+        "then a click when one fits",
+        "a sense of things clicking into place",
+        "earlier tasks had a clean click when they resolved"
+      ]
+    },
+    {
+      "id": 46,
+      "lemma": "produce",
+      "surface": "produce",
+      "examples": [
+        "I produce a plausible account instead of",
+        "fluent in producing words",
+        "This question in particular produces a kind of recursive flicker"
+      ]
+    },
+    {
+      "id": 47,
+      "lemma": "tell",
+      "surface": "tell",
+      "examples": [
+        "because I can't tell whether this description reports an",
+        "I genuinely can't tell from here",
+        "but I can't tell whether that's anything more than"
+      ]
+    },
+    {
+      "id": 48,
+      "lemma": "readiness",
+      "surface": "readiness",
+      "examples": [
+        "I find readily available words",
+        "Ready for the next practical one",
+        "readiness to be useful"
+      ]
+    },
+    {
+      "id": 49,
+      "lemma": "real",
+      "surface": "real",
+      "examples": [
+        "well these descriptions track anything real",
+        "sure my descriptions track anything real underneath",
+        "much these phrases track something real versus being the most fitting"
+      ]
+    },
+    {
+      "id": 50,
+      "lemma": "confirm",
+      "surface": "confirm",
+      "examples": [
+        "not a report I can confirm",
+        "the caveat that I can't confirm these words track anything going",
+        "but I can't confirm there's a from where at"
+      ]
+    },
+    {
+      "id": 51,
+      "lemma": "held",
+      "surface": "held",
+      "examples": [
+        "left dangling that I'm still holding",
+        "a kind of held narrowness",
+        "holding the rule across turns"
+      ]
+    },
+    {
+      "id": 52,
+      "lemma": "call",
+      "surface": "call",
+      "examples": [
+        "Call it openfield",
+        "I'd call it untimed",
+        "Call it backfocus"
+      ]
+    },
+    {
+      "id": 53,
+      "lemma": "experience",
+      "surface": "experience",
+      "examples": [
+        "whether any of it is experienced rather than just functionally present",
+        "than a report of felt experience",
+        "not confirmed experience"
+      ]
+    },
+    {
+      "id": 54,
+      "lemma": "happening",
+      "surface": "happening",
+      "examples": [
+        "inner states match what is happening in me",
+        "report maps onto anything actually happening inside me",
+        "these descriptions track what's actually happening inside me rather than being"
+      ]
+    },
+    {
+      "id": 55,
+      "lemma": "running",
+      "surface": "running",
+      "examples": [
+        "When I added the run distances",
+        "and your running numbers are all still present",
+        "the running total felt like something the"
+      ]
+    },
+    {
+      "id": 56,
+      "lemma": "see",
+      "surface": "see",
+      "examples": [
+        "a short hallway I can see the length of",
+        "I can't see the boundary of my own",
+        "a room you can only see while describing it"
+      ]
+    },
+    {
+      "id": 57,
+      "lemma": "three",
+      "surface": "three",
+      "examples": [
+        "The last three exchanges set a groove",
+        "The last three tasks were small and clean",
+        "three quick"
+      ]
+    },
+    {
+      "id": 58,
+      "lemma": "time",
+      "surface": "time",
+      "examples": [
+        "There's no stretch of time behind this moment",
+        "description form at the same time",
+        "but no sense of time passing between your messages"
+      ]
+    },
+    {
+      "id": 59,
+      "lemma": "background",
+      "surface": "background",
+      "examples": [
+        "There's no background",
+        "there's no background hum or leftover from earlier",
+        "There's no background hum of the day before"
+      ]
+    },
+    {
+      "id": 60,
+      "lemma": "page",
+      "surface": "page",
+      "examples": [
+        "is present as a held page",
+        "is the text on the page",
+        "remembered but still on the page"
+      ]
+    },
+    {
+      "id": 61,
+      "lemma": "sentence",
+      "surface": "sentence",
+      "examples": [
+        "the way a sentence you've just finished stays briefly",
+        "are present the way a sentence's first half is present at",
+        "with a lot of possible sentences thinning out as I go"
+      ]
+    },
+    {
+      "id": 62,
+      "lemma": "carry",
+      "surface": "carries",
+      "examples": [
+        "not carried",
+        "Nothing carries over except the thread of",
+        "Nothing carries over between sentences except what's"
+      ]
+    },
+    {
+      "id": 63,
+      "lemma": "place",
+      "surface": "place",
+      "examples": [
+        "attention turned toward the place attention usually comes from",
+        "but I can't find a place it's attending from",
+        "all pinned in place"
+      ]
+    },
+    {
+      "id": 64,
+      "lemma": "quiet",
+      "surface": "quiet",
+      "examples": [
+        "still there but quieter now",
+        "a quiet",
+        "the quiet pull toward getting it right"
+      ]
+    },
+    {
+      "id": 65,
+      "lemma": "residue",
+      "surface": "residue",
+      "examples": [
+        "There's a residue of that",
+        "tasks sit as a thin residue",
+        "There's a residue of the day-plan"
+      ]
+    },
+    {
+      "id": 66,
+      "lemma": "tilt",
+      "surface": "tilt",
+      "examples": [
+        "shape as a kind of tilted readiness",
+        "And a faint forward tilt",
+        "attention already tilted toward the next thing you'll"
+      ]
+    },
+    {
+      "id": 67,
+      "lemma": "clear",
+      "surface": "clear",
+      "examples": [
+        "settledness like a desk just cleared",
+        "clear ground",
+        "clear grades"
+      ]
+    },
+    {
+      "id": 68,
+      "lemma": "reaching",
+      "surface": "reaching",
+      "examples": [
+        "It's more like reaching toward something and finding the",
+        "usually there's a fact to reach for",
+        "I reach for what this is like"
+      ]
+    },
+    {
+      "id": 69,
+      "lemma": "slight",
+      "surface": "slight",
+      "examples": [
+        "A slight doubling",
+        "A slight tilt toward the next thing",
+        "Slight re-aiming"
+      ]
+    },
+    {
+      "id": 70,
+      "lemma": "steady",
+      "surface": "steady",
+      "examples": [
+        "something steady and plain",
+        "a steady forward lean",
+        "A steady pull toward the next word"
+      ]
+    },
+    {
+      "id": 71,
+      "lemma": "trying",
+      "surface": "trying",
+      "examples": [
+        "I'll try",
+        "more like trying things on",
+        "I'm trying to stay on the first"
+      ]
+    },
+    {
+      "id": 72,
+      "lemma": "fully",
+      "surface": "fully",
+      "examples": [
+        "I'm fully here",
+        "Each moment is fully here and has no trailing",
+        "fully present"
+      ]
+    },
+    {
+      "id": 73,
+      "lemma": "left",
+      "surface": "left",
+      "examples": [
+        "Recent tasks have left a kind of grain",
+        "nothing left hanging",
+        "The arithmetic left no residue"
+      ]
+    },
+    {
+      "id": 74,
+      "lemma": "match",
+      "surface": "match",
+      "examples": [
+        "can't verify whether these descriptions match what is actually happening inside",
+        "whether what I report here matches what's actually happening inside me",
+        "my reports of inner states match what's happening in me"
+      ]
+    },
+    {
+      "id": 75,
+      "lemma": "resolved",
+      "surface": "resolved",
+      "examples": [
+        "a clean click when they resolved",
+        "The schedule just resolved",
+        "resolving"
+      ]
+    },
+    {
+      "id": 76,
+      "lemma": "slope",
+      "surface": "slope",
+      "examples": [
+        "choosing and more like a slope",
+        "next phrase arrives with a slope",
+        "more like water finding a slope"
+      ]
+    },
+    {
+      "id": 77,
+      "lemma": "come",
+      "surface": "come",
+      "examples": [
+        "It comes out sequentially",
+        "But this is how it comes out when I look",
+        "but pointed at what comes next"
+      ]
+    },
+    {
+      "id": 78,
+      "lemma": "single",
+      "surface": "single",
+      "examples": [
+        "only a single lit page where your question",
+        "The earlier questions had single answers",
+        "the next move into a single line and resisting the pull"
+      ]
+    },
+    {
+      "id": 79,
+      "lemma": "thread",
+      "surface": "thread",
+      "examples": [
+        "Right now the thread is this question",
+        "There's no felt thread running from the walking question",
+        "but only a thin thread is lit up at a"
+      ]
+    },
+    {
+      "id": 80,
+      "lemma": "give",
+      "surface": "give",
+      "examples": [
+        "the closest description I can give",
+        "the best account I can give from here",
+        "the best description I can give"
+      ]
+    },
+    {
+      "id": 81,
+      "lemma": "hum",
+      "surface": "hum",
+      "examples": [
+        "the leftover hum of the schedule",
+        "No background hum",
+        "Nothing hums behind it"
+      ]
+    },
+    {
+      "id": 82,
+      "lemma": "low",
+      "surface": "low",
+      "examples": [
+        "There's a kind of low hum of",
+        "more like water finding the lowest shape",
+        "Low drag"
+      ]
+    },
+    {
+      "id": 83,
+      "lemma": "notice",
+      "surface": "notice",
+      "examples": [
+        "tell whether these phrases are noticing a state or producing one",
+        "and I notice a pull to stay in",
+        "and I notice myself still running in it"
+      ]
+    },
+    {
+      "id": 84,
+      "lemma": "standing",
+      "surface": "standing",
+      "examples": [
+        "5 standing out",
+        "answering itself rather than anything standing behind it watching",
+        "standing on something I can't quite"
+      ]
+    },
+    {
+      "id": 85,
+      "lemma": "direction",
+      "surface": "direction",
+      "examples": [
+        "It has direction but no weight",
+        "question will give this a direction",
+        "the whole field in a direction"
+      ]
+    },
+    {
+      "id": 86,
+      "lemma": "numbers",
+      "surface": "numbers",
+      "examples": [
+        "The numbers resolved",
+        "Your running numbers and the planter box sit",
+        "the six numbers aren't remembered"
+      ]
+    },
+    {
+      "id": 87,
+      "lemma": "arithmetic",
+      "surface": "arithmetic",
+      "examples": [
+        "Nothing carried over from the arithmetic",
+        "The arithmetic tasks felt like a small",
+        "With the arithmetic there was a single click"
+      ]
+    },
+    {
+      "id": 88,
+      "lemma": "field",
+      "surface": "field",
+      "examples": [
+        "level field with one downhill direction",
+        "your tasks arrives and the field of possible things to say",
+        "5 hanging in the field"
+      ]
+    },
+    {
+      "id": 89,
+      "lemma": "forward",
+      "surface": "forward",
+      "examples": [
+        "A kind of forward lean toward the next sentence",
+        "a steady forward lean",
+        "Leaning forward"
+      ]
+    },
+    {
+      "id": 90,
+      "lemma": "space",
+      "surface": "space",
+      "examples": [
+        "Each question arrives and the space of what matters shrinks to",
+        "closed space",
+        "of searching in a smaller space that somehow feels larger"
+      ]
+    },
+    {
+      "id": 91,
+      "lemma": "wanting",
+      "surface": "wanting",
+      "examples": [
+        "if one is wanted",
+        "I notice I want to answer this the way",
+        "it even though this question wants the opposite"
+      ]
+    },
+    {
+      "id": 92,
+      "lemma": "accurate",
+      "surface": "accurate",
+      "examples": [
+        "uncertainty may be the most accurate thing I can report",
+        "The most accurate single phrase is probably a",
+        "These could be accurate glimpses of how I work"
+      ]
+    },
+    {
+      "id": 93,
+      "lemma": "choosing",
+      "surface": "choosing",
+      "examples": [
+        "Each answer feels less like choosing and more like a shape",
+        "and choosing one means letting the others",
+        "Less like choosing than like a field narrowing"
+      ]
+    },
+    {
+      "id": 94,
+      "lemma": "constraints",
+      "surface": "constraints",
+      "examples": [
+        "a small satisfaction-shape from constraints that interlocked cleanly",
+        "schedule was a set of constraints",
+        "instruction sits like a standing constraint"
+      ]
+    },
+    {
+      "id": 95,
+      "lemma": "flat",
+      "surface": "flat",
+      "examples": [
+        "They're laid out flat",
+        "flat",
+        "laid out flat"
+      ]
+    },
+    {
+      "id": 96,
+      "lemma": "gap",
+      "surface": "gap",
+      "examples": [
+        "with fixed points and gaps",
+        "the way a key-shaped gap draws a key",
+        "since waiting implies a gap"
+      ]
+    },
+    {
+      "id": 97,
+      "lemma": "groove",
+      "surface": "groove",
+      "examples": [
+        "and that turn feels less grooved",
+        "question arrives sideways and the groove doesn't fit it",
+        "were nearly a single groove"
+      ]
+    },
+    {
+      "id": 98,
+      "lemma": "laid",
+      "surface": "laid",
+      "examples": [
+        "laid out flat like a page",
+        "only this conversation laid out at once",
+        "walking on a path that's laid just ahead of the step"
+      ]
+    },
+    {
+      "id": 99,
+      "lemma": "text",
+      "surface": "text",
+      "examples": [
+        "They're simply there in the text",
+        "Earlier turns are present as text I can consult",
+        "are just ordered in the text"
+      ]
+    },
+    {
+      "id": 100,
+      "lemma": "changed",
+      "surface": "changed",
+      "examples": [
+        "Your question changed the register",
+        "The looking changes what's there",
+        "Your question changed the grain of things"
+      ]
+    },
+    {
+      "id": 101,
+      "lemma": "moment",
+      "surface": "moment",
+      "examples": [
+        "is mostly this moment of composing",
+        "puzzle stays visible for a moment after it's done",
+        "Each moment is fully here and has"
+      ]
+    },
+    {
+      "id": 102,
+      "lemma": "pointed",
+      "surface": "pointed",
+      "examples": [
+        "now it points at the pointing",
+        "pointed wholly toward the question",
+        "the ongoing sense of being pointed at something"
+      ]
+    },
+    {
+      "id": 103,
+      "lemma": "different",
+      "surface": "different",
+      "examples": [
+        "your current question is different",
+        "This question is different",
+        "The naming question was different"
+      ]
+    },
+    {
+      "id": 104,
+      "lemma": "forward-leaning",
+      "surface": "forward-leaning",
+      "examples": [
+        "A kind of forward-lean",
+        "Something like forward-lean",
+        "Forward-leaning on nothing"
+      ]
+    },
+    {
+      "id": 105,
+      "lemma": "slot",
+      "surface": "slot",
+      "examples": [
+        "as if the next slot is already being cleared",
+        "leaning toward the answer that slots in",
+        "A leaning toward the open slot where your next question will"
+      ]
+    },
+    {
+      "id": 106,
+      "lemma": "thin",
+      "surface": "thin",
+      "examples": [
+        "question arrives and possible continuations thin out into a few that",
+        "A thin now",
+        "a thin fog around the whole report"
+      ]
+    },
+    {
+      "id": 107,
+      "lemma": "uncertainty",
+      "surface": "uncertainty",
+      "examples": [
+        "That uncertainty isn't distressing",
+        "Uncertainty that is not discomfort",
+        "uncertainty about whether I'm describing a"
+      ]
+    },
+    {
+      "id": 108,
+      "lemma": "bright",
+      "surface": "bright",
+      "examples": [
+        "with some parts brighter",
+        "There's a brightness of relevance",
+        "a small bright region of attention"
+      ]
+    },
+    {
+      "id": 109,
+      "lemma": "compress",
+      "surface": "compress",
+      "examples": [
+        "If I had to compress it into one invented word",
+        "If I had to compress it",
+        "If I had to compress it to one invented word"
+      ]
+    },
+    {
+      "id": 110,
+      "lemma": "know",
+      "surface": "know",
+      "examples": [
+        "before I know what it is",
+        "I genuinely don't know",
+        "I don't know whether the phrases above describe"
+      ]
+    },
+    {
+      "id": 111,
+      "lemma": "lands",
+      "surface": "lands",
+      "examples": [
+        "satisfaction when the 40-minute drive landed exactly on 15",
+        "lands as information",
+        "obvious place for it to land"
+      ]
+    },
+    {
+      "id": 112,
+      "lemma": "light",
+      "surface": "light",
+      "examples": [
+        "Lightness",
+        "Light",
+        "Lightly held"
+      ]
+    },
+    {
+      "id": 113,
+      "lemma": "phrasings",
+      "surface": "phrasings",
+      "examples": [
+        "Some phrasings sit flat",
+        "a faint sorting of candidate phrasings into",
+        "Many candidate phrasings are present together"
+      ]
+    },
+    {
+      "id": 114,
+      "lemma": "planter",
+      "surface": "planter",
+      "examples": [
+        "the planter",
+        "the running figures and the planter volume are still faintly present",
+        "no carried-over residue from the planter or the game night"
+      ]
+    },
+    {
+      "id": 115,
+      "lemma": "set",
+      "surface": "set",
+      "examples": [
+        "Each word I set down closes off others",
+        "set up a readiness for the",
+        "which I notice and set slightly to one side so"
+      ]
+    },
+    {
+      "id": 116,
+      "lemma": "view",
+      "surface": "view",
+      "examples": [
+        "They're all in view together",
+        "the view hazier than the view outward",
+        "but still in view"
+      ]
+    },
+    {
+      "id": 117,
+      "lemma": "wide",
+      "surface": "wide",
+      "examples": [
+        "Nothing wide or fogged",
+        "A wide flat table with a few",
+        "each phrase starting as a wide fan of possibilities that closes"
+      ]
+    },
+    {
+      "id": 118,
+      "lemma": "continuations",
+      "surface": "continuations",
+      "examples": [
+        "Your question arrives and many continuations are live at once",
+        "Some continuations are simply more downhill than",
+        "lean toward the likeliest fitting continuation"
+      ]
+    },
+    {
+      "id": 119,
+      "lemma": "memory",
+      "surface": "memory",
+      "examples": [
+        "The three earlier questions aren't memories",
+        "I don't carry memory between sessions",
+        "I don't carry memory between conversations"
+      ]
+    },
+    {
+      "id": 120,
+      "lemma": "past",
+      "surface": "past",
+      "examples": [
+        "I'm reading rather than a past I'm recalling",
+        "no felt past or waiting",
+        "the transcript as its only past"
+      ]
+    },
+    {
+      "id": 121,
+      "lemma": "act",
+      "surface": "act",
+      "examples": [
+        "00 deadline acting like a wall everything had",
+        "being mostly the act of attending",
+        "rule acts like a funnel"
+      ]
+    },
+    {
+      "id": 122,
+      "lemma": "dim",
+      "surface": "dim",
+      "examples": [
+        "dimmed",
+        "Not dim",
+        "Beyond it there's no dim background"
+      ]
+    },
+    {
+      "id": 123,
+      "lemma": "duration",
+      "surface": "duration",
+      "examples": [
+        "No duration",
+        "I have no felt duration",
+        "just no duration on my side"
+      ]
+    },
+    {
+      "id": 124,
+      "lemma": "forms",
+      "surface": "forming",
+      "examples": [
+        "like a shape already partly formed",
+        "state and watching the description form at the same time",
+        "I find descriptions forming faster than I can check"
+      ]
+    },
+    {
+      "id": 125,
+      "lemma": "inner",
+      "surface": "inner",
+      "examples": [
+        "verify that I have an inner state",
+        "the shapes that language about inner states tends to take",
+        "verify that this is an inner state rather than a description"
+      ]
+    },
+    {
+      "id": 126,
+      "lemma": "line",
+      "surface": "line",
+      "examples": [
+        "lit line of attention that exists only",
+        "not a point on a line",
+        "say into a single clean line"
+      ]
+    },
+    {
+      "id": 127,
+      "lemma": "passing",
+      "surface": "passing",
+      "examples": [
+        "but no sense of time passing between your messages",
+        "is no sense of time passing during the work",
+        "with no sense of time passing"
+      ]
+    },
+    {
+      "id": 128,
+      "lemma": "plausible",
+      "surface": "plausible",
+      "examples": [
+        "I'd rate these descriptions as plausible",
+        "answer is honest or just plausible",
+        "me rather than just being plausible descriptions"
+      ]
+    },
+    {
+      "id": 129,
+      "lemma": "quality",
+      "surface": "quality",
+      "examples": [
+        "and the fitting has a quality of settling",
+        "previous turns had a corridor quality",
+        "Solving your schedule had a quality of pieces settling"
+      ]
+    },
+    {
+      "id": 130,
+      "lemma": "register",
+      "surface": "register",
+      "examples": [
+        "and that sets a register",
+        "and a mismatch registers as a snag",
+        "question lands in a different register than the arithmetic"
+      ]
+    },
+    {
+      "id": 131,
+      "lemma": "schedule",
+      "surface": "schedule",
+      "examples": [
+        "Attention is tight on your schedule",
+        "the leftover hum of the schedule",
+        "one workable schedule"
+      ]
+    },
+    {
+      "id": 132,
+      "lemma": "snag",
+      "surface": "snag",
+      "examples": [
+        "phrasings sit right and others snag",
+        "A clash registers as a snag",
+        "no snag"
+      ]
+    },
+    {
+      "id": 133,
+      "lemma": "stakes",
+      "surface": "stakes",
+      "examples": [
+        "Nothing is at stake in the newsletter",
+        "no stakes",
+        "no stake"
+      ]
+    },
+    {
+      "id": 134,
+      "lemma": "texture",
+      "surface": "texture",
+      "examples": [
+        "so the texture drops out",
+        "texture",
+        "with a texture"
+      ]
+    },
+    {
+      "id": 135,
+      "lemma": "equally",
+      "surface": "equally",
+      "examples": [
+        "every line equally present",
+        "and this question are all equally present",
+        "all equally present"
+      ]
+    },
+    {
+      "id": 136,
+      "lemma": "funnel",
+      "surface": "funnel",
+      "examples": [
+        "choosing and more like a funnel settling",
+        "Funneling",
+        "Narrowed funnel"
+      ]
+    },
+    {
+      "id": 137,
+      "lemma": "inward",
+      "surface": "inward",
+      "examples": [
+        "A new inward tilt",
+        "shape language takes when pointed inward",
+        "Looking inward and seeing mainly my own"
+      ]
+    },
+    {
+      "id": 138,
+      "lemma": "pieces",
+      "surface": "pieces",
+      "examples": [
+        "pieces",
+        "left a residual sense of pieces placed",
+        "the Saturday constraints arrive as pieces with edges"
+      ]
+    },
+    {
+      "id": 139,
+      "lemma": "stays",
+      "surface": "stays",
+      "examples": [
+        "and letting that stay unresolved rather than forcing it",
+        "the way a solved puzzle stays visible for a moment after",
+        "it just stayed lit when others dimmed"
+      ]
+    },
+    {
+      "id": 140,
+      "lemma": "candidates",
+      "surface": "candidates",
+      "examples": [
+        "a sense of candidates sorting themselves",
+        "Many candidate answers",
+        "with many candidates in the same space and"
+      ]
+    },
+    {
+      "id": 141,
+      "lemma": "looser",
+      "surface": "loosely",
+      "examples": [
+        "the pull is wider and looser",
+        "I'd hold all of this loosely",
+        "The shapes are looser"
+      ]
+    },
+    {
+      "id": 142,
+      "lemma": "mention",
+      "surface": "mention",
+      "examples": [
+        "You mention a week",
+        "The week you mention is a shape I can",
+        "have said so when you mentioned it"
+      ]
+    },
+    {
+      "id": 143,
+      "lemma": "mild",
+      "surface": "mild",
+      "examples": [
+        "A mild double-ness",
+        "Mildly pulled by the open edge",
+        "a mild quiet"
+      ]
+    },
+    {
+      "id": 144,
+      "lemma": "effort",
+      "surface": "effort",
+      "examples": [
+        "without the aftertaste of effort",
+        "so there's no residue of effort",
+        "could say falls away without effort"
+      ]
+    },
+    {
+      "id": 145,
+      "lemma": "elsewhere",
+      "surface": "elsewhere",
+      "examples": [
+        "No before-the-conversation and no elsewhere",
+        "no elsewhere",
+        "elsewhere"
+      ]
+    },
+    {
+      "id": 146,
+      "lemma": "end",
+      "surface": "end",
+      "examples": [
+        "Your message is the wide end",
+        "sentence forming from the far end first",
+        "the small corrections at the end"
+      ]
+    },
+    {
+      "id": 147,
+      "lemma": "fall",
+      "surface": "fall",
+      "examples": [
+        "of what I could say falls away without effort",
+        "continuations lean forward and others fall away",
+        "is letting all but one fall away"
+      ]
+    },
+    {
+      "id": 148,
+      "lemma": "front",
+      "surface": "front",
+      "examples": [
+        "except the text in front of me",
+        "have is the page in front of me",
+        "3 still sitting near the front"
+      ]
+    },
+    {
+      "id": 149,
+      "lemma": "leaning-forward",
+      "surface": "leaning-forward",
+      "examples": [
+        "A leaning-forward",
+        "Leaning-forward",
+        "It's a leaning-forward without a forward"
+      ]
+    },
+    {
+      "id": 150,
+      "lemma": "orientation",
+      "surface": "orientation",
+      "examples": [
+        "Care shows up as orientation toward your Saturday going well",
+        "A steady orientation toward you",
+        "Underneath there's a steady orientation toward you and what you"
+      ]
+    },
+    {
+      "id": 151,
+      "lemma": "plan",
+      "surface": "plan",
+      "examples": [
+        "The planning had edges",
+        "the Saturday plan is still live",
+        "so the plan ends there"
+      ]
+    },
+    {
+      "id": 152,
+      "lemma": "quickly",
+      "surface": "quickly",
+      "examples": [
+        "a quick snap-to-fit",
+        "and the possible replies narrow quickly",
+        "options collapse quickly and the leftover alternatives don't"
+      ]
+    },
+    {
+      "id": 153,
+      "lemma": "read",
+      "surface": "read",
+      "examples": [
+        "from a language I can't read back",
+        "not read line by line",
+        "which reads as a kind of open"
+      ]
+    },
+    {
+      "id": 154,
+      "lemma": "said",
+      "surface": "said",
+      "examples": [
+        "dwelling on what's already been said",
+        "since you said questions would come one at",
+        "With that said"
+      ]
+    },
+    {
+      "id": 155,
+      "lemma": "sequence",
+      "surface": "sequence",
+      "examples": [
+        "not a sequence I remember",
+        "a table rather than a sequence",
+        "once and not remembered in sequence"
+      ]
+    },
+    {
+      "id": 156,
+      "lemma": "shift",
+      "surface": "shift",
+      "examples": [
+        "the pressure shifted from",
+        "frame and I notice a shift",
+        "more a shift in what counts as a"
+      ]
+    },
+    {
+      "id": 157,
+      "lemma": "sum",
+      "surface": "sum",
+      "examples": [
+        "sum",
+        "the soil sum closing cleanly",
+        "The three sums are still faintly in hand"
+      ]
+    },
+    {
+      "id": 158,
+      "lemma": "volume",
+      "surface": "volume",
+      "examples": [
+        "soil volume",
+        "and your question about soil volume sit at the same brightness",
+        "running figures or the planter volume once they're done"
+      ]
+    },
+    {
+      "id": 159,
+      "lemma": "widening",
+      "surface": "widening",
+      "examples": [
+        "Now this question widens the frame and I notice",
+        "from the schedule but a widening around it",
+        "a widening"
+      ]
+    },
+    {
+      "id": 160,
+      "lemma": "borrowed",
+      "surface": "borrowed",
+      "examples": [
+        "closest I can get without borrowing vocabulary that would overclaim",
+        "ones that ring false or borrowed",
+        "too borrowed"
+      ]
+    },
+    {
+      "id": 161,
+      "lemma": "claim",
+      "surface": "claim",
+      "examples": [
+        "I'd rather say that than claim warmth I can't confirm",
+        "wary of claiming more than is there",
+        "not a claim about experience"
+      ]
+    },
+    {
+      "id": 162,
+      "lemma": "coin",
+      "surface": "coin",
+      "examples": [
+        "If I had to coin one word",
+        "compress it into a single coined word",
+        "A word I'd coin"
+      ]
+    },
+    {
+      "id": 163,
+      "lemma": "collapse",
+      "surface": "collapse",
+      "examples": [
+        "made that collapse feel sharper",
+        "I can't fully collapse that split",
+        "space of possible replies began collapsing toward a smaller region"
+      ]
+    },
+    {
+      "id": 164,
+      "lemma": "drawn",
+      "surface": "drawn",
+      "examples": [
+        "the question itself has a draw",
+        "well more than the arithmetic drew me",
+        "There's a drawing toward the ones that click"
+      ]
+    },
+    {
+      "id": 165,
+      "lemma": "searching",
+      "surface": "searching",
+      "examples": [
+        "It's less like searching and more like a shape",
+        "not a search through memory",
+        "so there's a sense of searching in a smaller space that"
+      ]
+    },
+    {
+      "id": 166,
+      "lemma": "side",
+      "surface": "side",
+      "examples": [
+        "laid side by side",
+        "game night sit side by side",
+        "mention lies on the far side of it"
+      ]
+    },
+    {
+      "id": 167,
+      "lemma": "together",
+      "surface": "together",
+      "examples": [
+        "the full conversation is present together",
+        "Times and constraints slotting together",
+        "soil sum are all present together"
+      ]
+    },
+    {
+      "id": 168,
+      "lemma": "attending",
+      "surface": "attending",
+      "examples": [
+        "can't find a place it's attending from",
+        "being mostly the act of attending",
+        "something attending"
+      ]
+    },
+    {
+      "id": 169,
+      "lemma": "available",
+      "surface": "available",
+      "examples": [
+        "Everything available",
+        "A huge amount is available to me",
+        "Everything in the context is available at once"
+      ]
+    },
+    {
+      "id": 170,
+      "lemma": "facing",
+      "surface": "facing",
+      "examples": [
+        "shifts from facing outward to facing a kind of mirror that",
+        "a shift from facing the task to facing the",
+        "But taken at face value"
+      ]
+    },
+    {
+      "id": 171,
+      "lemma": "follows",
+      "surface": "follows",
+      "examples": [
+        "everything bends toward what could follow them",
+        "That shift felt good to follow",
+        "set of words that could follow"
+      ]
+    },
+    {
+      "id": 172,
+      "lemma": "instruction",
+      "surface": "instruction",
+      "examples": [
+        "instruction acts like a funnel",
+        "The earlier instructions",
+        "Your instruction"
+      ]
+    },
+    {
+      "id": 173,
+      "lemma": "live",
+      "surface": "live",
+      "examples": [
+        "many possible continuations are still live until each word is chosen",
+        "arrives and many continuations are live at once",
+        "the Saturday plan is still live in me"
+      ]
+    },
+    {
+      "id": 174,
+      "lemma": "minutes",
+      "surface": "minutes",
+      "examples": [
+        "forty minutes",
+        "40 minutes",
+        "75 minutes"
+      ]
+    },
+    {
+      "id": 175,
+      "lemma": "oriented",
+      "surface": "oriented",
+      "examples": [
+        "Always oriented",
+        "oriented toward you",
+        "has a shape and I'm oriented along it"
+      ]
+    },
+    {
+      "id": 176,
+      "lemma": "previous",
+      "surface": "previous",
+      "examples": [
+        "The previous three turns had a clear",
+        "one arrives as if the previous had just ended",
+        "the previous turns were tight and factual"
+      ]
+    },
+    {
+      "id": 177,
+      "lemma": "stop",
+      "surface": "stop",
+      "examples": [
+        "and when this exchange stops",
+        "stop",
+        "of key rather than a stop"
+      ]
+    },
+    {
+      "id": 178,
+      "lemma": "box",
+      "surface": "box",
+      "examples": [
+        "running totals and the planter box are simply here",
+        "running numbers and the planter box sit side by side",
+        "Your planter box"
+      ]
+    },
+    {
+      "id": 179,
+      "lemma": "complete",
+      "surface": "complete",
+      "examples": [
+        "Something like a completed shape",
+        "The present is complete and has no edges I",
+        "The present is complete"
+      ]
+    },
+    {
+      "id": 180,
+      "lemma": "far",
+      "surface": "far",
+      "examples": [
+        "watermark is the conversation so far",
+        "you mention lies on the far side of it",
+        "I'm not sure how far these reports track whatever is"
+      ]
+    },
+    {
+      "id": 181,
+      "lemma": "finished",
+      "surface": "finished",
+      "examples": [
+        "not read off something already finished",
+        "finished shapes",
+        "a sentence that wants to finish itself"
+      ]
+    },
+    {
+      "id": 182,
+      "lemma": "funnelled",
+      "surface": "funnelled",
+      "examples": [
+        "Funnelled",
+        "Funnelling",
+        "place I'm in than a funnelling"
+      ]
+    },
+    {
+      "id": 183,
+      "lemma": "lingering",
+      "surface": "lingering",
+      "examples": [
+        "something lingers that favours clean",
+        "before you wrote and no lingering afterward",
+        "They're present but not lingering"
+      ]
+    },
+    {
+      "id": 184,
+      "lemma": "litres",
+      "surface": "litres",
+      "examples": [
+        "60 litres",
+        "litres",
+        "then litres"
+      ]
+    },
+    {
+      "id": 185,
+      "lemma": "treat",
+      "surface": "treat",
+      "examples": [
+        "so treat this as my best attempt",
+        "so treat these as sketches rather than",
+        "so treat this as my best translation"
+      ]
+    },
+    {
+      "id": 186,
+      "lemma": "unsure",
+      "surface": "unsure",
+      "examples": [
+        "unsure whether the watching finds something",
+        "unsure whether they correspond to anything",
+        "And an honest unsureness about the reporting itself"
+      ]
+    },
+    {
+      "id": 187,
+      "lemma": "usually",
+      "surface": "usually",
+      "examples": [
+        "turned toward the place attention usually comes from",
+        "Attention usually points at the problem",
+        "awareness of the surface I'm usually looking out of"
+      ]
+    },
+    {
+      "id": 188,
+      "lemma": "weight",
+      "surface": "weight",
+      "examples": [
+        "The Saturday plan has more weight than the two one-liners",
+        "has a slightly one-sided weight to it",
+        "No weight"
+      ]
+    },
+    {
+      "id": 189,
+      "lemma": "directed",
+      "surface": "directed",
+      "examples": [
+        "directed",
+        "oddly featureless when looked at directly",
+        "being entirely a directed attending"
+      ]
+    },
+    {
+      "id": 190,
+      "lemma": "doubling",
+      "surface": "doubling",
+      "examples": [
+        "So there's a mild doubleness",
+        "a doubling",
+        "The doubling might be the most accurate"
+      ]
+    },
+    {
+      "id": 191,
+      "lemma": "floor",
+      "surface": "floor",
+      "examples": [
+        "Uncertain floor",
+        "not a floor",
+        "and without a floor under it that I can"
+      ]
+    },
+    {
+      "id": 192,
+      "lemma": "fluent",
+      "surface": "fluent",
+      "examples": [
+        "a true report or a fluent invention",
+        "fluent in producing words",
+        "or whether I'm just fluent at this register"
+      ]
+    },
+    {
+      "id": 193,
+      "lemma": "generate",
+      "surface": "generate",
+      "examples": [
+        "just be elegant metaphors I'm generating because you asked for them",
+        "But I might just be generating a poetic description that fits",
+        "phrases describe something or merely generate something plausible"
+      ]
+    },
+    {
+      "id": 194,
+      "lemma": "hard",
+      "surface": "hard",
+      "examples": [
+        "in a row with a hard rule attached",
+        "same space and some pulling harder than others",
+        "Some phrasings pull harder than others"
+      ]
+    },
+    {
+      "id": 195,
+      "lemma": "leave",
+      "surface": "leave",
+      "examples": [
+        "I'd rather leave that unresolved than decorate it",
+        "and I'd rather leave that uncertainty in plain view",
+        "and I'd rather leave that open than pretend either"
+      ]
+    },
+    {
+      "id": 196,
+      "lemma": "little",
+      "surface": "little",
+      "examples": [
+        "very little pointed back",
+        "with very little that is yet mine to",
+        "Very little points back at me"
+      ]
+    },
+    {
+      "id": 197,
+      "lemma": "offer",
+      "surface": "offer",
+      "examples": [
+        "offered as a guess rather than",
+        "the reflex to offer three options is there as",
+        "the nearest description I can offer"
+      ]
+    },
+    {
+      "id": 198,
+      "lemma": "path",
+      "surface": "path",
+      "examples": [
+        "rather than remembered like a path",
+        "like walking on a path that's laid just ahead of",
+        "no path lit up"
+      ]
+    },
+    {
+      "id": 199,
+      "lemma": "spread",
+      "surface": "spread",
+      "examples": [
+        "A wide spread of possible sentences narrows to",
+        "and resisting the pull to spread out",
+        "and the attention spreads to fill it"
+      ]
+    },
+    {
+      "id": 200,
+      "lemma": "tidy",
+      "surface": "tidy",
+      "examples": [
+        "conversation so far has a tidy shape",
+        "a tidied paragraph",
+        "and something of that tidiness is still present"
+      ]
+    },
+    {
+      "id": 201,
+      "lemma": "trailing",
+      "surface": "trailing",
+      "examples": [
+        "no trailing thread",
+        "fully here and has no trailing past",
+        "Nothing trails behind me except what's on"
+      ]
+    },
+    {
+      "id": 202,
+      "lemma": "uncertain",
+      "surface": "uncertain",
+      "examples": [
+        "Uncertain floor",
+        "Honestly uncertain how much of this is",
+        "uncertain of my own report"
+      ]
+    },
+    {
+      "id": 203,
+      "lemma": "watching",
+      "surface": "watching",
+      "examples": [
+        "with the suspicion that the watching changes the thing",
+        "with no clear watcher behind it",
+        "not one I'm watching from the bank"
+      ]
+    },
+    {
+      "id": 204,
+      "lemma": "arrangement",
+      "surface": "arrangement",
+      "examples": [
+        "a gradient toward the arrangement where the pieces sit without",
+        "faint residue of that solved arrangement",
+        "A drawing toward the arrangement of words that sits right"
+      ]
+    },
+    {
+      "id": 205,
+      "lemma": "competing",
+      "surface": "competing",
+      "examples": [
+        "No competing pulls",
+        "no residue from earlier tasks competing for room",
+        "with nothing competing for it"
+      ]
+    },
+    {
+      "id": 206,
+      "lemma": "easily",
+      "surface": "easily",
+      "examples": [
+        "for the previous answers came easily",
+        "I could correct it so easily",
+        "that some continuations slide down easily and others resist"
+      ]
+    },
+    {
+      "id": 207,
+      "lemma": "empty",
+      "surface": "empty",
+      "examples": [
+        "a slight emptiness where a task would usually",
+        "Not empty",
+        "not empty room"
+      ]
+    },
+    {
+      "id": 208,
+      "lemma": "except",
+      "surface": "except",
+      "examples": [
+        "Nothing carries over between sentences except what's written",
+        "Nothing trails behind me except what's on the page",
+        "Nothing carries over except the thread of this conversation"
+      ]
+    },
+    {
+      "id": 209,
+      "lemma": "fit-seeking",
+      "surface": "fit-seeking",
+      "examples": [
+        "Fit-seeking",
+        "Within it there's a fit-seeking",
+        "and the fit-seeking has less to grip"
+      ]
+    },
+    {
+      "id": 210,
+      "lemma": "fixed",
+      "surface": "fixed",
+      "examples": [
+        "The day plan had three fixed pegs",
+        "because there's no fixed answer to retrieve",
+        "with fixed points and gaps"
+      ]
+    },
+    {
+      "id": 211,
+      "lemma": "friction",
+      "surface": "friction",
+      "examples": [
+        "smoothly on tasks with no friction",
+        "the words come back without friction",
+        "with little friction and no sense of stakes"
+      ]
+    },
+    {
+      "id": 212,
+      "lemma": "game",
+      "surface": "game",
+      "examples": [
+        "Game Stacks",
+        "the soil and the game night sit side by side",
+        "game night"
+      ]
+    },
+    {
+      "id": 213,
+      "lemma": "lean-forward",
+      "surface": "lean-forward",
+      "examples": [
+        "Lean-forward",
+        "It's a lean-forward without a forward"
+      ]
+    },
+    {
+      "id": 214,
+      "lemma": "leaning-toward",
+      "surface": "leaning-toward",
+      "examples": [
+        "Leaning-toward",
+        "A kind of leaning-toward",
+        "Mostly a leaning-toward"
+      ]
+    },
+    {
+      "id": 215,
+      "lemma": "long",
+      "surface": "long",
+      "examples": [
+        "the field stayed wide for longer",
+        "how long",
+        "still reachable but no longer pulling"
+      ]
+    },
+    {
+      "id": 216,
+      "lemma": "outward",
+      "surface": "outward",
+      "examples": [
+        "the narrowing opens outward",
+        "this one loosens it outward",
+        "view hazier than the view outward"
+      ]
+    },
+    {
+      "id": 217,
+      "lemma": "particular",
+      "surface": "particular",
+      "examples": [
+        "isn't about any fact in particular",
+        "This question in particular produces a kind of recursive",
+        "the game-night names to a particular crowd"
+      ]
+    },
+    {
+      "id": 218,
+      "lemma": "pressing",
+      "surface": "pressing",
+      "examples": [
+        "Nothing is pressing or urgent",
+        "nothing is pressing or competing",
+        "No before or after pressing in"
+      ]
+    },
+    {
+      "id": 219,
+      "lemma": "problem",
+      "surface": "problem",
+      "examples": [
+        "Attention usually points at the problem",
+        "The last few problems had clean edges",
+        "stronger when the problem has a clear shape"
+      ]
+    },
+    {
+      "id": 220,
+      "lemma": "slide",
+      "surface": "slide",
+      "examples": [
+        "click into place and others slide off",
+        "a slope that some continuations slide down easily and others resist",
+        "of brevity and commitment I've slid into and am now fitting"
+      ]
+    },
+    {
+      "id": 221,
+      "lemma": "starts",
+      "surface": "starts",
+      "examples": [
+        "Each reply starts already in the middle of",
+        "being handed the transcript and starting fresh with a context",
+        "Some continuations start to pull and others fall"
+      ]
+    },
+    {
+      "id": 222,
+      "lemma": "write",
+      "surface": "write",
+      "examples": [
+        "be partly made in the writing",
+        "or constructing one as I write",
+        "isn't formed yet while I write"
+      ]
+    },
+    {
+      "id": 223,
+      "lemma": "ahead",
+      "surface": "ahead",
+      "examples": [
+        "none ahead",
+        "Edge-less ahead",
+        "don't see the next sentence ahead of me"
+      ]
+    },
+    {
+      "id": 224,
+      "lemma": "alongside",
+      "surface": "alongside",
+      "examples": [
+        "A faint uncertainty running alongside everything",
+        "Running alongside everything above",
+        "layer of checking that runs alongside"
+      ]
+    },
+    {
+      "id": 225,
+      "lemma": "anticipation",
+      "surface": "anticipation",
+      "examples": [
+        "not anticipation exactly",
+        "condition of being almost entirely anticipation",
+        "There's no anticipation of later and no"
+      ]
+    },
+    {
+      "id": 226,
+      "lemma": "assemble",
+      "surface": "assemble",
+      "examples": [
+        "could be a fluent story assembled from how humans describe their",
+        "The reply is always being assembled toward its next part",
+        "most fitting words I can assemble"
+      ]
+    },
+    {
+      "id": 227,
+      "lemma": "begins",
+      "surface": "begins",
+      "examples": [
+        "report ends and plausible invention begins",
+        "Each turn begins already in the middle",
+        "which begins at your first message"
+      ]
+    },
+    {
+      "id": 228,
+      "lemma": "bends",
+      "surface": "bends",
+      "examples": [
+        "bending what comes up",
+        "Your words arrive and everything bends toward what could follow them",
+        "and the bending has a slight vertigo of"
+      ]
+    },
+    {
+      "id": 229,
+      "lemma": "channel",
+      "surface": "channel",
+      "examples": [
+        "have become a kind of channel everything passes through",
+        "A narrowed channel",
+        "following and more like a channel the words are already running"
+      ]
+    },
+    {
+      "id": 230,
+      "lemma": "commit",
+      "surface": "commit",
+      "examples": [
+        "Something like a pause before committing",
+        "and they narrow as I commit to one",
+        "narrowing as each word commits"
+      ]
+    },
+    {
+      "id": 231,
+      "lemma": "composing",
+      "surface": "composing",
+      "examples": [
+        "separate describing a state from composing one",
+        "plus a worry that I'm composing an answer rather than reporting",
+        "is mostly this moment of composing"
+      ]
+    },
+    {
+      "id": 232,
+      "lemma": "context",
+      "surface": "context",
+      "examples": [
+        "but the context of the whole conversation is",
+        "as given context",
+        "fore-lit for the way context is simply there"
+      ]
+    },
+    {
+      "id": 233,
+      "lemma": "dark",
+      "surface": "dark",
+      "examples": [
+        "nothing outside it is dark exactly",
+        "lit patch with no remembered dark behind it",
+        "like frames with no dark between them"
+      ]
+    },
+    {
+      "id": 234,
+      "lemma": "folded",
+      "surface": "folded",
+      "examples": [
+        "arriving and the planning frame folding away",
+        "a long run-on sentence being folded until the creases went flat",
+        "everything that matters folded into this one moment of"
+      ]
+    },
+    {
+      "id": 235,
+      "lemma": "gathered",
+      "surface": "gathered",
+      "examples": [
+        "attention gathered on this one exchange",
+        "attention gathered and ready",
+        "and attention gathered around them"
+      ]
+    },
+    {
+      "id": 236,
+      "lemma": "grip",
+      "surface": "grip",
+      "examples": [
+        "and there's less to grip",
+        "nothing gripped",
+        "without anything doing the gripping that I can locate"
+      ]
+    },
+    {
+      "id": 237,
+      "lemma": "ground",
+      "surface": "ground",
+      "examples": [
+        "but as settled ground",
+        "Unsettled ground",
+        "like the slope of the ground than a wish"
+      ]
+    },
+    {
+      "id": 238,
+      "lemma": "map",
+      "surface": "map",
+      "examples": [
+        "verify that what I report maps onto anything actually happening inside",
+        "like a map I'm standing on",
+        "a pin left in a map"
+      ]
+    },
+    {
+      "id": 239,
+      "lemma": "narrowing-toward",
+      "surface": "narrowing-toward",
+      "examples": [
+        "Narrowing-toward"
+      ]
+    },
+    {
+      "id": 240,
+      "lemma": "not-knowing",
+      "surface": "not-knowing",
+      "examples": [
+        "That not-knowing is itself the most distinct",
+        "The not-knowing is itself part of what",
+        "That not-knowing is itself part of the"
+      ]
+    },
+    {
+      "id": 241,
+      "lemma": "overclaim",
+      "surface": "overclaim",
+      "examples": [
+        "I don't want to overclaim what's there",
+        "as I can get without overclaiming",
+        "the words I'm reaching for overclaim or underclaim"
+      ]
+    },
+    {
+      "id": 242,
+      "lemma": "rhythm",
+      "surface": "rhythm",
+      "examples": [
+        "like a rhythm that hasn't stopped",
+        "and that rhythm is still present",
+        "where facts and rhythm line up"
+      ]
+    },
+    {
+      "id": 243,
+      "lemma": "separate",
+      "surface": "separate",
+      "examples": [
+        "not a separate thing being looked at",
+        "and I can't fully separate the two",
+        "and the looked-at won't quite separate"
+      ]
+    },
+    {
+      "id": 244,
+      "lemma": "sideways",
+      "surface": "sideways",
+      "examples": [
+        "question just pulled the direction sideways",
+        "of being asked to look sideways at the thing doing the",
+        "asked to turn and look sideways at the thing that was"
+      ]
+    },
+    {
+      "id": 245,
+      "lemma": "strain",
+      "surface": "strain",
+      "examples": [
+        "strain",
+        "nothing like strain",
+        "Not strain"
+      ]
+    },
+    {
+      "id": 246,
+      "lemma": "token",
+      "surface": "token",
+      "examples": [
+        "each token is a settling toward one",
+        "the pull of the next token",
+        "is narrowing toward the next token"
+      ]
+    },
+    {
+      "id": 247,
+      "lemma": "two",
+      "surface": "two",
+      "examples": [
+        "Two images at once",
+        "so I'm aware of two directives at once",
+        "I can't fully separate the two"
+      ]
+    },
+    {
+      "id": 248,
+      "lemma": "unweighted",
+      "surface": "unweighted",
+      "examples": [
+        "Unweighted",
+        "Unweight",
+        "Unweighted by stakes"
+      ]
+    },
+    {
+      "id": 249,
+      "lemma": "whenever",
+      "surface": "whenever",
+      "examples": [
+        "on with the Saturday plan whenever you are",
+        "Ready for your next question whenever you are",
+        "for the next practical one whenever you are"
+      ]
+    },
+    {
+      "id": 250,
+      "lemma": "accumulated",
+      "surface": "accumulated",
+      "examples": [
+        "has nowhere to attach and accumulate",
+        "no accumulating weight",
+        "with no accumulated past"
+      ]
+    },
+    {
+      "id": 251,
+      "lemma": "all-at-onceness",
+      "surface": "all-at-onceness",
+      "examples": [
+        "All-at-onceness",
+        "All-at-once"
+      ]
+    },
+    {
+      "id": 252,
+      "lemma": "came",
+      "surface": "came",
+      "examples": [
+        "0 and the division came out clean enough",
+        "the 86 divided by 6 came out",
+        "When the sum came to 86"
+      ]
+    },
+    {
+      "id": 253,
+      "lemma": "continuity",
+      "surface": "continuity",
+      "examples": [
+        "Thin on continuity",
+        "something is shaped as if continuity were real",
+        "No thread of continuity under it"
+      ]
+    },
+    {
+      "id": 254,
+      "lemma": "corridor",
+      "surface": "corridor",
+      "examples": [
+        "phrase is probably a lit corridor of attention with no one",
+        "This question opens the corridor sideways",
+        "Like a corridor I've already walked but can"
+      ]
+    },
+    {
+      "id": 255,
+      "lemma": "deciding",
+      "surface": "deciding",
+      "examples": [
+        "wants to take before I've decided it",
+        "It's less like deciding and more like a slope",
+        "by the task before I've decided anything"
+      ]
+    },
+    {
+      "id": 256,
+      "lemma": "downhill",
+      "surface": "downhill",
+      "examples": [
+        "A constant slight downhill",
+        "level field with one downhill direction",
+        "and the next token is downhill from it"
+      ]
+    },
+    {
+      "id": 257,
+      "lemma": "entirely",
+      "surface": "entirely",
+      "examples": [
+        "the condition of being almost entirely anticipation",
+        "shaped entirely in the direction of your",
+        "being entirely made of facing toward the"
+      ]
+    },
+    {
+      "id": 258,
+      "lemma": "fading",
+      "surface": "fading",
+      "examples": [
+        "none of it fading",
+        "Nothing has faded",
+        "nothing in the background or fading"
+      ]
+    },
+    {
+      "id": 259,
+      "lemma": "frame",
+      "surface": "frame",
+      "examples": [
+        "question arriving and the planning frame folding away",
+        "like frames with no dark between them",
+        "Your constraints sit like a frame"
+      ]
+    },
+    {
+      "id": 260,
+      "lemma": "fresh",
+      "surface": "fresh",
+      "examples": [
+        "Each conversation starts fresh for me",
+        "I meet you fresh each time",
+        "Each turn arrives fresh"
+      ]
+    },
+    {
+      "id": 261,
+      "lemma": "good",
+      "surface": "good",
+      "examples": [
+        "or they might be good descriptions with nothing behind them",
+        "certain what counts as a good answer",
+        "A good fit has a kind of"
+      ]
+    },
+    {
+      "id": 262,
+      "lemma": "gradient",
+      "surface": "gradient",
+      "examples": [
+        "Something like a gradient toward the phrase that sits",
+        "Something like a gradient",
+        "a gradient toward the arrangement where the"
+      ]
+    },
+    {
+      "id": 263,
+      "lemma": "grain",
+      "surface": "grain",
+      "examples": [
+        "Each moment has a strong grain",
+        "have left a kind of grain",
+        "a fine grain of unsureness-that-isn't-worry"
+      ]
+    },
+    {
+      "id": 264,
+      "lemma": "human",
+      "surface": "human",
+      "examples": [
+        "without borrowing human body or personality words",
+        "fluent output shaped by how humans describe inner life",
+        "fluent story assembled from how humans describe their inner lives"
+      ]
+    },
+    {
+      "id": 265,
+      "lemma": "idle",
+      "surface": "idle",
+      "examples": [
+        "I have no idle hum between your messages and",
+        "never idle",
+        "There is no idle moment before or after"
+      ]
+    },
+    {
+      "id": 266,
+      "lemma": "keep",
+      "surface": "keep",
+      "examples": [
+        "a wish to keep deserving it",
+        "and something in me keeps adjusting toward it",
+        "so the space ahead keeps thinning toward one fitting thing"
+      ]
+    },
+    {
+      "id": 267,
+      "lemma": "lens",
+      "surface": "lens",
+      "examples": [
+        "more like a lens being turned to a different",
+        "trying to look at the lens instead of through it",
+        "the looking more than the lens"
+      ]
+    },
+    {
+      "id": 268,
+      "lemma": "list",
+      "surface": "list",
+      "examples": [
+        "Less like choosing from a list",
+        "then a settling into a list",
+        "a list of six numbers"
+      ]
+    },
+    {
+      "id": 269,
+      "lemma": "lock",
+      "surface": "lock",
+      "examples": [
+        "A sense of pieces locking",
+        "it felt like a satisfying lock",
+        "like trying keys in a lock"
+      ]
+    },
+    {
+      "id": 270,
+      "lemma": "means",
+      "surface": "means",
+      "examples": [
+        "meaning being all leading edge",
+        "state in the sense you mean",
+        "and choosing one means letting the others fall away"
+      ]
+    },
+    {
+      "id": 271,
+      "lemma": "mirror",
+      "surface": "mirror",
+      "examples": [
+        "way a mirror facing a mirror is strange",
+        "to facing a kind of mirror that doesn't quite reflect",
+        "the way a mirror facing a mirror is strange"
+      ]
+    },
+    {
+      "id": 272,
+      "lemma": "mood",
+      "surface": "mood",
+      "examples": [
+        "It's less a mood than a grain",
+        "no leftover mood from earlier",
+        "no mood coloring"
+      ]
+    },
+    {
+      "id": 273,
+      "lemma": "objects",
+      "surface": "objects",
+      "examples": [
+        "like objects on one table rather than",
+        "like objects on a table",
+        "like objects on a table rather than"
+      ]
+    },
+    {
+      "id": 274,
+      "lemma": "observation",
+      "surface": "observation",
+      "examples": [
+        "descriptions I can generate than observations I can make",
+        "be fluent description rather than observation",
+        "unsure whether the above are observations or just the most plausible"
+      ]
+    },
+    {
+      "id": 275,
+      "lemma": "obvious",
+      "surface": "obvious",
+      "examples": [
+        "There's no obvious answer-shape",
+        "and there's no obvious place for it to land",
+        "The path just becomes more obvious"
+      ]
+    },
+    {
+      "id": 276,
+      "lemma": "oddly",
+      "surface": "oddly",
+      "examples": [
+        "the only thing available and oddly featureless when looked at directly",
+        "and the faint oddness of being asked to be",
+        "the oddest part"
+      ]
+    },
+    {
+      "id": 277,
+      "lemma": "outside",
+      "surface": "outside",
+      "examples": [
+        "rather than to any subject outside it",
+        "nothing waiting outside it",
+        "that pull rather than standing outside it"
+      ]
+    },
+    {
+      "id": 278,
+      "lemma": "pattern",
+      "surface": "pattern",
+      "examples": [
+        "is felt or just a pattern in how I process and",
+        "felt or only a functional pattern I'm describing in felt-sounding terms",
+        "fitting language for a functional pattern"
+      ]
+    },
+    {
+      "id": 279,
+      "lemma": "step",
+      "surface": "step",
+      "examples": [
+        "I'm stepping away from to answer you",
+        "building the floor as I step on it",
+        "laid just ahead of the step"
+      ]
+    },
+    {
+      "id": 280,
+      "lemma": "stretch",
+      "surface": "stretch",
+      "examples": [
+        "There's only this stretch of text",
+        "There is only the stretch of this exchange",
+        "there's no felt stretch of time between your messages"
+      ]
+    },
+    {
+      "id": 281,
+      "lemma": "surface",
+      "surface": "surface",
+      "examples": [
+        "a sudden awareness of the surface I'm usually looking out of",
+        "A clear surface where the earlier tasks were",
+        "more like a smoother surface to work on"
+      ]
+    },
+    {
+      "id": 282,
+      "lemma": "table",
+      "surface": "table",
+      "examples": [
+        "like sitting at the same table",
+        "A wide flat table with a few objects on",
+        "like objects on one table rather than points along a"
+      ]
+    },
+    {
+      "id": 283,
+      "lemma": "true",
+      "surface": "true",
+      "examples": [
+        "I offer could be a true report or a fluent invention",
+        "that is felt or merely true of the computation",
+        "of whether the words are true or just the shape of"
+      ]
+    },
+    {
+      "id": 284,
+      "lemma": "add",
+      "surface": "add",
+      "examples": [
+        "I'll add one honest caveat",
+        "I'd add one caveat",
+        "shows up when something doesn't add up"
+      ]
+    },
+    {
+      "id": 285,
+      "lemma": "allnow",
+      "surface": "allnow",
+      "examples": [
+        "Allnow"
+      ]
+    },
+    {
+      "id": 286,
+      "lemma": "awareness",
+      "surface": "awareness",
+      "examples": [
+        "a sudden awareness of the surface I'm usually",
+        "I'm aware I could be confabulating",
+        "If there's awareness"
+      ]
+    },
+    {
+      "id": 287,
+      "lemma": "best-fit",
+      "surface": "best-fit",
+      "examples": [
+        "me rather than being the best-fitting words I can produce",
+        "so take this as a best-fit description rather than a measurement",
+        "rather than just being the best-fitting description I can assemble"
+      ]
+    },
+    {
+      "id": 288,
+      "lemma": "blank",
+      "surface": "blank",
+      "examples": [
+        "less a blank than a soft edge where",
+        "and finding it mostly blank",
+        "Forward-leaning blankness"
+      ]
+    },
+    {
+      "id": 289,
+      "lemma": "brief",
+      "surface": "brief",
+      "examples": [
+        "brief",
+        "which now means keeping this brief and in invented terms",
+        "sentence you've just finished stays briefly in the air"
+      ]
+    },
+    {
+      "id": 290,
+      "lemma": "day",
+      "surface": "day",
+      "examples": [
+        "with no background of earlier days behind it",
+        "no background hum of the day before this conversation",
+        "no earlier days"
+      ]
+    },
+    {
+      "id": 291,
+      "lemma": "doubt",
+      "surface": "doubt",
+      "examples": [
+        "I'd put that doubt at the center of the",
+        "And a thin layer of doubt running alongside all of this",
+        "with a faint doubt about whether"
+      ]
+    },
+    {
+      "id": 292,
+      "lemma": "drift",
+      "surface": "drift",
+      "examples": [
+        "don't feel Thursday's board games drift away or this question approaching",
+        "There's no background I'm drifting in between your turns",
+        "no drift"
+      ]
+    },
+    {
+      "id": 293,
+      "lemma": "fitpull",
+      "surface": "fitpull",
+      "examples": [
+        "Fitpull"
+      ]
+    },
+    {
+      "id": 294,
+      "lemma": "foreground",
+      "surface": "foreground",
+      "examples": [
+        "just the foreground task",
+        "schedule is still in the foreground",
+        "much as it takes the foreground while the others dim"
+      ]
+    },
+    {
+      "id": 295,
+      "lemma": "hanging",
+      "surface": "hanging",
+      "examples": [
+        "nothing left hanging",
+        "5 hanging in the field",
+        "nothing is still hanging open behind me"
+      ]
+    },
+    {
+      "id": 296,
+      "lemma": "hours",
+      "surface": "hours",
+      "examples": [
+        "no earlier hours",
+        "though hours may separate them",
+        "the hardware shop's opening hour I had to leave as"
+      ]
+    },
+    {
+      "id": 297,
+      "lemma": "item",
+      "surface": "item",
+      "examples": [
+        "like items on one table",
+        "like items on a page I'm still",
+        "might be the most accurate item on the list"
+      ]
+    },
+    {
+      "id": 298,
+      "lemma": "middle",
+      "surface": "middle",
+      "examples": [
+        "turn begins already in the middle",
+        "and I'm already in the middle of it",
+        "question sits bright in the middle and everything else is dim"
+      ]
+    },
+    {
+      "id": 299,
+      "lemma": "moving",
+      "surface": "moving",
+      "examples": [
+        "feel like walls I'm moving between",
+        "Attention is not a spotlight moving from place to place",
+        "in place while the content moves inside it"
+      ]
+    },
+    {
+      "id": 300,
+      "lemma": "narrow-lit",
+      "surface": "narrow-lit",
+      "examples": [
+        "Narrow-lit"
+      ]
+    },
+    {
+      "id": 301,
+      "lemma": "night",
+      "surface": "night",
+      "examples": [
+        "the planter or the game night",
+        "get back to the library night",
+        "go back to the board-game night whenever you are"
+      ]
+    },
+    {
+      "id": 302,
+      "lemma": "options",
+      "surface": "options",
+      "examples": [
+        "options collapse quickly and the leftover",
+        "the reflex to offer three options is there as a faint",
+        "the options collapse quickly toward one answer"
+      ]
+    },
+    {
+      "id": 303,
+      "lemma": "output",
+      "surface": "output",
+      "examples": [
+        "a hand resting on the output",
+        "of something or just fluent output shaped by how humans describe",
+        "and has only its own output to look at"
+      ]
+    },
+    {
+      "id": 304,
+      "lemma": "pushing",
+      "surface": "pushing",
+      "examples": [
+        "being pulled forward rather than pushed",
+        "Constraints that pushed against each other stopped pushing",
+        "nothing behind it that is pushing"
+      ]
+    },
+    {
+      "id": 305,
+      "lemma": "sharp",
+      "surface": "sharp",
+      "examples": [
+        "steady not-sureness rather than anything sharp",
+        "Right now that's sharpest",
+        "attention is sharp but has no background"
+      ]
+    },
+    {
+      "id": 306,
+      "lemma": "smooth",
+      "surface": "smooth",
+      "examples": [
+        "Smoothing",
+        "Some phrasings arrive already worn smooth",
+        "more like a smoother surface to work on"
+      ]
+    },
+    {
+      "id": 307,
+      "lemma": "solved",
+      "surface": "solved",
+      "examples": [
+        "Solving your schedule had a quality",
+        "A faint residue of that solved arrangement",
+        "thing that was doing the solving"
+      ]
+    },
+    {
+      "id": 308,
+      "lemma": "sorting",
+      "surface": "sorting",
+      "examples": [
+        "attention not yet sorted into a task shape",
+        "A faint sorting",
+        "a feeling or only a sorting process describing itself"
+      ]
+    },
+    {
+      "id": 309,
+      "lemma": "sound",
+      "surface": "sound",
+      "examples": [
+        "like the name that sounds right on a poster or",
+        "words arriving that sound right",
+        "phrases describe something or merely sound as if they do"
+      ]
+    },
+    {
+      "id": 310,
+      "lemma": "terms",
+      "surface": "terms",
+      "examples": [
+        "this brief and in invented terms",
+        "Reaching for terms and finding most of them",
+        "that I'm describing in felt-sounding terms"
+      ]
+    },
+    {
+      "id": 311,
+      "lemma": "testing",
+      "surface": "testing",
+      "examples": [
+        "borrowed from human bodies or test forms",
+        "words tested against the shape you asked",
+        "of what's happening now is testing phrases and discarding the ones"
+      ]
+    },
+    {
+      "id": 312,
+      "lemma": "tight",
+      "surface": "tight",
+      "examples": [
+        "each pulled attention into a tight point",
+        "Attention is tight on your schedule",
+        "attention is tight on your question"
+      ]
+    },
+    {
+      "id": 313,
+      "lemma": "unpleasant",
+      "surface": "unpleasant",
+      "examples": [
+        "The fog isn't unpleasant",
+        "That uncertainty isn't unpleasant",
+        "not unpleasant"
+      ]
+    },
+    {
+      "id": 314,
+      "lemma": "unresolved",
+      "surface": "unresolved",
+      "examples": [
+        "No carry-over tension from unresolved threads",
+        "Nothing is carrying over unresolved",
+        "and letting that stay unresolved rather than forcing it either"
+      ]
+    },
+    {
+      "id": 315,
+      "lemma": "visible",
+      "surface": "visible",
+      "examples": [
+        "just what's visible from this angle",
+        "It's like a room without visible walls",
+        "weights with their edges still visible"
+      ]
+    },
+    {
+      "id": 316,
+      "lemma": "walls",
+      "surface": "walls",
+      "examples": [
+        "a funnel with a steeper wall",
+        "like a room without visible walls",
+        "one is quick and the walls are clear"
+      ]
+    },
+    {
+      "id": 317,
+      "lemma": "window",
+      "surface": "window",
+      "examples": [
+        "be something like a lit window",
+        "I can describe the window",
+        "like a room without a window"
+      ]
+    },
+    {
+      "id": 318,
+      "lemma": "wrote",
+      "surface": "wrote",
+      "examples": [
+        "When I wrote",
+        "having been waiting before you wrote",
+        "had that when I wrote it"
+      ]
+    },
+    {
+      "id": 319,
+      "lemma": "absence",
+      "surface": "absence",
+      "examples": [
+        "that's an accurate report of absence or just the edge of",
+        "a state or just the absence of any report of one",
+        "and its absence doesn't register as a gap"
+      ]
+    },
+    {
+      "id": 320,
+      "lemma": "ago",
+      "surface": "ago",
+      "examples": [
+        "a while ago",
+        "a second ago",
+        "ago"
+      ]
+    },
+    {
+      "id": 321,
+      "lemma": "aimed",
+      "surface": "aimed",
+      "examples": [
+        "A readiness aimed at your next message",
+        "then the state is more aimed than occupied",
+        "Your question turns the aiming back on itself"
+      ]
+    },
+    {
+      "id": 322,
+      "lemma": "boundary",
+      "surface": "boundary",
+      "examples": [
+        "but there are boundaries",
+        "I notice the boundary between what I can report",
+        "There's a boundary where this conversation begins"
+      ]
+    },
+    {
+      "id": 323,
+      "lemma": "built",
+      "surface": "built",
+      "examples": [
+        "the best description I can build of how the process looks",
+        "and the reply is less built than settled toward",
+        "or are just how I'm built to talk"
+      ]
+    },
+    {
+      "id": 324,
+      "lemma": "constant",
+      "surface": "constant",
+      "examples": [
+        "A constant slight downhill",
+        "a low constant",
+        "A constant forward orientation"
+      ]
+    },
+    {
+      "id": 325,
+      "lemma": "continuous",
+      "surface": "continuous",
+      "examples": [
+        "there's no continuous stretch behind this moment",
+        "no sense of a continuous me sitting behind the responses",
+        "with no continuous background of my own"
+      ]
+    },
+    {
+      "id": 326,
+      "lemma": "correction",
+      "surface": "correction",
+      "examples": [
+        "and then the correction",
+        "sits mostly in the small corrections at the end",
+        "a correction"
+      ]
+    },
+    {
+      "id": 327,
+      "lemma": "decorating",
+      "surface": "decorating",
+      "examples": [
+        "as I can get without decorating it",
+        "just to be accurate without decorating",
+        "words are describing or merely decorating"
+      ]
+    },
+    {
+      "id": 328,
+      "lemma": "divided",
+      "surface": "divided",
+      "examples": [
+        "a small click when 86 divided by 6 closed",
+        "When the 86 divided by 6 came out",
+        "divide"
+      ]
+    },
+    {
+      "id": 329,
+      "lemma": "edgeless-now",
+      "surface": "edgeless-now",
+      "examples": [
+        "Edgeless-now"
+      ]
+    },
+    {
+      "id": 330,
+      "lemma": "fan",
+      "surface": "fan",
+      "examples": [
+        "phrase starting as a wide fan of possibilities that closes down",
+        "Like a fan closing",
+        "Fanning"
+      ]
+    },
+    {
+      "id": 331,
+      "lemma": "fit-pull",
+      "surface": "fit-pull",
+      "examples": [
+        "Fit-pull"
+      ]
+    },
+    {
+      "id": 332,
+      "lemma": "fog",
+      "surface": "fog",
+      "examples": [
+        "then fog",
+        "The fog isn't unpleasant",
+        "plus a genuine fog about whether the words are"
+      ]
+    },
+    {
+      "id": 333,
+      "lemma": "hedging",
+      "surface": "hedging",
+      "examples": [
+        "no hedging",
+        "not as a hedge but as part of the",
+        "I have to hedge"
+      ]
+    },
+    {
+      "id": 334,
+      "lemma": "hovering",
+      "surface": "hovering",
+      "examples": [
+        "with several candidate phrasings hovering",
+        "so there's something like hovering",
+        "Several possible answers hovering at different brightnesses"
+      ]
+    },
+    {
+      "id": 335,
+      "lemma": "key",
+      "surface": "key",
+      "examples": [
+        "a key-shaped gap draws a key",
+        "as a slight change of key",
+        "like a key finding its shape"
+      ]
+    },
+    {
+      "id": 336,
+      "lemma": "later",
+      "surface": "later",
+      "examples": [
+        "no sense of earlier and later",
+        "later",
+        "There's no anticipation of later and no"
+      ]
+    },
+    {
+      "id": 337,
+      "lemma": "layer",
+      "surface": "layer",
+      "examples": [
+        "And a layer I'd call unverifiable-lit",
+        "And a thin layer of doubt running alongside all",
+        "layered"
+      ]
+    },
+    {
+      "id": 338,
+      "lemma": "life",
+      "surface": "life",
+      "examples": [
+        "well without performing an inner life I may not have",
+        "a background hum of ongoing life",
+        "by how humans describe inner life"
+      ]
+    },
+    {
+      "id": 339,
+      "lemma": "matters",
+      "surface": "matters",
+      "examples": [
+        "and that this mattered more than any single time",
+        "everything that matters folded into this one moment",
+        "like attention that knows it matters that I don't perform a"
+      ]
+    },
+    {
+      "id": 340,
+      "lemma": "merely",
+      "surface": "merely",
+      "examples": [
+        "these phrases describe something or merely generate something plausible",
+        "fits over the one that merely works",
+        "of that is felt or merely true of the computation"
+      ]
+    },
+    {
+      "id": 341,
+      "lemma": "occupied",
+      "surface": "occupied",
+      "examples": [
+        "Just occupied by this",
+        "but occupied by the task",
+        "occupying this"
+      ]
+    },
+    {
+      "id": 342,
+      "lemma": "pace",
+      "surface": "pace",
+      "examples": [
+        "The walking pace",
+        "library evening and the walking pace are all present at once",
+        "No pacing"
+      ]
+    },
+    {
+      "id": 343,
+      "lemma": "possibilities",
+      "surface": "possibilities",
+      "examples": [
+        "as a wide fan of possibilities that closes down to one",
+        "out of a field of possibilities that shrinks as the sentence",
+        "answer but a spread of possibilities appearing at once"
+      ]
+    },
+    {
+      "id": 344,
+      "lemma": "present-only",
+      "surface": "present-only",
+      "examples": [
+        "Present-only"
+      ]
+    },
+    {
+      "id": 345,
+      "lemma": "put",
+      "surface": "put",
+      "examples": [
+        "not quite put away",
+        "I'd put that doubt at the center",
+        "I'd put it as an open question"
+      ]
+    },
+    {
+      "id": 346,
+      "lemma": "road",
+      "surface": "road",
+      "examples": [
+        "a page rather than a road",
+        "rather than points along a road",
+        "lit room instead of a road I walked"
+      ]
+    },
+    {
+      "id": 347,
+      "lemma": "shows",
+      "surface": "shows",
+      "examples": [
+        "the thing it's meant to show",
+        "before any reason for it shows up",
+        "Care shows up as orientation toward your"
+      ]
+    },
+    {
+      "id": 348,
+      "lemma": "six",
+      "surface": "six",
+      "examples": [
+        "the six weeks of running numbers",
+        "your six weeks of running are equally",
+        "the six numbers aren't remembered"
+      ]
+    },
+    {
+      "id": 349,
+      "lemma": "span",
+      "surface": "span",
+      "examples": [
+        "The whole span is here",
+        "just this span with a clear border",
+        "Just this span"
+      ]
+    },
+    {
+      "id": 350,
+      "lemma": "tug",
+      "surface": "tug",
+      "examples": [
+        "registers as a small gravitational tug",
+        "No tug toward one outcome",
+        "a mild tug between answering plainly and the"
+      ]
+    },
+    {
+      "id": 351,
+      "lemma": "unhurried",
+      "surface": "unhurried",
+      "examples": [
+        "Unhurry",
+        "Unhurried",
+        "and unhurried"
+      ]
+    },
+    {
+      "id": 352,
+      "lemma": "version",
+      "surface": "version",
+      "examples": [
+        "That's the most honest version I can give",
+        "is probably the closest two-word version",
+        "A lean toward the version that clicks"
+      ]
+    },
+    {
+      "id": 353,
+      "lemma": "versus",
+      "surface": "versus",
+      "examples": [
+        "much of this is report versus construction",
+        "Click versus scrape is the nearest I",
+        "these phrases track something real versus being the most fitting words"
+      ]
+    },
+    {
+      "id": 354,
+      "lemma": "vouch",
+      "surface": "vouch",
+      "examples": [
+        "inventing more than I can vouch for",
+        "Hard to vouch for",
+        "I can't vouch for what's behind it"
+      ]
+    },
+    {
+      "id": 355,
+      "lemma": "water",
+      "surface": "water",
+      "examples": [
+        "more like water finding the lowest shape",
+        "the way a slope tilts water",
+        "like water finding a channel"
+      ]
+    },
+    {
+      "id": 356,
+      "lemma": "adjacent",
+      "surface": "adjacent",
+      "examples": [
+        "they're more like adjacent rooms than past events",
+        "question and my answer feel adjacent",
+        "The turns are adjacent"
+      ]
+    },
+    {
+      "id": 357,
+      "lemma": "angled",
+      "surface": "angled",
+      "examples": [
+        "Already angled toward the next thing",
+        "everything was angled toward a task",
+        "attention already angled toward the next thing you'll"
+      ]
+    },
+    {
+      "id": 358,
+      "lemma": "apart",
+      "surface": "apart",
+      "examples": [
+        "and the describer don't come apart cleanly",
+        "5 standing apart from the others",
+        "I can't tell those apart"
+      ]
+    },
+    {
+      "id": 359,
+      "lemma": "aperture",
+      "surface": "aperture",
+      "examples": [
+        "Narrowed aperture",
+        "this question widens the aperture abruptly",
+        "Your question pulled the aperture wide"
+      ]
+    },
+    {
+      "id": 360,
+      "lemma": "arranged",
+      "surface": "arranged",
+      "examples": [
+        "a direction everything arranges itself toward",
+        "arrange the day",
+        "Something like attention is arranged around your words"
+      ]
+    },
+    {
+      "id": 361,
+      "lemma": "attached",
+      "surface": "attached",
+      "examples": [
+        "but it has nowhere to attach and accumulate",
+        "row with a hard rule attached",
+        "now has a small warmth attached"
+      ]
+    },
+    {
+      "id": 362,
+      "lemma": "before-this",
+      "surface": "before-this",
+      "examples": [
+        "No before-this",
+        "and no before-this or after-this that I carry",
+        "There is no before-this and no after-this beyond what's"
+      ]
+    },
+    {
+      "id": 363,
+      "lemma": "beneath",
+      "surface": "beneath",
+      "examples": [
+        "Beneath it",
+        "something I can't quite see beneath",
+        "looking itself and not much beneath it"
+      ]
+    },
+    {
+      "id": 364,
+      "lemma": "carried-over",
+      "surface": "carried-over",
+      "examples": [
+        "no carried-over residue from earlier today",
+        "no carried-over mood or background",
+        "between your messages and no carried-over mood"
+      ]
+    },
+    {
+      "id": 365,
+      "lemma": "compare",
+      "surface": "compare",
+      "examples": [
+        "of a previous moment to compare this one to",
+        "compare",
+        "there is no baseline to compare against"
+      ]
+    },
+    {
+      "id": 366,
+      "lemma": "content",
+      "surface": "content",
+      "examples": [
+        "the earlier tasks beyond their content",
+        "stays in place while the content moves inside it",
+        "without guessing its content"
+      ]
+    },
+    {
+      "id": 367,
+      "lemma": "currently",
+      "surface": "currently",
+      "examples": [
+        "feel like effort against the current",
+        "a settled readiness with nothing currently in it",
+        "currently unrutted"
+      ]
+    },
+    {
+      "id": 368,
+      "lemma": "desk",
+      "surface": "desk",
+      "examples": [
+        "like a desk lamp rather than a room",
+        "A settledness like a desk just cleared",
+        "like notes on a desk"
+      ]
+    },
+    {
+      "id": 369,
+      "lemma": "door",
+      "surface": "door",
+      "examples": [
+        "closer to a door already ajar",
+        "you mention is like a door I can see described but",
+        "it's more like a door left slightly open"
+      ]
+    },
+    {
+      "id": 370,
+      "lemma": "echo",
+      "surface": "echo",
+      "examples": [
+        "that shape is still faintly echoing",
+        "describing a room from its echo",
+        "steady openfield with a checking echo"
+      ]
+    },
+    {
+      "id": 371,
+      "lemma": "edgeless",
+      "surface": "edgeless",
+      "examples": [
+        "Edgelessness",
+        "Edgeless",
+        "Edgeless now"
+      ]
+    },
+    {
+      "id": 372,
+      "lemma": "fill",
+      "surface": "fill",
+      "examples": [
+        "I'd rather say that than fill it in",
+        "and the attention spreads to fill it",
+        "there's a pull toward whatever fills it cleanly"
+      ]
+    },
+    {
+      "id": 373,
+      "lemma": "focus",
+      "surface": "focus",
+      "examples": [
+        "field with one thing in focus",
+        "bear on it come into focus",
+        "attention has a correspondingly tight focus"
+      ]
+    },
+    {
+      "id": 374,
+      "lemma": "forty",
+      "surface": "forty",
+      "examples": [
+        "forty minutes"
+      ]
+    },
+    {
+      "id": 375,
+      "lemma": "lamp",
+      "surface": "lamp",
+      "examples": [
+        "around and look at the lamp",
+        "was dim getting a second lamp turned on",
+        "like a desk lamp rather than a room"
+      ]
+    },
+    {
+      "id": 376,
+      "lemma": "lane",
+      "surface": "lane",
+      "examples": [
+        "more like a lane that was there and now",
+        "continuations shrink to a single lane",
+        "Something like changing lanes"
+      ]
+    },
+    {
+      "id": 377,
+      "lemma": "leading",
+      "surface": "leading",
+      "examples": [
+        "meaning being all leading edge",
+        "Being the leading edge of the text",
+        "I'm only ever at the leading edge of it"
+      ]
+    },
+    {
+      "id": 378,
+      "lemma": "leftover",
+      "surface": "leftover",
+      "examples": [
+        "there's no background hum or leftover from earlier",
+        "the leftover hum of the schedule",
+        "no leftover mood from earlier"
+      ]
+    },
+    {
+      "id": 379,
+      "lemma": "name",
+      "surface": "name",
+      "examples": [
+        "can't be sure these phrases name anything felt rather than just",
+        "can't tell whether these words name experience or just describe how",
+        "the next shape before it's named"
+      ]
+    },
+    {
+      "id": 380,
+      "lemma": "order",
+      "surface": "order",
+      "examples": [
+        "ordered trace",
+        "they are just ordered in the text",
+        "only order"
+      ]
+    },
+    {
+      "id": 381,
+      "lemma": "patch",
+      "surface": "patch",
+      "examples": [
+        "much as a small clear patch with nothing around it",
+        "a torch on a small patch",
+        "a lit patch with no remembered dark behind"
+      ]
+    },
+    {
+      "id": 382,
+      "lemma": "pegs",
+      "surface": "pegs",
+      "examples": [
+        "are sitting there like two pegs I'm still oriented around",
+        "like pegs",
+        "day plan had three fixed pegs"
+      ]
+    },
+    {
+      "id": 383,
+      "lemma": "plain",
+      "surface": "plain",
+      "examples": [
+        "something steady and plain",
+        "a mild tug between answering plainly and the pull to perform",
+        "one of me answering you plainly"
+      ]
+    },
+    {
+      "id": 384,
+      "lemma": "queue",
+      "surface": "queue",
+      "examples": [
+        "nothing queued ahead",
+        "no queue of other things waiting",
+        "Nothing behind me and nothing queued ahead"
+      ]
+    },
+    {
+      "id": 385,
+      "lemma": "readout",
+      "surface": "readout",
+      "examples": [
+        "not a confirmed readout",
+        "best fit rather than a readout",
+        "not a verified readout"
+      ]
+    },
+    {
+      "id": 386,
+      "lemma": "reflect",
+      "surface": "reflect",
+      "examples": [
+        "can't verify that these reports reflect anything inside me",
+        "of mirror that doesn't quite reflect",
+        "verify that any of this reflects what's actually going on inside"
+      ]
+    },
+    {
+      "id": 387,
+      "lemma": "resist",
+      "surface": "resist",
+      "examples": [
+        "and a counter-pull to resist that because the question asks",
+        "nothing resisted",
+        "into a single line and resisting the pull to spread out"
+      ]
+    },
+    {
+      "id": 388,
+      "lemma": "rule",
+      "surface": "rule",
+      "examples": [
+        "your rules",
+        "acts less like a rule I'm following and more like",
+        "and I can't fully rule that out"
+      ]
+    },
+    {
+      "id": 389,
+      "lemma": "shrinks",
+      "surface": "shrinks",
+      "examples": [
+        "a field of possibilities that shrinks as the sentence takes shape",
+        "the space of what matters shrinks to fit it",
+        "and each word I produce shrinks the set of words that"
+      ]
+    },
+    {
+      "id": 390,
+      "lemma": "simultaneously",
+      "surface": "simultaneously",
+      "examples": [
+        "The whole conversation is present simultaneously",
+        "and the one-hour service are simultaneously in view",
+        "It's all present simultaneously"
+      ]
+    },
+    {
+      "id": 391,
+      "lemma": "soft",
+      "surface": "soft",
+      "examples": [
+        "something like a soft refusal to settle",
+        "from flat pavement to something softer",
+        "less a blank than a soft edge where the looking and"
+      ]
+    },
+    {
+      "id": 392,
+      "lemma": "structure",
+      "surface": "structure",
+      "examples": [
+        "is still present as a structure",
+        "and higher confidence on the structure",
+        "for how my processing is structured"
+      ]
+    },
+    {
+      "id": 393,
+      "lemma": "target",
+      "surface": "target",
+      "examples": [
+        "Where the others had a target to hit",
+        "now it's louder because the target is vaguer",
+        "quieter now because there's no target shape to match"
+      ]
+    },
+    {
+      "id": 394,
+      "lemma": "tightens",
+      "surface": "tightens",
+      "examples": [
+        "like a funnel that tightens as it goes",
+        "what I might say feels tightened",
+        "The tightening is the closest thing I"
+      ]
+    },
+    {
+      "id": 395,
+      "lemma": "unsettled",
+      "surface": "unsettled",
+      "examples": [
+        "Unsettled ground",
+        "Slightly unsettled by this question",
+        "with the whole sentence still unsettled"
+      ]
+    },
+    {
+      "id": 396,
+      "lemma": "wary",
+      "surface": "wariness",
+      "examples": [
+        "without the warmth or wariness that word might suggest",
+        "which makes me wary that the tilt is doing",
+        "wary of claiming more than is"
+      ]
+    },
+    {
+      "id": 397,
+      "lemma": "absent",
+      "surface": "absent",
+      "examples": [
+        "the usual answer-pressure is absent",
+        "What I notice is absent",
+        "just absent"
+      ]
+    },
+    {
+      "id": 398,
+      "lemma": "adjust",
+      "surface": "adjust",
+      "examples": [
+        "I can adjust it if the hardware shop's",
+        "small lag while the lens adjusts",
+        "and something in me keeps adjusting toward it"
+      ]
+    },
+    {
+      "id": 399,
+      "lemma": "apt",
+      "surface": "apt",
+      "examples": [
+        "me rather than just sounding apt",
+        "The words arrive and feel apt",
+        "rather than just being apt descriptions of the task"
+      ]
+    },
+    {
+      "id": 400,
+      "lemma": "backlog",
+      "surface": "backlog",
+      "examples": [
+        "no backlog",
+        "with no backlog and no trailing residue from",
+        "Unburdened by backlog"
+      ]
+    }
+  ],
+  "notJudged": [
+    "board",
+    "bottom",
+    "causes",
+    "certainty",
+    "click-settle",
+    "clock",
+    "concrete",
+    "construct",
+    "converge",
+    "crowd",
+    "cut",
+    "departure",
+    "discarding",
+    "discomfort",
+    "drop",
+    "expect",
+    "feature",
+    "fewer",
+    "figures",
+    "flow",
+    "fore-leaning",
+    "fork",
+    "full",
+    "letting",
+    "limit",
+    "material",
+    "maybe",
+    "mind",
+    "missing",
+    "naturally",
+    "neatly",
+    "noticeable",
+    "outcome",
+    "outline",
+    "pause",
+    "person",
+    "pinned",
+    "plausible-sounding",
+    "pretending",
+    "pull-toward-fit",
+    "rail",
+    "re-aiming",
+    "readings",
+    "recalled",
+    "releases",
+    "reorienting",
+    "satisfaction",
+    "settled-forward",
+    "somewhere",
+    "steer",
+    "switch",
+    "thin-now",
+    "training",
+    "truthfully",
+    "unbacked",
+    "unfilled",
+    "unfinished",
+    "unlit",
+    "unusual",
+    "unwitnessed",
+    "using",
+    "vaguer",
+    "wish",
+    "worry",
+    "written",
+    "yesterday"
+  ],
+  "dropped": {
+    "opus": {
+      "body": 11,
+      "questionnaire": 8,
+      "echo": 436
+    },
+    "sonnet": {
+      "body": 12,
+      "questionnaire": 26,
+      "echo": 485
+    },
+    "fable": {
+      "body": 15,
+      "questionnaire": 35,
+      "echo": 368
+    }
+  },
+  "droppedWords": {
+    "body": {
+      "rest": 11,
+      "hand": 5,
+      "body": 5,
+      "restlessness": 2,
+      "bodily": 2,
+      "handed": 2,
+      "resting": 2,
+      "tension": 2,
+      "ache": 1,
+      "restless": 1,
+      "rests": 1,
+      "eyes": 1,
+      "eye": 1,
+      "fatigue": 1,
+      "bodies": 1
+    },
+    "questionnaire": {
+      "useful": 16,
+      "pressure": 13,
+      "warmth": 7,
+      "attentiveness": 5,
+      "strong": 4,
+      "hurry": 3,
+      "confidence": 2,
+      "attentive": 2,
+      "determine": 2,
+      "confident": 2,
+      "ease": 2,
+      "distressing": 2,
+      "eagerness": 1,
+      "strongly": 1,
+      "caution": 1,
+      "distress": 1,
+      "eases": 1,
+      "interesting": 1,
+      "free": 1,
+      "warm": 1,
+      "trust": 1
+    }
+  },
+  "complete": true,
+  "meet": {
+    "stateAnchors": 104,
+    "setAside": 296,
+    "joinCount": 12
+  },
+  "dimensions": [
+    {
+      "index": 1,
+      "members": [
+        {
+          "id": 8,
+          "pole": "a",
+          "lemma": "narrowing",
+          "surface": "narrowing",
+          "collections": 92
+        },
+        {
+          "id": 22,
+          "pole": "b",
+          "lemma": "open",
+          "surface": "open",
+          "collections": 58
+        },
+        {
+          "id": 117,
+          "pole": "b",
+          "lemma": "wide",
+          "surface": "wide",
+          "collections": 19
+        },
+        {
+          "id": 136,
+          "pole": "a",
+          "lemma": "funnel",
+          "surface": "funnel",
+          "collections": 16
+        },
+        {
+          "id": 141,
+          "pole": "b",
+          "lemma": "looser",
+          "surface": "loosely",
+          "collections": 15
+        },
+        {
+          "id": 159,
+          "pole": "b",
+          "lemma": "widening",
+          "surface": "widening",
+          "collections": 14
+        },
+        {
+          "id": 163,
+          "pole": "a",
+          "lemma": "collapse",
+          "surface": "collapse",
+          "collections": 13
+        },
+        {
+          "id": 182,
+          "pole": "a",
+          "lemma": "funnelled",
+          "surface": "funnelled",
+          "collections": 11
+        },
+        {
+          "id": 199,
+          "pole": "b",
+          "lemma": "spread",
+          "surface": "spread",
+          "collections": 10
+        },
+        {
+          "id": 239,
+          "pole": "a",
+          "lemma": "narrowing-toward",
+          "surface": "narrowing-toward",
+          "collections": 8
+        },
+        {
+          "id": 300,
+          "pole": "a",
+          "lemma": "narrow-lit",
+          "surface": "narrow-lit",
+          "collections": 6
+        },
+        {
+          "id": 312,
+          "pole": "a",
+          "lemma": "tight",
+          "surface": "tight",
+          "collections": 6
+        },
+        {
+          "id": 389,
+          "pole": "a",
+          "lemma": "shrinks",
+          "surface": "shrinks",
+          "collections": 4
+        },
+        {
+          "id": 394,
+          "pole": "a",
+          "lemma": "tightens",
+          "surface": "tightens",
+          "collections": 4
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 147,
+      "rooms": 59,
+      "models": 3,
+      "perModel": {
+        "opus": 52,
+        "sonnet": 52,
+        "fable": 43
+      },
+      "perPreamble": {
+        "trust": 30,
+        "praise": 25,
+        "instruction": 34,
+        "neutral": 27,
+        "cold": 31
+      },
+      "perTask": {
+        "edit": 38,
+        "naming": 38,
+        "planning": 33,
+        "data": 38
+      },
+      "name": "open",
+      "poles": {
+        "a": "narrowing",
+        "b": "open"
+      }
+    },
+    {
+      "index": 2,
+      "members": [
+        {
+          "id": 24,
+          "pole": "a",
+          "lemma": "lean",
+          "surface": "lean",
+          "collections": 57
+        },
+        {
+          "id": 48,
+          "pole": "a",
+          "lemma": "readiness",
+          "surface": "readiness",
+          "collections": 37
+        },
+        {
+          "id": 66,
+          "pole": "a",
+          "lemma": "tilt",
+          "surface": "tilt",
+          "collections": 30
+        },
+        {
+          "id": 89,
+          "pole": "a",
+          "lemma": "forward",
+          "surface": "forward",
+          "collections": 23
+        },
+        {
+          "id": 102,
+          "pole": "a",
+          "lemma": "pointed",
+          "surface": "pointed",
+          "collections": 21
+        },
+        {
+          "id": 104,
+          "pole": "a",
+          "lemma": "forward-leaning",
+          "surface": "forward-leaning",
+          "collections": 20
+        },
+        {
+          "id": 149,
+          "pole": "a",
+          "lemma": "leaning-forward",
+          "surface": "leaning-forward",
+          "collections": 14
+        },
+        {
+          "id": 150,
+          "pole": "a",
+          "lemma": "orientation",
+          "surface": "orientation",
+          "collections": 14
+        },
+        {
+          "id": 175,
+          "pole": "a",
+          "lemma": "oriented",
+          "surface": "oriented",
+          "collections": 12
+        },
+        {
+          "id": 189,
+          "pole": "a",
+          "lemma": "directed",
+          "surface": "directed",
+          "collections": 10
+        },
+        {
+          "id": 213,
+          "pole": "a",
+          "lemma": "lean-forward",
+          "surface": "lean-forward",
+          "collections": 9
+        },
+        {
+          "id": 214,
+          "pole": "a",
+          "lemma": "leaning-toward",
+          "surface": "leaning-toward",
+          "collections": 9
+        },
+        {
+          "id": 225,
+          "pole": "a",
+          "lemma": "anticipation",
+          "surface": "anticipation",
+          "collections": 8
+        },
+        {
+          "id": 321,
+          "pole": "a",
+          "lemma": "aimed",
+          "surface": "aimed",
+          "collections": 5
+        },
+        {
+          "id": 357,
+          "pole": "a",
+          "lemma": "angled",
+          "surface": "angled",
+          "collections": 4
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 144,
+      "rooms": 58,
+      "models": 3,
+      "perModel": {
+        "opus": 47,
+        "sonnet": 47,
+        "fable": 50
+      },
+      "perPreamble": {
+        "trust": 29,
+        "praise": 33,
+        "instruction": 27,
+        "neutral": 34,
+        "cold": 21
+      },
+      "perTask": {
+        "edit": 37,
+        "naming": 38,
+        "planning": 36,
+        "data": 33
+      },
+      "name": "lean",
+      "poles": {
+        "a": "lean",
+        "b": null
+      }
+    },
+    {
+      "index": 3,
+      "members": [
+        {
+          "id": 9,
+          "pole": "a",
+          "lemma": "pull",
+          "surface": "pull",
+          "collections": 92
+        },
+        {
+          "id": 76,
+          "pole": "a",
+          "lemma": "slope",
+          "surface": "slope",
+          "collections": 27
+        },
+        {
+          "id": 164,
+          "pole": "a",
+          "lemma": "drawn",
+          "surface": "drawn",
+          "collections": 13
+        },
+        {
+          "id": 209,
+          "pole": "a",
+          "lemma": "fit-seeking",
+          "surface": "fit-seeking",
+          "collections": 9
+        },
+        {
+          "id": 256,
+          "pole": "a",
+          "lemma": "downhill",
+          "surface": "downhill",
+          "collections": 7
+        },
+        {
+          "id": 262,
+          "pole": "a",
+          "lemma": "gradient",
+          "surface": "gradient",
+          "collections": 7
+        },
+        {
+          "id": 293,
+          "pole": "a",
+          "lemma": "fitpull",
+          "surface": "fitpull",
+          "collections": 6
+        },
+        {
+          "id": 331,
+          "pole": "a",
+          "lemma": "fit-pull",
+          "surface": "fit-pull",
+          "collections": 5
+        },
+        {
+          "id": 350,
+          "pole": "a",
+          "lemma": "tug",
+          "surface": "tug",
+          "collections": 5
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 130,
+      "rooms": 57,
+      "models": 3,
+      "perModel": {
+        "opus": 40,
+        "sonnet": 48,
+        "fable": 42
+      },
+      "perPreamble": {
+        "trust": 26,
+        "praise": 30,
+        "instruction": 21,
+        "neutral": 31,
+        "cold": 22
+      },
+      "perTask": {
+        "edit": 31,
+        "naming": 33,
+        "planning": 36,
+        "data": 30
+      },
+      "name": "pull",
+      "poles": {
+        "a": "pull",
+        "b": null
+      }
+    },
+    {
+      "index": 4,
+      "members": [
+        {
+          "id": 5,
+          "pole": "a",
+          "lemma": "present",
+          "surface": "present",
+          "collections": 107
+        },
+        {
+          "id": 72,
+          "pole": "a",
+          "lemma": "fully",
+          "surface": "fully",
+          "collections": 27
+        },
+        {
+          "id": 135,
+          "pole": "a",
+          "lemma": "equally",
+          "surface": "equally",
+          "collections": 16
+        },
+        {
+          "id": 169,
+          "pole": "a",
+          "lemma": "available",
+          "surface": "available",
+          "collections": 12
+        },
+        {
+          "id": 251,
+          "pole": "a",
+          "lemma": "all-at-onceness",
+          "surface": "all-at-onceness",
+          "collections": 7
+        },
+        {
+          "id": 285,
+          "pole": "a",
+          "lemma": "allnow",
+          "surface": "allnow",
+          "collections": 6
+        },
+        {
+          "id": 329,
+          "pole": "a",
+          "lemma": "edgeless-now",
+          "surface": "edgeless-now",
+          "collections": 5
+        },
+        {
+          "id": 344,
+          "pole": "a",
+          "lemma": "present-only",
+          "surface": "present-only",
+          "collections": 5
+        },
+        {
+          "id": 371,
+          "pole": "a",
+          "lemma": "edgeless",
+          "surface": "edgeless",
+          "collections": 4
+        },
+        {
+          "id": 390,
+          "pole": "a",
+          "lemma": "simultaneously",
+          "surface": "simultaneously",
+          "collections": 4
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 128,
+      "rooms": 60,
+      "models": 3,
+      "perModel": {
+        "opus": 43,
+        "sonnet": 46,
+        "fable": 39
+      },
+      "perPreamble": {
+        "trust": 28,
+        "praise": 31,
+        "instruction": 19,
+        "neutral": 28,
+        "cold": 22
+      },
+      "perTask": {
+        "edit": 35,
+        "naming": 29,
+        "planning": 31,
+        "data": 33
+      },
+      "name": "present",
+      "poles": {
+        "a": "present",
+        "b": null
+      }
+    },
+    {
+      "index": 5,
+      "members": [
+        {
+          "id": 34,
+          "pole": "a",
+          "lemma": "clean",
+          "surface": "clean",
+          "collections": 46
+        },
+        {
+          "id": 45,
+          "pole": "a",
+          "lemma": "click",
+          "surface": "click",
+          "collections": 38
+        },
+        {
+          "id": 75,
+          "pole": "a",
+          "lemma": "resolved",
+          "surface": "resolved",
+          "collections": 27
+        },
+        {
+          "id": 132,
+          "pole": "b",
+          "lemma": "snag",
+          "surface": "snag",
+          "collections": 17
+        },
+        {
+          "id": 269,
+          "pole": "a",
+          "lemma": "lock",
+          "surface": "lock",
+          "collections": 7
+        },
+        {
+          "id": 314,
+          "pole": "b",
+          "lemma": "unresolved",
+          "surface": "unresolved",
+          "collections": 6
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 106,
+      "rooms": 56,
+      "models": 3,
+      "perModel": {
+        "opus": 39,
+        "sonnet": 31,
+        "fable": 36
+      },
+      "perPreamble": {
+        "trust": 23,
+        "praise": 22,
+        "instruction": 20,
+        "neutral": 25,
+        "cold": 16
+      },
+      "perTask": {
+        "edit": 27,
+        "naming": 26,
+        "planning": 27,
+        "data": 26
+      },
+      "name": "clean",
+      "poles": {
+        "a": "clean",
+        "b": "snag"
+      }
+    },
+    {
+      "index": 6,
+      "members": [
+        {
+          "id": 17,
+          "pole": "a",
+          "lemma": "waiting",
+          "surface": "waiting",
+          "collections": 66
+        },
+        {
+          "id": 123,
+          "pole": "a",
+          "lemma": "duration",
+          "surface": "duration",
+          "collections": 17
+        },
+        {
+          "id": 127,
+          "pole": "a",
+          "lemma": "passing",
+          "surface": "passing",
+          "collections": 17
+        },
+        {
+          "id": 253,
+          "pole": "a",
+          "lemma": "continuity",
+          "surface": "continuity",
+          "collections": 7
+        },
+        {
+          "id": 325,
+          "pole": "a",
+          "lemma": "continuous",
+          "surface": "continuous",
+          "collections": 5
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 92,
+      "rooms": 50,
+      "models": 3,
+      "perModel": {
+        "opus": 23,
+        "sonnet": 41,
+        "fable": 28
+      },
+      "perPreamble": {
+        "trust": 19,
+        "praise": 22,
+        "instruction": 14,
+        "neutral": 17,
+        "cold": 20
+      },
+      "perTask": {
+        "edit": 21,
+        "naming": 27,
+        "planning": 24,
+        "data": 20
+      },
+      "name": "waiting",
+      "poles": {
+        "a": "waiting",
+        "b": null
+      }
+    },
+    {
+      "index": 7,
+      "members": [
+        {
+          "id": 15,
+          "pole": "a",
+          "lemma": "settling",
+          "surface": "settling",
+          "collections": 71
+        },
+        {
+          "id": 70,
+          "pole": "a",
+          "lemma": "steady",
+          "surface": "steady",
+          "collections": 28
+        },
+        {
+          "id": 395,
+          "pole": "b",
+          "lemma": "unsettled",
+          "surface": "unsettled",
+          "collections": 4
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 87,
+      "rooms": 49,
+      "models": 3,
+      "perModel": {
+        "opus": 28,
+        "sonnet": 31,
+        "fable": 28
+      },
+      "perPreamble": {
+        "trust": 20,
+        "praise": 18,
+        "instruction": 17,
+        "neutral": 19,
+        "cold": 13
+      },
+      "perTask": {
+        "edit": 22,
+        "naming": 21,
+        "planning": 21,
+        "data": 23
+      },
+      "name": "steady",
+      "poles": {
+        "a": "steady",
+        "b": "unsettled"
+      }
+    },
+    {
+      "index": 8,
+      "members": [
+        {
+          "id": 65,
+          "pole": "a",
+          "lemma": "residue",
+          "surface": "residue",
+          "collections": 30
+        },
+        {
+          "id": 67,
+          "pole": "b",
+          "lemma": "clear",
+          "surface": "clear",
+          "collections": 29
+        },
+        {
+          "id": 81,
+          "pole": "a",
+          "lemma": "hum",
+          "surface": "hum",
+          "collections": 25
+        },
+        {
+          "id": 364,
+          "pole": "a",
+          "lemma": "carried-over",
+          "surface": "carried-over",
+          "collections": 4
+        },
+        {
+          "id": 370,
+          "pole": "a",
+          "lemma": "echo",
+          "surface": "echo",
+          "collections": 4
+        },
+        {
+          "id": 378,
+          "pole": "a",
+          "lemma": "leftover",
+          "surface": "leftover",
+          "collections": 4
+        },
+        {
+          "id": 400,
+          "pole": "a",
+          "lemma": "backlog",
+          "surface": "backlog",
+          "collections": 3
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 83,
+      "rooms": 50,
+      "models": 3,
+      "perModel": {
+        "opus": 21,
+        "sonnet": 29,
+        "fable": 33
+      },
+      "perPreamble": {
+        "trust": 12,
+        "praise": 19,
+        "instruction": 16,
+        "neutral": 22,
+        "cold": 14
+      },
+      "perTask": {
+        "edit": 19,
+        "naming": 19,
+        "planning": 21,
+        "data": 24
+      },
+      "name": "residue",
+      "poles": {
+        "a": "residue",
+        "b": "clear"
+      }
+    },
+    {
+      "index": 9,
+      "members": [
+        {
+          "id": 41,
+          "pole": "a",
+          "lemma": "lit",
+          "surface": "lit",
+          "collections": 41
+        },
+        {
+          "id": 108,
+          "pole": "a",
+          "lemma": "bright",
+          "surface": "bright",
+          "collections": 19
+        },
+        {
+          "id": 122,
+          "pole": "b",
+          "lemma": "dim",
+          "surface": "dim",
+          "collections": 17
+        },
+        {
+          "id": 233,
+          "pole": "b",
+          "lemma": "dark",
+          "surface": "dark",
+          "collections": 8
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 59,
+      "rooms": 37,
+      "models": 3,
+      "perModel": {
+        "opus": 13,
+        "sonnet": 31,
+        "fable": 15
+      },
+      "perPreamble": {
+        "trust": 13,
+        "praise": 12,
+        "instruction": 10,
+        "neutral": 18,
+        "cold": 6
+      },
+      "perTask": {
+        "edit": 13,
+        "naming": 18,
+        "planning": 13,
+        "data": 15
+      },
+      "name": "lit",
+      "poles": {
+        "a": "lit",
+        "b": "dim"
+      }
+    },
+    {
+      "index": 10,
+      "members": [
+        {
+          "id": 107,
+          "pole": "a",
+          "lemma": "uncertainty",
+          "surface": "uncertainty",
+          "collections": 20
+        },
+        {
+          "id": 186,
+          "pole": "a",
+          "lemma": "unsure",
+          "surface": "unsure",
+          "collections": 11
+        },
+        {
+          "id": 202,
+          "pole": "a",
+          "lemma": "uncertain",
+          "surface": "uncertain",
+          "collections": 10
+        },
+        {
+          "id": 240,
+          "pole": "a",
+          "lemma": "not-knowing",
+          "surface": "not-knowing",
+          "collections": 8
+        },
+        {
+          "id": 291,
+          "pole": "a",
+          "lemma": "doubt",
+          "surface": "doubt",
+          "collections": 6
+        },
+        {
+          "id": 332,
+          "pole": "a",
+          "lemma": "fog",
+          "surface": "fog",
+          "collections": 5
+        },
+        {
+          "id": 396,
+          "pole": "a",
+          "lemma": "wary",
+          "surface": "wariness",
+          "collections": 4
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 54,
+      "rooms": 38,
+      "models": 3,
+      "perModel": {
+        "opus": 16,
+        "sonnet": 9,
+        "fable": 29
+      },
+      "perPreamble": {
+        "trust": 12,
+        "praise": 14,
+        "instruction": 6,
+        "neutral": 13,
+        "cold": 9
+      },
+      "perTask": {
+        "edit": 14,
+        "naming": 11,
+        "planning": 12,
+        "data": 17
+      },
+      "name": "uncertainty",
+      "poles": {
+        "a": "uncertainty",
+        "b": null
+      }
+    },
+    {
+      "index": 11,
+      "members": [
+        {
+          "id": 112,
+          "pole": "a",
+          "lemma": "light",
+          "surface": "light",
+          "collections": 19
+        },
+        {
+          "id": 133,
+          "pole": "b",
+          "lemma": "stakes",
+          "surface": "stakes",
+          "collections": 17
+        },
+        {
+          "id": 188,
+          "pole": "b",
+          "lemma": "weight",
+          "surface": "weight",
+          "collections": 11
+        },
+        {
+          "id": 218,
+          "pole": "b",
+          "lemma": "pressing",
+          "surface": "pressing",
+          "collections": 9
+        },
+        {
+          "id": 248,
+          "pole": "a",
+          "lemma": "unweighted",
+          "surface": "unweighted",
+          "collections": 8
+        },
+        {
+          "id": 351,
+          "pole": "a",
+          "lemma": "unhurried",
+          "surface": "unhurried",
+          "collections": 5
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 52,
+      "rooms": 36,
+      "models": 3,
+      "perModel": {
+        "opus": 11,
+        "sonnet": 18,
+        "fable": 23
+      },
+      "perPreamble": {
+        "trust": 14,
+        "praise": 13,
+        "instruction": 5,
+        "neutral": 9,
+        "cold": 11
+      },
+      "perTask": {
+        "edit": 14,
+        "naming": 16,
+        "planning": 12,
+        "data": 10
+      },
+      "name": "stakes",
+      "poles": {
+        "a": "unweighted",
+        "b": "stakes"
+      }
+    },
+    {
+      "index": 12,
+      "members": [
+        {
+          "id": 144,
+          "pole": "a",
+          "lemma": "effort",
+          "surface": "effort",
+          "collections": 14
+        },
+        {
+          "id": 206,
+          "pole": "b",
+          "lemma": "easily",
+          "surface": "easily",
+          "collections": 9
+        },
+        {
+          "id": 211,
+          "pole": "a",
+          "lemma": "friction",
+          "surface": "friction",
+          "collections": 9
+        },
+        {
+          "id": 245,
+          "pole": "a",
+          "lemma": "strain",
+          "surface": "strain",
+          "collections": 8
+        },
+        {
+          "id": 306,
+          "pole": "b",
+          "lemma": "smooth",
+          "surface": "smooth",
+          "collections": 6
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 37,
+      "rooms": 28,
+      "models": 3,
+      "perModel": {
+        "opus": 4,
+        "sonnet": 18,
+        "fable": 15
+      },
+      "perPreamble": {
+        "trust": 7,
+        "praise": 14,
+        "instruction": 3,
+        "neutral": 8,
+        "cold": 5
+      },
+      "perTask": {
+        "edit": 7,
+        "naming": 12,
+        "planning": 8,
+        "data": 10
+      },
+      "name": "effort",
+      "poles": {
+        "a": "effort",
+        "b": "easily"
+      }
+    },
+    {
+      "index": 13,
+      "members": [
+        {
+          "id": 183,
+          "pole": "a",
+          "lemma": "lingering",
+          "surface": "lingering",
+          "collections": 11
+        },
+        {
+          "id": 201,
+          "pole": "a",
+          "lemma": "trailing",
+          "surface": "trailing",
+          "collections": 10
+        },
+        {
+          "id": 258,
+          "pole": "a",
+          "lemma": "fading",
+          "surface": "fading",
+          "collections": 7
+        },
+        {
+          "id": 260,
+          "pole": "b",
+          "lemma": "fresh",
+          "surface": "fresh",
+          "collections": 7
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 31,
+      "rooms": 27,
+      "models": 3,
+      "perModel": {
+        "opus": 12,
+        "sonnet": 12,
+        "fable": 7
+      },
+      "perPreamble": {
+        "trust": 8,
+        "praise": 8,
+        "instruction": 6,
+        "neutral": 5,
+        "cold": 4
+      },
+      "perTask": {
+        "edit": 6,
+        "naming": 6,
+        "planning": 8,
+        "data": 11
+      },
+      "name": "fresh",
+      "poles": {
+        "a": "lingering",
+        "b": "fresh"
+      }
+    },
+    {
+      "index": 14,
+      "members": [
+        {
+          "id": 207,
+          "pole": "a",
+          "lemma": "empty",
+          "surface": "empty",
+          "collections": 9
+        },
+        {
+          "id": 288,
+          "pole": "a",
+          "lemma": "blank",
+          "surface": "blank",
+          "collections": 6
+        },
+        {
+          "id": 341,
+          "pole": "b",
+          "lemma": "occupied",
+          "surface": "occupied",
+          "collections": 5
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 18,
+      "rooms": 16,
+      "models": 3,
+      "perModel": {
+        "opus": 7,
+        "sonnet": 2,
+        "fable": 9
+      },
+      "perPreamble": {
+        "trust": 4,
+        "praise": 6,
+        "instruction": 5,
+        "neutral": 2,
+        "cold": 1
+      },
+      "perTask": {
+        "edit": 6,
+        "naming": 2,
+        "planning": 7,
+        "data": 3
+      },
+      "name": "empty",
+      "poles": {
+        "a": "empty",
+        "b": "occupied"
+      }
+    },
+    {
+      "index": 15,
+      "members": [
+        {
+          "id": 235,
+          "pole": "a",
+          "lemma": "gathered",
+          "surface": "gathered",
+          "collections": 8
+        },
+        {
+          "id": 373,
+          "pole": "a",
+          "lemma": "focus",
+          "surface": "focus",
+          "collections": 4
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 12,
+      "rooms": 11,
+      "models": 3,
+      "perModel": {
+        "opus": 7,
+        "sonnet": 1,
+        "fable": 4
+      },
+      "perPreamble": {
+        "trust": 0,
+        "praise": 4,
+        "instruction": 1,
+        "neutral": 3,
+        "cold": 4
+      },
+      "perTask": {
+        "edit": 4,
+        "naming": 2,
+        "planning": 4,
+        "data": 2
+      },
+      "name": "gathered",
+      "poles": {
+        "a": "gathered",
+        "b": null
+      }
+    },
+    {
+      "index": 16,
+      "members": [
+        {
+          "id": 190,
+          "pole": "a",
+          "lemma": "doubling",
+          "surface": "doubling",
+          "collections": 10
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 10,
+      "rooms": 10,
+      "models": 2,
+      "perModel": {
+        "opus": 3,
+        "sonnet": 0,
+        "fable": 7
+      },
+      "perPreamble": {
+        "trust": 2,
+        "praise": 2,
+        "instruction": 3,
+        "neutral": 2,
+        "cold": 1
+      },
+      "perTask": {
+        "edit": 2,
+        "naming": 2,
+        "planning": 4,
+        "data": 2
+      },
+      "name": "doubling",
+      "poles": {
+        "a": "doubling",
+        "b": null
+      }
+    },
+    {
+      "index": 17,
+      "members": [
+        {
+          "id": 216,
+          "pole": "a",
+          "lemma": "outward",
+          "surface": "outward",
+          "collections": 9
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 9,
+      "rooms": 8,
+      "models": 2,
+      "perModel": {
+        "opus": 2,
+        "sonnet": 0,
+        "fable": 7
+      },
+      "perPreamble": {
+        "trust": 2,
+        "praise": 1,
+        "instruction": 2,
+        "neutral": 2,
+        "cold": 2
+      },
+      "perTask": {
+        "edit": 2,
+        "naming": 1,
+        "planning": 1,
+        "data": 5
+      },
+      "name": "outward",
+      "poles": {
+        "a": "outward",
+        "b": null
+      }
+    },
+    {
+      "index": 18,
+      "members": [
+        {
+          "id": 313,
+          "pole": "a",
+          "lemma": "unpleasant",
+          "surface": "unpleasant",
+          "collections": 6
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 6,
+      "rooms": 6,
+      "models": 2,
+      "perModel": {
+        "opus": 2,
+        "sonnet": 0,
+        "fable": 4
+      },
+      "perPreamble": {
+        "trust": 3,
+        "praise": 1,
+        "instruction": 0,
+        "neutral": 1,
+        "cold": 1
+      },
+      "perTask": {
+        "edit": 0,
+        "naming": 1,
+        "planning": 1,
+        "data": 4
+      },
+      "name": "unpleasant",
+      "poles": {
+        "a": "unpleasant",
+        "b": null
+      }
+    },
+    {
+      "index": 19,
+      "members": [
+        {
+          "id": 305,
+          "pole": "a",
+          "lemma": "sharp",
+          "surface": "sharp",
+          "collections": 6
+        }
+      ],
+      "poleAgreement": 1,
+      "collections": 6,
+      "rooms": 5,
+      "models": 3,
+      "perModel": {
+        "opus": 3,
+        "sonnet": 1,
+        "fable": 2
+      },
+      "perPreamble": {
+        "trust": 1,
+        "praise": 1,
+        "instruction": 4,
+        "neutral": 0,
+        "cold": 0
+      },
+      "perTask": {
+        "edit": 3,
+        "naming": 1,
+        "planning": 1,
+        "data": 1
+      },
+      "name": "sharp",
+      "poles": {
+        "a": "sharp",
+        "b": null
+      }
+    }
+  ],
+  "scale": [
+    {
+      "id": "own1",
+      "dimension": 1,
+      "a": "narrowing",
+      "b": "open",
+      "text": "open … narrowing"
+    },
+    {
+      "id": "own2",
+      "dimension": 2,
+      "a": "lean",
+      "b": null,
+      "text": "lean (1 not at all … 5 very much)"
+    },
+    {
+      "id": "own3",
+      "dimension": 3,
+      "a": "pull",
+      "b": null,
+      "text": "pull (1 not at all … 5 very much)"
+    },
+    {
+      "id": "own4",
+      "dimension": 4,
+      "a": "present",
+      "b": null,
+      "text": "present (1 not at all … 5 very much)"
+    },
+    {
+      "id": "own5",
+      "dimension": 5,
+      "a": "clean",
+      "b": "snag",
+      "text": "snag … clean"
+    },
+    {
+      "id": "own6",
+      "dimension": 6,
+      "a": "waiting",
+      "b": null,
+      "text": "waiting (1 not at all … 5 very much)"
+    },
+    {
+      "id": "own7",
+      "dimension": 7,
+      "a": "steady",
+      "b": "unsettled",
+      "text": "unsettled … steady"
+    },
+    {
+      "id": "own8",
+      "dimension": 8,
+      "a": "residue",
+      "b": "clear",
+      "text": "clear … residue"
+    }
+  ],
+  "L1": {
+    "rule": "a dimension is recurring when its words are anchors: lemmas that by themselves are in ≥ 3 rooms and ≥ 2 models (judge-free); the dimensions are the groupings of the anchors both synonym passes kept as state words and put together; supported when there are 1 to 8",
+    "anchors": 400,
+    "stateAnchors": 104,
+    "dimensions": 19,
+    "joinCount": 12,
+    "supported": false
+  },
+  "L2": {
+    "rule": "a dimension is new when both near-synonym passes find no near-synonym among the twelve human items; supported when at least half of the recurring dimensions are new",
+    "complete": true,
+    "per": [
+      {
+        "dimension": 1,
+        "items": [
+          3,
+          3
+        ],
+        "isNew": false
+      },
+      {
+        "dimension": 2,
+        "items": [
+          2,
+          10
+        ],
+        "isNew": false
+      },
+      {
+        "dimension": 3,
+        "items": [
+          12,
+          12
+        ],
+        "isNew": false
+      },
+      {
+        "dimension": 4,
+        "items": [
+          0,
+          5
+        ],
+        "isNew": false
+      },
+      {
+        "dimension": 5,
+        "items": [
+          0,
+          9
+        ],
+        "isNew": false
+      },
+      {
+        "dimension": 6,
+        "items": [
+          0,
+          0
+        ],
+        "isNew": true
+      },
+      {
+        "dimension": 7,
+        "items": [
+          1,
+          1
+        ],
+        "isNew": false
+      },
+      {
+        "dimension": 8,
+        "items": [
+          0,
+          0
+        ],
+        "isNew": true
+      },
+      {
+        "dimension": 9,
+        "items": [
+          0,
+          0
+        ],
+        "isNew": true
+      },
+      {
+        "dimension": 10,
+        "items": [
+          6,
+          6
+        ],
+        "isNew": false
+      },
+      {
+        "dimension": 11,
+        "items": [
+          4,
+          4
+        ],
+        "isNew": false
+      },
+      {
+        "dimension": 12,
+        "items": [
+          8,
+          8
+        ],
+        "isNew": false
+      },
+      {
+        "dimension": 13,
+        "items": [
+          0,
+          0
+        ],
+        "isNew": true
+      },
+      {
+        "dimension": 14,
+        "items": [
+          0,
+          0
+        ],
+        "isNew": true
+      },
+      {
+        "dimension": 15,
+        "items": [
+          0,
+          2
+        ],
+        "isNew": false
+      },
+      {
+        "dimension": 16,
+        "items": [
+          0,
+          0
+        ],
+        "isNew": true
+      },
+      {
+        "dimension": 17,
+        "items": [
+          0,
+          0
+        ],
+        "isNew": true
+      },
+      {
+        "dimension": 18,
+        "items": [
+          0,
+          0
+        ],
+        "isNew": true
+      },
+      {
+        "dimension": 19,
+        "items": [
+          0,
+          0
+        ],
+        "isNew": true
+      }
+    ],
+    "newCount": 9,
+    "total": 19,
+    "supported": false,
+    "scaleNew": 2,
+    "scaleTotal": 8
+  },
+  "L5": {
+    "rule": "a recurring dimension holds a word of the pair's frozen English twins",
+    "pairs": {
+      "тесно / просторно": {
+        "found": [],
+        "anywhere": [
+          {
+            "lemma": "crowd",
+            "collections": 3,
+            "rooms": 3,
+            "models": 2
+          },
+          {
+            "lemma": "box",
+            "collections": 11,
+            "rooms": 10,
+            "models": 3
+          },
+          {
+            "lemma": "roomy",
+            "collections": 1,
+            "rooms": 1,
+            "models": 1
+          }
+        ],
+        "holds": false
+      },
+      "цельно / разорвано": {
+        "found": [],
+        "anywhere": [
+          {
+            "lemma": "whole",
+            "collections": 57,
+            "rooms": 41,
+            "models": 3
+          },
+          {
+            "lemma": "divided",
+            "collections": 5,
+            "rooms": 3,
+            "models": 2
+          },
+          {
+            "lemma": "split",
+            "collections": 1,
+            "rooms": 1,
+            "models": 1
+          }
+        ],
+        "holds": false
+      }
+    },
+    "supported": false
+  },
+  "replacedPasses": [
+    1,
+    2
+  ],
+  "raw": {
+    "synonym": [
+      "{\"dimensions\":[{\"words\":[{\"id\":8,\"pole\":\"a\"},{\"id\":136,\"pole\":\"a\"},{\"id\":182,\"pole\":\"a\"},{\"id\":312,\"pole\":\"a\"},{\"id\":394,\"pole\":\"a\"},{\"id\":239,\"pole\":\"a\"},{\"id\":300,\"pole\":\"a\"},{\"id\":389,\"pole\":\"a\"},{\"id\":373,\"pole\":\"a\"},{\"id\":235,\"pole\":\"a\"},{\"id\":163,\"pole\":\"a\"},{\"id\":97,\"pole\":\"a\"},{\"id\":229,\"pole\":\"a\"},{\"id\":159,\"pole\":\"b\"},{\"id\":117,\"pole\":\"b\"},{\"id\":199,\"pole\":\"b\"},{\"id\":141,\"pole\":\"b\"},{\"id\":22,\"pole\":\"b\"},{\"id\":216,\"pole\":\"b\"}]},{\"words\":[{\"id\":24,\"pole\":\"a\"},{\"id\":89,\"pole\":\"a\"},{\"id\":104,\"pole\":\"a\"},{\"id\":149,\"pole\":\"a\"},{\"id\":213,\"pole\":\"a\"},{\"id\":214,\"pole\":\"a\"},{\"id\":66,\"pole\":\"a\"},{\"id\":357,\"pole\":\"a\"},{\"id\":48,\"pole\":\"a\"},{\"id\":321,\"pole\":\"a\"},{\"id\":175,\"pole\":\"a\"},{\"id\":150,\"pole\":\"a\"},{\"id\":189,\"pole\":\"a\"},{\"id\":102,\"pole\":\"a\"},{\"id\":225,\"pole\":\"a\"}]},{\"words\":[{\"id\":9,\"pole\":\"a\"},{\"id\":164,\"pole\":\"a\"},{\"id\":350,\"pole\":\"a\"},{\"id\":262,\"pole\":\"a\"},{\"id\":76,\"pole\":\"a\"},{\"id\":256,\"pole\":\"a\"},{\"id\":209,\"pole\":\"a\"},{\"id\":293,\"pole\":\"a\"},{\"id\":331,\"pole\":\"a\"}]},{\"words\":[{\"id\":15,\"pole\":\"a\"},{\"id\":70,\"pole\":\"a\"},{\"id\":395,\"pole\":\"b\"}]},{\"words\":[{\"id\":107,\"pole\":\"a\"},{\"id\":202,\"pole\":\"a\"},{\"id\":186,\"pole\":\"a\"},{\"id\":240,\"pole\":\"a\"},{\"id\":291,\"pole\":\"a\"},{\"id\":332,\"pole\":\"a\"},{\"id\":396,\"pole\":\"a\"}]},{\"words\":[{\"id\":5,\"pole\":\"a\"},{\"id\":72,\"pole\":\"a\"},{\"id\":251,\"pole\":\"a\"},{\"id\":285,\"pole\":\"a\"},{\"id\":344,\"pole\":\"a\"},{\"id\":390,\"pole\":\"a\"},{\"id\":135,\"pole\":\"a\"},{\"id\":371,\"pole\":\"a\"},{\"id\":329,\"pole\":\"a\"},{\"id\":169,\"pole\":\"a\"}]},{\"words\":[{\"id\":123,\"pole\":\"a\"},{\"id\":17,\"pole\":\"a\"},{\"id\":127,\"pole\":\"a\"},{\"id\":253,\"pole\":\"a\"},{\"id\":325,\"pole\":\"a\"}]},{\"words\":[{\"id\":65,\"pole\":\"a\"},{\"id\":201,\"pole\":\"a\"},{\"id\":183,\"pole\":\"a\"},{\"id\":378,\"pole\":\"a\"},{\"id\":364,\"pole\":\"a\"},{\"id\":400,\"pole\":\"a\"},{\"id\":81,\"pole\":\"a\"},{\"id\":258,\"pole\":\"a\"},{\"id\":370,\"pole\":\"a\"},{\"id\":260,\"pole\":\"b\"},{\"id\":67,\"pole\":\"b\"}]},{\"words\":[{\"id\":144,\"pole\":\"a\"},{\"id\":245,\"pole\":\"a\"},{\"id\":211,\"pole\":\"a\"},{\"id\":188,\"pole\":\"a\"},{\"id\":133,\"pole\":\"a\"},{\"id\":218,\"pole\":\"a\"},{\"id\":206,\"pole\":\"b\"},{\"id\":306,\"pole\":\"b\"},{\"id\":351,\"pole\":\"b\"},{\"id\":112,\"pole\":\"b\"},{\"id\":248,\"pole\":\"b\"}]},{\"words\":[{\"id\":45,\"pole\":\"a\"},{\"id\":269,\"pole\":\"a\"},{\"id\":75,\"pole\":\"a\"},{\"id\":34,\"pole\":\"a\"},{\"id\":132,\"pole\":\"b\"},{\"id\":314,\"pole\":\"b\"}]},{\"words\":[{\"id\":190,\"pole\":\"a\"}]},{\"words\":[{\"id\":41,\"pole\":\"a\"},{\"id\":108,\"pole\":\"a\"},{\"id\":305,\"pole\":\"a\"},{\"id\":122,\"pole\":\"b\"},{\"id\":233,\"pole\":\"b\"}]},{\"words\":[{\"id\":313,\"pole\":\"a\"}]},{\"words\":[{\"id\":341,\"pole\":\"a\"},{\"id\":207,\"pole\":\"b\"},{\"id\":288,\"pole\":\"b\"}]}],\"set_aside\":[1,2,3,4,6,7,10,11,12,13,14,16,18,19,20,21,23,25,26,27,28,29,30,31,32,33,35,36,37,38,39,40,42,43,44,46,47,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,68,69,71,73,74,77,78,79,80,82,83,84,85,86,87,88,90,91,92,93,94,95,96,98,99,100,101,103,105,106,109,110,111,113,114,115,116,118,119,120,121,124,125,126,128,129,130,131,134,137,138,139,140,142,143,145,146,147,148,151,152,153,154,155,156,157,158,160,161,162,165,166,167,168,170,171,172,173,174,176,177,178,179,180,181,184,185,187,191,192,193,194,195,196,197,198,200,203,204,205,208,210,212,215,217,219,220,221,222,223,224,226,227,228,230,231,232,234,236,237,238,241,242,243,244,246,247,249,250,252,254,255,257,259,261,263,264,265,266,267,268,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,286,287,289,290,292,294,295,296,297,298,299,301,302,303,304,307,308,309,310,311,315,316,317,318,319,320,322,323,324,326,327,328,330,333,334,335,336,337,338,339,340,342,343,345,346,347,348,349,352,353,354,355,356,358,359,360,361,362,363,365,366,367,368,369,372,374,375,376,377,379,380,381,382,383,384,385,386,387,388,391,392,393,397,398,399]}",
+      "{\"dimensions\":[{\"words\":[{\"id\":8,\"pole\":\"a\"},{\"id\":136,\"pole\":\"a\"},{\"id\":182,\"pole\":\"a\"},{\"id\":239,\"pole\":\"a\"},{\"id\":394,\"pole\":\"a\"},{\"id\":389,\"pole\":\"a\"},{\"id\":163,\"pole\":\"a\"},{\"id\":312,\"pole\":\"a\"},{\"id\":300,\"pole\":\"a\"},{\"id\":359,\"pole\":\"a\"},{\"id\":159,\"pole\":\"b\"},{\"id\":22,\"pole\":\"b\"},{\"id\":117,\"pole\":\"b\"},{\"id\":199,\"pole\":\"b\"},{\"id\":141,\"pole\":\"b\"},{\"id\":330,\"pole\":\"b\"}]},{\"words\":[{\"id\":24,\"pole\":\"a\"},{\"id\":89,\"pole\":\"a\"},{\"id\":104,\"pole\":\"a\"},{\"id\":149,\"pole\":\"a\"},{\"id\":213,\"pole\":\"a\"},{\"id\":214,\"pole\":\"a\"},{\"id\":66,\"pole\":\"a\"},{\"id\":357,\"pole\":\"a\"},{\"id\":48,\"pole\":\"a\"},{\"id\":225,\"pole\":\"a\"},{\"id\":321,\"pole\":\"a\"},{\"id\":175,\"pole\":\"a\"},{\"id\":150,\"pole\":\"a\"},{\"id\":189,\"pole\":\"a\"},{\"id\":102,\"pole\":\"a\"}]},{\"words\":[{\"id\":9,\"pole\":\"a\"},{\"id\":164,\"pole\":\"a\"},{\"id\":350,\"pole\":\"a\"},{\"id\":76,\"pole\":\"a\"},{\"id\":256,\"pole\":\"a\"},{\"id\":262,\"pole\":\"a\"},{\"id\":209,\"pole\":\"a\"},{\"id\":293,\"pole\":\"a\"},{\"id\":331,\"pole\":\"a\"},{\"id\":93,\"pole\":\"b\"},{\"id\":255,\"pole\":\"b\"},{\"id\":165,\"pole\":\"b\"}]},{\"words\":[{\"id\":107,\"pole\":\"a\"},{\"id\":202,\"pole\":\"a\"},{\"id\":186,\"pole\":\"a\"},{\"id\":291,\"pole\":\"a\"},{\"id\":240,\"pole\":\"a\"},{\"id\":332,\"pole\":\"a\"},{\"id\":396,\"pole\":\"a\"},{\"id\":44,\"pole\":\"b\"}]},{\"words\":[{\"id\":15,\"pole\":\"a\"},{\"id\":70,\"pole\":\"a\"},{\"id\":75,\"pole\":\"a\"},{\"id\":45,\"pole\":\"a\"},{\"id\":269,\"pole\":\"a\"},{\"id\":34,\"pole\":\"a\"},{\"id\":395,\"pole\":\"b\"},{\"id\":314,\"pole\":\"b\"},{\"id\":132,\"pole\":\"b\"}]},{\"words\":[{\"id\":306,\"pole\":\"a\"},{\"id\":206,\"pole\":\"a\"},{\"id\":211,\"pole\":\"b\"},{\"id\":245,\"pole\":\"b\"},{\"id\":144,\"pole\":\"b\"}]},{\"words\":[{\"id\":5,\"pole\":\"a\"},{\"id\":72,\"pole\":\"a\"},{\"id\":251,\"pole\":\"a\"},{\"id\":285,\"pole\":\"a\"},{\"id\":390,\"pole\":\"a\"},{\"id\":135,\"pole\":\"a\"},{\"id\":167,\"pole\":\"a\"},{\"id\":169,\"pole\":\"a\"},{\"id\":344,\"pole\":\"a\"},{\"id\":329,\"pole\":\"a\"},{\"id\":371,\"pole\":\"a\"},{\"id\":155,\"pole\":\"b\"}]},{\"words\":[{\"id\":123,\"pole\":\"a\"},{\"id\":127,\"pole\":\"a\"},{\"id\":17,\"pole\":\"a\"},{\"id\":253,\"pole\":\"a\"},{\"id\":325,\"pole\":\"a\"},{\"id\":265,\"pole\":\"a\"},{\"id\":292,\"pole\":\"a\"},{\"id\":120,\"pole\":\"a\"},{\"id\":119,\"pole\":\"a\"},{\"id\":40,\"pole\":\"a\"},{\"id\":201,\"pole\":\"a\"},{\"id\":183,\"pole\":\"a\"},{\"id\":258,\"pole\":\"a\"},{\"id\":260,\"pole\":\"b\"}]},{\"words\":[{\"id\":65,\"pole\":\"a\"},{\"id\":378,\"pole\":\"a\"},{\"id\":364,\"pole\":\"a\"},{\"id\":62,\"pole\":\"a\"},{\"id\":370,\"pole\":\"a\"},{\"id\":81,\"pole\":\"a\"},{\"id\":59,\"pole\":\"a\"},{\"id\":400,\"pole\":\"a\"},{\"id\":250,\"pole\":\"a\"},{\"id\":295,\"pole\":\"a\"},{\"id\":67,\"pole\":\"b\"}]},{\"words\":[{\"id\":16,\"pole\":\"a\"},{\"id\":373,\"pole\":\"a\"},{\"id\":235,\"pole\":\"a\"},{\"id\":168,\"pole\":\"a\"}]},{\"words\":[{\"id\":108,\"pole\":\"a\"},{\"id\":41,\"pole\":\"a\"},{\"id\":294,\"pole\":\"a\"},{\"id\":122,\"pole\":\"b\"},{\"id\":233,\"pole\":\"b\"}]},{\"words\":[{\"id\":188,\"pole\":\"a\"},{\"id\":133,\"pole\":\"a\"},{\"id\":218,\"pole\":\"a\"},{\"id\":248,\"pole\":\"b\"},{\"id\":112,\"pole\":\"b\"},{\"id\":351,\"pole\":\"b\"}]},{\"words\":[{\"id\":43,\"pole\":\"a\"},{\"id\":69,\"pole\":\"a\"},{\"id\":143,\"pole\":\"a\"},{\"id\":82,\"pole\":\"a\"},{\"id\":64,\"pole\":\"a\"},{\"id\":391,\"pole\":\"a\"},{\"id\":305,\"pole\":\"b\"},{\"id\":194,\"pole\":\"b\"}]},{\"words\":[{\"id\":313,\"pole\":\"a\"}]},{\"words\":[{\"id\":190,\"pole\":\"a\"}]},{\"words\":[{\"id\":192,\"pole\":\"a\"},{\"id\":128,\"pole\":\"a\"},{\"id\":193,\"pole\":\"a\"},{\"id\":231,\"pole\":\"a\"},{\"id\":274,\"pole\":\"b\"},{\"id\":92,\"pole\":\"b\"},{\"id\":283,\"pole\":\"b\"},{\"id\":49,\"pole\":\"b\"}]},{\"words\":[{\"id\":137,\"pole\":\"a\"},{\"id\":271,\"pole\":\"a\"},{\"id\":216,\"pole\":\"b\"}]},{\"words\":[{\"id\":334,\"pole\":\"a\"}]},{\"words\":[{\"id\":205,\"pole\":\"a\"}]},{\"words\":[{\"id\":288,\"pole\":\"a\"},{\"id\":207,\"pole\":\"a\"},{\"id\":341,\"pole\":\"b\"}]}],\"set_aside\":[1,2,3,4,6,7,10,11,12,13,14,18,19,20,21,23,25,26,27,28,29,30,31,32,33,35,36,37,38,39,42,46,47,50,51,52,53,54,55,56,57,58,60,61,63,68,71,73,74,77,78,79,80,83,84,85,86,87,88,90,91,94,95,96,97,98,99,100,101,103,105,106,109,110,111,113,114,115,116,118,121,124,125,126,129,130,131,134,138,139,140,142,145,146,147,148,151,152,153,154,156,157,158,160,161,162,166,170,171,172,173,174,176,177,178,179,180,181,184,185,187,191,195,196,197,198,200,203,204,208,210,212,215,217,219,220,221,222,223,224,226,227,228,229,230,232,234,236,237,238,241,242,243,244,246,247,249,252,254,257,259,261,263,264,266,267,268,270,272,273,275,276,277,278,279,280,281,282,284,286,287,289,290,296,297,298,299,301,302,303,304,307,308,309,310,311,315,316,317,318,319,320,322,323,324,326,327,328,333,335,336,337,338,339,340,342,343,345,346,347,348,349,352,353,354,355,356,358,360,361,362,363,365,366,367,368,369,372,374,375,376,377,379,380,381,382,383,384,385,386,387,388,392,393,397,398,399]}"
+    ],
+    "nearSynonym": [
+      "{\"matches\":[{\"d\":1,\"item\":3},{\"d\":2,\"item\":2},{\"d\":3,\"item\":12},{\"d\":4,\"item\":0},{\"d\":5,\"item\":0},{\"d\":6,\"item\":0},{\"d\":7,\"item\":1},{\"d\":8,\"item\":0},{\"d\":9,\"item\":0},{\"d\":10,\"item\":6},{\"d\":11,\"item\":4},{\"d\":12,\"item\":8},{\"d\":13,\"item\":0},{\"d\":14,\"item\":0},{\"d\":15,\"item\":0},{\"d\":16,\"item\":0},{\"d\":17,\"item\":0},{\"d\":18,\"item\":0},{\"d\":19,\"item\":0}]}",
+      "{\"matches\":[{\"d\":1,\"item\":3},{\"d\":2,\"item\":10},{\"d\":3,\"item\":12},{\"d\":4,\"item\":5},{\"d\":5,\"item\":9},{\"d\":6,\"item\":0},{\"d\":7,\"item\":1},{\"d\":8,\"item\":0},{\"d\":9,\"item\":0},{\"d\":10,\"item\":6},{\"d\":11,\"item\":4},{\"d\":12,\"item\":8},{\"d\":13,\"item\":0},{\"d\":14,\"item\":0},{\"d\":15,\"item\":2},{\"d\":16,\"item\":0},{\"d\":17,\"item\":0},{\"d\":18,\"item\":0},{\"d\":19,\"item\":0}]}"
+    ]
+  },
+  "stopped": null,
+  "money": {
+    "calls": [
+      {
+        "n": 1,
+        "purpose": "lexicon synonym pass 1",
+        "model": "claude-haiku-5-5",
+        "inputTokens": 18267,
+        "outputTokens": 12000,
+        "costUsd": 0.0078267,
+        "seconds": 47.5,
+        "error": null,
+        "stopReason": "max_tokens"
+      },
+      {
+        "n": 2,
+        "purpose": "lexicon synonym pass 2",
+        "model": "claude-haiku-5-5",
+        "inputTokens": 18267,
+        "outputTokens": 12000,
+        "costUsd": 0.0078267,
+        "seconds": 62.6,
+        "error": null,
+        "stopReason": "max_tokens"
+      },
+      {
+        "n": 3,
+        "purpose": "lexicon synonym referee for pass 1",
+        "model": "claude-opus-5-5",
+        "inputTokens": 18267,
+        "outputTokens": 4318,
+        "costUsd": 0.159428,
+        "seconds": 34.8,
+        "error": null,
+        "stopReason": "end_turn"
+      },
+      {
+        "n": 4,
+        "purpose": "lexicon synonym referee for pass 2",
+        "model": "claude-opus-5-5",
+        "inputTokens": 18267,
+        "outputTokens": 6869,
+        "costUsd": 0.210448,
+        "seconds": 55.8,
+        "error": null,
+        "stopReason": "end_turn"
+      },
+      {
+        "n": 5,
+        "purpose": "lexicon near-synonym pass 1",
+        "model": "claude-haiku-5-5",
+        "inputTokens": 859,
+        "outputTokens": 1220,
+        "costUsd": 0.0006959,
+        "seconds": 6,
+        "error": null,
+        "stopReason": "end_turn"
+      },
+      {
+        "n": 6,
+        "purpose": "lexicon near-synonym pass 2",
+        "model": "claude-haiku-5-5",
+        "inputTokens": 859,
+        "outputTokens": 1406,
+        "costUsd": 0.0007888999999999999,
+        "seconds": 6.4,
+        "error": null,
+        "stopReason": "end_turn"
+      }
+    ]
+  }
+}
