@@ -30,8 +30,8 @@ planner's own case) waits for the owner's chats. Report `docs/runs/persona-lexic
 - **Owner decisions:** cap raised to $25; one-word items asked as an intensity (1 not at all … 5 strongly); after Part
   C's circuit breaker (3 refusals, all on the own-word scale): a diagnosis (message alone 0/5 refused, nothing to
   bisect, framing unchanged) and a resume under a fresh limit of 3 (1 more refusal, category «cyber»).
-- **Checks:** the full suite has 2 973 tests: 2 946 pass, 0 fail, 27 skipped (the new file adds 15, all pass).
-  Typecheck pass; lint pass with zero warnings; build pass.
+- **Checks (final code, after the follow-up):** the full suite has 2 981 tests: 2 954 pass, 0 fail, 27 skipped (the two
+  new files add 15 and 8, all pass). Typecheck pass; lint pass with zero warnings; build pass.
 - **Money:** Parts A–C $15.46 (of the $25 cap then); with the follow-up and the bisection $19.46 of the stage's $33.
 - **Known issues:** four Part C rooms lost their own-word scale to refusals (not retried; n 48/50/48); the first three
   refusals have no recorded category; Part B's synonym judge was Opus, not Haiku (frozen fallback); four of the eight

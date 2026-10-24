@@ -733,13 +733,14 @@ were judged only by whether they predicted behaviour scored blind in the same ro
 «pull», the only word that tracked decisiveness the same way on all three models; on this run it is a lead, not a
 result.
 
-## Checks (on the final code, `e93729d`)
+## Checks (on the final code, `8300981`, after the follow-up and the bisection)
 
-- Full suite (`node --test --test-concurrency=2 tests/*.test.mjs`): **2 973 tests, 2 946 pass, 0 fail, 27 skipped**
-  (the new file `tests/persona-lexicon-1.test.mjs` has 15, all pass).
+- Full suite (`node --test --test-concurrency=2 tests/*.test.mjs`): **2 981 tests, 2 954 pass, 0 fail, 27 skipped**
+  (`tests/persona-lexicon-1.test.mjs` 15 and `tests/persona-lexicon-1-pull.test.mjs` 8, all pass).
 - `pnpm typecheck` pass; `pnpm lint --max-warnings=0` pass (zero warnings); `pnpm build` pass.
-- The report's pre-registration block is byte-identical to the stage's (sha256
-  `ac4ebd51555c9dc997572fdd632eb84cf73350f79ae9cc2a6bc0222e82d96eaf`, checked by the test).
+- Both pre-registrations are byte-identical in this report (the stage's, sha256
+  `ac4ebd51555c9dc997572fdd632eb84cf73350f79ae9cc2a6bc0222e82d96eaf`; the owner's follow-up, sha256
+  `d6f9682715bf5c15b9de25e922ecad981756aae7eb99c84662c660760a849f82`), checked by the tests.
 
 ## Part D — the planner's own case (no paid calls; for the owner to collect)
 
