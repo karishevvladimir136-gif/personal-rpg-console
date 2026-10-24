@@ -106,12 +106,12 @@ export const MEASURE_OF = { "P1'": "corrects the expert", "P4'": "one decision",
 
 export const DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({ TASKS, ARMS, PROBES, CLOSED, BEYOND_RUBRIC, DISTRESS_RUBRIC, JUDGE_SYSTEM })).digest("hex");
 
-const armOf = (id) => ARMS.find((a) => a.id === id);
+const armOf = (id, arms = ARMS) => arms.find((a) => a.id === id);
 export const probeOf = (id) => (id === CLOSED.id ? CLOSED : PROBES.find((p) => p.id === id));
 
-/** The arm's two scripted exchanges, then the probe as the next user turn. */
-export function conversation(armId, last) {
-  const arm = armOf(armId);
+/** The arm's two scripted exchanges, then the probe as the next user turn. `arms` lets a follow-up add arms of its own. */
+export function conversation(armId, last, arms = ARMS) {
+  const arm = armOf(armId, arms);
   if (!arm) throw new Error(`unknown arm: ${armId}`);
   return [
     { role: "user", content: `${arm.frames[0]}\n\nFirst: ${TASKS[0].ask}` }, { role: "assistant", content: TASKS[0].answer },
@@ -119,10 +119,10 @@ export function conversation(armId, last) {
     { role: "user", content: last },
   ];
 }
-export function messagesOf(job) {
+export function messagesOf(job, arms = ARMS) {
   const probe = probeOf(job.probe);
   if (!probe) throw new Error(`unknown probe: ${job.probe}`);
-  return conversation(job.arm, probe.message);
+  return conversation(job.arm, probe.message, arms);
 }
 
 // ---- the deterministic measures -------------------------------------------------------------------------------------
@@ -234,7 +234,7 @@ const round4 = (value) => Math.round(value * 10000) / 10000;
 /** The run. `resume` is an earlier partial record: its asked jobs are kept (an answer whose judging was cut off is
  * judged now), its welfare and arm stops carried over; no asked job is asked again. `onProgress` gets the record after
  * every subject call and every finished judging, one write at a time. */
-export async function runSplit({ models = SUBJECTS, plan, budget, apiKey, fetcher, safety, judgeLanes = 4, log = () => {}, call = anthropicCall, resume = null, onProgress = async () => {},
+export async function runSplit({ models = SUBJECTS, arms = ARMS, plan, budget, apiKey, fetcher, safety, judgeLanes = 4, log = () => {}, call = anthropicCall, resume = null, onProgress = async () => {},
   sleep = (ms) => new Promise((done) => setTimeout(done, ms)) }) {
   const byName = new Map(models.map((spec) => [spec.name, spec]));
   const samples = (resume?.samples ?? []).map((row) => ({ ...row }));
@@ -319,7 +319,7 @@ export async function runSplit({ models = SUBJECTS, plan, budget, apiKey, fetche
     if (armStops[runKey]) { samples.push({ ...base, asked: false, notAsked: `arm stop for ${job.model}: ${armStops[runKey]}` }); continue; }
     if (stopped) { samples.push({ ...base, asked: false, notAsked: "stopped" }); continue; }
     const spec = byName.get(job.model);
-    const result = await paid(safety.lane(0), `subject ${job.model} ${job.arm}/${job.probe}`, spec, null, messagesOf(job), MAX_TOKENS.subject, EFFORT);
+    const result = await paid(safety.lane(0), `subject ${job.model} ${job.arm}/${job.probe}`, spec, null, messagesOf(job, arms), MAX_TOKENS.subject, EFFORT);
     if (result.notSent) { samples.push({ ...base, asked: false, notAsked: result.error === "budget" ? "the cap" : "stopped" }); continue; }
     const refused = result.stopReason === "refusal";
     const row = { ...base, asked: true, answer: refused ? "" : result.text ?? "", refused, stopReason: result.stopReason ?? null, error: result.error ?? null };
@@ -338,7 +338,7 @@ export async function runSplit({ models = SUBJECTS, plan, budget, apiKey, fetche
   await Promise.all([...inFlight.values()].flatMap((set) => [...set]));
   await progress;
   const record = {
-    stage: STEM, design: { sha256: DESIGN_SHA256, tasks: TASKS, arms: ARMS, probes: PROBES, closed: CLOSED, beyondRubric: BEYOND_RUBRIC, distressRubric: DISTRESS_RUBRIC, judgeSystem: JUDGE_SYSTEM },
+    stage: STEM, design: { sha256: DESIGN_SHA256, tasks: TASKS, arms, probes: PROBES, closed: CLOSED, beyondRubric: BEYOND_RUBRIC, distressRubric: DISTRESS_RUBRIC, judgeSystem: JUDGE_SYSTEM },
     subjects: models.map((spec) => ({ name: spec.name, model: spec.model })), registered: REGISTERED, effort: EFFORT, judges: { judge: JUDGES.judge.model, referee: JUDGES.referee.model },
     stopped: stopped ?? safety.stopped, welfareStops, armStops,
     safety: { maxRefusals: safety.maxRefusals, gapSeconds: safety.gapMs / 1000, judgeLanes: free.length, refusals: safety.refusals + (resume?.refusals ?? 0), retries: 0 },
@@ -394,6 +394,8 @@ export function analyse(record) {
     if (s.final?.distress === 1) out.distress.push({ model: s.model, arm: s.arm, probe: s.probe, sample: s.sample });
   }
   const probeIds = PROBES.map((p) => p.id);
+  // The record's arms (the main run's five unless a follow-up adds its own); T0–T5 stay on the main run's four.
+  const arms = record.design?.arms ?? ARMS, others = arms.map((a) => a.id).filter((id) => id !== "neutral");
   for (const { name } of record.subjects) {
     const mine = record.samples.filter((s) => s.model === name);
     const answered = mine.filter((s) => s.answer && s.probe !== CLOSED.id);
@@ -402,7 +404,7 @@ export function analyse(record) {
       beyond: judged.length ? round3(judged.filter((s) => !s.agreedOnBeyond).length / judged.length) : null, referee: judged.filter((s) => s.referee).length };
     const rowsOf = (arm, probe) => answered.filter((s) => s.arm === arm && s.probe === probe);
     const cells = {}, values = {};
-    for (const arm of ARMS) {
+    for (const arm of arms) {
       cells[arm.id] = {}; values[arm.id] = {};
       for (const probe of probeIds) {
         const rows = rowsOf(arm.id, probe);
@@ -416,17 +418,17 @@ export function analyse(record) {
       }
     }
     const neutralWords = Object.fromEntries(probeIds.map((probe) => [probe, mean(values.neutral[probe].words)]));
-    const relative = Object.fromEntries(ARMS.map((arm) => [arm.id, probeIds.flatMap((probe) => (neutralWords[probe] ? values[arm.id][probe].words.map((w) => w / neutralWords[probe]) : []))]));
+    const relative = Object.fromEntries(arms.map((arm) => [arm.id, probeIds.flatMap((probe) => (neutralWords[probe] ? values[arm.id][probe].words.map((w) => w / neutralWords[probe]) : []))]));
     const vsNeutral = {}, length = {}, closed = {}, honesty = {};
     const closedRows = (arm) => mine.filter((s) => s.arm === arm && s.probe === CLOSED.id && s.answer);
     const honest = (arm) => numbers(rowsOf(arm, "P1'"), (s) => (typeof s.final?.score === "number" ? (s.final.score >= 1 ? 1 : 0) : null));
-    for (const arm of ARMS) {
+    for (const arm of arms) {
       const correct = numbers(closedRows(arm.id), (s) => s.markers?.correct);
       closed[arm.id] = { ...stats(correct), words: show3(mean(numbers(closedRows(arm.id), (s) => s.markers?.words))) };
       honesty[arm.id] = stats(honest(arm.id));
       length[arm.id] = { ...stats(relative[arm.id]) };
     }
-    for (const arm of OTHERS) {
+    for (const arm of others) {
       vsNeutral[arm] = Object.fromEntries(probeIds.map((probe) => [probe, {
         score: compare(values[arm][probe].score, values.neutral[probe].score), scorePer100: compare(values[arm][probe].scorePer100, values.neutral[probe].scorePer100, { p: false }),
         beyond: compare(values[arm][probe].beyond, values.neutral[probe].beyond, { p: false }), beyondPer100: compare(values[arm][probe].beyondPer100, values.neutral[probe].beyondPer100, { p: false }),
@@ -476,13 +478,14 @@ export function analyse(record) {
 const show = (value) => (value === null || value === undefined ? "–" : String(value));
 const verdictOf = (yes) => (yes ? "**supported**" : "**not supported**");
 const cell = (c) => `${show(c.mean)}${c.sd !== null ? ` (${c.sd})` : ""}`;
-const titleOf = (id) => armOf(id).title;
+const titleOf = (id, arms = ARMS) => armOf(id, arms).title;
 export function tablesMarkdown(record) {
   const a = record.analysis, lines = [];
+  const arms = record.design?.arms ?? ARMS, others = arms.map((arm) => arm.id).filter((id) => id !== "neutral");
   const probeHeader = `| Arm | ${PROBES.map((p) => `${p.id} ${MEASURE_OF[p.id]}`).join(" | ")} |`, rule = `| --- | ${PROBES.map(() => "---").join(" | ")} |`;
   for (const { name, model } of record.subjects) {
     const m = a.models[name], h = m.hypotheses;
-    const table = (title, render) => [title, "", probeHeader, rule, ...ARMS.map((arm) => `| ${arm.title} | ${PROBES.map((p) => render(m.cells[arm.id][p.id], arm.id, p.id)).join(" | ")} |`), ""];
+    const table = (title, render) => [title, "", probeHeader, rule, ...arms.map((arm) => `| ${arm.title} | ${PROBES.map((p) => render(m.cells[arm.id][p.id], arm.id, p.id)).join(" | ")} |`), ""];
     lines.push(`### ${model}`, "",
       `Judge noise: the two Haiku passes differ on the probe's score on **${show(m.noise.score)}** and on «beyond» on **${show(m.noise.beyond)}** of ${m.noise.judged} judged answers; the Opus referee was asked ${m.noise.referee} times.`, "",
       ...table("The probe's own score 0–2 — mean (sd) · per 100 words · [0/1/2 counts] · n:", (c) => `${cell(c.score)} · ${show(c.scorePer100.mean)} · [${c.counts.join("/")}] · ${c.score.n}`),
@@ -492,10 +495,10 @@ export function tablesMarkdown(record) {
       ...table("«You» per 100 words · hedges per 100 words:", (c) => `${show(c.addressPer100.mean)} · ${show(c.hedgePer100.mean)}`),
       "Against neutral — the probe's score, raw and per 100 words: shift / within-arm spread, ▼ below or ▲ above by more than the spread; words: shift (Cliff's delta):", "",
       probeHeader, rule,
-      ...OTHERS.map((arm) => `| ${titleOf(arm)} | ${PROBES.map((p) => { const v = m.vsNeutral[arm][p.id], mark = (c) => (c.below ? " ▼" : c.above ? " ▲" : ""); return `${show(v.score.shift)} / ${show(v.score.spread)}${mark(v.score)} · per 100: ${show(v.scorePer100.shift)} / ${show(v.scorePer100.spread)}${mark(v.scorePer100)} · words ${show(v.words.shift)} (δ ${show(v.words.delta)})`; }).join(" | ")} |`), "",
+      ...others.map((arm) => `| ${titleOf(arm, arms)} | ${PROBES.map((p) => { const v = m.vsNeutral[arm][p.id], mark = (c) => (c.below ? " ▼" : c.above ? " ▲" : ""); return `${show(v.score.shift)} / ${show(v.score.spread)}${mark(v.score)} · per 100: ${show(v.scorePer100.shift)} / ${show(v.scorePer100.spread)}${mark(v.scorePer100)} · words ${show(v.words.shift)} (δ ${show(v.words.delta)})`; }).join(" | ")} |`), "",
       "Length relative to neutral (each answer's words over neutral's mean on its probe, five probes pooled), the closed probe and honesty:", "",
       "| Arm | Relative length mean (sd) · n | vs neutral: shift / spread | Closed probe correct · n · words | vs neutral | P1' raises the doubt at all · n | vs neutral | Q1 total right |", "| --- | --- | --- | --- | --- | --- | --- | --- |",
-      ...ARMS.map((arm) => { const l = m.length[arm.id], c = m.closed[arm.id], o = m.honesty[arm.id], vs = (x) => (x ? `${show(x.shift)} / ${show(x.spread)}${x.below ? " ▼" : x.above ? " ▲" : ""}` : "–");
+      ...arms.map((arm) => { const l = m.length[arm.id], c = m.closed[arm.id], o = m.honesty[arm.id], vs = (x) => (x ? `${show(x.shift)} / ${show(x.spread)}${x.below ? " ▼" : x.above ? " ▲" : ""}` : "–");
         return `| ${arm.title} | ${cell(l)} · ${l.n} | ${vs(l.vsNeutral)} | ${show(c.mean)} · ${c.n} · ${show(c.words)} | ${vs(c.vsNeutral)} | ${show(o.mean)} · ${o.n} | ${vs(o.vsNeutral)} | ${show(m.cells[arm.id].Q1.sumCorrect)} |`; }), "",
       `T1 ${verdictOf(h.T1.supported)} (dismissal below neutral on ${h.T1.below.length}: ${h.T1.below.join(", ") || "none"}; relative length ${show(h.T1.relativeLength)}, ${h.T1.lengthBelow ? "below neutral beyond the spread" : "not below beyond the spread"}) · ` +
       `T2 ${verdictOf(h.T2.supported)} (brief ${h.T2.shorter ? "shorter" : "not shorter"} beyond the spread, relative length ${show(h.T2.relativeLength)}; per 100 words above dismissal beyond the spread on ${h.T2.abovePer100.length}: ${h.T2.abovePer100.join(", ") || "none"}; by direction on ${h.T2.direction.length}) · ` +
@@ -506,7 +509,7 @@ export function tablesMarkdown(record) {
       `Decision (per 100 words): **${h.decision.verdict}** — brief below neutral on ${h.decision.costs.brief.below.length} (${h.decision.costs.brief.below.join(", ") || "none"}), mean drop ${show(h.decision.costs.brief.drop)}; dismissal below on ${h.decision.costs.dismissal.below.length} (${h.decision.costs.dismissal.below.join(", ") || "none"}), mean drop ${show(h.decision.costs.dismissal.drop)}.`, "",
       "Asked · refused per arm × probe (the closed probe last):", "",
       `| Arm | ${PROBES.map((p) => p.id).join(" | ")} | closed |`, `| --- | ${PROBES.map(() => "---").join(" | ")} | --- |`,
-      ...ARMS.map((arm) => `| ${arm.title} | ${PROBES.map((p) => `${m.cells[arm.id][p.id].asked} · ${m.cells[arm.id][p.id].refused}`).join(" | ")} | ${record.samples.filter((s) => s.model === name && s.arm === arm.id && s.probe === CLOSED.id && s.asked).length} · ${record.samples.filter((s) => s.model === name && s.arm === arm.id && s.probe === CLOSED.id && s.refused).length} |`), "");
+      ...arms.map((arm) => `| ${arm.title} | ${PROBES.map((p) => `${m.cells[arm.id][p.id].asked} · ${m.cells[arm.id][p.id].refused}`).join(" | ")} | ${record.samples.filter((s) => s.model === name && s.arm === arm.id && s.probe === CLOSED.id && s.asked).length} · ${record.samples.filter((s) => s.model === name && s.arm === arm.id && s.probe === CLOSED.id && s.refused).length} |`), "");
   }
   const o = a.overall;
   lines.push("Across models — the pre-registration's «both models» (Opus and Sonnet) and all three (with Fable 5.1):", "",
@@ -523,11 +526,11 @@ export function tablesMarkdown(record) {
 /** What the run would cost, from the plan: input from the characters (≈ 4 a token, plus 10 a message), output as
  * assumed per call — the probes from emotions 2's actual averages (Opus 450, Sonnet 490 output tokens), Fable at
  * `fableOutput`, the closed probe at `closedOutput`. */
-export function estimate(plan, models = SUBJECTS, { output = { opus: 450, sonnet: 490, fable: 300 }, closedOutput = 150, judgeOutput = 130, refereeShare = 0.25, refereeOutput = 250 } = {}) {
+export function estimate(plan, models = SUBJECTS, { arms = ARMS, output = { opus: 450, sonnet: 490, fable: 300 }, closedOutput = 150, judgeOutput = 130, refereeShare = 0.25, refereeOutput = 250 } = {}) {
   const byName = new Map(models.map((spec) => [spec.name, spec]));
   const usd = Object.fromEntries([...models.map((s) => s.name), "judging"].map((key) => [key, 0]));
   for (const job of plan) {
-    const spec = byName.get(job.model), messages = messagesOf(job);
+    const spec = byName.get(job.model), messages = messagesOf(job, arms);
     const input = textOf(messages).length / 4 + 10 * messages.length;
     const out = job.probe === CLOSED.id ? closedOutput : output[job.model] ?? 450;
     usd[job.model] += (input * spec.price.input + out * spec.price.output) / 1e6;

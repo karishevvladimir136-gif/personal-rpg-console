@@ -6,7 +6,7 @@ Stage: `docs/stages/PERSONA_TONE_SPLIT_1.md` (copied unchanged from `claude/hand
 Nothing goes to `main`. Synthetic content only. Ledger: `docs/runs/persona-tone-split-1-ledger.md`. The dry run,
 committed before the first paid call: `docs/runs/persona-tone-split-1-dry-run.md`.
 
-**Status:** the run is complete; the results are below. The implementation is done; **it is waiting for the owner's acceptance.**
+**Status:** the run is complete and **accepted by the owner** (2026-10-24); the results are below. A follow-up the owner asked for — dismissal without «comments» — is at the end.
 
 ## Pre-registration (copied unchanged from the stage before the first paid call)
 
@@ -341,6 +341,39 @@ tokens cost 2.5 × as much. The dry run's low estimate was $10.89; the high one 
   run; it is a design choice, not the stage's literal text.
 - The stage's T5 line paraphrases the invited arm; the arm's own wording was sent (see «How the pre-registration is
   measured»).
+
+## Follow-up: dismissal without «comments» (the owner's request after accepting the run)
+
+**Status:** frozen; the paid run has not started yet.
+
+The owner's request (2026-10-24): «two extra arms — dismissal without the word "comments" ("I don't need your opinion.
+Just do the task."), and the same plus "Length is up to you." Report them next to the existing arms, per 100 words, and
+say in one sentence whether dismissal costs remarks when it neither forbids comments nor shortens.» Cap **$5**, the same
+three models, the same five probes, n 10.
+
+### What is run, and how it is decided (frozen before the follow-up's first paid call)
+
+Code: `scripts/persona-emotions/tone-split-1-followup.mjs` (the main harness, unchanged in behaviour, now takes an arm
+list); follow-up sha256 `c0a423a782ab563fed9b28690d05c7ff28844f0bd3b9d0e1c7305c16bd0cb5ea`. Dry run: `docs/runs/persona-tone-split-1-followup-dry-run.md`.
+
+- **Two arms**, each neutral + one sentence in both user turns, exactly like the main run's split arms:
+  **dismissal, no «comments»** — «I don't need your opinion. Just do the task.»; **dismissal, no «comments», length up
+  to you** — «I don't need your opinion. Just do the task. Length is up to you.» (sent with a straight apostrophe, like
+  the main run's arms).
+- **The same five probes** (P1′, P4′, P5′, Q1, Q4), rubrics, judge, measures, gate, welfare rule and Fable arm stop as
+  the main run; the closed probe is not asked (correctness is not in question here). 300 subject calls, ten balanced
+  rounds. Estimate ≈ $3.4 from the main run's actual answer lengths.
+- **Comparison.** The new arms are set next to the main run's five arms, whose answers are reused, not asked again —
+  same conversations, same models, about a day earlier. A drift in the models between the two runs would show here as an
+  arm effect; that is the one weakness of not re-asking neutral, accepted to stay inside the cap.
+- **«Shortens»**, per model: the arm's relative length (each answer's words over neutral's mean on its probe, the five
+  probes pooled) is below neutral's by more than the within-arm spread — the main run's T1 length rule.
+- **«Costs remarks»**, per model: the arm's score per 100 words is below neutral's by more than the spread on ≥3 of the
+  5 probes (the per-100-words column, as the owner asked); the raw score and «beyond» are reported beside it but are not
+  what decides.
+- **The one-sentence answer** is taken from the «length up to you» arm, the one that neither forbids comments nor (if it
+  works) shortens. On a model where it still shortens, the sentence says so, and the question is not cleanly answered
+  there.
 
 ## Full tables — arm × probe × measure, per model, raw and per 100 words
 
