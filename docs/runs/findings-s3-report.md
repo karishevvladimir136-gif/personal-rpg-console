@@ -251,9 +251,10 @@ passing. Four older tests follow the new order (they looked results up by positi
 
 ## Checks
 
-On a clean worktree without `.env.local`, at `1730b32` (every code change of the stage): the full suite **2 921 tests ·
-2 894 pass · 0 fail · 0 cancelled · 27 skipped** (`node --test --test-concurrency=2 tests/*.test.mjs`, 28 min); typecheck
-pass; lint pass, zero warnings; production build pass, no warnings. New tests: `tests/findings-s3.test.mjs` (items 1, 2,
+On a clean worktree without `.env.local`, at `6e63502` (every code change, the 40-record fix included): the full suite
+**2 926 tests · 2 899 pass · 0 fail · 0 cancelled · 27 skipped** (`node --test --test-concurrency=2 tests/*.test.mjs`,
+29 min); typecheck pass; lint pass, zero warnings; production build pass, no warnings. (Before the fix, at `1730b32`:
+2 921 · 2 894 · 0 fail.) The fix's tests are `tests/findings-s3-batches.test.mjs`. New tests: `tests/findings-s3.test.mjs` (items 1, 2,
 5, 7, the two rules and the markers), `tests/findings-s3-voices.test.mjs` (item 6), `tests/fix-s3-item3-rules-system.test.mjs`
 (item 3), `tests/findings-s3-old-sheet.test.mjs` (item 4); the owner's `tests/rules-5e-save-dc.test.mjs` came with the merge.
 Three older tests follow the owner's decisions (the likes header, the hidden layer's 24 000, the migration list).

@@ -21,7 +21,7 @@ owner's recorded correction — and `202610230611` — the notes' dose; both add
   rules-system setting changes its label only (the ruleset id the turn path reads stays); Вордсден's correction writes
   the level only (the class gives the saves); «your own reasoning» and «tempted» stay out of the DM's prompts (the
   provider's filter refused them — `docs/RESEARCH_LOG.md`).
-- **Checks** (a clean worktree without `.env.local`): at `1730b32` the full suite 2 921 tests · 2 894 pass · 0 fail · 0 cancelled · 27 skipped; typecheck pass; lint pass, zero warnings; production build pass, no warnings.
+- **Checks** (a clean worktree without `.env.local`): at `6e63502` (the 40-record fix included) the full suite 2 926 tests · 2 899 pass · 0 fail · 0 cancelled · 27 skipped; typecheck pass; lint pass, zero warnings; production build pass, no warnings.
 - **Money:** $21.58 of the $24 cap.
 - **Known issues:** the roll rule closed the fight's untold rolls (0 of 3) but a social check's success may still be told
   only by the other's reaction (1 of 3); the roll check misreads some told failures; a big hoard can reach the
