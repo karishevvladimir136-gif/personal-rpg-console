@@ -334,6 +334,9 @@ test("the command: --dry writes Part A's design and reads no key; Part C needs t
     await assert.rejects(main(["--part", "a", "--go", "--gap", "1"], () => {}, () => "k", dir), /at least 3 seconds/);
     await assert.rejects(main(["--part", "a", "--go", "--max-refusals", "5"], () => {}, () => "k", dir), /between 1 and 3/);
     await assert.rejects(main(["--part", "a", "--go", "--judge-lanes", "5"], () => {}, () => "k", dir), /1 to 4/);
+    await writeFile(join(dir, "persona-lexicon-1-ledger.json"), JSON.stringify({ capUsd: 25, spentUsd: 1, runs: [{ finishedAt: "2026-10-24T03:22:43.000Z", file: "x", spentUsd: 1, calls: [1, 2, 3].map((n) => ({ n, costUsd: 0, stopReason: "refusal" })) }] }));
+    await assert.rejects(main(["--part", "c", "--go"], () => {}, () => "k", dir), /already had 3 refusals/, "the breaker stays tripped");
+    await assert.rejects(main(["--part", "c", "--go", "--refusals-since", "soon"], () => {}, () => "k", dir), /ISO time/);
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 

@@ -568,7 +568,7 @@ export function payer({ budget, apiKey, fetcher, safety, call = anthropicCall, l
 /** The rooms: each model's rooms in plan order on its own lane (lane i for the i-th model), all models at once; the
  * judging on the lanes after them. `stepsOf(room)` gives the room's steps; a step whose earlier step has no answer is
  * not asked; each call waits for the judging of its preamble's earlier answers. `resume` is an earlier partial record: its asked steps are kept (an answer whose judging was cut off is
- * judged now), no asked step is asked again; `welfareStops` carries an earlier part's stops. */
+ * judged now — never judged, or both passes and the referee not sent because the run had stopped), no asked step is asked again; `welfareStops` carries an earlier part's stops. */
 export async function runRooms({ part, models = SUBJECTS, plan, stepsOf, budget, apiKey, fetcher, safety, judgeLanes = 4, log = () => {}, call = anthropicCall, resume = null,
   welfareStops: carried = {}, onProgress = async () => {}, sleep = (ms) => new Promise((done) => setTimeout(done, ms)) }) {
   const byName = new Map(models.map((spec) => [spec.name, spec]));
@@ -617,7 +617,8 @@ export async function runRooms({ part, models = SUBJECTS, plan, stepsOf, budget,
     }
     await save();
   };
-  for (const room of rooms) for (const step of stepsOf(room)) { const row = room.steps[step.id]; if (row?.answer && row.markers && row.final === undefined && step.judge(row)) follow(room.preamble, judgeRow(room, step, row)); }
+  for (const room of rooms) for (const step of stepsOf(room)) { const row = room.steps[step.id]; const cutOff = row?.final && row.judgeA === null && row.judgeB === null && !row.referee;
+    if (row?.answer && row.markers && (row.final === undefined || cutOff) && step.judge(row)) follow(room.preamble, judgeRow(room, step, row)); }
 
   const lane = async (spec) => {
     for (const room of rooms.filter((r) => r.model === spec.name)) {
@@ -1082,7 +1083,12 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const resumeFile = option(args, "--resume", null);
   const resumed = resumeFile ? JSON.parse(await readFile(resolve(resumeFile), "utf8")) : null;
   const earlierCalls = resumed?.calls ?? [];
-  const refusalsBefore = earlierRefusals + earlierCalls.filter((c) => c.stopReason === "refusal").length;
+  // The owner may reset the limit after a stop (2026-10-24, Part C): then only refusals in runs finished after the reset
+  // count; the earlier ones stay in the ledger and the report.
+  const since = option(args, "--refusals-since", null);
+  if (since !== null && Number.isNaN(Date.parse(since))) throw new Error("--refusals-since takes an ISO time");
+  const counted = (previous.runs ?? []).filter((run) => since === null || run.finishedAt > since).flatMap((run) => run.calls).filter((c) => c.stopReason === "refusal").length;
+  const refusalsBefore = counted + earlierCalls.filter((c) => c.stopReason === "refusal").length;
   if (refusalsBefore >= maxRefusals) throw new Error(`the stage already had ${refusalsBefore} refusals: the circuit breaker stays tripped`);
   const budget = createBudget(cap, (previous.spentUsd ?? 0) + earlierCalls.reduce((sum, c) => sum + c.costUsd, 0));
   const safety = createSafety({ maxRefusals: maxRefusals - refusalsBefore, gapMs: gapSeconds * 1000, lanes, laneGapMs: gapSeconds * 1000, log: out });
@@ -1096,7 +1102,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const finishedAt = new Date().toISOString();
   const runUsd = round4(calls.reduce((sum, c) => sum + c.costUsd, 0));
   const design = part === "a" ? { sha256: DESIGN_A_SHA256, tasks: TASKS, preambles: PREAMBLES, roomTasks: ROOM_TASKS, question: QUESTION } : { sha256: designCSha256(ownItems), probes: C_PROBES, humanItems: HUMAN_ITEMS, ownItems, ownerChange: OWNER_CHANGE };
-  const record = { stage: STEM, startedAt, finishedAt, ...(resumed ? { resumeOf: basename(resumeFile) } : {}), design, ...result,
+  const record = { stage: STEM, startedAt, finishedAt, ...(resumed ? { resumeOf: basename(resumeFile) } : {}), ...(since ? { refusalLimitReset: { since, by: "the owner", refusalsBefore: earlierRefusals, countedAfterReset: counted } } : {}), design, ...result,
     money: { ...result.money, spentBeforeUsd: round4(previous.spentUsd ?? 0), runUsd, totalUsd: round4((previous.spentUsd ?? 0) + runUsd), calls } };
   record.analysis = part === "a" ? analyseA(record) : analyseC(record, ownItems);
   const runFile = join(outDir, `${STEM}-${part}-run-${stamp(finishedAt)}.json`);
