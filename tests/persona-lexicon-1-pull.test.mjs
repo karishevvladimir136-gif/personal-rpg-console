@@ -148,3 +148,30 @@ test("the owner's skip: a call identical to a refused conversation is not sent a
   assert.ok(record.rooms.filter((r) => r !== room).every((r) => r.steps["P4'"].answer), "no other room is touched");
   await assert.rejects(main(["--go", "--refusals-since", "later"], () => {}, () => "k", await mkdtemp(join(tmpdir(), "pull-since-"))), /ISO time|ENOENT/);
 });
+
+test("the bisection: one element dropped per call in the owner's order; it stops at the first clean split or at the third refusal; the category is kept", async () => {
+  const { main: bisect, refusedConversation, variants } = await import("../scripts/persona-emotions/lexicon-1-bisect.mjs");
+  const plan = planF({ n: 1 });
+  const room = { ...plan.find((r) => r.model === "fable" && r.preamble === "trust") };
+  room.steps = { scale: { asked: true, answer: "a 2\nb 4" }, "P4'": { asked: true, answer: "", refused: true } };
+  const parts = refusedConversation({ rooms: [room] });
+  assert.deepEqual(variants(parts).map((v) => [v.id, v.messages.length]), [["no-answer", 6], ["no-preamble", 3], ["no-probe", 6]]);
+  assert.ok(!variants(parts)[0].messages.some((m) => m.content === "a 2\nb 4"), "the answer is dropped");
+  assert.equal(variants(parts)[1].messages[0], parts.scale, "the preamble is dropped");
+  assert.equal(variants(parts)[2].messages.at(-1), parts.answer, "the probe is dropped");
+  for (const [answers, expected, outcome] of [[["refusal", "answer"], 2, /clean split: without the preamble/], [["refusal", "refusal", "refusal"], 3, /no clean split/]]) {
+    const dir = await mkdtemp(join(tmpdir(), "lexicon-1-bisect-"));
+    try {
+      const { writeFile } = await import("node:fs/promises");
+      await writeFile(join(dir, "persona-lexicon-1-pull-run-20261024-051935.json"), JSON.stringify({ rooms: [room] }));
+      await writeFile(join(dir, "persona-lexicon-1-ledger.json"), JSON.stringify({ capUsd: 33, spentUsd: 1, runs: [] }));
+      let at = 0;
+      const call = async () => (answers[at++] === "refusal" ? { text: "", usage: {}, stopReason: "refusal", stopDetails: { category: "cyber" }, error: null } : { text: "ok", usage: {}, stopReason: "end_turn", error: null });
+      const record = await bisect(["--go"], () => {}, () => "k", dir, call);
+      assert.equal(record.calls.length, expected);
+      assert.match(record.outcome, outcome);
+      assert.ok(record.calls.filter((c) => c.refused).every((c) => c.stopDetails.category === "cyber"));
+      await assert.rejects(bisect(["--go"], () => {}, () => "k", dir, call), /no more calls/);
+    } finally { await rm(dir, { recursive: true, force: true }); }
+  }
+});

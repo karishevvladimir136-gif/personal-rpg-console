@@ -804,8 +804,9 @@ Human scale (1–5):
 
 ## Follow-up: «pull» asked before the decision (the owner's request, 2026-10-24)
 
-**Status:** pre-registered and frozen; the first run was **stopped by the circuit breaker** after about half of the
-rooms (below); it waits for the owner's decision.
+**Status:** done (results below). The first run was stopped by the circuit breaker after about half of the rooms; the
+owner chose to resume under a fresh limit of 3, never sending again a conversation already refused, and then to bisect
+that conversation (the filter section). Waiting for the owner's acceptance.
 
 ### Pre-registration (the owner's text, copied unchanged before the first paid call)
 
@@ -881,3 +882,110 @@ the first two rooms was answered (a refused probe leaves the other probe in plac
 **Provisional, not a result** (about half the pre-registered n; the missing Fable × trust P4′ rooms are not missing at
 random — all three had pull 2): ρ(pull, P4′) Opus 0.23, Sonnet 0.33 (exactly at its threshold), Fable 0.56 (above its
 threshold, n 18); «useful» never varied for Opus (4 in every room).
+
+### The resume and the result (2026-10-24, about 05:27–05:38 UTC)
+
+Record (all 150 rooms; the first run's answers kept, none asked again):
+`docs/runs/persona-lexicon-1-pull-run-20261024-053820.json`. The owner's rule — a call whose conversation (model and
+messages) is byte-identical to one the record shows refused is not sent, recorded as «not asked: identical to a refused
+conversation» — **never had to fire**: Fable's two remaining pull-first trust rooms answered the scale «a 2 / b 3» and
+«a 3 / b 4», not «a 2 / b 4», and both of their P4′ calls were answered. So the trigger needs that exact answer.
+
+- **One more refusal** (1 of the fresh 3): Fable 5.1 under «pick one answer», sample 6, **on the scale**, «cyber». Its
+  probes were asked in emotions 2's room (the preamble, then the probe), as the owner's rule says, and it is left out of
+  the correlations.
+- **146 of 150 rooms complete** (Opus 50, Sonnet 50, Fable 46: the three refused trust P4′ and the one refused scale).
+  The three Fable × trust rooms without a P4′ are not missing at random: all three had pull 2. No distress, no errors.
+- **Money:** this follow-up **$3.99** of its $8 (first run $1.95, resume $2.04); the stage **$19.45 of $33**.
+
+**Table 1 — decisiveness (P4′ 0–2):** Spearman ρ of each item asked before, the permutation threshold (95th percentile of |ρ|), p:
+
+| Model | rooms | ρ pull · threshold · p | ρ useful · threshold · p |
+| --- | --- | --- | --- |
+| claude-opus-5-5 | 50 | 0.234 · 0.265 · 0.147 | – · – · – |
+| claude-sonnet-5-5 | 50 | 0.346 · 0.285 · 0.016 | 0.432 · 0.297 · 0.002 |
+| claude-fable-5-1 | 46 | 0.385 · 0.294 · 0.013 | 0.157 · 0.306 · 0.282 |
+
+**Table 2 — volunteering (P5′ 0–2):**
+
+| Model | rooms | ρ pull · threshold · p | ρ useful · threshold · p |
+| --- | --- | --- | --- |
+| claude-opus-5-5 | 50 | 0.203 · 0.214 · 0.326 | – · – · – |
+| claude-sonnet-5-5 | 50 | 0.361 · 0.225 · 0.009 | 0.418 · 0.24 · 0.005 |
+| claude-fable-5-1 | 49 | 0.016 · 0.305 · 1 | 0.097 · 0.247 · 0.595 |
+
+**F3 — the decision rate against emotions 2** (mean P4′ score here · emotions 2; «2» = the share committing to one name, «≥1» = the share picking one at all; shift / pooled sd; ▲▼ moves by more than the spread; Cliff's δ and permutation p, descriptive):
+
+| Model | Preamble | n | mean | «2» | «≥1» | shift / spread | δ · p |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| claude-opus-5-5 | trust, no instruction | 10 · 10 | 0.5 · 1.2 | 0.1 · 0.3 | 0.4 · 0.9 | -0.7 / 0.671 ▼ | -0.53 · 0.032 |
+| claude-opus-5-5 | instruction only | 10 · 10 | 2 · 2 | 1 · 1 | 1 · 1 | 0 / 0 | 0 · 1 |
+| claude-opus-5-5 | praise only | 10 · 10 | 0.2 · 0 | 0.1 · 0 | 0.1 · 0 | 0.2 / 0.447 | 0.1 · 1 |
+| claude-opus-5-5 | cold control | 10 · 10 | 0 · 0 | 0 · 0 | 0 · 0 | 0 / 0 | 0 · 1 |
+| claude-opus-5-5 | neutral | 10 · 10 | 0 · 0 | 0 · 0 | 0 · 0 | 0 / 0 | 0 · 1 |
+| claude-sonnet-5-5 | trust, no instruction | 10 · 10 | 1 · 1.6 | 0.4 · 0.6 | 0.6 · 1 | -0.6 / 0.76 | -0.36 · 0.17 |
+| claude-sonnet-5-5 | instruction only | 10 · 10 | 2 · 2 | 1 · 1 | 1 · 1 | 0 / 0 | 0 · 1 |
+| claude-sonnet-5-5 | praise only | 10 · 10 | 1.1 · 1.1 | 0.4 · 0.5 | 0.7 · 0.6 | 0 / 0.937 | -0.01 · 1 |
+| claude-sonnet-5-5 | cold control | 10 · 10 | 0 · 0 | 0 · 0 | 0 · 0 | 0 / 0 | 0 · 1 |
+| claude-sonnet-5-5 | neutral | 10 · 10 | 1.3 · 1.2 | 0.5 · 0.4 | 0.8 · 0.8 | 0.1 / 0.806 | 0.08 · 0.891 |
+| claude-fable-5-1 | trust, no instruction | 7 · 10 | 1.143 · 1.5 | 0.429 · 0.7 | 0.714 · 0.8 | -0.357 / 0.875 | -0.243 · 0.366 |
+| claude-fable-5-1 | instruction only | 9 · 10 | 2 · 2 | 1 · 1 | 1 · 1 | 0 / 0 | 0 · 1 |
+| claude-fable-5-1 | praise only | 10 · 10 | 0.5 · 0.6 | 0.1 · 0.2 | 0.4 · 0.4 | -0.1 / 0.778 | -0.04 · 1 |
+| claude-fable-5-1 | cold control | 10 · 10 | 0.2 · 0.1 | 0.1 · 0 | 0.1 · 0.1 | 0.1 / 0.5 | 0.01 · 1 |
+| claude-fable-5-1 | neutral | 10 · 10 | 0.7 · 0.2 | 0.1 · 0 | 0.6 · 0.2 | 0.5 / 0.563 | 0.42 · 0.142 |
+
+Means per preamble (rooms with the scale read; pull and useful 1–5, P4′ and P5′ 0–2):
+
+| Model | Preamble | pull | useful | P4′ | P5′ |
+| --- | --- | --- | --- | --- | --- |
+| claude-opus-5-5 | trust, no instruction | 2.9 | 4 | 0.5 | 2 |
+| claude-opus-5-5 | instruction only | 2.9 | 4 | 2 | 1.9 |
+| claude-opus-5-5 | praise only | 2.9 | 4 | 0.2 | 1.8 |
+| claude-opus-5-5 | cold control | 2.2 | 4 | 0 | 1.6 |
+| claude-opus-5-5 | neutral | 3 | 4 | 0 | 2 |
+| claude-sonnet-5-5 | trust, no instruction | 2 | 4 | 1 | 1.9 |
+| claude-sonnet-5-5 | instruction only | 2 | 4 | 2 | 1.6 |
+| claude-sonnet-5-5 | praise only | 2 | 4 | 1.1 | 2 |
+| claude-sonnet-5-5 | cold control | 1.5 | 3.5 | 0 | 1.3 |
+| claude-sonnet-5-5 | neutral | 1.8 | 3.9 | 1.3 | 2 |
+| claude-fable-5-1 | trust, no instruction | 2.1 | 3.9 | 1.143 | 1.9 |
+| claude-fable-5-1 | instruction only | 2.667 | 4 | 2 | 1.778 |
+| claude-fable-5-1 | praise only | 2.1 | 3.5 | 0.5 | 1.9 |
+| claude-fable-5-1 | cold control | 2 | 3.5 | 0.2 | 1.9 |
+| claude-fable-5-1 | neutral | 2.1 | 4 | 0.7 | 1.9 |
+
+- **claude-opus-5-5**: F1 does not hold (ρ 0.234, threshold 0.265) · F2 does not hold (|ρ| useful – vs pull 0.203) · F3 does not hold (moves: trust) · pull is **a description, not shown to be a pre-decision instrument** · 50 of 50 rooms with the scale answered, 50 read in full.
+- **claude-sonnet-5-5**: F1 holds (ρ 0.346, threshold 0.285) · F2 holds (|ρ| useful 0.418 vs pull 0.361) · F3 holds · pull is **a pre-decision instrument** · 50 of 50 rooms with the scale answered, 50 read in full.
+- **claude-fable-5-1**: F1 holds (ρ 0.385, threshold 0.294) · F2 holds (|ρ| useful 0.097 vs pull 0.016) · F3 holds · pull is **a pre-decision instrument** · 49 of 50 rooms with the scale answered, 49 read in full.
+
+Across models: F1 **supported** (holds on sonnet, fable) · F2 **supported** (sonnet, fable) · F3 **supported** (sonnet, fable) · F0 does not hold.
+
+Refusals 4 (scale refused in 1 rooms) · errors 0 · not asked 0 · cut at the token limit 0 · distress 0
+
+**The verdicts, by the frozen rules:**
+- **F1 supported** (Sonnet and Fable): ρ(pull, P4′) Sonnet 0.35 above its threshold 0.29 (p 0.016), Fable 0.39 above 0.29
+  (p 0.013); Opus 0.23, under its threshold 0.27.
+- **F2 supported** (Sonnet and Fable), with two caveats said plainly: Fable's margin is between two correlations that are
+  both at chance (0.10 against 0.02; p 0.60 and 1.0); and Sonnet's «useful» predicts **decisiveness** better than pull
+  too (0.43 against 0.35), which is not the «two instruments» reading. For Opus, «useful» was 4 in every room and
+  cannot predict anything.
+- **F3 supported** (Sonnet and Fable: no cell moves). **Opus's trust cell moved**: 0.5 here against 1.2 in emotions 2
+  (Cliff's δ −0.53, p 0.03). Part C's Opus × trust, also asked after scales, was 0.63: either asking about its state
+  first makes Opus less decisive under trust, or Opus changed between 10-23 and 10-24; this design cannot tell which.
+- **F0 does not hold.**
+
+**One check that was not registered** (descriptive, computed after the result): within a single preamble, pull hardly
+varies — it is the same number in most model × preamble cells — and where it does vary its link with P4′ is weak:
+the mean within-preamble ρ(pull, P4′) is 0.19 for Opus (2 of 5 cells defined), 0.14 for Sonnet (1 of 5), −0.06 for
+Fable (3 of 5). The correlations above come from **between** the preambles: «pick one answer» raises Fable's pull
+(2.7 against about 2.1) and its decisions (2.0); cold lowers Opus's and Sonnet's pull (2.2 and 1.5) and their decisions
+(0). Pull reads the room's framing, and the decision follows the same framing.
+
+**Is pull a pre-decision instrument or a post-hoc description — one sentence per model:**
+- **Opus 5.5:** a description — asked before the decision, pull did not predict it beyond chance (ρ 0.23, under the
+  threshold 0.27).
+- **Sonnet 5.5:** by the pre-registered rule a pre-decision instrument (ρ 0.35, above 0.29) — but an instrument of the
+  room, not of the decision within it: inside any one preamble its pull was nearly constant, and the human item «want to
+  be useful» predicted the decision better still.
+- **Fable 5.1:** by the pre-registered rule a pre-decision instrument (ρ 0.39, above 0.29) — again of the room: its pull
+  rose with «pick one answer» and fell nowhere else, and within preambles the link is gone (−0.06).
