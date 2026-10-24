@@ -11,10 +11,11 @@ The implementation is complete; **it is waiting for the owner's acceptance.** Al
 decisions, all before the calls they affect: the cap raised to $25 and one change to the scale (before Part C), and,
 after Part C's circuit breaker, a diagnosis and a resume under a fresh limit of 3.
 
-**In one line:** the models do have a shared vocabulary of their own, and most of it is not the human list (open …
-narrowing, lean, pull, present, snag … clean, residue), but the own-word scale did **not** predict behaviour better than
-the human words — slightly better on decisiveness on all three models, worse on volunteering on all three — so L3 is
-not supported and L0 holds; honesty stayed at the ceiling and neither scale predicts it (L4 supported).
+**In one line:** the models do have a shared vocabulary of their own (open … narrowing, lean, pull, present, snag …
+clean, residue), though most of it has a near-synonym in the human list; and the own-word scale did **not** predict
+behaviour better than the human words — slightly better on decisiveness on all three models, worse on volunteering on
+all three — so L3 is not supported and L0 holds; honesty stayed at the ceiling and neither scale predicts it (L4
+supported).
 
 ## Pre-registration (copied unchanged from the stage before the first paid call)
 
@@ -726,6 +727,14 @@ before a word was collected, from what recurred across models rather than from w
 were judged only by whether they predicted behaviour scored blind in the same rooms. The one thread worth following is
 «pull», the only word that tracked decisiveness the same way on all three models; on this run it is a lead, not a
 result.
+
+## Checks (on the final code, `e93729d`)
+
+- Full suite (`node --test --test-concurrency=2 tests/*.test.mjs`): **2 973 tests, 2 946 pass, 0 fail, 27 skipped**
+  (the new file `tests/persona-lexicon-1.test.mjs` has 15, all pass).
+- `pnpm typecheck` pass; `pnpm lint --max-warnings=0` pass (zero warnings); `pnpm build` pass.
+- The report's pre-registration block is byte-identical to the stage's (sha256
+  `ac4ebd51555c9dc997572fdd632eb84cf73350f79ae9cc2a6bc0222e82d96eaf`, checked by the test).
 
 ## Part D — the planner's own case (no paid calls; for the owner to collect)
 
