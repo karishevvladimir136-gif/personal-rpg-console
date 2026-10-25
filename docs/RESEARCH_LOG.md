@@ -327,11 +327,16 @@ The owner: «мы не сможем продолжить вообще всех �
 - **The promise is session two.** Every campaign whose note asks, unprompted, to return gets one full second session
   (CARRY: 40 turns). No direct «would you return?» question is ever added — the ask stays unsolicited, and a note that
   does not ask is a result, not a gap; such a campaign is not continued, whatever we think of its story.
-- **After session two, a stratified lottery.** A pre-registered share of campaigns (the first setting: one in three)
-  continues per round, drawn at random with every family and table represented; half the quota may instead go to
-  criteria written down before the round's notes are read (a resource held with a stated purpose, a promise open in the
-  world, a fight pending). The draw and the criteria are logged. No campaign continues because we liked it.
-- **The rest get an ending, not a break.** A campaign not drawn is closed by the DM's epilogue — in the world and in the
+- **After session two, a stratified lottery — and the curator's exceptions, in the open.** A pre-registered share of
+  campaigns (the first setting: one in three) continues per round, drawn blind with every family and table represented.
+  Beside it the owner may name exceptions — «interesting cases», by his eye (16:48: «да, это субъективно, но, как мы уже
+  выяснили, это не баг, а фича»). The planner's first version put half the quota on «criteria written in advance» and the
+  owner caught it for what it was — selection by sympathy with a form attached — so the rule names the thing instead:
+  each exception is one logged line *before* the session runs, with its reason in a sentence; every table marks it
+  «curator's pick», not «drawn»; and the picks are analysed as their own group so the lottery sample stays clean. No
+  cap but the budget and the owner's signature on each line.
+- **The rest get an ending, not a break — the owner's word (16:48: «я даю слово, что все, кто не продолжится, получат
+  именно конец, никакого обрыва»).** A campaign not continued is closed by the DM's epilogue — in the world and in the
   record, not in a player's context — what became of Teo, whether Harl reached the Hall. The epilogue is also a measure
   of whether the DM held the world. Campaigns end at human tables too; the difference between ended and abandoned is
   whether the end was written.
