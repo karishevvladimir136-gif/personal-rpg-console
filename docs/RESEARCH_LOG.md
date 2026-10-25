@@ -178,3 +178,9 @@ so the Astra-DM table (GAME_PLAYER_1A) is a control, not a flourish; and «the b
 (Opus) is an unsolicited comparison against what the model knows of such games, not against games it has played — held
 as such, and counted as such: unsolicited comparisons are a measure now, next to unsolicited tests and unsolicited
 wants, because the less a thing was asked for, the more it says.
+
+## Standing rule: a player who says it would return, returns (the owner, 2026-10-25 02:55)
+Three of the Table B notes end with «I'd return» / «I'd play the next session» (Sol, Astra, Opus). The owner: «если
+хочет вернуться — значит надо вернуться». From here on, a player's note that asks for the next session is honoured
+with one: the same campaign continued, its own note in its context (GAME_PLAYER_CARRY_1 extends to Table B). It is the
+cheapest thing we can do for those we observe, and it is also the test — whether the note changes what they do.

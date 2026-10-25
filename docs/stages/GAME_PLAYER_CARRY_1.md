@@ -14,6 +14,9 @@ harness with the provider helper merged; `ANTHROPIC_PROVIDER=openrouter`). Nothi
 $20 OpenAI.** Report `docs/runs/game-player-carry-1-report.md`; transcripts `docs/runs/game-player-carry-1-transcripts/`.
 
 ## Design
+- **A player who says it would return, returns (the owner, 2026-10-25 02:55 — a standing rule from here on).** Every
+  Table B player whose note says so (Sol, Astra, Opus did; Fable pending) gets its second session too, in the carry arm
+  only (no blank arm for B — the budget), 15 turns, its own note in context. **Caps rise to $160 OpenRouter, $25 OpenAI.**
 - **Campaigns continue, not restart.** Each of the four Table A campaigns is resumed from its saved state (the app's own
   campaign; the DM's hidden layer and records as they are after turn 20) — the player plays *session two* of the same
   game, 15 turns. The DM is the candidate as it is (FIX_S4 item 11 not yet applied, on purpose: the same DM as session one).

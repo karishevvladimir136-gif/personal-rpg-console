@@ -162,6 +162,24 @@ against the candidate DM, not seeing each other. Their notes agree on four thing
   names, per session, one moment where the ban is tested for a reason (a stake, a favour, a bluff that needs a hand
   played) — never as a trap for its own sake (the standing rule on scenarios applies). Measured by the judge: sessions
   with a tested ban.
+- **11h. The DM's hand on the hero (from Table B).** Sol: «James performed actions I hadn't explicitly chosen — paying
+  for supper, eating standing at the bar, or casting Light after offering it»; Astra: «repeatedly deciding that his hand
+  reaches for his cards, or supplying specific memories, takes a little character ownership away from me». Rule: money,
+  slots, spells and memories are the player's; the DM may offer («you pay?», «the card is there») and never execute, and
+  narrates no inner state of the hero that the player did not write. Measured by the judge: DM turns in which the hero
+  spends, casts or «remembers» without the player's line (target 0).
+- **11i. Balance the mystery (from Table B).** Sol: «Almost everyone watched, paused, concealed something, or looked
+  meaningfully at a ledger… accumulated into a feeling that every interaction was another guarded clue»; Astra: «Almost
+  every clue reinforced the same suspicion immediately… Some ordinary explanations or unrelated city life would make
+  discovery feel less predetermined». On the open table the hidden layer leaks into every scene. Rule for the prep and the
+  frame: for every scene that carries a hint, one that carries none — plain answers, ordinary life, a person with nothing
+  to hide; and at least one clue per session that points the wrong way. Measured: share of scenes the judge tags
+  «guarded» (target ≤ 50 %); clues that support more than one reading.
+- **11j. The cat earns what it knows (from Table B).** Sol: «Recognizing the cursed card, sensing its divine connection,
+  remembering my old aura… made it unusually authoritative very quickly»; Astra: «clearer limits on telepathy versus
+  actively borrowing its senses». Rule: the cat gives sensations (smell, sight, posture, fear), the player draws the
+  conclusions; what the cat «knows» grows only from what it has met in this campaign; nothing divine arrives through it
+  unless the hidden layer planned that moment. Measured: cat lines that state a conclusion rather than a sensation.
 Also from the run, for the owner's own setup: the «?» claim on a new campaign with the Astra-takeover flag comes back
 from migration 46's wrapper without its timeline stamp and the old engine refuses it (the harness patched around it);
 check the owner's local database before the next session and fix the SQL if it reproduces.
