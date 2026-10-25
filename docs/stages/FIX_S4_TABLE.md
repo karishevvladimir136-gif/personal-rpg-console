@@ -235,6 +235,14 @@ against the candidate DM, not seeing each other. Their notes agree on four thing
   piece… A soldier would have silver and copper in his purse.» The DM's «your purse holds only gold» note came up at four
   tables. Rule: the sheet's money is broken into mixed coin at campaign start (the owner's split, or a default of gold /
   silver / copper by tenths), and the records show it.
+- **11t. The records show what changed, not everything, every turn.** Fable (C): «The records block repeated the full
+  inventory and every promise every turn — I'd rather see only what changed, which the "changed:" line already does
+  well»; Astra (C): «The repeated full inventory updates were less useful than [a compact end-of-session summary] would
+  be.» Rule: per turn, only the «changed:» lines; the full state lives in the panel; at session end, one compact summary
+  (resources, time left, promises, open questions — Astra's list).
+- **11u. The clock does not jump at the start.** Fable (C): «The opening timestamp read "Day 1 · night" and then jumped
+  seven hours on my first action.» The opening scene's time is the time of the opening narration (dawn is dawn), set by
+  the prep, not by the first action's bookkeeping. Test: the first turn's «time passes» is the first action's duration.
 - **11 — what the fixes must not touch (the players' own list of what worked, across twelve notes).** NPCs with their
   own business and their own limit («Nobody was a clown, nobody was a signpost»; «never once warms up in a way that feels
   unearned»; «Helping people didn't make them instantly obedient»); a failed lie that earns more than the lie would have
