@@ -1,3 +1,4 @@
+import { anthropicApiKey } from "../server/anthropic-endpoint.ts";
 import type {
   FoundationCommand,
   FoundationSnapshot,
@@ -54,7 +55,8 @@ export function providerSettings(
         label: "OpenAI",
         status: configured ? "configured_not_tested" : "unavailable",
       },
-      { id: "anthropic", label: "Anthropic", status: keySet("ANTHROPIC_API_KEY") },
+      // BEDROCK_PROVIDER_1: the key of the door the Claude models go through (the Console's or Bedrock's).
+      { id: "anthropic", label: "Anthropic", status: anthropicApiKey(environment) ? "configured_not_tested" : "unavailable" },
       { id: "fal", label: "fal", status: keySet("FAL_KEY") },
     ],
     models: Object.entries(openAiModelCapabilities).map(([id, capability]) => ({

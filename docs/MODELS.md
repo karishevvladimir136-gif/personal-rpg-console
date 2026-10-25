@@ -16,6 +16,7 @@ Sources: [models overview](https://platform.claude.com/docs/en/about-claude/mode
 | Topic | Fact |
 | --- | --- |
 | Endpoint | `POST https://api.anthropic.com/v1/messages`, headers `x-api-key`, `anthropic-version: 2023-06-01` |
+| Second door (BEDROCK_PROVIDER_1) | `ANTHROPIC_PROVIDER=bedrock`: `POST https://bedrock-runtime.<AWS_REGION>.amazonaws.com/anthropic/v1/messages`, the same headers and bodies, the Bedrock API key (`BEDROCK_API_KEY`) in `x-api-key`, model `global.anthropic.claude-opus-5-5` (the map lives in `src/lib/server/anthropic-endpoint.ts`; the app's ids never change). No `count_tokens`, no priority/flex/batch tiers. Request id header `x-amzn-requestid` |
 | Context / output | 1M tokens context; 128K max output (synchronous API). `max_tokens` covers thinking + text |
 | Thinking | Adaptive thinking is **always on**. `thinking: {type: "disabled"}` and `budget_tokens` return 400. Thinking text is omitted by default (`display: "omitted"`), but the blocks still arrive and are billed |
 | Effort | `output_config.effort`: `low` / `medium` / `high` / `xhigh` / `max`. **Default `medium`** on this model. Changing top‑level effort between requests invalidates the prompt cache |

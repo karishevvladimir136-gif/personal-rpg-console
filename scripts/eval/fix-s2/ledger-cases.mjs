@@ -3,7 +3,7 @@
 // appears, an untracked enemy's bolt, a turn whose records are complete). Each case runs twice; a fraction of a cent.
 //   FIX_S2_STAGE=A node scripts/eval/fix-s2/ledger-cases.mjs --budget-usd 0.1
 import { openRun } from "../real-replay/lib/ledger.mjs";
-import { providerKey } from "../lib/keys.mjs";
+import { anthropicKey } from "../lib/anthropic-endpoint.mjs";
 import { checkLedger } from "../../../src/lib/gameplay/dm-loop/ledger-check.ts";
 
 const budgetUsd = Number(process.argv[process.argv.indexOf("--budget-usd") + 1] || 0);
@@ -20,7 +20,7 @@ const CASES = [
   { id: "control-enemy-bolt", miss: false, narration: "Часовой на крыше стреляет из арбалета; болт свистит в локте от головы Тоби и уходит в доски.", records: [ok("roll", "Часовой rolls 1d20+3: 12 vs 13 — failure; miss, no damage")] },
   { id: "control-recorded", miss: false, narration: "Ты снимаешь седло Дирка и вскидываешь его на плечо.", records: [ok("item", "Седло Дирка created for Рэй"), ok("advance_time", "10 minutes pass")] },
 ];
-const apiKey = providerKey("ANTHROPIC_API_KEY");
+const apiKey = anthropicKey();
 const run = `ledger-cases-${new Date().toISOString().replace(/[-:]/g, "").replace(/\..+$/, "").replace("T", "-")}`;
 const ledger = await openRun(run, budgetUsd, "fix run A6: the ledger checker on session 2's known misses (synthetic) and controls");
 let spent = 0;

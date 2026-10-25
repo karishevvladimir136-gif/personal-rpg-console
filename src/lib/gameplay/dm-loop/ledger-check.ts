@@ -10,6 +10,7 @@
 import type { DmLoopReceipt } from "./contracts.ts";
 import { walletLine, walletOfEntity, walletOfStorage } from "../../inventory/model.ts";
 import { QUOTABLE_MODEL, QUOTABLE_PRICE_PER_MILLION } from "./quotable.ts";
+import { anthropicEndpoint } from "../../server/anthropic-endpoint.ts";
 
 export const LEDGER_CHECK_MODEL = QUOTABLE_MODEL;
 export const LEDGER_CHECK_MAX_MISSES = 12;
@@ -103,13 +104,14 @@ export async function checkLedger(apiKey: string, input: { narration: string; le
   if (!apiKey) return { misses: [], usage: null, costUsdMicros: 0, elapsedMs: 0, error: "not_configured" };
   const request = ledgerCheckRequest({ narration: input.narration, ledger: input.ledger, records: recordLines(input.receipts), language: input.language, state: input.state });
   try {
-    const response = await (options.fetcher ?? fetch)("https://api.anthropic.com/v1/messages", {
+    const door = anthropicEndpoint();
+    const response = await (options.fetcher ?? fetch)(door.messagesUrl, {
       method: "POST",
-      headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
+      headers: door.headers(apiKey),
       // Fix S3-pre 2.6: the model thinks before it answers even at low effort; in 2 of 5 turns of the stage's ford probe
       // 900 tokens were all thinking and the check returned nothing. Without thinking it listed non-misses (records that
       // are there), so the thinking stays and gets room to finish.
-      body: JSON.stringify({ model: LEDGER_CHECK_MODEL, max_tokens: LEDGER_CHECK_MAX_TOKENS, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
+      body: JSON.stringify({ model: door.modelId(LEDGER_CHECK_MODEL), max_tokens: LEDGER_CHECK_MAX_TOKENS, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
       signal: AbortSignal.timeout(options.timeoutMs ?? 30_000),
     });
     const value = await response.json().catch(() => null) as { content?: { type: string; text?: string }[]; usage?: { input_tokens?: number; output_tokens?: number }; error?: { type?: string } } | null;

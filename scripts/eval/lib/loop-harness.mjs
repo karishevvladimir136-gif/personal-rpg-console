@@ -18,7 +18,7 @@ import { metricsReport, parseMetrics } from "../../../src/lib/gameplay/dm-loop/m
 import { naturalness as naturalnessOf } from "./naturalness.mjs";
 import { checkLedger } from "../../../src/lib/gameplay/dm-loop/ledger-check.ts";
 import { checkRollsTold } from "../../../src/lib/gameplay/dm-loop/roll-check.ts";
-import { providerKey } from "./keys.mjs";
+import { anthropicKey, anthropicRequestId, callProvenance, provenance } from "./anthropic-endpoint.mjs";
 
 const hook = registerHooks({ resolve(specifier, context, nextResolve) {
   return specifier === "server-only"
@@ -76,7 +76,10 @@ function liveModel(selection, budget, apiKey, log) {
     const started = performance.now();
     try {
       const response = await fetch(url, init);
-      log.push({ event: "http", status: response.status, requestBytes: bytes, latencyMs: Math.round(performance.now() - started) });
+      // BEDROCK_PROVIDER_1 §4: every call line names the door it went through and the provider's request id.
+      log.push({ event: "http", status: response.status, requestBytes: bytes, latencyMs: Math.round(performance.now() - started),
+        ...callProvenance(selection.providerId, url),
+        requestId: anthropicRequestId(response.headers) ?? response.headers.get("x-request-id") });
       // A rejected request costs nothing; a streamed one is settled from its usage event.
       if (response.ok) reservations.set(budget.requests, reservation);
       else budget.reservedUsd -= reservation;
@@ -149,6 +152,11 @@ function twoPassFields(observations, usage, loop, result, durationMs, split, isB
 /** The hero and the companions (the loop counts controlled companions; the bench takes every companion). */
 function afterParty(state) {
   return state.entities.filter((row) => row.id === state.heroId || row.kind === "companion");
+}
+
+/** BEDROCK_PROVIDER_1 §4: the door of a call in a run record (an OpenAI call keeps its own provider). */
+function callDoor(providerId) {
+  return providerId === "anthropic" ? provenance() : { provider: providerId, endpointHost: providerId === "openai" ? "api.openai.com" : null };
 }
 
 function sum(entries, key) {
@@ -249,7 +257,7 @@ export async function runLoopScenario(scenario, options) {
           ...(options.bookkeeperSwitch && turnIndex >= options.bookkeeperSwitch.turn ? { effort: options.bookkeeperSwitch.effort } : {}) } } : {}),
         bookkeeperModel: () => bookkeeperModel,
         // Fix S3-pre E-4c: the app's key from .env.local (or the cloud's APP_ variable), never the shell's ANTHROPIC_API_KEY.
-        ...(live && options.appChecks ? appChecks(options.budget, options.apiKey ?? providerKey("ANTHROPIC_API_KEY")) : {}) });
+        ...(live && options.appChecks ? appChecks(options.budget, options.apiKey ?? anthropicKey()) : {}) });
         if (continuationEffort) {
           const pinned = deps.pin;
           deps.pin = async (claim) => ({ ...(await pinned(claim)), continuationEffort });
@@ -318,7 +326,7 @@ export async function runLoopScenario(scenario, options) {
           costUsd: live ? Number(sum(usage, "costUsd").toFixed(5)) : 0,
           requestBytes: requestStarts.map((o) => o.requestBytes),
           cachedPrefixBytes: requestStarts[0]?.cachedPrefixBytes ?? null,
-          calls: usage.map((entry, index) => ({ stage: "loop", latencyMs: entry.latencyMs, firstTextMs: entry.firstTextMs,
+          calls: usage.map((entry, index) => ({ stage: "loop", ...callDoor(entry.providerId), latencyMs: entry.latencyMs, firstTextMs: entry.firstTextMs,
             inputTokens: entry.inputTokens, cachedInputTokens: entry.cacheReadTokens, cacheWriteTokens: entry.cacheWriteTokens, cacheWrite1hTokens: entry.cacheWrite1hTokens ?? null,
             outputTokens: entry.outputTokens, reasoningTokens: entry.reasoningTokens, costUsd: entry.costUsd, toolCalls: entry.toolCalls,
             effort: entry.effort, tools: callsByRequest(usage, receipts)[index] })),

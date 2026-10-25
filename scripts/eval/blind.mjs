@@ -11,6 +11,7 @@ import { execFileSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { providerKey } from "./lib/keys.mjs";
+import { anthropicKey } from "./lib/anthropic-endpoint.mjs";
 import { runLoopScenario, createLoopBudget, LOOP_MODELS } from "./lib/loop-harness.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -34,7 +35,7 @@ const folder = join(here, "scenarios", "blind");
 const files = (await readdir(folder)).filter((file) => file.endsWith(".json")).sort();
 const scenes = await Promise.all(files.map(async (file) => ({ name: file.replace(/\.json$/, ""), ...JSON.parse(await readFile(join(folder, file), "utf8")) })));
 const selected = args.scenes ? args.scenes.map((name) => scenes.find((s) => s.name === name) ?? (() => { throw new Error(`unknown scene ${name}`); })()) : scenes;
-const keys = { anthropic: providerKey("ANTHROPIC_API_KEY"), openai: providerKey("OPENAI_API_KEY") };
+const keys = { anthropic: anthropicKey(), openai: providerKey("OPENAI_API_KEY") };
 const commit = (() => { try { return execFileSync("git", ["rev-parse", "--short", "HEAD"], { cwd: root, encoding: "utf8" }).trim(); } catch { return null; } })();
 const outDir = join(root, "docs", "samples", "stage-4", "blind");
 const runsDir = join(root, "docs", "runs");

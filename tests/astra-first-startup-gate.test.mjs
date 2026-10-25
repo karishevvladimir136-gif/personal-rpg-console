@@ -111,6 +111,8 @@ function serviceFixture({ sheet = structured, pinned = null, takeover = false,
       resumeCampaignTurn: async () => { throw new Error("unexpected loop resume"); } },
     "../production/dm-loop-pin": { dmLoopPinFromProfile: () => ({}), dmLoopProfile: () => ({}) },
     "./dm/model": { createDmModel: () => ({}) },
+    // BEDROCK_PROVIDER_1: the door's key (the anthropic door's, as the helper returns it by default).
+    "./anthropic-endpoint": { anthropicApiKey: () => (process.env.ANTHROPIC_API_KEY ?? "").trim() },
     "./dm/live-turns": { publishLiveTurnEvent: () => {}, keepLiveTurnLedger: () => {} },
     "./turn-snapshots": { saveTurnSnapshot: async () => {} },
     // Voice stage part 5: the quotable-line check is scheduled after a loop commit only, never on this path.

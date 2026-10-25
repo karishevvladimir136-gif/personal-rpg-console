@@ -2,7 +2,7 @@
 // harmless request (a village in two sentences) and the region prep's system prompt with a one-place request; reports
 // stop_reason and the refusal category only. Registered in the stage ledger (fixs3accept, stage D).
 //   FIX_S2_STAGE=D node scripts/eval/live2d/region-prep-sanity.mjs --model claude-opus-5
-import { providerKey } from "../lib/keys.mjs";
+import { scriptAnthropicEndpoint } from "../lib/anthropic-endpoint.mjs";
 import { openRun } from "../real-replay/lib/ledger.mjs";
 import { regionPrepRequest } from "../../../src/lib/live2d/region-prep.ts";
 
@@ -19,9 +19,10 @@ const cases = [
 let spent = 0;
 const rows = [];
 for (const [name, system, user] of cases) {
-  const response = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST", headers: { "x-api-key": providerKey("ANTHROPIC_API_KEY"), "anthropic-version": "2023-06-01", "content-type": "application/json" },
-    body: JSON.stringify({ model, max_tokens: 3000, output_config: { effort: "low" }, system, messages: [{ role: "user", content: user }] }),
+  const door = scriptAnthropicEndpoint();
+  const response = await fetch(door.messagesUrl, {
+    method: "POST", headers: door.headers(door.apiKey),
+    body: JSON.stringify({ model: door.modelId(model), max_tokens: 3000, output_config: { effort: "low" }, system, messages: [{ role: "user", content: user }] }),
   });
   const body = await response.json().catch(() => null);
   const usage = body?.usage ?? { input_tokens: 0, output_tokens: 0 };

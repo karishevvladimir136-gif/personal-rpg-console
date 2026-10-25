@@ -1,0 +1,17 @@
+{
+  "capUsd": 3,
+  "entries": [
+    {
+      "run": "bedrock-provider-1-smoke-2026-10-25T07-16-41",
+      "what": "smoke: Haiku 5.5 call + one Opus 5.5 DM turn (Bedrock only)",
+      "provider": "bedrock",
+      "endpointHost": "bedrock-runtime.us-west-1.amazonaws.com",
+      "startedAt": "2026-10-25T07:16:41.225Z",
+      "reservedUsd": 3,
+      "spentUsd": 0,
+      "settled": true,
+      "finishedAt": "2026-10-25T07:17:42.454Z",
+      "record": "docs/runs/bedrock-provider-1-smoke.json"
+    }
+  ]
+}

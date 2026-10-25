@@ -1,5 +1,25 @@
 # Development status
 
+**Current milestone: Bedrock provider 1 — the same Claude models through a second door** (`docs/stages/BEDROCK_PROVIDER_1.md`
+on `claude/handoff`) — **implementation done; the smoke stopped on model access** (the owner's AWS account may not use
+Claude Haiku 5.5 yet; Opus 5.5 was not called). Report: `docs/runs/bedrock-provider-1-report.md`; ledger
+`docs/runs/bedrock-provider-1-ledger.md`.
+
+- **What was done:** `ANTHROPIC_PROVIDER=anthropic|bedrock` picks the door for every Claude call, in one helper
+  (`src/lib/server/anthropic-endpoint.ts`, mirror `scripts/eval/lib/anthropic-endpoint.mjs`); the 21 hard-coded
+  endpoints and every Anthropic key read go through it; the app's model ids never change (mapped at the transport);
+  Bedrock throttling waits, a refused model is `not_configured` and named; harness call lines, run records and ledger
+  entries carry `provider`/`endpointHost`/`requestId`; CLOUD.md, `.env.example` (names only), MODELS.md updated.
+- **Key decisions:** the stage's host `bedrock-runtime.<region>.amazonaws.com/anthropic` (live, Anthropic-shaped; the
+  `bedrock-mantle` host of Anthropic's docs is not reachable from the cloud) with `global.` profile ids; no migration;
+  no SDK added.
+- **Checks:** see the commit; new tests in `tests/bedrock-provider-1.test.mjs`.
+- **Money:** $0.00 of the $3 cap (two refused Haiku calls).
+- **Known issues:** Haiku 5.5 (the app's small checks) and possibly Opus 5.5 need Bedrock model access on the owner's
+  account; the Opus tokens-per-minute quota is not observed yet.
+- **Next step:** the owner requests model access (Haiku 5.5, Opus 5.5; Sonnet 5.5 for pictures/combat draft) in the AWS
+  console for us-west-1, then the smoke is re-run (`node scripts/eval/bedrock-smoke.mjs`, ≤ $3) and the Opus quota read.
+
 **Current milestone: the findings of 2026-10-22/23 applied to the game** (`docs/stages/FINDINGS_S3.md` on
 `claude/handoff`, items 1–7) — **implementation done on `claude/s3-candidate`, waiting for the owner's acceptance and the
 sandbox load** (`docs/SANDBOX_LOAD_FIX_S2.md`: two new migrations, `202610230601` — Джеймс Вордсден's level 5 as the

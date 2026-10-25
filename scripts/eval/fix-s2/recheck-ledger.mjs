@@ -3,7 +3,7 @@
 //   FIX_S2_STAGE=A node scripts/eval/fix-s2/recheck-ledger.mjs --probes scripts/eval/out/fix-s2-probes-a.json --budget-usd 0.2 <records.jsonl> [...]
 import { readFile } from "node:fs/promises";
 import { openRun } from "../real-replay/lib/ledger.mjs";
-import { providerKey } from "../lib/keys.mjs";
+import { anthropicKey } from "../lib/anthropic-endpoint.mjs";
 import { checkLedger, ledgerCheckState } from "../../../src/lib/gameplay/dm-loop/ledger-check.ts";
 
 const args = { probes: null, budgetUsd: 0, files: [] };
@@ -13,7 +13,7 @@ for (let i = 2; i < process.argv.length; i++) {
   else args.files.push(process.argv[i]);
 }
 if (!args.probes || !(args.budgetUsd > 0) || !args.files.length) throw new Error("--probes <file> --budget-usd N <records…> are required");
-const apiKey = providerKey("ANTHROPIC_API_KEY");
+const apiKey = anthropicKey();
 const probes = JSON.parse(await readFile(args.probes, "utf8")).snapshots;
 const run = `ledger-recheck-${new Date().toISOString().replace(/[-:]/g, "").replace(/\..+$/, "").replace("T", "-")}`;
 const ledger = await openRun(run, args.budgetUsd, "fix run A6: the ledger checker with the records' state over the stage A probe records");

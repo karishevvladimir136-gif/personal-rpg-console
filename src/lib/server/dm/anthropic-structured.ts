@@ -1,6 +1,7 @@
 import "server-only";
 import { DmError } from "../../gameplay/dm-errors.ts";
 import { dmModelSpec } from "../../model-runtime/dm-models.ts";
+import { anthropicEndpoint, appModelId, type AnthropicEndpoint } from "../anthropic-endpoint.ts";
 
 // Polish 2 §5: one structured request to the Anthropic Messages API — the
 // campaign's DM (Claude Opus 5.5) writing the opening proposal in the bootstrap's
@@ -50,15 +51,24 @@ export async function requestAnthropicStructured(options: AnthropicStructuredOpt
   if (!options.apiKey || !options.model) throw new DmError("configuration", true);
   const spec = dmModelSpec("anthropic", options.model);
   if (!spec || !spec.reasoning.includes(options.effort)) throw new DmError("configuration");
+  // BEDROCK_PROVIDER_1: a door that cannot be used (no region, an id it does not serve) is a configuration failure.
+  let door: AnthropicEndpoint;
+  let providerModel: string;
+  try {
+    door = anthropicEndpoint();
+    providerModel = door.modelId(options.model);
+  } catch {
+    throw new DmError("configuration", true);
+  }
   const fetcher = options.fetcher ?? fetch;
   const started = Date.now();
   let response: Response;
   try {
-    response = await fetcher("https://api.anthropic.com/v1/messages", {
+    response = await fetcher(door.messagesUrl, {
       method: "POST",
-      headers: { "x-api-key": options.apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
+      headers: door.headers(options.apiKey),
       body: JSON.stringify({
-        model: options.model,
+        model: providerModel,
         max_tokens: Math.min(options.maxOutputTokens ?? 16_000, spec.maxOutputTokens),
         output_config: { effort: options.effort, format: { type: "json_schema", schema: anthropicStructuredSchema(options.schema) } },
         system: options.system,
@@ -86,7 +96,8 @@ export async function requestAnthropicStructured(options: AnthropicStructuredOpt
   try { output = JSON.parse(text); } catch { throw new DmError("provider", false); }
   return {
     output,
-    usage: { model: typeof value.model === "string" ? value.model : options.model, inputTokens: value.usage?.input_tokens ?? 0,
+    // A Bedrock reply may name its profile id: the usage model is the app's id either way.
+    usage: { model: typeof value.model === "string" ? appModelId(value.model) : options.model, inputTokens: value.usage?.input_tokens ?? 0,
       outputTokens: value.usage?.output_tokens ?? 0, latencyMs: Date.now() - started },
   };
 }

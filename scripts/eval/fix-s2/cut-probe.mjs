@@ -5,7 +5,7 @@
 import { registerHooks } from "node:module";
 import { openRun } from "../real-replay/lib/ledger.mjs";
 import { createBudget, guardedModel, MODELS } from "../real-replay/lib/models.mjs";
-import { providerKey } from "../lib/keys.mjs";
+import { anthropicKey } from "../lib/anthropic-endpoint.mjs";
 import { CUT_BY_CAP, dmLoopToolset } from "../../../src/lib/gameplay/dm-loop/loop.ts";
 
 const hook = registerHooks({ resolve(specifier, context, nextResolve) {
@@ -16,7 +16,7 @@ hook.deregister();
 
 const budgetUsd = Number(process.argv[process.argv.indexOf("--budget-usd") + 1] || 0);
 if (!(budgetUsd > 0)) throw new Error("--budget-usd N is required");
-const apiKey = providerKey("ANTHROPIC_API_KEY");
+const apiKey = anthropicKey();
 if (!apiKey) throw new Error("ANTHROPIC_API_KEY is needed (.env.local)");
 const run = `cut-probe-${new Date().toISOString().replace(/[-:]/g, "").replace(/\..+$/, "").replace("T", "-")}`;
 const ledger = await openRun(run, budgetUsd, "fix run A1: the cut → continue path on the live provider (small caps)");

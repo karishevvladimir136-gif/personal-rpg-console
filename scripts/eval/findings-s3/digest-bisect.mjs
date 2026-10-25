@@ -7,7 +7,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { openRun, ROOT } from "../real-replay/lib/ledger.mjs";
 import { createBudget, guardedModel, MODELS } from "../real-replay/lib/models.mjs";
-import { providerKey } from "../lib/keys.mjs";
+import { anthropicKey } from "../lib/anthropic-endpoint.mjs";
 import { buildDigestRequest, sessionShape, DM_NOTES_VOICE } from "../../../src/lib/gameplay/dm-loop/digest.ts";
 import { dmModels, dmUsageCost } from "../../../src/lib/model-runtime/dm-models.ts";
 
@@ -22,7 +22,7 @@ for (let i = 2; i < process.argv.length; i++) {
   else throw new Error(`unknown argument ${flag}`);
 }
 if (!args.snapshots || !(args.budgetUsd > 0)) throw new Error("--snapshots and --budget-usd are required");
-const apiKey = providerKey("ANTHROPIC_API_KEY");
+const apiKey = anthropicKey();
 const file = JSON.parse(await readFile(args.snapshots, "utf8"));
 const source = (Array.isArray(file) ? file : file.snapshots).find((entry) => entry.turnNo === args.turn).payload.source;
 const rows = [...source.snapshot.scenes].sort((a, b) => a.sequence - b.sequence).slice(-args.scenes);

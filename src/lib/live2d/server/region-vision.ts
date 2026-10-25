@@ -10,6 +10,7 @@ import { parseRegionPrepReply, regionPrepRequest, type RegionPrepDraft, type Reg
 import { parseRegionCheck, regionCheckRequest, type PictureSize, type RegionCheckItem } from "../region-marks.ts";
 import { CHECK_MODEL, costUsdMicros, messages, type CallOptions, type Image, type Usage } from "./vision.ts";
 import { dmModelSpec, dmUsageCost } from "../../model-runtime/dm-models.ts";
+import { anthropicEndpoint } from "../../server/anthropic-endpoint.ts";
 
 /** One text request to a model: the system and the user text in, the reply's text, usage and cost out. */
 export type TextModel = (request: { system: string; user: string; maxOutputTokens: number }) => Promise<{ text: string; usage: Usage | null; costUsdMicros: number; model: string;
@@ -25,9 +26,10 @@ export function anthropicTextModel(apiKey: string, model: string, options: CallO
   };
   return async (request) => {
     // The Messages API directly (not vision.ts's helper, which throws a refusal away with its usage and category).
-    const response = await (options.fetcher ?? fetch)("https://api.anthropic.com/v1/messages", {
-      method: "POST", headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-      body: JSON.stringify({ model, max_tokens: request.maxOutputTokens, output_config: { effort: options.effort ?? "medium" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
+    const door = anthropicEndpoint();
+    const response = await (options.fetcher ?? fetch)(door.messagesUrl, {
+      method: "POST", headers: door.headers(apiKey),
+      body: JSON.stringify({ model: door.modelId(model), max_tokens: request.maxOutputTokens, output_config: { effort: options.effort ?? "medium" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
       signal: AbortSignal.timeout(options.timeoutMs ?? 120_000),
     });
     const value = await response.json().catch(() => null) as { content?: { type: string; text?: string }[]; usage?: { input_tokens?: number; output_tokens?: number }; error?: { type?: string };

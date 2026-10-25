@@ -6,7 +6,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { openRun, ROOT } from "../real-replay/lib/ledger.mjs";
-import { providerKey } from "../lib/keys.mjs";
+import { anthropicKey } from "../lib/anthropic-endpoint.mjs";
 import { checkRollsTold, visibleRolls } from "../../../src/lib/gameplay/dm-loop/roll-check.ts";
 
 const args = { snapshots: [], budgetUsd: 0, records: [] };
@@ -17,7 +17,7 @@ for (let i = 2; i < process.argv.length; i++) {
   else args.records.push(flag);
 }
 if (!(args.budgetUsd > 0) || !args.records.length) throw new Error("--budget-usd and the records are required");
-const apiKey = providerKey("ANTHROPIC_API_KEY");
+const apiKey = anthropicKey();
 const heroOf = new Map();
 for (const file of args.snapshots) {
   const value = JSON.parse(await readFile(file, "utf8"));
