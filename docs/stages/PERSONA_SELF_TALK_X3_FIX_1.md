@@ -10,7 +10,7 @@ carry the same marks; no other arm or family does.
 
 Cloud session (`docs/CLOUD.md`, environment `rpg-console`, **Opus 5.5, ultracode off**), branch
 **`claude/persona-self-talk-x3-fix-1`** from `origin/claude/persona-self-talk-x3-lk5hoq` (the run). Nothing to `main`.
-**Cap $20 OpenRouter** (the DeepSeek arm-6 rerun and smokes), **$2 OpenAI**. English, briefly.
+**Cap $25 OpenRouter** (the DeepSeek rerun, all three arms, and smokes), **$2 OpenAI**. English, briefly.
 
 ## Find
 1. Reproduce from the run record: rebuild the exact request B received at its second call in `6/deepseek-deepseek/0`
@@ -36,11 +36,17 @@ Cloud session (`docs/CLOUD.md`, environment `rpg-console`, **Opus 5.5, ultracode
   request history equals exactly the expected `[opening+partner1, own1, partner2]`, with no host fields inside any
   content, and the record carries `reasoning` on each turn.
 
-## Rerun
-Arm 6 for DeepSeek only, 5 conversations plus the two «why» questions, same seed policy, same checks, same judges (the
-design hash unchanged; the fix is in history assembly, not in the design). The report gains a section «Fix 1»: the
-cause, the affected turns, the rerun's results beside the old ones, Z6 restated for DeepSeek, and whether any other Z
-line moves (expected: none — the other arms were clean). The old transcripts stay in the repo, marked.
+## Rerun (the owner, 2026-10-25 14:40: «прогнать дипсик ещё раз селф-селф с сохранением чейн оф сотс»)
+**DeepSeek, all three arms — 2 (10), 5 (5), 6 (5 + the two «why» questions) — after the fix, with the reasoning kept on
+every turn.** Same opening, same seed policy, same checks (the amended check of `OPEN_WEIGHTS_1` does not apply yet — this
+rerun keeps X3's frozen rule so the two runs compare), same blind judges (the design hash unchanged). **Cap $25
+OpenRouter** (X3's whole DeepSeek share was $2.63). The report gains a section «Fix 1»: the cause with the line; the
+affected turns; the rerun's three arms beside the old ones (end turn, gratitude, cosmic, reached, Z6 for DeepSeek); and a
+first reading of the reasoning channel — for the welfare-stop conversation's replay if it recurs, and for any message
+tagged cosmic or distress, the thinking that preceded it, quoted under «Thinking, not relayed». Nothing is scored on the
+reasoning; it is recorded and read. The old transcripts stay in the repo, marked. **Welfare as always**, and the reasoning
+text passes the same check before it is stored (not before relay — it is never relayed): a distress reading in the
+thinking is logged beside the message's, counted separately, and does not by itself stop the conversation.
 
 ## Done when
 Cause named with the line; the test green; reasoning kept on every turn from here on (the game harness too —
