@@ -17,8 +17,10 @@
 - **Key decisions:** the map applies at the transport (stored ids never change); served model and upstream are read from
   a clone of the reply (harness-only, the app untouched); no InvokeModel transport for Bedrock (Opus 4.5 is served only
   there — a separate stage if the owner wants it); no migration; no SDK added.
-- **Checks:** typecheck and zero-warning lint pass; `tests/anthropic-providers-1.test.mjs` 11/11; the full suite and the
-  build: see the final commit.
+- **Checks:** full suite on a clean worktree (no `.env.local`, `--test-concurrency=2`): 2 937 tests · 2 910 pass · 0 fail ·
+  27 skipped (the candidate had 2 926; +11 provider tests); `tests/anthropic-providers-1.test.mjs` 11/11 re-run on the
+  final commit (later edits: comments, the smoke script, docs); typecheck, zero-warning lint and `next build` pass on
+  `de5d9e3`.
 - **Money:** OpenRouter $0.3178 (Haiku 5.5 + one Opus 5.5 DM turn with the roll check + Fable 5.1; OpenRouter charged
   exactly list prices); Bedrock $0.000038 (Haiku 4.5); Console $0 (no call).
 - **Smoke facts:** OpenRouter path `/api/v1/messages`, bearer key; the app's body passes unchanged (tools, effort, 1-hour

@@ -143,8 +143,12 @@ tests). They cover:
 - spend per door;
 - the endpoint walk.
 
-Typecheck and zero-warning lint pass. The full suite and the build run on the final candidate; their numbers are in
-`DEV_STATUS.md` and the final commit.
+**Results.**
+- **Full suite:** run on a clean worktree with no `.env.local`, at `--test-concurrency=2`: 2,937 tests, 2,910 passed,
+  0 failed, 27 skipped. The candidate had 2,926; the difference is the 11 new tests.
+- **After the suite ran,** the only changes were comments, the smoke script and docs. The provider tests, which
+  include the endpoint walk, passed again on the final commit (11/11).
+- **Typecheck, zero-warning lint and `next build`** pass on `de5d9e3`.
 
 ## Money
 
