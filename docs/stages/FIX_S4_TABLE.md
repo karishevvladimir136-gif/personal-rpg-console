@@ -209,6 +209,14 @@ against the candidate DM, not seeing each other. Their notes agree on four thing
   *to him*. Rule for the frame: before calling a check, the DM asks whether the hero's background covers it; if so, it
   succeeds without a card. Measured by the judge: checks called on actions the background plainly covers (target ≤ 1 per
   session).
+- **11o. Presentation leaks.** Astra (B): «visible presentation leaks: a raw `recall` invocation, duplicated
+  explanations of resolved rolls, and awkward currency labels» (the «+8 sps» of Table A). Rule: no tool invocation, tag
+  or internal label reaches the player's screen; money is written in words («eight silver»). Test: the rendered screens of
+  the run grep clean of backticked tool names and unit codes.
+- **11p. The bookkeeper records what happened, not what might have.** Astra (B): «the barely touched ale became a
+  carried mug after leaving the Kettle». Rule: an item enters the inventory only when the player took, bought or was given
+  it in the scene; the bookkeeper may not infer possession. Kin of 11h, on the record side. Measured: inventory entries
+  with no action behind them (target 0).
 Also from the run, for the owner's own setup: the «?» claim on a new campaign with the Astra-takeover flag comes back
 from migration 46's wrapper without its timeline stamp and the old engine refuses it (the harness patched around it);
 check the owner's local database before the next session and fix the SQL if it reproduces.
