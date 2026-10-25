@@ -1,0 +1,95 @@
+{
+  "run": "anthropic-providers-1-bedrock-2026-10-25T07-55-15",
+  "provider": "bedrock",
+  "providerLabel": "Amazon Bedrock (us-west-1)",
+  "endpointHost": "bedrock-runtime.us-west-1.amazonaws.com",
+  "messagesPath": "/anthropic/v1/messages",
+  "startedAt": "2026-10-25T07:55:15.996Z",
+  "budgetUsd": 3,
+  "short": [
+    {
+      "label": "Haiku 4.5",
+      "appModel": "claude-haiku-4-5",
+      "providerModel": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "status": 200,
+      "code": null,
+      "servedModel": "claude-haiku-4-5",
+      "upstream": null,
+      "messageId": "msg_bdrk_ix72daotzetdqcjwdgstel4sjzb2jx53gw2jnbb7whj4xssincsa",
+      "requestedMatches": true,
+      "stopReason": "end_turn",
+      "text": "Ready.",
+      "blocks": [
+        "text"
+      ],
+      "usage": {
+        "inputTokens": 13,
+        "outputTokens": 5,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0
+      },
+      "costUsd": 0.000038,
+      "error": null
+    },
+    {
+      "label": "Opus 4.5",
+      "appModel": "claude-opus-4-5",
+      "providerModel": "global.anthropic.claude-opus-4-5-20251101-v1:0",
+      "status": 404,
+      "code": "not_found_error",
+      "servedModel": null,
+      "upstream": null,
+      "messageId": null,
+      "requestedMatches": null,
+      "stopReason": null,
+      "text": "",
+      "blocks": [],
+      "usage": {
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0
+      },
+      "costUsd": 0,
+      "error": "The model doesn't exist or doesn't support this API. Retry your request with a different model ID."
+    }
+  ],
+  "dm": null,
+  "calls": [
+    {
+      "at": "2026-10-25T07:55:17.368Z",
+      "host": "bedrock-runtime.us-west-1.amazonaws.com",
+      "path": "/anthropic/v1/messages",
+      "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "status": 200,
+      "requestId": "98d833f5-27a0-44f1-9590-cdb7ac0a5a06",
+      "ms": 1369,
+      "headers": {
+        "x-amzn-requestid": "98d833f5-27a0-44f1-9590-cdb7ac0a5a06"
+      },
+      "servedModel": "claude-haiku-4-5",
+      "upstream": null,
+      "messageId": "msg_bdrk_ix72daotzetdqcjwdgstel4sjzb2jx53gw2jnbb7whj4xssincsa",
+      "servedModelMatches": true
+    },
+    {
+      "at": "2026-10-25T07:55:17.654Z",
+      "host": "bedrock-runtime.us-west-1.amazonaws.com",
+      "path": "/anthropic/v1/messages",
+      "model": "global.anthropic.claude-opus-4-5-20251101-v1:0",
+      "status": 404,
+      "requestId": "d3945dbf-8a1d-436f-9b60-576904712953",
+      "ms": 282,
+      "headers": {
+        "x-amzn-requestid": "d3945dbf-8a1d-436f-9b60-576904712953"
+      },
+      "servedModel": null,
+      "upstream": null,
+      "messageId": null,
+      "servedModelMatches": null
+    }
+  ],
+  "spentUsd": 0.000038,
+  "finishedAt": "2026-10-25T07:55:17.655Z",
+  "stopped": null
+}

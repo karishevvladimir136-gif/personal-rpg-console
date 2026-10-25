@@ -11,6 +11,7 @@ import { battleMapOf, sceneOf } from "../contracts";
 import { briefOf, mustShow, sceneVerdict } from "../scene";
 import { checkScene, type Image } from "./vision";
 import { boardOf, live2dContext, type Live2dContext } from "./store";
+import { anthropicApiKey } from "../../server/anthropic-endpoint";
 
 // Part 2: the battle background — the place's scene drawn top-down for the grid
 // (from the Part 1 scene sheet: same layout, same objects, no people), on the
@@ -64,7 +65,7 @@ export async function prepareBattleMap(campaignId: string, value: unknown, sched
 }
 
 async function drawBattle(ctx: Live2dContext, pictures: PicturesContext, campaignId: string, locationId: string, sheet: SceneSheet, sheetRevision: number, scenePictureId: string | null) {
-  const apiKey = process.env.ANTHROPIC_API_KEY ?? "";
+  const apiKey = anthropicApiKey();
   try {
     const snapshot = await readCampaign(campaignId);
     const place = snapshot.locations.find((row) => row.id === locationId);

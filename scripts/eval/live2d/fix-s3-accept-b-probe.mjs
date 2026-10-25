@@ -8,7 +8,7 @@
 //   NODE_USE_ENV_PROXY=1 node scripts/eval/live2d/fix-s3-accept-b-probe.mjs [--sheet-model claude-sonnet-5]
 import { writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { providerKey } from "../lib/keys.mjs";
+import { anthropicKey } from "../lib/anthropic-endpoint.mjs";
 import { openRun, ROOT } from "../real-replay/lib/ledger.mjs";
 import { PLACES } from "./places.mjs";
 import { buildSheet, relangSheet, SHEET_MODEL, RELANG_MODEL } from "../../../src/lib/live2d/server/vision.ts";
@@ -19,7 +19,7 @@ const args = process.argv.slice(2);
 const value = (name, fallback) => (args.includes(name) ? args[args.indexOf(name) + 1] : fallback);
 const PROBE_SHEET_MODEL = value("--sheet-model", SHEET_MODEL);
 const BUDGET_USD = 0.5;
-const key = providerKey("ANTHROPIC_API_KEY");
+const key = anthropicKey();
 if (!key) { console.error("no Anthropic key (.env.local or APP_ANTHROPIC_API_KEY)"); process.exit(2); }
 
 const calls = [];

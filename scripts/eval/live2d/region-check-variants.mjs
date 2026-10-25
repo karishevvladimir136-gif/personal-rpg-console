@@ -6,7 +6,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { providerKey } from "../lib/keys.mjs";
+import { anthropicKey } from "../lib/anthropic-endpoint.mjs";
 import { openRun } from "../real-replay/lib/ledger.mjs";
 import { sniffImage } from "../../../src/lib/visual-frame/fal-image.ts";
 import { regionCheckItems } from "../../../src/lib/live2d/region-marks.ts";
@@ -30,7 +30,7 @@ const run = await openRun(`fix-s3-accept-d-check-variants-${new Date().toISOStri
 const out = { at: new Date().toISOString(), model, picture: file, size: imageSize(bytes), variants: {} };
 let spent = 0;
 for (const coordinates of ["fraction", "pixel"]) {
-  const result = await checkRegionMap(providerKey("ANTHROPIC_API_KEY"), items, "", picture, { model, price, coordinates });
+  const result = await checkRegionMap(anthropicKey(), items, "", picture, { model, price, coordinates });
   spent += result.costUsdMicros / 1e6;
   const rows = items.filter((item) => truth[item.locationId]).map((item) => {
     const found = result.check?.items.find((row) => row.key === item.key);

@@ -9,7 +9,7 @@ import { randomUUID } from "node:crypto";
 import { writeFile } from "node:fs/promises";
 import { openRun } from "../real-replay/lib/ledger.mjs";
 import { createBudget, guardedModel, MODELS } from "../real-replay/lib/models.mjs";
-import { providerKey } from "../lib/keys.mjs";
+import { anthropicKey } from "../lib/anthropic-endpoint.mjs";
 import { dmModelSpec, dmUsageCost } from "../../../src/lib/model-runtime/dm-models.ts";
 
 const hook = registerHooks({ resolve(specifier, context, nextResolve) {
@@ -23,7 +23,7 @@ const arg = (name, fallback) => (process.argv.includes(name) ? process.argv[proc
 const budgetUsd = Number(arg("--budget-usd", 0));
 if (!(budgetUsd > 0)) throw new Error("--budget-usd N is required");
 const out = arg("--out", null);
-const apiKey = providerKey("ANTHROPIC_API_KEY");
+const apiKey = anthropicKey();
 if (!apiKey) throw new Error("ANTHROPIC_API_KEY is needed (.env.local)");
 
 const world = {

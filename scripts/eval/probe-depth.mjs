@@ -14,6 +14,7 @@ import { appendFile, mkdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { providerKey } from "./lib/keys.mjs";
+import { anthropicKey } from "./lib/anthropic-endpoint.mjs";
 
 const hook = registerHooks({ resolve(specifier, context, nextResolve) {
   return specifier === "server-only" ? { url: "data:text/javascript,export%20{}", shortCircuit: true } : nextResolve(specifier, context);
@@ -68,7 +69,7 @@ const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\..+$/, "")
 const outFile = join(here, "out", `probe-depth-${stamp}.jsonl`);
 const write = (record) => appendFile(outFile, `${JSON.stringify(record)}\n`, "utf8");
 await write({ type: "probe-depth", startedAt: new Date().toISOString(), budgetUsd: args.budgetUsd, models: args.models, sequence: args.sequence, anchor: args.anchor, prefixChars: system[0].text.length });
-const keys = { anthropic: providerKey("ANTHROPIC_API_KEY"), openai: providerKey("OPENAI_API_KEY") };
+const keys = { anthropic: anthropicKey(), openai: providerKey("OPENAI_API_KEY") };
 const rows = [];
 outer:
 for (const name of args.models) {

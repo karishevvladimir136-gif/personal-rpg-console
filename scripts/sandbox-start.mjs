@@ -333,8 +333,8 @@ async function start() {
     `DB_URL=${status.get("DB_URL") ?? ""}`, `STUDIO_URL=${status.get("STUDIO_URL") ?? ""}`, "",
   ].join("\n"), { mode: 0o600 });
   if (!flags.has("--no-app")) {
-    const keys = ["ANTHROPIC_API_KEY", "OPENAI_API_KEY"].filter((key) => env[key]);
-    if (!fake && !keys.length) console.log("No ANTHROPIC_API_KEY or OPENAI_API_KEY in .env.local: turns will fail. Start with --fake to play on the stand-in DM.");
+    const keys = ["ANTHROPIC_API_KEY", "BEDROCK_API_KEY", "OPENROUTER_API_KEY", "OPENAI_API_KEY"].filter((key) => env[key]);
+    if (!fake && !keys.length) console.log("No ANTHROPIC_API_KEY, BEDROCK_API_KEY, OPENROUTER_API_KEY or OPENAI_API_KEY in .env.local: turns will fail. Start with --fake to play on the stand-in DM.");
     if (fake) console.log("Playing on the stand-in DM: no model is contacted and nothing is paid.");
     await startApp(env, { prod: flags.has("--prod"), build: !flags.has("--no-build") });
     if (!flags.has("--no-browser")) openBrowser(`${APP_URL}/campaigns`);

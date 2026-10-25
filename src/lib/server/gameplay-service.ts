@@ -51,6 +51,7 @@ import {
   validateResumeInput,
   validateTurnInput,
 } from "../gameplay/request-validation";
+import { anthropicApiKey } from "./anthropic-endpoint";
 
 // Service credentials do not replace the verified browser-owner and campaign guard.
 async function authorizedStore(campaignId: string) {
@@ -153,9 +154,9 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
     },
     bookkeeperModel: (selection: BookkeeperSelection) => createDmModel(selection),
     // Fix run A6: on «пишет — записывает», a cheap model compares the story with the records before the commit.
-    ledgerCheck: (input) => checkLedger(process.env.ANTHROPIC_API_KEY ?? "", input),
+    ledgerCheck: (input) => checkLedger(anthropicApiKey(), input),
     // Fix run B3 (item 60): every roll the player saw is told (both modes).
-    rollCheck: (input) => checkRollsTold(process.env.ANTHROPIC_API_KEY ?? "", input),
+    rollCheck: (input) => checkRollsTold(anthropicApiKey(), input),
     afterCommit: async ({ operationId, playerLikes, ownerRule, combatEnded, combatStarted, boostUsed, playMinutes, input, source, narration }) => {
       // Polish 3 §4: the state before this turn, with the campaign's rules of the moment, for the replay tool (never fails the turn).
       if (source && input) {
@@ -235,7 +236,7 @@ export async function readPlay(campaignId: string, options: { prep?: boolean } =
   if (dmSettings.runtime === DM_LOOP_RUNTIME) {
     const pending = await openingPending(owner.client, campaignId, timeline, settings.ruleset.id);
     const choice = dmLoopPinFromProfile(dmLoopProfile(settings.runtimePolicy, dmSettings.split?.writer ?? dmSettings.dmTurn));
-    const key = choice.providerId === "anthropic" ? process.env.ANTHROPIC_API_KEY : process.env.OPENAI_API_KEY;
+    const key = choice.providerId === "anthropic" ? anthropicApiKey() : process.env.OPENAI_API_KEY;
     // Stage 4 §4: on entry, a stale open session is closed and digested, a
     // closed one without «Ранее в…» gets its digest; never blocks the read.
     // Fix run A4: at most once a minute per campaign, never while a turn is unresolved (the poll is cheap now).

@@ -11,6 +11,8 @@ npm, nodejs.org, Ubuntu archives, Google Fonts). Allowed domains:
 
 ```
 api.openai.com
+bedrock-runtime.us-west-1.amazonaws.com
+openrouter.ai
 queue.fal.run
 *.fal.run
 fal.media
@@ -25,6 +27,10 @@ itself bill that key instead of the owner's subscription. The session writes the
 
 ```
 APP_ANTHROPIC_API_KEY=…
+APP_ANTHROPIC_PROVIDER=anthropic   # or bedrock | openrouter (ANTHROPIC_PROVIDERS_1)
+APP_BEDROCK_API_KEY=…              # Bedrock API key; used only when the provider is bedrock
+APP_AWS_REGION=us-west-1           # the owner's Bedrock region
+APP_OPENROUTER_API_KEY=…           # OpenRouter key; used only when the provider is openrouter
 APP_OPENAI_API_KEY=…
 APP_FAL_KEY=…
 PLAYWRIGHT_MODULE=/opt/node24/lib/node_modules/playwright
@@ -58,7 +64,21 @@ exit 0
 1. `git fetch origin <branch> claude/handoff` and check out the branch named in the task.
 2. `export PATH=/opt/node24/bin:$PATH`; `node -v` must start with `v24`. If `/opt/node24` is missing, stop and say so.
 3. Write `.env.local` (git-ignored) without printing any value: `ANTHROPIC_API_KEY` from `$APP_ANTHROPIC_API_KEY`,
-   `OPENAI_API_KEY` from `$APP_OPENAI_API_KEY`, `FAL_KEY` from `$APP_FAL_KEY`. Never put `ANTHROPIC_API_KEY` into
+   `OPENAI_API_KEY` from `$APP_OPENAI_API_KEY`, `FAL_KEY` from `$APP_FAL_KEY`, and — once ANTHROPIC_PROVIDERS_1 has
+   landed — `ANTHROPIC_PROVIDER` from `$APP_ANTHROPIC_PROVIDER` and `BEDROCK_API_KEY` from `$APP_BEDROCK_API_KEY`, `AWS_REGION` from `$APP_AWS_REGION`, `OPENROUTER_API_KEY` from `$APP_OPENROUTER_API_KEY`.
+   `ANTHROPIC_PROVIDER` picks the door every Claude call goes through: `anthropic` (the default: `https://api.anthropic.com`,
+   `ANTHROPIC_API_KEY`), `bedrock` (`https://bedrock-runtime.<AWS_REGION>.amazonaws.com/anthropic`, `BEDROCK_API_KEY`, ids
+   `global.anthropic.claude-…`) or `openrouter` (`https://openrouter.ai/api`, `OPENROUTER_API_KEY` as a bearer token, ids
+   `anthropic/claude-…`). The one place that knows it is `src/lib/server/anthropic-endpoint.ts` (scripts:
+   `scripts/eval/lib/anthropic-endpoint.mjs`, which reads `.env.local` or the `APP_` variables); the model ids the app shows
+   and stores never change. The door's host must be in the allowed domains above (a denied host answers the proxy's 403
+   to CONNECT), and Node's built-in `fetch` reaches it only through the session's proxy: run node (the smokes, the
+   harnesses, `next dev`) with `NODE_USE_ENV_PROXY=1` in the cloud (`getaddrinfo ENOTFOUND openrouter.ai` without it; the
+   owner's machine needs nothing). When a task forbids calls to `api.anthropic.com`, leave `ANTHROPIC_API_KEY` out of `.env.local` for that
+   session. The smokes: `node scripts/eval/providers-smoke.mjs --door openrouter|bedrock` (≤ $3 each, ledger `providers1`).
+   **Spend check before any paid run:** the Console organisation has a monthly cap by tier (Start: $500; reached
+   2026-10-25); a run that would start within $50 of it, or any HTTP 429 whose body names `enforced_spend_limit_reached`,
+   stops and reports instead of starting; with `ANTHROPIC_PROVIDER=bedrock` the cap does not apply but AWS quotas do. Never put `ANTHROPIC_API_KEY` into
    Claude Code's own environment. There is no owner database here: anything that needs Supabase settings gets local
    placeholders, never a real project URL or key.
 4. `pnpm install`, then typecheck, lint, test and build for a baseline. The VM has 4 vCPUs: run the full suite as

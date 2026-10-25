@@ -23,6 +23,7 @@ import { encodeTurnSnapshot } from "../src/lib/gameplay/turn-snapshot.ts";
 import { rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { anthropicEndpoint } from "../src/lib/server/anthropic-endpoint.ts";
 
 const finish = (kind = "quiet") => ({ name: "finish_turn", arguments: { sceneKinds: [kind], spotlight: [], playerMoment: false, nextTension: "calm" } });
 const time = (minutes = 5) => ({ name: "advance_time", arguments: { minutes, reason: "время" } });
@@ -290,7 +291,7 @@ test("§5 the cheap model's call: no lines → no request; a canned answer → f
   assert.equal(result.costUsdMicros, 55, "400 × $0.10/M + 30 × $0.50/M");
   assert.equal(calls[0].body.model, QUOTABLE_MODEL);
   assert.equal(calls[0].body.output_config.effort, "low");
-  assert.equal(calls[0].url, "https://api.anthropic.com/v1/messages");
+  assert.equal(calls[0].url, anthropicEndpoint({}).messagesUrl);
   const noKey = await checkQuotableLines("", "— Мы вернём себе небо, — говорит он.", "ru", { fetcher });
   assert.equal(noKey.error, "not_configured");
   const failed = await checkQuotableLines("key", "— Мы вернём себе небо, — говорит он.", "ru", { fetcher: async () => ({ ok: false, status: 529, json: async () => ({ error: { type: "overloaded_error" } }) }) });

@@ -15,6 +15,7 @@ import { fallbackSheet, joinConcurrentPrepare, placePois, poiCandidates, sceneBr
 import { buildSheet, checkScene, locateScene, type Image } from "./vision";
 import { redoSceneLanguage } from "./scene-language-job";
 import { boardOf, live2dContext, replacePois, saveScene, updateScene, type Live2dContext } from "./store";
+import { anthropicApiKey } from "../../server/anthropic-endpoint";
 
 // The scene of a place (slice item 3 and the quality rules): the records come
 // first (the sheet), then one picture on the quality tier without people, then
@@ -45,7 +46,7 @@ async function writeSheet(campaignId: string, snapshot: CampaignSnapshot, locati
   const [present, clock] = await Promise.all([presentIds(campaignId), readWorldClock(campaignId).catch(() => ({ worldMinutes: null }))]);
   const source = sheetSourceOf(snapshot, locationId, { presentIds: present ?? undefined, timeOfDay: timeOfDay(clock.worldMinutes) });
   if (!source) throw new PersistenceError("not_found");
-  const built = await buildSheet(process.env.ANTHROPIC_API_KEY ?? "", source);
+  const built = await buildSheet(anthropicApiKey(), source);
   log("live2d_sheet", { campaignId, locationId, ok: !!built.sheet, ms: built.elapsedMs, costUsdMicros: built.costUsdMicros, usage: built.usage, error: built.error, features: built.sheet?.features.length ?? 0, asks: built.asks ?? 0, language: built.sheet?.language ?? null });
   return { sheet: built.sheet ?? fallbackSheet(source), costUsdMicros: built.costUsdMicros, model: !!built.sheet };
 }
@@ -132,7 +133,7 @@ export async function readBoardInLanguage(campaignId: string, waitMs = 12_000): 
   try {
     const snapshot = await readCampaign(campaignId);
     const language = sheetLanguageOf(snapshot);
-    const apiKey = process.env.ANTHROPIC_API_KEY ?? "";
+    const apiKey = anthropicApiKey();
     const work = Promise.all(due.map(async (scene) => {
       const result = await redoSceneLanguage(board, scene.locationId, { rpc: ctx.rpc, apiKey, language, placeName: snapshot.locations.find((row) => row.id === scene.locationId)?.name ?? "" });
       if (result.status !== "skipped" || result.reason !== "in_language") log("live2d_scene_language", { campaignId, locationId: scene.locationId, ...result });
@@ -161,7 +162,7 @@ type DrawOptions = { comment: string | null; redraws: number; extraCostUsdMicros
 
 /** The paid chain of one scene: picture → check → (one corrected redraw) → status, side list, POIs. */
 export async function drawAndCheck(ctx: Live2dContext, pictures: PicturesContext, campaignId: string, locationId: string, sheet: SceneSheet, options: DrawOptions) {
-  const apiKey = process.env.ANTHROPIC_API_KEY ?? "";
+  const apiKey = anthropicApiKey();
   try {
     const snapshot = await readCampaign(campaignId);
     const place = snapshot.locations.find((row) => row.id === locationId);

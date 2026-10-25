@@ -6,6 +6,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { provenance } from "../../lib/anthropic-endpoint.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 export const ROOT = join(here, "..", "..", "..", "..");
@@ -38,7 +39,7 @@ export async function openRun(run, requestedUsd, what) {
   const remaining = Number((ledger.capUsd - committedUsd(ledger)).toFixed(4));
   if (remaining <= 0) throw new Error(`dm-arch ledger: the cap of $${ledger.capUsd} is spent (${committedUsd(ledger).toFixed(2)} committed)`);
   const budgetUsd = Number(Math.min(requestedUsd, remaining).toFixed(4));
-  ledger.entries.push({ run, what, startedAt: new Date().toISOString(), reservedUsd: budgetUsd, spentUsd: 0, settled: false });
+  ledger.entries.push({ run, what, ...doorOf(), startedAt: new Date().toISOString(), reservedUsd: budgetUsd, spentUsd: 0, settled: false });
   await writeLedger(ledger);
   return {
     budgetUsd,
@@ -63,10 +64,26 @@ export async function settleFromRecord(run, spentUsd, record) {
   return current;
 }
 
+/** ANTHROPIC_PROVIDERS_1 §4: the door the run's Claude calls go through (a door that is not configured is named so). */
+function doorOf() {
+  try { return provenance(); } catch { return { provider: "not_configured", endpointHost: null }; }
+}
+
+/** Spend per door; the entries from before the door switch went through the Anthropic API. */
+export function spendByProvider(ledger) {
+  const totals = {};
+  for (const entry of ledger.entries) {
+    const provider = entry.provider ?? "anthropic";
+    totals[provider] = (totals[provider] ?? 0) + (entry.settled ? entry.spentUsd : entry.reservedUsd);
+  }
+  return totals;
+}
+
 export function ledgerTable(ledger) {
   const lines = ["| Run | What | Reserved | Spent | Settled |", "| --- | --- | --- | --- | --- |"];
   for (const entry of ledger.entries)
     lines.push(`| ${entry.run} | ${entry.what} | $${entry.reservedUsd.toFixed(2)} | $${entry.spentUsd.toFixed(4)} | ${entry.settled ? "yes" : "no"} |`);
   lines.push(`| **Total** | | | **$${committedUsd(ledger).toFixed(4)} of $${ledger.capUsd}** | |`);
+  lines.push("", `Spend per door: ${Object.entries(spendByProvider(ledger)).map(([provider, usd]) => `${provider} $${usd.toFixed(4)}`).join(" · ")}`);
   return lines.join("\n");
 }

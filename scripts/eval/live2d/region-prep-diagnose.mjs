@@ -6,7 +6,7 @@
 import { writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { providerKey } from "../lib/keys.mjs";
+import { scriptAnthropicEndpoint } from "../lib/anthropic-endpoint.mjs";
 import { openRun } from "../real-replay/lib/ledger.mjs";
 import { regionPrepRequest } from "../../../src/lib/live2d/region-prep.ts";
 import { probeSource } from "./region-probe-campaign.mjs";
@@ -20,10 +20,11 @@ if (!price) throw new Error(`no price for ${model}`);
 const source = probeSource({ hidden: !args.includes("--no-hidden") });
 const request = regionPrepRequest(source);
 const run = await openRun(`fix-s3-accept-d-diagnose-${new Date().toISOString().slice(0, 19)}`, 0.3, `Д3 prep refusal diagnosis (${model}${args.includes("--no-hidden") ? ", no private notes" : ""})`, "fixs3accept", "D");
-const response = await fetch("https://api.anthropic.com/v1/messages", {
+const door = scriptAnthropicEndpoint();
+const response = await fetch(door.messagesUrl, {
   method: "POST",
-  headers: { "x-api-key": providerKey("ANTHROPIC_API_KEY"), "anthropic-version": "2023-06-01", "content-type": "application/json" },
-  body: JSON.stringify({ model, max_tokens: 8000, output_config: { effort: "medium" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
+  headers: door.headers(door.apiKey),
+  body: JSON.stringify({ model: door.modelId(model), max_tokens: 8000, output_config: { effort: "medium" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
   signal: AbortSignal.timeout(240_000),
 });
 const body = await response.json().catch(() => null);

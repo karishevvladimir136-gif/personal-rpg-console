@@ -13,7 +13,7 @@ import { execSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { providerKey } from "../lib/keys.mjs";
+import { anthropicKey, scriptAnthropicEndpoint } from "../lib/anthropic-endpoint.mjs";
 import { briefReferences, briefRequest, compileBriefPrompt, parseBrief, BRIEF_MODEL, BRIEF_PRICE_PER_MILLION } from "../../../src/lib/visual-frame/brief.ts";
 import { compileFramePrompt, orderReferences, promptFamily } from "../../../src/lib/visual-frame/prompt-compiler.ts";
 import { sniffImage } from "../../../src/lib/visual-frame/fal-image.ts";
@@ -64,13 +64,14 @@ function briefPrompt(shot, modelKey) {
 }
 
 async function sonnet(system, content, note, maxTokens) {
-  const apiKey = providerKey("ANTHROPIC_API_KEY");
+  const apiKey = anthropicKey();
   if (!apiKey) throw new Error("ANTHROPIC_API_KEY missing");
   const entry = reserve("brief", BRIEF_MODEL, Math.round(6_000 * BRIEF_PRICE_PER_MILLION.input + maxTokens * BRIEF_PRICE_PER_MILLION.output), note);
   const started = Date.now();
-  const response = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST", headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-    body: JSON.stringify({ model: BRIEF_MODEL, max_tokens: maxTokens, output_config: { effort: "low" }, system, messages: [{ role: "user", content }] }),
+  const door = scriptAnthropicEndpoint();
+  const response = await fetch(door.messagesUrl, {
+    method: "POST", headers: door.headers(apiKey),
+    body: JSON.stringify({ model: door.modelId(BRIEF_MODEL), max_tokens: maxTokens, output_config: { effort: "low" }, system, messages: [{ role: "user", content }] }),
     signal: AbortSignal.timeout(120_000),
   });
   const value = await response.json().catch(() => null);

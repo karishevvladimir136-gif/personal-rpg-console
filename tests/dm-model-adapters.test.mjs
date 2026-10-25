@@ -3,6 +3,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { registerHooks } from "node:module";
+import { anthropicEndpoint } from "../src/lib/server/anthropic-endpoint.ts";
 
 const hook = registerHooks({ resolve(specifier, context, nextResolve) {
   return specifier === "server-only"
@@ -116,7 +117,7 @@ test("Anthropic: text only, with signed thinking kept for replay and cache-read 
   assert.equal(stop.reason, "end");
   assert.deepEqual(stop.native.items.map((item) => item.type), ["thinking", "text"]);
   assert.equal(stop.native.items[0].signature, "SIG-1");
-  assert.equal(f.calls[0].url, "https://api.anthropic.com/v1/messages");
+  assert.equal(f.calls[0].url, anthropicEndpoint({}).messagesUrl);
   assert.equal(f.calls[0].headers["x-api-key"], KEY);
   assert.equal(f.calls[0].headers["anthropic-version"], "2023-06-01");
   assert.equal(f.calls[0].body.stream, true);
