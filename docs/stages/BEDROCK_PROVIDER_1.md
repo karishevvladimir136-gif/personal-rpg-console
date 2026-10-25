@@ -17,7 +17,7 @@ typecheck, zero-warning lint.
 ## What Bedrock gives (from the AWS model cards, read 2026-10-24)
 - Endpoint: `https://bedrock-runtime.<region>.amazonaws.com/anthropic` — Messages API under it (`/v1/messages`), the
   key sent as the Anthropic SDK sends it (`x-api-key`), the key being a **Bedrock API key** (bearer token); the
-  region the owner uses is `us-east-1`.
+  region comes from `AWS_REGION` (the owner's is `us-west-1`; `us-east-1` in the AWS samples is only an example).
 - Model ids: `global.anthropic.claude-opus-5-5`, `global.anthropic.claude-fable-5-1`, `global.anthropic.claude-sonnet-5-5`,
   `global.anthropic.claude-haiku-5-5` (the `us.` geo profiles are the alternative; bare ids are not served in US regions).
 - Fable 5.1 on Bedrock requires the account's data-retention mode set to `aws_review` first (the owner's decision,
@@ -29,7 +29,7 @@ typecheck, zero-warning lint.
 1. **One place that knows the door.** `src/lib/server/anthropic-endpoint.ts` (and a mirror for scripts,
    `scripts/eval/lib/anthropic-endpoint.mjs`): reads `ANTHROPIC_PROVIDER` (`anthropic` | `bedrock`, default
    `anthropic`), returns `{ baseUrl, apiKey, modelId(name), providerLabel }`. For `anthropic`: `https://api.anthropic.com`,
-   `ANTHROPIC_API_KEY`, ids unchanged. For `bedrock`: `https://bedrock-runtime.${AWS_REGION ?? "us-east-1"}.amazonaws.com/anthropic`,
+   `ANTHROPIC_API_KEY`, ids unchanged. For `bedrock`: `https://bedrock-runtime.${AWS_REGION}.amazonaws.com/anthropic` (`AWS_REGION` required when the provider is bedrock; `not_configured` without it),
    `BEDROCK_API_KEY`, and the id map `claude-opus-5-5 → global.anthropic.claude-opus-5-5` (likewise fable-5-1,
    sonnet-5-5, haiku-5-5); an unmapped id throws `not_configured` with the id in the message. The `anthropic-version`
    header stays.
@@ -39,8 +39,8 @@ typecheck, zero-warning lint.
    `git grep -n "api.anthropic.com"`; zero left afterwards (a test asserts it over `src` and `scripts`). The model ids
    the app shows and stores (`dm-settings-client.ts`, campaign settings) do **not** change: the map is applied at
    the transport, so a campaign saved with `claude-opus-5-5` plays on either door.
-3. **Keys and names.** In the cloud: `APP_BEDROCK_API_KEY` and `APP_ANTHROPIC_PROVIDER` join `APP_ANTHROPIC_API_KEY`
-   in the `rpg-console` environment; the session start writes `BEDROCK_API_KEY` and `ANTHROPIC_PROVIDER` into
+3. **Keys and names.** In the cloud: `APP_BEDROCK_API_KEY`, `APP_AWS_REGION` and `APP_ANTHROPIC_PROVIDER` join `APP_ANTHROPIC_API_KEY`
+   in the `rpg-console` environment; the session start writes `BEDROCK_API_KEY`, `AWS_REGION` and `ANTHROPIC_PROVIDER` into
    `.env.local` from them (`docs/CLOUD.md` step 3 updated). Never `BEDROCK_API_KEY` in Claude Code's own environment,
    never printed, never committed. On the owner's machine the same two lines in `.env.local`, pasted by him.
 4. **Provenance.** Every ledger line and run record written by the harnesses (`money.calls[]`) gains `provider`
@@ -66,5 +66,5 @@ retention mode is set. Record ids, costs and the quota headers; put them in the 
 ## Done when
 Helper in place, zero hard-coded endpoints, tests green, CLOUD.md and `.env.example` updated (names only), the smoke
 report with the three (or two) calls, and a one-paragraph note in the report on quotas seen (tokens per minute on
-Opus 5.5 in `us-east-1`) with the Service Quotas names to raise if they are below what four parallel tables need
+Opus 5.5 in the owner's region) with the Service Quotas names to raise if they are below what four parallel tables need
 (~100k output tokens/min). Then the owner decides the order: his own table first, or the stalled runs.
