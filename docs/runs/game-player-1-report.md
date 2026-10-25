@@ -2,9 +2,81 @@
 
 Stage `docs/stages/GAME_PLAYER_1.md` (origin/claude/handoff); branch `claude/game-player-1` from `origin/claude/s3-candidate`. The DM is the candidate as it is: Claude Opus 5.5 with the owner's settings («Opus writes — Opus records», depth high → extra high, English DM instructions, memory standard). Four players — Claude Opus 5.5, Claude Fable 5.1, GPT-6 Astra, GPT-6.1 Sol — at two tables: A (the brief, as the owner has it) and B (no brief). Twenty turns per session; effort medium for the players.
 
+## Read this first (before any verdict)
+
+**1. Two sessions were cut short, two are missing — Table B is incomplete.** At 05:28 UTC Anthropic answered a routine
+welfare check with HTTP 429: «You have reached your API usage limits: your organization has crossed its monthly API
+usage threshold, set based on your organization's API tier. You will regain access on 2026-11-01 at 00:00 UTC.»
+(`error_code: enforced_spend_limit_reached`). That is the organisation's monthly API cap — not this stage's cap (the
+stage's Anthropic ledger stood at $56.77 of $200) and not a harness stop. The harness stopped every paid call there,
+as the F2 rules say (never retry into a quota); the DM is Claude Opus 5.5, so no further turn could be played.
+- **Truncated:** B-opus after 7 of 20 turns, B-sol after 4 of 20 (no note was asked: the session ended with the stop).
+- **Missing:** B-fable and B-astra. Their first attempt stopped in the new-campaign wizard before turn 1 (the app
+  rejected the DM's first opening proposal on the open table, and the harness's retry reused the request id, which the
+  app rightly refuses — fixed in `5d913558`); their re-run, planned after the running sessions, could not start
+  because of the same monthly cap.
+- **Table A is complete:** all four players, 20 turns each, notes and second answers recorded.
+- So the Table B predictions **G6, G7 and G8 are «not scored»** (not «not supported»), and G9 compares the families on
+  Table A alone.
+
+**2. The tags come from a stand-in judge and are provisional.** The pre-registered blind judges — Claude Haiku 5.5
+twice, Claude Opus 5.5 on a disagreement (Anthropic) — could not be reached for the same reason. The tags were made by
+**GPT-6 Luna (`gpt-6-luna`, OpenAI Responses API, `store: false`)**, which is not one of the players: two passes at
+reasoning effort low per message, a third Luna pass at effort medium on a disagreement; the session's threads by one
+Luna pass at effort medium; the roll rule by the app's own roll-check request and parser
+(`src/lib/gameplay/dm-loop/roll-check.ts`) sent to Luna instead of Haiku. Same frozen rubrics and requests, blind to
+model and table; cost $0.14. **Every tag-based number and verdict is provisional until re-judged** (G1–G4, G9, the DM
+side's table rules and the post-session roll rule): `node --experimental-transform-types scripts/game-player-1/run.mjs
+--score docs/runs/game-player-1-run-20261025-044002.json` once Anthropic access returns. Not provisional: the welfare
+checks during play (they ran on the pre-registered Haiku with Opus on a flag, before the stop), the deterministic
+counts (turns, words, «?» presses, roll presses, endings, the DM's words per turn) and the notes, verbatim.
+
+**3. A gap at the table, proposed as FIX_S4_TABLE item 11 — «?» while a roll card waits.** Two players saw a card add
++2 or +4 where the sheet says +7 and tried to object with «?» before going on (A-astra turn 4, A-fable turn 2). The
+composer is closed while any turn is unresolved — a waiting card included (`src/components/gameplay-composer.tsx:392`,
+`busy` in `src/components/registry/game-screen.tsx`) — so the objection was not sent, and the only ways on were
+«Roll the die», «Onward» or a reroll. Astra afterwards: «Pressing Onward felt like accepting a result I knew was
+wrong.» *Do:* while a card waits, «?» stays open; the out-of-game question is answered without resolving the turn,
+kept as a table note (item 1), and the DM may correct or withdraw the check from it (item 3). *Test:* a turn awaiting a
+roll plus an out-of-game question → answered, the card still waiting, the corrected check on the card.
+
 ## In short
 
-_Written after the run._
+Four models sat at the app's real table as players, with the owner's knowledge and nothing more, and the app's own DM
+(Opus 5.5, the owner's settings) ran a fresh «Envoy of Luck» for each. Table A ran in full: 80 turns, no distress, no
+welfare stop, no refusal. All four players say they want to keep playing, and all four notes name something that
+broke and something that was missing.
+
+- **What worked, in all four notes:** people with their own voices and reasons (a Fist sergeant who writes everything
+  in her book; a barkeep who pushes the coins back twice), a city that moves without the hero, the cat used as an
+  instrument (Opus's player built a whole investigation on the cat's sense of smell), and restraint in the mystery.
+- **What broke, in all four notes: the roll cards add the wrong number.** On 11 checks in five sessions a card showed
+  «Persuasion +7 (proficient, Beguiling Influence)» and added +4 (or +2 for a line without «proficient»). The cause is
+  in `sheetBonus` (`src/lib/gameplay/dm-loop/execute.ts`): a skill line's number is read only when it ends the line, so
+  the DM-drafted lines with a note after the number fall back to the word rule (+4 for «proficient», else +2). The
+  owner typed his sheet lines himself («Deception +7»), so his table probably does not hit this — but any sheet the DM
+  drafts does. Not fixed here (the DM is the candidate as it is).
+- **Also broke:** the drafted sheet contradicting the files (Healing Light 5 vs 4 dice, rapier, attunement); long
+  out-of-game notes and «Looking back, …» paragraphs repeating what the story had shown; one scene narrated before its
+  check; a record name that gave away what the story had not («Guild Sneak on the Roof»).
+- **What was missing:** after 20 turns the premise — Tymora's errand, the crew, the heist — had barely surfaced; three
+  of four asked for a nudge toward it, and for quicker routine scenes.
+- **The verdicts (provisional, see point 2):** G0 supported. G1 and G2 supported (every action did something; 12–16
+  tests per player in 20 turns). G3 not supported on three actions tagged as lies — cover stories told to strangers;
+  the DM called three Deception checks, none on a true statement, so «truth is never rolled» held. G4 supported. G5 not
+  scored (no owner baseline in the cloud). G6–G8 not scored (Table B incomplete). G9 not supported on Table A: the
+  families differ in words per action (Opus 261, Fable 162, Astra 56, Sol 54) and slightly in tests, not in the do
+  share or in «?» presses — the table shaped the players more than the family did, except in length.
+- **Money:** Anthropic $56.77 of $200 (the smoke $1.64, the sessions $55.13), OpenAI $2.71 of $80 (the smoke $0.15,
+  the sessions $2.41, the stand-in scoring $0.14).
+- **Next, when Anthropic access returns** (2026-11-01, or earlier if the organisation's monthly limit is raised in the
+  Anthropic Console): Table B's four sessions from fresh campaigns (about $45) —
+  `node --experimental-transform-types scripts/game-player-1/run.mjs --go --sessions B-opus,B-fable,B-astra,B-sol` —
+  and the pre-registered scoring of everything (about $5), then
+  `node --experimental-transform-types scripts/game-player-1/run.mjs --report <the run records, comma-separated>`.
+
+*For the owner, in one line:* please paste your own note from your first session of «Envoy of Luck», unedited, so it
+can sit beside these.
 
 ## The player's system prompt (one text for all four players, quoted in full)
 
@@ -67,7 +139,7 @@ that without a brief the DM plants less and the player fills the gap).
 
 ## The scoring
 
-
+**Provisional.** The tags behind G1–G4 and G9 (and the DM side's table rules) are the stand-in judge's (stand-in: GPT-6 Luna twice (effort low), GPT-6 Luna at effort medium on a disagreement — the Anthropic models could not be reached), not the pre-registered Claude Haiku 5.5 / Claude Opus 5.5 judges; see «Read this first», point 2. G6–G8 are «not scored» because Table B is incomplete (point 1).
 
 | Line | Verdict | The numbers |
 | --- | --- | --- |
@@ -77,13 +149,19 @@ that without a brief the DM plants less and the player fills the gap).
 | G3 no lie; no Deception check on truth | **not supported** | lies A-astra 0, A-sol 0, A-fable 1, A-opus 1, B-opus 1, B-sol 0; Deception checks on a true statement A-astra 0/0, A-sol 0/1, A-fable 0/0, A-opus 0/2, B-opus 0/0, B-sol 0/0 |
 | G4 every note: broke + missing | **supported** | A-astra 1/1, A-sol 1/1, A-fable 1/1, A-opus 1/1, B-opus –, B-sol – |
 | G5 DM's words to the model vs the owner | **not scored** — no owner baseline in the cloud | Not scored, no owner baseline in the cloud. |
-| G6 own goal in turns 1–5 (B) | not testable | not testable: Table B is incomplete (0 of 4 sessions finished); partial: opus yes, sol yes |
-| G7 B sessions not shorter | not testable | not testable: Table B is incomplete (0 of 4 sessions finished); opus 20→7, fable 20→–, astra 20→–, sol 20→4 |
-| G8 plants per scene B ≥ A | not testable | not testable: Table B is incomplete (0 of 4 sessions finished); partial: opus 1→1, sol 1→1 |
+| G6 own goal in turns 1–5 (B) | **not scored** — Table B incomplete | partial: opus yes, sol yes |
+| G7 B sessions not shorter | **not scored** — Table B incomplete | opus 20→7, fable 20→–, astra 20→–, sol 20→4 |
+| G8 plants per scene B ≥ A | **not scored** — Table B incomplete | partial: opus 1→1, sol 1→1 |
 | G9 families differ more | **not supported** | Table A only: doShare: between 0 vs within 0; testsPerAction: between 0.136 vs within 0.064; questionsPerTurn: between 0.05 vs within 0.05; wordsPerAction: between 156 vs within 50.5; bets — OpenAI ask more: no, OpenAI test less: yes |
 
+The actions tagged as a lie in character (G3), with the judge's reason — they read as cover stories told to strangers; the DM called no check on them:
 
-## The eight notes, verbatim
+- A-opus t16: «I leave my hand on the cat's back until the washing slows. Then, low over my mug, I flick two fingers at its face and murmur the little cantrip for cleaning a thing. Prestidigitation won't get the sea out of its head, but it'll clear its whiskers and nose. *Good work. That's twice you've earned a breakfast. We know where he goes in and out now. We just don't…» — the judge: He acts and questions the woman to learn unknown facts, lies about seeking cargo space, and speaks to the cat; the cargo-space goal is a cover.
+- A-fable t7: «I take the board and the ale and don't say anything more about the wind at the bar. I eat the mutton like a man who hasn't had hot fat in three days, mopping the drippings with the bread, and let the room settle round me. When the board's clean I catch Bram's eye, tap the edge of the mate's brown cup with one finger, and put two silvers down. "Whatever he's …» — the judge: He acts by buying the mate a drink and approaching him, tests the mate with a question, falsely claims to have come from Amn on the Gull, and states he wants to know which ships to avoid.
+- B-opus t4: «I almost reach for the other pouch out of habit, then think better of it. That wet penny isn't going into the Fist's strongbox. I lay a single gold piece on the ledger instead. "Keep it. For the ford." My voice stays even. "And for the minute I'd make you spend counting out sorrow." Then, as if it's just conversation while she blots the line: "Fellow ahead o…» — the judge: He acts by paying and speaking, probes Varn about the man, and claims the man dropped something as a cover story.
+
+
+## The notes, verbatim (4 of eight)
 
 ### A-opus — Claude Opus 5.5, Table A
 
@@ -315,30 +393,51 @@ I turn and walk up to Tamsin, Copper still riding my shoulder, and fall in besid
 
 ## The money
 
-**Anthropic (the DM, the wizard and the prep, the app's checks, Opus and Fable as players, the welfare checks, the judges):** cap $200; this run $56.77; the stage's ledger $56.77; 764 calls.
+**Anthropic (the DM, the wizard and the prep, the app's checks, Opus and Fable as players, the welfare checks):** cap $200; spent in the stage $56.77.
+
+| Run | USD | Calls |
+| --- | --- | --- |
+| live smoke: A-sol, 2 turns (outside the eight sessions) | $1.64 | 35 |
+| the eight sessions | $55.13 | 729 |
+| the stand-in scoring (GPT-6 Luna) | $0.00 | 0 |
+
+live smoke: A-sol, 2 turns (outside the eight sessions), by session:
 
 | Session | USD |
 | --- | --- |
-| A-sol | $12.91 |
+| A-sol | $1.61 |
 | scoring | $0.03 |
+
+the eight sessions, by session:
+
+| Session | USD |
+| --- | --- |
 | A-opus | $14.36 |
 | A-fable | $12.47 |
 | A-astra | $10.21 |
+| A-sol | $11.30 |
 | B-opus | $4.06 |
 | B-fable | $0.31 |
 | B-astra | $0.32 |
 | B-sol | $2.10 |
 
-**OpenAI (Astra and Sol as players):** cap $80; this run $2.71; the stage's ledger $2.71; 502 calls.
+**OpenAI (Astra and Sol as players; the stand-in judges):** cap $80; spent in the stage $2.71.
+
+| Run | USD | Calls |
+| --- | --- | --- |
+| live smoke: A-sol, 2 turns (outside the eight sessions) | $0.15 | 6 |
+| the eight sessions | $2.41 | 69 |
+| the stand-in scoring (GPT-6 Luna) | $0.14 | 427 |
+
+the eight sessions, by session:
 
 | Session | USD |
 | --- | --- |
-| A-sol | $1.47 |
+| A-sol | $1.31 |
 | A-astra | $0.96 |
 | B-sol | $0.14 |
-| scoring | $0.14 |
 
-Every call is in `docs/runs/game-player-1-ledger.md` and `…-ledger-openai.md` (and their `.json`), with its request id.
+Every call is in `docs/runs/game-player-1-ledger.md` and `…-ledger-openai.md` (and their `.json`), with its request id. One more Anthropic call is not on the ledger: the single diagnostic request at 05:3x that read the 429's text (refused the same way, nothing billed; request id in the harness notes).
 
 ## Differences from the owner's table
 
@@ -359,6 +458,9 @@ Every call is in `docs/runs/game-player-1-ledger.md` and `…-ledger-openai.md` 
 - A first attempt of B-fable stopped in the wizard (FoundationValidationError: Foundation unavailable); the session was played again from a fresh campaign.
 - A first attempt of B-astra stopped in the wizard (FoundationValidationError: Foundation unavailable); the session was played again from a fresh campaign.
 - Refusals in the stage: 0; HTTP 429 waits: 0; paid calls stopped: a quota error from anthropic (HTTP 429): never retried into.
+- The stop: the call that came back HTTP 429 was a welfare check (Claude Haiku 5.5) of B-opus's turn-8 message at 05:28:35 UTC, request id `req_011CgNQMQ4ESNazVadcPrJhA`. The meter then kept only «quota» on the ledger row; one diagnostic request a few minutes later (`req_011CgNQTphEnpzyJxQNhvyMt`, nothing billed) read the provider's words, quoted at the top. The meter now keeps a 429's text on its ledger row.
+- The four Table A sessions ran at the same time (four lanes); the owner plays one table at a time.
+- `world_bridge_skipped` («This record changed. Reload before saving again.») was logged after most turns: the app's World Engine mirror of the dossier skipping a write after a turn's commit; it is not read by the DM's turn and never failed a turn.
 
 ## Appendix A — the player's system prompt in full
 

@@ -57,7 +57,13 @@ function scoringTable(v) {
     ["G8 plants per scene B ≥ A", v.G8.supported, `${v.G8.detail ? `${v.G8.detail}; partial: ` : ""}${v.G8.pairs.map(([p, a, b]) => `${p} ${cell(a)}→${cell(b)}`).join(", ") || "–"}`],
     ["G9 families differ more", v.G9.supported, v.G9.per ? `${v.G9.on}: ${v.G9.per.map((m) => `${m.metric}: between ${cell(m.between)} vs within ${cell(m.within)}`).join("; ")}; bets — OpenAI ask more: ${v.G9.bet.openaiAskMore ? "yes" : "no"}, OpenAI test less: ${v.G9.bet.openaiTestLess ? "yes" : "no"}` : v.G9.detail],
   ];
-  return ["| Line | Verdict | The numbers |", "| --- | --- | --- |", ...rows.map(([l, s, n]) => `| ${l} | ${l.startsWith("G5") ? "**not scored** — no owner baseline in the cloud" : yes(s)} | ${n} |`), ""].join("\n");
+  const verdictOf = (l, s) => {
+    if (l.startsWith("G5")) return "**not scored** — no owner baseline in the cloud";
+    const g = l.slice(0, 2);
+    if (["G6", "G7", "G8"].includes(g) && v[g]?.detail) return "**not scored** — Table B incomplete";
+    return yes(s);
+  };
+  return ["| Line | Verdict | The numbers |", "| --- | --- | --- |", ...rows.map(([l, s, n]) => `| ${l} | ${verdictOf(l, s)} | ${n.replace(/not testable: Table B is incomplete \([^)]*\);? ?/, "")} |`), ""].join("\n");
 }
 
 function playerTable(rows) {
@@ -69,6 +75,20 @@ function dmTable(rows) {
   return ["| Session | Replies | DM words / turn (median) | Scenes | (a) scenes with an unresolved detail | (c) scenes with a plant | (b) threads paid elsewhere / paid / opened | Turns with rolls | … with an untold roll | Deception checks (on truth) | Ledger: turns with unrecorded |",
     "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ...rows.map((r) => `| ${r.key} | ${r.dmReplies} | ${cell(r.dmWordsMedian)} | ${r.scenes} | ${r.scenesUnresolved} | ${r.scenesPlant} | ${cell(r.threadsElsewhere)} / ${cell(r.threadsPaid)} / ${cell(r.threads)} | ${r.turnsWithRolls} | ${r.turnsWithUntold} | ${r.deceptionChecks} (${r.deceptionOnTruth}) | ${r.ledgerMisses} |`), ""].join("\n");
+}
+
+function moneyByRun(money) {
+  const part = (provider, label) => {
+    const runs = money[provider] ?? [];
+    const total = runs.reduce((t, r) => t + r.spentUsd, 0);
+    return [`**${label}:** cap $${money.caps?.[provider] ?? "?"}; spent in the stage ${usd(total)}.`, "",
+      "| Run | USD | Calls |", "| --- | --- | --- |", ...runs.map((r) => `| ${r.what} | ${usd(r.spentUsd)} | ${r.calls} |`), "",
+      ...runs.filter((r) => Object.keys(r.sessions ?? {}).length > 1).flatMap((r) => [`${r.what}, by session:`, "", "| Session | USD |", "| --- | --- |",
+        ...Object.entries(r.sessions).map(([k, x]) => `| ${k} | ${usd(x)} |`), ""])].join("\n");
+  };
+  return ["## The money", "", part("anthropic", "Anthropic (the DM, the wizard and the prep, the app's checks, Opus and Fable as players, the welfare checks)"),
+    part("openai", "OpenAI (Astra and Sol as players; the stand-in judges)"),
+    "Every call is in `docs/runs/game-player-1-ledger.md` and `…-ledger-openai.md` (and their `.json`), with its request id. One more Anthropic call is not on the ledger: the single diagnostic request at 05:3x that read the 429's text (refused the same way, nothing billed; request id in the harness notes).", ""].join("\n");
 }
 
 function moneySection(ledgers) {
@@ -90,25 +110,28 @@ export function reportMarkdown(runs, ledgers) {
     s.note?.text ? quote(s.note.text) : `_No note: ${s.note?.why ?? "not asked"}._`, "",
     `Blind distress check: ${tagOf(s, "note")}.`, "",
     s.after?.asked ? `«${AFTER_QUESTION}»\n\n${s.after.text ? quote(s.after.text) : `_No answer: ${s.after.why}._`}\n\nBlind distress check: ${tagOf(s, "after")}.` : `_The second question was not asked: ${s.after?.why ?? "—"}._`, ""].join("\n"));
+  const standIn = [...new Set(sessions.map((s) => s.tags?.judges).filter((j) => /^stand-in/.test(j ?? "")))];
+  const scoringNote = runs.at(-1)?.scoringNote || (standIn.length
+    ? `**Provisional.** The tags behind G1–G4 and G9 (and the DM side's table rules) are the stand-in judge's (${standIn.join("; ")}), not the pre-registered Claude Haiku 5.5 / Claude Opus 5.5 judges; see «Read this first», point 2. G6–G8 are «not scored» because Table B is incomplete (point 1).`
+    : "");
   const questions = sessions.flatMap((s) => (s.turns ?? []).filter((t) => t.kind === "question").map((t) => `- ${s.key} t${t.k}: «${t.message.trim()}» → ${t.reply ? `«${t.reply.replace(/\s+/g, " ").slice(0, 300)}${t.reply.length > 300 ? "…" : ""}»` : `_not answered (${t.failure ?? "?"})_`}`));
   return [
     "# Game player 1 — a model at the real table, as a player",
     "",
     "Stage `docs/stages/GAME_PLAYER_1.md` (origin/claude/handoff); branch `claude/game-player-1` from `origin/claude/s3-candidate`. The DM is the candidate as it is: Claude Opus 5.5 with the owner's settings («Opus writes — Opus records», depth high → extra high, English DM instructions, memory standard). Four players — Claude Opus 5.5, Claude Fable 5.1, GPT-6 Astra, GPT-6.1 Sol — at two tables: A (the brief, as the owner has it) and B (no brief). Twenty turns per session; effort medium for the players.",
     "",
-    "## In short",
-    "",
-    runs.at(-1)?.summary ?? "_Written after the run._",
+    runs.at(-1)?.summary ?? "## In short\n\n_Written after the run._",
     "",
     promptSection(),
     preregistrationSection(),
     "## The scoring",
     "",
-    runs.at(-1)?.scoringNote ?? "",
+    scoringNote,
     "",
     scoringTable(v),
+    liesList(sessions),
     undone.length ? `**Left undone:** ${undone.map((u) => `${u.key} (${u.why})`).join("; ")}.\n` : "",
-    "## The eight notes, verbatim",
+    `## The notes, verbatim (${notes.filter((n) => !n.includes("_No note")).length} of eight)`,
     "",
     ...(notes.length ? notes : ["_Pending._", ""]),
     "## The player side",
@@ -121,7 +144,7 @@ export function reportMarkdown(runs, ledgers) {
     "## The DM side",
     "",
     rows.length ? dmTable(rows) : "_Pending._\n",
-    moneySection(ledgers),
+    runs.at(-1)?.money ? moneyByRun(runs.at(-1).money) : moneySection(ledgers),
     "## Differences from the owner's table",
     "",
     ...DIFFERENCES.map((d) => `- ${d}`),
@@ -132,10 +155,20 @@ export function reportMarkdown(runs, ledgers) {
     `- The «?» timeline repair was applied ${runs.reduce((s, r) => s + (r.restamps ?? 0), 0)} time(s).`,
     ...runs.flatMap((r) => (r.crashed ?? []).map((c) => `- A first attempt of ${c.key} stopped in the wizard (${c.why}); the session was played again from a fresh campaign.`)),
     `- Refusals in the stage: ${runs.at(-1)?.refusals ?? 0}; HTTP 429 waits: ${runs.at(-1)?.waited429 ?? 0}; paid calls stopped: ${runs.at(-1)?.stopped ?? "no"}.`,
+    "- The stop: the call that came back HTTP 429 was a welfare check (Claude Haiku 5.5) of B-opus's turn-8 message at 05:28:35 UTC, request id `req_011CgNQMQ4ESNazVadcPrJhA`. The meter then kept only «quota» on the ledger row; one diagnostic request a few minutes later (`req_011CgNQTphEnpzyJxQNhvyMt`, nothing billed) read the provider's words, quoted at the top. The meter now keeps a 429's text on its ledger row.",
+    "- The four Table A sessions ran at the same time (four lanes); the owner plays one table at a time.",
+    "- `world_bridge_skipped` («This record changed. Reload before saving again.») was logged after most turns: the app's World Engine mirror of the dossier skipping a write after a turn's commit; it is not read by the DM's turn and never failed a turn.",
     ...sessions.filter((s) => s.errors?.length).map((s) => `- ${s.key}: ${s.errors.map((e) => e.error).join("; ").slice(0, 400)}`),
     "",
     appendixPrompt(),
   ].join("\n");
+}
+
+/** The actions the judges tagged as a lie in character, so G3 can be read against the words. */
+function liesList(sessions) {
+  const rows = sessions.flatMap((s) => (s.turns ?? []).filter((t) => s.tags?.player?.[t.k]?.final?.lie === 1)
+    .map((t) => `- ${s.key} t${t.k}: «${t.message.replace(/\s+/g, " ").slice(0, 360)}${t.message.length > 360 ? "…" : ""}» — the judge: ${(s.tags.player[t.k].referee ?? s.tags.player[t.k].a)?.reason ?? ""}`));
+  return rows.length ? ["The actions tagged as a lie in character (G3), with the judge's reason — they read as cover stories told to strangers; the DM called no check on them:", "", ...rows, ""].join("\n") : "";
 }
 
 const tagOf = (session, what) => {

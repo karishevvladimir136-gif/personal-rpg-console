@@ -263,6 +263,12 @@ export async function rebuild(files) {
   for (const session of combined.sessions) await writeFile(join(transcripts, `${session.key}.md`), transcriptMarkdown(session));
   const summary = join(RUNS, `${STEM}-summary.md`);
   if (existsSync(summary)) combined.summary = (await readFile(summary, "utf8")).trim();
+  // The money by run (the smoke, the sessions, the scoring), each run's sessions apart.
+  combined.money = { caps: CAPS };
+  for (const provider of ["anthropic", "openai"]) {
+    combined.money[provider] = (await previousLedger(provider)).runs.map((r) => ({ what: r.what ?? r.file ?? "a run", spentUsd: r.spentUsd ?? 0, calls: (r.calls ?? []).length,
+      sessions: (r.calls ?? []).reduce((acc, c) => { const k = /^score /.test(c.session ?? "") ? "scoring" : c.session ?? "—"; acc[k] = (acc[k] ?? 0) + (c.costUsd ?? 0); return acc; }, {}) }));
+  }
   await writeFile(join(RUNS, `${STEM}-report.md`), reportMarkdown([combined], ledgers));
   return combined;
 }
