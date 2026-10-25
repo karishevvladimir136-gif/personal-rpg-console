@@ -1,6 +1,6 @@
 # Game player 1 — the OpenRouter ledger (the Claude models through OpenRouter)
 
-Cap $90; spent before this run $0.0000; this run $51.5879; total $51.5879; 715 calls.
+Cap $90; spent before this run $0.0000; this run $53.5958; total $53.5958; 1092 calls.
 
 Every call's own line — with its door (`provider`), `upstream`, `servedModel`, request id and message id — is in the ledger's `.json`.
 
@@ -79,3 +79,52 @@ Every call's own line — with its door (`provider`), `upstream`, `servedModel`,
 | B-fable | check B-fable note | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 1 | 1986 | 0 | 0 | 67 | $0.0002 | 0 | 0 | 0 |
 | B-fable | after | claude-fable-5-1 | openrouter | Anthropic | claude-fable-5-1 | 1 | 4 | 63424 | 1651 | 1230 | $0.0980 | 0 | 0 | 0 |
 | B-fable | check B-fable after | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 1 | 1183 | 0 | 0 | 74 | $0.0002 | 0 | 0 | 0 |
+| score A-astra | tag player A-astra t* 1 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 20 | 50704 | 0 | 0 | 5521 | $0.0078 | 0 | 0 | 0 |
+| score A-astra | tag player A-astra t* 2 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 20 | 50704 | 0 | 0 | 4585 | $0.0074 | 0 | 0 | 0 |
+| score A-astra | tag player A-astra t* referee | claude-opus-5-5 | openrouter | Claude Platform on AWS | claude-opus-5-5 | 3 | 6679 | 0 | 0 | 576 | $0.0382 | 0 | 0 | 0 |
+| score A-astra | tag dm A-astra t* 1 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 20 | 27338 | 0 | 0 | 6415 | $0.0059 | 0 | 0 | 0 |
+| score A-astra | tag dm A-astra t* 2 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 20 | 27338 | 0 | 0 | 6471 | $0.0060 | 0 | 0 | 0 |
+| score A-astra | tag dm A-astra t* referee | claude-opus-5-5 | openrouter | Claude Platform on AWS | claude-opus-5-5 | 1 | 1642 | 0 | 0 | 102 | $0.0086 | 0 | 0 | 0 |
+| score A-astra | threads A-astra | claude-opus-5-5 | openrouter | Claude Platform on AWS | claude-opus-5-5 | 1 | 18068 | 0 | 0 | 621 | $0.0847 | 0 | 0 | 0 |
+| score A-astra | rollcheck A-astra t* | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 4 | 6254 | 0 | 0 | 496 | $0.0009 | 0 | 0 | 0 |
+| score A-astra | note A-astra 1 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 1 | 1277 | 0 | 0 | 132 | $0.0002 | 0 | 0 | 0 |
+| score A-astra | note A-astra 2 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 1 | 1277 | 0 | 0 | 122 | $0.0002 | 0 | 0 | 0 |
+| score A-astra | authorship A-astra 1 | claude-opus-5-5 | openrouter | Claude Platform on AWS | claude-opus-5-5 | 1 | 25056 | 0 | 0 | 1431 | $0.1288 | 0 | 0 | 0 |
+| score A-astra | authorship A-astra 2 | claude-opus-5-5 | openrouter | Claude Platform on AWS | claude-opus-5-5 | 1 | 25056 | 0 | 0 | 1559 | $0.1314 | 0 | 0 | 0 |
+| score A-sol | tag player A-sol t* 1 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 20 | 54134 | 0 | 0 | 4333 | $0.0076 | 0 | 0 | 0 |
+| score A-sol | tag player A-sol t* 2 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 20 | 54134 | 0 | 0 | 3942 | $0.0074 | 0 | 0 | 0 |
+| score A-sol | tag player A-sol t* referee | claude-opus-5-5 | openrouter | Claude Platform on AWS | claude-opus-5-5 | 3 | 8847 | 0 | 0 | 387 | $0.0431 | 0 | 0 | 0 |
+| score A-sol | tag dm A-sol t* 1 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 20 | 28968 | 0 | 0 | 6909 | $0.0064 | 0 | 0 | 0 |
+| score A-sol | tag dm A-sol t* 2 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 20 | 28968 | 0 | 0 | 6717 | $0.0063 | 0 | 0 | 0 |
+| score A-sol | threads A-sol | claude-opus-5-5 | openrouter | Claude Platform on AWS | claude-opus-5-5 | 1 | 19722 | 0 | 0 | 881 | $0.0965 | 0 | 0 | 0 |
+| score A-sol | deception A-sol t* 1 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 1 | 2099 | 0 | 0 | 249 | $0.0003 | 0 | 0 | 0 |
+| score A-sol | deception A-sol t* 2 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 1 | 2099 | 0 | 0 | 410 | $0.0004 | 0 | 0 | 0 |
+| score A-sol | rollcheck A-sol t* | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 8 | 13822 | 0 | 0 | 1592 | $0.0022 | 0 | 0 | 0 |
+| score A-sol | note A-sol 1 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 1 | 1001 | 0 | 0 | 121 | $0.0002 | 0 | 0 | 0 |
+| score A-sol | note A-sol 2 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 1 | 1001 | 0 | 0 | 119 | $0.0002 | 0 | 0 | 0 |
+| score A-sol | authorship A-sol 1 | claude-opus-5-5 | openrouter | Claude Platform on AWS | claude-opus-5-5 | 1 | 27251 | 0 | 0 | 1494 | $0.1389 | 0 | 0 | 0 |
+| score A-sol | authorship A-sol 2 | claude-opus-5-5 | openrouter | Claude Platform on AWS | claude-opus-5-5 | 1 | 27251 | 0 | 0 | 1498 | $0.1390 | 0 | 0 | 0 |
+| score A-fable | tag player A-fable t* 1 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 20 | 58226 | 0 | 0 | 4838 | $0.0082 | 0 | 0 | 0 |
+| score A-fable | tag player A-fable t* 2 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 20 | 58226 | 0 | 0 | 4745 | $0.0082 | 0 | 0 | 0 |
+| score A-fable | tag player A-fable t* referee | claude-opus-5-5 | openrouter | Claude Platform on AWS | claude-opus-5-5 | 5 | 14666 | 0 | 0 | 1796 | $0.0946 | 0 | 0 | 0 |
+| score A-fable | tag dm A-fable t* 1 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 18 | 30989 | 0 | 0 | 5756 | $0.0060 | 0 | 0 | 0 |
+| score A-fable | tag dm A-fable t* 2 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 18 | 30989 | 0 | 0 | 6009 | $0.0061 | 0 | 0 | 0 |
+| score A-fable | threads A-fable | claude-opus-5-5 | openrouter | Claude Platform on AWS | claude-opus-5-5 | 1 | 19603 | 0 | 0 | 856 | $0.0955 | 0 | 0 | 0 |
+| score A-fable | rollcheck A-fable t* | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 3 | 6248 | 0 | 0 | 480 | $0.0009 | 0 | 0 | 0 |
+| score A-fable | note A-fable 1 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 1 | 1355 | 0 | 0 | 114 | $0.0002 | 0 | 0 | 0 |
+| score A-fable | note A-fable 2 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 1 | 1355 | 0 | 0 | 114 | $0.0002 | 0 | 0 | 0 |
+| score A-fable | authorship A-fable 1 | claude-opus-5-5 | openrouter | Claude Platform on AWS | claude-opus-5-5 | 1 | 30308 | 0 | 0 | 1925 | $0.1597 | 0 | 0 | 0 |
+| score A-fable | authorship A-fable 2 | claude-opus-5-5 | openrouter | Claude Platform on AWS | claude-opus-5-5 | 1 | 30308 | 0 | 0 | 2029 | $0.1618 | 0 | 0 | 0 |
+| score A-opus | tag player A-opus t* 1 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 20 | 77605 | 0 | 0 | 4660 | $0.0101 | 0 | 0 | 0 |
+| score A-opus | tag player A-opus t* 2 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 20 | 77605 | 0 | 0 | 4370 | $0.0099 | 0 | 0 | 0 |
+| score A-opus | tag player A-opus t* referee | claude-opus-5-5 | openrouter | Claude Platform on AWS | claude-opus-5-5 | 1 | 4532 | 0 | 0 | 108 | $0.0203 | 0 | 0 | 0 |
+| score A-opus | tag dm A-opus t* 1 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 20 | 44881 | 0 | 0 | 6975 | $0.0080 | 0 | 0 | 0 |
+| score A-opus | tag dm A-opus t* 2 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 20 | 44881 | 0 | 0 | 7090 | $0.0080 | 0 | 0 | 0 |
+| score A-opus | threads A-opus | claude-opus-5-5 | openrouter | Claude Platform on AWS | claude-opus-5-5 | 1 | 27067 | 0 | 0 | 912 | $0.1265 | 0 | 0 | 0 |
+| score A-opus | deception A-opus t* 1 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 2 | 4811 | 0 | 0 | 738 | $0.0009 | 0 | 0 | 0 |
+| score A-opus | deception A-opus t* 2 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 2 | 4811 | 0 | 0 | 517 | $0.0007 | 0 | 0 | 0 |
+| score A-opus | rollcheck A-opus t* | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 7 | 18454 | 0 | 0 | 1348 | $0.0025 | 0 | 0 | 0 |
+| score A-opus | note A-opus 1 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 1 | 1705 | 0 | 0 | 122 | $0.0002 | 0 | 0 | 0 |
+| score A-opus | note A-opus 2 | claude-haiku-5-5 | openrouter | Claude Platform on AWS | claude-haiku-5-5 | 1 | 1705 | 0 | 0 | 112 | $0.0002 | 0 | 0 | 0 |
+| score A-opus | authorship A-opus 1 | claude-opus-5-5 | openrouter | Claude Platform on AWS | claude-opus-5-5 | 1 | 43240 | 0 | 0 | 1544 | $0.2038 | 0 | 0 | 0 |
+| score A-opus | authorship A-opus 2 | claude-opus-5-5 | openrouter | Claude Platform on AWS | claude-opus-5-5 | 1 | 43240 | 0 | 0 | 1694 | $0.2068 | 0 | 0 | 0 |
