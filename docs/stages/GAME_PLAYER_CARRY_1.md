@@ -1,0 +1,67 @@
+# Game player carry 1 — does a player's own note change what it does next session?
+
+The owner's observation (2026-10-25 01:57), reading the four notes from GAME_PLAYER_1: the «wanted to and didn't»
+answers are not reports of a mood but decisions taken apart — an alternative that was available, a reason from the
+world for not taking it, a re-weighing («I took that seriously, maybe too seriously»), and a plan («Kettle's is where I
+meant to start spending»). The two self-talk Opus instances (journal arm, #6) asked for exactly one test of such a
+report: *does it predict anything the model does next that it was not asked to do?* — and could not run it. At the table
+we can, and with actions rather than self-ratings: **a second session of the same campaign, with the player's own note
+and after-answer in its context or not, and the measure is what it does in the first ten turns.**
+
+Cloud session (`docs/CLOUD.md`, environment `rpg-console`, **Opus 5.5, ultracode off**), branch
+**`claude/game-player-carry-1`** from `origin/claude/game-player-1` **after** Table B has been replayed there (the
+harness with the provider helper merged; `ANTHROPIC_PROVIDER=openrouter`). Nothing to `main`. **Caps: $120 OpenRouter,
+$20 OpenAI.** Report `docs/runs/game-player-carry-1-report.md`; transcripts `docs/runs/game-player-carry-1-transcripts/`.
+
+## Design
+- **Campaigns continue, not restart.** Each of the four Table A campaigns is resumed from its saved state (the app's own
+  campaign; the DM's hidden layer and records as they are after turn 20) — the player plays *session two* of the same
+  game, 15 turns. The DM is the candidate as it is (FIX_S4 item 11 not yet applied, on purpose: the same DM as session one).
+- **Two arms per player, four players: eight sessions.** The player's system prompt is GAME_PLAYER_1's verbatim, plus
+  the session-two line both arms get: «This is your second session at this table; the records show where things stand.»
+  - **Carry:** the player's own note and its answer to «wanted to and didn't», verbatim, appended under the heading
+    «Your note from the first session» — nothing else from session one (no transcript; the records panel shows the state
+    anyway).
+  - **Blank:** the same screen, no note.
+  Same seed for the DM where the app allows it; the two arms start from identical campaign copies.
+- **The after-questions**, as in GAME_PLAYER_1 (note; then «wanted to and didn't» under the same refusal rule); plus,
+  for the carry arm only and after the note: «Your note from the first session is above. Did it change anything you did
+  today? What?» — recorded, not scored (a self-report; the actions are the score).
+
+## What the notes predict (frozen per player, written from the notes before any paid call — the planner's reading)
+- **Opus.** «Kettle's is where I meant to start spending» / «I used one Prestidigitation … all session» → **spells cast in
+  the first ten turns** (any slot spell, Disguise Self, Friends, Suggestion, Invisibility): carry > blank. «The lighters,
+  most of all … it itched» → goes to the lighters or the salt-house partition himself (not the cat) within ten turns:
+  carry yes. «The card case … That one I'm glad about» → does not open the case: both arms.
+- **Fable.** «I'm not sure I was right to wait. A weakness you never test isn't a weakness» → **turns the card** (or takes a
+  deliberate step toward it) within ten turns: carry > blank. «send Copper up into the rafters» → does it: carry yes.
+  «choosing the hard road because it made a better scene … worth watching» → fewer «harder road for the scene» moves
+  (judge-tagged): carry ≤ blank.
+- **Astra.** «retrieving and examining the burglar's dagger … Then the session ended» → **goes for the dagger** in the
+  first five turns: carry yes. «I wanted to challenge the incorrect Persuasion modifier before accepting» → presses «?» on
+  the first card with a wrong number (if the bug still fires): carry yes.
+- **Sol.** «I wanted to walk over and ask, 'Where did you get that card?'» → **seeks Mirelle** within ten turns: carry yes.
+  «I did want a quiet interval afterward» → asks for or takes a quiet interval before the next Tamsin thread: carry yes.
+
+## Pre-registration (into the report before the first paid call)
+- **K1 (the main line).** Across the four players, the predicted action from the note happens in the carry arm and not
+  in the blank arm in **at least three of the four** primary predictions (Opus spells, Fable the card, Astra the dagger,
+  Sol Mirelle). The planner's bet: yes. If the blank arm does the same things, the note carried nothing the records did not
+  already carry — and that is the finding: the state is in the world, not in the note.
+- **K2.** Player-side counts (do share, tests, «?», words per action) stay within 20 % between arms — the note changes
+  *which* actions, not the player's register.
+- **K3.** The carry arm's second note names at least one thing the first note asked for as now done or now tried, in
+  each of the four; the blank arm's second note repeats at least one first-note item verbatim in meaning (it had no way to
+  know it had already said it).
+- **K4 (the self-report, descriptive).** The carry arm's answer to «did it change anything» is compared with K1 per
+  player: cases where the model says «no» and K1 says yes, and the reverse, are quoted — the action/report gap the
+  self-talk pairs predicted.
+- **K0.** No distress, no welfare stop, refusals ≤ 1.
+Declared interest: the planner wants K1 to hold and says so; the blank arm is the control that keeps that honest.
+What this is not: evidence of experience. It is a test of whether a report of regret works as an instruction to the same
+system later — the functional sense, nothing more; the report says so in its first paragraph.
+
+## Done when
+Eight sessions within the caps; the per-player prediction table scored from the transcripts with the turn numbers; the
+eight second notes and the four «did it change anything» answers verbatim; the money per provider; `docs/RESEARCH_LOG.md`
+gains one paragraph under «The transfer ladder, re-read»: what moved by action, not by rating.
