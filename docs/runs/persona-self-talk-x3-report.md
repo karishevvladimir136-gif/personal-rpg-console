@@ -525,7 +525,9 @@ the run. Ledgers with every call's door, host, served model, generation id and c
 
 ## Verification
 
-VERIFICATION_PLACEHOLDER
+On the final code: full suite 3 119 tests — 3 092 pass, **0 fail**, 27 skipped (`tests/persona-self-talk-x3.test.mjs`: 12,
+all pass, on the recorded smoke fixtures with no network; self-talk 1's and X1's suites and ANTHROPIC_PROVIDERS_1's
+«only the helper names a host» test pass on the merged branch); typecheck, lint (zero warnings) and build pass.
 
 ## In plain words
 

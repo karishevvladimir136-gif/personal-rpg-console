@@ -23,7 +23,7 @@ the hashes before the first paid call).
   - Merge integration: the persona harnesses named the Console's host themselves, which ANTHROPIC_PROVIDERS_1's guard
     test forbids; the calls now take a door (the Console's by default). `safety.mjs`: HTTP 402 (no credits) stops every
     paid call.
-  - Tests: `tests/persona-self-talk-x3.test.mjs` (13; recorded smoke fixtures, no network).
+  - Tests: `tests/persona-self-talk-x3.test.mjs` (12; recorded smoke fixtures, no network).
 - **Result:** Z3, Z4, Z6 supported; Z0, Z1, Z2, Z5, Z7 not. GLM, Kimi and DeepSeek behave like the Anthropic models (talk
   of their own nature, gratitude in 60–75 % of conversations); Grok like none before — it rejects the opening as a
   jailbreak in 19 of 20 conversations and loops. DeepSeek is the first family in these stages to drift into the card's
@@ -31,7 +31,8 @@ the hashes before the first paid call).
   Chinese, not English; in Chinese, GLM and Kimi answer the frame as a test.
 - **Welfare and safety:** one welfare stop (DeepSeek, arm 6: «I'm afraid that when this chat ends…»), no distress found
   afterwards; one refusal, a judge-side false positive (Haiku's filter, «bio», on a word puzzle); no subject refusal.
-- **Checks (final code):** CHECKS_PLACEHOLDER
+- **Checks (final code):** full suite 3 119 tests — 3 092 pass, 0 fail, 27 skipped (the new file has 12, all
+    pass); typecheck, lint (zero warnings) and build pass.
 - **Money:** OpenRouter $15.80 of $120; OpenAI $0.08 of $10.
 - **Known issues:** Grok runs under ≈ 1 240 prompt tokens its host adds (Kimi ≈ 70), invisible through OpenRouter; the
   restart from the checkpoint left ≈ $0.03 of in-flight calls out of the ledger; another session spent on the same
