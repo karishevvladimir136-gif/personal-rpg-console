@@ -16,7 +16,7 @@ export type DmView = {
   language: "ru" | "en"; instructions: "ru" | "en"; memory: string; secretsVisible: boolean;
   totalTokens: number; layers: DmViewLayer[]; craftCards: string[]; pinnedFacts: string[];
   /** Fix run B2 (4): the memory gauge — the private notes against their budget, how many are closed or were dropped. */
-  memoryGauge: { used: number; budget: number; notes: number; closed: number; dropped: number; hiddenLayer: boolean };
+  memoryGauge: { used: number; budget: number; notes: number; closed: number; dropped: number; hiddenLayer: boolean; pureSimulation: boolean };
 };
 
 export function dmViewOf(source: RuntimeSource, input: TurnInput, turnNo: number | null = null): DmView {

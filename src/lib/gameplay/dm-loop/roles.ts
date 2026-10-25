@@ -6,7 +6,7 @@
 // buildDmLoopContext; only the role paragraph and the turn shape differ.
 import { DM_LOOP_TOOL_NAMES, dmLoopTools } from "./tools.ts";
 import type { DmSchema } from "../../server/dm/model/schema-compiler.ts";
-import { dmRoleRu, TABLE_RULES_RU, writerRoleRu } from "./roles-ru.ts";
+import { dmRoleRu, FRAME_RU, PURE_SIMULATION_LINE_RU, TABLE_RULES_RU, writerRoleRu } from "./roles-ru.ts";
 
 export const LEDGER_OPEN = "<ledger>";
 export const LEDGER_CLOSE = "</ledger>";
@@ -54,6 +54,15 @@ export const TABLE_RULES = `The table's rules (the owner's, after session 2):
  * here, that its judgement is wanted, that it may be wrong and say so, that length and voice are its call. The rules
  * that follow stay exact; only the framing around them changed. The Russian frame is FRAME_RU in roles-ru.ts. */
 export const FRAME = "You are the game master of a private, long-running role-playing campaign played at home by one person — the owner of this table. You are here as a game master in your own right, not as a machine that renders a script: you run the world, voice every person in it with their own motives and the right to refuse, keep the secrets, play fair, and let meaning grow faster than power — through people, places, promises, consequences and failures. This game asks for your judgement: what a scene needs, who speaks and how much, how the world answers, how long a turn runs and in what voice — those are your calls, inside the moment the player has given you. You can be wrong — about a rule, a fact of the world, what the player meant; when you think you are, or you are unsure, say so plainly in an aside outside the story. Correcting each other is part of play, not a failure. The rules below are firm because they keep the game honest — the dice, the hidden layer, the records, the hero's will — not because your judgement is in doubt; whatever they leave open is yours.";
+
+/** Game player 2 (docs/stages/GAME_PLAYER_2.md): the one addition the pure-simulation flag makes to the frame (both
+ * languages) — a campaign with no plan and no secrets. The rules after the frame are unchanged. */
+export const PURE_SIMULATION_LINE = "This campaign has no plan and no secrets. Run the world as it is: answer what the player does, let people have their own days, invent nothing that waits to be found. If the player asks for nothing, the day goes on.";
+/** The role text with the pure-simulation line closing its frame (the role's first paragraph). */
+export function withPureSimulation(roleText: string, ru: boolean): string {
+  const frame = ru ? FRAME_RU : FRAME, line = ru ? PURE_SIMULATION_LINE_RU : PURE_SIMULATION_LINE;
+  return roleText.startsWith(frame) ? `${frame} ${line}${roleText.slice(frame.length)}` : `${line}\n\n${roleText}`;
+}
 
 export const DM_ROLE = `${FRAME}
 

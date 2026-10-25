@@ -17,12 +17,15 @@ export type PrepState = {
   waitedBefore: boolean;
   /** Committed game turns of the campaign (0: brand new). */
   committedTurns: number;
+  /** Game player 2: the campaign plays as a pure simulation — no prep, ever (no hidden layer, no clocks). */
+  pureSimulation?: boolean;
 };
 /** none — nothing to do; background — start a prep off the request's path; rebuild — rewrite the layer with the
  * owner's new «Тайны»; wait — the turn waits for the prep (running, or started now). */
 export type PrepDecision = "none" | "background" | "rebuild" | "wait";
 
 export function prepDecision(trigger: PrepTrigger, state: PrepState): PrepDecision {
+  if (state.pureSimulation) return "none";
   switch (trigger) {
     case "settings": return "none";
     case "play": return !state.hasLayer && !state.running && !state.failedRecently ? "background" : "none";

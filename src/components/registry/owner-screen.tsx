@@ -116,8 +116,8 @@ export function DmViewPanel({ campaignId, preview }: { campaignId: string; previ
               <span className={o.num}>{Math.round(g.used / 100) / 10}k / {Math.round(g.budget / 1000)}k</span>
               <span className={o.bar} aria-hidden="true"><span className={`${o.barFill} ${g.dropped ? o.barOver : ""}`} style={{ display: "block", width: `${share}%` }} /></span>
             </div>
-            <p className={o.help}>{c(`Заметок ${g.notes}, из них закрытых ${g.closed}; не поместилось в бюджет: ${g.dropped} (сначала уходят закрытые — их находит recall). Тайный слой кампании: ${g.hiddenLayer ? "есть" : "ещё нет"}.`,
-              `${g.notes} notes, ${g.closed} closed; left out by the budget: ${g.dropped} (closed ones go first — recall finds them). The campaign's hidden layer: ${g.hiddenLayer ? "present" : "not yet"}.`)}</p>
+            <p className={o.help}>{c(`Заметок ${g.notes}, из них закрытых ${g.closed}; не поместилось в бюджет: ${g.dropped} (сначала уходят закрытые — их находит recall). Тайный слой кампании: ${g.pureSimulation ? "нет — чистая симуляция, без плана и тайн" : g.hiddenLayer ? "есть" : "ещё нет"}.`,
+              `${g.notes} notes, ${g.closed} closed; left out by the budget: ${g.dropped} (closed ones go first — recall finds them). The campaign's hidden layer: ${g.pureSimulation ? "none — pure simulation, no plan and no secrets" : g.hiddenLayer ? "present" : "not yet"}.`)}</p>
           </div>
         );
       })()}

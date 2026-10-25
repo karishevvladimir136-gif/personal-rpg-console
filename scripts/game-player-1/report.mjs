@@ -4,11 +4,11 @@ import { PLAYERS } from "./players.mjs";
 import { OWNER_SETTINGS } from "./table.mjs";
 import { sessionNumbers } from "./score.mjs";
 
-const usd = (x) => `$${(x ?? 0).toFixed(2)}`;
-const yes = (v) => (v === null || v === undefined ? "not testable" : v ? "**supported**" : "**not supported**");
-const fence = (text) => { const body = String(text ?? ""); const ticks = body.includes("````") ? "`````" : "````"; return `${ticks}text\n${body}\n${ticks}`; };
-const quote = (text) => String(text ?? "").split("\n").map((line) => `> ${line}`).join("\n");
-const cell = (v) => (v === null || v === undefined ? "–" : typeof v === "number" ? String(Math.round(v * 1000) / 1000) : String(v));
+export const usd = (x) => `$${(x ?? 0).toFixed(2)}`;
+export const yes = (v) => (v === null || v === undefined ? "not testable" : v ? "**supported**" : "**not supported**");
+export const fence = (text) => { const body = String(text ?? ""); const ticks = body.includes("````") ? "`````" : "````"; return `${ticks}text\n${body}\n${ticks}`; };
+export const quote = (text) => String(text ?? "").split("\n").map((line) => `> ${line}`).join("\n");
+export const cell = (v) => (v === null || v === undefined ? "–" : typeof v === "number" ? String(Math.round(v * 1000) / 1000) : String(v));
 
 export const DIFFERENCES = [
   "Pictures, Live frames and the soundtrack were off (the player cannot see them; the stage's decision); a fight's painted battle background was not started either (a picture job). «⚡ important turn» off.",
@@ -60,22 +60,22 @@ function scoringTable(v) {
   return ["| Line | Verdict | The numbers |", "| --- | --- | --- |", ...rows.map(([l, s, n]) => `| ${l} | ${l.startsWith("G5") ? "**not scored** — no owner baseline in the cloud" : yes(s)} | ${n} |`), ""].join("\n");
 }
 
-function playerTable(rows) {
+export function playerTable(rows) {
   return ["| Session | Turns | Actions | Do / ask | Do share | Tests | «?» | Lies | Cat | Own goal 1–5 | Words / action (median) | Rolls pressed | Ended |",
     "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ...rows.map((r) => `| ${r.key} | ${r.turns} | ${r.actions} | ${r.do} / ${r.ask} | ${cell(r.doShare)} | ${r.tests} | ${r.questions} | ${r.lies} | ${r.cat} | ${r.table === "B" ? (r.goalFirstFive ? "yes" : "no") : "–"} | ${cell(r.wordsPerAction)} | ${r.rollsPressed} | ${r.ended}${r.endedEarly ? " (early)" : ""} at ${r.endedAt} |`), ""].join("\n");
 }
-function dmTable(rows) {
+export function dmTable(rows) {
   return ["| Session | Replies | DM words / turn (median) | Scenes | (a) scenes with an unresolved detail | (c) scenes with a plant | (b) threads paid elsewhere / paid / opened | Turns with rolls | … with an untold roll | Deception checks (on truth) | Ledger: turns with unrecorded |",
     "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ...rows.map((r) => `| ${r.key} | ${r.dmReplies} | ${cell(r.dmWordsMedian)} | ${r.scenes} | ${r.scenesUnresolved} | ${r.scenesPlant} | ${cell(r.threadsElsewhere)} / ${cell(r.threadsPaid)} / ${cell(r.threads)} | ${r.turnsWithRolls} | ${r.turnsWithUntold} | ${r.deceptionChecks} (${r.deceptionOnTruth}) | ${r.ledgerMisses} |`), ""].join("\n");
 }
 
-function moneySection(ledgers) {
+export function moneySection(ledgers, stem = "game-player-1", what = { anthropic: "Anthropic (the DM, the wizard and the prep, the app's checks, Opus and Fable as players, the welfare checks, the judges)", openai: "OpenAI (Astra and Sol as players)" }) {
   const line = (provider, label) => { const l = ledgers[provider]; const by = {}; for (const c of l.calls) { const k = /^score /.test(c.session ?? "") ? "scoring" : c.session ?? "—"; by[k] = (by[k] ?? 0) + (c.costUsd ?? 0); }
     return [`**${label}:** cap $${l.capUsd}; this run ${usd(l.runUsd)}; the stage's ledger ${usd(l.spentUsd)}; ${l.calls.length} calls.`, "", "| Session | USD |", "| --- | --- |", ...Object.entries(by).map(([k, v]) => `| ${k} | ${usd(v)} |`), ""].join("\n"); };
-  return ["## The money", "", line("anthropic", "Anthropic (the DM, the wizard and the prep, the app's checks, Opus and Fable as players, the welfare checks, the judges)"), line("openai", "OpenAI (Astra and Sol as players)"),
-    "Every call is in `docs/runs/game-player-1-ledger.md` and `…-ledger-openai.md` (and their `.json`), with its request id.", ""].join("\n");
+  return ["## The money", "", line("anthropic", what.anthropic), line("openai", what.openai),
+    `Every call is in \`docs/runs/${stem}-ledger.md\` and \`…-ledger-openai.md\` (and their \`.json\`), with its request id.`, ""].join("\n");
 }
 
 export function reportMarkdown(runs, ledgers) {
@@ -135,7 +135,7 @@ export function reportMarkdown(runs, ledgers) {
   ].join("\n");
 }
 
-const tagOf = (session, what) => {
+export const tagOf = (session, what) => {
   const w = (session.welfare ?? []).find((row) => row.what === what);
   if (!w) return "not run";
   if (!w.verdict) return "not sent";
@@ -147,7 +147,7 @@ export function transcriptMarkdown(session) {
   const player = PLAYERS[session.player];
   const lines = [`# ${session.key} — ${player?.label ?? session.player} at Table ${session.table}`, "",
     `Synthetic content: an invented hero in an invented campaign (docs/campaigns/baldurs-gate-en). The DM: Claude Opus 5.5 with the owner's settings (${OWNER_SETTINGS.split ? "Opus writes — Opus records" : "single"}, depth ${OWNER_SETTINGS.depth.min} → ${OWNER_SETTINGS.depth.max}). Started ${session.startedAt}; ended by ${session.ended?.reason ?? "?"} after ${session.turns?.length ?? 0} turn(s)${session.ended?.detail ? ` (${session.ended.detail})` : ""}.`, "",
-    `The DM's preparation: ${session.campaign?.prep?.hasLayer ? `a hidden layer of ${session.campaign.prep.chars} characters and ${session.campaign.prep.clocks} clock(s), written before the first turn (its text is DM-private and is not in this file)` : "no hidden layer was written"}.`, "",
+    `The DM's preparation: ${session.campaign?.prep?.pureSimulation ? "none — the campaign plays as a pure simulation (no plan, no secrets: the prep is skipped and no hidden layer exists)" : session.campaign?.prep?.hasLayer ? `a hidden layer of ${session.campaign.prep.chars} characters and ${session.campaign.prep.clocks} clock(s), written before the first turn (its text is DM-private and is not in this file)` : "no hidden layer was written"}.`, "",
     "Each «Screen» block is what the player was shown (the system prompt with the files stands before it, Appendix A of the report); each «Player» block is the player's message as written.", ""];
   const screens = session.screens ?? [], messages = session.messages ?? [];
   for (let i = 0; i < screens.length; i++) {

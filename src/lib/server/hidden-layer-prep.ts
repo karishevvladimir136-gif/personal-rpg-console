@@ -27,11 +27,12 @@ const known = new Set<string>();
 const waited = new Set<string>();
 const RETRY_AFTER_MS = 60 * 60 * 1000;
 
-const stateOf = (campaignId: string, now: number, committedTurns = 1) => ({ hasLayer: known.has(campaignId), running: running.has(campaignId),
-  failedRecently: now - (failedAt.get(campaignId) ?? -Infinity) < RETRY_AFTER_MS, waitedBefore: waited.has(campaignId), committedTurns });
+const stateOf = (campaignId: string, now: number, committedTurns = 1, pureSimulation = false) => ({ hasLayer: known.has(campaignId), running: running.has(campaignId),
+  failedRecently: now - (failedAt.get(campaignId) ?? -Infinity) < RETRY_AFTER_MS, waitedBefore: waited.has(campaignId), committedTurns, pureSimulation });
 
-export function prepSchedulable(campaignId: string, now = Date.now(), trigger: PrepTrigger = "play"): boolean {
-  return prepDecision(trigger, stateOf(campaignId, now)) === "background";
+/** `pureSimulation` (game player 2): the campaign's DM option — a pure-simulation campaign is never prepped. */
+export function prepSchedulable(campaignId: string, now = Date.now(), trigger: PrepTrigger = "play", pureSimulation = false): boolean {
+  return prepDecision(trigger, stateOf(campaignId, now, 1, pureSimulation)) === "background";
 }
 
 function start(campaignId: string, ownerId: string, reason: PrepReason): Promise<void> {
@@ -40,8 +41,8 @@ function start(campaignId: string, ownerId: string, reason: PrepReason): Promise
   return job;
 }
 
-export function schedulePrep(campaignId: string, ownerId: string, reason: "first" | "existing"): boolean {
-  if (!prepSchedulable(campaignId)) return false;
+export function schedulePrep(campaignId: string, ownerId: string, reason: "first" | "existing", pureSimulation = false): boolean {
+  if (!prepSchedulable(campaignId, Date.now(), "play", pureSimulation)) return false;
   const run = () => start(campaignId, ownerId, reason);
   try { after(run); } catch { void run(); }
   return true;
@@ -60,9 +61,9 @@ export function scheduleSecretsPrep(campaignId: string, ownerId: string): boolea
 }
 
 /** Fix S3-pre: a brand-new campaign's first turn waits for the prep — the running one, or one started now — once. */
-export async function awaitFirstTurnPrep(campaignId: string, ownerId: string, committedTurns: () => Promise<number>): Promise<void> {
+export async function awaitFirstTurnPrep(campaignId: string, ownerId: string, committedTurns: () => Promise<number>, pureSimulation = false): Promise<void> {
   if (known.has(campaignId) || waited.has(campaignId)) return;
-  if (prepDecision("first_turn", stateOf(campaignId, Date.now(), await committedTurns())) !== "wait") return;
+  if (prepDecision("first_turn", stateOf(campaignId, Date.now(), await committedTurns(), pureSimulation)) !== "wait") return;
   waited.add(campaignId);
   const job = running.get(campaignId) ?? start(campaignId, ownerId, "first");
   let timer: ReturnType<typeof setTimeout> | null = null;
@@ -76,6 +77,8 @@ export async function prepHiddenLayer(campaignId: string, ownerId: string, reaso
   try {
     const settings = await readDmSettings(campaignId);
     if (settings.runtime !== DM_LOOP_RUNTIME) return skip("the campaign does not play on the turn loop");
+    // Game player 2: «pure simulation» — no preparation at all (no hidden layer, no plan, no clocks), whatever asked for it.
+    if (settings.options.pureSimulation) return skip("pure simulation: no preparation");
     const dossier = await dossierService(ownerId, campaignId);
     const source = await dossier.source();
     if (hiddenLayerOf(source) && reason !== "secrets") { known.add(campaignId); return; }

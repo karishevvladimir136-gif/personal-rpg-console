@@ -245,7 +245,8 @@ export async function readPlay(campaignId: string, options: { prep?: boolean } =
       catch { /* the digest is a background courtesy */ }
       // Fix run B1: the DM's prep writes the campaign's hidden layer once (before its first turn, or now for a campaign
       // that has none); in the background, never twice at a time, a failed one retried an hour later at the soonest.
-      if (options.prep !== false && prepSchedulable(campaignId)) schedulePrep(campaignId, owner.user.id, play.turns.some((turn) => turn.status === "committed") ? "existing" : "first");
+      const pure = dmSettings.options.pureSimulation;
+      if (options.prep !== false && prepSchedulable(campaignId, Date.now(), "play", pure)) schedulePrep(campaignId, owner.user.id, play.turns.some((turn) => turn.status === "committed") ? "existing" : "first", pure);
     }
     return { ...(pending ? { ...play, startupPending: true } : play), configured: !!key?.trim(), model: choice.modelId,
       rulesetId: settings.ruleset.id };
@@ -322,7 +323,8 @@ export async function submitTurn(campaignId: string, value: unknown) {
       throw new AstraStartupPendingError();
     // Fix S3-pre (KF-hidden-layer): a brand-new campaign's first turn waits for the DM's prep — one wait, once.
     if (newOrdinary && input.mode === "game")
-      await awaitFirstTurnPrep(campaignId, user.id, async () => (await store.readPlay(campaignId)).turns.filter((turn) => turn.status === "committed" && turn.mode === "game").length)
+      await awaitFirstTurnPrep(campaignId, user.id, async () => (await store.readPlay(campaignId)).turns.filter((turn) => turn.status === "committed" && turn.mode === "game").length,
+        dmSettings?.options.pureSimulation === true)
         .catch(() => { /* the prep never blocks a turn */ });
     const loopProduction = productionServices(user.id, campaignId, requireTimeline(input));
     const deps = dmLoopDependencies(store, memory, loopProduction.summaries, loopProduction,

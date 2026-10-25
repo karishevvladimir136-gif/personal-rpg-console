@@ -12,12 +12,16 @@
 //     all) or «широко» (about 500k); older story lives in the dossier and the recaps. «стандарт» by default
 //     since the stage B probes: «компактно» forgot a fact told 35 turns back and the memory search did not
 //     bring it back; «стандарт» holds about 120 turns for about $0.13 a turn more (docs/runs/fix-s2-report.md).
+//   - pureSimulation (game player 2, Table C): a campaign with no plan and no secrets — set at campaign open, it skips
+//     the DM's prep (no hidden layer, no clocks), keeps the owner's «Тайны» empty and locked, and adds one line to the
+//     DM's frame. Off by default; nothing else about the DM changes.
 export type DmOptions = {
   continuation: "same" | "lighter";
   instructions: "ru" | "en";
   companionRolls: "dm" | "player";
   secretsVisible: boolean;
   memory: DmMemoryPreset;
+  pureSimulation: boolean;
 };
 export type DmMemoryPreset = "compact" | "standard" | "wide";
 /** The budgets (estimated tokens) of each «Память ведущего» preset: the recent scenes and exchanges read
@@ -29,9 +33,9 @@ export const MEMORY_PRESETS: Readonly<Record<DmMemoryPreset, { history: number; 
   standard: { history: 200_000, secrets: 10_500, codex: 50_000, models: 32_000, bucket: 40 },
   wide: { history: 380_000, secrets: 17_500, codex: 80_000, models: 48_000, bucket: 72 },
 });
-export const DM_OPTION_DEFAULTS: DmOptions = Object.freeze({ continuation: "same", instructions: "ru", companionRolls: "dm", secretsVisible: false, memory: "standard" });
+export const DM_OPTION_DEFAULTS: DmOptions = Object.freeze({ continuation: "same", instructions: "ru", companionRolls: "dm", secretsVisible: false, memory: "standard", pureSimulation: false });
 export const DM_OPTION_VALUES: { readonly [K in keyof DmOptions]: readonly DmOptions[K][] } = {
-  continuation: ["same", "lighter"], instructions: ["ru", "en"], companionRolls: ["dm", "player"], secretsVisible: [true, false], memory: ["compact", "standard", "wide"],
+  continuation: ["same", "lighter"], instructions: ["ru", "en"], companionRolls: ["dm", "player"], secretsVisible: [true, false], memory: ["compact", "standard", "wide"], pureSimulation: [true, false],
 };
 
 /** The stored options with the defaults filled in; an unknown key or value (a newer or older row) is ignored. */

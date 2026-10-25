@@ -45,6 +45,9 @@ function speechRu(profileNote: string, tail: string): string {
 
 const SPEECH_PROFILE_FIELDS_RU = "регистр, длина фраз, словечки и жесты с частотой, чего он никогда не скажет, ты/вы к каждому";
 
+/** Game player 2 (docs/stages/GAME_PLAYER_2.md): PURE_SIMULATION_LINE in Russian (roles.ts). */
+export const PURE_SIMULATION_LINE_RU = "В этой кампании нет плана и нет тайн. Веди мир таким, какой он есть: отвечай на то, что делает игрок, пусть у людей идут свои дни, не придумывай ничего, что ждёт, чтобы его нашли. Если игрок ни о чём не просит, день идёт дальше.";
+
 /** The Russian DM_ROLE. `toolNames` is DM_LOOP_TOOL_NAMES.join(", "), `tableRules` is
  * TABLE_RULES_RU, `fieldSheet` is toolFieldSheet() (English, appended by code). */
 export function dmRoleRu(toolNames: string, tableRules: string, fieldSheet: string): string {

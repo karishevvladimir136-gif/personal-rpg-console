@@ -34,7 +34,7 @@ export function craftCardsBlock(cards: ContextCard[]): string {
 }
 import { parseCharacterModel, type CharacterModel } from "../character-model.ts";
 import type { DmSystemBlock } from "../../server/dm/model/contracts.ts";
-import { dmRoleText, dmTurnShape, writerRoleText, writerTurnShape } from "./roles.ts";
+import { dmRoleText, dmTurnShape, withPureSimulation, writerRoleText, writerTurnShape } from "./roles.ts";
 import { campaignLanguageRu, DOCTRINE_HEADER_RU, HEADERS_RU } from "./roles-ru.ts";
 import { allPlans } from "./plans.ts";
 import { voiceExamplesBlock, voiceLayer, voiceReminder, VOICE_TOKEN_CAP_DEFAULT, VOICE_TOKEN_CAP_MAX, VOICE_TOKEN_CAP_MIN } from "./voice.ts";
@@ -388,8 +388,10 @@ const serverKept = (_kind: string, key: string) => key.startsWith("quest_reward_
  * notes follow in priority order (open clocks and consequences, open facts newest first, closed ones last) with their
  * validity, so a budget drops the closed notes first. */
 function privateSecrets(source: RuntimeSource): Budgeted {
-  const owner = ownerSecretsText(source);
-  const layer = hiddenLayerOf(source);
+  // Game player 2: a pure-simulation campaign has no secrets and no hidden layer — none reach the DM even if stored.
+  const pure = parseDmOptions(source.dmOptions).pureSimulation;
+  const owner = pure ? "" : ownerSecretsText(source);
+  const layer = pure ? "" : hiddenLayerOf(source);
   const head = [owner ? `The owner's own secrets (DM-only; build on them, never contradict them):\n${owner}` : "", layer].filter(Boolean).join("\n\n");
   const validity = (note: PrivateNote) => note.until !== null ? ` (closed — was true${note.since !== null ? ` from ${worldDay(note.since)}` : ""} until ${worldDay(note.until)})`
     : note.since !== null ? ` (since ${worldDay(note.since)})` : "";
@@ -399,11 +401,13 @@ function privateSecrets(source: RuntimeSource): Budgeted {
   return { text: [head, notes.text].filter(Boolean).join("\n\n"), dropped: notes.dropped, used: notes.used + (head ? estimateTokens(head) : 0) };
 }
 /** Fix run B2 (4): the memory gauge of the owner panel — the private notes against their budget. */
-export function privateNotesGauge(source: RuntimeSource): { used: number; budget: number; notes: number; closed: number; dropped: number; hiddenLayer: boolean } {
+export function privateNotesGauge(source: RuntimeSource): { used: number; budget: number; notes: number; closed: number; dropped: number; hiddenLayer: boolean; pureSimulation: boolean } {
   const all = privateNotes(source.privateState, serverKept);
   const result = privateSecrets(source);
+  // Game player 2: «pure simulation» has no layer by design — the gauge says so instead of «not yet».
+  const pureSimulation = parseDmOptions(source.dmOptions).pureSimulation;
   return { used: result.used, budget: memoryBudgets(source).secrets, notes: all.length, closed: all.filter((note) => note.until !== null).length,
-    dropped: result.dropped.length, hiddenLayer: !!hiddenLayerOf(source) };
+    dropped: result.dropped.length, hiddenLayer: !pureSimulation && !!hiddenLayerOf(source), pureSimulation };
 }
 
 function offScreenPlans(source: RuntimeSource): Budgeted {
@@ -683,7 +687,9 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
   const examples = voiceExamplesBlock(source.voiceSamples, voiceOptions.layerOff ? "off" : voiceMode, voiceOptions);
   // Fix run B4: «Инструкции ведущего: русские» — the native Russian role, language line and headers for a Russian campaign.
   const ru = instructionsRu(source);
-  const howToDm = [role === "writer" ? writerRoleText(ru) : dmRoleText(ru), role === "writer" ? writerTurnShape(language) : dmTurnShape(language), voice,
+  // Game player 2: «pure simulation» — one line closes the frame (no plan, no secrets); everything else is the same.
+  const roleText = role === "writer" ? writerRoleText(ru) : dmRoleText(ru);
+  const howToDm = [parseDmOptions(source.dmOptions).pureSimulation ? withPureSimulation(roleText, ru) : roleText, role === "writer" ? writerTurnShape(language) : dmTurnShape(language), voice,
     ru ? campaignLanguageRu() : `Campaign language: ${language}. Narrate and voice characters in ${language}; keep established names in the campaign's spelling.`,
     craft?.doctrine ? `${ru ? DOCTRINE_HEADER_RU : "DM Craft — how to run (the owner's approved doctrine):"}\n${craft.doctrine.title}\n${craft.doctrine.guidance}\nAvoid: ${craft.doctrine.avoid}` : "",
     describeStyle((craft?.style ?? snapshot.settings.values.dmStyle ?? null) as Record<string, unknown> | null)].filter(Boolean).join("\n\n");

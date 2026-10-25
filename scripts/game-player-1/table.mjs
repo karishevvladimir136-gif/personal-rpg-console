@@ -14,7 +14,7 @@
 //   Prep       the DM's hidden layer, written by the app's prep before the first turn (it waits for it on the owner's
 //              first visit too), never shown to the player.
 import { randomUUID } from "node:crypto";
-import { campaignFiles, OPEN_TABLE } from "./frozen.mjs";
+import { campaignFiles, PURE_SIMULATION_TABLES, UNBRIEFED } from "./frozen.mjs";
 
 export const OWNER_SETTINGS = {
   runtime: "dm-loop-v1",
@@ -62,18 +62,20 @@ export async function createCampaign(app, { table, log = () => {}, closed = () =
   snapshot = await server.publicCampaign.readPublicCampaign(cid);
   steps.push({ step: "documents", documents: snapshot.documents.map((d) => ({ title: d.title, status: d.status, chars: d.body.length, guide: d.id === snapshot.dmGuideDocumentId })) });
   // Adventure: the wishes (Table A) to the DM-only store first, then the adventure.
-  const premise = table === "A" ? files.premise : OPEN_TABLE.premise;
-  const wishes = table === "A" ? files.wishes : OPEN_TABLE.wishes;
+  const premise = table === "A" ? files.premise : UNBRIEFED[table].campaign.premise;
+  const wishes = table === "A" ? files.wishes : UNBRIEFED[table].campaign.wishes;
   if (wishes.trim()) await server.secrets.saveDmSecrets(cid, { scope: "wishes", body: wishes.trim(), rebuild: false });
   const adventures = await server.adventures.adventureService(cid);
   const catalog = await adventures.read(cid, await fenceOf(app, cid));
-  const title = table === "A" ? files.campaignName : OPEN_TABLE.campaignName;
+  const title = table === "A" ? files.campaignName : UNBRIEFED[table].campaign.campaignName;
   const prepared = await adventures.perform(lib.client.prepareAdventureAttempt(catalog, { title, premise: lib.wizardText.wizardAdventurePremise(premise, "the cat", "en").slice(0, 20000), pacing: PACE }));
   const adventure = prepared.snapshot.adventures.find((a) => a.status === "prepared");
   steps.push({ step: "adventure", title, premiseChars: premise.length, wishesChars: wishes.trim().length, pace: PACE.kind });
-  // DM: the owner's settings; the craft cards active; pictures and the soundtrack off.
+  // DM: the owner's settings; the craft cards active; pictures and the soundtrack off. Game player 2's Table C: the
+  // pure-simulation flag on, before the opening and the prep (the prep then skips: no hidden layer, no clocks).
   const current = await server.dmSettings.readDmSettings(cid);
-  await server.dmSettings.saveDmSettings(cid, { expectedRevision: current.revision, ...OWNER_SETTINGS, options: { ...current.options, ...OWNER_SETTINGS.options } });
+  const pure = PURE_SIMULATION_TABLES.has(table) ? { pureSimulation: true } : {};
+  await server.dmSettings.saveDmSettings(cid, { expectedRevision: current.revision, ...OWNER_SETTINGS, options: { ...current.options, ...OWNER_SETTINGS.options, ...pure } });
   const saved = await server.dmSettings.readDmSettings(cid);
   steps.push({ step: "dm", split: saved.split ? `${saved.split.writer.modelId} writes, ${saved.split.bookkeeper.modelId} records` : "single", depth: saved.depth, options: saved.options, boostNext: saved.boostNext, voiceMode: saved.voiceMode });
   steps.push({ step: "craft", ...(await activateCraft(server)) });
@@ -135,7 +137,8 @@ export async function prepare(app, cid) {
   await app.server.prep.prepHiddenLayer(cid, app.owner, "first");
   const state = (await app.f.one("select contents from rpg_private.dm_state where campaign_id=$1", [cid]))?.contents ?? {};
   const text = app.lib.privateNotes.hiddenLayerOf({ privateState: state });
-  return { hasLayer: text.length > 0, chars: text.length, clocks: Object.keys(state.clock ?? {}).length };
+  const pureSimulation = (await app.server.dmSettings.readDmSettings(cid)).options.pureSimulation === true;
+  return { hasLayer: text.length > 0, chars: text.length, clocks: Object.keys(state.clock ?? {}).length, pureSimulation };
 }
 
 /** The game screen's play state (the turns the player sees). */

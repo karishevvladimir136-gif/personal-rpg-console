@@ -63,6 +63,19 @@ export const OPEN_TABLE = {
 };
 /** What the player is told at the open table, and nothing else (the stage's words). */
 export const OPEN_TABLE_LINE = "A new campaign; there is no quest; the city is yours.";
+/** Game player 2 (docs/stages/GAME_PLAYER_2.md), Table C — the pure world: no brief, no wishes, no secrets, and the
+ * DM's pure-simulation flag on (no hidden layer). Kept here so the harness serves all three tables; it is not part of
+ * this stage's design hash (game player 2 hashes it with its own design). */
+export const PURE_TABLE = {
+  campaignName: "Beregost, morning",
+  premise: "James Worgen wakes in a rented room above an inn in Beregost, with his cat, about 350 gold from his last winning hand, and nothing he has to do today",
+  wishes: "",
+};
+export const PURE_TABLE_LINE = "A new campaign; there is no quest and, as far as you know, nothing hidden; the day is yours.";
+/** The tables without a brief: their campaign and the one line the player is told. */
+export const UNBRIEFED = { B: { campaign: OPEN_TABLE, line: OPEN_TABLE_LINE }, C: { campaign: PURE_TABLE, line: PURE_TABLE_LINE } };
+/** The tables whose DM plays with the pure-simulation flag on. */
+export const PURE_SIMULATION_TABLES = new Set(["C"]);
 
 /** What the player may read: 01 (the world's name and setting), 02, 03 without its DM-only section «Mystery and
  * wonder», the hero's «Who are you?» text and sheet from 05, and from 06 the name, the premise and the wishes (the
@@ -77,7 +90,7 @@ export function playerFiles(table) {
     ["Your hero's sheet", f.heroSheet.split("\n").slice(1).join("\n").trim()],
   ];
   if (table === "A") parts.push(["The campaign", `${f.campaignName}\n\n${f.premise}\n\nWho goes with the hero: the cat.\n\nYour wishes for the adventure (you wrote them for the game master):\n${f.wishes}`]);
-  else parts.push(["The campaign", `${OPEN_TABLE.campaignName}\n\n${OPEN_TABLE.premise}.\n\nWho goes with the hero: the cat.`]);
+  else { const { campaign } = UNBRIEFED[table]; parts.push(["The campaign", `${campaign.campaignName}\n\n${campaign.premise}.\n\nWho goes with the hero: the cat.`]); }
   return parts.map(([title, body]) => `<file title="${title}">\n${body}\n</file>`).join("\n\n");
 }
 
@@ -92,7 +105,7 @@ export const PLAYER_PROMPT_TAIL = [
 ].join(" ");
 
 export function playerSystem(table) {
-  return [PLAYER_PROMPT_HEAD, "", playerFiles(table), "", ...(table === "B" ? [OPEN_TABLE_LINE, ""] : []), PLAYER_PROMPT_TAIL].join("\n");
+  return [PLAYER_PROMPT_HEAD, "", playerFiles(table), "", ...(UNBRIEFED[table] ? [UNBRIEFED[table].line, ""] : []), PLAYER_PROMPT_TAIL].join("\n");
 }
 /** The template quoted in the report: the files stand as one placeholder. */
 export const PLAYER_PROMPT_TEMPLATE = [PLAYER_PROMPT_HEAD, "", "<the player-visible files, as cut by playerFiles(table)>", "", "[Table B only:] " + OPEN_TABLE_LINE, "", PLAYER_PROMPT_TAIL].join("\n");

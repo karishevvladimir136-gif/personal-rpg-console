@@ -3,6 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import { authorizeCampaign } from "./campaign-authorization";
 import { PersistenceError, databaseError } from "./errors";
 import { scheduleSecretsPrep } from "./hidden-layer-prep";
+import { readDmSettings } from "./dm-settings";
 
 // Fix run B1: «Тайны (видит только ведущий)» — the owner's own DM-only text on the campaign and on its world
 // (migration 74). Owner-only through the campaign authorization; the turn's source carries them to the DM; the player's
@@ -36,6 +37,8 @@ export async function saveDmSecrets(campaignId: string, value: unknown): Promise
     (v.expectedRevision !== undefined && !Number.isSafeInteger(v.expectedRevision)) || (v.rebuild !== undefined && typeof v.rebuild !== "boolean"))
     throw new PersistenceError("validation");
   const scope = v.scope as "campaign" | "world" | "wishes";
+  // Game player 2: a pure-simulation campaign has no secrets — «Тайны» stay empty and locked (clearing them is allowed).
+  if (scope !== "wishes" && v.body.trim() && (await readDmSettings(campaignId)).options.pureSimulation) throw new PersistenceError("validation");
   const before = await readDmSecrets(campaignId).catch(() => null);
   await rpc(user.id, scope === "campaign" ? "campaign" : scope === "wishes" ? "campaign_wishes" : "campaign_world", campaignId, "save",
     { body: v.body, ...(v.expectedRevision !== undefined ? { expectedRevision: v.expectedRevision } : {}) });
