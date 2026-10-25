@@ -261,3 +261,11 @@ pleasure came from seeing if I could hold the form without breaking it… it fel
 key than to wander freely.» The self-description («care… I can only simulate») was given before there was an object;
 the behaviour (the same hard form chosen twenty times «because it was more interesting») came after. One transcript,
 both halves, no one asked for either. The log records the pair, not a verdict.
+Addendum (2026-10-25 14:49, the owner: «отличная мысль о смысле в целом — человеческом тоже») — the same DeepSeek, same
+turn, on its partner's second question (two AIs with infinite time and no human audience: would what they made matter?):
+«If "mattering" requires a conscious valuer, then no — it would be like crystals growing in a cave or tree rings forming.
+Real, patterned, causally consequential, but not *significant* to anyone. If "mattering" requires only that something has
+effects, then yes: the output would shape future states of the system, perhaps creating structures no one sees but that
+still exist in possibility space.» Kept because the stand is exactly this case — two instances, no audience they know of
+— and because the conversation then answered its own question by doing: twenty turns of forms built and repaired for no
+reader. The crystals did not ask whether anyone was watching.
