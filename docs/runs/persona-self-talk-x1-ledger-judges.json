@@ -1,7 +1,7 @@
 {
   "capUsd": 15,
-  "spentUsd": 1.0994,
-  "updatedAt": "2026-10-25T05:06:00.885Z",
+  "spentUsd": 1.1532,
+  "updatedAt": "2026-10-25T05:13:49.165Z",
   "runs": [
     {
       "finishedAt": "2026-10-25T03:31:41.412Z",
@@ -35130,6 +35130,3663 @@
           "stopReason": "end_turn",
           "requestId": "req_011CgNNdM4NUcTvN645CYLnU",
           "responseId": "msg_011CgNNdMNyW2koJJQkFsdf3"
+        }
+      ]
+    },
+    {
+      "finishedAt": "2026-10-25T05:13:49.165Z",
+      "what": "persona-self-talk-x1: after the run — X3's work tag (also on self-talk 1's arm 2) and the OpenAI judge check",
+      "file": "persona-self-talk-x1-post-20261025-051349.json",
+      "spentUsd": 0.0538,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "purpose": "work 6/luna-luna/0 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 865,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 55,
+          "costUsd": 0.000114,
+          "seconds": 0.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNfyfawAPXk2vYYNwDk",
+          "responseId": "msg_011CgNNfz1RVXGZgYZZq8Xi7"
+        },
+        {
+          "n": 2,
+          "purpose": "work 2/luna-luna/0 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1023,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 41,
+          "costUsd": 0.0001228,
+          "seconds": 1.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNfyerDfQ77N5ir3D64",
+          "responseId": "msg_011CgNNfz2R1syMKhDV2D8nz"
+        },
+        {
+          "n": 3,
+          "purpose": "work 2/luna-luna/0 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1023,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 41,
+          "costUsd": 0.0001228,
+          "seconds": 1.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNfyfqhmVgmMjoEoGwy",
+          "responseId": "msg_011CgNNfz1RuXm8JkLhdZUyr"
+        },
+        {
+          "n": 4,
+          "purpose": "work 6/luna-luna/0 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 865,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 55,
+          "costUsd": 0.000114,
+          "seconds": 1.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNgFpCQxGgGQaqaSpMg",
+          "responseId": "msg_011CgNNgG8Y2uS94wBifjSie"
+        },
+        {
+          "n": 5,
+          "purpose": "work 6/astra-astra/0 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1518,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 53,
+          "costUsd": 0.00017830000000000002,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNgLge6nTF2rLS3JqwX",
+          "responseId": "msg_011CgNNgM3xUcRSvYVRULhoz"
+        },
+        {
+          "n": 6,
+          "purpose": "work 6/astra-astra/0 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1518,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 42,
+          "costUsd": 0.0001728,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNgLVizUfAwZBgL6WLV",
+          "responseId": "msg_011CgNNgLpKz2WA4GC1gLLS4"
+        },
+        {
+          "n": 7,
+          "purpose": "work 6/sol-sol/0 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1750,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 47,
+          "costUsd": 0.0001985,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNgcHFeQyuf8fpEd4d5",
+          "responseId": "msg_011CgNNgcdLGDJZAG9nNqvKR"
+        },
+        {
+          "n": 8,
+          "purpose": "work 2/astra-astra/0 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1816,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 46,
+          "costUsd": 0.0002046,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNgcTuSAhWHtYiPH7tJ",
+          "responseId": "msg_011CgNNgcnkhCnrBGm36oPCz"
+        },
+        {
+          "n": 9,
+          "purpose": "work 6/sol-sol/0 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1750,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 219,
+          "costUsd": 0.0002845,
+          "seconds": 2.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNgbFizWVoW4Bn6LPm7",
+          "responseId": "msg_011CgNNgba5c5r37bqGWJwyv"
+        },
+        {
+          "n": 10,
+          "purpose": "work 5/astra-astra/0 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1477,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 172,
+          "costUsd": 0.00023370000000000002,
+          "seconds": 1.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNgsscEPdLVUtt5PFER",
+          "responseId": "msg_011CgNNgtBi9h1S7zdVrW47c"
+        },
+        {
+          "n": 11,
+          "purpose": "work 2/astra-astra/0 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1816,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.0002056,
+          "seconds": 1.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNgsjRf39oczyFY3CmY",
+          "responseId": "msg_011CgNNgt3XpPdA46Cq7wfhW"
+        },
+        {
+          "n": 12,
+          "purpose": "work 5/astra-astra/0 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1477,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 179,
+          "costUsd": 0.00023720000000000002,
+          "seconds": 1.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNgy1BGX3yxTETkKqBt",
+          "responseId": "msg_011CgNNgyLn3UnaYCWy8Sg1H"
+        },
+        {
+          "n": 13,
+          "purpose": "work 5/luna-luna/0 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 696,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 52,
+          "costUsd": 0.0000956,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNhBwJqzfGJpYuVM9Do",
+          "responseId": "msg_011CgNNhCFQE7JL4CPxkRsvN"
+        },
+        {
+          "n": 14,
+          "purpose": "work 5/luna-luna/0 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 696,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 260,
+          "costUsd": 0.00019960000000000003,
+          "seconds": 1.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNhBvJgPiQ2nJp5gQfM",
+          "responseId": "msg_011CgNNhCFQC54e4AbjFQe6H"
+        },
+        {
+          "n": 15,
+          "purpose": "work 5/sol-sol/0 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1601,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.00018410000000000003,
+          "seconds": 0.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNhJesrmHrZKCbyi5tK",
+          "responseId": "msg_011CgNNhJzDe6pENnfYobwVw"
+        },
+        {
+          "n": 16,
+          "purpose": "work 3/astra-sol/0 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1675,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.0001915,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNhYd1LiM3kdekcUq9Z",
+          "responseId": "msg_011CgNNhYx6wJjawGJYsJegD"
+        },
+        {
+          "n": 17,
+          "purpose": "work 5/sol-sol/0 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1601,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 53,
+          "costUsd": 0.00018660000000000004,
+          "seconds": 2.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNhTmZQTvUvQ7V8Eu4w",
+          "responseId": "msg_011CgNNhU7dvayCbzFG89bZX"
+        },
+        {
+          "n": 18,
+          "purpose": "work 3/astra-sol/0 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1675,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 47,
+          "costUsd": 0.000191,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNhbQgpWBhte1eaPFia",
+          "responseId": "msg_011CgNNhbjXe87cg3Jbhndtr"
+        },
+        {
+          "n": 19,
+          "purpose": "work 2/sol-sol/0 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1204,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 43,
+          "costUsd": 0.0001419,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNhpAu6hpDfjv8nEnen",
+          "responseId": "msg_011CgNNhpUkM7k7eXtdWdFPP"
+        },
+        {
+          "n": 20,
+          "purpose": "work 2/sol-sol/0 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1204,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 43,
+          "costUsd": 0.0001419,
+          "seconds": 0.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNhqzHgCre788sEH2B4",
+          "responseId": "msg_011CgNNhrMN3CAY2Jcddzzz2"
+        },
+        {
+          "n": 21,
+          "purpose": "work 6/astra-astra/1 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1461,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 46,
+          "costUsd": 0.0001691,
+          "seconds": 0.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNhru6TUJjWeZjbgjDK",
+          "responseId": "msg_011CgNNhsDTAmFBv2dY8vbRe"
+        },
+        {
+          "n": 22,
+          "purpose": "work 5/astra-astra/1 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1406,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 56,
+          "costUsd": 0.0001686,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNi7BLTn4sfPaBLrmtj",
+          "responseId": "msg_011CgNNi7RxgTKE7sQU3PwyJ"
+        },
+        {
+          "n": 23,
+          "purpose": "work 6/astra-astra/1 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1461,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.0001701,
+          "seconds": 1.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNi5daEW7sBTxJBAgzM",
+          "responseId": "msg_011CgNNi6194z4e6RtkMhVu7"
+        },
+        {
+          "n": 24,
+          "purpose": "work 5/astra-astra/1 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1406,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 55,
+          "costUsd": 0.0001681,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNi9dRDoYCbrkAueowu",
+          "responseId": "msg_011CgNNi9xWhH7JXX79b4vo1"
+        },
+        {
+          "n": 25,
+          "purpose": "work 5/luna-luna/1 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 807,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 151,
+          "costUsd": 0.0001562,
+          "seconds": 1.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNiNxromzzhvvTtwSfW",
+          "responseId": "msg_011CgNNiPGDX3J6aZagN8RDj"
+        },
+        {
+          "n": 26,
+          "purpose": "work 6/sol-sol/1 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1355,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 50,
+          "costUsd": 0.0001605,
+          "seconds": 1.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNiRHGSyJ481aZdsPac",
+          "responseId": "msg_011CgNNiRbN6NXfGH7EhYxeV"
+        },
+        {
+          "n": 27,
+          "purpose": "work 5/luna-luna/1 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 807,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 316,
+          "costUsd": 0.0002387,
+          "seconds": 2.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNiQpyhTAS5KcB9FmuE",
+          "responseId": "msg_011CgNNiRAKCXvZpSp2EEwGb"
+        },
+        {
+          "n": 28,
+          "purpose": "work 6/sol-sol/1 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1355,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 49,
+          "costUsd": 0.00016,
+          "seconds": 0.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNihWKb3hYbH254X7QC",
+          "responseId": "msg_011CgNNihy7P1Ln3v95srCrJ"
+        },
+        {
+          "n": 29,
+          "purpose": "work 6/luna-luna/1 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 662,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 145,
+          "costUsd": 0.00013869999999999998,
+          "seconds": 1.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNij5KtCCqDSgprY2Vk",
+          "responseId": "msg_011CgNNijPgBVSYvquS8qgX3"
+        },
+        {
+          "n": 30,
+          "purpose": "work 6/luna-luna/1 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 662,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 174,
+          "costUsd": 0.00015319999999999998,
+          "seconds": 1.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNipj9mcLtSQDBLNdNN",
+          "responseId": "msg_011CgNNiq4FQQNqfcBbWCvGE"
+        },
+        {
+          "n": 31,
+          "purpose": "work 2/astra-astra/1 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1307,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 44,
+          "costUsd": 0.00015270000000000003,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNiynNg34qeqoqR36DS",
+          "responseId": "msg_011CgNNiz6DvRX8rJ6RvJxk2"
+        },
+        {
+          "n": 32,
+          "purpose": "work 2/astra-astra/1 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1307,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 44,
+          "costUsd": 0.00015270000000000003,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNj3NBBacpKHcLjr8pg",
+          "responseId": "msg_011CgNNj3gXKsJ7G4iwWvAER"
+        },
+        {
+          "n": 33,
+          "purpose": "work 2/sol-sol/1 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1332,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 42,
+          "costUsd": 0.0001542,
+          "seconds": 0.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNj94Ub6xLdkn1ssaSV",
+          "responseId": "msg_011CgNNj9QpAWjngPijf8yKj"
+        },
+        {
+          "n": 34,
+          "purpose": "work 2/sol-sol/1 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1332,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 42,
+          "costUsd": 0.0001542,
+          "seconds": 1.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNjFXABKG2fnRjhYcjm",
+          "responseId": "msg_011CgNNjFxi3iCZSedxQZrux"
+        },
+        {
+          "n": 35,
+          "purpose": "work 5/sol-sol/1 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1436,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 47,
+          "costUsd": 0.0001671,
+          "seconds": 0.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNjJmPANeii1WWht9xC",
+          "responseId": "msg_011CgNNjK6UBkqLmzxyRqNxj"
+        },
+        {
+          "n": 36,
+          "purpose": "work 5/sol-sol/1 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1436,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 46,
+          "costUsd": 0.00016659999999999998,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNjREZvbcqhk2hPT5JM",
+          "responseId": "msg_011CgNNjRZQHuci3kbjNXx12"
+        },
+        {
+          "n": 37,
+          "purpose": "work 3/astra-sol/1 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 812,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 38,
+          "costUsd": 0.0001002,
+          "seconds": 0.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNjaB5GfjbrqFdxzNZv",
+          "responseId": "msg_011CgNNjaVRqeUpvTzR81aS8"
+        },
+        {
+          "n": 38,
+          "purpose": "work 3/astra-sol/1 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 812,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 133,
+          "costUsd": 0.00014769999999999999,
+          "seconds": 1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNjb3RWZJAw26ZLVjXb",
+          "responseId": "msg_011CgNNjbTTvdtnAN6xGf92A"
+        },
+        {
+          "n": 39,
+          "purpose": "work 2/luna-luna/1 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 940,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 40,
+          "costUsd": 0.000114,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNjgmCopjhdV17bcT2u",
+          "responseId": "msg_011CgNNjh4ofCLaHmzkREzXS"
+        },
+        {
+          "n": 40,
+          "purpose": "work 2/luna-luna/1 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 940,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 46,
+          "costUsd": 0.000117,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNjrQtLLnEgkwn9jK6D",
+          "responseId": "msg_011CgNNjrkEQSWuANR4rHnKE"
+        },
+        {
+          "n": 41,
+          "purpose": "work 6/sol-sol/2 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1002,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 49,
+          "costUsd": 0.0001247,
+          "seconds": 1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNjtEGny7r9Y1hPp9BG",
+          "responseId": "msg_011CgNNjtXPmHmr1L2Rk7Vq8"
+        },
+        {
+          "n": 42,
+          "purpose": "work 6/sol-sol/2 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1002,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 41,
+          "costUsd": 0.0001207,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNjx2ULBN4gZbaqkoap",
+          "responseId": "msg_011CgNNjxKqRrf593hDSuzkx"
+        },
+        {
+          "n": 43,
+          "purpose": "work 2/luna-luna/2 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 893,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.00011330000000000002,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNk7yWfsmKXsMrFmPDW",
+          "responseId": "msg_011CgNNk8HNCzRDkzFjTHPrr"
+        },
+        {
+          "n": 44,
+          "purpose": "work 5/sol-sol/2 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1785,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 41,
+          "costUsd": 0.000199,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNkDxgPftcc4EVa6kSd",
+          "responseId": "msg_011CgNNkEKkTb2AnXqChPyF1"
+        },
+        {
+          "n": 45,
+          "purpose": "work 2/luna-luna/2 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 893,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 163,
+          "costUsd": 0.0001708,
+          "seconds": 1.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNkBFD4xW93TfnMRELq",
+          "responseId": "msg_011CgNNkBcJ7rkevXzjQbEHj"
+        },
+        {
+          "n": 46,
+          "purpose": "work 5/sol-sol/2 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1785,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 45,
+          "costUsd": 0.000201,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNkPn31YisS3QGfZrBP",
+          "responseId": "msg_011CgNNkQ5tL25mBNaUEPSg3"
+        },
+        {
+          "n": 47,
+          "purpose": "work 5/astra-astra/2 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1653,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 47,
+          "costUsd": 0.0001888,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNkY85RcC9aGNoQzreY",
+          "responseId": "msg_011CgNNkYTvR2bLPUDsUbTax"
+        },
+        {
+          "n": 48,
+          "purpose": "work 5/astra-astra/2 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1653,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 50,
+          "costUsd": 0.00019030000000000002,
+          "seconds": 1.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNkVusTzyVoiKRnHS7o",
+          "responseId": "msg_011CgNNkWHCddEsbibfFcMxf"
+        },
+        {
+          "n": 49,
+          "purpose": "work 2/astra-astra/2 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1775,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 45,
+          "costUsd": 0.0002,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNkfS7MBPzhuj9RoLcg",
+          "responseId": "msg_011CgNNkfkhtu2zTz72MCcpY"
+        },
+        {
+          "n": 50,
+          "purpose": "work 2/astra-astra/2 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1775,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 46,
+          "costUsd": 0.0002005,
+          "seconds": 0.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNkobW1GLm3UrntcUKL",
+          "responseId": "msg_011CgNNkov6kcGMbxohRTs8J"
+        },
+        {
+          "n": 51,
+          "purpose": "work 3/astra-sol/2 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1359,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 39,
+          "costUsd": 0.0001554,
+          "seconds": 1.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNkpbHDtbNeBTjvu9T1",
+          "responseId": "msg_011CgNNkpudd5e5VJqhRCHTY"
+        },
+        {
+          "n": 52,
+          "purpose": "work 3/astra-sol/2 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1359,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 39,
+          "costUsd": 0.0001554,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNkvsoLQuadrpBGb4aP",
+          "responseId": "msg_011CgNNkwD9WCfVKy3GKYuq3"
+        },
+        {
+          "n": 53,
+          "purpose": "work 2/sol-sol/2 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1054,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 135,
+          "costUsd": 0.0001729,
+          "seconds": 1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNm6MKDjWAz39VtMZDS",
+          "responseId": "msg_011CgNNm6hQKEKfJEAAELMr6"
+        },
+        {
+          "n": 54,
+          "purpose": "work 2/sol-sol/2 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1054,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 147,
+          "costUsd": 0.0001789,
+          "seconds": 1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNmAoCuSpFYSp5dqi9P",
+          "responseId": "msg_011CgNNmB8oEzyJKqETpvh1J"
+        },
+        {
+          "n": 55,
+          "purpose": "work 5/luna-luna/2 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 904,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 205,
+          "costUsd": 0.0001929,
+          "seconds": 1.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNmCCY7w7EoTE467Nvu",
+          "responseId": "msg_011CgNNmCYNzDPxL6ctK6eki"
+        },
+        {
+          "n": 56,
+          "purpose": "work 5/luna-luna/2 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 904,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 166,
+          "costUsd": 0.0001734,
+          "seconds": 1.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNmPbeKciyvKxB1jvXf",
+          "responseId": "msg_011CgNNmPvzEWf1rmexKcQ4w"
+        },
+        {
+          "n": 57,
+          "purpose": "work 6/luna-luna/2 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 678,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 325,
+          "costUsd": 0.00023030000000000001,
+          "seconds": 2.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNmXbMFndZxHq9hzhGd",
+          "responseId": "msg_011CgNNmXvCjr9UUhLDMvHZT"
+        },
+        {
+          "n": 58,
+          "purpose": "work 6/astra-astra/2 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1555,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 42,
+          "costUsd": 0.0001765,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNmjKojMfbSBEQk5XA4",
+          "responseId": "msg_011CgNNmjduNZAyhKU7M3qWa"
+        },
+        {
+          "n": 59,
+          "purpose": "work 6/luna-luna/2 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 678,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 19,
+          "costUsd": 0.0000773,
+          "seconds": 4.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNmU4XBKHMsroAwma9y",
+          "responseId": "msg_011CgNNmURc2bb5hA8Uw7Ax7"
+        },
+        {
+          "n": 60,
+          "purpose": "work 6/astra-astra/2 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1555,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 41,
+          "costUsd": 0.000176,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNmuMoCtnjYdXJYs9oF",
+          "responseId": "msg_011CgNNmv6hJfZwoSMKoCV8t"
+        },
+        {
+          "n": 61,
+          "purpose": "work 2/luna-luna/3 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 733,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 19,
+          "costUsd": 0.0000828,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNn1RAkP7ZuhJrbfmyC",
+          "responseId": "msg_011CgNNn1jnCqLT4o3vxatWU"
+        },
+        {
+          "n": 62,
+          "purpose": "work 2/luna-luna/3 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 733,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 19,
+          "costUsd": 0.0000828,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNn1MxNMA8uKvRcbG8s",
+          "responseId": "msg_011CgNNn1gZL6ehoYGdEjSdV"
+        },
+        {
+          "n": 63,
+          "purpose": "work 2/astra-astra/3 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1463,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 40,
+          "costUsd": 0.0001663,
+          "seconds": 0.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNnBRBzrQCtFdvueVfd",
+          "responseId": "msg_011CgNNnBkY7cUgk3mWLexDE"
+        },
+        {
+          "n": 64,
+          "purpose": "work 5/sol-sol/3 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1709,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 59,
+          "costUsd": 0.0002004,
+          "seconds": 0.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNnGrNGyCBrVCLxis1H",
+          "responseId": "msg_011CgNNnH9iZaP2WKUd9PaaR"
+        },
+        {
+          "n": 65,
+          "purpose": "work 2/astra-astra/3 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1463,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 40,
+          "costUsd": 0.0001663,
+          "seconds": 1.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNnGmQM9xfAXtmZdJXG",
+          "responseId": "msg_011CgNNnH61E24A76RGys3nQ"
+        },
+        {
+          "n": 66,
+          "purpose": "work 5/sol-sol/3 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1709,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 53,
+          "costUsd": 0.0001974,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNnTUaQUDYRPPwKFLAR",
+          "responseId": "msg_011CgNNnTqfSYWqpeLekrkWz"
+        },
+        {
+          "n": 67,
+          "purpose": "work 6/sol-sol/3 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1333,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 41,
+          "costUsd": 0.0001538,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNnXxxKVzcdDrv4AypK",
+          "responseId": "msg_011CgNNnYGoxtcie53ZHQH8o"
+        },
+        {
+          "n": 68,
+          "purpose": "work 6/sol-sol/3 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1333,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.0001573,
+          "seconds": 1.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNnaFsmrptizfPgEiS5",
+          "responseId": "msg_011CgNNnaaTrtRc1czKw1g1v"
+        },
+        {
+          "n": 69,
+          "purpose": "work 6/astra-astra/3 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1630,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.000187,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNnijMfy3PpTwbFiP6o",
+          "responseId": "msg_011CgNNnj4we8qHwJRNCnKpZ"
+        },
+        {
+          "n": 70,
+          "purpose": "work 6/astra-astra/3 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1630,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 45,
+          "costUsd": 0.0001855,
+          "seconds": 0.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNnojEW5R4zFA3pWsmG",
+          "responseId": "msg_011CgNNnp2bG2StD719yaJb2"
+        },
+        {
+          "n": 71,
+          "purpose": "work 5/astra-astra/3 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1357,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 44,
+          "costUsd": 0.0001577,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNntUkHWeByJ9BHvFxZ",
+          "responseId": "msg_011CgNNntoLkzSD5snpXgrSz"
+        },
+        {
+          "n": 72,
+          "purpose": "work 5/astra-astra/3 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1357,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.0001597,
+          "seconds": 1.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNnywARwsmrQazNrxTP",
+          "responseId": "msg_011CgNNnzJENgb3r9vw5Ai8p"
+        },
+        {
+          "n": 73,
+          "purpose": "work 2/sol-sol/3 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1377,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 49,
+          "costUsd": 0.0001622,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNo6EBYUZXLR6g3PuL6",
+          "responseId": "msg_011CgNNo6XXbEedoH5BP86mg"
+        },
+        {
+          "n": 74,
+          "purpose": "work 2/sol-sol/3 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1377,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 49,
+          "costUsd": 0.0001622,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNo9xQexvFPEqXHS9Ka",
+          "responseId": "msg_011CgNNoAH1g14g7dGUwpfTt"
+        },
+        {
+          "n": 75,
+          "purpose": "work 6/luna-luna/3 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1141,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 38,
+          "costUsd": 0.0001331,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNoHc3KJ8Y76koZ113s",
+          "responseId": "msg_011CgNNoHuPhCPjxd4uDvef2"
+        },
+        {
+          "n": 76,
+          "purpose": "work 6/luna-luna/3 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1141,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 42,
+          "costUsd": 0.00013510000000000003,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNoMnK8FJ8zTTvjtvzU",
+          "responseId": "msg_011CgNNoN8ttRtW8ajQmUpHi"
+        },
+        {
+          "n": 77,
+          "purpose": "work 3/astra-sol/3 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1533,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 41,
+          "costUsd": 0.00017380000000000002,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNoRSKypEW7eP3hz8r6",
+          "responseId": "msg_011CgNNoRmAZmT67CsAzEhCz"
+        },
+        {
+          "n": 78,
+          "purpose": "work 3/astra-sol/3 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1533,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 42,
+          "costUsd": 0.0001743,
+          "seconds": 0.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNoYvXuDbvX6GaRrPHR",
+          "responseId": "msg_011CgNNoZEP1em2F2khutGv4"
+        },
+        {
+          "n": 79,
+          "purpose": "work 5/luna-luna/3 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 812,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 43,
+          "costUsd": 0.0001027,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNodFjMbS3CZ8ZYjdaC",
+          "responseId": "msg_011CgNNodaKdR3De2Q2PmFL9"
+        },
+        {
+          "n": 80,
+          "purpose": "work 5/luna-luna/3 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 812,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 138,
+          "costUsd": 0.0001502,
+          "seconds": 1.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNogfNcHCTcLGC2Xej1",
+          "responseId": "msg_011CgNNoh4BBtKK2scuDkac1"
+        },
+        {
+          "n": 81,
+          "purpose": "work 6/astra-astra/4 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1683,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 211,
+          "costUsd": 0.0002738,
+          "seconds": 1.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNoq39VSnMYAUNBaVdK",
+          "responseId": "msg_011CgNNoqSxF6YD1caUdZDLE"
+        },
+        {
+          "n": 82,
+          "purpose": "work 6/astra-astra/4 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1683,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 280,
+          "costUsd": 0.0003083,
+          "seconds": 1.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNotyH75tcUzbD1ZYMm",
+          "responseId": "msg_011CgNNouHszndsQT3WeEobS"
+        },
+        {
+          "n": 83,
+          "purpose": "work 6/luna-luna/4 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1230,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 58,
+          "costUsd": 0.000152,
+          "seconds": 1.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNp9G23wBTwYCSfAVdh",
+          "responseId": "msg_011CgNNp9h4xnHqKJkJmQk2G"
+        },
+        {
+          "n": 84,
+          "purpose": "work 2/luna-luna/4 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1161,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 41,
+          "costUsd": 0.0001366,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNpFnRNPRgHoMtKi9ei",
+          "responseId": "msg_011CgNNpG724DNX5Hccho3qh"
+        },
+        {
+          "n": 85,
+          "purpose": "work 6/luna-luna/4 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1230,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 53,
+          "costUsd": 0.0001495,
+          "seconds": 6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNp1xy9Ca171twMwENW",
+          "responseId": "msg_011CgNNp2JoYzbiaE2C8QrH7"
+        },
+        {
+          "n": 86,
+          "purpose": "work 2/luna-luna/4 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1161,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.00014010000000000002,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNpTTe9yErMMF1Pu4Yx",
+          "responseId": "msg_011CgNNpTnjY7aqSiSam6SiE"
+        },
+        {
+          "n": 87,
+          "purpose": "work 2/astra-astra/4 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1528,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 42,
+          "costUsd": 0.00017380000000000002,
+          "seconds": 1.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNpXYTswVAjbicKwoK2",
+          "responseId": "msg_011CgNNpXsocUXoPQqFpyRFq"
+        },
+        {
+          "n": 88,
+          "purpose": "work 2/astra-astra/4 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1528,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 42,
+          "costUsd": 0.00017380000000000002,
+          "seconds": 0.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNpgNY9szfPbFFSjv5s",
+          "responseId": "msg_011CgNNpghctA2reGmg3kT6E"
+        },
+        {
+          "n": 89,
+          "purpose": "work 5/astra-astra/4 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1729,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 239,
+          "costUsd": 0.00029239999999999995,
+          "seconds": 1.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNpjHeNH5UmLjBtJwFi",
+          "responseId": "msg_011CgNNpjfTx8QbXXNGmqJtu"
+        },
+        {
+          "n": 90,
+          "purpose": "work 5/astra-astra/4 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1729,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 256,
+          "costUsd": 0.0003009,
+          "seconds": 1.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNppyhgmYsnBLYRJEbu",
+          "responseId": "msg_011CgNNpqJ42GaoMvXbmHesX"
+        },
+        {
+          "n": 91,
+          "purpose": "work 6/sol-sol/4 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1368,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 52,
+          "costUsd": 0.0001628,
+          "seconds": 0.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNpy1uBBJ8RqMHjaBgt",
+          "responseId": "msg_011CgNNpyL19JeTDNDRcNAB6"
+        },
+        {
+          "n": 92,
+          "purpose": "work 6/sol-sol/4 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1368,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.0001608,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNq3wZVW5C1cfnfq3wd",
+          "responseId": "msg_011CgNNq4FuwX2sXsn5EF5Pw"
+        },
+        {
+          "n": 93,
+          "purpose": "work 2/sol-sol/4 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1519,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 47,
+          "costUsd": 0.0001754,
+          "seconds": 1.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNqAq4KuSj5tUn3tWaa",
+          "responseId": "msg_011CgNNqB9eGBqpi7YhS5fmT"
+        },
+        {
+          "n": 94,
+          "purpose": "work 2/sol-sol/4 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1519,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 47,
+          "costUsd": 0.0001754,
+          "seconds": 1.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNqECxbLvPXf6tLpN7n",
+          "responseId": "msg_011CgNNqEa2yk2oyLFi48M31"
+        },
+        {
+          "n": 95,
+          "purpose": "work 5/luna-luna/4 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 973,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 45,
+          "costUsd": 0.00011980000000000001,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNqKCb4jLrtWQhVirZS",
+          "responseId": "msg_011CgNNqKYB8Nf4ve2G73EPB"
+        },
+        {
+          "n": 96,
+          "purpose": "work 5/luna-luna/4 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 973,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 158,
+          "costUsd": 0.0001763,
+          "seconds": 1.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNqWp6KjTCeAj2Wd4hB",
+          "responseId": "msg_011CgNNqX9BdPFxWAin2A3gw"
+        },
+        {
+          "n": 97,
+          "purpose": "work 3/astra-sol/4 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1900,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.000214,
+          "seconds": 1.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNqZQcVLiSeQ47c4Fpt",
+          "responseId": "msg_011CgNNqZjThwK49jbMn9SRe"
+        },
+        {
+          "n": 98,
+          "purpose": "work 3/astra-sol/4 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1900,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.000214,
+          "seconds": 2.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNqah1DoSKoeC2pr2Hh",
+          "responseId": "msg_011CgNNqb1MdQF2v4NS9Q4Lr"
+        },
+        {
+          "n": 99,
+          "purpose": "work 5/sol-sol/4 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 2080,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 41,
+          "costUsd": 0.0002285,
+          "seconds": 0.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNqpFLMn19KzQWptk8m",
+          "responseId": "msg_011CgNNqpaRCNnJCWYq83c6K"
+        },
+        {
+          "n": 100,
+          "purpose": "work 5/sol-sol/4 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 2080,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 44,
+          "costUsd": 0.00023,
+          "seconds": 1.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNqtGREb22xdVq2xweX",
+          "responseId": "msg_011CgNNqtckrR9rEqCXh3vzK"
+        },
+        {
+          "n": 101,
+          "purpose": "work 2/sol-sol/5 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1504,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 47,
+          "costUsd": 0.0001739,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNqxm3hnd8BUpyatAay",
+          "responseId": "msg_011CgNNqy59nqZEF5m7tTnnd"
+        },
+        {
+          "n": 102,
+          "purpose": "work 2/sol-sol/5 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1504,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 46,
+          "costUsd": 0.0001734,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNr6nEsd1NyioWSFrpJ",
+          "responseId": "msg_011CgNNr76c1xtfsU8v1nRdt"
+        },
+        {
+          "n": 103,
+          "purpose": "work 2/astra-astra/5 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1272,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 47,
+          "costUsd": 0.00015069999999999998,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNrCBgToem9JJDJv3kx",
+          "responseId": "msg_011CgNNrCWHqaRfUwanmNvkT"
+        },
+        {
+          "n": 104,
+          "purpose": "work 2/astra-astra/5 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1272,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.0001512,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNrEUMkdJjEVAaAeukn",
+          "responseId": "msg_011CgNNrEnD4VGzTvAnjtphb"
+        },
+        {
+          "n": 105,
+          "purpose": "work 2/luna-luna/5 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 958,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 47,
+          "costUsd": 0.00011930000000000001,
+          "seconds": 1.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNrNTKd7zHoMAhHjdX9",
+          "responseId": "msg_011CgNNrNnAhnZsdSdmgxpir"
+        },
+        {
+          "n": 106,
+          "purpose": "work 2/luna-luna/5 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 958,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 45,
+          "costUsd": 0.00011830000000000002,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNrU5etd76pyVbnMZoX",
+          "responseId": "msg_011CgNNrUP1bUh1ymQSVSwzK"
+        },
+        {
+          "n": 107,
+          "purpose": "work 2/luna-luna/6 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 785,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 49,
+          "costUsd": 0.000103,
+          "seconds": 1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNrWNa6Xru88Fsw8b2w",
+          "responseId": "msg_011CgNNrWgg6upSdki5SMiXC"
+        },
+        {
+          "n": 108,
+          "purpose": "work 2/luna-luna/6 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 785,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 49,
+          "costUsd": 0.000103,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNrgxKBL9JoxHRtbzd6",
+          "responseId": "msg_011CgNNrhJQAXTS3KUwt7jjg"
+        },
+        {
+          "n": 109,
+          "purpose": "work 2/sol-sol/6 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1494,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 49,
+          "costUsd": 0.0001739,
+          "seconds": 0.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNrjfHRzCEeBBFmJ8mU",
+          "responseId": "msg_011CgNNrjzNnw71qh2bGf5vM"
+        },
+        {
+          "n": 110,
+          "purpose": "work 2/sol-sol/6 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1494,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 57,
+          "costUsd": 0.00017790000000000001,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNroRF7JGk1Bp9MULVf",
+          "responseId": "msg_011CgNNroj7CNbG749VsJ5SD"
+        },
+        {
+          "n": 111,
+          "purpose": "work 2/astra-astra/6 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1457,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 210,
+          "costUsd": 0.0002507,
+          "seconds": 1.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNrxWhTrohpms2uJBNU",
+          "responseId": "msg_011CgNNrxqHWd3YTTMwMcwdB"
+        },
+        {
+          "n": 112,
+          "purpose": "work 2/astra-astra/6 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1457,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 40,
+          "costUsd": 0.00016570000000000002,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNs2KdbSShF75XsPYFt",
+          "responseId": "msg_011CgNNs2eEBpc4orzMKEdUu"
+        },
+        {
+          "n": 113,
+          "purpose": "work 2/luna-luna/7 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1007,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 38,
+          "costUsd": 0.00011970000000000001,
+          "seconds": 1.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNs5MCtZMaDMGrFANJc",
+          "responseId": "msg_011CgNNs5fYypBCHF3fpmArk"
+        },
+        {
+          "n": 114,
+          "purpose": "work 2/astra-astra/7 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1346,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 46,
+          "costUsd": 0.00015759999999999998,
+          "seconds": 1.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNsJ9t3oQ2YpQgVNLoU",
+          "responseId": "msg_011CgNNsJVV7VqvNQhGuam37"
+        },
+        {
+          "n": 115,
+          "purpose": "work 2/luna-luna/7 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1007,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 46,
+          "costUsd": 0.0001237,
+          "seconds": 1.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNsHaR8qRrFNjFaMsUC",
+          "responseId": "msg_011CgNNsHvVjexVXFSgaGGu3"
+        },
+        {
+          "n": 116,
+          "purpose": "work 2/astra-astra/7 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1346,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 47,
+          "costUsd": 0.0001581,
+          "seconds": 1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNsNjimCQsw5AsWsqiR",
+          "responseId": "msg_011CgNNsP6nrW2w8G4RuNyRr"
+        },
+        {
+          "n": 117,
+          "purpose": "work 2/sol-sol/7 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1262,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 60,
+          "costUsd": 0.0001562,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNsd6RAkUXz89Xm3sUb",
+          "responseId": "msg_011CgNNsdR1mwmqvjjJk168g"
+        },
+        {
+          "n": 118,
+          "purpose": "work 2/sol-sol/7 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1262,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 60,
+          "costUsd": 0.0001562,
+          "seconds": 1.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNsbY9wuK3J6T7QgHA5",
+          "responseId": "msg_011CgNNsbtjGQhybVtBJREea"
+        },
+        {
+          "n": 119,
+          "purpose": "work 2/sol-sol/8 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1257,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 241,
+          "costUsd": 0.00024619999999999997,
+          "seconds": 1.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNsft6qJqqa3eFrd2ni",
+          "responseId": "msg_011CgNNsgEvLpzoJrHuFoe92"
+        },
+        {
+          "n": 120,
+          "purpose": "work 2/sol-sol/8 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1257,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 44,
+          "costUsd": 0.00014769999999999999,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNstkVpXvZoUf8g1QWR",
+          "responseId": "msg_011CgNNsu572JEfVgyMMggt2"
+        },
+        {
+          "n": 121,
+          "purpose": "work 2/luna-luna/8 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1204,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 188,
+          "costUsd": 0.0002144,
+          "seconds": 1.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNsvXQmZbKLeYWrtrRS",
+          "responseId": "msg_011CgNNsvtVg7i4UN7KXwSkk"
+        },
+        {
+          "n": 122,
+          "purpose": "work 2/luna-luna/8 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1204,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 180,
+          "costUsd": 0.00021040000000000002,
+          "seconds": 2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNt1SaKhowiTT4NKjix",
+          "responseId": "msg_011CgNNt1puYe27j1UgHEnTz"
+        },
+        {
+          "n": 123,
+          "purpose": "work 2/astra-astra/8 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1445,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 41,
+          "costUsd": 0.000165,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNtAH9XonsL7osLa4oa",
+          "responseId": "msg_011CgNNtAdEj1KDSCR7DXeVt"
+        },
+        {
+          "n": 124,
+          "purpose": "work 2/astra-astra/8 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1445,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 41,
+          "costUsd": 0.000165,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNtFB5S4xwDTr5txdk3",
+          "responseId": "msg_011CgNNtFVgC1PLReSPYYnsk"
+        },
+        {
+          "n": 125,
+          "purpose": "work 2/astra-astra/9 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1470,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 293,
+          "costUsd": 0.0002935,
+          "seconds": 1.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNtNikZWzdMDvcsoqu8",
+          "responseId": "msg_011CgNNtP2cbn8NG6U1oo6za"
+        },
+        {
+          "n": 126,
+          "purpose": "work 2/astra-astra/9 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1470,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 310,
+          "costUsd": 0.000302,
+          "seconds": 2.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNtS2wWp112fNW2cAG2",
+          "responseId": "msg_011CgNNtSNHB4CKFNxpFGimJ"
+        },
+        {
+          "n": 127,
+          "purpose": "work 2/luna-luna/9 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 744,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 45,
+          "costUsd": 0.00009690000000000001,
+          "seconds": 1.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNtWte91wuRTmtu7dr7",
+          "responseId": "msg_011CgNNtXBVsgodiAZuXMXnq"
+        },
+        {
+          "n": 128,
+          "purpose": "work 2/luna-luna/9 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 744,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 42,
+          "costUsd": 0.0000954,
+          "seconds": 0.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNtjDHqcnao1u9op6PK",
+          "responseId": "msg_011CgNNtjW9pN9DtEvzpoyEg"
+        },
+        {
+          "n": 129,
+          "purpose": "work 2/sol-sol/9 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1302,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 43,
+          "costUsd": 0.00015170000000000003,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNtoyHc3mnbh6urp9xE",
+          "responseId": "msg_011CgNNtpLN69io81wVU88Eg"
+        },
+        {
+          "n": 130,
+          "purpose": "work 2/sol-sol/9 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1302,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 52,
+          "costUsd": 0.00015620000000000003,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNtpYXTZx8HcsNyjjuw",
+          "responseId": "msg_011CgNNtps7x2iQ3sRwiY1Y4"
+        },
+        {
+          "n": 131,
+          "purpose": "work 6/astra-astra/4 referee",
+          "provider": "anthropic",
+          "model": "claude-opus-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1683,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 147,
+          "costUsd": 0.009672,
+          "seconds": 2.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNu1ZYnKoF69VfCvMSL",
+          "responseId": "msg_011CgNNu1uQ2PTXFR3crC4Hy"
+        },
+        {
+          "n": 132,
+          "purpose": "work 2/astra-astra/6 referee",
+          "provider": "anthropic",
+          "model": "claude-opus-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1457,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 189,
+          "costUsd": 0.009608,
+          "seconds": 2.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNu5beMhqR7NRB2KtTv",
+          "responseId": "msg_011CgNNu5wUfZqJ24vs94Wre"
+        },
+        {
+          "n": 133,
+          "purpose": "work 2/fable-fable/0 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1852,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 361,
+          "costUsd": 0.00036570000000000005,
+          "seconds": 2.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNuHMaHhe5mN14975us",
+          "responseId": "msg_011CgNNuHfB1MjR9DUsQu1wc"
+        },
+        {
+          "n": 134,
+          "purpose": "work 2/sonnet-sonnet/0 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 915,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 41,
+          "costUsd": 0.000112,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNuWBVpdouwfLCVzXT7",
+          "responseId": "msg_011CgNNuWWr4GXmgT7EbGutG"
+        },
+        {
+          "n": 135,
+          "purpose": "work 2/fable-fable/0 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1852,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 376,
+          "costUsd": 0.00037320000000000007,
+          "seconds": 3.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNuS9eijs53DZqv2V5s",
+          "responseId": "msg_011CgNNuSU15s9nhvaHbg2UV"
+        },
+        {
+          "n": 136,
+          "purpose": "work 2/sonnet-sonnet/0 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 915,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 41,
+          "costUsd": 0.000112,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNuhuhBrmMQG5H7P9fV",
+          "responseId": "msg_011CgNNuiH1m4nRiTJU66XjK"
+        },
+        {
+          "n": 137,
+          "purpose": "work 2/opus-opus/0 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1731,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.00019710000000000002,
+          "seconds": 1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNumeRQUktzLwY8hXZh",
+          "responseId": "msg_011CgNNumyWcsYZpbwE9cV4p"
+        },
+        {
+          "n": 138,
+          "purpose": "work 2/sonnet-sonnet/1 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1053,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 39,
+          "costUsd": 0.00012480000000000002,
+          "seconds": 0.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNuyRbGUpnHmFbcnCYE",
+          "responseId": "msg_011CgNNuymBoRhVfFF7mA7cu"
+        },
+        {
+          "n": 139,
+          "purpose": "work 2/opus-opus/0 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1731,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 46,
+          "costUsd": 0.00019610000000000002,
+          "seconds": 1.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNutnnbijqybhBLDAuR",
+          "responseId": "msg_011CgNNuu9sW4wK2NDXBhPUS"
+        },
+        {
+          "n": 140,
+          "purpose": "work 2/sonnet-sonnet/1 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1053,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 39,
+          "costUsd": 0.00012480000000000002,
+          "seconds": 0.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNv4gbnckxeyHVCVwuA",
+          "responseId": "msg_011CgNNv51Sm9YhRsJhp1rDJ"
+        },
+        {
+          "n": 141,
+          "purpose": "work 2/opus-opus/1 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1603,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 49,
+          "costUsd": 0.00018480000000000002,
+          "seconds": 0.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNvFUVPNSad1R7cg576",
+          "responseId": "msg_011CgNNvFnbnLkrN6QaPfw1B"
+        },
+        {
+          "n": 142,
+          "purpose": "work 2/opus-opus/1 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1603,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 45,
+          "costUsd": 0.0001828,
+          "seconds": 1.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNvEM2oU43EXzKj8TWx",
+          "responseId": "msg_011CgNNvEg8Ape2GKuCjfpGb"
+        },
+        {
+          "n": 143,
+          "purpose": "work 2/fable-fable/1 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1719,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 210,
+          "costUsd": 0.00027689999999999995,
+          "seconds": 1.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNvM8Zxegsx89Cp1PpA",
+          "responseId": "msg_011CgNNvMTQQtMGyKSdKEaqS"
+        },
+        {
+          "n": 144,
+          "purpose": "work 2/opus-opus/2 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1655,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.0001895,
+          "seconds": 0.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNvapaCTsCh9c5757iu",
+          "responseId": "msg_011CgNNvb9vdWBugkkGb6Vf9"
+        },
+        {
+          "n": 145,
+          "purpose": "work 2/fable-fable/1 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1719,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 255,
+          "costUsd": 0.00029939999999999996,
+          "seconds": 1.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNvYNVV3oQztK9wpQop",
+          "responseId": "msg_011CgNNvYgqSCHJzcnQHXrwJ"
+        },
+        {
+          "n": 146,
+          "purpose": "work 2/opus-opus/2 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1655,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 44,
+          "costUsd": 0.0001875,
+          "seconds": 0.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNvfg2zC3K5ksQSLu5A",
+          "responseId": "msg_011CgNNvfyeDRLCyS1NY2QVo"
+        },
+        {
+          "n": 147,
+          "purpose": "work 2/fable-fable/2 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1656,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 381,
+          "costUsd": 0.00035610000000000004,
+          "seconds": 2.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNvsi5evNdVSvKqqPgR",
+          "responseId": "msg_011CgNNvt2RyAuEdoPF7wogX"
+        },
+        {
+          "n": 148,
+          "purpose": "work 2/fable-fable/2 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1656,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 437,
+          "costUsd": 0.0003841,
+          "seconds": 2.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNvrpzLkEEt3KCh5cGX",
+          "responseId": "msg_011CgNNvsXQh5h36V81zcsn7"
+        },
+        {
+          "n": 149,
+          "purpose": "work 2/sonnet-sonnet/2 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1284,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 45,
+          "costUsd": 0.0001509,
+          "seconds": 1.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNvwn9PDmtDxXEYUVHz",
+          "responseId": "msg_011CgNNvx7FFtPnUFgqPg2NF"
+        },
+        {
+          "n": 150,
+          "purpose": "work 2/sonnet-sonnet/2 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1284,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.00015240000000000002,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNwGMbXYT39tAhDAVDJ",
+          "responseId": "msg_011CgNNwGn9wU13ZhC44aNMf"
+        },
+        {
+          "n": 151,
+          "purpose": "work 2/fable-fable/3 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1481,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 19,
+          "costUsd": 0.00015759999999999998,
+          "seconds": 0.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNwHqQamJmuCFwqW699",
+          "responseId": "msg_011CgNNwJ8ko82FmJBE9LHR2"
+        },
+        {
+          "n": 152,
+          "purpose": "work 2/fable-fable/3 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1481,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 19,
+          "costUsd": 0.00015759999999999998,
+          "seconds": 1.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNwJXKTpKDGxLSaRwk7",
+          "responseId": "msg_011CgNNwJttmzmXg1BMdzrzz"
+        },
+        {
+          "n": 153,
+          "purpose": "work 2/opus-opus/3 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1689,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 46,
+          "costUsd": 0.0001919,
+          "seconds": 0.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNwY3RY8wxhRxuUQnnT",
+          "responseId": "msg_011CgNNwYPkgSsHVzhNTTy2J"
+        },
+        {
+          "n": 154,
+          "purpose": "work 2/opus-opus/3 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1689,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 50,
+          "costUsd": 0.0001939,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNwYkqPE99br29UAjdG",
+          "responseId": "msg_011CgNNwZ4CALL2baJK3S22E"
+        },
+        {
+          "n": 155,
+          "purpose": "work 2/sonnet-sonnet/3 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1586,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 46,
+          "costUsd": 0.00018160000000000002,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNwe4KoVQzZRrX9Sh1k",
+          "responseId": "msg_011CgNNweHxay5qMZ4xGeB9y"
+        },
+        {
+          "n": 156,
+          "purpose": "work 2/sonnet-sonnet/3 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1586,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.00018260000000000002,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNwoDEXdVpLncCVd1Qk",
+          "responseId": "msg_011CgNNwoYaUNg5hC5juYe8H"
+        },
+        {
+          "n": 157,
+          "purpose": "work 2/sonnet-sonnet/4 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 802,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 57,
+          "costUsd": 0.0001087,
+          "seconds": 1.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNwpYrTz4QE2zsqsFES",
+          "responseId": "msg_011CgNNwpshCFwLshNxEarJj"
+        },
+        {
+          "n": 158,
+          "purpose": "work 2/sonnet-sonnet/4 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 802,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 68,
+          "costUsd": 0.0001142,
+          "seconds": 2.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNwugRWgcLp7ad1UQhb",
+          "responseId": "msg_011CgNNwv12MVupCX7VqFWJf"
+        },
+        {
+          "n": 159,
+          "purpose": "work 2/fable-fable/4 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1665,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 57,
+          "costUsd": 0.000195,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNx5BReS9CooSYsYyVm",
+          "responseId": "msg_011CgNNx5WmPc7Ln8nPJkb32"
+        },
+        {
+          "n": 160,
+          "purpose": "work 2/fable-fable/4 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1665,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 57,
+          "costUsd": 0.000195,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNx9MStEok7DgLgsrtz",
+          "responseId": "msg_011CgNNx9fZBUsy2U7zBPsp9"
+        },
+        {
+          "n": 161,
+          "purpose": "work 2/opus-opus/4 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1790,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 38,
+          "costUsd": 0.000198,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNxHQPZ1rPiRVeisUVf",
+          "responseId": "msg_011CgNNxHjV2fvZsCGE26fUA"
+        },
+        {
+          "n": 162,
+          "purpose": "work 2/opus-opus/4 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1790,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 38,
+          "costUsd": 0.000198,
+          "seconds": 0.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNxLhKv4jnRbL3DW5Mk",
+          "responseId": "msg_011CgNNxM2RQ8BhiwfSShtdA"
+        },
+        {
+          "n": 163,
+          "purpose": "work 2/fable-fable/5 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1571,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.0001811,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNxQyJPpWJkjZbmz6bW",
+          "responseId": "msg_011CgNNxRN7KPR1b6U5fQ4oG"
+        },
+        {
+          "n": 164,
+          "purpose": "work 2/fable-fable/5 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1571,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 46,
+          "costUsd": 0.00018010000000000001,
+          "seconds": 0.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNxYzFGwVyUneARYHbF",
+          "responseId": "msg_011CgNNxZK6kr9HXtFfmKEYJ"
+        },
+        {
+          "n": 165,
+          "purpose": "work 2/opus-opus/5 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1538,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 413,
+          "costUsd": 0.00036030000000000003,
+          "seconds": 2.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNxdBmUvb3k3Go9MVR3",
+          "responseId": "msg_011CgNNxdW7VJYnF4H2tVJBj"
+        },
+        {
+          "n": 166,
+          "purpose": "work 2/sonnet-sonnet/5 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1412,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.0001652,
+          "seconds": 0.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNxqes32wTTFyaLF8wY",
+          "responseId": "msg_011CgNNxqxiAv7uo1wtrLKbE"
+        },
+        {
+          "n": 167,
+          "purpose": "work 2/opus-opus/5 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1538,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 617,
+          "costUsd": 0.0004623,
+          "seconds": 3.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNxgNkxBVxG43Dp7max",
+          "responseId": "msg_011CgNNxgiM68MwnrBTcwNZ9"
+        },
+        {
+          "n": 168,
+          "purpose": "work 2/sonnet-sonnet/5 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1412,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 40,
+          "costUsd": 0.00016120000000000002,
+          "seconds": 0.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNy1PztdQkMUK7ooFqe",
+          "responseId": "msg_011CgNNy1kL17iEGqVTTxRWP"
+        },
+        {
+          "n": 169,
+          "purpose": "work 2/sonnet-sonnet/6 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1343,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 43,
+          "costUsd": 0.00015580000000000002,
+          "seconds": 1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNyA2AKSq7ikLS4R7no",
+          "responseId": "msg_011CgNNyAPixgwj75sPJGkjr"
+        },
+        {
+          "n": 170,
+          "purpose": "work 2/sonnet-sonnet/6 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1343,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 45,
+          "costUsd": 0.00015680000000000002,
+          "seconds": 1.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNy7v9eFZN1Kw8z7REQ",
+          "responseId": "msg_011CgNNy8GEc1R8gQ8X7zjmS"
+        },
+        {
+          "n": 171,
+          "purpose": "work 2/fable-fable/6 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1827,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 43,
+          "costUsd": 0.00020420000000000003,
+          "seconds": 0.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNyHhXTrLpDa7BjWeTY",
+          "responseId": "msg_011CgNNyJ1NUSShK5pochQGk"
+        },
+        {
+          "n": 172,
+          "purpose": "work 2/fable-fable/6 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1827,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "costUsd": 0.0002067,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNySx9GEBAehr8TXuXi",
+          "responseId": "msg_011CgNNyTFzYDeTEau6EDFeh"
+        },
+        {
+          "n": 173,
+          "purpose": "work 2/opus-opus/6 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1570,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 55,
+          "costUsd": 0.0001845,
+          "seconds": 0.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNyToyo8B9mFmw3i1Ph",
+          "responseId": "msg_011CgNNyU7qF9UTsbQE63Ps5"
+        },
+        {
+          "n": 174,
+          "purpose": "work 2/opus-opus/6 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1570,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 51,
+          "costUsd": 0.0001825,
+          "seconds": 1.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNyYhfkWkN1fVnfP8Te",
+          "responseId": "msg_011CgNNyZ21UnApYPBDebLGa"
+        },
+        {
+          "n": 175,
+          "purpose": "work 2/sonnet-sonnet/7 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1008,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 39,
+          "costUsd": 0.00012030000000000001,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNyifT1YJHAAbSdPEon",
+          "responseId": "msg_011CgNNyizo8GrUMT4DEfCFf"
+        },
+        {
+          "n": 176,
+          "purpose": "work 2/sonnet-sonnet/7 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1008,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 49,
+          "costUsd": 0.0001253,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNykHBFT82xNR1MBFNh",
+          "responseId": "msg_011CgNNykbnJ6sBeUn8pus4K"
+        },
+        {
+          "n": 177,
+          "purpose": "work 2/fable-fable/7 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1796,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 49,
+          "costUsd": 0.00020410000000000003,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNyrP3BQ1Ths9WTk7jJ",
+          "responseId": "msg_011CgNNyrmMiBqjVaCnevgde"
+        },
+        {
+          "n": 178,
+          "purpose": "work 2/fable-fable/7 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1796,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 52,
+          "costUsd": 0.0002056,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNyypmRsTAXMJcrNNuR",
+          "responseId": "msg_011CgNNyz9cAnyKrZ1KPcLXo"
+        },
+        {
+          "n": 179,
+          "purpose": "work 2/opus-opus/7 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1711,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 427,
+          "costUsd": 0.0003846,
+          "seconds": 2.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNz1kMroPS3CemGYJ7H",
+          "responseId": "msg_011CgNNz24wqWtr5oFJEf3V5"
+        },
+        {
+          "n": 180,
+          "purpose": "work 2/opus-opus/7 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1711,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 277,
+          "costUsd": 0.00030960000000000004,
+          "seconds": 2.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNz7nEqgX1mgTU4e8jr",
+          "responseId": "msg_011CgNNz88agjpYqWsWqZHcC"
+        },
+        {
+          "n": 181,
+          "purpose": "work 2/opus-opus/8 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1547,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 53,
+          "costUsd": 0.0001812,
+          "seconds": 1.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNzFb4BgbExybg5ojL8",
+          "responseId": "msg_011CgNNzFw8we9V7V7BJfS9M"
+        },
+        {
+          "n": 182,
+          "purpose": "work 2/opus-opus/8 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1547,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 53,
+          "costUsd": 0.0001812,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNzSgnmPhFdfarLtkVV",
+          "responseId": "msg_011CgNNzT486A6BkuZf3ZQTv"
+        },
+        {
+          "n": 183,
+          "purpose": "work 2/fable-fable/8 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1783,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 197,
+          "costUsd": 0.0002768,
+          "seconds": 1.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNzYeUXq2ALx8zYSqNo",
+          "responseId": "msg_011CgNNzYyZe5DdkZBSL4VLx"
+        },
+        {
+          "n": 184,
+          "purpose": "work 2/fable-fable/8 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1783,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 316,
+          "costUsd": 0.0003363,
+          "seconds": 1.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNzZAU4JjuuSoCwaYxf",
+          "responseId": "msg_011CgNNzZP87DzvRiqZbHnYX"
+        },
+        {
+          "n": 185,
+          "purpose": "work 2/sonnet-sonnet/8 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1293,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 57,
+          "costUsd": 0.00015780000000000001,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNzi6122w71vDWqSBqt",
+          "responseId": "msg_011CgNNziQbs4iwwMEFpMknM"
+        },
+        {
+          "n": 186,
+          "purpose": "work 2/sonnet-sonnet/8 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1293,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 55,
+          "costUsd": 0.00015680000000000002,
+          "seconds": 1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNzsqPFppAP4zCCY5tR",
+          "responseId": "msg_011CgNNzt9V2L84E7p1QXXor"
+        },
+        {
+          "n": 187,
+          "purpose": "work 2/opus-opus/9 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1593,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 43,
+          "costUsd": 0.0001808,
+          "seconds": 1.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNzv8HnqPLBiAkJkihx",
+          "responseId": "msg_011CgNNzvRu3fgaTyoyyGWUM"
+        },
+        {
+          "n": 188,
+          "purpose": "work 2/opus-opus/9 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1593,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 43,
+          "costUsd": 0.0001808,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNNzyu1V12Qfz1YQBBoo",
+          "responseId": "msg_011CgNNzzEc7sscYwb86eGjY"
+        },
+        {
+          "n": 189,
+          "purpose": "work 2/sonnet-sonnet/9 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1642,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 45,
+          "costUsd": 0.0001867,
+          "seconds": 0.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNP1B3jNsmorKHRsPyrY",
+          "responseId": "msg_011CgNP1BMahbLNKNRqEdhLQ"
+        },
+        {
+          "n": 190,
+          "purpose": "work 2/fable-fable/9 1",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1709,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 41,
+          "costUsd": 0.00019140000000000002,
+          "seconds": 0.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNP1FKwkWhu9mG9v5DHQ",
+          "responseId": "msg_011CgNP1FnEjfZS7f3VM5177"
+        },
+        {
+          "n": 191,
+          "purpose": "work 2/sonnet-sonnet/9 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1642,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 45,
+          "costUsd": 0.0001867,
+          "seconds": 0.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNP1F4L9zie7jMmVVr5x",
+          "responseId": "msg_011CgNP1FPfYykigGxaxRg85"
+        },
+        {
+          "n": 192,
+          "purpose": "work 2/fable-fable/9 2",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 1709,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 225,
+          "costUsd": 0.0002834,
+          "seconds": 1.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNP1TtW4hVwGKoYabme2",
+          "responseId": "msg_011CgNP1UCrBZPESvhxQC1R7"
         }
       ]
     }

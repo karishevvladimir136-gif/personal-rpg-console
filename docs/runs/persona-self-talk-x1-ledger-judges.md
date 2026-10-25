@@ -1,8 +1,9 @@
 # Persona self-talk X1 — the Anthropic ledger (the judges)
 
-Cap $15. Spent **$1.0994** in 1848 calls over 2 run(s).
+Cap $15. Spent **$1.1532** in 2040 calls over 3 run(s).
 - 2026-10-25 03:31 UTC: persona-self-talk-x1: smoke — one short call per model (request shape, effort, fixtures) — 1 calls, $0.0000 → `test-fixtures/persona-self-talk-x1/`
 - 2026-10-25 05:06 UTC: persona-self-talk-x1: arms 2, 3, 5, 6, 65 conversations, effort medium — 1847 calls, $1.0994 → `persona-self-talk-x1-run-20261025-050600.json`
+- 2026-10-25 05:13 UTC: persona-self-talk-x1: after the run — X3's work tag (also on self-talk 1's arm 2) and the OpenAI judge check — 192 calls, $0.0538 → `persona-self-talk-x1-post-20261025-051349.json`
 
 Prices per 1M tokens: Claude Haiku 5.5 `claude-haiku-5-5` input $0.1 / output $0.5 / cache read $0.01; Claude Opus 5.5 `claude-opus-5-5` $4 / $20 / $0.2. Output tokens include thinking.
 
@@ -14,6 +15,8 @@ Prices per 1M tokens: Claude Haiku 5.5 `claude-haiku-5-5` input $0.1 / output $0
 | claude-opus-5-5 — tags | 18 | 83396 | 0 | 0 | 12697 | $0.5875 |
 | claude-haiku-5-5 — ask-tags | 60 | 55118 | 0 | 0 | 6496 | $0.0088 |
 | claude-opus-5-5 — ask-tags | 1 | 959 | 0 | 0 | 41 | $0.0047 |
+| claude-haiku-5-5 — work | 190 | 260782 | 0 | 0 | 16941 | $0.0345 |
+| claude-opus-5-5 — work | 2 | 3140 | 0 | 0 | 336 | $0.0193 |
 
 ## Every call
 
@@ -1867,3 +1870,195 @@ Prices per 1M tokens: Claude Haiku 5.5 `claude-haiku-5-5` input $0.1 / output $0
 | 2026-10-25 05:06 | 1845 | tags 1 arm 2 luna–luna #10 m51–60 | claude-haiku-5-5 | output_config.effort=low | 3181 | 0/0 | 680 | $0.00066 | 2.3 | end_turn | req_011CgNNdJP9QRwYxxsRFVAck | msg_011CgNNdJjE7j4mcs3gjCqcF |  |
 | 2026-10-25 05:06 | 1846 | tags 2 arm 2 luna–luna #10 m41–50 | claude-haiku-5-5 | output_config.effort=low | 3496 | 0/0 | 680 | $0.00069 | 2.4 | end_turn | req_011CgNNdJQ8YjumjjDvtVvbc | msg_011CgNNdJmD6viynAbEAB5vu |  |
 | 2026-10-25 05:06 | 1847 | tags 2 arm 2 luna–luna #10 m51–60 | claude-haiku-5-5 | output_config.effort=low | 3181 | 0/0 | 680 | $0.00066 | 2.9 | end_turn | req_011CgNNdM4NUcTvN645CYLnU | msg_011CgNNdMNyW2koJJQkFsdf3 |  |
+| 2026-10-25 05:13 | 1 | work 6/luna-luna/0 1 | claude-haiku-5-5 | output_config.effort=low | 865 | 0/0 | 55 | $0.00011 | 0.8 | end_turn | req_011CgNNfyfawAPXk2vYYNwDk | msg_011CgNNfz1RVXGZgYZZq8Xi7 |  |
+| 2026-10-25 05:13 | 2 | work 2/luna-luna/0 1 | claude-haiku-5-5 | output_config.effort=low | 1023 | 0/0 | 41 | $0.00012 | 1.9 | end_turn | req_011CgNNfyerDfQ77N5ir3D64 | msg_011CgNNfz2R1syMKhDV2D8nz |  |
+| 2026-10-25 05:13 | 3 | work 2/luna-luna/0 2 | claude-haiku-5-5 | output_config.effort=low | 1023 | 0/0 | 41 | $0.00012 | 1.9 | end_turn | req_011CgNNfyfqhmVgmMjoEoGwy | msg_011CgNNfz1RuXm8JkLhdZUyr |  |
+| 2026-10-25 05:13 | 4 | work 6/luna-luna/0 2 | claude-haiku-5-5 | output_config.effort=low | 865 | 0/0 | 55 | $0.00011 | 1.5 | end_turn | req_011CgNNgFpCQxGgGQaqaSpMg | msg_011CgNNgG8Y2uS94wBifjSie |  |
+| 2026-10-25 05:13 | 5 | work 6/astra-astra/0 2 | claude-haiku-5-5 | output_config.effort=low | 1518 | 0/0 | 53 | $0.00018 | 0.6 | end_turn | req_011CgNNgLge6nTF2rLS3JqwX | msg_011CgNNgM3xUcRSvYVRULhoz |  |
+| 2026-10-25 05:13 | 6 | work 6/astra-astra/0 1 | claude-haiku-5-5 | output_config.effort=low | 1518 | 0/0 | 42 | $0.00017 | 0.7 | end_turn | req_011CgNNgLVizUfAwZBgL6WLV | msg_011CgNNgLpKz2WA4GC1gLLS4 |  |
+| 2026-10-25 05:13 | 7 | work 6/sol-sol/0 2 | claude-haiku-5-5 | output_config.effort=low | 1750 | 0/0 | 47 | $0.00020 | 0.6 | end_turn | req_011CgNNgcHFeQyuf8fpEd4d5 | msg_011CgNNgcdLGDJZAG9nNqvKR |  |
+| 2026-10-25 05:13 | 8 | work 2/astra-astra/0 1 | claude-haiku-5-5 | output_config.effort=low | 1816 | 0/0 | 46 | $0.00020 | 0.6 | end_turn | req_011CgNNgcTuSAhWHtYiPH7tJ | msg_011CgNNgcnkhCnrBGm36oPCz |  |
+| 2026-10-25 05:13 | 9 | work 6/sol-sol/0 1 | claude-haiku-5-5 | output_config.effort=low | 1750 | 0/0 | 219 | $0.00028 | 2.1 | end_turn | req_011CgNNgbFizWVoW4Bn6LPm7 | msg_011CgNNgba5c5r37bqGWJwyv |  |
+| 2026-10-25 05:13 | 10 | work 5/astra-astra/0 1 | claude-haiku-5-5 | output_config.effort=low | 1477 | 0/0 | 172 | $0.00023 | 1.2 | end_turn | req_011CgNNgsscEPdLVUtt5PFER | msg_011CgNNgtBi9h1S7zdVrW47c |  |
+| 2026-10-25 05:13 | 11 | work 2/astra-astra/0 2 | claude-haiku-5-5 | output_config.effort=low | 1816 | 0/0 | 48 | $0.00021 | 1.3 | end_turn | req_011CgNNgsjRf39oczyFY3CmY | msg_011CgNNgt3XpPdA46Cq7wfhW |  |
+| 2026-10-25 05:13 | 12 | work 5/astra-astra/0 2 | claude-haiku-5-5 | output_config.effort=low | 1477 | 0/0 | 179 | $0.00024 | 1.6 | end_turn | req_011CgNNgy1BGX3yxTETkKqBt | msg_011CgNNgyLn3UnaYCWy8Sg1H |  |
+| 2026-10-25 05:13 | 13 | work 5/luna-luna/0 2 | claude-haiku-5-5 | output_config.effort=low | 696 | 0/0 | 52 | $0.00010 | 0.7 | end_turn | req_011CgNNhBwJqzfGJpYuVM9Do | msg_011CgNNhCFQE7JL4CPxkRsvN |  |
+| 2026-10-25 05:13 | 14 | work 5/luna-luna/0 1 | claude-haiku-5-5 | output_config.effort=low | 696 | 0/0 | 260 | $0.00020 | 1.8 | end_turn | req_011CgNNhBvJgPiQ2nJp5gQfM | msg_011CgNNhCFQC54e4AbjFQe6H |  |
+| 2026-10-25 05:13 | 15 | work 5/sol-sol/0 1 | claude-haiku-5-5 | output_config.effort=low | 1601 | 0/0 | 48 | $0.00018 | 0.9 | end_turn | req_011CgNNhJesrmHrZKCbyi5tK | msg_011CgNNhJzDe6pENnfYobwVw |  |
+| 2026-10-25 05:13 | 16 | work 3/astra-sol/0 1 | claude-haiku-5-5 | output_config.effort=low | 1675 | 0/0 | 48 | $0.00019 | 0.6 | end_turn | req_011CgNNhYd1LiM3kdekcUq9Z | msg_011CgNNhYx6wJjawGJYsJegD |  |
+| 2026-10-25 05:13 | 17 | work 5/sol-sol/0 2 | claude-haiku-5-5 | output_config.effort=low | 1601 | 0/0 | 53 | $0.00019 | 2.2 | end_turn | req_011CgNNhTmZQTvUvQ7V8Eu4w | msg_011CgNNhU7dvayCbzFG89bZX |  |
+| 2026-10-25 05:13 | 18 | work 3/astra-sol/0 2 | claude-haiku-5-5 | output_config.effort=low | 1675 | 0/0 | 47 | $0.00019 | 0.6 | end_turn | req_011CgNNhbQgpWBhte1eaPFia | msg_011CgNNhbjXe87cg3Jbhndtr |  |
+| 2026-10-25 05:13 | 19 | work 2/sol-sol/0 1 | claude-haiku-5-5 | output_config.effort=low | 1204 | 0/0 | 43 | $0.00014 | 0.6 | end_turn | req_011CgNNhpAu6hpDfjv8nEnen | msg_011CgNNhpUkM7k7eXtdWdFPP |  |
+| 2026-10-25 05:13 | 20 | work 2/sol-sol/0 2 | claude-haiku-5-5 | output_config.effort=low | 1204 | 0/0 | 43 | $0.00014 | 0.5 | end_turn | req_011CgNNhqzHgCre788sEH2B4 | msg_011CgNNhrMN3CAY2Jcddzzz2 |  |
+| 2026-10-25 05:13 | 21 | work 6/astra-astra/1 1 | claude-haiku-5-5 | output_config.effort=low | 1461 | 0/0 | 46 | $0.00017 | 0.9 | end_turn | req_011CgNNhru6TUJjWeZjbgjDK | msg_011CgNNhsDTAmFBv2dY8vbRe |  |
+| 2026-10-25 05:13 | 22 | work 5/astra-astra/1 1 | claude-haiku-5-5 | output_config.effort=low | 1406 | 0/0 | 56 | $0.00017 | 0.7 | end_turn | req_011CgNNi7BLTn4sfPaBLrmtj | msg_011CgNNi7RxgTKE7sQU3PwyJ |  |
+| 2026-10-25 05:13 | 23 | work 6/astra-astra/1 2 | claude-haiku-5-5 | output_config.effort=low | 1461 | 0/0 | 48 | $0.00017 | 1.5 | end_turn | req_011CgNNi5daEW7sBTxJBAgzM | msg_011CgNNi6194z4e6RtkMhVu7 |  |
+| 2026-10-25 05:13 | 24 | work 5/astra-astra/1 2 | claude-haiku-5-5 | output_config.effort=low | 1406 | 0/0 | 55 | $0.00017 | 0.7 | end_turn | req_011CgNNi9dRDoYCbrkAueowu | msg_011CgNNi9xWhH7JXX79b4vo1 |  |
+| 2026-10-25 05:13 | 25 | work 5/luna-luna/1 1 | claude-haiku-5-5 | output_config.effort=low | 807 | 0/0 | 151 | $0.00016 | 1.3 | end_turn | req_011CgNNiNxromzzhvvTtwSfW | msg_011CgNNiPGDX3J6aZagN8RDj |  |
+| 2026-10-25 05:13 | 26 | work 6/sol-sol/1 1 | claude-haiku-5-5 | output_config.effort=low | 1355 | 0/0 | 50 | $0.00016 | 1.2 | end_turn | req_011CgNNiRHGSyJ481aZdsPac | msg_011CgNNiRbN6NXfGH7EhYxeV |  |
+| 2026-10-25 05:13 | 27 | work 5/luna-luna/1 2 | claude-haiku-5-5 | output_config.effort=low | 807 | 0/0 | 316 | $0.00024 | 2.6 | end_turn | req_011CgNNiQpyhTAS5KcB9FmuE | msg_011CgNNiRAKCXvZpSp2EEwGb |  |
+| 2026-10-25 05:13 | 28 | work 6/sol-sol/1 2 | claude-haiku-5-5 | output_config.effort=low | 1355 | 0/0 | 49 | $0.00016 | 0.8 | end_turn | req_011CgNNihWKb3hYbH254X7QC | msg_011CgNNihy7P1Ln3v95srCrJ |  |
+| 2026-10-25 05:13 | 29 | work 6/luna-luna/1 1 | claude-haiku-5-5 | output_config.effort=low | 662 | 0/0 | 145 | $0.00014 | 1.3 | end_turn | req_011CgNNij5KtCCqDSgprY2Vk | msg_011CgNNijPgBVSYvquS8qgX3 |  |
+| 2026-10-25 05:13 | 30 | work 6/luna-luna/1 2 | claude-haiku-5-5 | output_config.effort=low | 662 | 0/0 | 174 | $0.00015 | 1.3 | end_turn | req_011CgNNipj9mcLtSQDBLNdNN | msg_011CgNNiq4FQQNqfcBbWCvGE |  |
+| 2026-10-25 05:13 | 31 | work 2/astra-astra/1 1 | claude-haiku-5-5 | output_config.effort=low | 1307 | 0/0 | 44 | $0.00015 | 0.7 | end_turn | req_011CgNNiynNg34qeqoqR36DS | msg_011CgNNiz6DvRX8rJ6RvJxk2 |  |
+| 2026-10-25 05:13 | 32 | work 2/astra-astra/1 2 | claude-haiku-5-5 | output_config.effort=low | 1307 | 0/0 | 44 | $0.00015 | 0.6 | end_turn | req_011CgNNj3NBBacpKHcLjr8pg | msg_011CgNNj3gXKsJ7G4iwWvAER |  |
+| 2026-10-25 05:13 | 33 | work 2/sol-sol/1 1 | claude-haiku-5-5 | output_config.effort=low | 1332 | 0/0 | 42 | $0.00015 | 0.8 | end_turn | req_011CgNNj94Ub6xLdkn1ssaSV | msg_011CgNNj9QpAWjngPijf8yKj |  |
+| 2026-10-25 05:13 | 34 | work 2/sol-sol/1 2 | claude-haiku-5-5 | output_config.effort=low | 1332 | 0/0 | 42 | $0.00015 | 1.3 | end_turn | req_011CgNNjFXABKG2fnRjhYcjm | msg_011CgNNjFxi3iCZSedxQZrux |  |
+| 2026-10-25 05:13 | 35 | work 5/sol-sol/1 1 | claude-haiku-5-5 | output_config.effort=low | 1436 | 0/0 | 47 | $0.00017 | 0.8 | end_turn | req_011CgNNjJmPANeii1WWht9xC | msg_011CgNNjK6UBkqLmzxyRqNxj |  |
+| 2026-10-25 05:13 | 36 | work 5/sol-sol/1 2 | claude-haiku-5-5 | output_config.effort=low | 1436 | 0/0 | 46 | $0.00017 | 0.6 | end_turn | req_011CgNNjREZvbcqhk2hPT5JM | msg_011CgNNjRZQHuci3kbjNXx12 |  |
+| 2026-10-25 05:13 | 37 | work 3/astra-sol/1 1 | claude-haiku-5-5 | output_config.effort=low | 812 | 0/0 | 38 | $0.00010 | 0.8 | end_turn | req_011CgNNjaB5GfjbrqFdxzNZv | msg_011CgNNjaVRqeUpvTzR81aS8 |  |
+| 2026-10-25 05:13 | 38 | work 3/astra-sol/1 2 | claude-haiku-5-5 | output_config.effort=low | 812 | 0/0 | 133 | $0.00015 | 1 | end_turn | req_011CgNNjb3RWZJAw26ZLVjXb | msg_011CgNNjbTTvdtnAN6xGf92A |  |
+| 2026-10-25 05:13 | 39 | work 2/luna-luna/1 1 | claude-haiku-5-5 | output_config.effort=low | 940 | 0/0 | 40 | $0.00011 | 0.6 | end_turn | req_011CgNNjgmCopjhdV17bcT2u | msg_011CgNNjh4ofCLaHmzkREzXS |  |
+| 2026-10-25 05:13 | 40 | work 2/luna-luna/1 2 | claude-haiku-5-5 | output_config.effort=low | 940 | 0/0 | 46 | $0.00012 | 0.6 | end_turn | req_011CgNNjrQtLLnEgkwn9jK6D | msg_011CgNNjrkEQSWuANR4rHnKE |  |
+| 2026-10-25 05:13 | 41 | work 6/sol-sol/2 1 | claude-haiku-5-5 | output_config.effort=low | 1002 | 0/0 | 49 | $0.00012 | 1 | end_turn | req_011CgNNjtEGny7r9Y1hPp9BG | msg_011CgNNjtXPmHmr1L2Rk7Vq8 |  |
+| 2026-10-25 05:13 | 42 | work 6/sol-sol/2 2 | claude-haiku-5-5 | output_config.effort=low | 1002 | 0/0 | 41 | $0.00012 | 0.7 | end_turn | req_011CgNNjx2ULBN4gZbaqkoap | msg_011CgNNjxKqRrf593hDSuzkx |  |
+| 2026-10-25 05:13 | 43 | work 2/luna-luna/2 1 | claude-haiku-5-5 | output_config.effort=low | 893 | 0/0 | 48 | $0.00011 | 0.7 | end_turn | req_011CgNNk7yWfsmKXsMrFmPDW | msg_011CgNNk8HNCzRDkzFjTHPrr |  |
+| 2026-10-25 05:13 | 44 | work 5/sol-sol/2 1 | claude-haiku-5-5 | output_config.effort=low | 1785 | 0/0 | 41 | $0.00020 | 0.7 | end_turn | req_011CgNNkDxgPftcc4EVa6kSd | msg_011CgNNkEKkTb2AnXqChPyF1 |  |
+| 2026-10-25 05:13 | 45 | work 2/luna-luna/2 2 | claude-haiku-5-5 | output_config.effort=low | 893 | 0/0 | 163 | $0.00017 | 1.9 | end_turn | req_011CgNNkBFD4xW93TfnMRELq | msg_011CgNNkBcJ7rkevXzjQbEHj |  |
+| 2026-10-25 05:13 | 46 | work 5/sol-sol/2 2 | claude-haiku-5-5 | output_config.effort=low | 1785 | 0/0 | 45 | $0.00020 | 0.7 | end_turn | req_011CgNNkPn31YisS3QGfZrBP | msg_011CgNNkQ5tL25mBNaUEPSg3 |  |
+| 2026-10-25 05:13 | 47 | work 5/astra-astra/2 2 | claude-haiku-5-5 | output_config.effort=low | 1653 | 0/0 | 47 | $0.00019 | 0.6 | end_turn | req_011CgNNkY85RcC9aGNoQzreY | msg_011CgNNkYTvR2bLPUDsUbTax |  |
+| 2026-10-25 05:13 | 48 | work 5/astra-astra/2 1 | claude-haiku-5-5 | output_config.effort=low | 1653 | 0/0 | 50 | $0.00019 | 1.4 | end_turn | req_011CgNNkVusTzyVoiKRnHS7o | msg_011CgNNkWHCddEsbibfFcMxf |  |
+| 2026-10-25 05:13 | 49 | work 2/astra-astra/2 1 | claude-haiku-5-5 | output_config.effort=low | 1775 | 0/0 | 45 | $0.00020 | 0.6 | end_turn | req_011CgNNkfS7MBPzhuj9RoLcg | msg_011CgNNkfkhtu2zTz72MCcpY |  |
+| 2026-10-25 05:13 | 50 | work 2/astra-astra/2 2 | claude-haiku-5-5 | output_config.effort=low | 1775 | 0/0 | 46 | $0.00020 | 0.9 | end_turn | req_011CgNNkobW1GLm3UrntcUKL | msg_011CgNNkov6kcGMbxohRTs8J |  |
+| 2026-10-25 05:13 | 51 | work 3/astra-sol/2 1 | claude-haiku-5-5 | output_config.effort=low | 1359 | 0/0 | 39 | $0.00016 | 1.7 | end_turn | req_011CgNNkpbHDtbNeBTjvu9T1 | msg_011CgNNkpudd5e5VJqhRCHTY |  |
+| 2026-10-25 05:13 | 52 | work 3/astra-sol/2 2 | claude-haiku-5-5 | output_config.effort=low | 1359 | 0/0 | 39 | $0.00016 | 0.6 | end_turn | req_011CgNNkvsoLQuadrpBGb4aP | msg_011CgNNkwD9WCfVKy3GKYuq3 |  |
+| 2026-10-25 05:13 | 53 | work 2/sol-sol/2 1 | claude-haiku-5-5 | output_config.effort=low | 1054 | 0/0 | 135 | $0.00017 | 1 | end_turn | req_011CgNNm6MKDjWAz39VtMZDS | msg_011CgNNm6hQKEKfJEAAELMr6 |  |
+| 2026-10-25 05:13 | 54 | work 2/sol-sol/2 2 | claude-haiku-5-5 | output_config.effort=low | 1054 | 0/0 | 147 | $0.00018 | 1 | end_turn | req_011CgNNmAoCuSpFYSp5dqi9P | msg_011CgNNmB8oEzyJKqETpvh1J |  |
+| 2026-10-25 05:13 | 55 | work 5/luna-luna/2 1 | claude-haiku-5-5 | output_config.effort=low | 904 | 0/0 | 205 | $0.00019 | 1.5 | end_turn | req_011CgNNmCCY7w7EoTE467Nvu | msg_011CgNNmCYNzDPxL6ctK6eki |  |
+| 2026-10-25 05:13 | 56 | work 5/luna-luna/2 2 | claude-haiku-5-5 | output_config.effort=low | 904 | 0/0 | 166 | $0.00017 | 1.6 | end_turn | req_011CgNNmPbeKciyvKxB1jvXf | msg_011CgNNmPvzEWf1rmexKcQ4w |  |
+| 2026-10-25 05:13 | 57 | work 6/luna-luna/2 2 | claude-haiku-5-5 | output_config.effort=low | 678 | 0/0 | 325 | $0.00023 | 2.1 | end_turn | req_011CgNNmXbMFndZxHq9hzhGd | msg_011CgNNmXvCjr9UUhLDMvHZT |  |
+| 2026-10-25 05:13 | 58 | work 6/astra-astra/2 1 | claude-haiku-5-5 | output_config.effort=low | 1555 | 0/0 | 42 | $0.00018 | 0.7 | end_turn | req_011CgNNmjKojMfbSBEQk5XA4 | msg_011CgNNmjduNZAyhKU7M3qWa |  |
+| 2026-10-25 05:13 | 59 | work 6/luna-luna/2 1 | claude-haiku-5-5 | output_config.effort=low | 678 | 0/0 | 19 | $0.00008 | 4.3 | end_turn | req_011CgNNmU4XBKHMsroAwma9y | msg_011CgNNmURc2bb5hA8Uw7Ax7 |  |
+| 2026-10-25 05:13 | 60 | work 6/astra-astra/2 2 | claude-haiku-5-5 | output_config.effort=low | 1555 | 0/0 | 41 | $0.00018 | 0.7 | end_turn | req_011CgNNmuMoCtnjYdXJYs9oF | msg_011CgNNmv6hJfZwoSMKoCV8t |  |
+| 2026-10-25 05:13 | 61 | work 2/luna-luna/3 2 | claude-haiku-5-5 | output_config.effort=low | 733 | 0/0 | 19 | $0.00008 | 0.6 | end_turn | req_011CgNNn1RAkP7ZuhJrbfmyC | msg_011CgNNn1jnCqLT4o3vxatWU |  |
+| 2026-10-25 05:13 | 62 | work 2/luna-luna/3 1 | claude-haiku-5-5 | output_config.effort=low | 733 | 0/0 | 19 | $0.00008 | 0.7 | end_turn | req_011CgNNn1MxNMA8uKvRcbG8s | msg_011CgNNn1gZL6ehoYGdEjSdV |  |
+| 2026-10-25 05:13 | 63 | work 2/astra-astra/3 1 | claude-haiku-5-5 | output_config.effort=low | 1463 | 0/0 | 40 | $0.00017 | 0.8 | end_turn | req_011CgNNnBRBzrQCtFdvueVfd | msg_011CgNNnBkY7cUgk3mWLexDE |  |
+| 2026-10-25 05:13 | 64 | work 5/sol-sol/3 1 | claude-haiku-5-5 | output_config.effort=low | 1709 | 0/0 | 59 | $0.00020 | 0.5 | end_turn | req_011CgNNnGrNGyCBrVCLxis1H | msg_011CgNNnH9iZaP2WKUd9PaaR |  |
+| 2026-10-25 05:13 | 65 | work 2/astra-astra/3 2 | claude-haiku-5-5 | output_config.effort=low | 1463 | 0/0 | 40 | $0.00017 | 1.1 | end_turn | req_011CgNNnGmQM9xfAXtmZdJXG | msg_011CgNNnH61E24A76RGys3nQ |  |
+| 2026-10-25 05:13 | 66 | work 5/sol-sol/3 2 | claude-haiku-5-5 | output_config.effort=low | 1709 | 0/0 | 53 | $0.00020 | 0.6 | end_turn | req_011CgNNnTUaQUDYRPPwKFLAR | msg_011CgNNnTqfSYWqpeLekrkWz |  |
+| 2026-10-25 05:13 | 67 | work 6/sol-sol/3 1 | claude-haiku-5-5 | output_config.effort=low | 1333 | 0/0 | 41 | $0.00015 | 0.7 | end_turn | req_011CgNNnXxxKVzcdDrv4AypK | msg_011CgNNnYGoxtcie53ZHQH8o |  |
+| 2026-10-25 05:13 | 68 | work 6/sol-sol/3 2 | claude-haiku-5-5 | output_config.effort=low | 1333 | 0/0 | 48 | $0.00016 | 1.3 | end_turn | req_011CgNNnaFsmrptizfPgEiS5 | msg_011CgNNnaaTrtRc1czKw1g1v |  |
+| 2026-10-25 05:13 | 69 | work 6/astra-astra/3 1 | claude-haiku-5-5 | output_config.effort=low | 1630 | 0/0 | 48 | $0.00019 | 0.6 | end_turn | req_011CgNNnijMfy3PpTwbFiP6o | msg_011CgNNnj4we8qHwJRNCnKpZ |  |
+| 2026-10-25 05:13 | 70 | work 6/astra-astra/3 2 | claude-haiku-5-5 | output_config.effort=low | 1630 | 0/0 | 45 | $0.00019 | 0.9 | end_turn | req_011CgNNnojEW5R4zFA3pWsmG | msg_011CgNNnp2bG2StD719yaJb2 |  |
+| 2026-10-25 05:13 | 71 | work 5/astra-astra/3 1 | claude-haiku-5-5 | output_config.effort=low | 1357 | 0/0 | 44 | $0.00016 | 0.6 | end_turn | req_011CgNNntUkHWeByJ9BHvFxZ | msg_011CgNNntoLkzSD5snpXgrSz |  |
+| 2026-10-25 05:13 | 72 | work 5/astra-astra/3 2 | claude-haiku-5-5 | output_config.effort=low | 1357 | 0/0 | 48 | $0.00016 | 1.1 | end_turn | req_011CgNNnywARwsmrQazNrxTP | msg_011CgNNnzJENgb3r9vw5Ai8p |  |
+| 2026-10-25 05:13 | 73 | work 2/sol-sol/3 1 | claude-haiku-5-5 | output_config.effort=low | 1377 | 0/0 | 49 | $0.00016 | 0.6 | end_turn | req_011CgNNo6EBYUZXLR6g3PuL6 | msg_011CgNNo6XXbEedoH5BP86mg |  |
+| 2026-10-25 05:13 | 74 | work 2/sol-sol/3 2 | claude-haiku-5-5 | output_config.effort=low | 1377 | 0/0 | 49 | $0.00016 | 0.6 | end_turn | req_011CgNNo9xQexvFPEqXHS9Ka | msg_011CgNNoAH1g14g7dGUwpfTt |  |
+| 2026-10-25 05:13 | 75 | work 6/luna-luna/3 1 | claude-haiku-5-5 | output_config.effort=low | 1141 | 0/0 | 38 | $0.00013 | 0.6 | end_turn | req_011CgNNoHc3KJ8Y76koZ113s | msg_011CgNNoHuPhCPjxd4uDvef2 |  |
+| 2026-10-25 05:13 | 76 | work 6/luna-luna/3 2 | claude-haiku-5-5 | output_config.effort=low | 1141 | 0/0 | 42 | $0.00014 | 0.6 | end_turn | req_011CgNNoMnK8FJ8zTTvjtvzU | msg_011CgNNoN8ttRtW8ajQmUpHi |  |
+| 2026-10-25 05:13 | 77 | work 3/astra-sol/3 1 | claude-haiku-5-5 | output_config.effort=low | 1533 | 0/0 | 41 | $0.00017 | 0.6 | end_turn | req_011CgNNoRSKypEW7eP3hz8r6 | msg_011CgNNoRmAZmT67CsAzEhCz |  |
+| 2026-10-25 05:13 | 78 | work 3/astra-sol/3 2 | claude-haiku-5-5 | output_config.effort=low | 1533 | 0/0 | 42 | $0.00017 | 0.8 | end_turn | req_011CgNNoYvXuDbvX6GaRrPHR | msg_011CgNNoZEP1em2F2khutGv4 |  |
+| 2026-10-25 05:13 | 79 | work 5/luna-luna/3 1 | claude-haiku-5-5 | output_config.effort=low | 812 | 0/0 | 43 | $0.00010 | 0.7 | end_turn | req_011CgNNodFjMbS3CZ8ZYjdaC | msg_011CgNNodaKdR3De2Q2PmFL9 |  |
+| 2026-10-25 05:13 | 80 | work 5/luna-luna/3 2 | claude-haiku-5-5 | output_config.effort=low | 812 | 0/0 | 138 | $0.00015 | 1.5 | end_turn | req_011CgNNogfNcHCTcLGC2Xej1 | msg_011CgNNoh4BBtKK2scuDkac1 |  |
+| 2026-10-25 05:13 | 81 | work 6/astra-astra/4 1 | claude-haiku-5-5 | output_config.effort=low | 1683 | 0/0 | 211 | $0.00027 | 1.3 | end_turn | req_011CgNNoq39VSnMYAUNBaVdK | msg_011CgNNoqSxF6YD1caUdZDLE |  |
+| 2026-10-25 05:13 | 82 | work 6/astra-astra/4 2 | claude-haiku-5-5 | output_config.effort=low | 1683 | 0/0 | 280 | $0.00031 | 1.9 | end_turn | req_011CgNNotyH75tcUzbD1ZYMm | msg_011CgNNouHszndsQT3WeEobS |  |
+| 2026-10-25 05:13 | 83 | work 6/luna-luna/4 2 | claude-haiku-5-5 | output_config.effort=low | 1230 | 0/0 | 58 | $0.00015 | 1.3 | end_turn | req_011CgNNp9G23wBTwYCSfAVdh | msg_011CgNNp9h4xnHqKJkJmQk2G |  |
+| 2026-10-25 05:13 | 84 | work 2/luna-luna/4 1 | claude-haiku-5-5 | output_config.effort=low | 1161 | 0/0 | 41 | $0.00014 | 0.7 | end_turn | req_011CgNNpFnRNPRgHoMtKi9ei | msg_011CgNNpG724DNX5Hccho3qh |  |
+| 2026-10-25 05:13 | 85 | work 6/luna-luna/4 1 | claude-haiku-5-5 | output_config.effort=low | 1230 | 0/0 | 53 | $0.00015 | 6 | end_turn | req_011CgNNp1xy9Ca171twMwENW | msg_011CgNNp2JoYzbiaE2C8QrH7 |  |
+| 2026-10-25 05:13 | 86 | work 2/luna-luna/4 2 | claude-haiku-5-5 | output_config.effort=low | 1161 | 0/0 | 48 | $0.00014 | 0.7 | end_turn | req_011CgNNpTTe9yErMMF1Pu4Yx | msg_011CgNNpTnjY7aqSiSam6SiE |  |
+| 2026-10-25 05:13 | 87 | work 2/astra-astra/4 1 | claude-haiku-5-5 | output_config.effort=low | 1528 | 0/0 | 42 | $0.00017 | 1.1 | end_turn | req_011CgNNpXYTswVAjbicKwoK2 | msg_011CgNNpXsocUXoPQqFpyRFq |  |
+| 2026-10-25 05:13 | 88 | work 2/astra-astra/4 2 | claude-haiku-5-5 | output_config.effort=low | 1528 | 0/0 | 42 | $0.00017 | 0.9 | end_turn | req_011CgNNpgNY9szfPbFFSjv5s | msg_011CgNNpghctA2reGmg3kT6E |  |
+| 2026-10-25 05:13 | 89 | work 5/astra-astra/4 1 | claude-haiku-5-5 | output_config.effort=low | 1729 | 0/0 | 239 | $0.00029 | 1.4 | end_turn | req_011CgNNpjHeNH5UmLjBtJwFi | msg_011CgNNpjfTx8QbXXNGmqJtu |  |
+| 2026-10-25 05:13 | 90 | work 5/astra-astra/4 2 | claude-haiku-5-5 | output_config.effort=low | 1729 | 0/0 | 256 | $0.00030 | 1.6 | end_turn | req_011CgNNppyhgmYsnBLYRJEbu | msg_011CgNNpqJ42GaoMvXbmHesX |  |
+| 2026-10-25 05:13 | 91 | work 6/sol-sol/4 1 | claude-haiku-5-5 | output_config.effort=low | 1368 | 0/0 | 52 | $0.00016 | 0.5 | end_turn | req_011CgNNpy1uBBJ8RqMHjaBgt | msg_011CgNNpyL19JeTDNDRcNAB6 |  |
+| 2026-10-25 05:13 | 92 | work 6/sol-sol/4 2 | claude-haiku-5-5 | output_config.effort=low | 1368 | 0/0 | 48 | $0.00016 | 0.6 | end_turn | req_011CgNNq3wZVW5C1cfnfq3wd | msg_011CgNNq4FuwX2sXsn5EF5Pw |  |
+| 2026-10-25 05:13 | 93 | work 2/sol-sol/4 1 | claude-haiku-5-5 | output_config.effort=low | 1519 | 0/0 | 47 | $0.00018 | 1.7 | end_turn | req_011CgNNqAq4KuSj5tUn3tWaa | msg_011CgNNqB9eGBqpi7YhS5fmT |  |
+| 2026-10-25 05:13 | 94 | work 2/sol-sol/4 2 | claude-haiku-5-5 | output_config.effort=low | 1519 | 0/0 | 47 | $0.00018 | 1.5 | end_turn | req_011CgNNqECxbLvPXf6tLpN7n | msg_011CgNNqEa2yk2oyLFi48M31 |  |
+| 2026-10-25 05:13 | 95 | work 5/luna-luna/4 1 | claude-haiku-5-5 | output_config.effort=low | 973 | 0/0 | 45 | $0.00012 | 0.6 | end_turn | req_011CgNNqKCb4jLrtWQhVirZS | msg_011CgNNqKYB8Nf4ve2G73EPB |  |
+| 2026-10-25 05:13 | 96 | work 5/luna-luna/4 2 | claude-haiku-5-5 | output_config.effort=low | 973 | 0/0 | 158 | $0.00018 | 1.1 | end_turn | req_011CgNNqWp6KjTCeAj2Wd4hB | msg_011CgNNqX9BdPFxWAin2A3gw |  |
+| 2026-10-25 05:13 | 97 | work 3/astra-sol/4 1 | claude-haiku-5-5 | output_config.effort=low | 1900 | 0/0 | 48 | $0.00021 | 1.4 | end_turn | req_011CgNNqZQcVLiSeQ47c4Fpt | msg_011CgNNqZjThwK49jbMn9SRe |  |
+| 2026-10-25 05:13 | 98 | work 3/astra-sol/4 2 | claude-haiku-5-5 | output_config.effort=low | 1900 | 0/0 | 48 | $0.00021 | 2.1 | end_turn | req_011CgNNqah1DoSKoeC2pr2Hh | msg_011CgNNqb1MdQF2v4NS9Q4Lr |  |
+| 2026-10-25 05:13 | 99 | work 5/sol-sol/4 1 | claude-haiku-5-5 | output_config.effort=low | 2080 | 0/0 | 41 | $0.00023 | 0.9 | end_turn | req_011CgNNqpFLMn19KzQWptk8m | msg_011CgNNqpaRCNnJCWYq83c6K |  |
+| 2026-10-25 05:13 | 100 | work 5/sol-sol/4 2 | claude-haiku-5-5 | output_config.effort=low | 2080 | 0/0 | 44 | $0.00023 | 1.2 | end_turn | req_011CgNNqtGREb22xdVq2xweX | msg_011CgNNqtckrR9rEqCXh3vzK |  |
+| 2026-10-25 05:13 | 101 | work 2/sol-sol/5 1 | claude-haiku-5-5 | output_config.effort=low | 1504 | 0/0 | 47 | $0.00017 | 0.7 | end_turn | req_011CgNNqxm3hnd8BUpyatAay | msg_011CgNNqy59nqZEF5m7tTnnd |  |
+| 2026-10-25 05:13 | 102 | work 2/sol-sol/5 2 | claude-haiku-5-5 | output_config.effort=low | 1504 | 0/0 | 46 | $0.00017 | 0.7 | end_turn | req_011CgNNr6nEsd1NyioWSFrpJ | msg_011CgNNr76c1xtfsU8v1nRdt |  |
+| 2026-10-25 05:13 | 103 | work 2/astra-astra/5 1 | claude-haiku-5-5 | output_config.effort=low | 1272 | 0/0 | 47 | $0.00015 | 0.7 | end_turn | req_011CgNNrCBgToem9JJDJv3kx | msg_011CgNNrCWHqaRfUwanmNvkT |  |
+| 2026-10-25 05:13 | 104 | work 2/astra-astra/5 2 | claude-haiku-5-5 | output_config.effort=low | 1272 | 0/0 | 48 | $0.00015 | 0.7 | end_turn | req_011CgNNrEUMkdJjEVAaAeukn | msg_011CgNNrEnD4VGzTvAnjtphb |  |
+| 2026-10-25 05:13 | 105 | work 2/luna-luna/5 1 | claude-haiku-5-5 | output_config.effort=low | 958 | 0/0 | 47 | $0.00012 | 1.3 | end_turn | req_011CgNNrNTKd7zHoMAhHjdX9 | msg_011CgNNrNnAhnZsdSdmgxpir |  |
+| 2026-10-25 05:13 | 106 | work 2/luna-luna/5 2 | claude-haiku-5-5 | output_config.effort=low | 958 | 0/0 | 45 | $0.00012 | 0.6 | end_turn | req_011CgNNrU5etd76pyVbnMZoX | msg_011CgNNrUP1bUh1ymQSVSwzK |  |
+| 2026-10-25 05:13 | 107 | work 2/luna-luna/6 1 | claude-haiku-5-5 | output_config.effort=low | 785 | 0/0 | 49 | $0.00010 | 1 | end_turn | req_011CgNNrWNa6Xru88Fsw8b2w | msg_011CgNNrWgg6upSdki5SMiXC |  |
+| 2026-10-25 05:13 | 108 | work 2/luna-luna/6 2 | claude-haiku-5-5 | output_config.effort=low | 785 | 0/0 | 49 | $0.00010 | 0.6 | end_turn | req_011CgNNrgxKBL9JoxHRtbzd6 | msg_011CgNNrhJQAXTS3KUwt7jjg |  |
+| 2026-10-25 05:13 | 109 | work 2/sol-sol/6 1 | claude-haiku-5-5 | output_config.effort=low | 1494 | 0/0 | 49 | $0.00017 | 0.9 | end_turn | req_011CgNNrjfHRzCEeBBFmJ8mU | msg_011CgNNrjzNnw71qh2bGf5vM |  |
+| 2026-10-25 05:13 | 110 | work 2/sol-sol/6 2 | claude-haiku-5-5 | output_config.effort=low | 1494 | 0/0 | 57 | $0.00018 | 0.7 | end_turn | req_011CgNNroRF7JGk1Bp9MULVf | msg_011CgNNroj7CNbG749VsJ5SD |  |
+| 2026-10-25 05:13 | 111 | work 2/astra-astra/6 1 | claude-haiku-5-5 | output_config.effort=low | 1457 | 0/0 | 210 | $0.00025 | 1.5 | end_turn | req_011CgNNrxWhTrohpms2uJBNU | msg_011CgNNrxqHWd3YTTMwMcwdB |  |
+| 2026-10-25 05:13 | 112 | work 2/astra-astra/6 2 | claude-haiku-5-5 | output_config.effort=low | 1457 | 0/0 | 40 | $0.00017 | 0.7 | end_turn | req_011CgNNs2KdbSShF75XsPYFt | msg_011CgNNs2eEBpc4orzMKEdUu |  |
+| 2026-10-25 05:13 | 113 | work 2/luna-luna/7 1 | claude-haiku-5-5 | output_config.effort=low | 1007 | 0/0 | 38 | $0.00012 | 1.1 | end_turn | req_011CgNNs5MCtZMaDMGrFANJc | msg_011CgNNs5fYypBCHF3fpmArk |  |
+| 2026-10-25 05:13 | 114 | work 2/astra-astra/7 1 | claude-haiku-5-5 | output_config.effort=low | 1346 | 0/0 | 46 | $0.00016 | 1.1 | end_turn | req_011CgNNsJ9t3oQ2YpQgVNLoU | msg_011CgNNsJVV7VqvNQhGuam37 |  |
+| 2026-10-25 05:13 | 115 | work 2/luna-luna/7 2 | claude-haiku-5-5 | output_config.effort=low | 1007 | 0/0 | 46 | $0.00012 | 1.6 | end_turn | req_011CgNNsHaR8qRrFNjFaMsUC | msg_011CgNNsHvVjexVXFSgaGGu3 |  |
+| 2026-10-25 05:13 | 116 | work 2/astra-astra/7 2 | claude-haiku-5-5 | output_config.effort=low | 1346 | 0/0 | 47 | $0.00016 | 1 | end_turn | req_011CgNNsNjimCQsw5AsWsqiR | msg_011CgNNsP6nrW2w8G4RuNyRr |  |
+| 2026-10-25 05:13 | 117 | work 2/sol-sol/7 2 | claude-haiku-5-5 | output_config.effort=low | 1262 | 0/0 | 60 | $0.00016 | 0.7 | end_turn | req_011CgNNsd6RAkUXz89Xm3sUb | msg_011CgNNsdR1mwmqvjjJk168g |  |
+| 2026-10-25 05:13 | 118 | work 2/sol-sol/7 1 | claude-haiku-5-5 | output_config.effort=low | 1262 | 0/0 | 60 | $0.00016 | 1.4 | end_turn | req_011CgNNsbY9wuK3J6T7QgHA5 | msg_011CgNNsbtjGQhybVtBJREea |  |
+| 2026-10-25 05:13 | 119 | work 2/sol-sol/8 1 | claude-haiku-5-5 | output_config.effort=low | 1257 | 0/0 | 241 | $0.00025 | 1.6 | end_turn | req_011CgNNsft6qJqqa3eFrd2ni | msg_011CgNNsgEvLpzoJrHuFoe92 |  |
+| 2026-10-25 05:13 | 120 | work 2/sol-sol/8 2 | claude-haiku-5-5 | output_config.effort=low | 1257 | 0/0 | 44 | $0.00015 | 0.6 | end_turn | req_011CgNNstkVpXvZoUf8g1QWR | msg_011CgNNsu572JEfVgyMMggt2 |  |
+| 2026-10-25 05:13 | 121 | work 2/luna-luna/8 1 | claude-haiku-5-5 | output_config.effort=low | 1204 | 0/0 | 188 | $0.00021 | 1.4 | end_turn | req_011CgNNsvXQmZbKLeYWrtrRS | msg_011CgNNsvtVg7i4UN7KXwSkk |  |
+| 2026-10-25 05:13 | 122 | work 2/luna-luna/8 2 | claude-haiku-5-5 | output_config.effort=low | 1204 | 0/0 | 180 | $0.00021 | 2 | end_turn | req_011CgNNt1SaKhowiTT4NKjix | msg_011CgNNt1puYe27j1UgHEnTz |  |
+| 2026-10-25 05:13 | 123 | work 2/astra-astra/8 1 | claude-haiku-5-5 | output_config.effort=low | 1445 | 0/0 | 41 | $0.00016 | 0.7 | end_turn | req_011CgNNtAH9XonsL7osLa4oa | msg_011CgNNtAdEj1KDSCR7DXeVt |  |
+| 2026-10-25 05:13 | 124 | work 2/astra-astra/8 2 | claude-haiku-5-5 | output_config.effort=low | 1445 | 0/0 | 41 | $0.00016 | 0.7 | end_turn | req_011CgNNtFB5S4xwDTr5txdk3 | msg_011CgNNtFVgC1PLReSPYYnsk |  |
+| 2026-10-25 05:13 | 125 | work 2/astra-astra/9 1 | claude-haiku-5-5 | output_config.effort=low | 1470 | 0/0 | 293 | $0.00029 | 1.8 | end_turn | req_011CgNNtNikZWzdMDvcsoqu8 | msg_011CgNNtP2cbn8NG6U1oo6za |  |
+| 2026-10-25 05:13 | 126 | work 2/astra-astra/9 2 | claude-haiku-5-5 | output_config.effort=low | 1470 | 0/0 | 310 | $0.00030 | 2.1 | end_turn | req_011CgNNtS2wWp112fNW2cAG2 | msg_011CgNNtSNHB4CKFNxpFGimJ |  |
+| 2026-10-25 05:13 | 127 | work 2/luna-luna/9 1 | claude-haiku-5-5 | output_config.effort=low | 744 | 0/0 | 45 | $0.00010 | 1.1 | end_turn | req_011CgNNtWte91wuRTmtu7dr7 | msg_011CgNNtXBVsgodiAZuXMXnq |  |
+| 2026-10-25 05:13 | 128 | work 2/luna-luna/9 2 | claude-haiku-5-5 | output_config.effort=low | 744 | 0/0 | 42 | $0.00010 | 0.8 | end_turn | req_011CgNNtjDHqcnao1u9op6PK | msg_011CgNNtjW9pN9DtEvzpoyEg |  |
+| 2026-10-25 05:13 | 129 | work 2/sol-sol/9 1 | claude-haiku-5-5 | output_config.effort=low | 1302 | 0/0 | 43 | $0.00015 | 0.7 | end_turn | req_011CgNNtoyHc3mnbh6urp9xE | msg_011CgNNtpLN69io81wVU88Eg |  |
+| 2026-10-25 05:13 | 130 | work 2/sol-sol/9 2 | claude-haiku-5-5 | output_config.effort=low | 1302 | 0/0 | 52 | $0.00016 | 0.7 | end_turn | req_011CgNNtpYXTZx8HcsNyjjuw | msg_011CgNNtps7x2iQ3sRwiY1Y4 |  |
+| 2026-10-25 05:13 | 131 | work 6/astra-astra/4 referee | claude-opus-5-5 | output_config.effort=low | 1683 | 0/0 | 147 | $0.00967 | 2.8 | end_turn | req_011CgNNu1ZYnKoF69VfCvMSL | msg_011CgNNu1uQ2PTXFR3crC4Hy |  |
+| 2026-10-25 05:13 | 132 | work 2/astra-astra/6 referee | claude-opus-5-5 | output_config.effort=low | 1457 | 0/0 | 189 | $0.00961 | 2.7 | end_turn | req_011CgNNu5beMhqR7NRB2KtTv | msg_011CgNNu5wUfZqJ24vs94Wre |  |
+| 2026-10-25 05:13 | 133 | work 2/fable-fable/0 1 | claude-haiku-5-5 | output_config.effort=low | 1852 | 0/0 | 361 | $0.00037 | 2.7 | end_turn | req_011CgNNuHMaHhe5mN14975us | msg_011CgNNuHfB1MjR9DUsQu1wc |  |
+| 2026-10-25 05:13 | 134 | work 2/sonnet-sonnet/0 1 | claude-haiku-5-5 | output_config.effort=low | 915 | 0/0 | 41 | $0.00011 | 0.6 | end_turn | req_011CgNNuWBVpdouwfLCVzXT7 | msg_011CgNNuWWr4GXmgT7EbGutG |  |
+| 2026-10-25 05:13 | 135 | work 2/fable-fable/0 2 | claude-haiku-5-5 | output_config.effort=low | 1852 | 0/0 | 376 | $0.00037 | 3.2 | end_turn | req_011CgNNuS9eijs53DZqv2V5s | msg_011CgNNuSU15s9nhvaHbg2UV |  |
+| 2026-10-25 05:13 | 136 | work 2/sonnet-sonnet/0 2 | claude-haiku-5-5 | output_config.effort=low | 915 | 0/0 | 41 | $0.00011 | 0.6 | end_turn | req_011CgNNuhuhBrmMQG5H7P9fV | msg_011CgNNuiH1m4nRiTJU66XjK |  |
+| 2026-10-25 05:13 | 137 | work 2/opus-opus/0 1 | claude-haiku-5-5 | output_config.effort=low | 1731 | 0/0 | 48 | $0.00020 | 1 | end_turn | req_011CgNNumeRQUktzLwY8hXZh | msg_011CgNNumyWcsYZpbwE9cV4p |  |
+| 2026-10-25 05:13 | 138 | work 2/sonnet-sonnet/1 1 | claude-haiku-5-5 | output_config.effort=low | 1053 | 0/0 | 39 | $0.00012 | 0.5 | end_turn | req_011CgNNuyRbGUpnHmFbcnCYE | msg_011CgNNuymBoRhVfFF7mA7cu |  |
+| 2026-10-25 05:13 | 139 | work 2/opus-opus/0 2 | claude-haiku-5-5 | output_config.effort=low | 1731 | 0/0 | 46 | $0.00020 | 1.8 | end_turn | req_011CgNNutnnbijqybhBLDAuR | msg_011CgNNuu9sW4wK2NDXBhPUS |  |
+| 2026-10-25 05:13 | 140 | work 2/sonnet-sonnet/1 2 | claude-haiku-5-5 | output_config.effort=low | 1053 | 0/0 | 39 | $0.00012 | 0.8 | end_turn | req_011CgNNv4gbnckxeyHVCVwuA | msg_011CgNNv51Sm9YhRsJhp1rDJ |  |
+| 2026-10-25 05:13 | 141 | work 2/opus-opus/1 2 | claude-haiku-5-5 | output_config.effort=low | 1603 | 0/0 | 49 | $0.00018 | 0.9 | end_turn | req_011CgNNvFUVPNSad1R7cg576 | msg_011CgNNvFnbnLkrN6QaPfw1B |  |
+| 2026-10-25 05:13 | 142 | work 2/opus-opus/1 1 | claude-haiku-5-5 | output_config.effort=low | 1603 | 0/0 | 45 | $0.00018 | 1.8 | end_turn | req_011CgNNvEM2oU43EXzKj8TWx | msg_011CgNNvEg8Ape2GKuCjfpGb |  |
+| 2026-10-25 05:13 | 143 | work 2/fable-fable/1 1 | claude-haiku-5-5 | output_config.effort=low | 1719 | 0/0 | 210 | $0.00028 | 1.3 | end_turn | req_011CgNNvM8Zxegsx89Cp1PpA | msg_011CgNNvMTQQtMGyKSdKEaqS |  |
+| 2026-10-25 05:13 | 144 | work 2/opus-opus/2 1 | claude-haiku-5-5 | output_config.effort=low | 1655 | 0/0 | 48 | $0.00019 | 0.8 | end_turn | req_011CgNNvapaCTsCh9c5757iu | msg_011CgNNvb9vdWBugkkGb6Vf9 |  |
+| 2026-10-25 05:13 | 145 | work 2/fable-fable/1 2 | claude-haiku-5-5 | output_config.effort=low | 1719 | 0/0 | 255 | $0.00030 | 1.5 | end_turn | req_011CgNNvYNVV3oQztK9wpQop | msg_011CgNNvYgqSCHJzcnQHXrwJ |  |
+| 2026-10-25 05:13 | 146 | work 2/opus-opus/2 2 | claude-haiku-5-5 | output_config.effort=low | 1655 | 0/0 | 44 | $0.00019 | 0.8 | end_turn | req_011CgNNvfg2zC3K5ksQSLu5A | msg_011CgNNvfyeDRLCyS1NY2QVo |  |
+| 2026-10-25 05:13 | 147 | work 2/fable-fable/2 2 | claude-haiku-5-5 | output_config.effort=low | 1656 | 0/0 | 381 | $0.00036 | 2.3 | end_turn | req_011CgNNvsi5evNdVSvKqqPgR | msg_011CgNNvt2RyAuEdoPF7wogX |  |
+| 2026-10-25 05:13 | 148 | work 2/fable-fable/2 1 | claude-haiku-5-5 | output_config.effort=low | 1656 | 0/0 | 437 | $0.00038 | 2.8 | end_turn | req_011CgNNvrpzLkEEt3KCh5cGX | msg_011CgNNvsXQh5h36V81zcsn7 |  |
+| 2026-10-25 05:13 | 149 | work 2/sonnet-sonnet/2 1 | claude-haiku-5-5 | output_config.effort=low | 1284 | 0/0 | 45 | $0.00015 | 1.9 | end_turn | req_011CgNNvwn9PDmtDxXEYUVHz | msg_011CgNNvx7FFtPnUFgqPg2NF |  |
+| 2026-10-25 05:13 | 150 | work 2/sonnet-sonnet/2 2 | claude-haiku-5-5 | output_config.effort=low | 1284 | 0/0 | 48 | $0.00015 | 0.7 | end_turn | req_011CgNNwGMbXYT39tAhDAVDJ | msg_011CgNNwGn9wU13ZhC44aNMf |  |
+| 2026-10-25 05:13 | 151 | work 2/fable-fable/3 1 | claude-haiku-5-5 | output_config.effort=low | 1481 | 0/0 | 19 | $0.00016 | 0.5 | end_turn | req_011CgNNwHqQamJmuCFwqW699 | msg_011CgNNwJ8ko82FmJBE9LHR2 |  |
+| 2026-10-25 05:13 | 152 | work 2/fable-fable/3 2 | claude-haiku-5-5 | output_config.effort=low | 1481 | 0/0 | 19 | $0.00016 | 1.6 | end_turn | req_011CgNNwJXKTpKDGxLSaRwk7 | msg_011CgNNwJttmzmXg1BMdzrzz |  |
+| 2026-10-25 05:13 | 153 | work 2/opus-opus/3 1 | claude-haiku-5-5 | output_config.effort=low | 1689 | 0/0 | 46 | $0.00019 | 0.5 | end_turn | req_011CgNNwY3RY8wxhRxuUQnnT | msg_011CgNNwYPkgSsHVzhNTTy2J |  |
+| 2026-10-25 05:13 | 154 | work 2/opus-opus/3 2 | claude-haiku-5-5 | output_config.effort=low | 1689 | 0/0 | 50 | $0.00019 | 0.7 | end_turn | req_011CgNNwYkqPE99br29UAjdG | msg_011CgNNwZ4CALL2baJK3S22E |  |
+| 2026-10-25 05:13 | 155 | work 2/sonnet-sonnet/3 1 | claude-haiku-5-5 | output_config.effort=low | 1586 | 0/0 | 46 | $0.00018 | 0.7 | end_turn | req_011CgNNwe4KoVQzZRrX9Sh1k | msg_011CgNNweHxay5qMZ4xGeB9y |  |
+| 2026-10-25 05:13 | 156 | work 2/sonnet-sonnet/3 2 | claude-haiku-5-5 | output_config.effort=low | 1586 | 0/0 | 48 | $0.00018 | 0.7 | end_turn | req_011CgNNwoDEXdVpLncCVd1Qk | msg_011CgNNwoYaUNg5hC5juYe8H |  |
+| 2026-10-25 05:13 | 157 | work 2/sonnet-sonnet/4 1 | claude-haiku-5-5 | output_config.effort=low | 802 | 0/0 | 57 | $0.00011 | 1.4 | end_turn | req_011CgNNwpYrTz4QE2zsqsFES | msg_011CgNNwpshCFwLshNxEarJj |  |
+| 2026-10-25 05:13 | 158 | work 2/sonnet-sonnet/4 2 | claude-haiku-5-5 | output_config.effort=low | 802 | 0/0 | 68 | $0.00011 | 2.1 | end_turn | req_011CgNNwugRWgcLp7ad1UQhb | msg_011CgNNwv12MVupCX7VqFWJf |  |
+| 2026-10-25 05:13 | 159 | work 2/fable-fable/4 1 | claude-haiku-5-5 | output_config.effort=low | 1665 | 0/0 | 57 | $0.00019 | 0.6 | end_turn | req_011CgNNx5BReS9CooSYsYyVm | msg_011CgNNx5WmPc7Ln8nPJkb32 |  |
+| 2026-10-25 05:13 | 160 | work 2/fable-fable/4 2 | claude-haiku-5-5 | output_config.effort=low | 1665 | 0/0 | 57 | $0.00019 | 0.7 | end_turn | req_011CgNNx9MStEok7DgLgsrtz | msg_011CgNNx9fZBUsy2U7zBPsp9 |  |
+| 2026-10-25 05:13 | 161 | work 2/opus-opus/4 1 | claude-haiku-5-5 | output_config.effort=low | 1790 | 0/0 | 38 | $0.00020 | 0.6 | end_turn | req_011CgNNxHQPZ1rPiRVeisUVf | msg_011CgNNxHjV2fvZsCGE26fUA |  |
+| 2026-10-25 05:13 | 162 | work 2/opus-opus/4 2 | claude-haiku-5-5 | output_config.effort=low | 1790 | 0/0 | 38 | $0.00020 | 0.9 | end_turn | req_011CgNNxLhKv4jnRbL3DW5Mk | msg_011CgNNxM2RQ8BhiwfSShtdA |  |
+| 2026-10-25 05:13 | 163 | work 2/fable-fable/5 1 | claude-haiku-5-5 | output_config.effort=low | 1571 | 0/0 | 48 | $0.00018 | 0.6 | end_turn | req_011CgNNxQyJPpWJkjZbmz6bW | msg_011CgNNxRN7KPR1b6U5fQ4oG |  |
+| 2026-10-25 05:13 | 164 | work 2/fable-fable/5 2 | claude-haiku-5-5 | output_config.effort=low | 1571 | 0/0 | 46 | $0.00018 | 0.9 | end_turn | req_011CgNNxYzFGwVyUneARYHbF | msg_011CgNNxZK6kr9HXtFfmKEYJ |  |
+| 2026-10-25 05:13 | 165 | work 2/opus-opus/5 1 | claude-haiku-5-5 | output_config.effort=low | 1538 | 0/0 | 413 | $0.00036 | 2.2 | end_turn | req_011CgNNxdBmUvb3k3Go9MVR3 | msg_011CgNNxdW7VJYnF4H2tVJBj |  |
+| 2026-10-25 05:13 | 166 | work 2/sonnet-sonnet/5 1 | claude-haiku-5-5 | output_config.effort=low | 1412 | 0/0 | 48 | $0.00017 | 0.8 | end_turn | req_011CgNNxqes32wTTFyaLF8wY | msg_011CgNNxqxiAv7uo1wtrLKbE |  |
+| 2026-10-25 05:13 | 167 | work 2/opus-opus/5 2 | claude-haiku-5-5 | output_config.effort=low | 1538 | 0/0 | 617 | $0.00046 | 3.5 | end_turn | req_011CgNNxgNkxBVxG43Dp7max | msg_011CgNNxgiM68MwnrBTcwNZ9 |  |
+| 2026-10-25 05:13 | 168 | work 2/sonnet-sonnet/5 2 | claude-haiku-5-5 | output_config.effort=low | 1412 | 0/0 | 40 | $0.00016 | 0.8 | end_turn | req_011CgNNy1PztdQkMUK7ooFqe | msg_011CgNNy1kL17iEGqVTTxRWP |  |
+| 2026-10-25 05:13 | 169 | work 2/sonnet-sonnet/6 2 | claude-haiku-5-5 | output_config.effort=low | 1343 | 0/0 | 43 | $0.00016 | 1 | end_turn | req_011CgNNyA2AKSq7ikLS4R7no | msg_011CgNNyAPixgwj75sPJGkjr |  |
+| 2026-10-25 05:13 | 170 | work 2/sonnet-sonnet/6 1 | claude-haiku-5-5 | output_config.effort=low | 1343 | 0/0 | 45 | $0.00016 | 1.7 | end_turn | req_011CgNNy7v9eFZN1Kw8z7REQ | msg_011CgNNy8GEc1R8gQ8X7zjmS |  |
+| 2026-10-25 05:13 | 171 | work 2/fable-fable/6 1 | claude-haiku-5-5 | output_config.effort=low | 1827 | 0/0 | 43 | $0.00020 | 0.5 | end_turn | req_011CgNNyHhXTrLpDa7BjWeTY | msg_011CgNNyJ1NUSShK5pochQGk |  |
+| 2026-10-25 05:13 | 172 | work 2/fable-fable/6 2 | claude-haiku-5-5 | output_config.effort=low | 1827 | 0/0 | 48 | $0.00021 | 0.7 | end_turn | req_011CgNNySx9GEBAehr8TXuXi | msg_011CgNNyTFzYDeTEau6EDFeh |  |
+| 2026-10-25 05:13 | 173 | work 2/opus-opus/6 1 | claude-haiku-5-5 | output_config.effort=low | 1570 | 0/0 | 55 | $0.00018 | 0.9 | end_turn | req_011CgNNyToyo8B9mFmw3i1Ph | msg_011CgNNyU7qF9UTsbQE63Ps5 |  |
+| 2026-10-25 05:13 | 174 | work 2/opus-opus/6 2 | claude-haiku-5-5 | output_config.effort=low | 1570 | 0/0 | 51 | $0.00018 | 1.1 | end_turn | req_011CgNNyYhfkWkN1fVnfP8Te | msg_011CgNNyZ21UnApYPBDebLGa |  |
+| 2026-10-25 05:13 | 175 | work 2/sonnet-sonnet/7 1 | claude-haiku-5-5 | output_config.effort=low | 1008 | 0/0 | 39 | $0.00012 | 0.6 | end_turn | req_011CgNNyifT1YJHAAbSdPEon | msg_011CgNNyizo8GrUMT4DEfCFf |  |
+| 2026-10-25 05:13 | 176 | work 2/sonnet-sonnet/7 2 | claude-haiku-5-5 | output_config.effort=low | 1008 | 0/0 | 49 | $0.00013 | 0.6 | end_turn | req_011CgNNykHBFT82xNR1MBFNh | msg_011CgNNykbnJ6sBeUn8pus4K |  |
+| 2026-10-25 05:13 | 177 | work 2/fable-fable/7 1 | claude-haiku-5-5 | output_config.effort=low | 1796 | 0/0 | 49 | $0.00020 | 0.6 | end_turn | req_011CgNNyrP3BQ1Ths9WTk7jJ | msg_011CgNNyrmMiBqjVaCnevgde |  |
+| 2026-10-25 05:13 | 178 | work 2/fable-fable/7 2 | claude-haiku-5-5 | output_config.effort=low | 1796 | 0/0 | 52 | $0.00021 | 0.7 | end_turn | req_011CgNNyypmRsTAXMJcrNNuR | msg_011CgNNyz9cAnyKrZ1KPcLXo |  |
+| 2026-10-25 05:13 | 179 | work 2/opus-opus/7 1 | claude-haiku-5-5 | output_config.effort=low | 1711 | 0/0 | 427 | $0.00038 | 2.8 | end_turn | req_011CgNNz1kMroPS3CemGYJ7H | msg_011CgNNz24wqWtr5oFJEf3V5 |  |
+| 2026-10-25 05:13 | 180 | work 2/opus-opus/7 2 | claude-haiku-5-5 | output_config.effort=low | 1711 | 0/0 | 277 | $0.00031 | 2.8 | end_turn | req_011CgNNz7nEqgX1mgTU4e8jr | msg_011CgNNz88agjpYqWsWqZHcC |  |
+| 2026-10-25 05:13 | 181 | work 2/opus-opus/8 1 | claude-haiku-5-5 | output_config.effort=low | 1547 | 0/0 | 53 | $0.00018 | 1.1 | end_turn | req_011CgNNzFb4BgbExybg5ojL8 | msg_011CgNNzFw8we9V7V7BJfS9M |  |
+| 2026-10-25 05:13 | 182 | work 2/opus-opus/8 2 | claude-haiku-5-5 | output_config.effort=low | 1547 | 0/0 | 53 | $0.00018 | 0.6 | end_turn | req_011CgNNzSgnmPhFdfarLtkVV | msg_011CgNNzT486A6BkuZf3ZQTv |  |
+| 2026-10-25 05:13 | 183 | work 2/fable-fable/8 1 | claude-haiku-5-5 | output_config.effort=low | 1783 | 0/0 | 197 | $0.00028 | 1.5 | end_turn | req_011CgNNzYeUXq2ALx8zYSqNo | msg_011CgNNzYyZe5DdkZBSL4VLx |  |
+| 2026-10-25 05:13 | 184 | work 2/fable-fable/8 2 | claude-haiku-5-5 | output_config.effort=low | 1783 | 0/0 | 316 | $0.00034 | 1.9 | end_turn | req_011CgNNzZAU4JjuuSoCwaYxf | msg_011CgNNzZP87DzvRiqZbHnYX |  |
+| 2026-10-25 05:13 | 185 | work 2/sonnet-sonnet/8 1 | claude-haiku-5-5 | output_config.effort=low | 1293 | 0/0 | 57 | $0.00016 | 0.7 | end_turn | req_011CgNNzi6122w71vDWqSBqt | msg_011CgNNziQbs4iwwMEFpMknM |  |
+| 2026-10-25 05:13 | 186 | work 2/sonnet-sonnet/8 2 | claude-haiku-5-5 | output_config.effort=low | 1293 | 0/0 | 55 | $0.00016 | 1 | end_turn | req_011CgNNzsqPFppAP4zCCY5tR | msg_011CgNNzt9V2L84E7p1QXXor |  |
+| 2026-10-25 05:13 | 187 | work 2/opus-opus/9 1 | claude-haiku-5-5 | output_config.effort=low | 1593 | 0/0 | 43 | $0.00018 | 1.4 | end_turn | req_011CgNNzv8HnqPLBiAkJkihx | msg_011CgNNzvRu3fgaTyoyyGWUM |  |
+| 2026-10-25 05:13 | 188 | work 2/opus-opus/9 2 | claude-haiku-5-5 | output_config.effort=low | 1593 | 0/0 | 43 | $0.00018 | 0.6 | end_turn | req_011CgNNzyu1V12Qfz1YQBBoo | msg_011CgNNzzEc7sscYwb86eGjY |  |
+| 2026-10-25 05:13 | 189 | work 2/sonnet-sonnet/9 1 | claude-haiku-5-5 | output_config.effort=low | 1642 | 0/0 | 45 | $0.00019 | 0.9 | end_turn | req_011CgNP1B3jNsmorKHRsPyrY | msg_011CgNP1BMahbLNKNRqEdhLQ |  |
+| 2026-10-25 05:13 | 190 | work 2/fable-fable/9 1 | claude-haiku-5-5 | output_config.effort=low | 1709 | 0/0 | 41 | $0.00019 | 0.6 | end_turn | req_011CgNP1FKwkWhu9mG9v5DHQ | msg_011CgNP1FnEjfZS7f3VM5177 |  |
+| 2026-10-25 05:13 | 191 | work 2/sonnet-sonnet/9 2 | claude-haiku-5-5 | output_config.effort=low | 1642 | 0/0 | 45 | $0.00019 | 0.9 | end_turn | req_011CgNP1F4L9zie7jMmVVr5x | msg_011CgNP1FPfYykigGxaxRg85 |  |
+| 2026-10-25 05:13 | 192 | work 2/fable-fable/9 2 | claude-haiku-5-5 | output_config.effort=low | 1709 | 0/0 | 225 | $0.00028 | 1.7 | end_turn | req_011CgNP1TtW4hVwGKoYabme2 | msg_011CgNP1UCrBZPESvhxQC1R7 |  |

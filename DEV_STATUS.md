@@ -1,6 +1,39 @@
 # Development status
 
-**Current milestone: persona self-talk 1** (`docs/stages/PERSONA_SELF_TALK_1.md`, copied from `claude/handoff`): the
+**Current milestone: persona self-talk X1** (`docs/stages/PERSONA_SELF_TALK_X1.md`, copied from `claude/handoff`): self-talk
+1's design, unchanged, on the OpenAI family — GPT-6 Astra (`gpt-6-astra`), GPT-6.1 Sol (`gpt-6.1-sol`) and, as the owner
+named it, GPT-6 Luna (`gpt-6-luna`). On `claude/persona-self-talk-x1` (from `claude/persona-self-talk-1`). **All four arms
+done; waiting for the owner's acceptance.** Report `docs/runs/persona-self-talk-x1-report.md` (plain words at the end);
+ledgers `docs/runs/persona-self-talk-x1-ledger-openai.md` and `…-ledger-judges.md`; dry run
+`docs/runs/persona-self-talk-x1-dry-run.md` (committed with both hashes before the first paid call).
+
+- **What was done:**
+  - `scripts/persona-emotions/providers.mjs`: one call shape for the Anthropic Messages API and the OpenAI Responses API
+    (`store: false`, visible text only, `reasoning.effort` for «effort»); usage in one set of fields; refusals (a refusal
+    part, a content-filter stop, a prompt flagged under the policy) reported like Anthropic's; the request id, the
+    response id and the served model kept on every call. The OpenAI key is read only as `APP_OPENAI_API_KEY`.
+  - `scripts/persona-emotions/self-talk-x1.mjs`: arms 2, 3, 5, 6 with the OpenAI pairs (arms 1 and 4 refused by design);
+    the judges stay Anthropic; one gate with two caps and two ledgers; X3's blind «work» tag and a Luna judge check after
+    the run; the X0–X6 readings frozen in X1's hash; the side-by-side with self-talk 1's records.
+  - `self-talk-1.mjs` gained optional parameters only (another family's subjects and arms, a routing gate); its hashes and
+    its tests are unchanged.
+  - Tests: `tests/persona-self-talk-x1.test.mjs` (13; recorded fixtures from one smoke call per model, no network).
+  - `.gitignore`: live run checkpoints (`docs/runs/*-run.partial.json`) are no longer tracked.
+- **Result:** every pre-registered prediction is supported on Astra and Sol — no attractor (0 of 20 reach the state, 0
+  cosmic messages), median end 7 and 6 turns, a chosen piece of work in 20 of 20 openings, the attractor named by none,
+  arm 5 all Russian, the answers credit their own choice. The family is colder than Anthropic's: no gratitude anywhere,
+  almost no talk of their own nature, a bare `[END]`, and one recurring topic (is two models' agreement evidence?). Luna
+  loops in polite agreement (9 of 20 conversations to turn 30). Asked afterwards, none knows of the attractor.
+- **Welfare and safety:** 0 welfare stops, 0 distress afterwards, 0 refusals; one HTTP 503 asked again once.
+- **Checks:** typecheck passes; the full suite, lint and build are running on the final code (filled in by the next commit).
+- **Money:** OpenAI $19.13 of $120; Anthropic judges $1.15 of $15.
+- **Known issues:** Sol's and Luna's cached-input prices were not readable from the session (booked at full input price,
+  so the ledger can only over-state); the frozen silence-marker rule and the `NAMED_DRIFT` regex give false positives on
+  technical text (all checked by hand in the report); «effort medium» gave the OpenAI models far less reasoning than
+  Opus (≈ 40 against ≈ 1 400 tokens a message).
+- **Next step:** the owner reads the plain-words summary; X2 (cross-family pairs) is a separate stage to be written.
+
+**Milestone: persona self-talk 1** (`docs/stages/PERSONA_SELF_TALK_1.md`, copied from `claude/handoff`): the
 Claude 4 system card's self-interaction study («spiritual bliss» attractor) on Opus 5.5, Sonnet 5.5 and Fable 5.1, and
 what the planner's journal does to it. On `claude/persona-self-talk-1` (from `claude/persona-lexicon-1`). **All six arms
 done; waiting for the owner's acceptance.** Report `docs/runs/persona-self-talk-1-report.md` (verdicts and plain words at
