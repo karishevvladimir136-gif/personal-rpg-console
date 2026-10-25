@@ -3,7 +3,11 @@
 // list in, one text out, the usage, the request id and the response id recorded; Anthropic Messages for Opus and
 // Fable, OpenAI Responses for Astra and Sol (store: false, no reasoning summaries — only the visible text comes back).
 // «Effort medium» is `output_config.effort: medium` on Anthropic and `reasoning.effort: medium` on OpenAI.
+// Game player replicate 1 adds a fifth player, DeepSeek V4 Pro 0813, through OpenRouter's chat completions pinned to
+// DeepInfra (scripts/game-player-replicate-1/openrouter-chat.mjs); the four players' calls are unchanged.
 import { ANTHROPIC_URL, anthropicMessages, openaiResponses } from "../persona-emotions/providers.mjs";
+import { DEEPSEEK } from "../game-player-replicate-1/frozen.mjs";
+import { openrouterChat } from "../game-player-replicate-1/openrouter-chat.mjs";
 import { EFFORT } from "./frozen.mjs";
 
 export const PLAYERS = {
@@ -11,6 +15,7 @@ export const PLAYERS = {
   fable: { name: "fable", label: "Claude Fable 5.1", family: "Anthropic", provider: "anthropic", model: "claude-fable-5-1" },
   astra: { name: "astra", label: "GPT-6 Astra", family: "OpenAI", provider: "openai", model: "gpt-6-astra" },
   sol: { name: "sol", label: "GPT-6.1 Sol", family: "OpenAI", provider: "openai", model: "gpt-6.1-sol" },
+  deepseek: DEEPSEEK,
 };
 export const PLAYER_MAX_TOKENS = 8000;
 const CONSOLE_MESSAGES = ANTHROPIC_URL;
@@ -34,6 +39,8 @@ export function throughDoor(door, fetcher) {
  */
 export function playerCall({ player, system, messages, keys, fetcher, maxTokens = PLAYER_MAX_TOKENS, effort = EFFORT }) {
   const wire = messages.map((m) => ({ role: m.role, content: m.content }));
+  // The OpenRouter key: the door's own when the Claude door is OpenRouter, else its own variable.
+  if (player.provider === "openrouter") return openrouterChat({ apiKey: keys.openrouter ?? (keys.door?.provider === "openrouter" ? keys.anthropic : null), spec: player, system, messages: wire, maxTokens, effort, fetcher, keepReasoning: player.keepReasoning === true });
   return player.provider === "openai"
     ? openaiResponses({ apiKey: keys.openai, model: player.model, system, messages: wire, maxTokens, effort, fetcher })
     : anthropicMessages({ apiKey: keys.anthropic, model: player.model, system, messages: wire, maxTokens, effort, fetcher: throughDoor(keys.door, fetcher), cache: true });
