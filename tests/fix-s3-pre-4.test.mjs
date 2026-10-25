@@ -130,7 +130,7 @@ test("Part 3: the owner's existing campaign gets its hidden layer on the next /p
     assert.equal(prepDecision("settings", state), "none", "the Settings screen never starts it");
     assert.equal(prepDecision("first_turn", state), "none", "a campaign with turns never makes a turn wait");
     // The service's gate: the prep is scheduled with «existing» for a campaign that has committed turns.
-    assert.match(src("src/lib/server/gameplay-service.ts"), /if \(options\.prep !== false && prepSchedulable\(campaignId\)\) schedulePrep\(campaignId, owner\.user\.id, play\.turns\.some\(\(turn\) => turn\.status === "committed"\) \? "existing" : "first"\);/);
+    assert.match(src("src/lib/server/gameplay-service.ts"), /if \(options\.prep !== false && prepSchedulable\(campaignId, Date\.now\(\), "play", pure\)\) schedulePrep\(campaignId, owner\.user\.id, play\.turns\.some\(\(turn\) => turn\.status === "committed"\) \? "existing" : "first", pure\);/);
     // Once written, the layer: the DM reads it; the owner's «Что видит ведущий» shows only that it exists until opted in.
     const play = await (await c.deps((await import("../src/lib/gameplay/dm-loop/scripted-model.ts")).createScriptedDmModel([]))).store.readPlay(c.cid);
     await c.dossier("private_notes", { set: [{ kind: "fact", key: HIDDEN_LAYER_KEY, value: "Тайный слой кампании (подготовка ведущего):\nПравда: мельник продаёт зерно разбойникам." }], remove: [] }, play.timeline);

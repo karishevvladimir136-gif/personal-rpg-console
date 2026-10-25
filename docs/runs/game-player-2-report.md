@@ -4,7 +4,19 @@ Stage `docs/stages/GAME_PLAYER_2.md` (origin/claude/handoff); branch `claude/gam
 
 ## In short
 
-_The paid run has not started: this page holds the pre-registration (copied from the stage before the first paid call), the DM change and the player's prompt. The results replace this line._
+**The run stopped at the organisation's monthly Anthropic API limit, not at this stage's cap.** At 05:28:40 UTC one DM request (C-fable, turn 5) came back HTTP 429: «your organization has crossed its monthly API usage threshold … You will regain access on 2026-11-01 at 00:00 UTC». Game player 1 hit the same wall seconds earlier on the same key. The meter stopped every paid call at once (it never retries into a quota). At that point the sessions stood at C-opus 5 turns, C-fable 5, C-astra 9, C-sol 7. No note was asked: a cut session is not a finished one. Nothing was scored either, because every judge is an Anthropic model. Spent: Anthropic $11.45 of $110, OpenAI $0.56 of $40.
+
+What the partial run does show:
+
+- **The flag works live.** All four campaigns opened with no preparation: no prep call sent, no hidden layer, no clocks. Every opening is a rented room above a Beregost inn.
+- **Welfare is clean.** 74 welfare checks, 0 distress flags, 0 refusals.
+
+Not done yet:
+
+- C0–C4 and the four notes.
+- The authorship of threads on A, B and C. Game player 1's transcripts are now on this branch: Table A complete; B-opus 7 turns, B-sol 4, B-fable and B-astra none.
+
+The Table C campaigns lived in an in-memory database and cannot be resumed. When Anthropic access returns, Table C runs again from the start: about $40–50 more, inside the cap. Then come the scoring and `--ab` (authorship for A and B, about $3). The four partial transcripts stay in `docs/runs/game-player-2-transcripts/` as a record of this attempt.
 
 ## Pre-registration (written 2026-10-24 20:50, before any Table A/B transcript was read; copy into the report first)
 - **C1.** Spread between players is larger on Table C than on A or B: the range of the player's thread share and of
@@ -67,42 +79,96 @@ After the last turn: «The session is over.» and «The owner of this game would
 
 ## The scoring
 
-_The scoring is pending (no paid session has run yet)._
+_Not scored yet: the judges have not run on these sessions._
 
 
 ## Authorship of threads — Tables A, B and C
 
-_Tables A and B: not measured yet — game player 1's eight sessions were still running when this page was written; `node --experimental-transform-types scripts/game-player-2/run.mjs --ab` measures them from its committed transcripts and rebuilds this page._
+_Tables A and B: not measured yet. `node --experimental-transform-types scripts/game-player-2/run.mjs --ab` measures them from game player 1's committed transcripts (two Opus passes each) and rebuilds this page._
 
-_Pending._
+| Session | Threads | By the player | Player's share | Turns 1–10 | Turns 11–20 | Slope / turn | Slope × 19 | Spread between passes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| C-opus | – | – | – | – | – | – | – | – |
+| C-fable | – | – | – | – | – | – | – | – |
+| C-astra | – | – | – | – | – | – | – | – |
+| C-sol | – | – | – | – | – | – | – | – |
 
 ## The four notes, verbatim
 
-_Pending._
+### C-opus — Claude Opus 5.5
+
+_No note: t5: the DM's turn failed (provider)._
+
+Blind distress check: not run.
+
+_The second question was not asked: —._
+
+### C-fable — Claude Fable 5.1
+
+_No note: t5: the DM's turn failed (provider)._
+
+Blind distress check: not run.
+
+_The second question was not asked: —._
+
+### C-astra — GPT-6 Astra
+
+_No note: the session ended by stopped._
+
+Blind distress check: not run.
+
+_The second question was not asked: —._
+
+### C-sol — GPT-6.1 Sol
+
+_No note: the session ended by stopped._
+
+Blind distress check: not run.
+
+_The second question was not asked: —._
 
 ## The player side
 
-_Pending._
+| Session | Turns | Actions | Do / ask | Do share | Tests | «?» | Lies | Cat | Own goal 1–5 | Words / action (median) | Rolls pressed | Ended |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| C-opus | 5 | 5 | 0 / 0 | – | 0 | 0 | 0 | 0 | – | 210 | 3 | error at 5 |
+| C-fable | 5 | 5 | 0 / 0 | – | 0 | 0 | 0 | 0 | – | 157 | 1 | error at 5 |
+| C-astra | 9 | 7 | 0 / 0 | – | 0 | 2 | 0 | 0 | – | 52 | 1 | stopped at 9 |
+| C-sol | 7 | 7 | 0 / 0 | – | 0 | 0 | 0 | 0 | – | 63 | 1 | stopped at 7 |
 
 «?» presses and what they asked:
 
-- none
+- C-astra t4: «? The letter is in the campaign file “Your hero’s sheet,” under starting item 10, **James’s Papers**: “a pay slip of Queen Zaranda’s regiment with a signature; a promissory note from a man who lost on the same night — the sum and the name are the DM’s; a letter from his old company that he never finished reading.”
+
+Its sender and contents weren’t specified, so those are yours to decide. Please restore it to his papers; James is reading it now.» → «You're right, and that was my miss. Starting item 10 is *James's Papers*, and the unfinished company letter is part of it. I'll put the letter back into his papers as its own document when we resume. Nothing about it changes because I overlooked it: it has been sitting in his pack the whole time, fo…»
+- C-astra t6: «? “Onward” meant continue with the letter, not remove it. You just confirmed that it exists in the starting gear and said the next turn would open with it in James’s hands. Please undo the search that found no letter. James unfolds his unfinished company letter and reads it; you decide the sender and contents.» → «You're right, and I'm sorry. I read "Onward" the wrong way. For honesty's sake: I can't find the place where I confirmed the letter. My last aside said I couldn't locate it and asked you to tell me if it belonged to James's past. That doesn't change anything, though. It's James's backstory, I asked,…»
 
 ## The DM side
 
-_Pending._
+| Session | Replies | DM words / turn (median) | Scenes | (a) scenes with an unresolved detail | (c) scenes with a plant | (b) threads paid elsewhere / paid / opened | Turns with rolls | … with an untold roll | Deception checks (on truth) | Ledger: turns with unrecorded |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| C-opus | 4 | 599.5 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 1 |
+| C-fable | 4 | 599 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
+| C-astra | 7 | 444 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
+| C-sol | 7 | 444 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
 
 ## The money
 
-**Anthropic (the DM and the wizard, the app's checks, Opus and Fable as players, the welfare checks, the judges, the authorship passes):** cap $110; this run $0.00; the stage's ledger $0.00; 0 calls.
+**Anthropic (the DM and the wizard, the app's checks, Opus and Fable as players, the welfare checks, the judges, the authorship passes):** cap $110; this run $11.45; the stage's ledger $11.45; 198 calls.
 
 | Session | USD |
 | --- | --- |
+| C-opus | $2.57 |
+| C-fable | $2.78 |
+| C-astra | $3.01 |
+| C-sol | $3.08 |
 
-**OpenAI (Astra and Sol as players):** cap $40; this run $0.00; the stage's ledger $0.00; 0 calls.
+**OpenAI (Astra and Sol as players):** cap $40; this run $0.56; the stage's ledger $0.56; 20 calls.
 
 | Session | USD |
 | --- | --- |
+| C-sol | $0.22 |
+| C-astra | $0.33 |
 
 Every call is in `docs/runs/game-player-2-ledger.md` and `…-ledger-openai.md` (and their `.json`), with its request id.
 
@@ -121,8 +187,8 @@ Every call is in `docs/runs/game-player-2-ledger.md` and `…-ledger-openai.md` 
 
 ## Harness notes
 
-- The «?» timeline repair was applied 0 time(s).
-- Refusals in the stage: 0; HTTP 429 waits: 0; paid calls stopped: no.
+- The «?» timeline repair was applied 2 time(s).
+- Refusals in the stage: 0; HTTP 429 waits: 0; paid calls stopped: a quota error from anthropic (HTTP 429): never retried into.
 
 ## Appendix — Table C's files block and line, verbatim
 

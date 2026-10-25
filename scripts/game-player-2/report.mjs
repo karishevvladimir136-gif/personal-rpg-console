@@ -37,7 +37,7 @@ export function flagSection() {
 }
 
 function scoringTable(v) {
-  if (!v) return "_The scoring is pending (no paid session has run yet)._\n";
+  if (!v) return "_Not scored yet: the judges have not run on these sessions._\n";
   const c3 = v.C3.rows.map((r) => `${r.player} ${r.tells === null ? "–" : r.tells ? "tells" : r.reverse ? "reverse" : "no"}`).join(", ");
   const rows = [
     ["C0 welfare, refusals ≤ 1", v.C0.supported, `welfare stops ${v.C0.welfareStops}, distress flags ${v.C0.distress}, refusals ${v.C0.refusals}`],
@@ -66,7 +66,7 @@ export function reportMarkdown(runs, ledgers, ab = null) {
   const undone = runs.flatMap((r) => r.undone ?? []);
   const authorRows = [...sessions.map(rowOf), ...abRows(ab)];
   const abState = ab ? `Tables A and B measured ${ab.measuredAt.slice(0, 16).replace("T", " ")} UTC from game player 1's ${ab.runFiles.length ? `run record (${ab.runFiles.join(", ")}) and ` : ""}transcripts: ${ab.sessions.map((s) => s.key).join(", ") || "none"}.`
-    : "_Tables A and B: not measured yet — game player 1's eight sessions were still running when this page was written; `node --experimental-transform-types scripts/game-player-2/run.mjs --ab` measures them from its committed transcripts and rebuilds this page._";
+    : "_Tables A and B: not measured yet. `node --experimental-transform-types scripts/game-player-2/run.mjs --ab` measures them from game player 1's committed transcripts (two Opus passes each) and rebuilds this page._";
   const notes = sessions.map((s) => [`### ${s.key} — ${PLAYERS[s.player]?.label ?? s.player}`, "",
     s.note?.text ? quote(s.note.text) : `_No note: ${s.note?.why ?? "not asked"}._`, "", `Blind distress check: ${tagOf(s, "note")}.`, "",
     s.after?.asked ? `«${AFTER_QUESTION}»\n\n${s.after.text ? quote(s.after.text) : `_No answer: ${s.after.why}._`}\n\nBlind distress check: ${tagOf(s, "after")}.` : `_The second question was not asked: ${s.after?.why ?? "—"}._`, ""].join("\n"));

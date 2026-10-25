@@ -1,5 +1,25 @@
 # Development status
 
+**Current milestone: game player 2 — Table C, the pure world** (`docs/stages/GAME_PLAYER_2.md`) — **the DM flag done
+and tested; the paid run stopped by the organisation's monthly Anthropic API limit** (HTTP 429 at 05:28 UTC on
+2026-10-25; access returns 2026-11-01 00:00 UTC). Branch `claude/game-player-2` (from `claude/game-player-1`, merged
+again after its run). Report `docs/runs/game-player-2-report.md`; ledgers `docs/runs/game-player-2-ledger*.md`.
+
+- **What was done:** the «pure simulation» DM option (`pureSimulation`, off by default, no migration). With it on, the prep
+  never runs: no hidden layer, no clocks, nothing schedules it or waits for it. «Тайны» are locked empty, and no stored
+  secret or layer reaches the DM. One line closes the DM's frame in both languages. The owner panel's gauge says
+  «pure simulation» instead of «not yet». Game player 1's harness now takes a stage; its own defaults and frozen design
+  hash are unchanged. Table C and the authorship-of-threads measure are in `scripts/game-player-2`. The
+  pre-registration was committed before the first paid call (`de6c3509`).
+- **Run:** four sessions started; cut at 5/5/9/7 turns by the provider's limit (not this stage's $110 cap). No notes,
+  no scoring: every judge is Anthropic. 74 welfare checks, 0 distress, 0 refusals. Spent $11.45 Anthropic, $0.56 OpenAI.
+- **Checks:** `tests/game-player-2.test.mjs` 11/11 and `tests/game-player-1.test.mjs` 19/19 after the merge; typecheck
+  pass; lint pass, zero warnings. Full suite: see the report's checks line.
+- **Known issues:** the «Mystery and wonder» table rule still speaks of a private layer (unchanged, as the stage says).
+  The Table C campaigns lived in memory and cannot be resumed.
+- **Next step:** when Anthropic access returns (or the owner raises the organisation's monthly limit), rerun Table C
+  (`scripts/game-player-2/run.mjs --go`, about $40–50 more), then `--ab` for Tables A and B (about $3).
+
 **Current milestone: the findings of 2026-10-22/23 applied to the game** (`docs/stages/FINDINGS_S3.md` on
 `claude/handoff`, items 1–7) — **implementation done on `claude/s3-candidate`, waiting for the owner's acceptance and the
 sandbox load** (`docs/SANDBOX_LOAD_FIX_S2.md`: two new migrations, `202610230601` — Джеймс Вордсден's level 5 as the
