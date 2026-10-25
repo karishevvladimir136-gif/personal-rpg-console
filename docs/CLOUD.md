@@ -25,9 +25,10 @@ itself bill that key instead of the owner's subscription. The session writes the
 
 ```
 APP_ANTHROPIC_API_KEY=…
-APP_ANTHROPIC_PROVIDER=anthropic   # or bedrock (BEDROCK_PROVIDER_1)
+APP_ANTHROPIC_PROVIDER=anthropic   # or bedrock | openrouter (ANTHROPIC_PROVIDERS_1)
 APP_BEDROCK_API_KEY=…              # Bedrock API key; used only when the provider is bedrock
 APP_AWS_REGION=us-west-1           # the owner's Bedrock region
+APP_OPENROUTER_API_KEY=…           # OpenRouter key; used only when the provider is openrouter
 APP_OPENAI_API_KEY=…
 APP_FAL_KEY=…
 PLAYWRIGHT_MODULE=/opt/node24/lib/node_modules/playwright
@@ -61,8 +62,8 @@ exit 0
 1. `git fetch origin <branch> claude/handoff` and check out the branch named in the task.
 2. `export PATH=/opt/node24/bin:$PATH`; `node -v` must start with `v24`. If `/opt/node24` is missing, stop and say so.
 3. Write `.env.local` (git-ignored) without printing any value: `ANTHROPIC_API_KEY` from `$APP_ANTHROPIC_API_KEY`,
-   `OPENAI_API_KEY` from `$APP_OPENAI_API_KEY`, `FAL_KEY` from `$APP_FAL_KEY`, and — once BEDROCK_PROVIDER_1 has
-   landed — `ANTHROPIC_PROVIDER` from `$APP_ANTHROPIC_PROVIDER` and `BEDROCK_API_KEY` from `$APP_BEDROCK_API_KEY`, `AWS_REGION` from `$APP_AWS_REGION`.
+   `OPENAI_API_KEY` from `$APP_OPENAI_API_KEY`, `FAL_KEY` from `$APP_FAL_KEY`, and — once ANTHROPIC_PROVIDERS_1 has
+   landed — `ANTHROPIC_PROVIDER` from `$APP_ANTHROPIC_PROVIDER` and `BEDROCK_API_KEY` from `$APP_BEDROCK_API_KEY`, `AWS_REGION` from `$APP_AWS_REGION`, `OPENROUTER_API_KEY` from `$APP_OPENROUTER_API_KEY`.
    **Spend check before any paid run:** the Console organisation has a monthly cap by tier (Start: $500; reached
    2026-10-25); a run that would start within $50 of it, or any HTTP 429 whose body names `enforced_spend_limit_reached`,
    stops and reports instead of starting; with `ANTHROPIC_PROVIDER=bedrock` the cap does not apply but AWS quotas do. Never put `ANTHROPIC_API_KEY` into

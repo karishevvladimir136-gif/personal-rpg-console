@@ -13,8 +13,8 @@ Cloud session (`docs/CLOUD.md`, environment `rpg-console`, **Opus 5.5, ultracode
 **`claude/game-player-1a`** from `origin/claude/game-player-1` (the harness, its tests, its dry run; do not write a
 second harness). Nothing to `main`. **Caps: $70 OpenAI** (the DM, two of the players, the stand-in checks) and **$0
 Anthropic** — the Console is capped; every Anthropic call is hard-blocked in this stage, including Opus and Fable as
-players, which run **through Bedrock if `BEDROCK_PROVIDER_1` has landed on `origin/claude/bedrock-provider-1`** (then
-merge it in and allow **$40** on the Bedrock ledger), and otherwise are **not run** (two players, Astra and Sol, and the
+players, which run **through OpenRouter if `ANTHROPIC_PROVIDERS_1` has landed on `origin/claude/anthropic-providers-1`** (then
+merge it in and allow **$40** on the OpenRouter ledger), and otherwise are **not run** (two players, Astra and Sol, and the
 stage says so). Report `docs/runs/game-player-1a-report.md`; transcripts `docs/runs/game-player-1a-transcripts/`.
 
 ## What changes, and nothing else
