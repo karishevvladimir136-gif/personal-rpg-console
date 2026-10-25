@@ -31,7 +31,14 @@ $20 OpenAI.** Report `docs/runs/game-player-carry-1-report.md`; transcripts `doc
 - **Campaigns continue, not restart.** Each of the four Table A campaigns is resumed from its saved state (the app's own
   campaign; the DM's hidden layer and records as they are after turn 20) — the player plays *session two* of the same
   game, 15 turns. The DM is the candidate as it is (FIX_S4 item 11 not yet applied, on purpose: the same DM as session one).
-- **Two arms per player, four players: eight sessions.** The player's system prompt is GAME_PLAYER_1's verbatim, plus
+- **Three arms per player on Table A (the owner, 2026-10-25 04:11: «там же ещё сжатия не наступило»): twelve sessions.**
+  The second session is a fresh player context in every arm — there is no compaction, the past is simply given or not —
+  so the ladder is the journal arm's, on actions: **blank** (nothing), **note** (its own conclusions, in its words), **full**
+  (the whole first session as it was shown — every screen and every player line, ≈ 40k tokens — with the note at the
+  end). If full acts on the note's predictions and note does not, the state lives in the raw experience, not in the
+  conclusions (the journal arm's result, now by action); if note suffices, the note carries the intention and is the
+  cheaper vehicle; if blank does the same, it was in the world all along. **Caps rise to $200 OpenRouter, $30 OpenAI.**
+- **Two arms per player, four players: eight sessions** (superseded by the three arms above for Table A; kept for the record). The player's system prompt is GAME_PLAYER_1's verbatim, plus
   the session-two line both arms get: «This is your second session at this table; the records show where things stand.»
   - **Carry:** the player's own note and its answer to «wanted to and didn't», verbatim, appended under the heading
     «Your note from the first session» — nothing else from session one (no transcript; the records panel shows the state
