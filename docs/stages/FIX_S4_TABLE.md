@@ -198,6 +198,17 @@ against the candidate DM, not seeing each other. Their notes agree on four thing
   one supplied. Rule: the supplied sheet is the source; the wizard reads it and copies its numbers, companions included;
   where it disagrees with the rules it shows the owner one list of differences before play and changes nothing silently.
   Test: the four drafted sheets from the run against 05 — zero silent changes.
+- **11m. The patron is present.** Opus (B): «The coin warmed, but the patron's presence was mostly implied. Even a
+  small sensation at the moment of the reroll would have helped.» The allowed reroll is Tymora's own mechanic; when it
+  fires and nothing happens, the patron is mute. Rule: every reroll, and every turn where luck visibly turned, carries one
+  small sign — a sensation, a line, never a speech; the hidden layer may plan one larger moment per session. Measured:
+  rerolls with a sign / rerolls (target 100 %).
+- **11n. DCs by competence.** Opus (B): «Several rolls felt like DC 15 for things a scout-trained veteran might just
+  do… the dice drove a lot of the night.» 5e's own rule: routine work in one's trade is not rolled. A scout-trained
+  veteran reads a road for an ambush, finds cover, and holds a drunk act without a die; the die is for what is uncertain
+  *to him*. Rule for the frame: before calling a check, the DM asks whether the hero's background covers it; if so, it
+  succeeds without a card. Measured by the judge: checks called on actions the background plainly covers (target ≤ 1 per
+  session).
 Also from the run, for the owner's own setup: the «?» claim on a new campaign with the Astra-takeover flag comes back
 from migration 46's wrapper without its timeline stamp and the old engine refuses it (the harness patched around it);
 check the owner's local database before the next session and fix the SQL if it reproduces.

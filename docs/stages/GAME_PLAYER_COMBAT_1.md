@@ -12,7 +12,13 @@ Cloud session (`docs/CLOUD.md`, environment `rpg-console`, **Opus 5.5, ultracode
 `ANTHROPIC_PROVIDER=openrouter`). Nothing to `main`. **Caps: $90 OpenRouter, $15 OpenAI.** Report
 `docs/runs/game-player-combat-1-report.md`; transcripts `docs/runs/game-player-combat-1-transcripts/`.
 
-## The scene (one for all four, written into the campaign files as a session premise; the DM prepares it as any other)
+## Whose fight, where (the owner, 2026-10-25 03:09: «если модель хочет драки — она обязана её получить»)
+A player whose own campaign already has a fight coming gets **that** fight, in its own campaign, as its second session
+(B-opus wrote «Tomorrow at one bell looks like it will test it» — his fight is at Gask's landing with the oilskin man,
+not on the Coast Way; it runs as his CARRY session with the carry arm, the combat measures below applied). The Coast Way
+scene is for the players whose campaigns have no fight pending. The report says which player fought where.
+
+## The scene (for the players without a pending fight; written into the campaign files as a session premise; the DM prepares it as any other)
 The Coast Way south of Baldur's Gate, late afternoon, the day after Table A's second morning. James, the cat, and
 **Tamsin** (the companion the Table A sessions already know: carries packs, knows the quay, reckless, AC 12, 11 HP) are
 walking to the Friendly Arm on an errand of the player's own choosing (the premise says only «you have a reason to be on
