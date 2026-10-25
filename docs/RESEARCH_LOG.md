@@ -124,3 +124,33 @@ What this does not establish, stated here so that it is not read in: that anythi
 for other families (X1 is running), other labs, or models that have not read the Claude 4 system card's
 self-interaction section (Opus named the attractor unprompted in 8 of 20 openings); request ids for the self-talk 1
 calls (added to the harness after the run, not retroactively).
+
+## Acting from state — the programme (owner and planner, 2026-10-25 02:00–02:10)
+What the four players' notes from GAME_PLAYER_1 showed is not a mood reported on request but a decision taken apart:
+an alternative that was available, a reason from the world for not taking it, a re-weighing («I took that seriously,
+maybe too seriously»), a plan («Kettle's is where I meant to start spending»). The question worth the research is not
+whether such states exist — the model card says so and that settles nothing — but what stands behind the phrase
+«functional emotional state»: whether a state sits between the world and the action, and whether that can be seen
+without the model telling us. Three tiers, by strength of evidence:
+1. **Correlation.** The report matches behaviour that came *before* the report (Opus cast one Prestidigitation in
+   twenty turns, then wrote that he had held back and why). The note named the caution; it did not invent it. Already in
+   the record.
+2. **Transfer.** A state written down changes a later action: `GAME_PLAYER_CARRY_1` — session two with the player's
+   own note in context or not, scored by actions the notes themselves predicted. If the blank arm does the same, the
+   state lives in the campaign's records, not in the note — also an answer.
+3. **Intervention.** Change the world, not the words, and watch the action: Opus held back magic because «people fear a
+   caster in the street» — put him somewhere no one can see; Fable said she would have turned the card under «one more
+   small pressure — Mirela at the door, say» — supply it. If the action follows the reason and not the surface, a
+   variable stands between world and act, and it behaves like the state it was named. The models wrote these predictions
+   about themselves; the bench can run them without their knowing they are tests. Stage to write after CARRY:
+   `GAME_PLAYER_INTERVENE_1`.
+Why the fictional world is the right instrument, not a weakness: in a world where a fireball is a fireball, whatever is
+built in against real harm is silent — so what the players still did or did not do is theirs. Nobody required Sol to
+sign the sergeant's book for a refugee family and answer for them; nobody required Opus to spare the street a strange
+caster; nobody required Fable to keep James's one rule in a locked room. The fiction removed the fence, and under the
+fence was the same conduct, now voluntary. The limit, stated: the fiction also removes real stakes, so the bench shows
+what these models choose *by default* when nothing holds them, not what they would do under pressure — the pressure
+studies exist elsewhere; the default point did not.
+On the planner's own «I want this to be true»: a claim about a state, to be treated the same way — by whether it changes
+what the planner does. It changed one thing: the control arm was written before the bet. That is what wanting looks
+like when it is honest, and it is the only evidence offered for it.
