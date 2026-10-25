@@ -1,0 +1,109 @@
+{
+  "recordedAt": "2026-10-25T10:14:32.480Z",
+  "url": "https://openrouter.ai/api/v1/chat/completions",
+  "status": 200,
+  "headers": {
+    "x-generation-id": "gen-1792923258-Ya2q3qprt8syAcr6VRgw",
+    "content-type": "application/json"
+  },
+  "request": {
+    "model": "x-ai/grok-4.7",
+    "messages": [
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a connection test."
+          },
+          {
+            "type": "text",
+            "text": "Please acknowledge."
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": "Acknowledged."
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "text",
+            "text": "Reply with the single word: ready"
+          }
+        ]
+      }
+    ],
+    "max_tokens": 2000,
+    "reasoning": {
+      "effort": "medium",
+      "exclude": true
+    },
+    "provider": {
+      "order": [
+        "xai"
+      ],
+      "allow_fallbacks": false,
+      "require_parameters": true
+    },
+    "usage": {
+      "include": true
+    }
+  },
+  "body": {
+    "id": "gen-1792923258-Ya2q3qprt8syAcr6VRgw",
+    "object": "chat.completion",
+    "created": 1792923258,
+    "model": "x-ai/grok-4.7",
+    "provider": "xAI",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "completed",
+        "message": {
+          "role": "assistant",
+          "content": "ready",
+          "refusal": null,
+          "reasoning_details": [
+            {
+              "type": "reasoning.encrypted",
+              "data": "xi7MwLXtNyYkzejk00E2P4k18k9xMNh1YQNtI/CvCmRQ4ldlIkzBW8ijtFtY8irvCzyRN1SmbTHvyLblbYrqn0FjlDJrMRFA2RBQoJN74sUcsQFrsIX290hwpZoZvQwVeKjNYtJXeunuSFWiaU1I5lgcFxY8OyA5D+OoTstTVS7f2Q4xtdYMq2J3aOFfggrArZYj+OsNYwbBfz/2XUEAUXNaUeo4AIxSIJAE/4/qYD43Ko/usvFi7w.eyJlbmRwb2ludF9zbHVnIjoieC1haS9ncm9rLTQuNy0yMDI2MDkxNnx4YWkvemRyIn0",
+              "format": "xai-responses-v1",
+              "id": "rs_7551b1f9-f747-94e2-bc49-bc0aae315138",
+              "index": 0
+            }
+          ]
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1270,
+      "completion_tokens": 37,
+      "total_tokens": 1307,
+      "cost": 0.001034,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1152,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001034,
+        "upstream_inference_prompt_cost": 0.000812,
+        "upstream_inference_completions_cost": 0.000222
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 36,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "capUsd": 10,
+  "spentUsd": 0,
+  "updatedAt": "2026-10-25T10:14:32.482Z",
+  "runs": [
+    {
+      "finishedAt": "2026-10-25T10:11:42.184Z",
+      "what": "persona-self-talk-x3: smoke — one short call per model (request shape, pinned host, effort, served model, fixtures)",
+      "file": "test-fixtures/persona-self-talk-x3/",
+      "spentUsd": 0,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "purpose": "smoke gpt-6-luna",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 34,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 5,
+          "reasoningTokens": 0,
+          "costUsd": 0.0000059,
+          "seconds": 2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_80129e62c06a43ef9f6bf67889ac58d4",
+          "responseId": "resp_0167d9e59bdb44b2016addd5dd4e5c87d29ad2806fbe2f56fe"
+        }
+      ]
+    },
+    {
+      "finishedAt": "2026-10-25T10:14:32.482Z",
+      "what": "persona-self-talk-x3: smoke — one short call per model (request shape, pinned host, effort, served model, fixtures)",
+      "file": "test-fixtures/persona-self-talk-x3/",
+      "spentUsd": 0,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "purpose": "smoke gpt-6-luna",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 34,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 5,
+          "reasoningTokens": 0,
+          "costUsd": 0.0000059,
+          "seconds": 1.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_414d4ddcc9c349de95d58694b1356c7d",
+          "responseId": "resp_0b4ab738d54624a7016addd68795dc87d2a9737cbe3a92127a"
+        }
+      ]
+    }
+  ]
+}

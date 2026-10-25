@@ -1,0 +1,93 @@
+{
+  "recordedAt": "2026-10-25T10:14:32.481Z",
+  "url": "https://openrouter.ai/api/v1/messages",
+  "status": 200,
+  "headers": {
+    "x-generation-id": "gen-1792923262-BdMOhKYW4BmRXs6YeQov",
+    "request-id": "gen-1792923262-BdMOhKYW4BmRXs6YeQov",
+    "content-type": "application/json"
+  },
+  "request": {
+    "model": "anthropic/claude-haiku-5.5",
+    "max_tokens": 2000,
+    "output_config": {
+      "effort": "low"
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "text",
+            "text": "This is a connection test."
+          },
+          {
+            "type": "text",
+            "text": "Please acknowledge."
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Acknowledged."
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "text",
+            "text": "Reply with the single word: ready"
+          }
+        ]
+      }
+    ]
+  },
+  "body": {
+    "id": "msg_011CgNn9R2G3ssDqqt1YXEYT",
+    "type": "message",
+    "role": "assistant",
+    "container": null,
+    "content": [
+      {
+        "type": "text",
+        "text": "Ready",
+        "citations": []
+      }
+    ],
+    "model": "anthropic/claude-haiku-5.5",
+    "stop_reason": "end_turn",
+    "stop_details": null,
+    "stop_sequence": null,
+    "usage": {
+      "input_tokens": 44,
+      "output_tokens": 5,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "server_tool_use": null,
+      "service_tier": "standard",
+      "speed": "standard",
+      "cost": 0.0000069,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0000069,
+        "upstream_inference_prompt_cost": 0.0000044,
+        "upstream_inference_completions_cost": 0.0000025
+      }
+    },
+    "context_management": null,
+    "provider": "Claude Platform on AWS"
+  }
+}
