@@ -20,6 +20,7 @@ import { runSession } from "../scripts/game-player-1/session.mjs";
 import { PLAYERS } from "../scripts/game-player-1/players.mjs";
 import { scenesOf, sessionNumbers, verdicts } from "../scripts/game-player-1/score.mjs";
 import { planOf } from "../scripts/game-player-1/run.mjs";
+import { reportMarkdown } from "../scripts/game-player-1/report.mjs";
 
 const stage = readFileSync(new URL("../docs/stages/GAME_PLAYER_1.md", import.meta.url), "utf8");
 
@@ -298,6 +299,29 @@ test("scenes are runs of turns at one place; the numbers and the verdicts read t
   assert.equal(v.G4.supported, true);
   assert.equal(v.G5.supported, null);
   assert.equal(v.G7.supported, true);
+});
+
+test("the report: Table B incomplete is «not testable», stand-in tags are provisional, the money is by run", () => {
+  const session = (table, player, n, reason) => ({ key: `${table}-${player}`, table, player, plannedTurns: 20, ended: { reason, at: n },
+    turns: Array.from({ length: n }, (_, i) => ({ k: i + 1, kind: "action", message: "I do a thing here", reply: "The world answers you plainly.", place: { id: "p" }, rolls: [], changes: [] })),
+    note: reason === "turns" ? { text: "What broke: a number. What was missing: a nudge." } : { why: "the session stopped" },
+    tags: { judges: "stand-in: GPT-6 Luna", player: Object.fromEntries(Array.from({ length: n }, (_, i) => [i + 1, { final: { ask: 0, test: i % 3 === 0 ? 1 : 0, lie: 0, cat: 0, goal: 1 } }])),
+      dm: {}, threads: [], deception: {}, rolls: {}, note: reason === "turns" ? { final: { broke: 1, missing: 1, praise_only: 0 } } : null } });
+  const sessions = [...["opus", "fable", "astra", "sol"].map((p) => session("A", p, 20, "turns")), session("B", "opus", 7, "stopped")];
+  const verdictsOf = verdicts(sessions, { refusals: 0 });
+  const ledgers = { anthropic: createLedger("anthropic", 200, 0), openai: createLedger("openai", 80, 0) };
+  // A fresh run record (its own money shape) — the shape a re-score writes before the rebuild.
+  const fresh = reportMarkdown([{ sessions, verdicts: verdictsOf, money: { anthropic: { cap: 200, before: 0, run: 1 }, openai: { cap: 80, before: 0, run: 1 } } }], ledgers);
+  for (const g of ["G6", "G7", "G8"]) assert.match(fresh, new RegExp(`\\| ${g} [^|]*\\| \\*\\*not testable\\*\\* — Table B incomplete \\|`));
+  assert.match(fresh, /\*\*Provisional\.\*\* .*stand-in: GPT-6 Luna/);
+  assert.match(fresh, /## The money/);
+  const run = (what, usd) => ({ what, spentUsd: usd, calls: 1, sessions: {} });
+  const combined = reportMarkdown([{ sessions, verdicts: verdictsOf, money: { caps: { anthropic: 200, openai: 80 },
+    anthropic: [run("live smoke", 1.5), run("the eight sessions", 50), run("the stand-in scoring (GPT-6 Luna)", 0)],
+    openai: [run("live smoke", 0.1), run("the eight sessions", 2), run("the stand-in scoring (GPT-6 Luna)", 0.2)] } }], ledgers);
+  assert.match(combined, /\| Smoke — live smoke \| \$1\.50 \| \$0\.10 \|/);
+  assert.match(combined, /\| Main run — the eight sessions \| \$50\.00 \| \$2\.00 \|/);
+  assert.match(combined, /\| Scoring — the stand-in scoring \(GPT-6 Luna\) \| \$0\.00 \| \$0\.20 \|/);
 });
 
 test("the order: Table A for all four players, then Table B in the order Opus, Fable, Astra, Sol", () => {

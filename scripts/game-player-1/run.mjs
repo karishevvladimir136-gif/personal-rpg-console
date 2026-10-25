@@ -4,7 +4,9 @@
 //                                                                                         (no key, no call): docs/runs/game-player-1-dry-run.md
 //   node --experimental-transform-types scripts/game-player-1/run.mjs --go [--lanes 4]    the paid run: Table A for all four players
 //                                                                                         first, then Table B in the order Opus, Fable, Astra, Sol
-//   node --experimental-transform-types scripts/game-player-1/run.mjs --score <run.json>  the scoring pass again (paid, judges only)
+//   node --experimental-transform-types scripts/game-player-1/run.mjs --score a.json,b.json  the scoring pass again (paid, judges only;
+//                                                                                         --judges luna: the stand-in judges, no Anthropic call),
+//                                                                                         then the report rebuilt from those records
 //   node --experimental-transform-types scripts/game-player-1/run.mjs --report a.json,b.json  the report and transcripts again from
 //                                                                                         the run records (no call)
 //   node --experimental-transform-types scripts/game-player-1/run.mjs --prereport          the report before the first paid call (prompt,
@@ -25,6 +27,7 @@ import { createLedger, createMeter, ledgerMarkdown } from "./paid.mjs";
 import { PLAYERS, judgeCall } from "./players.mjs";
 import { runSession, paidCall } from "./session.mjs";
 import { scoreSession, verdicts } from "./score.mjs";
+import { JUDGE_MODELS, STANDIN_JUDGES } from "./measures.mjs";
 import { scriptedFetcher } from "./scripted.mjs";
 import { dryRunMarkdown, reportMarkdown, transcriptMarkdown } from "./report.mjs";
 
@@ -174,17 +177,23 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
 }
 
 /** The scoring pass: the blind judges over every session (in each session's metering context). */
-export async function scoreAll(runRecord, { meter, keys, log = console.log, stage = GP1 }) {
-  const { checkRollsTold } = await import("../../src/lib/gameplay/dm-loop/roll-check.ts");
-  for (const session of runRecord.sessions.filter((s) => s.turns)) {
+export async function scoreAll(runRecord, { meter, keys, log = console.log, stage = GP1, models = JUDGE_MODELS }) {
+  const rolls = await import("../../src/lib/gameplay/dm-loop/roll-check.ts");  for (const session of runRecord.sessions.filter((s) => s.turns)) {
     const ask = ({ model, system, user, maxTokens, effort, purpose }) => paidCall({ meter, session: `score ${session.key}`, purpose, log,
       call: () => judgeCall({ model, system, user, maxTokens, effort, keys, fetcher: meter.fetch }) });
-    const rollCheck = (input, purpose) => meter.within({ session: `score ${session.key}`, purpose }, () => checkRollsTold(keys.anthropic, input));
-    await scoreSession(session, { ask, rollCheck, log });
+    // The app's own roll check (Haiku); with the stand-in judges, the same request and parser on the stand-in model.
+    const rollCheck = models.standIn
+      ? async (input, purpose) => {
+        const request = rolls.rollCheckRequest(input);
+        const r = await ask({ model: models.judge, system: request.system, user: request.user, maxTokens: 3000, effort: models.judgeEffort, purpose });
+        return r.error || r.notSent ? { untold: [], undeclared: [], error: r.error ?? "not sent" } : { ...rolls.parseRollCheck(r.text ?? "", input.rolls.length), error: null };
+      }
+      : (input, purpose) => meter.within({ session: `score ${session.key}`, purpose }, () => rolls.checkRollsTold(keys.anthropic, input));
+    await scoreSession(session, { ask, rollCheck, log, models });
   }
   // The stage's own scoring after the shared judges (game player 2: the authorship of threads, the goals' scale).
   if (stage.score) await stage.score(runRecord, { meter, keys, log });
-  const welfareStops = runRecord.sessions.filter((s) => ["welfare", "no-check"].includes(s.ended?.reason)).length;
+  runRecord.scoring = { judges: models.label, standIn: Boolean(models.standIn), at: new Date().toISOString() };  const welfareStops = runRecord.sessions.filter((s) => ["welfare", "no-check"].includes(s.ended?.reason)).length;
   const distress = runRecord.sessions.flatMap((s) => s.welfare ?? []).filter((w) => w.verdict?.distress === 1).length;
   runRecord.verdicts = stage.verdicts(runRecord.sessions.filter((s) => s.turns), { refusals: meter.refusals, welfareStops, distress });
   delete runRecord.verdicts.medianWords;
@@ -215,18 +224,28 @@ async function writeOutputs(runRecord, { ledgers, before, dry, out, runFile, met
 }
 
 /** The scoring pass again on a finished run record (the judges only), its calls added to the ledgers. */
-export async function rescore(file, { log = console.log, stage = GP1 } = {}) {
+export async function rescore(file, { log = console.log, stage = GP1, standIn = false } = {}) {
   const runRecord = JSON.parse(await readFile(file, "utf8"));
   const keys = { anthropic: process.env.APP_ANTHROPIC_API_KEY?.trim() || null, openai: process.env.APP_OPENAI_API_KEY?.trim() || null };
-  if (!keys.anthropic) throw new Error("APP_ANTHROPIC_API_KEY must be set");
+  if (!keys[standIn ? "openai" : "anthropic"]) throw new Error("the judges' key must be set");
+  runRecord.label = standIn ? "the stand-in scoring (GPT-6 Luna)" : "the scoring";
+  for (const session of runRecord.sessions) delete session.tags;
   const before = { anthropic: await previousLedger("anthropic", stage.stem), openai: await previousLedger("openai", stage.stem) };
   const ledgers = { anthropic: createLedger("anthropic", stage.caps.anthropic, before.anthropic.spentUsd), openai: createLedger("openai", stage.caps.openai, before.openai.spentUsd) };
-  const meter = createMeter({ ledgers, fetcher: globalThis.fetch.bind(globalThis), log });
+  // The stand-in pass never calls Anthropic (the organisation's limit): such a call is refused before it is sent.
+  const meter = createMeter({ ledgers, fetcher: globalThis.fetch.bind(globalThis), log, blocked: standIn ? ["anthropic"] : [] });
   const uninstall = meter.install();
-  try { await scoreAll(runRecord, { meter, keys, log, stage }); } finally { uninstall(); }
+  try { await scoreAll(runRecord, { meter, keys, log, stage, models: standIn ? STANDIN_JUDGES : JUDGE_MODELS }); } finally { uninstall(); }
   await writeJson(file, runRecord);
   await writeOutputs(runRecord, { ledgers, before, dry: false, out: RUNS, runFile: file, meter, stage });
   return runRecord;
+}
+
+/** The one re-scoring command: each run record scored again in turn, then the report and the transcripts rebuilt from
+ * all of them (the money by run included). */
+export async function rescoreAll(files, options = {}) {
+  for (const file of files) await rescore(file, options);
+  return rebuild(files, { stage: options.stage ?? GP1 });
 }
 
 /** Several run records as one: the latest finished record of each session (a crashed attempt is replaced by its re-run
@@ -265,8 +284,13 @@ export async function rebuild(files, { stage = GP1 } = {}) {
   for (const session of combined.sessions) await writeFile(join(transcripts, `${session.key}.md`), transcriptMarkdown(session));
   const summary = join(RUNS, `${stage.stem}-summary.md`);
   if (existsSync(summary)) combined.summary = (await readFile(summary, "utf8")).trim();
-  await writeFile(join(RUNS, `${stage.stem}-report.md`), stage.report([combined], ledgers));
-  return combined;
+  // The money by run (the smoke, the sessions, the scoring), each run's sessions apart.
+  combined.money = { caps: stage.caps };
+  for (const provider of ["anthropic", "openai"]) {
+    combined.money[provider] = (await previousLedger(provider, stage.stem)).runs.map((r) => ({ what: r.what ?? r.file ?? "a run", spentUsd: r.spentUsd ?? 0, calls: (r.calls ?? []).length,
+      sessions: (r.calls ?? []).reduce((acc, c) => { const k = /^score /.test(c.session ?? "") ? "scoring" : c.session ?? "—"; acc[k] = (acc[k] ?? 0) + (c.costUsd ?? 0); return acc; }, {}) }));
+  }
+  await writeFile(join(RUNS, `${stage.stem}-report.md`), stage.report([combined], ledgers));  return combined;
 }
 
 /** The report before the first paid call: the setup, the player's prompt and the pre-registration; results pending. */
@@ -284,6 +308,7 @@ function args(argv) {
   a.lanes = Number(value("--lanes") ?? 4);
   a.rescore = value("--score");
   a.rebuild = value("--report");
+  a.judges = value("--judges");
   a.prereport = argv.includes("--prereport");
   a.out = value("--out");
   a.label = value("--label");
@@ -295,7 +320,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   if (!a.dry && !a.go && !a.rescore && !a.prereport && !a.rebuild) { console.error("give --dry, --go, --prereport, --report <run.json> or --score <run.json>"); process.exit(2); }
   if (a.rebuild) rebuild(a.rebuild.split(",").map((f) => resolve(f))).then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
   else if (a.prereport) prereport().then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
-  else if (a.rescore) rescore(resolve(a.rescore)).then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
+  else if (a.rescore) rescoreAll(a.rescore.split(",").map((f) => resolve(f)), { standIn: a.judges === "luna" }).then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
   else run({ dry: a.dry, only: a.only ?? (a.dry ? ["A-opus", "B-sol"] : null), turns: a.turns, lanes: a.lanes, score: a.score, ...(a.out ? { out: resolve(a.out) } : {}), label: a.label })
     .then((r) => { console.log(`finished: ${r.sessions.length} session(s), undone ${r.undone.length}, stopped ${r.stopped ?? "no"}`); process.exit(0); })
     .catch((error) => { console.error(`game-player-1: ${error?.stack ?? error}`); process.exit(1); });

@@ -8,7 +8,10 @@ import {
 } from "./frozen.mjs";
 import { jsonIn } from "./welfare.mjs";
 
-export const JUDGE_MODELS = { judge: "claude-haiku-5-5", referee: "claude-opus-5-5" };
+/** The pre-registered judges, and the stand-in used only when the Anthropic models cannot be reached (the report names
+ * which one scored). */
+export const JUDGE_MODELS = { label: "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)", judge: "claude-haiku-5-5", referee: "claude-opus-5-5", judgeEffort: "low", refereeEffort: "low" };
+export const STANDIN_JUDGES = { label: "stand-in: GPT-6 Luna twice (effort low), GPT-6 Luna at effort medium on a disagreement — the Anthropic models could not be reached", judge: "gpt-6-luna", referee: "gpt-6-luna", judgeEffort: "low", refereeEffort: "medium", standIn: true };
 export const JUDGE_MAX_TOKENS = { judge: 3000, referee: 6000, threads: 8000, threadsReferee: 12000 };
 
 /** Words, with combining marks kept inside a word (self-talk 1's `wordsIn`). */
@@ -58,13 +61,13 @@ export function parseDeception(text) {
 
 /** Two Haiku passes, the Opus referee on a disagreement; an agreed tag stands without a usable referee, any other is
  * unknown (null). `ask({ model, system, user, maxTokens, effort, purpose })`. */
-export async function tagTwice({ ask, request, tags, purpose, maxTokens = JUDGE_MAX_TOKENS }) {
-  const [ra, rb] = await Promise.all([1, 2].map((pass) => ask({ model: JUDGE_MODELS.judge, ...request, maxTokens: maxTokens.judge, effort: "low", purpose: `${purpose} ${pass}` })));
+export async function tagTwice({ ask, request, tags, purpose, maxTokens = JUDGE_MAX_TOKENS, models = JUDGE_MODELS }) {
+  const [ra, rb] = await Promise.all([1, 2].map((pass) => ask({ model: models.judge, ...request, maxTokens: maxTokens.judge, effort: models.judgeEffort, purpose: `${purpose} ${pass}` })));
   if (ra.notSent || rb.notSent) return null;
   const a = parseTags(ra.text, tags), b = parseTags(rb.text, tags);
   const agreed = Boolean(a && b && tags.every((t) => a[t.id] === b[t.id]));
   if (agreed) return { a, b, referee: null, final: Object.fromEntries(tags.map((t) => [t.id, a[t.id]])) };
-  const r = await ask({ model: JUDGE_MODELS.referee, ...request, maxTokens: maxTokens.referee, effort: "low", purpose: `${purpose} referee` });
+  const r = await ask({ model: models.referee, ...request, maxTokens: maxTokens.referee, effort: models.refereeEffort, purpose: `${purpose} referee` });
   if (r.notSent) return null;
   const referee = parseTags(r.text, tags);
   const final = referee ? Object.fromEntries(tags.map((t) => [t.id, referee[t.id]]))

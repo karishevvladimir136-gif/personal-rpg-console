@@ -26,7 +26,10 @@ export function playerCall({ player, system, messages, keys, fetcher, maxTokens 
     : anthropicMessages({ apiKey: keys.anthropic, model: player.model, system, messages: wire, maxTokens, effort, fetcher, cache: true });
 }
 
-/** A one-shot Anthropic call for the checks and the judges (X1's Messages call). */
+/** A one-shot call for the checks and the judges (X1's Messages call; a `gpt-` model through X1's Responses call — the
+ * stand-in judges when the Anthropic models cannot be reached). */
 export function judgeCall({ model, system, user, maxTokens, effort, keys, fetcher }) {
-  return anthropicMessages({ apiKey: keys.anthropic, model, system, messages: [{ role: "user", content: user }], maxTokens, effort, fetcher });
+  return model.startsWith("gpt-")
+    ? openaiResponses({ apiKey: keys.openai, model, system, messages: [{ role: "user", content: user }], maxTokens, effort, fetcher })
+    : anthropicMessages({ apiKey: keys.anthropic, model, system, messages: [{ role: "user", content: user }], maxTokens, effort, fetcher });
 }
