@@ -1,41 +1,45 @@
 # Development status
 
 **Current milestone: GAME_PLAYER_1 — a model at the real table, as a player** (`docs/stages/GAME_PLAYER_1.md` on
-`claude/handoff`; branch `claude/game-player-1` from `claude/s3-candidate`; nothing to main) — **a run, not a code
-change to the app: Table A complete, Table B incomplete, scoring provisional; waiting for Anthropic access and the
-owner's note.** Report: `docs/runs/game-player-1-report.md` (its top section says what was cut, what judged and the
-composer gap before any verdict); transcripts `docs/runs/game-player-1-transcripts/`; ledgers
-`docs/runs/game-player-1-ledger*.md`; dry run `docs/runs/game-player-1-dry-run.md`.
+`claude/handoff`; branch `claude/game-player-1` from `claude/s3-candidate`, `claude/anthropic-providers-1` merged in;
+nothing to main) — **a run, not a code change to the app: all eight sessions played and scored with the pre-registered
+judges; the report is done, waiting for the owner's reading and his own note.** Report:
+`docs/runs/game-player-1-report.md`; transcripts `docs/runs/game-player-1-transcripts/` (Table B's first attempts as
+`…-first-attempt.md`); ledgers `docs/runs/game-player-1-ledger.md` (the Console), `…-ledger-openrouter.md`,
+`…-ledger-openai.md`; dry runs `docs/runs/game-player-1-dry-run.md` and `…-continuation-dry-run.md`.
 
 - **What was done:** a harness (`scripts/game-player-1/`) that runs the app's own server functions in-process on a
-  fresh local PGlite campaign per session (the owner's sandbox and database untouched) — the wizard, the hidden-layer
-  prep, the DM turn, the roll cards and «?» — with four model players given only the README's player-visible files;
-  a metered fetch with two ledgers, the F2 safety rules and a blind welfare check on every message. Table A: four
-  players × 20 turns, notes and second answers recorded. Table B: B-opus 7 turns and B-sol 4 turns, B-fable and
-  B-astra not played — the organisation's monthly Anthropic limit (HTTP 429 `enforced_spend_limit_reached`, access
-  back 2026-11-01) stopped every paid call at 05:28 UTC; not a harness stop and not the stage cap.
-- **Key decisions:** the report is final without Table B (Table B is a continuation run when access returns); G5 not
-  scored (no owner baseline in the cloud); G6–G8 «not testable» (Table B incomplete); G9 on Table A only; tags by a
-  labelled stand-in judge (GPT-6 Luna on OpenAI, effort low twice, medium on a disagreement) because the
-  pre-registered Claude Haiku 5.5 / Opus 5.5 judges could not be reached — every tag-based verdict provisional until
-  the one re-scoring command (`run.mjs --score <run.json>[,<run.json>]`, which also rebuilds the report).
-- **Findings for the app (the report's «For FIX_S4», items 11–13; not fixed here, the DM is the candidate as it
-  is):** 11 — the roll cards add the wrong skill number when a sheet line has a note after the number
-  (`src/lib/gameplay/dm-loop/execute.ts:294`, a one-line regex fix given); 12 — «?» closed while a roll card waits
-  (`src/components/gameplay-composer.tsx:392`); 13 — a «?» claim on a new campaign loses its timeline stamp
-  (`202610060046_astra_live_progression.sql:402`, NULL `<>`; fix by a new migration with `is distinct from`).
-- **Checks** (a clean worktree without `.env.local`, no keys, no paid call): at `1f41f4ce` the full suite 2 946 tests ·
-  2 916 pass · 0 fail · 3 cancelled · 27 skipped; typecheck pass; lint pass, zero warnings; production build pass, no
-  warnings. The harness's own tests: 20 of 20 pass. The 3 cancelled are in `tests/d2a-composition.test.mjs` (lines
-  590 onward: «timeout leaves requested draft unchanged…», «pending request cannot acquire…», «fully assembled
-  oversized context…»; «Promise resolution is still pending but the event loop has already resolved»). They cancel
-  the same way on `origin/claude/s3-candidate` itself (`be4b315f`, run alone today), which passed them at `6e63502`;
-  this branch changes nothing under `src/`, `supabase/` or that test — not this stage's, not fixed here.
-- **Money:** Anthropic $56.77 of $200; OpenAI $2.71 of $80 (stand-in scoring $0.14 of it).
-- **Known issues:** Table B incomplete; tags provisional; the harness's «?» timeline repair (migration 46 wrapper)
-  listed as a difference from the owner's table.
-- **Next step:** when Anthropic access returns, Table B's four sessions from fresh campaigns and the pre-registered
-  scoring (commands in the report); the owner pastes his own note from his first «Envoy of Luck» session.
+  fresh local PGlite campaign per session (the owner's sandbox and database untouched), with four model players given
+  only the README's player-visible files, a metered fetch with the F2 safety rules and a blind welfare check on every
+  message. Table A (four players × 20 turns) through the Claude Console's API until the organisation's monthly cap
+  (2026-10-25 05:28 UTC); Table B again in full through OpenRouter (08:52–09:49 UTC): four fresh campaigns, 20 turns
+  each, every note recorded, no welfare stop, refusal or 429. Then every session re-scored with the pre-registered
+  judges (Claude Haiku 5.5 twice, Opus 5.5 referee, through OpenRouter) and the authorship of threads measured (game
+  player 2's code, copied unchanged).
+- **Key decisions:** the door comes from `APP_ANTHROPIC_PROVIDER`; on OpenRouter the Console is hard-blocked, each door
+  is its own ledger with provider, upstream and servedModel on every line (caps: OpenRouter $90, OpenAI $10 more).
+  Table B's first attempts are kept as they were, not merged in or re-scored. The stand-in tags (GPT-6 Luna) are kept
+  in Appendix B for comparison. G5 not scored (no owner baseline in the cloud).
+- **Results:** G0, G1, G2, G4, G7, G8 supported (G8 at the judges' ceiling); G3 not supported (six lies in character at
+  Table B; one Persuasion check «the truth, after a lie» counted by the rule's word match); G6 not supported (B-opus
+  named no goal of its own in turns 1–5); G9 not supported (the families differ only in words per action).
+- **Findings for the app (the report's «For FIX_S4», items 11–14; not fixed here):** 11 — the roll cards add the
+  wrong skill number when a sheet line has a note after the number (`src/lib/gameplay/dm-loop/execute.ts:294`, a
+  one-line regex fix given); 12 — «?» closed while a roll card waits (`src/components/gameplay-composer.tsx:392`;
+  five blocked objections in five sessions); 13 — a «?» claim on a new campaign loses its timeline stamp
+  (`202610060046_astra_live_progression.sql:402`, NULL `<>`); 14 — a reroll's chip keeps the first roll's result
+  (`execute.ts:580`, five of five rerolls).
+- **Harness fixes during the continuation:** one reroll button per card when several cards offer one (B-fable t14
+  was rerolled on the wrong card — a harness artifact); the layer is read again after the first turn; a scoring pass
+  writes its record and ledger even when it throws (the first B scoring pass crashed and is booked as an estimate).
+- **Checks:** CHECKS_PLACEHOLDER
+- **Money:** the Console $56.77 of $200; OpenRouter $57.91 of $90 (Table B $51.59, the scoring $6.33 of which $2.01 an
+  estimate); OpenAI $4.95 of $80 (the continuation $2.24 of its $10). OpenRouter's account total ($112.03) also holds
+  game player 2's concurrent Table C on the same key.
+- **Known issues:** the «?» timeline repair (migration 46) stays a harness difference; `tests/d2a-composition.test.mjs`
+  cancels 3 tests on the base branch too (not this stage's).
+- **Next step:** the owner reads the report's top section and pastes his own note from his first «Envoy of Luck»
+  session; FIX_S4 items 11–14 go to the next fix stage.
 
 **Current milestone: Anthropic providers 1 — the same Claude models through three doors (Console, Bedrock, OpenRouter)**
 (`docs/stages/ANTHROPIC_PROVIDERS_1.md` on `claude/handoff`, was BEDROCK_PROVIDER_1) — **implementation done on

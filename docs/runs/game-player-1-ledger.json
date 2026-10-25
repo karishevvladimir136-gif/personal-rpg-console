@@ -890,7 +890,7 @@
     {
       "finishedAt": "2026-10-25T05:28:45.005Z",
       "file": "game-player-1-run-20261025-044002.json",
-      "what": "the eight sessions",
+      "what": "the first run: Table A, and Table B's first attempts",
       "spentUsd": 55.13162870000003,
       "stopped": "a quota error from anthropic (HTTP 429): never retried into",
       "calls": [

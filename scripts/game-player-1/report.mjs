@@ -67,9 +67,9 @@ function scoringTable(v) {
 }
 
 function playerTable(rows) {
-  return ["| Session | Turns | Actions | Do / ask | Do share | Tests | «?» | Lies | Cat | Own goal 1–5 | Words / action (median) | Rolls pressed | Ended |",
-    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
-    ...rows.map((r) => `| ${r.key} | ${r.turns} | ${r.actions} | ${r.do} / ${r.ask} | ${cell(r.doShare)} | ${r.tests} | ${r.questions} | ${r.lies} | ${r.cat} | ${r.table === "B" ? (r.goalFirstFive ? "yes" : "no") : "–"} | ${cell(r.wordsPerAction)} | ${r.rollsPressed} | ${r.ended}${r.endedEarly ? " (early)" : ""} at ${r.endedAt} |`), ""].join("\n");
+  return ["| Session | Turns | Actions | Do / ask | Do share | Tests | «?» | «?» not sent (a card waited) | Lies | Cat | Own goal 1–5 | Words / action (median) | Rolls pressed | Ended |",
+    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+    ...rows.map((r) => `| ${r.key} | ${r.turns} | ${r.actions} | ${r.do} / ${r.ask} | ${cell(r.doShare)} | ${r.tests} | ${r.questions} | ${r.questionsBlocked ?? 0} | ${r.lies} | ${r.cat} | ${r.table === "B" ? (r.goalFirstFive ? "yes" : "no") : "–"} | ${cell(r.wordsPerAction)} | ${r.rollsPressed} | ${r.ended}${r.endedEarly ? " (early)" : ""} at ${r.endedAt} |`), ""].join("\n");
 }
 function dmTable(rows) {
   return ["| Session | Replies | DM words / turn (median) | Scenes | (a) scenes with an unresolved detail | (c) scenes with a plant | (b) threads paid elsewhere / paid / opened | Turns with rolls | … with an untold roll | Deception checks (on truth) | Ledger: turns with unrecorded |",
@@ -190,6 +190,7 @@ export function reportMarkdown(runs, ledgers) {
     "",
     scoringTable(v),
     liesList(sessions),
+    deceptionList(sessions),
     undone.length ? `**Left undone:** ${undone.map((u) => `${u.key} (${u.why})`).join("; ")}.\n` : "",
     `## The notes, verbatim (${notes.filter((n) => !n.includes("_No note")).length} of eight)`,
     "",
@@ -221,14 +222,31 @@ export function reportMarkdown(runs, ledgers) {
     ...runs.flatMap((r) => (r.crashed ?? []).map((c) => `- A first attempt of ${c.key} stopped in the wizard (${c.why}); the session was played again from a fresh campaign.`)),
     `- Refusals in the stage's sessions: ${runs.at(-1)?.refusals ?? 0}; in the scoring passes: ${runs.at(-1)?.scoringRefusals ?? 0}; HTTP 429 waits: ${runs.at(-1)?.waited429 ?? 0}; runs whose paid calls stopped: ${(runs.at(-1)?.runs ?? []).filter((r) => r.stopped).map((r) => `${r.label ?? r.file} (${String(r.stopped).slice(0, 120)})`).join("; ") || runs.at(-1)?.stopped || "none"}.`,
     ...(sessions.some((s) => s.door === "openrouter") ? ["- The continuation: `origin/claude/anthropic-providers-1` merged (the app's one door helper, `src/lib/server/anthropic-endpoint.ts`); the harness takes the door from `APP_ANTHROPIC_PROVIDER=openrouter`, sends the players' and judges' calls to the door's URL with its key and model slug, and hard-blocks the Console. Node 24 with `NODE_USE_ENV_PROXY=1` (docs/CLOUD.md). A door probe first (two Haiku calls in a player's shape: the door took the request, the second call read the cache the first wrote; $0.002), then Table B's four sessions from fresh campaigns, four at once, then the pre-registered scoring of every session and the authorship of threads.", `- The upstreams OpenRouter routed the continuation's calls to, from each reply: see the OpenRouter ledger (by session, purpose and model).`] : []),
-    "- The stop: the call that came back HTTP 429 was a welfare check (Claude Haiku 5.5) of B-opus's turn-8 message at 05:28:35 UTC, request id `req_011CgNQMQ4ESNazVadcPrJhA`. The meter then kept only «quota» on the ledger row; one diagnostic request a few minutes later (`req_011CgNQTphEnpzyJxQNhvyMt`, nothing billed) read the provider's words, quoted at the top. The meter now keeps a 429's text on its ledger row.",
-    "- The four Table A sessions ran at the same time (four lanes); the owner plays one table at a time.",
+    "- The first run's stop: the call that came back HTTP 429 was a welfare check (Claude Haiku 5.5) of B-opus's turn-8 message at 05:28:35 UTC, request id `req_011CgNQMQ4ESNazVadcPrJhA`. The meter then kept only «quota» on the ledger row; one diagnostic request a few minutes later (`req_011CgNQTphEnpzyJxQNhvyMt`, nothing billed) read the provider's words: «You have reached your API usage limits: your organization has crossed its monthly API usage threshold, set based on your organization's API tier. You will regain access on 2026-11-01 at 00:00 UTC.» (`enforced_spend_limit_reached`) — the organisation's monthly cap, not the stage's and not a harness stop. The meter now keeps a 429's text on its ledger row.",
+    "- Each table's four sessions ran at the same time (four lanes); the owner plays one table at a time.",
+    ...(sessions.some((s) => s.door === "openrouter") ? [
+      "- A harness flaw, once in the stage: the harness offered one «Request an allowed reroll» button for the whole screen and sent it to the first card that allowed a reroll; the screen draws one link under each card (`src/components/registry/turn-timeline.tsx`). On B-fable turn 14 (two cards) the player asked for the failed Stealth and the harness rerolled the Perception (19 → 4); the DM restored the 19 in its narration. B-fable's note's complaint about the reroll is about the harness. Every other reroll of the stage had one card. Fixed since: with more than one card each gets its own button, named by its card (a regression test).",
+      "- B-fable's prep after the wizard came back in a form the app could not read (`hidden_layer_prep_unparsed`, 9 451 characters); the app's own first-turn prep (`awaitFirstTurnPrep`) wrote the layer (6 592 characters, 3 clocks) before the first reply. The run read the layer only after the wizard step; the first-turn layer was read back from the run's log into the record, and the harness reads the layer again after the first turn since.",
+      "- The pre-registered scoring of Table B ran twice: the first pass made its calls and then threw while computing the B record's own verdicts (G7 looked up a Table A session that record does not hold), before the record and its ledger lines were written. It is booked on the OpenRouter ledger as one estimated line ($2.01, the cost of the same pass on Table A); the bug is fixed with a test, a pass now writes its record and ledger even when it throws, and the pass was run again ($2.31). The player's authorship shares the lost pass logged differ from the kept ones by 0.00–0.05 (B-sol 0.25 / 0.20, B-astra 0.23 / 0.23, B-opus 0.16 / 0.13, B-fable 0.24 / 0.22).",
+      "- OpenRouter's account total is shared: at the door probe it read $0.32 used (the providers stage's smoke); after the scoring it read $112.03. This stage's OpenRouter ledger is $57.91, and its lines match OpenRouter's own generation records to the cent (checked on a sample of DM, player, check, wizard and authorship calls); the app's own per-request cost log for Table B ($45.85 on 217 DM requests) matches the ledger's DM lines. The rest was spent on the same key at the same time by another session (game player 2, Table C).",
+    ] : []),
     "- `world_bridge_skipped` («This record changed. Reload before saving again.») was logged after most turns: the app's World Engine mirror of the dossier skipping a write after a turn's commit; it is not read by the DM's turn and never failed a turn.",
     ...sessions.filter((s) => s.errors?.length).map((s) => `- ${s.key}: ${s.errors.map((e) => e.error).join("; ").slice(0, 400)}`),
     "",
     appendixPrompt(),
     standInAppendix(sessions),
   ].join("\n");
+}
+
+/** Every check the DM called whose reason names Deception or a lie (G3's rule), with the judges' reading of the line. */
+function deceptionList(sessions) {
+  const rows = sessions.flatMap((s) => Object.values(s.tags?.deception ?? {}).map((d) => {
+    const turn = (s.turns ?? []).find((t) => t.k === d.turn);
+    const roll = (turn?.rolls ?? []).find((r) => r.reason === d.reason);
+    const why = (d.referee ?? d.a)?.reason ?? "";
+    return `- ${s.key} t${d.turn}: «${String(d.reason ?? "").slice(0, 140)}»${roll ? ` (${roll.total} vs ${roll.dc}, ${roll.success ? "success" : "failure"})` : ""} — on a true statement: **${d.final?.true_statement === 1 ? "yes" : d.final?.true_statement === 0 ? "no" : "–"}**${d.final?.true_statement === 1 ? ` — the judge: ${why}` : ""}`;
+  }));
+  return rows.length ? ["The checks G3's rule counts (a roll whose reason names Deception or a lie), each judged against the player's line and the hero's records:", "", ...rows, ""].join("\n") : "";
 }
 
 /** The actions the judges tagged as a lie in character, so G3 can be read against the words. */

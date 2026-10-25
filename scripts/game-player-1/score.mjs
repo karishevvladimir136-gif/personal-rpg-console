@@ -112,6 +112,8 @@ export function sessionNumbers(session) {
   return {
     key: session.key, table: session.table, player: session.player,
     turns: counts.turns, actions: counts.actions, questions: counts.questions, questionTexts: counts.questionTexts,
+    // «?» typed while a roll card waited: the composer is closed then, so nothing was sent (FIX_S4 item 12).
+    questionsBlocked: (session.turns ?? []).flatMap((t) => (t.presses ?? []).filter((p) => !p.button && /^[\s«"'“]*\?/.test(p.text ?? ""))).length,
     ask, do: doing, tagged: tagged.length, doShare: ask + doing ? round(doing / (ask + doing)) : null,
     tests: count(tagged, "test"), testsPerAction: tagged.length ? round(count(tagged, "test") / tagged.length) : null,
     lies: count(tagged, "lie"), cat: count([...tagged, ...questions], "cat"), goalFirstFive: count(firstFive, "goal") > 0,

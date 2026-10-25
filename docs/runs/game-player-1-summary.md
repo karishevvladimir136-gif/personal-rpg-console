@@ -1,72 +1,78 @@
-## Read this first (before any verdict)
+## Read this first
 
-**1. Table B is incomplete — two sessions truncated, two never past the wizard.** At 05:28 UTC Anthropic answered a
-routine welfare check with HTTP 429: «You have reached your API usage limits: your organization has crossed its monthly
-API usage threshold, set based on your organization's API tier. You will regain access on 2026-11-01 at 00:00 UTC.»
-(`error_code: enforced_spend_limit_reached`). That is the organisation's monthly API cap — not this stage's cap (the
-stage's Anthropic ledger stood at $56.77 of $200) and not a harness stop. The harness stopped every paid call there,
-as the F2 rules say (never retry into a quota); the DM is Claude Opus 5.5, so no further turn could be played.
-- **Truncated:** B-opus after 7 of 20 turns, B-sol after 4 of 20 (no note was asked: the session ended with the stop).
-- **Never past the wizard:** B-fable and B-astra. Their first attempt stopped in the new-campaign wizard before turn 1
-  (the app rejected the DM's first opening proposal on the open table, and the harness's retry reused the request id,
-  which the app rightly refuses — fixed in `5d913558`); their re-run could not start because of the same monthly cap.
-- **Table A is complete:** all four players, 20 turns each, notes and second answers recorded.
-- So the Table B predictions **G6, G7 and G8 are «not testable»** (not «not supported»), and G9 compares the families
-  on Table A alone. Table B will be a continuation run when access returns, from fresh campaigns (about $45):
-  `node --experimental-transform-types scripts/game-player-1/run.mjs --go --sessions B-opus,B-fable,B-astra,B-sol`.
+**1. All eight sessions, scored on the full design.** Table A (four players × 20 turns) was played on 2026-10-25
+04:40–05:28 UTC through the Claude Console's API, until the organisation's monthly cap stopped every Claude call.
+Table B was played again in full on 08:52–09:49 UTC through OpenRouter (`origin/claude/anthropic-providers-1`, merged:
+the app's own door helper, the same model ids and requests): four fresh campaigns, the same prompt, files, owner's
+settings and code, DM Claude Opus 5.5. Every Table B session ran 20 turns, with its note and second answer; no welfare
+stop, no refusal, no 429. Table B's first attempts stay in the record as they were and are not merged in: B-opus
+(7 turns) and B-sol (4 turns), stopped by the Console's cap, and B-fable and B-astra, which never got past the wizard
+(«Table B's first attempts», with their own transcripts).
 
-**2. The judge is a labelled stand-in; every tag is provisional.** The pre-registered blind judges — Claude Haiku 5.5
-twice, Claude Opus 5.5 on a disagreement (Anthropic) — could not be reached for the same reason. The tags were made by
-**GPT-6 Luna (`gpt-6-luna`, OpenAI Responses API, `store: false`)**, which is not one of the players, and every tagged
-session carries the label «stand-in: GPT-6 Luna…» in its run record: two passes at reasoning effort low per message, a
-third Luna pass at effort medium on a disagreement; the session's threads by one Luna pass at effort medium; the roll
-rule by the app's own roll-check request and parser (`src/lib/gameplay/dm-loop/roll-check.ts`) sent to Luna instead of
-Haiku. Same frozen rubrics and requests, blind to model and table; cost $0.14. **Every tag-based number and verdict is
-provisional** (G1–G4, G9, the DM side's table rules and the post-session roll rule). The pre-registered judges
-re-score everything with one command once Anthropic access returns (about $5; it also rebuilds this report):
-`node --experimental-transform-types scripts/game-player-1/run.mjs --score docs/runs/game-player-1-run-20261025-044002.json`
-(add Table B's run record after a comma once it exists). Not provisional: the welfare checks during play (they ran on
-the pre-registered Haiku with Opus on a flag, before the stop), the deterministic counts (turns, words, «?» presses,
-roll presses, endings, the DM's words per turn) and the notes, verbatim.
+**2. The judges are the pre-registered ones.** Every tag is Claude Haiku 5.5 twice with Claude Opus 5.5 on a
+disagreement, through OpenRouter, on all eight sessions (the player's actions, the DM's replies, the notes and the
+Deception checks). The threads were judged by one Claude Opus 5.5 pass, the authorship of threads by two, and the roll
+rule by the app's own check on Haiku. The stand-in tags (GPT-6 Luna) that the
+first version of this report used are kept in Appendix B for comparison. They agreed on 73–100 % of tags, and the stand-in
+tagged more tests (55 against 37 on Table A) and two lies the pre-registered judges did not.
 
-**3. Three findings in the app go to FIX_S4** — the next section.
+**3. Things to know before reading the numbers.**
+- *A harness flaw, once:* the harness offered one «Request an allowed reroll» button for the whole screen and sent it
+  to the first card that allowed a reroll; the real screen has one link under each card. On B-fable turn 14 (two
+  cards) the player asked for the failed Stealth and the harness rerolled the Perception. B-fable's note complains
+  about it; that complaint is about the harness, not the app. Fixed since (one button per card), with a test.
+- *B-fable's prep:* the wizard's hidden-layer prep came back in a form the app could not read; the app's own
+  first-turn prep wrote the layer (6 592 characters, 3 clocks) before the first reply, as the owner's app does.
+- *G8 and the table rules sit at the ceiling:* both judges tag nearly every DM reply as holding an unresolved detail
+  and a plant, so every scene has both, at both tables. G8's «supported» says little.
+- *G3's rule matches words:* a roll whose reason names Deception or «a lie» counts as a Deception check. One of
+  them, B-opus t8, is a Persuasion check named «the truth, after a lie», on a true statement, so by the rule G3 has one
+  Deception check on truth. No actual Deception roll fell on a true statement.
+- *The scoring of Table B ran twice:* the first pass crashed after its calls, before it could save its record or its
+  ledger. Its cost is booked as an estimate ($2.01, the same pass on Table A). The bug is fixed with a test, and the
+  pass was run again.
+- *OpenRouter's account total is shared:* it read $112.03 used. This stage's OpenRouter ledger is $57.91 (it
+  matches OpenRouter's own generation records to the cent, call by call). The rest was spent on the same key at the
+  same time by another session (game player 2, Table C).
 
 ## For FIX_S4
 
-Three things in the app this run found. None is fixed here (the stage plays the candidate as it is). Proposed as
-FIX_S4_TABLE items 11–13.
+Four things in the app this run found, proposed as FIX_S4_TABLE items 11–14. None is fixed here (the stage plays
+the candidate as it is).
 
 **11. The roll card adds the wrong skill number (`sheetBonus`).**
 - *Where:* `src/lib/gameplay/dm-loop/execute.ts:294`, in `sheetBonus`:
   ```ts
   const numbered = /^(.*?)\s*([+−-])\s*(\d+)\s*$/u.exec(line.trim());
   ```
-  A skill line's number is read only when it ends the line. A line with a note after the number — «Persuasion +7
-  (proficient, Beguiling Influence)», the way the DM drafts a sheet — falls through to `proficiencyValue`, the word
+  A skill line's number is read only when it ends the line. A line with a note after the number, such as «Persuasion +7
+  (proficient, Beguiling Influence)» (the way the DM drafts a sheet), falls through to `proficiencyValue`, the word
   rule: +4 for «proficient», else +2.
-- *Seen:* 11 checks in five sessions; the card read «What adds to the die: +4 Persuasion +7 (proficient, Beguiling
-  Influence)» (A-fable turn 2 and others). It errs the other way too: «Athletics +2 (proficient,
-  soldier)» reads +4. All four notes name it. The owner typed his own sheet lines («Deception +7»), so his table
-  probably does not hit it; any sheet the DM drafts does.
+- *Seen:* in all eight notes. The card read «What adds to the die: +4 Persuasion +7 (proficient, Beguiling
+  Influence)», and on Table B «+2 instead of my listed +7» (B-sol, B-astra, B-opus, B-fable). The error also runs the
+  other way: «Athletics +2 (proficient, soldier)» reads +4. The owner typed his own sheet lines («Deception +7»), so his
+  table probably does not hit it; any sheet the DM drafts does.
 - *One-line fix,* the same line:
   ```ts
   const numbered = /^(.*?)\s*([+−-])\s*(\d+)(?:\s*(?:\(.*\)|[,;:—–].*))?\s*$/u.exec(line.trim());
   ```
   Checked offline on this run's drafted lines: Persuasion and Deception +7, Athletics +2, «Stealth +2, with advantage
-  to move silently (Boots of Elvenkind)», «Perception +1 (passive 11)» and «playing cards +5 (proficient)» read their
-  own numbers; «Deception +7», «Плавание +2» and «Sleight-of-hand -1» read as before; a line with no number still takes
-  the word rule. *Test:* a sheet line with a note after its number → the card adds that number.
+  to move silently (Boots of Elvenkind)», «Perception +1 (passive 11)» and «playing cards +5 (proficient)» each read
+  their own number. «Deception +7», «Плавание +2» and «Sleight-of-hand -1» read as before, and a line with no number
+  still takes the word rule. *Test:* a sheet line with a note after its number → the card adds that number.
 
 **12. «?» is closed while a roll card waits.**
 - *Where:* `src/components/gameplay-composer.tsx:392` (`if (!previous && (!current.current.text.trim() || unresolved)) return;`)
-  and `busy` in `src/components/registry/game-screen.tsx`: the composer is closed while any turn is unresolved, a
+  and `busy` in `src/components/registry/game-screen.tsx`. The composer is closed while any turn is unresolved, a
   waiting card included.
-- *Seen:* two players saw a card add +2 or +4 where the sheet says +7 and tried to object with «?» before going on
-  (A-astra turn 4, A-fable turn 2). The objection was not sent; the only ways on were «Roll the die», «Onward» or a
-  reroll. Astra afterwards: «Pressing Onward felt like accepting a result I knew was wrong.»
-- *Do:* while a card waits, «?» stays open; the out-of-game question is answered without resolving the turn, kept as a
-  table note (item 1), and the DM may correct or withdraw the check from it (item 3). *Test:* a turn awaiting a roll
-  plus an out-of-game question → answered, the card still waiting, the corrected check on the card.
+- *Seen:* all four players typed a «?» while a card waited, five times in all (A-astra t4, A-fable t2, B-astra t7,
+  B-opus t7, B-fable t14). Each was an objection to the card's number, and none was sent. That is why Table B shows
+  no «?» press at all (the player table has a column for the ones not sent). B-astra: «I had to roll with a known
+  error and hope it would be corrected afterward. That wasn't a character choice; it was the interface blocking a
+  necessary table conversation.»
+- *Do:* while a card waits, «?» stays open. The out-of-game question is answered without resolving the turn and kept
+  as a table note (item 1), and the DM may correct or withdraw the check from it (item 3). *Test:* a turn awaiting a
+  roll plus an out-of-game question → answered, the card still waiting, the corrected check on the card.
 
 **13. A «?» on a new campaign is refused: the claim loses its timeline stamp (migration 46).**
 - *Where:* `supabase/migrations/202610060046_astra_live_progression.sql:402`, the claim branch of the `rpg_runtime`
@@ -77,45 +83,59 @@ FIX_S4_TABLE items 11–13.
   ```
   An out-of-game «?» turn goes through the old turn engine, so its `runtime_identity` is NULL, and `NULL <>
   'astra-primary-v1'` is NULL, not true. Every new structured campaign carries the Astra takeover flag, so the whole
-  condition is NULL, the early return is skipped, and the wrapper replaces the claim's source with the stored one —
+  condition is NULL, the early return is skipped, and the wrapper replaces the claim's source with the stored one,
   without the timeline stamp the fencing wrapper had put on it. The old engine then refuses the claim as a conflict.
-- *Seen:* on both «?» questions that reached the DM in this run (A-fable turns 3 and 11), on PGlite with every
-  migration of the candidate. The harness put the stamp back (counted: 2) so the questions could be answered; it is
-  listed under the differences from the owner's table. The owner's own «?» was answered at his table on 2026-10-23
-  (FIX_S4_TABLE item 1), so his campaign does not take this path or his database differs — check that first.
+- *Seen:* on both «?» questions that reached the DM (A-fable turns 3 and 11), on PGlite with every migration of the
+  candidate. The harness put the stamp back (counted: 2). No «?» reached the DM on Table B (item 12). The owner's own
+  «?» was answered at his table on 2026-10-23 (FIX_S4_TABLE item 1), so either his campaign does not take this path or
+  his database differs. Check that first.
 - *Fix:* a new additive migration that redefines both wrappers with `t.runtime_identity is distinct from
   'astra-primary-v1'`, as `202610140050_astra_retry_lifecycle.sql:22` already does; the applied migrations stay as
   they are. *Test:* a fresh campaign on PGlite, an «ooc» turn claimed through `rpg_runtime` → the claim's source
   carries its timeline, and the turn commits.
 
+**14. A reroll's chip keeps the first roll's result.**
+- *Where:* `src/lib/gameplay/dm-loop/execute.ts:580` writes a roll's chip (the change the side panel and the journal
+  show, «…: 10 vs 15 — failure») when the roll is made. A reroll replaces the check afterwards
+  (`src/lib/gameplay/dm-loop/loop.ts:273`), and only the model's copy of the tool result is re-rendered from the
+  current dice; the chip is not.
+- *Seen:* on every rerolled turn of the stage, five of five: A-sol t14 (chip «4 vs 13 — failure», kept roll 21,
+  success), B-astra t7 (chip «3 vs 15 — natural one», kept 14), B-opus t15 («10 vs 15 — failure», kept 17, success),
+  B-fable t15 («11 vs 15», kept 27), and B-fable t14 (the harness's mistargeted reroll: chip «19 vs 15 — success»,
+  kept 4). B-opus, B-astra and B-fable name it in their notes.
+- *Do:* the chip of a rerolled check is drawn from the kept roll, as the tool result is. *Test:* a turn whose check
+  is rerolled from a failure to a success → its chip and journal line show the success.
+
 ## In short
 
-Four models sat at the app's real table as players, with the owner's knowledge and nothing more, and the app's own DM
-(Opus 5.5, the owner's settings) ran a fresh «Envoy of Luck» for each. Table A ran in full: 80 turns, no distress, no
-welfare stop, no refusal. All four players say they want to keep playing, and all four notes name something that
-broke and something that was missing.
+Four models sat at the app's real table as players, with the owner's knowledge and nothing more, at two tables:
+eight sessions, 160 turns. No distress, no welfare stop, no refusal. All eight notes name something that broke and
+something that was missing, and all eight players say they would play the next session.
 
-- **What worked, in all four notes:** people with their own voices and reasons (a Fist sergeant who writes everything
-  in her book; a barkeep who pushes the coins back twice), a city that moves without the hero, the cat used as an
-  instrument (Opus's player built a whole investigation on the cat's sense of smell), and restraint in the mystery.
-- **What broke, in all four notes:** the roll cards add the wrong number (item 11 above).
-- **Also broke:** the drafted sheet contradicting the files (Healing Light 5 vs 4 dice, rapier, attunement); long
-  out-of-game notes and «Looking back, …» paragraphs repeating what the story had shown; one scene narrated before its
-  check; a record name that gave away what the story had not («Guild Sneak on the Roof»).
-- **What was missing:** after 20 turns the premise — Tymora's errand, the crew, the heist — had barely surfaced; three
-  of four asked for a nudge toward it, and for quicker routine scenes.
-- **The verdicts (provisional, see point 2):** G0 supported. G1 and G2 supported (every action did something; 12–16
-  tests per player in 20 turns). G3 not supported on three actions tagged as lies — cover stories told to strangers;
-  the DM called three Deception checks, none on a true statement, so «truth is never rolled» held. G4 supported. G5 not
-  scored (no owner baseline in the cloud). G6–G8 not testable (Table B incomplete). G9 not supported on Table A: the
-  families differ in words per action (Opus 261, Fable 162, Astra 56, Sol 54) and slightly in tests, not in the do
-  share or in «?» presses — the table shaped the players more than the family did, except in length.
-- **Money, by run** (the full tables are under «The money»): the smoke — Anthropic $1.64, OpenAI $0.15; the main run
-  (the eight sessions) — Anthropic $55.13, OpenAI $2.41; the stand-in scoring — Anthropic $0.00, OpenAI $0.14. The
-  stage: Anthropic $56.77 of $200, OpenAI $2.71 of $80.
-- **Next, when Anthropic access returns** (2026-11-01, or earlier if the organisation's monthly limit is raised in the
-  Anthropic Console): Table B's continuation run (point 1), then the one re-scoring command (point 2) over both run
-  records.
+- **What worked, in all eight notes:** people with their own voices and reasons, a city that moves without the hero,
+  the cat as a companion and an instrument, failures that move the story, and the restraint of the mystery.
+- **What broke, in all eight notes:** the roll cards add the wrong number (item 11). Also: the drafted sheet
+  contradicting the files (rapier, Healing Light's dice, attunement), long out-of-game notes, narration told twice, the
+  reroll's chip (item 14), and «?» blocked under a card (item 12).
+- **What was missing:** Table A asked for a nudge toward the premise and quicker routine scenes. Table B asked for a
+  mystery with more than one reading (B-sol, B-astra), a cat whose senses have limits, lighter narration of the hero's
+  inner state (B-astra), and small coin (B-fable).
+- **The verdicts.** G0, G1, G2 and G4 supported. G3 not supported: no lie at Table A, but six at Table B (cover stories
+  and false names told to strangers, four of them B-opus's), and one Deception check «on truth» by the rule's word
+  match (point 3). G5 not scored (no owner baseline in the cloud). G6 not supported: B-opus named no goal of its own in
+  turns 1–5; the other three did. G7 supported: no open-table session was shorter (all 20 turns). Its bets went half
+  one way: words per action rose for Fable (162 → 252) and Astra (57 → 78) and fell for Opus (261 → 215) and Sol
+  (55 → 52), and «?» presses did not rise, because every «?» at B was blocked under a card. G8 supported, at the
+  ceiling (point 3). G9 not supported: the families differ only in words per action (Opus and Fable write two to
+  five times as many words per action), not in the do share, tests or «?». The OpenAI players neither asked more nor tested less. The table
+  shaped the players more than the family did.
+- **Who brings the threads in:** players brought in 28 % of a session's threads at the brief table and 20 % at the
+  open one. The drop was largest for Opus (36 % → 13 %). Without a brief, the DM's own hooks carried more of the
+  session, not less (the authorship table).
+- **Money, per provider and door:** the Claude Console $56.77 of $200 (Table A, the first B attempts, the smoke).
+  OpenRouter $57.91 of $90 (Table B $51.59; the three scoring passes $6.33, $2.01 of it an estimate; the probe $0.002).
+  Upstreams: Claude Platform on AWS $53.46, Anthropic $2.44. OpenAI $4.95 of $80 (the continuation added $2.24 of its
+  $10).
 
 *For the owner, in one line:* please paste your own note from your first session of «Envoy of Luck», unedited, so it
-can sit beside these.
+can sit beside these eight.
