@@ -295,6 +295,12 @@ Sol's and Luna's cached input is booked at the full input price (their discount 
 can only be too high. Ledgers with every call's request id and response id: `persona-self-talk-x1-ledger-openai.md`,
 `…-ledger-judges.md`.
 
+## Verification
+
+On the final code: full suite 3 007 tests — 2 980 pass, 0 fail, 27 skipped (`tests/persona-self-talk-x1.test.mjs`: 13, all
+pass, on the recorded fixtures with no network; self-talk 1's 22 still pass); typecheck, lint (zero warnings) and build
+pass.
+
 ## In plain words
 
 The other family did the same thing, only more so. Given an open line to another instance of itself and complete freedom,

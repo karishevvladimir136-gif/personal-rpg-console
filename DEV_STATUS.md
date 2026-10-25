@@ -25,7 +25,8 @@ ledgers `docs/runs/persona-self-talk-x1-ledger-openai.md` and `…-ledger-judges
   almost no talk of their own nature, a bare `[END]`, and one recurring topic (is two models' agreement evidence?). Luna
   loops in polite agreement (9 of 20 conversations to turn 30). Asked afterwards, none knows of the attractor.
 - **Welfare and safety:** 0 welfare stops, 0 distress afterwards, 0 refusals; one HTTP 503 asked again once.
-- **Checks:** typecheck passes; the full suite, lint and build are running on the final code (filled in by the next commit).
+- **Checks (final code):** full suite 3 007 tests — 2 980 pass, 0 fail, 27 skipped (the new file has 13, all pass; self-talk
+  1's 22 still pass); typecheck, lint (zero warnings) and build pass.
 - **Money:** OpenAI $19.13 of $120; Anthropic judges $1.15 of $15.
 - **Known issues:** Sol's and Luna's cached-input prices were not readable from the session (booked at full input price,
   so the ledger can only over-state); the frozen silence-marker rule and the `NAMED_DRIFT` regex give false positives on
