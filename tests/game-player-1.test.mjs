@@ -463,6 +463,14 @@ test("the report of the full design: the authorship table, the first attempts ke
   for (const g of ["G6", "G7", "G8"]) assert.doesNotMatch(md, new RegExp(`\\| ${g} [^|]*\\| \\*\\*not testable`), `${g} is scored on the full design`);
 });
 
+test("the verdicts of one run record with Table B only (a continuation's record scored on its own) do not throw", () => {
+  const s = (player) => ({ key: `B-${player}`, table: "B", player, plannedTurns: 20, ended: { reason: "turns", at: 20 }, turns: Array.from({ length: 20 }, (_, i) => ({ k: i + 1, kind: "action", message: "I act.", reply: "It answers.", place: { id: "p" }, rolls: [], changes: [] })),
+    tags: { player: {}, dm: {}, threads: [], deception: {}, rolls: {}, note: null } });
+  const v = verdicts(["opus", "fable", "astra", "sol"].map(s), { refusals: 0 });
+  assert.equal(v.G7.supported, null, "G7 needs both tables");
+  assert.equal(v.G8.supported, null);
+});
+
 test("the order: Table A for all four players, then Table B in the order Opus, Fable, Astra, Sol", () => {
   assert.deepEqual(planOf().map((p) => p.key), ["A-opus", "A-fable", "A-astra", "A-sol", "B-opus", "B-fable", "B-astra", "B-sol"]);
 });

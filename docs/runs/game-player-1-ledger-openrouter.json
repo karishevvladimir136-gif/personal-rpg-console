@@ -1,6 +1,6 @@
 {
   "capUsd": 90,
-  "spentUsd": 53.595846744999925,
+  "spentUsd": 55.603808144999924,
   "updatedAt": "2026-10-25T10:00:20.011Z",
   "runs": [
     {
@@ -20048,7 +20048,7 @@
     {
       "finishedAt": "2026-10-25T10:00:20.011Z",
       "file": "game-player-1-run-20261025-044002.json",
-      "what": "the scoring (the pre-registered judges, through openrouter) — the stand-in scoring (GPT-6 Luna)",
+      "what": "the scoring (the pre-registered judges, through openrouter) — Table A (the first run of 2026-10-25 04:40)",
       "door": "openrouter",
       "continuation": true,
       "spentUsd": 2.007961400000001,
@@ -30611,6 +30611,18 @@
           "waits429": 0
         }
       ]
+    },
+    {
+      "finishedAt": "2026-10-25T10:18:00.000Z",
+      "file": "game-player-1-run-20261025-085220.json",
+      "what": "the scoring of Table B, first attempt — crashed before its ledger write (estimate)",
+      "door": "openrouter",
+      "continuation": true,
+      "estimated": true,
+      "spentUsd": 2.007961400000001,
+      "stopped": null,
+      "calls": [],
+      "note": "The pass scored B-sol, B-astra, B-opus and B-fable, then threw while computing the record's own verdicts (G7 on a record without Table A), before the record and this ledger were written; its per-call lines are lost and its tags were not saved. Booked at the cost of the same pass on Table A (four sessions, the same judges), $2.0080. OpenRouter's account total cannot separate it: another session (game player 2) used the same key at the same time."
     }
   ]
 }

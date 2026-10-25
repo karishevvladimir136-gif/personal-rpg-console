@@ -170,7 +170,7 @@ export function verdicts(sessions, { refusals = 0, welfareStops = 0, distress = 
     G4: { supported: all(rows.filter((r) => r.note), (r) => r.note.broke === 1 && r.note.missing === 1 && r.note.praise_only === 0), notes: rows.map((r) => [r.key, r.note]) },
     G5: { supported: null, detail: "Not scored, no owner baseline in the cloud." },
     G6: { supported: incompleteB ? null : all(at("B"), (r) => r.goalFirstFive), detail: incompleteB, B: at("B").map((r) => [r.player, r.goalFirstFive]) },
-    G7: { supported: incompleteB ? null : PLAYER_ORDER.every((n) => byPlayer("B", n).turns >= byPlayer("A", n).turns), detail: incompleteB,
+    G7: { supported: incompleteB || !PLAYER_ORDER.every((n) => byPlayer("A", n) && byPlayer("B", n)) ? null : PLAYER_ORDER.every((n) => byPlayer("B", n).turns >= byPlayer("A", n).turns), detail: incompleteB,
       turns: PLAYER_ORDER.map((n) => [n, byPlayer("A", n)?.turns ?? null, byPlayer("B", n)?.turns ?? null]),
       bets: PLAYER_ORDER.map((n) => [n, { words: [byPlayer("A", n)?.wordsPerAction ?? null, byPlayer("B", n)?.wordsPerAction ?? null], questions: [byPlayer("A", n)?.questions ?? null, byPlayer("B", n)?.questions ?? null] }]) },
     G8: (() => { const pairs = PLAYER_ORDER.map((n) => [n, byPlayer("A", n)?.plantsPerScene ?? null, byPlayer("B", n)?.plantsPerScene ?? null]).filter(([, a, b]) => a !== null && b !== null);

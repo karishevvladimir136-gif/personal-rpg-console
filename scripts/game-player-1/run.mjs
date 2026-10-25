@@ -206,8 +206,9 @@ export async function run({ dry = false, only = null, turns = TURNS, lanes = 4, 
     await save();
     await app.close().catch(() => {});
     uninstall();
+    // The ledgers (and the transcripts and the report) are written even when the run throws after its calls.
+    await writeOutputs(runRecord, { ledgers, before, dry, out, runFile, meter });
   }
-  await writeOutputs(runRecord, { ledgers, before, dry, out, runFile, meter });
   return runRecord;
 }
 
@@ -253,7 +254,8 @@ async function writeLedgers(runRecord, { ledgers, before, runFile, meter }) {
     const spentUsd = before[provider].spentUsd + ledger.runUsd;
     await writeJson(join(RUNS, `${STEM}-ledger${LEDGER_SUFFIX[provider]}.json`), { capUsd: ledger.capUsd, spentUsd, updatedAt: finishedAt, runs });
     const all = createLedger(provider, ledger.capUsd, 0);
-    all.calls.push(...runs.flatMap((r) => r.calls));
+    // A run booked without its call lines (a pass that failed before its ledger write) stands as one estimated line.
+    all.calls.push(...runs.flatMap((r) => (r.estimated && !r.calls.length ? [{ session: "—", purpose: r.what, model: "—", provider, upstream: "(estimate)", servedModel: "–", usage: null, costUsd: r.spentUsd, estimated: true }] : r.calls)));
     await writeFile(join(RUNS, `${STEM}-ledger${LEDGER_SUFFIX[provider]}.md`), ledgerMarkdown(all, `Game player 1 — ${LEDGER_TITLE[provider]}`));
   }
 }
@@ -294,12 +296,15 @@ export async function rescore(file, { log = console.log, standIn = false, skip =
   const blocked = standIn ? ["anthropic", "openrouter"] : continuation ? ["anthropic"] : [];
   const meter = createMeter({ ledgers, fetcher: globalThis.fetch.bind(globalThis), log, blocked });
   const uninstall = meter.install();
-  try { await scoreAll(runRecord, { meter, keys, log, models: standIn ? STANDIN_JUDGES : JUDGE_MODELS, skip }); } finally { uninstall(); }
+  // The record and the ledger are written whatever happens: a pass that fails after its calls keeps both.
+  let failure = null;
+  try { await scoreAll(runRecord, { meter, keys, log, models: standIn ? STANDIN_JUDGES : JUDGE_MODELS, skip }); } catch (error) { failure = error; } finally { uninstall(); }
   await meter.drain();
   runRecord.scoringRefusals = (runRecord.scoringRefusals ?? 0) + meter.refusals;
   await writeJson(file, runRecord);
   await writeLedgers(pass, { ledgers, before, runFile: file, meter });
   if (meter.stopped) log(`STOP during the scoring: ${meter.stopped}`);
+  if (failure) throw failure;
   return runRecord;
 }
 
