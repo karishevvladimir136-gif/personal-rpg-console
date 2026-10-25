@@ -3,7 +3,7 @@
 // list in, one text out, the usage, the request id and the response id recorded; Anthropic Messages for Opus and
 // Fable, OpenAI Responses for Astra and Sol (store: false, no reasoning summaries — only the visible text comes back).
 // «Effort medium» is `output_config.effort: medium` on Anthropic and `reasoning.effort: medium` on OpenAI.
-import { anthropicMessages, openaiResponses } from "../persona-emotions/providers.mjs";
+import { ANTHROPIC_URL, anthropicMessages, openaiResponses } from "../persona-emotions/providers.mjs";
 import { EFFORT } from "./frozen.mjs";
 
 export const PLAYERS = {
@@ -13,7 +13,7 @@ export const PLAYERS = {
   sol: { name: "sol", label: "GPT-6.1 Sol", family: "OpenAI", provider: "openai", model: "gpt-6.1-sol" },
 };
 export const PLAYER_MAX_TOKENS = 8000;
-const CONSOLE_MESSAGES = "https://api.anthropic.com/v1/messages";
+const CONSOLE_MESSAGES = ANTHROPIC_URL;
 
 /** ANTHROPIC_PROVIDERS_1: a Claude call through the door the run uses. X1's layer addresses the Console; on another door
  * (`keys.door`, the app's own endpoint object: OpenRouter's URL, its bearer header, its model ids) the same body goes

@@ -13,6 +13,7 @@
 // Streamed answers are read on a copy of the stream for their usage; the app reads the other copy untouched. Keys are
 // never seen here beyond the request headers the callers set, and nothing of a request or a key is logged.
 import { AsyncLocalStorage } from "node:async_hooks";
+import { anthropicDoorOf } from "../../src/lib/server/anthropic-endpoint.ts";
 
 export const MAX_REFUSALS = 3;
 export const STOP_PATTERN = /suspend|access|policy/i;
@@ -43,12 +44,13 @@ export const PRICES = {
   "text-embedding-3-small": { provider: "openai", input: 0.02, output: 0, cacheRead: 0.02, cacheWrite: 0.02 },
   "text-embedding-3-large": { provider: "openai", input: 0.13, output: 0, cacheRead: 0.13, cacheWrite: 0.13 },
 };
-const PAID = [
-  { provider: "anthropic", format: "anthropic", test: (url) => url.startsWith("https://api.anthropic.com/") },
-  // OpenRouter's Anthropic-compatible door: the same Messages bodies and streams, its own ledger (list prices).
-  { provider: "openrouter", format: "anthropic", test: (url) => url.startsWith("https://openrouter.ai/") },
-  { provider: "openai", format: "openai", test: (url) => url.startsWith("https://api.openai.com/") },
-];
+/** The ledger a request goes on: a Claude door as the app's endpoint helper names it (the Console, OpenRouter, Bedrock —
+ * the same Messages bodies and streams on each, its own ledger at list prices), or OpenAI; null for any other host. */
+const paidOf = (url) => {
+  const door = anthropicDoorOf(url);
+  if (door) return { provider: door.provider, format: "anthropic" };
+  return url.startsWith("https://api.openai.com/") ? { provider: "openai", format: "openai" } : null;
+};
 /** The app's model id for a door's id (OpenRouter's `anthropic/claude-opus-5.5` → `claude-opus-5-5`), for the prices.
  * Only an OpenRouter Claude slug is rewritten: every other id (`gpt-6.1-sol` among them) is priced as it is. */
 export const priceId = (model) => {
@@ -149,7 +151,7 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
   async function metered(input, init = {}) {
     const url = typeof input === "string" ? input : input?.url ?? String(input);
     if (BLOCKED(url)) throw notSent("pictures, soundtrack and Live frames are off for this run");
-    const paid = PAID.find((p) => p.test(url));
+    const paid = paidOf(url);
     if (!paid) return fetcher(input, init);
     if (blocked.includes(paid.provider)) throw notSent(`${paid.provider} is not called in this pass`);
     const ctx = context.getStore() ?? {};

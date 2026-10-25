@@ -24,6 +24,7 @@ import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
 import { DESIGN_SHA256, PLAYER_ORDER, TABLES, TURNS } from "./frozen.mjs";
 import { createLedger, createMeter, ledgerMarkdown } from "./paid.mjs";
+import { anthropicEndpoint } from "../../src/lib/server/anthropic-endpoint.ts";
 import { PLAYERS, judgeCall } from "./players.mjs";
 import { runSession, paidCall } from "./session.mjs";
 import { scoreSession, verdicts } from "./score.mjs";
@@ -142,7 +143,7 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
   const saveNow = async () => { runRecord.restamps = globalThis.__gamePlayerRestamps ?? 0; runRecord.stopped = meter.stopped; runRecord.refusals = meter.refusals; runRecord.waited429 = meter.waited429;
     runRecord.callsByPurpose = Object.fromEntries(doors.map((provider) => [provider, ledgers[provider].calls.reduce((acc, c) => {
       const k = `${c.session ?? "—"} | ${String(c.purpose).replace(/\bt\d+\b/g, "t*").replace(/card \d+/, "card *").replace(/ \d$/, "")} | ${c.model}`; acc[k] = (acc[k] ?? 0) + 1; return acc; }, {})]));
-    runRecord.claudeDoor = keys.door ? { provider: keys.door.provider, endpointHost: keys.door.endpointHost } : { provider: "anthropic", endpointHost: "api.anthropic.com" };
+    runRecord.claudeDoor = keys.door ? { provider: keys.door.provider, endpointHost: keys.door.endpointHost } : { provider: "anthropic", endpointHost: anthropicEndpoint({ ANTHROPIC_PROVIDER: "anthropic" }).endpointHost };
     runRecord.money = Object.fromEntries(doors.map((door) => [door, { cap: caps[door], before: ledgers[door].spentBefore, run: ledgers[door].runUsd }]));
     await writeJson(runFile, runRecord); };
   const finished = [], running = [];

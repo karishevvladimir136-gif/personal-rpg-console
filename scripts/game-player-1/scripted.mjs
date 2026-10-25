@@ -1,6 +1,6 @@
 // Game player 1: a scripted stand-in for both providers' HTTP APIs — the dry run and the tests make no live call. The
 // DM's own requests are answered by the app's stand-in DM (RPG_DM_FAKE_MODEL=1, src/lib/server/dm/model/fake.ts); this
-// answers everything else that would reach api.anthropic.com or api.openai.com: the wizard's opening (structured
+// answers everything else that would reach the Claude Console's or OpenAI's API: the wizard's opening (structured
 // output), the app's in-turn checks, the players, the welfare checks and the judges. Each answer is shaped like the
 // real API's, so the provider layer, the meter and the parsers run as they will in the paid run.
 

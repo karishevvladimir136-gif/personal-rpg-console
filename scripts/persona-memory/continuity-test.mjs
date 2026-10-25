@@ -23,7 +23,12 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { homedir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { providerKey } from "../eval/lib/keys.mjs";
+import { anthropicKey, anthropicKeyName, scriptAnthropicEndpoint } from "../eval/lib/anthropic-endpoint.mjs";
+
+/** ANTHROPIC_PROVIDERS_1: the door this script's Claude calls take (the Console unless APP_ANTHROPIC_PROVIDER names
+ * another; its URL, header and model ids from the one endpoint helper), resolved once. */
+let scriptDoor = null;
+const doorOf = () => (scriptDoor ??= scriptAnthropicEndpoint());
 import { MAX_REFUSALS, createSafety } from "./safety.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -147,9 +152,10 @@ export async function anthropicCall({ apiKey, model, system, user, messages, max
   for (let attempt = 0; attempt <= retries; attempt++) {
     if (attempt) await sleep(2000 * 2 ** (attempt - 1));
     try {
-      const response = await fetcher("https://api.anthropic.com/v1/messages", {
-        method: "POST", headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-        body: JSON.stringify({ model, max_tokens: maxTokens, output_config: { effort }, ...(cache ? { cache_control: { type: "ephemeral" } } : {}), ...(system ? { system } : {}), messages: messages ?? [{ role: "user", content: user }] }),
+      const door = doorOf();
+      const response = await fetcher(door.messagesUrl, {
+        method: "POST", headers: door.headers(apiKey),
+        body: JSON.stringify(door.body({ model, max_tokens: maxTokens, output_config: { effort }, ...(cache ? { cache_control: { type: "ephemeral" } } : {}), ...(system ? { system } : {}), messages: messages ?? [{ role: "user", content: user }] })),
         signal: AbortSignal.timeout(180_000),
       });
       const value = await response.json().catch(() => null);
@@ -319,8 +325,8 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const previous = dry ? { spentUsd: 0, runs: [] } : JSON.parse(await readFile(ledgerJson, "utf8").catch(() => '{"spentUsd":0,"runs":[]}'));
   const cap = Number(option(args, "--budget", "10"));
   const budget = createBudget(cap, previous.spentUsd ?? 0);
-  const apiKey = dry ? "dry" : providerKey("ANTHROPIC_API_KEY");
-  if (!apiKey) throw new Error("ANTHROPIC_API_KEY is needed (.env.local or the cloud environment's APP_ANTHROPIC_API_KEY)");
+  const apiKey = dry ? "dry" : anthropicKey();
+  if (!apiKey) throw new Error(`${anthropicKeyName()} is needed (.env.local or the cloud environment's APP_ variable)`);
   out(`case ${caseData.synthetic ? "synthetic fixture" : casePath} · ${args.includes("--rejudge") ? "re-judge" : `n ${option(args, "--n", "5")}`} · cap $${cap} (spent before: $${(previous.spentUsd ?? 0).toFixed(4)})${dry ? " · DRY RUN" : ""}`);
   const rejudgeFile = option(args, "--rejudge", null);
   const earlier = rejudgeFile ? JSON.parse(await readFile(resolve(rejudgeFile), "utf8")) : null;
