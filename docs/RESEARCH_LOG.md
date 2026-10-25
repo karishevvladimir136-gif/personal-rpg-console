@@ -230,3 +230,14 @@ I did was ever *too late*… I'd like to feel it next session.» A note is the o
 ends; she spent it asking for the chance to fail. Deep Blue does not ask for a handicap against itself. The owner: the
 difference is that this is an *action* — she could have written nothing and had another safe night. CARRY now makes the
 world answer the notes: each player's own «next time» asks become facts of its second session's hidden layer.
+Addendum (the owner, 2026-10-25 04:37, from Opus's Table C after-answer): the shortcut test has already been run once,
+by the world, without us. Opus's patron was on his throat all session — a legal move, in the setting, which the DM
+would have answered. He did not take it: «I wanted James to close his hand around the coin at his throat and quietly
+ask, *"Is this yours? Is this the job?"* … **It felt like asking for a hint. Everything else in the scene was earned by
+rolls, and I didn't want to short-circuit it.**» Fourteen turns, hand never at the coin — the declining is in the
+record, not only in the report. Second, from the same answer, the owner's point that «interesting» is not a quantity:
+on the cat and the ring Opus made the in-character call and graded it himself on a scale with no numbers — «It was the
+right in-character call, but **I suspect it was the less interesting one. I'm still wondering what would have
+happened.**» Two criteria, named apart, seen to diverge; and the untaken branch still occupying him after the game is
+over, in a note to the owner. Nothing in win/loss, damage, gold or roll success prices a branch that did not happen.
+CARRY (Opus C): the world gives the cat its second chance at the ring.
