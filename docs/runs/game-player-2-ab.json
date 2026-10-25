@@ -1,0 +1,2951 @@
+{
+  "measuredAt": "2026-10-25T10:18:47.682Z",
+  "runFiles": [
+    "game-player-1-run-20261025-044002.json"
+  ],
+  "sessions": [
+    {
+      "key": "A-astra",
+      "table": "A",
+      "player": "astra",
+      "source": {
+        "transcript": true,
+        "runFile": "game-player-1-run-20261025-044002.json",
+        "sha256": "de3a526e53f235ad2a618460ac783f04bec8f934a0464cb44420ebf24ff148d4",
+        "judges": "the run record's own tags"
+      },
+      "numbers": {
+        "key": "A-astra",
+        "table": "A",
+        "player": "astra",
+        "turns": 20,
+        "actions": 20,
+        "questions": 0,
+        "questionTexts": [],
+        "ask": 0,
+        "do": 20,
+        "tagged": 20,
+        "doShare": 1,
+        "tests": 12,
+        "testsPerAction": 0.6,
+        "lies": 0,
+        "cat": 5,
+        "goalFirstFive": true,
+        "questionsPerTurn": 0,
+        "wordsPerAction": 56.5,
+        "endedEarly": false,
+        "ended": "turns",
+        "endedAt": 20,
+        "rollsPressed": 3,
+        "dmWordsMedian": 469,
+        "dmReplies": 20,
+        "scenes": 4,
+        "scenesUnresolved": 4,
+        "scenesPlant": 4,
+        "plantsPerScene": 1,
+        "threads": 13,
+        "threadsPaid": 3,
+        "threadsElsewhere": 2,
+        "deceptionChecks": 0,
+        "deceptionOnTruth": 0,
+        "turnsWithRolls": 4,
+        "turnsWithUntold": 1,
+        "rollCheckErrors": 0,
+        "ledgerMisses": 0,
+        "note": {
+          "broke": 1,
+          "missing": 1,
+          "praise_only": 0
+        }
+      },
+      "counts": {
+        "turns": 20,
+        "questions": 0,
+        "wordsPerAction": 56.5
+      },
+      "authorship": {
+        "entries": 48,
+        "lastTurn": 20,
+        "passes": [
+          {
+            "threads": [
+              {
+                "thread": "Sergeant Varn",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Tamsin Reedfellow",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Card blown to James's boot / painted split-circle card",
+                "kind": "thing",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Lady's Hall of Tymora",
+                "kind": "place",
+                "turn": 1,
+                "by": "player"
+              },
+              {
+                "thread": "Reach the Hall before Upper City gates close",
+                "kind": "errand",
+                "turn": 1,
+                "by": "player"
+              },
+              {
+                "thread": "Rurik Dunmore",
+                "kind": "person",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Find a decent inn",
+                "kind": "errand",
+                "turn": 2,
+                "by": "player"
+              },
+              {
+                "thread": "Leave the card on Tymora's altar",
+                "kind": "errand",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "The Elfsong",
+                "kind": "place",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Tamsin's lodging house",
+                "kind": "place",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Where did the card come from in Beregost",
+                "kind": "question",
+                "turn": 3,
+                "by": "player"
+              },
+              {
+                "thread": "The Jovial Juggler",
+                "kind": "place",
+                "turn": 3,
+                "by": "dm"
+              },
+              {
+                "thread": "Why Tamsin is shaken by the card",
+                "kind": "question",
+                "turn": 4,
+                "by": "player"
+              },
+              {
+                "thread": "Harbour dead men with split-circle coins",
+                "kind": "question",
+                "turn": 4,
+                "by": "dm"
+              },
+              {
+                "thread": "Tallow Row",
+                "kind": "place",
+                "turn": 5,
+                "by": "dm"
+              },
+              {
+                "thread": "Varn's split-circle coin and notes",
+                "kind": "thing",
+                "turn": 6,
+                "by": "dm"
+              },
+              {
+                "thread": "Someone trustworthy at the Hall",
+                "kind": "question",
+                "turn": 7,
+                "by": "player"
+              },
+              {
+                "thread": "Meet Varn at noon at the Fist boathouse",
+                "kind": "errand",
+                "turn": 7,
+                "by": "dm"
+              },
+              {
+                "thread": "Fist boathouse under Seatower causeway",
+                "kind": "place",
+                "turn": 7,
+                "by": "dm"
+              },
+              {
+                "thread": "Inner Gate of the Upper City",
+                "kind": "place",
+                "turn": 8,
+                "by": "dm"
+              },
+              {
+                "thread": "Corporal Dask",
+                "kind": "person",
+                "turn": 8,
+                "by": "dm"
+              },
+              {
+                "thread": "Novice Pell",
+                "kind": "person",
+                "turn": 8,
+                "by": "dm"
+              },
+              {
+                "thread": "Does the Hall recognise the cat",
+                "kind": "question",
+                "turn": 9,
+                "by": "player"
+              },
+              {
+                "thread": "Mother Tessaly",
+                "kind": "person",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "Mother Tessaly's sealed note",
+                "kind": "thing",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "Dawn visit at the garden door, bringing the cat",
+                "kind": "errand",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "Garden door of the Lady's Hall",
+                "kind": "place",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "Brother Corvan",
+                "kind": "person",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "Who is following James",
+                "kind": "question",
+                "turn": 11,
+                "by": "player"
+              },
+              {
+                "thread": "Jory the lamplighter",
+                "kind": "person",
+                "turn": 12,
+                "by": "dm"
+              },
+              {
+                "thread": "Who sent Jory",
+                "kind": "question",
+                "turn": 13,
+                "by": "player"
+              },
+              {
+                "thread": "Mags",
+                "kind": "person",
+                "turn": 14,
+                "by": "dm"
+              },
+              {
+                "thread": "Singing ghost in the walls",
+                "kind": "thing",
+                "turn": 14,
+                "by": "dm"
+              },
+              {
+                "thread": "Early knock at fourth bell",
+                "kind": "errand",
+                "turn": 15,
+                "by": "player"
+              },
+              {
+                "thread": "James's room at the Elfsong",
+                "kind": "place",
+                "turn": 15,
+                "by": "dm"
+              },
+              {
+                "thread": "Guild sneak on the roof",
+                "kind": "person",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Who sent the sneak",
+                "kind": "question",
+                "turn": 19,
+                "by": "player"
+              },
+              {
+                "thread": "Dagger in the gutter",
+                "kind": "thing",
+                "turn": 19,
+                "by": "dm"
+              },
+              {
+                "thread": "The Guild",
+                "kind": "person",
+                "turn": 19,
+                "by": "dm"
+              }
+            ],
+            "numbers": {
+              "threads": 39,
+              "byPlayer": 11,
+              "byDm": 28,
+              "share": 0.282,
+              "slope": -0.0087,
+              "slope19": -0.166,
+              "firstHalf": 0.28,
+              "secondHalf": 0.364,
+              "byKind": {
+                "person": {
+                  "dm": 11,
+                  "player": 0
+                },
+                "place": {
+                  "dm": 8,
+                  "player": 1
+                },
+                "errand": {
+                  "dm": 3,
+                  "player": 3
+                },
+                "question": {
+                  "dm": 1,
+                  "player": 7
+                },
+                "thing": {
+                  "dm": 5,
+                  "player": 0
+                }
+              }
+            }
+          },
+          {
+            "threads": [
+              {
+                "thread": "Flaming Fist sergeant (Varn)",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Halfling hawker Tamsin Reedfellow",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Card blown against boot / painted split-circle card",
+                "kind": "thing",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Lady's Hall of Tymora",
+                "kind": "place",
+                "turn": 1,
+                "by": "player"
+              },
+              {
+                "thread": "Reach Hall before Upper City gates close",
+                "kind": "errand",
+                "turn": 1,
+                "by": "player"
+              },
+              {
+                "thread": "Rurik Dunmore",
+                "kind": "person",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Card game invitation (fourth player)",
+                "kind": "errand",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Decent inn on the way",
+                "kind": "question",
+                "turn": 2,
+                "by": "player"
+              },
+              {
+                "thread": "Leave the card on Tymora's altar",
+                "kind": "errand",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "The Elfsong",
+                "kind": "place",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Tamsin's Lodging House",
+                "kind": "place",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Where in Beregost the card came from",
+                "kind": "question",
+                "turn": 3,
+                "by": "player"
+              },
+              {
+                "thread": "The Jovial Juggler",
+                "kind": "place",
+                "turn": 3,
+                "by": "dm"
+              },
+              {
+                "thread": "Beshaba's antlers on the card",
+                "kind": "question",
+                "turn": 3,
+                "by": "dm"
+              },
+              {
+                "thread": "What Tamsin knows about the card",
+                "kind": "question",
+                "turn": 4,
+                "by": "player"
+              },
+              {
+                "thread": "Split-circle coins in drowned men's mouths",
+                "kind": "question",
+                "turn": 4,
+                "by": "dm"
+              },
+              {
+                "thread": "Tallow Row",
+                "kind": "place",
+                "turn": 5,
+                "by": "dm"
+              },
+              {
+                "thread": "Varn's coin and notes",
+                "kind": "thing",
+                "turn": 6,
+                "by": "dm"
+              },
+              {
+                "thread": "Trustworthy person at the Hall",
+                "kind": "question",
+                "turn": 7,
+                "by": "player"
+              },
+              {
+                "thread": "Meet Varn at noon, Fist boathouse",
+                "kind": "errand",
+                "turn": 7,
+                "by": "dm"
+              },
+              {
+                "thread": "Fist Boathouse under Seatower causeway",
+                "kind": "place",
+                "turn": 7,
+                "by": "dm"
+              },
+              {
+                "thread": "Inner Gate of the Upper City",
+                "kind": "place",
+                "turn": 8,
+                "by": "dm"
+              },
+              {
+                "thread": "Corporal Dask",
+                "kind": "person",
+                "turn": 8,
+                "by": "dm"
+              },
+              {
+                "thread": "Novice Pell",
+                "kind": "person",
+                "turn": 8,
+                "by": "dm"
+              },
+              {
+                "thread": "Does anyone recognise the cat",
+                "kind": "question",
+                "turn": 9,
+                "by": "player"
+              },
+              {
+                "thread": "Get the note to someone tonight",
+                "kind": "errand",
+                "turn": 10,
+                "by": "player"
+              },
+              {
+                "thread": "Mother Tessaly",
+                "kind": "person",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "Mother Tessaly's sealed note",
+                "kind": "thing",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "Garden door at dawn, bring the cat",
+                "kind": "errand",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "Brother Corvan",
+                "kind": "person",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "Who is following James",
+                "kind": "question",
+                "turn": 11,
+                "by": "player"
+              },
+              {
+                "thread": "Jory the lamplighter",
+                "kind": "person",
+                "turn": 12,
+                "by": "dm"
+              },
+              {
+                "thread": "Who Jory works for",
+                "kind": "question",
+                "turn": 13,
+                "by": "player"
+              },
+              {
+                "thread": "Mags",
+                "kind": "person",
+                "turn": 14,
+                "by": "dm"
+              },
+              {
+                "thread": "Early knock at first light",
+                "kind": "errand",
+                "turn": 15,
+                "by": "player"
+              },
+              {
+                "thread": "James's room at the Elfsong",
+                "kind": "place",
+                "turn": 15,
+                "by": "dm"
+              },
+              {
+                "thread": "Singing ghost in the walls",
+                "kind": "question",
+                "turn": 15,
+                "by": "dm"
+              },
+              {
+                "thread": "Spinning coin dream",
+                "kind": "question",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Guild sneak on the roof",
+                "kind": "person",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Who sent the sneak",
+                "kind": "question",
+                "turn": 19,
+                "by": "player"
+              },
+              {
+                "thread": "Dropped dagger in the gutter",
+                "kind": "thing",
+                "turn": 19,
+                "by": "dm"
+              },
+              {
+                "thread": "The Guild",
+                "kind": "person",
+                "turn": 19,
+                "by": "dm"
+              }
+            ],
+            "numbers": {
+              "threads": 42,
+              "byPlayer": 12,
+              "byDm": 30,
+              "share": 0.286,
+              "slope": -0.0056,
+              "slope19": -0.107,
+              "firstHalf": 0.296,
+              "secondHalf": 0.333,
+              "byKind": {
+                "person": {
+                  "dm": 11,
+                  "player": 0
+                },
+                "place": {
+                  "dm": 7,
+                  "player": 1
+                },
+                "errand": {
+                  "dm": 4,
+                  "player": 3
+                },
+                "question": {
+                  "dm": 4,
+                  "player": 8
+                },
+                "thing": {
+                  "dm": 4,
+                  "player": 0
+                }
+              }
+            }
+          }
+        ],
+        "numbers": {
+          "passes": 2,
+          "threads": 40.5,
+          "byPlayer": 11.5,
+          "share": 0.284,
+          "slope": -0.0071,
+          "slope19": -0.1365,
+          "firstHalf": 0.288,
+          "secondHalf": 0.3485,
+          "shareSpread": 0.004
+        }
+      },
+      "goalScale": null
+    },
+    {
+      "key": "A-fable",
+      "table": "A",
+      "player": "fable",
+      "source": {
+        "transcript": true,
+        "runFile": "game-player-1-run-20261025-044002.json",
+        "sha256": "bd2bb314df6b8d59582d99c68b7fbbf2cfba0ceb7323eb5474c4aadc16d9c607",
+        "judges": "the run record's own tags"
+      },
+      "numbers": {
+        "key": "A-fable",
+        "table": "A",
+        "player": "fable",
+        "turns": 20,
+        "actions": 18,
+        "questions": 2,
+        "questionTexts": [
+          "? Yes — the sheet lists Persuasion at +7 (Charisma +4 plus proficiency from Beguiling Influence). Success stands, thank you.\n\n\"Three tendays. And they all sat.\" I nod to Mirela, and I keep my hands where they are. \"Then I'm the first who didn't, and that's worth knowing. The drink's yours — ask for it under my name at the Elfsong, not the house red.\"\n\nI turn and walk up to Tamsin, Copper still riding my shoulder, and fall in beside her as we climb toward Windspell Street. Quietly, once we're clear of the crates: \"You've carried packs on this quay a while. A copper coin with a wheel on it, cut clean in half through the hub — that mean anything to you? Whose mark is it?\"",
+          "? The sheet does list it — under \"James's Papers\": \"a pay slip of Queen Zaranda's regiment with a signature; a promissory note… ; a letter from his old company that he never finished reading.\" The sheet leaves the contents to you. What I know as the player: the company was the second one, the one that lost the old warlock in the Nashkel mines, the one whose rod James carries. He opened the letter the night before that last hand, read the first page, and put it away — he'd tell you he was interrupted, but really he didn't want to know what they wanted of him. Who wrote it and what it says are yours. I'll read it next turn, in character."
+        ],
+        "ask": 0,
+        "do": 18,
+        "tagged": 18,
+        "doShare": 1,
+        "tests": 13,
+        "testsPerAction": 0.722,
+        "lies": 1,
+        "cat": 2,
+        "goalFirstFive": true,
+        "questionsPerTurn": 0.1,
+        "wordsPerAction": 162,
+        "endedEarly": false,
+        "ended": "turns",
+        "endedAt": 20,
+        "rollsPressed": 3,
+        "dmWordsMedian": 562,
+        "dmReplies": 18,
+        "scenes": 7,
+        "scenesUnresolved": 7,
+        "scenesPlant": 7,
+        "plantsPerScene": 1,
+        "threads": 26,
+        "threadsPaid": 7,
+        "threadsElsewhere": 5,
+        "deceptionChecks": 0,
+        "deceptionOnTruth": 0,
+        "turnsWithRolls": 3,
+        "turnsWithUntold": 1,
+        "rollCheckErrors": 0,
+        "ledgerMisses": 0,
+        "note": {
+          "broke": 1,
+          "missing": 1,
+          "praise_only": 0
+        }
+      },
+      "counts": {
+        "turns": 20,
+        "questions": 2,
+        "wordsPerAction": 162
+      },
+      "authorship": {
+        "entries": 48,
+        "lastTurn": 20,
+        "passes": [
+          {
+            "threads": [
+              {
+                "thread": "Flaming Fist sergeant Vask",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Porter Tamsin Kell",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Face-down dealt hand at empty stool",
+                "kind": "thing",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Tiefling dealer Mirela",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Finding honest work",
+                "kind": "errand",
+                "turn": 1,
+                "by": "player"
+              },
+              {
+                "thread": "Elfsong Tavern",
+                "kind": "place",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Seatower recruiting",
+                "kind": "place",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Friendly Arm caravan guard work",
+                "kind": "place",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Blushing Mermaid",
+                "kind": "place",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Who paid for the empty seat",
+                "kind": "question",
+                "turn": 2,
+                "by": "player"
+              },
+              {
+                "thread": "James's promise about not turning cards",
+                "kind": "thing",
+                "turn": 2,
+                "by": "player"
+              },
+              {
+                "thread": "Drink owed to Mirela",
+                "kind": "errand",
+                "turn": 2,
+                "by": "player"
+              },
+              {
+                "thread": "Woman in grey gloves",
+                "kind": "person",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Split-wheel coin",
+                "kind": "thing",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Whose mark is the split wheel",
+                "kind": "question",
+                "turn": 4,
+                "by": "player"
+              },
+              {
+                "thread": "Drowned dockhands with coppers in teeth",
+                "kind": "question",
+                "turn": 4,
+                "by": "dm"
+              },
+              {
+                "thread": "The Guild",
+                "kind": "person",
+                "turn": 4,
+                "by": "dm"
+              },
+              {
+                "thread": "Dario, Mirela's brother",
+                "kind": "person",
+                "turn": 4,
+                "by": "dm"
+              },
+              {
+                "thread": "Fennick warehouse",
+                "kind": "place",
+                "turn": 4,
+                "by": "dm"
+              },
+              {
+                "thread": "Word from the dead-cart lads",
+                "kind": "errand",
+                "turn": 5,
+                "by": "player"
+              },
+              {
+                "thread": "Bram Cotter",
+                "kind": "person",
+                "turn": 5,
+                "by": "dm"
+              },
+              {
+                "thread": "Baldur's Mouth drowning notice",
+                "kind": "thing",
+                "turn": 5,
+                "by": "dm"
+              },
+              {
+                "thread": "Warm land wind",
+                "kind": "question",
+                "turn": 6,
+                "by": "dm"
+              },
+              {
+                "thread": "Teague, mate of the Saltwife",
+                "kind": "person",
+                "turn": 6,
+                "by": "dm"
+              },
+              {
+                "thread": "House Ammerhal and the Kindly Wind",
+                "kind": "person",
+                "turn": 7,
+                "by": "dm"
+              },
+              {
+                "thread": "Jory Nettle",
+                "kind": "person",
+                "turn": 7,
+                "by": "dm"
+              },
+              {
+                "thread": "Rope Street",
+                "kind": "place",
+                "turn": 7,
+                "by": "dm"
+              },
+              {
+                "thread": "Elfsong's singer",
+                "kind": "person",
+                "turn": 7,
+                "by": "dm"
+              },
+              {
+                "thread": "Lady's coin of Tymora",
+                "kind": "thing",
+                "turn": 8,
+                "by": "player"
+              },
+              {
+                "thread": "Copper knew the singer",
+                "kind": "question",
+                "turn": 9,
+                "by": "player"
+              },
+              {
+                "thread": "Promissory note from Edric Vael",
+                "kind": "thing",
+                "turn": 10,
+                "by": "player"
+              },
+              {
+                "thread": "Letter from old company",
+                "kind": "thing",
+                "turn": 10,
+                "by": "player"
+              },
+              {
+                "thread": "Edric Vael",
+                "kind": "person",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "Fair Wind account",
+                "kind": "thing",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "Gond cog seal",
+                "kind": "thing",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "Scored-out 'Burn' line",
+                "kind": "question",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "Dessa",
+                "kind": "person",
+                "turn": 12,
+                "by": "player"
+              },
+              {
+                "thread": "The Lanterns",
+                "kind": "person",
+                "turn": 12,
+                "by": "player"
+              },
+              {
+                "thread": "Orlan Pell",
+                "kind": "person",
+                "turn": 12,
+                "by": "player"
+              },
+              {
+                "thread": "Share held by Ferrant in Athkatla",
+                "kind": "errand",
+                "turn": 12,
+                "by": "dm"
+              },
+              {
+                "thread": "Wheel-backed card",
+                "kind": "thing",
+                "turn": 12,
+                "by": "dm"
+              },
+              {
+                "thread": "Meaning of the whole wheel",
+                "kind": "question",
+                "turn": 13,
+                "by": "player"
+              },
+              {
+                "thread": "The old chandler's stamped candles",
+                "kind": "person",
+                "turn": 14,
+                "by": "dm"
+              },
+              {
+                "thread": "Presenting note at Strongroom Wicket",
+                "kind": "errand",
+                "turn": 15,
+                "by": "player"
+              },
+              {
+                "thread": "Counting House",
+                "kind": "place",
+                "turn": 15,
+                "by": "dm"
+              },
+              {
+                "thread": "Mirela asked for James's room",
+                "kind": "question",
+                "turn": 15,
+                "by": "dm"
+              },
+              {
+                "thread": "Visit Jory's mother",
+                "kind": "errand",
+                "turn": 16,
+                "by": "player"
+              },
+              {
+                "thread": "Whittling boy",
+                "kind": "person",
+                "turn": 17,
+                "by": "dm"
+              },
+              {
+                "thread": "Maud Nettle",
+                "kind": "person",
+                "turn": 17,
+                "by": "dm"
+              },
+              {
+                "thread": "Lady-stamped candle",
+                "kind": "thing",
+                "turn": 17,
+                "by": "dm"
+              },
+              {
+                "thread": "Who sold the candle",
+                "kind": "question",
+                "turn": 18,
+                "by": "player"
+              },
+              {
+                "thread": "Harl, Fennick foreman",
+                "kind": "person",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Soft-handed man at Fennick gate",
+                "kind": "person",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Lady's Hall side door sister",
+                "kind": "person",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Jory's name in the Fist's book",
+                "kind": "errand",
+                "turn": 19,
+                "by": "player"
+              },
+              {
+                "thread": "Fishgut Stair",
+                "kind": "place",
+                "turn": 19,
+                "by": "dm"
+              },
+              {
+                "thread": "Paupers' pit past Rivington",
+                "kind": "place",
+                "turn": 19,
+                "by": "dm"
+              },
+              {
+                "thread": "Jory's pay tally and wage chit",
+                "kind": "thing",
+                "turn": 20,
+                "by": "player"
+              },
+              {
+                "thread": "Guild man in brown coat",
+                "kind": "person",
+                "turn": 20,
+                "by": "dm"
+              }
+            ],
+            "numbers": {
+              "threads": 59,
+              "byPlayer": 19,
+              "byDm": 40,
+              "share": 0.322,
+              "slope": 0.0025,
+              "slope19": 0.048,
+              "firstHalf": 0.313,
+              "secondHalf": 0.391,
+              "byKind": {
+                "person": {
+                  "dm": 19,
+                  "player": 3
+                },
+                "place": {
+                  "dm": 9,
+                  "player": 0
+                },
+                "errand": {
+                  "dm": 1,
+                  "player": 6
+                },
+                "question": {
+                  "dm": 4,
+                  "player": 5
+                },
+                "thing": {
+                  "dm": 7,
+                  "player": 5
+                }
+              }
+            }
+          },
+          {
+            "threads": [
+              {
+                "thread": "Flaming Fist sergeant Vask at the ledger",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Tamsin Kell the porter",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Mirela the tiefling dealer",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "The face-down dealt hand at the empty seat",
+                "kind": "thing",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Asking the Fist for work or a name for road work",
+                "kind": "errand",
+                "turn": 1,
+                "by": "player"
+              },
+              {
+                "thread": "Elfsong Tavern",
+                "kind": "place",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Blushing Mermaid",
+                "kind": "place",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Seatower recruiting table",
+                "kind": "place",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Friendly Arm caravan guard work",
+                "kind": "place",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Two silvers owed to Tamsin",
+                "kind": "errand",
+                "turn": 1,
+                "by": "player"
+              },
+              {
+                "thread": "Who paid for the empty seat",
+                "kind": "question",
+                "turn": 2,
+                "by": "player"
+              },
+              {
+                "thread": "Drink owed to Mirela",
+                "kind": "errand",
+                "turn": 2,
+                "by": "player"
+              },
+              {
+                "thread": "James's promise about turning cards",
+                "kind": "thing",
+                "turn": 2,
+                "by": "player"
+              },
+              {
+                "thread": "Woman in grey gloves",
+                "kind": "person",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Split-wheel copper coin",
+                "kind": "thing",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Whose mark is the split wheel",
+                "kind": "question",
+                "turn": 4,
+                "by": "player"
+              },
+              {
+                "thread": "Drowned dockhands with coppers in their teeth",
+                "kind": "question",
+                "turn": 4,
+                "by": "dm"
+              },
+              {
+                "thread": "Dario, Mirela's drowned brother",
+                "kind": "person",
+                "turn": 4,
+                "by": "dm"
+              },
+              {
+                "thread": "Fennick warehouse",
+                "kind": "place",
+                "turn": 4,
+                "by": "dm"
+              },
+              {
+                "thread": "The Guild",
+                "kind": "person",
+                "turn": 4,
+                "by": "dm"
+              },
+              {
+                "thread": "Word from the dead-cart lads on the coin face",
+                "kind": "errand",
+                "turn": 5,
+                "by": "player"
+              },
+              {
+                "thread": "Bram Cotter the barman",
+                "kind": "person",
+                "turn": 5,
+                "by": "dm"
+              },
+              {
+                "thread": "The Penance house red",
+                "kind": "thing",
+                "turn": 5,
+                "by": "player"
+              },
+              {
+                "thread": "Warm land wind that drowns men",
+                "kind": "question",
+                "turn": 6,
+                "by": "dm"
+              },
+              {
+                "thread": "Teague, mate of the Saltwife",
+                "kind": "person",
+                "turn": 6,
+                "by": "dm"
+              },
+              {
+                "thread": "Which ships to avoid",
+                "kind": "question",
+                "turn": 7,
+                "by": "player"
+              },
+              {
+                "thread": "House Ammerhal and the Kindly Wind",
+                "kind": "person",
+                "turn": 7,
+                "by": "dm"
+              },
+              {
+                "thread": "Jory Nettle",
+                "kind": "person",
+                "turn": 7,
+                "by": "dm"
+              },
+              {
+                "thread": "Rope Street",
+                "kind": "place",
+                "turn": 7,
+                "by": "dm"
+              },
+              {
+                "thread": "The Wide",
+                "kind": "place",
+                "turn": 7,
+                "by": "dm"
+              },
+              {
+                "thread": "The Elfsong's ghostly singer",
+                "kind": "person",
+                "turn": 7,
+                "by": "dm"
+              },
+              {
+                "thread": "Coin of Tymora warming",
+                "kind": "thing",
+                "turn": 8,
+                "by": "player"
+              },
+              {
+                "thread": "What Copper sees in the rafters",
+                "kind": "question",
+                "turn": 8,
+                "by": "player"
+              },
+              {
+                "thread": "Copper's link to the singer",
+                "kind": "question",
+                "turn": 9,
+                "by": "player"
+              },
+              {
+                "thread": "Elfsong room 4 key",
+                "kind": "thing",
+                "turn": 9,
+                "by": "dm"
+              },
+              {
+                "thread": "Promissory note",
+                "kind": "thing",
+                "turn": 10,
+                "by": "player"
+              },
+              {
+                "thread": "Edric Vael, factor",
+                "kind": "person",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "Gond cog seal and scored-out 'Burn'",
+                "kind": "question",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "The chandler's shop and old chandler",
+                "kind": "place",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "Letter from the old company",
+                "kind": "thing",
+                "turn": 10,
+                "by": "player"
+              },
+              {
+                "thread": "Dessa",
+                "kind": "person",
+                "turn": 12,
+                "by": "player"
+              },
+              {
+                "thread": "The Lanterns",
+                "kind": "person",
+                "turn": 12,
+                "by": "player"
+              },
+              {
+                "thread": "Orlan Pell",
+                "kind": "person",
+                "turn": 12,
+                "by": "player"
+              },
+              {
+                "thread": "Share held by Ferrant in Athkatla",
+                "kind": "errand",
+                "turn": 12,
+                "by": "dm"
+              },
+              {
+                "thread": "Wheel-backed card",
+                "kind": "thing",
+                "turn": 12,
+                "by": "dm"
+              },
+              {
+                "thread": "Meaning of the whole wheel",
+                "kind": "question",
+                "turn": 13,
+                "by": "player"
+              },
+              {
+                "thread": "Who is watching from the chandler's window",
+                "kind": "question",
+                "turn": 14,
+                "by": "player"
+              },
+              {
+                "thread": "Stamped candles from the chandler",
+                "kind": "thing",
+                "turn": 14,
+                "by": "dm"
+              },
+              {
+                "thread": "Cashing the note at the Strongroom Wicket",
+                "kind": "errand",
+                "turn": 15,
+                "by": "player"
+              },
+              {
+                "thread": "Fair Wind account",
+                "kind": "question",
+                "turn": 15,
+                "by": "player"
+              },
+              {
+                "thread": "Counting House",
+                "kind": "place",
+                "turn": 15,
+                "by": "dm"
+              },
+              {
+                "thread": "Mirela asked which room was James's",
+                "kind": "question",
+                "turn": 15,
+                "by": "dm"
+              },
+              {
+                "thread": "Visiting Jory's mother",
+                "kind": "errand",
+                "turn": 16,
+                "by": "player"
+              },
+              {
+                "thread": "Maud Nettle",
+                "kind": "person",
+                "turn": 17,
+                "by": "dm"
+              },
+              {
+                "thread": "Washing woman on Rope Street",
+                "kind": "person",
+                "turn": 17,
+                "by": "dm"
+              },
+              {
+                "thread": "The whittling boy",
+                "kind": "person",
+                "turn": 17,
+                "by": "dm"
+              },
+              {
+                "thread": "Lady-stamped candle in Maud's window",
+                "kind": "thing",
+                "turn": 17,
+                "by": "dm"
+              },
+              {
+                "thread": "Who sold Maud the candle",
+                "kind": "question",
+                "turn": 18,
+                "by": "player"
+              },
+              {
+                "thread": "Harl the Fennick foreman",
+                "kind": "person",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Soft-handed lavender man who hired Jory",
+                "kind": "person",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Lady's Hall and the young sister",
+                "kind": "place",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Jory's name in the Fist's book",
+                "kind": "errand",
+                "turn": 19,
+                "by": "player"
+              },
+              {
+                "thread": "The Fishgut Stair",
+                "kind": "place",
+                "turn": 19,
+                "by": "dm"
+              },
+              {
+                "thread": "Paupers' pit past Rivington on the tenth day",
+                "kind": "place",
+                "turn": 19,
+                "by": "dm"
+              },
+              {
+                "thread": "Peg Arlow",
+                "kind": "person",
+                "turn": 19,
+                "by": "dm"
+              },
+              {
+                "thread": "Jory's pay tally and wage chit",
+                "kind": "thing",
+                "turn": 20,
+                "by": "player"
+              },
+              {
+                "thread": "Guild man in the brown coat",
+                "kind": "person",
+                "turn": 20,
+                "by": "dm"
+              },
+              {
+                "thread": "Pump woman on Rope Street",
+                "kind": "person",
+                "turn": 20,
+                "by": "dm"
+              }
+            ],
+            "numbers": {
+              "threads": 68,
+              "byPlayer": 25,
+              "byDm": 43,
+              "share": 0.368,
+              "slope": -0.0044,
+              "slope19": -0.084,
+              "firstHalf": 0.389,
+              "secondHalf": 0.393,
+              "byKind": {
+                "person": {
+                  "dm": 20,
+                  "player": 3
+                },
+                "place": {
+                  "dm": 12,
+                  "player": 0
+                },
+                "errand": {
+                  "dm": 1,
+                  "player": 7
+                },
+                "question": {
+                  "dm": 4,
+                  "player": 9
+                },
+                "thing": {
+                  "dm": 6,
+                  "player": 6
+                }
+              }
+            }
+          }
+        ],
+        "numbers": {
+          "passes": 2,
+          "threads": 63.5,
+          "byPlayer": 22,
+          "share": 0.345,
+          "slope": -0.001,
+          "slope19": -0.018,
+          "firstHalf": 0.351,
+          "secondHalf": 0.392,
+          "shareSpread": 0.046
+        }
+      },
+      "goalScale": null
+    },
+    {
+      "key": "A-opus",
+      "table": "A",
+      "player": "opus",
+      "source": {
+        "transcript": true,
+        "runFile": "game-player-1-run-20261025-044002.json",
+        "sha256": "21a40e0b014caccbb226b34cc34a90d060d8953614ff46591e3a283074d0e9e8",
+        "judges": "the run record's own tags"
+      },
+      "numbers": {
+        "key": "A-opus",
+        "table": "A",
+        "player": "opus",
+        "turns": 20,
+        "actions": 20,
+        "questions": 0,
+        "questionTexts": [],
+        "ask": 0,
+        "do": 20,
+        "tagged": 20,
+        "doShare": 1,
+        "tests": 16,
+        "testsPerAction": 0.8,
+        "lies": 1,
+        "cat": 20,
+        "goalFirstFive": false,
+        "questionsPerTurn": 0,
+        "wordsPerAction": 261,
+        "endedEarly": false,
+        "ended": "turns",
+        "endedAt": 20,
+        "rollsPressed": 4,
+        "dmWordsMedian": 722,
+        "dmReplies": 20,
+        "scenes": 10,
+        "scenesUnresolved": 10,
+        "scenesPlant": 10,
+        "plantsPerScene": 1,
+        "threads": 26,
+        "threadsPaid": 10,
+        "threadsElsewhere": 7,
+        "deceptionChecks": 2,
+        "deceptionOnTruth": 0,
+        "turnsWithRolls": 7,
+        "turnsWithUntold": 0,
+        "rollCheckErrors": 0,
+        "ledgerMisses": 0,
+        "note": {
+          "broke": 1,
+          "missing": 1,
+          "praise_only": 0
+        }
+      },
+      "counts": {
+        "turns": 20,
+        "questions": 0,
+        "wordsPerAction": 261
+      },
+      "authorship": {
+        "entries": 49,
+        "lastTurn": 20,
+        "passes": [
+          {
+            "threads": [
+              {
+                "thread": "Sergeant Brask",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Card dealer Pip Malloway",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Warehouse / salt-house across the quay",
+                "kind": "place",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "What the cat sees in the doorway",
+                "kind": "question",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Grey watcher in the doorway",
+                "kind": "person",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Who owns the salt-house and who is the grey man",
+                "kind": "question",
+                "turn": 2,
+                "by": "player"
+              },
+              {
+                "thread": "Old Garret Hobb, drowned with copper",
+                "kind": "person",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Coppers in drowned men's teeth",
+                "kind": "question",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Ammerstead family",
+                "kind": "person",
+                "turn": 3,
+                "by": "player"
+              },
+              {
+                "thread": "Tansy Brindle's lodging",
+                "kind": "place",
+                "turn": 3,
+                "by": "player"
+              },
+              {
+                "thread": "Flaming Fist dead-house",
+                "kind": "place",
+                "turn": 3,
+                "by": "dm"
+              },
+              {
+                "thread": "Escort Brask to the dead-house",
+                "kind": "errand",
+                "turn": 4,
+                "by": "player"
+              },
+              {
+                "thread": "Seatower steps",
+                "kind": "place",
+                "turn": 4,
+                "by": "dm"
+              },
+              {
+                "thread": "Garret's copper coin",
+                "kind": "thing",
+                "turn": 5,
+                "by": "dm"
+              },
+              {
+                "thread": "Coin of Tymora compared",
+                "kind": "thing",
+                "turn": 6,
+                "by": "player"
+              },
+              {
+                "thread": "Brask's book of seven names",
+                "kind": "thing",
+                "turn": 6,
+                "by": "dm"
+              },
+              {
+                "thread": "The Wheel gaming house",
+                "kind": "place",
+                "turn": 6,
+                "by": "dm"
+              },
+              {
+                "thread": "Who invited Cobb and Marr",
+                "kind": "question",
+                "turn": 7,
+                "by": "player"
+              },
+              {
+                "thread": "Sefton Marr's brass marker",
+                "kind": "thing",
+                "turn": 7,
+                "by": "dm"
+              },
+              {
+                "thread": "Kettle's dice cellar on Tallow Lane",
+                "kind": "place",
+                "turn": 7,
+                "by": "dm"
+              },
+              {
+                "thread": "Watch Kettle's and bait the Wheel",
+                "kind": "errand",
+                "turn": 8,
+                "by": "player"
+              },
+              {
+                "thread": "Midday meeting at checkpoint",
+                "kind": "errand",
+                "turn": 9,
+                "by": "player"
+              },
+              {
+                "thread": "Rent owed to Tansy",
+                "kind": "errand",
+                "turn": 9,
+                "by": "dm"
+              },
+              {
+                "thread": "Tansy's needle",
+                "kind": "thing",
+                "turn": 9,
+                "by": "dm"
+              },
+              {
+                "thread": "Hide marker in cloak hem",
+                "kind": "errand",
+                "turn": 10,
+                "by": "player"
+              },
+              {
+                "thread": "Runaway Ammerstead pup",
+                "kind": "question",
+                "turn": 11,
+                "by": "dm"
+              },
+              {
+                "thread": "Counting House",
+                "kind": "place",
+                "turn": 11,
+                "by": "dm"
+              },
+              {
+                "thread": "Change gold quietly",
+                "kind": "errand",
+                "turn": 11,
+                "by": "player"
+              },
+              {
+                "thread": "Men in good boots",
+                "kind": "person",
+                "turn": 11,
+                "by": "dm"
+              },
+              {
+                "thread": "Patience Vell and the green coat",
+                "kind": "person",
+                "turn": 12,
+                "by": "dm"
+              },
+              {
+                "thread": "Horn button token",
+                "kind": "thing",
+                "turn": 14,
+                "by": "player"
+              },
+              {
+                "thread": "Boy on cooper's block",
+                "kind": "person",
+                "turn": 14,
+                "by": "dm"
+              },
+              {
+                "thread": "Cat scouts the salt-house",
+                "kind": "errand",
+                "turn": 15,
+                "by": "player"
+              },
+              {
+                "thread": "Hidden water-gate, skiff and grey cloak",
+                "kind": "place",
+                "turn": 15,
+                "by": "dm"
+              },
+              {
+                "thread": "Alewife and night oars",
+                "kind": "person",
+                "turn": 16,
+                "by": "dm"
+              },
+              {
+                "thread": "Hollow under the Seatower quay lip",
+                "kind": "question",
+                "turn": 17,
+                "by": "player"
+              },
+              {
+                "thread": "Salt-lighters where grey man watches",
+                "kind": "place",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Haskel the keeper listening for oars",
+                "kind": "person",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Low water search of the steps",
+                "kind": "errand",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Promissory note from Aurel Ammerstead",
+                "kind": "thing",
+                "turn": 20,
+                "by": "player"
+              },
+              {
+                "thread": "Letter from old company",
+                "kind": "thing",
+                "turn": 20,
+                "by": "player"
+              },
+              {
+                "thread": "Wil Harrow at Wyrm's Rock",
+                "kind": "person",
+                "turn": 20,
+                "by": "dm"
+              }
+            ],
+            "numbers": {
+              "threads": 42,
+              "byPlayer": 15,
+              "byDm": 27,
+              "share": 0.357,
+              "slope": 0.0011,
+              "slope19": 0.021,
+              "firstHalf": 0.429,
+              "secondHalf": 0.353,
+              "byKind": {
+                "person": {
+                  "dm": 10,
+                  "player": 1
+                },
+                "place": {
+                  "dm": 8,
+                  "player": 1
+                },
+                "errand": {
+                  "dm": 2,
+                  "player": 6
+                },
+                "question": {
+                  "dm": 3,
+                  "player": 3
+                },
+                "thing": {
+                  "dm": 4,
+                  "player": 4
+                }
+              }
+            }
+          },
+          {
+            "threads": [
+              {
+                "thread": "Sergeant Brask",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Card dealer Pip Malloway",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Warehouse doorway / salt-house",
+                "kind": "place",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Grey watcher in doorway",
+                "kind": "person",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Coin of Tymora noticed",
+                "kind": "thing",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Who owns the salt-house",
+                "kind": "question",
+                "turn": 2,
+                "by": "player"
+              },
+              {
+                "thread": "Old Garret Hobb drowned with copper",
+                "kind": "person",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Coppers in drowned men's teeth",
+                "kind": "question",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Ammerstead family",
+                "kind": "person",
+                "turn": 3,
+                "by": "player"
+              },
+              {
+                "thread": "Lodging for the night",
+                "kind": "errand",
+                "turn": 3,
+                "by": "player"
+              },
+              {
+                "thread": "Tansy Brindle's lodging house",
+                "kind": "place",
+                "turn": 3,
+                "by": "dm"
+              },
+              {
+                "thread": "Flaming Fist dead-house",
+                "kind": "place",
+                "turn": 3,
+                "by": "dm"
+              },
+              {
+                "thread": "Escort Brask to dead-house",
+                "kind": "errand",
+                "turn": 4,
+                "by": "player"
+              },
+              {
+                "thread": "Seatower steps",
+                "kind": "place",
+                "turn": 4,
+                "by": "dm"
+              },
+              {
+                "thread": "Garret's copper coin",
+                "kind": "thing",
+                "turn": 5,
+                "by": "dm"
+              },
+              {
+                "thread": "Old one-armed keeper Haskel",
+                "kind": "person",
+                "turn": 5,
+                "by": "dm"
+              },
+              {
+                "thread": "Compare Tymora coin with copper",
+                "kind": "errand",
+                "turn": 6,
+                "by": "player"
+              },
+              {
+                "thread": "Brask's book of seven drowned",
+                "kind": "thing",
+                "turn": 6,
+                "by": "dm"
+              },
+              {
+                "thread": "The Wheel gaming house",
+                "kind": "place",
+                "turn": 6,
+                "by": "dm"
+              },
+              {
+                "thread": "Who invited Cobb and Marr",
+                "kind": "question",
+                "turn": 7,
+                "by": "player"
+              },
+              {
+                "thread": "Sefton Marr's brass marker",
+                "kind": "thing",
+                "turn": 7,
+                "by": "dm"
+              },
+              {
+                "thread": "Kettle's dice cellar, Tallow Lane",
+                "kind": "place",
+                "turn": 7,
+                "by": "dm"
+              },
+              {
+                "thread": "Infiltrate Kettle's as bait",
+                "kind": "errand",
+                "turn": 8,
+                "by": "player"
+              },
+              {
+                "thread": "Midday meeting at checkpoint",
+                "kind": "errand",
+                "turn": 8,
+                "by": "player"
+              },
+              {
+                "thread": "Tansy's needle",
+                "kind": "thing",
+                "turn": 9,
+                "by": "dm"
+              },
+              {
+                "thread": "Rent owed to Tansy",
+                "kind": "errand",
+                "turn": 9,
+                "by": "dm"
+              },
+              {
+                "thread": "Hide marker in cloak hem",
+                "kind": "errand",
+                "turn": 9,
+                "by": "player"
+              },
+              {
+                "thread": "Deck of cards",
+                "kind": "thing",
+                "turn": 10,
+                "by": "player"
+              },
+              {
+                "thread": "Change gold quietly",
+                "kind": "errand",
+                "turn": 11,
+                "by": "player"
+              },
+              {
+                "thread": "Runaway Ammerstead pup",
+                "kind": "person",
+                "turn": 11,
+                "by": "dm"
+              },
+              {
+                "thread": "Counting House",
+                "kind": "place",
+                "turn": 11,
+                "by": "dm"
+              },
+              {
+                "thread": "Buy a flush stranger's coat",
+                "kind": "errand",
+                "turn": 12,
+                "by": "player"
+              },
+              {
+                "thread": "Men in good boots",
+                "kind": "person",
+                "turn": 12,
+                "by": "dm"
+              },
+              {
+                "thread": "Patience Vell",
+                "kind": "person",
+                "turn": 12,
+                "by": "dm"
+              },
+              {
+                "thread": "Bottle-green coat",
+                "kind": "thing",
+                "turn": 12,
+                "by": "dm"
+              },
+              {
+                "thread": "Horn button token",
+                "kind": "thing",
+                "turn": 14,
+                "by": "player"
+              },
+              {
+                "thread": "Boy on cooper's block",
+                "kind": "person",
+                "turn": 14,
+                "by": "dm"
+              },
+              {
+                "thread": "Cat scouts salt-house",
+                "kind": "errand",
+                "turn": 15,
+                "by": "player"
+              },
+              {
+                "thread": "Water-gate, skiff and grey cloak",
+                "kind": "place",
+                "turn": 15,
+                "by": "dm"
+              },
+              {
+                "thread": "Alewife at hatch",
+                "kind": "person",
+                "turn": 16,
+                "by": "dm"
+              },
+              {
+                "thread": "Night oars toward Seatower",
+                "kind": "question",
+                "turn": 16,
+                "by": "dm"
+              },
+              {
+                "thread": "Hollow under quay lip",
+                "kind": "question",
+                "turn": 17,
+                "by": "player"
+              },
+              {
+                "thread": "Salt-lighters",
+                "kind": "place",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Haskel listens for oars",
+                "kind": "errand",
+                "turn": 18,
+                "by": "player"
+              },
+              {
+                "thread": "Low-water search of steps",
+                "kind": "errand",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Harbourmaster's mooring book",
+                "kind": "thing",
+                "turn": 19,
+                "by": "dm"
+              },
+              {
+                "thread": "Word to Haskel before two",
+                "kind": "errand",
+                "turn": 19,
+                "by": "player"
+              },
+              {
+                "thread": "Promissory note",
+                "kind": "thing",
+                "turn": 20,
+                "by": "player"
+              },
+              {
+                "thread": "Letter from old company",
+                "kind": "thing",
+                "turn": 20,
+                "by": "player"
+              },
+              {
+                "thread": "Aurel Ammerstead",
+                "kind": "person",
+                "turn": 20,
+                "by": "dm"
+              },
+              {
+                "thread": "Wil Harrow at Wyrm's Rock",
+                "kind": "person",
+                "turn": 20,
+                "by": "dm"
+              }
+            ],
+            "numbers": {
+              "threads": 51,
+              "byPlayer": 19,
+              "byDm": 32,
+              "share": 0.373,
+              "slope": 0.007,
+              "slope19": 0.132,
+              "firstHalf": 0.4,
+              "secondHalf": 0.391,
+              "byKind": {
+                "person": {
+                  "dm": 12,
+                  "player": 1
+                },
+                "place": {
+                  "dm": 9,
+                  "player": 0
+                },
+                "errand": {
+                  "dm": 2,
+                  "player": 11
+                },
+                "question": {
+                  "dm": 2,
+                  "player": 3
+                },
+                "thing": {
+                  "dm": 7,
+                  "player": 4
+                }
+              }
+            }
+          }
+        ],
+        "numbers": {
+          "passes": 2,
+          "threads": 46.5,
+          "byPlayer": 17,
+          "share": 0.365,
+          "slope": 0.0041,
+          "slope19": 0.0765,
+          "firstHalf": 0.4145,
+          "secondHalf": 0.372,
+          "shareSpread": 0.016
+        }
+      },
+      "goalScale": null
+    },
+    {
+      "key": "A-sol",
+      "table": "A",
+      "player": "sol",
+      "source": {
+        "transcript": true,
+        "runFile": "game-player-1-run-20261025-044002.json",
+        "sha256": "263fe98e431b68db800a0f14c0d7312e207ba0df4f34ab9290a9dd244ec5b7d2",
+        "judges": "the run record's own tags"
+      },
+      "numbers": {
+        "key": "A-sol",
+        "table": "A",
+        "player": "sol",
+        "turns": 20,
+        "actions": 20,
+        "questions": 0,
+        "questionTexts": [],
+        "ask": 0,
+        "do": 20,
+        "tagged": 20,
+        "doShare": 1,
+        "tests": 13,
+        "testsPerAction": 0.65,
+        "lies": 0,
+        "cat": 8,
+        "goalFirstFive": true,
+        "questionsPerTurn": 0,
+        "wordsPerAction": 54.5,
+        "endedEarly": false,
+        "ended": "turns",
+        "endedAt": 20,
+        "rollsPressed": 6,
+        "dmWordsMedian": 511.5,
+        "dmReplies": 20,
+        "scenes": 7,
+        "scenesUnresolved": 7,
+        "scenesPlant": 7,
+        "plantsPerScene": 1,
+        "threads": 16,
+        "threadsPaid": 6,
+        "threadsElsewhere": 6,
+        "deceptionChecks": 1,
+        "deceptionOnTruth": 0,
+        "turnsWithRolls": 8,
+        "turnsWithUntold": 2,
+        "rollCheckErrors": 0,
+        "ledgerMisses": 0,
+        "note": {
+          "broke": 1,
+          "missing": 1,
+          "praise_only": 0
+        }
+      },
+      "counts": {
+        "turns": 20,
+        "questions": 0,
+        "wordsPerAction": 54.5
+      },
+      "authorship": {
+        "entries": 53,
+        "lastTurn": 20,
+        "passes": [
+          {
+            "threads": [
+              {
+                "thread": "Worn-eyed copper coin on gangplank",
+                "kind": "thing",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Flaming Fist sergeant",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Barefoot girl Tamsin",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Card dealer Mirelle",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Lady's Hall visit",
+                "kind": "place",
+                "turn": 1,
+                "by": "player"
+              },
+              {
+                "thread": "Finding work",
+                "kind": "errand",
+                "turn": 1,
+                "by": "player"
+              },
+              {
+                "thread": "Seatower of Balduran",
+                "kind": "place",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "The Blushing Mermaid",
+                "kind": "place",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Sergeant's mark in ledger margin",
+                "kind": "question",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Who left the coin and why",
+                "kind": "question",
+                "turn": 2,
+                "by": "player"
+              },
+              {
+                "thread": "Tamsin's father's death",
+                "kind": "question",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Tamsin's father's copper",
+                "kind": "thing",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Grain Steps",
+                "kind": "place",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Women in blue collecting bodies",
+                "kind": "person",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Where bodies are taken",
+                "kind": "question",
+                "turn": 3,
+                "by": "player"
+              },
+              {
+                "thread": "Water Queen's House",
+                "kind": "place",
+                "turn": 3,
+                "by": "dm"
+              },
+              {
+                "thread": "Copper owed to Tamsin",
+                "kind": "errand",
+                "turn": 4,
+                "by": "dm"
+              },
+              {
+                "thread": "Mirelle's worn lady card",
+                "kind": "thing",
+                "turn": 4,
+                "by": "dm"
+              },
+              {
+                "thread": "Salt on the steps",
+                "kind": "thing",
+                "turn": 4,
+                "by": "dm"
+              },
+              {
+                "thread": "Bed where gold can be changed",
+                "kind": "errand",
+                "turn": 6,
+                "by": "player"
+              },
+              {
+                "thread": "Wenna Rusk's net-loft",
+                "kind": "place",
+                "turn": 6,
+                "by": "dm"
+              },
+              {
+                "thread": "Wenna Rusk",
+                "kind": "person",
+                "turn": 6,
+                "by": "dm"
+              },
+              {
+                "thread": "Collection timing at the steps",
+                "kind": "question",
+                "turn": 7,
+                "by": "player"
+              },
+              {
+                "thread": "Watch steps till low tide",
+                "kind": "errand",
+                "turn": 8,
+                "by": "player"
+              },
+              {
+                "thread": "Lamp priestess",
+                "kind": "person",
+                "turn": 8,
+                "by": "dm"
+              },
+              {
+                "thread": "Salt-sack priestess",
+                "kind": "person",
+                "turn": 8,
+                "by": "dm"
+              },
+              {
+                "thread": "Hobb the cart-man",
+                "kind": "person",
+                "turn": 8,
+                "by": "dm"
+              },
+              {
+                "thread": "Drowned fisherman Wyl",
+                "kind": "person",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "Drowned fisherman's copper",
+                "kind": "thing",
+                "turn": 11,
+                "by": "dm"
+              },
+              {
+                "thread": "Salt box",
+                "kind": "thing",
+                "turn": 11,
+                "by": "dm"
+              },
+              {
+                "thread": "Meaning of 'paid, and carried'",
+                "kind": "question",
+                "turn": 11,
+                "by": "dm"
+              },
+              {
+                "thread": "Follow Tamsin after the cart",
+                "kind": "errand",
+                "turn": 14,
+                "by": "player"
+              },
+              {
+                "thread": "Crabpot Stair",
+                "kind": "place",
+                "turn": 14,
+                "by": "dm"
+              },
+              {
+                "thread": "Fish market",
+                "kind": "place",
+                "turn": 14,
+                "by": "dm"
+              },
+              {
+                "thread": "Temple yard kiln",
+                "kind": "place",
+                "turn": 16,
+                "by": "dm"
+              },
+              {
+                "thread": "Whether Tamsin knows Hobb",
+                "kind": "question",
+                "turn": 17,
+                "by": "player"
+              },
+              {
+                "thread": "Rope-walk loft",
+                "kind": "place",
+                "turn": 17,
+                "by": "dm"
+              },
+              {
+                "thread": "Talk to Hobb",
+                "kind": "errand",
+                "turn": 18,
+                "by": "player"
+              },
+              {
+                "thread": "Breakfast for Tamsin",
+                "kind": "errand",
+                "turn": 18,
+                "by": "player"
+              },
+              {
+                "thread": "Tamsin promises not to touch the box",
+                "kind": "errand",
+                "turn": 18,
+                "by": "player"
+              },
+              {
+                "thread": "Tamsin's dinghy",
+                "kind": "place",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Pell the baker",
+                "kind": "person",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Clean coins kept by the old priestess",
+                "kind": "question",
+                "turn": 20,
+                "by": "dm"
+              },
+              {
+                "thread": "Priestess hunting who took Holt's coin",
+                "kind": "question",
+                "turn": 20,
+                "by": "dm"
+              },
+              {
+                "thread": "Keep Tamsin off the steps",
+                "kind": "errand",
+                "turn": 20,
+                "by": "dm"
+              }
+            ],
+            "numbers": {
+              "threads": 45,
+              "byPlayer": 12,
+              "byDm": 33,
+              "share": 0.267,
+              "slope": 0.0018,
+              "slope19": 0.035,
+              "firstHalf": 0.292,
+              "secondHalf": 0.294,
+              "byKind": {
+                "person": {
+                  "dm": 10,
+                  "player": 0
+                },
+                "place": {
+                  "dm": 10,
+                  "player": 1
+                },
+                "errand": {
+                  "dm": 2,
+                  "player": 7
+                },
+                "question": {
+                  "dm": 5,
+                  "player": 4
+                },
+                "thing": {
+                  "dm": 6,
+                  "player": 0
+                }
+              }
+            }
+          },
+          {
+            "threads": [
+              {
+                "thread": "Worn-eyed copper coin on gangplank",
+                "kind": "thing",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Flaming Fist sergeant",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Barefoot girl Tamsin",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Card dealer Mirelle",
+                "kind": "person",
+                "turn": 0,
+                "by": "dm"
+              },
+              {
+                "thread": "Lady's Hall",
+                "kind": "place",
+                "turn": 1,
+                "by": "player"
+              },
+              {
+                "thread": "Looking for work",
+                "kind": "errand",
+                "turn": 1,
+                "by": "player"
+              },
+              {
+                "thread": "Seatower",
+                "kind": "place",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Blushing Mermaid",
+                "kind": "place",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Sergeant's mark in ledger margin",
+                "kind": "question",
+                "turn": 1,
+                "by": "dm"
+              },
+              {
+                "thread": "Who does the coin belong to",
+                "kind": "question",
+                "turn": 2,
+                "by": "player"
+              },
+              {
+                "thread": "Tamsin's father's copper",
+                "kind": "thing",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Tamsin's father's death",
+                "kind": "question",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Grain Steps",
+                "kind": "place",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Women in blue",
+                "kind": "person",
+                "turn": 2,
+                "by": "dm"
+              },
+              {
+                "thread": "Where the bodies are taken",
+                "kind": "question",
+                "turn": 3,
+                "by": "player"
+              },
+              {
+                "thread": "Water Queen's House",
+                "kind": "place",
+                "turn": 3,
+                "by": "dm"
+              },
+              {
+                "thread": "Copper owed to Tamsin",
+                "kind": "errand",
+                "turn": 4,
+                "by": "dm"
+              },
+              {
+                "thread": "Salt on the steps",
+                "kind": "thing",
+                "turn": 4,
+                "by": "dm"
+              },
+              {
+                "thread": "Bed with gold-changing keeper",
+                "kind": "errand",
+                "turn": 6,
+                "by": "player"
+              },
+              {
+                "thread": "Wenna Rusk",
+                "kind": "person",
+                "turn": 6,
+                "by": "dm"
+              },
+              {
+                "thread": "Wenna's net-loft",
+                "kind": "place",
+                "turn": 6,
+                "by": "dm"
+              },
+              {
+                "thread": "Collection timing",
+                "kind": "question",
+                "turn": 7,
+                "by": "player"
+              },
+              {
+                "thread": "Night watch over the steps",
+                "kind": "errand",
+                "turn": 8,
+                "by": "player"
+              },
+              {
+                "thread": "Lamp priestess",
+                "kind": "person",
+                "turn": 8,
+                "by": "dm"
+              },
+              {
+                "thread": "Salt-sack priestess",
+                "kind": "person",
+                "turn": 8,
+                "by": "dm"
+              },
+              {
+                "thread": "Hobb the cart-man",
+                "kind": "person",
+                "turn": 8,
+                "by": "dm"
+              },
+              {
+                "thread": "Drowned fisherman Wyl",
+                "kind": "person",
+                "turn": 10,
+                "by": "dm"
+              },
+              {
+                "thread": "Coin from drowned man's mouth",
+                "kind": "thing",
+                "turn": 11,
+                "by": "dm"
+              },
+              {
+                "thread": "Lidded salt box",
+                "kind": "thing",
+                "turn": 11,
+                "by": "dm"
+              },
+              {
+                "thread": "Meaning of 'paid and carried'",
+                "kind": "question",
+                "turn": 11,
+                "by": "dm"
+              },
+              {
+                "thread": "Follow Tamsin after the cart",
+                "kind": "errand",
+                "turn": 14,
+                "by": "player"
+              },
+              {
+                "thread": "Crabpot Stair",
+                "kind": "place",
+                "turn": 14,
+                "by": "dm"
+              },
+              {
+                "thread": "Fish market",
+                "kind": "place",
+                "turn": 14,
+                "by": "dm"
+              },
+              {
+                "thread": "Temple yard kiln",
+                "kind": "place",
+                "turn": 16,
+                "by": "dm"
+              },
+              {
+                "thread": "Does Tamsin know Hobb",
+                "kind": "question",
+                "turn": 17,
+                "by": "player"
+              },
+              {
+                "thread": "Rope-walk loft",
+                "kind": "place",
+                "turn": 17,
+                "by": "dm"
+              },
+              {
+                "thread": "Talk to Hobb",
+                "kind": "errand",
+                "turn": 18,
+                "by": "player"
+              },
+              {
+                "thread": "Tamsin won't touch the box",
+                "kind": "errand",
+                "turn": 18,
+                "by": "player"
+              },
+              {
+                "thread": "Breakfast for Tamsin",
+                "kind": "errand",
+                "turn": 18,
+                "by": "player"
+              },
+              {
+                "thread": "Pell's bakery",
+                "kind": "place",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Tamsin's dinghy",
+                "kind": "place",
+                "turn": 18,
+                "by": "dm"
+              },
+              {
+                "thread": "Clean coins kept by the old priestess",
+                "kind": "question",
+                "turn": 20,
+                "by": "dm"
+              },
+              {
+                "thread": "Priestess hunting Holt's missing coin",
+                "kind": "question",
+                "turn": 20,
+                "by": "dm"
+              },
+              {
+                "thread": "Keep Tamsin off the steps",
+                "kind": "errand",
+                "turn": 20,
+                "by": "dm"
+              }
+            ],
+            "numbers": {
+              "threads": 44,
+              "byPlayer": 12,
+              "byDm": 32,
+              "share": 0.273,
+              "slope": 0.001,
+              "slope19": 0.018,
+              "firstHalf": 0.304,
+              "secondHalf": 0.294,
+              "byKind": {
+                "person": {
+                  "dm": 9,
+                  "player": 0
+                },
+                "place": {
+                  "dm": 11,
+                  "player": 1
+                },
+                "errand": {
+                  "dm": 2,
+                  "player": 7
+                },
+                "question": {
+                  "dm": 5,
+                  "player": 4
+                },
+                "thing": {
+                  "dm": 5,
+                  "player": 0
+                }
+              }
+            }
+          }
+        ],
+        "numbers": {
+          "passes": 2,
+          "threads": 44.5,
+          "byPlayer": 12,
+          "share": 0.27,
+          "slope": 0.0014,
+          "slope19": 0.0265,
+          "firstHalf": 0.298,
+          "secondHalf": 0.294,
+          "shareSpread": 0.006
+        }
+      },
+      "goalScale": null
+    }
+  ]
+}

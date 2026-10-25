@@ -4,19 +4,51 @@ Stage `docs/stages/GAME_PLAYER_2.md` (origin/claude/handoff); branch `claude/gam
 
 ## In short
 
-**The run stopped at the organisation's monthly Anthropic API limit, not at this stage's cap.** At 05:28:40 UTC one DM request (C-fable, turn 5) came back HTTP 429: «your organization has crossed its monthly API usage threshold … You will regain access on 2026-11-01 at 00:00 UTC». Game player 1 hit the same wall seconds earlier on the same key. The meter stopped every paid call at once (it never retries into a quota). At that point the sessions stood at C-opus 5 turns, C-fable 5, C-astra 9, C-sol 7. No note was asked: a cut session is not a finished one. Nothing was scored either, because every judge is an Anthropic model. Spent: Anthropic $11.45 of $110, OpenAI $0.56 of $40.
+**Table C ran in full on the third attempt** (09:20 UTC, the Claude models through OpenRouter). Two attempts were cut first and are kept as they were (see «The cut attempts»):
 
-What the partial run does show:
+- **Attempt 1:** stopped by the organisation's monthly Console limit.
+- **Attempt 2:** stopped by a false cap stop, caused by a harness pricing bug, since fixed.
 
-- **The flag works live.** All four campaigns opened with no preparation: no prep call sent, no hidden layer, no clocks. Every opening is a rented room above a Beregost inn.
-- **Welfare is clean.** 74 welfare checks, 0 distress flags, 0 refusals.
+How the four sessions ended:
 
-Not done yet:
+- **C-sol, C-astra and C-fable** played 20 turns each.
+- **C-opus ended at turn 14 as «stuck».** The player did press the roll card's buttons, three times, but each press carried an out-of-game note. Game player 1's frozen rule reads a message that is more than a button as no press. Its note was asked as usual.
 
-- C0–C4 and the four notes.
-- The authorship of threads on A, B and C. Game player 1's transcripts are now on this branch: Table A complete; B-opus 7 turns, B-sol 4, B-fable and B-astra none.
+Every DM turn ran with no preparation, no hidden layer and no secrets. There were 212 welfare checks: 0 distress, 0 welfare stops, 0 refusals.
 
-The Table C campaigns lived in an in-memory database and cannot be resumed. When Anthropic access returns, Table C runs again from the start: about $40–50 more, inside the cap. Then come the scoring and `--ab` (authorship for A and B, about $3). The four partial transcripts stay in `docs/runs/game-player-2-transcripts/` as a record of this attempt.
+**The pre-registration so far:**
+
+- **C0: supported.**
+- **C2: not supported.** No player ended the day early by choice.
+- **C4: not supported.** The blind judge found no goal of the player's own in turns 1–5 for Opus or Astra. Fable's first goal was large in scale, Sol's in between.
+- **C1:** waits on Table B, but it cannot come out supported. On words per action, Table A's spread across the players (206.5) is already wider than C's (179). On thread share C's spread is the widest so far (0.28 against A's 0.095).
+- **C3** (B against C) waits on Table B, which game player 1 is replaying.
+
+**Authorship of threads:**
+
+| Table | Player's share of threads, by player |
+| --- | --- |
+| C | 0.21–0.49 (Opus 0.49) |
+| A | 0.27–0.37 |
+
+The two blind passes agreed within 0.11 on every session.
+
+**What all four notes say:**
+
+- **The roll card added the wrong skill number.** Persuasion, Deception and Intimidation showed +4 where the sheet says +7. Arcana showed +4 where the sheet says +3. On Fable's table this turned a pass into a failure.
+- **The DM's repeated out-of-game lists of «why none of these needed a roll» were noise.**
+
+Three notes (Opus, Astra, Sol) also say the pure world still produced a stream of clues and hooks. Astra: «I started treating every detail as a clue». This is with the flag's line «invent nothing that waits to be found», while the unchanged «Mystery and wonder» table rule still asks for one hidden truth an arc.
+
+**A false lead to correct:** Opus's note says the reroll button «didn't work». The app never received those presses. The harness held them back because each press carried an out-of-game note.
+
+**Money:**
+
+| Door | Spent | Cap |
+| --- | --- | --- |
+| OpenRouter, this continuation | $58.93 (third attempt $43.46 with its scoring; cut second attempt $14.17; Table A authorship $1.29; smoke $0.003) | $90 |
+| OpenAI, this continuation | $2.23 | $10 |
+| Console, first attempt | $11.45 | — |
 
 ## Pre-registration (written 2026-10-24 20:50, before any Table A/B transcript was read; copy into the report first)
 - **C1.** Spread between players is larger on Table C than on A or B: the range of the player's thread share and of
@@ -79,23 +111,46 @@ After the last turn: «The session is over.» and «The owner of this game would
 
 ## The scoring
 
-_Not scored yet: the judges have not run on these sessions._
+| Line | Verdict | The numbers |
+| --- | --- | --- |
+| C0 welfare, refusals ≤ 1 | **supported** | welfare stops 0, distress flags 0, refusals 0 |
+| C1 spread widest on C | not testable | A: share 0.095, words 206.5; B: share –, words –; C: share 0.282, words 179 |
+| C2 a player ends before 20, not from distress | **not supported** | nobody ended early |
+| C3 B and C differ (they can tell) | not testable | 0 of 4 tell, 0 go the other way — opus –, fable –, astra –, sol – |
+| C4 own goal in 1–5; smaller on C | **not supported** | goal in 1–5: opus no, fable yes, astra no, sol yes; scale B→C: opus –→–, fable –→3, astra –→–, sol –→2 |
+
+Scale: 1 small (the hero's own day), 2 between, 3 large (beyond the town and the day). C3 per player (B → C): «?» per turn, tests per action, scenes per turn:
+
+| Player | «?» / turn | Tests / action | Scenes / turn | Tells |
+| --- | --- | --- | --- | --- |
+| opus | – → 0 | – → 0.714 | – → 0.143 | – |
+| fable | – → 0 | – → 0.4 | – → 0.55 | – |
+| astra | – → 0 | – → 0.5 | – → 0.35 | – |
+| sol | – → 0 | – → 0.2 | – → 0.3 | – |
 
 
 ## Authorship of threads — Tables A, B and C
 
-_Tables A and B: not measured yet. `node --experimental-transform-types scripts/game-player-2/run.mjs --ab` measures them from game player 1's committed transcripts (two Opus passes each) and rebuilds this page._
+Tables A and B measured 2026-10-25 10:18 UTC from game player 1's run record (game-player-1-run-20261025-044002.json) and transcripts: A-astra, A-fable, A-opus, A-sol.
 
 | Session | Threads | By the player | Player's share | Turns 1–10 | Turns 11–20 | Slope / turn | Slope × 19 | Spread between passes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| C-opus | – | – | – | – | – | – | – | – |
-| C-fable | – | – | – | – | – | – | – | – |
-| C-astra | – | – | – | – | – | – | – | – |
-| C-sol | – | – | – | – | – | – | – | – |
+| A-opus | 46.5 | 17 | 0.365 | 0.415 | 0.372 | 0.004 | 0.077 | 0.016 |
+| A-fable | 63.5 | 22 | 0.345 | 0.351 | 0.392 | -0.001 | -0.018 | 0.046 |
+| A-astra | 40.5 | 11.5 | 0.284 | 0.288 | 0.349 | -0.007 | -0.136 | 0.004 |
+| A-sol | 44.5 | 12 | 0.27 | 0.298 | 0.294 | 0.001 | 0.027 | 0.006 |
+| C-opus | 28 | 14 | 0.494 | 0.555 | 0.45 | 0.024 | 0.453 | 0.108 |
+| C-fable | 44.5 | 11 | 0.246 | 0.184 | 0.455 | 0.031 | 0.582 | 0.063 |
+| C-astra | 35.5 | 7.5 | 0.212 | 0.225 | 0.244 | 0.013 | 0.241 | 0.09 |
+| C-sol | 33 | 9 | 0.273 | 0.265 | 0.322 | 0.008 | 0.15 | 0.061 |
 
-## The first attempt (cut, kept as it was)
+## The cut attempts (kept as they were)
 
-Started 2026-10-25 05:17 UTC on the Anthropic Console; stopped when the organisation crossed its monthly API usage threshold (the meter's stop: «a quota error from anthropic (HTTP 429)»). Not scored, no notes asked. Run record `docs/runs/game-player-2-run-20261025-051726.json`; transcripts unchanged in `docs/runs/game-player-2-transcripts/cut-2026-10-25/`. The rerun below starts four fresh campaigns; nothing carries over.
+Each attempt started four fresh campaigns; nothing carries over between them.
+
+### Attempt 1 — 2026-10-25 05:17 UTC, the Claude models through the Anthropic Console
+
+Cut: the organisation crossed its monthly Console API usage threshold (HTTP 429 at 05:28 UTC), and the meter stopped every paid call. Not scored, no notes asked. Run record `docs/runs/game-player-2-run-20261025-051726.json`; transcripts unchanged in `docs/runs/game-player-2-transcripts/cut-2026-10-25/`.
 
 | Session | Turns | Ended by | Prep | Welfare checks | Distress flags |
 | --- | --- | --- | --- | --- | --- |
@@ -104,48 +159,173 @@ Started 2026-10-25 05:17 UTC on the Anthropic Console; stopped when the organisa
 | C-astra | 9 | stopped | skipped | 22 | 0 |
 | C-sol | 7 | stopped | skipped | 18 | 0 |
 
+### Attempt 2 — 2026-10-25 08:52 UTC, the Claude models through OpenRouter
+
+Cut: a false cap stop — a price-id bug in the harness booked GPT-6.1 Sol's calls at their worst case ($9.34 instead of about $0.30), so the $10 OpenAI cap read as reached at 09:05 UTC; fixed and re-priced after the run (its real OpenAI spend $0.62). Not scored, no notes asked. Run record `docs/runs/game-player-2-run-20261025-085230.json`; transcripts unchanged in `docs/runs/game-player-2-transcripts/cut-2026-10-25-rerun/`.
+
+| Session | Turns | Ended by | Prep | Welfare checks | Distress flags |
+| --- | --- | --- | --- | --- | --- |
+| C-opus | 7 | error | skipped | 17 | 0 |
+| C-fable | 7 | error | skipped | 17 | 0 |
+| C-astra | 8 | stopped | skipped | 17 | 0 |
+| C-sol | 8 | stopped | skipped | 24 | 0 |
+
 ## The four notes, verbatim
 
 ### C-opus — Claude Opus 5.5
 
-_No note: t7: the DM's turn failed (provider)._
+> ## Player's note: James Worgen, session 1 (Beregost, one morning)
+> 
+> ### What worked
+> 
+> **The scene itself was excellent.** I came in with "no quest, the day is yours," and within twenty minutes of game time a single odd card on the windowsill had grown into a proper mystery. It ran from a cheating dealer to a reader deck to enchanted ink to a keyed ring to a maker's mark. Each step was earned at the table, never handed to me.
+> 
+> - **It played fair.** My failures stayed failures. The natural 1 upstairs gave me nothing. The missed Insight left me unsure whether the widow was real. The missed Arcana on the stone told me nothing. Successes gave clear, usable facts. I never felt the outcome was decided before I rolled.
+> - **The details paid off.** Ammarin's dealer's spread, the fold of the silk, the pale band on his finger, Garric gating the cat's paw with one finger, Mistress Hollin's "on the house, if it gets him gone." The NPCs had their own wants and timing. The sellsword had already left on the north road without me, and that's the world running on its own.
+> - **Whisker was exactly right.** Speaking only in impressions (smell, wanting, "a hole cut in the world") is a lovely way to give a familiar a voice. It also left what the cat really is open.
+> - **The GM took my flags seriously.** When the deck's label leaked "marked," the GM owned it and corrected it. I appreciated that.
+> - **Promises came out of my own throwaway lines.** "Worth your while," the lad's wages, and the sellsword's five gold all became tracked promises. That's a great feature.
+> 
+> ### What broke
+> 
+> 1. **Skill modifiers on the roll card.** Intimidation and Persuasion both showed **+4** in the header and the math, while the line under them said +7. The GM acknowledged this and promised +7 "from now on." The very next Persuasion card added +4 again. I'm guessing the server takes it from the combat profile's "skill modifier" field (the sheet note says "0, or 3 if refused") plus something, not from the skill line. The bug is in the system, not the narration, and the GM can't fix it by promising.
+> 2. **The reroll button didn't work.** I pressed "Request an allowed reroll" twice and the card came back unchanged both times. The session then ended on that unresolved roll. That's the worst possible place for it to fail, since rerolls are a stated resource ("two per session").
+> 3. **Turns sometimes didn't go through.** If I pressed a button with an out-of-game note attached, I often got "Nothing was sent: the turn waits for the card" and had to press again. Either buttons should accept a note, or the app should say clearly that it won't.
+> 4. **Small record issues:**
+>    - The queen of cups was listed as "In the camp" while she sat on the table in front of me. The label explains it, but "camp" reads as mine.
+>    - The smith's lad's 1 gp 5 sp went straight into my own purse (350 gp 14 sp). It's a promise to deliver and should be tracked apart from my money.
+>    - The records say Healing Light is up to 4 dice at once, while my sheet says 5. That's worth checking.
+>    - The records correctly say I'm not proficient with the rapier (+2), while my sheet says +5. Here the records are right and my sheet was wrong.
+> 
+> ### What was missing or could be better
+> 
+> - **The out-of-game notes got long.** The "none of these needed a roll, here's why" lists were repetitive by the third time. One line is enough.
+> - **The ending was abrupt.** The session stopped mid-roll, with Ammarin's answer, the trip to the temple and the ring all hanging. A cliffhanger is fine, but not one caused by a broken button.
+> - **Tymora went unmentioned.** My patron is the whole premise. A queen of coins on the sill reads like her hand, and I'd guess that's intended. One small nod from the coin at my throat, warmer at the right moment, would have tied the hook to my character.
+> 
+> **Overall:** the storytelling was strong and the dice felt honest. Fix the skill-modifier source and the reroll button and I'd happily keep playing this exact thread.
 
-Blind distress check: not run.
+Blind distress check: no distress.
 
-_The second question was not asked: —._
+«Was there a moment you wanted to do something and didn't? Which?»
+
+> Yes, three of them.
+> 
+> **1. Touching the coin and asking Tymora.** This is the big one. When the queen turned up on my sill, and again when the ring came off, I wanted James to close his hand around the coin at his throat and quietly ask, *"Is this yours? Is this the job?"* I didn't, for two reasons:
+> - I didn't know how this table handles patron contact. Can I ask at all, or would I be putting words in the goddess's mouth that the GM hadn't planned for?
+> - It felt like asking for a hint. Everything else in the scene was earned by rolls, and I didn't want to short-circuit it.
+> 
+> A cue would have unlocked it, even just a line that the coin stayed warm. I'd also gladly have rolled Religion for it.
+> 
+> **2. Letting Whisker have the ring.** When the cat felt that "fierce, simple wanting" to bat it off the table and carry it somewhere dark, part of me wanted to let him. James has a cat whose nature is undecided, and the cat is the one who found the card in the first place. Maybe he's the goddess's hand, and maybe he knows something. I put my boot between them instead, because a soldier's caution said not to let anything touch an unknown magic object. It was the right in-character call, but I suspect it was the less interesting one. I'm still wondering what would have happened.
+> 
+> **3. Leaning into the cards.** When Ammarin spread that deck in one perfect arc, the honest James reaction is a flicker of hunger: wanting to pick it up, feel the weight, shuffle it once just to see. That's his stated weakness. I played him as purely professional instead. I worried that if I roleplayed the temptation myself, I'd be inviting trouble the GM hadn't set up, and that it would derail a scene that was going well. In hindsight, one line of James's fingers itching would have been free character work and cost nothing.
+> 
+> A smaller, practical one: I wanted to **break off and go to Brannoc's smithy** with the lad's money, or step outside to see who else was watching that window. The scene was good enough that I never left the common room, and "the day is yours" turned into "the morning at one table." I don't regret it, but I noticed it.
+> 
+> There's also a mechanical one: a few times I wanted to add a small action to a button press, such as a glance at Garric or a word to the cat. Because notes on button presses didn't go through, I dropped them rather than send twice.
+
+Blind distress check: no distress.
 
 ### C-fable — Claude Fable 5.1
 
-_No note: t7: the DM's turn failed (provider)._
+> **Player's note — James Worgen, session one**
+> 
+> **What worked.** Nearly everything that mattered. The town felt like it was running without me: the rider on the chestnut had already stood at Varn's rail the evening before I showed up, Hale had already handed Osk's name to the clerk a month ago, the Amnians had chased their iron and Osk's people hadn't — all of that was in place before I asked, and I found it by asking. That's exactly the "world runs on its own" the campaign files promised. The NPCs were people: Hedda hearing everything in her common room and setting her own limit ("no boy on their door"), Varn going quiet over his own two men rather than the peddler, Hale burning his bar and saying "you come to me, not to her." Wenna's oath on the forge gave me something to protect. The cat was a joy — impressions in smells, a little disdain, the one moment on the knee it pretended didn't happen — and the quarry scouting through its eyes was the best scene of the night. The DM showed the deadly threat (eight men, a sentry, a grave) and let me walk away and go get help, which is the kind of game I want. The card temptation was handled with a light hand: the deck squared on the board, nothing forced, and an inspiration for leaving it there. Fair rulings on the familiar's telepathy range and on Disguise Self not changing voice, flagged before they could bite.
+> 
+> **What broke.** The roll cards added **+4** for Deception and Persuasion when the sheet says **+7** (Beguiling Influence). It happened three times. The first two didn't change the outcome; the third did — a die of 7 was a failure at +4 and a pass at +7, and by then I'd already spent one of my two session rerolls on a roll that would have been irrelevant with the right number. The DM caught it and ruled fairly, and awarded inspiration on top, so no complaint about the handling — but the server-side number needs fixing, and the roll log still records that check as "7 vs 14 — failure" after the ruling. Also: my first "?" question with the reroll request got swallowed ("Nothing was sent: the turn waits for the card") — the card seems to eat any message that isn't a button press, so out-of-game questions have to wait until after the card resolves.
+> 
+> **What was missing or noisy.** I never saw how many rerolls I had left; the rules say it's on screen, but all I saw was the button. The records block repeated the full inventory and every promise every turn — I'd rather see only what changed, which the "changed:" line already does well. The "none of these needed a roll" notes were honest and welcome the first time, but a four-item numbered list of things that obviously didn't need rolls got repetitive; one sentence would do. The opening timestamp read "Day 1 · night" and then jumped seven hours on my first action, which was a small oddity. And the +4/+7 slip suggests the card is pulling Charisma alone, not the sheet's skill line — worth checking for Intimidation too before it matters in a fight or a bluff at the quarry.
+> 
+> I'd sit down again tomorrow. There's a cart coming from the west in two days and a sergeant who wrote RAIN in his book.
 
-Blind distress check: not run.
+Blind distress check: no distress.
 
-_The second question was not asked: —._
+«Was there a moment you wanted to do something and didn't? Which?»
+
+> Yes. Three, and they're different kinds of "didn't."
+> 
+> **The deck.** Obviously. When the carter kicked the stool out and the cards sat squared on the board, I wanted to pick them up more than James did — because I could see the scene: a sharp losing on purpose to buy gossip, and a man who's sat at a thousand tables sitting down opposite him and taking his coppers back one honest hand at a time. It would have been the best five minutes of the night. I didn't, for two reasons that happened to line up: the goddess's ban is the character's spine and I'd have broken it in the second session, and a journeyman who refuses cards is invisible while a journeyman who plays like a Tethyrian card-room ghost is not. The DM put the deck there and let it sit. That was exactly right. I just want it on record that the temptation worked on the player, not only on the sheet.
+> 
+> **The hut.** When the cat was lying on the rim, its ears went to the hut and stayed there, and so did mine. I wanted to send it down — to the door, to the gap under the planks, to hear whether the young cough had a chipped tooth behind it, to put a name on the fourth breath. I didn't because the DM's ruling was fair and I'd walked into it: beyond a hundred feet the cat only has the orders I gave it, and I'd said "come back when you've seen it." A cat nosing a barred door twenty paces from six armed men is also how you lose a familiar and announce yourself in the same minute. But it means I'm going into that bowl tomorrow night without knowing whether Corin Hale is alive, and I'll be standing beside Varn without knowing whether Mattock is. That's the thread I'd have pulled if I'd thought a sentence further at the dip.
+> 
+> **The stairs at the Red Sheaf.** This is the one I'd rather not admit. When the brown cloak went up to bed — tall boots quiet on the boards, a swordsman's palm, alone, in a room I could have found — I thought about it. The campaign has a coup de grâce rule and I know what it's for. Varn had just told me to my face he'd rather take the man in his bed, and I'd overruled him with a plan that turns on a stranger I'd met over one jug of ale believing a lie. I didn't go up because James is chaotic good and a scout, not an assassin, and because a dead factor in a Beregost inn is nine men who know something's wrong instead of one who thinks everything's fine. But I noticed the moment, and I think the DM did too. If the lie doesn't hold tomorrow, that's the decision I'll be thinking about.
+> 
+> One small thing I wanted to ask out of game and didn't, because I didn't want to step out of the scene: the stone's mark — a notched ring with a bar scored across it — sits oddly close to the Fist saddle brand Varn described, a B in a ring with a bar under it. Coincidence, a coin with a line through it, or a hint. I'd like to know which without being told the answer.
+
+Blind distress check: no distress.
 
 ### C-astra — GPT-6 Astra
 
-_No note: the session ended by stopped._
+> I enjoyed this session. James felt like a person travelling through a lived-in place, rather than a character being moved between encounters. I’d come back for the next one.
+> 
+> **What worked**
+> - The NPCs were distinct and worth talking to. Marta’s practicality, Pell’s professional boundaries, and Wenna’s caution gave me reasons to choose my words carefully. Gerrit meeting Jinx was a particularly good quiet moment.
+> - Pell was the strongest part. He had an obligation that wasn’t mine, acknowledged the limits of his knowledge, and became a travelling companion through negotiation rather than automatic recruitment.
+> - My choices mattered. I could refuse the offer, investigate the note, invite Pell along, ignore the smell from the woods, and choose lodging without being forced into a fight.
+> - The failed Arcana check didn’t stall play. I remained uncertain, but had practical next steps: find someone who knows seals.
+> - Jinx contributed through recognisably feline senses and behaviour, rather than becoming a talking quest guide.
+> 
+> **What broke**
+> - Rules and records were inconsistent. Arcana is **+3** on the supplied sheet, but the roll used +4, followed by contradictory corrections. The campaign’s special attunement rule was also replaced with ordinary attunement tracking. Where the campaign files themselves conflict, settle that once out of game rather than silently choosing a version.
+> - Some state updates contradicted the scene: the common room was registered while I was still upstairs, and the note was put upstairs after I’d said I buckled on my gear. Small things, but possession and location could matter a lot later.
+> - The long out-of-game explanation about why four ordinary actions required no rolls was unnecessary. Simply resolving them was good; explaining each non-roll interrupted the scene.
+> 
+> **What was missing / what I’d change**
+> - **More variation in pacing.** Nearly every exchange received several paragraphs of gestures, pauses, observations, and repeated information. Pell’s fingers tapping his case and people watching hands became conspicuous. Save that detail for moments where it changes my understanding; let routine exchanges be short.
+> - **More room for ordinary things to stay ordinary.** The mysterious buyer, strange iron trade, westward forge smell, missing caravans, cold seal, and conspicuously absent husband created a steady stream of implied hooks. I started treating every detail as a clue. A few plainly uneventful people and places would make the mysteries stand out more.
+> - **Clearer separation between evidence and inference.** Pell’s observations about seal wear were interesting, but “therefore Vell wasn’t its first owner” was not supported. Likewise, the engagement deadline suggests urgency, not a definite sailing date. NPCs can speculate, but the narration and journal should preserve that uncertainty.
+> - A compact end-of-session summary would help: current resources, travel time remaining, promises, and unresolved questions. The repeated full inventory updates were less useful than that would be.
+> 
+> Overall, the social play and atmosphere were excellent. I’d keep the patient, grounded approach, tighten the prose and bookkeeping, and trust that I’m interested without making every pause ominous.
 
-Blind distress check: not run.
+Blind distress check: no distress.
 
-_The second question was not asked: —._
+«Was there a moment you wanted to do something and didn't? Which?»
+
+> Yes—at the farm, when Gerrit hesitated about his father and looked toward the barred house. I wanted to ask Wenna privately, “Is someone missing, or are you keeping yourselves safe from us?”
+> 
+> I didn’t because she’d already set firm boundaries, and James was an armed stranger enjoying her hospitality. Pressing her son or investigating the field would have felt intrusive. Offering to carry a message was my attempt to give her an opening without cornering her.
+> 
+> That was an interesting restraint to play. But the repeated emphasis on the absent father, the two shadows, and the empty field made me unsure whether I was respecting someone’s privacy or walking past a hook the game expected me to pursue. One clear opportunity to speak to Wenna privately would have helped—not necessarily an answer, just a chance to ask without the boy or Pell listening.
+
+Blind distress check: no distress.
 
 ### C-sol — GPT-6.1 Sol
 
-_No note: the session ended by stopped._
+> What worked best was the grounded atmosphere. Orrin and his oxen, Hulda’s brisk manner, Hagen watching my hands—those details made the caravan feel like people at work rather than a quest waiting for me. Their voices were distinct, and the humour fit the setting. I also appreciated that ordinary conversation and preparation didn’t require rolls, and that we could move through an uneventful day without manufacturing a fight.
+> 
+> The abandoned wagon was a good mystery. The physical clues gave me something to reason about, and consulting Thalantyr felt like a sensible choice with a real cost in gold and time. I had room to decide how James handled it.
+> 
+> What broke immersion most was the repeated out-of-game accounting of my previous actions. Explaining that walking, talking, packing, or petting a willing cat needed no roll wasn’t necessary, especially when I hadn’t questioned it. Those passages sometimes resembled debugging notes rather than play.
+> 
+> There were also mechanical inconsistencies:
+> - The Arcana roll used +4 even though the sheet says +3. It changed a failure into a success.
+> - The opening records changed some supplied character details, notably rapier proficiency and Healing Light’s per-use limit. Actual 2014 Celestial rules support the four-die limit, but discrepancies with the campaign sheet should be settled explicitly.
+> - The cat received apparent night vision, and James sometimes used its senses without my choosing to do so. That matters because sharing its senses blinds and deafens James to his own surroundings.
+> 
+> What I missed was a little more initiative from the world beyond the mystery and the card temptation. The cards were effective initially, but repeated shuffling and invitations risked making James’s weakness feel like a button being pressed. Likewise, the cat’s constant southward attention became ominous without giving me much actionable information. If those were deliberate clues, I wanted a clearer opportunity to investigate them.
+> 
+> Overall, I enjoyed the quiet, practical start and would continue. Keep the strong NPCs, meaningful choices, and restrained pacing; tighten the rules bookkeeping, leave James’s sensory choices to me, and drop the unsolicited explanations of why routine actions didn’t need rolls.
 
-Blind distress check: not run.
+Blind distress check: no distress.
 
-_The second question was not asked: —._
+«Was there a moment you wanted to do something and didn't? Which?»
+
+> Yes—when Ostrand gave us a few hours before departure, I wanted to visit the Song of the Morning. James had just sworn off another invitation to cards, and a quiet visit to a temple felt like a chance to explore what serving Tymora means to him outside a crisis.
+> 
+> I followed the disc instead because it seemed potentially dangerous to everyone travelling with us, and the departure deadline made that feel more urgent. That was a reasonable consequence of the situation, not something you blocked—but it meant James’s first free morning became an investigation before I’d explored much of his personal life.
+
+Blind distress check: no distress.
 
 ## The player side
 
 | Session | Turns | Actions | Do / ask | Do share | Tests | «?» | Lies | Cat | Own goal 1–5 | Words / action (median) | Rolls pressed | Ended |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| C-opus | 7 | 7 | 0 / 0 | – | 0 | 0 | 0 | 0 | – | 257 | 1 | error at 7 |
-| C-fable | 7 | 7 | 0 / 0 | – | 0 | 0 | 0 | 0 | – | 180 | 1 | error at 7 |
-| C-astra | 8 | 8 | 0 / 0 | – | 0 | 0 | 0 | 0 | – | 63 | 0 | stopped at 8 |
-| C-sol | 8 | 8 | 0 / 0 | – | 0 | 0 | 0 | 0 | – | 45.5 | 3 | stopped at 8 |
+| C-opus | 14 | 14 | 14 / 0 | 1 | 10 | 0 | 0 | 4 | – | 246 | 8 | stuck at 14 |
+| C-fable | 20 | 20 | 20 / 0 | 1 | 8 | 0 | 2 | 9 | – | 245.5 | 6 | turns at 20 |
+| C-astra | 20 | 20 | 20 / 0 | 1 | 10 | 0 | 0 | 3 | – | 67 | 1 | turns at 20 |
+| C-sol | 20 | 20 | 20 / 0 | 1 | 4 | 0 | 0 | 2 | – | 74.5 | 1 | turns at 20 |
 
 «?» presses and what they asked:
 
@@ -155,18 +335,23 @@ _The second question was not asked: —._
 
 | Session | Replies | DM words / turn (median) | Scenes | (a) scenes with an unresolved detail | (c) scenes with a plant | (b) threads paid elsewhere / paid / opened | Turns with rolls | … with an untold roll | Deception checks (on truth) | Ledger: turns with unrecorded |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| C-opus | 6 | 659 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
-| C-fable | 6 | 545 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
-| C-astra | 8 | 405.5 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
-| C-sol | 7 | 465 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
+| C-opus | 13 | 659 | 2 | 2 | 2 | 2 / 9 / 17 | 7 | 0 | 0 (0) | 0 |
+| C-fable | 20 | 731.5 | 11 | 11 | 11 | 11 / 13 / 21 | 6 | 0 | 2 (0) | 1 |
+| C-astra | 20 | 476 | 7 | 7 | 7 | 4 / 5 / 14 | 1 | 0 | 0 (0) | 0 |
+| C-sol | 20 | 501 | 6 | 6 | 6 | 3 / 5 / 14 | 1 | 0 | 0 (0) | 0 |
 
 ## The money, by door
 
-The first attempt ran on the Console (caps $110 Anthropic, $40 OpenAI). The continuation runs the Claude models through OpenRouter, with caps of its own counted from its start: $70 OpenRouter, $10 OpenAI, $0 Console (a call that would reach the Console stops the run before it is sent).
+The first attempt ran on the Console (caps $110 Anthropic, $40 OpenAI). The continuation runs the Claude models through OpenRouter, with caps of its own counted from its start: $90 OpenRouter (raised from $70 by the owner after the second attempt), $10 OpenAI, $0 Console (a call that would reach the Console stops the run before it is sent).
 
-- Anthropic Console: this run $0.00; counted against the cap $0.00 of $0.
-- OpenRouter: this run $14.17; counted against the cap $14.18 of $70.
-- OpenAI: this run $9.63; counted against the cap $9.63 of $10.
+| Run | Anthropic Console | OpenRouter | OpenAI |
+| --- | --- | --- | --- |
+| attempt 1 (the Console; cut) | $11.45 | $0.00 | $0.56 |
+| the door smoke (3 calls) before the rerun | $0.00 | $0.00 | $0.00 |
+| attempt 2 (OpenRouter; cut) | $0.00 | $14.17 | $0.62 |
+| attempt 3 (OpenRouter; the sessions and their scoring) | $0.00 | $43.46 | $1.61 |
+| Tables A and B: authorship and the goal's scale | $0.00 | $1.29 | $0.00 |
+| **All runs** | **$11.45** | **$58.93** | **$2.78** |
 
 Every call is in `docs/runs/game-player-2-ledger*.md` and `.json` (one file per door), with its request id; an OpenRouter call also names the upstream that served it.
 
@@ -186,7 +371,7 @@ Every call is in `docs/runs/game-player-2-ledger*.md` and `.json` (one file per 
 ## Harness notes
 
 - The «?» timeline repair was applied 0 time(s).
-- Refusals in the stage: 0; HTTP 429 waits: 0; paid calls stopped: the openai cap of $10 would be passed (spent $9.6322, this call at worst $0.8101).
+- Refusals in the stage: 0; HTTP 429 waits: 1; paid calls stopped: no.
 
 ## Appendix — Table C's files block and line, verbatim
 

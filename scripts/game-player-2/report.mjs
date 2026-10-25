@@ -23,6 +23,8 @@ export const CUT_RUNS = [
 ];
 export const FIRST_RUN = CUT_RUNS[0].file;
 const DOORS = { anthropic: "Anthropic Console", openrouter: "OpenRouter", openai: "OpenAI" };
+/** The ledgers' run labels as the page names them (the ledger files keep their own). */
+const RUN_LABELS = { "the paid run": "attempt 1 (the Console; cut)", "the rerun through OpenRouter": "attempt 2 (OpenRouter; cut)", "the third attempt through OpenRouter": "attempt 3 (OpenRouter; the sessions and their scoring)" };
 
 /** The cut attempts' sessions, from their own run records: what they were when they were cut. */
 export function cutAttemptsSection(runsDir = RUNS) {
@@ -47,7 +49,7 @@ export function moneyByDoor(money, ledgers) {
   const sum = (door, what) => runsOf(door).filter((r) => what === undefined || r.what === what).reduce((t, r) => t + (r.spentUsd ?? 0), 0);
   const head = `| Run | ${doors.map((d) => DOORS[d] ?? d).join(" | ")} |`;
   const lines = money ? [head, `| --- |${doors.map(() => " --- |").join("")}`,
-    ...whats.map((w) => `| ${w} | ${doors.map((d) => usd(sum(d, w))).join(" | ")} |`),
+    ...whats.map((w) => `| ${RUN_LABELS[w] ?? w} | ${doors.map((d) => usd(sum(d, w))).join(" | ")} |`),
     `| **All runs** | ${doors.map((d) => `**${usd(sum(d))}**`).join(" | ")} |`, ""]
     : [...doors.map((d) => `- ${DOORS[d] ?? d}: this run ${usd(ledgers[d].runUsd)}; counted against the cap ${usd(ledgers[d].spentUsd)} of $${ledgers[d].capUsd}.`), ""];
   return ["## The money, by door", "",

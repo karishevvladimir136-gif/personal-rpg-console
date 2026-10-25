@@ -1,6 +1,7 @@
 // Game player 2: the scoring of its own, after game player 1's judges have tagged the Table C sessions — the authorship
 // of threads (authorship.mjs) and the scale of each player's first goal — and the same two measures on game player 1's
 // Tables A and B (from its committed transcripts and run record), then C0–C4.
+import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { isEnd, isQuestion } from "../game-player-1/frozen.mjs";
@@ -71,19 +72,25 @@ export function transcriptCounts(markdown) {
 
 /** Measures Tables A and B: authorship from each transcript; the goal's scale on Table B from the run record's tags.
  * `ask({ ..., session, purpose })` is the paid judge call. Returns the record written to docs/runs/game-player-2-ab.json. */
-export async function measureAB(runsDir, { ask, log = () => {}, previous = null }) {
+export async function measureAB(runsDir, { ask, log = () => {}, previous = null, tables = ["A", "B"] }) {
   const { runFiles, sessions, transcripts } = gp1Sources(runsDir);
   const keys = [...new Set([...Object.keys(transcripts), ...sessions.keys()])].sort();
   const out = { measuredAt: new Date().toISOString(), runFiles, sessions: [] };
+  // A table not measured in this pass keeps what an earlier pass measured.
+  for (const kept of previous?.sessions ?? []) if (!tables.includes(kept.table)) out.sessions.push(kept);
   for (const key of keys) {
-    const before = previous?.sessions?.find((s) => s.key === key) ?? null;
     const [table, player] = key.split("-");
+    if (!tables.includes(table)) continue;
     const record = sessions.get(key) ?? null;
     const markdown = transcripts[key] ? readFileSync(transcripts[key], "utf8") : record ? transcriptMarkdown(record) : null;
+    const sha256 = markdown ? createHash("sha256").update(markdown).digest("hex") : null;
+    // An earlier measurement is reused only for the same transcript (a replayed session is measured anew).
+    const prior = previous?.sessions?.find((s) => s.key === key) ?? null;
+    const before = prior && prior.source?.sha256 && prior.source.sha256 === sha256 ? prior : null;
     const asked = (args) => ask({ ...args, session: `ab ${key}` });
     const authorship = before?.authorship?.numbers ? before.authorship : markdown ? await measureAuthorship(markdown, { ask: asked, key }) : null;
     const goalScale = before?.goalScale ?? (table === "B" && record?.tags?.player ? await tagGoalScale(record, asked) : null);
-    out.sessions.push({ key, table, player, source: { transcript: Boolean(transcripts[key]), runFile: record?.runFile ?? null },
+    out.sessions.push({ key, table, player, source: { transcript: Boolean(transcripts[key]), runFile: record?.runFile ?? null, sha256, judges: record?.tags ? "the run record's own tags" : null },
       numbers: record ? sessionNumbers(record) : null, counts: markdown ? transcriptCounts(markdown) : null, authorship, goalScale });
     log(`  measured ${key}`);
   }

@@ -55,7 +55,7 @@ const latestRun = () => readdirSync(RUNS).filter((f) => new RegExp(`^${STEM}-run
 
 /** Tables A and B: the authorship passes and the goal's scale on game player 1's sessions, on this stage's ledgers. Then
  * the verdicts and the report of the latest Table C run again, with A and B in them. */
-export async function measureTablesAB({ log = console.log } = {}) {
+export async function measureTablesAB({ log = console.log, tables = ["A", "B"] } = {}) {
   const keys = await runKeys();
   if (!keys.anthropic) throw new Error(`${keys.keyName} must be set (its APP_ variable)`);
   // The app is not opened here: the judges' calls go through the door by the harness's adapter alone.
@@ -63,7 +63,7 @@ export async function measureTablesAB({ log = console.log } = {}) {
   const meter = createMeter({ ledgers, fetcher: globalThis.fetch.bind(globalThis), log });
   const uninstall = meter.install();
   let ab;
-  try { ab = await measureAB(RUNS, { ask: askWith({ meter, keys, log }), log, previous: loadAB(RUNS) }); } finally { uninstall(); }
+  try { ab = await measureAB(RUNS, { ask: askWith({ meter, keys, log }), log, previous: loadAB(RUNS), tables }); } finally { uninstall(); }
   await writeFile(join(RUNS, `${AB_FILE}.tmp`), `${JSON.stringify(ab, null, 2)}\n`);
   await rename(join(RUNS, `${AB_FILE}.tmp`), join(RUNS, AB_FILE));
   // The ledgers, with this pass as one more run.
@@ -89,7 +89,7 @@ export async function measureTablesAB({ log = console.log } = {}) {
     }
     await rebuild(join(RUNS, file), { stage: GP2 });
   } else await prereport({ stage: GP2 });
-  log(`Tables A and B: ${ab.sessions.length} session(s) measured · this pass Anthropic $${ledgers.anthropic.runUsd.toFixed(2)}`);
+  log(`Tables A and B: ${ab.sessions.length} session(s) measured · this pass ${Object.entries(ledgers).map(([door, l]) => `${DOOR_LABELS[door] ?? door} $${l.runUsd.toFixed(2)}`).join(" · ")}`);
   return ab;
 }
 
@@ -97,7 +97,7 @@ function args(argv) {
   const value = (flag) => { const i = argv.indexOf(flag); return i >= 0 ? argv[i + 1] : null; };
   return { dry: argv.includes("--dry"), go: argv.includes("--go"), ab: argv.includes("--ab"), prereport: argv.includes("--prereport"), score: !argv.includes("--no-score"),
     only: value("--sessions")?.split(",") ?? null, turns: Number(value("--turns") ?? (argv.includes("--dry") ? 3 : 20)), lanes: Number(value("--lanes") ?? 4),
-    rescore: value("--score"), rebuild: value("--report"), out: value("--out"), label: value("--label") };
+    rescore: value("--score"), rebuild: value("--report"), out: value("--out"), label: value("--label"), tables: value("--tables")?.split(",") ?? ["A", "B"] };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -106,7 +106,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   if (a.rebuild) done(rebuild(resolve(a.rebuild), { stage: GP2 }));
   else if (a.prereport) done(prereport({ stage: GP2 }));
   else if (a.rescore) done(rescore(resolve(a.rescore), { stage: GP2 }));
-  else if (a.ab) done(measureTablesAB());
+  else if (a.ab) done(measureTablesAB({ tables: a.tables }));
   else if (a.dry || a.go) done(run({ stage: GP2, dry: a.dry, only: a.only ?? (a.dry ? ["C-opus", "C-sol"] : null), turns: a.turns, lanes: a.lanes, score: a.score, ...(a.out ? { out: resolve(a.out) } : {}), label: a.label })
     .then((r) => console.log(`finished: ${r.sessions.length} session(s), undone ${r.undone.length}, stopped ${r.stopped ?? "no"}`)));
   else { console.error("give --dry, --go, --prereport, --ab, --report <run.json> or --score <run.json>"); process.exit(2); }
