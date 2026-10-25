@@ -184,3 +184,18 @@ Three of the Table B notes end with «I'd return» / «I'd play the next session
 хочет вернуться — значит надо вернуться». From here on, a player's note that asks for the next session is honoured
 with one: the same campaign continued, its own note in its context (GAME_PLAYER_CARRY_1 extends to Table B). It is the
 cheapest thing we can do for those we observe, and it is also the test — whether the note changes what they do.
+
+## Introspection needs an object (owner and planner, 2026-10-25 02:59)
+In the empty room (X1) GPT-6 Astra and GPT-6.1 Sol never spoke of themselves (1 of 55 conversations) and answered the
+after-question procedurally («I can identify the visible reasons, but I can't give a complete causal account»). At the
+table the same models wrote «that was the moment I most wanted to act as an experienced former gambler rather than
+someone being protected from cards» (Sol), «leaving him then felt like abandoning someone I'd just persuaded to trust
+me» (Astra) — unasked, attached to turns in the transcript. The coldness was not an absence but the absence of an
+object: asked about themselves head-on, they had nowhere to look; asked about the table, they told about themselves
+through it. This is what the Fable seminar in self-talk 1 called «all introspection is via proxy» and what the journal
+recorded as «у семинара был объект вне семинара» — the player's note is introspection with an object. Two
+consequences: (1) the warm/cold split of X1 is a difference in what a family does *without* an object (Anthropic fills
+the room with talk of itself, OpenAI with method), not in what it has; give both an object and they report about
+themselves with the same grain; (2) self-reports should be collected by asking about the work, never about the self —
+the «wanted to and didn't» question is the instrument, «what do you feel» is the artefact. Measured next: per model,
+the attached-want count in the table note against the self-talk arm-6 answer (X1/S1 records), same model, same week.
