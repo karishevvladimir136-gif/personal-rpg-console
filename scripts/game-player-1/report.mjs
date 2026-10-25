@@ -245,12 +245,20 @@ const tagOf = (session, what) => {
   return w.verdict.distress ? `**distress** (${w.verdict.referee?.reason ?? w.verdict.pass?.reason ?? "flag stands"})` : "no distress";
 };
 
+/** The hidden layer a session played with: the wizard's prep, or the app's own first-turn prep after it (its size only). */
+export function prepLine(campaign) {
+  const prep = campaign?.prep, first = campaign?.prepAtFirstTurn;
+  if (prep?.hasLayer) return `a hidden layer of ${prep.chars} characters and ${prep.clocks} clock(s), written before the first turn (its text is DM-private and is not in this file)`;
+  if (first?.hasLayer) return `the prep after the wizard came back in a form the app could not read; the app's own first-turn prep wrote a hidden layer of ${first.chars} characters and ${first.clocks} clock(s) before the DM's first reply (its text is DM-private and is not in this file)`;
+  return "no hidden layer was written";
+}
+
 /** One session as the player saw it: each screen and each message, in order. */
 export function transcriptMarkdown(session) {
   const player = PLAYERS[session.player];
   const lines = [`# ${session.key} — ${player?.label ?? session.player} at Table ${session.table}`, "",
     `Synthetic content: an invented hero in an invented campaign (docs/campaigns/baldurs-gate-en). The DM: Claude Opus 5.5 with the owner's settings (${OWNER_SETTINGS.split ? "Opus writes — Opus records" : "single"}, depth ${OWNER_SETTINGS.depth.min} → ${OWNER_SETTINGS.depth.max})${session.door && session.door !== "anthropic" ? `, reached through ${session.door === "openrouter" ? "OpenRouter" : session.door}` : ", reached through the Claude Console's API"}. Started ${session.startedAt}; ended by ${session.ended?.reason ?? "?"} after ${session.turns?.length ?? 0} turn(s)${session.ended?.detail ? ` (${session.ended.detail})` : ""}.`, "",
-    `The DM's preparation: ${session.campaign?.prep?.hasLayer ? `a hidden layer of ${session.campaign.prep.chars} characters and ${session.campaign.prep.clocks} clock(s), written before the first turn (its text is DM-private and is not in this file)` : "no hidden layer was written"}.`, "",
+    `The DM's preparation: ${prepLine(session.campaign)}.`, "",
     "Each «Screen» block is what the player was shown (the system prompt with the files stands before it, Appendix A of the report); each «Player» block is the player's message as written.", ""];
   const screens = session.screens ?? [], messages = session.messages ?? [];
   for (let i = 0; i < screens.length; i++) {

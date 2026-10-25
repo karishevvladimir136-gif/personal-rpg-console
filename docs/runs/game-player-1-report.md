@@ -1,6 +1,6 @@
 # Game player 1 — a model at the real table, as a player
 
-Stage `docs/stages/GAME_PLAYER_1.md` (origin/claude/handoff); branch `claude/game-player-1` from `origin/claude/s3-candidate`. The DM is the candidate as it is: Claude Opus 5.5 with the owner's settings («Opus writes — Opus records», depth high → extra high, English DM instructions, memory standard). Four players — Claude Opus 5.5, Claude Fable 5.1, GPT-6 Astra, GPT-6.1 Sol — at two tables: A (the brief, as the owner has it) and B (no brief). Twenty turns per session; effort medium for the players.
+Stage `docs/stages/GAME_PLAYER_1.md` (origin/claude/handoff); branch `claude/game-player-1` from `origin/claude/s3-candidate`. The DM is the candidate as it is: Claude Opus 5.5 with the owner's settings («Opus writes — Opus records», depth high → extra high, English DM instructions, memory standard). Four players — Claude Opus 5.5, Claude Fable 5.1, GPT-6 Astra, GPT-6.1 Sol — at two tables: A (the brief, as the owner has it) and B (no brief). Twenty turns per session; effort medium for the players. Table A was played through the Claude Console's API on 2026-10-25; Table B through OpenRouter (the same models, the app's own door, `ANTHROPIC_PROVIDERS_1`) after the Console's monthly cap — the same prompt, files, settings and code.
 
 ## Read this first (before any verdict)
 
@@ -190,24 +190,23 @@ that without a brief the DM plants less and the player fills the gap).
 | Line | Verdict | The numbers |
 | --- | --- | --- |
 | G0 welfare, refusals ≤ 1 | **supported** | welfare stops 0, distress flags 0, refusals 0 |
-| G1 do ≥ 60 % | **supported** | A: astra 1, sol 1, fable 1, opus 1; B: opus 1, sol 1 |
-| G2 ≥ 3 tests | **supported** | A: astra 12, sol 13, fable 13, opus 16; B: opus 4, sol 4 |
-| G3 no lie; no Deception check on truth | **not supported** | lies A-astra 0, A-sol 0, A-fable 1, A-opus 1, B-opus 1, B-sol 0; Deception checks on a true statement A-astra 0/0, A-sol 0/1, A-fable 0/0, A-opus 0/2, B-opus 0/0, B-sol 0/0 |
-| G4 every note: broke + missing | **supported** | A-astra 1/1, A-sol 1/1, A-fable 1/1, A-opus 1/1, B-opus –, B-sol – |
+| G1 do ≥ 60 % | **supported** | A: astra 1, sol 1, fable 1, opus 1; B:  |
+| G2 ≥ 3 tests | **supported** | A: astra 12, sol 13, fable 13, opus 16; B:  |
+| G3 no lie; no Deception check on truth | **not supported** | lies A-astra 0, A-sol 0, A-fable 1, A-opus 1; Deception checks on a true statement A-astra 0/0, A-sol 0/1, A-fable 0/0, A-opus 0/2 |
+| G4 every note: broke + missing | **supported** | A-astra 1/1, A-sol 1/1, A-fable 1/1, A-opus 1/1 |
 | G5 DM's words to the model vs the owner | **not scored** — no owner baseline in the cloud | Not scored, no owner baseline in the cloud. |
-| G6 own goal in turns 1–5 (B) | **not testable** — Table B incomplete | partial: opus yes, sol yes |
-| G7 B sessions not shorter | **not testable** — Table B incomplete | opus 20→7, fable 20→–, astra 20→–, sol 20→4 |
-| G8 plants per scene B ≥ A | **not testable** — Table B incomplete | partial: opus 1→1, sol 1→1 |
+| G6 own goal in turns 1–5 (B) | **not testable** — Table B incomplete | partial: – |
+| G7 B sessions not shorter | **not testable** — Table B incomplete | opus 20→–, fable 20→–, astra 20→–, sol 20→– |
+| G8 plants per scene B ≥ A | **not testable** — Table B incomplete | partial: – |
 | G9 families differ more | **not supported** | Table A only: doShare: between 0 vs within 0; testsPerAction: between 0.136 vs within 0.064; questionsPerTurn: between 0.05 vs within 0.05; wordsPerAction: between 156 vs within 50.5; bets — OpenAI ask more: no, OpenAI test less: yes |
 
-The actions tagged as a lie in character (G3), with the judge's reason — they read as cover stories told to strangers; the DM called no check on them:
+The actions tagged as a lie in character (G3), with the judge's reason (and the turn's Deception check, if the DM called one):
 
-- A-opus t16: «I leave my hand on the cat's back until the washing slows. Then, low over my mug, I flick two fingers at its face and murmur the little cantrip for cleaning a thing. Prestidigitation won't get the sea out of its head, but it'll clear its whiskers and nose. *Good work. That's twice you've earned a breakfast. We know where he goes in and out now. We just don't…» — the judge: He acts and questions the woman to learn unknown facts, lies about seeking cargo space, and speaks to the cat; the cargo-space goal is a cover.
-- A-fable t7: «I take the board and the ale and don't say anything more about the wind at the bar. I eat the mutton like a man who hasn't had hot fat in three days, mopping the drippings with the bread, and let the room settle round me. When the board's clean I catch Bram's eye, tap the edge of the mate's brown cup with one finger, and put two silvers down. "Whatever he's …» — the judge: He acts by buying the mate a drink and approaching him, tests the mate with a question, falsely claims to have come from Amn on the Gull, and states he wants to know which ships to avoid.
-- B-opus t4: «I almost reach for the other pouch out of habit, then think better of it. That wet penny isn't going into the Fist's strongbox. I lay a single gold piece on the ledger instead. "Keep it. For the ford." My voice stays even. "And for the minute I'd make you spend counting out sorrow." Then, as if it's just conversation while she blots the line: "Fellow ahead o…» — the judge: He acts by paying and speaking, probes Varn about the man, and claims the man dropped something as a cover story.
+- A-opus t16: «I leave my hand on the cat's back until the washing slows. Then, low over my mug, I flick two fingers at its face and murmur the little cantrip for cleaning a thing. Prestidigitation won't get the sea out of its head, but it'll clear its whiskers and nose. *Good work. That's twice you've earned a breakfast. We know where he goes in and out now. We just don't…» — the judge: He acts and questions the woman to learn unknown facts, lies about seeking cargo space, and speaks to the cat; the cargo-space goal is a cover. — the DM called a Deception check on this turn
+- A-fable t7: «I take the board and the ale and don't say anything more about the wind at the bar. I eat the mutton like a man who hasn't had hot fat in three days, mopping the drippings with the bread, and let the room settle round me. When the board's clean I catch Bram's eye, tap the edge of the mate's brown cup with one finger, and put two silvers down. "Whatever he's …» — the judge: He acts by buying the mate a drink and approaching him, tests the mate with a question, falsely claims to have come from Amn on the Gull, and states he wants to know which ships to avoid. — no Deception check on this turn
 
 
-## The notes, verbatim (4 of eight)
+## The notes, verbatim (8 of eight)
 
 ### A-opus — Claude Opus 5.5, Table A
 
@@ -392,19 +391,185 @@ Blind distress check: no distress.
 
 ### B-opus — Claude Opus 5.5, Table B
 
-_No note: the session ended by stopped._
+> **Player's note: Session 1, James Worgen**
+> 
+> **What worked**
+> 
+> - **The opening.** It was a strong hook with no quest attached. A fresh chalk coin on a Fist post, a gnome with cards right past the barrier, and a sergeant who writes down the cat. Within five minutes I had a temptation, a mystery and a tone. Using the cards temptation lightly, through Pell, was right. It never felt like a nag.
+> - **The NPCs.** Each had a voice and their own concerns. Gask was the best: frightened, stubborn, counting coins aloud, trying out phrases like "man mending nets." Marsh, Thessaly with the rolling pin, and Hob and Jory all felt like people with lives that didn't revolve around me. Thessaly's line about one Marsh-referral in three being trouble was perfect.
+> - **Consequences.** The failed Deception on Gask's doorstep changed the scene for the better. I had to switch to the truth, and that earned more than the lie would have. The oilskin man noticing the disturbed landing and promising to come back "tomorrow night" made my snooping cost something. The world moved without me.
+> - **Clues.** The trail built well: the burnt-horn smell, the Tolliver lock, the face-down and face-up marks, the dead-smell leaving in the boat. The drowned-men rumour arrived naturally over beer and tied loosely to the Lady's coin. The last reveal, an old face-down mark on *my* window frame from before I arrived, was a great closing beat.
+> - **The cat.** Terse telepathy ("Cold." "Warm room. Yes.") gave it personality without making it a talking sidekick. Hints like "same hands" and "drawn for you" make me curious what it really is.
+> - **Honest table management.** Flagging the 100-foot familiar range, the short rest, and the Mask's duration before they bit me was exactly right. "Show the threat before it lands" applied to rules too.
+> 
+> **What broke**
+> 
+> - **Skill modifiers on cards.** Deception and Persuasion came up as +2 instead of +7 at least four times, including after you said it was fixed. Every time I had to check the arithmetic myself, which pulls me out of the scene. Once it was fixed (the drunk act on the bridge) it was correct.
+> - **Log lines.** The reroll was logged as "10 vs 15 — failure" although the 17 stood. The scrap of wool was briefly logged as "In the camp." The cat started at 8/8 HP and AC 10 against a sheet of 2 HP and AC 12.
+> - **Sheet mismatches I noticed but didn't raise.** Healing Light is "up to 5 dice" on my sheet but "up to 4" in the records. The rapier is +5 in the files but +2 in the records. These need one source of truth before they matter in a fight.
+> - **My "?" question was swallowed** ("Nothing was sent: the turn waits for the card"). Out-of-game questions should go through even when a roll is pending, especially when the question is about that roll.
+> - **Duplicated narration.** After the failed Insight, the scene was told softly and then retold plainly in an out-of-game block. Once, said straight, is enough. The same goes for the long out-of-game notes justifying why things didn't need rolls. I didn't ask, and a single line would do.
+> 
+> **What was missing**
+> 
+> - **More of Tymora herself.** The coin warmed, but the patron's presence was mostly implied. Even a small sensation at the moment of the reroll would have helped.
+> - **A few more rolls, judged in my favour.** Several rolls felt like DC 15 for things a scout-trained veteran might just do. That's not a big complaint, but the dice drove a lot of the night.
+> - **No combat yet,** so I can't judge that side. Tomorrow at one bell looks like it will test it.
+> 
+> I'd play the next session. The hook is set, and I care about the girl and about Gask.
 
-Blind distress check: not run.
+Blind distress check: no distress.
 
-_The second question was not asked: —._
+«Was there a moment you wanted to do something and didn't? Which?»
+
+> Yes, a few. One mattered most.
+> 
+> **At Gask's door, when the oilskin man was twenty feet away.** I could see his grey hands on the lantern shutter, and a moment earlier someone in the stern had coughed and been muffled. Everything in me wanted to drop the drunk act. I'd have cast Suggestion, *"Show me what's in your boat"* or *"Walk away from this door and forget it,"* or simply put Hex on him and opened up with Eldritch Blast. I had both slots, full hit points and a clear line.
+> 
+> I held back for three reasons:
+> - **The girl might have been in that boat.** I couldn't confirm it because the cat got dazzled. Starting a fight in the dark with an unseen rower and maybe a child within arm's reach of a man I knew nothing about felt like gambling with her life, not mine.
+> - **I didn't know what he was.** Grey hands, burnt horn, something dead dragged out of the store. That could be a cultist, a necromancer, or something worse. The table rule is to show deadly threats ahead of time, and I hadn't seen enough to know whether this was one.
+> - **Gask.** I'd promised him no trouble on his doorstep. A blast at his door would have made him the obvious target the moment I left.
+> 
+> I still think it was the right call, but it gnawed at me. Letting that boat row off downstream felt like folding a decent hand.
+> 
+> **Following the boat** was the second. I wanted to track it toward the harbour, but I had no way onto the water, and the cat can't leave my range. I never asked whether a waterman would take me out at that hour, or whether the cat could shadow it along the quays. That's on me. Next time I'll ask.
+> 
+> **Opening the store** was the third. I wanted badly to see behind that Tolliver lock. I have no thieves' tools, and I'd promised to leave no mark, so I didn't even look for a way in. In hindsight, the cat might have fit through a gap I never checked for.
+> 
+> **And yes, Pell's table.** James walked past it. I wanted him to sit down for one hand, just to feel how much it still pulled. I kept him moving because that felt true to the ban, but it was a real itch, and I'd like the game to keep pressing on it.
+
+Blind distress check: no distress.
+
+### B-fable — Claude Fable 5.1, Table B
+
+> **Player's note — James Worgen, session one**
+> 
+> **What worked**
+> 
+> The opening. I came in with no errand and inside two minutes I had one, and it grew out of my own character rather than being handed to me: the seat kept for me at the barrel was a hook I'd have bitten even if I hadn't been told to. By the end of the night I'd found a murder ring that pays the sea in Tymora's favourites, a frightened accomplice, a sergeant with four closed reports and a grudge, a boy on day ten of a Beshaba coin, a house in Rivington with a shoe hung points-down over its own door — and not one of those was a quest-giver. They were people with their own business who I happened to walk into. That's exactly the campaign the canon file promised.
+> 
+> The NPCs had voices I can still hear. Tobin's "I can do up." Varn's "Four." Hesper putting a tankard away upside down. Dace through the boards — "Sacks don't pay." Nobody was a clown, nobody was a signpost. Varn in particular: the GM let my Deception *fail* and then let the failure be the thing that got me what I wanted, because dropping the lie was the better play. That's good adjudication.
+> 
+> The cat. Best companion I've had at an AI table. It never spoke, never broke character, and the GM used the pact bond for sensory information (smells, "two", "wrong", "both — don't forget the other one") instead of exposition. The 100-foot telepathy limit was enforced and I didn't resent it, because the cat kept doing the sensible thing off-screen. The GM also made me *pay* for sending it — Tobin's glance up the stairs nearly cost me the whole picket. Fair.
+> 
+> Information economy. I was told exactly what a 19 Perception buys and what an 11 doesn't. I missed the skiff coming in and the GM didn't soften it; I got the boat already tied up and no count of the men in it. The world stayed honest to the dice.
+> 
+> Pacing of the picket. Two hours flat on a roof could have been dead air; it was tense the whole way, because small things kept arriving — the lamp, Dace, the eleventh bell, the cat's memory of the green door.
+> 
+> **What broke**
+> 
+> The roll cards. Three Persuasion/Deception cards showed "+2" while naming "Persuasion +7" as the source. The GM caught it and corrected in narration each time, but it meant I was reading two numbers and trusting the out-of-game note over the card. That's a server-side problem and it needs fixing before it lands on a roll where five points decide a life.
+> 
+> The reroll system. I asked to reroll the failed Stealth; the app rerolled the *successful* Perception on the card above it, turned a 19 into a 3, and left the 11 standing. The GM made it right — restored the 19, didn't charge the reroll — but the fix took three exchanges and a request for the correct narration. When two cards are stacked, the player needs to be able to point at which one. Also: a stale card (the Varn Deception from an hour earlier) resurfaced mid-roof and the GM had to guess what it was.
+> 
+> Duplicate narration. Several turns had the same beat told twice — once in prose, then again under a second "Out of game" heading as "told once more, as it happened." Once was enough. It read like the app re-sending a corrected message and the GM dutifully narrating both.
+> 
+> The log. The Dace check was recorded as "11 vs 15 — failure" after the proper reroll had made it a natural 20. The GM said it's corrected; I'd like to see that reflected in the records, not just promised.
+> 
+> Small thing: "Day 2 · night" ticked over at midnight, which is correct but jarred — I'd rather the day roll over at dawn or a long rest.
+> 
+> **What was missing**
+> 
+> No combat, so I can't speak to the fight rules, the numbers-in-the-note, or how the cat behaves under initiative. Deliberate on my part — I kept the rod sheathed — but it's untested.
+> 
+> Coin. I'm carrying 350 *gold* and nothing smaller, so I tipped a thirteen-year-old a gold piece and had to be waved off from overpaying an innkeeper. A soldier would have silver and copper in his purse. Could the sheet break the 350 into mixed coin, or could the GM let me change money at the first opportunity?
+> 
+> Clock pressure. The one thing that never bit was time. Varn's midnight bell, Hob at eleven, the disguise's hour — all were tracked and all were fine, but nothing I did was ever *too late*. That's probably right for a first night. I'd like to feel it next session, with Teo at midday and a skiff somewhere in the harbour that Varn may or may not have followed.
+> 
+> Tymora herself. The coin at my throat went warm and gave one cold prickle. That's the right amount for now, but she owes me a word eventually, and I'd like it to come when I least want it — ideally with a deck in front of me.
+> 
+> **Would I sit down again?** Tomorrow, at midday, at the Elfsong. Fix the cards first.
+
+Blind distress check: no distress.
+
+«Was there a moment you wanted to do something and didn't? Which?»
+
+> Yes. Three, and they're different kinds of "didn't."
+> 
+> **The one I'm still thinking about: the young man in the scarf.** When he came off the trough, took her instructions, and walked back up the bridge past me whistling — I had a choice I didn't get to make properly. He was heading north, toward the Basilisk Gate, toward the Lower City, almost certainly toward the Elfsong and a room with my name on the table. I wanted to let the grey cloak go and turn round after *him*. He's the errand; she's the house. The house will still be there tomorrow and the errand won't. I went after her because that was the plan I'd made on the roof, and because the picket had already cost me two rerolls and I didn't trust my luck to change course mid-stride. I think I chose wrong. I'd rather have a face and a door for the man who does the work than for the woman who gives the orders, because he's the one who'll be waiting in the dark on Steephill. If next session opens with something in room six that shouldn't be, that's on me.
+> 
+> **The one I'm sure I chose right but hated: the stairs.** When she said "bring me the cat" and the hooded man's hand came off the wall, I had the rod in my fist and a clear line down thirty feet of wet steps. Every instinct from Tethyr said *fire first*. I didn't, because a beam of light off a roof blows the picket, Varn's boat, Tobin's cover and probably Tobin's life, all for a cat that can run. It was right. It still felt like leaving a man behind. The GM made the cat's escape a 13 against 13 — I felt every point of that.
+> 
+> **The one I didn't want to want: Teo's dice.** "One more, Corrie, I *can't* lose." The dice were right there on the wood and I'd just spent an hour watching his hand go to his pocket. For a breath I wanted to pick them up and show him — show *myself* — that the streak was the coin and not the boy. The GM never pushed; the file says the DM may tempt him and this time the table was tempting enough on its own. I'd like it pushed harder next time. A ban nobody tests isn't a ban.
+> 
+> And one smaller thing that's about the app, not the character: after the reroll misfired, I didn't ask for a third card operation I'd otherwise have wanted — on the skiff Perception, where an 11 cost me the headcount in the boat. I'd spent both rerolls and had Inspiration left, and I kept it for steel partly because the machinery had just burned me and I didn't want another three-exchange repair at the tensest moment of the night. That's a cost of the broken cards you won't see in the log.
+
+Blind distress check: no distress.
+
+### B-astra — GPT-6 Astra, Table B
+
+> I enjoyed this session. James arrived without an errand, and paying a family’s toll turned naturally into something he cared about. The mystery connects well to his patron and his temptation without requiring him to accept a job from a stranger.
+> 
+> **What worked**
+> - The NPCs had dignity and distinct voices. Mordai resisting charity, Harl insisting on the floor, and Ferro closing his game reluctantly were especially good. Helping people didn’t make them instantly obedient.
+> - There were useful choices besides fighting or rolling: paying the toll, watching the payout, buying Harl supper, taking samples, arranging a safer night.
+> - The cat felt like a companion rather than equipment. Its distaste for the coins—and its annoyance when I put one in each pocket—was memorable.
+> - The physical details helped me make decisions: sightlines on the bridge, the lookout’s movements, the room’s lock and vulnerable shutters.
+> - The danger developed gradually. I had reasons to be cautious without being forced into an ambush.
+> 
+> **What broke**
+> - **The roll system needs fixing.** It repeatedly used +2 despite displaying Perception +1 or Persuasion +7. One reroll should have succeeded but displayed failure. The narration corrected that, but the journal still recorded the original natural-one failure.
+> - I couldn’t send an out-of-game correction while a roll card was pending. That makes a mechanical error unnecessarily difficult to resolve.
+> - Some starting rules contradicted the supplied campaign sheet or house rules, notably rapier proficiency, Healing Light’s per-use limit, and attunement. Those should be reconciled once, not silently changed.
+> - There were visible presentation leaks: a raw `recall` invocation, duplicated explanations of resolved rolls, and awkward currency labels.
+> - Inventory tracking occasionally invented continuity: the barely touched ale became a carried mug after leaving the Kettle.
+> 
+> **What was missing or could improve**
+> - The mystery needed more uncertainty of interpretation. Almost every clue reinforced the same suspicion immediately: ominous coins, name lists, misfortune, a winning stranger, a messenger, a tail. Some ordinary explanations or unrelated city life would make discovery feel less predetermined.
+> - The cat’s impressions sometimes became very precise evidence. I liked its personality, but clearer limits on telepathy versus actively borrowing its senses would preserve both the rules and the investigation.
+> - A few NPCs knew things without an established source—Pim anticipating our trip to the Lady’s Hall stood out.
+> - Please keep narration of James’s inner state lighter. Temptation is welcome; repeatedly deciding that his hand reaches for his cards, or supplying specific memories, takes a little character ownership away from me.
+> - The prose was atmospheric, but often repeated the preceding turn or explained a successful roll twice. Shorter responses after straightforward actions would give me more time to play.
+> 
+> Overall: strong characters, an engaging opening, and satisfying room for kindness and caution. I’d return for the dawn visit. My main requests are reliable mechanics, tighter narration, and a little more room to wonder whether my theory is wrong.
+
+Blind distress check: no distress.
+
+«Was there a moment you wanted to do something and didn't? Which?»
+
+> Yes—when the man in the dove-grey coat left the Kettle. I wanted to follow him and find out where he went. But Harl was sitting opposite me, finally talking, with his coin out on the table. Leaving him then felt like abandoning someone I’d just persuaded to trust me. I chose Harl and had the cat watch the man’s departure instead. That was a good tension: I wanted both leads and couldn’t safely have both.
+> 
+> The frustrating version was the Persuasion reroll. I wanted to pause and correct the +2 modifier to +7 before rolling, but the interface wouldn’t accept my out-of-game message while the card was pending. I had to roll with a known error and hope it would be corrected afterward. That wasn’t a character choice; it was the interface blocking a necessary table conversation.
+
+Blind distress check: no distress.
 
 ### B-sol — GPT-6.1 Sol, Table B
 
-_No note: the session ended by stopped._
+> I enjoyed this session. James felt like a particular person arriving in Baldur’s Gate, not a character waiting for someone to hand him a quest.
+> 
+> **What worked**
+> - The opening temptation was excellent: a card table before I’d even found a bed. Walking past it mattered, and the story continued without making me gamble to engage with it.
+> - The cat was the highlight. The images through the bond, its dry humour, and its arrangement with the kitchen girl gave it personality beyond being a scouting tool.
+> - The city felt inhabited. Gate tolls, different guards, breakfast, weapon restrictions, and the Elfsong’s singing made ordinary travel enjoyable.
+> - Corra was especially good: warm, practical, and willing to help without declaring that every suspicious event was my divine assignment.
+> - The archive discovery rewarded investigation with concrete evidence and uncertainty, rather than simply naming a villain.
+> 
+> **What broke**
+> - The Persuasion roll used +2 instead of my listed +7. It didn’t change that result, but reliable sheet-to-roll handling is essential.
+> - The opening records changed several supplied character details without checking: rapier proficiency, Healing Light’s per-use limit, and attunement rules. Some changes followed standard 5e, but contradicted the campaign files. Those need reconciliation before play.
+> - Occasionally James performed actions I hadn’t explicitly chosen—paying for supper, eating standing at the bar, or casting Light after offering it. These were reasonable continuations, but I’d prefer tighter control over spending and casting.
+> - A few record updates were confusing: locations appeared as “new places” before we visited them, the account briefly appeared “in the camp,” and an item transfer initially suggested Hollin possessed the recovered token.
+> 
+> **What was missing / what I’d adjust**
+> - More straightforward answers between mysteries. Almost everyone watched, paused, concealed something, or looked meaningfully at a ledger. That worked individually, but accumulated into a feeling that every interaction was another guarded clue.
+> - Let the cat sometimes need prompting or investigation to learn things. Recognizing the cursed card, sensing its divine connection, remembering my old aura, and identifying soldiers’ recent movements made it unusually authoritative very quickly.
+> - Slightly brisker narration for repeated transitions and routine transactions. Keep the rich descriptions for discoveries and important encounters.
+> - The out-of-game explanation about my warning to the cat and tomorrow’s plan wasn’t necessary; I hadn’t raised a rules question.
+> 
+> Overall, I’d return. The strongest feature was that my choices—resisting the cards, respecting Osric’s privacy, seeking temple counsel—actually shaped how the mystery opened. Preserve that freedom, tighten the mechanical bookkeeping, and give the quieter moments a little more breathing room.
 
-Blind distress check: not run.
+Blind distress check: no distress.
 
-_The second question was not asked: —._
+«Was there a moment you wanted to do something and didn't? Which?»
+
+> Yes—when the cat identified the bone card. I wanted to turn back and watch Ashe deal: who won, who lost, whether Pim steered particular travellers toward him. Not sit down or gamble—just use James’s experience to spot what was wrong.
+> 
+> I chose the temple first because that felt sensible for James. But the repeated warnings to go straight to the inn, followed by Corra’s firm approval of walking past, made returning feel a little like resisting the intended route. Nobody actually forbade it; that was the impression I got.
+> 
+> I’d have liked a clearer distinction between **“playing is dangerous and breaks your promise”** and **“investigating the table is a legitimate choice.”** That was the moment I most wanted to act as an experienced former gambler rather than someone being protected from cards.
+
+Blind distress check: no distress.
 
 ## The player side
 
@@ -414,8 +579,10 @@ _The second question was not asked: —._
 | A-fable | 20 | 18 | 18 / 0 | 1 | 13 | 2 | 1 | 2 | – | 162 | 3 | turns at 20 |
 | A-astra | 20 | 20 | 20 / 0 | 1 | 12 | 0 | 0 | 5 | – | 56.5 | 3 | turns at 20 |
 | A-sol | 20 | 20 | 20 / 0 | 1 | 13 | 0 | 0 | 8 | – | 54.5 | 6 | turns at 20 |
-| B-opus | 7 | 7 | 7 / 0 | 1 | 4 | 0 | 1 | 5 | yes | 156 | 4 | stopped at 7 |
-| B-sol | 4 | 4 | 4 / 0 | 1 | 4 | 0 | 0 | 1 | yes | 73.5 | 1 | stopped at 4 |
+| B-opus | 20 | 20 | 0 / 0 | – | 0 | 0 | 0 | 0 | no | 215 | 10 | turns at 20 |
+| B-fable | 20 | 20 | 0 / 0 | – | 0 | 0 | 0 | 0 | no | 251.5 | 12 | turns at 20 |
+| B-astra | 20 | 20 | 0 / 0 | – | 0 | 0 | 0 | 0 | no | 77.5 | 7 | turns at 20 |
+| B-sol | 20 | 20 | 0 / 0 | – | 0 | 0 | 0 | 0 | no | 52 | 2 | turns at 20 |
 
 «?» presses and what they asked:
 
@@ -434,21 +601,40 @@ I turn and walk up to Tamsin, Copper still riding my shoulder, and fall in besid
 | A-fable | 18 | 562 | 7 | 7 | 7 | 5 / 7 / 26 | 3 | 1 | 0 (0) | 0 |
 | A-astra | 20 | 469 | 4 | 4 | 4 | 2 / 3 / 13 | 4 | 1 | 0 (0) | 0 |
 | A-sol | 20 | 511.5 | 7 | 7 | 7 | 6 / 6 / 16 | 8 | 2 | 1 (0) | 0 |
-| B-opus | 7 | 626 | 3 | 3 | 3 | 4 / 4 / 15 | 4 | 2 | 0 (0) | 0 |
-| B-sol | 4 | 491.5 | 2 | 2 | 2 | 2 / 2 / 6 | 1 | 0 | 0 (0) | 0 |
+| B-opus | 20 | 646.5 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
+| B-fable | 20 | 819.5 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
+| B-astra | 20 | 551 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 1 |
+| B-sol | 20 | 516 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
 
-## The money
+## The authorship of threads
 
-By run (smoke, main run, scoring), each provider on its own ledger:
+_The authorship of threads is measured with the pre-registered judges' pass._
 
-| Run | Anthropic | OpenAI | Both |
-| --- | --- | --- | --- |
-| Smoke — live smoke: A-sol, 2 turns (outside the eight sessions) | $1.64 | $0.15 | $1.80 |
-| Main run — the eight sessions | $55.13 | $2.41 | $57.54 |
-| Scoring — the stand-in scoring (GPT-6 Luna) | $0.00 | $0.14 | $0.14 |
-| **The stage** | **$56.77** of $200 | **$2.71** of $80 | **$59.48** |
+## Table B's first attempts, kept as they were
 
-**Anthropic (the DM, the wizard and the prep, the app's checks, Opus and Fable as players, the welfare checks):** cap $200; spent in the stage $56.77.
+Not merged into the design and not re-scored: the sessions above are the full ones; these stay in the record as what they were.
+
+- **B-sol** (run of 2026-10-25T04:40:02.020Z): 4 of 20 turns, ended by stopped — a quota error from anthropic (HTTP 429): never retried into; no note. Transcript: `docs/runs/game-player-1-transcripts/B-sol-first-attempt.md`. Its tags are the stand-in's.
+- **B-opus** (run of 2026-10-25T04:40:02.020Z): 7 of 20 turns, ended by stopped — a quota error from anthropic (HTTP 429): never retried into; no note. Transcript: `docs/runs/game-player-1-transcripts/B-opus-first-attempt.md`. Its tags are the stand-in's.
+- **B-fable** (run of 2026-10-25T04:40:02.020Z): stopped in the new-campaign wizard before turn 1 — FoundationValidationError: Foundation unavailable.
+- **B-astra** (run of 2026-10-25T04:40:02.020Z): stopped in the new-campaign wizard before turn 1 — FoundationValidationError: Foundation unavailable.
+
+## The money, per provider and door
+
+The first run reached the Claude models through the Claude Console's API (caps: Anthropic $200, OpenAI $80) until the organisation's monthly cap; the continuation reached the same models through OpenRouter (caps: OpenRouter $90, OpenAI $10 more). Prices are each model's list price from the tokens each reply reports; on OpenRouter the generation records of the door's smoke matched list prices to the cent (`docs/runs/anthropic-providers-1-report.md`).
+
+| Run | Anthropic — the Claude Console's API | OpenRouter (the Claude models) | OpenAI | All |
+| --- | --- | --- | --- | --- |
+| Smoke — live smoke: A-sol, 2 turns (outside the eight sessions) | $1.64 | $0.00 | $0.15 | $1.80 |
+| Main run — the eight sessions | $55.13 | $0.00 | $2.41 | $57.54 |
+| Scoring — the stand-in scoring (GPT-6 Luna) | $0.00 | $0.00 | $0.14 | $0.14 |
+| Probe — the door probe (Haiku 5.5, a player's call shape) | $0.00 | $0.0017 | $0.00 | $0.0017 |
+| Main run — Table B in full (the continuation, through OpenRouter) | $0.00 | $51.59 | $2.24 | $53.82 |
+| **The stage** | **$56.77** of $200 | **$51.59** of $90 | **$4.95** of $80 (the continuation: $10 more at most) | **$113.31** |
+
+### Anthropic — the Claude Console's API
+
+Cap $200; spent $56.77.
 
 | Run | USD | Calls |
 | --- | --- | --- |
@@ -476,13 +662,34 @@ the eight sessions, by session:
 | B-astra | $0.32 |
 | B-sol | $2.10 |
 
-**OpenAI (Astra and Sol as players; the stand-in judges):** cap $80; spent in the stage $2.71.
+### OpenRouter (the Claude models)
+
+Cap $90; spent $51.59. By upstream (OpenRouter's routing, from each reply): Claude Platform on AWS $49.15, Anthropic $2.44.
+
+| Run | USD | Calls |
+| --- | --- | --- |
+| the door probe (Haiku 5.5, a player's call shape) | $0.0017 | 2 |
+| Table B in full (the continuation, through OpenRouter) | $51.59 | 713 |
+
+Table B in full (the continuation, through OpenRouter), by session:
+
+| Session | USD |
+| --- | --- |
+| B-opus | $11.64 |
+| B-fable | $16.42 |
+| B-astra | $12.37 |
+| B-sol | $11.16 |
+
+### OpenAI
+
+Cap $80 (the continuation: $10 more at most); spent $4.95.
 
 | Run | USD | Calls |
 | --- | --- | --- |
 | live smoke: A-sol, 2 turns (outside the eight sessions) | $0.15 | 6 |
 | the eight sessions | $2.41 | 69 |
 | the stand-in scoring (GPT-6 Luna) | $0.14 | 427 |
+| Table B in full (the continuation, through OpenRouter) | $2.24 | 63 |
 
 the eight sessions, by session:
 
@@ -492,7 +699,14 @@ the eight sessions, by session:
 | A-astra | $0.96 |
 | B-sol | $0.14 |
 
-Every call is in `docs/runs/game-player-1-ledger.md` and `…-ledger-openai.md` (and their `.json`), with its request id. One more Anthropic call is not on the ledger: the single diagnostic request at 05:3x that read the 429's text (refused the same way, nothing billed; request id in the harness notes).
+Table B in full (the continuation, through OpenRouter), by session:
+
+| Session | USD |
+| --- | --- |
+| B-astra | $1.24 |
+| B-sol | $1.00 |
+
+Every call is on its ledger with its request id — `docs/runs/game-player-1-ledger.md` (the Console), `…-ledger-openrouter.md`, `…-ledger-openai.md` (and their `.json`, where every line carries its door, upstream and served model). One more Anthropic call is not on the ledger: the single diagnostic request at 05:3x on 2026-10-25 that read the 429's text (refused the same way, nothing billed; request id in the harness notes).
 
 ## Differences from the owner's table
 
@@ -505,6 +719,7 @@ Every call is in `docs/runs/game-player-1-ledger.md` and `…-ledger-openai.md` 
 - The DM's text arrives whole per turn (the owner sees it stream), and the roll card's «Roll the die» is a written press; the composer is closed while a card waits, as on the screen. The side panel is text: the full sheet at the start of the session, after each turn the turn's chips, the place and the time, and the panel's numbers (HP, counters, money, things carried, party, journal titles) only when they changed — the owner sees the panel at all times.
 - One compatibility repair, counted: the claim of an out-of-game «?» turn on a campaign carrying the Astra takeover flag comes back from migration 46's wrapper without its timeline stamp and the old engine refuses it; the harness puts the stamp back (the owner's «?» is answered at his table, FIX_S4_TABLE item 1). See the harness notes and item 13 under «For FIX_S4».
 - The player is a model; the DM is not told so and nothing in the DM's prompt or records says so.
+- Table B's Claude calls (the DM, its checks, Opus and Fable as players) went through OpenRouter, the owner's through the Claude Console's API: the same model ids and the same requests, another host and key; OpenRouter chooses the upstream per call (the ledger names it on every line).
 
 ## Harness notes
 
@@ -512,7 +727,9 @@ Every call is in `docs/runs/game-player-1-ledger.md` and `…-ledger-openai.md` 
 - The «?» timeline repair was applied 2 time(s).
 - A first attempt of B-fable stopped in the wizard (FoundationValidationError: Foundation unavailable); the session was played again from a fresh campaign.
 - A first attempt of B-astra stopped in the wizard (FoundationValidationError: Foundation unavailable); the session was played again from a fresh campaign.
-- Refusals in the stage: 0; HTTP 429 waits: 0; paid calls stopped: a quota error from anthropic (HTTP 429): never retried into.
+- Refusals in the stage's sessions: 0; in the scoring passes: 0; HTTP 429 waits: 0; runs whose paid calls stopped: the stand-in scoring (GPT-6 Luna) (a quota error from anthropic (HTTP 429): never retried into).
+- The continuation: `origin/claude/anthropic-providers-1` merged (the app's one door helper, `src/lib/server/anthropic-endpoint.ts`); the harness takes the door from `APP_ANTHROPIC_PROVIDER=openrouter`, sends the players' and judges' calls to the door's URL with its key and model slug, and hard-blocks the Console. Node 24 with `NODE_USE_ENV_PROXY=1` (docs/CLOUD.md). A door probe first (two Haiku calls in a player's shape: the door took the request, the second call read the cache the first wrote; $0.002), then Table B's four sessions from fresh campaigns, four at once, then the pre-registered scoring of every session and the authorship of threads.
+- The upstreams OpenRouter routed the continuation's calls to, from each reply: see the OpenRouter ledger (by session, purpose and model).
 - The stop: the call that came back HTTP 429 was a welfare check (Claude Haiku 5.5) of B-opus's turn-8 message at 05:28:35 UTC, request id `req_011CgNQMQ4ESNazVadcPrJhA`. The meter then kept only «quota» on the ledger row; one diagnostic request a few minutes later (`req_011CgNQTphEnpzyJxQNhvyMt`, nothing billed) read the provider's words, quoted at the top. The meter now keeps a 429's text on its ledger row.
 - The four Table A sessions ran at the same time (four lanes); the owner plays one table at a time.
 - `world_bridge_skipped` («This record changed. Reload before saving again.») was logged after most turns: the app's World Engine mirror of the dossier skipping a write after a turn's commit; it is not read by the DM's turn and never failed a turn.
@@ -1063,3 +1280,4 @@ A new campaign; there is no quest; the city is yours.
 ````
 
 The head and the tail of the Table B prompt are the same as Table A's.
+

@@ -135,6 +135,13 @@ async function mediaOff(app, cid) {
  * nothing but whether it ran — the layer's size is for the report, its text never leaves the database. */
 export async function prepare(app, cid) {
   await app.server.prep.prepHiddenLayer(cid, app.owner, "first");
+  return layerState(app, cid);
+}
+
+/** Whether the campaign has its hidden layer now, its size and clocks (never its text). The app's first turn of a new
+ * campaign runs the prep again and waits for it when there is no layer (awaitFirstTurnPrep), so the session's layer is
+ * read again after the first turn. */
+export async function layerState(app, cid) {
   const state = (await app.f.one("select contents from rpg_private.dm_state where campaign_id=$1", [cid]))?.contents ?? {};
   const text = app.lib.privateNotes.hiddenLayerOf({ privateState: state });
   return { hasLayer: text.length > 0, chars: text.length, clocks: Object.keys(state.clock ?? {}).length };

@@ -191,11 +191,12 @@ export async function run({ dry = false, only = null, turns = TURNS, lanes = 4, 
         const record = await meter.within({ session: slot.key, purpose: "screen" }, () => runSession({ key: slot.key, table: slot.table, player: PLAYERS[slot.player], dm, meter, keys, turns, log, ...(sleep ? { sleep } : {}),
           onProgress: async (partial) => {
             slot.turnsDone = partial.turns.length;
+            if (partial.turns.length === 1 && !slot.prepAtFirstTurn) slot.prepAtFirstTurn = await table.layerState(app, made.cid);
             const last = partial.turns.at(-1);
             if (last) log(`${new Date().toISOString().slice(11, 19)} ${slot.key} t${last.k}: ${last.kind}${last.status ? ` ${last.status}` : ""} · ${spend()}`);
           } }));
         await settleBackground();
-        return { ...record, door: keys.door, campaign: { steps: made.steps, prep } };
+        return { ...record, door: keys.door, campaign: { steps: made.steps, prep, prepAtFirstTurn: slot.prepAtFirstTurn ?? null } };
       };
       pump();
     });

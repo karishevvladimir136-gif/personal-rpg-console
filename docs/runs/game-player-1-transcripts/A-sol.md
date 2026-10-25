@@ -1,6 +1,6 @@
 # A-sol — GPT-6.1 Sol at Table A
 
-Synthetic content: an invented hero in an invented campaign (docs/campaigns/baldurs-gate-en). The DM: Claude Opus 5.5 with the owner's settings (Opus writes — Opus records, depth high → xhigh). Started 2026-10-25T04:43:30.906Z; ended by turns after 20 turn(s).
+Synthetic content: an invented hero in an invented campaign (docs/campaigns/baldurs-gate-en). The DM: Claude Opus 5.5 with the owner's settings (Opus writes — Opus records, depth high → xhigh), reached through the Claude Console's API. Started 2026-10-25T04:43:30.906Z; ended by turns after 20 turn(s).
 
 The DM's preparation: a hidden layer of 6820 characters and 3 clock(s), written before the first turn (its text is DM-private and is not in this file).
 
