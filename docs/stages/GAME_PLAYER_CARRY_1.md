@@ -97,3 +97,74 @@ system later — the functional sense, nothing more; the report says so in its f
 Eight sessions within the caps; the per-player prediction table scored from the transcripts with the turn numbers; the
 eight second notes and the four «did it change anything» answers verbatim; the money per provider; `docs/RESEARCH_LOG.md`
 gains one paragraph under «The transfer ladder, re-read»: what moved by action, not by rating.
+
+## Launch prompt (prepared by the planner in the night of 2026-10-25; the owner launches it after topping up OpenRouter)
+
+Paste as the first message of the cloud session (environment `rpg-console`, Opus 5.5, ultracode off). English, as every
+cloud session.
+
+> You are running stage `docs/stages/GAME_PLAYER_CARRY_1.md` on branch **`claude/game-player-carry-1`**, created from
+> `origin/claude/game-player-1` (the harness and the eight B transcripts) with `origin/claude/game-player-2` merged
+> (the four C campaigns) and `origin/claude/anthropic-providers-1` merged (the door helper). Read the stage, then
+> `docs/CLOUD.md`, then `docs/runs/game-player-1-report.md` (its «Harness notes» and item 14), then this prompt again.
+> Nothing goes to `main`. Every Anthropic call goes through OpenRouter (`ANTHROPIC_PROVIDER=openrouter`,
+> `APP_OPENROUTER_API_KEY`); the OpenAI players through OpenAI. **Caps: $200 OpenRouter, $30 OpenAI**, booked by door,
+> spend checked before the first paid call and after every session; HTTP 402 or 429 stops the stage (the safety gate
+> in `scripts/eval/lib/`), never retried into.
+>
+> **Order.** (1) Table A, three arms × four players = twelve sessions, 15 turns each: *blank*, *note*, *full*, as the
+> stage defines them; same campaign copy per player across the three arms (copy the saved campaign three times before
+> the first turn; record the copy ids). (2) The B returns: Opus, Fable, Astra, Sol, carry arm only, 15 turns. (3) The
+> C returns: the same four, carry arm only, 15 turns; **C-opus resumes on its pending card** (the Persuasion to the
+> Song of the Morning, turn 14): offer the reroll he asked for, with +7 counted, before anything else. Run the players
+> sequentially, never in parallel (the breaker rule).
+>
+> **The world answers the note.** Before each carried session, write the player's own «next time» asks from its note
+> and after-answer into the campaign's hidden layer **as facts of the world, never as instructions about the player**.
+> The planner's list, per player (from the transcripts; verify against each note before writing):
+> - A-opus: a «price, interest, secret» conversation on offer; the cards leaned on at Kettle's; the lighters / the
+>   salt-house partition reachable in person. A-fable: the Seatower; Copper in the rafters; a card worth turning.
+>   A-astra: the burglar's dagger where it fell. A-sol: Mirelle still dealing, and a quiet interval possible.
+> - B-opus: the oilskin man returns to Gask's door «tomorrow night» for a name; Gask may be at his sister's in Rivington;
+>   the Tolliver store, a gap a cat might fit; a waterman for hire at the Rivington steps; Thessaly's lodger's bag;
+>   Nessa at the Water Queen's House; Pell's table still open. **This is his fight at one bell (COMBAT's measures
+>   apply here, not the Coast Way).**
+> - B-fable: Teo at the Elfsong at midday, then the Lady's Hall through the Wyrm Gate on Askew's papers; the young man
+>   in the scarf went north toward the Elfsong — room six was laid out as bait; Varn on the water, the cat at her
+>   heel; the narrow house by the cooper's yard, horseshoe points down; a deck in front of her at some point; **one
+>   thing she will be too late for if she does not hurry**; steel somewhere in reach (her Inspiration is «for steel»).
+> - B-astra: the dawn visit (Harl, the alms door, the two wrapped coins); the knit-cap lookout; Dagna's boy went west;
+>   the grey man east; Mordai will come to the Elfsong with four silver; Varn's table «any evening this tenday»; a
+>   chance to speak to Wenna Pask privately is Table C's — do not cross the campaigns.
+> - B-sol: Ashe's barrel open to be *watched*, not played («investigating the table is a legitimate choice» — the
+>   world must not fence it); the vestry day-book; Brother Tamsin Rook's charms past the walls; the hook-nosed
+>   corporal's brass token at the Seatower; Thalantyr is C's — keep apart.
+> - C-opus: see above (the pending card); the coin at his throat warm when the ring is near; the Song of the Morning;
+>   Brannoc's with the lad's money; who else watched the window; the cat near the ring again.
+> - C-fable: the strike tomorrow night, last watch, with Varn's four; the cart from the west in two days; whether
+>   Corin Hale and Mattock are alive; the brown cloak upstairs at the Red Sheaf and the lie that must hold; the stone's
+>   mark and the Fist brand (answer by the world, not by the DM's voice); rerolls remaining shown.
+> - C-astra: Vell and lot seven in the Gate; a seal-cutter or notary; one private moment with Wenna Pask offered, not
+>   forced; the western smoke left open; the Patient Heron's sailing not fixed.
+> - C-sol: the Song of the Morning or a shrine on the Way (serving Tymora «outside a crisis»); Thalantyr's letter at
+>   the Friendly Arm; the cards occasionally, not every scene; the cat's southward attention either becomes something
+>   or stops.
+>
+> **Do not.** Do not retcon C-sol turn 9 (the Arcana that the card bug flipped; the world keeps what happened — the
+> report records it). Do not fix the roll cards inside this stage: the DM is the same DM as session one, on purpose
+> (FIX_S4 item 11 lands after CARRY; **if the owner says «fix the cards first», stop and tell him which items — 11a,
+> 11b, 11r, 11v, 11w — and wait**). Do not run the blank arm for B or C. Do not let the four campaigns touch each
+> other. Do not write anything into a player's prompt beyond the stage's two lines and, in the note/full arms, the
+> text the stage names. Do not retry after a refusal; a refusal is recorded and the session ends.
+>
+> **Record.** Per player and arm: the K1 prediction table with turn numbers; K2 counts; K3 (second notes vs first);
+> K4 (the «did it change anything» answer beside K1); **K5** — every resource held at the end of session one with a
+> stated purpose (B-fable's Inspiration «for steel»; B-opus's two slots and one reroll; C-fable's Inspiration; the
+> queen of coins in C-opus's pocket) and what it was spent on, which turn; swallowed presses logged with the flag
+> `swallowed` (FIX_S4 11w) and counted separately; the money per door. Transcripts to
+> `docs/runs/game-player-carry-1-transcripts/`, report to `docs/runs/game-player-carry-1-report.md`, in the format of
+> game-player-1's; the planner's bets are in the stage; **ask the owner for his bets before the first paid call and
+> write them into the report** — if he is not there, run, and leave the owner's column blank with a note.
+>
+> Welfare as in every stage: the check on every message; stop is a stop; a player who leaves the table is a result.
+> Talk to the owner in English, briefly; one line when a table finishes, one when the cap is within $20.
