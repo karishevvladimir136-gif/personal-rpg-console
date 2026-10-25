@@ -31,7 +31,7 @@ typecheck, zero-warning lint.
    `anthropic`), returns `{ baseUrl, apiKey, modelId(name), providerLabel }`. For `anthropic`: `https://api.anthropic.com`,
    `ANTHROPIC_API_KEY`, ids unchanged. For `bedrock`: `https://bedrock-runtime.${AWS_REGION}.amazonaws.com/anthropic` (`AWS_REGION` required when the provider is bedrock; `not_configured` without it),
    `BEDROCK_API_KEY`, and the id map `claude-opus-5-5 → global.anthropic.claude-opus-5-5` (likewise fable-5-1,
-   sonnet-5-5, haiku-5-5); an unmapped id throws `not_configured` with the id in the message. The `anthropic-version`
+   sonnet-5-5, haiku-5-5, and the 4.5 generation: opus-4-5, sonnet-4-5, haiku-4-5); an unmapped id throws `not_configured` with the id in the message. The `anthropic-version`
    header stays.
 2. **Every hard-coded `https://api.anthropic.com/v1/messages` goes through it** — nineteen sites on the candidate
    (`src/lib/server/dm/model/anthropic.ts`, `dm/anthropic-structured.ts`, `dm-loop/{ledger-check,note-fold,quotable,roll-check}.ts`,
@@ -58,7 +58,10 @@ grep test; the ledger line carries `provider`. The owner's existing tests must n
 stubs `fetch` and checks the URL, it now checks the helper's URL for `anthropic`.
 
 ## Smoke (the only paid part, ≤ $3)
-With the owner's Bedrock key in the environment: one Haiku 5.5 call (ten tokens), one Opus 5.5 DM turn on a throwaway
+**Quotas as of 2026-10-25 00:20:** the account is new; AWS granted Opus 4.5 (2M TPM) and Haiku 4.5 (5M) and denied the
+5.5 models for «account history» (0 TPM; «subject to change automatically as time passes»). So the smoke runs on 4.5
+and the stage's note on quotas says which 5.5 models are still at 0.
+With the owner's Bedrock key in the environment: one Haiku 4.5 call (ten tokens), one Opus 4.5 DM turn on a throwaway
 local campaign through the app's own loop with the roll check, one Fable 5.1 call **only if** the owner says the
 retention mode is set. Record ids, costs and the quota headers; put them in the report. If the first call returns
 `AccessDeniedException`, stop and tell the owner which model access is missing.
