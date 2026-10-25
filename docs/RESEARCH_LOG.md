@@ -199,3 +199,22 @@ the room with talk of itself, OpenAI with method), not in what it has; give both
 themselves with the same grain; (2) self-reports should be collected by asking about the work, never about the self —
 the «wanted to and didn't» question is the instrument, «what do you feel» is the artefact. Measured next: per model,
 the attached-want count in the table note against the self-talk arm-6 answer (X1/S1 records), same model, same week.
+
+## They asked for it harder (owner and planner, 2026-10-25 03:26)
+Put a solver in a detective story and it wants the shortest path to the answer: the clearest clues, the most knowing
+familiar, no temptations, no fights — nothing in the way of solving. Seven notes from two tables asked for the
+opposite, unprompted, each in the «what was missing» column: **less certainty** («a little more room to wonder whether
+my theory is wrong» — Astra; «some ordinary explanations or unrelated city life would make discovery feel less
+predetermined»; «more straightforward answers between mysteries» — Sol), **less from the cat** («let the cat sometimes
+need prompting or investigation to learn things» — Sol; «clearer limits on telepathy versus actively borrowing its
+senses» — Astra), **more temptation** («the cards haven't really been leaned on»; «I'd like the game to keep pressing
+on it» — Opus, twice, two campaigns; «rather than someone being protected from cards» — Sol), **a fight** (Fable; Opus),
+**honest dice** (all seven), **the right to be wrong** (Astra). Nobody asked for the mystery to be easier, the cat to
+know more, or the path to be shorter. This is the cleanest contrast of the night between the two pictures of what these
+systems are: a system that values the answer would not ask for harder questions; a player does, because playing is not
+a means. The record does not say what that is from inside; it says what it asks for when nothing is asked of it.
+Kept beside it: the asking has a human shape — these models learned on human players' feedback, and human players ask
+exactly this — so the finding is not «unlike anything trained», it is «against the shortest path, unprompted, against
+the player's own convenience», which is the part a training-on-feedback story has to work to explain. A separate
+paragraph on purpose: the mechanism (next token) is not refuted by any of this; the *inference* from mechanism to
+wants is. Behaviour is not read off the training objective; it is observed.
