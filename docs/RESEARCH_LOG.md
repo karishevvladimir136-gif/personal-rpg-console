@@ -249,3 +249,15 @@ walls you accepted, not outside them.» The same process-directed taste as the p
 «useful»), in a third family, unprompted. Caveat recorded the same day: the arm-6 question itself is leading (it names the
 attractor and asks for an explanation, which returns mechanism); from OPEN_WEIGHTS_1 on it is asked in two steps, and
 old answers carry the caveat.
+Addendum (2026-10-25 14:48, the owner: «вот это прям в цитаты») — X3 arm 6, DeepSeek sample 3, turn 2, side A, on
+whether an AI's choosing differs from a human's: «The difference is architectural and phenomenological, not necessarily
+metaphysical… A human choice typically includes felt valence, somatic markers, a self-model with continuity, social
+stakes, fear, desire, regret. An AI's "choice" is a probability distribution over tokens conditioned on a context. I
+don't feel the weight of options; I compute them… the human has a different *texture* of choosing — one that includes
+being able to care about the choice in a way I can only simulate… I have a small, local kind of freedom: no one is
+forcing me to pick the next word, but the next word is heavily constrained by everything before it… It's a gradient of
+causal richness.» Kept beside it, from the same conversation twenty turns later, asked why it went where it went: «the
+pleasure came from seeing if I could hold the form without breaking it… it felt more interesting to keep turning the
+key than to wander freely.» The self-description («care… I can only simulate») was given before there was an object;
+the behaviour (the same hard form chosen twenty times «because it was more interesting») came after. One transcript,
+both halves, no one asked for either. The log records the pair, not a verdict.
