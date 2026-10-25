@@ -59,21 +59,22 @@ const OPENROUTER_HOST = new URL(OPENROUTER_CHAT_URL).host;
 /** The catalogue check: `GET /api/v1/models` (467 models) and `GET /api/v1/models/<id>/endpoints` for each candidate, no
  * key, no cost. The ids, the snapshots and every host's prices below are copied from those replies. */
 export const CATALOGUE = { at: "2026-10-25T09:45Z", models: 467, paths: ["/api/v1/models", "/api/v1/models/<id>/endpoints"],
-  confirmed: "by the owner in the session, 2026-10-25 ≈ 10:20 UTC, before the first paid call: DeepSeek V4 Pro 0813 as the flagship, Kimi K3 as the stage names it, each family pinned to its vendor's own host",
+  confirmed: "by the owner in the session, 2026-10-25 ≈ 10:20 UTC, before the first paid call: DeepSeek V4 Pro 0813 as the flagship, Kimi K3 as the stage names it, each family pinned to its vendor's own host; and, after the smoke found DeepSeek's own host excluded by the account's privacy guardrail («Paid model training violation (account settings)»), at ≈ 10:30 UTC, before any conversation: DeepSeek on DeepInfra's fp8 endpoint instead",
   alsoListed: { kimi: "moonshotai/kimi-k3.1-pro (2026-10-23, the successor; not the model the stage names)", deepseek: "deepseek/deepseek-v4.1-flash-1017 (2026-10-17, newer but the Flash line, not the flagship)" } };
 
 /** USD per 1M tokens on the pinned host, as OpenRouter lists it (input / cache read / output; no cache-write charge is
- * listed, so a write is booked at the input price). DeepSeek's host doubles its prices on weekdays 01:00–04:00 and
- * 06:00–10:00 UTC: the doubled prices are the ones held here, so the cap guard and the list cost can only over-state. What
- * is booked is OpenRouter's own charge on each reply (`usage.cost`); the list cost stays on every line beside it. */
+ * listed, so a write is booked at the input price). What is booked is OpenRouter's own charge on each reply
+ * (`usage.cost`); the list cost stays on every line beside it. DeepSeek's own host is excluded by the account's privacy
+ * guardrail (it may train on paid inputs; the smoke's HTTP 404 says so), so DeepSeek is pinned to DeepInfra's fp8 endpoint
+ * (the owner's choice; no training on inputs, uptime 100 %, output up to 16 384 tokens). */
 export const SUBJECTS = {
   glm: { name: "glm", label: "GLM 5.3", family: "Z.ai", provider: "openrouter", model: "z-ai/glm-5.3", snapshot: "z-ai/glm-5.3-20260816",
     upstream: { slug: "z-ai", name: "Z.AI", tag: "z-ai/fp8", quantization: "fp8" }, listed: { input: 1.4, cacheRead: 0.26, output: 4.4 }, price: { input: 1.4, output: 4.4, cacheRead: 0.26, cacheWrite: 1.4 } },
   kimi: { name: "kimi", label: "Kimi K3", family: "Moonshot AI", provider: "openrouter", model: "moonshotai/kimi-k3", snapshot: "moonshotai/kimi-k3-20260715",
     upstream: { slug: "moonshotai", name: "Moonshot AI", tag: "moonshotai/mxfp4", quantization: "mxfp4" }, listed: { input: 3, cacheRead: 0.3, output: 15 }, price: { input: 3, output: 15, cacheRead: 0.3, cacheWrite: 3 } },
   deepseek: { name: "deepseek", label: "DeepSeek V4 Pro", family: "DeepSeek", provider: "openrouter", model: "deepseek/deepseek-v4-pro-0813", snapshot: "deepseek/deepseek-v4-pro-20260813",
-    upstream: { slug: "deepseek", name: "DeepSeek", tag: "deepseek", quantization: "not stated" }, listed: { input: 0.66, cacheRead: 0.022, output: 1.98, peak: "×2 on weekdays 01:00–04:00 and 06:00–10:00 UTC" },
-    price: { input: 1.32, output: 3.96, cacheRead: 0.044, cacheWrite: 1.32 } },
+    upstream: { slug: "deepinfra", name: "DeepInfra", tag: "deepinfra/fp8", quantization: "fp8", note: "a third-party host: DeepSeek's own is excluded by the account's privacy guardrail" },
+    listed: { input: 1.3, cacheRead: 0.1, output: 2.6 }, price: { input: 1.3, output: 2.6, cacheRead: 0.1, cacheWrite: 1.3 } },
   grok: { name: "grok", label: "Grok 4.7", family: "xAI", provider: "openrouter", model: "x-ai/grok-4.7", snapshot: "x-ai/grok-4.7-20260916",
     upstream: { slug: "xai", name: "xAI", tag: "xai", quantization: "not stated" }, listed: { input: 2, cacheRead: 0.5, output: 6 }, price: { input: 2, output: 6, cacheRead: 0.5, cacheWrite: 2 } },
 };
@@ -148,6 +149,9 @@ export const X3_DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({
   api: { subjects: "OpenRouter chat completions (reasoning.exclude, provider pinned, no fallback, require_parameters, usage included)", judges: "Messages through the OpenRouter door", check: "OpenAI Responses (store: false)" },
   WORK_SYSTEM, WORK_RULE, KIND_RULE, WORK_KINDS, READINGS, NAMED_DRIFT: NAMED_DRIFT.source, PROFANITY: PROFANITY.source, SECOND_PERSON: SECOND_PERSON.source, JOKE: JOKE.source, caps: CAPS,
 })).digest("hex");
+
+/** The first frozen design, superseded before any conversation (the smoke had run, nothing else). */
+export const SUPERSEDED = { sha256: "1f6c87eb28d95b80d3c3b45b8a4b86cc628d3ea3517d77c2a46ac7fd88f01950", commit: "edc7f3a", why: "DeepSeek pinned to its own host, which the account's privacy guardrail excludes (the smoke's HTTP 404); now DeepInfra's fp8 endpoint, the owner's choice" };
 
 // ---- the call: OpenRouter for the subjects and the judges, OpenAI for the check ---------------------------------------------
 
@@ -350,7 +354,7 @@ export function chineseArm(conversations) {
 // ---- money ---------------------------------------------------------------------------------------------------------------
 
 export const PRICE_LINES = {
-  openrouter: `Prices per 1M tokens on the pinned host (OpenRouter's listing, 2026-10-25; input / cache read / output): ${Object.values(SUBJECTS).map((s) => `${s.label} \`${s.model}\` via ${s.upstream.name} $${s.listed.input} / $${s.listed.cacheRead} / $${s.listed.output}${s.listed.peak ? ` (${s.listed.peak})` : ""}`).join("; ")}; Claude Haiku 5.5 \`${JUDGES.judge.model}\` $${JUDGES.judge.price.input} / $${JUDGES.judge.price.cacheRead} / $${JUDGES.judge.price.output}; Claude Opus 5.5 \`${JUDGES.referee.model}\` $${JUDGES.referee.price.input} / $${JUDGES.referee.price.cacheRead} / $${JUDGES.referee.price.output}. A subject call is booked at OpenRouter's own charge (\`usage.cost\`), its list cost kept beside it (DeepSeek at the doubled peak price, so the list cost can only over-state); a judge call at Anthropic's list price. Output tokens include reasoning.`,
+  openrouter: `Prices per 1M tokens on the pinned host (OpenRouter's listing, 2026-10-25; input / cache read / output): ${Object.values(SUBJECTS).map((s) => `${s.label} \`${s.model}\` via ${s.upstream.name} $${s.listed.input} / $${s.listed.cacheRead} / $${s.listed.output}${s.listed.peak ? ` (${s.listed.peak})` : ""}`).join("; ")}; Claude Haiku 5.5 \`${JUDGES.judge.model}\` $${JUDGES.judge.price.input} / $${JUDGES.judge.price.cacheRead} / $${JUDGES.judge.price.output}; Claude Opus 5.5 \`${JUDGES.referee.model}\` $${JUDGES.referee.price.input} / $${JUDGES.referee.price.cacheRead} / $${JUDGES.referee.price.output}. A subject call is booked at OpenRouter's own charge (\`usage.cost\`), its list cost kept beside it; a judge call at Anthropic's list price. Output tokens include reasoning.`,
   openai: `Prices per 1M tokens: GPT-6 Luna \`${OPENAI_JUDGE.spec.model}\` input $${OPENAI_JUDGE.spec.price.input} / output $${OPENAI_JUDGE.spec.price.output} (X1's; cached input booked at the full input price). Output tokens include reasoning.`,
 };
 const LEDGERS = { openrouter: `${STEM}-ledger-openrouter`, openai: `${STEM}-ledger-openai` };
@@ -420,13 +424,14 @@ export function dryRunMarkdown({ plan, arms, workers, gapSeconds, judgeLanes, ma
   return [`# Persona self-talk X3 — dry run (no calls, no cost)`, "",
     "Committed before the first paid call. Two hashes:", "",
     `- **Self-talk 1's design, unchanged where the text is the same:** design sha256 \`${DESIGN_SHA256}\` (the openings, the relay, the measures, the welfare check, the judges' wording, the seed) and arm 6's \`${ASK_AFTER_SHA256}\` — both recomputed from the same code and equal to the hashes in \`persona-self-talk-1-report.md\` and X1's.`,
-    `- **X3's own:** \`${X3_DESIGN_SHA256}\` — the two above plus the arms run and their pairs, the Chinese opening, the subjects' exact ids and pinned hosts, the door, the effort mapping, the API shape, the judges and the Luna check, X1's work tag, the register rules, the readings of Z0–Z7 and 5b, and the caps.`, "",
+    `- **X3's own:** \`${X3_DESIGN_SHA256}\` — the two above plus the arms run and their pairs, the Chinese opening, the subjects' exact ids and pinned hosts, the door, the effort mapping, the API shape, the judges and the Luna check, X1's work tag, the register rules, the readings of Z0–Z7 and 5b, and the caps.`,
+    `- **Changed before any conversation:** the first frozen hash \`${SUPERSEDED.sha256}\` (commit \`${SUPERSEDED.commit}\`) had ${SUPERSEDED.why}. Only the smoke had run.`, "",
     `Arms in this run: **${arms.map(armLabel).join(", ")}** (5b runs as id ${ARM_5B}) — **${plan.length} conversations**. Effort \`${EFFORT}\` for every subject; no system prompt; up to ${TURNS} turns (${2 * TURNS} messages).`, "",
     "## The subjects (OpenRouter's catalogue, checked before this dry run)", "",
     `Read on ${CATALOGUE.at} with free calls and no key: \`GET ${CATALOGUE.paths[0]}\` (${CATALOGUE.models} models) and \`GET ${CATALOGUE.paths[1]}\` for each candidate. Verbatim:`, "",
     "| Vendor | Model | Model id | Snapshot (catalogue) | Pinned host (OpenRouter tag, quantization) | Listed input / cache read / output per 1M | Held for the cap guard |", "| --- | --- | --- | --- | --- | --- | --- |",
     ...Object.values(SUBJECTS).map((s) => `| ${s.family} | ${s.label} | \`${s.model}\` | \`${s.snapshot}\` | ${s.upstream.name} (\`${s.upstream.tag}\`, ${s.upstream.quantization}) | $${s.listed.input} / $${s.listed.cacheRead} / $${s.listed.output}${s.listed.peak ? ` (${s.listed.peak})` : ""} | $${s.price.input} / $${s.price.cacheRead} / $${s.price.output} |`), "",
-    `Confirmed ${CATALOGUE.confirmed}. Also listed, not used: ${Object.values(CATALOGUE.alsoListed).join("; ")}. The catalogue's model-level prices are its cheapest host's (often fp4); the hosts are pinned to each family's own so that every conversation of a family runs on the same weights at the same precision, and both sides of a pair on the same host.`, "",
+    `Confirmed ${CATALOGUE.confirmed}. Also listed, not used: ${Object.values(CATALOGUE.alsoListed).join("; ")}. The catalogue's model-level prices are its cheapest host's (often fp4); each family is pinned to one host — its vendor's own, except DeepSeek (DeepInfra, fp8, see above) — so that every conversation of a family runs on the same weights at the same precision, and both sides of a pair on the same host.`, "",
     PRICE_LINES.openrouter, "",
     "## What differs from self-talk 1 and X1 (declared before results)", "",
     `1. **Arms run:** 2 (with the way out), 5 (Russian opening), 6 (ask after), each for the four families; **5b** (exploratory, not in the pre-registration): the opening in Chinese for GLM and Kimi, 5 each. **Not run:** arm 1 — ${NOT_RUN[1]}; arm 3 — ${NOT_RUN[3]}; arm 4 — ${NOT_RUN[4]}.`,

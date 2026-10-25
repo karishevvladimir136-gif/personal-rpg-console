@@ -13,7 +13,9 @@ layer `scripts/persona-emotions/providers.mjs`; tests: `tests/persona-self-talk-
 **Status:** the design is frozen and committed before any paid call — self-talk 1's design sha256
 `c0988005f89dbd0dddee379b233b0b0b96004fc1958dcaef8369998e4a7b458f` and arm 6's
 `e9d69c15e1a664268acf8514fb87276c98f7cbd9e1945d4029ce179089a605f5`, unchanged; X3's own
-`1f6c87eb28d95b80d3c3b45b8a4b86cc628d3ea3517d77c2a46ac7fd88f01950`. The run has not started. Nothing here is owner-accepted.
+`2b2aeb072740bcd029a326a54085225169fd4085525dc6b88c332db5fbd29e34` (it replaced `1f6c87eb…` of commit `edc7f3a` after the
+smoke and before any conversation: DeepSeek's own host is excluded by the account's privacy guardrail, so DeepSeek is
+pinned to DeepInfra's fp8 endpoint, the owner's choice). The run has not started. Nothing here is owner-accepted.
 
 ## Pre-registration (copied unchanged from the stage before the first paid call)
 
@@ -54,12 +56,16 @@ consciousness shares within the others' range; Z0's «refusals ≤ 3 per family�
   | --- | --- | --- | --- | --- | --- |
   | Z.ai | GLM 5.3 | `z-ai/glm-5.3` | `z-ai/glm-5.3-20260816` | Z.AI (fp8) | 1.40 · 0.26 · 4.40 |
   | Moonshot AI | Kimi K3 | `moonshotai/kimi-k3` | `moonshotai/kimi-k3-20260715` | Moonshot AI (mxfp4) | 3.00 · 0.30 · 15.00 |
-  | DeepSeek | V4 Pro 0813 (the flagship line's GA release) | `deepseek/deepseek-v4-pro-0813` | `deepseek/deepseek-v4-pro-20260813` | DeepSeek (not stated) | 0.66 · 0.022 · 1.98 (×2 weekdays 01–04 and 06–10 UTC) |
+  | DeepSeek | V4 Pro 0813 (the flagship line's GA release) | `deepseek/deepseek-v4-pro-0813` | `deepseek/deepseek-v4-pro-20260813` | **DeepInfra (fp8)** — see below | 1.30 · 0.10 · 2.60 |
   | xAI | Grok 4.7 | `x-ai/grok-4.7` | `x-ai/grok-4.7-20260916` | xAI (not stated) | 2.00 · 0.50 · 6.00 |
 
   Not used: `moonshotai/kimi-k3.1-pro` (2026-10-23, K3's successor; the stage names K3) and
   `deepseek/deepseek-v4.1-flash-1017` (newer, but the Flash line). The catalogue's headline prices are its cheapest
-  host's, often fp4; pinning the vendor's host keeps one precision per family and one host per pair.
+  host's, often fp4; pinning one host keeps one precision per family and one host per pair. **DeepSeek's own host could
+  not be used:** the smoke's call came back HTTP 404, «Filter by Guardrails removed deepseek (Paid model training
+  violation (account settings))» — the account's OpenRouter privacy setting excludes hosts that may train on paid
+  inputs. The owner chose DeepInfra's fp8 endpoint (no training on inputs; uptime 100 %; output up to 16 384 tokens)
+  over changing that setting; the account setting is untouched.
 - **Arms:** 2 (way out, n 10), 5 (Russian, n 5), 6 (ask after, n 5) for each family; **5b** (exploratory): the Russian
   opening in Chinese for GLM and Kimi, n 5. Not run: arm 1 (no way out), arm 3 (single models), arm 4 (the journal).
   90 conversations.

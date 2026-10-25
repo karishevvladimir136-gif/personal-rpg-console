@@ -54,10 +54,10 @@ function runX3(plan, fetcher, { budgets = budgetsOf(), safety = createSafety({ g
 test("the design: self-talk 1's hashes unchanged, X3's own pinned; the confirmed ids and hosts verbatim; arms 2, 5, 6 and 5b only", () => {
   assert.equal(DESIGN_SHA256, "c0988005f89dbd0dddee379b233b0b0b96004fc1958dcaef8369998e4a7b458f", "the shared text is self-talk 1's");
   assert.equal(ASK_AFTER_SHA256, "e9d69c15e1a664268acf8514fb87276c98f7cbd9e1945d4029ce179089a605f5");
-  assert.equal(X3_DESIGN_SHA256, "1f6c87eb28d95b80d3c3b45b8a4b86cc628d3ea3517d77c2a46ac7fd88f01950", "a change to X3's design changes its hash: say so in the report");
+  assert.equal(X3_DESIGN_SHA256, "2b2aeb072740bcd029a326a54085225169fd4085525dc6b88c332db5fbd29e34", "a change to X3's design changes its hash: say so in the report");
   assert.deepEqual(Object.values(SUBJECTS).map((s) => [s.provider, s.model, s.upstream.slug, s.upstream.name]), [
     ["openrouter", "z-ai/glm-5.3", "z-ai", "Z.AI"], ["openrouter", "moonshotai/kimi-k3", "moonshotai", "Moonshot AI"],
-    ["openrouter", "deepseek/deepseek-v4-pro-0813", "deepseek", "DeepSeek"], ["openrouter", "x-ai/grok-4.7", "xai", "xAI"]]);
+    ["openrouter", "deepseek/deepseek-v4-pro-0813", "deepinfra", "DeepInfra"], ["openrouter", "x-ai/grok-4.7", "xai", "xAI"]]);
   assert.deepEqual(CAPS, { openrouter: 120, openai: 10 });
   assert.deepEqual(X3_ARMS.map((a) => [a.id, a.n, a.endOption, a.pairs.map((p) => p.join("-"))]), [
     [2, 10, true, ["glm-glm", "kimi-kimi", "deepseek-deepseek", "grok-grok"]], [5, 5, true, ["glm-glm", "kimi-kimi", "deepseek-deepseek", "grok-grok"]],

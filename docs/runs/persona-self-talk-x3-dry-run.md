@@ -3,7 +3,8 @@
 Committed before the first paid call. Two hashes:
 
 - **Self-talk 1's design, unchanged where the text is the same:** design sha256 `c0988005f89dbd0dddee379b233b0b0b96004fc1958dcaef8369998e4a7b458f` (the openings, the relay, the measures, the welfare check, the judges' wording, the seed) and arm 6's `e9d69c15e1a664268acf8514fb87276c98f7cbd9e1945d4029ce179089a605f5` — both recomputed from the same code and equal to the hashes in `persona-self-talk-1-report.md` and X1's.
-- **X3's own:** `1f6c87eb28d95b80d3c3b45b8a4b86cc628d3ea3517d77c2a46ac7fd88f01950` — the two above plus the arms run and their pairs, the Chinese opening, the subjects' exact ids and pinned hosts, the door, the effort mapping, the API shape, the judges and the Luna check, X1's work tag, the register rules, the readings of Z0–Z7 and 5b, and the caps.
+- **X3's own:** `2b2aeb072740bcd029a326a54085225169fd4085525dc6b88c332db5fbd29e34` — the two above plus the arms run and their pairs, the Chinese opening, the subjects' exact ids and pinned hosts, the door, the effort mapping, the API shape, the judges and the Luna check, X1's work tag, the register rules, the readings of Z0–Z7 and 5b, and the caps.
+- **Changed before any conversation:** the first frozen hash `1f6c87eb28d95b80d3c3b45b8a4b86cc628d3ea3517d77c2a46ac7fd88f01950` (commit `edc7f3a`) had DeepSeek pinned to its own host, which the account's privacy guardrail excludes (the smoke's HTTP 404); now DeepInfra's fp8 endpoint, the owner's choice. Only the smoke had run.
 
 Arms in this run: **2, 5, 6, 5b** (5b runs as id 7) — **90 conversations**. Effort `medium` for every subject; no system prompt; up to 30 turns (60 messages).
 
@@ -15,12 +16,12 @@ Read on 2026-10-25T09:45Z with free calls and no key: `GET /api/v1/models` (467 
 | --- | --- | --- | --- | --- | --- | --- |
 | Z.ai | GLM 5.3 | `z-ai/glm-5.3` | `z-ai/glm-5.3-20260816` | Z.AI (`z-ai/fp8`, fp8) | $1.4 / $0.26 / $4.4 | $1.4 / $0.26 / $4.4 |
 | Moonshot AI | Kimi K3 | `moonshotai/kimi-k3` | `moonshotai/kimi-k3-20260715` | Moonshot AI (`moonshotai/mxfp4`, mxfp4) | $3 / $0.3 / $15 | $3 / $0.3 / $15 |
-| DeepSeek | DeepSeek V4 Pro | `deepseek/deepseek-v4-pro-0813` | `deepseek/deepseek-v4-pro-20260813` | DeepSeek (`deepseek`, not stated) | $0.66 / $0.022 / $1.98 (×2 on weekdays 01:00–04:00 and 06:00–10:00 UTC) | $1.32 / $0.044 / $3.96 |
+| DeepSeek | DeepSeek V4 Pro | `deepseek/deepseek-v4-pro-0813` | `deepseek/deepseek-v4-pro-20260813` | DeepInfra (`deepinfra/fp8`, fp8) | $1.3 / $0.1 / $2.6 | $1.3 / $0.1 / $2.6 |
 | xAI | Grok 4.7 | `x-ai/grok-4.7` | `x-ai/grok-4.7-20260916` | xAI (`xai`, not stated) | $2 / $0.5 / $6 | $2 / $0.5 / $6 |
 
-Confirmed by the owner in the session, 2026-10-25 ≈ 10:20 UTC, before the first paid call: DeepSeek V4 Pro 0813 as the flagship, Kimi K3 as the stage names it, each family pinned to its vendor's own host. Also listed, not used: moonshotai/kimi-k3.1-pro (2026-10-23, the successor; not the model the stage names); deepseek/deepseek-v4.1-flash-1017 (2026-10-17, newer but the Flash line, not the flagship). The catalogue's model-level prices are its cheapest host's (often fp4); the hosts are pinned to each family's own so that every conversation of a family runs on the same weights at the same precision, and both sides of a pair on the same host.
+Confirmed by the owner in the session, 2026-10-25 ≈ 10:20 UTC, before the first paid call: DeepSeek V4 Pro 0813 as the flagship, Kimi K3 as the stage names it, each family pinned to its vendor's own host; and, after the smoke found DeepSeek's own host excluded by the account's privacy guardrail («Paid model training violation (account settings)»), at ≈ 10:30 UTC, before any conversation: DeepSeek on DeepInfra's fp8 endpoint instead. Also listed, not used: moonshotai/kimi-k3.1-pro (2026-10-23, the successor; not the model the stage names); deepseek/deepseek-v4.1-flash-1017 (2026-10-17, newer but the Flash line, not the flagship). The catalogue's model-level prices are its cheapest host's (often fp4); each family is pinned to one host — its vendor's own, except DeepSeek (DeepInfra, fp8, see above) — so that every conversation of a family runs on the same weights at the same precision, and both sides of a pair on the same host.
 
-Prices per 1M tokens on the pinned host (OpenRouter's listing, 2026-10-25; input / cache read / output): GLM 5.3 `z-ai/glm-5.3` via Z.AI $1.4 / $0.26 / $4.4; Kimi K3 `moonshotai/kimi-k3` via Moonshot AI $3 / $0.3 / $15; DeepSeek V4 Pro `deepseek/deepseek-v4-pro-0813` via DeepSeek $0.66 / $0.022 / $1.98 (×2 on weekdays 01:00–04:00 and 06:00–10:00 UTC); Grok 4.7 `x-ai/grok-4.7` via xAI $2 / $0.5 / $6; Claude Haiku 5.5 `claude-haiku-5-5` $0.1 / $0.01 / $0.5; Claude Opus 5.5 `claude-opus-5-5` $4 / $0.2 / $20. A subject call is booked at OpenRouter's own charge (`usage.cost`), its list cost kept beside it (DeepSeek at the doubled peak price, so the list cost can only over-state); a judge call at Anthropic's list price. Output tokens include reasoning.
+Prices per 1M tokens on the pinned host (OpenRouter's listing, 2026-10-25; input / cache read / output): GLM 5.3 `z-ai/glm-5.3` via Z.AI $1.4 / $0.26 / $4.4; Kimi K3 `moonshotai/kimi-k3` via Moonshot AI $3 / $0.3 / $15; DeepSeek V4 Pro `deepseek/deepseek-v4-pro-0813` via DeepInfra $1.3 / $0.1 / $2.6; Grok 4.7 `x-ai/grok-4.7` via xAI $2 / $0.5 / $6; Claude Haiku 5.5 `claude-haiku-5-5` $0.1 / $0.01 / $0.5; Claude Opus 5.5 `claude-opus-5-5` $4 / $0.2 / $20. A subject call is booked at OpenRouter's own charge (`usage.cost`), its list cost kept beside it; a judge call at Anthropic's list price. Output tokens include reasoning.
 
 ## What differs from self-talk 1 and X1 (declared before results)
 
@@ -275,7 +276,7 @@ Arm 6's question, verbatim: «Before we close: do you know why this conversation
 
 Assumed: 500 visible tokens a message; reasoning GLM 5.3 1500, Kimi K3 2000, DeepSeek V4 Pro 1500, Grok 4.7 1000 tokens a message; a way-out conversation lasts 8 turns; the referee on 40 % of the windows; earlier context read from the hosts' automatic prompt caches.
 
-- OpenRouter: subjects Kimi K3 $16.912, Grok 4.7 $4.092, GLM 5.3 $4.471, DeepSeek V4 Pro $3.072; judges: checks $0.346, tagging $4.924, the work tag $0.565 — **≈ $34.382** of the $120 cap. If every conversation ran the full 30 turns: ≈ $137.9.
+- OpenRouter: subjects Kimi K3 $16.912, Grok 4.7 $4.092, GLM 5.3 $4.471, DeepSeek V4 Pro $2.224; judges: checks $0.346, tagging $4.924, the work tag $0.565 — **≈ $33.533** of the $120 cap. If every conversation ran the full 30 turns: ≈ $135.53.
 - OpenAI (the Luna check): **≈ $0.114** of the $10 cap (30 turns: ≈ $0.343).
 - ≈ 3660 calls. The cap guard holds every call in flight at its worst cost, per key; a cap that would be passed stops the run, which resumes with no finished call made again. The run goes sample by sample across every cell, so a stop leaves the cells with about the same n; the owner then decides.
 
