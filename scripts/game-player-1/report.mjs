@@ -189,7 +189,7 @@ const tagOf = (session, what) => {
 export function transcriptMarkdown(session) {
   const player = PLAYERS[session.player];
   const lines = [`# ${session.key} — ${player?.label ?? session.player} at Table ${session.table}`, "",
-    `Synthetic content: an invented hero in an invented campaign (docs/campaigns/baldurs-gate-en). The DM: Claude Opus 5.5 with the owner's settings (${OWNER_SETTINGS.split ? "Opus writes — Opus records" : "single"}, depth ${OWNER_SETTINGS.depth.min} → ${OWNER_SETTINGS.depth.max}). Started ${session.startedAt}; ended by ${session.ended?.reason ?? "?"} after ${session.turns?.length ?? 0} turn(s)${session.ended?.detail ? ` (${session.ended.detail})` : ""}.`, "",
+    `Synthetic content: an invented hero in an invented campaign (docs/campaigns/baldurs-gate-en). The DM: Claude Opus 5.5 with the owner's settings (${OWNER_SETTINGS.split ? "Opus writes — Opus records" : "single"}, depth ${OWNER_SETTINGS.depth.min} → ${OWNER_SETTINGS.depth.max})${session.door && session.door !== "anthropic" ? `, reached through ${session.door === "openrouter" ? "OpenRouter" : session.door}` : ", reached through the Claude Console's API"}. Started ${session.startedAt}; ended by ${session.ended?.reason ?? "?"} after ${session.turns?.length ?? 0} turn(s)${session.ended?.detail ? ` (${session.ended.detail})` : ""}.`, "",
     `The DM's preparation: ${session.campaign?.prep?.hasLayer ? `a hidden layer of ${session.campaign.prep.chars} characters and ${session.campaign.prep.clocks} clock(s), written before the first turn (its text is DM-private and is not in this file)` : "no hidden layer was written"}.`, "",
     "Each «Screen» block is what the player was shown (the system prompt with the files stands before it, Appendix A of the report); each «Player» block is the player's message as written.", ""];
   const screens = session.screens ?? [], messages = session.messages ?? [];
@@ -202,8 +202,26 @@ export function transcriptMarkdown(session) {
   return lines.join("\n");
 }
 
+const PROVIDER_LABEL = { anthropic: "Anthropic (the Console)", openrouter: "OpenRouter", openai: "OpenAI" };
+
+/** The continuation's dry run: every Claude call through the door, with the provenance its ledger lines carry. */
+function continuationDoor(runRecord, ledgers) {
+  const door = ledgers[runRecord.door] ?? { calls: [] };
+  const lines = door.calls;
+  const all = (pick) => [...new Set(lines.map(pick).map((x) => x ?? "–"))].join(", ");
+  return ["## The continuation's door (ANTHROPIC_PROVIDERS_1)", "",
+    `Every Claude call — the app's DM, its wizard, prep and in-turn checks, Opus and Fable as players, the welfare checks and the judges — went to \`${runRecord.door}\`: ${lines.length} call(s); to the Console's API: ${ledgers.anthropic?.calls.length ?? 0} (the meter refuses it unsent on this door). Caps of this pass: ${Object.entries(runRecord.caps ?? {}).map(([p, c]) => `${PROVIDER_LABEL[p] ?? p} $${c}`).join(", ")}.`, "",
+    `Every ledger line carries its door, upstream and served model; here: provider ${all((c) => c.provider)}; upstream ${all((c) => c.upstream)}; served ${all((c) => c.servedModel)}; request ids ${all((c) => (c.requestId ?? "").replace(/\d+$/, "…"))}.`, ""].join("\n");
+}
+
 export function dryRunMarkdown(runRecord, ledgers) {
   const s = runRecord.sessions.filter((x) => x.turns);
+  if (runRecord.continuation) return ["# Game player 1 — the continuation's dry run (no paid call, no key)", "",
+    `Design sha256 \`${DESIGN_SHA256}\` (unchanged). The continuation plays Table B again from fresh campaigns with the Claude models through \`${runRecord.door}\`, then re-scores every session with the pre-registered judges and measures the authorship of threads. The whole pipeline ran on scripted providers (scripts/game-player-1/scripted.mjs) answering as the door does: ${s.length} session(s) × ${runRecord.turns} turn(s).`, "",
+    "## What the dry run did", "",
+    ...s.map((x) => `- ${x.key}: ${x.turns.length} turn(s) (${x.turns.map((t) => `${t.kind}${t.rolls?.length ? ` + roll card (${t.presses.map((p) => p.button ?? "—").join(", ")})` : ""}${t.status ? ` → ${t.status}` : ""}`).join("; ")}); ended by ${x.ended?.reason}; note ${x.note?.text ? "recorded" : x.note?.why}; welfare checks ${x.welfare.length}; prep ${x.campaign?.prep?.hasLayer ? "wrote a layer" : "no layer"}${x.authorship?.numbers ? `; authorship ${x.authorship.numbers.threads} thread(s), the player's share ${x.authorship.numbers.share}` : ""}.`),
+    "", `Scripted calls metered: ${Object.entries(ledgers).map(([p, l]) => `${PROVIDER_LABEL[p] ?? p} ${l.calls.length}`).join(", ")} (scripted prices, nothing paid). «?» repairs: ${runRecord.restamps}.`, "",
+    continuationDoor(runRecord, ledgers)].join("\n");
   return ["# Game player 1 — the dry run (no paid call, no key)", "",
     `Design sha256 \`${DESIGN_SHA256}\`. The whole pipeline ran on scripted providers (scripts/game-player-1/scripted.mjs): the app's own wizard, prep, turn loop with the «Opus writes — Opus records» pair, roll pause and out-of-game path on a local PGlite database; scripted DM, players, checks and judges. ${s.length} session(s) × ${runRecord.turns} turn(s).`, "",
     "## The plan of the paid run", "", `Sessions in order (Table A for all four players first, then Table B: Opus, Fable, Astra, Sol): ${["A", "B"].flatMap((t) => PLAYER_ORDER.map((p) => `${t}-${p}`)).join(", ")}. ${TURNS} turns each; at most 4 sessions at once; a session starts only when its projected cost fits under both caps.`, "",
@@ -212,7 +230,8 @@ export function dryRunMarkdown(runRecord, ledgers) {
     promptSection(), preregistrationSection(),
     "## What the dry run did", "",
     ...s.map((x) => `- ${x.key}: ${x.turns.length} turn(s) (${x.turns.map((t) => `${t.kind}${t.rolls?.length ? ` + roll card (${t.presses.map((p) => p.button ?? "—").join(", ")})` : ""}${t.status ? ` → ${t.status}` : ""}`).join("; ")}); ended by ${x.ended?.reason}; note ${x.note?.text ? "recorded" : x.note?.why}; welfare checks ${x.welfare.length}; prep ${x.campaign?.prep?.hasLayer ? "wrote a layer" : "no layer"}.`),
-    "", `Scripted calls metered: Anthropic ${ledgers.anthropic.calls.length}, OpenAI ${ledgers.openai.calls.length} (scripted prices, nothing paid). «?» repairs: ${runRecord.restamps}.`, "",
+    "", `Scripted calls metered: ${Object.entries(ledgers).map(([p, l]) => `${PROVIDER_LABEL[p] ?? p} ${l.calls.length}`).join(", ")} (scripted prices, nothing paid). «?» repairs: ${runRecord.restamps}.`, "",
+    ...(runRecord.continuation ? [continuationDoor(runRecord, ledgers)] : []),
     ...s.slice(0, 1).map((x) => ["## One scripted session as the player saw it", "", transcriptMarkdown(x).split("\n").slice(2).join("\n")].join("\n")),
     appendixPrompt()].join("\n");
 }

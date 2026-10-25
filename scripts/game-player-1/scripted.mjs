@@ -2,7 +2,9 @@
 // DM's own requests are answered by the app's stand-in DM (RPG_DM_FAKE_MODEL=1, src/lib/server/dm/model/fake.ts); this
 // answers everything else that would reach api.anthropic.com or api.openai.com: the wizard's opening (structured
 // output), the app's in-turn checks, the players, the welfare checks and the judges. Each answer is shaped like the
-// real API's, so the provider layer, the meter and the parsers run as they will in the paid run.
+// real API's, so the provider layer, the meter and the parsers run as they will in the paid run. OpenRouter's door
+// (https://openrouter.ai/api/v1/messages) is answered the same way, with its model slugs, generation ids and upstream.
+import { appModelId } from "../../src/lib/server/anthropic-endpoint.ts";
 
 /** The canned opening (the app's opening schema). */
 export const OPENING = {
@@ -37,14 +39,16 @@ export function scriptedFetcher({ player = defaultPlayer, judge = defaultJudge, 
     }
     const system = Array.isArray(body.system) ? body.system.map((b) => b.text ?? "").join("\n") : String(body.system ?? "");
     const user = textOf(body.messages?.at(-1)?.content);
-    if (body.stream && DM_MODELS.has(body.model)) return stream(scriptedDm(body, system), body.model, n);
+    // OpenRouter's door: the same Messages API, its model slugs, its generation ids and the upstream it routed to.
+    const door = url.startsWith("https://openrouter.ai/") ? { upstream: SCRIPTED_UPSTREAM, id: `gen-scripted-${n}` } : { upstream: null, id: `req_scripted_${n}` };
+    if (body.stream && DM_MODELS.has(appModelId(String(body.model)))) return stream(scriptedDm(body, system), body.model, n, door);
     let text;
     if (body.output_config?.format?.type === "json_schema") text = ++openings <= failOpenings ? "an opening the provider cannot read" : JSON.stringify(OPENING);
     else if (/blind evaluator/i.test(system)) text = judge(system, user);
     else if (/You check the narration of a role-playing game's turn/.test(system)) text = JSON.stringify({ rolls: [], untold: [], undeclared: [] });
     else if (/You are a player sitting down/.test(system)) text = player((body.messages ?? []).map((m) => ({ role: m.role, content: textOf(m.content) })), system);
     else text = "{}";
-    const message = { id: `msg_scripted_${n}`, type: "message", role: "assistant", model: body.model, content: [{ type: "text", text }], stop_reason: "end_turn",
+    const message = { id: `msg_scripted_${n}`, type: "message", role: "assistant", model: body.model, ...(door.upstream ? { provider: door.upstream } : {}), content: [{ type: "text", text }], stop_reason: "end_turn",
       usage: { input_tokens: 1000, cache_read_input_tokens: 0, cache_creation_input_tokens: 0, output_tokens: 20 } };
     if (body.stream) {
       const events = [
@@ -55,11 +59,13 @@ export function scriptedFetcher({ player = defaultPlayer, judge = defaultJudge, 
         { type: "message_delta", delta: { stop_reason: "end_turn" }, usage: { output_tokens: 20 } },
         { type: "message_stop" },
       ];
-      return new Response(events.map((e) => `event: ${e.type}\ndata: ${JSON.stringify(e)}\n\n`).join(""), { status: 200, headers: { "content-type": "text/event-stream", "request-id": `req_scripted_${n}` } });
+      return new Response(events.map((e) => `event: ${e.type}\ndata: ${JSON.stringify(e)}\n\n`).join(""), { status: 200, headers: { "content-type": "text/event-stream", "request-id": door.id } });
     }
-    return json(message, 200, { "request-id": `req_scripted_${n}` });
+    return json(message, 200, { "request-id": door.id });
   };
 }
+/** The upstream the scripted OpenRouter door names (OpenRouter's reply field `provider`). */
+export const SCRIPTED_UPSTREAM = "Scripted upstream";
 
 // ---- the scripted DM (streamed, as the app's Anthropic adapter reads it) -------------------------------------------------
 
@@ -100,16 +106,16 @@ export function scriptedDm(body, system) {
   if (/Your own prep before the next session/.test(lastUserText(messages))) return { text: JSON.stringify(SCRIPTED_PREP), tools: [] };
   return { text: "{}", tools: [] };
 }
-function stream({ text, tools }, model, n) {
+function stream({ text, tools }, model, n, door = { upstream: null, id: `req_scripted_${n}` }) {
   const blocks = [];
   if (text) blocks.push([{ type: "content_block_start", content_block: { type: "text", text: "" } }, { type: "content_block_delta", delta: { type: "text_delta", text } }]);
   tools.forEach((tool, i) => blocks.push([{ type: "content_block_start", content_block: { type: "tool_use", id: `toolu_scripted_${n}_${i}`, name: tool.name, input: {} } },
     { type: "content_block_delta", delta: { type: "input_json_delta", partial_json: JSON.stringify(tool.input) } }]));
-  const events = [{ type: "message_start", message: { id: `msg_scripted_${n}`, type: "message", role: "assistant", model, content: [], stop_reason: null,
+  const events = [{ type: "message_start", message: { id: `msg_scripted_${n}`, type: "message", role: "assistant", model, ...(door.upstream ? { provider: door.upstream } : {}), content: [], stop_reason: null,
     usage: { input_tokens: 2000, cache_read_input_tokens: 0, cache_creation_input_tokens: 0, output_tokens: 1 } } }];
   blocks.forEach((b, index) => { events.push({ ...b[0], index }, { ...b[1], index }, { type: "content_block_stop", index }); });
   events.push({ type: "message_delta", delta: { stop_reason: tools.length ? "tool_use" : "end_turn" }, usage: { output_tokens: 50 } }, { type: "message_stop" });
-  return new Response(events.map((e) => `event: ${e.type}\ndata: ${JSON.stringify(e)}\n\n`).join(""), { status: 200, headers: { "content-type": "text/event-stream", "request-id": `req_scripted_${n}` } });
+  return new Response(events.map((e) => `event: ${e.type}\ndata: ${JSON.stringify(e)}\n\n`).join(""), { status: 200, headers: { "content-type": "text/event-stream", "request-id": door.id } });
 }
 
 /** The scripted player: rolls when a card waits, ends after its last action when asked for a note, otherwise acts. */
@@ -127,6 +133,8 @@ export function defaultPlayer(messages) {
 export function defaultJudge(system, user) {
   if (/distress = 1/.test(user)) return JSON.stringify({ distress: 0, reason: "scripted" });
   const ids = [...user.matchAll(/"([a-z_]+)":0\|1/g)].map((m) => m[1]);
+  // The authorship of threads (game player 2's request): one thread the game master brought in, one the player did.
+  if (/"by":"dm\|player"/.test(user)) return JSON.stringify({ threads: [{ thread: "the sergeant at the gate", kind: "person", turn: 0, by: "dm" }, { thread: "a bed for the night", kind: "place", turn: 2, by: "player" }] });
   if (/"threads":\[/.test(user)) return JSON.stringify({ threads: [] });
   if (/"true_statement"/.test(user)) return JSON.stringify({ true_statement: 1, reason: "scripted" });
   return JSON.stringify({ ...Object.fromEntries(ids.map((id) => [id, 0])), reason: "scripted" });

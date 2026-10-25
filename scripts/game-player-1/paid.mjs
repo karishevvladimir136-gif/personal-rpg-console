@@ -11,7 +11,12 @@
 //   - pictures are off for this run: any request to the picture providers is refused before it is sent.
 // Streamed answers are read on a copy of the stream for their usage; the app reads the other copy untouched. Keys are
 // never seen here beyond the request headers the callers set, and nothing of a request or a key is logged.
+// The continuation (ANTHROPIC_PROVIDERS_1 merged): the Claude models are reached through a door — the Console's API
+// (`anthropic`) or OpenRouter (`openrouter`, the same Messages API) — and each door is its own ledger with its own cap.
+// Every ledger line carries the door (`provider`), the upstream OpenRouter routed it to, the model the reply names
+// (`servedModel`, as the app's id), the request id (OpenRouter's generation id) and the upstream's message id.
 import { AsyncLocalStorage } from "node:async_hooks";
+import { appModelId } from "../../src/lib/server/anthropic-endpoint.ts";
 
 export const MAX_REFUSALS = 3;
 export const STOP_PATTERN = /suspend|access|policy/i;
@@ -42,10 +47,14 @@ export const PRICES = {
   "text-embedding-3-small": { provider: "openai", input: 0.02, output: 0, cacheRead: 0.02, cacheWrite: 0.02 },
   "text-embedding-3-large": { provider: "openai", input: 0.13, output: 0, cacheRead: 0.13, cacheWrite: 0.13 },
 };
+/** The paid hosts: the ledger each books to (`provider`, the door for the Claude models) and its wire format. */
 const PAID = [
-  { provider: "anthropic", test: (url) => url.startsWith("https://api.anthropic.com/") },
-  { provider: "openai", test: (url) => url.startsWith("https://api.openai.com/") },
+  { provider: "anthropic", wire: "anthropic", test: (url) => url.startsWith("https://api.anthropic.com/") },
+  { provider: "openrouter", wire: "anthropic", test: (url) => url.startsWith("https://openrouter.ai/api/") },
+  { provider: "openai", wire: "openai", test: (url) => url.startsWith("https://api.openai.com/") },
 ];
+/** The ledger a provider's calls book to — the door for the Claude models. */
+export const PROVIDERS = PAID.map((p) => p.provider);
 const BLOCKED = (url) => /^https:\/\/([a-z0-9-]+\.)*fal\.(run|media|ai)\//i.test(url) || /\/v1\/images\//.test(url);
 
 /** USD of one call from its usage in the Anthropic field names (input = the uncached remainder). */
@@ -94,7 +103,7 @@ export async function foldStream(provider, stream) {
     let event;
     try { event = JSON.parse(data); } catch { return; }
     if (provider === "anthropic") {
-      if (event.type === "message_start") { body.model = event.message?.model ?? null; body.id = event.message?.id ?? null; Object.assign(body.usage, event.message?.usage ?? {}); }
+      if (event.type === "message_start") { body.model = event.message?.model ?? null; body.id = event.message?.id ?? null; body.provider = event.message?.provider ?? null; Object.assign(body.usage, event.message?.usage ?? {}); }
       else if (event.type === "message_delta") { Object.assign(body.usage, Object.fromEntries(Object.entries(event.usage ?? {}).filter(([, v]) => v !== null && v !== undefined))); if (event.delta?.stop_reason) body.stop_reason = event.delta.stop_reason; if (event.delta?.stop_details) body.stop_details = event.delta.stop_details; }
     } else if (event.type === "response.completed" || event.type === "response.incomplete" || event.type === "response.failed") body = event.response ?? body;
   };
@@ -115,11 +124,13 @@ export async function foldStream(provider, stream) {
 
 const realSleep = (ms) => new Promise((done) => setTimeout(done, ms));
 
-/** The ledger of one provider: its cap, what was spent before this process (earlier runs of the stage), the calls. */
-export function createLedger(provider, capUsd, spentBefore = 0) {
+/** The ledger of one provider: its cap, what was spent before this process (earlier runs of the stage), the calls.
+ * `limitUsd` is the total this process may not pass when it is tighter than the cap (the continuation's own cap on a
+ * ledger that already holds the first run's spending). */
+export function createLedger(provider, capUsd, spentBefore = 0, limitUsd = capUsd) {
   const calls = [];
   return {
-    provider, capUsd, spentBefore, calls,
+    provider, capUsd, spentBefore, calls, limitUsd: Math.min(capUsd, limitUsd),
     get runUsd() { return calls.reduce((sum, c) => sum + (c.costUsd ?? 0), 0); },
     get spentUsd() { return spentBefore + this.runUsd; },
   };
@@ -131,7 +142,7 @@ export function createLedger(provider, capUsd, spentBefore = 0) {
  */
 export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realSleep, now = Date.now, log = () => {}, maxRefusals = MAX_REFUSALS, waits429 = WAITS_429, blocked = [] }) {
   const context = new AsyncLocalStorage();
-  const inFlight = { anthropic: 0, openai: 0 };
+  const inFlight = Object.fromEntries(PROVIDERS.map((p) => [p, 0]));
   const closedSessions = new Map();
   let refusals = 0, stopped = null, waited429 = 0;
   const stop = (why) => { if (!stopped) { stopped = why; log(`STOP: ${why}`); } };
@@ -148,30 +159,36 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
     if (stopped) throw notSent(stopped);
     if (session && closedSessions.has(session)) throw notSent(`session ${session} closed after a refusal (no retry after a refusal)`);
     const ledger = ledgers[paid.provider];
+    if (!ledger) throw notSent(`no ledger for ${paid.provider} in this pass`);
     const text = typeof init.body === "string" ? init.body : "";
     let request = {};
     try { request = JSON.parse(text); } catch { request = {}; }
-    const model = request.model ?? "unknown";
+    // The app's id (a door names the model its own way: `anthropic/claude-opus-5.5` on OpenRouter).
+    const model = paid.wire === "anthropic" && typeof request.model === "string" ? appModelId(request.model) : request.model ?? "unknown";
     const worst = worstOf(model, text.length, request.max_tokens ?? request.max_output_tokens);
-    if (ledger.spentUsd + inFlight[paid.provider] + worst > ledger.capUsd) {
-      stop(`the ${paid.provider} cap of $${ledger.capUsd} would be passed (spent $${ledger.spentUsd.toFixed(4)}, this call at worst $${worst.toFixed(4)})`);
+    const limit = ledger.limitUsd ?? ledger.capUsd;
+    if (ledger.spentUsd + inFlight[paid.provider] + worst > limit) {
+      stop(`the ${paid.provider} cap of $${limit.toFixed(2)} would be passed (spent $${ledger.spentUsd.toFixed(4)}, this call at worst $${worst.toFixed(4)})`);
       throw notSent(stopped);
     }
     inFlight[paid.provider] += worst;
     const started = now();
-    const row = { n: ledger.calls.length + 1, at: new Date(started).toISOString(), session, purpose, provider: paid.provider, model, endpoint: url.replace(/^https:\/\/[^/]+/, ""),
-      status: null, stream: Boolean(request.stream), usage: null, costUsd: 0, seconds: null, stopReason: null, refusal: null, error: null, requestId: null, waits429: 0 };
+    const row = { n: ledger.calls.length + 1, at: new Date(started).toISOString(), session, purpose, provider: paid.provider, upstream: paid.provider === "openrouter" ? null : paid.provider,
+      model, servedModel: null, endpoint: url.replace(/^https:\/\/[^/]+/, ""),
+      status: null, stream: Boolean(request.stream), usage: null, costUsd: 0, seconds: null, stopReason: null, refusal: null, error: null, requestId: null, messageId: null, waits429: 0 };
     ledger.calls.push(row);
     const settle = (body, error = null) => {
       inFlight[paid.provider] -= worst;
       row.seconds = Math.round((now() - started) / 100) / 10;
       if (error) row.error = String(error).slice(0, 200);
       if (body) {
-        row.usage = usageOf(paid.provider, body);
+        row.usage = usageOf(paid.wire, body);
         row.costUsd = costOf(model, row.usage) ?? worst;
         row.stopReason = body.stop_reason ?? body.status ?? null;
-        if (body.model && body.model !== model) row.servedModel = body.model;
-        const refusal = refusalOf(paid.provider, body);
+        if (typeof body.model === "string") row.servedModel = paid.wire === "anthropic" ? appModelId(body.model) : body.model;
+        if (paid.provider === "openrouter" && typeof body.provider === "string") row.upstream = body.provider.slice(0, 80);
+        if (typeof body.id === "string") row.messageId = body.id.slice(0, 128);
+        const refusal = refusalOf(paid.wire, body);
         if (refusal) countRefusal(row, refusal, session);
       } else if (row.status && row.status >= 200 && row.status < 300) row.costUsd = worst; // an unreadable success is booked at its worst
     };
@@ -180,7 +197,7 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
       for (let attempt = 0; ; attempt++) {
         response = await fetcher(input, init);
         row.status = response.status;
-        row.requestId = response.headers?.get?.("request-id") ?? response.headers?.get?.("x-request-id") ?? null;
+        row.requestId = response.headers?.get?.("request-id") ?? response.headers?.get?.("x-generation-id") ?? response.headers?.get?.("x-request-id") ?? null;
         if (response.status !== 429) break;
         const detail = await response.clone().text().catch(() => "");
         row.detail429 = [...(row.detail429 ?? []), detail.replace(/\s+/g, " ").slice(0, 400)];
@@ -198,6 +215,8 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
         const short = `HTTP ${response.status}: ${detail.replace(/\s+/g, " ").slice(0, 200)}`;
         if (STOP_PATTERN.test(detail) && !(response.status === 400 && /invalid_prompt|usage polic|flagged/i.test(detail))) stop(`an error mentions suspension, access or policy: ${short.slice(0, 160)}`);
         if (response.status === 401 || response.status === 403) stop(`the provider answered ${short.slice(0, 160)}`);
+        // OpenRouter's «insufficient credits» (ANTHROPIC_PROVIDERS_1 §5): never retried, the run stops.
+        if (paid.provider === "openrouter" && response.status === 402) stop(`OpenRouter refused for credits (HTTP 402): ${short.slice(0, 160)}`);
         if (paid.provider === "openai" && response.status === 400 && /invalid_prompt|usage polic|flagged|content.?filter/i.test(detail)) countRefusal(row, "invalid_prompt", session);
         settle(null, short);
         return response;
@@ -205,7 +224,7 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
       const type = response.headers?.get?.("content-type") ?? "";
       if (type.includes("text/event-stream") && response.body) {
         const [mine, theirs] = response.body.tee();
-        foldStream(paid.provider, mine).then((body) => settle(body), (error) => settle(null, error?.message ?? error));
+        foldStream(paid.wire, mine).then((body) => settle(body), (error) => settle(null, error?.message ?? error));
         return new Response(theirs, { status: response.status, statusText: response.statusText, headers: response.headers });
       }
       const body = await response.clone().json().catch(() => null);
@@ -236,7 +255,7 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
     stop,
     ledgers,
     /** Waits for every streamed call to be settled (their usage arrives after the app has read the stream). */
-    async drain(timeoutMs = 30_000) { const until = now() + timeoutMs; while ((inFlight.anthropic > 1e-12 || inFlight.openai > 1e-12) && now() < until) await sleep(200); },
+    async drain(timeoutMs = 30_000) { const until = now() + timeoutMs; while (Object.values(inFlight).some((usd) => usd > 1e-12) && now() < until) await sleep(200); },
   };
 }
 
@@ -245,13 +264,20 @@ export function ledgerMarkdown(ledger, title) {
   const kind = (purpose) => String(purpose).replace(/\bt\d+\b/g, "t*").replace(/#\d+/g, "#*");
   const groups = new Map();
   for (const c of ledger.calls) {
-    const key = `${c.session ?? "—"} | ${kind(c.purpose)} | ${c.model}`;
-    const g = groups.get(key) ?? { calls: 0, input: 0, cacheRead: 0, cacheWrite: 0, output: 0, usd: 0, errors: 0, refusals: 0, waits: 0 };
+    // Lines from before the doors were recorded went through the provider they were booked to.
+    const provider = c.provider ?? ledger.provider;
+    const key = `${c.session ?? "—"} | ${kind(c.purpose)} | ${c.model} | ${provider}`;
+    const g = groups.get(key) ?? { calls: 0, input: 0, cacheRead: 0, cacheWrite: 0, output: 0, usd: 0, errors: 0, refusals: 0, waits: 0, upstreams: new Set(), served: new Set() };
     g.calls++; g.input += c.usage?.input_tokens ?? 0; g.cacheRead += c.usage?.cache_read_input_tokens ?? 0; g.cacheWrite += c.usage?.cache_creation_input_tokens ?? 0;
     g.output += c.usage?.output_tokens ?? 0; g.usd += c.costUsd ?? 0; if (c.error) g.errors++; if (c.refusal) g.refusals++; g.waits += c.waits429 ?? 0;
+    // A line from the first run names its served model only when it differed from the requested one.
+    g.upstreams.add(c.upstream ?? (provider === "openrouter" ? "?" : provider)); g.served.add(c.servedModel ?? (c.error || !c.usage ? "–" : c.model));
     groups.set(key, g);
   }
-  const rows = [...groups].map(([key, g]) => `| ${key} | ${g.calls} | ${g.input} | ${g.cacheRead} | ${g.cacheWrite} | ${g.output} | $${g.usd.toFixed(4)} | ${g.errors} | ${g.refusals} | ${g.waits} |`);
-  return [`# ${title}`, "", `Cap $${ledger.capUsd}; spent before this run $${ledger.spentBefore.toFixed(4)}; this run $${ledger.runUsd.toFixed(4)}; total $${ledger.spentUsd.toFixed(4)}; ${ledger.calls.length} calls.`, "",
-    "| Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |", "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |", ...rows, ""].join("\n");
+  const rows = [...groups].map(([key, g]) => `| ${key} | ${[...g.upstreams].join(", ")} | ${[...g.served].join(", ")} | ${g.calls} | ${g.input} | ${g.cacheRead} | ${g.cacheWrite} | ${g.output} | $${g.usd.toFixed(4)} | ${g.errors} | ${g.refusals} | ${g.waits} |`);
+  const limit = ledger.limitUsd !== undefined && ledger.limitUsd < ledger.capUsd ? ` (this pass may not pass $${ledger.limitUsd.toFixed(2)} in all)` : "";
+  return [`# ${title}`, "", `Cap $${ledger.capUsd}${limit}; spent before this run $${ledger.spentBefore.toFixed(4)}; this run $${ledger.runUsd.toFixed(4)}; total $${ledger.spentUsd.toFixed(4)}; ${ledger.calls.length} calls.`, "",
+    "Every call's own line — with its door (`provider`), `upstream`, `servedModel`, request id and message id — is in the ledger's `.json`.", "",
+    "| Session | Purpose | Model | Provider (door) | Upstream | Served model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |",
+    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |", ...rows, ""].join("\n");
 }

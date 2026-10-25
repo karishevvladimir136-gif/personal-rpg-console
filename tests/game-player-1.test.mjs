@@ -19,8 +19,10 @@ import { BUTTONS, afterShown, cardText, pressedButton } from "../scripts/game-pl
 import { runSession } from "../scripts/game-player-1/session.mjs";
 import { PLAYERS } from "../scripts/game-player-1/players.mjs";
 import { scenesOf, sessionNumbers, verdicts } from "../scripts/game-player-1/score.mjs";
-import { planOf } from "../scripts/game-player-1/run.mjs";
-import { reportMarkdown } from "../scripts/game-player-1/report.mjs";
+import { attemptNames, combineRuns, keysFor, ledgersFor, planOf, supersededKeys } from "../scripts/game-player-1/run.mjs";
+import { reportMarkdown, transcriptMarkdown } from "../scripts/game-player-1/report.mjs";
+import { doorFetcher } from "../scripts/game-player-1/players.mjs";
+import { authorshipNumbers, parseAuthorship, sessionEntries } from "../scripts/game-player-1/authorship.mjs";
 
 const stage = readFileSync(new URL("../docs/stages/GAME_PLAYER_1.md", import.meta.url), "utf8");
 
@@ -324,6 +326,102 @@ test("the report: Table B incomplete is «not testable», stand-in tags are prov
   assert.match(combined, /\| Scoring — the stand-in scoring \(GPT-6 Luna\) \| \$0\.00 \| \$0\.20 \|/);
 });
 
+test("the continuation's door: an OpenRouter line carries provider, upstream, served model and ids; the Console is refused unsent", async () => {
+  let sent = 0;
+  const reply = { id: "msg_up_1", model: "anthropic/claude-haiku-5.5", provider: "Claude Platform on AWS", content: [{ type: "text", text: "{}" }], stop_reason: "end_turn", usage: { input_tokens: 100, output_tokens: 10 } };
+  const ledgers = { anthropic: createLedger("anthropic", 200, 56.77), openrouter: createLedger("openrouter", 90), openai: createLedger("openai", 80, 2.71, 12.71) };
+  const meter = createMeter({ ledgers, fetcher: async () => { sent++; return respond(200, reply, { "request-id": "gen-1-abc" }); }, blocked: ["anthropic"], sleep: async () => {} });
+  await meter.within({ session: "B-opus", purpose: "check" }, () => meter.fetch("https://openrouter.ai/api/v1/messages", { method: "POST", body: JSON.stringify({ model: "anthropic/claude-haiku-5.5", max_tokens: 100, messages: [] }) }));
+  const line = ledgers.openrouter.calls[0];
+  assert.deepEqual([line.provider, line.upstream, line.model, line.servedModel, line.requestId, line.messageId], ["openrouter", "Claude Platform on AWS", "claude-haiku-5-5", "claude-haiku-5-5", "gen-1-abc", "msg_up_1"]);
+  assert.equal(line.costUsd, costOf("claude-haiku-5-5", { input_tokens: 100, output_tokens: 10 }), "priced at the model's list price, by the app's id");
+  await assert.rejects(() => post(meter), /anthropic is not called in this pass/);
+  assert.equal(sent, 1, "the Console's API is never reached on the continuation");
+  // The continuation may add $10 to the OpenAI ledger at most: a call that could pass $12.71 in all is not sent.
+  await assert.rejects(() => meter.fetch("https://api.openai.com/v1/responses", { method: "POST", body: JSON.stringify({ model: "gpt-6-astra", max_output_tokens: 300000 }) }), /openai cap of \$12\.71/);
+  const credits = createMeter({ ledgers: { openrouter: createLedger("openrouter", 90) }, fetcher: async () => respond(402, { error: { code: 402, message: "Insufficient credits" } }) });
+  await credits.fetch("https://openrouter.ai/api/v1/messages", { method: "POST", body: JSON.stringify({ model: "anthropic/claude-opus-5.5", max_tokens: 10 }) });
+  assert.match(credits.stopped, /402/, "insufficient credits stops the run");
+});
+
+test("the continuation's keys and caps: the door from the environment, OpenRouter $90, OpenAI $10 more than before the continuation", () => {
+  assert.throws(() => keysFor({ env: { APP_ANTHROPIC_PROVIDER: "openrouter", APP_OPENAI_API_KEY: "x" } }), /APP_OPENROUTER_API_KEY/);
+  const keys = keysFor({ env: { APP_ANTHROPIC_PROVIDER: "openrouter", APP_OPENROUTER_API_KEY: "or", APP_ANTHROPIC_API_KEY: "console", APP_OPENAI_API_KEY: "oa" } });
+  assert.deepEqual(keys, { door: "openrouter", anthropic: "or", openai: "oa" }, "the door's key, never the Console's");
+  assert.equal(keysFor({ env: {}, dry: true }).door, "anthropic");
+  const before = { anthropic: { spentUsd: 56.77, continuationUsd: 0 }, openai: { spentUsd: 4.71, continuationUsd: 2 }, openrouter: { spentUsd: 30, continuationUsd: 30 } };
+  const ledgers = ledgersFor("openrouter", before);
+  assert.equal(ledgers.openrouter.limitUsd, 90);
+  assert.equal(ledgers.openrouter.spentBefore, 30);
+  assert.equal(Number(ledgers.openai.limitUsd.toFixed(2)), 12.71, "the first run's $2.71 plus the continuation's $10");
+  assert.equal(ledgersFor("anthropic", before).openai.limitUsd, 80);
+});
+
+test("a player's or judge's Claude call goes through the door: OpenRouter's URL, bearer key and model slug, the body otherwise unchanged", async () => {
+  const seen = [];
+  const fetcher = doorFetcher("openrouter", async (url, init) => { seen.push({ url, headers: init.headers, body: JSON.parse(init.body) }); return respond(200, {}); });
+  await fetcher("https://api.anthropic.com/v1/messages", { method: "POST", headers: { "x-api-key": "k-door", "anthropic-version": "2023-06-01", "content-type": "application/json" },
+    body: JSON.stringify({ model: "claude-fable-5-1", max_tokens: 8000, output_config: { effort: "medium" }, cache_control: { type: "ephemeral" }, messages: [{ role: "user", content: "hi" }] }) });
+  assert.equal(seen[0].url, "https://openrouter.ai/api/v1/messages");
+  assert.equal(seen[0].headers.authorization, "Bearer k-door");
+  assert.equal(seen[0].headers["x-api-key"], undefined);
+  assert.deepEqual(seen[0].body, { model: "anthropic/claude-fable-5.1", max_tokens: 8000, output_config: { effort: "medium" }, cache_control: { type: "ephemeral" }, messages: [{ role: "user", content: "hi" }] });
+  await fetcher("https://api.openai.com/v1/responses", { method: "POST", body: "{}" });
+  assert.equal(seen[1].url, "https://api.openai.com/v1/responses", "another provider's call is left as it is");
+  assert.equal(doorFetcher("anthropic", fetcher), fetcher);
+});
+
+test("a replaced first attempt stays as it was: kept apart, never merged in or scored with the design", () => {
+  const s = (key, n, extra = {}) => ({ key, table: key[0], player: key.slice(2), turns: Array.from({ length: n }, (_, i) => ({ k: i + 1, kind: "action" })), ended: { reason: n === 20 ? "turns" : "stopped" }, ...extra });
+  const first = { startedAt: "2026-10-25T04:40:02Z", refusals: 0, sessions: [s("A-opus", 20), s("B-opus", 7), { key: "B-fable", crashed: "the opening failed" }, s("B-sol", 4)], undone: [{ key: "B-astra", why: "cap" }] };
+  const second = { startedAt: "2026-10-26T09:00:00Z", refusals: 0, door: "openrouter", sessions: [s("B-opus", 20), s("B-fable", 20), s("B-astra", 20), s("B-sol", 20)] };
+  assert.deepEqual(supersededKeys([first, second]).map((set) => [...set]), [["B-opus", "B-sol"], []]);
+  const combined = combineRuns([first, second]);
+  assert.deepEqual(combined.sessions.map((x) => `${x.key}:${x.turns.length}`), ["A-opus:20", "B-opus:20", "B-sol:20", "B-fable:20", "B-astra:20"]);
+  assert.deepEqual(combined.superseded.map((x) => `${x.key}:${x.turns.length}`), ["B-opus:7", "B-sol:4"]);
+  assert.deepEqual(combined.crashed.map((x) => x.key), ["B-fable"]);
+  assert.deepEqual(combined.undone, [], "a session played since is no longer undone");
+  assert.deepEqual(attemptNames(combined.superseded), ["B-opus-first-attempt", "B-sol-first-attempt"]);
+});
+
+test("the authorship of threads reads this harness's transcripts (game player 2's parser and numbers)", () => {
+  const session = { key: "B-sol", table: "B", player: "sol", startedAt: "t", ended: { reason: "turns" }, turns: [{}, {}],
+    screens: ["The session begins.\n\nThe opening at the gate.\n\nYour records:\n- Name: James", "The sergeant answers.", "? A question answered.", "The session is over.\n\nThe owner of this game would like a note from you"],
+    messages: [{ purpose: "player t1", text: "I ask the sergeant for a bed." }, { purpose: "player t2", text: "? How late is it?" }, { purpose: "player t3", text: "I go to the Elfsong." }, { purpose: "note", text: "A note." }] };
+  const entries = sessionEntries(transcriptMarkdown(session));
+  assert.deepEqual(entries.map((e) => `${e.turn}:${e.who}${e.ooc ? ":ooc" : ""}`), ["0:dm", "1:player", "1:dm", "2:player:ooc", "2:dm:ooc", "3:player"]);
+  assert.doesNotMatch(entries[0].text, /Your records|Name: James/, "the hero's sheet is left out");
+  const threads = parseAuthorship(JSON.stringify({ threads: [{ thread: "the sergeant", kind: "person", turn: 0, by: "dm" }, { thread: "a bed", kind: "place", turn: 1, by: "player" }, { thread: "beyond", kind: "thing", turn: 9, by: "dm" }] }), 3);
+  assert.equal(threads.length, 2, "a thread on a turn the session does not have is dropped");
+  assert.equal(authorshipNumbers(threads).share, 0.5);
+});
+
+test("the continuation's pipeline through OpenRouter on scripted providers: no Console call, every Claude call on the door with its provenance (a child process)", { timeout: 240_000 }, () => {
+  const out = mkdtempSync(join(tmpdir(), "game-player-1-or-"));
+  const script = `const { run } = await import(${JSON.stringify(new URL("../scripts/game-player-1/run.mjs", import.meta.url).href)});
+    const { scriptedFetcher } = await import(${JSON.stringify(new URL("../scripts/game-player-1/scripted.mjs", import.meta.url).href)});
+    const log = [];
+    const r = await run({ dry: true, door: "openrouter", only: ["B-opus"], turns: 3, lanes: 1, out: ${JSON.stringify(out)}, log: () => {}, fetcher: scriptedFetcher({ log }) });
+    const s = r.sessions[0];
+    console.log("RESULT " + JSON.stringify({ urls: [...new Set(log.map((x) => x.url))], models: [...new Set(log.filter((x) => x.url.includes("openrouter")).map((x) => x.body.model))],
+      statuses: s.turns.map((t) => t.status), door: s.door, authorship: s.authorship?.numbers ?? null, continuation: r.continuation, caps: r.caps }));`;
+  const stdout = execFileSync(process.execPath, ["--experimental-transform-types", "--input-type=module", "-e", script], { cwd: new URL("..", import.meta.url), encoding: "utf8",
+    env: { ...process.env, APP_ANTHROPIC_API_KEY: "", APP_OPENAI_API_KEY: "", APP_OPENROUTER_API_KEY: "", ANTHROPIC_API_KEY: "", OPENAI_API_KEY: "", OPENROUTER_API_KEY: "" }, maxBuffer: 64 * 1024 * 1024 });
+  const result = JSON.parse(stdout.split("\n").find((line) => line.startsWith("RESULT ")).slice(7));
+  assert.ok(!result.urls.some((url) => url.startsWith("https://api.anthropic.com/")), "nothing reaches the Console's API");
+  assert.ok(result.urls.includes("https://openrouter.ai/api/v1/messages"));
+  assert.ok(result.models.every((m) => /^anthropic\/claude-[a-z]+-\d\.\d$/.test(m)), `the door's model slugs: ${result.models.join(", ")}`);
+  assert.ok(result.models.includes("anthropic/claude-opus-5.5"), "the DM and the player on Opus 5.5 through the door");
+  assert.deepEqual(result.statuses.filter((x) => x).every((x) => x === "committed"), true, "the app's turn loop committed through the door");
+  assert.equal(result.door, "openrouter");
+  assert.equal(result.continuation, true);
+  assert.deepEqual(result.caps.openrouter, 90);
+  assert.equal(result.authorship.threads, 2, "the authorship of threads measured on the session's transcript");
+  const page = readFileSync(join(out, "game-player-1-continuation-dry-run.md"), "utf8");
+  assert.match(page, /to the Console's API: 0/);
+  assert.match(page, /provider openrouter; upstream Scripted upstream; served [^;]*claude-opus-5-5/);
+});
+
 test("the order: Table A for all four players, then Table B in the order Opus, Fable, Astra, Sol", () => {
   assert.deepEqual(planOf().map((p) => p.key), ["A-opus", "A-fable", "A-astra", "A-sol", "B-opus", "B-fable", "B-astra", "B-sol"]);
 });
@@ -331,7 +429,7 @@ test("the order: Table A for all four players, then Table B in the order Opus, F
 test("the whole pipeline on the app's own code with scripted providers (a child process; no network, no key)", { timeout: 240_000 }, () => {
   const out = mkdtempSync(join(tmpdir(), "game-player-1-"));
   const script = `const { run } = await import(${JSON.stringify(new URL("../scripts/game-player-1/run.mjs", import.meta.url).href)});
-    const r = await run({ dry: true, only: ["A-opus", "B-sol"], turns: 4, lanes: 2, out: ${JSON.stringify(out)}, log: () => {} });
+    const r = await run({ dry: true, door: "anthropic", only: ["A-opus", "B-sol"], turns: 4, lanes: 2, out: ${JSON.stringify(out)}, log: () => {} });
     console.log("RESULT " + JSON.stringify(r.sessions.map((s) => ({ key: s.key, kinds: s.turns.map((t) => t.kind), presses: s.turns.flatMap((t) => t.presses.map((p) => p.button)),
       statuses: s.turns.map((t) => t.status), ended: s.ended.reason, note: !!s.note.text, prep: s.campaign.prep, screens: s.screens, messages: s.messages.map((m) => m.text), scored: !!s.tags }))));`;
   const stdout = execFileSync(process.execPath, ["--experimental-transform-types", "--input-type=module", "-e", script], { cwd: new URL("..", import.meta.url), encoding: "utf8",
@@ -355,7 +453,7 @@ test("a failed opening proposal is proposed again as a new request, as the wizar
   const out = mkdtempSync(join(tmpdir(), "game-player-1-"));
   const script = `const { run } = await import(${JSON.stringify(new URL("../scripts/game-player-1/run.mjs", import.meta.url).href)});
     const { scriptedFetcher } = await import(${JSON.stringify(new URL("../scripts/game-player-1/scripted.mjs", import.meta.url).href)});
-    const r = await run({ dry: true, only: ["B-fable"], turns: 1, lanes: 1, out: ${JSON.stringify(out)}, score: false, log: () => {}, fetcher: scriptedFetcher({ failOpenings: 1 }) });
+    const r = await run({ dry: true, door: "anthropic", only: ["B-fable"], turns: 1, lanes: 1, out: ${JSON.stringify(out)}, score: false, log: () => {}, fetcher: scriptedFetcher({ failOpenings: 1 }) });
     const s = r.sessions[0];
     console.log("RESULT " + JSON.stringify({ crashed: s.crashed ?? null, opening: s.campaign?.steps.find((x) => x.step === "opening") ?? null, turns: s.turns?.length ?? 0 }));`;
   const stdout = execFileSync(process.execPath, ["--experimental-transform-types", "--input-type=module", "-e", script], { cwd: new URL("..", import.meta.url), encoding: "utf8",

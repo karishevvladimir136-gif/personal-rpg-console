@@ -80,7 +80,12 @@ export async function openApp({ keys = {}, fake = false } = {}) {
   });
   for (const name of ["RPG_DM_FAKE_MODEL", "RPG_ASTRA_PRIMARY_P1", "OPENAI_DM_MODEL"]) delete process.env[name];
   if (fake) process.env.RPG_DM_FAKE_MODEL = "1";
-  if (keys.anthropic) process.env.ANTHROPIC_API_KEY = keys.anthropic; else delete process.env.ANTHROPIC_API_KEY;
+  // The door the app's Claude calls take (ANTHROPIC_PROVIDERS_1: src/lib/server/anthropic-endpoint.ts reads these): the
+  // door's key under its own name, and no Console key when another door is used.
+  const door = keys.door ?? "anthropic";
+  process.env.ANTHROPIC_PROVIDER = door;
+  for (const name of ["ANTHROPIC_API_KEY", "OPENROUTER_API_KEY", "BEDROCK_API_KEY"]) delete process.env[name];
+  if (keys.anthropic) process.env[door === "openrouter" ? "OPENROUTER_API_KEY" : "ANTHROPIC_API_KEY"] = keys.anthropic;
   if (keys.openai) process.env.OPENAI_API_KEY = keys.openai; else delete process.env.OPENAI_API_KEY;
   const load = (path) => import(pathToFileURL(join(SRC, path)).href);
   const server = {
