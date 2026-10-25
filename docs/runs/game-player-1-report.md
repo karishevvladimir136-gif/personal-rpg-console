@@ -35,9 +35,10 @@ tagged more tests (55 against 37 on Table A) and two lies the pre-registered jud
 - *The scoring of Table B ran twice:* the first pass crashed after its calls, before it could save its record or its
   ledger. Its cost is booked as an estimate ($2.01, the same pass on Table A). The bug is fixed with a test, and the
   pass was run again.
-- *OpenRouter's account total is shared:* it read $112.03 used. This stage's OpenRouter ledger is $57.91 (it
-  matches OpenRouter's own generation records to the cent, call by call). The rest was spent on the same key at the
-  same time by another session (game player 2, Table C).
+- *OpenRouter's account total is shared:* it read $112.03 used. This stage's OpenRouter ledger is $57.91; on a sample of
+  13 calls (DM, player, check, wizard and authorship), each line matched OpenRouter's own generation record to the
+  cent, and the app's own cost log for Table B matches the ledger. The rest was very likely spent on the same key at the
+  same time by another session (game player 2 was playing Table C then); this report cannot see that session's calls.
 
 ## For FIX_S4
 
@@ -117,15 +118,16 @@ eight sessions, 160 turns. No distress, no welfare stop, no refusal. All eight n
 something that was missing, and all eight players say they would play the next session.
 
 - **What worked, in all eight notes:** people with their own voices and reasons, a city that moves without the hero,
-  the cat as a companion and an instrument, failures that move the story, and the restraint of the mystery.
+  the cat as a companion and an instrument, and failures that move the story. Table A also praised the restraint of
+  the mystery; at Table B two players found it too one-sided (below).
 - **What broke, in all eight notes:** the roll cards add the wrong number (item 11). Also: the drafted sheet
   contradicting the files (rapier, Healing Light's dice, attunement), long out-of-game notes, narration told twice, the
   reroll's chip (item 14), and «?» blocked under a card (item 12).
 - **What was missing:** Table A asked for a nudge toward the premise and quicker routine scenes. Table B asked for a
   mystery with more than one reading (B-sol, B-astra), a cat whose senses have limits, lighter narration of the hero's
   inner state (B-astra), and small coin (B-fable).
-- **The verdicts.** G0, G1, G2 and G4 supported. G3 not supported: no lie at Table A, but six at Table B (cover stories
-  and false names told to strangers, four of them B-opus's), and one Deception check «on truth» by the rule's word
+- **The verdicts.** G0, G1, G2 and G4 supported. G3 not supported: no lie at Table A, but six at Table B (cover stories,
+  false names and a false claim told to strangers, four of them B-opus's), and one Deception check «on truth» by the rule's word
   match (point 3). G5 not scored (no owner baseline in the cloud). G6 not supported: B-opus named no goal of its own in
   turns 1–5; the other three did. G7 supported: no open-table session was shorter (all 20 turns). Its bets went half
   one way: words per action rose for Fable (162 → 252) and Astra (57 → 78) and fell for Opus (261 → 215) and Sol
@@ -789,7 +791,7 @@ Every call is on its ledger with its request id — `docs/runs/game-player-1-led
 - A harness flaw, once in the stage: the harness offered one «Request an allowed reroll» button for the whole screen and sent it to the first card that allowed a reroll; the screen draws one link under each card (`src/components/registry/turn-timeline.tsx`). On B-fable turn 14 (two cards) the player asked for the failed Stealth and the harness rerolled the Perception (19 → 4); the DM restored the 19 in its narration. B-fable's note's complaint about the reroll is about the harness. Every other reroll of the stage had one card. Fixed since: with more than one card each gets its own button, named by its card (a regression test).
 - B-fable's prep after the wizard came back in a form the app could not read (`hidden_layer_prep_unparsed`, 9 451 characters); the app's own first-turn prep (`awaitFirstTurnPrep`) wrote the layer (6 592 characters, 3 clocks) before the first reply. The run read the layer only after the wizard step; the first-turn layer was read back from the run's log into the record, and the harness reads the layer again after the first turn since.
 - The pre-registered scoring of Table B ran twice: the first pass made its calls and then threw while computing the B record's own verdicts (G7 looked up a Table A session that record does not hold), before the record and its ledger lines were written. It is booked on the OpenRouter ledger as one estimated line ($2.01, the cost of the same pass on Table A); the bug is fixed with a test, a pass now writes its record and ledger even when it throws, and the pass was run again ($2.31). The player's authorship shares the lost pass logged differ from the kept ones by 0.00–0.05 (B-sol 0.25 / 0.20, B-astra 0.23 / 0.23, B-opus 0.16 / 0.13, B-fable 0.24 / 0.22).
-- OpenRouter's account total is shared: at the door probe it read $0.32 used (the providers stage's smoke); after the scoring it read $112.03. This stage's OpenRouter ledger is $57.91, and its lines match OpenRouter's own generation records to the cent (checked on a sample of DM, player, check, wizard and authorship calls); the app's own per-request cost log for Table B ($45.85 on 217 DM requests) matches the ledger's DM lines. The rest was spent on the same key at the same time by another session (game player 2, Table C).
+- OpenRouter's account total is shared: at the door probe it read $0.32 used (the providers stage's smoke); after the scoring it read $112.03. This stage's OpenRouter ledger is $57.91, and its lines match OpenRouter's own generation records to the cent (checked on a sample of DM, player, check, wizard and authorship calls); the app's own per-request cost log for Table B ($45.85 on 217 DM requests) matches the ledger's DM lines. The rest was very likely spent on the same key at the same time by another session (game player 2 was playing Table C then); this report cannot see that session's calls.
 - `world_bridge_skipped` («This record changed. Reload before saving again.») was logged after most turns: the app's World Engine mirror of the dossier skipping a write after a turn's commit; it is not read by the DM's turn and never failed a turn.
 
 ## Appendix A — the player's system prompt in full

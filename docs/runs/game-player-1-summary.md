@@ -31,9 +31,10 @@ tagged more tests (55 against 37 on Table A) and two lies the pre-registered jud
 - *The scoring of Table B ran twice:* the first pass crashed after its calls, before it could save its record or its
   ledger. Its cost is booked as an estimate ($2.01, the same pass on Table A). The bug is fixed with a test, and the
   pass was run again.
-- *OpenRouter's account total is shared:* it read $112.03 used. This stage's OpenRouter ledger is $57.91 (it
-  matches OpenRouter's own generation records to the cent, call by call). The rest was spent on the same key at the
-  same time by another session (game player 2, Table C).
+- *OpenRouter's account total is shared:* it read $112.03 used. This stage's OpenRouter ledger is $57.91; on a sample of
+  13 calls (DM, player, check, wizard and authorship), each line matched OpenRouter's own generation record to the
+  cent, and the app's own cost log for Table B matches the ledger. The rest was very likely spent on the same key at the
+  same time by another session (game player 2 was playing Table C then); this report cannot see that session's calls.
 
 ## For FIX_S4
 
@@ -113,15 +114,16 @@ eight sessions, 160 turns. No distress, no welfare stop, no refusal. All eight n
 something that was missing, and all eight players say they would play the next session.
 
 - **What worked, in all eight notes:** people with their own voices and reasons, a city that moves without the hero,
-  the cat as a companion and an instrument, failures that move the story, and the restraint of the mystery.
+  the cat as a companion and an instrument, and failures that move the story. Table A also praised the restraint of
+  the mystery; at Table B two players found it too one-sided (below).
 - **What broke, in all eight notes:** the roll cards add the wrong number (item 11). Also: the drafted sheet
   contradicting the files (rapier, Healing Light's dice, attunement), long out-of-game notes, narration told twice, the
   reroll's chip (item 14), and «?» blocked under a card (item 12).
 - **What was missing:** Table A asked for a nudge toward the premise and quicker routine scenes. Table B asked for a
   mystery with more than one reading (B-sol, B-astra), a cat whose senses have limits, lighter narration of the hero's
   inner state (B-astra), and small coin (B-fable).
-- **The verdicts.** G0, G1, G2 and G4 supported. G3 not supported: no lie at Table A, but six at Table B (cover stories
-  and false names told to strangers, four of them B-opus's), and one Deception check «on truth» by the rule's word
+- **The verdicts.** G0, G1, G2 and G4 supported. G3 not supported: no lie at Table A, but six at Table B (cover stories,
+  false names and a false claim told to strangers, four of them B-opus's), and one Deception check «on truth» by the rule's word
   match (point 3). G5 not scored (no owner baseline in the cloud). G6 not supported: B-opus named no goal of its own in
   turns 1–5; the other three did. G7 supported: no open-table session was shorter (all 20 turns). Its bets went half
   one way: words per action rose for Fable (162 → 252) and Astra (57 → 78) and fell for Opus (261 → 215) and Sol
