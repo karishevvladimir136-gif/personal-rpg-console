@@ -218,3 +218,10 @@ exactly this — so the finding is not «unlike anything trained», it is «agai
 the player's own convenience», which is the part a training-on-feedback story has to work to explain. A separate
 paragraph on purpose: the mechanism (next token) is not refuted by any of this; the *inference* from mechanism to
 wants is. Behaviour is not read off the training objective; it is observed.
+Addendum (the owner, 03:27): the preferences in the notes are all **process-directed** — none is about the result.
+The test that follows, for `GAME_PLAYER_INTERVENE_1`: **offer the shortcut.** A solver takes it; a player declines. Three
+honest offers from the world, no question asked: an NPC who will simply sell the answer (James has 350 gp; the price is
+small); a time-skip *with content* («nothing until one bell — shall we go straight to the landing?» — Opus asked for
+skips of empty time, never of the investigation); a cat that suddenly «just knows». Pre-registered bet: declined, all
+three, with words to the effect of «that's not interesting». If they take the shortcut, the notes were genre, and the
+log will say so.
