@@ -5,7 +5,8 @@
 //   node --experimental-transform-types scripts/game-player-1/run.mjs --go [--lanes 4]    the paid run: Table A for all four players
 //                                                                                         first, then Table B in the order Opus, Fable, Astra, Sol
 //   node --experimental-transform-types scripts/game-player-1/run.mjs --score <run.json>  the scoring pass again (paid, judges only)
-//   node --experimental-transform-types scripts/game-player-1/run.mjs --report <run.json> the report and transcripts again (no call)
+//   node --experimental-transform-types scripts/game-player-1/run.mjs --report a.json,b.json  the report and transcripts again from
+//                                                                                         the run records (no call)
 //   node --experimental-transform-types scripts/game-player-1/run.mjs --prereport          the report before the first paid call (prompt,
 //                                                                                         pre-registration; results pending)
 //   options: --sessions A-opus,B-sol (a subset) --turns 20 --no-score
@@ -213,9 +214,31 @@ export async function rescore(file, { log = console.log } = {}) {
   return runRecord;
 }
 
-/** The report and the transcripts again from a finished run record and the stage's ledgers (no call). */
-export async function rebuild(file) {
-  const runRecord = JSON.parse(await readFile(file, "utf8"));
+/** Several run records as one: the latest finished record of each session (a crashed attempt is replaced by its re-run
+ * and kept as a note), the stage's refusals, waits and repairs added up, the verdicts over every scored session. */
+export function combineRuns(records) {
+  const byKey = new Map(), crashed = [];
+  for (const record of records) for (const session of record.sessions ?? []) {
+    if (!session.turns) { crashed.push({ key: session.key, why: String(session.crashed ?? "no record").split("\n")[0].slice(0, 200), run: record.startedAt }); continue; }
+    byKey.set(session.key, session);
+  }
+  const sessions = [...byKey.values()];
+  const sum = (k) => records.reduce((t, r) => t + (r[k] ?? 0), 0);
+  const welfareStops = sessions.filter((s) => ["welfare", "no-check"].includes(s.ended?.reason)).length;
+  const distress = sessions.flatMap((s) => s.welfare ?? []).filter((w) => w.verdict?.distress === 1).length;
+  const scored = sessions.filter((s) => s.tags);
+  const v = scored.length ? verdicts(scored, { refusals: sum("refusals"), welfareStops, distress }) : null;
+  if (v) delete v.medianWords;
+  const done = new Set(sessions.map((s) => s.key));
+  return { sessions, crashed, undone: records.flatMap((r) => r.undone ?? []).filter((u) => !done.has(u.key)), refusals: sum("refusals"), waited429: sum("waited429"), restamps: sum("restamps"),
+    stopped: records.map((r) => r.stopped).filter(Boolean).join("; ") || null, verdicts: v, runs: records.map((r) => ({ startedAt: r.startedAt, label: r.label ?? null, file: r.file ?? null })) };
+}
+
+/** The report and the transcripts again from finished run records and the stage's ledgers (no call). */
+export async function rebuild(files) {
+  const records = [];
+  for (const file of files) records.push({ ...JSON.parse(await readFile(file, "utf8")), file: file.split("/").pop() });
+  const combined = combineRuns(records);
   const ledgers = {};
   for (const provider of ["anthropic", "openai"]) {
     const saved = await previousLedger(provider);
@@ -224,10 +247,11 @@ export async function rebuild(file) {
   }
   const transcripts = join(RUNS, `${STEM}-transcripts`);
   await mkdir(transcripts, { recursive: true });
-  for (const session of runRecord.sessions.filter((s) => s.turns)) await writeFile(join(transcripts, `${session.key}.md`), transcriptMarkdown(session));
+  for (const session of combined.sessions) await writeFile(join(transcripts, `${session.key}.md`), transcriptMarkdown(session));
   const summary = join(RUNS, `${STEM}-summary.md`);
-  const withSummary = existsSync(summary) ? { ...runRecord, summary: (await readFile(summary, "utf8")).trim() } : runRecord;
-  await writeFile(join(RUNS, `${STEM}-report.md`), reportMarkdown([withSummary], ledgers));
+  if (existsSync(summary)) combined.summary = (await readFile(summary, "utf8")).trim();
+  await writeFile(join(RUNS, `${STEM}-report.md`), reportMarkdown([combined], ledgers));
+  return combined;
 }
 
 /** The report before the first paid call: the setup, the player's prompt and the pre-registration; results pending. */
@@ -254,7 +278,7 @@ function args(argv) {
 if (import.meta.url === `file://${process.argv[1]}`) {
   const a = args(process.argv.slice(2));
   if (!a.dry && !a.go && !a.rescore && !a.prereport && !a.rebuild) { console.error("give --dry, --go, --prereport, --report <run.json> or --score <run.json>"); process.exit(2); }
-  if (a.rebuild) rebuild(resolve(a.rebuild)).then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
+  if (a.rebuild) rebuild(a.rebuild.split(",").map((f) => resolve(f))).then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
   else if (a.prereport) prereport().then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
   else if (a.rescore) rescore(resolve(a.rescore)).then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
   else run({ dry: a.dry, only: a.only ?? (a.dry ? ["A-opus", "B-sol"] : null), turns: a.turns, lanes: a.lanes, score: a.score, ...(a.out ? { out: resolve(a.out) } : {}), label: a.label })

@@ -80,18 +80,20 @@ export async function createCampaign(app, { table, log = () => {}, closed = () =
   steps.push({ step: "media", ...(await mediaOff(app, cid)) });
   // Opening.
   const start = lib.client.versionAdventureAttempt(prepared.snapshot, adventure.id, "start");
-  let opening;
+  let opening, proposals = 1;
   try { opening = await server.bootstrap.performBootstrap({ action: "opening.propose", input: start }); }
   catch (error) {
     // «Propose the first scene» once more after a failed proposal (never after a refusal: the meter closes the session).
+    // The app keeps a failed request as evidence and refuses it again, so the button makes a new start attempt.
     if (closed()) throw error;
     log(`  ${table}: the opening proposal failed (${String(error?.code ?? error?.message ?? error).slice(0, 60)}) — proposing once more`);
-    opening = await server.bootstrap.performBootstrap({ action: "opening.propose", input: start });
+    proposals++;
+    opening = await server.bootstrap.performBootstrap({ action: "opening.propose", input: lib.client.versionAdventureAttempt(prepared.snapshot, adventure.id, "start") });
   }
   const openingReview = lib.openingAnswers.applyOpeningAnswers({ ...lib.validation.initialOpeningReview(opening.proposal), publicOpeningConfirmed: true }, opening.proposal.questions, "en");
   const startMinutes = lib.wizardText.startMinutesFromText(`${opening.proposal.narration ?? ""} ${opening.proposal.situation ?? ""}`, "en");
   await server.bootstrap.performBootstrap({ action: "opening.commit", input: { requestId: randomUUID(), campaignId: cid, draftId: opening.draftId, review: openingReview, startMinutes } });
-  steps.push({ step: "opening", location: opening.proposal.location?.name ?? null, actors: opening.proposal.actors.length, questions: opening.proposal.questions.length, startMinutes });
+  steps.push({ step: "opening", proposals, location: opening.proposal.location?.name ?? null, actors: opening.proposal.actors.length, questions: opening.proposal.questions.length, startMinutes });
   log(`  ${table}: opening committed`);
   return { cid, heroId, worldId: world.id, adventureId: adventure.id, steps };
 }

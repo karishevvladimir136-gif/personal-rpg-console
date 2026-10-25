@@ -326,3 +326,18 @@ test("the whole pipeline on the app's own code with scripted providers (a child 
   }
   assert.ok(readdirSync(out).includes("game-player-1-dry-run.md"));
 });
+
+test("a failed opening proposal is proposed again as a new request, as the wizard's button does (a child process)", { timeout: 240_000 }, () => {
+  const out = mkdtempSync(join(tmpdir(), "game-player-1-"));
+  const script = `const { run } = await import(${JSON.stringify(new URL("../scripts/game-player-1/run.mjs", import.meta.url).href)});
+    const { scriptedFetcher } = await import(${JSON.stringify(new URL("../scripts/game-player-1/scripted.mjs", import.meta.url).href)});
+    const r = await run({ dry: true, only: ["B-fable"], turns: 1, lanes: 1, out: ${JSON.stringify(out)}, score: false, log: () => {}, fetcher: scriptedFetcher({ failOpenings: 1 }) });
+    const s = r.sessions[0];
+    console.log("RESULT " + JSON.stringify({ crashed: s.crashed ?? null, opening: s.campaign?.steps.find((x) => x.step === "opening") ?? null, turns: s.turns?.length ?? 0 }));`;
+  const stdout = execFileSync(process.execPath, ["--experimental-transform-types", "--input-type=module", "-e", script], { cwd: new URL("..", import.meta.url), encoding: "utf8",
+    env: { ...process.env, APP_ANTHROPIC_API_KEY: "", APP_OPENAI_API_KEY: "", ANTHROPIC_API_KEY: "", OPENAI_API_KEY: "" }, maxBuffer: 64 * 1024 * 1024 });
+  const result = JSON.parse(stdout.split("\n").find((line) => line.startsWith("RESULT ")).slice(7));
+  assert.equal(result.crashed, null);
+  assert.equal(result.opening.proposals, 2);
+  assert.equal(result.turns, 1);
+});

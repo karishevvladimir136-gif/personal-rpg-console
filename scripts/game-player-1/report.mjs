@@ -128,6 +128,7 @@ export function reportMarkdown(runs, ledgers) {
     "",
     "- A live smoke ran before the eight sessions (A-sol, 2 turns, $1.80 on the stage's ledgers; `docs/runs/game-player-1-transcripts/smoke-A-sol-2-turns.md`). From its note, two presentation fixes before the eight: a paused turn's text is shown once (the card screens and the continuation show only what is new), and the full sheet no longer follows every change.",
     `- The «?» timeline repair was applied ${runs.reduce((s, r) => s + (r.restamps ?? 0), 0)} time(s).`,
+    ...runs.flatMap((r) => (r.crashed ?? []).map((c) => `- A first attempt of ${c.key} stopped in the wizard (${c.why}); the session was played again from a fresh campaign.`)),
     `- Refusals in the stage: ${runs.at(-1)?.refusals ?? 0}; HTTP 429 waits: ${runs.at(-1)?.waited429 ?? 0}; paid calls stopped: ${runs.at(-1)?.stopped ?? "no"}.`,
     ...sessions.filter((s) => s.errors?.length).map((s) => `- ${s.key}: ${s.errors.map((e) => e.error).join("; ").slice(0, 400)}`),
     "",

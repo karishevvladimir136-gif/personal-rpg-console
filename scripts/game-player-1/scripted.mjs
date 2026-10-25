@@ -21,8 +21,8 @@ const textOf = (content) => (typeof content === "string" ? content : (content ??
  * `player(messages, system)` gives the scripted player's next line (default: a short plain action, «roll» on a card).
  * `judge(system, user)` gives a judge's JSON text (default: all zeros). `log` collects every request (for the tests).
  */
-export function scriptedFetcher({ player = defaultPlayer, judge = defaultJudge, log = [], status = () => 200 } = {}) {
-  let n = 0;
+export function scriptedFetcher({ player = defaultPlayer, judge = defaultJudge, log = [], status = () => 200, failOpenings = 0 } = {}) {
+  let n = 0, openings = 0;
   return async (url, init = {}) => {
     const body = JSON.parse(String(init.body ?? "{}"));
     n++;
@@ -39,7 +39,7 @@ export function scriptedFetcher({ player = defaultPlayer, judge = defaultJudge, 
     const user = textOf(body.messages?.at(-1)?.content);
     if (body.stream && DM_MODELS.has(body.model)) return stream(scriptedDm(body, system), body.model, n);
     let text;
-    if (body.output_config?.format?.type === "json_schema") text = JSON.stringify(OPENING);
+    if (body.output_config?.format?.type === "json_schema") text = ++openings <= failOpenings ? "an opening the provider cannot read" : JSON.stringify(OPENING);
     else if (/blind evaluator/i.test(system)) text = judge(system, user);
     else if (/You check the narration of a role-playing game's turn/.test(system)) text = JSON.stringify({ rolls: [], untold: [], undeclared: [] });
     else if (/You are a player sitting down/.test(system)) text = player((body.messages ?? []).map((m) => ({ role: m.role, content: textOf(m.content) })), system);
