@@ -99,7 +99,41 @@ the test on the table before he asks. Measure (3 runs × 3 scenes): scenes with 
 detail; threads paid off in a later scene; scenes with a testable plant; and that the ledger raised no «unresolved
 state» flag on any of them.
 
+### 11. What four model players found at this table (GAME_PLAYER_1, 2026-10-25; the report has the notes verbatim)
+Four players — Claude Opus 5.5, Claude Fable 5.1, GPT-6 Astra, GPT-6.1 Sol — each played 20 turns of this campaign
+against the candidate DM, not seeing each other. Their notes agree on four things; each becomes an item here.
+- **11a. The roll card adds the wrong number.** Every player caught it: the card shows «Persuasion +7» and adds +4
+  (or +2). Cause found by the session: `sheetBonus` in `execute.ts` reads a number only at the end of a line, and the
+  wizard-drafted sheet writes «Persuasion +7 (proficient, Beguiling Influence)», so the reader falls back to a guess
+  by the word «proficient». The owner's hand-typed lines read correctly, which is why he never saw it. Fix: parse the
+  first signed number after the skill name; a test over the four drafted sheets from the run (11 mismatched cards
+  across five sessions must all come out right); and the ledger's roll record stores the modifier it used and where
+  it came from.
+- **11b. No way to object while a card waits.** The composer is closed until the roll card is resolved
+  (`gameplay-composer.tsx:392`), so a player who sees a wrong modifier can only press «Onward» and argue after. Astra:
+  «Pressing Onward felt like accepting a result I knew was wrong». Fix: «?» stays available while a card is pending
+  (out of game only, no action), and the DM may correct the card before the die is pressed. Ties to item 3.
+- **11c. The errand must show its face every session.** All four, in different words: two in-game days of excellent
+  legwork and Tymora's task never came into view (Opus: «the heist premise hasn't surfaced yet»; Fable: «no sense of
+  what Tymora actually wants beyond the coin going warm and cold»; Astra: «the larger premise barely came into view»;
+  Sol: «What was missing was more specifically **James**»). Not a pace problem — the slow city they all praised — but a
+  missing obligation: «believe the simple version first» has no end. Rule for the DM's frame (both languages): **by the
+  end of each session the player holds at least one thing he can tie to the brief** — a «price, interest, secret»
+  conversation with someone who could be crew, or a first clear sign of what the Lady wants — and the hidden-layer
+  prep names, per session, which one it will be. Measured by the checker: sessions whose last three scenes contain a
+  brief-tied thing (judge-tagged), target 100 %.
+- **11d. The out-of-game notes are too long and repeat the narration.** Three of four: «a numbered audit of opening a
+  window interrupts the mood» (Astra); «the same paragraph about 'none of those needed a roll' appeared twice in one
+  reply» (Fable); «read like the GM defending itself to an auditor rather than talking to me» (Opus). Rule: one line
+  for «no roll needed», never a list; no retrospective summary paragraph after the narration («Looking back, James
+  knows the lie worked…» repeats what the scene showed). Measured: median words of out-of-game notes per turn, and
+  turns with a post-narration summary (target 0).
+Also from the run, for the owner's own setup: the «?» claim on a new campaign with the Astra-takeover flag comes back
+from migration 46's wrapper without its timeline stamp and the old engine refuses it (the harness patched around it);
+check the owner's local database before the next session and fix the SQL if it reproduces.
+
 ## Done when
-Items 1–5 each with a test; the item-4 table in the report; items 6–9 as built; the owner's reload is one step
+Items 1–5 and 11a–11b each with a test; the item-4 table in the report; items 6–9 as built; 10–11c–11d as rules
+with their measures; the owner's reload is one step
 (`--stop`, `--prod`); the report lists the money and names, for each of the eight things, the turn of the owner's
 session where it was seen.
