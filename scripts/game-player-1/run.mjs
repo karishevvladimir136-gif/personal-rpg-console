@@ -338,7 +338,8 @@ export function combineRuns(records) {
   const welfareStops = sessions.filter((s) => ["welfare", "no-check"].includes(s.ended?.reason)).length;
   const distress = sessions.flatMap((s) => s.welfare ?? []).filter((w) => w.verdict?.distress === 1).length;
   const scored = sessions.filter((s) => s.tags);
-  const v = scored.length ? verdicts(scored, { refusals: sum("refusals"), welfareStops, distress }) : null;
+  // G0 counts every refusal of the stage: the sessions' and the scoring passes'.
+  const v = scored.length ? verdicts(scored, { refusals: sum("refusals") + sum("scoringRefusals"), welfareStops, distress }) : null;
   if (v) delete v.medianWords;
   const done = new Set(sessions.map((s) => s.key));
   return { sessions, superseded, crashed, undone: records.flatMap((r) => r.undone ?? []).filter((u) => !done.has(u.key)), refusals: sum("refusals"), scoringRefusals: sum("scoringRefusals"),

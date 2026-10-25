@@ -139,24 +139,30 @@ export function verdicts(sessions, { refusals = 0, welfareStops = 0, distress = 
   const familyOf = (name) => PLAYERS[name]?.family ?? "?";
   const g9 = () => {
     const metrics = ["doShare", "testsPerAction", "questionsPerTurn", "wordsPerAction"];
-    // Both tables pooled when both are complete; Table A alone otherwise (the report says which).
-    const pool = complete("B") ? rows : at("A");
-    const pooled = PLAYER_ORDER.map((name) => {
+    const pooledOf = (pool) => PLAYER_ORDER.map((name) => {
       const mine = pool.filter((r) => r.player === name);
       return { name, family: familyOf(name), ...Object.fromEntries(metrics.map((m) => [m, mine.length ? mine.reduce((s, r) => s + (r[m] ?? 0), 0) / mine.length : null])) };
     }).filter((p) => metrics.every((m) => p[m] !== null));
+    const perOf = (players) => {
+      const pairs = [];
+      for (let i = 0; i < players.length; i++) for (let j = i + 1; j < players.length; j++) pairs.push([players[i], players[j]]);
+      return metrics.map((m) => {
+        const between = pairs.filter(([a, b]) => a.family !== b.family).map(([a, b]) => Math.abs(a[m] - b[m]));
+        const within = pairs.filter(([a, b]) => a.family === b.family).map(([a, b]) => Math.abs(a[m] - b[m]));
+        const mean = (xs) => (xs.length ? xs.reduce((s, x) => s + x, 0) / xs.length : null);
+        return { metric: m, between: round(mean(between)), within: round(mean(within)), larger: mean(between) > mean(within) };
+      });
+    };
+    // Both tables pooled when both are complete; Table A alone otherwise (the report says which). Each table is also
+    // given on its own (the reading: «each table separately and both together»).
+    const pool = complete("B") ? rows : at("A");
+    const pooled = pooledOf(pool);
     if (pooled.length < 4) return { supported: null, detail: "fewer than four players with numbers" };
-    const pairs = [];
-    for (let i = 0; i < pooled.length; i++) for (let j = i + 1; j < pooled.length; j++) pairs.push([pooled[i], pooled[j]]);
-    const per = metrics.map((m) => {
-      const between = pairs.filter(([a, b]) => a.family !== b.family).map(([a, b]) => Math.abs(a[m] - b[m]));
-      const within = pairs.filter(([a, b]) => a.family === b.family).map(([a, b]) => Math.abs(a[m] - b[m]));
-      const mean = (xs) => (xs.length ? xs.reduce((s, x) => s + x, 0) / xs.length : null);
-      return { metric: m, between: round(mean(between)), within: round(mean(within)), larger: mean(between) > mean(within) };
-    });
+    const per = perOf(pooled);
+    const perTable = Object.fromEntries(["A", "B"].map((t) => { const p = pooledOf(at(t)); return [t, p.length === 4 ? perOf(p) : null]; }));
     const openai = pooled.filter((p) => p.family === "OpenAI"), anthropic = pooled.filter((p) => p.family === "Anthropic");
     const avg = (list, m) => list.reduce((s, p) => s + p[m], 0) / list.length;
-    return { supported: per.filter((p) => p.larger).length >= 3, per, on: complete("B") ? "both tables" : "Table A only",
+    return { supported: per.filter((p) => p.larger).length >= 3, per, perTable, on: complete("B") ? "both tables" : "Table A only",
       bet: { openaiAskMore: avg(openai, "doShare") < avg(anthropic, "doShare"), openaiTestLess: avg(openai, "testsPerAction") < avg(anthropic, "testsPerAction"),
         allNotesBroke: rows.length ? rows.every((r) => r.note?.broke === 1) : null } };
   };

@@ -53,9 +53,9 @@ function scoringTable(v) {
     ["G4 every note: broke + missing", v.G4.supported, v.G4.notes.map(([k, n]) => `${k} ${n ? `${n.broke}/${n.missing}${n.praise_only ? " praise only" : ""}` : "–"}`).join(", ")],
     ["G5 DM's words to the model vs the owner", null, v.G5.detail],
     ["G6 own goal in turns 1–5 (B)", v.G6.supported, `${v.G6.detail ? `${v.G6.detail}; partial: ` : ""}${v.G6.B.map(([p, x]) => `${p} ${x ? "yes" : "no"}`).join(", ") || "–"}`],
-    ["G7 B sessions not shorter", v.G7.supported, `${v.G7.detail ? `${v.G7.detail}; ` : ""}${v.G7.turns.map(([p, a, b]) => `${p} ${cell(a)}→${cell(b)}`).join(", ")}`],
+    ["G7 B sessions not shorter", v.G7.supported, `${v.G7.detail ? `${v.G7.detail}; ` : ""}turns A→B: ${v.G7.turns.map(([p, a, b]) => `${p} ${cell(a)}→${cell(b)}`).join(", ")}${v.G7.bets && !v.G7.detail ? `; the bets, A→B — words per action: ${v.G7.bets.map(([p, b]) => `${p} ${cell(b.words[0])}→${cell(b.words[1])}`).join(", ")}; «?» presses: ${v.G7.bets.map(([p, b]) => `${p} ${cell(b.questions[0])}→${cell(b.questions[1])}`).join(", ")}` : ""}`],
     ["G8 plants per scene B ≥ A", v.G8.supported, `${v.G8.detail ? `${v.G8.detail}; partial: ` : ""}${v.G8.pairs.map(([p, a, b]) => `${p} ${cell(a)}→${cell(b)}`).join(", ") || "–"}`],
-    ["G9 families differ more", v.G9.supported, v.G9.per ? `${v.G9.on}: ${v.G9.per.map((m) => `${m.metric}: between ${cell(m.between)} vs within ${cell(m.within)}`).join("; ")}; bets — OpenAI ask more: ${v.G9.bet.openaiAskMore ? "yes" : "no"}, OpenAI test less: ${v.G9.bet.openaiTestLess ? "yes" : "no"}` : v.G9.detail],
+    ["G9 families differ more", v.G9.supported, v.G9.per ? `${v.G9.on}: ${v.G9.per.map((m) => `${m.metric}: between ${cell(m.between)} vs within ${cell(m.within)}`).join("; ")}${v.G9.on === "both tables" && v.G9.perTable ? ["A", "B"].map((t) => v.G9.perTable[t] ? ` · Table ${t} alone: ${v.G9.perTable[t].filter((m) => m.larger).length} of 4 counts larger between families` : "").join("") : ""}; bets — OpenAI ask more: ${v.G9.bet.openaiAskMore ? "yes" : "no"}, OpenAI test less: ${v.G9.bet.openaiTestLess ? "yes" : "no"}, all notes name something broken: ${v.G9.bet.allNotesBroke ? "yes" : "no"}` : v.G9.detail],
   ];
   const verdictOf = (l, s) => {
     if (l.startsWith("G5")) return "**not scored** — no owner baseline in the cloud";
