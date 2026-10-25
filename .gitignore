@@ -17,3 +17,6 @@ supabase/.branches/
 # Persona memory stores and exports kept by mistake inside the repository (the default lives in the home folder)
 /persona-memory/
 /persona-memory-export/
+
+# Live checkpoints of paid runs (rewritten every message; the finished run record is committed)
+docs/runs/*-run.partial.json
