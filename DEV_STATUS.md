@@ -1,24 +1,30 @@
 # Development status
 
-**Current milestone: Bedrock provider 1 — the same Claude models through a second door** (`docs/stages/BEDROCK_PROVIDER_1.md`
-on `claude/handoff`) — **implementation done; the smoke stopped on model access** (the owner's AWS account may not use
-Claude Haiku 5.5 yet; Opus 5.5 was not called). Report: `docs/runs/bedrock-provider-1-report.md`; ledger
-`docs/runs/bedrock-provider-1-ledger.md`.
+**Current milestone: Anthropic providers 1 — the same Claude models through three doors (Console, Bedrock, OpenRouter)**
+(`docs/stages/ANTHROPIC_PROVIDERS_1.md` on `claude/handoff`, was BEDROCK_PROVIDER_1) — **implementation done on
+`claude/anthropic-providers-1`; the Bedrock smoke ran; the OpenRouter smoke is blocked by the environment's network policy
+(`openrouter.ai` not allowed)**. Report: `docs/runs/anthropic-providers-1-report.md`; ledger
+`docs/runs/anthropic-providers-1-ledger.md`.
 
-- **What was done:** `ANTHROPIC_PROVIDER=anthropic|bedrock` picks the door for every Claude call, in one helper
-  (`src/lib/server/anthropic-endpoint.ts`, mirror `scripts/eval/lib/anthropic-endpoint.mjs`); the 21 hard-coded
-  endpoints and every Anthropic key read go through it; the app's model ids never change (mapped at the transport);
-  Bedrock throttling waits, a refused model is `not_configured` and named; harness call lines, run records and ledger
-  entries carry `provider`/`endpointHost`/`requestId`; CLOUD.md, `.env.example` (names only), MODELS.md updated.
-- **Key decisions:** the stage's host `bedrock-runtime.<region>.amazonaws.com/anthropic` (live, Anthropic-shaped; the
-  `bedrock-mantle` host of Anthropic's docs is not reachable from the cloud) with `global.` profile ids; no migration;
-  no SDK added.
-- **Checks:** see the commit; new tests in `tests/bedrock-provider-1.test.mjs`.
-- **Money:** $0.00 of the $3 cap (two refused Haiku calls).
-- **Known issues:** Haiku 5.5 (the app's small checks) and possibly Opus 5.5 need Bedrock model access on the owner's
-  account; the Opus tokens-per-minute quota is not observed yet.
-- **Next step:** the owner requests model access (Haiku 5.5, Opus 5.5; Sonnet 5.5 for pictures/combat draft) in the AWS
-  console for us-west-1, then the smoke is re-run (`node scripts/eval/bedrock-smoke.mjs`, ≤ $3) and the Opus quota read.
+- **What was done:** `ANTHROPIC_PROVIDER=anthropic|bedrock|openrouter` picks the door for every Claude call in one helper
+  (`src/lib/server/anthropic-endpoint.ts`, mirror `scripts/eval/lib/anthropic-endpoint.mjs`); OpenRouter at
+  `https://openrouter.ai/api/v1/messages` with a bearer key and `anthropic/claude-*-5.5` slugs; Bedrock's 4.5 ids are the
+  dated profiles; zero hard-coded endpoints (a test walks `src` and `scripts`); OpenRouter 402 stops, 429 waits; Bedrock
+  404/403 on a model is `not_configured`, named; harness call lines and run records carry `provider`, `endpointHost`,
+  `requestId`, `servedModel`, `upstream`, `messageId` and the served = requested check; ledgers print spend per door;
+  `scripts/eval/providers-smoke.mjs --door openrouter|bedrock` (ledger `providers1`, $3 a door); CLOUD.md,
+  `.env.example` (names only), MODELS.md.
+- **Key decisions:** the map applies at the transport (stored ids never change); served model and upstream are read from
+  a clone of the reply (harness-only, the app untouched); no InvokeModel transport for Bedrock (Opus 4.5 is served only
+  there — a separate stage if the owner wants it); no migration; no SDK added.
+- **Checks:** typecheck and zero-warning lint pass; `tests/anthropic-providers-1.test.mjs` 11/11; the full suite and the
+  build: see the final commit.
+- **Money:** Bedrock $0.000038 (Haiku 4.5, 10 tokens); OpenRouter $0 (blocked); Console $0 (no call).
+- **Known issues:** OpenRouter not reachable from this cloud environment until `openrouter.ai` is allowed; on Bedrock the
+  5.5 models are refused (403) and Opus/Sonnet 4.5 are not on the Messages endpoint (404), so Bedrock serves only Haiku
+  4.5 today; no quota headers on Bedrock replies.
+- **Next step:** the owner allows `openrouter.ai`, the OpenRouter smoke runs (`node scripts/eval/providers-smoke.mjs
+  --door openrouter`, ≤ $3); then the owner picks his own table or the stalled runs, each with `ANTHROPIC_PROVIDER=openrouter`.
 
 **Current milestone: the findings of 2026-10-22/23 applied to the game** (`docs/stages/FINDINGS_S3.md` on
 `claude/handoff`, items 1–7) — **implementation done on `claude/s3-candidate`, waiting for the owner's acceptance and the
