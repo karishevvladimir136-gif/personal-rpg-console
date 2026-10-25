@@ -11,6 +11,8 @@ npm, nodejs.org, Ubuntu archives, Google Fonts). Allowed domains:
 
 ```
 api.openai.com
+openrouter.ai
+bedrock-runtime.us-west-1.amazonaws.com
 queue.fal.run
 *.fal.run
 fal.media
@@ -19,6 +21,8 @@ cdn.playwright.dev
 playwright.download.prss.microsoft.com
 playwright.azureedge.net
 ```
+(`api.anthropic.com` is reachable by default. On 2026-10-25 the owner set the environment to full network access to
+unblock OpenRouter quickly; the intended setting is this limited list — restore it when convenient.)
 
 **Environment variables.** Keys use an `APP_` prefix on purpose: an `ANTHROPIC_API_KEY` variable can make Claude Code
 itself bill that key instead of the owner's subscription. The session writes the app's `.env.local` from these.
