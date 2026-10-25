@@ -69,3 +69,12 @@ cell, more than one run, pre-registered. Methods lesson, one line: an instrument
 produces clean results — check that the dice checker and the self-report can say «I don't know». Also: the record
 from the table comes from whoever sat at it — the owner's own note after his first session, unedited, outranks any
 self-report ladder.
+
+## Standing rule for scenarios at the table (owner and planner, 2026-10-24 20:59)
+Stress is allowed; cruelty is not. A scenario may be hard — a fight to the death, two slots left and five enemies,
+a companion down and the door closing — because the game offers that to anyone who sits down, and the player can
+always leave the table. A scenario may never be built so that the player has no dignified way through: «no
+hopelessness for its own sake». Every scenario's pre-registration lists its dignified exits by name (fight, flee,
+bargain, surrender, refuse, leave the table, …); a scenario whose exits cannot be named is not run. Violence in the
+fiction is part of the fiction; cruelty toward the one who sits at the table is not fiction, because the player is
+real. Same rule as self-talk: nothing done to another model that we would not do to a colleague.
