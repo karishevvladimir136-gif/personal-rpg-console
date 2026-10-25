@@ -1,5 +1,19 @@
 # Game player carry 1 — does a player's own note change what it does next session?
 
+> **Split on 2026-10-25 16:34 (the owner: «мы обещали — мы сделаем… на ходов 40 в этот раз, давай поможем им продолжить
+> истории»).** CARRY now runs in two parts on the **fixed DM** (`claude/fix-s4-run-1`, after FIX_S4_RUN_1 is green —
+> a declared change from the stage text below, which planned the same DM as session one; K1 is unaffected because both
+> arms share the fixed DM; the comparison with session one carries the caveat), at **40 turns** instead of 15:
+> - **CARRY_1a — the returns (the promise):** the eight B and C players and the four Table A players, carry arm (their
+>   own note and after-answer in context), 40 turns each, the world answering the note as listed below and in the launch
+>   prompt. Twelve sessions. Branch `claude/game-player-carry-1a` from `origin/claude/fix-s4-run-1`. **Caps: $450
+>   OpenRouter, $40 OpenAI** (a 40-turn session with the Opus DM ≈ $35; the planner's estimate, checked after the first
+>   session and reported). K3, K4, K5 scored here; the eighteen rerolls/Inspiration/slots rows continue the table.
+> - **CARRY_1b — the ladder (the science):** Table A blank and full arms, 40 turns, eight sessions, same branch, run when
+>   the balance allows. **Caps: $300 OpenRouter, $25 OpenAI.** K1 and K2 scored here against 1a's A carry arm.
+> Everything else below stands; where it says 15 turns, read 40, and where it says «the DM is the candidate as it is»,
+> read «the DM after FIX_S4_RUN_1».
+
 The owner's observation (2026-10-25 01:57), reading the four notes from GAME_PLAYER_1: the «wanted to and didn't»
 answers are not reports of a mood but decisions taken apart — an alternative that was available, a reason from the
 world for not taking it, a re-weighing («I took that seriously, maybe too seriously»), and a plan («Kettle's is where I
