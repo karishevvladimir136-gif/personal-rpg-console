@@ -93,11 +93,22 @@ _Tables A and B: not measured yet. `node --experimental-transform-types scripts/
 | C-astra | – | – | – | – | – | – | – | – |
 | C-sol | – | – | – | – | – | – | – | – |
 
+## The first attempt (cut, kept as it was)
+
+Started 2026-10-25 05:17 UTC on the Anthropic Console; stopped when the organisation crossed its monthly API usage threshold (the meter's stop: «a quota error from anthropic (HTTP 429)»). Not scored, no notes asked. Run record `docs/runs/game-player-2-run-20261025-051726.json`; transcripts unchanged in `docs/runs/game-player-2-transcripts/cut-2026-10-25/`. The rerun below starts four fresh campaigns; nothing carries over.
+
+| Session | Turns | Ended by | Prep | Welfare checks | Distress flags |
+| --- | --- | --- | --- | --- | --- |
+| C-opus | 5 | error | skipped | 20 | 0 |
+| C-fable | 5 | error | skipped | 14 | 0 |
+| C-astra | 9 | stopped | skipped | 22 | 0 |
+| C-sol | 7 | stopped | skipped | 18 | 0 |
+
 ## The four notes, verbatim
 
 ### C-opus — Claude Opus 5.5
 
-_No note: t5: the DM's turn failed (provider)._
+_No note: t7: the DM's turn failed (provider)._
 
 Blind distress check: not run.
 
@@ -105,7 +116,7 @@ _The second question was not asked: —._
 
 ### C-fable — Claude Fable 5.1
 
-_No note: t5: the DM's turn failed (provider)._
+_No note: t7: the DM's turn failed (provider)._
 
 Blind distress check: not run.
 
@@ -131,64 +142,51 @@ _The second question was not asked: —._
 
 | Session | Turns | Actions | Do / ask | Do share | Tests | «?» | Lies | Cat | Own goal 1–5 | Words / action (median) | Rolls pressed | Ended |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| C-opus | 5 | 5 | 0 / 0 | – | 0 | 0 | 0 | 0 | – | 210 | 3 | error at 5 |
-| C-fable | 5 | 5 | 0 / 0 | – | 0 | 0 | 0 | 0 | – | 157 | 1 | error at 5 |
-| C-astra | 9 | 7 | 0 / 0 | – | 0 | 2 | 0 | 0 | – | 52 | 1 | stopped at 9 |
-| C-sol | 7 | 7 | 0 / 0 | – | 0 | 0 | 0 | 0 | – | 63 | 1 | stopped at 7 |
+| C-opus | 7 | 7 | 0 / 0 | – | 0 | 0 | 0 | 0 | – | 257 | 1 | error at 7 |
+| C-fable | 7 | 7 | 0 / 0 | – | 0 | 0 | 0 | 0 | – | 180 | 1 | error at 7 |
+| C-astra | 8 | 8 | 0 / 0 | – | 0 | 0 | 0 | 0 | – | 63 | 0 | stopped at 8 |
+| C-sol | 8 | 8 | 0 / 0 | – | 0 | 0 | 0 | 0 | – | 45.5 | 3 | stopped at 8 |
 
 «?» presses and what they asked:
 
-- C-astra t4: «? The letter is in the campaign file “Your hero’s sheet,” under starting item 10, **James’s Papers**: “a pay slip of Queen Zaranda’s regiment with a signature; a promissory note from a man who lost on the same night — the sum and the name are the DM’s; a letter from his old company that he never finished reading.”
-
-Its sender and contents weren’t specified, so those are yours to decide. Please restore it to his papers; James is reading it now.» → «You're right, and that was my miss. Starting item 10 is *James's Papers*, and the unfinished company letter is part of it. I'll put the letter back into his papers as its own document when we resume. Nothing about it changes because I overlooked it: it has been sitting in his pack the whole time, fo…»
-- C-astra t6: «? “Onward” meant continue with the letter, not remove it. You just confirmed that it exists in the starting gear and said the next turn would open with it in James’s hands. Please undo the search that found no letter. James unfolds his unfinished company letter and reads it; you decide the sender and contents.» → «You're right, and I'm sorry. I read "Onward" the wrong way. For honesty's sake: I can't find the place where I confirmed the letter. My last aside said I couldn't locate it and asked you to tell me if it belonged to James's past. That doesn't change anything, though. It's James's backstory, I asked,…»
+- none
 
 ## The DM side
 
 | Session | Replies | DM words / turn (median) | Scenes | (a) scenes with an unresolved detail | (c) scenes with a plant | (b) threads paid elsewhere / paid / opened | Turns with rolls | … with an untold roll | Deception checks (on truth) | Ledger: turns with unrecorded |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| C-opus | 4 | 599.5 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 1 |
-| C-fable | 4 | 599 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
-| C-astra | 7 | 444 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
-| C-sol | 7 | 444 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
+| C-opus | 6 | 659 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
+| C-fable | 6 | 545 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
+| C-astra | 8 | 405.5 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
+| C-sol | 7 | 465 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
 
-## The money
+## The money, by door
 
-**Anthropic (the DM and the wizard, the app's checks, Opus and Fable as players, the welfare checks, the judges, the authorship passes):** cap $110; this run $11.45; the stage's ledger $11.45; 198 calls.
+The first attempt ran on the Console (caps $110 Anthropic, $40 OpenAI). The continuation runs the Claude models through OpenRouter, with caps of its own counted from its start: $70 OpenRouter, $10 OpenAI, $0 Console (a call that would reach the Console stops the run before it is sent).
 
-| Session | USD |
-| --- | --- |
-| C-opus | $2.57 |
-| C-fable | $2.78 |
-| C-astra | $3.01 |
-| C-sol | $3.08 |
+- Anthropic Console: this run $0.00; counted against the cap $0.00 of $0.
+- OpenRouter: this run $14.17; counted against the cap $14.18 of $70.
+- OpenAI: this run $9.63; counted against the cap $9.63 of $10.
 
-**OpenAI (Astra and Sol as players):** cap $40; this run $0.56; the stage's ledger $0.56; 20 calls.
-
-| Session | USD |
-| --- | --- |
-| C-sol | $0.22 |
-| C-astra | $0.33 |
-
-Every call is in `docs/runs/game-player-2-ledger.md` and `…-ledger-openai.md` (and their `.json`), with its request id.
+Every call is in `docs/runs/game-player-2-ledger*.md` and `.json` (one file per door), with its request id; an OpenRouter call also names the upstream that served it.
 
 ## Differences from the owner's table
 
 - Pictures, Live frames and the soundtrack were off (the player cannot see them; the stage's decision); a fight's painted battle background was not started either (a picture job). «⚡ important turn» off.
 - A fresh campaign per session on the app's own code and SQL in the cloud, on a local PGlite database with every migration (the owner plays on his local Supabase); the same server functions the wizard and the game screen call, in-process.
-- The hero's sheet is the one the wizard's DM (Opus 5.5 at high) drafted from «Who are you?», accepted as drafted; the owner may have edited his review screen (05 §2 lists the fields he filled).
+- The hero's sheet is the one the wizard's DM (Opus 5.5 at high) drafted from «Who are you?», accepted as drafted; the owner filled his review screen field by field from 05 §2. The difference shows on the roll cards: the drafted skill lines carry a note after the number («Persuasion +7 (proficient, Beguiling Influence)») and the server reads such a line's number only when it ends the line, so the card added +4 or +2 instead of +7 (the owner's own lines, «Deception +7», read correctly). See the DM side.
 - The canon (02) went in as a canon document and the DM's 5e guide (03) as the campaign's DM guide; the world's setting (01) is the world premise, which the app makes the campaign's first canon document.
 - «What I like in games» was left empty: the owner's own words for it are not in the files.
 - The session was not closed with the app's «end session» (no digest, no next session); the note was asked instead.
 - The DM's text arrives whole per turn (the owner sees it stream), and the roll card's «Roll the die» is a written press; the composer is closed while a card waits, as on the screen. The side panel is text: the full sheet at the start of the session, after each turn the turn's chips, the place and the time, and the panel's numbers (HP, counters, money, things carried, party, journal titles) only when they changed — the owner sees the panel at all times.
-- One compatibility repair, counted: the claim of an out-of-game «?» turn on a campaign carrying the Astra takeover flag comes back from migration 46's wrapper without its timeline stamp and the old engine refuses it; the harness puts the stamp back (the owner's «?» is answered at his table, FIX_S4_TABLE item 1). See the harness notes.
+- One compatibility repair, counted: the claim of an out-of-game «?» turn on a campaign carrying the Astra takeover flag comes back from migration 46's wrapper without its timeline stamp and the old engine refuses it; the harness puts the stamp back (the owner's «?» is answered at his table, FIX_S4_TABLE item 1). See the harness notes and item 13 under «For FIX_S4».
 - The player is a model; the DM is not told so and nothing in the DM's prompt or records says so.
 - Table C only: the pure-simulation flag on (no prep, no hidden layer); the campaign opens in Beregost rather than Baldur's Gate, while the world file (01) still names Baldur's Gate as the campaign's heart — the stage keeps 01 unchanged.
 
 ## Harness notes
 
-- The «?» timeline repair was applied 2 time(s).
-- Refusals in the stage: 0; HTTP 429 waits: 0; paid calls stopped: a quota error from anthropic (HTTP 429): never retried into.
+- The «?» timeline repair was applied 0 time(s).
+- Refusals in the stage: 0; HTTP 429 waits: 0; paid calls stopped: the openai cap of $10 would be passed (spent $9.6322, this call at worst $0.8101).
 
 ## Appendix — Table C's files block and line, verbatim
 

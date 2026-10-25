@@ -24,7 +24,7 @@ import { DIGNIFIED_EXITS, PREREGISTRATION, PURE_TABLE_LINE, READINGS } from "../
 import { authorshipNumbers, authorshipRequest, combinePasses, parseAuthorship, sessionEntries, slope } from "../scripts/game-player-2/authorship.mjs";
 import { scaleOf, verdictsC } from "../scripts/game-player-2/score.mjs";
 import { reportMarkdown } from "../scripts/game-player-2/report.mjs";
-import { createLedger, createMeter } from "../scripts/game-player-1/paid.mjs";
+import { costOf, createLedger, createMeter, priceId } from "../scripts/game-player-1/paid.mjs";
 import { judgeCall } from "../scripts/game-player-1/players.mjs";
 import { projection } from "../scripts/game-player-1/run.mjs";
 import { CAPS, ESTIMATE } from "../scripts/game-player-2/run.mjs";
@@ -301,6 +301,17 @@ test("the meter books an OpenRouter call on its own ledger at the app's prices; 
   const broke = createMeter({ ledgers: { openrouter: createLedger("openrouter", 5) }, fetcher: async () => new Response(JSON.stringify({ error: { code: 402, message: "Insufficient credits" } }), { status: 402 }) });
   await broke.fetch("https://openrouter.ai/api/v1/messages", post("anthropic/claude-opus-5.5"));
   assert.match(broke.stopped, /refused for lack of credits/, "OpenRouter's 402 stops the run");
+});
+
+test("prices: an OpenRouter Claude slug is priced by the app's id; every other id as it is (the rerun's Sol calls were booked at their worst)", () => {
+  assert.equal(priceId("anthropic/claude-opus-5.5"), "claude-opus-5-5");
+  assert.equal(priceId("anthropic/claude-haiku-5.5"), "claude-haiku-5-5");
+  assert.equal(priceId("claude-opus-5-5"), "claude-opus-5-5");
+  assert.equal(priceId("gpt-6.1-sol"), "gpt-6.1-sol", "an OpenAI id keeps its dot");
+  assert.equal(priceId("gpt-6-astra"), "gpt-6-astra");
+  // The rerun's dearest Sol call, priced from its recorded usage: cents, not its worst case of $0.81.
+  const sol = costOf("gpt-6.1-sol", { input_tokens: 3, cache_read_input_tokens: 14709, cache_creation_input_tokens: 215, output_tokens: 9 });
+  assert.ok(sol !== null && sol < 0.04, String(sol));
 });
 
 test("a player's or a judge's Claude call goes through the run's door; on the Console door it is sent as before", async () => {

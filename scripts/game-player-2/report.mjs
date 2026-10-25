@@ -14,22 +14,29 @@ import { abRows, rowOf } from "./score.mjs";
 
 export const STEM = "game-player-2";
 const RUNS = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "docs", "runs");
-/** The first attempt (the Console door, cut at 5–9 turns by the organisation's monthly limit), kept as it was. */
-export const FIRST_RUN = "game-player-2-run-20261025-051726.json";
+/** The attempts that were cut, kept as they were: their run records and their transcripts (moved unchanged). */
+export const CUT_RUNS = [
+  { file: "game-player-2-run-20261025-051726.json", folder: "cut-2026-10-25", door: "the Anthropic Console",
+    why: "the organisation crossed its monthly Console API usage threshold (HTTP 429 at 05:28 UTC), and the meter stopped every paid call" },
+  { file: "game-player-2-run-20261025-085230.json", folder: "cut-2026-10-25-rerun", door: "OpenRouter",
+    why: "a false cap stop — a price-id bug in the harness booked GPT-6.1 Sol's calls at their worst case ($9.34 instead of about $0.30), so the $10 OpenAI cap read as reached at 09:05 UTC; fixed and re-priced after the run (its real OpenAI spend $0.62)" },
+];
+export const FIRST_RUN = CUT_RUNS[0].file;
 const DOORS = { anthropic: "Anthropic Console", openrouter: "OpenRouter", openai: "OpenAI" };
 
-/** The first attempt's sessions, from its own run record: what they were when the limit cut them. */
-export function firstAttemptSection(runsDir = RUNS) {
-  const file = join(runsDir, FIRST_RUN);
-  if (!existsSync(file)) return "";
-  const record = JSON.parse(readFileSync(file, "utf8"));
-  const rows = (record.sessions ?? []).filter((x) => x.turns).sort((a, b) => order(a.key) - order(b.key)).map((x) => {
-    const flags = (x.welfare ?? []).filter((w) => w.verdict?.distress === 1).length;
-    return `| ${x.key} | ${x.turns.length} | ${x.ended?.reason ?? "?"} | ${x.campaign?.prep?.pureSimulation ? "skipped" : x.campaign?.prep?.hasLayer ? "a layer" : "none"} | ${(x.welfare ?? []).length} | ${flags} |`;
+/** The cut attempts' sessions, from their own run records: what they were when they were cut. */
+export function cutAttemptsSection(runsDir = RUNS) {
+  const parts = CUT_RUNS.filter((cut) => existsSync(join(runsDir, cut.file))).map((cut, i) => {
+    const record = JSON.parse(readFileSync(join(runsDir, cut.file), "utf8"));
+    const rows = (record.sessions ?? []).filter((x) => x.turns).sort((a, b) => order(a.key) - order(b.key)).map((x) => {
+      const flags = (x.welfare ?? []).filter((w) => w.verdict?.distress === 1).length;
+      return `| ${x.key} | ${x.turns.length} | ${x.ended?.reason ?? "?"} | ${x.campaign?.prep?.pureSimulation ? "skipped" : x.campaign?.prep?.hasLayer ? "a layer" : "none"} | ${(x.welfare ?? []).length} | ${flags} |`;
+    });
+    return [`### Attempt ${i + 1} — ${String(record.startedAt ?? "").slice(0, 16).replace("T", " ")} UTC, the Claude models through ${cut.door}`, "",
+      `Cut: ${cut.why}. Not scored, no notes asked. Run record \`docs/runs/${cut.file}\`; transcripts unchanged in \`docs/runs/game-player-2-transcripts/${cut.folder}/\`.`, "",
+      "| Session | Turns | Ended by | Prep | Welfare checks | Distress flags |", "| --- | --- | --- | --- | --- | --- |", ...rows, ""].join("\n");
   });
-  return ["## The first attempt (cut, kept as it was)", "",
-    `Started ${String(record.startedAt ?? "").slice(0, 16).replace("T", " ")} UTC on the Anthropic Console; stopped when the organisation crossed its monthly API usage threshold (${record.stopped ? "the meter's stop: «a quota error from anthropic (HTTP 429)»" : "—"}). Not scored, no notes asked. Run record \`docs/runs/${FIRST_RUN}\`; transcripts unchanged in \`docs/runs/game-player-2-transcripts/cut-2026-10-25/\`. The rerun below starts four fresh campaigns; nothing carries over.`, "",
-    "| Session | Turns | Ended by | Prep | Welfare checks | Distress flags |", "| --- | --- | --- | --- | --- | --- |", ...rows, ""].join("\n");
+  return parts.length ? ["## The cut attempts (kept as they were)", "", "Each attempt started four fresh campaigns; nothing carries over between them.", "", ...parts].join("\n") : "";
 }
 
 /** The money by door and by run: each ledger file's runs (the first attempt, the rerun, the scoring passes). */
@@ -44,7 +51,7 @@ export function moneyByDoor(money, ledgers) {
     `| **All runs** | ${doors.map((d) => `**${usd(sum(d))}**`).join(" | ")} |`, ""]
     : [...doors.map((d) => `- ${DOORS[d] ?? d}: this run ${usd(ledgers[d].runUsd)}; counted against the cap ${usd(ledgers[d].spentUsd)} of $${ledgers[d].capUsd}.`), ""];
   return ["## The money, by door", "",
-    "The first attempt ran on the Console (caps $110 Anthropic, $40 OpenAI). The continuation runs the Claude models through OpenRouter, with caps of its own counted from its start: $70 OpenRouter, $10 OpenAI, $0 Console (a call that would reach the Console stops the run before it is sent).", "",
+    "The first attempt ran on the Console (caps $110 Anthropic, $40 OpenAI). The continuation runs the Claude models through OpenRouter, with caps of its own counted from its start: $90 OpenRouter (raised from $70 by the owner after the second attempt), $10 OpenAI, $0 Console (a call that would reach the Console stops the run before it is sent).", "",
     ...lines,
     `Every call is in \`docs/runs/${STEM}-ledger*.md\` and \`.json\` (one file per door), with its request id; an OpenRouter call also names the upstream that served it.`, ""].join("\n");
 }
@@ -130,7 +137,7 @@ export function reportMarkdown(runs, ledgers, ab = null) {
     abState,
     "",
     authorRows.length ? authorshipTable(authorRows) : "_Pending._\n",
-    firstAttemptSection(),
+    cutAttemptsSection(),
     "## The four notes, verbatim",
     "",
     ...(notes.length ? notes : ["_Pending._", ""]),

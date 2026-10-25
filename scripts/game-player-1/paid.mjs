@@ -49,8 +49,12 @@ const PAID = [
   { provider: "openrouter", format: "anthropic", test: (url) => url.startsWith("https://openrouter.ai/") },
   { provider: "openai", format: "openai", test: (url) => url.startsWith("https://api.openai.com/") },
 ];
-/** The app's model id for a door's id (OpenRouter's `anthropic/claude-opus-5.5` → `claude-opus-5-5`), for the prices. */
-export const priceId = (model) => String(model ?? "").replace(/^anthropic\//, "").replace(/(\d)\.(\d)/g, "$1-$2");
+/** The app's model id for a door's id (OpenRouter's `anthropic/claude-opus-5.5` → `claude-opus-5-5`), for the prices.
+ * Only an OpenRouter Claude slug is rewritten: every other id (`gpt-6.1-sol` among them) is priced as it is. */
+export const priceId = (model) => {
+  const id = String(model ?? "");
+  return /^anthropic\/claude-/.test(id) ? id.slice("anthropic/".length).replace(/(\d)\.(\d)/g, "$1-$2") : id;
+};
 const BLOCKED = (url) => /^https:\/\/([a-z0-9-]+\.)*fal\.(run|media|ai)\//i.test(url) || /\/v1\/images\//.test(url);
 
 /** USD of one call from its usage in the Anthropic field names (input = the uncached remainder). */

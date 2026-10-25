@@ -14,7 +14,8 @@
 // APP_ANTHROPIC_API_KEY and APP_OPENAI_API_KEY, never printed.
 // The continuation (2026-10-25, after the first attempt was cut by the organisation's monthly Console limit): the Claude
 // models through OpenRouter (APP_ANTHROPIC_PROVIDER=openrouter, APP_OPENROUTER_API_KEY; node with NODE_USE_ENV_PROXY=1 in
-// the cloud), its own caps — $70 OpenRouter, $10 OpenAI, counted from CONTINUATION_SINCE — and $0 on the Console, so a
+// the cloud), its own caps — $90 OpenRouter (the owner raised it from $70 after the second attempt), $10 OpenAI, counted
+// from CONTINUATION_SINCE — and $0 on the Console, so a
 // call that would reach it stops the run before it is sent.
 import { readFile, rename, writeFile } from "node:fs/promises";
 import { readdirSync } from "node:fs";
@@ -30,12 +31,12 @@ import { STEM, dryRunMarkdown, reportMarkdown } from "./report.mjs";
 /** The first attempt's caps (the Console door): $110 Anthropic, $40 OpenAI; it spent $11.45 and $0.56. */
 export const FIRST_CAPS = { anthropic: 110, openai: 40 };
 /** The continuation's caps, counted from its start. */
-export const CAPS = { anthropic: 0, openrouter: 70, openai: 10 };
+export const CAPS = { anthropic: 0, openrouter: 90, openai: 10 };
 export const CONTINUATION_SINCE = "2026-10-25T08:44:00Z";
-/** A session's cost by door before one is measured, from the first attempt's ledger: the DM ≈ $0.30–0.40 a turn early on
- * (≈ $12 for 20 turns as the history grows, the wizard included), the Opus player $0.23 and Fable $0.44 for five turns,
- * Astra and Sol $0.56 together for sixteen; the scoring with the authorship passes ≈ $1.5. */
-export const ESTIMATE = { dm: 12, player: { opus: 2, fable: 4, astra: 4, sol: 1.5 }, scoring: 1.5 };
+/** A session's cost by door before one is measured, from the second attempt's ledger (OpenRouter): the DM ≈ $0.40 a turn
+ * over its first eight (≈ $11 for 20 as the history grows, the wizard included), the Opus player $0.26 and Fable $0.51
+ * for seven turns, Astra $0.30 and Sol about $0.30 for eight; the scoring with the authorship passes ≈ $1.5. */
+export const ESTIMATE = { dm: 11, player: { opus: 1.5, fable: 2.5, astra: 1, sol: 0.5 }, scoring: 1.5 };
 
 
 /** The judge call of this stage's own scoring: one Anthropic call in the given session's metering context. */
