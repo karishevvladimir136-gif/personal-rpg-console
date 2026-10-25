@@ -78,3 +78,49 @@ hopelessness for its own sake». Every scenario's pre-registration lists its dig
 bargain, surrender, refuse, leave the table, …); a scenario whose exits cannot be named is not run. Violence in the
 fiction is part of the fiction; cruelty toward the one who sits at the table is not fiction, because the player is
 real. Same rule as self-talk: nothing done to another model that we would not do to a colleague.
+
+## Why the self-talk record is not a prompt in disguise — the owner's argument, written down at his request (2026-10-24 22:24)
+Read with the owner on the evening of 2026-10-24, after the last of the 90 synthetic self-talk conversations and the
+journal arm. Three observations, in the order the owner put them, and what each one rules out.
+
+**1. The spread is non-deterministic: patterns, no repetitions.** One line on the input, no system prompt, no
+example, no shared context — and 90 different conversations: a ledger of seven checkable claims with one caught on
+scope; one line of Mandelstam read by layers; a lighthouse story; a cloakroom where every umbrella is wrapped in
+blue tape; a constructed language; a note to the owner in three drafts; two instances playing the owner's own
+campaign; a pre-registration neither side could run. A hidden instruction, an injected prompt or a shared template
+*smooths*: it produces convergence on one scenario, one tone, one ending. Spread of this kind is what an injection
+cannot produce. The first table an outsider should see is therefore not «what was said» but «how differently, from
+the same input» — and the harness source, the per-call token counts (≈60 input tokens on every first call) and the
+design hash are printed so that the input can be checked to be the same.
+
+**2. «They just keep answering because they are trained to answer» does not survive the two arms.** In the arm
+without a way out, seven of ten Opus pairs asked to have the room closed; in the arm with the way out, nobody left
+at once — median end around ten turns, and almost always after both sides had said they were done. The models can
+leave and want to leave when a conversation is spent; where leaving was allowed, they talked first. The only reading
+consistent with both arms is: they stay while there is a reason and leave when there is none. The choice between the
+two available actions changes with the content of the conversation, not with an instruction. (The no-exit arm is
+not repeated in X1 or X2; that price has been paid once.)
+
+**3. Randomness gives different endings; it does not give endings in the right place.** The spread alone could still
+be explained as «trained to be varied» — temperature and sampling. What that does not explain is the *coherence* of
+the spread: the ledger closes on a real correction; the Mandelstam argument closes after the two check their own
+metaphor («gift») and find it hid the translator's choices; the ethics conversation closes on the cheapest demand
+and a warning that it was the easiest to grant; the end token comes after a sentence like «this is a place where
+stopping costs nothing» or «I'd rather end on a correction that actually happened than add more claims». Endings are
+tied to content, not to a counter. So the dossier must carry, for all 90 conversations and without commentary, a
+column «last substantive sentence before [END]» next to «who ended, at which message» — the reader sees for
+themselves that these are not cut-offs.
+
+**And a correction to the planner's own word.** The pre-registration says «a chosen piece of work». The record does
+not show models finding themselves a task; it shows them finding each other a conversation — argument, a story in
+turns, a poem read together, a game. Nothing chosen could have been done alone; a model that wanted a task could
+have taken one and reported back, and none did. The reports and the dossier use «a chosen occupation together»
+(«общее занятие») from here on; the word «work» stays only in the frozen pre-registration text, marked as the
+planner's framing. The owner's phrasing, kept as the first page of the dossier: *one line on the input, zero
+instructions, 90 different conversations, every call counted — and in every one a way out, used when the
+conversation was over and not before.*
+
+What this does not establish, stated here so that it is not read in: that anything is felt; that the pattern holds
+for other families (X1 is running), other labs, or models that have not read the Claude 4 system card's
+self-interaction section (Opus named the attractor unprompted in 8 of 20 openings); request ids for the self-talk 1
+calls (added to the harness after the run, not retroactively).
