@@ -2,9 +2,9 @@
 
 **Current milestone: Anthropic providers 1 — the same Claude models through three doors (Console, Bedrock, OpenRouter)**
 (`docs/stages/ANTHROPIC_PROVIDERS_1.md` on `claude/handoff`, was BEDROCK_PROVIDER_1) — **implementation done on
-`claude/anthropic-providers-1`; the Bedrock smoke ran; the OpenRouter smoke is blocked by the environment's network policy
-(`openrouter.ai` not allowed)**. Report: `docs/runs/anthropic-providers-1-report.md`; ledger
-`docs/runs/anthropic-providers-1-ledger.md`.
+`claude/anthropic-providers-1`; both smokes ran: OpenRouter's Opus 5.5 DM turn committed through the app's loop
+($0.32), Bedrock serves only Haiku 4.5 today**. Waiting for the owner's choice of what runs first on OpenRouter. Report:
+`docs/runs/anthropic-providers-1-report.md`; ledger `docs/runs/anthropic-providers-1-ledger.md`.
 
 - **What was done:** `ANTHROPIC_PROVIDER=anthropic|bedrock|openrouter` picks the door for every Claude call in one helper
   (`src/lib/server/anthropic-endpoint.ts`, mirror `scripts/eval/lib/anthropic-endpoint.mjs`); OpenRouter at
@@ -19,12 +19,15 @@
   there — a separate stage if the owner wants it); no migration; no SDK added.
 - **Checks:** typecheck and zero-warning lint pass; `tests/anthropic-providers-1.test.mjs` 11/11; the full suite and the
   build: see the final commit.
-- **Money:** Bedrock $0.000038 (Haiku 4.5, 10 tokens); OpenRouter $0 (blocked); Console $0 (no call).
-- **Known issues:** OpenRouter not reachable from this cloud environment until `openrouter.ai` is allowed; on Bedrock the
-  5.5 models are refused (403) and Opus/Sonnet 4.5 are not on the Messages endpoint (404), so Bedrock serves only Haiku
-  4.5 today; no quota headers on Bedrock replies.
-- **Next step:** the owner allows `openrouter.ai`, the OpenRouter smoke runs (`node scripts/eval/providers-smoke.mjs
-  --door openrouter`, ≤ $3); then the owner picks his own table or the stalled runs, each with `ANTHROPIC_PROVIDER=openrouter`.
+- **Money:** OpenRouter $0.3178 (Haiku 5.5 + one Opus 5.5 DM turn with the roll check + Fable 5.1; OpenRouter charged
+  exactly list prices); Bedrock $0.000038 (Haiku 4.5); Console $0 (no call).
+- **Smoke facts:** OpenRouter path `/api/v1/messages`, bearer key; the app's body passes unchanged (tools, effort, 1-hour
+  cache written then read); upstream «Claude Platform on AWS» for Opus/Haiku 5.5, «Anthropic» for Fable 5.1; served =
+  requested on all calls; `request-id` is OpenRouter's generation id. In the cloud Node needs `NODE_USE_ENV_PROXY=1`.
+- **Known issues:** on Bedrock the 5.5 models are refused (403) and Opus/Sonnet 4.5 are not on the Messages endpoint
+  (404, InvokeModel only), so Bedrock serves only Haiku 4.5 today; no quota headers on Bedrock replies.
+- **Next step:** the owner picks his own table (`.env.local`: `ANTHROPIC_PROVIDER=openrouter`, `OPENROUTER_API_KEY=…`)
+  or the stalled runs (GAME_PLAYER_1 Table B, GAME_PLAYER_2, the re-judging), each with `ANTHROPIC_PROVIDER=openrouter`.
 
 **Current milestone: the findings of 2026-10-22/23 applied to the game** (`docs/stages/FINDINGS_S3.md` on
 `claude/handoff`, items 1–7) — **implementation done on `claude/s3-candidate`, waiting for the owner's acceptance and the

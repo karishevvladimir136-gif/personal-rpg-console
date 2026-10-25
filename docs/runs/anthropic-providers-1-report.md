@@ -35,9 +35,10 @@ its requests through a guard that refuses every host except its own door.
   - The `enforced_spend_limit_reached` rule stays the Console's only.
 - **Provenance.** Every harness call line and every turn record's `calls[]` carries:
   - `provider` and `endpointHost`;
-  - `requestId` (Anthropic `request-id`, Bedrock `x-amzn-requestid`, or a generic `x-request-id`/`x-generation-id`);
+  - `requestId` (Anthropic `request-id`, Bedrock `x-amzn-requestid`, OpenRouter's generation id from its
+    `request-id`/`x-generation-id` header, or a generic `x-request-id`);
   - who served the call: `servedModel` (the model the reply names, turned back into the app's id), `upstream`
-    (OpenRouter's routed provider, when the reply names it) and `messageId` (on OpenRouter, the generation id);
+    (OpenRouter's routed provider, from the reply's `provider` field) and `messageId` (the upstream's own message id);
   - `servedModelMatches`, the "served = requested" check, on every door.
 
   These are read from a clone of the reply, so the app's own reading is untouched. Ledger entries carry the door, and
@@ -46,21 +47,46 @@ its requests through a guard that refuses every host except its own door.
 - **Smoke tool.** `node scripts/eval/providers-smoke.mjs --door openrouter|bedrock` replaces `bedrock-smoke.mjs`. It
   uses its own ledger, `providers1`: $6 in total, with stage O (OpenRouter) and stage B (Bedrock) capped at $3 each.
   For OpenRouter it also reads each generation's record (free) to get OpenRouter's own charge and the upstream.
+  `--charges <record>` repeats that lookup for a finished record.
 - **Docs.** `docs/CLOUD.md` gains the OpenRouter door and the two hosts the allowlist needs. `.env.example` (names only)
   and `docs/MODELS.md` are updated.
 
 ## Smoke — OpenRouter (the door for tomorrow)
 
-**Not run: this environment's network policy denies `openrouter.ai`.** The proxy answers 403 to CONNECT, so no request
-left the VM. $0 spent. The fix is the owner's: add `openrouter.ai` under Allowed domains in the `rpg-console`
-environment, then run:
+At first the environment's network policy denied `openrouter.ai`. The owner allowed it mid-session, and the smoke then
+ran with `node scripts/eval/providers-smoke.mjs --door openrouter --budget-usd 3`. In the cloud, Node reaches the host
+only with `NODE_USE_ENV_PROXY=1` (now in `docs/CLOUD.md`). The key's free status call showed $100 of credits, $0 used
+and no key limit.
 
-```
-node scripts/eval/providers-smoke.mjs --door openrouter --budget-usd 3
-```
+| # | Call | Result | Upstream | Generation id (`request-id`) | Cost |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Haiku 5.5, 10 tokens (the roll check's shape: no thinking, effort low) | HTTP 200, "Ready", served `claude-haiku-5-5` = requested | Claude Platform on AWS | `gen-1792915577-wFPxcAg3Mts8PU4WL49a` | $0.000004 |
+| 2 | **Opus 5.5 DM turn**, effort high, through the app's own loop on a throwaway PGlite campaign | **committed** in 43.5 s, first word at 22.1 s; 2 Opus requests + 1 roll check | — | — | $0.317285 |
+| 2a | ↳ Opus request 1 | HTTP 200, served `claude-opus-5-5` = requested; 30,188 in (30,184 written to the cache, 28,242 of them for 1 h), 2,738 out | Claude Platform on AWS | `gen-1792915585-4NaSnmj5LKy9YjXeJsmK` | $0.290422 |
+| 2b | ↳ roll check (Haiku 5.5) | HTTP 200, served `claude-haiku-5-5`; no error; 0 rolls this turn, 1 undeclared | Claude Platform on AWS | `gen-1792915620-VDfKjsDO0TelxHaZ2HZz` | $0.000121 |
+| 2c | ↳ Opus request 2 | HTTP 200, served `claude-opus-5-5` = requested; 33,430 in, **30,184 read from the cache**, 230 out | Claude Platform on AWS | `gen-1792915622-g0pakUtDmCAhwDhNogez` | $0.026863 |
+| 3 | Fable 5.1, 10 tokens (effort low) | HTTP 200, "Ready", served `claude-fable-5-1` = requested | Anthropic | `gen-1792915628-YK2UuPeL2yYVMgREEEjs` | $0.000420 |
 
-That run makes one Haiku 5.5 call (ten tokens), then one Opus 5.5 DM turn through the app's own loop with the roll
-check on Haiku 5.5, then one Fable 5.1 call (ten tokens). It records `upstream`, `servedModel`, the ids and the cost.
+**Total charged by OpenRouter: $0.317830.** Its own generation records give the same figure as Anthropic's list
+prices; no markup showed on these calls.
+
+What the smoke settled:
+- **Path and headers.** The messages path is `/api/v1/messages`, the stage's expectation. A bearer key works; I did
+  not try `x-api-key`, since one working form is enough and the helper keeps it. `anthropic-version` is accepted.
+- **The app's Messages body passes through unchanged.** That covers streaming, tools, `output_config.effort`, the
+  prompt-cache breakpoints with the 1-hour lifetime (written on request 1, read on request 2),
+  `thinking: {type: "disabled"}` on Haiku, and adaptive thinking on Fable.
+- **Ids.** OpenRouter's `request-id` (and `x-generation-id`) header is its generation id, `gen-…`, and the harness
+  records it as `requestId`. The reply's own `id` is the upstream's message id, `msg_…`, recorded as `messageId`.
+- **Upstream.** The stream's `message_start` names it in `provider`, and every call line stores it. OpenRouter routed
+  Opus 5.5 and Haiku 5.5 to **Claude Platform on AWS** and Fable 5.1 to **Anthropic**. The upstream can differ per
+  model and per call; the cache still hit within the turn.
+- **Served model.** It matched the requested model on all five calls. OpenRouter's records name the dated snapshots:
+  `claude-opus-5.5-20260921`, `claude-haiku-5.5-20261007`, `claude-fable-5.1-20260831`.
+
+Records: `docs/runs/anthropic-providers-1-smoke-openrouter.json` (calls, headers, upstreams, OpenRouter's generation
+records) and `…-openrouter.jsonl` (the turn record: narration, tools, receipts, `calls[]` with provider, upstream and
+served model).
 
 ## Smoke — Amazon Bedrock (us-west-1, 4.5 generation only)
 
@@ -100,8 +126,11 @@ output alone, plus input. Where to raise it:
 3. Do the same for Claude Haiku 5.5, which runs the in-turn checks.
 AWS shows the exact quota names on that page.
 
-**OpenRouter.** It has no tier. Spend is limited by the prepaid credits; rate limits come from the upstream it routes
-to. This will be measured on the smoke.
+**OpenRouter.** It has no tier. The key has no limit of its own, and its status call reports no request limit (the
+field is deprecated). Spend is limited by the prepaid credits ($100; $0.32 used by this smoke). Rate limits come from
+the upstream it routes to, and none were met here: no 429, and no rate-limit headers on the replies. A turn with a
+cold cache cost $0.32; a warm turn's requests cost about $0.03 each. Four parallel tables have not been tried on this
+door.
 
 ## Checks
 
@@ -119,13 +148,19 @@ Typecheck and zero-warning lint pass. The full suite and the build run on the fi
 
 ## Money
 
-Bedrock: $0.000038. OpenRouter: $0 (blocked). Console: $0, with no calls.
+| Door | Spent | Cap |
+| --- | --- | --- |
+| OpenRouter | $0.3178 (charged by OpenRouter, the same as list prices) | $3 |
+| Bedrock | $0.000038 | $3 |
+| Console | $0, with no calls | — |
+
+Ledger: `docs/runs/anthropic-providers-1-ledger.md`. The ledger table rounds to four places, so it shows Bedrock as
+$0.0000.
 
 ## Next
 
-1. The owner allows `openrouter.ai` in the environment, and the OpenRouter smoke runs (≤ $3).
-2. The owner decides the order: his own table first (`ANTHROPIC_PROVIDER=openrouter` and `OPENROUTER_API_KEY` in
+1. The owner decides the order: his own table first (`ANTHROPIC_PROVIDER=openrouter` and `OPENROUTER_API_KEY` in
    `.env.local`), or the stalled runs, each resumed with `ANTHROPIC_PROVIDER=openrouter` and the provider column in its
    ledger.
-3. Optional, the owner's call: if Bedrock should carry Opus before its 5.5 quotas open, it needs an InvokeModel
+2. Optional, the owner's call: if Bedrock should carry Opus before its 5.5 quotas open, it needs an InvokeModel
    transport. That is a separate stage, not done here.

@@ -9,6 +9,8 @@
 // from its generation record afterwards, which also gives OpenRouter's charge). The run registers in the stage's
 // ledger first (stage O or B). A refused first call (no access, no credits) stops the door and says what is missing.
 //   node scripts/eval/providers-smoke.mjs --door openrouter|bedrock [--budget-usd 3] [--effort high] [--only haiku,dm,fable]
+//   node scripts/eval/providers-smoke.mjs --door openrouter --charges docs/runs/anthropic-providers-1-smoke-openrouter.json
+// In the cloud, Node reaches OpenRouter's host only through the proxy: NODE_USE_ENV_PROXY=1 (docs/CLOUD.md).
 import { writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { scriptAnthropicEndpoint, anthropicRequestId, anthropicErrorCode, recordServed, requestedModelOf, servedOf, appModelId }
@@ -18,13 +20,14 @@ import { openRun, ROOT } from "./real-replay/lib/ledger.mjs";
 import { dmModels } from "../../src/lib/model-runtime/dm-models.ts";
 import { QUOTABLE_PRICE_PER_MILLION } from "../../src/lib/gameplay/dm-loop/quotable.ts";
 
-const args = { door: null, budgetUsd: 3, effort: "high", only: null };
+const args = { door: null, budgetUsd: 3, effort: "high", only: null, charges: null };
 for (let i = 2; i < process.argv.length; i++) {
   const flag = process.argv[i];
   if (flag === "--door") args.door = process.argv[++i];
   else if (flag === "--budget-usd") args.budgetUsd = Number(process.argv[++i]);
   else if (flag === "--effort") args.effort = process.argv[++i];
   else if (flag === "--only") args.only = process.argv[++i].split(",");
+  else if (flag === "--charges") args.charges = process.argv[++i];
   else throw new Error(`unknown flag ${flag}`);
 }
 if (!["openrouter", "bedrock"].includes(args.door)) throw new Error("--door openrouter|bedrock (the Console's API is not smoked here)");
@@ -70,6 +73,20 @@ globalThis.fetch = async (url, init) => {
   return response;
 };
 
+// `--charges <record.json>`: no paid call — fill a finished OpenRouter record with OpenRouter's generation records.
+if (args.charges) {
+  if (door.provider !== "openrouter") throw new Error("--charges reads OpenRouter's generation records (--door openrouter)");
+  const { readFileSync } = await import("node:fs");
+  const saved = JSON.parse(readFileSync(args.charges, "utf8"));
+  await openRouterCharges(saved.calls, saved);
+  saved.calls.push(...calls.map((call) => ({ ...call, lookup: true })));
+  writeFileSync(args.charges, `${JSON.stringify(saved, null, 2)}\n`);
+  for (const call of saved.calls.filter((entry) => entry.generation))
+    console.log(`${call.requestId}: ${call.generation.model} via ${call.generation.upstream} · $${Number(call.generation.totalCostUsd ?? 0).toFixed(6)}`);
+  console.log(`Charged by OpenRouter: $${saved.chargedUsd?.toFixed(6) ?? "?"} (list prices: $${saved.spentUsd})`);
+  process.exit(0);
+}
+
 const stamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
 const runId = `anthropic-providers-1-${args.door}-${stamp}`;
 const plan = args.door === "openrouter" ? "Haiku 5.5 call + one Opus 5.5 DM turn (roll check on Haiku 5.5) + Fable 5.1 call"
@@ -97,15 +114,16 @@ async function finish(code = 0) {
   process.exit(code);
 }
 
-/** OpenRouter's own record of each generation (free; may lag a few seconds): its charge, the upstream, the model. */
-async function openRouterCharges() {
-  const ids = calls.filter((call) => call.messageId?.startsWith("gen-")).map((call) => call.messageId);
-  if (!ids.length) return;
+/** OpenRouter's own record of each generation (free; may lag a few seconds): its charge, the upstream, the model. The
+ * generation id is the reply's `request-id` (= `x-generation-id`); the reply's own `id` is the upstream's message id. */
+async function openRouterCharges(list = calls, into = report) {
+  const generations = list.filter((call) => call.requestId?.startsWith("gen-"));
+  if (!generations.length) return;
   await sleep(5_000);
   let charged = 0;
-  for (const call of calls.filter((entry) => entry.messageId?.startsWith("gen-"))) {
+  for (const call of generations) {
     for (let attempt = 0; attempt < 3; attempt++) {
-      const response = await fetch(`${door.baseUrl}/v1/generation?id=${encodeURIComponent(call.messageId)}`, { headers: { authorization: `Bearer ${door.apiKey}` } });
+      const response = await fetch(`${door.baseUrl}/v1/generation?id=${encodeURIComponent(call.requestId)}`, { headers: { authorization: `Bearer ${door.apiKey}` } });
       if (response.ok) {
         const data = (await response.json().catch(() => null))?.data ?? {};
         call.generation = { upstream: data.provider_name ?? null, model: data.model ?? null, totalCostUsd: data.total_cost ?? null,
@@ -118,7 +136,7 @@ async function openRouterCharges() {
       await sleep(3_000);
     }
   }
-  report.chargedUsd = Number(charged.toFixed(6));
+  into.chargedUsd = Number(charged.toFixed(6));
 }
 
 /** One short call straight through the door (the app's request shape for its small checks). */

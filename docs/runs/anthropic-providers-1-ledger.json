@@ -13,6 +13,19 @@
       "settled": true,
       "finishedAt": "2026-10-25T07:55:17.656Z",
       "record": "docs/runs/anthropic-providers-1-smoke-bedrock.json"
+    },
+    {
+      "run": "anthropic-providers-1-openrouter-2026-10-25T08-06-17",
+      "what": "smoke on OpenRouter: Haiku 5.5 call + one Opus 5.5 DM turn (roll check on Haiku 5.5) + Fable 5.1 call",
+      "provider": "openrouter",
+      "endpointHost": "openrouter.ai",
+      "stage": "O",
+      "startedAt": "2026-10-25T08:06:17.288Z",
+      "reservedUsd": 3,
+      "spentUsd": 0.3178,
+      "settled": true,
+      "finishedAt": "2026-10-25T08:07:15.060Z",
+      "record": "docs/runs/anthropic-providers-1-smoke-openrouter.json"
     }
   ]
 }

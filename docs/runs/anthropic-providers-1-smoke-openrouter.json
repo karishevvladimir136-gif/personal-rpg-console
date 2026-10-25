@@ -1,0 +1,400 @@
+{
+  "run": "anthropic-providers-1-openrouter-2026-10-25T08-06-17",
+  "provider": "openrouter",
+  "providerLabel": "OpenRouter",
+  "endpointHost": "openrouter.ai",
+  "messagesPath": "/api/v1/messages",
+  "startedAt": "2026-10-25T08:06:17.291Z",
+  "budgetUsd": 3,
+  "short": [
+    {
+      "label": "Haiku 5.5",
+      "appModel": "claude-haiku-5-5",
+      "providerModel": "anthropic/claude-haiku-5.5",
+      "status": 200,
+      "code": null,
+      "servedModel": "claude-haiku-5-5",
+      "upstream": "Claude Platform on AWS",
+      "messageId": "msg_011CgNcNv3DeoPaqJkWCLNyk",
+      "requestedMatches": true,
+      "stopReason": "end_turn",
+      "text": "Ready",
+      "blocks": [
+        "text"
+      ],
+      "usage": {
+        "inputTokens": 15,
+        "outputTokens": 5,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0
+      },
+      "costUsd": 0.000004,
+      "error": null
+    },
+    {
+      "label": "Fable 5.1",
+      "appModel": "claude-fable-5-1",
+      "providerModel": "anthropic/claude-fable-5.1",
+      "status": 200,
+      "code": null,
+      "servedModel": "claude-fable-5-1",
+      "upstream": "Anthropic",
+      "messageId": "msg_011CgNcSfxjvage5ussLCjNn",
+      "requestedMatches": true,
+      "stopReason": "end_turn",
+      "text": "Ready",
+      "blocks": [
+        "text"
+      ],
+      "usage": {
+        "inputTokens": 17,
+        "outputTokens": 5,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0
+      },
+      "costUsd": 0.00042,
+      "error": null
+    }
+  ],
+  "dm": {
+    "outcome": "committed",
+    "errorCode": null,
+    "failure": [],
+    "exception": null,
+    "effort": "high",
+    "requests": 2,
+    "tokens": {
+      "input": 63618,
+      "output": 2968,
+      "cached": 30184,
+      "cacheWrite": 33426,
+      "cacheWrite1h": 28242,
+      "reasoning": 0,
+      "estimated": false
+    },
+    "costUsd": 0.31728,
+    "durationMs": 43537,
+    "firstWordMs": 22092,
+    "cacheReadShare": 0.474,
+    "rolls": [],
+    "tools": [
+      "advance_time",
+      "upsert_place",
+      "note_world",
+      "note_world",
+      "finish_turn",
+      "finish_turn"
+    ],
+    "rejected": [],
+    "checks": [
+      {
+        "label": "outcome \"committed\"",
+        "kind": "outcome",
+        "pass": true,
+        "detail": "outcome committed"
+      }
+    ],
+    "rollCheckCalls": [
+      {
+        "status": 200,
+        "requestId": "gen-1792915620-VDfKjsDO0TelxHaZ2HZz",
+        "servedModel": "claude-haiku-5-5",
+        "upstream": "Claude Platform on AWS",
+        "messageId": "msg_011CgNcS69mBraLfiRAYgsE8"
+      }
+    ],
+    "opusCalls": [
+      {
+        "status": 200,
+        "requestId": "gen-1792915585-4NaSnmj5LKy9YjXeJsmK",
+        "servedModel": "claude-opus-5-5",
+        "upstream": "Claude Platform on AWS",
+        "messageId": "msg_011CgNcPWYccyhBWimVGxE3m",
+        "servedModelMatches": true
+      },
+      {
+        "status": 200,
+        "requestId": "gen-1792915622-g0pakUtDmCAhwDhNogez",
+        "servedModel": "claude-opus-5-5",
+        "upstream": "Claude Platform on AWS",
+        "messageId": "msg_011CgNcSGdHghyLrMoND1mo5",
+        "servedModelMatches": true
+      }
+    ],
+    "narration": "The wayside square is empty at this hour. The notice board stands dark under its little shingled roof, its papers stirring in the night wind. Across the cobbles, a single shuttered window of the coaching inn leaks a thin line of lamplight. Nobody is about.\n\nThe chest sits in the corner where the board's lean-to meets the old waystone. It's a squat thing of black oak gone grey with weather, and a chain as thick as your thumb runs from its handle to an iron ring set in the stone. You kneel beside it. The cobbles are cold through your trousers.\n\nUp close, it's older than it first looked. The iron bands are newer work, hammered on later by a cruder smith. Under them, the lock plate has a sign stamped into it: a wheel with seven spokes, with an eye drawn shut at its centre. Hundreds of hands have worn it almost smooth. The keyhole is small and set deep. It's not a farmhouse lock. Somewhere inside, when the wind leans on the lid, something shifts with a soft metal sound.\n\nBehind you, the line of light in the inn window flickers, as if someone just walked past the lamp.\n\n---\n\n*Out of game: your records show only a compass on Rowan, with no knife. Does Rowan have something else to work the lock with, or do you want to try another way?*",
+    "calls": [
+      {
+        "stage": "loop",
+        "provider": "openrouter",
+        "endpointHost": "openrouter.ai",
+        "requestId": "gen-1792915585-4NaSnmj5LKy9YjXeJsmK",
+        "servedModel": "claude-opus-5-5",
+        "upstream": "Claude Platform on AWS",
+        "messageId": "msg_011CgNcPWYccyhBWimVGxE3m",
+        "servedModelMatches": true,
+        "latencyMs": 35473,
+        "firstTextMs": 21919,
+        "inputTokens": 30188,
+        "cachedInputTokens": 0,
+        "cacheWriteTokens": 30184,
+        "cacheWrite1hTokens": 28242,
+        "outputTokens": 2738,
+        "reasoningTokens": null,
+        "costUsd": 0.290422,
+        "toolCalls": 5,
+        "effort": "high",
+        "tools": [
+          {
+            "name": "advance_time",
+            "ok": true
+          },
+          {
+            "name": "upsert_place",
+            "ok": true
+          },
+          {
+            "name": "note_world",
+            "ok": true
+          },
+          {
+            "name": "note_world",
+            "ok": true
+          },
+          {
+            "name": "finish_turn",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "stage": "loop",
+        "provider": "openrouter",
+        "endpointHost": "openrouter.ai",
+        "requestId": "gen-1792915622-g0pakUtDmCAhwDhNogez",
+        "servedModel": "claude-opus-5-5",
+        "upstream": "Claude Platform on AWS",
+        "messageId": "msg_011CgNcSGdHghyLrMoND1mo5",
+        "servedModelMatches": true,
+        "latencyMs": 6311,
+        "firstTextMs": null,
+        "inputTokens": 33430,
+        "cachedInputTokens": 30184,
+        "cacheWriteTokens": 3242,
+        "cacheWrite1hTokens": 0,
+        "outputTokens": 230,
+        "reasoningTokens": null,
+        "costUsd": 0.0268628,
+        "toolCalls": 1,
+        "effort": "high",
+        "tools": [
+          {
+            "name": "finish_turn",
+            "ok": true
+          }
+        ]
+      }
+    ],
+    "budgetSpentUsd": 0.317406
+  },
+  "calls": [
+    {
+      "at": "2026-10-25T08:06:17.756Z",
+      "host": "openrouter.ai",
+      "path": "/api/v1/messages",
+      "model": "anthropic/claude-haiku-5.5",
+      "status": 200,
+      "requestId": "gen-1792915577-wFPxcAg3Mts8PU4WL49a",
+      "ms": 464,
+      "headers": {
+        "request-id": "gen-1792915577-wFPxcAg3Mts8PU4WL49a",
+        "x-generation-id": "gen-1792915577-wFPxcAg3Mts8PU4WL49a"
+      },
+      "servedModel": "claude-haiku-5-5",
+      "upstream": "Claude Platform on AWS",
+      "messageId": "msg_011CgNcNv3DeoPaqJkWCLNyk",
+      "servedModelMatches": true,
+      "generation": {
+        "upstream": "Claude Platform on AWS",
+        "model": "anthropic/claude-haiku-5.5-20261007",
+        "totalCostUsd": 0.000004,
+        "tokensPrompt": 7,
+        "tokensCompletion": 2,
+        "cacheDiscount": null,
+        "latencyMs": 575,
+        "generationMs": 600,
+        "finishReason": "end_turn"
+      }
+    },
+    {
+      "at": "2026-10-25T08:06:26.171Z",
+      "host": "openrouter.ai",
+      "path": "/api/v1/messages",
+      "model": "anthropic/claude-opus-5.5",
+      "status": 200,
+      "requestId": "gen-1792915585-4NaSnmj5LKy9YjXeJsmK",
+      "ms": 1485,
+      "headers": {
+        "request-id": "gen-1792915585-4NaSnmj5LKy9YjXeJsmK",
+        "x-generation-id": "gen-1792915585-4NaSnmj5LKy9YjXeJsmK"
+      },
+      "servedModel": "claude-opus-5-5",
+      "upstream": "Claude Platform on AWS",
+      "messageId": "msg_011CgNcPWYccyhBWimVGxE3m",
+      "servedModelMatches": true,
+      "generation": {
+        "upstream": "Claude Platform on AWS",
+        "model": "anthropic/claude-opus-5.5-20260921",
+        "totalCostUsd": 0.290422,
+        "tokensPrompt": 19846,
+        "tokensCompletion": 1038,
+        "cacheDiscount": -0.11491,
+        "latencyMs": 5816,
+        "generationMs": 34454,
+        "finishReason": "tool_use"
+      }
+    },
+    {
+      "at": "2026-10-25T08:07:00.822Z",
+      "host": "openrouter.ai",
+      "path": "/api/v1/messages",
+      "model": "anthropic/claude-haiku-5.5",
+      "status": 200,
+      "requestId": "gen-1792915620-VDfKjsDO0TelxHaZ2HZz",
+      "ms": 596,
+      "headers": {
+        "request-id": "gen-1792915620-VDfKjsDO0TelxHaZ2HZz",
+        "x-generation-id": "gen-1792915620-VDfKjsDO0TelxHaZ2HZz"
+      },
+      "servedModel": "claude-haiku-5-5",
+      "upstream": "Claude Platform on AWS",
+      "messageId": "msg_011CgNcS69mBraLfiRAYgsE8",
+      "servedModelMatches": true,
+      "generation": {
+        "upstream": "Claude Platform on AWS",
+        "model": "anthropic/claude-haiku-5.5-20261007",
+        "totalCostUsd": 0.0001212,
+        "tokensPrompt": 690,
+        "tokensCompletion": 30,
+        "cacheDiscount": null,
+        "latencyMs": 832,
+        "generationMs": 1022,
+        "finishReason": "end_turn"
+      }
+    },
+    {
+      "at": "2026-10-25T08:07:03.262Z",
+      "host": "openrouter.ai",
+      "path": "/api/v1/messages",
+      "model": "anthropic/claude-opus-5.5",
+      "status": 200,
+      "requestId": "gen-1792915622-g0pakUtDmCAhwDhNogez",
+      "ms": 1615,
+      "headers": {
+        "request-id": "gen-1792915622-g0pakUtDmCAhwDhNogez",
+        "x-generation-id": "gen-1792915622-g0pakUtDmCAhwDhNogez"
+      },
+      "servedModel": "claude-opus-5-5",
+      "upstream": "Claude Platform on AWS",
+      "messageId": "msg_011CgNcSGdHghyLrMoND1mo5",
+      "servedModelMatches": true,
+      "generation": {
+        "upstream": "Claude Platform on AWS",
+        "model": "anthropic/claude-opus-5.5-20260921",
+        "totalCostUsd": 0.0268628,
+        "tokensPrompt": 20841,
+        "tokensCompletion": 89,
+        "cacheDiscount": 0.1114572,
+        "latencyMs": 5128,
+        "generationMs": 5128,
+        "finishReason": "tool_use"
+      }
+    },
+    {
+      "at": "2026-10-25T08:07:15.046Z",
+      "host": "openrouter.ai",
+      "path": "/api/v1/messages",
+      "model": "anthropic/claude-fable-5.1",
+      "status": 200,
+      "requestId": "gen-1792915628-YK2UuPeL2yYVMgREEEjs",
+      "ms": 6926,
+      "headers": {
+        "request-id": "gen-1792915628-YK2UuPeL2yYVMgREEEjs",
+        "x-generation-id": "gen-1792915628-YK2UuPeL2yYVMgREEEjs"
+      },
+      "servedModel": "claude-fable-5-1",
+      "upstream": "Anthropic",
+      "messageId": "msg_011CgNcSfxjvage5ussLCjNn",
+      "servedModelMatches": true,
+      "generation": {
+        "upstream": "Anthropic",
+        "model": "anthropic/claude-fable-5.1-20260831",
+        "totalCostUsd": 0.00042,
+        "tokensPrompt": 7,
+        "tokensCompletion": 2,
+        "cacheDiscount": null,
+        "latencyMs": 6546,
+        "generationMs": 6550,
+        "finishReason": "end_turn"
+      }
+    },
+    {
+      "at": "2026-10-25T08:08:16.374Z",
+      "host": "openrouter.ai",
+      "path": "/api/v1/generation",
+      "model": null,
+      "status": 200,
+      "requestId": null,
+      "ms": 562,
+      "headers": {},
+      "lookup": true
+    },
+    {
+      "at": "2026-10-25T08:08:16.497Z",
+      "host": "openrouter.ai",
+      "path": "/api/v1/generation",
+      "model": null,
+      "status": 200,
+      "requestId": null,
+      "ms": 117,
+      "headers": {},
+      "lookup": true
+    },
+    {
+      "at": "2026-10-25T08:08:16.681Z",
+      "host": "openrouter.ai",
+      "path": "/api/v1/generation",
+      "model": null,
+      "status": 200,
+      "requestId": null,
+      "ms": 179,
+      "headers": {},
+      "lookup": true
+    },
+    {
+      "at": "2026-10-25T08:08:16.788Z",
+      "host": "openrouter.ai",
+      "path": "/api/v1/generation",
+      "model": null,
+      "status": 200,
+      "requestId": null,
+      "ms": 106,
+      "headers": {},
+      "lookup": true
+    },
+    {
+      "at": "2026-10-25T08:08:16.909Z",
+      "host": "openrouter.ai",
+      "path": "/api/v1/generation",
+      "model": null,
+      "status": 200,
+      "requestId": null,
+      "ms": 120,
+      "headers": {},
+      "lookup": true
+    }
+  ],
+  "spentUsd": 0.31783,
+  "finishedAt": "2026-10-25T08:07:15.058Z",
+  "stopped": null,
+  "chargedUsd": 0.31783
+}

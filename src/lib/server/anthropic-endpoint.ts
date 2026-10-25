@@ -166,8 +166,8 @@ export function anthropicDoorOf(url: string): { provider: AnthropicProvider; end
 
 const REQUEST_ID = /^[A-Za-z0-9_.:-]{1,128}$/;
 
-/** The request id of a response on any door (Anthropic's `request-id`, Bedrock's `x-amzn-requestid`, a generic
- * `x-request-id` or `x-generation-id`); OpenRouter's generation id is also the reply's own `id` (see servedOf). */
+/** The request id of a response on any door: Anthropic's `request-id`, Bedrock's `x-amzn-requestid`, OpenRouter's
+ * generation id (its `request-id` and `x-generation-id`, `gen-…`; seen 2026-10-25), else a generic `x-request-id`. */
 export function anthropicRequestId(headers: Headers | null | undefined): string | null {
   try {
     for (const name of ["request-id", "x-amzn-requestid", "x-generation-id", "x-request-id"]) {
@@ -184,8 +184,8 @@ export type ServedOf = { servedModel: string | null; upstream: string | null; me
 
 /**
  * What a reply says about who served it: the model it names (as the app's id), the upstream provider OpenRouter
- * routed to (its reply's `provider` field, when present) and the reply's id (OpenRouter's generation id). Reads a
- * Messages reply or the `message` of a stream's `message_start`.
+ * routed to (its reply's `provider` field — «Anthropic», «Claude Platform on AWS», seen 2026-10-25) and the reply's
+ * own id (the upstream's message id). Reads a Messages reply or the `message` of a stream's `message_start`.
  */
 export function servedOf(message: unknown): ServedOf {
   const value = message && typeof message === "object" ? message as { model?: unknown; provider?: unknown; id?: unknown } : {};
