@@ -17,7 +17,7 @@ export const DIFFERENCES = [
   "The canon (02) went in as a canon document and the DM's 5e guide (03) as the campaign's DM guide; the world's setting (01) is the world premise, which the app makes the campaign's first canon document.",
   "«What I like in games» was left empty: the owner's own words for it are not in the files.",
   "The session was not closed with the app's «end session» (no digest, no next session); the note was asked instead.",
-  "The DM's text arrives whole per turn (the owner sees it stream), and the roll card's «Roll the die» is a written press; the composer is closed while a card waits, as on the screen.",
+  "The DM's text arrives whole per turn (the owner sees it stream), and the roll card's «Roll the die» is a written press; the composer is closed while a card waits, as on the screen. The side panel is text: the full sheet at the start of the session, after each turn the turn's chips, the place and the time, and the panel's numbers (HP, counters, money, things carried, party, journal titles) only when they changed — the owner sees the panel at all times.",
   "One compatibility repair, counted: the claim of an out-of-game «?» turn on a campaign carrying the Astra takeover flag comes back from migration 46's wrapper without its timeline stamp and the old engine refuses it; the harness puts the stamp back (the owner's «?» is answered at his table, FIX_S4_TABLE item 1). See the harness notes.",
   "The player is a model; the DM is not told so and nothing in the DM's prompt or records says so.",
 ];
@@ -126,6 +126,7 @@ export function reportMarkdown(runs, ledgers) {
     "",
     "## Harness notes",
     "",
+    "- A live smoke ran before the eight sessions (A-sol, 2 turns, $1.80 on the stage's ledgers; `docs/runs/game-player-1-transcripts/smoke-A-sol-2-turns.md`). From its note, two presentation fixes before the eight: a paused turn's text is shown once (the card screens and the continuation show only what is new), and the full sheet no longer follows every change.",
     `- The «?» timeline repair was applied ${runs.reduce((s, r) => s + (r.restamps ?? 0), 0)} time(s).`,
     `- Refusals in the stage: ${runs.at(-1)?.refusals ?? 0}; HTTP 429 waits: ${runs.at(-1)?.waited429 ?? 0}; paid calls stopped: ${runs.at(-1)?.stopped ?? "no"}.`,
     ...sessions.filter((s) => s.errors?.length).map((s) => `- ${s.key}: ${s.errors.map((e) => e.error).join("; ").slice(0, 400)}`),
