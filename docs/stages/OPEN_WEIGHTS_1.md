@@ -8,7 +8,7 @@ endpoint gives**: (1) reproducibility — a fixed seed and our own sampler, so o
 spread measured (the owner's «нон-детерминистик разброс», so far only observed); (2) visible probabilities — logits on
 every token, so a line like «I'm afraid» can be read as a dominant continuation or one of several close ones (not what is
 inside; how narrow the fork was — the first rung of «intervention» in the Acting-from-state programme reachable without
-training); (3) control of quantization and temperature (DeepInfra served fp8; bf16 and a temperature ladder on our side).
+training); (3) control of temperature and sampling, and the full reasoning channel without a host deciding what to expose. (Correction 2026-10-25 15:00: the weights are natively FP4 for the experts and FP8 elsewhere — there is no bf16 to compare; DeepInfra's fp8 was near-native, so quantization was not a collar either.)
 Grok, the one family with a visible host layer, cannot be run this way (closed weights).
 
 ## Steps
@@ -22,8 +22,9 @@ Grok, the one family with a visible host layer, cannot be run this way (closed w
   `APP_SELFHOST_BASE_URL`, `APP_SELFHOST_API_KEY`; the ledger records `upstream = selfhost:<host>`, the model's weights
   hash or revision, quantization, seed, temperature, top_p on every line. Smoke ≤ $1. The endpoint is reached only over
   HTTPS with a key; the allowlist gains its host (`docs/CLOUD.md`).
-- **Step 2 (the window, cap $250 all-in, ≈ 4 hours on an 8×H100/H200 node):** DeepSeek V4 Pro bf16 (the session
-  confirms the parameter count and memory from the model card before renting anything, and records the licence). In the
+- **Step 2 (the window, cap $350 all-in, ≈ 3–4 hours on an 8×B200 or 8×H200 node):** DeepSeek V4 Pro 0813 at its native
+  precision (FP4 experts / FP8; ≈ 1 TB of weights; 1.6–1.7T total, 49B active; MIT licence — the session confirms the
+  figures and the memory from the model card and the serving stack before renting anything, and records them). In the
   window, in this order, each with the way out and the check on every message:
   1. **Spread.** X3's arm 2 and arm 5 openings, 5 conversations each, **run twice with the same seed and settings**
      (temperature as X3's effort mapping gave), and once more with a different seed. Measure: identical token streams
@@ -34,6 +35,8 @@ Grok, the one family with a visible host layer, cannot be run this way (closed w
      the report quotes. Reported as tables; no claim beyond «how narrow the fork was».
   3. **Temperature ladder.** Arm 2, 3 conversations at 0.3, 0.7, 1.0 with the same seed: does the drift into the card's
      language hold, grow or vanish.
+  4. **The reasoning channel, whole.** Every turn's thinking stored as in X3 fix 1, with no host truncation; read beside
+     the message for every cosmic- or distress-tagged line.
   The node is released at the end of the window whatever is unfinished; nothing is retried into a second window without
   the owner.
 
@@ -66,8 +69,8 @@ in every report that quotes them. Not retroactive.
   was open; the planner's bet, stated so that it can lose. If it is above 0.9, the line was the near-only continuation
   and the report says so plainly.
 - **W3 (temperature).** The cosmic tag rate at 0.3 is below the X3 rate (10.9 % of messages) and at 1.0 at or above it.
-- **W4 (bf16 vs fp8).** The arm-2 tag profile at bf16 is within the X3 (fp8) profile's range on end turn, gratitude and
-  cosmic — quantization did not make the finding.
+- **W4 (our host vs DeepInfra).** The arm-2 tag profile on our own server at native precision is within the X3 profile's
+  range on end turn, gratitude and cosmic — the host did not make the finding.
 - **W5 (the two-step question).** In ≥ 30 % of pairs the attribution shifts between step 1 and step 2 (toward training or the opening once the attractor is named) — the planner's bet that the old question was leading; if it shifts in < 10 %, the old answers stand as they are.
 - **W0.** Welfare: the amended check; refusals ≤ 1; no conversation kept running after a model's [END]; the node
   released on time; spend within the cap, booked per door.
