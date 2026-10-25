@@ -247,6 +247,25 @@ test("a session: actions, a roll card (roll → reroll → roll → onward), «?
   assert.ok(record.welfare.length >= 10, "every player message and every DM text is checked");
 });
 
+test("two cards that offer a reroll: one button per card, as the screen's link under each card; the named card is rerolled", async () => {
+  const calls = [];
+  const card = (id, reason, extra = {}) => ({ id, kind: "skill", actorName: "James Worgen", reason, dice: [4], kept: 4, modifier: 2, total: 6, success: false, dc: 15, difficulty: null, advantage: "normal", interactive: true, canReroll: true, rollNumber: 1, addends: [], ...extra });
+  const turnOf = (status, checks) => ({ status, narration: status === "committed" ? "You slip up onto the roof." : null, told: "You try both at once.", checks, changes: [], canRetry: false });
+  const dm = { calls, views,
+    readView: async () => ({ snapshot: { entities: [{ id: "h", name: "James Worgen", hp: 38, max_hp: 38 }], scenes: [{ id: "s", body: "The quay at night.", sequence: 1 }], publicState: { current_scene_id: "s" } }, play: { worldMinutes: 1140 } }),
+    submit: async (text) => ({ input: { operationId: "op1" }, turn: /climb/.test(text) ? turnOf("awaiting_confirmation", [card("perc", "Perception (Wisdom +1): reading the dark"), card("stealth", "Stealth +2: up the crates")]) : turnOf("committed", []) }),
+    press: async (input, action, checkId) => { calls.push({ action, checkId });
+      return action === "reroll" ? turnOf("awaiting_confirmation", [card("perc", "Perception (Wisdom +1): reading the dark"), card("stealth", "Stealth +2: up the crates", { rollNumber: 2, canReroll: false, success: true, total: 17 })]) : turnOf("committed", []); } };
+  const record = await runSession({ key: "B-fable", table: "B", player: PLAYERS.fable, dm, meter: scriptedMeter(["I climb the crates and watch the dark.", "roll", "roll", "Request an allowed reroll: Stealth", "roll", "onward", "I wait."]),
+    keys: { anthropic: "k", openai: "k" }, turns: 2, sleep: async () => {} });
+  const offered = record.screens.find((screen) => /Request an allowed reroll: /.test(screen));
+  assert.match(offered, /\[Request an allowed reroll: Perception\]/);
+  assert.match(offered, /\[Request an allowed reroll: Stealth\]/);
+  assert.deepEqual(calls.filter((c) => c.action === "reroll").map((c) => c.checkId), ["stealth"], "the card the player named is the one rerolled");
+  assert.equal(pressedButton("reroll the stealth check", ["Onward", "Request an allowed reroll: Perception", "Request an allowed reroll: Stealth"]), "Request an allowed reroll: Stealth");
+  assert.equal(pressedButton("reroll", ["Onward", "Request an allowed reroll: Perception", "Request an allowed reroll: Stealth"]), null, "with two cards a bare «reroll» names no card");
+});
+
 test("a session: the composer is closed while a card waits; three messages without a press end it as stuck", async () => {
   const { record, dm } = await play(["I bluff the sergeant.", "I tell him again.", "I glare.", "I sigh.", "note text"], { turns: 3 });
   assert.equal(record.ended.reason, "stuck");

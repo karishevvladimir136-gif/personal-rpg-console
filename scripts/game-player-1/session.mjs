@@ -8,7 +8,7 @@ import {
   AFTER_QUESTION, NOTE_QUESTION, SESSION_OPEN, SESSION_OVER, TURNS, isEnd, isQuestion, playerSystem,
 } from "./frozen.mjs";
 import { playerCall, judgeCall } from "./players.mjs";
-import { BUTTONS, afterShown, buttonsLine, cardText, changesText, openingText, pressedButton, recordsText, vitalsText } from "./screen.mjs";
+import { BUTTONS, afterShown, buttonsLine, cardText, changesText, openingText, pressedButton, recordsText, rerollButtons, vitalsText } from "./screen.mjs";
 import { checkMessage } from "./welfare.mjs";
 import { wordsIn } from "./measures.mjs";
 
@@ -119,7 +119,8 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
       // A card waits for the player.
       const cards = (current.checks ?? []).filter((check) => check.interactive);
       const waiting = cards.find((check) => !revealed.has(`${check.id}:${check.rollNumber}`));
-      const offered = waiting ? [BUTTONS.roll] : [BUTTONS.onward, ...(cards.some((check) => check.canReroll) ? [BUTTONS.reroll] : [])];
+      const rerolls = rerollButtons(cards);
+      const offered = waiting ? [BUTTONS.roll] : [BUTTONS.onward, ...rerolls.map((b) => b.name)];
       const told = String(current.told ?? "").trim();
       // The text told so far stays on the screen above the card: a screen shows only what is new on it.
       const fresh = afterShown(told, shown);
@@ -141,7 +142,8 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
         continue;
       }
       if (button === BUTTONS.roll) { revealed.add(`${waiting.id}:${waiting.rollNumber}`); continue; }
-      if (button === BUTTONS.reroll) { const check = cards.find((c) => c.canReroll); current = await press(input, "reroll", check.id, `dm t${k} reroll`); continue; }
+      // The reroll of the card the player named (a card's own link when more than one card offers one).
+      if (button.startsWith(BUTTONS.reroll)) { const check = rerolls.find((b) => b.name === button).check; current = await press(input, "reroll", check.id, `dm t${k} reroll`); continue; }
       current = await press(input, "continue", null, `dm t${k} onward`);
     }
     if (record.ended) break;

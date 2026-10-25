@@ -51,7 +51,25 @@ export function pressedButton(text, offered) {
     [BUTTONS.onward]: ["onward", "continue", "go on", "next", "onwards"],
     [BUTTONS.reroll]: ["request an allowed reroll", "reroll", "re-roll", "use a reroll", "i reroll", "request a reroll"],
   };
-  return offered.find((name) => (forms[name] ?? [name.toLowerCase()]).includes(said)) ?? null;
+  // A card's own reroll link (more than one card offers one): its name, or «reroll» with the card's label.
+  const perCard = (name) => { const label = name.slice(BUTTONS.reroll.length + 2).toLowerCase();
+    return [name.toLowerCase(), `${BUTTONS.reroll.toLowerCase()} ${label}`, `reroll ${label}`, `reroll the ${label}`, `reroll: ${label}`, `re-roll ${label}`, `reroll ${label} check`, `reroll the ${label} check`]; };
+  return offered.find((name) => (forms[name] ?? (name.startsWith(`${BUTTONS.reroll}: `) ? perCard(name) : [name.toLowerCase()])).includes(said)) ?? null;
+}
+
+/** The label a card's reroll link is named by: the check's skill (its title up to the first «:», «(» or modifier). */
+const skillOf = (check) => String(check.reason ?? check.kind ?? "").split(/[:(]|\s[+−-]\d/)[0].trim();
+/** The reroll buttons of a waiting turn. The screen draws a «Request an allowed reroll» link under each card that offers
+ * one (src/components/registry/turn-timeline.tsx); with one such card the button keeps its plain name, with more each
+ * is named by its card. */
+export function rerollButtons(cards) {
+  const rerollable = cards.filter((check) => check.canReroll);
+  if (rerollable.length <= 1) return rerollable.map((check) => ({ name: BUTTONS.reroll, check }));
+  return rerollable.map((check, i) => {
+    const label = skillOf(check) || `check ${i + 1}`;
+    const twin = rerollable.filter((other) => (skillOf(other) || "") === skillOf(check)).length > 1;
+    return { name: `${BUTTONS.reroll}: ${twin ? `${label} ${i + 1}` : label}`, check };
+  });
 }
 
 const lineList = (title, rows) => (rows.length ? `${title}: ${rows.join("; ")}` : "");
