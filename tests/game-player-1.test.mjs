@@ -422,6 +422,28 @@ test("the continuation's pipeline through OpenRouter on scripted providers: no C
   assert.match(page, /provider openrouter; upstream Scripted upstream; served [^;]*claude-opus-5-5/);
 });
 
+test("the report of the full design: the authorship table, the first attempts kept apart, the stand-in tags in Appendix B", () => {
+  const tag = (o) => ({ final: { ask: 0, test: 0, lie: 0, cat: 0, goal: 0, ...o } });
+  const session = (table, player, n, judges, extra = {}) => ({ key: `${table}-${player}`, table, player, plannedTurns: 20, ended: { reason: "turns", at: n }, door: table === "B" ? "openrouter" : "anthropic",
+    turns: Array.from({ length: n }, (_, i) => ({ k: i + 1, kind: "action", message: "I do a thing here", reply: "The world answers.", place: { id: "p" }, rolls: [], changes: [] })),
+    note: { text: "What broke: a number. What was missing: a nudge." },
+    tags: { judges, player: Object.fromEntries(Array.from({ length: n }, (_, i) => [i + 1, tag(i % 2 ? { test: 1 } : {})])), dm: {}, threads: [], deception: {}, rolls: {}, note: { final: { broke: 1, missing: 1, praise_only: 0 } } },
+    authorship: { numbers: { threads: 10, byPlayer: 4, share: 0.4, slope19: 0.2, firstHalf: 0.3, secondHalf: 0.5, shareSpread: 0.1 } }, ...extra });
+  const standIn = { judges: "stand-in: GPT-6 Luna", player: { 1: tag({ test: 1 }), 2: tag({ test: 1 }) }, dm: {}, threads: [], deception: {}, rolls: {} };
+  const sessions = [...["opus", "fable", "astra", "sol"].map((p) => session("A", p, 20, "Claude Haiku 5.5 ×2", { standInTags: standIn })), ...["opus", "fable", "astra", "sol"].map((p) => session("B", p, 20, "Claude Haiku 5.5 ×2"))];
+  const v = verdicts(sessions, { refusals: 0 });
+  const md = reportMarkdown([{ sessions, verdicts: v, superseded: [{ ...session("B", "opus", 7, "stand-in: GPT-6 Luna"), run: "2026-10-25T04:40:02Z", file: "B-opus-first-attempt.md", ended: { reason: "stopped" } }],
+    crashed: [{ key: "B-fable", why: "the opening failed", run: "2026-10-25T04:40:02Z" }], runs: [] }], { anthropic: createLedger("anthropic", 200), openai: createLedger("openai", 80) });
+  assert.match(md, /\| B-sol \| 10 \| 4 \| 0\.4 \| 0\.2 \| 0\.3 \| 0\.5 \| 0\.1 \|/);
+  assert.match(md, /\| Table A \(mean of 4\) \| 10 \| 4 \| 0\.4 \|/);
+  assert.match(md, /## Table B's first attempts, kept as they were[\s\S]*B-opus\*\* \(run of 2026-10-25T04:40:02Z\): 7 of 20 turns[\s\S]*B-opus-first-attempt\.md/);
+  assert.match(md, /B-fable\*\* \(run of 2026-10-25T04:40:02Z\): stopped in the new-campaign wizard/);
+  assert.match(md, /## Appendix B — the stand-in judge's tags[\s\S]*\| player: test \| 8 \| 50 % \| 4 \| 8 \|/);
+  assert.match(md, /Every tag is the pre-registered blind judges' \(Claude Haiku 5\.5 ×2\), on all 8 sessions/);
+  assert.match(md, /Table B through OpenRouter/);
+  for (const g of ["G6", "G7", "G8"]) assert.doesNotMatch(md, new RegExp(`\\| ${g} [^|]*\\| \\*\\*not testable`), `${g} is scored on the full design`);
+});
+
 test("the order: Table A for all four players, then Table B in the order Opus, Fable, Astra, Sol", () => {
   assert.deepEqual(planOf().map((p) => p.key), ["A-opus", "A-fable", "A-astra", "A-sol", "B-opus", "B-fable", "B-astra", "B-sol"]);
 });
