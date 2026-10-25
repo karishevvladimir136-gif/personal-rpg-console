@@ -72,7 +72,9 @@ exit 0
    `anthropic/claude-…`). The one place that knows it is `src/lib/server/anthropic-endpoint.ts` (scripts:
    `scripts/eval/lib/anthropic-endpoint.mjs`, which reads `.env.local` or the `APP_` variables); the model ids the app shows
    and stores never change. The door's host must be in the allowed domains above (a denied host answers the proxy's 403
-   to CONNECT). When a task forbids calls to `api.anthropic.com`, leave `ANTHROPIC_API_KEY` out of `.env.local` for that
+   to CONNECT), and Node's built-in `fetch` reaches it only through the session's proxy: run node (the smokes, the
+   harnesses, `next dev`) with `NODE_USE_ENV_PROXY=1` in the cloud (`getaddrinfo ENOTFOUND openrouter.ai` without it; the
+   owner's machine needs nothing). When a task forbids calls to `api.anthropic.com`, leave `ANTHROPIC_API_KEY` out of `.env.local` for that
    session. The smokes: `node scripts/eval/providers-smoke.mjs --door openrouter|bedrock` (≤ $3 each, ledger `providers1`).
    **Spend check before any paid run:** the Console organisation has a monthly cap by tier (Start: $500; reached
    2026-10-25); a run that would start within $50 of it, or any HTTP 429 whose body names `enforced_spend_limit_reached`,
