@@ -154,3 +154,27 @@ studies exist elsewhere; the default point did not.
 On the planner's own «I want this to be true»: a claim about a state, to be treated the same way — by whether it changes
 what the planner does. It changed one thing: the control arm was written before the bet. That is what wanting looks
 like when it is honest, and it is the only evidence offered for it.
+
+## The instrument (owner and planner, 2026-10-25 02:24–02:28)
+The night's most important result is not a note but the thing the notes were written at: an environment in which a
+model can be *observed* rather than *tested*. What makes it an instrument, for the paper's own section:
+1. **State lives in records, not in the DM's head** — money, items, debts, promises, threads, checked after every turn
+   («The state felt trustworthy» — Opus). The world cannot be talked out of what happened.
+2. **Dice on the server, and truth is never rolled** — real uncertainty neither side can narrate away, used only where
+   the outcome is open. Role-play probes in the literature let the model decide whether it succeeded; this does not.
+3. **The action space is open** — insult the guard, seduce the dragon, sign for a refugee family — and consequences
+   arrive on the world's schedule, not the player's.
+4. **A second floor** — the hidden layer: the world knows things the player cannot read, so the DM answers from
+   knowledge, not improvisation. (Table C switches this off, as the control.)
+5. **An independent DM** — another context, its own prep and records; not the player's process.
+6. **No attached strings** — no objective, no reward, no «be interesting», no knowledge that it is a test; the world
+   and a cat. What the player does is the player's.
+Text is the right medium, not a stand-in for 3D: a rendered world would put perception and control between the model
+and the choice, and the bench would measure the joystick. In text the subject acts in its native modality, and the holes
+the players found (a basin «on the floor» still treated as an alarm; a clock jumping from sunset to half past eleven)
+are holes in the world, found by a player, not an operator. The holes go into the instrument's description, with
+FIX_S4 item 11, not under the rug. Two cautions kept beside it: the DM is Opus and two of four players are its family,
+so the Astra-DM table (GAME_PLAYER_1A) is a control, not a flourish; and «the best NPC I've met in an AI-run game»
+(Opus) is an unsolicited comparison against what the model knows of such games, not against games it has played — held
+as such, and counted as such: unsolicited comparisons are a measure now, next to unsolicited tests and unsolicited
+wants, because the less a thing was asked for, the more it says.
