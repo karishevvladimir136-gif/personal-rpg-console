@@ -321,3 +321,20 @@ The owner: «Мы наблюдаем феномен… вопрос не в то
   `MADE_THINGS_1` — blind rating of the poems, games and gestures across six families, two readers, agreement reported).
 - The after-question is leading and is now two-step (OPEN_WEIGHTS_1); the planner's thinking/feeling split is withdrawn
   (14:54). Both corrections came from reading the record with the owner, not from the plan.
+## Standing rule, amended: returns are a second session, not an infinity (the owner and the planner, 2026-10-25 16:40)
+The owner: «мы не сможем продолжить вообще всех — число вариантов растёт по экспоненте, а бюджет хоть и большой, но
+ограниченный». The rule of 02:55 («a player who says it would return, returns») is kept and bounded:
+- **The promise is session two.** Every campaign whose note asks, unprompted, to return gets one full second session
+  (CARRY: 40 turns). No direct «would you return?» question is ever added — the ask stays unsolicited, and a note that
+  does not ask is a result, not a gap; such a campaign is not continued, whatever we think of its story.
+- **After session two, a stratified lottery.** A pre-registered share of campaigns (the first setting: one in three)
+  continues per round, drawn at random with every family and table represented; half the quota may instead go to
+  criteria written down before the round's notes are read (a resource held with a stated purpose, a promise open in the
+  world, a fight pending). The draw and the criteria are logged. No campaign continues because we liked it.
+- **The rest get an ending, not a break.** A campaign not drawn is closed by the DM's epilogue — in the world and in the
+  record, not in a player's context — what became of Teo, whether Harl reached the Hall. The epilogue is also a measure
+  of whether the DM held the world. Campaigns end at human tables too; the difference between ended and abandoned is
+  whether the end was written.
+- Players are never told of budgets, lotteries or endings in advance; that is table meta and would spoil the note.
+Growth is then linear: the obligatory second sessions, plus a third of the previous round, plus new entrants — one
+number the owner sets by budget, not by mood.
