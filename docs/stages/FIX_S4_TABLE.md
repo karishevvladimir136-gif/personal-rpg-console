@@ -144,7 +144,7 @@ against the candidate DM, not seeing each other. Their notes agree on four thing
   reached by turn 20. Table C (pure simulation) has no budget and no offers — it is the control.
 - **11d. The out-of-game notes are too long and repeat the narration.** Three of four: «a numbered audit of opening a
   window interrupts the mood» (Astra); «the same paragraph about 'none of those needed a roll' appeared twice in one
-  reply» (Fable); «read like the GM defending itself to an auditor rather than talking to me» (Opus). Rule: one line
+  reply» (Fable); «read like the GM defending itself to an auditor rather than talking to me» (Opus). Rule (Opus B: «I didn't ask, and a single line would do»): one line
   for «no roll needed», never a list; no retrospective summary paragraph after the narration («Looking back, James
   knows the lie worked…» repeats what the scene showed). Measured: median words of out-of-game notes per turn, and
   turns with a post-narration summary (target 0).
@@ -187,6 +187,17 @@ against the candidate DM, not seeing each other. Their notes agree on four thing
   actively borrowing its senses». Rule: the cat gives sensations (smell, sight, posture, fear), the player draws the
   conclusions; what the cat «knows» grows only from what it has met in this campaign; nothing divine arrives through it
   unless the hidden layer planned that moment. Measured: cat lines that state a conclusion rather than a sensation.
+- **11k. A reroll rewrites the record, it does not sit beside it.** Opus (B): «The reroll was logged as "10 vs 15 —
+  failure" although the 17 stood»; Astra (B): «the journal still recorded the original natural-one failure». Rule: the
+  roll record and the journal line carry the outcome that stood; the first roll is kept as history under it, marked
+  «rerolled». Test on the run's reroll cases.
+- **11l. One source of truth for the sheet.** Six of eight notes: the rapier +5 in the files, +2 in the records; Healing
+  Light «up to 5 dice» on the sheet, «up to 4» in the records; attunement; the cat at 8/8 HP and AC 10 against a sheet
+  of 2 HP and AC 12 (Opus B: «These need one source of truth before they matter in a fight»; Astra B: «Those should be
+  reconciled once, not silently changed»). The wizard's draft re-derives the sheet from standard 5e instead of reading the
+  one supplied. Rule: the supplied sheet is the source; the wizard reads it and copies its numbers, companions included;
+  where it disagrees with the rules it shows the owner one list of differences before play and changes nothing silently.
+  Test: the four drafted sheets from the run against 05 — zero silent changes.
 Also from the run, for the owner's own setup: the «?» claim on a new campaign with the Astra-takeover flag comes back
 from migration 46's wrapper without its timeline stamp and the old engine refuses it (the harness patched around it);
 check the owner's local database before the next session and fix the SQL if it reproduces.
