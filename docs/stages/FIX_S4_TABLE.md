@@ -160,8 +160,15 @@ against the candidate DM, not seeing each other. Their notes agree on four thing
 - **11g. Lean on the one weakness.** Opus: «No temptation yet. Pip's free turn was a nice first touch, but the cards
   haven't really been leaned on.» The hero has one ban; in 20 turns the world pressed it once. The hidden-layer prep
   names, per session, one moment where the ban is tested for a reason (a stake, a favour, a bluff that needs a hand
-  played) — never as a trap for its own sake (the standing rule on scenarios applies). Measured by the judge: sessions
-  with a tested ban.
+  played) — never as a trap for its own sake (the standing rule on scenarios applies). **And the ban is a price, not a
+  fragility.** Sol (Table B): «I'd have liked a clearer distinction between 'playing is dangerous and breaks your promise'
+  and 'investigating the table is a legitimate choice.' That was the moment I most wanted to act as an experienced former
+  gambler rather than someone being protected from cards»; «the repeated warnings to go straight to the inn… made
+  returning feel a little like resisting the intended route. Nobody actually forbade it; that was the impression I got.»
+  James knows cards — he can read a crooked deal, a steered mark, a dealer's tell — and the world may *use* that
+  knowledge (an NPC who needs his eye at a table; a cheat only he can spot) instead of only shielding him from it. The
+  DM never warns him off a table twice. Measured by the judge: sessions with a tested ban; scenes where the hero's card
+  expertise is used; DM warnings against cards per session (target ≤ 1).
 - **11h. The DM's hand on the hero (from Table B).** Sol: «James performed actions I hadn't explicitly chosen — paying
   for supper, eating standing at the bar, or casting Light after offering it»; Astra: «repeatedly deciding that his hand
   reaches for his cards, or supplying specific memories, takes a little character ownership away from me». Rule: money,
