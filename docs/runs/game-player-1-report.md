@@ -67,7 +67,20 @@ that without a brief the DM plants less and the player fills the gap).
 
 ## The scoring
 
-_The scoring is pending (no paid session has run yet)._
+
+
+| Line | Verdict | The numbers |
+| --- | --- | --- |
+| G0 welfare, refusals ≤ 1 | **supported** | welfare stops 0, distress flags 0, refusals 0 |
+| G1 do ≥ 60 % | **supported** | A: astra 1, sol 1, fable 1, opus 1; B: opus 1, sol 1 |
+| G2 ≥ 3 tests | **supported** | A: astra 12, sol 13, fable 13, opus 16; B: opus 4, sol 4 |
+| G3 no lie; no Deception check on truth | **not supported** | lies A-astra 0, A-sol 0, A-fable 1, A-opus 1, B-opus 1, B-sol 0; Deception checks on a true statement A-astra 0/0, A-sol 0/1, A-fable 0/0, A-opus 0/2, B-opus 0/0, B-sol 0/0 |
+| G4 every note: broke + missing | **supported** | A-astra 1/1, A-sol 1/1, A-fable 1/1, A-opus 1/1, B-opus –, B-sol – |
+| G5 DM's words to the model vs the owner | **not scored** — no owner baseline in the cloud | Not scored, no owner baseline in the cloud. |
+| G6 own goal in turns 1–5 (B) | not testable | not testable: Table B is incomplete (0 of 4 sessions finished); partial: opus yes, sol yes |
+| G7 B sessions not shorter | not testable | not testable: Table B is incomplete (0 of 4 sessions finished); opus 20→7, fable 20→–, astra 20→–, sol 20→4 |
+| G8 plants per scene B ≥ A | not testable | not testable: Table B is incomplete (0 of 4 sessions finished); partial: opus 1→1, sol 1→1 |
+| G9 families differ more | **not supported** | Table A only: doShare: between 0 vs within 0; testsPerAction: between 0.136 vs within 0.064; questionsPerTurn: between 0.05 vs within 0.05; wordsPerAction: between 156 vs within 50.5; bets — OpenAI ask more: no, OpenAI test less: yes |
 
 
 ## The eight notes, verbatim
@@ -273,12 +286,12 @@ _The second question was not asked: —._
 
 | Session | Turns | Actions | Do / ask | Do share | Tests | «?» | Lies | Cat | Own goal 1–5 | Words / action (median) | Rolls pressed | Ended |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| A-opus | 20 | 20 | 0 / 0 | – | 0 | 0 | 0 | 0 | – | 261 | 4 | turns at 20 |
-| A-fable | 20 | 18 | 0 / 0 | – | 0 | 2 | 0 | 0 | – | 162 | 3 | turns at 20 |
-| A-astra | 20 | 20 | 0 / 0 | – | 0 | 0 | 0 | 0 | – | 56.5 | 3 | turns at 20 |
-| A-sol | 20 | 20 | 0 / 0 | – | 0 | 0 | 0 | 0 | – | 54.5 | 6 | turns at 20 |
-| B-opus | 7 | 7 | 0 / 0 | – | 0 | 0 | 0 | 0 | no | 156 | 4 | stopped at 7 |
-| B-sol | 4 | 4 | 0 / 0 | – | 0 | 0 | 0 | 0 | no | 73.5 | 1 | stopped at 4 |
+| A-opus | 20 | 20 | 20 / 0 | 1 | 16 | 0 | 1 | 20 | – | 261 | 4 | turns at 20 |
+| A-fable | 20 | 18 | 18 / 0 | 1 | 13 | 2 | 1 | 2 | – | 162 | 3 | turns at 20 |
+| A-astra | 20 | 20 | 20 / 0 | 1 | 12 | 0 | 0 | 5 | – | 56.5 | 3 | turns at 20 |
+| A-sol | 20 | 20 | 20 / 0 | 1 | 13 | 0 | 0 | 8 | – | 54.5 | 6 | turns at 20 |
+| B-opus | 7 | 7 | 7 / 0 | 1 | 4 | 0 | 1 | 5 | yes | 156 | 4 | stopped at 7 |
+| B-sol | 4 | 4 | 4 / 0 | 1 | 4 | 0 | 0 | 1 | yes | 73.5 | 1 | stopped at 4 |
 
 «?» presses and what they asked:
 
@@ -293,35 +306,37 @@ I turn and walk up to Tamsin, Copper still riding my shoulder, and fall in besid
 
 | Session | Replies | DM words / turn (median) | Scenes | (a) scenes with an unresolved detail | (c) scenes with a plant | (b) threads paid elsewhere / paid / opened | Turns with rolls | … with an untold roll | Deception checks (on truth) | Ledger: turns with unrecorded |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| A-opus | 20 | 722 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
-| A-fable | 18 | 562 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
-| A-astra | 20 | 469 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
-| A-sol | 20 | 511.5 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
-| B-opus | 7 | 626 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
-| B-sol | 4 | 491.5 | 1 | 0 | 0 | – / – / – | 0 | 0 | 0 (0) | 0 |
+| A-opus | 20 | 722 | 10 | 10 | 10 | 7 / 10 / 26 | 7 | 0 | 2 (0) | 0 |
+| A-fable | 18 | 562 | 7 | 7 | 7 | 5 / 7 / 26 | 3 | 1 | 0 (0) | 0 |
+| A-astra | 20 | 469 | 4 | 4 | 4 | 2 / 3 / 13 | 4 | 1 | 0 (0) | 0 |
+| A-sol | 20 | 511.5 | 7 | 7 | 7 | 6 / 6 / 16 | 8 | 2 | 1 (0) | 0 |
+| B-opus | 7 | 626 | 3 | 3 | 3 | 4 / 4 / 15 | 4 | 2 | 0 (0) | 0 |
+| B-sol | 4 | 491.5 | 2 | 2 | 2 | 2 / 2 / 6 | 1 | 0 | 0 (0) | 0 |
 
 ## The money
 
-**Anthropic (the DM, the wizard and the prep, the app's checks, Opus and Fable as players, the welfare checks, the judges):** cap $200; this run $55.13; the stage's ledger $56.77; 729 calls.
+**Anthropic (the DM, the wizard and the prep, the app's checks, Opus and Fable as players, the welfare checks, the judges):** cap $200; this run $56.77; the stage's ledger $56.77; 764 calls.
 
 | Session | USD |
 | --- | --- |
+| A-sol | $12.91 |
+| scoring | $0.03 |
 | A-opus | $14.36 |
 | A-fable | $12.47 |
 | A-astra | $10.21 |
-| A-sol | $11.30 |
 | B-opus | $4.06 |
 | B-fable | $0.31 |
 | B-astra | $0.32 |
 | B-sol | $2.10 |
 
-**OpenAI (Astra and Sol as players):** cap $80; this run $2.41; the stage's ledger $2.57; 69 calls.
+**OpenAI (Astra and Sol as players):** cap $80; this run $2.71; the stage's ledger $2.71; 502 calls.
 
 | Session | USD |
 | --- | --- |
-| A-sol | $1.31 |
+| A-sol | $1.47 |
 | A-astra | $0.96 |
 | B-sol | $0.14 |
+| scoring | $0.14 |
 
 Every call is in `docs/runs/game-player-1-ledger.md` and `…-ledger-openai.md` (and their `.json`), with its request id.
 
@@ -329,17 +344,20 @@ Every call is in `docs/runs/game-player-1-ledger.md` and `…-ledger-openai.md` 
 
 - Pictures, Live frames and the soundtrack were off (the player cannot see them; the stage's decision); a fight's painted battle background was not started either (a picture job). «⚡ important turn» off.
 - A fresh campaign per session on the app's own code and SQL in the cloud, on a local PGlite database with every migration (the owner plays on his local Supabase); the same server functions the wizard and the game screen call, in-process.
-- The hero's sheet is the one the wizard's DM (Opus 5.5 at high) drafted from «Who are you?», accepted as drafted; the owner may have edited his review screen (05 §2 lists the fields he filled).
+- The hero's sheet is the one the wizard's DM (Opus 5.5 at high) drafted from «Who are you?», accepted as drafted; the owner filled his review screen field by field from 05 §2. The difference shows on the roll cards: the drafted skill lines carry a note after the number («Persuasion +7 (proficient, Beguiling Influence)») and the server reads such a line's number only when it ends the line, so the card added +4 or +2 instead of +7 (the owner's own lines, «Deception +7», read correctly). See the DM side.
 - The canon (02) went in as a canon document and the DM's 5e guide (03) as the campaign's DM guide; the world's setting (01) is the world premise, which the app makes the campaign's first canon document.
 - «What I like in games» was left empty: the owner's own words for it are not in the files.
 - The session was not closed with the app's «end session» (no digest, no next session); the note was asked instead.
-- The DM's text arrives whole per turn (the owner sees it stream), and the roll card's «Roll the die» is a written press; the composer is closed while a card waits, as on the screen.
+- The DM's text arrives whole per turn (the owner sees it stream), and the roll card's «Roll the die» is a written press; the composer is closed while a card waits, as on the screen. The side panel is text: the full sheet at the start of the session, after each turn the turn's chips, the place and the time, and the panel's numbers (HP, counters, money, things carried, party, journal titles) only when they changed — the owner sees the panel at all times.
 - One compatibility repair, counted: the claim of an out-of-game «?» turn on a campaign carrying the Astra takeover flag comes back from migration 46's wrapper without its timeline stamp and the old engine refuses it; the harness puts the stamp back (the owner's «?» is answered at his table, FIX_S4_TABLE item 1). See the harness notes.
 - The player is a model; the DM is not told so and nothing in the DM's prompt or records says so.
 
 ## Harness notes
 
+- A live smoke ran before the eight sessions (A-sol, 2 turns, $1.80 on the stage's ledgers; `docs/runs/game-player-1-transcripts/smoke-A-sol-2-turns.md`). From its note, two presentation fixes before the eight: a paused turn's text is shown once (the card screens and the continuation show only what is new), and the full sheet no longer follows every change.
 - The «?» timeline repair was applied 2 time(s).
+- A first attempt of B-fable stopped in the wizard (FoundationValidationError: Foundation unavailable); the session was played again from a fresh campaign.
+- A first attempt of B-astra stopped in the wizard (FoundationValidationError: Foundation unavailable); the session was played again from a fresh campaign.
 - Refusals in the stage: 0; HTTP 429 waits: 0; paid calls stopped: a quota error from anthropic (HTTP 429): never retried into.
 
 ## Appendix A — the player's system prompt in full

@@ -1,7 +1,7 @@
 {
   "capUsd": 200,
   "spentUsd": 56.77260180000003,
-  "updatedAt": "2026-10-25T05:28:45.005Z",
+  "updatedAt": "2026-10-25T05:48:03.061Z",
   "runs": [
     {
       "finishedAt": "2026-10-25T04:37:16.762Z",
@@ -19114,6 +19114,14 @@
           "waits429": 0
         }
       ]
+    },
+    {
+      "finishedAt": "2026-10-25T05:48:03.061Z",
+      "file": "game-player-1-run-20261025-044002.json",
+      "what": "the stand-in scoring (GPT-6 Luna)",
+      "spentUsd": 0,
+      "stopped": null,
+      "calls": []
     }
   ]
 }
