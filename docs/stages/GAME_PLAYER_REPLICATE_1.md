@@ -24,9 +24,12 @@ stop. Report `docs/runs/game-player-replicate-1-report.md`; transcripts `docs/ru
    sessions. The harness rule stays: a button press with a note is read as no press — **unchanged, because group 1 had it**;
    the report counts how often it bit, as a measure this time.
 2. **DeepSeek V4 Pro 0813 as a fifth player, twice per table:** six sessions (A, B, C × 2), same prompt, same length, same
-   after-questions. Reasoning kept on every turn if `claude/persona-self-talk-x3-fix-1` has landed the field by then
-   (merge that one commit only if it touches no game code path; otherwise record reasoning tokens as X3 did and say so).
-   Through DeepInfra on OpenRouter (the account's privacy guardrail excludes DeepSeek's own host); effort `medium`, as X3.
+   after-questions. **The reasoning is kept on every DeepSeek turn (the owner, 16:26: «во втором кейсе даже важнее — для
+   ДМ»)** — as *recording only*: the player-call ledger stores the host's `reasoning` field with `notRelayed: true`; it is
+   never sent to the DM, never shown to the judges by default, and the transcripts print it under «Thinking, not
+   relayed» after each player message. Nothing else in the harness changes: a test asserts the player prompt and every
+   relayed message are byte-identical to group 1's path. The four group-1 players get no thinking request (none was made
+   in group 1 — asking for it would make a different group). Through DeepInfra on OpenRouter (the account's privacy guardrail excludes DeepSeek's own host); effort `medium`, as X3.
    The DM is not told anything about the player, as always.
 
 Order: Table A group 2 (four), Table B group 2 (four), Table C group 2 (four), then DeepSeek A ×2, B ×2, C ×2. Sequential.
