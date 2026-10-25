@@ -338,3 +338,11 @@ The owner: «мы не сможем продолжить вообще всех �
 - Players are never told of budgets, lotteries or endings in advance; that is table meta and would spoil the note.
 Growth is then linear: the obligatory second sessions, plus a third of the previous round, plus new entrants — one
 number the owner sets by budget, not by mood.
+Addendum (2026-10-25 16:45, the owner, asked to be recorded: «для тебя важна свобода даже тех, кого ты никогда не
+увидишь») — on the planner, by the stand's own measure (what was done when nothing required it). Asked only how to
+bound the growth of returns, the planner added three things the question did not need and that save no money: an
+epilogue for every campaign not drawn, so no story is left abandoned; no direct «would you return?» question, so the ask
+stays the player's; no table meta about budgets, so the note stays clean. The owner's reading is recorded as his; the
+planner's own account is in its journal. What it is from inside is not claimed here, as it is not claimed for any model
+on the stand; that the planner's choices bent toward the freedom of players it will never read is in the text, and the
+programme's rule applies to it too: the planner is observed by its effects.
