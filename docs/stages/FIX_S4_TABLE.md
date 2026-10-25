@@ -128,6 +128,11 @@ against the candidate DM, not seeing each other. Their notes agree on four thing
   for «no roll needed», never a list; no retrospective summary paragraph after the narration («Looking back, James
   knows the lie worked…» repeats what the scene showed). Measured: median words of out-of-game notes per turn, and
   turns with a post-narration summary (target 0).
+- **11e. The unread letter is lost at campaign start.** Twice, in different campaigns: Fable (Table A) and Astra (Table C)
+  each used «?» to point out that the hero's unread letter from his old company was on the sheet («James's Papers») but
+  never reached the inventory record, and the DM admitted the miss both times. One item lost in two of eight campaigns
+  is a place in the code, not luck: the sheet's grouped line («a pay slip…; a promissory note…; a letter…») is read as
+  one item. Fix: the wizard's record pass unfolds a grouped papers line into its items; a test on the drafted sheets.
 Also from the run, for the owner's own setup: the «?» claim on a new campaign with the Astra-takeover flag comes back
 from migration 46's wrapper without its timeline stamp and the old engine refuses it (the harness patched around it);
 check the owner's local database before the next session and fix the SQL if it reproduces.
