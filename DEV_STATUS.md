@@ -24,7 +24,13 @@ composer gap before any verdict); transcripts `docs/runs/game-player-1-transcrip
   (`src/lib/gameplay/dm-loop/execute.ts:294`, a one-line regex fix given); 12 — «?» closed while a roll card waits
   (`src/components/gameplay-composer.tsx:392`); 13 — a «?» claim on a new campaign loses its timeline stamp
   (`202610060046_astra_live_progression.sql:402`, NULL `<>`; fix by a new migration with `is distinct from`).
-- **Checks:** CHECKS_PLACEHOLDER
+- **Checks** (a clean worktree without `.env.local`, no keys, no paid call): at `1f41f4ce` the full suite 2 946 tests ·
+  2 916 pass · 0 fail · 3 cancelled · 27 skipped; typecheck pass; lint pass, zero warnings; production build pass, no
+  warnings. The harness's own tests: 20 of 20 pass. The 3 cancelled are in `tests/d2a-composition.test.mjs` (lines
+  590 onward: «timeout leaves requested draft unchanged…», «pending request cannot acquire…», «fully assembled
+  oversized context…»; «Promise resolution is still pending but the event loop has already resolved»). They cancel
+  the same way on `origin/claude/s3-candidate` itself (`be4b315f`, run alone today), which passed them at `6e63502`;
+  this branch changes nothing under `src/`, `supabase/` or that test — not this stage's, not fixed here.
 - **Money:** Anthropic $56.77 of $200; OpenAI $2.71 of $80 (stand-in scoring $0.14 of it).
 - **Known issues:** Table B incomplete; tags provisional; the harness's «?» timeline repair (migration 46 wrapper)
   listed as a difference from the owner's table.
