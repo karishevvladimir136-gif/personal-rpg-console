@@ -13,7 +13,8 @@ Claude Haiku 5.5 yet; Opus 5.5 was not called). Report: `docs/runs/bedrock-provi
 - **Key decisions:** the stage's host `bedrock-runtime.<region>.amazonaws.com/anthropic` (live, Anthropic-shaped; the
   `bedrock-mantle` host of Anthropic's docs is not reachable from the cloud) with `global.` profile ids; no migration;
   no SDK added.
-- **Checks:** see the commit; new tests in `tests/bedrock-provider-1.test.mjs`.
+- **Checks** (no `.env.local`) at `cb9d5a8`: the full suite 2 935 tests · 2 908 pass · 0 fail · 0 cancelled · 27 skipped
+  (9 new in `tests/bedrock-provider-1.test.mjs`); typecheck pass; lint pass, zero warnings; production build pass.
 - **Money:** $0.00 of the $3 cap (two refused Haiku calls).
 - **Known issues:** Haiku 5.5 (the app's small checks) and possibly Opus 5.5 need Bedrock model access on the owner's
   account; the Opus tokens-per-minute quota is not observed yet.

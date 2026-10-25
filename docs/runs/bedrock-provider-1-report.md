@@ -90,8 +90,12 @@ rate-limit headers, and the harness records them.
 
 ## Checks
 
-The final checks ran on a clean worktree (no `.env.local`) at the committed candidate; the numbers are in
-`DEV_STATUS.md` and the commit message. The new tests (`tests/bedrock-provider-1.test.mjs`) cover:
+Clean worktree (no `.env.local`) at `cb9d5a8`:
+- the full suite (`node --test --test-concurrency=2 tests/*.test.mjs`): 2 935 tests · 2 908 pass · 0 fail ·
+  0 cancelled · 27 skipped (the same 27 as before; 9 tests are new);
+- typecheck pass;
+- lint pass, zero warnings;
+- production build pass. The new tests (`tests/bedrock-provider-1.test.mjs`) cover:
 - each door's URL, headers (key presence only) and mapped id;
 - the not-configured cases;
 - the throttling, model-refusal (recorded body), Fable-retention and bad-key mappings;
