@@ -10,6 +10,7 @@
 // session's finding was three turns narrated around declared attacks with nothing rolled.
 import type { DmLoopReceipt } from "./contracts.ts";
 import { QUOTABLE_MODEL, QUOTABLE_PRICE_PER_MILLION } from "./quotable.ts";
+import { anthropicEndpoint } from "../../server/anthropic-endpoint.ts";
 
 export type RollCheckResult = { untold: number[]; undeclared?: string[]; costUsdMicros: number; error: string | null };
 export type RollCheckInput = { narration: string; rolls: string[]; language: "ru" | "en";
@@ -95,13 +96,14 @@ export async function checkRollsTold(apiKey: string, input: RollCheckInput,
   if (!apiKey) return { untold: [], undeclared: [], costUsdMicros: 0, error: "not_configured" };
   const request = rollCheckRequest(input);
   try {
-    const response = await (options.fetcher ?? fetch)("https://api.anthropic.com/v1/messages", {
+    const door = anthropicEndpoint();
+    const response = await (options.fetcher ?? fetch)(door.messagesUrl, {
       method: "POST",
-      headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
+      headers: door.headers(apiKey),
       // Fix S3-pre 2.6: no thinking. At low effort the model still thought, and on the quoting prompt it spent the
       // whole allowance on it (899 of 900 tokens, no answer: the check passed every turn); without thinking the answer
       // came in ~1 s and flagged the hero's untold critical shot of the merge's ford turn 4, 5 of 5.
-      body: JSON.stringify({ model: QUOTABLE_MODEL, max_tokens: 900, thinking: { type: "disabled" }, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
+      body: JSON.stringify({ model: door.modelId(QUOTABLE_MODEL), max_tokens: 900, thinking: { type: "disabled" }, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
       signal: AbortSignal.timeout(options.timeoutMs ?? 20_000),
     });
     const value = await response.json().catch(() => null) as { content?: { type: string; text?: string }[]; usage?: { input_tokens?: number; output_tokens?: number }; error?: { type?: string } } | null;

@@ -1,5 +1,6 @@
 import "server-only";
 import { BRIEF_MODEL, BRIEF_PRICE_PER_MILLION, briefRequest, parseBrief, type BriefRequestInput, type VisualBrief } from "../../visual-frame/brief.ts";
+import { anthropicEndpoint } from "../anthropic-endpoint.ts";
 
 // The shot director's model calls (polish 2 §3): the visual brief from the whole
 // turn, and the visual profile of a person or a place drafted once from the
@@ -16,10 +17,11 @@ export type BriefResult = { brief: VisualBrief | null; usage: BriefUsage | null;
 type Fetcher = typeof fetch;
 type Content = { type: "text"; text: string } | { type: "image"; source: { type: "base64"; media_type: string; data: string } };
 async function messages(apiKey: string, body: unknown, fetcher: Fetcher, timeoutMs: number) {
-  const response = await fetcher("https://api.anthropic.com/v1/messages", {
+  const door = anthropicEndpoint();
+  const response = await fetcher(door.messagesUrl, {
     method: "POST",
-    headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-    body: JSON.stringify(body),
+    headers: door.headers(apiKey),
+    body: JSON.stringify(door.body(body)),
     signal: AbortSignal.timeout(timeoutMs),
   });
   const value = await response.json().catch(() => null) as { content?: { type: string; text?: string }[]; usage?: { input_tokens?: number; output_tokens?: number }; error?: { type?: string }; stop_reason?: string } | null;

@@ -9,6 +9,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { providerKey } from "../lib/keys.mjs";
+import { anthropicKey, scriptAnthropicEndpoint } from "../lib/anthropic-endpoint.mjs";
 import { FAL_SIZES, FalImageError, falImagePriceUsdMicros, falModel, generateFalImage, isContentRefusal, sniffImage, usd } from "../../../src/lib/visual-frame/fal-image.ts";
 import { generateOpenAIImage, openAIImageReserveUsdMicros } from "../../../src/lib/visual-frame/openai-image.ts";
 
@@ -141,7 +142,7 @@ const judgeReserve = (judge, pictures) => Math.round((pictures * 1_800 + 1_500) 
 /** Scores one frame (or anchor) against the hero's anchors. Returns the parsed JSON or null. */
 export async function judgeFrame(judgeKey, { frame, refs, description, expectedPeople, clothingQuestion, kind = "frame" }) {
   const judge = JUDGES[judgeKey];
-  const apiKey = providerKey("ANTHROPIC_API_KEY");
+  const apiKey = anthropicKey();
   if (!apiKey) throw new Error("ANTHROPIC_API_KEY missing");
   const content = [{ type: "text", text: kind === "figure" ? "Image 1 is a full-figure character picture to judge." : "Image 1 is the FRAME to judge." }, image(frame)];
   refs.forEach((ref, index) => content.push({ type: "text", text: `Image ${index + 2} is a reference: ${ref.label}.` }, image(ref)));
@@ -163,10 +164,11 @@ export async function judgeFrame(judgeKey, { frame, refs, description, expectedP
   const entry = reserve("vision", judge.id, judgeReserve(judge, 1 + refs.length), `judge ${kind}`);
   let response, value;
   try {
-    response = await fetch("https://api.anthropic.com/v1/messages", {
+    const door = scriptAnthropicEndpoint();
+    response = await fetch(door.messagesUrl, {
       method: "POST",
-      headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-      body: JSON.stringify({ model: judge.id, max_tokens: 4_000, output_config: { effort: "medium" }, messages: [{ role: "user", content }] }),
+      headers: door.headers(apiKey),
+      body: JSON.stringify({ model: door.modelId(judge.id), max_tokens: 4_000, output_config: { effort: "medium" }, messages: [{ role: "user", content }] }),
       signal: AbortSignal.timeout(120_000),
     });
     value = await response.json().catch(() => null);
@@ -201,7 +203,7 @@ export const mean = (list) => { const values = list.filter((v) => typeof v === "
  * the caller); the judge rates each frame's likeness against the others, using the whole range. */
 export async function rankIdentity(judgeKey, { portrait, frames, note }) {
   const judge = JUDGES[judgeKey];
-  const apiKey = providerKey("ANTHROPIC_API_KEY");
+  const apiKey = anthropicKey();
   if (!apiKey) throw new Error("ANTHROPIC_API_KEY missing");
   const content = [{ type: "text", text: "REFERENCE: the portrait of the man (the hero)." }, image(portrait)];
   for (const frame of frames) content.push({ type: "text", text: `Frame ${frame.letter}:` }, image(frame));
@@ -213,10 +215,11 @@ export async function rankIdentity(judgeKey, { portrait, frames, note }) {
   const entry = reserve("vision", judge.id, judgeReserve(judge, 1 + frames.length), `rank ${note}`);
   let response, value;
   try {
-    response = await fetch("https://api.anthropic.com/v1/messages", {
+    const door = scriptAnthropicEndpoint();
+    response = await fetch(door.messagesUrl, {
       method: "POST",
-      headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-      body: JSON.stringify({ model: judge.id, max_tokens: 6_000, output_config: { effort: "medium" }, messages: [{ role: "user", content }] }),
+      headers: door.headers(apiKey),
+      body: JSON.stringify({ model: door.modelId(judge.id), max_tokens: 6_000, output_config: { effort: "medium" }, messages: [{ role: "user", content }] }),
       signal: AbortSignal.timeout(180_000),
     });
     value = await response.json().catch(() => null);

@@ -3,6 +3,7 @@
 import type { SceneCheck, SceneSheet } from "../contracts.ts";
 import { checkRequest, finishSheet, locatorRequest, parseCheckReply, parseLocatorReply, parseSheetReply, sheetRequest, sheetRetryText, sheetScore, type Located, type PoiCandidate, type SheetSource } from "../scene.ts";
 import { parseRelangReply, relangRequest, type SheetLanguage } from "../scene-language.ts";
+import { anthropicEndpoint } from "../../server/anthropic-endpoint.ts";
 
 // The 2D layer's model calls, all through the Anthropic Messages API directly
 // (no DM, no tools; the pattern of src/lib/server/media/brief-model.ts):
@@ -34,10 +35,11 @@ export type Image = { bytes: Uint8Array; contentType: string };
 const image = (row: Image): Content => ({ type: "image", source: { type: "base64", media_type: row.contentType, data: Buffer.from(row.bytes).toString("base64") } });
 
 export async function messages(apiKey: string, body: unknown, fetcher: Fetcher, timeoutMs: number): Promise<{ text: string; usage: Usage }> {
-  const response = await fetcher("https://api.anthropic.com/v1/messages", {
+  const door = anthropicEndpoint();
+  const response = await fetcher(door.messagesUrl, {
     method: "POST",
-    headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-    body: JSON.stringify(body),
+    headers: door.headers(apiKey),
+    body: JSON.stringify(door.body(body)),
     signal: AbortSignal.timeout(timeoutMs),
   });
   const value = await response.json().catch(() => null) as { content?: { type: string; text?: string }[]; usage?: { input_tokens?: number; output_tokens?: number }; error?: { type?: string }; stop_reason?: string } | null;

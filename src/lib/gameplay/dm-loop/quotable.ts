@@ -7,6 +7,7 @@
 // (rpg_private.voice_flags, migration 70) for the tail and for the metrics. This module is the
 // pure part: the lines, the request, the parse, the tail line. The model call lives in
 // src/lib/server/voice/quotable-check.ts.
+import { anthropicEndpoint } from "../../server/anthropic-endpoint.ts";
 
 export const QUOTABLE_MODEL = "claude-haiku-5-5";
 /** USD per 1M tokens (the shot model's table, docs/MODELS.md): input $0.10, output $0.50. */
@@ -89,11 +90,12 @@ export async function checkQuotableLines(apiKey: string, narration: string, lang
   if (!apiKey) return { flags: [], lines: lines.length, usage: null, costUsdMicros: 0, elapsedMs: 0, error: "not_configured" };
   const request = quotableRequest(lines, language);
   try {
-    const response = await (options.fetcher ?? fetch)("https://api.anthropic.com/v1/messages", {
+    const door = anthropicEndpoint();
+    const response = await (options.fetcher ?? fetch)(door.messagesUrl, {
       method: "POST",
-      headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
+      headers: door.headers(apiKey),
       // Low effort: a short JSON answer, no thinking (the shot model's lesson: at the default effort the answer never arrived).
-      body: JSON.stringify({ model: QUOTABLE_MODEL, max_tokens: 700, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
+      body: JSON.stringify({ model: door.modelId(QUOTABLE_MODEL), max_tokens: 700, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
       signal: AbortSignal.timeout(options.timeoutMs ?? 30_000),
     });
     const value = await response.json().catch(() => null) as { content?: { type: string; text?: string }[]; usage?: { input_tokens?: number; output_tokens?: number }; error?: { type?: string } } | null;

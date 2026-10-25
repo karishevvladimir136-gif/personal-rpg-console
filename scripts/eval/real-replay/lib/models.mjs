@@ -4,6 +4,7 @@
 import { registerHooks } from "node:module";
 import { dmModels, dmRequestReservation } from "../../../../src/lib/model-runtime/dm-models.ts";
 import { dmLoopLimits } from "../../../../src/lib/gameplay/dm-loop/limits.ts";
+import { anthropicRequestId, callProvenance } from "../../lib/anthropic-endpoint.mjs";
 
 const hook = registerHooks({ resolve(specifier, context, nextResolve) {
   return specifier === "server-only" ? { url: "data:text/javascript,export%20{}", shortCircuit: true } : nextResolve(specifier, context);
@@ -62,7 +63,10 @@ export function guardedModel(selection, budget, apiKey, log, options = {}) {
     const started = performance.now();
     try {
       const response = await fetch(url, init);
-      log.push({ event: "http", model: selection.modelId, status: response.status, requestBytes: bytes, latencyMs: Math.round(performance.now() - started) });
+      // BEDROCK_PROVIDER_1 §4: the door of the call and the provider's request id.
+      log.push({ event: "http", model: selection.modelId, status: response.status, requestBytes: bytes, latencyMs: Math.round(performance.now() - started),
+        ...callProvenance(selection.providerId, url),
+        requestId: anthropicRequestId(response.headers) ?? response.headers.get("x-request-id") });
       if (response.ok) reservations.set(budget.requests, reservation);
       else budget.reservedUsd -= reservation;
       return response;

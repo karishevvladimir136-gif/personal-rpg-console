@@ -14,6 +14,7 @@ import { fileURLToPath } from "node:url";
 import { randomBytes } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { providerKey } from "../lib/keys.mjs";
+import { anthropicKey } from "../lib/anthropic-endpoint.mjs";
 import { openRun } from "../real-replay/lib/ledger.mjs";
 import { campaign, HIDDEN_LAYER, id, PLACEMENTS, SECRET } from "./region-probe-campaign.mjs";
 import { FAL_SIZES, FalImageError, usd } from "../../../src/lib/visual-frame/fal-image.ts";
@@ -53,7 +54,7 @@ const calls = [];
 const guard = (micros, what) => { if (spentMicros + micros > capMicros) throw new Error(`budget: ${what} (${usd(micros)}) would pass this run's ${usd(capMicros)} (spent ${usd(spentMicros)})`); };
 const book = (what, model, micros, extra = {}) => { spentMicros += micros; calls.push({ what, model, usd: Number((micros / 1e6).toFixed(4)), ...extra }); console.log(`  ${what}: ${usd(micros)} (${model})`); };
 
-const anthropic = providerKey("ANTHROPIC_API_KEY"), openai = providerKey("OPENAI_API_KEY");
+const anthropic = anthropicKey(), openai = providerKey("OPENAI_API_KEY");
 if (!anthropic || !openai) { await run.settle(0, { error: "keys missing" }); throw new Error("ANTHROPIC_API_KEY / OPENAI_API_KEY missing"); }
 
 async function paint(prompt, what) {

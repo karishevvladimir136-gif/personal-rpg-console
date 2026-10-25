@@ -12,6 +12,7 @@ import { appendFile, mkdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { providerKey } from "./lib/keys.mjs";
+import { anthropicKey } from "./lib/anthropic-endpoint.mjs";
 
 const hook = registerHooks({ resolve(specifier, context, nextResolve) {
   return specifier === "server-only"
@@ -171,7 +172,7 @@ const write = (record) => appendFile(outFile, `${JSON.stringify(record)}\n`, "ut
 await write({ type: "probe", startedAt: new Date().toISOString(), budgetUsd: args.budgetUsd, models: args.models,
   efforts: args.efforts, runs: args.runs, prefixChars: prefix.length, maxOutputTokens: MAX_OUTPUT });
 
-const keys = { anthropic: providerKey("ANTHROPIC_API_KEY"), openai: providerKey("OPENAI_API_KEY") };
+const keys = { anthropic: anthropicKey(), openai: providerKey("OPENAI_API_KEY") };
 const summary = [];
 outer:
 for (const effort of args.efforts) {

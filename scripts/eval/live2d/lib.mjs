@@ -10,6 +10,7 @@ import { fileURLToPath } from "node:url";
 import { randomBytes } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { providerKey } from "../lib/keys.mjs";
+import { anthropicKey } from "../lib/anthropic-endpoint.mjs";
 import { FAL_SIZES, FalImageError, isContentRefusal, sniffImage, usd } from "../../../src/lib/visual-frame/fal-image.ts";
 import { generateOpenAIImage, openAIImageReserveUsdMicros } from "../../../src/lib/visual-frame/openai-image.ts";
 import { buildSheet, checkScene, locateScene, draftSeeds, CHECK_MODEL, LOCATOR_MODEL, SHEET_MODEL, PRICE_PER_MILLION } from "../../../src/lib/live2d/server/vision.ts";
@@ -105,7 +106,7 @@ export async function drawScene(prompt, { size = "landscape_16_9_hd", note, refe
 
 // ---- the vision calls of the production chain, through the guard ----------------------------
 const price = (model) => PRICE_PER_MILLION[model];
-const anthropicKey = () => { const key = providerKey("ANTHROPIC_API_KEY"); if (!key) throw new Error("ANTHROPIC_API_KEY missing"); return key; };
+const anthropicKey = () => { const key = anthropicKey(); if (!key) throw new Error("ANTHROPIC_API_KEY missing"); return key; };
 /** An upper bound before the call: text tokens in, about 1,800 per picture, the answer. */
 const textReserve = (model, inTokens, outTokens, pictures = 0) => Math.round((inTokens + pictures * 1_800) * price(model).input + outTokens * price(model).output);
 

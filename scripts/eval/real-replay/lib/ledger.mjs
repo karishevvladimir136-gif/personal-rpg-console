@@ -6,6 +6,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { provenance } from "../../lib/anthropic-endpoint.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 export const ROOT = join(here, "..", "..", "..", "..");
@@ -31,6 +32,9 @@ export const LEDGERS = {
   // re-measured on the scenes with rolls).
   findingss3: { file: join(ROOT, "docs", "runs", "findings-s3-ledger.json"), capUsd: 24, label: "the findings of session 3",
     markdown: join(ROOT, "docs", "runs", "findings-s3-ledger.md") },
+  // The second door (docs/stages/BEDROCK_PROVIDER_1.md): the smoke on Amazon Bedrock only, $3.
+  bedrock1: { file: join(ROOT, "docs", "runs", "bedrock-provider-1-ledger.json"), capUsd: 3, label: "the Bedrock provider stage",
+    markdown: join(ROOT, "docs", "runs", "bedrock-provider-1-ledger.md") },
 };
 export const DEFAULT_LEDGER = "fixs2";
 export const LEDGER_FILE = LEDGERS[DEFAULT_LEDGER].file;
@@ -80,7 +84,7 @@ export async function openRun(run, requestedUsd, what, name = DEFAULT_LEDGER, st
   const remaining = Number(Math.min(ledger.capUsd - committedUsd(ledger), stageRemaining(spec, ledger, stage)).toFixed(4));
   if (remaining <= 0) throw new Error(`${spec.label} ledger: the cap is spent (${committedUsd(ledger).toFixed(2)} of $${ledger.capUsd} committed${stage ? `, stage ${stage}` : ""})`);
   const budgetUsd = Number(Math.min(requestedUsd, remaining).toFixed(4));
-  ledger.entries.push({ run, what, ...(stage ? { stage } : {}), startedAt: new Date().toISOString(), reservedUsd: budgetUsd, spentUsd: 0, settled: false });
+  ledger.entries.push({ run, what, ...doorOf(), ...(stage ? { stage } : {}), startedAt: new Date().toISOString(), reservedUsd: budgetUsd, spentUsd: 0, settled: false });
   await writeLedger(ledger, name);
   return {
     budgetUsd, remainingBefore: remaining, ledger: name,
@@ -94,10 +98,26 @@ export async function openRun(run, requestedUsd, what, name = DEFAULT_LEDGER, st
   };
 }
 
+/** BEDROCK_PROVIDER_1 §4: the door the run's Claude calls go through (a door that is not configured is named so). */
+function doorOf() {
+  try { return provenance(); } catch { return { provider: "not_configured", endpointHost: null }; }
+}
+
+/** Spend per door; the entries from before the door switch went through the Anthropic API. */
+export function spendByProvider(ledger) {
+  const totals = {};
+  for (const entry of ledger.entries) {
+    const provider = entry.provider ?? "anthropic";
+    totals[provider] = (totals[provider] ?? 0) + (entry.settled ? entry.spentUsd : entry.reservedUsd);
+  }
+  return totals;
+}
+
 export function ledgerTable(ledger) {
   const lines = ["| Run | Stage | What | Reserved | Spent | Settled |", "| --- | --- | --- | --- | --- | --- |"];
   for (const entry of ledger.entries)
     lines.push(`| ${entry.run} | ${entry.stage ?? ""} | ${entry.what} | $${entry.reservedUsd.toFixed(2)} | $${entry.spentUsd.toFixed(4)} | ${entry.settled ? "yes" : "no"} |`);
   lines.push(`| **Total** | | | **$${committedUsd(ledger).toFixed(4)} of $${ledger.capUsd}** | |`);
+  lines.push("", `Spend per door: ${Object.entries(spendByProvider(ledger)).map(([provider, usd]) => `${provider} $${usd.toFixed(4)}`).join(" · ")}`);
   return lines.join("\n");
 }

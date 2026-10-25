@@ -16,6 +16,7 @@ import { snapshot, diff, evaluateCheck } from "../../lib/state.mjs";
 import { naturalness as naturalnessOf } from "../../lib/naturalness.mjs";
 import { createLoopBudget } from "../../lib/loop-harness.mjs";
 import { MODELS, SCENARIO } from "./variants.mjs";
+import { anthropicRequestId, callProvenance } from "../../lib/anthropic-endpoint.mjs";
 
 const hook = registerHooks({ resolve(specifier, context, nextResolve) {
   return specifier === "server-only"
@@ -74,7 +75,10 @@ function guardedModel(selection, budget, apiKey, log) {
     const started = performance.now();
     try {
       const response = await fetch(url, init);
-      log.push({ event: "http", model: selection.modelId, status: response.status, requestBytes: bytes, latencyMs: Math.round(performance.now() - started) });
+      // BEDROCK_PROVIDER_1 §4: the door of the call and the provider's request id.
+      log.push({ event: "http", model: selection.modelId, status: response.status, requestBytes: bytes, latencyMs: Math.round(performance.now() - started),
+        ...callProvenance(selection.providerId, url),
+        requestId: anthropicRequestId(response.headers) ?? response.headers.get("x-request-id") });
       if (response.ok) reservations.set(budget.requests, reservation);
       else budget.reservedUsd -= reservation;
       return response;

@@ -2,6 +2,7 @@ import "server-only";
 import { after } from "next/server";
 import { checkQuotableLines, QUOTABLE_MODEL } from "../../gameplay/dm-loop/quotable";
 import { dossierService } from "../dossier";
+import { anthropicApiKey } from "../anthropic-endpoint";
 
 // Voice stage part 5: the quotable-line check runs after the turn's commit, off the turn's path
 // (Next's `after`: once the response is done; outside a request, at once in the background).
@@ -17,7 +18,7 @@ export function scheduleQuotableCheck(args: { ownerId: string; campaignId: strin
 }
 
 export async function runQuotableCheck(args: { ownerId: string; campaignId: string; operationId: string; narration: string; language: "ru" | "en" }): Promise<void> {
-  const apiKey = process.env.ANTHROPIC_API_KEY ?? "";
+  const apiKey = anthropicApiKey();
   const result = await checkQuotableLines(apiKey, args.narration, args.language);
   if (result.lines === 0) return;
   if (result.error) {

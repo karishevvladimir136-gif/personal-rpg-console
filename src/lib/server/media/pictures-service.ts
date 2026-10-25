@@ -43,6 +43,7 @@ import { buildShot } from "./shot-model";
 import { buildBrief, draftProfile } from "./brief-model";
 import { boardOf, picturesContext, type PicturesContext } from "./pictures-store";
 import { briefPictureRow, createPictureRow, privatePicture, reviewPictureRow, runPictureJob as runJob } from "../../visual-frame/picture-job";
+import { anthropicApiKey } from "../anthropic-endpoint";
 
 // The Stage V frame engine. A turn never waits for a picture: every request
 // creates a queued row, answers at once, and the paid work runs after the
@@ -203,7 +204,7 @@ async function requestFrameUnlogged(campaignId: string, value: unknown, schedule
   if (!snapshot.timeline) throw new PersistenceError("conflict");
   const context = shotContext(snapshot);
   const scene = scenePeople(snapshot);
-  const built = await buildShot(process.env.ANTHROPIC_API_KEY ?? "", paragraph, context);
+  const built = await buildShot(anthropicApiKey(), paragraph, context);
   const shot: Shot = built.shot ?? fallbackShot(paragraph, context);
   // Polish 2 (the owner's blind picks): live and committed frames on the live tier the owner chose
   // (Sunburst by default since polish 3); key moments and «Перерисовать» on the quality tier (Sunburst by default).
@@ -273,7 +274,7 @@ const NARRATION_WAIT_MS = 150_000;
  * story's changes to a look appended to the profiles. A redraw with the owner's comment becomes an edit of
  * the previous frame. Any failure leaves the shot's prompt in place. Returns the brief's cost. */
 async function directFrame(ctx: PicturesContext, pictureId: string, input: { operationId: string; trigger: PictureTrigger; shot: Shot; model: string; comment: string | null }): Promise<{ costUsdMicros: number }> {
-  const apiKey = process.env.ANTHROPIC_API_KEY ?? "";
+  const apiKey = anthropicApiKey();
   if (!apiKey) return { costUsdMicros: 0 };
   const { operationId, trigger, comment } = input;
   const whole = await wholeNarration(ctx.campaignId, operationId, trigger === "live" ? NARRATION_WAIT_MS : 0);
@@ -369,7 +370,7 @@ export async function draftVisualProfile(campaignId: string, value: unknown) {
   return draftProfileFor(ctx, subject, await boardOf(ctx), await readCampaign(campaignId));
 }
 async function draftProfileFor(ctx: PicturesContext, subject: { kind: "entity" | "location"; id: string }, board: PictureBoard, snapshot: CampaignSnapshot) {
-  const apiKey = process.env.ANTHROPIC_API_KEY ?? "";
+  const apiKey = anthropicApiKey();
   if (!apiKey) return { status: "not_configured" as const };
   let name = "", text = "";
   if (subject.kind === "entity") {
@@ -606,7 +607,7 @@ export async function runPictureJob(ctx: PicturesContext, pictureId: string, opt
  * have, open eyes at 0 HP, and each person's gaze. A failed check queues one automatic redraw (the problems as
  * corrections; never a second, never past the daily cap) or marks the frame for the owner. Returns the redraw's id. */
 async function reviewFrame(ctx: PicturesContext, pictureId: string): Promise<string | null> {
-  const apiKey = process.env.ANTHROPIC_API_KEY ?? "";
+  const apiKey = anthropicApiKey();
   if (!apiKey) return null;
   const row = await privatePicture(ctx, pictureId);
   if (row.status !== "ready" || row.review || !row.storagePath) return null;
