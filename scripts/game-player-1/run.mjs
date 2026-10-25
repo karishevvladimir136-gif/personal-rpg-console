@@ -26,7 +26,6 @@ import { dryRunMarkdown, reportMarkdown, transcriptMarkdown } from "./report.mjs
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const RUNS = join(ROOT, "docs", "runs");
-export const TRANSCRIPTS = join(RUNS, "game-player-1-transcripts");
 export const STEM = "game-player-1";
 export const CAPS = { anthropic: 200, openai: 80 };
 /** Before the first session is measured: a session's cost by provider (the DM on Anthropic in every session; the
@@ -74,7 +73,7 @@ async function previousLedger(provider) {
 }
 
 /** The whole run. Returns the run record. */
-export async function run({ dry = false, only = null, turns = TURNS, lanes = 4, score = true, log = console.log, fetcher = null, out = RUNS, sleep } = {}) {
+export async function run({ dry = false, only = null, turns = TURNS, lanes = 4, score = true, log = console.log, fetcher = null, out = RUNS, sleep, label = null } = {}) {
   const started = new Date();
   const keys = dry ? { anthropic: "sk-scripted", openai: "sk-scripted" } : { anthropic: process.env.APP_ANTHROPIC_API_KEY?.trim() || null, openai: process.env.APP_OPENAI_API_KEY?.trim() || null };
   if (!keys.anthropic || !keys.openai) throw new Error("APP_ANTHROPIC_API_KEY and APP_OPENAI_API_KEY must be set (the cloud environment rpg-console)");
@@ -87,7 +86,7 @@ export async function run({ dry = false, only = null, turns = TURNS, lanes = 4, 
   const table = await import("./table.mjs");
   const app = await openApp({ keys, fake: false });
   const plan = planOf({ only });
-  const runRecord = { stage: "GAME_PLAYER_1", dry, designSha256: DESIGN_SHA256, startedAt: started.toISOString(), caps: CAPS, plan: plan.map((p) => p.key), turns, lanes,
+  const runRecord = { stage: "GAME_PLAYER_1", dry, label, designSha256: DESIGN_SHA256, startedAt: started.toISOString(), caps: CAPS, plan: plan.map((p) => p.key), turns, lanes,
     sessions: [], undone: [], stopped: null, restamps: 0 };
   // The dry run's record is scripted content: it stays out of the repository (the dry-run page is what is committed).
   const runFile = dry ? join(tmpdir(), `${STEM}-dry-${stampOf(started)}.json`) : join(out, `${STEM}-run-${stampOf(started)}.json`);
@@ -183,15 +182,16 @@ async function writeOutputs(runRecord, { ledgers, before, dry, out, runFile, met
   }
   for (const provider of ["anthropic", "openai"]) {
     const suffix = provider === "openai" ? "-openai" : "";
-    const runs = [...before[provider].runs, { finishedAt, file: runFile.slice(out.length + 1), spentUsd: ledgers[provider].runUsd, stopped: meter.stopped, calls: ledgers[provider].calls }];
+    const runs = [...before[provider].runs, { finishedAt, file: runFile.startsWith(RUNS) ? runFile.slice(RUNS.length + 1) : `(outside the repository) ${runFile.split("/").pop()}`, what: runRecord.label ?? "the paid run", spentUsd: ledgers[provider].runUsd, stopped: meter.stopped, calls: ledgers[provider].calls }];
     const spentUsd = before[provider].spentUsd + ledgers[provider].runUsd;
-    await writeJson(join(out, `${STEM}-ledger${suffix}.json`), { capUsd: ledgers[provider].capUsd, spentUsd, updatedAt: finishedAt, runs });
+    await writeJson(join(RUNS, `${STEM}-ledger${suffix}.json`), { capUsd: ledgers[provider].capUsd, spentUsd, updatedAt: finishedAt, runs });
     const all = createLedger(provider, ledgers[provider].capUsd, 0);
     all.calls.push(...runs.flatMap((r) => r.calls));
-    await writeFile(join(out, `${STEM}-ledger${suffix}.md`), ledgerMarkdown(all, `Game player 1 — the ${provider === "openai" ? "OpenAI" : "Anthropic"} ledger`));
+    await writeFile(join(RUNS, `${STEM}-ledger${suffix}.md`), ledgerMarkdown(all, `Game player 1 — the ${provider === "openai" ? "OpenAI" : "Anthropic"} ledger`));
   }
-  await mkdir(TRANSCRIPTS, { recursive: true });
-  for (const session of runRecord.sessions.filter((s) => s.turns)) await writeFile(join(TRANSCRIPTS, `${session.key}.md`), transcriptMarkdown(session));
+  const transcripts = join(out, `${STEM}-transcripts`);
+  await mkdir(transcripts, { recursive: true });
+  for (const session of runRecord.sessions.filter((s) => s.turns)) await writeFile(join(transcripts, `${session.key}.md`), transcriptMarkdown(session));
   const summary = join(out, `${STEM}-summary.md`);
   const withSummary = existsSync(summary) ? { ...runRecord, summary: (await readFile(summary, "utf8")).trim() } : runRecord;
   await writeFile(join(out, `${STEM}-report.md`), reportMarkdown([withSummary], ledgers));
@@ -227,6 +227,8 @@ function args(argv) {
   a.lanes = Number(value("--lanes") ?? 4);
   a.rescore = value("--score");
   a.prereport = argv.includes("--prereport");
+  a.out = value("--out");
+  a.label = value("--label");
   return a;
 }
 
@@ -235,7 +237,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   if (!a.dry && !a.go && !a.rescore && !a.prereport) { console.error("give --dry, --go, --prereport or --score <run.json>"); process.exit(2); }
   if (a.prereport) prereport().then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
   else if (a.rescore) rescore(resolve(a.rescore)).then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
-  else run({ dry: a.dry, only: a.only ?? (a.dry ? ["A-opus", "B-sol"] : null), turns: a.turns, lanes: a.lanes, score: a.score })
+  else run({ dry: a.dry, only: a.only ?? (a.dry ? ["A-opus", "B-sol"] : null), turns: a.turns, lanes: a.lanes, score: a.score, ...(a.out ? { out: resolve(a.out) } : {}), label: a.label })
     .then((r) => { console.log(`finished: ${r.sessions.length} session(s), undone ${r.undone.length}, stopped ${r.stopped ?? "no"}`); process.exit(0); })
     .catch((error) => { console.error(`game-player-1: ${error?.stack ?? error}`); process.exit(1); });
 }

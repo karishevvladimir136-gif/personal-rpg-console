@@ -78,7 +78,7 @@ Scripted calls metered: Anthropic 108, OpenAI 8 (scripted prices, nothing paid).
 
 ## One scripted session as the player saw it
 
-Synthetic content: an invented hero in an invented campaign (docs/campaigns/baldurs-gate-en). The DM: Claude Opus 5.5 with the owner's settings (Opus writes — Opus records, depth high → xhigh). Started 2026-10-25T04:29:09.830Z; ended by turns after 4 turn(s).
+Synthetic content: an invented hero in an invented campaign (docs/campaigns/baldurs-gate-en). The DM: Claude Opus 5.5 with the owner's settings (Opus writes — Opus records, depth high → xhigh). Started 2026-10-25T04:38:43.160Z; ended by turns after 4 turn(s).
 
 The DM's preparation: a hidden layer of 628 characters and 1 clock(s), written before the first turn (its text is DM-private and is not in this file).
 
@@ -142,14 +142,12 @@ roll
 ### Screen 4
 
 ````text
-The sergeant narrows his eyes at your story.
-
 [Roll card] James Worgen · Skill check — Deception: the sergeant weighs the story
 What adds to the die: +7 1d20+7
 Difficulty: an ordinary task · DC 10
-Die: 1
-1 + 7 = 8
-A natural one — 8
+Die: 15
+15 + 7 = 22
+Success — 22
 
 [Onward] [Request an allowed reroll]
 ````
@@ -163,11 +161,9 @@ onward
 ### Screen 5
 
 ````text
-The sergeant narrows his eyes at your story.
-
 The story holds; the sergeant waves you through. The queue shuffles forward under the arch, and the cat flicks its tail at the lanterns. What do you do?
 
-· roll: Deception: the sergeant weighs the story: 8 vs 10 — natural one
+· roll: Deception: the sergeant weighs the story: 22 vs 10 — success
 
 Place: The Basilisk Gate · Time: Day 1 · evening
 ````

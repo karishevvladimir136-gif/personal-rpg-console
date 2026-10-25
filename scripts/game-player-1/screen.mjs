@@ -91,6 +91,38 @@ export function recordsText(snapshot, play, view) {
   return lines.filter((line) => line && line.trim()).join("\n");
 }
 
+/** What the owner glances at in the side panel after a turn: the hero's and the party's numbers, the money, the things
+ * carried and the journal's titles (the full sheet stands at the start of the session). */
+export function vitalsText(snapshot, play, view) {
+  const hero = view.heroOf(snapshot, play);
+  if (!hero) return "";
+  const { resources } = view.resourcesOf(hero);
+  const wallet = view.walletOf(snapshot, hero);
+  const items = view.inventoryOf(snapshot, hero.id).map((item) => `${item.name}${item.quantity > 1 ? ` ×${item.quantity}` : ""}`);
+  const party = view.partyOf(snapshot, play);
+  const quests = view.questsOf(snapshot);
+  const journal = view.journalOf(snapshot);
+  return [
+    hero.max_hp ? `${hero.name}: HP ${hero.hp}/${hero.max_hp}` : hero.name,
+    lineList("Counters", resources.map((r) => `${r.label} ${r.value}${r.max !== null ? `/${r.max}` : ""}`)),
+    lineList("Money", wallet.map((m) => `${m.value} ${m.label}`)),
+    lineList("Carried", items),
+    lineList("Party", party.map((p) => `${p.entity.name}${p.entity.max_hp ? ` (HP ${p.entity.hp}/${p.entity.max_hp})` : ""}${p.present ? "" : " — not here"}`)),
+    quests.goal ? `Goal: ${quests.goal.title}` : "",
+    lineList("Quests", quests.active.map((q) => q.title)),
+    journal.arc ? `The arc: ${journal.arc.quest.title}` : "",
+    lineList("Threads", journal.threads.map((e) => e.quest.title)), lineList("Debts", journal.debts.map((e) => e.quest.title)), lineList("Promises", journal.promises.map((e) => e.quest.title)),
+  ].filter((line) => line && line.trim()).join("\n");
+}
+
+/** The narration after what the player has already read (a paused turn's text stays on the screen; the rest follows it). */
+export function afterShown(narration, shown) {
+  const text = String(narration ?? ""), seen = String(shown ?? "").trim();
+  if (!seen) return text.trim();
+  const at = text.indexOf(seen);
+  return at >= 0 ? text.slice(at + seen.length).trim() : text.trim();
+}
+
 /** The opening scene the game screen shows before the first turn (the opening's narration scene). */
 export function openingText(snapshot) {
   const scenes = [...(snapshot.scenes ?? [])].sort((a, b) => (a.sequence ?? 0) - (b.sequence ?? 0));

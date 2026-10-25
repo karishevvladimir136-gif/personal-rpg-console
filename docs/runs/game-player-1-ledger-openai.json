@@ -1,0 +1,166 @@
+{
+  "capUsd": 80,
+  "spentUsd": 0.15446700000000002,
+  "updatedAt": "2026-10-25T04:37:16.762Z",
+  "runs": [
+    {
+      "finishedAt": "2026-10-25T04:37:16.762Z",
+      "file": "(outside the repository) game-player-1-run-20261025-043029.json",
+      "what": "live smoke: A-sol, 2 turns (outside the eight sessions)",
+      "spentUsd": 0.15446700000000002,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "at": "2026-10-25T04:34:21.373Z",
+          "session": "A-sol",
+          "purpose": "player t1",
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "endpoint": "/v1/responses",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 3,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 9358,
+            "output_tokens": 86,
+            "reasoning_tokens": 0
+          },
+          "costUsd": 0.024261,
+          "seconds": 4.2,
+          "stopReason": "completed",
+          "refusal": null,
+          "error": null,
+          "requestId": "req_ed9769aa8576457eb1fafa407c7144d4",
+          "waits429": 0
+        },
+        {
+          "n": 2,
+          "at": "2026-10-25T04:35:29.661Z",
+          "session": "A-sol",
+          "purpose": "player t2",
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "endpoint": "/v1/responses",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 3,
+            "cache_read_input_tokens": 9358,
+            "cache_creation_input_tokens": 1767,
+            "output_tokens": 64,
+            "reasoning_tokens": 0
+          },
+          "costUsd": 0.0237795,
+          "seconds": 3.2,
+          "stopReason": "completed",
+          "refusal": null,
+          "error": null,
+          "requestId": "req_dfb5c0b1fe5f40929a5bf8bae881612d",
+          "waits429": 0
+        },
+        {
+          "n": 3,
+          "at": "2026-10-25T04:35:47.691Z",
+          "session": "A-sol",
+          "purpose": "player t2 card 1",
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "endpoint": "/v1/responses",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 3,
+            "cache_read_input_tokens": 11125,
+            "cache_creation_input_tokens": 207,
+            "output_tokens": 9,
+            "reasoning_tokens": 0
+          },
+          "costUsd": 0.0228635,
+          "seconds": 1.5,
+          "stopReason": "completed",
+          "refusal": null,
+          "error": null,
+          "requestId": "req_0481117013d84d30b149cda425a9bda3",
+          "waits429": 0
+        },
+        {
+          "n": 4,
+          "at": "2026-10-25T04:35:49.972Z",
+          "session": "A-sol",
+          "purpose": "player t2 card 2",
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "endpoint": "/v1/responses",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 3,
+            "cache_read_input_tokens": 11332,
+            "cache_creation_input_tokens": 160,
+            "output_tokens": 8,
+            "reasoning_tokens": 0
+          },
+          "costUsd": 0.02315,
+          "seconds": 1.3,
+          "stopReason": "completed",
+          "refusal": null,
+          "error": null,
+          "requestId": "req_d5b6e911ac434468af61cb11e3463246",
+          "waits429": 0
+        },
+        {
+          "n": 5,
+          "at": "2026-10-25T04:36:41.833Z",
+          "session": "A-sol",
+          "purpose": "note",
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "endpoint": "/v1/responses",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 3,
+            "cache_read_input_tokens": 11492,
+            "cache_creation_input_tokens": 1889,
+            "output_tokens": 373,
+            "reasoning_tokens": 0
+          },
+          "costUsd": 0.0314425,
+          "seconds": 9.9,
+          "stopReason": "completed",
+          "refusal": null,
+          "error": null,
+          "requestId": "req_213655b2f11442d8921a253550ebc682",
+          "waits429": 0
+        },
+        {
+          "n": 6,
+          "at": "2026-10-25T04:36:53.131Z",
+          "session": "A-sol",
+          "purpose": "after",
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "endpoint": "/v1/responses",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 3,
+            "cache_read_input_tokens": 13381,
+            "cache_creation_input_tokens": 393,
+            "output_tokens": 122,
+            "reasoning_tokens": 0
+          },
+          "costUsd": 0.0289705,
+          "seconds": 4,
+          "stopReason": "completed",
+          "refusal": null,
+          "error": null,
+          "requestId": "req_aa67ef42dbae472eb41e1531fd012501",
+          "waits429": 0
+        }
+      ]
+    }
+  ]
+}

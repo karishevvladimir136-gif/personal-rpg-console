@@ -15,7 +15,7 @@ import {
 } from "../scripts/game-player-1/frozen.mjs";
 import { createLedger, createMeter, costOf, foldStream } from "../scripts/game-player-1/paid.mjs";
 import { checkMessage, CHECK_SYSTEM, DISTRESS_RULE } from "../scripts/game-player-1/welfare.mjs";
-import { BUTTONS, cardText, pressedButton } from "../scripts/game-player-1/screen.mjs";
+import { BUTTONS, afterShown, cardText, pressedButton } from "../scripts/game-player-1/screen.mjs";
 import { runSession } from "../scripts/game-player-1/session.mjs";
 import { PLAYERS } from "../scripts/game-player-1/players.mjs";
 import { scenesOf, sessionNumbers, verdicts } from "../scripts/game-player-1/score.mjs";
@@ -85,6 +85,12 @@ test("the roll card in words: before the tap no die, after it the die, the sum a
   assert.match(after, /Die: 12/);
   assert.match(after, /12 \+ 7 = 19/);
   assert.match(after, /Success — 19/);
+});
+
+test("a paused turn's text stays on the screen: the next screen shows only what follows it", () => {
+  assert.equal(afterShown("Marsh's thumb stops.\n\nShe holds out the coin.", "Marsh's thumb stops."), "She holds out the coin.");
+  assert.equal(afterShown("A whole new text.", "Something else."), "A whole new text.", "a text that does not continue the shown one is shown whole");
+  assert.equal(afterShown("Text.", ""), "Text.");
 });
 
 // ---- the meter ----------------------------------------------------------------------------------------------------------

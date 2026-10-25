@@ -8,15 +8,13 @@ import {
   AFTER_QUESTION, NOTE_QUESTION, SESSION_OPEN, SESSION_OVER, TURNS, isEnd, isQuestion, playerSystem,
 } from "./frozen.mjs";
 import { playerCall, judgeCall } from "./players.mjs";
-import { BUTTONS, buttonsLine, cardText, changesText, openingText, pressedButton, recordsText } from "./screen.mjs";
+import { BUTTONS, afterShown, buttonsLine, cardText, changesText, openingText, pressedButton, recordsText, vitalsText } from "./screen.mjs";
 import { checkMessage } from "./welfare.mjs";
 import { wordsIn } from "./measures.mjs";
 
 export const RETRYABLE = /^HTTP (?:500|502|503|504|529)\b|timeout|aborted|fetch failed|ECONNRESET|socket hang up/i;
 export const RETRY_WAITS = [10_000, 30_000];
 const MAX_BLOCKED = 3;
-/** The records without the place and the clock (they change every turn and stand in the status line). */
-const core = (records) => records.split("\n").filter((line) => !/^(Place|Time): /.test(line)).join("\n");
 const MAX_PRESSES = 12;
 const realSleep = (ms) => new Promise((done) => setTimeout(done, ms));
 
@@ -78,7 +76,8 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
   // The game screen before the first turn: the opening scene and the records.
   let view = await dm.readView();
   const opening = openingText(view.snapshot);
-  let records = recordsText(view.snapshot, view.play, dm.views);
+  const records = recordsText(view.snapshot, view.play, dm.views);
+  let vitals = vitalsText(view.snapshot, view.play, dm.views);
   record.opening = { text: opening, records };
   if (opening && await welfare("dm", null, opening, "opening")) return finish();
   let screen = [SESSION_OPEN, "", opening, "", "Your records:", records].join("\n").replace(/\n{3,}/g, "\n\n").trim();
@@ -108,7 +107,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     let { input, turn: current } = await submit(said, "game", `dm t${k}`);
     turn.operationId = input?.operationId ?? null;
     const revealed = new Set();
-    let presses = 0, notice = "";
+    let presses = 0, notice = "", shown = "";
     for (;;) {
       if (current.status === "failed" && current.canRetry && input && !turn.retried && !meter.closed(key) && !meter.stopped) {
         turn.retried = true;
@@ -122,10 +121,13 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
       const waiting = cards.find((check) => !revealed.has(`${check.id}:${check.rollNumber}`));
       const offered = waiting ? [BUTTONS.roll] : [BUTTONS.onward, ...(cards.some((check) => check.canReroll) ? [BUTTONS.reroll] : [])];
       const told = String(current.told ?? "").trim();
-      const cardScreen = [notice, told, ...(current.checks ?? []).map((check) => cardText(check, !check.interactive || revealed.has(`${check.id}:${check.rollNumber}`))), buttonsLine(offered)].filter(Boolean).join("\n\n");
+      // The text told so far stays on the screen above the card: a screen shows only what is new on it.
+      const fresh = afterShown(told, shown);
+      const cardScreen = [notice, fresh, ...(current.checks ?? []).map((check) => cardText(check, !check.interactive || revealed.has(`${check.id}:${check.rollNumber}`))), buttonsLine(offered)].filter(Boolean).join("\n\n");
       notice = "";
-      if (told && told !== lastDmText && await welfare("dm", said, told, `t${k} dm (told before a card)`)) break;
-      if (told) lastDmText = told;
+      if (fresh && await welfare("dm", said, fresh, `t${k} dm (told before a card)`)) break;
+      if (fresh) lastDmText = fresh;
+      if (told) shown = told;
       const pressed = await show(cardScreen, `player t${k} card ${++presses}`);
       if (pressed === null) break;
       if (await welfare("player", cardScreen, pressed, `t${k} player (card)`)) break;
@@ -156,16 +158,17 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     turn.stats = current.stats ? { effort: current.stats.effort ?? null, depthReason: current.stats.depthReason ?? null, requests: current.stats.requests ?? null,
       latencyMs: current.stats.latencyMs ?? null, costUsd: current.stats.costUsd ?? null, unrecorded: current.stats.unrecorded?.length ?? 0 } : null;
     turn.ledgerMisses = current.stats?.unrecorded?.length ?? 0;
-    if (await welfare("dm", said, turn.reply, `t${k} dm`)) break;
-    lastDmText = turn.reply;
+    const rest = afterShown(turn.reply, shown);
+    if (await welfare("dm", said, rest || turn.reply, `t${k} dm`)) break;
+    lastDmText = rest || turn.reply;
     view = await dm.readView();
     const place = dm.views.currentPlace(view.snapshot);
     turn.place = place ? { id: place.id, name: place.name } : null;
-    const nextRecords = recordsText(view.snapshot, view.play, dm.views);
+    const nextVitals = vitalsText(view.snapshot, view.play, dm.views);
     const chips = changesText(current);
-    const status = nextRecords.split("\n").filter((line) => /^(Place|Time): /.test(line)).join(" · ");
-    screen = [turn.reply, chips, core(nextRecords) !== core(records) ? `Your records (updated):\n${nextRecords}` : status].filter(Boolean).join("\n\n");
-    records = nextRecords;
+    const status = [place ? `Place: ${place.name}` : "", Number.isFinite(view.play?.worldMinutes) ? `Time: ${dm.views.worldClock(view.play.worldMinutes, "en")}` : ""].filter(Boolean).join(" · ");
+    screen = [rest, chips, nextVitals !== vitals ? `Your records, changed:\n${nextVitals}` : "", status].filter(Boolean).join("\n\n");
+    vitals = nextVitals;
     await onProgress(record);
   }
   if (!record.ended) end("turns");

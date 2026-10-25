@@ -84,7 +84,7 @@ export function playerCounts(session) {
     actions: actions.length,
     questions: questions.length,
     questionTexts: questions.map((t) => t.message),
-    rollsPressed: turns.reduce((n, t) => n + (t.rolls ?? []).filter((r) => r.pressed).length, 0),
+    rollsPressed: turns.reduce((n, t) => n + (t.presses ?? []).filter((p) => p.button === "Roll the die").length, 0),
     wordsPerAction: median(actions.map((t) => wordsIn(t.message).length)),
     endedEarly: session.ended?.reason === "player" && turns.length < session.plannedTurns,
     ended: session.ended ?? null,
