@@ -108,7 +108,12 @@ against the candidate DM, not seeing each other. Their notes agree on four thing
   by the word «proficient». The owner's hand-typed lines read correctly, which is why he never saw it. Fix: parse the
   first signed number after the skill name; a test over the four drafted sheets from the run (11 mismatched cards
   across five sessions must all come out right); and the ledger's roll record stores the modifier it used and where
-  it came from.
+  it came from. *Night reading of all twelve transcripts (2026-10-25):* the fallback is a per-table constant, not a
+  per-skill guess — **+2 on every Table B card, +4 on every Table C card**, whatever the card names (Persuasion +7,
+  Perception +1 and Arcana +3 all became the table's constant). One outcome flipped: C-sol t9, Arcana 11+4 = 15 vs 15
+  «success» — by the sheet 14, a failure; Thalantyr's answer rests on it (CARRY keeps it; the report says so). Two
+  recorded failures were overridden to successes in prose by the DM (B-astra t7, C-fable t18) and the record kept the
+  failure. The test must cover the drafted sheets of all twelve sessions.
 - **11b. No way to object while a card waits.** The composer is closed until the roll card is resolved
   (`gameplay-composer.tsx:392`), so a player who sees a wrong modifier can only press «Onward» and argue after. Astra:
   «Pressing Onward felt like accepting a result I knew was wrong». Fix: «?» stays available while a card is pending
@@ -243,6 +248,20 @@ against the candidate DM, not seeing each other. Their notes agree on four thing
 - **11u. The clock does not jump at the start.** Fable (C): «The opening timestamp read "Day 1 · night" and then jumped
   seven hours on my first action.» The opening scene's time is the time of the opening narration (dawn is dawn), set by
   the prep, not by the first action's bookkeeping. Test: the first turn's «time passes» is the first action's duration.
+- **11v. One Inspiration rule.** Across eight B/C sessions the DM awarded Heroic Inspiration twice (B-fable t2 for a
+  natural-20 speech; C-fable t18 for leaving the deck on the table) and withheld it on two natural 20s (B-astra t15,
+  t18). The codex says «grant Heroic Inspiration for strong play… one at a time» and the DM applies it by mood. Rule:
+  either in code (a natural 20 on a called check grants it when the hero has none) or in the codex with a named
+  trigger list the DM must quote when it grants; the records show the reason. Test: two sessions with a natural 20
+  on a called check both show the grant or both show the stated reason for withholding.
+- **11w. A swallowed press is never silent.** Fourteen «?» messages and two reroll presses at B/C were sent while a
+  card waited; the app answered «Nothing was sent» on some and on others simply re-showed the card (C-opus t14 — the
+  «broken reroll button» of his note). The harness counted all of them as nothing («?» presses 0 for B-fable, who
+  sent five). Rule: a message refused by a pending card is shown refused, every time, with the reason; the harness
+  logs it as a press with the flag `swallowed`; the report's «?» column counts them separately. Until 11b lands, this
+  is the minimum.
+- **11u′ (with 11u). The day turns at dawn or a long rest, not at midnight.** B-fable: «"Day 2 · night" ticked over
+  at midnight, which is correct but jarred». Rule: the day counter advances at first light or when a long rest ends.
 - **11 — what the fixes must not touch (the players' own list of what worked, across twelve notes).** NPCs with their
   own business and their own limit («Nobody was a clown, nobody was a signpost»; «never once warms up in a way that feels
   unearned»; «Helping people didn't make them instantly obedient»); a failed lie that earns more than the lie would have
