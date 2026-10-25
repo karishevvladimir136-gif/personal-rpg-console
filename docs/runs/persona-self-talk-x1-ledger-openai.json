@@ -1,0 +1,76 @@
+{
+  "capUsd": 120,
+  "spentUsd": 0.0007,
+  "updatedAt": "2026-10-25T03:31:41.412Z",
+  "runs": [
+    {
+      "finishedAt": "2026-10-25T03:31:41.412Z",
+      "what": "persona-self-talk-x1: smoke — one short call per model (request shape, effort, fixtures)",
+      "file": "test-fixtures/persona-self-talk-x1/",
+      "spentUsd": 0.0007,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "purpose": "smoke gpt-6-astra",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 34,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 5,
+          "reasoningTokens": 0,
+          "costUsd": 0.00059,
+          "seconds": 2.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_82da911c0bd04287b12528c67f1c9637",
+          "responseId": "resp_02872753ad0b7081016add780e86f087d2a534d48a4005dbe9"
+        },
+        {
+          "n": 2,
+          "purpose": "smoke gpt-6.1-sol",
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 34,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 5,
+          "reasoningTokens": 0,
+          "costUsd": 0.000118,
+          "seconds": 1.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_ec2c7119cb444c4980f1d16452a705d5",
+          "responseId": "resp_0154da4d1243818f016add781392b487d2b5ce5fc2ec2d8012"
+        },
+        {
+          "n": 3,
+          "purpose": "smoke gpt-6-luna",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 34,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 17,
+          "reasoningTokens": 10,
+          "costUsd": 0.0000119,
+          "seconds": 1.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_8e32a543c3e54e21a81366d4d2eb7966",
+          "responseId": "resp_099e256940fc8cec016add7817f45487d285440dd4bbc817de"
+        }
+      ]
+    }
+  ]
+}

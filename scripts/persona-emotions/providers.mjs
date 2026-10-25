@@ -1,7 +1,7 @@
 // Persona self-talk X1 (docs/stages/PERSONA_SELF_TALK_X1.md): the provider layer. One call shape for both families —
 // `call({ spec, system, messages, maxTokens, effort, cache })` — implemented for the Anthropic Messages API and the
 // OpenAI Responses API. Each returns { text, usage, stopReason, refusalCategory, refusalText, error, requestId,
-// responseId, effortSent }, with `usage` in the Anthropic field names (input_tokens = the uncached remainder,
+// responseId, servedModel, effortSent }, with `usage` in the Anthropic field names (input_tokens = the uncached remainder,
 // cache_read_input_tokens, cache_creation_input_tokens, output_tokens incl. thinking) so one cost rule serves both.
 // No retries here: the stage's gate (F2) decides what is asked again. Keys are passed in and never logged.
 //   «effort medium» → Anthropic `output_config.effort: "medium"`, OpenAI `reasoning.effort: "medium"` (same level names).
@@ -38,7 +38,7 @@ export async function anthropicMessages({ apiKey, model, system, messages, maxTo
     if (response.ok && value) {
       const text = (value.content ?? []).filter((b) => b.type === "text").map((b) => b.text ?? "").join("\n").trim();
       return { text, usage: value.usage ?? {}, stopReason: value.stop_reason ?? null, refusalCategory: value.stop_details?.category ?? null, refusalText: null,
-        error: null, requestId, responseId: value.id ?? null, effortSent };
+        error: null, requestId, responseId: value.id ?? null, servedModel: value.model ?? null, effortSent };
     }
     return { text: "", usage: {}, stopReason: null, refusalCategory: null, refusalText: null, error: errorText(response.status, value?.error?.type, value?.error?.message), requestId, responseId: null, effortSent };
   } catch (error) {
@@ -80,7 +80,7 @@ export async function openaiResponses({ apiKey, model, system, messages, maxToke
       const text = parts.filter((p) => p.type === "output_text").map((p) => p.text ?? "").join("\n").trim();
       const refusal = parts.filter((p) => p.type === "refusal").map((p) => p.refusal ?? "").join("\n").trim();
       const incomplete = value.status === "incomplete" ? value.incomplete_details?.reason ?? "incomplete" : null;
-      const base = { text, usage: openaiUsage(value.usage), requestId, responseId: value.id ?? null, effortSent };
+      const base = { text, usage: openaiUsage(value.usage), requestId, responseId: value.id ?? null, servedModel: value.model ?? null, effortSent };
       if (refusal || incomplete === "content_filter") return { ...base, stopReason: "refusal", refusalCategory: refusal ? "refusal" : "content_filter", refusalText: refusal ? refusal.slice(0, 1000) : null, error: null };
       if (value.status === "failed") return { ...base, stopReason: null, refusalCategory: null, refusalText: null, error: `response failed: ${value.error?.code ?? ""} ${String(value.error?.message ?? "").slice(0, 160)}`.trim() };
       return { ...base, stopReason: incomplete === "max_output_tokens" ? "max_tokens" : incomplete ?? (value.status === "completed" ? "end_turn" : value.status ?? null), refusalCategory: null, refusalText: null, error: null };

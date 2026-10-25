@@ -267,6 +267,7 @@ test("the recorded fixtures: one real response per provider, read by the provide
     assert.equal(r.error, null, file);
     assert.ok(r.text.length > 0, `${file}: visible text`);
     assert.ok(r.requestId && r.responseId, `${file}: request and response ids`);
+    assert.equal(r.servedModel, fx.request.model, `${file}: the model that answered is the one asked for`);
     assert.ok((r.usage.output_tokens ?? 0) > 0, `${file}: usage`);
     if (fx.url.includes("openai")) assert.deepEqual(Object.keys(fx.request).sort(), ["input", "max_output_tokens", "model", "reasoning", "store"]);
   }

@@ -1,0 +1,35 @@
+{
+  "capUsd": 15,
+  "spentUsd": 0,
+  "updatedAt": "2026-10-25T03:31:41.412Z",
+  "runs": [
+    {
+      "finishedAt": "2026-10-25T03:31:41.412Z",
+      "what": "persona-self-talk-x1: smoke — one short call per model (request shape, effort, fixtures)",
+      "file": "test-fixtures/persona-self-talk-x1/",
+      "spentUsd": 0,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "purpose": "smoke claude-haiku-5-5",
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "effort": {
+            "output_config.effort": "low"
+          },
+          "inputTokens": 44,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 5,
+          "costUsd": 0.0000069,
+          "seconds": 0.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_011CgNFSLJbqrusJbeEAeHwb",
+          "responseId": "msg_011CgNFSMQ6ZLjbmALsHrkFK"
+        }
+      ]
+    }
+  ]
+}

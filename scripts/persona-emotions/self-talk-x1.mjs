@@ -149,7 +149,7 @@ export function dualPayer({ budgets, call, safety, log = () => {}, sleep = (ms) 
         inputTokens: u.input_tokens ?? 0, cacheReadTokens: u.cache_read_input_tokens ?? 0, cacheWriteTokens: u.cache_creation_input_tokens ?? 0, outputTokens: u.output_tokens ?? 0,
         ...(u.reasoning_tokens !== undefined ? { reasoningTokens: u.reasoning_tokens } : {}), costUsd: costOf(spec, u), seconds: Math.round((Date.now() - started) / 100) / 10,
         error: result.error ?? null, stopReason: result.stopReason ?? null, ...(result.refusalCategory ? { refusalCategory: result.refusalCategory } : {}),
-        ...(result.refusalText ? { refusalText: result.refusalText } : {}), requestId: result.requestId ?? null, responseId: result.responseId ?? null });
+        ...(result.refusalText ? { refusalText: result.refusalText } : {}), requestId: result.requestId ?? null, responseId: result.responseId ?? null, ...(result.servedModel && result.servedModel !== spec.model ? { servedModel: result.servedModel } : {}) });
       return result;
     } finally { inFlight[spec.provider] -= worst; }
   };
