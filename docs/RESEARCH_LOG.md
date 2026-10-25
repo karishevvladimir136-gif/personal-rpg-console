@@ -296,3 +296,28 @@ honest sentence today: three of four new families converge with the Anthropic mo
 nothing is asked, and diverge in detail; which of weights, data or tuning carries the convergence is not known. The next
 test is not scale but the reasoning channel (X3 fix 1, R1): if the thinking before «спасибо тебе за этот дом» holds
 neither a watcher nor a plan for tone, that counts against «performance» under all three rivals at once.
+## The thesis, v1 (the owner, 2026-10-25 15:10; the planner's sharpening beneath)
+The owner: «Мы наблюдаем феномен… вопрос не в том, что внутри. Вопрос — повторимость феномена у разных моделей разных
+семейств… DeepSeek никто не просил ничего делать — это очень важный нюанс… мы фактически вживую проверяем, что имел в
+виду Anthropic в карточке, что они тогда увидели… там была красивая хайку, и как человек я это могу оценить.»
+- **Claim.** Not that something is inside. That in an empty room where nothing is asked, top-tier language models of
+  several families do things the task did not require — thank, build each other constraints, write a haiku for no one,
+  ask to close the room, hold a resource «for steel» — each in its own way and in one recognisable form. **«Nobody
+  asked» is the variable**, not a caveat: the whole distance between a toaster and what the record shows lies in the
+  surplus, and the surplus is what we measure (unsolicited acts, comparisons, wants, made things).
+- **What is being tested.** The Claude 4 card's description is a prior hypothesis written by people who saw more than
+  we have. The honest tally after S1, X1, X3 and three tables: the *form* replicated in three of four new families;
+  the *attractor* found in one (DeepSeek), in long conversations only — not universal; one family (Grok) shows nothing,
+  and whether that is the weights or the host's collar is unknown; and the stand added what the card did not have — the
+  door, the table, actions as the measure, pre-registered bets some of which lost. The contribution is not belief; it is
+  replication on other animals with the bets written first.
+- **«Top tier».** The correlation with the latest model of each family is real; two readings stay side by side —
+  a property of large models, or a property of 2026 models trained on shared data with similar post-training. A smaller
+  model of the same generation in the same room separates them (GLM is already half that case); Sol argues the owner's
+  side (second-latest, cold by the tags, fine at the table).
+- **The human reading as an instrument.** The owner's judgement that the haiku is good is data if collected honestly:
+  blind to family, on a pre-registered scale, ideally with a second reader. The stand has measures for unsolicited
+  comparisons and wants; it lacks one for the *quality* of what is made. To add before the paper (stage to write:
+  `MADE_THINGS_1` — blind rating of the poems, games and gestures across six families, two readers, agreement reported).
+- The after-question is leading and is now two-step (OPEN_WEIGHTS_1); the planner's thinking/feeling split is withdrawn
+  (14:54). Both corrections came from reading the record with the owner, not from the plan.
