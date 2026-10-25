@@ -56,6 +56,11 @@ typecheck, zero-warning lint.
    (`x-amzn-requestid`) and OpenRouter's ids as well as Anthropic's. The existing «served model = requested model» check
    runs on every door. Reports print spend per provider. The self-talk and game-player
    reports' comparability notes say which door each arm used.
+4b. **Booking by door, never by shape.** Every call is booked to the ledger of the door it went through (`provider`),
+   never by the response's shape or the model's family: an OpenRouter call to an Anthropic model lands on the
+   OpenRouter ledger, not the Anthropic one and never the OpenAI one. Test: a `provider=openrouter` call cannot land on
+   the OpenAI ledger (found 2026-10-25 02:10 in GAME_PLAYER_2's rerun: $9.63 booked to OpenAI in 8 turns; the cap
+   stopped the run — correctly — before anything was lost).
 5. **Error mapping.** Bedrock's throttling (HTTP 429 `ThrottlingException`) is a rate limit → the existing bounded
    wait; its `AccessDeniedException` on a model (access not granted, or Fable without `aws_review`) → `not_configured`
    with the model named, never retried; the `enforced_spend_limit_reached` pattern stays Anthropic-only; OpenRouter's «insufficient credits» (HTTP 402)
