@@ -219,3 +219,77 @@ test("2.4: the server-built player strings of a Russian fight carry no English w
     assert.ok(lines.some((line) => /Бой окончен: победа/.test(line)));
   } finally { await c.f.db.close(); }
 });
+
+// Fix S3-accept Г2 (docs/stages/FIX_S3_ACCEPT.md): the owner's sheet showed the counter «Shaman tusk» — its key made
+// readable. Every rendering of a counter names it through counterLabel (the campaign language), and the owner's counter
+// gets its Russian name once (migration 202610230501, written by shape, tested here on PGlite).
+test("Г2: every counter rendering names the counter in the campaign language — «Клык шамана», never «Shaman tusk»", async () => {
+  const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
+  const { counterLabel, counterLabelled } = await import("../src/lib/inventory/model.ts");
+  const { sheetCounters } = await import("../src/lib/inventory/owner-moves.ts");
+  const records = read("src/components/persistent-records.tsx");
+  assert.match(records, /<dt title=\{key\}>\{resourcePresentation\(key\)\.kind === "money" \? t\(resourcePresentation\(key\)\.label\) : counterLabel\(selected, key, language\)\}<\/dt>/, "the records' resource list");
+  assert.match(records, /\.map\(\(\[key, value\]\) => <div key=\{key\}><dt>\{counterLabel\(entity, key, language\)\}<\/dt>/, "the earlier sheet's «Resources»");
+  assert.match(records, /labelOf=\{entity \? \(key\) => \(resourcePresentation\(key\)\.kind === "money" \? t\(resourcePresentation\(key\)\.label\) : counterLabel\(entity, key, language\)\) : undefined\}/, "the record editor");
+  assert.doesNotMatch(records, /resources\)\.map\(\(\[key, value\]\) => \(\s*<div key=\{key\}>\s*<dt>\{key\}<\/dt>/, "no raw counter key");
+  assert.doesNotMatch(records, /kind === "resource"\)\.map\(\(\[key, value\]\) => <div key=\{key\}><dt>\{t\(resourcePresentation\(key\)\.label\)\}/);
+  assert.match(read("src/components/persistent-game.tsx"), /resourcePresentation\(key\)\.kind === "money" \? t\(resourcePresentation\(key\)\.label\) : counterLabel\(player, key, language\)/);
+  assert.match(read("src/components/registry/character-screen.tsx"), /const counters = sheetCounters\(entity, c\.language\);/);
+  assert.match(read("src/components/registry/game-screen.tsx"), /<dt>\{hero \? counterLabel\(hero, resource\.key, c\.language\) : c\.label\(resource\.label\)\}<\/dt>/);
+  assert.match(read("src/lib/inventory/owner-moves.ts"), /label: counterLabel\(entity, key, language\), labelled: counterLabelled\(entity, key\)/);
+  // The owner's counter with its name: the sheet's row reads Russian and loses the «?».
+  const tusk = { resources: { shaman_tusk: 2, shaman_tusk_max: 3 }, public_profile: { counterLabels: { shaman_tusk: "Клык шамана" } } };
+  assert.deepEqual(sheetCounters(tusk, "ru"), [{ key: "shaman_tusk", label: "Клык шамана", labelled: true, value: 2, max: 3 }]);
+  assert.equal(counterLabel({ public_profile: {} }, "shaman_tusk", "ru"), "Shaman tusk", "without the name: the key made readable, flagged «?»");
+  assert.equal(counterLabelled({ public_profile: {} }, "shaman_tusk"), false);
+  // The migration on a disposable campaign: by shape, once, a name already given untouched.
+  const { loopCampaign } = await import("./dm-loop-fixture.mjs");
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    await c.f.query("update public.rpg_entities set resources = resources || '{\"shaman_tusk\": 2, \"shaman_tusk_max\": 3}'::jsonb where id = $1", [c.hero]);
+    await c.f.query("update public.rpg_entities set resources = resources || '{\"shaman_tusk\": 1}'::jsonb, public_profile = public_profile || '{\"counterLabels\": {\"shaman_tusk\": \"Бивень\"}}'::jsonb where id = $1", [c.npc]);
+    const before = await c.f.one("select revision from public.rpg_entities where id = $1", [c.hero]);
+    const migration = readFileSync(new URL("../supabase/migrations/202610230501_fix_s3_accept_counter_label.sql", import.meta.url), "utf8");
+    await c.f.db.exec(migration);
+    const hero = await c.f.one("select revision, resources, public_profile from public.rpg_entities where id = $1", [c.hero]);
+    assert.equal(hero.public_profile.counterLabels.shaman_tusk, "Клык шамана");
+    assert.deepEqual([hero.resources.shaman_tusk, hero.resources.shaman_tusk_max], [2, 3], "the value and the maximum stay");
+    assert.equal(hero.revision, before.revision + 1);
+    assert.equal(counterLabel(hero, "shaman_tusk", "ru"), "Клык шамана");
+    assert.equal((await c.f.one("select public_profile from public.rpg_entities where id = $1", [c.npc])).public_profile.counterLabels.shaman_tusk, "Бивень", "a given name is kept");
+    await c.f.db.exec(migration);
+    assert.equal((await c.f.one("select revision from public.rpg_entities where id = $1", [c.hero])).revision, hero.revision, "idempotent");
+  } finally { await c.f.db.close(); }
+});
+
+test("Fix S3-accept Б2: a Russian campaign's 2D hotspots read Russian — the sheet's rule, the records-only sheet, the redone older sheet, the click's words", async () => {
+  const { sheetRequest, fallbackSheet, poiCandidates } = await import("../src/lib/live2d/scene.ts");
+  const { foreignTexts, foreignTo, needsLanguageRedo, parseRelangReply } = await import("../src/lib/live2d/scene-language.ts");
+  const { poiIntent, placeIntent } = await import("../src/lib/live2d/intents.ts");
+  // The test of «foreign»: Latin words and not one Cyrillic letter; a Russian sentence with a Latin name is Russian.
+  assert.equal(foreignTo("The main door of the guard post", "ru"), true);
+  assert.equal(foreignTo("Дверь поста (Olga's door)", "ru"), false);
+  assert.equal(foreignTo("The main door of the guard post", "en"), false, "an English campaign reads English");
+  const source = { place: { id: "p", name: "Пост стражи", description: "Бревенчатый пост у дороги." }, exits: [{ id: "8f1c2d3e-4b5a-4c6d-8e7f-9a0b1c2d3e4f", name: "Пристань", relation: "child" }],
+    present: [], passages: [], timeOfDay: null, language: "ru" };
+  assert.match(sheetRequest(source).system, /Write summary, description, light and never in Russian, the campaign's language/);
+  // The sheet from the records alone (no model): the hotspots' notes are Russian, the illustrator keeps English.
+  const fallback = fallbackSheet(source);
+  assert.deepEqual(foreignTexts(fallback, "ru"), []);
+  assert.equal(fallback.language, "ru");
+  assert.deepEqual(fallback.features.map((row) => row.description), ["Путь внутрь.", "Дорога в Пристань."]);
+  assert.deepEqual(fallback.features.map((row) => row.brief), ["the way in", "the way to Пристань"]);
+  const snapshot = { campaign: { id: "c" }, locations: [], entities: [] };
+  for (const candidate of poiCandidates(fallback, snapshot, "p", null)) assert.equal(foreignTo(candidate.note, "ru"), false, candidate.note);
+  // An older English sheet is due for the one-time redo; the redone one is Russian and never due again.
+  const old = { summary: "A guard post.", features: [{ key: "door", label: "Дверь поста", kind: "entrance", description: "The main door of the guard post", mustShow: true, targetLocationId: null }],
+    people: [], light: "", timeOfDay: null, never: ["a second floor"], crowded: false };
+  assert.equal(needsLanguageRedo(old, "ru"), true);
+  const redone = parseRelangReply('{"summary":"Сторожевой пост.","light":"","never":["второй этаж"],"features":[{"key":"door","description":"Главная дверь сторожевого поста."}]}', old, "ru");
+  assert.deepEqual(foreignTexts(redone, "ru"), []);
+  assert.equal(needsLanguageRedo(redone, "ru"), false);
+  assert.equal(parseRelangReply('{"summary":"A guard post.","never":["второй этаж"],"features":[{"key":"door","description":"Главная дверь."}]}', old, "ru"), null, "a reply still in English is not taken");
+  // What a click on a hotspot or a place writes into the action box.
+  for (const kind of ["person", "exit", "lead", "object", "feature"]) assert.doesNotMatch(poiIntent({ kind, label: "Ворота" }, "ru"), /[A-Za-z]{3,}/, kind);
+  assert.doesNotMatch(placeIntent("Берегово", "ru"), /[A-Za-z]{3,}/);
+});

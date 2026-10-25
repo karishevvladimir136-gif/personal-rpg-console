@@ -69,10 +69,10 @@ test("the likes note in two parts: the DM's observations never overwrite the pla
     // Fix run A2: the player's own words are stable and travel in the cached world layer; the DM's observations in the tail.
     const tail = next.model.requests[0].system.at(-2).text;
     const world = next.model.requests[0].system[1].text;
-    assert.ok(world.includes("What the player asked for, in their own words"), "the player's words: the cached world layer");
+    assert.ok(world.includes("enjoys in games, in their own words"), "the player's words: the cached world layer");
     assert.match(world, /Бои короткие, опасные и с ценой/);
     assert.ok(tail.includes("Your observations of what the player enjoys"), "the DM's observations: the tail");
-    assert.ok(!tail.includes("What the player asked for"));
+    assert.ok(!tail.includes("enjoys in games, in their own words"));
   } finally { await c.f.db.close(); }
 });
 

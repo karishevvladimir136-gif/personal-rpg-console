@@ -7,6 +7,8 @@ export const CONDITION_RU: Readonly<Record<string, string>> = {
   fled: "бежал", surrendered: "сдался", hidden: "скрыт", prone: "лежит", paralysed: "парализован", paralyzed: "парализован",
   poisoned: "отравлен", frightened: "напуган", grappled: "схвачен", restrained: "опутан", stunned: "оглушён",
   blinded: "ослеплён", deafened: "оглох", invisible: "невидим", incapacitated: "недееспособен", dead: "мёртв",
+  // Fix S3-accept Г3: the effects the 5e rules module counts in the AC.
+  shield: "щит", "mage armor": "доспехи мага", "mage armour": "доспехи мага",
 };
 
 export const OUTCOME_RU: Readonly<Record<string, string>> = {

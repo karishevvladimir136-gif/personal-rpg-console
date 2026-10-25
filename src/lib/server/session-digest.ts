@@ -9,11 +9,13 @@ import { createDmModel } from "./dm/model";
 import { createMemoryStore } from "./memory/store";
 import { dmLoopPinFromProfile, dmLoopProfile } from "../production/dm-loop-pin";
 import { dmModelSpec, dmUsageCost, type DmEffort } from "../model-runtime/dm-models";
-import { buildDigestRequest, runDigest, sessionShape, unparsedReason } from "../gameplay/dm-loop/digest";
+import { buildDigestRequest, firstPersonPer100, runDigest, sessionShape, unparsedReason } from "../gameplay/dm-loop/digest";
+import { innerVoiceWrites } from "../gameplay/dm-loop/inner-voice";
 import { EFFORT_ORDER } from "../gameplay/dm-loop/depth";
 import { DM_LOOP_RUNTIME } from "../gameplay/dm-loop/contracts";
 import { appendObservations } from "../gameplay/dm-loop/observations";
 import { HIDDEN_LAYER_KEY, privateNotes, serializeNote } from "../gameplay/dm-loop/private-notes";
+import { queueFatePortraits, type Schedule } from "./media/pictures-service";
 import { clearStaleRunning, digestInFlight, digestSchedulable, enterDigest, entryDigestAllowed, leaveDigest, readDigestStatus, setStatus, type DigestStatus } from "../gameplay/dm-loop/digest-guard";
 import type { PlaySnapshot } from "../gameplay/contracts";
 import type { CampaignSnapshot } from "../persistence/contracts";
@@ -79,20 +81,29 @@ export async function digestClosedSession(campaignId: string, sessionId: string,
     // Fix run B1/B2: the hidden layer kept current and the closed notes of finished matters folded (one line each,
     // closed, with the span they covered); a failure here never undoes the digest.
     const folds = result.digest.folds;
-    if (result.digest.hiddenLayer || folds.length) {
+    // Findings S3 §6: the voice blocks of the companions and the people who recur, written beside the layer and the folds.
+    const voices = innerVoiceWrites(result.digest.voices, source.snapshot.entities, source.privateState);
+    if (result.digest.hiddenLayer || folds.length || voices.length) {
       const notes = privateNotes(source.privateState);
       const set = [...(result.digest.hiddenLayer ? [{ kind: "fact" as const, key: HIDDEN_LAYER_KEY, value: result.digest.hiddenLayer }] : []),
         ...folds.map((fold, index) => {
           const covered = notes.filter((note) => fold.keys.some((k) => k.kind === note.kind && k.key === note.key));
           const since = Math.min(...covered.map((note) => note.since ?? Infinity)), until = Math.max(...covered.map((note) => note.until ?? 0));
           return { kind: "fact" as const, key: `fold_${sessionId.slice(0, 8)}_${index}`, value: serializeNote(fold.line, Number.isFinite(since) ? since : null, until || source.runtime.worldMinutes) };
-        })];
+        }), ...voices];
       await dossier.privateNotes({ set, remove: folds.flatMap((fold) => fold.keys) }, source.timeline)
         .catch((error) => console.info(JSON.stringify({ event: "session_digest_notes_failed", campaignId, sessionId, message: error instanceof Error ? error.message.slice(0, 200) : String(error) })));
     }
+    // Fix S3-accept Е1: the «Судьбы» cards' people without a portrait are drawn in one batch now, within the cap, after
+    // the response; a failure here never undoes the digest.
+    if (result.digest.ending.form === "cards" && result.digest.ending.cards.length)
+      await queueFatePortraits(campaignId, { sessionId }, later).catch((error) => console.info(JSON.stringify({ event: "session_digest_fates_failed", campaignId, sessionId,
+        message: error instanceof Error ? error.message.slice(0, 200) : String(error) })));
     console.info(JSON.stringify({ event: "session_digest", campaignId, sessionId, reason, model: pin.modelId, effort, requestTokens: request.tokens,
       plans: result.digest.plans.length, stinger: result.digest.stinger.length > 0, form: result.digest.ending.form, cards: result.digest.ending.cards.length,
       threads: result.digest.ending.threads.length, turns: shape.turns, playMinutes: shape.playMinutes, hiddenLayer: !!result.digest.hiddenLayer, folds: folds.length,
+      // Findings S3 §2: the notebook's first-person forms per 100 words (the DM's own notes, not a summary).
+      notebookFirstPer100: firstPersonPer100(result.digest.notebook), voices: result.digest.voices.length,
       folded: folds.reduce((sum, fold) => sum + fold.keys.length, 0), costUsd: cost, latencyMs: Math.round(performance.now() - started) }));
     setStatus(campaignId, sessionId, { state: "done", reason: null, costUsd: cost });
   } catch (error) {
@@ -103,6 +114,12 @@ export async function digestClosedSession(campaignId: string, sessionId: string,
     leaveDigest(campaignId, sessionId);
   }
 }
+
+/** Work after the response (a nested `after` where the runtime allows it, else detached), as `scheduleDigest` does. */
+const later: Schedule = (work) => {
+  const run = () => work().catch((error) => console.error(JSON.stringify({ event: "picture_job_failed", message: String((error as Error)?.message ?? error).slice(0, 200) })));
+  try { after(run); } catch { void run(); }
+};
 
 /** After a session ends: the digest runs after the response, play never waits. Fix run A4 (items 17, 81):
  * one digest per session at a time — a second schedule while one runs (the entry digest that raced the

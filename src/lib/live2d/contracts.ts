@@ -21,8 +21,12 @@ export type SheetFeature = {
   /** The label in the campaign's language, as the player knows it. */
   label: string;
   kind: SheetFeatureKind;
-  /** What the illustrator draws (plain English, one clause). */
+  /** What the player reads on the hotspot — in the campaign's language since Fix S3-accept Б2 (older sheets: the
+   * illustrator's plain English clause, redone once into the campaign's language by the scene-language job). */
   description: string;
+  /** Fix S3-accept Б2: the same thing as one clause of plain English for the illustrator; absent on older sheets,
+   * whose description is that clause. */
+  brief?: string;
   mustShow: boolean;
   /** An exit leading to a known child or neighbour place, when the records name one. */
   targetLocationId: string | null;
@@ -32,7 +36,7 @@ export type SheetPerson = { name: string; entityId: string | null; at: string | 
 /** The scene sheet of a place: written once from the records and the narration before the place
  * is drawn, edited by the owner, read by the DM afterwards so later narration does not contradict it. */
 export type SceneSheet = {
-  /** One paragraph in plain English: the place as the records and the story describe it. */
+  /** One paragraph: the place as the records and the story describe it (the campaign's language since Fix S3-accept Б2). */
   summary: string;
   features: SheetFeature[];
   people: SheetPerson[];
@@ -43,6 +47,9 @@ export type SceneSheet = {
   never: string[];
   /** A crowded place (a market) may have background extras; otherwise the place is drawn empty. */
   crowded: boolean;
+  /** Fix S3-accept Б2: the language the player-facing text (summary, descriptions, light, never) is written in — set
+   * when it is the campaign's; absent on sheets written in plain English before (the one-time redo sets it). */
+  language?: "ru" | "en";
 };
 
 export type SceneStatus = "draft" | "drawing" | "checked" | "flagged" | "failed";
@@ -103,8 +110,50 @@ export type Poi = {
 
 /** The painted map of a region: drawn once per region, redrawn only when a new place appears in it.
  * `anchorId` is the region-level place, or null for the flat «known region» of a campaign whose
- * places all sit at the world level. `signature` names the places drawn. */
-export type RegionMap = { anchorId: string | null; pictureId: string | null; signature: string; status: "drawing" | "ready" | "failed"; updatedAt: string };
+ * places all sit at the world level. `signature` names the places drawn.
+ * Fix S3-accept Д3: the DM's prep of the region (public part only; the hidden part lives in the DM's
+ * private notes) survives every redraw; the markers sit where the check found each place on the picture;
+ * a picture that does not keep the prep is «flagged» with the side list, like a scene. */
+export type RegionMapStatus = "drawing" | "ready" | "flagged" | "failed";
+export const REGION_MAP_STATUSES: RegionMapStatus[] = ["drawing", "ready", "flagged", "failed"];
+/** Fix S3-accept Д3: where a place's marker sits on the painted region: `check` — the vision check found it
+ * on the picture; `prep` — the DM's prep gives the spot but the picture did not show it; `owner` — the owner
+ * moved it (the highest authority, kept across redraws). `approximate` reads «положение примерное». */
+export type RegionMarkerSource = "check" | "prep" | "owner";
+export type RegionMarker = { locationId: string; x: number; y: number; confidence: number | null; source: RegionMarkerSource; approximate: boolean };
+export type RegionMap = {
+  anchorId: string | null; pictureId: string | null; signature: string; status: RegionMapStatus; updatedAt: string;
+  revision: number;
+  markers: RegionMarker[];
+  check: SceneCheck | null;
+  /** What the picture missed or put elsewhere («Пост стражи — не в Берегове»), shown beside the map. */
+  sideList: string[];
+  /** The DM's prep of the region (public part), null until prepared; `prepRevision` counts its versions. */
+  prep: RegionPrep | null;
+  prepRevision: number;
+  /** The canon document that holds the prep's public text (the DM reads it every turn). */
+  prepDocumentId: string | null;
+  /** The prep revision the current picture was painted from. */
+  picturePrepRevision: number | null;
+};
+
+/** Fix S3-accept Д3: the DM's design of a region before the painter paints it — public part only. `x`, `y`
+ * place it on the region's sheet (0..1, north up), null where the DM gives no position («положение
+ * примерное»); `within` — the settlement it lies inside (a guard post in a village), the tree's parent
+ * where the records give none. `role` and `look` are English for the painter; `where` is in the campaign's
+ * language for the canon. */
+export type RegionPrepPlace = { locationId: string; role: string; within: string | null; x: number | null; y: number | null; where: string; look: string };
+export type RegionPrepRoute = { from: string; to: string; way: string; days: number | null };
+export type RegionPrep = {
+  /** The land, rivers and roads in the campaign's language — what the heroes know. */
+  overview: string;
+  /** The same land in English for the painter (north is up). */
+  landscape: string;
+  places: RegionPrepPlace[];
+  routes: RegionPrepRoute[];
+  /** Who wrote it: the DM's model, or the records alone when the model was unavailable. */
+  source: "model" | "records";
+};
 
 /** Part 2: the top-down battle background of a place, one per sheet revision, checked like a scene. */
 export type BattleMap = { locationId: string; sheetRevision: number; pictureId: string | null; status: "drawing" | "ready" | "flagged" | "failed"; check: SceneCheck | null; grid: { cols: number; rows: number; feetPerCell: number }; updatedAt: string };
@@ -144,7 +193,8 @@ export function parseSheetFeature(raw: unknown): SheetFeature | null {
   if (!isRecord(raw) || !KEY_PATTERN.test(String(raw.key)) || !oneOf(SHEET_FEATURE_KINDS, raw.kind)) return null;
   const label = str(raw.label, 80);
   if (!label) return null;
-  return { key: String(raw.key), label, kind: raw.kind, description: str(raw.description, 240), mustShow: raw.mustShow === true,
+  const brief = str(raw.brief, 240);
+  return { key: String(raw.key), label, kind: raw.kind, description: str(raw.description, 240), ...(brief ? { brief } : {}), mustShow: raw.mustShow === true,
     targetLocationId: isUuid(raw.targetLocationId) ? raw.targetLocationId : null };
 }
 export function parseSceneSheet(raw: unknown): SceneSheet | null {
@@ -167,6 +217,7 @@ export function parseSceneSheet(raw: unknown): SceneSheet | null {
     timeOfDay: str(raw.timeOfDay, 40) || null,
     never: Array.isArray(raw.never) ? raw.never.map((row) => str(row, 120)).filter(Boolean).slice(0, 12) : [],
     crowded: raw.crowded === true,
+    ...(raw.language === "ru" || raw.language === "en" ? { language: raw.language } : {}),
   };
 }
 export function parseSceneCheck(raw: unknown): SceneCheck | null {
@@ -210,9 +261,45 @@ export function parsePoi(raw: unknown): Poi | null {
     revision: raw.revision as number, updatedAt: raw.updatedAt,
   };
 }
+/** Fix S3-accept Д3: one marker of a region map (a place of the records at a unit spot). */
+export function parseRegionMarker(raw: unknown): RegionMarker | null {
+  if (!isRecord(raw) || !isUuid(raw.locationId) || !oneOf(["check", "prep", "owner"] as const, raw.source)) return null;
+  const x = unit(raw.x), y = unit(raw.y);
+  if (x === null || y === null) return null;
+  return { locationId: raw.locationId, x, y, confidence: unit(raw.confidence), source: raw.source, approximate: raw.approximate === true };
+}
+/** Fix S3-accept Д3: the prep's public part, strictly (a place is a known record's ID; nothing else is kept). */
+export function parseRegionPrep(raw: unknown): RegionPrep | null {
+  if (!isRecord(raw)) return null;
+  const seen = new Set<string>();
+  const places = (Array.isArray(raw.places) ? raw.places : []).flatMap((row): RegionPrepPlace[] => {
+    if (!isRecord(row) || !isUuid(row.locationId) || seen.has(row.locationId)) return [];
+    seen.add(row.locationId);
+    const x = unit(row.x), y = unit(row.y);
+    return [{ locationId: row.locationId, role: str(row.role, 60), within: isUuid(row.within) && row.within !== row.locationId ? row.within : null,
+      x: x !== null && y !== null ? x : null, y: x !== null && y !== null ? y : null, where: str(row.where, 300), look: str(row.look, 300) }];
+  }).slice(0, 60);
+  const routes = (Array.isArray(raw.routes) ? raw.routes : []).flatMap((row): RegionPrepRoute[] => {
+    if (!isRecord(row) || !isUuid(row.from) || !isUuid(row.to) || row.from === row.to) return [];
+    const days = typeof row.days === "number" && Number.isFinite(row.days) && row.days >= 0 && row.days <= 365 ? Math.round(row.days * 10) / 10 : null;
+    return [{ from: row.from, to: row.to, way: str(row.way, 300), days }];
+  }).slice(0, 60);
+  return { overview: str(raw.overview, 3000), landscape: str(raw.landscape, 1500), places, routes, source: raw.source === "records" ? "records" : "model" };
+}
 export function parseRegionMap(raw: unknown): RegionMap | null {
-  if (!isRecord(raw) || (raw.anchorId !== null && !isUuid(raw.anchorId)) || typeof raw.signature !== "string" || !oneOf(["drawing", "ready", "failed"] as const, raw.status) || typeof raw.updatedAt !== "string") return null;
-  return { anchorId: raw.anchorId as string | null, pictureId: isUuid(raw.pictureId) ? raw.pictureId : null, signature: raw.signature, status: raw.status, updatedAt: raw.updatedAt };
+  if (!isRecord(raw) || (raw.anchorId !== null && !isUuid(raw.anchorId)) || typeof raw.signature !== "string" || !oneOf(REGION_MAP_STATUSES, raw.status) || typeof raw.updatedAt !== "string") return null;
+  const markers = (Array.isArray(raw.markers) ? raw.markers : []).map(parseRegionMarker).filter((row): row is RegionMarker => row !== null);
+  return {
+    anchorId: raw.anchorId as string | null, pictureId: isUuid(raw.pictureId) ? raw.pictureId : null, signature: raw.signature, status: raw.status, updatedAt: raw.updatedAt,
+    revision: Number.isSafeInteger(raw.revision) ? (raw.revision as number) : 0,
+    markers: markers.filter((row, index) => markers.findIndex((other) => other.locationId === row.locationId) === index),
+    check: parseSceneCheck(raw.check),
+    sideList: Array.isArray(raw.sideList) ? raw.sideList.map((row) => str(row, 120)).filter(Boolean) : [],
+    prep: raw.prep === null || raw.prep === undefined ? null : parseRegionPrep(raw.prep),
+    prepRevision: Number.isSafeInteger(raw.prepRevision) ? (raw.prepRevision as number) : 0,
+    prepDocumentId: isUuid(raw.prepDocumentId) ? raw.prepDocumentId : null,
+    picturePrepRevision: Number.isSafeInteger(raw.picturePrepRevision) ? (raw.picturePrepRevision as number) : null,
+  };
 }
 export function parseBattleMap(raw: unknown): BattleMap | null {
   if (!isRecord(raw) || !isUuid(raw.locationId) || !Number.isSafeInteger(raw.sheetRevision) || !oneOf(["drawing", "ready", "flagged", "failed"] as const, raw.status) || typeof raw.updatedAt !== "string") return null;

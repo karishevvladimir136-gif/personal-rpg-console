@@ -386,15 +386,22 @@ function canonical(value: unknown): string {
 }
 /** «Изменить лист» and «Подготовить»: the sheet after `patchSheet` (a schema-1 sheet becomes schema 2 with its lines
  * kept), saved with the record; the note says what changed (the DM reads the owner's edit next turn). */
-export function planSheet(data: Snapshot, entityId: string, patch: SheetPatch, ctx: MoveContext): MovePlan {
+export function planSheet(data: Snapshot, entityId: string, patch: SheetPatch, ctx: MoveContext, manualAc?: number | null): MovePlan {
   const ru = lang(ctx.language) === "ru";
   const draft = new Draft(data);
   const entity = draft.entity(entityId);
   if (!entity) return fail(ru ? "Запись не найдена — обновите страницу." : "The record is gone; reload the page.");
   const next = patchSheet(entity.character_sheet ?? null, patch);
-  if (entity.character_sheet && canonical(next) === canonical(entity.character_sheet)) return fail(ru ? "Ничего не изменилось." : "Nothing changed.");
-  draft.saveEntity(entity, { character_sheet: next });
-  return { ok: true, steps: draft.steps, note: `${entity.name}: ${sheetChanges(entity.character_sheet ?? null, next, ctx.language)}` };
+  const sheetSame = !!entity.character_sheet && canonical(next) === canonical(entity.character_sheet);
+  // Fix S3-accept Г3: «КД вручную» — the owner's AC over the 5e rules, kept with the record's stats (null clears it).
+  const stats = { ...entity.stats };
+  if (manualAc === null) delete stats.ac_manual;
+  else if (manualAc !== undefined) stats.ac_manual = Math.max(1, Math.min(40, Math.round(manualAc)));
+  const statsSame = (stats.ac_manual ?? null) === (entity.stats.ac_manual ?? null);
+  if (sheetSame && statsSame) return fail(ru ? "Ничего не изменилось." : "Nothing changed.");
+  draft.saveEntity(entity, { ...(sheetSame ? {} : { character_sheet: next }), ...(statsSame ? {} : { stats }) });
+  const acNote = statsSame ? null : stats.ac_manual !== undefined ? (ru ? `КД вручную ${stats.ac_manual}` : `AC by hand ${stats.ac_manual}`) : (ru ? "КД по правилам" : "AC by the rules");
+  return { ok: true, steps: draft.steps, note: `${entity.name}: ${[sheetSame ? null : sheetChanges(entity.character_sheet ?? null, next, ctx.language), acNote].filter(Boolean).join("; ")}` };
 }
 
 // --- the sheet's helpers ---------------------------------------------------------------------------------------

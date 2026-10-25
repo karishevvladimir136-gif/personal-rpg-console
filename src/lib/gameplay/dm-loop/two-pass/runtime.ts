@@ -34,10 +34,10 @@ import { advanceLedger, parseLedger, serializeLedger } from "../ledger.ts";
 import { advanceMetrics, parseMetrics, serializeMetrics } from "../metrics.ts";
 import { chooseDepth, lowerEffort, parseDepthRange, parseDepthState, tensionSignals } from "../depth.ts";
 import { ledgerCheckState, ledgerChip, ledgerCorrectionMessage, type LedgerCheckResult, type LedgerCheckState } from "../ledger-check.ts";
-import { executeDmLoopTool } from "../execute.ts";
+import { executeDmLoopTool, recordOrder, storyMinuteOf } from "../execute.ts";
 import { chip } from "../receipt-text.ts";
 import type { PublicProfile } from "../../../persistence/contracts.ts";
-import { dmLoopLimits as L, DM_LOOP_DEFAULT_LIMITS } from "../limits.ts";
+import { dmLoopLimits as L, DM_LOOP_DEFAULT_LIMITS, turnCallCap } from "../limits.ts";
 import { ShadowState } from "../shadow.ts";
 import { dmLoopTools } from "../tools.ts";
 import type { DmSplit } from "../settings.ts";
@@ -46,7 +46,7 @@ import { DM_LOOP_RUNTIME, workOf, type DmLoopCheckpoint, type DmLoopLiveEvent, t
 import { combatEnded, combatStarted, continuation, declaredLine, dmOutputCap, executeDmLoopTurn, heroIdOf, joinText, leaseHeartbeat, narrationNames, pausesForPlayer, plainCutMessage, retriableRejection, retryClaimable, rollTextOffsets, type DmLoopDependencies } from "../loop.ts";
 
 /** Fix run A6: what the writer is sent after a request the output cap cut (the loop's CUT_BY_CAP, with the ledger). */
-export const WRITER_CUT_BY_CAP = "Your last message was cut off by the output limit. Continue exactly where it stopped — do not repeat what is already written — finish the narration briefly, then close with the ledger. Keep your thinking short.";
+export const WRITER_CUT_BY_CAP = "Your last message ran into the output limit and was cut off. Pick up exactly where it stopped — the text so far has already reached the player, so nothing needs repeating — bring the narration to its end, then close with the ledger. The limit is still close: spend little of it on thinking.";
 import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KEY } from "../time-words.ts";
 import { BOOKKEEPER_MARKER, bookkeeperBrief, bookkeeperSystem, createLedgerGate, rejectedCallsMessage, splitLedger, writerSystem } from "./prompts.ts";
 
@@ -241,14 +241,17 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       // Stage C (item 53): the writer's pause names its dice; the bookkeeper's pass already reads «записывает».
       const work = phase === "writer" ? workOf(calls.filter((call) => !loop.receipts.some((row) => row.call.id === call.id)).map((call) => call.name)) : [];
       if (work.length) live({ type: "working", tools: work });
-      for (const call of calls) {
+      for (const call of recordOrder(calls)) {
         if (loop.receipts.some((row) => row.call.id === call.id)) continue;
         const toolCall = { id: call.id, name: call.name, arguments: parseArguments(call) as DmLoopReceipt["call"]["arguments"] };
         // The writer may only roll; the bookkeeper never rolls (their toolsets say so; this guards a stray call).
         const allowed = phase === "writer" ? isWriterTool(call.name) : call.name !== "roll";
+        // Time passing is written first; the other calls keep the minute they had in the model's order.
+        shadow.recordAt = storyMinuteOf(call, calls, loop.receipts, shadow.worldMinutes);
         const executed = allowed ? executeDmLoopTool(shadow, toolCall, { input, checks: checkpoint.checks, random,
           narrationSceneId, toolCalls: loop.receipts.length, limits, language, tension: turnTension, receipts: loop.receipts, showDc })
           : { result: { ok: false as const, reason: `The ${phase} has no tool "${call.name}".`, hint: null, summary: `${call.name}: not available in this pass` } };
+        shadow.recordAt = null;
         const receipt = await recordDmTool(lease, loop.receipts.length, toolCall, executed.result);
         loop.receipts.push(receipt);
         if (executed.result.ok && executed.result.check) {
@@ -258,10 +261,12 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
           if (isDisplayedCheck(source, check)) outcomePending = true;
         }
         if ("meta" in executed && executed.meta) loop.meta = executed.meta;
-        if (loop.receipts.length === limits.toolCallsPerTurn) diagnostic({ kind: "tool_cap_reached", calls: loop.receipts.length });
+        if (loop.receipts.length === limits.toolCallsPerTurn) diagnostic({ kind: "record_batch", calls: loop.receipts.length });
+        if (loop.receipts.length === turnCallCap(limits)) diagnostic({ kind: "tool_cap_reached", calls: loop.receipts.length });
         observe({ type: "tool_receipt", operationId, receipt });
         if (receipt.result.ok && receipt.result.player)
-          live({ type: "tool", name: call.name, ok: true, summary: receipt.result.player, ...(typeof toolCall.arguments.action === "string" ? { action: toolCall.arguments.action } : {}) });
+          live({ type: "tool", name: call.name, ok: true, summary: receipt.result.player, ...(typeof toolCall.arguments.action === "string" ? { action: toolCall.arguments.action } : {}),
+            ...("counter" in executed && executed.counter ? { counter: executed.counter } : {}) });
         if (call.name === "finish_turn" && "meta" in executed && executed.meta?.playerMoment) live({ type: "moment", reason: executed.meta.playerMomentReason ?? null });
       }
       return pause;
@@ -387,7 +392,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       });
       if (!rejected.length || asked("records_retry_asked")) return false;
       const bookkeeperRequests = loop.transcript.slice(Math.max(0, bookkeeperStart(loop.transcript))).filter((m) => m.role === "assistant").length;
-      if (bookkeeperRequests >= limits.modelRequestsPerTurn - 1 || loop.receipts.length >= limits.toolCallsPerTurn) return false;
+      if (bookkeeperRequests >= limits.modelRequestsPerTurn - 1 || loop.receipts.length >= turnCallCap(limits)) return false;
       diagnostic({ kind: "records_retry_asked", calls: rejected.map((row) => row.name) });
       loop.transcript.push({ role: "user", text: rejectedCallsMessage(rejected) });
       shadow.finished = false;
@@ -536,7 +541,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       if (shadow.finished) break;
       const requests = part.filter((m) => m.role === "assistant").length;
       if (requests >= limits.modelRequestsPerTurn) { diagnostic({ kind: "request_cap_reached", requests: loop.requests }); break; }
-      const lastRequest = requests === limits.modelRequestsPerTurn - 1 || loop.receipts.length >= limits.toolCallsPerTurn;
+      const lastRequest = requests === limits.modelRequestsPerTurn - 1 || loop.receipts.length >= turnCallCap(limits);
       if (lastRequest && last?.role !== "user") loop.transcript.push({ role: "user", text: WRAP_UP });
       const round = await request("bookkeeper", rendered(bookkeeperPart(), loop.receipts, checkpoint.checks), false);
       await persist("generating");

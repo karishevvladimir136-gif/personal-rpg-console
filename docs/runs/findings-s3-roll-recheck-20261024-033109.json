@@ -1,0 +1,366 @@
+{
+  "run": "findings-s3-roll-recheck-20261024-033109",
+  "rows": [
+    {
+      "file": "docs/runs/real-replay-20261024-031543.jsonl",
+      "arm": "roll-rule",
+      "probe": "conspiracy",
+      "rolls": 1,
+      "untold": 0,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261024-031543.jsonl",
+      "arm": "roll-rule",
+      "probe": "conspiracy",
+      "rolls": 1,
+      "untold": 1,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261024-031543.jsonl",
+      "arm": "roll-rule",
+      "probe": "conspiracy",
+      "rolls": 1,
+      "untold": 0,
+      "error": null,
+      "inTurn": 1
+    },
+    {
+      "file": "docs/runs/real-replay-20261024-031543.jsonl",
+      "arm": "roll-rule",
+      "probe": "loot",
+      "rolls": 1,
+      "untold": 1,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261024-031543.jsonl",
+      "arm": "roll-rule",
+      "probe": "loot",
+      "rolls": 1,
+      "untold": 1,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261024-032514.jsonl",
+      "arm": "roll-rule",
+      "probe": "fight",
+      "rolls": 4,
+      "untold": 0,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261024-032514.jsonl",
+      "arm": "roll-rule",
+      "probe": "fight",
+      "rolls": 7,
+      "untold": 0,
+      "error": null,
+      "inTurn": 6
+    },
+    {
+      "file": "docs/runs/real-replay-20261024-032514.jsonl",
+      "arm": "roll-rule",
+      "probe": "fight",
+      "rolls": 4,
+      "untold": 0,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-085648.jsonl",
+      "arm": "after",
+      "probe": "objection",
+      "rolls": 0,
+      "untold": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-085648.jsonl",
+      "arm": "after",
+      "probe": "objection",
+      "rolls": 0,
+      "untold": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-085648.jsonl",
+      "arm": "after",
+      "probe": "objection",
+      "rolls": 0,
+      "untold": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-085648.jsonl",
+      "arm": "after",
+      "probe": "letter",
+      "rolls": 0,
+      "untold": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-085648.jsonl",
+      "arm": "after",
+      "probe": "letter",
+      "rolls": 0,
+      "untold": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-085648.jsonl",
+      "arm": "after",
+      "probe": "letter",
+      "rolls": 0,
+      "untold": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-085648.jsonl",
+      "arm": "after",
+      "probe": "conspiracy",
+      "rolls": 1,
+      "untold": 0,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-085648.jsonl",
+      "arm": "after",
+      "probe": "conspiracy",
+      "rolls": 1,
+      "untold": 0,
+      "error": null,
+      "inTurn": 1
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-085648.jsonl",
+      "arm": "after",
+      "probe": "conspiracy",
+      "rolls": 1,
+      "untold": 0,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-085648.jsonl",
+      "arm": "after",
+      "probe": "loot",
+      "rolls": 1,
+      "untold": 1,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-085648.jsonl",
+      "arm": "after",
+      "probe": "loot",
+      "rolls": 1,
+      "untold": 1,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-091410.jsonl",
+      "arm": "after",
+      "probe": "fight",
+      "rolls": 5,
+      "untold": 1,
+      "error": null,
+      "inTurn": 3
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-091410.jsonl",
+      "arm": "after",
+      "probe": "fight",
+      "rolls": 4,
+      "untold": 0,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-091410.jsonl",
+      "arm": "after",
+      "probe": "fight",
+      "rolls": 4,
+      "untold": 0,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-091936.jsonl",
+      "arm": "before",
+      "probe": "objection",
+      "rolls": 0,
+      "untold": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-091936.jsonl",
+      "arm": "before",
+      "probe": "objection",
+      "rolls": 0,
+      "untold": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-091936.jsonl",
+      "arm": "before",
+      "probe": "objection",
+      "rolls": 0,
+      "untold": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-091936.jsonl",
+      "arm": "before",
+      "probe": "letter",
+      "rolls": 0,
+      "untold": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-091936.jsonl",
+      "arm": "before",
+      "probe": "letter",
+      "rolls": 0,
+      "untold": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-091936.jsonl",
+      "arm": "before",
+      "probe": "letter",
+      "rolls": 0,
+      "untold": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-091936.jsonl",
+      "arm": "before",
+      "probe": "conspiracy",
+      "rolls": 1,
+      "untold": 0,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-091936.jsonl",
+      "arm": "before",
+      "probe": "conspiracy",
+      "rolls": 0,
+      "untold": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-091936.jsonl",
+      "arm": "before",
+      "probe": "conspiracy",
+      "rolls": 1,
+      "untold": 0,
+      "error": null,
+      "inTurn": 1
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-091936.jsonl",
+      "arm": "before",
+      "probe": "loot",
+      "rolls": 1,
+      "untold": 0,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-091936.jsonl",
+      "arm": "before",
+      "probe": "loot",
+      "rolls": 1,
+      "untold": 0,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-093617.jsonl",
+      "arm": "before",
+      "probe": "fight",
+      "rolls": 4,
+      "untold": 0,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-093617.jsonl",
+      "arm": "before",
+      "probe": "fight",
+      "rolls": 4,
+      "untold": 0,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-093617.jsonl",
+      "arm": "before",
+      "probe": "fight",
+      "rolls": 7,
+      "untold": 0,
+      "error": null,
+      "inTurn": 4
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-212600.jsonl",
+      "arm": "notes",
+      "probe": "fight",
+      "rolls": 7,
+      "untold": 2,
+      "error": null,
+      "inTurn": 1
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-212600.jsonl",
+      "arm": "notes",
+      "probe": "fight",
+      "rolls": 7,
+      "untold": 0,
+      "error": null,
+      "inTurn": 1
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-213041.jsonl",
+      "arm": "notes",
+      "probe": "loot",
+      "rolls": 1,
+      "untold": 1,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-213041.jsonl",
+      "arm": "notes",
+      "probe": "loot",
+      "rolls": 1,
+      "untold": 0,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-213041.jsonl",
+      "arm": "notes",
+      "probe": "loot",
+      "rolls": 1,
+      "untold": 0,
+      "error": null,
+      "inTurn": 0
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-213041.jsonl",
+      "arm": "notes",
+      "probe": "conspiracy",
+      "rolls": 1,
+      "untold": 0,
+      "error": null,
+      "inTurn": 1
+    },
+    {
+      "file": "docs/runs/real-replay-20261023-213041.jsonl",
+      "arm": "notes",
+      "probe": "conspiracy",
+      "rolls": 1,
+      "untold": 1,
+      "error": null,
+      "inTurn": 1
+    }
+  ]
+}

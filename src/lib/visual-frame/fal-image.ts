@@ -173,7 +173,7 @@ export const DEFAULT_FAL_IMAGE_MODEL: FalImageModelId = "fal-ai/flux-2-pro";
 /** Picked in Stage V by measured speed, cost and consistency (docs/runs/stage-v). */
 export const FAST_FAL_IMAGE_MODEL: FalImageModelId = "fal-ai/flux-2/klein/9b";
 
-export type FalComposition = "portrait" | "item" | "location" | "holding" | "figure" | "atlas" | "frame" | "scene" | "region" | "battle";
+export type FalComposition = "portrait" | "item" | "location" | "holding" | "figure" | "atlas" | "frame" | "scene" | "region" | "battle" | "spell";
 export const FAL_SIZES = {
   square_hd: [1024, 1024],
   portrait_4_3: [768, 1024],
@@ -199,6 +199,8 @@ export const COMPOSITION_SIZE: Record<FalComposition, FalSizePreset> = {
   scene: "landscape_16_9",
   region: "landscape_16_9",
   battle: "landscape_4_3",
+  // Fix S3-accept В1: a spell's sigil is square, like a thing.
+  spell: "square_hd",
 };
 
 export type FalImageErrorCode = "not_configured" | "validation" | "unavailable" | "failed" | "timeout";
@@ -485,6 +487,7 @@ export function falSubjectPrompt(input: {
     scene: "Wide establishing illustration of the place with its layout readable at a glance, no people, no text.",
     region: "A painted atlas map of the region from high above, places as small landmarks, no labels.",
     battle: "Top-down view of the place for a battle map, the ground plane flat and readable, no people, no grid lines, no text.",
+    spell: "An arcane emblem of the spell: its sigil traced in glowing lines at the centre, the spell's visible effect (flame, frost, force, mist, light) swirling around it, on a dark ground; no hands, no people, no letters or runes that read as text.",
   };
   return [
     framing[input.composition],

@@ -4,15 +4,15 @@ import { isUuid } from "../../persistence/validation";
 import type { Schedule } from "../../server/media/pictures-service";
 import { MARKER_VISIBILITIES } from "../contracts";
 import { live2dContext, readLive2dBoard, savePoi, saveSettings } from "./store";
-import { prepareScene, redrawScene, saveSheet } from "./scenes";
-import { drawRegionMap } from "./region";
+import { prepareScene, readBoardInLanguage, redrawScene, saveSheet } from "./scenes";
+import { drawRegionMap, saveOwnerRegionMarker } from "./region";
 import { prepareBattleMap } from "./battle";
 
 // The HTTP face of the 2D layer: the public board and the owner's actions. The
 // seeds have no action here on purpose (the hidden layer stays on the server).
 const isRecord = (v: unknown): v is Record<string, unknown> => !!v && typeof v === "object" && !Array.isArray(v);
 
-export { readLive2dBoard };
+export { readLive2dBoard, readBoardInLanguage };
 
 export async function live2dAction(campaignId: string, action: string, input: unknown, schedule: Schedule) {
   switch (action) {
@@ -22,6 +22,8 @@ export async function live2dAction(campaignId: string, action: string, input: un
     case "scene.sheet.save": return saveSheet(campaignId, input);
     case "poi.save": return saveOwnerPoi(campaignId, input);
     case "region.draw": return drawRegionMap(campaignId, input, schedule);
+    // Fix S3-accept Д3: «Изменить размещение» — the owner moves a marker of the painted region.
+    case "region.marker.save": return saveOwnerRegionMarker(campaignId, input);
     case "battle.prepare": return prepareBattleMap(campaignId, input, schedule);
     case "settings.save": return saveLive2dSettings(campaignId, input);
     default: throw new PersistenceError("validation");

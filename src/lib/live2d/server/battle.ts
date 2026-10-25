@@ -8,9 +8,10 @@ import { runPictureJob, type Schedule } from "../../server/media/pictures-servic
 import { activeStyle, anchorFor, capRemaining, modelForTier, styleTextFor } from "../../visual-frame/pictures";
 import type { SceneSheet, SheetFeature } from "../contracts";
 import { battleMapOf, sceneOf } from "../contracts";
-import { mustShow, sceneVerdict } from "../scene";
+import { briefOf, mustShow, sceneVerdict } from "../scene";
 import { checkScene, type Image } from "./vision";
 import { boardOf, live2dContext, type Live2dContext } from "./store";
+import { anthropicApiKey } from "../../server/anthropic-endpoint";
 
 // Part 2: the battle background — the place's scene drawn top-down for the grid
 // (from the Part 1 scene sheet: same layout, same objects, no people), on the
@@ -34,12 +35,12 @@ export function battleBrief(sheet: SceneSheet, input: { placeName: string; style
   return [
     `A top-down battle map of ${input.placeName}, seen straight down from above as a tabletop map, the ground plane flat and readable, scaled so a person would be about one twentieth of the picture's width.`,
     sheet.summary ? `The place, the same layout as its scene: ${sheet.summary}` : "",
-    must.length ? `MUST SHOW, each clearly visible from above and separated: ${must.map((row) => `${row.description || row.label} (${row.label})`).join("; ")}.` : "",
-    others.length ? `Also there: ${others.map((row) => row.description || row.label).join("; ")}.` : "",
+    must.length ? `MUST SHOW, each clearly visible from above and separated: ${must.map((row) => `${briefOf(row)} (${row.label})`).join("; ")}.` : "",
+    others.length ? `Also there: ${others.map(briefOf).join("; ")}.` : "",
     sheet.light ? `Light: ${sheet.light}.` : "",
     "MUST NOT SHOW: no people, no creatures, no tokens, no miniatures; no walls, doors, fences, pits, cover or furniture that the list above does not name; no grid lines, no text, no labels, no compass.",
     sheet.never.length ? `MUST NOT SHOW: ${sheet.never.join("; ")}.` : "",
-    input.correction?.missing.length ? `The previous attempt missed these; draw them unmistakably from above: ${input.correction.missing.map((row) => `${row.description || row.label} (${row.label})`).join("; ")}.` : "",
+    input.correction?.missing.length ? `The previous attempt missed these; draw them unmistakably from above: ${input.correction.missing.map((row) => `${briefOf(row)} (${row.label})`).join("; ")}.` : "",
     input.correction?.contradictions.length ? `The previous attempt invented these; leave them out: ${input.correction.contradictions.join("; ")}.` : "",
     input.style.trim() ? `Art style: ${input.style.trim().slice(0, 800)}, as a painted map.` : "Art style: a painted tabletop map, warm and readable.",
   ].filter(Boolean).join("\n").slice(0, 8000);
@@ -64,7 +65,7 @@ export async function prepareBattleMap(campaignId: string, value: unknown, sched
 }
 
 async function drawBattle(ctx: Live2dContext, pictures: PicturesContext, campaignId: string, locationId: string, sheet: SceneSheet, sheetRevision: number, scenePictureId: string | null) {
-  const apiKey = process.env.ANTHROPIC_API_KEY ?? "";
+  const apiKey = anthropicApiKey();
   try {
     const snapshot = await readCampaign(campaignId);
     const place = snapshot.locations.find((row) => row.id === locationId);

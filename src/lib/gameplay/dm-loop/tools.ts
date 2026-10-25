@@ -107,11 +107,20 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
         saves: opt({ type: "array", maxItems: 12, items: str("Ловкость +4", 200) }),
         attacks: opt({ type: "array", maxItems: 12, items: str("Скимитар +5, 1к6+3 рубящий", 200) }),
         abilities: opt({ type: "array", maxItems: 40, items: str("A feature or trait.", 200) }),
-        spells: opt({ type: "array", maxItems: 160, items: object({ name: str("Spell.", 120), level: { type: "integer", minimum: 0, maximum: 9 }, prepared: opt({ type: "boolean" }),
-          ritual: opt({ type: "boolean" }), concentration: opt({ type: "boolean" }), text: opt(str("Time, range, duration, effect.", 2400)) }) }),
+        // Fix S3-accept В1: a spell is a record like a thing — added or updated by name; a 5e spell the app has a Russian card
+        // for gets the card's fields when the call leaves them out; history adds a line to the spell's own history.
+        spells: opt({ type: "array", maxItems: 160, description: "By name; level 0: cantrip; known: in the book; prepared: today.",
+          items: object({ name: str("Spell.", 120), level: { type: "integer", minimum: 0, maximum: 9 }, prepared: opt({ type: "boolean" }), known: opt({ type: "boolean" }),
+          school: opt(str("School.", 60)), castingTime: opt(str("Time.", 160)), range: opt(str("Range.", 160)), components: opt(str("Components.", 160)),
+          duration: opt(str("Duration.", 160)), ritual: opt({ type: "boolean" }), concentration: opt({ type: "boolean" }), text: opt(str("Effect.", 2400)),
+          history: opt(str("A line of its history.", 200)) }) }),
         preparedMax: opt({ type: "integer", minimum: 0, maximum: 60 }),
       }), description: "The sheet the screens show (a companion's from its stat block); fields given replace the stored ones." }),
-      reason: opt(str("Why the hero's sheet changes (shown to the player).", L.maxShortText)),
+      // Fix S3-accept Г3: the record's lasting effects (Mage Armor) — the 5e rules module counts them in the AC.
+      conditions: opt({ ...object({ add: opt({ type: "array", maxItems: 6, items: str("A condition or lasting effect.", 60) }),
+        remove: opt({ type: "array", maxItems: 6, items: str("As recorded.", 60) }) }),
+      description: "Lasting conditions and spell effects, the hero's too (with a reason); 5e counts «Доспехи мага» in the AC." }),
+      reason: opt(str("Why the hero's sheet or conditions change (shown to the player).", L.maxShortText)),
     }),
   },
   {
@@ -189,6 +198,8 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       set: opt({ type: "integer", minimum: 0, maximum: L.maxResourceValue }),
       max: opt({ type: "integer", minimum: 0, maximum: L.maxResourceValue }),
       label: opt(str("A new counter's name in the campaign language (Кости хитов).", 60)),
+      // Fix S3-accept В1: the cast is recorded with its slot — the server checks the spell against the sheet.
+      spell: opt(str("The levelled spell this slot casts (delta -1).", 120)),
       reason: str("Why, shown to the player.", L.maxShortText),
     }),
   },
@@ -293,7 +304,7 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
     // economy, conditions, enemy HP, positions on a 5-ft grid with features — and measures distances, cover and
     // light for the DM; the rules themselves come from the campaign's system as knowledge, never from code.
     strict: { anthropic: false },
-    description: "The fight, held on the server: the order, rounds, the action economy, conditions, enemy HP, a 5-ft grid with features; distances, cover and light are measured for you, the rules come from the campaign's system. start: participants (the party joins by itself), summary, placements (x, y from the top-left, z elevation in feet, each one's rolled initiative total), grid, ambient light, surprisedRefs (no action in round 1), hp rows from stat blocks (with ac, resistances, speed), opening \"party\" when the party declared an ambush (its opening resolves before initiative), rules on/off. place: positions (a late arrival). move: to a cell — the path is measured (difficult ground doubles it), movement spent, opportunity attacks named; past the edge is leaving the field; free for forced movement. next_turn: the next in order (a new round when it wraps). condition: add/remove words (prone, paralysed, concentrating, surprised, fled, unconscious, dying, dead); deathSave for a dying party member. attack: resolved on the server from attackBonus, ac, damage, damageType, ranged, count (each rolled apart) — distance and cover measured, the rules module (conditions, cover's AC, crits, resistances) applied and named, HP taken (an enemy's here; the party's as resource would), the player sees the numbers; narrate the result; never roll an attack with roll when the fight has a grid. hp: an enemy's hit points (delta or set, byRef who dealt it). profile: an enemy's ac, resistances, speed. feature: add/update/remove cover (half/three-quarters/full), difficult, light (radiusFeet, dimRadiusFeet), burning, wall, elevation (heightFeet) by cells. known: a «what is known» line about an enemy. intent: what an enemy is about to do and who in the party noticed (omit: hidden). reaction: the trigger and the options for a party member who may react (Shield, an opportunity attack), then end your turn so the player chooses; resolve with resolved: true. log: one line (a miss, a crit, a save; hits are logged by attack and hp). end: outcome and summary; the server adds the fight's card. position: a fight without a grid only (the zones derive from the coordinates).",
+    description: "The fight, held on the server: the order, rounds, the action economy, conditions, enemy HP, a 5-ft grid with features; distances, cover and light are measured for you, the rules come from the campaign's system. start: participants (the party joins by itself), summary, placements (x, y from the top-left, z elevation in feet, each one's rolled initiative total), grid, ambient light, surprisedRefs (no action in round 1), hp rows from stat blocks (with ac, resistances, speed), opening \"party\" when the party declared an ambush (its opening resolves before initiative), rules on/off. place: positions (a late arrival). move: to a cell — the path is measured (difficult ground doubles it), movement spent, opportunity attacks named; past the edge is leaving the field; free for forced movement. next_turn: the next in order (a new round when it wraps). condition: add/remove words (prone, paralysed, concentrating, surprised, fled, unconscious, dying, dead; 5e «щит»: +5 AC to the caster's next turn); deathSave for a dying party member. attack: resolved on the server from attackBonus, ac, damage, damageType, ranged, count (each rolled apart) — distance and cover measured, the rules module (conditions, cover's AC, crits, resistances) applied and named, HP taken (an enemy's here; the party's as resource would), the player sees the numbers; narrate the result; never roll an attack with roll when the fight has a grid. hp: an enemy's hit points (delta or set, byRef who dealt it). profile: an enemy's ac, resistances, speed. feature: add/update/remove cover (half/three-quarters/full), difficult, light (radiusFeet, dimRadiusFeet), burning, wall, elevation (heightFeet) by cells. known: a «what is known» line about an enemy. intent: what an enemy is about to do and who in the party noticed (omit: hidden). reaction: the trigger and the options for a party member who may react (Shield, an opportunity attack), then end your turn so the player chooses; resolve with resolved: true. log: one line (a miss, a crit, a save; hits are logged by attack and hp). end: outcome and summary; the server adds the fight's card. position: a fight without a grid only (the zones derive from the coordinates).",
     parameters: object({
       action: { type: "string", enum: ["start", "place", "move", "next_turn", "attack", "condition", "hp", "profile", "feature", "known", "intent", "reaction", "log", "position", "end"] },
       participantRefs: opt({ type: "array", maxItems: 20, items: ref("start.") }),

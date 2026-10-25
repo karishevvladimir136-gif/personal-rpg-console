@@ -4,7 +4,7 @@ import { useState } from "react";
 import { RefreshCw, Sparkles } from "lucide-react";
 import type { CampaignSnapshot } from "@/lib/persistence/contracts";
 import { usd } from "@/lib/visual-frame/fal-image";
-import { capRemaining, pictureCostUsdMicros, profileFor, type PictureComposition } from "@/lib/visual-frame/pictures";
+import { anchorFor, capRemaining, pictureCostUsdMicros, profileFor, type PictureComposition } from "@/lib/visual-frame/pictures";
 import type { SubjectRef } from "./primitives";
 import { anchorOf } from "./live-images";
 import { usePictures } from "./live-frames";
@@ -25,7 +25,9 @@ export function RedrawAnchor({ data, subject, composition, name }: {
   const [notice, setNotice] = useState<string | null>(null);
   if (!pictures) return <p className={r.note}>{c("Картинки доступны в живой кампании.", "Pictures are available in a live campaign.")}</p>;
   const { board } = pictures;
-  const current = anchorOf(board, data, subject);
+  // Fix S3-accept А5: the doll's «Перерисовать» redraws the full-length figure, shown and counted as itself.
+  const current = composition === "figure" ? anchorFor(board, subject, "figure") : anchorOf(board, data, subject);
+  const figureUrl = composition === "figure" && current.picture ? pictures.urlFor(current.picture) : null;
   const remaining = capRemaining(board);
   // Polish 2 §3: people and places carry a visual profile; items do not.
   const profileSubject = subject.kind === "entity" ? { kind: "entity" as const, id: subject.id } : subject.kind === "location" ? { kind: "location" as const, id: subject.id } : null;
@@ -43,8 +45,9 @@ export function RedrawAnchor({ data, subject, composition, name }: {
   };
   return (
     <div className={r.stack} style={{ gap: 10 }} data-testid="redraw-anchor">
-      <div style={{ aspectRatio: subject.kind === "location" ? "16 / 9" : "3 / 4", maxHeight: 360, borderRadius: 8, overflow: "hidden", border: "1px solid var(--line)" }}>
-        <Art subject={subject} name={name} fit="cover" />
+      <div style={{ aspectRatio: subject.kind === "location" ? "16 / 9" : composition === "figure" ? "9 / 16" : "3 / 4", maxHeight: 360, borderRadius: 8, overflow: "hidden", border: "1px solid var(--line)" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element -- a private signed picture, as in the frames */}
+        {figureUrl ? <img src={figureUrl} alt={name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }} /> : <Art subject={subject} name={name} fit="cover" />}
       </div>
       <p className={r.note} style={{ margin: 0 }}>
         {current.drawing ? c("Рисуется новая картинка…", "A new picture is being drawn…")

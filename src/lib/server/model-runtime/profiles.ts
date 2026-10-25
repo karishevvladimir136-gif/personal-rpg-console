@@ -11,6 +11,7 @@ import {
 import { DmError } from "../../gameplay/dm-errors.ts";
 import type { ProviderOptions } from "../dm/provider.ts";
 import { applicationModelSelection } from "../../model-runtime/defaults.ts";
+import { anthropicApiKey } from "../anthropic-endpoint.ts";
 
 // Capture selection once, before work starts. Resolving/checking it is lazy so
 // mechanic-only operations can still preserve input without provider setup.
@@ -27,7 +28,7 @@ export function executionProviderOptions(
 ): ProviderOptions & { providerId: "openai" | "anthropic" } {
   const checked = validateExecutionProfile(profile, task);
   // Polish 2 §5: an Anthropic profile (the campaign's DM writing the opening) takes the Anthropic key.
-  const apiKey = (checked.providerId === "anthropic" ? process.env.ANTHROPIC_API_KEY : process.env.OPENAI_API_KEY) ?? "";
+  const apiKey = (checked.providerId === "anthropic" ? anthropicApiKey() : process.env.OPENAI_API_KEY) ?? "";
   if (!apiKey) throw new DmError("configuration", true);
   return {
     apiKey,

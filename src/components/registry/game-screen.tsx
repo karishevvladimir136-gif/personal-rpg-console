@@ -3,21 +3,21 @@
 import Link from "next/link";
 import { sheetLines } from "@/lib/inventory/sheet";
 import { useState, type ReactNode } from "react";
-import { Dices, HelpCircle, Image as ImageIcon, Send, Sparkles, Users, Zap } from "lucide-react";
+import { Dices, HelpCircle, Image as ImageIcon, Send, Users, Zap } from "lucide-react";
 import type { CampaignSnapshot, Entity, Scene } from "@/lib/persistence/contracts";
 import type { PlaySnapshot, PublicTurn } from "@/lib/gameplay/contracts";
-import type { LiveTurnView } from "@/lib/gameplay/live-turn-client";
+import { withLiveCounters, type LiveTurnView } from "@/lib/gameplay/live-turn-client";
 import type { LiveTrace } from "@/lib/ui/turn-timeline";
 import type { PublicAdventure } from "@/lib/adventures/contracts";
 import { isUnresolved } from "@/lib/gameplay/client-state";
 import { frameStatusText } from "@/lib/visual-frame/pictures";
 import { appendToComposerDraft, draftStorage } from "@/lib/ui/composer-draft";
-import { liveChanges, livePlayerMoment, liveTurnPhase, type LivePhase } from "@/lib/ui/live-turn-view";
 import { characterViewModel } from "@/lib/character-view-model";
+import { isFifthEdition } from "@/lib/live2d/battle/rules-5e";
 import {
   currentPlace,
   currentSession,
-  statLabel,
+  sheetPlates,
   heroOf,
   inCombat,
   journalOf,
@@ -25,8 +25,6 @@ import {
   questsOf,
   resourcesOf,
   walletOf,
-  detectAddressee,
-  orderChanges,
 } from "@/lib/ui/campaign-view";
 import { useGameplayRuntime } from "../gameplay-runtime";
 import { GameplayComposer } from "../gameplay-composer";
@@ -37,6 +35,7 @@ import { CombatReadiness } from "../combat-readiness";
 import { SessionMemoryPanel, SessionPendingCompanion } from "../session-memory";
 import { currentFrameTurnId, FramesPanel, useOpeningFrame, usePictures } from "./live-frames";
 import { SessionEnd } from "./session-end";
+import { useAddressee, useTurnAftermath } from "./turn-aftermath";
 import { useSessionMemory } from "../session-memory-runtime";
 import {
   createGameViewModel,
@@ -86,7 +85,9 @@ export function heroLine(data: CampaignSnapshot, hero: Entity, c: Copy) {
   const model = characterViewModel(data, hero);
   const skills = quickRolls(hero).filter((roll) => roll.bonus !== "✦").slice(0, 3).map((roll) => roll.label.toLocaleLowerCase());
   const conditions = model.conditions.slice(0, 3);
-  const numbers = model.derivedStats.filter(([, value]) => value !== 0).slice(0, 3).map(([key, value]) => `${c.label(statLabel(key))} ${value}`);
+  // Fix S3-accept Г1: the sheet's plates (in 5e «КД 13 · Атака +7 · Навык +3», the server's numbers).
+  const numbers = sheetPlates(data, hero, model.derivedStats).filter((plate) => plate.key !== "speed").slice(0, 3)
+    .map((plate) => `${plate.translated ? plate.label : c.label(plate.label)} ${plate.value}`);
   return [...skills, ...conditions, ...(skills.length ? [] : numbers)].join(" · ");
 }
 
@@ -108,9 +109,6 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   const runtime = useGameplayRuntime(!!preview);
   const play = preview?.play ?? runtime.play;
   useShellClock(play?.worldMinutes);
-  // Polish group 6: the addressee is read from the text («@Тамсин», «Тамсин, …»); «Миру» overrides it for this draft.
-  const [draft, setDraft] = useState("");
-  const [toWorld, setToWorld] = useState(false);
   // The same input-mode state the earlier game screen kept ("game" or out-of-character).
   const [inputMode, setInputMode] = useState<"game" | "ooc">("game");
   const ooc = inputMode === "ooc";
@@ -147,15 +145,13 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   };
   const place = currentPlace(data);
   const combat = inCombat(play);
-  const detected = combat || toWorld || ooc ? null : detectAddressee(draft, present.map((row) => row.entity));
+  const fifthEdition = isFifthEdition(data.settings?.values?.rulesSystem);
+  // Polish group 6: the addressee is read from the text («@Тамсин», «Тамсин, …»); «Миру» overrides it for this draft
+  // (shared with the 2D scene since Fix S3-accept Б4).
+  const { detected, resolveSend, chip: addresseeChip, setDraft } = useAddressee({ present: present.map((row) => row.entity), combat, off: ooc });
   const talkTo = detected?.id ?? null;
   const mode = ooc ? "ooc" : "game";
-  const resolveSend = (text: string) => {
-    const who = combat || toWorld ? null : detectAddressee(text, present.map((row) => row.entity));
-    return who ? { mode: "companion" as const, companionId: who.id } : { mode: "game" as const, companionId: null };
-  };
   const busy = !!play?.turns.some(isUnresolved);
-  const latestTurn = play?.turns.filter((turn) => (mode === "game" ? turn.mode === "game" || turn.mode === "companion" : turn.mode === mode)).at(-1) ?? null;
   const href = (screen: CampaignScreenId) =>
     chrome?.href?.(screen) ?? `/campaigns/${encodeURIComponent(data.campaign.id)}/${screen}`;
   const insert = (text: string) => {
@@ -165,7 +161,10 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
       setNonce((value) => value + 1);
   };
   const rolls = quickRolls(hero);
-  const resources = hero ? resourcesOf(hero).resources : [];
+  // Fix S3-accept В1: a slot the server just recorded as spent dims at once (the live turn's counter over the records).
+  const liveNow = preview ? preview.live ?? null : liveView;
+  const liveFresh = !!liveNow && (play?.turns.at(-1)?.id === liveNow.operationId || !play?.turns.some((turn) => turn.id === liveNow.operationId));
+  const resources = hero ? resourcesOf(withLiveCounters(hero, liveFresh ? liveNow : null)).resources : [];
   // Polish group 8: the wallet always shows (0 by default, the world's currency name).
   const money = hero ? walletOf(data, hero) : [];
   const opening = mode === "game" && view.showOpening && (
@@ -179,39 +178,8 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   // the frame appears in that turn, in place — the page never scrolls through the campaign — and every answer but
   // «queued» is said in words.
   const frameTurnId = currentFrameTurnId(play, live);
-  const phase: LivePhase | null = live ? liveTurnPhase(live, play?.turns ?? []) : null;
-  // A saved turn keeps its accepted changes on screen until the next turn starts.
-  const liveIsLatest = !!live && (phase === "streaming" || latestTurn?.id === live.operationId);
-  // The committed turn's record is the truth of what changed (polish item 19):
-  // once saved, its chips replace the provisional ones of the stream.
-  const savedView: LiveTurnView | null = latestTurn?.status === "committed" && latestTurn.changes?.length
-    ? { operationId: latestTurn.id, text: "", changes: latestTurn.changes.map((change) => ({ name: change.tool, ok: true, summary: change.summary, ...(change.action ? { action: change.action } : {}) })), status: "committed" }
-    : null;
-  // «⚡ думал глубже · 28 с» (polish item 13): one quiet mark when the saved turn ran above the range's base.
-  const deeper = latestTurn?.status === "committed" && latestTurn.stats?.effort && dmSettings?.depth && latestTurn.stats.effort !== dmSettings.depth.min
-    ? c(`⚡ думал глубже · ${Math.max(1, Math.round((latestTurn.stats.firstWordMs ?? latestTurn.stats.firstTextMs ?? latestTurn.stats.latencyMs) / 1000))} с`,
-      `⚡ thought deeper · ${Math.max(1, Math.round((latestTurn.stats.firstWordMs ?? latestTurn.stats.firstTextMs ?? latestTurn.stats.latencyMs) / 1000))} s`)
-    : null;
-  // Stage C: the streaming turn is told inside the turn itself (text, rolls in place, the named pause);
-  // after the save, its accepted changes fold here.
-  const liveBlock = live && phase === "streaming" && liveIsLatest ? null
-    : live && phase === "saved" && liveIsLatest && (!savedView || savedView.operationId !== live.operationId) ? <LiveBlock view={live} phase="saved" deeper={deeper} />
-    : savedView && (!live || phase === "saved" || !liveIsLatest) ? <LiveBlock view={savedView} phase="saved" deeper={deeper} /> : null;
-  const showMoment = preview?.playerMoment || (!!live && phase === "saved" && liveIsLatest && livePlayerMoment(live)) ||
-    (latestTurn?.status === "committed" && latestTurn.playerMoment === true);
-  // The moment is named (polish): the accepted roll's reason, from the record or the stream.
-  const momentReason = latestTurn?.status === "committed" && latestTurn.playerMoment ? latestTurn.playerMomentReason ?? null : live?.moment?.reason ?? null;
-  const moment = showMoment ? (
-    <div className={g.moment} role="status">
-      <Sparkles size={26} color="var(--brass-hi)" aria-hidden="true" />
-      <div>
-        <div className={g.momentTitle}>{c("Твой момент", "Your moment")}</div>
-        <span className={r.small}>{momentReason
-          ? c(`${momentReason} · получилось — опиши, как ты это делаешь. Результат броска уже принят, твои слова станут каноном.`, `${momentReason} · success — describe how you do it. The roll stands; your words become canon.`)
-          : c("Ведущий отдал тебе кульминацию: опиши, как ты это делаешь. Результат броска уже принят — твои слова станут каноном.", "The DM hands you the climax: describe how you do it. The roll stands; your words become canon.")}</span>
-      </div>
-    </div>
-  ) : null;
+  // The saved turn's folded changes and «Твой момент» (shared with the 2D scene since Fix S3-accept Б4).
+  const { liveBlock, moment } = useTurnAftermath({ play, live, mode, dmSettings, forceMoment: !!preview?.playerMoment });
   const loopRuntime = !dmSettings || dmSettings.runtime === "dm-loop-v1";
   // Item 44: by default the DM rolls for the companions (chips in place); the option gives the player their cards.
   const companionRolls = preview?.companionRolls ?? dmSettings?.options?.companionRolls ?? "dm";
@@ -252,19 +220,6 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
       {frameNote && <span className={r.note} role="status">{frameNote}</span>}
     </div>
   );
-  // Who will answer: a small chip when the text names a companion (polish group 6), never a permanent row.
-  const addresseeChip = detected ? (
-    <p className={g.addressee} role="status">
-      <span>{c(`Ответит ${detected.name}`, `${detected.name} will answer`)}</span>
-      <span className={r.muted}>{c("— это сцена в мире: идёт время, спутник запомнит сказанное.", "— a scene in the world: time passes and the companion remembers.")}</span>
-      <button type="button" className={r.chipButton} onClick={() => setToWorld(true)}>{c("Говорю миру", "I speak to the world")}</button>
-    </p>
-  ) : toWorld && !combat && detectAddressee(draft, present.map((row) => row.entity)) ? (
-    <p className={g.addressee} role="status">
-      <span>{c("Говоришь миру и ведущему.", "You speak to the world and the DM.")}</span>
-      <button type="button" className={r.chipButton} onClick={() => setToWorld(false)}>{c("Обращаюсь к спутнику", "I address the companion")}</button>
-    </p>
-  ) : null;
   const feed = preview ? (
     <PreviewFeed play={preview.play} telling={preview.telling ?? null} companionRolls={companionRolls} liveBlock={liveBlock} opening={opening} moment={moment} tools={tools}
       inserted={inserted} heroName={hero?.name ?? null} mode={mode} />
@@ -458,6 +413,13 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
                   {heroLine(data, hero, c) && <div className={r.small} style={{ color: "var(--brass)" }}>{heroLine(data, hero, c)}</div>}
                 </div>
               </div>
+              {/* Fix S3 item 3: whether the 5e module counts the hero's armour class, saves and attacks; switched on «Правила и кости». */}
+              <div className={r.chips}>
+                <Link className={r.chip} href={`${href("settings")}#rules-and-dice`} data-testid="rules-5e-chip"
+                  title={c("Переключается в «Настройки → Правила и кости»", "Switched in «Settings → Rules and dice»")}>
+                  {fifthEdition ? c("5e-модуль: включён", "5e module: on") : c("5e-модуль: выключен", "5e module: off")}
+                </Link>
+              </div>
               {hero.hp !== null && <Gauge label={c("Хиты", "Hit points")} value={hero.hp} max={hero.max_hp} />}
               {(resources.length > 0 || money.length > 0) && (
                 <dl className={g.resources}>
@@ -560,31 +522,6 @@ function PreviewFeed({ play, telling, companionRolls, liveBlock, opening, moment
           <span className={r.note}>{c("Предпросмотр: ход не отправляется.", "Preview: nothing is sent.")}</span>
         </div>
       </form>
-    </div>
-  );
-}
-
-/** The saved turn's accepted changes, folded (polish group 6). The rolls are not repeated here: they stand in
- * the turn, in the place where the story asked for them (stage C); the turn tells its own text and pause. */
-function LiveBlock({ view, phase, deeper = null }: { view: LiveTurnView; phase: LivePhase; deeper?: string | null }) {
-  const c = useCopy();
-  const changes = orderChanges(liveChanges(view)).filter((change) => change.name !== "roll");
-  if (phase !== "saved" || (!changes.length && !deeper)) return null;
-  return (
-    <div className="gameplay-live-turn" role="status" aria-live="polite">
-      {phase === "saved" && (
-        <details key={view.operationId} className={g.changes}>
-          <summary>
-            <span>{c(`Изменения за ход · ${changes.length}`, `Changes this turn · ${changes.length}`)}</span>
-            {deeper && <span className={r.muted}>{deeper}</span>}
-          </summary>
-          {changes.length > 0 && (
-            <ul className="gameplay-live-changes">
-              {changes.map((change, index) => <li key={index}>{change.summary}</li>)}
-            </ul>
-          )}
-        </details>
-      )}
     </div>
   );
 }

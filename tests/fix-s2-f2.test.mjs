@@ -103,7 +103,8 @@ test("F2 item 30: «Закончить сессию» is the quietest tool, last
   assert.match(sheet, /export function useCardDismiss/);
   assert.match(sheet, /document\.addEventListener\("pointerdown", outside\)/);
   assert.match(sheet, /target\.closest\("\[data-item-pick\], \[role='dialog'\], \[data-keep-card\]"\)/);
-  assert.equal((sheet.match(/data-item-pick=""/g) ?? []).length, 3, "the slot, the row and the cell open a card");
+  // Fix S3-accept А1: the rows are gone (cells again, in inventory-grid.tsx with the doll's slots).
+  assert.equal((src("src/components/registry/inventory-grid.tsx").match(/data-item-pick=""/g) ?? []).length, 2, "the slot and the cell open a card");
   assert.match(src("src/components/registry/holdings-screen.tsx"), /useCardDismiss\(!!itemId, \(\) => setItemId\(null\)\);/);
 });
 

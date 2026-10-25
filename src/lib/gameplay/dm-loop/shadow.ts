@@ -97,6 +97,7 @@ export class ShadowState {
     for (const [key, ref] of this.localKeys) copy.localKeys.set(key, ref);
     for (const id of this.createdIds) copy.createdIds.add(id);
     copy.minutesAdvanced = this.minutesAdvanced;
+    copy.recordAt = this.recordAt;
     copy.finished = this.finished;
     copy.counters = { ...this.counters };
     return copy;
@@ -147,6 +148,10 @@ export class ShadowState {
   get snapshot() { return this.source.snapshot; }
   get runtime() { return this.source.runtime; }
   get worldMinutes() { return this.source.runtime.worldMinutes; }
+  /** The minute a record is stamped at (a note's «true since», a plan's due, an item's history): the clock, or — while a
+   * message's time passing is written first — the minute the call would have had in the model's own order (recordOrder). */
+  recordAt: number | null = null;
+  get now() { return this.recordAt ?? this.worldMinutes; }
 
   /** Apply one validated change to the clone and collapse it into the commit list. */
   apply(change: RecordChange) {

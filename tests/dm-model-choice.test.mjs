@@ -85,7 +85,7 @@ async function astraTakeover(f) {
 }
 
 async function campaign(beforeTakeover = async () => {}) {
-  const f = await setup(undefined, "en", 99);
+  const f = await setup(undefined, "en", Infinity);
   await f.create();
   await f.startOpening();
   const world = async (action, payload = {}) => (await f.one(

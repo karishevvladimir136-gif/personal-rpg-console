@@ -93,6 +93,8 @@ export type DmLoopUsageEntry = {
 export type DmLoopDiagnostic =
   | { kind: "suspected_leak"; detail: string }
   | { kind: "tool_cap_reached"; calls: number }
+  /** Findings S3: the turn's calls passed the first batch of `toolCallsPerTurn`; the second batch goes on (limits.ts). */
+  | { kind: "record_batch"; calls: number }
   | { kind: "request_cap_reached"; requests: number }
   | { kind: "model_refusal"; providerReason: string | null }
   | { kind: "max_tokens"; outputTokens: number }
@@ -201,7 +203,9 @@ export type DmLoopLiveEvent =
   | { type: "text"; text: string }
   /** An accepted call the hero would notice: `summary` is the player's line in
    * the campaign language; `action` the tool's action when it has one. */
-  | { type: "tool"; name: string; ok: boolean; summary: string; action?: string }
+  | { type: "tool"; name: string; ok: boolean; summary: string; action?: string;
+      /** Fix S3-accept В1: a party member's counter after the call (a spent spell slot), so the open screens dim it at once. */
+      counter?: { entityId: string; key: string; value: number; max: number | null } }
   /** finish_turn handed the decisive description to the player (server-checked). */
   | { type: "moment"; reason: string | null }
   /** `recording` (polish 3 §2): the writer's text is complete and the bookkeeper records; the

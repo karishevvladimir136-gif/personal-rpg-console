@@ -6,6 +6,7 @@ import {
   hasTrustedLocalCredentials,
   isLoopbackRequest,
   isTrustedLocalOwnerRequest,
+  localOwnerModeAllowed,
   trustedLocalOwnerFromHeaders,
 } from "../src/lib/server/trusted-local-owner.ts";
 
@@ -45,6 +46,55 @@ test("trusted local owner requires every explicit gate and separate credentials"
     hasTrustedLocalCredentials({ ...env, RPG_LOCAL_OWNER_PASSWORD: undefined }),
     false,
   );
+});
+
+test("sandbox --prod opt-in: flag absent → the trusted owner and the health route stay disabled in production", () => {
+  const production = { ...env, NODE_ENV: "production" };
+  assert.equal(localOwnerModeAllowed(env), true);
+  assert.equal(localOwnerModeAllowed({ ...env, NODE_ENV: undefined }), true);
+  for (const flag of [undefined, "", "0", "true", "yes", " 1", "1 "]) {
+    const changed = { ...production, APP_SANDBOX_TRUSTED_OWNER: flag };
+    assert.equal(localOwnerModeAllowed(changed), false, String(flag));
+    assert.equal(
+      isTrustedLocalOwnerRequest(local, headers(), changed),
+      false,
+      String(flag),
+    );
+    assert.equal(
+      trustedLocalOwnerFromHeaders("/", headers(), changed),
+      false,
+      String(flag),
+    );
+  }
+  const optedIn = { ...production, APP_SANDBOX_TRUSTED_OWNER: "1" };
+  assert.equal(localOwnerModeAllowed(optedIn), true);
+  assert.equal(isTrustedLocalOwnerRequest(local, headers(), optedIn), true);
+  assert.equal(trustedLocalOwnerFromHeaders("/", headers(), optedIn), true);
+  // The flag opens nothing by itself: every other gate still applies.
+  for (const changed of [
+    { RPG_TRUSTED_LOCAL_OWNER: undefined },
+    { SUPABASE_URL: "https://project.supabase.co" },
+    { RPG_OWNER_USER_ID: undefined },
+  ])
+    assert.equal(
+      isTrustedLocalOwnerRequest(local, headers(), { ...optedIn, ...changed }),
+      false,
+      JSON.stringify(changed),
+    );
+  for (const [url, requestHeaders] of [
+    ["http://192.168.1.4:3100/campaigns", headers("192.168.1.4:3100")],
+    [local, headers("127.0.0.1:3000", { "x-forwarded-for": "192.168.1.4" })],
+    [local, headers("127.0.0.1:3000", { forwarded: "for=192.168.1.4" })],
+  ])
+    assert.equal(isTrustedLocalOwnerRequest(url, requestHeaders, optedIn), false);
+  // A build fixes a literal process.env.NODE_ENV at compile time, so the route
+  // must read the gate from the run-time environment through the helper.
+  const health = readFileSync(
+    new URL("../src/app/api/local-launch/health/route.ts", import.meta.url),
+    "utf8",
+  );
+  assert.match(health, /!localOwnerModeAllowed\(process\.env\)/);
+  assert.doesNotMatch(health, /process\.env\.NODE_ENV/);
 });
 
 test("request gate rejects nonlocal and forwarded hosts or clients", () => {

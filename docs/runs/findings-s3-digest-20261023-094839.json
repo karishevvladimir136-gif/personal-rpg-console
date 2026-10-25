@@ -1,0 +1,36 @@
+{
+  "type": "digest",
+  "run": "findings-s3-digest-20261023-094839",
+  "requestTokens": 63628,
+  "scenes": 40,
+  "shape": {
+    "turns": 20,
+    "playMinutes": 0,
+    "form": "short"
+  },
+  "usage": {
+    "inputTokens": 79847,
+    "outputTokens": 0,
+    "cacheReadTokens": 0,
+    "cacheWriteTokens": 55404,
+    "cacheWrite1hTokens": 55404,
+    "reasoningTokens": null
+  },
+  "stop": "refusal",
+  "costUsd": 0.541,
+  "latencyMs": 3729,
+  "parsed": false,
+  "firstPersonPer100": null,
+  "notebookChars": null,
+  "digest": null,
+  "raw": "",
+  "transport": [
+    {
+      "event": "http",
+      "model": "claude-opus-5-5",
+      "status": 200,
+      "requestBytes": 297729,
+      "latencyMs": 260
+    }
+  ]
+}

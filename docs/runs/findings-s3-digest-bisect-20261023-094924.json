@@ -1,0 +1,34 @@
+{
+  "run": "findings-s3-digest-bisect-20261023-094924",
+  "results": [
+    {
+      "variant": "as_sent",
+      "stop": "refusal",
+      "chars": 0,
+      "start": "",
+      "costUsd": 0.1089,
+      "cacheRead": 55404
+    }
+  ],
+  "transport": [
+    {
+      "event": "http",
+      "model": "claude-opus-5-5",
+      "status": 200,
+      "requestBytes": 297727,
+      "latencyMs": 250
+    },
+    {
+      "event": "budget_reached",
+      "model": "claude-opus-5-5",
+      "requestBytes": 297200,
+      "reservationUsd": 2.485184
+    },
+    {
+      "event": "budget_reached",
+      "model": "claude-opus-5-5",
+      "requestBytes": 297200,
+      "reservationUsd": 2.485184
+    }
+  ]
+}

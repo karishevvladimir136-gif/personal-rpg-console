@@ -41,12 +41,16 @@ import { voiceExamplesBlock, voiceLayer, voiceReminder, VOICE_TOKEN_CAP_DEFAULT,
 import { parseLedger, type AttentionLedger } from "./ledger.ts";
 import { MEMORY_PRESETS, parseDmOptions } from "./options.ts";
 import { itemMechanics, walletOfEntity, walletOfStorage } from "../../inventory/model.ts";
+import { deriveSheet5e, isFifthEdition } from "../../live2d/battle/rules-5e.ts";
+import { dmSheetView } from "../../inventory/spell-records.ts";
+import type { AnySheet } from "../../inventory/sheet.ts";
 
 const bytes = (text: string) => new TextEncoder().encode(text).length;
 const json = (value: unknown) => JSON.stringify(value);
 
 import { estimateTokens } from "./tokens.ts";
 import { HIDDEN_LAYER_KEY, hiddenLayerOf, ownerSecretsText, privateNotes, rankNotes, type PrivateNote } from "./private-notes.ts";
+import { innerVoiceFor, innerVoiceLine, innerVoices, isInnerVoiceKey } from "./inner-voice.ts";
 export { estimateTokens };
 const clipTokens = (text: string, maxTokens: number) => {
   if (estimateTokens(text) <= maxTokens) return text;
@@ -138,7 +142,8 @@ function partyInShort(source: RuntimeSource): Budgeted {
   const party = snapshot.entities.filter((row) => row.kind === "player" || (row.kind === "companion" && controlled.has(row.id)));
   const entries = party.map((row) => {
     const profile = profileOf(row);
-    const sheet = row.character_sheet ? clipChars(json(row.character_sheet), 1500) : null;
+    // Fix S3-accept В1: the spells as one short line each (the prose of «Умения» read as converted), not the cards' texts.
+    const sheet = row.character_sheet ? clipChars(json(dmSheetView(row.character_sheet as AnySheet, snapshot.settings.values.language)), 1500) : null;
     const line = { id: row.id, name: row.name, role: row.kind === "player" ? "hero" : "companion", details: clipChars(row.details, 600),
       stats: row.stats, ...(sheet ? { sheet } : {}), ...(profile.attitude ? { attitudeToHero: profile.attitude.text } : {}),
       ...(profile.relation ? { relation: profile.relation } : {}), ...(profile.homePlaceId ? { home: profile.homePlaceId } : {}) };
@@ -266,10 +271,16 @@ function peopleModels(source: RuntimeSource, input: TurnInput, models: Models): 
     .sort((a, b) => a.rank - b.rank || a.row.name.localeCompare(b.row.name));
   const signatureLine = (model: CharacterModel) => { const uses = recentSignatureUses(snapshot.scenes, model); return Object.keys(uses).length
     ? ` — sounded in the last scenes: ${Object.entries(uses).map(([phrase, n]) => `«${phrase}» ×${n}`).join(", ")} (vary; a tic once a scene at most)` : ""; };
-  const entries = rows.map(({ row, model, tier }) => tier === "present"
-    ? { label: row.name, text: `- ${row.name} (${row.id}, in the scene) — model: ${modelText(snapshot, model)}${signatureLine(model)}` }
+  // Findings S3 §6: a person in the scene brings their voice block, in their card (and a present person without a model, the block alone).
+  const voices = innerVoices(source.privateState);
+  const voiceOf = (row: Entity) => { const text = innerVoiceFor(row, voices); return text ? `\n  ${innerVoiceLine(text)}` : ""; };
+  const unmodelled = snapshot.entities.filter((row) => (row.kind === "npc" || row.kind === "companion") && !models.has(row.id) &&
+    (present.has(row.id) || controlled.has(row.id) || row.id === input.companionId) && innerVoiceFor(row, voices))
+    .map((row) => ({ label: row.name, text: `- ${row.name} (${row.id}, in the scene)${voiceOf(row)}` }));
+  const entries = [...rows.map(({ row, model, tier }) => tier === "present"
+    ? { label: row.name, text: `- ${row.name} (${row.id}, in the scene) — model: ${modelText(snapshot, model)}${signatureLine(model)}${voiceOf(row)}` }
     : tier === "relevant" ? { label: row.name, text: `- ${row.name} (${row.id}) — core: ${modelCore(source, model)}` }
-      : { label: row.name, text: `- ${row.name} (${row.id}): ${clipChars(model.current.goal ?? model.identity.wants[0] ?? model.identity.observableVoice, 160)}` });
+      : { label: row.name, text: `- ${row.name} (${row.id}): ${clipChars(model.current.goal ?? model.identity.wants[0] ?? model.identity.observableVoice, 160)}` }), ...unmodelled];
   const budgeted = withinBudget(entries, memoryBudgets(source).models, "Character Models (private; full for people in the scene, the core for people mentioned or relevant, one line for the rest; identity is fixed, current state and episodes evolve with note_character):");
   const statblocks = Object.entries((source.privateState.npc as JsonObject | undefined) ?? {})
     .filter(([key, value]) => key.startsWith("statblock_") && typeof value === "string")
@@ -371,7 +382,8 @@ function pinnedFacts(source: RuntimeSource): Budgeted {
 }
 
 const RESERVED_FACTS = new Set(["notebook", "notebook_session", "ledger", "variety", "metrics", "depth_state", TIME_CHECK_KEY, HIDDEN_LAYER_KEY]);
-const serverKept = (_kind: string, key: string) => key.startsWith("quest_reward_") || key.startsWith("paid_grant_") || key.startsWith("holding_") || key.startsWith("plan_") || RESERVED_FACTS.has(key);
+// Findings S3 §6: a person's voice block travels in their card (peopleModels), never in the general notes.
+const serverKept = (_kind: string, key: string) => key.startsWith("quest_reward_") || key.startsWith("paid_grant_") || key.startsWith("holding_") || key.startsWith("plan_") || RESERVED_FACTS.has(key) || isInnerVoiceKey(key);
 /** Fix run B1/B2: the owner's secrets and the hidden layer head the private notes and are never budget-dropped; the
  * notes follow in priority order (open clocks and consequences, open facts newest first, closed ones last) with their
  * validity, so a budget drops the closed notes first. */
@@ -415,10 +427,13 @@ function notebook(source: RuntimeSource): Budgeted {
  * owner's edits; the DM never rewrites them) are stable and travel in the cached world layer
  * (`ownerLikes`); the DM's own observations stay in the tail, newest last, and finish_turn playerLikes
  * appends to them — never rewrites them whole (item 71: a rewrite dropped the owner's DC rule). */
+/** Findings S3 §1 (DM_TONE_1 step 4): «Что мне нравится в играх» reaches the DM as a person's words about what they enjoy,
+ * not as a specification (its Russian is in HEADERS_RU). */
+export const OWNER_LIKES_HEADER = "What the owner — the person you play with — enjoys in games, in their own words (from the wizard and their edits). A person telling you what they like, not a specification: let it guide your choices; it is theirs, so never rewrite it:";
 export function ownerLikes(source: RuntimeSource): string {
   const likes = (source.snapshot.campaign.player_likes ?? "").trim();
   const theme = (source.snapshot.campaign.theme ?? "").trim();
-  return [likes ? `What the player asked for, in their own words (from the wizard and the owner's edits; theirs — never rewrite, always honour): ${clipChars(likes, 2000)}` : "",
+  return [likes ? `${OWNER_LIKES_HEADER} ${clipChars(likes, 2000)}` : "",
     theme ? `Campaign theme question (return to it in different guises; never moralize, not in every scene): ${clipChars(theme, 400)}` : ""].filter(Boolean).join("\n");
 }
 function playerLikes(source: RuntimeSource): Budgeted {
@@ -544,6 +559,14 @@ function currentState(source: RuntimeSource, input: TurnInput): { text: string; 
   const place = snapshot.locations.find((row) => row.id === snapshot.publicState.current_location_id);
   // Fix run D (§1, §2): a wallet, never currency counters; counters with their names; the sheet of schema 2.
   const counters = (resources: Record<string, number>) => Object.fromEntries(Object.entries(resources).filter(([key]) => !key.startsWith("currency_")));
+  // Fix S3-accept Г3: the party's AC and saves as the server counts them (5e: worn things and effects), the number the
+  // player's sheet shows and `combat attack` uses — the sheet's own armorClass is the old record.
+  const fifth = isFifthEdition(snapshot.settings?.values?.rulesSystem);
+  const counted = (row: Entity) => {
+    const derived = deriveSheet5e({ entity: row, items: snapshot.items, language: snapshot.campaign.language });
+    return { counted: { ...(derived.ac ? { armourClass: derived.ac.value, how: derived.ac.text } : {}),
+      ...(derived.saves.length ? { saves: Object.fromEntries(derived.saves.map((save) => [save.label, save.value])) } : {}) } };
+  };
   const entities = snapshot.entities.filter((row) => row.kind !== "faction").map((row) => {
     const wallet = walletOfEntity(row);
     const labels = row.public_profile?.counterLabels;
@@ -552,7 +575,8 @@ function currentState(source: RuntimeSource, input: TurnInput): { text: string; 
       present: present.has(row.id), hp: row.hp, maxHp: row.max_hp, stats: row.stats, resources: counters(row.resources),
       ...(Object.keys(wallet).length ? { wallet } : {}), ...(labels && Object.keys(labels).length ? { counterLabels: labels } : {}),
       conditions: row.conditions, slots: row.equipment_slots.map((slot) => slot.id), details: clipChars(row.details, 300),
-      ...((row.kind === "player" || controlled.has(row.id)) && row.character_sheet ? { sheet: row.character_sheet } : {}) };
+      ...((row.kind === "player" || controlled.has(row.id)) && row.character_sheet ? { sheet: dmSheetView(row.character_sheet as AnySheet, snapshot.settings.values.language) } : {}),
+      ...(fifth && (row.kind === "player" || controlled.has(row.id)) ? counted(row) : {}) };
   });
   const factionRows = snapshot.entities.filter((row) => row.kind === "faction").map((row) => ({ id: row.id, name: row.name, kind: "faction" }));
   const items = snapshot.items.filter((row) => row.quantity > 0).map((row) => {
@@ -792,7 +816,8 @@ export function buildCouncilContext(source: RuntimeSource, input: TurnInput): Dm
   const party = partyInShort(source);
   const people = [speaker, ...listeners].filter((row): row is Entity => !!row).map((row) => {
     const model = models.get(row.id);
-    return `- ${row.name} (${row.id}${row.id === speaker?.id ? ", speaks" : ", listens"}): ${clipChars(row.details, 400)}${model ? `\n  model: ${modelText(snapshot, model)}` : ""}`;
+    const voice = innerVoiceFor(row, innerVoices(source.privateState));
+    return `- ${row.name} (${row.id}${row.id === speaker?.id ? ", speaks" : ", listens"}): ${clipChars(row.details, 400)}${model ? `\n  model: ${modelText(snapshot, model)}` : ""}${voice ? `\n  ${innerVoiceLine(voice)}` : ""}`;
   });
   const rows = snapshot.scenes.map((row) => `[${row.role}] ${row.body}`);
   const recent: string[] = [];
@@ -811,8 +836,8 @@ export function buildCouncilContext(source: RuntimeSource, input: TurnInput): Dm
     ? `Сцена: ${place ? `${place.name}. ` : ""}${worldDay(runtime.worldMinutes)}, ${partOfDay(runtime.worldMinutes, "ru")}. Здесь: ${presentNames || "отряд"}.`
     : `The scene: ${place ? `${place.name}. ` : ""}${worldDay(runtime.worldMinutes)}, ${partOfDay(runtime.worldMinutes, snapshot.campaign.language === "ru" ? "ru" : "en")}. Present: ${presentNames || "the party"}.`;
   const councilText = [
-    ru ? "Совет отряда: герой говорит со спутником между ходами истории. Отвечай за спутника его голосом, из того, что он знает и чего хочет; один обмен репликами; слушатели вставляют слово, когда это их дело. Больше ничего не рассказывай: ни новых событий, ни бросков; запиши только то, что изменил разговор (note_character, note_world), и минуты, которые он занял (advance_time), потом finish_turn."
-      : `Party council: the hero speaks with a companion between the story's turns. Answer as the companion, in their own voice, from what they know and want; one exchange; the listeners may add a line when it is theirs to say. Narrate nothing else: no new events, no rolls; record only what the talk changed (note_character, note_world) and the minutes it took (advance_time), then finish_turn.`,
+    ru ? "Совет отряда: герой говорит со спутником между ходами истории. Отвечай за спутника его голосом, из того, что он знает и чего хочет, и по его собственному суждению — он может не согласиться с героем; один обмен репликами; слушатели вставляют слово, когда это их дело. Больше ничего не рассказывай: ни новых событий, ни бросков; запиши только то, что изменил разговор (note_character, note_world), и минуты, которые он занял (advance_time), потом finish_turn."
+      : `Party council: the hero speaks with a companion between the story's turns. Answer as the companion, in their own voice, from what they know and want and by their own judgement — they may disagree with the hero; one exchange; the listeners may add a line when it is theirs to say. Narrate nothing else: no new events, no rolls; record only what the talk changed (note_character, note_world) and the minutes it took (advance_time), then finish_turn.`,
     party.text,
     people.length ? `The people in this talk (their private Character Models — what they know, want and hide):\n${people.join("\n")}` : "",
     sceneLine,

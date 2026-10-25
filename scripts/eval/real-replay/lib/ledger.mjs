@@ -6,6 +6,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { provenance } from "../../lib/anthropic-endpoint.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 export const ROOT = join(here, "..", "..", "..", "..");
@@ -21,6 +22,24 @@ export const LEDGERS = {
   // The fixes before session 3 (docs/stages/FIX_S3_PRE.md): part 1's probes and the two measurements of 2.6, $20.
   fixs3pre: { file: join(ROOT, "docs", "runs", "fix-s3-pre-ledger.json"), capUsd: 20, label: "the fixes before session 3",
     markdown: join(ROOT, "docs", "runs", "fix-s3-pre-ledger.md") },
+  // The fixes from the owner's acceptance pass (docs/stages/FIX_S3_ACCEPT.md): $15, each block within its own share
+  // (FIX_S2_STAGE=G|V|B|D|A names the block; I is the integrated check at the end).
+  fixs3accept: { file: join(ROOT, "docs", "runs", "fix-s3-accept-ledger.json"), capUsd: 15, label: "the fixes from the owner's acceptance pass",
+    stageCaps: { G: 0.5, V: 2, B: 2.5, D: 4, A: 3, I: 3 }, markdown: join(ROOT, "docs", "runs", "fix-s3-accept-ledger.md") },
+  // The findings of 2026-10-22/23 (docs/stages/FINDINGS_S3.md): the DM's register before/after, one digest and the notes'
+  // dose (item 7) — $8, raised by the owner to $16, $20 and then $24 in total (items 1 and 7 at 3 runs per scene, a
+  // shorter history; the objection re-measured after the rule fix; one more digest at the 15–20k dose; the roll rule
+  // re-measured on the scenes with rolls).
+  findingss3: { file: join(ROOT, "docs", "runs", "findings-s3-ledger.json"), capUsd: 24, label: "the findings of session 3",
+    markdown: join(ROOT, "docs", "runs", "findings-s3-ledger.md") },
+  // The second door (docs/stages/BEDROCK_PROVIDER_1.md): the smoke on Amazon Bedrock only, $3.
+  bedrock1: { file: join(ROOT, "docs", "runs", "bedrock-provider-1-ledger.json"), capUsd: 3, label: "the Bedrock provider stage",
+    markdown: join(ROOT, "docs", "runs", "bedrock-provider-1-ledger.md") },
+  // Three doors (docs/stages/ANTHROPIC_PROVIDERS_1.md): the smokes only, $6 — stage O (OpenRouter) and stage B
+  // (Amazon Bedrock) within $3 each; no call to the Console's API.
+  providers1: { file: join(ROOT, "docs", "runs", "anthropic-providers-1-ledger.json"), capUsd: 6,
+    label: "the Anthropic providers stage (O = OpenRouter, B = Amazon Bedrock)", stageCaps: { O: 3, B: 3 },
+    markdown: join(ROOT, "docs", "runs", "anthropic-providers-1-ledger.md") },
 };
 export const DEFAULT_LEDGER = "fixs2";
 export const LEDGER_FILE = LEDGERS[DEFAULT_LEDGER].file;
@@ -57,19 +76,21 @@ function stageRemaining(spec, ledger, stage) {
 }
 
 /** The stage a run belongs to (the fix-s2 run: FIX_S2_STAGE=A…F; A and B share their cap). */
-export function currentStage() {
+export function currentStage(name = DEFAULT_LEDGER) {
   const stage = (process.env.FIX_S2_STAGE ?? "").trim().toUpperCase();
-  return stage === "A" || stage === "B" ? "AB" : stage || null;
+  // Only the fix-s2 run joins A and B under one cap; the later ledgers keep each letter (FIX_S3_ACCEPT: B is its own block).
+  return name === "fixs2" && (stage === "A" || stage === "B") ? "AB" : stage || null;
 }
 
-/** Register a paid run; refuses a budget beyond the cap's remainder (and the stage's, when the ledger has stage caps). */
-export async function openRun(run, requestedUsd, what, name = DEFAULT_LEDGER, stage = currentStage()) {
+/** Register a paid run; refuses a budget beyond the cap's remainder (and the stage's, when the ledger has stage caps).
+ * `door` names the run's door when it is not the configured one (a smoke that picks its door itself). */
+export async function openRun(run, requestedUsd, what, name = DEFAULT_LEDGER, stage = currentStage(name), door = doorOf()) {
   const spec = ledgerSpec(name);
   const ledger = await readLedger(name);
   const remaining = Number(Math.min(ledger.capUsd - committedUsd(ledger), stageRemaining(spec, ledger, stage)).toFixed(4));
   if (remaining <= 0) throw new Error(`${spec.label} ledger: the cap is spent (${committedUsd(ledger).toFixed(2)} of $${ledger.capUsd} committed${stage ? `, stage ${stage}` : ""})`);
   const budgetUsd = Number(Math.min(requestedUsd, remaining).toFixed(4));
-  ledger.entries.push({ run, what, ...(stage ? { stage } : {}), startedAt: new Date().toISOString(), reservedUsd: budgetUsd, spentUsd: 0, settled: false });
+  ledger.entries.push({ run, what, ...door, ...(stage ? { stage } : {}), startedAt: new Date().toISOString(), reservedUsd: budgetUsd, spentUsd: 0, settled: false });
   await writeLedger(ledger, name);
   return {
     budgetUsd, remainingBefore: remaining, ledger: name,
@@ -83,10 +104,26 @@ export async function openRun(run, requestedUsd, what, name = DEFAULT_LEDGER, st
   };
 }
 
+/** ANTHROPIC_PROVIDERS_1 §4: the door the run's Claude calls go through (a door that is not configured is named so). */
+function doorOf() {
+  try { return provenance(); } catch { return { provider: "not_configured", endpointHost: null }; }
+}
+
+/** Spend per door; the entries from before the door switch went through the Anthropic API. */
+export function spendByProvider(ledger) {
+  const totals = {};
+  for (const entry of ledger.entries) {
+    const provider = entry.provider ?? "anthropic";
+    totals[provider] = (totals[provider] ?? 0) + (entry.settled ? entry.spentUsd : entry.reservedUsd);
+  }
+  return totals;
+}
+
 export function ledgerTable(ledger) {
   const lines = ["| Run | Stage | What | Reserved | Spent | Settled |", "| --- | --- | --- | --- | --- | --- |"];
   for (const entry of ledger.entries)
     lines.push(`| ${entry.run} | ${entry.stage ?? ""} | ${entry.what} | $${entry.reservedUsd.toFixed(2)} | $${entry.spentUsd.toFixed(4)} | ${entry.settled ? "yes" : "no"} |`);
   lines.push(`| **Total** | | | **$${committedUsd(ledger).toFixed(4)} of $${ledger.capUsd}** | |`);
+  lines.push("", `Spend per door: ${Object.entries(spendByProvider(ledger)).map(([provider, usd]) => `${provider} $${usd.toFixed(4)}`).join(" · ")}`);
   return lines.join("\n");
 }

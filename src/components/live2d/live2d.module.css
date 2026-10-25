@@ -140,6 +140,16 @@
 .visitedPin .pinMark { background: var(--brass); }
 .rumoredPin .pinMark { border-style: dashed; background: transparent; }
 .trackedPin .pinMark { border-color: var(--verdigris); box-shadow: 0 0 0 3px #0008, 0 0 14px #64a99877; }
+/* Fix S3-accept Д3: visited bright, known by hearsay dim, a rumour dimmer; «положение примерное» dotted; a place
+   inside a settlement small, within it; a marker the owner drags. */
+.knownPin .pinLabel { opacity: .8; }
+.rumoredPin .pinLabel { opacity: .65; font-style: italic; }
+.approxPin .pinMark { border-style: dotted; }
+.innerPin { min-width: 32px; min-height: 32px; z-index: 3; }
+.innerPin .pinMark { width: 9px; height: 9px; border-width: 1.5px; box-shadow: 0 0 0 2px #0008; }
+.innerPin .pinLabel { font-size: 13px; padding: 1px 5px; }
+.pin[aria-pressed="true"] .pinLabel { background: #3a2c1fe6; color: var(--brass-hi); }
+.dragPin { cursor: grab; touch-action: none; }
 .pinLabel {
   padding: 2px 7px;
   border-radius: 4px;
@@ -277,6 +287,22 @@
   font-size: 14px;
 }
 .toolsBody { display: grid; gap: 12px; padding: 4px 12px 14px; }
+/* Fix S3-accept Д1: the map's «Ещё» sections and the chosen place's card. */
+.moreSection { display: grid; gap: 6px; min-width: 0; }
+.moreSection > b { font-family: var(--f-display); color: var(--brass-hi); font-weight: 600; }
+.moreList { margin: 0; padding-left: 18px; display: grid; gap: 3px; font-size: 14px; color: var(--text); }
+.placeCard {
+  display: grid;
+  gap: 6px;
+  justify-items: start;
+  padding: 10px 12px;
+  border: 1px solid var(--line-strong);
+  border-left: 3px solid var(--brass);
+  border-radius: 6px;
+  background: var(--leather);
+  color: var(--text);
+}
+.placeCard > b { font-family: var(--f-display); color: var(--brass-hi); }
 .field { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
 .field textarea, .field input {
   min-height: var(--touch);
@@ -302,4 +328,36 @@
   .stage { border-radius: 8px; }
   .pinLabel { font-size: 13px; }
   .textLink { margin-left: 0; }
+}
+
+/* Fix S3-accept Б4: play from the scene — the DM's answer and the action box under the picture, the turn's frame
+   in the picture's corner (a click opens it large, «×» puts it away). */
+.play { display: grid; gap: 10px; min-width: 0; }
+.play :global(.gameplay-channel) { display: grid; gap: 10px; min-width: 0; }
+.play :global(.gameplay-channel textarea) { font-size: 17px; line-height: 1.5; }
+.sceneFrame {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 4;
+  width: min(34%, 300px);
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--brass-dim);
+  border-radius: 8px;
+  background: #0f1312ef;
+  box-shadow: 0 10px 28px #000b;
+}
+.sceneFrameOpen { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
+.sceneFrameOpen img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.sceneFrameDrawing { display: grid; place-items: center; aspect-ratio: 16 / 10; padding: 8px; color: var(--muted); font-size: 13px; text-align: center; }
+.sceneFrame figcaption { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 2px 4px 2px 8px; color: #cbbf9f; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+.sceneFrame figcaption button { display: grid; place-items: center; width: 32px; height: 32px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+.sceneFrame figcaption button:hover { color: var(--text); }
+/* Fix S3-accept Б3: what did not match the records, under «Ещё». */
+.mismatches { display: grid; gap: 6px; padding: 10px 12px; border: 1px solid var(--line); border-left: 3px solid var(--amber); border-radius: 6px; background: var(--ink); font-size: 14px; }
+.mismatches b { font-family: var(--f-display); color: var(--brass-hi); font-weight: 600; }
+.mismatches ul { display: grid; gap: 4px; margin: 0; padding-left: 18px; }
+@media (max-width: 640px) {
+  .sceneFrame { width: 42%; right: 6px; bottom: 6px; }
 }

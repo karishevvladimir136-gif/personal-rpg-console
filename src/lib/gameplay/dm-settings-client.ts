@@ -12,10 +12,10 @@ export { DM_LOOP_DEFAULT_LIMITS, DM_LOOP_LIMIT_CEILINGS, DM_LOOP_LIMIT_KEYS } fr
 /** Owner-facing names of the per-turn limits (campaign settings, stage 3; the panel itself is stage 5). */
 export const dmLoopLimitLabels: Record<keyof DmLoopTurnLimits, string> = {
   moneyPerTurn: "Money created per turn",
-  itemsPerTurn: "Items created per turn",
+  itemsPerTurn: "Items created per batch (two batches a turn)",
   charactersPerTurn: "New characters per turn",
   minutesPerTurn: "Game minutes advanced per turn",
-  toolCallsPerTurn: "Tool calls per turn",
+  toolCallsPerTurn: "Tool calls per batch (two batches a turn)",
   modelRequestsPerTurn: "Model requests per turn",
 };
 

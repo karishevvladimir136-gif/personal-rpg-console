@@ -10,6 +10,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { openRun } from "../real-replay/lib/ledger.mjs";
 import { providerKey } from "../lib/keys.mjs";
+import { anthropicKey, scriptAnthropicEndpoint } from "../lib/anthropic-endpoint.mjs";
 import { BRIEF_MODEL, BRIEF_PRICE_PER_MILLION, briefRequest, compileBriefPrompt, directPeople, latinSpellings, parseBrief, applyLookChange } from "../../../src/lib/visual-frame/brief.ts";
 import { checkFrame } from "../../../src/lib/visual-frame/frame-check.ts";
 import { generateOpenAIImage } from "../../../src/lib/visual-frame/openai-image.ts";
@@ -50,7 +51,7 @@ const SCENES = [
   { id: "out-of-game", place: "Застава", narration: "(Вне игры: записываю.)", expect: { ooc: true } },
 ];
 
-const apiKey = providerKey("ANTHROPIC_API_KEY"), openaiKey = providerKey("OPENAI_API_KEY");
+const apiKey = anthropicKey(), openaiKey = providerKey("OPENAI_API_KEY");
 // --path shot: the default path (the shot director off, as in session 2) — the short shot by Haiku from the paragraph,
 // the records frame (gaze and hands from the shot, the records' gear, 0 HP), the picture and the check; --only <id,id>.
 if (arg("--path") === "shot") {
@@ -75,8 +76,9 @@ if (arg("--path") === "shot") {
         const context = { heroName: records[0].name, names: records.slice(1).map((r) => r.name), placeName: item.place, language: "ru", people: scene.map(({ name, role }) => ({ name, role })) };
         const request = shotRequest(storyText(item.narration), context);
         if (spent + CHECK_RESERVE_USD > ledger.budgetUsd) throw new Error("budget reached");
-        const response = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-          body: JSON.stringify({ model: "claude-haiku-5-5", max_tokens: 2000, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }), signal: AbortSignal.timeout(60_000) });
+        const door = scriptAnthropicEndpoint();
+        const response = await fetch(door.messagesUrl, { method: "POST", headers: door.headers(apiKey),
+          body: JSON.stringify({ model: door.modelId("claude-haiku-5-5"), max_tokens: 2000, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }), signal: AbortSignal.timeout(60_000) });
         const value = await response.json().catch(() => null);
         spent += ((value?.usage?.input_tokens ?? 0) * SHOT_PRICE.input + (value?.usage?.output_tokens ?? 0) * SHOT_PRICE.output) / 1_000_000;
         const shot = parseShot((value?.content ?? []).filter((b) => b.type === "text").map((b) => b.text).join("\n"));
@@ -166,8 +168,9 @@ try {
       placeName: item.place, profiles, state, clock: { timeOfDay: null }, previous: null, style: "Painterly fantasy illustration, muted earthy palette, cinematic light.", comment: null, language: "ru" });
     reserve(BRIEF_RESERVE_USD);
     const started = Date.now();
-    const response = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-      body: JSON.stringify({ model: BRIEF_MODEL, max_tokens: 3000, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }), signal: AbortSignal.timeout(60_000) });
+    const door = scriptAnthropicEndpoint();
+    const response = await fetch(door.messagesUrl, { method: "POST", headers: door.headers(apiKey),
+      body: JSON.stringify({ model: door.modelId(BRIEF_MODEL), max_tokens: 3000, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }), signal: AbortSignal.timeout(60_000) });
     const value = await response.json().catch(() => null);
     const usage = value?.usage ?? {};
     spent += ((usage.input_tokens ?? 0) * BRIEF_PRICE_PER_MILLION.input + (usage.output_tokens ?? 0) * BRIEF_PRICE_PER_MILLION.output) / 1_000_000;

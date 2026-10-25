@@ -54,12 +54,16 @@ const load = loader();
 const { Live2dScreen } = load(resolve(root, "components/live2d/live2d-screen.tsx"));
 const { LanguageProvider } = load(resolve(root, "components/language-context.tsx"));
 const { PreviewPictures } = load(resolve(root, "components/registry/live-frames.tsx"));
+const { CampaignDataPreview } = load(resolve(root, "components/persistence-context.tsx"));
 
 const refuse = { board: () => assert.fail("render must not read"), send: () => assert.fail("render must not send") };
+// Fix S3-accept Б4: the scene carries the DM's answer and the action box, which read the campaign's records — the
+// screen renders inside the records provider, as the preview page and the app mount it.
 function render(preview, { play = live2dPlay(), snapshot = live2dSnapshot() } = {}) {
   return renderToStaticMarkup(createElement(LanguageProvider, null,
-    createElement(PreviewPictures, { board: live2dPictures.board, images: live2dPictures.images },
-      createElement(Live2dScreen, { snapshot, play, transport: refuse, preview: { board: live2dBoard, placements: live2dPlacements, images: live2dPictures.images, ...preview } }))));
+    createElement(CampaignDataPreview, { snapshot, refresh: async () => {} },
+      createElement(PreviewPictures, { board: live2dPictures.board, images: live2dPictures.images },
+        createElement(Live2dScreen, { snapshot, play, transport: refuse, preview: { board: live2dBoard, placements: live2dPlacements, images: live2dPictures.images, ...preview } })))));
 }
 const pins = (html) => [...html.matchAll(/data-pin="([^"]+)"/g)].map((match) => match[1]).sort();
 const hotspots = (html) => [...html.matchAll(/data-poi="([^"]+)"/g)].map((match) => match[1]);

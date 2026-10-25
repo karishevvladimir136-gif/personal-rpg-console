@@ -7,6 +7,7 @@ import type { EncounterRecord, PlaySnapshot, PublicTurn } from "@/lib/gameplay/c
 import { parseCombatant, parseField, parsePlacement, type Field } from "@/lib/live2d/battle/contracts";
 import { distanceFeet, sight } from "@/lib/live2d/battle/geometry";
 import type { Fighter } from "@/lib/live2d/battle/battlefield";
+import { derivedSheetOf } from "@/lib/live2d/battle/rules-5e";
 
 export type BattleView = { encounter: EncounterRecord; field: Field; fighters: Fighter[]; hero: Fighter | null; active: Fighter | null; party: Fighter[]; foes: Fighter[] };
 
@@ -52,6 +53,15 @@ export function hpOf(fighter: Fighter, snapshot: CampaignSnapshot): { current: n
     if (entity && entity.max_hp) return { current: entity.hp ?? entity.max_hp, max: entity.max_hp };
   }
   return fighter.combatant.hp;
+}
+
+/** Fix S3-accept Г3: a party fighter's AC as the server counts it for `combat attack` — in 5e the worn things, the
+ * record's effects and this fight's (Shield); else the number the fight holds. */
+export function armourOf(fighter: Fighter, snapshot: CampaignSnapshot): { value: number; text: string } | null {
+  if (fighter.combatant.side !== "party" || !fighter.entityId) return null;
+  const entity = snapshot.entities.find((row) => row.id === fighter.entityId);
+  const derived = entity ? derivedSheetOf(snapshot, entity, { conditions: fighter.combatant.conditions, ac: fighter.combatant.ac }) : null;
+  return derived?.ac ?? (fighter.combatant.ac !== null ? { value: fighter.combatant.ac, text: "" } : null);
 }
 
 export const initials = (name: string) => name.split(/\s+/).map((word) => word[0] ?? "").join("").slice(0, 2).toUpperCase();

@@ -2,7 +2,8 @@ import { readFile, readdir } from "node:fs/promises";
 import { randomUUID } from "node:crypto";
 import { PGlite } from "@electric-sql/pglite";
 
-export async function fixture(maxMigration = 99) {
+// Fix S3-accept: every migration by default (the old 99 was "all" when written; the stage passes 99 files).
+export async function fixture(maxMigration = Infinity) {
   const db = new PGlite();
   const owner = randomUUID(),
     other = randomUUID();

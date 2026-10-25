@@ -61,7 +61,7 @@ test("2.3 KF-hidden-layer: when the prep runs — never from Settings, rebuilt w
   const service = src("src/lib/server/gameplay-service.ts");
   assert.match(service, /options\.prep !== false && prepSchedulable\(campaignId\)/);
   assert.match(service, /if \(newOrdinary && input\.mode === "game"\)\s+await awaitFirstTurnPrep\(/);
-  assert.match(src("src/lib/server/dm-secrets.ts"), /if \(v\.body\.trim\(\) && v\.body\.trim\(\) !== \(was \?\? ""\)\.trim\(\)\) scheduleSecretsPrep\(campaignId, user\.id\)/);
+  assert.match(src("src/lib/server/dm-secrets.ts"), /if \(v\.rebuild !== false && v\.body\.trim\(\) && v\.body\.trim\(\) !== \(was \?\? ""\)\.trim\(\)\) scheduleSecretsPrep\(campaignId, user\.id\)/);
   assert.match(src("src/lib/server/hidden-layer-prep.ts"), /if \(hiddenLayerOf\(source\) && reason !== "secrets"\)/, "a rebuild runs although a layer exists");
 });
 
@@ -74,7 +74,8 @@ test("2.3 KF-hidden-layer: the rebuild request builds on the owner's «Тайн�
   assert.equal(parseDigest(reply("Тайный слой: правда стала глубже."), source, 0).hiddenLayer, "Тайный слой: правда стала глубже.");
   assert.equal(parseDigest(reply("Тайный слой: новый."), minimal, 0).hiddenLayer, null, "no layer, no rewrite (the prep writes the first one)");
   assert.equal(parseDigest(reply("   "), source, 0).hiddenLayer, null);
-  assert.equal(parseDigest(reply("я".repeat(9000)), source, 0).hiddenLayer.length, 5800);
+  // Findings S3 §7: the layer's dose is 24 000 characters now (it was 6 000; the digest kept 5 800).
+  assert.equal(parseDigest(reply("я".repeat(30_000)), source, 0).hiddenLayer.length, 23_800);
   // The rebuild's instructions (the request itself is built by buildPrepRequest on a full source in tests/fix-s2-b).
   const hidden = src("src/lib/gameplay/dm-loop/hidden-layer.ts");
   assert.match(hidden, /The owner has just written or changed their secrets for this campaign \(«Тайны»\)[\s\S]*rewrite it now so it builds on them and never contradicts them/);
@@ -183,6 +184,7 @@ test("2.5 E-4c: the eval tools take a key from .env.local or the cloud's APP_ va
     process.env[`APP_${name}`] = "from-the-cloud";
     assert.equal(providerKey(name), "from-the-cloud");
   } finally { delete process.env[name]; delete process.env[`APP_${name}`]; }
-  assert.match(src("scripts/eval/lib/loop-harness.mjs"), /appChecks\(options\.budget, options\.apiKey \?\? providerKey\("ANTHROPIC_API_KEY"\)\)/);
+  // BEDROCK_PROVIDER_1: the door's key (anthropicKey reads it through providerKey, from .env.local or the cloud's APP_ variable).
+  assert.match(src("scripts/eval/lib/loop-harness.mjs"), /appChecks\(options\.budget, options\.apiKey \?\? anthropicKey\(\)\)/);
   assert.doesNotMatch(src("scripts/eval/lib/loop-harness.mjs"), /process\.env\.ANTHROPIC_API_KEY/);
 });

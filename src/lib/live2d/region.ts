@@ -1,11 +1,27 @@
 // The region map (slice item 1): a stable painted map of the region the party
 // travels, the places as marks laid out by the atlas placement code, drawn once
-// per region and redrawn only when a new place appears in it. Pure helpers: the
-// signature of the places drawn and the illustrator's prompt.
+// per region and redrawn when a new place appears in it or when the owner presses
+// «Перерисовать карту региона». Pure helpers: the signature of the places drawn,
+// what the button asks, the server's choice, and the illustrator's prompt.
+import type { RegionMap } from "./contracts.ts";
 import type { Live2dPin } from "./hierarchy.ts";
 
 /** The places a region map was drawn for, in a stable order; a new place changes it. */
 export const regionSignature = (pins: readonly Pick<Live2dPin, "locationId">[]) => [...new Set(pins.map((row) => row.locationId))].sort().join(",");
+
+/** What the region map button sends: the first map, or — once a map exists — a forced redraw, which
+ * always draws a new picture (the price is on the label). */
+export function regionDrawInput(anchorId: string | null, map: Pick<RegionMap, "pictureId"> | null): { anchorId: string | null; force?: true } {
+  return map?.pictureId ? { anchorId, force: true } : { anchorId };
+}
+
+/** The server's choice for `region.draw`: a map that is drawing is never drawn twice, forced or not; a ready
+ * map of the same places stays unless the owner forced a redraw. */
+export function regionDrawDecision(existing: Pick<RegionMap, "status" | "signature"> | null, signature: string, force: boolean): "drawing" | "existing" | "draw" {
+  if (existing?.status === "drawing") return "drawing";
+  if (existing?.status === "ready" && existing.signature === signature && !force) return "existing";
+  return "draw";
+}
 
 /** Which known places are new since the map was drawn (the reason to redraw). */
 export function newPlacesSince(signature: string, pins: readonly Live2dPin[]): Live2dPin[] {

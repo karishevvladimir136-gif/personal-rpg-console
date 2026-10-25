@@ -41,13 +41,14 @@ export type DmLoopLimits = typeof dmLoopLimits;
 export type DmLoopTurnLimits = {
   /** Money created in one turn: grants plus rewards the issuer could not pay. Transfers move money; they create none. */
   moneyPerTurn: number;
-  /** Items created in one turn (item create and reward items; splits and transfers create no value). */
+  /** Items created per batch (item create and reward items; splits and transfers create no value), two batches a turn. */
   itemsPerTurn: number;
   /** New characters (NPCs and companions) in one turn. */
   charactersPerTurn: number;
   /** In-world minutes one turn may advance in total. */
   minutesPerTurn: number;
-  /** Tool calls per turn; later calls are rejected with a "wrap up" reason, the turn never fails for this. */
+  /** Tool calls per batch: a turn's calls go in up to two batches of this size (RECORD_BATCHES_PER_TURN); later calls
+   * are rejected with a "wrap up" reason, the turn never fails for this. */
   toolCallsPerTurn: number;
   /** Model requests per turn; on the last one the model is asked to finish without tools. */
   modelRequestsPerTurn: number;
@@ -55,6 +56,19 @@ export type DmLoopTurnLimits = {
 
 export const DM_LOOP_LIMIT_KEYS = ["moneyPerTurn", "itemsPerTurn", "charactersPerTurn", "minutesPerTurn",
   "toolCallsPerTurn", "modelRequestsPerTurn"] as const satisfies readonly (keyof DmLoopTurnLimits)[];
+
+/** The owner, after the findings-S3 hoard probe (40 accepted calls, then the rest refused — the time passing among them):
+ * a turn's records are written in up to two batches of `toolCallsPerTurn` calls (and of `itemsPerTurn` new items) each,
+ * so a big find writes its tail as a second batch instead of losing it. Beyond the second batch the old refusal stands. */
+export const RECORD_BATCHES_PER_TURN = 2;
+export const turnCallCap = (limits: Pick<DmLoopTurnLimits, "toolCallsPerTurn">) => limits.toolCallsPerTurn * RECORD_BATCHES_PER_TURN;
+export const turnItemCap = (limits: Pick<DmLoopTurnLimits, "itemsPerTurn">) => limits.itemsPerTurn * RECORD_BATCHES_PER_TURN;
+/** The dm-loop commit's bound on a turn's private patches (`privatePatches <= 40`, migration 202610150053). The server
+ * adds up to four of its own at the commit (the attention ledger, the metrics, the depth state, the time-words check), so
+ * the DM's calls may write PRIVATE_PATCHES_FOR_CALLS; a call that would pass it is refused on its own, never the turn. */
+export const PRIVATE_PATCHES_PER_TURN = 40;
+export const SERVER_PRIVATE_PATCHES = 4;
+export const PRIVATE_PATCHES_FOR_CALLS = PRIVATE_PATCHES_PER_TURN - SERVER_PRIVATE_PATCHES;
 
 /** Generous defaults: a campaign without its own limits plays with these. */
 export const DM_LOOP_DEFAULT_LIMITS: DmLoopTurnLimits = Object.freeze({

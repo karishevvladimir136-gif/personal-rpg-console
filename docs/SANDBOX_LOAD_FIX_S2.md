@@ -2,8 +2,9 @@
 
 For the owner's local Claude Code session on the owner's PC (Windows). It loads the branch **`claude/s3-candidate`** —
 the fixes after session 2 (`claude/session2-fixes-a-f-jh3krk`), 2D Live with the combat screen
-(`claude/live2d-1-9lq5bf`) and the soundtrack (`claude/stage-music`) merged into one (`docs/runs/merge-s2-report.md`) —
-into the **sandbox** (`docs/SANDBOX.md`: its own database on ports 44320–44327, the
+(`claude/live2d-1-9lq5bf`) and the soundtrack (`claude/stage-music`) merged into one (`docs/runs/merge-s2-report.md`), then
+the fixes before session 3 (`docs/runs/fix-s3-pre-report.md`) and the fixes from the owner's acceptance pass
+(`docs/runs/fix-s3-accept-report.md`) — into the **sandbox** (`docs/SANDBOX.md`: its own database on ports 44320–44327, the
 app on http://127.0.0.1:3100). The owner's real project (ports 34320–34327, the app on :3000) is never touched. Do the
 steps in order; stop and tell the owner if one of them fails. `<exports>` stands for the owner's exports folder on this
 PC (the one the earlier dumps went to; the repository does not name machine paths).
@@ -46,10 +47,11 @@ node scripts/sandbox-start.mjs --prod
 
 (or `Start Sandbox.cmd --prod`). The launcher applies the pending migrations, builds the app (two to five minutes; the
 log is `.sandbox/build.log`) and runs `next start` on :3100 — no dev server during play (session 2's memory and latency
-problem). Later starts without code changes: `--prod --no-build`. The candidate adds migrations in **four ranges**, all
+problem). Later starts without code changes: `--prod --no-build`. The candidate adds migrations in **six ranges**, all
 additive, none edited, no number used twice: the fix run `202610200071`–`202610200084` and `202610200096`, 2D Live
-`202610210200`–`202610210201`, the music stage `202610210301`, the fixes before session 3 `202610210401`–`202610210403`; persona memory 1 adds `202610230101`, persona memory 2 `202610230102`.
-They apply in name order with the others:
+`202610210200`–`202610210201`, the music stage `202610210301`, the fixes before session 3 `202610210401`–`202610210403`; persona memory 1 adds `202610230101`, persona memory 2 `202610230102`;
+the fixes from the acceptance pass `202610230501`, `202610230511`, `202610230521`, `202610230541`, `202610230551`, the
+findings of session 3 (`docs/stages/FINDINGS_S3.md`) `202610230601`, `202610230611`. They apply in name order with the others:
 
 | Migration | What |
 | --- | --- |
@@ -76,6 +78,13 @@ They apply in name order with the others:
 | 0403 `fix_s3_pre_gallery_turns` | the gallery's own read over every committed game turn (a new owner-only function; `/play` untouched) |
 | 0101 (`202610230101`) `persona_memory` | persona memory 1 (`docs/PERSONA_MEMORY.md`): a separate schema `persona_memory` for the planner's memory store (episodes, notes, the self-dossier, facts, folds, an embeddings cache) and the RPC `persona_memory`, service_role only. Nothing in the game reads or writes it; empty until the owner points the memory server at this database |
 | 0102 (`202610230102`) `persona_clock` | persona memory 2: the memory's clock — `persona_memory.timers` and the append-only `persona_memory.calibration` (predicted vs actual; a row is never updated or deleted), and a second RPC `persona_clock`, service_role only. Additive; `persona_memory` itself is unchanged |
+| 0501 `fix_s3_accept_counter_label` | **changes a record**: in a Russian campaign, a person who keeps the counter `shaman_tusk` with no name gets the name «Клык шамана» (a new revision; the value and the maximum stay). A name already given is never touched |
+| 0511 `fix_s3_accept_spells` | the sheet's check admits a spell's id, school and history; the picture kind «spell» (a spell drawn like a thing). No row changes. The spells themselves are converted on the first open of «Персонаж», see 6b |
+| 0521 `fix_s3_accept_ring` | **changes a record**: a ring whose description says «у куклы пока нет слота для колец» loses that phrase and is put on its owner's «Кольцо (правая)» (the left ring slot if the right one is taken; it stays in the bag if both are taken, or if it is worn, lent, pledged, lost, or would be a fourth attuned thing). A new revision with two history lines («поправка перед сессией 3…», «надето: … — Кольцо (правая)»), so the DM reads it as the owner's move |
+| 0541 `fix_s3_accept_region_prep` | the region prep's storage: new columns on the region map (old maps read as before), a table of the prep's versions, two new actions of the 2D function. No row changes |
+| 0551 `fix_s3_accept_adventure_wishes` | «Пожелания к приключению»: the DM-only store admits a campaign's wishes beside «Тайны»; the DM's source carries them to the hidden-layer prep only. No row changes |
+| 0601 `findings_s3_old_sheet` | **changes a record**: in «Приключения начинаются», the hero Джеймс Вордсден (his creation's sheet: no level, no save lines) gets level 5 — only the level, saved the way the owner's own «Изменить лист» saves (a new revision of the record and the owner-correction receipt). No save lines are written: his class (Маг → wizard) gives the proficient saves, Интеллект and Мудрость, at the level's proficiency (+3 at 5), and they follow the level later. The other lines, the stats, «КД вручную» stay. A sheet that already has a level is never touched; without that campaign nothing changes |
+| 0611 `findings_s3_notes_dose` | the DM's hidden layer (its own notes between sessions, written by the prep and rewritten by each session digest) may hold 24 000 characters instead of 6 000 — the owner's decision; every other private note keeps 6 000. The function that saves the notes is patched in place. No row changes |
 
 Check: the app opens at http://127.0.0.1:3100/campaigns, and `.sandbox/app.log` has no error.
 
@@ -134,19 +143,41 @@ show both to the owner. It refuses to run before step 4 (the coins must be under
   мест» (24 places + 5 weathers, ≈ $3.19), both using the `FAL_KEY` already in `.env.local`, or upload chosen review
   MP3s through «Свои треки» with their moods ticked — free. Nothing plays before the first click on the page.
 
-## 7. Replay session 2's heavy turns
+## 6b. What happens by itself after this load (the acceptance pass's fixes)
 
-Without touching the live campaign (the replay restores each turn's state into an in-memory copy and writes nothing
-back), play the heavy turns of session 2 again in session 3's mode and compare cost, requests and records with the
-session 2 log. The planner's local prompt names the turns (the mine fight, the long rest, and the others it lists):
+Nothing to run by hand; each happens once, off the turn, and play continues if it fails.
 
-```bat
-set FIX_S2_STAGE=F
-node scripts/eval/real-replay/replay.mjs --base http://127.0.0.1:3100 --campaign <id> --turns <the planner's list> --variants O --ledger-check on --budget-usd <the planner's cap>
-```
+- **Spells.** The first open of «Персонаж» (any tab, no turn running) turns the spell lines of «Умения» into 13 spell
+  cards — one owner correction of the sheet (a new revision; the old sheet stays in the history), with the status line
+  «…: заклинания из «Умений» стали карточками (13).» Lines that are not spells stay. Spell pictures are drawn by the
+  picture autopilot after the things, under the same daily limit and the same «Вещи» switch.
+- **The armour class.** «КД» is counted from what is worn and the effects; nothing is converted. «Изменить лист…» →
+  «КД вручную» overrides it (empty = by the rules).
+- **2D scenes.** The first open of the 2D screen rewrites the hotspot notes of an English scene sheet in Russian (one
+  cheap call per scene, about $0.0003; a new sheet revision, the history keeps the English one). «Перерисовать» on a
+  scene with fewer than 5 hotspots writes a new sheet first (one call, about $0.012), then draws.
+- **The region map.** The existing map stays as it is. «Перерисовать карту региона» now asks the DM for the region's
+  prep first (once per region; about $0.05 on Opus 5.5), keeps its public part as a canon document «Карта края — …» and its
+  hidden part in the DM's private notes, then paints from it (one picture) and checks the markers. Later redraws reuse the
+  prep: a new picture, the same geography.
+- **«Судьбы».** Opening the closed chapter once draws the portraits its cards lack, in one batch under the daily limit.
+- **«Пожелания к приключению».** Empty until you write them (Настройки, beside «Тайны»; or in the new-campaign wizard's
+  «Во что играем?»). Saving them on the settings rebuilds the hidden layer once, as «Тайны» do (≈$0.45).
+- **Companions' dolls.** The picture autopilot draws each companion's full-length figure after the portrait, under the
+  daily limit («Настройки → Картинки → Фигуры героя и спутников в полный рост»).
+- **Saving throws on old sheets (migration 0601).** «Персонаж» shows «Уровень 5» beside Джеймс Вордсден's role, and under
+  «Спасброски» Интеллект and Мудрость with the proficiency from his class (tap a line: «Инт … +3 мастерство»); the
+  editor's «Спасброски» field stays empty, and a later level changes the bonus by itself. In a 5e campaign, a person
+  whose sheet names a class but has no level and no save lines reads «Спасброски: Уровень не указан» with
+  «Изменить лист» — it opens the sheet's editor at «Уровень»; once the level is saved the class's saves are counted.
 
-Every paid run registers in the run's ledger and stops at its budget. The records go to `docs/runs/` locally — they
-hold campaign text, so **do not commit them** (the repository is public); report the numbers only.
+## 7. The prose check: a test campaign of 6–8 turns (instead of the replay)
+
+The owner's decision of 2026-10-22 (`docs/runs/s3-acceptance-notes.md`): session 2's replay is not needed. Instead,
+start the sandbox on the production build (step 3, `--prod`, which sets `APP_SANDBOX_TRUSTED_OWNER=1` for localhost
+only), create a **new test campaign** in the app, and play **6–8 turns** in session 3's mode («Opus пишет — Opus
+записывает»), at least one of them from the 2D scene and one with a spell. Read the prose; note the turns' cost on
+«Для владельца». Nothing is committed from the sandbox (the repository is public).
 
 ## 8. Then stop
 

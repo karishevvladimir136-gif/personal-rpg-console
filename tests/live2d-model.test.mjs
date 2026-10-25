@@ -63,7 +63,9 @@ test("hierarchy: world → region → town → district → scene from the recor
   assert.deepEqual(live2dCrumbs(f.snapshot, f.placements, f.beregost.id).map((row) => row.level), ["world", "region", "town"], "a town with children opens as a town, not a scene");
   assert.deepEqual(live2dCrumbs(f.snapshot, f.placements, f.ford.id).map((row) => row.level), ["world", "region", "scene"]);
   const region = live2dView(f.snapshot, f.placements, "region", f.region.id, f.beregost.id);
-  assert.deepEqual(region.pins.map((row) => row.name).sort(), ["Beregost", "Crooked ford", "Nashkel"], "the region shows the places under it; the town's children stay inside the town");
+  // Fix S3-accept Д3: every known place of the region appears — Cloakwood (a rumour nobody placed) joins, approximate.
+  assert.deepEqual(region.pins.map((row) => row.name).sort(), ["Beregost", "Cloakwood", "Crooked ford", "Nashkel"], "the region shows the places under it; the town's children stay inside the town");
+  assert.deepEqual(region.pins.filter((row) => row.approximate).map((row) => row.name), ["Cloakwood"]);
   assert.ok(region.pins.find((row) => row.name === "Beregost").hasChildren);
   assert.deepEqual(region.down, { level: "town", anchorId: f.beregost.id });
   const town = live2dView(f.snapshot, f.placements, "town", f.beregost.id, f.smithy.id);
@@ -119,7 +121,8 @@ test("markers: Off / Tracked only / Standard / All known read the same known sta
   const tracked = trackedPlaceIds(f.snapshot);
   assert.deepEqual([...tracked], [f.nashkel.id]);
   const region = live2dView(f.snapshot, f.placements, "region", f.region.id, f.beregost.id);
-  const pins = [...region.pins, { locationId: f.cloakwood.id, name: "Cloakwood", status: "rumored", x: 0.8, y: 0.3, hasChildren: false }];
+  // Fix S3-accept Д3: the region itself now carries the unplaced rumour (Cloakwood), so the pins are the region's own.
+  const pins = region.pins;
   const context = { currentId: f.beregost.id, destinationId: null, trackedIds: tracked };
   const names = (visibility) => visiblePins(visibility, pins, context).map((row) => row.name).sort();
   assert.deepEqual(names("off"), ["Beregost"]);
@@ -213,10 +216,11 @@ test("region: the signature names the places drawn, a new place is the reason to
   const f = nested();
   const region = live2dView(f.snapshot, f.placements, "region", f.region.id, f.beregost.id);
   const signature = regionSignature(region.pins);
-  assert.equal(signature.split(",").length, 3);
+  // Fix S3-accept Д3: four places — the unplaced rumour Cloakwood is a place of the region too.
+  assert.equal(signature.split(",").length, 4);
   assert.equal(regionSignature([...region.pins].reverse()), signature, "order-free");
   assert.deepEqual(newPlacesSince(signature, region.pins), []);
-  assert.deepEqual(newPlacesSince(signature, [...region.pins, { locationId: f.cloakwood.id, name: "Cloakwood", status: "rumored", x: 0.8, y: 0.2, hasChildren: false }]).map((row) => row.name), ["Cloakwood"]);
+  assert.deepEqual(newPlacesSince(signature, [...region.pins, { locationId: uuid("Candlekeep"), name: "Candlekeep", status: "known", x: 0.8, y: 0.2, hasChildren: false }]).map((row) => row.name), ["Candlekeep"]);
   const prompt = regionMapPrompt({ regionName: "Sword Coast", regionDescription: "The coast road.", canon: "", places: region.pins.map((row) => ({ name: row.name, description: "", x: row.x, y: row.y, status: row.status })), route: ["Crooked ford", "Beregost"], style: "", family: "gpt" });
   assert.match(prompt, /Beregost near the centre/);
   assert.match(prompt, /Nashkel in the south/);

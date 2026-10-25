@@ -7,7 +7,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { openRun, ROOT } from "../real-replay/lib/ledger.mjs";
 import { createBudget, guardedModel, MODELS } from "../real-replay/lib/models.mjs";
-import { providerKey } from "../lib/keys.mjs";
+import { anthropicKey } from "../lib/anthropic-endpoint.mjs";
 import { buildLongCampaign } from "./lib/campaign.mjs";
 import { createScriptedDmModel } from "../../../src/lib/gameplay/dm-loop/scripted-model.ts";
 import { buildPrepRequest, parsePrep, prepWrites } from "../../../src/lib/gameplay/dm-loop/hidden-layer.ts";
@@ -22,7 +22,7 @@ for (let i = 2; i < process.argv.length; i++) {
   else throw new Error(`unknown argument ${flag}`);
 }
 if (!(args.budgetUsd > 0)) throw new Error("--budget-usd N is required (a paid call)");
-const apiKey = providerKey("ANTHROPIC_API_KEY");
+const apiKey = anthropicKey();
 if (!apiKey) throw new Error("ANTHROPIC_API_KEY is needed (.env.local)");
 
 const finish = (kinds = ["quiet"]) => ({ name: "finish_turn", arguments: { sceneKinds: kinds, spotlight: [], playerMoment: false, nextTension: "calm" } });

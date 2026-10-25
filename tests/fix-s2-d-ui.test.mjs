@@ -256,7 +256,9 @@ test("D UI: the screens send owner corrections — no «Передать…» in
   assert.match(screen, /onDrop=/);
   assert.match(screen, /"Escape"/);
   assert.match(screen, /appendToComposerDraft/, "«Колдовать» and «Использовать» still write the action box");
-  assert.match(screen, /castLine\(/);
+  // Fix S3-accept В1: the spells tab moved to its own file; «Колдовать» still writes the line through the screen's `act`.
+  assert.match(src("src/components/registry/spells-tab.tsx"), /castLine\(/);
+  assert.match(screen, /<SpellsTab entity=\{entity\} sheet=\{sheet\} onCast=\{act\}/);
   const party = src("src/components/registry/party-screen.tsx");
   assert.doesNotMatch(party, /Экипаж и люди дома/);
   assert.match(party, /WalletLine/);

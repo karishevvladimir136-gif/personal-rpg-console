@@ -14,13 +14,14 @@ import { basicProfile } from "../mechanics/profile.ts";
 import { settledItemTransfer } from "../../progression/settlement-core.ts";
 import { parseCharacterModel, type CharacterEvidence, type CharacterModel } from "../character-model.ts";
 import { validateToolArguments } from "../../server/dm/model/schema-compiler.ts";
-import { dmLoopLimits as L, type DmLoopTurnLimits } from "./limits.ts";
+import { dmLoopLimits as L, PRIVATE_PATCHES_FOR_CALLS, turnCallCap, turnItemCap, type DmLoopTurnLimits } from "./limits.ts";
 import { dmLoopTools, ITEM_CATEGORIES, ITEM_RARITIES, QUEST_KINDS, RELATION_GROUPS, TENSION_CLASSES } from "./tools.ts";
 import { allPlans, duePlans, parsePlan, planKey, serializePlan, type OffScreenPlan } from "./plans.ts";
 import { worldDay } from "./context.ts";
 import { ShadowState, ToolReject, reject } from "./shadow.ts";
 import { chip, currencyAmount, type ChipLanguage } from "./receipt-text.ts";
-import { patchSheet, sheetChanges, type AnySheet, type SheetPatch } from "../../inventory/sheet.ts";
+import { patchSheet, sheetChanges, type AnySheet, type CharacterSheetV2, type SheetPatch } from "../../inventory/sheet.ts";
+import { convertSpellProse, withCard } from "../../inventory/spell-records.ts";
 import type { DmLoopMeta, DmLoopReceipt, DmLoopReceiptResult, DmLoopTension, DmLoopToolCall } from "./contracts.ts";
 import type { EncounterParticipant } from "../contracts.ts";
 import { combatantJson, DEFAULT_GRID, defaultEconomy, fieldJson, MAX_LOG, parseCombatant, parseFeature, parseField, parsePlacement, placementJson, type Combatant, type Field, type LogLine, type Side } from "../../live2d/battle/contracts.ts";
@@ -28,6 +29,7 @@ import { adjacentIds, cellDistance, distanceFeet, insideGrid, moveCost, sight, z
 import { fightCard, type Fighter as BattleFighter } from "../../live2d/battle/battlefield.ts";
 import { attackRuling, damageRuling, rulesOnByDefault, rulesText, type AppliedRule } from "../../live2d/battle/rules.ts";
 import { conditionsText } from "../../live2d/battle/words.ts";
+import { deriveSheet5e, endsAtOwnTurn, isFifthEdition } from "../../live2d/battle/rules-5e.ts";
 
 export type ToolContext = {
   input: TurnInput;
@@ -165,7 +167,7 @@ function profilePatch(shadow: ShadowState, args: Args, entity: Entity | null, ki
   if (args.important !== undefined) { profile.important = !!args.important; touched = true; }
   if (args.attitude !== undefined) {
     reject(kind === "companion", "attitude belongs to a companion (what the hero observes of them).");
-    profile.attitude = { text: str(args.attitude), lastNoticed: String(shadow.worldMinutes) };
+    profile.attitude = { text: str(args.attitude), lastNoticed: String(shadow.now) };
     touched = true;
   }
   if (args.factionRef !== undefined) {
@@ -523,7 +525,7 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     // The applier updates the row in place: the count before the shot is taken first.
     ammunition = { name: ammo.name, before: ammo.quantity };
     shadow.apply({ family: "items", id: ammo.id, expectedRevision: ammo.revision, values: { quantity: ammo.quantity - 1,
-      detail: withHistory(itemDetail(ammo), shadow.worldMinutes, "consumed", str(args.reason)) as unknown as JsonObject } });
+      detail: withHistory(itemDetail(ammo), shadow.now, "consumed", str(args.reason)) as unknown as JsonObject } });
   }
   const advantage = (str(args.advantage) || "normal") as RecordedCheck["advantage"];
   reject(advantage === "normal" || formula.count === 1, "Advantage and disadvantage apply to a single die only.");
@@ -748,7 +750,7 @@ function giveGear(shadow: ShadowState, entity: Entity, gear: unknown): { created
     if (shadow.item(id)) continue;
     shadow.apply({ family: "items", id, expectedRevision: null, values: { name, category: kind, quantity, description: "", mechanics: str(raw.properties),
       owner_entity_id: owner.id, storage_id: storageId, equipped_entity_id: null, equipped_slot: null,
-      detail: withHistory({}, shadow.worldMinutes, "created", shadow.snapshot.settings.values.language === "ru" ? "снаряжение" : "gear") as unknown as JsonObject } });
+      detail: withHistory({}, shadow.now, "created", shadow.snapshot.settings.values.language === "ru" ? "снаряжение" : "gear") as unknown as JsonObject } });
     created.push(name);
     if (raw.equipped === true) {
       owner = shadow.entity(owner.id)!;
@@ -766,6 +768,24 @@ function sheetPatchOf(args: Args): SheetPatch | null {
   if (!args.sheet || typeof args.sheet !== "object" || Array.isArray(args.sheet)) return null;
   return args.sheet as SheetPatch;
 }
+/** Fix S3-accept Г3: the record's public conditions after a call's add / remove (lasting effects such as «Доспехи
+ * мага», which the 5e rules module counts in the AC); null when the call names none or nothing changes. */
+function conditionsAfter(entity: Entity, raw: unknown): string[] | null {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+  const words = (value: unknown) => (Array.isArray(value) ? value.map((row) => str(row).slice(0, 60)).filter(Boolean).slice(0, 6) : []);
+  const { add, remove } = raw as { add?: unknown; remove?: unknown };
+  const gone = new Set(words(remove).map((word) => word.toLocaleLowerCase()));
+  const kept = entity.conditions.filter((word) => !gone.has(word.toLocaleLowerCase()));
+  const next = [...kept, ...words(add).filter((word) => !kept.some((row) => row.toLocaleLowerCase() === word.toLocaleLowerCase()))].slice(0, 12);
+  return next.length === entity.conditions.length && next.every((word, index) => word === entity.conditions[index]) ? null : next;
+}
+/** Fix S3-accept В1: the sheet a call writes — from a stored sheet whose «Умения» still list spells read as converted
+ * (src/lib/inventory/spell-records.ts), with the call's fields, and every spell the app has a card for filled from it
+ * where its record leaves a field out (its own words win). */
+function sheetAfter(before: AnySheet | null | undefined, patch: SheetPatch, language: unknown): CharacterSheetV2 {
+  const next = patchSheet(convertSpellProse(before, language)?.sheet ?? before, patch);
+  return next.spells?.length ? { ...next, spells: next.spells.map((row) => withCard(row, language)) } : next;
+}
 /** A stat block that names attacks while the person carries no weapon: the receipt asks for the gear (item 36). */
 function gearHint(shadow: ShadowState, entity: Entity, statblock: string): JsonObject {
   if (!/(атак|attack|мультиатак|multiattack|\+\d+\s*\()/i.test(statblock)) return {};
@@ -781,17 +801,22 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
       // Fix run D (§9, item 18): the hero's sheet changes in play only through sheet with a reason; the rest of the
       // hero's record is the owner's (HP and counters: resource; possessions: item).
       const patch = sheetPatchOf(args);
-      const others = Object.keys(args).filter((key) => !["ref", "sheet", "reason"].includes(key) && args[key] !== undefined);
-      reject(patch && others.length === 0, `${entity.name} is the player's hero; only the sheet changes here (sheet with a reason).`,
+      // Fix S3-accept Г3: and the hero's lasting effects (conditions), with the same reason.
+      const conditions = args.conditions !== undefined ? conditionsAfter(entity, args.conditions) : null;
+      const others = Object.keys(args).filter((key) => !["ref", "sheet", "reason", "conditions"].includes(key) && args[key] !== undefined);
+      reject((patch || args.conditions !== undefined) && others.length === 0, `${entity.name} is the player's hero; only the sheet and the conditions change here (with a reason).`,
         "Use resource for HP and counters, item for possessions.");
       const reason = str(args.reason);
-      reject(reason.length > 0, "A change of the hero's sheet needs a reason (shown to the player).");
+      reject(reason.length > 0, "A change of the hero's sheet or conditions needs a reason (shown to the player).");
       const before = entity.character_sheet as AnySheet | null | undefined;
-      const sheet = patchSheet(before, patch!);
-      shadow.apply(entityChange(shadow, entity, { character_sheet: sheet as unknown as JsonObject }));
-      const changed = sheetChanges(before, sheet, ctx.language);
-      return ok({ id: entity.id, name: entity.name, sheet: changed }, `${entity.name}'s sheet: ${changed} (${reason})`, null,
-        `${ctx.language === "ru" ? "Лист героя" : "Hero's sheet"}: ${changed} (${reason})`);
+      const sheet = patch ? sheetAfter(before, patch, ctx.language) : null;
+      if (sheet || conditions) shadow.apply(entityChange(shadow, entity, { ...(sheet ? { character_sheet: sheet as unknown as JsonObject } : {}), ...(conditions ? { conditions } : {}) }));
+      const ru = ctx.language === "ru";
+      // The chip names the call's change, not the one-time conversion of the prose it started from.
+      const changed = [sheet ? sheetChanges(convertSpellProse(before, ctx.language)?.sheet ?? before, sheet, ctx.language) : null,
+        conditions ? `${ru ? "состояния" : "conditions"}: ${conditions.join(", ") || (ru ? "нет" : "none")}` : null].filter(Boolean).join("; ") || (ru ? "без изменений" : "unchanged");
+      return ok({ id: entity.id, name: entity.name, sheet: changed, ...(conditions ? { conditions } : {}) }, `${entity.name}'s sheet: ${changed} (${reason})`, null,
+        `${ru ? "Лист героя" : "Hero's sheet"}: ${changed} (${reason})`);
     }
     reject(entity.kind === "npc" || entity.kind === "companion" || entity.kind === "faction", `${entity.name} is a ${entity.kind}, not a character.`);
     const values: JsonObject = {};
@@ -811,7 +836,9 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
       values.hp = hp; values.max_hp = maxHp;
     }
     const patch = sheetPatchOf(args);
-    if (patch && entity.kind !== "faction") values.character_sheet = patchSheet(entity.character_sheet as AnySheet | null | undefined, patch) as unknown as JsonObject;
+    if (patch && entity.kind !== "faction") values.character_sheet = sheetAfter(entity.character_sheet as AnySheet | null | undefined, patch, ctx.language) as unknown as JsonObject;
+    const conditions = entity.kind !== "faction" && args.conditions !== undefined ? conditionsAfter(entity, args.conditions) : null;
+    if (conditions) values.conditions = conditions;
     if (Object.keys(values).length) shadow.apply(entityChange(shadow, entity, values));
     // Fix S3-pre (opening attacks): hit points given for the first time take the damage an opening attack already dealt.
     const settled = entity.max_hp === null && values.max_hp !== undefined ? settlePendingDamage(shadow, shadow.entity(entity.id)!) : 0;
@@ -856,7 +883,7 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
     kind, name, details: str(args.description), hp: maxHp === null ? null : hp, max_hp: maxHp,
     stats: statsFrom(args, {}), resources: {}, conditions: [], equipment_slots: (kind === "faction" ? [] : humanoidSlots(language)) as unknown as JsonObject[],
     ...(profile ? { public_profile: profile as unknown as JsonObject } : {}),
-    ...(patch ? { character_sheet: patchSheet(null, patch) as unknown as JsonObject } : {}),
+    ...(patch ? { character_sheet: sheetAfter(null, patch, ctx.language) as unknown as JsonObject } : {}),
   } });
   if (!bare || !shadow.localKeys.has(key)) shadow.bindLocalKey(key, { family: "entities", id });
   if (args.statblock !== undefined) shadow.setPrivate("npc", `statblock_${id}`, str(args.statblock));
@@ -1081,8 +1108,8 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     const category = str(args.category);
     reject((ITEM_CATEGORIES as readonly string[]).includes(category), `item create needs a category: ${ITEM_CATEGORIES.join(", ")}.`);
     const quantity = int(args.quantity) ?? 1;
-    reject(shadow.counters.itemsCreated < ctx.limits.itemsPerTurn,
-      `This turn already created ${ctx.limits.itemsPerTurn} items, the campaign's limit per turn.`,
+    reject(shadow.counters.itemsCreated < turnItemCap(ctx.limits),
+      `This turn already created ${turnItemCap(ctx.limits)} items, the campaign's limit per turn (two batches of ${ctx.limits.itemsPerTurn}).`,
       "Describe the rest in the narration; record it in a later turn.");
     const destination = destinationOf(shadow, args.ownerRef ?? "camp", "ownerRef");
     const key = localKey(args.localKey) ?? `${name.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "-")}-${ctx.toolCalls}`.slice(0, 60);
@@ -1098,7 +1125,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     const stack = MECHANIC_FIELDS.some((field) => args[field] !== undefined) ? null : stackFor(shadow, probe);
     if (stack) {
       shadow.apply({ family: "items", id: stack.id, expectedRevision: stack.revision, values: { quantity: stack.quantity + quantity,
-        detail: withHistory(itemDetail(stack), shadow.worldMinutes, "merged", `+${quantity} ${name}`) as unknown as JsonObject } });
+        detail: withHistory(itemDetail(stack), shadow.now, "merged", `+${quantity} ${name}`) as unknown as JsonObject } });
       shadow.bindLocalKey(key, { family: "items", id: stack.id });
       return ok({ id: stack.id, localKey: key, name: stack.name, category, quantity: stack.quantity, added: quantity, mergedInto: stack.name, owner: destination.label },
         `${destination.label} gets ${name}${quantity > 1 ? ` ×${quantity}` : ""} (now ${stack.quantity} × ${stack.name})`,
@@ -1108,7 +1135,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
       name, category, quantity, description: str(args.description), mechanics: str(args.properties),
       owner_entity_id: destination.entity?.id ?? null, storage_id: destination.storageId,
       equipped_entity_id: null, equipped_slot: null, ...(rarity ? { rarity } : {}),
-      detail: withHistory(detail, shadow.worldMinutes, "created", str(args.description)) as unknown as JsonObject } });
+      detail: withHistory(detail, shadow.now, "created", str(args.description)) as unknown as JsonObject } });
     shadow.bindLocalKey(key, { family: "items", id });
     return ok({ id, localKey: key, name, category, quantity, owner: destination.label, ...(rarity ? { rarity } : {}) }, `${destination.label} gets ${name}${quantity > 1 ? ` ×${quantity}` : ""}`,
       null, chip.itemGained(l, destination.label, isHero(destination.entity), name, quantity, destination.entity === null));
@@ -1134,7 +1161,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     if (returned) {
       // The pledged or lent thing comes back to its owner: title never moved.
       shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values: { storage_id: destination.storageId,
-        detail: withHistory({ ...detail, status: undefined, holderId: undefined, condition: undefined }, shadow.worldMinutes, "returned", holderName(detail) ?? "") as unknown as JsonObject } });
+        detail: withHistory({ ...detail, status: undefined, holderId: undefined, condition: undefined }, shadow.now, "returned", holderName(detail) ?? "") as unknown as JsonObject } });
       return ok({ itemId: item.id, name: item.name, returned: true, to: destination.label }, `${item.name} returns to ${destination.label}`,
         null, chip.itemReturned(l, item.name, destination.label, isHero(destination.entity)));
     }
@@ -1146,11 +1173,11 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     const stack = !detail.status ? stackFor(shadow, arriving) : null;
     if (stack && stack.id !== item.id) {
       shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values: { quantity: item.quantity - quantity,
-        detail: withHistory(detail, shadow.worldMinutes, "transferred", `${quantity} → ${destination.label}`) as unknown as JsonObject } });
+        detail: withHistory(detail, shadow.now, "transferred", `${quantity} → ${destination.label}`) as unknown as JsonObject } });
       const grown = shadow.item(stack.id)!;
       const total = grown.quantity + quantity;
       shadow.apply({ family: "items", id: grown.id, expectedRevision: grown.revision, values: { quantity: total,
-        detail: withHistory(itemDetail(grown), shadow.worldMinutes, "merged", l === "ru" ? `+${quantity} от ${giver?.name ?? "?"}` : `+${quantity} from ${giver?.name ?? "?"}`) as unknown as JsonObject } });
+        detail: withHistory(itemDetail(grown), shadow.now, "merged", l === "ru" ? `+${quantity} от ${giver?.name ?? "?"}` : `+${quantity} from ${giver?.name ?? "?"}`) as unknown as JsonObject } });
       const hint = openJobHint(shadow, giver, destination.entity);
       return ok({ itemId: grown.id, name: item.name, quantity, to: destination.label, mergedInto: grown.name, ...hint },
         `${item.name}${quantity > 1 ? ` ×${quantity}` : ""} goes to ${destination.label} (now ${total})`,
@@ -1162,7 +1189,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
       if (change.id === splitId) change.values.owner_entity_id = destination.entity?.id ?? null;
       else if (change.values.owner_entity_id === undefined && item.quantity === quantity) change.values.owner_entity_id = destination.entity?.id ?? null;
       // A moved thing is no longer pledged or lent by its former owner.
-      if (detail.status && change.id === item.id) change.values.detail = withHistory({ ...detail, status: undefined, holderId: undefined, condition: undefined }, shadow.worldMinutes, "transferred", destination.label) as unknown as JsonObject;
+      if (detail.status && change.id === item.id) change.values.detail = withHistory({ ...detail, status: undefined, holderId: undefined, condition: undefined }, shadow.now, "transferred", destination.label) as unknown as JsonObject;
       shadow.apply(change);
     }
     if (settled.split && args.localKey !== undefined) shadow.bindLocalKey(str(args.localKey), { family: "items", id: splitId });
@@ -1181,7 +1208,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     const remaining = item.quantity - quantity;
     const values: JsonObject = { quantity: remaining };
     if (remaining === 0 && item.equipped_entity_id) { values.equipped_entity_id = null; values.equipped_slot = null; }
-    values.detail = withHistory(itemDetail(item), shadow.worldMinutes, "consumed", str(args.reason)) as unknown as JsonObject;
+    values.detail = withHistory(itemDetail(item), shadow.now, "consumed", str(args.reason)) as unknown as JsonObject;
     shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values });
     const bonus = potionBonusAction(shadow, item, owner);
     return ok({ itemId: item.id, name: item.name, consumed: quantity, remaining, ...(bonus ? { bonusAction: bonus } : {}) }, `${ownerName(shadow, item)} uses ${item.name}${quantity > 1 ? ` ×${quantity}` : ""} (${remaining} left)${bonus ? `; ${bonus}` : ""}`,
@@ -1196,7 +1223,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     const remaining = item.quantity - quantity;
     const detail = itemDetail(item);
     const values: JsonObject = { quantity: remaining,
-      detail: withHistory({ ...detail, ...(remaining === 0 ? { status: "lost", note: reason, holderId: undefined, condition: undefined } : {}) }, shadow.worldMinutes, "lost", reason) as unknown as JsonObject };
+      detail: withHistory({ ...detail, ...(remaining === 0 ? { status: "lost", note: reason, holderId: undefined, condition: undefined } : {}) }, shadow.now, "lost", reason) as unknown as JsonObject };
     if (remaining === 0 && item.equipped_entity_id) { values.equipped_entity_id = null; values.equipped_slot = null; }
     shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values });
     return ok({ itemId: item.id, name: item.name, lost: quantity, remaining, reason }, `${ownerName(shadow, item)} loses ${item.name}${quantity > 1 ? ` ×${quantity}` : ""} (${reason})`,
@@ -1229,7 +1256,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     // The applier updates the row in place: remember the old name first.
     const previousName = item.name;
     const name = (values.name as string | undefined) ?? previousName;
-    values.detail = withHistory(mechanicsDetail(args, itemDetail(item)), shadow.worldMinutes, "modified", `${previousName}${name !== previousName ? ` → ${name}` : ""}${note ? ` — ${note}` : ""}`) as unknown as JsonObject;
+    values.detail = withHistory(mechanicsDetail(args, itemDetail(item)), shadow.now, "modified", `${previousName}${name !== previousName ? ` → ${name}` : ""}${note ? ` — ${note}` : ""}`) as unknown as JsonObject;
     shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values });
     return ok({ itemId: item.id, name, previousName, changed: Object.keys(values).filter((k) => k !== "detail") }, `${previousName} changed${name !== previousName ? ` → ${name}` : ""}${note ? ` (${note})` : ""}`,
       null, chip.itemModified(l, previousName, name, note));
@@ -1243,7 +1270,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     const condition = str(args.condition);
     const detail: ItemDetail = { ...itemDetail(item), status: action === "pledge" ? "pledged" : "lent", holderId: holder.id, condition };
     shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values: { storage_id: shadow.storageFor(holder).id,
-      detail: withHistory(detail, shadow.worldMinutes, action === "pledge" ? "pledged" : "lent", `${holder.name}${condition ? ` — ${condition}` : ""}`) as unknown as JsonObject } });
+      detail: withHistory(detail, shadow.now, action === "pledge" ? "pledged" : "lent", `${holder.name}${condition ? ` — ${condition}` : ""}`) as unknown as JsonObject } });
     return ok({ itemId: item.id, name: item.name, owner: ownerName(shadow, item), holder: holder.name, status: detail.status ?? null, condition: condition || null },
       `${item.name} ${action === "pledge" ? "pledged" : "lent"} to ${holder.name}${condition ? ` (${condition})` : ""}; ${ownerName(shadow, item)} keeps the title`,
       null, chip.itemPledged(l, action === "pledge" ? "pledge" : "loan", item.name, holder.name, condition));
@@ -1434,6 +1461,7 @@ function resourceTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoop
   reject(!key.startsWith("currency_"), "Money is not a counter.", "Use money (grant, transfer, spend) with the coin's name.");
   reject(!potionCounter(key, label) && !/^(arrows?|bolts?|ammo|ammunition)$/.test(key),
     `${name} is a thing, not a counter: potions and ammunition are items.`, "Use item create (kind consumable or ammunition) and item consume.");
+  const cast = args.spell !== undefined ? castSpell(actor, key, str(args.spell), delta, set, ctx.language) : null;
   const resources = { ...actor.resources };
   // A party member's new counter reaches the player's screens: it comes with its name in the campaign language.
   const party = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
@@ -1456,11 +1484,46 @@ function resourceTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoop
   resources[key] = next;
   setResources(shadow, actor, resources);
   const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
-  const shown = counterLabel(shadow.entity(actor.id)!, key, ctx.language);
+  const shown = `${cast ? `${cast.name} · ` : ""}${counterLabel(shadow.entity(actor.id)!, key, ctx.language)}`;
   const player = controlled.has(actor.id) && !name.endsWith("_min") && !name.endsWith("_max")
     ? chip.counter(ctx.language, actor.name, isHero(actor), shown, current, next, cap, reason) : null;
-  return ok({ actor: actor.name, resource: name, before: current, after: next, max: cap, reason },
-    `${actor.name}: ${name} ${current} → ${next}${cap !== null ? `/${cap}` : ""} (${reason})`, null, player);
+  return ok({ actor: actor.name, resource: name, before: current, after: next, max: cap, reason, ...(cast ? { spell: cast.name } : {}) },
+    `${actor.name}: ${cast ? `${cast.name} with ` : ""}${name} ${current} → ${next}${cap !== null ? `/${cap}` : ""} (${reason})`, null, player);
+}
+/** Fix S3-accept В1: a cast recorded with its slot — the spell is on the caster's sheet (prose «Умения» read as
+ * converted), levelled, of a level the slot allows, prepared when the caster prepares; the slot is spent, not set. */
+function castSpell(actor: Entity, key: string, spellName: string, delta: number | null, set: number | null, language: unknown): { name: string; level: number } {
+  const slot = /^spell_slots_([1-9])$/.exec(key);
+  reject(slot, `spell goes with a spell slot (spell_slots_N), not "${key}".`);
+  const sheet = (convertSpellProse(actor.character_sheet as AnySheet | null | undefined, language)?.sheet ?? actor.character_sheet) as AnySheet | null | undefined;
+  const spells = sheet?.schemaVersion === 2 ? sheet.spells ?? [] : [];
+  const key2 = (text: string) => text.toLocaleLowerCase().replace(/ё/g, "е").replace(/[«»"]/g, "").trim();
+  const spell = spells.find((row) => key2(row.name) === key2(spellName));
+  reject(spell, `${actor.name}'s sheet has no spell "${spellName}".`,
+    spells.length ? `The sheet's spells: ${spells.slice(0, 24).map((row) => row.name).join(", ")}.` : "Add it with upsert_character sheet (spells) and a reason first.");
+  reject(spell.level > 0, `${spell.name} is a cantrip: it spends no slot.`, "Narrate it without a resource call.");
+  reject(Number(slot[1]) >= spell.level, `${spell.name} is a level ${spell.level} spell; a level ${slot[1]} slot cannot cast it.`);
+  reject(set === null && (delta ?? 0) < 0, "A cast spends its slot: delta -1.");
+  const prepares = (sheet?.schemaVersion === 2 && sheet.preparedMax != null) || spells.some((row) => row.level > 0 && row.prepared !== undefined);
+  reject(!prepares || spell.prepared === true, `${spell.name} is in ${actor.name}'s book but not prepared today.`,
+    spell.ritual ? "As a ritual it is cast without a slot (no resource call); or prepare it on a long rest (upsert_character sheet with a reason)."
+      : "Prepare it on a long rest (upsert_character sheet with a reason), or cast a prepared spell.");
+  return { name: spell.name, level: spell.level };
+}
+/** Fix S3-accept В1: a party member's counter after an accepted `resource` call — the turn's live stream carries it, so
+ * the open screens dim a spent slot at once (the commit's records replace it). Null for HP and anyone else's counters. */
+export function liveCounterOf(shadow: ShadowState, args: Args): { entityId: string; key: string; value: number; max: number | null } | null {
+  try {
+    if (str(args.resource).toLowerCase() === "hp") return null;
+    const actor = entityOf(shadow, args.actorRef, "actorRef");
+    const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? []);
+    if (actor.kind !== "player" && !controlled.has(actor.id)) return null;
+    const key = counterKeyOf(str(args.resource))?.key;
+    const value = key ? Number(actor.resources[key]) : NaN;
+    if (!key || !Number.isFinite(value)) return null;
+    const max = Number(actor.resources[`${key}_max`]);
+    return { entityId: actor.id, key, value, max: Number.isFinite(max) ? max : null };
+  } catch { return null; }
 }
 
 // --- quests ----------------------------------------------------------------
@@ -1600,8 +1663,8 @@ function questTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRec
     shadow.apply({ family: "quests", id: quest.id, expectedRevision: quest.revision, values: { status: "complete" } });
     paid.completed = true;
   }
-  reject(shadow.counters.itemsCreated + terms.items.length <= ctx.limits.itemsPerTurn,
-    `The reward of "${quest.title}" would exceed the campaign's ${ctx.limits.itemsPerTurn} new items per turn.`,
+  reject(shadow.counters.itemsCreated + terms.items.length <= turnItemCap(ctx.limits),
+    `The reward of "${quest.title}" would exceed the campaign's ${turnItemCap(ctx.limits)} new items per turn.`,
     "Pay it in a later turn.");
   if (terms.currency && terms.amount) {
     const key = currencyKeyFor(moneyLabel(shadow, terms.currency));
@@ -1905,8 +1968,12 @@ function fightAttack(shadow: ShadowState, ctx: ToolContext, fight: FightRows, fi
   const { entity: target, fighter: tf } = t;
   reject(attacker.id !== target.id, "attack: the target is the attacker.");
   const partyIds = fight.partyIds;
-  const sheetAc = partyIds.has(target.id) ? sheetArmourClass(target) : null;
-  const known = tf.combatant.ac ?? sheetAc;
+  // Fix S3-accept Г3: in a 5e campaign a party member's AC is derived — worn things, the record's effects (Mage Armor)
+  // and this fight's (Shield) — the number the sheet, the doll and the battle block show; another system keeps the sheet's.
+  const derived = partyIds.has(target.id) && isFifthEdition(shadow.snapshot.settings.values.rulesSystem)
+    ? deriveSheet5e({ entity: target, items: shadow.snapshot.items.filter((row) => row.campaign_id === shadow.campaignId), fight: tf.combatant.conditions, fightAc: tf.combatant.ac, language: l }).ac : null;
+  const sheetAc = partyIds.has(target.id) ? derived?.value ?? sheetArmourClass(target) : null;
+  const known = derived ? derived.value : tf.combatant.ac ?? sheetAc;
   const ac = input.preferGiven ? input.ac ?? known : known ?? input.ac;
   reject(ac !== null, `attack needs ${target.name}'s armour class: ac here, or combat profile once.`, partyIds.has(target.id) ? "The sheet names no armour class stat; pass ac from the sheet's text." : undefined);
   reject(input.damage.length > 0, "attack needs the damage formula (1d8+3).");
@@ -2233,6 +2300,8 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
     next.combatant.active = true;
     const paralysed = next.combatant.conditions.some((c) => /paralysed|unconscious|stunned|без сознания|парализ/i.test(c));
     next.combatant.economy = paralysed ? { ...defaultEconomy(next.combatant.economy.moveMaxFeet), action: false, bonus: false, reaction: false, moveFeet: 0 } : defaultEconomy(next.combatant.economy.moveMaxFeet);
+    // Fix S3-accept Г3: Shield lasts until the start of its caster's next turn — the server ends it here (5e).
+    if (isFifthEdition(shadow.snapshot.settings.values.rulesSystem)) next.combatant.conditions = next.combatant.conditions.filter((word) => !endsAtOwnTurn(word));
     saveFighter(next);
     field.activeParticipantId = next.participantId;
     field.turnInRound = wrapped ? 1 : field.turnInRound + 1;
@@ -2466,8 +2535,8 @@ function noteWorld(shadow: ShadowState, args: Args): DmLoopReceiptResult {
     reject(exists, `There is no ${kind} note "${key}" to close.`);
     const current = parseNoteValue(shadow.privateValue(own, key));
     reject(current.until === null, `The ${kind} note "${key}" is already closed.`);
-    shadow.setPrivate(own, key, serializeNote(current.text || (kind === "clock" ? "(clock)" : ""), current.since, shadow.worldMinutes));
-    return ok({ kind, key, until: shadow.worldMinutes }, "DM note closed");
+    shadow.setPrivate(own, key, serializeNote(current.text || (kind === "clock" ? "(clock)" : ""), current.since, shadow.now));
+    return ok({ kind, key, until: shadow.now }, "DM note closed");
   }
   if (str(args.operation) === "advance") {
     reject(kind === "clock", "Only a clock can be advanced.");
@@ -2487,16 +2556,21 @@ function noteWorld(shadow: ShadowState, args: Args): DmLoopReceiptResult {
     // Item 21: a plan that belongs to nobody (weather, the tide, the law) names "world".
     const worldActor = args.actorRef !== undefined && /^(the )?(world|мир|никто|nobody)$/i.test(str(args.actorRef));
     const actorId = worldActor ? null : args.actorRef !== undefined ? entityOf(shadow, args.actorRef, "actorRef").id : existing?.actorId ?? null;
-    const due = args.dueInMinutes !== undefined ? shadow.worldMinutes + (int(args.dueInMinutes) ?? 0)
-      : existing && (args.planStatus === undefined || status === "open") && existing.status === "open" ? existing.dueWorldMinutes : shadow.worldMinutes;
+    const due = args.dueInMinutes !== undefined ? shadow.now + (int(args.dueInMinutes) ?? 0)
+      : existing && (args.planStatus === undefined || status === "open") && existing.status === "open" ? existing.dueWorldMinutes : shadow.now;
     reject(status !== "open" || args.dueInMinutes !== undefined || (existing !== null && existing.status === "open"),
       "An open plan needs dueInMinutes: when its next step lands.", "Give dueInMinutes (game minutes from now), or resolve the plan with planStatus.");
-    const plan: OffScreenPlan = { key, actorId, goal, dueWorldMinutes: due, setAtWorldMinutes: shadow.worldMinutes,
+    const plan: OffScreenPlan = { key, actorId, goal, dueWorldMinutes: due, setAtWorldMinutes: shadow.now,
       consequence: args.consequence !== undefined ? str(args.consequence) : existing?.consequence ?? "",
       warning: args.warning !== undefined ? str(args.warning) : existing?.warning ?? "", status };
     shadow.setPrivate("fact", key, serializePlan(plan));
-    return ok({ kind, key, plan: { status, dueWorldMinutes: due, actor: actorId ? shadow.entity(actorId)?.name ?? null : null } },
-      status === "open" ? "DM plan updated" : "DM plan resolved");
+    // Findings S3: a plan set before the message's time passing (written first, recordOrder) that comes due in it is told
+    // here, as the time receipt would have listed it; the loop keeps the turn open for it (foldsFinish).
+    const cameDue = status === "open" && shadow.recordAt !== null && due <= shadow.worldMinutes;
+    return ok({ kind, key, plan: { status, dueWorldMinutes: due, actor: actorId ? shadow.entity(actorId)?.name ?? null : null },
+      ...(cameDue ? { cameDue: { overdueMinutes: shadow.worldMinutes - due },
+        hint: `This plan came due while this message's time passed (${shadow.worldMinutes - due} min ago). Advance it now in this turn: note_world planStatus, and play what reaches the hero.` } : {}) },
+      status === "open" ? (cameDue ? "DM plan updated; it came due as time passed" : "DM plan updated") : "DM plan resolved");
   }
   reject(args.actorRef === undefined && args.dueInMinutes === undefined && args.planStatus === undefined && args.consequence === undefined && args.warning === undefined,
     "actorRef, dueInMinutes, consequence, warning and planStatus belong to a plan: use a fact key that starts with plan_.");
@@ -2513,9 +2587,9 @@ function noteWorld(shadow: ShadowState, args: Args): DmLoopReceiptResult {
   // Fix run B2 (5): «true since» now; a different text over an open note keeps the old one, closed, under an archive key.
   const previous = parseNoteValue(shadow.privateValue(kind, key));
   if (previous.text.trim() && previous.text !== value)
-    shadow.setPrivate(kind, archiveKey(key, shadow.worldMinutes), serializeNote(previous.text, previous.since, previous.until ?? shadow.worldMinutes));
-  shadow.setPrivate(kind, key, serializeNote(value, previous.text === value && previous.until === null ? previous.since ?? shadow.worldMinutes : shadow.worldMinutes));
-  return ok({ kind, key, since: shadow.worldMinutes }, "DM note updated");
+    shadow.setPrivate(kind, archiveKey(key, shadow.now), serializeNote(previous.text, previous.since, previous.until ?? shadow.now));
+  shadow.setPrivate(kind, key, serializeNote(value, previous.text === value && previous.until === null ? previous.since ?? shadow.now : shadow.now));
+  return ok({ kind, key, since: shadow.now }, "DM note updated");
 }
 
 function storedModel(shadow: ShadowState, actorId: string): CharacterModel | null {
@@ -2655,12 +2729,38 @@ function finishTurn(shadow: ShadowState, args: Args, ctx: ToolContext): { result
   return { result: ok(value, moment ? `Your moment: ${gate!.reason}` : gate ? `Turn recorded (player moment refused: ${gate.reason})` : "Turn recorded"), meta };
 }
 
-export type ExecutedTool = { result: DmLoopReceiptResult; meta?: DmLoopMeta };
+export type ExecutedTool = { result: DmLoopReceiptResult; meta?: DmLoopMeta;
+  /** Fix S3-accept В1: an accepted `resource` call's counter of a party member, for the live stream. */
+  counter?: { entityId: string; key: string; value: number; max: number | null } };
+
+/** The owner, after the findings-S3 hoard probe: the calls of one message are written with time passing first — an
+ * `advance_time` can no longer be the tail a limit cuts — and the rest in the model's order (they may name records made
+ * earlier in the message by local key, so only the time passing, which names none, moves). `move_party` and `rest` keep
+ * their place: moving first would put the things found «here» at the next place, resting first would heal wounds the
+ * message records after it. A plan set before the time passing that comes due in it says so itself (noteWorld). Stable;
+ * the results go back to the model by call ID, in its own order. */
+export function recordOrder<T extends { name: string }>(calls: readonly T[]): T[] {
+  return [...calls.filter((call) => call.name === "advance_time"), ...calls.filter((call) => call.name !== "advance_time")];
+}
+
+/** The minute a call of the message is stamped at while its time passing is written first: the clock as it now stands,
+ * less the minutes of every accepted `advance_time` the model put after this call — so a note, a plan or an item's
+ * history keeps the minute it had in the model's own order. Null for the time passing itself (stamped by the clock). */
+export function storyMinuteOf(call: { id: string; name: string }, calls: readonly { id: string; name: string }[], receipts: readonly DmLoopReceipt[], clock: number): number | null {
+  if (call.name === "advance_time") return null;
+  const at = calls.findIndex((row) => row.id === call.id);
+  const later = calls.slice(at + 1).filter((row) => row.name === "advance_time").reduce((sum, row) => {
+    const receipt = receipts.find((entry) => entry.call.id === row.id);
+    const minutes = receipt?.result.ok ? Number((receipt.result.value as { minutes?: unknown }).minutes) : 0;
+    return sum + (Number.isFinite(minutes) ? minutes : 0);
+  }, 0);
+  return later > 0 ? clock - later : null;
+}
 
 /** Run one call. Shadow mutations of a rejected call are discarded. */
 export function executeDmLoopTool(shadow: ShadowState, call: DmLoopToolCall, ctx: ToolContext): ExecutedTool {
-  if (ctx.toolCalls >= ctx.limits.toolCallsPerTurn)
-    return { result: { ok: false, reason: `This turn reached its ${ctx.limits.toolCallsPerTurn}-call limit.`,
+  if (ctx.toolCalls >= turnCallCap(ctx.limits))
+    return { result: { ok: false, reason: `This turn reached its ${turnCallCap(ctx.limits)}-call limit (two batches of ${ctx.limits.toolCallsPerTurn}).`,
       hint: "Finish the narration now with what was already accepted.", summary: `${call.name}: limit reached` } };
   const candidate = shadow.clone();
   try {
@@ -2675,7 +2775,7 @@ export function executeDmLoopTool(shadow: ShadowState, call: DmLoopToolCall, ctx
       case "move_party": executed = { result: moveParty(candidate, args, ctx) }; break;
       case "item": executed = { result: itemTool(candidate, args, ctx) }; break;
       case "money": executed = { result: moneyTool(candidate, args, ctx) }; break;
-      case "resource": executed = { result: resourceTool(candidate, args, ctx) }; break;
+      case "resource": { const result = resourceTool(candidate, args, ctx); const counter = liveCounterOf(candidate, args); executed = { result, ...(counter ? { counter } : {}) }; break; }
       case "quest": executed = { result: questTool(candidate, args, ctx) }; break;
       case "advance_time": executed = { result: advanceTime(candidate, args, ctx) }; break;
       case "rest": executed = { result: restTool(candidate, args, ctx) }; break;
@@ -2686,6 +2786,9 @@ export function executeDmLoopTool(shadow: ShadowState, call: DmLoopToolCall, ctx
       case "finish_turn": executed = finishTurn(candidate, args, ctx); break;
       default: throw new ToolReject(`Unknown tool "${call.name}".`);
     }
+    // The commit saves at most 40 private patches, four of them the server's: the call that would pass the rest is refused alone.
+    if (executed.result.ok && candidate.privatePatches.length > PRIVATE_PATCHES_FOR_CALLS)
+      throw new ToolReject(`This turn's private notes are full (${PRIVATE_PATCHES_FOR_CALLS}, the most one turn saves).`, "Write the rest in a later turn.");
     shadow.adopt(candidate);
     return executed;
   } catch (error) {

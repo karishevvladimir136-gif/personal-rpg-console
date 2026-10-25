@@ -13,6 +13,7 @@ import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 import { runLoopScenario, createLoopBudget, LOOP_MODELS } from "./lib/loop-harness.mjs";
 import { providerKey } from "./lib/keys.mjs";
+import { anthropicKey } from "./lib/anthropic-endpoint.mjs";
 import { createPictureRow, runPictureJob } from "../../src/lib/visual-frame/picture-job.ts";
 import { fallbackShot, firstParagraph, framePrompt, shotEntityIds } from "../../src/lib/visual-frame/shot.ts";
 import { modelForTier, pictureCostUsdMicros, STYLE_PRESETS } from "../../src/lib/visual-frame/pictures.ts";
@@ -39,7 +40,7 @@ for (let i = 2; i < process.argv.length; i++) {
 if (!(args.budgetUsd > 0)) throw new Error("--budget-usd N (N > 0) is required");
 if (!args.models.every((model) => LOOP_MODELS[model])) throw new Error(`--models: ${Object.keys(LOOP_MODELS).join(",")}`);
 const style = STYLE_PRESETS.find((row) => row.key === args.style) ?? (() => { throw new Error(`unknown style ${args.style}`); })();
-const keys = { anthropic: providerKey("ANTHROPIC_API_KEY"), openai: providerKey("OPENAI_API_KEY"), fal: providerKey("FAL_KEY") };
+const keys = { anthropic: anthropicKey(), openai: providerKey("OPENAI_API_KEY"), fal: providerKey("FAL_KEY") };
 if (!keys.fal) throw new Error("FAL_KEY is missing (frames)");
 for (const model of args.models) if (!keys[LOOP_MODELS[model].providerId]) throw new Error(`${LOOP_MODELS[model].key} is missing`);
 const commit = (() => { try { return execFileSync("git", ["rev-parse", "--short", "HEAD"], { cwd: root, encoding: "utf8" }).trim(); } catch { return null; } })();

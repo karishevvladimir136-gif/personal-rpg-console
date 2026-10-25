@@ -5,7 +5,9 @@ import { parseLive2dBoard, type Live2dBoard } from "./contracts.ts";
 
 export type Live2dAction =
   | "scene.prepare" | "scene.redraw" | "scene.sheet.save" | "poi.save" | "poi.redraw"
-  | "region.draw" | "battle.prepare" | "settings.save";
+  | "region.draw" | "battle.prepare" | "settings.save"
+  // Fix S3-accept Д3: the owner moves a marker of the painted region.
+  | "region.marker.save";
 export type Live2dTransport = {
   board: (campaignId: string) => Promise<Live2dBoard>;
   send: (action: Live2dAction, campaignId: string, input: unknown) => Promise<unknown>;

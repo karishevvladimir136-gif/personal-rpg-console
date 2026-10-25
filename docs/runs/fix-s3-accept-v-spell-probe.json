@@ -1,0 +1,28 @@
+{
+  "run": "fix-s3-accept-v-spells",
+  "at": "2026-10-23T05:03:48.630Z",
+  "model": "gpt-image-2.5-sunburst",
+  "composition": "spell",
+  "style": "Painterly dark-fantasy illustration, warm candlelight and bronze accents, rich texture, readable at a small size.",
+  "spentUsd": 0.1076,
+  "pictures": [
+    {
+      "name": "Огненный шар",
+      "school": "Воплощение",
+      "level": 3,
+      "size": "1024x1024",
+      "ms": 47781,
+      "usd": 0.0539,
+      "file": "docs/samples/spells/fix-s3-accept-3-1.jpg"
+    },
+    {
+      "name": "Щит",
+      "school": "Ограждение",
+      "level": 1,
+      "size": "1024x1024",
+      "ms": 40749,
+      "usd": 0.0537,
+      "file": "docs/samples/spells/fix-s3-accept-1-2.jpg"
+    }
+  ]
+}

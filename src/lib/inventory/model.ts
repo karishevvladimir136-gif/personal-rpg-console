@@ -341,7 +341,24 @@ export type SpellRecord = {
   /** In the spellbook / known. */
   known?: boolean;
   prepared?: boolean;
+  /** Fix S3-accept В1: the spell as a thing — a stable id (its picture's subject; one name, one id, so a spell two
+   * people know shares one picture as items of a type do), its school in the campaign's words, and its own history
+   * («выучено в Кормире», «переписано со свитка»). The database admits them (migration 202610230511). */
+  id?: string;
+  school?: string;
+  history?: string[];
 };
+/** Fix S3-accept В1: the id a spell keeps — derived from its name (ё = е, case and spaces ignored), so the DM's call,
+ * the owner's toggle and the one-time conversion give one spell one id with no generator (and a replayed turn the same). */
+export function spellId(name: string): string {
+  const key = `spell:${name.trim().toLocaleLowerCase().replace(/ё/g, "е").replace(/\s+/g, " ")}`;
+  const hex = [0x811c9dc5, 0x6a09e667, 0x9e3779b9, 0x85ebca6b].map((seed) => {
+    let h = seed >>> 0;
+    for (let i = 0; i < key.length; i++) { h ^= key.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
+    return h.toString(16).padStart(8, "0");
+  }).join("");
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-5${hex.slice(13, 16)}-${((parseInt(hex[16], 16) & 3) | 8).toString(16)}${hex.slice(17, 20)}-${hex.slice(20, 32)}`;
+}
 export type SpellView = { level: number; label: string; spells: SpellRecord[]; slots: { value: number; max: number } | null; prepared: number };
 /** The spells tab's groups: cantrips, then each level with its slot pips and «подготовлено N из M». */
 export function spellBook(spells: readonly SpellRecord[], resources: Record<string, number>, language: unknown): SpellView[] {

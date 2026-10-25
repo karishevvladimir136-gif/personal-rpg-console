@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { loopCampaign } from "./dm-loop-fixture.mjs";
 import { resumeDmLoopTurn } from "../src/lib/gameplay/dm-loop/loop.ts";
-import { DM_LOOP_DEFAULT_LIMITS } from "../src/lib/gameplay/dm-loop/limits.ts";
+import { DM_LOOP_DEFAULT_LIMITS, turnCallCap } from "../src/lib/gameplay/dm-loop/limits.ts";
 import { DM_OPTION_DEFAULTS } from "../src/lib/gameplay/dm-loop/options.ts";
 
 test("a rejected call returns a reason and the turn continues; money, items and the hero stay consistent", async () => {
@@ -233,10 +233,11 @@ test("talking to a companion is an ordinary turn with an addressee; identity is 
   } finally { await c.f.db.close(); }
 });
 
-test("the per-turn tool cap tells the model to wrap up; the turn still commits with narration", async () => {
+test("the per-turn tool cap tells the model to wrap up; the turn still commits with narration (two batches of the limit — findings S3)", async () => {
   const c = await loopCampaign();
   try {
-    const many = Array.from({ length: DM_LOOP_DEFAULT_LIMITS.toolCallsPerTurn + 3 }, (_, index) =>
+    const cap = turnCallCap(DM_LOOP_DEFAULT_LIMITS);
+    const many = Array.from({ length: cap + 3 }, (_, index) =>
       ({ name: "advance_time", arguments: { minutes: 1, reason: `tick ${index}` } }));
     const played = await c.turn("I wait and count the hours.", [
       { text: "You wait. ", toolCalls: many },
@@ -246,12 +247,13 @@ test("the per-turn tool cap tells the model to wrap up; the turn still commits w
     assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
     const row = await c.row(played.input.operationId);
     const receipts = row.checkpoint.dmLoop.receipts;
-    assert.equal(receipts.filter((r) => r.result.ok).length, DM_LOOP_DEFAULT_LIMITS.toolCallsPerTurn);
-    assert.ok(receipts.slice(DM_LOOP_DEFAULT_LIMITS.toolCallsPerTurn).every((r) => !r.result.ok && /limit/.test(r.result.reason)));
-    assert.ok(row.checkpoint.dmLoop.diagnostics.some((d) => d.kind === "tool_cap_reached"));
+    assert.equal(receipts.filter((r) => r.result.ok).length, cap);
+    assert.ok(receipts.slice(cap).every((r) => !r.result.ok && /limit/.test(r.result.reason)));
+    assert.ok(row.checkpoint.dmLoop.diagnostics.some((d) => d.kind === "record_batch" && d.calls === DM_LOOP_DEFAULT_LIMITS.toolCallsPerTurn), "the second batch began");
+    assert.ok(row.checkpoint.dmLoop.diagnostics.some((d) => d.kind === "tool_cap_reached" && d.calls === cap));
     const wrap = played.model.requests.at(-1).messages.filter((m) => m.role === "user").at(-1);
     assert.match(wrap.text, /tool budget/);
-    assert.equal((await c.state()).runtime.world_minutes, DM_LOOP_DEFAULT_LIMITS.toolCallsPerTurn);
+    assert.equal((await c.state()).runtime.world_minutes, cap);
     assert.match(row.narration, /Evening comes at last/);
   } finally { await c.f.db.close(); }
 });

@@ -56,6 +56,13 @@ const NEW_MIGRATIONS = [
   "202610210403_fix_s3_pre_gallery_turns.sql",
   "202610230101_persona_memory.sql",
   "202610230102_persona_clock.sql",
+  "202610230501_fix_s3_accept_counter_label.sql",
+  "202610230511_fix_s3_accept_spells.sql",
+  "202610230521_fix_s3_accept_ring.sql",
+  "202610230541_fix_s3_accept_region_prep.sql",
+  "202610230551_fix_s3_accept_adventure_wishes.sql",
+  "202610230601_findings_s3_old_sheet.sql",
+  "202610230611_findings_s3_notes_dose.sql",
 ];
 const pictures = (f, cid, action, payload = {}) =>
   f.one("select public.rpg_pictures($1,$2,$3,$4::jsonb) result", [f.owner, cid, action, JSON.stringify(payload)]).then((row) => row.result);

@@ -53,6 +53,7 @@ export function isLoopbackRequest(url: string, headers: HeaderReader) {
 export type TrustedLocalEnvironment = Partial<
   Record<
     | "NODE_ENV"
+    | "APP_SANDBOX_TRUSTED_OWNER"
     | "RPG_TRUSTED_LOCAL_OWNER"
     | "SUPABASE_URL"
     | "RPG_OWNER_USER_ID"
@@ -62,13 +63,23 @@ export type TrustedLocalEnvironment = Partial<
   >
 >;
 
+// A production server admits the local owner only when the sandbox launcher's
+// --prod opted in; every other gate still applies. Read from the environment at
+// run time: a build fixes a literal process.env.NODE_ENV at compile time.
+export function localOwnerModeAllowed(environment: TrustedLocalEnvironment) {
+  return (
+    environment.NODE_ENV !== "production" ||
+    environment.APP_SANDBOX_TRUSTED_OWNER === "1"
+  );
+}
+
 export function isTrustedLocalOwnerRequest(
   url: string,
   headers: HeaderReader,
   environment: TrustedLocalEnvironment,
 ) {
   if (
-    environment.NODE_ENV === "production" ||
+    !localOwnerModeAllowed(environment) ||
     environment.RPG_TRUSTED_LOCAL_OWNER !== "1" ||
     !isLoopbackRequest(url, headers) ||
     !uuidPattern.test(environment.RPG_OWNER_USER_ID || "")

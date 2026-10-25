@@ -32,10 +32,10 @@ import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KE
 import { advanceLedger, parseLedger, serializeLedger } from "./ledger.ts";
 import { advanceMetrics, parseMetrics, serializeMetrics } from "./metrics.ts";
 import { chooseDepth, EFFORT_ORDER, lowerEffort, parseDepthRange, parseDepthState, tensionSignals, type DepthRange } from "./depth.ts";
-import { executeDmLoopTool } from "./execute.ts";
+import { executeDmLoopTool, recordOrder, storyMinuteOf } from "./execute.ts";
 import { chip } from "./receipt-text.ts";
 import type { PublicProfile } from "../../persistence/contracts.ts";
-import { dmLoopLimits as L, DM_LOOP_DEFAULT_LIMITS } from "./limits.ts";
+import { dmLoopLimits as L, DM_LOOP_DEFAULT_LIMITS, turnCallCap } from "./limits.ts";
 import { ShadowState } from "./shadow.ts";
 import { dmLoopTools } from "./tools.ts";
 import { DM_LOOP_RUNTIME, workOf, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopMeta, type DmLoopObservation,
@@ -181,7 +181,7 @@ export function plainCutMessage(transcript: DmMessage[], note: string): boolean 
   }
   return false;
 }
-export const CUT_BY_CAP = "Your last message was cut off by the output limit. Continue exactly where it stopped — do not repeat what is already written — finish the narration briefly, then send the final bookkeeping message with finish_turn. Keep your thinking short.";
+export const CUT_BY_CAP = "Your last message ran into the output limit and was cut off. Pick up exactly where it stopped — the text so far has already reached the player, so nothing needs repeating — bring the narration to its end, then send the final bookkeeping message with finish_turn. The limit is still close: spend little of it on thinking.";
 
 const WRAP_UP = "The tool budget of this turn is used up. Finish the narration now with what was accepted; make no further tool calls.";
 
@@ -207,6 +207,8 @@ export function foldsFinish(calls: DmToolCall[], receipts: DmLoopReceipt[]): boo
     // Stage 4 §3: a time receipt that lists off-screen plans now due keeps the
     // conversation open, so the DM advances them in the same turn.
     if (TIME_TOOLS.has(call.name) && Array.isArray((receipt.result.value as { duePlans?: unknown }).duePlans)) return false;
+    // Findings S3: so does a plan of this message that came due in its time passing (written first).
+    if (call.name === "note_world" && (receipt.result.value as { cameDue?: unknown }).cameDue) return false;
     if (BOOKKEEPING_TOOLS.has(call.name)) return true;
     const action = receipt.call.arguments.action;
     if (call.name === "item") return action === "create";
@@ -466,11 +468,14 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       // Stage C (item 53): the pause names what the DM does now (dice, records, a lookup) — kinds only.
       const work = workOf(calls.filter((call) => !loop.receipts.some((row) => row.call.id === call.id)).map((call) => call.name));
       if (work.length) live({ type: "working", tools: work });
-      for (const call of calls) {
+      for (const call of recordOrder(calls)) {
         if (loop.receipts.some((row) => row.call.id === call.id)) continue;
         const toolCall = { id: call.id, name: call.name, arguments: parseArguments(call) as DmLoopReceipt["call"]["arguments"] };
+        // Time passing is written first; the other calls keep the minute they had in the model's order.
+        shadow.recordAt = storyMinuteOf(call, calls, loop.receipts, shadow.worldMinutes);
         const executed = executeDmLoopTool(shadow, toolCall, { input, checks: checkpoint.checks, random,
           narrationSceneId, toolCalls: loop.receipts.length, limits, language, tension: turnTension, receipts: loop.receipts, showDc });
+        shadow.recordAt = null;
         const receipt = await recordDmTool(lease, loop.receipts.length, toolCall, executed.result);
         loop.receipts.push(receipt);
         if (executed.result.ok && executed.result.check) {
@@ -480,11 +485,13 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
           if (isDisplayedCheck(source, check)) outcomePending = true;
         }
         if (executed.meta) loop.meta = executed.meta;
-        if (loop.receipts.length === limits.toolCallsPerTurn) diagnostic({ kind: "tool_cap_reached", calls: loop.receipts.length });
+        if (loop.receipts.length === limits.toolCallsPerTurn) diagnostic({ kind: "record_batch", calls: loop.receipts.length });
+        if (loop.receipts.length === turnCallCap(limits)) diagnostic({ kind: "tool_cap_reached", calls: loop.receipts.length });
         observe({ type: "tool_receipt", operationId, receipt });
         // The player's stream carries only what the hero would notice, in the campaign language.
         if (receipt.result.ok && receipt.result.player)
-          live({ type: "tool", name: call.name, ok: true, summary: receipt.result.player, ...(typeof toolCall.arguments.action === "string" ? { action: toolCall.arguments.action } : {}) });
+          live({ type: "tool", name: call.name, ok: true, summary: receipt.result.player, ...(typeof toolCall.arguments.action === "string" ? { action: toolCall.arguments.action } : {}),
+            ...(executed.counter ? { counter: executed.counter } : {}) });
         if (call.name === "finish_turn" && executed.meta?.playerMoment) live({ type: "moment", reason: executed.meta.playerMomentReason ?? null });
       }
       return pause;
@@ -532,7 +539,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
           // Polish 3 §3: every rejected record call of a message goes back once with the server's
           // reason (the bake-off's misses: a field name, a faction that does not exist, a clock as text).
           if (!pause && loop.text.trim() && !loop.diagnostics.some((row) => row.kind === "records_retry_asked") &&
-            loop.requests < limits.modelRequestsPerTurn - 1 && loop.receipts.length < limits.toolCallsPerTurn) {
+            loop.requests < limits.modelRequestsPerTurn - 1 && loop.receipts.length < turnCallCap(limits)) {
             const rejected = last.toolCalls.flatMap((call) => {
               const receipt = loop.receipts.find((row) => row.call.id === call.id);
               return receipt && !receipt.result.ok && retriableRejection(receipt.call) ? [{ name: call.name, reason: receipt.result.reason }] : [];
@@ -557,7 +564,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
           await persist("generating"); // (the commit keeps the checkpoint as last persisted)
           break;
         }
-        const lastRequest = loop.requests === limits.modelRequestsPerTurn - 1 || loop.receipts.length >= limits.toolCallsPerTurn;
+        const lastRequest = loop.requests === limits.modelRequestsPerTurn - 1 || loop.receipts.length >= turnCallCap(limits);
         if (lastRequest && last?.role !== "user") loop.transcript.push({ role: "user", text: N.WRAP_UP });
         // Requests after the first (continuations after tool results) may run at
         // the pinned continuation effort (stage 2b §3).

@@ -10,6 +10,7 @@
 // session's finding was three turns narrated around declared attacks with nothing rolled.
 import type { DmLoopReceipt } from "./contracts.ts";
 import { QUOTABLE_MODEL, QUOTABLE_PRICE_PER_MILLION } from "./quotable.ts";
+import { anthropicEndpoint } from "../../server/anthropic-endpoint.ts";
 
 export type RollCheckResult = { untold: number[]; undeclared?: string[]; costUsdMicros: number; error: string | null };
 export type RollCheckInput = { narration: string; rolls: string[]; language: "ru" | "en";
@@ -79,11 +80,11 @@ export function untoldRollsMessage(language: "ru" | "en", rolls: string[], role:
   const close = role === "writer" ? (language === "ru" ? "Новая ведомость не нужна." : "No new ledger is needed.") : (language === "ru" ? "Потом снова вызови finish_turn." : "Then call finish_turn again.");
   if (language === "ru") return [
     rolls.length ? `Эти броски игрок видел, а в рассказе их исхода нет:\n${list}\nРасскажи исход каждого сейчас, по порядку, продолжая рассказ и не повторяя уже написанного.` : "",
-    undeclared.length ? `Игрок заявил эти действия героя, а ход их не бросил и не сказал, почему нет:\n${actions}\nБрось каждое сейчас (в бою — roll kind attack с целью) и расскажи исход — или одной строкой вне игры скажи, почему его не может быть. Воля героя — у игрока.` : "",
+    undeclared.length ? `Игрок заявил эти действия героя, а ход их не бросил и не сказал, почему нет:\n${actions}\nБрось каждое сейчас (в бою — roll kind attack с целью) и расскажи исход — или одной строкой вне игры скажи, почему его не может быть. Если ход остановился ради ответа игрока (спутник вслух возразил, герою задан вопрос), это и есть причина: скажи это одной строкой вне игры и не доигрывай действие. Воля героя — у игрока.` : "",
     close].filter(Boolean).join("\n");
   return [
     rolls.length ? `The player saw these rolls but the story does not tell their outcome:\n${list}\nTell each outcome now, in order, continuing the narration without repeating it.` : "",
-    undeclared.length ? `The player declared these actions of the hero, and the turn neither rolled them nor said why not:\n${actions}\nRoll each now (in a fight: roll kind attack with its target) and tell the outcome — or say in one out-of-game line why it cannot happen. The hero's will is the player's.` : "",
+    undeclared.length ? `The player declared these actions of the hero, and the turn neither rolled them nor said why not:\n${actions}\nRoll each now (in a fight: roll kind attack with its target) and tell the outcome — or say in one out-of-game line why it cannot happen. If the turn stopped for the player's answer (a companion objected aloud, a question was put to the hero), that is the reason: say so in one out-of-game line and do not play the action. The hero's will is the player's.` : "",
     close].filter(Boolean).join("\n");
 }
 
@@ -95,13 +96,14 @@ export async function checkRollsTold(apiKey: string, input: RollCheckInput,
   if (!apiKey) return { untold: [], undeclared: [], costUsdMicros: 0, error: "not_configured" };
   const request = rollCheckRequest(input);
   try {
-    const response = await (options.fetcher ?? fetch)("https://api.anthropic.com/v1/messages", {
+    const door = anthropicEndpoint();
+    const response = await (options.fetcher ?? fetch)(door.messagesUrl, {
       method: "POST",
-      headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
+      headers: door.headers(apiKey),
       // Fix S3-pre 2.6: no thinking. At low effort the model still thought, and on the quoting prompt it spent the
       // whole allowance on it (899 of 900 tokens, no answer: the check passed every turn); without thinking the answer
       // came in ~1 s and flagged the hero's untold critical shot of the merge's ford turn 4, 5 of 5.
-      body: JSON.stringify({ model: QUOTABLE_MODEL, max_tokens: 900, thinking: { type: "disabled" }, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
+      body: JSON.stringify({ model: door.modelId(QUOTABLE_MODEL), max_tokens: 900, thinking: { type: "disabled" }, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
       signal: AbortSignal.timeout(options.timeoutMs ?? 20_000),
     });
     const value = await response.json().catch(() => null) as { content?: { type: string; text?: string }[]; usage?: { input_tokens?: number; output_tokens?: number }; error?: { type?: string } } | null;

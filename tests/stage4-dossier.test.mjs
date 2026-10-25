@@ -108,7 +108,7 @@ test("rpg_dossier: pins, likes, theme, status and play time are owner notes; one
     const living = `${played.model.requests[0].system.at(-3).text}\n${played.model.requests[0].system.at(-2).text}`;
     assert.match(living, /Owner-pinned facts[\s\S]*The miller owes the hero a favour/);
     // Fix run A2: the player's own words and the theme are stable: the cached world layer.
-    assert.match(played.model.requests[0].system[1].text, /What the player asked for, in their own words[^\n]*Slow investigations/);
+    assert.match(played.model.requests[0].system[1].text, /enjoys in games, in their own words[^\n]*Slow investigations/);
     assert.match(played.model.requests[0].system[1].text, /theme question[^\n]*: What does loyalty cost\?/);
     const snapshot = await c.f.saves(c.cid, "campaign");
     assert.equal(snapshot.campaign.pinned_facts.length, 1);
@@ -169,9 +169,14 @@ test("off-screen plans: the receipt of time passing lists plans that came due; t
     ]);
     const receipts = (await c.row(first.input.operationId)).checkpoint.dmLoop.receipts;
     assert.equal(receipts.length, 5, JSON.stringify(receipts.map((r) => [r.call.name, r.result.ok, r.result.reason])));
-    assert.equal(receipts[1].result.ok, true, receipts[1].result.reason);
-    assert.match(receipts[2].result.reason, /needs dueInMinutes/);
-    assert.equal(receipts[3].result.value.duePlans, undefined, "nothing due after half an hour");
+    // Findings S3: the message's time passing is written first; the rest keep the model's order.
+    const byKey = (key) => receipts.find((r) => r.call.name === "note_world" && r.call.arguments.key === key);
+    assert.equal(receipts[0].call.name, "advance_time");
+    assert.equal(byKey("plan_reeve_revenge").result.ok, true, byKey("plan_reeve_revenge").result.reason);
+    assert.match(byKey("plan_no_due").result.reason, /needs dueInMinutes/);
+    assert.equal(receipts[0].result.value.duePlans, undefined, "nothing due after half an hour");
+    assert.equal(byKey("plan_reeve_revenge").result.value.cameDue, undefined, "due in two days, not in this half hour");
+    assert.equal(byKey("plan_reeve_revenge").result.value.plan.dueWorldMinutes, 2 * 24 * 60, "stamped at the minute it had before the walk");
     const second = await c.turn("I travel three days to the capital and back.", [
       { text: "Three days of road. ", toolCalls: [
         { name: "advance_time", arguments: { minutes: 3 * 24 * 60, reason: "the road" } },
@@ -465,6 +470,8 @@ test("tool descriptions stay compact: seventeen tools, their descriptions under 
   // 2D Live part 2 grows the combat tool to the fight's fifteen actions (about 2.6k of the total).
   // The session 3 candidate carries both: 17 tools at 12 855 (OpenAI) / 11 874 (Anthropic) estimated tokens, re-measured
   // after the merge (the fix run alone 10 529 / 9 835, the 2D branch alone 11 468 / 10 656).
-  assert.ok(estimateTokens(openai) < 13500, `openai tool schema ${estimateTokens(openai)} tokens`);
-  assert.ok(estimateTokens(anthropic) < 12500, `anthropic tool schema ${estimateTokens(anthropic)} tokens`);
+  // Fix S3-accept: the hero's lasting conditions (Г3) and spells as records with the cast's slot (В1) — 13 494 / 12 443
+  // after trimming both blocks' descriptions; the ceilings keep a margin of about 500.
+  assert.ok(estimateTokens(openai) < 14000, `openai tool schema ${estimateTokens(openai)} tokens`);
+  assert.ok(estimateTokens(anthropic) < 13000, `anthropic tool schema ${estimateTokens(anthropic)} tokens`);
 });

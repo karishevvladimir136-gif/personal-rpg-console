@@ -5,7 +5,8 @@ import { MessagesSquare, X } from "lucide-react";
 import type { CampaignSnapshot, Entity } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
 import { characterViewModel } from "@/lib/character-view-model";
-import { companionAttitude, currentPlace, heroOf, homeRosterOf, inCombat, mountsOf, partyOf, sheetOf, statLabel, worldClock, type MountView } from "@/lib/ui/campaign-view";
+import { companionAttitude, currentPlace, heroOf, homeRosterOf, inCombat, mountsOf, partyOf, sheetOf, sheetPlates, worldClock, type MountView } from "@/lib/ui/campaign-view";
+import { derivedSheetOf } from "@/lib/live2d/battle/rules-5e";
 import { walletOfEntity } from "@/lib/inventory/model";
 import { inventoryItemLabel } from "@/lib/live-inventory-view";
 import { GameplayComposer } from "../gameplay-composer";
@@ -131,13 +132,9 @@ function MemberCard({ data, entity, tag, canTalk, combat, onTalk, onRedraw }: {
   const c = useCopy();
   const model = characterViewModel(data, entity);
   const sheet = sheetOf(entity);
-  const tiles: [string, string | number][] = [];
-  if (sheet.armorClass !== null) tiles.push([c.label("Armor class"), sheet.armorClass]);
-  if (sheet.speed) tiles.push([c.label("Speed"), sheet.speed]);
-  for (const [key, value] of model.derivedStats.filter(([, value]) => value !== 0)) {
-    const label = c.label(statLabel(key));
-    if (!tiles.some(([seen]) => seen === label)) tiles.push([label, value]);
-  }
+  // Fix S3-accept Г1, Г3: the sheet's plates from one selector (in 5e «КД», «Атака», «Навык», the server's numbers, explained on hover).
+  const tiles = sheetPlates(data, entity, model.derivedStats).map((plate) => [plate.translated ? plate.label : c.label(plate.label), plate.value, plate.text] as const);
+  const derived = derivedSheetOf(data, entity);
   const person = entity.kind === "player" || entity.kind === "companion";
   return (
     <article className={s.card}>
@@ -160,12 +157,12 @@ function MemberCard({ data, entity, tag, canTalk, combat, onTalk, onRedraw }: {
         )}
         {(tiles.length > 0 || entity.conditions.length > 0) && (
           <div className={r.chips}>
-            {tiles.map(([label, value]) => <span key={label} className={r.badge}>{label} {value}</span>)}
+            {tiles.map(([label, value, why]) => <span key={label} className={r.badge} title={why ?? undefined}>{label} {value}</span>)}
             {entity.conditions.map((condition) => <span key={condition} className={r.badgeAmber}>{condition}</span>)}
           </div>
         )}
         {person && <WalletLine wallet={walletOfEntity(entity)} />}
-        <div className={s.sheet}><SheetLines sheet={sheet} skills={model.skills} compact /></div>
+        <div className={s.sheet}><SheetLines sheet={sheet} skills={model.skills} saves={derived?.saves} savesNeedLevel={derived?.savesNeedLevel} compact /></div>
         {entity.kind === "companion" && companionAttitude(entity) && (
           <div className={r.stack} style={{ gap: 2 }}>
             <span className={r.eyebrow}>{c("К тебе", "Toward you")}</span>

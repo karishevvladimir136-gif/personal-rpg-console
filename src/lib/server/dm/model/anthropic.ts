@@ -1,6 +1,13 @@
 import "server-only";
 import { dmModelSpec } from "../../../model-runtime/dm-models.ts";
 import {
+  anthropicEndpoint,
+  anthropicErrorCode,
+  bedrockFailureKind,
+  doorFailure,
+  type AnthropicEndpoint,
+} from "../../anthropic-endpoint.ts";
+import {
   DmModelError,
   type DmMessage,
   type DmModel,
@@ -18,9 +25,6 @@ import {
   transportFailure,
   withRetries,
 } from "./transport.ts";
-
-const ENDPOINT = "https://api.anthropic.com/v1/messages";
-const API_VERSION = "2023-06-01";
 
 type Block = Record<string, unknown> & { type: string };
 type Usage = { input_tokens?: number; output_tokens?: number;
@@ -158,7 +162,8 @@ function errorKind(type: unknown): DmModelErrorKind {
     case "permission_error":
       return "not_configured";
     default:
-      return "provider_rejected";
+      // A Bedrock exception named in a stream's error event (ANTHROPIC_PROVIDERS_1 §5).
+      return bedrockFailureKind(typeof type === "string" ? type : null) ?? "provider_rejected";
   }
 }
 
@@ -167,18 +172,24 @@ function stopReason(value: unknown): DmStopReason {
     : value === "max_tokens" ? "max_tokens" : value === "refusal" ? "refusal" : "other";
 }
 
-async function httpFailure(response: Response, apiKey: string): Promise<DmModelError> {
-  let payload: { error?: { type?: unknown; message?: unknown } } | null = null;
+async function httpFailure(response: Response, apiKey: string, door: AnthropicEndpoint,
+  modelId: string, providerModel: string): Promise<DmModelError> {
+  let payload: { error?: { type?: unknown; message?: unknown }; message?: unknown } | null = null;
   try {
     payload = JSON.parse(await response.text());
   } catch {
     /* keep the status only */
   }
-  const type = typeof payload?.error?.type === "string" ? payload.error.type : null;
-  const kind = response.status === 529 ? "retryable_transport" : errorKindForStatus(response.status);
-  return new DmModelError(kind,
-    safeProviderMessage(payload?.error?.message, apiKey, `Anthropic request failed with HTTP ${response.status}`),
-    { httpStatus: response.status, providerCode: type, retryAfterMs: retryAfterMs(response.headers) });
+  const code = anthropicErrorCode(payload, response.headers);
+  const providerMessage = safeProviderMessage(payload?.error?.message ?? payload?.message, apiKey,
+    `${door.providerLabel} request failed with HTTP ${response.status}`);
+  // ANTHROPIC_PROVIDERS_1 §5: the door decides first — Bedrock's throttling waits like a rate limit, a refused or
+  // unserved model is not configured (named), OpenRouter's «insufficient credits» stops; else the status mapping.
+  const decided = doorFailure(door, response.status, code, providerMessage, modelId, providerModel);
+  const kind = decided.kind ?? (response.status === 529 ? "retryable_transport" : errorKindForStatus(response.status));
+  const message = decided.message ?? providerMessage;
+  return new DmModelError(kind, message,
+    { httpStatus: response.status, providerCode: code, retryAfterMs: retryAfterMs(response.headers) });
 }
 
 async function* parseStream(body: ReadableStream<Uint8Array>, modelId: string,
@@ -270,20 +281,29 @@ export function createAnthropicDmModel(modelId = "claude-opus-5-5", options: DmM
   if (!dmModelSpec("anthropic", modelId))
     throw new DmModelError("not_configured", `unknown Anthropic DM model ${modelId}`);
   async function* attempt(request: DmModelRequest, signal: AbortSignal): AsyncGenerator<DmModelEvent> {
-    const apiKey = (options.apiKey ?? process.env.ANTHROPIC_API_KEY ?? "").trim();
-    if (!apiKey) throw new DmModelError("not_configured", "ANTHROPIC_API_KEY is not set on the server");
+    // ANTHROPIC_PROVIDERS_1: the door (host, key, the provider's model id) is read per request.
+    let door: AnthropicEndpoint;
+    let providerModel: string;
+    try {
+      door = anthropicEndpoint();
+      providerModel = door.modelId(modelId);
+    } catch (error) {
+      throw new DmModelError("not_configured", (error as Error).message);
+    }
+    const apiKey = (options.apiKey ?? door.apiKey).trim();
+    if (!apiKey) throw new DmModelError("not_configured", `${door.keyName} is not set on the server`);
     let response: Response;
     try {
-      response = await (options.fetcher ?? fetch)(ENDPOINT, {
+      response = await (options.fetcher ?? fetch)(door.messagesUrl, {
         method: "POST",
-        headers: { "x-api-key": apiKey, "anthropic-version": API_VERSION, "content-type": "application/json" },
-        body: JSON.stringify(anthropicRequestBody(modelId, request)),
+        headers: door.headers(apiKey),
+        body: JSON.stringify({ ...anthropicRequestBody(modelId, request), model: providerModel }),
         signal,
       });
     } catch (error) {
       throw transportFailure(error, request.signal);
     }
-    if (!response.ok) throw await httpFailure(response, apiKey);
+    if (!response.ok) throw await httpFailure(response, apiKey, door, modelId, providerModel);
     if (!response.body) throw new DmModelError("retryable_transport", "the Anthropic response had no body");
     try {
       yield* parseStream(response.body, modelId, apiKey);

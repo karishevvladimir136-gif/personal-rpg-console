@@ -16,6 +16,7 @@ import { snapshot, diff, evaluateCheck } from "../../lib/state.mjs";
 import { naturalness as naturalnessOf } from "../../lib/naturalness.mjs";
 import { createLoopBudget } from "../../lib/loop-harness.mjs";
 import { MODELS, SCENARIO } from "./variants.mjs";
+import { anthropicRequestId, callProvenance, recordServed, requestedModelOf } from "../../lib/anthropic-endpoint.mjs";
 
 const hook = registerHooks({ resolve(specifier, context, nextResolve) {
   return specifier === "server-only"
@@ -74,7 +75,13 @@ function guardedModel(selection, budget, apiKey, log) {
     const started = performance.now();
     try {
       const response = await fetch(url, init);
-      log.push({ event: "http", model: selection.modelId, status: response.status, requestBytes: bytes, latencyMs: Math.round(performance.now() - started) });
+      // ANTHROPIC_PROVIDERS_1 §4: the door of the call, the provider's request id and who served it (filled from a
+      // clone of the reply: the model it names, OpenRouter's upstream).
+      const line = { event: "http", model: selection.modelId, status: response.status, requestBytes: bytes, latencyMs: Math.round(performance.now() - started),
+        ...callProvenance(selection.providerId, url),
+        requestId: anthropicRequestId(response.headers) ?? response.headers.get("x-request-id") };
+      log.push(line);
+      void recordServed(response, requestedModelOf(init), line);
       if (response.ok) reservations.set(budget.requests, reservation);
       else budget.reservedUsd -= reservation;
       return response;

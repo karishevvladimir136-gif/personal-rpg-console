@@ -241,6 +241,101 @@ unchanged by this stage.
 - **Next step:** the owner accepts the stage, chooses the hosting (VPS, Fly.io or a tunnel), runs the import's dry run on
   his export.
 
+**Milestone: Anthropic providers 1 — the same Claude models through three doors (Console, Bedrock, OpenRouter)**
+(`docs/stages/ANTHROPIC_PROVIDERS_1.md` on `claude/handoff`, was BEDROCK_PROVIDER_1) — **implementation done on
+`claude/anthropic-providers-1`; both smokes ran: OpenRouter's Opus 5.5 DM turn committed through the app's loop
+($0.32), Bedrock serves only Haiku 4.5 today**. Waiting for the owner's choice of what runs first on OpenRouter. Report:
+`docs/runs/anthropic-providers-1-report.md`; ledger `docs/runs/anthropic-providers-1-ledger.md`.
+
+- **What was done:** `ANTHROPIC_PROVIDER=anthropic|bedrock|openrouter` picks the door for every Claude call in one helper
+  (`src/lib/server/anthropic-endpoint.ts`, mirror `scripts/eval/lib/anthropic-endpoint.mjs`); OpenRouter at
+  `https://openrouter.ai/api/v1/messages` with a bearer key and `anthropic/claude-*-5.5` slugs; Bedrock's 4.5 ids are the
+  dated profiles; zero hard-coded endpoints (a test walks `src` and `scripts`); OpenRouter 402 stops, 429 waits; Bedrock
+  404/403 on a model is `not_configured`, named; harness call lines and run records carry `provider`, `endpointHost`,
+  `requestId`, `servedModel`, `upstream`, `messageId` and the served = requested check; ledgers print spend per door;
+  `scripts/eval/providers-smoke.mjs --door openrouter|bedrock` (ledger `providers1`, $3 a door); CLOUD.md,
+  `.env.example` (names only), MODELS.md.
+- **Key decisions:** the map applies at the transport (stored ids never change); served model and upstream are read from
+  a clone of the reply (harness-only, the app untouched); no InvokeModel transport for Bedrock (Opus 4.5 is served only
+  there — a separate stage if the owner wants it); no migration; no SDK added.
+- **Checks:** full suite on a clean worktree (no `.env.local`, `--test-concurrency=2`): 2 937 tests · 2 910 pass · 0 fail ·
+  27 skipped (the candidate had 2 926; +11 provider tests); `tests/anthropic-providers-1.test.mjs` 11/11 re-run on the
+  final commit (later edits: comments, the smoke script, docs); typecheck, zero-warning lint and `next build` pass on
+  `de5d9e3`.
+- **Money:** OpenRouter $0.3178 (Haiku 5.5 + one Opus 5.5 DM turn with the roll check + Fable 5.1; OpenRouter charged
+  exactly list prices); Bedrock $0.000038 (Haiku 4.5); Console $0 (no call).
+- **Smoke facts:** OpenRouter path `/api/v1/messages`, bearer key; the app's body passes unchanged (tools, effort, 1-hour
+  cache written then read); upstream «Claude Platform on AWS» for Opus/Haiku 5.5, «Anthropic» for Fable 5.1; served =
+  requested on all calls; `request-id` is OpenRouter's generation id. In the cloud Node needs `NODE_USE_ENV_PROXY=1`.
+- **Known issues:** on Bedrock the 5.5 models are refused (403) and Opus/Sonnet 4.5 are not on the Messages endpoint
+  (404, InvokeModel only), so Bedrock serves only Haiku 4.5 today; no quota headers on Bedrock replies.
+- **Next step:** the owner picks his own table (`.env.local`: `ANTHROPIC_PROVIDER=openrouter`, `OPENROUTER_API_KEY=…`)
+  or the stalled runs (GAME_PLAYER_1 Table B, GAME_PLAYER_2, the re-judging), each with `ANTHROPIC_PROVIDER=openrouter`.
+
+**Current milestone: the findings of 2026-10-22/23 applied to the game** (`docs/stages/FINDINGS_S3.md` on
+`claude/handoff`, items 1–7) — **implementation done on `claude/s3-candidate`, waiting for the owner's acceptance and the
+sandbox load** (`docs/SANDBOX_LOAD_FIX_S2.md`: two new migrations, `202610230601` — Джеймс Вордсден's level 5 as the
+owner's recorded correction — and `202610230611` — the notes' dose; both additive). Report:
+`docs/runs/findings-s3-report.md`; ledger `docs/runs/findings-s3-ledger.md`; audit `docs/runs/findings-s3-audit.md`.
+`origin/claude/s3-sandbox-fixes-2` (the owner's PC) merged mid-stage (`7b50d45`), its tests green.
+
+- **What was done:** 1 — the DM's frame instead of orders in both roles and both languages (approved by the owner), the
+  word caps and «think briefly» gone, the owner's fields framed as a person's wishes; the probes' two slips made rules
+  (the stop on a companion's objection stands against a check's nudge; every roll's outcome said as an event, the
+  hero's by the hero). 2 — the DM's between-session notes in the first person. 3 — the rules system from the world's
+  description at creation, the choice on «Правила и кости», the «5e-модуль» chip. 4 — the class by the role's first
+  word, «Уровень не указан» with «Изменить лист», Вордсден's level 5. 5 — companions and people as participants. 6 —
+  first-person voice blocks in the people's private cards (prep and digest; DM-only). 7 — the hidden layer's dose
+  24 000 characters, the digest told to use 15–20k when the session gives that much. After the report (the owner, no
+  paid calls): a turn's time passing is written first and records past 40 go on as a second batch (items likewise)
+  instead of being refused; the DM's private notes are held to the commit's bound so a turn never fails on them.
+- **Key decisions:** the frame stays (longer prose, records held); voice blocks are private notes (no migration); the
+  rules-system setting changes its label only (the ruleset id the turn path reads stays); Вордсден's correction writes
+  the level only (the class gives the saves); «your own reasoning» and «tempted» stay out of the DM's prompts (the
+  provider's filter refused them — `docs/RESEARCH_LOG.md`).
+- **Checks** (a clean worktree without `.env.local`): at `6e63502` (the 40-record fix included) the full suite 2 926 tests · 2 899 pass · 0 fail · 0 cancelled · 27 skipped; typecheck pass; lint pass, zero warnings; production build pass, no warnings.
+- **Money:** $21.58 of the $24 cap.
+- **Known issues:** the roll rule closed the fight's untold rolls (0 of 3) but a social check's success may still be told
+  only by the other's reaction (1 of 3); the roll check misreads some told failures; a big hoard can reach the
+  40-records-a-turn limit — fixed after the report (time first, two batches); the synthetic session gave a 7.5k layer, not 15–20k;
+  item 7 not measured on the objection and the letter (skipped).
+- **Next step:** the owner reloads the candidate (`--stop`, `--prod`), checks «Персонаж» (Вордсден, level 5, saves) and
+  the «5e-модуль» chip, plays.
+
+**Current milestone: the fixes from the owner's acceptance pass** (`docs/stages/FIX_S3_ACCEPT.md` on `claude/handoff`,
+the owner's words in `docs/runs/s3-acceptance-notes.md`) — **implementation done on `claude/s3-candidate`, waiting for
+the owner's acceptance** (`docs/runs/fix-s2-acceptance.md` section 9, `docs/runs/live2d-1-acceptance.md` section 2а, the
+index `docs/runs/s3-acceptance.md`) **and the sandbox load** (`docs/SANDBOX_LOAD_FIX_S2.md`, five migration ranges; this
+stage adds `202610230501`, `…511`, `…521`, `…541`, `…551`, all additive; `0501` names the owner's counter «Клык
+шамана» and `0521` puts the ring on «Кольцо (правая)»). Report: `docs/runs/fix-s3-accept-report.md`; ledger
+`docs/runs/fix-s3-accept-ledger.md`. First merged: `origin/claude/s3-sandbox-fixes` (the owner's three PC commits).
+
+- **What was done:** Г — AC and saves derived by the 5e rules module on the server from the worn things and the effects
+  (robe, shield, ring, Mage Armor, Shield), one number on the sheet, the doll, the battle block and `combat attack`; the
+  plates «КД», «Атака», «Навык» with breakdowns; every counter named in Russian. В — spells as records like things
+  (13 Russian cards, school, history, pictures), the tab «Заговоры» / «Подготовлено сегодня» / «Книга заклинаний» with a
+  school filter, the one-time conversion of the «Умения» prose, the DM's sheet tool and the cast's slot. Б — the action
+  box and the DM's answer under the 2D scene, the hotspots in the campaign's language (older sheets redone once), 5–8
+  hotspots, the mismatch list under «Ещё». Д — the map as a tree of places with breadcrumbs («Карта» opens it), the
+  region designed by the DM first (public part in the canon, hidden part private), painted from it, markers checked on
+  their objects. А — the inventory as cells one holder at a time, a type filter, the card's history folded and buttons
+  only where they apply, the ring fix, companions' full-length figures. Е — portraits on «Судьбы». Ж — «Пожелания к
+  приключению», an owner-only field beside «Тайны» that only the hidden-layer prep reads.
+- **Key decisions:** the derived numbers are attached by the server's public read; the owner's «КД вручную» outranks
+  them; the DM may set lasting conditions on the hero (with a reason); the spell conversion runs as the owner's sheet
+  correction on the first open of «Персонаж»; «Перерисовать» on a scene with fewer than 5 hotspots writes a new sheet;
+  «Изменить размещение» drags the painted region's markers; the wizard saves the wishes without a rebuild (the first
+  prep reads them); the DM tool schema trimmed to 13 494 / 12 443 estimated tokens and its bound raised from 13 500 / 12 500 to 14 000 / 13 000.
+- **Checks** (a clean worktree without `.env.local`): at `c806ad8` (every block and Ж1) the full suite 2 893 tests · 2 866 pass · 0 fail · 0 cancelled · 27 skipped; typecheck pass; lint pass, zero warnings; production build pass, no warnings.
+- **Money:** $0.98 of the $15 cap (probes: hotspots $0.07, the region $0.79 including a refusal's diagnosis, spell
+  pictures $0.11, an access check $0.0001). From about 03:46 to before 04:48 UTC the key did not reach the 5.5 models;
+  the final probes ran on the app's own models.
+- **Known issues:** Mage Armor has no automatic end; «Использовать» depends on a thing's words; a city's own painted
+  plan is left for later; on «Игра» the composer keyed by the addressed companion may remount (reported, not verified,
+  not changed).
+- **Next step:** the owner loads the candidate by `docs/SANDBOX_LOAD_FIX_S2.md`, plays the 6–8-turn prose check on the
+  production build, accepts section 9 and section 2а, then session 3.
+
 **Current milestone: the fixes before session 3** (`docs/stages/FIX_S3_PRE.md` on `claude/handoff`) — **implementation
 done on `claude/s3-candidate`, waiting for the owner's acceptance** (`docs/runs/s3-acceptance.md`, the three Russian
 checklists, updated where a path changed) **and the sandbox load** (`docs/SANDBOX_LOAD_FIX_S2.md`, now four migration
