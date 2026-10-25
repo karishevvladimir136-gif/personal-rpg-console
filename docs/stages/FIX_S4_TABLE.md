@@ -222,6 +222,17 @@ against the candidate DM, not seeing each other. Their notes agree on four thing
   in the records (saw, heard, was told, read the ledger), and the DM can name it if asked «how does he know»; the
   hidden layer may give an NPC a source the player has not found, never omniscience. Measured by the judge: NPC lines
   that use knowledge with no source in the records (target 0).
+- **11r. A reroll names its card; a resolved card never comes back.** Fable (B): «I asked to reroll the failed Stealth;
+  the app rerolled the *successful* Perception on the card above it, turned a 19 into a 3, and left the 11 standing…
+  When two cards are stacked, the player needs to be able to point at which one. Also: a stale card (the Varn Deception
+  from an hour earlier) resurfaced mid-roof and the GM had to guess what it was.» Rules: the reroll request carries the
+  card's id and the screen shows which card it will touch; a card that was resolved cannot be re-shown or re-rolled;
+  the rerolls remaining are on screen (Fable C: «I never saw how many rerolls I had left»). Tests on stacked cards and on
+  a resolved card's id.
+- **11s. Mixed coin.** Fable (B): «I'm carrying 350 *gold* and nothing smaller, so I tipped a thirteen-year-old a gold
+  piece… A soldier would have silver and copper in his purse.» The DM's «your purse holds only gold» note came up at four
+  tables. Rule: the sheet's money is broken into mixed coin at campaign start (the owner's split, or a default of gold /
+  silver / copper by tenths), and the records show it.
 - **11 — what the fixes must not touch (the players' own list of what worked, across twelve notes).** NPCs with their
   own business and their own limit («Nobody was a clown, nobody was a signpost»; «never once warms up in a way that feels
   unearned»; «Helping people didn't make them instantly obedient»); a failed lie that earns more than the lie would have
