@@ -257,3 +257,13 @@ test("the report carries the stage's pre-registration byte for byte", async () =
   assert.ok(report.includes(createHash("sha256").update(body).digest("hex")));
   assert.ok(report.includes(X3_DESIGN_SHA256), "the report names X3's hash");
 });
+
+test("no credits left (HTTP 402 on OpenRouter) stops every paid call, like a 401/403/429", async () => {
+  const safety = createSafety({ gapMs: 0, lanes: 2 });
+  const fetcher = async () => json({ error: { code: 402, message: "Insufficient credits. Add more using the credits page" } }, 402);
+  const gate = dualPayer({ budgets: budgetsOf(), call: x3Caller({ keys: { openrouter: "k", anthropic: "k", openai: "o" }, fetcher, door: DOOR }), safety, sleep: async () => {} });
+  const r = await gate.paid(safety.lane(0), "subject", SUBJECTS.glm, null, [{ role: "user", content: "x" }], 10, "medium");
+  assert.match(r.error, /^HTTP 402/);
+  assert.match(String(gate.stopped), /402/);
+  assert.equal((await gate.paid(safety.lane(1), "check", SUBJECTS.kimi, null, [{ role: "user", content: "x" }], 10, "medium")).notSent, true);
+});
