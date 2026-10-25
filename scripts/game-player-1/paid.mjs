@@ -1,8 +1,9 @@
 // Game player 1: one meter for every paid call of the run — the DM's turns and preparation, the app's own in-turn checks,
 // the players, the welfare checks and the judges. It sits in front of `fetch` for the whole process, so a call made deep
 // inside the app is metered and gated exactly like the harness's own:
-//   - two ledgers and two caps (Anthropic, OpenAI); every call is held at its worst cost while in flight, and a call that
-//     could pass its cap is not sent;
+//   - a ledger and a cap per door (the Anthropic Console, OpenRouter for the Claude models since ANTHROPIC_PROVIDERS_1,
+//     OpenAI); every call is held at its worst cost while in flight, and a call that could pass its cap — or that goes
+//     to a door the stage has no ledger for — is not sent;
 //   - persona memory F2's rules: no retry after a refusal (a refusal closes its context: the session it belongs to sends
 //     nothing more), the circuit breaker at 3 refusals in the stage, a stop at once on an error that mentions
 //     suspension, access or policy (or HTTP 401/403), never a retry into a quota;
@@ -43,14 +44,18 @@ export const PRICES = {
   "text-embedding-3-large": { provider: "openai", input: 0.13, output: 0, cacheRead: 0.13, cacheWrite: 0.13 },
 };
 const PAID = [
-  { provider: "anthropic", test: (url) => url.startsWith("https://api.anthropic.com/") },
-  { provider: "openai", test: (url) => url.startsWith("https://api.openai.com/") },
+  { provider: "anthropic", format: "anthropic", test: (url) => url.startsWith("https://api.anthropic.com/") },
+  // OpenRouter's Anthropic-compatible door: the same Messages bodies and streams, its own ledger (list prices).
+  { provider: "openrouter", format: "anthropic", test: (url) => url.startsWith("https://openrouter.ai/") },
+  { provider: "openai", format: "openai", test: (url) => url.startsWith("https://api.openai.com/") },
 ];
+/** The app's model id for a door's id (OpenRouter's `anthropic/claude-opus-5.5` → `claude-opus-5-5`), for the prices. */
+export const priceId = (model) => String(model ?? "").replace(/^anthropic\//, "").replace(/(\d)\.(\d)/g, "$1-$2");
 const BLOCKED = (url) => /^https:\/\/([a-z0-9-]+\.)*fal\.(run|media|ai)\//i.test(url) || /\/v1\/images\//.test(url);
 
 /** USD of one call from its usage in the Anthropic field names (input = the uncached remainder). */
 export function costOf(model, usage = {}) {
-  const p = PRICES[model];
+  const p = PRICES[priceId(model)];
   if (!p) return null;
   const write1h = usage.cache_write_1h ?? 0, write5m = Math.max(0, (usage.cache_creation_input_tokens ?? 0) - write1h);
   return ((usage.input_tokens ?? 0) * p.input + (usage.cache_read_input_tokens ?? 0) * p.cacheRead + write5m * p.cacheWrite
@@ -58,7 +63,7 @@ export function costOf(model, usage = {}) {
 }
 /** The most a call can cost: its body as input at the dearest input rate (≈ 3 characters a token) and its output cap. */
 export function worstOf(model, bodyChars, maxTokens) {
-  const p = PRICES[model] ?? { input: 10, output: 50, cacheWrite: 12.5, cacheWrite1h: 20 };
+  const p = PRICES[priceId(model)] ?? { input: 10, output: 50, cacheWrite: 12.5, cacheWrite1h: 20 };
   return ((bodyChars / 3) * Math.max(p.input, p.cacheWrite ?? 0, p.cacheWrite1h ?? 0) + (maxTokens ?? 32_000) * p.output) / 1e6;
 }
 
@@ -94,7 +99,7 @@ export async function foldStream(provider, stream) {
     let event;
     try { event = JSON.parse(data); } catch { return; }
     if (provider === "anthropic") {
-      if (event.type === "message_start") { body.model = event.message?.model ?? null; body.id = event.message?.id ?? null; Object.assign(body.usage, event.message?.usage ?? {}); }
+      if (event.type === "message_start") { body.model = event.message?.model ?? null; body.id = event.message?.id ?? null; if (event.message?.provider) body.provider = event.message.provider; Object.assign(body.usage, event.message?.usage ?? {}); }
       else if (event.type === "message_delta") { Object.assign(body.usage, Object.fromEntries(Object.entries(event.usage ?? {}).filter(([, v]) => v !== null && v !== undefined))); if (event.delta?.stop_reason) body.stop_reason = event.delta.stop_reason; if (event.delta?.stop_details) body.stop_details = event.delta.stop_details; }
     } else if (event.type === "response.completed" || event.type === "response.incomplete" || event.type === "response.failed") body = event.response ?? body;
   };
@@ -131,7 +136,7 @@ export function createLedger(provider, capUsd, spentBefore = 0) {
  */
 export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realSleep, now = Date.now, log = () => {}, maxRefusals = MAX_REFUSALS, waits429 = WAITS_429, blocked = [] }) {
   const context = new AsyncLocalStorage();
-  const inFlight = { anthropic: 0, openai: 0 };
+  const inFlight = Object.fromEntries(Object.keys(ledgers).map((name) => [name, 0]));
   const closedSessions = new Map();
   let refusals = 0, stopped = null, waited429 = 0;
   const stop = (why) => { if (!stopped) { stopped = why; log(`STOP: ${why}`); } };
@@ -148,6 +153,8 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
     if (stopped) throw notSent(stopped);
     if (session && closedSessions.has(session)) throw notSent(`session ${session} closed after a refusal (no retry after a refusal)`);
     const ledger = ledgers[paid.provider];
+    if (!ledger) { stop(`a call to ${paid.provider}, which this stage has no ledger or cap for`); throw notSent(stopped); }
+    const format = paid.format;
     const text = typeof init.body === "string" ? init.body : "";
     let request = {};
     try { request = JSON.parse(text); } catch { request = {}; }
@@ -167,11 +174,12 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
       row.seconds = Math.round((now() - started) / 100) / 10;
       if (error) row.error = String(error).slice(0, 200);
       if (body) {
-        row.usage = usageOf(paid.provider, body);
+        row.usage = usageOf(format, body);
         row.costUsd = costOf(model, row.usage) ?? worst;
         row.stopReason = body.stop_reason ?? body.status ?? null;
         if (body.model && body.model !== model) row.servedModel = body.model;
-        const refusal = refusalOf(paid.provider, body);
+        if (typeof body.provider === "string") row.upstream = body.provider.slice(0, 80);
+        const refusal = refusalOf(format, body);
         if (refusal) countRefusal(row, refusal, session);
       } else if (row.status && row.status >= 200 && row.status < 300) row.costUsd = worst; // an unreadable success is booked at its worst
     };
@@ -180,7 +188,7 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
       for (let attempt = 0; ; attempt++) {
         response = await fetcher(input, init);
         row.status = response.status;
-        row.requestId = response.headers?.get?.("request-id") ?? response.headers?.get?.("x-request-id") ?? null;
+        row.requestId = response.headers?.get?.("request-id") ?? response.headers?.get?.("x-generation-id") ?? response.headers?.get?.("x-request-id") ?? null;
         if (response.status !== 429) break;
         const detail = await response.clone().text().catch(() => "");
         row.detail429 = [...(row.detail429 ?? []), detail.replace(/\s+/g, " ").slice(0, 400)];
@@ -198,6 +206,8 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
         const short = `HTTP ${response.status}: ${detail.replace(/\s+/g, " ").slice(0, 200)}`;
         if (STOP_PATTERN.test(detail) && !(response.status === 400 && /invalid_prompt|usage polic|flagged/i.test(detail))) stop(`an error mentions suspension, access or policy: ${short.slice(0, 160)}`);
         if (response.status === 401 || response.status === 403) stop(`the provider answered ${short.slice(0, 160)}`);
+        // OpenRouter's «insufficient credits»: the account must be topped up — never retried into.
+        if (response.status === 402) stop(`${paid.provider} refused for lack of credits: ${short.slice(0, 160)}`);
         if (paid.provider === "openai" && response.status === 400 && /invalid_prompt|usage polic|flagged|content.?filter/i.test(detail)) countRefusal(row, "invalid_prompt", session);
         settle(null, short);
         return response;
@@ -205,7 +215,7 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
       const type = response.headers?.get?.("content-type") ?? "";
       if (type.includes("text/event-stream") && response.body) {
         const [mine, theirs] = response.body.tee();
-        foldStream(paid.provider, mine).then((body) => settle(body), (error) => settle(null, error?.message ?? error));
+        foldStream(format, mine).then((body) => settle(body), (error) => settle(null, error?.message ?? error));
         return new Response(theirs, { status: response.status, statusText: response.statusText, headers: response.headers });
       }
       const body = await response.clone().json().catch(() => null);
@@ -236,7 +246,7 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
     stop,
     ledgers,
     /** Waits for every streamed call to be settled (their usage arrives after the app has read the stream). */
-    async drain(timeoutMs = 30_000) { const until = now() + timeoutMs; while ((inFlight.anthropic > 1e-12 || inFlight.openai > 1e-12) && now() < until) await sleep(200); },
+    async drain(timeoutMs = 30_000) { const until = now() + timeoutMs; while (Object.values(inFlight).some((x) => x > 1e-12) && now() < until) await sleep(200); },
   };
 }
 

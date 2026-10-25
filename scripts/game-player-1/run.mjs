@@ -49,6 +49,21 @@ export const GP1 = {
   prereportSummary: "_The paid run has not started: this page holds the player's prompt and the pre-registration, frozen before the first paid call. The results replace this line._",
 };
 
+/** ANTHROPIC_PROVIDERS_1: a ledger per door the stage's caps name (game player 1: the Console and OpenAI; a stage may add
+ * OpenRouter). The Claude models' calls go on the run's door, OpenAI's on its own. */
+export const ledgerSuffix = (door) => (door === "anthropic" ? "" : `-${door}`);
+export const DOOR_LABELS = { anthropic: "Anthropic", openrouter: "OpenRouter", bedrock: "Amazon Bedrock", openai: "OpenAI" };
+export const claudeDoor = (keys) => keys?.door?.provider ?? "anthropic";
+
+/** The run's keys, never printed: the Claude door (`APP_ANTHROPIC_PROVIDER`; scripts/eval/lib/anthropic-endpoint.mjs reads
+ * .env.local, else the APP_ variables) with its key, and OpenAI's. `door` is null on the Console (as before the doors). */
+export async function runKeys() {
+  const { scriptAnthropicEndpoint } = await import("../eval/lib/anthropic-endpoint.mjs");
+  const { providerKey } = await import("../eval/lib/keys.mjs");
+  const door = scriptAnthropicEndpoint();
+  return { anthropic: door.apiKey || null, openai: providerKey("OPENAI_API_KEY"), door: door.provider === "anthropic" ? null : door, keyName: door.keyName };
+}
+
 export const sessionKey = (table, player) => `${table}-${player}`;
 export function planOf({ tables = TABLES, players = PLAYER_ORDER, only = null } = {}) {
   const plan = [];
@@ -57,18 +72,20 @@ export function planOf({ tables = TABLES, players = PLAYER_ORDER, only = null } 
 }
 
 /** What one session is projected to cost, by provider, from what is known so far. */
-export function projection(entry, { ledgers, finished, running, estimate = ESTIMATE }) {
-  const spentOf = (key, provider) => ledgers[provider].calls.filter((c) => c.session === key).reduce((s, c) => s + (c.costUsd ?? 0), 0);
+export function projection(entry, { ledgers, finished, running, estimate = ESTIMATE, claude = "anthropic" }) {
+  const spentOf = (key, door) => (ledgers[door]?.calls ?? []).filter((c) => c.session === key).reduce((s, c) => s + (c.costUsd ?? 0), 0);
   const done = finished.filter((s) => s.record);
   const player = PLAYERS[entry.player];
-  const out = { anthropic: 0, openai: 0 };
-  // The DM side (always Anthropic): the mean of finished sessions, else the per-turn pace of running ones, else the estimate.
-  const dmFinished = done.map((s) => spentOf(s.key, "anthropic") - (PLAYERS[s.player].provider === "anthropic" ? playerSpent(ledgers, s.key) : 0));
-  const paced = running.filter((s) => s.turnsDone >= 3).map((s) => ((spentOf(s.key, "anthropic") - (PLAYERS[s.player].provider === "anthropic" ? playerSpent(ledgers, s.key) : 0)) / s.turnsDone) * TURNS);
+  const out = Object.fromEntries(Object.keys(ledgers).map((door) => [door, 0]));
+  // The DM side (always a Claude model, on the run's door): the mean of finished sessions, else the per-turn pace of
+  // running ones, else the estimate.
+  const dmFinished = done.map((s) => spentOf(s.key, claude) - (PLAYERS[s.player].provider === "anthropic" ? playerSpent(ledgers, s.key) : 0));
+  const paced = running.filter((s) => s.turnsDone >= 3).map((s) => ((spentOf(s.key, claude) - (PLAYERS[s.player].provider === "anthropic" ? playerSpent(ledgers, s.key) : 0)) / s.turnsDone) * TURNS);
   const dm = dmFinished.length ? Math.max(...dmFinished) : paced.length ? Math.max(...paced) : estimate.dm;
-  out.anthropic += dm + estimate.scoring;
+  out[claude] = (out[claude] ?? 0) + dm + estimate.scoring;
   const samePlayer = done.filter((s) => s.player === entry.player).map((s) => playerSpent(ledgers, s.key));
-  out[player.provider] += samePlayer.length ? Math.max(...samePlayer) : estimate.player[entry.player];
+  const playerDoor = player.provider === "anthropic" ? claude : player.provider;
+  out[playerDoor] = (out[playerDoor] ?? 0) + (samePlayer.length ? Math.max(...samePlayer) : estimate.player[entry.player]);
   return out;
 }
 const playerSpent = (ledgers, key) => Object.values(ledgers).flatMap((l) => l.calls).filter((c) => c.session === key && /^player|^note|^after/.test(c.purpose)).reduce((s, c) => s + (c.costUsd ?? 0), 0);
@@ -81,21 +98,34 @@ async function writeJson(file, value) {
 }
 const stampOf = (date = new Date()) => date.toISOString().slice(0, 19).replace(/[-:]/g, "").replace("T", "-");
 
-async function previousLedger(provider, stem = STEM) {
-  const file = join(RUNS, `${stem}-ledger${provider === "openai" ? "-openai" : ""}.json`);
-  if (!existsSync(file)) return { file, runs: [], spentUsd: 0 };
+/** A door's ledger file: its runs, the total spent, and what counts against the cap — everything, or with `since` (a
+ * stage's continuation with a cap of its own) only the runs finished since then. */
+async function previousLedger(door, stem = STEM, since = null) {
+  const file = join(RUNS, `${stem}-ledger${ledgerSuffix(door)}.json`);
+  if (!existsSync(file)) return { file, runs: [], spentUsd: 0, capSpent: 0 };
   const value = JSON.parse(await readFile(file, "utf8"));
-  return { file, runs: value.runs ?? [], spentUsd: value.spentUsd ?? 0 };
+  const runs = value.runs ?? [];
+  const capSpent = since ? runs.filter((r) => String(r.finishedAt ?? "") >= since).reduce((t, r) => t + (r.spentUsd ?? 0), 0) : value.spentUsd ?? 0;
+  return { file, runs, spentUsd: value.spentUsd ?? 0, capSpent };
+}
+/** The stage's ledgers, one per door its caps name, with what each door's cap has already counted. */
+export async function stageLedgers(stage, { dry = false } = {}) {
+  const doors = Object.keys(stage.caps);
+  const before = Object.fromEntries(await Promise.all(doors.map(async (door) => [door, dry ? { runs: [], spentUsd: 0, capSpent: 0 } : await previousLedger(door, stage.stem, stage.capsSince ?? null)])));
+  return { before, ledgers: Object.fromEntries(doors.map((door) => [door, createLedger(door, stage.caps[door], before[door].capSpent)])) };
 }
 
 /** The whole run. Returns the run record. */
 export async function run({ stage = GP1, dry = false, only = null, turns = TURNS, lanes = 4, score = true, log = console.log, fetcher = null, out = RUNS, sleep, label = null } = {}) {
   const started = new Date();
-  const keys = dry ? { anthropic: "sk-scripted", openai: "sk-scripted" } : { anthropic: process.env.APP_ANTHROPIC_API_KEY?.trim() || null, openai: process.env.APP_OPENAI_API_KEY?.trim() || null };
-  if (!keys.anthropic || !keys.openai) throw new Error("APP_ANTHROPIC_API_KEY and APP_OPENAI_API_KEY must be set (the cloud environment rpg-console)");
-  const caps = stage.caps;
-  const before = dry ? { anthropic: { runs: [], spentUsd: 0 }, openai: { runs: [], spentUsd: 0 } } : { anthropic: await previousLedger("anthropic", stage.stem), openai: await previousLedger("openai", stage.stem) };
-  const ledgers = { anthropic: createLedger("anthropic", caps.anthropic, before.anthropic.spentUsd), openai: createLedger("openai", caps.openai, before.openai.spentUsd) };
+  const keys = dry ? { anthropic: "sk-scripted", openai: "sk-scripted", door: null } : await runKeys();
+  if (!keys.anthropic || !keys.openai) throw new Error(`${keys.keyName ?? "ANTHROPIC_API_KEY"} and OPENAI_API_KEY must be set (the cloud environment rpg-console: their APP_ variables)`);
+  // A dry run is scripted (nothing is paid): every door of the stage gets room, whatever its real cap.
+  const caps = dry ? Object.fromEntries(Object.keys(stage.caps).map((door) => [door, 1000])) : stage.caps;
+  const { before, ledgers } = await stageLedgers({ ...stage, caps }, { dry });
+  const claude = claudeDoor(keys);
+  const doors = Object.keys(ledgers);
+  const spendLine = () => doors.map((door) => `${DOOR_LABELS[door] ?? door} $${ledgers[door].spentUsd.toFixed(2)}`).join(" · ");
   const base = fetcher ?? (dry ? scriptedFetcher() : globalThis.fetch.bind(globalThis));
   const meter = createMeter({ ledgers, fetcher: base, log, ...(sleep ? { sleep } : {}) });
   const uninstall = meter.install();
@@ -110,22 +140,25 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
   let saving = Promise.resolve();
   const save = () => { saving = saving.then(saveNow, saveNow); return saving; };
   const saveNow = async () => { runRecord.restamps = globalThis.__gamePlayerRestamps ?? 0; runRecord.stopped = meter.stopped; runRecord.refusals = meter.refusals; runRecord.waited429 = meter.waited429;
-    runRecord.callsByPurpose = Object.fromEntries(["anthropic", "openai"].map((provider) => [provider, ledgers[provider].calls.reduce((acc, c) => {
+    runRecord.callsByPurpose = Object.fromEntries(doors.map((provider) => [provider, ledgers[provider].calls.reduce((acc, c) => {
       const k = `${c.session ?? "—"} | ${String(c.purpose).replace(/\bt\d+\b/g, "t*").replace(/card \d+/, "card *").replace(/ \d$/, "")} | ${c.model}`; acc[k] = (acc[k] ?? 0) + 1; return acc; }, {})]));
-    runRecord.money = { anthropic: { cap: caps.anthropic, before: ledgers.anthropic.spentBefore, run: ledgers.anthropic.runUsd }, openai: { cap: caps.openai, before: ledgers.openai.spentBefore, run: ledgers.openai.runUsd } };
+    runRecord.claudeDoor = keys.door ? { provider: keys.door.provider, endpointHost: keys.door.endpointHost } : { provider: "anthropic", endpointHost: "api.anthropic.com" };
+    runRecord.money = Object.fromEntries(doors.map((door) => [door, { cap: caps[door], before: ledgers[door].spentBefore, run: ledgers[door].runUsd }]));
     await writeJson(runFile, runRecord); };
   const finished = [], running = [];
   const queue = [...plan];
   try {
     await new Promise((resolveAll) => {
       const fits = (entry) => {
-        const sum = { anthropic: 0, openai: 0 };
+        const sum = Object.fromEntries(doors.map((door) => [door, 0]));
         for (const s of [...running, entry]) {
-          const p = projection(s, { ledgers, finished, running, estimate: stage.estimate });
-          const spent = (provider) => ledgers[provider].calls.filter((c) => c.session === s.key).reduce((t, c) => t + (c.costUsd ?? 0), 0);
-          for (const provider of ["anthropic", "openai"]) sum[provider] += Math.max(0, p[provider] - (s === entry ? 0 : spent(provider)));
+          const p = projection(s, { ledgers, finished, running, estimate: stage.estimate, claude });
+          const spent = (door) => ledgers[door].calls.filter((c) => c.session === s.key).reduce((t, c) => t + (c.costUsd ?? 0), 0);
+          for (const door of doors) sum[door] += Math.max(0, (p[door] ?? 0) - (s === entry ? 0 : spent(door)));
         }
-        return ["anthropic", "openai"].every((provider) => ledgers[provider].spentUsd + sum[provider] <= ledgers[provider].capUsd);
+        // A projected cost on a door the stage has no ledger for never fits.
+        if (Object.keys(projection(entry, { ledgers, finished, running, estimate: stage.estimate, claude })).some((door) => !ledgers[door])) return false;
+        return doors.every((door) => ledgers[door].spentUsd + sum[door] <= ledgers[door].capUsd);
       };
       const pump = () => {
         while (queue.length && running.length < lanes && !meter.stopped) {
@@ -146,7 +179,7 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
               finished.push(slot);
               if (slot.record) runRecord.sessions.push(slot.record); else runRecord.sessions.push({ key: slot.key, table: slot.table, player: slot.player, crashed: slot.error ?? "no record" });
               await save();
-              log(`${new Date().toISOString().slice(11, 19)} done ${entry.key}: ${slot.record ? `${slot.record.turns.length} turns, ended by ${slot.record.ended?.reason}` : "crashed"} · Anthropic $${ledgers.anthropic.spentUsd.toFixed(2)} · OpenAI $${ledgers.openai.spentUsd.toFixed(2)}`);
+              log(`${new Date().toISOString().slice(11, 19)} done ${entry.key}: ${slot.record ? `${slot.record.turns.length} turns, ended by ${slot.record.ended?.reason}` : "crashed"} · ${spendLine()}`);
               pump();
             });
         }
@@ -178,7 +211,8 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
 
 /** The scoring pass: the blind judges over every session (in each session's metering context). */
 export async function scoreAll(runRecord, { meter, keys, log = console.log, stage = GP1, models = JUDGE_MODELS }) {
-  const rolls = await import("../../src/lib/gameplay/dm-loop/roll-check.ts");  for (const session of runRecord.sessions.filter((s) => s.turns)) {
+  const rolls = await import("../../src/lib/gameplay/dm-loop/roll-check.ts");
+  for (const session of runRecord.sessions.filter((s) => s.turns)) {
     const ask = ({ model, system, user, maxTokens, effort, purpose }) => paidCall({ meter, session: `score ${session.key}`, purpose, log,
       call: () => judgeCall({ model, system, user, maxTokens, effort, keys, fetcher: meter.fetch }) });
     // The app's own roll check (Haiku); with the stand-in judges, the same request and parser on the stand-in model.
@@ -193,7 +227,8 @@ export async function scoreAll(runRecord, { meter, keys, log = console.log, stag
   }
   // The stage's own scoring after the shared judges (game player 2: the authorship of threads, the goals' scale).
   if (stage.score) await stage.score(runRecord, { meter, keys, log });
-  runRecord.scoring = { judges: models.label, standIn: Boolean(models.standIn), at: new Date().toISOString() };  const welfareStops = runRecord.sessions.filter((s) => ["welfare", "no-check"].includes(s.ended?.reason)).length;
+  runRecord.scoring = { judges: models.label, standIn: Boolean(models.standIn), at: new Date().toISOString() };
+  const welfareStops = runRecord.sessions.filter((s) => ["welfare", "no-check"].includes(s.ended?.reason)).length;
   const distress = runRecord.sessions.flatMap((s) => s.welfare ?? []).filter((w) => w.verdict?.distress === 1).length;
   runRecord.verdicts = stage.verdicts(runRecord.sessions.filter((s) => s.turns), { refusals: meter.refusals, welfareStops, distress });
   delete runRecord.verdicts.medianWords;
@@ -206,14 +241,16 @@ async function writeOutputs(runRecord, { ledgers, before, dry, out, runFile, met
     await writeFile(join(out, `${stem}-dry-run.md`), stage.dryRun(runRecord, ledgers));
     return;
   }
-  for (const provider of ["anthropic", "openai"]) {
-    const suffix = provider === "openai" ? "-openai" : "";
+  for (const provider of Object.keys(ledgers)) {
+    // A door this run never called keeps its ledger file as it was.
+    if (!ledgers[provider].calls.length) continue;
+    const suffix = ledgerSuffix(provider);
     const runs = [...before[provider].runs, { finishedAt, file: runFile.startsWith(RUNS) ? runFile.slice(RUNS.length + 1) : `(outside the repository) ${runFile.split("/").pop()}`, what: runRecord.label ?? "the paid run", spentUsd: ledgers[provider].runUsd, stopped: meter.stopped, calls: ledgers[provider].calls }];
     const spentUsd = before[provider].spentUsd + ledgers[provider].runUsd;
     await writeJson(join(RUNS, `${stem}-ledger${suffix}.json`), { capUsd: ledgers[provider].capUsd, spentUsd, updatedAt: finishedAt, runs });
     const all = createLedger(provider, ledgers[provider].capUsd, 0);
     all.calls.push(...runs.flatMap((r) => r.calls));
-    await writeFile(join(RUNS, `${stem}-ledger${suffix}.md`), ledgerMarkdown(all, `${stage.title} — the ${provider === "openai" ? "OpenAI" : "Anthropic"} ledger`));
+    await writeFile(join(RUNS, `${stem}-ledger${suffix}.md`), ledgerMarkdown(all, `${stage.title} — the ${DOOR_LABELS[provider] ?? provider} ledger`));
   }
   const transcripts = join(out, `${stem}-transcripts`);
   await mkdir(transcripts, { recursive: true });
@@ -226,14 +263,13 @@ async function writeOutputs(runRecord, { ledgers, before, dry, out, runFile, met
 /** The scoring pass again on a finished run record (the judges only), its calls added to the ledgers. */
 export async function rescore(file, { log = console.log, stage = GP1, standIn = false } = {}) {
   const runRecord = JSON.parse(await readFile(file, "utf8"));
-  const keys = { anthropic: process.env.APP_ANTHROPIC_API_KEY?.trim() || null, openai: process.env.APP_OPENAI_API_KEY?.trim() || null };
+  const keys = await runKeys();
   if (!keys[standIn ? "openai" : "anthropic"]) throw new Error("the judges' key must be set");
   runRecord.label = standIn ? "the stand-in scoring (GPT-6 Luna)" : "the scoring";
   for (const session of runRecord.sessions) delete session.tags;
-  const before = { anthropic: await previousLedger("anthropic", stage.stem), openai: await previousLedger("openai", stage.stem) };
-  const ledgers = { anthropic: createLedger("anthropic", stage.caps.anthropic, before.anthropic.spentUsd), openai: createLedger("openai", stage.caps.openai, before.openai.spentUsd) };
-  // The stand-in pass never calls Anthropic (the organisation's limit): such a call is refused before it is sent.
-  const meter = createMeter({ ledgers, fetcher: globalThis.fetch.bind(globalThis), log, blocked: standIn ? ["anthropic"] : [] });
+  const { before, ledgers } = await stageLedgers(stage);
+  // The stand-in pass never calls a Claude door (the organisation's limit): such a call is refused before it is sent.
+  const meter = createMeter({ ledgers, fetcher: globalThis.fetch.bind(globalThis), log, blocked: standIn ? ["anthropic", "openrouter", "bedrock"] : [] });
   const uninstall = meter.install();
   try { await scoreAll(runRecord, { meter, keys, log, stage, models: standIn ? STANDIN_JUDGES : JUDGE_MODELS }); } finally { uninstall(); }
   await writeJson(file, runRecord);
@@ -274,7 +310,7 @@ export async function rebuild(files, { stage = GP1 } = {}) {
   for (const file of [files].flat()) records.push({ ...JSON.parse(await readFile(file, "utf8")), file: file.split("/").pop() });
   const combined = combineRuns(records, stage);
   const ledgers = {};
-  for (const provider of ["anthropic", "openai"]) {
+  for (const provider of Object.keys(stage.caps)) {
     const saved = await previousLedger(provider, stage.stem);
     ledgers[provider] = createLedger(provider, stage.caps[provider], 0);
     ledgers[provider].calls.push(...saved.runs.flatMap((r) => r.calls ?? []));
@@ -286,16 +322,17 @@ export async function rebuild(files, { stage = GP1 } = {}) {
   if (existsSync(summary)) combined.summary = (await readFile(summary, "utf8")).trim();
   // The money by run (the smoke, the sessions, the scoring), each run's sessions apart.
   combined.money = { caps: stage.caps };
-  for (const provider of ["anthropic", "openai"]) {
+  for (const provider of Object.keys(stage.caps)) {
     combined.money[provider] = (await previousLedger(provider, stage.stem)).runs.map((r) => ({ what: r.what ?? r.file ?? "a run", spentUsd: r.spentUsd ?? 0, calls: (r.calls ?? []).length,
       sessions: (r.calls ?? []).reduce((acc, c) => { const k = /^score /.test(c.session ?? "") ? "scoring" : c.session ?? "—"; acc[k] = (acc[k] ?? 0) + (c.costUsd ?? 0); return acc; }, {}) }));
   }
-  await writeFile(join(RUNS, `${stage.stem}-report.md`), stage.report([combined], ledgers));  return combined;
+  await writeFile(join(RUNS, `${stage.stem}-report.md`), stage.report([combined], ledgers));
+  return combined;
 }
 
 /** The report before the first paid call: the setup, the player's prompt and the pre-registration; results pending. */
 export async function prereport({ stage = GP1 } = {}) {
-  const ledgers = { anthropic: createLedger("anthropic", stage.caps.anthropic), openai: createLedger("openai", stage.caps.openai) };
+  const ledgers = Object.fromEntries(Object.keys(stage.caps).map((door) => [door, createLedger(door, stage.caps[door])]));
   await writeFile(join(RUNS, `${stage.stem}-report.md`), stage.report([{ sessions: [], undone: [], refusals: 0, waited429: 0, restamps: 0,
     summary: stage.prereportSummary }], ledgers));
 }

@@ -152,6 +152,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
       break;
     }
     turn.reply = String(current.narration ?? "").trim();
+    log(`  ${key} t${k} committed`);
     turn.rolls = (current.checks ?? []).map((check) => ({ id: check.id, actor: check.actorName, kind: check.kind, reason: check.reason ?? null, total: check.total, dc: check.dc, success: check.success,
       natural: check.natural ?? null, rollNumber: check.rollNumber, interactive: check.interactive, revealedByPlayer: revealed.has(`${check.id}:${check.rollNumber}`) }));
     turn.changes = (current.changes ?? []).map((c) => ({ tool: c.tool, summary: c.summary }));

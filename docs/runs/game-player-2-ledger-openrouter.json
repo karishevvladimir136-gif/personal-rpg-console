@@ -1,0 +1,94 @@
+{
+  "capUsd": 70,
+  "spentUsd": 0.0033076,
+  "updatedAt": "2026-10-25T08:52:04.943Z",
+  "runs": [
+    {
+      "finishedAt": "2026-10-25T08:52:04.943Z",
+      "file": null,
+      "what": "the door smoke (3 calls) before the rerun",
+      "spentUsd": 0.0033076,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "at": "2026-10-25T08:51:57.606Z",
+          "session": "smoke",
+          "purpose": "smoke judge haiku",
+          "provider": "openrouter",
+          "model": "anthropic/claude-haiku-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 31,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 0,
+            "cache_write_1h": 0,
+            "output_tokens": 9
+          },
+          "costUsd": 0.000007599999999999999,
+          "seconds": 1.2,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1792918318-uYw828ov9aM2VwaHwW95",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        },
+        {
+          "n": 2,
+          "at": "2026-10-25T08:51:58.792Z",
+          "session": "smoke",
+          "purpose": "smoke player opus",
+          "provider": "openrouter",
+          "model": "anthropic/claude-opus-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 50,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 0,
+            "cache_write_1h": 0,
+            "output_tokens": 45
+          },
+          "costUsd": 0.0011,
+          "seconds": 3,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1792918318-nBE54i3VLnrHQKlLckYI",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        },
+        {
+          "n": 3,
+          "at": "2026-10-25T08:52:01.823Z",
+          "session": "smoke",
+          "purpose": "smoke player fable",
+          "provider": "openrouter",
+          "model": "anthropic/claude-fable-5.1",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 50,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 0,
+            "cache_write_1h": 0,
+            "output_tokens": 34
+          },
+          "costUsd": 0.0022,
+          "seconds": 3.1,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1792918321-S1QhgIofywl0Iu6Nrn5S",
+          "waits429": 0,
+          "upstream": "Anthropic"
+        }
+      ]
+    }
+  ]
+}

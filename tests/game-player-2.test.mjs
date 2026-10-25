@@ -24,6 +24,11 @@ import { DIGNIFIED_EXITS, PREREGISTRATION, PURE_TABLE_LINE, READINGS } from "../
 import { authorshipNumbers, authorshipRequest, combinePasses, parseAuthorship, sessionEntries, slope } from "../scripts/game-player-2/authorship.mjs";
 import { scaleOf, verdictsC } from "../scripts/game-player-2/score.mjs";
 import { reportMarkdown } from "../scripts/game-player-2/report.mjs";
+import { createLedger, createMeter } from "../scripts/game-player-1/paid.mjs";
+import { judgeCall } from "../scripts/game-player-1/players.mjs";
+import { projection } from "../scripts/game-player-1/run.mjs";
+import { CAPS, ESTIMATE } from "../scripts/game-player-2/run.mjs";
+import { anthropicEndpoint } from "../src/lib/server/anthropic-endpoint.ts";
 
 const stage = readFileSync(new URL("../docs/stages/GAME_PLAYER_2.md", import.meta.url), "utf8");
 const node = (script) => execFileSync(process.execPath, ["--experimental-transform-types", "--input-type=module", "-e", script], { cwd: new URL("..", import.meta.url), encoding: "utf8",
@@ -271,6 +276,56 @@ test("C0–C4 read the numbers as frozen: the spread, an early end, B against C,
   assert.equal(verdictsC(c, { refusals: 2 }).C0.supported, false);
   assert.equal(verdictsC(c, {}).C1.supported, null, "not testable without A and B");
   assert.deepEqual([scaleOf({ small: 1, large: 0 }), scaleOf({ small: 0, large: 1 }), scaleOf({ small: 0, large: 0 }), scaleOf({ small: 1, large: 1 }), scaleOf(null)], [1, 3, 2, 2, null]);
+});
+
+// ---- the doors (ANTHROPIC_PROVIDERS_1): the continuation runs the Claude models through OpenRouter -------------------------
+
+const reply = (model, extra = {}) => new Response(JSON.stringify({ id: "msg_1", type: "message", model, provider: "Anthropic", content: [{ type: "text", text: "ok" }], stop_reason: "end_turn",
+  usage: { input_tokens: 1000, output_tokens: 100, cache_read_input_tokens: 0, cache_creation_input_tokens: 0 }, ...extra }), { status: 200, headers: { "content-type": "application/json", "x-generation-id": "gen-test-1" } });
+const post = (model) => ({ method: "POST", body: JSON.stringify({ model, max_tokens: 100, messages: [] }) });
+
+test("the meter books an OpenRouter call on its own ledger at the app's prices; the $0 Console cap refuses before sending", async () => {
+  const ledgers = { anthropic: createLedger("anthropic", 0), openrouter: createLedger("openrouter", 5), openai: createLedger("openai", 5) };
+  const sent = [];
+  const meter = createMeter({ ledgers, fetcher: async (url) => { sent.push(url); return reply("anthropic/claude-haiku-5.5"); } });
+  await meter.fetch("https://openrouter.ai/api/v1/messages", post("anthropic/claude-haiku-5.5"));
+  const row = ledgers.openrouter.calls[0];
+  assert.ok(Math.abs(row.costUsd - (1000 * 0.1 + 100 * 0.5) / 1e6) < 1e-12, "Haiku 5.5's list prices, by the app's id");
+  assert.deepEqual([row.upstream, row.requestId, ledgers.anthropic.calls.length], ["Anthropic", "gen-test-1", 0]);
+  await assert.rejects(meter.fetch("https://api.anthropic.com/v1/messages", post("claude-haiku-5-5")), /not sent/);
+  assert.match(meter.stopped, /the anthropic cap of \$0 would be passed/);
+  assert.deepEqual(sent, ["https://openrouter.ai/api/v1/messages"], "the Console call never left the process");
+  const noLedger = createMeter({ ledgers: { anthropic: createLedger("anthropic", 5), openai: createLedger("openai", 5) }, fetcher: async () => reply("x") });
+  await assert.rejects(noLedger.fetch("https://openrouter.ai/api/v1/messages", post("anthropic/claude-opus-5.5")), /not sent/);
+  assert.match(noLedger.stopped, /no ledger or cap for/);
+  const broke = createMeter({ ledgers: { openrouter: createLedger("openrouter", 5) }, fetcher: async () => new Response(JSON.stringify({ error: { code: 402, message: "Insufficient credits" } }), { status: 402 }) });
+  await broke.fetch("https://openrouter.ai/api/v1/messages", post("anthropic/claude-opus-5.5"));
+  assert.match(broke.stopped, /refused for lack of credits/, "OpenRouter's 402 stops the run");
+});
+
+test("a player's or a judge's Claude call goes through the run's door; on the Console door it is sent as before", async () => {
+  const door = anthropicEndpoint({ ANTHROPIC_PROVIDER: "openrouter", OPENROUTER_API_KEY: "test-door-key" });
+  const seen = [];
+  const fetcher = async (url, init) => { seen.push({ url, init }); return reply("anthropic/claude-opus-5.5"); };
+  const r = await judgeCall({ model: "claude-opus-5-5", system: "s", user: "u", maxTokens: 10, effort: "low", keys: { anthropic: "test-door-key", door }, fetcher });
+  assert.equal(r.text, "ok");
+  assert.equal(seen[0].url, "https://openrouter.ai/api/v1/messages");
+  assert.equal(seen[0].init.headers.authorization, "Bearer test-door-key");
+  assert.equal(seen[0].init.headers["x-api-key"], undefined, "no Console header on another door");
+  assert.equal(JSON.parse(seen[0].init.body).model, "anthropic/claude-opus-5.5");
+  await judgeCall({ model: "claude-opus-5-5", system: "s", user: "u", maxTokens: 10, effort: "low", keys: { anthropic: "test-console-key", door: null }, fetcher });
+  assert.equal(seen[1].url, "https://api.anthropic.com/v1/messages");
+  assert.equal(JSON.parse(seen[1].init.body).model, "claude-opus-5-5");
+});
+
+test("the continuation's projection puts the DM and the Claude players on OpenRouter; four sessions fit its caps at once", () => {
+  const ledgers = Object.fromEntries(Object.entries(CAPS).map(([door, cap]) => [door, createLedger(door, cap)]));
+  const at = (player) => projection({ key: `C-${player}`, table: "C", player }, { ledgers, finished: [], running: [], estimate: ESTIMATE, claude: "openrouter" });
+  assert.deepEqual(at("fable"), { anthropic: 0, openrouter: ESTIMATE.dm + ESTIMATE.scoring + ESTIMATE.player.fable, openai: 0 });
+  assert.deepEqual(at("sol"), { anthropic: 0, openrouter: ESTIMATE.dm + ESTIMATE.scoring, openai: ESTIMATE.player.sol });
+  const total = ["opus", "fable", "astra", "sol"].map(at).reduce((t, p) => ({ openrouter: t.openrouter + p.openrouter, openai: t.openai + p.openai }), { openrouter: 0, openai: 0 });
+  assert.ok(total.openrouter <= CAPS.openrouter && total.openai <= CAPS.openai, JSON.stringify(total));
+  assert.equal(CAPS.anthropic, 0, "the Console is closed to the continuation");
 });
 
 // ---- the whole pipeline --------------------------------------------------------------------------------------------------------

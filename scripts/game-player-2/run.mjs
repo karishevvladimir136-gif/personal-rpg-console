@@ -12,27 +12,38 @@
 //   options: --sessions C-opus,C-sol --turns 20 --no-score --label <text>
 // Caps: $110 Anthropic, $40 OpenAI, on this stage's own ledgers (docs/runs/game-player-2-ledger*.json); the keys are
 // APP_ANTHROPIC_API_KEY and APP_OPENAI_API_KEY, never printed.
+// The continuation (2026-10-25, after the first attempt was cut by the organisation's monthly Console limit): the Claude
+// models through OpenRouter (APP_ANTHROPIC_PROVIDER=openrouter, APP_OPENROUTER_API_KEY; node with NODE_USE_ENV_PROXY=1 in
+// the cloud), its own caps — $70 OpenRouter, $10 OpenAI, counted from CONTINUATION_SINCE — and $0 on the Console, so a
+// call that would reach it stops the run before it is sent.
 import { readFile, rename, writeFile } from "node:fs/promises";
 import { readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
-import { GP1, RUNS, prereport, rebuild, rescore, run } from "../game-player-1/run.mjs";
-import { createLedger, createMeter } from "../game-player-1/paid.mjs";
+import { DOOR_LABELS, RUNS, ledgerSuffix, prereport, rebuild, rescore, run, runKeys, stageLedgers } from "../game-player-1/run.mjs";
+import { createLedger, createMeter, ledgerMarkdown } from "../game-player-1/paid.mjs";
 import { judgeCall } from "../game-player-1/players.mjs";
 import { paidCall } from "../game-player-1/session.mjs";
 import { DESIGN_SHA256, TABLES } from "./frozen.mjs";
 import { AB_FILE, loadAB, measureAB, scoreStage, verdictsC } from "./score.mjs";
 import { STEM, dryRunMarkdown, reportMarkdown } from "./report.mjs";
 
-export const CAPS = { anthropic: 110, openai: 40 };
-/** Game player 1's estimate (its DM per session is the same DM), plus the authorship passes in the scoring. */
-export const ESTIMATE = { ...GP1.estimate, scoring: 2 };
+/** The first attempt's caps (the Console door): $110 Anthropic, $40 OpenAI; it spent $11.45 and $0.56. */
+export const FIRST_CAPS = { anthropic: 110, openai: 40 };
+/** The continuation's caps, counted from its start. */
+export const CAPS = { anthropic: 0, openrouter: 70, openai: 10 };
+export const CONTINUATION_SINCE = "2026-10-25T08:44:00Z";
+/** A session's cost by door before one is measured, from the first attempt's ledger: the DM ≈ $0.30–0.40 a turn early on
+ * (≈ $12 for 20 turns as the history grows, the wizard included), the Opus player $0.23 and Fable $0.44 for five turns,
+ * Astra and Sol $0.56 together for sixteen; the scoring with the authorship passes ≈ $1.5. */
+export const ESTIMATE = { dm: 12, player: { opus: 2, fable: 4, astra: 4, sol: 1.5 }, scoring: 1.5 };
+
 
 /** The judge call of this stage's own scoring: one Anthropic call in the given session's metering context. */
 export const askWith = ({ meter, keys, log }) => ({ model, system, user, maxTokens, effort, purpose, session }) => paidCall({ meter, session, purpose, log,
   call: () => judgeCall({ model, system, user, maxTokens, effort, keys, fetcher: meter.fetch }) });
 
 export const GP2 = {
-  name: "GAME_PLAYER_2", stem: STEM, title: "Game player 2", caps: CAPS, estimate: ESTIMATE, tables: TABLES, design: DESIGN_SHA256,
+  name: "GAME_PLAYER_2", stem: STEM, title: "Game player 2", caps: CAPS, capsSince: CONTINUATION_SINCE, estimate: ESTIMATE, tables: TABLES, design: DESIGN_SHA256,
   report: (runs, ledgers) => reportMarkdown(runs, ledgers, loadAB(RUNS)), dryRun: (runRecord, ledgers) => dryRunMarkdown(runRecord, ledgers),
   verdicts: (sessions, counts) => verdictsC(sessions, counts, loadAB(RUNS)),
   score: (runRecord, { meter, keys, log }) => scoreStage(runRecord, { ask: askWith({ meter, keys, log }) }),
@@ -44,11 +55,10 @@ const latestRun = () => readdirSync(RUNS).filter((f) => new RegExp(`^${STEM}-run
 /** Tables A and B: the authorship passes and the goal's scale on game player 1's sessions, on this stage's ledgers. Then
  * the verdicts and the report of the latest Table C run again, with A and B in them. */
 export async function measureTablesAB({ log = console.log } = {}) {
-  const keys = { anthropic: process.env.APP_ANTHROPIC_API_KEY?.trim() || null, openai: process.env.APP_OPENAI_API_KEY?.trim() || null };
-  if (!keys.anthropic) throw new Error("APP_ANTHROPIC_API_KEY must be set");
-  const previous = async (provider) => { try { return JSON.parse(await readFile(join(RUNS, `${STEM}-ledger${provider === "openai" ? "-openai" : ""}.json`), "utf8")); } catch { return { runs: [], spentUsd: 0 }; } };
-  const before = { anthropic: await previous("anthropic"), openai: await previous("openai") };
-  const ledgers = { anthropic: createLedger("anthropic", CAPS.anthropic, before.anthropic.spentUsd ?? 0), openai: createLedger("openai", CAPS.openai, before.openai.spentUsd ?? 0) };
+  const keys = await runKeys();
+  if (!keys.anthropic) throw new Error(`${keys.keyName} must be set (its APP_ variable)`);
+  // The app is not opened here: the judges' calls go through the door by the harness's adapter alone.
+  const { before, ledgers } = await stageLedgers(GP2);
   const meter = createMeter({ ledgers, fetcher: globalThis.fetch.bind(globalThis), log });
   const uninstall = meter.install();
   let ab;
@@ -57,11 +67,14 @@ export async function measureTablesAB({ log = console.log } = {}) {
   await rename(join(RUNS, `${AB_FILE}.tmp`), join(RUNS, AB_FILE));
   // The ledgers, with this pass as one more run.
   const finishedAt = new Date().toISOString();
-  for (const provider of ["anthropic", "openai"]) {
+  for (const provider of Object.keys(ledgers)) {
     if (!ledgers[provider].calls.length) continue;
-    const suffix = provider === "openai" ? "-openai" : "";
+    const suffix = ledgerSuffix(provider);
     const runs = [...(before[provider].runs ?? []), { finishedAt, file: AB_FILE, what: "Tables A and B: authorship and the goal's scale", spentUsd: ledgers[provider].runUsd, stopped: meter.stopped, calls: ledgers[provider].calls }];
     await writeFile(join(RUNS, `${STEM}-ledger${suffix}.json`), `${JSON.stringify({ capUsd: CAPS[provider], spentUsd: (before[provider].spentUsd ?? 0) + ledgers[provider].runUsd, updatedAt: finishedAt, runs }, null, 2)}\n`);
+    const all = createLedger(provider, CAPS[provider], 0);
+    all.calls.push(...runs.flatMap((r) => r.calls ?? []));
+    await writeFile(join(RUNS, `${STEM}-ledger${suffix}.md`), ledgerMarkdown(all, `Game player 2 — the ${DOOR_LABELS[provider] ?? provider} ledger`));
   }
   // The verdicts of the latest Table C run read A and B now.
   const file = latestRun();

@@ -67,7 +67,8 @@ export function installHooks() {
 
 /**
  * Opens the local database (every migration, one owner registered) and loads the server modules. `keys` are the
- * app's provider keys (set on this process's environment, where the server reads them). `fake` serves the DM's
+ * app's provider keys (set on this process's environment, where the server reads them): `anthropic` is the key of the
+ * Claude door `keys.door` names (src/lib/server/anthropic-endpoint.ts; the Console when there is none). `fake` serves the DM's
  * requests with the app's own stand-in DM (RPG_DM_FAKE_MODEL=1: no model call; the dry run and the tests).
  */
 export async function openApp({ keys = {}, fake = false } = {}) {
@@ -80,7 +81,11 @@ export async function openApp({ keys = {}, fake = false } = {}) {
   });
   for (const name of ["RPG_DM_FAKE_MODEL", "RPG_ASTRA_PRIMARY_P1", "OPENAI_DM_MODEL"]) delete process.env[name];
   if (fake) process.env.RPG_DM_FAKE_MODEL = "1";
-  if (keys.anthropic) process.env.ANTHROPIC_API_KEY = keys.anthropic; else delete process.env.ANTHROPIC_API_KEY;
+  // ANTHROPIC_PROVIDERS_1: the app's own Claude calls take the run's door (`keys.door`, else the Console), and this process
+  // holds only that door's key — never a Console key on another door.
+  for (const name of ["ANTHROPIC_API_KEY", "OPENROUTER_API_KEY", "BEDROCK_API_KEY", "ANTHROPIC_PROVIDER"]) delete process.env[name];
+  if (keys.door) process.env.ANTHROPIC_PROVIDER = keys.door.provider;
+  if (keys.anthropic) process.env[keys.door?.keyName ?? "ANTHROPIC_API_KEY"] = keys.anthropic;
   if (keys.openai) process.env.OPENAI_API_KEY = keys.openai; else delete process.env.OPENAI_API_KEY;
   const load = (path) => import(pathToFileURL(join(SRC, path)).href);
   const server = {

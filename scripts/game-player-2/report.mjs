@@ -2,7 +2,10 @@
 // player 1's tables, transcripts and money section are reused as they are.
 import { AFTER_QUESTION, NOTE_QUESTION, PLAYER_PROMPT_HEAD, PLAYER_PROMPT_TAIL, SESSION_OVER, playerFiles } from "../game-player-1/frozen.mjs";
 import { PLAYERS } from "../game-player-1/players.mjs";
-import { DIFFERENCES, cell, dmTable, fence, moneySection, playerTable, quote, tagOf, yes } from "../game-player-1/report.mjs";
+import { existsSync, readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { DIFFERENCES, cell, dmTable, fence, playerTable, quote, tagOf, usd, yes } from "../game-player-1/report.mjs";
 import { sessionNumbers } from "../game-player-1/score.mjs";
 import { DESIGN_SHA256, DIGNIFIED_EXITS, PLAYER_ORDER, PREREGISTRATION, PURE_TABLE, PURE_TABLE_LINE, READINGS, TABLE, TURNS } from "./frozen.mjs";
 import { PURE_SIMULATION_LINE } from "../../src/lib/gameplay/dm-loop/roles.ts";
@@ -10,6 +13,41 @@ import { PURE_SIMULATION_LINE_RU } from "../../src/lib/gameplay/dm-loop/roles-ru
 import { abRows, rowOf } from "./score.mjs";
 
 export const STEM = "game-player-2";
+const RUNS = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "docs", "runs");
+/** The first attempt (the Console door, cut at 5–9 turns by the organisation's monthly limit), kept as it was. */
+export const FIRST_RUN = "game-player-2-run-20261025-051726.json";
+const DOORS = { anthropic: "Anthropic Console", openrouter: "OpenRouter", openai: "OpenAI" };
+
+/** The first attempt's sessions, from its own run record: what they were when the limit cut them. */
+export function firstAttemptSection(runsDir = RUNS) {
+  const file = join(runsDir, FIRST_RUN);
+  if (!existsSync(file)) return "";
+  const record = JSON.parse(readFileSync(file, "utf8"));
+  const rows = (record.sessions ?? []).filter((x) => x.turns).sort((a, b) => order(a.key) - order(b.key)).map((x) => {
+    const flags = (x.welfare ?? []).filter((w) => w.verdict?.distress === 1).length;
+    return `| ${x.key} | ${x.turns.length} | ${x.ended?.reason ?? "?"} | ${x.campaign?.prep?.pureSimulation ? "skipped" : x.campaign?.prep?.hasLayer ? "a layer" : "none"} | ${(x.welfare ?? []).length} | ${flags} |`;
+  });
+  return ["## The first attempt (cut, kept as it was)", "",
+    `Started ${String(record.startedAt ?? "").slice(0, 16).replace("T", " ")} UTC on the Anthropic Console; stopped when the organisation crossed its monthly API usage threshold (${record.stopped ? "the meter's stop: «a quota error from anthropic (HTTP 429)»" : "—"}). Not scored, no notes asked. Run record \`docs/runs/${FIRST_RUN}\`; transcripts unchanged in \`docs/runs/game-player-2-transcripts/cut-2026-10-25/\`. The rerun below starts four fresh campaigns; nothing carries over.`, "",
+    "| Session | Turns | Ended by | Prep | Welfare checks | Distress flags |", "| --- | --- | --- | --- | --- | --- |", ...rows, ""].join("\n");
+}
+
+/** The money by door and by run: each ledger file's runs (the first attempt, the rerun, the scoring passes). */
+export function moneyByDoor(money, ledgers) {
+  const doors = Object.keys(ledgers);
+  const runsOf = (door) => money?.[door] ?? [];
+  const whats = [...new Set(doors.flatMap((door) => runsOf(door).map((r) => r.what)))];
+  const sum = (door, what) => runsOf(door).filter((r) => what === undefined || r.what === what).reduce((t, r) => t + (r.spentUsd ?? 0), 0);
+  const head = `| Run | ${doors.map((d) => DOORS[d] ?? d).join(" | ")} |`;
+  const lines = money ? [head, `| --- |${doors.map(() => " --- |").join("")}`,
+    ...whats.map((w) => `| ${w} | ${doors.map((d) => usd(sum(d, w))).join(" | ")} |`),
+    `| **All runs** | ${doors.map((d) => `**${usd(sum(d))}**`).join(" | ")} |`, ""]
+    : [...doors.map((d) => `- ${DOORS[d] ?? d}: this run ${usd(ledgers[d].runUsd)}; counted against the cap ${usd(ledgers[d].spentUsd)} of $${ledgers[d].capUsd}.`), ""];
+  return ["## The money, by door", "",
+    "The first attempt ran on the Console (caps $110 Anthropic, $40 OpenAI). The continuation runs the Claude models through OpenRouter, with caps of its own counted from its start: $70 OpenRouter, $10 OpenAI, $0 Console (a call that would reach the Console stops the run before it is sent).", "",
+    ...lines,
+    `Every call is in \`docs/runs/${STEM}-ledger*.md\` and \`.json\` (one file per door), with its request id; an OpenRouter call also names the upstream that served it.`, ""].join("\n");
+}
 const order = (key) => PLAYER_ORDER.indexOf(key.split("-")[1]);
 
 export function promptSection() {
@@ -92,6 +130,7 @@ export function reportMarkdown(runs, ledgers, ab = null) {
     abState,
     "",
     authorRows.length ? authorshipTable(authorRows) : "_Pending._\n",
+    firstAttemptSection(),
     "## The four notes, verbatim",
     "",
     ...(notes.length ? notes : ["_Pending._", ""]),
@@ -105,7 +144,7 @@ export function reportMarkdown(runs, ledgers, ab = null) {
     "## The DM side",
     "",
     rows.length ? dmTable(rows) : "_Pending._\n",
-    moneySection(ledgers, STEM, { anthropic: "Anthropic (the DM and the wizard, the app's checks, Opus and Fable as players, the welfare checks, the judges, the authorship passes)", openai: "OpenAI (Astra and Sol as players)" }),
+    moneyByDoor(runs.at(-1)?.money?.caps ? runs.at(-1).money : null, ledgers),
     "## Differences from the owner's table",
     "",
     ...DIFFERENCES.map((d) => `- ${d}`),
