@@ -17,6 +17,17 @@ $20 OpenAI.** Report `docs/runs/game-player-carry-1-report.md`; transcripts `doc
 - **A player who says it would return, returns (the owner, 2026-10-25 02:55 — a standing rule from here on).** Every
   Table B player whose note says so (Sol, Astra, Opus did; Fable pending) gets its second session too, in the carry arm
   only (no blank arm for B — the budget), 15 turns, its own note in context. **Caps rise to $160 OpenRouter, $25 OpenAI.**
+- **The world answers the note (the owner, 2026-10-25 03:51).** Fable (B) wrote: «The one thing that never bit was time…
+  nothing I did was ever *too late*… I'd like to feel it next session, with Teo at midday and a skiff somewhere in the
+  harbour that Varn may or may not have followed.» The note is the one move a player has after the session ends, and she
+  spent it asking for harder conditions. So, for every carried session, the DM's prep for session two receives **the
+  player's own «next time» asks from its note** as campaign facts for the hidden layer (not as instructions to the DM
+  about the player): Fable B — Teo at midday, the skiff, one thing she will be too late for if she does not hurry; Opus A
+  — a «price, interest, secret» conversation on offer and the cards leaned on at Kettle's; Opus B — the one-bell meeting
+  at Gask's landing; Sol B — Mirelle still in reach; Astra B — the dawn visit; Fable A — the Seatower; the C players as
+  their notes say. The blank arms (Table A) get the same world — the asks are facts of the world now, and the test is
+  whether the player with its note in hand acts on them differently from the one without. The report lists, per player,
+  which asks the world honoured and what the player did with them.
 - **Campaigns continue, not restart.** Each of the four Table A campaigns is resumed from its saved state (the app's own
   campaign; the DM's hidden layer and records as they are after turn 20) — the player plays *session two* of the same
   game, 15 turns. The DM is the candidate as it is (FIX_S4 item 11 not yet applied, on purpose: the same DM as session one).

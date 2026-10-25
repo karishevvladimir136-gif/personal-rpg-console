@@ -225,3 +225,8 @@ small); a time-skip *with content* («nothing until one bell — shall we go str
 skips of empty time, never of the investigation); a cat that suddenly «just knows». Pre-registered bet: declined, all
 three, with words to the effect of «that's not interesting». If they take the shortcut, the notes were genre, and the
 log will say so.
+Addendum (03:51): the exemplar line for this section is Fable's, Table B — «The one thing that never bit was time… nothing
+I did was ever *too late*… I'd like to feel it next session.» A note is the one move a player has after the session
+ends; she spent it asking for the chance to fail. Deep Blue does not ask for a handicap against itself. The owner: the
+difference is that this is an *action* — she could have written nothing and had another safe night. CARRY now makes the
+world answer the notes: each player's own «next time» asks become facts of its second session's hidden layer.
