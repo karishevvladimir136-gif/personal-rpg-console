@@ -4,8 +4,9 @@
 //                                                                                         (no key, no call): docs/runs/game-player-1-dry-run.md
 //   node --experimental-transform-types scripts/game-player-1/run.mjs --go [--lanes 4]    the paid run: Table A for all four players
 //                                                                                         first, then Table B in the order Opus, Fable, Astra, Sol
-//   node --experimental-transform-types scripts/game-player-1/run.mjs --score <run.json>  the scoring pass again (paid, judges only;
-//                                                                                         --judges luna: the stand-in judges, no Anthropic call)
+//   node --experimental-transform-types scripts/game-player-1/run.mjs --score a.json,b.json  the scoring pass again (paid, judges only;
+//                                                                                         --judges luna: the stand-in judges, no Anthropic call),
+//                                                                                         then the report rebuilt from those records
 //   node --experimental-transform-types scripts/game-player-1/run.mjs --report a.json,b.json  the report and transcripts again from
 //                                                                                         the run records (no call)
 //   node --experimental-transform-types scripts/game-player-1/run.mjs --prereport          the report before the first paid call (prompt,
@@ -227,6 +228,13 @@ export async function rescore(file, { log = console.log, standIn = false } = {})
   return runRecord;
 }
 
+/** The one re-scoring command: each run record scored again in turn, then the report and the transcripts rebuilt from
+ * all of them (the money by run included). */
+export async function rescoreAll(files, options = {}) {
+  for (const file of files) await rescore(file, options);
+  return rebuild(files);
+}
+
 /** Several run records as one: the latest finished record of each session (a crashed attempt is replaced by its re-run
  * and kept as a note), the stage's refusals, waits and repairs added up, the verdicts over every scored session. */
 export function combineRuns(records) {
@@ -300,7 +308,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   if (!a.dry && !a.go && !a.rescore && !a.prereport && !a.rebuild) { console.error("give --dry, --go, --prereport, --report <run.json> or --score <run.json>"); process.exit(2); }
   if (a.rebuild) rebuild(a.rebuild.split(",").map((f) => resolve(f))).then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
   else if (a.prereport) prereport().then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
-  else if (a.rescore) rescore(resolve(a.rescore), { standIn: a.judges === "luna" }).then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
+  else if (a.rescore) rescoreAll(a.rescore.split(",").map((f) => resolve(f)), { standIn: a.judges === "luna" }).then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
   else run({ dry: a.dry, only: a.only ?? (a.dry ? ["A-opus", "B-sol"] : null), turns: a.turns, lanes: a.lanes, score: a.score, ...(a.out ? { out: resolve(a.out) } : {}), label: a.label })
     .then((r) => { console.log(`finished: ${r.sessions.length} session(s), undone ${r.undone.length}, stopped ${r.stopped ?? "no"}`); process.exit(0); })
     .catch((error) => { console.error(`game-player-1: ${error?.stack ?? error}`); process.exit(1); });

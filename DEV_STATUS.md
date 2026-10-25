@@ -14,14 +14,16 @@ composer gap before any verdict); transcripts `docs/runs/game-player-1-transcrip
   players × 20 turns, notes and second answers recorded. Table B: B-opus 7 turns and B-sol 4 turns, B-fable and
   B-astra not played — the organisation's monthly Anthropic limit (HTTP 429 `enforced_spend_limit_reached`, access
   back 2026-11-01) stopped every paid call at 05:28 UTC; not a harness stop and not the stage cap.
-- **Key decisions:** G5 not scored (no owner baseline in the cloud); G6–G8 «not scored» (Table B incomplete); G9 on
-  Table A only; tags by a stand-in judge (GPT-6 Luna on OpenAI, effort low twice, medium on a disagreement) because
-  the pre-registered Claude Haiku 5.5 / Opus 5.5 judges could not be reached — every tag-based verdict provisional
-  until re-judged (`run.mjs --score <run.json>`).
-- **Findings for the app (not fixed here; the DM is the candidate as it is):** the roll cards add the wrong skill
-  number when the sheet line has a note after the number (`sheetBonus` in `src/lib/gameplay/dm-loop/execute.ts`; 11
-  checks in 5 sessions; the DM drafted those sheets); «?» is closed while a roll card waits
-  (`src/components/gameplay-composer.tsx:392`) — proposed as FIX_S4_TABLE item 11 in the report.
+- **Key decisions:** the report is final without Table B (Table B is a continuation run when access returns); G5 not
+  scored (no owner baseline in the cloud); G6–G8 «not testable» (Table B incomplete); G9 on Table A only; tags by a
+  labelled stand-in judge (GPT-6 Luna on OpenAI, effort low twice, medium on a disagreement) because the
+  pre-registered Claude Haiku 5.5 / Opus 5.5 judges could not be reached — every tag-based verdict provisional until
+  the one re-scoring command (`run.mjs --score <run.json>[,<run.json>]`, which also rebuilds the report).
+- **Findings for the app (the report's «For FIX_S4», items 11–13; not fixed here, the DM is the candidate as it
+  is):** 11 — the roll cards add the wrong skill number when a sheet line has a note after the number
+  (`src/lib/gameplay/dm-loop/execute.ts:294`, a one-line regex fix given); 12 — «?» closed while a roll card waits
+  (`src/components/gameplay-composer.tsx:392`); 13 — a «?» claim on a new campaign loses its timeline stamp
+  (`202610060046_astra_live_progression.sql:402`, NULL `<>`; fix by a new migration with `is distinct from`).
 - **Checks:** CHECKS_PLACEHOLDER
 - **Money:** Anthropic $56.77 of $200; OpenAI $2.71 of $80 (stand-in scoring $0.14 of it).
 - **Known issues:** Table B incomplete; tags provisional; the harness's «?» timeline repair (migration 46 wrapper)

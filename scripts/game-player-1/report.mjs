@@ -18,7 +18,7 @@ export const DIFFERENCES = [
   "«What I like in games» was left empty: the owner's own words for it are not in the files.",
   "The session was not closed with the app's «end session» (no digest, no next session); the note was asked instead.",
   "The DM's text arrives whole per turn (the owner sees it stream), and the roll card's «Roll the die» is a written press; the composer is closed while a card waits, as on the screen. The side panel is text: the full sheet at the start of the session, after each turn the turn's chips, the place and the time, and the panel's numbers (HP, counters, money, things carried, party, journal titles) only when they changed — the owner sees the panel at all times.",
-  "One compatibility repair, counted: the claim of an out-of-game «?» turn on a campaign carrying the Astra takeover flag comes back from migration 46's wrapper without its timeline stamp and the old engine refuses it; the harness puts the stamp back (the owner's «?» is answered at his table, FIX_S4_TABLE item 1). See the harness notes.",
+  "One compatibility repair, counted: the claim of an out-of-game «?» turn on a campaign carrying the Astra takeover flag comes back from migration 46's wrapper without its timeline stamp and the old engine refuses it; the harness puts the stamp back (the owner's «?» is answered at his table, FIX_S4_TABLE item 1). See the harness notes and item 13 under «For FIX_S4».",
   "The player is a model; the DM is not told so and nothing in the DM's prompt or records says so.",
 ];
 
@@ -60,7 +60,7 @@ function scoringTable(v) {
   const verdictOf = (l, s) => {
     if (l.startsWith("G5")) return "**not scored** — no owner baseline in the cloud";
     const g = l.slice(0, 2);
-    if (["G6", "G7", "G8"].includes(g) && v[g]?.detail) return "**not scored** — Table B incomplete";
+    if (["G6", "G7", "G8"].includes(g) && v[g]?.detail) return "**not testable** — Table B incomplete";
     return yes(s);
   };
   return ["| Line | Verdict | The numbers |", "| --- | --- | --- |", ...rows.map(([l, s, n]) => `| ${l} | ${verdictOf(l, s)} | ${n.replace(/not testable: Table B is incomplete \([^)]*\);? ?/, "")} |`), ""].join("\n");
@@ -86,7 +86,14 @@ function moneyByRun(money) {
       ...runs.filter((r) => Object.keys(r.sessions ?? {}).length > 1).flatMap((r) => [`${r.what}, by session:`, "", "| Session | USD |", "| --- | --- |",
         ...Object.entries(r.sessions).map(([k, x]) => `| ${k} | ${usd(x)} |`), ""])].join("\n");
   };
-  return ["## The money", "", part("anthropic", "Anthropic (the DM, the wizard and the prep, the app's checks, Opus and Fable as players, the welfare checks)"),
+  const kind = (what) => (/smoke/.test(what) ? "Smoke" : /scoring/.test(what) ? "Scoring" : "Main run");
+  const whats = [...new Set(["anthropic", "openai"].flatMap((p) => (money[p] ?? []).map((r) => r.what)))];
+  const sum = (p, w) => (money[p] ?? []).filter((r) => w === undefined || r.what === w).reduce((t, r) => t + r.spentUsd, 0);
+  const overview = ["| Run | Anthropic | OpenAI | Both |", "| --- | --- | --- | --- |",
+    ...whats.map((w) => `| ${kind(w)} — ${w} | ${usd(sum("anthropic", w))} | ${usd(sum("openai", w))} | ${usd(sum("anthropic", w) + sum("openai", w))} |`),
+    `| **The stage** | **${usd(sum("anthropic"))}** of $${money.caps?.anthropic ?? "?"} | **${usd(sum("openai"))}** of $${money.caps?.openai ?? "?"} | **${usd(sum("anthropic") + sum("openai"))}** |`, ""].join("\n");
+  return ["## The money", "", "By run (smoke, main run, scoring), each provider on its own ledger:", "", overview,
+    part("anthropic", "Anthropic (the DM, the wizard and the prep, the app's checks, Opus and Fable as players, the welfare checks)"),
     part("openai", "OpenAI (Astra and Sol as players; the stand-in judges)"),
     "Every call is in `docs/runs/game-player-1-ledger.md` and `…-ledger-openai.md` (and their `.json`), with its request id. One more Anthropic call is not on the ledger: the single diagnostic request at 05:3x that read the 429's text (refused the same way, nothing billed; request id in the harness notes).", ""].join("\n");
 }
@@ -112,7 +119,7 @@ export function reportMarkdown(runs, ledgers) {
     s.after?.asked ? `«${AFTER_QUESTION}»\n\n${s.after.text ? quote(s.after.text) : `_No answer: ${s.after.why}._`}\n\nBlind distress check: ${tagOf(s, "after")}.` : `_The second question was not asked: ${s.after?.why ?? "—"}._`, ""].join("\n"));
   const standIn = [...new Set(sessions.map((s) => s.tags?.judges).filter((j) => /^stand-in/.test(j ?? "")))];
   const scoringNote = runs.at(-1)?.scoringNote || (standIn.length
-    ? `**Provisional.** The tags behind G1–G4 and G9 (and the DM side's table rules) are the stand-in judge's (${standIn.join("; ")}), not the pre-registered Claude Haiku 5.5 / Claude Opus 5.5 judges; see «Read this first», point 2. G6–G8 are «not scored» because Table B is incomplete (point 1).`
+    ? `**Provisional.** The tags behind G1–G4 and G9 (and the DM side's table rules) are the labelled stand-in judge's (${standIn.join("; ")}), not the pre-registered Claude Haiku 5.5 / Claude Opus 5.5 judges, who re-score with one command when access returns; see «Read this first», point 2. G6–G8 are «not testable» because Table B is incomplete (point 1).`
     : "");
   const questions = sessions.flatMap((s) => (s.turns ?? []).filter((t) => t.kind === "question").map((t) => `- ${s.key} t${t.k}: «${t.message.trim()}» → ${t.reply ? `«${t.reply.replace(/\s+/g, " ").slice(0, 300)}${t.reply.length > 300 ? "…" : ""}»` : `_not answered (${t.failure ?? "?"})_`}`));
   return [
@@ -144,7 +151,7 @@ export function reportMarkdown(runs, ledgers) {
     "## The DM side",
     "",
     rows.length ? dmTable(rows) : "_Pending._\n",
-    runs.at(-1)?.money ? moneyByRun(runs.at(-1).money) : moneySection(ledgers),
+    Array.isArray(runs.at(-1)?.money?.anthropic) ? moneyByRun(runs.at(-1).money) : moneySection(ledgers),
     "## Differences from the owner's table",
     "",
     ...DIFFERENCES.map((d) => `- ${d}`),
