@@ -34,7 +34,7 @@ judges; the report is done, waiting for the owner's reading and his own note.** 
   writes its record and ledger even when it throws (the first B scoring pass crashed and is booked as an estimate).
 - **Checks** (a clean worktree without `.env.local`, no keys, no paid call): at `170c2236` the full suite 2 966 tests ·
   2 936 pass · 0 fail · 3 cancelled · 27 skipped; typecheck pass; lint pass, zero warnings; production build pass, no
-  warnings. The harness's own tests 30 of 30. The 3 cancelled are `tests/d2a-composition.test.mjs`'s timeout tests,
+  warnings. The harness's own tests 29 of 29. The 3 cancelled are `tests/d2a-composition.test.mjs`'s timeout tests,
   which cancel the same way on `claude/s3-candidate` itself (not this stage's). The merge's invariant «only the door
   helper names a Claude host» holds: the harness and two earlier scripts now take their URLs from it.
 - **Money:** the Console $56.77 of $200; OpenRouter $57.91 of $90 (Table B $51.59, the scoring $6.33 of which $2.01 an
