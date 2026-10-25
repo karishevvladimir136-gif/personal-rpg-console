@@ -50,7 +50,8 @@ export const PRICES = {
 /** The paid hosts: the ledger each books to (`provider`, the door for the Claude models) and its wire format. */
 const PAID = [
   { provider: "anthropic", wire: "anthropic", test: (url) => url.startsWith("https://api.anthropic.com/") },
-  { provider: "openrouter", wire: "anthropic", test: (url) => url.startsWith("https://openrouter.ai/api/") },
+  // OpenRouter's Messages endpoint only: its free account reads (the key's credit, a generation's record) are not calls.
+  { provider: "openrouter", wire: "anthropic", test: (url) => url.startsWith("https://openrouter.ai/api/v1/messages") },
   { provider: "openai", wire: "openai", test: (url) => url.startsWith("https://api.openai.com/") },
 ];
 /** The ledger a provider's calls book to — the door for the Claude models. */

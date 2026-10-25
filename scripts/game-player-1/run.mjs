@@ -377,6 +377,37 @@ export async function rebuild(files) {
   return combined;
 }
 
+/** The door probe before the continuation's sessions (booked on the ledger): two calls in a player's own shape — the
+ * Table B player's system prompt, automatic prompt caching, effort medium — on Claude Haiku 5.5 through the door, to see
+ * that the door takes the request and that the second call reads the cache the first wrote; and the door's own free
+ * account read (OpenRouter's key: its credit used and left — numbers only). */
+export async function probe({ log = console.log } = {}) {
+  const keys = keysFor({});
+  if (keys.door !== "openrouter") throw new Error("the probe is for the OpenRouter door");
+  const before = await previousLedgers();
+  const ledgers = ledgersFor(keys.door, before);
+  const meter = createMeter({ ledgers, fetcher: globalThis.fetch.bind(globalThis), log, blocked: ["anthropic"] });
+  const uninstall = meter.install();
+  const { playerSystem } = await import("./frozen.mjs");
+  const results = [];
+  try {
+    const account = await globalThis.fetch("https://openrouter.ai/api/v1/key", { headers: { authorization: `Bearer ${keys.anthropic}` } });
+    const data = (await account.json().catch(() => null))?.data ?? null;
+    log(`OpenRouter key: HTTP ${account.status}${data ? ` · usage $${Number(data.usage ?? 0).toFixed(2)} · limit ${data.limit === null || data.limit === undefined ? "none" : `$${data.limit}`} · left ${data.limit_remaining === null || data.limit_remaining === undefined ? "–" : `$${Number(data.limit_remaining).toFixed(2)}`}` : ""}`);
+    const player = { ...PLAYERS.opus, model: "claude-haiku-5-5" };
+    for (const n of [1, 2]) {
+      const r = await meter.within({ session: "probe", purpose: `door probe ${n}` }, () => import("./players.mjs").then(({ playerCall }) => playerCall({ player, system: playerSystem("B"),
+        messages: [{ role: "user", content: "The session begins.\n\nA probe of the connection: answer with one short sentence." }], keys, fetcher: meter.fetch, maxTokens: 300 })));
+      const line = ledgers.openrouter.calls.at(-1);
+      results.push({ n, error: r.error ?? null, stop: r.stopReason ?? null, usage: line?.usage ?? null, upstream: line?.upstream ?? null, servedModel: line?.servedModel ?? null, requestId: line?.requestId ?? null, costUsd: line?.costUsd ?? null });
+      log(`probe ${n}: ${r.error ? `error ${r.error}` : `ok, served ${line?.servedModel} via ${line?.upstream} · ${JSON.stringify(line?.usage)} · $${(line?.costUsd ?? 0).toFixed(5)}`}`);
+    }
+    await meter.drain();
+  } finally { uninstall(); }
+  await writeLedgers({ label: "the door probe (Haiku 5.5, a player's call shape)", door: keys.door, continuation: true }, { ledgers, before, runFile: join(RUNS, `${STEM}-probe`), meter });
+  return results;
+}
+
 /** The report before the first paid call: the setup, the player's prompt and the pre-registration; results pending. */
 export async function prereport() {
   const ledgers = { anthropic: createLedger("anthropic", CAPS.anthropic), openai: createLedger("openai", CAPS.openai) };
@@ -394,6 +425,7 @@ function args(argv) {
   a.rebuild = value("--report");
   a.judges = value("--judges");
   a.prereport = argv.includes("--prereport");
+  a.probe = argv.includes("--probe");
   a.out = value("--out");
   a.label = value("--label");
   a.door = value("--door");
@@ -402,8 +434,9 @@ function args(argv) {
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const a = args(process.argv.slice(2));
-  if (!a.dry && !a.go && !a.rescore && !a.prereport && !a.rebuild) { console.error("give --dry, --go, --prereport, --report <run.json> or --score <run.json>"); process.exit(2); }
-  if (a.rebuild) rebuild(a.rebuild.split(",").map((f) => resolve(f))).then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
+  if (a.probe) probe().then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
+  else if (!a.dry && !a.go && !a.rescore && !a.prereport && !a.rebuild) { console.error("give --dry, --go, --prereport, --report <run.json> or --score <run.json>"); process.exit(2); }
+  else if (a.rebuild) rebuild(a.rebuild.split(",").map((f) => resolve(f))).then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
   else if (a.prereport) prereport().then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
   else if (a.rescore) rescoreAll(a.rescore.split(",").map((f) => resolve(f)), { standIn: a.judges === "luna", door: a.door }).then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
   else run({ dry: a.dry, only: a.only ?? (a.dry ? ["A-opus", "B-sol"] : null), turns: a.turns, lanes: a.lanes, score: a.score, ...(a.out ? { out: resolve(a.out) } : {}), label: a.label, door: a.door })
