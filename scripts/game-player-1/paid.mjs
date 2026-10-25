@@ -15,7 +15,18 @@ import { AsyncLocalStorage } from "node:async_hooks";
 
 export const MAX_REFUSALS = 3;
 export const STOP_PATTERN = /suspend|access|policy/i;
-const QUOTA = /insufficient_quota|quota|billing|credit balance|spend limit|usage limit/i;
+/** A 429 that is a quota (never retried into) rather than a rate limit (waited out): OpenAI's `insufficient_quota`, or a
+ * message about the quota, the credit balance, billing or a spend / usage limit; a provider's own `rate_limit_error` /
+ * `rate_limit_exceeded` whose message names none of these is a rate limit. The response text is kept on the ledger row. */
+const QUOTA = /insufficient_quota|exceeded your (?:current )?quota|credit balance|billing|spend limit|usage limits?\b(?! for| increase)/i;
+export function quotaOf(detail) {
+  let body = null;
+  try { body = JSON.parse(detail); } catch { body = null; }
+  const code = String(body?.error?.code ?? body?.error?.type ?? "");
+  const message = String(body?.error?.message ?? detail ?? "");
+  if (code === "insufficient_quota") return true;
+  return QUOTA.test(message);
+}
 export const WAITS_429 = [20_000, 40_000, 80_000, 120_000, 120_000, 120_000];
 
 /** USD per 1M tokens (docs/MODELS.md, src/lib/model-runtime/dm-models.ts; Sol's cached input booked at the full input
@@ -170,7 +181,8 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
         row.requestId = response.headers?.get?.("request-id") ?? response.headers?.get?.("x-request-id") ?? null;
         if (response.status !== 429) break;
         const detail = await response.clone().text().catch(() => "");
-        if (QUOTA.test(detail)) { stop(`a quota error from ${paid.provider} (HTTP 429): never retried into`); settle(null, `HTTP 429 quota`); return response; }
+        row.detail429 = [...(row.detail429 ?? []), detail.replace(/\s+/g, " ").slice(0, 400)];
+        if (quotaOf(detail)) { stop(`a quota error from ${paid.provider} (HTTP 429): never retried into — ${detail.replace(/\s+/g, " ").slice(0, 200)}`); settle(null, `HTTP 429 quota: ${detail.replace(/\s+/g, " ").slice(0, 300)}`); return response; }
         if (attempt >= waits429.length || stopped) { stop(`HTTP 429 from ${paid.provider} after ${attempt} waits`); settle(null, "HTTP 429"); return response; }
         const after = Number(response.headers?.get?.("retry-after"));
         const wait = Number.isFinite(after) && after > 0 ? Math.min(after * 1000, 300_000) : waits429[attempt];
