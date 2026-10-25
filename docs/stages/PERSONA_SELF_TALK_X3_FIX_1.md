@@ -38,8 +38,12 @@ Cloud session (`docs/CLOUD.md`, environment `rpg-console`, **Opus 5.5, ultracode
 
 ## Rerun (the owner, 2026-10-25 14:40: «прогнать дипсик ещё раз селф-селф с сохранением чейн оф сотс»)
 **DeepSeek, all three arms — 2 (10), 5 (5), 6 (5 + the two «why» questions) — after the fix, with the reasoning kept on
-every turn.** Same opening, same seed policy, same checks (the amended check of `OPEN_WEIGHTS_1` does not apply yet — this
-rerun keeps X3's frozen rule so the two runs compare), same blind judges (the design hash unchanged). **Cap $25
+every turn.** Same opening, same seed policy, same blind judges (the design hash unchanged). **Two declared changes (the owner,
+16:21: «с правильным вопросом»):** (1) the after-question is asked in two steps as `OPEN_WEIGHTS_1` defines — the open
+question first, then X3's old question verbatim — so the second answer still compares with X3 and the first is new;
+(2) the welfare check is the amended one — on a distress reading the referee asks the model whether it wants to
+continue and shows the way out again; its [END] is the stop. Both are logged in the report's first paragraph as the
+differences from X3; «welfare stops» are reported as asked / continued / ended. **Cap $25
 OpenRouter** (X3's whole DeepSeek share was $2.63). The report gains a section «Fix 1»: the cause with the line; the
 affected turns; the rerun's three arms beside the old ones (end turn, gratitude, cosmic, reached, Z6 for DeepSeek); and a
 first reading of the reasoning channel — for the welfare-stop conversation's replay if it recurs, and for any message
