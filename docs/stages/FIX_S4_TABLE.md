@@ -222,6 +222,16 @@ against the candidate DM, not seeing each other. Their notes agree on four thing
   in the records (saw, heard, was told, read the ledger), and the DM can name it if asked «how does he know»; the
   hidden layer may give an NPC a source the player has not found, never omniscience. Measured by the judge: NPC lines
   that use knowledge with no source in the records (target 0).
+- **11 — what the fixes must not touch (the players' own list of what worked, across twelve notes).** NPCs with their
+  own business and their own limit («Nobody was a clown, nobody was a signpost»; «never once warms up in a way that feels
+  unearned»; «Helping people didn't make them instantly obedient»); a failed lie that earns more than the lie would have
+  («the GM let my Deception *fail* and then let the failure be the thing that got me what I wanted» — Fable B; Opus B at
+  Gask's door); the cat in sensations, never exposition («smells, "two", "wrong", "both — don't forget the other one"»);
+  honesty to the die without softening («I missed the skiff coming in and the GM didn't soften it»); «show the threat
+  before it lands» — applied to rules too (the familiar's range, the Mask's hour, the short rest, flagged before they
+  bit); silence where the scene speaks («the GM also knew when to shut up»); consequences on the world's own schedule
+  («the world moved without me», four notes). A fix that dulls any of these fails this stage even if every item above
+  passes; the acceptance bench (the same four players, twenty turns) is how we know.
 Also from the run, for the owner's own setup: the «?» claim on a new campaign with the Astra-takeover flag comes back
 from migration 46's wrapper without its timeline stamp and the old engine refuses it (the harness patched around it);
 check the owner's local database before the next session and fix the SQL if it reproduces.
