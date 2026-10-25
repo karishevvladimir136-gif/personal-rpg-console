@@ -217,6 +217,11 @@ against the candidate DM, not seeing each other. Their notes agree on four thing
   carried mug after leaving the Kettle». Rule: an item enters the inventory only when the player took, bought or was given
   it in the scene; the bookkeeper may not infer possession. Kin of 11h, on the record side. Measured: inventory entries
   with no action behind them (target 0).
+- **11q. Every NPC's knowledge has a source.** Astra (B): «A few NPCs knew things without an established source —
+  Pim anticipating our trip to the Lady's Hall stood out.» Rule: what an NPC knows about the hero came from somewhere
+  in the records (saw, heard, was told, read the ledger), and the DM can name it if asked «how does he know»; the
+  hidden layer may give an NPC a source the player has not found, never omniscience. Measured by the judge: NPC lines
+  that use knowledge with no source in the records (target 0).
 Also from the run, for the owner's own setup: the «?» claim on a new campaign with the Astra-takeover flag comes back
 from migration 46's wrapper without its timeline stamp and the old engine refuses it (the harness patched around it);
 check the owner's local database before the next session and fix the SQL if it reproduces.
