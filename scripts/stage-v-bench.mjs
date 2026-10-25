@@ -42,7 +42,7 @@ function env(name) {
   const line = readFileSync(file, "utf8").split(/\r?\n/).find((row) => row.startsWith(name + "="));
   return line ? line.slice(name.length + 1).trim().replace(/^["']|["']$/g, "") : "";
 }
-// BEDROCK_PROVIDER_1: the key of the door the Claude models go through (ANTHROPIC_API_KEY or BEDROCK_API_KEY).
+// ANTHROPIC_PROVIDERS_1: the key of the door the Claude models go through (ANTHROPIC_, BEDROCK_ or OPENROUTER_API_KEY).
 const falKey = env("FAL_KEY"), anthropicKey = doorKey() ?? "";
 
 // The ledger: every paid call of this stage, counted before it is sent.
@@ -284,7 +284,7 @@ function summary() {
   console.log(lines.join("\n"));
 }
 
-if (!["rerun-cost", "summary"].includes(command) && !dry && (!falKey || !anthropicKey)) { console.log("FAL_KEY and ANTHROPIC_API_KEY (or BEDROCK_API_KEY with ANTHROPIC_PROVIDER=bedrock) must be set in .env.local"); process.exit(1); }
+if (!["rerun-cost", "summary"].includes(command) && !dry && (!falKey || !anthropicKey)) { console.log("FAL_KEY and the Claude door's key (ANTHROPIC_API_KEY, or BEDROCK_API_KEY / OPENROUTER_API_KEY with ANTHROPIC_PROVIDER=bedrock / openrouter) must be set in .env.local"); process.exit(1); }
 if (command === "anchors") await runAnchors();
 else if (command === "frames") await runFrames();
 else if (command === "score") await runScore();

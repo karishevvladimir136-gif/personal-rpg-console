@@ -64,7 +64,7 @@ export async function settleFromRecord(run, spentUsd, record) {
   return current;
 }
 
-/** BEDROCK_PROVIDER_1 §4: the door the run's Claude calls go through (a door that is not configured is named so). */
+/** ANTHROPIC_PROVIDERS_1 §4: the door the run's Claude calls go through (a door that is not configured is named so). */
 function doorOf() {
   try { return provenance(); } catch { return { provider: "not_configured", endpointHost: null }; }
 }

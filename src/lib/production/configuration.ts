@@ -55,7 +55,7 @@ export function providerSettings(
         label: "OpenAI",
         status: configured ? "configured_not_tested" : "unavailable",
       },
-      // BEDROCK_PROVIDER_1: the key of the door the Claude models go through (the Console's or Bedrock's).
+      // ANTHROPIC_PROVIDERS_1: the key of the door the Claude models go through (the Console's, Bedrock's or OpenRouter's).
       { id: "anthropic", label: "Anthropic", status: anthropicApiKey(environment) ? "configured_not_tested" : "unavailable" },
       { id: "fal", label: "fal", status: keySet("FAL_KEY") },
     ],

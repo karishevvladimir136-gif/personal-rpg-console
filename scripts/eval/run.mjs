@@ -99,7 +99,7 @@ try {
   if (args.runtime === "dm-loop-v1") {
     ({ LOOP_MODELS: loopModels } = await import("./lib/loop-harness.mjs"));
     const selection = loopModels[args.writer ?? args.model];
-    // BEDROCK_PROVIDER_1: a Claude model takes the key of the door it goes through.
+    // ANTHROPIC_PROVIDERS_1: a Claude model takes the key of the door it goes through.
     const keyName = selection.providerId === "anthropic" ? anthropicKeyName() : selection.key;
     apiKey = args.provider === "live" ? (selection.providerId === "anthropic" ? anthropicKey() : providerKey(keyName)) : "synthetic-eval-only";
     if (!apiKey) throw Error(`live provider needs ${keyName} (environment or .env.local)`);

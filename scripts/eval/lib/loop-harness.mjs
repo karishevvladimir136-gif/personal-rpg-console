@@ -18,7 +18,7 @@ import { metricsReport, parseMetrics } from "../../../src/lib/gameplay/dm-loop/m
 import { naturalness as naturalnessOf } from "./naturalness.mjs";
 import { checkLedger } from "../../../src/lib/gameplay/dm-loop/ledger-check.ts";
 import { checkRollsTold } from "../../../src/lib/gameplay/dm-loop/roll-check.ts";
-import { anthropicKey, anthropicRequestId, callProvenance, provenance } from "./anthropic-endpoint.mjs";
+import { anthropicKey, anthropicRequestId, callProvenance, provenance, recordServed, requestedModelOf } from "./anthropic-endpoint.mjs";
 
 const hook = registerHooks({ resolve(specifier, context, nextResolve) {
   return specifier === "server-only"
@@ -63,6 +63,7 @@ export function createLoopBudget(limitUsd) {
 function liveModel(selection, budget, apiKey, log) {
   const spec = dmModels[`${selection.providerId}/${selection.modelId}`];
   const reservations = new Map();
+  const served = [];
   const fetcher = async (url, init) => {
     const bytes = Buffer.byteLength(String(init?.body ?? ""), "utf8");
     const reservation = dmRequestReservation(spec, bytes, dmLoopLimits.maxOutputTokens);
@@ -76,10 +77,13 @@ function liveModel(selection, budget, apiKey, log) {
     const started = performance.now();
     try {
       const response = await fetch(url, init);
-      // BEDROCK_PROVIDER_1 §4: every call line names the door it went through and the provider's request id.
-      log.push({ event: "http", status: response.status, requestBytes: bytes, latencyMs: Math.round(performance.now() - started),
+      // ANTHROPIC_PROVIDERS_1 §4: every call line names the door it went through, the provider's request id and
+      // who served it (the model the reply names, OpenRouter's upstream; read from a clone of the reply).
+      const line = { event: "http", status: response.status, requestBytes: bytes, latencyMs: Math.round(performance.now() - started),
         ...callProvenance(selection.providerId, url),
-        requestId: anthropicRequestId(response.headers) ?? response.headers.get("x-request-id") });
+        requestId: anthropicRequestId(response.headers) ?? response.headers.get("x-request-id") };
+      log.push(line);
+      served.push(recordServed(response, requestedModelOf(init), line));
       // A rejected request costs nothing; a streamed one is settled from its usage event.
       if (response.ok) reservations.set(budget.requests, reservation);
       else budget.reservedUsd -= reservation;
@@ -94,7 +98,7 @@ function liveModel(selection, budget, apiKey, log) {
   const requests = [];
   const model = { providerId: inner.providerId, modelId: inner.modelId, requests,
     stream: (request) => { requests.push(request); return inner.stream(request); } };
-  return { model, settle: (costUsd) => {
+  return { model, served: () => Promise.all(served), settle: (costUsd) => {
     // The loop sends one request at a time: a finished request settles every
     // open reservation (a retried attempt's one included) and charges the
     // measured cost. Stage 2 released only the oldest, so retries leaked
@@ -154,7 +158,13 @@ function afterParty(state) {
   return state.entities.filter((row) => row.id === state.heroId || row.kind === "companion");
 }
 
-/** BEDROCK_PROVIDER_1 §4: the door of a call in a run record (an OpenAI call keeps its own provider). */
+/** ANTHROPIC_PROVIDERS_1 §4: who served one answered request (null fields when the reply did not say). */
+function servedFields(line) {
+  return { requestId: line?.requestId ?? null, servedModel: line?.servedModel ?? null, upstream: line?.upstream ?? null,
+    messageId: line?.messageId ?? null, servedModelMatches: line?.servedModelMatches ?? null };
+}
+
+/** ANTHROPIC_PROVIDERS_1 §4: the door of a call in a run record (an OpenAI call keeps its own provider). */
 function callDoor(providerId) {
   return providerId === "anthropic" ? provenance() : { provider: providerId, endpointHost: providerId === "openai" ? "api.openai.com" : null };
 }
@@ -305,6 +315,9 @@ export async function runLoopScenario(scenario, options) {
         // A live turn records its first (the writer's) request: the system blocks and the messages, where the
         // tail (the battlefield block) sits. The scripted model keeps its last request's system blocks.
         const contextRequest = live ? liveAdapter.model.requests[requestsBefore] : scripted.requests.at(-1);
+        // ANTHROPIC_PROVIDERS_1 §4: the turn's answered requests, in order, beside its usage entries (one request at a time).
+        if (live) await Promise.all([liveAdapter.served(), bookkeeperAdapter?.served()]);
+        const answered = transport.filter((t) => t.event === "http" && t.status >= 200 && t.status < 300);
         const contextText = !contextRequest ? null : contextRequest.system.map((block) => block.text).join("\n")
           + (live ? `\n${contextRequest.messages.map((m) => m.text ?? "").join("\n")}` : "");
         turn = {
@@ -326,7 +339,8 @@ export async function runLoopScenario(scenario, options) {
           costUsd: live ? Number(sum(usage, "costUsd").toFixed(5)) : 0,
           requestBytes: requestStarts.map((o) => o.requestBytes),
           cachedPrefixBytes: requestStarts[0]?.cachedPrefixBytes ?? null,
-          calls: usage.map((entry, index) => ({ stage: "loop", ...callDoor(entry.providerId), latencyMs: entry.latencyMs, firstTextMs: entry.firstTextMs,
+          calls: usage.map((entry, index) => ({ stage: "loop", ...callDoor(entry.providerId), ...servedFields(answered[index]),
+            latencyMs: entry.latencyMs, firstTextMs: entry.firstTextMs,
             inputTokens: entry.inputTokens, cachedInputTokens: entry.cacheReadTokens, cacheWriteTokens: entry.cacheWriteTokens, cacheWrite1hTokens: entry.cacheWrite1hTokens ?? null,
             outputTokens: entry.outputTokens, reasoningTokens: entry.reasoningTokens, costUsd: entry.costUsd, toolCalls: entry.toolCalls,
             effort: entry.effort, tools: callsByRequest(usage, receipts)[index] })),
@@ -348,6 +362,8 @@ export async function runLoopScenario(scenario, options) {
           diagnostics: loop?.diagnostics ?? [],
           meta: loop?.meta ?? null,
           pin: loop?.pin ?? null,
+          // Every request the turn sent, refused ones included (status, door, request id, served model, upstream).
+          http: live ? transport.filter((t) => t.event === "http") : undefined,
           scriptProblems: live ? transport.filter((t) => t.event === "budget_reached").map(() => "budget_reached: request not sent")
             : (scripted.exhausted ? [] : [`${scripted.rounds.length} scripted round(s) left unused`]),
           contextText,

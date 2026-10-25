@@ -1,0 +1,18 @@
+{
+  "capUsd": 6,
+  "entries": [
+    {
+      "run": "anthropic-providers-1-bedrock-2026-10-25T07-55-15",
+      "what": "smoke on Amazon Bedrock (us-west-1): Haiku 4.5 call + Opus 4.5 call",
+      "provider": "bedrock",
+      "endpointHost": "bedrock-runtime.us-west-1.amazonaws.com",
+      "stage": "B",
+      "startedAt": "2026-10-25T07:55:15.993Z",
+      "reservedUsd": 3,
+      "spentUsd": 0,
+      "settled": true,
+      "finishedAt": "2026-10-25T07:55:17.656Z",
+      "record": "docs/runs/anthropic-providers-1-smoke-bedrock.json"
+    }
+  ]
+}

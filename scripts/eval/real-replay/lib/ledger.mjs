@@ -35,6 +35,11 @@ export const LEDGERS = {
   // The second door (docs/stages/BEDROCK_PROVIDER_1.md): the smoke on Amazon Bedrock only, $3.
   bedrock1: { file: join(ROOT, "docs", "runs", "bedrock-provider-1-ledger.json"), capUsd: 3, label: "the Bedrock provider stage",
     markdown: join(ROOT, "docs", "runs", "bedrock-provider-1-ledger.md") },
+  // Three doors (docs/stages/ANTHROPIC_PROVIDERS_1.md): the smokes only, $6 — stage O (OpenRouter) and stage B
+  // (Amazon Bedrock) within $3 each; no call to the Console's API.
+  providers1: { file: join(ROOT, "docs", "runs", "anthropic-providers-1-ledger.json"), capUsd: 6,
+    label: "the Anthropic providers stage (O = OpenRouter, B = Amazon Bedrock)", stageCaps: { O: 3, B: 3 },
+    markdown: join(ROOT, "docs", "runs", "anthropic-providers-1-ledger.md") },
 };
 export const DEFAULT_LEDGER = "fixs2";
 export const LEDGER_FILE = LEDGERS[DEFAULT_LEDGER].file;
@@ -77,14 +82,15 @@ export function currentStage(name = DEFAULT_LEDGER) {
   return name === "fixs2" && (stage === "A" || stage === "B") ? "AB" : stage || null;
 }
 
-/** Register a paid run; refuses a budget beyond the cap's remainder (and the stage's, when the ledger has stage caps). */
-export async function openRun(run, requestedUsd, what, name = DEFAULT_LEDGER, stage = currentStage(name)) {
+/** Register a paid run; refuses a budget beyond the cap's remainder (and the stage's, when the ledger has stage caps).
+ * `door` names the run's door when it is not the configured one (a smoke that picks its door itself). */
+export async function openRun(run, requestedUsd, what, name = DEFAULT_LEDGER, stage = currentStage(name), door = doorOf()) {
   const spec = ledgerSpec(name);
   const ledger = await readLedger(name);
   const remaining = Number(Math.min(ledger.capUsd - committedUsd(ledger), stageRemaining(spec, ledger, stage)).toFixed(4));
   if (remaining <= 0) throw new Error(`${spec.label} ledger: the cap is spent (${committedUsd(ledger).toFixed(2)} of $${ledger.capUsd} committed${stage ? `, stage ${stage}` : ""})`);
   const budgetUsd = Number(Math.min(requestedUsd, remaining).toFixed(4));
-  ledger.entries.push({ run, what, ...doorOf(), ...(stage ? { stage } : {}), startedAt: new Date().toISOString(), reservedUsd: budgetUsd, spentUsd: 0, settled: false });
+  ledger.entries.push({ run, what, ...door, ...(stage ? { stage } : {}), startedAt: new Date().toISOString(), reservedUsd: budgetUsd, spentUsd: 0, settled: false });
   await writeLedger(ledger, name);
   return {
     budgetUsd, remainingBefore: remaining, ledger: name,
@@ -98,7 +104,7 @@ export async function openRun(run, requestedUsd, what, name = DEFAULT_LEDGER, st
   };
 }
 
-/** BEDROCK_PROVIDER_1 §4: the door the run's Claude calls go through (a door that is not configured is named so). */
+/** ANTHROPIC_PROVIDERS_1 §4: the door the run's Claude calls go through (a door that is not configured is named so). */
 function doorOf() {
   try { return provenance(); } catch { return { provider: "not_configured", endpointHost: null }; }
 }

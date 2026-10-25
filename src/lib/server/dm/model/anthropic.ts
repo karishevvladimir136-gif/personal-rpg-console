@@ -3,8 +3,8 @@ import { dmModelSpec } from "../../../model-runtime/dm-models.ts";
 import {
   anthropicEndpoint,
   anthropicErrorCode,
-  bedrockAccessMessage,
   bedrockFailureKind,
+  doorFailure,
   type AnthropicEndpoint,
 } from "../../anthropic-endpoint.ts";
 import {
@@ -162,7 +162,7 @@ function errorKind(type: unknown): DmModelErrorKind {
     case "permission_error":
       return "not_configured";
     default:
-      // A Bedrock exception named in a stream's error event (BEDROCK_PROVIDER_1 §5).
+      // A Bedrock exception named in a stream's error event (ANTHROPIC_PROVIDERS_1 §5).
       return bedrockFailureKind(typeof type === "string" ? type : null) ?? "provider_rejected";
   }
 }
@@ -181,14 +181,13 @@ async function httpFailure(response: Response, apiKey: string, door: AnthropicEn
     /* keep the status only */
   }
   const code = anthropicErrorCode(payload, response.headers);
-  // BEDROCK_PROVIDER_1 §5: Bedrock's throttling waits like a rate limit; a refused model is not configured (named).
-  const bedrock = door.provider === "bedrock" ? bedrockFailureKind(code) : null;
-  const kind = bedrock ?? (response.status === 529 ? "retryable_transport" : errorKindForStatus(response.status));
   const providerMessage = safeProviderMessage(payload?.error?.message ?? payload?.message, apiKey,
     `${door.providerLabel} request failed with HTTP ${response.status}`);
-  // A 403 that is not about the key itself is a refused model: the owner is told which one.
-  const refusedModel = door.provider === "bedrock" && response.status === 403 && !/api key/i.test(providerMessage);
-  const message = refusedModel ? bedrockAccessMessage(modelId, providerModel) : providerMessage;
+  // ANTHROPIC_PROVIDERS_1 §5: the door decides first — Bedrock's throttling waits like a rate limit, a refused or
+  // unserved model is not configured (named), OpenRouter's «insufficient credits» stops; else the status mapping.
+  const decided = doorFailure(door, response.status, code, providerMessage, modelId, providerModel);
+  const kind = decided.kind ?? (response.status === 529 ? "retryable_transport" : errorKindForStatus(response.status));
+  const message = decided.message ?? providerMessage;
   return new DmModelError(kind, message,
     { httpStatus: response.status, providerCode: code, retryAfterMs: retryAfterMs(response.headers) });
 }
@@ -282,7 +281,7 @@ export function createAnthropicDmModel(modelId = "claude-opus-5-5", options: DmM
   if (!dmModelSpec("anthropic", modelId))
     throw new DmModelError("not_configured", `unknown Anthropic DM model ${modelId}`);
   async function* attempt(request: DmModelRequest, signal: AbortSignal): AsyncGenerator<DmModelEvent> {
-    // BEDROCK_PROVIDER_1: the door (host, key, the provider's model id) is read per request.
+    // ANTHROPIC_PROVIDERS_1: the door (host, key, the provider's model id) is read per request.
     let door: AnthropicEndpoint;
     let providerModel: string;
     try {
