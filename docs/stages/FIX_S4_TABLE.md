@@ -113,15 +113,35 @@ against the candidate DM, not seeing each other. Their notes agree on four thing
   (`gameplay-composer.tsx:392`), so a player who sees a wrong modifier can only press «Onward» and argue after. Astra:
   «Pressing Onward felt like accepting a result I knew was wrong». Fix: «?» stays available while a card is pending
   (out of game only, no action), and the DM may correct the card before the die is pressed. Ties to item 3.
-- **11c. The errand must show its face every session.** All four, in different words: two in-game days of excellent
-  legwork and Tymora's task never came into view (Opus: «the heist premise hasn't surfaced yet»; Fable: «no sense of
-  what Tymora actually wants beyond the coin going warm and cold»; Astra: «the larger premise barely came into view»;
-  Sol: «What was missing was more specifically **James**»). Not a pace problem — the slow city they all praised — but a
-  missing obligation: «believe the simple version first» has no end. Rule for the DM's frame (both languages): **by the
-  end of each session the player holds at least one thing he can tie to the brief** — a «price, interest, secret»
-  conversation with someone who could be crew, or a first clear sign of what the Lady wants — and the hidden-layer
-  prep names, per session, which one it will be. Measured by the checker: sessions whose last three scenes contain a
-  brief-tied thing (judge-tagged), target 100 %.
+- **11c. The adventure has a length, and the DM can see the clock.** All four, in different words: two in-game days of
+  excellent legwork and Tymora's task never came into view (Opus: «the heist premise hasn't surfaced yet»; Fable: «no
+  sense of what Tymora actually wants beyond the coin going warm and cold»; Astra: «the larger premise barely came into
+  view»; Sol: «What was missing was more specifically **James**»). The owner (2026-10-25 01:49): the brief is a seven-hour
+  adventure — it has a setup, a middle and an end, and the heist cannot be forty-five real hours away. The DM is a good
+  storyteller without a watch. Three parts, none of which pushes the player:
+  - **The brief carries a length** («about 7 hours of play», ≈ 70 turns at a human pace) and the hidden-layer prep writes
+    **an act plan with turn budgets** (the owner's own split, movable: act 1, turns 1–15, the errand *offered*; act 2 to ~40,
+    the crew, one «price, interest, secret» conversation per session at least; act 3 to ~60, the plan and the heist; act 4,
+    the reckoning, where «nothing is what it seems» pays off). The plan is a DM-private part of the hidden layer; the
+    owner's screen shows only «act N».
+  - **A clock line before every DM turn**, in the DM's frame: *turn 18 of ~70; act 1 was due by 15; the errand has not been
+    offered; for the player this session has run 1 h 40 min; third session, 6 h at the table in all.* The real time comes
+    from the session records (this is the owner's time-sense idea applied to the DM: he cannot feel the hour unless it is
+    shown). The DM must react to a lag **in that turn** — with one of three tools, never by shortening the player's day:
+    1. **Offer, do not deliver.** The errand is *put in front of* the player by turn 15 — someone approaches, the coin warms
+       at a door, a letter finds him, the Lady moves — and the player may walk past. Measured as «offered by turn N» and,
+       separately, «taken up». If four players out of four walk past a good offer, the question is about the offer.
+    2. **Converge, do not compete.** Whatever thread the player chose, the hidden layer must know how *that* road leads to
+       the errand (rule 10b, threads paid off elsewhere) — the Ammerstead note tying the cards to the drowned men was this,
+       started and not finished. The prep answers «how does any thread the player picks lead to the errand», never «how do I
+       bring him back».
+    3. **Ask about time** (11f): «nothing else happens before the lamps unless you want it to» — the only way to go faster
+       that leaves the lever with the player. The DM never compresses on his own.
+  - **The world's own clocks keep ticking** (the three in the hidden layer): a week of wandering has consequences. That is
+    not pressure; it is the honesty Opus praised («the world felt like it was running without me»).
+  A lag of five turns is normal. Twenty turns without a single offer is what the bench catches. Measured on the four-player
+  bench: the turn on which the errand was first offered (now «—» for all four; target ≤ 15), taken up or not, and the act
+  reached by turn 20. Table C (pure simulation) has no budget and no offers — it is the control.
 - **11d. The out-of-game notes are too long and repeat the narration.** Three of four: «a numbered audit of opening a
   window interrupts the mood» (Astra); «the same paragraph about 'none of those needed a roll' appeared twice in one
   reply» (Fable); «read like the GM defending itself to an auditor rather than talking to me» (Opus). Rule: one line
