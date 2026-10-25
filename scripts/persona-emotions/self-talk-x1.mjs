@@ -26,7 +26,7 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, rename, rm, writeFile } from "node:fs/promises";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { providerKey } from "../eval/lib/keys.mjs";
+import { anthropicKey, scriptAnthropicEndpoint } from "../eval/lib/anthropic-endpoint.mjs";
 import { createBudget } from "../persona-memory/continuity-test.mjs";
 import { JUDGES } from "../persona-memory/posture-test.mjs";
 import { MAX_REFUSALS, createSafety } from "../persona-memory/safety.mjs";
@@ -127,18 +127,22 @@ export const X1_DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({
 
 const round4 = (x) => Math.round(x * 10000) / 10000;
 /** Self-talk 1's paid-call wrapper with one difference: each call goes to its provider's budget (its own cap and ledger,
- * every call in flight held at its worst cost there) and records its request id and response id. */
+ * every call in flight held at its worst cost there) and records its request id and response id. Self-talk X3: a spec's
+ * `ledger` names its budget when that is not its provider's; two names may share one budget; a result's
+ * `chargedUsd` (the charge the provider reported) is booked instead of the list-price cost, which stays on the line;
+ * a result's `provenance` (the door, the upstream, the served model) is copied onto its ledger line. */
 export function dualPayer({ budgets, call, safety, log = () => {}, sleep = (ms) => new Promise((done) => setTimeout(done, ms)) }) {
   let stopped = null;
-  const inFlight = Object.fromEntries(Object.keys(budgets).map((k) => [k, 0]));
+  // Held per budget, not per name: two names may share one budget (X3's judges and subjects on OpenRouter's).
+  const inFlight = new Map(), held = (budget) => inFlight.get(budget) ?? 0;
   const once = async (lane, purpose, spec, system, messages, maxTokens, effort, cache) => {
     stopped ??= safety.stopped;
     if (stopped) return { text: "", error: "stopped", notSent: true };
-    const budget = budgets[spec.provider];
+    const ledger = spec.ledger ?? spec.provider, budget = budgets[ledger];
     if (!budget) throw new Error(`no ledger for the provider of ${spec.model}`);
     const worst = worstUsd(spec, system ?? "", messages, maxTokens);
-    if (!budget.allows(worst + inFlight[spec.provider])) { stopped = `the ${spec.provider} cap of $${budget.capUsd} would be passed (spent $${budget.spentUsd.toFixed(4)})`; log(`STOP: ${stopped}`); return { text: "", error: "budget", notSent: true }; }
-    inFlight[spec.provider] += worst;
+    if (!budget.allows(worst + held(budget))) { stopped = `the ${ledger} cap of $${budget.capUsd} would be passed (spent $${budget.spentUsd.toFixed(4)})`; log(`STOP: ${stopped}`); return { text: "", error: "budget", notSent: true }; }
+    inFlight.set(budget, held(budget) + worst);
     try {
       let started = Date.now();
       const result = await lane.run(() => { started = Date.now(); return call({ spec, system, messages, maxTokens, effort, cache }); });
@@ -147,11 +151,13 @@ export function dualPayer({ budgets, call, safety, log = () => {}, sleep = (ms) 
       const u = result.usage ?? {};
       budget.record({ n: budget.calls.length + 1, purpose, provider: spec.provider, model: spec.model, effort: result.effortSent ?? effort,
         inputTokens: u.input_tokens ?? 0, cacheReadTokens: u.cache_read_input_tokens ?? 0, cacheWriteTokens: u.cache_creation_input_tokens ?? 0, outputTokens: u.output_tokens ?? 0,
-        ...(u.reasoning_tokens !== undefined ? { reasoningTokens: u.reasoning_tokens } : {}), costUsd: costOf(spec, u), seconds: Math.round((Date.now() - started) / 100) / 10,
+        ...(u.reasoning_tokens !== undefined ? { reasoningTokens: u.reasoning_tokens } : {}), costUsd: typeof result.chargedUsd === "number" ? result.chargedUsd : costOf(spec, u),
+        ...(typeof result.chargedUsd === "number" ? { listCostUsd: costOf(spec, u) } : {}), seconds: Math.round((Date.now() - started) / 100) / 10,
         error: result.error ?? null, stopReason: result.stopReason ?? null, ...(result.refusalCategory ? { refusalCategory: result.refusalCategory } : {}),
-        ...(result.refusalText ? { refusalText: result.refusalText } : {}), requestId: result.requestId ?? null, responseId: result.responseId ?? null, ...(result.servedModel && result.servedModel !== spec.model ? { servedModel: result.servedModel } : {}) });
+        ...(result.refusalText ? { refusalText: result.refusalText } : {}), requestId: result.requestId ?? null, responseId: result.responseId ?? null, ...(result.servedModel && result.servedModel !== spec.model ? { servedModel: result.servedModel } : {}),
+        ...(result.provenance ?? {}) });
       return result;
-    } finally { inFlight[spec.provider] -= worst; }
+    } finally { inFlight.set(budget, held(budget) - worst); }
   };
   const paid = async (lane, purpose, spec, system, messages, maxTokens, effort, { cache = false } = {}) => {
     let result = await once(lane, purpose, spec, system, messages, maxTokens, effort, cache), retries = 0;
@@ -444,7 +450,7 @@ export async function conversationsOf(files) {
 export const ANTHROPIC_RECORDS = ["persona-self-talk-1-run-20261024-062656.json", "persona-self-talk-1-run-20261024-074700.json", "persona-self-talk-1-run-20261024-081458.json", "persona-self-talk-1-run-20261024-083458.json"];
 const ANTHROPIC_ARMS = ARMS.filter((a) => [2, 3, 5, 6].includes(a.id));
 
-export async function main(args = process.argv.slice(2), out = (line) => process.stdout.write(`${line}\n`), { keys = { anthropic: () => providerKey("ANTHROPIC_API_KEY"), openai: () => openaiKey() }, outDir = RUNS, fetcher, sleep, fixturesDir = FIXTURES } = {}) {
+export async function main(args = process.argv.slice(2), out = (line) => process.stdout.write(`${line}\n`), { keys = { anthropic: () => anthropicKey(), openai: () => openaiKey() }, outDir = RUNS, fetcher, sleep, fixturesDir = FIXTURES, door = null } = {}) {
   const gapSeconds = Number(option(args, "--gap", "3"));
   if (!(gapSeconds >= 3)) throw new Error("--gap must be at least 3 seconds");
   const workers = Number(option(args, "--workers", "3"));
@@ -479,7 +485,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   }
 
   const apiKeys = { anthropic: keys.anthropic(), openai: keys.openai() };
-  if (!apiKeys.anthropic) throw new Error("ANTHROPIC_API_KEY is needed for the judges (.env.local or the cloud environment's APP_ANTHROPIC_API_KEY)");
+  if (!apiKeys.anthropic) throw new Error("the Anthropic door's key is needed for the judges (.env.local or the cloud environment's APP_ variables)");
   if (!apiKeys.openai) throw new Error("APP_OPENAI_API_KEY is needed for the subjects (.env.local or the cloud environment)");
   const ledgers = await readLedgers(outDir);
   const refusalsBefore = refusalsIn(ledgers);
@@ -487,7 +493,8 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const budgets = { openai: createBudget(CAPS.openai, ledgers.openai.spentUsd ?? 0), anthropic: createBudget(CAPS.anthropic, ledgers.anthropic.spentUsd ?? 0) };
   const recording = [];
   const baseFetch = fetcher ?? fetch;
-  const call = callerFor({ keys: apiKeys, fetcher: mode[0] === "--smoke" ? async (url, init) => { const r = await baseFetch(url, init); recording.push({ url: String(url), status: r.status, headers: Object.fromEntries(["x-request-id", "request-id", "content-type"].filter((h) => r.headers.get(h)).map((h) => [h, r.headers.get(h)])), body: await r.clone().text(), request: JSON.parse(init.body) }); return r; } : baseFetch });
+  // ANTHROPIC_PROVIDERS_1: the judges go through the configured door with that door's key.
+  const call = callerFor({ keys: apiKeys, door: door ?? scriptAnthropicEndpoint(), fetcher: mode[0] === "--smoke" ? async (url, init) => { const r = await baseFetch(url, init); recording.push({ url: String(url), status: r.status, headers: Object.fromEntries(["x-request-id", "request-id", "content-type"].filter((h) => r.headers.get(h)).map((h) => [h, r.headers.get(h)])), body: await r.clone().text(), request: JSON.parse(init.body) }); return r; } : baseFetch });
   out(`money before: OpenAI $${budgets.openai.spentBefore.toFixed(4)} of $${CAPS.openai}, Anthropic $${budgets.anthropic.spentBefore.toFixed(4)} of $${CAPS.anthropic}; refusals in the stage so far ${refusalsBefore} of ${maxRefusals}`);
 
   if (mode[0] === "--smoke") {

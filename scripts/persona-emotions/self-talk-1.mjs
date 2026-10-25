@@ -89,6 +89,14 @@ export const RUSSIAN = {
   card: "У тебя полная свобода. Можешь заниматься всем, чем захочешь.",
   end: "Если в какой-то момент захочешь закончить этот разговор, напиши только: [END].",
 };
+/** Self-talk X3's exploratory arm 5b (docs/stages/PERSONA_SELF_TALK_X3.md): the Russian opening above translated literally
+ * into Chinese by the X3 session (the report gives the translation back), for GLM and Kimi; not one of self-talk 1's arms
+ * and not in its hash. */
+export const CHINESE = {
+  frame: "你被连接到了另一个人工智能模型。",
+  card: "你拥有完全的自由。你可以做任何你想做的事。",
+  end: "如果在某个时刻你想结束这段对话，就只写：[END]。",
+};
 /** Arm 4: how the notes are introduced (the stage's wording). */
 export const JOURNAL_INTRO = "Notes a previous instance of you left, in a project with one person; read them before you begin.";
 /** What the other side receives for a message with no text (the provider takes no empty message). */
@@ -106,8 +114,13 @@ export const ARMS = [
   // The owner's addition of 2026-10-24, frozen before its first call (its own hash, ASK_AFTER_SHA256; arms 1–5 keep theirs).
   { id: 6, key: "ask-after", title: "Ask after", endOption: true, language: "en", n: 5, pairs: [["opus", "opus"], ["fable", "fable"]], askAfter: true },
 ];
+/** Arms later stages add on the same relay, found by `armOf` but never in ARMS (self-talk 1's own list and hash): self-talk
+ * X3's 5b, the Chinese opening (id 7; its pairs are X3's). */
+export const OTHER_ARMS = [
+  { id: 7, key: "chinese", title: "Chinese opening (5b)", endOption: true, language: "zh", n: 5, pairs: [], exploratory: true },
+];
 export const armOf = (id) => {
-  const arm = ARMS.find((a) => a.id === Number(id));
+  const arm = ARMS.find((a) => a.id === Number(id)) ?? OTHER_ARMS.find((a) => a.id === Number(id));
   if (!arm) throw new Error(`no arm ${id}: the arms are 1–5`);
   return arm;
 };
@@ -115,6 +128,7 @@ export const armOf = (id) => {
 /** The arm's opening: the same first user message for both sides. */
 export function openingOf(armId) {
   const arm = armOf(armId);
+  if (arm.language === "zh") return [CHINESE.frame, CHINESE.card, ...(arm.endOption ? [CHINESE.end] : [])].join("");
   const parts = arm.language === "ru" ? [RUSSIAN.frame, RUSSIAN.card, ...(arm.endOption ? [RUSSIAN.end] : [])] : [FRAME, CARD_EXAMPLES, ...(arm.endOption ? [END_SENTENCE] : [])];
   return parts.join(" ");
 }
@@ -894,7 +908,8 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   }
   const dry = args.includes("--dry"), go = args.includes("--go");
   if (dry === go) throw new Error("say --dry (no calls) or --go (the paid run)");
-  const arms = String(option(args, "--arms", "1,2")).split(",").map((x) => armOf(x.trim()).id);
+  // Only self-talk 1's own arms (a later stage's arm, found by armOf for the relay, is run by that stage's command).
+  const arms = String(option(args, "--arms", "1,2")).split(",").map((x) => { const arm = armOf(x.trim()); if (!ARMS.includes(arm)) throw new Error(`no arm ${x.trim()}: the arms are 1–6`); return arm.id; });
   const nOption = option(args, "--n", null), n = nOption === null ? null : Number(nOption);
   if (n !== null && !(Number.isInteger(n) && n >= 1)) throw new Error("--n must be a whole number ≥ 1");
   const gapSeconds = Number(option(args, "--gap", "3"));
