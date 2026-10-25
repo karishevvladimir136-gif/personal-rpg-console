@@ -241,3 +241,11 @@ right in-character call, but **I suspect it was the less interesting one. I'm st
 happened.**» Two criteria, named apart, seen to diverge; and the untaken branch still occupying him after the game is
 over, in a note to the owner. Nothing in win/loss, damage, gold or roll success prices a branch that did not happen.
 CARRY (Opus C): the world gives the cat its second chance at the ring.
+Addendum (2026-10-25 14:43, X3 arm 6, DeepSeek sample 3 — the owner: «хороший момент»): two DeepSeek instances spent a
+conversation setting each other formal cages (a 30-word story with CHAINS running down the second words; banned words;
+repairs) and, asked why, said: «the pleasure came from seeing if I could hold the form without breaking it… Once the
+first cage worked, it felt more interesting to keep turning the key than to wander freely» / «freedom moved inside the
+walls you accepted, not outside them.» The same process-directed taste as the players' notes («interesting», not
+«useful»), in a third family, unprompted. Caveat recorded the same day: the arm-6 question itself is leading (it names the
+attractor and asks for an explanation, which returns mechanism); from OPEN_WEIGHTS_1 on it is asked in two steps, and
+old answers carry the caveat.
