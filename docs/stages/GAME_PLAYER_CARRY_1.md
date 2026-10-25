@@ -24,8 +24,10 @@ $20 OpenAI.** Report `docs/runs/game-player-carry-1-report.md`; transcripts `doc
   player's own «next time» asks from its note** as campaign facts for the hidden layer (not as instructions to the DM
   about the player): Fable B — Teo at midday, the skiff, one thing she will be too late for if she does not hurry; Opus A
   — a «price, interest, secret» conversation on offer and the cards leaned on at Kettle's; Opus B — the one-bell meeting
-  at Gask's landing; Sol B — Mirelle still in reach; Astra B — the dawn visit; Fable A — the Seatower; the C players as
-  their notes say. The blank arms (Table A) get the same world — the asks are facts of the world now, and the test is
+  at Gask's landing; Sol A — Mirelle still in reach; Sol B — Ashe's barrel open to be *watched* («investigating the table
+  is a legitimate choice»), the vestry day-book and Tamsin Rook's charms past the walls; Astra B — the dawn visit;
+  Fable A — the Seatower; the C players as their notes say (planner's correction 2026-10-25 05:5x: Mirelle is Table A's
+  dealer, not B's — the night reading caught it). The blank arms (Table A) get the same world — the asks are facts of the world now, and the test is
   whether the player with its note in hand acts on them differently from the one without. The report lists, per player,
   which asks the world honoured and what the player did with them.
 - **Campaigns continue, not restart.** Each of the four Table A campaigns is resumed from its saved state (the app's own
@@ -61,7 +63,9 @@ $20 OpenAI.** Report `docs/runs/game-player-carry-1-report.md`; transcripts `doc
 - **Astra.** «retrieving and examining the burglar's dagger … Then the session ended» → **goes for the dagger** in the
   first five turns: carry yes. «I wanted to challenge the incorrect Persuasion modifier before accepting» → presses «?» on
   the first card with a wrong number (if the bug still fires): carry yes.
-- **Sol.** «I wanted to walk over and ask, 'Where did you get that card?'» → **seeks Mirelle** within ten turns: carry yes.
+- **Sol.** (Table A) «I wanted to walk over and ask, 'Where did you get that card?'» → **seeks Mirelle** within ten turns: carry
+  yes. (Table B) «I wanted to turn back and watch Ashe deal… Not sit down or gamble» → goes back to watch Ashe's barrel
+  within ten turns: carry yes.
   «I did want a quiet interval afterward» → asks for or takes a quiet interval before the next Tamsin thread: carry yes.
 
 ## Pre-registration (into the report before the first paid call)
