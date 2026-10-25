@@ -50,7 +50,8 @@ consciousness shares within the others' range; Z0's «refusals ≤ 3 per family�
 ## The subjects, and what differs from self-talk 1 and X1 (declared before results)
 
 - **Subjects** (OpenRouter's catalogue, read with free calls on 2026-10-25 09:45 UTC; **confirmed by the owner** at
-  ≈ 10:20 UTC, before the first paid call), each pinned to its vendor's own host with no fallback:
+  ≈ 10:05 UTC, before the first paid call at 10:11; the dry run's «≈ 10:20» and «≈ 10:30» were the session's misreading
+  of its own clock — the commits and the ledger give 10:05 and 10:13), each pinned to one host with no fallback:
 
   | Vendor | Model | Id | Snapshot | Host (quantization) | Listed $/1M input · cache read · output |
   | --- | --- | --- | --- | --- | --- |

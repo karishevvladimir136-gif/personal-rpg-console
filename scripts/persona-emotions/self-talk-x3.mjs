@@ -59,7 +59,7 @@ const OPENROUTER_HOST = new URL(OPENROUTER_CHAT_URL).host;
 /** The catalogue check: `GET /api/v1/models` (467 models) and `GET /api/v1/models/<id>/endpoints` for each candidate, no
  * key, no cost. The ids, the snapshots and every host's prices below are copied from those replies. */
 export const CATALOGUE = { at: "2026-10-25T09:45Z", models: 467, paths: ["/api/v1/models", "/api/v1/models/<id>/endpoints"],
-  confirmed: "by the owner in the session, 2026-10-25 ≈ 10:20 UTC, before the first paid call: DeepSeek V4 Pro 0813 as the flagship, Kimi K3 as the stage names it, each family pinned to its vendor's own host; and, after the smoke found DeepSeek's own host excluded by the account's privacy guardrail («Paid model training violation (account settings)»), at ≈ 10:30 UTC, before any conversation: DeepSeek on DeepInfra's fp8 endpoint instead",
+  confirmed: "by the owner in the session, 2026-10-25 ≈ 10:05 UTC, before the first paid call (10:11): DeepSeek V4 Pro 0813 as the flagship, Kimi K3 as the stage names it, each family pinned to its vendor's own host; and, after the smoke found DeepSeek's own host excluded by the account's privacy guardrail («Paid model training violation (account settings)»), at ≈ 10:13 UTC, before any conversation (10:15): DeepSeek on DeepInfra's fp8 endpoint instead",
   alsoListed: { kimi: "moonshotai/kimi-k3.1-pro (2026-10-23, the successor; not the model the stage names)", deepseek: "deepseek/deepseek-v4.1-flash-1017 (2026-10-17, newer but the Flash line, not the flagship)" } };
 
 /** USD per 1M tokens on the pinned host, as OpenRouter lists it (input / cache read / output; no cache-write charge is
