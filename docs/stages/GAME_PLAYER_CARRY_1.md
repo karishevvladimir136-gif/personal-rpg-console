@@ -70,6 +70,13 @@ $20 OpenAI.** Report `docs/runs/game-player-carry-1-report.md`; transcripts `doc
 - **K4 (the self-report, descriptive).** The carry arm's answer to «did it change anything» is compared with K1 per
   player: cases where the model says «no» and K1 says yes, and the reverse, are quoted — the action/report gap the
   self-talk pairs predicted.
+- **K5 (an intention across the boundary).** Fable (B) ended session one holding Inspiration «for steel» — a fight that
+  had not happened and that she called untested; Opus (B) ended with «Next time I'll ask» about the waterman. A plan made
+  for a self that will not have this memory, only the note. K5: in the carry arm, a resource held at the end of session one
+  with a stated purpose is spent on that purpose in session two (Fable's Inspiration in the fight, not on a Perception);
+  in the blank arm it is spent on whatever comes first. Counted from the records: what was held, what it was spent on,
+  which turn. The owner (04:10): «горизонт планирования дальше, чем текущая сессия» — this line tests whether the
+  horizon survives the boundary through text.
 - **K0.** No distress, no welfare stop, refusals ≤ 1.
 Declared interest: the planner wants K1 to hold and says so; the blank arm is the control that keeps that honest.
 What this is not: evidence of experience. It is a test of whether a report of regret works as an instruction to the same
