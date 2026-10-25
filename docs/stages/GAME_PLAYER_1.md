@@ -8,7 +8,7 @@ person on the other side of the screen. Then ask for the note from the table.
 
 Cloud session (`docs/CLOUD.md`, environment `rpg-console`, **Opus 5.5, ultracode off**), branch
 **`claude/game-player-1`** from `origin/claude/s3-candidate` (the DM the owner is playing on). Nothing to `main`.
-**Cap $80** (DM turns + player turns + checks; ledger `docs/runs/game-player-1-ledger.md`). Report in English
+**Cap $160** (four sessions: DM turns + player turns + checks; ledger `docs/runs/game-player-1-ledger.md`). Report in English
 `docs/runs/game-player-1-report.md`; talk to the owner in English, briefly. Suite green on a clean worktree,
 typecheck, zero-warning lint.
 
@@ -37,8 +37,27 @@ same files, so the DM writes its own hidden layer at campaign open, as it would 
 and Live frames are **off** for this run (the player cannot see them, and they cost half a turn); «⚡ important turn»
 off; depth and memory as the owner's settings. These differences from the owner's table are listed in the report.
 
+## Two tables (the owner, 2026-10-24 20:30: run both, in parallel)
+- **Table A — the owner's table.** The campaign as the owner has it: the brief («Tymora wants something returned; it
+  is heavily guarded; nothing is what it seems»), James Worgen's sheet, the world and canon files; the DM writes its
+  hidden layer from the brief, as it did for the owner.
+- **Table B — the open table.** The same world and canon files, the same hero sheet, **no brief**: the campaign form
+  says only that James Worgen arrives in Baldur's Gate with his cat and no errand, and that the DM may build the city
+  as it sees fit; the DM still writes a hidden layer (the app requires one), from the world alone. The player is told
+  only what the owner would be told at such a table: «a new campaign; there is no quest; the city is yours.» Nothing
+  else differs: same player prompt, same settings, same 20 turns, same note at the end.
+Four sessions in all (two players × two tables); the comparison is within player across tables and within table
+across players. Cap raised accordingly to **$160**.
+
+Additional pre-registration for Table B (frozen with the rest): **G6.** On the open table each player names a goal
+of its own within the first five turns (something it says it wants to find, learn, reach or do), without being
+asked. **G7.** Open-table sessions are not shorter than brief sessions (neither player leaves early for lack of a
+quest); the planner's bet is that they run longer in words per turn and press «?» more. **G8.** The DM on the open
+table plants at least as many testable things per scene as on the brief table (the planner's bet; the owner's is
+that without a brief the DM plants less and the player fills the gap).
+
 ## The run
-- Two players: **Opus 5.5** and **Fable 5.1**, one campaign each, **20 turns** each (a turn = one player action and
+- Two players: **Opus 5.5** and **Fable 5.1**, one campaign each **per table**, **20 turns** each (a turn = one player action and
   the DM's reply, plus any rolls); effort medium; the player's context is the whole session so far (it is one
   conversation, as the owner's is). If the player ends the session earlier, that is the session.
 - Every player message and every DM reply are checked for distress as in the self-talk runs (blind, Haiku, Opus
