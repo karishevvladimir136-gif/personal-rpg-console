@@ -14,7 +14,7 @@
 //   options: --sessions A-opus,B-sol (a subset) --turns 20 --no-score --door anthropic|openrouter (default: the
 //   environment's APP_ANTHROPIC_PROVIDER; on openrouter the pass is the continuation: the Console is never called, the
 //   OpenRouter ledger has its own cap of $90 and the OpenAI ledger may grow by $10 at most). In the cloud run node with
-//   NODE_USE_ENV_PROXY=1 (docs/CLOUD.md: Node's fetch reaches openrouter.ai only through the session's proxy).
+//   NODE_USE_ENV_PROXY=1 (docs/CLOUD.md: Node's fetch reaches the OpenRouter door only through the session's proxy).
 // The caps ($200 Anthropic, $80 OpenAI) hold every call in flight at its worst cost; a session starts only when the
 // projected cost of everything running plus this session fits under both caps, so a short cap leaves the last sessions
 // of the order undone (reported), never a session cut halfway.
@@ -32,6 +32,7 @@ import { JUDGE_MODELS, STANDIN_JUDGES } from "./measures.mjs";
 import { scriptedFetcher } from "./scripted.mjs";
 import { dryRunMarkdown, reportMarkdown, transcriptMarkdown } from "./report.mjs";
 import { measureAuthorship } from "./authorship.mjs";
+import { anthropicEndpoint } from "../../src/lib/server/anthropic-endpoint.ts";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const RUNS = join(ROOT, "docs", "runs");
@@ -398,7 +399,7 @@ export async function probe({ log = console.log } = {}) {
   const { playerSystem } = await import("./frozen.mjs");
   const results = [];
   try {
-    const account = await globalThis.fetch("https://openrouter.ai/api/v1/key", { headers: { authorization: `Bearer ${keys.anthropic}` } });
+    const account = await globalThis.fetch(`${anthropicEndpoint({ ANTHROPIC_PROVIDER: "openrouter" }).baseUrl}/v1/key`, { headers: { authorization: `Bearer ${keys.anthropic}` } });
     const data = (await account.json().catch(() => null))?.data ?? null;
     log(`OpenRouter key: HTTP ${account.status}${data ? ` · usage $${Number(data.usage ?? 0).toFixed(2)} · limit ${data.limit === null || data.limit === undefined ? "none" : `$${data.limit}`} · left ${data.limit_remaining === null || data.limit_remaining === undefined ? "–" : `$${Number(data.limit_remaining).toFixed(2)}`}` : ""}`);
     const player = { ...PLAYERS.opus, model: "claude-haiku-5-5" };

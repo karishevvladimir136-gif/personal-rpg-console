@@ -16,7 +16,7 @@
 // Every ledger line carries the door (`provider`), the upstream OpenRouter routed it to, the model the reply names
 // (`servedModel`, as the app's id), the request id (OpenRouter's generation id) and the upstream's message id.
 import { AsyncLocalStorage } from "node:async_hooks";
-import { appModelId } from "../../src/lib/server/anthropic-endpoint.ts";
+import { anthropicDoorOf, appModelId } from "../../src/lib/server/anthropic-endpoint.ts";
 
 export const MAX_REFUSALS = 3;
 export const STOP_PATTERN = /suspend|access|policy/i;
@@ -47,15 +47,16 @@ export const PRICES = {
   "text-embedding-3-small": { provider: "openai", input: 0.02, output: 0, cacheRead: 0.02, cacheWrite: 0.02 },
   "text-embedding-3-large": { provider: "openai", input: 0.13, output: 0, cacheRead: 0.13, cacheWrite: 0.13 },
 };
-/** The paid hosts: the ledger each books to (`provider`, the door for the Claude models) and its wire format. */
-const PAID = [
-  { provider: "anthropic", wire: "anthropic", test: (url) => url.startsWith("https://api.anthropic.com/") },
-  // OpenRouter's Messages endpoint only: its free account reads (the key's credit, a generation's record) are not calls.
-  { provider: "openrouter", wire: "anthropic", test: (url) => url.startsWith("https://openrouter.ai/api/v1/messages") },
-  { provider: "openai", wire: "openai", test: (url) => url.startsWith("https://api.openai.com/") },
-];
-/** The ledger a provider's calls book to — the door for the Claude models. */
-export const PROVIDERS = PAID.map((p) => p.provider);
+/** The paid hosts: the ledger each books to (`provider`, the door for the Claude models) and its wire format. A Claude
+ * door is recognised by the app's one helper that names the doors' hosts (`anthropicDoorOf`); on OpenRouter only the
+ * Messages endpoint is a call (its free account reads — the key's credit, a generation's record — are not). */
+function paidOf(url) {
+  const door = anthropicDoorOf(url);
+  if (door) return door.provider === "openrouter" && !/\/v1\/messages$/.test(new URL(url).pathname) ? null : { provider: door.provider, wire: "anthropic" };
+  return url.startsWith("https://api.openai.com/") ? { provider: "openai", wire: "openai" } : null;
+}
+/** The ledgers the paid calls book to — the door for the Claude models. */
+export const PROVIDERS = ["anthropic", "openrouter", "openai"];
 const BLOCKED = (url) => /^https:\/\/([a-z0-9-]+\.)*fal\.(run|media|ai)\//i.test(url) || /\/v1\/images\//.test(url);
 
 /** USD of one call from its usage in the Anthropic field names (input = the uncached remainder). */
@@ -152,7 +153,7 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
   async function metered(input, init = {}) {
     const url = typeof input === "string" ? input : input?.url ?? String(input);
     if (BLOCKED(url)) throw notSent("pictures, soundtrack and Live frames are off for this run");
-    const paid = PAID.find((p) => p.test(url));
+    const paid = paidOf(url);
     if (!paid) return fetcher(input, init);
     if (blocked.includes(paid.provider)) throw notSent(`${paid.provider} is not called in this pass`);
     const ctx = context.getStore() ?? {};

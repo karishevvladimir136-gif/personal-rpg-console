@@ -14,9 +14,11 @@ import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { errorText } from "../persona-memory/continuity-test.mjs";
+import { anthropicEndpoint } from "../../src/lib/server/anthropic-endpoint.ts";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
-export const ANTHROPIC_URL = "https://api.anthropic.com/v1/messages";
+// The Console's Messages URL, from the one helper that names the Claude doors' hosts (ANTHROPIC_PROVIDERS_1).
+export const ANTHROPIC_URL = anthropicEndpoint({ ANTHROPIC_PROVIDER: "anthropic" }).messagesUrl;
 export const OPENAI_URL = "https://api.openai.com/v1/responses";
 export const TIMEOUT_MS = 180_000;
 /** How «effort» is sent to each API (recorded in the dry run and in every run record). */

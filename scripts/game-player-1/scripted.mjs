@@ -1,10 +1,10 @@
 // Game player 1: a scripted stand-in for both providers' HTTP APIs — the dry run and the tests make no live call. The
 // DM's own requests are answered by the app's stand-in DM (RPG_DM_FAKE_MODEL=1, src/lib/server/dm/model/fake.ts); this
-// answers everything else that would reach api.anthropic.com or api.openai.com: the wizard's opening (structured
+// answers everything else that would reach a Claude door or OpenAI: the wizard's opening (structured
 // output), the app's in-turn checks, the players, the welfare checks and the judges. Each answer is shaped like the
 // real API's, so the provider layer, the meter and the parsers run as they will in the paid run. OpenRouter's door
-// (https://openrouter.ai/api/v1/messages) is answered the same way, with its model slugs, generation ids and upstream.
-import { appModelId } from "../../src/lib/server/anthropic-endpoint.ts";
+// (its Messages endpoint) is answered the same way, with its model slugs, generation ids and upstream.
+import { anthropicDoorOf, appModelId } from "../../src/lib/server/anthropic-endpoint.ts";
 
 /** The canned opening (the app's opening schema). */
 export const OPENING = {
@@ -40,7 +40,7 @@ export function scriptedFetcher({ player = defaultPlayer, judge = defaultJudge, 
     const system = Array.isArray(body.system) ? body.system.map((b) => b.text ?? "").join("\n") : String(body.system ?? "");
     const user = textOf(body.messages?.at(-1)?.content);
     // OpenRouter's door: the same Messages API, its model slugs, its generation ids and the upstream it routed to.
-    const door = url.startsWith("https://openrouter.ai/") ? { upstream: SCRIPTED_UPSTREAM, id: `gen-scripted-${n}` } : { upstream: null, id: `req_scripted_${n}` };
+    const door = anthropicDoorOf(url)?.provider === "openrouter" ? { upstream: SCRIPTED_UPSTREAM, id: `gen-scripted-${n}` } : { upstream: null, id: `req_scripted_${n}` };
     if (body.stream && DM_MODELS.has(appModelId(String(body.model)))) return stream(scriptedDm(body, system), body.model, n, door);
     let text;
     if (body.output_config?.format?.type === "json_schema") text = ++openings <= failOpenings ? "an opening the provider cannot read" : JSON.stringify(OPENING);
