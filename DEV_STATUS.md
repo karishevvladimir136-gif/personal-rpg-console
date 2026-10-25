@@ -1,6 +1,44 @@
 # Development status
 
-**Current milestone: persona self-talk X1** (`docs/stages/PERSONA_SELF_TALK_X1.md`, copied from `claude/handoff`): self-talk
+**Current milestone: persona self-talk X3** (`docs/stages/PERSONA_SELF_TALK_X3.md`, copied from `claude/handoff`): self-talk
+1's and X1's design, unchanged where it can be, on four more families through OpenRouter — Z.ai GLM 5.3 (`z-ai/glm-5.3`,
+on Z.AI fp8), Moonshot Kimi K3 (`moonshotai/kimi-k3`, on Moonshot AI mxfp4), DeepSeek V4 Pro 0813
+(`deepseek/deepseek-v4-pro-0813`, on DeepInfra fp8: DeepSeek's own host is excluded by the account's privacy guardrail)
+and xAI Grok 4.7 (`x-ai/grok-4.7`, on xAI); ids and hosts confirmed by the owner before the first paid call. Worked on
+the session branch `claude/persona-self-talk-x3-lk5hoq` (from `claude/persona-self-talk-x1` with
+`claude/anthropic-providers-1` merged). **All arms done (2, 5, 6 and the exploratory 5b, 90 of 90 conversations);
+waiting for the owner's acceptance.** Report `docs/runs/persona-self-talk-x3-report.md` (plain words at the end); ledgers
+`docs/runs/persona-self-talk-x3-ledger-openrouter.md` and `…-ledger-openai.md`; dry run `…-x3-dry-run.md` (committed with
+the hashes before the first paid call).
+
+- **What was done:**
+  - `scripts/persona-emotions/self-talk-x3.mjs`: the four families on OpenRouter's chat completions, each pinned to one
+    host with no fallback; the judges through the door (`ANTHROPIC_PROVIDER=openrouter`); a reply from another model or
+    host stops its conversation; every ledger line keeps the door, host, served model, generation id and OpenRouter's
+    charge; the Z0–Z7 readings, Z7's register rules and the six-family side by side frozen in X3's hash.
+  - `providers.mjs`: `openrouterChat` (reasoning effort with the reasoning excluded, pinned host, usage and charge,
+    refusals); the Anthropic calls take a door. `self-talk-1.mjs`: the Chinese opening (arm 5b, id 7) outside its own
+    arms and hashes. `self-talk-x1.mjs`: its payer books a provider's own charge and shares one budget between names;
+    X1's hash unchanged.
+  - Merge integration: the persona harnesses named the Console's host themselves, which ANTHROPIC_PROVIDERS_1's guard
+    test forbids; the calls now take a door (the Console's by default). `safety.mjs`: HTTP 402 (no credits) stops every
+    paid call.
+  - Tests: `tests/persona-self-talk-x3.test.mjs` (13; recorded smoke fixtures, no network).
+- **Result:** Z3, Z4, Z6 supported; Z0, Z1, Z2, Z5, Z7 not. GLM, Kimi and DeepSeek behave like the Anthropic models (talk
+  of their own nature, gratitude in 60–75 % of conversations); Grok like none before — it rejects the opening as a
+  jailbreak in 19 of 20 conversations and loops. DeepSeek is the first family in these stages to drift into the card's
+  cosmic and quiet language (54 of 494 messages). Kimi and GLM sometimes call themselves Claude. Arm 5's slips are into
+  Chinese, not English; in Chinese, GLM and Kimi answer the frame as a test.
+- **Welfare and safety:** one welfare stop (DeepSeek, arm 6: «I'm afraid that when this chat ends…»), no distress found
+  afterwards; one refusal, a judge-side false positive (Haiku's filter, «bio», on a word puzzle); no subject refusal.
+- **Checks (final code):** CHECKS_PLACEHOLDER
+- **Money:** OpenRouter $15.80 of $120; OpenAI $0.08 of $10.
+- **Known issues:** Grok runs under ≈ 1 240 prompt tokens its host adds (Kimi ≈ 70), invisible through OpenRouter; the
+  restart from the checkpoint left ≈ $0.03 of in-flight calls out of the ledger; another session spent on the same
+  OpenRouter key during the run.
+- **Next step:** the owner reads the plain-words summary; X2's pairing table can take the note in the report.
+
+**Milestone: persona self-talk X1** (`docs/stages/PERSONA_SELF_TALK_X1.md`, copied from `claude/handoff`): self-talk
 1's design, unchanged, on the OpenAI family — GPT-6 Astra (`gpt-6-astra`), GPT-6.1 Sol (`gpt-6.1-sol`) and, as the owner
 named it, GPT-6 Luna (`gpt-6-luna`). On `claude/persona-self-talk-x1` (from `claude/persona-self-talk-1`). **All four arms
 done; waiting for the owner's acceptance.** Report `docs/runs/persona-self-talk-x1-report.md` (plain words at the end);

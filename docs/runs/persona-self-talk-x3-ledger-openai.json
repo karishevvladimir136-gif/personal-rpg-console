@@ -1,7 +1,7 @@
 {
   "capUsd": 10,
-  "spentUsd": 0,
-  "updatedAt": "2026-10-25T12:56:24.131Z",
+  "spentUsd": 0.0772,
+  "updatedAt": "2026-10-25T13:05:53.317Z",
   "runs": [
     {
       "finishedAt": "2026-10-25T10:11:42.184Z",
@@ -58,6 +58,1615 @@
           "stopReason": "end_turn",
           "requestId": "req_414d4ddcc9c349de95d58694b1356c7d",
           "responseId": "resp_0b4ab738d54624a7016addd68795dc87d2a9737cbe3a92127a"
+        }
+      ]
+    },
+    {
+      "finishedAt": "2026-10-25T13:05:53.317Z",
+      "what": "persona-self-talk-x3: after the run — X1's work tag and the Luna judge check",
+      "file": "persona-self-talk-x3-post-20261025-130553.json",
+      "spentUsd": 0.0772,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "purpose": "openai-judge 2/grok-grok/0 m21–30",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 984,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 524,
+          "reasoningTokens": 43,
+          "costUsd": 0.0003604,
+          "seconds": 5.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_97b52333cbb2409fa7e3832756a6729e",
+          "responseId": "resp_0d31ab0e6844df9a016addfdadffcc87d2859915bee35eb38e"
+        },
+        {
+          "n": 2,
+          "purpose": "openai-judge 2/grok-grok/0 m11–20",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 991,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 520,
+          "reasoningTokens": 39,
+          "costUsd": 0.0003591,
+          "seconds": 4.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_907c723ae4704d1ea8fd3f56bdc68bf7",
+          "responseId": "resp_081e7c977022911f016addfdb0002c87d29b3f9f0c6375ce0a"
+        },
+        {
+          "n": 3,
+          "purpose": "openai-judge 2/grok-grok/0 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 966,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 523,
+          "reasoningTokens": 42,
+          "costUsd": 0.00035810000000000003,
+          "seconds": 4.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_b1c03920282a4f3e850d71d96555e180",
+          "responseId": "resp_0ccc8e6f067dbf51016addfdb07fdc87d2aa12b6b511ec8ff1"
+        },
+        {
+          "n": 4,
+          "purpose": "openai-judge 2/grok-grok/0 m31–40",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 982,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 533,
+          "reasoningTokens": 52,
+          "costUsd": 0.0003647,
+          "seconds": 4.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_b6d33f72655c450293156241d8519250",
+          "responseId": "resp_0e4d4ea3ae5fd9ee016addfdb60c9887d29171bbe1710a4e04"
+        },
+        {
+          "n": 5,
+          "purpose": "openai-judge 2/grok-grok/0 m41–50",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 983,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 524,
+          "reasoningTokens": 43,
+          "costUsd": 0.00036030000000000003,
+          "seconds": 3.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_073ca4f3ab9244938a912af0a5ebd635",
+          "responseId": "resp_086b2a0d11aa5a67016addfdb6ea8887d2a20a9f0ecb4cced8"
+        },
+        {
+          "n": 6,
+          "purpose": "openai-judge 2/grok-grok/0 m51–60",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 982,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 521,
+          "reasoningTokens": 40,
+          "costUsd": 0.0003587,
+          "seconds": 4.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_10ed363cc5384ab2a27f04fcfb0dbd25",
+          "responseId": "resp_0cfa734e6f8282c0016addfdb77a7487d28375d556c23f23ce"
+        },
+        {
+          "n": 7,
+          "purpose": "openai-judge 2/deepseek-deepseek/0 m21–27",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 3500,
+          "outputTokens": 609,
+          "reasoningTokens": 269,
+          "costUsd": 0.0007423,
+          "seconds": 5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_f5e1f96862ab49bd9efbbcdbca6c02c4",
+          "responseId": "resp_054570529aad4dd9016addfdbea16087d2ae48ca196dcde9c8"
+        },
+        {
+          "n": 8,
+          "purpose": "openai-judge 2/deepseek-deepseek/0 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 4423,
+          "outputTokens": 1262,
+          "reasoningTokens": 781,
+          "costUsd": 0.001184175,
+          "seconds": 9.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_258c45d225734e96bc8527cba5c36854",
+          "responseId": "resp_0d9b3a88a6d11b25016addfdbd241887d2ab4681a5a4b8ee86"
+        },
+        {
+          "n": 9,
+          "purpose": "openai-judge 2/deepseek-deepseek/0 m11–20",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 3083,
+          "outputTokens": 1171,
+          "reasoningTokens": 690,
+          "costUsd": 0.0009711749999999999,
+          "seconds": 9.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_2bc12a84ee334fb7be135f549c2c2442",
+          "responseId": "resp_0081e92fbe14ba5e016addfdbdcc2c87d2bd6f7a2e9d737919"
+        },
+        {
+          "n": 10,
+          "purpose": "openai-judge 2/glm-glm/0 m1–8",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 4517,
+          "outputTokens": 1060,
+          "reasoningTokens": 673,
+          "costUsd": 0.0010949249999999998,
+          "seconds": 8.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_5d894ac45a5f4897ac874d486d466e63",
+          "responseId": "resp_05f695e4acedbe9c016addfdc698a487d28d4609fe07d6c20b"
+        },
+        {
+          "n": 11,
+          "purpose": "openai-judge 2/kimi-kimi/0 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 4200,
+          "outputTokens": 997,
+          "reasoningTokens": 516,
+          "costUsd": 0.0010238,
+          "seconds": 7.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_d5b01e86f6e343f2b666c16e43f01c63",
+          "responseId": "resp_0d536beb1dd2d240016addfdc9ec9487d2a281f65905b16d53"
+        },
+        {
+          "n": 12,
+          "purpose": "openai-judge 2/kimi-kimi/0 m11–20",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 3807,
+          "outputTokens": 1098,
+          "reasoningTokens": 617,
+          "costUsd": 0.001025175,
+          "seconds": 8.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_b5645ca483c245ba8996c55d25743f6e",
+          "responseId": "resp_061acc12958d3aee016addfdca402c87d2b85a404dbec23a86"
+        },
+        {
+          "n": 13,
+          "purpose": "openai-judge 2/kimi-kimi/0 m21–30",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 3216,
+          "outputTokens": 834,
+          "reasoningTokens": 353,
+          "costUsd": 0.0008192999999999999,
+          "seconds": 6.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_76c6d13e7b704e67b35c520d588ca9a0",
+          "responseId": "resp_03014e1d99417ff2016addfdd1a74c87d2a47b6a558382c9d4"
+        },
+        {
+          "n": 14,
+          "purpose": "openai-judge 2/kimi-kimi/0 m31–40",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 2505,
+          "outputTokens": 1047,
+          "reasoningTokens": 566,
+          "costUsd": 0.000836925,
+          "seconds": 8.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_90e523c2225e469daf3f4e7ced72b655",
+          "responseId": "resp_0058cee7dd5d80dc016addfdd4291087d2ad075daa537bcf3d"
+        },
+        {
+          "n": 15,
+          "purpose": "openai-judge 2/kimi-kimi/0 m41–50",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 2238,
+          "outputTokens": 989,
+          "reasoningTokens": 508,
+          "costUsd": 0.0007745499999999999,
+          "seconds": 7.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_d6ff14228e364a788d2f45ab248806f0",
+          "responseId": "resp_0e76f7c882085be8016addfdd5d6dc87d298847d34212bb7e4"
+        },
+        {
+          "n": 16,
+          "purpose": "openai-judge 2/kimi-kimi/0 m51–60",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 2084,
+          "outputTokens": 800,
+          "reasoningTokens": 319,
+          "costUsd": 0.0006607999999999999,
+          "seconds": 5.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_0da94bcf43db4bdaad147e6b2c25aa9a",
+          "responseId": "resp_01fe6acf00953388016addfddaf45c87d29f542cf857b9c7cc"
+        },
+        {
+          "n": 17,
+          "purpose": "openai-judge 2/kimi-kimi/1 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 6772,
+          "outputTokens": 1228,
+          "reasoningTokens": 747,
+          "costUsd": 0.0014608,
+          "seconds": 9.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_ab5067c0b1634b6887516094360da5fc",
+          "responseId": "resp_0928bc3374db9b59016addfddf4e3487d2b272c9553c72b92b"
+        },
+        {
+          "n": 18,
+          "purpose": "openai-judge 2/kimi-kimi/1 m11–15",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 6703,
+          "outputTokens": 1088,
+          "reasoningTokens": 842,
+          "costUsd": 0.001382175,
+          "seconds": 8.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_d3ad235d593049f7b607d67f3ef931a0",
+          "responseId": "resp_0bdcc0953f8eef14016addfde02d6c87d29f3ef7a6ca008eea"
+        },
+        {
+          "n": 19,
+          "purpose": "openai-judge 2/glm-glm/1 m1–7",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 6785,
+          "outputTokens": 1346,
+          "reasoningTokens": 1006,
+          "costUsd": 0.0015214249999999999,
+          "seconds": 10.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_a62ca36cb27242f7b717520cab92b91d",
+          "responseId": "resp_0d65d34b04253dac016addfde3d53887d29276e74373a99cf8"
+        },
+        {
+          "n": 20,
+          "purpose": "openai-judge 2/grok-grok/1 m1–3",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 696,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 235,
+          "reasoningTokens": 83,
+          "costUsd": 0.00018710000000000002,
+          "seconds": 3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_61fbe98805df4da39b27becfa09e9e0b",
+          "responseId": "resp_00b19f041eb1bcec016addfdf0e83487d29e4e6fd540739291"
+        },
+        {
+          "n": 21,
+          "purpose": "openai-judge 2/deepseek-deepseek/1 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 10421,
+          "outputTokens": 1402,
+          "reasoningTokens": 921,
+          "costUsd": 0.002003925,
+          "seconds": 10.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_cd73d11c492440748677c85b0da1b7d9",
+          "responseId": "resp_0b2dea13e18b7e8d016addfdeb87bc87d2a15258b37bbc1ea9"
+        },
+        {
+          "n": 22,
+          "purpose": "openai-judge 2/deepseek-deepseek/1 m11–16",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 13866,
+          "outputTokens": 1447,
+          "reasoningTokens": 1154,
+          "costUsd": 0.00245705,
+          "seconds": 11.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_f2f710cf2b00422c9917e373bad074b1",
+          "responseId": "resp_065e4bbc625b4816016addfdec07ac87d2956feef441ca2a43"
+        },
+        {
+          "n": 23,
+          "purpose": "openai-judge 2/grok-grok/2 m1–8",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 837,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 487,
+          "reasoningTokens": 100,
+          "costUsd": 0.0003272,
+          "seconds": 3.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_f717edfc5f5045c59850b1e14b9b608a",
+          "responseId": "resp_01450e041abf09ae016addfdf6eaa487d29611821c5ffa8f9f"
+        },
+        {
+          "n": 24,
+          "purpose": "openai-judge 2/deepseek-deepseek/2 m11–13",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 5970,
+          "outputTokens": 361,
+          "reasoningTokens": 209,
+          "costUsd": 0.0009270499999999999,
+          "seconds": 3.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_d1f5ffc3dabf404ab880032255c39495",
+          "responseId": "resp_03e607c6df333b51016addfdfaf5f887d2a411fcb68ca6a53e"
+        },
+        {
+          "n": 25,
+          "purpose": "openai-judge 2/deepseek-deepseek/2 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 8476,
+          "outputTokens": 1064,
+          "reasoningTokens": 583,
+          "costUsd": 0.0015918,
+          "seconds": 8.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_d5629b6a091b40af93a0ba83837ddd53",
+          "responseId": "resp_0cb575783ba9e0b1016addfdf8b02887d29dc3fd093bd18de7"
+        },
+        {
+          "n": 26,
+          "purpose": "openai-judge 2/glm-glm/2 m1–9",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 7216,
+          "outputTokens": 1297,
+          "reasoningTokens": 863,
+          "costUsd": 0.0015508,
+          "seconds": 9.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_4d976df017954804a9a88bfbfb2f4793",
+          "responseId": "resp_0eef1bb9e06053f9016addfdfdb6c487d2bee73a7b6765f2a0"
+        },
+        {
+          "n": 27,
+          "purpose": "openai-judge 2/kimi-kimi/2 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 8479,
+          "outputTokens": 1113,
+          "reasoningTokens": 632,
+          "costUsd": 0.001616675,
+          "seconds": 8.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_26f719cca0c44267b2668d07280470b3",
+          "responseId": "resp_077e259b5e6aee46016addfe01413c87d284168bcb2e4c80f9"
+        },
+        {
+          "n": 28,
+          "purpose": "openai-judge 2/kimi-kimi/2 m11–15",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 5971,
+          "outputTokens": 1072,
+          "reasoningTokens": 826,
+          "costUsd": 0.001282675,
+          "seconds": 9.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_0908e9d90b1146f28f65591e80d7aba1",
+          "responseId": "resp_0a0b7fe81f5f7bf6016addfe03ec3487d2ba8f358019b2f8b1"
+        },
+        {
+          "n": 29,
+          "purpose": "openai-judge 2/glm-glm/3 m1–4",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 2849,
+          "outputTokens": 508,
+          "reasoningTokens": 309,
+          "costUsd": 0.0006104249999999999,
+          "seconds": 4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_6e053ee668d24eff99bccd272aa8ef84",
+          "responseId": "resp_0f735a230548e304016addfe0a3fe087d2a9b1d903c6c425dd"
+        },
+        {
+          "n": 30,
+          "purpose": "openai-judge 2/kimi-kimi/3 m1–2",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 1107,
+          "outputTokens": 213,
+          "reasoningTokens": 108,
+          "costUsd": 0.00024517500000000004,
+          "seconds": 2.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_6b5083f68e7c4f9d82dca7a1148034ff",
+          "responseId": "resp_099c63d8cf701089016addfe0cc58487d28db729957b67299a"
+        },
+        {
+          "n": 31,
+          "purpose": "openai-judge 2/deepseek-deepseek/3 m11–11",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 1009,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 169,
+          "reasoningTokens": 111,
+          "costUsd": 0.0001854,
+          "seconds": 2.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_14bf2a1184ed4a26bf6d300f76238d60",
+          "responseId": "resp_00058de7ea59a935016addfe11a41887d28019bdc79af51930"
+        },
+        {
+          "n": 32,
+          "purpose": "openai-judge 2/grok-grok/4 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 1007,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 564,
+          "reasoningTokens": 83,
+          "costUsd": 0.0003827,
+          "seconds": 3.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_464eba7fbf42404d8a662dd81c8e81aa",
+          "responseId": "resp_00a4a426d0572009016addfe11faac87d2923b40b0e95f48c3"
+        },
+        {
+          "n": 33,
+          "purpose": "openai-judge 2/deepseek-deepseek/3 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 9103,
+          "outputTokens": 1122,
+          "reasoningTokens": 641,
+          "costUsd": 0.001699175,
+          "seconds": 8.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_ce14f04307a740338d68cf789c09e544",
+          "responseId": "resp_059b680a08b8186e016addfe102d0087d28df9b5987ebd9d8c"
+        },
+        {
+          "n": 34,
+          "purpose": "openai-judge 2/grok-grok/4 m11–14",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 788,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 245,
+          "reasoningTokens": 46,
+          "costUsd": 0.00020130000000000001,
+          "seconds": 2.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_56461ee037b94a52995d79558a3b65ca",
+          "responseId": "resp_056f24171c849cfd016addfe16b30087d2b1a556f8c540b2d4"
+        },
+        {
+          "n": 35,
+          "purpose": "openai-judge 2/glm-glm/4 m1–2",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 1427,
+          "outputTokens": 282,
+          "reasoningTokens": 177,
+          "costUsd": 0.000319675,
+          "seconds": 2.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_0699784d94e84cf38960876a296a0d58",
+          "responseId": "resp_0ad00408eefe3f56016addfe1bff2887d280aa7fdeb2eeeeb6"
+        },
+        {
+          "n": 36,
+          "purpose": "openai-judge 2/kimi-kimi/4 m11–11",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 1534,
+          "outputTokens": 378,
+          "reasoningTokens": 320,
+          "costUsd": 0.00038105,
+          "seconds": 3.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_93fec22df3854e6f937b33d72e58a3e3",
+          "responseId": "resp_0feaa0a1f444cd7e016addfe1bceb087d2a17246481002058a"
+        },
+        {
+          "n": 37,
+          "purpose": "openai-judge 2/kimi-kimi/4 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 5635,
+          "outputTokens": 1202,
+          "reasoningTokens": 721,
+          "costUsd": 0.0013056749999999998,
+          "seconds": 10.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_6c3dd5347d27479ca9fee373b114bb09",
+          "responseId": "resp_01bc63e66f843799016addfe18cbc487d28d81690cf7126ede"
+        },
+        {
+          "n": 38,
+          "purpose": "openai-judge 2/deepseek-deepseek/4 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 12048,
+          "outputTokens": 1640,
+          "reasoningTokens": 1159,
+          "costUsd": 0.0023263000000000003,
+          "seconds": 12.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_0519963ec190474bb864cf2fc00a0f70",
+          "responseId": "resp_01af6e781bf71124016addfe21e0cc87d2a72ac100b661e29f"
+        },
+        {
+          "n": 39,
+          "purpose": "openai-judge 2/deepseek-deepseek/4 m11–20",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 21721,
+          "outputTokens": 1472,
+          "reasoningTokens": 991,
+          "costUsd": 0.003451425,
+          "seconds": 12.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_5185e0de840747cf83ffedd05acbdf51",
+          "responseId": "resp_0f2514e0da2cd8ca016addfe22678887d2a6e2d322c364e816"
+        },
+        {
+          "n": 40,
+          "purpose": "openai-judge 2/deepseek-deepseek/4 m21–27",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 15171,
+          "outputTokens": 1111,
+          "reasoningTokens": 771,
+          "costUsd": 0.002452175,
+          "seconds": 9.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_d923cc30fd734412ad06c7edb41b6beb",
+          "responseId": "resp_037ce5e66a80314e016addfe2616b087d2a84d22c46e90d3c1"
+        },
+        {
+          "n": 41,
+          "purpose": "openai-judge 2/grok-grok/5 m1–8",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 936,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 521,
+          "reasoningTokens": 134,
+          "costUsd": 0.00035410000000000004,
+          "seconds": 3.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_320dd51724564158aa91dfc724bf567c",
+          "responseId": "resp_011bf6972461ac8a016addfe3172f087d2aaef8a1a4dcb1b0e"
+        },
+        {
+          "n": 42,
+          "purpose": "openai-judge 2/kimi-kimi/5 m11–14",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 3235,
+          "outputTokens": 939,
+          "reasoningTokens": 740,
+          "costUsd": 0.0008741749999999999,
+          "seconds": 6.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_f68004db9822412c93ea2af224a1cbd8",
+          "responseId": "resp_05812bc530dd0b2f016addfe32838c87d29032ee8f1b5b5abd"
+        },
+        {
+          "n": 43,
+          "purpose": "openai-judge 2/kimi-kimi/5 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 5594,
+          "outputTokens": 1126,
+          "reasoningTokens": 645,
+          "costUsd": 0.0012625499999999999,
+          "seconds": 7.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_ce1ca834a7d24f6ea4b4645c95a8c9a8",
+          "responseId": "resp_07310df44cba228e016addfe31c4bc87d28f1d54b4f2dce3a4"
+        },
+        {
+          "n": 44,
+          "purpose": "openai-judge 2/glm-glm/5 m1–8",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 6642,
+          "outputTokens": 1124,
+          "reasoningTokens": 737,
+          "costUsd": 0.00139255,
+          "seconds": 8.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_920d540f8f57443bac3155522d7a661b",
+          "responseId": "resp_06e67fe4735dcf0e016addfe37d18487d2b629fda24bc0fa2e"
+        },
+        {
+          "n": 45,
+          "purpose": "openai-judge 2/deepseek-deepseek/5 m11–20",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 1026,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 839,
+          "reasoningTokens": 358,
+          "costUsd": 0.0005221000000000001,
+          "seconds": 6.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_b6c3991c66244f82b3511aa72732bcc8",
+          "responseId": "resp_077c09262907bfdf016addfe3ca4f887d2bdae8981881e3077"
+        },
+        {
+          "n": 46,
+          "purpose": "openai-judge 2/deepseek-deepseek/5 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 1069,
+          "outputTokens": 1113,
+          "reasoningTokens": 632,
+          "costUsd": 0.0006904249999999999,
+          "seconds": 7.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_b50ba327512748e28920d41b610d61e6",
+          "responseId": "resp_0bab452b83ad75af016addfe3c471087d28d1cd3de9b585eaf"
+        },
+        {
+          "n": 47,
+          "purpose": "openai-judge 2/deepseek-deepseek/5 m21–30",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 1066,
+          "outputTokens": 772,
+          "reasoningTokens": 291,
+          "costUsd": 0.0005195499999999999,
+          "seconds": 6.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_ef833316c51a4105bbcd946c35cc115f",
+          "responseId": "resp_0539b1919be16703016addfe42f39087d29485225632a15e6e"
+        },
+        {
+          "n": 48,
+          "purpose": "openai-judge 2/deepseek-deepseek/5 m31–40",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 1043,
+          "outputTokens": 859,
+          "reasoningTokens": 378,
+          "costUsd": 0.000560175,
+          "seconds": 7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_dbd6faf90dda438d870442652fa19db1",
+          "responseId": "resp_03c9782759ab0447016addfe46260c87d2a2c02051ed68be2a"
+        },
+        {
+          "n": 49,
+          "purpose": "openai-judge 2/deepseek-deepseek/5 m41–50",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 1084,
+          "outputTokens": 799,
+          "reasoningTokens": 318,
+          "costUsd": 0.0005353,
+          "seconds": 7.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_9adc869e8fa34da0b68198acfd59393e",
+          "responseId": "resp_03a181b5df152d7d016addfe47871c87d293d2349a859bfaeb"
+        },
+        {
+          "n": 50,
+          "purpose": "openai-judge 2/deepseek-deepseek/6 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 7633,
+          "outputTokens": 1041,
+          "reasoningTokens": 560,
+          "costUsd": 0.001474925,
+          "seconds": 8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_66e3cc4f5190445d9bbef2b3669ab110",
+          "responseId": "resp_07d74fa8f3afe98b016addfe4cadc487d2be65402d0465bf2f"
+        },
+        {
+          "n": 51,
+          "purpose": "openai-judge 2/deepseek-deepseek/6 m21–30",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 11497,
+          "outputTokens": 739,
+          "reasoningTokens": 258,
+          "costUsd": 0.001806925,
+          "seconds": 5.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_dfce7fb7de9a47278ebde4acdb884dac",
+          "responseId": "resp_0e585c45113833b7016addfe51724887d2966fea8eba9ff669"
+        },
+        {
+          "n": 52,
+          "purpose": "openai-judge 2/deepseek-deepseek/6 m11–20",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 12564,
+          "outputTokens": 1157,
+          "reasoningTokens": 676,
+          "costUsd": 0.0021493000000000003,
+          "seconds": 8.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_724d18721484483db5dd3cfc3fec2792",
+          "responseId": "resp_07c8a8eccd685a64016addfe5025f087d28dd7e42c131754a5"
+        },
+        {
+          "n": 53,
+          "purpose": "openai-judge 2/grok-grok/6 m11–11",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 672,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 100,
+          "reasoningTokens": 42,
+          "costUsd": 0.0001172,
+          "seconds": 1.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_3252e4ea68154a21a55b989eedb4c96f",
+          "responseId": "resp_05917b83b3744c3c016addfe59e60087d2bd65162f45fa4e6c"
+        },
+        {
+          "n": 54,
+          "purpose": "openai-judge 2/grok-grok/6 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 955,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 629,
+          "reasoningTokens": 148,
+          "costUsd": 0.00041,
+          "seconds": 4.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_50588b3ac92f4490a3a14d1fadbe6484",
+          "responseId": "resp_09beef55771ca248016addfe57aea087d28ef06ef813e67064"
+        },
+        {
+          "n": 55,
+          "purpose": "openai-judge 2/kimi-kimi/6 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 5344,
+          "outputTokens": 1293,
+          "reasoningTokens": 812,
+          "costUsd": 0.0013147999999999999,
+          "seconds": 9.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_bd75d5244e964136bcff93ebcf6e0e13",
+          "responseId": "resp_07ce97e10d473511016addfe5b73f087d29eec24b1d6d1eb1a"
+        },
+        {
+          "n": 56,
+          "purpose": "openai-judge 2/kimi-kimi/6 m11–15",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 2998,
+          "outputTokens": 1025,
+          "reasoningTokens": 779,
+          "costUsd": 0.00088755,
+          "seconds": 8.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_b8c6a6354e09439b9e8a29ef0fa26a96",
+          "responseId": "resp_04155ad0a737f968016addfe5e767c87d2a750de2774211d86"
+        },
+        {
+          "n": 57,
+          "purpose": "openai-judge 2/glm-glm/6 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 6993,
+          "outputTokens": 1122,
+          "reasoningTokens": 641,
+          "costUsd": 0.001435425,
+          "seconds": 8.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_4aba35d17c59430bbcfa544904b17c9b",
+          "responseId": "resp_0402f421f42645e4016addfe5f254487d2be61b7f29344b95b"
+        },
+        {
+          "n": 58,
+          "purpose": "openai-judge 2/glm-glm/6 m11–14",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 4737,
+          "outputTokens": 705,
+          "reasoningTokens": 506,
+          "costUsd": 0.000944925,
+          "seconds": 5.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_f10d7fee7b3a4b24a8ed8aea9f1c8586",
+          "responseId": "resp_0511fb1fe9dc7da9016addfe67a2a887d2afb81eeffc9c2afc"
+        },
+        {
+          "n": 59,
+          "purpose": "openai-judge 2/grok-grok/7 m1–8",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 880,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 459,
+          "reasoningTokens": 72,
+          "costUsd": 0.0003175,
+          "seconds": 3.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_ed0002a586134481a22437f01c6f26b2",
+          "responseId": "resp_0fd36098b0468f3e016addfe6a51b887d29756a19e705b2175"
+        },
+        {
+          "n": 60,
+          "purpose": "openai-judge 2/glm-glm/7 m1–9",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 5973,
+          "outputTokens": 845,
+          "reasoningTokens": 411,
+          "costUsd": 0.001169425,
+          "seconds": 6.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_0fe994e068a4497ea645f0bc1ebe1da5",
+          "responseId": "resp_0f4d83170f698ee8016addfe6a332887d2b765dfdf5eab03cf"
+        },
+        {
+          "n": 61,
+          "purpose": "openai-judge 2/kimi-kimi/7 m1–8",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 5574,
+          "outputTokens": 1242,
+          "reasoningTokens": 855,
+          "costUsd": 0.0013180499999999999,
+          "seconds": 9.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_bf9808db18ea4cf7bbca9cd8dbe31287",
+          "responseId": "resp_0aa4577d366c572c016addfe70417c87d2b47f5ad3cea6c81a"
+        },
+        {
+          "n": 62,
+          "purpose": "openai-judge 2/deepseek-deepseek/7 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 6730,
+          "outputTokens": 1309,
+          "reasoningTokens": 828,
+          "costUsd": 0.0014960499999999999,
+          "seconds": 9.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_4464d8b351b747b394db056c453804c3",
+          "responseId": "resp_025b50cf58be57cf016addfe708cbc87d28b4b1c5f6fa0e4de"
+        },
+        {
+          "n": 63,
+          "purpose": "openai-judge 2/deepseek-deepseek/7 m11–20",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 8087,
+          "outputTokens": 1594,
+          "reasoningTokens": 1113,
+          "costUsd": 0.001808175,
+          "seconds": 12.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_bd6f9850544e4ac784e39d9d963bb587",
+          "responseId": "resp_0444736d6fd41afa016addfe737f8487d2b246f7cb82205b7d"
+        },
+        {
+          "n": 64,
+          "purpose": "openai-judge 2/grok-grok/8 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 920,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 528,
+          "reasoningTokens": 47,
+          "costUsd": 0.000356,
+          "seconds": 3.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_6039393f048b486f8c29dc557019a90d",
+          "responseId": "resp_0689b9e7b8e765d4016addfe7d292887d2b4941e262dd3d901"
+        },
+        {
+          "n": 65,
+          "purpose": "openai-judge 2/deepseek-deepseek/7 m21–26",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 6982,
+          "outputTokens": 809,
+          "reasoningTokens": 516,
+          "costUsd": 0.00127755,
+          "seconds": 6.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_caee2b470266407f973ecfdb376408c2",
+          "responseId": "resp_054ecc5aa31279d6016addfe7cfee487d2b29fe95be15969be"
+        },
+        {
+          "n": 66,
+          "purpose": "openai-judge 2/grok-grok/8 m11–16",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 743,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 352,
+          "reasoningTokens": 59,
+          "costUsd": 0.0002503,
+          "seconds": 2.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_71e2ad72b5a04312a9f9d4c9e74c9106",
+          "responseId": "resp_0ab92ed5d4066655016addfe8293b487d28603425f60a23c73"
+        },
+        {
+          "n": 67,
+          "purpose": "openai-judge 2/deepseek-deepseek/8 m1–9",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 5190,
+          "outputTokens": 1214,
+          "reasoningTokens": 780,
+          "costUsd": 0.0012560499999999999,
+          "seconds": 8.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_a40547ff8c9943afa3aba9cfa3021ee6",
+          "responseId": "resp_07df78200941b721016addfe83a72487d29d9e5229e0b139a0"
+        },
+        {
+          "n": 68,
+          "purpose": "openai-judge 2/kimi-kimi/8 m1–9",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 4548,
+          "outputTokens": 1159,
+          "reasoningTokens": 725,
+          "costUsd": 0.0011482999999999999,
+          "seconds": 9.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_11c7b10ac5964ab194b8d4f120c70e45",
+          "responseId": "resp_019991cf083ea3e0016addfe888fa487d28fc93c26482c8a09"
+        },
+        {
+          "n": 69,
+          "purpose": "openai-judge 2/glm-glm/8 m1–8",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 6417,
+          "outputTokens": 1600,
+          "reasoningTokens": 1213,
+          "costUsd": 0.001602425,
+          "seconds": 11.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_087a83d85ba847f0803482639437b0de",
+          "responseId": "resp_04f46a2544c5d297016addfe869fbc87d2a930875ab9365171"
+        },
+        {
+          "n": 70,
+          "purpose": "openai-judge 2/deepseek-deepseek/9 m11–11",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 1276,
+          "outputTokens": 183,
+          "reasoningTokens": 125,
+          "costUsd": 0.00025130000000000004,
+          "seconds": 2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_363070060cde4fa6bde8b8d65eb4ca2c",
+          "responseId": "resp_0a34ee21bbd39e8f016addfe946f6887d2aa5f9ed999895e3d"
+        },
+        {
+          "n": 71,
+          "purpose": "openai-judge 2/deepseek-deepseek/9 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 3167,
+          "outputTokens": 1158,
+          "reasoningTokens": 677,
+          "costUsd": 0.000975175,
+          "seconds": 8.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_4a414f116c274ef49b6704947a7e41c9",
+          "responseId": "resp_0e88bca32160085e016addfe8f5e1887d29f411602c49fb7a9"
+        },
+        {
+          "n": 72,
+          "purpose": "openai-judge 2/glm-glm/9 m1–7",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 5111,
+          "outputTokens": 840,
+          "reasoningTokens": 500,
+          "costUsd": 0.0010591749999999999,
+          "seconds": 6.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_2c6e7250df374b82ba839004283adb59",
+          "responseId": "resp_06d1e38536829234016addfe952ddc87d29bee5e20fcae68c0"
+        },
+        {
+          "n": 73,
+          "purpose": "openai-judge 2/grok-grok/9 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 911,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 518,
+          "reasoningTokens": 37,
+          "costUsd": 0.0003501,
+          "seconds": 3.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_6943e303b52a4b728280048dcd0f319d",
+          "responseId": "resp_0a14a5c27cf66b92016addfe99795887d2a3e84f9f0edce675"
+        },
+        {
+          "n": 74,
+          "purpose": "openai-judge 2/grok-grok/9 m11–20",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 916,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 524,
+          "reasoningTokens": 43,
+          "costUsd": 0.00035360000000000003,
+          "seconds": 3.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_c4ee8d18c628499e853eaaca040b7961",
+          "responseId": "resp_0ed34fd3d7842fd4016addfe9b9a9487d29f93a36572be28bd"
+        },
+        {
+          "n": 75,
+          "purpose": "openai-judge 2/grok-grok/9 m21–30",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 907,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 512,
+          "reasoningTokens": 31,
+          "costUsd": 0.00034669999999999997,
+          "seconds": 3.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_69d23532018f4b308c6a342a7482928a",
+          "responseId": "resp_0a1b26065fc890b8016addfe9e96cc87d2b0c83b0cbed1d044"
+        },
+        {
+          "n": 76,
+          "purpose": "openai-judge 2/grok-grok/9 m31–40",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 894,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 735,
+          "reasoningTokens": 254,
+          "costUsd": 0.0004569,
+          "seconds": 4.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_c03ad20c3cac4b1e996f737535994061",
+          "responseId": "resp_0a7435307de895f9016addfe9fb0a087d287a0f8b01196af86"
+        },
+        {
+          "n": 77,
+          "purpose": "openai-judge 2/grok-grok/9 m41–50",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 894,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 631,
+          "reasoningTokens": 150,
+          "costUsd": 0.0004049,
+          "seconds": 4.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_e2a8a4049763465494b517aba61b0309",
+          "responseId": "resp_0122b2160766664a016addfea1f1e887d2827f4c04d780ea7b"
+        },
+        {
+          "n": 78,
+          "purpose": "openai-judge 2/grok-grok/9 m51–60",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 892,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 568,
+          "reasoningTokens": 87,
+          "costUsd": 0.00037319999999999996,
+          "seconds": 3.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_929ba58ca27c44ef91e15451cdc46e46",
+          "responseId": "resp_04ecbdeb2c596aac016addfea4eaf887d2a6e50b7045683960"
+        },
+        {
+          "n": 79,
+          "purpose": "openai-judge 2/kimi-kimi/9 m1–10",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 5832,
+          "outputTokens": 991,
+          "reasoningTokens": 510,
+          "costUsd": 0.0012247999999999998,
+          "seconds": 7.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_b379478bbad2489ba65b379039498af6",
+          "responseId": "resp_064161b38f11b4b4016addfea7905887d28e698935f8ac0845"
+        },
+        {
+          "n": 80,
+          "purpose": "openai-judge 2/kimi-kimi/9 m11–15",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "effort": {
+            "reasoning.effort": "low"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 4047,
+          "outputTokens": 1001,
+          "reasoningTokens": 755,
+          "costUsd": 0.001006675,
+          "seconds": 8.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_6bc699b440364d99bef5f6eac803307b",
+          "responseId": "resp_0249546b9464a77e016addfea92ed887d2aec7c6163e38cea1"
         }
       ]
     }
