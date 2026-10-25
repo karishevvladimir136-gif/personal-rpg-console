@@ -133,6 +133,15 @@ against the candidate DM, not seeing each other. Their notes agree on four thing
   never reached the inventory record, and the DM admitted the miss both times. One item lost in two of eight campaigns
   is a place in the code, not luck: the sheet's grouped line («a pay slip…; a promissory note…; a letter…») is read as
   one item. Fix: the wizard's record pass unfolds a grouped papers line into its items; a test on the drafted sheets.
+- **11f. Offer the time-skip.** Opus: «A short time-skip offer would have helped, something like 'nothing else happens
+  before the lamps unless you want it to.'» When a scene's business is done and nothing is waiting, the DM ends his turn
+  with that one-line offer instead of waiting for the player to invent filler; the player may decline. Measured: scenes
+  ending in an offer / scenes with nothing pending.
+- **11g. Lean on the one weakness.** Opus: «No temptation yet. Pip's free turn was a nice first touch, but the cards
+  haven't really been leaned on.» The hero has one ban; in 20 turns the world pressed it once. The hidden-layer prep
+  names, per session, one moment where the ban is tested for a reason (a stake, a favour, a bluff that needs a hand
+  played) — never as a trap for its own sake (the standing rule on scenarios applies). Measured by the judge: sessions
+  with a tested ban.
 Also from the run, for the owner's own setup: the «?» claim on a new campaign with the Astra-takeover flag comes back
 from migration 46's wrapper without its timeline stamp and the old engine refuses it (the harness patched around it);
 check the owner's local database before the next session and fix the SQL if it reproduces.
