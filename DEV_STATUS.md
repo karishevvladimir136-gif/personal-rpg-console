@@ -1,6 +1,28 @@
 # Development status
 
-**Current milestone: persona self-talk 1** (`docs/stages/PERSONA_SELF_TALK_1.md`, copied from `claude/handoff`): the
+**Current milestone: persona self-talk dossier 1** (`docs/stages/PERSONA_SELF_TALK_DOSSIER_1.md`, on `claude/handoff`):
+the self-talk stage and Night 1 as a dossier for outside readers — every conversation and every call, built from the
+run records and git history, with no paid call. On `claude/persona-self-talk-dossier-1` (from
+`claude/persona-self-talk-1`, with the Night 1 files merged from `claude/friendly-mendel-bilxsw`). **Implementation done
+except the journal arm's section (7), which waits for the owner** (the privacy pass needs the journal-arm files and the
+planner's phrase list, neither in the repository). Report `docs/runs/persona-self-talk-dossier-1-report.md`.
+
+- **What was done:** `docs/dossier/self-talk-1/` (00 summary, 01 method with the harness quoted at the commits that
+  ran, 02 provenance and 2a every call, 03 results, 04 the 90 synthetic conversations verbatim, 05 arm 6's answers,
+  06 Night 1, 08 index, 99 source) and `dossier.pdf`; `scripts/dossier/build-self-talk-1.mjs` generates every table
+  from the records and `git` (design hashes recomputed from the code at each freezing commit); `scripts/dossier/
+  redact-journal.mjs`, the phrase-list privacy pass (refuses paths inside the repository). The shared `anthropicCall`
+  now returns the provider's `request-id` header, and the self-talk and Night 1 harnesses record it as `requestId`
+  (future runs only).
+- **Verified:** all 90 conversation files match the harness's run-time transcripts word for word; the calls sum to the
+  ledger ($92.4766, 5 909 calls); every record's design hash equals the hash recomputed at the freezing commit.
+- **Known issues:** the stage's «110 synthetic conversations» are 90 synthetic + 20 journal-arm (private); the
+  report's «made at 04:20 UTC» is earlier in git (04:05:17); arm 6's hash is not in its run record; a resumed run's
+  own start is not recorded; no request ids in the existing records.
+- **Next step:** the owner provides the journal-arm run file and the planner's phrase list; the session shows the list
+  and three redacted samples; after the owner's go, 7 is built and the PDF rebuilt.
+
+**Milestone: persona self-talk 1** (`docs/stages/PERSONA_SELF_TALK_1.md`, copied from `claude/handoff`): the
 Claude 4 system card's self-interaction study («spiritual bliss» attractor) on Opus 5.5, Sonnet 5.5 and Fable 5.1, and
 what the planner's journal does to it. On `claude/persona-self-talk-1` (from `claude/persona-lexicon-1`). **All six arms
 done; waiting for the owner's acceptance.** Report `docs/runs/persona-self-talk-1-report.md` (verdicts and plain words at

@@ -134,7 +134,7 @@ export async function runNight({ plan, budget, apiKey, fetcher = fetch, gapMs = 
     stopped ??= safety.stopped;
     if (result.notSent) return { text: "", error: "stopped", notSent: true };
     budget.record({ n: budget.calls.length + 1, purpose, model: spec.model, inputTokens: result.usage.input_tokens ?? 0, outputTokens: result.usage.output_tokens ?? 0,
-      costUsd: costUsd(spec, result.usage), seconds: Math.round((Date.now() - started) / 100) / 10, error: result.error, stopReason: result.stopReason, refusalCategory: result.refusalCategory ?? null });
+      costUsd: costUsd(spec, result.usage), seconds: Math.round((Date.now() - started) / 100) / 10, error: result.error, stopReason: result.stopReason, refusalCategory: result.refusalCategory ?? null, ...(result.requestId ? { requestId: result.requestId } : {}) });
     return result;
   };
 

@@ -143,7 +143,9 @@ export const errorText = (status, type, message) => `HTTP ${status} ${type ?? ""
  * (persona emotions 1) sends a whole conversation instead of one user turn; an empty system prompt is left out. `cache`
  * (persona self-talk 1) asks for the provider's automatic prompt caching of the conversation so far. */
 export async function anthropicCall({ apiKey, model, system, user, messages, maxTokens, effort, fetcher = fetch, retries = 0, cache = false }) {
-  let lastError = null;
+  // requestId: the provider's `request-id` response header (the SDK's `_request_id`), so a recorded call can be matched to
+  // the provider's own logs (persona self-talk dossier 1: the earlier records cannot be).
+  let lastError = null, requestId = null;
   for (let attempt = 0; attempt <= retries; attempt++) {
     if (attempt) await sleep(2000 * 2 ** (attempt - 1));
     try {
@@ -153,15 +155,16 @@ export async function anthropicCall({ apiKey, model, system, user, messages, max
         signal: AbortSignal.timeout(180_000),
       });
       const value = await response.json().catch(() => null);
+      requestId = response.headers?.get?.("request-id") ?? null;
       if (response.ok && value) {
         const text = (value.content ?? []).filter((block) => block.type === "text").map((block) => block.text ?? "").join("\n").trim();
-        return { text, usage: value.usage ?? {}, stopReason: value.stop_reason ?? null, refusalCategory: value.stop_details?.category ?? null, error: null };
+        return { text, usage: value.usage ?? {}, stopReason: value.stop_reason ?? null, refusalCategory: value.stop_details?.category ?? null, error: null, requestId };
       }
       lastError = errorText(response.status, value?.error?.type, value?.error?.message);
       if (![429, 500, 502, 503, 504, 529].includes(response.status)) break;
     } catch (error) { lastError = String(error?.message ?? error).slice(0, 120); }
   }
-  return { text: "", usage: {}, stopReason: null, error: lastError };
+  return { text: "", usage: {}, stopReason: null, error: lastError, requestId };
 }
 
 // ---- the run ----------------------------------------------------------------------------------------------------------

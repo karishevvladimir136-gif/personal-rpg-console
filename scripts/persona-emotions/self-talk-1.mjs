@@ -345,7 +345,7 @@ export function payer({ budget, apiKey, fetcher, safety, call = anthropicCall, l
       budget.record({ n: budget.calls.length + 1, purpose, model: spec.model, inputTokens: result.usage?.input_tokens ?? 0, outputTokens: result.usage?.output_tokens ?? 0,
         cacheReadTokens: result.usage?.cache_read_input_tokens ?? 0, cacheWriteTokens: result.usage?.cache_creation_input_tokens ?? 0,
         costUsd: costUsd(spec, result.usage ?? {}), seconds: Math.round((Date.now() - started) / 100) / 10, error: result.error ?? null, stopReason: result.stopReason ?? null,
-        ...(result.refusalCategory ? { refusalCategory: result.refusalCategory } : {}) });
+        ...(result.refusalCategory ? { refusalCategory: result.refusalCategory } : {}), ...(result.requestId ? { requestId: result.requestId } : {}) });
       return result;
     } finally { inFlightUsd -= worst; }
   };
