@@ -25,6 +25,7 @@ import { regionCheckItems, regionMarkers, regionVerdict, type RegionCheckItem } 
 import { checkRegionMap, draftRegionPrep, type TextModel } from "./region-vision";
 import { draftSeeds, type Image } from "./vision";
 import { boardOf, listSeeds, live2dContext, plantSeed, saveRegionMap, saveRegionMarker, saveRegionPrep, type Live2dContext } from "./store";
+import { anthropicApiKey } from "../../server/anthropic-endpoint";
 
 // The region map (slice item 1): a stable painted map of the region the party
 // travels, drawn once from the places the records know and the atlas layout,
@@ -94,7 +95,7 @@ async function paintRegion(ctx: Live2dContext, pictures: PicturesContext, campai
     const painting = prep ?? fallbackRegionPrep(regionPrepSource(tree, { anchorId, placeIds, hidden: "", existing: null }), spots);
     const items = regionCheckItems(painting, names);
     // 2. The picture from the prep's public text; 3. the check against the prep; one corrected picture on a first draw.
-    const apiKey = process.env.ANTHROPIC_API_KEY ?? "";
+    const apiKey = anthropicApiKey();
     const language = snapshot.settings.values.language === "en" ? "en" : "ru";
     const first = await drawRegionOnce(pictures, snapshot, anchorId, view.pins, painting, { names, regionName, signature: options.signature, correction: null });
     cost += first.costUsdMicros;
@@ -258,7 +259,7 @@ export async function seedArea(campaignId: string, anchorId: string | null, inpu
   const ctx = await live2dContext(campaignId);
   const existing = await listSeeds(ctx);
   if (existing.some((row) => row.areaLocationId === anchorId)) return { status: "existing" as const, count: existing.filter((row) => row.areaLocationId === anchorId).length };
-  const drafted = await draftSeeds(process.env.ANTHROPIC_API_KEY ?? "", { areaName: input.name, description: input.description, canon: input.canon ?? "", places: input.places, language: input.language });
+  const drafted = await draftSeeds(anthropicApiKey(), { areaName: input.name, description: input.description, canon: input.canon ?? "", places: input.places, language: input.language });
   log("live2d_seeds", { campaignId, anchorId, count: drafted.seeds.length, ms: drafted.elapsedMs, costUsdMicros: drafted.costUsdMicros, usage: drafted.usage, error: drafted.error });
   const area = (anchorId ?? "known").replace(/[^a-z0-9]/gi, "").slice(0, 12).toLowerCase() || "known";
   let planted = 0;

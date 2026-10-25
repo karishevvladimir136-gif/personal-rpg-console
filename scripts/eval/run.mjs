@@ -8,6 +8,7 @@
 // model events (fake) or the live DmModel adapters (live, both models).
 import { mkdir, readdir, readFile, appendFile, copyFile } from "node:fs/promises";
 import { providerKey } from "./lib/keys.mjs";
+import { anthropicKey, anthropicKeyName } from "./lib/anthropic-endpoint.mjs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
@@ -97,8 +98,10 @@ try {
   selected = await scenarios(args.scenario, args.runtime);
   if (args.runtime === "dm-loop-v1") {
     ({ LOOP_MODELS: loopModels } = await import("./lib/loop-harness.mjs"));
-    const keyName = loopModels[args.writer ?? args.model].key;
-    apiKey = args.provider === "live" ? providerKey(keyName) : "synthetic-eval-only";
+    const selection = loopModels[args.writer ?? args.model];
+    // ANTHROPIC_PROVIDERS_1: a Claude model takes the key of the door it goes through.
+    const keyName = selection.providerId === "anthropic" ? anthropicKeyName() : selection.key;
+    apiKey = args.provider === "live" ? (selection.providerId === "anthropic" ? anthropicKey() : providerKey(keyName)) : "synthetic-eval-only";
     if (!apiKey) throw Error(`live provider needs ${keyName} (environment or .env.local)`);
   } else {
     apiKey = args.provider === "live" ? openAiKey() : "synthetic-eval-only";

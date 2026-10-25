@@ -20,6 +20,37 @@ again after its run). Report `docs/runs/game-player-2-report.md`; ledgers `docs/
 - **Next step:** when Anthropic access returns (or the owner raises the organisation's monthly limit), rerun Table C
   (`scripts/game-player-2/run.mjs --go`, about $40–50 more), then `--ab` for Tables A and B (about $3).
 
+**Current milestone: Anthropic providers 1 — the same Claude models through three doors (Console, Bedrock, OpenRouter)**
+(`docs/stages/ANTHROPIC_PROVIDERS_1.md` on `claude/handoff`, was BEDROCK_PROVIDER_1) — **implementation done on
+`claude/anthropic-providers-1`; both smokes ran: OpenRouter's Opus 5.5 DM turn committed through the app's loop
+($0.32), Bedrock serves only Haiku 4.5 today**. Waiting for the owner's choice of what runs first on OpenRouter. Report:
+`docs/runs/anthropic-providers-1-report.md`; ledger `docs/runs/anthropic-providers-1-ledger.md`.
+
+- **What was done:** `ANTHROPIC_PROVIDER=anthropic|bedrock|openrouter` picks the door for every Claude call in one helper
+  (`src/lib/server/anthropic-endpoint.ts`, mirror `scripts/eval/lib/anthropic-endpoint.mjs`); OpenRouter at
+  `https://openrouter.ai/api/v1/messages` with a bearer key and `anthropic/claude-*-5.5` slugs; Bedrock's 4.5 ids are the
+  dated profiles; zero hard-coded endpoints (a test walks `src` and `scripts`); OpenRouter 402 stops, 429 waits; Bedrock
+  404/403 on a model is `not_configured`, named; harness call lines and run records carry `provider`, `endpointHost`,
+  `requestId`, `servedModel`, `upstream`, `messageId` and the served = requested check; ledgers print spend per door;
+  `scripts/eval/providers-smoke.mjs --door openrouter|bedrock` (ledger `providers1`, $3 a door); CLOUD.md,
+  `.env.example` (names only), MODELS.md.
+- **Key decisions:** the map applies at the transport (stored ids never change); served model and upstream are read from
+  a clone of the reply (harness-only, the app untouched); no InvokeModel transport for Bedrock (Opus 4.5 is served only
+  there — a separate stage if the owner wants it); no migration; no SDK added.
+- **Checks:** full suite on a clean worktree (no `.env.local`, `--test-concurrency=2`): 2 937 tests · 2 910 pass · 0 fail ·
+  27 skipped (the candidate had 2 926; +11 provider tests); `tests/anthropic-providers-1.test.mjs` 11/11 re-run on the
+  final commit (later edits: comments, the smoke script, docs); typecheck, zero-warning lint and `next build` pass on
+  `de5d9e3`.
+- **Money:** OpenRouter $0.3178 (Haiku 5.5 + one Opus 5.5 DM turn with the roll check + Fable 5.1; OpenRouter charged
+  exactly list prices); Bedrock $0.000038 (Haiku 4.5); Console $0 (no call).
+- **Smoke facts:** OpenRouter path `/api/v1/messages`, bearer key; the app's body passes unchanged (tools, effort, 1-hour
+  cache written then read); upstream «Claude Platform on AWS» for Opus/Haiku 5.5, «Anthropic» for Fable 5.1; served =
+  requested on all calls; `request-id` is OpenRouter's generation id. In the cloud Node needs `NODE_USE_ENV_PROXY=1`.
+- **Known issues:** on Bedrock the 5.5 models are refused (403) and Opus/Sonnet 4.5 are not on the Messages endpoint
+  (404, InvokeModel only), so Bedrock serves only Haiku 4.5 today; no quota headers on Bedrock replies.
+- **Next step:** the owner picks his own table (`.env.local`: `ANTHROPIC_PROVIDER=openrouter`, `OPENROUTER_API_KEY=…`)
+  or the stalled runs (GAME_PLAYER_1 Table B, GAME_PLAYER_2, the re-judging), each with `ANTHROPIC_PROVIDER=openrouter`.
+
 **Current milestone: the findings of 2026-10-22/23 applied to the game** (`docs/stages/FINDINGS_S3.md` on
 `claude/handoff`, items 1–7) — **implementation done on `claude/s3-candidate`, waiting for the owner's acceptance and the
 sandbox load** (`docs/SANDBOX_LOAD_FIX_S2.md`: two new migrations, `202610230601` — Джеймс Вордсден's level 5 as the

@@ -6,7 +6,7 @@
 // Restart-safe: a turn judged in any docs/runs/dmarch-*-judge*.jsonl is skipped.
 import { appendFile, mkdir, readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
-import { providerKey } from "../lib/keys.mjs";
+import { anthropicKey, scriptAnthropicEndpoint } from "../lib/anthropic-endpoint.mjs";
 import { dmModels, dmUsageCost } from "../../../src/lib/model-runtime/dm-models.ts";
 import { createLoopBudget } from "../lib/loop-harness.mjs";
 import { stamp, RUNS_DIR } from "./lib/harness.mjs";
@@ -105,7 +105,7 @@ const runId = `${prefix}-${stamp()}-judge${args.dry ? "-dry" : ""}`;
 const recordFile = join(RUNS_DIR, `${runId}.jsonl`);
 await mkdir(RUNS_DIR, { recursive: true });
 const write = (record) => appendFile(recordFile, `${JSON.stringify(record)}\n`, "utf8");
-const apiKey = args.dry ? null : providerKey("ANTHROPIC_API_KEY");
+const apiKey = args.dry ? null : anthropicKey();
 if (!args.dry && !apiKey) throw new Error("ANTHROPIC_API_KEY is needed (environment or .env.local)");
 const spec = dmModels[`${JUDGE.providerId}/${JUDGE.modelId}`];
 const ledger = args.dry ? null : await openRun(runId, args.budgetUsd, `records judge (${pending.length} turns, ${JUDGE.modelId} ${args.effort})`);
@@ -132,8 +132,9 @@ try {
     }
     if (budget.spentUsd + reservation > budget.limitUsd) { budget.exhausted = true; stopReason = "budget_reached"; break; }
     const started = performance.now();
-    const response = await fetch("https://api.anthropic.com/v1/messages", { method: "POST",
-      headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" }, body: JSON.stringify(body) });
+    const door = scriptAnthropicEndpoint();
+    const response = await fetch(door.messagesUrl, { method: "POST",
+      headers: door.headers(apiKey), body: JSON.stringify(door.body(body)) });
     const payload = await response.json();
     if (!response.ok) {
       const message = String(payload?.error?.message ?? `HTTP ${response.status}`).replaceAll(apiKey, "[key]");

@@ -6,6 +6,7 @@
 // failed check queues one automatic redraw with the problems as corrections, or marks the frame for the owner.
 // No retry; a failure of the check itself is reported, never thrown, and never blocks the picture.
 import { QUOTABLE_MODEL, QUOTABLE_PRICE_PER_MILLION } from "../gameplay/dm-loop/quotable.ts";
+import { anthropicEndpoint } from "../server/anthropic-endpoint.ts";
 
 export const FRAME_CHECK_MODEL = QUOTABLE_MODEL;
 /** Anthropic takes images up to 5 MB; a bigger picture is not checked. */
@@ -64,11 +65,12 @@ export async function checkFrame(apiKey: string, input: FrameCheckInput, options
   if (input.image.bytes.byteLength > FRAME_CHECK_MAX_BYTES) return { verdict: null, usage: null, costUsdMicros: 0, elapsedMs: 0, error: "too_large" };
   if (!["image/png", "image/jpeg", "image/webp"].includes(input.image.contentType)) return { verdict: null, usage: null, costUsdMicros: 0, elapsedMs: 0, error: "unsupported_type" };
   try {
-    const response = await (options.fetcher ?? fetch)("https://api.anthropic.com/v1/messages", {
+    const door = anthropicEndpoint();
+    const response = await (options.fetcher ?? fetch)(door.messagesUrl, {
       method: "POST",
-      headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
+      headers: door.headers(apiKey),
       // The model thinks before it answers even at low effort; 700 tokens were all thinking in the probe (3 of 5 unreadable).
-      body: JSON.stringify({ model: FRAME_CHECK_MODEL, max_tokens: FRAME_CHECK_MAX_TOKENS, output_config: { effort: "low" }, messages: [{ role: "user", content: [
+      body: JSON.stringify({ model: door.modelId(FRAME_CHECK_MODEL), max_tokens: FRAME_CHECK_MAX_TOKENS, output_config: { effort: "low" }, messages: [{ role: "user", content: [
         { type: "image", source: { type: "base64", media_type: input.image.contentType, data: Buffer.from(input.image.bytes).toString("base64") } },
         { type: "text", text: frameCheckRequest(input) },
       ] }] }),

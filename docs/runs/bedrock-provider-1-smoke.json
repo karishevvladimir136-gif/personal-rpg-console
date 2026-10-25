@@ -1,0 +1,43 @@
+{
+  "run": "bedrock-provider-1-smoke-2026-10-25T07-16-41",
+  "provider": "bedrock",
+  "endpointHost": "bedrock-runtime.us-west-1.amazonaws.com",
+  "startedAt": "2026-10-25T07:16:41.227Z",
+  "haiku": {
+    "status": 403,
+    "code": "permission_error",
+    "model": null,
+    "stopReason": null,
+    "text": "",
+    "usage": {
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    "costUsd": 0,
+    "error": "anthropic.claude-haiku-5-5 is not available for this account. You can explore other available models on Amazon Bedrock. For additional access options, contact AWS Sales at https://aws.amazon.com/conta"
+  },
+  "opus": null,
+  "calls": [
+    {
+      "host": "bedrock-runtime.us-west-1.amazonaws.com",
+      "model": "global.anthropic.claude-haiku-5-5",
+      "status": 403,
+      "requestId": "a9b91947-4e9a-4bb6-8c46-54d96dc213e1",
+      "ms": 703,
+      "headers": {
+        "x-amzn-requestid": "a9b91947-4e9a-4bb6-8c46-54d96dc213e1"
+      }
+    },
+    {
+      "host": "bedrock-runtime.us-west-1.amazonaws.com",
+      "model": "global.anthropic.claude-haiku-5-5",
+      "status": 403,
+      "requestId": "dc706f1b-011a-423f-b0a0-46ac9d2ac366",
+      "ms": 519,
+      "headers": {
+        "x-amzn-requestid": "dc706f1b-011a-423f-b0a0-46ac9d2ac366"
+      }
+    }
+  ],
+  "spentUsd": 0
+}

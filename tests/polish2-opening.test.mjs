@@ -13,6 +13,7 @@ import test from "node:test";
 import { resolveExecutionProfile, validateModelSelection } from "../src/lib/model-runtime/registry.ts";
 import { createBootstrapService } from "../src/lib/adventures/bootstrap-service.ts";
 import { setup } from "./universal-bootstrap-fixture.mjs";
+import { anthropicEndpoint } from "../src/lib/server/anthropic-endpoint.ts";
 
 const hook = registerHooks({ resolve(specifier, context, nextResolve) {
   return specifier === "server-only" ? { url: "data:text/javascript,export%20{}", shortCircuit: true } : nextResolve(specifier, context);
@@ -62,7 +63,7 @@ test("the Anthropic structured requester: the Messages API with output_config.fo
   assert.deepEqual(result.output, proposal);
   assert.equal(result.usage.model, "claude-opus-5-5");
   assert.equal(result.usage.inputTokens, 1200);
-  assert.equal(calls[0].url, "https://api.anthropic.com/v1/messages");
+  assert.equal(calls[0].url, anthropicEndpoint({}).messagesUrl);
   assert.equal(calls[0].init.headers["x-api-key"], KEY);
   const body = JSON.parse(calls[0].init.body);
   assert.equal(body.model, "claude-opus-5-5");

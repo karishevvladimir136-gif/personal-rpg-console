@@ -28,7 +28,7 @@
 import { appendFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { randomBytes, randomUUID } from "node:crypto";
 import { join, resolve } from "node:path";
-import { providerKey } from "../lib/keys.mjs";
+import { anthropicKey } from "../lib/anthropic-endpoint.mjs";
 import { runCampaignTurn, resumeCampaignTurn } from "../../../src/lib/gameplay/dm-loop/two-pass/index.ts";
 import { DM_LOOP_DEFAULT_LIMITS } from "../../../src/lib/gameplay/dm-loop/limits.ts";
 import { DEFAULT_DEPTH_RANGE } from "../../../src/lib/gameplay/dm-loop/depth.ts";
@@ -146,7 +146,7 @@ const estimate = turns.length * variants.reduce((sum, v) => sum + v.usdPerTurn, 
 console.log(`${args.dry ? "Dry" : "Paid"} replay of ${turns.length} turn(s) × ${variants.length} variant(s) [${variants.map((v) => v.id).join(", ")}] on «${snapshots.title}»` +
   `${args.dry ? "" : `: estimated $${estimate.toFixed(2)} (bake-off $/turn), hard budget $${args.budgetUsd.toFixed(2)}`}; craft set: ${args.craft}; voice: ${args.voice}${examples ? ` (${examples.passages} passages of ${examples.kinds} kind(s) from the examples file)` : ""}.`);
 
-const apiKey = args.dry ? null : providerKey("ANTHROPIC_API_KEY");
+const apiKey = args.dry ? null : anthropicKey();
 if (!args.dry && !apiKey) throw new Error("ANTHROPIC_API_KEY is needed (environment or .env.local)");
 const ledger = args.dry ? null : await openRun(runId, args.budgetUsd, `real replay: ${turns.length} turns × ${variants.map((v) => v.id).join("+")} on ${snapshots.title}; voice ${args.voice}; craft ${args.craft}`, args.ledger);
 const budget = createBudget(args.dry ? 0 : ledger.budgetUsd);

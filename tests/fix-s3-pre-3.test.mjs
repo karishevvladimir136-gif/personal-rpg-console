@@ -184,6 +184,7 @@ test("2.5 E-4c: the eval tools take a key from .env.local or the cloud's APP_ va
     process.env[`APP_${name}`] = "from-the-cloud";
     assert.equal(providerKey(name), "from-the-cloud");
   } finally { delete process.env[name]; delete process.env[`APP_${name}`]; }
-  assert.match(src("scripts/eval/lib/loop-harness.mjs"), /appChecks\(options\.budget, options\.apiKey \?\? providerKey\("ANTHROPIC_API_KEY"\)\)/);
+  // BEDROCK_PROVIDER_1: the door's key (anthropicKey reads it through providerKey, from .env.local or the cloud's APP_ variable).
+  assert.match(src("scripts/eval/lib/loop-harness.mjs"), /appChecks\(options\.budget, options\.apiKey \?\? anthropicKey\(\)\)/);
   assert.doesNotMatch(src("scripts/eval/lib/loop-harness.mjs"), /process\.env\.ANTHROPIC_API_KEY/);
 });

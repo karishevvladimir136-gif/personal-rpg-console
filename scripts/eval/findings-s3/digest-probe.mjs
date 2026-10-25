@@ -7,7 +7,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { openRun, ROOT } from "../real-replay/lib/ledger.mjs";
 import { createBudget, guardedModel, MODELS } from "../real-replay/lib/models.mjs";
-import { providerKey } from "../lib/keys.mjs";
+import { anthropicKey } from "../lib/anthropic-endpoint.mjs";
 import { buildDigestRequest, firstPersonPer100, runDigest, sessionShape } from "../../../src/lib/gameplay/dm-loop/digest.ts";
 import { hiddenLayerOf } from "../../../src/lib/gameplay/dm-loop/private-notes.ts";
 import { dmModels, dmUsageCost } from "../../../src/lib/model-runtime/dm-models.ts";
@@ -23,7 +23,7 @@ for (let i = 2; i < process.argv.length; i++) {
 }
 if (!args.snapshots) throw new Error("--snapshots <probe file> is required");
 if (!(args.budgetUsd > 0)) throw new Error("--budget-usd N is required (a paid call)");
-const apiKey = providerKey("ANTHROPIC_API_KEY");
+const apiKey = anthropicKey();
 if (!apiKey) throw new Error("ANTHROPIC_API_KEY is needed (.env.local)");
 
 const file = JSON.parse(await readFile(args.snapshots, "utf8"));

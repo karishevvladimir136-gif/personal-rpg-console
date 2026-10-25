@@ -4,6 +4,7 @@ import { combatReadiness } from "./combat-readiness";
 import { readCampaign } from "./repository";
 import { PersistenceError } from "./errors";
 import type { CombatReadinessProposal } from "../gameplay/combat-readiness.ts";
+import { anthropicApiKey, anthropicEndpoint } from "./anthropic-endpoint";
 
 // Polish 2 §6: the combat profile drafted on demand by Claude Sonnet 5.5 from the hero's text (the
 // records are public; nothing private travels). One request, no retry; the reply is a proposal the
@@ -12,7 +13,7 @@ const MODEL = "claude-sonnet-5-5";
 export type CombatDraftResult = { status: "drafted"; draft: CombatDraft; proposal: CombatReadinessProposal; usage: { inputTokens: number; outputTokens: number; costUsdMicros: number } } | { status: "not_configured" | "failed"; error?: string };
 
 export async function draftCombatProfile(campaignId: string, options: { fetcher?: typeof fetch } = {}): Promise<CombatDraftResult> {
-  const apiKey = process.env.ANTHROPIC_API_KEY ?? "";
+  const apiKey = anthropicApiKey();
   if (!apiKey) return { status: "not_configured" };
   const proposal = await combatReadiness(campaignId, "inspect", {}) as CombatReadinessProposal;
   if (!("hero" in proposal)) throw new PersistenceError("unavailable");
@@ -23,10 +24,11 @@ export async function draftCombatProfile(campaignId: string, options: { fetcher?
   const request = combatDraftRequest({ name: hero.name, details: hero.details, sheet: hero.character_sheet ?? null, items, conditions: hero.conditions }, proposal, snapshot.settings.values.language === "en" ? "en" : "ru");
   const started = Date.now();
   try {
-    const response = await (options.fetcher ?? fetch)("https://api.anthropic.com/v1/messages", {
+    const door = anthropicEndpoint();
+    const response = await (options.fetcher ?? fetch)(door.messagesUrl, {
       method: "POST",
-      headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-      body: JSON.stringify({ model: MODEL, max_tokens: 2000, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
+      headers: door.headers(apiKey),
+      body: JSON.stringify({ model: door.modelId(MODEL), max_tokens: 2000, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
       signal: AbortSignal.timeout(40_000),
     });
     const value = await response.json().catch(() => null) as { content?: { type: string; text?: string }[]; usage?: { input_tokens?: number; output_tokens?: number }; error?: { type?: string } } | null;

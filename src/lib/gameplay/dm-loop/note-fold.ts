@@ -4,6 +4,7 @@
 // The session digest folds closed notes the same way. Pure part here: the request and the parse.
 import type { PrivateNote } from "./private-notes.ts";
 import { QUOTABLE_MODEL, QUOTABLE_PRICE_PER_MILLION } from "./quotable.ts";
+import { anthropicEndpoint } from "../../server/anthropic-endpoint.ts";
 
 export const FOLD_WINDOW_MINUTES = 240;
 export type NoteFold = { keys: { kind: PrivateNote["kind"]; key: string }[]; line: string };
@@ -44,9 +45,10 @@ export async function proposeFolds(apiKey: string, notes: PrivateNote[], languag
   if (!apiKey) return { folds: [], costUsdMicros: 0, error: "not_configured" };
   const request = foldRequest(notes, language);
   try {
-    const response = await (options.fetcher ?? fetch)("https://api.anthropic.com/v1/messages", {
-      method: "POST", headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-      body: JSON.stringify({ model: QUOTABLE_MODEL, max_tokens: 900, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
+    const door = anthropicEndpoint();
+    const response = await (options.fetcher ?? fetch)(door.messagesUrl, {
+      method: "POST", headers: door.headers(apiKey),
+      body: JSON.stringify({ model: door.modelId(QUOTABLE_MODEL), max_tokens: 900, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }] }),
       signal: AbortSignal.timeout(30_000),
     });
     const value = await response.json().catch(() => null) as { content?: { type: string; text?: string }[]; usage?: { input_tokens?: number; output_tokens?: number } } | null;
