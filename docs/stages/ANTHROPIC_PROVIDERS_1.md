@@ -59,8 +59,10 @@ typecheck, zero-warning lint.
 4b. **Booking by door, never by shape.** Every call is booked to the ledger of the door it went through (`provider`),
    never by the response's shape or the model's family: an OpenRouter call to an Anthropic model lands on the
    OpenRouter ledger, not the Anthropic one and never the OpenAI one. Test: a `provider=openrouter` call cannot land on
-   the OpenAI ledger (found 2026-10-25 02:10 in GAME_PLAYER_2's rerun: $9.63 booked to OpenAI in 8 turns; the cap
-   stopped the run — correctly — before anything was lost).
+   the OpenAI ledger. (The 2026-10-25 02:10 stop in GAME_PLAYER_2's rerun — $9.63 booked to OpenAI in 8 turns — turned
+   out to be a price-table bug, `gpt-6.1-sol` mangled to `gpt-6-1-sol` and billed at the worst-case rate; real spend
+   $0.62; fixed with a regression test there. The cap stopped the run correctly on a phantom; this rule is the
+   planner's first, wrong guess at the cause, kept because it is right on its own.)
 5. **Error mapping.** Bedrock's throttling (HTTP 429 `ThrottlingException`) is a rate limit → the existing bounded
    wait; its `AccessDeniedException` on a model (access not granted, or Fable without `aws_review`) → `not_configured`
    with the model named, never retried; the `enforced_spend_limit_reached` pattern stays Anthropic-only; OpenRouter's «insufficient credits» (HTTP 402)
