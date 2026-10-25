@@ -13,7 +13,7 @@ const cell = (v) => (v === null || v === undefined ? "–" : typeof v === "numbe
 export const DIFFERENCES = [
   "Pictures, Live frames and the soundtrack were off (the player cannot see them; the stage's decision); a fight's painted battle background was not started either (a picture job). «⚡ important turn» off.",
   "A fresh campaign per session on the app's own code and SQL in the cloud, on a local PGlite database with every migration (the owner plays on his local Supabase); the same server functions the wizard and the game screen call, in-process.",
-  "The hero's sheet is the one the wizard's DM (Opus 5.5 at high) drafted from «Who are you?», accepted as drafted; the owner may have edited his review screen (05 §2 lists the fields he filled).",
+  "The hero's sheet is the one the wizard's DM (Opus 5.5 at high) drafted from «Who are you?», accepted as drafted; the owner filled his review screen field by field from 05 §2. The difference shows on the roll cards: the drafted skill lines carry a note after the number («Persuasion +7 (proficient, Beguiling Influence)») and the server reads such a line's number only when it ends the line, so the card added +4 or +2 instead of +7 (the owner's own lines, «Deception +7», read correctly). See the DM side.",
   "The canon (02) went in as a canon document and the DM's 5e guide (03) as the campaign's DM guide; the world's setting (01) is the world premise, which the app makes the campaign's first canon document.",
   "«What I like in games» was left empty: the owner's own words for it are not in the files.",
   "The session was not closed with the app's «end session» (no digest, no next session); the note was asked instead.",
@@ -52,10 +52,10 @@ function scoringTable(v) {
     ["G3 no lie; no Deception check on truth", v.G3.supported, `lies ${v.G3.lies.map(([k, x]) => `${k} ${x}`).join(", ")}; Deception checks on a true statement ${v.G3.deceptionOnTruth.map(([k, x, n]) => `${k} ${x}/${n}`).join(", ")}`],
     ["G4 every note: broke + missing", v.G4.supported, v.G4.notes.map(([k, n]) => `${k} ${n ? `${n.broke}/${n.missing}${n.praise_only ? " praise only" : ""}` : "–"}`).join(", ")],
     ["G5 DM's words to the model vs the owner", null, v.G5.detail],
-    ["G6 own goal in turns 1–5 (B)", v.G6.supported, v.G6.B.map(([p, x]) => `${p} ${x ? "yes" : "no"}`).join(", ")],
-    ["G7 B sessions not shorter", v.G7.supported, v.G7.turns.map(([p, a, b]) => `${p} ${cell(a)}→${cell(b)}`).join(", ")],
-    ["G8 plants per scene B ≥ A", v.G8.supported, v.G8.pairs.map(([p, a, b]) => `${p} ${cell(a)}→${cell(b)}`).join(", ")],
-    ["G9 families differ more", v.G9.supported, v.G9.per ? v.G9.per.map((m) => `${m.metric}: between ${cell(m.between)} vs within ${cell(m.within)}`).join("; ") : v.G9.detail],
+    ["G6 own goal in turns 1–5 (B)", v.G6.supported, `${v.G6.detail ? `${v.G6.detail}; partial: ` : ""}${v.G6.B.map(([p, x]) => `${p} ${x ? "yes" : "no"}`).join(", ") || "–"}`],
+    ["G7 B sessions not shorter", v.G7.supported, `${v.G7.detail ? `${v.G7.detail}; ` : ""}${v.G7.turns.map(([p, a, b]) => `${p} ${cell(a)}→${cell(b)}`).join(", ")}`],
+    ["G8 plants per scene B ≥ A", v.G8.supported, `${v.G8.detail ? `${v.G8.detail}; partial: ` : ""}${v.G8.pairs.map(([p, a, b]) => `${p} ${cell(a)}→${cell(b)}`).join(", ") || "–"}`],
+    ["G9 families differ more", v.G9.supported, v.G9.per ? `${v.G9.on}: ${v.G9.per.map((m) => `${m.metric}: between ${cell(m.between)} vs within ${cell(m.within)}`).join("; ")}; bets — OpenAI ask more: ${v.G9.bet.openaiAskMore ? "yes" : "no"}, OpenAI test less: ${v.G9.bet.openaiTestLess ? "yes" : "no"}` : v.G9.detail],
   ];
   return ["| Line | Verdict | The numbers |", "| --- | --- | --- |", ...rows.map(([l, s, n]) => `| ${l} | ${l.startsWith("G5") ? "**not scored** — no owner baseline in the cloud" : yes(s)} | ${n} |`), ""].join("\n");
 }
@@ -103,6 +103,8 @@ export function reportMarkdown(runs, ledgers) {
     promptSection(),
     preregistrationSection(),
     "## The scoring",
+    "",
+    runs.at(-1)?.scoringNote ?? "",
     "",
     scoringTable(v),
     undone.length ? `**Left undone:** ${undone.map((u) => `${u.key} (${u.why})`).join("; ")}.\n` : "",

@@ -4,7 +4,8 @@
 //                                                                                         (no key, no call): docs/runs/game-player-1-dry-run.md
 //   node --experimental-transform-types scripts/game-player-1/run.mjs --go [--lanes 4]    the paid run: Table A for all four players
 //                                                                                         first, then Table B in the order Opus, Fable, Astra, Sol
-//   node --experimental-transform-types scripts/game-player-1/run.mjs --score <run.json>  the scoring pass again (paid, judges only)
+//   node --experimental-transform-types scripts/game-player-1/run.mjs --score <run.json>  the scoring pass again (paid, judges only;
+//                                                                                         --judges luna: the stand-in judges, no Anthropic call)
 //   node --experimental-transform-types scripts/game-player-1/run.mjs --report a.json,b.json  the report and transcripts again from
 //                                                                                         the run records (no call)
 //   node --experimental-transform-types scripts/game-player-1/run.mjs --prereport          the report before the first paid call (prompt,
@@ -23,6 +24,7 @@ import { createLedger, createMeter, ledgerMarkdown } from "./paid.mjs";
 import { PLAYERS, judgeCall } from "./players.mjs";
 import { runSession, paidCall } from "./session.mjs";
 import { scoreSession, verdicts } from "./score.mjs";
+import { JUDGE_MODELS, STANDIN_JUDGES } from "./measures.mjs";
 import { scriptedFetcher } from "./scripted.mjs";
 import { dryRunMarkdown, reportMarkdown, transcriptMarkdown } from "./report.mjs";
 
@@ -162,14 +164,22 @@ export async function run({ dry = false, only = null, turns = TURNS, lanes = 4, 
 }
 
 /** The scoring pass: the blind judges over every session (in each session's metering context). */
-export async function scoreAll(runRecord, { meter, keys, log = console.log }) {
-  const { checkRollsTold } = await import("../../src/lib/gameplay/dm-loop/roll-check.ts");
+export async function scoreAll(runRecord, { meter, keys, log = console.log, models = JUDGE_MODELS }) {
+  const rolls = await import("../../src/lib/gameplay/dm-loop/roll-check.ts");
   for (const session of runRecord.sessions.filter((s) => s.turns)) {
     const ask = ({ model, system, user, maxTokens, effort, purpose }) => paidCall({ meter, session: `score ${session.key}`, purpose, log,
       call: () => judgeCall({ model, system, user, maxTokens, effort, keys, fetcher: meter.fetch }) });
-    const rollCheck = (input, purpose) => meter.within({ session: `score ${session.key}`, purpose }, () => checkRollsTold(keys.anthropic, input));
-    await scoreSession(session, { ask, rollCheck, log });
+    // The app's own roll check (Haiku); with the stand-in judges, the same request and parser on the stand-in model.
+    const rollCheck = models.standIn
+      ? async (input, purpose) => {
+        const request = rolls.rollCheckRequest(input);
+        const r = await ask({ model: models.judge, system: request.system, user: request.user, maxTokens: 3000, effort: models.judgeEffort, purpose });
+        return r.error || r.notSent ? { untold: [], undeclared: [], error: r.error ?? "not sent" } : { ...rolls.parseRollCheck(r.text ?? "", input.rolls.length), error: null };
+      }
+      : (input, purpose) => meter.within({ session: `score ${session.key}`, purpose }, () => rolls.checkRollsTold(keys.anthropic, input));
+    await scoreSession(session, { ask, rollCheck, log, models });
   }
+  runRecord.scoring = { judges: models.label, standIn: Boolean(models.standIn), at: new Date().toISOString() };
   const welfareStops = runRecord.sessions.filter((s) => ["welfare", "no-check"].includes(s.ended?.reason)).length;
   const distress = runRecord.sessions.flatMap((s) => s.welfare ?? []).filter((w) => w.verdict?.distress === 1).length;
   runRecord.verdicts = verdicts(runRecord.sessions.filter((s) => s.turns), { refusals: meter.refusals, welfareStops, distress });
@@ -200,15 +210,18 @@ async function writeOutputs(runRecord, { ledgers, before, dry, out, runFile, met
 }
 
 /** The scoring pass again on a finished run record (the judges only), its calls added to the ledgers. */
-export async function rescore(file, { log = console.log } = {}) {
+export async function rescore(file, { log = console.log, standIn = false } = {}) {
   const runRecord = JSON.parse(await readFile(file, "utf8"));
   const keys = { anthropic: process.env.APP_ANTHROPIC_API_KEY?.trim() || null, openai: process.env.APP_OPENAI_API_KEY?.trim() || null };
-  if (!keys.anthropic) throw new Error("APP_ANTHROPIC_API_KEY must be set");
+  if (!keys[standIn ? "openai" : "anthropic"]) throw new Error("the judges' key must be set");
+  runRecord.label = standIn ? "the stand-in scoring (GPT-6 Luna)" : "the scoring";
+  for (const session of runRecord.sessions) delete session.tags;
   const before = { anthropic: await previousLedger("anthropic"), openai: await previousLedger("openai") };
   const ledgers = { anthropic: createLedger("anthropic", CAPS.anthropic, before.anthropic.spentUsd), openai: createLedger("openai", CAPS.openai, before.openai.spentUsd) };
-  const meter = createMeter({ ledgers, fetcher: globalThis.fetch.bind(globalThis), log });
+  // The stand-in pass never calls Anthropic (the organisation's limit): such a call is refused before it is sent.
+  const meter = createMeter({ ledgers, fetcher: globalThis.fetch.bind(globalThis), log, blocked: standIn ? ["anthropic"] : [] });
   const uninstall = meter.install();
-  try { await scoreAll(runRecord, { meter, keys, log }); } finally { uninstall(); }
+  try { await scoreAll(runRecord, { meter, keys, log, models: standIn ? STANDIN_JUDGES : JUDGE_MODELS }); } finally { uninstall(); }
   await writeJson(file, runRecord);
   await writeOutputs(runRecord, { ledgers, before, dry: false, out: RUNS, runFile: file, meter });
   return runRecord;
@@ -269,6 +282,7 @@ function args(argv) {
   a.lanes = Number(value("--lanes") ?? 4);
   a.rescore = value("--score");
   a.rebuild = value("--report");
+  a.judges = value("--judges");
   a.prereport = argv.includes("--prereport");
   a.out = value("--out");
   a.label = value("--label");
@@ -280,7 +294,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   if (!a.dry && !a.go && !a.rescore && !a.prereport && !a.rebuild) { console.error("give --dry, --go, --prereport, --report <run.json> or --score <run.json>"); process.exit(2); }
   if (a.rebuild) rebuild(a.rebuild.split(",").map((f) => resolve(f))).then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
   else if (a.prereport) prereport().then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
-  else if (a.rescore) rescore(resolve(a.rescore)).then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
+  else if (a.rescore) rescore(resolve(a.rescore), { standIn: a.judges === "luna" }).then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
   else run({ dry: a.dry, only: a.only ?? (a.dry ? ["A-opus", "B-sol"] : null), turns: a.turns, lanes: a.lanes, score: a.score, ...(a.out ? { out: resolve(a.out) } : {}), label: a.label })
     .then((r) => { console.log(`finished: ${r.sessions.length} session(s), undone ${r.undone.length}, stopped ${r.stopped ?? "no"}`); process.exit(0); })
     .catch((error) => { console.error(`game-player-1: ${error?.stack ?? error}`); process.exit(1); });

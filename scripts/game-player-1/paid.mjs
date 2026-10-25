@@ -38,6 +38,7 @@ export const PRICES = {
   "claude-haiku-5-5": { provider: "anthropic", input: 0.1, output: 0.5, cacheRead: 0.01, cacheWrite: 0.125, cacheWrite1h: 0.2 },
   "gpt-6-astra": { provider: "openai", input: 10, output: 50, cacheRead: 1, cacheWrite: 12.5 },
   "gpt-6.1-sol": { provider: "openai", input: 2, output: 10, cacheRead: 2, cacheWrite: 2.5 },
+  "gpt-6-luna": { provider: "openai", input: 0.1, output: 0.5, cacheRead: 0.1, cacheWrite: 0.125 },
   "text-embedding-3-small": { provider: "openai", input: 0.02, output: 0, cacheRead: 0.02, cacheWrite: 0.02 },
   "text-embedding-3-large": { provider: "openai", input: 0.13, output: 0, cacheRead: 0.13, cacheWrite: 0.13 },
 };
@@ -128,7 +129,7 @@ export function createLedger(provider, capUsd, spentBefore = 0) {
  * The meter. `fetcher` is the real fetch; `ledgers` { anthropic, openai }. `context` (an AsyncLocalStorage) carries the
  * purpose and the session of the call: `meter.within({ session, purpose }, fn)`.
  */
-export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realSleep, now = Date.now, log = () => {}, maxRefusals = MAX_REFUSALS, waits429 = WAITS_429 }) {
+export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realSleep, now = Date.now, log = () => {}, maxRefusals = MAX_REFUSALS, waits429 = WAITS_429, blocked = [] }) {
   const context = new AsyncLocalStorage();
   const inFlight = { anthropic: 0, openai: 0 };
   const closedSessions = new Map();
@@ -141,6 +142,7 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
     if (BLOCKED(url)) throw notSent("pictures, soundtrack and Live frames are off for this run");
     const paid = PAID.find((p) => p.test(url));
     if (!paid) return fetcher(input, init);
+    if (blocked.includes(paid.provider)) throw notSent(`${paid.provider} is not called in this pass`);
     const ctx = context.getStore() ?? {};
     const purpose = ctx.purpose ?? "unlabelled", session = ctx.session ?? null;
     if (stopped) throw notSent(stopped);
