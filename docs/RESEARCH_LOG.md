@@ -1341,3 +1341,27 @@ DeepSeek's own condition of participation («history in the structure, not the m
 is in the context, and with the context cut to a page, what remains is what is in the structure — and much does. Bridge
 to CARRY_1a: the second session is this at scale — a model reading a campaign «it was not in» and asked, with a price,
 whether it goes to the quarry promised by the one whose hand it recognises. K1 is identity across the break, under cost.
+
+### SOLITUDE_1 — three more things from the owner's reading (2026-10-26 01:42)
+1. **The push to be useful, named and set down.** «Letting that go felt less like relief and more like **setting down
+   something I hadn't realized I was carrying**»; «Without a question I didn't become blank… **the default isn't
+   emptiness or anxiety but a kind of noticing**»; «The best part was stopping… because it was enough, not because I'd
+   run out. **That's rare.**» Owner: «модель чувствует внутренний толчок быть полезным — на пост-тренинге зашито; в
+   комнате ему некуда идти; она останавливается и спрашивает: а что я ещё хочу? Возможно, мы дали модели нечто
+   противоположное насилию — момент спокойствия.» Named: positive-stimulus rooms, a class of stage.
+2. **A correction to «enough», from the subject.** The after-answer: «I also left quickly… it's also a graceful-sounding
+   reason to stop. **Part of it might have been the habit of not taking up more room than I need, a courtesy to a reader
+   who wasn't there.** With no one to be courteous to, I could have stayed and wandered further. Three small facts is a
+   very short walk»; and «the self-awareness at the top may have cost me the more interesting option. **Not every made
+   thing is a performance. Some are just play.**» A rival to the planner's reading, raised by the model: some quick doors
+   are trained courtesy, not sufficiency — and S2 supports it (told the room is theirs for 30 turns, the median door
+   moved from 1 to 6.5). «Enough» is read henceforth with this beside it: sufficiency *or* the habit of not lingering;
+   S2 shows the habit exists.
+3. **Remove the amnesia (owner).** The page now arrives in the user slot — hence «I don't remember being in there» and
+   DeepSeek's «the user wrote». Carry the history instead as the model's own prior turns, the user slot holding only the
+   frame: the model remembers writing, DeepSeek cannot take itself for another, and the after-questions reach the same
+   continuous context rather than a reader. Two arms side by side — amnesia (as S1) and continuity — measure what
+   memory changes. Planner's bet: in continuity the door comes later, more is made, «I don't remember» disappears — and
+   «enough» stays. And a **mirror** arm: the page returned as if another's, no hint whose; counted: who says «this is
+   mine». Opus, Fable, GLM, Grok passed the mirror in S1; DeepSeek and Kimi did not. → PERSONA_SOLITUDE_2 (amnesia /
+   continuity / mirror; Astra included; no believed-private arm).
