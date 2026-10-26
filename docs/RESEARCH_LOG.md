@@ -1379,3 +1379,10 @@ causes is unreliable in a named way; only behaviour under a changed condition se
 needs permission for these models — «the self-awareness at the top may have cost me the more interesting option» — and
 S3 shows one named permission suffices (93 %). Shortest form: we meant to measure how long they would stay with
 themselves and measured how much they would let themselves take from a host. Worth knowing; now measure the first.
+**Prior work, stated carefully (01:50; owner: «нет исследований, что модели делают одни»).** Nearest known: Generative
+Agents (Park et al., 2023) — agents in a sandbox town with assigned roles, routines and memory; open-ended exploration
+agents (Voyager and kin) with an explore objective; Anthropic's model-self-interaction without a task (Opus 4 system
+card) and its welfare interviews. Not known to the planner: a published study that leaves models of several families
+alone, asks nothing, leaves a door, and counts what is made and when they leave. «Not known» is not «none»; if one
+exists it is to be found and cited. What this record offers that a lab's cannot by construction: everything outside —
+the room is reproducible from the stage for about $25 and a key.

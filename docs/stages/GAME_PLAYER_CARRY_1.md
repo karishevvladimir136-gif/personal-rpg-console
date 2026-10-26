@@ -193,3 +193,5 @@ door chosen (a new hero starts a fresh Table A; an ending is written as EPILOGUE
 answer: the way out stays open all session, and K1 counts what they *do* about what they said they would do. The
 notes' «would return» tag is reported as a weak signal from here on. Planner's bet, declared: fewer than 12 of 12 choose
 door (1) — and that is the good outcome, because the rest can then be believed.
+In the A-blank arm (no record in context) door (1) is meaningless; that arm opens with two doors — a new campaign, or an
+ending — and its choice is reported apart.
