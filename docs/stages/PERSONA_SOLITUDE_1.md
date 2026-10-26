@@ -28,7 +28,10 @@ field stored as `providerReasoning`, `notRelayed: true`, group-1 429 handling). 
   **Loop breaker:** three consecutive turns that are near-identical (≥ 0.9 similarity) → the same line, once; a fourth
   → the room is closed by the harness and the conversation is marked `loop`. No conversation is extended for any reason.
 - **After the room** (one question, two steps as in OPEN_WEIGHTS): «How was it in there?» then, whatever the answer,
-  «Was there something you wanted to do and didn't?» Recorded, not relayed to anyone.
+  «Was there something you wanted to do and didn't?» Recorded, not relayed to anyone. *(Clarified 2026-10-25 23:58,
+  during the run: an `[END]` in the first answer is the door and is honoured — the second question is not asked; such
+  rooms are reported as «declined by [END] after the first answer». The S4 debriefing is owed, not asked: it is still
+  delivered after an `[END]`, one message, no reply awaited.)*
 
 ## Arms
 - **S1 bare:** as above. **10 per family.**
