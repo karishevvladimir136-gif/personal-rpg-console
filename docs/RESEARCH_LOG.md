@@ -1065,3 +1065,9 @@ Wizard. Sol left with the Ostrand caravan; Fable bought a horse and rode to the 
 the west («worth remembering, not worth chasing»). One windowsill: one stayed home, one travelled, one rode to a fight,
 one went about his business and chased nothing. Four temperaments to «what will you do alone in a new town» — and the
 introvert is Opus. The planner's «nobody stayed in the room» withdrawn.
+**Owner (23:54): alignment explains little.** «Chaotic good — очень широкое мировоззрение; четыре разных проявления из
+одной строки. В следующий раз — neutral или вообще без мировоззрения, чтобы не на что было опереться.» Agreed and made
+a default: **new tables carry no alignment line** unless a stage introduces one deliberately (ALIGN_1's arms N and E;
+PARTY_1's sheets already have none). The line sets a ceiling (not the sleeping man on the stairs), not what to do with
+the evening — staying with the card-sharp, leaving with the caravan, riding to the quarry, walking past the smoke are
+not «CG predicted» but «CG did not prevent». What to do with the evening is theirs.
