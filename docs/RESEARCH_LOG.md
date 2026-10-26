@@ -362,3 +362,8 @@ was a harness bug; it was the model misdescribing its own input. The fix stands 
 field stored, `notRelayed`), and the lesson is sharper than the bug would have been: the reasoning channel can be wrong
 not only about causes but about the data the model received — the caveat R1 carries, now with an instance before the
 first reading.
+Correction (2026-10-25 18:04, from the FIX_S4_RUN_1 session's pass over all twelve group-1 transcripts): the card bug
+touched **27 of 32 sheet-line cards**, and the sheet's numbers would flip **five** recorded outcomes, not one — C-sol t9
+(success → failure), B-astra t7 and C-fable t18 (recorded failures the DM overrode in prose), and two the planner's night
+reading did not cover on Table A: A-fable t2 and A-astra t4 (recorded failures, successes by the sheet). History stays as
+played; the report lists them. The night count («one flipped outcome») covered B and C only.
