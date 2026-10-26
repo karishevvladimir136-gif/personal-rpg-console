@@ -27,7 +27,9 @@ Report: `docs/runs/fix-s4-run-1-report.md`; smoke: `docs/runs/fix-s4-run-1-smoke
   the owner's Opus DM. On screen: the fixed cards, «Rerolls left», a refused press, a «?» answered while the card
   waited, and the DM's clock line before each turn. It found one bug (the unread letter's name), fixed after with a test.
   Spent: OpenRouter $5.02 of $15, OpenAI $0.01 of $3, Console $0.
-- **Checks:** CHECKS_STATUS_PLACEHOLDER
+- **Checks:** full suite on a clean worktree at `468b99fd`: 3 040 tests · 3 013 pass · 0 fail · 27 skipped. Typecheck, zero-warning
+  lint and the production build pass (on `cab46046`; the last commit changed one test assertion). One older assertion
+  changed with 11u′: a plan due at 00:00 reads «day 2 00:00». Approval is the owner's.
 - **Known issues:**
   - The cat keeps the default 8/8 where neither 05 nor the draft states its numbers.
   - Attunement against the DM guide's house rule is not reconciled.

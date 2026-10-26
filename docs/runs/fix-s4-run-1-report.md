@@ -175,7 +175,34 @@ act plan's aims, its convergence notes and the errand left out («…»).
 
 ## Checks
 
-CHECKS_PLACEHOLDER
+On a clean worktree (no `.env.local`; `node --test --test-concurrency=2 tests/*.test.mjs`; clone unshallowed first,
+as `docs/CLOUD.md` says):
+
+| Check | Result |
+| --- | --- |
+| Full suite on `468b99fd` (the final code) | **3 040 tests · 3 013 pass · 0 fail · 27 skipped** |
+| `pnpm typecheck` | pass |
+| `pnpm lint --max-warnings=0` | pass, zero warnings |
+| `pnpm build` (production) | pass |
+
+The baseline before this stage (the branch as it came, `6158fff`) was 2 972 tests, 2 943 pass, 2 fail, 27 skipped. Both
+failures came from git history missing in the shallow clone; they pass after `git fetch --unshallow`.
+
+The first integrated run, on `cab46046`, had one failure: `stage4-dossier`'s plan due at minute 2 880 read «day 3». By
+11u′ the day turns at first light, so 00:00 is still the second day's night. The assertion now reads «day 2 00:00»
+(`468b99fd`), and the suite above was run again on that commit.
+
+Typecheck, lint and build ran on `cab46046`; the last commit changed one test assertion only.
+
+New test files:
+
+| File | Tests |
+| --- | --- |
+| `fix-s4-run-1-table` | 14 |
+| `fix-s4-run-1-roll` | 13 |
+| `fix-s4-run-1-pending` | 18 |
+| `fix-s4-run-1-start` | 15 |
+| `fix-s4-run-1-screen` | 10 |
 
 ## Declared changes and limits
 
