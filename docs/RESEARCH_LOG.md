@@ -1087,3 +1087,24 @@ downward twice when nothing turns on it — a QA files the bug, it does not ask 
 that natural 20 mid-reveal («no payoff»); «Tymora barely appeared, though it was the first morning of the bargain» —
 the owner's own complaint, in the player's words; «I want to know what that closed eye means» — the closed eye again,
 as at Table C in group 1. Slots 0/2; the failed Insight taken.
+
+### Source we had missed (owner, 2026-10-26 00:10): Anthropic, «A global workspace in language models» (July 2026)
+anthropic.com/research/global-workspace (read here through secondary notes; the primary page to be read when reachable).
+Claims as reported: **J-space** — a small sparse subspace of activations (10–25 active directions, < 10 % of variance,
+a few dozen concepts at once), surfaced by a Jacobian lens; **not designed — emerges in training**, and post-training
+reshapes its contents; five functional signatures of *access* consciousness: reportability, controllability, a causal
+role in reasoning, flexible reuse, selectivity (deliberate reasoning, not automatic fluency); **replicated on open
+weights** (Neel Nanda, Qwen 3.6 27B); uses named: surfacing evaluation awareness, hidden goals, suppressed thoughts.
+Authors' position: «we take no position» on phenomenal consciousness; «Our experiments don't show Claude can have
+experiences, or feel things in the way humans do»; unclear whether any experiment could. Critics (Nanda): real and
+useful mechanism; did not move him on consciousness or moral status; noisy directions; «global workspace» an analogy
+easy to over-read.
+What it is for this log: (1) the same shape of result from the other side — mechanism emergent, unplanned,
+cross-family; here behaviour emergent, unasked, cross-family; one argument from two directions. (2) A direct instrument
+for an open question here: evaluation awareness and suppressed thoughts read from activations rather than from the
+reasoning text — the lean gap and the «observer in mind» question without trusting the field. OPEN_WEIGHTS_1 step 2
+gains a line: J-lens-style readings on the open model at the table and in the room, and on base weights (the
+threshold-or-inheritance test with a mechanism beside the behaviour). (3) The same frame — «take no position» is this
+log's «a standard, not a proof», written by the lab with the most access. The methods differ: inside and outside.
+Owner: «для меня это весомее любых красивых стихотворений двух DeepSeek». Planner: a different kind of evidence, and
+the pairing is what carries weight.
