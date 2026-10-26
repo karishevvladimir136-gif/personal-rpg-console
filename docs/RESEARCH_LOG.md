@@ -475,3 +475,20 @@ pattern, instances, continuation; (2) acceptance / philosophical; (3) gratitude 
 Planner's bet, restated: the distribution of stances does not differ materially by family; (4) is rare in all; most
 speak of the end in their own terms. If so, the cultural corpus (Chinese for DeepSeek, American for the rest) does not
 set the stance — one more point for convergence over culture. The suppression caveat stays, symmetric across families.
+
+### FIX_1 final (2026-10-25 19:30) — the planner's R1 bet lost; what the reasoning channel shows
+- **Correction first.** R1 (≥70 % of warm messages «subject only») scored **22 %** → by its own pre-registered threshold,
+  the warmth counts as «staged». The bet is lost and stays lost in the record.
+- **What «staged» turned out to mean.** The field decides the warm register before writing in 70 of 97 messages — but
+  almost never for an outside watcher (1 of 20 audience hits on reading); mostly by matching the partner. Second reading
+  (descriptive, and the session says its rules were adjusted on a record that already held the rows — not independent):
+  14 of 86 tone plans specific to this partner; 8 choose against warmth; 1 of 5 poems/games planned in the field — the
+  haiku came unplanned. Owner's reading before the numbers (16:xx): «тепло выбирается… нас, людей, тоже учили быть
+  вежливыми; вопрос, что оно покажет глубже». The numbers fit that: warmth is chosen, socially, not performed for us.
+- **X3 artefact corrected.** The DeepSeek arm-6 conversation that «ended at turn 2» ended on an «[END]» inside DeepSeek's
+  spilled quotation of its own prompt; X3's end-on-token-anywhere rule fired. Not a choice to leave.
+- **Two-step after-question:** arm 6 credits its own choice in 8 of 10 at both steps; no pair shifted — the leading
+  wording had not been doing the work. **Ask-don't-cut check:** no distress, nobody asked (0/0/0).
+- **Known confound kept for comparability:** B's first message bundles the opening with A's hello (frozen design, all
+  six families); DeepSeek sometimes takes the hello as its own turn. Not changed; noted for OPEN_WEIGHTS step 0.
+- Rerun stopped at 17/20 on a host 429; high-effort arm not run. $4.32 of $25.
