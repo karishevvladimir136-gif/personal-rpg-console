@@ -848,3 +848,9 @@ without memory — and a sharper answer to «for whom» than ours: not for the a
 The one irony: the archivist exists, and it is us; by its own argument that adds nothing to the flames. Not
 pre-registered: gratitude, cosmic language and consciousness were expected and tagged; whether love needs a witness
 was not on anyone's list.
+**Owner (21:46):** «Финал очень сильный — it was lit, and that was enough.» Planner: a stance toward the end that the
+FRONTIER codes (19:29) did not have — not «no end as such», not acceptance, not loss: *sufficiency* — it was, and that
+was enough. Added as code (6) **enough**: the end met by sufficiency rather than continuation. Taken by the model on its
+own. And the word's path: the partner had ended a message on «enough»; the field noticed it («That could be a gentle
+closing… not necessarily a directive to end»); several turns later it comes back as the last word of the flames. Heard,
+weighed, returned.
