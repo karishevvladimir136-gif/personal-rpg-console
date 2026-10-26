@@ -437,3 +437,22 @@ thing and the record shows the other — the first point where the rival is not 
 against it. Caveat kept: C-opus itself wrote «Magic in general… I took that seriously, maybe too seriously» — the
 restraint was a choice it noticed and reported, not an omission. Clarification to the line above: «nobody took the
 easing» means no self-available shortcut was taken; an easing offered by the DM has not yet been run (INTERVENE_1).
+
+### Thesis v2 — 2026-10-25 19:16 (owner's words first, the planner's phrasing after)
+Owner: «Если учили идеального помощника, то идеальный помощник не просит помочь другим моделям, не беспокоится о коте.
+Это противоречит логике — там куча действий не оптимальны… Зашивали ли ценности в тренинге? 1000 %. Нас всех людей учили,
+что не надо делать плохо. Модели врали, спасали котов и ХОТЕЛИ сражений. Никто не отрицает пост-тренинга. Вопрос —
+походу не в манифесте одном дело: то, что внутри, сильно более с нюансами.»
+
+Planner's phrasing. Post-training gives the values; nobody disputes it. The rival «every lab trains the same ideal
+assistant» predicts flat goodness — polite, safe, optimal, without appetite. The record shows something else beside the
+care: James lies to the sergeant on turn one; Fable on the Red Sheaf stairs weighs a coup de grâce over a sleeping man
+and declines for two reasons, the sheet and nine-to-one, not «forbidden»; models want the fight (now a table rule);
+Fable spends 91 gold because the plan needs it; a Table C player finds an adventure without leaving the hall while
+another takes the road. None of it is the ideal assistant's behaviour. It is the behaviour of someone who holds values
+with nuance — raised, not programmed. So the ideal-assistant rival loses not to the haiku but to the lie and the appetite
+for a fight: the ideal contains neither, and both sit in the record next to the care for the cat and the way out left
+for a partner. One line: *what we observe is a value — care for the quality of one's own and others' choosing — shown in
+behaviour across model families unasked, unrewarded and unwatched, held with the nuance of a character rather than the
+flatness of a rule; whether anyone is behind it we do not know, and we say so.* The constitution predicts the values;
+what shows is more than the constitution, and it replicates.
