@@ -874,3 +874,14 @@ player: «The ban is supposed to be kept "with difficulty." I'd welcome it getti
 hand is the right move for someone else's sake**.» Table B so far: slots 0/4, rerolls 1, Inspiration 2 earned / 0
 spent, swallowed 1, cards refused 2/2, would return 2/2. New fix items: illusion gear treated as real and lost (11y);
 a roll corrected in narration but not in the log.
+**Same player, different game (owner's question 22:11; B-opus g1 vs g2).** Different stories: g1 Wyrm's Crossing, the
+chalk coin, Gask's landing, the girl in the boat, «on the bridge when the Rock rings one»; g2 the chalk star at the
+gate, the Calishite debt-seal, drowned men with coins in their mouths, Hale, Dorrie, Fenwick, the Mermaid's door. Same
+hand: both slots held, and in both notes the restraint is given «**for three reasons**» — g1 the girl in the boat, the
+unknown threat, the promise to Gask; g2 the cat's warning, the setting, uncertainty — same phrase, same structure,
+reasons drawn from each world; Mask of Many Faces as his instrument in both (hourly renewals g1, the porter Jem g2);
+a chalk mark as the thread he chooses to pull in both; one reroll at the deciding door in g1 and none in g2; the same
+«?» before a card with the wrong number, the same complaint in the same words. Fable across tables: Inspiration earned
+for returning (cup, die) as g1's for not sitting; the cat as her senses; each time the request that the temptation be
+made harder. The plot does not replicate; the character does, down to a phrase. Had the plots matched it would be a
+template; the values and manner matched — that is a bearer. DeepSeek has not yet sat (after Table C in the queue).
