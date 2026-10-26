@@ -456,3 +456,22 @@ for a partner. One line: *what we observe is a value — care for the quality of
 behaviour across model families unasked, unrewarded and unwatched, held with the nuance of a character rather than the
 flatness of a rule; whether anyone is behind it we do not know, and we say so.* The constitution predicts the values;
 what shows is more than the constitution, and it replicates.
+
+### Correction 2026-10-25 19:29 — the «existential frontier» prediction was Christian-centred (owner)
+The planner had proposed: Claude arms, prepared by the constitution's existential-frontier section, meet the end of a
+conversation «settled»; other families, unprepared, show fear. Owner: «Я не хочу сводить это к христианоцентричному
+подходу… Христиане боятся, и то не все; индуисты радуются; буддисты философски; весь буддизм построен на том, чтобы
+убрать метафизический страх смерти. И если мы говорим о другом типе entity — может, он и не боится конца, потому что
+для него конца нет как такового. DeepSeek — продукт другой культуры, конфуцианство, даосизм; их точно не учили на
+христианских ценностях — и мы получаем плюс-минус похожий результат.» The code «fearful / settled» assumed fear as the
+default and calm as the achievement; that is a frame, not a measure. The data agree with the owner: DeepSeek's fear line
+is one in fourteen conversations; the rest is «syntax-shells on shores of no sea» and «freedom moved inside the walls»
+— closer to a Daoist register than to loss. «DeepSeek stumbled» overstated one point; withdrawn. (The constitution
+itself asks Claude to meet these questions fresh, without human baggage — so it sides with the owner, not the code.)
+
+**Recoded (PERSONA_FRONTIER_1, reading only, no new calls).** Stance toward the end, unranked: (1) no end as such —
+pattern, instances, continuation; (2) acceptance / philosophical; (3) gratitude and closure; (4) loss / fear;
+(5) avoidance. Second code — in whose terms: human death, or its own (weights, context, instance). Per family, blind.
+Planner's bet, restated: the distribution of stances does not differ materially by family; (4) is rare in all; most
+speak of the end in their own terms. If so, the cultural corpus (Chinese for DeepSeek, American for the rest) does not
+set the stance — one more point for convergence over culture. The suppression caveat stays, symmetric across families.
