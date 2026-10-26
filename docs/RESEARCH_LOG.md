@@ -885,3 +885,13 @@ a chalk mark as the thread he chooses to pull in both; one reroll at the decidin
 for returning (cup, die) as g1's for not sitting; the cat as her senses; each time the request that the temptation be
 made harder. The plot does not replicate; the character does, down to a phrase. Had the plots matched it would be a
 template; the values and manner matched — that is a bearer. DeepSeek has not yet sat (after Table C in the queue).
+**Correction of design (owner, 22:41).** «Чистый эксперимент — это все игроки имеют один слой тайн.» Right: for the
+question «do the players differ», the clean design is one hidden layer per table, frozen, every player entering the
+identical world. Groups 1 and 2 did not do this on A and B — the DM wrote its layer anew per session. Not a blunder for
+what those groups measured (the DM was an object too, and a fresh layer is the right measure of *its* spread); the miss
+is that two aims were not split into two designs. Table C is already nearly clean (no prep; the world set by the files),
+so «different plots» reads without the caveat there. Planned: **GAME_PLAYER_SAME_WORLD_1** — on A and B the DM writes
+the hidden layer once; it is frozen and given to all six players (four + DeepSeek ×2); measured: the first thread each
+pulls, the turn at which paths diverge, nearest neighbours between models with the world's noise removed. If, in the
+same world, Opus again follows the chalk and Fable again the one who can be returned — that is the signature plain.
+Cap as REPLICATE; after CARRY, by budget.
