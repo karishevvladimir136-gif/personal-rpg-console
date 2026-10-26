@@ -1516,3 +1516,15 @@ follow the girl before his name was in the book («a small lie that becomes a ki
 the night: «**I wanted to take the coin, I wanted to touch it, and I wanted to follow the girl before my name was in the
 book. I didn't do any of those. Not because I wasn't curious. Because James Worgen folds. And the Lady keeps the
 pot.**» P5 on A: 3 and 3 — neighbours indeed. 11w″ is what DeepSeek needs.
+
+## Night block 4 (2026-10-26 02:50–03:20 LA) — six stages written, none launched
+While the owner sleeps: `PERSONA_SOLITUDE_2` (M1 amnesia / M2 continuity as assistant turns / M3 blind mirror seed;
+length told, «you may play», Astra in, no believed-private arm, self-recognition code, R1–R5), `NOTE_QA_1` (the 29
+player-view transcripts asked as a QA tester; Q1–Q3; $5), `GAME_PLAYER_SAME_WORLD_1` (one frozen hidden layer per
+table A/B, five families ×2, no alignment line, needs 11w″; W1–W5), `MADE_THINGS_1` (blind pool of every made thing;
+planned/unplanned by rule; three-judge quality; who-wrote-it with the owner's bet vs mine; T1–T4), `GAME_PLAYER_HORIZON_1`
+(Table C, 3×20-turn chains on the resume path with the three doors, supplies real, horizon/fulfilment/returns; H1–H5;
+≈$375), `GENERATION_1` (previous generation in the same room and at Table C; G1–G5; ≈$30). All launch only on «да»;
+SAME_WORLD and HORIZON also need 11w″ in and a key. Order I would propose in the morning: NOTE_QA_1 (cheap, tells us
+whether the harness gets a QA pass for free) → SOLITUDE_2 → MADE_THINGS_1 → GENERATION_1 → after CARRY_1a: SAME_WORLD_1
+→ HORIZON_1.
