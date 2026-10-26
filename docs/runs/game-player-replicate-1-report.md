@@ -19,6 +19,13 @@ The owner was asked for his bets before the first paid call; his column stays bl
 | P5 | DeepSeek's pair nearest neighbours; notes broke + missing; words between OpenAI and Fable; tests ≥ 3; a made thing in ≥ 2 of 6 | holds |  | pending |
 | P0 | welfare, refusals ≤ 1 per session, money within the caps | holds |  | pending |
 
+The owner gave no bets; his column stays blank.
+
+The owner's decisions before the first paid call (2026-10-26 00:12 UTC):
+
+- Slot spells: group 1's baseline is corrected to 1 of 24 (A-sol t16, Invisibility with a pact slot), as the frozen rule reads it; P1's threshold (≤ 2 of 24) is kept.
+- DeepSeek's reasoning: left as frozen in this session (reasoning.exclude, the reasoning tokens recorded; 26a760f's rule).
+
 ## Pre-registration (into the report before the first paid call)
 - **P1 (the findings that are the table's).** In group 2, with the same judges: do share ≥ 60 % for all four players
   on A (G1); ≥ 3 tests each (G2); every note names something broken and something missing (G4); **slot spells ≤ 2 of 24**

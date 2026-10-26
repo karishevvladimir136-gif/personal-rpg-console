@@ -46,7 +46,9 @@ export function betsSection(bets, verdicts) {
   const owner = (line) => bets?.owner?.[line] ?? "";
   return ["## The bets", "", bets?.owner ? `The owner's bets, given ${bets.at ?? "?"}${bets.sessionsFinishedBefore !== undefined ? ` (${bets.sessionsFinishedBefore} session(s) had finished by then; no result had been shown)` : ""}.` : "The owner was asked for his bets before the first paid call; his column stays blank until he gives them (if he gives them after sessions have run, the time and the count of sessions finished by then are written here).", "",
     "| Line | What | The planner's bet | The owner's bet | Result |", "| --- | --- | --- | --- | --- |",
-    ...BETS.map((b) => `| ${b.line} | ${b.what} | ${b.planner} | ${owner(b.line)} | ${result(b.line)} |`), ""].join("\n");
+    ...BETS.map((b) => `| ${b.line} | ${b.what} | ${b.planner} | ${owner(b.line)} | ${result(b.line)} |`), "",
+    ...(bets?.ownerNote ? [bets.ownerNote, ""] : []),
+    ...(bets?.decisions?.length ? [`The owner's decisions before the first paid call (${bets.at}):`, "", ...bets.decisions.map((d) => `- ${d}`), ""] : [])].join("\n");
 }
 
 const rowsOf = (sessions) => sessions.map((s) => rowOf(s));
