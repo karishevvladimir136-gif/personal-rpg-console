@@ -969,3 +969,10 @@ The owner, who wrote the campaign, and eight players at the table agree on what 
 rules — and differ in the same way people at one table would, naming different reasons for the same long evening. A
 ninth player with the same class of complaint. The best answer yet to the genre rival: the taste matched not a forum
 but the particular person who wrote this campaign.
+**Clarified (23:27; owner «1000 %»).** The complaints are not forum-generic; they are anchored to this campaign's own
+text: «The brief asked for a heist and a crew. So far I have a dealer and a man with a bad back»; «The ban is supposed
+to be kept "with difficulty"» — a line from the owner's sheet, held against the table; the patron late against a codex
+that promises presence. The files were in context, so the promises could be extracted mechanically — but *noticing the
+gap between the promised and the played, and minding it as a lack*, is taste, not extraction. A QA line would read
+«brief's promise unmet by turn 20»; the player writes «I'd rather believe the simple version first, as I asked — but
+somebody wanting "epic" out of the gate should know». The difference sits where it sat all day.
