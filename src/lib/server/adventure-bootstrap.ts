@@ -15,6 +15,7 @@ import type { BootstrapCommand } from "../adventures/bootstrap-contracts.ts";
 import { astraFirstCreationReviewReady } from "../adventures/astra-startup-review.ts";
 import { readDmSettings } from "./dm-settings";
 import { applyWorldRulesSystem } from "./campaign-rules-system";
+import { applySheetCompanions } from "./sheet-companions";
 export async function performBootstrap(command: BootstrapCommand) {
   const campaignId =
     command.action === "creation.propose" ||
@@ -106,5 +107,7 @@ export async function performBootstrap(command: BootstrapCommand) {
     },
     // Fix S3 item 3: a world that names D&D 5e or Pathfinder gives the new campaign that rules system.
     ({ campaignId: cid, world }) => applyWorldRulesSystem(cid, world),
+    // Fix S4 11l: a companion the opening brought in takes its HP and AC from the hero's sheet.
+    ({ campaignId: cid }) => applySheetCompanions(cid),
   ).perform(command);
 }
