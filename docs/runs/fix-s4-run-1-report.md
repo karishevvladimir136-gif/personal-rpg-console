@@ -17,7 +17,7 @@ things; the lead's rules, table notes and clock) were merged by the lead.
 
 ## In short
 
-- **Every item has code and a test, or (for model-behaviour rules) a prompt-level test plus a bench measure for later.**
+- **Every item (11w′ added at `75be089`) has code and a test, or (for model-behaviour rules) a prompt-level test plus a bench measure for later.**
   The table below maps each item to the player's line it answers and to its test.
 - **The roll card adds the sheet's number.**
   - On the twelve group-1 transcripts, 27 of the 32 cards that use a numbered sheet line were wrong. All 32 now read
@@ -81,6 +81,7 @@ Each row: the line it answers, what changed, and the test (file `tests/fix-s4-ru
 | 11u′ | B-fable: «"Day 2 · night" ticked over at midnight, which is correct but jarred». | One `campaignDay`: the day turns at first light (05:00) or when a long rest ends, never at midnight. Screen, harness and DM use it (`gameplay/world-day.ts`). | `start`: «11u′: …» |
 | 11v | Natural 20s: Inspiration granted twice and withheld twice across eight B/C sessions, by mood. | In code: a natural 20 on the hero's called, shown check grants Heroic Inspiration when he has none. The chip says why it was granted, or why it was withheld («already held»). Any other grant needs a named trigger quoted in the records (the table rule). A reroll's natural 20 does not count. | `roll`: two «11v: …» tests |
 | 11w | Fourteen «?» messages and two reroll presses at B/C counted as nothing (C-opus t14, the «broken reroll button»). | A refused press is shown refused with its reason, on the screen and in the harness. The harness logs it `swallowed`, and the report counts «?» presses and refused presses apart. | `pending`: «11b/11w in the harness…»; the smoke (below) |
+| 11w′ | Group 2's A-opus t4 (2026-10-26): pressed `[Roll the die]` twice with «please check the Persuasion total, +2 is not +7» beside it, was told «Nothing was sent» both times, and the session closed as stuck. | In the harness, a message with a screen button in it (in brackets anywhere, or alone on its line) is a press. The text beside it goes first, as a «?» while the card waits (11b: the DM sees the card), then the button applies to the card as it stands. A press made moot by the answer is noted; neither part counts toward «stuck» (`pressWithText`, `screen.mjs`; `session.mjs`). In the app a press is a click, so the case is the text screen's. | `pending`: «11w′ in the harness: «[Roll the die]» with an out-of-game line…»; the smoke rerun (below) |
 
 ### The keep-list as tests
 
@@ -173,6 +174,33 @@ act plan's aims, its convergence notes and the errand left out («…»).
 | OpenAI | $0.0104 (GPT-6 Luna) | $3 |
 | Console | $0 | $0 |
 
+### The rerun after 11w′ (one table, 2026-10-26)
+
+Done at the owner's request: one four-turn table, so the letter fix and 11w′ show on screen. Command:
+`… smoke.mjs --go --rerun`. Files: `docs/runs/fix-s4-run-1-smoke-2-report.md`, `…-smoke-2-transcripts/A-luna.md`,
+`…-smoke-2-run-20261026-033952.json`, `…-smoke-2-ledger-*`. It ran within the caps left of the stage's.
+
+- **The setup:** GPT-6 Luna, Table A, the owner's Opus DM.
+- **The probes:** the refused message, and 11w′'s press with text beside it («[Roll the die]» + «(Out of game: please
+  check this card's total against my sheet before it counts.)»).
+
+**The letter (11e) shows.** The opening records' pack reads «…; Explorer's Pack; Letter from his old company; Light
+Crossbow; Pay slip; …; Promissory note; …», with no clause as a thing. Money 315 gp / 315 sp / 350 cp, «Day 1 ·
+evening» as narrated, the first turn «Time passes: 5 minutes».
+
+**11w′ did not show:** the DM called no roll in these four turns, so no card waited and the probe had nothing to press.
+- The behaviour is covered by the test «11w′ in the harness…» (`pending`), on group 2's A-opus message as written.
+- It shows in the scripted dry run of this stage (`docs/runs/fix-s4-run-1-smoke-2-dry-run.md`: «`[Roll the die]` with «…» beside it — the text went to the DM while
+  the card waited» and «then `[Roll the die]` resolved the card (a press, not «stuck»)»).
+- Another paid table, on the owner's word, would show it live. About $2.8; the Haiku table drew a card at t3 in the
+  first smoke.
+
+The clock line ran before every turn, as before: «turn N of ~70… now act 1 — …, to turn 15; the errand has not been
+offered…».
+
+**Money, rerun:** OpenRouter $2.7698, OpenAI $0.0079, Console $0. **The stage in all:** OpenRouter $7.79 of $15, OpenAI
+$0.018 of $3. The OpenRouter balance before the rerun was $408.86; others spent from the key between the checks.
+
 ## Checks
 
 On a clean worktree (no `.env.local`; `node --test --test-concurrency=2 tests/*.test.mjs`; clone unshallowed first,
@@ -200,7 +228,7 @@ New test files:
 | --- | --- |
 | `fix-s4-run-1-table` | 14 |
 | `fix-s4-run-1-roll` | 13 |
-| `fix-s4-run-1-pending` | 18 |
+| `fix-s4-run-1-pending` | 19 |
 | `fix-s4-run-1-start` | 15 |
 | `fix-s4-run-1-screen` | 10 |
 
