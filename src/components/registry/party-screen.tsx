@@ -52,7 +52,7 @@ export function RegistryParty({ data, play, onSaved, preview }: {
   const council = companions.length > 1;
   const talking = talk ? data.entities.find((row) => row.id === talk.id) ?? null : null;
   const place = currentPlace(data);
-  const clock = worldClock(play?.worldMinutes, c.language);
+  const clock = worldClock(play?.worldMinutes, c.language, play?.restRecords);
   return (
     <div className={s.page}>
       <Plate eyebrow={c(`${data.campaign.title} · спутники и люди рядом`, `${data.campaign.title} · companions and people nearby`)} title={c("Партия", "Party")}

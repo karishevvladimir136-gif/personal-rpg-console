@@ -1747,7 +1747,8 @@ function restTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
   const id = stableGameplayId(ctx.input.operationId, `dm-loop:rest:${ctx.toolCalls}`);
   shadow.apply({ family: "rest_records", id, expectedRevision: null, values: { kind, status: safe ? "complete" : "interrupted",
     settings_revision: shadow.snapshot.settings.revision,
-    public_outcome: { participants: participants.map((p) => p.name), recovered, consumed, minutes } } });
+    // Fix S4 11u′: the world minute the rest ended — a long rest in the night turns the day (world-day.ts).
+    public_outcome: { participants: participants.map((p) => p.name), recovered, consumed, minutes, endedAtMinutes: shadow.worldMinutes } } });
   const due = dueAfterTime(shadow, before);
   const heroId = shadow.hero().id;
   return ok({ kind, safe, minutes, recovered, restored: restoredCounters, consumed, ...due },

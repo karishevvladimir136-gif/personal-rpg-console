@@ -50,6 +50,7 @@ import {
   sessionNumber,
   worldClock,
 } from "@/lib/ui/campaign-view";
+import { longRestEnds } from "@/lib/gameplay/world-day";
 import { effortLabel } from "@/lib/ui/effort";
 import { useCopy, registry as r } from "./primitives";
 import { LiveImages } from "./live-images";
@@ -80,14 +81,16 @@ export function useChrome() {
   return useContext(ChromeContext);
 }
 
-/** The game screen reports the world clock; the shell header shows it. */
-const ClockContext = createContext<{ minutes: number | null; set: (minutes: number | null) => void } | null>(null);
-export function useShellClock(minutes: number | null | undefined) {
+/** The game screen reports the world clock; the shell header shows it. Fix S4 11u′: with the play's rest records, so the
+ * header's day turns where the DM's does (at first light or at the end of a long rest). */
+const ClockContext = createContext<{ minutes: number | null; set: (minutes: number | null, longRests?: string) => void } | null>(null);
+export function useShellClock(minutes: number | null | undefined, rests?: Parameters<typeof longRestEnds>[0]) {
   const clock = useContext(ClockContext);
   const set = clock?.set;
+  const longRests = longRestEnds(rests).join(",");
   useEffect(() => {
-    set?.(minutes ?? null);
-  }, [minutes, set]);
+    set?.(minutes ?? null, longRests);
+  }, [minutes, longRests, set]);
 }
 
 /** The campaign's DM model choice (stage 2 settings), for the pill and the nav box. */
@@ -124,7 +127,8 @@ export function CampaignShell({ children }: { children: ReactNode }) {
   const largeText = chrome?.largeText ?? !!workspace?.data?.preferences.largeText;
   const [drawer, setDrawer] = useState(false);
   const [minutes, setMinutes] = useState<number | null>(null);
-  const clockValue = useMemo(() => ({ minutes, set: setMinutes }), [minutes]);
+  const [longRests, setLongRests] = useState("");
+  const clockValue = useMemo(() => ({ minutes, set: (next: number | null, rests = "") => { setMinutes(next); setLongRests(rests); } }), [minutes]);
   const dm = useDmSettings(data?.campaign.id);
   if (!data) return <>{children}</>;
   const campaign = data.campaign;
@@ -162,7 +166,7 @@ export function CampaignShell({ children }: { children: ReactNode }) {
   const session = currentSession(data);
   const number = sessionNumber(data, session?.id);
   const place = currentPlace(data);
-  const clock = worldClock(minutes, lang);
+  const clock = worldClock(minutes, lang, longRests ? longRests.split(",").map(Number) : []);
   const model = dmModelLabel(dm);
   const shortModel = dmModelLabel(dm, true);
   const effort = dm?.dmTurn?.reasoning;

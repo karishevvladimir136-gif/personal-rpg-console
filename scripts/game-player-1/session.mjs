@@ -167,7 +167,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     turn.place = place ? { id: place.id, name: place.name } : null;
     const nextVitals = vitalsText(view.snapshot, view.play, dm.views);
     const chips = changesText(current);
-    const status = [place ? `Place: ${place.name}` : "", Number.isFinite(view.play?.worldMinutes) ? `Time: ${dm.views.worldClock(view.play.worldMinutes, "en")}` : ""].filter(Boolean).join(" · ");
+    const status = [place ? `Place: ${place.name}` : "", Number.isFinite(view.play?.worldMinutes) ? `Time: ${dm.views.worldClock(view.play.worldMinutes, "en", view.play.restRecords)}` : ""].filter(Boolean).join(" · ");
     screen = [rest, chips, nextVitals !== vitals ? `Your records, changed:\n${nextVitals}` : "", status].filter(Boolean).join("\n\n");
     vitals = nextVitals;
     await onProgress(record);
