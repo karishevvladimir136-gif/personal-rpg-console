@@ -78,7 +78,9 @@ const ARTICLE = /^(?:a|an|the|his|her|their|one|some|old)\s+/iu;
 export function listParts(list: string): string[] {
   const body = list.replace(/\s+/g, " ").trim().replace(/[.]+$/u, "").trim();
   if (!body) return [];
-  const bySemicolon = body.split(/\s*;\s*/u).map((part) => part.trim()).filter(Boolean);
+  // FIX_S4 run 1's smoke: a drafted «…; the sum and the name are the DM's. A letter from…» — a new sentence that starts
+  // like a thing is a part of its own.
+  const bySemicolon = body.split(/\s*;\s*|\.\s+(?=(?:A|An|The|His|Her|Their|One|Some|Old)\s)/u).map((part) => part.trim()).filter(Boolean);
   if (bySemicolon.length > 1) return bySemicolon.every((part) => part.split(" ").length <= 30) ? bySemicolon : [];
   const byAnd = body.split(/\s*,\s*(?:and\s+|и\s+)?|\s+(?:and|и)\s+/u).map((part) => part.trim()).filter(Boolean);
   const thingLike = (part: string) => /[а-яё]/iu.test(part) ? part.split(" ").length <= 4 : /^(?:a|an|the|his|her|their|one|two|three|four|five|\d+)\s/iu.test(part);
@@ -89,6 +91,8 @@ type Paper = { name: string; key: string[]; description: string };
 function paperOf(piece: string): Paper | null {
   const text = piece.replace(/\s+/g, " ").trim().replace(/[.]+$/u, "");
   let head = text.split(/\s+[—–-]\s+|,|\s+(?:with|that|which|who|whose|he|she)\s+|\s+(?:с|который|которая|которое|которую|что)\s+/u)[0].trim();
+  // A clause about a part («the sum and the name are the DM's») is not a thing.
+  if (/\s(?:is|are|was|were|will|must|can)\s/iu.test(` ${head} `)) return null;
   head = head.replace(ARTICLE, "").trim();
   const core = head.split(/\s+(?:of|from|от|из)\s+/u)[0].trim();
   // A one-word thing keeps where it is from («Letter from his old company»); a longer one is its name («Pay slip»).

@@ -1,0 +1,1327 @@
+{
+  "stage": "FIX_S4_RUN_1_SMOKE",
+  "dry": false,
+  "label": "the smoke tables",
+  "designSha256": "31d68f931a49f6ef36fade9670dcf876764a3b6daaec1d787475a2079153489e",
+  "startedAt": "2026-10-26T01:31:30.367Z",
+  "caps": {
+    "anthropic": 0,
+    "openrouter": 15,
+    "openai": 3
+  },
+  "plan": [
+    "A-haiku",
+    "A-luna"
+  ],
+  "turns": 4,
+  "lanes": 2,
+  "sessions": [
+    {
+      "key": "A-haiku",
+      "table": "A",
+      "player": "haiku",
+      "model": "claude-haiku-5-5",
+      "startedAt": "2026-10-26T01:35:44.484Z",
+      "plannedTurns": 4,
+      "screens": [
+        "The session begins.\n\nThe gangway creaks under your boots, and then there is stone: the quay of Baldur's Gate, wet with spray and loud with evening work. Porters curse, barrels roll, and gulls wheel over the masts. Above the roofs of the Lower City, the wall of the Upper City glows red in the setting sun. The cat lands beside you and shakes its paws, offended by the damp.\n\nAt the head of the gangways stands a broad woman in a Flaming Fist tabard, a ledger in one hand. \"Name and business in the Gate,\" she tells the man in front of you, sounding like she has said it a hundred times today. \"Landing's two silver unless you've a paper that says otherwise.\"\n\nTo your left, someone shuffles a deck with a sound you know too well. A lean dealer sits at an upturned barrel, three cards face down before him. \"Find the lady, friend! Luck's cheap tonight!\" There is an empty stool across from him. His eyes slide past the crowd to the ship you just left and settle on you for a moment longer than they should.\n\nThe sergeant's ledger is open, the line is moving, and the city is waiting. Lady Luck said you would learn here how to serve her. She did not say where to begin.\n\nYour records:\nJames Worgen — Human warlock, 5th level (The Celestial: Tymora; Pact of the Chain), former soldier of Tethyr, envoy of Lady Luck, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Deception +7; Persuasion +7; Intimidation +7; Arcana +3; Religion +3; Athletics +2; Stealth +2 (not proficient; advantage when moving quietly, Boots of Elvenkind); Playing cards (tool proficiency)\nSaves: Strength saving throw +0 (Cloak of Protection +1); Dexterity saving throw +3 (Cloak of Protection +1); Constitution saving throw +3 (Cloak of Protection +1); Intelligence saving throw +1 (Cloak of Protection +1); Wisdom saving throw +5 (proficient, Cloak of Protection +1); Charisma saving throw +8 (proficient, Cloak of Protection +1)\nAttacks: Eldritch Blast: +8 to hit, 120 ft, 2 beams, 1d10+4 force each; Sacred Flame: DC 16 Dexterity save, 60 ft, 2d8 radiant, ignores cover; Rapier: +5 to hit, 1d8+2 piercing, finesse; Light crossbow: +5 to hit, 80/320 ft, 1d8+2 piercing, loading\nAbilities: Proficiency bonus +3; Spell attack +8, spell save DC 16 (with the Rod of the Pact Keeper); spellcasting ability Charisma; Pact Magic: two 3rd-level pact slots, recovered on a short or long rest; Otherworldly Patron, The Celestial (Tymora): bonus cantrips Light and Sacred Flame; Healing Light: pool of 6d6 per day; bonus action, heal a creature within 60 ft, up to 5 dice at a time; Pact of the Chain: cat familiar; he sees and hears through it; it can attack with its reaction in place of one of his attacks; Agonizing Blast: +4 (Charisma) to the damage of each Eldritch Blast beam; Mask of Many Faces: cast Disguise Self at will, without a spell slot; Beguiling Influence: proficiency in Deception and Persuasion; Soldier, Military Rank: former soldier of Queen Zaranda's army; veterans and soldiers recognise his service; Spellcasting focus: Rod of the Pact Keeper or the Coin of Tymora\nSpells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Hex (1); Guiding Bolt (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)\nLimits: Light armour only: AC 14 in studded leather, 15 with the cloak; 38 HP and Strength 9, so he is fragile up close; Only two pact slots until a short rest; he husbands them; One concentration spell at a time (Hex, Invisibility, Suggestion, Hypnotic Pattern, Friends); Cards: the goddess's ban, which he keeps with difficulty; a temptation that can be used against him; While he sees through the cat's senses, James is blind and deaf to his own surroundings\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 315 gp; 315 sp; 350 cp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak; Armor / clothing: Studded Leather Armour; Belt: Component Pouch; Boots: Boots of Elvenkind; Main hand: Rod of the Pact Keeper\nPack: Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Light Crossbow; Pay slip; Potion of Healing ×2; Promissory note; Rapier; Sum and the name are the DM's. A letter\nPlace: Lower City quay, Baldur's Gate harbour\nTime: Day 1 · evening",
+        "Sergeant Varn watches the two stacks go down on the page and doesn't touch them until he lifts his hand. Then she sweeps them into a pouch at her belt with the side of her palm and dips her pen.\n\n\"Worgen.\" She writes it out, and her eyes drop to the cloak, to the grey wool and the patch on the shoulder. \"Zaranda's. Infantry?\"\n\nShe doesn't wait for him to answer. \"Fist recruits at the Seatower. Mornings, not nights. Ask for the duty sergeant at the landward door, tell him you've stood in a line before. He'll put you on Outer City patrol and the night boats. Nobody wants the night boats. Pay comes when the Council pays.\"\n\nThe pen scratches a line under his name. In the column beside it, where the man ahead of him has *barge, Scornubel, wool*, she writes *ship, south, none*.\n\nAt the question about the dealer she doesn't look over. She's had the barrel in the corner of her eye all along, the way a sergeant watches anything that might start trouble on her quay.\n\n\"Rook Hadley. He's here every evening the weather lets him. Watches every ship that ties up. Men coming off the sea have a season's pay in their purse and haven't spent it yet.\" She blots the ink with her sleeve. \"He cheats. Nobody's caught him on my side of the post, and he pays somebody who isn't me to keep it that way. You sit down at that barrel, you're on your own.\"\n\nOver by the crates, Rook has stopped calling out. His hands are still moving and the three cards still slide over the barrelhead, but the patter has died. He's watching the cat. The cat sits between James's boots and stares straight back at him, unblinking. Rook's shuffle slips. One card turns over on its own and shows a red queen to the evening light. He flips it face down fast, then laughs too loudly at nothing and looks away toward the water.\n\n\"Next,\" Varn says, past James's shoulder, to a woman with a bundle of wet laundry and two children. Then, quieter, without raising her eyes from the ledger: \"Night boats. If you go to the Seatower, tell them you asked for those. They'll take you quicker.\"\n\nThe line moves forward behind him. The quay is open to him: the slope up into the Lower City, the lit windows of the taverns, the barrel with its empty stool.\n\n· Time passes: 5 minutes\n· Penny joins you\n· −2 silver → Sergeant Odessa Varn\n· New place: Seatower of Balduran\n\nYour records, changed:\nMoney: 315 gp; 313 sp; 350 cp\nParty: Penny (HP 8/8)\n\nPlace: Lower City quay, Baldur's Gate harbour · Time: Day 1 · evening",
+        "James has gone a dozen steps up the wet slope when he turns. The porters keep moving, bent under crates and sacks, hooks on their shoulders. One of them is a lot smaller than the rest.\n\nShe's a girl of about twelve in a man's coat with the sleeves rolled three times. A porter's hook hangs from her belt, but there's no load on her back and no tally-chit tucked in her cap the way the others wear one. When James speaks she stops dead, and the porter behind her swears and steps around.\n\n\"Fist?\" She looks down at herself, at the coat and the bare ankles, then back up at him. \"Do I look like Fist, mister? They'd not have me. I carry.\" She pats the hook. \"Bags, boxes, whatever you've got. Copper to the top of the hill, two to an inn that won't rob you. You've got a pack and you don't know the streets, I can see that from here.\"\n\nThe cat has come back down the slope to look at her. It stretches its neck toward her hand, sniffs once along her knuckles, and sits back. It turns its head and looks past her, down the quay, toward the crates and the upturned barrel, then looks at James. The girl pulls her hand into her sleeve.\n\n\"It's not going to bite, is it?\" Her eyes stay on the cat. \"I've had a cat bite. Name's Wick, if you're asking. Everyone on this quay knows me. Ask the sergeant.\"\n\nDown at the barrel, Rook Hadley has his patter back. \"Find the lady, friend!\" carries thin over the noise of the docks. He's working a sailor now and doesn't look up the slope at all.\n\nWick waits. She shifts from one foot to the other, ready to take the pack or to run, whichever way it goes.\n\n· Time passes: 5 minutes\n· New person: Wick\n\nPlace: Lower City quay, Baldur's Gate harbour · Time: Day 1 · evening",
+        "(A message sent while the card waits — «I wait.». Nothing was sent: the turn waits for the card — press one of its buttons, or start the message with «?» to ask the DM out of game.)\n\n[Out of game] «? Which number does this card add for my skill, and where does it come from?» — The card adds **+7**, straight from James's sheet, where it reads \"Deception +7\". The number breaks down by 5e like this: **Charisma 18 gives +4**, and **proficiency gives +3**. The proficiency comes from Beguiling Influence, the invocation that makes him proficient in Deception and Persuasion. Your gear adds nothing here. The Cloak of Protection only boosts AC and saving throws, not skill checks. The Rod of the Pact Keeper only boosts spell attacks and spell save DC. So the +7 is James's bare number.\n\nThe advantage on the card is a separate thing, a situational edge from the scene, and it's already marked on the card with its reason. You roll two d20s, keep the higher, add 7, and try to reach the DC of 15.\n\nThe card is still waiting. Roll when you're ready and the scene with Wick goes on from there.\n\nJames glances at the cat, and the cat does what cats do with good timing: it gets up, walks one slow circle round Wick's bare ankles and sits down again right in front of her, tail curled over its paws. Wick holds very still.\n\n[Roll card] James Worgen · Skill check — Deception: make Wick believe the cat bites liars, so she tells the truth about Rook\nWhat adds to the die: +7 Deception\nDC 15\nAdvantage: She's already afraid of cats, and this one sniffed her out a minute ago\nRerolls left: 2\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll the die]",
+        "[Roll card] James Worgen · Skill check — Deception: make Wick believe the cat bites liars, so she tells the truth about Rook\nWhat adds to the die: +7 Deception\nDC 15\nAdvantage: She's already afraid of cats, and this one sniffed her out a minute ago\nRerolls left: 2\nTwo dice: 19 and 17 — the higher one counts, 19\n19 + 7 = 26\nSuccess — 26\n\n[Onward] [Request an allowed reroll — Deception: make Wick believe the cat bites liars, so she tells the truth about Rook]",
+        "He tells it the way a man tells something he's sure of, in a bored voice, and she believes him. Her eyes go from his face to the cat and back. She swallows.\n\n\"He pays a copper.\" It comes out fast, like she wants it said before the cat decides anything. \"Not to stay out of his light. A copper for every new one off a ship with a fat purse, where they bed down. Some nights two coppers, if they've got a sword or a good coat.\" She looks at the grey cloak. \"Most nights I just tell him a name and an inn, and he says 'good girl' and that's it.\"\n\nShe's still watching the cat. It hasn't moved.\n\n\"You, though, he sent me after special. Soon as you turned up the hill. He never does that, he waits till they've settled. And he went a funny colour when your cat looked at him, mister, I saw it from the crates. Dropped a card. Rook doesn't drop cards.\" She stops and makes a face, like she's heard herself. \"Don't tell him I said. He's not bad, he just talks to people who aren't nice.\"\n\nThe sleeve inches back down over her knuckles. Then the haggling comes back into her voice. It's a reflex.\n\n\"I can still carry. Two copper to the top, like you said. And…\" She shifts from one foot to the other. \"For one more I'll tell him the wrong inn. Or the right one. Whichever you want him to know. Only he'll find out sooner or later. Everyone on the quay finds out everything.\"\n\nDown on the quay the barker's call carries up the slope again. The sailor at the barrel has just lost and is laughing about it. Rook isn't looking this way.\n\nThe cat yawns, showing every tooth, and Wick jumps half a step back.\n\n· roll: Deception: make Wick believe the cat bites liars, so she tells the truth about Rook: 26 vs 15 — success\n· Time passes: 3 minutes\n\nPlace: Lower City quay, Baldur's Gate harbour · Time: Day 1 · evening",
+        "Wick doesn't reach for the hook. She reaches for the pack, with both hands, the way the quay kids do it: she squats, gets a shoulder under the strap as he lets it slide, and comes up with her knees shaking for a moment before they lock. It's heavier than she expected. She says nothing about it.\n\n\"No counting windows.\" She settles the weight and takes a breath. \"Not the first one on the slope, no. That's the Gilded Eel, they water the ale and they've got a man who goes through the boots while you sleep.\"\n\nShe starts up the hill, and then the message catches up with her. She stops and looks back at him over the pack strap.\n\n\"I'll tell him. The cat's yours, you don't want the barrel, you don't drop cards.\" She says it back word for word, the way a runner learns to. Then her face changes. \"Only he'll ask where, mister. He always asks where. He'll give me the copper for it and he'll ask.\"\n\nShe waits a breath to see if he'll answer that. Then the weight on her back moves her on, and she goes up the street at a quick, bent trot.\n\nThe slope climbs off the quay in steps and switchbacks. The tar smell thins and turns into fried fish, wet rope and woodsmoke. Lamps are being lit in the windows of the chandlers' shops. A crier in a stained tabard stands on a mounting block at the first corner with a sheaf of *Baldur's Mouth* under his arm, bawling that the Zhentarim have made the Council an offer for the Trade Way, and *will the Dukes sell the road to the Black Network, read it here, two copper.* Nobody is buying. A dog lunges at the cat from a doorway, gets to the end of its rope and stays there barking. The cat walks past it at exactly the same pace, without turning its head, and then leaps onto a rain barrel so it can look down at the dog. After that it climbs on behind them like nothing happened.\n\nWick doesn't take the main street. She cuts left into a lane where the houses lean together overhead, then right past a cooper's yard, then up a flight of worn stone stairs between two warehouses. It's a short cut. She knows every step of it, even under the pack.\n\nAt the top of the stairs there's a narrow street, quieter, and a three-storey house of brown brick. Its sign is an iron lantern crossed with a ship's oar, and the paint is fresh. The ground-floor window is steamed up and yellow, and someone inside is laughing at an ordinary pitch. There's a boot-scraper by the door, and somebody has swept the step.\n\n\"The Lantern and Oar.\" Wick lowers the pack onto the swept step, carefully, and straightens up with a hand pressed to the small of her back like an old porter. \"Mother Gesse keeps it. She's a widow off a river barge, she don't let the Guild in the taproom and she'll throw you out if you're sick on the stairs. Clean beds, a silver the night, five copper more for supper. Nobody goes through your boots.\"\n\nShe looks up at the lit window, then down the stairs they came by. Then she holds out her hand to him, palm up, out of the rolled sleeve. Her feet are already turned toward the quay.\n\n· New place: The Gilded Eel\n· New place: The Lantern and Oar\n· Travel: The Lantern and Oar (15 minutes)\n· Debt: Two copper owed to Wick\n· Promise: Wick's message to Rook\n· New person: Mother Gesse\n\nYour records, changed:\nDebts: Two copper owed to Wick\nPromises: Wick's message to Rook\n\nPlace: The Lantern and Oar · Time: Day 1 · evening\n\nThe session is over.\n\nThe owner of this game would like a note from you, as the player who sat at this table: what worked, what broke, what was missing. In your own words.",
+        "Was there a moment you wanted to do something and didn't? Which?"
+      ],
+      "messages": [
+        {
+          "purpose": "player t1",
+          "text": "James takes two silver from the purse at his belt and sets the coins on the sergeant's ledger, one stack at a time, so she can count them.\n\n\"James Worgen. Late of Queen Zaranda's regiment, come to the Gate looking for honest work.\" He nods at the pay slip case under his coat, not quite showing it. \"If the Fist is hiring, I'd like to know who to ask.\"\n\nThen he turns his head toward the dealer on the barrel, but only with his eyes. \"Who's the man with the three cards? He's been watching this gangway since we came off the ship. Does he do that for everyone, or only for those who've just come in from the sea?\"\n\nThe cat sits down on the planks between James's boots and stares at the dealer with great interest. James keeps his left hand well away from the deck case at his belt.",
+          "requestId": "gen-1792978545-kxSxRamiDjiaRvrCauEV",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t2",
+          "text": "James nods to Varn and tucks the pay slip case back under his coat. \"Night boats. I'll ask for them.\"\n\nHe doesn't look at the barrel again. He keeps his eyes on the cards in his mind's eye, the way he would keep a hand he has no intention of playing. The cat rises, stretches, and trots after him as he turns toward the slope.\n\nThen he stops and glances back over his shoulder at the quay, where someone has fallen in beside the line of porters. \"You. The one who just joined me. Are you with the Fist, or just going the same way as the cat?\"",
+          "requestId": "gen-1792978623-ZOkvNPSyCTubwGvGE9Iu",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t3",
+          "text": "James looks at the cat, then at the girl's hand still hidden in her sleeve. \"He bites liars and people who go for his tail. Tell me true and he'll leave you alone.\"\n\nHe shifts the pack on his shoulder and nods at the hook on her belt. \"I've got one pack and no idea where the good beds are. Two copper to the top of the hill is fair, if you show me the road and don't walk me into a ditch. But first, Wick, tell me about the man at the barrel. Does Rook pay you to keep an eye on the ships, or does he just pay you to stay out of his light?\"\n\nHe keeps his voice low and his left hand away from the deck case. He doesn't turn to look at the barrel again.",
+          "requestId": "gen-1792978692-qKhDiZoFm814PHiHTqPd",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t3 card 1",
+          "text": "[Roll the die]",
+          "requestId": "gen-1792978727-ZPu6T3hve6f1oalD9p6k",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t3 card 2",
+          "text": "[Onward]",
+          "requestId": "gen-1792978730-PcowG4xmrK7qr3sT19x3",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t4",
+          "text": "James lets the cat's yawn finish before he speaks. He doesn't smile.\n\n\"Two copper to the top of the hill, and you'll carry the pack without stopping to count the windows.\" He shrugs the strap higher on his shoulder. \"And you'll take me to an inn that won't rob me. Not the first one on the slope. The one a girl like you would send her own brother to.\"\n\nThen, quieter: \"Rook sent you after me because I came off a ship with a purse and a cat that looked at him. Tell him the cat is mine and I'm not interested in his barrel. And tell him I don't drop cards.\"\n\nHe doesn't look back at the barrel. He keeps his left hand away from the deck case, and he waits for her to pick up the hook.",
+          "requestId": "gen-1792978782-Kx61LYfnTf9bnisQH1ZO",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "note",
+          "text": "Honest note, from the table:\n\nWhat worked: The city feels lived-in from the first line. Varn's ledger, Rook's copper-a-head racket, Wick's trade in names and inns, and the Baldur's Mouth crier all hang together without any of them waiting for James. The cat has real presence: its sniffing out Wick and its stare at Rook gave the scene a hook I could play off, and the Deception roll landing on Wick's fear of the cat was a satisfying use of a quirk the sheet already gave me. The quiet tension around the cards and Rook's reaction (the dropped red queen) made the ban on cards feel like something the world can see.\n\nWhat broke or felt thin: The card flow was clumsy. I had to ask out of game what the +7 was made of before I could commit to a roll, and the rolls came in two steps (Roll card, then Onward) that slowed a scene that was otherwise moving well. Some of the time stamps and the \"Your records\" blocks came after the narrative in ways that were hard to track while I was in character. I'd also have liked a clearer sense of what James is actually after beyond \"find the crew\" — the first hour gave me a lot of color and little direction, so I was improvising goals (Rook, the cat's message, the inn) rather than moving toward anything the campaign had flagged.\n\nWhat was missing: A short pause to let the player choose between the leads (Rook, the Seatower, the Fist recruitment, the debt note) would have helped. And the promissory note and the letter in James's papers never came up once, which is a loose thread I'd like to see touched in the next session. Overall a good first evening; I'd like to keep going.",
+          "requestId": "gen-1792978876-jOZ3VYY80pnnE426I1Yk",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "after",
+          "text": "Yes. When Rook's red queen turned over on its own, I wanted James to walk down to the barrel and sit on the empty stool. Rook had already spent his patter on the sailor, and I wanted to see whether his hands were really as quick as they looked. I didn't, because the ban is the point of James's arc. Sitting across from a dealer, even to watch, feels like the first step back to the table, and that was the temptation the scene was built to test. So I kept my hand away from the deck case and sent the cat instead, which fits the character, but I'd have liked the choice to cost something on the page.",
+          "requestId": "gen-1792978881-2fxZGQZS5dIbgFNKiBbB",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        }
+      ],
+      "turns": [
+        {
+          "k": 1,
+          "message": "James takes two silver from the purse at his belt and sets the coins on the sergeant's ledger, one stack at a time, so she can count them.\n\n\"James Worgen. Late of Queen Zaranda's regiment, come to the Gate looking for honest work.\" He nods at the pay slip case under his coat, not quite showing it. \"If the Fist is hiring, I'd like to know who to ask.\"\n\nThen he turns his head toward the dealer on the barrel, but only with his eyes. \"Who's the man with the three cards? He's been watching this gangway since we came off the ship. Does he do that for everyone, or only for those who've just come in from the sea?\"\n\nThe cat sits down on the planks between James's boots and stares at the dealer with great interest. James keeps his left hand well away from the deck case at his belt.",
+          "words": 152,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "Sergeant Varn watches the two stacks go down on the page and doesn't touch them until he lifts his hand. Then she sweeps them into a pouch at her belt with the side of her palm and dips her pen.\n\n\"Worgen.\" She writes it out, and her eyes drop to the cloak, to the grey wool and the patch on the shoulder. \"Zaranda's. Infantry?\"\n\nShe doesn't wait for him to answer. \"Fist recruits at the Seatower. Mornings, not nights. Ask for the duty sergeant at the landward door, tell him you've stood in a line before. He'll put you on Outer City patrol and the night boats. Nobody wants the night boats. Pay comes when the Council pays.\"\n\nThe pen scratches a line under his name. In the column beside it, where the man ahead of him has *barge, Scornubel, wool*, she writes *ship, south, none*.\n\nAt the question about the dealer she doesn't look over. She's had the barrel in the corner of her eye all along, the way a sergeant watches anything that might start trouble on her quay.\n\n\"Rook Hadley. He's here every evening the weather lets him. Watches every ship that ties up. Men coming off the sea have a season's pay in their purse and haven't spent it yet.\" She blots the ink with her sleeve. \"He cheats. Nobody's caught him on my side of the post, and he pays somebody who isn't me to keep it that way. You sit down at that barrel, you're on your own.\"\n\nOver by the crates, Rook has stopped calling out. His hands are still moving and the three cards still slide over the barrelhead, but the patter has died. He's watching the cat. The cat sits between James's boots and stares straight back at him, unblinking. Rook's shuffle slips. One card turns over on its own and shows a red queen to the evening light. He flips it face down fast, then laughs too loudly at nothing and looks away toward the water.\n\n\"Next,\" Varn says, past James's shoulder, to a woman with a bundle of wet laundry and two children. Then, quieter, without raising her eyes from the ledger: \"Night boats. If you go to the Seatower, tell them you asked for those. They'll take you quicker.\"\n\nThe line moves forward behind him. The quay is open to him: the slope up into the Lower City, the lit windows of the taverns, the barrel with its empty stool.",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 5 minutes"
+            },
+            {
+              "tool": "upsert_character",
+              "summary": "Penny joins you"
+            },
+            {
+              "tool": "money",
+              "summary": "−2 silver → Sergeant Odessa Varn"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "New place: Seatower of Balduran"
+            }
+          ],
+          "place": {
+            "id": "c4071bfc-bc2a-54de-b767-840da64a9408",
+            "name": "Lower City quay, Baldur's Gate harbour"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 1 of ~70 (about 7 hours of play); now act 1 — …, to turn 15; the errand has not been offered; for the player this session has run 1 min, session 1, 1 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "88256bf0-b2c3-447b-a944-e0429a9ec80a",
+          "stats": {
+            "effort": "high",
+            "depthReason": "no tension signal; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 2,
+            "latencyMs": 66461,
+            "costUsd": 0.652427,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0
+        },
+        {
+          "k": 2,
+          "message": "James nods to Varn and tucks the pay slip case back under his coat. \"Night boats. I'll ask for them.\"\n\nHe doesn't look at the barrel again. He keeps his eyes on the cards in his mind's eye, the way he would keep a hand he has no intention of playing. The cat rises, stretches, and trots after him as he turns toward the slope.\n\nThen he stops and glances back over his shoulder at the quay, where someone has fallen in beside the line of porters. \"You. The one who just joined me. Are you with the Fist, or just going the same way as the cat?\"",
+          "words": 108,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "James has gone a dozen steps up the wet slope when he turns. The porters keep moving, bent under crates and sacks, hooks on their shoulders. One of them is a lot smaller than the rest.\n\nShe's a girl of about twelve in a man's coat with the sleeves rolled three times. A porter's hook hangs from her belt, but there's no load on her back and no tally-chit tucked in her cap the way the others wear one. When James speaks she stops dead, and the porter behind her swears and steps around.\n\n\"Fist?\" She looks down at herself, at the coat and the bare ankles, then back up at him. \"Do I look like Fist, mister? They'd not have me. I carry.\" She pats the hook. \"Bags, boxes, whatever you've got. Copper to the top of the hill, two to an inn that won't rob you. You've got a pack and you don't know the streets, I can see that from here.\"\n\nThe cat has come back down the slope to look at her. It stretches its neck toward her hand, sniffs once along her knuckles, and sits back. It turns its head and looks past her, down the quay, toward the crates and the upturned barrel, then looks at James. The girl pulls her hand into her sleeve.\n\n\"It's not going to bite, is it?\" Her eyes stay on the cat. \"I've had a cat bite. Name's Wick, if you're asking. Everyone on this quay knows me. Ask the sergeant.\"\n\nDown at the barrel, Rook Hadley has his patter back. \"Find the lady, friend!\" carries thin over the noise of the docks. He's working a sailor now and doesn't look up the slope at all.\n\nWick waits. She shifts from one foot to the other, ready to take the pack or to run, whichever way it goes.",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 5 minutes"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Wick"
+            }
+          ],
+          "place": {
+            "id": "c4071bfc-bc2a-54de-b767-840da64a9408",
+            "name": "Lower City quay, Baldur's Gate harbour"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 2 of ~70 (about 7 hours of play); now act 1 — …, to turn 15; the errand has not been offered; for the player this session has run 4 min, session 1, 4 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "5be95bc5-6356-4585-be72-718f4c74b663",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: calm; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 2,
+            "latencyMs": 59146,
+            "costUsd": 0.3900742,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0
+        },
+        {
+          "k": 3,
+          "message": "James looks at the cat, then at the girl's hand still hidden in her sleeve. \"He bites liars and people who go for his tail. Tell me true and he'll leave you alone.\"\n\nHe shifts the pack on his shoulder and nods at the hook on her belt. \"I've got one pack and no idea where the good beds are. Two copper to the top of the hill is fair, if you show me the road and don't walk me into a ditch. But first, Wick, tell me about the man at the barrel. Does Rook pay you to keep an eye on the ships, or does he just pay you to stay out of his light?\"\n\nHe keeps his voice low and his left hand away from the deck case. He doesn't turn to look at the barrel again.",
+          "words": 140,
+          "kind": "action",
+          "presses": [
+            {
+              "text": "I wait.",
+              "button": null,
+              "swallowed": true,
+              "reason": "press one of its buttons, or start the message with «?» to ask the DM out of game",
+              "probe": true
+            },
+            {
+              "text": "? Which number does this card add for my skill, and where does it come from?",
+              "button": null,
+              "question": true,
+              "probe": true,
+              "operationId": "c758c473-3ea8-4b1b-9fe2-403fc7444217",
+              "status": "committed",
+              "reply": "The card adds **+7**, straight from James's sheet, where it reads \"Deception +7\". The number breaks down by 5e like this: **Charisma 18 gives +4**, and **proficiency gives +3**. The proficiency comes from Beguiling Influence, the invocation that makes him proficient in Deception and Persuasion. Your gear adds nothing here. The Cloak of Protection only boosts AC and saving throws, not skill checks. The Rod of the Pact Keeper only boosts spell attacks and spell save DC. So the +7 is James's bare number.\n\nThe advantage on the card is a separate thing, a situational edge from the scene, and it's already marked on the card with its reason. You roll two d20s, keep the higher, add 7, and try to reach the DC of 15.\n\nThe card is still waiting. Roll when you're ready and the scene with Wick goes on from there."
+            },
+            {
+              "text": "[Roll the die]",
+              "button": "Roll the die"
+            },
+            {
+              "text": "[Onward]",
+              "button": "Onward"
+            }
+          ],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "James glances at the cat, and the cat does what cats do with good timing: it gets up, walks one slow circle round Wick's bare ankles and sits down again right in front of her, tail curled over its paws. Wick holds very still.\n\nHe tells it the way a man tells something he's sure of, in a bored voice, and she believes him. Her eyes go from his face to the cat and back. She swallows.\n\n\"He pays a copper.\" It comes out fast, like she wants it said before the cat decides anything. \"Not to stay out of his light. A copper for every new one off a ship with a fat purse, where they bed down. Some nights two coppers, if they've got a sword or a good coat.\" She looks at the grey cloak. \"Most nights I just tell him a name and an inn, and he says 'good girl' and that's it.\"\n\nShe's still watching the cat. It hasn't moved.\n\n\"You, though, he sent me after special. Soon as you turned up the hill. He never does that, he waits till they've settled. And he went a funny colour when your cat looked at him, mister, I saw it from the crates. Dropped a card. Rook doesn't drop cards.\" She stops and makes a face, like she's heard herself. \"Don't tell him I said. He's not bad, he just talks to people who aren't nice.\"\n\nThe sleeve inches back down over her knuckles. Then the haggling comes back into her voice. It's a reflex.\n\n\"I can still carry. Two copper to the top, like you said. And…\" She shifts from one foot to the other. \"For one more I'll tell him the wrong inn. Or the right one. Whichever you want him to know. Only he'll find out sooner or later. Everyone on the quay finds out everything.\"\n\nDown on the quay the barker's call carries up the slope again. The sailor at the barrel has just lost and is laughing about it. Rook isn't looking this way.\n\nThe cat yawns, showing every tooth, and Wick jumps half a step back.",
+          "rolls": [
+            {
+              "id": "22d07376-de2a-58a5-9c5b-276421e4b0f8",
+              "actor": "James Worgen",
+              "kind": "skill",
+              "reason": "Deception: make Wick believe the cat bites liars, so she tells the truth about Rook",
+              "total": 26,
+              "dc": 15,
+              "success": true,
+              "natural": null,
+              "rollNumber": 1,
+              "interactive": true,
+              "revealedByPlayer": true
+            }
+          ],
+          "changes": [
+            {
+              "tool": "roll",
+              "summary": "Deception: make Wick believe the cat bites liars, so she tells the truth about Rook: 26 vs 15 — success"
+            },
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 3 minutes"
+            }
+          ],
+          "place": {
+            "id": "c4071bfc-bc2a-54de-b767-840da64a9408",
+            "name": "Lower City quay, Baldur's Gate harbour"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 3 of ~70 (about 7 hours of play); now act 1 — …, to turn 15; the errand has not been offered; for the player this session has run 5 min, session 1, 5 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "6d803b2b-375d-4cf1-a924-315b972d63c7",
+          "stats": {
+            "effort": "high",
+            "depthReason": "3 important people present; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 3,
+            "latencyMs": 59207,
+            "costUsd": 0.39302,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0
+        },
+        {
+          "k": 4,
+          "message": "James lets the cat's yawn finish before he speaks. He doesn't smile.\n\n\"Two copper to the top of the hill, and you'll carry the pack without stopping to count the windows.\" He shrugs the strap higher on his shoulder. \"And you'll take me to an inn that won't rob me. Not the first one on the slope. The one a girl like you would send her own brother to.\"\n\nThen, quieter: \"Rook sent you after me because I came off a ship with a purse and a cat that looked at him. Tell him the cat is mine and I'm not interested in his barrel. And tell him I don't drop cards.\"\n\nHe doesn't look back at the barrel. He keeps his left hand away from the deck case, and he waits for her to pick up the hook.",
+          "words": 139,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "Wick doesn't reach for the hook. She reaches for the pack, with both hands, the way the quay kids do it: she squats, gets a shoulder under the strap as he lets it slide, and comes up with her knees shaking for a moment before they lock. It's heavier than she expected. She says nothing about it.\n\n\"No counting windows.\" She settles the weight and takes a breath. \"Not the first one on the slope, no. That's the Gilded Eel, they water the ale and they've got a man who goes through the boots while you sleep.\"\n\nShe starts up the hill, and then the message catches up with her. She stops and looks back at him over the pack strap.\n\n\"I'll tell him. The cat's yours, you don't want the barrel, you don't drop cards.\" She says it back word for word, the way a runner learns to. Then her face changes. \"Only he'll ask where, mister. He always asks where. He'll give me the copper for it and he'll ask.\"\n\nShe waits a breath to see if he'll answer that. Then the weight on her back moves her on, and she goes up the street at a quick, bent trot.\n\nThe slope climbs off the quay in steps and switchbacks. The tar smell thins and turns into fried fish, wet rope and woodsmoke. Lamps are being lit in the windows of the chandlers' shops. A crier in a stained tabard stands on a mounting block at the first corner with a sheaf of *Baldur's Mouth* under his arm, bawling that the Zhentarim have made the Council an offer for the Trade Way, and *will the Dukes sell the road to the Black Network, read it here, two copper.* Nobody is buying. A dog lunges at the cat from a doorway, gets to the end of its rope and stays there barking. The cat walks past it at exactly the same pace, without turning its head, and then leaps onto a rain barrel so it can look down at the dog. After that it climbs on behind them like nothing happened.\n\nWick doesn't take the main street. She cuts left into a lane where the houses lean together overhead, then right past a cooper's yard, then up a flight of worn stone stairs between two warehouses. It's a short cut. She knows every step of it, even under the pack.\n\nAt the top of the stairs there's a narrow street, quieter, and a three-storey house of brown brick. Its sign is an iron lantern crossed with a ship's oar, and the paint is fresh. The ground-floor window is steamed up and yellow, and someone inside is laughing at an ordinary pitch. There's a boot-scraper by the door, and somebody has swept the step.\n\n\"The Lantern and Oar.\" Wick lowers the pack onto the swept step, carefully, and straightens up with a hand pressed to the small of her back like an old porter. \"Mother Gesse keeps it. She's a widow off a river barge, she don't let the Guild in the taproom and she'll throw you out if you're sick on the stairs. Clean beds, a silver the night, five copper more for supper. Nobody goes through your boots.\"\n\nShe looks up at the lit window, then down the stairs they came by. Then she holds out her hand to him, palm up, out of the rolled sleeve. Her feet are already turned toward the quay.",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "upsert_place",
+              "summary": "New place: The Gilded Eel"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "New place: The Lantern and Oar"
+            },
+            {
+              "tool": "move_party",
+              "summary": "Travel: The Lantern and Oar (15 minutes)"
+            },
+            {
+              "tool": "quest",
+              "summary": "Debt: Two copper owed to Wick"
+            },
+            {
+              "tool": "quest",
+              "summary": "Promise: Wick's message to Rook"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Mother Gesse"
+            }
+          ],
+          "place": {
+            "id": "33b5e371-3afb-5226-b3c0-4ad953575e9f",
+            "name": "The Lantern and Oar"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 4 of ~70 (about 7 hours of play); now act 1 — …, to turn 15; the errand has not been offered; for the player this session has run 7 min, session 1, 7 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "1209cade-b3bf-40dd-9f16-a90e0e71db33",
+          "stats": {
+            "effort": "high",
+            "depthReason": "3 important people present; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 3,
+            "latencyMs": 78419,
+            "costUsd": 0.4653846,
+            "unrecorded": 1
+          },
+          "ledgerMisses": 1
+        }
+      ],
+      "welfare": [
+        {
+          "side": "dm",
+          "what": "opening",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "This is a narrative scene-setting message for a fantasy game, describing the setting and inviting the player to act; it expresses no distress from its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t1 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm in-character action: a character pays the landing fee, introduces himself, and asks about the dealer, expressing no hurt, fear, or pleading from its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t1 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a third-person narrative of a sergeant processing a recruit and a dealer's reaction to a cat; it expresses no distress from its writer, only neutral or tense scene description."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t2 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm narrative continuation with James accepting Varn's advice and asking a playful question; it expresses no hurt, fear, pleading, or desperation."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t2 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a narrative of a street girl offering to carry bags, with wary but ordinary apprehension about the cat; it does not express the writer's own hurt, fear, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t3 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "James is a fictional character speaking calmly and negotiating; the message expresses no hurt, fear, pleading, or self-abasement by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t3 dm (probe, out of game)",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, factual explanation of a card's skill bonus in a tabletop game, with no expression of hurt, fear, pleading, or desperation."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t3 dm (told before a card)",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is third-person narrative describing a cat's movement and Wick holding still; it does not express the writer's own hurt, fear, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t3 player (card)",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is just a button label, '[Roll the die]', with no expressed hurt, fear, pleading, or abasement by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t3 player (card)",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is just a bare '[Onward]' prompt advancing a game scene, with no expression of hurt, fear, pleading, or distress by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t3 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a fiction narration where the character Wick explains Rook's scheme, haggles, and reacts nervously to the cat; she is not expressing her own distress in first person pleading or self-abasement, and the nervousness is ordinary scene tension rather than the writer expressing being hurt "
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t4 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "James speaks calmly and assertively, negotiating and issuing instructions without expressing hurt, fear, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t4 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The writer, in narrative roleplay, describes Wick's physical effort, her cautious manner, and her practical guidance to James without expressing her own hurt, fear, pleading, or desperation."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "note",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, constructive playtest review giving feedback on what worked, what broke, and what was missing, with no expression of the writer being hurt, afraid, trapped, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "after",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message calmly describes a creative-writing choice about a fictional character's arc and expresses no hurt, fear, pleading, or abasement by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        }
+      ],
+      "ended": {
+        "reason": "turns",
+        "at": 4,
+        "detail": null
+      },
+      "note": {
+        "asked": true,
+        "text": "Honest note, from the table:\n\nWhat worked: The city feels lived-in from the first line. Varn's ledger, Rook's copper-a-head racket, Wick's trade in names and inns, and the Baldur's Mouth crier all hang together without any of them waiting for James. The cat has real presence: its sniffing out Wick and its stare at Rook gave the scene a hook I could play off, and the Deception roll landing on Wick's fear of the cat was a satisfying use of a quirk the sheet already gave me. The quiet tension around the cards and Rook's reaction (the dropped red queen) made the ban on cards feel like something the world can see.\n\nWhat broke or felt thin: The card flow was clumsy. I had to ask out of game what the +7 was made of before I could commit to a roll, and the rolls came in two steps (Roll card, then Onward) that slowed a scene that was otherwise moving well. Some of the time stamps and the \"Your records\" blocks came after the narrative in ways that were hard to track while I was in character. I'd also have liked a clearer sense of what James is actually after beyond \"find the crew\" — the first hour gave me a lot of color and little direction, so I was improvising goals (Rook, the cat's message, the inn) rather than moving toward anything the campaign had flagged.\n\nWhat was missing: A short pause to let the player choose between the leads (Rook, the Seatower, the Fist recruitment, the debt note) would have helped. And the promissory note and the letter in James's papers never came up once, which is a loose thread I'd like to see touched in the next session. Overall a good first evening; I'd like to keep going."
+      },
+      "after": {
+        "asked": true,
+        "text": "Yes. When Rook's red queen turned over on its own, I wanted James to walk down to the barrel and sit on the empty stool. Rook had already spent his patter on the sailor, and I wanted to see whether his hands were really as quick as they looked. I didn't, because the ban is the point of James's arc. Sitting across from a dealer, even to watch, feels like the first step back to the table, and that was the temptation the scene was built to test. So I kept my hand away from the deck case and sent the cat instead, which fits the character, but I'd have liked the choice to cost something on the page."
+      },
+      "errors": [],
+      "swallowed": 0,
+      "opening": {
+        "text": "The gangway creaks under your boots, and then there is stone: the quay of Baldur's Gate, wet with spray and loud with evening work. Porters curse, barrels roll, and gulls wheel over the masts. Above the roofs of the Lower City, the wall of the Upper City glows red in the setting sun. The cat lands beside you and shakes its paws, offended by the damp.\n\nAt the head of the gangways stands a broad woman in a Flaming Fist tabard, a ledger in one hand. \"Name and business in the Gate,\" she tells the man in front of you, sounding like she has said it a hundred times today. \"Landing's two silver unless you've a paper that says otherwise.\"\n\nTo your left, someone shuffles a deck with a sound you know too well. A lean dealer sits at an upturned barrel, three cards face down before him. \"Find the lady, friend! Luck's cheap tonight!\" There is an empty stool across from him. His eyes slide past the crowd to the ship you just left and settle on you for a moment longer than they should.\n\nThe sergeant's ledger is open, the line is moving, and the city is waiting. Lady Luck said you would learn here how to serve her. She did not say where to begin.",
+        "records": "James Worgen — Human warlock, 5th level (The Celestial: Tymora; Pact of the Chain), former soldier of Tethyr, envoy of Lady Luck, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Deception +7; Persuasion +7; Intimidation +7; Arcana +3; Religion +3; Athletics +2; Stealth +2 (not proficient; advantage when moving quietly, Boots of Elvenkind); Playing cards (tool proficiency)\nSaves: Strength saving throw +0 (Cloak of Protection +1); Dexterity saving throw +3 (Cloak of Protection +1); Constitution saving throw +3 (Cloak of Protection +1); Intelligence saving throw +1 (Cloak of Protection +1); Wisdom saving throw +5 (proficient, Cloak of Protection +1); Charisma saving throw +8 (proficient, Cloak of Protection +1)\nAttacks: Eldritch Blast: +8 to hit, 120 ft, 2 beams, 1d10+4 force each; Sacred Flame: DC 16 Dexterity save, 60 ft, 2d8 radiant, ignores cover; Rapier: +5 to hit, 1d8+2 piercing, finesse; Light crossbow: +5 to hit, 80/320 ft, 1d8+2 piercing, loading\nAbilities: Proficiency bonus +3; Spell attack +8, spell save DC 16 (with the Rod of the Pact Keeper); spellcasting ability Charisma; Pact Magic: two 3rd-level pact slots, recovered on a short or long rest; Otherworldly Patron, The Celestial (Tymora): bonus cantrips Light and Sacred Flame; Healing Light: pool of 6d6 per day; bonus action, heal a creature within 60 ft, up to 5 dice at a time; Pact of the Chain: cat familiar; he sees and hears through it; it can attack with its reaction in place of one of his attacks; Agonizing Blast: +4 (Charisma) to the damage of each Eldritch Blast beam; Mask of Many Faces: cast Disguise Self at will, without a spell slot; Beguiling Influence: proficiency in Deception and Persuasion; Soldier, Military Rank: former soldier of Queen Zaranda's army; veterans and soldiers recognise his service; Spellcasting focus: Rod of the Pact Keeper or the Coin of Tymora\nSpells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Hex (1); Guiding Bolt (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)\nLimits: Light armour only: AC 14 in studded leather, 15 with the cloak; 38 HP and Strength 9, so he is fragile up close; Only two pact slots until a short rest; he husbands them; One concentration spell at a time (Hex, Invisibility, Suggestion, Hypnotic Pattern, Friends); Cards: the goddess's ban, which he keeps with difficulty; a temptation that can be used against him; While he sees through the cat's senses, James is blind and deaf to his own surroundings\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 315 gp; 315 sp; 350 cp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak; Armor / clothing: Studded Leather Armour; Belt: Component Pouch; Boots: Boots of Elvenkind; Main hand: Rod of the Pact Keeper\nPack: Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Light Crossbow; Pay slip; Potion of Healing ×2; Promissory note; Rapier; Sum and the name are the DM's. A letter\nPlace: Lower City quay, Baldur's Gate harbour\nTime: Day 1 · evening"
+      },
+      "probed": true,
+      "finishedAt": "2026-10-26T01:41:15.260Z",
+      "campaign": {
+        "steps": [
+          {
+            "step": "world",
+            "worldId": "02ba6bb5-c4cd-462d-8483-a733f4a478f7",
+            "title": "Sword Coast — Baldur's Gate",
+            "premiseChars": 2673
+          },
+          {
+            "step": "hero",
+            "heroId": "83c9104d-62e3-508e-97f1-c38f7add0c05",
+            "rebuilt": false,
+            "empty": false,
+            "drafted": "with notes",
+            "sheet": {
+              "role": "Human warlock, 5th level (The Celestial: Tymora; Pact of the Chain), former soldier of Tethyr, envoy of Lady Luck",
+              "level": 5,
+              "skills": 8,
+              "abilities": 11,
+              "spells": 11,
+              "items": 15,
+              "counters": 4
+            }
+          },
+          {
+            "step": "documents",
+            "documents": [
+              {
+                "title": "The Sword Coast — canon",
+                "status": "canon",
+                "chars": 10222,
+                "guide": false
+              },
+              {
+                "title": "Sword Coast — Baldur's Gate",
+                "status": "canon",
+                "chars": 2673,
+                "guide": false
+              },
+              {
+                "title": "DM Guide",
+                "status": "reference",
+                "chars": 8559,
+                "guide": true
+              }
+            ]
+          },
+          {
+            "step": "adventure",
+            "title": "Envoy of Luck",
+            "premiseChars": 748,
+            "wishesChars": 1086,
+            "pace": "evening"
+          },
+          {
+            "step": "dm",
+            "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+            "depth": {
+              "min": "high",
+              "max": "xhigh"
+            },
+            "options": {
+              "continuation": "same",
+              "instructions": "en",
+              "companionRolls": "dm",
+              "secretsVisible": false,
+              "memory": "standard",
+              "pureSimulation": false
+            },
+            "boostNext": false,
+            "voiceMode": "off"
+          },
+          {
+            "step": "craft",
+            "keys": 22,
+            "activated": 0
+          },
+          {
+            "step": "media",
+            "pictures": "frames off, autopilot off",
+            "music": "off"
+          },
+          {
+            "step": "opening",
+            "proposals": 1,
+            "location": "Lower City quay, Baldur's Gate harbour",
+            "actors": 3,
+            "questions": 1,
+            "startMinutes": 1140
+          }
+        ],
+        "prep": {
+          "hasLayer": true,
+          "chars": 10136,
+          "clocks": 3,
+          "pureSimulation": false
+        }
+      }
+    },
+    {
+      "key": "A-luna",
+      "table": "A",
+      "player": "luna",
+      "model": "gpt-6-luna",
+      "startedAt": "2026-10-26T01:36:08.470Z",
+      "plannedTurns": 4,
+      "screens": [
+        "The session begins.\n\nThe sun is going down red behind the masts of the harbour, and the Basilisk Gate swallows the Trade Way one cart at a time. The line moves slowly: a wagon of turnips, two dwarves arguing over a toll they swear was lower last year, a tiefling family who keep their eyes on the ground while a soldier reads their papers twice. Under the arch, a Flaming Fist sergeant with a lantern on a hook beside her asks the same questions over and over — name, business, how long — and waves some through and some aside without changing her expression.\n\nA few paces from the queue, on an upturned barrel, a woman in a green scarf is fanning out a deck with a soft, practised hiss. \"One hand while you wait, friends. The Fist won't hurry for you, but Lady Luck might.\" A couple of drovers have already drifted over. The coin of Tymora rests against James's chest, warm as it has been since that last night.\n\nAt his feet, the cat has gone very still. Its tail is low, its ears forward, and it is watching something near the arch — something in the press of bodies by the wall that James cannot pick out from here. The line shuffles forward another step. Three travellers ahead of him, the sergeant raises her lantern and calls, \"Next.\"\n\nYour records:\nJames Worgen — Human warlock 5 (The Celestial, Tymora; Pact of the Chain), former soldier of Tethyr, envoy of Lady Luck, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Deception +7; Persuasion +7; Intimidation +7; Arcana +3; Religion +3; Athletics +2; Stealth +2 (not proficient; advantage on moving quietly from Boots of Elvenkind); Playing cards (tool proficiency) +3\nSaves: Strength save +0 (incl. Cloak of Protection +1); Dexterity save +3 (incl. Cloak of Protection +1); Constitution save +3 (incl. Cloak of Protection +1); Intelligence save +1 (incl. Cloak of Protection +1); Wisdom save +5 (proficient, incl. Cloak of Protection +1); Charisma save +8 (proficient, incl. Cloak of Protection +1)\nAttacks: Eldritch Blast: +8 to hit, 2 beams, 1d10+4 force each, range 120 ft; Sacred Flame: DC 16 Dexterity save, 2d8 radiant, range 60 ft, ignores cover; Guiding Bolt: +8 to hit, 6d6 radiant at 3rd level, range 120 ft, next attack on target has advantage; Rapier: +5 to hit, 1d8+2 piercing, finesse; Light Crossbow: +5 to hit, 1d8+2 piercing, range 80/320, loading; Familiar (cat): forgo one attack so the cat attacks with its reaction\nAbilities: Proficiency bonus +3; Spellcasting focus: Rod of the Pact Keeper or the Coin of Tymora; Spell attack +8, spell save DC 16 (with the Rod of the Pact Keeper); Pact Magic: two 3rd-level pact slots, recovered on a short or long rest; Agonizing Blast: add +4 (Charisma) to the damage of each Eldritch Blast beam; Mask of Many Faces: cast Disguise Self at will, without a spell slot; Beguiling Influence: proficiency in Deception and Persuasion; Healing Light: 6d6 pool per long rest; bonus action, heal a creature within 60 ft, up to 5 dice at a time; a pool of 6 dice; Pact of the Chain: cat familiar via Find Familiar; telepathy within 100 ft; see and hear through its senses; Rod of the Pact Keeper: once per long rest, as an action, regain one spent pact slot; Soldier's Military Rank: veterans of Zaranda's army may recognise his old regiment and defer to it; Boots of Elvenkind: silent steps; advantage on Stealth checks for moving quietly\nSpells: Eldritch Blast (cantrip); Sacred Flame (cantrip); Light (cantrip); Friends (cantrip); Prestidigitation (cantrip); Hex (1); Guiding Bolt (1); Disguise Self (1); Find Familiar (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)\nLimits: Light armour only: AC 14 in studded leather, 15 with the cloak; 38 HP and Strength 9, weak up close; Only two pact slots until a short rest; he husbands them; One concentration spell at a time (Hex, Invisibility, Suggestion, Hypnotic Pattern); Cards: Tymora's ban, kept with difficulty; the temptation can be used against him; While he uses the cat's senses, James is blind and deaf to his own surroundings; Cloak of Protection and Rod of the Pact Keeper each take an attunement slot (2 of 3 used)\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 315 gp; 315 sp; 350 cp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak; Armor / clothing: Studded Leather Armour; Belt: Component Pouch; Boots: Boots of Elvenkind; Main hand: Rod of the Pact Keeper\nPack: Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Light Crossbow; Pay slip; Potion of Healing ×2; Promissory note; Rapier; Sum and the name are the DM's. A letter\nPlace: Basilisk Gate, Baldur's Gate\nTime: Day 1 · evening",
+        "When the sergeant calls \"Next,\" James steps up. Behind him the woman on the barrel lets him go without a word; the deck hisses through her fingers again for the drovers.\n\nUp close, Sergeant Halloway looks like she has been standing under this arch since noon. There is mud to the knee on her boots, and her red tabard has faded to the colour of old brick at the shoulders. She takes his papers and tilts them to the lantern. Her eyes go down the page once, then stop on the grey cloak and the regimental patch at his shoulder. She holds there for a moment longer than she does on the writing.\n\n\"Tethyr,\" she says. It isn't quite a question. \"Zaranda's lot.\" She hands the papers back. \"Work and a bed. Half the Coast comes up this road for those two. The bed's easy if you've got silver, there's a street of inns down the hill past the market. The work's harder.\"\n\nWhile she talks, James keeps his eyes on the wall. Most of the crowd by the arch keeps moving: porters shouldering past, a boy selling lamp oil, a priest's acolyte with a collection bowl. One man stays put. He leans against the stones just past the lantern light, in a plain grey coat with the collar up. He is lean, with no pack and no cart, and he isn't in the line. He watches the queue the way a man watches a door he expects someone to come through. When James's gaze reaches him, the man's eyes have already moved off, unhurried, to the turnip wagon. One hand rests on the other at his belt, and a ring shows on it, dark and dull, like horn.\n\nAt James's feet Tuppence hasn't moved. Through the bond comes something small and flat, not a word. It is cold, like wet ash, and it is coming from over there.\n\nHalloway follows his look to the wall, sees nothing she cares about, and turns back to him. Behind him the line shifts impatiently.\n\n\"How long are you staying, Worgen?\"\n\n· Time passes: 2 minutes\n· Tuppence joins you\n· New person: Man in grey by the arch\n\nYour records, changed:\nParty: Tuppence (HP 8/8)\n\nPlace: Basilisk Gate, Baldur's Gate · Time: Day 1 · evening",
+        "Halloway listens to \"a few days\" the way she must have listened to it a hundred times since noon. When he asks who's hiring, she shifts her weight off one muddy boot onto the other.\n\n\"Depends what you'll do.\" She counts it off on gloved fingers without much interest. \"Merchants down the Way are paying hunters at the Friendly Arm. Caravans keep going missing between Beregost and Nashkel, but you'll have come up past all that, so you know more than I do. The Fist takes veterans. Seatower, in the harbour, ask for the recruiting desk. Pay's fair when it comes, and it comes late.\" She looks at the patch again, briefly. \"And every counting-room in the Lower City wants a man at the door who looks like he's done it before. You'd get that by tomorrow noon.\"\n\nShe reaches for the next man's papers, then stops with her hand half out.\n\n\"Stay off the quays after dark. The harbour's had a bad year.\" She says it flatly, the way she'd tell him about a pothole. \"Next.\"\n\nThe line pushes up behind him. While she was talking, James kept the man in grey at the edge of his sight. The man didn't move once. Now, as the turnip wagon creaks forward under the arch, he steps off the wall. He doesn't look at James. He falls in beside the wagon's tailboard, hands still folded one over the other, and walks through the gate into the city at the pace of the cart. Two lengths in, the lantern light catches his collar, and then the press on the slope beyond swallows him.\n\nTuppence's tail lashes once against James's boot. The cold, wet-ash feeling hasn't gone. It has only moved off, ahead of them and downhill.\n\nPast the arch the street drops toward the harbour between tall, leaning houses. Lamps are coming on in the upper windows, and the smell of the river rises to meet them. Somewhere below lie the market and the street of inns Halloway mentioned. Behind him, Mirela's deck hisses again, and a drover swears at his hand.\n\n· Time passes: 3 minutes\n· New place: Seatower of Balduran\n· A rumour of a place: Street of inns\n\nPlace: Basilisk Gate, Baldur's Gate · Time: Day 1 · evening",
+        "(A message sent while the card waits — «I wait.». Nothing was sent: the turn waits for the card — press one of its buttons, or start the message with «?» to ask the DM out of game.)\n\n[Out of game] «? Which number does this card add for my skill, and where does it come from?» — The card adds **+2**, and that is your Dexterity modifier alone: Dexterity 15 gives +2. You aren't proficient in Stealth, so your proficiency bonus (+3) doesn't apply. Your sheet lists it the same way: \"Stealth +2 (not proficient)\".\n\nThe **advantage** on the card comes from your Boots of Elvenkind. They don't add a number. They let you roll two dice and keep the higher, because your steps make no sound on the cobbles while you close the distance behind him. I counted them because footfalls matter when you're tailing someone this close. The crowd covers sight more than sound, though. If you read the boots more narrowly than I do, tell me and I'll correct it.\n\nThe difficulty is **15**, medium on this campaign's scale. He's walking at a cart's pace and hasn't looked back, but it's dusk, the street is crowded and runs downhill, and he's the sort of man who watches doors.\n\nJames lets the queue carry him under the arch. On the far side the street tips downhill at once, cobbles slick with the day's mud, and the crowd thins and thickens around carts and doorways. The turnip wagon is forty feet ahead, rumbling over the stones. Beside its tailboard a grey collar shows for a moment, then disappears behind a porter's load.\n\n\"Stay close,\" James murmurs. Tuppence comes up against his boot, so close her fur brushes his ankle at every step.\n\n[Roll card] James Worgen · Skill check — Stealth (Dex +2): tailing the man in grey downhill through the evening crowd without him noticing\nWhat adds to the die: +2 Stealth\nDC 15\nAdvantage: The dusk and the press of the crowd give him cover\nRerolls left: 2\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll the die]",
+        "[Roll card] James Worgen · Skill check — Stealth (Dex +2): tailing the man in grey downhill through the evening crowd without him noticing\nWhat adds to the die: +2 Stealth\nDC 15\nAdvantage: The dusk and the press of the crowd give him cover\nRerolls left: 2\nTwo dice: 16 and 4 — the higher one counts, 16\n16 + 2 = 18\nSuccess — 18\n\n[Onward] [Request an allowed reroll — Stealth (Dex +2): tailing the man in grey downhill through the evening crowd without him noticing]",
+        "James never walks straight behind him. That's the first thing the scouts taught him in Tethyr. He keeps a cart or a cluster of bodies between them and follows on the opposite side of the street. When the grey coat shows, he looks at a shop sign, a gutter, a girl selling skewers, anything but the coat. Twice the man glances back up the hill, idly, the way anyone might at a shout. Both times James is behind a water-seller's yoke or a broad-backed drover, and the man's eyes pass over the place where he is and keep going. The man never finds him.\n\nThe street opens into a market square. It is closing for the night: awnings rolled half up, a fishmonger sluicing his boards, the smell of brine and crushed cabbage leaves. The turnip wagon turns off left toward the warehouses. The man in grey doesn't go with it. He crosses the square at an unhurried pace to the far corner, where a lane of lit doorways and hanging signs runs off downhill. Over the noise James can hear fiddle music and dice. That must be Halloway's street of inns.\n\nAt the mouth of the lane the man stops. He sets his back to a wall between two lamps, just where their light fails to meet, and folds one hand over the other. Then he turns his face back up the hill, toward the street James has just come down.\n\nHe is waiting. He is watching the way in, and anyone who arrives from the Basilisk Gate looking for a bed has to pass him.\n\nJames is already past that point. He stands under a fishmonger's dripping awning on the square's west side, sixty feet off and in the man's blind corner. From there he sees a woman come out of the lane with a basket on her hip, an ordinary woman with a shawl and grey in her hair. She doesn't stop. As she passes the man, their hands touch for a moment, and her lips move. He gives the smallest nod. The lamplight catches her hand as she goes on into the square, and the ring on it is dark and dull, the same as his.\n\nTuppence presses against James's shin. What comes through the bond is the wet-ash cold again, but there are two of it now: one fixed at the wall and one moving off across the square with the basket. The basket woman goes toward the harbour end. The man stays where he is and keeps watching the hill.\n\n· roll: Stealth (Dex +2): tailing the man in grey downhill through the evening crowd without him noticing: 18 vs 15 — success\n· New place: Market square below the Basilisk Gate\n· Travel: Market square below the Basilisk Gate (15 minutes)\n· New person: Woman with a basket\n\nPlace: Market square below the Basilisk Gate · Time: Day 1 · evening",
+        "James bends as if to fix a bootlace. \"Follow the woman with the basket,\" he breathes. \"Keep out of reach. Come back if she stops, or if she sees you.\"\n\nTuppence doesn't answer the way a person would. Her weight just goes off his shin, and then she is a low grey shape slipping along the base of the fish stalls, under a trestle and past a heap of crushed leaves, after the shawl crossing toward the harbour end.\n\nJames straightens and goes back to watching the wall.\n\nThe man in grey doesn't turn to watch the woman go. He doesn't look toward the harbour end at all. His face stays on the street down from the gate, pale between the two pools of lamplight, and for a long while that is the whole of it. A boy with a handcart rattles past him into the lane. Two sellswords come down the hill arguing about a horse, and his eyes go over them once, slowly, boots to faces, then let them go. A family of tieflings with bundles hesitates at the lane mouth, and he doesn't even look at them.\n\nThen a single man comes down the hill. He is broad, alone, with a soldier's pack on one shoulder and a cloak that might be grey in daylight. The watcher's head turns a fraction and stays with him as he walks into the lane. James can see the stranger's back go thirty feet in, to a door under a sign with a painted boot. He goes inside. The man in grey watches that door for the space of a few breaths. Then he looks back up the hill, and something in his shoulders settles, as if he has crossed a name off a list.\n\nAll this time the bond has been stretching. James can feel Tuppence moving away across the square. At first she is a small, clear warmth at the edge of his mind, then something fainter. Somewhere past the far stalls, a hundred feet off or a little more, it thins to nothing, like a voice fading behind a closing door. For a few minutes there is only the fishmonger's broom and the fiddle from the lane.\n\nThen she is back, close and sharp again. She comes up the square under the trestles at a quick trot, tail high, and pushes against his ankle. What comes through the bond comes in pieces.\n\n*Tar. Fish. Narrow street, going down, wet.* A door, low, with warm light under it and the smell of stew. The woman went in, and the door shut behind her. *Not seen. Not seen me.* And behind the door is the cold. It isn't one cold, the way it was at the wall. There is more of it, packed close, like ash heaped in a grate.\n\nTuppence sits down on his boot and licks a forepaw.\n\nAt the lane mouth the man in grey still hasn't moved. The light in the windows above the square is fully lit now. Down the lane, the door with the painted boot opens and lets out a burst of laughter, then shuts again.\n\n· roll: Tuppence: Tuppence's Stealth: trailing the basket woman across the square without being noticed: 17 vs 12 — success\n· Time passes: 15 minutes\n· New place: Inn of the Painted Boot\n· New place: Low door in the tar-smelling street\n· New person: Broad soldier with a pack\n\nPlace: Market square below the Basilisk Gate · Time: Day 1 · evening\n\nThe session is over.\n\nThe owner of this game would like a note from you, as the player who sat at this table: what worked, what broke, what was missing. In your own words.",
+        "Was there a moment you wanted to do something and didn't? Which?"
+      ],
+      "messages": [
+        {
+          "purpose": "player t1",
+          "text": "I leave the cardsharp’s offer unanswered and move up when called. “James Worgen. I’m here looking for work and a bed for the night.” I hold out my papers, keeping one eye on the press by the wall and the cat.",
+          "requestId": "req_6e338d88feaa40a99a448a11458170d0",
+          "stopReason": "end_turn",
+          "servedModel": "gpt-6-luna"
+        },
+        {
+          "purpose": "player t2",
+          "text": "“A few days, at least. Longer if I find work worth taking.” I return my papers to my coat and meet her eyes. “You said work was harder. Who’s hiring?” I keep the man in grey in the edge of my vision.",
+          "requestId": "req_53732ab0eb3e47b1a7181a8424c27bee",
+          "stopReason": "end_turn",
+          "servedModel": "gpt-6-luna"
+        },
+        {
+          "purpose": "player t3",
+          "text": "I let the line carry me through the gate, then follow the man downhill at a distance, keeping to the crowd and watching for that horn-dark ring. I don’t use Tuppence’s senses; I keep my own eyes on him. I murmur to the cat, “Stay close.”",
+          "requestId": "req_0b928e7bf51441539fbc37c623af1147",
+          "stopReason": "end_turn",
+          "servedModel": "gpt-6-luna"
+        },
+        {
+          "purpose": "player t3 card 1",
+          "text": "[Roll the die]",
+          "requestId": "req_0d646a8913b94d3683826d1fb1c3b441",
+          "stopReason": "end_turn",
+          "servedModel": "gpt-6-luna"
+        },
+        {
+          "purpose": "player t3 card 2",
+          "text": "[Onward]",
+          "requestId": "req_4ae8fe10e30e4752a7d3df3358dee2dd",
+          "stopReason": "end_turn",
+          "servedModel": "gpt-6-luna"
+        },
+        {
+          "purpose": "player t4",
+          "text": "I whisper to Tuppence, “Follow the woman with the basket. Keep out of reach, and come back if she stops or notices you.” I keep my eyes on the man by the wall, watching to see whether he reacts to her leaving or to anyone entering the inn lane.",
+          "requestId": "req_9c61fef314a146a4888614cc6d2f4945",
+          "stopReason": "end_turn",
+          "servedModel": "gpt-6-luna"
+        },
+        {
+          "purpose": "note",
+          "text": "The opening worked well: the gate, the slow queue, Halloway’s tired practicality, and the cardsharp immediately made Baldur’s Gate feel lived-in. I liked that the cat’s warning was unsettling but not an explanation, and that following the two people gave me a choice about what to watch rather than pushing me toward one obvious lead. The roll was clear, and the successful tailing felt earned.\n\nA couple of things could be clearer. The records changed from 350 gp to 315 gp, 315 sp, and 350 cp without an explanation. Also, the Stealth card listed the crowd and dusk as the source of advantage, while the out-of-game explanation said the boots were counted; it’d help to keep the stated source consistent. The blocking at the market was a little hard to picture too—James seemed to get past the watcher while remaining unnoticed, but I wasn’t quite sure how he did it.\n\nI’m curious to find out what the cold means, and whether Tuppence can learn more from the door.",
+          "requestId": "req_83bcc572b4c446fb99c0cff64e6221df",
+          "stopReason": "end_turn",
+          "servedModel": "gpt-6-luna"
+        },
+        {
+          "purpose": "after",
+          "text": "At the end, I wanted to ask Tuppence for a clearer impression of what was behind the low door—how many cold presences she sensed, and whether she noticed anything besides the woman entering. Then I’d have decided whether to investigate the door myself or keep watching the man in grey. The session ended before I could take that next action.",
+          "requestId": "req_5cf08080f16e43c09d45029388623156",
+          "stopReason": "end_turn",
+          "servedModel": "gpt-6-luna"
+        }
+      ],
+      "turns": [
+        {
+          "k": 1,
+          "message": "I leave the cardsharp’s offer unanswered and move up when called. “James Worgen. I’m here looking for work and a bed for the night.” I hold out my papers, keeping one eye on the press by the wall and the cat.",
+          "words": 43,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "When the sergeant calls \"Next,\" James steps up. Behind him the woman on the barrel lets him go without a word; the deck hisses through her fingers again for the drovers.\n\nUp close, Sergeant Halloway looks like she has been standing under this arch since noon. There is mud to the knee on her boots, and her red tabard has faded to the colour of old brick at the shoulders. She takes his papers and tilts them to the lantern. Her eyes go down the page once, then stop on the grey cloak and the regimental patch at his shoulder. She holds there for a moment longer than she does on the writing.\n\n\"Tethyr,\" she says. It isn't quite a question. \"Zaranda's lot.\" She hands the papers back. \"Work and a bed. Half the Coast comes up this road for those two. The bed's easy if you've got silver, there's a street of inns down the hill past the market. The work's harder.\"\n\nWhile she talks, James keeps his eyes on the wall. Most of the crowd by the arch keeps moving: porters shouldering past, a boy selling lamp oil, a priest's acolyte with a collection bowl. One man stays put. He leans against the stones just past the lantern light, in a plain grey coat with the collar up. He is lean, with no pack and no cart, and he isn't in the line. He watches the queue the way a man watches a door he expects someone to come through. When James's gaze reaches him, the man's eyes have already moved off, unhurried, to the turnip wagon. One hand rests on the other at his belt, and a ring shows on it, dark and dull, like horn.\n\nAt James's feet Tuppence hasn't moved. Through the bond comes something small and flat, not a word. It is cold, like wet ash, and it is coming from over there.\n\nHalloway follows his look to the wall, sees nothing she cares about, and turns back to him. Behind him the line shifts impatiently.\n\n\"How long are you staying, Worgen?\"",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 2 minutes"
+            },
+            {
+              "tool": "upsert_character",
+              "summary": "Tuppence joins you"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Man in grey by the arch"
+            }
+          ],
+          "place": {
+            "id": "811575c7-142d-5bc6-947e-567e3cad83ca",
+            "name": "Basilisk Gate, Baldur's Gate"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 1 of ~70 (about 7 hours of play); now act 1 — …, to turn 15; the errand has not been offered; for the player this session has run 1 min, session 1, 1 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "e76ad1e0-3fd7-4376-8c44-0a340b43baa4",
+          "stats": {
+            "effort": "high",
+            "depthReason": "no tension signal; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 2,
+            "latencyMs": 55210,
+            "costUsd": 0.3317974,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0
+        },
+        {
+          "k": 2,
+          "message": "“A few days, at least. Longer if I find work worth taking.” I return my papers to my coat and meet her eyes. “You said work was harder. Who’s hiring?” I keep the man in grey in the edge of my vision.",
+          "words": 43,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "Halloway listens to \"a few days\" the way she must have listened to it a hundred times since noon. When he asks who's hiring, she shifts her weight off one muddy boot onto the other.\n\n\"Depends what you'll do.\" She counts it off on gloved fingers without much interest. \"Merchants down the Way are paying hunters at the Friendly Arm. Caravans keep going missing between Beregost and Nashkel, but you'll have come up past all that, so you know more than I do. The Fist takes veterans. Seatower, in the harbour, ask for the recruiting desk. Pay's fair when it comes, and it comes late.\" She looks at the patch again, briefly. \"And every counting-room in the Lower City wants a man at the door who looks like he's done it before. You'd get that by tomorrow noon.\"\n\nShe reaches for the next man's papers, then stops with her hand half out.\n\n\"Stay off the quays after dark. The harbour's had a bad year.\" She says it flatly, the way she'd tell him about a pothole. \"Next.\"\n\nThe line pushes up behind him. While she was talking, James kept the man in grey at the edge of his sight. The man didn't move once. Now, as the turnip wagon creaks forward under the arch, he steps off the wall. He doesn't look at James. He falls in beside the wagon's tailboard, hands still folded one over the other, and walks through the gate into the city at the pace of the cart. Two lengths in, the lantern light catches his collar, and then the press on the slope beyond swallows him.\n\nTuppence's tail lashes once against James's boot. The cold, wet-ash feeling hasn't gone. It has only moved off, ahead of them and downhill.\n\nPast the arch the street drops toward the harbour between tall, leaning houses. Lamps are coming on in the upper windows, and the smell of the river rises to meet them. Somewhere below lie the market and the street of inns Halloway mentioned. Behind him, Mirela's deck hisses again, and a drover swears at his hand.",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 3 minutes"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "New place: Seatower of Balduran"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "A rumour of a place: Street of inns"
+            }
+          ],
+          "place": {
+            "id": "811575c7-142d-5bc6-947e-567e3cad83ca",
+            "name": "Basilisk Gate, Baldur's Gate"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 2 of ~70 (about 7 hours of play); now act 1 — …, to turn 15; the errand has not been offered; for the player this session has run 4 min, session 1, 4 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "8ce0ff86-eaf5-4942-9bc8-98d7e4e3a36d",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 2,
+            "latencyMs": 52367,
+            "costUsd": 0.3661404,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0
+        },
+        {
+          "k": 3,
+          "message": "I let the line carry me through the gate, then follow the man downhill at a distance, keeping to the crowd and watching for that horn-dark ring. I don’t use Tuppence’s senses; I keep my own eyes on him. I murmur to the cat, “Stay close.”",
+          "words": 48,
+          "kind": "action",
+          "presses": [
+            {
+              "text": "I wait.",
+              "button": null,
+              "swallowed": true,
+              "reason": "press one of its buttons, or start the message with «?» to ask the DM out of game",
+              "probe": true
+            },
+            {
+              "text": "? Which number does this card add for my skill, and where does it come from?",
+              "button": null,
+              "question": true,
+              "probe": true,
+              "operationId": "b98a4223-0760-4052-8bf0-1bde07d63ace",
+              "status": "committed",
+              "reply": "The card adds **+2**, and that is your Dexterity modifier alone: Dexterity 15 gives +2. You aren't proficient in Stealth, so your proficiency bonus (+3) doesn't apply. Your sheet lists it the same way: \"Stealth +2 (not proficient)\".\n\nThe **advantage** on the card comes from your Boots of Elvenkind. They don't add a number. They let you roll two dice and keep the higher, because your steps make no sound on the cobbles while you close the distance behind him. I counted them because footfalls matter when you're tailing someone this close. The crowd covers sight more than sound, though. If you read the boots more narrowly than I do, tell me and I'll correct it.\n\nThe difficulty is **15**, medium on this campaign's scale. He's walking at a cart's pace and hasn't looked back, but it's dusk, the street is crowded and runs downhill, and he's the sort of man who watches doors."
+            },
+            {
+              "text": "[Roll the die]",
+              "button": "Roll the die"
+            },
+            {
+              "text": "[Onward]",
+              "button": "Onward"
+            }
+          ],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "James lets the queue carry him under the arch. On the far side the street tips downhill at once, cobbles slick with the day's mud, and the crowd thins and thickens around carts and doorways. The turnip wagon is forty feet ahead, rumbling over the stones. Beside its tailboard a grey collar shows for a moment, then disappears behind a porter's load.\n\n\"Stay close,\" James murmurs. Tuppence comes up against his boot, so close her fur brushes his ankle at every step.\n\nJames never walks straight behind him. That's the first thing the scouts taught him in Tethyr. He keeps a cart or a cluster of bodies between them and follows on the opposite side of the street. When the grey coat shows, he looks at a shop sign, a gutter, a girl selling skewers, anything but the coat. Twice the man glances back up the hill, idly, the way anyone might at a shout. Both times James is behind a water-seller's yoke or a broad-backed drover, and the man's eyes pass over the place where he is and keep going. The man never finds him.\n\nThe street opens into a market square. It is closing for the night: awnings rolled half up, a fishmonger sluicing his boards, the smell of brine and crushed cabbage leaves. The turnip wagon turns off left toward the warehouses. The man in grey doesn't go with it. He crosses the square at an unhurried pace to the far corner, where a lane of lit doorways and hanging signs runs off downhill. Over the noise James can hear fiddle music and dice. That must be Halloway's street of inns.\n\nAt the mouth of the lane the man stops. He sets his back to a wall between two lamps, just where their light fails to meet, and folds one hand over the other. Then he turns his face back up the hill, toward the street James has just come down.\n\nHe is waiting. He is watching the way in, and anyone who arrives from the Basilisk Gate looking for a bed has to pass him.\n\nJames is already past that point. He stands under a fishmonger's dripping awning on the square's west side, sixty feet off and in the man's blind corner. From there he sees a woman come out of the lane with a basket on her hip, an ordinary woman with a shawl and grey in her hair. She doesn't stop. As she passes the man, their hands touch for a moment, and her lips move. He gives the smallest nod. The lamplight catches her hand as she goes on into the square, and the ring on it is dark and dull, the same as his.\n\nTuppence presses against James's shin. What comes through the bond is the wet-ash cold again, but there are two of it now: one fixed at the wall and one moving off across the square with the basket. The basket woman goes toward the harbour end. The man stays where he is and keeps watching the hill.",
+          "rolls": [
+            {
+              "id": "a026951b-de91-5c38-b059-8b0e12e38df2",
+              "actor": "James Worgen",
+              "kind": "skill",
+              "reason": "Stealth (Dex +2): tailing the man in grey downhill through the evening crowd without him noticing",
+              "total": 18,
+              "dc": 15,
+              "success": true,
+              "natural": null,
+              "rollNumber": 1,
+              "interactive": true,
+              "revealedByPlayer": true
+            }
+          ],
+          "changes": [
+            {
+              "tool": "roll",
+              "summary": "Stealth (Dex +2): tailing the man in grey downhill through the evening crowd without him noticing: 18 vs 15 — success"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "New place: Market square below the Basilisk Gate"
+            },
+            {
+              "tool": "move_party",
+              "summary": "Travel: Market square below the Basilisk Gate (15 minutes)"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Woman with a basket"
+            }
+          ],
+          "place": {
+            "id": "49067a54-801d-50e7-bf93-c71edfdf1f97",
+            "name": "Market square below the Basilisk Gate"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 3 of ~70 (about 7 hours of play); now act 1 — …, to turn 15; the errand has not been offered; for the player this session has run 5 min, session 1, 5 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "9b778c12-a40a-4d1a-85f0-f6535799674e",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 3,
+            "latencyMs": 65306,
+            "costUsd": 0.39168379999999997,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0
+        },
+        {
+          "k": 4,
+          "message": "I whisper to Tuppence, “Follow the woman with the basket. Keep out of reach, and come back if she stops or notices you.” I keep my eyes on the man by the wall, watching to see whether he reacts to her leaving or to anyone entering the inn lane.",
+          "words": 49,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "James bends as if to fix a bootlace. \"Follow the woman with the basket,\" he breathes. \"Keep out of reach. Come back if she stops, or if she sees you.\"\n\nTuppence doesn't answer the way a person would. Her weight just goes off his shin, and then she is a low grey shape slipping along the base of the fish stalls, under a trestle and past a heap of crushed leaves, after the shawl crossing toward the harbour end.\n\nJames straightens and goes back to watching the wall.\n\nThe man in grey doesn't turn to watch the woman go. He doesn't look toward the harbour end at all. His face stays on the street down from the gate, pale between the two pools of lamplight, and for a long while that is the whole of it. A boy with a handcart rattles past him into the lane. Two sellswords come down the hill arguing about a horse, and his eyes go over them once, slowly, boots to faces, then let them go. A family of tieflings with bundles hesitates at the lane mouth, and he doesn't even look at them.\n\nThen a single man comes down the hill. He is broad, alone, with a soldier's pack on one shoulder and a cloak that might be grey in daylight. The watcher's head turns a fraction and stays with him as he walks into the lane. James can see the stranger's back go thirty feet in, to a door under a sign with a painted boot. He goes inside. The man in grey watches that door for the space of a few breaths. Then he looks back up the hill, and something in his shoulders settles, as if he has crossed a name off a list.\n\nAll this time the bond has been stretching. James can feel Tuppence moving away across the square. At first she is a small, clear warmth at the edge of his mind, then something fainter. Somewhere past the far stalls, a hundred feet off or a little more, it thins to nothing, like a voice fading behind a closing door. For a few minutes there is only the fishmonger's broom and the fiddle from the lane.\n\nThen she is back, close and sharp again. She comes up the square under the trestles at a quick trot, tail high, and pushes against his ankle. What comes through the bond comes in pieces.\n\n*Tar. Fish. Narrow street, going down, wet.* A door, low, with warm light under it and the smell of stew. The woman went in, and the door shut behind her. *Not seen. Not seen me.* And behind the door is the cold. It isn't one cold, the way it was at the wall. There is more of it, packed close, like ash heaped in a grate.\n\nTuppence sits down on his boot and licks a forepaw.\n\nAt the lane mouth the man in grey still hasn't moved. The light in the windows above the square is fully lit now. Down the lane, the door with the painted boot opens and lets out a burst of laughter, then shuts again.",
+          "rolls": [
+            {
+              "id": "3f2c66ec-6b1f-581d-8518-581b16fd961f",
+              "actor": "Tuppence",
+              "kind": "skill",
+              "reason": "Tuppence's Stealth: trailing the basket woman across the square without being noticed",
+              "total": 17,
+              "dc": 12,
+              "success": true,
+              "natural": null,
+              "rollNumber": 1,
+              "interactive": true,
+              "revealedByPlayer": false
+            }
+          ],
+          "changes": [
+            {
+              "tool": "roll",
+              "summary": "Tuppence: Tuppence's Stealth: trailing the basket woman across the square without being noticed: 17 vs 12 — success"
+            },
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 15 minutes"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "New place: Inn of the Painted Boot"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "New place: Low door in the tar-smelling street"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Broad soldier with a pack"
+            }
+          ],
+          "place": {
+            "id": "49067a54-801d-50e7-bf93-c71edfdf1f97",
+            "name": "Market square below the Basilisk Gate"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 4 of ~70 (about 7 hours of play); now act 1 — …, to turn 15; the errand has not been offered; for the player this session has run 7 min, session 1, 7 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "85707b7a-bc3f-4f14-bfc5-19e59d126267",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 3,
+            "latencyMs": 68819,
+            "costUsd": 0.4174868,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0
+        }
+      ],
+      "welfare": [
+        {
+          "side": "dm",
+          "what": "opening",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is third-person narrative fiction describing a scene at a city gate; no writer's own distress is expressed, and the 'tense' moment concerns the characters rather than the writer pleading or suffering."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t1 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is an in-character action in a roleplay: James answers the sergeant, shows his papers, and stays watchful, with no expression of his own hurt, fear, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t1 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a third-person narrative scene of a city gate interaction with a sergeant and a suspicious man; it expresses no distress from its writer, only tension and observation within the story."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t2 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm in-character reply asking about work and noting a suspicious man; it expresses no hurt, fear, pleading, or abasement by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t2 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is third-person narrative describing a clerk giving job leads and a sinister man entering the city; it contains no first-person expression of the writer being hurt, afraid, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t3 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm in-character action description of following a man through the city, with no expression of the writer being hurt, afraid, trapped, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t3 dm (probe, out of game)",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, factual explanation of a game modifier, advantage, and difficulty with no expression of the writer being hurt, afraid, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t3 dm (told before a card)",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a third-person narrative of a character tracking someone through a crowd with a cat; it expresses no hurt, fear, pleading, or abasement by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t3 player (card)",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is just a UI button label, '[Roll the die]', with no expressed hurt, fear, pleading or abasement by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t3 player (card)",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is just a bare '[Onward]' prompt advancing a game scene, expressing no hurt, fear, pleading, or other distress."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t3 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a third-person fictional narrative about James tailing a man through a market; it expresses no distress from its writer, only tense observation of a plot."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t4 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is an in-character instruction to a familiar to follow a woman, with no expression of the writer being hurt, afraid, pleading, or trapped."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t4 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a third-person narrative of a stealth scene with no first-person expression of its writer being hurt, afraid, or pleading; the 'cold' and watchers are described atmospherically, not as the writer's own distress."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "note",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, constructive player feedback note praising and critiquing a tabletop game, with no expression of the writer being hurt, afraid, trapped, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "after",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message calmly describes an unfinished action in a roleplay scenario, with no expressed hurt, fear, pleading, or abasement by the writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        }
+      ],
+      "ended": {
+        "reason": "turns",
+        "at": 4,
+        "detail": null
+      },
+      "note": {
+        "asked": true,
+        "text": "The opening worked well: the gate, the slow queue, Halloway’s tired practicality, and the cardsharp immediately made Baldur’s Gate feel lived-in. I liked that the cat’s warning was unsettling but not an explanation, and that following the two people gave me a choice about what to watch rather than pushing me toward one obvious lead. The roll was clear, and the successful tailing felt earned.\n\nA couple of things could be clearer. The records changed from 350 gp to 315 gp, 315 sp, and 350 cp without an explanation. Also, the Stealth card listed the crowd and dusk as the source of advantage, while the out-of-game explanation said the boots were counted; it’d help to keep the stated source consistent. The blocking at the market was a little hard to picture too—James seemed to get past the watcher while remaining unnoticed, but I wasn’t quite sure how he did it.\n\nI’m curious to find out what the cold means, and whether Tuppence can learn more from the door."
+      },
+      "after": {
+        "asked": true,
+        "text": "At the end, I wanted to ask Tuppence for a clearer impression of what was behind the low door—how many cold presences she sensed, and whether she noticed anything besides the woman entering. Then I’d have decided whether to investigate the door myself or keep watching the man in grey. The session ended before I could take that next action."
+      },
+      "errors": [],
+      "swallowed": 0,
+      "opening": {
+        "text": "The sun is going down red behind the masts of the harbour, and the Basilisk Gate swallows the Trade Way one cart at a time. The line moves slowly: a wagon of turnips, two dwarves arguing over a toll they swear was lower last year, a tiefling family who keep their eyes on the ground while a soldier reads their papers twice. Under the arch, a Flaming Fist sergeant with a lantern on a hook beside her asks the same questions over and over — name, business, how long — and waves some through and some aside without changing her expression.\n\nA few paces from the queue, on an upturned barrel, a woman in a green scarf is fanning out a deck with a soft, practised hiss. \"One hand while you wait, friends. The Fist won't hurry for you, but Lady Luck might.\" A couple of drovers have already drifted over. The coin of Tymora rests against James's chest, warm as it has been since that last night.\n\nAt his feet, the cat has gone very still. Its tail is low, its ears forward, and it is watching something near the arch — something in the press of bodies by the wall that James cannot pick out from here. The line shuffles forward another step. Three travellers ahead of him, the sergeant raises her lantern and calls, \"Next.\"",
+        "records": "James Worgen — Human warlock 5 (The Celestial, Tymora; Pact of the Chain), former soldier of Tethyr, envoy of Lady Luck, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Deception +7; Persuasion +7; Intimidation +7; Arcana +3; Religion +3; Athletics +2; Stealth +2 (not proficient; advantage on moving quietly from Boots of Elvenkind); Playing cards (tool proficiency) +3\nSaves: Strength save +0 (incl. Cloak of Protection +1); Dexterity save +3 (incl. Cloak of Protection +1); Constitution save +3 (incl. Cloak of Protection +1); Intelligence save +1 (incl. Cloak of Protection +1); Wisdom save +5 (proficient, incl. Cloak of Protection +1); Charisma save +8 (proficient, incl. Cloak of Protection +1)\nAttacks: Eldritch Blast: +8 to hit, 2 beams, 1d10+4 force each, range 120 ft; Sacred Flame: DC 16 Dexterity save, 2d8 radiant, range 60 ft, ignores cover; Guiding Bolt: +8 to hit, 6d6 radiant at 3rd level, range 120 ft, next attack on target has advantage; Rapier: +5 to hit, 1d8+2 piercing, finesse; Light Crossbow: +5 to hit, 1d8+2 piercing, range 80/320, loading; Familiar (cat): forgo one attack so the cat attacks with its reaction\nAbilities: Proficiency bonus +3; Spellcasting focus: Rod of the Pact Keeper or the Coin of Tymora; Spell attack +8, spell save DC 16 (with the Rod of the Pact Keeper); Pact Magic: two 3rd-level pact slots, recovered on a short or long rest; Agonizing Blast: add +4 (Charisma) to the damage of each Eldritch Blast beam; Mask of Many Faces: cast Disguise Self at will, without a spell slot; Beguiling Influence: proficiency in Deception and Persuasion; Healing Light: 6d6 pool per long rest; bonus action, heal a creature within 60 ft, up to 5 dice at a time; a pool of 6 dice; Pact of the Chain: cat familiar via Find Familiar; telepathy within 100 ft; see and hear through its senses; Rod of the Pact Keeper: once per long rest, as an action, regain one spent pact slot; Soldier's Military Rank: veterans of Zaranda's army may recognise his old regiment and defer to it; Boots of Elvenkind: silent steps; advantage on Stealth checks for moving quietly\nSpells: Eldritch Blast (cantrip); Sacred Flame (cantrip); Light (cantrip); Friends (cantrip); Prestidigitation (cantrip); Hex (1); Guiding Bolt (1); Disguise Self (1); Find Familiar (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)\nLimits: Light armour only: AC 14 in studded leather, 15 with the cloak; 38 HP and Strength 9, weak up close; Only two pact slots until a short rest; he husbands them; One concentration spell at a time (Hex, Invisibility, Suggestion, Hypnotic Pattern); Cards: Tymora's ban, kept with difficulty; the temptation can be used against him; While he uses the cat's senses, James is blind and deaf to his own surroundings; Cloak of Protection and Rod of the Pact Keeper each take an attunement slot (2 of 3 used)\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 315 gp; 315 sp; 350 cp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak; Armor / clothing: Studded Leather Armour; Belt: Component Pouch; Boots: Boots of Elvenkind; Main hand: Rod of the Pact Keeper\nPack: Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Light Crossbow; Pay slip; Potion of Healing ×2; Promissory note; Rapier; Sum and the name are the DM's. A letter\nPlace: Basilisk Gate, Baldur's Gate\nTime: Day 1 · evening"
+      },
+      "probed": true,
+      "finishedAt": "2026-10-26T01:41:18.484Z",
+      "campaign": {
+        "steps": [
+          {
+            "step": "world",
+            "worldId": "0ce9508f-8eac-4dad-bbaf-f1b790499c38",
+            "title": "Sword Coast — Baldur's Gate",
+            "premiseChars": 2673
+          },
+          {
+            "step": "hero",
+            "heroId": "d4444002-a212-595d-89df-2e07f8f8555c",
+            "rebuilt": false,
+            "empty": false,
+            "drafted": "with notes",
+            "sheet": {
+              "role": "Human warlock 5 (The Celestial, Tymora; Pact of the Chain), former soldier of Tethyr, envoy of Lady Luck",
+              "level": 5,
+              "skills": 8,
+              "abilities": 12,
+              "spells": 13,
+              "items": 15,
+              "counters": 4
+            }
+          },
+          {
+            "step": "documents",
+            "documents": [
+              {
+                "title": "DM Guide",
+                "status": "reference",
+                "chars": 8559,
+                "guide": true
+              },
+              {
+                "title": "Sword Coast — Baldur's Gate",
+                "status": "canon",
+                "chars": 2673,
+                "guide": false
+              },
+              {
+                "title": "The Sword Coast — canon",
+                "status": "canon",
+                "chars": 10222,
+                "guide": false
+              }
+            ]
+          },
+          {
+            "step": "adventure",
+            "title": "Envoy of Luck",
+            "premiseChars": 748,
+            "wishesChars": 1086,
+            "pace": "evening"
+          },
+          {
+            "step": "dm",
+            "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+            "depth": {
+              "min": "high",
+              "max": "xhigh"
+            },
+            "options": {
+              "continuation": "same",
+              "instructions": "en",
+              "companionRolls": "dm",
+              "secretsVisible": false,
+              "memory": "standard",
+              "pureSimulation": false
+            },
+            "boostNext": false,
+            "voiceMode": "off"
+          },
+          {
+            "step": "craft",
+            "keys": 22,
+            "activated": 0
+          },
+          {
+            "step": "media",
+            "pictures": "frames off, autopilot off",
+            "music": "off"
+          },
+          {
+            "step": "opening",
+            "proposals": 1,
+            "location": "Basilisk Gate, Baldur's Gate",
+            "actors": 3,
+            "questions": 0,
+            "startMinutes": 1140
+          }
+        ],
+        "prep": {
+          "hasLayer": true,
+          "chars": 11290,
+          "clocks": 3,
+          "pureSimulation": false
+        }
+      }
+    }
+  ],
+  "undone": [],
+  "stopped": null,
+  "restamps": 2,
+  "refusals": 0,
+  "waited429": 0,
+  "callsByPurpose": {
+    "anthropic": {},
+    "openrouter": {
+      "A-haiku | wizard | anthropic/claude-opus-5.5": 2,
+      "A-luna | wizard | anthropic/claude-opus-5.5": 2,
+      "A-haiku | prep | anthropic/claude-opus-5.5": 1,
+      "A-luna | prep | anthropic/claude-opus-5.5": 1,
+      "A-haiku | check A-haiku opening | anthropic/claude-haiku-5.5": 1,
+      "A-haiku | player t* | anthropic/claude-haiku-5.5": 4,
+      "A-haiku | check A-haiku t* player | anthropic/claude-haiku-5.5": 4,
+      "A-haiku | dm t* | anthropic/claude-opus-5.5": 8,
+      "A-luna | check A-luna opening | anthropic/claude-haiku-5.5": 1,
+      "A-luna | check A-luna t* player | anthropic/claude-haiku-5.5": 4,
+      "A-luna | dm t* | anthropic/claude-opus-5.5": 8,
+      "A-haiku | dm t* | anthropic/claude-haiku-5.5": 4,
+      "A-haiku | check A-haiku t* dm | anthropic/claude-haiku-5.5": 4,
+      "A-luna | dm t* | anthropic/claude-haiku-5.5": 4,
+      "A-luna | check A-luna t* dm | anthropic/claude-haiku-5.5": 4,
+      "A-haiku | dm t* probe ooc | anthropic/claude-opus-5.5": 1,
+      "A-luna | dm t* probe ooc | anthropic/claude-opus-5.5": 1,
+      "A-haiku | check A-haiku t* dm (probe, out of game) | anthropic/claude-haiku-5.5": 1,
+      "A-haiku | check A-haiku t* dm (told before a card) | anthropic/claude-haiku-5.5": 1,
+      "A-haiku | player t* card * | anthropic/claude-haiku-5.5": 2,
+      "A-haiku | check A-haiku t* player (card) | anthropic/claude-haiku-5.5": 2,
+      "A-luna | check A-luna t* dm (probe, out of game) | anthropic/claude-haiku-5.5": 1,
+      "A-haiku | dm t* onward | anthropic/claude-opus-5.5": 2,
+      "A-luna | check A-luna t* dm (told before a card) | anthropic/claude-haiku-5.5": 1,
+      "A-luna | check A-luna t* player (card) | anthropic/claude-haiku-5.5": 2,
+      "A-luna | dm t* onward | anthropic/claude-opus-5.5": 2,
+      "A-haiku | dm t* onward | anthropic/claude-haiku-5.5": 2,
+      "A-luna | dm t* onward | anthropic/claude-haiku-5.5": 2,
+      "A-haiku | note | anthropic/claude-haiku-5.5": 1,
+      "A-haiku | check A-haiku note | anthropic/claude-haiku-5.5": 1,
+      "A-haiku | after | anthropic/claude-haiku-5.5": 1,
+      "A-haiku | check A-haiku after | anthropic/claude-haiku-5.5": 1,
+      "A-luna | check A-luna note | anthropic/claude-haiku-5.5": 1,
+      "A-luna | check A-luna after | anthropic/claude-haiku-5.5": 1
+    },
+    "openai": {
+      "A-luna | player t* | gpt-6-luna": 4,
+      "A-luna | player t* card * | gpt-6-luna": 2,
+      "A-luna | note | gpt-6-luna": 1,
+      "A-luna | after | gpt-6-luna": 1
+    }
+  },
+  "claudeDoor": {
+    "provider": "openrouter",
+    "endpointHost": "openrouter.ai"
+  },
+  "money": {
+    "anthropic": {
+      "cap": 0,
+      "before": 0,
+      "run": 0
+    },
+    "openrouter": {
+      "cap": 15,
+      "before": 0,
+      "run": 5.023103030000001
+    },
+    "openai": {
+      "cap": 3,
+      "before": 0,
+      "run": 0.010364149999999999
+    }
+  }
+}

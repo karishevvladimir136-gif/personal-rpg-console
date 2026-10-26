@@ -170,11 +170,16 @@ export function bindTable(app, cid, settleBackground) {
     press: (input, action, checkId = null) => command(app, cid, input, action, checkId),
     // Fix S4 run 1 (item 11b): the waiting turn read again after a «?» answer (the DM may have withdrawn its card).
     readTurn: (input) => app.server.gameplay.readTurn(cid, input.operationId),
-    // FIX_S4 run 1 (11c): the clock line the DM reads before its next turn, from the DM's own source (for the run record).
+    // FIX_S4 run 1 (11c): the clock line the DM reads before its next turn, from the DM's own source (for the run record) —
+    // its public form: the act plan's aims, its convergence notes and the errand are DM-private and left out («…»).
     clockLine: async () => {
-      const { clockLine } = await import("../../src/lib/gameplay/dm-loop/clock.ts");
+      const { ACT_PLAN_KEY, actPlanOf, clockLine, serializeActPlan } = await import("../../src/lib/gameplay/dm-loop/clock.ts");
       const source = await (await app.server.dossier.dossierService(app.owner, cid)).source();
-      return clockLine(source, null, false) || null;
+      const plan = actPlanOf(source);
+      if (!plan) return null;
+      const open = { ...plan, errand: "", acts: plan.acts.map((act) => ({ ...act, aim: "…", converge: "" })) };
+      const fact = { ...(source.privateState.fact ?? {}), [ACT_PLAN_KEY]: serializeActPlan(open) };
+      return clockLine({ ...source, privateState: { ...source.privateState, fact } }, null, false) || null;
     },
   };
 }

@@ -386,3 +386,14 @@ function ui(relative) {
   }
   return load(resolve(root, relative));
 }
+
+test("11e, the smoke's drafted line: «…; the sum and the name are the DM's. A letter from…» gives the letter, never a clause as a thing", async () => {
+  const { unfoldGroupedPapers, listParts } = await import("../src/lib/adventures/sheet-records.ts");
+  const drafted = "A pay slip of Queen Zaranda's regiment with a signature; a promissory note from a man who lost on the same night; the sum and the name are the DM's. A letter from his old company that he never finished reading.";
+  assert.equal(listParts(drafted).length, 4, "four pieces: the clause is one of them");
+  const papers = { name: "James's Papers", description: drafted, quantity: 1, kind: "misc", slot: null, mechanics: "", detail: {} };
+  const { items } = unfoldGroupedPapers([papers], "", "en");
+  const names = items.map((item) => item.name);
+  assert.deepEqual(names, ["Pay slip", "Promissory note", "Letter from his old company"]);
+  assert.ok(!names.some((name) => /DM's|sum and the name/i.test(name)));
+});
