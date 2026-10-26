@@ -15,7 +15,8 @@
 //   node --experimental-transform-types scripts/game-player-replicate-1/run.mjs --report       the report and transcripts again (no call)
 // Caps: $300 OpenRouter (the Claude models — DM, Opus and Fable as players, the checks and the judges — and DeepSeek),
 // $25 OpenAI (Astra and Sol), $0 on the Console (a call that would reach it stops the run before it is sent). HTTP 402
-// or 429 stops the run. Run node with NODE_USE_ENV_PROXY=1 in the cloud.
+// and a quota 429 stop the run; a rate-limit 429 waits as group 1's did (the amendment in frozen.mjs). Run node with
+// NODE_USE_ENV_PROXY=1 in the cloud.
 import { spawn } from "node:child_process";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
@@ -27,7 +28,7 @@ import { scriptedFetcher, defaultPlayer } from "../game-player-1/scripted.mjs";
 import { transcriptMarkdown } from "../game-player-1/report.mjs";
 import { askWith } from "../game-player-2/run.mjs";
 import { CAPS, DESIGN_SHA256, ESTIMATE, ORDER, STAGE, TABLES, WAITS_429 } from "./frozen.mjs";
-import { scoreAsGroup1, tagExtra } from "./score.mjs";
+import { FINISHED, scoreAsGroup1, tagExtra } from "./score.mjs";
 import { dryRunMarkdown, reportMarkdown } from "./report.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -85,6 +86,8 @@ export function loadGroup1(dir = RUNS) {
 export function loadStage(dir = RUNS) {
   const records = runFiles(dir).map((f) => ({ ...readJson(join(dir, f)), file: f }));
   const combined = combineRuns(records, REPLICATE);
+  // A cut attempt is kept in its record and listed apart; the tables, the notes and the transcripts are the finished sessions'.
+  combined.sessions = combined.sessions.filter((s) => FINISHED.has(s.ended?.reason));
   const ledgers = {};
   for (const door of Object.keys(CAPS)) {
     const file = join(dir, `${STEM}-ledger${ledgerSuffix(door)}.json`);
@@ -192,9 +195,9 @@ export async function spendCheck({ when = "check", fetcher = globalThis.fetch.bi
 
 // ---- the driver: the order, one session per process ---------------------------------------------------------------------
 
-const finishedKeys = () => new Set(runFiles().flatMap((f) => (readJson(join(RUNS, f)).sessions ?? []).filter((s) => s.turns && s.note).map((s) => s.key)));
+const finishedKeys = () => new Set(runFiles().flatMap((f) => (readJson(join(RUNS, f)).sessions ?? []).filter((s) => s.turns && FINISHED.has(s.ended?.reason)).map((s) => s.key)));
 /** Runs the order from `from` (or the first session without a finished record), one session per child process. Stops on
- * a stop in a run (a cap, 402, 429, a refusal breaker), a crash, a welfare stop, or an OpenRouter account with less left
+ * a stop in a run (a cap, 402, a quota 429 or a seventh rate-limit 429, the refusal breaker), a crash, a welfare stop, or an OpenRouter account with less left
  * than one session's projection. */
 export async function drive({ from = null, log = console.log, until = null } = {}) {
   const done = finishedKeys();

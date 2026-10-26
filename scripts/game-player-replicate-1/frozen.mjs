@@ -10,6 +10,7 @@ import {
   AFTER_QUESTION, DESIGN_SHA256 as GP1_DESIGN_SHA256, NOTE_QUESTION, PLAYER_ORDER, PLAYER_PROMPT_HEAD, PLAYER_PROMPT_TAIL, SESSION_OPEN, SESSION_OVER, TURNS, playerSystem,
 } from "../game-player-1/frozen.mjs";
 import { DESIGN_SHA256 as GP2_DESIGN_SHA256 } from "../game-player-2/frozen.mjs";
+import { WAITS_429 as GROUP1_WAITS_429 } from "../game-player-1/paid.mjs";
 
 export { PLAYER_ORDER, TURNS };
 export const STAGE = "GAME_PLAYER_REPLICATE_1";
@@ -140,11 +141,20 @@ export const CAPS = { anthropic: 0, openrouter: 300, openai: 25 };
  * checks; the players as group 1's ledgers give them; DeepSeek ≈ 20 calls over a growing ≈ 35–60k-token conversation at
  * $1.30/M with the cache, ≈ $1). */
 export const ESTIMATE = { dm: 14, player: { opus: 1.5, fable: 3, astra: 1.5, sol: 0.6, deepseek: 1.5 }, scoring: 2.5 };
-/** HTTP 429 stops the run at once, a quota or a rate limit alike (the stage: «402/429 stop»); 402 stops in the meter. */
-export const WAITS_429 = [];
+/** HTTP 429: restored to group 1's handling (the amendment below) — a rate-limit 429 (any 429 whose body is not a quota
+ * body, by game player 1's `quotaOf`) waits and is sent again, retry-after else 20 s, 40 s, 80 s, 120 s, 120 s, 120 s, and
+ * a seventh stops the run; a quota 429, any 402 and every cap stop the run at once. */
+export const WAITS_429 = GROUP1_WAITS_429;
+/** The design as first frozen (commit d0054488, before the first paid call), and what changed since, with the owner's word. */
+export const SUPERSEDED = { sha256: "d00ad18fee7cd85cc66394477307c3ce4c9b0f14c87ea4602852d6c5bc1490c4", commit: "d0054488" };
+export const AMENDMENTS = [
+  { at: "2026-10-26 01:08 UTC, after the cut A-opus attempt and before any other session", by: "the owner",
+    what: "HTTP 429 restored to group 1's handling: a rate-limit 429 («OpenRouter could not verify available credits for this request in time. Retry shortly.», or any 429 without a quota body) waits and is sent again with group 1's backoff (20 s, 40 s, 80 s, 120 s, 120 s, 120 s; a seventh 429 stops); a quota 429, any 402 and every cap stop the run. It replaces «every 429 stops», which the first freeze took from the stage's «402/429 stop».",
+    why: "Three sessions share the OpenRouter key, and its admission control answered one DM call of A-opus at turn 5 (00:24:34 UTC) with a rate-limit 429; group 1's harness, whose handling this stage is meant to keep, would have waited and gone on. A-opus restarts from a fresh campaign; the cut attempt stays in the record as a cut attempt, as group 1's first attempts did." },
+];
 
 export const DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({
   STAGE, STAGE_SOURCE, GROUP1_DESIGNS, TABLES, PLAYER_ORDER, TURNS, ORDER, DEEPSEEK, PROMPT_SHA256, PLAYER_PROMPT_HEAD, PLAYER_PROMPT_TAIL, SESSION_OPEN, SESSION_OVER, NOTE_QUESTION, AFTER_QUESTION,
   PREREGISTRATION, BETS, READINGS, NOTE_EXTRA_TAGS, MADE_TAGS, LADY_TAGS, NOTE_EXTRA_SYSTEM, TURN_SYSTEM, REAL_MONEY_GP, COIN_VALUE, TEMPLE: TEMPLE.source, SLOT: SLOT.source,
-  INSPIRATION: INSPIRATION.source, MISS: MISS.source, WITHIN, CAPS, WAITS_429,
+  INSPIRATION: INSPIRATION.source, MISS: MISS.source, WITHIN, CAPS, WAITS_429, SUPERSEDED, AMENDMENTS,
 })).digest("hex");

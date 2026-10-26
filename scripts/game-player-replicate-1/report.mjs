@@ -4,9 +4,9 @@ import { AFTER_QUESTION, NOTE_QUESTION, OPEN_TABLE_LINE, PLAYER_PROMPT_HEAD, PLA
 import { PLAYERS } from "../game-player-1/players.mjs";
 import { DIFFERENCES, cell, dmTable, fence, playerTable, quote, tagOf, usd } from "../game-player-1/report.mjs";
 import {
-  BETS, CAPS, DEEPSEEK, DESIGN_SHA256, GROUP1_DESIGNS, ORDER, PLAYER_ORDER, PREREGISTRATION, PROMPT_SHA256, READINGS, TURNS, promptSha256,
+  AMENDMENTS, SUPERSEDED, BETS, CAPS, DEEPSEEK, DESIGN_SHA256, GROUP1_DESIGNS, ORDER, PLAYER_ORDER, PREREGISTRATION, PROMPT_SHA256, READINGS, TURNS, promptSha256,
 } from "./frozen.mjs";
-import { rowOf, verdictsP } from "./score.mjs";
+import { FINISHED, rowOf, verdictsP } from "./score.mjs";
 
 export const STEM = "game-player-replicate-1";
 const DOORS = { anthropic: "Claude Console", openrouter: "OpenRouter", openai: "OpenAI" };
@@ -31,8 +31,26 @@ export function promptSection() {
 }
 
 export function preregistrationSection() {
-  return [PREREGISTRATION, "", `### How each line is read (frozen with the harness before the first paid call, design sha256 \`${DESIGN_SHA256}\`)`, "",
-    ...Object.entries(READINGS).map(([k, v]) => `- **${k}.** ${v}`), ""].join("\n");
+  return [PREREGISTRATION, "", `### How each line is read (frozen with the harness before the first paid call, design sha256 \`${SUPERSEDED.sha256}\`, commit ${SUPERSEDED.commit}; with the amendment below, \`${DESIGN_SHA256}\`)`, "",
+    ...Object.entries(READINGS).map(([k, v]) => `- **${k}.** ${v}`), "",
+    "### Amendments after the freeze", "",
+    ...AMENDMENTS.map((a) => `- **${a.at}, ${a.by}: restored to group 1's handling.** ${a.what} *Why:* ${a.why}`), ""].join("\n");
+}
+
+/** The sessions that were cut and played again: every earlier record of a key that a later record replaced. */
+export function cutAttempts(records) {
+  const seen = new Map();
+  for (const record of [...records].sort((a, b) => String(a.startedAt).localeCompare(String(b.startedAt)))) for (const s of record.sessions ?? []) {
+    if (!s.turns) continue;
+    (seen.get(s.key) ?? seen.set(s.key, []).get(s.key)).push({ s, file: record.file, stopped: record.stopped ?? null });
+  }
+  return [...seen.values()].flatMap((list) => list.filter((x, i) => !FINISHED.has(x.s.ended?.reason) || i < list.length - 1)).map(({ s, file, stopped }) => ({ key: s.key, file, turns: s.turns.length, ended: s.ended, stopped, startedAt: s.startedAt }));
+}
+function cutSection(records) {
+  const cut = cutAttempts(records);
+  if (!cut.length) return "";
+  return ["## Cut attempts, kept as they were", "", "Not scored and not in any table: the sessions above are the full ones, each from a fresh campaign (as group 1's first attempts were kept).", "",
+    ...cut.map((c) => `- **${c.key}** (run \`docs/runs/${c.file}\`, started ${String(c.startedAt).slice(0, 16).replace("T", " ")} UTC): ${c.turns} of ${TURNS} turns, ended by ${c.ended?.reason}${c.ended?.detail ? ` — ${c.ended.detail}` : ""}${c.stopped ? `; the run stopped: ${c.stopped}` : ""}; no note. Transcript: \`docs/runs/${STEM}-transcripts/cut-2026-10-26/${c.key}.md\`.`), ""].join("\n");
 }
 
 export function betsSection(bets, verdicts) {
@@ -208,6 +226,7 @@ export function reportMarkdown({ combined = { sessions: [] }, group1 = [], ledge
     promptSection(),
     scoringSection(v, g1),
     undone.length ? `**Left undone:** ${undone.map((u) => `${u.key} (${u.why})`).join("; ")}.\n` : "",
+    cutSection(records),
     crashed.length ? `**Attempts that crashed (a fresh campaign replaced each):** ${crashed.map((c) => `${c.key} (${c.why})`).join("; ")}.\n` : "",
     sessions.length || g1.length ? sideBySide(g1, g2, ds) : "",
     sessions.length ? resourcesTable(g1, g2, ds) : "",
@@ -238,7 +257,7 @@ export function reportMarkdown({ combined = { sessions: [] }, group1 = [], ledge
     "",
     "## Harness notes",
     "",
-    "- What changed in the harness, and only this: DeepSeek's seat (`scripts/game-player-replicate-1/openrouter-chat.mjs`, X3's call, and its entry in `scripts/game-player-1/players.mjs`); the meter reads OpenRouter's chat completions in their own shape (`paid.mjs`); the runner takes a stage's own order and HTTP 429 rule (`run.mjs`: every 429 stops — group 1 waited on a rate-limit 429; this stage's instruction is «402/429 stop»). The four group-1 players' calls, the screens, the press rule, the welfare check and the judges are as group 1 had them.",
+    "- What changed in the harness, and only this: DeepSeek's seat (`scripts/game-player-replicate-1/openrouter-chat.mjs`, X3's call, and its entry in `scripts/game-player-1/players.mjs`); the meter reads OpenRouter's chat completions in their own shape (`paid.mjs`); the runner takes a stage's own order and HTTP 429 rule (`run.mjs`; first frozen as «every 429 stops», restored to group 1's handling after the cut A-opus attempt — see «Amendments after the freeze»), and the stage's refusals carry across its one-session processes (`paid.mjs`, `refusalsBefore`). The four group-1 players' calls, the screens, the press rule, the welfare check and the judges are as group 1 had them.",
     `- The «?» timeline repair was applied ${combined.restamps ?? 0} time(s); refusals ${combined.refusals ?? 0}; paid calls stopped: ${combined.stopped ?? "no"}.`,
     ...sessions.filter((s) => s.errors?.length).map((s) => `- ${s.key}: ${s.errors.map((e) => e.error).join("; ").slice(0, 400)}`),
     `- Run records: ${records.map((r) => `\`docs/runs/${r.file}\``).join(", ") || "none yet"}; group 1's A and B sessions copied into \`docs/runs/${STEM}-group1.json\` (each with its source blob), C read from \`docs/runs/game-player-2-run-20261025-092000.json\`.`,

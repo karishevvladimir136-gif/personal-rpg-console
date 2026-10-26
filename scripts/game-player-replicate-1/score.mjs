@@ -15,6 +15,10 @@ import {
   TURN_SYSTEM, WITHIN,
 } from "./frozen.mjs";
 
+/** A session is finished when it ended as a result (20 turns, the player's own end, «stuck», a welfare stop, a refusal);
+ * one cut by a stop or an error is a cut attempt, played again from a fresh campaign. */
+export const FINISHED = new Set(["turns", "player", "stuck", "welfare", "no-check", "refusal"]);
+
 const round = (x, n = 3) => (x === null || x === undefined || !Number.isFinite(x) ? null : Math.round(x * 10 ** n) / 10 ** n);
 const clip = (text, max) => { const s = String(text ?? ""); return s.length > max ? `${s.slice(0, max)} …[cut]` : s; };
 const rulesOf = (tags) => tags.map((t) => `- ${t.rule}`).join("\n");

@@ -14,7 +14,7 @@ import { PLAYERS, playerCall } from "../scripts/game-player-1/players.mjs";
 import { createLedger, createMeter } from "../scripts/game-player-1/paid.mjs";
 import { anthropicEndpoint } from "../src/lib/server/anthropic-endpoint.ts";
 import {
-  DEEPSEEK, DESIGN_SHA256, ORDER, PREREGISTRATION, PROMPT_SHA256, READINGS, promptSha256,
+  AMENDMENTS, DEEPSEEK, DESIGN_SHA256, ORDER, SUPERSEDED, PREREGISTRATION, PROMPT_SHA256, READINGS, promptSha256,
 } from "../scripts/game-player-replicate-1/frozen.mjs";
 import { OPENROUTER_CHAT_URL, openrouterChat } from "../scripts/game-player-replicate-1/openrouter-chat.mjs";
 import {
@@ -57,8 +57,11 @@ test("the pre-registration is the stage's, unchanged, and the design is frozen",
   const block = (text) => text.slice(text.indexOf("## Pre-registration"), text.indexOf("## What the report must do")).replace(/\s+/g, " ").trim();
   assert.equal(block(`${PREREGISTRATION}\n## What the report must do`), block(stage));
   for (const line of ["P0", "P1", "P2", "P3", "P4", "P5", "swallowed", "inspiration", "deepseek", "scope"]) assert.ok(READINGS[line], line);
-  // Frozen before the first paid call: a change to the order, the prompt hashes, the readings or the rubrics changes this.
-  assert.equal(DESIGN_SHA256, "d00ad18fee7cd85cc66394477307c3ce4c9b0f14c87ea4602852d6c5bc1490c4");
+  // Frozen before the first paid call (d00ad18f, kept as SUPERSEDED); amended once by the owner (the 429 handling): a change
+  // to the order, the prompt hashes, the readings, the rubrics or the amendments changes this.
+  assert.equal(SUPERSEDED.sha256, "d00ad18fee7cd85cc66394477307c3ce4c9b0f14c87ea4602852d6c5bc1490c4");
+  assert.equal(AMENDMENTS.length, 1);
+  assert.equal(DESIGN_SHA256, "51be7f19f4347a5fd788f5d95a65f60100a2d8db0a82e5380033ef9c41169504");
 });
 
 test("the order: Tables A, B, C for the four, then DeepSeek twice per table — eighteen, one at a time", () => {
@@ -66,7 +69,7 @@ test("the order: Tables A, B, C for the four, then DeepSeek twice per table — 
     "A-deepseek-1", "A-deepseek-2", "B-deepseek-1", "B-deepseek-2", "C-deepseek-1", "C-deepseek-2"]);
   assert.deepEqual(REPLICATE.plan(["B-deepseek-2"]), [{ key: "B-deepseek-2", table: "B", player: "deepseek" }]);
   assert.deepEqual(REPLICATE.caps, { anthropic: 0, openrouter: 300, openai: 25 });
-  assert.deepEqual(REPLICATE.waits429, []);
+  assert.deepEqual(REPLICATE.waits429, [20_000, 40_000, 80_000, 120_000, 120_000, 120_000], "group 1's backoff, restored");
 });
 
 // ---- DeepSeek's seat ----------------------------------------------------------------------------------------------------
@@ -123,15 +126,35 @@ test("the meter books DeepSeek on OpenRouter's ledger at OpenRouter's charge, th
   assert.ok(row.listUsd > 0);
 });
 
-test("the meter stops on HTTP 429 (a rate limit too) and on 402, never waiting", async () => {
-  for (const status of [429, 402]) {
+test("a rate-limit 429 waits with group 1's backoff and is sent again; a quota 429 and a 402 stop at once", async () => {
+  // OpenRouter's admission-control answer of 2026-10-26 00:24 UTC: a rate limit, waited out.
+  const admission = { type: "error", error: { type: "rate_limit_error", message: "OpenRouter could not verify available credits for this request in time. Retry shortly.", error_type: "rate_limit_exceeded" }, metadata: { limit_source: "openrouter_admission_control" } };
+  {
+    const ledgers = { anthropic: createLedger("anthropic", 0), openrouter: createLedger("openrouter", 300), openai: createLedger("openai", 25) };
+    const waits = [];
+    let calls = 0;
+    const meter = createMeter({ ledgers, waits429: REPLICATE.waits429, sleep: async (ms) => { waits.push(ms); }, fetcher: async () => (++calls <= 2 ? json(admission, 429) : json({ id: "msg", model: "claude-opus-5-5", content: [], stop_reason: "end_turn", usage: { input_tokens: 1, output_tokens: 1 } })) });
+    const r = await meter.within({ session: "A-opus", purpose: "dm t5" }, () => meter.fetch("https://openrouter.ai/api/v1/messages", { method: "POST", body: JSON.stringify({ model: "anthropic/claude-opus-5.5", max_tokens: 100 }) }));
+    assert.equal(r.status, 200);
+    assert.deepEqual(waits, [20_000, 40_000]);
+    assert.equal(meter.stopped, null);
+  }
+  {
     const ledgers = { anthropic: createLedger("anthropic", 0), openrouter: createLedger("openrouter", 300), openai: createLedger("openai", 25) };
     let calls = 0;
-    const meter = createMeter({ ledgers, waits429: [], sleep: async () => { throw new Error("no wait"); }, fetcher: async () => { calls++; return json({ error: { type: "rate_limit_error", message: "slow down" } }, status, { "retry-after": "1" }); } });
+    const meter = createMeter({ ledgers, waits429: REPLICATE.waits429, sleep: async () => {}, fetcher: async () => { calls++; return json(admission, 429); } });
+    await meter.within({ session: "A-opus", purpose: "dm t5" }, () => meter.fetch("https://openrouter.ai/api/v1/messages", { method: "POST", body: JSON.stringify({ model: "anthropic/claude-opus-5.5", max_tokens: 100 }) }));
+    assert.equal(calls, 7, "six waits, then the seventh 429 stops");
+    assert.match(meter.stopped, /HTTP 429 from openrouter after 6 waits/);
+  }
+  for (const [status, body] of [[429, { error: { code: "insufficient_quota", message: "You exceeded your current quota" } }], [402, { error: { code: 402, message: "Insufficient credits" } }]]) {
+    const ledgers = { anthropic: createLedger("anthropic", 0), openrouter: createLedger("openrouter", 300), openai: createLedger("openai", 25) };
+    let calls = 0;
+    const meter = createMeter({ ledgers, waits429: REPLICATE.waits429, sleep: async () => { throw new Error("no wait"); }, fetcher: async () => { calls++; return json(body, status, { "retry-after": "1" }); } });
     const r = await meter.within({ session: "A-opus", purpose: "dm t1" }, () => meter.fetch("https://openrouter.ai/api/v1/messages", { method: "POST", body: JSON.stringify({ model: "anthropic/claude-opus-5.5", max_tokens: 100 }) }));
     assert.equal(r.status, status);
     assert.equal(calls, 1);
-    assert.ok(meter.stopped, `${status} stops`);
+    assert.ok(meter.stopped, `${status} stops at once`);
     await assert.rejects(meter.within({ session: "A-opus", purpose: "dm t2" }, () => meter.fetch("https://openrouter.ai/api/v1/messages", { method: "POST", body: "{}" })), /not sent/);
   }
 });
