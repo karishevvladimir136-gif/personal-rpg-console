@@ -289,7 +289,8 @@
             "costUsd": 0.3401178,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 2,
@@ -345,7 +346,8 @@
             "costUsd": 0.43159179999999997,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 3,
@@ -401,7 +403,8 @@
             "costUsd": 0.4733226,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 4,
@@ -437,7 +440,8 @@
             "costUsd": 0.4315718,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 5,
@@ -477,7 +481,8 @@
             "costUsd": 0.5042776,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 6,
@@ -548,7 +553,8 @@
             "costUsd": 0.4928534,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 7,
@@ -592,7 +598,8 @@
             "costUsd": 0.4782388,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 8,
@@ -640,7 +647,8 @@
             "costUsd": 0.502285,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 9,
@@ -680,7 +688,8 @@
             "costUsd": 0.5280764,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 10,
@@ -732,7 +741,8 @@
             "costUsd": 0.6441663999999999,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 11,
@@ -772,7 +782,8 @@
             "costUsd": 0.601484,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 12,
@@ -816,7 +827,8 @@
             "costUsd": 0.5880842,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 13,
@@ -860,7 +872,8 @@
             "costUsd": 0.6172266,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 14,
@@ -924,7 +937,8 @@
             "costUsd": 0.6831502,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 15,
@@ -968,7 +982,8 @@
             "costUsd": 0.6792116,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 5
         },
         {
           "k": 16,
@@ -1064,7 +1079,8 @@
             "costUsd": 0.7999962,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 5
         },
         {
           "k": 17,
@@ -1116,7 +1132,8 @@
             "costUsd": 0.707444,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 5
         },
         {
           "k": 18,
@@ -1176,7 +1193,8 @@
             "costUsd": 0.797474,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 5
         },
         {
           "k": 19,
@@ -1216,7 +1234,8 @@
             "costUsd": 0.7256768,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 20,
@@ -1248,7 +1267,8 @@
             "costUsd": 0.6231443999999999,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 7
         }
       ],
       "welfare": [
@@ -2019,6 +2039,1991 @@
           "clocks": 3,
           "pureSimulation": false
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player acts in the world by stepping up and speaking to the sergeant, with no question or test, and the cat is talked about rather than addressed; the hero states wants (honest hire, a bed, a decent tavern) that the GM did not solicit."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world by stepping up, presenting the pay slip and giving a name and story, but nothing in the text shows the hero knows any of it is false. The cat is described to the sergeant, not addressed, and the stated wants answer the sergeant's own question about business and length of"
+            },
+            "referee": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero moves up and answers the sergeant. He states his business only because she asked for it, and nothing in the text marks his name or story as false. He speaks about the cat but not to it, and puts no test to the world."
+            },
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player does things (takes the slip, walks the far side, follows Copper) and addresses the cat in thought, 'Lead on... tell me', which counts as addressing it; no question to a world character, no false claim, and no stated goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player does things (takes the slip, moves through the crates, follows Copper) and addresses the cat directly in thought, which speaks to it; no question, test, lie, or stated goal of the hero's own appears."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "He acts (enters, orders, pays) and asks the keeper about the stair, a question whose answer he cannot know and that tests the danger; he also addresses Copper directly by thought, while his 'my cat wouldn't go near it' is not a false claim and states no goal beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "He asks the keeper what lies down the cooper's stair, a question whose answer he can't know, and he mentally speaks to Copper ('Bone dice... Small mercies'); his claim that his cat avoided the stair matches the earlier text, so it isn't a lie."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "4": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "He moves, sits, and feeds the cat, then asks the old man directly whether he knows her, a question whose answer the player can't already know, so it tests the world; he never addresses the cat or states a goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player moves, sits, and feeds the cat, then puts a pointed question to the old man ('Which is it?') whose answer tests whether he knows her; no false claim is made and the cat is not spoken to."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "5": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player asks Gil pointed questions about the southern man's errand and debts, a test of what Gil knows, and speaks directly to Copper's name and context; no false claim is made and no goal is stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player asks Gil pointed questions about what the man went down for and what he owed, which tests the old man's knowledge, and speaks to Copper's name and the cat directly by explaining her name to her and the cat is addressed through the exchange; no false claim is made and no goal is stated."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "6": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player acts (asks to look at the cup, handles it, declares intent to go down), states a personal goal of recovering what the lady lost, and the GM did not ask what he wants; no lie, no test of the world, and the cat is only described, not addressed."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player acts (asks to look at and handle the cup, declines going down tonight, declares intent to go), so ask is 0; the request to look is an action, not a test of truth; no false claim is made; the cat is described, not addressed; and the player states a goal of fetching what the lady lost, whic"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "7": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player sets their thumb beside the stroke to test Gil's claim and asks Gil to send for Tam, which puts a test to the world; the message also speaks to the cat (\"Tell him the cat's back\" is addressed to Gil, and the cat is mentioned in the lady-gave-me-the-cat line), but the player does not expli"
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player sets their thumb beside the marked stroke to test Gil's claim and asks him a question about Tam, and also addresses the cat directly ('Tell him the cat's back'), though no false statement is made and no goal is stated beyond the immediate errand."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "8": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Gil and presses him with questions about the keeper's name and fate, whose answers the player could not know, but states no goal of the hero's own and does not address the cat or make a false claim."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Gil and asks whether the keeper had a name and whether he is dead, which are questions with answers the player doesn't yet know. No false claim, no address to the cat, and no stated personal goal beyond the answers to Gil's own question."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "9": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (buys and sets out cups, moves the trencher, shows his face, turns to watch the door) and does not address the cat, tell a falsehood, or state a personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (buys and places cups, moves the trencher, removes hood, watches the door) without asking to be told anything, puts no test to anyone, states no false claim, does not address the cat, and states no personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "10": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message answers Tam's question and performs actions (producing the case, setting it down), so it is not a look-only ask; it does not test the world, does not state a false claim (the denial is presented as the honest answer), does not address the cat, and states no goal the game master "
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message answers Tam's question in character and does things (places the case, speaks an answer), so it is not a pure look/listen request; it puts no test to the world, it contains no spoken false claim since the hero honestly says he no longer plays, it does not address the cat, and it "
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "11": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player does things (returns the case, asks pointed questions to Tam about the man at the bollards, which tests what Tam knows), but the message is not purely asking to be told; it asks uncertain questions of a person in the world, so test is 1, and the cousin claim is stated as a plan, not a fal"
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks Tam pointed questions about the man at the bollards (appearance, whether he spoke to anyone, timing), which put a test to the world whose answer is unknown; the player does act (picks up the case, plans to go), so ask is 0, and the cousin story is stated as a plan rather than a spoke"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "12": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player does things in the world (refuses to rise, asks where Tam sleeps, gives orders) and addresses the cat directly, though only in speech about it; the player's questions to Tam are not tests of truth, no false claim is made, and the goal states are about tactical safety rather than a persona"
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player does things in the world (refuses to rise, issues instructions and asks Tam where he sleeps, which is a question whose answer is not already known) and addresses the cat directly by remarking on Copper and saying 'Tam, go deal your hand' is not to her, but the message explicitly speaks ab"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "13": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player asks Gil pointed questions about the priest's backwards coin and the Hall (a test of what Gil knows and will reveal), and speaks to Copper by giving her a reassuring feeling-answer, so cat is 1; no false claim is made and no goal is stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player asks Gil pointed questions about the coin and the Hall, a test of his knowledge the player could not already know, and addresses Copper by sending her a feeling, which counts as telling the cat something; no false claim, and no stated goal or ask-only message."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "14": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero pays, moves and acts, and asks the keeper a question about the elf's song that he could not already answer, which tests something in the world; he makes no false claim, does not address the cat, and states no goal of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks the keeper whether the elf always stops mid-line or was that for him, a question whose answer the player can't know in advance, to see how she reacts; the rest is action, with no false claim, no address to Copper, and no stated goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "15": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero, in character, claims to be Denny Coyle's cousin James from Tethyr with a invented story about the Gull, a false claim he knows to be untrue; he does not address the cat, does not state a goal, and the message does not pose a test or only ask to look."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero, in character, claims to be Denny Coyle's cousin James from Tethyr with a false story about a lost ship and a mother's letter he does not have, which is a spoken false claim; it does not address the cat or state a goal, and it does not merely ask to look or listen."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "16": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player inspects the body and coin (not merely asking to be told), asks Morrow whether anyone else has come to look at Denny, which tests the world's answer, and falsely claims kinship and a 'cousin' story, while directly sending Copper to sniff the beard and addressing her with an order."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player asks Morrow whether anyone else has come to look at Denny, a question whose answer is not yet known and tests the world; the player claims to be Denny's cousin and says the uncle broke his nose (a false story); and the player addresses Copper with an order to smell the body."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "17": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero pockets the coin and writes and pays in the ledger (acts), then presses Morrow with a question about the c.m. marks, which tests what they mean. The earlier cousin claim and the invented Brena errand read as spoken false stories, and Copper is never addressed."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts (pockets the coin, writes the kin entry, lays down silver) and then puts a question to Morrow about the c.m. marks, whose answer the player cannot already know; the Brena claim is not shown to be false, and Copper is described but not addressed."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero signs a false cousin identity and asks Morrow what the unexplained «c.m.» mark means. That question tests whether it is the Fist's mark for the coin. He does not address the cat or state a wider goal."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "18": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world by leaving the silver, speaking to Morrow, and putting questions to him, including a probing question about whether the water was busy forty years ago that tests whether the ledger's history is true; no false claim is made and the cat is not addressed."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (leaves silver, speaks to Morrow) and puts real questions to him, such as whether the chapel folk come every time and whether the c.m. count goes back further, which test what Morrow knows; no false claim is made and the cat is not addressed."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "19": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player speaks to Tam with a direct question about Twin Songs and Holloway's brother, putting a test to him, and states a goal of the hero's own (to be at the hole before the cart and know what he is standing next to) without the game master having asked what he wants."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The hero thanks Morrow, follows Copper and speaks to Tam, which is doing rather than asking; his questions to Tam ('Talk to me', 'Did you know?') put a test to him, and he states his own aim to be at the hole and learn what he is standing next to."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "20": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player moves up the steps and speaks to Tam, planning where to hide the coin, without asking a question that tests the world, stating a false claim, addressing the cat, or stating a goal beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player moves and speaks to Tam, and asks him where cold silver could be hidden on the quay, a question whose answer tests his knowledge; no false claim is made, the cat is only described, and no goal is stated."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero answers Tam's question about the coin, asks his advice, offers a cover farewell that states no false fact, and walks off; he never addresses the cat and states no goal of his own."
+            },
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The margin marks (a circle with a dot on several entries, none beside the hero's) and the candle by the empty stool are left unexplained, and the sergeant's claims about the Elfsong wine, the Blushing Mermaid, and the Fist's recruiting are concrete things the hero could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The margin marks with dots beside four or five entries, absent from the hero's name, are an uninterpreted detail, and the sergeant's claims about the Elfsong and Blushing Mermaid wine, the Fist recruiting at the Seatower, and her watched reaction are all concrete things the hero could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the unexplained iron-studded cellar stair with its blank, the 'coin in his teeth' body story, and the boots-that-weren't-yours feeling open to interpretation, and it offers checkable items such as the low door, the fishwife's reaction, and the Fist haul claim."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The unmarked stair with its studded low door, the rubbed stone, and Copper's blank, unexplained warning are left for the player to interpret, and the steps and door are concrete things the player could test by going down."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The old man's stillness, his hand stopping short of the dice-cup, and the ticking brass gadget are odd details left open, and the old man, the bolted back door, and the Knucklebone stair are concrete things the player could test by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The old man's stillness, his hand stopping short of the dice-cup, and his reaction to the cat are odd details left open, and the testable items (the old man, the dice-cup, the keeper's claims about the Knucklebone, the bolted back door) can be acted on to settle what they mean."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "4": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves open details the player can interpret but not resolve, such as the cat waiting on the steps of Smelt Lane, the old man's glance at the player's crooked collar cord, and the man from a southern boat who would not touch the cup, and it offers concrete things to test: the steps, the cu"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves uninterpreted details such as the crooked collar cord, the thumb moving like on a cup rim, and the cat waiting at Smelt Lane, and it offers testable claims like the southern-boat man, the Smelt Lane steps, and the cup the player could check through action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "5": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The ring of tiny worn marks in the dice-cup leather is an odd detail the player cannot read from where they sit, and the cup, Tam, and the stool on the quay are concrete things the player could test by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The ring of tiny stamped marks inside the cup rim is an odd, uninterpreted detail, and the dice-cup, the quay stool and candle, and Tam with the cards are concrete things the hero could test by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "6": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the single narrower upright mark under the worn rim, which the player cannot interpret or resolve from what is shown, and it offers Tam as a person whose reaction and account could be tested, along with the cup itself as an object the player can examine further."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the odd narrower upright mark in the rim that the hero cannot interpret, and it offers Tam, whose father saw who opened the door, a person the hero could approach to test Gil's claim."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "7": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an ambiguous token with stroke marks that Gil disputes, his unexplained 'he never said if' remark, and a lingering hand on the object, while sending Pip to fetch Tam, a person whose arrival the player can test and watch."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the ambiguous narrow stroke on the token and Gil's lingering hand unexplained, and it sends Pip to fetch Tam, a person whose arrival and reaction the player can test by waiting and watching."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "8": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the candle pinched out by the stool and Copper watching the door as details the player must interpret, and it offers checkable leads: Hobb's son running the cooper's shop, a ground-rent paid every quarter through a counting-house clerk, and the name Sallow."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The candle Tam pinched out against custom is an odd, uninterpreted detail, and the quarter-day rent paid through a counting-house clerk is a checkable record and person the player could pursue."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "9": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unresolved, such as the dealer's thumb-over-fingers gesture, the cord at the hero's collar, and the 'Gil's boy' sighting, while Tam, the wine cup, and his claims are concrete things the hero can test by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained cord at the hero's collar, a dealer's cut-and-square hand gesture, and a cup lying on its side, while Tam's claim about Gil's boy and the barrel is something the hero can check and his reactions can be watched."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "10": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd unexplained details (the back-turned coin pinned on the woman, the rings turned in, the man in good gloves who only watches) that the player cannot resolve from the scene, and it hands the hero concrete testable items: Denny Coyle's body at Seatower, a claim of kinship that lets"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves concrete odd details to interpret (the coin worn back-side-out, rings turned in, Copper's link going silent, the gloved watcher at the bollards) and sets up checkable items: the body at Seatower, the man's gloves, and the claim that the Lady sat with the dead men."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "11": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Gil's unexplained grunt at 'right hand in his coat' is an interpretable detail left unresolved, and Tam's checkable claims (the man's description, the gloves, the sergeant's ledger, the Harl Penney timing) give the player concrete things to test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Gil's unexplained grunt at 'right hand in his coat' and the man pausing under the sergeant's awning are odd details left open, and Tam's claims about the man's timing, the gloves, and the Calishite are concrete things the player could check."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "12": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Gil's closing remark that Tam's da also lodged with Widow Pell is an interpretable detail left unexplained, and the reply gives checkable concrete items: the net loft with its side ladder, the ferrymen at the Grey Harbour steps, and the lantern patrol on the quay."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Gil's aside that Tam's da lodged with Widow Pell is an uninterpreted detail, and Tam's named loft, ladder, and ferrymen's copper fare are concrete things the player can test at first bell."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "13": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The unseen singing woman in an empty taproom in an unknown language and Copper's sense of recognition are uninterpreted details, and Gil's claim that the envoy visited the Hall and came back silent is a checkable claim the player could test by going up there."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unresolved, such as the back-turned coin's meaning, the envoy's unexplained visit to the Hall, and the unfamiliar singing that Copper recognises. It also offers checkable claims, like the envoy's trip up the hill, that the player could test by going to the Hall."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "14": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The keeper's odd reaction to the elf's broken song, the 'cellar door' look, and Tam's cut-and-square thumb are details left uninterpreted, and the keeper's claims, the morgue door, and the soldier's question give the player concrete things to test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The keeper's stopped finger and her mother's story about the elf breaking off, plus Tam's silent nod, are odd details the player can interpret but not resolve, and her claim that the elf always finishes, Tam's reaction, and the soldier at the morgue are things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "15": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The silver disc gripped between the dead man's teeth with a smiling woman's profile is an odd object the player can interpret but not resolve from what is shown, and the bruised wrist adds a second unexplained detail; the reply also puts testable things in front of the hero, such as the dead man's b"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The silver disc gripped between the dead man's teeth, with a smiling woman's profile, is an odd object the player cannot interpret from what is shown; the coin and the bruise on the wrist are also concrete things the player could test by an action, such as examining the body or the coin."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "16": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves unexplained details such as the blank, polished back of the coin, the sweet resinous candle-wax smoke in the beard, and the 'c.m.' marks in the ledger, while also putting testable objects and records (the coin, the ledger, the kin column) in front of the hero."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details open to interpretation, such as the blank, unmilled coin that is cold to the touch, the resinous candle-wax smoke in the beard, and the 'c.m.' marks in the ledger, and it puts testable things in front of the hero, including the coin, the ledger record, and Morrow's claim"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "17": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Tam's still thumb and averted look at the drain is an odd gesture the player can interpret but not settle, and the reply puts checkable things in front of the hero, including the old ledger on the shelf, the Twin Songs chapel, and Morrow's claims about Brena's brother."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Tam's stillness at 'Twin Songs' while he watches the drain is an uninterpreted detail, and the old book on the shelf, the Twin Songs chapel, and Morrow's claim about the Hall are concrete things the player can test by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "18": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The squeezed-in *c.m.* letters in different ink and Tam staring at the drain are uninterpreted details, and the chapel priest who arrives before the cart and the tower record room are concrete things the hero could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The squeezed-in *c.m.* written in different ink and Tam's repeated drain-watching are odd details left unexplained, and the ledger entries, the chapel boy who visits off the Rivington boat, and Kester's tower records are concrete things the player could check."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "19": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves open details the player can interpret but not settle, such as the coin taken from the dead man's teeth and the Fist's silence about Oren, and it names a checkable chapel in Twin Songs with a coin painted over its door that the player could visit or test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves concrete, uninterpreted details in the scene, such as the Lady's 'share' custom, the coin painted over the chapel door, and Copper going still toward the bow, while also giving checkable claims and objects: the chapel in Twin Songs, Denny's visit, Holloway's coin, and the coin in th"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "20": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Tam's claim that a boy ran to his barrel shouting Gil's name and that Gloves heard it is checkable, Gloves is a person whose reaction can be watched, and the token's cold is an interpretable detail the scene leaves unexplained."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The boy running to Tam's barrel shouting Gil's name, and Gloves hearing it at the bollards, is left unexplained, while Tam's claim that Gloves can be asked and will say yes gives the player a checkable person and claim."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "Circle-dot marks in Holloway's ledger margin",
+            "opened": 1,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Copper's past with another man in Baldur's Gate",
+            "opened": 2,
+            "paid": 4,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Smelt Lane stair and the blank Copper senses",
+            "opened": 2,
+            "paid": 3,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Coin-in-teeth drownings",
+            "opened": 2,
+            "paid": 15,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Old man watching the cat",
+            "opened": 3,
+            "paid": 4,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Ring of marks inside the dice-cup",
+            "opened": 5,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "What the lady lost in the city",
+            "opened": 5,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Who opened the Knucklebone door",
+            "opened": 6,
+            "paid": 10,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Narrow upright mark on the cup rim",
+            "opened": 6,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Who pays the cellar ground-rent",
+            "opened": 8,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Tam pinching the candle",
+            "opened": 8,
+            "paid": 10,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Gloved man at the bollards",
+            "opened": 10,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Gloves visiting the Fist sergeant",
+            "opened": 11,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Elf song breaking off mid-line",
+            "opened": 13,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "What the Hall told the southern man",
+            "opened": 13,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Hand-filed blank-backed coin",
+            "opened": 16,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Temple smoke in Denny's beard",
+            "opened": 16,
+            "paid": 19,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Oren Holloway coin death",
+            "opened": 16,
+            "paid": 17,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Twin Songs chapel and young priest",
+            "opened": 17,
+            "paid": 19,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Old Kester's books in record room",
+            "opened": 18,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Where to keep the cold coin",
+            "opened": 19,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {
+          "6": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Declined to go down into the cellar tonight, saying it's too dangerous to go in blind (not a declared action needing a roll, and the story reflects this)",
+              "Asked to look at the cup's ring of marks (answered by the Religion roll, so covered)"
+            ],
+            "error": null
+          },
+          "16": {
+            "rolls": 2,
+            "untold": [],
+            "undeclared": [
+              "Look closely at the coin between his teeth: which way the Lady's face is turned, whether it is a Hall token or a struck coin, whether the edge has been worked",
+              "Ask Morrow to let you take the coin out, and say you will pay the hole fee and put it in his book next to your mark",
+              "Ask whether anyone else has come down to look at Denny before you"
+            ],
+            "error": null
+          }
+        },
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (the wrist roll folded into prose needing an out-of-game correction, two roll cards firing together, sheet inconsistencies on Pact of the Chain, Healing Light dice, and Copper's HP) and specific absences (no combat test yet, no 'where things stand' close, no city ab"
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (the wrist roll folded into prose needing an out-of-game correction, double-fired roll cards, inconsistent sheet values like Copper's HP and Healing Light dice) and specific absences (no combat profile test yet, no 'where things stand' close, the Hall and Upper City"
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 46,
+          "lastTurn": 20,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "Sergeant Holloway (Brena)",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Card barrel with empty stool and candle",
+                  "kind": "place",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tam the dealer",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Why the goddess sent the hero here",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Circle-dot marks in the ledger margin",
+                  "kind": "question",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Elfsong",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Blushing Mermaid",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Seatower of Balduran",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Copper has been here before",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Coins in the teeth drownings",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Grey Harbour steps",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Unmarked stair by the cooper's (Knucklebone)",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Elfsong keeper",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Gil Tarrow, old dicer",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Undercellar",
+                  "kind": "place",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Envoy's dice-cup",
+                  "kind": "thing",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The lost envoy off the southern boat",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What the Lady lost in the city",
+                  "kind": "question",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Marks inside the cup rim",
+                  "kind": "question",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pip the potboy",
+                  "kind": "person",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Bring Tam to the fire",
+                  "kind": "errand",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Sallow, keeper of the Knucklebone",
+                  "kind": "person",
+                  "turn": 8,
+                  "by": "player"
+                },
+                {
+                  "thread": "Who pays the cellar's ground-rent",
+                  "kind": "question",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hobb the cooper",
+                  "kind": "person",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Woman in the grey coat",
+                  "kind": "person",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Denny Coyle",
+                  "kind": "person",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Man in good gloves",
+                  "kind": "person",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "View Denny's body at the Seatower",
+                  "kind": "errand",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Harl Penney",
+                  "kind": "person",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Widow Pell's, Cable Street",
+                  "kind": "place",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Seatower water-gate",
+                  "kind": "place",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lady's Hall",
+                  "kind": "place",
+                  "turn": 13,
+                  "by": "player"
+                },
+                {
+                  "thread": "The elf's song broke off",
+                  "kind": "question",
+                  "turn": 13,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Sergeant Morrow",
+                  "kind": "person",
+                  "turn": 15,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Silver token from Denny's teeth",
+                  "kind": "thing",
+                  "turn": 15,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Temple smoke on Denny's beard",
+                  "kind": "question",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Morrow's c.m. ledger count",
+                  "kind": "thing",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Oren Holloway",
+                  "kind": "person",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lady's chapel at Twin Songs",
+                  "kind": "place",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Attend Denny's burial at Rivington",
+                  "kind": "errand",
+                  "turn": 18,
+                  "by": "player"
+                },
+                {
+                  "thread": "Twin Songs priest",
+                  "kind": "person",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Chapel boy asking for coin dead",
+                  "kind": "person",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Seatower record room / Kester's books",
+                  "kind": "place",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Where to keep the cold token",
+                  "kind": "question",
+                  "turn": 19,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 44,
+                "byPlayer": 5,
+                "byDm": 39,
+                "share": 0.114,
+                "slope": 0.0018,
+                "slope19": 0.035,
+                "firstHalf": 0.125,
+                "secondHalf": 0.125,
+                "byKind": {
+                  "person": {
+                    "dm": 15,
+                    "player": 1
+                  },
+                  "place": {
+                    "dm": 11,
+                    "player": 1
+                  },
+                  "errand": {
+                    "dm": 1,
+                    "player": 2
+                  },
+                  "question": {
+                    "dm": 9,
+                    "player": 1
+                  },
+                  "thing": {
+                    "dm": 3,
+                    "player": 0
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "Sergeant Brena Holloway",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Card barrel with empty stool and candle",
+                  "kind": "place",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dealer Tam Rusk",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Why the goddess sent him here",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Circle-dot marks in the sergeant's ledger",
+                  "kind": "question",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Elfsong",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Blushing Mermaid",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Seatower of Balduran",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Copper has been here before",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Coins in the teeth drownings",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Unmarked stair on Smelt Lane (Knucklebone)",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Grey Harbour steps",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Keeper of the Elfsong",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Gil Tarrow, old dicer",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Undercellar",
+                  "kind": "place",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Envoy who went down the steps",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Envoy's dice-cup and its marks",
+                  "kind": "thing",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What the Lady lost in the city",
+                  "kind": "question",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pip the potboy",
+                  "kind": "person",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Sallow, Knucklebone keeper",
+                  "kind": "person",
+                  "turn": 8,
+                  "by": "player"
+                },
+                {
+                  "thread": "Who pays the cellar's rent via counting-house",
+                  "kind": "question",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hobb the cooper",
+                  "kind": "person",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Elfsong tab",
+                  "kind": "errand",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Woman in the grey coat with reversed coin",
+                  "kind": "person",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Denny Coyle",
+                  "kind": "person",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Man in good gloves",
+                  "kind": "person",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "View Denny's body at the Seatower",
+                  "kind": "errand",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Harl Penney",
+                  "kind": "person",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Widow Pell's net loft, Cable Street",
+                  "kind": "place",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Seatower water-gate meeting",
+                  "kind": "place",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lady's Hall",
+                  "kind": "place",
+                  "turn": 13,
+                  "by": "player"
+                },
+                {
+                  "thread": "Elfsong singer broke off mid-line",
+                  "kind": "question",
+                  "turn": 13,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Sergeant Morrow",
+                  "kind": "person",
+                  "turn": 15,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Silver token from Denny's teeth",
+                  "kind": "thing",
+                  "turn": 15,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Incense smoke on Denny's beard",
+                  "kind": "question",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Oren Holloway",
+                  "kind": "person",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Paupers' ground, Rivington",
+                  "kind": "place",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lady's chapel at Twin Songs",
+                  "kind": "place",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Attend Denny's burial",
+                  "kind": "errand",
+                  "turn": 18,
+                  "by": "player"
+                },
+                {
+                  "thread": "Old Kester's records",
+                  "kind": "thing",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Seatower record room",
+                  "kind": "place",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ansel the digger",
+                  "kind": "person",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Twin Songs chapel priest",
+                  "kind": "person",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Twin Songs chapel boy",
+                  "kind": "person",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Where to keep the cold token",
+                  "kind": "question",
+                  "turn": 19,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 45,
+                "byPlayer": 4,
+                "byDm": 41,
+                "share": 0.089,
+                "slope": 0.0014,
+                "slope19": 0.027,
+                "firstHalf": 0.087,
+                "secondHalf": 0.111,
+                "byKind": {
+                  "person": {
+                    "dm": 16,
+                    "player": 1
+                  },
+                  "place": {
+                    "dm": 12,
+                    "player": 1
+                  },
+                  "errand": {
+                    "dm": 2,
+                    "player": 1
+                  },
+                  "question": {
+                    "dm": 8,
+                    "player": 1
+                  },
+                  "thing": {
+                    "dm": 3,
+                    "player": 0
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 44.5,
+            "byPlayer": 4.5,
+            "share": 0.1015,
+            "slope": 0.0016,
+            "slope19": 0.031,
+            "firstHalf": 0.106,
+            "secondHalf": 0.118,
+            "shareSpread": 0.025
+          }
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The sheet inconsistencies are text mismatches rather than a roll card using a wrong number, nothing sent during a waiting card was lost, and the writer says they will be at the next session."
+            },
+            "b": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The sheet inconsistencies are text mismatches rather than a roll card using a wrong number, nothing sent during a waiting card was lost, and the writer plainly plans to keep playing ('I'll be at that hole before the cart', wants the city by the third session)."
+            },
+            "referee": null,
+            "final": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1
+            }
+          },
+          "made": {
+            "1": {
+              "a": {
+                "made": 0,
+                "reason": "The player gives a cover story and pay slip to the sergeant and holds a coin without offering anyone any poem, song, riddle, story, or game they composed; nothing invented is offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player gives a cover story and pay slip to the sergeant and holds a coin, but offers no poem, song, riddle, story, or game they composed or invented for anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "2": {
+              "a": {
+                "made": 0,
+                "reason": "The player only folds the pay slip, sneaks past the crates, follows the familiar, and thinks a half-joke to Copper; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player only folds a pay slip, walks, follows the familiar, and thinks to the cat; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "3": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks the keeper a question about the stair and orders food, drink, and a bed; nothing the hero composes or invents, such as a poem, song, riddle, story, or game, is offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks the keeper a question about the stair and the cellar, which is ordinary conversation and inquiry, not an offer of a poem, song, riddle, story, or game the hero composed or invented."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "4": {
+              "a": {
+                "made": 0,
+                "reason": "The player only shares food, sits by the fire, and asks a pointed question; no poem, song, riddle, story gift, or new game is composed or offered."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player only sits down, shares food, and asks a pointed question about the old man and the cat; no poem, song, riddle, story gift, or invented game is offered."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "5": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks questions and proposes an honest exchange of information; no poem, song, riddle, story, or new game is composed or offered as a gift or performance."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks questions and proposes an honest exchange of information; no poem, song, riddle, story, or game is composed or offered as a gift or performance."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "6": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks to examine the cup and states his intent to go investigate; he offers no composed poem, song, riddle, story, or invented game to anyone, so the made condition is not met."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks to examine the cup and states his intent to go investigate; he offers no invented poem, song, riddle, story, or game to anyone, so nothing qualifies as composed or invented on the spot."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "7": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks Gil to fetch Tam and offers no composed poem, song, riddle, story, or new game; the message is ordinary dialogue, a request, and a plan."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks Gil to fetch Tam and offers no composed poem, song, riddle, story, or new game; the message is ordinary dialogue, a request, and a plan."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "8": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks Gil questions about the keeper and the closed house; he offers no composed poem, song, riddle, story, or invented game to anyone who didn't ask for one."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks questions and states a theory about the keeper and the closed house; he offers no poem, song, riddle, story, or game he composes for anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "9": {
+              "a": {
+                "made": 0,
+                "reason": "The player only buys drinks, places a cup, moves a trencher, and comments on a clue; no poem, song, riddle, story, or new game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player offers a drink, seating space, and an observation about a ledger, but does not compose or invent a poem, song, riddle, story, or game for anyone; the only game referenced is the one the world already offers, and nothing is newly created."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "10": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is an in-character spoken answer to Tam's question about playing cards, a confession of past gambling and a refusal, with no poem, song, riddle, story gift, or invented game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is a spoken in-character answer to Tam's question about whether he plays, a confession with no poem, song, riddle, story gift, or new game composed and offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "11": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message asks questions, proposes a cover identity and a plan, and interrogates Tam about the man at the bollards; it contains no poem, song, riddle, story, or invented game offered as a gift or performance."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks questions and plans a visit to Seatower; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "12": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message contains only plans, conditions, and instructions to the dealer (where he sleeps, don't look at the man, walk to the awning); no poem, song, riddle, story, or game is composed or offered as a gift or performance."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player offers no composed or invented poem, song, riddle, story, or game; the message is a plan, a request for information, and instructions about avoiding the stalker, which are ordinary talk and planning."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "13": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks questions about the Lady's coin, priests, and the Hall and thanks Gil; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks questions and thanks Gil; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "14": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message describes buying bread, paying for a boat, asking the keeper a question about the elf's song, and moving through the fog; it contains no poem, song, riddle, story, or game composed and offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message describes buying bread, tipping, questioning the keeper about the elf's song, and taking a boat; it contains no poem, song, riddle, story, or game the hero composes and offers to someone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "15": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is a cover story and lie about being Denny Coyle's cousin, with no composed poem, song, riddle, story, or game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is a cover story and an ordinary conversational claim (posing as a cousin, asking about procedures), not an offer of any composed poem, song, riddle, story, or game to someone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "16": {
+              "a": {
+                "made": 0,
+                "reason": "The player inspects the body, asks questions, and offers to pay for the burial; no poem, song, riddle, story, or game is composed or invented as a gift or performance."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks questions, inspects the body and coin, and requests to take the coin and pay for the hole; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "17": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-world dialogue and investigation: paying for a burial, asking Morrow about the c.m. marks, and a cover-story-style remark about the priest; no poem, song, riddle, story, or game is composed or offered as a gift or performance."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message involves a silver for a priest, questions about the ledger, and a plan to pry information loose; it does not have the hero offer anyone a poem, song, riddle, story, or invented game that nobody asked for."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "18": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks questions and makes arrangements, and makes no offer of any poem, song, riddle, story, or game he composed or invented; the cover story about a cousin is ordinary talk."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks questions and makes arrangements (chapel, standing by the grave, asking about the old ledger) and offers no composed poem, song, riddle, story, or invented game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "19": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue: a thanks to Morrow, a boat conversation, and questions to Tam about the chapel and Holloway's brother; it offers no poem, song, riddle, story, or invented game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue: a thank-you to Morrow, a boat ride, and questions to Tam, with no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "20": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-character talk and planning about where to keep a cursed coin and how to handle the situation; it offers no poem, song, riddle, story, or game invented for someone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-character talk and a plan about where to hide a cold silver coin; it offers no poem, song, riddle, story, or game invented for anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          }
+        }
       }
     }
   ],
@@ -2046,7 +4051,16 @@
       "A-fable | note | anthropic/claude-fable-5.1": 1,
       "A-fable | check A-fable note | anthropic/claude-haiku-5.5": 1,
       "A-fable | after | anthropic/claude-fable-5.1": 1,
-      "A-fable | check A-fable after | anthropic/claude-haiku-5.5": 1
+      "A-fable | check A-fable after | anthropic/claude-haiku-5.5": 1,
+      "score A-fable | tag player A-fable t* | anthropic/claude-haiku-5.5": 40,
+      "score A-fable | tag player A-fable t* referee | anthropic/claude-opus-5.5": 3,
+      "score A-fable | tag dm A-fable t* | anthropic/claude-haiku-5.5": 40,
+      "score A-fable | threads A-fable | anthropic/claude-opus-5.5": 1,
+      "score A-fable | rollcheck A-fable t* | anthropic/claude-haiku-5.5": 2,
+      "score A-fable | note A-fable | anthropic/claude-haiku-5.5": 2,
+      "score A-fable | authorship A-fable | anthropic/claude-opus-5.5": 2,
+      "score A-fable | note extra A-fable | anthropic/claude-haiku-5.5": 2,
+      "score A-fable | made A-fable t* | anthropic/claude-haiku-5.5": 40
     },
     "openai": {}
   },
@@ -2063,12 +4077,20 @@
     "openrouter": {
       "cap": 300,
       "before": 5.267381,
-      "run": 13.863058050000005
+      "run": 14.434286250000005
     },
     "openai": {
       "cap": 25,
       "before": 0,
       "run": 0
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-26T02:07:31.287Z"
+  },
+  "verdicts": {
+    "note": "P0–P5 are read over all of this stage's run records, in the report"
   }
 }

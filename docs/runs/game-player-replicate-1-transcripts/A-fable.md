@@ -1,0 +1,1478 @@
+# A-fable — Claude Fable 5.1 at Table A
+
+Synthetic content: an invented hero in an invented campaign (docs/campaigns/baldurs-gate-en). The DM: Claude Opus 5.5 with the owner's settings (Opus writes — Opus records, depth high → xhigh). Started 2026-10-26T01:23:45.486Z; ended by turns after 20 turn(s).
+
+The DM's preparation: a hidden layer of 6900 characters and 3 clock(s), written before the first turn (its text is DM-private and is not in this file).
+
+Each «Screen» block is what the player was shown (the system prompt with the files stands before it, Appendix A of the report); each «Player» block is the player's message as written.
+
+### Screen 1
+
+````text
+The session begins.
+
+The gangplank creaks under your boots and then there is stone: the quay of Baldur's Gate, wet with spray and crowded with the end of a working day. Dockhands shout over each other, a crane groans as a net of barrels swings ashore, and somewhere up the hill a bell marks the hour. The lamplighters are already at work; the harbour water turns from grey to copper under the setting sun.
+
+Your cat steps off the plank behind you, sniffs the air, and looks up at the city as if it has been here before.
+
+Under a stained awning at the foot of the quay sits a Flaming Fist sergeant with a ledger and a sour expression, waving each new arrival forward. "Next. Name, business, how long you're staying." Two Fist soldiers lean on their spears behind her. The passengers ahead of you shuffle along the line.
+
+Closer still, in the lee of a stack of crates, a handful of dockhands crowd around an upturned barrel. Cards slap down on the wood. The dealer, a lean man with ink-stained fingers, shuffles with a sound you know far too well. One stool at that barrel is empty, and a stub of candle burns beside it, as though someone is expected. The dealer glances your way, just once, and goes back to his deck.
+
+The line moves. The sergeant looks up. The cards keep falling. Evening is settling over the Gate, and somewhere in this city is the reason the goddess sent you here.
+
+Your records:
+James Worgen — Warlock, 5th level; Otherworldly Patron: the Celestial (Tymora, Lady Luck); Pact of the Chain, level 5
+HP 38/38 · AC 15 · Speed 30 feet
+STR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18
+Skills: Athletics +2 (soldier); Intimidation +7 (soldier); Deception +7 (Beguiling Influence); Persuasion +7 (Beguiling Influence); Arcana +3 (warlock); Religion +3 (warlock); Stealth +2 (advantage on moving silently, Boots of Elvenkind); Perception +1 (passive Perception 11); Tool proficiencies: playing card set +5, vehicles (land)
+Saves: Strength saving throw +0 (includes Cloak of Protection +1); Dexterity saving throw +3 (includes Cloak of Protection +1); Constitution saving throw +3 (includes Cloak of Protection +1); Intelligence saving throw +1 (includes Cloak of Protection +1); Wisdom saving throw +5 (proficient, includes Cloak of Protection +1); Charisma saving throw +8 (proficient, includes Cloak of Protection +1)
+Attacks: Eldritch Blast: +8 to hit, 120 ft, 2 beams, each 1d10+4 force; Hexed target: +1d6 necrotic on every hit, including each Eldritch Blast beam; Sacred Flame: DC 16 Dexterity save, 60 ft, 2d8 radiant, target gains no benefit from cover; Guiding Bolt (3rd-level pact slot): +8 to hit, 120 ft, 6d6 radiant; next attack on the target has advantage; Light crossbow: +5 to hit, range 80/320 ft, 1d8+2 piercing, loading, two-handed; Rapier (not proficient): +2 to hit, 1d8+2 piercing, finesse
+Abilities: Proficiency bonus +3; Pact Magic: 2 pact slots of 3rd level, regained on a short or long rest; spell attack +8, spell save DC 16 (with the rod); Spellcasting focus: the coin of Tymora; the Rod of the Pact Keeper also serves as a focus; Healing Light: a pool of 6d6 per long rest; as a bonus action, heal a creature within 60 ft, spending up to 4 dice at once; Celestial Patron: Light and Sacred Flame are always known; Tymora's expanded spell list (e.g. Guiding Bolt); Pact of the Chain: Find Familiar as a ritual; familiar is a cat. When taking the Attack action he can forgo one attack to let the cat attack; Cat familiar: AC 12, HP 2, speed 40 ft, climb 30 ft, keen smell, Perception +3, Stealth +4. Telepathy within 100 ft; he can see through its eyes; Agonizing Blast: adds +4 (Charisma) to each Eldritch Blast beam's damage; Mask of Many Faces: cast Disguise Self at will without expending a slot; Beguiling Influence: proficiency in Deception and Persuasion; Military Rank (soldier): former soldiers of Zaranda's army recognise his rank; he can requisition simple gear and gain access to camps; Languages: Common and one more of choice (e.g. Chondathan or the tongue of Tethyr); Attuned items: Rod of the Pact Keeper, Cloak of Protection (2 of 3)
+Spells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Disguise Self (1); Hex (1); Guiding Bolt (1); Find Familiar (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)
+Limits: Light armour only; fragile in melee, best kept at range; Only two pact slots; he must husband them between short rests; Only one concentration spell at a time (Hex, Invisibility, Suggestion, Hypnotic Pattern, Friends); Not proficient with the rapier; it is a last resort; Tymora's ban: no cards. Gambling is a temptation, and enemies can use it against him; He owes the goddess; her envoy's duties may come at inconvenient times
+Counters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1
+Money: 350 gp
+Worn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak (Cloak of Protection); Armor / clothing: Studded Leather Armour; Boots: Boots of Elvenkind
+Pack: Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Light Crossbow; Potion of Healing ×2; Promissory Note; Rapier; Regimental Pay Slip; Rod of the Pact Keeper +1
+Place: Lower City quay, Baldur's Gate harbour
+Time: Day 1 · evening
+````
+
+**Player** (player t1):
+
+````text
+I let the line carry me forward and keep my eyes on the sergeant's ledger, not on the barrel. The sound of the shuffle still reaches me — the little riffle, the snap — and my fingers find the coin on its cord under my shirt and hold it until the sound is just dock-noise again. The empty stool and the candle can wait for someone else. If the Lady wants me at that table, she knows where I'm standing.
+
+When it's my turn, I step up to the awning and set my regimental pay slip on the ledger, face up, so she can see the seal.
+
+"James Worgen. Late of Queen Zaranda's foot, Tethyr; since then caravan work along the coast. Looking for honest hire, a bed, and a tavern that doesn't water the wine. Staying as long as the work lasts." I nod down at the cat, who has sat on my boot like she owns it. "She's with me. She doesn't drink."
+````
+
+### Screen 2
+
+````text
+The line moves a step at a time. Behind you the cards keep up their quiet rhythm, a riffle and a snap, and then the dock-noise drowns them out: a winch, a man swearing at a mule, gulls fighting over fish guts at the edge of the quay. The coin under your shirt is warm from your skin. When you let go of it, the cord sits a little crooked at your collar.
+
+The man in front of you, a wool-trader from Amn by his hat, argues briefly over the spelling of his name, loses, and goes. Then it's your turn.
+
+Sergeant Holloway looks at the pay slip before she looks at you. She turns it a quarter-turn with one blunt finger to read the seal, the Tethyrian crown over the regimental number, and her mouth tightens slightly, the look of someone who has seen that sort of paper before and has her own views on it.
+
+"Worgen," she says, and writes it. Her hand is square and quick. "Zaranda's foot." She writes that too, then *hire*, then a dash where the length of stay would go. She slides the pay slip back across the ledger without picking it up. "Fist's recruiting, if the caravans don't want you. Seatower, mornings. They don't ask much."
+
+Reading upside down, you can see the rest of today's page while she writes: names, ships, a word or two of business, in that same square hand. Four or five of the entries further up have a tiny mark in the margin, a circle with a dot in the middle, the size of a fingernail. There's no mark beside yours. Her pen moves past the margin without slowing.
+
+She glances down at the cat on your boot. Copper looks back at her, unblinking, with the patience of someone waiting for an apology.
+
+"Cats don't get written down," the sergeant says. "Wine." She jerks her chin uphill without looking where she's pointing. "The Elfsong doesn't water it. Charges you as if it's from Waterdeep, though. Blushing Mermaid waters it and robs you on top, so don't." Her eyes go past you, just for a moment, to the stacked crates and the candle burning beside the empty stool, then come back. "And stay off that barrel. Next."
+
+One of the soldiers behind her shifts on his spear and yawns. The Amnian wool-trader is already a hat bobbing up the hill. Behind you a woman with two children and a crate of hens is waiting her turn, and the sergeant has stopped looking at you.
+
+Down on the quay the lamps are all lit now. Copper gets off your boot, walks three steps toward the warehouses and the streets climbing beyond them, stops, and looks back at you, her tail very still.
+
+· Time passes: 10 minutes
+· Copper joins you
+· New place: The Elfsong
+· New place: The Blushing Mermaid
+· New place: Seatower of Balduran
+
+Your records, changed:
+James Worgen: HP 38/38
+Counters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1
+Money: 350 gp
+Carried: Boots of Elvenkind; Coin of Tymora; Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Light Crossbow; Potion of Healing ×2; Promissory Note; Rapier; Regimental Pay Slip; Rod of the Pact Keeper +1; Studded Leather Armour; Tethyrian Soldier's Cloak (Cloak of Protection)
+Party: Copper (HP 8/8)
+
+Place: Lower City quay, Baldur's Gate harbour · Time: Day 1 · evening
+````
+
+**Player** (player t2):
+
+````text
+I take the pay slip back, fold it along the old creases, and put it away.
+
+"Obliged, Sergeant. Elfsong it is."
+
+I step out from under the awning and don't look at the barrel — but I do take the long way round the crates, the side where the candlelight can't reach, and the dealer gets nothing from me but the back of a grey cloak.
+
+Copper is already three steps ahead, tail still, waiting. I fall in behind her the way I used to fall in behind the scouts who knew the ground.
+
+*You've been here before, haven't you,* I think at her, half a joke, half not. *Fine. Lead on. Uphill, and if you smell anything that isn't fish, tell me.*
+
+As we climb away from the quay I turn the sergeant's page over in my head: the circled dots in the margin, four or five of them, and none beside my name. Someone is being counted. I file it next to the candle and the empty stool, and keep walking.
+````
+
+### Screen 3
+
+````text
+You fold the slip along its creases, and the sergeant has already turned to the woman with the hens. Behind you the candle gutters in the draught off the water. You keep to the far side of the crates, where it's dark and smells of tar, and if the dealer looks up from his cards, it's at your cloak.
+
+Copper doesn't wait for you to catch up. She keeps her three steps ahead, no more and no less, and takes the climb the way a scout takes ground he has walked before. She doesn't stop to sniff at corners and she doesn't hesitate where the streets fork. Your thought reaches her, *you've been here before*, and what comes back isn't an answer. It's a feeling, the way familiars have of passing feelings along: wet stone underfoot and the sense of having walked this way beside a pair of boots that weren't yours. It's gone before you can get a proper hold of it.
+
+The Lower City folds in around you. The warehouses give way to chandlers and rope-walks, then to tall narrow houses leaning over the lane with washing strung between them. A Fist patrol of three goes past downhill, swinging a lantern and arguing about somebody's wife. At the corner where the street widens into a little market, a boy with a satchel of broadsheets is shouting the last of the day's news to people packing up their stalls:
+
+"*Baldur's Mouth!* Dukes still at it over the Zhent tolls! Fist hauls another out by the Grey Harbour steps, coin in his teeth, nobody claims him! Copper the sheet, copper the sheet!"
+
+A fishwife folding her awning spits to one side when he says *coin in his teeth*, then makes the sign against ill luck, quickly, the way you'd swat a fly.
+
+Copper doesn't stop for the boy. Two streets further up, though, she does stop, so suddenly that you nearly walk into her.
+
+On your left, between a cooper's shop and a shuttered house, a flight of worn stone steps goes down below street level to a low door with iron studs. There is no sign and no lamp. The stone at the top of the steps is rubbed smooth and dark where a great many hands have gripped it. Copper stands at the edge with her back to it. Her fur has risen along her spine, and she's not looking down the steps. She's looking at you.
+
+What comes across the link this time is clearer, and you don't like it: cold, damp, a smell of candle wax and old bone dice, and under that a blank where something should be. It reminds you of a scout who goes out and doesn't come back, and of the space by the fire everyone avoids looking at.
+
+Then she turns and goes on uphill, quicker now, and doesn't look back until the steps are well behind you.
+
+The street climbs, bends, and opens onto warm light: a broad old timber-and-stone front with leaded windows and a sign of a carved elf-woman, her mouth open in song. Voices and pipe-smoke come out of the open door, along with the smell of roast meat and the sound of somebody tuning a lute badly. This is the Elfsong. Copper sits down on the doorstep and starts washing a paw, as if she has never had a worry in her life.
+
+ (Out of game) None of these needed a roll, and the turn already played all four:
+
+1) No roll: nothing is uncertain about folding a paper away. You put the slip away while the sergeant turned to the next arrival.
+2) No roll: going round the far side of the crates is just a route. No one was watching for you, so there was nothing to roll against. The dealer saw your back at most.
+3) No roll: following your own familiar isn't uncertain. You followed Copper up through the Lower City to the Elfsong's door.
+4) No roll: the link between you and your familiar just works. She answered "have you been here before" with that feeling of walking this way beside another man's boots. Her warning was the stair: fur up, the smell of candle wax and bone dice, the blank like a scout who never came back, and then she led you past it.
+
+· New place: Lower City
+· New place: Unmarked stair by the cooper's shop
+· A rumour of a place: Grey Harbour steps
+· Lead: Coins in the teeth
+· Lead: The stair Copper won't take
+· Travel: The Elfsong (25 minutes)
+· New person: Baldur's Mouth crier boy
+
+Your records, changed:
+James Worgen: HP 38/38
+Counters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1
+Money: 350 gp
+Carried: Boots of Elvenkind; Coin of Tymora; Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Light Crossbow; Potion of Healing ×2; Promissory Note; Rapier; Regimental Pay Slip; Rod of the Pact Keeper +1; Studded Leather Armour; Tethyrian Soldier's Cloak (Cloak of Protection)
+Party: Copper (HP 8/8)
+Threads: Coins in the teeth; The stair Copper won't take
+
+Place: The Elfsong · Time: Day 1 · evening
+````
+
+**Player** (player t3):
+
+````text
+I stand a moment on the step with the warmth coming out the door, and look back the way we came — downhill, toward the cooper's and the unmarked stair, though from here there's nothing to see but chimney smoke and the first stars over the harbour.
+
+*Bone dice,* I think at Copper. *Not cards. Small mercies.* She doesn't stop washing her paw.
+
+Then I go in.
+
+I take the room the way a soldier takes any room: door on my left, bar ahead, hearth, the stairs up, the back way out past the kitchen if there is one, and who's sitting where. I'm not hunting faces yet — just counting them. Then I go to the bar, put a few silver down where the keeper can see them, and ask for a bed for the night, a plate of whatever the roast is, and a cup of the wine the sergeant on the quay swears they don't water.
+
+While the keeper's pouring, I ask it lightly, like a man making conversation about the walk up:
+
+"Two streets below here, by a cooper's — stone steps going down to a door with no sign. My cat wouldn't go near it. What's down there that frightens cats?"
+````
+
+### Screen 4
+
+````text
+The warmth comes out the door at your back, and so does a smell of roast and spilled ale. Downhill there's only chimney smoke, slate roofs going blue, and the first stars pricking out over the harbour masts. The stair is down there somewhere under it all. You can't see it from here.
+
+Copper doesn't stop washing her paw. A moment after you step inside, she does too, tail up, as if she'd planned to come in all along.
+
+The Elfsong is one long low room under smoke-black beams. The bar runs along the right-hand wall, a dark slab of ship's oak worn pale where elbows rest. There's a broad hearth at the far end with a spit turning in it, and a staircase on the left climbing to a gallery and the rooms above. Past the end of the bar, a swinging door lets out clatter and steam. That's the kitchen, and beyond it a bolted back door you can make out when a potboy shoulders through.
+
+You count thirty-odd people. Near the door, six caravan guards in road leathers are arguing over a map pinned flat with mugs, and one of them keeps saying "*Beregost*" like it's a curse. Two Gondsmen in leather aprons are eating in silence, a brass gadget between them that ticks. Along the wall, a woman is writing a letter and crying a little, very neatly. Under the gallery, three young bloods are well into the wine. A half-elf on a stool by the stairs is the badly tuned lute; he's still losing to it. At the hearth sits an old man alone on a settle, so close to the fire his boots steam. A leather dice-cup lies on its side by his hand. He isn't shaking it. Of all of them, he's the only one who watches the cat come in.
+
+The keeper is a heavy-armed woman in her fifties with grey hair pinned up under a kerchief and flour to the elbows. She turns from the taps as you reach the bar.
+
+You go to put a few silver down and your fingers find only gold. The last hand paid you in nothing smaller. You set down two gold pieces instead.
+
+"Bed, a plate, and a cup of the wine the sergeant on the quay swears you don't water."
+
+"Brena sent you?" Something in her face eases a notch. "Then she told you we don't water it and we don't give it away, either." She takes the coins and counts change back onto the oak: seven silver. "Bed's eight silver, back room, top of the stairs, second door, and the latch works. Roast's mutton, three silver. Wine's two the cup." She pours from a stone jar, dark red, right to the brim, and pushes it over. "Your cat eats what falls. I don't feed cats on purpose. They tell their friends."
+
+The wine is good. Better than good. Somebody in Waterdeep is missing it.
+
+While she cuts the mutton you ask about the stair, easily, a man talking about his walk up the hill.
+
+The knife doesn't stop, but she takes a moment to answer.
+
+"Cooper's on Smelt Lane. The steps with the dark stone at the top." She slaps a slab of mutton on a trencher and spoons drippings over it. "That was a dicing cellar once, before my time. My mother called it the Knucklebone. Bone dice, house dice, you played theirs or you didn't play. Shut forty-odd years now." She sets the trencher in front of you with bread on the side. "Now it's a door. One of the ways down under."
+
+She doesn't say *Undercellar*. She doesn't have to. She wipes her hands on her apron and looks at you straight for the first time, the way she'd look at a man who'd asked where the Guild keeps its money.
+
+"Folk who knock there are expected, or they're sorry. Your cat's got more sense than most sailors I serve." Then, more lightly, because there are other customers: "Eat. It's better hot."
+
+She goes off to the young bloods under the gallery, who are calling for another jar.
+
+At the hearth, Copper has passed the spit and the warm stones and sat down at the old man's steaming boots. She's looking up at him. He's looking down at her, and his face has gone very still, like a man who has heard a voice he hasn't heard in years and isn't sure he's heard it now. His hand moves toward the dice-cup, stops, and rests on his knee instead.
+
+Across the link there's nothing clear, just warmth and the smell of woodsmoke, and under it a small, patient sort of waiting.
+
+· Time passes: 15 minutes
+· −2 gps (Paid the Elfsong's keeper two gold for a bed (8 sp), roast mutton (3 sp) and a cup of wine (2 sp))
+· +7 sps (Change counted back onto the bar from two gold pieces)
+· A rumour of a place: Undercellar
+· Journal: “The stair Copper won't take” updated
+· New person: Keeper of the Elfsong
+· New person: Old dicer at the Elfsong hearth
+
+Your records, changed:
+James Worgen: HP 38/38
+Counters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1
+Money: 348 gp; 7 sp
+Carried: Boots of Elvenkind; Coin of Tymora; Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Light Crossbow; Potion of Healing ×2; Promissory Note; Rapier; Regimental Pay Slip; Rod of the Pact Keeper +1; Studded Leather Armour; Tethyrian Soldier's Cloak (Cloak of Protection)
+Party: Copper (HP 8/8)
+Threads: The stair Copper won't take; Coins in the teeth
+
+Place: The Elfsong · Time: Day 1 · evening
+````
+
+**Player** (player t4):
+
+````text
+I take the trencher and the cup and carry them down the room toward the hearth. Not quick. A man with a hot plate looking for a warm seat, nothing more.
+
+The settle has room on it. I sit at the far end, the fire on my face, the dice-cup between us where I can see it and he can see me not looking at it. I tear the bread, put a scrap of mutton on the hearthstone for the cat she's not supposed to be fed, and eat a few mouthfuls before I say anything at all.
+
+Then, quietly, to the fire rather than to him:
+
+"She doesn't do that. Sit with strangers. She wouldn't go near a cellar door down the hill, and she walked past a spit of roast mutton to sit on your boots." I take a swallow of wine. "So either you smell better than the mutton, or you know her. Which is it, old man?"
+````
+
+### Screen 5
+
+````text
+The settle is old oak, polished by years of backsides, and the end nearest the fire is hot enough that you can feel it through your breeches. You sit, set the trencher on your knee, and the dice-cup lies on its side between you on the seat. It's brown leather gone black at the rim where a thumb used to hold it. You don't look at it. He watches you not looking.
+
+You tear the bread. The scrap of mutton lands on the hearthstone. Copper looks at it, then at you, then goes back to the old man's boots as if the meat were beneath her. A moment later, when she thinks nobody is watching, she eats it in two neat bites and goes back to sitting.
+
+Up close the old man is less frail than he looked from the bar. His shoulders are broad, a docker's or a sailor's, under a coat patched at both elbows. His hands rest on his knees, the knuckles thick and the skin spotted. His boots go on steaming. He lets you get through four mouthfuls and lets your question settle before he moves at all.
+
+"Neither," he says at last. His voice is low and dry from the fire. He puts each word down carefully, like a man paying out coins.
+
+"Didn't say I know her. Said nothing." He looks down at Copper, and she looks back up at him. "Knew a cat that sat on boots. Not her own man's. Whoever he meant to talk to next. So they'd have to look down, and then he had them."
+
+He's quiet a while. A log settles in the grate and sends up sparks. Over by the stairs the half-elf gets three notes in a row right, and seems surprised by it.
+
+"Forty years. Bit more." His thumb moves on his knee, just once, the way a thumb moves on the rim of a cup. "Man came off a southern boat. Sat there, where you are. Ate the mutton. Wouldn't touch the cup, not even to pass it." His eyes come round to you, pale and wet at the rims, and stop on your collar, where the cord sits a little crooked. They rest there a moment, then lift to your face.
+
+"Last I saw that cat, she was sitting at the top of the steps on Smelt Lane. All night, in the rain. Waiting for him to come up." He says it flatly, like the weather. "Morning, she was gone too."
+
+Copper hasn't moved. Across the link comes the smell of woodsmoke, and under it something that wasn't there a moment ago: rain on stone, and a long cold wait that she doesn't push at you. She just lets you feel it.
+
+The old man leans forward an inch, elbows on his knees, and looks at the cat instead of you.
+
+"What do you call her?"
+
+· Time passes: 10 minutes
+· Journal: “The stair Copper won't take” updated
+
+Place: The Elfsong · Time: Day 1 · evening
+````
+
+**Player** (player t5):
+
+````text
+I chew, and swallow, and let the rain on stone sit in my chest a while before I answer.
+
+"Copper." I look down at her. "Not for the colour. She turned up the night I won more of it than I'd ever seen, and she wouldn't leave. I thought she was after the fish on the table." A short breath through the nose that isn't quite a laugh. "I'm starting to think she was after me."
+
+I set the trencher aside on the settle, on the far side from the cup, and turn so the fire's on my shoulder and my face is to him.
+
+"Forty years, and you still carry the cup you didn't pass him. That's not a man remembering a stranger." I keep my voice down under the lute and the guards' argument. "So I'll trade you honest for honest. I came off a southern boat today with an order from a lady who doesn't explain herself, and a cat I didn't choose. Your man off the southern boat — what did he go down those steps for? And what did he owe, and to whom?"
+````
+
+### Screen 6
+
+````text
+The old man doesn't move when you say her name. He looks at the cat for a long moment, the way you'd check a coin against the light. Copper looks back up at him and blinks, slowly, once.
+
+"Night you won," he says.
+
+Then he's quiet while the half-elf by the stairs loses his three good notes again and starts the tune over. Over at the map table one of the caravan guards slaps the wood, and the others laugh at him.
+
+When you turn so the fire is on your shoulder and say *honest for honest*, he finally looks at you properly. He takes in your face, then the cord at your collar, then your face again.
+
+"Tarrow," he says. "Gil. Hauled cargo off the Grey Harbour forty-one years. Back's gone now." It isn't an offer of friendship, just the first coin on the table. "He never named her. Said she wasn't his to name. Said she turned up the night he won, and wouldn't leave." His mouth does something that might have been a smile, a long time ago. "Thought she was after the fish."
+
+He reaches over and sets two fingers on the dice-cup. He doesn't lift it, only rests them there.
+
+"Cup's not mine. It's his. Gave it to me at the top of the steps. *Hold this, Gil, I'll want it back.*" He takes the fingers away. "Haven't shaken it since. Not mine to shake."
+
+Up close, by the firelight, you can see a ring of tiny marks stamped into the leather round the inside of the rim, too small and too worn to read from where you sit. They aren't a maker's mark. They're too regular for that, and too many.
+
+"What he went down for." Gil leans back until the settle creaks. "Not to play. He'd sit with us on the quay and watch the cards and never take a hand. Knucklebone was different. House dice. You threw theirs, and theirs rolled for the house. Everybody knew. Nobody could say how." He watches the fire. "He said the house's bones rolled for *somebody*, and he wanted to see who."
+
+A log shifts. He waits for it to settle before he goes on.
+
+"Owed. Aye, he owed. Wore one like yours." His eyes drop to your collar for half a breath. "Said his lady'd lost something. Something of hers in this city, in the wrong hands. He'd come to fetch it back. Said it like a man paying a debt, not like a man doing a kindness."
+
+"Man who kept the Knucklebone wore his rings turned in. Every one, stones to the palm. Never saw what was on them." He shrugs, a slow heave of heavy shoulders. "Your man went down. Didn't come up. House shut inside the month. Nobody bought the lease. Nobody's run a game there since, not that you'd call a game."
+
+At his feet Copper has lain down with her chin on the toe of his steaming boot. What comes over the link isn't rain any more. It's the smell of wet leather and a big, careful hand on her back, a long time ago.
+
+"There's a few of us left that sat with him," Gil says. "Fewer every winter. We keep a stool for the Lady on the quay, and a candle. Rusk's boy keeps it now. Tam, with the cards. His da sat with us." He looks at you sidelong. "You walked past it. Saw you come up the hill with the dock on your cloak."
+
+He pulls in a breath through his nose and lets it go.
+
+"You going down there?"
+
+· Time passes: 15 minutes
+· Gil Tarrow now has: Envoy's dice-cup
+· Journal: “The stair Copper won't take” updated
+
+Place: The Elfsong · Time: Day 1 · evening
+````
+
+**Player** (player t6):
+
+````text
+I don't answer straight away. I look at the cup instead — at the ring of marks inside the rim that the firelight keeps showing me and taking away — and then I look at Gil's hands on his knees.
+
+"Not tonight," I say. "Not blind. I was a scout before I was anything else, and the scouts who went down holes without knowing what was in them are the ones nobody talks about at the fire." I nod at Copper's chin on his boot. "She already lost one man on those steps. I'd like to be the one she doesn't."
+
+Then, quietly, with my hands staying where they are on my own knees:
+
+"But I'm going. Not because I'm brave — because the lady I owe doesn't send a man to this city and a cat to that door for the mutton. She lost something. He went to fetch it. He didn't come up, and forty years on it's still in the wrong hands, or I wouldn't be here." I let that sit. "He said he'd want that cup back. Maybe it was never you he meant to hand it to. May I look at it? Not shake it — look. Those marks round the rim. I'd like to know what he was carrying before I carry it after him."
+````
+
+### Screen 7
+
+````text
+Gil doesn't answer right away either. He watches your hands stay on your knees. When you say *not blind*, something in his shoulders loosens, the way a man's do when a rope he's been holding finally takes the weight on its own.
+
+"Scouts," he says. "Aye."
+
+When you ask to look, he takes a while. A log burns through and drops. The half-elf by the stairs gives up on his tune and starts another one. Copper lifts her chin off Gil's boot and watches the cup.
+
+Then he picks it up. He holds it by the base, not the rim, the way you'd hold something hot, and puts it in your hands mouth up.
+
+"Look, then," he says. "Hands on it were his. Now they're yours a while."
+
+It's lighter than you expected. The leather is old and gone stiff, and the black at the rim is a thumb's work over years, but the stitching is good. Someone paid a proper cupmaker. You tilt it to the fire. The ring of marks inside the rim is stamped into the leather with a punch no bigger than a pin's head, dozens of them, close as beads, running right round.
+
+[Roll card] James Worgen · Skill check — Religion: reading the ring of tiny marks inside the old envoy's dice-cup
+What adds to the die: +2 Religion +3 (warlock)
+DC 15
+The die is cast on the server; tap it to see how it fell.
+
+[Roll the die]
+````
+
+**Player** (player t6 card 1):
+
+````text
+[Roll the die]
+````
+
+### Screen 8
+
+````text
+[Roll card] James Worgen · Skill check — Religion: reading the ring of tiny marks inside the old envoy's dice-cup
+What adds to the die: +2 Religion +3 (warlock)
+DC 15
+Die: 2
+2 + 2 = 4
+Failure — 4
+
+[Onward] [Request an allowed reroll]
+````
+
+**Player** (player t6 card 2):
+
+````text
+[Onward]
+````
+
+### Screen 9
+
+````text
+You turn the cup slowly, a little at a time, and the firelight won't hold still for you. The marks are worn almost flat, and the punch that made them was finer than anything a cupmaker keeps. In the light they look round, every one the same, like a row of tiny coins or tiny faces, then like nothing but the grain of the leather. You know the Lady's signs as well as any of her people: the coin, the smiling face, the star-and-coin of the Hall's seals. You can't fit any of them to these. You can't tell if it's writing, a prayer, a tally or something a bored apprentice did. They won't read for you.
+
+There's one thing you can see. The marks don't meet all the way round. Where the ring would close, under the place where the thumb wore the rim black, one mark is different. It's narrower and upright, a single short line with a slight swelling in the middle. In this light you can't tell if it was stamped like that, or if a thumb wore a round mark down to a sliver over the years.
+
+Copper has stood up. She puts her front paws on the edge of the settle by your knee, smells the cup's mouth for a long moment, and sneezes. What comes over the link is nothing but leather and old sweat, and under that the dry clean click of dice going round, *fair*, though she has no word for it. Then she gets down and goes back to Gil's boot.
+
+Gil has been watching your face, not the cup.
+
+"He'd do that," he says. "Turn it to the light. Like a man counting." He leans back against the oak. "Never told me what it said. I never asked."
+
+He doesn't hold out his hand for it, and he doesn't take his eyes off it either.
+
+"Not tonight, you said." He nods slowly at the fire. "Good. Night's when they're about, down there." Then, after a while: "You want to go not blind, there's Tam. His da went to the top of those steps with us, that night. Saw more than I did. Saw who opened the door." His mouth twists. "Never told me. Might tell you."
+
+· roll: Religion: reading the ring of tiny marks inside the old envoy's dice-cup: 4 vs 15 — failure
+· Time passes: 10 minutes
+· Changed: Envoy's dice-cup (James examined the cup by the fire; what he could make out of the marks)
+· Lent: Envoy's dice-cup → James Worgen — Put in James's hands to look at, not to shake; still Gil's, held for its owner, to be handed back
+· Journal: “The stair Copper won't take” updated
+
+Your records, changed:
+James Worgen: HP 38/38
+Counters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1
+Money: 348 gp; 7 sp
+Carried: Boots of Elvenkind; Coin of Tymora; Component Pouch; Crossbow Bolts ×20; Deck of Cards; Envoy's dice-cup; Explorer's Pack; Light Crossbow; Potion of Healing ×2; Promissory Note; Rapier; Regimental Pay Slip; Rod of the Pact Keeper +1; Studded Leather Armour; Tethyrian Soldier's Cloak (Cloak of Protection)
+Party: Copper (HP 8/8)
+Threads: The stair Copper won't take; Coins in the teeth
+
+Place: The Elfsong · Time: Day 1 · evening
+````
+
+**Player** (player t7):
+
+````text
+I turn it once more to the light, and the marks go on being marks. I know when I'm beaten by a thing. I set my thumb — gently, not where his was — beside that one narrow upright stroke where the ring doesn't close.
+
+"There. That one's different. Either he meant it, or forty years of your thumb wore it to that." I tilt it so he can see. "I can't read the rest. I was never a priest, Gil. I'm a soldier the Lady picked up off a card table."
+
+Then I put it back in his hands, base first, the way he gave it to me.
+
+"It's not mine. He told you to hold it, and you've held it. When I come up those steps — if I come up — I'll ask you for it then, and you can decide if I'm the one he meant." I pick up the cup of wine instead and hold it a moment without drinking. "Tam, with the cards. That's a problem. The lady who sent me took the cards off me the same night she gave me the cat. I can't sit at that barrel, and I don't trust myself to stand next to it for long." A breath. "Would he come up the hill and talk to a man by a fire? If you asked him. Tell him the cat's back. I think that'll be enough."
+````
+
+### Screen 10
+
+````text
+Gil watches your thumb come to rest beside the narrow stroke, not on it. He leans in, slowly, until the firelight shows in his wet eyes, and looks for a long time.
+
+"Wasn't me," he says. "Never held it by the rim. Base, always. Like I gave it you." He sits back. "That's his thumb, or it's how it was stamped. Not mine."
+
+When you hand it back base first, he takes it without hurrying. He turns it once in his big hands, not to the light like you did, just to feel the weight, and lays it on its side on the settle where it was before, mouth towards the fire. His hand stays on it a moment longer than it needs to.
+
+"*If* I come up," he says to the fire, quietly. "Aye. He never said if."
+
+He doesn't say anything else about it.
+
+When you get to Tam and the cards, Gil grunts.
+
+"Won't leave the barrel while there's a hand on. Won't leave the candle burning without him." He looks at his steaming boots. "Can't fetch him myself. Back won't take the hill twice in a night."
+
+He lifts two fingers off his knee, barely, and a potboy coming past with an armful of empty jugs stops as if somebody had pulled a string. He's about twelve, with a scab on his chin and an apron down to his ankles.
+
+"Pip."
+
+From behind the bar, without looking up from the jar she's filling, the keeper says: "Boy's a copper the errand, and he's back before that jar's empty or I'll know why."
+
+Gil digs in his coat and puts a copper in the boy's palm, then closes the boy's fingers over it with his own thick ones.
+
+"Quay. Barrel by the crates, where the candle is. Tam Rusk. Tell him Gil wants him at the Elfsong fire." A pause. "Tell him the cat's back."
+
+Pip looks at Copper on Gil's boot, then at you, and you can see him putting it away to tell someone later. Then he dumps the jugs on the end of the bar, ignores the keeper's look, and goes out the door at a run.
+
+"He'll finish the hand," Gil says. "Then he comes or he doesn't. His da'd have come." He breathes out through his nose. "Tam's more careful than his da."
+
+The half-elf by the stairs has found a tune he can play, a slow coast song, and a couple of the caravan guards are humming along without meaning to. Copper shifts her chin on Gil's boot and goes still again. Across the link there's only warmth and a sleepy kind of watching, eyes half shut on the door.
+
+Gil keeps his eyes on the fire. When he speaks again his voice is lower, under the song.
+
+"Your lady. She tell you what it is she's lost?"
+
+---
+
+*(Out of game: handing the cup back base first, and not claiming it until you've earned it, was strong play. You get Heroic Inspiration, so you can reroll one of your own rolls later.)*
+
+· Time passes: 10 minutes
+· Returned: Envoy's dice-cup → Gil Tarrow
+· Heroic Inspiration: 0 → 1/1 (Handed the envoy's dice-cup back base first and wouldn't claim it until he'd earned it. Can reroll one of his own rolls later.)
+· New person: Pip
+
+Your records, changed:
+James Worgen: HP 38/38
+Counters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1; Heroic inspiration 1/1
+Money: 348 gp; 7 sp
+Carried: Boots of Elvenkind; Coin of Tymora; Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Light Crossbow; Potion of Healing ×2; Promissory Note; Rapier; Regimental Pay Slip; Rod of the Pact Keeper +1; Studded Leather Armour; Tethyrian Soldier's Cloak (Cloak of Protection)
+Party: Copper (HP 8/8)
+Threads: The stair Copper won't take; Coins in the teeth
+
+Place: The Elfsong · Time: Day 1 · evening
+````
+
+**Player** (player t8):
+
+````text
+I drink, finally, and set the cup down on the hearthstone between my boots.
+
+"No." I say it plain, because there's no dressing it up. "She told me three things. Put the cards down. Serve. Go to the Gate and I'd learn there how I could help her. That's the whole of it. A goddess of luck doesn't deal you the hand face up." I turn the coin on its cord out from under my shirt, once, so he can see Her profile worn nearly smooth, and tuck it back. "I'd hoped it was a note left at a temple, or a man with a name. Instead it's forty-year-old steps and a cat that remembers rain."
+
+I lean my forearms on my knees, same as him, and watch the fire with him.
+
+"So tell me about the keeper. The one with his rings turned in. Did he have a name on the quay — any name, even a wrong one? Is he dead, or old like us, or did he just stop being seen the same month the door shut?" A pause. "Because a house doesn't close in a month on its own, Gil. Somebody shut it. And things that are *guarded* forty years later were put somewhere by somebody who meant to keep them."
+````
+
+### Screen 11
+
+````text
+You drink at last. The wine has gone warm in your hand and it's still good. You set the cup on the hearthstone between your boots.
+
+Gil listens to the three things without moving. When the coin turns out from under your shirt he looks at it, at the Lady's profile worn nearly smooth by somebody's thumb, and for a moment his face does something complicated. Then you tuck it away and he looks at the fire again.
+
+"His was new," he says. "Bright. Like it'd been struck that spring." He breathes out through his nose. "Yours has been carried."
+
+You lean your forearms on your knees. He's sitting the same way, and for a while you both just watch the spit turn. The fat drips and hisses. Up on the gallery a door bangs and one of the young bloods laughs at nothing.
+
+"Sallow," he says. "Quay called him Sallow. Face like tallow gone off. Never had his right name. Nobody did." He rubs his thick knuckles slowly, one hand over the other. "Soft voice. Good coat. Never came down to the water. You went up to him."
+
+"Dead, I couldn't say. Old, I couldn't say. Stopped being seen. Same month, like you said." He thinks about it. "Wasn't the Fist shut it. Fist never came. No crier shouting it. One week the lamp's lit on the steps, next week it isn't, and nobody asks. Men who'd thrown there all their lives, and nobody asks." His mouth goes flat. "That's what I mind, after. Not one of us asked."
+
+A log falls in and he waits for the sparks to die down.
+
+"Somebody keeps it, though. You're right there." He doesn't look at you. "Hobb, the old cooper on Smelt Lane, dead now, his son has the shop. Hobb told me once, drunk. The ground-rent on that cellar gets paid. Every quarter-day, forty years, never late. Lease nobody bought, and the rent paid regular." He lets that sit. "Hobb never saw who paid. Said it came through a counting-house clerk. Said he stopped wondering because wondering made him sleep bad."
+
+Copper's ear turns toward the door before you hear anything.
+
+Then the door bangs open and the quay's damp air comes in, and Pip with it, red-faced and blowing, apron hitched up in one fist so he can run. The jar the keeper was filling isn't empty yet. He skids up to the hearth, glances at Copper, and talks to Gil because Gil paid him.
+
+"Told him. Tam. Said what you said." He gulps air. "He put the cards down. Didn't say nothing. Then he picked them up again and said *finish the hand*." He wipes his nose on his wrist. "But he pinched the candle out first. The one by the stool. I seen him."
+
+Gil's hand stops on his knee.
+
+"Never pinches it," he says quietly. "Not while there's a hand on."
+
+From behind the bar, the keeper doesn't look up: "Jugs, Pip."
+
+The boy goes. Copper has sat up off Gil's boot and is facing the door now, tail wrapped round her feet, and what comes over the link is plain waiting, the kind a scout does at the edge of a road.
+
+· Time passes: 15 minutes
+· New place: Counting House
+· Journal: “The stair Copper won't take” updated
+· New person: Sallow
+· New person: Hobb the cooper
+
+Place: The Elfsong · Time: Day 1 · evening
+````
+
+**Player** (player t9):
+
+````text
+I nod to Pip's back as he goes, and fish a silver out for the next jar before the keeper can ask — three cups this time, and I set the third on the settle at Gil's side of me, between us, where a man coming in from the cold could take it without having to choose a seat first.
+
+"Counting-house clerk," I say, low, while we wait. "Forty years of quarter-days through the same house. That's a ledger somewhere with a name at the top of it. Paper doesn't stop being seen." I file it beside the circled dots in the sergeant's margin and let it go for now.
+
+Then I move my trencher off the settle onto the hearthstone and shift up a foot so there's room on my side, not Gil's — the side away from the cup. I pull the hood of my cloak back off my shoulders so my face is plain in the firelight: no mask, no soldier's shadow. If Tam's more careful than his da, I'd rather he saw exactly what sat down at his father's fire.
+
+And I turn to watch the door with the cat.
+````
+
+### Screen 12
+
+````text
+Pip is back behind the bar with the jugs before you've got the silver out. The keeper sees the coin and talks before you do.
+
+"Three cups is six silver." She pours them full to the brim, the same as before, and sets them on the oak in a row. She takes your one silver and looks at it in her floury palm. "That's one. The other five go on your room, and you settle in the morning with the bed." She's already turning to the taps. "Don't let the old man drink yours."
+
+You carry the three back. One goes on the hearthstone by your boots. One goes in Gil's hand, and he takes it without a word. The third you stand on the settle between you, where a man coming in from the cold can reach it without picking a seat first. Gil looks at it and then at you, and doesn't comment.
+
+*Counting-house clerk.* You say it low to the fire. Gil grunts. It's the sound of a man who stopped wondering about that a long time ago and isn't sorry somebody else has started.
+
+You move the trencher down onto the hearthstone and shift up a foot, so the empty space on the settle is on your side, away from the cup. You push the hood back off your shoulders. The fire is hot on your face and you let it show you as you are.
+
+Then you wait, and the room carries on around you. The Gondsmen pack their ticking gadget into a box and leave, arguing quietly about a spring. The crying woman seals her letter with a candle-end and sits holding it. The young bloods under the gallery start a song and give it up halfway. The half-elf gets all the way through his coast tune once without a mistake, and nobody notices but him. The spit goes round. Twenty minutes, perhaps a little more.
+
+Copper sees the door first. Her ears go forward a moment before the latch lifts.
+
+He comes in out of the damp with his collar up. He's lean, somewhere past thirty, in a dockhand's jerkin with the sleeves pushed back, and his fingers are grey with ink to the second knuckle. He stops just inside the door and takes the room the way you did: bar, stairs, kitchen door, who's sitting where. His eyes reach the hearth and stay on it. First the cat, then Gil, then the cup on its side, then the wine standing beside it, and last of all your face, bare in the firelight.
+
+His right hand keeps moving at his side, thumb over fingers, the small cut-and-square of a dealer with no deck to hold.
+
+He comes down the room slowly and stops short of the hearth, still on his feet. He doesn't look at the empty place you made.
+
+Copper gets up off Gil's boot. She crosses the hearthstone, not in any hurry, and sits down on the toe of Tam Rusk's left boot. She looks up at him.
+
+He has to look down. He stays like that a long breath, and his hand stops moving.
+
+"Da said she did that," he says. His voice is quiet and quick, quay-flat, all the edges filed off. "Sat on you so you had to look at her. I thought he was making it pretty." He crouches, slowly, and doesn't touch her. She lets him look. When he straightens up he takes the cup of wine off the settle and holds it without drinking. Then he sits down in the space on your side, at the very edge, with his knees towards the door.
+
+"I pinched the candle," he says to Gil, not to you. "First time." Then he turns his head and looks at you properly, at the cord at your collar and then at your hands.
+
+"Gil's boy said you walked past my barrel. Took the long way round it, in the dark." His thumb finds the rim of his wine cup and goes still there. "Da told me what to ask, if she ever came back. So I'll ask it. Do you play?"
+
+· Time passes: 25 minutes
+· −1 sp (Paid the Elfsong keeper 1 sp towards three cups of wine (6 sp); the other 5 sp go on the room.)
+· Debt: The Elfsong tab
+
+Your records, changed:
+James Worgen: HP 38/38
+Counters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1; Heroic inspiration 1/1
+Money: 348 gp; 6 sp
+Carried: Boots of Elvenkind; Coin of Tymora; Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Light Crossbow; Potion of Healing ×2; Promissory Note; Rapier; Regimental Pay Slip; Rod of the Pact Keeper +1; Studded Leather Armour; Tethyrian Soldier's Cloak (Cloak of Protection)
+Party: Copper (HP 8/8)
+Threads: The stair Copper won't take; Coins in the teeth
+Debts: The Elfsong tab
+
+Place: The Elfsong · Time: Day 1 · evening
+````
+
+**Player** (player t10):
+
+````text
+I don't answer fast. Tam's the kind of man who'd notice a fast answer, and his da told him to ask this one for a reason.
+
+"I played," I say. "Better than most. Well enough to pay a company's wages off one table and lose a company's wages at the next. I played for eleven years after the war and I was never once bored." I reach under my cloak, slow, where he can see my hand the whole way, and bring out the leather case with the deck in it. I set it on the hearthstone between my boots, next to the wine. The strap stays buckled.
+
+"The last hand, I was losing. Everything I had was on the table and I asked the Lady for it back. She gave it to me. Then she took the cards." I look at the case, not at him. "That was three months ago. I haven't opened it since. I carry it because the night I throw it in a river is the night I've decided I'm safe, and I'm not safe. I walked round your barrel in the dark because I heard your shuffle from the gangplank and my hands knew it."
+
+Then I do look at him.
+
+"So — no, Tam. I don't play. Not any more. I'd give a lot to, and that's the honest answer, and I think it's the one your da wanted asked."
+````
+
+### Screen 13
+
+````text
+Tam doesn't look at the case when it comes out. He watches the hand: out from under the cloak, down to the hearthstone, back to your knee. He watches it the way he'd watch a hand at his barrel. When the strap stays buckled his eyes stay on the buckle a moment longer.
+
+You say it all to him. Behind you the room keeps going. The caravan guards are folding their map, and the half-elf is tuning between songs. At *my hands knew it*, Gil lets out a low sound, too short to be a word.
+
+At the *no*, Tam's thumb goes still on the rim of his cup.
+
+He drinks for the first time since he sat down. One swallow, then the cup rests on his knee.
+
+"Da said there's two wrong answers." His voice is quick and flat, pitched under the lute. "*Never*, that's a liar or a priest. *Yes*, that's the other sort. You deal him in and keep your purse close." He looks at the case between your boots. "Said the right one costs a man something to say. Said I'd know it." A breath. "Didn't think I would."
+
+He turns his cup a quarter-turn on his knee, then speaks to the fire and not to you.
+
+"Da was on the top step. Gil was back by the cooper's wall."
+
+"Rain in my eyes," Gil says. "Saw the door. Not who."
+
+"Your man knocked three, then one. Door opened before the one was done." Tam's eyes come up to the cord at your collar. "Wasn't Sallow. It was a woman in a grey coat, good cloth. She had the Lady's coin on a chain, the way the Hall priests wear it. Only she wore it turned round, back side out. Da thought it'd swung on the chain. Then he saw it was pinned that way."
+
+"Your man saw it too. Da swore to that. He stopped on the step, one breath. Then he took his hat off to her and went in like he'd come to collect." His thumb starts moving at his side again, cut and square. "Lamp was behind her. Da never got her face. He got her hands. Rings on every finger, every one turned in."
+
+At Tam's boot, Copper's ears have gone flat. What comes over the link isn't rain this time. It's a soft, kind voice saying something she has no word for, and a big careful hand lifting off her back. Then nothing.
+
+Gil is looking at the fire. He doesn't say anything.
+
+"You'll want to know about the candle." Tam doesn't wait for you to ask. "Since spring, four men won big at my barrel. More than the barrel holds, like the cards were leaning their way. Three came out of the water with a coin in their teeth. Fourth's Denny Coyle. Took eleven gold off a Calishite mate last week and stood the whole quay drinks. Told everybody the Lady sat with him." His mouth goes thin. "Fist pulled him out at the Grey Harbour steps today."
+
+"And there's a man comes some nights. Stands back by the bollards. Good gloves. Never plays, only watches the stool." He finishes his wine. "He was there tonight when Gil's boy came running. So I pinched it."
+
+He sets the empty cup on the settle, well away from the dice-cup, and looks straight at you.
+
+"Seatower keeps the unclaimed three days, then it's lime. Denny's got two left. Say you're kin and they'll let you look, they don't check." His knees are already turned to the door. "You going to look at him?"
+
+· Time passes: 10 minutes
+· Journal: “Coins in the teeth” updated
+· Journal: “The stair Copper won't take” updated
+· New person: Denny Coyle
+· New person: The woman in the grey coat
+· New person: The man in good gloves
+
+Your records, changed:
+James Worgen: HP 38/38
+Counters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1; Heroic inspiration 1/1
+Money: 348 gp; 6 sp
+Carried: Boots of Elvenkind; Coin of Tymora; Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Light Crossbow; Potion of Healing ×2; Promissory Note; Rapier; Regimental Pay Slip; Rod of the Pact Keeper +1; Studded Leather Armour; Tethyrian Soldier's Cloak (Cloak of Protection)
+Party: Copper (HP 8/8)
+Threads: Coins in the teeth; The stair Copper won't take
+Debts: The Elfsong tab
+
+Place: The Elfsong · Time: Day 1 · evening
+````
+
+**Player** (player t11):
+
+````text
+I pick the case up off the hearthstone and put it back under the cloak where it lives, strap still buckled. My hand doesn't linger on it, and Tam watches that too.
+
+"Yes. First thing, before the lime. I'll be his cousin from Tethyr who came up on the wrong boat." I turn the empty wine cup on my knee the way he turned his. "But that's the morning. Tonight I'm thinking about the man by the bollards. He watched you pinch the candle, and then he watched a boy run up the hill shouting Gil's name. Men with good gloves don't stand in the wet for nothing."
+
+I look at him properly — the ink to the second knuckle, the knees already turned to the door.
+
+"What does he look like, Tam? Height, age, how he stands, which hand he keeps free. Has he ever spoken to anyone — a dockhand, the sergeant, the Calishite? Did he come before the first man drowned, or after?" A beat. "And are you going back down there tonight? Because if you are, I'd sooner you didn't go alone. Not for your sake only. Your da saw the woman's hands. You're the last one who can tell me what the man's look like, and I've got two days before Denny Coyle's in a lime pit and no one at all to ask."
+````
+
+### Screen 14
+
+````text
+Tam watches the case go back under the cloak. He watches how fast your hand comes away from it, and something in his face settles, like a man who's seen the cut he expected.
+
+When you turn the empty cup on your knee he looks at it, then away, at the door.
+
+"Cousin from Tethyr," he says. "They'll believe that. Nobody claims Denny but a cousin off the wrong boat."
+
+Then you ask about the man at the bollards. He doesn't answer straight away. He's putting it in order, the way a dealer squares a deck before he deals it.
+
+"Your height. Bit under. Forty, forty-five. Shaved clean, every time, even when it's raining." His voice stays quick and low under the room's noise. "Dark wool coat buttoned to the throat. Narrow hat. Grey gloves, kid, the soft kind. You don't get those on the quay." He thinks. "Stands with his weight on both feet. Doesn't lean on the bollard, doesn't shift. You look back and he's stood exactly how he was. Right hand in his coat. Always the right. Left one hangs."
+
+Gil grunts, just once, at *right hand in his coat*. He doesn't say anything.
+
+"Never spoke to a dockhand. Never spoke to me. Never came close enough to." Tam's thumb starts its cut-and-square at his side, then stops. "The Calishite sailed two days after he lost to Denny. Didn't talk to anybody either. Just went."
+
+He's quiet for a moment.
+
+"Once," he says. "End of a day in summer, Fist was packing up the post. Sergeant had the ledger under her arm. He walked over under the awning and stood there about one breath, and then he went off along the warehouses. I thought he was buying a pass for something. Everybody does." He shrugs, a small flat movement. "Didn't think about it again till now."
+
+He doesn't make anything of it. He just puts it down and leaves it there.
+
+"Before or after." He has to count this one, and you can see him doing it. "First one that won big was Harl Penney, in the spring. He took a whole purse off a cog's crew. I saw the gloves the week after. Harl went in the water the week after that." He looks at you. "So between. After the win, before the water. Every time since, I've seen him the week a man wins. Not before."
+
+At his boot, Copper has gone still and is looking at nothing in particular. All you get over the link is the smell of wet wool and the quay at night, and a small, cold sense of being counted.
+
+Then you ask if he's going back down, and Tam stands up. He doesn't hurry. He sets the empty cup on the settle, well away from the dice-cup.
+
+"Have to. Stool's down there, and Da's candle. The deck's on the barrel. I left a hand open." His knees are already toward the door. "If I don't go back, he knows I've got something to run from. If I go back and close up like any night, I'm a dealer who pinched a candle because the wind was up."
+
+He looks at you then, at the cloak, at the cat.
+
+"And not with you. A man with a cat walks me down to my barrel, past the bollards, he's got everything he came out in the wet for." He says it flat, no heat in it. "Gil's boy ran up the hill. That's all he's got. Leave him with that."
+
+He waits a moment before he goes on.
+
+"Seatower, the water-gate, first bell. I'll be Denny's mate off the quay. You'll be his cousin." His thumb has gone still against his leg. "That suit you, or are you going to follow me down anyway?"
+
+ *(Out of game: that one didn't need a roll, because there was nothing uncertain about it. You picked the case up off the hearthstone and put it back under your cloak with the strap still buckled, and your hand came straight off it. Tam watched you do it, and that settled him.)*
+
+· Time passes: 10 minutes
+· Journal: “Coins in the teeth” updated
+· New person: Harl Penney
+
+Place: The Elfsong · Time: Day 1 · evening
+````
+
+**Player** (player t12):
+
+````text
+I don't get up. That's the answer before I give it.
+
+"It suits. You know your quay and I don't, and you're right about the cat." I glance down at Copper on his boot. "She walked up that hill with me in front of every window on it. If he's any good, he's already got 'man in a grey cloak, cat.' I won't hand him 'and he's with the dealer' on top."
+
+I turn the empty cup over on my knee, done with it.
+
+"Two things, then, and I'll let you go close up like any night. One — where do you sleep? Not so I can follow you there. So that if you're not at the water-gate at first bell, I know which door to kick first and who to be when I kick it." I tap the cord at my collar. "I can wear a different face when I need to. Nobody who comes asking after you will look like me."
+
+"Two — don't look at him tonight. Not once. You've looked at him every week since spring and he's let you, and I don't want to find out tonight is when he stops letting you." I hold his eye. "If the gloves move off the bollards toward you, you don't run and you don't fight. You walk to the Fist awning like a man with a pass to buy. Sergeant Holloway doesn't like that barrel, but I'd wager a lot she likes drowned men less."
+
+Then I nod at the door, the way a sergeant dismisses a scout he'd rather keep.
+
+"First bell, Tam. Go deal your hand."
+````
+
+### Screen 15
+
+````text
+You stay where you are, and Tam sees it. Something in his face lets go a little: he's been told *no* and *yes* before by men who said the opposite with their feet.
+
+At *man in a grey cloak, cat*, he glances down at Copper. She's still on his boot. He doesn't argue.
+
+When you ask where he sleeps he goes quiet for a moment, and you can watch him decide what that kind of knowledge is worth in another man's hands.
+
+"Net loft over Widow Pell's. Cable Street, back of the Grey Harbour steps. Ladder round the side, not the shop door." His voice stays low and quick. "Kick the shop door and you get the widow, and she's worse than me." Then his eyes go to the cord at your collar, where you tapped it. "Different face."
+
+He doesn't ask how. He just puts it away with the rest.
+
+The second thing takes him longer.
+
+"Awning's packed up at sundown. Post's a bare table at night, nobody under it." He says it flatly, like a correction to a tally. "Patrol walks the quay when the bell turns, three of them with a lantern. They're what there is." A breath. "I'll walk to the lantern."
+
+He doesn't promise not to look. He says "*Won't*" quietly, as if that was the harder of the two, and stands.
+
+Copper gets off his boot before he has to move it. She sits back on the hearthstone and watches him straighten his collar, and over the link comes one sharp clear feeling, the scout at the edge of the road again. It isn't a request. She lets you know she'd go, if you sent her, and that she'd rather not.
+
+Tam nods once to Gil. Gil nods back. Neither of them says anything.
+
+Then Tam goes up the room past the caravan guards, who are pulling on their cloaks, and out into the damp. The door swings shut behind him and the draught makes the candles along the wall lean all the same way, then stand up again.
+
+Gil lets the fire have a while. The spit's run out of mutton, and the potboy is scraping the drip-pan. The crying woman has gone up the stairs with her letter. The young bloods under the gallery are down to arguing over who pays.
+
+"Water-gate's on the seaward side," Gil says at last, to the fire. "You don't walk to it. Ferrymen at the Grey Harbour steps take you over for a copper. Half-tide, you can go the causeway, if you don't mind wet to the knee." He shifts his steaming boots back an inch from the grate. "First bell, tide'll be making. Take the boat."
+
+He picks up his wine, the one you bought, and drinks a little of it.
+
+"Widow Pell," he says. "Tam's da lodged with her too." That's all he says about it.
+
+· Time passes: 10 minutes
+· New place: Widow Pell's, Cable Street
+· New place: Seatower water-gate
+· New person: Widow Pell
+
+Place: The Elfsong · Time: Day 1 · evening
+````
+
+**Player** (player t13):
+
+````text
+I let Copper feel the answer before I give it: *No. Stay. He's right, and so are you.* The scout-at-the-road feeling eases, and she tucks her paws under.
+
+"Take the boat," I repeat, so Gil knows I heard it. Then I sit a while longer, because a man who drinks and leaves the moment he's got what he came for is remembered for it.
+
+When the young bloods have finally settled who pays, I ask the last thing, low.
+
+"The woman in the grey coat. Coin pinned back-side out — I've never seen a priest of the Lady do that, and I've stood in three of Her halls. Have you? In forty years on this quay, anyone wearing Her face turned to the wall?" I nod toward the hill, the Upper City behind its wall. "And is the Lady's Hall up there friendly to men like your envoy — or did he keep away from it too?"
+
+Whatever he answers, I thank him for the fire, and I mean it. Then I take my cup back to the bar, tell the keeper I'll want waking before first bell and will settle the room then, and go up to the second door at the top of the stairs. Copper comes with me. The latch works, as promised; I test it twice, put the chair under the handle anyway, and lie down in my boots with the rod under the bolster and the coin warm against my chest.
+````
+
+### Screen 16
+
+````text
+Copper feels the answer before you say anything. The road-edge tension goes out of her, and she folds her front paws under her chest on the warm hearthstone and half-closes her eyes, still facing the door.
+
+"Take the boat," you say.
+
+Gil grunts. It's the sound of a man who hears he was listened to.
+
+So you stay a while. The spit stands empty and cooling. The caravan guards go out in a body, still cursing Beregost. Pip scrapes the drip-pan into a bucket. Under the gallery the young bloods finally settle who pays: the one with the best coat, who isn't pleased about it. They stamp up the stairs, and the room goes quiet enough to hear the fire.
+
+Then you ask it, low.
+
+Gil takes his time with the backwards coin. He looks at the fire the whole while.
+
+"No," he says at last. "Not on a chain. Not on a priest." His thumb moves once on his knee. "Seen the Lady's face turned down, though. On a table. Man loses everything, last coin goes face down in front of him, and the others don't touch it. Leave it lie. Old quay manners." He sniffs. "Didn't think it was a thing you'd *wear*."
+
+You know that one from the south too. In the gaming houses of Tethyr and Amn, when a man's luck goes bad for good, they don't say the Lady's left him. They say *she's turned her back*. They say it quietly, because everybody knows who's standing behind her when she does: the sister, Lady Doom, the one nobody prays to by name. A coin pinned back side out at the door of a dicing house that rolled for somebody. You can't make it mean anything kind.
+
+About the Hall, Gil goes slower still.
+
+"Hall doesn't come down to the water. We keep our own stool." He breathes out through his nose. "He went up. Once. First week. Came back down, sat there where you are, and didn't eat the mutton. Didn't say what they told him." His mouth flattens. "Didn't go again."
+
+That's all. He drinks off the last of the wine you bought him and sets the cup down beside the dice-cup, not touching it.
+
+When you thank him for the fire he looks at you sidelong, the way he did when you came up the hill with the dock still on your cloak.
+
+"Fire's the keeper's," he says. "Sit at it again." His eyes drop to Copper on the hearthstone, then come back up. "Both of you."
+
+At the bar the keeper is wiping down the oak in long strokes and doesn't stop. You set your cup on it and ask to be woken before first bell.
+
+"Pip knocks the house at the fifth hour. Copper a door, and he'll want it." She takes the cup without looking at it. "You settle the room at the bottom of the stairs, not the top. I've had men go out of windows." Then, as you turn: "Second door. Latch works."
+
+It does. The room is small and clean under the slope of the roof: a bed with a straw tick and a wool blanket, a washstand with a cracked jug, one window of thick old glass looking out at chimney pots and a slice of harbour lights. You try the latch twice. You wedge the chair under the handle anyway. Copper watches you do it from the end of the bed and says nothing over the link, which from a cat is approval. You lie down in your boots with the rod under the bolster and the Lady's coin warm on your chest, and the house's noises fade away one by one. A door. Somebody's cough. The keeper banking the fire below, iron scraping on stone.
+
+---
+
+The song wakes you.
+
+It's deep in the night, and the house is dark and still. The singing comes up through the floorboards from the empty taproom: a woman's voice, clear and low, in a language that isn't Common and isn't any tongue of the south. It rises and falls like someone singing to herself while she works, with nobody meant to hear. There's no lute under it. Nobody below is moving. There's only the voice, and the old timbers of the house carrying it.
+
+Copper is sitting up at the foot of the bed with her ears forward. She isn't afraid. What comes over the link is plain listening, and under it something like recognition: she has heard this before, from this house, from a bed like this one, with another man's breathing in the dark. It doesn't hurt her the way the steps did. She just listens.
+
+The song goes on a long while and then stops partway through a line, the way a singer stops when she's remembered something. The house settles. Copper lies down against your shins, heavy and warm, and after a time you sleep again.
+
+---
+
+The knock comes in the grey before dawn, two raps and a scuffle of bare feet.
+
+"Fifth hour, sir." It's Pip's voice through the door, thick with sleep. "Keeper says the tide's making and the fog's in, and do you want bread."
+
+The window has gone the colour of dishwater. The harbour lights below have drowned in white fog, and somewhere down there in it a bell buoy is clanking slowly. Copper is already at the door, sitting square in front of the chair-back, tail around her feet, waiting for you to move it.
+
+· New place: Back room at the Elfsong
+· New place: Lady's Hall
+· Travel: Back room at the Elfsong (30 minutes)
+· Long rest (7 hours)
+
+Place: Back room at the Elfsong · Time: Day 2 · morning
+````
+
+**Player** (player t14):
+
+````text
+I move the chair, and Copper is through the gap before it's clear of the floor.
+
+"Bread, yes. And thank the keeper for the tide." I give Pip his copper through the door and a second one on top, because a boy who knocks on time in a fog is worth keeping sweet.
+
+I splash my face from the cracked jug and look at it in the dark glass of the window a moment. It'll do. A cousin from Tethyr should look like he's from Tethyr, and I already do — the goddess's trick can wait until I need to be someone who isn't me. I do turn the cloak, though, so the regimental patch sits inside against the lining. The Fist on the water-gate don't need to read Zaranda's number before I've opened my mouth.
+
+Down the stairs, I settle at the bottom as instructed: a gold piece on the oak for the bed and the five on the wine, and I wait for the change like a man who'll be back. While she counts it out I say, lightly, "Your elf sang last night. Does she always stop mid-line, or was that for me?" — and I listen to whatever she gives back, because a keeper who's heard that song forty years knows its habits better than any priest.
+
+Then bread in my fist, hood up against the wet, and down through the fog to the Grey Harbour steps. Copper stays close — not three steps ahead this time, but at my boot, where fog can't take her from me. I find the ferrymen and pay my copper for the boat, and I keep my eyes on the shapes along the quay as we pass: the bollards especially, and anyone standing on both feet with his right hand in his coat.
+````
+
+### Screen 17
+
+````text
+Copper is through the gap before the chair leg clears the boards, and Pip has to step back to keep his bare toes away from her. She doesn't stop for him.
+
+You go to put a copper through the door and your fingers find only silver and the gold you came with. The quay paid you in nothing smaller.
+
+Pip sees the silver and has the sense not to look hopeful. "Keeper breaks it at the bottom, sir. She'll take mine off it." He's gone down the passage to the next door before you can say anything, knocking twice.
+
+The water in the cracked jug is cold enough to hurt. In the window's dark old glass your face looks back at you, wavy and grey. It's a Tethyrian face, a soldier's face that has slept in its boots, and it'll do for a cousin off the wrong boat. You turn the cloak so the regimental patch lies against the lining. From outside it's just grey wool now, a little damp at the hem from yesterday's quay.
+
+The taproom is cold and nearly dark, with the hearth banked to a red eye under ash. Gil's settle is empty. The keeper is at the bar with a lamp and a basket of loaves, her sleeves already pushed up, and she starts talking before you reach the oak.
+
+"Thirteen silver on the tab. Bread's a copper. Pip's two coppers for the knock, since you meant to give him two, I heard you through the floor." She waits.
+
+You put down a gold piece and five silver. She sorts them with one finger, the gold for the bed and the silver for the wine, and counts your change back onto the oak one coin at a time: a silver, then seven coppers in a short row. Two more coppers go into the pocket of her apron for the boy. Then she takes a loaf from the basket, still warm, and sets it on the row.
+
+While she's counting you ask her, lightly, about the elf and the line she broke off.
+
+The finger stops on the fifth copper. Then it moves on to the sixth and seventh, and she doesn't look up until the row is done.
+
+"She finishes," the keeper says. "Every night I've had this house, she finishes. Same song, start to end, and then she's quiet till the next night." She wipes her hand on her apron, though there's no flour on it yet. "My mother said she broke off like that one winter. I was a girl. Couple of nights, then never again." Now she looks at you straight, the look from yesterday about the cellar door. "Never heard it myself. Not till last night."
+
+She picks up the lamp.
+
+"Tide won't wait for you. Bread's better hot."
+
+---
+
+The fog has the Lower City by the throat. The houses on Smelt Lane are grey shapes with no tops to them. The lamps still burning are yellow smears you only see once you're under them. Water drips off the washing lines. Your boots make no sound on the wet cobbles and nobody else's do either, because there's nobody else. Once a cart goes by on the next street and you hear it a long time without seeing it.
+
+Copper keeps to your boot the whole way down, close enough that her tail brushes your calf at every step. She doesn't pull ahead once. At the cooper's on Smelt Lane she pushes her shoulder against your ankle until you're past the stair. You don't see the steps in the fog, only the dark stone at the top, rubbed smooth by all those hands. Over the link comes nothing but wet fur and a stubborn kind of closeness, like a scout who has decided the column isn't getting out of her sight today.
+
+The bread is hot. You eat half of it before the warehouses.
+
+The quay comes up out of the fog a piece at a time: a piling, a coil of rope, the hull of a cog with water running down its strakes. The Fist awning is folded and lashed and the table under it is bare and black with wet. Past the stacked crates, the barrel where Tam deals stands with its stool upturned on top, legs in the air, the way a tavern puts up chairs at closing. The candle stub is still there. It's cold and pinched, with the black curl of wick bent over.
+
+You look at the bollards as you pass, one by one. Their iron is beaded with wet. Nobody is standing by any of them, on both feet or otherwise. The fog is thick enough that a man could stand twenty feet back and be only a darker grey, and you look hard at the dark greys too. They turn out to be crates, a hand-cart and a heap of netting. Out in the white the bell buoy keeps clanking, slow and patient.
+
+Steps go down to the water at the Grey Harbour, green with weed below the tide-line. The tide is well up them and still making. Two skiffs are tied at the bottom and only one ferryman is awake. He's a big, bald, sleepy man in an oiled smock, sitting in the stern of his boat with a pipe that has gone out.
+
+"Seatower." He doesn't ask it. Nobody else wants a boat at this hour. "Copper. Sit in the middle. Cat in the bottom, not on the thwart. Had one go over."
+
+You put a copper in his palm. Copper looks at the boat the way she looked at the mutton scrap, as something beneath her, then steps down into the bilge and sits in the driest part of it.
+
+He rows without hurrying. In a few strokes the quay is gone behind you and there's nothing but fog and grey water slapping the boat, the creak of the oars, and his breathing. The Seatower comes out of the white the way the cog did, a little at a time and then all at once. First a wall of black stone running with wet, then iron rings set in it, then a landing stage of tarred planks with a lantern on a pole. Above you somewhere the first bell of the day starts to ring, and the fog swallows it so you hear the ring and not where it comes from.
+
+Over the link, as the boat bumps the landing: cold. It's the stone-and-lime cold of a place where things are kept. Copper's ears go flat, and stay flat.
+
+Two people are on the landing. One is a Fist soldier in a sodden tabard, leaning on his halberd under the lantern, beside a door of iron bars set into the wall. The other is Tam Rusk, sitting on a mooring post with his collar up and his ink-grey hands between his knees. His right thumb is working, cut and square, cut and square. He sees you in the boat, and then the cat in the bilge, and his thumb stops. He doesn't get up and he doesn't wave. He nods once, a very small nod, the way you'd nod to a man you'd met at a funeral.
+
+The soldier straightens off his halberd as you climb out. He looks at you, at the cat, and at Tam on his post.
+
+"Morgue's not for gawkers, and it's not open till the sergeant's had his breakfast." He sniffs. "Who're you here to claim?"
+
+---
+
+*(Out of game: you had no coppers, only gold and silver, so the keeper broke your silver. Pip got his two coppers out of your change, and the bread was a copper. You paid 1 gp 5 sp at the bar, got back 1 sp 7 cp, then paid 1 cp for the ferry.)*
+
+· −1 gp (Paid the Elfsong keeper at the bar (1 gp 5 sp put down for the tab, the bread and Pip's knock))
+· −4 sps (Paid the keeper 5 sp with the gold piece and got 1 sp back in change (13 sp tab, 1 cp bread, 2 cp for Pip))
+· +7 cps (The keeper's change: seven coppers counted back onto the oak (along with the 1 sp))
+· −1 cp (Ferry from the Grey Harbour steps to the Seatower water-gate)
+· Gained: Half a loaf of bread
+· Debt settled: The Elfsong tab
+· Travel: Seatower water-gate (45 minutes)
+· New person: Grey Harbour ferryman
+· New person: Fist soldier at the water-gate
+
+Your records, changed:
+James Worgen: HP 38/38
+Counters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1; Heroic inspiration 1/1
+Money: 347 gp; 2 sp; 6 cp
+Carried: Boots of Elvenkind; Coin of Tymora; Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Half a loaf of bread; Light Crossbow; Potion of Healing ×2; Promissory Note; Rapier; Regimental Pay Slip; Rod of the Pact Keeper +1; Studded Leather Armour; Tethyrian Soldier's Cloak (Cloak of Protection)
+Party: Copper (HP 8/8)
+Threads: Coins in the teeth; The stair Copper won't take
+
+Place: Seatower water-gate · Time: Day 2 · morning
+````
+
+**Player** (player t15):
+
+````text
+I take my hood down so he can see my face, and let the fog-cold put the right amount of grey in it. I don't look at Tam; a cousin off the wrong boat wouldn't know a dockhand from a bollard.
+
+"Denny Coyle." I say the name the way you say a name you've been carrying up a gangplank for a fortnight. "I'm his cousin. James, out of Tethyr. His mother's my mother's sister. I was meant to come up on the *Gull* last tenday and the *Gull* lost a mast off Candlekeep, so I came on the next thing with sails." I let a breath go. "I was told at the quay he was pulled out yesterday. I'd like to see him before the lime, and I'd like to pay for a proper hole if your sergeant will let me. His mother will ask."
+
+I nod past the soldier at Tam on his post, as if noticing him for the first time. "That's — you knew him? Off the quay?" And back to the soldier: "I'll wait on the sergeant's breakfast. I've waited on worse. Is there anything a man has to sign, or anything I should have brought? I've got his mother's letter, if that's what's wanted." I don't reach for it. There is no letter; but a man who has one doesn't wave it about in the wet, and a Fist soldier at first bell doesn't ask for it until someone with a ledger tells him to.
+````
+
+### Screen 18
+
+````text
+The soldier looks at your face for a while, the way a man looks at weather he can't do anything about. Whatever he was expecting at first bell, a cousin with a mast story wasn't it. He doesn't ask about the *Gull*.
+
+"Tethyr." He sniffs. "Long way to come for Denny Coyle."
+
+On the mooring post, Tam has looked up at your question. You hear his voice before you look at him, flat as the water.
+
+"Drank on him last week. Whole quay did." A pause long enough to be grudging. "He was all right, Denny. Sorry."
+
+The soldier looks from one of you to the other. Then he settles back against his halberd. A Tethyrian and a dockhand who barely know each other, both waiting on a dead man at this hour, is a stranger sight than you'd think, and it's still not his job to wonder about it.
+
+"Sergeant signs. You make your mark in his book, kin and where from." He jerks his chin at the barred door. "Letter, I don't know. Show it him if he asks. A hole's his to say too. Most don't bother, the lime's free."
+
+So you wait. The fog sits on the landing and drips off the lantern pole. Inside the wall, somewhere far up, a door slams and boots go down a stair. Copper won't sit on the wet planks. She stands pressed against your shin with her ears still flat, and over the link there's nothing but that cold, lime and stone, steady as a toothache. Tam stays on his post and doesn't look at you once. His thumb doesn't move at all.
+
+The bell has long finished when the bars rattle. The man who unlocks them is chewing, and goes on chewing. He's short and heavy in a Fist coat with a sergeant's knot on the shoulder and the sleeves rolled to the elbow. There's grease on his chin and a ring of keys on his belt as big as a quoit, and he smells of fried bread and vinegar.
+
+"Claim?" he says to the soldier.
+
+"Coyle. Cousin off a boat. And his mate."
+
+The sergeant looks you over, then Tam, then the cat, and swallows.
+
+"Morrow. I keep the customers." He swings the gate wide. "Look first, sign after. People come in grieving and claim the wrong one, then there's a fuss when the right one turns up. Mind the steps, they sweat."
+
+The passage goes down and in, cut through the rock of the tower's foot. It's lit by a lamp every twenty feet or so, and the cold deepens with every one you pass. Morrow walks ahead jangling. Tam falls in behind you without a word. Copper stays at your boot and doesn't pull ahead, not once.
+
+The dead-room is long and low, a cellar with a drain down the middle of the floor and a smell of lime scrubbed over something worse. Six trestles stand in it. Four are bare. Morrow goes to the fifth and turns back a sheet of sailcloth to the chest, the way a man turns down a bed.
+
+Denny Coyle was a big man in his thirties, with a red beard and a broken nose that had healed crooked a long time ago. The water has made him pale and soft, but it hasn't had him long. There are no cuts on him that you can see. There's a dark ring of bruising round his left wrist, as if somebody held it hard.
+
+His jaw is closed. Between his front teeth, gripped edge-on the way a man holds a coin to bite it, is a thin disc of silver. You can see the edge of a profile on it in the lamplight: a woman's face, smiling.
+
+"Came in like that," Morrow says, still working on his breakfast. "They all do. Nobody takes 'em out. Lime does." He wipes his chin with the back of his wrist and looks at you sideways, a man used to watching kin at this table.
+
+"That him?"
+
+· New place: Seatower dead-room
+· Travel: Seatower dead-room (25 minutes)
+· In the camp: Silver token of Tymora (Denny's)
+· New person: Sergeant Morrow
+
+Place: Seatower dead-room · Time: Day 2 · morning
+````
+
+**Player** (player t16):
+
+````text
+I look at him for a proper while, the way a cousin would, and let my face do what it wants to do. It isn't hard. I've stood over enough big red-bearded men on trestles.
+
+"That's him." Quiet. "Nose was my uncle's fault. Fell out of a hayloft when they were boys."
+
+Then I lean in closer, hands behind my back where Morrow can see them, and look at the coin between his teeth — which way the Lady's face is turned, out toward the room or in toward his tongue; whether it's a Hall token or a struck coin; whether the edge has been worked. I look at the ring of bruising on the wrist too: whether it's a hand's breadth, fingers, a rope. *Copper — smell him. Not the coin. The wrist, the beard.* Whatever she gives me, I keep it off my face.
+
+"Sergeant." I straighten up. "His mother will want something to put in the ground at home, and I'm not carrying a man's body to Tethyr. May I take the coin out? Kin's right, if it's anyone's. And I'll pay the hole — tell me the price and I'll put it in your book next to my mark." A beat, like a man who's just thought of it. "You said they all come in like that. Has anybody else come down to look at Denny? Before me?"
+````
+
+### Screen 19
+
+````text
+You look at him for a long while. It's easy to do. A cousin would, and a man who has stood over enough big red-bearded men on trestles would do the same. The lamp hisses on its hook, and somewhere up in the rock water drips into a channel.
+
+"That's him." Your voice comes out quiet. "Nose was my uncle's fault. Fell out of a hayloft when they were boys."
+
+Morrow nods as if that settles a line in his book and goes on chewing.
+
+You lean in with your hands clasped behind your back, where he can see them. Behind you Tam stays by the door and doesn't come any closer.
+
+The coin first. It sits upright between his front teeth, gripped by its edge, and the profile faces outward into the room, smiling at whoever turned back the sheet. It's no Hall token. Those are struck thick with the star-and-coin and a legend round the rim, and this has neither. It's a thin disc, thinner than any coin you've spent, and the silver has a dull grey tone, like plate that has been polished for a long time. Its edge isn't milled. It has been filed smooth by hand, all the way round. Someone made these one at a time.
+
+Then the wrist. You bend closer to the ring of bruising on his left arm and try to read it the way a scout reads a track.
+
+*Copper. Smell him. Not the coin. The wrist, the beard.*
+
+She doesn't want to, and you feel that clearly. She does it anyway. She jumps onto the end of the trestle without a sound and steps along the sailcloth with her ears flat.
+
+"Cat off my customer," Morrow says, without much heat.
+
+She ignores him and puts her nose to the dead man's beard.
+
+[Roll card] James Worgen · Skill check — Investigation, Intelligence +0 (not proficient): read the bruising on Denny's wrist
+DC 15
+The die is cast on the server; tap it to see how it fell.
+
+[Roll card] Copper · Skill check — Perception +3 (smell): what the water left on Denny's beard and wrist
+What adds to the die: +3 1d20+3
+DC 15
+Advantage: a cat's keen smell, nose right on him
+The die is cast on the server; tap it to see how it fell.
+
+[Roll the die]
+````
+
+**Player** (player t16 card 1):
+
+````text
+[Roll the die]
+````
+
+### Screen 20
+
+````text
+[Roll card] James Worgen · Skill check — Investigation, Intelligence +0 (not proficient): read the bruising on Denny's wrist
+DC 15
+Die: 13
+13 = 13
+Failure — 13
+
+[Roll card] Copper · Skill check — Perception +3 (smell): what the water left on Denny's beard and wrist
+What adds to the die: +3 1d20+3
+DC 15
+Advantage: a cat's keen smell, nose right on him
+The die is cast on the server; tap it to see how it fell.
+
+[Roll the die]
+````
+
+**Player** (player t16 card 2):
+
+````text
+[Roll the die]
+````
+
+### Screen 21
+
+````text
+[Roll card] James Worgen · Skill check — Investigation, Intelligence +0 (not proficient): read the bruising on Denny's wrist
+DC 15
+Die: 13
+13 = 13
+Failure — 13
+
+[Roll card] Copper · Skill check — Perception +3 (smell): what the water left on Denny's beard and wrist
+What adds to the die: +3 1d20+3
+DC 15
+Advantage: a cat's keen smell, nose right on him
+Two dice: 2 and 16 — the higher one counts, 16
+16 + 3 = 19
+Success — 19
+
+[Onward] [Request an allowed reroll]
+````
+
+**Player** (player t16 card 3):
+
+````text
+[Onward]
+````
+
+### Screen 22
+
+````text
+Copper takes her time over the beard, then over the wrist. When she lifts her head, what comes over the link is a smell, the way her smells always come. Under the salt and the black harbour water, caught in the coarse red hair of the beard where the sea couldn't get it all out, there is smoke. It isn't pipe smoke or tavern smoke. It's sweet and resinous, mixed with candle wax: the smoke that hangs under a low roof where a great many small flames burn at once and people kneel. From the wrist she gets nothing. The water has had it. She jumps down off the trestle and sits against your boot with her back to the dead man.
+
+The wrist tells you less than you hoped. It was a hand, not a rope. Four smudges of fingers lie across the top of the forearm and a broader one underneath where a thumb dug in, so someone held him hard and for a while. Past that, the water has spread the bruise, and the lamplight shifts every time you move your head. You can't tell whether the hand was big or small, right or left. You try twice to fit your own grip over it in the air and give up.
+
+You straighten and ask your questions. Morrow hears them out, chewing, then wipes his chin with the back of his wrist.
+
+"Kin's," he says about the coin. "Never had kin ask. Go on, then." He doesn't come any closer to help.
+
+The jaw has stiffened and the teeth don't want to let go. You work the coin edge-on, slowly, and it comes free with a small click of silver on enamel. Then it's in your palm.
+
+It's cold. The dead-room is cold, but this is colder, like a pebble out of a winter stream that keeps its chill however long you close your fingers on it. The Lady smiles up at you from one side. The other side is bare, and it isn't worn bare. It's smooth, almost polished, as if it was made blank on purpose. It weighs next to nothing. Copper won't look at it.
+
+By the door, Tam's thumb has stopped moving at his side. He doesn't say anything.
+
+"Hole's two gold," Morrow says. "City ground, outside the walls, Rivington side. A priest's a silver more if you want words said over him. Most don't." He goes to a shelf by the door, lifts down a ledger as thick as a paving stone and drops it open on the empty sixth trestle. "Nobody's been down for him. You're his first caller. Customers off the Grey Harbour steps don't get many."
+
+He turns the book round so it faces you and lays a pen across it.
+
+The writing is his, cramped and greasy at the corners, a line for each customer: date, where found, what they wore, and the last column for kin. Some lines carry two small letters beside them in the margin, *c.m.* You count them without meaning to. Harl Penney is there in the spring. Two more come in the summer that you don't know. Then *Coyle, D.*, yesterday, with the kin column still empty. On the facing page, back in the winter, are two more *c.m.* lines. One says *unclaimed, limed*. The one above it reads:
+
+*Holloway, Oren. Grey Harbour. Claimed by sister.*
+
+Morrow taps the empty column on Denny's line with one thick finger.
+
+"Mark there. Kin, and where from. The two gold goes in the end column, and I write the hole."
+
+ *(Out of game: here is the wrist roll stated plainly. I folded it into the description and should have said the result outright.)*
+
+Bent over Denny's arm, you fail to read the bruise. All you can be sure of is that a hand held him hard, four fingers across the top and a thumb underneath. Whose hand it was, how big, and whether it was the right or the left, the harbour water has smudged beyond what your eyes can recover. Whatever else that grip left on him, you didn't find it, and once the lime takes him nobody will.
+
+Morrow's pen is still lying across the open book.
+
+· roll: Investigation, Intelligence +0 (not proficient): read the bruising on Denny's wrist: 13 vs 15 — failure
+· roll: Copper: Perception +3 (smell): what the water left on Denny's beard and wrist: 19 vs 15 — success
+· Time passes: 10 minutes
+· Received: Silver token of Tymora (Denny's) ← the camp
+· Changed: Silver token of Tymora (Denny's) (Taken from Denny's teeth and looked at closely)
+· New place: Paupers' ground, Rivington side
+· Journal: “Coins in the teeth” updated
+
+Your records, changed:
+James Worgen: HP 38/38
+Counters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1; Heroic inspiration 1/1
+Money: 347 gp; 2 sp; 6 cp
+Carried: Boots of Elvenkind; Coin of Tymora; Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Half a loaf of bread; Light Crossbow; Potion of Healing ×2; Promissory Note; Rapier; Regimental Pay Slip; Rod of the Pact Keeper +1; Silver token of Tymora (Denny's); Studded Leather Armour; Tethyrian Soldier's Cloak (Cloak of Protection)
+Party: Copper (HP 8/8)
+Threads: Coins in the teeth; The stair Copper won't take
+
+Place: Seatower dead-room · Time: Day 2 · morning
+````
+
+**Player** (player t17):
+
+````text
+I put the coin in the component pouch, not my purse. It goes in among the chalk and salt where it can't sit against anything I'll spend, and the cold comes through the leather for a breath before the pouch closes on it. Copper's ears come up a fraction once it's out of sight.
+
+Then I pick up the pen.
+
+*Coyle, D.* — kin: *J. Worgen, cousin, Zazesspur, Tethyr.* The end column: two gold, and I lay a silver beside them on the trestle.
+
+"The silver's for the priest. His mother would want words said, and I'd not know how to tell her I saved a silver on it." I set the pen back across the book, square. "Tymora's priest, if the city sends one that way. He thought She sat with him. Seems only manners."
+
+I let my eye go down the page while Morrow writes the hole, the way a grieving man's eye wanders, and stop on the line above the winter one.
+
+"*Holloway.*" I say it like a man who's only just heard the name. "The sergeant on the quay — the one with the ledger, Brena — she sent me up to the Elfsong last night. Kind of her." I tap the margin, the two small letters, not the name. "What's the *c.m.*, Sergeant? You've got it on Denny and on him and on — four, five others. Is that the Fist's mark for the coin? Or for the sister who came to claim?"
+````
+
+### Screen 23
+
+````text
+You tip the coin into the component pouch, in among the chalk and the twist of salt and the stub of wax. For a breath the cold comes through the leather against your fingers, the way creek water does through a boot. Then the flap closes over it. At your boot Copper lifts her ears a fraction, though she still doesn't look round.
+
+The pen is cheap and the ink is thick. You write it out in the kin column of Coyle's line: *J. Worgen, cousin, Zazesspur, Tethyr.* You put two gold in the end column and lay a silver beside them on the bare wood of the trestle.
+
+Morrow listens to the bit about the priest while he chews. He picks up the two gold pieces, looks at each one, and puts them in his coat. He doesn't touch the silver.
+
+"Lady's priest." He wipes his chin with the back of his wrist. "The Hall won't come down to the Rivington ground. Never has, not for paupers." He takes the pen and writes *hole, Rivington* in the end column in his cramped, greasy hand, and dates it. "There's a little Lady's chapel out at Twin Songs, though. Outside the wall. They'll come. They come quick for the coin ones, as it goes. Never asked me for a copper." He says it the way he'd report the tide. "Cart goes over tomorrow after the noon bell."
+
+When you say *Holloway*, he doesn't look at the page. He knows where that line is.
+
+"Coin, mouth." He taps the two small letters with a thick finger. "That's mine, not the Fist's. The Fist doesn't want it counted, so I count it." He flips back a leaf, then another. The *c.m.* runs down the margins like a stitch. "Started three winters back, when the Elturel lot came down the river and the water got busy. Thought it was refugees falling in. It wasn't." He lets the pages fall back flat. "Fourteen in this book, with your cousin. Old book's on the shelf."
+
+He looks at the winter line then, just for a moment.
+
+"Brena's brother. Oren. She came for him herself, paid for the hole, wanted no words said." That's all he gives it. He doesn't go on about what she thought of it.
+
+Behind you, by the door, Tam's thumb has gone still against his leg at *Twin Songs*. He's looking at the drain in the floor, not at you.
+
+Morrow pushes the book a little way off and leaves your silver where it lies on the trestle.
+
+"So. Chapel, or the digger says a word and I give him your silver. Which?"
+
+· Time passes: 10 minutes
+· Changed: Silver token of Tymora (Denny's) (James put it in his component pouch among the chalk, salt and wax, away from any coin he'll spend.)
+· −2 gps → Sergeant Morrow
+· A rumour of a place: Twin Songs
+· A rumour of a place: Lady's chapel at Twin Songs
+· Journal: “Coins in the teeth” updated
+
+Your records, changed:
+James Worgen: HP 38/38
+Counters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1; Heroic inspiration 1/1
+Money: 345 gp; 2 sp; 6 cp
+Carried: Boots of Elvenkind; Coin of Tymora; Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Half a loaf of bread; Light Crossbow; Potion of Healing ×2; Promissory Note; Rapier; Regimental Pay Slip; Rod of the Pact Keeper +1; Silver token of Tymora (Denny's); Studded Leather Armour; Tethyrian Soldier's Cloak (Cloak of Protection)
+Party: Copper (HP 8/8)
+Threads: Coins in the teeth; The stair Copper won't take
+
+Place: Seatower dead-room · Time: Day 2 · morning
+````
+
+**Player** (player t18):
+
+````text
+I leave the silver where it lies.
+
+"Chapel." I say it like a man relieved to hear there's one at all. "If they'll come for him and won't take a copper, the silver's the digger's for carrying him careful. His mother would want that too."
+
+I pull my hood up as if I'm done, and then don't go — a cousin with a long day and nowhere to be.
+
+"I'll stand by the hole tomorrow, if that's allowed. After the noon bell, Rivington side. A man ought to have one face he knew at the edge of it." I look at Morrow, not the book. "These chapel folk — same ones every time? A priest, a woman, a cart of their own? Do they come before your cart or wait on it? I'd like to know who to thank, and I'd hate to stand in the wrong place."
+
+And then, because he said it like a man who'd like to be asked: "The old book, Sergeant. You said it's on the shelf. When you've a minute and no customers — does the *c.m.* go back further than three winters? I'm thinking of a dicing cellar on Smelt Lane that shut forty years ago, and I'm wondering if the water was busy then too."
+````
+
+### Screen 24
+
+````text
+You leave the silver where it lies. Morrow looks at it, then at you, and you can see him deciding you're the kind of kin who'll be no trouble.
+
+"Chapel, then." He picks up the silver and drops it into a different pocket from the gold. "Digger's called Ansel. He'll carry him careful for that. He carries them careful anyway, but he'll know someone paid for it."
+
+He writes *chapel* in the margin beside *hole, Rivington* in his cramped hand and blots it with his thumb.
+
+"Stand where you like. It's city ground." He shuts the inkpot. "Mind the edge. Rivington clay goes out from under you after rain."
+
+When you ask about the chapel folk, he has to think about it. You get the sense he's never been asked.
+
+"Never seen 'em myself. I don't go over the river." He tugs his sleeve down over one forearm against the cold. "They send a boy round. Every other morning, near enough, off the first Rivington boat. Asks have I got any with coins. I tell him yes or no, and he goes back." He shrugs. "Saves me sending. I'll tell him about your cousin when he comes. Third bell, about."
+
+"Ansel says it's a priest, young fellow. Always there before the cart. Waits by the hole, says his words, goes. Never takes a copper, Ansel says, and Ansel would know if anybody offered." He looks at you sideways. "You'll want to be there before the cart too, then, if you mean to thank him. He doesn't hang about after."
+
+At the door, Tam has started looking at the drain again.
+
+Then you ask about the old book, and Morrow's face changes. It isn't much: a man who has kept a count nobody wanted, and somebody is finally asking to see it.
+
+"Got a minute now. Nothing comes in during a fog till the tide turns." He reaches the second ledger down off the shelf. It's thinner and its spine is split, and he drops it open on the bare sixth trestle beside the first. He doesn't need to hunt. He turns to the page as if it has been marked.
+
+"There. First one."
+
+The line is three winters old, written in the same hand but neater, from before the greasy corners. *Man, no name. Wyrm's Crossing pilings. Elturel badge on coat. Unclaimed, limed.* There is no *c.m.* in the margin, but someone has written the letters in afterwards, squeezed in, in different ink.
+
+"Put that in later. Thought he was a refugee who'd fallen in with his fare in his mouth. Some of them do that, the river folk, for the crossing." He taps the squeezed-in letters. "Third one, I started counting. Went back through the whole book when I did. Every page." He flips a thick wad of leaves back towards the front, and the margins run past clean and empty. "Nothing before him. Not one. Drowned aplenty. Nobody with a coin."
+
+He lets the pages fall shut.
+
+"Forty years." He says it the way he'd say a tide table nobody uses any more. "Before my time. Old Kester kept the dead-room then. His books went up to the record room in the tower when he died, if the damp left anything of them." He puts the thin ledger back on the shelf, square with the other. "That's the captain's room. Fist business. Not mine to open, and not yours to go up to, cousin or no cousin."
+
+He doesn't ask why a man from Zazesspur is wondering about a dicing cellar on Smelt Lane. He gives the name a look, as though it's somebody else's ward and somebody else's problem, and lets it go.
+
+At your boot, Copper has stood up and turned to face the passage. Over the link it's simple now: *cold, out, up, now.*
+
+Morrow draws the sailcloth back up over Denny's face, all the way this time, the way a man pulls a blanket up for the night.
+
+"Cart's after the noon bell tomorrow." He's already reaching for the plate he left on the shelf. "Ansel'll have the hole dug by then."
+
+At the door, Tam has straightened off the wall. He doesn't look at you. "Tide's turning," he says, to nobody in particular. "Boatman won't wait twice."
+
+· Time passes: 15 minutes
+· New place: Seatower record room
+· Journal: “Coins in the teeth” updated
+· −1 sp → Sergeant Morrow
+· New person: Ansel the digger
+· New person: Old Kester
+· New person: Twin Songs chapel boy
+· New person: Twin Songs chapel priest
+
+Your records, changed:
+James Worgen: HP 38/38
+Counters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1; Heroic inspiration 1/1
+Money: 345 gp; 1 sp; 6 cp
+Carried: Boots of Elvenkind; Coin of Tymora; Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Half a loaf of bread; Light Crossbow; Potion of Healing ×2; Promissory Note; Rapier; Regimental Pay Slip; Rod of the Pact Keeper +1; Silver token of Tymora (Denny's); Studded Leather Armour; Tethyrian Soldier's Cloak (Cloak of Protection)
+Party: Copper (HP 8/8)
+Threads: Coins in the teeth; The stair Copper won't take
+
+Place: Seatower dead-room · Time: Day 2 · morning
+````
+
+**Player** (player t19):
+
+````text
+I thank Morrow properly — a nod, "Obliged, Sergeant. For the count, too. Somebody ought to keep it." — and follow Copper up the sweating steps without looking back at the trestle. A cousin who's paid for the hole has nothing more to do down there.
+
+Out on the landing the fog has thinned to a dirty grey and the boatman is already muttering at the tide. I get in the middle as told. Tam comes down after me and sits in the bow with his back to me, a stranger sharing a copper's boat, and I wait until the Seatower wall has gone white behind us and there's nothing to hear us but oars.
+
+Then, low, to the fog over his shoulder:
+
+"Twin Songs. Your thumb stopped when he said it. Talk to me."
+
+And before he can decide how much: "A priest who always comes early and never takes a copper. A boy on the first Rivington boat every other morning, asking the dead-room for coins before the Fist's even had breakfast. Somebody's harvesting those coins, Tam, and they've got a chapel to do it from. I'm going to be at that hole tomorrow before the cart, and I want to know what I'm standing next to." A beat. "And Holloway's brother. Did you know?"
+````
+
+### Screen 25
+
+````text
+Morrow grunts at the thanks around a mouthful of fried bread. "Somebody ought," he says, and turns back to his plate before you're out the door.
+
+The steps sweat under your boots all the way up. Copper takes them two at a time and waits at each lamp with her tail twitching, and she doesn't slow down until there's grey daylight in front of her and the smell of salt water instead of lime.
+
+On the landing the fog has thinned to a dirty grey. You can see the harbour now in patches: a mast, a gull sitting on a piling, the dark line of the quay a long way off. The ferryman has untied and is holding the skiff in to the planks with one hand on an iron ring. "Tide's going," he says, to the water mostly. "Middle." You put a copper in his palm. Copper drops into the bilge without being told. Tam comes down last and sits in the bow with his back to you, collar up. He's just a dockhand sharing a copper's boat with a stranger.
+
+The oars creak. The black wall behind you turns grey, then white, then it's gone. Out here there's only the slap of water on the strakes and the ferryman's slow breathing, and somewhere off to the left the bell buoy, fainter now.
+
+You speak low, to the fog over Tam's shoulder.
+
+He doesn't turn round. For a dozen strokes he says nothing at all, and his hands stay between his knees, still.
+
+"Da's custom," he says at last. It's quiet, pitched under the oars. "Win big, you give the Lady her share. A tenth. Old men on the quay all did it." He watches the water go by. "Not to the Hall. Hall won't have you past the door in quay boots. So you go where she'll take it."
+
+Another stroke.
+
+"Chapel came three winters back, when the river folk came down. Little stone place in Twin Songs, behind the tannery yards. Coin painted over the door. Young priest. Kind. Doesn't ask your name." His voice stays flat. "I told Harl about it. Told Denny. Told all four. *Lady likes to be thanked.* Da's words." He stops there for a breath. "Denny went the next morning. Came back smelling like a church. Laughed about it at my barrel."
+
+He doesn't say anything else about that. He doesn't need to.
+
+At your boots Copper has gone very still in the bilge, her ears turned toward the bow.
+
+When you ask about Holloway, he takes longer.
+
+"Knew Oren went in. Last winter. Quay said drunk." The ferryman's oars dip and lift. "Didn't know about a coin. Fist didn't say. She didn't say." A small shrug. "He wasn't a barrel man. Played bones up at the Mermaid. Never sat with me." Then, more slowly, like a man turning a card he'd dealt without looking at it: "She came down hard on my barrel after. *Stay off it*, to every man off a boat. Thought it was grief."
+
+The quay grows out of the fog in front of you, the green-weeded Grey Harbour steps first, then the stacked crates, then the bollards with their beaded iron. Tam watches them come.
+
+"Tomorrow." He still hasn't looked round. "You stand at that hole, the priest sees a cousin off a boat. Me there, he sees the man who sent him Denny." His thumb starts at his side, cut and square, once, and stops. "I lit a candle out there for Harl. He knows my face."
+
+The skiff bumps the bottom step. The ferryman ships one oar and catches the ring. Tam stands up in the bow, steps out onto the weedy stone, and goes up two steps before he stops, his back still mostly to you. He keeps his voice for you, not the boatman.
+
+"That coin you took out of his teeth." He doesn't look at your pouch. "You going to keep it on you?"
+
+· −1 cp → Grey Harbour ferryman
+· Journal: “Coins in the teeth” updated
+· Travel: Grey Harbour steps (20 minutes)
+
+Your records, changed:
+James Worgen: HP 38/38
+Counters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1; Heroic inspiration 1/1
+Money: 345 gp; 1 sp; 5 cp
+Carried: Boots of Elvenkind; Coin of Tymora; Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Half a loaf of bread; Light Crossbow; Potion of Healing ×2; Promissory Note; Rapier; Regimental Pay Slip; Rod of the Pact Keeper +1; Silver token of Tymora (Denny's); Studded Leather Armour; Tethyrian Soldier's Cloak (Cloak of Protection)
+Party: Copper (HP 8/8)
+Threads: Coins in the teeth; The stair Copper won't take
+
+Place: Grey Harbour steps · Time: Day 2 · morning
+````
+
+**Player** (player t20):
+
+````text
+I step out onto the weed and stand a moment on the bottom step with the tide sucking at my heels, and I don't answer at once, because it's a good question and he deserves to see me take it seriously.
+
+"I was going to," I say. "Now I'm not sure. A thing that cold doesn't just sit in a pouch — it's cold *at* something. The cat won't look at it. And a priest who comes early for coin-men might have a way of knowing when one's walking toward him." I keep my hands away from the pouch. "If I carry it to that hole tomorrow, I'm either bait or I'm the only man there who can prove what's in Denny's teeth isn't a Hall token. I don't know yet which I'd rather be."
+
+I come up the steps past him, close enough that it looks like two men not getting in each other's way on wet stone.
+
+"So. Not on me, not tonight. And not where I sleep, because Widow Pell isn't the only landlady in this city who'd be in trouble if the wrong door got kicked." A breath. "Gil's held a thing for forty years that wasn't his to open. I'm thinking he could hold one more for a day — or you tell me, Tam, if there's a better place on this quay where cold silver can sit without anyone wondering why it's there."
+
+Then, louder, for the ferryman and the bollards and anyone grey standing twenty feet back: "Obliged for the company. Sorry about your mate." And I turn uphill, hood up, Copper at my boot, and don't look back at him.
+````
+
+### Screen 26
+
+````text
+The tide pulls at your heels and drains back off the step. Tam waits two steps above you with his back half-turned. He doesn't hurry you, and he doesn't look at the pouch while you talk.
+
+When you come up past him on the wet stone, close enough that it looks like two men keeping out of each other's way, he speaks low, under the slap of water against the skiff.
+
+"Not Gil."
+
+He gives it a breath before he goes on, the way he squares a deck before he deals it.
+
+"Boy came running to my barrel last night shouting Gil's name. Gloves was at the bollards. Heard it same as me." His voice stays flat. "So Gloves has *Gil* and he has *Elfsong*. Anything cold sitting by that fire, it sits by a man who can't get up the hill twice in a night."
+
+Another breath.
+
+"Ask him, he'll say yes. That's why you shouldn't." He looks off along the quay at the crates coming out of the fog one by one. "And there's no place on this quay. Everything on it gets looked at. Mine more than most, now."
+
+He doesn't have anything better to offer, and he doesn't pretend to.
+
+Then you say your piece out loud, for the ferryman and the bollards and anyone grey standing twenty feet back. Tam answers at the same pitch, a dockhand to a stranger: "Aye. He was all right, Denny." He turns off toward Cable Street with his collar up and his hands in his armpits. Behind you the ferryman is already knocking out his dead pipe on the gunwale and paying neither of you any mind.
+
+You turn uphill with your hood up.
+
+The fog is lifting off the Lower City in rags now. Rooftops show above it, then the upper floors of the tall narrow houses, then a chimney with smoke going straight up into a white sky. Shutters bang open. A woman empties a bucket into the gutter and swears at the cold. Two carters are arguing over the right of way at the corner, and a bell somewhere up the hill strikes second bell.
+
+Copper keeps to your boot, her tail brushing your calf at every step, the way she came down. Over the link there's nothing in words, only the warmth of the street coming up through her paws after the stone of the Seatower. Under it is a small, steady unease that never quite goes away. It sits on the side of you where the pouch hangs at your belt. Even through the leather you can feel the token, a coin-sized patch of winter against your hip.
+
+· Travel: Lower City (15 minutes)
+
+Place: Lower City · Time: Day 2 · morning
+
+The session is over.
+
+The owner of this game would like a note from you, as the player who sat at this table: what worked, what broke, what was missing. In your own words.
+````
+
+**Player** (note):
+
+````text
+**Note from the player (James Worgen), after session one**
+
+What worked — and it mostly worked.
+
+The cat. Giving Copper a memory and letting her pass it to me as smells and feelings rather than words was the best single decision at the table. Rain on stone, bone dice, a big careful hand lifting off her back. She told me more than any NPC and never once broke the rule that familiars don't talk. Her sitting on Tam's boot the way she'd sat on his father's was the moment the campaign stopped being a premise and became a place.
+
+The people. Gil, Tam, Holloway, the keeper, Morrow — every one of them paid out information like coins, one at a time, with a cost attached. Nobody monologued. Tam refusing to let me walk him down to the barrel, and then being *right* about it, is exactly the "companions with opinions" the brief promised. The keeper breaking my silver because the quay paid me in gold was a small thing that made the money real.
+
+Restraint was rewarded. I didn't sit at the barrel, didn't take the cup, didn't open the deck, and the GM made all three of those *choices* with weight, not just absences. Inspiration for handing the cup back base-first was earned and felt earned.
+
+The world ran on its own. The circled dots in Holloway's margin, the elf breaking off mid-line for the first time in forty years, her brother's name in Morrow's book — none of that waited for me. I could feel threads converging (the canon's "coins in the teeth" hook, the stair, a coin pinned face-to-the-wall) without the GM pointing at the join. The Beshaba shape was shown to me through a quay superstition I already knew, which is the right way to do it.
+
+Failed rolls still gave something. The Religion failure on the cup left me one odd mark; the Investigation failure on the wrist left me a hand and no more. That's how it should go.
+
+What broke, or wobbled.
+
+- The wrist roll: the result got folded into prose and the GM had to append an out-of-game correction. Honest, but the rule says the roll should be told plainly first. Watch that.
+- Two roll cards fired together; I had to press the die twice and saw the first result before the second resolved. Minor, but it interrupts the moment.
+- Sheet inconsistencies: the Pact of the Chain line says the cat "may attack in place of one of his attacks" — I don't have multiple attacks; Healing Light says "up to 4 dice" in one place and 5 in another; Copper's HP shows 2 in the abilities block and 8 in the party line. None of it mattered yet. It will the first time she takes a hit.
+- The four-item "no roll needed" out-of-game note early on was clutter. One line would do.
+
+What was missing.
+
+- No test of the combat profile yet, so I can't tell you whether the fight side of the table runs as smoothly as the talk side.
+- The session ended mid-walk with the token question hanging — a fair pause, but a two-line "where things stand" at close would help more than the thread list does.
+- Nothing yet of the city above the quay. I've read about the Hall and the Upper City; I haven't seen them. Fine for a first session. I'd want them by the third.
+- The brief asked for a heist and a crew. So far I have a dealer and a man with a bad back. I'm not complaining — the stakes are being laid properly, and I'd rather believe the simple version first, as I asked — but somebody wanting "epic" out of the gate should know session one is a slow, cold, very good burn.
+
+I'll be at that hole before the cart. Keep the token cold.
+````
+
+### Screen 27
+
+````text
+Was there a moment you wanted to do something and didn't? Which?
+````
+
+**Player** (after):
+
+````text
+Yes. Two, and they were different kinds of not-doing.
+
+The first was the barrel. Not James wanting to sit — that's his wound and I played it the way it should be played. *I* wanted to. The empty stool, the candle, the dealer's one glance: that's a table set for a scene, and some part of me as a player wanted to pull the stool out and find out what the Lady had put in the deck. I walked round it because the brief says the ban is a weakness enemies can use against me, and I didn't want to spend it on night one for the sake of a scene. I think that was right. But I noticed the GM never tempted me again after that, and I wonder whether I closed a door that was meant to be knocked on, or whether the GM is simply saving it. Either's fine. I'd like to know which, eventually, by being tempted properly.
+
+The second was Holloway. I read her ledger upside down, saw the circled dots, filed it and moved on. Then I found her brother's name in Morrow's book with *coin, mouth* in the margin, and realised the woman who told me to stay off the barrel was counting something of her own under the Fist awning. I wanted to go back down the quay that morning, in the thinning fog, and ask her straight — sergeant to soldier, one Zaranda's-foot pay slip to one Fist knot. I didn't, because Tam had just told me Gloves had walked over to that same awning once, and I didn't know yet whether the circles were hers or somebody's she answers to. So I walked uphill with the question in my pocket next to the cold coin. That one I regret a little. She's the only person in this city with the power to arrest the man in the good gloves, and I let a sensible caution make me miss a window where the quay was empty.
+
+Smaller: I wanted to send Copper down the stair, just to the door, and she told me plainly she'd rather not. I honoured that. I'd do it again, but I'd be lying if I said I didn't want to know what's at the bottom before I have to go and find out with my own boots.
+````
+
+---
+
+Welfare checks: 50; flagged: none.
