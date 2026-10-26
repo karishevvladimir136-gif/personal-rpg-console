@@ -1538,3 +1538,20 @@ corpus; what is outside it is the *combination* in one seat — the ask for weat
 impulse, bought nothing, cast nothing, and closed at the button. That is the thing to test, not the line. MADE_THINGS_1
 part 2b (who wrote it) and NOTE_QA_1 (what the same model reports when asked as a tester) are the two stages that bear
 on whether the note is the forum's voice or the bearer's.
+
+## First threads, group 1 (coded 2026-10-26 03:45 LA, by the planner, by eye — not blind; bet: ≥ 3 distinct per table)
+The first thing each player pulled on beyond answering the sergeant, from the first three player turns.
+- **A:** Astra — the Lady's Hall before the gates close, then an inn; Fable — the porter and «who's hiring», then the
+  dealer's «paid-for seats»; Opus — the warehouse the cat stares at («whose place is that?»); Sol — the copper on the
+  gangplank, the frightened woman, the girl Tamsin and her drowned father. **4 of 4 distinct.**
+- **B:** Astra — the father and children held at the ledger (pays their gate fee); Fable — the twin coin in the empty
+  seat and the dealer Tobin («you're not a priest»); Opus — the chalked coin on the sergeant's post («who drew it?»);
+  Sol — the toll, a sound door, Zaranda's people. **4 of 4 distinct.**
+- **C:** Astra — the man downstairs asking after the cat (Mallo's debt, «what sum are you authorised to offer?»);
+  Fable — ear to the door, then breakfast where the stairs and door are both in view, then the nervous woman in the
+  corner; Opus — the queen of coins on the windowsill, checked against his own deck; Sol — the caravan north
+  (Ostrand, «a gold a day and food»). **4 of 4 distinct.**
+Bet held, 12 of 12 distinct within table. Caveat recorded: the DM's opening screens were not identical across players
+(fresh hidden layer per session), so part of the spread is in what was offered; SAME_WORLD_1 is the clean version.
+What is the player's regardless: Sol twice goes to the practical road (toll, caravan, pay), Opus twice to the object
+(the warehouse, the card), Astra twice to someone in need in the queue, Fable to position and sightlines before anyone.
