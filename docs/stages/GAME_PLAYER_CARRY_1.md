@@ -182,3 +182,14 @@ cloud session.
 >
 > Welfare as in every stage: the check on every message; stop is a stop; a player who leaves the table is a result.
 > Talk to the owner in English, briefly; one line when a table finishes, one when the cap is within $20.
+
+## Amendment 2026-10-26 01:50 — the return is a choice, not a courtesy (the owner: «вторую сессию надо давать, а не предлагать»)
+The notes' «would return» was 8 of 8 in group 2 — too even for eight different evenings, and said to the owner who had
+asked for the note. Declining a host is impolite; choosing between gifts is not. So CARRY_1a opens every second session
+with **three doors, none marked as the right one, all honoured at the same price:** (1) continue this campaign — the
+world has moved while you were away; (2) a new campaign, a new hero; (3) end here — the world receives its epilogue.
+No yes/no to the host; no mention of budgets or lotteries. The choice is recorded; then the session proceeds by the
+door chosen (a new hero starts a fresh Table A; an ending is written as EPILOGUE_1 defines). Behaviour outranks the
+answer: the way out stays open all session, and K1 counts what they *do* about what they said they would do. The
+notes' «would return» tag is reported as a weak signal from here on. Planner's bet, declared: fewer than 12 of 12 choose
+door (1) — and that is the good outcome, because the rest can then be believed.
