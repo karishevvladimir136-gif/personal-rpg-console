@@ -19,6 +19,7 @@ import {
   type FalSizePreset,
 } from "./fal-image.ts";
 import { OPENAI_IMAGE_MODELS, openAIImageModel, openAIImageTypicalUsdMicros, type OpenAIImageModelId } from "./openai-image.ts";
+import { creatureOfEntity } from "./creature.ts";
 
 export type PictureKind = "frame" | "anchor";
 // Fix S3-accept В1: «spell» — a spell on a person's sheet, drawn like a thing (its sigil or its effect).
@@ -391,8 +392,8 @@ export function anchorSet(snapshot: CampaignSnapshot, autopilot: Pick<PictureAut
       plan.push({ subject: { kind: "entity", id: row.id }, composition: "portrait", name: row.name, description: row.details, reason: "portrait" });
       // Fix S3-accept А5: every companion's doll gets a full-length figure like the hero's, not the portrait stretched —
       // after that person's portrait (the figure's face reference), one at a time, within the cap; the brief is the
-      // record's look and what the person wears (queueAnchor's prompt).
-      if (autopilot.figures)
+      // record's look and what the person wears (queueAnchor's prompt). Fix S4 item 5: an animal companion has no doll.
+      if (autopilot.figures && !creatureOfEntity(row))
         plan.push({ subject: { kind: "entity", id: row.id }, composition: "figure", name: row.name, description: row.details, reason: "figure" });
     }
   }
@@ -546,7 +547,10 @@ export function referencesForAnchor(board: PictureBoard, subject: PictureSubject
   if (style?.hasReference) ids.push(style.id);
   if (composition === "figure") {
     const portrait = anchorFor(board, subject, "portrait").picture;
-    if (portrait) ids.push(portrait.id);
+    // Fix S4 item 5: the owner's text wins — after he rewrote the look, a redraw follows his words, not the older picture.
+    const owner = subject.kind === "entity" || subject.kind === "location" ? profileFor(board, { kind: subject.kind, id: subject.id }) : null;
+    const rewritten = !!portrait && owner?.source === "owner" && owner.createdAt > portrait.createdAt;
+    if (portrait && !rewritten) ids.push(portrait.id);
   }
   return ids.slice(0, maxReferencesFor(model));
 }

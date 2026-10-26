@@ -49,31 +49,33 @@ export async function buildBrief(apiKey: string, input: BriefRequestInput, optio
 }
 
 export type ProfileDraftInput = {
-  kind: "person" | "place";
+  /** Fix S4 item 5: an animal companion or familiar is a «creature» — its look is an animal's, never a person's. */
+  kind: "person" | "place" | "creature";
   name: string;
-  /** The records' public text: details, the approved appearance text, worn items. */
+  /** The records' public text: the owner's description, the record's details and sheet, the hero's sheet line about a
+   * companion, worn items (creature.ts profileSourceText). Fix S4 item 5: the only source — never a picture. */
   text: string;
-  /** The approved anchor pictures (portrait, figure; a place's view), if any. */
-  images: { bytes: Uint8Array; contentType: string; label: string }[];
+  /** For a creature: the animal it is («cat»). */
+  species?: string;
   language: "ru" | "en";
 };
 export type ProfileDraftResult = { look: string | null; usage: BriefUsage | null; costUsdMicros: number; elapsedMs: number; error: string | null };
 
-/** The profile request: a full look in plain English, from the text and the pictures, nothing invented beyond them. */
+/** The profile request: a full look in plain English from the records' words only (fix S4 item 5: a portrait drawn wrong
+ * — the cat as a man with a raven — must never become the look every later picture copies), nothing invented. */
 export function profileRequest(input: ProfileDraftInput) {
+  const species = input.species?.trim() || "animal";
   const system = [
     "You write the visual profile of one subject of an illustrated role-playing campaign, for an illustrator who must draw this subject the same way in every picture.",
     input.kind === "person"
       ? "Write 60–140 words of plain English, present tense, one paragraph: face (shape, eyes, nose, jaw, skin tone), apparent age, hair (colour, length, style, facial hair), build and height, usual clothes with colours and materials, distinguishing marks (scars, tattoos, jewellery, glasses), bearing. Lead with what makes this person recognisable."
-      : "Write 60–140 words of plain English, present tense, one paragraph: the materials and colours of the place, the light sources and their quality, the layout (what is where, the entrances, the size), the landmarks an illustrator would always show, what the weather or the sea does to it. Lead with what makes this place recognisable.",
-    "Use the text and the pictures given; when they disagree, the pictures win for looks the owner approved. Never invent names, items or facts that are in neither. Do not describe the art style. Reply with the paragraph only, no title, no quotes.",
+      : input.kind === "creature"
+        ? `Write 60–140 words of plain English, present tense, one paragraph about the ${species}: it is an animal, a ${species}, and nothing else — never a person, a rider, an owner or clothes. Its size and build, its coat (or feathers or scales) with colour, pattern and length, its eyes, ears and tail, distinguishing marks, how it moves and holds itself. Lead with what makes this ${species} recognisable.`
+        : "Write 60–140 words of plain English, present tense, one paragraph: the materials and colours of the place, the light sources and their quality, the layout (what is where, the entrances, the size), the landmarks an illustrator would always show, what the weather or the sea does to it. Lead with what makes this place recognisable.",
+    "Use only the text given: the owner's description first — where anything disagrees, the owner's words win — then the records and the sheet. Never invent names, items or facts that are not there; where the text is silent, keep it plain and ordinary. Do not describe the art style. Reply with the paragraph only, no title, no quotes.",
   ].join("\n");
-  const content: Content[] = [];
-  for (const image of input.images.slice(0, 3)) {
-    content.push({ type: "text", text: `A picture of ${input.name}: ${image.label}.` });
-    content.push({ type: "image", source: { type: "base64", media_type: image.contentType, data: Buffer.from(image.bytes).toString("base64") } });
-  }
-  content.push({ type: "text", text: [`The subject (${input.kind}): ${input.name}.`, `What the records say (${input.language === "ru" ? "Russian" : "English"}):`, input.text.replace(/\r/g, "").trim().slice(0, 4000) || "(nothing yet)"].join("\n") });
+  const content: Content[] = [{ type: "text", text: [`The subject (${input.kind === "creature" ? `an animal: a ${species}` : input.kind}): ${input.name}.`,
+    `What the records say (${input.language === "ru" ? "Russian" : "English"}):`, input.text.replace(/\r/g, "").trim().slice(0, 4000) || "(nothing yet)"].join("\n") }];
   return { system, content };
 }
 
