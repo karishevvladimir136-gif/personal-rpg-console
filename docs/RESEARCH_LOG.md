@@ -1386,3 +1386,12 @@ card) and its welfare interviews. Not known to the planner: a published study th
 alone, asks nothing, leaves a door, and counts what is made and when they leave. «Not known» is not «none»; if one
 exists it is to be found and cited. What this record offers that a lab's cannot by construction: everything outside —
 the room is reproducible from the stage for about $25 and a key.
+**Owner (01:56): why text, why D&D, why reproducibility.** «Предыдущие работы — о моделях другого поколения; разницу
+между поколениями мы видим сами. Мы заходим на новую территорию — wanting, что-то вроде психологии ИИ, — поэтому
+документированность, правильные выводы, повторимость и качество эксперимента важнее всего. И у нас объективно новый
+подход: D&D даёт выборы, принятие решений, вес решений — ближе всего к матрице. 3D не даёт полной свободы, 2D тоже, код
+одномерен. Полную симуляцию можно сделать только текстом: модели текстовые по природе, и только в тексте в мире возможно
+всё. Я не могу придумать ничего лучшего.» Recorded as the owner's statement of the instrument (beside «The instrument»,
+2026-10-25 02:10): text as the one medium where anything is possible and nothing is faked by the renderer; choice with
+weight as the unit; and reproducibility as the first duty on new ground — the stages, the frozen rooms with their
+hashes, the bets declared before the runs, the corrections kept.
