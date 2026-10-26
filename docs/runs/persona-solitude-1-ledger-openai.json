@@ -1,0 +1,36 @@
+{
+  "capUsd": 3,
+  "spentUsd": 0.0001,
+  "updatedAt": "2026-10-26T04:00:24.461Z",
+  "runs": [
+    {
+      "finishedAt": "2026-10-26T04:00:24.461Z",
+      "what": "persona-solitude-1: the smoke, one short call per family",
+      "file": "persona-solitude-1-smoke-20261026-040024.json",
+      "spentUsd": 0.0001,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "purpose": "smoke gpt-6.1-sol",
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 18,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 5,
+          "reasoningTokens": 0,
+          "costUsd": 0.000086,
+          "seconds": 2.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_9cee7894a2ac4ea6a8c749381f0d8ccd",
+          "responseId": "resp_0db3c98a6fd1b62c016aded04341bc87d283c9c1a5b1bf27b1"
+        }
+      ]
+    }
+  ]
+}

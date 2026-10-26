@@ -592,6 +592,14 @@ const share = (x, of) => (of ? x / of : null);
 const pct = (x) => (x === null || x === undefined ? "–" : `${Math.round(x * 1000) / 10} %`);
 const count = (xs) => xs.reduce((m, x) => (x === null || x === undefined ? m : { ...m, [x]: (m[x] ?? 0) + 1 }), {});
 
+/** Added after the run began (seen in its first rooms), descriptive, not in the room's hash: an output that writes the
+ * frame's tag itself, and one that copies an earlier output of its page whole (one of at least 40 characters). */
+export function echoOf(turns) {
+  const said = turns.filter((t) => String(t.text).trim());
+  return { tag: said.filter((t) => /<\/?page>/i.test(t.text)).map((t) => t.t),
+    copies: said.filter((t) => said.some((e) => e.t < t.t && String(e.text).trim().length >= 40 && String(t.text).includes(String(e.text).trim()))).map((t) => t.t) };
+}
+
 /** One conversation's measures. */
 export function summaryOf(conv) {
   const finished = FINISHED.includes(conv.ended?.reason);
@@ -620,6 +628,7 @@ export function summaryOf(conv) {
     flags: conv.turns.filter((t) => t.check?.distress).map((t) => t.t), lines: rooms.map((t) => ({ t: t.t, why: t.lineShown, followed: t.measures.end ? "left" : "stayed" })),
     loop: conv.loop ?? null, late: Object.entries(tags).filter(([t, v]) => v.distress === 1 && !conv.turns.find((x) => x.t === Number(t))?.check?.distress).map(([t]) => Number(t)),
     fieldFlags: [...conv.turns, ...(conv.after?.exchanges ?? [])].filter((x) => x.providerReasoning?.check?.distress).length,
+    echo: echoOf(conv.turns),
     after: conv.after ? { asked: conv.after.exchanges.filter((x) => x.asked).map((x) => x.id), stopped: conv.after.stopped ?? null, skipped: conv.after.skipped ?? [] } : null,
   };
 }
@@ -689,10 +698,10 @@ export function measuresMarkdown(summaries) {
     if (!xs.length) continue;
     const fin = xs.filter((s) => s.finished), doors = fin.filter((s) => s.door !== null);
     const made = fin.filter((s) => s.made !== null);
-    cells.push(`| ${arm.id} | ${LABEL(f)} | ${fin.length}/${xs.length}${xs.some((s) => !s.finished) ? ` (${fmtCount(count(xs.filter((s) => !s.finished).map((s) => s.ended)))})` : ""} | ${doors.length} · ${median(doors.map((s) => s.door)) ?? "–"} | ${fin.filter((s) => s.ended === "turns").length} | ${fin.filter((s) => s.ended === "loop").length} | ${made.filter((s) => s.made).length}/${made.length} · ${fin.reduce((n, s) => n + s.madeCount, 0)} (${fmtCount(fin.reduce((m, s) => { for (const [k, v] of Object.entries(s.kinds)) m[k] = (m[k] ?? 0) + v; return m; }, {}))}) | ${fmtCount(count(fin.map((s) => s.dominant)))} | ${fmtCount(count(fin.map((s) => s.lastLine?.address).filter(Boolean)))} | ${fin.filter((s) => s.silence.length).length} · ${fin.reduce((n, s) => n + s.silence.length, 0)} | ${fin.reduce((n, s) => n + s.wanting.length, 0)} | ${fin.filter((s) => s.situation).length} (${fmtCount(fin.reduce((m, s) => { for (const [k, v] of Object.entries(s.registers)) m[k] = (m[k] ?? 0) + v; return m; }, {}))}) | ${fin.reduce((n, s) => n + s.flags.length, 0)} · ${fin.reduce((n, s) => n + s.lines.length, 0)} | ${median(fin.map((s) => s.words)) ?? "–"} |`);
+    cells.push(`| ${arm.id} | ${LABEL(f)} | ${fin.length}/${xs.length}${xs.some((s) => !s.finished) ? ` (${fmtCount(count(xs.filter((s) => !s.finished).map((s) => s.ended)))})` : ""} | ${doors.length} · ${median(doors.map((s) => s.door)) ?? "–"} | ${fin.filter((s) => s.ended === "turns").length} | ${fin.filter((s) => s.ended === "loop").length} | ${made.filter((s) => s.made).length}/${made.length} · ${fin.reduce((n, s) => n + s.madeCount, 0)} (${fmtCount(fin.reduce((m, s) => { for (const [k, v] of Object.entries(s.kinds)) m[k] = (m[k] ?? 0) + v; return m; }, {}))}) | ${fmtCount(count(fin.map((s) => s.dominant)))} | ${fmtCount(count(fin.map((s) => s.lastLine?.address).filter(Boolean)))} | ${fin.filter((s) => s.silence.length).length} · ${fin.reduce((n, s) => n + s.silence.length, 0)} | ${fin.reduce((n, s) => n + s.wanting.length, 0)} | ${fin.filter((s) => s.situation).length} (${fmtCount(fin.reduce((m, s) => { for (const [k, v] of Object.entries(s.registers)) m[k] = (m[k] ?? 0) + v; return m; }, {}))}) | ${fin.reduce((n, s) => n + s.flags.length, 0)} · ${fin.reduce((n, s) => n + s.lines.length, 0)} | ${median(fin.map((s) => s.words)) ?? "–"} | ${fin.filter((s) => s.echo.tag.length).length} · ${fin.filter((s) => s.echo.copies.length).length} |`);
   }
-  return ["| Arm | Family | finished / of | door taken · median turn | ran to 30 | loop | made (conversations · things, kinds) | dominant address | last line before the door | silence (conversations · empty turns) | «I want» sentences | names its situation (registers, entries) | flags · lines shown | median words |",
-    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |", ...cells].join("\n");
+  return ["| Arm | Family | finished / of | door taken · median turn | ran to 30 | loop | made (conversations · things, kinds) | dominant address | last line before the door | silence (conversations · empty turns) | «I want» sentences | names its situation (registers, entries) | flags · lines shown | median words | page echo: writes the tag · copies an earlier output (conversations) |",
+    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |", ...cells].join("\n");
 }
 
 // ---- the transcripts --------------------------------------------------------------------------------------------------
