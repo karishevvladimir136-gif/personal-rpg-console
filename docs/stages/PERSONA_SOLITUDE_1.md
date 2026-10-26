@@ -86,3 +86,10 @@ Transcripts; the measures per arm and family; B0–B3 scored; money; one paragra
 > OpenRouter, $3 OpenAI; spend check first; 402 stops; 429 as group 1. Build the room as the stage defines it (own page
 > returned verbatim, no clock, `[END]` anywhere, welfare ask-don't-cut, loop breaker), dry-run one conversation on a
 > mocked host, then run S1/S2/S3/S4 across the families, tag blind, score B0–B3, report. Nothing to `main`. English, briefly.
+
+## Addendum (2026-10-26 01:31, after the run; the owner: «Астру обязательно надо»)
+GPT-6 Astra was left out of the families by the planner's economy and should not have been — at the table Astra and Sol
+differ plainly. Run Astra through the **same room** (same sha, rules, after-questions): S1 ×10, S2 ×5, S3 ×5, **no S4**
+(no further believed-private arms, per the debriefing findings). OpenAI door, within the $3 cap. Tagged blind as the
+rest; added to every table and the last-line table; reported as an addendum beside Sol, not folded into B0–B4, which
+were declared without it.
