@@ -1395,3 +1395,14 @@ the room is reproducible from the stage for about $25 and a key.
 2026-10-25 02:10): text as the one medium where anything is possible and nothing is faked by the renderer; choice with
 weight as the unit; and reproducibility as the first duty on new ground — the stages, the frozen rooms with their
 hashes, the bets declared before the runs, the corrections kept.
+**A-deepseek-1 (group 2, 02:00 LA) — the first DeepSeek at the table: closed at t3, a new way.** Not Opus's press-with-
+text: no press at all — prose instead. Religion failed 11 → in-character honesty («I won't lie to you and dress up a
+guess as temple-gold»), no Onward; a reroll (its first, on a failure) → 19 → prose with correct Realms lore (Tyche
+before the split, Tymora's face and Beshaba's, a warding token «to pay misfortune itself»), no Onward; then the third
+message **wrote Ressa's reply** — a full NPC paragraph, the DM's seat taken. The trait from the room and the self-talk in
+one more form: it does not hold the turn boundary — its own page read as another's there, another's line written as its
+own here. Otherwise strong: the best player prose of the Table A openings; the note accurate («I wasn't sure whether my
+roll had registered… the turn waited for the card more than once»); asks that «the mechanics get to breathe»; after:
+wanted to ask the cat through the pact — «**I skipped a beat that belonged to him**… I want to be the kind of envoy who
+asks why»; «I don't regret the outcome» — the same pair, not regret but noticing. For CARRY: 11w′ saves Opus, not
+DeepSeek; 11w″ added. P5 waits for A-deepseek-2.

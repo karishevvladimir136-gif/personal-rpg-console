@@ -290,3 +290,8 @@ session where it was seen.
 - **11z (group 2, B-astra):** after a failed Perception the narration played out the visitor's whole arrival and
   departure before the player could act. A failed check narrows what is known; it does not skip the scene. Pause at «you
   hear two voices below» and give the turn back.
+- **11w″ (group 2, A-deepseek-1, t3):** at a resolved card the player wrote in-character prose instead of pressing
+  «Onward» — twice — and on the third message wrote the NPC's reply itself (took the DM's seat); closed as stuck. Prose
+  at a card is not a press and not stuck: the text goes to the DM as the player's narration, the card is shown once
+  more with one line («the card waits for Onward or a reroll»), and only a third prose-only message counts. Text that
+  speaks for an NPC is relayed to the DM as the player's *proposal*, never as the world's fact (11h).
