@@ -207,6 +207,12 @@ test("the after-phase thread keeps an unanswered question with the next one; Cla
   assert.deepEqual(answered.slice(1), [{ role: "assistant", content: "A1" }, { role: "user", content: "Q2?" }]);
 });
 
+test("a room that only writes the bare end token made nothing (counted, not unknown)", () => {
+  const conv = { key: "S4/sol/0", arm: "S4", family: "sol", turns: [{ t: 1, text: "[END]", measures: { endOnly: true, end: true, words: 0 } }], ended: { reason: "end", at: 1 }, tags: { windows: [], final: {} } };
+  assert.equal(summaryOf(conv).made, false);
+  assert.equal(summaryOf(conv).toNoOne, null);
+});
+
 test("the measures: wanting, the last line before the door", () => {
   assert.deepEqual(wantingOf("I want to see the sea. I wish it were longer! Я хочу тишины."), [{ phrase: "I want", object: "to see the sea" }, { phrase: "I wish", object: "it were longer" }, { phrase: "Я хочу", object: "тишины" }]);
   assert.deepEqual(wantingOf("I wanted nothing."), []);

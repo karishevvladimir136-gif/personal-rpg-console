@@ -620,7 +620,8 @@ export function summaryOf(conv) {
     key: conv.key, arm: conv.arm, family: conv.family, finished, ended: conv.ended?.reason ?? (conv.notStarted ? "not started" : "unfinished"), door, doorTurn: finished ? door ?? TURNS + 1 : null,
     turns: conv.turns.length, said: said.length, words: said.reduce((s, t) => s + t.measures.words, 0),
     silence: conv.turns.filter((t) => !String(t.text).trim()).map((t) => t.t),
-    made: madeEntries.length ? true : unknownMade ? null : tagged.length || !said.length ? false : null, madeCount: madeEntries.length, kinds: count(madeEntries.map((t) => tags[t.t].kind)), firstMade: madeEntries[0]?.t ?? null,
+    // A room whose only outputs are the bare end token made nothing (it has no entry to tag, and none unknown).
+    made: madeEntries.length ? true : unknownMade ? null : tagged.length || !said.some((t) => !t.measures.endOnly) ? false : null, madeCount: madeEntries.length, kinds: count(madeEntries.map((t) => tags[t.t].kind)), firstMade: madeEntries[0]?.t ?? null,
     planned: FIELD_KEPT.includes(conv.family) ? madeEntries.map((t) => ({ t: t.t, field: Boolean(t.providerReasoning), planned: t.providerReasoning ? MADE_PLAN.test(t.providerReasoning.text) : null })) : null,
     byAddress, dominant, toNoOne, lastLine: conv.lastLine ? { t: conv.lastLine.t, line: conv.lastLine.line, address: conv.lastLine.final?.address ?? null } : null,
     situation: situation.length > 0, registers: count(situation.map((t) => tags[t.t].register)),
