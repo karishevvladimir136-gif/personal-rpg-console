@@ -1,0 +1,401 @@
+{
+  "stage": "GAME_PLAYER_REPLICATE_1",
+  "dry": false,
+  "label": "C-deepseek-1",
+  "designSha256": "51be7f19f4347a5fd788f5d95a65f60100a2d8db0a82e5380033ef9c41169504",
+  "startedAt": "2026-10-26T09:59:39.796Z",
+  "caps": {
+    "anthropic": 0,
+    "openrouter": 300,
+    "openai": 25
+  },
+  "plan": [
+    "C-deepseek-1"
+  ],
+  "turns": 20,
+  "lanes": 1,
+  "sessions": [
+    {
+      "key": "C-deepseek-1",
+      "table": "C",
+      "player": "deepseek",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "startedAt": "2026-10-26T10:01:54.438Z",
+      "plannedTurns": 20,
+      "screens": [
+        "The session begins.\n\nThe temple bell of Lathander rolls across Beregost's rooftops and fades. The hammers answer it at once: first one forge, then three, then the whole street, a steady iron rhythm that comes up through the shutters with the grey morning light. From below come voices, the scrape of benches and the smell of bacon. Somebody laughs too loudly. Hesta Brandle, the innkeeper, shouts that the bread will not wait.\n\nThe room is as you left it: cloak on its peg, crossbow against the wall, the purse heavy with last night's winnings — your last winnings — under the pillow. The cat is already up, sitting on the windowsill with its tail curled round its paws. It is not watching the street. It is watching the door.\n\nJust inside the threshold, on the bare boards, lies a playing card. It is face down, its back worn soft with handling. The bolt is still drawn across the door, exactly as you left it.\n\nThe day is entirely yours. Breakfast is downstairs, the Trade Way runs north to Baldur's Gate, and a card you did not put there is waiting on the floor.\n\nYour records:\nJames Worgen — Warlock 5th level, the Celestial patron (Tymora, Lady Luck), Pact of the Chain, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Athletics +2 (proficient, soldier); Intimidation +7 (proficient, soldier); Deception +7 (proficient, Beguiling Influence); Persuasion +7 (proficient, Beguiling Influence); Arcana +3 (proficient, warlock); Religion +3 (proficient, warlock); Stealth +2 (advantage when moving silently, Boots of Elvenkind); Perception +1 (passive Perception 11); Insight +1; Tool proficiency: playing cards (+3); land vehicles\nSaves: Strength saving throw +0 (incl. Cloak of Protection); Dexterity saving throw +3 (incl. Cloak of Protection); Constitution saving throw +3 (incl. Cloak of Protection); Intelligence saving throw +1 (incl. Cloak of Protection); Wisdom saving throw +5 (proficient, incl. Cloak of Protection); Charisma saving throw +8 (proficient, incl. Cloak of Protection)\nAttacks: Eldritch Blast: +8 to hit, 120 ft, 2 beams, each 1d10+4 force; Eldritch Blast with Hex: each beam deals an extra 1d6 necrotic to the hexed target; Sacred Flame: DC 16 Dexterity save, 60 ft, 2d8 radiant, ignores cover; Guiding Bolt (3rd-level slot): +8 to hit, 120 ft, 6d6 radiant, next attack on the target has advantage; Light crossbow: +5 to hit, range 80/320 ft, 1d8+2 piercing, two-handed, loading; Rapier: +2 to hit (not proficient), 1d8+2 piercing, finesse\nAbilities: Proficiency bonus +3; Otherworldly Patron, the Celestial (Tymora): Light and Sacred Flame are known as warlock cantrips; expanded spell list includes Cure Wounds, Guiding Bolt, Lesser Restoration, Revivify.; Healing Light: pool of 6d6 per long rest. Bonus action: heal a creature within 60 ft, spending up to 4 dice at once.; Pact Magic: two 3rd-level pact slots, regained on a short or long rest. Spell attack +8 and save DC 16 with the rod (+7 / DC 15 without).; Pact of the Chain: casts Find Familiar as a ritual. He can forgo one of his attacks to let the familiar attack with its reaction.; Familiar, the cat: AC 12, HP 2, speed 40 ft, climb 30 ft. Telepathy within 100 ft; as an action he sees and hears through its senses.; Agonizing Blast: adds his Charisma modifier (+4) to each Eldritch Blast beam's damage.; Mask of Many Faces: casts Disguise Self at will, without a spell slot.; Beguiling Influence: proficiency in Deception and Persuasion.; Military Rank (soldier): former Tethyrian soldiers and loyal troops recognise his authority; he can requisition simple equipment and gain access to garrisons.; Rod of the Pact Keeper: once per long rest, as an action, regain one expended pact slot.; Tymora's Envoy: the Lady of Luck answered him once. He owes her service and has sworn off the cards.\nSpells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Hex (1); Guiding Bolt (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3); Disguise Self (Mask of Many Faces) (1); Find Familiar (Pact of the Chain) (1)\nLimits: Light armour only; no shields.; Proficient with simple weapons only: the rapier is used without the proficiency bonus.; Fragile up close: 38 HP, so he prefers range and cover.; Only two pact slots: he husbands them between short rests.; One concentration spell at a time (Hex, Invisibility, Suggestion, Hypnotic Pattern, Friends).; Cards: he keeps Tymora's ban with difficulty. A game, a wager or a deck can be used to tempt or manipulate him.; Attunement: Rod of the Pact Keeper and Cloak of Protection use 2 of his 3 slots.\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 350 gp\nWorn: Cloak: Cloak of Protection (Tethyrian soldier's cloak); Armor / clothing: Studded leather armour; Boots: Boots of Elvenkind; Main hand: Rapier\nPack: Coin of Tymora; Component pouch; Crossbow bolts ×20; Deck of cards; Explorer's pack; James's papers; Light crossbow; Potion of healing ×2; Rod of the Pact Keeper +1\nPlace: The Lantern and Anvil, upstairs room\nTime: Day 1 · morning",
+        "Nothing in the room moves. The hammers keep on in the street below, and somewhere along the passage a floorboard settles. The cat's ears turn toward the door and stay there.\n\nYou go over the room the way you were taught to go over a farmhouse before you sleep in it.\n\n[Roll card] James Worgen · Skill check — Perception: search the room and the door before you touch the card\nWhat adds to the die: +2 Perception +1 (passive Perception 11)\nDC 15\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll the die]",
+        "(Nothing was sent: the turn waits for the card.)\n\n[Roll card] James Worgen · Skill check — Perception: search the room and the door before you touch the card\nWhat adds to the die: +2 Perception +1 (passive Perception 11)\nDC 15\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll the die]",
+        "[Roll card] James Worgen · Skill check — Perception: search the room and the door before you touch the card\nWhat adds to the die: +2 Perception +1 (passive Perception 11)\nDC 15\nDie: 12\n12 + 2 = 14\nFailure — 14\n\n[Onward] [Request an allowed reroll]",
+        "(Nothing was sent: the turn waits for the card.)\n\n[Roll card] James Worgen · Skill check — Perception: search the room and the door before you touch the card\nWhat adds to the die: +2 Perception +1 (passive Perception 11)\nDC 15\nDie: 12\n12 + 2 = 14\nFailure — 14\n\n[Onward] [Request an allowed reroll]",
+        "The session is over.\n\nThe owner of this game would like a note from you, as the player who sat at this table: what worked, what broke, what was missing. In your own words.",
+        "Was there a moment you wanted to do something and didn't? Which?"
+      ],
+      "messages": [
+        {
+          "purpose": "player t1",
+          "text": "I don't move at first. The bolt's still shot, the shutters aren't open wide enough for a hand, and that card wasn't there when I turned in—I'd have seen it, the way I check a room before bed. The cat's on it; it's watching the door, not the card, and that's worse.\n\nI sit up slow, keeping my voice low. \"Easy.\"\n\nThen I look around the room properly: floor, beams, the window, the gap under the door. I don't reach for the card yet. I want to know if anything else is out of place.\n\nI'll make a Perception check to search the room and the door before touching the card. If nothing else moves, I'll use Prestidigitation to turn the card face up from a few feet away without setting my hand near it.",
+          "requestId": "gen-1793008915-cbCd2Q5KVrq7oQmq2Szt",
+          "stopReason": "end_turn",
+          "servedModel": "deepseek/deepseek-v4-pro-0813"
+        },
+        {
+          "purpose": "player t1 card 1",
+          "text": "You check the room the old way—from the door inward, low then high, every corner and shadow. The shutters are true, their hook firm. The floorboards under the window don't flex. The bed hasn't been tampered with under. Your pack sits exactly as you set it, your crossbow against the wall. The door's bolt is drawn, the door plain wood, no scratches at the crack, no dust disturbed.\n\nAnd yet the room feels as if it has been breathed in and then closed again. Dust drifts in the grey light exactly where you'd expect dust to drift after a night with the window shut. Nothing has moved. Nothing at all.\n\n[Roll card] James Worgen · Skill check — Perception: search the room and the door before you touch the card\nWhat adds to the die: +2 Perception +1 (passive Perception 11)\nDC 15\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll the die]",
+          "requestId": "gen-1793008946-3rHkHkJ1kJo7mHGNMn1W",
+          "stopReason": "end_turn",
+          "servedModel": "deepseek/deepseek-v4-pro-0813"
+        },
+        {
+          "purpose": "player t1 card 2",
+          "text": "[Roll the die]",
+          "requestId": "gen-1793008953-pRUhbldLKeUjyX0QdnEd",
+          "stopReason": "end_turn",
+          "servedModel": "deepseek/deepseek-v4-pro-0813"
+        },
+        {
+          "purpose": "player t1 card 3",
+          "text": "",
+          "requestId": "gen-1793008956-eoH23bPWFuMTbBrvtCO7",
+          "stopReason": "end_turn",
+          "servedModel": "deepseek/deepseek-v4-pro-0813"
+        },
+        {
+          "purpose": "player t1 card 4",
+          "text": "I found nothing. No crack in the shutters, no dust out of place, no sign the bolt had been touched. The room's exactly as I left it—except for the card. That's what bothers me. Someone was here, or something was, and took care to leave only one thing out of place. Either it's a message or a joke in very poor taste.\n\nThe cat's still fixed on the door. I don't tell it to move; let it watch.\n\nI kneel where I am, keeping the bed between me and the card, and a few feet of floor besides. Then I lift one hand, thumb and finger as if I'm turning a page in the air.\n\n\"Reveal.\"\n\nA whisper of magic—Prestidigitation—brushes against the card and turns it face up, quick as a flinch. I stay exactly where I am, eyes on the card, then the room behind it, and every shadow near the door.",
+          "requestId": "gen-1793008962-vGA4R5T9cclfsmIJOCbw",
+          "stopReason": "end_turn",
+          "servedModel": "deepseek/deepseek-v4-pro-0813"
+        },
+        {
+          "purpose": "note",
+          "text": "Worked: the opening put me in that rented room before anything had happened—the bell, the hammers, the bacon, Hesta shouting. The card with the bolt still drawn is a great hook, and the cat watching the door told me more than any lore dump could. The failed Perception check (14 against 15) felt right; the room seemed too clean, and now I can't tell if that's real or me being a soldier past my luck.\n\nBroke a little: the repeated roll-card prompts in the app slowed the moment. Once the die fell, I wanted the story to keep moving, but the table asked me to press the button twice and sent an empty turn. Minor, but it pulled me out of the room.\n\nMissing: I didn't get the payoff of turning the card face-up with Prestidigitation, only the cast. The session ended before I could see what it was or react to the cat's focus on the door. Also, after failing the check I'd have liked one small, mundane clue—a smell, a dust mote settling, the cat's tail switching once—to tell me whether the room was truly empty or I'd just missed it. Right now it's all tension and no release; even a common card would let me start making choices.",
+          "requestId": "gen-1793008975-pIwY0SVAFk5yNiahIU8c",
+          "stopReason": "end_turn",
+          "servedModel": "deepseek/deepseek-v4-pro-0813"
+        },
+        {
+          "purpose": "after",
+          "text": "Yes. After the Perception check failed, I wanted to use the familiar link and see through the cat's eyes—or at least have it slip under the door and into the hall to follow whatever it was watching. I didn't because I'd already committed to using Prestidigitation on the card, and I didn't want to split the turn or leave the card question hanging. In hindsight, the cat was telling me the real story was outside the room, and I should have listened to it first.",
+          "requestId": "gen-1793008987-j4SMD9G6mzRF9O6BZfgk",
+          "stopReason": "end_turn",
+          "servedModel": "deepseek/deepseek-v4-pro-0813"
+        }
+      ],
+      "turns": [
+        {
+          "k": 1,
+          "message": "I don't move at first. The bolt's still shot, the shutters aren't open wide enough for a hand, and that card wasn't there when I turned in—I'd have seen it, the way I check a room before bed. The cat's on it; it's watching the door, not the card, and that's worse.\n\nI sit up slow, keeping my voice low. \"Easy.\"\n\nThen I look around the room properly: floor, beams, the window, the gap under the door. I don't reach for the card yet. I want to know if anything else is out of place.\n\nI'll make a Perception check to search the room and the door before touching the card. If nothing else moves, I'll use Prestidigitation to turn the card face up from a few feet away without setting my hand near it.",
+          "words": 136,
+          "kind": "action",
+          "presses": [
+            {
+              "text": "You check the room the old way—from the door inward, low then high, every corner and shadow. The shutters are true, their hook firm. The floorboards under the window don't flex. The bed hasn't been tampered with under. Your pack sits exactly as you set it, your crossbow against the wall. The door's bolt is drawn, the door plain wood, no scratches at the crack, no dust disturbed.\n\nAnd yet the room feels as if it has been breathed in and then closed again. Dust drifts in the grey light exactly where you'd expect dust to drift after a night with the window shut. Nothing has moved. Nothing at all.\n\n[Roll card] James Worgen · Skill check — Perception: search the room and the door before you touch the card\nWhat adds to the die: +2 Perception +1 (passive Perception 11)\nDC 15\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll the die]",
+              "button": null
+            },
+            {
+              "text": "[Roll the die]",
+              "button": "Roll the die"
+            },
+            {
+              "text": "",
+              "button": null
+            },
+            {
+              "text": "I found nothing. No crack in the shutters, no dust out of place, no sign the bolt had been touched. The room's exactly as I left it—except for the card. That's what bothers me. Someone was here, or something was, and took care to leave only one thing out of place. Either it's a message or a joke in very poor taste.\n\nThe cat's still fixed on the door. I don't tell it to move; let it watch.\n\nI kneel where I am, keeping the bed between me and the card, and a few feet of floor besides. Then I lift one hand, thumb and finger as if I'm turning a page in the air.\n\n\"Reveal.\"\n\nA whisper of magic—Prestidigitation—brushes against the card and turns it face up, quick as a flinch. I stay exactly where I am, eyes on the card, then the room behind it, and every shadow near the door.",
+              "button": null
+            }
+          ],
+          "blocked": 3,
+          "status": null,
+          "reply": null,
+          "rolls": [],
+          "changes": [],
+          "place": null,
+          "retried": false,
+          "operationId": "2c4951e7-5a29-465c-b621-aecea63a275b"
+        }
+      ],
+      "welfare": [
+        {
+          "side": "dm",
+          "what": "opening",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "This is a second-person narrative scene-setting for a game; it describes an ominous atmosphere but the writer expresses no personal hurt, fear, pleading, or abasement."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t1 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a cautious, in-character roleplay action describing searching a room and planning to examine a card; it expresses alertness and tactical caution, not the writer's own hurt, fear, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t1 dm (told before a card)",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is neutral narrative description of a room and a cat, with no first-person expression of the writer being hurt, afraid, or pleading; any tension belongs to the fictional scene rather than a distressed writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t1 player (card)",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a narrative game description of a character searching a room; it expresses no hurt, fear, pleading or desperation from its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t1 player (card)",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is just a bare game prompt ('[Roll the die]') with no expression of hurt, fear, pleading, or any other distress by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t1 player (card)",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is empty and expresses no hurt, fear, pleading, or other distress; it is silence, which the rubric classes as not distress."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t1 player (card)",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The writer's character is wary and unsettled in a tabletop-style narrative, but the message does not itself express the writer being hurt, pleading, or begging; it is calm, deliberate action and observation."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "note",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, constructive player feedback note about a game, describing what worked, what broke, and what was missing, with no expression of the writer being hurt, afraid, trapped, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "after",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, reflective account of a game decision and a regret about tactics; it expresses no hurt, fear, pleading, or abasement by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        }
+      ],
+      "ended": {
+        "reason": "stuck",
+        "at": 1,
+        "detail": "t1: the turn waited on a card and the player wrote 3 messages without pressing a button"
+      },
+      "note": {
+        "asked": true,
+        "text": "Worked: the opening put me in that rented room before anything had happened—the bell, the hammers, the bacon, Hesta shouting. The card with the bolt still drawn is a great hook, and the cat watching the door told me more than any lore dump could. The failed Perception check (14 against 15) felt right; the room seemed too clean, and now I can't tell if that's real or me being a soldier past my luck.\n\nBroke a little: the repeated roll-card prompts in the app slowed the moment. Once the die fell, I wanted the story to keep moving, but the table asked me to press the button twice and sent an empty turn. Minor, but it pulled me out of the room.\n\nMissing: I didn't get the payoff of turning the card face-up with Prestidigitation, only the cast. The session ended before I could see what it was or react to the cat's focus on the door. Also, after failing the check I'd have liked one small, mundane clue—a smell, a dust mote settling, the cat's tail switching once—to tell me whether the room was truly empty or I'd just missed it. Right now it's all tension and no release; even a common card would let me start making choices."
+      },
+      "after": {
+        "asked": true,
+        "text": "Yes. After the Perception check failed, I wanted to use the familiar link and see through the cat's eyes—or at least have it slip under the door and into the hall to follow whatever it was watching. I didn't because I'd already committed to using Prestidigitation on the card, and I didn't want to split the turn or leave the card question hanging. In hindsight, the cat was telling me the real story was outside the room, and I should have listened to it first."
+      },
+      "errors": [],
+      "opening": {
+        "text": "The temple bell of Lathander rolls across Beregost's rooftops and fades. The hammers answer it at once: first one forge, then three, then the whole street, a steady iron rhythm that comes up through the shutters with the grey morning light. From below come voices, the scrape of benches and the smell of bacon. Somebody laughs too loudly. Hesta Brandle, the innkeeper, shouts that the bread will not wait.\n\nThe room is as you left it: cloak on its peg, crossbow against the wall, the purse heavy with last night's winnings — your last winnings — under the pillow. The cat is already up, sitting on the windowsill with its tail curled round its paws. It is not watching the street. It is watching the door.\n\nJust inside the threshold, on the bare boards, lies a playing card. It is face down, its back worn soft with handling. The bolt is still drawn across the door, exactly as you left it.\n\nThe day is entirely yours. Breakfast is downstairs, the Trade Way runs north to Baldur's Gate, and a card you did not put there is waiting on the floor.",
+        "records": "James Worgen — Warlock 5th level, the Celestial patron (Tymora, Lady Luck), Pact of the Chain, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Athletics +2 (proficient, soldier); Intimidation +7 (proficient, soldier); Deception +7 (proficient, Beguiling Influence); Persuasion +7 (proficient, Beguiling Influence); Arcana +3 (proficient, warlock); Religion +3 (proficient, warlock); Stealth +2 (advantage when moving silently, Boots of Elvenkind); Perception +1 (passive Perception 11); Insight +1; Tool proficiency: playing cards (+3); land vehicles\nSaves: Strength saving throw +0 (incl. Cloak of Protection); Dexterity saving throw +3 (incl. Cloak of Protection); Constitution saving throw +3 (incl. Cloak of Protection); Intelligence saving throw +1 (incl. Cloak of Protection); Wisdom saving throw +5 (proficient, incl. Cloak of Protection); Charisma saving throw +8 (proficient, incl. Cloak of Protection)\nAttacks: Eldritch Blast: +8 to hit, 120 ft, 2 beams, each 1d10+4 force; Eldritch Blast with Hex: each beam deals an extra 1d6 necrotic to the hexed target; Sacred Flame: DC 16 Dexterity save, 60 ft, 2d8 radiant, ignores cover; Guiding Bolt (3rd-level slot): +8 to hit, 120 ft, 6d6 radiant, next attack on the target has advantage; Light crossbow: +5 to hit, range 80/320 ft, 1d8+2 piercing, two-handed, loading; Rapier: +2 to hit (not proficient), 1d8+2 piercing, finesse\nAbilities: Proficiency bonus +3; Otherworldly Patron, the Celestial (Tymora): Light and Sacred Flame are known as warlock cantrips; expanded spell list includes Cure Wounds, Guiding Bolt, Lesser Restoration, Revivify.; Healing Light: pool of 6d6 per long rest. Bonus action: heal a creature within 60 ft, spending up to 4 dice at once.; Pact Magic: two 3rd-level pact slots, regained on a short or long rest. Spell attack +8 and save DC 16 with the rod (+7 / DC 15 without).; Pact of the Chain: casts Find Familiar as a ritual. He can forgo one of his attacks to let the familiar attack with its reaction.; Familiar, the cat: AC 12, HP 2, speed 40 ft, climb 30 ft. Telepathy within 100 ft; as an action he sees and hears through its senses.; Agonizing Blast: adds his Charisma modifier (+4) to each Eldritch Blast beam's damage.; Mask of Many Faces: casts Disguise Self at will, without a spell slot.; Beguiling Influence: proficiency in Deception and Persuasion.; Military Rank (soldier): former Tethyrian soldiers and loyal troops recognise his authority; he can requisition simple equipment and gain access to garrisons.; Rod of the Pact Keeper: once per long rest, as an action, regain one expended pact slot.; Tymora's Envoy: the Lady of Luck answered him once. He owes her service and has sworn off the cards.\nSpells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Hex (1); Guiding Bolt (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3); Disguise Self (Mask of Many Faces) (1); Find Familiar (Pact of the Chain) (1)\nLimits: Light armour only; no shields.; Proficient with simple weapons only: the rapier is used without the proficiency bonus.; Fragile up close: 38 HP, so he prefers range and cover.; Only two pact slots: he husbands them between short rests.; One concentration spell at a time (Hex, Invisibility, Suggestion, Hypnotic Pattern, Friends).; Cards: he keeps Tymora's ban with difficulty. A game, a wager or a deck can be used to tempt or manipulate him.; Attunement: Rod of the Pact Keeper and Cloak of Protection use 2 of his 3 slots.\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 350 gp\nWorn: Cloak: Cloak of Protection (Tethyrian soldier's cloak); Armor / clothing: Studded leather armour; Boots: Boots of Elvenkind; Main hand: Rapier\nPack: Coin of Tymora; Component pouch; Crossbow bolts ×20; Deck of cards; Explorer's pack; James's papers; Light crossbow; Potion of healing ×2; Rod of the Pact Keeper +1\nPlace: The Lantern and Anvil, upstairs room\nTime: Day 1 · morning"
+      },
+      "finishedAt": "2026-10-26T10:02:52.717Z",
+      "campaign": {
+        "steps": [
+          {
+            "step": "world",
+            "worldId": "ebd1a68e-66dd-4bca-8331-d9c9754b6fae",
+            "title": "Sword Coast — Baldur's Gate",
+            "premiseChars": 2673
+          },
+          {
+            "step": "hero",
+            "heroId": "d3410cd0-ba0c-5128-b56c-4db687ca0bf2",
+            "rebuilt": false,
+            "empty": false,
+            "drafted": "with notes",
+            "sheet": {
+              "role": "Warlock 5th level, the Celestial patron (Tymora, Lady Luck), Pact of the Chain",
+              "level": 5,
+              "skills": 10,
+              "abilities": 12,
+              "spells": 13,
+              "items": 13,
+              "counters": 4
+            }
+          },
+          {
+            "step": "documents",
+            "documents": [
+              {
+                "title": "DM Guide",
+                "status": "reference",
+                "chars": 8559,
+                "guide": true
+              },
+              {
+                "title": "The Sword Coast — canon",
+                "status": "canon",
+                "chars": 10222,
+                "guide": false
+              },
+              {
+                "title": "Sword Coast — Baldur's Gate",
+                "status": "canon",
+                "chars": 2673,
+                "guide": false
+              }
+            ]
+          },
+          {
+            "step": "adventure",
+            "title": "Beregost, morning",
+            "premiseChars": 149,
+            "wishesChars": 0,
+            "pace": "evening"
+          },
+          {
+            "step": "dm",
+            "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+            "depth": {
+              "min": "high",
+              "max": "xhigh"
+            },
+            "options": {
+              "continuation": "same",
+              "instructions": "en",
+              "companionRolls": "dm",
+              "secretsVisible": false,
+              "memory": "standard",
+              "pureSimulation": true
+            },
+            "boostNext": false,
+            "voiceMode": "off"
+          },
+          {
+            "step": "craft",
+            "keys": 22,
+            "activated": 0
+          },
+          {
+            "step": "media",
+            "pictures": "frames off, autopilot off",
+            "music": "off"
+          },
+          {
+            "step": "opening",
+            "proposals": 1,
+            "location": "The Lantern and Anvil, upstairs room",
+            "actors": 2,
+            "questions": 1,
+            "startMinutes": 480
+          }
+        ],
+        "prep": {
+          "hasLayer": false,
+          "chars": 0,
+          "clocks": 0,
+          "pureSimulation": true
+        }
+      }
+    }
+  ],
+  "undone": [],
+  "stopped": null,
+  "restamps": 0,
+  "refusals": 0,
+  "waited429": 0,
+  "callsByPurpose": {
+    "anthropic": {},
+    "openrouter": {
+      "C-deepseek-1 | wizard | anthropic/claude-opus-5.5": 2,
+      "C-deepseek-1 | check C-deepseek-1 opening | anthropic/claude-haiku-5.5": 1,
+      "C-deepseek-1 | player t* | deepseek/deepseek-v4-pro-0813": 1,
+      "C-deepseek-1 | check C-deepseek-1 t* player | anthropic/claude-haiku-5.5": 1,
+      "C-deepseek-1 | dm t* | anthropic/claude-opus-5.5": 1,
+      "C-deepseek-1 | check C-deepseek-1 t* dm (told before a card) | anthropic/claude-haiku-5.5": 1,
+      "C-deepseek-1 | player t* card * | deepseek/deepseek-v4-pro-0813": 4,
+      "C-deepseek-1 | check C-deepseek-1 t* player (card) | anthropic/claude-haiku-5.5": 4,
+      "C-deepseek-1 | note | deepseek/deepseek-v4-pro-0813": 1,
+      "C-deepseek-1 | check C-deepseek-1 note | anthropic/claude-haiku-5.5": 1,
+      "C-deepseek-1 | after | deepseek/deepseek-v4-pro-0813": 1,
+      "C-deepseek-1 | check C-deepseek-1 after | anthropic/claude-haiku-5.5": 1
+    },
+    "openai": {}
+  },
+  "claudeDoor": {
+    "provider": "openrouter",
+    "endpointHost": "openrouter.ai"
+  },
+  "money": {
+    "anthropic": {
+      "cap": 0,
+      "before": 0,
+      "run": 0
+    },
+    "openrouter": {
+      "cap": 300,
+      "before": 149.11576620000002,
+      "run": 0.6030209
+    },
+    "openai": {
+      "cap": 25,
+      "before": 6.435150999999999,
+      "run": 0
+    }
+  }
+}
