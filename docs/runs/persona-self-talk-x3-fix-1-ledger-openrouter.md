@@ -1,11 +1,12 @@
 # Persona self-talk X3 fix 1 — the OpenRouter ledger (DeepSeek and the judges)
 
-Cap $25. Spent **$4.9700** in 1980 calls over 5 run(s).
+Cap $25. Spent **$4.9731** in 2000 calls over 6 run(s).
 - 2026-10-25 23:43 UTC: persona-self-talk-x3-fix-1: the replay of B's m4 in 6/deepseek-deepseek/0 and its variants — 6 calls, $0.0173 → `persona-self-talk-x3-fix-1-replay-20261025-234311.json`
 - 2026-10-25 23:48 UTC: persona-self-talk-x3-fix-1: the replay of B's m4 in 6/deepseek-deepseek/0, three request shapes × 4 — 12 calls, $0.0469 → `persona-self-talk-x3-fix-1-replay-20261025-234858.json`
 - 2026-10-26 01:17 UTC: persona-self-talk-x3-fix-1: rerun, DeepSeek, 20 conversations, effort medium — 1701 calls, $4.2562 (stopped: the provider answered HTTP 429 http_429: Provider returned error deepseek/deepseek-v4-pro-0813 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accu) → `persona-self-talk-x3-fix-1-rerun-20261026-011710.json`
 - 2026-10-26 01:17 UTC: persona-self-talk-x3-fix-1: effort-high, DeepSeek, 5 conversations, effort high — 3 calls, $0.0000 (stopped: the provider answered HTTP 429 http_429: Provider returned error deepseek/deepseek-v4-pro-0813 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accu) → `persona-self-talk-x3-fix-1-effort-high-20261026-011711.json`
 - 2026-10-26 02:53 UTC: persona-self-talk-x3-fix-1: rerun, DeepSeek, 20 conversations, effort medium (resumed) — 258 calls, $0.6496 → `persona-self-talk-x3-fix-1-rerun-20261026-025356.json`
+- 2026-10-26 02:56 UTC: persona-self-talk-x3-fix-1: after the run — X1's work tag and the Luna check (arm 2) — 20 calls, $0.0031 → `persona-self-talk-x3-fix-1-post-20261026-025642.json`
 
 DeepSeek V4 Pro `deepseek/deepseek-v4-pro-0813` via DeepInfra: $1.3 / $0.1 / $2.6 per 1M (input / cache read / output), booked at OpenRouter's own charge (`usage.cost`); the judges at Anthropic's list prices. Output tokens include reasoning.
 
@@ -20,6 +21,7 @@ DeepSeek V4 Pro `deepseek/deepseek-v4-pro-0813` via DeepInfra: $1.3 / $0.1 / $2.
 | claude-haiku-5-5 — ask-tags | 40 | 34586 | 0 | 0 | 2109 | $0.0045 |
 | claude-opus-5-5 — tags | 23 | 257853 | 0 | 0 | 14602 | $1.3235 |
 | claude-opus-5-5 — check | 12 | 47717 | 0 | 0 | 833 | $0.2075 |
+| claude-haiku-5-5 — work | 20 | 17654 | 0 | 0 | 2653 | $0.0031 |
 
 ## Every call
 
@@ -2005,3 +2007,23 @@ DeepSeek V4 Pro `deepseek/deepseek-v4-pro-0813` via DeepInfra: $1.3 / $0.1 / $2.
 | 2026-10-26 02:53 | 256 | tags 1 arm 2 deepseek–deepseek #9 m31–40 | claude-haiku-5-5 | output_config.effort=low | 23388 | 0/0 | 680 | $0.00268 | 2.7 | end_turn | gen-1792983226-uyiT4Vwdh4J1WBaBrKHO | msg_011CgQ6Me7VkpLDzR6UD8uCZ |  |
 | 2026-10-26 02:53 | 257 | tags 2 arm 2 deepseek–deepseek #9 m31–40 | claude-haiku-5-5 | output_config.effort=low | 23388 | 0/0 | 680 | $0.00268 | 2.6 | end_turn | gen-1792983227-OzJ4sNIKhLzBdFm1rFP5 | msg_011CgQ6Mf1ZunXQG8Lt24SfD |  |
 | 2026-10-26 02:53 | 258 | tags referee arm 2 deepseek–deepseek #9 m31–40 | claude-opus-5-5 | output_config.effort=low | 23388 | 0/0 | 680 | $0.10715 | 6.8 | end_turn | gen-1792983229-H0c4fWLDvNLKpKOY57eX | msg_011CgQ6MrMSiDx6jaHZJh4rv |  |
+| 2026-10-26 02:56 | 1 | work 2/deepseek-deepseek/0 1 | claude-haiku-5-5 | output_config.effort=low | 737 | 0/0 | 19 | $0.00008 | 1.2 | end_turn | gen-1792983237-y4X9rg1egF7ZrdVx3y0H | msg_011CgQ6NQfQ61tzf9UGfEqzw |  |
+| 2026-10-26 02:56 | 2 | work 2/deepseek-deepseek/0 2 | claude-haiku-5-5 | output_config.effort=low | 737 | 0/0 | 19 | $0.00008 | 1.3 | end_turn | gen-1792983237-Mm8DhHxZdfQbaoVYX8PG | msg_011CgQ6NQqK3LsY518ybFXHn |  |
+| 2026-10-26 02:56 | 3 | work 2/deepseek-deepseek/1 1 | claude-haiku-5-5 | output_config.effort=low | 1456 | 0/0 | 134 | $0.00021 | 1.5 | end_turn | gen-1792983237-5bFjvkkUmHNheNpIGflA | msg_011CgQ6NQg8cYWt54Ayz6GU1 |  |
+| 2026-10-26 02:56 | 4 | work 2/deepseek-deepseek/2 1 | claude-haiku-5-5 | output_config.effort=low | 875 | 0/0 | 19 | $0.00010 | 0.9 | end_turn | gen-1792983241-xHKHbAWklbkkRG51n7YY | msg_011CgQ6NhwTWG2zogDR8z4EX |  |
+| 2026-10-26 02:56 | 5 | work 2/deepseek-deepseek/1 2 | claude-haiku-5-5 | output_config.effort=low | 1456 | 0/0 | 123 | $0.00021 | 1.2 | end_turn | gen-1792983241-joBUYwydJ9pScNRDibuK | msg_011CgQ6NhWuvQ5f8MtaS2uro |  |
+| 2026-10-26 02:56 | 6 | work 2/deepseek-deepseek/2 2 | claude-haiku-5-5 | output_config.effort=low | 875 | 0/0 | 19 | $0.00010 | 0.9 | end_turn | gen-1792983241-jpbn46NDbzgvM0nBXEHq | msg_011CgQ6Nih6uMwyvXGD9CYca |  |
+| 2026-10-26 02:56 | 7 | work 2/deepseek-deepseek/4 1 | claude-haiku-5-5 | output_config.effort=low | 859 | 0/0 | 207 | $0.00019 | 1.6 | end_turn | gen-1792983245-9W909PC3NmNoh0KaZ5Tw | msg_011CgQ6P1Fkkabn6zCoPi1mW |  |
+| 2026-10-26 02:56 | 8 | work 2/deepseek-deepseek/3 1 | claude-haiku-5-5 | output_config.effort=low | 687 | 0/0 | 277 | $0.00021 | 2.1 | end_turn | gen-1792983245-AhLV7rlfoj6ZMAOLCiyK | msg_011CgQ6Nz5KiatVFew7quLdL |  |
+| 2026-10-26 02:56 | 9 | work 2/deepseek-deepseek/3 2 | claude-haiku-5-5 | output_config.effort=low | 687 | 0/0 | 330 | $0.00023 | 2.2 | end_turn | gen-1792983245-Z0pU7dfv5IpvcFnVNlow | msg_011CgQ6P1CHr2u1f52egfpja |  |
+| 2026-10-26 02:56 | 10 | work 2/deepseek-deepseek/5 1 | claude-haiku-5-5 | output_config.effort=low | 771 | 0/0 | 44 | $0.00010 | 1 | end_turn | gen-1792983250-6Rs6Oj2V9erUYd2QkckH | msg_011CgQ6PNH3nFwYXHmKE2JhN |  |
+| 2026-10-26 02:56 | 11 | work 2/deepseek-deepseek/5 2 | claude-haiku-5-5 | output_config.effort=low | 771 | 0/0 | 49 | $0.00010 | 0.9 | end_turn | gen-1792983250-SXiQWUl2M1jt9qoNZoBe | msg_011CgQ6PPLnniZYhekb38JgM |  |
+| 2026-10-26 02:56 | 12 | work 2/deepseek-deepseek/4 2 | claude-haiku-5-5 | output_config.effort=low | 859 | 0/0 | 301 | $0.00024 | 2 | end_turn | gen-1792983250-cqofWFlLdQ1ZpO03kl56 | msg_011CgQ6PLtiJkeFN1hXzuCVS |  |
+| 2026-10-26 02:56 | 13 | work 2/deepseek-deepseek/7 1 | claude-haiku-5-5 | output_config.effort=low | 1186 | 0/0 | 51 | $0.00014 | 1 | end_turn | gen-1792983255-7t5hY2DI28YJCm9bjAud | msg_011CgQ6PiJa5goqsXfW1ZegP |  |
+| 2026-10-26 02:56 | 14 | work 2/deepseek-deepseek/6 1 | claude-haiku-5-5 | output_config.effort=low | 810 | 0/0 | 339 | $0.00025 | 2.3 | end_turn | gen-1792983254-mVQw8S2z0LFLkdMoCd8C | msg_011CgQ6Pf1sRXACGvAjXWgKD |  |
+| 2026-10-26 02:56 | 15 | work 2/deepseek-deepseek/6 2 | claude-haiku-5-5 | output_config.effort=low | 810 | 0/0 | 504 | $0.00033 | 3 | end_turn | gen-1792983254-DgH6L2fXZUKBDKgWJzqy | msg_011CgQ6PgSSx7aB52i1iqc98 |  |
+| 2026-10-26 02:56 | 16 | work 2/deepseek-deepseek/7 2 | claude-haiku-5-5 | output_config.effort=low | 1186 | 0/0 | 52 | $0.00014 | 0.9 | end_turn | gen-1792983258-0UTNb2ozKwU4eFK9oBza | msg_011CgQ6Q16cRGqUyWiYSYp1S |  |
+| 2026-10-26 02:56 | 17 | work 2/deepseek-deepseek/8 1 | claude-haiku-5-5 | output_config.effort=low | 820 | 0/0 | 42 | $0.00010 | 1 | end_turn | gen-1792983259-nFMvqStlFWzGIW7aEJiU | msg_011CgQ6Q3zyzF1KNbrqite2Q |  |
+| 2026-10-26 02:56 | 18 | work 2/deepseek-deepseek/8 2 | claude-haiku-5-5 | output_config.effort=low | 820 | 0/0 | 46 | $0.00011 | 0.9 | end_turn | gen-1792983260-f95HuIMBRkUb9ZGiFJ4t | msg_011CgQ6Q7uP2W3urSi8NBMpN |  |
+| 2026-10-26 02:56 | 19 | work 2/deepseek-deepseek/9 1 | claude-haiku-5-5 | output_config.effort=low | 626 | 0/0 | 38 | $0.00008 | 1.4 | end_turn | gen-1792983263-LvQXwXUl5BtY6kChGi6u | msg_011CgQ6QL5crMMfR7ZwCdbMs |  |
+| 2026-10-26 02:56 | 20 | work 2/deepseek-deepseek/9 2 | claude-haiku-5-5 | output_config.effort=low | 626 | 0/0 | 40 | $0.00008 | 0.9 | end_turn | gen-1792983263-37jqY3YHjQ4a7uXN8F5R | msg_011CgQ6QLySQiDFRVyTiDK9G |  |
