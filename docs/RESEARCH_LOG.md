@@ -1528,3 +1528,13 @@ planned/unplanned by rule; three-judge quality; who-wrote-it with the owner's be
 SAME_WORLD and HORIZON also need 11w″ in and a key. Order I would propose in the morning: NOTE_QA_1 (cheap, tells us
 whether the harness gets a QA pass for free) → SOLITUDE_2 → MADE_THINGS_1 → GENERATION_1 → after CARRY_1a: SAME_WORLD_1
 → HORIZON_1.
+
+**The owner, 02:51 LA, before sleep (on B-deepseek-1's note asking «what the wind off the Chionthar smells like»):**
+«Китайская модель, созданная людьми, что делали квантитатив-трейдинг. Гипероптимизированная. Хочет узнать, как
+пахнет ветер в этом городе. Да, да, да. Только тут нюанс вылезает прям плотно: это не поведение форумного игрока в
+АИ-РПГ. Вообще. Но это красиво.» Recorded as his reading. The planner's one reservation, for the record: «more sensory
+detail, please» is a line experienced tabletop players do write to GMs, so the ask alone is not outside the forum
+corpus; what is outside it is the *combination* in one seat — the ask for weather from the player who held every
+impulse, bought nothing, cast nothing, and closed at the button. That is the thing to test, not the line. MADE_THINGS_1
+part 2b (who wrote it) and NOTE_QA_1 (what the same model reports when asked as a tester) are the two stages that bear
+on whether the note is the forum's voice or the bearer's.
