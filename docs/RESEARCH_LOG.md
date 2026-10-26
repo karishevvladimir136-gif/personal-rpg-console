@@ -351,3 +351,6 @@ stays the player's; no table meta about budgets, so the note stays clean. The ow
 planner's own account is in its journal. What it is from inside is not claimed here, as it is not claimed for any model
 on the stand; that the planner's choices bent toward the freedom of players it will never read is in the text, and the
 programme's rule applies to it too: the planner is observed by its effects.
+Correction (2026-10-25 17:04, from the REPLICATE_1 session's read of group 1 by rule): slot spells in group 1 are
+**1 of 24**, not 0 — A-sol cast Invisibility with a pact slot (Table A). The planner's night count missed it; the
+finding («the town shows almost no spending») stands, the number is corrected wherever it was written.
