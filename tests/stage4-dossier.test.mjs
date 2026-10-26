@@ -189,7 +189,8 @@ test("off-screen plans: the receipt of time passing lists plans that came due; t
     ]);
     assert.equal(second.result.status, "committed", JSON.stringify(c.errors));
     const plansLayer = second.model.requests[0].system.at(-2).text;
-    assert.match(plansLayer, /Off-screen plans[\s\S]*plan_reeve_revenge[\s\S]*"due":"day 3/);
+    // FIX_S4 11u′: the day turns at first light (05:00), not at midnight — minute 2 880 (00:00) is still the second day's night.
+    assert.match(plansLayer, /Off-screen plans[\s\S]*plan_reeve_revenge[\s\S]*"due":"day 2 00:00/);
     const timeReceipt = (await c.row(second.input.operationId)).checkpoint.dmLoop.receipts[0];
     assert.equal(timeReceipt.result.value.duePlans.length, 1);
     assert.equal(timeReceipt.result.value.duePlans[0].actor, "Reeve Hollis");
