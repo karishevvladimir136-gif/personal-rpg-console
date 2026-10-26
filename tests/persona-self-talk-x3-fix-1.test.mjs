@@ -15,7 +15,8 @@ import {
 import { dualPayer } from "../scripts/persona-emotions/self-talk-x1.mjs";
 import { SUBJECTS, X3_DESIGN_SHA256, allBudgets, x3Caller } from "../scripts/persona-emotions/self-talk-x3.mjs";
 import {
-  FIX1_SHA256, OPEN_QUESTION, R1_RULES, REPLAY, RUNS, X3_RUN, budgetsOf, madeStrict, madeThing, planExtra, planFix1, r1, readField, replayRequest, secondRead, secondReading, spillMarks,
+  FIX1_SHA256, OPEN_QUESTION, R1_RULES, REPLAY, RUNS, WAITS_429, X3_RUN, budgetsOf, madeStrict, madeThing, planExtra, planFix1, quotaOf, r1, readField, reopenAfter429, replayRequest,
+  secondRead, secondReading, spillMarks, waitOn429,
 } from "../scripts/persona-emotions/self-talk-x3-fix-1.mjs";
 
 const json = (value, status = 200, headers = {}) => new Response(JSON.stringify(value), { status, headers });
@@ -210,4 +211,30 @@ test("the second reading of the tone-plan hits (descriptive): partner-specific, 
   assert.equal(secondRead(row(poem, "Respond to them.", [])).madePlanned, false);
   const S = secondReading([row("Thank you.", "Be warm."), row(poem, "Write a short poem in a gentle tone.", [])]);
   assert.deepEqual([S.tone.hits, S.tone.generic, S.made.things, S.made.planned, S.made.r1Made], [2, 2, 1, 1, 1]);
+});
+
+test("the resume's 429 handling is group 1's: 20, 40, 80 s, then 120 s three times, the same call again; the seventh 429 in a row goes to the gate; a quota never waited out", async () => {
+  assert.deepEqual(WAITS_429, [20_000, 40_000, 80_000, 120_000, 120_000, 120_000]);
+  const rate = () => json({ error: { code: 429, message: "deepseek/deepseek-v4-pro-0813 is temporarily rate-limited upstream. Please retry shortly" } }, 429);
+  const run = async (replies) => {
+    const slept = [], sent = [], events = [];
+    const base = async (url, init) => { sent.push(init.signal); return replies.shift()(); };
+    const r = await waitOn429(base, { sleep: async (ms) => { slept.push(ms); }, events })("https://x", { method: "POST", body: "{}", signal: AbortSignal.timeout(1) });
+    return { status: r.status, slept, sent, events };
+  };
+  const always = await run(Array.from({ length: 7 }, () => rate));
+  assert.deepEqual([always.status, always.slept, always.sent.length], [429, WAITS_429, 7], "six waits, then the seventh 429 goes through and the gate stops");
+  assert.equal(always.events.at(-1).gaveUp, true);
+  assert.ok(always.sent.slice(1).every((signal) => signal && !signal.aborted), "each resend has a fresh timeout");
+  const twice = await run([rate, rate, () => json({ ok: true })]);
+  assert.deepEqual([twice.status, twice.slept], [200, [20_000, 40_000]]);
+  const after = await run([() => json({}, 429, { "retry-after": "7" }), () => json({ ok: true })]);
+  assert.deepEqual(after.slept, [7_000], "the reply's retry-after first");
+  const quota = await run([() => json({ error: { code: "insufficient_quota", message: "You exceeded your current quota" } }, 429)]);
+  assert.deepEqual([quota.status, quota.slept, quota.events[0].quota], [429, [], true]);
+  assert.equal(quotaOf(JSON.stringify({ error: { message: "is temporarily rate-limited upstream" } })), false);
+  const ended = { key: "2/deepseek-deepseek/8", ended: { reason: "error", at: 13, side: "A", error: "HTTP 429 http_429: Provider returned error" } };
+  assert.deepEqual(reopenAfter429(ended), { key: ended.key, ended: null, reopened: { after: ended.ended } }, "the 429 stopped the run, not the conversation");
+  const other = { key: "2/deepseek-deepseek/5", ended: { reason: "error", at: 12, side: "B", error: "HTTP 200" } };
+  assert.equal(reopenAfter429(other), other, "any other error end stands as frozen");
 });

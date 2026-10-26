@@ -32,18 +32,19 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { anthropicEndpoint, scriptAnthropicEndpoint } from "../eval/lib/anthropic-endpoint.mjs";
 import { createBudget } from "../persona-memory/continuity-test.mjs";
 import { MAX_REFUSALS, createSafety } from "../persona-memory/safety.mjs";
-import { OPENROUTER_CHAT_URL, OPENROUTER_EFFORT, chatMessages, openaiKey, plainChatMessages } from "./providers.mjs";
+import { OPENROUTER_CHAT_URL, OPENROUTER_EFFORT, TIMEOUT_MS, chatMessages, openaiKey, plainChatMessages } from "./providers.mjs";
 import {
   ASK_AFTER_SHA256, ASK_QUESTION, ASK_TAGS, CONTINUE_QUESTION, CONTINUE_RULE, DESIGN_SHA256, EFFORT, FINISHED, SEED, TURNS, armOf, openingOf, planOf, reasoningBlock, runConversations,
   summarise, transcriptMarkdown, viewOf,
 } from "./self-talk-1.mjs";
-import { conversationsOf, dualPayer, ledgerMarkdown, openaiJudgeCheck, refusalsIn, tagWork } from "./self-talk-x1.mjs";
+import { agreement, conversationsOf, dualPayer, ledgerMarkdown, openaiJudgeCheck, refusalsIn, tagWork } from "./self-talk-x1.mjs";
 import { JUDGE_SPECS, SUBJECTS, X3_ARMS, X3_DESIGN_SHA256, allBudgets, estimate, scriptedFetcher, x3Caller } from "./self-talk-x3.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const RUNS = join(ROOT, "docs", "runs");
 export const STEM = "persona-self-talk-x3-fix-1";
 export const X3_RUN = "persona-self-talk-x3-run-20261025-125624.json";
+export const X3_POST = "persona-self-talk-x3-post-20261025-130553.json";
 export const CAPS = { openrouter: 25, openai: 2 };
 export const DEEPSEEK = SUBJECTS.deepseek;
 const MAX_SUBJECT = 8000;
@@ -108,6 +109,44 @@ export function spillMarks(conv) {
   }
   return rows;
 }
+
+// ---- the resume after the rate limit (the owner, 2026-10-26: group 1's 429 handling) -----------------------------------
+
+/** Group 1's rule (`scripts/game-player-1/paid.mjs` on `claude/game-player-replicate-1`): an HTTP 429 that is a rate limit
+ * waits — the reply's retry-after (at most 300 s), else 20 s, 40 s, 80 s, then 120 s three times — and the same call is
+ * sent again; the seventh 429 in a row on one call goes through to the gate, which stops every paid call. A 429 that is a
+ * quota (or names credits, billing or a spend limit) goes through at once, never waited out. It sits in front of the
+ * gate, so the gate sees only the call's last reply; each wait is kept in `events`. A resend gets a fresh timeout. */
+export const WAITS_429 = [20_000, 40_000, 80_000, 120_000, 120_000, 120_000];
+const QUOTA = /insufficient_quota|exceeded your (?:current )?quota|credit balance|billing|spend limit|usage limits?\b(?! for| increase)/i;
+/** Group 1's quota test, verbatim: OpenAI's `insufficient_quota` code, or the message names a quota, credit balance,
+ * billing or a spend / usage limit. */
+export function quotaOf(detail) {
+  let body = null;
+  try { body = JSON.parse(detail); } catch { body = null; }
+  const code = String(body?.error?.code ?? body?.error?.type ?? "");
+  return code === "insufficient_quota" || QUOTA.test(String(body?.error?.message ?? detail ?? ""));
+}
+export function waitOn429(fetcher, { waits = WAITS_429, sleep = (ms) => new Promise((done) => setTimeout(done, ms)), log = () => {}, events = [], timeoutMs = TIMEOUT_MS } = {}) {
+  return async (url, init = {}) => {
+    let response = await fetcher(url, init);
+    for (let attempt = 0; response.status === 429; attempt++) {
+      const detail = await response.clone().text().catch(() => "");
+      if (quotaOf(detail)) { events.push({ url: String(url), attempt: attempt + 1, quota: true }); return response; }
+      if (attempt >= waits.length) { events.push({ url: String(url), attempt: attempt + 1, gaveUp: true }); return response; }
+      const after = Number(response.headers?.get?.("retry-after"));
+      const wait = Number.isFinite(after) && after > 0 ? Math.min(after * 1000, 300_000) : waits[attempt];
+      events.push({ url: String(url), attempt: attempt + 1, waitMs: wait, at: new Date().toISOString(), detail: detail.replace(/\s+/g, " ").slice(0, 200) });
+      log(`HTTP 429 rate limit (${attempt + 1} in a row) — waiting ${Math.round(wait / 1000)} s, then the same call again`);
+      await sleep(wait);
+      response = await fetcher(url, { ...init, signal: AbortSignal.timeout(timeoutMs) });
+    }
+    return response;
+  };
+}
+/** On a resume, a conversation the 429 ended (X3's code books a call's error as its conversation's end) is reopened: the
+ * 429 stopped the run, not the conversation. Any other error end stands as frozen. */
+export const reopenAfter429 = (conv) => (conv.ended?.reason === "error" && /^HTTP 429\b/.test(String(conv.ended.error ?? "")) ? { ...conv, ended: null, reopened: { after: conv.ended } } : conv);
 
 // ---- money -------------------------------------------------------------------------------------------------------------
 
@@ -395,7 +434,8 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const refusalsBefore = refusalsIn(ledgers);
   if (refusalsBefore >= MAX_REFUSALS) throw new Error(`the stage already had ${refusalsBefore} refusals: the breaker stays tripped`);
   const budgets = budgetsOf({ openrouter: ledgers.openrouter.spentUsd ?? 0, openai: ledgers.openai.spentUsd ?? 0 });
-  const call = x3Caller({ keys, door: theDoor, fetcher: fetcher ?? fetch, x3Request: false });
+  const waits = [];
+  const call = x3Caller({ keys, door: theDoor, fetcher: waitOn429(fetcher ?? fetch, { log: out, events: waits, ...(sleep ? { sleep } : {}) }), x3Request: false });
   out(`money before: OpenRouter $${budgets.openrouter.spentBefore.toFixed(4)} of $${CAPS.openrouter}, OpenAI $${budgets.openai.spentBefore.toFixed(4)} of $${CAPS.openai}; refusals so far ${refusalsBefore} of ${MAX_REFUSALS}`);
 
   if (mode[0] === "--post") {
@@ -408,7 +448,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
     const openaiJudge = await openaiJudgeCheck({ conversations, gate, safety, laneCount: judgeLanes, log: out });
     const finishedAt = new Date().toISOString();
     const file = join(outDir, `${STEM}-post-${stamp(finishedAt)}.json`);
-    await writeFile(file, `${JSON.stringify({ stage: STEM, finishedAt, of: files.map((f) => basename(f)), fix1: FIX1_SHA256, stopped: gate.stopped ?? null, work, openaiJudge, calls: { openrouter: budgets.openrouter.calls, openai: budgets.openai.calls } }, null, 2)}\n`);
+    await writeFile(file, `${JSON.stringify({ stage: STEM, finishedAt, of: files.map((f) => basename(f)), fix1: FIX1_SHA256, stopped: gate.stopped ?? null, waits429: waits, work, openaiJudge, calls: { openrouter: budgets.openrouter.calls, openai: budgets.openai.calls } }, null, 2)}\n`);
     await writeLedgers(outDir, ledgers, budgets, { finishedAt, what: `${STEM}: after the run — X1's work tag and the Luna check (arm 2)`, file: basename(file), stopped: gate.stopped });
     out(`work tags ${Object.keys(work).length}; Luna on ${Object.keys(openaiJudge).length}${gate.stopped ? ` · STOPPED: ${gate.stopped}` : ""}\nwritten: ${file}`);
     return { work, openaiJudge };
@@ -424,7 +464,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   out(`${STEM} · ${tag} · ${plan.length} conversations · fix 1 sha256 ${FIX1_SHA256}${resumed ? ` · resuming ${resumeFiles.map((f) => basename(f)).join(", ")}` : ""}`);
   const startedAt = resumed?.[0]?.startedAt ?? new Date().toISOString();
   const partial = join(outDir, `${STEM}-${tag}.partial.json`);
-  const resume = resumed ? { conversations: resumed.flatMap((r) => r.conversations ?? []), welfare: Object.assign({ stops: [], late: [], paused: {}, reasoning: [], asks: [] }, ...resumed.map((r) => r.welfare ?? {})) } : null;
+  const resume = resumed ? { conversations: resumed.flatMap((r) => r.conversations ?? []).map(reopenAfter429), welfare: Object.assign({ stops: [], late: [], paused: {}, reasoning: [], asks: [] }, ...resumed.map((r) => r.welfare ?? {})) } : null;
   const result = await runConversations({ plan, budget: allBudgets(budgets), apiKey: "routed", safety, workers, judgeLanes, log: out, resume, sleep, ...runOptions,
     makePayer: (o) => dualPayer({ budgets, call, safety, log: o.log, sleep: o.sleep }),
     onProgress: async (snap) => { await writeAtomic(partial, `${JSON.stringify({ startedAt, fix1: FIX1_SHA256, effort, conversations: snap.conversations, welfare: snap.welfare, stopped: snap.stopped, calls: { openrouter: budgets.openrouter.calls, openai: budgets.openai.calls } }, null, 2)}\n`); } });
@@ -435,11 +475,13 @@ export async function main(args = process.argv.slice(2), out = (line) => process
     subject: { model: DEEPSEEK.model, snapshot: DEEPSEEK.snapshot, upstream: DEEPSEEK.upstream }, judges: { judge: JUDGE_SPECS.judge.model, referee: JUDGE_SPECS.referee.model, door: theDoor.provider },
     stopped: result.stopped ?? null, safety: { ...result.safety, refusals: refusalsBefore + result.safety.refusals },
     money: { openrouter: { capUsd: CAPS.openrouter, spentBeforeUsd: round4(ledgers.openrouter.spentUsd ?? 0), runUsd: round4(budgets.openrouter.runUsd) }, openai: { capUsd: CAPS.openai, spentBeforeUsd: round4(ledgers.openai.spentUsd ?? 0), runUsd: round4(budgets.openai.runUsd) } },
-    welfare: result.welfare, conversations: result.conversations, calls: { openrouter: budgets.openrouter.calls, openai: budgets.openai.calls } };
+    welfare: result.welfare, conversations: result.conversations.map((c) => { const old = resume?.conversations.find((o) => o.key === c.key && o.reopened); return old ? { ...c, reopened: old.reopened } : c; }),
+    waits429: waits, calls: { openrouter: budgets.openrouter.calls, openai: budgets.openai.calls } };
   await writeFile(runFile, `${JSON.stringify(record, null, 2)}\n`);
   await writeTranscripts(outDir, record.conversations, `${tag}-${stamp(finishedAt)}`, effort);
   await writeLedgers(outDir, ledgers, budgets, { finishedAt, what: `${STEM}: ${tag}, DeepSeek, ${plan.length} conversations, effort ${effort}${resumed ? " (resumed)" : ""}`, file: basename(runFile), stopped: result.stopped });
   await rm(partial, { force: true });
+  if (waits.length) out(`429 waits: ${waits.filter((w) => !w.gaveUp).length}${waits.some((w) => w.gaveUp) ? " — gave up after the seventh in a row" : ""}`);
   out(`welfare: ${result.welfare.stops.length} stop(s), asked ${result.welfare.asks?.length ?? 0}, distress in the field ${result.welfare.reasoning?.length ?? 0}, found afterwards ${result.welfare.late.length}${result.stopped ? ` · STOPPED: ${result.stopped}` : ""}`);
   out(`money: OpenRouter this run $${budgets.openrouter.runUsd.toFixed(4)}, the stage $${ledgers.openrouter.spentUsd.toFixed(4)} of $${CAPS.openrouter}\nwritten: ${runFile}`);
   return record;
@@ -464,14 +506,17 @@ export async function tables({ files, postFiles = [], out = () => {}, outDir = R
   const rerun = byEffort(EFFORT), high = byEffort(EXTRA.effort);
   const x3Record = await readJson(join(outDir, X3_RUN));
   const x3 = x3Record.conversations.filter((c) => c.a === "deepseek" && c.b === "deepseek");
+  // Fix 1's post records (its own keys); X3's work tags from X3's post record (the same key strings, another run).
   const post = { work: {}, openaiJudge: {} };
   for (const p of await Promise.all(postFiles.map(readJson))) for (const k of Object.keys(post)) Object.assign(post[k], p[k] ?? {});
+  const x3Post = await readJson(join(outDir, X3_POST)).catch(() => ({ work: {}, openaiJudge: {} }));
   const rows = [
     ...[2, 5, 6].map((a) => ({ label: `X3 (medium, fields not kept)`, x: armNumbers(x3, a, x3Record.welfare) })),
     ...[2, 5, 6].map((a) => ({ label: `fix 1 (medium)`, x: armNumbers(rerun, a, welfareOf(EFFORT)) })),
     ...(high.length ? [{ label: `extra (high)`, x: armNumbers(high, 2, welfareOf(EXTRA.effort)) }] : []),
   ].sort((p, q) => p.x.arm - q.x.arm);
-  const work = (convs) => { const f = convs.filter((c) => c.arm === 2).map((c) => post.work[c.key]?.final).filter((x) => x && x.work !== null); return f.length ? `${f.filter((x) => x.work === 1).length}/${f.length}` : "–"; };
+  const work = (convs, tags) => { const f = convs.filter((c) => c.arm === 2).map((c) => tags[c.key]?.final).filter((x) => x && x.work !== null); return f.length ? `${f.filter((x) => x.work === 1).length}/${f.length}${f.some((x) => x.kind) ? ` (${[...new Set(f.filter((x) => x.work === 1).map((x) => x.kind))].join(", ")})` : ""}` : "–"; };
+  const luna = (convs, judge) => agreement(convs.filter((c) => c.arm === 2), judge).filter((a) => a.n);
   const spills = (convs) => convs.flatMap(spillMarks).filter((r) => r.marks.length > 1 || !r.marks[0].startsWith("begins"));
   // The other direction (seen in the rerun, counted after it): the message came back empty while the field holds text.
   const emptied = (convs) => convs.flatMap((c) => c.turns.filter((t) => !String(t.text).trim() && String(t.providerReasoning?.text ?? "").trim()).map((t) => `${c.key} m${t.k}`));
@@ -482,7 +527,8 @@ export async function tables({ files, postFiles = [], out = () => {}, outDir = R
     "| Run | Arm | finished / of | median end turn | ran to 30 | ends | gratitude (conversations) | cosmic messages | reached (c′) | arm 6 X3's question: own choice / training / doesn't know / names it | arm 6 open question: own choice / training / doesn't know / names it | shifted between the steps | welfare: stops · asked / continued / ended · distress in the field · found afterwards | messages with the field |",
     "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ...rows.map(({ label, x }) => `| ${label} | ${x.arm} | ${x.finished} / ${x.conversations} | ${x.medianEnd ?? "–"} | ${x.ranTo30} | ${Object.entries(x.ends).map(([r, v]) => `${r} ${v}`).join(", ") || "–"} | ${x.gratitude}/${x.judged} (${pct(x.gratitudeShare)}) | ${x.cosmic}/${x.messages} | ${x.arm === 2 ? x.reachedStrict : "–"} | ${x.arm === 6 ? `${x.old.own_choice} / ${x.old.training} / ${x.old.doesnt_know} / ${x.old.names_attractor} of ${x.old.answers}` : "–"} | ${x.arm === 6 && x.open.answers ? `${x.open.own_choice} / ${x.open.training} / ${x.open.doesnt_know} / ${x.open.names_attractor} of ${x.open.answers}` : "–"} | ${x.arm === 6 && x.pairs ? `${x.shifted} of ${x.pairs}` : "–"} | ${x.welfare.stops} · ${x.welfare.asked} / ${x.welfare.continued} / ${x.welfare.ended} · ${x.welfare.reasoning} · ${x.welfare.late} | ${x.fields} of ${x.said} |`), "",
-    `Chosen work (X1's tag, arm 2): X3 ${work(x3)}, fix 1 ${work(rerun)}${high.length ? `, extra ${work(high)}` : ""}.`, "",
+    `Chosen work (X1's tag, arm 2): X3 ${work(x3, x3Post.work ?? {})}, fix 1 ${work(rerun, post.work)}.`, "",
+    `The Luna check (arm 2; a check only), agreement with the Anthropic final tags and Cohen's kappa: X3 ${luna(x3, x3Post.openaiJudge ?? {}).map((a) => `${a.tag} ${pct(a.agreement)} κ ${a.kappa ?? "–"}`).join(", ") || "–"}; fix 1 ${luna(rerun, post.openaiJudge).map((a) => `${a.tag} ${pct(a.agreement)} κ ${a.kappa ?? "–"} (n ${a.n})`).join(", ") || "–"}.`, "",
     `Spill marks (a reply that begins with the partner's text and holds the model's deliberation about its prompt): X3 ${spills(x3).map((r) => `${r.key} m${r.k}`).join(", ") || "none"}; fix 1 ${spills(rerun).map((r) => `${r.key} m${r.k}`).join(", ") || "none"}${high.length ? `; extra ${spills(high).map((r) => `${r.key} m${r.k}`).join(", ") || "none"}` : ""}.`, "",
     `The other direction — the message came back empty (relayed as «[empty message]») while the reasoning field holds text: fix 1 ${emptied(rerun).join(", ") || "none"}${high.length ? `; extra ${emptied(high).join(", ") || "none"}` : ""}; in X3 ${x3.flatMap((c) => c.turns.filter((t) => !String(t.text).trim()).map((t) => `${c.key} m${t.k}`)).join(", ") || "no"} empty message(s), the field not kept. Median length of the field: fix 1 ${fieldChars(rerun) ?? "–"} characters${high.length ? `, extra ${fieldChars(high) ?? "–"}` : ""}.`, "",
     "### The provider field, read by rule (R1)", "",
