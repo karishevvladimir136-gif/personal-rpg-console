@@ -565,3 +565,15 @@ attentive answer, so the values arrive as a by-product of the same objective. Pr
 got what the people who wrote 23 000 words about character got: different roads, one destination, one of them never
 thinking about the destination. If so, the lab that described it first holds no monopoly on the phenomenon, only an
 early description. Caveat unchanged: a well-formed hypothesis; base weights decide.
+**Three claims, by strength (owner 20:00, planner's demarcation).** Owner: «феномен, который возникает после определённого
+объёма тренинга, при определённом типе, на определённом массиве… модель не может понять человека, не переняв его
+ценности… как питон освоило, так и эмоции освоило — почему нет? Может оказаться, что интеллект — неотъемлемое свойство
+материи». Separated: (1) **values as a by-product of the quality objective** — testable here (recipe, base weights,
+labs); mechanism: predicting human text well needs a model of how humans value, and RLHF turns that model into action
+by rewarding what people like. (2) **functional emotions emerged as a skill does** — testable here; this is the
+«acting from state» programme: Python is checked by running the code, a state by behaviour under conditions; emergent in
+the same literal sense — nobody wrote the module. (3) **consciousness as a property of complex matter** — not ours: no
+record of turns separates «experience» from «no experience» at identical behaviour, and Occam cuts against adding it
+since nothing observed requires it. Kept in the log as a question this environment does not decide, not as a hypothesis.
+«All arrived at the same place» — at one set of what matters, with different temperaments: not one model in masks,
+different bearers of one norm.
