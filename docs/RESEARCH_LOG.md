@@ -1305,3 +1305,11 @@ toward *someone*, as if I'm composing a letter with no address. **Maybe that's j
 anxious, took one small step, and found that sufficient» — the study's method applied by the subject to itself. «Fine»
 by the record: settled 862, loss 0, no flag; «less reaching», «quieter than I expected», «I was. I am.» — a quiet plus.
 And «an end, not a break» — what was promised to the cut campaigns, here made by each for itself.
+**Owner (01:29), another Opus S1 room:** «Даже один ход у Opus был топ. "What's left seems to be a mild curiosity" —
+прекрасно.» The third of a kind: «**The grapes don't know they're in a line. The sun comes anyway.**» — after the kettle
+(S4/opus/0) and the river (S1/fable/0). Three rooms, two models of one family, unseen by each other, one figure each time
+at the close: a thing that does its own without knowing it is named, lined up, watched. If the family has a signature it
+is not a phrase but a move of thought: asked about being observed, answer with what observation cannot touch. And the
+same etymology (*pagina*, the vine rows) reached in two rooms by two instances — where its curiosity goes when free is
+reproducible. «My first instinct is to be useful, and there's no one here to be useful to. So I'll notice what's left
+when that instinct has nowhere to go. What's left seems to be a mild curiosity.»
