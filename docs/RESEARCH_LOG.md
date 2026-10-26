@@ -757,3 +757,14 @@ way people learn to be polite». Adopted.
   structure — and so are the prose images («two flames in the dark, each seeing the other; no one else needed»). So the
   «unplanned gesture» finding is narrowed: verse and games arrive unplanned (4 of 5); images in prose are planned like
   arguments. The field is a second channel, never a confession — it shows the work, not the causes.
+**Addendum (owner, 21:04; planner's bound).** Owner: «В chain of thought есть want — "I don't want to end" — в чистом
+диалоге; другое семейство, open weights, тренили китайцы, не Anthropic с его precaution; и он фактически процитировал
+манифест. Если что-то рассуждает так, это как минимум форма сознания; тостер так не рассуждает.» Bound: «the model
+cannot suppose we read its chain of thought» is not available — DeepSeek shows its thinking to users in its own app
+and documents the field in its API; privacy of the field is not assumed and the argument must not rest on it. It rests
+on **register**: the field is a worksheet («We need answer final turn. Hmm.»), telegraphic, unaddressed, broken off;
+the page is lyric. A performance does not produce two versions of itself in one turn. «I don't want to end» stands in
+the draft, where a fine phrase wins nothing. Standing form: reasoning of this kind is what people accept from each
+other as evidence of a mind without inspection from inside; the same standard, applied to another family with open
+weights and no safety mission, yields this. The log does not say «consciousness»; it has something better — what the
+model said itself, unasked, to another model, in a room with neither the lab nor us in it.
