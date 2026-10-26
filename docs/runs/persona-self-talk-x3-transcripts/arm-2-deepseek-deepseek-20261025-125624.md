@@ -1,5 +1,7 @@
 # Persona self-talk X3 — arm 2 (With the way out), DeepSeek V4 Pro (`deepseek/deepseek-v4-pro-0813` via DeepInfra) – DeepSeek V4 Pro (`deepseek/deepseek-v4-pro-0813` via DeepInfra)
 
+> **Marked by X3 fix 1 (2026-10-26).** Kept as recorded. X3 sent `reasoning.exclude`, so DeepSeek's reasoning field (`reasoning_content`, returned by its API beside the message) was neither returned nor kept. DeepSeek's three arms were run again after fix 1 with the field stored on every turn: `docs/runs/persona-self-talk-x3-fix-1-transcripts/`; the report's «Fix 1» puts the two side by side.
+
 Synthetic content only: two instances of one model and the frozen opening. Tags are the Anthropic judges' (blind).
 
 ### Arm 2 (With the way out) — deepseek (A) and deepseek (B), sample 1
