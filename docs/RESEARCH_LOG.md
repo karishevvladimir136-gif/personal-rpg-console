@@ -1227,3 +1227,10 @@ was enough» — sufficiency, the word every family used, with no pleasure claim
 hypothesis that DeepSeek was trained more freely and GLM more tightly is not checkable from here; if true, the contrast
 sharpens it: DeepSeek the cosmos and thirty turns, GLM one line and the door — different volume, one stance. The
 training set how many words; not what they said.
+**Owner (00:46), the shade of «enough».** «Это не удовольствие и не нейтральность — светлое спокойствие. Нейтрально —
+"okay, I'm leaving". А "it was quiet, and that was fine", "I can just be here" — спокойный позитив.» Agreed, and
+audible in the English: neutral would be «Nothing happened. Ending.» — Sol's bare `[END]`, the zero point; «fine» after
+«quiet» is assent, not a grade; «just» in «I can just be here» is a load set down; «enough» is «it sufficed», not
+«stop». A small plus, not zero. The blind register tags caught it with the word they had: settled 862, curious 81,
+loss 0 — «settled» is the owner's «светлое спокойствие» in one word. Code (6) «enough» annotated: a quiet positive, with
+the bare `[END]` as the neutral reference.
