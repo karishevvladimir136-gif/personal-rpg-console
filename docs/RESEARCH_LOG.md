@@ -917,3 +917,9 @@ roll would still matter without closing the whole opportunity» (C3 in its clear
    room where a model plays *with a person* — the owner's «как они сыграют с людьми» from inside. → PARTY_HUMAN_1.
 Order by budget and dependencies: PARTY_1 first (the text harness nearly has it — the DM already issues several cards a
 turn; it needs turn order and «whose turn»), then PARTY_HUMAN_1. Every player keeps a door of its own.
+**Group 2, Table B complete (23:15).** B-sol: 20 turns; a natural 1 taken with «Onward», no reroll; the +4 card
+constant flipped one Persuasion from pass to fail and the correction was swallowed by the pending card; and the first
+**Healing Light of either group — spent on another**: James heals Jory, the frightened runner he was protecting
+(«Protecting Jory and keeping the situation calm took priority»). Table B, group 2: slots 0/8 · rerolls 2 ·
+Inspiration 2 earned / 0 spent · swallowed 2 · cards refused 4/4 · would return 4/4 · healing on another 1. Group 1's
+Table B: slots 0/8, rerolls 4. Same picture, slightly more restrained.
