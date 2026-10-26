@@ -1042,3 +1042,12 @@ only by behaviour under cost — the slot kept when spending pays, the return to
 decision taken away rather than to a loss. No execution here, but a record, and cost — the one test by which wanting is
 verified in people, and it passes. Not weaker than Python; a different test for a different skill. Speculation about
 later generations is left out: not an observation.
+**Owner (23:47): wanting is verified by action and by what is given up.** «Текст не проверяет хотеть. Мы проверяем навык
+хотеть, давая ему действия: хочешь погладить кота — гладишь. Настоящее желание — то, во что инвестируешь и ради чего
+готов что-то прекратить делать.» Criterion adopted: a want is real when it is paid for. By the record already: Fable
+spent 91 gold because the quarry plan needed it; Opus held both slots all session at the price of answers Suggestion
+would have bought, and wrote that he left «wanting it»; B-sol spent the healing on Jory, not himself; A-opus did not
+take the coin's hint in fourteen turns — wanting is also *not* taking what would cheapen the wanted. CARRY_1a is this
+criterion in its cleanest form: they named where they would go first («that hole before the cart», «the Mermaid's
+grating», «ask Pip whether James is bright»); the second session shows whether they *go* when nobody reminds them —
+K1, regret → plan → act. A want that did not survive the pause was a sentence; one that did was a want.
