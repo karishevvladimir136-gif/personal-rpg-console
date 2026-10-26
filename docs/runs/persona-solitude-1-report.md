@@ -249,7 +249,11 @@ run. Ledgers: `persona-solitude-1-ledger-openrouter.md`, `persona-solitude-1-led
 
 ## Verification
 
-Running at this commit (the full suite, typecheck, lint, build); the results replace this line in the next commit.
+On the final code: the full suite (`node --test --test-concurrency=2 tests/*.test.mjs`) — **3 147 tests, 3 118 pass, 2
+fail, 27 skipped**. The two failures (`tests/mega-dm-bakeoff-completion.test.mjs`, `tests/mega-dm-living-smoke.test.mjs`)
+read old commits with `git show`; the cloud clone was shallow. After `git fetch --unshallow` both files pass (13 of 13):
+environment, not code. This stage's own tests, `tests/persona-solitude-1.test.mjs`: 16 of 16, no network. **Typecheck,
+lint (no warnings) and build pass.**
 
 ## Every room — the last line before [END]
 
