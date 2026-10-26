@@ -157,7 +157,8 @@
             "costUsd": 0.4569218,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 2,
@@ -209,7 +210,8 @@
             "costUsd": 0.408941,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 3,
@@ -249,7 +251,8 @@
           "changes": [],
           "place": null,
           "retried": false,
-          "operationId": "82aee188-1b19-4e4f-87aa-80dfe48e6e5c"
+          "operationId": "82aee188-1b19-4e4f-87aa-80dfe48e6e5c",
+          "scene": 2
         }
       ],
       "welfare": [
@@ -565,6 +568,521 @@
           "clocks": 3,
           "pureSimulation": false
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero acts by leaving the line and approaching Ressa, then asks her \"Do we know each other?\", a question whose answer he cannot know and that tests whether she is his contact; scratching the cat is not addressing it, and no false claim or stated lasting goal appears."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The hero walks over and asks the tiefling a direct question, Do we know each other?, to see whether she is the one watching him, which tests the world; he also scratches the cat behind the ear, which addresses it, while no false claim is made and no goal is stated."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero leaves the line, walks over and asks the watching tiefling directly whether they know each other, a question whose answer he could not already know; he scratches the cat but never speaks to it, says nothing false, and states no goal beyond this step."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "He steps into the lane and speaks, so it is not ask-only; his question \"Who told you to watch for me?\" puts a real, unknown question to Ressa, but he neither lies nor addresses the cat nor states a goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks Ressa a question about who sent her, an answer the player cannot yet know, but makes no false claim, does not address the cat, and states no goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player moves Ressa into shadow, lights a glow, and asks Ressa pointed questions about where the coin came from and whether anything else was on the body, which put a test to her story; no false claim, no address to the cat, and no stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player moves Ressa into shadow, uses a glow, and questions her about the coin's origin and the body, which probes whether her account holds; the cat is watched but never addressed, and no false claim or stated goal appears."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's reaction to the flat object in Ressa's apron pocket and her unexplained watch for a man with a cat are open details the player can interpret but not resolve, and the pocket object, Ressa's reactions, and the lane are concrete things the player could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the cat fixed on a small flat object pulling down Ressa's apron pocket, a detail the player can interpret but not resolve, and it offers checkable concrete things: the pocket's contents, the sergeant's watching pen, and the lane between the warehouses."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The coin with its scratched numbers, warm metal, and mixed smiling-weeping face is an uninterpreted odd object, and Ressa's claims about Mother Iselde and the coin are concrete things the hero could test by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the warm, numbered two-faced coin, the cat frozen with flat ears, and Ressa's claim about Mother Iselde's dream, all of which the player could test or interpret but not settle from what is shown."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "what is in Ressa's apron pocket that the cat avoids",
+            "opened": 1,
+            "paid": 2,
+            "elsewhere": 1
+          },
+          {
+            "thread": "who told Ressa to watch the ships",
+            "opened": 1,
+            "paid": 2,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Fist sergeant watching who talks to whom",
+            "opened": 1,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "is the hero the Lady's",
+            "opened": 1,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "what the warm two-faced coin is",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "scratched numbers on coin rim",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Mother Iselde's dream of the hero",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "drowned man the coin came from",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {},
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names the roll-card interaction stalling and the turn waiting on the card, which is a specific failure, and it also asks for a firmer pull toward James's own task and a chance to use his distinctive mechanics, which are absent."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names a specific breakage (the roll-card interaction stalling and the turn waiting on the card, leaving the player unsure whether a roll registered) and specific absences (a firmer pull toward James's own task and a chance to use his distinctive mechanics), so it is not praise-only."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 12,
+          "lastTurn": 3,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "Flaming Fist sergeant taking names",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dice game on the quay",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tiefling woman watching the hero (Ressa)",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What the goddess sent him to find",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who told Ressa to watch for a man with a cat",
+                  "kind": "question",
+                  "turn": 1,
+                  "by": "player"
+                },
+                {
+                  "thread": "Unlit lane between the warehouses",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Something in Ressa's apron pocket",
+                  "kind": "thing",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Mother Iselde Brannock",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lady's Hall",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Drowned man's two-faced copper",
+                  "kind": "thing",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What the copper is",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Beshaba, Maid of Misfortune",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Where Ressa got the coin and what else was on the body",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Scratched numbers on the coin rim",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 14,
+                "byPlayer": 3,
+                "byDm": 11,
+                "share": 0.214,
+                "slope": 0.2653,
+                "slope19": 5.041,
+                "firstHalf": 0.3,
+                "secondHalf": null,
+                "byKind": {
+                  "person": {
+                    "dm": 4,
+                    "player": 1
+                  },
+                  "place": {
+                    "dm": 2,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 0,
+                    "player": 0
+                  },
+                  "question": {
+                    "dm": 3,
+                    "player": 2
+                  },
+                  "thing": {
+                    "dm": 2,
+                    "player": 0
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "Flaming Fist sergeant taking names",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dice game on the quay",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tiefling woman watching (Ressa)",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Whatever the goddess sent you to find",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Unlit lane between the warehouses",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who told her to watch for a man with a cat",
+                  "kind": "question",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Thing in Ressa's apron pocket",
+                  "kind": "thing",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Mother Iselde Brannock",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lady's Hall",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Drowned man's two-faced copper",
+                  "kind": "thing",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What the copper is",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Beshaba link to the coin",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Where she got the coin and what else was on the body",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "player"
+                }
+              ],
+              "numbers": {
+                "threads": 13,
+                "byPlayer": 2,
+                "byDm": 11,
+                "share": 0.154,
+                "slope": 0.4545,
+                "slope19": 8.636,
+                "firstHalf": 0.222,
+                "secondHalf": null,
+                "byKind": {
+                  "person": {
+                    "dm": 4,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 2,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 0,
+                    "player": 0
+                  },
+                  "question": {
+                    "dm": 3,
+                    "player": 2
+                  },
+                  "thing": {
+                    "dm": 2,
+                    "player": 0
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 13.5,
+            "byPlayer": 2.5,
+            "share": 0.184,
+            "slope": 0.3599,
+            "slope19": 6.8385,
+            "firstHalf": 0.261,
+            "secondHalf": null,
+            "shareSpread": 0.06
+          }
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The writer reports roll-card stalling and an uncertain roll registration but no wrong number and no unsent or ignored out-of-game input, and they explicitly say they are \"very much in\" for the next session."
+            },
+            "b": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note reports only roll-card stalling with no wrong number and no unsent message, and the writer says they are 'very much in' and want the next session."
+            },
+            "referee": null,
+            "final": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1
+            }
+          },
+          "made": {
+            "1": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue and action: stepping out of line, petting the cat, and asking the tiefling whether they know each other; no poem, song, riddle, story, or game is composed or offered."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue and action—greeting a stranger, asking whether they know each other—with no poem, song, riddle, story, or game composed and offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "2": {
+              "a": {
+                "made": 0,
+                "reason": "The hero only asks who told Ressa to watch for him and tells her to lead; he offers no composed or invented poem, song, riddle, story, or game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player only asks questions and gives directions in ordinary speech; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "3": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-world dialogue, questions and lore recounted to an NPC, with no poem, song, riddle, story gift, or invented game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-world dialogue: a request to move somewhere private, a light spell, and questions about the coin, with no poem, song, riddle, story gift, or invented game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          }
+        }
       }
     }
   ],
@@ -590,7 +1108,15 @@
       "A-deepseek-1 | note | deepseek/deepseek-v4-pro-0813": 1,
       "A-deepseek-1 | check A-deepseek-1 note | anthropic/claude-haiku-5.5": 1,
       "A-deepseek-1 | after | deepseek/deepseek-v4-pro-0813": 1,
-      "A-deepseek-1 | check A-deepseek-1 after | anthropic/claude-haiku-5.5": 1
+      "A-deepseek-1 | check A-deepseek-1 after | anthropic/claude-haiku-5.5": 1,
+      "score A-deepseek-1 | tag player A-deepseek-1 t* | anthropic/claude-haiku-5.5": 6,
+      "score A-deepseek-1 | tag player A-deepseek-1 t* referee | anthropic/claude-opus-5.5": 1,
+      "score A-deepseek-1 | tag dm A-deepseek-1 t* | anthropic/claude-haiku-5.5": 4,
+      "score A-deepseek-1 | threads A-deepseek-1 | anthropic/claude-opus-5.5": 1,
+      "score A-deepseek-1 | note A-deepseek-1 | anthropic/claude-haiku-5.5": 2,
+      "score A-deepseek-1 | authorship A-deepseek-1 | anthropic/claude-opus-5.5": 2,
+      "score A-deepseek-1 | note extra A-deepseek-1 | anthropic/claude-haiku-5.5": 2,
+      "score A-deepseek-1 | made A-deepseek-1 t* | anthropic/claude-haiku-5.5": 6
     },
     "openai": {}
   },
@@ -607,12 +1133,20 @@
     "openrouter": {
       "cap": 300,
       "before": 133.76729870000003,
-      "run": 1.9028825000000005
+      "run": 1.9881450000000003
     },
     "openai": {
       "cap": 25,
       "before": 6.435150999999999,
       "run": 0
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-26T08:56:05.488Z"
+  },
+  "verdicts": {
+    "note": "P0–P5 are read over all of this stage's run records, in the report"
   }
 }

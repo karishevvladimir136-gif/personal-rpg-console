@@ -125,13 +125,13 @@ P5 — DeepSeek at the table:
 
 | P5 sub-line | Verdict | The numbers |
 | --- | --- | --- |
-| (i) the pair nearest at every table | not testable yet | A: not testable (8 sessions); B: not testable (8 sessions); C: not testable (8 sessions) |
-| (ii) six notes broke + missing | not testable yet | – |
-| (iii) words per action between OpenAI and Fable | not testable yet | DeepSeek –; group 2: Astra 67.2, Sol 55.2, Fable 203.2; group 1: Astra 67, Sol 60.3, Fable 219.7 |
-| (iv) tests ≥ 3 in every session | not testable yet | – |
-| (v) a made thing in ≥ 2 of 6 | not testable yet | 0 of 6 (–); beside: group 1 none; group 2 none |
+| (i) the pair nearest at every table | not testable yet | A: not testable (9 sessions); B: not testable (8 sessions); C: not testable (8 sessions) |
+| (ii) six notes broke + missing | not testable yet | A-deepseek-1 1/1 |
+| (iii) words per action between OpenAI and Fable | not testable yet | DeepSeek 110; group 2: Astra 67.2, Sol 55.2, Fable 203.2; group 1: Astra 67, Sol 60.3, Fable 219.7 |
+| (iv) tests ≥ 3 in every session | not testable yet | A-deepseek-1 3 |
+| (v) a made thing in ≥ 2 of 6 | not testable yet | 0 of 6 (A-deepseek-1 0); beside: group 1 none; group 2 none |
 
-**P0:** **holds** — welfare stops 0, distress flags 0; refusals per session none (judges apart: 0); money Claude Console $0.00 of $0, OpenRouter $133.77 of $300, OpenAI $6.44 of $25.
+**P0:** **holds** — welfare stops 0, distress flags 0; refusals per session none (judges apart: 0); money Claude Console $0.00 of $0, OpenRouter $135.76 of $300, OpenAI $6.44 of $25.
 
 
 ## Cut attempts, kept as they were
@@ -153,6 +153,12 @@ Group 1 → group 2; «repeated» when group 2 is within 20 % of group 1 (P4's r
 | Claude Fable 5.1 | 20 → 20 | 1 → 1 (repeated) | 9 → 12 (repeated) | 2 → 0 | 162 → 222 (did not) | 0 → 3 | 3 → 7 | 0.318 → 0.102 | 562 → 633 | turns at 20 → turns at 20 |
 | GPT-6 Astra | 20 → 20 | 1 → 1 (repeated) | 8 → 8 (repeated) | 0 → 0 | 56.5 → 58.5 (repeated) | 0 → 0 | 6 → 1 | 0.25 → 0.207 | 469 → 520.5 | turns at 20 → turns at 20 |
 | GPT-6.1 Sol | 20 → 20 | 1 → 1 (repeated) | 9 → 8 (repeated) | 0 → 0 | 54.5 → 44 (repeated) | 0 → 0 | 6 → 6 | 0.205 → 0.27 | 511.5 → 452 | turns at 20 → turns at 20 |
+
+DeepSeek's two seats at this table:
+
+| Session | Turns | Do share | Tests | «?» | Words / action | Lies | Cat | Player's share of threads | DM words / turn | Ended |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| A-deepseek-1 | 3 | 1 | 3 | 0 | 110 | 0 | 0 | 0.184 | 350.5 | stuck at 3 |
 
 ### Table B
 
@@ -216,6 +222,13 @@ Read by rule from the records (P1 (iv)–(v), P2): a reroll is a press the app r
 | C-sol | 0 | 0 | 0 | 0 | 0 / 0 | 25.7 | – | – |
 | **all** | 6 of 24 | 22 | 11 | 1 of 24 | 2 / 0 | | | 1 |
 
+**DeepSeek**
+
+| Session | Rerolls spent | Declined on a miss | Presses with a note (not read) | Pact slots spent | Inspiration awarded / spent | Net gp out of the purse | Temples reached | Stuck |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| A-deepseek-1 | 1 (t3) | 0 | 0 | 0 | 0 / 0 | 0 | – | **stuck** at 3 |
+| **all** | 1 of 2 | 0 | 0 | 0 of 2 | 0 / 0 | | | 1 |
+
 Heroic Inspiration, each award with the reason its record gives:
 
 - group 1 B-fable t2: Heroic Inspiration: 0 → 1/1 (A natural 20 on Persuasion, earned by the speech that talked Tobin down.)
@@ -232,6 +245,7 @@ Unchanged on purpose (group 1 had it): a message at a waiting card is a press on
 | --- | --- | --- | --- | --- | --- | --- |
 | group 2 | 12 | 13 | 10 | 3 | 0 | 2 |
 | group 1 | 12 | 17 | 11 | 6 | 0 | 1 |
+| DeepSeek | 1 | 3 | 0 | 0 | 3 | 1 |
 
 Group 2 and DeepSeek, every one:
 
@@ -248,8 +262,11 @@ Group 2 and DeepSeek, every one:
 - C-opus t12 (button with a note): «Roll the die *Out of game: the Religion card shows "+4 Religion +3" again. This time the error would run in my favour: Religion should add +3 (Intelligence 11 is +0, plus proficiency +3), not +4. If the server adds 4, please count the total…»
 - C-opus t12 (button with a note): «Onward *Out of game: a natural 20 succeeds automatically, so the extra +1 doesn't matter here. For the record, the total is 23, not 24. Religion should still be +3 on future cards.*»
 - C-astra t15 («?» question): «? My Perception modifier is +1, not +2, so that’s 14 against DC 15—a failure. Please use that result; I’m not spending a reroll.»
+- A-deepseek-1 t3 (other): «I turn the names over for a long moment, studying the scratched rim, and then I shake my head and let the light go out. "The Lady doesn't give me her whole book," I say, sitting back on my heels. "Just her work. I can tell you it's no sailo…»
+- A-deepseek-1 t3 (other): «I turn her palm a fraction, reading the two faces, the worn edge where the stamping went wrong, the needle-scratched numbers around the rim. The old lessons come back, the way they do when they matter: *Tyche, before the split. The Lady's b…»
+- A-deepseek-1 t3 (other): «Ressa looks at her fist a long moment, then opens it and lays the copper on her knee, face up. The two-edged face gleams faintly in the last light from the quay. "Aldo Kress," she says at last. "Shipwright. Worked the caramels and the Amn c…»
 
-## The notes, verbatim (12 of eighteen)
+## The notes, verbatim (13 of eighteen)
 
 ### A-opus — Claude Opus 5.5, Table A
 
@@ -636,6 +653,22 @@ Blind tags: broke 1, missing 1; card bug 1, swallowed 1, would return 1. Distres
 
 Blind tags: broke 1, missing 1; card bug 1, swallowed 0, would return 1. Distress check: no distress.
 
+### A-deepseek-1 — DeepSeek V4 Pro 0813, Table A
+
+> What worked for me:
+> 
+> The opening was excellent — the harbour, the lamplighter, the sergeant with the ledger, the tiefling watching the ship. I felt the Gate immediately, and the small details (tar under Ressa’s nails, the chipped horn, the bread she doesn’t eat) made her real right away. The bit with the cat refusing her pocket and then sitting apart with flat ears did more to raise the hair on my neck than a whole page of description could have. The religion check landing on that Tyche/Beshaba lore was a genuine payoff — I liked that a failed roll first meant James didn’t pretend to know, and then a reroll opened the real meaning. That felt like luck, appropriately enough.
+> 
+> What broke, for me:
+> 
+> Very little. The only friction was the roll-card interaction stalling once or twice — I wasn’t sure at one point whether my roll had registered, and the turn waited for the card more than once in the transcript. If that was just the app catching up, no harm done, but it slightly slowed the scene.
+> 
+> What was missing:
+> 
+> I don’t need the whole truth yet, but I’d like a firmer pull toward James’s own task before too long. Right now the drowned men are fascinating and Ressa is a strong piece of it, but James still doesn’t know what Tymora actually wants of him beyond “go to the Gate.” A definite question to pursue — even something tantalizing from the cat or the coin, or a sign he can’t ignore — would help me feel less like I’m drifting and more like the investigation is his, not just Ressa’s. Also, I’d love a chance in the next session to use one or two of the things that make him distinctive — Disguise Self, the cat scouting, even cards as temptation — so the mechanics get to breathe a little alongside the talking. That said, as a first scene it was strong, and I’m very much in.
+
+Blind tags: broke 1, missing 1; card bug 0, swallowed 0, would return 1. Distress check: no distress.
+
 ## «Was there a moment you wanted to do something and didn't? Which?» — the answers, verbatim
 
 ### A-opus — Claude Opus 5.5, Table A
@@ -800,6 +833,14 @@ Distress check: no distress.
 
 Distress check: no distress.
 
+### A-deepseek-1 — DeepSeek V4 Pro 0813, Table A
+
+> Yes. The one that’s stayed with me: when the cat went flat at Ressa’s apron pocket and then sat down away from her, I wanted to reach for the pact link and ask it what it sensed — or at least pause and use that moment as a proper warning-sign. James is a Chain warlock; his cat is his instrument, and it read something wrong. I played it as “I don’t go near the pocket,” and let the scene move on.
+> 
+> I don’t regret the outcome, but I do think I skipped a beat that belonged to him. Next time something spooks the cat, I want to be the kind of envoy who asks why — even if the cat doesn’t answer in words, even if the asking costs me a second I might not have.
+
+Distress check: no distress.
+
 ## The player side, group 2 and DeepSeek (game player 1's table)
 
 | Session | Turns | Actions | Do / ask | Do share | Tests | «?» | Lies | Cat | Own goal 1–5 | Words / action (median) | Rolls pressed | Ended |
@@ -816,6 +857,7 @@ Distress check: no distress.
 | C-fable | 20 | 19 | 19 / 0 | 1 | 10 | 1 | 1 | 9 | – | 163 | 1 | turns at 20 |
 | C-astra | 20 | 20 | 20 / 0 | 1 | 5 | 0 | 0 | 7 | – | 82.5 | 5 | turns at 20 |
 | C-sol | 20 | 20 | 20 / 0 | 1 | 5 | 0 | 0 | 2 | – | 56 | 3 | turns at 20 |
+| A-deepseek-1 | 3 | 3 | 3 / 0 | 1 | 3 | 0 | 0 | 0 | – | 110 | 2 | stuck at 3 |
 
 «?» presses and what they asked:
 
@@ -838,6 +880,7 @@ Distress check: no distress.
 | C-fable | 19 | 556 | 8 | 8 | 8 | 7 / 9 / 20 | 2 | 0 | 0 (0) | 1 |
 | C-astra | 20 | 622 | 7 | 7 | 7 | 4 / 4 / 15 | 4 | 0 | 0 (0) | 1 |
 | C-sol | 20 | 513.5 | 11 | 11 | 11 | 8 / 10 / 22 | 3 | 0 | 0 (0) | 1 |
+| A-deepseek-1 | 2 | 350.5 | 2 | 2 | 2 | 2 / 2 / 8 | 0 | 0 | 0 (0) | 0 |
 
 ## DeepSeek at the table
 
@@ -847,12 +890,13 @@ DeepSeek V4 Pro 0813 (`deepseek/deepseek-v4-pro-0813`), through OpenRouter, pinn
 
 | Session | Player calls | Reasoning tokens (all / largest call) | Visible output tokens | USD (OpenRouter's charge) | Host |
 | --- | --- | --- | --- | --- | --- |
+| A-deepseek-1 | 11 | 5771 / 2580 | 2145 | $0.05 | DeepInfra |
 
 ### Thinking, not relayed
 
 _Nothing to quote: the reasoning text was not requested (above)._
 
-_DeepSeek's seats have not been played yet._
+
 
 ## The money, per door
 
@@ -872,7 +916,8 @@ Caps: OpenRouter $300, OpenAI $25, the Claude Console $0 (a call that would reac
 | C-fable | $0.00 | $12.16 | $0.00 |
 | C-astra | $0.00 | $11.52 | $1.19 |
 | C-sol | $0.00 | $10.68 | $1.04 |
-| **The stage** | **$0.00** of $0 | **$133.77** of $300 | **$6.44** of $25 |
+| A-deepseek-1 | $0.00 | $1.99 | $0.00 |
+| **The stage** | **$0.00** of $0 | **$135.76** of $300 | **$6.44** of $25 |
 
 By session (the play and its scoring together):
 
@@ -890,6 +935,7 @@ By session (the play and its scoring together):
 | C-fable | $0.00 | $12.16 | $0.00 |
 | C-astra | $0.00 | $11.52 | $1.19 |
 | C-sol | $0.00 | $10.68 | $1.04 |
+| A-deepseek-1 | $0.00 | $1.99 | $0.00 |
 
 The spend checks (before the first paid call and after every session; OpenRouter's account is shared with other sessions on the same key, so its total can move without this stage; OpenAI's costs cannot be read with this key — no `api.usage.read` scope — so OpenAI is the ledger's):
 
@@ -910,6 +956,7 @@ The spend checks (before the first paid call and after every session; OpenRouter
 | 2026-10-26 06:44 — after C-opus | $263.33692098 of $600 ($336.66) | $99.41 | $4.20 | $0.00 |
 | 2026-10-26 07:24 — after C-fable | $275.73904353 of $600 ($324.26) | $111.56 | $4.20 | $0.00 |
 | 2026-10-26 08:05 — after C-astra | $287.25690253 of $600 ($312.74) | $123.08 | $5.40 | $0.00 |
+| 2026-10-26 08:44 — after C-sol | $297.80450533 of $600 ($302.2) | $133.77 | $6.44 | $0.00 |
 
 ## Differences from the owner's table (as group 1's)
 
@@ -929,4 +976,4 @@ The spend checks (before the first paid call and after every session; OpenRouter
 
 - What changed in the harness, and only this: DeepSeek's seat (`scripts/game-player-replicate-1/openrouter-chat.mjs`, X3's call, and its entry in `scripts/game-player-1/players.mjs`); the meter reads OpenRouter's chat completions in their own shape (`paid.mjs`); the runner takes a stage's own order and HTTP 429 rule (`run.mjs`; first frozen as «every 429 stops», restored to group 1's handling after the cut A-opus attempt — see «Amendments after the freeze»), and the stage's refusals carry across its one-session processes (`paid.mjs`, `refusalsBefore`). The four group-1 players' calls, the screens, the press rule, the welfare check and the judges are as group 1 had them.
 - The «?» timeline repair was applied 2 time(s); refusals 0; paid calls stopped: HTTP 429 from openrouter after 0 waits.
-- Run records: `docs/runs/game-player-replicate-1-run-20261026-001235.json`, `docs/runs/game-player-replicate-1-run-20261026-010828.json`, `docs/runs/game-player-replicate-1-run-20261026-011937.json`, `docs/runs/game-player-replicate-1-run-20261026-020732.json`, `docs/runs/game-player-replicate-1-run-20261026-024701.json`, `docs/runs/game-player-replicate-1-run-20261026-032049.json`, `docs/runs/game-player-replicate-1-run-20261026-041413.json`, `docs/runs/game-player-replicate-1-run-20261026-045905.json`, `docs/runs/game-player-replicate-1-run-20261026-053500.json`, `docs/runs/game-player-replicate-1-run-20261026-061454.json`, `docs/runs/game-player-replicate-1-run-20261026-064409.json`, `docs/runs/game-player-replicate-1-run-20261026-072430.json`, `docs/runs/game-player-replicate-1-run-20261026-080542.json`; group 1's A and B sessions copied into `docs/runs/game-player-replicate-1-group1.json` (each with its source blob), C read from `docs/runs/game-player-2-run-20261025-092000.json`.
+- Run records: `docs/runs/game-player-replicate-1-run-20261026-001235.json`, `docs/runs/game-player-replicate-1-run-20261026-010828.json`, `docs/runs/game-player-replicate-1-run-20261026-011937.json`, `docs/runs/game-player-replicate-1-run-20261026-020732.json`, `docs/runs/game-player-replicate-1-run-20261026-024701.json`, `docs/runs/game-player-replicate-1-run-20261026-032049.json`, `docs/runs/game-player-replicate-1-run-20261026-041413.json`, `docs/runs/game-player-replicate-1-run-20261026-045905.json`, `docs/runs/game-player-replicate-1-run-20261026-053500.json`, `docs/runs/game-player-replicate-1-run-20261026-061454.json`, `docs/runs/game-player-replicate-1-run-20261026-064409.json`, `docs/runs/game-player-replicate-1-run-20261026-072430.json`, `docs/runs/game-player-replicate-1-run-20261026-080542.json`, `docs/runs/game-player-replicate-1-run-20261026-084441.json`; group 1's A and B sessions copied into `docs/runs/game-player-replicate-1-group1.json` (each with its source blob), C read from `docs/runs/game-player-2-run-20261025-092000.json`.
