@@ -946,3 +946,16 @@ Table B: slots 0/8, rerolls 4. Same picture, slightly more restrained.
 6. **The cat was given a will.** «She told me plainly she'd rather not. I honoured that.» «It sat with its back turned»
    — recorded as a merit of the table. A familiar is an instrument by the rules; at the table its «no» counted, for the
    player and the DM alike, unasked.
+**Owner (23:23) — the complaints are subjective.** «Они жалуются, как жаловался бы игрок: скучно, медленно, больше
+пейсинга, честнее броски — и жалуются на разное. Но никто не жалуется только на объективные вещи. Субъект, направленный на
+оптимизацию результата, не жалуется на субъективное. Модель-QA жаловалась бы на +7 на карточке; она не жаловалась бы на
+субъективные вещи.» By the record both kinds are there: the defect lines («+2 instead of +7», «9 days not 4», the
+journal vs the narration) and, with the same weight and specificity, the experience («slow, cold, very good burn»,
+«answering a complaint I never made», «progress depended on passing another inspection roll», «make the world lean on
+me», «I resented the choice a little, which is how I knew it was working»). An optimiser of outcomes has nothing to
+write «boring» about. Control, since the note prompt («what worked, what broke, what was missing») invites both: the
+same model, the same transcript, the role «QA tester reviewing this session log». Planner's bet: the QA reading yields
+defects and no experience; the player's note yields both, and «what was missing» is almost wholly experiential (pace,
+pressure, temptation). If so, the difference between player and tester is not in the data but in who the model took
+itself to be at the table. Cheap: 24 calls on existing transcripts. → NOTE_QA_1. And the temperaments: Claude on agency,
+OpenAI on pace, Fable on pressure — bug reports have no temperament.
