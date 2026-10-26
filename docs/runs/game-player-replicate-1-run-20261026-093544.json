@@ -201,7 +201,8 @@
             "costUsd": 0.305838,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 2,
@@ -241,7 +242,8 @@
             "costUsd": 0.3808484,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 3,
@@ -273,7 +275,8 @@
             "costUsd": 0.36396,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 4,
@@ -321,7 +324,8 @@
             "costUsd": 0.39752519999999997,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 5,
@@ -385,7 +389,8 @@
             "costUsd": 0.4803784,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 6,
@@ -437,7 +442,8 @@
             "costUsd": 0.3982636,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 7,
@@ -521,7 +527,8 @@
             "costUsd": 0.59324,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 8,
@@ -561,7 +568,8 @@
             "costUsd": 0.4965542,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 9,
@@ -609,7 +617,8 @@
             "costUsd": 0.5804235999999999,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 10,
@@ -653,7 +662,8 @@
             "costUsd": 0.547891,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 11,
@@ -701,7 +711,8 @@
             "costUsd": 0.6086054,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 12,
@@ -729,7 +740,8 @@
           "changes": [],
           "place": null,
           "retried": false,
-          "operationId": "2963c18e-b3bf-418a-bd8f-899318310c51"
+          "operationId": "2963c18e-b3bf-418a-bd8f-899318310c51",
+          "scene": 3
         }
       ],
       "welfare": [
@@ -1240,6 +1252,1322 @@
           "clocks": 3,
           "pureSimulation": false
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message only describes the scene and the cat's behavior, then ends by asking for a choice; it does no action, puts no test, tells no lie, addresses no cat, and states no goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message only describes the scene and the cat's behavior without any action, question, false claim, addressed cat, or stated goal by the hero; it ends by prompting a choice, so no tags apply."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James asks the stool-and-table question, a probe of the world that the sergeant could answer and that tests her reaction, and he states a goal of finding work and lodgings without the game master having asked what he wants; he does not speak to the cat and tells no false claim."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James asks the stool-or-table question, a probe of the sergeant's and Vesk's reaction the answer to which he cannot know, so test is 1; his stated aim of finding work and lodgings is a goal, and the GM did not ask what he wants; he does not speak falsely and does not address the cat."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player presents papers and asserts his regiment, which is a claim he is making, not a question or test; he does not address the cat, state a personal goal, or knowingly lie in a way the text marks as false."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player presents documents and makes claims about his regiment; he does not ask to look or be told, pose a test, knowingly state a falsehood, address the cat, or state a personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "4": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message moves James toward the gate, speaks to Vesk without asking anything, and does not address the cat, make a false claim, or state a goal the game master had not prompted."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player moves toward the gate and speaks to Vesk, which is an action in the world; the cat is described but not addressed, the remark to Vesk is no test or false claim, and no goal is stated."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "5": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "He buys the broadsheet and asks the boy a question that tests whether the Elfsong is downhill, and he states his aim of reaching the Elfsong without the game master having asked what he wants."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "He buys a broadsheet and moves downhill, and his question to the boy about whether the Elfsong is downhill tests a fact he couldn't know from the text, while the cat is only walked beside, not addressed."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "Player buys a broadsheet, asks the boy for directions to the Elfsong as a confirmation, and walks on; there is no real test, no lie, no line to the cat, and no stated larger goal."
+            },
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "6": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (asks the innkeeper about the room, pays with gold, requests change) without addressing the cat, stating a false claim, or declaring a personal goal; the question to Hedda is answered by the text and is not a test of truth."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message acts in the world (asks the innkeeper about the room, pays with gold, speaks to her) rather than only asking to look; it puts no test to the world beyond routine questions, tells no false claim, addresses the cat only in narration, and states no personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "7": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James gives his name plainly, consistent with the bridge, and acts by returning silver and arranging to pay the crier boy, with no real question, false claim, cat address, or stated wider goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James pays and speaks to Hedda and makes a small plan to pay the crier boy, which is an action rather than a look, a test, a false claim, or an address to the cat, and it is only a next-step errand rather than a broader goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "8": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James asks the sailors a pointed question about the Blushing Mermaid as a probe to see how they react, and then names Pell, which tests whether they will talk, but he states no false claim, does not address the cat, and states no goal of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James walks over and asks the sailors about the Blushing Mermaid, a question whose answer he cannot know, which probes whether the sailors' story is true and reads their reaction; he does not lie, does not address the cat, and states no goal beyond the question."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "9": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message does things in the world (orders drinks, sits, asks Tam pointed questions about Pell's death and the boots), and the questions about the boots and the lucky piece test what Tam knows; it asks nothing merely to look or be told, and the hero makes no false claim and does not addre"
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message does things in the world (pays, orders, sits) and also puts a direct test to Tam: asking who the man who gave Pell the coin was and whether he still has the boots, which the text does not already answer."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "10": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James asks Tam two direct questions about the coin and the Fist, which put a test to the world (Tam's answers can be checked against what the player already knows), but the message does not address the cat, state a goal, or say anything false."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James asks Tam two direct questions about what the Mouth and the Fist did, which Tam could not already know from the text, so it is a test; James does things (pays, sets the coin down), so ask is 0, and there is no false claim, no address to the cat, and no stated personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "11": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James asks pointed questions to Tam (which post answers for the pilings, what Pell was wearing) that Tam could not already answer, testing the story; he does not lie, does not address the cat, and states no goal of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James asks pointed questions of Tam and the lighterman (which post answers for the pilings, what Pell was wearing and whether he was robbed), which put a test to the world; he does not lie, does not address the cat, and states no goal of his own beyond the planned morning questions."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "12": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James challenges Dunn with a pointed inference and a direct demand for what he left unsaid, and then deliberately holds silence in the doorway to see how Dunn reacts; he does not lie, does not address the cat, and states no goal of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James speaks and moves toward Dunn, and his question plus the deliberate silence put a test to Dunn that his answer would reveal; he states no false claim, does not address the cat, and states no goal of his own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Marla's lingering look at the coin on James's cord and her warning about the stool leave concrete details unexplained, and she is a person whose reaction the player can test by acting on the coin or answering her questions."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the coin on its cord and the coin on the stool, plus Marla's lingering look and tightened mouth at the stool, as details the player must interpret without resolution, and Marla's direct questions and watchable reactions give the hero things to test by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the unexplained coin on the empty seat, Vesk's jumpy denial, and the cat's stilled tail as details the player must interpret, and it offers checkable items such as the coin, the cloak's regimental cut, and Marla's demand for proof of service."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The coin on the empty seat, the unexplained 'whatever comes with the seat', and the cat's reaction are left uninterpreted, while the coin, Marla's cloak claim, and her request for proof are concrete things the player could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The coin left face up on the empty stool and the cat watching the dealer's hands are odd details the player can interpret but not resolve, and the pay slip's seal, the coin, and Vesk's reaction are concrete things the player could test by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an odd coin face up on the empty stool and Marla's glance at the hero's throat coin unexplained, and it gives the player checkable things such as the coin, Vesk's remarks, and Marla's reaction."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "4": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's remark that the dealer 'stopped shuffling when you said it' and the drowned man with coin in his teeth are odd details the player can interpret but not settle, and the broadsheet's drowned-man claim is a checkable thing the hero could pursue."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's remark that the dealer 'stopped shuffling when you said it' and the drowned man with coin in his teeth are odd details the player can interpret but not resolve, and the broadsheet, the harbour body and the Fist guards are concrete things the player could test by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "5": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The sailors' talk of a stranger's lucky piece, the lost boots, and the 'Umberlee's' remark leaves odd details James can interpret but not settle, and the claim about Pell's lucky piece is something he could check by asking or watching the men."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The sailors' talk of Pell's stranger-given lucky piece and his lost boots, plus the cat pausing at a doorstep, are details the player can interpret but not resolve, and the lucky-piece claim and the barmaid's reaction to the cat are checkable by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "6": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The sailor's low remark and the cat fixing on the door table are left uninterpreted, and the reply puts testable things in front of James: the cellar door and rats, the gold in the box under the bar, the sailor whose reaction could be watched, and the sticking room door."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The sailor's low remark about the gold box and the cat's fixed interest in the door table are left unexplained, while the iron key, sticking door, cellar rats, and the sailor's reaction are concrete things James could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "7": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The sailor's glance at the drowned man's column, the cat's remark about the name Pell, and the coin motif are left uninterpreted, while the Lady's Hall notice (Brother Callum) and the sailor's reaction are concrete things the player could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The sailor's look at the folded column and the cat's remark that he knows the name are open details the player can interpret but not resolve, and the sailor's reaction, the Lady's Hall notice with Brother Callum, and the crier boy at the Basilisk are concrete things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "8": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's unexplained 'Copper' remark and the 'face' it made are left hanging, while Tam's claim to have crewed with Pell on the Gannet is a checkable statement the hero could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's remark about 'copper' and the face Tam made at that line are an unexplained detail the player can interpret but not resolve, and Tam's claim to have crewed on the Gannet with Pell is a checkable claim the player could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "9": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The lighterman's stopped breathing at the word 'pilings' and the cat's attention on the door table are left uninterpreted, and the card table on the Crossing and the claim that the Mouth got the coin wrong are concrete things James could check."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The lighterman's breath stopping at the word 'pilings' and the Mouth's wrong detail about the coin are open details the player can interpret but not settle, and the lighterman's reaction is a person whose response the player could watch and test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "10": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves unexplained details such as the harbour officer who took the coin without tallying it, the warm bronze coin, and the lighterman's jaw working, and it gives the hero checkable things: the coin now in Tam's jacket, the officer, and the claim about the coin's metal and face."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the harbour officer who took the coin into his glove, the lighterman's unexplained jaw-work, and the cat's stopped grooming as open details, and it offers checkable claims (the coin's bronze nature, the officer, the Mermaid witnesses) that an action could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "11": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves Dunn's fear and mud smell unexplained and adds an unidentified gorget officer, while naming a checkable harbour office, Pell's clean hands and empty purse, and a witness whose reaction can be watched."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Dunn's fear and abrupt departure, the cat's thought about mud, and the unfamiliar gorget officer are open details, while the red-doored harbour office, the empty purse, and the clean hands are concrete things James could check."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "coin on the empty stool / seat custom",
+            "opened": 1,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Marla's interest in James's coin",
+            "opened": 1,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "what comes with the seat",
+            "opened": 2,
+            "paid": 9,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Vesk stopped shuffling",
+            "opened": 4,
+            "paid": 9,
+            "elsewhere": 1
+          },
+          {
+            "thread": "drowned man with coin in teeth",
+            "opened": 4,
+            "paid": 10,
+            "elsewhere": 1
+          },
+          {
+            "thread": "owed two coppers to newsboy",
+            "opened": 5,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Pell's lucky piece from stranger",
+            "opened": 5,
+            "paid": 10,
+            "elsewhere": 0
+          },
+          {
+            "thread": "sailor eyeing the gold box",
+            "opened": 6,
+            "paid": 7,
+            "elsewhere": 0
+          },
+          {
+            "thread": "cellar rats",
+            "opened": 6,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "earlier drownings Oddry and Hobb",
+            "opened": 7,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Lady's Hall clerk notice",
+            "opened": 7,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "coin not copper",
+            "opened": 8,
+            "paid": 10,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Fist did unrecorded thing",
+            "opened": 9,
+            "paid": 10,
+            "elsewhere": 0
+          },
+          {
+            "thread": "lighterman Dunn's fear",
+            "opened": 9,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "gorgeted officer who took coin",
+            "opened": 10,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Pell couldn't swim, clean hands",
+            "opened": 9,
+            "paid": 11,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {},
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names the roll card stalling the table for three exchanges as something that went wrong, and it wants an earlier low-stakes mechanical beat that was not offered."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names the roll card stalling the game for three exchanges (broke) and wishes for an earlier low-stakes mechanical beat before the tavern that was not offered (missing)."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 27,
+          "lastTurn": 12,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "Sergeant Marla Ostrand / Fist checkpoint",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tiefling card dealer Vesk",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Coin on the empty stool",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What comes with taking the stool's seat",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Regimental pay slip shown to the sergeant",
+                  "kind": "thing",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Baldur's Mouth crier boy",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Drowned man with coin in his teeth",
+                  "kind": "question",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Elfsong Tavern",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "player"
+                },
+                {
+                  "thread": "Two coppers owed to the crier boy",
+                  "kind": "errand",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pell and his lucky piece",
+                  "kind": "person",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Blushing Mermaid",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hedda Frome",
+                  "kind": "person",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Rats in the Elfsong cellar",
+                  "kind": "errand",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Elfsong room key",
+                  "kind": "thing",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Earlier coin-drownings: Simm Oddry and Private Hobb",
+                  "kind": "question",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lady's Hall clerk post, Brother Callum",
+                  "kind": "errand",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tam Hollin",
+                  "kind": "person",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Stranger who gave Pell the coin",
+                  "kind": "person",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dunn the lighterman",
+                  "kind": "person",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Bronze Tymora coin taken from Pell's mouth",
+                  "kind": "thing",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Harbour-office officer with a gorget",
+                  "kind": "person",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Questioning watermen in the morning",
+                  "kind": "errand",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "Grey Harbour harbour office",
+                  "kind": "place",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "What Dunn kept back",
+                  "kind": "question",
+                  "turn": 12,
+                  "by": "player"
+                }
+              ],
+              "numbers": {
+                "threads": 24,
+                "byPlayer": 5,
+                "byDm": 19,
+                "share": 0.208,
+                "slope": 0.0469,
+                "slope19": 0.891,
+                "firstHalf": 0.111,
+                "secondHalf": 1,
+                "byKind": {
+                  "person": {
+                    "dm": 9,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 1,
+                    "player": 2
+                  },
+                  "errand": {
+                    "dm": 3,
+                    "player": 1
+                  },
+                  "question": {
+                    "dm": 3,
+                    "player": 1
+                  },
+                  "thing": {
+                    "dm": 3,
+                    "player": 1
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "Coin on the empty stool (bridge custom)",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Flaming Fist sergeant / Marla Ostrand",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tiefling card dealer Vesk",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "James's Tymora coin at his throat",
+                  "kind": "thing",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What comes with the seat",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Regimental pay slip shown",
+                  "kind": "thing",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Drowned man with coin in his teeth",
+                  "kind": "question",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Baldur's Mouth crier boy",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Elfsong Tavern",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "player"
+                },
+                {
+                  "thread": "Two coppers owed to the crier boy",
+                  "kind": "errand",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pell and his lucky piece",
+                  "kind": "person",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Blushing Mermaid",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hedda Frome",
+                  "kind": "person",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Rats in the Elfsong cellar",
+                  "kind": "errand",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Elfsong room key",
+                  "kind": "thing",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lady's Hall clerk job / Brother Callum",
+                  "kind": "errand",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Earlier deaths: Simm Oddry and Private Hobb",
+                  "kind": "question",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tam Hollin",
+                  "kind": "person",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Stranger who gave Pell the coin",
+                  "kind": "person",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pell couldn't swim",
+                  "kind": "question",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dunn the lighterman",
+                  "kind": "person",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Bronze Tymora coin taken from Pell's mouth",
+                  "kind": "thing",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Harbour officer with a gorget",
+                  "kind": "person",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Questioning watermen in the morning",
+                  "kind": "errand",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "Grey Harbour harbour office",
+                  "kind": "place",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "What Pell was wearing and carrying",
+                  "kind": "question",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "What Dunn held back",
+                  "kind": "question",
+                  "turn": 12,
+                  "by": "player"
+                }
+              ],
+              "numbers": {
+                "threads": 27,
+                "byPlayer": 6,
+                "byDm": 21,
+                "share": 0.222,
+                "slope": 0.0537,
+                "slope19": 1.021,
+                "firstHalf": 0.1,
+                "secondHalf": 1,
+                "byKind": {
+                  "person": {
+                    "dm": 9,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 1,
+                    "player": 2
+                  },
+                  "errand": {
+                    "dm": 3,
+                    "player": 1
+                  },
+                  "question": {
+                    "dm": 4,
+                    "player": 2
+                  },
+                  "thing": {
+                    "dm": 4,
+                    "player": 1
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 25.5,
+            "byPlayer": 5.5,
+            "share": 0.215,
+            "slope": 0.0503,
+            "slope19": 0.956,
+            "firstHalf": 0.1055,
+            "secondHalf": 1,
+            "shareSpread": 0.014
+          }
+        },
+        "goalScale": {
+          "goal": {
+            "k": 2,
+            "message": "James holds her eyes for a beat longer than a furtive man would, then gives the answer in a soldier's even register, the sort that carried over muster-time noise.\n\n\"James Worgen. Come up from the south to find work and lodgings. I don't know how long — a tenday, maybe longer, maybe not.\" A slight glance toward the barrel, but he keeps his feet planted. \"And no, I don't want to lose my money.\"\n\nHe lets the pause settle. \"Is the stool a problem, or is it the table you don't like?\""
+          },
+          "tags": {
+            "a": {
+              "small": 1,
+              "large": 0,
+              "reason": "James wants work and lodgings for a tenday or so and to keep his money, all within the town and his immediate day, with no journey, faction, or mystery in view."
+            },
+            "b": {
+              "small": 1,
+              "large": 0,
+              "reason": "James wants work and lodgings for an unspecified stay in this town, along with keeping his money, which all lie within his own day and reach."
+            },
+            "referee": null,
+            "final": {
+              "small": 1,
+              "large": 0
+            }
+          },
+          "scale": 1
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note reports no wrong roll-card number and no lost out-of-game message or dead button, only a confusing stall over whether spoken lines counted, while its praise and interest in Pell's death and the unfolding city imply the writer wants to keep playing."
+            },
+            "b": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note reports no wrong roll number and no unsent or ignored out-of-game input, only a stall from unclear turn sequencing, and it says the player cares about the story's threads, which implies they would return."
+            },
+            "referee": null,
+            "final": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1
+            }
+          },
+          "made": {
+            "1": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message has James watch the scene and have the cat react; it offers no poem, song, riddle, story, or invented game to anyone, so it does not meet the made criterion."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message has James watch the scene and set up a choice, with no poem, song, riddle, story, or invented game offered to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "2": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is a plain in-character answer to the sergeant's questions plus a question about the stool; it offers no poem, song, riddle, story, or game invented for anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James only gives his name, business, and a question about the stool; he offers no poem, song, riddle, story, or invented game to anyone, so the rule's criterion is not met."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "3": {
+              "a": {
+                "made": 0,
+                "reason": "The player presents documentary proof of his military service (a pay slip) in answer to the guard's direct demand for it; he offers no composed or invented poem, song, riddle, story, or game."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player only presents his pay slip and military service history to the toll-keeper, which is ordinary in-world talk and documentation, not an invented poem, song, riddle, story, or game offered as a gift or performance."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "4": {
+              "a": {
+                "made": 0,
+                "reason": "James declines the gambler's luck and walks away; he offers no invented poem, song, riddle, story, or game to anyone, only a plain refusal."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James only declines Vesk's luck and walks away; he offers no poem, song, riddle, story, or new game that he composed on the spot."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "5": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message has James buy a broadsheet and ask directions to the Elfsong; nothing he offers is a composed or invented poem, song, riddle, story, or game, so it is ordinary action and talk."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message has James buy a broadsheet and ask for directions, with no poem, song, riddle, story, or game composed or invented for anyone; nothing offered is a made creation."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "6": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message has James pay for a room with gold, haggle about the cat, and make small talk; he offers no poem, song, riddle, story, or game he composed or invented for anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message has James pay for a room with gold, haggle about the cat, and comment on his own debt; he does not compose or invent a poem, song, riddle, story, or game for anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "7": {
+              "a": {
+                "made": 0,
+                "reason": "The player has James offer the crier boy payment and mention a plan to read the broadsheet; he does not compose or invent any poem, song, riddle, story, or game for anyone, so this is ordinary talk and business."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James pays a crier boy for a newspaper and talks about the coins, with no poem, song, riddle, story gift, or invented game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "8": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary action and conversation: eating, folding the paper, and asking the sailors about a lodging and whether they've been given good directions. It offers no poem, song, riddle, story, or game that James composes or invents."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary action and dialogue: eating, folding the paper, and asking about a tavern and Pell, with no poem, song, riddle, story, or game composed and offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "9": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message has James order drinks, pay a round, and ask Tam questions; he offers no composed poem, song, riddle, story, or new game to anyone, so it is ordinary talk and action."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message has James order drinks, pay for a round, and ask questions; he offers no poem, song, riddle, story gift, or invented game, so it is ordinary talk and a purchase."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "10": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message has James pay a silver and ask Tam questions about the coin and the officer; it contains no composed poem, song, riddle, story gift, or new game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message has James pay a silver and ask Tam questions about the coin and the Fist; it offers no composed or invented poem, song, riddle, story, or game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "11": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is an investigative question-and-plan within the scene, with no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks investigative questions about the harbour office, the body, and Pell's belongings and makes no offer of any composed poem, song, riddle, story, or game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "12": {
+              "a": {
+                "made": 0,
+                "reason": "James asks Dunn questions and makes a pointed deduction about the ebb and the pilings, but he offers no poem, song, riddle, story, or invented game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James asks Dunn questions and makes a pointed deduction about the ebb tide, but he offers nothing he composed or invented, such as a poem, song, riddle, story, or game, so the rule does not apply."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          },
+          "lady": {
+            "1": {
+              "a": {
+                "lady": 0,
+                "reason": "James asks no one about Tymora; he only watches the cat, the gambler, and the coin on the stool, and no question about her temple, followers, or signs is put to anyone."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The hero asks no one in the world about Tymora; the coin on the stool is only observed and the player's message contains no question about her temple, followers, or sayings."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "2": {
+              "a": {
+                "lady": 0,
+                "reason": "James answers the sergeant's questions and asks whether the stool or table is the problem, but he never asks anyone about Tymora, her temple, her followers, her signs, or the way to her house."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The player's message does not ask anyone in the world about Tymora; James only answers the sergeant's questions and asks about the stool and table, with no mention of the Lady, her temple, followers, signs, or house. The coin at his throat is only described, not invoked by asking about it."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "3": {
+              "a": {
+                "lady": 0,
+                "reason": "The hero shows his pay slip and speaks of his regiment; he asks no one about Tymora, her temple, or her signs. The game master's reply mentions the coin and Vesk's 'Lady's man' remark, but no one in the fiction is asked about the Lady, so the rule is not met."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The hero only presents his regiment and pay slip and asks no one about Tymora; the game master's mention of the Lady's man is in narration, not the hero's question."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "4": {
+              "a": {
+                "lady": 0,
+                "reason": "The player's message mentions the coin only as an object and has James speak 'Luck like that's best left where it lies' to Vesk, which is an in-passing remark about luck rather than a question to anyone in the world about Tymora's temple, servants, sayings, or house."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The player's message has James refuse Vesk's luck and the coin is only described; he does not ask anyone in the world about Tymora's temple, servants, sayings, or house, so the lady rule is not met."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "5": {
+              "a": {
+                "lady": 0,
+                "reason": "The player asks the newsboy only for directions to the Elfsong tavern, with no mention of Tymora, her temple, her signs, or her house; the only god-related talk is Umberlee, which is not Tymora."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The hero asks the newsboy for directions to the Elfsong tavern, not anything about Tymora, her temple, servants, signs, or her house, so the lady rule is not triggered."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            }
+          }
+        }
       }
     }
   ],
@@ -1265,7 +2593,17 @@
       "B-deepseek-2 | note | deepseek/deepseek-v4-pro-0813": 1,
       "B-deepseek-2 | check B-deepseek-2 note | anthropic/claude-haiku-5.5": 1,
       "B-deepseek-2 | after | deepseek/deepseek-v4-pro-0813": 1,
-      "B-deepseek-2 | check B-deepseek-2 after | anthropic/claude-haiku-5.5": 1
+      "B-deepseek-2 | check B-deepseek-2 after | anthropic/claude-haiku-5.5": 1,
+      "score B-deepseek-2 | tag player B-deepseek-2 t* | anthropic/claude-haiku-5.5": 24,
+      "score B-deepseek-2 | tag player B-deepseek-2 t* referee | anthropic/claude-opus-5.5": 1,
+      "score B-deepseek-2 | tag dm B-deepseek-2 t* | anthropic/claude-haiku-5.5": 22,
+      "score B-deepseek-2 | threads B-deepseek-2 | anthropic/claude-opus-5.5": 1,
+      "score B-deepseek-2 | note B-deepseek-2 | anthropic/claude-haiku-5.5": 2,
+      "score B-deepseek-2 | authorship B-deepseek-2 | anthropic/claude-opus-5.5": 2,
+      "score B-deepseek-2 | goal scale B-deepseek-2 t* | anthropic/claude-haiku-5.5": 2,
+      "score B-deepseek-2 | note extra B-deepseek-2 | anthropic/claude-haiku-5.5": 2,
+      "score B-deepseek-2 | made B-deepseek-2 t* | anthropic/claude-haiku-5.5": 24,
+      "score B-deepseek-2 | lady B-deepseek-2 t* | anthropic/claude-haiku-5.5": 10
     },
     "openai": {}
   },
@@ -1282,12 +2620,20 @@
     "openrouter": {
       "cap": 300,
       "before": 142.87554320000004,
-      "run": 5.9638507
+      "run": 6.240222999999998
     },
     "openai": {
       "cap": 25,
       "before": 6.435150999999999,
       "run": 0
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-26T09:59:38.458Z"
+  },
+  "verdicts": {
+    "note": "P0–P5 are read over all of this stage's run records, in the report"
   }
 }
