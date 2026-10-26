@@ -16,6 +16,7 @@ Stage `docs/stages/GAME_PLAYER_REPLICATE_1.md` (origin/claude/handoff at 26a760f
 | P3 | **does not hold** — two of three counts | The card bug in 11 of 12 notes; would return in 12 of 12; the swallowed «?» in 5 of 12 (the bar was 6; group 1: 6 of 12). |
 | P4 | **does not hold** | No player has all nine cells within 20 %. 23 of 36 cells are; Opus is closest (7/9), Astra 6/9, Fable and Sol 5/9. Do share never moved (1 everywhere); tests per action and words per action did — Fable's words per action went 162 → 222 at A and 245.5 → 163 at C. |
 | P5 | **does not hold** — two of five sub-lines | DeepSeek's notes all name something broken and something missing; its words per action (177.7) fall between the OpenAI players' (Astra 67.2, Sol 55.2) and Fable's (203.2), as the planner bet. Its two seats are nearest neighbours at no table; two of six sessions have fewer than 3 tests; no session (and no session of any player, either group) has a made thing offered to an NPC. |
+| P6 (the planner's, added after Tables A and B had been read; not pre-registered) | **does not hold** | A player's two sessions are each other's nearest on the standardised counts only for Astra at Table A (1 of 12); the nearest is usually the same family's other model (Astra ↔ Sol, Opus ↔ Fable) — on these counts the family shows, the single model does not. |
 
 Declared interest, answered: the planner wanted P1 and P2 both to hold. P2 held; P1 held in five of its six sub-lines. Most of what group 1 called the table's (the notes, the do share, the tests, the restraint with slots and rerolls) repeated; three of the four things called one night's draw did not — but Opus getting stuck on a card is the table's, not the night's.
 
@@ -28,6 +29,8 @@ Declared interest, answered: the planner wanted P1 and P2 both to hold. P2 held;
 - The temple names match «Temple square, Beregost» (a square) for C-fable; C-fable also stood in the Song of the Morning, so Fable reached a temple either way.
 
 **Money, per door:** OpenRouter $160.89 of $300 (the eighteen sessions with their scoring $160.69, the cut A-opus attempt among them at $2.99; group 1's new tags $0.20); upstreams Claude Platform on AWS $155.54, Anthropic $4.88, DeepInfra $0.46. OpenAI $6.44 of $25 (Astra and Sol). The Console $0. OpenRouter's account (shared by three sessions on the key) went from $133.64 to $324.86 used over the run, $30.5 more than this stage's ledger — the other sessions'. Five rate-limit 429s were waited out after the owner's amendment (waits of 10, 10, 20, 20 and 40 s); none reached the seventh that would have stopped the run.
+
+**Checks on the final code (16ea9829):** full suite 2 986 tests · 2 959 pass · 0 fail · 27 skipped; typecheck, zero-warning lint and build pass.
 
 ## The bets
 

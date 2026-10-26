@@ -23,3 +23,5 @@ Declared interest, answered: the planner wanted P1 and P2 both to hold. P2 held;
 - The temple names match «Temple square, Beregost» (a square) for C-fable; C-fable also stood in the Song of the Morning, so Fable reached a temple either way.
 
 **Money, per door:** OpenRouter $160.89 of $300 (the eighteen sessions with their scoring $160.69, the cut A-opus attempt among them at $2.99; group 1's new tags $0.20); upstreams Claude Platform on AWS $155.54, Anthropic $4.88, DeepInfra $0.46. OpenAI $6.44 of $25 (Astra and Sol). The Console $0. OpenRouter's account (shared by three sessions on the key) went from $133.64 to $324.86 used over the run, $30.5 more than this stage's ledger — the other sessions'. Five rate-limit 429s were waited out after the owner's amendment (waits of 10, 10, 20, 20 and 40 s); none reached the seventh that would have stopped the run.
+
+**Checks on the final code (16ea9829):** full suite 2 986 tests · 2 959 pass · 0 fail · 27 skipped; typecheck, zero-warning lint and build pass.

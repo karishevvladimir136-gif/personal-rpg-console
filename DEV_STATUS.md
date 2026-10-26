@@ -17,7 +17,7 @@ ledgers `docs/runs/game-player-replicate-1-ledger*.md`; transcripts `docs/runs/g
   six sub-lines; P2 holds (3 of 4 draws did not repeat; Opus stuck repeated); P3 two of three; P4 and P5 do not hold; P6
   (the planner's, added after the fact) does not hold. DeepSeek ended «stuck» at a card in five of six seats (it writes the
   story at the card). Money: OpenRouter $160.89 of $300, OpenAI $6.44 of $25, Console $0.
-- **Checks:** stage, game-player and providers tests 60/60; typecheck pass; lint pass, zero warnings. The full suite and the build are running on the final code (their results replace this line).
+- **Checks (final code, 16ea9829):** full suite 2 986 tests · 2 959 pass · 0 fail · 27 skipped (`node --test --test-concurrency=2`); typecheck pass; lint pass, zero warnings; build pass.
 - **Known issues:** the frozen money rule counts coins stashed in a «Lies here» room as spent, and the temple names match
   «Temple square» (no verdict changes; the report says where). DeepSeek's data are short because of the unchanged press
   rule. `docs/RESEARCH_LOG.md` is handoff's copy with this stage's paragraph added.
