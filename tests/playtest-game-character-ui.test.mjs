@@ -208,6 +208,8 @@ function render(screen, state, props = {}) {
   const component =
     screen === "game"
       ? load("src/components/persistent-game.tsx").PersistentGame
+      : screen === "owner"
+        ? load("src/components/registry/routes.tsx").OwnerRoute
       : screen === "party"
         ? load("src/components/persistent-records.tsx").PersistentParty
         : screen === "inventory"
@@ -449,15 +451,20 @@ for (const language of ["en", "ru"]) {
     const input = html.indexOf("<textarea");
     assert.ok(html.indexOf("public meeting house is quiet") < input);
     assert.ok(!html.includes(translate(language, "Session & continuity").replaceAll("&", "&amp;")));
-    // Polish group 10: the player's actions stand on their own; the editing tools are the owner's block.
-    const more = html.indexOf(words("Редактор кампании · для владельца", "Campaign editor · for the owner"));
-    assert.ok(more > input);
+    // Polish group 10: the player's actions stand on their own; the editing tools are the owner's block —
+    // FIX_S4 item 6: no longer on the game screen, but on «Ещё → Для владельца».
+    assert.equal(html.includes(words("Редактор кампании · для владельца", "Campaign editor · for the owner")), false);
+    assert.equal(html.includes(words("Правка точки продолжения", "Edit the resume point")), false);
+    assert.equal(html.includes(translate(language, "Manual encounter controls")), false);
     assert.ok(html.indexOf(words("Кубы", "Dice"), input) > input);
     assert.ok(html.indexOf(words("Вопрос ведущему", "Ask the DM"), input) > input);
     assert.ok(html.indexOf(words("Кадр сцены", "Scene frame"), input) > input);
-    assert.ok(html.indexOf(words("Правка точки продолжения", "Edit the resume point")) > more);
-    assert.ok(html.indexOf(words("Добавить запись в стенограмму", "Add a transcript record")) > more);
-    assert.ok(html.indexOf(translate(language, "Manual encounter controls")) > more);
+    const owner = render("owner", { ...state, language });
+    const more = owner.indexOf(words("Редактор кампании · для владельца", "Campaign editor · for the owner"));
+    assert.ok(more > 0);
+    assert.ok(owner.indexOf(words("Правка точки продолжения", "Edit the resume point")) > more);
+    assert.ok(owner.indexOf(words("Добавить запись в стенограмму", "Add a transcript record")) > more);
+    assert.ok(owner.indexOf(translate(language, "Manual encounter controls")) > more);
     assert.ok(html.includes("journal?tab=Notes&amp;compose=note"));
     assert.ok(html.includes("journal?tab=Evidence"));
     assert.doesNotMatch(html, /Scene image &amp; video|Изображение и видео этой сцены/);
@@ -521,13 +528,15 @@ test("active encounter status remains readable while manual combat actions live 
     public_summary: "Encounter active.",
   });
   const html = render("game", state);
-  // Stage 5: the encounter status sits in the story column; manual controls live under More.
-  const advanced = html.indexOf("Campaign editor · for the owner");
+  // Stage 5: the encounter status sits in the story column; manual controls live in the owner's editor, which
+  // FIX_S4 item 6 moved to «Ещё → Для владельца».
+  assert.match(html, /Round 3/);
+  assert.doesNotMatch(html, /Start an encounter|Acting character|Confirm encounter action|Manual encounter controls/);
+  const owner = render("owner", state);
+  const advanced = owner.indexOf("Campaign editor · for the owner");
   assert.ok(advanced > 0);
-  assert.match(html.slice(0, advanced), /Round 3/);
-  assert.doesNotMatch(html.slice(0, advanced), /Start an encounter|Acting character|Confirm encounter action/);
-  assert.match(html.slice(advanced), /Manual encounter controls/);
-  assert.match(html.slice(advanced), /Acting character/);
+  assert.match(owner.slice(advanced), /Manual encounter controls/);
+  assert.match(owner.slice(advanced), /Acting character/);
 });
 
 test("Game keeps the saved opening before the first committed exchange", () => {

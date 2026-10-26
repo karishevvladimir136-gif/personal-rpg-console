@@ -52,12 +52,15 @@ export function loadJournal(
     )
       return emptyJournal();
     const attempt = value.attempt;
+    // FIX_S4 item 6: the game channel sends a line that names a companion as a companion turn (polish group 6), and
+    // its attempt lives in the game journal — kept on a reload, so the turn's commit still clears the words.
+    const ownChannel = !!attempt && ((attempt.mode === mode && attempt.companionId === companionId) ||
+      (mode === "game" && companionId === null && attempt.mode === "companion"));
     if (
       attempt &&
       (attempt.campaignId !== campaignId ||
-        attempt.mode !== mode ||
+        !ownChannel ||
         attempt.timeline?.timelineId !== timeline?.timelineId ||
-        attempt.companionId !== companionId ||
         typeof attempt.operationId !== "string" ||
         typeof attempt.input !== "string")
     )

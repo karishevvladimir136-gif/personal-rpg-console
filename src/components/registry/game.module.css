@@ -188,6 +188,30 @@ div.sceneImage {
   gap: 6px;
   padding: 4px 0;
 }
+/* FIX_S4 item 6: the line under the four buttons, open on the campaign's first visit, folded afterwards. */
+.actionsHint > summary {
+  cursor: pointer;
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.actionsHint > summary::-webkit-details-marker {
+  display: none;
+}
+.actionsHint > summary::before {
+  content: "▸";
+  color: var(--brass);
+}
+.actionsHint[open] > summary::before {
+  content: "▾";
+}
+.actionsHint > summary:hover {
+  color: var(--text);
+}
 .more {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -803,6 +827,7 @@ div.sceneImage {
 }
 .toolsRow {
   display: inline-flex;
+  flex-wrap: wrap;
   gap: 6px;
   align-items: center;
 }

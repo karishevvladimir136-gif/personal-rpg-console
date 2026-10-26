@@ -14,6 +14,7 @@ import { RegistrySettings } from "./settings-screen";
 import { RegistryCampaigns } from "./library-screen";
 import { RegistryPictures } from "./pictures-screen";
 import { RegistryOwner } from "./owner-screen";
+import { CampaignEditor } from "./campaign-editor";
 import { PersistentMediaVisualFrame } from "../persistent-visual-frame";
 import { useCopy, registry as r } from "./primitives";
 
@@ -97,12 +98,15 @@ export function CampaignsRoute() {
   return <RegistryCampaigns more={<PersistentCampaigns />} />;
 }
 
-/** Fix run A3/A5: the owner's screen — the price of each turn and «Что видит ведущий». */
+/** Fix run A3/A5: the owner's screen — the price of each turn and «Что видит ведущий»; FIX_S4 item 6: and the campaign
+ * editor, moved here from the game screen. */
 export function OwnerRoute() {
   const runtime = useGameplayRuntime();
+  const play = runtime.play;
   return (
     <RecordBoundary>
-      {(data) => <RegistryOwner data={data} play={runtime.play} />}
+      {(data) => <RegistryOwner data={data} play={play}
+        editor={play && !play.startupPending ? <CampaignEditor data={data} play={play} onSaved={runtime.afterMutation} /> : null} />}
     </RecordBoundary>
   );
 }

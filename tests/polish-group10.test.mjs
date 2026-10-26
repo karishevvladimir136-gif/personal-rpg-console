@@ -106,11 +106,14 @@ test("the game screen: the player's actions in one row with one line each; the e
   const screen = src("src/components/registry/game-screen.tsx");
   assert.match(screen, /<section className=\{g\.playerActions\} aria-label=\{c\("Действия игрока", "Player actions"\)\}>/);
   assert.match(screen, /<SessionEnd sessionId=\{session\?\.id \?\? null\} compact \/>/);
-  assert.match(screen, /c\("Редактор кампании · для владельца", "Campaign editor · for the owner"\)/);
+  // FIX_S4 item 6: the owner's editor left the game screen for «Ещё → Для владельца» (campaign-editor.tsx).
+  assert.doesNotMatch(screen, /Редактор кампании · для владельца/);
+  const block = src("src/components/registry/campaign-editor.tsx");
+  assert.match(block, /c\("Редактор кампании · для владельца", "Campaign editor · for the owner"\)/);
   assert.doesNotMatch(screen, /Ещё · бой, отдых, сессия, записи и правки/);
-  const editor = screen.slice(screen.indexOf("Редактор кампании · для владельца"));
+  const editor = block.slice(block.indexOf("Редактор кампании · для владельца"));
   for (const line of ["Боевая готовность:", "Сессия как запись:", "Правка записей:", "Стенограмма:", "Ручное управление столкновением:"])
     assert.ok(editor.includes(line), `the editor explains «${line}»`);
-  const actions = screen.slice(screen.indexOf("g.playerActions"), screen.indexOf("Редактор кампании"));
+  const actions = screen.slice(screen.indexOf("g.playerActions"));
   assert.doesNotMatch(actions, /setResume|setSceneEditor|GameplayCombat|CombatReadiness/, "no editing tool among the player's actions");
 });
