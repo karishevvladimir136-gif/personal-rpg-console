@@ -32,7 +32,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { anthropicEndpoint, scriptAnthropicEndpoint } from "../eval/lib/anthropic-endpoint.mjs";
 import { createBudget } from "../persona-memory/continuity-test.mjs";
 import { MAX_REFUSALS, createSafety } from "../persona-memory/safety.mjs";
-import { OPENROUTER_EFFORT, chatMessages, openaiKey, plainChatMessages } from "./providers.mjs";
+import { OPENROUTER_CHAT_URL, OPENROUTER_EFFORT, chatMessages, openaiKey, plainChatMessages } from "./providers.mjs";
 import {
   ASK_AFTER_SHA256, ASK_QUESTION, ASK_TAGS, CONTINUE_QUESTION, CONTINUE_RULE, DESIGN_SHA256, EFFORT, FINISHED, SEED, TURNS, armOf, openingOf, planOf, reasoningBlock, runConversations,
   summarise, transcriptMarkdown, viewOf,
@@ -160,7 +160,7 @@ export async function replay({ args, out, outDir = RUNS, fetcher = fetch, door =
     // The body is sent exactly as built (no provider layer in between), on the gate's lane and inside the cap.
     let raw = null;
     const send = async () => {
-      const response = await fetcher("https://openrouter.ai/api/v1/chat/completions", { method: "POST", headers: { authorization: `Bearer ${theDoor.apiKey}`, "content-type": "application/json" }, body: JSON.stringify(v.body), signal: AbortSignal.timeout(180_000) });
+      const response = await fetcher(OPENROUTER_CHAT_URL, { method: "POST", headers: { authorization: `Bearer ${theDoor.apiKey}`, "content-type": "application/json" }, body: JSON.stringify(v.body), signal: AbortSignal.timeout(180_000) });
       raw = await response.json().catch(() => null);
       return { status: response.status, raw };
     };
