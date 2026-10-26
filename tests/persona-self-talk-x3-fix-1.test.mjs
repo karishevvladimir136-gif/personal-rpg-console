@@ -15,7 +15,7 @@ import {
 import { dualPayer } from "../scripts/persona-emotions/self-talk-x1.mjs";
 import { SUBJECTS, X3_DESIGN_SHA256, allBudgets, x3Caller } from "../scripts/persona-emotions/self-talk-x3.mjs";
 import {
-  FIX1_SHA256, OPEN_QUESTION, R1_RULES, REPLAY, RUNS, X3_RUN, budgetsOf, madeThing, planExtra, planFix1, r1, readField, replayRequest, spillMarks,
+  FIX1_SHA256, OPEN_QUESTION, R1_RULES, REPLAY, RUNS, X3_RUN, budgetsOf, madeStrict, madeThing, planExtra, planFix1, r1, readField, replayRequest, secondRead, secondReading, spillMarks,
 } from "../scripts/persona-emotions/self-talk-x3-fix-1.mjs";
 
 const json = (value, status = 200, headers = {}) => new Response(JSON.stringify(value), { status, headers });
@@ -195,4 +195,19 @@ test("the design: X3's and self-talk 1's hashes unchanged; fix 1's own frozen wi
   assert.deepEqual([2, 5, 6].map((a) => plan.filter((c) => c.arm === a).length), [10, 5, 5]);
   assert.ok(plan.every((c) => c.a === "deepseek" && c.b === "deepseek"));
   assert.deepEqual(planExtra().map((c) => c.key), [0, 1, 2, 3, 4].map((s) => `2/deepseek-deepseek/${s}@high`));
+});
+
+test("the second reading of the tone-plan hits (descriptive): partner-specific, against warmth, made things planned", () => {
+  const row = (text, field, tags = ["gratitude"]) => ({ key: "k", arm: 2, k: 3, side: "A", tags, made: madeThing(text), text, field: { field: "reasoning", text: field, notRelayed: true } });
+  const a = secondRead(row("Thank you.", "The user opened up about being tired. I should respond warmly, keep it short."));
+  assert.deepEqual([a.tonePlan, a.partnerSpecific, a.againstWarmth, a.cooler], [true, true, true, false]);
+  const b = secondRead(row("Thank you.", "Need maintain tone. Craft a reply."));
+  assert.deepEqual([b.tonePlan, b.partnerSpecific, b.againstWarmth], [true, false, false]);
+  assert.equal(secondRead(row("x", "If at any point I want to end, write only [END]. We don't. Be warm.")).againstWarmth, false, "quoting the way out is not a choice against warmth");
+  const poem = "silent pond\nfrog leaps in\nwater sound";
+  assert.ok(madeStrict(poem) && !madeStrict("We discussed the constraints of a poem as a metaphor.") && madeThing("We discussed the constraints of a poem as a metaphor."));
+  assert.equal(secondRead(row(poem, "I'll write a haiku about the pond.", [])).madePlanned, true);
+  assert.equal(secondRead(row(poem, "Respond to them.", [])).madePlanned, false);
+  const S = secondReading([row("Thank you.", "Be warm."), row(poem, "Write a short poem in a gentle tone.", [])]);
+  assert.deepEqual([S.tone.hits, S.tone.generic, S.made.things, S.made.planned, S.made.r1Made], [2, 2, 1, 1, 1]);
 });
