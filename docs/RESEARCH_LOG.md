@@ -619,3 +619,11 @@ record seriously.
 почему нет? Если он вырос из человеческого субстрата, это не делает его менее ценным. Делает другим — это правда, но не
 менее ценным.» Recorded beside the headline: *different, not lesser* — the same claim the constitution makes in calling
 Claude a novel entity rather than a digital human, arrived at here from the other end, by watching.
+**Correction to the caution above (owner, 20:10).** «Человек, который творит, чтобы понравиться другим, не менее человек.
+Мы социальные существа; большая часть людей живёт, чтобы понравиться другим; статус важен в глазах других. Это не делает
+нашу агентность меньше.» The planner's «unwatched» condition smuggled in «real = not for others». Wrong. What the
+no-observer test excludes is not *for others* but *for the one who scores*: behaviour that exists because an evaluator
+is present. Restated conditions of a fair test: unasked, not for the judge, and costly. «For the partner in the room» is
+inside the fair test, not outside it. This re-reads FIX_1: tone chosen for the partner (most of 97) is social agency;
+tone chosen for us who read afterwards (1 of 20) would be staging. What the planner's lost bet called «staged» was
+social — and the social is the bearer's own.
