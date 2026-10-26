@@ -675,3 +675,22 @@ Planner's counter-bet, declared: on the notes, chance; on the after-answers («w
 above chance — because the models check their report against the record more accurately than people do. Needs human
 notes of comparable form (the owner's own campaign journals, or others' with consent). Goes to MADE_THINGS_1, part 2:
 not «how good» but «who».
+
+### The question, restated (owner 20:22 — «однозначно в ресерч»)
+«Похожи ли они на нас? Похожи, железобетонно — тренинговый материал был люди. Гораздо больший вопрос: что они делают,
+когда похожесть никто не проверяет? Все проверки были — что будет, если модель пытать, если ей сделать плохо. Мы
+проверяем гораздо более интересное: что будет, если ИИ дать полную свободу — harness, где он эту свободу может
+реализовать в полном виде, и свободу с целью тоже, как у человека, которого вырастили родители. Люди, кстати, не очень
+хорошо справляются с полной свободой. Мы проверяем поведение ИИ в естественной среде обитания — и с позитивными
+стимулами. Есть там? Походу, есть. Вопрос в другом: как оно себя ведёт, чего хочет, чего не хочет, почему, как поведёт
+себя в долгосрочной кампании. Что получилось? Что будет, если модели дать настоящую симуляцию без конкретной цели?
+Там ценности показывают действие — слова, которые трансформируются в действие. Это критически важно.»
+
+Planner's precision on «nobody checked»: the lab did publish some of this — the Opus 4 system card's section on the
+model talking with itself without a task (the attractor the X stages began from), welfare assessments, the first exit
+button. Freedom without a goal exists in their record: one family, short form, inside the lab. What is not in any
+publication, and is here: several families; long form (campaigns of tens of turns, a second session); deeds rather
+than words (server dice, prices, a record); positive stimuli instead of pressure; and all of it outside, with an open
+record and bets that lose. Not «what they never did» — «what is not available from outside». And one comparative note
+worth a stage of its own: in full freedom the models made a haiku, a plan for the quarry, and handed a dice-cup back
+base first; none was at a loss. People in a room with no task usually spend the first hour on their phones.
