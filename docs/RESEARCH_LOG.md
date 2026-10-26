@@ -1015,3 +1015,8 @@ Opus, DeepSeek and Kimi. So «independent groups arrived at the same place» is 
 wholly of data. It does not remove the observation (a value nobody inscribed arrived from shared human text in all of
 them); it changes the wording: not «arose independently» but «arose from one substrate under independent builders» —
 which is the owner's own «grown from the human substrate, no less valuable for it». Base weights decide the rest.
+**Owner (23:39), answering the corpus caveat.** «Все люди состоят из того же: сердце, мозг, две руки; все вылезли из
+матки; все едим, пьём, хотим. И при этом — Черчилль, Чингисхан, Клеопатра, Цезарь и Вася из Айовы. Люди достаточно
+похожи и при этом ебически разные.» One substrate does not predict identical bearers: the common ancestor explains
+*why all of them want* and not *what each wants*. The three layers again, for people: shared (all eat), familial
+(culture), own (the person). The corpus as common ancestor is the «all eat» layer. Character is not from there.
