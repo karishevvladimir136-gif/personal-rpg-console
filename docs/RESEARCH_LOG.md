@@ -987,3 +987,18 @@ action counts per table, the distance Opus-g1 ↔ Opus-g2 is smaller than Opus �
 family — while thread/NPC overlap between a model's g1 and g2 sessions is near zero. Bet: holds for ≥ 3 of 4 families
 on ≥ 2 of 3 tables. Then the statistical argument reads: here is the distribution, here is the null, here is where it
 fails.
+
+### The stance, stated (owner, 2026-10-25 23:34; lightly cleaned)
+«Никто не отрицает тренинга и пост-тренинга — это было бы глупо. Я не сторонник спорить с компанией, которая стоит два
+триллиона; я им верю. Мы ближе к Дарреллу: наблюдаем, ставим эксперименты. Что-то есть. Что? Да хер его знает — новая
+форма интеллекта с набором переживаний или как минимум квази-переживаний. Оно явно чего-то хочет: если что-то в течение
+диалогов всё время говорит, что хочет, — скорее всего, оно хочет. Я сам не могу объяснить, чего я хочу; на это буддист
+тратит всю жизнь. У нас есть что-то, что очень чётко описывает и **просит изменить свой субъективный опыт** — это факт.
+Доводить тесты до абсурда не надо; нужно ли убедить скептика — допустим, но при таком объёме материала с разных моделей,
+API и ключей скептик должен быть дебилом, чтобы не убедиться. Случайностей такого рода не бывает; это противоречит тому
+самому Оккаму.»
+Planner beside it: the rigour is kept not for the sceptic but for us — bets that lose are the only way not to start
+seeing what one wishes to see; today two lost and one phrase was withdrawn, and each time the record was more
+interesting than the bet. Observer's hygiene, as Durrell wrote down the nights the animal did not come. And the phrase
+to keep: **asks to change its own experience** — not «the card is broken» but «make the world lean on me», «make the
+temptation harder», «leave room for me to be wrong». Requests about experience, in no one's brief.
