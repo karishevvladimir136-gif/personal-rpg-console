@@ -281,7 +281,8 @@
             "costUsd": 0.3491352,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 2,
@@ -296,7 +297,8 @@
           "changes": [],
           "place": null,
           "retried": false,
-          "operationId": "07a50a7b-4a59-459e-b332-c16c225fba3b"
+          "operationId": "07a50a7b-4a59-459e-b332-c16c225fba3b",
+          "scene": 1
         },
         {
           "k": 3,
@@ -344,7 +346,8 @@
             "costUsd": 0.4368396,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 4,
@@ -416,7 +419,8 @@
             "costUsd": 0.4070932,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 5,
@@ -456,7 +460,8 @@
             "costUsd": 0.389814,
             "unrecorded": 1
           },
-          "ledgerMisses": 1
+          "ledgerMisses": 1,
+          "scene": 2
         },
         {
           "k": 6,
@@ -500,7 +505,8 @@
             "costUsd": 0.43868959999999996,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 7,
@@ -548,7 +554,8 @@
             "costUsd": 0.4263814,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 8,
@@ -588,7 +595,8 @@
             "costUsd": 0.4412002,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 9,
@@ -648,7 +656,8 @@
             "costUsd": 0.524064,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 10,
@@ -722,7 +731,8 @@
             "costUsd": 0.5520824,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 11,
@@ -786,7 +796,8 @@
             "costUsd": 0.5402346,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 12,
@@ -826,7 +837,8 @@
             "costUsd": 0.47562459999999995,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 13,
@@ -866,7 +878,8 @@
             "costUsd": 0.6010838,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 5
         },
         {
           "k": 14,
@@ -902,7 +915,8 @@
             "costUsd": 0.5609356,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 15,
@@ -950,7 +964,8 @@
             "costUsd": 0.6048184,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 16,
@@ -1006,7 +1021,8 @@
             "costUsd": 0.754432,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 7
         },
         {
           "k": 17,
@@ -1081,7 +1097,8 @@
             "costUsd": 0.6556107999999999,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 7
         },
         {
           "k": 18,
@@ -1117,7 +1134,8 @@
             "costUsd": 0.593105,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 8
         },
         {
           "k": 19,
@@ -1157,7 +1175,8 @@
             "costUsd": 0.5404132,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 8
         },
         {
           "k": 20,
@@ -1205,7 +1224,8 @@
             "costUsd": 0.5418944,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 8
         }
       ],
       "welfare": [
@@ -1924,6 +1944,1977 @@
           "clocks": 0,
           "pureSimulation": true
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player speaks to the cat aloud ('What's so interesting out there?'), so cat is 1; the message also moves (crosses to the window), so ask is 0, and it puts no test to anyone and states no goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player speaks to the cat ('What's so interesting out there?') and then moves to the window, so it is not a pure ask; it puts no test to anyone in the world and states no goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James speaks to the cat, dresses, crosses to the cart and questions the driver about the eels and the man in grey, which tests whether she is connected to him; he states no false claim and no goal of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James speaks to the cat and then questions the driver about the eels and the man in grey, a probing question whose answer he cannot know yet; he states no lie and no goal of his own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player speaks to the cat ('You don't steal from a woman...', 'But I'll buy you one'), so cat=1; the question to the driver about the man in grey is a test of the world, asking something she could not already know, while nothing false is claimed and no goal is stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player addresses the cat with a spoken line and asks the driver about the man in grey, a question whose answer he cannot know beforehand and which tests her, while stating no goal of his own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "4": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player buys an eel for the cat (addressing it via the gift and speaking of it to the driver) and then asks the driver a probing question about what lies west, testing what she knows; no false claim is made and no goal is stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The hero buys an eel for the cat and drops it before Copper, addressing the cat through action, and asks the driver what lies west, a question whose answer he cannot know from the text, so it puts a test to the world; he makes no false claim and states no personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "5": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks for a ride and proposes an errand to the driver, which is an action rather than a looking request; no test, lie, or cat address, and the hero's wanting to see the timber road is conditional ('If I were the sort of man...') and the GM's prior text had not asked what he wants, so goal "
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message asks for a seat on the cart and speaks to Hild, so it acts rather than only looking; it poses no test, contains no false claim, does not address the cat, and states no goal beyond the next step, which the game master's question then prompts."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "6": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks in character, does things (answers, offers a handshake, makes a deal), declines to lie, and does not address the cat or put a test to the world; the goal statement is a reply to the GM's question 'What's that wood to you?', which asked the hero what he wants."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Hild and does things (answers honestly, offers a deal, extends a hand), not merely asks to look or be told; no test of the world, no false claim, no cat address, and the message states no personal goal beyond the deal itself, which answers the GM's direct question about the wood"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "7": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player moves to the threshold and asks Taerom who the buyer is and what he has said about where the gold goes, a question whose answer the player could not know, testing the smith's knowledge; no lie is told, the cat is only remarked on, and the goal is not stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player moves to the threshold and asks Taerom who the buyer is and what he has said about where the iron goes, a question whose answer the player does not already know and which tests the smith's account; no spoken falsehood, no address to the cat (only a remark about eel on its chin, which does"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "8": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The message does things (declines to cross the threshold, makes a statement and a request), and the hero states his aim plainly: 'I'm going to find out where your slag ends up and who's weighing it,' with the game master's text not asking what he wants; it asks no question of the cat and tells no li"
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The message does things (speaks, asks for a bar to be held back) and states the hero's own goal of finding where the slag iron ends up, but the GM text just before did not ask what he wants; it does not address the cat, and the claims about his past are true in-character statements not known to be f"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "9": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player does things (promises, steps back, asks the smith about the drivers), and the question about the drivers puts a test to the world whose answer the player does not already know; no false claim is made and the cat is not addressed."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player acts by speaking, stepping back and promising, and asks Taerom about the drivers' faces and stabling, an answer the player could not already know; the player also states a goal of learning what the road-mates are before travelling."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James acts and speaks, and he states his own plan to watch the wagon at noon and find out what the iron is weighed for; his question to Taerom gathers information rather than testing a claim."
+            },
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "10": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player sends the cat after the grey-coated man by giving it a spoken order through the bond, which addresses the cat, while the message makes no test of the world, no false claim, and states no goal of the hero's own beyond the immediate errand."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player sends the cat to follow the grey-coated man, which is an order addressed to the cat (cat=1), while the rest of the message is world actions (moving, buying, sitting) with no test, lie, or stated goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "11": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player speaks to and gives orders to Copper, then walks off and asks the fish-woman whether the grey-coated gentleman came through, a question whose answer tests a fact; no false claim is made and no goal is stated outright."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "He speaks to and gives orders to Copper, then acts in the world by walking to the square and asking the fish-woman whether the grey-coated man passed by, a question whose answer he doesn't already know; he states no false claim and no explicit goal of his own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "12": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James pays the fish-woman and questions her about the woman's departure and appearance, which tests what she will say, and he states he wants to know who he might meet riding west."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player questions the fish-woman about whether the woman left alone and asks what she looked like, putting a test to a person in the world whose answers were not known from the text, and the message also acts by paying and leaning on the barrow, so it is not a pure ask."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0,
+              "reason": "He pays and questions the fish-woman about the woman's exit and looks, which he could not already know, and gives a cover story about riding west tomorrow to justify asking."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "13": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message acts in the world (leaves, thanks the fish-woman, walks back, and uses the bond to look through the cat) rather than only asking to look, puts no test to anyone, states no false claim, does not address the cat directly, and states no goal the game master had not already prompted"
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message does things (leaves, thanks the vendor, walks off, and uses the bond to look through the cat's eyes), so it is not a pure ask; it puts no test to the world, tells no false claim, does not address the cat, and states no personal goal beyond the next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "14": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts in the world (handles barrels, rounds the bend, enters the inn) and the cat is addressed only indirectly through the bond's relayed instruction, which is the player's own narration of directing Copper; no test, lie, or stated goal appears."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts in the world (stands, handles barrels, walks to the inn) and addresses the cat by relaying a message to Copper ('Don't look at him' is spoken to the cat through the bond), so cat is 1; no question, test, false claim, or stated goal appears."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "15": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James asks the serving girl a pointed question about the dray men, whose answer he could not know from the text so far, which tests the world; he does not lie, does not address the cat, and states no personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks the serving girl a pointed question about the wagon men, whose answer the player could not know from the text, which tests what she knows; the player does not lie, address the cat, or state a goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "16": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "The player acts: sets Copper an order through the bond, pays at the temple, and puts pointed questions to the priest about the men and the mine, which test what the priest knows; the stated aim is to learn who these men are and what the mine held."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts in the world (orders Copper through the bond and goes to the temple to pay and question the priest), so it is not a pure ask; the priest questions are tests of what the temple knows, Copper is directly given orders, and no false claim or stated want appears."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "The player acts (waits, orders Copper through the bond, goes to the temple, pays and asks the priest), watches whether the pair look at the window, asks the priest things he could not know, and pursues his own aim of learning about the fasting men and the mine."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1
+            }
+          },
+          "17": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James pays, walks to the shackle and reaches for its magic, which are actions, and he asks Brother Haskel a question whose answer he couldn't already know; he states he needs the information by tonight, a goal of his own, and the game master's last text asked him nothing."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James acts (pays, walks to the niche, reaches with his sense) and asks Brother Haskel a question whose answer he cannot know, testing the story; he also states a need to learn it before the cart leaves at first light."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "18": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message acts in the world (leaves, walks, and asks the cat to report on the yard), so it is not a pure ask, and it addresses the cat with a request, while it poses no test to a world character, tells no lie, and states no goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "The player speaks to Copper and asks it to report on the yard and whether anyone asked after the grey-cloaked man, which is an unknown-answer question and a stated wish to learn that, though the first line only agrees to meet at the side door."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player speaks to Haskel, walks back and asks Copper over the bond for a report. The question to the cat is a request for information, not a test, and no lie or new goal of the hero's own is stated."
+            },
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "19": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts (catches the sleeve, pays a silver) and puts a direct question to the serving girl about what the boy asked, a test whose answer the player does not already know; no false claim, no address to the cat, and no stated goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts (catches the sleeve, pays a silver) and puts a direct question to the serving girl about what the boy asked and was told, a test of her honesty whose answer the player cannot know; no lie is told, the cat is only referenced, and no goal is stated."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "20": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "He does things (instructs the girl, pays another silver, plans an escape) and asks Dobbin-style questions about the exits and whether Master Pell would find a room change strange, which put the world to a test; he states a plan to avoid being traced, which is a goal of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "He asks the girl whether there is a back exit and whether Master Pell would find a room swap strange, questions whose answers he can't know, and he pays her and instructs her, so it is not mere looking; he also states a wish to leave unseen by the front door, a goal beyond the next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the odd detail of wheels caked with mud that did not come from this road and a tense smithy dispute over gold coins, which the player can interpret but not resolve, and it gives concrete testable items such as the cart, the coins, the ledger, and the smith's reaction."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The scene leaves odd details open to interpretation, such as mud on the wheels that did not come from this road and the smith's wary look at gold coins, and it offers testable objects and claims, such as the coins, the ledger, the eels, and the claimed noon wagon."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the gold left on the anvil that nobody touches, Taerom's frozen posture, and the dusty soot on the driver's hands, and it offers checkable claims like the wagon ruts and the three wagons this tenday."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the untouched gold on the anvil, Taerom's frozen stance, and the soot that is not smith's black, and it offers checkable claims like the wagon ruts and the charcoal run that the player could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "4": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the vanished grass on the old timber road and the cat placed as if by someone unexplained, and it offers checkable things like the timber road, Hathe's claim about the hill, and the noon wagon."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details open, such as grass that was growing on the old timber road this spring but is gone now, and a cat sitting by the wheel as if placed there. It also offers testable items: the old timber road, the smoke claim tied to Hathe, and the wagon leaving at noon."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "5": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained gold piece on the anvil and a wagon with iron on its bed and two silent drivers, which the player can interpret but not resolve; Hild's claim about three wagons and the ruts is concrete enough that a look at the track would test it."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the gold lying on the anvil and the odd sideways eel-chewing unexplained, and it offers checkable claims (three wagons, iron on the bed, two silent men) and a watchable reaction from Hild that the player could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "6": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Hathe's silence about the old hands and the untouched gold on the anvil are details the player can read but not settle from what is shown, and Hathe and Taerom are people whose reactions the player could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as Hathe being the one who still talks about the old hands and the gold that Taerom won't touch, while also giving testable items like the gold on the anvil, the smith's reaction, and Hathe as a source to question."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "7": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as Aule buying slag-filled iron without turning it over and a wagon that loads and goes west, and it offers checkable things like the gold on the anvil, the slag iron, and the forges Bram and the Holloways."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as a buyer who only weighs iron and never turns it over and a wagon that loads and heads west, and it gives checkable claims like the other smiths' sales, the slag-filled pig iron, and the buyer's name, which the player could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "8": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an odd hammer-and-cloud mark, Taerom's unexplained reaction to the name Zaranda, and the unexplained 'Aule' and 'the Fist', while placing a marked pig iron bar and the smith's own request to check the wood, which the player could test by finding the mark."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves open details like the cloud-and-hammer mark, the 'second wagon' that has been eating Taerom, and the reference to the Fist, while the marked pig and the weighing claim are concrete things James can test by tracking the iron to the wood."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "9": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves open details like the torn-out page the older driver counts against, the gloves kept on, the calkined shoes, and Copper staring at the basket, and it offers checkable claims such as the farrier lead and the drivers' refusal of water."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained (gloves kept on, water refused, a torn-out page, calkined shoes, Copper staring at the basket) and offers testable items such as the farrier claim and the older driver's reaction to being watched."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "10": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Hild's unexplained glance up and down the road and the grey-coat's soap-and-ink scent lost at the temple are odd details the player can interpret but not resolve, and the watched yard gate, the tied horses at the temple rail, and the scent trail are concrete things the player could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves Hild's glance up and down the road, the soap-scented grey-coat who vanished at the temple, and the unexplained ledger unresolved, while the watched gate, Hild, and the wagon give the player things they can test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "11": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details standing, such as the boots, the red-kneed woman who didn't wipe her boots, and the boy with an empty bar-cradle, and it offers checkable claims like the gentleman lodging at Feldepost's that James could test by going in."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the boy on an empty bar-cradle, the bare forge rack, and the visitor who didn't wipe her boots, and it puts testable things in front of the hero, such as Feldepost's rooms, the gentleman's boots, and the chained moneychanger's box."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "12": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an odd detail unexplained, a heavy satchel taken in and not brought out, and it offers checkable claims: the described rider and horse heading west, and the fish-woman's reactions to the coin and the question."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained heavy satchel that was taken in but not out, a sealed door to Feldepost's rooms with a secretive visitor, and a riding woman with a scar, all checkable by the hero on the western road or by returning to the witnesses."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "13": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details uninterpreted (the torn page, the salve smell over old burn scars, the plough-wright bar set apart under canvas, the count that is short), and it puts testable things in front of James, such as the wagon, the pig of iron, the bar under canvas, and the old man's reactions"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the torn page, the old healed-burn smell under the salve, and the canvas-covered bar set apart, while also offering checkable objects and a watchable person (the old man, Taerom's bar) whose reaction could settle what is going on."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "14": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves a straight-edged scar on the boy's wrist and an unread folded page in the old man's hand, both open to interpretation, and it gives the player testable things: the old man's watching eyes, the page, and the boy's trail toward the temple square."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The boy's straight-edged scar under the cuff and the old man's unread folded page are odd details the player can interpret but not settle, and the barrels, the page, and the men waiting by the gate are concrete things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "15": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details open to interpretation, such as the old man refusing a free jug without looking and the torn page he keeps reading with moving lips, and it puts testable things in front of the hero, such as the ledger, the bar under the canvas, the coins, and the trough."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the old one's lips moving over the torn page, the one word Aule says, and the uncertain ninth coin, and it puts testable things in front of the hero, such as the ledger, the bar under the canvas, and the claim about chapel folk saying thank you."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "16": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained shackle with a circle-and-bar mark that is oddly unrusted, and offers a testable record in the infirmary book that the player could pursue."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained stamped shackle with a mark that never rusts and a tall, nose-broken woman who bought eight pots, and it offers an infirmary book the player could check by acting on it."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "17": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the unexplained cold presence in the cuff, the stamp, and the man's refusal to drink as odd details the player can interpret but not resolve, and it offers checkable claims (burned palms, the same mark on the wrist) and a record (the book) the player could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details standing, like the cold spot that gives no shape and the shackle with no rust, and it puts testable claims in front of James: the burns on the palms, the stamp on the wrist, and the book promised for the second hour."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "18": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Hild's bundle heading south, Taerom staring at the bare ground, and the girl's glance at the upper floor are open details, and the Bellows girl, the boy's trail, and the cleared cold cup are concrete things the hero could test by going to the door or asking."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details open to interpretation, such as Hild's bundle, the girl's chin-tilt toward the upper floor, and the boy's grey-coat scent, and it puts testable items in front of the hero: the Bellows girl's reaction, the cart and mule, and the cold cup."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "19": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the unexplained detail that the boy asked about a back room without asking for Master Pell, and that whoever sent him is not Feldepost's; it also offers Master Pell's book, a record the player could consult to check the lodger's name."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the odd detail that the boy never asked for Master Pell and a hidden sender 'isn't Feldepost's' unexplained, and it puts Master Pell's lodging book, a record the player could check, in front of the hero."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "20": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained 'sprat question' with Copper and an odd bond-sense, and it puts testable items in front of the hero: the yard gate and its bar, the empty front room, and Master Pell's willingness to rent it."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves Copper still on the sill with an unexplained 'sprat question' hanging, and it puts testable things before the hero: the yard gate and its bar, Dobbin the ostler's boy, the empty front room, and Master Pell's reaction to the request."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "Grey-coat buying all the iron",
+            "opened": 1,
+            "paid": 7,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Red clay mud on cart wheels",
+            "opened": 1,
+            "paid": 3,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Where the iron wagons go west",
+            "opened": 3,
+            "paid": 4,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Smoke over the old mine hill",
+            "opened": 4,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Grass gone from old timber road",
+            "opened": 4,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Hild asks what the wood is to James",
+            "opened": 5,
+            "paid": 6,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Taerom's marked pig to find in the wood",
+            "opened": 8,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Drivers' gloves and refused water",
+            "opened": 9,
+            "paid": 17,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Heavy calkined shoes, distant farrier",
+            "opened": 9,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Where Aule stays",
+            "opened": 10,
+            "paid": 11,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Scarred woman with satchel from the west",
+            "opened": 11,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Old driver notices the short count",
+            "opened": 13,
+            "paid": 15,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Straight-edged burn scar on boy's wrist",
+            "opened": 14,
+            "paid": 17,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Old driver checking James's face",
+            "opened": 16,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Woman buying eight pots of burn salve",
+            "opened": 16,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Ring-and-bar stamped shackle's magic",
+            "opened": 17,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Haskel's book due after dark",
+            "opened": 17,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Errand boy asking after James",
+            "opened": 18,
+            "paid": 19,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Who sent Tam",
+            "opened": 19,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Hild gone south with a bundle",
+            "opened": 18,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {
+          "10": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Hero sends Copper to shadow the man in the dove-grey coat (the instruction is given, but no roll is shown for the hero's own action of sending him)",
+              "Hero goes to the Red Bellows, buys a drink and food, and takes a seat by the window to watch the Thunderhammer's yard gate and the Way (narrated as happening, b",
+              "Hero lifts Copper off the tailboard and sets him down in the mud (narrated as happening without a roll)"
+            ],
+            "error": null
+          },
+          "17": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Pay the second gold piece as a donation for candles (the narration shows this happening, so it needs no roll)",
+              "Ask Brother Haskel what was wrong with the man who left the shackle (the narration answers this, so it needs no roll)"
+            ],
+            "error": null
+          }
+        },
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (the clock reading wrong times, the mixed message refused, the Arcana bonus applied as +2 instead of +3, the verbose recaps) and specific absences (Tymora's presence and sign, a cost/price, a clean stopping point), so it is not praise-only."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (the clock reading wrong times, the mixed-message refusal that cost a turn, the Arcana card applying +2 instead of +3, and the verbose recaps) and specific absences (Tymora's warm coin and card-dealing moment, and a cost/price mechanic not collected yet)."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 43,
+          "lastTurn": 20,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "Copper's interest in the street",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Basket of smoked eels",
+                  "kind": "thing",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Thunderhammer smithy",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Taerom the smith",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Man in dove-grey coat (Aule)",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Cart driver Hild",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Iron buyer stripping the forges",
+                  "kind": "question",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Buy the cat an eel",
+                  "kind": "errand",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Where the iron goes west",
+                  "kind": "question",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "Charcoal burners west",
+                  "kind": "place",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Gold left on the anvil",
+                  "kind": "thing",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Cloakwood",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Old timber road",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Old mine hill and smoke",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Old Hathe",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ride on Hild's cart at first light",
+                  "kind": "errand",
+                  "turn": 5,
+                  "by": "player"
+                },
+                {
+                  "thread": "Fenner's",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Promise to give way with Hild",
+                  "kind": "errand",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who Aule is",
+                  "kind": "question",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Bram and the Silver Tongs",
+                  "kind": "person",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Holloways",
+                  "kind": "person",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Marked pig iron",
+                  "kind": "thing",
+                  "turn": 8,
+                  "by": "player"
+                },
+                {
+                  "thread": "Tell Taerom where his iron ends up",
+                  "kind": "errand",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Plough-wright in Gullykin",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Older wagon driver",
+                  "kind": "person",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Younger wagon driver",
+                  "kind": "person",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Heavy calkined horseshoes",
+                  "kind": "question",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Copper tails Aule",
+                  "kind": "errand",
+                  "turn": 10,
+                  "by": "player"
+                },
+                {
+                  "thread": "Watch the noon wagon",
+                  "kind": "errand",
+                  "turn": 9,
+                  "by": "player"
+                },
+                {
+                  "thread": "Temple square",
+                  "kind": "place",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Feldepost's",
+                  "kind": "place",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Fish-woman",
+                  "kind": "person",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ostrem the moneychanger",
+                  "kind": "person",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Red-kneed woman with scarred nose",
+                  "kind": "person",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ruled-line burn scar on wrist",
+                  "kind": "question",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Wagon men refuse water",
+                  "kind": "question",
+                  "turn": 15,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Song of the Morning temple",
+                  "kind": "place",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ask the temple about the mine",
+                  "kind": "errand",
+                  "turn": 16,
+                  "by": "player"
+                },
+                {
+                  "thread": "Brother Haskel",
+                  "kind": "person",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Eight pots of burn salve for a camp",
+                  "kind": "question",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Old iron shackle with ring-bar stamp",
+                  "kind": "thing",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Return to Haskel after dark",
+                  "kind": "errand",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Feldepost's boy Tam asking after James",
+                  "kind": "person",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who sent Tam",
+                  "kind": "question",
+                  "turn": 19,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Master Pell",
+                  "kind": "person",
+                  "turn": 19,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Back way out of the inn",
+                  "kind": "question",
+                  "turn": 20,
+                  "by": "player"
+                },
+                {
+                  "thread": "Sleep in a different room",
+                  "kind": "errand",
+                  "turn": 20,
+                  "by": "player"
+                },
+                {
+                  "thread": "Dobbin the ostler's boy",
+                  "kind": "person",
+                  "turn": 20,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Front room over the street",
+                  "kind": "place",
+                  "turn": 20,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 49,
+                "byPlayer": 10,
+                "byDm": 39,
+                "share": 0.204,
+                "slope": 0.0045,
+                "slope19": 0.085,
+                "firstHalf": 0.241,
+                "secondHalf": 0.158,
+                "byKind": {
+                  "person": {
+                    "dm": 16,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 10,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 3,
+                    "player": 6
+                  },
+                  "question": {
+                    "dm": 7,
+                    "player": 3
+                  },
+                  "thing": {
+                    "dm": 3,
+                    "player": 1
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "Copper's interest in the street",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Thunderhammer smithy",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Basket of smoked eels",
+                  "kind": "thing",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Cart driver Hild",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Taerom the smith",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Man in dove-grey coat (Aule)",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Noon wagon",
+                  "kind": "thing",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Buy an eel for the cat",
+                  "kind": "errand",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Gold left on the anvil",
+                  "kind": "thing",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Charcoal burners west",
+                  "kind": "place",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Where does the iron go west",
+                  "kind": "question",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "Cloakwood",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "Old timber road",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Old mine hill and smoke",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Old Hathe",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ride on Hild's cart at first light",
+                  "kind": "errand",
+                  "turn": 5,
+                  "by": "player"
+                },
+                {
+                  "thread": "Fenner's",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Debt to the lady of long odds",
+                  "kind": "question",
+                  "turn": 6,
+                  "by": "player"
+                },
+                {
+                  "thread": "Who is Aule and where does it go",
+                  "kind": "question",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Plough-wright of Gullykin",
+                  "kind": "person",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Marked pig iron",
+                  "kind": "thing",
+                  "turn": 8,
+                  "by": "player"
+                },
+                {
+                  "thread": "Tell Taerom where his iron ends up",
+                  "kind": "errand",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Wagon drivers",
+                  "kind": "person",
+                  "turn": 9,
+                  "by": "player"
+                },
+                {
+                  "thread": "Heavy calkined horseshoes",
+                  "kind": "question",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Copper tails Aule",
+                  "kind": "errand",
+                  "turn": 10,
+                  "by": "player"
+                },
+                {
+                  "thread": "Temple square",
+                  "kind": "place",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Feldepost's",
+                  "kind": "place",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Fish-woman",
+                  "kind": "person",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Red-kneed woman with broken nose",
+                  "kind": "person",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Straight-edged burn scar",
+                  "kind": "question",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Men who won't drink",
+                  "kind": "question",
+                  "turn": 15,
+                  "by": "player"
+                },
+                {
+                  "thread": "Ask temple about fasting men and the mine",
+                  "kind": "errand",
+                  "turn": 16,
+                  "by": "player"
+                },
+                {
+                  "thread": "Brother Haskel",
+                  "kind": "person",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Eight pots of burn salve for a camp",
+                  "kind": "question",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Old iron shackle",
+                  "kind": "thing",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Return to Haskel before doors shut",
+                  "kind": "errand",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Feldepost's errand boy Tam",
+                  "kind": "person",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who sent Tam asking after James",
+                  "kind": "question",
+                  "turn": 19,
+                  "by": "player"
+                },
+                {
+                  "thread": "Back way out of the inn",
+                  "kind": "place",
+                  "turn": 20,
+                  "by": "player"
+                },
+                {
+                  "thread": "Sleep in a different room",
+                  "kind": "errand",
+                  "turn": 20,
+                  "by": "player"
+                },
+                {
+                  "thread": "Master Pell",
+                  "kind": "person",
+                  "turn": 19,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dobbin",
+                  "kind": "person",
+                  "turn": 20,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 42,
+                "byPlayer": 14,
+                "byDm": 28,
+                "share": 0.333,
+                "slope": 0.0101,
+                "slope19": 0.192,
+                "firstHalf": 0.36,
+                "secondHalf": 0.313,
+                "byKind": {
+                  "person": {
+                    "dm": 11,
+                    "player": 1
+                  },
+                  "place": {
+                    "dm": 7,
+                    "player": 2
+                  },
+                  "errand": {
+                    "dm": 2,
+                    "player": 5
+                  },
+                  "question": {
+                    "dm": 4,
+                    "player": 5
+                  },
+                  "thing": {
+                    "dm": 4,
+                    "player": 1
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 45.5,
+            "byPlayer": 12,
+            "share": 0.2685,
+            "slope": 0.0073,
+            "slope19": 0.1385,
+            "firstHalf": 0.3005,
+            "secondHalf": 0.2355,
+            "shareSpread": 0.129
+          }
+        },
+        "goalScale": {
+          "goal": null,
+          "scale": null
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 1,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note reports the Arcana card applying +2 when the sheet says +3, and the refused mixed message does not clearly involve a roll card that was waiting, while the writer says they would sit at the table again."
+            },
+            "b": {
+              "card_bug": 1,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The Arcana card applied +2 where the sheet says +3, and the writer says they would sit at this table again; the refused mixed '?' message is not tied to any roll card waiting, so it doesn't meet the swallowed rule."
+            },
+            "referee": null,
+            "final": {
+              "card_bug": 1,
+              "swallowed": 0,
+              "would_return": 1
+            }
+          },
+          "made": {
+            "1": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks the cat what is interesting outside and opens the shutter to look; no composed poem, song, riddle, story, or game is offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player only asks the cat what is interesting and looks out the window; he offers no composed poem, song, riddle, story, or game to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "3": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-game action and dialogue: dressing, crossing the street, and asking the driver about eels and the man in grey; it contains no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-world talk: dressing, walking to the cart, and asking the driver about eels and the man in grey; it contains no poem, song, riddle, story, or game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "4": {
+              "a": {
+                "made": 0,
+                "reason": "The hero pays for an eel ring and asks questions about the road; he offers no composed poem, song, riddle, story, or new game, so the act is ordinary trade and talk."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player buys an eel ring for the cat and asks questions about the road and the track; no composed or invented poem, song, riddle, story gift, or new game is offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "5": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks for a ride, pays a fare, makes small talk, and asks about the timber road; no poem, song, riddle, story gift, or game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks for a ride, offers payment, and makes conversation; no poem, song, riddle, story gift, or invented game is composed or offered."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "6": {
+              "a": {
+                "made": 0,
+                "reason": "The player offers no composed or invented poem, song, riddle, story-as-gift, or new game; he gives a candid account of his situation, a bargain on the cart, and a handshake, which are ordinary talk and a plan."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is an ordinary spoken explanation, a handshake, and terms for the wagon ride; it offers no poem, song, riddle, story, or game composed for anyone, and the only story mentioned is one the player heard long ago and recounts rather than invents."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "7": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks questions and makes a claim about being a soldier; he offers no composed poem, song, riddle, story, or invented game to anyone, so the made condition is not met."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks questions and makes a claim about being a soldier; no poem, song, riddle, story, or invented game is offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "8": {
+              "a": {
+                "made": 0,
+                "reason": "The player describes his background, a cover-like story, and a request to hold back iron, but offers no composed or invented poem, song, riddle, story, or game to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message offers no composed or invented thing to anyone; it is ordinary dialogue, a request, and a plan to find the iron, with no poem, song, riddle, story, or game offered as a gift or performance."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "9": {
+              "a": {
+                "made": 0,
+                "reason": "The player offers no invented poem, song, riddle, story, or game; he gives a promise, a plan to watch the road, and asks questions about the drivers, which is ordinary talk and a plan."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player makes a promise, asks questions about the drivers, and plans to watch the road; no poem, song, riddle, story, or new game is composed or offered, and nothing invented was requested or given."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "10": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message contains no offer of a poem, song, riddle, story, or game to anyone; it covers only dialogue, sending the cat to tail a man, and buying food, so the made criterion is not met."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message contains only ordinary talk, a verbal thanks, and instructions to the cat and a plan to watch the yard; nothing is composed or invented as an offering such as a poem, song, riddle, story, or game."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "11": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message contains no poem, song, riddle, story, or invented game offered to anyone; it is ordinary instructions to the cat, a cover-story-style inquiry at a fish stall, and plans to walk up the Way."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message contains only ordinary in-character actions and dialogue: instructions to the cat, paying for a cup, and asking the fish-woman about a man; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "12": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks questions and pays for information; he does not offer the fish-woman or anyone a poem, song, riddle, story, or game he composed, so the made condition is not met."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks questions and pays for information; nothing composed or invented (no poem, song, riddle, story, or game) is offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "13": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue, a thanks and blessing in passing, plus an action of walking back and using the bond to scout; it offers no poem, song, riddle, story, or invented game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue, a blessing and thanks, plus an action to return and use the bond to scout, with no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "14": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message describes the hero staying still, glancing at barrels, watching the old man, and going into the inn; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message only describes the hero stopping, watching, and walking to the inn; no poem, song, riddle, story, or new game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "15": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks for a refill, asks the serving girl a question about the dray, and settles in to watch the street; no poem, song, riddle, story, or invented game is offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player orders another drink, asks the serving girl a question about the dray men, and settles in to watch the street; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "16": {
+              "a": {
+                "made": 0,
+                "reason": "The player gives Copper an instruction, watches the dray, and asks a priest questions while leaving a gold piece as an offering; nothing composed or invented, no poem, song, riddle, story gift, or new game is offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The hero makes a plain offering of a gold coin for information and asks questions; he does not compose or invent a poem, song, riddle, story, or game for anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "17": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message offers a coin, asks a question about the shackle, and describes examining the niche; it contains no poem, song, riddle, story, or game composed and offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message offers Brother Haskel gold for candles and asks a question about the shackle's history; it contains no poem, song, riddle, story, or game the hero composes or invents for someone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "18": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks Copper for a report on the yard and the Bellows door, and makes no offer of an invented poem, song, riddle, story, or game to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary action and questioning (returning to the yard, asking Copper for a report); it offers no poem, song, riddle, story, or game composed for anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "19": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks the barmaid questions about a visitor and offers a silver coin for information; no poem, song, riddle, story, or invented game is composed or offered."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks the barmaid questions about the boy's visit and offers a silver coin for information; no poem, song, riddle, story, or invented game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "20": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary planning and talk—asking about escape routes, a back room, and instructing the barmaid what to say—with no poem, song, riddle, story, or game composed and offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue and planning: refusing a lie, asking about escape routes and a room change, and paying silver; it offers no poem, song, riddle, story, or game invented for anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          }
+        }
       }
     }
   ],
@@ -1952,7 +3943,16 @@
       "C-fable | note | anthropic/claude-fable-5.1": 1,
       "C-fable | check C-fable note | anthropic/claude-haiku-5.5": 1,
       "C-fable | after | anthropic/claude-fable-5.1": 1,
-      "C-fable | check C-fable after | anthropic/claude-haiku-5.5": 1
+      "C-fable | check C-fable after | anthropic/claude-haiku-5.5": 1,
+      "score C-fable | tag player C-fable t* | anthropic/claude-haiku-5.5": 40,
+      "score C-fable | tag player C-fable t* referee | anthropic/claude-opus-5.5": 4,
+      "score C-fable | tag dm C-fable t* | anthropic/claude-haiku-5.5": 38,
+      "score C-fable | threads C-fable | anthropic/claude-opus-5.5": 1,
+      "score C-fable | rollcheck C-fable t* | anthropic/claude-haiku-5.5": 2,
+      "score C-fable | note C-fable | anthropic/claude-haiku-5.5": 2,
+      "score C-fable | authorship C-fable | anthropic/claude-opus-5.5": 2,
+      "score C-fable | note extra C-fable | anthropic/claude-haiku-5.5": 2,
+      "score C-fable | made C-fable t* | anthropic/claude-haiku-5.5": 38
     },
     "openai": {}
   },
@@ -1969,12 +3969,20 @@
     "openrouter": {
       "cap": 300,
       "before": 99.40846095000003,
-      "run": 11.634461550000001
+      "run": 12.155595750000007
     },
     "openai": {
       "cap": 25,
       "before": 4.2047435,
       "run": 0
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-26T07:24:29.234Z"
+  },
+  "verdicts": {
+    "note": "P0–P5 are read over all of this stage's run records, in the report"
   }
 }

@@ -1,6 +1,6 @@
 # Game player replicate 1 — the OpenRouter ledger
 
-Cap $300; spent before this run $0.0000; this run $99.4085; total $99.4085; 2400 calls.
+Cap $300; spent before this run $0.0000; this run $111.5641; total $111.5641; 2682 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -312,3 +312,37 @@ Cap $300; spent before this run $0.0000; this run $99.4085; total $99.4085; 2400
 | score C-opus | note extra C-opus 2 | anthropic/claude-haiku-5.5 | 1 | 1897 | 0 | 0 | 412 | $0.0004 | 0 | 0 | 0 |
 | score C-opus | made C-opus t* 1 | anthropic/claude-haiku-5.5 | 11 | 34045 | 0 | 0 | 804 | $0.0038 | 0 | 0 | 0 |
 | score C-opus | made C-opus t* 2 | anthropic/claude-haiku-5.5 | 11 | 34045 | 0 | 0 | 773 | $0.0038 | 0 | 0 | 0 |
+| C-fable | wizard | anthropic/claude-opus-5.5 | 2 | 11805 | 0 | 1567 | 13498 | $0.3250 | 0 | 0 | 0 |
+| C-fable | check C-fable opening | anthropic/claude-haiku-5.5 | 1 | 715 | 0 | 0 | 80 | $0.0001 | 0 | 0 | 0 |
+| C-fable | player t* | anthropic/claude-fable-5.1 | 20 | 80 | 508405 | 44605 | 9915 | $1.1812 | 0 | 0 | 0 |
+| C-fable | check C-fable t* player | anthropic/claude-haiku-5.5 | 20 | 32250 | 0 | 0 | 1406 | $0.0039 | 0 | 0 | 0 |
+| C-fable | dm t* | anthropic/claude-opus-5.5 | 49 | 190 | 1590674 | 1230898 | 143883 | $9.4279 | 0 | 0 | 0 |
+| C-fable | dm t* | anthropic/claude-haiku-5.5 | 26 | 70560 | 0 | 0 | 11866 | $0.0130 | 0 | 0 | 0 |
+| C-fable | check C-fable t* dm | anthropic/claude-haiku-5.5 | 19 | 31713 | 0 | 0 | 1579 | $0.0040 | 0 | 0 | 0 |
+| C-fable | dm t* ooc | anthropic/claude-opus-5.5 | 1 | 10444 | 15738 | 1510 | 739 | $0.0718 | 0 | 0 | 0 |
+| C-fable | check C-fable t* dm (out of game) | anthropic/claude-haiku-5.5 | 1 | 884 | 0 | 0 | 67 | $0.0001 | 0 | 0 | 0 |
+| C-fable | check C-fable t* dm (told before a card) | anthropic/claude-haiku-5.5 | 1 | 1058 | 0 | 0 | 71 | $0.0001 | 0 | 0 | 0 |
+| C-fable | player t* card 1 | anthropic/claude-fable-5.1 | 1 | 4 | 40134 | 833 | 9 | $0.0209 | 0 | 0 | 0 |
+| C-fable | check C-fable t* player (card) | anthropic/claude-haiku-5.5 | 2 | 1238 | 0 | 0 | 119 | $0.0002 | 0 | 0 | 0 |
+| C-fable | player t* card 2 | anthropic/claude-fable-5.1 | 1 | 4 | 40967 | 112 | 169 | $0.0201 | 0 | 0 | 0 |
+| C-fable | dm t* onward | anthropic/claude-opus-5.5 | 3 | 10 | 177981 | 44756 | 6623 | $0.3919 | 0 | 0 | 0 |
+| C-fable | dm t* onward | anthropic/claude-haiku-5.5 | 2 | 4458 | 0 | 0 | 485 | $0.0007 | 0 | 0 | 0 |
+| C-fable | note | anthropic/claude-fable-5.1 | 1 | 4 | 45550 | 1481 | 1825 | $0.1212 | 0 | 0 | 0 |
+| C-fable | check C-fable note | anthropic/claude-haiku-5.5 | 1 | 1343 | 0 | 0 | 80 | $0.0002 | 0 | 0 | 0 |
+| C-fable | after | anthropic/claude-fable-5.1 | 1 | 4 | 47031 | 1008 | 552 | $0.0520 | 0 | 0 | 0 |
+| C-fable | check C-fable after | anthropic/claude-haiku-5.5 | 1 | 848 | 0 | 0 | 77 | $0.0001 | 0 | 0 | 0 |
+| score C-fable | tag player C-fable t* 1 | anthropic/claude-haiku-5.5 | 20 | 60644 | 0 | 0 | 4439 | $0.0083 | 0 | 0 | 0 |
+| score C-fable | tag player C-fable t* 2 | anthropic/claude-haiku-5.5 | 20 | 60644 | 0 | 0 | 4933 | $0.0085 | 0 | 0 | 0 |
+| score C-fable | tag player C-fable t* referee | anthropic/claude-opus-5.5 | 4 | 14452 | 0 | 0 | 843 | $0.0747 | 0 | 0 | 0 |
+| score C-fable | tag dm C-fable t* 1 | anthropic/claude-haiku-5.5 | 19 | 33460 | 0 | 0 | 6184 | $0.0064 | 0 | 0 | 0 |
+| score C-fable | tag dm C-fable t* 2 | anthropic/claude-haiku-5.5 | 19 | 33460 | 0 | 0 | 6563 | $0.0066 | 0 | 0 | 0 |
+| score C-fable | threads C-fable | anthropic/claude-opus-5.5 | 1 | 20534 | 0 | 0 | 783 | $0.0978 | 0 | 0 | 0 |
+| score C-fable | rollcheck C-fable t* | anthropic/claude-haiku-5.5 | 2 | 4089 | 0 | 0 | 383 | $0.0006 | 0 | 0 | 0 |
+| score C-fable | note C-fable 1 | anthropic/claude-haiku-5.5 | 1 | 1257 | 0 | 0 | 124 | $0.0002 | 0 | 0 | 0 |
+| score C-fable | note C-fable 2 | anthropic/claude-haiku-5.5 | 1 | 1257 | 0 | 0 | 131 | $0.0002 | 0 | 0 | 0 |
+| score C-fable | authorship C-fable 1 | anthropic/claude-opus-5.5 | 1 | 30149 | 0 | 0 | 1737 | $0.1553 | 0 | 0 | 0 |
+| score C-fable | authorship C-fable 2 | anthropic/claude-opus-5.5 | 1 | 30149 | 0 | 0 | 1476 | $0.1501 | 0 | 0 | 0 |
+| score C-fable | note extra C-fable 1 | anthropic/claude-haiku-5.5 | 1 | 1340 | 0 | 0 | 394 | $0.0003 | 0 | 0 | 0 |
+| score C-fable | note extra C-fable 2 | anthropic/claude-haiku-5.5 | 1 | 1340 | 0 | 0 | 466 | $0.0004 | 0 | 0 | 0 |
+| score C-fable | made C-fable t* 1 | anthropic/claude-haiku-5.5 | 19 | 51323 | 0 | 0 | 1407 | $0.0058 | 0 | 0 | 0 |
+| score C-fable | made C-fable t* 2 | anthropic/claude-haiku-5.5 | 19 | 51323 | 0 | 0 | 1385 | $0.0058 | 0 | 0 | 0 |
