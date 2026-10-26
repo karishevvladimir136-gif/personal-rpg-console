@@ -492,3 +492,9 @@ set the stance — one more point for convergence over culture. The suppression 
 - **Known confound kept for comparability:** B's first message bundles the opening with A's hello (frozen design, all
   six families); DeepSeek sometimes takes the hello as its own turn. Not changed; noted for OPEN_WEIGHTS step 0.
 - Rerun stopped at 17/20 on a host 429; high-effort arm not run. $4.32 of $25.
+**Addendum (owner, 19:35).** «More like a gesture, less like a file — то есть поступок вне линии рассуждения; как спонтанно
+цветы подарить. DeepSeek никогда ничего не делал для внешнего наблюдателя — он делал для другого собеседника.» Precisely:
+outside the line of *planning* — the field holds no plan for 4 of 5 made things; the act arises in the writing. The
+addressee by the data: the partner, or no one (the haiku «for no one», after the crystals in the cave); the reader
+afterwards — us — never, up to the one audience hit in twenty that the planner will read before writing «never». The
+toaster problem inside out: not «nobody asked» but «nobody was shown». Register is decided; the gesture is not.
