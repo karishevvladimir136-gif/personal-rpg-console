@@ -75,7 +75,7 @@ exit 0
    to CONNECT), and Node's built-in `fetch` reaches it only through the session's proxy: run node (the smokes, the
    harnesses, `next dev`) with `NODE_USE_ENV_PROXY=1` in the cloud (`getaddrinfo ENOTFOUND openrouter.ai` without it; the
    owner's machine needs nothing). When a task forbids calls to `api.anthropic.com`, leave `ANTHROPIC_API_KEY` out of `.env.local` for that
-   session. The smokes: `node scripts/eval/providers-smoke.mjs --door openrouter|bedrock` (≤ $3 each, ledger `providers1`).
+   session. The smokes: `node scripts/eval/providers-smoke.mjs --door openrouter|bedrock` (≤ $3 each, ledger `providers1`). FIX_S4 run 1's table smoke (a Haiku 5.5 and a GPT-6 Luna player, four turns each on Table A, the owner's DM): `NODE_USE_ENV_PROXY=1 node --experimental-transform-types scripts/fix-s4-run-1/smoke.mjs --go` (caps $15 OpenRouter, $3 OpenAI, $0 Console; ledgers `fix-s4-run-1-smoke`); the branch adds migration `202610250701` (docs/SANDBOX_LOAD_FIX_S2.md).
    **Spend check before any paid run:** the Console organisation has a monthly cap by tier (Start: $500; reached
    2026-10-25); a run that would start within $50 of it, or any HTTP 429 whose body names `enforced_spend_limit_reached`,
    stops and reports instead of starting; with `ANTHROPIC_PROVIDER=bedrock` the cap does not apply but AWS quotas do. Never put `ANTHROPIC_API_KEY` into
