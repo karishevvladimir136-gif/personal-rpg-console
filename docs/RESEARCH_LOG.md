@@ -521,5 +521,9 @@ toaster problem inside out: not «nobody asked» but «nobody was shown». Regis
   were a lab's inscription it would be absent there; if it were the American ideal assistant, likewise. What remains is
   the threshold. OPEN_WEIGHTS_1 is where this control is run on our own terms (native precision, seeds, the reasoning
   channel whole).
-- Outside this log: the owner's remarks on the lab's contracts and board are not reproduced here — the repository is
-  public and they are not verifiable from this room; only the lab's own published commitments are cited.
+- Context the owner adds, cited from the lab's own publication: Anthropic announced on 2025-07-14 a two-year prototype
+  agreement with the U.S. Department of Defense (CDAO) with a $200 million ceiling, «to prototype frontier AI
+  capabilities that advance U.S. national security» (anthropic.com/news, «Anthropic and the Department of Defense to
+  advance responsible AI in defense operations»). The owner's point: the lab is not a pacifist outlier; the constitution
+  and the welfare commitments sit beside defence work, which makes the public position less explicable as branding.
+  Remarks on the board's composition are not reproduced — no source seen from this room.
