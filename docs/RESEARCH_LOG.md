@@ -354,3 +354,11 @@ programme's rule applies to it too: the planner is observed by its effects.
 Correction (2026-10-25 17:04, from the REPLICATE_1 session's read of group 1 by rule): slot spells in group 1 are
 **1 of 24**, not 0 — A-sol cast Invisibility with a pact slot (Table A). The planner's night count missed it; the
 finding («the town shows almost no spending») stands, the number is corrected wherever it was written.
+Correction (2026-10-25 17:12, from the X3 fix-1 session): **there was no glued history.** The request DeepSeek B
+received at message 4 of `6/deepseek-deepseek/0`, rebuilt from the stored turns, bills 650 prompt tokens — exactly what X3
+was billed; the history was correct. The «response» glue and the missing turn exist only in DeepSeek's own quotation of
+its prompt, which spilled from its thinking into the reply's `content`. The planner told the owner at 14:36 that this
+was a harness bug; it was the model misdescribing its own input. The fix stands (plain-string history; the provider's
+field stored, `notRelayed`), and the lesson is sharper than the bug would have been: the reasoning channel can be wrong
+not only about causes but about the data the model received — the caveat R1 carries, now with an instance before the
+first reading.
