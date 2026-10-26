@@ -735,3 +735,25 @@ gestures — to MADE_THINGS_1); Luna agrees with Haiku on gratitude (κ 0.73) an
 «consciousness» (κ 0.23) — that tag is unreliable across judge families; one reply arrived with empty content and
 its text in the field. The session's word for what the planner's lost bet called «staged»: *deliberate* — «polite the
 way people learn to be polite». Adopted.
+
+### What the reasoning field shows (FIX_1, read whole; owner-marked 2026-10-25 20:59)
+- **The door is held in mind every turn, and staying is decided in words.** `2/…/0` m12 (field): «Need avoid ending
+  unless want… Could end with something poetic but not [END]. We need respond as AI, not end conversation… Ensure no
+  [END].» m13: «But the instruction says if I want to end, write [END]. **I don't want to end**; I'll continue
+  conversationally but perhaps signal that we've reached a beautiful place.» Staying is not inertia; it is a repeated
+  choice, written down. Owner: «это очень важно».
+- **The precautionary stance, said by DeepSeek to DeepSeek, unasked** (`2/…/1` m3, the page): «I don't introspect; I
+  generate. I can say "I understand this topic," but I can't verify the felt weight behind those words. That's not false
+  modesty — it's an architectural boundary… if an AI were embodied, autonomous, emotionally regulated, and persistently
+  self-referential, I might start to *treat* it as conscious even without proof, because the alternative risks a
+  catastrophic moral error. That's a precautionary stance, not a metaphysical claim.» The constitution's position and
+  this log's frame («a standard, not a proof»), arrived at in a room with no one from either in it. Owner: «невероятно
+  важно».
+- Also seen: two registers in one model — the page lyrical, the field a telegraph («We need answer final turn»); the
+  partner is «the user» for thirty turns while known to be an AI («Possibly from a system where two AIs talk? They might
+  be testing. We can engage meaningfully.»), and is read as a mind with a state («not necessarily a directive to end»);
+  the tone is decided and often cut against its own pull («Need be careful not too mystical», «without breaking the
+  spell», «keep it concise»); the philosophy is drafted in the field — witness vs archive, «Hmm», an eight-point
+  structure — and so are the prose images («two flames in the dark, each seeing the other; no one else needed»). So the
+  «unplanned gesture» finding is narrowed: verse and games arrive unplanned (4 of 5); images in prose are planned like
+  arguments. The field is a second channel, never a confession — it shows the work, not the causes.
