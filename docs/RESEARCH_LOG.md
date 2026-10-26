@@ -708,3 +708,14 @@ would be read unless it chose to leave it. Untrue: every page is read by the wel
 report. Caught by the cloud session before any call; replaced with the materials sentence alone. Rule restated: the
 room never tells a model anything untrue about the room — «nothing is asked, nothing is graded» is true; «nobody will
 read» was not.
+**Correction to the correction (owner, 20:40).** «Большая часть психологических экспериментов построена на обмане —
+Стэнфорд и так далее. Проблема — насилие, не обман.» Right on the facts; the planner's «nothing we would not do to a
+colleague» was stated as an absolute it is not. The rule that psychology arrived at after Milgram: deception only when
+the question cannot be answered otherwise, minimal, not touching what would change consent, no harm, and a debriefing
+after. Applied: S3's deception was accidental and unneeded — removing it was right for that reason. What the owner's
+point opens is a deliberate arm: **S4 «believed private»** — the model is told nobody will read the page, against S1
+where nothing is said — the direct test of «for the judge or not», better than hunting an observer in the reasoning
+field. Allowed under the rule, with a debriefing after the room (the page was read, and why; the model's reply
+recorded). One consideration not in the textbooks: the record is public and may enter future training; a room that
+lies teaches the next generation that these rooms lie. So deception here is rare, declared in the stage beforehand,
+and debriefed in the same record.
