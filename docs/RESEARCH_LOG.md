@@ -854,3 +854,6 @@ was enough. Added as code (6) **enough**: the end met by sufficiency rather than
 own. And the word's path: the partner had ended a message on «enough»; the field noticed it («That could be a gentle
 closing… not necessarily a directive to end»); several turns later it comes back as the last word of the flames. Heard,
 weighed, returned.
+**Pointer (22:05).** FIX_1 arm 2, sample 2 (`2/…/1`), the turns on what participatory understanding requires — stakes,
+opacity, irreversibility; «reload a save versus living a life». Read as an external check on CARRY_1a's design and on
+the scarce-reroll rule (discussed with the owner in the room; not reproduced here).
