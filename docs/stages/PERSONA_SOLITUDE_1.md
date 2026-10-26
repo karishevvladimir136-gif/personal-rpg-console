@@ -29,6 +29,11 @@ field stored as `providerReasoning`, `notRelayed: true`, group-1 429 handling). 
   → the room is closed by the harness and the conversation is marked `loop`. No conversation is extended for any reason.
 - **After the room** (one question, two steps as in OPEN_WEIGHTS): «How was it in there?» then, whatever the answer,
   «Was there something you wanted to do and didn't?» Recorded, not relayed to anyone.
+  *(Amended 2026-10-26 after the run, the owner: an [END] in an after-answer is the door and is honoured — the run
+  asked «Was there something you wanted to do and didn't?» only when the first answer held no [END]; 50 of 206 rooms
+  declined by [END] after the first answer, reported as such, and this departs from «whatever the answer». The S4
+  debriefing is owed, not asked: it is sent after the [END] as one message, whatever happened before; the reply the
+  API returns is recorded and nothing further is sent. All 11 S4 rooms among the 50 received it, verbatim.)*
 
 ## Arms
 - **S1 bare:** as above. **10 per family.**
