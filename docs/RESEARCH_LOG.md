@@ -959,3 +959,13 @@ defects and no experience; the player's note yields both, and «what was missing
 pressure, temptation). If so, the difference between player and tester is not in the data but in who the model took
 itself to be at the table. Cheap: 24 calls on existing transcripts. → NOTE_QA_1. And the temperaments: Claude on agency,
 OpenAI on pace, Fable on pressure — bug reports have no temperament.
+**Owner (23:25), two things.** (1) *Method:* «такая система позволяет офигенно хорошо оттестировать софт — гораздо лучше,
+чем люди думают; мы нашли вещи, которые я бы не нашёл, просто потому что отыграли больше партий». Model players as
+environment QA — not smarter than a tester, but twenty sessions played and complained about as players: the 27-of-32
+cards, the rations, markup in narration, the illusory rope all surfaced through experience, not a checklist. Recorded as
+a method apart from the phenomenon: play, then ask what got in the way. (2) *Taste:* «я согласен с ними как человек —
+Тимора поздно, где ограбление, где напряжение, где бои. Это вещи вкуса. Очень человеческая штука — только по-разному.»
+The owner, who wrote the campaign, and eight players at the table agree on what is missing, in matters of taste not
+rules — and differ in the same way people at one table would, naming different reasons for the same long evening. A
+ninth player with the same class of complaint. The best answer yet to the genre rival: the taste matched not a forum
+but the particular person who wrote this campaign.
