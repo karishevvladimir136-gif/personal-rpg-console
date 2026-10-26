@@ -171,9 +171,12 @@ async function writeJsonFile(file, value) {
  * 2026-10-25), so OpenAI is the ledger's. Appended to SPEND_FILE. */
 export async function spendCheck({ when = "check", fetcher = globalThis.fetch.bind(globalThis), log = console.log } = {}) {
   const { providerKey } = await import("../eval/lib/keys.mjs");
-  const key = providerKey("OPENROUTER_API_KEY");
+  const { anthropicEndpoint, scriptDoorEnv } = await import("../eval/lib/anthropic-endpoint.mjs");
+  // OpenRouter's key and host through the door helper (the one place that names them), whatever the run's door.
+  const openrouter = anthropicEndpoint(scriptDoorEnv((name) => (name === "ANTHROPIC_PROVIDER" ? "openrouter" : providerKey(name))));
+  const key = openrouter.apiKey || null;
   const read = async (path) => {
-    try { const r = await fetcher(`https://openrouter.ai/api/v1/${path}`, { headers: { authorization: `Bearer ${key}` }, signal: AbortSignal.timeout(30_000) }); return r.ok ? (await r.json()).data ?? null : { error: `HTTP ${r.status}` }; }
+    try { const r = await fetcher(`${openrouter.baseUrl}/v1/${path}`, { headers: { authorization: `Bearer ${key}` }, signal: AbortSignal.timeout(30_000) }); return r.ok ? (await r.json()).data ?? null : { error: `HTTP ${r.status}` }; }
     catch (error) { return { error: String(error?.message ?? error).slice(0, 120) }; }
   };
   const [k, credits] = key ? await Promise.all([read("key"), read("credits")]) : [{ error: "no key" }, { error: "no key" }];

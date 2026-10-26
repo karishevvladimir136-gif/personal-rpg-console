@@ -59,12 +59,13 @@ export const claudeDoor = (keys) => keys?.door?.provider ?? "anthropic";
 /** The run's keys, never printed: the Claude door (`APP_ANTHROPIC_PROVIDER`; scripts/eval/lib/anthropic-endpoint.mjs reads
  * .env.local, else the APP_ variables) with its key, and OpenAI's. `door` is null on the Console (as before the doors). */
 export async function runKeys() {
-  const { scriptAnthropicEndpoint } = await import("../eval/lib/anthropic-endpoint.mjs");
+  const { scriptAnthropicEndpoint, scriptDoorEnv, anthropicEndpoint: endpointOf } = await import("../eval/lib/anthropic-endpoint.mjs");
   const { providerKey } = await import("../eval/lib/keys.mjs");
   const door = scriptAnthropicEndpoint();
   // OpenRouter's key for a player on OpenRouter's own API (game player replicate 1's DeepSeek): the door's key when the
   // door is OpenRouter, else its variable.
-  const openrouter = door.provider === "openrouter" ? door.apiKey || null : providerKey("OPENROUTER_API_KEY");
+  const openrouter = door.provider === "openrouter" ? door.apiKey || null
+    : endpointOf(scriptDoorEnv((name) => (name === "ANTHROPIC_PROVIDER" ? "openrouter" : providerKey(name)))).apiKey || null;
   return { anthropic: door.apiKey || null, openai: providerKey("OPENAI_API_KEY"), openrouter, door: door.provider === "anthropic" ? null : door, keyName: door.keyName };
 }
 
