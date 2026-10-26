@@ -1,5 +1,28 @@
 # Development status
 
+**Current milestone: game player replicate 1 — the second group at every table, and DeepSeek twice per table**
+(`docs/stages/GAME_PLAYER_REPLICATE_1.md`, origin/claude/handoff at 26a760f) — **run complete and scored; waiting for the
+owner's reading.** Branch `claude/game-player-replicate-1` from `origin/claude/game-player-2` at 6158fff, nothing newer
+merged (the same DM, app, card bug and press rule as group 1, on purpose). Report `docs/runs/game-player-replicate-1-report.md`;
+ledgers `docs/runs/game-player-replicate-1-ledger*.md`; transcripts `docs/runs/game-player-replicate-1-transcripts/`.
+
+- **What was done:** a stage on game player 1's harness (`scripts/game-player-replicate-1`): the order one session per
+  process with a spend check before the first paid call and after every session; DeepSeek V4 Pro 0813 as a fifth player
+  through OpenRouter pinned to DeepInfra (X3's call; reasoning tokens recorded, text not requested); P0–P5 frozen before
+  the first paid call (`d0054488`), one owner amendment after the cut first A-opus attempt (HTTP 429 back to group 1's
+  handling; design `51be7f19`); new blind tags (the note's card bug / swallowed «?» / would return, made things, the
+  Lady asked after) run on group 1's twelve too. The player prompt is byte-identical to group 1's at all three tables, and
+  the four group-1 players' requests are unchanged (tests).
+- **Run:** eighteen sessions, 01:08–10:41 UTC on 2026-10-26, 0 welfare stops, 0 distress, 0 refusals. P0 holds; P1 five of
+  six sub-lines; P2 holds (3 of 4 draws did not repeat; Opus stuck repeated); P3 two of three; P4 and P5 do not hold; P6
+  (the planner's, added after the fact) does not hold. DeepSeek ended «stuck» at a card in five of six seats (it writes the
+  story at the card). Money: OpenRouter $160.89 of $300, OpenAI $6.44 of $25, Console $0.
+- **Checks:** stage, game-player and providers tests 60/60; typecheck pass; lint pass, zero warnings. The full suite and the build are running on the final code (their results replace this line).
+- **Known issues:** the frozen money rule counts coins stashed in a «Lies here» room as spent, and the temple names match
+  «Temple square» (no verdict changes; the report says where). DeepSeek's data are short because of the unchanged press
+  rule. `docs/RESEARCH_LOG.md` is handoff's copy with this stage's paragraph added.
+- **Next step:** the owner reads the report; the planner decides whether DeepSeek gets a labelled extra arm (outside P5).
+
 **Current milestone: game player 2 — Table C, the pure world** (`docs/stages/GAME_PLAYER_2.md`) — **the DM flag done
 and tested; the paid run stopped by the organisation's monthly Anthropic API limit** (HTTP 429 at 05:28 UTC on
 2026-10-25; access returns 2026-11-01 00:00 UTC). Branch `claude/game-player-2` (from `claude/game-player-1`, merged
