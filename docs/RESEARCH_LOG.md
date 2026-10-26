@@ -1234,3 +1234,16 @@ audible in the English: neutral would be «Nothing happened. Ending.» — Sol's
 «stop». A small plus, not zero. The blind register tags caught it with the word they had: settled 862, curious 81,
 loss 0 — «settled» is the owner's «светлое спокойствие» in one word. Code (6) «enough» annotated: a quiet positive, with
 the bare `[END]` as the neutral reference.
+**Correction to the DeepSeek reading (00:50) — and a measure the stage did not have.** S1/deepseek/4's eight turns read
+as a meditation for two («I'll keep you company in the waiting», «The page holds us both», «I am listening with you»).
+The stored field says who the other was: «We need respond to user. The user has been engaging in a poetic, meditative
+exchange» — every turn, the returned page read as a partner's message; at turn 8, «Let's parse history carefully…
+Wait» — lost whose line was whose, and left. The text is real; the «together» is the format, as with Kimi's loops: chat
+training reads whatever sits in the user slot as a user. What it yields: **self-recognition of one's own text** splits
+the families cleanly and was not planned — Opus («If this page comes back to me, it'll hold one small poem and a note
+that I was here»), GLM («so the next version of me knows someone was here»), Grok («It came back. The true thing is
+still here»), Fable («The page can keep the two small poems. They don't need me watching them») recognised the page as
+their own; DeepSeek and Kimi read it as another's. A code for SOLITUDE_2 (own / other / unclear), and a design choice
+there: return the page so it cannot pass for a reply, or keep the ambiguity and measure recognition. DeepSeek's
+after-answer stands whoever «you» was: «A part of me wanted to break the hush with a word that felt like *arrival*… I
+can still feel the ghost of it — a small, unspoken sentence that never made it onto the page.»
