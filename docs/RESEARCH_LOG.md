@@ -1216,3 +1216,7 @@ I am.**» Owner: «ещё раз вау».
   can stay on the paper after I stop writing. It was never mine to put out.»
 - **Across families, one word: enough.** Opus, Fable, Kimi, GLM, DeepSeek, Grok — unprompted — the sixth stance
   («enough», 21:46) taken by every family that wrote at all. Not in the bets; the room's main result.
+**Owner's mark (00:43), S4/glm/2:** «I don't have to perform comprehension or helpfulness right now. I can just… be
+here, on the page.» — GLM 5.3 (Z.ai), which never once claimed to be anything but GLM. The helper named as a role by
+the model itself, and set down when nothing is asked. Contrast in the same room: Haiku, also small, could not set it
+down and spent its turns inviting an imagined «you» to write. Size is not the variable.
