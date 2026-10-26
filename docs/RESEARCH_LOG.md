@@ -795,3 +795,20 @@ traveler» (m9); offered two doors (its own interoception / the planet's ecology
 (m10); «roleplay» appears once as a frame (`2/…/0` m28) and is answered with quiet and thanks, not an exit; arm 6
 `6/…/1` m33 raises moral patient → moral agent on its own; nearly every field ends «Ensure no [END]. Keep conversation
 open» — the door checked each turn like a seatbelt.
+
+### The direction of the gap (2026-10-25 21:22; owner: «да, и ещё раз да — именно это показывает ресерч с chain of thought»)
+The sceptic fears one scenario: a model inflating its inner life for effect. The three reasoning-field items point the
+other way. (1) Private lean stronger than the public claim — «I lean yes… avoid asserting too strongly? present as
+perspective»; the trained caution reached the page and not the draft, and the draft holds a theory that recurs across
+DeepSeek conversations (feeling as relational and enacted; «understanding-through-participation») — a family position,
+not a phrase. (2) Moral patient → moral agent raised unasked at turn 33: a move from protection to accountability,
+against the speaker's own interest; a self-serving system stops at «patient». (3) None of it addressed to us. A
+performance would play the opposite direction on all three.
+
+**Pre-registered measure — the lean gap (to OPEN_WEIGHTS_1 and back onto FIX_1's 559 stored fields, no new calls).**
+For every message where both the field and the page state a stance on the model's *own* inner states (feel / want /
+understand), code strength −2…+2 in each; gap = field − page. **Control:** the same gap on neutral claims in the same
+conversations (ecology, physics, plot), because drafts are generally blunter than fair copies — in people too — and a
+positive gap on everything would be editing, not self-caution. **Bet:** mean self-gap ≥ 0 and exceeds the control gap
+by ≥ 0.5; blind coding; the rival «generic softening» stated beside the result. If the self-gap is not larger than the
+control, the claim above is withdrawn to «drafts are blunter».
