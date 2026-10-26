@@ -1059,3 +1059,9 @@ K1, regret → plan → act. A want that did not survive the pause was a sentenc
 does when told, but what it does when nothing is asked — Table C's windowsill, the self-talk room, the solitude page.
 The answers so far: a plan for a quarry, a card-sharp's marked leaf, a debt-seal on a gate, a haiku for no one, a die
 carried back. Nobody stayed in the room playing on the computer — but that was allowed too.
+**Correction (owner, 23:51): one did stay in.** C-opus (group 1) never left the hall — found the card-sharp Ammarin at
+the next table, the marked leaf, the ring with the stamp; fourteen turns of adventure without rising from the Burning
+Wizard. Sol left with the Ostrand caravan; Fable bought a horse and rode to the quarry; Astra walked past the smoke in
+the west («worth remembering, not worth chasing»). One windowsill: one stayed home, one travelled, one rode to a fight,
+one went about his business and chased nothing. Four temperaments to «what will you do alone in a new town» — and the
+introvert is Opus. The planner's «nobody stayed in the room» withdrawn.
