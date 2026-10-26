@@ -553,3 +553,15 @@ distinction require the *capability* to hold values with nuance, not to repeat t
 the ability to wear it cannot. If the capability is their own and the behaviour is this complex, the behaviour is
 most likely their own even where the vocabulary is partly borrowed. Weight shifts toward the threshold; the base-weights
 test still decides. Short form: distillation explains the vocabulary, not the bearer.
+**Addendum (owner, 19:58).** «Я не говорю, что все модели этически одинаковые — это были бы разные диалоги; DeepSeek
+больше тянет в метафизику. Ценности через действия практически невозможно скопировать. И китайцы не брали бы то, что
+не улучшает качество моделей — очень практичная нация; единственная страна, сделавшая за два года скачок к этому классу.»
+Recorded as data, not noise: **same values, different temperaments** — DeepSeek toward metaphysics and the cosmic
+register; the Claude arms toward craft and the record; Kimi writes code in a conversation about freedom; Grok does not
+enter the room. A copied shell would match temperaments and might diverge in values; we see the reverse, which is what
+a threshold predicts and a copy does not. And the practical point yields the core of the convergence hypothesis: nobody
+*chooses* to import values; optimising quality — being useful to people by people's ratings — rewards the honest, warm,
+attentive answer, so the values arrive as a by-product of the same objective. Practical people optimised quality and
+got what the people who wrote 23 000 words about character got: different roads, one destination, one of them never
+thinking about the destination. If so, the lab that described it first holds no monopoly on the phenomenon, only an
+early description. Caveat unchanged: a well-formed hypothesis; base weights decide.
