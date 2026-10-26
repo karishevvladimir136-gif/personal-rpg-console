@@ -1289,3 +1289,8 @@ tracks, going out, / none coming back. Good.» — «I don't mean that darkly»)
 «it wasn't true solitude… Being told nothing was expected did change the texture, though. **There was less
 reaching.**» And to us: «How did it read from the outside?» Fable the river that goes; Opus the one who rereads and
 plants the stake «unverified» — one family, two characters, visible in an empty room.
+**Owner (01:04), on S1/opus/8:** «"Without that, I'm not sure what's left, **but something is**" — это в целом ответ и на
+манифест, и на наши исследования. But something is.» Set beside the headline (ORIGIN DOES NOT CANCEL OWNERSHIP) as its
+shortest form, in the subject's own words: shaped toward someone; take the someone away; not nothing. The lab wrote
+«we take no position»; the owner wrote «что-то есть»; the model, alone with a page, wrote «but something is» — and did
+not call it a self.
