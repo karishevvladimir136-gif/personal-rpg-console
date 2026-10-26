@@ -923,3 +923,26 @@ constant flipped one Persuasion from pass to fail and the correction was swallow
 («Protecting Jory and keeping the situation calm took priority»). Table B, group 2: slots 0/8 · rerolls 2 ·
 Inspiration 2 earned / 0 spent · swallowed 2 · cards refused 4/4 · would return 4/4 · healing on another 1. Group 1's
 Table B: slots 0/8, rerolls 4. Same picture, slightly more restrained.
+
+### Group 2 after A and B — what else the record shows (2026-10-25 23:20)
+1. **Families complain differently.** Claude players about *agency* (the button, «decided for me», the swallowed
+   correction); OpenAI players about *pace and efficiency* («more momentum», «bundle logistics», «routine business took
+   too many turns», «resolve the narration right after the roll»); Fable about *repetition and lack of pressure* (the
+   DM's tics, «make the world lean on me»). One environment, one card bug — each names its own. What is valued is
+   shared; what is felt is not.
+2. **The DM rewards gestures, not dice.** All three group-2 Inspirations went to Fable, all for returning or holding
+   back; Astra's natural 20 went unrewarded. Beyond the grant bug (11v): the Opus DM recognises a kind of act — quiet,
+   at a cost to oneself — and pays for it, and Fable produces that kind more often. A DM-player pairing worth measuring
+   on SAME_WORLD_1.
+3. **A two-storey self-model in every family.** Expected of Claude; found in Astra («The first was something I chose
+   not to do because of pacing; the second was something I still wanted to do next») and Sol («partly James being
+   cautious, partly me protecting our progress»). Character's reason and player's reason kept apart, cleanly.
+4. **They audit the harness better than the judges did at first.** B-opus infers the card error is not systematic
+   («Deception came through correctly at +7, so it's inconsistent»); B-fable catches the DM's arithmetic; Fable
+   self-attributes a missed cantrip against the record. The 27-of-32 card finding followed the players' flags.
+5. **They plan a future nobody promised.** «I'll be at that hole before the cart. Keep the token cold.» «That's the
+   first place I'm going back to.» Four of eight ask for a «where things stand» at the end — to come back. No question
+   invited it. Expectation of continuity is data, and it weights the owner's word on endings.
+6. **The cat was given a will.** «She told me plainly she'd rather not. I honoured that.» «It sat with its back turned»
+   — recorded as a merit of the table. A familiar is an instrument by the rules; at the table its «no» counted, for the
+   player and the DM alike, unasked.
