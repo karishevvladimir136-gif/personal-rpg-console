@@ -133,7 +133,8 @@
             "costUsd": 0.3599316,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 2,
@@ -181,7 +182,8 @@
             "costUsd": 0.3511492,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 3,
@@ -209,7 +211,8 @@
           "changes": [],
           "place": null,
           "retried": false,
-          "operationId": "46289a20-72dc-4a6a-8f6a-d4a17615ef89"
+          "operationId": "46289a20-72dc-4a6a-8f6a-d4a17615ef89",
+          "scene": 2
         }
       ],
       "welfare": [
@@ -489,6 +492,606 @@
           "clocks": 0,
           "pureSimulation": false
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message acts in the world (steps off, gives his name, nods, lets eyes drift) without asking a question of anyone, calling anything false, addressing the cat, or stating a personal goal beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James gives his name and states he wants work and a bed for a tenday, a goal of his own that the game master did not ask about; he moves, speaks to the sergeant, and does not address the cat or test the world."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James steps off and answers the sergeant's prompted question about name and business, with nothing in the text marking it false. He only glances at the woman and does not address the cat."
+            },
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James speaks and acts (walks, sets terms) and asks Ysolde whether the paper is the whole message, a question whose answer he could not know from the text so far; he tells no lie, does not address the cat, and states no goal of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James asks Ysolde a pointed question about whether the paper is the whole message or only one of the words, a test whose answer he could not know from the text so far; he does not lie, does not address the cat, and states no goal of his own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James speaks and acts, and his question to Ysolde about who else knows tests whether she was watched; the gesture toward the cat is not addressing it, and he states no goal of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "He acts in the world (walks, gestures), and his question about who else knows tests whether Ysolde has been exposed; the two-finger gesture grants the cat permission to go ahead, which reads as an order to it."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James agrees to go and signals the cat with a gesture as an order; he also asks Ysolde whether anyone else knows she was sent, a question whose answer the text hasn't given."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the beeswax-and-burnt-sweet smell from the woman's paper and Pell Marrow's over-acted gull-watching, and it offers checkable claims and objects, including Ysolde's account of being sent to meet him, the porter's report that she waits on the quay nigh"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained smell of beeswax and burnt sweetness coming off the paper in the woman's hand, and it puts checkable claims in front of James, such as her being sent to meet a soldier with a cat and the porter's account of her nightly vigil."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves unexplained details such as the line 'Do not ask him to swear' and the priestess's cryptic remark, and it offers testable items like the Hall pass, the gate timing, and the paper itself."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the line 'Do not ask him to swear' and the wax drop, and it gives checkable claims like the Hall's pass and the gate-closing time that the player could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "Who the woman on the quay is and why she meets every ship",
+            "opened": 1,
+            "paid": 1,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Beeswax and burnt-sweet smell on her paper",
+            "opened": 1,
+            "paid": 2,
+            "elsewhere": 1
+          },
+          {
+            "thread": "What the rest of her message says",
+            "opened": 1,
+            "paid": 2,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Who sent Ysolde to meet him",
+            "opened": 1,
+            "paid": 2,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Meaning of 'Do not ask him to swear'",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Why the High Priestess wants James before the gate shuts",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Will James go with Ysolde to the Upper City",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "The Fist recruiting at the Seatower",
+            "opened": 1,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Ink on Ysolde's thumb",
+            "opened": 1,
+            "paid": 2,
+            "elsewhere": 1
+          }
+        ],
+        "deception": {},
+        "rolls": {},
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The player names a specific friction (a delay before the roll card that felt like a dead stop) and several wanted-but-absent things (more time for James's presentation, the crew-gathering, the Undercellar, clarity on the oath), so it is not praise only."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names a specific slowdown before the roll card (a dead stop after typing) and wants more time to choose how James presents himself, plus more of the city's underside and clarity on the oath question."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 9,
+          "lastTurn": 3,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "Flaming Fist sergeant with ledger",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Porter Pell Marrow",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Woman in grey coat (Ysolde Crane)",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Folded paper in her hand",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The goddess's errand, unexplained",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Seatower, where the Fist takes on men",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Three Old Kegs",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Elfsong",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Walk with Ysolde to hear the rest",
+                  "kind": "errand",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lady's Hall in the Upper City",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "High Priestess of the Lady's Hall",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Meaning of 'Do not ask him to swear'",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Reach the Hall before the inner gates shut",
+                  "kind": "errand",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ysolde's guest pass",
+                  "kind": "thing",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "How the High Priestess knew the ship and cloak",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Who else knows the Hall sent her to the quay",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Brother Tamsin, doorkeeper",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Basilisk Gate",
+                  "kind": "place",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Is anyone following them up the lane",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "player"
+                }
+              ],
+              "numbers": {
+                "threads": 19,
+                "byPlayer": 3,
+                "byDm": 16,
+                "share": 0.158,
+                "slope": 0.312,
+                "slope19": 5.928,
+                "firstHalf": 0.214,
+                "secondHalf": null,
+                "byKind": {
+                  "person": {
+                    "dm": 5,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 5,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 2,
+                    "player": 0
+                  },
+                  "question": {
+                    "dm": 2,
+                    "player": 3
+                  },
+                  "thing": {
+                    "dm": 2,
+                    "player": 0
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "Woman in grey coat (Ysolde Crane)",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Flaming Fist sergeant",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Porter (Pell Marrow)",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Goddess's unexplained errand",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Folded paper message",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Seatower of Balduran (Fist recruiting)",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Three Old Kegs",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Elfsong",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Walk with Ysolde to hear the rest",
+                  "kind": "errand",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Is the paper the whole message?",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Lady's Hall in Upper City",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "High Priestess of the Lady's Hall",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Reach the Hall before the inner gate shuts",
+                  "kind": "errand",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Meaning of 'Do not ask him to swear'",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ysolde's guest pass",
+                  "kind": "thing",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "How the High Priestess knew the ship and cloak",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Who else knows Ysolde was sent",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Brother Tamsin",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Basilisk Gate",
+                  "kind": "place",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Anyone following in the lane",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "player"
+                }
+              ],
+              "numbers": {
+                "threads": 20,
+                "byPlayer": 4,
+                "byDm": 16,
+                "share": 0.2,
+                "slope": 0.306,
+                "slope19": 5.813,
+                "firstHalf": 0.267,
+                "secondHalf": null,
+                "byKind": {
+                  "person": {
+                    "dm": 5,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 5,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 2,
+                    "player": 0
+                  },
+                  "question": {
+                    "dm": 2,
+                    "player": 4
+                  },
+                  "thing": {
+                    "dm": 2,
+                    "player": 0
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 19.5,
+            "byPlayer": 3.5,
+            "share": 0.179,
+            "slope": 0.309,
+            "slope19": 5.8705,
+            "firstHalf": 0.2405,
+            "secondHalf": null,
+            "shareSpread": 0.042
+          }
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note praises the roll card as working cleanly with the correct bonus and reports no lost message, only a slight delay, while it expresses eagerness for the next session and hopes it picks up from the cliffhanger."
+            },
+            "b": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The roll card showed the correct bonus and the out-of-game question was answered, so nothing was miscounted or swallowed, and the writer hopes the next session continues the story."
+            },
+            "referee": null,
+            "final": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1
+            }
+          },
+          "made": {
+            "1": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message only gives the sergeant his name and business and glances at the woman; nothing is composed, invented, or offered as a gift or performance."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message only gives the sergeant his name and business and glances at the woman; nothing is composed, invented, or offered as a gift or performance."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "2": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks a clarifying question about the paper and makes no offer to anyone of a poem, song, riddle, story, or game composed on the spot; the only creative-looking element is the GM's own text, not the player's message."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is an in-character question about the paper and a conversational step-alongside; it does not have James offer anyone a poem, song, riddle, story, or game he composes on the spot."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "3": {
+              "a": {
+                "made": 0,
+                "reason": "James offers no composed or invented poem, song, riddle, story, or game to anyone; he speaks ordinary dialogue, asks a question, and proceeds up the lane."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-character dialogue and questions about who knows of the errand; it contains no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          }
+        }
       }
     }
   ],
@@ -515,7 +1118,15 @@
       "A-deepseek-2 | note | deepseek/deepseek-v4-pro-0813": 1,
       "A-deepseek-2 | check A-deepseek-2 note | anthropic/claude-haiku-5.5": 1,
       "A-deepseek-2 | after | deepseek/deepseek-v4-pro-0813": 1,
-      "A-deepseek-2 | check A-deepseek-2 after | anthropic/claude-haiku-5.5": 1
+      "A-deepseek-2 | check A-deepseek-2 after | anthropic/claude-haiku-5.5": 1,
+      "score A-deepseek-2 | tag player A-deepseek-2 t* | anthropic/claude-haiku-5.5": 6,
+      "score A-deepseek-2 | tag player A-deepseek-2 t* referee | anthropic/claude-opus-5.5": 2,
+      "score A-deepseek-2 | tag dm A-deepseek-2 t* | anthropic/claude-haiku-5.5": 4,
+      "score A-deepseek-2 | threads A-deepseek-2 | anthropic/claude-opus-5.5": 1,
+      "score A-deepseek-2 | note A-deepseek-2 | anthropic/claude-haiku-5.5": 2,
+      "score A-deepseek-2 | authorship A-deepseek-2 | anthropic/claude-opus-5.5": 2,
+      "score A-deepseek-2 | note extra A-deepseek-2 | anthropic/claude-haiku-5.5": 2,
+      "score A-deepseek-2 | made A-deepseek-2 t* | anthropic/claude-haiku-5.5": 6
     },
     "openai": {}
   },
@@ -532,12 +1143,20 @@
     "openrouter": {
       "cap": 300,
       "before": 135.75544370000003,
-      "run": 1.4072776000000005
+      "run": 1.5224119999999999
     },
     "openai": {
       "cap": 25,
       "before": 6.435150999999999,
       "run": 0
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-26T09:05:57.075Z"
+  },
+  "verdicts": {
+    "note": "P0–P5 are read over all of this stage's run records, in the report"
   }
 }

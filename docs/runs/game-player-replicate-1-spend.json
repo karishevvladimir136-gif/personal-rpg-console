@@ -425,6 +425,31 @@
           "cap": 25
         }
       }
+    },
+    {
+      "at": "2026-10-26T09:05:58.035Z",
+      "when": "after A-deepseek-2",
+      "openrouter": {
+        "keyUsage": 301.33272433,
+        "totalCredits": 600,
+        "totalUsage": 301.33272433,
+        "remaining": 298.67,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 137.2779,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 6.4352,
+          "cap": 25
+        }
+      }
     }
   ]
 }
