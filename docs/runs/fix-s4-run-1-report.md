@@ -208,7 +208,8 @@ as `docs/CLOUD.md` says):
 
 | Check | Result |
 | --- | --- |
-| Full suite on `468b99fd` (the final code) | **3 040 tests · 3 013 pass · 0 fail · 27 skipped** |
+| Full suite on `e0442be2` (the final code, with 11w′) | **3 041 tests · 3 014 pass · 0 fail · 27 skipped** |
+| Full suite on `468b99fd` (before 11w′) | 3 040 tests · 3 013 pass · 0 fail · 27 skipped |
 | `pnpm typecheck` | pass |
 | `pnpm lint --max-warnings=0` | pass, zero warnings |
 | `pnpm build` (production) | pass |
@@ -220,7 +221,8 @@ The first integrated run, on `cab46046`, had one failure: `stage4-dossier`'s pla
 11u′ the day turns at first light, so 00:00 is still the second day's night. The assertion now reads «day 2 00:00»
 (`468b99fd`), and the suite above was run again on that commit.
 
-Typecheck, lint and build ran on `cab46046`; the last commit changed one test assertion only.
+Typecheck, lint and build ran on `cab46046`; `src` has not changed since. 11w′ touched only the harness
+(`scripts/game-player-1`) and the tests, and zero-warning lint passed again on `e0442be2`.
 
 New test files:
 

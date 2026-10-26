@@ -23,12 +23,18 @@ Report: `docs/runs/fix-s4-run-1-report.md`; smoke: `docs/runs/fix-s4-run-1-smoke
   - The five small screen things.
 - **Migration:** one additive, `202610250701_fix_s4_run_1_pending_cards` (function wrappers; no table, column or row
   changes), listed in `docs/SANDBOX_LOAD_FIX_S2.md`.
+- **11w′ (added to the stage at `75be089`):** in the harness, a press that comes with text in the same message is a
+  press. The text reaches the DM as a «?» while the card waits, then the button applies; never «stuck». Tested on group
+  2's A-opus message.
+  - **The rerun table (GPT-6 Luna, $2.78):** shows the letter fix on screen («Letter from his old company» in the pack).
+  - **11w′ was not seen live:** the DM called no roll in those four turns. Another table (about $2.8) would show it, on
+    the owner's word.
 - **Smoke (paid):** two four-turn tables. Claude Haiku 5.5 through OpenRouter and GPT-6 Luna through OpenAI play against
   the owner's Opus DM. On screen: the fixed cards, «Rerolls left», a refused press, a «?» answered while the card
   waited, and the DM's clock line before each turn. It found one bug (the unread letter's name), fixed after with a test.
-  Spent: OpenRouter $5.02 of $15, OpenAI $0.01 of $3, Console $0.
-- **Checks:** full suite on a clean worktree at `468b99fd`: 3 040 tests · 3 013 pass · 0 fail · 27 skipped. Typecheck, zero-warning
-  lint and the production build pass (on `cab46046`; the last commit changed one test assertion). One older assertion
+  Spent in the stage: OpenRouter $7.79 of $15, OpenAI $0.018 of $3, Console $0.
+- **Checks:** full suite on a clean worktree at `e0442be2` (with 11w′): 3 041 tests · 3 014 pass · 0 fail · 27 skipped;
+  zero-warning lint there. Typecheck and the production build pass on `cab46046` (`src` unchanged since). One older assertion
   changed with 11u′: a plan due at 00:00 reads «day 2 00:00». Approval is the owner's.
 - **Known issues:**
   - The cat keeps the default 8/8 where neither 05 nor the draft states its numbers.
