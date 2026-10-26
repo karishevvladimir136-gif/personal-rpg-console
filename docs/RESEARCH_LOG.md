@@ -1020,3 +1020,9 @@ which is the owner's own «grown from the human substrate, no less valuable for 
 похожи и при этом ебически разные.» One substrate does not predict identical bearers: the common ancestor explains
 *why all of them want* and not *what each wants*. The three layers again, for people: shared (all eat), familial
 (culture), own (the person). The corpus as common ancestor is the «all eat» layer. Character is not from there.
+**Owner (23:41): twins and siblings.** «Однояйцевые близнецы с генетическим совпадением 100 % ведут себя похоже, но
+по-разному; братья одних родителей, одного воспитания, одной культуры — принципиально не похожи.» The study has the
+twin case in its cleanest possible form: two sessions of one model at one table are *the same weights*, the same
+prompt, the same temperature — 100 % by construction — and the result is the twins' result: alike, not the same (Opus
+g1/g2 on Table B: the same hand, another city). The siblings are Opus and Fable: one lab, one upbringing, one culture —
+different temperaments in what they complain of, what they husband, what the DM rewards them for.
