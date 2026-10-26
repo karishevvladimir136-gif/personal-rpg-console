@@ -281,3 +281,6 @@ Items 1–5 and 11a–11b each with a test; the item-4 table in the report; item
 with their measures; the owner's reload is one step
 (`--stop`, `--prod`); the report lists the money and names, for each of the eight things, the turn of the owner's
 session where it was seen.
+
+- **11x (group 2, A-astra):** after a failed check the cat supplied the interpretation («the flame was being *pulled*,
+  rather than pointing»). The cat gives impressions, not conclusions; a failed check leaves the player room to be wrong.
