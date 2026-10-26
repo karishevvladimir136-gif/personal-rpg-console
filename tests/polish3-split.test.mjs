@@ -414,7 +414,9 @@ test("§2 §5 the wiring: the service routes by the campaign's choice, the compo
   const composer = src("src/components/gameplay-composer.tsx");
   assert.match(composer, /const recording = busy && live\?\.status === "recording"/);
   assert.match(composer, /"Send after the records"/);
-  assert.match(composer, /value=\{recording \? held\.text : journal\.text\}/, "the composer opens for the next action while recording");
+  // FIX_S4 item 6: the box's text is one expression (empty once a turn is sent, the held text while recording).
+  assert.match(composer, /const boxText = recording \? held\.text : turnSentAway\(journal, knownAttempt, busy, error\) \? "" : journal\.text;/, "the composer opens for the next action while recording");
+  assert.match(composer, /value=\{boxText\}/);
   assert.match(composer, /window\.setTimeout\(\(\) => \{ void sendRef\.current\(\); \}, 0\)/, "the held send goes at the commit");
   // Fix run after session 2, stage C: the turn names its own pause («Ведущий записывает…») inside its timeline.
   const turn = src("src/components/gameplay-turn.tsx");

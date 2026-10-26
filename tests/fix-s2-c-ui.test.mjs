@@ -191,8 +191,10 @@ test("the preview records a turn with a hero card, companion chips and a named p
 
 test("the screen: the told turn inside the turn, the action box grows, the owner's editor never forced open", () => {
   const game = src("src/components/registry/game-screen.tsx");
-  assert.doesNotMatch(game, /<details className=\{g\.more\} open=/, "item 57: the editor opens only when the owner opens it");
-  assert.match(game, /<details className=\{g\.transcript\}>/, "the session transcript folds inside the editor");
+  // FIX_S4 item 6: the owner's editor moved off the game screen into campaign-editor.tsx («Ещё → Для владельца»).
+  const editor = src("src/components/registry/campaign-editor.tsx");
+  assert.doesNotMatch(editor, /<details className=\{g\.more\}[^>]* open=/, "item 57: the editor opens only when the owner opens it");
+  assert.match(editor, /<details className=\{g\.transcript\}>/, "the session transcript folds inside the editor");
   assert.match(game, /companionRolls=\{companionRolls\}/);
   // Fix S3-accept Б4: the folded changes moved, unchanged, into the piece «Игра» shares with the 2D scene.
   assert.match(game, /useTurnAftermath\(/);

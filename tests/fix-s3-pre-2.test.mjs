@@ -202,7 +202,8 @@ test("2.2 B-16: the output cap is 64 000 in both loops; the «⚡ важный �
   assert.match(readFileSync(new URL("../src/lib/gameplay/dm-loop/two-pass/runtime.ts", import.meta.url), "utf8"), /maxOutputTokens: dmOutputCap\(\)/, "the writer and the bookkeeper take the same cap");
   const screen = readFileSync(new URL("../src/components/registry/game-screen.tsx", import.meta.url), "utf8");
   assert.match(screen, /aria-label=\{c\("Важный ход", "Important turn"\)\}/);
-  assert.match(screen, /saveDmSettings\(data\.campaign\.id, \{ expectedRevision: dmSettings\.revision, runtime: dmSettings\.runtime, dmTurn: dmSettings\.dmTurn, boostNext: next \}\)/);
+  // FIX_S4 item 6: each press saves on the revision read fresh (tests/fix-s4-run-1-screen.test.mjs).
+  assert.match(screen, /saveDmSettings\(data\.campaign\.id, \{ expectedRevision: fresh\.revision, runtime: fresh\.runtime, dmTurn: fresh\.dmTurn, boostNext: next \}\)/);
 });
 
 test("2.2 A-9: a saving throw takes the sheet's save bonus", async () => {

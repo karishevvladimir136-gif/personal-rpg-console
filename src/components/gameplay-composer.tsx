@@ -52,6 +52,7 @@ import { followLiveTurn, type LiveTurnView } from "@/lib/gameplay/live-turn-clie
 import { provisionalTurn, traceLive, type LiveTrace } from "@/lib/ui/turn-timeline";
 import { rerollsLeft } from "@/lib/gameplay/reroll-allowance";
 import { useCopy } from "./registry/primitives";
+import { turnSentAway } from "@/lib/ui/composer-draft";
 
 /** Stage C (item 63): the streams this page has seen told, by turn — a remounted composer keeps the order
  * of a told turn's rolls and text (the saved record has the text and the rolls, not where each came). */
@@ -310,7 +311,10 @@ export function GameplayComposer({
   const compactTurn = pendingTurn ?? unresolved ?? turns.at(-1) ?? null;
   // Item 42: four lines to start, growing with the text (typed, restored or inserted) up to a third of the screen.
   const areaRef = useRef<HTMLTextAreaElement>(null);
-  const boxText = recording ? held.text : journal.text;
+  // FIX_S4 item 6: once the turn is sent the box is empty — the words are in the story (the turn being told) and kept in
+  // the journal; they come back to the box only when the send failed and «Try again» will send them. (Before, the box
+  // showed the sent words, greyed, until the turn's final commit — through the whole telling and any roll card.)
+  const boxText = recording ? held.text : turnSentAway(journal, knownAttempt, busy, error) ? "" : journal.text;
   useLayoutEffect(() => growToText(areaRef.current), [boxText]);
   const accept = async (turn: PublicTurn) => {
     write(reconcileJournal(current.current, turn));
@@ -735,7 +739,7 @@ export function GameplayComposer({
             <textarea
               ref={areaRef}
               rows={mode === "feedback" ? 5 : 4}
-              value={recording ? held.text : journal.text}
+              value={boxText}
               maxLength={actionMaxCharacters}
               disabled={!ready || (recording ? held.send : busy || !!journal.attempt)}
               data-recording={recording ? "true" : undefined}

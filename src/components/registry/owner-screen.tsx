@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import type { CampaignSnapshot } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
 import type { DmView } from "@/lib/gameplay/dm-loop/dm-view";
@@ -131,14 +131,20 @@ export function DmViewPanel({ campaignId, preview }: { campaignId: string; previ
   );
 }
 
-export function RegistryOwner({ data, play, preview }: { data: CampaignSnapshot; play: PlaySnapshot | null; preview?: { view: DmView | null } }) {
+export function RegistryOwner({ data, play, preview, editor }: { data: CampaignSnapshot; play: PlaySnapshot | null; preview?: { view: DmView | null };
+  /** FIX_S4 item 6: «Редактор кампании · для владельца», moved here from the game screen. */
+  editor?: ReactNode }) {
   const c = useCopy();
   return (
     <div className={o.screen}>
       <Plate eyebrow={c("Для владельца", "For the owner")} title={c("Ходы и ведущий", "Turns and the DM")}
-        sub={c("Что стоил каждый ход и что ведущий получил на последнем. В игре ничего не меняет.", "What each turn cost and what the DM received on the last one. Changes nothing in play.")} />
+        sub={editor
+          ? c("Что стоил каждый ход и что ведущий получил на последнем — это в игре ничего не меняет. Ниже — редактор кампании для правки записей.",
+            "What each turn cost and what the DM received on the last one — these change nothing in play. Below, the campaign editor for correcting the records.")
+          : c("Что стоил каждый ход и что ведущий получил на последнем. В игре ничего не меняет.", "What each turn cost and what the DM received on the last one. Changes nothing in play.")} />
       <Panel title={c("Цена ходов", "The price of turns")}><TurnCosts play={play} /></Panel>
       <Panel title={c("Что видит ведущий", "What the DM sees")}><DmViewPanel campaignId={data.campaign.id} preview={preview} /></Panel>
+      {editor}
     </div>
   );
 }

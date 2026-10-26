@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { sheetLines } from "@/lib/inventory/sheet";
-import { useState, type ReactNode } from "react";
-import { Dices, HelpCircle, Image as ImageIcon, Send, Users, Zap } from "lucide-react";
-import type { CampaignSnapshot, Entity, Scene } from "@/lib/persistence/contracts";
+import { useEffect, useState, type ReactNode } from "react";
+import { Dices, HelpCircle, Image as ImageIcon, Send, Users } from "lucide-react";
+import type { CampaignSnapshot, Entity } from "@/lib/persistence/contracts";
 import type { PlaySnapshot, PublicTurn } from "@/lib/gameplay/contracts";
 import { withLiveCounters, type LiveTurnView } from "@/lib/gameplay/live-turn-client";
 import type { LiveTrace } from "@/lib/ui/turn-timeline";
@@ -30,22 +30,16 @@ import { useGameplayRuntime } from "../gameplay-runtime";
 import { GameplayComposer } from "../gameplay-composer";
 import { GameplayTurn } from "../gameplay-turn";
 import { GameplayCombat } from "../gameplay-combat";
-import { GameplayRest } from "../gameplay-actions";
-import { CombatReadiness } from "../combat-readiness";
-import { SessionMemoryPanel, SessionPendingCompanion } from "../session-memory";
+import { SessionPendingCompanion } from "../session-memory";
 import { currentFrameTurnId, FramesPanel, useOpeningFrame, usePictures } from "./live-frames";
 import { SessionEnd } from "./session-end";
 import { useAddressee, useTurnAftermath } from "./turn-aftermath";
 import { useSessionMemory } from "../session-memory-runtime";
-import {
-  createGameViewModel,
-  GameSessionControls,
-  ResumeEditor,
-  SceneEditor,
-  Transcript,
-} from "../persistent-game";
+import { createGameViewModel, GameSessionControls } from "../persistent-game";
 import { useChrome, useDmSettings, useShellClock, type CampaignScreenId } from "./shell";
-import { saveDmSettings } from "@/lib/gameplay/dm-settings-client";
+import { loadDmSettings, saveDmSettings } from "@/lib/gameplay/dm-settings-client";
+import { boostAfterTurn } from "@/lib/ui/boost-toggle";
+import { firstShowing, hintStorage } from "@/lib/ui/hint-fold";
 import {
   Art,
   Avatar,
@@ -122,8 +116,15 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   // The streamed turn in flight, from the composer's own stream (one EventSource).
   const [liveView, setLiveView] = useState<LiveTurnView | null>(null);
   const [inserted, setInserted] = useState("");
-  const [resume, setResume] = useState(false);
-  const [sceneEditor, setSceneEditor] = useState<Scene | "new" | null>(null);
+  // FIX_S4 item 6: the line under the four buttons is open on the campaign's first visit, folded on every later one.
+  const [hintOpen, setHintOpen] = useState(false);
+  const actionsShown = !preview && !!play && !play.startupPending;
+  useEffect(() => {
+    if (!actionsShown) return;
+    let live = true;
+    queueMicrotask(() => { if (live && firstShowing(hintStorage(), "player-actions", data.campaign.id)) setHintOpen(true); });
+    return () => { live = false; };
+  }, [actionsShown, data.campaign.id]);
   const view = createGameViewModel(data, play);
   const hero = heroOf(data, play);
   const party = partyOf(data, play);
@@ -134,22 +135,43 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   const dmSettings = useDmSettings(data.campaign.id);
   // Fix S3-pre B-16 (the owner's decision): «⚡ важный ход» is back — the next turn takes the top of the depth range
   // (the server's boostNext path, stage 4 §7; removed from the screen in polish group 6).
+  // FIX_S4 item 6: a manual override only (an irreversible decision already thinks deep by itself), off unless the
+  // server's flag is on, and it follows that flag. Before, the screen kept its own «on» after the boosted turn (the
+  // server had cleared the flag), and a second press saved with the revision read when the page opened — refused as
+  // stale, so the button quietly flipped back to «on» and the next plain reply ran at the top of the range.
   const [boost, setBoost] = useState<boolean | null>(null);
   const boosted = boost ?? dmSettings?.boostNext ?? false;
+  const readBoost = () => loadDmSettings(data.campaign.id).then((fresh) => setBoost(fresh.boostNext));
   const toggleBoost = async () => {
     if (!dmSettings || preview) { setBoost((value) => !(value ?? false)); return; }
     const next = !boosted;
     setBoost(next);
-    try { await saveDmSettings(data.campaign.id, { expectedRevision: dmSettings.revision, runtime: dmSettings.runtime, dmTurn: dmSettings.dmTurn, boostNext: next }); }
-    catch { setBoost(!next); }
+    try {
+      // The settings' revision moves with every save: read it fresh for each press.
+      const fresh = await loadDmSettings(data.campaign.id);
+      setBoost((await saveDmSettings(data.campaign.id, { expectedRevision: fresh.revision, runtime: fresh.runtime, dmTurn: fresh.dmTurn, boostNext: next })).boostNext);
+    } catch { await readBoost().catch(() => setBoost(!next)); }
   };
+  // Each newly saved turn: a boosted one spent the flag (off at once); any other — the server's flag is read again.
+  const savedTurn = play?.turns.filter((turn) => turn.status === "committed" && (turn.mode === "game" || turn.mode === "companion")).at(-1);
+  const savedTurnId = savedTurn?.id ?? null;
+  const afterSaved = boostAfterTurn(savedTurn);
+  useEffect(() => {
+    if (preview || !savedTurnId || !afterSaved) return;
+    let live = true;
+    if (afterSaved === "spent") queueMicrotask(() => { if (live) setBoost(false); });
+    else loadDmSettings(data.campaign.id).then((fresh) => { if (live) setBoost(fresh.boostNext); }, () => {});
+    return () => { live = false; };
+  }, [afterSaved, data.campaign.id, preview, savedTurnId]);
   const place = currentPlace(data);
   const combat = inCombat(play);
   const fifthEdition = isFifthEdition(data.settings?.values?.rulesSystem);
   // Polish group 6: the addressee is read from the text («@Тамсин», «Тамсин, …»); «Миру» overrides it for this draft
   // (shared with the 2D scene since Fix S3-accept Б4).
-  const { detected, resolveSend, chip: addresseeChip, setDraft } = useAddressee({ present: present.map((row) => row.entity), combat, off: ooc });
-  const talkTo = detected?.id ?? null;
+  // FIX_S4 item 6: the addressee decides the turn's mode at send time only (resolveSend). The composer is no longer keyed
+  // by it: a name typed at the start of the draft remounted the composer on another draft key — the words vanished and
+  // came back, and a line sent to a companion lost its attempt, so its words were never cleared after the turn.
+  const { resolveSend, chip: addresseeChip, setDraft } = useAddressee({ present: present.map((row) => row.entity), combat, off: ooc });
   const mode = ooc ? "ooc" : "game";
   const busy = !!play?.turns.some(isUnresolved);
   const href = (screen: CampaignScreenId) =>
@@ -167,10 +189,13 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   const resources = hero ? resourcesOf(withLiveCounters(hero, liveFresh ? liveNow : null)).resources : [];
   // Polish group 8: the wallet always shows (0 by default, the world's currency name).
   const money = hero ? walletOf(data, hero) : [];
-  const opening = mode === "game" && view.showOpening && (
+  const live = preview ? preview.live ?? null : liveView;
+  // FIX_S4 item 6: the placeholder is for a story with no turn yet; once any turn exists (or the first one is on its
+  // way) only a real opening text stays above the story.
+  const anyTurn = !!play?.turns.length || !!live;
+  const opening = mode === "game" && view.showOpening && (view.story || !anyTurn) && (
     <article className={g.opening}>{view.story || c("История готова начаться. Здесь появится первая сцена.", "Your story is ready to begin. The opening scene will appear here.")}</article>
   );
-  const live = preview ? preview.live ?? null : liveView;
   const pictures = usePictures();
   // Fix run after session 2 (item 29): the approved opening gets its frame — the starting place's picture.
   useOpeningFrame(data, preview ? null : play);
@@ -212,9 +237,12 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
         <ImageIcon size={18} aria-hidden="true" />
       </button>
       {(dmSettings?.depth || preview) && (
-        <button type="button" className={boosted ? r.iconBtnOn : r.iconBtn} aria-pressed={boosted} aria-label={c("Важный ход", "Important turn")}
-          title={c("Важный ход: следующий ход ведущий обдумает на максимальной глубине", "Important turn: the DM thinks the next turn through at the top of the depth range")} onClick={() => void toggleBoost()}>
-          <Zap size={18} aria-hidden="true" />
+        // FIX_S4 item 6: the toggle says plainly whether it is on.
+        <button type="button" className={r.chipButton} aria-pressed={boosted} aria-label={c("Важный ход", "Important turn")} data-testid="boost-toggle"
+          title={c("Ручной выбор: следующий ход ведущий обдумает глубже. Когда решается необратимое — клятва, сделка, предательство, смертельный удар, — ведущий и так думает глубже.",
+            "A manual override: the DM thinks the next turn through deeper. When something irreversible is decided — an oath, a deal, a betrayal, a killing blow — the DM already thinks deeper by itself.")}
+          onClick={() => void toggleBoost()}>
+          {boosted ? c("⚡ Важный ход: вкл", "⚡ Important turn: on") : c("⚡ Важный ход: выкл", "⚡ Important turn: off")}
         </button>
       )}
       {frameNote && <span className={r.note} role="status">{frameNote}</span>}
@@ -249,10 +277,10 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
         <>
           <SessionPendingCompanion play={play} onSaved={runtime.afterMutation} />
           <GameplayComposer
-            key={`${mode}:${talkTo ?? ""}:${nonce}`}
+            key={`${mode}:${nonce}`}
             play={play}
             mode={mode}
-            companionId={talkTo}
+            companionId={null}
             onSaved={runtime.afterMutation}
             followLatest
             historyIntro={opening}
@@ -317,7 +345,7 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
             <GameplayCombat play={play} onSaved={runtime.afterMutation} manualControls={false} />
           </section>
         )}
-        {!preview && play && !play.startupPending && (
+        {actionsShown && (
           <section className={g.playerActions} aria-label={c("Действия игрока", "Player actions")}>
             <div className={r.row}>
               <Link className={r.btnGhost} href={href("camp")}>{c("Лагерь и отдых", "Camp and rest")}</Link>
@@ -326,82 +354,18 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
               {/* Item 30: the quietest of the four, last in the row. */}
               {loopRuntime && <SessionEnd sessionId={session?.id ?? null} compact />}
             </div>
-            <span className={r.note}>{c(
-              "«Лагерь» — отдых и лечение. «Заметка» — твоя запись в журнал. «Что я знаю?» — улики и факты, которые герой уже узнал. «Закончить сессию» — ведущий подведёт итог главы и покажет, что тем временем случилось.",
-              "“Camp” — rest and healing. “Note” — your own journal entry. “What do I know?” — the clues and facts the hero has learned. “End the session” — the DM sums up the chapter and shows what happened meanwhile.")}</span>
+            {/* FIX_S4 item 6: the line shows on the campaign's first visit, then folds (remembered per campaign). */}
+            <details className={g.actionsHint} open={hintOpen} onToggle={(event) => setHintOpen(event.currentTarget.open)} data-testid="actions-hint">
+              <summary>{c("Что делают эти кнопки", "What these buttons do")}</summary>
+              <span className={r.note}>{c(
+                "«Лагерь» — отдых и лечение. «Заметка» — твоя запись в журнал. «Что я знаю?» — улики и факты, которые герой уже узнал. «Закончить сессию» — ведущий подведёт итог главы и покажет, что тем временем случилось.",
+                "“Camp” — rest and healing. “Note” — your own journal entry. “What do I know?” — the clues and facts the hero has learned. “End the session” — the DM sums up the chapter and shows what happened meanwhile.")}</span>
+            </details>
           </section>
         )}
-        {!preview && play && !play.startupPending && (
-          // Item 57: the owner's editor opens only when the owner opens it (never forced open by a fight or a poll).
-          <details className={g.more}>
-            <summary>{c("Редактор кампании · для владельца", "Campaign editor · for the owner")}</summary>
-            <div className={r.stack}>
-              <span className={r.note}>{c("Инструменты правки записей. В обычной игре они не нужны: ведущий ведёт всё сам. Каждый подписан — когда он может пригодиться.", "Tools for correcting the records. Ordinary play does not need them: the DM keeps everything. Each one says when it may be useful.")}</span>
-              <Link className={r.btnGhost} href={href("owner")}>{c("Цена ходов и что видит ведущий", "The price of turns and what the DM sees")}</Link>
-              {play.rulesetId === "world-logic-v1" && (
-                <div className={r.stack}>
-                  <span className={`${r.small} ${r.muted}`}>{c("Боевая готовность: утвердить боевые числа героя, если их не было при создании.", "Combat readiness: approve the hero's combat numbers if creation had none.")}</span>
-                  <CombatReadiness campaignId={data.campaign.id} runtimeRevision={play.revision} onSaved={runtime.afterMutation} />
-                </div>
-              )}
-              {!combat && (play.turns.some((turn) => turn.mode === "mechanic") || play.rulesetId !== "world-logic-v1") && (
-                <div className={r.stack}>
-                  <span className={`${r.small} ${r.muted}`}>{c("Бой по правилам: ручной учёт, если ведущий ошибся в раунде.", "Combat by the rules: manual bookkeeping when the DM got a round wrong.")}</span>
-                  <GameplayCombat play={play} onSaved={runtime.afterMutation} manualControls={false} />
-                </div>
-              )}
-              {play.turns.some((turn) => turn.mode === "mechanic") && (
-                <div className={r.stack}>
-                  <span className={`${r.small} ${r.muted}`}>{c("Механические ходы: история прямых команд правилам.", "Mechanic turns: the history of direct rule commands.")}</span>
-                  <GameplayComposer play={play} mode="mechanic" onSaved={runtime.afterMutation} historyOnly />
-                </div>
-              )}
-              {play.rulesetId !== "world-logic-v1" && (
-                <div className={r.stack}>
-                  <span className={`${r.small} ${r.muted}`}>{c("Отдых по правилам: прямое восстановление, если лагерь не подошёл.", "Rest by the rules: a direct recovery when the camp did not fit.")}</span>
-                  <GameplayRest play={play} onSaved={runtime.afterMutation} />
-                </div>
-              )}
-              <div className={r.stack}>
-                <span className={`${r.small} ${r.muted}`}>{c("Сессия как запись: открыть или закрыть её вручную, если итог не нужен.", "The session as a record: open or close it by hand when no digest is wanted.")}</span>
-                <GameSessionControls sessionId={session?.id ?? null} />
-              </div>
-              {!loopRuntime && (
-                <details className={r.stack}>
-                  <summary>{c("Закончить сессию (прежний ход)", "End the session (previous runtime)")}</summary>
-                  <SessionMemoryPanel sessionId={session?.id ?? null} />
-                </details>
-              )}
-              <div className={r.stack}>
-                <span className={`${r.small} ${r.muted}`}>{c("Правка записей: точка продолжения — откуда ведущий продолжит; запись в стенограмму — сцена, которую ты добавляешь сам; «Сессии» — список всех сессий.", "Record corrections: the resume point — where the DM continues from; a transcript record — a scene you add yourself; “Sessions” — the list of all sessions.")}</span>
-                <div className={r.row}>
-                  <button type="button" className={r.btnGhost} onClick={() => setResume(true)}>{c("Правка точки продолжения", "Edit the resume point")}</button>
-                  {session && <button type="button" className={r.btnGhost} onClick={() => setSceneEditor("new")}>{c("Добавить запись в стенограмму", "Add a transcript record")}</button>}
-                  <Link className={r.btnGhost} href={href("sessions")}>{c("Сессии", "Sessions")}</Link>
-                </div>
-              </div>
-              {session && (
-                <div className={r.stack}>
-                  <span className={`${r.small} ${r.muted}`}>{c("Стенограмма: записи этой сессии; каждую можно исправить, историю ходов это не меняет.", "Transcript: this session's records; each can be corrected without changing the turn history.")}</span>
-                  {/* Item 57: the session's records stay folded — opening the editor never unfolds the whole story under the play screen. */}
-                  <details className={g.transcript}>
-                    <summary>{c("Открыть стенограмму сессии", "Open the session transcript")}</summary>
-                    <Transcript data={data} session={session} onEdit={setSceneEditor} />
-                  </details>
-                </div>
-              )}
-              {(play.rulesetId !== "world-logic-v1" || play.configuration) && (
-                <details>
-                  <summary>{c.t("Manual encounter controls")}</summary>
-                  <span className={`${r.small} ${r.muted}`}>{c("Ручное управление столкновением: начать или закончить бой без ведущего.", "Manual encounter controls: start or end a fight without the DM.")}</span>
-                  <GameplayCombat play={play} onSaved={runtime.afterMutation} />
-                </details>
-              )}
-            </div>
-          </details>
-        )}
-        {resume && <ResumeEditor data={data} onClose={() => setResume(false)} />}
-        {sceneEditor && session && <SceneEditor scene={sceneEditor === "new" ? undefined : sceneEditor} sessionId={session.id} onClose={() => setSceneEditor(null)} />}
+        {/* A session read that failed, or a boundary to review, shows its recovery here (nothing otherwise); the
+            rest of the owner's editor is on «Ещё → Для владельца» (FIX_S4 item 6). */}
+        {actionsShown && <GameSessionControls sessionId={session?.id ?? null} />}
       </div>
       <aside id="registry-game-aside" className={g.aside} data-open={asideOpen ? "true" : "false"} aria-label={c("Герой, партия и цели", "Hero, party and goals")}>
         <Panel label={c("Герой", "Hero")}>
