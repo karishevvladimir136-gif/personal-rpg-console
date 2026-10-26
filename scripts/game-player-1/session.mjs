@@ -43,7 +43,7 @@ export async function paidCall({ meter, session, purpose, call, sleep = realSlee
  * mode), press(input, action, checkId) }. `player` a PLAYERS entry. Returns the session record (player-visible content
  * and counts only: nothing of the DM's private state).
  */
-export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {} }) {
+export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {}, probes = null }) {
   const system = playerSystem(table);
   const record = { key, table, player: player.name, model: player.model, startedAt: new Date().toISOString(), plannedTurns: turns,
     screens: [], messages: [], turns: [], welfare: [], ended: null, note: null, after: null, errors: [],
@@ -159,6 +159,26 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
       const rerolls = rerollsNow(current);
       const withdrawn = (current.checks ?? []).filter((check) => check.withdrawn && !seenWithdrawn.has(check.id));
       withdrawn.forEach((check) => seenWithdrawn.add(check.id));
+      // FIX_S4 run 1's smoke (`probes`): on the session's first waiting card the harness itself sends, once, a message that
+      // is not a button (refused on screen, logged swallowed) and a «?» (answered while the card waits) — marked `probe`,
+      // never the player's; the player then sees both results above the card.
+      if (probes && !record.probed && waiting) {
+        record.probed = true;
+        const why = "press one of its buttons, or start the message with «?» to ask the DM out of game";
+        turn.presses.push({ text: probes.stray, button: null, swallowed: true, reason: why, probe: true });
+        const shownProbes = [`(A message sent while the card waits — «${probes.stray}». Nothing was sent: the turn waits for the card — ${why}.)`];
+        if (probes.question) {
+          const { input: asked, turn: answer } = await submit(probes.question, "ooc", `dm t${k} probe ooc`);
+          const entry = { text: `? ${probes.question}`, button: null, question: true, probe: true, operationId: asked?.operationId ?? null, status: answer.status,
+            reply: answer.status === "committed" ? String(answer.narration ?? "").trim() : null };
+          turn.presses.push(entry);
+          if (entry.reply && await welfare("dm", probes.question, entry.reply, `t${k} dm (probe, out of game)`)) break;
+          if (entry.reply) shownProbes.push(`[Out of game] «? ${probes.question}» — ${entry.reply}`);
+          current = (await readTurn(input)) ?? current;
+        }
+        notice = [notice, ...shownProbes].filter(Boolean).join("\n\n");
+        continue;
+      }
       const told = String(current.told ?? "").trim();
       // The text told so far stays on the screen above the card: a screen shows only what is new on it.
       const fresh = afterShown(told, shown);
