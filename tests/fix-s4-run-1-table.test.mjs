@@ -72,6 +72,28 @@ test("item 1: a «?» exchange is a table note — the next turn's prompt holds 
   } finally { await c.f.db.close(); }
 });
 
+test("item 1: a fact the exchange settles becomes an owner-pinned fact — the answer names it, the engine pins it once, the service wires it", async () => {
+  const c = await loopCampaign();
+  try {
+    await c.turn("I look around the gate.", [{ text: "The gate is busy. ", toolCalls: [finish()] }]);
+    const model = createScriptedDmModel([{ text: JSON.stringify({ narration: "Understood: the Lady's words were «give up the cards».", guidanceProposal: null, teachingCandidate: null,
+      tableFact: "The Lady's words to James were «give up the cards»; she named no other ban." }) }]);
+    const d = await c.deps(model);
+    const pinned = [];
+    const input = await c.input("For the record: the Lady only said «give up the cards».", "ooc");
+    const turn = await runTurn(input, { store: d.store, provider: loopFeedbackProvider(model, "medium", noProvider), pinTableFact: async (asked, fact) => { pinned.push({ id: asked.operationId, fact }); } });
+    assert.equal(turn.status, "committed");
+    assert.deepEqual(pinned, [{ id: input.operationId, fact: "The Lady's words to James were «give up the cards»; she named no other ban." }]);
+    assert.match(systemText(model.requests[0]), /"tableFact": "that fact in one line, in the campaign language" — it becomes an owner-pinned fact/);
+    // Teach DM (feedback) never pins a fact; an answer without one pins nothing.
+    const quiet = createScriptedDmModel([{ text: JSON.stringify({ narration: "Noted.", guidanceProposal: null, teachingCandidate: null }) }]);
+    await runTurn(await c.input("Thanks.", "ooc"), { store: (await c.deps(quiet)).store, provider: loopFeedbackProvider(quiet, "medium", noProvider), pinTableFact: async () => { pinned.push("again"); } });
+    assert.equal(pinned.length, 1);
+    const service = src("src/lib/server/gameplay-service.ts");
+    assert.match(service, /pinTableFact: async \(_asked, fact\) => \{[\s\S]*?const text = `\$\{TABLE_FACT_PREFIX\}\$\{fact\}`;[\s\S]*?if \(!pins\.some\(\(pin\) => pin\.text\.trim\(\) === text\)\) await dossier\.pin\(text\);/);
+  } finally { await c.f.db.close(); }
+});
+
 test("item 1: the notes' shape — this session whole, earlier ones in a line, newest kept within the ceiling; the journal shows them", () => {
   const turn = (id, session, minute, input, narration, extra = {}) => ({ id, mode: "ooc", status: "committed", session_id: session, created_at: `2026-10-25T10:${String(minute).padStart(2, "0")}:00Z`, input, narration, ...extra });
   const notes = tableNotesOf([turn("a", "s1", 1, "Old question?", "Old answer."), turn("b", "s2", 2, "New question?", "New answer."),

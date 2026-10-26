@@ -89,6 +89,8 @@ export type FeedbackResult = {
   /** Fix S4 run 1 (items 3, 11b): the waiting cards an out-of-game answer withdraws (loop campaigns only; the server
    * checks each id against the paused turn's waiting cards). */
   withdrawChecks?: { id: string; reason: string | null }[];
+  /** FIX_S4 item 1: a fact of the hero's story settled in this out-of-game exchange (pinned as an owner fact). */
+  tableFact?: string | null;
 };
 export type ProviderUsage = {
   model: string;
@@ -412,6 +414,8 @@ export type TurnDependencies = {
   /** Fix S4 run 1 (items 3, 11b): an out-of-game answer on a dm-loop campaign may withdraw the waiting cards it names;
    * the hook checks them against the paused turn's waiting cards and records the withdrawals before the answer commits. */
   withdrawChecks?: (input: TurnInput, requests: { id: string; reason: string | null }[]) => Promise<unknown>;
+  /** FIX_S4 item 1: the fact an out-of-game answer settled, pinned before the answer commits (never fails it). */
+  pinTableFact?: (input: TurnInput, fact: string) => Promise<unknown>;
 };
 export type ModelBudget = {
   model: string;

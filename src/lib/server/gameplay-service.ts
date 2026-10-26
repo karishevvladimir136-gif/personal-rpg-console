@@ -34,7 +34,7 @@ import { markBoostUsed, readDmSettings, type DmSettings } from "./dm-settings";
 import { dossierService } from "./dossier";
 import { digestOnEntry, entryCheckDue } from "./session-digest";
 import { syncWorldFromDossier } from "./world-bridge";
-import { loopFeedbackProvider } from "../gameplay/dm-loop/feedback";
+import { loopFeedbackProvider, TABLE_FACT_PREFIX } from "../gameplay/dm-loop/feedback";
 import { withdrawByDm } from "../gameplay/dm-loop/check-corrections";
 import { readPublicCampaign } from "./public-campaign";
 import type { TurnStore } from "../gameplay/server-contracts";
@@ -369,7 +369,14 @@ export async function submitTurn(campaignId: string, value: unknown) {
     const pin = dmLoopPinFromProfile(dmLoopProfile((await readProductionSettings(campaignId)).runtimePolicy, feedbackSettings.dmTurn));
     // Fix S4 run 1 (items 3, 11b): a «?» goes through while a roll card waits; the answer may withdraw a waiting card.
     return runTurn(input, { store, provider: loopFeedbackProvider(createDmModel(pin), pin.effort, production.provider),
-      withdrawChecks: (asked, requests) => withdrawByDm(store, campaignId, asked.operationId, requests) });
+      withdrawChecks: (asked, requests) => withdrawByDm(store, campaignId, asked.operationId, requests),
+      // FIX_S4 item 1: the settled fact, pinned once (the owner sees it pinned in the journal and may unpin it).
+      pinTableFact: async (_asked, fact) => {
+        const dossier = await dossierService(user.id, campaignId);
+        const text = `${TABLE_FACT_PREFIX}${fact}`;
+        const pins = (await readPublicCampaign(campaignId).catch(() => null))?.campaign.pinned_facts ?? [];
+        if (!pins.some((pin) => pin.text.trim() === text)) await dossier.pin(text);
+      } });
   }
   return runTurn(input, {
     store,

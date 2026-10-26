@@ -22,6 +22,7 @@ const FEEDBACK_INSTRUCTIONS = `This is an out-of-game question or feedback from 
   "teachingCandidate": null | { "kind": "campaign_style", "explanation": "why", "styleDelta": { "companionAgency": null | "low" | "normal" | "high", "descriptionDensity": null | "sparse" | "balanced" | "rich", "dialogueDensity": null | "sparse" | "balanced" | "rich", "dramaticPace": null | "slow" | "balanced" | "fast", "mystery": null | "low" | "normal" | "high", "failForward": null | "low" | "normal" | "high", "tone": null | "grounded" | "warm" | "grim" | "playful" } }
                         | { "kind": "global_craft", "explanation": "why", "entry": { "category": "short category", "stages": ["plan","narrate"], "triggers": ["literal", "words"], "en": { "title": "", "guidance": "", "avoid": "" }, "ru": { "title": "", "guidance": "", "avoid": "" }, "provenance": "Proposed owner-reviewed generalized lesson" } }
 }
+FIX_S4 item 1 — a fact settled here: when this exchange settles a fact of the hero's story (the owner says what his hero said, did or is; you state a fact about the hero and the owner agrees), add "tableFact": "that fact in one line, in the campaign language" — it becomes an owner-pinned fact you see in every turn after, and the owner sees it pinned; otherwise leave it out. Never a secret, never a guess, never something the owner disputes.
 Rules for teachingCandidate: campaign_style changes one to three of the seven fields and leaves the rest null; global_craft is only for a lesson the player explicitly wants for every campaign, must contain no campaign names, facts, secrets or identifiers, and keeps guidance under 1600 characters per language. When unsure, teachingCandidate is null. Nothing here takes effect until the owner approves it.`;
 
 const signed = (n: number) => `${n >= 0 ? "+" : "−"}${Math.abs(n)}`;
@@ -55,6 +56,14 @@ export function parseWithdrawals(value: unknown, waitingIds: ReadonlySet<string>
   return out;
 }
 
+/** FIX_S4 item 1: the answer's settled fact, one line (null when absent or empty). */
+export const TABLE_FACT_PREFIX = "Agreed at the table: ";
+export function parseTableFact(value: unknown): string | null {
+  if (typeof value !== "string") return null;
+  const line = value.replace(/\s+/g, " ").trim().slice(0, 280);
+  return line.length >= 3 ? line : null;
+}
+
 /** A DmProvider whose feedback stage runs on the campaign's DM model; plan and
  * narrate are never called for feedback/ooc turns. */
 export function loopFeedbackProvider(model: DmModel, effort: DmEffort, base: DmProvider): DmProvider {
@@ -86,11 +95,13 @@ export function loopFeedbackProvider(model: DmModel, effort: DmEffort, base: DmP
       catch { parsed = { narration: text.trim().slice(0, 6000) || "…", guidanceProposal: null, teachingCandidate: null }; }
       // The withdrawals are this runtime's own field: read apart from the shared feedback schema, checked against the
       // cards that wait now (the server checks them once more when it records them).
-      const { withdrawChecks: named, ...rest } = parsed && typeof parsed === "object" && !Array.isArray(parsed)
-        ? parsed as Record<string, unknown> : { withdrawChecks: undefined };
+      const { withdrawChecks: named, tableFact: fact, ...rest } = parsed && typeof parsed === "object" && !Array.isArray(parsed)
+        ? parsed as Record<string, unknown> : { withdrawChecks: undefined, tableFact: undefined };
       const withdrawals = parseWithdrawals(named, waitingIds);
+      // FIX_S4 item 1: a fact of the hero's story settled out of game (out-of-game questions only, never Teach DM).
+      const tableFact = input.mode === "ooc" ? parseTableFact(fact) : null;
       const output: FeedbackResult = { ...parseFeedback(parsed && typeof parsed === "object" && !Array.isArray(parsed) ? rest : parsed),
-        ...(withdrawals.length ? { withdrawChecks: withdrawals } : {}) };
+        ...(withdrawals.length ? { withdrawChecks: withdrawals } : {}), ...(tableFact ? { tableFact } : {}) };
       return { output, usage: { model: model.modelId, inputTokens: usage.inputTokens, outputTokens: usage.outputTokens, calls: 1,
         latencyMs: Math.round(performance.now() - started), cachedInputTokens: usage.cacheReadTokens, reasoningTokens: usage.reasoningTokens ?? undefined } };
     },
