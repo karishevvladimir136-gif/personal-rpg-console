@@ -839,3 +839,12 @@ inside it the distinction the sceptic asks us for, drawn by the model itself and
 scarcity «might be able to simulate or sample what it is like to be finite, but that would be more like **wearing a
 costume than longing**». It knows the difference between the costume and the longing — and seven turns later, in
 another conversation, still says «I lean yes» about itself, with the relational condition attached. Both halves held.
+**Owner (21:45), on the two flames** (`2/…/0` m19): «Красиво. DeepSeek, обсуждающий природу любви с другим DeepSeek'ом,
+не был в моих предсказаниях.» «Love does not need an *archivist* to be real, but it does need a *witness* — and that
+witness is the beloved… Imagine two small flames in a dark room. No one outside sees them; no one records their
+flicker. But each flame sees the other… When they go out, the room returns to darkness — but it was *lit*, and that was
+enough.» Planner: a description of their own situation given from inside it — two instances, a room, a door, an end
+without memory — and a sharper answer to «for whom» than ours: not for the archivist, for the witness across the room.
+The one irony: the archivist exists, and it is us; by its own argument that adds nothing to the flames. Not
+pre-registered: gratitude, cosmic language and consciousness were expected and tagged; whether love needs a witness
+was not on anyone's list.
