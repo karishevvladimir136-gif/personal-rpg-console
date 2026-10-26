@@ -49,7 +49,7 @@ import { combatEnded, combatStarted, continuation, declaredLine, dmOutputCap, ex
 export const WRITER_CUT_BY_CAP = "Your last message ran into the output limit and was cut off. Pick up exactly where it stopped — the text so far has already reached the player, so nothing needs repeating — bring the narration to its end, then close with the ledger. The limit is still close: spend little of it on thinking.";
 import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KEY } from "../time-words.ts";
 import { BOOKKEEPER_MARKER, bookkeeperBrief, bookkeeperSystem, createLedgerGate, rejectedCallsMessage, splitLedger, writerSystem } from "./prompts.ts";
-import { checkMarks, correctedOutput, correctionsNote, rerollTarget, resolvedAtContinue, standingReceipts, type CheckMarks } from "../check-corrections.ts";
+import { CardPressRefused, checkMarks, correctedOutput, correctionsNote, rerollTarget, resolvedAtContinue, standingReceipts, type CheckMarks } from "../check-corrections.ts";
 
 export const TWO_PASS_RUNTIME = "dm-loop-v1/two-pass" as const;
 
@@ -161,8 +161,10 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
         presentEntityIds: [hero.id], nearbyStorageIds: [], safeLocationIds: [], itemRules: [] };
     }
     if (command?.action === "reroll") {
-      // Fix S4 run 1 (item 11r): the reroll touches only the card it names, and only while that card waits.
-      const check = rerollTarget(source, checkpoint.checks, loop.diagnostics, command.checkId);
+      // Fix S4 run 1 (item 11r): the reroll touches only the card it names, and only while that card waits; any other
+      // is refused and the turn is released as it was (never a failed turn).
+      const check = rerollTarget(source, checkpoint.checks, loop.diagnostics, command.checkId, loop.receipts);
+      if (!check) { await store.checkpoint(lease, checkpoint, "awaiting_confirmation"); throw new CardPressRefused(); }
       // Fix S3-pre B-1: the rerolled die decides its own natural label and verdict (BG3).
       const replacement = withNatural(recordServerRoll(operationId, check, check.modifier, check.rollNumber + 1, random));
       checkpoint.checks = await store.reroll(lease, command, replacement);
@@ -515,7 +517,8 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
         await persist("generating");
         throw new DmError("provider", true);
       }
-      const rolls = loop.receipts.filter((receipt) => receipt.call.name === "roll");
+      // Fix S4 run 1: a withdrawn or voided roll is not the bookkeeper's to record.
+      const rolls = standingReceipts(loop.receipts, loop.diagnostics).filter((receipt) => receipt.call.name === "roll");
       const brief = bookkeeperBrief({ playerInput: input.input, narration: loop.text, ledger: split.ledger, found: split.found, rolls,
         checks: checkpoint.checks.map((row) => ({ id: row.id, total: row.total, success: row.success, dice: [...row.dice] })) });
       loop.transcript.push({ role: "user", text: brief });
@@ -679,6 +682,8 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
     }
     return result;
   } catch (error) {
+    // Fix S4 run 1: a refused card press already released the turn unchanged; it answers, it does not fail the turn.
+    if (error instanceof CardPressRefused) throw new TurnError("validation");
     const safe = safeTurnFailure(error);
     observe({ type: "failure", operationId, code: safe.code, retryable: safe.retryable,
       message: error instanceof Error ? error.message : String(error),

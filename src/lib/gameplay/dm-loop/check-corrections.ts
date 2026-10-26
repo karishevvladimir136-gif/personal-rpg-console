@@ -52,12 +52,28 @@ export function playerCard(source: RuntimeSource, check: RecordedCheck): boolean
   return check.actorId === hero?.id || parseDmOptions(source.dmOptions).companionRolls === "player";
 }
 
-/** The reroll of a paused turn touches only the card it names, and only while that card waits at this pause. */
-export function rerollTarget(source: RuntimeSource, checks: RecordedCheck[], diagnostics: readonly unknown[], checkId: string | null): RecordedCheck {
+/** A card press refused inside a claimed turn: the turn is released as it was (never a failed turn). */
+export class CardPressRefused extends Error {
+  constructor() { super("card press refused"); this.name = "CardPressRefused"; }
+}
+
+/** A roll that carried its damage — an attack or a save with damage, an attack resolved in the fight (the same rule as
+ * the public turn's `bundledDamage`): a reroll would not redo the damage already rolled and applied (FIX_S4 11k's gap). */
+export function carriesDamage(receipts: readonly DmLoopReceipt[], checkId: string): boolean {
+  return receipts.some((receipt) => {
+    if (!receipt.result.ok || receipt.result.check?.id !== checkId) return false;
+    const value = receipt.result.value as { damage?: unknown; resolvedBy?: unknown };
+    return (!!value.damage && typeof value.damage === "object") || value.resolvedBy === "fight" || receipt.call.name === "combat";
+  });
+}
+
+/** The reroll of a paused turn touches only the card it names, and only while that card waits at this pause and its
+ * roll carried no damage (null: refused — the caller releases the turn unchanged and answers with a validation error). */
+export function rerollTarget(source: RuntimeSource, checks: RecordedCheck[], diagnostics: readonly unknown[], checkId: string | null,
+  receipts: readonly DmLoopReceipt[]): RecordedCheck | null {
   const check = checks.find((row) => row.id === checkId);
-  requireRule(check && playerCard(source, check) && !closedCheck(checkMarks(diagnostics), check.id) &&
-    source.snapshot.settings.values.difficulty.rerolls !== "disabled");
-  return check;
+  return check && playerCard(source, check) && !closedCheck(checkMarks(diagnostics), check.id) && !carriesDamage(receipts, check.id) &&
+    source.snapshot.settings.values.difficulty.rerolls !== "disabled" ? check : null;
 }
 
 /** «Onward»: the displayed checks of this pause are resolved (one mark; none when nothing new). */
@@ -103,10 +119,14 @@ export function correctedOutput(marks: CheckMarks, checkId: string | null | unde
   return null;
 }
 
-/** The receipts whose rolls the player still holds as made (a withdrawn roll is never «told»). */
+/** The receipts whose rolls still count: a withdrawn roll never happened and a voided one did not either — neither is
+ * asked to be told, checked as untold, or handed to the bookkeeper to record. */
 export function standingReceipts(receipts: DmLoopReceipt[], diagnostics: readonly unknown[]): DmLoopReceipt[] {
   const marks = checkMarks(diagnostics);
-  return receipts.filter((receipt) => !(receipt.result.ok && receipt.result.check && marks.withdrawn.has(receipt.result.check.id)));
+  return receipts.filter((receipt) => {
+    const id = receipt.result.ok ? receipt.result.check?.id : undefined;
+    return !id || !(marks.withdrawn.has(id) || marks.voided.has(id));
+  });
 }
 
 // ---- The corrections (withdraw a waiting card, void a rolled one) -------------------------------------------------

@@ -11,6 +11,7 @@ type CardCheck = {
   resolved?: boolean;
   withdrawn?: { by: "dm" | "owner"; reason: string | null } | null;
   voided?: { by: "owner"; note: string | null; at?: string | null } | null;
+  bundledDamage?: boolean;
 };
 
 export type CardState = "waiting" | "resolved" | "withdrawn" | "voided";
@@ -28,9 +29,15 @@ export function waitingCards<T extends CardCheck>(turn: CardTurn & { checks?: re
   return (turn.checks ?? []).filter((check) => cardState(turn, check) === "waiting");
 }
 
-/** The cards an allowed reroll may touch now: waiting cards the server offers a reroll on. */
+/** The cards an allowed reroll may touch now: waiting cards the server offers a reroll on — never one whose roll
+ * carried its damage (a new die would not redo the damage already dealt). */
 export function rerollableCards<T extends CardCheck>(turn: CardTurn & { checks?: readonly T[] | null }): T[] {
-  return waitingCards(turn).filter((check) => check.canReroll === true);
+  return waitingCards(turn).filter((check) => check.canReroll === true && !check.bundledDamage);
+}
+
+/** A waiting card that takes no reroll because its roll carried its damage. */
+export function rerollBlockedByDamage(turn: CardTurn, check: CardCheck): boolean {
+  return cardState(turn, check) === "waiting" && check.bundledDamage === true;
 }
 
 /** A rolled card the owner may void (a correction): resolved, on a paused or a committed turn. */

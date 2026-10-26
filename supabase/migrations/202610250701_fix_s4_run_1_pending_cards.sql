@@ -10,7 +10,9 @@
 --     of a paused turn; a void is the owner's, on a paused or a committed turn. Refused while a claimant holds the
 --     turn's lease, for a check that is not one of the turn's player-visible checks, for a withdrawal of a resolved
 --     check, and a second time for the same check; the same request again returns the turn as it is.
---   * The invariant behind the loop's own refusal: a resolved, withdrawn or voided check is never rerolled.
+--   * A roll that carried its damage (an attack or a save with damage, an attack resolved in the fight) carries
+--     `bundledDamage: true` and no reroll: a new die would not redo the damage already rolled and applied.
+--   * The invariant behind the loop's own refusal: a resolved, withdrawn, voided or damage-carrying check is never rerolled.
 -- Additive only: one wrapper over the public turn and one over the runtime entry point; no table, column or row changed.
 begin;
 
@@ -22,10 +24,16 @@ declare result jsonb:=rpg_private.runtime_public_turn_before_fix_s4_cards(t); ma
  entry jsonb; mark jsonb; line text; at integer; ru boolean; begin
  if t.runtime_identity is distinct from 'dm-loop-v1' or jsonb_typeof(result->'checks') is distinct from 'array'
    or jsonb_array_length(result->'checks')=0 then return result; end if;
- marks:=t.checkpoint#>'{dmLoop,diagnostics}';
- if jsonb_typeof(marks) is distinct from 'array' or not exists(select 1 from jsonb_array_elements(marks) d
-   where d->>'kind' in ('checks_resolved','check_withdrawn','check_voided')) then return result; end if;
+ marks:=coalesce(t.checkpoint#>'{dmLoop,diagnostics}','[]'::jsonb);
+ if jsonb_typeof(marks) is distinct from 'array' then marks:='[]'::jsonb; end if;
  for entry in select v.value from jsonb_array_elements(result->'checks') with ordinality v(value,n) order by v.n loop
+   -- A roll that carried its damage (an attack or a save with damage, an attack resolved in the fight): a reroll would
+   -- not redo the damage already rolled and applied, so the card offers none.
+   if exists(select 1 from jsonb_array_elements(coalesce(t.checkpoint#>'{dmLoop,receipts}','[]'::jsonb)) r
+     where r.value#>>'{result,check,id}'=entry->>'id' and (jsonb_typeof(r.value#>'{result,value,damage}')='object'
+       or r.value#>>'{result,value,resolvedBy}'='fight' or r.value#>>'{call,name}'='combat')) then
+     entry:=entry||jsonb_build_object('canReroll',false,'bundledDamage',true);
+   end if;
    if exists(select 1 from jsonb_array_elements(marks) d where d->>'kind'='checks_resolved'
      and jsonb_typeof(d->'ids')='array' and d->'ids' ? (entry->>'id')) then
      entry:=entry||jsonb_build_object('canReroll',false,'resolved',true);
@@ -114,10 +122,13 @@ begin
  end if;
  if p_action='reroll' and jsonb_typeof(p_payload)='object' and coalesce(p_payload->>'operationId','') ~ uuid_pattern then
    select * into t from rpg_private.turns where id=(p_payload->>'operationId')::uuid and campaign_id=p_campaign_id;
-   if t.runtime_identity='dm-loop-v1' and jsonb_typeof(t.checkpoint#>'{dmLoop,diagnostics}')='array' and exists(
+   if t.runtime_identity='dm-loop-v1' and ((jsonb_typeof(t.checkpoint#>'{dmLoop,diagnostics}')='array' and exists(
      select 1 from jsonb_array_elements(t.checkpoint#>'{dmLoop,diagnostics}') d
      where (d->>'kind' in ('check_withdrawn','check_voided') and d->>'id'=p_payload#>>'{command,checkId}') or
-       (d->>'kind'='checks_resolved' and jsonb_typeof(d->'ids')='array' and d->'ids' ? (p_payload#>>'{command,checkId}'))) then
+       (d->>'kind'='checks_resolved' and jsonb_typeof(d->'ids')='array' and d->'ids' ? (p_payload#>>'{command,checkId}')))) or
+     exists(select 1 from jsonb_array_elements(coalesce(t.checkpoint#>'{dmLoop,receipts}','[]'::jsonb)) r
+       where r.value#>>'{result,check,id}'=p_payload#>>'{command,checkId}' and (jsonb_typeof(r.value#>'{result,value,damage}')='object'
+         or r.value#>>'{result,value,resolvedBy}'='fight' or r.value#>>'{call,name}'='combat'))) then
      raise exception 'rpg_validation';
    end if;
  end if;

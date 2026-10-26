@@ -245,8 +245,8 @@ export function GameplayComposer({
   const refusedCardPress = (cause: unknown, action: ResumeInput["action"]) =>
     cause instanceof GameplayClientError && cause.code === "validation" && ["reroll", "withdraw", "void"].includes(action);
   const cardRefusal = (action: ResumeInput["action"]) => action === "reroll"
-    ? c("Переброс не принят: эта карточка уже не ждёт или перебросов не осталось. Ничего не изменилось.",
-      "The reroll was refused: that card is no longer waiting, or no reroll is left. Nothing changed.")
+    ? c("Переброс не принят: эта карточка уже не ждёт, перебросов не осталось, или урон этого броска уже нанесён. Ничего не изменилось.",
+      "The reroll was refused: that card is no longer waiting, no reroll is left, or its roll already dealt its damage. Nothing changed.")
     : action === "withdraw"
       ? c("Проверку не сняли: эта карточка уже не ждёт. Ничего не изменилось.", "The check was not withdrawn: that card is no longer waiting. Nothing changed.")
       : c("Бросок не отменён: он уже отменён, или его карточка ещё ждёт (тогда её можно снять). Ничего не изменилось.",

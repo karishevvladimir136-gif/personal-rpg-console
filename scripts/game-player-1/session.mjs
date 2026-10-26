@@ -193,7 +193,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
       if (button) turn.presses.push({ text: pressed, button });
       if (button === BUTTONS.roll) { revealed.add(shownKey(waiting)); continue; }
       if (button === BUTTONS.onward) { current = await press(input, "continue", null, `dm t${k} onward`); continue; }
-      const reroll = rerollPress(pressed, rerollable);
+      const reroll = rerollPress(pressed, rerollable, waiting ? [] : live.filter((check) => check.bundledDamage));
       if (reroll?.check) {
         turn.presses.push({ text: pressed, button: BUTTONS.reroll, checkId: reroll.check.id, card: cardTitle(reroll.check) });
         current = await press(input, "reroll", reroll.check.id, `dm t${k} reroll`);

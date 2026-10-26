@@ -119,10 +119,14 @@ export function TurnTimeline({ turn, trace, label, heroId, party, companionRolls
     const hero = check.actorId === heroId;
     const footer = live ? (
       <>
-        {check.canReroll && (
+        {check.canReroll && !check.bundledDamage && (
           <button type="button" className={`text-link ${t.reroll}`} disabled={busy} onClick={() => onCommand("reroll", check.id)}>
             {c(`Запросить разрешённый переброс — ${title}`, `Request an allowed reroll — ${title}`)}
           </button>
+        )}
+        {/* Fix S4 run 1 (11k's gap): a roll that carried its damage takes no reroll — a new die would not redo the damage. */}
+        {check.bundledDamage && (
+          <span className={t.rerollCount} role="note">{c("Без переброса: урон этого броска уже нанесён, новый кубик его не переиграет.", "No reroll here: this roll's damage is already dealt, and a new die would not redo it.")}</span>
         )}
         {rerollCount && hero && (
           <span className={t.rerollCount}>{rerollCount.left === null ? c("перебросов: без ограничений", "Rerolls left: unlimited")

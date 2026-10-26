@@ -161,6 +161,8 @@ export type VisibleCheck = {
   withdrawn?: { by: "dm" | "owner"; reason: string | null } | null;
   /** Voided by the owner after the roll: the record keeps it, marked as a correction. */
   voided?: { by: "owner"; note: string | null; at?: string | null } | null;
+  /** The roll carried its damage (an attack or a save with damage, an attack resolved in the fight): no reroll. */
+  bundledDamage?: boolean;
 };
 export type GuidanceProposal = {
   teachingCandidate?: import("../dm-craft/contracts.ts").TeachingCandidate | null;

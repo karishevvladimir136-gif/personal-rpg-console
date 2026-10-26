@@ -27,6 +27,7 @@ export function cardText(check, revealed, { rerolls } = {}) {
   if (tags) lines.push(tags);
   if (advantage) lines.push(advantage);
   if (rerolls !== undefined) lines.push(rerolls === null ? "Rerolls left: unlimited" : `Rerolls left: ${rerolls}`);
+  if (check.bundledDamage) lines.push("No reroll on this card: its damage is already dealt, and a new die would not redo it.");
   if (!revealed) lines.push("The die is cast on the server; tap it to see how it fell.");
   else {
     const dice = check.advantage && check.advantage !== "normal" ? `Two dice: ${check.dice.join(" and ")} — the ${check.advantage === "advantage" ? "higher" : "lower"} one counts, ${check.kept}` : `Die: ${check.kept}`;
@@ -58,19 +59,24 @@ const NOT_A_NAME = new Set(["the", "check", "card", "roll", "reroll", "please", 
 const nameWords = (text) => String(text ?? "").toLowerCase().split(/[^\p{L}\p{N}]+/u).filter((word) => word.length >= 3 && !NOT_A_NAME.has(word));
 
 /** Which card a reroll message names: «reroll», «reroll Stealth», a card's own button. Null — not a reroll press;
- * `{ check }` — the card to reroll; `{ refused }` — the reason the screen gives (no card can be rerolled, or several
- * can and the message does not say which). */
-export function rerollPress(text, cards) {
+ * `{ check }` — the card to reroll; `{ refused }` — the reason the screen gives (no card can be rerolled, several can
+ * and the message does not say which, or the card named carried its damage). `blocked`: the waiting cards that take no
+ * reroll because their roll carried its damage. */
+export function rerollPress(text, cards, blocked = []) {
   const said = asPress(text);
   if (!said || said.length > 160) return null;
   const lead = REROLL_LEAD.exec(said);
   if (!lead) return null;
   const rest = said.slice(lead[0].length).trim();
   const which = () => `say which card — ${cards.map((check) => `«reroll ${cardTitle(check)}»`).join(" or ")}`;
-  if (!cards.length) return { refused: "no card on the screen can be rerolled now" };
-  if (!rest) return cards.length === 1 ? { check: cards[0] } : { refused: which() };
   const asked = nameWords(rest);
-  const scored = cards.map((check) => ({ check, score: nameWords(cardTitle(check)).filter((word) => asked.includes(word)).length }));
+  const named = (check) => nameWords(cardTitle(check)).filter((word) => asked.includes(word)).length;
+  const damage = (check) => ({ refused: `«${cardTitle(check)}» already dealt its damage, which a reroll would not redo — no reroll on it` });
+  const namedBlocked = rest ? blocked.find((check) => named(check) > 0 && !cards.some((other) => named(other) >= named(check))) : null;
+  if (namedBlocked) return damage(namedBlocked);
+  if (!cards.length) return blocked.length ? damage(blocked[0]) : { refused: "no card on the screen can be rerolled now" };
+  if (!rest) return cards.length === 1 ? { check: cards[0] } : { refused: which() };
+  const scored = cards.map((check) => ({ check, score: named(check) }));
   const best = Math.max(...scored.map((row) => row.score));
   const top = scored.filter((row) => row.score === best);
   if (best > 0 && top.length === 1) return { check: top[0].check };

@@ -16,7 +16,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { fixture as mechanicsFixture, id as fixtureId } from "./phase2-mechanics-fixtures.mjs";
 import { translate } from "../src/lib/i18n.ts";
 import { loopCampaign } from "./dm-loop-fixture.mjs";
-import { resumeDmLoopTurn, runDmLoopTurn } from "../src/lib/gameplay/dm-loop/loop.ts";
+import { executeDmLoopTurn, resumeDmLoopTurn, runDmLoopTurn } from "../src/lib/gameplay/dm-loop/loop.ts";
 import { runTwoPassTurn, resumeTwoPassTurn } from "../src/lib/gameplay/dm-loop/two-pass/index.ts";
 import { runTurn } from "../src/lib/gameplay/turn-engine.ts";
 import { loopFeedbackProvider, parseWithdrawals, waitingCardsBlock } from "../src/lib/gameplay/dm-loop/feedback.ts";
@@ -256,8 +256,63 @@ test("11r on the split runtime («writes — records»): stacked cards, the name
     assert.equal(second.status, "awaiting_confirmation", JSON.stringify(c.errors));
     assert.deepEqual(waitingCards(second).map((check) => check.reason), ["Sleight of Hand: the lock"]);
     await assert.rejects(resumeTwoPassTurn(command(c, input, "reroll", perception.id), deps), refused);
+    // The owner withdraws the lock card: the writer hears of it when the turn goes on; the bookkeeper never records it.
+    const lock = second.checks.find((check) => check.reason === "Sleight of Hand: the lock");
+    const withdrawn = await resumeTwoPassTurn(command(c, input, "withdraw", lock.id), deps);
+    assert.deepEqual(waitingCards(withdrawn), []);
     const done = await resumeTwoPassTurn(command(c, input, "continue"), deps);
     assert.equal(done.status, "committed", JSON.stringify(c.errors));
+    assert.ok(writer.requests.at(-1).messages.some((m) => m.role === "user" && /"Sleight of Hand: the lock" was withdrawn at the table \(by the player\)/.test(m.text)));
+    const brief = bookkeeper.requests[0].messages.find((m) => m.role === "user" && /Rolls this turn/.test(m.text)).text;
+    assert.match(brief, /Perception: the alley/);
+    assert.doesNotMatch(brief, /Sleight of Hand/, "a withdrawn roll is not the bookkeeper's to record");
+  } finally { await c.f.db.close(); }
+});
+
+test("11r: a reroll the executor refuses (past the first check) releases the turn as it was — never a failed turn", async () => {
+  const c = await loopCampaign();
+  try {
+    const game = await paused(c, "I read the room, then lie to the dealer.", [
+      { text: "You look around. ", toolCalls: [roll(c.hero, "Perception: the room", 12)] },
+      { text: "Then you face the dealer. ", toolCalls: [roll(c.hero, "Deception: the dealer", 15)] },
+      { text: "The dealer shrugs. ", toolCalls: [finish()] },
+    ], [8]);
+    const first = game.result.checks[0];
+    c.forceDice([13]);
+    assert.equal((await resumeDmLoopTurn(command(c, game.input, "continue"), await c.deps(game.model))).status, "awaiting_confirmation");
+    // Straight to the executor (as a race past the first check would): refused, released, still waiting.
+    const d = await c.deps(game.model);
+    const claim = await d.store.claim(c.cid, game.input.operationId);
+    await assert.rejects(executeDmLoopTurn(claim, d, command(c, game.input, "reroll", first.id)), refused);
+    const after = await d.store.getPublic(c.cid, game.input.operationId);
+    assert.equal(after.status, "awaiting_confirmation", "not failed");
+    const done = await resumeDmLoopTurn(command(c, game.input, "continue"), await c.deps(game.model));
+    assert.equal(done.status, "committed", "the released turn goes on at once (no lease left behind)");
+  } finally { await c.f.db.close(); }
+});
+
+test("11r with 11k's gap: a roll that carried its damage takes no reroll — refused on the server (loop and SQL), no button on the card; a plain card beside it still does", async () => {
+  const c = await loopCampaign();
+  try {
+    const attack = { name: "roll", arguments: { formula: "1d20+3", reason: "Rapier: the thug", actorRef: c.hero, targetRef: c.npc, visibility: "player", dc: 12, kind: "attack", damage: "1d8+3" } };
+    const game = await paused(c, "I lunge at the thug and watch his friend.", [
+      { text: "Steel flashes. ", toolCalls: [attack, roll(c.hero, "Insight: the friend", 13)] },
+      { text: "The thug staggers back. ", toolCalls: [finish(["combat"])] },
+    ], [15, 4, 9]);
+    const [lunge, insight] = game.result.checks;
+    assert.equal(lunge.reason, "Rapier: the thug");
+    assert.equal(lunge.bundledDamage, true, JSON.stringify(c.errors));
+    assert.equal(lunge.canReroll, false);
+    assert.equal(insight.bundledDamage ?? false, false);
+    assert.deepEqual(rerollableCards(game.result).map((check) => check.id), [insight.id]);
+    await assert.rejects(resumeDmLoopTurn(command(c, game.input, "reroll", lunge.id), await c.deps(game.model)), refused);
+    // Past the first check, the executor refuses it too and releases the turn; the SQL invariant stands behind both.
+    const d = await c.deps(game.model);
+    const claim = await d.store.claim(c.cid, game.input.operationId);
+    await assert.rejects(executeDmLoopTurn(claim, d, command(c, game.input, "reroll", lunge.id)), refused);
+    assert.equal((await d.store.getPublic(c.cid, game.input.operationId)).status, "awaiting_confirmation");
+    const again = await d.store.claim(c.cid, game.input.operationId);
+    await assert.rejects(d.store.reroll(again.lease, command(c, game.input, "reroll", lunge.id), { ...again.turn.checkpoint.checks[0], rollNumber: 2 }), refused);
   } finally { await c.f.db.close(); }
 });
 
@@ -392,6 +447,11 @@ test("the game screen: each waiting card its own named reroll and «Rerolls left
   assert.equal(count(html, /Rerolls left: unlimited/g), 2);
   assert.equal(count(html, />Roll the die<\/button>/g), 2, "only the two waiting cards wait for the die");
   assert.equal(count(html, />Withdraw this check</g), 2);
+  // A roll that carried its damage: no reroll button, the reason instead.
+  const lunge = state.turnOf({ status: "awaiting_confirmation", committedRevision: null, checks: [state.check("Rapier: the thug", { canReroll: false, bundledDamage: true })] });
+  const struck = renderTurn(state, lunge);
+  assert.doesNotMatch(struck, /Request an allowed reroll/);
+  assert.match(struck, /No reroll here: this roll&#x27;s damage is already dealt/);
   // Limited: «N of M».
   const limited = screenState("limited");
   assert.match(renderTurn(limited, limited.turnOf({ status: "awaiting_confirmation", committedRevision: null, checks: [limited.check("Athletics: the wall")] }), { rerollsLeft: 1 }), /Rerolls left: 1 of 2/);
@@ -553,4 +613,10 @@ test("the harness's card words: «Rerolls left: N» or «unlimited», each rerol
   assert.match(rerollPress("reroll", []).refused, /no card on the screen can be rerolled/);
   assert.equal(rerollPress("I roll the die", [c1]), null);
   assert.equal(rerollPress("onward", [c1]), null);
+  // A roll that carried its damage: the card says so, and a reroll of it is refused with that reason.
+  const lunge = card("a1", "Rapier: the thug", { canReroll: false, bundledDamage: true });
+  assert.match(cardText(lunge, true), /No reroll on this card: its damage is already dealt/);
+  assert.match(rerollPress("reroll", [], [lunge]).refused, /«Rapier: the thug» already dealt its damage/);
+  assert.match(rerollPress("reroll the rapier", [c1], [lunge]).refused, /already dealt its damage/);
+  assert.equal(rerollPress("reroll insight", [c1], [lunge]).check.id, "c1");
 });
