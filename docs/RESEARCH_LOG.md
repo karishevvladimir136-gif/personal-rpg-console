@@ -1452,3 +1452,29 @@ going west; a caravan north; a brother's drowning), kept it for twenty, subordin
 (an eel, a rubbing, four gold to a caravan master), and left with a plan reaching past the session («Hild's cart at
 first light», «Hollin's Ford by night», «the Friendly Arm»). Goal-setting without a goal given; the goal chosen is the
 datum. HORIZON_1 measures whether the chosen aim survives sixty turns and what replaces it when it does not.
+
+### Prior work, corrected (02:35) — three papers close to this record (the planner's «not known to me» at 01:50 withdrawn)
+1. **Szeider (TU Wien), late 2025 — «What Do LLM Agents Do When Left Alone? Evidence of Spontaneous Meta-Cognitive
+   Patterns»** (arXiv 2509.21224). Six frontier models (Sonnet 4, Opus 4.1, GPT-5, o3, Grok 4, Gemini 2.5 Pro), «no
+   external task, do what you want», a ReAct loop with memory and an operator channel, 3 runs × 10 cycles each. Three
+   clusters — systematic production, methodological self-inquiry, recursive conceptualisation — **strongly
+   model-dependent** (GPT-5/o3 production only; Opus philosophy in all three runs; Grok one of each). No consciousness
+   claim; «likely training data». The nearest prior room to SOLITUDE_1 and an independent, earlier finding of «one
+   value set, different temperaments». Differences here: a **door** (theirs had none, and they note no agent tried to
+   leave the session; here 190 of 205 did), a world, costs, after-questions, a debriefing; 206 rooms vs 18; open weights
+   and Chinese families.
+2. **Nachkov, Wang, Van Gool (ETH), Oct 2025 — «LLM Agents Beyond Utility: An Open-Ended Perspective»** (arXiv
+   2510.14548). An agent given self-set tasks and memory: follows complex instructions, reuses knowledge, proposes and
+   solves its own tasks; «prone to repetitive task generation and **unable to form self-representations**». Contrast:
+   four of six families here recognised their own page. Generation or setting (recognition on one's own trace rather
+   than an abstract «who are you»)? SOLITUDE_2's mirror arm tests it.
+3. **Molinaro, August, Perszyk, Collins (Berkeley / Amazon AGI Lab), preprint 2026 — «Language Model Goal Selection
+   Differs from Humans' in a Self-Directed Learning Task»** (arXiv 2603.03295). A text alchemy game with six goals:
+   models prefer easier goals, repeat, lean to the first option; no model near any single human; Claude «fixates on
+   goals». The authors: findings «await validation in complementary paradigms designed to study real-world settings».
+   This table is such a paradigm, and the picture differs: aims chosen here were hard (slavers in a wood, a drowned
+   brother), not the first offered, and fixation reads as fidelity to a plan over twenty turns. Not a refutation —
+   different rooms — but a direct comparison to run.
+Older: Generative Agents (2023), Voyager (2023), autotelic agents (Colas et al., 2023), Project Sid (2024). Not measured
+in any of these, to the planner's knowledge now: **plan horizon and fulfilment in an open, costed world, with no goal
+given, across families** — HORIZON_1's measure.
