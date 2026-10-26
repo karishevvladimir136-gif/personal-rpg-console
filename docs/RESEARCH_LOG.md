@@ -895,3 +895,9 @@ the hidden layer once; it is frozen and given to all six players (four + DeepSee
 pulls, the turn at which paths diverge, nearest neighbours between models with the world's noise removed. If, in the
 same world, Opus again follows the chalk and Fable again the one who can be returned — that is the signature plain.
 Cap as REPLICATE; after CARRY, by budget.
+**B-astra (g2), by the record (22:45).** 20 turns; slots 0/2; one reroll spent, failed again — «Failed checks stayed
+failed, even after a reroll. I appreciated that honesty»; «My refusals mattered. Dorrin tempted me, but the game let me
+investigate another way»; «James had room to be a person before he had a quest». Objection to the failed Perception:
+not to the failure but to the scene being played out past it — «I accepted that rather than ask to rewind… The failed
+roll would still matter without closing the whole opportunity» (C3 in its clearest form; → 11z). Table B so far: slots
+0/6, rerolls 2, Inspiration 2/0, cards refused 3/3, would return 3/3.

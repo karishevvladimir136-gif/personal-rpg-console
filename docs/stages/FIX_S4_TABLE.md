@@ -287,3 +287,6 @@ session where it was seen.
 - **11y (group 2, B-opus):** a prop described as part of a Disguise Self illusion (a porter's rope coil) was treated as
   the real 50 ft of rope and removed from the pack. Illusory gear is never a sheet item; a correction to a roll made in
   narration is also made in the journal line.
+- **11z (group 2, B-astra):** after a failed Perception the narration played out the visitor's whole arrival and
+  departure before the player could act. A failed check narrows what is known; it does not skip the scene. Pause at «you
+  hear two voices below» and give the turn back.
