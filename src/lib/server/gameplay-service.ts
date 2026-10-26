@@ -35,6 +35,7 @@ import { dossierService } from "./dossier";
 import { digestOnEntry, entryCheckDue } from "./session-digest";
 import { syncWorldFromDossier } from "./world-bridge";
 import { loopFeedbackProvider } from "../gameplay/dm-loop/feedback";
+import { withdrawByDm } from "../gameplay/dm-loop/check-corrections";
 import { readPublicCampaign } from "./public-campaign";
 import type { TurnStore } from "../gameplay/server-contracts";
 import type { MemoryStore, SummaryProvider } from "../memory/server-contracts";
@@ -157,6 +158,8 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
     ledgerCheck: (input) => checkLedger(anthropicApiKey(), input),
     // Fix run B3 (item 60): every roll the player saw is told (both modes).
     rollCheck: (input) => checkRollsTold(anthropicApiKey(), input),
+    // Fix S4 run 1 (item 3): the owner's void of a roll is pinned as an owner fact (the DM sees it in every turn after).
+    pinCorrection: async (text) => (await dossierService(ownerId, campaignId)).pin(text),
     afterCommit: async ({ operationId, playerLikes, ownerRule, combatEnded, combatStarted, boostUsed, playMinutes, input, source, narration }) => {
       // Polish 3 §4: the state before this turn, with the campaign's rules of the moment, for the replay tool (never fails the turn).
       if (source && input) {
@@ -364,7 +367,9 @@ export async function submitTurn(campaignId: string, value: unknown) {
   if (loopFeedback) {
     const feedbackSettings = await readDmSettings(campaignId);
     const pin = dmLoopPinFromProfile(dmLoopProfile((await readProductionSettings(campaignId)).runtimePolicy, feedbackSettings.dmTurn));
-    return runTurn(input, { store, provider: loopFeedbackProvider(createDmModel(pin), pin.effort, production.provider) });
+    // Fix S4 run 1 (items 3, 11b): a «?» goes through while a roll card waits; the answer may withdraw a waiting card.
+    return runTurn(input, { store, provider: loopFeedbackProvider(createDmModel(pin), pin.effort, production.provider),
+      withdrawChecks: (asked, requests) => withdrawByDm(store, campaignId, asked.operationId, requests) });
   }
   return runTurn(input, {
     store,
@@ -394,6 +399,8 @@ export async function continueTurn(
     requireTimeline(input),
   );
   const identity = await store.runtimeIdentity?.(campaignId, operationId);
+  // Fix S4 run 1: a card is withdrawn or voided only on the loop's turns (the earlier runtimes have no such record).
+  if ((input.action === "withdraw" || input.action === "void") && identity !== DM_LOOP_RUNTIME) throw new DmError("validation");
   if (identity === DM_LOOP_RUNTIME) {
     const deps = dmLoopDependencies(store, memory, production.summaries, production, () => readDmSettings(campaignId), user.id, campaignId);
     return runLoopWithMaintenance(store, memory, production.summaries, requireTimeline(input), campaignId,

@@ -126,7 +126,9 @@ export type ResumeInput = {
   commandId: string;
   campaignId: string;
   operationId: string;
-  action: "retry" | "continue" | "reroll" | "cancel";
+  /** Fix S4 run 1 (items 3, 11r): «withdraw» a waiting card before it counts, «void» a rolled one (the owner's
+   * correction); both, like «reroll», name their card. */
+  action: "retry" | "continue" | "reroll" | "cancel" | "withdraw" | "void";
   checkId: string | null;
 };
 export type VisibleCheck = {
@@ -154,6 +156,14 @@ export type VisibleCheck = {
   /** Fix run C: every part of the modifier with its own source (sums to `modifier`); absent on older checks.
    * Fix S4 11a: a sheet part's `basis` says where its number came from (the sheet's line or its words). */
   addends?: { source: string; value: number; kind: "sheet" | "gear" | "fiction" | "formula" | "cap"; basis?: string }[];
+  /** Fix S4 run 1 (migration 202610250701): resolved at an earlier pause of its turn («Onward»); never waits again. */
+  resolved?: boolean;
+  /** Withdrawn before it counted (by the DM in an out-of-game answer, or by the owner from the card). */
+  withdrawn?: { by: "dm" | "owner"; reason: string | null } | null;
+  /** Voided by the owner after the roll: the record keeps it, marked as a correction. */
+  voided?: { by: "owner"; note: string | null; at?: string | null } | null;
+  /** The roll carried its damage (an attack or a save with damage, an attack resolved in the fight): no reroll. */
+  bundledDamage?: boolean;
 };
 export type GuidanceProposal = {
   teachingCandidate?: import("../dm-craft/contracts.ts").TeachingCandidate | null;
@@ -197,7 +207,8 @@ export type PublicTurn = {
   /** Committed dm-loop-v1 turns (Stage 4, UI_DATA_NEEDS #1, #2): the public
    * receipt summaries, the player moment and the scene kinds of the finish. */
   /** `at`: where in the narration the change was made (Stage C; rolls only, absent on older turns). */
-  changes?: { tool: string; ok: true; summary: string; action?: string; at?: number }[];
+  /** Fix S4 run 1: a withdrawn or voided roll's chip names its check and says so (migration 202610250701). */
+  changes?: { tool: string; ok: true; summary: string; action?: string; at?: number; checkId?: string; withdrawn?: true; voided?: true }[];
   playerMoment?: boolean;
   /** Polish: the accepted roll's reason the moment rests on («Ворот Мокея»). */
   playerMomentReason?: string | null;

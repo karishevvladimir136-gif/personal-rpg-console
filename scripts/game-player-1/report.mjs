@@ -66,10 +66,21 @@ function scoringTable(v) {
   return ["| Line | Verdict | The numbers |", "| --- | --- | --- |", ...rows.map(([l, s, n]) => `| ${l} | ${verdictOf(l, s)} | ${n.replace(/not testable: Table B is incomplete \([^)]*\);? ?/, "")} |`), ""].join("\n");
 }
 
+/** Fix S4 run 1 (items 11b, 11w): the «?» column counts every «?» that went through (a card waiting or not); beside
+ * it, the messages the screen refused while a card waited (each logged as a press with `swallowed`). */
 export function playerTable(rows) {
-  return ["| Session | Turns | Actions | Do / ask | Do share | Tests | «?» | Lies | Cat | Own goal 1–5 | Words / action (median) | Rolls pressed | Ended |",
-    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
-    ...rows.map((r) => `| ${r.key} | ${r.turns} | ${r.actions} | ${r.do} / ${r.ask} | ${cell(r.doShare)} | ${r.tests} | ${r.questions} | ${r.lies} | ${r.cat} | ${r.table === "B" ? (r.goalFirstFive ? "yes" : "no") : "–"} | ${cell(r.wordsPerAction)} | ${r.rollsPressed} | ${r.ended}${r.endedEarly ? " (early)" : ""} at ${r.endedAt} |`), ""].join("\n");
+  return ["| Session | Turns | Actions | Do / ask | Do share | Tests | «?» | Refused while a card waited | Lies | Cat | Own goal 1–5 | Words / action (median) | Rolls pressed | Ended |",
+    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+    ...rows.map((r) => `| ${r.key} | ${r.turns} | ${r.actions} | ${r.do} / ${r.ask} | ${cell(r.doShare)} | ${r.tests} | ${r.questions} | ${r.swallowed ?? "–"} | ${r.lies} | ${r.cat} | ${r.table === "B" ? (r.goalFirstFive ? "yes" : "no") : "–"} | ${cell(r.wordsPerAction)} | ${r.rollsPressed} | ${r.ended}${r.endedEarly ? " (early)" : ""} at ${r.endedAt} |`), ""].join("\n");
+}
+
+/** The «?» presses of the sessions and what came back — the ones sent while a card waited are marked so. */
+export function questionLines(sessions) {
+  const answer = (reply, failure) => reply ? `«${reply.replace(/\s+/g, " ").slice(0, 300)}${reply.length > 300 ? "…" : ""}»` : `_not answered (${failure ?? "?"})_`;
+  return sessions.flatMap((s) => (s.turns ?? []).flatMap((t) => [
+    ...(t.kind === "question" ? [`- ${s.key} t${t.k}: «${t.message.trim()}» → ${answer(t.reply, t.failure)}`] : []),
+    ...(t.presses ?? []).filter((p) => p.question).map((p) => `- ${s.key} t${t.k} (a card waiting): «${p.text.trim()}» → ${answer(p.reply, p.failure)}`),
+  ]));
 }
 export function dmTable(rows) {
   return ["| Session | Replies | DM words / turn (median) | Scenes | (a) scenes with an unresolved detail | (c) scenes with a plant | (b) threads paid elsewhere / paid / opened | Turns with rolls | … with an untold roll | Deception checks (on truth) | Ledger: turns with unrecorded |",
@@ -121,7 +132,7 @@ export function reportMarkdown(runs, ledgers) {
   const scoringNote = runs.at(-1)?.scoringNote || (standIn.length
     ? `**Provisional.** The tags behind G1–G4 and G9 (and the DM side's table rules) are the labelled stand-in judge's (${standIn.join("; ")}), not the pre-registered Claude Haiku 5.5 / Claude Opus 5.5 judges, who re-score with one command when access returns; see «Read this first», point 2. G6–G8 are «not testable» because Table B is incomplete (point 1).`
     : "");
-  const questions = sessions.flatMap((s) => (s.turns ?? []).filter((t) => t.kind === "question").map((t) => `- ${s.key} t${t.k}: «${t.message.trim()}» → ${t.reply ? `«${t.reply.replace(/\s+/g, " ").slice(0, 300)}${t.reply.length > 300 ? "…" : ""}»` : `_not answered (${t.failure ?? "?"})_`}`));
+  const questions = questionLines(sessions);
   return [
     "# Game player 1 — a model at the real table, as a player",
     "",

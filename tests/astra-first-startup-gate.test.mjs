@@ -132,6 +132,8 @@ function serviceFixture({ sheet = structured, pinned = null, takeover = false,
     "../live2d/server/battle-schedule": { scheduleBattleBackground: () => {} },
     "./world-bridge": { syncWorldFromDossier: async () => {} },
     "../gameplay/dm-loop/feedback": { loopFeedbackProvider: () => ({}) },
+    // Fix S4 run 1: the DM's withdrawal of a waiting card from a «?» answer is loop-only.
+    "../gameplay/dm-loop/check-corrections": { withdrawByDm: async () => [] },
     "./public-campaign": { readPublicCampaign: async () => ({}) },
     "../gameplay/dm-errors": { DmError: class extends Error {} },
     "./memory/store": { createMemoryStore: () => ({}) },

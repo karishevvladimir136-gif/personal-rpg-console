@@ -304,6 +304,8 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
                 </button>
               </div>
             ) : <p className={r.empty}>{c("В листе героя пока нет навыков для быстрых бросков.", "The hero's sheet has no skills for quick rolls yet.")}</p>}
+            {/* Fix S4 run 1 (item 11w): a disabled button says why. */}
+            {busy && rolls.length > 0 && <span className={r.note} role="status">{c("Пока ход открыт (ждёт карточка броска или пишет ведущий), быстрые броски не вставляются в текст.", "While a turn is open (a roll card waits or the DM is writing), quick rolls are not added to your text.")}</span>}
             <span className={r.note}>{c("Кубы бросает сервер, ведущий решает, нужна ли проверка. Кнопка только подсказывает текст хода.", "The server rolls; the DM decides whether a check is needed. These buttons only suggest the text of your turn.")}</span>
           </section>
         )}

@@ -2,7 +2,8 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import { Dices } from "lucide-react";
-import type { PublicTurn, ResumeInput } from "@/lib/gameplay/contracts";
+import type { PublicTurn, ResumeInput, VisibleCheck } from "@/lib/gameplay/contracts";
+import { cardState, rerollableCards, voidable, waitingCards } from "@/lib/gameplay/card-state";
 import {
   buildTurnTimeline,
   pauseWords,
@@ -50,8 +51,21 @@ export function TurnPauseLine({ pause, action, note }: { pause: TurnPause; actio
   );
 }
 
+/** Fix S4 run 1 (item 3): a card withdrawn at the table is gone — one quiet line keeps its place in the story. */
+function WithdrawnCard({ check }: { check: VisibleCheck }) {
+  const c = useCopy();
+  const reason = check.withdrawn?.reason?.trim();
+  const who = check.withdrawn?.by === "dm" ? c("ведущим", "by the DM") : c("тобой", "by you");
+  return (
+    <div className={t.withdrawn} role="note">
+      <span>{c(`Проверка снята за столом (${who}): `, `Check withdrawn at the table (${who}): `)}{check.reason?.trim() || c("проверка", "a check")}</span>
+      {reason && <span className={t.pendingNote}>{reason}</span>}
+    </div>
+  );
+}
+
 /** The turn as one timeline: the told text, each roll in its place, the continuation, then the named pause. */
-export function TurnTimeline({ turn, trace, label, heroId, party, companionRolls = "dm", rollsWait = false, rerollCount = null, running = false, recording = false, busy, onCommand, continueAction }: {
+export function TurnTimeline({ turn, trace, label, heroId, party, companionRolls = "dm", rollsWait = false, rerollCount = null, running = false, recording = false, busy, onCommand, continueAction, canVoid = false }: {
   turn: PublicTurn;
   trace: LiveTrace | null;
   /** The narration's eyebrow («Ведущий»; the game screen hides it). */
@@ -61,8 +75,11 @@ export function TurnTimeline({ turn, trace, label, heroId, party, companionRolls
   companionRolls?: "dm" | "player";
   /** The campaign's dice settings make the player's rolls wait for the player. */
   rollsWait?: boolean;
-  /** Fix S3-pre A-37: the session's rerolls left of its allowance, shown on the hero's card while the turn waits. */
-  rerollCount?: { left: number; of: number } | null;
+  /** Fix S3-pre A-37: the session's rerolls left of its allowance, shown on the hero's card while the turn waits.
+   * Fix S4 run 1 (item 11r): `left: null` — unlimited (the card says so). */
+  rerollCount?: { left: number; of: number } | { left: null; of: null } | null;
+  /** Fix S4 run 1 (item 3): this turn's rolled cards offer the owner's «Void this roll» (the latest story turn). */
+  canVoid?: boolean;
   /** The player's «Дальше» or reroll for this turn is running. */
   running?: boolean;
   /** The composer knows the records are being written (the stream said so). */
@@ -86,10 +103,49 @@ export function TurnTimeline({ turn, trace, label, heroId, party, companionRolls
     idle: quiet, working: told?.view.working, rollsWait, language: c.ru ? "ru" : "en",
   });
   const awaiting = status === "awaiting_confirmation";
-  const rerollable = awaiting && turn.checks.some((check) => check.canReroll);
+  // Fix S4 run 1 (items 3, 11r): only the cards of this pause wait; a card resolved at an earlier pause, withdrawn or
+  // voided never shows «Roll the die» again, and each waiting card has its own reroll, named by its title.
+  const waiting = awaiting ? waitingCards(turn) : [];
+  const rerollable = awaiting && rerollableCards(turn).length > 0;
+  const withdrawnOnly = awaiting && !waiting.length && turn.checks.some((check) => check.withdrawn);
   const lastText = [...items].reverse().find((item) => item.kind === "text")?.key;
   const caretOn = telling && !quiet && !pause && items.at(-1)?.kind === "text";
   if (!items.length && !pause) return null;
+  const card = (check: VisibleCheck, key: string) => {
+    const state = cardState(turn, check);
+    if (state === "withdrawn") return <WithdrawnCard key={key} check={check} />;
+    const live = awaiting && state === "waiting";
+    const title = check.reason?.trim() || c("проверка", "the check");
+    const hero = check.actorId === heroId;
+    const footer = live ? (
+      <>
+        {check.canReroll && !check.bundledDamage && (
+          <button type="button" className={`text-link ${t.reroll}`} disabled={busy} onClick={() => onCommand("reroll", check.id)}>
+            {c(`Запросить разрешённый переброс — ${title}`, `Request an allowed reroll — ${title}`)}
+          </button>
+        )}
+        {/* Fix S4 run 1 (11k's gap): a roll that carried its damage takes no reroll — a new die would not redo the damage. */}
+        {check.bundledDamage && (
+          <span className={t.rerollCount} role="note">{c("Без переброса: урон этого броска уже нанесён, новый кубик его не переиграет.", "No reroll here: this roll's damage is already dealt, and a new die would not redo it.")}</span>
+        )}
+        {rerollCount && hero && (
+          <span className={t.rerollCount}>{rerollCount.left === null ? c("перебросов: без ограничений", "Rerolls left: unlimited")
+            : c(`перебросов осталось ${rerollCount.left} из ${rerollCount.of}`, `Rerolls left: ${rerollCount.left} of ${rerollCount.of}`)}</span>
+        )}
+        {/* The owner's objection: the card goes, the turn goes on without it (the DM is told). */}
+        <button type="button" className={`text-link ${t.reroll}`} disabled={busy} onClick={() => onCommand("withdraw", check.id)}>
+          {c("Снять эту проверку", "Withdraw this check")}
+        </button>
+      </>
+    ) : state === "voided" ? (
+      <span className={t.rerollCount} role="note">{c("Отменён владельцем: этого броска не было (поправка в записи).", "Voided by the owner: this roll did not happen (a correction in the record).")}</span>
+    ) : canVoid && hero && voidable(turn, check) ? (
+      <button type="button" className={`text-link ${t.reroll}`} disabled={busy} onClick={() => onCommand("void", check.id)}>
+        {c("Отменить этот бросок (поправка владельца)", "Void this roll (owner's correction)")}
+      </button>
+    ) : null;
+    return <GameplayCheck key={key} check={check} ready={live && check.interactive} footer={footer} />;
+  };
   const render = (item: TimelineItem) => {
     switch (item.kind) {
       case "text":
@@ -99,21 +155,7 @@ export function TurnTimeline({ turn, trace, label, heroId, party, companionRolls
           </div>
         );
       case "card":
-        return (
-          <GameplayCheck key={item.key} check={item.check} ready={awaiting && item.check.interactive}
-            footer={awaiting && (item.check.canReroll || (rerollCount && item.check.actorId === heroId)) ? (
-              <>
-                {item.check.canReroll && (
-                  <button type="button" className={`text-link ${t.reroll}`} disabled={busy} onClick={() => onCommand("reroll", item.check.id)}>
-                    {c("Запросить разрешённый переброс", "Request an allowed reroll")}
-                  </button>
-                )}
-                {rerollCount && item.check.actorId === heroId && (
-                  <span className={t.rerollCount}>{c(`перебросов осталось ${rerollCount.left} из ${rerollCount.of}`, `rerolls left: ${rerollCount.left} of ${rerollCount.of}`)}</span>
-                )}
-              </>
-            ) : null} />
-        );
+        return card(item.check, item.key);
       case "pending":
         return (
           <div key={item.key} className={t.pending}>
@@ -133,7 +175,8 @@ export function TurnTimeline({ turn, trace, label, heroId, party, companionRolls
         {items.map(render)}
         {pause && (
           <TurnPauseLine pause={pause} action={awaiting ? continueAction : null}
-            note={rerollable ? c("Правила кампании дают здесь переброс; новый куб заменит этот.", "The campaign's rules grant a reroll here; the new die replaces this one.") : null} />
+            note={withdrawnOnly ? c("Проверку сняли — «Дальше» продолжит ход без неё.", "The check was withdrawn — «Onward» goes on without it.")
+              : rerollable ? c("Правила кампании дают здесь переброс; новый куб заменит этот.", "The campaign's rules grant a reroll here; the new die replaces this one.") : null} />
         )}
       </div>
     </article>

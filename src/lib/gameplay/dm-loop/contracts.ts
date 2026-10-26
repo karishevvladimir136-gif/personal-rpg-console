@@ -135,7 +135,14 @@ export type DmLoopDiagnostic =
   /** Fix run A1 (item 32c): the provider's own error (kind, HTTP status, code, the message with secrets filtered). */
   | { kind: "provider_error"; errorKind: string; httpStatus: number | null; providerCode: string | null; message: string }
   /** Fix S4 11k: a reroll replaced this roll of the check — kept as history under the roll that stands (standing-roll.ts). */
-  | { kind: "rerolled"; checkId: string; roll: { rollNumber: number; dice: number[]; kept: number; total: number; success: boolean; natural: "crit" | "fumble" | null } };
+  | { kind: "rerolled"; checkId: string; roll: { rollNumber: number; dice: number[]; kept: number; total: number; success: boolean; natural: "crit" | "fumble" | null } }
+  /** Fix S4 run 1 (items 3, 11r; check-corrections.ts, migration 202610250701): the cards of a pause resolved at
+   * «Onward»; a waiting card withdrawn before it counted; a rolled card voided by the owner; the corrections the DM
+   * was told of when the turn went on. The withdrawal and the void are written by `check_correction`, never by the loop. */
+  | { kind: "checks_resolved"; ids: string[] }
+  | { kind: "check_withdrawn"; id: string; by: "dm" | "owner"; reason: string | null; requestId?: string; at?: string }
+  | { kind: "check_voided"; id: string; by: "owner"; reason: string | null; requestId?: string; at?: string }
+  | { kind: "corrections_told"; ids: string[] };
 
 export type DmLoopSceneKind = "combat" | "conversation" | "mystery" | "exploration" | "quiet" |
   "humor" | "trade" | "travel" | "other";

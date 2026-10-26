@@ -12,9 +12,13 @@ const signed = (n) => `${n >= 0 ? "+" : "−"}${Math.abs(n)}`;
 const KIND = { skill: "Skill check", attack: "Attack roll", save: "Saving throw", transform: "Transformation check" };
 const DIFFICULTY = { easy: "an easy task", normal: "an ordinary task", hard: "a hard task", very_hard: "a very hard task", nearly_impossible: "a nearly impossible task" };
 
-/** A roll card, as gameplay-dice.tsx draws it: before the tap (the die not shown) or after (the die, the sum, the verdict). */
-export function cardText(check, revealed) {
-  const title = check.reason?.trim() || KIND[check.kind] || "Check";
+/** A card's title as the card shows it (the DM's reason for the check, else its kind). */
+export const cardTitle = (check) => check.reason?.trim() || KIND[check.kind] || "Check";
+
+/** A roll card, as gameplay-dice.tsx draws it: before the tap (the die not shown) or after (the die, the sum, the verdict).
+ * Fix S4 run 1 (item 11r): `rerolls` — the rerolls left this session (null: unlimited), shown as the card shows it. */
+export function cardText(check, revealed, { rerolls } = {}) {
+  const title = cardTitle(check);
   const addends = check.addends?.length ? check.addends : check.modifier ? [{ source: "sheet and gear", value: check.modifier }] : [];
   const tags = [check.difficulty ? `Difficulty: ${DIFFICULTY[check.difficulty] ?? check.difficulty}` : null, check.dc !== null && check.dc !== undefined ? `DC ${check.dc}` : null].filter(Boolean).join(" · ");
   const advantage = check.advantage && check.advantage !== "normal" ? `${check.advantage === "advantage" ? "Advantage" : "Disadvantage"}${check.advantageReason ? `: ${check.advantageReason}` : ""}` : null;
@@ -22,6 +26,8 @@ export function cardText(check, revealed) {
   if (addends.length) lines.push(`What adds to the die: ${addends.map((a) => `${signed(a.value)} ${a.source}`).join(", ")}`);
   if (tags) lines.push(tags);
   if (advantage) lines.push(advantage);
+  if (rerolls !== undefined) lines.push(rerolls === null ? "Rerolls left: unlimited" : `Rerolls left: ${rerolls}`);
+  if (check.bundledDamage) lines.push("No reroll on this card: its damage is already dealt, and a new die would not redo it.");
   if (!revealed) lines.push("The die is cast on the server; tap it to see how it fell.");
   else {
     const dice = check.advantage && check.advantage !== "normal" ? `Two dice: ${check.dice.join(" and ")} — the ${check.advantage === "advantage" ? "higher" : "lower"} one counts, ${check.kept}` : `Die: ${check.kept}`;
@@ -42,9 +48,44 @@ export function changesText(turn) {
 /** The buttons line. */
 export const buttonsLine = (names) => (names.length ? names.map((name) => `[${name}]`).join(" ") : "");
 
+/** A message as a press reads it: without the brackets, quotes and «press», lower case. */
+const asPress = (text) => String(text ?? "").trim().replace(/^[\s*_«"'“[(]+|[\s.!*_»"'”\])]+$/g, "").replace(/^(?:i\s+)?(?:press|click|tap|hit)\s+/i, "").toLowerCase();
+
+/** Fix S4 run 1 (item 11r): each card a reroll may touch has its own button, named by the card's title. */
+export const rerollButton = (check) => `${BUTTONS.reroll} — ${cardTitle(check)}`;
+
+const REROLL_LEAD = /^(?:request (?:an )?(?:allowed )?re-?roll|use (?:a|my|one|an allowed) re-?roll|i(?:'ll| will)? re-?roll|re-?roll)(?=$|[\s—–:,-])[\s—–:,-]*(?:(?:on|of|the|my)\s+)*/u;
+const NOT_A_NAME = new Set(["the", "check", "card", "roll", "reroll", "please", "one", "this", "that", "for", "with", "and", "allowed", "request", "again"]);
+const nameWords = (text) => String(text ?? "").toLowerCase().split(/[^\p{L}\p{N}]+/u).filter((word) => word.length >= 3 && !NOT_A_NAME.has(word));
+
+/** Which card a reroll message names: «reroll», «reroll Stealth», a card's own button. Null — not a reroll press;
+ * `{ check }` — the card to reroll; `{ refused }` — the reason the screen gives (no card can be rerolled, several can
+ * and the message does not say which, or the card named carried its damage). `blocked`: the waiting cards that take no
+ * reroll because their roll carried its damage. */
+export function rerollPress(text, cards, blocked = []) {
+  const said = asPress(text);
+  if (!said || said.length > 160) return null;
+  const lead = REROLL_LEAD.exec(said);
+  if (!lead) return null;
+  const rest = said.slice(lead[0].length).trim();
+  const which = () => `say which card — ${cards.map((check) => `«reroll ${cardTitle(check)}»`).join(" or ")}`;
+  const asked = nameWords(rest);
+  const named = (check) => nameWords(cardTitle(check)).filter((word) => asked.includes(word)).length;
+  const damage = (check) => ({ refused: `«${cardTitle(check)}» already dealt its damage, which a reroll would not redo — no reroll on it` });
+  const namedBlocked = rest ? blocked.find((check) => named(check) > 0 && !cards.some((other) => named(other) >= named(check))) : null;
+  if (namedBlocked) return damage(namedBlocked);
+  if (!cards.length) return blocked.length ? damage(blocked[0]) : { refused: "no card on the screen can be rerolled now" };
+  if (!rest) return cards.length === 1 ? { check: cards[0] } : { refused: which() };
+  const scored = cards.map((check) => ({ check, score: named(check) }));
+  const best = Math.max(...scored.map((row) => row.score));
+  const top = scored.filter((row) => row.score === best);
+  if (best > 0 && top.length === 1) return { check: top[0].check };
+  return { refused: cards.length === 1 ? `that card cannot be rerolled now; the one that can is «${cardTitle(cards[0])}»` : which() };
+}
+
 /** Which button a player's message presses, or null: the button's name or a short form of it, alone on the line. */
 export function pressedButton(text, offered) {
-  const said = String(text ?? "").trim().replace(/^[\s*_«"'“[(]+|[\s.!*_»"'”\])]+$/g, "").replace(/^(?:i\s+)?(?:press|click|tap|hit)\s+/i, "").toLowerCase();
+  const said = asPress(text);
   if (!said || said.length > 60) return null;
   const forms = {
     [BUTTONS.roll]: ["roll the die", "roll", "roll it", "i roll", "rolling", "roll the dice", "tap the die", "the die"],

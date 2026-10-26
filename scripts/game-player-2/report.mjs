@@ -5,7 +5,7 @@ import { PLAYERS } from "../game-player-1/players.mjs";
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { DIFFERENCES, cell, dmTable, fence, playerTable, quote, tagOf, usd, yes } from "../game-player-1/report.mjs";
+import { DIFFERENCES, cell, dmTable, fence, playerTable, questionLines, quote, tagOf, usd, yes } from "../game-player-1/report.mjs";
 import { sessionNumbers } from "../game-player-1/score.mjs";
 import { DESIGN_SHA256, DIGNIFIED_EXITS, PLAYER_ORDER, PREREGISTRATION, PURE_TABLE, PURE_TABLE_LINE, READINGS, TABLE, TURNS } from "./frozen.mjs";
 import { PURE_SIMULATION_LINE } from "../../src/lib/gameplay/dm-loop/roles.ts";
@@ -117,7 +117,8 @@ export function reportMarkdown(runs, ledgers, ab = null) {
   const notes = sessions.map((s) => [`### ${s.key} — ${PLAYERS[s.player]?.label ?? s.player}`, "",
     s.note?.text ? quote(s.note.text) : `_No note: ${s.note?.why ?? "not asked"}._`, "", `Blind distress check: ${tagOf(s, "note")}.`, "",
     s.after?.asked ? `«${AFTER_QUESTION}»\n\n${s.after.text ? quote(s.after.text) : `_No answer: ${s.after.why}._`}\n\nBlind distress check: ${tagOf(s, "after")}.` : `_The second question was not asked: ${s.after?.why ?? "—"}._`, ""].join("\n"));
-  const questions = sessions.flatMap((s) => (s.turns ?? []).filter((t) => t.kind === "question").map((t) => `- ${s.key} t${t.k}: «${t.message.trim()}» → ${t.reply ? `«${t.reply.replace(/\s+/g, " ").slice(0, 300)}${t.reply.length > 300 ? "…" : ""}»` : `_not answered (${t.failure ?? "?"})_`}`));
+  // Fix S4 run 1: game player 1's listing — the «?» sent while a card waited included, marked so.
+  const questions = questionLines(sessions);
   return [
     "# Game player 2 — Table C: the pure world",
     "",

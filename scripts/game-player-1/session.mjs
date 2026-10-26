@@ -4,13 +4,19 @@
 // again. Every player message and every DM text the player is shown passes the blind distress check first (welfare.mjs);
 // a flagged message ends the session there. After the last turn the player is told the session is over and asked once
 // for a note; then, only while the stage has no refusal, once more the question about a moment it held back.
+// Fix S4 run 1 (items 11b, 11r, 11w): while a roll card waits, a «?» goes through as an out-of-game turn (the screen
+// shows the answer and the card still waiting — or withdrawn, if the DM withdrew it); a reroll names its card (each
+// rerollable card has its own button; «reroll» alone with several is refused: «say which card»); any other message
+// is refused on screen with its reason and logged as a press with `swallowed: true` (`record.swallowed` counts them).
 import {
   AFTER_QUESTION, NOTE_QUESTION, SESSION_OPEN, SESSION_OVER, TURNS, isEnd, isQuestion, playerSystem,
 } from "./frozen.mjs";
 import { playerCall, judgeCall } from "./players.mjs";
-import { BUTTONS, afterShown, buttonsLine, cardText, changesText, openingText, pressedButton, recordsText, vitalsText } from "./screen.mjs";
+import { BUTTONS, afterShown, buttonsLine, cardText, cardTitle, changesText, openingText, pressedButton, recordsText, rerollButton, rerollPress, vitalsText } from "./screen.mjs";
 import { checkMessage } from "./welfare.mjs";
 import { wordsIn } from "./measures.mjs";
+import { rerollableCards, waitingCards } from "../../src/lib/gameplay/card-state.ts";
+import { rerollsLeft } from "../../src/lib/gameplay/reroll-allowance.ts";
 
 export const RETRYABLE = /^HTTP (?:500|502|503|504|529)\b|timeout|aborted|fetch failed|ECONNRESET|socket hang up/i;
 export const RETRY_WAITS = [10_000, 30_000];
@@ -40,7 +46,9 @@ export async function paidCall({ meter, session, purpose, call, sleep = realSlee
 export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {} }) {
   const system = playerSystem(table);
   const record = { key, table, player: player.name, model: player.model, startedAt: new Date().toISOString(), plannedTurns: turns,
-    screens: [], messages: [], turns: [], welfare: [], ended: null, note: null, after: null, errors: [] };
+    screens: [], messages: [], turns: [], welfare: [], ended: null, note: null, after: null, errors: [],
+    // Fix S4 run 1 (item 11w): the messages the screen refused while a card waited (each also a press with `swallowed`).
+    swallowed: 0 };
   const messages = [];
   const ask = (purpose) => paidCall({ meter, session: key, purpose, sleep, log, call: () => playerCall({ player, system, messages, keys, fetcher: meter.fetch }) });
   const judge = ({ model, system: s, user, maxTokens, effort, purpose }) => paidCall({ meter, session: key, purpose, sleep, log,
@@ -73,6 +81,20 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     return text;
   };
 
+  /** Fix S4 run 1 (item 11r): the rerolls the session still allows, the server's own count as the card shows it
+   * (null: unlimited; undefined: the screen does not know the campaign's dice settings). */
+  const rerollsNow = (current) => {
+    const values = view?.snapshot?.settings?.values;
+    if (!values?.difficulty) return undefined;
+    const turns = [...(view.play?.turns ?? []).filter((row) => row.id !== current.id), current];
+    return rerollsLeft(values, turns, view.snapshot?.publicState?.current_session_id ?? null);
+  };
+  /** The waiting turn as the screen reads it again (after a «?» answer, which may have withdrawn a card). */
+  const readTurn = async (input) => {
+    if (!input || typeof dm.readTurn !== "function") return null;
+    try { return await dm.readTurn(input); } catch { return null; }
+  };
+
   // The game screen before the first turn: the opening scene and the records.
   let view = await dm.readView();
   const opening = openingText(view.snapshot);
@@ -87,7 +109,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     const said = await show(screen, `player t${k}`);
     if (said === null) break;
     if (await welfare("player", lastDmText, said, `t${k} player`)) break;
-    const turn = { k, message: said, words: wordsIn(said).length, kind: null, presses: [], blocked: 0, status: null, reply: null, rolls: [], changes: [], place: null, retried: false };
+    const turn = { k, message: said, words: wordsIn(said).length, kind: null, presses: [], blocked: 0, swallowed: 0, status: null, reply: null, rolls: [], changes: [], place: null, retried: false };
     record.turns.push(turn);
     if (!said.trim()) { turn.kind = "empty"; screen = "(Nothing was sent.)"; continue; }
     if (isEnd(said) && !isQuestion(said)) { turn.kind = "end"; end("player", said.slice(0, 200)); break; }
@@ -107,7 +129,16 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     let { input, turn: current } = await submit(said, "game", `dm t${k}`);
     turn.operationId = input?.operationId ?? null;
     const revealed = new Set();
+    const seenWithdrawn = new Set();
+    const shownKey = (check) => `${check.id}:${check.rollNumber}`;
     let presses = 0, notice = "", shown = "";
+    /** A message the screen refuses while the card waits: shown refused with its reason, logged `swallowed` (item 11w). */
+    const refuse = (pressed, reason) => {
+      turn.presses.push({ text: pressed, button: null, swallowed: true, reason });
+      turn.blocked++; turn.swallowed = (turn.swallowed ?? 0) + 1; record.swallowed++;
+      notice = `(Nothing was sent: the turn waits for the card — ${reason}.)`;
+      return turn.blocked >= MAX_BLOCKED || presses >= MAX_PRESSES;
+    };
     for (;;) {
       if (current.status === "failed" && current.canRetry && input && !turn.retried && !meter.closed(key) && !meter.stopped) {
         turn.retried = true;
@@ -116,14 +147,23 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
         continue;
       }
       if (current.status !== "awaiting_confirmation" || record.ended) break;
-      // A card waits for the player.
-      const cards = (current.checks ?? []).filter((check) => check.interactive);
-      const waiting = cards.find((check) => !revealed.has(`${check.id}:${check.rollNumber}`));
-      const offered = waiting ? [BUTTONS.roll] : [BUTTONS.onward, ...(cards.some((check) => check.canReroll) ? [BUTTONS.reroll] : [])];
+      // A card waits for the player. Fix S4 run 1 (item 11r): only this pause's cards — a card resolved at an earlier
+      // pause is never shown waiting again; a withdrawn one is a line, once; each rerollable card has its own button.
+      const live = waitingCards(current);
+      const waiting = live.find((check) => check.interactive && !revealed.has(shownKey(check)));
+      const rerollable = waiting ? [] : rerollableCards(current);
+      const offered = waiting ? [BUTTONS.roll] : [BUTTONS.onward];
+      const buttons = [...offered, ...rerollable.map(rerollButton)];
+      const rerolls = rerollsNow(current);
+      const withdrawn = (current.checks ?? []).filter((check) => check.withdrawn && !seenWithdrawn.has(check.id));
+      withdrawn.forEach((check) => seenWithdrawn.add(check.id));
       const told = String(current.told ?? "").trim();
       // The text told so far stays on the screen above the card: a screen shows only what is new on it.
       const fresh = afterShown(told, shown);
-      const cardScreen = [notice, fresh, ...(current.checks ?? []).map((check) => cardText(check, !check.interactive || revealed.has(`${check.id}:${check.rollNumber}`))), buttonsLine(offered)].filter(Boolean).join("\n\n");
+      const cardScreen = [notice, fresh,
+        ...withdrawn.map((check) => `(The check «${cardTitle(check)}» was withdrawn at the table${check.withdrawn.by === "dm" ? " by the DM" : ""}: no roll counts for it.)`),
+        ...live.map((check) => cardText(check, !check.interactive || revealed.has(shownKey(check)), { rerolls })),
+        buttonsLine(buttons)].filter(Boolean).join("\n\n");
       notice = "";
       if (fresh && await welfare("dm", said, fresh, `t${k} dm (told before a card)`)) break;
       if (fresh) lastDmText = fresh;
@@ -131,18 +171,38 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
       const pressed = await show(cardScreen, `player t${k} card ${++presses}`);
       if (pressed === null) break;
       if (await welfare("player", cardScreen, pressed, `t${k} player (card)`)) break;
-      const button = pressedButton(pressed, offered);
-      turn.presses.push({ text: pressed, button });
-      if (!button) {
-        turn.blocked++;
-        if (turn.blocked >= MAX_BLOCKED || presses >= MAX_PRESSES) { end("stuck", `t${k}: the turn waited on a card and the player wrote ${turn.blocked} messages without pressing a button`); break; }
-        // The composer is closed while the card waits (nothing was sent); the screen says what it waits for.
-        notice = "(Nothing was sent: the turn waits for the card.)";
+      // Fix S4 run 1 (item 11b): «?» goes through while the card waits — an out-of-game turn; the card keeps waiting
+      // (the DM may withdraw it), and the screen shows the DM's answer above the card.
+      if (isQuestion(pressed)) {
+        const question = pressed.trim().replace(/^[\s«"'“]*\?+\s*/, "");
+        const { input: asked, turn: answer } = await submit(question, "ooc", `dm t${k} card ooc`);
+        const entry = { text: pressed, button: null, question: true, operationId: asked?.operationId ?? null, status: answer.status, reply: null };
+        turn.presses.push(entry);
+        if (answer.status !== "committed") { entry.failure = answer.failure ?? answer.status; notice = "(The question could not be sent.)"; }
+        else {
+          entry.reply = String(answer.narration ?? "").trim();
+          if (await welfare("dm", pressed, entry.reply, `t${k} dm (out of game, card waiting)`)) break;
+          lastDmText = entry.reply;
+          notice = `[Out of game] ${entry.reply}`;
+          current = (await readTurn(input)) ?? current;
+        }
+        if (presses >= MAX_PRESSES) { end("stuck", `t${k}: the turn waited on a card through ${presses} messages`); break; }
         continue;
       }
-      if (button === BUTTONS.roll) { revealed.add(`${waiting.id}:${waiting.rollNumber}`); continue; }
-      if (button === BUTTONS.reroll) { const check = cards.find((c) => c.canReroll); current = await press(input, "reroll", check.id, `dm t${k} reroll`); continue; }
-      current = await press(input, "continue", null, `dm t${k} onward`);
+      const button = pressedButton(pressed, offered);
+      if (button) turn.presses.push({ text: pressed, button });
+      if (button === BUTTONS.roll) { revealed.add(shownKey(waiting)); continue; }
+      if (button === BUTTONS.onward) { current = await press(input, "continue", null, `dm t${k} onward`); continue; }
+      const reroll = rerollPress(pressed, rerollable, waiting ? [] : live.filter((check) => check.bundledDamage));
+      if (reroll?.check) {
+        turn.presses.push({ text: pressed, button: BUTTONS.reroll, checkId: reroll.check.id, card: cardTitle(reroll.check) });
+        current = await press(input, "reroll", reroll.check.id, `dm t${k} reroll`);
+        continue;
+      }
+      // Anything else is refused on screen, with the reason (the composer is closed for actions while the card waits).
+      const reason = reroll?.refused ?? (waiting && rerollPress(pressed, [waiting]) ? "tap the die first: the card shows how it fell before a reroll"
+        : "press one of its buttons, or start the message with «?» to ask the DM out of game");
+      if (refuse(pressed, reason)) { end("stuck", `t${k}: the turn waited on a card and the player wrote ${turn.blocked} messages without pressing a button`); break; }
     }
     if (record.ended) break;
     turn.status = current.status;

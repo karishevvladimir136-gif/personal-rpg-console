@@ -143,6 +143,7 @@ export function createRpcTurnStore(
     fail: (lease, failure, retryable) =>
       rpc(lease.campaignId, "fail", { ...lease, failure, retryable }),
     cancel: (command) => rpc(command.campaignId, "cancel", command),
+    correctCheck: (campaignId, payload) => rpc(campaignId, "check_correction", payload),
     configure: async (input) =>
       projectPlay(await rpc(input.campaignId, "configure", input)),
     approveGuidance: (input) => rpc(input.campaignId, "guidance", input),

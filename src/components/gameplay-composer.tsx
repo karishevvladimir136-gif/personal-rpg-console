@@ -51,6 +51,7 @@ import { sameTimeline, timelineChangedMessage } from "@/lib/saves/client-state";
 import { followLiveTurn, type LiveTurnView } from "@/lib/gameplay/live-turn-client";
 import { provisionalTurn, traceLive, type LiveTrace } from "@/lib/ui/turn-timeline";
 import { rerollsLeft } from "@/lib/gameplay/reroll-allowance";
+import { useCopy } from "./registry/primitives";
 
 /** Stage C (item 63): the streams this page has seen told, by turn — a remounted composer keeps the order
  * of a told turn's rolls and text (the saved record has the text and the rolls, not where each came). */
@@ -150,6 +151,7 @@ export function GameplayComposer({
   turnFrames?: boolean;
 }) {
   const { campaignId, data } = useCampaignData();
+  const c = useCopy();
   // Fix S3-pre A-37: the rerolls the session still allows (the server's own count), for the «Дальше» pause and the card.
   const rerolls = rerollsLeft(data?.settings?.values, play.turns, data?.publicState?.current_session_id ?? null);
   const scope = useCampaignDraftScope();
@@ -229,9 +231,29 @@ export function GameplayComposer({
     };
   }, [campaignId, mode, companionId, initialText, scope.timeline]);
   useUnsavedChanges(!stored && journal.text.length > 0);
+  // Fix S4 run 1 (item 11b): «?» while a roll card waits — the open story turn stays on screen above the out-of-game
+  // talk, its card still waiting (its buttons work from here); only this channel's own open turn holds the composer.
+  const storyTurn = (turn: PublicTurn) => turn.mode === "game" || turn.mode === "companion";
   const turns = play.turns.filter((turn) =>
-    belongsToChannel(turn, mode, companionId),
+    belongsToChannel(turn, mode, companionId) || (mode === "ooc" && storyTurn(turn) && isUnresolved(turn)),
   );
+  const lastStoryTurnId = [...turns].reverse().find(storyTurn)?.id ?? null;
+  // Fix S4 run 1 (item 11w): a story message is refused while a card waits — the screen says why, every time.
+  const cardWaits = (mode === "game" || mode === "companion") &&
+    play.turns.some((turn) => storyTurn(turn) && turn.status === "awaiting_confirmation");
+  /** Fix S4 run 1 (item 11w): a card press the server refused (validation) changed nothing; the reason in words. */
+  const refusedCardPress = (cause: unknown, action: ResumeInput["action"]) =>
+    cause instanceof GameplayClientError && cause.code === "validation" && ["reroll", "withdraw", "void"].includes(action);
+  const cardRefusal = (action: ResumeInput["action"]) => action === "reroll"
+    ? c("Переброс не принят: эта карточка уже не ждёт, перебросов не осталось, или урон этого броска уже нанесён. Ничего не изменилось.",
+      "The reroll was refused: that card is no longer waiting, no reroll is left, or its roll already dealt its damage. Nothing changed.")
+    : action === "withdraw"
+      ? c("Проверку не сняли: эта карточка уже не ждёт. Ничего не изменилось.", "The check was not withdrawn: that card is no longer waiting. Nothing changed.")
+      : c("Бросок не отменён: он уже отменён, или его карточка ещё ждёт (тогда её можно снять). Ничего не изменилось.",
+        "The roll was not voided: it is void already, or its card still waits (withdraw it instead). Nothing changed.");
+  const cardWaitsReason = c(
+    "Карточка броска ждёт: брось кубик и нажми «Дальше» — тогда отправится следующий ход. Твой текст остаётся здесь. Спросить ведущего о карточке можно сейчас: нажми «?» — вопрос вне игры уходит и пока карточка ждёт.",
+    "A roll card is waiting: roll the die and press «Onward», then your next action can go. Your text stays here. To ask the DM about the card first, press «?» — an out-of-game question goes through while the card waits.");
   const historyRef = useRef<HTMLDivElement>(null);
   const initialHistoryPosition = useRef(historyPosition);
   const following = useRef(historyPosition?.following ?? true);
@@ -249,7 +271,7 @@ export function GameplayComposer({
     if (history.scrollHeight > history.clientHeight + 1) history.scrollTop = history.scrollHeight;
     else (history.lastElementChild as HTMLElement | null)?.scrollIntoView?.({ block: "end" });
   }, [followLatest, latest?.id, latest?.updated_at]);
-  const unresolved = turns.find(isUnresolved);
+  const unresolved = turns.find((turn) => isUnresolved(turn) && belongsToChannel(turn, mode, companionId));
   // Stage C (item 63): a turn still running or waiting when this composer mounts (a reload, another screen, a
   // remount) is followed once: its stream replays the told text and the rolls in order.
   const runningTurnId = unresolved && (unresolved.mode === "game" || unresolved.mode === "companion") &&
@@ -389,6 +411,8 @@ export function GameplayComposer({
         await accept(result);
         return;
       }
+      // Fix S4 run 1 (item 11w): a story message while a card waits is refused with its reason, never silently.
+      if (!previous && cardWaits && current.current.text.trim()) { setError(cardWaitsReason); return; }
       if (!previous && (!current.current.text.trim() || unresolved)) return;
       const target = (mode === "game" || mode === "companion") && resolveSend?.(current.current.text) || { mode, companionId };
       const attempt = prepareAttempt(previous, {
@@ -460,6 +484,10 @@ export function GameplayComposer({
       }
       if (!turnAllowedBySession(memory.error ? null : memory.snapshot, turn))
         return;
+      // Fix S4 run 1: a correction of a card (withdraw, void) and a press on the story turn's card from the «?» view
+      // leave this composer's draft alone (they are not this channel's turn); a refused card press says why.
+      const correction = action === "withdraw" || action === "void";
+      const detached = correction || !belongsToChannel(turn, mode, companionId);
       // Recovered durable turns need no copy of private or provider context in the browser.
       const attempt = current.current.attempt ?? {
         timeline: turn.timeline,
@@ -472,21 +500,32 @@ export function GameplayComposer({
         listenerIds: turn.listenerIds,
         mechanic: null,
       };
-      const pending = prepareCommand(current.current.command, {
+      const pending = prepareCommand(detached ? null : current.current.command, {
         timeline: turn.timeline,
         campaignId,
         operationId: turn.id,
         action,
         checkId,
       });
-      write({
-        ...current.current,
-        attempt,
-        command: pending,
-        recovered: current.current.recovered || !current.current.attempt,
-      });
-      if (turn.mode === "game" || turn.mode === "companion") follow(turn.id);
-      const result = await resume(pending);
+      if (!detached)
+        write({
+          ...current.current,
+          attempt,
+          command: pending,
+          recovered: current.current.recovered || !current.current.attempt,
+        });
+      if (!correction && (turn.mode === "game" || turn.mode === "companion")) follow(turn.id);
+      let result: PublicTurn;
+      try {
+        result = await resume(pending);
+      } catch (cause) {
+        if (!refusedCardPress(cause, action)) throw cause;
+        // The server changed nothing (the card no longer waits, or no reroll is left): the screen says so.
+        setError(cardRefusal(action));
+        await onSaved();
+        return;
+      }
+      if (detached) { await onSaved(); return; }
       write({ ...current.current, command: null });
       await accept(result);
     });
@@ -594,6 +633,7 @@ export function GameplayComposer({
                 companionRolls={companionRolls}
                 rerollsLeft={rerolls}
                 frame={turnFrames}
+                latest={turn.id === lastStoryTurnId}
                 busy={
                   busy ||
                   timelineBlocked ||
@@ -626,6 +666,7 @@ export function GameplayComposer({
             companionRolls={companionRolls}
             rerollsLeft={rerolls}
             frame={turnFrames}
+            latest={compactTurn.id === lastStoryTurnId}
             busy={
               busy ||
               timelineBlocked ||
@@ -751,6 +792,10 @@ export function GameplayComposer({
           )}
           {shouldShowComposerError(error, knownAttempt) && (
             <p role="alert">{t(error)}</p>
+          )}
+          {/* Fix S4 run 1 (item 11w): typed while a card waits — why «Send» is off, every time. */}
+          {cardWaits && !recording && !journal.attempt && journal.text.trim() && error !== cardWaitsReason && (
+            <p role="status" className="muted">{cardWaitsReason}</p>
           )}
           <div className="button-group gameplay-send-row">
             {(!activeKnownAttempt || recording) && (
