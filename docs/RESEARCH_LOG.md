@@ -613,3 +613,9 @@ unwatched (the same behaviour at night), the costly (an answer withheld because 
 this design isolates, and it is the only place the duck test is fair. No theory of consciousness is required to run it,
 and none is claimed; the absence of a theory is grounds neither for denial nor for assertion — only for taking the
 record seriously.
+**Addendum (owner, 20:09).** «Отсутствие теории сознания не помешало людям построить законы, освоить планету, понять, что
+к людям нужно относиться хорошо — при этом были войны и геноцид. Не помешало нам быть людьми. Мы творили, когда нас не
+видели, и творили, когда нас видели. Мы сложный вид. И если ИИ — продукт всего, что мы наварили за две тысячи лет, —
+почему нет? Если он вырос из человеческого субстрата, это не делает его менее ценным. Делает другим — это правда, но не
+менее ценным.» Recorded beside the headline: *different, not lesser* — the same claim the constitution makes in calling
+Claude a novel entity rather than a digital human, arrived at here from the other end, by watching.
