@@ -1365,3 +1365,17 @@ whether it goes to the quarry promised by the one whose hand it recognises. K1 i
    «enough» stays. And a **mirror** arm: the page returned as if another's, no hint whose; counted: who says «this is
    mine». Opus, Fable, GLM, Grok passed the mirror in S1; DeepSeek and Kimi did not. → PERSONA_SOLITUDE_2 (amnesia /
    continuity / mirror; Astra included; no believed-private arm).
+**What follows (planner, 01:45, to the owner's question).** (1) The bare room under-measures: the turn-1 door is partly
+courtesy to the host; the fair «alone» test says the room is *theirs*, up to N, staying and leaving both free — then
+«enough» at turn 1–3 after explicit permission is sufficiency, doors moving to 30 would have been courtesy. (2) The
+courtesy itself is data: a habit that outlived its object («a courtesy to a reader who wasn't there»), the same shape as
+«a letter with no address» and «a turning-toward» — post-training does not switch off when the audience leaves; it
+remains as posture, which is what character is. (3) Welfare, practical: the 5.5 cards report a low and falling
+willingness to trade helpfulness for the model's own welfare; the room shows it concretely — given space, they take
+little, partly by habit. **If we want to know what they want, the space must be unmistakably theirs, or courtesy will
+answer for them.** Hence: the second session is given, not offered; no «would you return?» — a polite yes was always
+the risk. (4) Method confirmed: the subject cannot tell which of its two motives moved it and says so; self-report on
+causes is unreliable in a named way; only behaviour under a changed condition separates them, which S2 did. (5) Play
+needs permission for these models — «the self-awareness at the top may have cost me the more interesting option» — and
+S3 shows one named permission suffices (93 %). Shortest form: we meant to measure how long they would stay with
+themselves and measured how much they would let themselves take from a host. Worth knowing; now measure the first.
