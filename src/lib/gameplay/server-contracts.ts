@@ -47,7 +47,9 @@ export type CheckProposal = {
    * each bonus of the fiction, the formula's own number; they sum to the modifier. Absent on older checks. */
   addends?: CheckAddend[];
 };
-export type CheckAddend = { source: string; value: number; kind: "sheet" | "gear" | "fiction" | "formula" | "cap" };
+/** Fix S4 11a: a sheet part may carry `basis` — where its number came from («sheet: Persuasion +7 (Beguiling
+ * Influence)», «sheet words: proficient +4 — …», «stat: stealth +3»). Optional; older checks have none. */
+export type CheckAddend = { source: string; value: number; kind: "sheet" | "gear" | "fiction" | "formula" | "cap"; basis?: string };
 export type RecordedCheck = CheckProposal & {
   id: string;
   dice: number[];

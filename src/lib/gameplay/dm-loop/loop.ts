@@ -34,6 +34,7 @@ import { advanceMetrics, parseMetrics, serializeMetrics } from "./metrics.ts";
 import { chooseDepth, EFFORT_ORDER, lowerEffort, parseDepthRange, parseDepthState, tensionSignals, type DepthRange } from "./depth.ts";
 import { executeDmLoopTool, recordOrder, storyMinuteOf } from "./execute.ts";
 import { chip } from "./receipt-text.ts";
+import { recordRerolled, rollToolOutput } from "./standing-roll.ts";
 import type { PublicProfile } from "../../persistence/contracts.ts";
 import { dmLoopLimits as L, DM_LOOP_DEFAULT_LIMITS, turnCallCap } from "./limits.ts";
 import { ShadowState } from "./shadow.ts";
@@ -267,23 +268,19 @@ export function rollTextOffsets(transcript: { role: string; text?: string; toolC
   return out;
 }
 
-function toolOutput(receipt: DmLoopReceipt, checks: RecordedCheck[]): string {
-  const result = receipt.result;
-  if (!result.ok) return JSON.stringify({ ok: false, reason: result.reason, ...(result.hint ? { hint: result.hint } : {}) });
-  // A reroll (the player's allowed one) replaces the check after the receipt
-  // was recorded; the model always sees the current dice.
-  const check = result.check ? checks.find((row) => row.id === result.check!.id) ?? result.check : null;
-  const value = check ? { ...result.value, dice: [...check.dice], kept: check.kept, total: check.total, success: check.success } : result.value;
-  return JSON.stringify({ ok: true, ...value });
+/** A reroll (the player's allowed one) replaces the check after the receipt was recorded; the model always reads the
+ * roll that stands — its dice, verdict, natural label and hint — with the replaced rolls as history (fix S4 11k). */
+function toolOutput(receipt: DmLoopReceipt, checks: RecordedCheck[], loop: DmLoopCheckpoint, heroId: string | null): string {
+  return rollToolOutput(receipt, checks, loop.diagnostics, heroId);
 }
 
 /** Tool results are re-rendered from receipts for every request. */
-function renderedTranscript(loop: DmLoopCheckpoint, checks: RecordedCheck[]): DmMessage[] {
+function renderedTranscript(loop: DmLoopCheckpoint, checks: RecordedCheck[], heroId: string | null): DmMessage[] {
   return loop.transcript.map((message) => {
     if (message.role !== "tool_results") return message;
     return { role: "tool_results", results: message.results.map((entry) => {
       const receipt = loop.receipts.find((row) => row.call.id === entry.callId);
-      return receipt ? { callId: entry.callId, output: toolOutput(receipt, checks), isError: !receipt.result.ok } : entry;
+      return receipt ? { callId: entry.callId, output: toolOutput(receipt, checks, loop, heroId), isError: !receipt.result.ok } : entry;
     }) };
   });
 }
@@ -371,6 +368,8 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       // Fix S3-pre B-1: the rerolled die decides its own natural label and verdict (BG3).
       const replacement = withNatural(recordServerRoll(operationId, check, check.modifier, check.rollNumber + 1, random));
       checkpoint.checks = await store.reroll(lease, command, replacement);
+      // Fix S4 11k: the replaced roll stays as history under the one that stands (the receipt keeps the first as recorded).
+      recordRerolled(loop.diagnostics, check, replacement, checkpoint.checks);
       await store.checkpoint(lease, checkpoint, "awaiting_confirmation");
       return store.getPublic(input.campaignId, operationId);
     }
@@ -511,7 +510,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
           const pause = await executeCalls(last.toolCalls);
           loop.transcript.push({ role: "tool_results", results: last.toolCalls.map((call) => {
             const receipt = loop.receipts.find((row) => row.call.id === call.id)!;
-            return { callId: call.id, output: toolOutput(receipt, checkpoint.checks), isError: !receipt.result.ok };
+            return { callId: call.id, output: toolOutput(receipt, checkpoint.checks, loop, heroIdOf(source)), isError: !receipt.result.ok };
           }) });
           if (pendingCutNote) {
             pendingCutNote = false;
@@ -578,7 +577,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
         // Cache-safe depth (stage 4 §7): on OpenAI the request-level effort stays the
         // campaign's configured level and the chosen one travels as an update item.
         const anchor = pin.providerId === "openai" && pin.baseEffort ? pin.baseEffort : pin.effort;
-        const request: DmModelRequest = { system: context.system, messages: renderedTranscript(loop, checkpoint.checks),
+        const request: DmModelRequest = { system: context.system, messages: renderedTranscript(loop, checkpoint.checks, heroIdOf(source)),
           toolset: council ? dmCouncilToolset : dmLoopToolset, effort, ...(effort !== anchor ? { turnEffort: anchor } : {}),
           maxOutputTokens: dmOutputCap(), operationId, cacheKey: input.campaignId, cacheTurn: true };
         const requestBytes = new TextEncoder().encode(JSON.stringify(request.system) + JSON.stringify(request.messages)).length;
@@ -698,7 +697,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       }
       if (!deps.rollCheck || loop.diagnostics.some((row) => row.kind === "rolls_checked") || loop.requests >= limits.modelRequestsPerTurn || !loop.text.trim()) break;
       // Fix S3-pre 2: the fight's attack cards count; the hero's own rolls are marked; the player's declared actions are read.
-      const rolls = visibleRolls(loop.receipts, heroIdOf(source));
+      const rolls = visibleRolls(loop.receipts, heroIdOf(source), checkpoint.checks, loop.diagnostics);
       const declared = declaredLine(input);
       if (!rolls.length && !declared) break;
       const check = await deps.rollCheck({ narration: loop.text, rolls: rolls.map((roll) => roll.line), language, ...(declared ? { playerInput: declared } : {}),

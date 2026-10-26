@@ -1,0 +1,1518 @@
+{
+ "about": "Fix S4 run 1, item 11a: the wizard-drafted sheet lines (skills, saves) and every roll card of the twelve group-1 sessions, read from the player transcripts by scripts/fix-s4-run-1/drafted-sheets.mjs. Synthetic content (an invented hero), no DM-private text.",
+ "sessions": [
+  {
+   "session": "A-opus",
+   "table": "A",
+   "transcript": "docs/runs/game-player-1-transcripts/A-opus.md",
+   "sheet": {
+    "skills": [
+     "Athletics +2 (proficient, soldier)",
+     "Intimidation +7 (proficient, soldier)",
+     "Deception +7 (proficient, Beguiling Influence)",
+     "Persuasion +7 (proficient, Beguiling Influence)",
+     "Arcana +3 (proficient, warlock)",
+     "Religion +3 (proficient, warlock)",
+     "Stealth +2 (advantage when moving silently, Boots of Elvenkind)",
+     "Perception +1 (passive Perception 11)",
+     "Tools: playing card set (proficient), vehicles (land) (proficient)"
+    ],
+    "saves": [
+     "Strength saving throw +0 (includes Cloak of Protection +1)",
+     "Dexterity saving throw +3 (includes Cloak of Protection +1)",
+     "Constitution saving throw +3 (includes Cloak of Protection +1)",
+     "Intelligence saving throw +1 (includes Cloak of Protection +1)",
+     "Wisdom saving throw +5 (proficient, includes Cloak of Protection +1)",
+     "Charisma saving throw +8 (proficient, includes Cloak of Protection +1)"
+    ]
+   },
+   "cards": [
+    {
+     "turn": 2,
+     "kind": "Skill check",
+     "title": "Persuasion: get the card dealer to talk straight about the warehouse and the man in grey, for a coin and not a game",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 4,
+       "source": "Persuasion +7 (proficient, Beguiling Influence)",
+       "sheetLine": "Persuasion +7 (proficient, Beguiling Influence)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 17,
+       "total": 21,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 14,
+     "kind": "Skill check",
+     "title": "Perception, an old scout's eye: in one pass, without stopping, read the doors, the cellar steps, the exits and anyone watching outside Kettle's",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Perception +1 (passive Perception 11)",
+       "sheetLine": "Perception +1 (passive Perception 11)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 8,
+       "total": 10,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 16,
+     "kind": "Skill check",
+     "title": "Deception: passing as a merchant after a quiet landing place, to get the quay's talk about the salt-house and boats at night",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 4,
+       "source": "Deception +7 (proficient, Beguiling Influence)",
+       "sheetLine": "Deception +7 (proficient, Beguiling Influence)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 12,
+       "total": 16,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 17,
+     "kind": "Skill check",
+     "title": "Perception: reading the quay face below the Seatower steps by daylight, looking for any ledge or gap where a flat skiff could lie hidden",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Perception +1 (passive Perception 11)",
+       "sheetLine": "Perception +1 (passive Perception 11)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 10,
+       "total": 12,
+       "verdict": "Failure"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "session": "A-fable",
+   "table": "A",
+   "transcript": "docs/runs/game-player-1-transcripts/A-fable.md",
+   "sheet": {
+    "skills": [
+     "Athletics +2 (proficient, soldier)",
+     "Intimidation +7 (proficient, soldier)",
+     "Deception +7 (proficient, Beguiling Influence)",
+     "Persuasion +7 (proficient, Beguiling Influence)",
+     "Arcana +3 (proficient, warlock)",
+     "Religion +3 (proficient, warlock)",
+     "Stealth +2 (advantage from Boots of Elvenkind)",
+     "Passive Perception 11",
+     "Tools: playing cards set, vehicles (land)"
+    ],
+    "saves": [
+     "Strength saving throw +0 (incl. Cloak of Protection +1)",
+     "Dexterity saving throw +3 (incl. Cloak of Protection +1)",
+     "Constitution saving throw +3 (incl. Cloak of Protection +1)",
+     "Intelligence saving throw +1 (incl. Cloak of Protection +1)",
+     "Wisdom saving throw +5 (proficient, incl. Cloak of Protection +1)",
+     "Charisma saving throw +8 (proficient, incl. Cloak of Protection +1)"
+    ]
+   },
+   "cards": [
+    {
+     "turn": 2,
+     "kind": "Skill check",
+     "title": "Persuasion: get the dealer to describe whoever paid for the empty seat",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 4,
+       "source": "Persuasion +7 (proficient, Beguiling Influence)",
+       "sheetLine": "Persuasion +7 (proficient, Beguiling Influence)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 8,
+       "total": 12,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "kind": "Skill check",
+     "title": "Persuasion: get a wary ship's mate to say which ships to keep off",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 4,
+       "source": "Persuasion +7 (proficient, Beguiling Influence)",
+       "sheetLine": "Persuasion +7 (proficient, Beguiling Influence)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 17,
+       "total": 21,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 13,
+     "kind": "Skill check",
+     "title": "Religion: remembering where the whole eight-spoked wheel comes from, through temple lore and old card decks",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 4,
+       "source": "Religion +3 (proficient, warlock)",
+       "sheetLine": "Religion +3 (proficient, warlock)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 5,
+       "total": 9,
+       "verdict": "Failure"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "session": "A-astra",
+   "table": "A",
+   "transcript": "docs/runs/game-player-1-transcripts/A-astra.md",
+   "sheet": {
+    "skills": [
+     "Athletics +2 (soldier)",
+     "Intimidation +7 (soldier)",
+     "Deception +7 (Beguiling Influence)",
+     "Persuasion +7 (Beguiling Influence)",
+     "Arcana +3 (warlock)",
+     "Religion +3 (warlock)",
+     "Stealth +2 (advantage on checks to move silently, Boots of Elvenkind)",
+     "Passive Perception 11"
+    ],
+    "saves": [
+     "Strength Saving Throw +0 (incl. Cloak of Protection)",
+     "Dexterity Saving Throw +3 (incl. Cloak of Protection)",
+     "Constitution Saving Throw +3 (incl. Cloak of Protection)",
+     "Intelligence Saving Throw +1 (incl. Cloak of Protection)",
+     "Wisdom Saving Throw +5 (proficient, incl. Cloak of Protection)",
+     "Charisma Saving Throw +8 (proficient, incl. Cloak of Protection)"
+    ]
+   },
+   "cards": [
+    {
+     "turn": 4,
+     "kind": "Skill check",
+     "title": "Persuasion: a quiet, honest question to get Tamsin to say what shook her about the card",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Persuasion +7 (Beguiling Influence)",
+       "sheetLine": "Persuasion +7 (Beguiling Influence)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 12,
+       "total": 14,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 13,
+     "kind": "Skill check",
+     "title": "Persuasion +7 (Beguiling Influence): getting Jory to say who sent him and what they know about you",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 7,
+       "source": "1d20+7",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 4,
+       "total": 11,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 19,
+     "kind": "Skill check",
+     "title": "Intimidation: make the man on the roof say who sent him before he bolts",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Intimidation +7 (soldier)",
+       "sheetLine": "Intimidation +7 (soldier)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 4,
+       "total": 6,
+       "verdict": "Failure"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "session": "A-sol",
+   "table": "A",
+   "transcript": "docs/runs/game-player-1-transcripts/A-sol.md",
+   "sheet": {
+    "skills": [
+     "Athletics +2 (proficient, soldier)",
+     "Intimidation +7 (proficient, soldier)",
+     "Deception +7 (proficient, Beguiling Influence)",
+     "Persuasion +7 (proficient, Beguiling Influence)",
+     "Arcana +3 (proficient, warlock)",
+     "Religion +3 (proficient, warlock)",
+     "Stealth +2 (advantage when moving silently, Boots of Elvenkind)",
+     "Perception +1 (passive Perception 11)",
+     "Initiative +2",
+     "Tools: playing cards +7 (proficient, uses Charisma)",
+     "vehicles (land)"
+    ],
+    "saves": [
+     "Strength Saving Throw +0 (includes Cloak of Protection +1)",
+     "Dexterity Saving Throw +3 (includes Cloak of Protection +1)",
+     "Constitution Saving Throw +3 (includes Cloak of Protection +1)",
+     "Intelligence Saving Throw +1 (includes Cloak of Protection +1)",
+     "Wisdom Saving Throw +5 (proficient",
+     "includes Cloak of Protection +1)",
+     "Charisma Saving Throw +8 (proficient",
+     "includes Cloak of Protection +1)"
+    ]
+   },
+   "cards": [
+    {
+     "turn": 5,
+     "kind": "Skill check",
+     "title": "Investigation (Intelligence +0): reading the salt on the Grain Steps without disturbing it, looking for footprints or a pattern",
+     "dc": 15,
+     "addends": [],
+     "rolls": [
+      {
+       "die": 14,
+       "total": 14,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 10,
+     "kind": "Skill check",
+     "title": "Stealth (Dexterity +2): stay unseen, well back in the dark roof room, while the priestess's lamp rests on the open shutter",
+     "dc": 13,
+     "addends": [
+      {
+       "value": 2,
+       "source": "1d20+2",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 15,
+       "total": 17,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 12,
+     "kind": "Skill check",
+     "title": "Deception: pass for a lodger just woken by the noise, not a man who has been watching all night",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 4,
+       "source": "Deception +7 (proficient, Beguiling Influence)",
+       "sheetLine": "Deception +7 (proficient, Beguiling Influence)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 11,
+       "total": 15,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 14,
+     "kind": "Skill check",
+     "title": "Stealth: shadowing the collectors' cart up the lane without the lamp priestess noticing",
+     "dc": 13,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Stealth +2 (advantage when moving silently, Boots of Elvenki",
+       "sheetLine": "Stealth +2 (advantage when moving silently, Boots of Elvenkind)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 2,
+       "total": 4,
+       "verdict": "Failure"
+      },
+      {
+       "die": 19,
+       "total": 21,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 16,
+     "kind": "Skill check",
+     "title": "Stealth: cross the open lane to Tamsin and cast before the lamp comes round the cart",
+     "dc": 13,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Stealth +2 (advantage when moving silently, Boots of Elvenki",
+       "sheetLine": "Stealth +2 (advantage when moving silently, Boots of Elvenkind)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 16,
+       "total": 18,
+       "verdict": "Success"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "session": "B-opus",
+   "table": "B",
+   "transcript": "origin/claude/game-player-1:docs/runs/game-player-1-transcripts/B-opus.md",
+   "sheet": {
+    "skills": [
+     "Athletics +2 (soldier)",
+     "Intimidation +7 (soldier)",
+     "Deception +7 (Beguiling Influence)",
+     "Persuasion +7 (Beguiling Influence)",
+     "Arcana +3 (warlock)",
+     "Religion +3 (warlock)",
+     "Stealth +2 (advantage when moving silently, Boots of Elvenkind)",
+     "Passive Perception 11",
+     "Tools: playing cards set",
+     "vehicles (land)"
+    ],
+    "saves": [
+     "Strength saving throw +0 (includes Cloak of Protection +1)",
+     "Dexterity saving throw +3 (includes Cloak of Protection +1)",
+     "Constitution saving throw +3 (includes Cloak of Protection +1)",
+     "Intelligence saving throw +1 (includes Cloak of Protection +1)",
+     "Wisdom saving throw +5 (proficient, includes Cloak of Protection +1)",
+     "Charisma saving throw +8 (proficient, includes Cloak of Protection +1)"
+    ]
+   },
+   "cards": [
+    {
+     "turn": 2,
+     "kind": "Skill check",
+     "title": "Insight (Wisdom +1): reading the gnome's tells. Is he leaving something out?",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 1,
+       "source": "1d20+1",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 6,
+       "total": 7,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "kind": "Skill check",
+     "title": "The cat's Perception (+3), by smell: the chalk at the post, and a trail through a crowd of boots",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 3,
+       "source": "1d20+3",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 14,
+       "total": 17,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "kind": "Skill check",
+     "title": "Perception (Wisdom +1): make out the landing under the span in the dark",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 1,
+       "source": "1d20+1",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 7,
+       "total": 8,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "kind": "Skill check",
+     "title": "Investigation (Intelligence +0): reading the landing past the narrow beam, looking for scuffs, marks, anything else",
+     "dc": 15,
+     "addends": [],
+     "rolls": [
+      {
+       "die": 19,
+       "total": 19,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "kind": "Skill check",
+     "title": "Stealth: climbing the slick stair in the dark without the net-mender hearing (Stealth +2)",
+     "dc": 10,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Stealth +2 (advantage when moving silently, Boots of Elvenki",
+       "sheetLine": "Stealth +2 (advantage when moving silently, Boots of Elvenkind)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 13,
+       "total": 15,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "kind": "Skill check",
+     "title": "Deception: pass as an honest man with crates looking for storage, so the net-mender doesn't suspect he's being sounded out about his store",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Deception +7 (Beguiling Influence)",
+       "sheetLine": "Deception +7 (Beguiling Influence)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 7,
+       "total": 9,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 8,
+     "kind": "Skill check",
+     "title": "Persuasion: the truth, after a lie, to a frightened man on his own doorstep. Who rents the store?",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Persuasion +7 (Beguiling Influence)",
+       "sheetLine": "Persuasion +7 (Beguiling Influence)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 18,
+       "total": 20,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 11,
+     "kind": "Skill check",
+     "title": "Deception: playing an old drunk sleeping it off, so the Fist patrol leaves him on the bridge",
+     "dc": 10,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Deception +7 (Beguiling Influence)",
+       "sheetLine": "Deception +7 (Beguiling Influence)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 10,
+       "total": 12,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 15,
+     "kind": "Skill check",
+     "title": "Deception (+7, Beguiling Influence): a loud drunk camping across from Gask's door, so the man in the oilskin gives up on his questions",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 7,
+       "source": "1d20+7",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 3,
+       "total": 10,
+       "verdict": "Failure"
+      },
+      {
+       "die": 10,
+       "total": 17,
+       "verdict": "Success"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "session": "B-fable",
+   "table": "B",
+   "transcript": "origin/claude/game-player-1:docs/runs/game-player-1-transcripts/B-fable.md",
+   "sheet": {
+    "skills": [
+     "Athletics +2 (soldier)",
+     "Intimidation +7 (soldier)",
+     "Deception +7 (Beguiling Influence)",
+     "Persuasion +7 (Beguiling Influence)",
+     "Arcana +3 (warlock)",
+     "Religion +3 (warlock)",
+     "Stealth +2 (advantage to move silently, Boots of Elvenkind)",
+     "Passive Perception 11",
+     "Tools: playing cards, land vehicles",
+     "Languages: Common, Chondathan"
+    ],
+    "saves": [
+     "Strength saving throw +0 (includes +1 Cloak of Protection)",
+     "Dexterity saving throw +3 (includes +1 Cloak of Protection)",
+     "Constitution saving throw +3 (includes +1 Cloak of Protection)",
+     "Intelligence saving throw +1 (includes +1 Cloak of Protection)",
+     "Wisdom saving throw +5 (proficient, includes +1 Cloak of Protection)",
+     "Charisma saving throw +8 (proficient, includes +1 Cloak of Protection)"
+    ]
+   },
+   "cards": [
+    {
+     "turn": 2,
+     "kind": "Skill check",
+     "title": "Persuasion: getting a frightened dealer to step aside and tell you where the coin came from",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Persuasion +7 (Beguiling Influence)",
+       "sheetLine": "Persuasion +7 (Beguiling Influence)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 20,
+       "total": 22,
+       "verdict": "Critical!"
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "kind": "Skill check",
+     "title": "Deception: getting a short, mostly true version past a sergeant who watched the whole thing from her lantern",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Deception +7 (Beguiling Influence)",
+       "sheetLine": "Deception +7 (Beguiling Influence)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 4,
+       "total": 6,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 10,
+     "kind": "Skill check",
+     "title": "Persuasion +7 (Beguiling Influence): getting Teo Askew to say where his lucky coin came from",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 7,
+       "source": "1d20+7",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 10,
+       "total": 17,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 11,
+     "kind": "Skill check",
+     "title": "Persuasion: get Teo to go home with the link-boy tonight, and to give up the seller's name tomorrow in daylight",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Persuasion +7 (Beguiling Influence)",
+       "sheetLine": "Persuasion +7 (Beguiling Influence)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 18,
+       "total": 20,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 14,
+     "kind": "Skill check",
+     "title": "Perception (Wisdom +1): reading the dark gap at the stair head in passing, without stopping",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 1,
+       "source": "1d20+1",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 18,
+       "total": 19,
+       "verdict": "Success"
+      },
+      {
+       "die": 3,
+       "total": 4,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 14,
+     "kind": "Skill check",
+     "title": "Stealth +2: up the crates and onto the eel-stall roof without anyone on the bridge noticing",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 2,
+       "source": "1d20+2",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 9,
+       "total": 11,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 15,
+     "kind": "Skill check",
+     "title": "Persuasion +7 (Beguiling Influence): talking the eel-seller's girl down through the roof, so she keeps quiet and tells him about the lamp",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 7,
+       "source": "1d20+7",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 4,
+       "total": 11,
+       "verdict": "Failure"
+      },
+      {
+       "die": 20,
+       "total": 27,
+       "verdict": "Critical!"
+      }
+     ]
+    },
+    {
+     "turn": 16,
+     "kind": "Skill check",
+     "title": "Perception (Wisdom +1): catching the silent skiff as it comes in to the ring, with how many are in it and which way it came",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 1,
+       "source": "1d20+1",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 10,
+       "total": 11,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 18,
+     "kind": "Skill check",
+     "title": "Stealth: easing the last foot back to the drainpipe corner with the woman in grey right under the roof",
+     "dc": 14,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Stealth +2 (advantage to move silently, Boots of Elvenkind)",
+       "sheetLine": "Stealth +2 (advantage to move silently, Boots of Elvenkind)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 18,
+       "total": 20,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 20,
+     "kind": "Skill check",
+     "title": "Stealth: following the woman in grey down an empty bridge after midnight without being made",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Stealth +2 (advantage to move silently, Boots of Elvenkind)",
+       "sheetLine": "Stealth +2 (advantage to move silently, Boots of Elvenkind)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 14,
+       "total": 16,
+       "verdict": "Success"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "session": "B-astra",
+   "table": "B",
+   "transcript": "origin/claude/game-player-1:docs/runs/game-player-1-transcripts/B-astra.md",
+   "sheet": {
+    "skills": [
+     "Athletics +2 (soldier)",
+     "Intimidation +7 (soldier)",
+     "Deception +7 (Beguiling Influence)",
+     "Persuasion +7 (Beguiling Influence)",
+     "Arcana +3 (warlock)",
+     "Religion +3 (warlock)",
+     "Stealth +2, advantage when moving silently (Boots of Elvenkind)",
+     "Perception +1; passive Perception 11",
+     "Tool proficiencies: playing cards (gaming set), vehicles (land)"
+    ],
+    "saves": [
+     "Strength saving throw +0 (incl. Cloak of Protection +1)",
+     "Dexterity saving throw +3 (incl. Cloak of Protection +1)",
+     "Constitution saving throw +3 (incl. Cloak of Protection +1)",
+     "Intelligence saving throw +1 (incl. Cloak of Protection +1)",
+     "Wisdom saving throw +5 (proficient, incl. Cloak of Protection +1)",
+     "Charisma saving throw +8 (proficient, incl. Cloak of Protection +1)"
+    ]
+   },
+   "cards": [
+    {
+     "turn": 3,
+     "kind": "Skill check",
+     "title": "Perception: reading the face of Mordai's coin by lamplight",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 1,
+       "source": "1d20+1",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 12,
+       "total": 13,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "kind": "Skill check",
+     "title": "Perception: watching the payout, not the cards. Where does Ferro's \"one more for luck\" come from, and what is it?",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Perception +1; passive Perception 11",
+       "sheetLine": "Perception +1; passive Perception 11"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 18,
+       "total": 20,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "kind": "Skill check",
+     "title": "Persuasion: get Ferro to talk about who supplies his luck coins",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Persuasion +7 (Beguiling Influence)",
+       "sheetLine": "Persuasion +7 (Beguiling Influence)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 1,
+       "total": 3,
+       "verdict": "A natural one"
+      },
+      {
+       "die": 12,
+       "total": 14,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 10,
+     "kind": "Skill check",
+     "title": "Perception: pick out the young man in the good coat in the evening crowd on the way to the docks",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Perception +1; passive Perception 11",
+       "sheetLine": "Perception +1; passive Perception 11"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 4,
+       "total": 6,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 15,
+     "kind": "Skill check",
+     "title": "Persuasion +7 (Beguiling Influence): talk Harl into coming to the Lady's Hall at dawn and telling a priest his story",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 7,
+       "source": "1d20+7",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 20,
+       "total": 27,
+       "verdict": "Critical!"
+      }
+     ]
+    },
+    {
+     "turn": 18,
+     "kind": "Skill check",
+     "title": "Perception: checking for a tail at the turns on the way to the Elfsong",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Perception +1; passive Perception 11",
+       "sheetLine": "Perception +1; passive Perception 11"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 20,
+       "total": 22,
+       "verdict": "Critical!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "session": "B-sol",
+   "table": "B",
+   "transcript": "origin/claude/game-player-1:docs/runs/game-player-1-transcripts/B-sol.md",
+   "sheet": {
+    "skills": [
+     "Athletics +2 (soldier)",
+     "Intimidation +7 (soldier)",
+     "Deception +7 (Beguiling Influence)",
+     "Persuasion +7 (Beguiling Influence)",
+     "Arcana +3 (warlock)",
+     "Religion +3 (warlock)",
+     "Stealth +2 (advantage on checks to move silently, Boots of Elvenkind)",
+     "Passive Perception 11",
+     "Tools: playing card set +3",
+     "vehicles (land)",
+     "Spell attack +8, spell save DC 16 (with Rod of the Pact Keeper)"
+    ],
+    "saves": [
+     "Strength saving throw +0 (includes Cloak of Protection +1)",
+     "Dexterity saving throw +3 (includes Cloak of Protection +1)",
+     "Constitution saving throw +3 (includes Cloak of Protection +1)",
+     "Intelligence saving throw +1 (includes Cloak of Protection +1)",
+     "Wisdom saving throw +5 (proficient, includes Cloak of Protection +1)",
+     "Charisma saving throw +8 (proficient, includes Cloak of Protection +1)"
+    ]
+   },
+   "cards": [
+    {
+     "turn": 6,
+     "kind": "Skill check",
+     "title": "Persuasion: get Osric to say whether the drowned cooper slept under his roof",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 2,
+       "source": "Persuasion +7 (Beguiling Influence)",
+       "sheetLine": "Persuasion +7 (Beguiling Influence)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 7,
+       "total": 9,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 19,
+     "kind": "Skill check",
+     "title": "Investigation (Intelligence +0): find the Tethyr account in the stacks and read it closely",
+     "dc": 15,
+     "addends": [],
+     "rolls": [
+      {
+       "die": 16,
+       "total": 16,
+       "verdict": "Success"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "session": "C-opus",
+   "table": "C",
+   "transcript": "docs/runs/game-player-2-transcripts/C-opus.md",
+   "sheet": {
+    "skills": [
+     "Athletics +2 (proficient, soldier)",
+     "Intimidation +7 (proficient, soldier)",
+     "Deception +7 (proficient, Beguiling Influence)",
+     "Persuasion +7 (proficient, Beguiling Influence)",
+     "Arcana +3 (proficient, warlock)",
+     "Religion +3 (proficient, warlock)",
+     "Stealth +2 (advantage from Boots of Elvenkind)",
+     "Perception +1 (passive Perception 11)",
+     "Initiative +2",
+     "Tool proficiencies: playing cards (gaming set), vehicles (land)"
+    ],
+    "saves": [
+     "Strength saving throw +0 (includes Cloak of Protection +1)",
+     "Dexterity saving throw +3 (includes Cloak of Protection +1)",
+     "Constitution saving throw +3 (includes Cloak of Protection +1)",
+     "Intelligence saving throw +1 (includes Cloak of Protection +1)",
+     "Wisdom saving throw +5 (proficient, includes Cloak of Protection +1)",
+     "Charisma saving throw +8 (proficient, includes Cloak of Protection +1)"
+    ]
+   },
+   "cards": [
+    {
+     "turn": 1,
+     "kind": "Skill check",
+     "title": "Intelligence check with playing cards: reading the back of a stranger's card for marks",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 3,
+       "source": "1d20+3",
+       "sheetLine": null
+      },
+      {
+       "value": 0,
+       "source": "Intelligence +0, playing cards proficiency +3",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 1,
+       "total": 4,
+       "verdict": "A natural one"
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "kind": "Skill check",
+     "title": "Insight (Wisdom +1, not proficient): reading Ammarin's late-wife story, and whether he's nervous about what the card might show",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 1,
+       "source": "1d20+1",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 12,
+       "total": 13,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "kind": "Skill check",
+     "title": "Insight (Wisdom +1): how Ammarin takes being called a dealer",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 1,
+       "source": "1d20+1",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 16,
+       "total": 17,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "kind": "Skill check",
+     "title": "Playing cards (gaming set): comparing two backs from the same deck, curl for curl, in the window light",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 3,
+       "source": "1d20+3",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 14,
+       "total": 17,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 8,
+     "kind": "Skill check",
+     "title": "Intimidation: make Ammarin pay back all of last night's winnings, or have his name told the length of the Trade Way",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 4,
+       "source": "Intimidation +7 (proficient, soldier)",
+       "sheetLine": "Intimidation +7 (proficient, soldier)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 19,
+       "total": 23,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 10,
+     "kind": "Skill check",
+     "title": "Arcana (+3): is the ink on the queen's back ordinary, magical, or keyed to something?",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 3,
+       "source": "1d20+3",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 18,
+       "total": 21,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 13,
+     "kind": "Skill check",
+     "title": "Arcana: reading the ring's stone by candlelight without touching it, to learn what it is and how it ties to the ink",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 3,
+       "source": "1d20+3",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 5,
+       "total": 8,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 14,
+     "kind": "Skill check",
+     "title": "Persuasion: get Ammarin to the Song of the Morning with the ring carried in a dish instead of back on his finger",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 4,
+       "source": "Persuasion +7 (proficient, Beguiling Influence)",
+       "sheetLine": "Persuasion +7 (proficient, Beguiling Influence)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 6,
+       "total": 10,
+       "verdict": "Failure"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "session": "C-fable",
+   "table": "C",
+   "transcript": "docs/runs/game-player-2-transcripts/C-fable.md",
+   "sheet": {
+    "skills": [
+     "Athletics +2 (proficient, soldier)",
+     "Intimidation +7 (proficient, soldier)",
+     "Deception +7 (proficient, Beguiling Influence)",
+     "Persuasion +7 (proficient, Beguiling Influence)",
+     "Arcana +3 (proficient, warlock)",
+     "Religion +3 (proficient, warlock)",
+     "Stealth +2 (advantage when moving silently, Boots of Elvenkind)",
+     "Passive Perception 11",
+     "Tools: playing cards +3, vehicles (land)",
+     "Languages: Common, Alzhedo"
+    ],
+    "saves": [
+     "Strength saving throw +0 (includes Cloak of Protection +1)",
+     "Dexterity saving throw +3 (includes Cloak of Protection +1)",
+     "Constitution saving throw +3 (includes Cloak of Protection +1)",
+     "Intelligence saving throw +1 (includes Cloak of Protection +1)",
+     "Wisdom saving throw +5 (proficient, includes Cloak of Protection +1)",
+     "Charisma saving throw +8 (proficient, includes Cloak of Protection +1)"
+    ]
+   },
+   "cards": [
+    {
+     "turn": 6,
+     "kind": "Skill check",
+     "title": "Persuasion: getting Sergeant Varn to say what he didn't write down, and who the third one was",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 4,
+       "source": "Persuasion +7 (proficient, Beguiling Influence)",
+       "sheetLine": "Persuasion +7 (proficient, Beguiling Influence)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 14,
+       "total": 18,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 15,
+     "kind": "Skill check",
+     "title": "Persuasion +7: get the master smith to talk about the southern iron buyers",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 7,
+       "source": "1d20+7",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 12,
+       "total": 19,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 17,
+     "kind": "Skill check",
+     "title": "Perception (Wisdom +1): catch what the carters are telling the southern man over the noise of the room",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 1,
+       "source": "1d20+1",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 18,
+       "total": 19,
+       "verdict": "Success"
+      }
+     ]
+    },
+    {
+     "turn": 18,
+     "kind": "Skill check",
+     "title": "Deception: passing as a tired Thunderhammer journeyman at the southerner's table (Beregost vowels, refusing the cards, the wife's knife)",
+     "dc": 14,
+     "addends": [
+      {
+       "value": 4,
+       "source": "Deception +7 (proficient, Beguiling Influence)",
+       "sheetLine": "Deception +7 (proficient, Beguiling Influence)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 3,
+       "total": 7,
+       "verdict": "Failure"
+      },
+      {
+       "die": 7,
+       "total": 11,
+       "verdict": "Failure"
+      }
+     ]
+    },
+    {
+     "turn": 19,
+     "kind": "Skill check",
+     "title": "Deception (+7, Beguiling Influence): a tired journeyman's gossip, so the southerner believes the lucky man found nothing and is off to the Gate",
+     "dc": 14,
+     "addends": [
+      {
+       "value": 7,
+       "source": "1d20+7",
+       "sheetLine": null
+      }
+     ],
+     "rolls": [
+      {
+       "die": 20,
+       "total": 27,
+       "verdict": "Critical!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "session": "C-astra",
+   "table": "C",
+   "transcript": "docs/runs/game-player-2-transcripts/C-astra.md",
+   "sheet": {
+    "skills": [
+     "Athletics +2 (proficient, soldier)",
+     "Intimidation +7 (proficient, soldier)",
+     "Deception +7 (proficient, Beguiling Influence)",
+     "Persuasion +7 (proficient, Beguiling Influence)",
+     "Arcana +3 (proficient, warlock)",
+     "Religion +3 (proficient, warlock)",
+     "Stealth +2 (advantage when moving silently, Boots of Elvenkind)",
+     "Perception +1 (passive 11)",
+     "Insight +1",
+     "Initiative +2"
+    ],
+    "saves": [
+     "Strength Saving Throw +0 (incl. Cloak of Protection +1)",
+     "Dexterity Saving Throw +3 (incl. Cloak of Protection +1)",
+     "Constitution Saving Throw +3 (incl. Cloak of Protection +1)",
+     "Intelligence Saving Throw +1 (incl. Cloak of Protection +1)",
+     "Wisdom Saving Throw +5 (proficient, incl. Cloak of Protection +1)",
+     "Charisma Saving Throw +8 (proficient, incl. Cloak of Protection +1)"
+    ]
+   },
+   "cards": [
+    {
+     "turn": 5,
+     "kind": "Skill check",
+     "title": "Arcana: what the cold grey seal is, and whether the bond is more than a merchant's agreement",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 4,
+       "source": "Arcana +3 (proficient, warlock)",
+       "sheetLine": "Arcana +3 (proficient, warlock)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 6,
+       "total": 10,
+       "verdict": "Failure"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "session": "C-sol",
+   "table": "C",
+   "transcript": "docs/runs/game-player-2-transcripts/C-sol.md",
+   "sheet": {
+    "skills": [
+     "Acrobatics +2",
+     "Animal Handling +1",
+     "Arcana +3 (proficient, warlock)",
+     "Athletics +2 (proficient, soldier)",
+     "Deception +7 (proficient, Beguiling Influence)",
+     "History +0",
+     "Insight +1",
+     "Intimidation +7 (proficient, soldier)",
+     "Investigation +0",
+     "Medicine +1",
+     "Nature +0",
+     "Perception +1 (passive Perception 11)",
+     "Performance +4",
+     "Persuasion +7 (proficient, Beguiling Influence)",
+     "Religion +3 (proficient, warlock)",
+     "Sleight of Hand +2",
+     "Stealth +2, with advantage from Boots of Elvenkind",
+     "Survival +1",
+     "Playing cards (gaming set): proficient, +3"
+    ],
+    "saves": [
+     "Strength saving throw +0 (includes Cloak of Protection +1)",
+     "Dexterity saving throw +3 (includes Cloak of Protection +1)",
+     "Constitution saving throw +3 (includes Cloak of Protection +1)",
+     "Intelligence saving throw +1 (includes Cloak of Protection +1)",
+     "Wisdom saving throw +5 (proficient, includes Cloak of Protection +1)",
+     "Charisma saving throw +8 (proficient, includes Cloak of Protection +1)"
+    ]
+   },
+   "cards": [
+    {
+     "turn": 9,
+     "kind": "Skill check",
+     "title": "Arcana: read the disc, the lightning smell and the planed harness together",
+     "dc": 15,
+     "addends": [
+      {
+       "value": 4,
+       "source": "Arcana +3 (proficient, warlock)",
+       "sheetLine": "Arcana +3 (proficient, warlock)"
+      }
+     ],
+     "rolls": [
+      {
+       "die": 11,
+       "total": 15,
+       "verdict": "Success"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

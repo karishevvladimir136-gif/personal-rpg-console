@@ -219,6 +219,13 @@ export const chip = {
     const target = dc !== null && showDc ? (l === "ru" ? ` против ${dc}` : ` vs ${dc}`) : "";
     return `${who}${reason ? `${reason}: ` : ""}${total}${target}${verdict}`;
   },
+  /** Fix S4 11v: the server's Heroic Inspiration for a natural 20 on a called check — granted, or withheld with why. */
+  inspirationGranted(l: ChipLanguage, label: string, what: string) {
+    return l === "ru" ? `${label}: 0 → 1/1 — натуральная 20 (${what})` : `${label}: 0 → 1/1 — natural 20 on ${what}`;
+  },
+  inspirationWithheld(l: ChipLanguage, label: string, what: string) {
+    return l === "ru" ? `${label} не дано: уже есть, по одному (натуральная 20 — ${what})` : `${label} not granted: already held, one at a time (natural 20 on ${what})`;
+  },
   moment(l: ChipLanguage, reason: string) {
     return l === "ru" ? `${reason} · получилось — опиши, как ты это делаешь` : `${reason} · success — describe how you do it`;
   },

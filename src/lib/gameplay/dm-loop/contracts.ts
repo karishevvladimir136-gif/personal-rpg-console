@@ -133,7 +133,9 @@ export type DmLoopDiagnostic =
   /** Fix run A3: a turn over $1, over four requests or over 32 000 output tokens, with its causes. */
   | { kind: "expensive_turn"; costUsd: number; requests: number; outputTokens: number; latencyMs: number; causes: string[] }
   /** Fix run A1 (item 32c): the provider's own error (kind, HTTP status, code, the message with secrets filtered). */
-  | { kind: "provider_error"; errorKind: string; httpStatus: number | null; providerCode: string | null; message: string };
+  | { kind: "provider_error"; errorKind: string; httpStatus: number | null; providerCode: string | null; message: string }
+  /** Fix S4 11k: a reroll replaced this roll of the check — kept as history under the roll that stands (standing-roll.ts). */
+  | { kind: "rerolled"; checkId: string; roll: { rollNumber: number; dice: number[]; kept: number; total: number; success: boolean; natural: "crit" | "fumble" | null } };
 
 export type DmLoopSceneKind = "combat" | "conversation" | "mystery" | "exploration" | "quiet" |
   "humor" | "trade" | "travel" | "other";
