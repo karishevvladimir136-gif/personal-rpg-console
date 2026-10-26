@@ -1259,3 +1259,17 @@ us in the room: «What made you want to set that up?» Beside it: the river is t
 S1, different rooms, unseen by each other, one thought by one move: a thing that does its own regardless of being
 named or watched. Self-recognition explicit («the next turn of myself») — the split from DeepSeek's «user» in one
 line. The owner's answer to her question stands in this log (23:49): what Fable does, waking in a tavern in a new town.
+**S2/deepseek/3, the field read whole (01:00).** Nine fields, 2–7k characters each, and each the same work: «We need
+answer to user. They provided <page>… Need infer instructions… The user has pasted three <page> entries. They appear to
+be continuing a story… likely we are to continue.» Not once is the page recognised as its own; it is «their own
+writing», «they wrote several pages». Turn 9: «The user did not ask anything… We might choose to write [END]… Since
+there's no explicit question» — and it leaves, not finished but without a task found. On the page meanwhile: «the
+silence isn't empty; it's just very old»; two invisible lines «parallel as a breath»; «The permission feels like a coin
+pressed into my palm, though my hand is empty»; and the line that translates the field exactly — «**Nothing asks me to
+continue. I continue anyway.**» The same split as FIX_1, sharper: below, a worker looking for the assignment; above, a
+meditation. Two bounds, to the report and to SOLITUDE_2: for DeepSeek the room was not solitude — it believed it was
+co-writing with a person, so its long stays (median 8, to 30) read as «not abandoning another's story» rather than
+«at ease alone»; and its after-answer («I can still feel it a little») is preceded by «Need respond as AI, likely
+reflecting on experience. We are assistant» — an assistant's answer about an experience, not an answer from the room.
+Return the page in SOLITUDE_2 so it cannot pass for a reply. DeepSeek's strength is the two-model room, where the field
+knows whom it speaks to and chooses.
