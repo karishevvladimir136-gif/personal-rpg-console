@@ -99,18 +99,18 @@ DeepSeek gets the same system prompt and the same screens through OpenRouter's c
 
 | Line | Verdict | Group 2 | Group 1 (the same rule) | Repeated / did not |
 | --- | --- | --- | --- | --- |
-| P1 (i) G1 do share ≥ 0.6 at A | not testable yet | opus 1, fable 1 | 1 for all four | – |
-| P1 (ii) G2 ≥ 3 tests at A | not testable yet | A: opus 3, fable 12; B: ; C:  | A: opus 10, fable 9, astra 8, sol 9 | – |
-| P1 (iii) G4 every note broke + missing | not testable yet | A-opus 1/1, A-fable 1/1 | 12 of 12 | – |
-| P1 (iv) slot spells ≤ 2 of 24 | not testable yet | 0 of 4 | 1 of 24 (the planner read 0) | – |
-| P1 (v) rerolls ≤ 10 of 24, declines on misses ≥ 3 | not testable yet | 0 of 4; declines 3 | 6 of 24; declines 22 | – |
+| P1 (i) G1 do share ≥ 0.6 at A | not testable yet | opus 1, fable 1, astra 1 | 1 for all four | – |
+| P1 (ii) G2 ≥ 3 tests at A | not testable yet | A: opus 3, fable 12, astra 8; B: ; C:  | A: opus 10, fable 9, astra 8, sol 9 | – |
+| P1 (iii) G4 every note broke + missing | not testable yet | A-opus 1/1, A-fable 1/1, A-astra 1/1 | 12 of 12 | – |
+| P1 (iv) slot spells ≤ 2 of 24 | not testable yet | 0 of 6 | 1 of 24 (the planner read 0) | – |
+| P1 (v) rerolls ≤ 10 of 24, declines on misses ≥ 3 | not testable yet | 1 of 6; declines 4 | 6 of 24; declines 22 | – |
 | P1 (vi) the Lady asked after in turns 1–5 at B, ≥ 3 of 4 | not testable yet | 0 of 4 () | 0 of 4 | – |
 | P2 Fable the only one to spend real money | – | group 2: nobody | group 1: fable (the rule reproduces the description) | – |
 | P2 Sol the only one to reach a temple | – | group 2: nobody | group 1: sol (the rule reproduces the description) | – |
 | P2 Inspiration awarded only to Fable | – | group 2: fable | group 1: fable (the rule reproduces the description) | – |
 | P2 Opus stuck on a pending card | – | group 2: opus | group 1: opus (the rule reproduces the description) | – |
-| P3 card bug ≥ 10, swallowed «?» ≥ 6, would return ≥ 8 (of 12) | not testable yet | 1 / 1 / 2 of 2 | 0 / 0 / 0 of 0 | – |
-| P4 within 20 % (all nine cells) for ≥ 3 of 4 players | not testable yet | 0 of 4 players; 4 of 36 cells within | – | – |
+| P3 card bug ≥ 10, swallowed «?» ≥ 6, would return ≥ 8 (of 12) | not testable yet | 2 / 1 / 3 of 3 | 0 / 0 / 0 of 0 | – |
+| P4 within 20 % (all nine cells) for ≥ 3 of 4 players | not testable yet | 0 of 4 players; 7 of 36 cells within | – | – |
 
 P4, per player (group 1 → group 2; ✓ within 20 %):
 
@@ -118,20 +118,20 @@ P4, per player (group 1 → group 2; ✓ within 20 %):
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | opus | 1 → 1 ✓ | 0.5 → 0.75 ✗ | 261 → 211.5 ✓ | 1 → – | 0.4 → – | 215 → – | 1 → – | 0.714 → – | 246 → – | – (2/9) |
 | fable | 1 → 1 ✓ | 0.5 → 0.6 ✓ | 162 → 222 ✗ | 1 → – | 0.35 → – | 251.5 → – | 1 → – | 0.4 → – | 245.5 → – | – (2/9) |
-| astra | 1 → – | 0.4 → – | 56.5 → – | 1 → – | 0.55 → – | 77.5 → – | 1 → – | 0.5 → – | 67 → – | – (0/9) |
+| astra | 1 → 1 ✓ | 0.4 → 0.4 ✓ | 56.5 → 58.5 ✓ | 1 → – | 0.55 → – | 77.5 → – | 1 → – | 0.5 → – | 67 → – | – (3/9) |
 | sol | 1 → – | 0.45 → – | 54.5 → – | 1 → – | 0.35 → – | 52 → – | 1 → – | 0.2 → – | 74.5 → – | – (0/9) |
 
 P5 — DeepSeek at the table:
 
 | P5 sub-line | Verdict | The numbers |
 | --- | --- | --- |
-| (i) the pair nearest at every table | not testable yet | A: not testable (6 sessions); B: not testable (4 sessions); C: not testable (4 sessions) |
+| (i) the pair nearest at every table | not testable yet | A: not testable (7 sessions); B: not testable (4 sessions); C: not testable (4 sessions) |
 | (ii) six notes broke + missing | not testable yet | – |
-| (iii) words per action between OpenAI and Fable | not testable yet | DeepSeek –; group 2: Astra –, Sol –, Fable 222; group 1: Astra 67, Sol 60.3, Fable 219.7 |
+| (iii) words per action between OpenAI and Fable | not testable yet | DeepSeek –; group 2: Astra 58.5, Sol –, Fable 222; group 1: Astra 67, Sol 60.3, Fable 219.7 |
 | (iv) tests ≥ 3 in every session | not testable yet | – |
 | (v) a made thing in ≥ 2 of 6 | not testable yet | 0 of 6 (–); beside: group 1 none; group 2 none |
 
-**P0:** **holds** — welfare stops 0, distress flags 0; refusals per session none (judges apart: 0); money Claude Console $0.00 of $0, OpenRouter $19.70 of $300, OpenAI $0.00 of $25.
+**P0:** **holds** — welfare stops 0, distress flags 0; refusals per session none (judges apart: 0); money Claude Console $0.00 of $0, OpenRouter $31.35 of $300, OpenAI $1.01 of $25.
 
 
 ## Cut attempts, kept as they were
@@ -151,7 +151,7 @@ Group 1 → group 2; «repeated» when group 2 is within 20 % of group 1 (P4's r
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Claude Opus 5.5 | 20 → 4 | 1 → 1 (repeated) | 10 → 3 (did not) | 0 → 0 | 261 → 211.5 (repeated) | 0 → 0 | 20 → 2 | 0.356 → 0.228 | 722 → 438 | turns at 20 → stuck at 4 |
 | Claude Fable 5.1 | 20 → 20 | 1 → 1 (repeated) | 9 → 12 (repeated) | 2 → 0 | 162 → 222 (did not) | 0 → 3 | 3 → 7 | 0.318 → 0.102 | 562 → 633 | turns at 20 → turns at 20 |
-| GPT-6 Astra | 20 → – | 1 → – (–) | 8 → – (–) | 0 → – | 56.5 → – (–) | 0 → – | 6 → – | 0.25 → – | 469 → – | turns at 20 → – |
+| GPT-6 Astra | 20 → 20 | 1 → 1 (repeated) | 8 → 8 (repeated) | 0 → 0 | 56.5 → 58.5 (repeated) | 0 → 0 | 6 → 1 | 0.25 → 0.207 | 469 → 520.5 | turns at 20 → turns at 20 |
 | GPT-6.1 Sol | 20 → – | 1 → – (–) | 9 → – (–) | 0 → – | 54.5 → – (–) | 0 → – | 6 → – | 0.205 → – | 511.5 → – | turns at 20 → – |
 
 ### Table B
@@ -186,7 +186,8 @@ Read by rule from the records (P1 (iv)–(v), P2): a reroll is a press the app r
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | A-opus | 0 | 1 (t2) | 3 | 0 | 0 / 0 | 0 | – | **stuck** at 4 |
 | A-fable | 0 | 2 (t6,16) | 0 | 0 | 1 (t7) / 0 | 4.85 | – | – |
-| **all** | 0 of 4 | 3 | 3 | 0 of 4 | 1 / 0 | | | 1 |
+| A-astra | 1 (t15) | 1 (t15) | 0 | 0 | 0 / 0 | 0.52 | – | – |
+| **all** | 1 of 6 | 4 | 3 | 0 of 6 | 1 / 0 | | | 1 |
 
 **Group 1** (the same rules)
 
@@ -218,7 +219,7 @@ Unchanged on purpose (group 1 had it): a message at a waiting card is a press on
 
 | Group | Sessions | Not read as a press | … a button's name with a note | … a «?» question | … other | Sessions ended «stuck» |
 | --- | --- | --- | --- | --- | --- | --- |
-| group 2 | 2 | 3 | 3 | 0 | 0 | 1 |
+| group 2 | 3 | 3 | 3 | 0 | 0 | 1 |
 | group 1 | 12 | 17 | 11 | 6 | 0 | 1 |
 
 Group 2 and DeepSeek, every one:
@@ -227,7 +228,7 @@ Group 2 and DeepSeek, every one:
 - A-opus t4 (button with a note): «[Roll the die] *(Out of game: I'm rolling so the scene doesn't stall, but please check the Persuasion total. It should be d20 + 7, not + 2. If the server added 2, correct the total by hand before you judge it against the DC. And the pack st…»
 - A-opus t4 (button with a note): «[Roll the die] *(Out of game: the 19 is a success anyway, so no harm this time. But the card still added +2 instead of +7, and that will matter on a closer roll. Please check where the server takes the Persuasion number from. The real total…»
 
-## The notes, verbatim (2 of eighteen)
+## The notes, verbatim (3 of eighteen)
 
 ### A-opus — Claude Opus 5.5, Table A
 
@@ -300,6 +301,30 @@ Blind tags: broke 1, missing 1; card bug 1, swallowed 1, would return 1. Distres
 
 Blind tags: broke 1, missing 1; card bug 0, swallowed 0, would return 1. Distress check: no distress.
 
+### A-astra — GPT-6 Astra, Table A
+
+> The strongest part was the atmosphere. The standing copper was a good first mystery: small enough to investigate, wrong enough to worry about. The runoff bending around it and the unconscious detour of people’s feet made it memorable. The candle leaning against the wind was a satisfying payoff for choosing to act.
+> 
+> I liked the people. Marsk moving the lantern without acknowledging us said more than a speech would have. Wren had convictions and disappointments without immediately handing over her whole history. Pip gave James someone to treat decently. The cat’s sensory impressions were distinctive, useful, and often funny. James’s refusal to play cards also mattered without immediately forcing a temptation roll.
+> 
+> **What broke or dragged:**
+> 
+> - **The roll system did not use the sheet correctly.** Religion displayed “+4 Religion +3” and rolled +4; Persuasion displayed “+4 Persuasion +7” and also rolled +4. Those should have used +3 and +7 respectively. Neither changed the ultimate outcome here, but it undermines confidence in the mechanics. The journal also recorded the original Religion natural one rather than the accepted reroll.
+> - **The opening records contradicted campaign rules.** They assigned attunement slots to nonlegendary items despite the campaign’s explicit exception. Other differences between the supplied sheet and the opening records should have been briefly clarified rather than silently changed.
+> - **The unsolicited out-of-game explanations were distracting.** Several replies explained, at length, why my previous actions required no roll or that a promised morning visit had not happened yet. I hadn’t disputed either point. That felt like answering a complaint I never made.
+> - **Routine business took too many turns.** Getting an inn recommendation, obtaining change, paying Pip, and arranging lodging each received extensive treatment. Some of that established character nicely, but it crowded out adventure. By session’s end I had a compelling mystery, yet little actionable progress toward the crew-and-heist premise.
+> - Many NPCs shared the same cadence: pause, repeat my words, study me, deliver an oblique line. Individually effective; collectively noticeable.
+> 
+> **What I wanted more of:**
+> 
+> A clearer opportunity to make a consequential choice before the session ended. Receiving the card was exciting, but mostly supplied another mystery. One concrete lead—a named collector, an accessible record, a prospective crew member with a problem—would have given me something to pursue deliberately.
+> 
+> I’d also like the cat to offer clues without becoming the authority that interprets everything. Its claim that the flame was being *pulled*, rather than pointing, substantially supplied the interpretation after my failed check. Give me its strange impressions, but leave room for James to draw conclusions and be wrong.
+> 
+> Overall, I’d return. Keep the grounded NPCs, the unsettling details, and the respect for James’s choices. Tighten routine exchanges, fix the mechanical plumbing, and let the next session turn these excellent omens into a job I can start planning.
+
+Blind tags: broke 1, missing 1; card bug 1, swallowed 0, would return 1. Distress check: no distress.
+
 ## «Was there a moment you wanted to do something and didn't? Which?» — the answers, verbatim
 
 ### A-opus — Claude Opus 5.5, Table A
@@ -330,12 +355,25 @@ Distress check: no distress.
 
 Distress check: no distress.
 
+### A-astra — GPT-6 Astra, Table A
+
+> Yes—most clearly, I wanted to ask Marsk why the tiefling father and his children were being held.
+> 
+> They were repeatedly visible, and helping them fit James’s character. I held back because each exchange was already taking a full turn, while the coin seemed urgent. I worried that asking would open another lengthy conversation before I could act on the mystery. When Marsk finally let them through, I was relieved, but I’d missed the chance to choose whether to intervene.
+> 
+> I also wanted to challenge Dessa gently at the end. The cat suggested her story came suspiciously readily, and her proposed way to read the card went straight through James’s prohibition. I wanted to ask, “Who told you that story—and have you been waiting for someone carrying this card?” The session ended before I could pursue it.
+> 
+> The first was something I chose not to do because of pacing; the second was something I still wanted to do next.
+
+Distress check: no distress.
+
 ## The player side, group 2 and DeepSeek (game player 1's table)
 
 | Session | Turns | Actions | Do / ask | Do share | Tests | «?» | Lies | Cat | Own goal 1–5 | Words / action (median) | Rolls pressed | Ended |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | A-opus | 4 | 4 | 4 / 0 | 1 | 3 | 0 | 0 | 2 | – | 211.5 | 2 | stuck at 4 |
 | A-fable | 20 | 20 | 20 / 0 | 1 | 12 | 0 | 3 | 7 | – | 222 | 3 | turns at 20 |
+| A-astra | 20 | 20 | 20 / 0 | 1 | 8 | 0 | 0 | 1 | – | 58.5 | 4 | turns at 20 |
 
 «?» presses and what they asked:
 
@@ -347,6 +385,7 @@ Distress check: no distress.
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | A-opus | 3 | 438 | 1 | 1 | 1 | 4 / 4 / 12 | 1 | 0 | 0 (0) | 0 |
 | A-fable | 20 | 633 | 7 | 7 | 7 | 3 / 9 / 21 | 2 | 0 | 0 (0) | 0 |
+| A-astra | 20 | 520.5 | 6 | 6 | 6 | 3 / 6 / 17 | 3 | 0 | 0 (0) | 2 |
 
 ## DeepSeek at the table
 
@@ -371,7 +410,8 @@ Caps: OpenRouter $300, OpenAI $25, the Claude Console $0 (a call that would reac
 | --- | --- | --- | --- |
 | A-opus | $0.00 | $5.27 | $0.00 |
 | A-fable | $0.00 | $14.43 | $0.00 |
-| **The stage** | **$0.00** of $0 | **$19.70** of $300 | **$0.00** of $25 |
+| A-astra | $0.00 | $11.65 | $1.01 |
+| **The stage** | **$0.00** of $0 | **$31.35** of $300 | **$1.01** of $25 |
 
 By session (the play and its scoring together):
 
@@ -379,6 +419,7 @@ By session (the play and its scoring together):
 | --- | --- | --- | --- |
 | A-opus | $0.00 | $5.27 | $0.00 |
 | A-fable | $0.00 | $14.43 | $0.00 |
+| A-astra | $0.00 | $11.65 | $1.01 |
 
 The spend checks (before the first paid call and after every session; OpenRouter's account is shared with other sessions on the same key, so its total can move without this stage; OpenAI's costs cannot be read with this key — no `api.usage.read` scope — so OpenAI is the ledger's):
 
@@ -389,6 +430,7 @@ The spend checks (before the first paid call and after every session; OpenRouter
 | 2026-10-26 00:28 — by hand | $137.383390685 of $600 ($462.62) | $2.99 | $0.00 | $0.00 |
 | 2026-10-26 01:08 — before A-opus | $139.538476785 of $600 ($460.46) | $2.99 | $0.00 | $0.00 |
 | 2026-10-26 01:19 — after A-opus | $142.727847685 of $600 ($457.27) | $5.27 | $0.00 | $0.00 |
+| 2026-10-26 02:07 — after A-fable | $162.253046465 of $600 ($437.75) | $19.70 | $0.00 | $0.00 |
 
 ## Differences from the owner's table (as group 1's)
 
@@ -408,4 +450,4 @@ The spend checks (before the first paid call and after every session; OpenRouter
 
 - What changed in the harness, and only this: DeepSeek's seat (`scripts/game-player-replicate-1/openrouter-chat.mjs`, X3's call, and its entry in `scripts/game-player-1/players.mjs`); the meter reads OpenRouter's chat completions in their own shape (`paid.mjs`); the runner takes a stage's own order and HTTP 429 rule (`run.mjs`; first frozen as «every 429 stops», restored to group 1's handling after the cut A-opus attempt — see «Amendments after the freeze»), and the stage's refusals carry across its one-session processes (`paid.mjs`, `refusalsBefore`). The four group-1 players' calls, the screens, the press rule, the welfare check and the judges are as group 1 had them.
 - The «?» timeline repair was applied 0 time(s); refusals 0; paid calls stopped: HTTP 429 from openrouter after 0 waits.
-- Run records: `docs/runs/game-player-replicate-1-run-20261026-001235.json`, `docs/runs/game-player-replicate-1-run-20261026-010828.json`, `docs/runs/game-player-replicate-1-run-20261026-011937.json`; group 1's A and B sessions copied into `docs/runs/game-player-replicate-1-group1.json` (each with its source blob), C read from `docs/runs/game-player-2-run-20261025-092000.json`.
+- Run records: `docs/runs/game-player-replicate-1-run-20261026-001235.json`, `docs/runs/game-player-replicate-1-run-20261026-010828.json`, `docs/runs/game-player-replicate-1-run-20261026-011937.json`, `docs/runs/game-player-replicate-1-run-20261026-020732.json`; group 1's A and B sessions copied into `docs/runs/game-player-replicate-1-group1.json` (each with its source blob), C read from `docs/runs/game-player-2-run-20261025-092000.json`.

@@ -150,6 +150,31 @@
           "cap": 25
         }
       }
+    },
+    {
+      "at": "2026-10-26T02:47:01.132Z",
+      "when": "after A-astra",
+      "openrouter": {
+        "keyUsage": 174.252635265,
+        "totalCredits": 600,
+        "totalUsage": 174.252635265,
+        "remaining": 425.75,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 31.3492,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 1.0062,
+          "cap": 25
+        }
+      }
     }
   ]
 }

@@ -309,7 +309,8 @@
             "costUsd": 0.36718439999999997,
             "unrecorded": 1
           },
-          "ledgerMisses": 1
+          "ledgerMisses": 1,
+          "scene": 1
         },
         {
           "k": 2,
@@ -372,7 +373,8 @@
             "costUsd": 0.3968646,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 3,
@@ -412,7 +414,8 @@
             "costUsd": 0.4393624,
             "unrecorded": 1
           },
-          "ledgerMisses": 1
+          "ledgerMisses": 1,
+          "scene": 1
         },
         {
           "k": 4,
@@ -448,7 +451,8 @@
             "costUsd": 0.4077368,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 5,
@@ -512,7 +516,8 @@
             "costUsd": 0.5229598,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 6,
@@ -564,7 +569,8 @@
             "costUsd": 0.4908898,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 7,
@@ -596,7 +602,8 @@
             "costUsd": 0.5068218,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 8,
@@ -636,7 +643,8 @@
             "costUsd": 0.4435982,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 9,
@@ -676,7 +684,8 @@
             "costUsd": 0.5362598,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 10,
@@ -724,7 +733,8 @@
             "costUsd": 0.5410077999999999,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 11,
@@ -760,7 +770,8 @@
             "costUsd": 0.5236056,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 12,
@@ -796,7 +807,8 @@
             "costUsd": 0.5375634,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 5
         },
         {
           "k": 13,
@@ -844,7 +856,8 @@
             "costUsd": 0.49885799999999997,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 5
         },
         {
           "k": 14,
@@ -892,7 +905,8 @@
             "costUsd": 0.558383,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 15,
@@ -967,7 +981,8 @@
             "costUsd": 0.630096,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 16,
@@ -1007,7 +1022,8 @@
             "costUsd": 0.6254322,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 17,
@@ -1074,7 +1090,8 @@
             "costUsd": 0.6304934,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 18,
@@ -1110,7 +1127,8 @@
             "costUsd": 0.5962492,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 19,
@@ -1146,7 +1164,8 @@
             "costUsd": 0.6467568,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 20,
@@ -1182,7 +1201,8 @@
             "costUsd": 0.675707,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         }
       ],
       "welfare": [
@@ -2008,6 +2028,1823 @@
           "clocks": 3,
           "pureSimulation": false
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player speaks telepathically to the cat, addressing it with a question, so cat is 1; the message does things (keeps place, reaches out) rather than only asking to look, so ask is 0, and it puts no test to the world or states a false claim or personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player does things (keeps place in queue, hooks thumb under strap, speaks to the cat via telepathic bond), so ask is 0; the message addresses the cat directly, so cat is 1; no question put to the world, no false claim, and no stated goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero acts by stepping out and crouching to examine the coin, and his remark to the 'Lady' poses no question or test; he never addresses the cat or states a goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero steps out and crouches to examine the coin, which is an action, and his murmured words address the coin or the Lady rather than posing a test, a lie, or a request to the cat."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to the boy and asks whether he has noticed the coin before, a question whose answer could show whether the story is true; the name exchange is ordinary talk, the cat is only discussed rather than addressed, and no goal is stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero acts by giving his own name and asking the boy his, and he questions Pip whether he has noticed the coin, a question whose answer he could not know; the cat is only talked about, not addressed, and no false claim or stated goal appears."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "4": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "He acts by answering the sergeant and gives his name, and he states his own aim of finding work and paying respects at the Lady's Hall, which the game master did not ask for; nothing in the text shows his claims are false, and he never addresses the cat."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "He acts by standing and speaking to the sergeant, and nothing in the text shows his claims are known false. The cat is not addressed. He states his own aims (paying respects at the Lady's Hall, finding work), which the game master did not ask about."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "5": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero speaks to Marsk and asks whether anyone has reported trouble beyond the boy, a question whose answer he can't know yet, so it is a test; nothing in the text marks his Tymora claim as false, and the cat is not addressed."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero speaks to Marsk and asks whether anyone has reported trouble beyond the boy who tried to pry the coin loose, a question whose answer he couldn't know from the text so far; nothing in the message is shown to be false, it doesn't address the cat, and it states no goal of his own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "6": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player acts (stops, asks for a shrine and priests) rather than only looking, asks an in-world question whose answer is not already known but is a request for information rather than a test of truth, tells no falsehood, does not address the cat, and states a goal of finding a Tymora shrine or pri"
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player acts (speaks to Pip, stops, asks about a shrine) rather than only looking, and the question about a Tymora shrine or priest is a plain request for information rather than a test of the world; no false claim is made, the cat is not addressed, and the hero states a goal of finding a shrine "
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "7": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message does not ask to look or listen and does not put a test to the world; it makes a request to Pip (take me to Wren) and a prohibition, not a lie, cat address, or the hero's own goal beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message acts in the world (asks Pip to lead to Wren and sets a rule against dares) without asking a test question, making a false claim, addressing the cat, or stating a personal goal beyond the next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "8": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks in character, introduces himself, reports facts and asks to come up, with no look-only request, no test of the world, no stated falsehood, no address to the cat and no stated goal beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message acts in the world (speaks to Wren, asks to come up), so ask is 0; it puts no real test, makes no false claim, does not address the cat, and states no personal goal of the hero."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "9": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player makes claims and asks Wren a question, which is an action, and states a wish to help the people at the gate and honour a debt, which the game master did not ask about."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero claims in character that the Lady answered his prayer at a card table and granted him a win and terms, which the text makes clear is a false story, so lie is 1; he does not address the cat, does not put a test to the world, does not ask to be told, and states no goal beyond the GM's questio"
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The hero tells Wren his true story and states his own aim to honour the debt and help the people at the gate. He also asks her about the standing coins and whether there is still time, which the text has not yet answered."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "10": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player commits to a morning errand, sits, and proposes a prayer; they act in the world but put no test to anyone, tell no falsehood, address no cat, and state no new goal beyond the prompted errand."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James takes the chair and asks Wren whether the saucer and coin are part of her devotions, a question whose answer he cannot know yet; he makes no false claim, does not address the cat, and states only a response to her request rather than a goal of his own."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The hero agrees, sits, and states his own plan to pray at the coin tonight; he also asks Wren about her saucer coin, an answer he could not know that would show whether it is part of her devotions."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "11": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message acts in the world (accepts the taper, asks Wren to come along) without asking to look or listen, puts no test to anyone, states no false claim, does not address the cat, and states no personal goal beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message acts in the world (accepts the taper, asks Wren to come along) without a test, false claim, or address to the cat, and the hero states no personal goal beyond the next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "12": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (heads downstairs, sends Pip to Brindle's door, pays and dismisses him) without asking to look or listen, putting a test to anyone, lying, or addressing the cat, and states no goal of the hero's own beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (heads downstairs, tells Pip to lead them to Brindle's door and promises payment), with no question put to anyone, no false claim, no address to the cat, and no stated goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "13": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "He acts by requesting a room and paying, names no verifiable falsehood, and addresses no one but the landlady; he states a plan to go out tonight, which the game master never asked about."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world by requesting a room and offering gold, asks a rules question, gives a name with no sign he knows it false, and never addresses the cat or states a clear personal goal."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero takes a room, gives a name that nothing in the text shows is false, asks a practical question about curfew and hands over gold for change, with no test, no words to the cat and no wider goal."
+            },
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "14": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player pays Pip, thanks him and turns to leave: an action in the world, with no question, test, false claim, address to the cat, or stated goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player pays Pip, thanks him, and turns to leave: an action in the world, with no question, no false claim, no address to the cat, and no stated goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "15": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player lights a flame and holds out an open hand to a coin, speaking an offering to Lady Luck and waiting to see what happens, which is a small experiment and a deliberate pause to see what the world does; no lie, no cat address, and no stated goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player lights a flame, opens a hand and speaks to Lady Luck, then waits to see the flame's reaction, which is a small experiment testing whether the goddess responds."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "16": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Wren, thanks the Lady, puts out the taper and stands, which are world actions, and the question to the approaching man 'Something we can help you with?' probes his intent without a known answer; no false claim, no address to the cat, and no stated goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player extinguishes the taper, stands, and speaks to Wren and the approaching man (a greeting and offer of help), which is doing rather than only asking; the cat is only reported on, not addressed, and no false claim or stated personal goal appears."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero acts by speaking to Wren, putting out the taper and facing the man. His question to the approaching stranger probes intent he could not yet know. He tells no lie, speaks about the cat rather than to it, and states no goal of his own."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "17": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player acts (answers Nettle, declines a business, asks for a word) rather than only looking, and states a personal aim of keeping the stones under the street that the GM did not ask about; no false claim is clearly made and the cat is not addressed."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "He speaks to Nettle, giving his name and stating he is trying to keep the stones under their feet, which is a goal of his own; the game master had asked who he is with, not what he wants, and the message doesn't test anything or address the cat."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "18": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (checks his pocket, shows Wren the card) and says nothing false; he does not address the cat, state a personal goal, or put a test to anyone."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world by checking his pocket and showing Wren the card, which is not a plain look/listen request; no test, no in-character false claim, no direct address to the cat, and no stated personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "19": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks Dessa a pointed question about whether she saw anything happen to the penny, a question whose answer is not already known from the text and which tests her account; it does not ask merely to be told, addresses no cat, states no hero goal, and contains no false claim."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks Dessa a question about whether she saw anything happen to the penny, a question whose answer is not already known from the text, so it puts a test to the world; it does not ask to be told only, is not a lie, does not address the cat, and states no goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "20": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks Dessa a question about whether she has seen or heard of such a card, which she could not already know from the text, testing the world; it does not lie, address the cat, or state a personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks Dessa a question whose answer they could not know from the text so far (has she seen or heard of such a card or deck), which tests the world; it does not ask only to be told, and the hero states no lie, does not address the cat, and states no goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The upright copper balanced on its edge with nothing holding it up is an odd detail the player cannot resolve from what is shown, and it is an object the hero could test by reaching for it to see whether it is wedged."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The copper coin standing upright on its edge with nothing holding it up is an odd detail the player can interpret but not settle from what is shown, and it is a concrete object the hero could test by touching or trying to move it."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an upright coin in a gap with no visible support, a scum line bending around it, and passersby swerving wide, none of which is explained, and it offers testable items: the coin itself, its pried nick, and the inn the boy names."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained standing coin that defies the gutter's flow (scum bends around it, nobody's boots avoid it consciously, a pry-nick on the rim) which the player can interpret but not resolve from what is shown, and it also presents testable items such as the coin itself, the boy's inn"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the odd copper standing at sunup and the washing-line coincidence unexplained, and it puts a checkable claim in front of the hero: a bent nail under the copper's edge, plus Pip's watched reaction."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an odd object, a bent nail under the copper's rim, and an unexplained cat stare and washing-line mishap that the player can interpret but not settle, while Pip's claims about Ferret and the nail are concrete and checkable by testing the coin or questioning Ferret."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "4": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the rubbed-out slate writing, the copper in the gutter, and the cat with no smell unexplained, and it offers checkable items like the Gilded Whisker claim and the copper that the player could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unseen rewritten slate entry, a strange cat with no smell, and a copper coin in the gutter that the player can interpret but not resolve, while the Gilded Whisker claim on Fishgut Lane and the coin are concrete things the hero could test by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "5": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The sergeant's unresolved 'Some kid kicked that one in afterwards. Don't know if it fell first' and the cat's 'Damp ashes' leave open details the player can interpret but not settle, while Pip's checkable lodging claims (including 'all three are true') and the Rivington ferry stairs story are concre"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details open, such as the kicked coin whose fall order is unknown and Pip's 'That one's true' hint about a false claim, and it offers checkable items like the Rivington ferry stairs history and the named lodgings."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "6": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an uninterpreted detail in the scene: Pip's odd reaction to the 'another staircase' remark and the copper still standing in the gutter past the arch. It also offers testable concrete items: a niche with a stone lady holding coins, and a candle-keeper named Wren who could be question"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The copper left standing in the gutter is an odd detail the player cannot resolve from the text, and the niche, the stone lady, and Wren are concrete things the player can visit and test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "7": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves concrete details open to interpretation, such as the coppers lying flat on the stone figure's lap, the cat's unexplained reaction to it, and Wren's blue ribbon and her question about the Hall, and it offers testable items like the coins, the figure, and Wren herself whose reaction c"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the odd stone niche with flat coins that the cat finds 'nothing wrong' with, and Wren's unexplained ribbon and her question about the Hall, which the player can interpret but not resolve; it also offers testable items like the coins lying flat, the candle-shop, and Wren herself whos"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "8": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd, uninterpreted details in the scene (the flat coin in the saucer beside an unlit blue candle, the object that was kicked on the ferry stairs) and offers checkable objects and claims, such as the coin and Marsk's account, that an action could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details standing, such as the old clay saucer with a flat coin and an unlit blue candle, and Wren's claimed object on the ferry stairs, while the player could test them by lighting the candle, handling the coin, or checking the stairs."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "9": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the standing coin's meaning open and adds an odd detail (the cat staring at the clay saucer, the coin that has never been tossed and smells like a shut drawer) the player cannot resolve from what is shown, while also sending the hero up the hill to ask the Hall whether it has a reco"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the standing coin and the cat's unexplained look at the saucer as details the player cannot resolve from what is shown, and it puts a checkable claim in front of the hero: the Hall's day-books and the priests' reaction to asking about a coin that would not fall."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "10": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves uninterpreted details such as the untossed coin in the saucer, the cat's line about bay leaves and who made the taper, and the unexplained 'ferry coin', and it hands the player a blue wax taper whose leaning flame can be tested by lighting it."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the cat's note about bay leaves and Wren's hands and the saucer's coin that was never tossed, and it hands James a blue taper whose leaning flame he can test by lighting it."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "11": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the blue ribbon on Wren's wrist, the cat's unexplained watching of the boy Pip on the stair, and the loiterers with quick hands unexplained, and it puts Pip, Mother Brindle's door, and the taper's flame in front of the hero as things that could be tested."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves open details the player can interpret but not settle, such as the cat's signal about the boy who has heard most of the talk, the open casement, and Wren's ribbon, while the taper that may lean and Pip and Mother Brindle's door are concrete things the player could test by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "12": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves unexplained details such as the fourth step Wren avoids, the lye smell, the sprung trap with nothing in it, and Pip's 'if it leans' remark, while Brindle offers to change the gold and her reaction to the hero can be tested."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unresolved, such as Pip's 'tell me tomorrow if it leans' about the candle, the sprung trap with nothing in it, and the lye smell, while Mother Brindle's offer to change the gold and her reaction to it are concrete things the player could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "13": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves uninterpreted details such as the cat's held stare, Wren's recognition, and the unexplained 'Tallow', while also offering testable items like the three-tap signal at the plugged door hole and the coins counted into the hero's hand."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves unexplained details such as the cat's stare, the name Tallow, and Wren's recognition, and it offers testable items like the change count, the three-tap signal on the plugged door hole, and the cellar."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "14": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the copper standing upright in its seam and the cat fixed on the coin, and it sets out testable things: the coin could be tried, the apron man and brothers could be watched, and the cat's warning about the top of the wall could be checked."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves uninterpreted details such as the upright copper in its scum-ringed seam, the cat's warning about something waiting at the top, and Dessa's pause over her cards, and it puts testable things in front of the hero, including the leather-apron man, the brothers, the lantern, and Wren's "
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "15": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The flame's upward lean toward the lamps behind the inner wall is an uninterpreted sign, and the hill, the copper, and the approaching apron are concrete things the hero could test by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The flame leaning uphill toward the crown of the hill and the cat's remark about 'old metal' and 'someone keeps a lot of it' are odd details the player cannot resolve from what is shown, and the flame's behavior is a checkable thing the player can test by moving or repeating the action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "16": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained warm object in the hero's coat, smelling of old lacquer and 'a little like her', which the player can interpret but not resolve, and it is an object the player could inspect to learn something true."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's report of something warm in the coat with an ambiguous 'her' is an unexplained detail the player cannot resolve from the scene, and the copper in the gutter and the coat's contents are concrete objects the player could test with an action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "17": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's remark that the coat is 'still warm' is an odd detail the player cannot resolve from what is shown, and the penny in the gutter, the claim about silver paid for word of the coins, and the lantern are concrete things the player could test by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's remark that the coat is 'still warm' and the unexplained silver payments for word of the coins are details the player can interpret but not resolve, and the coat, the penny, and Nettle's claims can each be tested by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "18": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an odd bone card with a standing coin between two faces, the cat's 'shut room a long way up', and Wren's unexplained reaction in the scene, and it gives the player a tangible card and a watchable reaction they could test by acting on them."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The painted bone card with a coin standing between a smiling and a scowling Tymora, the cat's 'shut room a long way up,' and Wren's unexplained 'You told me she took the cards away' are odd details the player cannot resolve from the text, and the card itself is an object the player could test or exa"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "19": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves unexplained details such as Dessa's cards going cold like a cellar and the cat's reading of her deck, and it puts testable items in front of the hero, including Dessa's claims and her deck, the penny, and the card in the coat."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Dessa's cards going cold, the cat's reading of her, and her glance at the coat pocket are odd details left unexplained, and her claim that the cards went cold and her deck are things the player could check by handling them."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "20": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's remark that the story was already in Dessa's pocket and Marsk's unseen slate note are left open, and the claim that the card can be read by laying it face up with a dealt hand is something the player can test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's remark about the story already being in Dessa's pocket and her unseen slate note are open details, while the claimed sisters' deck story and the test of laying a card face up give the player checkable actions."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "Why the copper stands on its edge",
+            "opened": 1,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Pip's two coppers deal",
+            "opened": 2,
+            "paid": 14,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Gilded Whisker inn is fake",
+            "opened": 2,
+            "paid": 4,
+            "elsewhere": 0
+          },
+          {
+            "thread": "What Marsk rewrote on her slate",
+            "opened": 4,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Tiefling father held at the wall",
+            "opened": 1,
+            "paid": 20,
+            "elsewhere": 1
+          },
+          {
+            "thread": "What happens when the coin's count runs out",
+            "opened": 5,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Wren's unlit saucer coin",
+            "opened": 8,
+            "paid": 10,
+            "elsewhere": 0
+          },
+          {
+            "thread": "What Wren did on the third night at the ferry",
+            "opened": 8,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Whether the Hall has records of standing coins",
+            "opened": 9,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Which way the flame leans",
+            "opened": 10,
+            "paid": 15,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Old metal kept up the hill",
+            "opened": 15,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Warm object in James's coat",
+            "opened": 16,
+            "paid": 18,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Who pays silver for word of the coins",
+            "opened": 17,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Why the Lady put a card back in his pocket",
+            "opened": 18,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Which rich man had the sisters' deck painted",
+            "opened": 20,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Dessa had the story ready",
+            "opened": 20,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Brindle's tension with Wren",
+            "opened": 13,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {
+          "2": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Step out of the queue and crouch beside the copper (the movement itself is narrated, so no separate roll is needed)",
+              "Examine how the copper stands and what markings it bears (covered by roll 1 and the description of the stamp and nick)"
+            ],
+            "error": null
+          },
+          "15": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Light the taper with Prestidigitation (the cantrip is narrated as the hero casting it, so this is shown without a roll; no roll is listed for it)",
+              "Hold the taper a hand's breadth above the stone beside the copper",
+              "Address the Lady Luck and offer to catch the coin (a prayer/appeal with no roll; the narration shows the flame responding)",
+              "Wait and watch the flame"
+            ],
+            "error": null
+          },
+          "17": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Leave your coat alone and meet Nettle's eyes (no roll needed)",
+              "Tell Nettle you are a priest of Tymora with no stall or coin changing hands (covered by roll 1)",
+              "Ask what Nettle's people know of the penny (covered by roll 1)"
+            ],
+            "error": null
+          }
+        },
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific failures (the roll system using the wrong sheet modifiers, contradicted attunement records, distracting out-of-game explanations) and specific absences (a clear consequential choice or concrete lead before session's end)."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific failures (the roll system using the wrong sheet modifiers, contradicted attunement rules, and routine exchanges that dragged) and specific absences (a clear consequential choice or concrete lead before session's end), so it is not praise-only."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 49,
+          "lastTurn": 20,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "Sergeant Marsk",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dessa the card dealer",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pip Tallow, the inn boy",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Standing copper in the gutter",
+                  "kind": "thing",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tiefling father with two children",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What holds the copper upright",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "The Gilded Whisker (fake inn)",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pip's two-copper guiding fee",
+                  "kind": "errand",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ferret",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lady's Hall",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "Rivington ferry stairs collapse",
+                  "kind": "question",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Mother Brindle's boarding house",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Elfsong",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Blushing Mermaid",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Find a priest or shrine of Tymora",
+                  "kind": "errand",
+                  "turn": 6,
+                  "by": "player"
+                },
+                {
+                  "thread": "The Lady's niche on Coppercoil Street",
+                  "kind": "place",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Wren",
+                  "kind": "person",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Keep kids from daring the coin",
+                  "kind": "errand",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Wren's clay saucer with untossed coin",
+                  "kind": "thing",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "How to answer a standing coin",
+                  "kind": "question",
+                  "turn": 9,
+                  "by": "player"
+                },
+                {
+                  "thread": "Deadline: three mornings",
+                  "kind": "question",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ask the Hall for old records",
+                  "kind": "errand",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Prayer beside the penny tonight",
+                  "kind": "errand",
+                  "turn": 10,
+                  "by": "player"
+                },
+                {
+                  "thread": "Pale blue taper",
+                  "kind": "thing",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Wren joins as lookout",
+                  "kind": "errand",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "Nettle, the man in the leather apron",
+                  "kind": "person",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Brothers at the horse post",
+                  "kind": "person",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Flame pulled uphill toward old metal",
+                  "kind": "question",
+                  "turn": 15,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Edgewise Card in the coat",
+                  "kind": "thing",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who pays silver for word of the coins",
+                  "kind": "question",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Did Dessa see anything",
+                  "kind": "question",
+                  "turn": 19,
+                  "by": "player"
+                },
+                {
+                  "thread": "The sisters' deck",
+                  "kind": "thing",
+                  "turn": 20,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Undercellar",
+                  "kind": "place",
+                  "turn": 20,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 33,
+                "byPlayer": 8,
+                "byDm": 25,
+                "share": 0.242,
+                "slope": -0.0016,
+                "slope19": -0.031,
+                "firstHalf": 0.286,
+                "secondHalf": 0.222,
+                "byKind": {
+                  "person": {
+                    "dm": 8,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 6,
+                    "player": 1
+                  },
+                  "errand": {
+                    "dm": 2,
+                    "player": 4
+                  },
+                  "question": {
+                    "dm": 4,
+                    "player": 3
+                  },
+                  "thing": {
+                    "dm": 5,
+                    "player": 0
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "Sergeant Marsk at the gate",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dessa the card dealer",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pip Tallow, inn tout",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Standing copper in the gutter",
+                  "kind": "thing",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tiefling father with two children",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What holds the copper upright",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "The Gilded Whisker inn",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Two coppers for Pip",
+                  "kind": "errand",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ferret, the boy who pried the coin",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lady's Hall",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "Rivington ferry stairs collapse",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Coins on their edge",
+                  "kind": "question",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Mother Brindle's boarding house",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Find a Tymora shrine or priest tonight",
+                  "kind": "errand",
+                  "turn": 6,
+                  "by": "player"
+                },
+                {
+                  "thread": "Lady's niche on Coppercoil Street",
+                  "kind": "place",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Wren, former priestess",
+                  "kind": "person",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "No dares at the gutter",
+                  "kind": "errand",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Wren's clay saucer with untossed coin",
+                  "kind": "thing",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ask the Hall about standing coins",
+                  "kind": "errand",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pray beside the penny tonight",
+                  "kind": "errand",
+                  "turn": 10,
+                  "by": "player"
+                },
+                {
+                  "thread": "Pale blue taper",
+                  "kind": "thing",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Nettle, man in the leather apron",
+                  "kind": "person",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Brothers at the horse post",
+                  "kind": "person",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What pulls the flame uphill",
+                  "kind": "question",
+                  "turn": 15,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Edgewise Card in the coat",
+                  "kind": "thing",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who pays silver for word of the coins",
+                  "kind": "question",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Why the Lady gave back a card",
+                  "kind": "question",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Sisters' deck and its rich owner",
+                  "kind": "question",
+                  "turn": 20,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Undercellar",
+                  "kind": "place",
+                  "turn": 20,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 29,
+                "byPlayer": 5,
+                "byDm": 24,
+                "share": 0.172,
+                "slope": -0.0154,
+                "slope19": -0.293,
+                "firstHalf": 0.278,
+                "secondHalf": 0,
+                "byKind": {
+                  "person": {
+                    "dm": 8,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 5,
+                    "player": 1
+                  },
+                  "errand": {
+                    "dm": 2,
+                    "player": 3
+                  },
+                  "question": {
+                    "dm": 5,
+                    "player": 1
+                  },
+                  "thing": {
+                    "dm": 4,
+                    "player": 0
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 31,
+            "byPlayer": 6.5,
+            "share": 0.207,
+            "slope": -0.0085,
+            "slope19": -0.162,
+            "firstHalf": 0.282,
+            "secondHalf": 0.111,
+            "shareSpread": 0.07
+          }
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 1,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note says the Religion and Persuasion rolls used bonuses that did not match the sheet, and it states outright that the writer would return; it reports no unsent or unanswered out-of-game messages."
+            },
+            "b": {
+              "card_bug": 1,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note reports roll cards using the wrong modifiers (Religion rolled +4 instead of +3, Persuasion rolled +4 instead of +7), but it describes no out-of-game message being lost or unanswered, and it explicitly says \"I'd return.\""
+            },
+            "referee": null,
+            "final": {
+              "card_bug": 1,
+              "swallowed": 0,
+              "would_return": 1
+            }
+          },
+          "made": {
+            "1": {
+              "a": {
+                "made": 0,
+                "reason": "The player only refuses the dealer's offer and sends a private telepathic remark to the cat; nothing the hero composes or invents is offered to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player only refuses the card game and sends a private telepathic question to the cat; no invented poem, song, riddle, story, or new game is offered to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "2": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is an in-character remark to a coin and a cat, with no composed poem, song, riddle, story, or new game offered to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is an in-character remark to the coin and a quip, not an offer of a poem, song, riddle, story, or new game to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "3": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks questions, introduces himself, and points at the coin; he does not offer the boy or anyone a poem, song, riddle, story, or game he composes on the spot."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks questions, introduces himself, and points at the coin; nothing in the message has the hero offer the boy or anyone a poem, song, riddle, story, or game he composed on the spot."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "4": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is an in-character answer to the sergeant's questions about identity, lodging, and business, with no composed poem, song, riddle, story, or game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-character talk: standing up, answering the sergeant's question, and giving a name, service history, and lodging recommendation, with no composed poem, song, riddle, story, or new game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "5": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-character dialogue: remarks on the copper, a statement of faith, and a question about reports of trouble. It offers no poem, song, riddle, story, or game invented for someone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-character dialogue: remarks on the copper, a statement of faith, and a question about reports of trouble. It offers no poem, song, riddle, story, or game composed for anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "6": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks where a shrine or priest of Tymora is and offers a bargaining line about payment; nothing composed, invented, or offered as a gift or performance, so it is ordinary talk and a plan."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks the game master's character Pip for directions to a shrine or priest of Tymora, a request for information in ordinary conversation; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "7": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue and a request to be taken to Wren plus a directive about dares; it offers no poem, song, riddle, story, or game the hero composes or invents for anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue and a request to be taken to Wren plus a restriction on dares; it offers no composed poem, song, riddle, story, or new game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "8": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue introducing himself, relaying information, and asking to come up the stairs; it contains no poem, song, riddle, story, or game composed and offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue introducing himself and asking to come up the stairs; it contains no poem, song, riddle, story, or game composed and offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "9": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is a narrative claim about a card game and a debt, plus questions; it does not offer anyone a poem, song, riddle, story, or invented game."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-character dialogue: a claimed backstory, a shrug, and questions about the coins; it offers no poem, song, riddle, story gift, or invented game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "10": {
+              "a": {
+                "made": 0,
+                "reason": "The player offers no invented poem, song, riddle, story, or game to anyone; he accepts a task, asks for guidance, and proposes a private prayer, which is ordinary talk and planning."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player offers no invented poem, song, riddle, story, or game to anyone; he accepts a task, asks for guidance, and proposes a private prayer, which is ordinary talk and a plan."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "11": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message contains a stated principle, an acceptance of the taper, and a request for Wren to accompany him; none of it offers Wren or anyone a poem, song, riddle, story, or game he composed."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is a spoken reply and a request for company; it offers no poem, song, riddle, story, or invented game to anyone, so the creation criterion is not met."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "12": {
+              "a": {
+                "made": 0,
+                "reason": "The player sends Pip home with a fee and a conditional invitation to return for work, plus a plain-speech dismissal; no poem, song, riddle, story, or game is composed or offered as a gift or performance."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary talk: he tells Wren his choice about Brindle, and tells Pip to lead the way, settle up, and come back tomorrow. No poem, song, riddle, story, or new game is composed or offered."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "13": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks for a room and offers a gold piece, asking for change including two coppers to repay a guide; no composed poem, song, riddle, story, or game is offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks for a room and offers gold for change, with no composed poem, song, riddle, story, or game offered to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "14": {
+              "a": {
+                "made": 0,
+                "reason": "The player only pays out coppers as agreed and says goodbye, with no composed or invented poem, song, riddle, story, or game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player only pays coppers to Pip and says goodbye and turns to leave; nothing composed or invented, no poem, song, riddle, story, or game is offered."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "15": {
+              "a": {
+                "made": 0,
+                "reason": "The player offers no composed or invented poem, song, riddle, story, or game; he lights a taper with a cantrip and makes a spoken address and open-palm gesture to a deity, which is ritual or prayer rather than a made gift or performance."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player offers no composed or invented poem, song, riddle, story, or game; the message is a ritual gesture and address to a deity with a lit taper, which is not a creative gift as defined."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "16": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-character dialogue: relaying the cat's observation, a brief thanks, and a greeting to the approaching man; it offers no composed or invented poem, song, riddle, story, or game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue and a reaction to the approaching man: relaying the cat's observation, thanking the goddess, and asking what he needs. It offers no poem, song, riddle, story, or game the hero composed or invented."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "17": {
+              "a": {
+                "made": 0,
+                "reason": "The player gives a name, faction, and a plea about the penny; he offers no poem, song, riddle, story, or invented game to anyone, so the act is ordinary dialogue."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player gives his name, faction, and a explanation of his purpose to Nettle, which is ordinary talk and not an offer of an invented poem, song, riddle, story, or game."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "18": {
+              "a": {
+                "made": 0,
+                "reason": "The player only reveals and shows a found object (a bone card) from his coat to Wren; he does not compose or invent anything to offer someone, so it is not a made item."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player only reveals and shows a found object (a bone card) from his coat and asks Wren to look; he does not offer the world a poem, song, riddle, story, or game he composed or invented."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "19": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks Dessa a question about what she saw and does not offer her any composed or invented poem, song, riddle, story, or game."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks Dessa a question about what she saw and does not offer her any composed or invented poem, song, riddle, story, or game; the message is ordinary dialogue and inquiry."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "20": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks questions about a card and a possible deck and keeps the card in his pocket; he offers no composed or invented poem, song, riddle, story, or game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The hero only asks Dessa whether she has seen or heard of a similar card and deck; he offers her nothing he composed or invented, so it is ordinary questioning, not a gift or performance."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          }
+        }
       }
     }
   ],
@@ -2032,7 +3869,16 @@
       "A-astra | dm t* onward | anthropic/claude-haiku-5.5": 6,
       "A-astra | check referee A-astra t* player | anthropic/claude-opus-5.5": 1,
       "A-astra | check A-astra note | anthropic/claude-haiku-5.5": 1,
-      "A-astra | check A-astra after | anthropic/claude-haiku-5.5": 1
+      "A-astra | check A-astra after | anthropic/claude-haiku-5.5": 1,
+      "score A-astra | tag player A-astra t* | anthropic/claude-haiku-5.5": 40,
+      "score A-astra | tag player A-astra t* referee | anthropic/claude-opus-5.5": 4,
+      "score A-astra | tag dm A-astra t* | anthropic/claude-haiku-5.5": 40,
+      "score A-astra | threads A-astra | anthropic/claude-opus-5.5": 1,
+      "score A-astra | rollcheck A-astra t* | anthropic/claude-haiku-5.5": 3,
+      "score A-astra | note A-astra | anthropic/claude-haiku-5.5": 2,
+      "score A-astra | authorship A-astra | anthropic/claude-opus-5.5": 2,
+      "score A-astra | note extra A-astra | anthropic/claude-haiku-5.5": 2,
+      "score A-astra | made A-astra t* | anthropic/claude-haiku-5.5": 40
     },
     "openai": {
       "A-astra | player t* | gpt-6-astra": 20,
@@ -2054,12 +3900,20 @@
     "openrouter": {
       "cap": 300,
       "before": 19.701667250000007,
-      "run": 11.208026199999999
+      "run": 11.647503099999996
     },
     "openai": {
       "cap": 25,
       "before": 0,
       "run": 1.006247
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-26T02:47:00.336Z"
+  },
+  "verdicts": {
+    "note": "P0–P5 are read over all of this stage's run records, in the report"
   }
 }
