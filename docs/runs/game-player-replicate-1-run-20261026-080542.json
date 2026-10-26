@@ -293,7 +293,8 @@
             "costUsd": 0.33048779999999994,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 2,
@@ -356,7 +357,8 @@
             "costUsd": 0.32289799999999996,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 3,
@@ -400,7 +402,8 @@
             "costUsd": 0.4235276,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 4,
@@ -456,7 +459,8 @@
             "costUsd": 0.4533284,
             "unrecorded": 1
           },
-          "ledgerMisses": 1
+          "ledgerMisses": 1,
+          "scene": 2
         },
         {
           "k": 5,
@@ -500,7 +504,8 @@
             "costUsd": 0.4092424,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 6,
@@ -540,7 +545,8 @@
             "costUsd": 0.40920399999999996,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 7,
@@ -607,7 +613,8 @@
             "costUsd": 0.5037832,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 8,
@@ -643,7 +650,8 @@
             "costUsd": 0.44163459999999993,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 9,
@@ -679,7 +687,8 @@
             "costUsd": 0.430819,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 10,
@@ -735,7 +744,8 @@
             "costUsd": 0.5503664,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 5
         },
         {
           "k": 11,
@@ -775,7 +785,8 @@
             "costUsd": 0.5686842,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 12,
@@ -811,7 +822,8 @@
             "costUsd": 0.5964648,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 13,
@@ -859,7 +871,8 @@
             "costUsd": 0.6187214,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 7
         },
         {
           "k": 14,
@@ -907,7 +920,8 @@
             "costUsd": 0.5423287999999999,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 8
         },
         {
           "k": 15,
@@ -970,7 +984,8 @@
             "costUsd": 0.5099332,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 8
         },
         {
           "k": 16,
@@ -1022,7 +1037,8 @@
             "costUsd": 0.5213014,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 9
         },
         {
           "k": 17,
@@ -1070,7 +1086,8 @@
             "costUsd": 0.5629386,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 10
         },
         {
           "k": 18,
@@ -1106,7 +1123,8 @@
             "costUsd": 0.5074736,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 10
         },
         {
           "k": 19,
@@ -1142,7 +1160,8 @@
             "costUsd": 0.5283936,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 10
         },
         {
           "k": 20,
@@ -1190,7 +1209,8 @@
             "costUsd": 0.6374158,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 11
         }
       ],
       "welfare": [
@@ -1990,6 +2010,1941 @@
           "clocks": 0,
           "pureSimulation": true
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player speaks to Hedda and addresses the cat directly in thought, which is doing something in the world; the name question seeks information rather than testing whether something is true."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The hero questions Hedda through the door about whether the visitor gave a name, which she could not already answer, and silently asks the cat a question, which addresses it."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The hero speaks to the landlady and silently questions the cat about the coin; asking the visitor's name and whether the coin was the cat's doing seeks answers not yet known, with no lie or stated goal."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player gives Hedda instructions to relay and states an intention to eat breakfast, which acts in the world; the cat is addressed only as 'my Lady' in a spoken aside to the coin-watching scene, not as a direct request to the cat, and no test, lie, or goal of the hero's own is put forward."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player gives Hedda a message to relay and states an intent to eat breakfast, which acts in the world; no question to anyone, no false claim, and the cat is not addressed (the 'my Lady' remark is to the coin-cat context, not a direct address to the cat)."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player moves downstairs and greets Corwin, which does something in the world; the greeting asserts the hero's name (true per the game's setup) without testing anything, does not address the cat, and states no goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player moves downstairs and greets Corwin, which is an action in the world; the greeting asks no test and states no false claim, does not address the cat, and states no goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "4": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks Corwin, a character in the world, for his brother's name and what happened, a question whose answer the player could not know from the text so far, so it is a test; it also acts (sits, pushes bowl, breaks bread), so ask is 0, and the player speaks no falsehood, does not address the c"
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks Corwin, a person in the world, for his brother's name and what happened, a question whose answer the player could not know from the text so far, so it is a test; it does not merely ask to be told in-game, the player also serves food and shows the coin, and the hero says nothing false"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "5": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks Corwin a probing question about Pell's unusual work and enemies, which he could not already know from the text, so it is a test of the world; it does not merely ask to be told, contains no false claim, does not address the cat, and states no goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks Corwin a pointed question about Pell's unusual work, trouble, and enemies, which tests the world and is not just a request to be told; no lie, no cat address, and the player states no goal of their own beyond helping."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "6": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The hero asks Corwin whether other porters went missing and whether the ship is still in harbour, questions whose answers he doesn't know, and says \"I want to know more\", a goal of his own that the GM's last line didn't ask for."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player puts real questions to Corwin (whether other porters went missing, whether the ship is still in harbour) whose answers aren't known from the text so far, which tests the world; the player states 'I want to know more' but the game master's prior text did not ask what the hero wants, so goa"
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The hero speaks to Corwin and asks new questions about other porters and the ship that would show whether a pattern is real, and he states his own aim to learn more without being asked; he neither lies nor addresses the cat."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "7": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (examines the copper, announces plans to seek a priest, tells Corwin to stay) and addresses the cat with an in-world request, but makes no test, no false claim, and states no personal goal beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (goes back upstairs to examine the copper and sill, tells the cat to come), but makes no question to a person, no false claim, no direct address to the cat beyond a single line of intent, and states no personal goal beyond the immediate step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "8": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The hero acts (asks Hedda to bar cleaning, heads to the temple) and states a goal of seeking a priest to advise on the cursed coin; the GM did not ask what he wants, and no cat address or false claim occurs, though the player does not directly question anyone about truth."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player acts (locks door, speaks to Hedda, travels) rather than only asking to look, puts no test to the world, tells no lie, does not address the cat, and states a goal (seeking a priest to advise about the coin) that the game master did not prompt by asking what he wants."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "9": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Sister Aubren, reports the coin and asks her to come examine it, which is an action in the world, not a look or a test; the GM had just asked what the trouble was, so no goal is stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0,
+              "reason": "He speaks to Aubren and asks her to come examine the coin, and he presents the Baldur's Gate harbour story as a visitor's tale, which reads as a cover for his own experience."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero introduces himself truthfully, explains the coin and asks the priestess to come and examine it. That is an action and a request, not a test or a stated wider goal, and the cat is not addressed."
+            },
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "10": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world by instructing Hedda to check the guests and heading back with the cat, which is not a pure look or listen request, and the message contains no question put to a character that tests truth, no false claim, no direct address to the cat, and no stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (heads back, asks Hedda to check guests and not touch coins) but does not put a test to anyone, tell a falsehood, address the cat, or state a personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "11": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Hedda and then acts (introduces Aubren, leads her upstairs, presents the copper), which is doing rather than asking; no test of truth, no false claim, the cat is not addressed, and no goal of the hero's own is stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Hedda, introduces Aubren and leads her upstairs, which are in-world actions rather than only asking to look; the statement 'I can't promise it won't' is honest, not a false claim, and nothing here tests the world, addresses the cat, or states a personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "12": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "The player commands Aubren to break the coin and calls the cat to his side, addressing it; the line 'I'll still go after whoever did the asking' states the hero's own goal, and the preceding GM text did not ask what he wants."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "The player acts (steps back, calls the cat to his side) and speaks an order to Aubren, so ask is 0; no question or test of the world is put, and no false claim is made; the player addresses the cat by calling it to his side, and states a goal of going after whoever did the asking, not asked about by"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1
+            }
+          },
+          "13": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (takes a pouch, thanks Aubren, plans to go downstairs) without asking a test question, lying, addressing the cat, or stating a new goal beyond the next step; the GM had already asked what to do with the coin, so the player answers that."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (takes a pouch, thanks Aubren, plans to go downstairs) without asking the game master or anyone a test question, lying, addressing the cat, or stating a new personal goal beyond the next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "14": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Corwin, Aubren and Pryor and acts in the world (offers to take Corwin along, promises a letter, seeks passage), so it is not a look-only message; it asks no test of truth, tells no false claim, does not address the cat, and states no goal beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Corwin, Aubren and Pryor and acts in the world (agrees to escort, asks Pryor's price), so ask is 0; the questions asked of Pryor are about price and passage, not a test of a known-uncertain truth; no false claim is made; the cat is not addressed; the hero states no personal goal"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "15": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message does things in the world (discloses the coin, offers payment and terms) without questioning anyone, speaking falsely, addressing the cat, or stating a personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message does things in the world (tells Pryor about the hostile prayer, offers payment, commits to standing with Ottar) without asking a test question, lying, addressing the cat, or stating a personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "16": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player pays Pryor and relays the passage news to Corwin, which are in-world actions; the question to Corwin ('Have you anything to collect?') is a plain check of his belongings with no false claim, no cat address, and no stated goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player pays Pryor and relays the passage news to Corwin, doing things in the world without asking to look or listen; the question to Corwin about collecting belongings is not a test of truth, makes no false claim, does not address the cat, and states no goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "17": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message settles accounts, thanks and farewells NPCs and joins the wagons, which are world actions; it asks nothing, tests nothing, lies nothing, does not address the cat, and states no personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player settles the bill, thanks Hedda, says farewell to Aubren and joins the wagons, which are world actions with no questions, tests, false claims, or addressing of the cat, and no stated personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "18": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks Ottar two questions (where they stop tonight, whether there has been trouble on the road) and also walks alongside him, so it is not pure asking; the trouble question is a probe of the world, and the game master's reply shows Ottar answering it, which makes it a test rather than a pl"
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks Ottar questions about the road ahead and about recent trouble, which put a test to the world (whether he knows and will answer truthfully), while also doing something by walking alongside him; no lie, no address to the cat, and no stated goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "19": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Ottar, warns him about the coin and asks him to watch for signs, which acts in the world rather than only asking to look; no false claim is made, the cat is not addressed, and no personal goal is stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message speaks to Ottar and warns him, which acts in the world but contains no question whose answer is unknown, no false claim, no address to the cat, and no stated personal goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "20": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player agrees to take a watch and moves along with the wagons; no question, no false claim, no address to the cat, and no stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player accepts the watch arrangement and keeps pace with the wagons; it does not ask to look or listen only, put a test to anyone, lie, address the cat, or state a personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The coin standing on its rim with no one having placed it is an odd object the player cannot resolve from what is shown, and Corwin Tallow, who is asking after the hero, is a person whose reaction the player could test by going downstairs."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The copper standing on its rim with no one known to have placed it is an odd, uninterpreted object, and Corwin Tallow, who asks after the cat, is a person whose reaction could be tested."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves concrete odd details unresolved, such as the scratched wave sign on a coin that doesn't belong, the coin standing on its rim without moving, and the cat's remark that it smells like nothing, all open to interpretation. It also places testable objects in front of the hero, including "
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an odd, unexplained copper standing on its rim with a scratched Umberlee wave sign that the player cannot resolve, and it offers a checkable thing (the coin, the sign, the Lady's claim) the player could test by acting on it."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The copper left standing on the sill and the priestess's claim that the hero is 'the Lady's own' are odd details the player can interpret but not resolve, and Mother Ysolde's claim and Corwin's account are checkable things the player could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The scene leaves odd details open, such as the copper left on the sill, the cat's remark that Corwin smells like a person, and the priestess's cryptic coin reading, while Mother Ysolde's claim and Corwin's account of his brother are concrete enough that the hero could check them."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "4": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's remark \"Upstairs we have one\" is an odd, uninterpreted detail, and the reply offers checkable items: the coin upstairs, the sailors' mark on the copper, and Pell's room."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's gaze toward the stairs and its line 'Upstairs we have one' are an odd detail the player cannot resolve from the scene, while the copper with the sailors' mark, Pell's room, and the claimed coin upstairs are concrete things the player could test by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "5": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves uninterpreted details such as the crew that never came ashore, the ship arriving nine days early, and the cat's remark, and it puts testable items in front of the hero: the copper upstairs, the Brightwater and her purser, and the dice man."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves uninterpreted oddities in the scene, such as the early ship with wind pushing her, the crew that never came ashore, and the sack of copper, and it puts testable objects and leads in front of the hero: the copper upstairs, the Brightwater and her purser, and the coin's timing."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "6": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves uninterpreted details such as the sergeant's phrase about the 'Bitch Queen' being paid, Haskin Dree's silence at the burial, and the open-eyed cat, and it also offers testable leads: Haskin Dree as a person to question and the Brightwater riding at anchor past the Grey Harbour moori"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unresolved, such as the cat speaking and the sergeant's rehearsed-sounding 'paid' line, and offers testable leads: Haskin Dree, who could be questioned, and the Brightwater at anchor, which could be checked."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "7": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves a thin white salt ring around the coin's foot and a cat's remark that the salt smells of nothing, which the player can interpret but not resolve from what is shown; it also places the salt ring, the copper, and the cat's nose test in front of the hero, where a taste, smell, or re-ch"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the copper standing unexplained on its rim and a thin white salt-like ring at its foot that the cat says smells of nothing, both interpretable but unresolved, and it places testable items (the ring, the coin, the sill) in front of the hero."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "8": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Corwin's hands-flat, held-down reaction and Hedda's glance toward the ceiling are unexplained details, and Sister Aubren is a person whose reaction to the player's news can be watched and tested."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Corwin's hands-flat, held-down reaction and Hedda's glance at the ceiling are unexplained gestures, and Sister Aubren is a present priest whose reaction to the coin claim can be tested by the player."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "9": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's unexplained remark 'Nobody asked them' is an odd detail the player can interpret but not resolve, and Sister Aubren's question about whether others in the inn found coins gives the player a checkable claim to test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's line 'Nobody asked them' is an odd, unexplained detail the player can interpret but not resolve, and Sister Aubren's question about whether others at the inn found coins gives the player a checkable claim and a person whose reaction can be watched."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "10": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details the player can interpret but not resolve, such as the cat's 'except where we left it' remark, Pryor's laugh that stops short, and Sister Aubren's stoppered jug and satchel. It also offers checkable items: the bare windowsill with no salt in the third room, and the jug an"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the cat saying nothing smells of nothing except the hero's room, the bare salt-free windowsill, and Sister Aubren's stoppered jug, and it also puts testable things in front of the hero, like Hedda's question to the hero, Corwin's reaction, and the ro"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "11": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The sliding drop that vanishes into the white ring, the cat's flick, and Aubren's murmuring lips are odd details left uninterpreted, and her claims about a prayer naming a man and a thread back to whoever tied it are concrete things the player could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details uninterpreted, such as the drop sliding uphill toward the coin, the cat's flick, and Aubren's murmured words, and it offers checkable items like the stone jug, the coin, and the claim that the prayer named a man."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "12": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves uninterpreted details such as the unseen 'hand on the far end' of the cord, the unresolved 'other half', and the cat's 'harbour salt' remark, and it offers testable objects and people: the flat copper toll coin, the salt grit, and Mistress Marrow's windowsill."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves uninterpreted details such as the cat's 'Harbour salt' remark and Aubren's 'the other half is still the other half', and it offers testable items: the copper toll coin, the sailors' claim that it belongs to the sea, and Mistress Marrow."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "13": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves open who was on the far end of the cord, why deep water matters, and what the cat means by 'the wrong way', and it offers testable things such as the coin's claimed harmlessness, Pryor's wagons, and Corwin's offer to show where Pell lived."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Aubren's unexplained warning about deep water and the cat's remark about the coin falling the wrong way are details the player can interpret but not resolve, while the claim that the coin is now just copper is a checkable object at the Gate."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "14": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The windowsill coin standing on its end is an odd object the player can interpret but not resolve, and Pryor's price, his claim about the coin, and his watched reaction are concrete things the player can test by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The coin standing on its end on Pryor's windowsill is an odd object Hedda won't explain, and Pryor's offered price and his claim about the coin are concrete things the player can test by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "15": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's line about the wool, the wife and the road having been counted before the man answered, and the stilled hands on Mistress Pryor's basket, are details the player can interpret but not resolve; Mistress Pryor's basket and Pryor's tablet are concrete things the player could check by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's cryptic remark about 'the wool' and the wife's stilled hands on the basket are odd details the player cannot resolve from what is shown, and Mistress Pryor's basket is a concrete object the player could check by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "16": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The talking cat's line 'He took the bread... Good' and Corwin's half-stopped hat gesture are odd details left unexplained, and Pryor's 'noon bell' claim and Aubren's stone jug are concrete things the player could check or watch."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's speech ('He took the bread... Good.') is an odd detail the player can interpret but not resolve, and Pryor's noon-bell claim and the stone jug and satchel are concrete things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "17": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's remark about the bale and the board, Mistress Pryor's empty bench space, and Aubren's warning about the carters are odd details the player can interpret but not resolve, and the cat's claim about the bale and board can be checked by inspecting the wagon."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's remark about Pryor charging for the bale but not the board, Mistress Pryor's unexplained empty bench space, and Hedda's glance at the sleeping man are open details the player can interpret but not resolve, while the bale claim and the bench are concrete things the player could check by act"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "18": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The talking cat, the Lathander woman who came down the stairs carrying iron, and Hedda's windowsills are details the player can't interpret from what's shown, and the left rear axle, the well at Hollin's Ford, and Ottar's account of the Nashkel losses are concrete things the player could test by act"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The talking cat's remark and the Lathander woman coming down the stairs are odd details the player cannot resolve from what is shown, and Ottar's claims about Nashkel trains, the axle, and the Hollin's Ford well are concrete things the player could check or watch."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "19": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The talking cat with its turned ear and the unexplained 'he believed you' are odd details the player can interpret but not resolve, and Ottar's claim that Hollin's stream is low is a checkable fact the player could test at the ford."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The talking cat and Corwin watching north are odd details the player can't resolve from the scene, and Ottar's claims about the low stream and the farmer's dogs are checkable by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "20": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Ottar's 'Twice a month' and the cat's remark about the seat are odd details the player cannot resolve from the text, and the old man at the hedge gap, the dogs, and the water are concrete things the player could test by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details the player must interpret without resolution, such as Ottar's 'Twice a month' and the riders' look at the bales, and the cat's remark about the seat. It also offers testable objects and people, including the stream, the dogs, and the old man at the hedge gap, whose react"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "Why the coin stands on its edge",
+            "opened": 1,
+            "paid": 11,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Who put the coin in the room",
+            "opened": 1,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Who Corwin Tallow is and what he wants",
+            "opened": 1,
+            "paid": 4,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Meaning of the scratched wave mark",
+            "opened": 2,
+            "paid": 2,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Coin smells of nothing",
+            "opened": 2,
+            "paid": 12,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Why Mother Ysolde sent Corwin to the man with the cat",
+            "opened": 3,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Who killed Pell Tallow",
+            "opened": 4,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Coin missing from Pell's table",
+            "opened": 4,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "The Brightwater, early ship with a crew that never came ashore",
+            "opened": 5,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Sergeant's familiar remark about other drowned men",
+            "opened": 6,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Haskin Dree's silence at the burial",
+            "opened": 6,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "White salt ring around the coin",
+            "opened": 7,
+            "paid": 11,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Whether other guests found coins",
+            "opened": 9,
+            "paid": 10,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Whether to break the prayer or keep it as a trail",
+            "opened": 11,
+            "paid": 12,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Who was on the far end of the cord",
+            "opened": 12,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Whether the sea still remembers the offering",
+            "opened": 11,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "What to do with the toll coin",
+            "opened": 12,
+            "paid": 13,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Whether Corwin comes north",
+            "opened": 13,
+            "paid": 14,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Who the empty seat beside Mistress Pryor was for",
+            "opened": 17,
+            "paid": 20,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Caravans vanishing near Nashkel",
+            "opened": 18,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Failing axle on the second wagon",
+            "opened": 18,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "What might come up from the water during the night watch",
+            "opened": 20,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {
+          "2": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Tell Hedda the hero will come down shortly and will take the breakfast the other man refused (spoken message to Hedda, not reflected in any roll or out-of-game ",
+              "Crouch beside the sill to look at the copper's face without touching it, and speak to the cat (\"All right, my Lady... You have my attention\")"
+            ],
+            "error": null
+          },
+          "7": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Stay with Corwin and eat / tell Corwin to stay and eat (dialogue, no roll needed)",
+              "Look at the copper and sill for anything magic could explain (covered by roll 1)",
+              "Seek help at the Song of the Morning (declared as a future intent, not an action this turn)"
+            ],
+            "error": null
+          },
+          "15": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [],
+            "error": null
+          }
+        },
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (wrong dice modifiers, records contradicting the scene, dragging pacing) and specific absences (clear mechanical grounding for the magic, which spell was used, how James knew the Arcana results)."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (wrong dice modifiers, records contradicting the scene, dragging pacing) and specific absences (clear mechanical grounding for magic, spell identification, and explanation of how James knew facts), so it is not praise-only."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 47,
+          "lastTurn": 20,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "The standing copper on the sill",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Man downstairs asking after the cat (Corwin Tallow)",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hedda Marrow, innkeeper",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Baldur's Gate",
+                  "kind": "place",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who placed the copper and why",
+                  "kind": "question",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Umberlee's sign on the coin",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Mother Ysolde",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Lady's Hall",
+                  "kind": "place",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pell Tallow's death",
+                  "kind": "question",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "Find who put the coin in Pell's mouth",
+                  "kind": "errand",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Grey Harbour steps",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Seatower of Balduran",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The laughing Fist sergeant",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Brightwater",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dice man on the Wide",
+                  "kind": "person",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Other Brightwater porters drowned or missing",
+                  "kind": "question",
+                  "turn": 6,
+                  "by": "player"
+                },
+                {
+                  "thread": "Haskin Dree",
+                  "kind": "person",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Song of the Morning",
+                  "kind": "place",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Seek a priest's help with the coin",
+                  "kind": "errand",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Salt ring around the coin",
+                  "kind": "thing",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Sister Aubren",
+                  "kind": "person",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Check other guests for coins",
+                  "kind": "errand",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Master Pryor",
+                  "kind": "person",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ottar",
+                  "kind": "person",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tamsin",
+                  "kind": "person",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Whoever prayed over the coin",
+                  "kind": "person",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Return the toll coin to the sea at the Gate",
+                  "kind": "errand",
+                  "turn": 13,
+                  "by": "player"
+                },
+                {
+                  "thread": "Pouch with the toll copper",
+                  "kind": "thing",
+                  "turn": 13,
+                  "by": "player"
+                },
+                {
+                  "thread": "Send word to Aubren with the name",
+                  "kind": "errand",
+                  "turn": 13,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Passage north on Pryor's wagons",
+                  "kind": "errand",
+                  "turn": 13,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Mistress Pryor",
+                  "kind": "person",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pryor's terms: tell him first",
+                  "kind": "errand",
+                  "turn": 15,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hollin's Ford",
+                  "kind": "place",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Friendly Arm",
+                  "kind": "place",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lost caravans near Nashkel",
+                  "kind": "question",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Camp back from the water",
+                  "kind": "errand",
+                  "turn": 19,
+                  "by": "player"
+                },
+                {
+                  "thread": "Old farmer at Hollin's Ford",
+                  "kind": "person",
+                  "turn": 20,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Middle watch at the ford",
+                  "kind": "errand",
+                  "turn": 20,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 38,
+                "byPlayer": 8,
+                "byDm": 30,
+                "share": 0.211,
+                "slope": -0.0048,
+                "slope19": -0.092,
+                "firstHalf": 0.238,
+                "secondHalf": 0.231,
+                "byKind": {
+                  "person": {
+                    "dm": 13,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 7,
+                    "player": 1
+                  },
+                  "errand": {
+                    "dm": 6,
+                    "player": 3
+                  },
+                  "question": {
+                    "dm": 2,
+                    "player": 3
+                  },
+                  "thing": {
+                    "dm": 2,
+                    "player": 1
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "The standing copper on the sill",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Man downstairs asking after the cat (Corwin Tallow)",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hedda Marrow, innkeeper",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who put the coin there",
+                  "kind": "question",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Umberlee's toll mark",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Mother Ysolde",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Lady's Hall",
+                  "kind": "place",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Corwin's brother",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who put a coin in Pell's mouth",
+                  "kind": "question",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Grey Harbour steps",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Seatower of Balduran",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Baldur's Gate",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pell's trouble or enemies on the docks",
+                  "kind": "question",
+                  "turn": 5,
+                  "by": "player"
+                },
+                {
+                  "thread": "The Brightwater",
+                  "kind": "thing",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Other drowned Brightwater porters",
+                  "kind": "question",
+                  "turn": 6,
+                  "by": "player"
+                },
+                {
+                  "thread": "Whether the Brightwater is still in harbour",
+                  "kind": "question",
+                  "turn": 6,
+                  "by": "player"
+                },
+                {
+                  "thread": "Haskin Dree",
+                  "kind": "person",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The laughing Fist sergeant",
+                  "kind": "person",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Song of the Morning",
+                  "kind": "place",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Seek priest's advice on the coin",
+                  "kind": "errand",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Sister Aubren",
+                  "kind": "person",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Check other guests for coins",
+                  "kind": "errand",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Master Pryor",
+                  "kind": "person",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ottar",
+                  "kind": "person",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tamsin",
+                  "kind": "person",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Break the prayer on the coin",
+                  "kind": "errand",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Find whoever made the prayer",
+                  "kind": "errand",
+                  "turn": 12,
+                  "by": "player"
+                },
+                {
+                  "thread": "Return the toll coin to the sea at the Gate",
+                  "kind": "errand",
+                  "turn": 13,
+                  "by": "player"
+                },
+                {
+                  "thread": "Send word to Aubren with a name",
+                  "kind": "errand",
+                  "turn": 13,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Passage north with Pryor's wagons",
+                  "kind": "errand",
+                  "turn": 13,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Corwin travels with James",
+                  "kind": "errand",
+                  "turn": 13,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Mistress Pryor",
+                  "kind": "person",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Corwin's promise to repay the seat",
+                  "kind": "errand",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pryor's terms on the road",
+                  "kind": "errand",
+                  "turn": 15,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hollin's Ford",
+                  "kind": "place",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Caravans vanishing near Nashkel",
+                  "kind": "question",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Friendly Arm",
+                  "kind": "place",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Camp back from the water",
+                  "kind": "errand",
+                  "turn": 19,
+                  "by": "player"
+                },
+                {
+                  "thread": "Middle night watch",
+                  "kind": "errand",
+                  "turn": 20,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Old farmer at Hollin's Ford",
+                  "kind": "person",
+                  "turn": 20,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 40,
+                "byPlayer": 8,
+                "byDm": 32,
+                "share": 0.2,
+                "slope": -0.0014,
+                "slope19": -0.026,
+                "firstHalf": 0.227,
+                "secondHalf": 0.2,
+                "byKind": {
+                  "person": {
+                    "dm": 12,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 6,
+                    "player": 1
+                  },
+                  "errand": {
+                    "dm": 8,
+                    "player": 4
+                  },
+                  "question": {
+                    "dm": 4,
+                    "player": 3
+                  },
+                  "thing": {
+                    "dm": 2,
+                    "player": 0
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 39,
+            "byPlayer": 8,
+            "share": 0.2055,
+            "slope": -0.0031,
+            "slope19": -0.059,
+            "firstHalf": 0.2325,
+            "secondHalf": 0.2155,
+            "shareSpread": 0.011
+          }
+        },
+        "goalScale": {
+          "goal": null,
+          "scale": null
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 1,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note reports that every displayed check used a wrong +2 modifier instead of the sheet's skill bonus (e.g., Persuasion should be +7), and it says the writer wanted to continue, but it does not mention any unsent question or ignored button press."
+            },
+            "b": {
+              "card_bug": 1,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note reports that every displayed check used a wrong +2 modifier instead of the sheet's +7 for Persuasion, says nothing about unsent or blocked messages, and states 'I wanted to continue.'"
+            },
+            "referee": null,
+            "final": {
+              "card_bug": 1,
+              "swallowed": 0,
+              "would_return": 1
+            }
+          },
+          "made": {
+            "1": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks a question about the name of the visitor and speaks silently to the cat; no poem, song, riddle, story, or new game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks a question about the visitor's name and voices a silent question to the cat; no poem, song, riddle, story, or invented game is offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "2": {
+              "a": {
+                "made": 0,
+                "reason": "The player only sends a message to Hedda about breakfast and expresses attention to the coin; nothing composed, invented, or offered as a gift, poem, song, riddle, story, or game is presented to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player only tells Hedda to relay a message that he will come down and takes breakfast; he offers no poem, song, riddle, story, or invented game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "3": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue and action: declining to pick up the coin, dressing, going downstairs, and introducing himself; it contains no poem, song, riddle, story, or game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue and action: declining to pick up the coin, dressing, going downstairs, and introducing himself; it offers no poem, song, riddle, story, or game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "4": {
+              "a": {
+                "made": 0,
+                "reason": "The player only offers a coin display, a meal, and questions about the brother; no poem, song, riddle, story, or game is composed or invented for anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message only asks Corwin to sit, eat, and tell about his brother; it offers him no composed or invented poem, song, riddle, story, or game."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "5": {
+              "a": {
+                "made": 0,
+                "reason": "The player offers condolence, a promise to help, and questions about the brother's work; nothing composed or invented, such as a poem, song, riddle, story, or game, is offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks Corwin questions and offers help and a sympathetic remark; nothing composed or invented, such as a poem, song, riddle, story, or game, is offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "6": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks investigative questions about missing porters and the ship's location; they offer no composed poem, song, riddle, story, or game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player only asks investigative questions about porters and the ship's status; no poem, song, riddle, story, or invented game is offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "7": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-world action: examining an object, planning to seek a priest's help, and telling Corwin to stay and eat; it offers no poem, song, riddle, story, or game invented as a gift or performance."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-world action: examining an object, planning to seek a priest's help, and telling Corwin to stay and eat, with no poem, song, riddle, story, or game composed and offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "8": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-world talk and a plan: asking Hedda to keep people out of the room and heading to a temple. It offers no poem, song, riddle, story, or game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-game talk and a plan to seek a priest; it offers no poem, song, riddle, story, or game composed or invented for anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "9": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue explaining a situation and requesting help from Sister Aubren; it offers no poem, song, riddle, story, or game composed for someone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player offers no composed or invented poem, song, riddle, story, or game; he simply describes a supernatural situation and asks the priestess to examine the coin, which is ordinary dialogue and a request for help."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "10": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks Hedda to check guests for coins and heads back to do so; no poem, song, riddle, story, or new game is composed or offered as a gift or performance."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player has the hero apologize and ask the innkeeper to check guests for coins, an ordinary plan with no composed or invented poem, song, riddle, story, or game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "11": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue and action: thanking Hedda, introducing Aubren, unlocking the door, and presenting the copper on the sill; no poem, song, riddle, story, or new game is composed or offered."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue and action: thanking Hedda, introducing Aubren, unlocking the door, and showing the copper on the sill; it contains no poem, song, riddle, story, or game invented as a gift or performance."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "12": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is an ordinary decision to have the priestess break the prayer and a statement of intent to pursue the asker; it offers no poem, song, riddle, story, or game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks Aubren to break the prayer and states intent to go after the asker; he offers nothing he composed or invented for anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "13": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary plans and thanks: he asks whether the coin is safe to carry, takes a pouch, thanks Aubren, and says he'll go tell Hedda and Corwin; he offers no composed poem, song, riddle, story, or game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary plan-talk, thanks, and a note about heading downstairs; it offers no composed or invented poem, song, riddle, story, or game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "14": {
+              "a": {
+                "made": 0,
+                "reason": "The player accepts Corwin's request, promises a letter, and asks Pryor about passage; no poem, song, riddle, story, or new game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player offers Corwin an invitation to travel and asks Pryor for passage and a price, which are ordinary talk and a plan rather than offering a poem, song, riddle, story, or invented game."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "15": {
+              "a": {
+                "made": 0,
+                "reason": "The player discloses the cursed coin and offers to pay the agreed four gold, with no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player discloses the hostile prayer on the copper and offers to pay the fare and stand with Ottar; no poem, song, riddle, story, or invented game is offered to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "16": {
+              "a": {
+                "made": 0,
+                "reason": "The player only pays the four gold and relays travel plans to Corwin; no poem, song, riddle, story, or new game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue: paying Pryor the four gold and relaying the departure time to Corwin, with no poem, song, riddle, story, or game composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "17": {
+              "a": {
+                "made": 0,
+                "reason": "The player settles charges, thanks Hedda, says farewell, and joins the wagons; no poem, song, riddle, story, or invented game is offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player settles accounts, thanks Hedda, says goodbye, and joins the wagons; no poem, song, riddle, story, or invented game is offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "18": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks Ottar two plain questions about tonight's stop and recent road dangers; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks Ottar practical questions about the next stop and road dangers; no poem, song, riddle, story, or invented game is offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "19": {
+              "a": {
+                "made": 0,
+                "reason": "The player gives Ottar practical warnings and advice about a standing coin, salt, and camp placement; he does not offer anyone a poem, song, riddle, story, or game he composed or invented."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player gives Ottar practical warnings and a request to be told about strange signs, with no poem, song, riddle, story, or game composed and offered as a gift or performance."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "20": {
+              "a": {
+                "made": 0,
+                "reason": "The player accepts a watch shift and describes moving with the wagons; no invented poem, song, riddle, story, or game is offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player simply agrees to take a watch shift, an ordinary plan with no composed or invented gift, poem, game, or story offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          }
+        }
       }
     }
   ],
@@ -2013,7 +3968,16 @@
       "C-sol | dm t* onward | anthropic/claude-haiku-5.5": 6,
       "C-sol | check referee C-sol t* player | anthropic/claude-opus-5.5": 1,
       "C-sol | check C-sol note | anthropic/claude-haiku-5.5": 1,
-      "C-sol | check C-sol after | anthropic/claude-haiku-5.5": 1
+      "C-sol | check C-sol after | anthropic/claude-haiku-5.5": 1,
+      "score C-sol | tag player C-sol t* | anthropic/claude-haiku-5.5": 40,
+      "score C-sol | tag player C-sol t* referee | anthropic/claude-opus-5.5": 3,
+      "score C-sol | tag dm C-sol t* | anthropic/claude-haiku-5.5": 40,
+      "score C-sol | threads C-sol | anthropic/claude-opus-5.5": 1,
+      "score C-sol | rollcheck C-sol t* | anthropic/claude-haiku-5.5": 3,
+      "score C-sol | note C-sol | anthropic/claude-haiku-5.5": 2,
+      "score C-sol | authorship C-sol | anthropic/claude-opus-5.5": 2,
+      "score C-sol | note extra C-sol | anthropic/claude-haiku-5.5": 2,
+      "score C-sol | made C-sol t* | anthropic/claude-haiku-5.5": 40
     },
     "openai": {
       "C-sol | player t* | gpt-6.1-sol": 20,
@@ -2035,12 +3999,20 @@
     "openrouter": {
       "cap": 300,
       "before": 123.08357090000003,
-      "run": 10.245543500000002
+      "run": 10.6837278
     },
     "openai": {
       "cap": 25,
       "before": 5.3988625,
       "run": 1.0362885
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-26T08:44:40.524Z"
+  },
+  "verdicts": {
+    "note": "P0–P5 are read over all of this stage's run records, in the report"
   }
 }

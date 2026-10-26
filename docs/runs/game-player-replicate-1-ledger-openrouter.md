@@ -1,6 +1,6 @@
 # Game player replicate 1 — the OpenRouter ledger
 
-Cap $300; spent before this run $0.0000; this run $123.0836; total $123.0836; 2969 calls.
+Cap $300; spent before this run $0.0000; this run $133.7673; total $133.7673; 3234 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -376,3 +376,31 @@ Cap $300; spent before this run $0.0000; this run $123.0836; total $123.0836; 29
 | score C-astra | note extra C-astra 2 | anthropic/claude-haiku-5.5 | 1 | 1161 | 0 | 0 | 176 | $0.0002 | 0 | 0 | 0 |
 | score C-astra | made C-astra t* 1 | anthropic/claude-haiku-5.5 | 20 | 53366 | 0 | 0 | 1458 | $0.0061 | 0 | 0 | 0 |
 | score C-astra | made C-astra t* 2 | anthropic/claude-haiku-5.5 | 20 | 53366 | 0 | 0 | 1501 | $0.0061 | 0 | 0 | 0 |
+| C-sol | wizard | anthropic/claude-opus-5.5 | 2 | 11903 | 0 | 1567 | 15366 | $0.3628 | 0 | 0 | 0 |
+| C-sol | check C-sol opening | anthropic/claude-haiku-5.5 | 1 | 724 | 0 | 0 | 60 | $0.0001 | 0 | 0 | 0 |
+| C-sol | check C-sol t* player | anthropic/claude-haiku-5.5 | 20 | 26328 | 0 | 0 | 1359 | $0.0033 | 0 | 0 | 0 |
+| C-sol | dm t* | anthropic/claude-opus-5.5 | 43 | 168 | 1200983 | 1195247 | 138456 | $9.0487 | 0 | 0 | 0 |
+| C-sol | dm t* | anthropic/claude-haiku-5.5 | 21 | 56950 | 0 | 0 | 8906 | $0.0101 | 0 | 0 | 0 |
+| C-sol | check C-sol t* dm | anthropic/claude-haiku-5.5 | 20 | 27384 | 0 | 0 | 1671 | $0.0036 | 0 | 0 | 0 |
+| C-sol | check C-sol t* dm (told before a card) | anthropic/claude-haiku-5.5 | 3 | 2155 | 0 | 0 | 222 | $0.0003 | 0 | 0 | 0 |
+| C-sol | check C-sol t* player (card) | anthropic/claude-haiku-5.5 | 6 | 3322 | 0 | 0 | 352 | $0.0005 | 0 | 0 | 0 |
+| C-sol | dm t* onward | anthropic/claude-opus-5.5 | 7 | 22 | 268936 | 92899 | 14500 | $0.8084 | 0 | 0 | 0 |
+| C-sol | dm t* onward | anthropic/claude-haiku-5.5 | 6 | 11198 | 0 | 0 | 1176 | $0.0017 | 0 | 0 | 0 |
+| C-sol | check referee C-sol t* player | anthropic/claude-opus-5.5 | 1 | 1134 | 0 | 0 | 62 | $0.0058 | 0 | 0 | 0 |
+| C-sol | check C-sol note | anthropic/claude-haiku-5.5 | 1 | 1097 | 0 | 0 | 66 | $0.0001 | 0 | 0 | 0 |
+| C-sol | check C-sol after | anthropic/claude-haiku-5.5 | 1 | 564 | 0 | 0 | 71 | $0.0001 | 0 | 0 | 0 |
+| score C-sol | tag player C-sol t* 1 | anthropic/claude-haiku-5.5 | 20 | 54599 | 0 | 0 | 3234 | $0.0071 | 0 | 0 | 0 |
+| score C-sol | tag player C-sol t* 2 | anthropic/claude-haiku-5.5 | 20 | 54599 | 0 | 0 | 3090 | $0.0070 | 0 | 0 | 0 |
+| score C-sol | tag player C-sol t* referee | anthropic/claude-opus-5.5 | 3 | 6962 | 0 | 0 | 308 | $0.0340 | 0 | 0 | 0 |
+| score C-sol | tag dm C-sol t* 1 | anthropic/claude-haiku-5.5 | 20 | 29554 | 0 | 0 | 6771 | $0.0063 | 0 | 0 | 0 |
+| score C-sol | tag dm C-sol t* 2 | anthropic/claude-haiku-5.5 | 20 | 29554 | 0 | 0 | 6716 | $0.0063 | 0 | 0 | 0 |
+| score C-sol | threads C-sol | anthropic/claude-opus-5.5 | 1 | 20022 | 0 | 0 | 892 | $0.0979 | 0 | 0 | 0 |
+| score C-sol | rollcheck C-sol t* | anthropic/claude-haiku-5.5 | 3 | 4434 | 0 | 0 | 494 | $0.0007 | 0 | 0 | 0 |
+| score C-sol | note C-sol 1 | anthropic/claude-haiku-5.5 | 1 | 1011 | 0 | 0 | 102 | $0.0002 | 0 | 0 | 0 |
+| score C-sol | note C-sol 2 | anthropic/claude-haiku-5.5 | 1 | 1011 | 0 | 0 | 109 | $0.0002 | 0 | 0 | 0 |
+| score C-sol | authorship C-sol 1 | anthropic/claude-opus-5.5 | 1 | 26332 | 0 | 0 | 1378 | $0.1329 | 0 | 0 | 0 |
+| score C-sol | authorship C-sol 2 | anthropic/claude-opus-5.5 | 1 | 26332 | 0 | 0 | 1451 | $0.1343 | 0 | 0 | 0 |
+| score C-sol | note extra C-sol 1 | anthropic/claude-haiku-5.5 | 1 | 1094 | 0 | 0 | 227 | $0.0002 | 0 | 0 | 0 |
+| score C-sol | note extra C-sol 2 | anthropic/claude-haiku-5.5 | 1 | 1094 | 0 | 0 | 194 | $0.0002 | 0 | 0 | 0 |
+| score C-sol | made C-sol t* 1 | anthropic/claude-haiku-5.5 | 20 | 47119 | 0 | 0 | 1440 | $0.0054 | 0 | 0 | 0 |
+| score C-sol | made C-sol t* 2 | anthropic/claude-haiku-5.5 | 20 | 47119 | 0 | 0 | 1410 | $0.0054 | 0 | 0 | 0 |
