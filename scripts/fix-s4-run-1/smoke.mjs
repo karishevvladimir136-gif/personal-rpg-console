@@ -52,6 +52,10 @@ export function smokeMarkdown(runs, ledgers) {
 export const SMOKE = {
   name: "FIX_S4_RUN_1_SMOKE", stem: STEM, title: "FIX_S4 run 1 smoke", caps: CAPS, estimate: ESTIMATE, tables: ["A"], design: DESIGN_SHA256,
   players: PLAYERS, order: ["haiku", "luna"],
+  // The owner checks the drafted sheet against 05 §2 on the review; the harness accepts the draft as drafted, so the
+  // smoke gives the wizard the supplied sheet itself (11e, 11l: the supplied sheet is the source) — a declared change
+  // from game player 1's wizard step, which gave §1 only.
+  heroSheet: true,
   report: (runs, ledgers) => smokeMarkdown(runs, ledgers), dryRun: (runRecord, ledgers) => smokeMarkdown([runRecord], ledgers),
   verdicts: () => null, score: null,
 };

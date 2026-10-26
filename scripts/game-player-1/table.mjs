@@ -2,7 +2,7 @@
 // then played through the app's own turn path (src/lib/server/gameplay-service.ts). Every call here is a server
 // function the app's routes call; nothing about the player reaches the DM but the text of the player's messages.
 //   World      «Название Мира» + «Опишите сеттинг» (01), world_create — the premise becomes the campaign's canon document.
-//   Hero       «Кто вы?» (05 §1) → creation.propose (the hero drafted by the wizard's DM, Opus 5.5 at high) → the review
+//   Hero       «Кто вы?» (05 §1; FIX_S4 run 1's smoke: §1 with the sheet of §2, `heroSheet`) → creation.propose (the hero drafted by the wizard's DM, Opus 5.5 at high) → the review
 //              accepted as drafted → creation.commit (the rules system is set from the world: D&D 5e).
 //   Documents  the canon (02) as a canon document, the DM's 5e guide (03) as the campaign's DM guide.
 //   Adventure  «Пожелания к приключению» (06, Table A only) to the DM-only store; the adventure's title, premise and
@@ -31,7 +31,7 @@ export const PACE = { kind: "evening", custom: null };
 const fenceOf = (app, cid) => app.f.fence(cid);
 
 /** The campaign of one table: { cid, heroId, worldId, adventureId, steps } — `steps` says what each wizard step did. */
-export async function createCampaign(app, { table, log = () => {}, closed = () => false }) {
+export async function createCampaign(app, { table, log = () => {}, closed = () => false, heroSheet = false }) {
   const { server, lib } = app;
   const files = campaignFiles();
   const steps = [];
@@ -40,7 +40,7 @@ export async function createCampaign(app, { table, log = () => {}, closed = () =
   const world = (await worlds.performWorld(lib.client.createWorldAttempt(await worlds.worlds(), { title: files.worldName, premise: files.setting, packVersionIds: [] }))).world;
   steps.push({ step: "world", worldId: world.id, title: world.title, premiseChars: files.setting.length });
   // Hero: the wizard's DM drafts the sheet from «Who are you?»; the owner's review keeps the draft.
-  const input = { requestId: randomUUID(), worldId: world.id, worldVersion: world.version, title: `${HERO_NAME} · ${world.title}`.slice(0, 200), language: "en", name: HERO_NAME, description: files.heroWho };
+  const input = { requestId: randomUUID(), worldId: world.id, worldVersion: world.version, title: `${HERO_NAME} · ${world.title}`.slice(0, 200), language: "en", name: HERO_NAME, description: heroSheet ? `${files.heroWho}\n\n${files.heroSheet}` : files.heroWho };
   // An unreadable draft opens an empty sheet with the reason (the manual proposal); the owner presses «Build again» once.
   const emptyDraft = (d) => d?.proposal?.schemaVersion === 3 && !d.proposal.sheet.skills.length && !d.proposal.sheet.abilities.length && d.proposal.notes.length > 0;
   let draft = await server.bootstrap.performBootstrap({ action: "creation.propose", input });

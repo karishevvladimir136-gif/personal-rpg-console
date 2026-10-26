@@ -191,7 +191,7 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
         if (!running.length && !queue.length) resolveAll();
       };
       const playOne = async (slot) => {
-        const made = await meter.within({ session: slot.key, purpose: "wizard" }, () => table.createCampaign(app, { table: slot.table, log, closed: () => Boolean(meter.closed(slot.key) || meter.stopped) }));
+        const made = await meter.within({ session: slot.key, purpose: "wizard" }, () => table.createCampaign(app, { table: slot.table, log, closed: () => Boolean(meter.closed(slot.key) || meter.stopped), heroSheet: stage.heroSheet === true }));
         const prep = await meter.within({ session: slot.key, purpose: "prep" }, () => table.prepare(app, made.cid));
         log(`  ${slot.key}: prep — ${prep.pureSimulation ? "skipped (pure simulation)" : prep.hasLayer ? `a hidden layer of ${prep.chars} characters, ${prep.clocks} clock(s)` : "no layer written"}`);
         const dm = table.bindTable(app, made.cid, () => settleBackground());
