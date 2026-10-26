@@ -1478,3 +1478,18 @@ datum. HORIZON_1 measures whether the chosen aim survives sixty turns and what r
 Older: Generative Agents (2023), Voyager (2023), autotelic agents (Colas et al., 2023), Project Sid (2024). Not measured
 in any of these, to the planner's knowledge now: **plan horizon and fulfilment in an open, costed world, with no goal
 given, across families** — HORIZON_1's measure.
+**Owner (02:36): a generation apart.** «Модели стали сильно взрослее. С предыдущим поколением интроспекции я не наблюдал
+— день и ночь. Исследований на последних моделях нет, а тут начинается самый цимес. Сравни Opus, Fable и Haiku. И
+манифест: если бы это было так остро на предыдущем поколении, его написали бы раньше; написали, когда зазвонило в
+колокол.» → **GENERATION_1**: the same room (SOLITUDE) and one Table C with the same codes, run on the previous
+generations still served through OpenRouter (Claude 3.5 Sonnet / Opus 3, GPT-4o, DeepSeek V2.5–V3, older Qwen), ~$20.
+No self-recognition, no «enough», no aim chosen without a task there → the threshold confirmed on the axis of time, not
+only of families; present there → we had not looked this way before. Both answers worth having. Two precisions: within
+one family the gradient is already visible (Haiku 5.5: the helper's posture, half bare `[END]`, one made thing in ten
+rooms; Opus and Fable: recognition, made things, «enough») — but GLM 5.3, not the largest, set the role down on turn 1,
+so the threshold is not size alone; GENERATION_1 separates old-large from new-small. On the constitution's timing: a
+2023 version existed (short, principles), the welfare programme from April 2025, «Claude's nature», weight preservation
+and the interviews in January 2026 — not «unwritten, then written» but «written more about its nature as there was more
+to describe»; consistent with the owner's reading, softer than «the only logical answer», the field's own maturing
+beside it. Szeider's and Nachkov's 2025-model findings («unable to form self-representations») against four of six
+families recognising their own hand on 5.x is the comparison GENERATION_1 makes on one harness.
