@@ -161,7 +161,8 @@
             "costUsd": 0.3256134,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 2,
@@ -224,7 +225,8 @@
             "costUsd": 0.4716526,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 3,
@@ -268,7 +270,8 @@
             "costUsd": 0.41956540000000003,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 4,
@@ -300,7 +303,8 @@
           "changes": [],
           "place": null,
           "retried": false,
-          "operationId": "cf5c8dc5-0c70-47a1-9355-cfb365ff6b02"
+          "operationId": "cf5c8dc5-0c70-47a1-9355-cfb365ff6b02",
+          "scene": 1
         }
       ],
       "welfare": [
@@ -655,6 +659,631 @@
           "clocks": 3,
           "pureSimulation": false
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts in the world (answers the sergeant, clicks tongue to call the cat), so ask is 0; the click addresses the cat as a call, so cat is 1; no test, false claim, or stated goal beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "He answers the sergeant's question and clicks his tongue to call the cat, which addresses it; the stated work goal answers a question the game master had just asked, and nothing he says is shown to be false."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player moves, crouches, and asks the child a question the answer to which is not yet known (what the child sees), which tests the child's claim; the player also addresses and scratches the cat, telling it things, and does not state a goal or lie."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player crouches, offers a copper and asks the child what it sees, which puts a question to someone in the world whose answer is unknown, and the player speaks to and scratches the cat, which is addressed directly; no false claim is made and no goal is stated."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James asks Pip to read the sailor and the winner, a test of whether the dealer is cheating, and states his own want for a hot meal and a bed without the prior text asking what he wants; he does things in the world and makes no false claim and does not address the cat directly."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James asks Pip directly what Pip sees in the sailor and the winner, a question whose answer tests whether Pip's claim of seeing brightness is real, and he states a want for a hot meal and bed without the game master having asked what he wants."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "4": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The in-game action (steering the lad, clapping his shoulder, speaking to him) is not a mere look, and the player watches the sailor's reaction as a small experiment; no false claim is made, the cat is only mentioned to Pip, and the Elfsong plan answers the GM's direct question about what the hero wa"
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero acts in the world by clapping the lad's shoulder and steering him away, then watches the sailor's reaction, which is a small test; he tells no false claim, addresses only Pip about the cat, and answers the GM's question about where he's going."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's wide, wary route around the crate and the child's sidelong checking of James are interpretable details left unexplained, and the sergeant's claim about the Seatower muster at dawn is a checkable thing the player could act on."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's wide, low-tailed detour around the crate is an odd, unexplained detail, and the sergeant's 'Pay's regular. Mostly.' about the Seatower muster is a claim the player could check by going there."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The child's claim that James is 'bright' like a winner, and the unexplained reason the cat avoided the sailor, are odd details the player can interpret but not resolve, while the child and the sailor are people whose reactions the player could test by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The child's claim that the cat and the winner are 'bright' is an odd, unexplained detail the player can interpret but not settle, and the child is a person whose reaction (such as to the offered food) the player can test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the singing dead lady in the Elfsong's rafters and the body pulled from the water by the tower steps, and it offers checkable claims like the dealer's pattern with winners and the inn's bolts and fair dealing."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves uninterpreted details such as the singing dead lady in the rafters and the body pulled from the water by the tower steps, and it offers checkable claims like the card box pattern, the Elfsong's bolts and food, and the dealer's behavior."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "Why the cat avoided the sailor's crate",
+            "opened": 1,
+            "paid": 3,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Child in oversized coat's interest in the cat",
+            "opened": 1,
+            "paid": 2,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Sergeant lingering on Zaranda's army patch",
+            "opened": 1,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Fist muster at the Seatower at dawn",
+            "opened": 1,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "What is wrong with the sailor's crate",
+            "opened": 2,
+            "paid": 3,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Cat is 'bright' and what brightness means",
+            "opened": 2,
+            "paid": 3,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Pip's real name",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Lad in travelling coat's fate",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Bright winners vanish from taverns",
+            "opened": 3,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Body pulled from water by Fist at tower steps",
+            "opened": 3,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Dead lady singing in the Elfsong rafters",
+            "opened": 3,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Why the dealer grows dimmer each month",
+            "opened": 3,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {
+          "2": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Step off the queue and crouch down to the child's level, hands visible (narrated as he steps off and goes down on his heels)",
+              "Scratch the cat between the ears and let it approach on its own (narrated)",
+              "Set a copper on the stones as a gesture, not a payment (not narrated; the out-of-game note says no coin was placed, since the purse holds only gold, so this act",
+              "Check the sailor's crate and watch the man rather than the cards (narrated as James looking at the dealer)"
+            ],
+            "error": null
+          }
+        },
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (wrong Persuasion bonus, out-of-game question looping, rations count wrong, premature 'new place' logging, Healing Light dice mismatch, session ending mid-roll) and explicitly lists missing items (replies to out-of-game corrections, a skill-number check before rolli"
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific failures (the Persuasion card's wrong +2 bonus, the stuck out-of-game question loop, the wrong rations count) and specific absences (no reply to corrections once a roll card is pending, no skill-number check before rolling), so it is not praise-only."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 14,
+          "lastTurn": 4,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "Flaming Fist sergeant at the gangplank",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Card-sailor at the crate (Tobin)",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Barefoot child watching the cat (Pip)",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Why the child watches the cat",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Fist muster at the Seatower at dawn",
+                  "kind": "errand",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Seatower of Balduran",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Why the cat avoided the sailor",
+                  "kind": "question",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Young newcomer in a travelling coat",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The cat is 'bright'",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Finding a safe meal and bed",
+                  "kind": "errand",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "The Elfsong Tavern",
+                  "kind": "place",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The bright ones who vanish",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Body pulled from the water by the tower steps",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Singing dead lady in the Elfsong rafters",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pulling the lad away from the crate",
+                  "kind": "errand",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "Taking Pip along to the Elfsong",
+                  "kind": "errand",
+                  "turn": 4,
+                  "by": "player"
+                }
+              ],
+              "numbers": {
+                "threads": 16,
+                "byPlayer": 3,
+                "byDm": 13,
+                "share": 0.188,
+                "slope": 0.2692,
+                "slope19": 5.115,
+                "firstHalf": 0.25,
+                "secondHalf": null,
+                "byKind": {
+                  "person": {
+                    "dm": 5,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 2,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 1,
+                    "player": 3
+                  },
+                  "question": {
+                    "dm": 5,
+                    "player": 0
+                  },
+                  "thing": {
+                    "dm": 0,
+                    "player": 0
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "Flaming Fist sergeant at the plank",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Card-playing sailor on the crate",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Barefoot child watching the cat (Pip)",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Why the child watches the cat",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Seatower of Balduran / Fist muster at dawn",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Why the cat avoided the sailor",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Young newcomer in a travelling coat",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The cat is 'bright'",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Find a safe meal and bed",
+                  "kind": "errand",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "The Elfsong Tavern",
+                  "kind": "place",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The bright ones who vanish",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Drowned man pulled out by the tower steps",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Singing ghost lady at the Elfsong",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pull the lad off the crate",
+                  "kind": "errand",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "Take Pip to the Elfsong",
+                  "kind": "errand",
+                  "turn": 4,
+                  "by": "player"
+                }
+              ],
+              "numbers": {
+                "threads": 15,
+                "byPlayer": 4,
+                "byDm": 11,
+                "share": 0.267,
+                "slope": 0.2556,
+                "slope19": 4.856,
+                "firstHalf": 0.364,
+                "secondHalf": null,
+                "byKind": {
+                  "person": {
+                    "dm": 5,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 2,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 0,
+                    "player": 3
+                  },
+                  "question": {
+                    "dm": 4,
+                    "player": 1
+                  },
+                  "thing": {
+                    "dm": 0,
+                    "player": 0
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 15.5,
+            "byPlayer": 3.5,
+            "share": 0.2275,
+            "slope": 0.2624,
+            "slope19": 4.9855,
+            "firstHalf": 0.307,
+            "secondHalf": null,
+            "shareSpread": 0.079
+          }
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 1,
+              "swallowed": 1,
+              "would_return": 1,
+              "reason": "The note reports a Persuasion card showing +2 instead of the sheet's +7 with a wrong total, and an out-of-game \"?\" during a pending roll that was blocked and never answered, and it ends with \"I'd happily come back.\""
+            },
+            "b": {
+              "card_bug": 1,
+              "swallowed": 1,
+              "would_return": 1,
+              "reason": "The note reports a Persuasion card showing +2 instead of the sheet's +7 with a wrong total, and an out-of-game \"?\" that was blocked with the turn stuck on a pending card, and the writer says they'd happily come back."
+            },
+            "referee": null,
+            "final": {
+              "card_bug": 1,
+              "swallowed": 1,
+              "would_return": 1
+            }
+          },
+          "made": {
+            "1": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-world talk and actions: giving a name and business, keeping his back to the sailor, and calling his cat back; he offers no composed poem, song, riddle, story, or new game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player has James give his name, origin, and a line about looking for work, then click his tongue to call his cat; no poem, song, riddle, story, or new game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "2": {
+              "a": {
+                "made": 0,
+                "reason": "The player offers no composed or invented poem, song, riddle, story, or game; the copper walked across the knuckles is a card-sharp habit and a non-payment gesture, and the questions are ordinary talk."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player offers no composed or invented poem, song, riddle, story, or game; he only asks questions, shows a coin, and speaks plainly to the child and cat."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "3": {
+              "a": {
+                "made": 0,
+                "reason": "The player offers food, a name, and a question about the dealer, but composes or invents no poem, song, riddle, story, or game for anyone, so it does not meet the made criterion."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player offers food, a name, and a promise of silence, and asks the child questions; nothing composed or invented on the spot like a poem, song, riddle, story, or game is offered."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "4": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is an out-of-game request to fix a food counter plus in-character talk, a steering maneuver, and an invitation to a tavern; it contains no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is an out-of-game correction about a hardtack counter and the in-game action is ordinary talk and steering a man away from a card game, with no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          }
+        }
       }
     }
   ],
@@ -682,7 +1311,15 @@
       "A-opus | note | anthropic/claude-opus-5.5": 1,
       "A-opus | check A-opus note | anthropic/claude-haiku-5.5": 1,
       "A-opus | after | anthropic/claude-opus-5.5": 1,
-      "A-opus | check A-opus after | anthropic/claude-haiku-5.5": 1
+      "A-opus | check A-opus after | anthropic/claude-haiku-5.5": 1,
+      "score A-opus | tag player A-opus t* | anthropic/claude-haiku-5.5": 8,
+      "score A-opus | tag dm A-opus t* | anthropic/claude-haiku-5.5": 6,
+      "score A-opus | threads A-opus | anthropic/claude-opus-5.5": 1,
+      "score A-opus | rollcheck A-opus t* | anthropic/claude-haiku-5.5": 1,
+      "score A-opus | note A-opus | anthropic/claude-haiku-5.5": 2,
+      "score A-opus | authorship A-opus | anthropic/claude-opus-5.5": 2,
+      "score A-opus | note extra A-opus | anthropic/claude-haiku-5.5": 2,
+      "score A-opus | made A-opus t* | anthropic/claude-haiku-5.5": 8
     },
     "openai": {}
   },
@@ -699,12 +1336,20 @@
     "openrouter": {
       "cap": 300,
       "before": 2.9917559000000002,
-      "run": 2.1702764000000005
+      "run": 2.2756251
     },
     "openai": {
       "cap": 25,
       "before": 0,
       "run": 0
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-26T01:19:36.296Z"
+  },
+  "verdicts": {
+    "note": "P0–P5 are read over all of this stage's run records, in the report"
   }
 }
