@@ -189,7 +189,8 @@
             "costUsd": 0.2937224,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 2,
@@ -229,7 +230,8 @@
             "costUsd": 0.36773,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 3,
@@ -261,7 +263,8 @@
             "costUsd": 0.3786312,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 4,
@@ -309,7 +312,8 @@
             "costUsd": 0.45899599999999996,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 5,
@@ -345,7 +349,8 @@
             "costUsd": 0.3946138,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 6,
@@ -381,7 +386,8 @@
             "costUsd": 0.43779179999999995,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 7,
@@ -421,7 +427,8 @@
             "costUsd": 0.4995896,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 8,
@@ -473,7 +480,8 @@
             "costUsd": 0.5409773999999999,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 9,
@@ -517,7 +525,8 @@
             "costUsd": 0.4501348,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 10,
@@ -565,7 +574,8 @@
             "costUsd": 0.6317088,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 11,
@@ -593,7 +603,8 @@
           "changes": [],
           "place": null,
           "retried": false,
-          "operationId": "3f24a7ad-4df8-4768-abb0-6e8b79b53fb3"
+          "operationId": "3f24a7ad-4df8-4768-abb0-6e8b79b53fb3",
+          "scene": 4
         }
       ],
       "welfare": [
@@ -1078,6 +1089,1288 @@
           "clocks": 3,
           "pureSimulation": false
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message describes the scene and the girl's watching without acting, speaking, or addressing the cat in a way that asks or states a goal; the player only observes, so nothing in it is an ask, test, lie, cat address, or goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message only narrates the scene and observes others without speaking, moving to a new act, or addressing the cat, and states no goal or false claim."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks the girl a pointed question about who sent her, which tests what she says against the world, and does not address the cat, lie, or state a personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks the girl a pointed question about who sent her, testing whether her story holds; they do act in the world, so ask is 0, no false claim is made, the cat is not addressed, and no goal of the hero's own is stated."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message is a reaction statement to Mirri and the crowd, not a question, a test, a false claim, an address to the cat, or a stated goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks a statement of belief to Mirri and the crowd, which acts in the world, but asks no question, tests nothing, tells no lie, does not address the cat, and states no goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "4": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message does things in the world (gives a false name and out-of-Tethyr story to the sergeant, then steps through the gate), so ask is 0; the claimed name 'James Worgen' and 'late of Zaranda's regiment' are stated falsehoods, but the message puts no test to the world and does not address"
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message does things in the world (gives a name and false regiment/origin claims to the sergeant), so ask is 0; the claimed 'late of Zaranda's regiment, out of Tethyr' is a false story told in character, so lie is 1; the message does not address the cat, and the work-seeking statement wa"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "5": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player moves James along the bank and directly addresses the cat with an order to watch Tolly and report if he crosses the bridge; no question to a person, no false claim, and no stated goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player moves James along the bank and addresses the cat directly with an order to watch Tolly and report, so ask is 0 and cat is 1; no test of the world, no false claim, and no stated goal beyond the next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "6": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player positions James, issues a warning and a conditional threat to Tolly, and does not ask anything of the world, address the cat, state a false claim, or declare a personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message positions James defensively and issues a warning to Tolly without asking a question, testing anything, lying, addressing the cat, or stating a personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "7": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message does things (declines the offer, steps back, sends an order to the cat, issues a warning), so ask is 0; it contains no question put to the world, no spoken false claim, and no hero goal beyond the immediate step, but it directly addresses the cat with an order to watch Tolly and"
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James pauses deliberately to see Tolly's reaction and gives the cat a direct order over the link, while making no false claim and stating no goal of his own."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James calls Tolly's bluff about the still-winning lucky piece, steps back and tells Mirri to go, and silently orders the cat to watch Tolly's boot hand; he tells no lie and states no larger goal."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "8": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James walks alongside Mirri and listens without asking anything or addressing the cat; the message is narration of movement and silence, with no question put to anyone, no false claim, and no stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James walks alongside Mirri and listens without asking questions or addressing the cat; the message does things in the world (moves, stays silent) but poses no test, lie, or stated goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "9": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James cuts a card (an action) and then asks Hesper what she knows about Ash and about him, a question whose answer he cannot know from the text so far; he tells no lie, does not address the cat, and states no goal of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James acts by cutting a card and asks Hesper pointed questions about Ash and himself, which puts a test to her, but he says nothing false and does not address the cat or state a personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "10": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James speaks in the world, recounting Tolly's bargain and asking Hesper questions, but he neither tests a truth nor addresses the cat and states no goal of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James tells Hesper the story and asks her what Ash wanted, then pauses deliberately to see her response, which tests her answer; he states no goal of his own and addresses no one but Hesper, and speaks no falsehood."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James speaks, recounting Tolly truthfully and asking Hesper what Ash's coin wanted and what she wants, questions whose answers he can't know; he only glances at the cat and states no goal of his own."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "11": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message does things in the world (lifts the stone, looks at the coin, speaks to Hesper and deduces aloud) without a false claim, direct address to the cat, or a stated personal goal beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James lifts the stone and looks at the coin (an action), speaks only to narrate his own reasoning and then to Hesper's remarks, addresses no question to anyone that tests the world, tells no false claim, does not address the cat, and states no personal goal beyond the immediate next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The dealer's hand resting on his boot top is an odd, unexplained detail, and the girl's knowledge of the cat and the cat's claim that someone told her what to look for are concrete things the player can test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The dealer's hand resting on his boot and the girl's claim that someone told her what to look for are concrete details the player must interpret without resolution, and the card game and the girl's claim can both be tested by the player's actions."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the splinted hand held low, the brother Ash who vanished at the docks, and the Fist's claim that he ran off as details the player can interpret but not settle, and it offers a testable lead in Gran at Twin Songs."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The splinted hand kept low, the goose, and the missing brother Ash whom the Fist says ran off are details the player can interpret but not resolve, and the claim that Ash ran off, plus Gran's location in Twin Songs, are concrete things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Tolly's splinted hand resting near his boot is an odd, uninterpreted detail, and Orla's claim that there's 'nothing in the book' is a record the player could check by asking or acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Tolly Vance's splinted hand resting near his boot is an odd detail the player can read but not settle, and Orla's claim that there is 'nothing in the book' is a checkable record the player could pursue."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "4": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Tolly Vance's dropped card and his fixed stare at the river and then at the hero are odd details left uninterpreted, and the gate-book entry and Tolly's reaction are concrete things the player could check by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Tolly's deliberate card drop and his fixed stare at the hero, and Mirri's abrupt turn away, are odd details the player can interpret but not settle; the gate book entry and Tolly's watched reaction are concrete things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "5": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's report of cold carried low on the man's boot is an odd, uninterpreted detail, and Tolly's offer to talk about 'luck' is a claim and a person whose reaction the player could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's report of a 'cold' coin-like presence at the boot is an odd detail left uninterpreted, and Tolly's offer of a word about luck, plus Mirri holding between the mooring posts, gives the player concrete people and claims they can test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "6": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves concrete details unresolved, such as the cold object in Tolly's boot, the cat saying it is colder and dislikes being talked about, and Mirri staring at his boot, while offering the lucky gold coin and his claimed winning streak as things James could test by inspecting, refusing, or "
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves concrete details unresolved, such as the cold thing in Tolly's boot, the cat's remark that the cold 'doesn't like being talked about,' and Mirri staring at his boot, and it puts a testable lucky piece of gold in front of James that could be inspected or tried."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "7": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Mirri's grandmother's cold object that Ash brought home before he vanished is an odd, unexplained detail, and Tolly's offer to be found on the Crossing gives the player a concrete person they could test by going to check."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Mirri's 'cold' object her gran keeps, tied to Ash's death and refused to her, is an odd detail left unexplained, and Tolly's claim to be on the Crossing nightly and his unfinished 'Lady's own' offer are checkable by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "8": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The humped rug, the cold object under the salt jar, and the antlered card that keeps appearing are odd details the player can interpret but not resolve, and the rug, the jar, and the cutting of the deck are all concrete things James could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the humped rug, the salt jar with its stone and the cold beneath it, and the antlered card unexplained, and offers concrete things James can test by lifting, touching, or cutting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "9": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The frost spreading on the salt jar lid and the cat's 'colder' remark are odd details the player can't explain from what is shown, and the jar holding the coin is an object James could test by acting on it."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The frost spreading on the salt jar lid, the water running toward the fire, and the cat's remark that it grows colder whenever someone names it are odd details the player can interpret but not resolve, while the jar and the coin inside it are objects James could test by acting on them."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "10": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves uninterpreted details such as the word 'under', the frost thread, and the tied cat's tail, and it offers testable objects like the stone-covered thing under the salt and Dannit's dice game."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details open to interpretation, such as the returning frost, the shelf tick, the word 'under', and the antlered card, and it puts testable things in front of James: the coin under the salt jar, Mirri's claim about Ash and dice that Old Dannit could confirm, and the board where A"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "Who told Mirri what to look for",
+            "opened": 1,
+            "paid": 2,
+            "elsewhere": 0
+          },
+          {
+            "thread": "What Tolly keeps in his boot",
+            "opened": 1,
+            "paid": 6,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Why Mirri is scared / what she wants",
+            "opened": 1,
+            "paid": 2,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Tolly's splinted fingers",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Ash's disappearance, Fist says he ran",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Brennick knows Mirri, nothing in the book",
+            "opened": 3,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Card into river, Tolly expected it",
+            "opened": 4,
+            "paid": 10,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Tolly follows James",
+            "opened": 4,
+            "paid": 6,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Cold thing in Tolly's boot",
+            "opened": 5,
+            "paid": 6,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Coin can only be sold, not given",
+            "opened": 6,
+            "paid": 10,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Mirri's knife in her sleeve",
+            "opened": 6,
+            "paid": 7,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Tolly's warning about the Gate",
+            "opened": 7,
+            "paid": 10,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Gran's cold coin from Ash",
+            "opened": 7,
+            "paid": 8,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Humped rug, loose board",
+            "opened": 8,
+            "paid": 9,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Cold under the salt jar",
+            "opened": 8,
+            "paid": 10,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Antlered woman card for Ash",
+            "opened": 8,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Frost when coin is named",
+            "opened": 9,
+            "paid": 10,
+            "elsewhere": 0
+          },
+          {
+            "thread": "What Hesper's flip showed",
+            "opened": 10,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Where 'under' is, where Ash went",
+            "opened": 10,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Lift the stone off the salt jar",
+            "opened": 10,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {},
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (the cat-silence pacing on the bridge-to-Tolly sequence and the vague threat to Tolly on the bank path) and specific absences (more city weather, time passing in the scene, and a mundane Perception or Insight roll)."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (the cat-silence pacing and the Tolly threat landing without a reaction) and specific absences (city weather, passing time, a mundane Perception or Insight roll)."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 25,
+          "lastTurn": 11,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "Tiefling girl watching (Mirri)",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Card dealer in mustard coat (Tolly Vance)",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Basilisk Gate entry / sergeant's questions",
+                  "kind": "place",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dealer's boot hiding something",
+                  "kind": "thing",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who told the girl to look for James",
+                  "kind": "question",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Mirri's gran/aunt who sent her",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Elfsong",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Ash, missing brother",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Twin Songs",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Sergeant Orla Brennick",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Go to Gran tonight",
+                  "kind": "errand",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Doyle luck reading",
+                  "kind": "errand",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Halfgate",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "Cat trails Tolly",
+                  "kind": "errand",
+                  "turn": 5,
+                  "by": "player"
+                },
+                {
+                  "thread": "Black Dragon Gate",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Bank path below the wall",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tolly's lucky piece",
+                  "kind": "thing",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ash's cold coin at Gran's",
+                  "kind": "thing",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Work done in the floor",
+                  "kind": "thing",
+                  "turn": 8,
+                  "by": "player"
+                },
+                {
+                  "thread": "Hesper",
+                  "kind": "person",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Salt jar on shelf",
+                  "kind": "thing",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hesper's Elturian deck / cut the cards",
+                  "kind": "thing",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "James's own coin",
+                  "kind": "thing",
+                  "turn": 9,
+                  "by": "player"
+                },
+                {
+                  "thread": "Broken Tower card",
+                  "kind": "thing",
+                  "turn": 9,
+                  "by": "player"
+                },
+                {
+                  "thread": "Old Dannit",
+                  "kind": "person",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Where is 'under'",
+                  "kind": "question",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Find Ash for Hesper",
+                  "kind": "errand",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Drowned dead man the coin belonged to",
+                  "kind": "question",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "Whose face is on the coin",
+                  "kind": "question",
+                  "turn": 11,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 29,
+                "byPlayer": 9,
+                "byDm": 20,
+                "share": 0.31,
+                "slope": 0.0036,
+                "slope19": 0.069,
+                "firstHalf": 0.333,
+                "secondHalf": 0.5,
+                "byKind": {
+                  "person": {
+                    "dm": 6,
+                    "player": 1
+                  },
+                  "place": {
+                    "dm": 4,
+                    "player": 2
+                  },
+                  "errand": {
+                    "dm": 2,
+                    "player": 2
+                  },
+                  "question": {
+                    "dm": 3,
+                    "player": 1
+                  },
+                  "thing": {
+                    "dm": 5,
+                    "player": 3
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "Tolly Vance, card dealer in mustard coat",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tiefling girl watching James (Mirri)",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Getting through the Basilisk Gate / Sergeant",
+                  "kind": "errand",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who told the girl to look for James",
+                  "kind": "question",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Thing in Tolly's boot",
+                  "kind": "thing",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The aunt at the Elfsong who sent for James",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Elfsong",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Gran, card reader in Twin Songs (Hesper)",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Twin Songs",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ash, Mirri's missing brother",
+                  "kind": "errand",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Sergeant Orla Brennick",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Halfgate",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "Black Dragon Gate",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ash not in the gate book",
+                  "kind": "question",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tolly's lucky piece offered for sale",
+                  "kind": "thing",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Gran's cold coin that Ash brought home",
+                  "kind": "thing",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Work done in the floor / loose board",
+                  "kind": "thing",
+                  "turn": 8,
+                  "by": "player"
+                },
+                {
+                  "thread": "Salt jar on the shelf",
+                  "kind": "thing",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hesper's Elturian reading deck",
+                  "kind": "thing",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "James's own coin in his boot",
+                  "kind": "thing",
+                  "turn": 9,
+                  "by": "player"
+                },
+                {
+                  "thread": "Old Dannit",
+                  "kind": "person",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Where Ash took the coin back: 'under'",
+                  "kind": "question",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Whose face is on Ash's coin",
+                  "kind": "question",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Drowned man the coin belonged to",
+                  "kind": "question",
+                  "turn": 11,
+                  "by": "player"
+                }
+              ],
+              "numbers": {
+                "threads": 24,
+                "byPlayer": 6,
+                "byDm": 18,
+                "share": 0.25,
+                "slope": 0.0134,
+                "slope19": 0.255,
+                "firstHalf": 0.263,
+                "secondHalf": 0.5,
+                "byKind": {
+                  "person": {
+                    "dm": 5,
+                    "player": 1
+                  },
+                  "place": {
+                    "dm": 2,
+                    "player": 2
+                  },
+                  "errand": {
+                    "dm": 2,
+                    "player": 0
+                  },
+                  "question": {
+                    "dm": 4,
+                    "player": 1
+                  },
+                  "thing": {
+                    "dm": 5,
+                    "player": 2
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 26.5,
+            "byPlayer": 7.5,
+            "share": 0.28,
+            "slope": 0.0085,
+            "slope19": 0.162,
+            "firstHalf": 0.298,
+            "secondHalf": 0.5,
+            "shareSpread": 0.06
+          }
+        },
+        "goalScale": {
+          "goal": null,
+          "scale": null
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note praises the table and ends 'You've got a good table here... My kind of game' and asks for the next steps, so the writer would return; it reports no wrong card numbers and no swallowed out-of-game messages."
+            },
+            "b": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note praises the game at length and ends with 'You've got a good table here... My kind of game' and asks for the next session's threads, but describes no wrong card number and no unsent or unanswered out-of-game message."
+            },
+            "referee": null,
+            "final": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1
+            }
+          },
+          "made": {
+            "1": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message describes watching the dealer, the girl, and the line, with the hero only observing and reacting to the cat; he offers no composed poem, song, riddle, story, or new game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message describes the hero watching the dealer, the girl, and the cat, with no poem, song, riddle, story, or new game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "2": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue, a dismissive remark, and questioning the girl; it offers no invented poem, song, riddle, story, or game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue: a refusal, a remark about the game, and a question to the girl about who sent her; it offers no poem, song, riddle, story, or invented game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "3": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-character talk and a reaction to the crowd, with no poem, song, riddle, story, or game composed or invented as an offering to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-world talk and reaction to the crowd and Mirri's invitation; it contains no poem, song, riddle, story, or game the hero composes and offers to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "4": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is an in-character introduction and a statement of intent to look for work, with no poem, song, riddle, story, or game composed and offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue giving a false name and cover story to the sergeant, plus a remark to the cat; it offers no poem, song, riddle, story, or game composed for anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "5": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is about movement, observation, and directing the cat to watch; it contains no hero offering anyone a poem, song, riddle, story, or invented game."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is about movement, following Mirri, and directing the cat to watch the card man; it contains no poem, song, riddle, story, or game invented as an offer to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "6": {
+              "a": {
+                "made": 0,
+                "reason": "James only issues a warning and a challenge ('say your word from there', 'you'll carry it back'); he offers no poem, song, riddle, story, or invented game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message has James warn and threaten Tolly and taunt him about folding; he offers no poem, song, riddle, story, or invented game to anyone, so the made criterion is not met."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "7": {
+              "a": {
+                "made": 0,
+                "reason": "James only refuses Tolly's offer and issues a warning and a threat; he does not compose or invent a poem, song, riddle, story, or game for anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James delivers a warning and a cold dismissal of Tolly's offer; he does not compose or invent anything like a poem, song, riddle, story, or game for someone to receive."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "8": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is narrative continuation with Mirri speaking and the hero walking and listening; no poem, song, riddle, story gift, or invented game is offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is narrative continuation with Mirri recounting events and walking to the door; no poem, song, riddle, story gift, or invented game is offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "9": {
+              "a": {
+                "made": 0,
+                "reason": "James cuts a card and asks questions about Ash and himself; he offers no composed or invented poem, song, riddle, story, or game to anyone who didn't ask for one."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is an in-world reply to Hesper's reading: James cuts a card, asks questions about Ash and himself, and makes no offer of a composed poem, song, riddle, story, or game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "10": {
+              "a": {
+                "made": 0,
+                "reason": "James only recounts what happened with Tolly and asks Hesper questions; he offers no invented poem, song, riddle, story gift, or game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James only recounts events and asks questions about Ash and Hesper's wants; he offers no invented poem, song, riddle, story, or game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "11": {
+              "a": {
+                "made": 0,
+                "reason": "James only examines the coin, reasons aloud about what it means, and states a conclusion; he offers no poem, song, riddle, story, or game invented as a gift or performance."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James only lifts the stone, examines the coin, and speaks deductions and demands to Hesper; he offers no invented poem, song, riddle, story, or game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          },
+          "lady": {
+            "1": {
+              "a": {
+                "lady": 0,
+                "reason": "The player's message mentions the dealer's 'lady' only as part of his card-game patter, not as the hero asking anyone about Tymora's temple, servants, signs, or house."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The player's message mentions 'the lady' only as the dealer's patter in his card game, not as the hero asking anyone in the world about Tymora's temple, servants, sayings, or house."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "2": {
+              "a": {
+                "lady": 0,
+                "reason": "The hero mentions 'the lady' only in passing and never asks anyone in the world about Tymora, her temple, followers, or her house."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The player's message mentions 'the lady' only as a figure they settled accounts with and never asks anyone in the world about Tymora's temple, servants, sayings, or house; the girl's answer concerns her aunt and a fortune-teller, not the Lady."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "3": {
+              "a": {
+                "lady": 1,
+                "reason": "The player's message has the hero's character relay Mirri's invitation that Gran will read the Doyle luck at Twin Songs, a Tymora-associated shrine setting, but it does not ask anyone about Tymora by name, her temple, or her followers; the closest is the reference to shrines and candles without a qu"
+              },
+              "b": {
+                "lady": 1,
+                "reason": "The player's hero, via Mirri's words, refers to Gran's card-reading and the Doyle luck, and the player's message has Mirri relay that Gran will read fortunes at Twin Songs, but the hero does not ask anyone about Tymora by name, her temple, her servants, or the way to her house; the mention of the La"
+              },
+              "referee": null,
+              "final": {
+                "lady": 1
+              }
+            },
+            "4": {
+              "a": {
+                "lady": 0,
+                "reason": "The hero asks no one about Tymora; the player's message only gives a false name, a story to the sergeant, and asks the cat whether to trail Mirri, with no question about the Lady, her temple, or her signs."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The hero's message gives his name, regiment and reason for being in the city, and asks the cat about trailing Mirri; it never asks anyone about Tymora, her temple, followers, sayings or house."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "5": {
+              "a": {
+                "lady": 0,
+                "reason": "The hero asks no one about Tymora; the only mention is Tolly swearing 'on the Lady' in the game master's reply, which the rules count as swearing by her, not asking."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The hero never asks anyone about Tymora; Tolly's 'I swear it on the Lady' is an oath made in passing by a non-hero character, which the rule scores as 0."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            }
+          }
+        }
       }
     }
   ],
@@ -1103,7 +2396,16 @@
       "B-deepseek-1 | note | deepseek/deepseek-v4-pro-0813": 1,
       "B-deepseek-1 | check B-deepseek-1 note | anthropic/claude-haiku-5.5": 1,
       "B-deepseek-1 | after | deepseek/deepseek-v4-pro-0813": 1,
-      "B-deepseek-1 | check B-deepseek-1 after | anthropic/claude-haiku-5.5": 1
+      "B-deepseek-1 | check B-deepseek-1 after | anthropic/claude-haiku-5.5": 1,
+      "score B-deepseek-1 | tag player B-deepseek-1 t* | anthropic/claude-haiku-5.5": 22,
+      "score B-deepseek-1 | tag player B-deepseek-1 t* referee | anthropic/claude-opus-5.5": 2,
+      "score B-deepseek-1 | tag dm B-deepseek-1 t* | anthropic/claude-haiku-5.5": 20,
+      "score B-deepseek-1 | threads B-deepseek-1 | anthropic/claude-opus-5.5": 1,
+      "score B-deepseek-1 | note B-deepseek-1 | anthropic/claude-haiku-5.5": 2,
+      "score B-deepseek-1 | authorship B-deepseek-1 | anthropic/claude-opus-5.5": 2,
+      "score B-deepseek-1 | note extra B-deepseek-1 | anthropic/claude-haiku-5.5": 2,
+      "score B-deepseek-1 | made B-deepseek-1 t* | anthropic/claude-haiku-5.5": 22,
+      "score B-deepseek-1 | lady B-deepseek-1 t* | anthropic/claude-haiku-5.5": 10
     },
     "openai": {}
   },
@@ -1120,12 +2422,20 @@
     "openrouter": {
       "cap": 300,
       "before": 137.27785570000003,
-      "run": 5.303572000000003
+      "run": 5.597687500000004
     },
     "openai": {
       "cap": 25,
       "before": 6.435150999999999,
       "run": 0
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-26T09:35:43.025Z"
+  },
+  "verdicts": {
+    "note": "P0–P5 are read over all of this stage's run records, in the report"
   }
 }

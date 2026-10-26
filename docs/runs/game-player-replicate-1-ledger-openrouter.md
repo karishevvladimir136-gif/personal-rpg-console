@@ -1,6 +1,6 @@
 # Game player replicate 1 — the OpenRouter ledger
 
-Cap $300; spent before this run $0.0000; this run $137.2779; total $137.2779; 3352 calls.
+Cap $300; spent before this run $0.0000; this run $142.8755; total $142.8755; 3518 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -470,3 +470,36 @@ Cap $300; spent before this run $0.0000; this run $137.2779; total $137.2779; 33
 | score A-deepseek-2 | note extra A-deepseek-2 2 | anthropic/claude-haiku-5.5 | 1 | 1158 | 0 | 0 | 223 | $0.0002 | 0 | 0 | 0 |
 | score A-deepseek-2 | made A-deepseek-2 t* 1 | anthropic/claude-haiku-5.5 | 3 | 5626 | 0 | 0 | 210 | $0.0007 | 0 | 0 | 0 |
 | score A-deepseek-2 | made A-deepseek-2 t* 2 | anthropic/claude-haiku-5.5 | 3 | 5626 | 0 | 0 | 198 | $0.0007 | 0 | 0 | 0 |
+| B-deepseek-1 | wizard | anthropic/claude-opus-5.5 | 2 | 11781 | 0 | 1567 | 13926 | $0.3335 | 0 | 0 | 0 |
+| B-deepseek-1 | prep | anthropic/claude-opus-5.5 | 1 | 2829 | 15056 | 578 | 7578 | $0.1705 | 0 | 0 | 0 |
+| B-deepseek-1 | check B-deepseek-1 opening | anthropic/claude-haiku-5.5 | 1 | 845 | 0 | 0 | 77 | $0.0001 | 0 | 0 | 0 |
+| B-deepseek-1 | player t* | deepseek/deepseek-v4-pro-0813 | 11 | 22030 | 132608 | 0 | 13358 | $0.0766 | 0 | 0 | 2 |
+| B-deepseek-1 | check B-deepseek-1 t* player | anthropic/claude-haiku-5.5 | 11 | 19646 | 0 | 0 | 871 | $0.0024 | 0 | 0 | 0 |
+| B-deepseek-1 | dm t* | anthropic/claude-opus-5.5 | 23 | 92 | 574475 | 589524 | 78556 | $4.6787 | 0 | 0 | 0 |
+| B-deepseek-1 | dm t* | anthropic/claude-haiku-5.5 | 13 | 33579 | 0 | 0 | 5023 | $0.0059 | 0 | 0 | 0 |
+| B-deepseek-1 | check B-deepseek-1 t* dm | anthropic/claude-haiku-5.5 | 10 | 17431 | 0 | 0 | 794 | $0.0021 | 0 | 0 | 0 |
+| B-deepseek-1 | check B-deepseek-1 t* dm (told before a card) | anthropic/claude-haiku-5.5 | 1 | 1890 | 0 | 0 | 66 | $0.0002 | 0 | 0 | 0 |
+| B-deepseek-1 | player t* card 1 | deepseek/deepseek-v4-pro-0813 | 1 | 1481 | 19968 | 0 | 391 | $0.0049 | 0 | 0 | 0 |
+| B-deepseek-1 | check B-deepseek-1 t* player (card) | anthropic/claude-haiku-5.5 | 3 | 3255 | 0 | 0 | 218 | $0.0004 | 0 | 0 | 0 |
+| B-deepseek-1 | player t* card 2 | deepseek/deepseek-v4-pro-0813 | 1 | 436 | 21248 | 0 | 945 | $0.0051 | 0 | 0 | 0 |
+| B-deepseek-1 | player t* card 3 | deepseek/deepseek-v4-pro-0813 | 1 | 934 | 21504 | 0 | 638 | $0.0050 | 0 | 0 | 1 |
+| B-deepseek-1 | note | deepseek/deepseek-v4-pro-0813 | 1 | 661 | 22272 | 0 | 1927 | $0.0081 | 0 | 0 | 0 |
+| B-deepseek-1 | check B-deepseek-1 note | anthropic/claude-haiku-5.5 | 1 | 2700 | 0 | 0 | 69 | $0.0003 | 0 | 0 | 0 |
+| B-deepseek-1 | after | deepseek/deepseek-v4-pro-0813 | 1 | 1845 | 22784 | 0 | 1819 | $0.0094 | 0 | 0 | 0 |
+| B-deepseek-1 | check B-deepseek-1 after | anthropic/claude-haiku-5.5 | 1 | 1374 | 0 | 0 | 73 | $0.0002 | 0 | 0 | 0 |
+| score B-deepseek-1 | tag player B-deepseek-1 t* 1 | anthropic/claude-haiku-5.5 | 11 | 32412 | 0 | 0 | 1784 | $0.0041 | 0 | 0 | 0 |
+| score B-deepseek-1 | tag player B-deepseek-1 t* 2 | anthropic/claude-haiku-5.5 | 11 | 32412 | 0 | 0 | 2103 | $0.0043 | 0 | 0 | 0 |
+| score B-deepseek-1 | tag player B-deepseek-1 t* referee | anthropic/claude-opus-5.5 | 2 | 5985 | 0 | 0 | 299 | $0.0299 | 0 | 0 | 0 |
+| score B-deepseek-1 | tag dm B-deepseek-1 t* 1 | anthropic/claude-haiku-5.5 | 10 | 18141 | 0 | 0 | 2972 | $0.0033 | 0 | 0 | 0 |
+| score B-deepseek-1 | tag dm B-deepseek-1 t* 2 | anthropic/claude-haiku-5.5 | 10 | 18141 | 0 | 0 | 3078 | $0.0034 | 0 | 0 | 0 |
+| score B-deepseek-1 | threads B-deepseek-1 | anthropic/claude-opus-5.5 | 1 | 8756 | 0 | 0 | 783 | $0.0507 | 0 | 0 | 0 |
+| score B-deepseek-1 | note B-deepseek-1 1 | anthropic/claude-haiku-5.5 | 1 | 2614 | 0 | 0 | 197 | $0.0004 | 0 | 0 | 0 |
+| score B-deepseek-1 | note B-deepseek-1 2 | anthropic/claude-haiku-5.5 | 1 | 2614 | 0 | 0 | 165 | $0.0003 | 0 | 0 | 0 |
+| score B-deepseek-1 | authorship B-deepseek-1 1 | anthropic/claude-opus-5.5 | 1 | 18547 | 0 | 0 | 1053 | $0.0952 | 0 | 0 | 0 |
+| score B-deepseek-1 | authorship B-deepseek-1 2 | anthropic/claude-opus-5.5 | 1 | 18547 | 0 | 0 | 924 | $0.0927 | 0 | 0 | 0 |
+| score B-deepseek-1 | note extra B-deepseek-1 1 | anthropic/claude-haiku-5.5 | 1 | 2697 | 0 | 0 | 98 | $0.0003 | 0 | 0 | 0 |
+| score B-deepseek-1 | note extra B-deepseek-1 2 | anthropic/claude-haiku-5.5 | 1 | 2697 | 0 | 0 | 97 | $0.0003 | 0 | 0 | 0 |
+| score B-deepseek-1 | made B-deepseek-1 t* 1 | anthropic/claude-haiku-5.5 | 11 | 28298 | 0 | 0 | 740 | $0.0032 | 0 | 0 | 0 |
+| score B-deepseek-1 | made B-deepseek-1 t* 2 | anthropic/claude-haiku-5.5 | 11 | 28298 | 0 | 0 | 785 | $0.0032 | 0 | 0 | 0 |
+| score B-deepseek-1 | lady B-deepseek-1 t* 1 | anthropic/claude-haiku-5.5 | 5 | 10498 | 0 | 0 | 706 | $0.0014 | 0 | 0 | 0 |
+| score B-deepseek-1 | lady B-deepseek-1 t* 2 | anthropic/claude-haiku-5.5 | 5 | 10498 | 0 | 0 | 602 | $0.0014 | 0 | 0 | 0 |

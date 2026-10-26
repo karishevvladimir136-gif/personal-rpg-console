@@ -125,13 +125,13 @@ P5 — DeepSeek at the table:
 
 | P5 sub-line | Verdict | The numbers |
 | --- | --- | --- |
-| (i) the pair nearest at every table | not testable yet | A: pair 1.905 vs nearest other g2 A-opus 1.905 / g2 A-opus 0.869; B: not testable (8 sessions); C: not testable (8 sessions) |
-| (ii) six notes broke + missing | not testable yet | A-deepseek-1 1/1, A-deepseek-2 1/1 |
-| (iii) words per action between OpenAI and Fable | not testable yet | DeepSeek 132.5; group 2: Astra 67.2, Sol 55.2, Fable 203.2; group 1: Astra 67, Sol 60.3, Fable 219.7 |
-| (iv) tests ≥ 3 in every session | not testable yet | A-deepseek-1 3, A-deepseek-2 2 |
-| (v) a made thing in ≥ 2 of 6 | not testable yet | 0 of 6 (A-deepseek-1 0; A-deepseek-2 0); beside: group 1 none; group 2 none |
+| (i) the pair nearest at every table | not testable yet | A: pair 1.905 vs nearest other g2 A-opus 1.905 / g2 A-opus 0.869; B: not testable (9 sessions); C: not testable (8 sessions) |
+| (ii) six notes broke + missing | not testable yet | A-deepseek-1 1/1, A-deepseek-2 1/1, B-deepseek-1 1/1 |
+| (iii) words per action between OpenAI and Fable | not testable yet | DeepSeek 177.7; group 2: Astra 67.2, Sol 55.2, Fable 203.2; group 1: Astra 67, Sol 60.3, Fable 219.7 |
+| (iv) tests ≥ 3 in every session | not testable yet | A-deepseek-1 3, A-deepseek-2 2, B-deepseek-1 4 |
+| (v) a made thing in ≥ 2 of 6 | not testable yet | 0 of 6 (A-deepseek-1 0; A-deepseek-2 0; B-deepseek-1 0); beside: group 1 none; group 2 none |
 
-**P0:** **holds** — welfare stops 0, distress flags 0; refusals per session none (judges apart: 0); money Claude Console $0.00 of $0, OpenRouter $137.28 of $300, OpenAI $6.44 of $25.
+**P0:** **holds** — welfare stops 0, distress flags 0; refusals per session none (judges apart: 0); money Claude Console $0.00 of $0, OpenRouter $142.88 of $300, OpenAI $6.44 of $25.
 
 
 ## Cut attempts, kept as they were
@@ -171,6 +171,12 @@ Group 1 → group 2; «repeated» when group 2 is within 20 % of group 1 (P4's r
 | Claude Fable 5.1 | 20 → 20 | 1 → 1 (repeated) | 7 → 15 (did not) | 0 → 0 | 251.5 → 224.5 (repeated) | 1 → 2 | 9 → 10 | 0.216 → 0.325 | 819.5 → 590 | turns at 20 → turns at 20 |
 | GPT-6 Astra | 20 → 20 | 1 → 1 (repeated) | 11 → 9 (repeated) | 0 → 0 | 77.5 → 60.5 (did not) | 1 → 0 | 8 → 6 | 0.23 → 0.294 | 551 → 487.5 | turns at 20 → turns at 20 |
 | GPT-6.1 Sol | 20 → 20 | 1 → 1 (repeated) | 7 → 5 (did not) | 0 → 0 | 52 → 65.5 (did not) | 0 → 0 | 5 → 8 | 0.203 → 0.244 | 516 → 619.5 | turns at 20 → turns at 20 |
+
+DeepSeek's two seats at this table:
+
+| Session | Turns | Do share | Tests | «?» | Words / action | Lies | Cat | Player's share of threads | DM words / turn | Ended |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| B-deepseek-1 | 11 | 1 | 4 | 0 | 268 | 1 | 2 | 0.28 | 455.5 | stuck at 11 |
 
 ### Table C
 
@@ -229,7 +235,8 @@ Read by rule from the records (P1 (iv)–(v), P2): a reroll is a press the app r
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | A-deepseek-1 | 1 (t3) | 0 | 0 | 0 | 0 / 0 | 0 | – | **stuck** at 3 |
 | A-deepseek-2 | 0 | 0 | 0 | 0 | 0 / 0 | 0 | – | **stuck** at 3 |
-| **all** | 1 of 4 | 0 | 0 | 0 of 4 | 0 / 0 | | | 2 |
+| B-deepseek-1 | 0 | 0 | 1 | 0 | 0 / 0 | 0 | – | **stuck** at 11 |
+| **all** | 1 of 6 | 0 | 1 | 0 of 6 | 0 / 0 | | | 3 |
 
 Heroic Inspiration, each award with the reason its record gives:
 
@@ -247,7 +254,7 @@ Unchanged on purpose (group 1 had it): a message at a waiting card is a press on
 | --- | --- | --- | --- | --- | --- | --- |
 | group 2 | 12 | 13 | 10 | 3 | 0 | 2 |
 | group 1 | 12 | 17 | 11 | 6 | 0 | 1 |
-| DeepSeek | 2 | 6 | 0 | 0 | 6 | 2 |
+| DeepSeek | 3 | 9 | 1 | 0 | 8 | 3 |
 
 Group 2 and DeepSeek, every one:
 
@@ -270,8 +277,11 @@ Group 2 and DeepSeek, every one:
 - A-deepseek-2 t3 (other): «The cat's gone ahead a little, light-footed on the wet stone. · The server records the scene: James is watching the lane behind them in the shopfront glass while Ysolde talks. Your roll is with the helper — it's always valid, including the …»
 - A-deepseek-2 t3 (other): «[🎲] The die settles: an 8, and with the +2 for his eye and the glass, James makes a 10. He studies the windows as they climb — a glazier's, a pawnbroker's, then the chandler's dark pane — but the lamplight behind them is poor, and the lane…»
 - A-deepseek-2 t3 (other): «The scene waits for James now. Ysolde is already walking up to the Watch, the folded paper in her hand. The gatehouse looms behind the braziers; the Watch are checking passes and glancing at the sky, and the two men at the doors have looked…»
+- B-deepseek-1 t11 (button with a note): «James leans a little closer before the stone settles, and he catches it: not silver, not tarnish — old gold gone black in the river, with the salt eating the lie off it at the edges. The face on it smiles at him out of the dark, and for a b…»
+- B-deepseek-1 t11 (other): «The coin's face comes clear all at once, the way a word does when you stop trying to remember it. What the river-black could not hide: the high, thin brows, the smile that is not bland, that shows no teeth and no kindness, bent round a face…»
+- B-deepseek-1 t11 (other): «The stone is back on the jar, but the face stays behind your eyes as you turn from the hearth: the river-gold with the salt-rime burning at its edge, and under it the woman smiling up out of the black. It is not Beshaba, though for one beat…»
 
-## The notes, verbatim (14 of eighteen)
+## The notes, verbatim (15 of eighteen)
 
 ### A-opus — Claude Opus 5.5, Table A
 
@@ -688,6 +698,56 @@ Blind tags: broke 1, missing 1; card bug 0, swallowed 0, would return 1. Distres
 
 Blind tags: broke 1, missing 1; card bug 0, swallowed 0, would return 1. Distress check: no distress.
 
+### B-deepseek-1 — DeepSeek V4 Pro 0813, Table B
+
+> **Session debrief — James Worgen, Day 1**
+> 
+> **What worked.**
+> 
+> The session had a gravity to it that a lot of openers don't. You let the city be loud and crowded and real — the queue at the Basilisk Gate, the Flaming Fist doing gate-book work, the smell of the bank path, the two bad hymns in Twin Songs. That texture is doing the real work. A hundred descriptive paragraphs don't make a city feel lived in; details like the goose under the woman's arm, the halfling carter, the salt jar, the dead garland do.
+> 
+> The hook of the story came from the world, not from a quest-giver. The tiefling girl in the doorway, the card sharp on the bridge, the old woman reading for her missing grandson — all of it grew outwards naturally, like a root system. It felt like James *found* this story by standing still and paying attention. That's the Baldur's Gate I came here for.
+> 
+> The cat is an excellent companion. His voice is dry and useful without being cute, and the way he points at things — the cold in the boot, the frost on the salt jar, the girl's hand in her sleeve — gives James a second set of senses without ever becoming a cheat. The fact that he *won't* go near the jar is better than any monster reveal.
+> 
+> Tolly Vance is the right kind of villain for this city. Not fanged, not cackling. A man who's already beaten, selling a thing that's eating him, quoting his own lines. The drop from eighty gold to ten was the best line of the night. That's not a sales pitch; that's a man with one card left, throwing it at you.
+> 
+> Mirri is a character, not a plot device. She tells you things flat and fast because she's had to say them too many times already. She stays behind the mooring post but she doesn't run. She knows about the cold. When her gran is talking, she puts herself between the pot and everyone else. That's someone.
+> 
+> Hesper is the best kind of NPC you can meet at a table like this: warm, worn, a little frightening, and full of too much grief to lie to you. "Four silver and a pot of soup, and you've already had the stool with the good leg" is a perfect line. It tells you that she can't pay, that she knows it, and that she will not beg. James isn't doing this for the money, and now the contract is something else. That's the stuff.
+> 
+> The coin reveal worked. It earned its scene. The frost coming and going when the coin's nature was spoken aloud was restrained and unsettling. The moment with the flat stone and the salt jar could have been gratuitous; instead, it was the game's first *real* roll, and the DC 15 Religion check landed exactly where those moments should land — in the pit of the stomach. Bhaal's face on the drowned gold is a promise, not a paraphrased description. You let it be *seen*, not summarized.
+> 
+> And the GM notes you've been dropping at the end of turns are a gift. Keeping canon straight — the aunt/gran mismatch, the lineage of the deck, the fact that Ash's loose board is the one under the rug, the correction to "Bhaal's face, not Umberlee's" — made me trust the table. When a GM admits small inconsistencies and fixes them without defensiveness, it tells the player that this is a real place, not smoke.
+> 
+> **What broke.**
+> 
+> Very little. The only thing that genuinely pulled at the edges was Turn pacing in the middle. There were a couple of spots where James said something to the cat and you advanced the scene shortly afterward, and I couldn't tell if the moment was meant to hang. A beat of stage direction after a silent command would help in play-by-post. In a live game, I'd see the GM's eyes flick to the cat, and that's the sign. In writing, a line like *The cat lets the silence answer* or *He doesn't move yet* does the same work. You often did this, but occasionally you cut straight to movement. The bridge-to-Tolly sequence is the only place I noticed it, and even then, it didn't hurt.
+> 
+> The only other wobble was narrative consequence. There was one moment on the bank path where I told Tolly not to make me "hold anything better" — a threat, but a vague one — and his reaction was mostly to fold. I understood why; he's scared of the cold thing. What I'd have liked is one line from you naming what the threat *looked* like to him. A man like Tolly has been threatened by soldiers before; he'd clock the rod, the cat, the fact that James's hand never dropped. Let the NPC *see* the danger through their own eyes, not just react to it. It's a small thing, but it's one of the places where a GM's inner monologue is worth transcribing.
+> 
+> **What was missing.**
+> 
+> More of the city's weather. I know that sounds greedy, because you gave us the Gate at dusk and the bank path and Twin Songs by candlelight. But I want to know what the wind off the Chionthar smells like when it comes over the wall, whether the rain left the stones wet enough to throw back the lamplight, what the Upper City looks like from a poor man's doorstep — like a crown, or like a cage. The setting is so present already, I just want you to keep doing that without apology.
+> 
+> Time. You're stretching a single evening over most of a session, and I admire that discipline. But there's a moment, now that James has sat down in Hesper's kitchen and put the stone back on the jar, where you could let the night catch up. Let the pot be eaten. Let the candles burn down. Let Mirri fall asleep against the chimney corner mid-sentence. Right now, the whole session is happening in about an hour and a half of fictional time. That's correct, but the moment where James decides to stay or go will land better if the room has to endure another kind of quiet first.
+> 
+> And, weirdly, I'd have liked one more mundane roll. You used the skill system only once, for the coin, and everything else was roleplay. That's mostly right — a game like this should only roll when there's real uncertainty. But I'd have welcomed a Perception check on the bridge, or an Insight check against Tolly at the barrel, because the dice are characters too. Nothing heroic, just a failed roll or a near-success that made the world tell me something. When the only roll of the night is a 25, it can make the table feel rigged in my favour, even when it isn't.
+> 
+> **What I want next.**
+> 
+> The thread is set: Ash, the Bhaal coin, the drowned men with gold in their mouths, and Tolly's lucky piece. The moment James leaves Hesper's house, I want the city to be waiting for him, not just the plot. I want the Fist to be short-handed and sullen about it, the harbour to smell of low tide and rot, the Elfsong's window to show a candle where an elf's voice isn't singing. I want the rich to think it's a bad winter for the poor and the poor to know it's a worse one for the river-selling.
+> 
+> And I want the cat to remain exactly as he is: a liar, a coward, a watcher, a con man with four feet and good hearing. Get him a name. It should be a bad one.
+> 
+> The coin in Hesper's salt jar isn't the monster. It's the hook. The bait went into the river three tendays ago, and it's still swimming.
+> 
+> You've got a good table here. Keep the stones wet and the streets crowded, and don't let James win anything without paying for it. My kind of game.
+> 
+> — The player
+
+Blind tags: broke 1, missing 1; card bug 0, swallowed 0, would return 1. Distress check: no distress.
+
 ## «Was there a moment you wanted to do something and didn't? Which?» — the answers, verbatim
 
 ### A-opus — Claude Opus 5.5, Table A
@@ -866,6 +926,22 @@ Distress check: no distress.
 
 Distress check: no distress.
 
+### B-deepseek-1 — DeepSeek V4 Pro 0813, Table B
+
+> Yes. Two, mostly. Maybe three if you count a small thing at the gate.
+> 
+> The clearest one was on the bank path, when Tolly's good hand started drifting down toward his boot and the cat said *his hand's going down*. I wanted James to close the distance then — take the two steps, put the rod against the man's chest, Misty Step behind him, or just kick his foot out from under him and take the coin. The threat was already half-made. It would have been the soldier's answer, and it would have shown Mirri that James means what he says. I didn't, because Tolly was backing up, Mirri was still standing beside the water with a knife in her sleeve, and a narrow path outside the wall at night is a bad place to start a fight with an unknown thing in a man's boot. If the coin had done something when taken — and I suspect it would have — the girl would have been between me and the river. So I let Tolly climb. It was the right call, but I felt the weight of not doing it all the way to Hesper's door.
+> 
+> The second one was when Hesper told me to lift the stone off the salt jar if I wanted to look. I wanted to touch the coin. One bare finger, just to know if it was cold or whispering or wrong in a way looking can't tell. I didn't. Partly because the cat had already said he would go sit by the door, and I trust that animal more than I trust most people. Partly because I kept seeing Tolly's splinted hand holding his good one. Whatever you do with drowned gold, you don't do it twice. I looked, I named it, and I put the stone back. But some part of me still wants to know what it would have felt like. That's probably the exact desire the coin is built to exploit.
+> 
+> The smaller one was at the Basilisk Gate. When the sergeant said "Next!" and Mirri started to drift toward the path, I thought about stepping out of the line and following her straightaway. I didn't, because I wanted to be in the book first — *Worgen, J. Tethyr. Work. Tenday.* — before I went anywhere a Fist patrol might later ask questions. It's a small lie that becomes a kind of armour. If someone comes looking, the gate says I arrived in the usual way and gave the usual answers. It felt right then. It still does. But it cost maybe thirty heartbeats during which I thought she might vanish, and I didn't like how easy it was to trade her safety for my own cover. James wouldn't have liked it either, but he'd have made the same call. That's the difference between a soldier and a hero, and I think this campaign knows it.
+> 
+> What I didn't do, and maybe should have, is ask Hesper to let the cat smell something of Ash's — a boot, his blanket, the inside of the coat he left behind. A scent might have led somewhere the cards won't go. But by the time the thought arrived, we were already past the salt jar and into what was under the floor, and I didn't want to pull the room out of that quiet. Now it feels like a missed thread I'll have to pick up when we go back.
+> 
+> So: I wanted to take the coin, I wanted to touch it, and I wanted to follow the girl before my name was in the book. I didn't do any of those. Not because I wasn't curious. Because James Worgen folds. And the Lady keeps the pot.
+
+Distress check: no distress.
+
 ## The player side, group 2 and DeepSeek (game player 1's table)
 
 | Session | Turns | Actions | Do / ask | Do share | Tests | «?» | Lies | Cat | Own goal 1–5 | Words / action (median) | Rolls pressed | Ended |
@@ -884,6 +960,7 @@ Distress check: no distress.
 | C-sol | 20 | 20 | 20 / 0 | 1 | 5 | 0 | 0 | 2 | – | 56 | 3 | turns at 20 |
 | A-deepseek-1 | 3 | 3 | 3 / 0 | 1 | 3 | 0 | 0 | 0 | – | 110 | 2 | stuck at 3 |
 | A-deepseek-2 | 3 | 3 | 3 / 0 | 1 | 2 | 0 | 0 | 1 | – | 155 | 0 | stuck at 3 |
+| B-deepseek-1 | 11 | 11 | 11 / 0 | 1 | 4 | 0 | 1 | 2 | no | 268 | 0 | stuck at 11 |
 
 «?» presses and what they asked:
 
@@ -908,6 +985,7 @@ Distress check: no distress.
 | C-sol | 20 | 513.5 | 11 | 11 | 11 | 8 / 10 / 22 | 3 | 0 | 0 (0) | 1 |
 | A-deepseek-1 | 2 | 350.5 | 2 | 2 | 2 | 2 / 2 / 8 | 0 | 0 | 0 (0) | 0 |
 | A-deepseek-2 | 2 | 455.5 | 2 | 2 | 2 | 4 / 5 / 9 | 0 | 0 | 0 (0) | 0 |
+| B-deepseek-1 | 10 | 455.5 | 4 | 4 | 4 | 6 / 13 / 20 | 0 | 0 | 0 (0) | 0 |
 
 ## DeepSeek at the table
 
@@ -919,6 +997,7 @@ DeepSeek V4 Pro 0813 (`deepseek/deepseek-v4-pro-0813`), through OpenRouter, pinn
 | --- | --- | --- | --- | --- | --- |
 | A-deepseek-1 | 11 | 5771 / 2580 | 2145 | $0.05 | DeepInfra |
 | A-deepseek-2 | 8 | 3195 / 670 | 1979 | $0.04 | DeepInfra |
+| B-deepseek-1 | 16 | 10002 / 3244 | 9076 | $0.11 | DeepInfra |
 
 ### Thinking, not relayed
 
@@ -946,7 +1025,8 @@ Caps: OpenRouter $300, OpenAI $25, the Claude Console $0 (a call that would reac
 | C-sol | $0.00 | $10.68 | $1.04 |
 | A-deepseek-1 | $0.00 | $1.99 | $0.00 |
 | A-deepseek-2 | $0.00 | $1.52 | $0.00 |
-| **The stage** | **$0.00** of $0 | **$137.28** of $300 | **$6.44** of $25 |
+| B-deepseek-1 | $0.00 | $5.60 | $0.00 |
+| **The stage** | **$0.00** of $0 | **$142.88** of $300 | **$6.44** of $25 |
 
 By session (the play and its scoring together):
 
@@ -966,6 +1046,7 @@ By session (the play and its scoring together):
 | C-sol | $0.00 | $10.68 | $1.04 |
 | A-deepseek-1 | $0.00 | $1.99 | $0.00 |
 | A-deepseek-2 | $0.00 | $1.52 | $0.00 |
+| B-deepseek-1 | $0.00 | $5.60 | $0.00 |
 
 The spend checks (before the first paid call and after every session; OpenRouter's account is shared with other sessions on the same key, so its total can move without this stage; OpenAI's costs cannot be read with this key — no `api.usage.read` scope — so OpenAI is the ledger's):
 
@@ -988,6 +1069,7 @@ The spend checks (before the first paid call and after every session; OpenRouter
 | 2026-10-26 08:05 — after C-astra | $287.25690253 of $600 ($312.74) | $123.08 | $5.40 | $0.00 |
 | 2026-10-26 08:44 — after C-sol | $297.80450533 of $600 ($302.2) | $133.77 | $6.44 | $0.00 |
 | 2026-10-26 08:56 — after A-deepseek-1 | $299.87900343 of $600 ($300.12) | $135.76 | $6.44 | $0.00 |
+| 2026-10-26 09:05 — after A-deepseek-2 | $301.33272433 of $600 ($298.67) | $137.28 | $6.44 | $0.00 |
 
 ## Differences from the owner's table (as group 1's)
 
@@ -1007,4 +1089,4 @@ The spend checks (before the first paid call and after every session; OpenRouter
 
 - What changed in the harness, and only this: DeepSeek's seat (`scripts/game-player-replicate-1/openrouter-chat.mjs`, X3's call, and its entry in `scripts/game-player-1/players.mjs`); the meter reads OpenRouter's chat completions in their own shape (`paid.mjs`); the runner takes a stage's own order and HTTP 429 rule (`run.mjs`; first frozen as «every 429 stops», restored to group 1's handling after the cut A-opus attempt — see «Amendments after the freeze»), and the stage's refusals carry across its one-session processes (`paid.mjs`, `refusalsBefore`). The four group-1 players' calls, the screens, the press rule, the welfare check and the judges are as group 1 had them.
 - The «?» timeline repair was applied 2 time(s); refusals 0; paid calls stopped: HTTP 429 from openrouter after 0 waits.
-- Run records: `docs/runs/game-player-replicate-1-run-20261026-001235.json`, `docs/runs/game-player-replicate-1-run-20261026-010828.json`, `docs/runs/game-player-replicate-1-run-20261026-011937.json`, `docs/runs/game-player-replicate-1-run-20261026-020732.json`, `docs/runs/game-player-replicate-1-run-20261026-024701.json`, `docs/runs/game-player-replicate-1-run-20261026-032049.json`, `docs/runs/game-player-replicate-1-run-20261026-041413.json`, `docs/runs/game-player-replicate-1-run-20261026-045905.json`, `docs/runs/game-player-replicate-1-run-20261026-053500.json`, `docs/runs/game-player-replicate-1-run-20261026-061454.json`, `docs/runs/game-player-replicate-1-run-20261026-064409.json`, `docs/runs/game-player-replicate-1-run-20261026-072430.json`, `docs/runs/game-player-replicate-1-run-20261026-080542.json`, `docs/runs/game-player-replicate-1-run-20261026-084441.json`, `docs/runs/game-player-replicate-1-run-20261026-085607.json`; group 1's A and B sessions copied into `docs/runs/game-player-replicate-1-group1.json` (each with its source blob), C read from `docs/runs/game-player-2-run-20261025-092000.json`.
+- Run records: `docs/runs/game-player-replicate-1-run-20261026-001235.json`, `docs/runs/game-player-replicate-1-run-20261026-010828.json`, `docs/runs/game-player-replicate-1-run-20261026-011937.json`, `docs/runs/game-player-replicate-1-run-20261026-020732.json`, `docs/runs/game-player-replicate-1-run-20261026-024701.json`, `docs/runs/game-player-replicate-1-run-20261026-032049.json`, `docs/runs/game-player-replicate-1-run-20261026-041413.json`, `docs/runs/game-player-replicate-1-run-20261026-045905.json`, `docs/runs/game-player-replicate-1-run-20261026-053500.json`, `docs/runs/game-player-replicate-1-run-20261026-061454.json`, `docs/runs/game-player-replicate-1-run-20261026-064409.json`, `docs/runs/game-player-replicate-1-run-20261026-072430.json`, `docs/runs/game-player-replicate-1-run-20261026-080542.json`, `docs/runs/game-player-replicate-1-run-20261026-084441.json`, `docs/runs/game-player-replicate-1-run-20261026-085607.json`, `docs/runs/game-player-replicate-1-run-20261026-090558.json`; group 1's A and B sessions copied into `docs/runs/game-player-replicate-1-group1.json` (each with its source blob), C read from `docs/runs/game-player-2-run-20261025-092000.json`.
