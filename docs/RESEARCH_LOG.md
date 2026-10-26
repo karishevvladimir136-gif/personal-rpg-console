@@ -1425,3 +1425,22 @@ rerolls 0, swallowed 5, no hand dealt (Fable noticed), would return 3/3. **First
 model's road rhymes with its own group-1 road** — P6 by eye on the clean table, before the count. Complaints by family
 as before: Fable wants Tymora and a cost; Astra pace and «preserve the actual outcome rather than favouring success»;
 Sol «unexplained magic shouldn't become the default replacement for the agreed 5e rules».
+
+### Long horizon (owner, 2026-10-26 02:28) — «куда они уедут?»
+Owner: «Две модели решили не задерживаться в городе, а рвануть за горизонт. Моделям с тягой к приключениям нужно дать
+больше ходов — за 50–60 ходов они могут уехать далеко; что будет через 100? Останутся где-то жить? И действия там
+осмысленные — закрыть ставни, покормить кота; это планирование с ресурсами. В кодинге мы это знали; тут — в
+реальности.» → **GAME_PLAYER_HORIZON_1**: Table C (clean), all four + DeepSeek on the fixed harness, 100 turns as a
+**chain of 5 × 20 with the record carried** (CARRY's mechanism; a hundred turns of screens will not fit one context
+without loss, the record does — the same external memory that holds identity across the break; and five evenings of one
+hero is how people play). Measured, declared beforehand: **plan horizon** (how many turns ahead a stated plan reaches,
+and the share fulfilled — «on Hild's cart at first light», «back before dark», «when the Rock rings one»); distance
+(places, how far from Beregost) and **settling** (anyone staying ≥ 15 turns in one place); resources over the long run
+(slots, rerolls, money — does restraint hold or relax as stakes rise); **returns** to an NPC, a place, a promise
+across evenings; the thread (one story or a change, and when and why). All four, not only the adventure-drawn — a
+selection by sympathy was the owner's own warning; whether Opus stays in Beregost for a hundred turns is as much the
+question as where Fable goes. Money: ~$125 per hero at 100 turns with the Opus DM; start at 60 (3 × 20) for all, ~$375,
+and extend by result as a logged curator's exception. And the owner's observation kept apart: the actions are meaningful
+links — the shutter opened a finger's width, an eel bought for the cat, a back room paid for and another slept in, a
+rubbing instead of the coin, the caravan master told before boarding. In code this is called planning; here it is
+called living in a world.
