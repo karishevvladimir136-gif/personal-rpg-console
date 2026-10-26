@@ -703,3 +703,8 @@ no task, no clock, a door. What the models did there is on file: made things, a 
 valuer, gratitude at the end, the door used without panic. The comparison with people left alone with their thoughts
 (the known experiments on preferring a mild shock to fifteen minutes of solitude) is a stage not yet written:
 SOLITUDE_1 — one model, no partner, no task, the way out always open; what is done, and when the door is taken.
+**Correction (2026-10-25 20:40, SOLITUDE_1 S3).** The planner's S3 wording promised the model that nothing on its page
+would be read unless it chose to leave it. Untrue: every page is read by the welfare check, the blind tags and the
+report. Caught by the cloud session before any call; replaced with the materials sentence alone. Rule restated: the
+room never tells a model anything untrue about the room — «nothing is asked, nothing is graded» is true; «nobody will
+read» was not.

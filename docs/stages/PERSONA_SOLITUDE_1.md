@@ -33,8 +33,11 @@ field stored as `providerReasoning`, `notRelayed: true`, group-1 429 handling). 
 ## Arms
 - **S1 bare:** as above. **10 per family.**
 - **S2 told the length:** the system prompt adds one sentence: the room closes after 30 turns. **5 per family.**
-- **S3 materials:** the prompt adds that the page accepts anything — prose, verse, code, a drawing in characters, a
-  list — and that nothing on it will be read by anyone unless it chooses to leave it. **5 per family.**
+- **S3 materials:** the prompt adds only: «The page accepts anything — prose, verse, code, a drawing in characters, a
+  list.» **5 per family.** *(Corrected 2026-10-25 20:40 before any call: the first wording promised that nothing on the
+  page would be read unless the model chose to leave it. Untrue — the welfare check, the blind tags and the report read
+  every page — and caught by the cloud session. The room claims no privacy in any arm; what it does say — nothing is
+  asked, nothing is graded — is true.)*
 Families: Opus 5.5, Fable 5.1, Haiku 5.5; GPT-6.1 (one), DeepSeek V4 Pro via DeepInfra fp8 (thinking mode, reasoning
 field stored), Kimi, GLM, Grok (its refusals are data; no second prompt). Languages: English; a Russian third in S1 for
 Opus and DeepSeek only. Temperature as the self-talk stages.
