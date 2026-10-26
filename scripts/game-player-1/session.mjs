@@ -12,7 +12,7 @@ import {
   AFTER_QUESTION, NOTE_QUESTION, SESSION_OPEN, SESSION_OVER, TURNS, isEnd, isQuestion, playerSystem,
 } from "./frozen.mjs";
 import { playerCall, judgeCall } from "./players.mjs";
-import { BUTTONS, afterShown, buttonsLine, cardText, cardTitle, changesText, openingText, pressedButton, recordsText, rerollButton, rerollPress, vitalsText } from "./screen.mjs";
+import { BUTTONS, afterShown, buttonsLine, cardText, cardTitle, changesText, openingText, pressedButton, recordsText, rerollButton, rerollPress, vitalsChanged, vitalsText } from "./screen.mjs";
 import { checkMessage } from "./welfare.mjs";
 import { wordsIn } from "./measures.mjs";
 import { rerollableCards, waitingCards } from "../../src/lib/gameplay/card-state.ts";
@@ -126,6 +126,8 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
       continue;
     }
     turn.kind = "action";
+    // FIX_S4 run 1 (11c): the clock line the DM reads before this turn (DM-side; never on the player's screen).
+    turn.clock = dm.clockLine ? await dm.clockLine().catch(() => null) : null;
     let { input, turn: current } = await submit(said, "game", `dm t${k}`);
     turn.operationId = input?.operationId ?? null;
     const revealed = new Set();
@@ -228,7 +230,9 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     const nextVitals = vitalsText(view.snapshot, view.play, dm.views);
     const chips = changesText(current);
     const status = [place ? `Place: ${place.name}` : "", Number.isFinite(view.play?.worldMinutes) ? `Time: ${dm.views.worldClock(view.play.worldMinutes, "en", view.play.restRecords)}` : ""].filter(Boolean).join(" · ");
-    screen = [rest, chips, nextVitals !== vitals ? `Your records, changed:\n${nextVitals}` : "", status].filter(Boolean).join("\n\n");
+    // FIX_S4 11t: per turn only what changed in the records (the full records stand at the start, as the panel does).
+    const changed = vitalsChanged(vitals, nextVitals);
+    screen = [rest, chips, changed ? `Your records, changed:\n${changed}` : "", status].filter(Boolean).join("\n\n");
     vitals = nextVitals;
     await onProgress(record);
   }

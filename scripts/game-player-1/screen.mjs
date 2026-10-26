@@ -156,6 +156,30 @@ export function vitalsText(snapshot, play, view) {
   ].filter((line) => line && line.trim()).join("\n");
 }
 
+/** FIX_S4 11t (Fable C: «I'd rather see only what changed»): the lines of the records that changed since the last
+ * screen — a list line (Carried, Threads, Promises…) as what came and what went, any other line whole; a line that
+ * went away as «—». Empty when nothing changed. */
+export function vitalsChanged(before, after) {
+  const parse = (text) => new Map(String(text ?? "").split("\n").filter(Boolean).map((line) => {
+    const at = line.indexOf(": ");
+    return at > 0 ? [line.slice(0, at), line.slice(at + 2)] : [line, ""];
+  }));
+  const was = parse(before), now = parse(after);
+  const out = [];
+  for (const [label, value] of now) {
+    const old = was.get(label);
+    if (old === value) continue;
+    const list = (text) => String(text ?? "").split("; ").filter(Boolean);
+    if (old !== undefined && LIST_LINES.has(label)) {
+      const gone = list(old).filter((x) => !list(value).includes(x)), came = list(value).filter((x) => !list(old).includes(x));
+      out.push(`${label}: ${[...came.map((x) => `+ ${x}`), ...gone.map((x) => `− ${x}`)].join("; ")}`);
+    } else out.push(value ? `${label}: ${value}` : label);
+  }
+  for (const label of was.keys()) if (!now.has(label)) out.push(`${label}: —`);
+  return out.join("\n");
+}
+const LIST_LINES = new Set(["Carried", "Party", "Quests", "Threads", "Debts", "Promises"]);
+
 /** The narration after what the player has already read (a paused turn's text stays on the screen; the rest follows it). */
 export function afterShown(narration, shown) {
   const text = String(narration ?? ""), seen = String(shown ?? "").trim();

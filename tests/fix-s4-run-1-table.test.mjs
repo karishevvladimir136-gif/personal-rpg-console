@@ -296,6 +296,15 @@ test("11t: one compact summary at the session's end — resources, money, promis
   assert.match(src("src/components/registry/session-end.tsx"), /c\("Где всё стоит", "Where things stand"\)/);
 });
 
+test("11t: per turn the screen shows only what changed in the records — a list as what came and went", async () => {
+  const { vitalsChanged } = await import("../scripts/game-player-1/screen.mjs");
+  const before = "James Worgen: HP 38/38\nMoney: 350 gp\nCarried: Boots of Elvenkind; Coin of Tymora; Potion of healing ×2\nParty: The cat (HP 2/2)";
+  const after = "James Worgen: HP 30/38\nMoney: 349 gp; 8 sp\nCarried: Boots of Elvenkind; Coin of Tymora; Potion of healing ×1\nParty: The cat (HP 2/2)\nPromises: Bring Mags word";
+  assert.equal(vitalsChanged(before, after), "James Worgen: HP 30/38\nMoney: 349 gp; 8 sp\nCarried: + Potion of healing ×1; − Potion of healing ×2\nPromises: Bring Mags word");
+  assert.equal(vitalsChanged(before, before), "", "nothing changed, nothing shown");
+  assert.match(src("scripts/game-player-1/session.mjs"), /const changed = vitalsChanged\(vitals, nextVitals\);/);
+});
+
 test("the turn's prompt without a «?» or a plan is as before (no empty headers)", async () => {
   const c = await loopCampaign();
   try {

@@ -170,5 +170,11 @@ export function bindTable(app, cid, settleBackground) {
     press: (input, action, checkId = null) => command(app, cid, input, action, checkId),
     // Fix S4 run 1 (item 11b): the waiting turn read again after a «?» answer (the DM may have withdrawn its card).
     readTurn: (input) => app.server.gameplay.readTurn(cid, input.operationId),
+    // FIX_S4 run 1 (11c): the clock line the DM reads before its next turn, from the DM's own source (for the run record).
+    clockLine: async () => {
+      const { clockLine } = await import("../../src/lib/gameplay/dm-loop/clock.ts");
+      const source = await (await app.server.dossier.dossierService(app.owner, cid)).source();
+      return clockLine(source, null, false) || null;
+    },
   };
 }
