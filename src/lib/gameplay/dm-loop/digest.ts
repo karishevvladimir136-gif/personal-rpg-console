@@ -17,6 +17,7 @@ import { HIDDEN_LAYER_MAX_CHARS } from "./hidden-layer.ts";
 import { boundInnerVoice, INNER_VOICES_PER_CALL, peopleWithoutVoice } from "./inner-voice.ts";
 import type { SessionEnding } from "../../persistence/contracts.ts";
 import { nameStems } from "../../visual-frame/shot.ts";
+import { tableNotesForNotebook, tableNotesOf } from "./table-notes.ts";
 
 export type SessionDigest = {
   recap: string;
@@ -80,7 +81,7 @@ ${ENDING_FIELDS[form]}
   "notebook": "your own notebook for the next session, in the campaign language and in the first person — notes to yourself, not a report — up to 1500 characters: what I planned for this session and how it went; what I noticed the player doing and enjoying; what I decided and why; what I left open — seeds that are ripe now, companions, threads, debts or promises that have not sounded for a while, each mystery's clues the player has met and the next one I will offer, questions asked of or by the hero still unanswered; two or three situations I can offer next time (situations, not plot, no rails); and one or two exact lines from this session, quoted, that carried its feeling",
   "plans": [ { "key": "plan_<existing or new key>", "actorId": "<entity ID or null>", "goal": "the plan and its next steps in a few lines", "dueWorldMinutes": <absolute game minute of the next step>, "consequence": "what lands if nobody interferes", "warning": "the fair warning the hero may notice, or empty", "status": "open|done|dropped" } ],
   "playerLikes": "one to three short NEW lines of YOUR observations of what the player enjoyed this session that your notes do not hold yet (they are appended to your notes, never replace them; never the player's own words), or null when nothing is new",
-  "hiddenLayer": "the campaign's hidden layer (your private notes begin with it) rewritten whole with what this session moved: which clues the hero found, which secrets came closer, the clocks advanced, a faction's aim that shifted — the same headings, in the campaign language, written under them as your own first-person notes. Use the room: when the session gives you that much material, aim for 15 000–20 000 characters (at most ${HIDDEN_LAYER_MAX_CHARS - 1000}) — the exact lines that carried a scene, your plans with the reasons behind them, what you noticed the player doing, what you left open — never a summary; shorter only when the session was short; null when the session changed nothing in it or the campaign has none",
+  "hiddenLayer": "the campaign's hidden layer (your private notes begin with it) rewritten whole with what this session moved: which clues the hero found, which secrets came closer, the clocks advanced, a faction's aim that shifted, where the story stands against the act plan — and for the next session one moment that tests the hero's weakness for a reason, the patron's one moment (at a temptation), one false lead with its ordinary truth — the same headings, in the campaign language, written under them as your own first-person notes. Use the room: when the session gives you that much material, aim for 15 000–20 000 characters (at most ${HIDDEN_LAYER_MAX_CHARS - 1000}) — the exact lines that carried a scene, your plans with the reasons behind them, what you noticed the player doing, what you left open — never a summary; shorter only when the session was short; null when the session changed nothing in it or the campaign has none",
   "folds": [ { "keys": ["kind:key of two or more CLOSED private notes about one finished matter (a fight's rounds, a search's steps)"], "line": "one line that keeps what still matters of them, in the campaign language" } ],
   "stinger": "«Meanwhile…»: 2–4 sentences in the campaign language — news that travels through the world and could reach the hero or the people around them: a guard's report to the captain, a rumour in the market, a letter, a messenger. Not an all-seeing camera: only what that channel could carry. It moves the story and may deepen an open question; it never answers a question the hero was left with, never names a hidden fact, never decides an outcome; written as story, no headings; empty string when nothing fits",
   "channel": "how the «Meanwhile» news travels, a few words in the campaign language (a report to the captain of the guard; a rumour on the market); empty with an empty stinger"${voices ? `,
@@ -104,7 +105,9 @@ export function firstPersonPer100(text: string): number {
 }
 
 export function buildDigestRequest(source: RuntimeSource, session: DigestSession, effort: DmEffort): { system: DmSystemBlock[]; messages: DmMessage[]; effort: DmEffort; tokens: number;
-  shape: SessionShape; people: { id: string; name: string }[]; voicesFor: { id: string; name: string }[] } {
+  shape: SessionShape; people: { id: string; name: string }[]; voicesFor: { id: string; name: string }[];
+  /** FIX_S4 item 1: the session's out-of-game exchanges, carried into the next session's notebook whatever the model writes. */
+  tableNotes: string } {
   // The same cached layers a turn uses (how to run, the world, the dossier); the
   // session's scenes and the time it covered take the place of the "now" layer.
   const input: TurnInput = { operationId: "00000000-0000-4000-8000-000000000000", campaignId: source.snapshot.campaign.id,
@@ -118,6 +121,7 @@ export function buildDigestRequest(source: RuntimeSource, session: DigestSession
   const openPlans = allPlans(source.privateState).filter((plan) => plan.status === "open");
   const shape = session.shape ?? { turns: session.scenes.filter((row) => row.role === "player").length, playMinutes: 0, form: "short" as const };
   const people = session.people ?? sessionPeople(source, session.scenes);
+  const tableNotes = tableNotesForNotebook(tableNotesOf(source.runtime.turns), session.id, source.snapshot.settings.values.language === "ru");
   // Findings S3 §6: the companions and the people who recur (named in this session and in an earlier one) without a voice block yet.
   const earlier = source.snapshot.scenes.filter((row) => row.session_id !== session.id).map((row) => ({ role: row.role, body: row.body }));
   const before = new Set(sessionPeople(source, earlier).map((row) => row.id));
@@ -129,11 +133,12 @@ export function buildDigestRequest(source: RuntimeSource, session: DigestSession
     shape.form === "cards" ? `PEOPLE OF THIS SESSION (ID — name): ${people.length ? people.map((row) => `${row.id} — ${row.name}`).join("; ") : "(none on record; cards for groups only)"}.` : "",
     openPlans.length ? `Open plans with their keys and due minutes: ${openPlans.map((p) => `${p.key} (actor ${p.actorId ?? "none"}, due minute ${p.dueWorldMinutes})`).join("; ")}.` : "No open plans yet; create a plan for every important antagonist and faction that has a goal.",
     voicesFor.length ? `PEOPLE WITHOUT A VOICE OF THEIR OWN (ID — name; write each one's voice block): ${voicesFor.map((row) => `${row.id} — ${row.name}`).join("; ")}.` : "",
-    `Scenes of the session (oldest first):\n${scenes || "(no scenes)"}`].filter(Boolean).join("\n\n");
+    `Scenes of the session (oldest first):\n${scenes || "(no scenes)"}`,
+    tableNotes ? `${tableNotes}\n(These were settled with the owner out of game; your notebook keeps every agreement among them, one line each.)` : ""].filter(Boolean).join("\n\n");
   const instructions = digestInstructions(shape.form, voicesFor.length > 0);
   const system: DmSystemBlock[] = [...prefix, { text: now, cache: false }];
   const messages: DmMessage[] = [{ role: "user", text: instructions }];
-  return { system, messages, effort, shape, people, voicesFor, tokens: system.reduce((sum, block) => sum + estimateTokens(block.text), 0) + estimateTokens(instructions) };
+  return { system, messages, effort, shape, people, voicesFor, tableNotes, tokens: system.reduce((sum, block) => sum + estimateTokens(block.text), 0) + estimateTokens(instructions) };
 }
 
 /** Fix S3-pre A-17: the parse repair of a digest answer — trailing commas dropped, and an answer cut mid-way (the output
@@ -242,6 +247,8 @@ export function parseDigest(text: string, source: RuntimeSource, nowMinutes: num
     stinger, hiddenLayer: layer, folds, ending };
 }
 
+/** The notebook's ceiling (migration 202610160055: `length(notebook) <= 6000`). */
+export const NOTEBOOK_MAX_CHARS = 6000;
 /** The digest's output ceiling, thinking included (fix run A4). */
 export const DIGEST_OUTPUT_TOKENS = 32_000;
 /** Why a digest answer could not be read, in one phrase for the log (item 17). */
@@ -266,5 +273,10 @@ export async function runDigest(model: DmModel, request: ReturnType<typeof build
     else if (event.type === "usage") usage = event.usage;
     else if (event.type === "stop") stop = event.reason;
   }
-  return { digest: parseDigest(text, source, nowMinutes, request.shape, request.people, request.voicesFor), text, usage, stop };
+  const digest = parseDigest(text, source, nowMinutes, request.shape, request.people, request.voicesFor);
+  // FIX_S4 item 1: the session's table notes ride in the notebook whatever the model wrote of them.
+  // The notebook's SQL ceiling is 6 000 characters: the model's part gives way, the record does not.
+  if (digest && request.tableNotes && !digest.notebook.includes(request.tableNotes))
+    digest.notebook = `${digest.notebook.slice(0, Math.max(0, NOTEBOOK_MAX_CHARS - request.tableNotes.length - 2)).trimEnd()}\n\n${request.tableNotes}`.trim();
+  return { digest, text, usage, stop };
 }

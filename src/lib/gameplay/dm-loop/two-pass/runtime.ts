@@ -16,6 +16,7 @@
 // turn to this runtime or to the default loop by the campaign's choice, and a
 // resume by the turn's own pin.
 import { createHash } from "node:crypto";
+import { presentable } from "../presentation.ts";
 import type { JsonObject as JsonObjectValue, PublicTurn, ResumeInput, TurnInput } from "../../contracts.ts";
 import type { RecordedCheck, RuntimeSource, TurnClaim } from "../../server-contracts.ts";
 import { withUnifiedMemory } from "../../../memory/unified-context.ts";
@@ -329,7 +330,8 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       };
       const stopHeartbeat = leaseHeartbeat(store, lease, deps.heartbeatMs);
       try {
-        for await (const event of model.stream(body)) {
+        // FIX_S4 11o: a tool call written as text never reaches the story (the writer's and the bookkeeper's text alike).
+        for await (const event of presentable(model.stream(body))) {
           if (event.type === "text_delta") {
             if (firstTextMs === null) firstTextMs = Math.round(now() - started);
             roundText += event.text;

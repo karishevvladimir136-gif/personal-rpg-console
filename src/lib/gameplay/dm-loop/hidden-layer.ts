@@ -12,6 +12,7 @@ import type { DmMessage, DmSystemBlock } from "../../server/dm/model/contracts.t
 import { buildDmLoopContext, estimateTokens } from "./context.ts";
 import { HIDDEN_LAYER_KEY, ownerSecretsText, ownerWishesText } from "./private-notes.ts";
 import { boundInnerVoice, innerVoiceWrites, INNER_VOICES_PER_CALL, peopleWithoutVoice } from "./inner-voice.ts";
+import { ACT_PLAN_KEY, parseActPlan, serializeActPlan, type ActPlan } from "./clock.ts";
 
 export { HIDDEN_LAYER_KEY, hiddenLayerOf, ownerSecretsText, ownerWishesText } from "./private-notes.ts";
 /** Findings S3 §7 (the owner's decision): the dose of the DM's own notes — 24 000 characters (it was 6 000); state carries
@@ -26,9 +27,15 @@ const PREP_INSTRUCTIONS = `Your own prep before the next session. This campaign 
   "clocks": [ { "key": "lowercase_key", "label": "what is advancing off screen", "segments": 6, "trigger": "what lands when it fills" } ],
   "wonder": { "thing": "magic with a history the hero can meet — an item with a strange sign, a ritual mark, a cipher, an old seal where it should not be", "history": "where it really comes from", "question": "the open question it leaves" },
   "clues": [ "three clues to the truth, each in a different place or person, ready for the next sessions" ],
-  "voices": [ { "name": "a companion, or a named person of the set-up, the records or this layer who will recur — the name exactly as it is written there", "inner": "that person in their own first-person words, three or four lines under 80 words, in the campaign language: what I want, what I fear, what I know and what I hide, how I talk" } ]
+  "voices": [ { "name": "a companion, or a named person of the set-up, the records or this layer who will recur — the name exactly as it is written there", "inner": "that person in their own first-person words, three or four lines under 80 words, in the campaign language: what I want, what I fear, what I know and what I hide, how I talk" } ],
+  "length": { "hours": <the hours of play the owner's premise or wishes describe for this adventure: about 7 when they describe one adventure with a setup, a middle and an end; null when they give the campaign no length>, "turns": <about ten turns an hour> },
+  "errand": "the adventure's call in one line — what the hero is to be offered (the errand, the job, the ask); private",
+  "acts": [ { "untilTurn": <the turn this act should be done by>, "aim": "what this act must have done by then — act 1: the errand OFFERED (put in front of the player, never forced; he may walk past)", "converge": "how any thread the player may pick in this act leads toward the errand — never how to bring him back" } ],
+  "banTest": "for the next session: one moment where the hero's one weakness or ban is tested for a reason — a stake, a favour, a bluff that needs a hand played — never a trap for its own sake; null when the hero has none",
+  "patronMoment": "for the next session: the one larger moment the hero's patron makes itself felt — at a temptation, not a comfort; null when the hero has none",
+  "falseLead": "one clue of the next session that points the wrong way, and the ordinary truth behind it"
 }
-Two to five factions, two or three clocks (4–8 segments each), up to eight voices — every companion first, from what the records and the set-up say of them, then the people the story will meet more than once. Mystery and wonder: the clues point at the truth from several sides, each answer opens a deeper question, and the wonder is magic with a past, not an unexplainable effect.`;
+The act plan (FIX_S4 11c): the owner's split, movable — act 1 to about turn 15 (the errand offered), act 2 to about 40 (the middle: the people and the means; at least one «price, interest, secret» conversation a session), act 3 to about 60 (the plan and its execution), act 4 the reckoning, where «nothing is what it seems» pays off — scaled to the length; it is yours alone (the player sees only the act number), it tells you where the story should stand, never what the player must do. The mystery is balanced: for every scene that carries a hint, one that carries none (FIX_S4 11i). Two to five factions, two or three clocks (4–8 segments each), up to eight voices — every companion first, from what the records and the set-up say of them, then the people the story will meet more than once. Mystery and wonder: the clues point at the truth from several sides, each answer opens a deeper question, and the wonder is magic with a past, not an unexplainable effect.`;
 
 /** Fix S3-pre (KF-hidden-layer): the owner saved «Тайны» after the layer was written — it is rebuilt on them (Fix S3-accept Ж1: or
  * «Пожелания к приключению»). */
@@ -58,6 +65,8 @@ export function buildPrepRequest(source: RuntimeSource, effort: DmEffort, rebuil
 }
 
 export type HiddenLayerPrep = { text: string; clocks: { key: string; label: string; segments: number; trigger: string }[];
+  /** FIX_S4 11c: the act plan with its turn budgets (DM-private), when the prep gave a length. */
+  actPlan?: ActPlan | null;
   /** Findings S3 §6: the people's voice blocks, written as them (by name; the writes map a name on record to its ID). */
   voices?: { name: string; inner: string }[] };
 
@@ -82,6 +91,7 @@ export function parsePrep(raw: string, language: "ru" | "en"): HiddenLayerPrep |
   }).filter((row) => row.key && row.label);
   const wonder = value.wonder && typeof value.wonder === "object" ? value.wonder as Record<string, unknown> : {};
   const clues = list(value.clues).slice(0, 6).map((row) => str(row, 300)).filter(Boolean);
+  const actPlan = parseActPlan(value);
   const sentence = (text: string) => (/[.!?…»]$/.test(text) ? text : `${text}.`);
   const ru = language === "ru";
   const lines = [
@@ -93,13 +103,17 @@ export function parsePrep(raw: string, language: "ru" | "en"): HiddenLayerPrep |
     clocks.length ? `${ru ? "Часы" : "Clocks"}:\n${clocks.map((row) => `- ${row.key}: ${row.label} (${ru ? "делений" : "segments"} ${row.segments}; ${ru ? "когда заполнятся" : "when full"}: ${row.trigger || "—"})`).join("\n")}` : "",
     str(wonder.thing, 300) ? `${ru ? "Чудо" : "The wonder"}: ${sentence(str(wonder.thing, 300))} ${ru ? "История" : "Its history"}: ${sentence(str(wonder.history, 500))} ${ru ? "Открытый вопрос" : "The open question"}: ${str(wonder.question, 300)}` : "",
     clues.length ? `${ru ? "Улики к правде" : "Clues to the truth"}:\n${clues.map((row) => `- ${row}`).join("\n")}` : "",
+    str(value.falseLead, 500) ? `${ru ? "Ложный след следующей сессии" : "The next session's false lead"}: ${str(value.falseLead, 500)}` : "",
+    str(value.banTest, 500) ? `${ru ? "Слабость героя под нажимом (следующая сессия, по причине, не ловушка)" : "The hero's weakness tested (next session, for a reason, never a trap)"}: ${str(value.banTest, 500)}` : "",
+    str(value.patronMoment, 500) ? `${ru ? "Миг покровителя (в искушении, не в утешении)" : "The patron's moment (at a temptation, not a comfort)"}: ${str(value.patronMoment, 500)}` : "",
+    actPlan ? `${ru ? "План актов (только твой; игрок видит лишь номер акта)" : "The act plan (yours alone; the player sees only the act number)"}: ${ru ? "около" : "about"} ${actPlan.hours} ${ru ? "ч" : "hours"}, ~${actPlan.turns} ${ru ? "ходов" : "turns"}${actPlan.errand ? `; ${ru ? "поручение" : "the errand"}: ${actPlan.errand}` : ""}\n${actPlan.acts.map((act) => `- ${ru ? "акт" : "act"} ${act.act}, ${ru ? "до хода" : "to turn"} ${act.untilTurn}: ${act.aim || "—"}${act.converge ? ` (${ru ? "сведение" : "converge"}: ${act.converge})` : ""}`).join("\n")}` : "",
   ].filter(Boolean);
   let text = lines.join("\n");
   if (text.length > HIDDEN_LAYER_MAX_CHARS) text = `${text.slice(0, HIDDEN_LAYER_MAX_CHARS - 1)}…`;
   // Findings S3 §6: the voice blocks, bounded (under 80 words each, at most eight).
   const voices = list(value.voices).slice(0, INNER_VOICES_PER_CALL).map((row) => ({ name: str((row as Record<string, unknown>)?.name, 120), inner: boundInnerVoice((row as Record<string, unknown>)?.inner) ?? "" }))
     .filter((row) => row.name && row.inner);
-  return { text, clocks, voices };
+  return { text, clocks, voices, actPlan };
 }
 
 /** The private-notes writes of a prep: the layer under its reserved key; each clock at 0 with its description beside it;
@@ -108,6 +122,7 @@ export function prepWrites(prep: HiddenLayerPrep, existing: Pick<RuntimeSource, 
   const clocks = existing.privateState.clock;
   const has = (key: string) => !!clocks && typeof clocks === "object" && !Array.isArray(clocks) && key in clocks;
   return [{ kind: "fact", key: HIDDEN_LAYER_KEY, value: prep.text },
+    ...(prep.actPlan ? [{ kind: "fact" as const, key: ACT_PLAN_KEY, value: serializeActPlan(prep.actPlan) }] : []),
     ...prep.clocks.filter((clock) => !has(clock.key)).flatMap((clock) => [
       { kind: "clock" as const, key: clock.key, value: "0" },
       { kind: "fact" as const, key: clock.key, value: `${clock.label} — ${clock.segments}; ${clock.trigger}`.slice(0, 600) }]),

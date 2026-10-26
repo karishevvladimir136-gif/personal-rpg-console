@@ -393,6 +393,7 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       playerLikes: opt(str("A NEW observation of what the player enjoys, one or two short lines, appended to your notes (never a repeat of them or of the player's own words); up to 1200 characters.", L.maxLongText)),
       npcRefused: opt({ type: "boolean", description: "True when a character refused, bargained down or walked away from the hero this turn." }),
       ownerRule: opt(str("Only a standing table rule the player wrote OUT OF GAME this turn, in one line; it becomes an owner-pinned fact. Never invented.", 300)),
+      errandOffered: opt({ type: "boolean", description: "True when this turn put the adventure's errand (the call your act plan names) in front of the player — offered, not forced; the clock line counts from it." }),
     }),
   },
 ];

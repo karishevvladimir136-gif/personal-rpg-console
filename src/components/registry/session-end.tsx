@@ -9,7 +9,7 @@ import { notifyGameplayChanged } from "../gameplay-runtime";
 import { continueSession, endSession, memoryErrorMessage } from "@/lib/memory/client";
 import { readJson } from "@/lib/persistence/client";
 import { createBackoffPoll } from "@/lib/ui/backoff-poll";
-import { journalOf, questsOf } from "@/lib/ui/campaign-view";
+import { journalOf, questsOf, sessionStanding } from "@/lib/ui/campaign-view";
 import { fateEntityId, fatePortraitPlan } from "@/lib/visual-frame/pictures";
 import type { SessionEnding } from "@/lib/persistence/contracts";
 import { usePictures } from "./live-frames";
@@ -158,6 +158,8 @@ export function SessionEnd({ sessionId, compact = false }: { sessionId: string |
   const failed = status?.state === "failed" || status?.state === "skipped";
   const ending = endingOf(session.ending);
   const threads = ending?.threads.length ? ending.threads : null;
+  // FIX_S4 11t: one compact summary at the session's end (the open threads follow below, as before).
+  const standing = sessionStanding(data, ending?.threads ?? []);
   const redrawName = redrawId ? data.entities.find((row) => row.id === redrawId)?.name ?? "" : "";
   return (
     <section className={g.sessionEnd} aria-label={c("Итог сессии", "Session summary")}>
@@ -187,6 +189,14 @@ export function SessionEnd({ sessionId, compact = false }: { sessionId: string |
             <span className={r.eyebrow}><BookOpen size={14} aria-hidden="true" /> {c("Ранее в…", "Previously in…")}</span>
             <p className={g.sessionProse}>{session.recap}</p>
           </div>
+          {standing && (standing.resources || standing.money || standing.promises.length > 0) && (
+            <div className={g.sessionRecap} data-testid="session-standing">
+              <span className={r.eyebrow}>{c("Где всё стоит", "Where things stand")}</span>
+              {standing.resources && <p className={r.small}>{standing.resources}</p>}
+              {standing.money && <p className={r.small}>{c("Деньги", "Money")}: {standing.money}</p>}
+              {standing.promises.length > 0 && <p className={r.small}>{c("Обещания и долги", "Promises and debts")}: {standing.promises.join("; ")}</p>}
+            </div>
+          )}
           {ending?.form === "short" && ending.lines.length > 0 && (
             <div>
               <span className={r.eyebrow}>{c("Что было", "What happened")}</span>

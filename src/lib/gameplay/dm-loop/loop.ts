@@ -11,6 +11,7 @@
 // dice are never rolled twice. Only lease/fence/revision violations and broken
 // transport fail the turn; a rejected tool call just returns its reason.
 import { createHash, randomInt } from "node:crypto";
+import { presentable, stripToolMarkup } from "./presentation.ts";
 import type { JsonObject as JsonObjectValue, PublicTurn, ResumeInput, TurnInput } from "../contracts.ts";
 import type { RecordedCheck, RuntimeSource, TurnClaim, TurnStore } from "../server-contracts.ts";
 import type { MemoryStore, SummaryProvider } from "../../memory/server-contracts.ts";
@@ -599,7 +600,8 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
         let stop: Extract<Awaited<ReturnType<DmModel["stream"]>> extends AsyncIterable<infer E> ? E : never, { type: "stop" }> | null = null;
         const stopHeartbeat = leaseHeartbeat(store, lease, deps.heartbeatMs);
         try {
-          for await (const event of model.stream(request)) {
+          // FIX_S4 11o: a tool call written as text never reaches the story.
+          for await (const event of presentable(model.stream(request))) {
             if (event.type === "text_delta") {
               if (firstTextMs === null) firstTextMs = Math.round(now() - started);
               if (firstWordMs === null && event.text.trim() && !loop.text.trim() && !roundText.trim() &&
@@ -711,7 +713,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       shadow.finished = false;
       await persist("generating");
     }
-    let narration = loop.text.trim();
+    let narration = stripToolMarkup(loop.text).trim();
     if (!narration) {
       diagnostic({ kind: "empty_narration" });
       await persist("generating");

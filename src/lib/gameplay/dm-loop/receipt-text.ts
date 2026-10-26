@@ -21,7 +21,24 @@ export function pluralRu(n: number, one: string, few: string, many: string): str
  * DM names the currency once (монета, талер, silver piece); the chips need
  * «5 монет», «2 монеты». Heuristic by the ending; a word it cannot inflect is
  * printed as given, which is never wrong, only flat. */
+/** FIX_S4 11o: a 5e coin code is never a word on the player's screen («+8 sps» of Table A): the code becomes the coin's
+ * name — «8 silver», «8 серебряных». The records panel keeps its compact codes with the coin's name as the title. */
+const COIN_WORDS: Record<string, { en: string; ru: [string, string, string] }> = {
+  pp: { en: "platinum", ru: ["платиновая", "платиновые", "платиновых"] }, gp: { en: "gold", ru: ["золотой", "золотых", "золотых"] },
+  ep: { en: "electrum", ru: ["электрумовая", "электрумовые", "электрумовых"] }, sp: { en: "silver", ru: ["серебряный", "серебряных", "серебряных"] },
+  cp: { en: "copper", ru: ["медяк", "медяка", "медяков"] },
+};
+const CODE_OF: Record<string, string> = { pp: "pp", gp: "gp", ep: "ep", sp: "sp", cp: "cp", пм: "pp", зм: "gp", эм: "ep", см: "sp", мм: "cp" };
+export function coinCodeWords(language: ChipLanguage, amount: number, label: string): string | null {
+  const code = CODE_OF[label.trim().toLocaleLowerCase().replace(/[.\s]/g, "").replace(/s$/, "")];
+  if (!code) return null;
+  const words = COIN_WORDS[code];
+  return `${amount} ${language === "ru" ? pluralRu(amount, ...words.ru) : words.en}`;
+}
+
 export function currencyAmount(language: ChipLanguage, amount: number, label: string): string {
+  const coin = coinCodeWords(language, amount, label);
+  if (coin) return coin;
   const words = label.trim().split(/\s+/);
   let last = words.at(-1) ?? label;
   const head = words.slice(0, -1).join(" ");

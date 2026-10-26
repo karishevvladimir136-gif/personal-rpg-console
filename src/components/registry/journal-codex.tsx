@@ -11,6 +11,8 @@ import { Art, Panel, Plate, registry as r, TabBar, useCopy, type Copy } from "./
 import { PinButton } from "./pins";
 import s from "./journal-codex.module.css";
 import { codexAnchor, linkNames, type NamedThing } from "@/lib/ui/link-names";
+import { loadPlay } from "@/lib/gameplay/client";
+import { tableNotesOf, type TableNote } from "@/lib/gameplay/dm-loop/table-notes";
 
 /** Polish 2 §6: the named things a quest text mentions link to their codex entries («Сельдь»). */
 function namedThingsOf(data: CampaignSnapshot): NamedThing[] {
@@ -33,8 +35,21 @@ function entryLine(entry: JournalEntry, c: Copy) {
   return [who, since].filter(Boolean).join(" · ");
 }
 
-export function RegistryJournal({ data }: { data: CampaignSnapshot }) {
+/** FIX_S4 item 1: the out-of-game exchanges of this table («?»), read once from the turns — records, oldest first. */
+function useTableNotes(campaignId: string, given?: TableNote[]): TableNote[] {
+  const [notes, setNotes] = useState<TableNote[]>(given ?? []);
+  useEffect(() => {
+    if (given) return;
+    let live = true;
+    loadPlay(campaignId).then((play) => { if (live) setNotes(tableNotesOf(play.turns)); }).catch(() => {});
+    return () => { live = false; };
+  }, [campaignId, given]);
+  return notes;
+}
+
+export function RegistryJournal({ data, tableNotes: givenNotes }: { data: CampaignSnapshot; tableNotes?: TableNote[] }) {
   const c = useCopy();
+  const tableNotes = useTableNotes(data.campaign.id, givenNotes);
   const chrome = useChrome();
   const codexHref = chrome?.href?.("codex") ?? `/campaigns/${encodeURIComponent(data.campaign.id)}/codex`;
   const [doneOpen, setDoneOpen] = useState(false);
@@ -140,7 +155,19 @@ export function RegistryJournal({ data }: { data: CampaignSnapshot }) {
               {entries([...journal.debts, ...journal.promises], "")}
             </Panel>
           )}
-          {!goal && !journal.threads.length && !journal.debts.length && !journal.promises.length && (
+          {tableNotes.length > 0 && (
+            <Panel eyebrow={c("Договорились за столом", "Agreed at the table")}>
+              <div className={r.stack} data-testid="table-notes">
+                {tableNotes.slice(-12).map((note) => (
+                  <div key={note.operationId} className={r.questSide}>
+                    <span className={`${r.small} ${r.muted}`}>{c("Вопрос вне игры", "Out of game")}: {note.question}</span>
+                    <p>{note.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </Panel>
+          )}
+          {!goal && !journal.threads.length && !journal.debts.length && !journal.promises.length && !tableNotes.length && (
             <Panel><p className={r.empty}>{c("Цели, зацепки, долги и обещания появятся по ходу игры.", "Goals, leads, debts and promises appear as the story goes.")}</p></Panel>
           )}
         </div>

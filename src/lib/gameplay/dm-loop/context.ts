@@ -24,6 +24,8 @@ import type { RuntimeSource } from "../server-contracts.ts";
 import type { Entity, PublicProfile, Quest } from "../../persistence/contracts.ts";
 import { battlefield } from "./battlefield.ts";
 import { cardForRole, pinnedCraftForStage, type ContextCard } from "../dm-craft-context.ts";
+import { tableNotesOf, tableNotesText } from "./table-notes.ts";
+import { clockLine, currentActNumber } from "./clock.ts";
 import { timeCheckLine, TIME_CHECK_KEY } from "./time-words.ts";
 import { quotableLine } from "./quotable.ts";
 
@@ -383,7 +385,7 @@ function pinnedFacts(source: RuntimeSource): Budgeted {
 
 const RESERVED_FACTS = new Set(["notebook", "notebook_session", "ledger", "variety", "metrics", "depth_state", TIME_CHECK_KEY, HIDDEN_LAYER_KEY]);
 // Findings S3 §6: a person's voice block travels in their card (peopleModels), never in the general notes.
-const serverKept = (_kind: string, key: string) => key.startsWith("quest_reward_") || key.startsWith("paid_grant_") || key.startsWith("holding_") || key.startsWith("plan_") || RESERVED_FACTS.has(key) || isInnerVoiceKey(key);
+const serverKept = (_kind: string, key: string) => key.startsWith("act_") || key.startsWith("quest_reward_") || key.startsWith("paid_grant_") || key.startsWith("holding_") || key.startsWith("plan_") || RESERVED_FACTS.has(key) || isInnerVoiceKey(key);
 /** Fix run B1/B2: the owner's secrets and the hidden layer head the private notes and are never budget-dropped; the
  * notes follow in priority order (open clocks and consequences, open facts newest first, closed ones last) with their
  * validity, so a budget drops the closed notes first. */
@@ -401,13 +403,15 @@ function privateSecrets(source: RuntimeSource): Budgeted {
   return { text: [head, notes.text].filter(Boolean).join("\n\n"), dropped: notes.dropped, used: notes.used + (head ? estimateTokens(head) : 0) };
 }
 /** Fix run B2 (4): the memory gauge of the owner panel — the private notes against their budget. */
-export function privateNotesGauge(source: RuntimeSource): { used: number; budget: number; notes: number; closed: number; dropped: number; hiddenLayer: boolean; pureSimulation: boolean } {
+export function privateNotesGauge(source: RuntimeSource): { used: number; budget: number; notes: number; closed: number; dropped: number; hiddenLayer: boolean; pureSimulation: boolean;
+  /** FIX_S4 11c: the act the story is in by the act plan (the plan itself stays DM-private); null without a plan. */
+  act: number | null } {
   const all = privateNotes(source.privateState, serverKept);
   const result = privateSecrets(source);
   // Game player 2: «pure simulation» has no layer by design — the gauge says so instead of «not yet».
   const pureSimulation = parseDmOptions(source.dmOptions).pureSimulation;
   return { used: result.used, budget: memoryBudgets(source).secrets, notes: all.length, closed: all.filter((note) => note.until !== null).length,
-    dropped: result.dropped.length, hiddenLayer: !pureSimulation && !!hiddenLayerOf(source), pureSimulation };
+    dropped: result.dropped.length, hiddenLayer: !pureSimulation && !!hiddenLayerOf(source), pureSimulation, act: pureSimulation ? null : currentActNumber(source) };
 }
 
 function offScreenPlans(source: RuntimeSource): Budgeted {
@@ -440,6 +444,12 @@ export function ownerLikes(source: RuntimeSource): string {
   return [likes ? `${OWNER_LIKES_HEADER} ${clipChars(likes, 2000)}` : "",
     theme ? `Campaign theme question (return to it in different guises; never moralize, not in every scene): ${clipChars(theme, 400)}` : ""].filter(Boolean).join("\n");
 }
+/** FIX_S4 item 1: the out-of-game exchanges of this table as records — this session's whole, earlier ones in a line. */
+function tableNotes(source: RuntimeSource): Budgeted {
+  const { text, dropped } = tableNotesText(tableNotesOf(source.runtime.turns), source.snapshot.publicState.current_session_id ?? null, instructionsRu(source));
+  return { text, dropped: dropped ? [`table notes: ${dropped} older exchange(s)`] : [], used: estimateTokens(text) };
+}
+
 function playerLikes(source: RuntimeSource): Budgeted {
   const observed = (source.snapshot.campaign.dm_likes ?? "").trim();
   // The newest observations when the notes are long (they are appended, newest last).
@@ -729,7 +739,7 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
   const ledger = parseLedger(source.privateState);
   const stableParts = [partyInShort(source), codexOfPeople(source, input, models), factions(source), journal(source, "stable"), pinnedFacts(source),
     notebook(source), adventureGuidance(source), sessionRecaps(source)];
-  const tailParts = [peopleModels(source, input, models), journal(source, "open"), privateSecrets(source), offScreenPlans(source),
+  const tailParts = [peopleModels(source, input, models), journal(source, "open"), tableNotes(source), privateSecrets(source), offScreenPlans(source),
     playerLikes(source), attentionLedger(source, ledger), battlefield(source)];
   const living = stableParts.map((part) => part.text).filter(Boolean).join("\n\n")
     || "No dossier yet. Start it as the story needs: note_character for people who matter, note_world for secrets and plans, quest for the journal.";
@@ -761,7 +771,9 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
   const retrieved = memoryRecent(source, new Set(history.bodies));
   const state = currentState(source, input);
   // Voice stage part 4: the speech profiles of the people present next to the reminder, after the state.
-  const now = [varietyCounter(source, input), retrieved.text, state.text, speechProfilesBlock(source, input, models, role), voiceReminder(language, { layerOff: voiceOptions.layerOff })].filter(Boolean).join("\n\n");
+  // FIX_S4 11c: the clock line (the act plan's budget, the errand, the real time at the table); none without a plan.
+  const clock = parseDmOptions(source.dmOptions).pureSimulation ? "" : clockLine(source, input.operationId, ru);
+  const now = [varietyCounter(source, input), retrieved.text, state.text, clock, speechProfilesBlock(source, input, models, role), voiceReminder(language, { layerOff: voiceOptions.layerOff })].filter(Boolean).join("\n\n");
   layers.push({ layer: 5, budgetTokens: DOSSIER_BUDGETS.layer4.memory, usedTokens: estimateTokens(now), dropped: [...retrieved.dropped, ...state.dropped] });
 
   const addressee = input.mode === "companion" && input.companionId

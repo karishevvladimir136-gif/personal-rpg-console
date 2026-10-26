@@ -446,3 +446,22 @@ export function sessionStory(data: CampaignSnapshot, sessionId: string | null) {
 export function initials(name: string) {
   return name.split(/\s+/u).filter(Boolean).slice(0, 2).map((part) => part[0]?.toUpperCase() ?? "").join("") || "?";
 }
+
+/** FIX_S4 11t (Astra C: «a compact end-of-session summary» instead of the full records every turn): where things stand
+ * when a session closes — the hero's hit points and counters, the money, the promises and debts, the open questions —
+ * one short line each, from the public records only. */
+export type SessionStanding = { resources: string; money: string; promises: string[]; questions: string[] };
+export function sessionStanding(data: CampaignSnapshot, threads: readonly string[] = []): SessionStanding | null {
+  const hero = heroOf(data);
+  if (!hero) return null;
+  const { resources } = resourcesOf(hero);
+  const hp = hero.max_hp ? `${pick(data.campaign.language === "ru" ? "ru" : "en", "Хиты", "HP")} ${hero.hp}/${hero.max_hp}` : "";
+  const counters = resources.map((row) => `${row.label} ${row.value}${row.max !== null ? `/${row.max}` : ""}`);
+  const journal = journalOf(data);
+  return {
+    resources: [hp, ...counters].filter(Boolean).join(" · "),
+    money: walletOf(data, hero).map((row) => `${row.value} ${row.title ?? row.label}`).join(", "),
+    promises: [...journal.promises, ...journal.debts].map((entry) => entry.quest.title).slice(0, 8),
+    questions: (threads.length ? [...threads] : journal.threads.map((entry) => entry.quest.title)).slice(0, 8),
+  };
+}

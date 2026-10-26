@@ -3,6 +3,7 @@
 // rewards, fixed identities), never plausibility: the model is the DM.
 // A rejected call returns a reason the model can act on; the turn continues.
 import { HIDDEN_LAYER_KEY, ARCHIVE_INFIX, archiveKey, parseNoteValue, privateNotes, recallNotes, serializeNote } from "./private-notes.ts";
+import { ERRAND_OFFERED_KEY } from "./clock.ts";
 import { randomInt } from "node:crypto";
 import type { JsonObject, TurnInput } from "../contracts.ts";
 import type { Entity, EquipmentSlot, Item, ItemDetail, PublicProfile, Quest, QuestDetail, Storage } from "../../persistence/contracts.ts";
@@ -2581,7 +2582,7 @@ function noteWorld(shadow: ShadowState, args: Args): DmLoopReceiptResult {
   if (kind === "clock")
     reject(/^\d{1,6}$/.test(value), `A clock's value is a whole number (its current position, for example "2"), not text: "${value.slice(0, 60)}".`,
       "Set the clock to a number, or advance it with operation \"advance\" and amount; keep its description in a fact note with the same key.");
-  reject(!["notebook", "notebook_session", "ledger", "variety", "metrics", "depth_state", HIDDEN_LAYER_KEY].includes(key) && !key.startsWith("plan_") &&
+  reject(!["notebook", "notebook_session", "ledger", "variety", "metrics", "depth_state", HIDDEN_LAYER_KEY].includes(key) && !key.startsWith("plan_") && !key.startsWith("act_") &&
     !key.includes(ARCHIVE_INFIX), "That key is kept by the server.");
   if (kind === "clock") { shadow.setPrivate(kind, key, value); return ok({ kind, key }, "DM note updated"); }
   // Fix run B2 (5): «true since» now; a different text over an open note keeps the old one, closed, under an archive key.
@@ -2723,6 +2724,9 @@ function finishTurn(shadow: ShadowState, args: Args, ctx: ToolContext): { result
     playerLikes: likes.text, npcRefused: !!args.npcRefused,
     ownerRule: args.ownerRule !== undefined && str(args.ownerRule).trim() ? str(args.ownerRule).trim().slice(0, 300) : null };
   shadow.finished = true;
+  // FIX_S4 11c: the first turn that offered the errand, once (the clock line counts the lag from it).
+  if (args.errandOffered === true && shadow.privateValue("fact", ERRAND_OFFERED_KEY) === null)
+    shadow.setPrivate("fact", ERRAND_OFFERED_KEY, JSON.stringify({ operationId: ctx.input.operationId, worldMinutes: shadow.now }));
   const value: JsonObject = { recorded: true, playerMoment: moment,
     ...(likes.clipped ? { playerLikesClipped: `playerLikes was longer than ${PLAYER_LIKES_CAP} characters and was clipped; one or two short new lines are enough (they are appended).` } : {}),
     ...(gate && !gate.accepted ? { playerMomentRefused: `playerMoment was not accepted: ${gate.reason}. The turn is recorded without it; the player simply writes the next action.` } : {}) };

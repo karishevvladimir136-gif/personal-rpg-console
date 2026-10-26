@@ -4,6 +4,7 @@
 // history as the loop); the bookkeeper gets its own cached role layer, the dossier's
 // three layers (living, tail, now) and a brief with this turn's narration and ledger.
 import type { DmSystemBlock } from "../../../server/dm/model/contracts.ts";
+import { stripToolMarkup } from "../presentation.ts";
 import type { DmLoopReceipt } from "../contracts.ts";
 import { craftCardsBlock, type DmLoopContext } from "../context.ts";
 import { cardForRole, selectCraftCards } from "../../dm-craft-context.ts";
@@ -50,13 +51,13 @@ export function bookkeeperCards(context: DmLoopContext, text: { narration: strin
  * past the budget is clipped (reported through `clipped`). */
 export function splitLedger(text: string): { narration: string; ledger: string; found: boolean; clipped: boolean } {
   const open = text.toLocaleLowerCase().indexOf(LEDGER_OPEN);
-  if (open < 0) return { narration: text.trim(), ledger: "", found: false, clipped: false };
+  if (open < 0) return { narration: stripToolMarkup(text).trim(), ledger: "", found: false, clipped: false };
   const afterOpen = open + LEDGER_OPEN.length;
   const close = text.toLocaleLowerCase().indexOf(LEDGER_CLOSE, afterOpen);
   const raw = (close >= 0 ? text.slice(afterOpen, close) : text.slice(afterOpen)).trim();
   const clipped = raw.length > LEDGER_MAX_CHARS;
   const ledger = clipped ? `${raw.slice(0, LEDGER_MAX_CHARS).trimEnd()}\n[… the ledger was longer than the budget and was clipped here …]` : raw;
-  const narration = `${text.slice(0, open)}${close >= 0 ? text.slice(close + LEDGER_CLOSE.length) : ""}`.trim();
+  const narration = stripToolMarkup(`${text.slice(0, open)}${close >= 0 ? text.slice(close + LEDGER_CLOSE.length) : ""}`).trim();
   return { narration, ledger, found: true, clipped };
 }
 
