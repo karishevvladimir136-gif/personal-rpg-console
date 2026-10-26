@@ -73,7 +73,8 @@ export function planOf({ tables = TABLES, players = PLAYER_ORDER, only = null } 
 }
 
 /** What one session is projected to cost, by provider, from what is known so far. */
-export function projection(entry, { ledgers, finished, running, estimate = ESTIMATE, claude = "anthropic" }) {
+export function projection(entry, { ledgers, finished, running, estimate = ESTIMATE, claude = "anthropic", roster = PLAYERS }) {
+  const PLAYERS = roster;
   const spentOf = (key, door) => (ledgers[door]?.calls ?? []).filter((c) => c.session === key).reduce((s, c) => s + (c.costUsd ?? 0), 0);
   const done = finished.filter((s) => s.record);
   const player = PLAYERS[entry.player];
@@ -133,7 +134,9 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
   const { openApp, settleBackground } = await import("./app.mjs");
   const table = await import("./table.mjs");
   const app = await openApp({ keys, fake: false });
-  const plan = planOf({ tables: stage.tables, only });
+  // FIX_S4 run 1: a stage may bring players of its own (the smoke's Haiku-tier players) and their order.
+  const roster = { ...PLAYERS, ...(stage.players ?? {}) };
+  const plan = planOf({ tables: stage.tables, players: stage.order ?? PLAYER_ORDER, only });
   const runRecord = { stage: stage.name, dry, label, designSha256: stage.design, startedAt: started.toISOString(), caps, plan: plan.map((p) => p.key), turns, lanes,
     sessions: [], undone: [], stopped: null, restamps: 0 };
   // The dry run's record is scripted content: it stays out of the repository (the dry-run page is what is committed).
@@ -153,12 +156,12 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
       const fits = (entry) => {
         const sum = Object.fromEntries(doors.map((door) => [door, 0]));
         for (const s of [...running, entry]) {
-          const p = projection(s, { ledgers, finished, running, estimate: stage.estimate, claude });
+          const p = projection(s, { ledgers, finished, running, estimate: stage.estimate, claude, roster });
           const spent = (door) => ledgers[door].calls.filter((c) => c.session === s.key).reduce((t, c) => t + (c.costUsd ?? 0), 0);
           for (const door of doors) sum[door] += Math.max(0, (p[door] ?? 0) - (s === entry ? 0 : spent(door)));
         }
         // A projected cost on a door the stage has no ledger for never fits.
-        if (Object.keys(projection(entry, { ledgers, finished, running, estimate: stage.estimate, claude })).some((door) => !ledgers[door])) return false;
+        if (Object.keys(projection(entry, { ledgers, finished, running, estimate: stage.estimate, claude, roster })).some((door) => !ledgers[door])) return false;
         return doors.every((door) => ledgers[door].spentUsd + sum[door] <= ledgers[door].capUsd);
       };
       const pump = () => {
@@ -192,7 +195,7 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
         const prep = await meter.within({ session: slot.key, purpose: "prep" }, () => table.prepare(app, made.cid));
         log(`  ${slot.key}: prep — ${prep.pureSimulation ? "skipped (pure simulation)" : prep.hasLayer ? `a hidden layer of ${prep.chars} characters, ${prep.clocks} clock(s)` : "no layer written"}`);
         const dm = table.bindTable(app, made.cid, () => settleBackground());
-        const record = await meter.within({ session: slot.key, purpose: "screen" }, () => runSession({ key: slot.key, table: slot.table, player: PLAYERS[slot.player], dm, meter, keys, turns, log, ...(sleep ? { sleep } : {}),
+        const record = await meter.within({ session: slot.key, purpose: "screen" }, () => runSession({ key: slot.key, table: slot.table, player: roster[slot.player], dm, meter, keys, turns, log, ...(sleep ? { sleep } : {}),
           onProgress: async (partial) => { slot.turnsDone = partial.turns.length; } }));
         await settleBackground();
         return { ...record, campaign: { steps: made.steps, prep } };
