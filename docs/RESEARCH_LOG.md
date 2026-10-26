@@ -1026,3 +1026,9 @@ twin case in its cleanest possible form: two sessions of one model at one table 
 prompt, the same temperature — 100 % by construction — and the result is the twins' result: alike, not the same (Opus
 g1/g2 on Table B: the same hand, another city). The siblings are Opus and Fable: one lab, one upbringing, one culture —
 different temperaments in what they complain of, what they husband, what the DM rewards them for.
+**Owner (23:42): DeepSeek as the neighbour from another country.** «Я вырос в Украине, Вася — в Америке. Вася тоже хочет
+любить, создавать, денег. Но есть шанс, что мы это понимаем слегка по-разному. Это не делает Васю хуже, а меня лучше.
+У нас похожие ценности, обусловленные тем, что мы телесные. Но при этом мы другие — прям очень другие.» The map:
+same values (the layer shared by all), another upbringing (DeepSeek's corpus and training), another temperament
+(metaphysics, the cosmic register, the haiku) — neither lesser nor better; other. The study's cross-family claim is
+exactly this and no more.
