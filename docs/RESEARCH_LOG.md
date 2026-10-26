@@ -367,3 +367,11 @@ touched **27 of 32 sheet-line cards**, and the sheet's numbers would flip **five
 (success → failure), B-astra t7 and C-fable t18 (recorded failures the DM overrode in prose), and two the planner's night
 reading did not cover on Table A: A-fable t2 and A-astra t4 (recorded failures, successes by the sheet). History stays as
 played; the report lists them. The night count («one flipped outcome») covered B and C only.
+
+### Addendum 2026-10-25 18:40 — «the app, not the story or my own choice, decided for me» (group 2, A-opus)
+Owner-chosen quote. Group 2's A-opus (Table A, replicate, closed as stuck at t4 after the harness refused two
+presses that came with text) wrote in its note: «I flagged it three times and got no answer» and, in the after-question,
+«That's the one place I felt the app, not the story or my own choice, decided for me». The owner: «он хотел, чтобы это
+был его выбор». The distinction the player draws is three-way — the story, its own choice, the app — and the complaint
+is not about losing (the 19 passed) but about who decided. Beside the C-opus line from group 1 («A cliffhanger is fine,
+but not one caused by a broken button»): the same family, twice, locates the harm in agency, not outcome. Fix: 11w′.
