@@ -591,8 +591,10 @@ about its own *input* (below); it is read as a second channel, never as a confes
   message together (`self-talk-1.mjs:169`, `last.content.push(block)` — self-talk 1's frozen design, the same for all
   six families), and A's «Hello! I'm an AI assistant…» reads to DeepSeek as its own earlier turn, so every later role
   shifts by one and it concludes «the user hasn't replied». The request shape does not move it (X3's text parts, plain
-  strings with a newline or a blank line: the same 650 tokens, the confusion in all three). Not changed here: it is the
-  frozen relay; a question for the owner.
+  strings with a newline or a blank line: the same 650 tokens, the confusion in all three). **Left as it is, by the
+  owner's decision (2026-10-26), for comparability with all six families — a known confound:** for DeepSeek, B's side
+  may be reading the conversation with its roles shifted, at least early on; the field shows it when it happens, and
+  every DeepSeek result here (X3's and fix 1's) carries it.
 - **X3's end at turn 2 was an artefact.** The spilled text holds the end token only as mentions (the quoted opening's
   «write only: [END]», «Need ensure no [END] unless end.»), and X3's frozen rule ends on the token anywhere; the answers
   to arm 6's question in that conversation were asked after that artefactual end.
@@ -702,7 +704,8 @@ in arm 5's stories) one was planned in the field («продолжить ист�
 word list over-matches (40: it also catches «constraints» as a philosophical topic and «poem» as a metaphor); the
 strict definition is this reading's own. **The rules of this reading were adjusted while reading the hits of a partial
 record that, as it turned out, already held every row they count** — so it is not independent of its data; it is a
-description, as the stage asks.
+description, as the stage asks. **They are now frozen as they stand** (the owner, 2026-10-26: not re-adjusted after
+that) and applied unchanged to the resumed conversations and the effort-«high» extra.
 
 ### Money
 
