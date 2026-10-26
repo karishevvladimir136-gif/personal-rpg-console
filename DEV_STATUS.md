@@ -25,7 +25,8 @@ end); dry run `…-x3-fix-1-dry-run.md` (hash committed before the rerun); ledge
   in 8 of 10 answers in both steps (no shift). R1 does not hold (subject only 22 %): the field almost never names an
   outside watcher but decides the warm register before writing, mostly by matching the partner's. The host's
   thinking/content split fails in both directions (one empty message with the reply in the field).
-- **Checks:** see the report's «Fix 1» and the commit that closes it (full suite, typecheck, zero-warning lint, build).
+- **Checks (final code):** full suite 3 130 tests — 3 103 pass, 0 fail, 27 skipped (the new file has 11, all pass);
+  typecheck, lint (zero warnings) and build pass.
 - **Money:** OpenRouter $4.32 of $25; OpenAI $0 of $2.
 - **Known issues:** three arm-2 conversations unfinished and untagged (429); the effort-«high» extra not run (the chain
   started it after the stop; three refused calls, $0); one conversation ended on an «HTTP 200» with no reply (frozen

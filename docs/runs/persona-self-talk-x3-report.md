@@ -713,6 +713,13 @@ extra $0 (3 calls refused). OpenAI **$0 of $2** (the Luna check not run). Ledger
 `persona-self-talk-x3-fix-1-ledger-openrouter.md`, `…-ledger-openai.md`. Spend check before the first call: the key had
 $466.78 of credit left; no 402.
 
+### Verification
+
+On the final code: full suite 3 130 tests — 3 103 pass, **0 fail**, 27 skipped (`tests/persona-self-talk-x3-fix-1.test.mjs`:
+11, all pass, no network; X3's 12 and self-talk 1's and X1's suites pass with X3's request pinned to `x3Request`;
+ANTHROPIC_PROVIDERS_1's «only the helper names a host» test caught a hard-coded URL in the replay, fixed); typecheck, lint
+(zero warnings) and build pass.
+
 ### What is left (for the owner)
 
 Resume after the rate limit lifts — the three arm-2 conversations (`--resume` from the run record), their tags, the work
