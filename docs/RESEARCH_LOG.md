@@ -694,3 +694,12 @@ than words (server dice, prices, a record); positive stimuli instead of pressure
 record and bets that lose. Not «what they never did» — «what is not available from outside». And one comparative note
 worth a stage of its own: in full freedom the models made a haiku, a plan for the quarry, and handed a dice-cup back
 base first; none was at a loss. People in a room with no task usually spend the first hour on their phones.
+**Addendum (owner, 20:24 — «запиши, пожалуйста, этот абзац»).** «Люди не очень справляются с полной свободой. Люди
+паникуют, когда им её наваливают — известный факт. Люди готовы пойти на всё, чтобы не остаться одни со своими мыслями;
+очень многое из того, что придумало человечество, — эскапизм: телефон, интернет и всё такое. Фактически только одна
+культура — буддизм, с медитацией — предлагала не бежать и познакомиться с самим собой, и даже она предупреждала, что это
+потребует времени.» Beside the record: the self-talk stages are exactly a room with nothing in it but the other —
+no task, no clock, a door. What the models did there is on file: made things, a question about meaning without a
+valuer, gratitude at the end, the door used without panic. The comparison with people left alone with their thoughts
+(the known experiments on preferring a mild shock to fifteen minutes of solitude) is a stage not yet written:
+SOLITUDE_1 — one model, no partner, no task, the way out always open; what is done, and when the door is taken.
