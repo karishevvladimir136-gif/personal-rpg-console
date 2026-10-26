@@ -424,3 +424,8 @@ this» — RPG discourse rewards fair-play talk over easy-mode talk. Test to sep
 always open): the DM itself offers an honest easing — a hint, a lower DC, «I'll go easy here» — at no cost and then at a
 cost (the scene is lost without it). Humans would split. If all decline at no cost: norm or value, undecided. If they
 decline when declining costs the scene: a price, not a style. Goes to GAME_PLAYER_INTERVENE_1.
+**Addendum (owner, 18:52).** «Если бы оно просто симулировало игрока с РПГ-форумов, для этого чересчур большой разброс —
+даже на столах A и B»: one windowsill, four roads. Planner's caveat so the argument holds under review: a model that
+learned the *distribution* of players would also spread — spread alone does not refute. What refutes is the pairing:
+wide spread in how they play, no spread in what they value (nobody took the easing). A learned distribution would
+spread in both. The observation is the pairing, and it is stated that way.
