@@ -133,7 +133,14 @@ export type DmLoopDiagnostic =
   /** Fix run A3: a turn over $1, over four requests or over 32 000 output tokens, with its causes. */
   | { kind: "expensive_turn"; costUsd: number; requests: number; outputTokens: number; latencyMs: number; causes: string[] }
   /** Fix run A1 (item 32c): the provider's own error (kind, HTTP status, code, the message with secrets filtered). */
-  | { kind: "provider_error"; errorKind: string; httpStatus: number | null; providerCode: string | null; message: string };
+  | { kind: "provider_error"; errorKind: string; httpStatus: number | null; providerCode: string | null; message: string }
+  /** Fix S4 run 1 (items 3, 11r; check-corrections.ts, migration 202610250701): the cards of a pause resolved at
+   * «Onward»; a waiting card withdrawn before it counted; a rolled card voided by the owner; the corrections the DM
+   * was told of when the turn went on. The withdrawal and the void are written by `check_correction`, never by the loop. */
+  | { kind: "checks_resolved"; ids: string[] }
+  | { kind: "check_withdrawn"; id: string; by: "dm" | "owner"; reason: string | null; requestId?: string; at?: string }
+  | { kind: "check_voided"; id: string; by: "owner"; reason: string | null; requestId?: string; at?: string }
+  | { kind: "corrections_told"; ids: string[] };
 
 export type DmLoopSceneKind = "combat" | "conversation" | "mystery" | "exploration" | "quiet" |
   "humor" | "trade" | "travel" | "other";

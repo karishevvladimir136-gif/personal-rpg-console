@@ -43,12 +43,13 @@ import { dmLoopTools } from "../tools.ts";
 import type { DmSplit } from "../settings.ts";
 import { DM_LOOP_RUNTIME, workOf, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopMeta, type DmLoopObservation,
   type DmLoopPin, type DmLoopReceipt, type DmLoopUsageEntry } from "../contracts.ts";
-import { combatEnded, combatStarted, continuation, declaredLine, dmOutputCap, executeDmLoopTurn, heroIdOf, joinText, leaseHeartbeat, narrationNames, pausesForPlayer, plainCutMessage, retriableRejection, retryClaimable, rollTextOffsets, type DmLoopDependencies } from "../loop.ts";
+import { combatEnded, combatStarted, continuation, declaredLine, dmOutputCap, executeDmLoopTurn, heroIdOf, joinText, leaseHeartbeat, narrationNames, pausesForPlayer, plainCutMessage, retriableRejection, retryClaimable, rollTextOffsets, tableCommand, type DmLoopDependencies } from "../loop.ts";
 
 /** Fix run A6: what the writer is sent after a request the output cap cut (the loop's CUT_BY_CAP, with the ledger). */
 export const WRITER_CUT_BY_CAP = "Your last message ran into the output limit and was cut off. Pick up exactly where it stopped — the text so far has already reached the player, so nothing needs repeating — bring the narration to its end, then close with the ledger. The limit is still close: spend little of it on thinking.";
 import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KEY } from "../time-words.ts";
 import { BOOKKEEPER_MARKER, bookkeeperBrief, bookkeeperSystem, createLedgerGate, rejectedCallsMessage, splitLedger, writerSystem } from "./prompts.ts";
+import { checkMarks, correctedOutput, correctionsNote, rerollTarget, resolvedAtContinue, standingReceipts, type CheckMarks } from "../check-corrections.ts";
 
 export const TWO_PASS_RUNTIME = "dm-loop-v1/two-pass" as const;
 
@@ -95,20 +96,24 @@ function parseArguments(call: DmToolCall): Record<string, unknown> {
   }
 }
 
-function toolOutput(receipt: DmLoopReceipt, checks: RecordedCheck[]): string {
+function toolOutput(receipt: DmLoopReceipt, checks: RecordedCheck[], marks: CheckMarks | null = null): string {
   const result = receipt.result;
   if (!result.ok) return JSON.stringify({ ok: false, reason: result.reason, ...(result.hint ? { hint: result.hint } : {}) });
+  // Fix S4 run 1: a card withdrawn or voided at the table reads so from then on (the receipt itself is unchanged).
+  const corrected = marks ? correctedOutput(marks, result.check?.id) : null;
+  if (corrected) return corrected;
   const check = result.check ? checks.find((row) => row.id === result.check!.id) ?? result.check : null;
   const value = check ? { ...result.value, dice: [...check.dice], kept: check.kept, total: check.total, success: check.success } : result.value;
   return JSON.stringify({ ok: true, ...value });
 }
 
-function rendered(messages: DmMessage[], receipts: DmLoopReceipt[], checks: RecordedCheck[]): DmMessage[] {
+function rendered(messages: DmMessage[], receipts: DmLoopReceipt[], checks: RecordedCheck[], diagnostics: readonly unknown[] = []): DmMessage[] {
+  const marks = checkMarks(diagnostics);
   return messages.map((message) => {
     if (message.role !== "tool_results") return message;
     return { role: "tool_results", results: message.results.map((entry) => {
       const receipt = receipts.find((row) => row.call.id === entry.callId);
-      return receipt ? { callId: entry.callId, output: toolOutput(receipt, checks), isError: !receipt.result.ok } : entry;
+      return receipt ? { callId: entry.callId, output: toolOutput(receipt, checks, marks), isError: !receipt.result.ok } : entry;
     }) };
   });
 }
@@ -156,8 +161,8 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
         presentEntityIds: [hero.id], nearbyStorageIds: [], safeLocationIds: [], itemRules: [] };
     }
     if (command?.action === "reroll") {
-      const check = checkpoint.checks.find((row) => row.id === command.checkId && isDisplayedCheck(source, row));
-      requireRule(check && source.snapshot.settings.values.difficulty.rerolls !== "disabled");
+      // Fix S4 run 1 (item 11r): the reroll touches only the card it names, and only while that card waits.
+      const check = rerollTarget(source, checkpoint.checks, loop.diagnostics, command.checkId);
       // Fix S3-pre B-1: the rerolled die decides its own natural label and verdict (BG3).
       const replacement = withNatural(recordServerRoll(operationId, check, check.modifier, check.rollNumber + 1, random));
       checkpoint.checks = await store.reroll(lease, command, replacement);
@@ -166,6 +171,13 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
     }
     if (command?.action === "continue") {
       requireRule(checkpoint.checks.some((row) => isDisplayedCheck(source, row)));
+      // Fix S4 run 1: this pause's cards are resolved (never shown waiting again), and the DM hears of any card the
+      // table withdrew or voided while the turn waited.
+      const resolved = resolvedAtContinue(source, checkpoint.checks, loop.diagnostics);
+      const note = correctionsNote(checkpoint.checks, loop.diagnostics, instructionsRu(source) ? "ru" : "en");
+      if (resolved) loop.diagnostics.push(resolved);
+      if (note) { loop.diagnostics.push(note.mark); loop.transcript.push({ role: "user", text: note.text }); }
+      checkpoint.dmLoop = loop;
       await store.checkpoint(lease, checkpoint, "generating");
     }
     if (input.mode === "companion" && source.runtime.encounters.some((row) => row.status === "active")) throw new DmError("validation");
@@ -364,7 +376,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
             await persist("generating");
             stopHeartbeat();
             writerCut = true;
-            return request(phase, rendered(loop.transcript, loop.receipts, checkpoint.checks), firstRound);
+            return request(phase, rendered(loop.transcript, loop.receipts, checkpoint.checks, loop.diagnostics), firstRound);
           }
           if (error.kind === "provider_rejected" || error.kind === "fatal") throw new DmError("provider", false);
           throw new DmError("provider", true);
@@ -430,14 +442,14 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
         // ledger request) is retried once before the turn fails; the first request fails as today.
         let round: Awaited<ReturnType<typeof request>>;
         try {
-          round = await request("writer", rendered(loop.transcript, loop.receipts, checkpoint.checks), writerRequests === 0);
+          round = await request("writer", rendered(loop.transcript, loop.receipts, checkpoint.checks, loop.diagnostics), writerRequests === 0);
         } catch (error) {
           const retryable = error instanceof DmError && error.code === "provider" && error.retryable;
           const alreadyRetried = loop.diagnostics.some((row) => row.kind === "writer_retried" && row.request === writerRequests + 1);
           if (!retryable || writerRequests === 0 || alreadyRetried) throw error;
           diagnostic({ kind: "writer_retried", request: writerRequests + 1 });
           await persist("generating");
-          round = await request("writer", rendered(loop.transcript, loop.receipts, checkpoint.checks), false);
+          round = await request("writer", rendered(loop.transcript, loop.receipts, checkpoint.checks, loop.diagnostics), false);
         }
         loop.text = joinText(loop.text, round.shownRound);
         await persist("generating");
@@ -474,7 +486,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
           // continuation (no new ledger) when the story skipped one.
           if (deps.rollCheck && !asked("rolls_checked") && writerRequests + 1 < limits.modelRequestsPerTurn) {
             // Fix S3-pre 2: the fight's attacks count, the hero's own rolls are marked, the player's declared actions are read.
-            const rolls = visibleRolls(loop.receipts, heroIdOf(source));
+            const rolls = visibleRolls(standingReceipts(loop.receipts, loop.diagnostics), heroIdOf(source));
             const declared = declaredLine(input);
             if (rolls.length || declared) {
               const check = await deps.rollCheck({ narration: splitLedger(soFar).narration, rolls: rolls.map((roll) => roll.line), language, ...(declared ? { playerInput: declared } : {}),
@@ -543,7 +555,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       if (requests >= limits.modelRequestsPerTurn) { diagnostic({ kind: "request_cap_reached", requests: loop.requests }); break; }
       const lastRequest = requests === limits.modelRequestsPerTurn - 1 || loop.receipts.length >= turnCallCap(limits);
       if (lastRequest && last?.role !== "user") loop.transcript.push({ role: "user", text: WRAP_UP });
-      const round = await request("bookkeeper", rendered(bookkeeperPart(), loop.receipts, checkpoint.checks), false);
+      const round = await request("bookkeeper", rendered(bookkeeperPart(), loop.receipts, checkpoint.checks, loop.diagnostics), false);
       await persist("generating");
       if (round.stop.reason === "refusal") { diagnostic({ kind: "model_refusal", providerReason: round.stop.providerReason }); break; }
       if (round.stop.reason === "max_tokens") diagnostic({ kind: "max_tokens", outputTokens: loop.usage.at(-1)?.outputTokens ?? 0 });
@@ -690,6 +702,9 @@ export async function runTwoPassTurn(input: TurnInput, deps: TwoPassDependencies
 export async function resumeTwoPassTurn(command: ResumeInput, deps: TwoPassDependencies): Promise<PublicTurn> {
   const current = requireTurnTimeline(await deps.store.getPublic(command.campaignId, command.operationId),
     command.campaignId, command.operationId, command.timeline);
+  // Fix S4 run 1: a withdrawal, a void (also of a committed turn's roll) and a reroll's card are decided first.
+  const decided = await tableCommand(command, current, deps);
+  if (decided) return requireTurnTimeline(decided, command.campaignId, command.operationId, command.timeline);
   if (["committed", "cancelled"].includes(current.status)) return current;
   if (command.action === "cancel") return deps.store.cancel(command);
   requireRule(command.action === "retry" ? retryClaimable(current) : current.status === "awaiting_confirmation");
@@ -741,6 +756,9 @@ export async function runCampaignTurn(input: TurnInput, deps: CampaignTurnDepend
 export async function resumeCampaignTurn(command: ResumeInput, deps: CampaignTurnDependencies): Promise<PublicTurn> {
   const current = requireTurnTimeline(await deps.store.getPublic(command.campaignId, command.operationId),
     command.campaignId, command.operationId, command.timeline);
+  // Fix S4 run 1: a withdrawal, a void (also of a committed turn's roll) and a reroll's card are decided first.
+  const decided = await tableCommand(command, current, deps);
+  if (decided) return requireTurnTimeline(decided, command.campaignId, command.operationId, command.timeline);
   if (["committed", "cancelled"].includes(current.status)) return current;
   if (command.action === "cancel") return deps.store.cancel(command);
   requireRule(command.action === "retry" ? retryClaimable(current) : current.status === "awaiting_confirmation");

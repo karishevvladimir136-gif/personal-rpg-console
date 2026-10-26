@@ -199,9 +199,10 @@ export function validateResumeInput(
       isUuid(operationId) &&
       row.operationId === operationId,
   );
-  choices(row.action, ["retry", "continue", "reroll", "cancel"]);
+  choices(row.action, ["retry", "continue", "reroll", "cancel", "withdraw", "void"]);
   nullableId(row.checkId);
-  assert((row.action === "reroll") === (row.checkId !== null));
+  // A reroll, a withdrawal and a void each name their card (fix S4 run 1, item 11r).
+  assert(["reroll", "withdraw", "void"].includes(row.action as string) === (row.checkId !== null));
   return structuredClone(row) as ResumeInput;
 }
 export function validateConfiguration(value: unknown): MechanicsConfiguration {

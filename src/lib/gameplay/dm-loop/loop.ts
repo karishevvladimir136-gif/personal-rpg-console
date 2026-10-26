@@ -40,8 +40,22 @@ import { ShadowState } from "./shadow.ts";
 import { dmLoopTools } from "./tools.ts";
 import { DM_LOOP_RUNTIME, workOf, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopMeta, type DmLoopObservation,
   type DmLoopPin, type DmLoopReceipt, type DmLoopUsageEntry } from "./contracts.ts";
+import { checkMarks, correctCheck, correctedOutput, correctionsNote, rerollTarget, resolvedAtContinue, standingReceipts, type CheckMarks } from "./check-corrections.ts";
+import { rerollableCards } from "../card-state.ts";
 
 export { DM_LOOP_RUNTIME } from "./contracts.ts";
+
+/** Fix S4 run 1 (items 3, 11r): what a command decides at the table before any claim. A withdrawal of a waiting card
+ * and the owner's void of a rolled one are recorded at once (no DM call; the DM hears of them when the turn goes on);
+ * a reroll must name a card that waits now and allows one — any other is refused with a reason and changes nothing
+ * (never a failed turn). Null: the command goes on to the turn. */
+export async function tableCommand(command: ResumeInput, current: PublicTurn,
+  deps: { store: TurnStore; pinCorrection?: (text: string) => Promise<unknown> }): Promise<PublicTurn | null> {
+  if (command.action === "withdraw" || command.action === "void") return correctCheck(deps.store, current, command, deps.pinCorrection);
+  if (command.action === "reroll")
+    requireRule(current.status === "awaiting_confirmation" && rerollableCards(current).some((check) => check.id === command.checkId));
+  return null;
+}
 
 export type DmLoopDependencies = {
   /** Fix run B3 (item 60): the check that every roll the player saw is told (a cheap model; never fails the turn). */
@@ -76,6 +90,8 @@ export type DmLoopDependencies = {
     narration?: string }) => Promise<void>;
   random?: (min: number, max: number) => number;
   observe?: (observation: DmLoopObservation) => void;
+  /** Fix S4 run 1 (item 3): the owner's void of a roll, pinned as an owner fact the DM sees in every turn after. */
+  pinCorrection?: (text: string) => Promise<unknown>;
   now?: () => number;
   /** Fix run A1: how often the lease is renewed while a request streams (tests shorten it). */
   heartbeatMs?: number;
@@ -267,9 +283,12 @@ export function rollTextOffsets(transcript: { role: string; text?: string; toolC
   return out;
 }
 
-function toolOutput(receipt: DmLoopReceipt, checks: RecordedCheck[]): string {
+function toolOutput(receipt: DmLoopReceipt, checks: RecordedCheck[], marks: CheckMarks | null = null): string {
   const result = receipt.result;
   if (!result.ok) return JSON.stringify({ ok: false, reason: result.reason, ...(result.hint ? { hint: result.hint } : {}) });
+  // Fix S4 run 1: a card withdrawn or voided at the table reads so from then on (the receipt itself is unchanged).
+  const corrected = marks ? correctedOutput(marks, result.check?.id) : null;
+  if (corrected) return corrected;
   // A reroll (the player's allowed one) replaces the check after the receipt
   // was recorded; the model always sees the current dice.
   const check = result.check ? checks.find((row) => row.id === result.check!.id) ?? result.check : null;
@@ -279,11 +298,12 @@ function toolOutput(receipt: DmLoopReceipt, checks: RecordedCheck[]): string {
 
 /** Tool results are re-rendered from receipts for every request. */
 function renderedTranscript(loop: DmLoopCheckpoint, checks: RecordedCheck[]): DmMessage[] {
+  const marks = checkMarks(loop.diagnostics);
   return loop.transcript.map((message) => {
     if (message.role !== "tool_results") return message;
     return { role: "tool_results", results: message.results.map((entry) => {
       const receipt = loop.receipts.find((row) => row.call.id === entry.callId);
-      return receipt ? { callId: entry.callId, output: toolOutput(receipt, checks), isError: !receipt.result.ok } : entry;
+      return receipt ? { callId: entry.callId, output: toolOutput(receipt, checks, marks), isError: !receipt.result.ok } : entry;
     }) };
   });
 }
@@ -366,8 +386,8 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
         presentEntityIds: [hero.id], nearbyStorageIds: [], safeLocationIds: [], itemRules: [] };
     }
     if (command?.action === "reroll") {
-      const check = checkpoint.checks.find((row) => row.id === command.checkId && isDisplayedCheck(source, row));
-      requireRule(check && source.snapshot.settings.values.difficulty.rerolls !== "disabled");
+      // Fix S4 run 1 (item 11r): the reroll touches only the card it names, and only while that card waits.
+      const check = rerollTarget(source, checkpoint.checks, loop.diagnostics, command.checkId);
       // Fix S3-pre B-1: the rerolled die decides its own natural label and verdict (BG3).
       const replacement = withNatural(recordServerRoll(operationId, check, check.modifier, check.rollNumber + 1, random));
       checkpoint.checks = await store.reroll(lease, command, replacement);
@@ -376,6 +396,13 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
     }
     if (command?.action === "continue") {
       requireRule(checkpoint.checks.some((row) => isDisplayedCheck(source, row)));
+      // Fix S4 run 1: this pause's cards are resolved (never shown waiting again), and the DM hears of any card the
+      // table withdrew or voided while the turn waited.
+      const resolved = resolvedAtContinue(source, checkpoint.checks, loop.diagnostics);
+      const note = correctionsNote(checkpoint.checks, loop.diagnostics, instructionsRu(source) ? "ru" : "en");
+      if (resolved) loop.diagnostics.push(resolved);
+      if (note) { loop.diagnostics.push(note.mark); loop.transcript.push({ role: "user", text: note.text }); }
+      checkpoint.dmLoop = loop;
       await store.checkpoint(lease, checkpoint, "generating");
     }
     // A talk with a companion is an ordinary turn, but not in the middle of a fight.
@@ -437,7 +464,8 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
     // yet — on a resume, read from the transcript (text after the roll's results?).
     const outcomeAsked = () => loop.diagnostics.some((row) => row.kind === "outcome_asked");
     let outcomePending = (() => {
-      const displayed = new Set(loop.receipts.filter((r) => r.result.ok && r.result.check && isDisplayedCheck(source, r.result.check)).map((r) => r.call.id));
+      // Fix S4 run 1: a withdrawn card's outcome is never asked for (its roll did not happen).
+      const displayed = new Set(standingReceipts(loop.receipts, loop.diagnostics).filter((r) => r.result.ok && r.result.check && isDisplayedCheck(source, r.result.check)).map((r) => r.call.id));
       if (!displayed.size) return false;
       let last = -1;
       loop.transcript.forEach((message, index) => { if (message.role === "tool_results" && message.results.some((r) => displayed.has(r.callId))) last = index; });
@@ -698,7 +726,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       }
       if (!deps.rollCheck || loop.diagnostics.some((row) => row.kind === "rolls_checked") || loop.requests >= limits.modelRequestsPerTurn || !loop.text.trim()) break;
       // Fix S3-pre 2: the fight's attack cards count; the hero's own rolls are marked; the player's declared actions are read.
-      const rolls = visibleRolls(loop.receipts, heroIdOf(source));
+      const rolls = visibleRolls(standingReceipts(loop.receipts, loop.diagnostics), heroIdOf(source));
       const declared = declaredLine(input);
       if (!rolls.length && !declared) break;
       const check = await deps.rollCheck({ narration: loop.text, rolls: rolls.map((roll) => roll.line), language, ...(declared ? { playerInput: declared } : {}),
@@ -835,6 +863,9 @@ export function retryClaimable(turn: PublicTurn): boolean {
 export async function resumeDmLoopTurn(command: ResumeInput, deps: DmLoopDependencies): Promise<PublicTurn> {
   const current = requireTurnTimeline(await deps.store.getPublic(command.campaignId, command.operationId),
     command.campaignId, command.operationId, command.timeline);
+  // Fix S4 run 1: a withdrawal, a void (also of a committed turn's roll) and a reroll's card are decided first.
+  const decided = await tableCommand(command, current, deps);
+  if (decided) return requireTurnTimeline(decided, command.campaignId, command.operationId, command.timeline);
   if (["committed", "cancelled"].includes(current.status)) return current;
   if (command.action === "cancel") return deps.store.cancel(command);
   requireRule(command.action === "retry" ? retryClaimable(current) : current.status === "awaiting_confirmation");

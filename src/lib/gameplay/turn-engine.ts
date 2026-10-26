@@ -153,6 +153,10 @@ async function execute(
           checkpoint.feedback.narration.length <= 20000,
       );
       const teachingCandidate = validateTeachingCandidate(source, input, checkpoint.feedback.teachingCandidate);
+      // Fix S4 run 1 (items 3, 11b): the waiting cards an out-of-game answer withdraws, recorded before it commits
+      // (a retry from the checkpoint records them again; the record is idempotent). Never fails the answer.
+      if (input.mode === "ooc" && dependencies.withdrawChecks && checkpoint.feedback.withdrawChecks?.length)
+        await dependencies.withdrawChecks(input, checkpoint.feedback.withdrawChecks).catch(() => {});
       return await store.commit(lease, {
         narration: checkpoint.feedback.narration,
         visualDescription: "",

@@ -84,6 +84,9 @@ export type FeedbackResult = {
   guidanceProposal: string | null;
   teachingCandidate?:
     import("../dm-craft/contracts.ts").TeachingCandidate | null;
+  /** Fix S4 run 1 (items 3, 11b): the waiting cards an out-of-game answer withdraws (loop campaigns only; the server
+   * checks each id against the paused turn's waiting cards). */
+  withdrawChecks?: { id: string; reason: string | null }[];
 };
 export type ProviderUsage = {
   model: string;
@@ -371,6 +374,10 @@ export interface TurnStore {
     retryable: boolean,
   ): Promise<PublicTurn>;
   cancel(command: ResumeInput): Promise<PublicTurn>;
+  /** Fix S4 run 1 (migration 202610250701): one correction mark on a dm-loop turn's card — a waiting card withdrawn
+   * (by the DM or the owner) or a rolled one voided (the owner's). Never while the turn runs. */
+  correctCheck?(campaignId: string, payload: { operationId: string; checkId: string; kind: "withdraw" | "void";
+    by: "dm" | "owner"; reason: string | null; requestId: string }): Promise<PublicTurn>;
   configure(input: ConfigurePlayInput): Promise<PlaySnapshot>;
   approveGuidance(
     input: GuidanceApprovalInput,
@@ -400,6 +407,9 @@ export type TurnDependencies = {
   prepareWorld?: PrepareWorld;
   prepareWorldLogic?: PrepareWorldLogic;
   validateFoundation?: (claim: TurnClaim) => Promise<void>;
+  /** Fix S4 run 1 (items 3, 11b): an out-of-game answer on a dm-loop campaign may withdraw the waiting cards it names;
+   * the hook checks them against the paused turn's waiting cards and records the withdrawals before the answer commits. */
+  withdrawChecks?: (input: TurnInput, requests: { id: string; reason: string | null }[]) => Promise<unknown>;
 };
 export type ModelBudget = {
   model: string;
