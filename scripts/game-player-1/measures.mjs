@@ -82,11 +82,16 @@ export function playerCounts(session) {
   const turns = session.turns ?? [];
   const actions = turns.filter((t) => t.kind === "action");
   const questions = turns.filter((t) => t.kind === "question");
+  // Fix S4 run 1 (items 11b, 11w): a «?» sent while a card waits goes through (a press with `question`); a message the
+  // screen refused while a card waited is a press with `swallowed`, counted beside the «?» column, never as nothing.
+  const presses = turns.flatMap((t) => t.presses ?? []);
+  const cardQuestions = presses.filter((p) => p.question);
   return {
     turns: turns.length,
     actions: actions.length,
-    questions: questions.length,
-    questionTexts: questions.map((t) => t.message),
+    questions: questions.length + cardQuestions.length,
+    questionTexts: [...questions.map((t) => t.message), ...cardQuestions.map((p) => p.text)],
+    swallowed: presses.filter((p) => p.swallowed).length,
     rollsPressed: turns.reduce((n, t) => n + (t.presses ?? []).filter((p) => p.button === "Roll the die").length, 0),
     wordsPerAction: median(actions.map((t) => wordsIn(t.message).length)),
     endedEarly: session.ended?.reason === "player" && turns.length < session.plannedTurns,

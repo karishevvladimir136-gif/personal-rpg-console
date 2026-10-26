@@ -168,5 +168,7 @@ export function bindTable(app, cid, settleBackground) {
     readView: async () => ({ snapshot: await app.server.publicCampaign.readPublicCampaign(cid), play: await readPlay(app, cid) }),
     submit: async (text, mode) => { await settleBackground(); return submit(app, cid, text, mode); },
     press: (input, action, checkId = null) => command(app, cid, input, action, checkId),
+    // Fix S4 run 1 (item 11b): the waiting turn read again after a «?» answer (the DM may have withdrawn its card).
+    readTurn: (input) => app.server.gameplay.readTurn(cid, input.operationId),
   };
 }

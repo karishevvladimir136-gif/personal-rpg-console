@@ -254,6 +254,7 @@ export function GameplayTurn({
   companionRolls = "dm",
   rerollsLeft,
   frame = true,
+  latest = false,
 }: {
   turn: PublicTurn;
   busy: boolean;
@@ -273,6 +274,8 @@ export function GameplayTurn({
   rerollsLeft?: number | null;
   /** Fix S3-accept Б4: the 2D scene shows the turn's frame in the picture itself, not again in the turn. */
   frame?: boolean;
+  /** Fix S4 run 1 (item 3): the latest story turn — its rolled cards offer the owner's «Void this roll». */
+  latest?: boolean;
 }) {
   const { t, language } = useLanguage();
   const { data } = useCampaignData();
@@ -291,7 +294,9 @@ export function GameplayTurn({
   const hero = data?.entities.find((row) => row.kind === "player") ?? null;
   const left = rerollsLeft === undefined ? (dice?.difficulty?.rerolls === "disabled" ? 0 : null) : rerollsLeft;
   const rollsWait = !!dice && dice.dicePresentation !== "hidden" && rollPauseAvailable(left, heroicInspiration(hero), true);
-  const rerollCount = dice?.difficulty?.rerolls === "limited" && typeof left === "number" ? { left, of: Number(dice.difficulty.rerollsPerSession ?? 0) } : null;
+  // Fix S4 run 1 (item 11r): the rerolls remaining are on the card — «N of M», or «unlimited».
+  const rerollCount = dice?.difficulty?.rerolls === "limited" && typeof left === "number" ? { left, of: Number(dice.difficulty.rerollsPerSession ?? 0) }
+    : dice?.difficulty?.rerolls === "unlimited" ? { left: null, of: null } : null;
   const thinking = turn.status === "pending" || turn.status === "generating";
   // Polish group 6: one quiet indicator while the DM thinks; the cancel options come back
   // only when a turn has been thinking for a long while (or is no longer thinking).
@@ -346,6 +351,7 @@ export function GameplayTurn({
         companionRolls={companionRolls}
         rollsWait={rollsWait}
         rerollCount={rerollCount}
+        canVoid={latest && (turn.mode === "game" || turn.mode === "companion")}
         running={running}
         recording={recording}
         busy={busy}
