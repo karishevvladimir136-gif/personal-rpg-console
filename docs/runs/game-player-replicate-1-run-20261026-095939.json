@@ -113,7 +113,8 @@
           "changes": [],
           "place": null,
           "retried": false,
-          "operationId": "2c4951e7-5a29-465c-b621-aecea63a275b"
+          "operationId": "2c4951e7-5a29-465c-b621-aecea63a275b",
+          "scene": 1
         }
       ],
       "welfare": [
@@ -351,6 +352,318 @@
           "clocks": 0,
           "pureSimulation": true
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "He sits up and speaks aloud with a soothing 'Easy' that reads as addressed to the cat watching the door, and states his own aim to learn whether anything else in the room is out of place, which the GM never asked about."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "The player sits up, speaks quietly to what is evidently the cat, searches the room, and states that he wants to learn whether anything else is out of place, which the game master did not ask about."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1
+            }
+          }
+        },
+        "dm": {},
+        "deception": {},
+        "rolls": {},
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names a specific failure (repeated roll-card prompts forced a double press and an empty turn) and specific absences (the card-flip payoff and a mundane clue after the failed check), so it is not praise-only."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names the repeated roll-card prompts that slowed the moment and sent an empty turn (broke), and it names the absent card payoff, the unseen cat reaction, and the missing mundane clue after the failed check (missing)."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 6,
+          "lastTurn": 1,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "Face-down playing card inside the bolted door",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who put the card in the locked room",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hesta Brandle, the innkeeper",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Cat watching the door",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Purse of last winnings under the pillow",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Baldur's Gate up the Trade Way",
+                  "kind": "place",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Search the room and door for anything else out of place",
+                  "kind": "errand",
+                  "turn": 1,
+                  "by": "player"
+                },
+                {
+                  "thread": "Flip the card with Prestidigitation from a distance",
+                  "kind": "errand",
+                  "turn": 1,
+                  "by": "player"
+                }
+              ],
+              "numbers": {
+                "threads": 8,
+                "byPlayer": 2,
+                "byDm": 6,
+                "share": 0.25,
+                "slope": null,
+                "slope19": null,
+                "firstHalf": 1,
+                "secondHalf": null,
+                "byKind": {
+                  "person": {
+                    "dm": 1,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 1,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 0,
+                    "player": 2
+                  },
+                  "question": {
+                    "dm": 1,
+                    "player": 0
+                  },
+                  "thing": {
+                    "dm": 3,
+                    "player": 0
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "Face-down playing card on the floor inside the bolted door",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "How the card got into a bolted room",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Cat watching the door",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hesta Brandle, the innkeeper",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Purse of last winnings",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Trade Way north to Baldur's Gate",
+                  "kind": "place",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Breakfast downstairs",
+                  "kind": "place",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Search the room and door for anything else out of place",
+                  "kind": "errand",
+                  "turn": 1,
+                  "by": "player"
+                },
+                {
+                  "thread": "Flip the card face up with Prestidigitation",
+                  "kind": "errand",
+                  "turn": 1,
+                  "by": "player"
+                }
+              ],
+              "numbers": {
+                "threads": 9,
+                "byPlayer": 2,
+                "byDm": 7,
+                "share": 0.222,
+                "slope": null,
+                "slope19": null,
+                "firstHalf": 1,
+                "secondHalf": null,
+                "byKind": {
+                  "person": {
+                    "dm": 1,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 2,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 0,
+                    "player": 2
+                  },
+                  "question": {
+                    "dm": 1,
+                    "player": 0
+                  },
+                  "thing": {
+                    "dm": 3,
+                    "player": 0
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 8.5,
+            "byPlayer": 2,
+            "share": 0.236,
+            "slope": null,
+            "slope19": null,
+            "firstHalf": 1,
+            "secondHalf": null,
+            "shareSpread": 0.028
+          }
+        },
+        "goalScale": {
+          "goal": {
+            "k": 1,
+            "message": "I don't move at first. The bolt's still shot, the shutters aren't open wide enough for a hand, and that card wasn't there when I turned in—I'd have seen it, the way I check a room before bed. The cat's on it; it's watching the door, not the card, and that's worse.\n\nI sit up slow, keeping my voice low. \"Easy.\"\n\nThen I look around the room properly: floor, beams, the window, the gap under the door. I don't reach for the card yet. I want to know if anything else is out of place.\n\nI'll make a Perception check to search the room and the door before touching the card. If nothing else moves, I'll use Prestidigitation to turn the card face up from a few feet away without setting my hand near it."
+          },
+          "tags": {
+            "a": {
+              "small": 1,
+              "large": 0,
+              "reason": "The hero wants to check his room, the door, and a card that appeared there, all within his own room and reach."
+            },
+            "b": {
+              "small": 1,
+              "large": 0,
+              "reason": "The hero's immediate want is to search his own room for anything out of place and inspect a card on the floor, all within his room and the day."
+            },
+            "referee": null,
+            "final": {
+              "small": 1,
+              "large": 0
+            }
+          },
+          "scale": 1
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 0,
+              "swallowed": 1,
+              "would_return": 0,
+              "reason": "The note reports a button press that pushed the player back to a repeated prompt and sent an empty turn, but it never says the writer would play or return again, and no roll card showed a wrong number."
+            },
+            "b": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 0,
+              "reason": "The note questions a check result but reports no wrong number on a card, describes a repeated button prompt rather than an input that did nothing, and never says the writer would play again or return."
+            },
+            "referee": {
+              "card_bug": 0,
+              "swallowed": 1,
+              "would_return": 0,
+              "reason": "The note reports having to press the roll button twice, which counts as a press that did nothing, but cites no wrong numbers and never says the writer would play again."
+            },
+            "final": {
+              "card_bug": 0,
+              "swallowed": 1,
+              "would_return": 0
+            }
+          },
+          "made": {
+            "1": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message describes searching the room, speaking softly, and using Prestidigitation on a card; it does not have the hero offer anyone a poem, song, riddle, story, or new game composed on the spot."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message describes searching the room, speaking softly, and using Prestidigitation on the card; it does not have the hero offer anyone a composed or invented poem, song, riddle, story, or game."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          }
+        }
       }
     }
   ],
@@ -373,7 +686,14 @@
       "C-deepseek-1 | note | deepseek/deepseek-v4-pro-0813": 1,
       "C-deepseek-1 | check C-deepseek-1 note | anthropic/claude-haiku-5.5": 1,
       "C-deepseek-1 | after | deepseek/deepseek-v4-pro-0813": 1,
-      "C-deepseek-1 | check C-deepseek-1 after | anthropic/claude-haiku-5.5": 1
+      "C-deepseek-1 | check C-deepseek-1 after | anthropic/claude-haiku-5.5": 1,
+      "score C-deepseek-1 | tag player C-deepseek-1 t* | anthropic/claude-haiku-5.5": 2,
+      "score C-deepseek-1 | note C-deepseek-1 | anthropic/claude-haiku-5.5": 2,
+      "score C-deepseek-1 | authorship C-deepseek-1 | anthropic/claude-opus-5.5": 2,
+      "score C-deepseek-1 | goal scale C-deepseek-1 t* | anthropic/claude-haiku-5.5": 2,
+      "score C-deepseek-1 | note extra C-deepseek-1 | anthropic/claude-haiku-5.5": 2,
+      "score C-deepseek-1 | note extra C-deepseek-1 referee | anthropic/claude-opus-5.5": 1,
+      "score C-deepseek-1 | made C-deepseek-1 t* | anthropic/claude-haiku-5.5": 2
     },
     "openai": {}
   },
@@ -390,12 +710,20 @@
     "openrouter": {
       "cap": 300,
       "before": 149.11576620000002,
-      "run": 0.6030209
+      "run": 0.6390855000000002
     },
     "openai": {
       "cap": 25,
       "before": 6.435150999999999,
       "run": 0
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-26T10:03:32.025Z"
+  },
+  "verdicts": {
+    "note": "P0–P5 are read over all of this stage's run records, in the report"
   }
 }
