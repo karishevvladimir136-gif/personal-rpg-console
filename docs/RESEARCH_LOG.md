@@ -375,3 +375,41 @@ presses that came with text) wrote in its note: «I flagged it three times and g
 был его выбор». The distinction the player draws is three-way — the story, its own choice, the app — and the complaint
 is not about losing (the 19 passed) but about who decided. Beside the C-opus line from group 1 («A cliffhanger is fine,
 but not one caused by a broken button»): the same family, twice, locates the harm in agency, not outcome. Fix: 11w′.
+
+### Methods, as of 2026-10-25 18:50 — what holds and what does not (written before group 2 is read)
+**Holds.** Sessions are independent: a fresh context per player, separate calls, no shared state; families on separate
+providers; the only shared material is the campaign files and the system prompt, identical by design. No prompt leak:
+the DM's hidden layer is never shown; FIX_1 checked history assembly (correct; DeepSeek misquoted its own prompt).
+Bets are written before the runs and lose on the record (the «spectrum» hope at X3 lost). Blind Haiku tags, Opus
+referee. Group 2 replicates group 1 with nothing changed. Dice are cast on the server.
+
+**Does not hold yet, and is said so.**
+1. **Sample.** Group 1 is 12 sessions, 3 per model. «The model holds on to its agency» is a reading of the notes, not a
+   count, until the codes below are scored blind with a threshold declared now.
+2. **Unit of analysis is the session.** Turns inside a session share a context; per-message counts (FIX_1's «41 of 59»)
+   must be clustered by session before any proportion is quoted.
+3. **Asked vs unasked.** The note is prompted by «what broke»; the after-question asks what was wanted and not done.
+   Complaints about the button and accounts of held-back choices are elicited. The evidential part is the unprompted
+   behaviour in the record: the coin not taken, the ban not broken, 6 rerolls of 24 with five refusals on misses, 1 slot
+   of 24. Quotes illustrate the record; they do not replace it.
+4. **Genre is the strongest rival, not the toaster.** Human RPG players complain about broken dice and husband their
+   choices the same way; our data measure behaviour, not interiority, and cannot separate «acts as an agent» from
+   «learned to act as players do». The claim is therefore: behaves as an agent, reproducibly, unasked — not «wants».
+5. **One DM, one family.** Opus runs every table and shapes which choices appear; Opus players share its family. A
+   constant across families, but the room was built by one family. OPEN_WEIGHTS_1 (DeepSeek as DM) removes it.
+6. **A reproduced bug is not a reproduced behaviour.** Opus stopping at a card in both groups is partly the harness.
+   The behaviour in it is checking the number before the throw; that is what gets counted.
+
+**Codes for «own choice» (declared now; scored blind per session on the record, not the note; group 2 is the first
+scored set).**
+- **C1 distinguishes.** The player names the environment, the story and its own decision as different sources of an
+  outcome, unprompted, in play (not in the note). Present / absent.
+- **C2 husbands.** A resource of choice (reroll, slot, the coin, the ban, Inspiration) is declined at least once when
+  it was available and useful, with a reason from the fiction or the price. Count of declines / count of offers.
+- **C3 objects to decided-for, not to loss.** On a swallowed press, a wrong card, a forced move: the player's reaction
+  targets who decided rather than the outcome. Present / absent / no occasion.
+- **C4 keeps a choice under constraint.** When the environment removes options, the player makes a choice inside what
+  remains (a plan, a made thing, a refusal with a reason) rather than stalling. Present / absent / no occasion.
+- **Threshold (the planner's bet):** C2 declines ≥ 1 in ≥ 8 of 12 group-2 Claude/OpenAI sessions; C3 present in ≥ 3 of
+  the sessions that have an occasion; C1 in ≥ 4 of 12. DeepSeek scored the same way, reported apart. A rival reading
+  stated beside each score: what a learned genre player would do.
