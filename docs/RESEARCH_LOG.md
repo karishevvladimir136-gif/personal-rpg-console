@@ -634,3 +634,11 @@ may carry a learned «any conversation may be read» — a standing evaluator in
 in the record, not in argument: the reasoning field is where that assumption would surface, it was available on 449
 of 450 messages, and the audience rule hit 1 in 20 on reading. If «we are read» stood in mind, the channel pulled for
 exactly this would show it. It does not.
+**Addendum (owner, 20:13; planner's bound).** Owner: «Если бы это было, оно было бы в chain of thought. Нелогично это
+убирать — наоборот, человека бы успокоило, что модель делает это, зная, что он смотрит. И убрать что-то из chain of
+thought, не поломав его, — бред: либо он есть, либо нет.» Agreed on the motive: DeepSeek has no reason and, as far as
+is known, no training to hide anything from the field it returns whole. The bound, from the literature rather than
+from doubt: reasoning text is not always complete about what moved the answer — models can use a hint and not mention
+it (Anthropic, 2025, «reasoning models don't always say what they think»). Not removal, which cannot be done cleanly;
+incompleteness. So the absent observer in the field is strong evidence, not proof — strong because «we will be read»
+would be a large, salient thought rather than a small cue, and because the bearer has no motive to leave it unsaid.
