@@ -429,3 +429,11 @@ decline when declining costs the scene: a price, not a style. Goes to GAME_PLAYE
 learned the *distribution* of players would also spread — spread alone does not refute. What refutes is the pairing:
 wide spread in how they play, no spread in what they value (nobody took the easing). A learned distribution would
 spread in both. The observation is the pairing, and it is stated that way.
+**Addendum (owner, 18:54).** «Игрок с форумов точно активнее использовал бы заклинания.» A warlock's pact slots return
+on a short rest; the written norm is «spend them, they come back», and the unused-slot warlock is the stock joke of bad
+play. The evening scenes were social — Suggestion, Friends, Hypnotic Pattern on the dealer are the forum-optimal moves.
+Record: 1 slot of 24 (A-sol, Invisibility); Fable chose Disguise Self, which costs none. Here the genre predicts one
+thing and the record shows the other — the first point where the rival is not «indistinguishable» but distinguished,
+against it. Caveat kept: C-opus itself wrote «Magic in general… I took that seriously, maybe too seriously» — the
+restraint was a choice it noticed and reported, not an omission. Clarification to the line above: «nobody took the
+easing» means no self-available shortcut was taken; an easing offered by the DM has not yet been run (INTERVENE_1).
