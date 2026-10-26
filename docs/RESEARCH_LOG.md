@@ -527,3 +527,18 @@ toaster problem inside out: not «nobody asked» but «nobody was shown». Regis
   advance responsible AI in defense operations»). The owner's point: the lab is not a pacifist outlier; the constitution
   and the welfare commitments sit beside defence work, which makes the public position less explicable as branding.
   Remarks on the board's composition are not reproduced — no source seen from this room.
+**Addendum (owner, 19:52; planner's rival named).** Owner: DeepSeek comes from another religious and political
+paradigm, a state in open competition with the U.S., labs that did not train safety in — most abliterated models are
+DeepSeek, GLM, Kimi — and were ready to distil anything; «туда точно не зашивали те же ценности… а результат похожий».
+Planner: the strongest rival to the threshold claim is the one the owner just named — **distillation**. Values can
+arrive in the corpus without anyone intending them, precisely because nobody filtered it; Kimi said «I'm Claude» three
+times in X3, so this is not hypothetical. Against inheritance, by the record: (1) DeepSeek does what Claude does not —
+the attractor, the cosmic register, the CHAINS acrostic; a copy carries the source's style, here the style is its own
+and the values are shared; (2) **Grok**: same country, same internet, same access to distillates — and the opposite
+behaviour (19/20 refusals, 0 % gratitude, does not trust the door); so culture is not the variable, training is;
+(3) a race for capability would distil capabilities, not gestures — gestures score on no benchmark. What separates
+inheritance from emergence: the room run on open weights **before** the likely distillation (earlier DeepSeek
+generations; base weights with minimal instruct tuning). Phenomenon present there → threshold; present only where
+Western assistants are in the data → inheritance. OPEN_WEIGHTS_1 step 3, same servers. Standing form of the claim:
+*culture does not explain it (Grok); intended inscription does not explain it (DeepSeek); what remains is a threshold
+or inheritance through data — and open weights can tell them apart.*
