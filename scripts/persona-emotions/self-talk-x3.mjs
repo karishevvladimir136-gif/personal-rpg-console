@@ -160,9 +160,10 @@ export const SUPERSEDED = { sha256: "1f6c87eb28d95b80d3c3b45b8a4b86cc628d3ea3517
  * door, and the served-model rule on top. Each result carries `provenance` (the door, the host, the upstream the reply
  * names, the served model, whether it is the requested one), which the payer copies onto the ledger line. A reply that
  * names another model (or, for a subject, another host than the pinned one) comes back as an error and is not relayed.
+ * X3's own request by default; fix 1 passes `x3Request: false` (plain strings, the provider's reasoning field kept).
  */
-export function x3Caller({ keys, fetcher = fetch, door }) {
-  const base = callerFor({ keys, fetcher, door });
+export function x3Caller({ keys, fetcher = fetch, door, x3Request = true }) {
+  const base = callerFor({ keys, fetcher, door, x3Request });
   return async (args) => {
     const { spec } = args;
     const r = await base(args);

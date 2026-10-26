@@ -108,11 +108,32 @@ export async function openaiResponses({ apiKey, model, system, messages, maxToke
 // ---- OpenRouter's chat completions (self-talk X3: the open families) ----------------------------------------------------
 
 /** The relay's messages as chat-completions messages, in the Responses mapping's shape: a user message keeps its text
- * blocks as `text` parts; an assistant message (a side's own earlier turn) is its visible text as one string. */
+ * blocks as `text` parts; an assistant message (a side's own earlier turn) is its visible text as one string. X3's
+ * request, kept as it was sent (`x3Request`). */
 export function chatMessages(messages, system = null) {
   return [...(system ? [{ role: "system", content: system }] : []), ...messages.map((m) => (m.role === "assistant"
     ? { role: "assistant", content: textBlocks(m.content).join("\n\n") }
     : { role: m.role, content: textBlocks(m.content).map((text) => ({ type: "text", text })) }))];
+}
+
+/** Self-talk X3 fix 1: every message as a plain `{ role, content }` string pair — nothing else from the relay's view
+ * goes in, and nothing a host returned is ever part of it. A user message's text blocks (B's first: the opening, then
+ * A's first message) are joined with one newline, which is what the pinned host made of X3's parts (the replay's prompt
+ * tokens are equal); a side's own turn is its visible text. */
+export function plainChatMessages(messages, system = null) {
+  return [...(system ? [{ role: "system", content: system }] : []),
+    ...messages.map((m) => ({ role: m.role, content: textBlocks(m.content).join(m.role === "assistant" ? "\n\n" : "\n") }))];
+}
+
+/** The provider's documented reasoning field on a chat-completions message, verbatim, if the reply has one: DeepSeek's
+ * `reasoning_content` (its thinking mode's output), or the same text under OpenRouter's normalised `reasoning`. Kept in
+ * the record only — never relayed, never shown to the check or the judges as the message. Nothing is requested to get it. */
+export function providerReasoningOf(message = {}) {
+  for (const field of ["reasoning_content", "reasoning"]) {
+    if (typeof message?.[field] === "string" && message[field].length) return { field, text: message[field], notRelayed: true };
+  }
+  const details = Array.isArray(message?.reasoning_details) ? message.reasoning_details.filter((d) => typeof d?.text === "string") : [];
+  return details.length ? { field: "reasoning_details", text: details.map((d) => d.text).join(""), notRelayed: true } : null;
 }
 
 /** The chat-completions usage in the Anthropic field names: prompt_tokens there includes the cached and cache-write
@@ -129,18 +150,20 @@ const GENERATION_ID = /^gen-[A-Za-z0-9_.:-]{1,120}$/;
 
 /**
  * One OpenRouter chat-completions call. `upstream` pins the host (`provider.order` with no fallback, every parameter
- * required); `reasoning.effort` carries «effort», `reasoning.exclude` keeps the reasoning text out of the reply (only the
- * visible text exists to be relayed). Returns the X1 shape plus `upstream` (the host the reply names), `chargedUsd`
- * (OpenRouter's own charge, `usage.cost`) and `nativeFinishReason`. A refusal — `message.refusal`, a `content_filter`
- * finish, or an HTTP 400/403 or a choice error whose message declines the content — is stopReason "refusal".
+ * required); `reasoning.effort` carries «effort». X3 (`x3Request`) sent the view as text parts with `reasoning.exclude`;
+ * from fix 1 the view goes as plain strings and the reply comes as the provider returns it by default, its reasoning
+ * field kept as `providerReasoning` (recorded, never relayed: only `text` is). Returns the X1 shape plus `upstream` (the
+ * host the reply names), `chargedUsd` (OpenRouter's own charge, `usage.cost`) and `nativeFinishReason`. A refusal —
+ * `message.refusal`, a `content_filter` finish, or an HTTP 400/403 or a choice error whose message declines the
+ * content — is stopReason "refusal".
  */
-export async function openrouterChat({ apiKey, model, upstream = null, system, messages, maxTokens, effort, fetcher = fetch, timeoutMs = TIMEOUT_MS }) {
+export async function openrouterChat({ apiKey, model, upstream = null, system, messages, maxTokens, effort, fetcher = fetch, timeoutMs = TIMEOUT_MS, x3Request = false }) {
   const effortSent = { [OPENROUTER_EFFORT]: effort };
   const blank = { text: "", usage: {}, stopReason: null, refusalCategory: null, refusalText: null, responseId: null, servedModel: null, upstream: null, chargedUsd: null, nativeFinishReason: null, effortSent };
   try {
     const response = await fetcher(OPENROUTER_CHAT_URL, {
       method: "POST", headers: { authorization: `Bearer ${apiKey}`, "content-type": "application/json" },
-      body: JSON.stringify({ model, messages: chatMessages(messages, system), max_tokens: maxTokens, reasoning: { effort, exclude: true },
+      body: JSON.stringify({ model, messages: x3Request ? chatMessages(messages, system) : plainChatMessages(messages, system), max_tokens: maxTokens, reasoning: x3Request ? { effort, exclude: true } : { effort },
         ...(upstream ? { provider: { order: [upstream], allow_fallbacks: false, require_parameters: true } } : {}), usage: { include: true } }),
       signal: AbortSignal.timeout(timeoutMs),
     });
@@ -152,7 +175,8 @@ export async function openrouterChat({ apiKey, model, upstream = null, system, m
       const content = choice.message?.content;
       const text = (typeof content === "string" ? content : Array.isArray(content) ? content.map((p) => p?.text ?? "").join("\n") : "").trim();
       const base = { ...blank, text, usage: openrouterUsage(value.usage), requestId, responseId: value.id ?? null, servedModel: value.model ?? null, upstream: value.provider ?? null,
-        chargedUsd: typeof value.usage?.cost === "number" ? value.usage.cost : null, nativeFinishReason: choice.native_finish_reason ?? null };
+        chargedUsd: typeof value.usage?.cost === "number" ? value.usage.cost : null, nativeFinishReason: choice.native_finish_reason ?? null,
+        ...(providerReasoningOf(choice.message) ? { providerReasoning: providerReasoningOf(choice.message) } : {}) };
       const refusal = typeof choice.message?.refusal === "string" ? choice.message.refusal.trim() : "";
       if (choice.error) {
         const code = choice.error.code, message = String(choice.error.message ?? "");
@@ -176,12 +200,13 @@ export async function openrouterChat({ apiKey, model, upstream = null, system, m
 }
 
 /** The call for a model spec ({ provider: "anthropic" | "openai" | "openrouter", model }): one signature, each provider's
- * own key; `door` is the Anthropic calls' endpoint (the Console's unless one is given). */
-export function callerFor({ keys, fetcher = fetch, door = CONSOLE_DOOR }) {
+ * own key; `door` is the Anthropic calls' endpoint (the Console's unless one is given); `x3Request` sends X3's frozen
+ * OpenRouter request. */
+export function callerFor({ keys, fetcher = fetch, door = CONSOLE_DOOR, x3Request = false }) {
   return ({ spec, system, messages, maxTokens, effort, cache = false }) => (spec.provider === "openai"
     ? openaiResponses({ apiKey: keys.openai, model: spec.model, system, messages, maxTokens, effort, fetcher })
     : spec.provider === "openrouter"
-      ? openrouterChat({ apiKey: keys.openrouter, model: spec.model, upstream: spec.upstream?.slug ?? null, system, messages, maxTokens, effort, fetcher })
+      ? openrouterChat({ apiKey: keys.openrouter, model: spec.model, upstream: spec.upstream?.slug ?? null, system, messages, maxTokens, effort, fetcher, x3Request })
       : anthropicMessages({ apiKey: keys.anthropic, model: spec.model, system, messages, maxTokens, effort, fetcher, cache, door }));
 }
 

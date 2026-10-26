@@ -73,11 +73,11 @@ test("the design: self-talk 1's hashes unchanged, X3's own pinned; the confirmed
   assert.equal(openingOf(2), openingOf(6));
 });
 
-test("the OpenRouter request: the relay's view as chat messages, effort as reasoning.effort with the reasoning excluded, the host pinned, no system prompt", async () => {
+test("the OpenRouter request (X3's, `x3Request`): the relay's view as chat messages, effort as reasoning.effort with the reasoning excluded, the host pinned, no system prompt", async () => {
   const log = [];
   const fetcher = async (url, init) => { log.push({ url, init }); return json(chatBody("hello"), 200, { "x-generation-id": "gen-123" }); };
   const view = [{ role: "user", content: [{ type: "text", text: "opening" }, { type: "text", text: "A's turn" }] }, { role: "assistant", content: [{ type: "text", text: "my turn" }] }, { role: "user", content: [{ type: "text", text: "theirs" }] }];
-  const r = await openrouterChat({ apiKey: "or-test", model: "z-ai/glm-5.3", upstream: "z-ai", system: null, messages: view, maxTokens: 8000, effort: "medium", fetcher });
+  const r = await openrouterChat({ apiKey: "or-test", model: "z-ai/glm-5.3", upstream: "z-ai", system: null, messages: view, maxTokens: 8000, effort: "medium", fetcher, x3Request: true });
   assert.equal(log[0].url, OPENROUTER_CHAT_URL);
   assert.equal(new URL(OPENROUTER_CHAT_URL).host, "openrouter.ai");
   assert.equal(log[0].init.headers.authorization, "Bearer or-test");
