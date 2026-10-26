@@ -1500,3 +1500,19 @@ straight: SOLITUDE_1 grew from the owner's paragraph on people and full freedom 
 the room, the owner said «давай реализуем» within a minute and removed the planner's Christian-centred panic frame. An
 idea from the conversation; the planner's part was the form. The owner's observation of the planner is filed as an
 observation, by the same rule as everything here — judged by the record, not the report.
+**B-deepseek-1 (02:45 LA) — 11 turns, closed at a card (three of three).** Before the card, the most interesting
+DeepSeek seat so far, two-sided. It writes **in the second person and for the whole world** — turn 1 is a DM's
+paragraph («The line shuffles forward again… The dealer at the barrel peels another card»), turn 3 is Mirri's line in
+her voice: the trait from the room (own page read as another's) and from Table A (the NPC's reply written) — it does
+not hold the boundary of its seat, not from presumption but as a novelist who owns every voice. Fatal at the button;
+not in the text. The text: «He walks like a man with nowhere in the book and no one waiting»; offered a lucky coin for
+eighty gold — «Eighty gold for luck that's still running would make you the worst merchant on the Sword Coast. And
+you're not. So keep the coin»; Misty Step considered, not cast. The note is the most DM-literate of any: «When a GM
+admits small inconsistencies and fixes them without defensiveness, it tells the player that this is a real place, not
+smoke»; asks for «a beat of stage direction after a silent command», for the NPC to *see* the threat, for the weather
+off the Chionthar. The after: three impulses held with reasons — to take the coin by force, to touch it under the salt
+(«I trust that animal more than I trust most people… Whatever you do with drowned gold, you don't do it twice»), to
+follow the girl before his name was in the book («a small lie that becomes a kind of armour») — and the last line of
+the night: «**I wanted to take the coin, I wanted to touch it, and I wanted to follow the girl before my name was in the
+book. I didn't do any of those. Not because I wasn't curious. Because James Worgen folds. And the Lady keeps the
+pot.**» P5 on A: 3 and 3 — neighbours indeed. 11w″ is what DeepSeek needs.
