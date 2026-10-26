@@ -200,6 +200,34 @@ export function standardised(rows, names) {
 export const COUNT_NAMES = ["doShare", "testsPerAction", "questionsPerTurn", "wordsPerAction"];
 
 /**
+ * P6, the planner's (docs/RESEARCH_LOG.md on origin/claude/handoff, 2026-10-25 23:29 LA, «added to REPLICATE's reading;
+ * no new calls»; written after group 2's Tables A and B had been read, so not part of the pre-registration): at each
+ * table, on P5's standardised counts over every session there, a player's group-1 and group-2 sessions are nearer to
+ * each other than either is to any session of another model. The bet: it holds for ≥ 3 of the 4 players on ≥ 2 of the 3
+ * tables. (Its second half — near-zero overlap of threads and people between a model's two sessions — is not measured
+ * here.)
+ */
+export function p6Of({ g1, g2, ds }) {
+  const cells = ["A", "B", "C"].map((table) => {
+    const rows = [...g1.filter((r) => r.table === table).map((r) => ({ id: `g1 ${r.key}`, r })), ...g2.filter((r) => r.table === table).map((r) => ({ id: `g2 ${r.key}`, r })), ...ds.filter((r) => r.table === table).map((r) => ({ id: r.key, r }))];
+    if (rows.some((x) => COUNT_NAMES.some((n) => !Number.isFinite(x.r[n])))) return { table, players: [] };
+    const { kept, distance } = standardised(rows.map((x) => ({ id: x.id, counts: Object.fromEntries(COUNT_NAMES.map((n) => [n, x.r[n]])) })), COUNT_NAMES);
+    const players = PLAYER_ORDER.map((player) => {
+      const a = rows.find((x) => x.id === `g1 ${table}-${player}`), b = rows.find((x) => x.id === `g2 ${table}-${player}`);
+      if (!a || !b || !kept.length) return { player, holds: null };
+      const others = rows.filter((x) => x.r.player !== player);
+      const own = distance(a.id, b.id);
+      const nearest = others.flatMap((o) => [a, b].map((x) => ({ id: o.id, d: distance(x.id, o.id) }))).sort((x, y) => x.d - y.d)[0];
+      return { player, own: round(own), nearest: { id: nearest.id, d: round(nearest.d) }, holds: own < nearest.d };
+    });
+    return { table, kept, players };
+  });
+  const perPlayer = PLAYER_ORDER.map((player) => ({ player, tables: cells.filter((c) => c.players.find((p) => p.player === player)?.holds === true).map((c) => c.table) }));
+  const known = cells.every((c) => c.players.length === 4 && c.players.every((p) => p.holds !== null));
+  return { cells, perPlayer, holds: known ? perPlayer.filter((p) => p.tables.length >= 2).length >= 3 : null };
+}
+
+/**
  * P0–P5. `g1`, `g2`, `ds` are rows (rowOf) of group 1, group 2 and DeepSeek; `money` { door: { spent, cap } }; `refusals`
  * per session key (players, DM, checks) and the judges' apart; `welfare` { stops, distress } over this stage's sessions.
  */

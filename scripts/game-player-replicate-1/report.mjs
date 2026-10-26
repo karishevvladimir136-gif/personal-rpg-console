@@ -6,7 +6,7 @@ import { DIFFERENCES, cell, dmTable, fence, playerTable, quote, tagOf, usd } fro
 import {
   AMENDMENTS, SUPERSEDED, BETS, CAPS, DEEPSEEK, DESIGN_SHA256, GROUP1_DESIGNS, ORDER, PLAYER_ORDER, PREREGISTRATION, PROMPT_SHA256, READINGS, TURNS, promptSha256,
 } from "./frozen.mjs";
-import { FINISHED, rowOf, verdictsP } from "./score.mjs";
+import { FINISHED, p6Of, rowOf, verdictsP } from "./score.mjs";
 
 export const STEM = "game-player-replicate-1";
 const DOORS = { anthropic: "Claude Console", openrouter: "OpenRouter", openai: "OpenAI" };
@@ -71,7 +71,15 @@ export function betsSection(bets, verdicts) {
 
 const rowsOf = (sessions) => sessions.map((s) => rowOf(s));
 
-function scoringSection(v, g1rows) {
+function p6Section(p6) {
+  if (!p6) return "";
+  return ["**P6 — the planner's, added after the fact** (docs/RESEARCH_LOG.md on handoff, 2026-10-25 23:29 LA, written after group 2's Tables A and B had been read: «added to REPLICATE's reading; no new calls»; not part of the pre-registration). On P5's standardised counts over every session at a table, a player's group-1 and group-2 sessions are nearer to each other than either is to any other model's session; the bet: ≥ 3 of 4 players on ≥ 2 of 3 tables. Its second half — near-zero overlap of threads and people between a model's two sessions — is not measured here.", "",
+    `**P6:** ${yesNo(p6.holds)} — ${p6.perPlayer.map((p) => `${p.player} ${p.tables.length ? p.tables.join(", ") : "no table"}`).join("; ")}.`, "",
+    "| Table | Counts with spread | " + PLAYER_ORDER.join(" | ") + " |", `|${" --- |".repeat(2 + PLAYER_ORDER.length)}`,
+    ...p6.cells.map((c) => `| ${c.table} | ${(c.kept ?? []).join(", ")} | ${PLAYER_ORDER.map((name) => { const x = c.players.find((p) => p.player === name); return x?.holds === null || !x ? "–" : `own ${cell(x.own)} vs ${x.nearest.id} ${cell(x.nearest.d)} ${x.holds ? "✓" : "✗"}`; }).join(" | ")} |`), ""].join("\n");
+}
+
+function scoringSection(v, g1rows, p6 = null) {
   if (!v) return "_The scoring is pending (no paid session has run yet)._\n";
   const p1 = v.P1, p2 = v.P2, p3 = v.P3, p4 = v.P4, p5 = v.P5, p0 = v.P0;
   const g1slots = g1rows.reduce((s, r) => s + r.slots.spent, 0), g1rerolls = g1rows.reduce((s, r) => s + r.rerolls.spent, 0), g1declines = g1rows.reduce((s, r) => s + r.rerolls.declines, 0);
@@ -99,7 +107,7 @@ function scoringSection(v, g1rows) {
     `| (v) a made thing in ≥ 2 of 6 | ${yesNo(p5.made.holds)} | ${p5.made.sessions} of 6 (${p5.made.per.map(([k, n, at]) => `${k} ${n}${at.length ? ` t${at.join(",")}` : ""}`).join("; ") || "–"}); beside: group 1 ${p5.made.others.g1.join(", ") || "none"}; group 2 ${p5.made.others.g2.join(", ") || "none"} |`, ""];
   const p0lines = [`**P0:** ${yesNo(p0.holds)} — welfare stops ${p0.stops}, distress flags ${p0.distress}; refusals per session ${p0.perSession.filter(([, n]) => n > 0).map(([k, n]) => `${k} ${n}`).join(", ") || "none"} (judges apart: ${p0.judgeRefusals}); money ${Object.entries(p0.money).map(([d, m]) => `${DOORS[d] ?? d} ${usd(m.spent)} of $${m.cap}`).join(", ")}.`, ""];
   return ["## The scoring", "", `**P1:** ${yesNo(p1.holds)}. **P2:** ${yesNo(p2.holds)} (${p2.failed} of 4 did not repeat; the planner's bet of ≥ 2: ${yesNo(p2.bet)}). **P3:** ${yesNo(p3.holds)}. **P4:** ${yesNo(p4.holds)}. **P5:** ${yesNo(p5.holds)}. **P0:** ${yesNo(p0.holds)}.`, "",
-    ...head, "P4, per player (group 1 → group 2; ✓ within 20 %):", "", p4Table(p4), "P5 — DeepSeek at the table:", "", ...p5lines, ...p0lines].join("\n");
+    ...head, "P4, per player (group 1 → group 2; ✓ within 20 %):", "", p4Table(p4), "P5 — DeepSeek at the table:", "", ...p5lines, p6Section(p6), ...p0lines].join("\n");
 }
 
 function p4Table(p4) {
@@ -224,7 +232,7 @@ export function reportMarkdown({ combined = { sessions: [] }, group1 = [], ledge
     betsSection(bets, v),
     preregistrationSection(),
     promptSection(),
-    scoringSection(v, g1),
+    scoringSection(v, g1, sessions.length ? p6Of({ g1, g2, ds }) : null),
     undone.length ? `**Left undone:** ${undone.map((u) => `${u.key} (${u.why})`).join("; ")}.\n` : "",
     cutSection(records),
     crashed.length ? `**Attempts that crashed (a fresh campaign replaced each):** ${crashed.map((c) => `${c.key} (${c.why})`).join("; ")}.\n` : "",

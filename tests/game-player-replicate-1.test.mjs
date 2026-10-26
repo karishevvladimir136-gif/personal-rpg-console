@@ -18,7 +18,7 @@ import {
 } from "../scripts/game-player-replicate-1/frozen.mjs";
 import { OPENROUTER_CHAT_URL, openrouterChat } from "../scripts/game-player-replicate-1/openrouter-chat.mjs";
 import {
-  heroMissOn, inspirationOf, moneyOf, rerollsOf, rowOf, slotsOf, swallowedOf, templesOf, verdictsP, within,
+  heroMissOn, inspirationOf, moneyOf, p6Of, rerollsOf, rowOf, slotsOf, swallowedOf, templesOf, verdictsP, within,
 } from "../scripts/game-player-replicate-1/score.mjs";
 import { REPLICATE, loadGroup1 } from "../scripts/game-player-replicate-1/run.mjs";
 import { reportMarkdown } from "../scripts/game-player-replicate-1/report.mjs";
@@ -232,6 +232,10 @@ test("P4's «within 20 %» and P5's nearest neighbours", () => {
   assert.equal(v.P4.holds, true, "group 2 equal to group 1 is within");
   assert.equal(v.P2.draws.money.g2.repeats, true);
   assert.equal(v.P0.holds, true);
+  // P6 (the planner's, after the fact): a group 2 equal to group 1 puts each player's two sessions at distance 0.
+  const p6 = p6Of({ g1, g2: g1.map((r) => ({ ...r })), ds });
+  assert.equal(p6.cells.length, 3);
+  assert.ok(p6.cells.every((c) => c.players.every((p) => p.own === 0)));
 });
 
 test("the report before the first paid call holds the pre-registration, the readings, the bets and the prompt hashes", () => {

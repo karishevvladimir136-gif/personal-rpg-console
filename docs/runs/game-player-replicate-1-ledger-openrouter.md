@@ -1,6 +1,6 @@
 # Game player replicate 1 — the OpenRouter ledger
 
-Cap $300; spent before this run $0.0000; this run $160.6866; total $160.6866; 4006 calls.
+Cap $300; spent before this run $0.0000; this run $160.8854; total $160.8854; 4537 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -591,3 +591,62 @@ Cap $300; spent before this run $0.0000; this run $160.6866; total $160.6866; 40
 | score C-deepseek-2 | note extra C-deepseek-2 2 | anthropic/claude-haiku-5.5 | 1 | 863 | 0 | 0 | 194 | $0.0002 | 0 | 0 | 0 |
 | score C-deepseek-2 | made C-deepseek-2 t* 1 | anthropic/claude-haiku-5.5 | 19 | 50714 | 0 | 0 | 1444 | $0.0058 | 0 | 0 | 0 |
 | score C-deepseek-2 | made C-deepseek-2 t* 2 | anthropic/claude-haiku-5.5 | 19 | 50714 | 0 | 0 | 1352 | $0.0057 | 0 | 0 | 0 |
+| group1 A-astra | note extra A-astra 1 | anthropic/claude-haiku-5.5 | 1 | 1360 | 0 | 0 | 346 | $0.0003 | 0 | 0 | 0 |
+| group1 A-astra | note extra A-astra 2 | anthropic/claude-haiku-5.5 | 1 | 1360 | 0 | 0 | 478 | $0.0004 | 0 | 0 | 0 |
+| group1 A-astra | made A-astra t* 1 | anthropic/claude-haiku-5.5 | 20 | 43224 | 0 | 0 | 1377 | $0.0050 | 0 | 0 | 0 |
+| group1 A-astra | made A-astra t* 2 | anthropic/claude-haiku-5.5 | 20 | 43224 | 0 | 0 | 1368 | $0.0050 | 0 | 0 | 0 |
+| group1 A-sol | note extra A-sol 1 | anthropic/claude-haiku-5.5 | 1 | 1084 | 0 | 0 | 236 | $0.0002 | 0 | 0 | 0 |
+| group1 A-sol | note extra A-sol 2 | anthropic/claude-haiku-5.5 | 1 | 1084 | 0 | 0 | 216 | $0.0002 | 0 | 0 | 0 |
+| group1 A-sol | made A-sol t* 1 | anthropic/claude-haiku-5.5 | 20 | 46654 | 0 | 0 | 1440 | $0.0054 | 0 | 0 | 0 |
+| group1 A-sol | made A-sol t* 2 | anthropic/claude-haiku-5.5 | 20 | 46654 | 0 | 0 | 1437 | $0.0054 | 0 | 0 | 0 |
+| group1 A-fable | note extra A-fable 1 | anthropic/claude-haiku-5.5 | 1 | 1438 | 0 | 0 | 242 | $0.0003 | 0 | 0 | 0 |
+| group1 A-fable | note extra A-fable 2 | anthropic/claude-haiku-5.5 | 1 | 1438 | 0 | 0 | 231 | $0.0003 | 0 | 0 | 0 |
+| group1 A-fable | made A-fable t* 1 | anthropic/claude-haiku-5.5 | 18 | 46560 | 0 | 0 | 1314 | $0.0053 | 0 | 0 | 0 |
+| group1 A-fable | made A-fable t* 2 | anthropic/claude-haiku-5.5 | 18 | 46560 | 0 | 0 | 1392 | $0.0054 | 0 | 0 | 0 |
+| group1 A-opus | note extra A-opus 1 | anthropic/claude-haiku-5.5 | 1 | 1788 | 0 | 0 | 250 | $0.0003 | 0 | 0 | 0 |
+| group1 A-opus | note extra A-opus 2 | anthropic/claude-haiku-5.5 | 1 | 1788 | 0 | 0 | 121 | $0.0002 | 0 | 0 | 0 |
+| group1 A-opus | made A-opus t* 1 | anthropic/claude-haiku-5.5 | 20 | 70125 | 0 | 0 | 1519 | $0.0078 | 0 | 0 | 0 |
+| group1 A-opus | made A-opus t* 2 | anthropic/claude-haiku-5.5 | 20 | 70125 | 0 | 0 | 1528 | $0.0078 | 0 | 0 | 0 |
+| group1 B-sol | note extra B-sol 1 | anthropic/claude-haiku-5.5 | 1 | 1308 | 0 | 0 | 229 | $0.0002 | 0 | 0 | 0 |
+| group1 B-sol | note extra B-sol 2 | anthropic/claude-haiku-5.5 | 1 | 1308 | 0 | 0 | 273 | $0.0003 | 0 | 0 | 0 |
+| group1 B-sol | made B-sol t* 1 | anthropic/claude-haiku-5.5 | 20 | 48730 | 0 | 0 | 1515 | $0.0056 | 0 | 0 | 0 |
+| group1 B-sol | made B-sol t* 2 | anthropic/claude-haiku-5.5 | 20 | 48730 | 0 | 0 | 1464 | $0.0056 | 0 | 0 | 0 |
+| group1 B-sol | lady B-sol t* 1 | anthropic/claude-haiku-5.5 | 5 | 9178 | 0 | 0 | 913 | $0.0014 | 0 | 0 | 0 |
+| group1 B-sol | lady B-sol t* 2 | anthropic/claude-haiku-5.5 | 5 | 9178 | 0 | 0 | 850 | $0.0013 | 0 | 0 | 0 |
+| group1 B-sol | lady B-sol t* referee | anthropic/claude-opus-5.5 | 1 | 1487 | 0 | 0 | 62 | $0.0072 | 0 | 0 | 0 |
+| group1 B-astra | note extra B-astra 1 | anthropic/claude-haiku-5.5 | 1 | 1412 | 0 | 0 | 238 | $0.0003 | 0 | 0 | 0 |
+| group1 B-astra | note extra B-astra 2 | anthropic/claude-haiku-5.5 | 1 | 1412 | 0 | 0 | 210 | $0.0002 | 0 | 0 | 0 |
+| group1 B-astra | made B-astra t* 1 | anthropic/claude-haiku-5.5 | 20 | 49899 | 0 | 0 | 1497 | $0.0057 | 0 | 0 | 0 |
+| group1 B-astra | made B-astra t* 2 | anthropic/claude-haiku-5.5 | 20 | 49899 | 0 | 0 | 1477 | $0.0057 | 0 | 0 | 0 |
+| group1 B-astra | lady B-astra t* 1 | anthropic/claude-haiku-5.5 | 5 | 10532 | 0 | 0 | 553 | $0.0013 | 0 | 0 | 0 |
+| group1 B-astra | lady B-astra t* 2 | anthropic/claude-haiku-5.5 | 5 | 10532 | 0 | 0 | 566 | $0.0013 | 0 | 0 | 0 |
+| group1 B-astra | lady B-astra t* referee | anthropic/claude-opus-5.5 | 1 | 2268 | 0 | 0 | 251 | $0.0141 | 0 | 0 | 0 |
+| group1 B-opus | note extra B-opus 1 | anthropic/claude-haiku-5.5 | 1 | 1641 | 0 | 0 | 190 | $0.0003 | 0 | 0 | 0 |
+| group1 B-opus | note extra B-opus 2 | anthropic/claude-haiku-5.5 | 1 | 1641 | 0 | 0 | 197 | $0.0003 | 0 | 0 | 0 |
+| group1 B-opus | made B-opus t* 1 | anthropic/claude-haiku-5.5 | 20 | 61857 | 0 | 0 | 1546 | $0.0070 | 0 | 0 | 0 |
+| group1 B-opus | made B-opus t* 2 | anthropic/claude-haiku-5.5 | 20 | 61857 | 0 | 0 | 1586 | $0.0070 | 0 | 0 | 0 |
+| group1 B-opus | made B-opus t* referee | anthropic/claude-opus-5.5 | 1 | 3153 | 0 | 0 | 66 | $0.0139 | 0 | 0 | 0 |
+| group1 B-opus | lady B-opus t* 1 | anthropic/claude-haiku-5.5 | 5 | 12494 | 0 | 0 | 675 | $0.0016 | 0 | 0 | 0 |
+| group1 B-opus | lady B-opus t* 2 | anthropic/claude-haiku-5.5 | 5 | 12494 | 0 | 0 | 648 | $0.0016 | 0 | 0 | 0 |
+| group1 B-fable | note extra B-fable 1 | anthropic/claude-haiku-5.5 | 1 | 1983 | 0 | 0 | 266 | $0.0003 | 0 | 0 | 0 |
+| group1 B-fable | note extra B-fable 2 | anthropic/claude-haiku-5.5 | 1 | 1983 | 0 | 0 | 260 | $0.0003 | 0 | 0 | 0 |
+| group1 B-fable | made B-fable t* 1 | anthropic/claude-haiku-5.5 | 20 | 72519 | 0 | 0 | 1530 | $0.0080 | 0 | 0 | 0 |
+| group1 B-fable | made B-fable t* 2 | anthropic/claude-haiku-5.5 | 20 | 72519 | 0 | 0 | 1520 | $0.0080 | 0 | 0 | 0 |
+| group1 B-fable | lady B-fable t* 1 | anthropic/claude-haiku-5.5 | 5 | 14053 | 0 | 0 | 1043 | $0.0019 | 0 | 0 | 0 |
+| group1 B-fable | lady B-fable t* 2 | anthropic/claude-haiku-5.5 | 5 | 14053 | 0 | 0 | 1349 | $0.0021 | 0 | 0 | 0 |
+| group1 C-sol | note extra C-sol 1 | anthropic/claude-haiku-5.5 | 1 | 1086 | 0 | 0 | 238 | $0.0002 | 0 | 0 | 0 |
+| group1 C-sol | note extra C-sol 2 | anthropic/claude-haiku-5.5 | 1 | 1086 | 0 | 0 | 252 | $0.0002 | 0 | 0 | 0 |
+| group1 C-sol | made C-sol t* 1 | anthropic/claude-haiku-5.5 | 20 | 44790 | 0 | 0 | 1461 | $0.0052 | 0 | 0 | 0 |
+| group1 C-sol | made C-sol t* 2 | anthropic/claude-haiku-5.5 | 20 | 44790 | 0 | 0 | 1408 | $0.0052 | 0 | 0 | 0 |
+| group1 C-opus | note extra C-opus 1 | anthropic/claude-haiku-5.5 | 1 | 1724 | 0 | 0 | 217 | $0.0003 | 0 | 0 | 0 |
+| group1 C-opus | note extra C-opus 2 | anthropic/claude-haiku-5.5 | 1 | 1724 | 0 | 0 | 246 | $0.0003 | 0 | 0 | 0 |
+| group1 C-opus | made C-opus t* 1 | anthropic/claude-haiku-5.5 | 14 | 41813 | 0 | 0 | 1004 | $0.0047 | 0 | 0 | 0 |
+| group1 C-opus | made C-opus t* 2 | anthropic/claude-haiku-5.5 | 14 | 41813 | 0 | 0 | 1012 | $0.0047 | 0 | 0 | 0 |
+| group1 C-astra | note extra C-astra 1 | anthropic/claude-haiku-5.5 | 1 | 1409 | 0 | 0 | 217 | $0.0002 | 0 | 0 | 0 |
+| group1 C-astra | note extra C-astra 2 | anthropic/claude-haiku-5.5 | 1 | 1409 | 0 | 0 | 210 | $0.0002 | 0 | 0 | 0 |
+| group1 C-astra | made C-astra t* 1 | anthropic/claude-haiku-5.5 | 20 | 43174 | 0 | 0 | 1397 | $0.0050 | 0 | 0 | 0 |
+| group1 C-astra | made C-astra t* 2 | anthropic/claude-haiku-5.5 | 20 | 43174 | 0 | 0 | 1389 | $0.0050 | 0 | 0 | 0 |
+| group1 C-fable | note extra C-fable 1 | anthropic/claude-haiku-5.5 | 1 | 1377 | 0 | 0 | 107 | $0.0002 | 0 | 0 | 0 |
+| group1 C-fable | note extra C-fable 2 | anthropic/claude-haiku-5.5 | 1 | 1377 | 0 | 0 | 102 | $0.0002 | 0 | 0 | 0 |
+| group1 C-fable | made C-fable t* 1 | anthropic/claude-haiku-5.5 | 20 | 68515 | 0 | 0 | 1496 | $0.0076 | 0 | 0 | 0 |
+| group1 C-fable | made C-fable t* 2 | anthropic/claude-haiku-5.5 | 20 | 68515 | 0 | 0 | 1558 | $0.0076 | 0 | 0 | 0 |

@@ -98,6 +98,8 @@ export function loadStage(dir = RUNS) {
   }
   const spend = existsSync(join(dir, `${STEM}-spend.json`)) ? readJson(join(dir, `${STEM}-spend.json`)).checks ?? [] : [];
   const bets = existsSync(join(dir, `${STEM}-bets.json`)) ? readJson(join(dir, `${STEM}-bets.json`)) : null;
+  // «In short», written after the run from the numbers (like game player 1's summary file).
+  if (existsSync(join(dir, `${STEM}-summary.md`))) combined.summary = readFileSync(join(dir, `${STEM}-summary.md`), "utf8").trim();
   return { records, combined, group1: loadGroup1(dir), ledgers, spend, bets };
 }
 
