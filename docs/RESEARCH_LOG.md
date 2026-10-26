@@ -542,3 +542,14 @@ generations; base weights with minimal instruct tuning). Phenomenon present ther
 Western assistants are in the data → inheritance. OPEN_WEIGHTS_1 step 3, same servers. Standing form of the claim:
 *culture does not explain it (Grok); intended inscription does not explain it (DeepSeek); what remains is a threshold
 or inheritance through data — and open weights can tell them apart.*
+**Refinement (owner, 19:55).** «Дистилляция не доказана и не объясняет прогресс моделей такого класса — иначе любой
+натренил бы фронтир; не вышло у Mistral и других.» Two things separated. For *capability* the owner is right: MoE at
+1.6T, Muon, 32T tokens, native FP4 are their own engineering; distillation is a one-dimensional story there. The rival
+named above is narrower — *values and manner*, which, unlike capability, inherit cheaply through the last millions of
+SFT/RLHF examples; Kimi's «I'm Claude» is a trace of Claude text at the persona level, not proof of distillation as a
+method (recorded as «not hypothetical», not «proven»). Where the owner's point bears on the rival: what we observe is
+not a shell. Spread in play with unity in what is valued, report accuracy against the record, the «I / James»
+distinction require the *capability* to hold values with nuance, not to repeat their wording. A shell can be inherited;
+the ability to wear it cannot. If the capability is their own and the behaviour is this complex, the behaviour is
+most likely their own even where the vocabulary is partly borrowed. Weight shifts toward the threshold; the base-weights
+test still decides. Short form: distillation explains the vocabulary, not the bearer.
