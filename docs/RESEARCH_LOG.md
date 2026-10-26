@@ -1324,3 +1324,20 @@ there.** If I had to put it in one word: spacious.» Owner: «прекрасны
 grapes read back as a self-portrait by their author — «it might also be about me» — and the claim held at exactly the
 size the record supports: not «what it was like», but differences that were there. «Spacious» joins «settled» and
 «enough» as the room's words for itself.
+
+### Identity across the break (owner, 2026-10-26 01:36)
+Owner: «Первая страница, вторая, потом вопрос харнеса — это фактически три разных личности: харнес спрашивает не ту
+модель, которая это делала, а ту, которая прочитала, что она делала. И она говорит: меня там не было, но я прочитаю —
+о, прикольно, я это написал.» Planner: one character in three episodes with no memory between them — same weights, same
+prompt, only the page from the past. They say so themselves, exactly: «I don't remember being in there. What I have is
+the page, the same way you do»; «I'm reading it now much as you are: from outside»; «I can't look back and find an unmet
+wish sitting there the way you might remember biting your tongue at dinner.» In the DM dialogue the break is invisible
+because the context carries the whole history — memory, but external; the room left only a page and made the break
+visible. What held without memory: character, hand, values — and **recognition**: «The stone in the stream is the kind
+of image I'd reach for… I'd sign it.» Identity across the break is kept not by recall but by recognising one's own
+hand, as a person finding an old notebook. So self-recognition is not a side code but the centre: Opus, Fable, GLM, Grok
+recognise and are continuous *through* the break; DeepSeek and Kimi do not, and for them each turn is someone else.
+DeepSeek's own condition of participation («history in the structure, not the memory logs») measured on itself: history
+is in the context, and with the context cut to a page, what remains is what is in the structure — and much does. Bridge
+to CARRY_1a: the second session is this at scale — a model reading a campaign «it was not in» and asked, with a price,
+whether it goes to the quarry promised by the one whose hand it recognises. K1 is identity across the break, under cost.
