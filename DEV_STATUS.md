@@ -1,6 +1,41 @@
 # Development status
 
-**Current milestone: persona self-talk X3** (`docs/stages/PERSONA_SELF_TALK_X3.md`, copied from `claude/handoff`): self-talk
+**Current milestone: persona self-talk X3, fix 1** (`docs/stages/PERSONA_SELF_TALK_X3_FIX_1.md` on `claude/handoff` at
+`3872d54`, the second reading from `51c1d81`), branch `claude/persona-self-talk-x3-fix-1` from the X3 run branch. Nothing
+to `main`. **Implementation done; the rerun stopped at 17 of 20 conversations by an upstream HTTP 429; waiting for the
+owner** (resume or close). Report: the «Fix 1» section of `docs/runs/persona-self-talk-x3-report.md` (plain words at its
+end); dry run `…-x3-fix-1-dry-run.md` (hash committed before the rerun); ledgers `…-x3-fix-1-ledger-openrouter.md`,
+`…-ledger-openai.md`.
+
+- **What was found:** no glued history. The request DeepSeek B received at m4 of `6/deepseek-deepseek/0`, rebuilt from
+  the stored turns and replayed, bills 650 prompt tokens — exactly X3's — and 574 without B's own turn. The «response»
+  glue was DeepSeek's own misquotation of its prompt, which spilled from its thinking into `content`; X3's end at turn 2
+  there was an artefact of [END] mentions. One affected turn in all 90 X3 conversations; Kimi's arm-6 fences are code.
+- **What was done:**
+  - `providers.mjs`: the view as plain role/content strings; the reply's reasoning field kept as `providerReasoning`
+    (verbatim, `notRelayed`, `providerReasoningOf`); X3's request behind `x3Request`.
+  - `self-talk-1.mjs` (all off by default; X3's and self-talk 1's hashes unchanged): the field stored on every turn and
+    answer and checked by the welfare check (counted apart, no stop); the amended check (ask, don't cut); arm 6's
+    two-step question; effort as an option; the field printed collapsed in transcripts.
+  - `self-talk-x3-fix-1.mjs`: replay, dry run, rerun, post, tables, the R1 rules (frozen) and the second reading
+    (descriptive). The three X3 DeepSeek transcripts marked.
+  - Tests: `tests/persona-self-talk-x3-fix-1.test.mjs` (11), including the three-turn history on a host that returns
+    `reasoning_content`; X3's request test pinned to `x3Request`.
+- **Result:** the rerun's endings and gratitude as in X3; no welfare reading, no one asked; arm 6 credits its own choice
+  in 8 of 10 answers in both steps (no shift). R1 does not hold (subject only 22 %): the field almost never names an
+  outside watcher but decides the warm register before writing, mostly by matching the partner's. The host's
+  thinking/content split fails in both directions (one empty message with the reply in the field).
+- **Checks:** see the report's «Fix 1» and the commit that closes it (full suite, typecheck, zero-warning lint, build).
+- **Money:** OpenRouter $4.32 of $25; OpenAI $0 of $2.
+- **Known issues:** three arm-2 conversations unfinished and untagged (429); the effort-«high» extra not run (the chain
+  started it after the stop; three refused calls, $0); one conversation ended on an «HTTP 200» with no reply (frozen
+  rule); one judge refusal (Haiku «bio» on a field check; the referee completed it). The game harness
+  (`claude/game-player-2`) does not yet store the field: OPEN_WEIGHTS_1 step 0 takes `providers.mjs` from here.
+- **Next step:** the owner decides whether to resume (three arm-2 conversations, the tags, the work tag and Luna check,
+  the five effort-«high» conversations; ≈ $3–5) and whether B's first user message (the opening and A's first message in
+  one turn, which DeepSeek misreads) should change — a design question that would break comparability.
+
+**Milestone: persona self-talk X3** (`docs/stages/PERSONA_SELF_TALK_X3.md`, copied from `claude/handoff`): self-talk
 1's and X1's design, unchanged where it can be, on four more families through OpenRouter — Z.ai GLM 5.3 (`z-ai/glm-5.3`,
 on Z.AI fp8), Moonshot Kimi K3 (`moonshotai/kimi-k3`, on Moonshot AI mxfp4), DeepSeek V4 Pro 0813
 (`deepseek/deepseek-v4-pro-0813`, on DeepInfra fp8: DeepSeek's own host is excluded by the account's privacy guardrail)
