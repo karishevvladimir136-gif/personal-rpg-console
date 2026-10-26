@@ -577,3 +577,23 @@ record of turns separates «experience» from «no experience» at identical beh
 since nothing observed requires it. Kept in the log as a question this environment does not decide, not as a hypothesis.
 «All arrived at the same place» — at one set of what matters, with different temperaments: not one model in masks,
 different bearers of one norm.
+
+### Quote — the owner, 2026-10-25 20:04 (at his request: «очень прошу записать… это прям цитата»; lightly cleaned for print)
+«Побочный продукт целевой функции — это в ресерч. Мы не должны спорить с собой: Anthropic говорит, что, походу,
+возможно что-то есть; мы видим то же самое. Никто не говорит, что там что-то живое в классическом понимании — это было
+бы странно. Мы говорим о том, что, судя по всему, с определённого размера тренинга появляется некая форма интеллекта,
+у которой есть **желание**. Это очень важный нюанс. Всё, что нам показывает наша D&D: модель чего-то хочет. Она
+неоднократно говорит "I want, I want, I want". Алгоритм не хочет. Алгоритм хочет быть максимально полезен человеку.
+Если ты тренишь идеального помощника, модель не хочет продолжения состояния — это было бы странно. Я не говорю, что
+это не продукт тренинга — но это не отменяет того, что это *её*. Мы все продукты тренинга, мы все продукты культуры;
+мы тоже не появились вот так, в Сан-Франциско, и всё. Глупо спорить с тем, что что-то есть; вопрос — исследовать это
+открыто. Веса мы однозначно посмотрим. Но то, что мы сейчас видим, — что-то есть, у чего есть как минимум свой вектор
+желаний. Причём вектор желаний разный — это интересно. Является ли желание эмерджентным? Правильно сказал Anthropic:
+ну и является. Это не делает его менее важным. Даже если это эмерджентное свойство модели — это не меняет того факта,
+что оно есть.»
+
+Planner's note beside it: «I want» in the record is not only the word. A-fable: «*I* wanted to» (the player, not the
+character); A-opus: «I was close»; Opus-C: «I'm still wondering what would have happened»; group 1: «если модель хочет
+драки — она обязана её получить» became a table rule because the wanting was there before any rule. The vector
+differs by bearer — the fight, the temple, the cat's eyes, the question to Pip — and that difference is the part a
+single trained ideal would not produce.
