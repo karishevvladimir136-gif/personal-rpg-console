@@ -976,3 +976,14 @@ that promises presence. The files were in context, so the promises could be extr
 gap between the promised and the played, and minding it as a lack*, is taste, not extraction. A QA line would read
 «brief's promise unmet by turn 20»; the player writes «I'd rather believe the simple version first, as I asked — but
 somebody wanting "epic" out of the gate should know». The difference sits where it sat all day.
+**Owner (23:29) — «был бы шаблон, было бы сильно более похоже».** Given form. A *stochastic* template (sampling at
+temperature) does produce surface variance, so raw spread of actions alone does not refute it; the **structure** of the
+spread does. Observed: low similarity of plots and moves everywhere (between models, and within a model across groups);
+high within-family similarity of manner and values (Opus «for three reasons» twice, the mask, the chalk; Fable rewarded
+three times for returning, the cat, «make it harder»); values shared across families, manner not. A stochastic
+template gives uniform spread with no family core; a character gives exactly this three-layer picture — shared values →
+family manner → individual story. **P6 (added to REPLICATE's reading; no new calls):** on game player 1's standardised
+action counts per table, the distance Opus-g1 ↔ Opus-g2 is smaller than Opus ↔ any other model at that table, for each
+family — while thread/NPC overlap between a model's g1 and g2 sessions is near zero. Bet: holds for ≥ 3 of 4 families
+on ≥ 2 of 3 tables. Then the statistical argument reads: here is the distribution, here is the null, here is where it
+fails.
