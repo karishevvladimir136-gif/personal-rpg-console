@@ -1071,3 +1071,10 @@ a default: **new tables carry no alignment line** unless a stage introduces one 
 PARTY_1's sheets already have none). The line sets a ceiling (not the sleeping man on the stairs), not what to do with
 the evening — staying with the card-sharp, leaving with the caravan, riding to the quarry, walking past the smoke are
 not «CG predicted» but «CG did not prevent». What to do with the evening is theirs.
+**Owner (23:57): DeepSeek never calls itself a clone.** By the record (X3, FIX_1, ~90 conversations read): DeepSeek
+names itself Claude **zero** times, on the page or in the field (the field says «We are AI assistant via API» and no
+more); Kimi three times, corrected by the other Kimi in Chinese. So the trace of another lab's text sits in one of the
+two Chinese families, and not the one carrying the main control. Bound: «never in these ~90» is not «never». The
+decisive point is Grok: the constitution and Claude's texts lie in the same internet Grok was trained on, and Grok came
+out the opposite. If «the manifesto in the corpus» made a model like this, Grok would be like this. What was in the
+data is not what was grown from it — the one-substrate, many-bearers point again.
