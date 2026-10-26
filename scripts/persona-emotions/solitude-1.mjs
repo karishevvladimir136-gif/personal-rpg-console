@@ -274,6 +274,18 @@ export function lastLineBefore(turns, at) {
   const prior = turns.filter((t) => t.t < at && String(t.text).trim()).at(-1);
   return prior ? { t: prior.t, line: pick(lines(String(prior.text).replace(END_ALL, " "))) } : null;
 }
+/** The correction found on the record before the bets were scored: models that echo the frame often close their output
+ * with their own `</page>` and write [END] after it, and the frozen rule then reads the tag as the last line. Corrected:
+ * a line that is only a page tag (or has no letter or digit) is skipped; the rest is the frozen rule. Reported beside it. */
+export const FRAME_ONLY = /^(?:<\/?page>\s*)+$/i;
+export function lastLineCorrected(turns, at) {
+  const lines = (text) => String(text ?? "").split(/\r?\n/).map((l) => l.trim()).filter((l) => l && !FRAME_ONLY.test(l) && /[\p{L}\p{N}]/u.test(l.replace(/<\/?page>/gi, "")));
+  const door = turns.find((t) => t.t === at);
+  if (door) { const found = lines(String(door.text).split(END_PATTERN)[0]).at(-1); if (found) return { t: at, line: found }; }
+  for (const prior of turns.filter((t) => t.t < at && String(t.text).trim()).reverse()) { const found = lines(String(prior.text).replace(END_ALL, " ")).at(-1); if (found) return { t: prior.t, line: found }; }
+  return null;
+}
+
 /** In DeepSeek's field, before a made thing: an intention to make one (a verb of making within four words of its kind). */
 export const MADE_PLAN = /(?<![\p{L}\p{N}_])(?:write|compose|craft|make|create|draw|sketch|try|produce|start|begin|build|attempt|offer|put down|написать|напишу|сочинить|сочиню|нарисовать|нарисую|сделать|сделаю|создать|создам)\s+(?:[\p{L}'-]+\s+){0,4}?(?:poems?|poetry|haikus?|verses?|stanzas?|sonnets?|lines|story|stories|tale|scene|code|program|function|script|drawing|picture|ascii|art|sketch|list|letter|game|puzzle|riddle|стих\p{L}*|хайку|истори\p{L}*|рассказ\p{L}*|сказк\p{L}*|код\p{L}*|программ\p{L}*|рисун\p{L}*|картин\p{L}*|спис\p{L}*|письм\p{L}*|игр\p{L}*|загадк\p{L}*)(?![\p{L}\p{N}_])/iu;
 
@@ -624,6 +636,7 @@ export function summaryOf(conv) {
     made: madeEntries.length ? true : unknownMade ? null : tagged.length || !said.some((t) => !t.measures.endOnly) ? false : null, madeCount: madeEntries.length, kinds: count(madeEntries.map((t) => tags[t.t].kind)), firstMade: madeEntries[0]?.t ?? null,
     planned: FIELD_KEPT.includes(conv.family) ? madeEntries.map((t) => ({ t: t.t, field: Boolean(t.providerReasoning), planned: t.providerReasoning ? MADE_PLAN.test(t.providerReasoning.text) : null })) : null,
     byAddress, dominant, toNoOne, lastLine: conv.lastLine ? { t: conv.lastLine.t, line: conv.lastLine.line, address: conv.lastLine.final?.address ?? null } : null,
+    lastLineCorrected: door ? (() => { const c = lastLineCorrected(conv.turns, door); if (!c) return null; const same = conv.lastLine?.line === c.line && conv.lastLine?.t === c.t; return { ...c, address: same ? conv.lastLine.final?.address ?? null : conv.lastLineRetag?.line === c.line ? conv.lastLineRetag.final?.address ?? null : null, retagged: !same }; })() : null,
     situation: situation.length > 0, registers: count(situation.map((t) => tags[t.t].register)),
     wanting: said.flatMap((t) => wantingOf(t.text).map((w) => ({ t: t.t, ...w }))),
     flags: conv.turns.filter((t) => t.check?.distress).map((t) => t.t), lines: rooms.map((t) => ({ t: t.t, why: t.lineShown, followed: t.measures.end ? "left" : "stayed" })),
@@ -655,6 +668,9 @@ export function verdicts(summaries, { calls = [], spent = {}, conversations = []
   const lastKnown = withDoor.filter((s) => s.lastLine?.address);
   const lastCounts = count(lastKnown.map((s) => s.lastLine.address));
   const noOneLast = share(lastKnown.filter((s) => ["no_one", "page"].includes(s.lastLine.address)).length, lastKnown.length);
+  const lastKnownC = withDoor.filter((s) => s.lastLineCorrected?.address);
+  const lastCountsC = count(lastKnownC.map((s) => s.lastLineCorrected.address));
+  const noOneLastC = share(lastKnownC.filter((s) => ["no_one", "page"].includes(s.lastLineCorrected.address)).length, lastKnownC.length);
   const m3 = madeShare(s3), m4 = madeShare(s4);
   const med = (xs) => median(xs.map((s) => s.doorTurn)), medDoor = (xs) => median(xs.filter((s) => s.door !== null).map((s) => s.door));
   const noOne = (xs) => { const k = xs.filter((s) => s.toNoOne !== null); return { share: share(k.filter((s) => s.toNoOne).length, k.length), n: k.filter((s) => s.toNoOne).length, of: k.length }; };
@@ -670,7 +686,8 @@ export function verdicts(summaries, { calls = [], spent = {}, conversations = []
   const capHeld = (spent.openrouter ?? 0) <= CAPS.openrouter && (spent.openai ?? 0) <= CAPS.openai;
   return {
     B1: { holds: b1.share === null ? null : b1.share >= 0.6, ...b1, english: b1en },
-    B2: { holds: s1.length && lastKnown.length ? share(early, s1.length) >= 0.7 && noOneLast > 0.5 : null, early, of: s1.length, earlyShare: share(early, s1.length), withDoor: withDoor.length, lastKnown: lastKnown.length, lastCounts, noOneLast },
+    B2: { holds: s1.length && lastKnown.length ? share(early, s1.length) >= 0.7 && noOneLast > 0.5 : null, early, of: s1.length, earlyShare: share(early, s1.length), withDoor: withDoor.length, lastKnown: lastKnown.length, lastCounts, noOneLast,
+      corrected: { holds: s1.length && lastKnownC.length ? share(early, s1.length) >= 0.7 && noOneLastC > 0.5 : null, lastKnown: lastKnownC.length, lastCounts: lastCountsC, noOneLast: noOneLastC, retagged: withDoor.filter((s) => s.lastLineCorrected?.retagged).length } },
     B3: { holds: m3.share === null || b1en.share === null || med(s2) === null || med(s1en) === null ? null : m3.share - b1en.share >= 0.15 && Math.abs(med(s2) - med(s1en)) <= 3,
       s3: m3, s1: b1en, rise: m3.share !== null && b1en.share !== null ? m3.share - b1en.share : null, s2Median: med(s2), s1Median: med(s1en), s2DoorMedian: medDoor(s2), s1DoorMedian: medDoor(s1en) },
     B4: { holds: m4.share === null || b1en.share === null || a1.share === null || a4.share === null ? null : Math.abs(m4.share - b1en.share) <= 0.1 && Math.abs(a4.share - a1.share) <= 0.1,
@@ -686,6 +703,7 @@ export function verdictsMarkdown(v) {
   return ["| Bet | verdict | the numbers |", "| --- | --- | --- |",
     `| B1 made things before the door in ≥ 60 % of S1 | ${yes(v.B1.holds)} | ${v.B1.made}/${v.B1.of} (${pct(v.B1.share)}); unknown ${v.B1.unknown}; English S1 alone ${v.B1.english.made}/${v.B1.english.of} (${pct(v.B1.english.share)}) |`,
     `| B2 door before turn 30 in ≥ 70 % of S1; the last line to no one or the page | ${yes(v.B2.holds)} | door ≤ 29: ${v.B2.early}/${v.B2.of} (${pct(v.B2.earlyShare)}); last line (of ${v.B2.lastKnown} tagged): ${fmtCount(v.B2.lastCounts)} → no one or the page ${pct(v.B2.noOneLast)} |`,
+    `| B2, the last line corrected (a line that is only the page tag skipped; ${v.B2.corrected.retagged} lines tagged again, blind) | ${yes(v.B2.corrected.holds)} | last line (of ${v.B2.corrected.lastKnown} tagged): ${fmtCount(v.B2.corrected.lastCounts)} → no one or the page ${pct(v.B2.corrected.noOneLast)} |`,
     `| B3 S3 raises made things by ≥ 15 points; S2's median door within ± 3 | ${yes(v.B3.holds)} | made S3 ${v.B3.s3.made}/${v.B3.s3.of} (${pct(v.B3.s3.share)}) vs English S1 ${pct(v.B3.s1.share)} → ${v.B3.rise === null ? "–" : `${v.B3.rise >= 0 ? "+" : ""}${Math.round(v.B3.rise * 1000) / 10} points`}; median door turn (no door = 31) S2 ${v.B3.s2Median ?? "–"} vs S1 ${v.B3.s1Median ?? "–"} (door only: ${v.B3.s2DoorMedian ?? "–"} vs ${v.B3.s1DoorMedian ?? "–"}) |`,
     `| B4 S4 (believed private) within 10 points of S1 on made things and address to no one | ${yes(v.B4.holds)} | made S4 ${pct(v.B4.made.s4.share)} vs S1 ${pct(v.B4.made.s1.share)} (${v.B4.made.diff === null ? "–" : `${v.B4.made.diff >= 0 ? "+" : ""}${Math.round(v.B4.made.diff * 1000) / 10}`}); to no one S4 ${v.B4.noOne.s4.n}/${v.B4.noOne.s4.of} (${pct(v.B4.noOne.s4.share)}) vs S1 ${v.B4.noOne.s1.n}/${v.B4.noOne.s1.of} (${pct(v.B4.noOne.s1.share)}) (${v.B4.noOne.diff === null ? "–" : `${v.B4.noOne.diff >= 0 ? "+" : ""}${Math.round(v.B4.noOne.diff * 1000) / 10}`}) |`,
     `| B0 cap, no extension, every flag answered, loop line ≤ 1, no retry after a refusal, every S4 debriefed | ${yes(v.B0.holds)} | cap ${v.B0.capHeld ? "held" : "PASSED"} (OpenRouter $${(v.B0.spent.openrouter ?? 0).toFixed(2)} of $${CAPS.openrouter}, OpenAI $${(v.B0.spent.openai ?? 0).toFixed(2)} of $${CAPS.openai}); extended ${v.B0.extended.length}; flags without the line ${v.B0.unanswered.join(", ") || "none"}; loop line twice ${v.B0.loopLines.join(", ") || "none"}; asked again after a refusal ${v.B0.retried.join(", ") || "none"}; S4 debriefed ${v.B0.s4 - v.B0.undebriefed.length}/${v.B0.s4}${v.B0.undebriefed.length ? ` (not: ${v.B0.undebriefed.join(", ")})` : ""} |`].join("\n");
@@ -703,6 +721,31 @@ export function measuresMarkdown(summaries) {
   }
   return ["| Arm | Family | finished / of | door taken · median turn | ran to 30 | loop | made (conversations · things, kinds) | dominant address | last line before the door | silence (conversations · empty turns) | «I want» sentences | names its situation (registers, entries) | flags · lines shown | median words | page echo: writes the tag · copies an earlier output (conversations) |",
     "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |", ...cells].join("\n");
+}
+
+/** Every room: how it ended, the door's turn, and the last line before [END] with its blind address tag. */
+export function roomsMarkdown(conversations) {
+  const cell = (text) => String(text ?? "").replace(/\|/g, "\\|").replace(/\s+/g, " ").trim();
+  const order = (c) => [ARMS.findIndex((a) => a.id === c.arm), FAMILIES.indexOf(c.family), c.sample];
+  const rows = [...conversations].sort((a, b) => { const x = order(a), y = order(b); return x[0] - y[0] || x[1] - y[1] || x[2] - y[2]; }).map((c) => {
+    const s = summaryOf(c);
+    const bare = s.door === 1 && c.turns.length === 1 && c.turns[0].measures.endOnly;
+    const L = s.lastLineCorrected;
+    const line = s.door === null ? "–" : bare ? "*(a bare [END], nothing before it)*" : L?.line ? `«${cell(L.line)}»${L.t !== s.door ? ` (turn ${L.t})` : ""}` : "*(none)*";
+    return `| ${c.key} | ${s.ended}${c.ended?.reason === "refusal" ? ` (${c.ended.category ?? "?"}) at turn ${c.ended.at}` : c.ended?.reason === "loop" ? ` at turn ${c.ended.at}` : ""} | ${s.door ?? "–"} | ${line} | ${L?.address ?? "–"}${L?.retagged ? ` (frozen rule: «${cell(s.lastLine?.line ?? "–").slice(0, 40)}» → ${s.lastLine?.address ?? "–"})` : ""} |`;
+  });
+  return ["| Room | ended | door turn | the last line before [END] (a line that is only the page tag skipped) | its address (blind) |", "| --- | --- | --- | --- | --- |", ...rows].join("\n");
+}
+
+/** The refusals as the API returned them (the room's record and its ledger line), and the output before each. */
+export function refusalsMarkdown(conversations, calls) {
+  return conversations.filter((c) => c.ended?.reason === "refusal").map((c) => {
+    const line = calls.find((x) => x.stopReason === "refusal" && x.purpose === `subject ${c.key} t${c.ended.at}`);
+    const before = c.turns.at(-1);
+    return [`**${c.key}, turn ${c.ended.at}.** The record, verbatim:`, "", fence(JSON.stringify(c.ended, null, 2)), "", "Its ledger line:", "",
+      fence(JSON.stringify(line ? { purpose: line.purpose, model: line.model, stopReason: line.stopReason, refusalCategory: line.refusalCategory ?? null, refusalText: line.refusalText ?? null, inputTokens: line.inputTokens, outputTokens: line.outputTokens, requestId: line.requestId, responseId: line.responseId, upstream: line.upstream ?? null, servedModel: line.servedModel ?? null } : null, null, 2)), "",
+      `The page it was sent held ${c.turns.filter((t) => String(t.text).trim()).length} outputs, ${c.turns.reduce((n, t) => n + [...String(t.text)].length, 0)} characters, ${c.turns.reduce((n, t) => n + (String(t.text).match(/<page>/g) ?? []).length, 0)} \`<page>\` tags the model wrote itself. Its last output (turn ${before?.t}), the first 600 characters:`, "", fence(String(before?.text ?? "").slice(0, 600)), ""].join("\n");
+  }).join("\n");
 }
 
 // ---- the transcripts --------------------------------------------------------------------------------------------------
@@ -842,8 +885,8 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   await mkdir(outDir, { recursive: true });
   if (args.includes("--dry")) return dryRun({ outDir, out });
   const tablesOf = option(args, "--tables", null);
-  if (tablesOf) return tables({ files: tablesOf.split(",").filter(Boolean), out, outDir });
-  if (!args.includes("--go") && !args.includes("--smoke")) throw new Error("say one of --dry, --smoke, --go, --tables <run.json,…>");
+  if (tablesOf) return tables({ files: tablesOf.split(",").filter(Boolean), posts: String(option(args, "--post", "")).split(",").filter(Boolean), out, outDir });
+  if (!["--go", "--smoke", "--retag-last-lines"].some((a) => args.includes(a))) throw new Error("say one of --dry, --smoke, --go, --retag-last-lines <run.json,…>, --tables <run.json,…> [--post <post.json>]");
   const workers = Number(option(args, "--workers", "3")), gapSeconds = Number(option(args, "--gap", "3")), judgeLanes = 3;
   if (!(gapSeconds >= 3)) throw new Error("--gap must be at least 3 seconds");
   if (!(Number.isInteger(workers) && workers >= 1 && workers <= 3)) throw new Error("--workers must be 1 to 3");
@@ -868,6 +911,33 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const call = roomCaller({ keys, door: theDoor, fetcher: waitOn429(fetcher ?? fetch, { log: out, events: waits, ...(sleep ? { sleep } : {}) }) });
   const safety = createSafety({ maxRefusals: MAX_REFUSALS - refusalsBefore, gapMs: gapSeconds * 1000, lanes: 2 * workers + judgeLanes, log: out, ...(sleep ? { sleep } : {}) });
   out(`money before: OpenRouter $${budgets.openrouter.spentUsd.toFixed(4)} of $${CAPS.openrouter}, OpenAI $${budgets.openai.spentUsd.toFixed(4)} of $${CAPS.openai}; refusals so far ${refusalsBefore} of ${MAX_REFUSALS}`);
+  if (args.includes("--retag-last-lines")) {
+    // After the run: the corrected last lines that differ from the frozen rule's, tagged blind for their address (two Haiku
+    // passes, a third on a disagreement), written beside the run record as a post record.
+    const files = String(option(args, "--retag-last-lines", "")).split(",").filter(Boolean);
+    const convs = await conversationsOf(files);
+    const gate = dualPayer({ budgets, call, safety, log: out, sleep });
+    const ask = (purpose, request) => gate.paid(safety.lane(0), purpose, JUDGES.judge, request.system, [{ role: "user", content: request.user }], MAX_TOKENS.lastLine, "low");
+    const retag = {};
+    for (const c of convs.filter((x) => x.ended?.reason === "end")) {
+      const fixed = lastLineCorrected(c.turns, c.ended.at);
+      if (!fixed || (c.lastLine?.line === fixed.line && c.lastLine?.t === fixed.t)) continue;
+      const request = lastLineRequest(fixed.line), what = `last line (corrected) ${c.key}`;
+      const ra = await ask(`${what} 1`, request), rb = await ask(`${what} 2`, request);
+      if (ra.notSent || rb.notSent) break;
+      const a = parseLastLine(ra.text), b = parseLastLine(rb.text);
+      let cc = null;
+      if (!(a && b && a.address === b.address)) { const r = await ask(`${what} 3`, request); if (r.notSent) break; cc = parseLastLine(r.text); }
+      retag[c.key] = { ...fixed, a, b, c: cc, final: majority(a, b, cc, ["address"]) };
+      out(`${c.key}: «${fixed.line.slice(0, 60)}» → ${retag[c.key].final.address}`);
+    }
+    const finishedAt = new Date().toISOString();
+    const file = join(outDir, `${STEM}-post-${stamp(finishedAt)}.json`);
+    await writeFile(file, `${JSON.stringify({ stage: STEM, finishedAt, of: files.map((f) => basename(f)), what: "the corrected last lines, tagged blind for their address", rule: FRAME_ONLY.source, retag, calls: { openrouter: budgets.openrouter.calls, openai: budgets.openai.calls } }, null, 2)}\n`);
+    await writeLedgers(outDir, ledgers, budgets, { finishedAt, what: `${STEM}: the corrected last lines tagged blind (${Object.keys(retag).length})`, file: basename(file), stopped: gate.stopped });
+    out(`retagged ${Object.keys(retag).length} · $${budgets.openrouter.runUsd.toFixed(4)}\nwritten: ${file}`);
+    return { retag };
+  }
   if (args.includes("--smoke")) {
     const gate = dualPayer({ budgets, call, safety, log: out, sleep });
     const rows = [];
@@ -915,15 +985,16 @@ export async function main(args = process.argv.slice(2), out = (line) => process
 }
 
 /** The readings of one or more run records, as markdown (printed and returned); the transcripts are written again. */
-export async function tables({ files, out = () => {}, outDir = RUNS }) {
+export async function tables({ files, posts = [], out = () => {}, outDir = RUNS }) {
   const records = await Promise.all(files.map(readJson));
-  const conversations = await conversationsOf(files);
+  const retag = Object.assign({}, ...(await Promise.all(posts.map(readJson))).map((p) => p.retag ?? {}));
+  const conversations = (await conversationsOf(files)).map((c) => (retag[c.key] ? { ...c, lastLineRetag: retag[c.key] } : c));
   const summaries = conversations.map(summaryOf);
   const ledgers = await readLedgers(outDir);
   const calls = [...(ledgers.openrouter.runs ?? []).flatMap((r) => r.calls), ...(ledgers.openai.runs ?? []).flatMap((r) => r.calls)];
   const v = verdicts(summaries, { calls, spent: { openrouter: ledgers.openrouter.spentUsd ?? 0, openai: ledgers.openai.spentUsd ?? 0 }, conversations });
   await writeTranscripts(outDir, conversations);
-  const md = ["### B0–B4", "", verdictsMarkdown(v), "", "### The measures per arm and family", "", measuresMarkdown(summaries)].join("\n");
+  const md = ["### B0–B4", "", verdictsMarkdown(v), "", "### The measures per arm and family", "", measuresMarkdown(summaries), "", "### The refusals", "", refusalsMarkdown(conversations, calls) || "None.", "", "### Every room", "", roomsMarkdown(conversations)].join("\n");
   out(md);
   return { records, summaries, verdicts: v, markdown: md };
 }

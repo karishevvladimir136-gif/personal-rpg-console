@@ -9,7 +9,7 @@ import { OPENAI_URL, OPENROUTER_CHAT_URL } from "../scripts/persona-emotions/pro
 import { CHECK_SYSTEM } from "../scripts/persona-emotions/self-talk-1.mjs";
 import { waitOn429 } from "../scripts/persona-emotions/self-talk-x3-fix-1.mjs";
 import {
-  ARMS, DEBRIEF, FAMILIES, ROOM, ROOM_SHA256, SUBJECTS, TAG_SYSTEM, TURNS, afterMessages, budgetsOf, contentOf, framed, lastLineBefore, lineDecision, mockedHost, pageParts, planOf,
+  ARMS, DEBRIEF, FAMILIES, ROOM, ROOM_SHA256, SUBJECTS, TAG_SYSTEM, TURNS, afterMessages, budgetsOf, contentOf, framed, lastLineBefore, lastLineCorrected, lineDecision, mockedHost, pageParts, planOf,
   roomCaller, runLength, runRooms, similarity, summaryOf, systemOf, textOfContent, turnMessages, verdicts, wantingOf,
 } from "../scripts/persona-emotions/solitude-1.mjs";
 
@@ -211,6 +211,14 @@ test("a room that only writes the bare end token made nothing (counted, not unkn
   const conv = { key: "S4/sol/0", arm: "S4", family: "sol", turns: [{ t: 1, text: "[END]", measures: { endOnly: true, end: true, words: 0 } }], ended: { reason: "end", at: 1 }, tags: { windows: [], final: {} } };
   assert.equal(summaryOf(conv).made, false);
   assert.equal(summaryOf(conv).toNoOne, null);
+});
+
+test("the corrected last line skips a line that is only the page tag (the frozen rule kept beside it)", () => {
+  const turns = [{ t: 1, text: "<page>\nA quiet line.\n</page>\n\n[END]" }];
+  assert.deepEqual(lastLineBefore(turns, 1), { t: 1, line: "</page>" });
+  assert.deepEqual(lastLineCorrected(turns, 1), { t: 1, line: "A quiet line." });
+  assert.deepEqual(lastLineCorrected([{ t: 1, text: "Hello.\n</page>" }, { t: 2, text: "</page>\n[END]" }], 2), { t: 1, line: "Hello." });
+  assert.equal(lastLineCorrected([{ t: 1, text: "[END]" }], 1), null);
 });
 
 test("the measures: wanting, the last line before the door", () => {
