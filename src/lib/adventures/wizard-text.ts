@@ -57,8 +57,47 @@ const qualified = (hour: number, qualifier: string): number => {
   if (/дня|вечера|\bpm\b|afternoon|evening/.test(q)) return hour === 12 ? 12 : hour + 12;
   return hour;
 };
+/** Fix S4 11u: a time word that is not the scene's present — «Last night's luck still weighs…», «yesterday», «the night
+ * before», «since midnight», «вчера вечером» — is not the clock of the opening (C-fable's dawn read as «night» from «last
+ * night's», and the first action's bookkeeping then jumped the clock seven hours). Such phrases are blanked before the
+ * words are read. */
+const phrases = (parts: string[]) => parts.map((part) => `(?<!\\p{L})(?:${part})(?!\\p{L})`).join("|");
+const NOT_NOW = new RegExp(phrases([
+  "last\\s+(?:night|evening|morning)(?:'s|’s)?", "yester(?:day|night)(?:'s|’s)?(?:\\s+(?:morning|evening|night))?", "tomorrow(?:'s|’s)?(?:\\s+(?:morning|evening|night))?",
+  "the\\s+(?:night|evening|morning|day)\\s+before", "that\\s+(?:night|evening|morning)", "overnight", "today",
+  "since\\s+(?:dawn|midnight|nightfall|dark|dusk|noon|morning|evening|night|sunrise|sunset|first\\s+light)",
+  "every\\s+(?:morning|evening|night)", "good\\s+night", "night\\s+before",
+  "вчера(?:\\s+(?:утром|вечером|ночью|днём|днем))?", "завтра(?:\\s+(?:утром|вечером|ночью|днём|днем))?", "прошл\\p{L}*\\s+ноч\\p{L}*",
+  "т(?:ой|у)\\s+(?:же\\s+)?ноч\\p{L}*", "с\\s+(?:утра|рассвета|вечера|полуночи|полудня)", "каждое\\s+утро", "каждый\\s+вечер", "по\\s+ночам", "наутро",
+]), "giu");
+/** Phrases about what is still ahead that tell the present's part of the day only by implication — «a line of people who
+ * want to get through before full dark» (it is dusk), a porter's «bed for the night?» (evening), «we wait until dawn»
+ * (night). Blanked like the others; read as the scene's light, after the plain words. */
+const AHEAD: Array<[RegExp, number]> = [
+  [new RegExp(phrases(["before\\s+(?:full\\s+)?(?:dark|nightfall|dusk|sunset)", "by\\s+nightfall", "tonight", "for\\s+the\\s+night", "до\\s+(?:темноты|заката)", "на\\s+ночь", "сегодня\\s+вечером"]), "iu"), 19 * 60],
+  [new RegExp(phrases(["(?:until|till|before)\\s+(?:dawn|morning|first\\s+light|sunrise)", "by\\s+morning", "(?:all|through\\s+the)\\s+night", "до\\s+(?:утра|рассвета)", "всю\\s+ночь"]), "iu"), 23 * 60],
+  [new RegExp(phrases(["(?:until|till|before)\\s+(?:evening|dusk)", "до\\s+вечера"]), "iu"), 14 * 60],
+  [new RegExp(phrases(["(?:until|till|before)\\s+noon", "до\\s+полудня"]), "iu"), 8 * 60],
+];
+const AHEAD_ALL = new RegExp(AHEAD.map(([pattern]) => pattern.source).join("|"), "giu");
+/** The light of the scene when no time word is said: lamps being lit at sundown, grey light through the shutters. */
+const LIGHT: Array<[RegExp, number]> = [
+  [w("(?:sun|солнце)\\s+(?:is\\s+)?(?:low|going down|goes down|drops|dropping|sinking|sets|setting|садится|опускается)|sundown|last light|(?:first\\s+)?(?:lamps|lanterns)\\s+(?:are\\s+)?(?:being\\s+)?(?:lit|flicker|coming on)|lamplighters|copper sky|зажига\\p{L}*\\s+фонар\\p{L}*"), 19 * 60],
+  [w("(?:grey|gray|pale)\\s+light|(?:sun|солнце)\\s+(?:is\\s+)?(?:rising|rises|comes up|встаёт|встает|поднимается)|cock(?:erel)?s?\\s+crow|петух\\p{L}*|серый\\s+свет"), 7 * 60],
+  [w("moonlight|moonlit|by the light of the moon|лунн\\p{L}*\\s+свет|при\\s+луне"), 23 * 60],
+];
+const firstOf = (text: string, patterns: Array<[RegExp, number]>) => {
+  let best: { at: number; minutes: number } | null = null;
+  for (const [pattern, minutes] of patterns) {
+    const match = pattern.exec(text);
+    if (match && (!best || match.index < best.at)) best = { at: match.index, minutes };
+  }
+  return best;
+};
 /** Minutes after midnight the opening scene starts at, read from its words; null when the
- * text names no time of day. The owner corrects it on the opening review. */
+ * text names no time of day. The owner corrects it on the opening review. An explicit clock wins, then a spoken hour,
+ * then the first part-of-day word of the scene's present (fix S4 11u: never «last night's», «yesterday», «the night
+ * before»), then the scene's light and what it is still waiting for («before full dark»). */
 export function startMinutesFromText(text: string, _language: Lang = "ru"): number | null {
   void _language;
   const clock = text.match(/(?<!\d)([01]?\d|2[0-3])[:.]([0-5]\d)(?!\d)/u);
@@ -69,12 +108,14 @@ export function startMinutesFromText(text: string, _language: Lang = "ru"): numb
     const hour = /^\d+$/.test(word) ? Number(word) : HOUR_WORDS[word];
     if (hour !== undefined && hour >= 1 && hour <= 12) return qualified(hour, spoken[2]) * 60;
   }
-  let best: { at: number; minutes: number } | null = null;
-  for (const [pattern, minutes] of PARTS) {
-    const match = pattern.exec(text);
-    if (match && (!best || match.index < best.at)) best = { at: match.index, minutes };
-  }
-  return best ? best.minutes : null;
+  const blank = (phrase: string) => " ".repeat(phrase.length);
+  const now = text.replace(NOT_NOW, blank);
+  const present = now.replace(AHEAD_ALL, blank);
+  const word = firstOf(present, PARTS);
+  if (word) return word.minutes;
+  const light = firstOf(present, LIGHT), ahead = firstOf(now, AHEAD);
+  const cue = light && ahead ? (light.at <= ahead.at ? light : ahead) : light ?? ahead;
+  return cue ? cue.minutes : null;
 }
 /** The choices the opening review offers, in the campaign language. */
 export function startTimeChoices(language: Lang): Array<{ minutes: number; label: string }> {

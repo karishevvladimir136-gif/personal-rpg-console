@@ -86,7 +86,7 @@ export function recordsText(snapshot, play, view) {
     journal.arc ? `The arc: ${journal.arc.quest.title}${journal.arc.steps.length ? ` (${journal.arc.steps.map((s) => `${s.done ? "✓" : "·"} ${s.text}`).join("; ")})` : ""}` : "",
     lineList("Threads", journal.threads.map((e) => e.quest.title)), lineList("Debts", journal.debts.map((e) => e.quest.title)), lineList("Promises", journal.promises.map((e) => e.quest.title)),
     place ? `Place: ${place.name}` : "",
-    Number.isFinite(play?.worldMinutes) ? `Time: ${view.worldClock(play.worldMinutes, "en")}` : "",
+    Number.isFinite(play?.worldMinutes) ? `Time: ${view.worldClock(play.worldMinutes, "en", play.restRecords)}` : "",
   ];
   return lines.filter((line) => line && line.trim()).join("\n");
 }

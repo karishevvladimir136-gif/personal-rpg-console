@@ -102,6 +102,9 @@ export function createBootstrapService(
   resolveProfile: (campaignId: string | null) => Promise<ExecutionProfile>,
   // Fix S3 item 3: after a committed creation (the world's named rules system); the campaign stands without it.
   afterCreation?: (created: { campaignId: string; world: import("./contracts.ts").PublicWorld }) => Promise<void>,
+  // Fix S4 11l: after a committed opening (a companion it brought in takes its numbers from the hero's sheet); the
+  // opening stands without it.
+  afterOpening?: (opened: { campaignId: string }) => Promise<void>,
 ) {
   return {
     async perform(value: BootstrapCommand): Promise<unknown> {
@@ -188,6 +191,7 @@ export function createBootstrapService(
       }
       const r = object(result, ["requestId", "snapshot"]);
       ensure(r.requestId === command.input.requestId);
+      if (afterOpening) await afterOpening({ campaignId: campaignId! }).catch(() => undefined);
       return {
         requestId: uuid(r.requestId),
         snapshot: parseAdventureCatalog(r.snapshot, campaignId!),

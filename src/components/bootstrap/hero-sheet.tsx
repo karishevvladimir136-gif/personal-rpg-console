@@ -10,6 +10,7 @@ import {
   type HeroCoin, type HeroCounter, type HeroItem, type HeroReview,
 } from "../../lib/adventures/hero-draft";
 import { ITEM_KINDS, kindLabel, universalSlots, type SpellRecord } from "../../lib/inventory/model";
+import { splitDraftNotes } from "../../lib/adventures/sheet-records";
 import r from "../registry/registry.module.css";
 import w from "./wizard.module.css";
 
@@ -164,12 +165,21 @@ export function HeroSheetReview({ value, onChange, language, questions, notes, i
     ? value.wallet.filter((row) => row.code !== code)
     : value.wallet.some((row) => row.code === code) ? value.wallet.map((row) => (row.code === code ? { ...row, amount } : row)) : [...value.wallet, { code, amount }]);
   const otherCoins = value.wallet.filter((row) => !coins.some((known) => known.code === row.code));
+  // Fix S4 11l: one list of where the DM's draft differed from the owner's sheet, before play — the sheet's numbers kept.
+  const { differences, other } = splitDraftNotes(notes);
   return (
     <div className={w.stack}>
-      {notes.length > 0 && (
+      {differences.length > 0 && (
+        <div className={w.warn} role="status" aria-label={ru ? "Расхождения с твоим листом" : "Differences from your sheet"}>
+          <b>{ru ? "Где черновик ведущего расходился с твоим листом — оставлены твои числа, молча ничего не менялось:"
+            : "Where the DM's draft differed from your sheet — your sheet's numbers are kept, nothing was changed silently:"}</b>
+          <ul className={w.notes}>{differences.map((note) => <li key={note}>{note}</li>)}</ul>
+        </div>
+      )}
+      {other.length > 0 && (
         <div className={w.warn} role="status">
           <b>{ru ? "Что ведущий поправил или не смог сохранить:" : "What the DM corrected or could not keep:"}</b>
-          <ul className={w.notes}>{notes.map((note) => <li key={note}>{note}</li>)}</ul>
+          <ul className={w.notes}>{other.map((note) => <li key={note}>{note}</li>)}</ul>
         </div>
       )}
       <section className={w.box} aria-label={ru ? "Лист героя" : "Hero sheet"}>

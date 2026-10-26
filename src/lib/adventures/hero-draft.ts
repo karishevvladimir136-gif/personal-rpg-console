@@ -25,6 +25,7 @@ import {
   type SpellRecord,
 } from "../inventory/model.ts";
 import { ensure, integer, text } from "../foundation-loop/fields.ts";
+import { isSheetDifference, mixedCoin, reconcileWithSupplied, sheetDifference, unfoldGroupedPapers } from "./sheet-records.ts";
 
 type Lang = "en" | "ru";
 
@@ -214,6 +215,14 @@ export function ownerNumbers(description: string, language: Lang): OwnerNumbers 
     if (!coin || amount > heroLimits.amount || found.coins.some((row) => row.code === coin.code)) continue;
     found.coins.push({ code: coin.code, amount });
   }
+  // Fix S4 11s: a resources line names the coin first («Resources: gold 350; …», «Золото 350»).
+  const wordFirst = /(?<![\p{L}])(gold|silver|copper|platinum|electrum|золото|серебро|медь|платина)\s*[:=]?\s*(\d{1,7})(?![\d.,\p{L}])/giu;
+  for (const match of textValue.matchAll(wordFirst)) {
+    const coin = coinOf(match[1], language);
+    const amount = Number(match[2]);
+    if (!coin || amount > heroLimits.amount || found.coins.some((row) => row.code === coin.code)) continue;
+    found.coins.push({ code: coin.code, amount });
+  }
   return found;
 }
 
@@ -295,24 +304,24 @@ export function normalizeHeroDraft(v: Record<string, unknown>, input: Pick<Creat
     for (const ability of ABILITIES) {
       const mine = owner.attributes[ability];
       if (mine === undefined || attributes[ability] === mine) continue;
-      notes.push(ru ? `${abilityLabel(ability, language)} ${mine} — как в твоём тексте (у ведущего было ${attributes[ability]}).`
-        : `${abilityLabel(ability, language)} ${mine}, as you wrote (the DM had ${attributes[ability]}).`);
+      notes.push(sheetDifference(ru ? `${abilityLabel(ability, language)} ${mine} — как в твоём тексте (у ведущего было ${attributes[ability]}).`
+        : `${abilityLabel(ability, language)} ${mine}, as you wrote (the DM had ${attributes[ability]}).`));
       attributes = { ...attributes, [ability]: mine };
     }
   }
   let level = within(v.level, 0, 30);
   if (owner.level !== null && level !== owner.level) {
-    if (level !== null) notes.push(ru ? `Уровень ${owner.level} — как в твоём тексте (у ведущего был ${level}).` : `Level ${owner.level}, as you wrote (the DM had ${level}).`);
+    if (level !== null) notes.push(sheetDifference(ru ? `Уровень ${owner.level} — как в твоём тексте (у ведущего был ${level}).` : `Level ${owner.level}, as you wrote (the DM had ${level}).`));
     level = owner.level;
   }
   let hp = within(v.hp ?? v.maxHp ?? rec(v.hitPoints).max, 1, 10000);
   if (owner.hp !== null && hp !== owner.hp) {
-    if (hp !== null) notes.push(ru ? `Хиты ${owner.hp} — как в твоём тексте (у ведущего было ${hp}).` : `HP ${owner.hp}, as you wrote (the DM had ${hp}).`);
+    if (hp !== null) notes.push(sheetDifference(ru ? `Хиты ${owner.hp} — как в твоём тексте (у ведущего было ${hp}).` : `HP ${owner.hp}, as you wrote (the DM had ${hp}).`));
     hp = owner.hp;
   }
   let armorClass = within(v.armorClass ?? v.ac, 1, 40);
   if (owner.armorClass !== null && armorClass !== owner.armorClass) {
-    if (armorClass !== null) notes.push(ru ? `КД ${owner.armorClass} — как в твоём тексте (у ведущего был ${armorClass}).` : `AC ${owner.armorClass}, as you wrote (the DM had ${armorClass}).`);
+    if (armorClass !== null) notes.push(sheetDifference(ru ? `КД ${owner.armorClass} — как в твоём тексте (у ведущего был ${armorClass}).` : `AC ${owner.armorClass}, as you wrote (the DM had ${armorClass}).`));
     armorClass = owner.armorClass;
   }
   const mode: CharacterSheetV2["mode"] = v.mode === "narrative" && !attributes && hp === null ? "narrative" : "structured_rpg";
@@ -401,10 +410,21 @@ export function normalizeHeroDraft(v: Record<string, unknown>, input: Pick<Creat
     const code = coin ? coin.code : word.toLocaleLowerCase();
     if (!/^[\p{L}][\p{L} ]{0,31}$/u.test(code)) continue;
     const mine = owner.coins.find((row) => row.code === code);
-    if (mine) { if (mine.amount !== amount) notes.push(ru ? `${mine.amount} ${code} — как в твоём тексте (у ведущего было ${amount}).` : `${mine.amount} ${code}, as you wrote (the DM had ${amount}).`); continue; }
+    if (mine) { if (mine.amount !== amount) notes.push(sheetDifference(ru ? `${mine.amount} ${code} — как в твоём тексте (у ведущего было ${amount}).` : `${mine.amount} ${code}, as you wrote (the DM had ${amount}).`)); continue; }
     if (!wallet.some((row) => row.code === code) && wallet.length < heroLimits.coins) wallet.push({ code, amount });
   }
-  const fitted = fitSlots(items, humanoid, notes, language);
+  // Fix S4 run 1 — the wizard's record pass (sheet-records.ts): the supplied sheet's grouped papers as their things (11e),
+  // its numbers kept over the draft's with each difference listed (11l), a purse of gold only as mixed coin (11s).
+  const unfolded = unfoldGroupedPapers(items, input.description, language);
+  notes.push(...unfolded.notes);
+  const reconciled = reconcileWithSupplied(sheet, counters, input.description, language);
+  notes.push(...reconciled.notes);
+  Object.assign(sheet, reconciled.sheet);
+  counters.splice(0, counters.length, ...reconciled.counters);
+  const coin = mixedCoin(wallet, owner.coins.length > 1, language);
+  if (coin.note) notes.push(coin.note);
+  wallet.splice(0, wallet.length, ...coin.wallet);
+  const fitted = fitSlots(unfolded.items, humanoid, notes, language);
   const questions = arr(v.questions).map((row) => clean(typeof row === "string" ? row : rec(row).question, 500)).filter(Boolean)
     .slice(0, heroLimits.questions).map((question) => ({ question, consequential: false }));
   const proposal: HeroProposal = {
@@ -414,8 +434,19 @@ export function normalizeHeroDraft(v: Record<string, unknown>, input: Pick<Creat
   };
   proposal.mechanics = mode === "structured_rpg" ? deriveMechanics(proposal.sheet, proposal.possessions, hp) : null;
   if (mode === "structured_rpg" && hp === null) notes.push(ru ? `Хиты не пришли от ведущего: стоит ${proposal.mechanics!.hp} — проверь.` : `No HP came from the DM: it is ${proposal.mechanics!.hp} — check it.`);
-  proposal.notes = notes.map((note) => clean(note, 500)).filter(Boolean).slice(0, heroLimits.notes);
+  proposal.notes = draftNotes(notes, language);
   return proposal;
+}
+
+/** The draft's notes as the review shows them: the differences from the owner's sheet first, every one kept — past the
+ * limit the last line says how many more there are, so nothing is dropped silently. */
+function draftNotes(notes: string[], language: Lang): string[] {
+  const all = [...new Set(notes.map((note) => clean(note, 500)).filter(Boolean))];
+  const ordered = [...all.filter(isSheetDifference), ...all.filter((note) => !isSheetDifference(note))];
+  if (ordered.length <= heroLimits.notes) return ordered;
+  const shown = ordered.slice(0, heroLimits.notes - 1);
+  const more = ordered.length - shown.length;
+  return [...shown, sheetDifference(language === "ru" ? `И ещё ${more} — сверь лист со своим текстом.` : `And ${more} more — compare the sheet with your text.`)];
 }
 
 /** The draft when the DM could not be asked or its answer could not be read: an empty sheet the owner fills in by hand,
@@ -426,8 +457,9 @@ export function manualHeroProposal(input: Pick<CreationInput, "name" | "descript
   const attributes = { strength: 10, dexterity: 10, constitution: 10, intelligence: 10, wisdom: 10, charisma: 10, ...owner.attributes };
   const sheet: CharacterSheetV2 = { schemaVersion: 2, mode: "structured_rpg", role: null, background: cleanBlock(input.description, 2000), level: owner.level,
     tier: null, attributes, skills: [], abilities: [], limitations: [], saves: [], attacks: [], speed: null, armorClass: owner.armorClass, spells: [], preparedMax: null };
+  const coin = mixedCoin(owner.coins, owner.coins.length > 1, language);
   return { schemaVersion: 3, sheet, mechanics: deriveMechanics(sheet, [], owner.hp), equipmentProfile: "standard_humanoid", capabilities: [], limitations: [],
-    possessions: [], counters: [], wallet: owner.coins, questions: [], notes: reason ? [clean(reason, 500)] : [] };
+    possessions: [], counters: [], wallet: coin.wallet, questions: [], notes: [...(reason ? [clean(reason, 500)] : []), ...(coin.note ? [coin.note] : [])] };
 }
 
 // --- mechanics: the numbers the runtime keeps, derived from the sheet ----------------------------------------------
@@ -643,11 +675,13 @@ export function heroReviewForCommit(review: HeroReview): HeroReview {
     spells: (review.sheet.spells ?? []).filter((spell) => spell.name.trim()).map((spell) => ({ ...spell, name: spell.name.trim() })),
   };
   const humanoid = review.equipmentProfile === "standard_humanoid";
-  const possessions = review.possessions.filter((item) => item.name.trim()).map((item) => {
+  // Fix S4 11e: a grouped papers thing the owner typed on the review («James's Papers» with its parts in the description)
+  // is recorded as its parts; only its own description counts here — the owner's review stands.
+  const possessions = unfoldGroupedPapers(review.possessions.filter((item) => item.name.trim()).map((item) => {
     const name = item.name.trim();
     const slot = humanoid && item.slot && slotAccepts(item.slot, item.kind) && item.quantity === 1 ? item.slot : null;
     return { ...item, name, slot };
-  });
+  }), "", /[а-яё]/iu.test(`${review.name} ${review.description}`) ? "ru" : "en").items;
   const counters = review.counters.filter((row) => row.label.trim()).map((row) => ({ ...row, label: row.label.trim(),
     key: counterKeyFrom(row.key, row.label), max: row.max === null ? null : Math.max(row.max, row.value) }));
   const wallet = review.wallet.filter((row) => row.code.trim() && row.amount >= 0).map((row) => ({ ...row, code: row.code.trim() }));

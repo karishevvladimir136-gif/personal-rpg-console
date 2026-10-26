@@ -108,7 +108,7 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   const chrome = useChrome();
   const runtime = useGameplayRuntime(!!preview);
   const play = preview?.play ?? runtime.play;
-  useShellClock(play?.worldMinutes);
+  useShellClock(play?.worldMinutes, play?.restRecords);
   // The same input-mode state the earlier game screen kept ("game" or out-of-character).
   const [inputMode, setInputMode] = useState<"game" | "ooc">("game");
   const ooc = inputMode === "ooc";

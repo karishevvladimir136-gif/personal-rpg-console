@@ -36,6 +36,7 @@ import {
 } from "../../visual-frame/pictures";
 import { fallbackShot, firstParagraph, outOfGameOnly, resolveWho, shotEntityIds, storyText, type ScenePerson, type Shot, type ShotContext } from "../../visual-frame/shot";
 import { compileAnchorPrompt, compileEditPrompt, compileRecordsFrame, promptFamily, timeOfDay, type BriefReference, type ReferenceRole } from "../../visual-frame/prompt-compiler";
+import { compileCreatureAnchorPrompt, contradictsSpecies, creatureOfEntity, profileSourceText } from "../../visual-frame/creature";
 import { applyLookChange, briefReferences, compileBriefPrompt, directPeople, relabel, type BriefRequestInput, type VisualBrief } from "../../visual-frame/brief";
 import { checkFrame, correctionLine, type FrameCheckPerson } from "../../visual-frame/frame-check";
 import { visualDocuments } from "../../visual-frame/model";
@@ -116,18 +117,29 @@ function paragraphFor(trigger: PictureTrigger, text: string, finished: boolean) 
   return firstParagraph(text, finished);
 }
 const nameMatches = (recordName: string, shotName: string) => shotEntityIds({ who: [shotName], action: "", where: "", angle: "", mood: "" }, [{ id: "x", name: recordName }]).length > 0;
+/** The owner-approved visual reference text of a record (its appearance and outfit), if any. */
+function ownerAppearanceOf(snapshot: CampaignSnapshot, entityId: string) {
+  const reference = visualDocuments(snapshot).find(({ value }) => value.kind === "reference" && value.approval === "approved" &&
+    value.subject.kind === "entity" && value.subject.id === entityId)?.value;
+  return reference && reference.kind === "reference" ? [reference.appearance, reference.outfit].filter(Boolean).join(" ") : "";
+}
 /** Public appearance of a record: its details plus the owner-approved visual reference text, if any. */
 function appearanceOf(snapshot: CampaignSnapshot, entityId: string) {
   const entity = snapshot.entities.find((row) => row.id === entityId);
-  const reference = visualDocuments(snapshot).find(({ value }) => value.kind === "reference" && value.approval === "approved" &&
-    value.subject.kind === "entity" && value.subject.id === entityId)?.value;
-  const guidance = reference && reference.kind === "reference" ? [reference.appearance, reference.outfit].filter(Boolean).join(" ") : "";
-  return [guidance, entity?.details ?? ""].filter(Boolean).join(" ").slice(0, 400);
+  return [ownerAppearanceOf(snapshot, entityId), entity?.details ?? ""].filter(Boolean).join(" ").slice(0, 400);
+}
+/** Fix S4 item 5: a model-drafted look that names another animal than the record's (drafted from a wrong picture) is not
+ * used; the owner's own profile always is. */
+function staleCreatureLook(board: Pick<PictureBoard, "profiles">, snapshot: CampaignSnapshot, entityId: string) {
+  const profile = profileFor(board, { kind: "entity", id: entityId });
+  const entity = snapshot.entities.find((row) => row.id === entityId);
+  const creature = entity ? creatureOfEntity(entity, ownerAppearanceOf(snapshot, entityId) || null) : null;
+  return !!profile && profile.source === "model" && !!creature && contradictsSpecies(profile.look, creature.species, entity!.name);
 }
 /** Polish 2 §3: the look a prompt describes — the visual profile (and the story's changes) when one exists, else the records' appearance. */
 function lookOf(board: Pick<PictureBoard, "profiles">, snapshot: CampaignSnapshot, entityId: string) {
   const profile = profileFor(board, { kind: "entity", id: entityId });
-  if (!profile || !profile.look.trim()) return appearanceOf(snapshot, entityId);
+  if (!profile || !profile.look.trim() || staleCreatureLook(board, snapshot, entityId)) return appearanceOf(snapshot, entityId);
   return [profile.look, profile.changes.length ? `Now: ${profile.changes.join("; ")}.` : ""].filter(Boolean).join(" ").slice(0, 1600);
 }
 const nameOfSubject = (snapshot: CampaignSnapshot, profile: Pick<VisualProfile, "subjectKind" | "subjectId">) =>
@@ -372,31 +384,26 @@ export async function draftVisualProfile(campaignId: string, value: unknown) {
 async function draftProfileFor(ctx: PicturesContext, subject: { kind: "entity" | "location"; id: string }, board: PictureBoard, snapshot: CampaignSnapshot) {
   const apiKey = anthropicApiKey();
   if (!apiKey) return { status: "not_configured" as const };
+  // Fix S4 item 5: the look is drafted from the records' words — the owner's description, the sheet, the hero's line about
+  // a companion — never from a picture (a portrait drawn wrong must not become every later frame's look).
   let name = "", text = "";
+  let creature: { species: string } | null = null;
   if (subject.kind === "entity") {
     const row = snapshot.entities.find((entity) => entity.id === subject.id);
     if (!row) throw new PersistenceError("not_found");
     const worn = snapshot.items.filter((item) => item.equipped_entity_id === row.id && item.quantity > 0).map((item) => item.name).slice(0, 12);
     name = row.name;
-    text = [appearanceOf(snapshot, row.id), row.details, worn.length ? `Wears or carries: ${worn.join(", ")}.` : "", row.conditions.length ? `Visible condition: ${row.conditions.join(", ")}.` : ""].filter(Boolean).join("\n");
+    creature = creatureOfEntity(row, ownerAppearanceOf(snapshot, row.id) || null);
+    text = profileSourceText({ entity: row, ownerText: ownerAppearanceOf(snapshot, row.id), hero: snapshot.entities.find((entity) => entity.kind === "player") ?? null, worn });
   } else {
     const row = snapshot.locations.find((location) => location.id === subject.id);
     if (!row) throw new PersistenceError("not_found");
     name = row.name;
     text = row.description;
   }
-  const anchors = subject.kind === "entity"
-    ? [{ picture: anchorFor(board, subject, "portrait").picture, label: "the approved portrait" }, { picture: anchorFor(board, subject, "figure").picture, label: "the approved full figure" }]
-    : [{ picture: anchorFor(board, subject, "location").picture, label: "the approved view of the place" }];
-  const images: { bytes: Uint8Array; contentType: string; label: string }[] = [];
-  for (const anchor of anchors) {
-    if (!anchor.picture) continue;
-    const row = await privatePicture(ctx, anchor.picture.id).catch(() => null);
-    const object = row?.storagePath ? await ctx.storage.get(row.storagePath).catch(() => null) : null;
-    if (object) images.push({ bytes: object.bytes, contentType: object.contentType, label: anchor.label });
-  }
-  const drafted = await draftProfile(apiKey, { kind: subject.kind === "entity" ? "person" : "place", name, text, images, language: snapshot.settings.values.language === "en" ? "en" : "ru" });
-  log("profile_drafted", { campaignId: ctx.campaignId, subject: subject.kind, ok: !!drafted.look, images: images.length, ms: drafted.elapsedMs, costUsdMicros: drafted.costUsdMicros, usage: drafted.usage, error: drafted.error });
+  const drafted = await draftProfile(apiKey, { kind: subject.kind === "location" ? "place" : creature ? "creature" : "person", name, text, species: creature?.species,
+    language: snapshot.settings.values.language === "en" ? "en" : "ru" });
+  log("profile_drafted", { campaignId: ctx.campaignId, subject: subject.kind, ok: !!drafted.look, creature: creature?.species ?? null, ms: drafted.elapsedMs, costUsdMicros: drafted.costUsdMicros, usage: drafted.usage, error: drafted.error });
   if (!drafted.look) return { status: "failed" as const, error: drafted.error };
   const current = profileFor(board, subject);
   const profile = await ctx.rpc("profile.save", { id: crypto.randomUUID(), subjectKind: subject.kind, subjectId: subject.id, look: drafted.look, changes: current?.changes ?? [], source: "model" });
@@ -431,6 +438,7 @@ async function queueAnchor(ctx: PicturesContext, board: PictureBoard, snapshot: 
   if (!capRemaining(board)) return null;
   let name = "", description = "", chosen: PictureComposition;
   let person: { entity: CampaignSnapshot["entities"][number]; carried: string[] } | null = null;
+  let creature: { species: string } | null = null;
   if (subject.kind === "entity") {
     const row = snapshot.entities.find((entity) => entity.id === subject.id);
     if (!row) throw new PersistenceError("not_found");
@@ -439,6 +447,9 @@ async function queueAnchor(ctx: PicturesContext, board: PictureBoard, snapshot: 
     description = [appearanceOf(snapshot, row.id), worn.length ? `Visible equipment: ${worn.join(", ")}.` : ""].filter(Boolean).join("\n");
     chosen = composition && ["portrait", "figure", "holding"].includes(composition) ? composition : compositionForEntity(row);
     person = { entity: row, carried: worn };
+    // Fix S4 item 5: an animal companion has no full-length «doll»: its anchor is the animal's portrait.
+    creature = creatureOfEntity(row, ownerAppearanceOf(snapshot, row.id) || null);
+    if (creature && chosen === "figure") chosen = "portrait";
   } else if (subject.kind === "item") {
     const row = snapshot.items.find((item) => item.id === subject.id);
     if (!row) throw new PersistenceError("not_found");
@@ -465,6 +476,10 @@ async function queueAnchor(ctx: PicturesContext, board: PictureBoard, snapshot: 
   // look comes from the visual profile when the owner has one.
   const prompt = chosen === "atlas"
     ? await atlasPrompt(ctx.campaignId, snapshot, subject.id, styleText, model)
+    // Fix S4 item 5: the animal alone, from the records' words (the owner's text when he wrote one) — no person framing.
+    : person && creature
+    ? compileCreatureAnchorPrompt({ species: creature.species, appearance: lookOf(board, snapshot, person.entity.id), style: styleText,
+        hasStyleReference: !!style?.hasReference && referenceIds.includes(style.id) }, promptFamily(model))
     : person && (chosen === "portrait" || chosen === "figure")
     ? compileAnchorPrompt({
         person: { key: person.entity.id, label: person.entity.kind === "player" ? "the hero" : "this character", pronoun: "they", appearance: lookOf(board, snapshot, person.entity.id) || "as described in the records",
@@ -596,6 +611,11 @@ export async function runPictureJob(ctx: PicturesContext, pictureId: string, opt
       const board = await boardOf(ctx);
       const subject = { kind: picture.subjectKind, id: picture.subjectId };
       if (!profileFor(board, subject)?.look.trim()) await draftProfileFor(ctx, subject, board, await readCampaign(ctx.campaignId));
+      // Fix S4 item 5: a drafted look that names another animal (drafted from a wrong picture) is drafted again, from the words.
+      else if (subject.kind === "entity") {
+        const snapshot = await readCampaign(ctx.campaignId);
+        if (staleCreatureLook(board, snapshot, subject.id)) await draftProfileFor(ctx, subject, board, snapshot);
+      }
     } catch (error) {
       log("profile_draft_failed", { campaignId: ctx.campaignId, pictureId, message: String((error as Error)?.message ?? error).slice(0, 200) });
     }

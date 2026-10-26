@@ -16,6 +16,7 @@ import { resourcePresentation } from "../resource-presentation.ts";
 import { coinOf, itemMechanics, universalSlots as modelUniversalSlots, walletOfEntity, walletOfStorage, type SpellRecord } from "../inventory/model.ts";
 import { slotsFor } from "../inventory/owner-moves.ts";
 import { derivedSheetOf, sheetLabels5e, signed } from "../live2d/battle/rules-5e.ts";
+import { campaignDay, longRestEnds } from "../gameplay/world-day.ts";
 
 export type Lang = "en" | "ru";
 const pick = (lang: Lang, ru: string, en: string) => (lang === "ru" ? ru : en);
@@ -50,9 +51,12 @@ export function timeOfDayWord(minutes: number, lang: Lang) {
   const ru = { night: "ночь", morning: "утро", midday: "полдень", afternoon: "день", evening: "вечер" }[key];
   return pick(lang, ru, key);
 }
-export function worldClock(minutes: number | null | undefined, lang: Lang) {
+/** Fix S4 11u′: the day turns at first light or at the end of a long rest, never at midnight (world-day.ts, the one
+ * function the DM's context uses too); pass the play's rest records (or the minutes their long rests ended) so a long
+ * rest counts. */
+export function worldClock(minutes: number | null | undefined, lang: Lang, rests?: readonly (number | NonNullable<Parameters<typeof longRestEnds>[0]>[number])[] | null) {
   if (minutes === null || minutes === undefined || !Number.isFinite(minutes) || minutes < 0) return null;
-  const day = Math.floor(minutes / 1440) + 1;
+  const day = campaignDay(minutes, (rests ?? []).flatMap((row) => (typeof row === "number" ? [row] : longRestEnds([row]))));
   return `${pick(lang, "День", "Day")} ${day} · ${timeOfDayWord(minutes, lang)}`;
 }
 

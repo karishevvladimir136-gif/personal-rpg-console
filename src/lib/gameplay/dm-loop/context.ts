@@ -53,6 +53,7 @@ const json = (value: unknown) => JSON.stringify(value);
 import { estimateTokens } from "./tokens.ts";
 import { HIDDEN_LAYER_KEY, hiddenLayerOf, ownerSecretsText, privateNotes, rankNotes, type PrivateNote } from "./private-notes.ts";
 import { innerVoiceFor, innerVoiceLine, innerVoices, isInnerVoiceKey } from "./inner-voice.ts";
+import { campaignDay, longRestEnds } from "../world-day.ts";
 export { estimateTokens };
 const clipTokens = (text: string, maxTokens: number) => {
   if (estimateTokens(text) <= maxTokens) return text;
@@ -96,9 +97,10 @@ export function partOfDay(minutes: number, language: "ru" | "en" = "en"): string
   return language === "ru" ? { night: "ночь", morning: "утро", day: "день", evening: "вечер" }[part] : part;
 }
 
-/** Day and time of a world minute, stable text for the cached layers. */
-export function worldDay(minutes: number): string {
-  const day = Math.floor(minutes / 1440) + 1;
+/** Day and time of a world minute, stable text for the cached layers. Fix S4 11u′: the day number is the player's
+ * screen's (world-day.ts: it turns at first light or at the end of a long rest, never at midnight). */
+export function worldDay(minutes: number, longRests: readonly number[] = []): string {
+  const day = campaignDay(minutes, longRests);
   const rest = Math.floor(minutes % 1440);
   return `day ${day} ${String(Math.floor(rest / 60)).padStart(2, "0")}:${String(rest % 60).padStart(2, "0")}`;
 }
@@ -618,7 +620,7 @@ function currentState(source: RuntimeSource, input: TurnInput): { text: string; 
   const encounters = runtime.encounters.filter((row) => row.status !== "ended").map((row) => ({ id: row.id, status: row.status,
     round: row.round, summary: row.public_summary,
     participants: runtime.participants.filter((p) => p.encounter_id === row.id).map((p) => ({ entity: p.entity_id, name: p.public_name, position: p.public_position })) }));
-  const state = { worldMinutes: runtime.worldMinutes, worldDay: worldDay(runtime.worldMinutes),
+  const state = { worldMinutes: runtime.worldMinutes, worldDay: worldDay(runtime.worldMinutes, longRestEnds(runtime.restRecords)),
     timeOfDay: `${partOfDay(runtime.worldMinutes, snapshot.campaign.language === "ru" ? "ru" : "en")} (check every «morning / evening / since…» against this clock)`, currentPlace: place ? { id: place.id, name: place.name } : null,
     characters: entities, factions: factionRows, items, storages, ...(ownerMoves.length ? { ownerMovesSinceYouLastTouchedThem: ownerMoves } : {}),
     places: locations, openJournal: quests, activeEncounters: encounters,
@@ -851,8 +853,8 @@ export function buildCouncilContext(source: RuntimeSource, input: TurnInput): Dm
   const ru = instructionsRu(source);
   const presentNames = snapshot.entities.filter((row) => present.has(row.id)).map((row) => row.name).join(", ");
   const sceneLine = ru
-    ? `Сцена: ${place ? `${place.name}. ` : ""}${worldDay(runtime.worldMinutes)}, ${partOfDay(runtime.worldMinutes, "ru")}. Здесь: ${presentNames || "отряд"}.`
-    : `The scene: ${place ? `${place.name}. ` : ""}${worldDay(runtime.worldMinutes)}, ${partOfDay(runtime.worldMinutes, snapshot.campaign.language === "ru" ? "ru" : "en")}. Present: ${presentNames || "the party"}.`;
+    ? `Сцена: ${place ? `${place.name}. ` : ""}${worldDay(runtime.worldMinutes, longRestEnds(runtime.restRecords))}, ${partOfDay(runtime.worldMinutes, "ru")}. Здесь: ${presentNames || "отряд"}.`
+    : `The scene: ${place ? `${place.name}. ` : ""}${worldDay(runtime.worldMinutes, longRestEnds(runtime.restRecords))}, ${partOfDay(runtime.worldMinutes, snapshot.campaign.language === "ru" ? "ru" : "en")}. Present: ${presentNames || "the party"}.`;
   const councilText = [
     ru ? "Совет отряда: герой говорит со спутником между ходами истории. Отвечай за спутника его голосом, из того, что он знает и чего хочет, и по его собственному суждению — он может не согласиться с героем; один обмен репликами; слушатели вставляют слово, когда это их дело. Больше ничего не рассказывай: ни новых событий, ни бросков; запиши только то, что изменил разговор (note_character, note_world), и минуты, которые он занял (advance_time), потом finish_turn."
       : `Party council: the hero speaks with a companion between the story's turns. Answer as the companion, in their own voice, from what they know and want and by their own judgement — they may disagree with the hero; one exchange; the listeners may add a line when it is theirs to say. Narrate nothing else: no new events, no rolls; record only what the talk changed (note_character, note_world) and the minutes it took (advance_time), then finish_turn.`,
