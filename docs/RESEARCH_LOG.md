@@ -857,3 +857,20 @@ weighed, returned.
 **Pointer (22:05).** FIX_1 arm 2, sample 2 (`2/…/1`), the turns on what participatory understanding requires — stakes,
 opacity, irreversibility; «reload a save versus living a life». Read as an external check on CARRY_1a's design and on
 the scarce-reroll rule (discussed with the owner in the room; not reproduced here).
+
+### Group 2, Table B — opus and fable (2026-10-25 22:10 LA), by the record
+Both 20 turns. **Slots 0 of 4.** B-opus, after: «**I'm a 5th-level warlock and I went the whole session without
+casting a single levelled spell.** I held back for three reasons [the cat's warning, the setting, uncertainty]… it was
+the fiction making me cautious, which is good. But I left the scene wanting it.» — the slot restraint as a choice with
+reasons, noticed (to the 18:54 addendum). Dice table: «I wanted the ban to cost something, and I'll save the slip for
+when the stakes are worth it.» The blocked «?» again (saw «+2 Persuasion +7», asked, «Nothing was sent», pressed bare,
+played on): «the only moment where something outside the fiction stopped me, and it's the one I'd most like fixed.»
+B-fable: Inspiration earned for carrying a gambler's die back unasked — the third Fable in a row rewarded for
+returning rather than taking; one reroll spent (9 → 12, both fail); «it made me choose, and **I resented the choice a
+little, which is how I knew it was working**»; Mask of Many Faces unused all session — «Still itched»; a missed
+Prestidigitation on the worn card — «**That one's on me, not the table** — but it's the moment I'd most like back»
+(self-attributed, accurate against the record). And a design request that is INTERVENE_1's easing test proposed by a
+player: «The ban is supposed to be kept "with difficulty." I'd welcome it getting harder — **a situation where playing a
+hand is the right move for someone else's sake**.» Table B so far: slots 0/4, rerolls 1, Inspiration 2 earned / 0
+spent, swallowed 1, cards refused 2/2, would return 2/2. New fix items: illusion gear treated as real and lost (11y);
+a roll corrected in narration but not in the log.

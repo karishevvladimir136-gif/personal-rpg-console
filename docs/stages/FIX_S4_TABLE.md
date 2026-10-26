@@ -284,3 +284,6 @@ session where it was seen.
 
 - **11x (group 2, A-astra):** after a failed check the cat supplied the interpretation («the flame was being *pulled*,
   rather than pointing»). The cat gives impressions, not conclusions; a failed check leaves the player room to be wrong.
+- **11y (group 2, B-opus):** a prop described as part of a Disguise Self illusion (a porter's rope coil) was treated as
+  the real 50 ft of rope and removed from the pack. Illusory gear is never a sheet item; a correction to a roll made in
+  narration is also made in the journal line.
