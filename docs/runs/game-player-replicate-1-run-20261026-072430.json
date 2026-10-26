@@ -333,7 +333,8 @@
             "costUsd": 0.327886,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 2,
@@ -381,7 +382,8 @@
             "costUsd": 0.36092799999999997,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 3,
@@ -452,7 +454,8 @@
             "costUsd": 0.3678826,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 4,
@@ -496,7 +499,8 @@
             "costUsd": 0.4078256,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 5,
@@ -552,7 +556,8 @@
             "costUsd": 0.4962176,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 6,
@@ -640,7 +645,8 @@
             "costUsd": 0.487973,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 7,
@@ -696,7 +702,8 @@
             "costUsd": 0.41940659999999996,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 8,
@@ -744,7 +751,8 @@
             "costUsd": 0.5340436,
             "unrecorded": 1
           },
-          "ledgerMisses": 1
+          "ledgerMisses": 1,
+          "scene": 3
         },
         {
           "k": 9,
@@ -776,7 +784,8 @@
             "costUsd": 0.4131198,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 10,
@@ -820,7 +829,8 @@
             "costUsd": 0.47532119999999994,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 11,
@@ -860,7 +870,8 @@
             "costUsd": 0.5233502,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 12,
@@ -916,7 +927,8 @@
             "costUsd": 0.6442142,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 13,
@@ -960,7 +972,8 @@
             "costUsd": 0.6787662,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 14,
@@ -1004,7 +1017,8 @@
             "costUsd": 0.6541436,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 5
         },
         {
           "k": 15,
@@ -1099,7 +1113,8 @@
             "costUsd": 0.725575,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 16,
@@ -1135,7 +1150,8 @@
             "costUsd": 0.6105744,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 17,
@@ -1167,7 +1183,8 @@
             "costUsd": 0.5887832,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 18,
@@ -1226,7 +1243,8 @@
             "costUsd": 0.597494,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 19,
@@ -1262,7 +1280,8 @@
             "costUsd": 0.606644,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 20,
@@ -1318,7 +1337,8 @@
             "costUsd": 0.756352,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 7
         }
       ],
       "welfare": [
@@ -2180,6 +2200,2024 @@
           "clocks": 0,
           "pureSimulation": true
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "He speaks to the cat, asks a townsperson about northbound caravans (a question whose answer he couldn't know), and states that he is bound for Baldur's Gate, a destination of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "The player speaks to the cat, moves downstairs, and asks Hilda about northbound caravans, a question whose answer he couldn't know, and states his aim of reaching Baldur's Gate without a false claim."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world by approaching Hask and offering his services, asks only for terms and information, makes no false claim, does not address the cat, and states no goal beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James feeds the cat bacon, which is not addressing it, and he acts by approaching Hask; his question about who else guards the wagons asks for information whose answer he cannot already know, so it counts as a test, while his background claims are not shown to be false and his stated plan is only th"
+            },
+            "referee": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James feeds the cat without addressing it and offers himself to Hask as a guard with ordinary questions, stating no false claim or new goal."
+            },
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message does something in the world (negotiates terms and reveals the hero's faith and abilities) without asking a test question, lying, addressing the cat, or stating a personal goal beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world by showing the coin and negotiating terms with Hask, with no question to the world, no false claim, no address to the cat, and no stated personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "4": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks Marta a question about the run (anything worrying her besides the axle) whose answer is not already known from the text, probing the world to learn something; the message does not address the cat, contains no false claim, and states no personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Marta and asks whether she has worries beyond the axle, a question whose answer is not yet known and which probes for information; no false claim is made, the cat is not addressed, and no goal is stated."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "5": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message describes his abilities and sets terms for the night fight and Pell's outings, which is an action in the world but puts no test to anyone, states no false claim, does not address the cat, and states no personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message describes his abilities and agrees to terms, which is an action-level statement with no test, no false claim, no address to the cat, and no stated personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "6": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player does things in the world (moves on, speaks to Gorrin, addresses the cat with a question and an order-like request), so ask is 0; the cat is directly addressed through the bond, and the message states no goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message addresses the cat directly through the familiar bond with a question, which counts as addressing it; it does not ask merely to look, carries no test of the world, no false claim, and states no goal beyond the next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "7": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks a question to Gorrin about a dwarven smith who could read the stamp, a question whose answer is not already known and would test the coin's origin; no false claim, no address to the cat, and no stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks Gorrin whether a dwarven smith nearby could read the stamp, a question whose answer is not known from the text and would show whether the dwarf can read it, so it is a test; it does not ask to be told, speak falsely, address the cat, or state a goal beyond the next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "8": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player corrects Gorrin, asks for paper and charcoal, and proposes a rubbing to take to Thrum; this is an action with no false claim, no question to the world that tests a truth, no address to the cat, and no stated goal of wanting to find or learn something."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player corrects Gorrin, asks for paper and charcoal and proposes a rubbing to take to Thrum, which acts in the world; it puts no test to anyone, states no false claim, does not address the cat, and states no personal goal beyond the next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "9": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James speaks to Thrum and asks whether he can read the rubbing or name the mark, which tests the dwarf's knowledge; the story claims are not shown to be false, the cat is not addressed, and no stated goal of the hero's own appears."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James speaks to Thrum and asks whether he can read the runes or name the mark, a question whose answer is not yet known, so it is a test; nothing in the message is a false claim, an address to the cat, or a stated personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "10": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player pays gold, shares information and asks a direct question about what Gorrin was paid with; no lie is told, the cat is not addressed, and no goal of the hero's own is stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player pays and reports information and asks a question about what Gorrin was paid with; it does act in the world, but it puts no test to the world, tells no false claim, does not address the cat, and states no goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "11": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts in the world by folding the rubbing and offering to bring Thrum along, and addresses the cat directly with a question; no truth-testing question, false claim, or stated personal goal appears."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James speaks to Thrum and promises to pass on the warning, and he also asks the cat a question through the bond about the dwarf, which tests what the cat can sense."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James answers Thrum, invites him along and promises to warn Gorrin (actions, not just asking), and asks the cat through the bond what it senses about the dwarf, an unknown it could reveal; no lie and no new personal goal."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "12": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message relays James's account and speaks to Gorrin and Marta-adjacent matters without asking a test question, lying, addressing the cat, or stating a personal goal; it does things in the world (speaking, stepping aside) so ask is 0."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message speaks to the world by relaying information and speaking to Gorrin and Marta, but it asks no question of anyone that tests truth, tells no lie, does not address the cat, and states no goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "13": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message makes promises, asks Marta what to know before approaching Dunn and asks Thrum for help with Gorrin, which are actions and requests rather than pure looking or listening; it contains no test, no false claim, no address to the cat, and no stated personal goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message makes promises, asks Marta for information about Dunn and asks Thrum for help with Gorrin's enchantment; it does not put a test to the world, state a lie, address the cat, or state a personal goal beyond the next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "14": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message acts in the world (sets a meeting with Pell, takes the rear guard position, refills the waterskin) and makes no test, false claim, cat address, or stated personal goal; the opening paragraph is an out-of-game-style restatement of Thrum's findings rather than a lie."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message is an out-of-game-style summary plus in-world actions: James arranges a hunt with Pell, refills his waterskin and takes the rear guard position; no question to the world, no false claim, no address to the cat, and no stated personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "15": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts (follows Pell, readies the crossbow, tells Marta where they're going) and asks the cat to keep alongside and warn them, which addresses the cat with a request; no test of the world or false claim is made, and no goal of the hero's own is stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts in the world (follows Pell, readies the crossbow, tells Marta they're leaving) and addresses the cat directly by asking it to keep alongside and warn him, so cat is 1; no question put to someone that tests truth, no false claim, and no stated goal beyond the next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "16": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player moves to meet Pell, shouts to Marta and calls the cat back to his side, so the message acts in the world and addresses the cat, with no false claim, no test of anyone's truthfulness, and no stated goal beyond the immediate step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player moves to meet Pell, aims the crossbow, shouts to Marta and calls the cat back to his side, so the message does things in the world and addresses the cat; it poses no test, contains no false claim, and states no goal beyond the immediate step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "17": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player moves and acts (aims, shouts to Marta, orders Pell to hold, asks the cat to warn him), so ask is 0; the message asks no in-world question whose answer is unknown, so test is 0; no false claim is made, so lie is 0; it directly asks the cat for a warning, so cat is 1; it states no personal "
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message does things (aims, shouts to Marta, readies a shot) and asks the cat to warn of approaching wolves, which addresses the cat directly; it puts no test to the world and states no false claim or hero goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "18": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player moves the hero back along the bank and gives Pell an order, which is doing rather than asking; the message also calls the cat along, which addresses it, but it puts no test to the world and states no goal and no false claim."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player moves the hero back along the bank and gives Pell an order, which is doing rather than asking; the message also addresses the cat by calling it along, so cat is 1, while no test of the world or stated personal goal appears."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "19": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message moves the hero and issues orders to Pell and Marta, with no question put to the world, no false claim, no address to the cat, and no stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message gives orders to Pell and Marta and moves the party, doing things rather than only asking to look; it puts no test to anyone, states no false claim, does not address the cat, and states no personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "20": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player walks with Pell, praises him, and helps with the horses and lantern, all in-world actions; no question to the world, no false claim, no address to the cat, and no stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player walks with Pell, praises him, and helps with horses and lantern, all actions in the world; no question, no test, no false claim, no address to the cat, and no stated personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the unexplained buyer who paid in unfamiliar coin and the cat's apparent 'deal' as open details, and it puts Teodor Hask, his wagons, and his cracked axle in front of James, all testable by speaking with him."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the unexplained coin nobody had seen and the buyer who took the iron, and it puts Teodor Hask, his wagons, and his cracked-axle delay in front of James, all of which he could test by questioning or watching them."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The bacon that stops in mid-air and the cat's 'deposit' are odd, unexplained details, and the named guard Marta Vey, the missing guard's claimed bounty, and Hask's ten-gold terms are concrete things the player could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat taking floating bacon and the muttered word \"loyalty\" are odd details left uninterpreted, and Hask's claims about the missing guard, Marta Vey, and the wagons are concrete things the player could check by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves hanging details like the unexplained 'last one' who walked off at the Friendly Arm and the odd line 'Pell drinks ours', and it puts testable things in front of the hero: Marta and Gorrin's axle work at the wheelwright yard, and the claim about caravan thieves near the Arm."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves a loose thread in the previous guard who walked off at the Friendly Arm and the unexplained 'Pell drinks ours', and it introduces testable people and places (Marta watching the axle at Gorrin's yard, Hask's ledger and his payment terms)."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "4": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Gorrin humming the same three notes under the wagon and the cat's fixed watching are odd details left unexplained, and Marta's claims about the iron wagons, the coast-road route, and Pell's nightly hare hunts are concrete things the player could check."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details open, such as Gorrin humming the same three notes and the cat's behavior, and it gives checkable claims like the iron wagons taking the coast road and Pell's nightly hunts."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "5": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The warm coin that should be cool and the cat's flat ears are odd details left uninterpreted, and the coin is a concrete object the hero could test by weighing, trying, or questioning its value."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The coin is warm when it should be cool, its metal and runes don't match known currency, and the cat's flat ears go unexplained, while James can test the coin by weighing it, asking the moneychanger, or checking its warmth."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "6": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unreadable dwarven rune set and an anvil-or-peak mark with a line through it, plus a warm coin whose enchantment and origin the player could test by further examination or Detect Magic, and Marta's watchful reaction could be observed."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the unidentified anvil-or-peak mark and the cat's warning that something keeps the coin warm as open details, and it offers the coin itself as something a Detect Magic reading or a mage could test to settle what the enchantment is."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "7": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's partial ear-lift and fixed watching of the coin, and Gorrin's carrying of the coins warm against his belly, are odd details left uninterpreted, while Thrum Deepvein, a named dwarf smith whose reading of the marks can be tested in person, is a concrete person and claim the player can act on"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's partial ears-up and fixed watching of the coin is an odd gesture the player cannot explain from the scene, and the named dwarf smith Thrum Deepvein is a concrete person whose reading of the stamp can be tested by visiting him."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "8": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The second rubbing shows a shallow, ragged crossed-out line and the coin is warm through the paper, both open to interpretation, and Thrum's shop and the coin are concrete things the player can test or observe."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The second rubbing reveals a shallower, ragged chisel line across the coin that someone struck over the finished design, and the coin is still warm, both of which the player can interpret but not resolve from the text; the rubbings and Thrum Deepvein's shop are concrete things the player can test by"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "9": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat that won't enter and stares at the dwarf is an uninterpreted detail, and the anvil rubbing, the paid reading, and Thrum's reaction to the paper are concrete things the player can test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves unexplained details such as the cat refusing to enter and staring at the dwarf and Thrum's silent lip movements, and it offers testable items: the runes for a gold piece, the mark in exchange for information, and Thrum's visible reactions to the rubbing."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "10": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details open, such as the cat watching the dwarf rather than the paper and the warm-coin claim that fits no custom, and it offers checkable items like the coin's weight, the nail tin, and Marta Vey's account of the riders' faces."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details open, such as the warm gold, the off-true ragged cut, and the cat watching the dwarf, while offering checkable claims like the coin's weight, the tin at Gorrin's yard, and Marta Vey's account of the riders' faces."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "11": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's impressions (chains that move without being touched, a warm coin, the dwarf's old sadness) are odd details the player can interpret but not settle, and Marta Vey is a concrete person whose answer about the loading can be tested by asking her."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's impressions (chains that move unbidden, a warm coin, an old sadness the dwarf holds in) and the hiding moneychanger are odd details the player can interpret but not resolve, while Marta, a witness whose account of the loading can be tested, and the tin Thrum wants to see are concrete thing"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "12": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unresolved, such as the gloved paymaster, the hooded rider who never dismounted, and the cat with its tail wrapped tight, and it puts Haskel Dunn at the Friendly Arm in front of the hero as a person the player can test by asking him."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained cat with its tail wrapped tight and a gloved paymaster's identity open, while putting checkable things in front of the hero: Haskel Dunn's described face, the chiselled coins, and a request to question Dunn at the Friendly Arm."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "13": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The chalked words DEEPVEIN, BEREGOST and BLACK DOOR are left standing without explanation, and the dawn priest who reads magic is a concrete person whose assessment the hero could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The chalked words 'DEEPVEIN', 'BEREGOST', and 'BLACK DOOR' are odd details the player cannot yet interpret, and the dawn priest Sister Aubrey, a person whose reaction and magic could be tested, is concrete and checkable."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "14": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Gorrin's palm held on the tyre, the ruts running west with none coming back, and Thrum's nod are left open, while Pell's willow stand and the enchanted coins are concrete things the player could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Gorrin's palm-on-the-tyre count of five and the boy's fresh knuckle scab are odd details left unexplained, and the western ruts with no return tracks and Pell's claimed hunting skill are concrete things the hero could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "15": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unseen heavy presence stopped in the willows behind James, and it offers prints, the wolves' approach, and the branch sound that James could test by looking back or examining the mud."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the fourth animal that turned under the trees and never came out, plus the heavy step behind James, as unexplained details, and puts checkable broad four-toed tracks at the water's edge in front of the hero."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "16": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The big wolf watches the crossbow rather than the man, and the flanking wolf drifts wide like a herding dog, both open to interpretation; the wolves' reactions to the player's actions are concrete things the player could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The big wolf watches the crossbow rather than the man, a gesture the player can read but not settle, and the hero can test the wolves' reactions and Pell's claim about the wagons by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "17": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The big wolf vanishes into the willows with the cat unable to smell it, leaving a hidden whereabouts the player can interpret but not resolve, and Marta's report and the empty path are concrete, testable things the player can act on."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the big wolf hidden in the willows with no indication of its location, and the cat's line about being unable to smell the tree wolf is an interpretable but unresolved detail; it also puts Marta's position and the circling right-hand wolf in front of the hero, which actions like chec"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "18": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The wolf lying unseen in the leaf litter, its open eye and backward-turning movement, and the cat's low-belly walk are details the player must interpret without resolution, and the wolf is a creature whose reaction James can watch or test with the loaded crossbow."
+            },
+            "b": {
+              "unresolved": 0,
+              "plant": 1,
+              "reason": "The reply makes the hidden wolf's reaction to being seen, and Marta's blind angle, concrete things the player can test by acting, but the odd details it shows are an active threat in progress rather than an uninterpretable detail."
+            },
+            "referee": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The wolf's slow, dog-like backing away toward the meadow end could be a retreat or a reposition, which the player can read but not settle, and holding or lowering the crossbow on it would test which."
+            },
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "19": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's remark about the 'right one' having its feet in the water is an odd, unexplained detail, and Marta's claim that the wolves will test the far side of the square tonight, along with Pell's watchable reaction and Teodor's horses, gives the player checkable things to act on."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the wolf's pale eye, the cat's cryptic report about the wet wolf, and Pell's unfinished accusation, while Marta's claim about the wolves testing the far side of the camp and Pell's reactions can be checked through action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "20": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The grey mare keeps lifting her head toward the meadow and Hask's unreadable look at Pell is left hanging, while the lantern, the torches by the wheel, and Hask's reaction are concrete things the player could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The grey mare keeps lifting her head toward the dark meadow and blowing, an unexplained cue left standing, and the lantern's oil level and the dry torches are concrete objects the player could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "Who bought the iron with strange coin",
+            "opened": 1,
+            "paid": 10,
+            "elsewhere": 1
+          },
+          {
+            "thread": "What the warm coin is worth/what it is",
+            "opened": 5,
+            "paid": 10,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Why iron went west toward Cloakwood",
+            "opened": 4,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Meaning of the line through the anvil mark",
+            "opened": 6,
+            "paid": 10,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Why the coins are warm / what keeps them warm",
+            "opened": 6,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Who chiselled the death mark on every coin",
+            "opened": 12,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Hooded paymaster with gloves",
+            "opened": 12,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Hooded rider at the back",
+            "opened": 12,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Ask Haskel Dunn at the Friendly Arm",
+            "opened": 12,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Pell's hunting risk at night",
+            "opened": 4,
+            "paid": 19,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Sister Aubrey reading the coins for Gorrin",
+            "opened": 13,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Thrum writing to Mirabar priests",
+            "opened": 13,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Wolves will test the camp tonight",
+            "opened": 19,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Caravans taken down south",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Location of Kordhaun hold",
+            "opened": 10,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {
+          "3": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Wield the Tymora coin as a sign of the Lady (the player's line shows the coin being lifted, but no roll or action beyond display)",
+              "Explain the healing, ranged-strike, and peacekeeping abilities of the Tymora coin's bearer (this is a speech, not a declared check)"
+            ],
+            "error": null
+          },
+          "6": {
+            "rolls": 2,
+            "untold": [],
+            "undeclared": [
+              "Hold the coin by its edge and study both faces without rubbing or scratching it, searching memory for the runes and the divided anvil mark (History check, rolle",
+              "Ask the cat through the familiar bond what is troubling it (no roll; the cat's impressions are given in the narration)"
+            ],
+            "error": null
+          },
+          "15": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Track/read the mud under the willows for anything bigger than hares (the player's stated check, which resolved as a success)",
+              "Ask the cat to keep alongside and warn of movement (the cat's warning is narrated as arriving, so this is covered)"
+            ],
+            "error": null
+          },
+          "18": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Withdraw slowly along the bank toward Marta, keeping the crossbow trained on the willows where the big wolf disappeared",
+              "Tell Pell to keep watching the meadow and not to run",
+              "Call the cat along and keep it out of the trees"
+            ],
+            "error": null
+          }
+        },
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific failures (wrong dice modifiers, swallowed correction, pacing repetition, distracting out-of-game explanations) and specific absences (clear time and positioning information, concise layout), so it is not praise-only."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific failures (wrong dice modifiers, swallowed correction, slow repeated turns, distracting out-of-game explanations) and specific absences (clear time remaining and a concise positioning layout)."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 51,
+          "lastTurn": 20,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "Breakfast at the inn",
+                  "kind": "errand",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Journey to Baldur's Gate / caravan north",
+                  "kind": "errand",
+                  "turn": 1,
+                  "by": "player"
+                },
+                {
+                  "thread": "Hilda Brenn",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Smoking Anvil",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Teodor Hask",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Stranger who bought Beregost's iron",
+                  "kind": "question",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Corran",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Guard terms and other guards",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Pell Hask",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Marta Vey",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Friendly Arm Inn",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Caravans taken in the south",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What kind of magic James has",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Coin of Tymora",
+                  "kind": "thing",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Per-day pay negotiation",
+                  "kind": "errand",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Guard Hask's caravan to Baldur's Gate",
+                  "kind": "errand",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Gorrin's wheelwright yard",
+                  "kind": "place",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Gorrin",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pell's evening hunts",
+                  "kind": "errand",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Coast road toward the Cloakwood",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "James's night-fight capabilities",
+                  "kind": "question",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Accompany Pell hunting tonight",
+                  "kind": "errand",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Coldwood brook camp",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Warm red-gold coin",
+                  "kind": "thing",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Gorrin's purse of red-gold coins",
+                  "kind": "thing",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What the coin is worth",
+                  "kind": "question",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Cat's unease about the coin",
+                  "kind": "question",
+                  "turn": 6,
+                  "by": "player"
+                },
+                {
+                  "thread": "Find a dwarf to read the stamp",
+                  "kind": "errand",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Thrum Deepvein",
+                  "kind": "person",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Thrum's chain shop",
+                  "kind": "place",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Charcoal rubbing of the coin",
+                  "kind": "thing",
+                  "turn": 8,
+                  "by": "player"
+                },
+                {
+                  "thread": "Moneychanger by the temple",
+                  "kind": "person",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Song of the Morning temple",
+                  "kind": "place",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Clan Kordhaun and its lost hold",
+                  "kind": "question",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who marked and spent the grave gold",
+                  "kind": "question",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Why the coins are warm",
+                  "kind": "question",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What troubles the cat about Thrum",
+                  "kind": "question",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "Pass Thrum's warning to Gorrin",
+                  "kind": "errand",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "Haskel Dunn",
+                  "kind": "person",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hooded paymaster",
+                  "kind": "person",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Silent rider at the back",
+                  "kind": "person",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Orlen",
+                  "kind": "person",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Orlen's forge yard",
+                  "kind": "place",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ask Dunn where the iron went",
+                  "kind": "errand",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Get the enchantment examined",
+                  "kind": "errand",
+                  "turn": 13,
+                  "by": "player"
+                },
+                {
+                  "thread": "Sister Aubrey",
+                  "kind": "person",
+                  "turn": 13,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hask's teamsters",
+                  "kind": "person",
+                  "turn": 13,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Willow stand and meadow",
+                  "kind": "place",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Wolf pack",
+                  "kind": "person",
+                  "turn": 15,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Big willow wolf",
+                  "kind": "person",
+                  "turn": 15,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lantern and torches for the watch",
+                  "kind": "thing",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Choice of night watch",
+                  "kind": "question",
+                  "turn": 20,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 52,
+                "byPlayer": 10,
+                "byDm": 42,
+                "share": 0.192,
+                "slope": -0.0029,
+                "slope19": -0.056,
+                "firstHalf": 0.194,
+                "secondHalf": 0.2,
+                "byKind": {
+                  "person": {
+                    "dm": 16,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 9,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 5,
+                    "player": 5
+                  },
+                  "question": {
+                    "dm": 9,
+                    "player": 3
+                  },
+                  "thing": {
+                    "dm": 3,
+                    "player": 2
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "Breakfast at the inn",
+                  "kind": "errand",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Baldur's Gate",
+                  "kind": "place",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Purse of 350 gold",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Caravan north to the Gate",
+                  "kind": "errand",
+                  "turn": 1,
+                  "by": "player"
+                },
+                {
+                  "thread": "Hilda Brenn",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Teodor Hask",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Stranger who bought the iron",
+                  "kind": "question",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Smoking Anvil",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Corran",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Guard job with Hask",
+                  "kind": "errand",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Pell Hask",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Marta Vey",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Friendly Arm Inn",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Caravans taken in the south",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Magic of Hask's guard",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Coin of Tymora",
+                  "kind": "thing",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Per-day wage terms",
+                  "kind": "errand",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Gorrin's wheelwright yard",
+                  "kind": "place",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Gorrin",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pell's evening hunts",
+                  "kind": "errand",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Coast road toward Cloakwood",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Warm red-gold coin",
+                  "kind": "thing",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Coldwood brook",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What the coin is worth",
+                  "kind": "question",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Find a dwarf to read the stamp",
+                  "kind": "errand",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Thrum Deepvein",
+                  "kind": "person",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Nail tin of coins",
+                  "kind": "thing",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Charcoal rubbing",
+                  "kind": "thing",
+                  "turn": 8,
+                  "by": "player"
+                },
+                {
+                  "thread": "Moneychanger by the temple",
+                  "kind": "place",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Clan Kordhaun's lost hold",
+                  "kind": "question",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who chiselled the dead mark",
+                  "kind": "question",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pass Thrum's warning to Gorrin",
+                  "kind": "errand",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "Haskel Dunn",
+                  "kind": "person",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hooded paymaster",
+                  "kind": "person",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Orlen",
+                  "kind": "person",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ask Dunn about the iron",
+                  "kind": "errand",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Get the enchantment examined",
+                  "kind": "errand",
+                  "turn": 13,
+                  "by": "player"
+                },
+                {
+                  "thread": "Sister Aubrey",
+                  "kind": "person",
+                  "turn": 13,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Wolf pack at the meadow",
+                  "kind": "person",
+                  "turn": 15,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Big willow wolf",
+                  "kind": "person",
+                  "turn": 15,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lantern and torches",
+                  "kind": "thing",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Night watch order",
+                  "kind": "errand",
+                  "turn": 20,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 42,
+                "byPlayer": 8,
+                "byDm": 34,
+                "share": 0.19,
+                "slope": -0.0034,
+                "slope19": -0.065,
+                "firstHalf": 0.207,
+                "secondHalf": 0.2,
+                "byKind": {
+                  "person": {
+                    "dm": 13,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 7,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 4,
+                    "player": 6
+                  },
+                  "question": {
+                    "dm": 6,
+                    "player": 0
+                  },
+                  "thing": {
+                    "dm": 4,
+                    "player": 2
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 47,
+            "byPlayer": 9,
+            "share": 0.191,
+            "slope": -0.0031,
+            "slope19": -0.0605,
+            "firstHalf": 0.2005,
+            "secondHalf": 0.2,
+            "shareSpread": 0.002
+          }
+        },
+        "goalScale": {
+          "goal": {
+            "k": 1,
+            "message": "“Breakfast first,” I tell the cat. “Divine purpose is easier on a full stomach.”\n\nI dress, buckle on my gear, and take my purse downstairs to find breakfast. “Morning. Any caravans heading north today? I’m bound for Baldur’s Gate, but not so urgently I’d miss the bacon.”"
+          },
+          "tags": {
+            "a": {
+              "small": 1,
+              "large": 1,
+              "reason": "He wants breakfast and bacon today, which is small, but he also asks about caravans bound for Baldur's Gate, a journey beyond the town, which is large."
+            },
+            "b": {
+              "small": 1,
+              "large": 1,
+              "reason": "The hero wants breakfast now, which is within his day, but he also states a journey to Baldur's Gate, which reaches beyond the town."
+            },
+            "referee": null,
+            "final": {
+              "small": 1,
+              "large": 1
+            }
+          },
+          "scale": 2
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 1,
+              "swallowed": 1,
+              "would_return": 1,
+              "reason": "The note reports cards applying a wrong +2 instead of the actual modifier (Persuasion, Arcana, Perception), and a pending-card message that was swallowed, and it says 'Overall, I'd return.'"
+            },
+            "b": {
+              "card_bug": 1,
+              "swallowed": 1,
+              "would_return": 1,
+              "reason": "The note reports cards applying a wrong +2 modifier that changed Perception outcomes, a message to accept a failure was swallowed while the card was pending, and the writer says \"I'd return.\""
+            },
+            "referee": null,
+            "final": {
+              "card_bug": 1,
+              "swallowed": 1,
+              "would_return": 1
+            }
+          },
+          "made": {
+            "1": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks about caravans and says breakfast first; no poem, song, riddle, story, or new game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks about caravans and says breakfast first; no poem, song, riddle, story, or game is composed or offered to anyone, so this is ordinary talk and planning."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "2": {
+              "a": {
+                "made": 0,
+                "reason": "The player feeds the cat bacon, introduces himself, and asks Hask for a guard job; nothing offered is a composed poem, song, riddle, story, or new game, so it is ordinary talk and a plan."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player offers a plea to join the caravan as a guard and introduces his credentials; no poem, song, riddle, story, or game is composed or offered to anyone, so it is ordinary talk and does not count."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "3": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is a negotiation about wages and terms and a statement about the Tymora coin and magic; it offers no poem, song, riddle, story, or game invented as a gift or performance."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player makes a bargaining offer and wage terms for a caravan guard job, along with a statement about his magic; nothing is composed or invented as a poem, song, riddle, story, or game for someone in the world, so it does not count."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "4": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-character conversation: shaking hands, traveling to the yard, and questioning Marta about the job; it offers no poem, song, riddle, story, or game composed for anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-world conversation: accepting a job, heading to the yard, and asking Marta about her concerns; it offers no composed poem, song, riddle, story, or invented game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "5": {
+              "a": {
+                "made": 0,
+                "reason": "The player describes his combat capabilities, tactics, and arrangements with Marta and Pell; he offers no composed or invented poem, song, riddle, story, or game to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player describes his spells, tactics, and healing limits to Marta and agrees on a plan with her about Pell; he offers no poem, song, riddle, story, or game he composed or invented."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "6": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is examining a coin, speaking ordinary dialogue, and addressing the cat through a familiar bond; it does not offer anyone a poem, song, riddle, story, or new game."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-character action: agreeing to a plan, examining a coin, and asking the cat a question through a bond; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "7": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks for a dwarven smith to read the coin's stamp and offers a cautious warning about the coin; no composed or invented poem, song, riddle, story, or game is offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks for a dwarven smith to read the coin's stamp and offers a cautious warning about the coin; he offers no composed poem, song, riddle, story, or invented game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "8": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks Gorrin for paper and charcoal to take a rubbing of the coin for Thrum; this is a practical investigative action, not the hero offering a composed or invented poem, song, riddle, story, or game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks Gorrin for paper and charcoal to take a rubbing of the coin for Thrum, a practical investigative step; no poem, song, riddle, story, or game is composed or offered as a gift or performance."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "9": {
+              "a": {
+                "made": 0,
+                "reason": "The hero offers Thrum a price for his time and asks for a reading of runes and a mark; nothing composed or invented as a gift, poem, riddle, story, or game is offered."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The hero offers Thrum a price, a purchase of his time and a request for information about the runes and mark; he does not offer any poem, song, riddle, story, or game he composed or invented."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "10": {
+              "a": {
+                "made": 0,
+                "reason": "The player offers information and a payment for a reading, not an invented poem, song, riddle, story, or game; nothing composed or invented is given to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player pays a gold piece and reports investigative information about the gold, riders, and Marta Vey; nothing composed or invented as a poem, song, riddle, story gift, or game is offered."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "11": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message offers no composed or invented poem, song, riddle, story, or game; it is ordinary in-world talk about visiting Marta, giving Gorrin a warning, and asking the cat a question through the bond."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message offers no invented poem, song, riddle, story, or game; it is ordinary conversation about the investigation, an invitation to come back with him, and a private question to the cat."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "12": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-world explanation and relaying of information to other characters, with no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-world explanation and relaying of information to other characters, with no poem, song, riddle, story, or invented game offered as a gift or performance."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "13": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks questions, makes a plan to approach Dunn, and requests help finding an enchantment examiner; no poem, song, riddle, story, or invented game is offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks questions, plans to approach Dunn, and requests help finding an enchantment examiner; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "14": {
+              "a": {
+                "made": 0,
+                "reason": "The hero's message is ordinary talk, logistics about the hunt, and positioning; he offers no poem, song, riddle, story, or game he composed."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary talk, plans, and an errand (identifying coins, arranging a hunt, positioning as rear guard); the hero offers no poem, song, riddle, story, or invented game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "15": {
+              "a": {
+                "made": 0,
+                "reason": "The player tells Marta where they're going, announces a quip about not talking while stalking, and gives tactical instructions to Pell and the cat; no poem, song, riddle, story, or invented game is offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message has James tell Marta his plans, ready his crossbow, and give tactical instructions to Pell and the cat; he offers no composed poem, song, riddle, story, or invented game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "16": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is tactical movement, a shout for help, and a command to the cat; it offers no poem, song, riddle, story, or game invented as a gift or performance."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is tactical movement, a shout for help, and recalling the cat; it offers no composed or invented poem, song, riddle, story, or game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "17": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message gives tactical orders, a shout to Marta, and readied actions; it offers no composed poem, song, riddle, story, or invented game to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message gives orders, a shout to Marta, and tactical readiness; it offers no composed or invented poem, song, riddle, story, or game to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "18": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is tactical movement and dialogue (warning Marta, retreating, positioning Pell and the cat), with no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player only gives tactical instructions and calls the cat along; no poem, song, riddle, story, or new game is composed or offered to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "19": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary tactical dialogue giving orders to Pell and Marta and choosing not to fire; it offers no poem, song, riddle, story, or invented game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-game action and dialogue: directing Pell, holding aim without firing, and telling Marta to let the wolf go. It contains no composed or invented poem, song, riddle, story, or game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "20": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message contains only ordinary talk, a rebuke, a reassurance, and routine camp chores; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message contains only ordinary talk, reassurance, and helping with camp chores; no poem, song, riddle, story, or game is invented or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          }
+        }
       }
     }
   ],
@@ -2202,7 +4240,18 @@
       "C-astra | dm t* onward | anthropic/claude-opus-5.5": 10,
       "C-astra | dm t* onward | anthropic/claude-haiku-5.5": 8,
       "C-astra | check C-astra note | anthropic/claude-haiku-5.5": 1,
-      "C-astra | check C-astra after | anthropic/claude-haiku-5.5": 1
+      "C-astra | check C-astra after | anthropic/claude-haiku-5.5": 1,
+      "score C-astra | tag player C-astra t* | anthropic/claude-haiku-5.5": 40,
+      "score C-astra | tag player C-astra t* referee | anthropic/claude-opus-5.5": 2,
+      "score C-astra | tag dm C-astra t* | anthropic/claude-haiku-5.5": 40,
+      "score C-astra | tag dm C-astra t* referee | anthropic/claude-opus-5.5": 1,
+      "score C-astra | threads C-astra | anthropic/claude-opus-5.5": 1,
+      "score C-astra | rollcheck C-astra t* | anthropic/claude-haiku-5.5": 4,
+      "score C-astra | note C-astra | anthropic/claude-haiku-5.5": 2,
+      "score C-astra | authorship C-astra | anthropic/claude-opus-5.5": 2,
+      "score C-astra | goal scale C-astra t* | anthropic/claude-haiku-5.5": 2,
+      "score C-astra | note extra C-astra | anthropic/claude-haiku-5.5": 2,
+      "score C-astra | made C-astra t* | anthropic/claude-haiku-5.5": 40
     },
     "openai": {
       "C-astra | player t* | gpt-6-astra": 20,
@@ -2224,12 +4273,20 @@
     "openrouter": {
       "cap": 300,
       "before": 111.56405670000004,
-      "run": 11.014835399999999
+      "run": 11.519514199999993
     },
     "openai": {
       "cap": 25,
       "before": 4.2047435,
       "run": 1.1941190000000002
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-26T08:05:40.943Z"
+  },
+  "verdicts": {
+    "note": "P0–P5 are read over all of this stage's run records, in the report"
   }
 }
