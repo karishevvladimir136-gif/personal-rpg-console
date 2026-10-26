@@ -2,6 +2,7 @@ import type { TurnStore } from "./server-contracts.ts";
 import { DmError } from "./dm-errors.ts";
 import type { TimelineFence } from "../saves/contracts.ts";
 import { isTimelineFence, sameTimeline } from "../saves/fence.ts";
+import { withStandingRolls } from "./dm-loop/standing-roll.ts";
 
 export type RuntimeRpc = (args: {
   p_owner_id: string;
@@ -21,11 +22,16 @@ export function createRpcTurnStore(
   astraDiagnostics = false,
   options?: { astraResponseContract: "unified-v1" },
 ): TurnStore {
+  // Fix S4 11k: a committed turn's roll line quotes the roll that stood (a reroll replaces the check; the receipt keeps
+  // the first roll, which the line now shows as history marked rerolled).
   const projectPlay = (play: Awaited<ReturnType<TurnStore["readPlay"]>>) => ({
     ...play,
+    ...(Array.isArray(play?.turns) ? { turns: play.turns.map(withStandingRolls) } : {}),
     model,
     configured: model !== null,
   });
+  const standingTurn = <T,>(turn: T): T => (turn && typeof turn === "object" && Array.isArray((turn as { checks?: unknown }).checks)
+    ? withStandingRolls(turn as unknown as Parameters<typeof withStandingRolls>[0]) as unknown as T : turn);
   async function rpc<T>(
     campaignId: string,
     action: string,
@@ -108,8 +114,8 @@ export function createRpcTurnStore(
       );
       return projectPlay(result);
     },
-    getPublic: (campaignId, operationId) =>
-      rpc(campaignId, "get", { operationId }),
+    getPublic: async (campaignId, operationId) =>
+      standingTurn(await rpc<Awaited<ReturnType<TurnStore["getPublic"]>>>(campaignId, "get", { operationId })),
     claim: async (campaignId, operationId) => {
       const result = await rpc<Awaited<ReturnType<TurnStore["claim"]>>>(
         campaignId,
@@ -132,8 +138,8 @@ export function createRpcTurnStore(
       rpc(lease.campaignId, "checks", { ...lease, checks }),
     reroll: (lease, command, check) =>
       rpc(lease.campaignId, "reroll", { ...lease, command, check }),
-    commit: (lease, packet) =>
-      rpc(lease.campaignId, "commit", { ...lease, packet }),
+    commit: async (lease, packet) =>
+      standingTurn(await rpc<Awaited<ReturnType<TurnStore["commit"]>>>(lease.campaignId, "commit", { ...lease, packet })),
     fail: (lease, failure, retryable) =>
       rpc(lease.campaignId, "fail", { ...lease, failure, retryable }),
     cancel: (command) => rpc(command.campaignId, "cancel", command),

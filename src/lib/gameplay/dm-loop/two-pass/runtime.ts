@@ -37,6 +37,7 @@ import { chooseDepth, lowerEffort, parseDepthRange, parseDepthState, tensionSign
 import { ledgerCheckState, ledgerChip, ledgerCorrectionMessage, type LedgerCheckResult, type LedgerCheckState } from "../ledger-check.ts";
 import { executeDmLoopTool, recordOrder, storyMinuteOf } from "../execute.ts";
 import { chip } from "../receipt-text.ts";
+import { recordRerolled, rollToolOutput } from "../standing-roll.ts";
 import type { PublicProfile } from "../../../persistence/contracts.ts";
 import { dmLoopLimits as L, DM_LOOP_DEFAULT_LIMITS, turnCallCap } from "../limits.ts";
 import { ShadowState } from "../shadow.ts";
@@ -96,20 +97,17 @@ function parseArguments(call: DmToolCall): Record<string, unknown> {
   }
 }
 
-function toolOutput(receipt: DmLoopReceipt, checks: RecordedCheck[]): string {
-  const result = receipt.result;
-  if (!result.ok) return JSON.stringify({ ok: false, reason: result.reason, ...(result.hint ? { hint: result.hint } : {}) });
-  const check = result.check ? checks.find((row) => row.id === result.check!.id) ?? result.check : null;
-  const value = check ? { ...result.value, dice: [...check.dice], kept: check.kept, total: check.total, success: check.success } : result.value;
-  return JSON.stringify({ ok: true, ...value });
+/** Fix S4 11k: the model reads the roll that stands, the replaced rolls as history (standing-roll.ts, one rule with the single loop). */
+function toolOutput(receipt: DmLoopReceipt, checks: RecordedCheck[], history: { diagnostics: DmLoopCheckpoint["diagnostics"]; heroId: string | null }): string {
+  return rollToolOutput(receipt, checks, history.diagnostics, history.heroId);
 }
 
-function rendered(messages: DmMessage[], receipts: DmLoopReceipt[], checks: RecordedCheck[]): DmMessage[] {
+function rendered(messages: DmMessage[], receipts: DmLoopReceipt[], checks: RecordedCheck[], history: { diagnostics: DmLoopCheckpoint["diagnostics"]; heroId: string | null }): DmMessage[] {
   return messages.map((message) => {
     if (message.role !== "tool_results") return message;
     return { role: "tool_results", results: message.results.map((entry) => {
       const receipt = receipts.find((row) => row.call.id === entry.callId);
-      return receipt ? { callId: entry.callId, output: toolOutput(receipt, checks), isError: !receipt.result.ok } : entry;
+      return receipt ? { callId: entry.callId, output: toolOutput(receipt, checks, history), isError: !receipt.result.ok } : entry;
     }) };
   });
 }
@@ -147,6 +145,8 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
   const twoPass = (event: TwoPassObservation) => observe(event as unknown as DmLoopObservation);
   const now = deps.now ?? (() => performance.now());
   const random = deps.random ?? ((min: number, max: number) => min + Math.floor(Math.random() * (max - min)));
+  /** Fix S4 11k: what the tool results need to show the roll that stands with its history. */
+  const rolled = () => ({ diagnostics: loop?.diagnostics ?? [], heroId: heroIdOf(source) });
   try {
     requireRule(claim.runtimeIdentity === DM_LOOP_RUNTIME && loop && loop.schemaVersion === 1 &&
       (input.mode === "game" || input.mode === "companion") && input.expectedRevision === source.runtime.revision);
@@ -162,6 +162,8 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       // Fix S3-pre B-1: the rerolled die decides its own natural label and verdict (BG3).
       const replacement = withNatural(recordServerRoll(operationId, check, check.modifier, check.rollNumber + 1, random));
       checkpoint.checks = await store.reroll(lease, command, replacement);
+      // Fix S4 11k: the replaced roll stays as history under the one that stands (the receipt keeps the first as recorded).
+      recordRerolled(loop.diagnostics, check, replacement, checkpoint.checks);
       await store.checkpoint(lease, checkpoint, "awaiting_confirmation");
       return store.getPublic(input.campaignId, operationId);
     }
@@ -366,7 +368,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
             await persist("generating");
             stopHeartbeat();
             writerCut = true;
-            return request(phase, rendered(loop.transcript, loop.receipts, checkpoint.checks), firstRound);
+            return request(phase, rendered(loop.transcript, loop.receipts, checkpoint.checks, rolled()), firstRound);
           }
           if (error.kind === "provider_rejected" || error.kind === "fatal") throw new DmError("provider", false);
           throw new DmError("provider", true);
@@ -415,7 +417,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
           const pause = await executeCalls(last.toolCalls, "writer");
           loop.transcript.push({ role: "tool_results", results: last.toolCalls.map((call) => {
             const receipt = loop.receipts.find((row) => row.call.id === call.id)!;
-            return { callId: call.id, output: toolOutput(receipt, checkpoint.checks), isError: !receipt.result.ok };
+            return { callId: call.id, output: toolOutput(receipt, checkpoint.checks, rolled()), isError: !receipt.result.ok };
           }) });
           await persist(pause ? "awaiting_confirmation" : "generating");
           if (pause) {
@@ -432,14 +434,14 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
         // ledger request) is retried once before the turn fails; the first request fails as today.
         let round: Awaited<ReturnType<typeof request>>;
         try {
-          round = await request("writer", rendered(loop.transcript, loop.receipts, checkpoint.checks), writerRequests === 0);
+          round = await request("writer", rendered(loop.transcript, loop.receipts, checkpoint.checks, rolled()), writerRequests === 0);
         } catch (error) {
           const retryable = error instanceof DmError && error.code === "provider" && error.retryable;
           const alreadyRetried = loop.diagnostics.some((row) => row.kind === "writer_retried" && row.request === writerRequests + 1);
           if (!retryable || writerRequests === 0 || alreadyRetried) throw error;
           diagnostic({ kind: "writer_retried", request: writerRequests + 1 });
           await persist("generating");
-          round = await request("writer", rendered(loop.transcript, loop.receipts, checkpoint.checks), false);
+          round = await request("writer", rendered(loop.transcript, loop.receipts, checkpoint.checks, rolled()), false);
         }
         loop.text = joinText(loop.text, round.shownRound);
         await persist("generating");
@@ -476,7 +478,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
           // continuation (no new ledger) when the story skipped one.
           if (deps.rollCheck && !asked("rolls_checked") && writerRequests + 1 < limits.modelRequestsPerTurn) {
             // Fix S3-pre 2: the fight's attacks count, the hero's own rolls are marked, the player's declared actions are read.
-            const rolls = visibleRolls(loop.receipts, heroIdOf(source));
+            const rolls = visibleRolls(loop.receipts, heroIdOf(source), checkpoint.checks, loop.diagnostics);
             const declared = declaredLine(input);
             if (rolls.length || declared) {
               const check = await deps.rollCheck({ narration: splitLedger(soFar).narration, rolls: rolls.map((roll) => roll.line), language, ...(declared ? { playerInput: declared } : {}),
@@ -532,7 +534,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
         await executeCalls(last.toolCalls, "bookkeeper");
         loop.transcript.push({ role: "tool_results", results: last.toolCalls.map((call) => {
           const receipt = loop.receipts.find((row) => row.call.id === call.id)!;
-          return { callId: call.id, output: toolOutput(receipt, checkpoint.checks), isError: !receipt.result.ok };
+          return { callId: call.id, output: toolOutput(receipt, checkpoint.checks, rolled()), isError: !receipt.result.ok };
         }) });
         const retrying = await retryRejected(last.toolCalls);
         await persist("generating");
@@ -545,7 +547,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       if (requests >= limits.modelRequestsPerTurn) { diagnostic({ kind: "request_cap_reached", requests: loop.requests }); break; }
       const lastRequest = requests === limits.modelRequestsPerTurn - 1 || loop.receipts.length >= turnCallCap(limits);
       if (lastRequest && last?.role !== "user") loop.transcript.push({ role: "user", text: WRAP_UP });
-      const round = await request("bookkeeper", rendered(bookkeeperPart(), loop.receipts, checkpoint.checks), false);
+      const round = await request("bookkeeper", rendered(bookkeeperPart(), loop.receipts, checkpoint.checks, rolled()), false);
       await persist("generating");
       if (round.stop.reason === "refusal") { diagnostic({ kind: "model_refusal", providerReason: round.stop.providerReason }); break; }
       if (round.stop.reason === "max_tokens") diagnostic({ kind: "max_tokens", outputTokens: loop.usage.at(-1)?.outputTokens ?? 0 });

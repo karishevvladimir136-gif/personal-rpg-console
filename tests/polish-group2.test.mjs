@@ -116,7 +116,8 @@ test("a natural 20 is flagged for the card and the chip; the DM receives the her
     const receipt = (await c.row(played.input.operationId)).checkpoint.dmLoop.receipts[0];
     assert.equal(receipt.result.value.natural, "crit");
     assert.match(receipt.result.value.hint, /natural 20/);
-    assert.match(receipt.result.player, /— крит$/);
+    // Fix S4 11v: the hero's natural 20 on a called check also names the Heroic Inspiration it granted.
+    assert.match(receipt.result.player, /— крит · Героическое вдохновение: 0 → 1\/1 — натуральная 20 \(плавание\)$/);
     assert.equal(receipt.result.check.natural, "crit");
     assert.equal(receipt.result.check.dc, 16);
     // The player asks for the allowed reroll: the new die keeps the reason, the bonuses and the difficulty.

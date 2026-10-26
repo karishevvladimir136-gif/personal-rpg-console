@@ -151,8 +151,9 @@ export type VisibleCheck = {
   advantageReason?: string | null;
   difficulty?: "easy" | "normal" | "hard" | "very_hard" | "nearly_impossible" | null;
   natural?: "crit" | "fumble" | null;
-  /** Fix run C: every part of the modifier with its own source (sums to `modifier`); absent on older checks. */
-  addends?: { source: string; value: number; kind: "sheet" | "gear" | "fiction" | "formula" | "cap" }[];
+  /** Fix run C: every part of the modifier with its own source (sums to `modifier`); absent on older checks.
+   * Fix S4 11a: a sheet part's `basis` says where its number came from (the sheet's line or its words). */
+  addends?: { source: string; value: number; kind: "sheet" | "gear" | "fiction" | "formula" | "cap"; basis?: string }[];
 };
 export type GuidanceProposal = {
   teachingCandidate?: import("../dm-craft/contracts.ts").TeachingCandidate | null;

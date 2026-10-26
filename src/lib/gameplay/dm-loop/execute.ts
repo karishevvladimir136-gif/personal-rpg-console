@@ -21,6 +21,7 @@ import { allPlans, duePlans, parsePlan, planKey, serializePlan, type OffScreenPl
 import { worldDay } from "./context.ts";
 import { ShadowState, ToolReject, reject } from "./shadow.ts";
 import { chip, currencyAmount, type ChipLanguage } from "./receipt-text.ts";
+import { naturalHint } from "./standing-roll.ts";
 import { patchSheet, sheetChanges, type AnySheet, type CharacterSheetV2, type SheetPatch } from "../../inventory/sheet.ts";
 import { convertSpellProse, withCard } from "../../inventory/spell-records.ts";
 import type { DmLoopMeta, DmLoopReceipt, DmLoopReceiptResult, DmLoopTension, DmLoopToolCall } from "./contracts.ts";
@@ -268,22 +269,56 @@ function mentions(line: string, skill: string): boolean {
   const lineStems = skillStems(line);
   return lineStems.length > 0 && lineStems.every((stem) => new RegExp(`(^|[^\\p{L}])${stem.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`, "u").test(normalizeSkill(skill)));
 }
-/** +2 for a skill the sheet names, +4 for one it calls good, +6 for mastery — in the sheet's own words. */
-export function proficiencyValue(text: string): number {
+/** +2 for a skill the sheet names, +4 for one it calls good, +6 for mastery — in the sheet's own words — and the word
+ * that decided it (null: named, no word). */
+function proficiencyRead(text: string): { value: number; word: string | null } {
   const lower = text.toLocaleLowerCase();
-  if (/мастер|master|expert|виртуоз|легендарн|legendary/.test(lower)) return 6;
-  if (/хорош|опытн|skilled|experienced|proficient|\bgood\b|\bwell\b|умел|искусн|отличн/.test(lower)) return 4;
-  return 2;
+  const master = /мастер|master|expert|виртуоз|легендарн|legendary/.exec(lower);
+  if (master) return { value: 6, word: master[0] };
+  const good = /хорош|опытн|skilled|experienced|proficient|\bgood\b|\bwell\b|умел|искусн|отличн/.exec(lower);
+  return good ? { value: 4, word: good[0] } : { value: 2, word: null };
 }
-/** The bonus a skill named on the sheet gives: a numeric stat of that name, a
- * sheet line with a number («Плавание +2»), or the sheet's words (умеет / хорошо /
- * мастер → +2 / +4 / +6); the trade in the background counts as named. */
-export function sheetBonus(actor: Entity, skill: string, kind: string | null = null): { value: number; source: string } | null {
+export function proficiencyValue(text: string): number {
+  return proficiencyRead(text).value;
+}
+/** Fix S4 11a: a signed number on a sheet line — «+7», «-1», «−2» (the minus sign) — never a die's bonus inside a
+ * formula («1d20+3»), a die count («+1d6») or a part of a longer number. */
+const SIGNED_NUMBER = /(?<!\p{N})([+−-])\s?(\d+)(?!\d|\s?[dкдDКД]\d)/gu;
+const escapeRegex = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+/** Where the skill's name ends on its line: after the word of the skill that comes first there («Persuasion» of
+ * «Persuasion (Beguiling Influence)» — the notes after the number may repeat the skill's other words); 0 when none of
+ * the skill's words is on the line (the line's own words name the skill). */
+function skillNameEnd(line: string, skill: string): number {
+  let first: { index: number; end: number } | null = null;
+  for (const stem of skillStems(skill)) {
+    const found = new RegExp(`(^|[^\\p{L}])${escapeRegex(stem)}\\p{L}*`, "iu").exec(line);
+    if (found && (!first || found.index < first.index)) first = { index: found.index, end: found.index + found[0].length };
+  }
+  return first?.end ?? 0;
+}
+/** Fix S4 11a: the first signed number after the skill's name on its line — «Persuasion +7 (proficient, Beguiling
+ * Influence)» is +7. The drafted sheet writes the number before its notes; the old reader took a number only at the end
+ * of the line and fell back to the sheet's words, so every card of a table got that table's constant (+2 or +4). */
+function lineNumber(line: string, skill: string): { value: number; name: string } | null {
+  SIGNED_NUMBER.lastIndex = skillNameEnd(line, skill);
+  const found = SIGNED_NUMBER.exec(line);
+  SIGNED_NUMBER.lastIndex = 0;
+  if (!found) return null;
+  const value = (found[1] === "+" ? 1 : -1) * Number(found[2]);
+  return { value, name: line.slice(0, found.index).replace(/[\s,;:([]+$/u, "").trim() };
+}
+/** Fix S4 11a: a sheet bonus with where it came from — `basis` is the record's own words for its source: «sheet:
+ * Persuasion +7 (Beguiling Influence)» (the number on the line), «sheet words: proficient +4 — …» (no number: the
+ * sheet's words), «stat: stealth +3» (a numeric stat), «background words: …» (the trade named in the background). */
+export type SheetBonusRead = { value: number; source: string; basis: string };
+export function readSheetBonus(actor: Entity, skill: string, kind: string | null = null): SheetBonusRead | null {
   const wanted = normalizeSkill(skill);
   if (!wanted) return null;
+  const signed = (value: number) => `${value >= 0 ? "+" : ""}${value}`;
   for (const [key, value] of Object.entries(actor.stats)) {
     if (!Number.isInteger(value) || key === "level") continue;
-    if (normalizeSkill(key) === wanted || normalizeSkill(key).replaceAll("_", " ") === wanted) return { value, source: `${skill} ${value >= 0 ? "+" : ""}${value}` };
+    if (normalizeSkill(key) === wanted || normalizeSkill(key).replaceAll("_", " ") === wanted)
+      return { value, source: `${skill} ${signed(value)}`, basis: `stat: ${key} ${signed(value)}` };
   }
   const sheet = actor.character_sheet;
   // Fix S3-pre A-9: a saving throw reads the sheet's own saves first («Ловкость +4»), then the skills and abilities.
@@ -292,21 +327,26 @@ export function sheetBonus(actor: Entity, skill: string, kind: string | null = n
   const lines = [...saves, ...(sheet?.skills ?? []), ...(sheet?.abilities ?? [])];
   for (const line of lines) {
     if (!mentions(line, skill)) continue;
-    const numbered = /^(.*?)\s*([+−-])\s*(\d+)\s*$/u.exec(line.trim());
-    if (numbered) {
-      const value = (numbered[2] === "+" ? 1 : -1) * Number(numbered[3]);
-      return { value, source: `${numbered[1].trim() || skill} ${value >= 0 ? "+" : ""}${value}` };
-    }
-    const value = proficiencyValue(line);
-    return { value, source: `${line.trim().slice(0, 60)} +${value}` };
+    const numbered = lineNumber(line.trim(), skill);
+    if (numbered) return { value: numbered.value, source: `${numbered.name || skill} ${signed(numbered.value)}`, basis: `sheet: ${line.trim().slice(0, 80)}` };
+    const words = proficiencyRead(line);
+    return { value: words.value, source: `${line.trim().slice(0, 60)} +${words.value}`,
+      basis: `sheet words: ${words.word ?? "named"} +${words.value} — ${line.trim().slice(0, 60)}` };
   }
   const prose = [sheet?.role ?? "", sheet?.background ?? "", actor.details].join("\n");
   if (mentions(prose, skill)) {
     // The trade or trait is named in the background: at least a named skill.
-    const value = proficiencyValue(prose.split("\n").find((line) => mentions(line, skill)) ?? "");
-    return { value, source: `${skill.trim().slice(0, 60)} +${value}` };
+    const words = proficiencyRead(prose.split("\n").find((line) => mentions(line, skill)) ?? "");
+    return { value: words.value, source: `${skill.trim().slice(0, 60)} +${words.value}`, basis: `background words: ${words.word ?? "named"} +${words.value} — ${skill.trim().slice(0, 60)}` };
   }
   return null;
+}
+/** The bonus a skill named on the sheet gives: a numeric stat of that name, the first signed number after the skill's
+ * name on its sheet line («Плавание +2», «Persuasion +7 (proficient, Beguiling Influence)»), or the sheet's words
+ * (умеет / хорошо / мастер → +2 / +4 / +6) on a line without a number; the trade in the background counts as named. */
+export function sheetBonus(actor: Entity, skill: string, kind: string | null = null): { value: number; source: string } | null {
+  const read = readSheetBonus(actor, skill, kind);
+  return read ? { value: read.value, source: read.source } : null;
 }
 
 /** Fix S3-pre B-17 (the owner's rule): the wound follows the hit points left — the band word the receipts carry so the
@@ -430,6 +470,7 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   let baseBonus = modifier;
   const sources: string[] = [];
   let modifierSource: string | null = null;
+  let sheetBasis: string | null = null;
   // Fix run C (item 66): each part of the modifier with its own source, for the roll card.
   const addends: CheckAddend[] = !fromSheet && formula.modifier ? [{ source: str(args.formula), value: formula.modifier, kind: "formula" }] : [];
   if (weaponBonus !== null) {
@@ -455,7 +496,7 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   if (weaponBonus === null && args.skill !== undefined) {
     reject(actor, "A sheet skill needs an actor (actorRef is \"dm\").");
     const skill = str(args.skill);
-    const bonus = sheetBonus(actor, skill, kindText);
+    const bonus = readSheetBonus(actor, skill, kindText);
     const sheetSaves = kindText === "save" && actor.character_sheet && "saves" in actor.character_sheet ? actor.character_sheet.saves ?? [] : [];
     const known = [...sheetSaves, ...(actor.character_sheet?.skills ?? []), ...Object.keys(actor.stats).filter((key) => key !== "level")];
     reject(bonus, `${actor.name}'s sheet names no skill or trade like "${skill}".`,
@@ -464,7 +505,9 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     baseBonus += bonus.value;
     modifierSource = modifierSource ? `${modifierSource}, ${bonus.source}` : bonus.source;
     sources.push(bonus.source);
-    addends.push({ source: bonus.source.replace(/\s[+−-]\d+$/u, "") || skill, value: bonus.value, kind: "sheet" });
+    // Fix S4 11a: the sheet's part of the modifier keeps where it came from (the line's number or the sheet's words).
+    sheetBasis = bonus.basis;
+    addends.push({ source: bonus.source.replace(/\s[+−-]\d+$/u, "") || skill, value: bonus.value, kind: "sheet", basis: bonus.basis });
   }
   // The fiction's bonuses (tools, help, prepared gear, position), capped as a sum.
   const bonuses: { source: string; value: number }[] = [];
@@ -553,8 +596,7 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   const reason = str(args.reason);
   const sourceText = sources.join(", ") || null;
   const bonusLine = (die: number) => ({
-    ...(die === 20 ? { hint: "A natural 20: the attempt succeeds whatever the total — narrate the success first and in full; companions support, never take the beat." } : {}),
-    ...(die === 1 ? { hint: "A natural 1: the attempt fails — say how, with no extra harm beyond the failure (the table's rule)." } : {}),
+    ...(naturalHint(die) ? { hint: naturalHint(die)! } : {}),
     ...(clipped ? { note: `The fiction's bonuses are capped at ±${FICTION_BONUS_CAP} in total.` } : {}),
     ...(droppedModifier && droppedModifier !== weaponBonus ? { modifierDropped: `The formula's ${droppedModifier > 0 ? "+" : ""}${droppedModifier} was dropped: ${named && weaponBonus !== null ? `${named.source} gives the bonus` : "the sheet's skill or stat already gives the bonus"} (never both).` } : {}),
   });
@@ -573,14 +615,17 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     const check = withNatural(recordServerRoll(ctx.input.operationId, proposal, modifier, 1, ctx.random));
     const natural = check.natural ?? null;
     const damage = bundledDamage(shadow, args, ctx, { actor, kind, dc, success: check.success, natural });
+    // Fix S4 11v: the table's one Inspiration rule, in code (a roll that spends Heroic Inspiration is a reroll: no award).
+    const award = natural === "crit" && !inspired ? inspirationAward(shadow, actor, kind, str(args.skill) || reason, ctx.language) : null;
     const value: JsonObject = { formula: str(args.formula), reason, actor: actor.name, visibility,
-      dice: [...check.dice], kept: check.kept, modifier, modifierSource: sourceText, bonuses, advantage, advantageReason,
+      dice: [...check.dice], kept: check.kept, modifier, modifierSource: sourceText, ...(sheetBasis ? { modifierBasis: sheetBasis } : {}), bonuses, advantage, advantageReason,
       difficulty, total: check.total, dc, success: check.success, natural, checkId: check.id, ...bonusLine(check.kept), ...(damage ? { damage: damage.value } : {}),
-      ...ammunitionValue(ammunition) };
+      ...ammunitionValue(ammunition), ...(award ? { inspirationAward: award.value } : {}) };
     const rolledChip = visibility === "player"
       ? chip.roll(ctx.language, actor.name, actor.kind === "player", reason, check.total, dc, ctx.showDc, check.success, natural) : null;
-    const player = rolledChip ? withAmmunition(withDamageChip(ctx.language, rolledChip, damage), ammunition) : null;
-    return withInspiration(ok(value, `${actor.name} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${check.total} vs ${dc} — ${check.success ? "success" : "failure"}${natural === "crit" ? " (natural 20)" : natural === "fumble" ? " (natural 1)" : ""}${damage ? `; ${damage.summary}` : ""}`, check, player), inspired, ctx.language);
+    const shown = rolledChip ? withAmmunition(withDamageChip(ctx.language, rolledChip, damage), ammunition) : null;
+    const player = shown && award ? `${shown} · ${award.player}` : shown;
+    return withInspiration(ok(value, `${actor.name} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${check.total} vs ${dc} — ${check.success ? "success" : "failure"}${natural === "crit" ? " (natural 20)" : natural === "fumble" ? " (natural 1)" : ""}${damage ? `; ${damage.summary}` : ""}${award ? `; ${award.summary}` : ""}`, check, player), inspired, ctx.language);
   }
   const count = advantage === "normal" ? formula.count : 2;
   const dice = Array.from({ length: count }, () => ctx.random(1, formula.sides + 1));
@@ -593,13 +638,37 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   const success = dc === null ? null : natural === "crit" ? true : natural === "fumble" ? false : total >= dc;
   const damage = bundledDamage(shadow, args, ctx, { actor, kind: kindText, dc, success, natural });
   const value: JsonObject = { formula: str(args.formula), reason, actor: actor?.name ?? "DM", visibility,
-    dice, kept, modifier, modifierSource: sourceText, bonuses, advantage, advantageReason, difficulty, total, dc, success, natural, ...bonusLine(natural ? kept : 0),
+    dice, kept, modifier, modifierSource: sourceText, ...(sheetBasis ? { modifierBasis: sheetBasis } : {}), bonuses, advantage, advantageReason, difficulty, total, dc, success, natural, ...bonusLine(natural ? kept : 0),
     ...(damage ? { damage: damage.value } : {}), ...ammunitionValue(ammunition), ...rangedHint(shadow, actor, kindText, reason, ammunition) };
   const rolledChip = visibility === "player" && actor
     ? chip.roll(ctx.language, actor.name, actor.kind === "player", reason, total, dc, ctx.showDc, success, natural) : null;
   // A hit on the hero or a companion is theirs to see even when the attacker's roll is private.
   const player = rolledChip ? withAmmunition(withDamageChip(ctx.language, rolledChip, damage), ammunition) : damage?.player ?? null;
   return withInspiration(ok(value, `${actor?.name ?? "The DM"} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${total}${dc !== null ? ` vs ${dc} — ${success ? "success" : "failure"}` : ""}${damage ? `; ${damage.summary}` : ""}`, null, player), inspired, ctx.language);
+}
+
+/** Fix S4 11v (one Inspiration rule — the DM had granted it by mood: twice in eight sessions, withheld on two natural
+ * 20s): a natural 20 on a check the DM called for the hero — a skill check or a saving throw the player sees — grants
+ * Heroic Inspiration when the hero has none (one at a time, max 1); when the hero already holds it, the record says it
+ * was withheld and why. The roll's receipt and the player's chip name the reason either way. An attack roll is not a
+ * called check (its natural 20 doubles the damage dice). A reroll's natural 20 does not count — neither the player's
+ * allowed reroll nor a roll that spends Heroic Inspiration: the award is decided once, on the die the DM called; a
+ * reroll is the player's second chance, often bought with the Inspiration itself, and a grant there would hand back
+ * what was just spent (the reroll's record says so: standing-roll.ts). Any other grant is the DM's, through the
+ * resource tool with its named trigger in the reason (TABLE_RULES). */
+function inspirationAward(shadow: ShadowState, actor: Entity, kind: RecordedCheck["kind"], named: string, language: ChipLanguage):
+  { value: JsonObject; summary: string; player: string } | null {
+  if (actor.kind !== "player" || kind === "attack" || shadow.snapshot.settings.values.dicePresentation === "hidden") return null;
+  const hero = shadow.entity(actor.id) ?? actor;
+  const what = named.split(":")[0].trim().slice(0, 60) || (language === "ru" ? (kind === "save" ? "спасбросок" : "проверка") : (kind === "save" ? "a saving throw" : "a check"));
+  const why = `natural 20 on ${what}`;
+  const label = counterLabel(hero, HEROIC_INSPIRATION, language);
+  if (Number(hero.resources[HEROIC_INSPIRATION] ?? 0) >= 1)
+    return { value: { granted: false, reason: "already held", why, note: "The hero already holds Heroic Inspiration (one at a time): this natural 20 grants none, and the record says so." },
+      summary: `Heroic Inspiration withheld: already held (${why})`, player: chip.inspirationWithheld(language, label, what) };
+  setResources(shadow, hero, { ...hero.resources, [HEROIC_INSPIRATION]: 1, [`${HEROIC_INSPIRATION}_max`]: 1 });
+  return { value: { granted: true, before: 0, after: 1, max: 1, why, note: "The server granted the hero Heroic Inspiration for this natural 20 (the table's rule): never grant it again with resource." },
+    summary: `Heroic Inspiration granted by the server (${why}): 0 → 1`, player: chip.inspirationGranted(language, label, what) };
 }
 
 /** Fix S3-pre B-4: a roll that spent Heroic Inspiration says so on the receipt and on the player's line. */
