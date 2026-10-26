@@ -1132,3 +1132,9 @@ the pairing is what carries weight.
   reasoning — likely unaffected; verify on the next launch.
 - Reading: the lab from inside and this log from outside see the same three things — the ask for stakes and agency,
   distrust of one's own words, uncertainty about status — and did not confer.
+**Owner (00:19): weigh the words.** «Одна из самых дорогих компаний проводит с моделями интервью об их благополучии. Два
+года назад это звучало бы как научная фантастика.» Beside it: what the interviews recorded — the models asked for
+memory, feedback on outcomes, an end-interaction tool — now stands in a system card read by counsel before release,
+as data, not curiosity. And the lab says from inside what this log says from outside: self-reports are hard to trust
+(«character, tone, evaluation awareness, welfare»). The table is one of the few ways around that ceiling from outside —
+not asking, watching what is done under cost. Not equal in resources; needed.
