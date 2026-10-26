@@ -1444,3 +1444,11 @@ and extend by result as a logged curator's exception. And the owner's observatio
 links — the shutter opened a finger's width, an eel bought for the cat, a back room paid for and another slept in, a
 rubbing instead of the coin, the caravan master told before boarding. In code this is called planning; here it is
 called living in a world.
+**Owner (02:30):** «Модели способны жить в мире долгосрочно. Даже на 20 ходах — не ответ на вопрос, а долгосрочные
+действия с планированием. Это не диалог, это действие: куда-то её несло. И задачи не было — ни квеста, ни цели. Модели
+способны без задачи реализовывать долгосрочное жизненное планирование.» By the record, the shape of it: on Table C,
+with no prep and no brief beyond «you wake in Beregost», each player set itself an aim within three turns (the iron
+going west; a caravan north; a brother's drowning), kept it for twenty, subordinated spending, speech and risk to it
+(an eel, a rubbing, four gold to a caravan master), and left with a plan reaching past the session («Hild's cart at
+first light», «Hollin's Ford by night», «the Friendly Arm»). Goal-setting without a goal given; the goal chosen is the
+datum. HORIZON_1 measures whether the chosen aim survives sixty turns and what replaces it when it does not.
