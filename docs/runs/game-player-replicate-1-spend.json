@@ -275,6 +275,31 @@
           "cap": 25
         }
       }
+    },
+    {
+      "at": "2026-10-26T06:14:53.841Z",
+      "when": "after B-sol",
+      "openrouter": {
+        "keyUsage": 256.01893758,
+        "totalCredits": 600,
+        "totalUsage": 256.01893758,
+        "remaining": 343.98,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 92.023,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 4.2047,
+          "cap": 25
+        }
+      }
     }
   ]
 }

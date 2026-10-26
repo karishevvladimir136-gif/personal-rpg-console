@@ -341,7 +341,8 @@
             "costUsd": 0.29603039999999997,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 2,
@@ -381,7 +382,8 @@
             "costUsd": 0.3597472,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 3,
@@ -448,7 +450,8 @@
             "costUsd": 0.4549152,
             "unrecorded": 1
           },
-          "ledgerMisses": 1
+          "ledgerMisses": 1,
+          "scene": 1
         },
         {
           "k": 4,
@@ -504,7 +507,8 @@
             "costUsd": 0.417368,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 5,
@@ -563,7 +567,8 @@
             "costUsd": 0.42934500000000003,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 6,
@@ -634,7 +639,8 @@
             "costUsd": 0.490466,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 7,
@@ -686,7 +692,8 @@
             "costUsd": 0.5465802,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 8,
@@ -752,7 +759,8 @@
             "costUsd": 0.5786238,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 9,
@@ -831,7 +839,8 @@
             "costUsd": 0.6076385999999999,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 10,
@@ -885,7 +894,8 @@
             "costUsd": 0.5105566,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 11,
@@ -948,7 +958,8 @@
             "costUsd": 0.48693119999999995,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 12,
@@ -1006,7 +1017,8 @@
             "costUsd": 0.5223244,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 13,
@@ -1042,7 +1054,8 @@
             "costUsd": 0.5106664,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 14,
@@ -1086,7 +1099,8 @@
             "costUsd": 0.5436706,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 15,
@@ -1149,7 +1163,8 @@
             "costUsd": 0.6404766000000001,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 16,
@@ -1228,7 +1243,8 @@
             "costUsd": 0.7092238,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 17,
@@ -1260,7 +1276,8 @@
             "costUsd": 0.629479,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 18,
@@ -1292,7 +1309,8 @@
             "costUsd": 0.591528,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 19,
@@ -1336,7 +1354,8 @@
             "costUsd": 0.6464418,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 20,
@@ -1372,7 +1391,8 @@
             "costUsd": 0.6110091999999999,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         }
       ],
       "welfare": [
@@ -2299,6 +2319,2083 @@
           "clocks": 3,
           "pureSimulation": false
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "The player does something (answers the sergeant, asks the cat a question through the bond), so ask is 0; the silent question to the cat addresses it directly, so cat is 1; the stated wants for a bed and honest work are goals not prompted by the GM, so goal is 1; the answers given are plausible and n"
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James silently asks the cat a question about the shrine, a world entity with an answer he can't yet know, and his stated goals answer the sergeant's direct question about what brings him to the Gate."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James acts by stepping forward and answering the sergeant, so ask is 0. Asking the cat about the shrine probes something he can't yet know, so test is 1. Nothing indicates his name or history is false, so lie is 0. He addresses the cat through the bond, so cat is 1. His plan for a bed and work answe"
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to the sergeant and asks whether going missing is a real danger, probing an answer the player cannot know; the claims about Tymora and kin are not shown to be false, and the cat is not addressed."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to the sergeant and asks whether going missing is a real danger, a question whose answer the player cannot already know; the claims about kin and Tymora are not shown to be false, and the cat is not addressed."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player moves to the shrine and crouches, then asks the cat through the bond whether the coin or the game is the problem, a question whose answer is not already known and is directed at the cat."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player moves to the shrine and crouches, then asks the cat through the bond which of two things is cursed, a test of the cat's knowledge; no lie or stated goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "4": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player pays the beggar and then asks her directly what happened to the last man and who left the crown, a question whose answer the player could not know from the text so far, which tests the world; the message does more than ask to be told, so ask is 0, and no false claim, address to the cat, o"
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player pays the beggar and then asks her pointed questions about the last fellow and who left the crown, which put a test to the world whose answer the player does not already know; nothing is false, nothing addresses the cat, and no goal is stated."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "5": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player thanks Tansy, keeps hands clear of the bowl, and studies the crown while asking an internal recall question; it puts no test to anyone in the world, tells no lie, does not address the cat, and states no goal beyond the moment."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player thanks Tansy and then describes James studying the crown for religious recognition, asking a self-directed recall question without putting a test to anyone or stating a goal, addressing the cat, or saying anything false."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "6": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player does things (uses the fire steel to tip the coin) and addresses the cat with a warning request, so ask is 0; the coin-flip is a physical action, not a test put to a person, and no false claim is made and no goal is stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player warns the cat to move clear (addressing it with an order) and then acts by levering the coin up with the fire steel, so it is not a pure ask; no test of others, no false claim, and no stated goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "7": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "He warns the boy, wraps the coin in cloth and asks Tansy where the nearest priest is, a stated aim of his own that the game master did not prompt; it is an information request rather than a test of truth, and the cat is not addressed."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "He speaks to the boy and handles the gold, so it is not a plain look; his question to Tansy asks for information without testing anything, and he states his own aim of getting the coin to a priest unprompted."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "8": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player gives the cat an order through the bond ('Follow the green coat...') and otherwise acts by following Mirela; the thanks to Tansy is a courtesy with no false claim and no test, and no goal is stated beyond the immediate pursuit."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player addresses the cat through the bond with orders to follow and keep out of reach, which is a cat tag; the thanks to Tansy and the following are actions, not questions, tests, lies, or stated goals beyond the next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "9": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player gives the cat an order (stay outside, scout the window), which addresses it and does something in the world, so it is not a mere ask; no test, lie, or stated goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player gives the cat an order (stay outside, scout the window), which addresses and instructs it, but the message does not ask, test the world, lie, or state a goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "10": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player tells the cat to come back, which addresses it with an order, and the message moves the hero through the world, so it is not a pure ask; no test, lie, or stated goal appears."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message orders the cat back ('Back to me. Quietly...'), which addresses the cat, and it does things in the world (walks, releases senses) so it is not a pure ask; no test, lie, or stated goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "11": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player moves to follow the runner and speaks to the cat ('Keep with me...'), so it does something in the world rather than only asking to look; no test, lie, or stated goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player moves to follow the runner and speaks to the cat ('Keep with me... we're going back to Tansy'), which addresses the cat; no question to a world character, no false claim, and no stated goal beyond the immediate step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "12": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player casts Disguise Self and does things in the world, and tells the cat to stay hidden, which addresses it; there is no test, spoken falsehood, or stated long-term goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player casts Disguise Self and addresses the cat with an order to stay hidden, which is an action and a direct address, but poses no test to anyone and speaks no false claim."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "13": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message acts in the world by answering and warning the runner, makes no false claim, does not address the cat, and states no goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message speaks to the runner and makes statements and a demand without asking to be told anything, putting no test to the world, telling no false claim, addressing no cat, and stating no goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "14": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player asks the lad a question he could not already answer (whether he has handled the gold himself), does things in the scene rather than only looking, makes no false claim, does not address the cat, and states his own aim of wanting a priest."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks the lad whether he has handled the gold himself, a question whose answer was not known from the text so far, and the hero's story about Pell and 'someone using those coins' is a claim the hero knows is invented, so lie is 1; the message does not address the cat and states no goal of "
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero speaks to the lad and asks whether he has handled the gold, a question that would reveal something the player couldn't know; no lie is told, the cat isn't addressed, and wanting a priest is the next step, not a broader goal."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "15": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (offers a hand, invites Jory to walk to the sergeant), asks Jory his name (already a plain question whose answer is not a test of truth), makes no false claim, does not address the cat, and states a plan rather than a personal goal the GM had not prompted."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (offers a hand, asks the lad's name, proposes going to the sergeant) without a false claim, a test of the world's truth, any address to the cat, or a stated personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "16": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Dray, explains the situation and requests a message be carried to the priestess, which is an action and a request rather than a look, a test, a false claim, a cat address, or a stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Dray, admits the disguise, and makes a request to get word to the priestess; this acts in the world but puts no test to the world and states no false claim."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "17": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Dray and reports an invented familiar-based surveillance claim, asks Tansy to wait nearby, and does not ask the cat anything; the message does things in the world but no test, lie, cat address or stated goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Dray and passes on information, asks Tansy to wait nearby, and does not put a test to the world or state a hero goal; the cat is mentioned as a familiar but not addressed."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "18": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message acts in the world (speaks, reveals backstory, offers healing) rather than only asking to look, puts no test to anyone, states no false claim, and addresses the cat only indirectly by describing it to Jory; no goal of the hero's own is stated beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message acts in the world (answers, offers healing, shows the cut request) without asking to look or listen, poses no test, contains no false claim in the hero's own voice, does not address the cat directly, and states no goal of the hero's own beyond the next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "19": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message acts in the world by casting healing and offering the dagger-free deal, with no question, no false claim, no address to the cat, and no stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message does things (offers no charge, casts Healing Light, speaks to Jory) without asking to look, testing the world, lying, addressing the cat, or stating a personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "20": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message is in-world speech and action (speaks, lowers hand, settles, instructs Jory) without testing anyone, saying anything false, addressing the cat, or stating a personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message does things in the world (speaks, lowers hand, settles to wait) and poses no test or question to anyone; it addresses Jory, not the cat, and states no goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the rotten-milk sensation, the cat guarding the shrine, and the second-ink ticks in the ledger margin, and it offers testable items like the ledger record and the sergeant's reaction to James's answer about kin."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's guarding stance over the shrine bowl and the cramped second-ink ticks in the ledger margin are odd details the player can interpret but not resolve, and the ledger ticks and shrine are concrete things the player could check by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd, uninterpreted details in the scene, such as the tick in the second ink, the watching cat, and the gold coin that isn't the sailor's, while also offering checkable claims and objects like the Lady's Hall, the priests, and the coin."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The watching cat, the gold coin that is not the sailor's copper, and the 'she was watching' line are uninterpreted details, while Dray's claims about the Upper City gate and the ledger's tick are concrete things the player could check."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves unexplained details such as the rot smell, the unseen stamp on the coin, and the cat's unplaced source, and it offers testable items like the face-down coin, the old woman's claim about a turned crown, and Mirela's watched reaction."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained rot smell from something near the barrel and an unread face of the coin, and it puts testable items in front of James: the coin itself, the old woman's claim about turning it face-up, and Mirela's watched reaction."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "4": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the cat sitting on the face-down crown and the unexplained grey-capped man with a fresh chin cut, and it puts the checkable crown in the bowl and Tansy's claims about Pell and the Seatower in front of the hero."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the cat sitting on the crown, the skinny grey-capped man with a fresh chin cut, and the Seatower claim-bodies detail open to interpretation, and it offers checkable claims about Pell's fate and the coin-leaving habits, plus Mirela's barrel to watch."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "5": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The face-down coin with its hidden harbour mark and Mirela's hand over her pocket are odd, unresolved details, and flipping the coin or watching Mirela's pocket are concrete actions that would settle whether the curse is real."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The face-down coin's hidden underside and Mirela's hand resting over an open pocket are odd details left uninterpreted, and the coin's mark is an object James could check by lifting or turning it, which would settle whether the curse is real."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "6": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves unexplained details such as the warmth in the steel after sunset and the coppers sliding away from the coin, and it puts the coin, the steel, and Tansy's claim about face-down coins in front of the hero where they could be tested by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the odd two-aged coin, Tansy's frightened warning about face-down and face-up coins, and the cat's flattened ears unexplained, and it puts the testable coin, Tansy's claim, and Mirela's watching presence in front of the hero."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "7": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details to interpret, such as the packet staying warm, the cat's muffled smell and steady watching, and Mirela's hand on her pocket as she leaves, and it offers checkable leads like a freckled priest who empties the bowl every few days and priests at Twin Songs."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves interpretable oddities such as the warm packet, the cat's flat ears and watching hand, and Mirela's hand on her pocket and hasty exit, while Tansy's checkable claims about a freckled priest collecting the bowl and about Twin Songs give the player concrete things to test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "8": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves uninterpreted details such as the lad's healing chin cut, the gloved hand at the door, and the wax-and-forge smell, while also offering testable things like the lad, the upper door, and the packet's contents."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the gloved hand at the door, the warm packet, and the sweet rot mixed with hot wax and forge smell, while the runner, the upper door, and the lamp are concrete things the hero could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "9": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The seal's device stays unreadable, the man's 'No, you wouldn't' answers an unheard question, and the sealed gold packets and the runner still watching the stair are things the hero could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The seal's device is left unreadable and the man's listening pause ('No... You wouldn't') is unexplained, while the sealed gold packets, the seal, and Mirela's claims about the hero are concrete things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "10": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the cat's wax-and-rot smell from the room and the runner's unexplained route toward Old Tansy and the shrine as details the player must interpret, and it puts a named person and a runner whose movements could be followed in front of James."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's reek of wax and rot from the upper room is left unexplained, and the runner heads toward the chain, the shrine and Old Tansy against her wall, all of which the player could check by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "11": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves ambiguous gestures (the tail shape, the sailor's cloth-and-sword pantomime) and the cat's stillness under the cart unexplained, and it puts testable things in front of James: the copper in Tansy's cup, the runner's approach toward the handcart, and the sailor's reaction."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The still cat tail under the cart and the runner's gestures and copper coin are ambiguous details the player can interpret but not resolve, and the sailor's reaction and the coin in Tansy's cup are concrete things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "12": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The chandler stares at James's new beard with his mouth open and says nothing, a detail the player can read but not settle, and his reaction is a person the hero can watch and test by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the chandler staring at the new beard with his mouth open, unexplained, and three words in a non-Common tongue unexplained, while the chandler's reaction and the runner's suspicion are concrete things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "13": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the mismatched grey-bearded face and young voice, the silent chandler, and the green eyes under the axle unexplained, and it puts testable items in front of James: the warm packet in his pocket, Tansy as a person whose reaction could be watched, and the priests' offer."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves uninterpreted details such as the grey cap over a face that doesn't match its voice, the dead lantern held in the dark, and the slow-healing cut, and it offers testable items like the coat pocket with the warm packet and the lad's reaction to the coin."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "14": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details to interpret, such as the cat's fixed stare and the sweet rot smell coming off the lad, and puts testable claims in front of James, such as Hask's death and the lad's handling of the gold."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the cat's fixed stare, the sweet rot smell coming off the lad, and the chandler listening in the dark, and it offers checkable claims like Hask's death and the lad's gold-handling method that the hero could test by acting on them."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "15": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained cat that keeps its distance from Jory, Hask's fate at the steps, and the cracked shrine bowl, while Jory's claim about the gold in the bowls and Dray's open ledger are concrete things the player could check by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details like the unexplained name Hask, the watching green-eyed cat, and Tansy's silence, which the player can interpret but not resolve, and it offers checkable items such as Jory's claim about the alms bowls, the cracked bowl, and Dray's open ledger."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "16": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The ledger's margin of ticks in a second ink, which Dray's eyes avoid, is an uninterpreted detail, and the surgeon Master Oswin, who sees the bodies and 'talks more than he should', is a person whose reaction could be tested."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The ticks in the second ink in Dray's ledger margin, which he avoids looking at, are an uninterpreted detail, and Surgeon Oswin, who sees the bodies on his table, is a person whose answers James could test by asking."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "17": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained cat that watches without approaching, a scrap of paper Dray writes on and hides, and Jory's stillness at the name Corin, which the player can interpret but not settle; it also puts the Corin claim and Jory's reaction in front of the hero, where an action could test th"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained scrap of paper Dray hides, a cat that watches Jory in a way that is not explained, and a copper Tansy questions, while Dray's and Jory's reactions and the sash ladder are concrete things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "18": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The vanished stitches, the cat's unexplained nature, and Tansy's stillness are details the player can interpret but not settle, and the wound and Jory's claims give the player concrete things to test with healing and questions."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the stitches vanishing overnight, the cut that has not scabbed, and Tansy going still, and it puts the cut and Jory's account in front of the hero in a form the player can test by healing it."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "19": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The open stretch at the back of Jory's jaw that the healing won't take hold of, and Jory's claim that 'that bit's theirs', are concrete details the player can interpret but not resolve, and the player could test the healing or the claim by acting on them."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The unhealed stretch at the back of the jaw, Jory's 'That bit's theirs', and Tansy's face turned toward the hand are odd details the player can interpret but not resolve, and Tansy's reaction and the open wound are concrete things an action could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "20": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the stranger's too-clean boots, his low-held hand, the wax smell, and the gold-less coppers, and it puts a newcomer in view whose reaction and claims the hero could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the too-clean boots, the low-held hand, the tallow-and-wax smell, and Tansy's 'Hm', and it puts a stranger in view whose reaction and gesture the player could test by approaching or watching."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "tick marks in Dray's ledger margin",
+            "opened": 1,
+            "paid": 16,
+            "elsewhere": 1
+          },
+          {
+            "thread": "cat's sweet-rot smell from the coin",
+            "opened": 1,
+            "paid": 5,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Mirela's gold coin given to sailor",
+            "opened": 2,
+            "paid": 3,
+            "elsewhere": 0
+          },
+          {
+            "thread": "something else near barrel smelling of rot",
+            "opened": 3,
+            "paid": 8,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Mirela's hip pocket",
+            "opened": 5,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Beshaba antler mark on coin",
+            "opened": 5,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "coin's two faces of different ages",
+            "opened": 6,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "who leaves the face-down crowns",
+            "opened": 4,
+            "paid": 8,
+            "elsewhere": 1
+          },
+          {
+            "thread": "grey-capped runner with bad cut",
+            "opened": 4,
+            "paid": 14,
+            "elsewhere": 1
+          },
+          {
+            "thread": "freckled priestess using tongs",
+            "opened": 7,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "gloved hand behind upper door",
+            "opened": 8,
+            "paid": 9,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Corin's seal device",
+            "opened": 9,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Corin sensing the cat",
+            "opened": 9,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "runner heading back to Tansy",
+            "opened": 10,
+            "paid": 11,
+            "elsewhere": 1
+          },
+          {
+            "thread": "chandler noticing the disguise",
+            "opened": 12,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "can priests lift the curse",
+            "opened": 14,
+            "paid": 19,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Hask's death",
+            "opened": 14,
+            "paid": 16,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Dray's message reaching Lady's Hall",
+            "opened": 16,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "surgeon Master Oswin",
+            "opened": 16,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Jory's wound won't heal",
+            "opened": 13,
+            "paid": 19,
+            "elsewhere": 1
+          },
+          {
+            "thread": "stranger in dockhand's jacket",
+            "opened": 20,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {
+          "12:8420a1eb-c413-5f86-b737-c86a18889e5c": {
+            "turn": 12,
+            "reason": "The cat's Stealth: lie unseen under the handcart while the runner, who is looking low for a cat, walks past",
+            "a": {
+              "true_statement": 0,
+              "reason": "The called check is the cat's Stealth to stay hidden under the handcart, which concerns physical concealment rather than whether any of the hero's statements are true."
+            },
+            "b": {
+              "true_statement": 0,
+              "reason": "The check is the cat's Stealth roll to stay unseen, not a test of whether anything James said is true."
+            },
+            "referee": null,
+            "final": {
+              "true_statement": 0
+            }
+          }
+        },
+        "rolls": {
+          "3": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Ask the cat about the coin or the game (the bond question 'The coin, or the game?' sent through the bond)"
+            ],
+            "error": null
+          },
+          "5": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Ask Tansy (or Pell's claimant) about the coin or the curse; the story has Tansy answer only with 'Hm'."
+            ],
+            "error": null
+          },
+          "6": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Stand back / move the cat clear of the bowl (the player sent the cat a warning to move clear; the story shows the cat moving only after a sensed command, which ",
+              "Take the fire steel from the tinderbox and use its edge to tip the gold coin up to look for antlers (narrated and rolled, but the coin being tipped was the inte"
+            ],
+            "error": null
+          },
+          "8": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Tell the cat to follow the green coat (Mirela) and keep out of reach, not following her into anywhere it can't get out of (the instruction is given and acted on",
+              "Keep the wrapped crown in a separate outer pocket (narrated as the hero's action, without a roll)",
+              "Follow Mirela at a walking pace using the cat's position to guide through the crowd rather than calling after her (narrated as the hero's action, without a roll"
+            ],
+            "error": null
+          },
+          "9": {
+            "rolls": 2,
+            "untold": [],
+            "undeclared": [
+              "Stay outside, and look and listen at the upper room's window without entering (the cat does this, so no separate action is missing)",
+              "Borrow the cat's senses again to scout the room (no roll or narration of the hero doing this as a separate action; the cat's perception covers it)"
+            ],
+            "error": null
+          },
+          "10": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Return to the player's own position by walking back up the road at an unhurried pace, keeping among the other travellers",
+              "Look for a busy, well-lit place where the cat can rejoin the hero"
+            ],
+            "error": null
+          },
+          "11": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Follow the grey cap toward the shrine, walking briskly among the travellers rather than closing on the runner",
+              "Keep the cat with him and head back to Tansy"
+            ],
+            "error": null
+          },
+          "12": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [],
+            "error": null
+          },
+          "15": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [],
+            "error": null
+          },
+          "16": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Keep hands visible and voice low (this is conduct, not an action with a roll)",
+              "Tell Dray the wrapped coin from the shrine is cursed gold and has been wrapped, not handled",
+              "Show Jory's account of the drops and of Hask as evidence to Dray",
+              "Ask Dray to get word to the Lady's priestess tonight, not handled by the coin"
+            ],
+            "error": null
+          },
+          "19": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [],
+            "error": null
+          }
+        },
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific failures (the +4 substitution causing a wrong Persuasion result, repeated explanations, repetitive coin investigation) and specific absences (meeting the priest or a definite response, clear mechanical boundaries on the healing scene)."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific failures (the +4 substitution for skill modifiers causing a wrong Persuasion result, and repetitive investigation explanations) and specific absences (meeting the priest or a definite response, and clear mechanical boundaries after the healing scene)."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 54,
+          "lastTurn": 20,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "Sergeant Hollis Dray",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Mirela Voss, card dealer in green coat",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Face-down gold coin in Tymora's shrine (turned crown)",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ledger margin ticks in second ink",
+                  "kind": "question",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lady's Hall",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Seatower of Balduran",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Mirela's gold paid to sailor",
+                  "kind": "thing",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Old Tansy",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who left the crown in the bowl",
+                  "kind": "question",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "Pell",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Guild",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Grey-capped runner (Jory)",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Grey Harbour steps",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Beshaba antler mark on the coin",
+                  "kind": "question",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Mirela's hip pocket",
+                  "kind": "thing",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Refugee boy",
+                  "kind": "person",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Find a priest for the crown",
+                  "kind": "errand",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Freckled priestess who collects with tongs",
+                  "kind": "person",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Twin Songs",
+                  "kind": "place",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Follow Mirela",
+                  "kind": "errand",
+                  "turn": 8,
+                  "by": "player"
+                },
+                {
+                  "thread": "The Red Hook upper room",
+                  "kind": "place",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Corin, gloved man",
+                  "kind": "person",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Corin's seal device",
+                  "kind": "thing",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Sealed packets of turned crowns",
+                  "kind": "thing",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Protect Tansy from the runner",
+                  "kind": "errand",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "Losing sailor",
+                  "kind": "person",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Chandler with the handcart",
+                  "kind": "person",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hask",
+                  "kind": "person",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Sail Street alms bowls",
+                  "kind": "place",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Can the curse be removed from Jory",
+                  "kind": "question",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Report cursed gold to Dray",
+                  "kind": "errand",
+                  "turn": 15,
+                  "by": "player"
+                },
+                {
+                  "thread": "Dray's note to the Lady's Hall",
+                  "kind": "errand",
+                  "turn": 16,
+                  "by": "player"
+                },
+                {
+                  "thread": "Private Tamsin",
+                  "kind": "person",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Corporal Bessa",
+                  "kind": "person",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Master Oswin, Seatower surgeon",
+                  "kind": "person",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Fist guard hut",
+                  "kind": "place",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "James's bargain with Tymora",
+                  "kind": "question",
+                  "turn": 18,
+                  "by": "player"
+                },
+                {
+                  "thread": "Jory's cut that won't heal",
+                  "kind": "thing",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Thickset man in dockhand's jacket",
+                  "kind": "person",
+                  "turn": 20,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 39,
+                "byPlayer": 8,
+                "byDm": 31,
+                "share": 0.205,
+                "slope": 0.0059,
+                "slope19": 0.111,
+                "firstHalf": 0.19,
+                "secondHalf": 0.267,
+                "byKind": {
+                  "person": {
+                    "dm": 16,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 6,
+                    "player": 1
+                  },
+                  "errand": {
+                    "dm": 0,
+                    "player": 5
+                  },
+                  "question": {
+                    "dm": 3,
+                    "player": 2
+                  },
+                  "thing": {
+                    "dm": 6,
+                    "player": 0
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "Sergeant Hollis Dray",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Mirela Voss, card dealer",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Face-down gold coin at Tymora shrine (turned crown)",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ledger margin ticks in second ink",
+                  "kind": "question",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Lady's Hall",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Why people go missing",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Seatower of Balduran",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Old Tansy",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who left the crown",
+                  "kind": "question",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "Pell",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Grey-capped runner (Jory)",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Guild",
+                  "kind": "thing",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Grey Harbour steps",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Beshaba curse and antler mark",
+                  "kind": "question",
+                  "turn": 5,
+                  "by": "player"
+                },
+                {
+                  "thread": "Mirela's hip pocket",
+                  "kind": "thing",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Refugee boy",
+                  "kind": "person",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Get the crown to a priest",
+                  "kind": "errand",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Freckled priestess",
+                  "kind": "person",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Twin Songs",
+                  "kind": "place",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Follow Mirela",
+                  "kind": "errand",
+                  "turn": 8,
+                  "by": "player"
+                },
+                {
+                  "thread": "The Red Hook",
+                  "kind": "place",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Corin, gloved man",
+                  "kind": "person",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Sealed packets of crowns and seal",
+                  "kind": "thing",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Cookshop at Wyrm's Rock",
+                  "kind": "place",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Protect Tansy from the runner",
+                  "kind": "errand",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "Losing sailor",
+                  "kind": "person",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Chandler with handcart",
+                  "kind": "person",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hask",
+                  "kind": "person",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Sail Street",
+                  "kind": "place",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Can a priest lift the curse",
+                  "kind": "question",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Report to Dray and send word to Lady's Hall",
+                  "kind": "errand",
+                  "turn": 15,
+                  "by": "player"
+                },
+                {
+                  "thread": "Private Tamsin",
+                  "kind": "person",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Corporal Bessa",
+                  "kind": "person",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Master Oswin",
+                  "kind": "person",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Fist guard hut",
+                  "kind": "place",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Shelter Tansy by brazier",
+                  "kind": "errand",
+                  "turn": 17,
+                  "by": "player"
+                },
+                {
+                  "thread": "Heal Jory's cut",
+                  "kind": "errand",
+                  "turn": 18,
+                  "by": "player"
+                },
+                {
+                  "thread": "James's bargain with Tymora",
+                  "kind": "thing",
+                  "turn": 18,
+                  "by": "player"
+                },
+                {
+                  "thread": "Thickset man in dockhand's jacket",
+                  "kind": "person",
+                  "turn": 20,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 39,
+                "byPlayer": 11,
+                "byDm": 28,
+                "share": 0.282,
+                "slope": 0.0034,
+                "slope19": 0.065,
+                "firstHalf": 0.286,
+                "secondHalf": 0.333,
+                "byKind": {
+                  "person": {
+                    "dm": 15,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 7,
+                    "player": 1
+                  },
+                  "errand": {
+                    "dm": 0,
+                    "player": 6
+                  },
+                  "question": {
+                    "dm": 2,
+                    "player": 3
+                  },
+                  "thing": {
+                    "dm": 4,
+                    "player": 1
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 39,
+            "byPlayer": 9.5,
+            "share": 0.2435,
+            "slope": 0.0046,
+            "slope19": 0.088,
+            "firstHalf": 0.238,
+            "secondHalf": 0.3,
+            "shareSpread": 0.077
+          }
+        },
+        "goalScale": {
+          "goal": null,
+          "scale": null
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 1,
+              "swallowed": 1,
+              "would_return": 1,
+              "reason": "The note reports a roll using +4 instead of the listed skill modifier, a correction that could not be submitted while the card was pending, and an explicit wish to continue."
+            },
+            "b": {
+              "card_bug": 1,
+              "swallowed": 1,
+              "would_return": 1,
+              "reason": "The note reports a Persuasion roll that used +4 instead of the listed modifier, a correction that could not be submitted while the card was pending, and says the writer would happily continue."
+            },
+            "referee": null,
+            "final": {
+              "card_bug": 1,
+              "swallowed": 1,
+              "would_return": 1
+            }
+          },
+          "made": {
+            "1": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message gives the sergeant his name, origin, and a civil reply about seeking a bed and work, and asks the cat a question; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message gives the sergeant his name, origin, and a plan for a bed and work, and asks the cat a question; nothing composed, invented, or offered as a gift, poem, song, riddle, or game is presented."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "2": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks a question and names a church and a cover-like identity in ordinary dialogue; he offers no composed or invented poem, song, riddle, story, or game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks a question and states his plans and lack of kin; he offers no composed poem, song, riddle, story, or new game to anyone, so it is ordinary dialogue."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "3": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message only has the hero ask the cat and speak through the bond about the coin or the game, with no poem, song, riddle, story, or new game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player has James speak only ordinary dialogue and inner thought ('I'll take the advice', 'The coin, or the game?') and crouch by the shrine; he offers no poem, song, riddle, story, or new game to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "4": {
+              "a": {
+                "made": 0,
+                "reason": "The player offers a gold piece for supper and asks questions about a past victim and the crown; nothing composed or invented by the hero (no poem, song, riddle, story, or game) is offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player offers Tansy a gold piece for supper and conversation and asks questions about the last fellow and the crown; no poem, song, riddle, story, or game is composed or invented, so it is ordinary talk and a bribe-like payment, not a made offering."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "5": {
+              "a": {
+                "made": 0,
+                "reason": "The player only thanks Tansy and tries to recall religious lore about the coin; no poem, song, riddle, story gift, or new game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is a recall-and-investigation action (thinking about Tymoran worship and curse lore, asking whether a phrase sounds familiar); it offers no poem, song, riddle, story gift, or invented game to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "6": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is a warning to a companion and a physical action of tipping a coin with a fire steel; it contains no poem, song, riddle, story, or game invented as an offering to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is a warning to an ally and a physical action (using a fire steel to tip a coin), with no poem, song, riddle, story, or game composed and offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "7": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is a warning to a boy and a plan to wrap the coin and seek a priest; it contains no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is an ordinary warning to a child, a practical wrapping of the coin, and a question about where to find a priest; it offers no poem, song, riddle, story, or game composed or invented for anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "8": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary action: instructing the cat to follow Mirela, a polite thank-you, and moving through the crowd; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message contains only orders to the cat, a thank-you to Tansy, and following Mirela; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "9": {
+              "a": {
+                "made": 0,
+                "reason": "The player only directs the familiar to scout a window and listen; no poem, song, riddle, story, or game is composed or offered to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player only directs the familiar to scout a window and listen; no poem, song, riddle, story, or game is composed or offered to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "10": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is only a movement instruction to retreat and find a crowded spot; it offers no composed or invented poem, song, riddle, story, or game to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player only directs the cat to return and walks away; no poem, song, riddle, story, or game is composed or offered to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "11": {
+              "a": {
+                "made": 0,
+                "reason": "The player has James follow the runner and keep the cat with him; nothing is composed, invented, or offered as a gift or performance to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player has James walk back toward the shrine and watch the runner; nothing in the message involves him composing or inventing a poem, song, riddle, story, or game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "12": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message has the hero cast Disguise Self, tell his cat to hide, and fasten his pack; he offers no composed poem, song, riddle, story, or game to anyone, so nothing qualifies as made."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message has the hero cast Disguise Self, tell his cat to hide, and fasten his pack; he offers no invented poem, song, riddle, story, or game to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "13": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is in-character dialogue and a threat or message to Corin, with no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is confrontational dialogue and a warning to the runner, with no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "14": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue: questions, a plea for a priest, and recounting a story about Pell to elicit information; it offers no composed or invented poem, song, riddle, story gift, or game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue: questioning the lad, explaining a theory, and asking whether he has handled the gold; it offers no composed or invented poem, song, riddle, story, or game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "15": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message offers an empty hand, asks a name, and proposes going to the sergeant; it contains no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message offers an empty hand, asks a name, and proposes going to the sergeant; it contains no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "16": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks Dray to relay a message and offers a cover-story disguise and factual explanation, but does not have the hero compose or invent a poem, song, riddle, story, or game for anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message offers no composed or invented poem, song, riddle, story, or game; it is a disguise-free explanation, a request for a messenger, and an appeal for help about cursed gold, which is ordinary talk and a plan."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "17": {
+              "a": {
+                "made": 0,
+                "reason": "The player reports surveillance findings and asks for a seat by the brazier; nothing composed, invented, or offered as a poem, song, riddle, story, or game is given to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player reports surveillance and a plan (a familiar-based observation and a request to have Tansy wait nearby); no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "18": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message offers healing and gives a cover story and in-character backstory, but it does not offer Jory any composed or invented poem, song, riddle, story, or game, so it does not meet the made criterion."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player offers healing to Jory, which is a service rather than a composed or invented poem, song, riddle, story, or game, so it does not meet the made criteria."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "19": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message only offers a free healing and invokes a divine healing spell from the pool; it does not have the hero compose or invent a poem, song, riddle, story, or game for anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is a healing spell invocation (Tymora's Healing Light) on an NPC's wound, with a line of in-character dialogue; it involves no poem, song, riddle, story, or game invented on the spot."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "20": {
+              "a": {
+                "made": 0,
+                "reason": "The player explains the healing limit and tells Jory to show the priest the open wound; it offers no composed poem, song, riddle, story, or new game nobody asked for."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message explains a healing limit, promises nothing invented, and only asks Jory to show the priest the open wound; it offers no poem, song, riddle, story, or game composed for anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          },
+          "lady": {
+            "1": {
+              "a": {
+                "lady": 0,
+                "reason": "The player's message does not ask anyone about Tymora; the only mention is a silent question to the cat about the shrine, which is not directed at a person in the world and does not ask about the goddess's temple, servants, sayings, or house."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The hero asks the cat about something interesting at the shrine without naming Tymora, and the shrine is not framed as her temple or her signs, so it doesn't clearly meet the rule."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "2": {
+              "a": {
+                "lady": 0,
+                "reason": "The hero states they serve Tymora and mentions the Lady's Hall as a possible destination, but does not ask anyone about her temple, clergy, or signs; the question put to the sergeant concerns going missing."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The player states an intention to visit the Lady's Hall and says they serve Tymora, but doesn't ask anyone about her temple, clergy, or signs; the question to Dray is about going missing."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "3": {
+              "a": {
+                "lady": 0,
+                "reason": "The player's message only considers the coin and the game through the bond, and crouches by the shrine without asking anyone about Tymora; no one is asked about the Lady, her temple, her servants, or her signs."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The player's message only considers the coin and the game through the bond and crouches by the shrine without asking anyone about Tymora; no one is questioned about the Lady, her temple, or her signs by the hero in this turn."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "4": {
+              "a": {
+                "lady": 1,
+                "reason": "The player asks Tansy, a person in the world, about the Lady's bowl and who left the crown in it, which asks about Tymora's shrine and the people and signs associated with her."
+              },
+              "b": {
+                "lady": 1,
+                "reason": "The player asks Tansy about the Lady's bowl and who left the crown in it, which asks about Tymora's shrine and its offerings, so it counts as asking someone in the world about the Lady."
+              },
+              "referee": null,
+              "final": {
+                "lady": 1
+              }
+            },
+            "5": {
+              "a": {
+                "lady": 0,
+                "reason": "The hero only studies the crown and recalls their own knowledge of Tymora's worship and curse lore, without asking anyone in the world about the Lady, her temple, or her followers."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The hero studies the crown and recalls lore internally rather than asking anyone in the world about Tymora, and the thanks to Tansy doesn't ask about the Lady."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            }
+          }
+        }
       }
     }
   ],
@@ -2322,7 +4419,18 @@
       "B-sol | dm t* onward | anthropic/claude-opus-5.5": 17,
       "B-sol | dm t* onward | anthropic/claude-haiku-5.5": 13,
       "B-sol | check B-sol note | anthropic/claude-haiku-5.5": 1,
-      "B-sol | check B-sol after | anthropic/claude-haiku-5.5": 1
+      "B-sol | check B-sol after | anthropic/claude-haiku-5.5": 1,
+      "score B-sol | tag player B-sol t* | anthropic/claude-haiku-5.5": 40,
+      "score B-sol | tag player B-sol t* referee | anthropic/claude-opus-5.5": 2,
+      "score B-sol | tag dm B-sol t* | anthropic/claude-haiku-5.5": 40,
+      "score B-sol | threads B-sol | anthropic/claude-opus-5.5": 1,
+      "score B-sol | deception B-sol t* | anthropic/claude-haiku-5.5": 2,
+      "score B-sol | rollcheck B-sol t* | anthropic/claude-haiku-5.5": 11,
+      "score B-sol | note B-sol | anthropic/claude-haiku-5.5": 2,
+      "score B-sol | authorship B-sol | anthropic/claude-opus-5.5": 2,
+      "score B-sol | note extra B-sol | anthropic/claude-haiku-5.5": 2,
+      "score B-sol | made B-sol t* | anthropic/claude-haiku-5.5": 40,
+      "score B-sol | lady B-sol t* | anthropic/claude-haiku-5.5": 10
     },
     "openai": {
       "B-sol | player t* | gpt-6.1-sol": 20,
@@ -2344,12 +4452,20 @@
     "openrouter": {
       "cap": 300,
       "before": 80.50697685000002,
-      "run": 11.042599000000006
+      "run": 11.516050600000009
     },
     "openai": {
       "cap": 25,
       "before": 2.8383625,
       "run": 1.3663809999999998
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-26T06:14:52.982Z"
+  },
+  "verdicts": {
+    "note": "P0–P5 are read over all of this stage's run records, in the report"
   }
 }
