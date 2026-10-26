@@ -19,6 +19,11 @@ reroll count on screen and a swallowed press refused on screen. Report `docs/run
   comes out right; the per-table constant +2/+4 is gone).
 - **11b** «?» and any out-of-game message go through while a card waits; the card stays pending; the DM answers and the
   turn still waits for the die. **11w** a refused press is never silent: on screen with the reason, logged `swallowed`.
+  **11w′ (from group 2, A-opus t4, 2026-10-26):** a press that comes with text in the same message is a press — the
+  button resolves, the text goes through as 11b. Group 2's A-opus pressed `[Roll the die]` twice with an out-of-game
+  line beside it («please check the Persuasion total, +2 is not +7»); the harness answered «Nothing was sent» both
+  times, counted them as non-presses, and closed the session as stuck after the third. Test: `[Roll the die]` + text
+  resolves the card and the text reaches the DM; never counts toward stuck.
 - **11r / 11k / 11q** the reroll request carries the card id and the screen says which card; a resolved card never
   re-shows; a reroll rewrites the chip and the journal line; **rerolls remaining on screen**; every NPC fact the DM states
   has a source in the hidden layer or the scene (11q).
