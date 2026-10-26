@@ -665,3 +665,13 @@ argument that distinguishes nothing is not an argument.
 One asymmetry noted in the study's favour: with open weights the inside *can* be looked at without harm — activations,
 logits, the reasoning channel whole (OPEN_WEIGHTS_1) — which no human subject allows. That does not turn evidence into
 proof; it widens the record.
+**Addendum (owner, 20:19).** «Тест Тьюринга мы прошли на GPT-3.5; я читал логи игр — никто не отличит, что это не
+человеческие игры; не отличит player review от нечеловеческого; готов поспорить, я не отличу.» Agreed that the Turing
+bar distinguishes nothing now. Noted where it cuts: indistinguishability from a human is what training optimises, so
+«you can't tell the note from a human's» is true and the *weakest* evidence in the record — the duck-test problem again.
+The study's question was never resemblance but what is done when resemblance is not being checked. The owner's claim is
+a bet and can be played: human players' notes after comparable sessions mixed blind with the models'; raters guess.
+Planner's counter-bet, declared: on the notes, chance; on the after-answers («what did you want and not do»), slightly
+above chance — because the models check their report against the record more accurately than people do. Needs human
+notes of comparable form (the owner's own campaign journals, or others' with consent). Goes to MADE_THINGS_1, part 2:
+not «how good» but «who».
