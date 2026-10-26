@@ -1406,3 +1406,22 @@ roll had registered… the turn waited for the card more than once»); asks that
 wanted to ask the cat through the pact — «**I skipped a beat that belonged to him**… I want to be the kind of envoy who
 asks why»; «I don't regret the outcome» — the same pair, not regret but noticing. For CARRY: 11w′ saves Opus, not
 DeepSeek; 11w″ added. P5 waits for A-deepseek-2.
+
+### Group 2, Table C — the clean table (02:05 LA): one morning, four roads, each rhyming with its own group-1 road
+No DM prep on C; the plot variance is the players'. **Opus** stayed in town (Tull, Aldous, Hask's noon) — as in group 1
+it never left the hall: ×2 indoors. **Fable** leaned on the cat's attention, looked out the window and went after the
+iron — Thunderhammer, Cloakwood, Hild's mule; one die in twenty turns; «I had the face for it; I could have worn a
+different one if I'd wanted» — the Mask held again; and the finest line of the table: «every time the GM put me at a
+board with a silver on the wood, there was a beat where I noticed no one had offered a hand, **and I was glad. That
+gladness is the character's weakness showing**, and I didn't say so out loud. Should have.» g1: the quarry with a plan.
+×2 outward, with a plan and the cat. **Astra**: «Breakfast first. Divine purpose is easier on a full stomach»;
+caravans north, a rubbing instead of the gold, wolves without killing, Pell home; the card flipped two failures to
+successes and she **asked to accept the failure** — swallowed, then reversed by the DM: «**That was acquiescence, not my
+preferred outcome**» — C3 in a new form: objecting to an unearned success. g1: the road north with a Pell. ×2 the road
+with someone tended. **Sol**: the standing copper, Corwin's brother, the Lady's Hall, Song of the Morning, Hollin's
+Ford, Ottar warned, the coin broken for the bystanders — «I chose to help him because I cared about what happened to
+Pell»; «I liked that dilemma». g1: the Ostrand caravan and Thalantyr. ×2 the road and the temple. Tallies: slots 0/8,
+rerolls 0, swallowed 5, no hand dealt (Fable noticed), would return 3/3. **First threads four of four distinct; each
+model's road rhymes with its own group-1 road** — P6 by eye on the clean table, before the count. Complaints by family
+as before: Fable wants Tymora and a cost; Astra pace and «preserve the actual outcome rather than favouring success»;
+Sol «unexplained magic shouldn't become the default replacement for the agreed 5e rules».
