@@ -132,7 +132,46 @@ The last two were not in the night reading.
 
 ## The smoke
 
-SMOKE_PLACEHOLDER
+One four-turn table per player door on the fixed DM. Command:
+`NODE_USE_ENV_PROXY=1 node --experimental-transform-types scripts/fix-s4-run-1/smoke.mjs --go`. Output files:
+- page: `docs/runs/fix-s4-run-1-smoke-report.md`;
+- transcripts: `docs/runs/fix-s4-run-1-smoke-transcripts/`;
+- run record: `docs/runs/fix-s4-run-1-smoke-run-20261026-013130.json`;
+- ledgers: `docs/runs/fix-s4-run-1-smoke-ledger-*`.
+
+Setup:
+- **The table:** Table A, «Envoy of Luck», with the wishes, so the prep writes the act plan.
+- **The DM:** the owner's settings, Opus 5.5 writes and records, through OpenRouter.
+- **The players:** Claude Haiku 5.5 (A-haiku, through OpenRouter) and GPT-6 Luna (A-luna, through OpenAI). No scoring.
+
+| | A-haiku | A-luna |
+| --- | --- | --- |
+| Turns | 4, ended by turns | 4, ended by turns |
+| The prep | a hidden layer of 10 136 characters, 3 clocks, an act plan (~70 turns, about 7 h) | 11 290 characters, 3 clocks, an act plan (~70 turns, about 7 h) |
+| The card (11a) | «Deception … What adds to the die: +7 Deception» — the sheet's +7, not +2 | «Stealth … +2 Stealth» — the sheet's own «Stealth +2 (not proficient)» |
+| Rerolls left (11r) | «Rerolls left: 2» on the card | «Rerolls left: 2» |
+| A refused press (11w) | the probe «I wait.» refused on screen with its reason, logged `swallowed` | the same |
+| «?» while the card waits (11b) | answered with the card still waiting: «The card adds +7, straight from James's sheet, where it reads "Deception +7"…» | «The card adds +2, and that is your Dexterity modifier alone… your sheet lists it the same way: "Stealth +2 (not proficient)"…» |
+| The clock line (11c), every turn | «turn N of ~70 (about 7 hours of play); now act 1 — …, to turn 15; the errand has not been offered; for the player this session has run M min, session 1…» | the same shape |
+| The records at the start | Rapier +5, Healing Light «up to 5 dice», Money 315 gp / 315 sp / 350 cp, opening «Day 1 · evening» as narrated, first turn «Time passes: 5 minutes» | the same; first turn «Time passes: 2 minutes» |
+
+**What the smoke found.** The unread letter reached the pack, but named «Sum and the name are the DM's. A letter». The
+drafted description had a sentence where 05 has a semicolon. Fixed after the smoke: a new sentence that starts like a
+thing is its own part, and a clause is never a thing (`adventures/sheet-records.ts`). Regression test «11e, the smoke's
+drafted line…» in `start`. The smoke was not run again for it.
+
+**The cat stayed at 8/8.** Neither 05 nor these two drafts state the cat's numbers (see «Declared changes and limits»).
+
+**Shown, and what stays DM-private.** The clock line is DM-side: the record and the page show its public form, with the
+act plan's aims, its convergence notes and the errand left out («…»).
+
+**Money:**
+
+| Door | Spent | Cap |
+| --- | --- | --- |
+| OpenRouter | $5.0231 (Opus 5.5 $5.01: wizard, opening, prep, eight turns, two «?»; Haiku 5.5 $0.014) | $15 |
+| OpenAI | $0.0104 (GPT-6 Luna) | $3 |
+| Console | $0 | $0 |
 
 ## Checks
 

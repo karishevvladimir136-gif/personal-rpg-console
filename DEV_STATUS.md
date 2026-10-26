@@ -1,5 +1,42 @@
 # Development status
 
+**Current milestone: Fix S4 run 1 — the DM the players asked for** (`docs/stages/FIX_S4_RUN_1.md` with
+`docs/stages/FIX_S4_TABLE.md`, on `claude/handoff` at `e13d457`).
+
+**Status:** implementation done and smoke-tested on `claude/fix-s4-run-1-apsty3`, the session's name for
+`claude/fix-s4-run-1`, from `claude/game-player-2`. Waiting for the owner's acceptance. Nothing went to `main`.
+Report: `docs/runs/fix-s4-run-1-report.md`; smoke: `docs/runs/fix-s4-run-1-smoke-report.md`.
+
+- **What was done.** Items 1–6 and 11a–11w, with the keep-list as prompt-level tests. Each item maps to the player's line
+  it answers and to its test in the report.
+  - Table notes from every «?»: kept for the DM, carried by the digest, shown in the journal; a settled fact pinned.
+  - The roll card adds the sheet's own number, and the record keeps where it came from.
+  - «?» works while a card waits; a card can be withdrawn or voided; a refused press shows its reason.
+  - A reroll names its card, shows how many are left, and rewrites the record.
+  - One Inspiration rule, in code.
+  - The DM's clock line and act plan.
+  - The players' rules in both languages.
+  - No tool calls or coin codes on screen; per-turn records show only what changed; a compact session-end summary.
+  - The wizard's record pass: papers unfolded, the supplied sheet's numbers kept with one list of differences, mixed coin.
+  - The opening clock follows the scene, and the day turns at first light or a long rest.
+  - Animal companions drawn alone.
+  - The five small screen things.
+- **Migration:** one additive, `202610250701_fix_s4_run_1_pending_cards` (function wrappers; no table, column or row
+  changes), listed in `docs/SANDBOX_LOAD_FIX_S2.md`.
+- **Smoke (paid):** two four-turn tables. Claude Haiku 5.5 through OpenRouter and GPT-6 Luna through OpenAI play against
+  the owner's Opus DM. On screen: the fixed cards, «Rerolls left», a refused press, a «?» answered while the card
+  waited, and the DM's clock line before each turn. It found one bug (the unread letter's name), fixed after with a test.
+  Spent: OpenRouter $5.02 of $15, OpenAI $0.01 of $3, Console $0.
+- **Checks:** CHECKS_STATUS_PLACEHOLDER
+- **Known issues:**
+  - The cat keeps the default 8/8 where neither 05 nor the draft states its numbers.
+  - Attunement against the DM guide's house rule is not reconciled.
+  - The scene frame prompt still lists the cat among people.
+  - The `persona-self-talk-x3-fix-1` ledger commit is not in (not landed on origin).
+  - Item 10's rules are not in `src` on this branch.
+- **Next step:** after the owner's acceptance, GAME_PLAYER_CARRY_1a branches from here. Top up OpenRouter first: $454.59
+  was left before the smoke, against CARRY_1a's $450 cap.
+
 **Current milestone: game player 2 — Table C, the pure world** (`docs/stages/GAME_PLAYER_2.md`) — **the DM flag done
 and tested; the paid run stopped by the organisation's monthly Anthropic API limit** (HTTP 429 at 05:28 UTC on
 2026-10-25; access returns 2026-11-01 00:00 UTC). Branch `claude/game-player-2` (from `claude/game-player-1`, merged
