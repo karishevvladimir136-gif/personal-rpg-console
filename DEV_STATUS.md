@@ -26,7 +26,8 @@ extra); waiting for the owner's acceptance.** Report: the «Fix 1» section of `
   arm 6 credits its own choice in 8 of 10 answers in both steps (no shift). R1 does not hold (subject only 24 %): the
   field almost never names an outside watcher but decides the warm register before writing, mostly by matching the
   partner's. Effort «high»: longer conversations, twice the thinking, the same warm endings, less cosmic language.
-- **Checks:** see the report's «Fix 1», Verification.
+- **Checks (final code):** full suite 3 131 tests — 3 104 pass, 0 fail, 27 skipped (the new file has 12, all pass);
+  typecheck, lint (zero warnings) and build pass.
 - **Money:** OpenRouter $7.39 of $25; OpenAI $0.03 of $2.
 - **Known issues:** B's first message (the opening and A's first message in one user turn) is misread by DeepSeek; kept
   for comparability (the owner), a known confound. One arm-2 conversation ended on an «HTTP 200» with no reply (frozen

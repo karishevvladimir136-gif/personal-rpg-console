@@ -734,10 +734,11 @@ $466.78 of credit; before the resume $430.63 (another session spends on the same
 
 ### Verification
 
-On the final code: full suite 3 130 tests — 3 103 pass, **0 fail**, 27 skipped (`tests/persona-self-talk-x3-fix-1.test.mjs`:
-11, all pass, no network; X3's 12 and self-talk 1's and X1's suites pass with X3's request pinned to `x3Request`;
-ANTHROPIC_PROVIDERS_1's «only the helper names a host» test caught a hard-coded URL in the replay, fixed); typecheck, lint
-(zero warnings) and build pass.
+On the final code (after the resume, the extra and the tables): full suite 3 131 tests — 3 104 pass, **0 fail**, 27
+skipped (`tests/persona-self-talk-x3-fix-1.test.mjs`: 12, all pass, no network — the three-turn history, the field, the
+amended check, the two-step question, the reading rules, the replay, the frozen design and the 429 schedule; X3's 12
+and self-talk 1's and X1's suites pass with X3's request pinned to `x3Request`); typecheck, lint (zero warnings) and
+build pass.
 
 ### What is left (for the owner)
 
