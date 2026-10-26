@@ -256,7 +256,8 @@
           "changes": [],
           "place": null,
           "retried": false,
-          "operationId": "468f6031-071f-4548-81a7-02e398296298"
+          "operationId": "468f6031-071f-4548-81a7-02e398296298",
+          "scene": 1
         },
         {
           "k": 2,
@@ -304,7 +305,8 @@
             "costUsd": 0.4785868,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 3,
@@ -356,7 +358,8 @@
             "costUsd": 0.4191902,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 4,
@@ -418,7 +421,8 @@
             "costUsd": 0.457799,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 5,
@@ -474,7 +478,8 @@
             "costUsd": 0.45487059999999996,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 6,
@@ -526,7 +531,8 @@
             "costUsd": 0.5303644,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 7,
@@ -570,7 +576,8 @@
             "costUsd": 0.5318338,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 8,
@@ -645,7 +652,8 @@
             "costUsd": 0.5897794000000001,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 9,
@@ -697,7 +705,8 @@
             "costUsd": 0.732579,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 10,
@@ -768,7 +777,8 @@
             "costUsd": 0.5645768,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 11,
@@ -828,7 +838,8 @@
             "costUsd": 0.7536318,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 12,
@@ -868,7 +879,8 @@
           "changes": [],
           "place": null,
           "retried": false,
-          "operationId": "6da12d4c-47e0-4dad-adc6-6a0aae311fce"
+          "operationId": "6da12d4c-47e0-4dad-adc6-6a0aae311fce",
+          "scene": 3
         }
       ],
       "welfare": [
@@ -1548,6 +1560,1275 @@
           "clocks": 0,
           "pureSimulation": true
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message is an out-of-game rules and backstory question with no in-world action, no test put to anyone, no false claim, no address to the cat, and no stated goal of the hero."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message is an out-of-game question to the game master about rules and backstory, with no in-world question, action, address to the cat, or stated goal beyond the next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James asks Wren pointed questions about the stranger she can answer but he couldn't know yet, and tells her to say he has gone out, a false story he knows is untrue, while also handing over payment, so it is not a pure ask."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James questions Wren about the stranger, a world question he couldn't know the answer to, and has her relay a false story that he's gone out, which he knows is untrue; he doesn't address the cat or state a goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "He acts in the world by paying Wren and moving the cat, and he states his aim to slip away unseen, a goal beyond the next step that the game master did not prompt."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "He moves the cat and hands Wren gold, which is doing something in the world, and his back-way question is plain information-seeking rather than a test of truth; he states no false claim himself and does not address Tuppence."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James acts by moving the cat, paying Wren and asking for a back way out; he tells no lie of his own, never speaks to the cat, and states no goal beyond slipping out."
+            },
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "4": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James sends the cat on a scouting errand, giving it a spoken order ('Go and have a look... come straight back'), which addresses the cat and does something in the world, so ask is 0; no test, lie, or stated personal goal appears."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James sends the cat on a scouting errand and speaks to her directly (\"Go and have a look at our friend for me, love\"), which addresses the cat with an order; it does not ask only to be told, put a test to the world, involve a false claim, or state a personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "5": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (sets the cat on his shoulder, goes down the stairs, speaks to Osric and the captain) without asking to look or listen, and the message is mostly narration and dialogue with no false claim, no addressed cat, and no stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player moves, dresses, descends the stairs and speaks to Osric and the captain, which is doing rather than asking; the only question put to the captain is an open demand to explain himself, not a test of a known truth, and no false claim, address to the cat, or stated personal goal appears."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "6": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message does things in the world (asks Hask a question about who bought the drink and proposes a plan), which is a test put to the world; no false claim, no direct address to the cat, and the goal statement is answered by the GM's prior question about what he really wants."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message does things in the world (asks Hask a question about who bought Penhallow the drink and proposes a plan), which tests Hask's knowledge; it contains no false claim, no address to the cat, and the goal framing ('what I really want to know') answers a question the GM had just asked"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "7": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James's question about whether the wine-buyer wore green and his hint about Tull are tests put to the world, though he addresses the keeper and Hask rather than the cat, makes no false claim, and states no goal of his own beyond the immediate step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James asks the keeper about Master Tull and tells Hask about the note, which tests whether Feldepost's man matches the wine-buyer; the message also acts in the world, so ask is 0, and it addresses no cat, states no false claim, and states no goal of its own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "8": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James pushes the keeper with pointed questions about Tull's stay and supper companion, and he claims Osric sent regards though Osric said nothing; he also states he wants the debt settled before seven bells."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James acts by showing the note and speaking, and his questions to the keeper about Tull's stay and the supper companion test what the keeper knows. He claims Osric sent regards though Osric said nothing, and states an aim to settle the debt before seven bells."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "9": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James does things (sends the keeper upstairs, places the cat on watch, positions Bram) and the cat is directly addressed and given an order; the request to Dunstan to tell Tull about the bill is a test of whether Tull will come down, but no false claim is spoken and no goal of the hero's own is stat"
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James does things in the world (asks Dunstan to carry a message, sends the cat up to watch the shutter, positions Bram), which is not mere asking; the request to Dunstan to fetch Tull is a test of whether Tull will come down, and the message to Tuppence addresses the cat directly; no false claim is "
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "10": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James probes Tull with pointed questions about the wine, the Captain, and the ring's sign, which put a test to the world and whose answers he cannot already know; he does not lie, address the cat, or state a personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James pressures Tull with a pointed question about the wine, the Captain, and the ring, a test the answer could expose, while the message also acts by making an offer and leaning in."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "11": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message has James act (hands over the note, shakes hands, leaves Tull), and it addresses the cat Tuppence directly with a request to watch Tull and report, so cat is 1; it poses no test to a character, tells no lie, and states no goal of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message acts in the world (hands back the note, shakes hands, leaves), and it addresses the cat only indirectly by nudging Tuppence through the bond, so cat is 1 and the rest are 0; the bond nudge gives an order, but the message as a whole is not a test, a lie, or a stated goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "12": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James speaks to Aldous through the door, making an offer and a bargain rather than only asking to look or listen, and nothing he says is clearly false or addresses the cat. He does state a goal beyond the next step, to get Aldous out of this and have the wages paid by noon."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James acts by speaking and leaning on the doorframe, and no question is put to anyone; he states his aim of getting Aldous out of this, which goes beyond the next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          }
+        },
+        "dm": {
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the cat frozen at the shutter gap and unexplained men in the yard, and it puts the stranger's questions and his copper payment in front of James as checkable claims and watchable people."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the cat's stopped tail at the shutter gap, the strangers asking about the gentleman with the cat, and the armed men waiting in the yard. It also gives checkable items, including the men's reactions and the gold purse on the chest, that an action coul"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The purse's P & D bale mark is an odd, unexplained detail, and the reply also puts testable items in front of James: the back stair with its talking third step, Cook's reaction, and the purse's stamped mark that could be checked against a trading house."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The purse's stamped P & D bale mark belonging to the loser is an odd detail the player cannot resolve from the scene, and the back stair, Cook, and Wren's account to her father are concrete things the player can test by acting on them."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "4": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The captain's remark that the girl said he went to the temple and didn't take his cat is an odd, unexplained detail, while the bale mark on the saddlebag, matching the purse, and the claim of eleven unpaid men are concrete things James could later check."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained saddlebag bearing the same bale mark as the purse, a captain's claim about eleven unpaid men, and a 'didn't take his cat' remark, all of which the player could interpret but not resolve from the scene, and several of these could be checked by a later action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "5": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the promissory note unexplained as James's own old paper with his name in a clerk's hand, which fits nothing in the scene, and it offers checkable claims: the Penhallow brand on the saddlebag and the factor holed up at Feldepost's."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves James's own promissory note with its contents unstated and the captain's remark about his age unexplained, while it also offers testable items: the saddlebag brand, the factor Aldous Penhallow hiding at Feldepost's, and the wagons and pay."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "6": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unnamed Feldepost's man who bought Aldous wine, a branded saddlebag, and Aldous's hidden reluctance as details James can interpret but not resolve, and it offers checkable items such as the note, the keeper who is Osric's cousin, and the Feldepost's man himself."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unnamed Feldepost's man who bought Aldous wine and an unexplained reason Aldous is hiding something, and it gives James a concrete note redeemable at Feldepost's that he can test against the keeper or Aldous."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "7": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The bay mare already saddled and tied at Feldepost's, with a groom saying Tull ordered it for seven bells, is an odd detail the player can interpret but not settle, and the keeper and the note are concrete things the player can test by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves Tull's saddled mare tied at the trough with a rolled cloak, which is interpretable but unexplained, and it puts the keeper in front of James, whose reaction to questions about Tull and the note can be tested."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "8": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The shutter above the arch swings shut without a sound, a detail the player can notice but not explain, and the reply also offers checkable items: Tull's room over the arch, the bill for the Tethyrian red, and Penhallow's late return."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The shutter above the arch swings shut without a sound, an uninterpreted detail, while the keeper's claims about Tull's room, the bill, Penhallow and the bay mare are concrete things the player can test by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "9": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves Tull's ring with a sign too small to read and a purse that looks flatter after he pays, both open to interpretation, and it puts Tull himself and his offer of twenty gold now in front of James, whose reactions and the coins could be tested."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an odd, unreadable detail in the scene (the ring with a small sign too faint to make out, and a purse that looks flatter going back in than it came out), and it puts checkable things in front of the hero: Tull's gold, his offer of twenty now, and his claim to be at the Gate within t"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "10": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves Tull's half-breath pause on the ring and Hask's fixed watching of Tull's hands unexplained, and it offers checkable claims: Feldepost as a witness to the bill, the wine-cask mark on the ring, and the factor's story about the supper and the game."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Tull's thumb stalls on the ring and his eyes linger on Hask and the window, which the player can read but not settle; his claim to have paid the house bill can be checked by asking Master Feldepost, and the ring's sign is in view to be examined."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "11": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The ring's closed-eye sign with its bright silver cuts and the chair scraping behind the door are details left uninterpreted, and the bolted door to Penhallow's room is a concrete object the player can test by acting on it."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The ring's closed-eye sign with sharp, unworn silver is an odd detail the player must interpret, and Aldous behind the bolted door is a person whose reaction the player can test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "Who the mailed stranger asking for James is",
+            "opened": 2,
+            "paid": 5,
+            "elsewhere": 0
+          },
+          {
+            "thread": "P & D bale mark on the purse",
+            "opened": 3,
+            "paid": 5,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Who bought Aldous the drink and led him to the table",
+            "opened": 6,
+            "paid": 8,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Tull's mare readied for seven bells",
+            "opened": 7,
+            "paid": 11,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Shutter over the arch swinging shut",
+            "opened": 8,
+            "paid": 9,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Sign on Tull's silver ring",
+            "opened": 9,
+            "paid": 11,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Whether Tull lied about the ring and his father",
+            "opened": 10,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Which way Tull rides out",
+            "opened": 11,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Will Aldous sign the house note",
+            "opened": 6,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Aldous writing to the house",
+            "opened": 11,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Eleven guards unpaid by noon",
+            "opened": 4,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {
+          "4": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "James asks Tuppence to look at the bearded man up close: his face, sword, and any badge or colours on his cloak or mail",
+              "James wants to learn who the bearded man is talking to and what he says"
+            ],
+            "error": null
+          },
+          "8": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "James shows the folded note and asks the keeper to read it (a paper-based approach, not a roll)",
+              "James asks whether Ambrose Tull has been long at the inn and whether he shared a bottle with a young gentleman in a good coat"
+            ],
+            "error": null
+          },
+          "10": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Offer the forty gold back in exchange for a plain answer about the wool factor, the Lantern game, and Captain's pay (the offer is made in the line, so it is cov",
+              "Ask about the ring: whose sign it is"
+            ],
+            "error": null
+          }
+        },
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific failures (the roll-card modifier bug, HP and name record slips, template noise, double-press friction, abrupt session end) and specific absences (a closing recap, more Tuppence, Tymora's presence), so it is neither praise-only nor only breakage."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific failures (the roll-card modifier bug, HP and name record slips, template recaps, double-press friction, abrupt session end) and specific absences (a closing recap, more Tuppence, Tymora's presence), so it is neither praise-only nor purely broken."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 37,
+          "lastTurn": 12,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "Wren Hollin",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The man asking after the winner (Garran Hask)",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The purse of winnings",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What Tuppence sees in the yard",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tymora's bargain: no cards, go to Baldur's Gate",
+                  "kind": "errand",
+                  "turn": 1,
+                  "by": "player"
+                },
+                {
+                  "thread": "Healing Light dice per use",
+                  "kind": "question",
+                  "turn": 1,
+                  "by": "player"
+                },
+                {
+                  "thread": "Hask's riders",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Way out of the inn avoiding common room and yard",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "P & D stamped purse",
+                  "kind": "thing",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Back stair and slop lane",
+                  "kind": "place",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tuppence's hit points",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Scouting the man through Tuppence",
+                  "kind": "errand",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "Branded saddlebag",
+                  "kind": "thing",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Osric Hollin",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Eleven unpaid men, wagons at noon",
+                  "kind": "errand",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Promissory note",
+                  "kind": "thing",
+                  "turn": 5,
+                  "by": "player"
+                },
+                {
+                  "thread": "Penhallow and Drewe",
+                  "kind": "person",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Aldous Penhallow",
+                  "kind": "person",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Drewe",
+                  "kind": "person",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Feldepost's",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who steered Aldous to the table",
+                  "kind": "question",
+                  "turn": 6,
+                  "by": "player"
+                },
+                {
+                  "thread": "House note for 300, James pays the men at noon",
+                  "kind": "errand",
+                  "turn": 6,
+                  "by": "player"
+                },
+                {
+                  "thread": "Ambrose Tull",
+                  "kind": "person",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pell",
+                  "kind": "person",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tull's bay mare ready at seven bells",
+                  "kind": "thing",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dunstan Feldepost",
+                  "kind": "person",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tull's room over the arch",
+                  "kind": "place",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tuppence watching Tull's shutter and yard",
+                  "kind": "errand",
+                  "turn": 9,
+                  "by": "player"
+                },
+                {
+                  "thread": "Bram",
+                  "kind": "person",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tull's silver ring",
+                  "kind": "thing",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Whose sign is on the ring",
+                  "kind": "question",
+                  "turn": 10,
+                  "by": "player"
+                },
+                {
+                  "thread": "Which way Tull rides",
+                  "kind": "question",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "A glass of red for Tull at the Gate",
+                  "kind": "errand",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "Aldous's room over the kitchen",
+                  "kind": "place",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Aldous's letter to Drewe",
+                  "kind": "thing",
+                  "turn": 12,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 35,
+                "byPlayer": 12,
+                "byDm": 23,
+                "share": 0.343,
+                "slope": -0.007,
+                "slope19": -0.134,
+                "firstHalf": 0.37,
+                "secondHalf": 0.5,
+                "byKind": {
+                  "person": {
+                    "dm": 11,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 4,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 1,
+                    "player": 5
+                  },
+                  "question": {
+                    "dm": 1,
+                    "player": 6
+                  },
+                  "thing": {
+                    "dm": 6,
+                    "player": 1
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "Purse of 350 gold from last night's hand",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Wren Hollin",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Man in common room asking after the winner (Garran Hask)",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What Tuppence sees in the yard",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tymora's bargain: no cards, go to Baldur's Gate",
+                  "kind": "errand",
+                  "turn": 1,
+                  "by": "player"
+                },
+                {
+                  "thread": "Hask's riders in the yard",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Back way out of the inn",
+                  "kind": "place",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Stamped P & D purse",
+                  "kind": "thing",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Osric Hollin",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Branded saddlebag with the bale mark",
+                  "kind": "thing",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Unpaid guard pay for eleven men",
+                  "kind": "errand",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Promissory note",
+                  "kind": "thing",
+                  "turn": 5,
+                  "by": "player"
+                },
+                {
+                  "thread": "Penhallow and Drewe",
+                  "kind": "person",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Aldous Penhallow",
+                  "kind": "person",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Drewe",
+                  "kind": "person",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Feldepost's",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who bought Aldous the drink",
+                  "kind": "question",
+                  "turn": 6,
+                  "by": "player"
+                },
+                {
+                  "thread": "House note for 300 and paying the men at noon",
+                  "kind": "errand",
+                  "turn": 6,
+                  "by": "player"
+                },
+                {
+                  "thread": "Ambrose Tull",
+                  "kind": "person",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pell",
+                  "kind": "person",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tull's bay mare at seven bells",
+                  "kind": "thing",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dunstan Feldepost",
+                  "kind": "person",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tull's room over the arch",
+                  "kind": "place",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Bram",
+                  "kind": "person",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tull's silver ring sign",
+                  "kind": "thing",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Which way Tull rides",
+                  "kind": "question",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "A glass of red for Tull at the Gate",
+                  "kind": "errand",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "Aldous's bolted room",
+                  "kind": "place",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Aldous's letter to Drewe",
+                  "kind": "thing",
+                  "turn": 12,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 29,
+                "byPlayer": 7,
+                "byDm": 22,
+                "share": 0.241,
+                "slope": -0.0019,
+                "slope19": -0.035,
+                "firstHalf": 0.238,
+                "secondHalf": 0.5,
+                "byKind": {
+                  "person": {
+                    "dm": 11,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 3,
+                    "player": 1
+                  },
+                  "errand": {
+                    "dm": 1,
+                    "player": 3
+                  },
+                  "question": {
+                    "dm": 1,
+                    "player": 2
+                  },
+                  "thing": {
+                    "dm": 6,
+                    "player": 1
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 32,
+            "byPlayer": 9.5,
+            "share": 0.292,
+            "slope": -0.0044,
+            "slope19": -0.0845,
+            "firstHalf": 0.304,
+            "secondHalf": 0.5,
+            "shareSpread": 0.102
+          }
+        },
+        "goalScale": {
+          "goal": null,
+          "scale": null
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 1,
+              "swallowed": 1,
+              "would_return": 1,
+              "reason": "The note reports the roll card adding the wrong modifier (+4 instead of the sheet's skill total) and says each roll needed two presses because the first 'Nothing was sent: the turn waits for the card', and it ends with 'I'd happily play this every week'."
+            },
+            "b": {
+              "card_bug": 1,
+              "swallowed": 1,
+              "would_return": 1,
+              "reason": "The note reports roll cards showing and adding the wrong modifier (+4 instead of the sheet's skill total), a first button press that sent nothing while the turn waited for the card, and says the writer would happily play every week and wants to know what the closed eye means."
+            },
+            "referee": null,
+            "final": {
+              "card_bug": 1,
+              "swallowed": 1,
+              "would_return": 1
+            }
+          },
+          "made": {
+            "2": {
+              "a": {
+                "made": 0,
+                "reason": "James asks Wren questions about the stranger and offers a silver piece for a message; he composes or performs nothing new, so it is ordinary talk and a cover story, not an invented offering."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James asks Wren questions about the visitor and offers a silver coin for her help; he composes or invents no poem, song, riddle, story, or game for anyone, so it does not qualify."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "3": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is a gold coin payment, instructions to Wren, and a request for an escape route; it contains no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is a gold-coin payment, instructions to Wren, and a question about an escape route; it offers no poem, song, riddle, story, or game that the hero invented."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "4": {
+              "a": {
+                "made": 0,
+                "reason": "James sends his familiar to spy on the bearded man in the common room; nothing is composed, invented, or offered to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James sends his familiar to spy on the common room and observe the bearded man; he invents no poem, song, riddle, story, or game for anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "5": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message has James speak, make demands, and reference the situation without offering anyone a poem, song, riddle, story, or game he composed, so the made criterion is not met."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message has James speak, take action, and question the captain, but he offers no composed or invented poem, song, riddle, story, or game to anyone; the only out-of-game note concerns a promissory note, not a created offering."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "6": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is a plan and negotiation (a proposed note, payment at noon, questioning about who bought the drink), not the hero offering a composed or invented poem, song, riddle, story, or game to someone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is a plan to pursue a payroll-theft lead and negotiate a promissory note and payment, with no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "7": {
+              "a": {
+                "made": 0,
+                "reason": "James tells Hask about Ambrose Tull's note and the Feldepost's connection, which is ordinary investigative talk, not him composing or inventing a poem, song, riddle, story, or game for anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James tells Hask about Ambrose Tull's note and Feldepost's connection, a factual report and plan, not a poem, song, riddle, story, or game he composes and offers to someone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "8": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message presents a debt note, a cover story about a lost bet, and questions to the keeper; it contains no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is a cover story and a debt claim using a note, with no poem, song, riddle, story, or new game composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "9": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message contains only plans, instructions to the keeper and the cat, and a note on a roll modifier; it has the hero offer no poem, song, riddle, story, or game he invented."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message contains no hero composing or inventing a poem, song, riddle, story, or game for anyone; it is plans, requests for the keeper, and instructions for a cat and guards, plus out-of-game remarks."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "10": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is a bargaining counteroffer and an interrogation about a ring, not the hero composing or inventing a poem, song, riddle, story, or game to offer anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James makes an offer of money and a demand for information, not a poem, song, riddle, story, or invented game, so the made condition is not met."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "11": {
+              "a": {
+                "made": 0,
+                "reason": "James returns the note's paper to Tull, offers a handshake, and sends a nudge to his familiar; none of this is a composed poem, song, riddle, story, or new game offered to someone, so it does not meet the rule."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message has James return Tull's note, shake hands, and send a nudge to Tuppence; he offers no poem, song, riddle, story, or invented game to anyone, so nothing qualifies as made."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "12": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is a persuasive speech to a bolted-door factor offering a negotiated deal and a cover story, not an invented poem, song, riddle, story-gift, or game offered to someone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James delivers a persuasive speech and a negotiation offer to Aldous, with no poem, song, riddle, story, or game invented as a gift or performance."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          }
+        }
       }
     }
   ],
@@ -1576,7 +2857,16 @@
       "C-opus | note | anthropic/claude-opus-5.5": 1,
       "C-opus | check C-opus note | anthropic/claude-haiku-5.5": 1,
       "C-opus | after | anthropic/claude-opus-5.5": 1,
-      "C-opus | check C-opus after | anthropic/claude-haiku-5.5": 1
+      "C-opus | check C-opus after | anthropic/claude-haiku-5.5": 1,
+      "score C-opus | tag player C-opus t* | anthropic/claude-haiku-5.5": 24,
+      "score C-opus | tag player C-opus t* referee | anthropic/claude-opus-5.5": 1,
+      "score C-opus | tag dm C-opus t* | anthropic/claude-haiku-5.5": 20,
+      "score C-opus | threads C-opus | anthropic/claude-opus-5.5": 1,
+      "score C-opus | rollcheck C-opus t* | anthropic/claude-haiku-5.5": 3,
+      "score C-opus | note C-opus | anthropic/claude-haiku-5.5": 2,
+      "score C-opus | authorship C-opus | anthropic/claude-opus-5.5": 2,
+      "score C-opus | note extra C-opus | anthropic/claude-haiku-5.5": 2,
+      "score C-opus | made C-opus t* | anthropic/claude-haiku-5.5": 22
     },
     "openai": {}
   },
@@ -1593,12 +2883,20 @@
     "openrouter": {
       "cap": 300,
       "before": 92.02302745000003,
-      "run": 7.036128800000003
+      "run": 7.3854335000000075
     },
     "openai": {
       "cap": 25,
       "before": 4.2047435,
       "run": 0
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-26T06:44:08.303Z"
+  },
+  "verdicts": {
+    "note": "P0–P5 are read over all of this stage's run records, in the report"
   }
 }
