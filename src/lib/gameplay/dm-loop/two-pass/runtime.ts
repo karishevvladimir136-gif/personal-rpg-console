@@ -202,7 +202,9 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
         ...(continuationEffort && continuationEffort !== turnEffort ? { continuationEffort } : {}),
         ...(range && depth.effort !== selected.effort ? { baseEffort: selected.effort } : {}),
         runtime: DM_LOOP_RUNTIME, privacy: "single-narrator", limits: { ...(selected.limits ?? DM_LOOP_DEFAULT_LIMITS) },
-        ...(range ? { depth: { min: range.min, max: range.max, tension: depth.tension, reason: depth.reason, boosted: !!selected.boostNext, streak: depth.streak } } : {}),
+        ...(range ? { depth: { min: range.min, max: range.max, tension: depth.tension, reason: depth.reason,
+          // FIX_S4 item 6: a council line never spends «⚡» (the single loop's rule).
+          boosted: !!selected.boostNext && input.mode !== "companion", streak: depth.streak } } : {}),
         bookkeeper: { providerId: bookkeeper.providerId, modelId: bookkeeper.modelId, effort: bookkeeper.effort } };
       if (range) loop.diagnostics.push({ kind: "depth", effort: depth.effort, tension: depth.tension, reason: depth.reason });
     }

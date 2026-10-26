@@ -314,3 +314,23 @@ test("the turn's prompt without a «?» or a plan is as before (no empty headers
     assert.ok(randomUUID());
   } finally { await c.f.db.close(); }
 });
+
+test("item 6 (the screen worker's leftover): a council line never spends «⚡»; the flag waits for the next story turn", async () => {
+  const c = await loopCampaign();
+  try {
+    const join = await c.turn("I hire Tam.", [{ text: "Tam shoulders his pack. ", toolCalls: [
+      { name: "upsert_character", arguments: { localKey: "tam", name: "Tam", kind: "companion", party: true, present: true, description: "A dry porter." } }, finish()] }]);
+    assert.equal(join.result.status, "committed", JSON.stringify(c.errors));
+    const tam = (await c.state()).entities.find((row) => row.name === "Tam");
+    const current = await c.settings.read();
+    await c.settings.save({ expectedRevision: current.revision, runtime: "dm-loop-v1", dmTurn: current.dmTurn, depth: { min: "medium", max: "xhigh" }, boostNext: true });
+    const council = await c.turn("Tam, a word?", [{ text: "— Later, — Tam says. ", toolCalls: [{ name: "advance_time", arguments: { minutes: 1, reason: "a word" } }, finish()] }],
+      { mode: "companion", companionId: tam.id, listenerIds: [] });
+    assert.equal(council.result.status, "committed", JSON.stringify(c.errors));
+    assert.equal((await c.row(council.input.operationId)).checkpoint.dmLoop.pin.depth.boosted, false);
+    assert.equal((await c.settings.read()).boostNext, true, "the council line left the flag for the story");
+    const story = await c.turn("A quiet walk.", [{ text: "Quiet. ", toolCalls: [finish({ nextTension: "calm" })] }]);
+    assert.equal(story.model.requests[0].effort, "xhigh", "the story turn takes the boost");
+    assert.equal((await c.settings.read()).boostNext, false);
+  } finally { await c.f.db.close(); }
+});

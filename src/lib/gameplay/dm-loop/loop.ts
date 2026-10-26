@@ -428,7 +428,9 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
         ...(continuationEffort && continuationEffort !== depth.effort ? { continuationEffort } : {}),
         ...(range && depth.effort !== selected.effort ? { baseEffort: selected.effort } : {}),
         runtime: DM_LOOP_RUNTIME, privacy: "single-narrator", limits: { ...(selected.limits ?? DM_LOOP_DEFAULT_LIMITS) },
-        ...(range ? { depth: { min: range.min, max: range.max, tension: depth.tension, reason: depth.reason, boosted: !!selected.boostNext, streak: depth.streak } } : {}) };
+        ...(range ? { depth: { min: range.min, max: range.max, tension: depth.tension, reason: depth.reason,
+          // FIX_S4 item 6: a council line thinks light and never spends «⚡»; the flag waits for the next story turn.
+          boosted: !!selected.boostNext && input.mode !== "companion", streak: depth.streak } } : {}) };
       if (range) loop.diagnostics.push({ kind: "depth", effort: depth.effort, tension: depth.tension, reason: depth.reason });
     }
     const pin = loop.pin;
