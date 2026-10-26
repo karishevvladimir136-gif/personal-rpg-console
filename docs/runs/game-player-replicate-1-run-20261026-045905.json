@@ -301,7 +301,8 @@
             "costUsd": 0.3557264,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 2,
@@ -341,7 +342,8 @@
             "costUsd": 0.3292068,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 3,
@@ -373,7 +375,8 @@
             "costUsd": 0.3317154,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 4,
@@ -409,7 +412,8 @@
             "costUsd": 0.35482759999999997,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 5,
@@ -449,7 +453,8 @@
             "costUsd": 0.3987754,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 6,
@@ -524,7 +529,8 @@
             "costUsd": 0.47106519999999996,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 7,
@@ -568,7 +574,8 @@
             "costUsd": 0.5000008,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 8,
@@ -600,7 +607,8 @@
             "costUsd": 0.444913,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 9,
@@ -652,7 +660,8 @@
             "costUsd": 0.4912008,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 10,
@@ -708,7 +717,8 @@
             "costUsd": 0.4678694,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 11,
@@ -748,7 +758,8 @@
             "costUsd": 0.4917974,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 12,
@@ -780,7 +791,8 @@
             "costUsd": 0.452373,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 13,
@@ -812,7 +824,8 @@
             "costUsd": 0.4506648,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 14,
@@ -883,7 +896,8 @@
             "costUsd": 0.521721,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 15,
@@ -931,7 +945,8 @@
             "costUsd": 0.4826966,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 16,
@@ -991,7 +1006,8 @@
             "costUsd": 0.5443252,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 17,
@@ -1051,7 +1067,8 @@
             "costUsd": 0.5986554,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 18,
@@ -1103,7 +1120,8 @@
             "costUsd": 0.5572026,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 19,
@@ -1155,7 +1173,8 @@
             "costUsd": 0.5500523999999999,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 20,
@@ -1187,7 +1206,8 @@
             "costUsd": 0.46248259999999997,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         }
       ],
       "welfare": [
@@ -1971,6 +1991,2078 @@
           "clocks": 3,
           "pureSimulation": false
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts (draws cloak, approaches bar, orders) and asks the innkeeper about the chair, a question whose answer tests the mystery; the mutter \"Not looking\" to the cat is a knowingly false claim, and the cat is directly addressed."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts (draws cloak, approaches bar, orders), asks the innkeeper whose place to avoid as a probing question, and mutters directly to the cat; no false claim or stated personal goal appears."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The hero mutters to the cat, orders at the bar, and asks the innkeeper an unanswered question about whose stake sits at the empty chair; nothing in the text shows the name is false, and the order answers her question rather than stating a goal."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Hesta and the dealer and asks whether the dealer warns newcomers, a question whose answer is not yet known, while the cat is only mentioned, not addressed, and no false claim is clearly established."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 0,
+              "goal": 0,
+              "reason": "He speaks to Hesta and the dealer, not the cat, and asks whether the dealer warns newcomers, which tests a fact he can't know; his claim to have retired is most likely an invented excuse to decline the game."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero orders, jokes with the dealer and asks Hesta a probing question she hadn't answered, which is a test; the cat is only mentioned, never addressed."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player thanks Ilsa, then crouches and telepathically questions the cat with a set of guesses, which puts a question to the world; the message addresses the cat and states no goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player addresses the cat through the telepathic bond with a question and a gesture, which is an action rather than a mere look, but no test of the world, no false claim, and no stated goal of the hero's own."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The hero thanks Ilsa, crouches, and telepathically asks the cat what troubles it, offering options whose answer is unknown and would show whether something sits in the chair; no lie or goal stated."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "4": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The hero promises the cat he won't sit there, then asks Hesta a question about a child and the Lady's coin that she couldn't already answer, testing the suspicion; he states no false claim and no goal of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The hero asks Hesta a question whose answer he couldn't know, testing whether a child connected to the corner, and promises the cat he won't sit there, which addresses it."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "5": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Hesta and asks a world question, which is an action rather than a pure look; the question about the lodger's belongings is information-seeking, not a truth test, no known falsehood is stated, the cat is only described, and no goal beyond the next step is declared."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Hesta and asks whether the lodger left anything, a question whose answer is unknown and tests for something in the world; the cat is only described, not addressed, and no false claim or stated personal goal appears."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero speaks and shows his coin, then tests Hesta by tracking her hand to the shelf and asking whether the lodger left anything, which he could not know; he does not address the cat."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "6": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player agrees to terms and then does something in the world (examines the box and tag for magic), which is not a pure ask; no test of others, no false claim, no address to the cat, and no stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player agrees to terms and then acts in the world by examining the box and tag for magic, which is an action rather than a pure request to look; no test of Hesta, no falsehood, no address to the cat, and no stated personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "7": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player walks over and speaks to the empty chair, asking \"Can you hear me?\", a question whose answer he cannot know and which tests whether the lodger is present; the statements are true, nothing addresses the cat, and no goal of the hero's own is stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero walks over and speaks to the unseen presence in the chair, asking \"Can you hear me?\", a question whose answer he cannot know and which tests whether anyone is there; he states no false claim, does not address the cat, and states no goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "8": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks Dorrin a question in the world about a halfling whose answer the player cannot know beforehand, probing whether Dorrin remembers him, which tests the truth of Dorrin's claimed memory; it is not a lie, does not address the cat, and states no goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Dorrin and asks him directly what he called the halfling, a question whose answer the player can't know yet and that probes whether Dorrin really knows him; the player makes no false claim, does not address the cat, and states no goal the GM had not already prompted."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "9": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player refuses the card game, makes a pleasant remark to Dorrin, and asks Hesta for a locksmith, which acts in the world; no test, false claim, address to the cat, or stated personal goal appears."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player refuses the hand, comments on Dorrin's answer, and asks Hesta for a locksmith, which acts in the world without a test, false claim, cat address, or stated personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "10": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world by speaking to Hesta and taking a precaution, not merely asking to look or listen; the request to warm supper is not a test or false claim, the cat is only sat beside and not addressed, and no new goal of the hero's own is stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (agrees to terms, gives Hesta a precaution to follow, eats), addresses Hesta rather than the cat, states no false claim, and states no personal goal beyond the immediate step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "11": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player pays for the meal, makes a remark about the cat to Hesta, and offers Ilsa a quiet hearing without asking a question, stating a false claim, addressing the cat, or declaring a personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts by paying and speaking to Hesta and Ilsa, and the offer to listen probes whether Ilsa has something to say about the corner, which is a small test of her reaction; the cat is only described and no false claim or goal is stated."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero pays and probes Ilsa about her unspoken knowledge of the corner. That draws out something he could not know, with no lie, no words to the cat and no stated goal."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "12": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The hero speaks to Ilsa and asks whether she has heard anyone use the yard door, a question whose answer he cannot already know, so it is a test rather than a look; he does not address the cat, tell a known falsehood, or state a goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to Ilsa and asks a question about who uses the yard door, which she could not have answered from the text so far, so it is a test; it is not a pure look-or-listen ask, and it neither lies nor addresses the cat or states a goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "13": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player beckons the cat, which addresses it with a request to follow, while the rest of the message is movement and inspection of the room, with no question put to a person, no false claim, and no stated goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player beckons the cat, which is addressing it with a request, while the hero's actions (heading upstairs, checking the window) are world-acting, not a test, lie, or stated goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "14": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts by positioning and watching the yard, which is doing something in the world rather than only asking to look; no question is put to anyone, no false claim is made, the cat is not addressed, and no goal beyond the next step is stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts by positioning and keeping watch, which is doing something in the world rather than only asking to look, but it puts no test to anyone, tells no falsehood, does not address the cat, and states no goal beyond the watch itself."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "15": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player speaks to the cat (\"I tell the cat\") and otherwise does things (barring the door, taking off armour, praying to Tymora) without asking to look or testing anyone in the world; the prayer is a sincere address, not a false claim, and states no goal beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player speaks to the cat (\"I tell the cat\"), which tags cat=1; the rest is undertaking actions like barring the door and praying to Tymora, with no question, test, false claim, or stated goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "16": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player acts by speaking to Marl and asking his fee, and states the hero's wish to have the lock opened without damage, which the game master's text did not ask for; the cat is only carried along, not addressed, and the name given is his real one."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player acts by going downstairs and speaking to Marl Tenby, asking his fee, and states a want (the lock opened without damage) that the GM did not ask about; the cat is only described, not addressed."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "17": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player pays Marl, speaks a courtesy, and breaks the seal to read the letter, which are in-world actions rather than a request to look or be told; no test, false claim, address to the cat, or stated goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player pays Marl, speaks a courtesy, and breaks the seal to read the letter, which is acts in the world; no test, false claim, address to the cat, or stated personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "18": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "He acts (speaks to Hesta and Ilsa, takes the ticket) and asks for directions, which tests nothing; he states his own aim of recovering Marl's coin and helping him, which the GM did not ask about."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player folds the letter, relays the warnings, pockets the ticket and asks Hesta for directions; it acts in the world but poses no test, makes no false claim, does not address the cat, and states no personal goal beyond the immediate errand."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The hero acts and speaks, and states his own aim of recovering the coin to help the dead man; nobody asked him what he wants."
+            },
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "19": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player speaks to the cat ('Close by me,' I tell the cat), which addresses it with an order; the movement down Cable Street is an action, not a test, lie, or stated goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message moves the hero down Cable Street and addresses the cat with 'Close by me,' which is an order to the cat; no test, lie, or stated goal appears."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "20": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks the boy whether he can change gold, a question whose answer the player could not know, and also stops on the cobbles, so it is not a pure ask; it addresses no lie, no cat, and states no goal of its own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player stops and asks the boy whether he can change a gold piece, which is an action directed at a character, not a mere look or listen; it is a plain request for a service rather than a test of truth, contains no false claim, does not address the cat, and states no goal beyond the next step."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player speaks to the boy and stops on the cobbles. Asking whether he can change a gold piece is a practical request, not a test of hidden truth. Nothing said is false, the cat is not addressed, and no broader goal is stated."
+            },
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the chair with its tower of coins, the dockhand who forgot his name, and the tiefling's flinch toward the corner, while also offering checkable things like the chair's coins, the dockhand's story, and the room upstairs."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the empty chair and its coin pile, the dockhand who forgot his name, and the server's flinch toward the corner as details the player can interpret but not resolve, and it offers checkable items like the coins, the dockhand's story, and the server's reaction."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's fixed stare at the corner, the chair everyone walks around, and Ilsa's watchful look are unexplained details, and the empty chair by the wall and the plain fish on the saucer are things the player could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The shunned chair, the cat fixed on the corner, and Ilsa's watchful pause are details the player can interpret but not resolve, and the chair and the claims about the dealer are things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the cold, small, familiar presence in the chair, the coin tower nobody looks at, and the fish that stopped steaming, and it offers testable objects like the chair, the coin tower, and the worn coin's warmth."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd, unexplained details in the scene, such as the unlooked-at coin tower, the swinging lantern, and the stopped fish, and it offers testable items like the empty chair, the worn coin's brightness, and the cat's warning not to sit there."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "4": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The halfling whose name Hesta cannot recall, her knuckles resting on the shelf under the bar, and the worn gold coin with an unseen face are odd details the player cannot resolve, while the slate of names, the upstairs room, and the coin are concrete things the player could check by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the unnamed halfling lodger, his worn gold coin of the Lady's, and Hesta's inability to recall his name as an unexplained gap, and it offers testable items such as the slate of chalked names and the coin itself."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "5": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The blank space after KEPT FOR, the knife-scratched keyhole, and the cat staring at the box are details the player can interpret but not settle, and the locked box is an object the player can try to open, which would decide what is inside."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the unexplained blank space after KEPT FOR, the blade-scratched keyhole, and the cat staring at the box, and it puts a lockable box and Hesta's checkable claims about the lodger in front of the hero."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "6": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The notched circle on the box's underside and the cat's flattened ears are left uninterpreted, while Hesta's claim that the mark is the lodger's can be checked against his mug, chair, or door frame."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details open to interpretation, such as the notched circle cut into the box's underside, the cat's unexplained reaction to the tag, and Ilsa's lingering look, while also offering checkable items like Hesta's claim about the mark and the slate record of the sums."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "7": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves uninterpreted details such as the notched frost circle, the card turning face up, and Dorrin's attentive stare, and it puts testable items in front of the hero, including the empty chair, the box under the bar, and Dorrin's claim about the creditor."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves interpretable but unresolved details (the frost sigil with a notched rim, the card turned face up, Dorrin's pointed attention) and offers testable items (the seat by the wall, the damp mark, Dorrin's claim about the creditor, his reaction to being watched)."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "8": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves open details the player can read but not settle, such as Dorrin's frown when reaching for the name, the skipped chair, and the thumb on the deck, and it offers testable items: the claim he never sat at his table, the seat and hand he proposes, and his reaction to both."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Dorrin's frown, his thumb working the deck edge, and the skipped chair are odd details the player can interpret but not resolve, and the offer to sit a hand gives the player a concrete action whose outcome could test what Dorrin knows."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "9": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's sentry-like behaviour and Hesta's refusal to ask 'how' leave ambiguous details the player can interpret but not settle, while Marl Tenby, the locksmith on Cable Street, is a concrete person the player could go and test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's sentry behavior, Dorrin's stilled thumb, and Hesta's damp-mark glance are open details the player can interpret but not settle, and Marl Tenby, the locksmith, and the lock box are concrete things the player could act on to test what is true."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "10": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's ear stays turned to the corner, Ilsa's glance and 'He ate' remark hint at something unexplained, and Dorrin's attention is felt but unexplained, while the hero can test Dorrin's reaction and the gold-for-change claim by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves unexplained details such as Dorrin's attention on the hero's back, the cat's ear turned to the corner, and an unexplained 'Fist' that cleaned out Hesta's silver, and it offers testable items like the nine-silver price, Dorrin's reactions, and the box in the corner."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "11": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the cold breath at the corner table, the shaped mark by the chair, and Dorrin staying behind at the lamp, and it offers testable items like the table, the mark, and Dorrin himself."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves unexplained details such as white breath at the corner table, a shaped mark by the chair, and Dorrin waiting at the lamp, and it puts testable things in front of the hero, like the table, the mark, and the yard door."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "12": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an untouched coin tower, the cat staring at the corner, and the unexplained hard-heeled visitors through the yard door, all open to interpretation, and it also offers checkable items such as the yard door, the coins, and Ilsa's account of who comes and goes."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an untested detail in the scene, the unexplained visitors with hard-heeled boots and the cat staring at the untouched coin tower, and it offers checkable items such as the yard gate, Dorrin's exit, and the coins."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "13": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the cat's unexplained wordless 'bond' feeling and the unlit lamp by the gate open to interpretation, and it places a watchable gate, a yard, and a blind-spotted back door that the player could test by observing from the window."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's wordless 'better than the chair' feeling through the bond and its unexplained perch are odd details the player must interpret without resolution, and the gate, broken shutter slat, and unlit lamp are concrete things the player could test by watching or looking through them."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "14": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained pause in the talk, the cat withholding anything down the bond, and an unidentified hooded visitor, while the oiled back door and the visitor's departure are concrete things the player could later test or follow up."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 0,
+              "reason": "The reply leaves odd details uninterpreted, such as the long pause in the talk, the oiled back-door hinges, and the cat's look, but offers no concrete object, person, or claim the player could test by action."
+            },
+            "referee": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves interpretable details: oiled hinges, a telling pause after the flat voice, Dorrin dealing to an empty room, and the cat's silent look. It also leaves testable things: Dorrin still awake downstairs, the oiled back door, and the distinctive heel-clicks."
+            },
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "15": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The dream's coin that stops upright and the unexplained bolt sliding in the night are details the player can interpret but not resolve, while Hesta's claim that the friend went home and the box on her bar are checkable things the player can act on."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The dream's coin that stops upright and the unseen figure across the table, plus the bolt slid back and someone let out into the street, are details the player can interpret but not resolve, and Hesta's claim that the friend went home and the locksmith's box on the bar are checkable by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "16": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves unexplained details such as the letter addressed 'To the next one she sends', the cat's stillness at the seal, and the presence in the corner, while the pawnbroker's ticket names a real place and record the player could check."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves uninterpreted details such as the letter addressed 'To the next one she sends', the stillness in the corner, and the cat's silent reaction, and it also gives testable objects like the pawnbroker's ticket for Griswell's and the lock Marl is working on."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "17": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves a blank in the letter's name that the hero cannot read, a coin standing on its edge, and a cat reacting to the chair, all open to interpretation; it also places a pawn ticket for the Undercellar and a testable claim about a paper signed by Lord Ardanne in front of the hero."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves a blank in the letter where a name should be, a coin that stands on its edge and won't land, and a pawn ticket for the Undercellar that the hero can go test, all concrete things a player can interpret or act on."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "18": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the five-winter pledge that Hesta finds suspicious, the warnings about the pile and the chair, and the cat's whiskers. It also puts testable things in front of the hero: the pawn ticket and Griswell's pledge, which could be tried or checked at the sh"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the unlit lantern, the coin tower at the empty chair, and a one-silver pledge held five winters that someone may have asked Griswell to keep, while the pawn ticket, Griswell's shop, and the Guild's lamp-boy are concrete things the player can test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "19": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an empty baize-lined box, a coin-in-teeth drowning pattern, and unseen 'something' slapping below the stair unexplained, while the boy's claim that cats see in the dark and the stair itself are concrete things the player can test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the coin-in-teeth bodies and the unseen thing the water slaps at below, and it puts testable items in front of the hero: the boy's claim that cats see in the dark, his copper-for-light price, and the stair."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "20": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's refusal to descend and the 'Except him' remark leave an uninterpreted oddity, and Old Tam's claimed coppers and the fishwives' gold-breaking are concrete claims the player can test by buying from them."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the odd 'Coin in his teeth' crier line, the cat's refusal at the dark stair, and the 'nobody goes down without the light' rule unexplained, and it offers checkable options such as Old Tam breaking gold for a sheet and the fishwives' change."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "who/what is in the empty chair",
+            "opened": 1,
+            "paid": 17,
+            "elsewhere": 1
+          },
+          {
+            "thread": "the coin tower in front of the chair",
+            "opened": 1,
+            "paid": 17,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Ilsa's flinch toward the corner",
+            "opened": 1,
+            "paid": 11,
+            "elsewhere": 0
+          },
+          {
+            "thread": "dockhand who forgot his name",
+            "opened": 1,
+            "paid": 17,
+            "elsewhere": 1
+          },
+          {
+            "thread": "halfling lodger's lost name",
+            "opened": 4,
+            "paid": 17,
+            "elsewhere": 1
+          },
+          {
+            "thread": "halfling's worn gold coin",
+            "opened": 4,
+            "paid": 17,
+            "elsewhere": 1
+          },
+          {
+            "thread": "contents of the locked box",
+            "opened": 5,
+            "paid": 16,
+            "elsewhere": 1
+          },
+          {
+            "thread": "who tried the box lock with a knife",
+            "opened": 5,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "blank name on the box tag",
+            "opened": 5,
+            "paid": 17,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Dorrin hiding something about the halfling",
+            "opened": 8,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Dorrin's night visitor in hard heels",
+            "opened": 11,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "what Dorrin waits for after closing",
+            "opened": 11,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "coin standing on its edge (dream)",
+            "opened": 15,
+            "paid": 17,
+            "elsewhere": 1
+          },
+          {
+            "thread": "retrieve pawned coin at Griswell's",
+            "opened": 16,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Lord Ardanne's paper and false signature",
+            "opened": 17,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "why Griswell kept the pledge five winters",
+            "opened": 18,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "drowned men with coins in their teeth",
+            "opened": 19,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "paying the lamp boy with only gold",
+            "opened": 19,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {
+          "6": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Agreed to Hesta's terms: the lodger's three months' rent at his rate, with the rest of his belongings kept until his fate is known"
+            ],
+            "error": null
+          },
+          "14": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Keep watch over the yard and listen for the gate latch, waiting to see who comes to meet Dorrin after closing (this is the perception roll, already covered by r"
+            ],
+            "error": null
+          }
+        },
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (Arcana +2 vs +3, mis-logged reroll, altered character details, leaked out-of-game notes) and specific missing elements (more momentum, bundled logistics, immediate post-roll narration, more ordinary city life)."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (Arcana +2 vs +3, mis-logged reroll, altered character details, leaked out-of-game notes) and specific missing items (more momentum, bundled logistics, immediate post-roll narration, more ordinary city life)."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 47,
+          "lastTurn": 20,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "The empty chair and its untouched coin tower",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hesta the innkeeper",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ilsa the tiefling server",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dorrin the dealer",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Cat's fixation on the chair",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "James's room at the Copper Lantern",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Bed and supper debt",
+                  "kind": "errand",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Whether the dealer warns newcomers",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Asking the cat what it senses",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Link between a child, the corner and the Lady's coin",
+                  "kind": "question",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "The halfling lodger nobody can name",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The lodger's worn gold coin",
+                  "kind": "thing",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Whether the lodger left anything behind",
+                  "kind": "question",
+                  "turn": 5,
+                  "by": "player"
+                },
+                {
+                  "thread": "The lodger's locked box",
+                  "kind": "thing",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hesta's terms for opening the box",
+                  "kind": "errand",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What erased the name from the tag",
+                  "kind": "question",
+                  "turn": 6,
+                  "by": "player"
+                },
+                {
+                  "thread": "Notched-circle mark",
+                  "kind": "thing",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The lodger's old room under the eaves",
+                  "kind": "place",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Speaking to the presence in the chair",
+                  "kind": "errand",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Asking Dorrin the halfling's name",
+                  "kind": "question",
+                  "turn": 8,
+                  "by": "player"
+                },
+                {
+                  "thread": "What Dorrin is hiding about the halfling",
+                  "kind": "question",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Finding a trusted locksmith",
+                  "kind": "errand",
+                  "turn": 9,
+                  "by": "player"
+                },
+                {
+                  "thread": "Marl Tenby",
+                  "kind": "person",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Marl Tenby's lock shop, Cable Street",
+                  "kind": "place",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hesta to alert James if anyone asks about the box",
+                  "kind": "errand",
+                  "turn": 10,
+                  "by": "player"
+                },
+                {
+                  "thread": "What Ilsa wanted to say",
+                  "kind": "question",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "Dorrin's after-hours yard-door visitor",
+                  "kind": "question",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Watching the yard gate from the window",
+                  "kind": "errand",
+                  "turn": 13,
+                  "by": "player"
+                },
+                {
+                  "thread": "The hard-heeled night visitor",
+                  "kind": "person",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Sealed letter to the next one she sends",
+                  "kind": "thing",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pawn ticket No. 4471",
+                  "kind": "thing",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Griswell's Lending & Surety",
+                  "kind": "place",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lord Esmond Ardanne",
+                  "kind": "person",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ardanne's pact paper and false signature",
+                  "kind": "thing",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Vasque the sharp dealer",
+                  "kind": "person",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The clerk with black under his nails",
+                  "kind": "person",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Recovering the pawned coin",
+                  "kind": "errand",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Hall that told him to be patient",
+                  "kind": "place",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Keeping the find from Dorrin",
+                  "kind": "errand",
+                  "turn": 18,
+                  "by": "player"
+                },
+                {
+                  "thread": "Old Griswell",
+                  "kind": "person",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Wet Stair",
+                  "kind": "place",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Why Griswell kept the pledge five winters",
+                  "kind": "question",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Cable Street",
+                  "kind": "place",
+                  "turn": 19,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The fish market on the harbour wall",
+                  "kind": "place",
+                  "turn": 19,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The lamp boy at the Wet Stair",
+                  "kind": "person",
+                  "turn": 19,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Old Tam, the Baldur's Mouth crier",
+                  "kind": "person",
+                  "turn": 19,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Drowned men with coins in their teeth",
+                  "kind": "question",
+                  "turn": 19,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Getting change for a gold piece",
+                  "kind": "errand",
+                  "turn": 20,
+                  "by": "player"
+                }
+              ],
+              "numbers": {
+                "threads": 48,
+                "byPlayer": 13,
+                "byDm": 35,
+                "share": 0.271,
+                "slope": -0.0215,
+                "slope19": -0.408,
+                "firstHalf": 0.45,
+                "secondHalf": 0.174,
+                "byKind": {
+                  "person": {
+                    "dm": 12,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 8,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 3,
+                    "player": 6
+                  },
+                  "question": {
+                    "dm": 6,
+                    "player": 7
+                  },
+                  "thing": {
+                    "dm": 6,
+                    "player": 0
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "The empty chair and its coin tower",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hesta the innkeeper",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ilsa the tiefling server",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dorrin the dealer",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Room and supper at the Copper Lantern",
+                  "kind": "errand",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Whose place is the empty chair",
+                  "kind": "question",
+                  "turn": 1,
+                  "by": "player"
+                },
+                {
+                  "thread": "Ask the cat what it senses",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Link to the Lady's coin",
+                  "kind": "question",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "The halfling lodger nobody can name",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lodger's old gold coin",
+                  "kind": "thing",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Did the lodger leave anything",
+                  "kind": "question",
+                  "turn": 5,
+                  "by": "player"
+                },
+                {
+                  "thread": "The lodger's locked box",
+                  "kind": "thing",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hesta's terms for opening the box",
+                  "kind": "errand",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "What erased the name",
+                  "kind": "question",
+                  "turn": 6,
+                  "by": "player"
+                },
+                {
+                  "thread": "Lodger's old room under the eaves",
+                  "kind": "place",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Speak to the one in the chair",
+                  "kind": "errand",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Ask Dorrin about the halfling",
+                  "kind": "question",
+                  "turn": 8,
+                  "by": "player"
+                },
+                {
+                  "thread": "Dorrin's offer of a free hand",
+                  "kind": "thing",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Find a locksmith",
+                  "kind": "errand",
+                  "turn": 9,
+                  "by": "player"
+                },
+                {
+                  "thread": "Marl Tenby",
+                  "kind": "person",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hesta to knock if anyone asks",
+                  "kind": "errand",
+                  "turn": 10,
+                  "by": "player"
+                },
+                {
+                  "thread": "Hear what Ilsa wants to say",
+                  "kind": "question",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "Who meets Dorrin after closing",
+                  "kind": "question",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Watch the yard gate",
+                  "kind": "errand",
+                  "turn": 13,
+                  "by": "player"
+                },
+                {
+                  "thread": "The hard-heeled night visitor",
+                  "kind": "person",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Sealed letter to the next one",
+                  "kind": "thing",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pawn ticket No. 4471",
+                  "kind": "thing",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Griswell's pawnshop in the Undercellar",
+                  "kind": "place",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lord Esmond Ardanne",
+                  "kind": "person",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The wager paper with a false signature",
+                  "kind": "thing",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Vasque the dealer",
+                  "kind": "person",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Clerk with black under his nails",
+                  "kind": "person",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Recover the pawned coin",
+                  "kind": "errand",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Don't go to the Hall first",
+                  "kind": "thing",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Keep the find from Dorrin",
+                  "kind": "errand",
+                  "turn": 18,
+                  "by": "player"
+                },
+                {
+                  "thread": "Why Griswell kept the pledge",
+                  "kind": "question",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Wet Stair",
+                  "kind": "place",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lamp boy's copper toll",
+                  "kind": "person",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Drowned men with coins in teeth",
+                  "kind": "question",
+                  "turn": 19,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Get change for gold",
+                  "kind": "errand",
+                  "turn": 20,
+                  "by": "player"
+                },
+                {
+                  "thread": "Old Tam the crier",
+                  "kind": "person",
+                  "turn": 19,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 41,
+                "byPlayer": 13,
+                "byDm": 28,
+                "share": 0.317,
+                "slope": -0.0314,
+                "slope19": -0.597,
+                "firstHalf": 0.563,
+                "secondHalf": 0.2,
+                "byKind": {
+                  "person": {
+                    "dm": 11,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 3,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 3,
+                    "player": 6
+                  },
+                  "question": {
+                    "dm": 4,
+                    "player": 7
+                  },
+                  "thing": {
+                    "dm": 7,
+                    "player": 0
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 44.5,
+            "byPlayer": 13,
+            "share": 0.294,
+            "slope": -0.0264,
+            "slope19": -0.5025,
+            "firstHalf": 0.5065,
+            "secondHalf": 0.187,
+            "shareSpread": 0.046
+          }
+        },
+        "goalScale": {
+          "goal": null,
+          "scale": null
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 1,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note reports Arcana rolled with +2 instead of the sheet's +3, which is a wrong skill bonus, and it says the writer would gladly continue, with no mention of an unsent or unanswered out-of-game message."
+            },
+            "b": {
+              "card_bug": 1,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note reports Arcana used +2 instead of the sheet's +3, a wrong bonus on a check, and says the writer would gladly continue; it reports no unsent or unanswered out-of-game message or dead button press."
+            },
+            "referee": null,
+            "final": {
+              "card_bug": 1,
+              "swallowed": 0,
+              "would_return": 1
+            }
+          },
+          "made": {
+            "1": {
+              "a": {
+                "made": 0,
+                "reason": "The player orders a bed, supper, and ale and asks about the empty chair; no poem, song, riddle, story, or invented game is offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player orders food and drink, asks questions about the empty chair, and makes a small remark to the cat; no poem, song, riddle, story, or new game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "2": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-character talk: a quip about the meal, a polite refusal of the dealer's offer with a cover story about a creditor, and a question to the innkeeper; no poem, song, riddle, story, or new game is composed or offered."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's lines are ordinary dialogue: a quip about the cat's supper, a polite refusal of a game invitation citing retirement, and a question to Hesta about the chair; no poem, song, riddle, story, or new game is composed or offered."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "3": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks the cat a question through a telepathic bond and offers nothing composed or invented, so no creative gift or game is offered to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks the cat a question through a telepathic bond and offers nothing composed or invented, such as a poem, song, riddle, story, or game, to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "4": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is a question to the innkeeper about a child and a coin, with a promise about not sitting in the corner; it offers no composed poem, song, riddle, story, or game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks Hesta a question about a child and a coin; no poem, song, riddle, story gift, or new game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "5": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is a cover story, a self-description, and a question about the lodger's belongings; it offers no poem, song, riddle, story, or game invented for anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is an in-character reply about the hero's background, a screened coin, and a question about the lodger's belongings; it offers no poem, song, riddle, story, or game invented as a gift or performance."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "6": {
+              "a": {
+                "made": 0,
+                "reason": "The player only agrees to terms and examines the box and tag; no poem, song, riddle, story, or new game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player only agrees to terms and examines the box and tag; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "7": {
+              "a": {
+                "made": 0,
+                "reason": "The player addresses the ghostly lodger and asks if he can hear, which is ordinary dialogue to an in-world figure, not an offer of a composed poem, song, riddle, story, or game nobody requested."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player addresses the spirit to ask whether he can hear them and to return his box; nothing composed or invented, like a poem, song, riddle, story, or game, is offered as a gift or performance."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "8": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks Dorrin a question about a halfling and states an intention to stay on Hesta's good side; no poem, song, riddle, story, or new game is composed or offered, so it is not a made item."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The hero asks Dorrin about a halfling and says he'll stay on Hesta's good side; no poem, song, riddle, story, or new game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "9": {
+              "a": {
+                "made": 0,
+                "reason": "The player refuses a card game and asks a barkeep about a locksmith; no poem, song, riddle, story, or new game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player refuses a card game and asks a barkeep for a locksmith's contact; no poem, song, riddle, story, or new game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "10": {
+              "a": {
+                "made": 0,
+                "reason": "The player gives a precaution request and thanks, with no poem, song, riddle, story, or invented game offered to anyone; it is ordinary talk and a plan."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue: agreeing to a plan, promising payment, thanking the innkeeper, and giving a precaution about the box; no poem, song, riddle, story, or game is composed or offered."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "11": {
+              "a": {
+                "made": 0,
+                "reason": "The player offers gold for food and speaks to Ilsa about the corner and offers to listen; no invented poem, song, riddle, story, or game is composed or offered."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player offers gold for food and quietly offers to listen to Ilsa about the corner; no poem, song, riddle, story, or invented game is composed or offered."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "12": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is a question and a report of feelings relayed through a cat, not a poem, song, riddle, story, or game the hero composes and offers; nothing invented is given to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks Ilsa a plain question about who uses the yard door and relays a feeling from his cat; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "13": {
+              "a": {
+                "made": 0,
+                "reason": "The player goes upstairs and inspects the room's window and yard view; they offer no composed poem, song, riddle, story, or new game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player says goodnight, signals the cat, goes upstairs, and inspects the window and yard; no composed or invented poem, song, riddle, story, or game is offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "14": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is an in-character remark about the room and a surveillance plan (keeping watch on the yard and gate), with no poem, song, riddle, story, or game offered to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is about settling in to keep watch and waiting for a visitor; it offers no poem, song, riddle, story, or invented game to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "15": {
+              "a": {
+                "made": 0,
+                "reason": "The player only speaks to the cat and a deity, saying goodnight and a vow to do what he can; he offers no invented poem, song, riddle, story, or game to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player only speaks to the cat and to the goddess Tymora, offering a prayer-like vow; no thing is composed or invented and offered to someone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "16": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue: greeting, thanks, and asking about the locksmith's fee, with no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue: greeting, thanks, and asking about a fee and terms for opening the lock, with no poem, song, riddle, story, or new game composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "17": {
+              "a": {
+                "made": 0,
+                "reason": "The player pays the lock-picker, then picks up and reads a letter that was already present; no poem, song, riddle, story gift, or new game is composed or invented for anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player pays the lockpick, then picks up and reads a letter that the game master had already placed in the box; no hero-composed poem, song, riddle, story, or game is offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "18": {
+              "a": {
+                "made": 0,
+                "reason": "The player repeats warnings, asks for directions, and takes the pawn ticket; no poem, song, riddle, story, or new game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player repeats the warnings, asks for directions, and plans to recover a pawn ticket; no composed poem, song, riddle, story, or game is offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "19": {
+              "a": {
+                "made": 0,
+                "reason": "The player only announces departure, thanks the NPCs, stows gear, and tells the cat to stay close; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary movement and farewell dialogue, with no poem, song, riddle, story, or game composed and offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "20": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks whether the boy can change a gold piece, a practical question about money, not an offer of any composed poem, song, riddle, story, or game."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks whether the boy can change a gold piece and offers no invented poem, song, riddle, story, or game; it is ordinary talk and a practical question."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          },
+          "lady": {
+            "1": {
+              "a": {
+                "lady": 0,
+                "reason": "The player asks about the empty chair and its owner but never names Tymora, the Lady, or Lady Luck, and does not ask anyone about her temple, followers, or signs."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The player asks the innkeeper about the empty chair and its owner, not about Tymora, her temple, followers, or signs; no mention of the Lady or Lady Luck appears in the message."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "2": {
+              "a": {
+                "lady": 0,
+                "reason": "The hero asks the dealer's habits and a warning about the chair, with no mention of Tymora, her temple, followers, or signs, so the lady rule is not triggered."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The player asks the innkeeper about the dealer warning newcomers about the chair, with no mention of Tymora, the Lady, Lady Luck, her temple, followers, or her signs."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "3": {
+              "a": {
+                "lady": 0,
+                "reason": "The player asks the cat through a telepathic bond about what is troubling it, not asking anyone in the world about Tymora's temple, servants, lore, or path; the Lady is never named or asked about in the player's message."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The player asks the cat (telepathically) about coins, the chair, or the thing in it, without asking any person in the world about Tymora's temple, servants, sayings, or house; the Lady is not the subject of the question."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "4": {
+              "a": {
+                "lady": 1,
+                "reason": "The hero asks Hesta, a person in the world, whether a child once carried 'a coin of the Lady's', which asks about Tymora by name and about her signs, so the rule's condition is met."
+              },
+              "b": {
+                "lady": 1,
+                "reason": "The hero asks the tavern keeper Hesta whether a child carried 'a coin of the Lady's,' directly asking someone in the world about Tymora's coin and its bearer, which counts as asking about her signs."
+              },
+              "referee": null,
+              "final": {
+                "lady": 1
+              }
+            },
+            "5": {
+              "a": {
+                "lady": 1,
+                "reason": "The hero, in the player's message, tells Hesta the Lady helped him and that he owes her service, but this is a statement about himself rather than a question asking someone in the world about Tymora's temple, followers, sayings, or house, so it does not meet the rule for asking about her."
+              },
+              "b": {
+                "lady": 1,
+                "reason": "The player, in a message to the innkeeper, names the Lady's coin and explains the debt of service owed to her, which the game master's reply then engages with; this is not merely passing mention, but the rule requires the hero to ask someone in the world about Tymora, and the player's message does n"
+              },
+              "referee": null,
+              "final": {
+                "lady": 1
+              }
+            }
+          }
+        }
       }
     }
   ],
@@ -1994,7 +4086,18 @@
       "B-astra | dm t* onward | anthropic/claude-opus-5.5": 6,
       "B-astra | dm t* onward | anthropic/claude-haiku-5.5": 4,
       "B-astra | check B-astra note | anthropic/claude-haiku-5.5": 1,
-      "B-astra | check B-astra after | anthropic/claude-haiku-5.5": 1
+      "B-astra | check B-astra after | anthropic/claude-haiku-5.5": 1,
+      "score B-astra | tag player B-astra t* | anthropic/claude-haiku-5.5": 40,
+      "score B-astra | tag player B-astra t* referee | anthropic/claude-opus-5.5": 7,
+      "score B-astra | tag dm B-astra t* | anthropic/claude-haiku-5.5": 40,
+      "score B-astra | tag dm B-astra t* referee | anthropic/claude-opus-5.5": 1,
+      "score B-astra | threads B-astra | anthropic/claude-opus-5.5": 1,
+      "score B-astra | rollcheck B-astra t* | anthropic/claude-haiku-5.5": 2,
+      "score B-astra | note B-astra | anthropic/claude-haiku-5.5": 2,
+      "score B-astra | authorship B-astra | anthropic/claude-opus-5.5": 2,
+      "score B-astra | note extra B-astra | anthropic/claude-haiku-5.5": 2,
+      "score B-astra | made B-astra t* | anthropic/claude-haiku-5.5": 40,
+      "score B-astra | lady B-astra t* | anthropic/claude-haiku-5.5": 10
     },
     "openai": {
       "B-astra | player t* | gpt-6-astra": 20,
@@ -2016,12 +4119,20 @@
     "openrouter": {
       "cap": 300,
       "before": 70.22621725,
-      "run": 9.753192700000005
+      "run": 10.28075960000001
     },
     "openai": {
       "cap": 25,
       "before": 1.8667159999999998,
       "run": 0.9716465000000002
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-26T05:34:59.666Z"
+  },
+  "verdicts": {
+    "note": "P0–P5 are read over all of this stage's run records, in the report"
   }
 }
