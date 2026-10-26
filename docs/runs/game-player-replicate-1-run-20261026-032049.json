@@ -429,7 +429,8 @@
             "costUsd": 0.33950759999999996,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 2,
@@ -512,7 +513,8 @@
             "costUsd": 0.3869476,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 3,
@@ -590,7 +592,8 @@
             "costUsd": 0.4654366,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 4,
@@ -714,7 +717,8 @@
             "costUsd": 0.48723439999999996,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 5,
@@ -785,7 +789,8 @@
             "costUsd": 0.4997734,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 6,
@@ -881,7 +886,8 @@
             "costUsd": 0.6506112,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 7,
@@ -973,7 +979,8 @@
             "costUsd": 0.5655214,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 8,
@@ -1051,7 +1058,8 @@
             "costUsd": 0.6136038,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 5
         },
         {
           "k": 9,
@@ -1101,7 +1109,8 @@
             "costUsd": 0.5690495999999999,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 5
         },
         {
           "k": 10,
@@ -1193,7 +1202,8 @@
             "costUsd": 0.5820647999999999,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 5
         },
         {
           "k": 11,
@@ -1280,7 +1290,8 @@
             "costUsd": 0.6780458,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 12,
@@ -1312,7 +1323,8 @@
             "costUsd": 0.5737626,
             "unrecorded": 1
           },
-          "ledgerMisses": 1
+          "ledgerMisses": 1,
+          "scene": 6
         },
         {
           "k": 13,
@@ -1356,7 +1368,8 @@
             "costUsd": 0.599387,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 6
         },
         {
           "k": 14,
@@ -1440,7 +1453,8 @@
             "costUsd": 0.869996,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 7
         },
         {
           "k": 15,
@@ -1520,7 +1534,8 @@
             "costUsd": 0.6600434,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 7
         },
         {
           "k": 16,
@@ -1568,7 +1583,8 @@
             "costUsd": 0.7678008,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 8
         },
         {
           "k": 17,
@@ -1626,7 +1642,8 @@
             "costUsd": 0.6551973999999999,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 8
         },
         {
           "k": 18,
@@ -1738,7 +1755,8 @@
             "costUsd": 0.8646381999999999,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 9
         },
         {
           "k": 19,
@@ -1782,7 +1800,8 @@
             "costUsd": 0.6590774,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 9
         },
         {
           "k": 20,
@@ -1838,7 +1857,8 @@
             "costUsd": 0.7288726,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 10
         }
       ],
       "welfare": [
@@ -2921,6 +2941,2147 @@
           "clocks": 3,
           "pureSimulation": false
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James pays the toll, asks the sergeant about prices, and sends the cat an explicit order, so it acts in the world and addresses the cat; the 'business' answer responds to the sergeant's direct question, so it is not a goal the GM left unasked."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James pays the toll, asks the sergeant the going rate, and sends the cat an explicit order, so he acts in the world; the \"business\" he states answers the sergeant's direct question about business, so it is not a goal the GM left unasked."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James speaks to Hale, asking about work and lodging and probing his reaction to the chalk mark, which tests whether Hale knows or cares, and he states his own goals of finding work and a place to sleep without the game master having asked for them."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James speaks to Hale, asking where to find work and a place to sleep, and probes the sergeant's reaction to the chalk mark, which is a test; he states wants of his own, and the game master did not ask what he wants."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The message moves James through the world and speaks to the cat with orders, so it is not a pure look or listen request; it contains no test of the world and no spoken falsehood, and the hero states no goal of his own beyond the immediate errand."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts in the world (moves through the arch, hides the purse, sets off asking directions) and addresses the cat with orders and a request to report, so ask is 0 and cat is 1; no question to a world character tests anything, no false claim is spoken, and no goal beyond the next step is state"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "4": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "James acts by following the boy and putting on the Mask, speaks to the cat with orders, and states his own aim: to see who the boy brings the pouch to."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "James gives the cat orders and asks it to report, and he states a goal of his own: to see who the boy brings the pouch to, which the game master never asked about."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1
+            }
+          },
+          "5": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player speaks to the cat with orders and then, in character, poses a question to the fence at the hatch (\"Will she see me?\") whose answer is unknown, testing his reaction; the hero's claims about himself are true, so no lie, and no goal is stated beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player speaks to the cat (ordering it to watch and report) and puts a test to the fence by naming Mags and reciting what he saw, but states no false claim and no personal goal beyond the immediate request."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "6": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message moves James after the fence, disguises him as a cook, and addresses the cat with orders to follow and report, so it acts in the world rather than just asking to look; it tests nothing, tells no false claim, and states no goal of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player moves James after the fence and directs the cat with orders and requests, so it is not a mere look or listen; the message addresses the cat, while no test of the world, spoken lie, or stated personal goal appears."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "7": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James crouches, examines the wall, holds the Coin of Tymora to the star to see how it reacts, and sends a question to the cat, which is addressed directly; he states no goal of his own and tells no false claim."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James crouches, examines the wall, holds the Coin of Tymora near the star to see whether it warms or cools (an experiment), and speaks to the cat with a question it cannot already answer; he states no false claim and no goal of his own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "8": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message gives the cat orders to go ahead and scout the western lane, which addresses the cat directly; it does not ask to look, put a test to anyone, state a false claim, or state a personal goal beyond the immediate errand."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The message gives the cat a direct order and request (go ahead, follow the wall, stop and report), so it addresses the cat, and it also acts in the world by changing disguise and moving, so it is not a pure question; it puts no test to anyone, tells no lie, and states no goal of the hero's own beyon"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "9": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "James sits down and positions himself (doing things, so not a mere ask), gives the cat orders to watch and not approach, and states he wants to see the lamplighter's face and the tile, a goal beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "James sits and gives the cat orders to watch and report, which both acts in the world and addresses the cat, and he states a wish to see the man's face, which is a goal of his own that the game master did not ask about."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1
+            }
+          },
+          "10": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "James speaks to the lamplighter with a bait claim about a cart and a failing lantern to see whether his face or reaction gives him away, and the message addresses the cat with orders to follow; it also states his goal of learning where the man sleeps or who he reports to."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "James speaks to the lamplighter with a bluff-like remark designed to see whether the man's reaction reveals his true nature (a test), addresses the cat with orders to follow, and states a goal of learning where the man sleeps or who he reports to."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1
+            }
+          },
+          "11": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message does things in the world (follows, moves, and speaks to the cat by giving it orders), so ask is 0; it addresses the cat with instructions, so cat is 1; it poses no question to a world-person and tells no lie; the instructions to the cat describe a plan of action rather than a st"
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The message gives the cat concrete orders (keep in reach, tell him the turn, watch the door, sit tight) and so addresses it, while the player's own movements make it an action rather than a question; no test of the world, no false claim, and the goal stated is only the immediate follow-up, not a bro"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "12": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player addresses the cat with orders to watch the lanes and come down, and puts a test to the eel-seller by asking whether the lamp-man is a regular, which she could not have known; no false claim is made and no goal is stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player addresses the cat with instructions to watch the lanes and come down, and puts tests to the eel-seller (asking whether the lamp-man is a regular, with a question she couldn't already answer), without any spoken false claim or stated personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "13": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message does things (pays with a gold crown, gives instructions to the eel-seller) and addresses the cat directly with an order to watch the stairs, but it contains no question to a world character that tests a fact, no false claim, and no stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player pays with a gold crown and instructs the eel-seller, which is action rather than asking to look; the message addresses the cat directly with an order to watch, but states no goal of the hero's own and tells no false claim."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "14": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "The player speaks to the cat (\"Come down\", \"You did well\", \"Tomorrow...\") and states the hero's own goals (find out what the Brazier is, look at the gate star by daylight), without the game master having asked what he wants."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "The player speaks to the cat (\"Come down\", \"Tomorrow...\" and gives it a scrap of meat), and states the hero's own goals (to find out what the Brazier is, to look at the gate star by daylight) without the game master having asked what he wants; no test or lie is put to anyone in the world."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1
+            }
+          },
+          "15": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James speaks to the cat with instructions to follow the girl, and then questions Fenwick about who is asking about cats, a probing question whose answer he cannot know from the text, so it tests the keeper; he says nothing false, and he states no goal of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James speaks to the cat with instructions and also questions Fenwick, the keeper, about who is asking about cats, which puts a test to the world, while he tells no false claim."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "16": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message does things in the world (leaves, climbs, sets traps, opens the window) and addresses the cat directly with an order to come in and a request to wake him if something climbs the lean-to; it puts no test to anyone and states no lie or goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message does many things in the world (moves, sets traps, opens the window) and addresses the cat directly ('In. Downhill to the water...'), so it is not a pure look-or-listen request; it is not a test or a lie, and it states no new goal beyond the next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "17": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message sends the cat on an errand and speaks to it directly, so ask is 0; no in-world question is put to anyone, no false claim is made, and the hero states no personal goal beyond the planned breakfast and Dorrie visit."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message sends the cat onto the roof with an order and speaks to it, so ask is 0; it puts no test to a person, contains no false claim, and states no goal of the hero's own beyond the next step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "18": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James lifts the cat, drops the bolt, goes downstairs and greets Dorrie, which are world actions; he gives the cat an explicit order to scout the quay, which addresses it, but he puts no test to anyone and states no goal beyond the immediate errand."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "He acts (lifts the cat, leaves, pays) and sends the cat to scout, asking it who is near the stall, and probes Dorrie with \"whatever else you've got for me\"; he makes no false claim and states no goal beyond the next step."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James acts in the world and sends the cat to scout the stall; the disguise involves no spoken false claim and no new goal is stated."
+            },
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "19": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James tells Dorrie what he saw and asks her a pointed question about the harbour's drownings, a test of whether she knows the pattern; he also gives the cat an order, so cat is 1, and nothing he says is false."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James speaks to Dorrie and asks whether the harbour has been taking more men, a question he can't answer from the text, and he gives the cat orders to watch the middle stair; he states no goal of his own and tells no false claim."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "20": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James asks Dorrie whether Ostrand is a patriar or a shipping house and where their hulls berth, a question whose answer he can't know yet, and he addresses the cat directly with an order to rest and come find him."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James questions Dorrie about the Ostrand house and their berth, a question whose answer he could not know beforehand, and he addresses the cat directly, telling it to stay on the roof and come find him later."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The chalk mark with its overlapping triangles and the re-traced stroke is an odd detail the player can interpret but not resolve, and the sergeant's pricing claim and the cat's ambiguous tail flick are concrete things the player could test by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The chalk mark of two overlapping triangles, with one stroke gone over twice and still fresh, is an odd detail the player can interpret but not resolve, and the mark, the sergeant's claim about Fist pricing, and the cat's reaction are all things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The card man's slowing hands and the cat's wordless thought ('He shuffled. He smiled. Nobody answered.') are odd details left unexplained, while the Elfsong notice board, the Seatower job, and the Guild chalk marks are concrete things James could check or watch."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The card man's slowing hands and the cat's cryptic thought are odd details left unexplained, and the notice board at the Elfsong, the Guild chalk claim, and the named inns are concrete things James could test by acting on them."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's remark about the card man folding his crate early is an uninterpreted detail, and the boy with the onion basket and the pouch he took are concrete things James can test by checking his belt, confronting the boy, or following him to the lane."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's aside about the 'card man folding his crate, early' is an uninterpreted detail, and the grey-capped boy and the lane with the broken lamp are concrete things the player can test by following or confronting him."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "4": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the scratched hook-and-three-nicks mark and the unexplained chalk star on Basilisk as open details, and it puts a checkable claim about a crown toll and a named contact (Mags) in front of James along with a lanky young man he could watch or follow."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained chalk-star claim and an old three-nicked hook sign on the doorpost that the player could interpret but not settle from the scene, and it offers checkable things like the hatch, the doorpost mark, and the claim about Mags and the star."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "5": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The fence's slip with the name 'Brazier', which James never said, and the scratched hook on the doorpost are details the player can interpret but not resolve, and the fence's fearful reaction and the man fleeing west are concrete things the player could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The fence's fear of the name Mags, the 'Brazier' he denies knowing, the rag-wrapped hand, and the man fleeing west are concrete details James can interpret but not resolve, and several of them (the denial, the fleeing man, the runner) could be tested by a follow-up action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "6": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The chalk star with its steady hand, the cold smell and the ancient wall are odd details the player must interpret, and the quay fires and lanes offer concrete things to go and check, such as whether a fire is the Brazier."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The chalk star with its steady, undoubled stroke and the cat's remark that the wall smells cold are odd details the player cannot resolve from what is shown, and the star, the old wall, and the quayside fires are concrete things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "7": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves unexplained details such as the coin going cold near the chalk and warm at the carving, the cat's 'Not Hers,' and the bargain seal, and it offers checkable objects like the carving and the wall's bend toward the westernmost lane."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd, unexplained details in the scene (the coin going cold then warm, the cat's 'Not Hers' and 'someone prays to be left alone'), and it sets out testable items: the worn carving, the chalk, the coin's reaction, and a lane leading west toward the warehouses."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "8": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the lamplighter's green glazed tile, his unfinished chalk triangle, and the unlit post as odd details James cannot yet explain, and it sets testable objects and a person in front of him: the stone blocks, the chalk, the tile, and the man himself."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The unlit lamp post, the shuttered lantern, the green glazed tile that smells like the coin, and the chalk triangle being drawn are details the player can interpret but not settle from what is shown, and the lamplighter is a person whose reaction could be tested by approaching or showing the coin."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "9": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves interpretable but unresolved details (the salt-smudged star, the inaudible words, the unseen tile face, the coin's slight cooling) and puts a walking lamplighter and testable objects within the hero's reach."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 0,
+              "reason": "The reply leaves concrete odd details unresolved, such as the carving the cat cannot confirm under the chalk, the unreadable tile face, and the muttered words lost to the water, but it offers no checkable claim, object, or door the player can actively test to decide a truth."
+            },
+            "referee": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The wet-finger smudge on the star, the unheard words and the coin's slight cooling are left uninterpreted, and the approaching man, his green tile and the chalked star are concrete things James could test by acting."
+            },
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "10": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves unexplained details such as the chalk smear, the notched ear, the warm pull from the lamplighter's right pocket, and the undusted hook, and it gives the player concrete checkable things like the man heading east and the coin's reaction to him."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves interpretable details standing, such as the chalk smear, the notched ear, and the second coin's pull from the right pocket, and it offers testable claims like the harbour sending its own man and the unlit post that action could check."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "11": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The lamplighter's abandoned pole, the porter's cryptic remark about the Calishite, and the unexplained look at the cat are left unresolved, while the pole, the eel-seller, and the porter are concrete things James can test by examining, questioning, or watching their reactions."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The brass-hooked pole left standing against the eel-seller's wall, the old porter's cryptic 'Ask me how I know' about the Calishite, and the cat's 'cold chapel' smell are interpretable but unresolved, and the pole and the porter's claim are concrete things James could test by picking up the pole or "
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "12": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an odd object, the brass-hooked pole the stranger left neatly standing behind the pot, unexplained, and it gives testable things: the pole itself, which the player can try with the Coin of Tymora, and the eel-seller, whose reaction and 'That's no lamp-man of mine' claim can be check"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The stranger's abandoned pole left standing against the stall wall is an odd object the player can read but not resolve, and it is also an object the player can test with the coin, as the out-of-game note says is still pending."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "13": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an odd grey chalk smudge and a lingering cold on the pole that the player can interpret but not resolve, and it presents testable items: the pole, the chalk dust, and Dorrie's watchable reactions."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained chalk smudge and a fading cold on the pole, and puts testable objects in play: the pole itself, Dorrie's promise to watch for visitors, and the coin's reaction to the stick."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "14": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves uninterpreted details such as the unseen singer, Fenwick's glance at the cat, and the cat's comment about the green object, and it sets testable items in front of the hero, including the Three Keys card, the Tam Pell notice, the iron key, and Fenwick's reaction."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves unexplained details (the unseen singer, Fenwick's glance at the cat, the girl's errand, the notice with its crossed-out line) and sets testable items in front of James (the Tam Pell notice naming Nell, the Three Keys card with its hours, the iron key, the green token)."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "15": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an uninterpreted detail in the scene (the keeper's cut lock and the girl's solo run downhill) and offers checkable objects and people, such as the lock, the back stair, and the cook, whose testing would settle something true."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the cut lock, the unexplained cook, and the girl's run toward the harbour as details the player can read but not settle, and it offers a lock, a back stair, and a keeper's cloth-and-cup tell that an action could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "16": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained hooded watcher on the roof across the yard, Fenwick's dry look, and the cat's 'visitors' remark, while the roof and the harbour are concrete things James could check by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained figure on the roof across the yard that watched the window and left before dawn, and it also offers testable items such as the roof across the yard, the copper, the bolt, and the cook's reaction to the boots."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "17": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves a scratched cup-and-flames mark on the flashing and a chewed liquorice root in the gap, both open to interpretation, and the player could test them by comparing the mark to the pie-shop hook or by examining the root."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The scratched cup-and-flames mark on the lead flashing and the chewed liquorice root are odd, uninterpreted details, and the root and the mark are concrete objects the player could test or compare against the pie-shop hook."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "18": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unresolved, such as the ink in the woman's skin and the uneaten eel dropped at the foot of the middle stair, while Dorrie's account, the stick, and the middle stair are concrete things James can test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The woman who bought an eel and dropped it uneaten at the foot of the middle stair is an odd, uninterpreted gesture, and Dorrie's claims (the stick, the woman's route up the middle stair) are concrete things James can test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "19": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Dorrie's hand tightening her scarf knot is a gesture left uninterpreted, and the game master puts testable things in front of the hero: Nell at the Mermaid's kitchen whose reaction can be watched, the ledger entry, and the coin-in-the-mouth claim."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Dorrie's hand tightening on her scarf knot and the unexplained coins in the drowned men's mouths are open details, while Nell at the Mermaid's kitchen and the ledger entry for Tam are concrete people and records the hero can test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "20": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the odd tin tag stamped 'DC 41' on the Sweet Moll's mast and the claim that the tag covers Tam's knife and nets unexplained, while also giving checkable leads like the Ostrand Wharf berth, the boat itself, and the tag."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The tin tag stamped \"D C 41\" on the Sweet Moll's mast and the grizzled man's account of the knife and nets are odd details the player can interpret but not resolve, and the Ostrand Wharf directions and the crew at the bow are concrete, checkable things the hero can go and test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "Chalk star on Basilisk Gate arch",
+            "opened": 1,
+            "paid": 7,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Card man folding up early / gone quiet",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Who is drawing stars on the Guild's gate (Mags wants to know)",
+            "opened": 4,
+            "paid": 9,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Who is Mags / the Brazier",
+            "opened": 4,
+            "paid": 17,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Where the fence ran to",
+            "opened": 5,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Old grey wall's course downhill",
+            "opened": 6,
+            "paid": 8,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Cold chapel smell of the chalk",
+            "opened": 6,
+            "paid": 10,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Green tile in lamplighter's pocket",
+            "opened": 8,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Words lamplighter spoke over the star",
+            "opened": 9,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Where the lamplighter went after leaving the pole",
+            "opened": 11,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Who comes for the abandoned pole",
+            "opened": 11,
+            "paid": 18,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Girl watching from the Elfsong / running downhill",
+            "opened": 14,
+            "paid": 17,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Whose friend Fenwick is",
+            "opened": 15,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Something on the roof in the night",
+            "opened": 16,
+            "paid": 17,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Ink-fingered woman in grey shawl",
+            "opened": 18,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Drowned men with coins in mouths",
+            "opened": 19,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Ostrand house's sudden money",
+            "opened": 20,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "DC 41 debt-tag on the Sweet Moll",
+            "opened": 20,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {
+          "10:31291019-7cba-5348-b6c6-267c2f4c1bbc": {
+            "turn": 10,
+            "reason": "Deception +7 (Beguiling Influence): play the tired porter well enough that the lamplighter stops and answers without suspecting anything",
+            "a": {
+              "true_statement": 0,
+              "reason": "The Deception check is about convincingly playing a porter's cover persona, not about whether James's words are true; his claims about a dark post and an incoming cart are part of that performance and are not supported by the records."
+            },
+            "b": {
+              "true_statement": 0,
+              "reason": "James claims he has a cart coming in that light, which nothing in his records or the story supports, so he is saying something false to cover himself."
+            },
+            "referee": null,
+            "final": {
+              "true_statement": 0
+            }
+          }
+        },
+        "rolls": {
+          "2": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Ask Sergeant Hale where to find work in the city and where to sleep",
+              "Ask Hale about the chalk mark on the wall (whether it's kids or should be avoided)",
+              "Pay the two-silver toll (paid in gold, already happened before this turn)"
+            ],
+            "error": null
+          },
+          "3": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "James tucks the fat purse inside his armour, leaving a dozen silver and a couple of gold in the belt pouch as bait",
+              "James asks the first respectable-looking shopkeeper the way to the Elfsong",
+              "James tells the cat to follow from the rooftops or gutters and report anyone walking where he walks"
+            ],
+            "error": null
+          },
+          "4": {
+            "rolls": 2,
+            "untold": [],
+            "undeclared": [
+              "Let the crowd fold around him and walk on at an easy pace past the fountain (movement, not a roll; covered by narration)",
+              "Step into the lee of a shuttered stall and cast/use the Mask to change his appearance (no roll or check shown for the disguise)",
+              "Follow the boy north, staying well back in the shadows (covered by roll 1)",
+              "Watch for any chalk marks along the way and report them to the player (the narration reports no chalk marks, but the player's line asked for them to be shown)"
+            ],
+            "error": null
+          },
+          "5": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Walk into the yard openly, stop a few paces from the door with hands in plain sight, and whistle two notes high then low (declared as a signal; no roll needed, ",
+              "Let the Mask go and step back into the bend's shadow (no roll, shown in narration)",
+              "Send the cat up to watch the fence gaps and roofs (a command, shown as the cat repeating it; no roll needed)"
+            ],
+            "error": null
+          },
+          "6": {
+            "rolls": 2,
+            "untold": [],
+            "undeclared": [
+              "Slow down and tell the cat if James falls too far behind (not needed, no sentence says why it did not happen)",
+              "Walk through the ginnel and reach the yard, following the cat's turns (declared as following directions; the story shows him moving on without a roll)",
+              "Look for and examine the faces of anyone the fence meets, and check for a sign reading 'the Brazier' (narration reports no meeting or sign, so the story gives n",
+              "Keep right hand near the rod in the apron pocket (not shown as happening; no out-of-game reason given)"
+            ],
+            "error": null
+          },
+          "7": {
+            "rolls": 2,
+            "untold": [],
+            "undeclared": [
+              "Pick up the Coin of Tymora and hold it near the chalk star (the coin test was declared and carried out, but the story only shows a coin reaction, and the Religi",
+              "Whether the star is a holy sign, ward, or mage's mark: the player asked to determine this, answered in narration as a Calishite contract seal from memory, witho",
+              "Ask the cat whose chapel it is and whether the stone or chalk smells cold (sent as a silent message, answered in narration)",
+              "Work out roughly which way the old wall runs from the star toward the water (done in narration without a roll)"
+            ],
+            "error": null
+          },
+          "8": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Hitch the rope higher and linger at the chandlery window to pass as a porter (the story shows this as narration without a roll; it is a declared disguise-mainte",
+              "Look at the lower courses of the walls at each corner for old grey stone (narrated without a roll, which the out-of-game note justifies)",
+              "Send the cat ahead to follow the old wall and report stone, stars, chalk, or a chapel smell (the cat's movement is narrated; the cat's report is narrated as an "
+            ],
+            "error": null
+          },
+          "9": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "James wants the cat to watch the lamplighter and report what the green tile looks like up close (a tile, seal, carving?)",
+              "James wants to know whether the lamplighter puts the chalk star over the old carving, beside it, or elsewhere",
+              "James wants to know whether the lamplighter says anything, prays, leaves anything on the steps, or puts anything in the water",
+              "James wants the cat to see which way the lamplighter goes afterward, without following until told"
+            ],
+            "error": null
+          },
+          "10": {
+            "rolls": 2,
+            "untold": [],
+            "undeclared": [
+              "Let the lamplighter pass, then follow him high and far back, staying out of close range that night",
+              "Look for where he sleeps or who he reports to (the follow goal)"
+            ],
+            "error": null
+          },
+          "11": {
+            "rolls": 2,
+            "untold": [],
+            "undeclared": [
+              "Keep the cat close enough to hear and follow the lamplighter, staying a hundred feet back, using the crowd near the lit end and letting the cat work where the p",
+              "Walk east as a porter, stopping at the fire-basket, going round the nets, and spitting into the harbour (story shows these without a roll, which is acceptable a",
+              "Tell the cat to report any turn before taking it and to mark, not follow, any place it cannot track (story shows the cat reporting and marking, but no turn is d",
+              "Fix the lamplighter's face and voice in memory (a mental note, no roll needed)"
+            ],
+            "error": null
+          },
+          "15": {
+            "rolls": 2,
+            "untold": [],
+            "undeclared": [
+              "James sets the empty cup in front of Fenwick and lays two coppers beside it (the payment itself is shown but is an action without a roll; it is covered by the n",
+              "James drains the cider and scratches the cat behind the ears, and sends the cat after the runner girl (the cat's tailing is covered by roll 1)"
+            ],
+            "error": null
+          },
+          "17": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Send the cat onto the roof to sniff the chimney spot (declared; the cat does this, covered by roll 1)",
+              "Check whether anyone in neighbouring windows or yards is watching the cat, and whether the window can be seen from elsewhere (declared; narrated as James workin",
+              "Pocket the copper from the casement (declared; narrated)",
+              "Wash face and sling the crossbow (declared; narrated)"
+            ],
+            "error": null
+          },
+          "18": {
+            "rolls": 2,
+            "untold": [],
+            "undeclared": [
+              "Ask Dorrie about the stall and whether anyone has touched or been near the pole (the answer is given by Dorrie, but the player's own question is not declared as"
+            ],
+            "error": null
+          }
+        },
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (wrong Persuasion and Religion modifiers, the pending-card block on out-of-game questions, the lost rope, the Healing Light mismatch) and specific absences (fewer cat rolls requested, and a recap of open leads that would help the player pick up)."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (wrong Persuasion/Religion modifiers, blocked out-of-game questions, lost rope, mismatched Healing Light dice) and things absent (a recap of open leads, fewer cat rolls), so it is not praise-only."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 64,
+          "lastTurn": 20,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "Sergeant Brannoc Hale",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Card sharp at the gate",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Six-pointed chalk star mark",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Find work in the city",
+                  "kind": "errand",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Seatower of Balduran",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Friendly Arm Inn caravan hunters",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Elfsong",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Blushing Mermaid",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Guild",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Bait purse",
+                  "kind": "thing",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Cutpurse boy in grey cap",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hesper Dunn the chandler",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Follow the boy to his receiver",
+                  "kind": "errand",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "Lanky fence at pie-shop hatch",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Mags",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Brazier",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pie shop back yard",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Meet Mags",
+                  "kind": "errand",
+                  "turn": 5,
+                  "by": "player"
+                },
+                {
+                  "thread": "Tail the fleeing fence",
+                  "kind": "errand",
+                  "turn": 6,
+                  "by": "player"
+                },
+                {
+                  "thread": "Old wall with steady-hand star",
+                  "kind": "place",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Calishite debt-seal meaning",
+                  "kind": "question",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Coin of Tymora reacting to stars",
+                  "kind": "thing",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Follow the old wall to the water",
+                  "kind": "errand",
+                  "turn": 8,
+                  "by": "player"
+                },
+                {
+                  "thread": "False lamplighter with notched ear",
+                  "kind": "person",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Sea-green glazed tile",
+                  "kind": "thing",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Half-roofed warehouse steps",
+                  "kind": "place",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Find where the lamplighter sleeps",
+                  "kind": "errand",
+                  "turn": 10,
+                  "by": "player"
+                },
+                {
+                  "thread": "Abandoned lamplighter's pole",
+                  "kind": "thing",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dorrie the eel-seller",
+                  "kind": "person",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dorrie watches the pole",
+                  "kind": "errand",
+                  "turn": 13,
+                  "by": "player"
+                },
+                {
+                  "thread": "Runner girl in big coat",
+                  "kind": "person",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Fenwick the keeper",
+                  "kind": "person",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who asks about the cat",
+                  "kind": "question",
+                  "turn": 15,
+                  "by": "player"
+                },
+                {
+                  "thread": "Hooded child watcher on the roof",
+                  "kind": "person",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Brazier scratch mark on chimney",
+                  "kind": "thing",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Woman in the grey shawl",
+                  "kind": "person",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Middle stair-lane",
+                  "kind": "place",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tam Pell drowned fisherman",
+                  "kind": "person",
+                  "turn": 19,
+                  "by": "player"
+                },
+                {
+                  "thread": "Nell, Tam's woman",
+                  "kind": "person",
+                  "turn": 19,
+                  "by": "player"
+                },
+                {
+                  "thread": "Drowned debtors with coins in mouths",
+                  "kind": "question",
+                  "turn": 19,
+                  "by": "dm"
+                },
+                {
+                  "thread": "House Ostrand",
+                  "kind": "person",
+                  "turn": 19,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ostrand Wharf",
+                  "kind": "place",
+                  "turn": 20,
+                  "by": "dm"
+                },
+                {
+                  "thread": "DC 41 debt tag on Sweet Moll",
+                  "kind": "thing",
+                  "turn": 20,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Visit Nell at the Mermaid",
+                  "kind": "errand",
+                  "turn": 20,
+                  "by": "player"
+                }
+              ],
+              "numbers": {
+                "threads": 44,
+                "byPlayer": 13,
+                "byDm": 31,
+                "share": 0.295,
+                "slope": 0.003,
+                "slope19": 0.057,
+                "firstHalf": 0.333,
+                "secondHalf": 0.294,
+                "byKind": {
+                  "person": {
+                    "dm": 14,
+                    "player": 2
+                  },
+                  "place": {
+                    "dm": 10,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 0,
+                    "player": 8
+                  },
+                  "question": {
+                    "dm": 3,
+                    "player": 1
+                  },
+                  "thing": {
+                    "dm": 4,
+                    "player": 2
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "Sergeant Brannoc Hale",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Card man under the awning",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Six-pointed chalk mark",
+                  "kind": "question",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Seatower of Balduran",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Friendly Arm Inn and caravan hunters",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Elfsong",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Blushing Mermaid",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Find work in the city",
+                  "kind": "errand",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Bait purse ploy",
+                  "kind": "errand",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Cutpurse boy in grey cap",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hesper Dunn the chandler",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Follow the boy to his receiver",
+                  "kind": "errand",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "Lanky fence at pie-shop hatch",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Mags",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Brazier",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Guild hook mark on doorpost",
+                  "kind": "thing",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Get an audience with Mags",
+                  "kind": "errand",
+                  "turn": 5,
+                  "by": "player"
+                },
+                {
+                  "thread": "Old grey wall with carved star",
+                  "kind": "place",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Calishite debt-seal meaning",
+                  "kind": "question",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Coin of Tymora reacting to stars",
+                  "kind": "thing",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Lamplighter with notched ear",
+                  "kind": "person",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Sea-green glazed tile",
+                  "kind": "thing",
+                  "turn": 8,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lamplighter's abandoned pole",
+                  "kind": "thing",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dorrie the eel-seller",
+                  "kind": "person",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dorrie watches the pole",
+                  "kind": "errand",
+                  "turn": 13,
+                  "by": "player"
+                },
+                {
+                  "thread": "Fenwick the Elfsong keeper",
+                  "kind": "person",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Runner girl in big coat",
+                  "kind": "person",
+                  "turn": 14,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who is asking about the cat",
+                  "kind": "question",
+                  "turn": 15,
+                  "by": "player"
+                },
+                {
+                  "thread": "Night watcher on roof across yard",
+                  "kind": "person",
+                  "turn": 16,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Brazier mark on chimney flashing",
+                  "kind": "thing",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Woman in grey shawl",
+                  "kind": "person",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Tam Pell and Nell's notice",
+                  "kind": "question",
+                  "turn": 19,
+                  "by": "player"
+                },
+                {
+                  "thread": "Drowned debtors with coins in mouth",
+                  "kind": "question",
+                  "turn": 19,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Nell at the Mermaid kitchen",
+                  "kind": "person",
+                  "turn": 19,
+                  "by": "dm"
+                },
+                {
+                  "thread": "House Ostrand",
+                  "kind": "question",
+                  "turn": 19,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Ostrand Wharf",
+                  "kind": "place",
+                  "turn": 20,
+                  "by": "dm"
+                },
+                {
+                  "thread": "DC 41 debt tag on Sweet Moll",
+                  "kind": "thing",
+                  "turn": 20,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Grizzled fisherman by Sweet Moll",
+                  "kind": "person",
+                  "turn": 20,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 38,
+                "byPlayer": 8,
+                "byDm": 30,
+                "share": 0.211,
+                "slope": -0.007,
+                "slope19": -0.133,
+                "firstHalf": 0.263,
+                "secondHalf": 0.188,
+                "byKind": {
+                  "person": {
+                    "dm": 14,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 7,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 0,
+                    "player": 5
+                  },
+                  "question": {
+                    "dm": 4,
+                    "player": 2
+                  },
+                  "thing": {
+                    "dm": 5,
+                    "player": 1
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 41,
+            "byPlayer": 10.5,
+            "share": 0.253,
+            "slope": -0.002,
+            "slope19": -0.038,
+            "firstHalf": 0.298,
+            "secondHalf": 0.241,
+            "shareSpread": 0.084
+          }
+        },
+        "goalScale": {
+          "goal": {
+            "k": 2,
+            "message": "James pockets the silver with a nod of thanks and lowers his voice a little, one soldier to another.\n\n\"Obliged, Sergeant. One more question and I'm out of your queue. Where does a man with a blade and no friends find work in this city that won't end with your lot hanging him? And somewhere to sleep that won't rob him blind before morning.\"\n\nHe tilts his head a fraction toward the arch, still not looking at it.\n\n\"And somebody's been drawing on your wall. Fresh tonight, by the look of it. Kids, or should a stranger know better than to stand under it?\"\n\nHis face stays easy. He watches Hale's reaction more than he listens for the answer."
+          },
+          "tags": {
+            "a": {
+              "small": 1,
+              "large": 0,
+              "reason": "James's stated wants are work in the city and a place to sleep, both within the town and his immediate day, while the questions about the arch and the drawing are only probes that name no secret or journey."
+            },
+            "b": {
+              "small": 1,
+              "large": 0,
+              "reason": "James wants work he can find in this city, a place to sleep tonight, and a local answer about the wall, all within the town and his day, though the probing about the arch hints at something larger."
+            },
+            "referee": null,
+            "final": {
+              "small": 1,
+              "large": 0
+            }
+          },
+          "scale": 1
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 1,
+              "swallowed": 1,
+              "would_return": 1,
+              "reason": "The note reports roll cards showing wrong skill modifiers (Persuasion +2 instead of +7, Religion +2 instead of +3), says its pre-roll \"?\" questions were blocked by the pending card, and states \"I'd happily keep playing this.\""
+            },
+            "b": {
+              "card_bug": 1,
+              "swallowed": 1,
+              "would_return": 1,
+              "reason": "The note reports wrong skill modifiers on roll cards (Persuasion +2 instead of +7, Religion +2 instead of +3) and says out-of-game '?' questions were blocked while a card waited, and the writer says they would happily keep playing."
+            },
+            "referee": null,
+            "final": {
+              "card_bug": 1,
+              "swallowed": 1,
+              "would_return": 1
+            }
+          },
+          "made": {
+            "1": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message has James pay a toll, ask about rates, observe a chalk mark, and give the cat an instruction; he offers no composed poem, song, riddle, story, or new game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-world talk: James gives his name, pays the toll, asks about the rate, observes a chalk mark, and sends a thought to the cat, with no poem, song, riddle, story, or game invented as an offering to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "2": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks questions and makes conversational remarks about work, lodging, and the chalk mark; nothing offers the world a poem, song, riddle, story, or invented game."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks questions and makes small talk with the sergeant; nothing composed or invented, such as a poem, song, riddle, story, or game, is offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "3": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is a plan and bait setup, with no poem, song, riddle, story, or new game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is a plan and a salute, with no poem, song, riddle, story, or game composed and offered to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "4": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is tactical narration of tailing the pickpocket and using the Mask disguise; it offers no poem, song, riddle, story, or invented game to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is tactical narration of tailing the boy and assuming a disguise; it offers no poem, song, riddle, story, or invented game to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "5": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is a persuasive speech to a fence-keeper with no poem, song, riddle, story, or invented game offered to anyone, so it does not meet the made criterion."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is a speech asking to speak with a contact and offering a cover story and an entry-fee remark; it has the hero offer no poem, song, riddle, story, or invented game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "6": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is tactical: disguise, pursuit plans, and instructions to the cat to report turns and faces; it contains no poem, song, riddle, story, or invented game offered to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is about tailing the fence in disguise, giving instructions to the cat and planning the pursuit; it offers no invented poem, song, riddle, story, or game to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "7": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is investigation and inquiry (examining the wall, testing the coin, asking the cat a question, reasoning about routes) with no poem, song, riddle, story, or new game composed and offered to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is investigation and deduction (examining the wall, testing the coin, questioning the cat, mapping the route) with no composed or invented poem, song, riddle, story, or game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "8": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message contains only a silent prayer-like thought, a disguise, and instructions to the cat; no poem, song, riddle, story, or game is composed and offered to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message contains only a silent prayer-like thought, a disguise, and instructions to the cat; no poem, song, riddle, story, or game is composed or offered to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "9": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is operational: positioning, watching, and instructions to the cat about observing the lamplighter; it offers no poem, song, riddle, story, or game composed for anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is tactical instruction to the cat (watch, don't approach, report back) and a positioning plan for James, with no poem, song, riddle, story, or game composed and offered to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "10": {
+              "a": {
+                "made": 0,
+                "reason": "James's message is a lie and cover story (pretending to be a real lamplighter's complaint about an unlit post) plus a plan to tail the man; it offers no composed poem, song, riddle, story, or game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message has James call out a practical complaint about a missed lamp post as a ruse to make the lamplighter turn and reveal himself; it is a cover-style bluff and ordinary talk, not a composed poem, song, riddle, story, or game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "11": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is a tactical plan for tailing the lamplighter through the cat, with no poem, song, riddle, story, or game composed and offered to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is tactical instructions to a familiar (the cat) about following the lamplighter and keeping range; it offers no poem, song, riddle, story, or game invented as a gift or performance to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "12": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue: buying an eel, asking the eel-seller about the lamp-man, and a passing remark about a post; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue: asking the eel-seller about the lamp-man, a cover story about needing the lamplighter's post lit, and buying a cone; no poem, song, riddle, story, or invented game is offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "13": {
+              "a": {
+                "made": 0,
+                "reason": "The player has James pay the eel-seller with a gold crown and asks her to watch for people coming for the stick; this is a bribe and a plan, not him composing or inventing a poem, song, riddle, story, or game for someone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James pays the eel-seller with a gold crown and asks her to watch for people who come for the pole; this is a bribe and an ordinary request, not a composed poem, song, riddle, story, or new game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "14": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message contains no offering of a composed or invented poem, song, riddle, story, or game to anyone; it covers eating, climbing stairs, a message to the cat, a room rental, and internal reflection on clues."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message contains no hero offering the world a composed or invented poem, song, riddle, story, or game; it is ordinary narration of leaving, lodging, and thinking through clues, with the only sung material arising later in the game master's reply."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "15": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is an interrogation and a confrontation at the bar, with two coppers paid for cider; the hero offers no poem, song, riddle, story, or game that the world did not already call for."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message has James confront the keeper with a question and a cover-story-free accusation, but he offers no poem, song, riddle, story, or game he composed; the only gift is two coppers for the cider, which is ordinary payment."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "16": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message describes James's cautious room-check routine, a joke about wiping boots, and talk with his cat; it offers no composed or invented poem, song, riddle, story, or game to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message contains only ordinary in-character actions, a farewell, a joke about wiping boots, and security habits; it offers no composed or invented poem, song, riddle, story, or game to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "17": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message has James send the cat to investigate the roof and then prepare for breakfast; he offers no poem, song, riddle, story, or invented game to anyone in the world."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message has James send the cat to investigate the roof and gives instructions for surveillance and breakfast; he offers no poem, song, riddle, story, or invented game to anyone in the world."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "18": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-world action: buying food, sending the cat to scout, and a bluff about Dorrie's question of who he is; no poem, song, riddle, story gift, or invented game is offered."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-world action: buying food, sending the cat to scout, and a bluff about his cover; it contains no poem, song, riddle, story gift, or invented game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "19": {
+              "a": {
+                "made": 0,
+                "reason": "The hero trades information and asks questions in exchange for Dorrie's information, and gives instructions to the cat; he composes no poem, song, riddle, story, or game for anyone, so this is ordinary talk and a bargain."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The hero trades information and asks questions in exchange for Dorrie's information; he offers no poem, song, riddle, story, or invented game that nobody requested."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "20": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message contains only questions, a thank-you copper, a cover story about a lost eel, and travel plans; James offers no poem, song, riddle, story, or game that he composed for anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary talk, questions, a thank-you copper, and a plan to walk to the Mermaid; he offers no poem, song, riddle, story, or game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          },
+          "lady": {
+            "1": {
+              "a": {
+                "lady": 0,
+                "reason": "The hero asks the sergeant about toll and business rates only; nothing in the player's message asks anyone about Tymora, her temple, followers, or signs, and the chalk mark is examined silently without questioning anyone."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The hero asks the sergeant about the toll and going rate and never mentions Tymora, her temple, her followers, or her signs; the chalk mark is a different symbol and is only observed, not discussed with anyone."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "2": {
+              "a": {
+                "lady": 0,
+                "reason": "The player asks about work, sleep, and the chalk mark on the arch, never mentioning Tymora, the Lady, Lady Luck, her temple, followers, or her signs."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The player asks Hale about work, lodging, and the chalk mark on the arch, never naming or asking about Tymora, her temple, followers, or signs."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "3": {
+              "a": {
+                "lady": 0,
+                "reason": "The player's message never asks anyone in the world about Tymora; the only question is the way to the Elfsong tavern, with no mention of the Lady, her temple, followers, or signs."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The player's message asks nobody about Tymora; James only steps through the gate, hides his purse, and asks a shopkeeper the way to the Elfsong, with no mention of the Lady, her temple, her followers, or her signs."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "4": {
+              "a": {
+                "lady": 0,
+                "reason": "The player's message asks the game master about the boy's route and a chalk mark, with no question about Tymora, her temple, followers, or signs; no one in the world is asked about the Lady."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "Neither the player's message nor the game master's reply has the hero asking anyone in the world about Tymora; the player only tells the cat what to watch and the reply describes the tail, the Mask, and a thieves' sign, with no mention of the Lady."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "5": {
+              "a": {
+                "lady": 0,
+                "reason": "The hero asks for Mags, a Guild contact, and never asks anyone about Tymora, her temple, her followers, or her signs."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "Neither the player's message nor the reply asks anyone about Tymora, the Lady, Lady Luck, her temple, or her followers; James only asks for Mags, a Guild figure."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            }
+          }
+        }
       }
     }
   ],
@@ -2948,7 +5109,20 @@
       "B-opus | note | anthropic/claude-opus-5.5": 1,
       "B-opus | check B-opus note | anthropic/claude-haiku-5.5": 1,
       "B-opus | after | anthropic/claude-opus-5.5": 1,
-      "B-opus | check B-opus after | anthropic/claude-haiku-5.5": 1
+      "B-opus | check B-opus after | anthropic/claude-haiku-5.5": 1,
+      "score B-opus | tag player B-opus t* | anthropic/claude-haiku-5.5": 40,
+      "score B-opus | tag player B-opus t* referee | anthropic/claude-opus-5.5": 1,
+      "score B-opus | tag dm B-opus t* | anthropic/claude-haiku-5.5": 40,
+      "score B-opus | tag dm B-opus t* referee | anthropic/claude-opus-5.5": 1,
+      "score B-opus | threads B-opus | anthropic/claude-opus-5.5": 1,
+      "score B-opus | deception B-opus t* | anthropic/claude-haiku-5.5": 2,
+      "score B-opus | rollcheck B-opus t* | anthropic/claude-haiku-5.5": 13,
+      "score B-opus | note B-opus | anthropic/claude-haiku-5.5": 2,
+      "score B-opus | authorship B-opus | anthropic/claude-opus-5.5": 2,
+      "score B-opus | goal scale B-opus t* | anthropic/claude-haiku-5.5": 2,
+      "score B-opus | note extra B-opus | anthropic/claude-haiku-5.5": 2,
+      "score B-opus | made B-opus t* | anthropic/claude-haiku-5.5": 40,
+      "score B-opus | lady B-opus t* | anthropic/claude-haiku-5.5": 10
     },
     "openai": {}
   },
@@ -2965,12 +5139,20 @@
     "openrouter": {
       "cap": 300,
       "before": 41.83358455,
-      "run": 13.725665600000003
+      "run": 14.366297399999999
     },
     "openai": {
       "cap": 25,
       "before": 1.8667159999999998,
       "run": 0
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-26T04:14:12.958Z"
+  },
+  "verdicts": {
+    "note": "P0–P5 are read over all of this stage's run records, in the report"
   }
 }

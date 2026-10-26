@@ -200,6 +200,31 @@
           "cap": 25
         }
       }
+    },
+    {
+      "at": "2026-10-26T04:14:13.727Z",
+      "when": "after B-opus",
+      "openrouter": {
+        "keyUsage": 205.966656895,
+        "totalCredits": 600,
+        "totalUsage": 205.966656895,
+        "remaining": 394.03,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 56.1999,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 1.8667,
+          "cap": 25
+        }
+      }
     }
   ]
 }
