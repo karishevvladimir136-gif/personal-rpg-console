@@ -620,3 +620,31 @@ test("the harness's card words: «Rerolls left: N» or «unlimited», each rerol
   assert.match(rerollPress("reroll the rapier", [c1], [lunge]).refused, /already dealt its damage/);
   assert.equal(rerollPress("reroll insight", [c1], [lunge]).check.id, "c1");
 });
+
+test("11w′ in the harness: «[Roll the die]» with an out-of-game line in the same message is a press — the card resolves, the text reaches the DM, never «stuck»", async () => {
+  const { pressWithText } = await import("../scripts/game-player-1/screen.mjs");
+  // Group 2's A-opus t4, as the player wrote it: the button and a line about the total.
+  const opus = "[Roll the die]\n\n(Out of game: please check the Persuasion total, +2 is not +7.)";
+  assert.deepEqual(pressWithText(opus, ["Roll the die"]), { press: "Roll the die", rest: "(Out of game: please check the Persuasion total, +2 is not +7.)" });
+  assert.equal(pressWithText("[Roll the die]", ["Roll the die"]), null, "the button alone is the plain press");
+  assert.equal(pressWithText("I lean back and smile.", ["Roll the die"]), null, "no button, no press");
+  const table = harnessTable({ checks: [card("c1", "Persuasion: the dealer steps aside")] });
+  const record = await playHarness(["I talk the dealer down.", opus, opus.replace("Roll the die", "Onward"), "I order a drink."], table);
+  const turn = record.turns[0];
+  assert.equal(turn.status, "committed");
+  assert.notEqual(record.ended?.reason, "stuck");
+  assert.deepEqual(turn.presses.map((p) => p.button ?? (p.question ? "?" : p.swallowed ? "swallowed" : "moot")), ["?", "Roll the die", "?", "Onward"],
+    "each message: the text as a «?», then its button");
+  assert.ok(turn.presses.filter((p) => p.button).every((p) => p.withText), "both presses came with text");
+  assert.equal(turn.blocked, 0, "nothing counted toward «stuck»");
+  assert.equal(record.swallowed, 0);
+  const asked = table.calls.filter((call) => call.mode === "ooc");
+  assert.equal(asked.length, 2);
+  assert.match(asked[0].text, /please check the Persuasion total, \+2 is not \+7/, "the text reached the DM, while the card waited");
+  assert.deepEqual(table.calls.filter((call) => call.action).map((call) => call.action), ["continue"], "the roll was revealed, then «Onward» went on — once");
+  // The screen after the first message: the DM's answer above the card, the die shown (the press resolved it).
+  const after = record.screens.find((screen) => screen.startsWith("[Out of game] The check stands"));
+  assert.match(after, /Die: 11/);
+  assert.match(after, /\[Onward\]/);
+  assert.doesNotMatch(after, /Nothing was sent/);
+});

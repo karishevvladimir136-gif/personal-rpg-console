@@ -34,7 +34,10 @@ export function smokeMarkdown(runs, ledgers) {
     const presses = s.turns.flatMap((t) => (t.presses ?? []).map((p) => ({ k: t.k, ...p })));
     const swallowed = presses.filter((p) => p.swallowed);
     const pendingQuestions = presses.filter((p) => p.question);
-    const probes = presses.filter((p) => p.probe).map((p) => `- t${p.k}: ${p.swallowed ? `«${p.text}» refused on screen (swallowed): ${p.reason}` : `«${p.text}» → ${p.reply ? `«${p.reply.replace(/\s+/g, " ").slice(0, 400)}»` : `not answered (${p.failure ?? p.status})`}`}`);
+    const answer = (p) => (p.reply ? `«${p.reply.replace(/\s+/g, " ").slice(0, 400)}»` : `not answered (${p.failure ?? p.status})`);
+    const probes = presses.filter((p) => p.probe).map((p) => `- t${p.k}: ${p.swallowed ? `«${p.text}» refused on screen (swallowed): ${p.reason}`
+      : p.withPress ? `«[${p.withPress}]» with «${p.text}» beside it — the text went to the DM while the card waited → ${answer(p)}`
+      : p.withText ? `then «[${p.button}]» resolved the card (a press, not «stuck»)` : `«${p.text}» → ${answer(p)}`}`);
     const refusals = lines(screens, /^\(Nothing was sent|^\(Refused/);
     const clocks = s.turns.map((t) => (t.clock ? `- t${t.k}: ${redactErrand(t.clock).split(". ")[0]}.` : null)).filter(Boolean);
     return [`## ${s.key} — ${s.player} (${s.turns.length} turns, ended by ${s.ended?.reason ?? "?"})`, "",
@@ -61,12 +64,20 @@ export const SMOKE = {
   verdicts: () => null, score: null,
 };
 
+/** The rerun after 11w′ (the owner, 2026-10-26: one four-turn table, about $2, within the stage's caps): its own files
+ * (`fix-s4-run-1-smoke-2-*`) and the caps that are left of the stage's after the first smoke ($5.0231 OpenRouter, $0.0104
+ * OpenAI); the probes are the refused message and the press with text beside it (11w′). */
+export const SMOKE_2 = { ...SMOKE, name: "FIX_S4_RUN_1_SMOKE_2", stem: `${STEM}-2`, title: "FIX_S4 run 1 smoke (rerun after 11w′)",
+  caps: { anthropic: 0, openrouter: Number((CAPS.openrouter - 5.0231).toFixed(4)), openai: Number((CAPS.openai - 0.0104).toFixed(4)) }, order: ["luna"],
+  probes: { stray: "I wait.", pressText: "(Out of game: please check this card's total against my sheet before it counts.)" } };
+
 if (import.meta.url === `file://${process.argv[1]}`) {
   const argv = process.argv.slice(2);
   const value = (flag) => { const i = argv.indexOf(flag); return i >= 0 ? argv[i + 1] : null; };
   const dry = argv.includes("--dry");
   if (!dry && !argv.includes("--go")) { console.error("give --go or --dry"); process.exit(2); }
-  run({ stage: SMOKE, dry, turns: Number(value("--turns") ?? 4), lanes: 2, score: false, label: "the smoke tables" })
+  const second = argv.includes("--rerun");
+  run({ stage: second ? SMOKE_2 : SMOKE, dry, turns: Number(value("--turns") ?? 4), lanes: 2, score: false, label: second ? "the smoke rerun (11w′, the letter)" : "the smoke tables" })
     .then((record) => {
       console.log(`finished: ${record.sessions.length} session(s), stopped ${record.stopped ?? "no"}`);
       process.exit(0);

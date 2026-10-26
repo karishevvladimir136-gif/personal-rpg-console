@@ -95,6 +95,29 @@ export function pressedButton(text, offered) {
   return offered.find((name) => (forms[name] ?? [name.toLowerCase()]).includes(said)) ?? null;
 }
 
+/** FIX_S4 run 1, 11w′ (group 2's A-opus pressed «[Roll the die]» twice with «please check the Persuasion total» beside
+ * it, was told «Nothing was sent», and the session closed as stuck): a press that comes with text in the same message —
+ * a button of the screen in brackets anywhere, or one alone on its own line — and the rest of the message. Null when
+ * the message holds no button, or only the button (`pressedButton` / `rerollPress` read those). */
+export function pressWithText(text, buttons) {
+  const message = String(text ?? "");
+  const escaped = (name) => name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  for (const name of buttons) {
+    const found = new RegExp(`\\[\\s*${escaped(name)}\\s*\\]`, "i").exec(message);
+    if (!found) continue;
+    const rest = `${message.slice(0, found.index)} ${message.slice(found.index + found[0].length)}`.replace(/[ \t]+/g, " ").replace(/^\s+|\s+$/g, "");
+    return rest ? { press: name, rest } : null;
+  }
+  const lines = message.split("\n");
+  for (let at = 0; at < lines.length; at++) {
+    const name = buttons.find((button) => pressedButton(lines[at], [button]) === button || (button.startsWith(BUTTONS.reroll) && asPress(lines[at]) === button.toLowerCase()));
+    if (!name) continue;
+    const rest = [...lines.slice(0, at), ...lines.slice(at + 1)].join("\n").trim();
+    return rest ? { press: name, rest } : null;
+  }
+  return null;
+}
+
 const lineList = (title, rows) => (rows.length ? `${title}: ${rows.join("; ")}` : "");
 
 /** The records panel the owner can open at any moment: hero, party, journal, place and time. */

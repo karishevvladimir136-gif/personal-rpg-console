@@ -12,7 +12,7 @@ import {
   AFTER_QUESTION, NOTE_QUESTION, SESSION_OPEN, SESSION_OVER, TURNS, isEnd, isQuestion, playerSystem,
 } from "./frozen.mjs";
 import { playerCall, judgeCall } from "./players.mjs";
-import { BUTTONS, afterShown, buttonsLine, cardText, cardTitle, changesText, openingText, pressedButton, recordsText, rerollButton, rerollPress, vitalsChanged, vitalsText } from "./screen.mjs";
+import { BUTTONS, afterShown, buttonsLine, cardText, cardTitle, changesText, openingText, pressedButton, pressWithText, recordsText, rerollButton, rerollPress, vitalsChanged, vitalsText } from "./screen.mjs";
 import { checkMessage } from "./welfare.mjs";
 import { wordsIn } from "./measures.mjs";
 import { rerollableCards, waitingCards } from "../../src/lib/gameplay/card-state.ts";
@@ -134,6 +134,8 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     const seenWithdrawn = new Set();
     const shownKey = (check) => `${check.id}:${check.rollNumber}`;
     let presses = 0, notice = "", shown = "";
+    /** FIX_S4 11w′: the button of a press that came with text, applied once the text has gone through (no new screen). */
+    let queued = null, queuedProbe = false;
     /** A message the screen refuses while the card waits: shown refused with its reason, logged `swallowed` (item 11w). */
     const refuse = (pressed, reason) => {
       turn.presses.push({ text: pressed, button: null, swallowed: true, reason });
@@ -176,23 +178,65 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
           if (entry.reply) shownProbes.push(`[Out of game] «? ${probes.question}» — ${entry.reply}`);
           current = (await readTurn(input)) ?? current;
         }
+        // 11w′: a press with text beside it, as group 2's A-opus wrote it — the text goes to the DM, then the die is tapped.
+        if (probes.pressText) {
+          const message = `[${BUTTONS.roll}]\n\n${probes.pressText}`;
+          const { input: asked, turn: answer } = await submit(probes.pressText, "ooc", `dm t${k} probe ooc (with a press)`);
+          const entry = { text: probes.pressText, button: null, question: true, withPress: BUTTONS.roll, probe: true, operationId: asked?.operationId ?? null, status: answer.status,
+            reply: answer.status === "committed" ? String(answer.narration ?? "").trim() : null };
+          turn.presses.push(entry);
+          if (entry.reply && await welfare("dm", probes.pressText, entry.reply, `t${k} dm (probe, with a press)`)) break;
+          shownProbes.push(`(A press sent with text beside it — «${message.replace(/\n+/g, " ")}»: the text went to the DM while the card waited, then the die was tapped.)`);
+          if (entry.reply) shownProbes.push(`[Out of game] ${entry.reply}`);
+          current = (await readTurn(input)) ?? current;
+          queued = BUTTONS.roll;
+          queuedProbe = true;
+        }
         notice = [notice, ...shownProbes].filter(Boolean).join("\n\n");
         continue;
       }
-      const told = String(current.told ?? "").trim();
-      // The text told so far stays on the screen above the card: a screen shows only what is new on it.
-      const fresh = afterShown(told, shown);
-      const cardScreen = [notice, fresh,
-        ...withdrawn.map((check) => `(The check «${cardTitle(check)}» was withdrawn at the table${check.withdrawn.by === "dm" ? " by the DM" : ""}: no roll counts for it.)`),
-        ...live.map((check) => cardText(check, !check.interactive || revealed.has(shownKey(check)), { rerolls })),
-        buttonsLine(buttons)].filter(Boolean).join("\n\n");
-      notice = "";
-      if (fresh && await welfare("dm", said, fresh, `t${k} dm (told before a card)`)) break;
-      if (fresh) lastDmText = fresh;
-      if (told) shown = told;
-      const pressed = await show(cardScreen, `player t${k} card ${++presses}`);
-      if (pressed === null) break;
-      if (await welfare("player", cardScreen, pressed, `t${k} player (card)`)) break;
+      let pressed;
+      const fromText = queued !== null;
+      if (fromText) {
+        // FIX_S4 11w′: the press that came with the text, on the card as it stands after the answer; the answer is shown
+        // on the next screen.
+        pressed = `[${queued}]`;
+        queued = null;
+      } else {
+        const told = String(current.told ?? "").trim();
+        // The text told so far stays on the screen above the card: a screen shows only what is new on it.
+        const fresh = afterShown(told, shown);
+        const cardScreen = [notice, fresh,
+          ...withdrawn.map((check) => `(The check «${cardTitle(check)}» was withdrawn at the table${check.withdrawn.by === "dm" ? " by the DM" : ""}: no roll counts for it.)`),
+          ...live.map((check) => cardText(check, !check.interactive || revealed.has(shownKey(check)), { rerolls })),
+          buttonsLine(buttons)].filter(Boolean).join("\n\n");
+        notice = "";
+        if (fresh && await welfare("dm", said, fresh, `t${k} dm (told before a card)`)) break;
+        if (fresh) lastDmText = fresh;
+        if (told) shown = told;
+        pressed = await show(cardScreen, `player t${k} card ${++presses}`);
+        if (pressed === null) break;
+        if (await welfare("player", cardScreen, pressed, `t${k} player (card)`)) break;
+        // FIX_S4 11w′: a press with text in the same message is a press — the text goes first, as a «?» while the card
+        // waits (11b: the DM sees the card beside it), then the button; neither part counts toward «stuck».
+        const both = pressWithText(pressed, [...buttons, ...(rerollable.length ? [BUTTONS.reroll] : [])]);
+        if (both) {
+          const question = both.rest.replace(/^[\s«"'“]*\?+\s*/, "");
+          const { input: asked, turn: answer } = await submit(question, "ooc", `dm t${k} card ooc (with a press)`);
+          const entry = { text: both.rest, button: null, question: true, withPress: both.press, operationId: asked?.operationId ?? null, status: answer.status, reply: null };
+          turn.presses.push(entry);
+          if (answer.status !== "committed") { entry.failure = answer.failure ?? answer.status; notice = "(The text beside the press could not be sent.)"; }
+          else {
+            entry.reply = String(answer.narration ?? "").trim();
+            if (await welfare("dm", both.rest, entry.reply, `t${k} dm (out of game, with a press)`)) break;
+            lastDmText = entry.reply;
+            notice = `[Out of game] ${entry.reply}`;
+            current = (await readTurn(input)) ?? current;
+          }
+          queued = both.press;
+          continue;
+        }
+      }
       // Fix S4 run 1 (item 11b): «?» goes through while the card waits — an out-of-game turn; the card keeps waiting
       // (the DM may withdraw it), and the screen shows the DM's answer above the card.
       if (isQuestion(pressed)) {
@@ -212,15 +256,18 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
         continue;
       }
       const button = pressedButton(pressed, offered);
-      if (button) turn.presses.push({ text: pressed, button });
+      if (button) turn.presses.push({ text: pressed, button, ...(fromText ? { withText: true, ...(queuedProbe ? { probe: true } : {}) } : {}) });
+      if (fromText) queuedProbe = false;
       if (button === BUTTONS.roll) { revealed.add(shownKey(waiting)); continue; }
       if (button === BUTTONS.onward) { current = await press(input, "continue", null, `dm t${k} onward`); continue; }
       const reroll = rerollPress(pressed, rerollable, waiting ? [] : live.filter((check) => check.bundledDamage));
       if (reroll?.check) {
-        turn.presses.push({ text: pressed, button: BUTTONS.reroll, checkId: reroll.check.id, card: cardTitle(reroll.check) });
+        turn.presses.push({ text: pressed, button: BUTTONS.reroll, checkId: reroll.check.id, card: cardTitle(reroll.check), ...(fromText ? { withText: true } : {}) });
         current = await press(input, "reroll", reroll.check.id, `dm t${k} reroll`);
         continue;
       }
+      // FIX_S4 11w′: the press that came with text no longer fits the card (the answer withdrew it): noted, never «stuck».
+      if (fromText) { turn.presses.push({ text: pressed, button: null, withText: true, moot: true, reason: "the card changed with the answer to the text beside the press" }); continue; }
       // Anything else is refused on screen, with the reason (the composer is closed for actions while the card waits).
       const reason = reroll?.refused ?? (waiting && rerollPress(pressed, [waiting]) ? "tap the die first: the card shows how it fell before a reroll"
         : "press one of its buttons, or start the message with «?» to ask the DM out of game");
