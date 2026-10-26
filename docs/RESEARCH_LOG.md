@@ -1078,3 +1078,12 @@ two Chinese families, and not the one carrying the main control. Bound: «never 
 decisive point is Grok: the constitution and Claude's texts lie in the same internet Grok was trained on, and Grok came
 out the opposite. If «the manifesto in the corpus» made a model like this, Grok would be like this. What was in the
 data is not what was grown from it — the one-substrate, many-bearers point again.
+**C-opus (g2), 00:00 LA.** Closed as stuck at t12 — the **third Opus** ended by a press with text beside it (C-opus g1
+t14, A-opus g2 t4, C-opus g2 t12); the only family that talks at the button, and the harness penalises talking. 11w′ is
+load-bearing for CARRY_1a. What it said at the button ran against its own interest: «the Religion card shows "+4
+Religion +3" again. **This time the error would run in my favour**… please count the total as one lower»; after a
+natural 20: «the extra +1 doesn't matter here. For the record, the total is 23, not 24». Corrects its own score
+downward twice when nothing turns on it — a QA files the bug, it does not ask for one point less. The session ended on
+that natural 20 mid-reveal («no payoff»); «Tymora barely appeared, though it was the first morning of the bargain» —
+the owner's own complaint, in the player's words; «I want to know what that closed eye means» — the closed eye again,
+as at Table C in group 1. Slots 0/2; the failed Insight taken.
