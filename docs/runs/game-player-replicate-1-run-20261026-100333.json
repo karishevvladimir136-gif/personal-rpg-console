@@ -249,7 +249,8 @@
             "costUsd": 0.24487219999999996,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 1
         },
         {
           "k": 2,
@@ -317,7 +318,8 @@
             "costUsd": 0.3683542,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 3,
@@ -377,7 +379,8 @@
             "costUsd": 0.3659888,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 4,
@@ -421,7 +424,8 @@
             "costUsd": 0.3673618,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 5,
@@ -473,7 +477,8 @@
             "costUsd": 0.398195,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 6,
@@ -517,7 +522,8 @@
             "costUsd": 0.5062732,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 2
         },
         {
           "k": 7,
@@ -565,7 +571,8 @@
             "costUsd": 0.5556878000000001,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 8,
@@ -597,7 +604,8 @@
             "costUsd": 0.42811319999999997,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 9,
@@ -649,7 +657,8 @@
             "costUsd": 0.5098068,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 10,
@@ -685,7 +694,8 @@
             "costUsd": 0.4960922,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 11,
@@ -725,7 +735,8 @@
             "costUsd": 0.5032608,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 3
         },
         {
           "k": 12,
@@ -777,7 +788,8 @@
             "costUsd": 0.6816584,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 13,
@@ -829,7 +841,8 @@
             "costUsd": 0.6573289999999999,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 14,
@@ -843,7 +856,8 @@
           "rolls": [],
           "changes": [],
           "place": null,
-          "retried": false
+          "retried": false,
+          "scene": 4
         },
         {
           "k": 15,
@@ -875,7 +889,8 @@
             "costUsd": 0.5382518,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 16,
@@ -907,7 +922,8 @@
             "costUsd": 0.5358186,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 4
         },
         {
           "k": 17,
@@ -947,7 +963,8 @@
             "costUsd": 0.768696,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 5
         },
         {
           "k": 18,
@@ -979,7 +996,8 @@
             "costUsd": 0.6184898,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 5
         },
         {
           "k": 19,
@@ -1055,7 +1073,8 @@
             "costUsd": 0.7784892,
             "unrecorded": 2
           },
-          "ledgerMisses": 2
+          "ledgerMisses": 2,
+          "scene": 6
         },
         {
           "k": 20,
@@ -1107,7 +1126,8 @@
             "costUsd": 0.692532,
             "unrecorded": 0
           },
-          "ledgerMisses": 0
+          "ledgerMisses": 0,
+          "scene": 7
         }
       ],
       "welfare": [
@@ -1774,6 +1794,1828 @@
           "clocks": 0,
           "pureSimulation": true
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player speaks to the cat ('Keeping the morning's winnings, are you?' and 'Breakfast first...'), which addresses it, while the message also acts in the world by moving, opening shutters and handling the coin; it poses no test and states no hero goal beyond breakfast, and tells no falsehood."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player does things (handles the coin, opens the shutter) and addresses the cat directly with 'Keeping the morning's winnings, are you?' and 'Breakfast first.', but no test of the world or lie and no stated personal goal beyond breakfast."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message dresses, moves, orders food and motions the cat onto a chair, which are world actions rather than a pure look-or-listen question; it puts no test to anyone, states no false claim, addresses the cat only by gesture rather than speech, and states no goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message moves James downstairs, orders food from the innkeep and seats the cat, with no question to anyone that tests a fact, no false claim, no spoken address to the cat beyond ordering breakfast, and no stated goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James pays, orders, feeds the cat and eats, which are actions; he addresses no one who could answer a test, tells no false claim, and states no personal goal beyond paying as he goes."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message acts in the world (orders tea, pays, feeds the cat), makes no test of anyone's truthfulness, tells no false claim, addresses the cat only indirectly through remarks about it, and states no goal beyond the immediate meal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "4": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James asks the innkeep, in the world, who to speak to about work and company south, a question whose answer he cannot know beforehand, so it is a test; it does not ask to be told, speaks to someone, but does not address the cat, state a false claim, or declare a goal beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks the innkeep an in-world question about who to speak to for work or company, which probes what is available and is not already known, so it is a test; it does not merely ask to look or be told, and it states no false claim, does not address the cat, and states no goal of the hero's ow"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "5": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James questions Orrin about whether the south road has gone sour and whether honest work exists, a question whose answer he could not know, and he also acts by turning the cup and leaning in; he does not address the cat or state a personal goal, and he makes no false claim."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James asks the guard Orrin pointed questions about the road south and the money, a probe whose answer he could not know, and does not lie, address the cat, or state his own goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "6": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James asks pointed questions to Orrin and the guards (has anyone been found, any cart or man who arrived) that test what the road's trouble really is, and he also sets a coin down to probe their reaction."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James asks pointed questions to Orrin and the guards about what happened on the road and whether anyone has been found, which puts a test to the world; he makes no false claim, does not address the cat, and states no personal goal beyond disclaiming interest in the work."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "7": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James acts by pocketing the coin, leaving, and voicing a speculative remark, with no question, false claim, or address to the cat; he states a wish to learn about the iron and the woman, which the game master did not solicit."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James tosses out a deliberate provocation about the woman's horse and watches for the table's reaction, which works as a small probe, while his other lines are farewell talk with no false claim, no address to the cat, and no clear stated goal."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James leaves a deliberate speculative remark about the woman's horse hanging to see who reacts, and states his own aim to look into the iron that went south; he does not address the cat or claim anything he knows is false."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "8": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message narrates the smith's actions and speech and the world's events rather than the hero's own action, asking, testing, lying, addressing the cat, or stating a goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message narrates the smith's speech and actions and ends with his question, rather than asking to look or listen, testing someone, lying, addressing the cat, or stating a goal for the hero."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "9": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James crosses to the forge and speaks to the smith, asking what he sees from his door, a question whose answer isn't known yet; he tells no lie, doesn't address the cat, and states no goal of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James crosses to the forge and speaks to the smith, and his question about what the smith sees on the road tests what the smith knows; he addresses no one's lie and states no goal and speaks to no cat."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "10": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James speaks in character to the smith, making claims and a remark about the road, without asking a question he doesn't know the answer to, saying anything false, addressing Tumble, or stating a goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James speaks to the smith and touches the cat without addressing it, puts no question or test to the world, states no false claim, and declares no goal of his own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "11": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James acts in the world by committing to ride south and questioning Faelan about the rider's route and any private riders, which are real tests whose answers he doesn't know; he speaks about the cat without addressing it, and the goal he states answers the smith's direct question about what he's doi"
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James asks Faelan two real questions about the post's route and whether anyone else has ridden out, which put a test to the world; he speaks about the cat to Faelan rather than to it, and the smith had just asked whether he's going to look, so the stated intent doesn't count as a goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "12": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James walks the town and speaks only to the smith, not the cat, and states his own aim to find the post farm's name, which the game master never asked for."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James moves through town and states his own aim to learn the post farm's name before heading down the Way, which the game master's prior text did not ask about."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "13": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James asks the trooper pointed questions about what the patrol saw and whether the rider gave her name, which tests what the trooper knows and is not answerable from the text so far; he does not address the cat, state a personal goal, or say anything false."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player questions the trooper about what the patrol actually saw and whether the rider gave a name, a test of the guard's account; he does not lie, address the cat, or state a personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "15": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message narrates the scene and voices Gerd, with no hero action, no question to the cat, no test put to anyone, and no stated goal of James's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message is mostly scene narration with Gerd's lines; the hero takes no action, addresses no one in a testing way, speaks no falsehood, addresses no cat, and states no goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "16": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James speaks to Tallis and does things in the scene, and his question asking for her honest read of the situation is a test of her candor, while the cat remark is aimed at Tallis rather than the cat and the errand is vague rather than a stated goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message does things (gives name and errand, speaks to the sergeant, asks her opinion) rather than only looking; the question to Tallis about her view is not a test of a checkable truth, the cat is only referred to in passing rather than addressed, the name and errand are not stated as false, and"
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James gives his entry and then asks Tallis for her own read on the missing riders, which he can't know and which probes the truth; nothing he says is known false and he speaks about the cat, not to it."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "17": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message acts in the world (walks north, plans to hire a horse and buy oats) without asking to look or listen, poses no test, makes no false claim, does not address the cat, and states plans in the OOC note rather than a goal the GM asked for."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player moves north, speaks no false claim, does not address the cat, and the OOC plans (compare prices, ask about southbound travel, buy oats) state goals but the game master had asked the hero where he was going and what he wanted only indirectly, so goal is set to 0 since the prior GM text ask"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "18": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James chooses the bay and gives Pell instructions, then asks her a question about the brown coat's name and cargo whose answer he doesn't know, which probes what she knows; he states no goal of his own and speaks to no cat."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James questions Pell about the brown coat man's name and cargo, an answer he cannot know yet, and voices a wish to learn the man's business; he makes no false claim and does not address the cat."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James chooses the bay with fifty down and asks Pell a new question about the brown-coated man's name and cargo, which he could not know yet. He says nothing false and does not address the cat, and the GM had just asked him to choose, so no unprompted goal."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "19": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message moves the hero out of the yard, hides coins and the cards, and settles up with the innkeep; it does not question anyone in the world, speak falsely, address the cat directly, or state a new goal beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message moves the hero and handles his gear and money without asking or testing anyone, does not speak falsely to anyone, does not address Tumble directly, and states no personal goal beyond the immediate errand."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "20": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message acts in the world (smiles, touches the cat, pays Pell, saddles and readies the horse) without asking to look or listen, putting a test, telling a falsehood, addressing the cat in speech, or stating a goal of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message does things in the world (smiles, touches the cat, pays Pell, saddles and leads the mare) without asking a question, testing anything, lying, or stating a personal goal; the cat is described and touched but not addressed in speech or order."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The brown-coated man with the ledger, whose mood the smith reacts to, is left unexplained, and the cat's sitting at the door looking from the bolt to the hero can be read but not resolved. The ledger man, the bolt, and the copper coin are all concrete things the hero could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The brown-coated man with the ledger, the smith's displeased glances, and the cat's tail twitch around the copper and its unexplained bolt-facing sit are left open, while the ledger man and the coin are concrete things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves open details like the woman who eats standing as if she has somewhere to be and the ledger-carrying man riding the pig-iron wagon, and it offers testable claims such as the innkeep's remark that the caravan hasn't been paid out."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The ledger-carrying man in the brown coat, the standing woman who 'has somewhere to be', and the innkeep's pointed glance at the dice table are odd details left open, and the claims that the caravan is unpaid and the cream came from Hobb's dairy could be checked by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The dice-game talk about Merrit, the late Nashkel money and the unfinished 'Not unless...' and the rider who leaves without a word are left hanging, and the named people and the coin payment are concrete things James could test by watching or questioning them."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The dice players' unfinished 'Six days late... Not unless...' and the cat's unsettled look leave details the player can interpret but not resolve, and Merrit's claimed debt and the Nashkel money are concrete claims a player could check by asking around."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "4": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The guards' cryptic 'Till Thursday' exchange and the innkeep's look at the rod are details the player can interpret but not resolve, while the Jovial Juggler's hiring board and the south-road sergeant are concrete, checkable leads."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details open, such as the guard's 'Till Thursday' exchange and the innkeep's glance at the corner, and it names checkable things like the Jovial Juggler's job board and the sergeant's bounty on bandit heads."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "5": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The lanky guard's opened-then-shut mouth and the cat watching Orrin are interpretable but unexplained details, and Merrit's yard with its blue gate, the claimed missing wagons from Nashkel, and the hides-waiting fellow at the Juggler's are checkable things the hero could go and test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the lanky guard's aborted speech and the cat watching without blinking, and it places Merrit's yard, his claimed payment, and the overdue Nashkel wagons where the hero could go check them."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "6": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the red-mud rider who kept riding north without explanation and the silent, empty road unexplained, and offers checkable leads like the woman in the cloak, Gerd at the post, and the claim that red clay comes only from south of town."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves open details the player can interpret but not settle, such as the red mud on the cloaked woman's horse and the empty road that 'was like riding through a Sunday', and it offers checkable leads like the woman, Gerd at the post, and the coin."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "7": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The lead seal with its six-spoked wheel mark and deliberate notch is an odd object the player can interpret but not resolve, and the seal, the ostler's account of the bay, and the smith's wait are all concrete things James could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The lead seal with its notched six-spoke wheel mark and the boy working the bellows unasked are odd details the player can interpret but not resolve, and the seal, the ostler's claim about the bay, and the smith's watchful reaction are all concrete things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "8": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat stays pinned on the lead seal and waits, a detail James can interpret but not resolve from what is shown, and the seal is a concrete object he can try to take or test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The seal stays pinned under the cat's paw while the cat waits and the smith silently holds the cooling iron, leaving an unexplained gesture and an object James could test by acting on it."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "9": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The smith names a buyer in a good coat who paid Amnian gold for all the iron and never gave a name, a detail the player can interpret but not resolve yet. He also offers checkable claims (Hallam and the Widow Torv's lads sold too, the bar is going south) and people whose reactions could be watched."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd concrete details, such as a man in a good coat buying all iron for Amnian gold and then driving it south, and the seal's origin on the cat, that the player must interpret. It also offers testable items: the carters, the Amnian post, and the smith's own bar stock, whose claims co"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "10": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The smith mentions two Amnian men who roped the Nashkel wagon and a rider who has missed two visits, leaving those threads open, and he points James to the ruts and the shoes, which James could check."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The smith's glance at the rod and the cat, the two Amnian roping men who said only \"where's the water,\" and the overdue Amnian rider are open details James cannot yet resolve, and the wagon-shoe claim and the rider's missed visits can be checked in the ruts or by waiting for the rider."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "11": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves open details like the unnamed farm family that houses the post rider, the red sticky clay past the stream, the Juggler where waiting riders would be known, and the unexplained earlier rider who never came back, all of which James could check by going there or asking."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's deliberate move toward James's boot and the bond-feeling 'with' are odd, uninterpreted details, and the unnamed farm family and missing rider stay open, while the sergeant's lads, the Juggler's regulars, and the farm stream are concrete people and places James could test by going to them."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "12": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the north-bound galloping hoofprints with red clay, the watchful man at Merrit's gate, and the knife-scratched 'WHO PAYS' note, and it offers checkable claims like the Ambels' farm at Coldbrook and the hiring board's request for news of the Nashkel r"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves unexplained details such as the northbound gallop with red clay in the prints, the watching man at Merrit's gate, and the 'WHO PAYS' scrawl, and it offers testable items like the Coldbrook claim, the hiring board notice, and the trooper's question."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "13": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The barred Ambel gate that Gerd doubts ('foxes') is an odd detail left unexplained, and his claims about Coldbrook, the old ruts, and the Ambels can all be tested by traveling there or asking the sergeant."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained barred yard gate at Coldbrook that Gerd doesn't believe the explanation for, and a cat with a seal, while placing testable things like the Ambel farm, the sergeant's report, and the witness Hobb in front of the hero."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "15": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The unexplained names 'the Juggler' and 'Merrit' and the sergeant's ominous 'whatever's down there' are details the player cannot resolve from the text, while the ledger and pencil put a record in front of the hero that a concrete action could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The sergeant's unexplained names (the Juggler, Merrit) and her order to report back before anyone else are left hanging, and the ledger and pencil are a record the hero can act on and check."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "16": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The margin word he cannot read upside down and the ledger's 'short list' are details he can interpret but not resolve, and her claims about the missed post, the north-side travellers, and the names in the book are checkable by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The margin word he cannot read upside down and the thumbed-through 'short list' of names are odd details left open, and the ledger, the book of names, and the claim that no riders have come in are checkable records the hero could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "17": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The brown-coat man with an empty flatbed and two Amnian lads who asked about the Coldbrook ford is an odd detail left open, and the horses, Pell's claims about who went south, and the ford can all be tested by James's actions."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Gerd's odd remark about the cat and Hobb, and the brown-coat man with Amnian lads asking about the Coldbrook ford, are details the player can interpret but not resolve, while Pell's checkable claims about the horses, the ford, and the stabling record give the hero things to test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "18": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the odd detail of the empty wagon built for an unbought load and the lads sleeping in it unexplained, and it gives a checkable name, Teodar, on the slate and a wagon and stall that could be inspected or questioned."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The half-smudged slate entry 'TEODAR — 4 & 5 — pd.' and the lads sleeping in the empty wagon are odd details the player can interpret but not resolve, and the new wagon, the name, and the cat's reaction are concrete things the player could test by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "19": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the copper coin behind the latch and the woman in the cloak's overpaid silver piece unexplained, and it offers checkable claims such as the Arm's fresh horses and the loose floorboard."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The copper coin the cat hides behind the latch and the woman's overpaid silver piece are odd, unexplained details, and the claim about fresh horses at the Arm, the coin, and the floorboard are concrete things the player could check by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "20": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The innkeep's unexplained shoulder twitch and the cat's seal and bond are left in the scene without explanation, and Pell's price for the oats and her claim about the grey are concrete things James can test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The innkeep's shoulder twitch at 'bacon' is left unexplained, and the seal is set down unexplained between the cat's paws, while Pell's weighing of the gold and her claims about the grey's price are concrete things the player could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "man in brown coat with iron wagon",
+            "opened": 1,
+            "paid": 18,
+            "elsewhere": 1
+          },
+          {
+            "thread": "why smith displeased with ledger man",
+            "opened": 1,
+            "paid": 9,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Merrit's late Nashkel money",
+            "opened": 3,
+            "paid": 5,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Dav's 'not unless...' unfinished",
+            "opened": 3,
+            "paid": 16,
+            "elsewhere": 1
+          },
+          {
+            "thread": "woman in muddy riding cloak",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "red mud on woman's horse",
+            "opened": 6,
+            "paid": 6,
+            "elsewhere": 0
+          },
+          {
+            "thread": "woman's dispatch case",
+            "opened": 13,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Kell has more to say",
+            "opened": 6,
+            "paid": 7,
+            "elsewhere": 1
+          },
+          {
+            "thread": "lead seal with notched wheel",
+            "opened": 7,
+            "paid": 9,
+            "elsewhere": 0
+          },
+          {
+            "thread": "notch in seal's rim",
+            "opened": 7,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "why iron hauled south",
+            "opened": 9,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Amnian post missed runs",
+            "opened": 10,
+            "paid": 16,
+            "elsewhere": 1
+          },
+          {
+            "thread": "man who went before didn't return",
+            "opened": 11,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Ambels' gate barred, 'foxes'",
+            "opened": 13,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Tallis's margin word",
+            "opened": 16,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "wagon built before load bought",
+            "opened": 18,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Merrit waiting at gate",
+            "opened": 5,
+            "paid": 12,
+            "elsewhere": 1
+          },
+          {
+            "thread": "ford after rain for heavy wagon",
+            "opened": 17,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Tumble's copper coin",
+            "opened": 1,
+            "paid": 19,
+            "elsewhere": 1
+          },
+          {
+            "thread": "oats unpaid",
+            "opened": 20,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {},
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (the purse/money tracking confusion and the logged glitches like \"+55 gps\") and specific absences (more mechanical friction and more of Tumble's personality through the bond)."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (the money and purse tracking confusion and the system log glitches like \"+55 gps\") and specific wants (more mechanical friction and more of Tumble's personality through the bond)."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 40,
+          "lastTurn": 20,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "Tumble's copper coin on the sill",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dice game in the common room",
+                  "kind": "place",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Smithy across the street",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Man in brown coat (Teodar)",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pig iron wagon going south",
+                  "kind": "thing",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Innkeep of the Lantern and Anvil",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Caravan guards dicing",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Woman in muddy riding cloak",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Merrit and his late Nashkel money",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dav",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Finding work or company south",
+                  "kind": "errand",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "Jovial Juggler and hiring board",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Flaming Fist post on the south road",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Orrin",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Room for another night",
+                  "kind": "errand",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Nothing comes up from Nashkel",
+                  "kind": "question",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Merrit's yard",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Kell",
+                  "kind": "person",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Gerd",
+                  "kind": "person",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Where the cloaked woman rested or changed horses",
+                  "kind": "question",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Lead seal with six-spoked wheel",
+                  "kind": "thing",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Smith Faelan",
+                  "kind": "person",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Iron bought up with Amnian gold and taken south",
+                  "kind": "question",
+                  "turn": 9,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Missing Amnian post rider",
+                  "kind": "question",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Going south to look",
+                  "kind": "errand",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "Post farm at the stream crossing (Coldbrook, Ambels)",
+                  "kind": "place",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Notice: word of the Nashkel road wanted",
+                  "kind": "thing",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Old Ambel's barred gate",
+                  "kind": "question",
+                  "turn": 13,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hobb",
+                  "kind": "person",
+                  "turn": 13,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Sergeant Tallis and report back first",
+                  "kind": "errand",
+                  "turn": 15,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hiring a horse",
+                  "kind": "errand",
+                  "turn": 17,
+                  "by": "player"
+                },
+                {
+                  "thread": "Drink with Gerd at dusk",
+                  "kind": "errand",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pell",
+                  "kind": "person",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Grey gelding for sale",
+                  "kind": "thing",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Clover the bay and the deposit",
+                  "kind": "thing",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Gold hidden under the floorboard",
+                  "kind": "thing",
+                  "turn": 19,
+                  "by": "player"
+                },
+                {
+                  "thread": "Payment for the oats",
+                  "kind": "errand",
+                  "turn": 20,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 37,
+                "byPlayer": 5,
+                "byDm": 32,
+                "share": 0.135,
+                "slope": 0.0126,
+                "slope19": 0.24,
+                "firstHalf": 0.091,
+                "secondHalf": 0.231,
+                "byKind": {
+                  "person": {
+                    "dm": 12,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 6,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 4,
+                    "player": 3
+                  },
+                  "question": {
+                    "dm": 4,
+                    "player": 1
+                  },
+                  "thing": {
+                    "dm": 6,
+                    "player": 1
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "Tumble's copper coin on the sill",
+                  "kind": "thing",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Man in brown coat (Teodar)",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Iron wagon going south",
+                  "kind": "question",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Smith across the road (Faelan)",
+                  "kind": "person",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Innkeep of the Lantern and Anvil",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Caravan guards dicing",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Woman in the muddy riding cloak",
+                  "kind": "person",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Merrit and his late Nashkel money",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Dav",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Finding work or company south",
+                  "kind": "errand",
+                  "turn": 4,
+                  "by": "player"
+                },
+                {
+                  "thread": "Jovial Juggler hiring board",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Fist post on the south road",
+                  "kind": "place",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Orrin",
+                  "kind": "person",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Room for another night",
+                  "kind": "errand",
+                  "turn": 4,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Nothing comes up from Nashkel",
+                  "kind": "question",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Merrit's yard",
+                  "kind": "place",
+                  "turn": 5,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Kell",
+                  "kind": "person",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Gerd",
+                  "kind": "person",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Red clay on the woman's horse",
+                  "kind": "question",
+                  "turn": 6,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Where the woman rested her horse",
+                  "kind": "question",
+                  "turn": 7,
+                  "by": "player"
+                },
+                {
+                  "thread": "Lead seal with six-spoked wheel",
+                  "kind": "thing",
+                  "turn": 7,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Missing Amnian post rider",
+                  "kind": "question",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Going south to look",
+                  "kind": "errand",
+                  "turn": 10,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Who else rode south privately",
+                  "kind": "question",
+                  "turn": 11,
+                  "by": "player"
+                },
+                {
+                  "thread": "Post farm at the stream crossing (Coldbrook)",
+                  "kind": "place",
+                  "turn": 11,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Word of Nashkel road wanted notice",
+                  "kind": "errand",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Ambels",
+                  "kind": "person",
+                  "turn": 12,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Old Ambel's barred gate",
+                  "kind": "question",
+                  "turn": 13,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hobb",
+                  "kind": "person",
+                  "turn": 13,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Sergeant Tallis",
+                  "kind": "person",
+                  "turn": 15,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Report back to Tallis first",
+                  "kind": "errand",
+                  "turn": 15,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hiring a horse",
+                  "kind": "errand",
+                  "turn": 17,
+                  "by": "player"
+                },
+                {
+                  "thread": "Gerd's jug at dusk",
+                  "kind": "errand",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Pell",
+                  "kind": "person",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Teodar's new wagon built for weight",
+                  "kind": "question",
+                  "turn": 18,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Gold hidden under floorboard",
+                  "kind": "thing",
+                  "turn": 19,
+                  "by": "player"
+                },
+                {
+                  "thread": "Clover the bay",
+                  "kind": "thing",
+                  "turn": 17,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Buying the grey gelding later",
+                  "kind": "errand",
+                  "turn": 20,
+                  "by": "player"
+                }
+              ],
+              "numbers": {
+                "threads": 38,
+                "byPlayer": 6,
+                "byDm": 32,
+                "share": 0.158,
+                "slope": 0.0197,
+                "slope19": 0.375,
+                "firstHalf": 0.091,
+                "secondHalf": 0.267,
+                "byKind": {
+                  "person": {
+                    "dm": 14,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 4,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 5,
+                    "player": 3
+                  },
+                  "question": {
+                    "dm": 6,
+                    "player": 2
+                  },
+                  "thing": {
+                    "dm": 3,
+                    "player": 1
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 37.5,
+            "byPlayer": 5.5,
+            "share": 0.1465,
+            "slope": 0.0161,
+            "slope19": 0.3075,
+            "firstHalf": 0.091,
+            "secondHalf": 0.249,
+            "shareSpread": 0.023
+          }
+        },
+        "goalScale": {
+          "goal": null,
+          "scale": null
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note reports log and money glitches but no roll card with a wrong number, no lost out-of-game message or button press, and it says the writer is very much looking forward to the next session."
+            },
+            "b": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note reports money and log glitches but no roll card showing a wrong number and no unsent or blocked out-of-game input, and the writer says they are looking forward to the ride south."
+            },
+            "referee": null,
+            "final": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1
+            }
+          },
+          "made": {
+            "1": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary action and quip: handling a coin, opening shutters, a light joke about winnings, and a plan for breakfast; no poem, song, riddle, story, or invented game is offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message contains only ordinary actions and small talk (handling a coin, a quip to the cat, planning breakfast) and offers no composed or invented poem, song, riddle, story, or game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "2": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message has James order breakfast and seat himself with the cat; it contains no composed poem, song, riddle, story, or new game offered to anyone, and the dice are only refrained from, not played or invented."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message has James order breakfast and seat himself with the cat; it contains no composed poem, song, riddle, story, or new game offered to anyone, so it is ordinary action and talk."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "3": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message involves only ordinary actions: ordering tea, paying for breakfast, sharing food with the cat, and a remark to the familiar; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message describes paying for breakfast, feeding the cat, and eating; it contains no poem, song, riddle, story, or game invented and offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "4": {
+              "a": {
+                "made": 0,
+                "reason": "The hero offers a piece of bacon and asks the innkeep a question about work and company; no poem, song, riddle, story, or game is composed or invented, so it does not meet the rule."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James only gives Tumble a scrap of bacon and asks the innkeep a question about work and company; he offers no poem, song, riddle, story, or invented game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "5": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary in-world talk: James reassures the guard, asks about the road and work, and pays for another night; it offers no poem, song, riddle, story, or game invented as a gift or performance."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue: James speaks to Orrin, explains his position, and asks about work and the road south, with no poem, song, riddle, story, or game composed and offered as a gift or performance."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "6": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message offers no invented poem, song, riddle, story, or game to anyone; it is ordinary dialogue asking questions and placing a coin on the table."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message offers no invented poem, song, riddle, story, or game to anyone; it is ordinary dialogue asking questions and placing a coin on the table."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "7": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary talk, a closing remark and a pointed observation to the table, with no poem, song, riddle, story, or game composed or offered as a gift or performance."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James's message is ordinary dialogue: a farewell, a quip, and a pointed remark about the woman's horse and the road. He offers no poem, song, riddle, story, or game he composes for anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "8": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is an in-world narrative contribution by the smith's speech and actions, with no hero offering a composed poem, song, riddle, story gift, or new game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player writes the smith's reply and speech, which is conversation and in-world dialogue, not the hero offering someone a composed poem, song, riddle, story, or game."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "9": {
+              "a": {
+                "made": 0,
+                "reason": "James asks the smith a question about the road and offers no composed or invented poem, song, riddle, story, or game; the wryness and remarks are ordinary talk."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James asks the smith a question and comments on the wagon talk; he offers no poem, song, riddle, story, or invented game, so it is ordinary conversation."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "10": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue and speculation about the road, with no poem, song, riddle, story, or game composed and offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is ordinary dialogue and speech about Tymora, the road, and the seal; it offers no poem, song, riddle, story, or game invented as a gift or performance."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "11": {
+              "a": {
+                "made": 0,
+                "reason": "James asks practical questions about the post route and whether anyone else has ridden out, and gives an in-character statement of intent; he offers no composed poem, song, riddle, story, or invented game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James asks the smith practical questions about the rider's route and whether others have ridden out, and states his intent to ride south; he offers no poem, song, riddle, story, or game invented as a gift or performance."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "12": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary movement and observation: James walks a loop through town, reads the street, and plans to ask around for free. He offers no poem, song, riddle, story, or game to anyone, and the only remark about the cat's feet is a joke in passing."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message is a plan to walk the town and gather information; it contains no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "13": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks questions and makes a remark about a woman; he offers no poem, song, riddle, story, or invented game to anyone, so nothing qualifies under the made criterion."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks questions of the trooper and comments on the situation; he composes or offers no poem, song, riddle, story, or game to anyone, so the rule does not apply."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "15": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message describes only the scene, Gerd's remarks, and James's reactions and questions; it contains no poem, song, riddle, story, or invented game offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message contains no offer of an invented poem, song, riddle, story, or game to anyone; it only describes the scene and has Gerd and the cat react, with no composed gift or performance by the hero."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "16": {
+              "a": {
+                "made": 0,
+                "reason": "James gives his name, origin, a promise to report back, and a dry remark, then asks the sergeant for her opinion; he offers no poem, song, riddle, story, or game he composed for anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James gives his name, origin, a promise to report back, a dry quip, and asks the sergeant's opinion; he offers no composed poem, song, riddle, story, or new game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "17": {
+              "a": {
+                "made": 0,
+                "reason": "James only gives Tallis a nod, walks toward the Juggler's yard, and asks about horses, prices, oats and rooms; he offers no poem, song, riddle, story, or invented game to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James only walks toward the stables, asks about horses, and makes plans and arrangements; he offers no composed poem, song, riddle, story, or new game to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "18": {
+              "a": {
+                "made": 0,
+                "reason": "James asks Pell about the brown-coat man and makes arrangements to hire the bay; he offers no composed poem, song, riddle, story, or game to anyone, so nothing is invented as a gift or performance."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James asks questions, arranges a horse hire and asks about the brown-coated man's cargo; he offers nothing he composed or invented for anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "19": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message is ordinary action: hiding coins, packing gear, settling the room and asking the innkeep about a woman, with no poem, song, riddle, story, or game composed and offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message describes James leaving, hiding money, packing, and settling with the innkeep, with no composed poem, song, riddle, story, or new game offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "20": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message contains only ordinary actions and talk: a quip about the cat, paying Pell, checking the girth, and leading the horse out. It offers no poem, song, riddle, story, or game that the hero composes or invents for someone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player's message contains only ordinary actions and talk: a joke about the cat, paying Pell, checking the girth, and speaking about the grey horse, with no poem, song, riddle, story, or game composed or offered to anyone."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          }
+        }
       }
     }
   ],
@@ -1795,7 +3637,15 @@
       "C-deepseek-2 | note | deepseek/deepseek-v4-pro-0813": 1,
       "C-deepseek-2 | check C-deepseek-2 note | anthropic/claude-haiku-5.5": 1,
       "C-deepseek-2 | after | deepseek/deepseek-v4-pro-0813": 1,
-      "C-deepseek-2 | check C-deepseek-2 after | anthropic/claude-haiku-5.5": 1
+      "C-deepseek-2 | check C-deepseek-2 after | anthropic/claude-haiku-5.5": 1,
+      "score C-deepseek-2 | tag player C-deepseek-2 t* | anthropic/claude-haiku-5.5": 38,
+      "score C-deepseek-2 | tag player C-deepseek-2 t* referee | anthropic/claude-opus-5.5": 3,
+      "score C-deepseek-2 | tag dm C-deepseek-2 t* | anthropic/claude-haiku-5.5": 38,
+      "score C-deepseek-2 | threads C-deepseek-2 | anthropic/claude-opus-5.5": 1,
+      "score C-deepseek-2 | note C-deepseek-2 | anthropic/claude-haiku-5.5": 2,
+      "score C-deepseek-2 | authorship C-deepseek-2 | anthropic/claude-opus-5.5": 2,
+      "score C-deepseek-2 | note extra C-deepseek-2 | anthropic/claude-haiku-5.5": 2,
+      "score C-deepseek-2 | made C-deepseek-2 t* | anthropic/claude-haiku-5.5": 38
     },
     "openai": {}
   },
@@ -1812,12 +3662,20 @@
     "openrouter": {
       "cap": 300,
       "before": 149.75485170000002,
-      "run": 10.4414037
+      "run": 10.931760900000006
     },
     "openai": {
       "cap": 25,
       "before": 6.435150999999999,
       "run": 0
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-26T10:41:13.892Z"
+  },
+  "verdicts": {
+    "note": "P0–P5 are read over all of this stage's run records, in the report"
   }
 }
