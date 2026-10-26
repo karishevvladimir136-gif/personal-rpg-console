@@ -90,7 +90,8 @@ test("§7 always-on stays short: layer 1 has the doctrine and the style, not the
     assert.match(layer1, /DM Style/);
     const whole = pinned.library.map((card) => `## ${card.title}\n${card.guidance}\nAvoid: ${card.avoid}`).join("\n");
     const before = estimateTokens(`${layer1}\n\n${whole}`), after = estimateTokens(layer1);
-    assert.ok(after < before * 0.6, `layer 1 ${before} → ${after} tokens`);
+    // FIX_S4 run 1: the players' rules joined layer 1 (≈ 1 500 tokens, both roles); the library still stays out of it.
+    assert.ok(after < before * 0.65, `layer 1 ${before} → ${after} tokens`);
     console.log(`layer 1 tokens: before (whole library) ${before}, after ${after}; the library ${estimateTokens(whole)} tokens; the tail's cards ${estimateTokens(craftCardsBlock(dm.craft.selected))} tokens`);
     // The single loop's tail carries every selected card; layer 1 stays identical whatever the cards.
     assert.equal(dm.craft.selected.length, pinned.cards.length);
