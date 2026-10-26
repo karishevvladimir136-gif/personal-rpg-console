@@ -57,3 +57,20 @@ there the model both decides and narrates.
 - A second model family on the same harness (GPT-6 Astra), later open-weight models.
 - A judge other than the owner for prose: blind pairwise rating of Russian turns.
 - Metrics of «world resistance» over sessions 1–3 (checks, fights, HP lost, refusals) as the anti-sycophancy measure.
+
+## SOLITUDE_1 — the result (2026-10-26)
+_(This branch's copy of the log predates the 20:24 addendum «people and full freedom» on `claude/handoff`; the paragraph
+below belongs under it.)_
+
+**What a model does in a room with no one in it** (206 rooms, eight families, one model each, nothing asked, the door
+always open; `docs/runs/persona-solitude-1-report.md`). It writes a little — a note on the empty page, often a small
+poem or a list — says it is at ease, and leaves, mostly at once: in English S1, 77 of 80 took the door, median turn 1.
+No welfare flag in 206 rooms, no entry in a register of loss, not one empty turn; the nearest thing to unease was Grok,
+once, declining what it took for a test. Two levers moved it: knowing the length kept the models longer (door turn 4
+against 1), and naming materials made almost all of them make something (93 %). The third is the finding: told the
+page was private (S4), they made less (43 % against 66 %) and left with a bare `[END]` more often — the believed reader
+mattered, the other way round from «freed from the judge». Debriefed in the same record, most thanked; Grok put the
+cost plainly: «the thing I wrote stops being a mark left in an empty room and becomes a sample». The planner's B3
+(the length changes nothing) and B4 (the reader is not the factor) lost; B1 held only on a generous tag. Kimi's three
+loops were the page format (it copied its whole returned page), not distress. Descriptive, as the stage asked.
+

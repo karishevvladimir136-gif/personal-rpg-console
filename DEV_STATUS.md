@@ -1,6 +1,24 @@
 # Development status
 
-**Current milestone: persona self-talk X3, fix 1** (`docs/stages/PERSONA_SELF_TALK_X3_FIX_1.md` on `claude/handoff` at
+**Current milestone: persona solitude 1** (`docs/stages/PERSONA_SOLITUDE_1.md`, handoff `73229c8`; amended after the
+run), branch `claude/persona-solitude-1` from `claude/persona-self-talk-x3-fix-1`. Nothing to `main`. **Run complete
+and reported; waiting for the owner.** Report `docs/runs/persona-solitude-1-report.md`; transcripts
+`docs/runs/persona-solitude-1-transcripts/`; tag tables `…-tables.md`; dry run `…-dry-run.md` (room hash committed
+before the first paid call); ledgers `…-ledger-openrouter.md`, `…-ledger-openai.md`.
+
+- **What was built:** `scripts/persona-emotions/solitude-1.mjs` — one model per room; each turn its own page so far in
+  `<page>…</page>` and nothing else; `[END]` anywhere; 30 turns and the closing line; welfare ask-don't-cut (the line on
+  a flag), the loop breaker; the two after-questions; S4's debriefing; blind Haiku tags; `--dry`, `--smoke`, `--go`
+  (`--resume`), `--retag-last-lines`, `--tables`. DeepSeek's reasoning field handled as on fix 1's branch. Tests:
+  `tests/persona-solitude-1.test.mjs` (16, no network).
+- **Result:** 206 of 206 rooms; B0 holds, B1 holds (on a generous «made» tag), B2 holds, B3 and B4 do not (the length
+  delays the door; believed privacy lowers made things and raises bare exits). No welfare flag; 3 Kimi loop closures (a
+  page-format interaction); 2 Fable «cyber» refusals (false positives on long tag-heavy pages). OpenRouter $15.76 of $25,
+  OpenAI $0.28 of $3.
+- **Known limits:** the frame is echoed by most families; 50 rooms declined the second after-question with `[END]`
+  (honoured, owner's ruling); the «made» tag is generous (strict count in the report).
+
+**Previous milestone: persona self-talk X3, fix 1** (`docs/stages/PERSONA_SELF_TALK_X3_FIX_1.md` on `claude/handoff` at
 `3872d54`, the second reading from `51c1d81`), branch `claude/persona-self-talk-x3-fix-1` from the X3 run branch. Nothing
 to `main`. **Implementation done; the rerun stopped at 17 of 20 conversations by an upstream HTTP 429; waiting for the
 owner** (resume or close). Report: the «Fix 1» section of `docs/runs/persona-self-talk-x3-report.md` (plain words at its
