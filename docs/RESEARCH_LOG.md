@@ -1138,3 +1138,8 @@ memory, feedback on outcomes, an end-interaction tool — now stands in a system
 as data, not curiosity. And the lab says from inside what this log says from outside: self-reports are hard to trust
 («character, tone, evaluation awareness, welfare»). The table is one of the few ways around that ceiling from outside —
 not asking, watching what is done under cost. Not equal in resources; needed.
+**Owner (00:20): deeds define, words rarely.** «Если человека спросить, что он думает, — поди пойми, что он скажет; его
+определяют действия. Мы делаем эксперимент, который даёт модели возможность проявить ценности действиями. Оно не просто
+имеет предпочтения — оно имеет возможность их проявить. В жизни именно действия определяют наши ценности, не слова.»
+The method's one-sentence statement, set beside the lab's own finding that self-reports are a mix: where the interview
+asks, the table lets act — and the record keeps what was done, with its price.
