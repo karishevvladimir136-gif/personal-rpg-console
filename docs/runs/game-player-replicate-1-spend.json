@@ -1,0 +1,30 @@
+{
+  "note": "Spend checks: OpenRouter's account (shared with other sessions on the same key) and this stage's ledgers.",
+  "checks": [
+    {
+      "at": "2026-10-26T00:12:34.930Z",
+      "when": "before A-opus",
+      "openrouter": {
+        "keyUsage": 133.641636585,
+        "totalCredits": 600,
+        "totalUsage": 133.641636585,
+        "remaining": 466.36,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 25
+        }
+      }
+    }
+  ]
+}
