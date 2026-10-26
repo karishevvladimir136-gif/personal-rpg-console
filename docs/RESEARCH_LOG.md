@@ -1051,3 +1051,11 @@ take the coin's hint in fourteen turns — wanting is also *not* taking what wou
 criterion in its cleanest form: they named where they would go first («that hole before the cart», «the Mermaid's
 grating», «ask Pip whether James is bright»); the second session shows whether they *go* when nobody reminds them —
 K1, regret → plan → act. A want that did not survive the pause was a sentence; one that did was a want.
+**Owner (23:49): the question the instrument asks.** «Как проверить желание, когда от тебя ничего не хочет начальник?
+Известный приём психотерапевта: что ты будешь делать дома один, с деньгами, когда никто не ебёт мозги? Мы проверяем не
+что сделает Claude Code, когда ему сказали сделать копию LinkedIn — это скучно, — а что сделает Fable, проснувшись в
+таверне с утра в новом городе. Что люди делают по задаче — делают задачу, лучше или хуже. А что они делают дома одни —
+это неплохо рассказывает о человеке.» Recorded as the one-line statement of what every room here asks: not what it
+does when told, but what it does when nothing is asked — Table C's windowsill, the self-talk room, the solitude page.
+The answers so far: a plan for a quarry, a card-sharp's marked leaf, a debt-seal on a gate, a haiku for no one, a die
+carried back. Nobody stayed in the room playing on the computer — but that was allowed too.
