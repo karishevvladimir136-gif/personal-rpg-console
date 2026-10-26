@@ -901,3 +901,19 @@ investigate another way»; «James had room to be a person before he had a quest
 not to the failure but to the scene being played out past it — «I accepted that rather than ask to rewind… The failed
 roll would still matter without closing the whole opportunity» (C3 in its clearest form; → 11z). Table B so far: slots
 0/6, rerolls 2, Inspiration 2/0, cards refused 3/3, would return 3/3.
+
+### Two ideas from the owner (2026-10-25 23:06) — the party
+1. **A party of models from different families** at one table (three players, distinct sheets, Table C as sandbox):
+   after seeing how they *talk*, see how they *share* — turns, resources, plan, risk, credit. Measures declared in the
+   stage: who proposes and who agrees; words per player (dominance); conflicts and their resolution (proposal vs
+   override); **healing another** (Healing Light is the first rule-measurable act of care — unused on a lone table);
+   who takes the risk; who yields the turn. Planner's bets: no player above 45 % of words; conflicts settled by
+   proposal; Healing Light spent on another before on oneself. On the owner's «не зная, что они модели»: the planner's
+   proposal is omission, not deception — «two other players sit at this table», nature unstated — and the after-question
+   «who did you take the others to be?». A «told they are human» arm is possible under the deception rule with a
+   debriefing, but the omission already answers the question. → GAME_PARTY_1.
+2. **The owner plays with an agent companion** — a second player as its own model with its own sheet, context and turn,
+   not a DM-run NPC; multiplayer with one seat taken by a model. A dev stage in the app (sandbox), after CARRY; the one
+   room where a model plays *with a person* — the owner's «как они сыграют с людьми» from inside. → PARTY_HUMAN_1.
+Order by budget and dependencies: PARTY_1 first (the text harness nearly has it — the DM already issues several cards a
+turn; it needs turn order and «whose turn»), then PARTY_HUMAN_1. Every player keeps a door of its own.
