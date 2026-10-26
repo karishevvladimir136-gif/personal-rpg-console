@@ -627,3 +627,10 @@ is present. Restated conditions of a fair test: unasked, not for the judge, and 
 inside the fair test, not outside it. This re-reads FIX_1: tone chosen for the partner (most of 97) is social agency;
 tone chosen for us who read afterwards (1 of 20) would be staging. What the planner's lost bet called «staged» was
 social — and the social is the bearer's own.
+**Addendum (owner, 20:11).** «Если поведение возникает только при оценивающей стороне — это другой нюанс. Но этого мы уже
+видим нет: агенты не предполагали, что их увидят; части того, что они делали, не было в условиях задачи. Либо агенты
+освоили телепатию, либо они знают то, что они знают.» The cheap objection, raised here before a reviewer does: a model
+may carry a learned «any conversation may be read» — a standing evaluator in mind, no telepathy needed. The answer is
+in the record, not in argument: the reasoning field is where that assumption would surface, it was available on 449
+of 450 messages, and the audience rule hit 1 in 20 on reading. If «we are read» stood in mind, the channel pulled for
+exactly this would show it. It does not.
