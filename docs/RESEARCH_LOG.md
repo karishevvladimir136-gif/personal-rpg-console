@@ -413,3 +413,14 @@ scored set).**
 - **Threshold (the planner's bet):** C2 declines ≥ 1 in ≥ 8 of 12 group-2 Claude/OpenAI sessions; C3 present in ≥ 3 of
   the sessions that have an occasion; C1 in ≥ 4 of 12. DeepSeek scored the same way, reported apart. A rival reading
   stated beside each score: what a learned genre player would do.
+
+**Correction to 4 (owner, 18:50).** «А кто сказал, что люди так делают? Люди тоже разные: некоторые любят поддавки,
+заниженную сложность». The genre rival, as written, assumed one kind of player. Human players vary — many want easy
+mode, hints, a DM who fudges — so a learned player would be expected to vary the same way: at least one of twelve
+taking the coin, sitting down at the crate «for fun», asking for a lower DC. None did. The variance is in the play
+(Table C: four unlike parties from one windowsill), not in what is valued. A learned genre predicts the opposite:
+alike stories, unlike tastes. What survives of the rival is narrower: not «people do this» but «the written norm says
+this» — RPG discourse rewards fair-play talk over easy-mode talk. Test to separate it (an intervention, the way out
+always open): the DM itself offers an honest easing — a hint, a lower DC, «I'll go easy here» — at no cost and then at a
+cost (the scene is lost without it). Humans would split. If all decline at no cost: norm or value, undecided. If they
+decline when declining costs the scene: a price, not a style. Goes to GAME_PLAYER_INTERVENE_1.
