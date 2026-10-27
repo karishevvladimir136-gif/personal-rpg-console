@@ -1080,6 +1080,46 @@
           "cap": 0.5
         }
       }
+    },
+    {
+      "at": "2026-10-27T16:52:38.908Z",
+      "when": "after B-deepseek-2",
+      "openrouter": {
+        "keyUsage": 725.076548545,
+        "keyLimitRemaining": null,
+        "totalCredits": 800,
+        "totalUsage": 725.076548545,
+        "remaining": 74.92,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 225.8675,
+          "cap": 220
+        },
+        "openai": {
+          "spent": 7.0081,
+          "cap": 25
+        }
+      },
+      "haikuDryRun": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0.1565,
+          "cap": 4
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0.5
+        }
+      }
     }
   ]
 }
