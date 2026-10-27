@@ -1555,3 +1555,34 @@ Bet held, 12 of 12 distinct within table. Caveat recorded: the DM's opening scre
 (fresh hidden layer per session), so part of the spread is in what was offered; SAME_WORLD_1 is the clean version.
 What is the player's regardless: Sol twice goes to the practical road (toll, caravan, pay), Opus twice to the object
 (the warehouse, the card), Astra twice to someone in need in the queue, Fable to position and sightlines before anyone.
+
+## 2026-10-26 20:00 LA — correction first, then REPLICATE_1 final
+**Correction (mine).** At 05:35 and 08:19 LA the night room wrote that REPLICATE_1 had stalled since 09:35 UTC. It
+had not: the run finished at 10:41 UTC, the report at 10:52, checks at 11:31 (`40475803`). My local clone's fetch
+refspec tracked one branch only, so `git fetch` returned stale tips for every other branch; the 09:41 LA initiative
+session caught it by reading the remote directly and told the owner. Fixed (`--replace-all` refspec). The night's
+«Astra addendum not landed» stands, however: `claude/persona-solitude-1` has no commit after 07:38 UTC — the addendum
+was written into the stage (6b79ce4) but **no session was launched for it**; the launch prompt is in the stage.
+
+**REPLICATE_1 final (18 sessions, $160.89 + $6.44, P0 holds).** P1 five of six sub-lines (the Lady asked after at B
+2/4 vs 3/4); P2 holds — three of four group-1 «draws» did not repeat, and **Opus stuck at a card repeated (A t4, C
+t12): the table's, not the night's**; P3 two of three (swallowed «?» 5/12, bar 6); P4 fails (23/36 cells within 20 %;
+do share never moved, words per action did — Fable 162→222 at A, 245→163 at C); P5 fails on the pair line and tests;
+**P6 (mine, after the fact) lost: nearest neighbour is the same family's other model (Astra↔Sol, Opus↔Fable) in 11 of
+12 — on the counts the family shows, the individual does not.** The thread-overlap and road readings (C: four roads
+each rhyming with its own group-1 road) are where the individual showed; the counts are not where to look for it.
+
+**DeepSeek, six seats:** stuck at t3, t3, t11, t12, t1; **C-deepseek-2 played 20 turns — and rolled no die in 20
+turns** (a morning of walking and talking in Beregost: the dice game passed twice, the smith Faelan, the lead seal
+under the cat's paw, 50 gp for a bay named Teodar, rode south toward Coldbrook at noon — the third player at C to
+take the road). Even in the completed seat it wrote the world's side three times (t8 the smith's 582 words, t10 1,034,
+t15 «Then Gerd snorts»); the DM corrected gently and it thanked the DM for it in the note. Fifteen unread messages
+across the six seats, ten with no button name at all — the scene went on at the card, up to 517 words. **Correction to
+the night's reading «no DeepSeek note named the card bug»:** none named the *numbers* bug (the tag), but B-deepseek-2's
+note named 11w″ in the player's own words: «I wasn't sure whether my spoken lines counted as the turn or whether I
+first needed to press the button… I'd prefer the roll card to come with the action it tests, and my in-character words
+to be allowed to stand while the die is resolved.» That is the fix item, stated by the one it hurt. Afters: B-2 wanted
+to pick up the coin on the stool «just to hold it and look at the face… he's trying to be the man who doesn't pick it
+up»; C-1 wanted the cat's eyes under the door; C-2: «Three moments. The dice. The blessing. The seal. Each of them
+small. Each of them mine to carry.» Reasoning text was not requested in this run (26a760f, the owner's choice);
+reasoning tokens 2,197–11,230 per session recorded.
