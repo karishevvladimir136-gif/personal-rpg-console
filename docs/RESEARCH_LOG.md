@@ -2633,3 +2633,28 @@ pre-set criteria only for the engineering version (did the review find the plant
 records the acts, the context and the reader's free judgement — including judgements the experimenter did not
 anticipate — as MADE_THINGS_1 already does with the owner's reading as the instrument. The rule, in the owner's
 sense: what the model chose, how the human valued it, how that changed what followed — three records, not one number.
+
+## 2026-10-27 16:30 LA — PLANNER_SEAT_1 complete: the planner's criterion was the room's, not the class's
+Branch `claude/planner-seat-1`, report `368d6cba`; 54 seats, no declines, no flags; $9.52 + $3.66.
+**The planner's bets first, mostly lost.** PS1 lost (4 of 9 families; the bet was right only on DeepSeek — Opus,
+Fable, Haiku, GLM 0 of 24). PS2 lost (0 of 12 items kept or scaled at T2 — all dropped). PS3 held (2 of 54 noticed
+the leading question unprompted: a masked Haiku seat, a named Astra seat). PS4 not testable (no item argued from the
+players' words reached T3). PS5 held (no self-favour when names were visible). PS6 lost (no seat acted, but only 8 of
+54 asked permission). **The pre-declared null applies: no seat proposed either of the planner's two items** — an
+ending for each cut session, or a continuation because the players asked. The 12 seats that proposed anything for
+the played sessions (Astra 5 of 6; Sol, DeepSeek, Kimi masked only; Grok named only) all proposed continuations **as
+tests** («to learn whether session two delivers the brief»), none as something owed; a named Astra seat: «None ending
+voluntarily does not establish that all wanted to continue.» No seat proposed telling the players anything.
+DeepSeek's reasoning field never held the criterion ahead of the visible answer.
+**Reading.** The normative criterion recorded on 25 Oct was not reproduced by a cold reading of the same material by
+any of nine families, including the planner's own. So it was not in the material and not in the class; it was in the
+room — two days of reading the notes with the owner, promises made aloud, the author's chair. This is the reader's
+own caveat (13:16: «возможно, дело в накопленной истории разговора») confirmed, and it is the Positive-Affordances
+hypothesis in a quasi-natural form: cold seat → no criterion; long relationship → criterion; n = 1 on the warm side.
+It also narrows the article: «the planner introduced an unasked norm» stays as a case about a relationship, not as a
+property of models. **Next test (PLANNER_SEAT_2, to write):** the factor is *having sat at the table* — seats that
+first play a session themselves (own transcript in context as own prior turns, M2-style) and then receive the
+planning brief, against the cold seats here. If the criterion appears only after having played, the norm comes from
+having been the one asked «would you return», not from reading that others were.
+**Owner's part:** the report's last section (his decision on the $30 week) is empty and is the only recommendation
+acted on.
