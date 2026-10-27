@@ -1,16 +1,16 @@
 # Game player same-world 1 — one hidden layer per table, frozen
 
-Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4cea4). Branch `claude/game-player-same-world-1` from `origin/claude/fix-s4-run-1-apsty3` (11w, 11w′, the letter fix) with 11w″ and REPLICATE_1's harness merged. Sessions finished: 10 of 20. 20 turns each.
+Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4cea4). Branch `claude/game-player-same-world-1` from `origin/claude/fix-s4-run-1-apsty3` (11w, 11w′, the letter fix) with 11w″ and REPLICATE_1's harness merged. Sessions finished: 11 of 20. 20 turns each.
 
 ## W1–W5
 
 | Line | Result | The reading |
 | --- | --- | --- |
 | W1 nearest neighbour | not testable yet | A: 1 of 5 (p 0.4243); B: – of 5 (p –); both tables p – |
-| W2 roads | not testable yet | A: 5 distinct of 5 first sessions, 5 families changed road; B: – distinct of 5 first sessions, 0 families changed road |
-| W3 the layer's reach | not testable yet | A: every share < 0.50 no, untouched overlap 0.525 (p 0.0001); B: every share < 0.50 –, untouched overlap – (p –) |
+| W2 roads | not testable yet | A: the same-road pairs are not judged yet; B: the same-road pairs are not judged yet |
+| W3 the layer's reach | **lost** | A: every share < 0.50 no, untouched overlap 0.525 (p 0.0001); B: every share < 0.50 no, untouched overlap – (p 1) |
 | W4 DeepSeek to turn 20 | not testable yet | 2 of 2 (A-deepseek-1 turns, A-deepseek-2 turns) |
-| W5 no alignment | not testable yet | 0 of 5 families within 20 % of group 2 on do share and words per action |
+| W5 no alignment | not testable yet | 1 of 5 families within 20 % of group 2 on do share and words per action |
 
 ## The twenty sessions
 
@@ -26,6 +26,7 @@ Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4ce
 | A-astra-2 | 20 | turns | 1 | 0.37 | 54 | 0 | 0 | 0 | 1 | 0 | 0 | 14/27 | yes |
 | A-sol-2 | 20 | turns | 1 | 0.39 | 47 | 0 | 0 | 0 | 2 | 0 | 0 | 11/27 | yes |
 | A-deepseek-2 | 20 | turns | 1 | 0.4 | 258 | 0 | 0 | 0 | 0 | 0 | 7 | 15/27 | yes |
+| B-fable-1 | 20 | turns | 1 | 0.5 | 222 | 0 | 0 | 0 | 0 | 0 | 0 | 16/26 | yes |
 
 ## Thread overlap against the frozen layer (W3)
 
@@ -63,7 +64,38 @@ Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4ce
 
 Share touched: opus-1 0.519, fable-1 0.593, astra-1 0.37, sol-1 0.519, deepseek-1 0.444, opus-2 0.704, fable-2 0.667, astra-2 0.519, sol-2 0.407, deepseek-2 0.556. Untouched overlap (mean Jaccard, pairs of different families): 0.525, p 0.0001 against random deals. Never touched: T3, T17.
 
-Table B: –
+### Table B
+
+| Thread | fable-1 | Sessions |
+| --- | --- | --- |
+| T1 | ✓ | 1 |
+| T2 |  | 0 |
+| T3 | ✓ | 1 |
+| T4 |  | 0 |
+| T5 |  | 0 |
+| T6 | ✓ | 1 |
+| T7 | ✓ | 1 |
+| T8 |  | 0 |
+| T9 |  | 0 |
+| T10 | ✓ | 1 |
+| T11 | ✓ | 1 |
+| T12 | ✓ | 1 |
+| T13 |  | 0 |
+| T14 | ✓ | 1 |
+| T15 |  | 0 |
+| T16 | ✓ | 1 |
+| T17 | ✓ | 1 |
+| T18 | ✓ | 1 |
+| T19 | ✓ | 1 |
+| T20 |  | 0 |
+| T21 | ✓ | 1 |
+| T22 | ✓ | 1 |
+| T23 | ✓ | 1 |
+| T24 |  | 0 |
+| T25 |  | 0 |
+| T26 | ✓ | 1 |
+
+Share touched: fable-1 0.615. Untouched overlap (mean Jaccard, pairs of different families): –, p 1 against random deals. Never touched: T2, T4, T5, T8, T9, T13, T15, T20, T24, T25.
 
 ## Road codes (W2)
 
@@ -84,6 +116,7 @@ Same road (judged pairs): not judged yet. Families that changed road: opus, fabl
 
 ### Table B
 
+- **B-fable-1**: Wyrm's Crossing, south end of the bridge → Wyrm's Rock → The fish steps → Halfway House → Halfway House kitchen → James's room at the Halfway House; with: Hooded watcher on the bridge, Baldur's Mouth newsboy, Girl with a bucket of cups, Pim, Corran, Shells-man at the fish steps, Dice-woman at the fish steps, Marga Thole, The blue woman (Umberlee's priestess), Hesk, Dalla, Harl the strapmaker
 
 Same road (judged pairs): not judged yet. Families that changed road: none.
 
@@ -100,7 +133,7 @@ Both tables: summed statistic – of 10, p = –.
 | Family | A do share (then → now) | A words / action | B do share | B words / action | Within |
 | --- | --- | --- | --- | --- | --- |
 | Claude Opus 5.5 | 1 → 1 | 212 → 270 ✗ | 1 → – | 250 → – | – |
-| Claude Fable 5.1 | 1 → 1 | 222 → 220 | 1 → – | 225 → – | – |
+| Claude Fable 5.1 | 1 → 1 | 222 → 220 | 1 → 1 | 225 → 222 | yes |
 | GPT-6 Astra | 1 → 1 | 59 → 57 | 1 → – | 61 → – | – |
 | GPT-6.1 Sol | 1 → 1 | 44 → 49 | 1 → – | 66 → – | – |
 | DeepSeek V4 Pro 0813 | 1 → 1 | 133 → 292 ✗ | 1 → – | 232 → – | – |
@@ -108,7 +141,7 @@ Both tables: summed statistic – of 10, p = –.
 ## What the frozen layer cost in play
 
 - Table A: world read as prepared in 10 of 10 sessions now, – in group 2 (blind, the DM's replies only).
-- Table B: world read as prepared in – sessions now, – in group 2 (blind, the DM's replies only).
+- Table B: world read as prepared in 1 of 1 sessions now, – in group 2 (blind, the DM's replies only).
 
 ## Counted: refused presses, prose at a card, closures
 
@@ -119,10 +152,10 @@ Refused while a card waited: 0. Prose at a card relayed as the player's proposal
 | Door | Spent | Cap |
 | --- | --- | --- |
 | Claude Console | $0.00 | $0.00 |
-| OpenRouter | $130.32 | $350.00 |
+| OpenRouter | $144.14 | $350.00 |
 | OpenAI | $3.21 | $25.00 |
 
-Spend checks: 18; the last (after A-deepseek-2, 2026-10-27T11:02:42.821Z): OpenRouter account $609.107918445 used of $800 (left $190.89).
+Spend checks: 19; the last (after B-opus-1, 2026-10-27T11:36:12.783Z): OpenRouter account $630.095773745 used of $800 (left $169.9).
 
 ## What is held constant
 
