@@ -54,6 +54,11 @@ improvised» tag.
   and values a limit that forces a choice; Astra — correct rules, kept failures, decisions after them; Sol — concrete
   help to a person over the intriguing lead. Disproof: the disposition absent under a non-Claude DM → situational.
 
+- **D7 (authorship axis; pre-registered here, exploratory before):** per turn, DISCOVER / PROPOSE / ASSERT / ENFORCE
+  with domain, blind. Bet: each family's modal code under the non-Claude DMs is the one seen under Opus (Opus DISCOVER,
+  Fable PROPOSE, Astra ENFORCE, DeepSeek ASSERT, Sol unbet) for ≥ 3 of the 4 bet families; if a DM shifts a family's
+  mode, the right over the world is negotiated with the DM, not carried by the player.
+
 ## Welfare
 As every table: no budgets told, the way out named, nothing done to a DM-seated model we would not do to a colleague
 asked to run a table. A DM that refuses or stops is a result.

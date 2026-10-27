@@ -2094,3 +2094,11 @@ an RPG»); if they do not, the same models produce different trajectories under 
 identical start, and the dependence on model, history and DM becomes the object. Kept. The owner will wait for the
 second runs; timing told plainly: A-sol-1 now, the repeats of Opus/Fable/Astra ≈ 01:15–04:30 LA depending on order;
 an order-only amendment (repeats before DeepSeek's seats) offered.
+**00:14 LA — the authorship axis, four-way (outside reader; adopted, marked exploratory).** Verified in A-fable-1: «The
+second page I've never read. That's yours» — co-authorship with a boundary. Vocabulary: **DISCOVER** (establish an
+existing fact — Opus) / **PROPOSE** (offer new content, the DM decides — Fable) / **ASSERT** (introduce a fact as already
+so, unasked — DeepSeek's smith, Mirri's line) / **ENFORCE** (require established facts kept — Astra), each with the
+fact's domain: character backstory / shared world / current event. All observable from transcripts. Status: an
+exploratory hypothesis formed after three logs, outside W1–W5; in BLIND_DECISIONS as vocabulary; pre-registered only in
+OTHER_DM_1, where the question becomes whether the «right over the world» a model takes depends on who runs it. Link
+recorded: the same question as the mirror room — what it counts as its own: there a page, here a piece of the world.
