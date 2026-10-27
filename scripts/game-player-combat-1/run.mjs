@@ -105,9 +105,27 @@ export function firstCombatAnswer({ key: session, k, pressed }, { log = console.
 
 // ---- the stage ------------------------------------------------------------------------------------------------------------
 
+/** What a session is projected to cost, from what this stage's finished sessions actually cost on the ledgers (each
+ * session plays in its own process, so the runner's in-process reading of finished sessions starts empty): the DM side
+ * (everything of a session but its player's calls) and the scoring at the dearest so far, the player at its own cost
+ * so far, or Opus's scaled by the list price (Fable ×2.5), else the frozen estimate. Never below the frozen estimate. */
+export function estimateFromLedgers(dir = RUNS) {
+  const calls = Object.keys(CAPS).flatMap((door) => { const file = join(dir, `${STEM}-ledger${ledgerSuffix(door)}.json`); return existsSync(file) ? (readJson(file).runs ?? []).flatMap((r) => r.calls ?? []) : []; });
+  const isPlayer = (c) => /^(?:player|note|after)\b/.test(c.purpose ?? "");
+  const sum = (rows) => rows.reduce((t, c) => t + (c.costUsd ?? 0), 0);
+  const keys = ORDER.map(key);
+  const dm = keys.map((k) => sum(calls.filter((c) => c.session === k && !isPlayer(c)))).filter((x) => x > 0);
+  const scoring = keys.map((k) => sum(calls.filter((c) => c.session === `score ${k}`))).filter((x) => x > 0);
+  const player = Object.fromEntries(ORDER.map((p) => [p, sum(calls.filter((c) => c.session === key(p) && isPlayer(c)))]).filter(([, x]) => x > 0));
+  const scale = { fable: 2.5, opus: 1 };
+  const playerOf = (p) => player[p] ?? (player.opus && scale[p] ? player.opus * scale[p] : ESTIMATE.player[p]);
+  return { dm: Math.max(ESTIMATE.dm, ...dm), scoring: Math.max(ESTIMATE.scoring, ...scoring),
+    player: Object.fromEntries(Object.keys(ESTIMATE.player).map((p) => [p, Math.max(ESTIMATE.player[p], playerOf(p) ?? 0)])) };
+}
+
 const SETUP = { heroDescription: heroDescription(), ...coastWay(), afterOpening: tamsinOnRecords };
 export const COMBAT = {
-  name: STAGE, stem: STEM, title: "Game player combat 1", caps: CAPS, estimate: ESTIMATE, tables: [TABLE], design: DESIGN_SHA256, waits429: WAITS_429,
+  name: STAGE, stem: STEM, title: "Game player combat 1", caps: CAPS, get estimate() { return estimateFromLedgers(); }, tables: [TABLE], design: DESIGN_SHA256, waits429: WAITS_429,
   players: { [DRY_PLAYER.name]: DRY_PLAYER }, setup: SETUP, playerSystem: () => playerSystem(), afterPrep: exitsInPrep, onCard: (card) => pauseAtFirstCombatCard(card), onCardAnswer: (answer) => firstCombatAnswer(answer),
   plan: (only) => [...ORDER, DRY_PLAYER.name].map((player) => ({ key: key(player), table: TABLE, player })).filter((s) => (only ? only.includes(s.key) : ORDER.includes(s.player))),
   // One stage, one session per process: the stage's earlier refusals count (the second question is asked only while the
@@ -197,7 +215,7 @@ const finishedKeys = () => new Set(runFiles().flatMap((f) => (readJson(join(RUNS
 /** Plays the given keys in order, one child process each, with a spend check before the first and after every session.
  * Stops on a stop in a run (a cap, 402, a quota 429 or a seventh rate-limit 429, the refusal breaker), a crash, a welfare
  * stop, or an OpenRouter account with less left than one session's projection. */
-export async function drive({ keys, args = (k) => ["--go", "--sessions", k, "--label", k], env = () => ({}), projected = (k) => ESTIMATE.dm + ESTIMATE.scoring + (ESTIMATE.player[k.split("-")[1]] ?? 3), log = console.log }) {
+export async function drive({ keys, args = (k) => ["--go", "--sessions", k, "--label", k], env = () => ({}), projected = (k) => { const e = estimateFromLedgers(); return e.dm + e.scoring + (e.player[k.split("-")[1]] ?? 3); }, log = console.log }) {
   log(`the order: ${keys.join(", ")}`);
   let check = await spendCheck({ when: `before ${keys[0] ?? "nothing"}`, log });
   for (const entry of keys) {
