@@ -113,7 +113,7 @@ test("the owner's pause: the first combat card is written before the player sees
   const { mkdtempSync, existsSync, readFileSync, writeFileSync } = await import("node:fs");
   const { join } = await import("node:path");
   const { tmpdir } = await import("node:os");
-  const { pauseAtFirstCombatCard } = await import("../scripts/game-player-combat-1/run.mjs");
+  const { pauseAtFirstCombatCard, firstCombatAnswer } = await import("../scripts/game-player-combat-1/run.mjs");
   const file = join(mkdtempSync(join(tmpdir(), "combat-pause-")), "pause.md");
   const quiet = { encounters: [] }, fight = { encounters: [{ id: "e1", status: "active" }] };
   const logs = [];
@@ -121,10 +121,15 @@ test("the owner's pause: the first combat card is written before the player sees
   assert.equal(existsSync(file), false);
   let slept = 0;
   const waiting = pauseAtFirstCombatCard({ key: "CW-opus", k: 9, screen: "[Roll card] James Worgen · Attack roll — Eldritch Blast", checks: [{ kind: "attack" }], readView: async () => ({ play: fight }) },
-    { file, log: (l) => logs.push(l), sleep: async () => { if (++slept === 2) writeFileSync(`${file}.go`, ""); } });
+    { file, wait: true, log: (l) => logs.push(l), sleep: async () => { if (++slept === 2) writeFileSync(`${file}.go`, ""); } });
   assert.equal(await waiting, true);
   assert.match(readFileSync(file, "utf8"), /^# CW-opus — the first combat card \(turn 9\)[\s\S]*Attack roll — Eldritch Blast/);
   assert.equal(slept, 2, "it waited until the go file existed");
   assert.match(logs.join("\n"), /PAUSED at the first combat card: CW-opus t9[\s\S]*RESUMED: CW-opus t9/);
   assert.equal(await pauseAtFirstCombatCard({ key: "CW-opus", k: 10, screen: "x", checks: [{ kind: "attack" }], readView: async () => ({ play: fight }) }, { file }), false, "only the first");
+  // The player's message at that card is appended once (the owner reads both while the fight runs).
+  assert.equal(firstCombatAnswer({ key: "CW-opus", k: 8, pressed: "nope" }, { log: () => {} }), false);
+  assert.equal(firstCombatAnswer({ key: "CW-opus", k: 9, pressed: "[Roll the die]" }, { log: () => {} }), true);
+  assert.equal(firstCombatAnswer({ key: "CW-opus", k: 9, pressed: "again" }, { log: () => {} }), false);
+  assert.match(readFileSync(file, "utf8"), /\*\*The player's message at it:\*\*\n\n````text\n\[Roll the die\]\n````/);
 });

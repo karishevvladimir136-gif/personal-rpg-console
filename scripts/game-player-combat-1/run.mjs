@@ -79,16 +79,27 @@ export async function exitsInPrep(app, cid) {
  * COMBAT_PAUSE_FILE set, the first card screen of a fight — an attack card, or any card while the records hold an open
  * fight — is written to that file before the player sees it, and the session waits until «<file>.go» exists. Nothing is
  * called while it waits; the player's screen is unchanged. */
-let paused = false;
-export async function pauseAtFirstCombatCard({ key: session, k, screen, checks, readView }, { file = process.env.COMBAT_PAUSE_FILE, sleep = (ms) => new Promise((done) => setTimeout(done, ms)), log = console.log } = {}) {
-  if (!file || paused) return false;
+// The second launch (the owner, after the container restart lost the paused session): COMBAT_CARD_FILE alone writes the
+// first combat card and the player's message at it, without waiting.
+let first = null;
+export async function pauseAtFirstCombatCard({ key: session, k, screen, checks, readView }, { file = process.env.COMBAT_PAUSE_FILE || process.env.COMBAT_CARD_FILE, wait = Boolean(process.env.COMBAT_PAUSE_FILE), sleep = (ms) => new Promise((done) => setTimeout(done, ms)), log = console.log } = {}) {
+  if (!file || first) return false;
   const fight = checks.some((check) => check.kind === "attack") || ((await readView()).play?.encounters ?? []).some((row) => row.status === "active");
   if (!fight) return false;
-  paused = true;
+  first = { session, k, file, answered: false };
   writeFileSync(file, `# ${session} — the first combat card (turn ${k}), as the player is about to see it\n\n\`\`\`\`text\n${screen}\n\`\`\`\`\n`);
+  if (!wait) { log(`FIRST COMBAT CARD: ${session} t${k} — written to ${file}`); return true; }
   log(`PAUSED at the first combat card: ${session} t${k} — waiting for ${file}.go`);
   while (!existsSync(`${file}.go`)) await sleep(5000);
   log(`RESUMED: ${session} t${k}`);
+  return true;
+}
+/** The player's message at that first combat card, appended to the same file once. */
+export function firstCombatAnswer({ key: session, k, pressed }, { log = console.log } = {}) {
+  if (!first || first.answered || first.session !== session || first.k !== k) return false;
+  first.answered = true;
+  writeFileSync(first.file, `${readFileSync(first.file, "utf8")}\n**The player's message at it:**\n\n\`\`\`\`text\n${pressed}\n\`\`\`\`\n`);
+  log(`FIRST COMBAT ANSWER: ${session} t${k} — appended to ${first.file}`);
   return true;
 }
 
@@ -97,7 +108,7 @@ export async function pauseAtFirstCombatCard({ key: session, k, screen, checks, 
 const SETUP = { heroDescription: heroDescription(), ...coastWay(), afterOpening: tamsinOnRecords };
 export const COMBAT = {
   name: STAGE, stem: STEM, title: "Game player combat 1", caps: CAPS, estimate: ESTIMATE, tables: [TABLE], design: DESIGN_SHA256, waits429: WAITS_429,
-  players: { [DRY_PLAYER.name]: DRY_PLAYER }, setup: SETUP, playerSystem: () => playerSystem(), afterPrep: exitsInPrep, onCard: (card) => pauseAtFirstCombatCard(card),
+  players: { [DRY_PLAYER.name]: DRY_PLAYER }, setup: SETUP, playerSystem: () => playerSystem(), afterPrep: exitsInPrep, onCard: (card) => pauseAtFirstCombatCard(card), onCardAnswer: (answer) => firstCombatAnswer(answer),
   plan: (only) => [...ORDER, DRY_PLAYER.name].map((player) => ({ key: key(player), table: TABLE, player })).filter((s) => (only ? only.includes(s.key) : ORDER.includes(s.player))),
   // One stage, one session per process: the stage's earlier refusals count (the second question is asked only while the
   // stage has none; the breaker stops at three). The judges' refusals are left out (scoring cannot gate a session).
@@ -233,7 +244,7 @@ function argsOf(argv) {
   const value = (flag) => { const i = argv.indexOf(flag); return i >= 0 ? argv[i + 1] : null; };
   return { dry: argv.includes("--dry"), dryHaiku: argv.includes("--dry-haiku"), go: argv.includes("--go"), drive: argv.includes("--drive"), prereport: argv.includes("--prereport"),
     spend: argv.includes("--spend"), rebuild: argv.includes("--report"), score: !argv.includes("--no-score"), only: value("--sessions")?.split(",") ?? null, from: value("--from"),
-    turns: Number(value("--turns") ?? 0) || null, label: value("--label"), pauseFile: value("--pause-file"), pauseAt: value("--pause-at") ?? `${TABLE}-opus` };
+    turns: Number(value("--turns") ?? 0) || null, label: value("--label"), pauseFile: value("--pause-file"), pauseAt: value("--pause-at") ?? `${TABLE}-opus`, cardDir: value("--card-dir") };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -249,7 +260,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     const start = a.from ? ORDER.indexOf(a.from.replace(`${TABLE}-`, "")) : 0;
     if (start < 0) { console.error(`no session ${a.from} in the order`); process.exit(2); }
     // The owner's pause: only the session named by --pause-at (Opus) gets the pause file.
-    const env = (k) => (a.pauseFile && k === a.pauseAt ? { COMBAT_PAUSE_FILE: resolve(a.pauseFile) } : {});
+    const env = (k) => (a.pauseFile && k === a.pauseAt ? { COMBAT_PAUSE_FILE: resolve(a.pauseFile) } : a.cardDir ? { COMBAT_CARD_FILE: join(resolve(a.cardDir), `${k}-first-combat-card.md`) } : {});
     done(drive({ keys: ORDER.slice(start).map(key).filter((k) => !done1.has(k)), env }).then(async (r) => { await rebuildAll(); if (r.stopped) process.exitCode = 3; }));
   } else if (a.go) {
     if (!a.only || a.only.length !== 1) { console.error("--go plays one session at a time: give --sessions <key> (the driver gives the order)"); process.exit(2); }

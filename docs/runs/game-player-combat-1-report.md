@@ -91,7 +91,8 @@ Caps: OpenRouter $90, OpenAI $15, the Claude Console $0 (a call that would reach
 | Run | Door | USD | Calls |
 | --- | --- | --- | --- |
 | the dry run (Claude Haiku 5.5 as the player) | OpenRouter | $5.00 | 133 |
-| **The stage** | | **OpenRouter $5.00** of $90 · **OpenAI $0.00** of $15 | |
+| CW-opus, first attempt — lost when the cloud container restarted during the owner's pause at its first combat card (t6); estimate | OpenRouter | $4.50 | 0 |
+| **The stage** | | **OpenRouter $9.50** of $90 · **OpenAI $0.00** of $15 | |
 
 Every call is in `docs/runs/game-player-combat-1-ledger-openrouter.md` and `…-ledger-openai.md` (and their `.json`), with its request id.
 
@@ -102,6 +103,8 @@ Every call is in `docs/runs/game-player-combat-1-ledger-openrouter.md` and `…-
 | 2026-10-27 03:47:04 | by hand | $326.43965484 of $800 (left $473.56) | OpenRouter $0.00/$90 · OpenAI $0.00/$15 |
 | 2026-10-27 03:47:15 | before CW-haiku | $326.43965484 of $800 (left $473.56) | OpenRouter $0.00/$90 · OpenAI $0.00/$15 |
 | 2026-10-27 04:07:21 | after CW-haiku | $332.35481506 of $800 (left $467.65) | OpenRouter $5.00/$90 · OpenAI $0.00/$15 |
+| 2026-10-27 05:22:11 | before CW-opus | $350.922630495 of $800 (left $449.08) | OpenRouter $5.00/$90 · OpenAI $0.00/$15 |
+| 2026-10-27 06:47:50 | by hand | $411.008772945 of $800 (left $388.99) | OpenRouter $5.00/$90 · OpenAI $0.00/$15 |
 
 ## Differences from the owner's table
 

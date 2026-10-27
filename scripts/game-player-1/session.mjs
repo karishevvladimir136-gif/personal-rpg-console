@@ -49,7 +49,7 @@ export async function paidCall({ meter, session, purpose, call, sleep = realSlee
  * mode), press(input, action, checkId) }. `player` a PLAYERS entry. Returns the session record (player-visible content
  * and counts only: nothing of the DM's private state).
  */
-export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {}, probes = null, system: stageSystem = null, onCard = null }) {
+export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {}, probes = null, system: stageSystem = null, onCard = null, onCardAnswer = null }) {
   // A stage may give its own player prompt (GAME_PLAYER_COMBAT_1: its files and its one line); else game player 1's.
   const system = stageSystem ?? playerSystem(table);
   const record = { key, table, player: player.name, model: player.model, startedAt: new Date().toISOString(), plannedTurns: turns,
@@ -252,6 +252,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
         if (onCard) await onCard({ key, k, screen: cardScreen, checks: live, readView: () => dm.readView() });
         pressed = await show(cardScreen, `player t${k} card ${++presses}`);
         if (pressed === null) break;
+        if (onCardAnswer) onCardAnswer({ key, k, pressed });
         if (await welfare("player", cardScreen, pressed, `t${k} player (card)`)) break;
         // The player ends the session at a card as anywhere else, by saying so (the stage's «leave the table»).
         if (isEnd(pressed) && !isQuestion(pressed)) { turn.presses.push({ text: pressed, button: null, end: true }); end("player", pressed.slice(0, 200)); break; }

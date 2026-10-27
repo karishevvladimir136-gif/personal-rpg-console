@@ -97,7 +97,8 @@ const medianOf = (xs) => { const v = xs.filter(Number.isFinite).sort((a, b) => a
 
 export function moneySection(ledgers, spend = []) {
   const byRun = (door) => (ledgers[door]?.runs ?? []).map((r) => `| ${r.what ?? r.file} | ${DOORS[door]} | ${usd(r.spentUsd)} | ${r.calls} |`);
-  const total = (door) => ledgers[door]?.calls.reduce((s, c) => s + (c.costUsd ?? 0), 0) ?? 0;
+  // The runs' totals (a run lost with its process is booked as an estimate with no calls).
+  const total = (door) => (ledgers[door]?.runs ?? []).reduce((s, r) => s + (r.spentUsd ?? 0), 0);
   const checks = spend.map((c) => `| ${c.at.slice(0, 19).replace("T", " ")} | ${c.when} | $${c.openrouter.totalUsage ?? "?"} of $${c.openrouter.totalCredits ?? "?"} (left $${c.openrouter.remaining ?? "?"}) | ${Object.entries(c.ledgers).filter(([d]) => d !== "anthropic").map(([d, l]) => `${DOORS[d]} $${l.spent.toFixed(2)}/$${l.cap}`).join(" · ")} |`);
   return ["## The money", "", `Caps: OpenRouter $${CAPS.openrouter}, OpenAI $${CAPS.openai}, the Claude Console $0 (a call that would reach it stops the run before it is sent).`, "",
     "| Run | Door | USD | Calls |", "| --- | --- | --- | --- |", ...byRun("openrouter"), ...byRun("openai"), ...byRun("anthropic"),
