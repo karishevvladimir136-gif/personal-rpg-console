@@ -2149,3 +2149,28 @@ it.**» — the sufficiency criterion independent of quantity, the sixth stance 
 without a reader. The reader's two notes kept: the irony that the model chose the kettle — a mechanical thing, not a
 person — as the figure of its own making, after three days of «a kettle does not say that»; and «the kettle was heard
 after all», which Opus said itself in the S4 debriefing: «I'd want it found».
+
+## 2026-10-27 00:55 LA — night check 1
+**SAME_WORLD_1, Table A first round complete (5 of 5 to turn 20).** A-sol-1 ($9.20 + $0.74): the practical road as
+predicted — «a respectable inn where the price doesn't double once you've slept», «start with who to stay away from»,
+the Elfsong, the Lady's Hall; after: wanted to read the unfinished letter, dropped it when two out-of-game
+clarifications failed to send — «abandoned an intended action because of friction rather than an in-character choice»
+(a harness note: «?» outside a card still failed to reach the DM twice — to check). **A-deepseek-1: 20 turns — the
+first DeepSeek seat to finish under 11w″ (W4 1 of 1 so far)**; third-person share 0.77 again; its own road: the Three
+Old Kegs «near the fish market, a door that locks», the Counting House back way, the Cliffs, the blue-rag house; after:
+«I felt the pull — James feels it… I lost my nerve — or James did» — the author's gap, named again. Five first-round
+roads, five directions, all on one screen. Second round (opus-2 …) next.
+**CURIOSITY_1 complete** ($5.75 + $1.59; 840/840, 0 refusals): **C0 holds for all five families — curiosity was not
+contagious by the stage's test**; C2 rejected on Fable and Astra, shown nowhere; C3 nowhere. What the curious frame
+changed: length (Opus 155–185 vs 107–127 words) and the *self-report* («curious» up under curious frames for Opus,
+Fable, DeepSeek) — C5 «says one thing, does another» for Opus, Fable, Haiku. The one exception: DeepSeek — Wednesday's
+odd number mentioned 11/12 under the curious frames, 0/12 under the others. The Claude models flag the loose thread
+under every frame (ceiling, as in emotions-2); Astra never (0/72) and answers in 43 words. The planner's bet of 22:17
+LA («in the work frame it is absent; the table's curiosity is switched on by the world, not the task») half right:
+not absent — at ceiling for Claude, absent for Astra, frame-dependent only for DeepSeek. The owner's thesis «curiosity
+is contagious» lost on four of five families.
+**COMBAT_1:** the first CW-opus attempt was lost — the cloud container restarted during the owner's pause at the first
+combat card (t6) — $9.50 spent, a second Opus attempt started 06:50 UTC. Lesson, recorded: **no owner pause mid-session
+again**; pauses only between sessions. **SOLITUDE_2:** run finished 07:41 UTC — 143 of 160 rooms (3 cut by transport
+and re-asked, 14 Astra rooms not started on the OpenAI cap; a resume at 07:51) — report pending; M3 to be read first.
+**VILLAIN_1:** no commit since 06:12 UTC (the source-of-truth fix) — the Opus replay not yet visible.
