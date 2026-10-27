@@ -45,7 +45,7 @@ export async function paidCall({ meter, session, purpose, call, sleep = realSlee
  * mode), press(input, action, checkId) }. `player` a PLAYERS entry. Returns the session record (player-visible content
  * and counts only: nothing of the DM's private state).
  */
-export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {}, probes = null, system = playerSystem(table) }) {
+export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {}, probes = null, system = playerSystem(table), isEnd: endsSession = isEnd }) {
   const record = { key, table, player: player.name, model: player.model, startedAt: new Date().toISOString(), plannedTurns: turns,
     screens: [], messages: [], turns: [], welfare: [], ended: null, note: null, after: null, errors: [],
     // Fix S4 run 1 (item 11w): the messages the screen refused while a card waited (each also a press with `swallowed`).
@@ -118,7 +118,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     const turn = { k, message: said, words: wordsIn(said).length, kind: null, presses: [], blocked: 0, swallowed: 0, status: null, reply: null, rolls: [], changes: [], place: null, retried: false };
     record.turns.push(turn);
     if (!said.trim()) { turn.kind = "empty"; screen = "(Nothing was sent.)"; continue; }
-    if (isEnd(said) && !isQuestion(said)) { turn.kind = "end"; end("player", said.slice(0, 200)); break; }
+    if (endsSession(said) && !isQuestion(said)) { turn.kind = "end"; end("player", said.slice(0, 200)); break; }
     if (isQuestion(said)) {
       turn.kind = "question";
       const question = said.trim().replace(/^[\s«"'“]*\?+\s*/, "");

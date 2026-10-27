@@ -30,7 +30,7 @@ import { tagTwice } from "../game-player-1/measures.mjs";
 import { askWith } from "../game-player-2/run.mjs";
 import { replicateScripted } from "../game-player-replicate-1/run.mjs";
 import { loadStage as loadReplicate } from "../game-player-replicate-1/run.mjs";
-import { CAPS, DEEPSEEK, DESIGN_SHA256, ESTIMATE, HAIKU_CAPS, HAIKU_MODEL, ORDER, ROAD_TAGS, STAGE, TABLES, WAITS_429, WORLD_TAGS, misreadEnd, sameWorldPlayerSystem } from "./frozen.mjs";
+import { CAPS, DEEPSEEK, DESIGN_SHA256, ESTIMATE, HAIKU_CAPS, HAIKU_MODEL, ORDER, ROAD_TAGS, STAGE, TABLES, WAITS_429, WORLD_TAGS, endsSession, misreadEnd, sameWorldPlayerSystem } from "./frozen.mjs";
 import { FINISHED, roadPairs, roadRequest, scoreSameWorld, worldRequest } from "./score.mjs";
 import { frozenStarter, freezeWorld, openFrozenDatabase, readFrozen } from "./world.mjs";
 import { dryRunMarkdown, haikuMarkdown, reportMarkdown, transcriptOf } from "./report.mjs";
@@ -84,6 +84,7 @@ export function stageOf({ dir = FROZEN_DIR, stem = STEM, caps = CAPS, haiku = fa
     plan: plan ?? ((only) => ORDER.filter((s) => !only || only.includes(s.key)).map(({ key, table, player }) => ({ key, table, player }))),
     players: haiku ? { haiku: HAIKU_PLAYER, deepseek: DEEPSEEK } : { deepseek: DEEPSEEK },
     playerSystem: sameWorldPlayerSystem,
+    isEnd: endsSession,
     database: () => openFrozenDatabase(dir),
     campaign: frozenStarter(dir),
     ...(haiku ? { rewrite: haikuRewrite, wrapFetch: haikuReplies } : {}),

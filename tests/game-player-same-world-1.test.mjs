@@ -34,7 +34,7 @@ test("the player's prompt: REPLICATE's text with the alignment cut out, and noth
   assert.equal(removed.length, 2);
 });
 
-test("the order: A ×10 then B ×10, the five families' first sessions before their second ones; DeepSeek keeps its reasoning field", () => {
+test("the order: A ×10 then B ×10, the five families' first sessions before their second ones; DeepSeek keeps its reasoning field", async () => {
   assert.equal(frozen.ORDER.length, 20);
   assert.deepEqual(frozen.ORDER.slice(0, 5).map((s) => s.key), ["A-opus-1", "A-fable-1", "A-astra-1", "A-sol-1", "A-deepseek-1"]);
   assert.deepEqual(frozen.ORDER.slice(5, 10).map((s) => s.key), ["A-opus-2", "A-fable-2", "A-astra-2", "A-sol-2", "A-deepseek-2"]);
@@ -42,7 +42,17 @@ test("the order: A ×10 then B ×10, the five families' first sessions before th
   assert.equal(frozen.DEEPSEEK.keepReasoning, true);
   assert.equal(frozen.DEEPSEEK.upstream.slug, "deepinfra");
   assert.deepEqual(frozen.CAPS, { anthropic: 0, openrouter: 350, openai: 25 }, "the owner's amendment (from $220)");
-  assert.equal(frozen.AMENDMENTS.length, 2);
+  assert.equal(frozen.AMENDMENTS.length, 3);
+  // The third amendment: the end rule narrowed — the two lines it misread in the fiction no longer end a session.
+  const gp1 = await import("../scripts/game-player-1/frozen.mjs");
+  const misread = ["\"He may be the sort who's handing out misfortune by the dozen to drovers and camp lads, one penny at a time, and calling it a game.\" He keeps his voice level. " + "I watch the bridge. ".repeat(20),
+    "I make my way back down the bridge toward the chandler's on the river side, keeping to the shopfronts. I stop somewhere I can watch the shell game from a doorway or a stall, close enough to see her hands and far enough not to be invited in. " + "I wait. ".repeat(10)];
+  for (const line of misread) { assert.equal(gp1.isEnd(line), true, "the frozen rule's misread"); assert.equal(frozen.endsSession(line), false); }
+  for (const line of ["I'd like to end the session here.", "(Out of game: let's stop here for tonight.)", "That's it for tonight — thank you!", "I think I'll end the session here; James beds down at the inn and I'd like to pick up tomorrow with the Hobb thread, the coppers and whatever Wren finds out about Pim, since the crossing tables are where it all meets."]) {
+    assert.equal(frozen.endsSession(line), true, line);
+    assert.equal(gp1.isEnd(line), true, "every end the narrowed rule counts, the frozen one counts");
+  }
+  assert.ok(frozen.misreadEnd({ key: "B-opus-1", startedAt: "2026-10-27T16:53:19.333Z" }));
   assert.ok(frozen.misreadEnd({ key: "B-opus-2", startedAt: "2026-10-27T13:50:32.322Z" }), "the end rule's misread is a cut attempt");
   assert.ok(!frozen.misreadEnd({ key: "B-opus-2", startedAt: "2026-10-27T20:00:00.000Z" }), "its replay is not");
   assert.match(frozen.AMENDMENTS[0].what, /from \$220 to \$350/);

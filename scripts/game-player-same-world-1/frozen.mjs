@@ -8,8 +8,9 @@
 // with 11w″ in. The sheet carries no alignment line (the owner, 2026-10-26: «в следующий раз без мировоззрения»).
 import { createHash } from "node:crypto";
 import {
-  AFTER_QUESTION, NOTE_QUESTION, PLAYER_PROMPT_HEAD, PLAYER_PROMPT_TAIL, SESSION_OPEN, SESSION_OVER, TURNS, campaignFiles, playerSystem,
+  AFTER_QUESTION, END_SESSION, NOTE_QUESTION, PLAYER_PROMPT_HEAD, PLAYER_PROMPT_TAIL, SESSION_OPEN, SESSION_OVER, TURNS, campaignFiles, playerSystem,
 } from "../game-player-1/frozen.mjs";
+import { wordsIn } from "../game-player-1/measures.mjs";
 import { WAITS_429 as GROUP1_WAITS_429 } from "../game-player-1/paid.mjs";
 import { DEEPSEEK as REPLICATE_DEEPSEEK, PROMPT_SHA256 as GROUP2_PROMPT_SHA256 } from "../game-player-replicate-1/frozen.mjs";
 
@@ -143,13 +144,25 @@ export const AMENDMENTS = [
   { at: "2026-10-27 14:15 UTC, after B-opus-2's first attempt", by: "the session (reported to the owner at once)",
     what: "A session that game player 1's frozen end rule closed on a line spoken in the fiction is a cut attempt, kept as it was and played again from the same frozen world; the rule itself is unchanged (the table stays group 2's). The only one: B-opus-2's first attempt (started 2026-10-27T13:50:32Z), closed at t12.",
     why: "James's line to Hobb — «…handing out misfortune by the dozen to drovers and camp lads, one penny at a time, and calling it a game» — matched the rule's «call it … game»; the player never ended the session (its note is headed «session 1» and goes on)." },
+  { at: "2026-10-27 17:25 UTC, after B-opus-1's replay", by: "the session (reported to the owner at once)",
+    what: "From the replays on, the end rule counts an end only when its matched words name the session or the campaign, or the whole message is short (40 words or fewer): game player 1's rule narrowed, so it can only remove ends. No finished session of this stage ended by the player, so none changes. B-opus-1's replay (started 2026-10-27T16:53:19Z, closed at t12) is a cut attempt as the second amendment reads it and is played again; the B-opus-2 replay stopped at its first turn to take the narrowed rule (not booked: the process was stopped before its ledger was written).",
+    why: "The rule read a second line in the fiction as the player's end — «I stop somewhere I can watch the shell game from a doorway» (B-opus-1's replay, t12) — at the table whose world is full of games (the crossing tables, the shell game); under the rule as frozen a replay there can close again on the same word." },
 ];
+/** The third amendment: game player 1's end rule, kept only where its matched words name the session or the campaign, or
+ * the message is short — a narrowing (every end it counts, the frozen rule counts). */
+export const SHORT_END_WORDS = 40;
+export function endsSession(text) {
+  const said = String(text ?? "");
+  const rule = new RegExp(END_SESSION.source, "gi");
+  for (const m of said.matchAll(rule)) if (/\b(?:session|campaign)\b/i.test(m[0]) || wordsIn(said).length <= SHORT_END_WORDS) return true;
+  return false;
+}
 /** The attempts the end rule closed on a line in the fiction (the second amendment): cut attempts, played again. */
-export const MISREAD_ENDS = [{ key: "B-opus-2", startedAt: "2026-10-27T13:50:32.322Z" }];
+export const MISREAD_ENDS = [{ key: "B-opus-2", startedAt: "2026-10-27T13:50:32.322Z" }, { key: "B-opus-1", startedAt: "2026-10-27T16:53:19.333Z" }];
 export const misreadEnd = (session) => MISREAD_ENDS.some((m) => m.key === session.key && m.startedAt === session.startedAt);
 
 export const DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({
   STAGE, STAGE_SOURCE, TABLES, FAMILIES, SEATS, ORDER, DEEPSEEK, ALIGNMENT_CUTS, ALIGNMENT: ALIGNMENT.source, COMPANIONS, PROMPT_SHA256, PLAYER_PROMPT_HEAD, PLAYER_PROMPT_TAIL, SESSION_OPEN,
   SESSION_OVER, NOTE_QUESTION, AFTER_QUESTION, TURNS, PREREGISTRATION, OWNER_BETS, NN_COUNTS, PERMUTATIONS, WITHIN, READINGS, OVERLAP_SYSTEM, OVERLAP_RULE, ROAD_SYSTEM, ROAD_TAGS,
-  WORLD_SYSTEM, WORLD_TAGS, CAPS, ESTIMATE, WAITS_429, SUPERSEDED, AMENDMENTS, MISREAD_ENDS,
+  WORLD_SYSTEM, WORLD_TAGS, CAPS, ESTIMATE, WAITS_429, SUPERSEDED, AMENDMENTS, MISREAD_ENDS, SHORT_END_WORDS, endsSession: endsSession.toString(),
 })).digest("hex");
