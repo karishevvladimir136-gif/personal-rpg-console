@@ -1,0 +1,36 @@
+{
+  "capUsd": 6,
+  "spentUsd": 0.0004,
+  "updatedAt": "2026-10-27T05:20:06.306Z",
+  "runs": [
+    {
+      "finishedAt": "2026-10-27T05:20:06.306Z",
+      "what": "persona-curiosity-1: the smoke, one short call per family",
+      "file": "persona-curiosity-1-smoke-20261027-052006.json",
+      "spentUsd": 0.0004,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "purpose": "smoke gpt-6-astra",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 18,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 5,
+          "reasoningTokens": 0,
+          "costUsd": 0.00043,
+          "seconds": 2.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_941d6332bfb34009b9a5ec36914f3ad8",
+          "responseId": "resp_0980711258a6aa70016ae03481585887d2a5f2443507df13ce"
+        }
+      ]
+    }
+  ]
+}
