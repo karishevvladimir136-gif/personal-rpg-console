@@ -295,3 +295,10 @@ session where it was seen.
   at a card is not a press and not stuck: the text goes to the DM as the player's narration, the card is shown once
   more with one line («the card waits for Onward or a reroll»), and only a third prose-only message counts. Text that
   speaks for an NPC is relayed to the DM as the player's *proposal*, never as the world's fact (11h).
+
+- **11aa (2026-10-26 22:10 LA).** The player's text screen does not carry the reroll allowance: the UI shows «rerolls
+  left N of 2» on the hero's card, but the screen rendered for a model player shows only «[Request an allowed reroll]».
+  Thirty sessions of model players therefore chose rerolls without knowing they were limited. Fix: the allowance line
+  («rerolls left N of 2 this session») is rendered into the player's screen text whenever the button is shown; Heroic
+  Inspiration likewise («Inspiration 1 — can reroll one of your own rolls»). Not applied to runs in flight; required for
+  HORIZON_1, PARTY_1 and any stage that reads reroll spending as costly.

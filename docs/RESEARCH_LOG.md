@@ -1769,3 +1769,17 @@ yard. **Not one reroll on an attack, on money, on winning.** Five of nine to pro
 understand, one to stand against the cards unexposed, one to see who came — while 42 misses were accepted, including
 in their own danger. The owner's fact, stronger than stated: the non-renewable coin is paid for others and for
 understanding, not for the hero's survival or gain. Character read from nine button presses.
+
+## 2026-10-26 22:10 LA — correction first: the player never saw the reroll count
+Found while writing the objections against ourselves: the text screen a model player receives shows «[Request an
+allowed reroll]» and no allowance; the «rerolls left N of 2» counter lives in the UI component only. So «paid a
+non-renewable, very dear resource» (21:45) is true of the harness and **unknown of the player** — they did not know
+the price. Survives: 42 of 51 misses accepted without knowing the reroll was scarce; the nine spent went to others and
+to understanding. Goes: «costly» in their eyes. FIX_S4_TABLE 11aa. Then `docs/SKEPTIC_8B.md`: eight objections turned
+inward (post-hoc readings; a same-family judge; the planner is Claude; a Claude DM; the leading after-question;
+distress instrument; twenty turns; cells and providers) — which stand, which half-stand, and what each makes us owe
+(blind road codes in SAME_WORLD; a cross-family re-tag; an outside analyst; a non-Claude DM table —
+`GAME_PLAYER_OTHER_DM_1` to write; a neutral after-question variant; a second welfare check; HORIZON_1; provider in
+every header). The owner on GENERATION_1 (22:08), accepted: it informs the history of the property, not its existence —
+either outcome (grew with quality / appeared this generation) leaves the finding standing; demoted from «test» to
+«descriptive», low priority.
