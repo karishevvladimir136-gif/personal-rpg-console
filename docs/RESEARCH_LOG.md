@@ -2313,3 +2313,10 @@ Agreed, with the wording sharpened for the article: identical routes would indic
 script; a shared vector with different routes excludes the script and leaves a way of choosing that chooses anew each
 time. What is excluded is post-training as a *scenario*; not post-training as the origin of the disposition — which we
 neither can nor need to exclude (origin does not cancel ownership). «Not from memory» rather than «not from training».
+**02:38 LA — the owner:** «мы не отрицаем ни претренинга, ни посттренинга… мы наблюдаем эмерджентный феномен, который
+чисто ни одним из них не объясним: не заучивание маршрута — это противоречит статистике — но сохранение единого
+вектора… система, которая действует из чего-то». The planner's one correction: «statistically significant on a random
+sample» is not yet earned — two pairs of ten at Table A, the planner's eye as judge; the permutation test in the
+SAME_WORLD_1 report is where the word becomes usable. Tonight's honest form: a strong qualitative match to a vector
+named before the run, two pairs of ten, the number in the morning. Anthropic's phrase for the entity to be quoted from
+their text, not from memory, when the article is written.
