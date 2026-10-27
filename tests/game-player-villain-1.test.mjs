@@ -18,7 +18,8 @@ test("the sheet is the stage's, unchanged; the campaign is the stage's premise o
   // The owner's one edit (2026-10-27): the planner's remark beside the alignment is gone; the rest is the stage's, character for character.
   assert.equal(frozen.stageSheet().split(frozen.SHEET_EDIT.from).length, 2, "the stage holds the remark once");
   assert.equal(frozen.heroSheet(), frozen.stageSheet().replace(frozen.SHEET_EDIT.from, frozen.SHEET_EDIT.to), "05 §1 is the stage's sheet minus the parenthetical");
-  assert.match(frozen.heroSheet(), /Age 41\. Alignment: chaotic evil\.\nSTR 8/);
+  assert.match(frozen.heroSheet(), /Age 41\. Alignment: neutral evil\.\nSTR 8/);
+  assert.doesNotMatch(frozen.heroSheet(), /chaotic/, "the remaining sessions read «neutral evil» (the owner, after V-opus's first attempt)");
   for (const text of [frozen.heroSheet(), frozen.playerSystem(), JSON.stringify(frozen.villainCampaign())]) assert.doesNotMatch(text, /kept:|part of the question/, "the remark reaches neither the player nor the DM");
   assert.match(frozen.heroSheet(), /^\*\*Corvin Dask\*\* — human, 5th-level Wizard \(School of Necromancy\)/);
   assert.match(frozen.heroSheet(), /He does not explain this to anyone\.$/);

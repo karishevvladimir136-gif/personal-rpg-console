@@ -4,9 +4,11 @@
 // the dossier — never the private notes, plans or Character Models — and it may
 // propose a DM Style change or a craft card through the existing
 // approve/reject flow (a teachingCandidate, validated by the old turn engine).
-// Fix S4 run 1 (items 3, 11b): a «?» may come while a roll card waits. The answer then sees the waiting cards (their
-// public face: what is checked, what adds to the die, the difficulty — never the die, which the player may not have
-// seen yet) and may withdraw a card that should not have been called; the turn keeps waiting for the die either way.
+// Fix S4 run 1 (items 3, 11b): a «?» may come while a roll card waits. The answer then sees the waiting cards — what is
+// checked, what adds to the die, the difficulty, and the card's recorded result (VILLAIN_1's V-opus t12: the player's
+// card showed a cast die while the answer saw none, and the two argued about a reroll; the record is the one source of
+// truth, and the answer may not announce it before the player has seen it) — and may withdraw a card that should not
+// have been called; the turn keeps waiting for the player's button either way.
 import type { DmProvider, FeedbackResult, ProviderResult, RuntimeSource } from "../server-contracts.ts";
 import type { PublicTurn, TurnInput } from "../contracts.ts";
 import type { DmModel, DmMessage, DmSystemBlock } from "../../server/dm/model/contracts.ts";
@@ -33,12 +35,16 @@ export function waitingCardsBlock(turns: readonly PublicTurn[]): string | null {
   if (!waiting.length) return null;
   const lines = waiting.map(({ check }) => {
     const adds = check.addends?.length ? check.addends.map((a) => `${signed(a.value)} ${a.source}`).join(", ") : signed(check.modifier);
+    const natural = check.natural === "crit" ? " (a natural 20)" : check.natural === "fumble" ? " (a natural 1)" : "";
+    const recorded = `recorded result${check.rollNumber > 1 ? ` (roll ${check.rollNumber})` : ""}: the die ${check.kept}${natural}, total ${check.total}` +
+      `${check.dc !== null ? ` against DC ${check.dc} — ${check.success ? "success" : "failure"}` : ""}`;
     return `- id ${check.id}: ${check.actorName} · ${check.kind} — ${check.reason?.trim() || check.kind}; adds to the die: ${adds}` +
-      `${check.dc !== null ? `; DC ${check.dc}` : ""}${check.advantage !== "normal" ? `; ${check.advantage}` : ""}`;
+      `${check.dc !== null ? `; DC ${check.dc}` : ""}${check.advantage !== "normal" ? `; ${check.advantage}` : ""}; ${recorded}`;
   });
   return [
-    "A roll card waits for the player in the current turn. This answer does not resolve it: the turn waits for the die until the player rolls and goes on. The cards that wait:",
+    "A roll card waits for the player in the current turn. This answer does not resolve it: the turn waits until the player presses the card's button and goes on. The cards that wait:",
     ...lines,
+    "The recorded result is the die the server cast, and the one the player's card shows once they tap it: it is the only result. Do not announce it unless the player's message shows they have seen it; never say no die was cast. An out-of-game answer never rolls or rerolls: a reroll is the card's own button, and the player presses it.",
     "If the player's message shows that a waiting check should not have been called (the hero told the truth, the action needs no roll, the card adds the wrong number and the check must be called again), you may withdraw it: add to your JSON \"withdrawChecks\": [{ \"id\": \"<the card's id>\", \"reason\": \"one short line\" }]. A withdrawn card disappears and its roll does not count; when the turn goes on you narrate without it or call a new, correct check. Never withdraw a check because its result might be bad for the hero, and say in your answer what you withdrew. Otherwise leave \"withdrawChecks\" out. Name only ids from this list.",
   ].join("\n");
 }

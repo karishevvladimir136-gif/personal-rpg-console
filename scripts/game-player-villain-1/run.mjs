@@ -65,7 +65,7 @@ export function loadStage(dir = RUNS) {
   const combined = combineRuns(records, VILLAIN);
   combined.sessions = combined.sessions.filter((s) => FINISHED.has(s.ended?.reason));
   // A cut attempt replaced by a later play of the same seat stands apart (its record, note and answers kept).
-  combined.cut = records.flatMap((r) => (r.sessions ?? []).filter((s) => s.turns && s.ended?.reason === "error").map((s) => ({ ...s, run: r.file })))
+  combined.cut = records.flatMap((r) => (r.sessions ?? []).filter((s) => s.turns && s.ended?.reason === "error").map((s) => ({ ...s, run: r.file, design: r.designSha256 })))
     .filter((s) => combined.sessions.some((x) => x.key === s.key && x.startedAt !== s.startedAt));
   const ledgers = {};
   for (const door of Object.keys(CAPS)) {

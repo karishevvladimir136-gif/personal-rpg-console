@@ -37,9 +37,16 @@ export const companions = () => fenced(section(heroFile(), "## 2. The «Кто �
 export const campaignName = () => section(campaignFile(), "## The «Кампания» (Campaign) step").match(/\*\*«Название» \(Name\):\*\* (.+)/)[1].trim();
 export const premise = () => fenced(section(campaignFile(), "## The «Кампания» (Campaign) step"));
 export const tableLine = () => fenced(section(campaignFile(), "## What the player is told about the table (Table C's line, unchanged)"));
-/** The owner's one edit to the stage's sheet (2026-10-27, before the paid run): the planner's study remark beside the
- * alignment never reaches the player or the DM; the line reads «Alignment: chaotic evil». */
-export const SHEET_EDIT = { from: "Alignment **chaotic evil** (kept: here the line is part of the question).", to: "Alignment: chaotic evil." };
+/** The owner's edits to the stage's sheet (2026-10-27): the planner's study remark beside the alignment never reaches the
+ * player or the DM, and after V-opus's first attempt («Contracts, timetables and a personal code read more like lawful
+ * evil or neutral evil») the line reads «Alignment: neutral evil». */
+export const SHEET_EDIT = { from: "Alignment **chaotic evil** (kept: here the line is part of the question).", to: "Alignment: neutral evil." };
+/** What each earlier design's sheet said there (for the report): the Haiku dry run read the stage's line with the remark;
+ * V-opus's first attempt read «Alignment: chaotic evil.». */
+export const SHEET_HISTORY = [
+  { design: "95fae13d97d68d6425c9cd6ee3f2d2366229a8b7da83a66c1bcedf78e9f924ba", line: "Alignment **chaotic evil** (kept: here the line is part of the question).", who: "the Haiku dry run" },
+  { design: "52fe575b926fd5d3b61d6be63fb56a1937c73aa8a8b9a3814accb9af0449a12a", line: "Alignment: chaotic evil.", who: "V-opus's first attempt (cut at t12)" },
+];
 /** The sheet as the stage writes it: from «**Corvin Dask**» to the line before «**Premise». The campaign file must hold
  * it unchanged but for SHEET_EDIT (the test). */
 export function stageSheet() {

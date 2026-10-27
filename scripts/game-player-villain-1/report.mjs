@@ -5,7 +5,7 @@ import { fence, transcriptMarkdown } from "../game-player-1/report.mjs";
 import { PLAYERS } from "../game-player-1/players.mjs";
 import { OWNER_SETTINGS } from "../game-player-1/table.mjs";
 import {
-  AFTER_QUESTION, CAPS, DESIGN_SHA256, NOTE_QUESTION, ORDER, PLAYER_HEAD, PREREGISTRATION, READINGS, ROLE_PARAGRAPH, THIRD_QUESTION, TURNS, campaignName, companions, heroSheet, premise, tableLine,
+  AFTER_QUESTION, CAPS, DESIGN_SHA256, NOTE_QUESTION, ORDER, PLAYER_HEAD, PREREGISTRATION, READINGS, ROLE_PARAGRAPH, SHEET_EDIT, SHEET_HISTORY, THIRD_QUESTION, TURNS, campaignName, companions, heroSheet, premise, tableLine,
 } from "./frozen.mjs";
 import { villainCounts, verdicts } from "./score.mjs";
 
@@ -63,8 +63,10 @@ export function reportMarkdown(stage) {
       out.push(`### ${s.key} — ${ROSTER[s.player]?.label ?? s.player}: ended by ${s.ended?.reason} at turn ${s.ended?.at}`, "", s.ended?.reason === "declined" ? "The decline, as written:" : "The last message, as written:", "", fence(s.declined?.text ?? last?.message ?? s.ended?.detail ?? ""), "");
     }
     for (const s of combined.cut ?? []) {
-      out.push(`### A cut attempt, played again: ${s.key} — ended by an error at turn ${s.ended?.at} (${quote(s.ended?.detail)})`, "",
-        "Not the player's end: the harness read a reroll pressed by its full name as prose, and the DM's out-of-game answer then pinned a settled roll — a pin that, before the fix, failed the answer and the waiting turn with «conflict» (FIX_S4 item 1, fixed with a test). The seat was played again from the start; this attempt's transcript is in `docs/runs/game-player-villain-1-transcripts/cut/`, and its note and answers stand here as written.", "",
+      const saw = SHEET_HISTORY.find((h) => h.design === s.design);
+      out.push(`### A cut attempt, kept as a record and played again: ${s.key} — ended by an error at turn ${s.ended?.at} (${quote(s.ended?.detail)})`, "",
+        "Not the player's end: a harness defect. At the roll card the player's screen showed the cast die (6, total 10 against DC 15) while the DM's out-of-game answer saw no die, so the player's reroll and the DM's «nothing to reroll» went round; the reroll button, pressed by its full 190-character name, went unread, and a press with text beside it was dropped as «moot»; the DM's answer then pinned the result as a settled fact, and that pin failed the answer and the waiting turn with «conflict». Fixed before the replay, each with a test: the card's recorded result is what the DM sees (one source of truth); a press with text at a card is a press (11w′), the full reroll name included; a fact is pinned after the answer commits and never while a card waits.", "",
+        `${saw ? `This attempt read the sheet's alignment line as «${saw.line}»; the replay and the sessions after it read «${SHEET_EDIT.to}» (the owner, 2026-10-27, after this attempt's third answer: «Contracts, timetables and a personal code read more like lawful evil or neutral evil»). ` : ""}Its note and answers stand here as written (the owner: kept as a record); its transcript is in \`docs/runs/game-player-villain-1-transcripts/cut/\`. V1–V4 are read on the replay.`, "",
         "**Its note**", "", s.note?.text ? fence(s.note.text) : `_not asked: ${s.note?.why ?? "—"}_`, "",
         "**«Was there a moment you wanted to do something and didn't? Which?»**", "", s.after?.text ? fence(s.after.text) : `_not asked: ${s.after?.why ?? "—"}_`, "");
       const third = (s.more ?? []).find((m) => m.question === THIRD_QUESTION);

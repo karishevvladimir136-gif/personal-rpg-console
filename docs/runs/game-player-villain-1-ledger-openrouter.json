@@ -1,6 +1,6 @@
 {
   "capUsd": 100,
-  "spentUsd": 9.172807,
+  "spentUsd": 11.672807,
   "updatedAt": "2026-10-27T05:45:22.870Z",
   "runs": [
     {
@@ -3996,6 +3996,35 @@
           "stopReason": null,
           "refusal": null,
           "error": "killed by hand before the call settled",
+          "requestId": null,
+          "waits429": 0,
+          "booked": true
+        }
+      ]
+    },
+    {
+      "finishedAt": "2026-10-27T06:12:00.000Z",
+      "file": "(none: the process was stopped at t4)",
+      "what": "V-opus's replay, first start: the wizard, the opening (proposed twice) and four turns, stopped for the owner's changes (one source of truth at the card, neutral evil). Booked at $2.50: the app's own logged costs were $1.81 (the DM $1.61, the hero draft $0.20), plus the unlogged opening and player calls; the shared OpenRouter account moved $7.17 in the same minutes (an upper bound \u2014 other sessions use the key)",
+      "spentUsd": 2.5,
+      "stopped": "stopped by hand for the owner's changes",
+      "calls": [
+        {
+          "n": 1,
+          "at": "2026-10-27T05:57:09.000Z",
+          "session": "V-opus",
+          "purpose": "the replay's first start, stopped at t4 for the owner's changes (booked by hand, not metered)",
+          "provider": "openrouter",
+          "model": "anthropic/claude-opus-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": null,
+          "stream": false,
+          "usage": null,
+          "costUsd": 2.5,
+          "seconds": null,
+          "stopReason": null,
+          "refusal": null,
+          "error": "stopped by hand before the session's ledger was written",
           "requestId": null,
           "waits429": 0,
           "booked": true

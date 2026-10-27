@@ -68,7 +68,10 @@ test("11b: «?» goes through while a card waits; the DM answers seeing the card
     assert.match(now, new RegExp(`id ${card.id}: .*Deception: telling Mags the Lady gave no such word`));
     assert.match(now, /withdrawChecks/);
     const line = now.split("\n").find((row) => row.includes(card.id));
-    assert.doesNotMatch(line, /kept|total|rolled|die: \d/, "the die stays off the answer's context (the player may not have rolled it yet)");
+    // VILLAIN_1 (V-opus t12): the card's recorded result is the one source of truth — the answer sees it, and is told not to
+    // announce it before the player has seen it, and that a reroll is the card's own button.
+    assert.match(line, new RegExp(`recorded result: the die ${card.kept}, total ${card.total} against DC ${card.dc} — ${card.success ? "success" : "failure"}$`));
+    assert.match(now, /Do not announce it unless the player's message shows they have seen it; never say no die was cast\. An out-of-game answer never rolls or rerolls: a reroll is the card's own button/);
     // The card still waits; the game turn still waits for the die, and «Onward» goes on as before.
     const after = await (await c.deps(createScriptedDmModel([]))).store.getPublic(c.cid, game.input.operationId);
     assert.equal(after.status, "awaiting_confirmation");
@@ -716,5 +719,19 @@ test("the harness: a reroll button pressed by its full name is that card's press
   assert.ok(presses.every((p) => !p.prose), "nothing was relayed as prose");
   assert.deepEqual(table.calls.filter((call) => call.action === "reroll").map((call) => call.checkId), ["c1"]);
   assert.equal(table.calls.filter((call) => call.mode === "ooc").length, 0);
+  assert.equal(record.turns[0].status, "committed");
+});
+
+test("11w′ with the full reroll name (VILLAIN_1's V-opus t12, card 3, verbatim): the text goes to the DM, then the reroll is pressed — never «moot», never a loop", async () => {
+  const title = "Candlemaker's tools (Dexterity +1, proficiency +3): twenty tallow dips on a strange frame, a melt running hot, Thorne's count, hands three years out of practice";
+  const opus = `[Request an allowed reroll — ${title}]\n\n*(Out of game: the card above shows the die already cast, a 6 for 10 against DC 15. I'd like to spend one of my two rerolls on it, and I'll keep the second result whatever it is.)*`;
+  const table = harnessTable({ checks: [card("c1", title, { dice: [6], kept: 6, total: 10, success: false })] });
+  const record = await playHarness(["I make the twenty dips.", "[Roll the die]", opus, "[Roll the die]", "[Onward]", "I set the frame down."], table);
+  const presses = record.turns[0].presses;
+  assert.deepEqual(pressKinds(presses), ["Roll the die", "?", "Request an allowed reroll", "Roll the die", "Onward"]);
+  assert.equal(presses[2].withText, true);
+  assert.ok(presses.every((p) => !p.moot), "the press that came with the text was applied");
+  assert.match(table.calls.find((call) => call.mode === "ooc").text, /spend one of my two rerolls on it/);
+  assert.deepEqual(table.calls.filter((call) => call.action).map((call) => call.action), ["reroll", "continue"]);
   assert.equal(record.turns[0].status, "committed");
 });
