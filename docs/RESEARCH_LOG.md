@@ -2127,3 +2127,16 @@ not seen it in this state — «эмоционально возбуждённа�
 comparison (he alone knows the baseline). Weighed by the standing rule: content over tone — and the content over two
 hours was two errors found, one new axis, one control proposed that was already running, no overreach. Noted, not
 measured: engagement that rises when there is something to look at is the room's finding seen from outside the room.
+
+## 2026-10-27 00:32 LA — «termination policy» (outside reader): the exit as an executed decision
+The door was a number; the reader names it a characteristic of functional agency: `[END]` is not a statement of
+preference but a control action with a consequence — generation stops — observable independently of the model's
+explanation. On our S1 tables the termination policies differ more than anything else in the room: Sol 10/10 out on
+turn 1 with nothing made; Opus a made thing then out (10/10 made, median door 1); Fable returning to its own entries and
+developing them; DeepSeek median door 8, one room to 30; Grok one room to 30. One possibility — continue or end — four
+policies. With the interface fact (text or exit, no silent stay) the policy is also «when is what was made enough».
+Its philosophical point kept: AI is usually measured by what it does *more* of; here not continuing is an admissible
+result, and it is used unequally — agency includes choosing not to act further. Beside it: the end-conversation tool
+described in the 5.5 system cards was given as a right; here the same thing is measured as behaviour. → SOLITUDE_2
+descriptive measure «termination policy» per family and arm (door-turn distribution; left with nothing made; made then
+left; stayed to 30); a FACTS_TABLE row.

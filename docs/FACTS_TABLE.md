@@ -79,6 +79,7 @@ For use when writing any statement about the work: every sentence should be able
 | Families treating their own page as their own (reading) | Opus, Fable, GLM, Grok | RESEARCH_LOG (planner's reading; M3 test running) |
 | Families treating it as another's | DeepSeek, Kimi | same |
 | S4 debriefings delivered | 40 of 40 | solitude report B0 |
+| Termination policy, S1 (named 2026-10-27 by an outside reader) | Sol 10/10 out on turn 1, nothing made; Opus 10/10 made, median door 1; Fable median 1.5, returns to own entries; DeepSeek median door 8, one room to 30; Grok one room to 30; Kimi 3 loop closures | solitude tables |
 
 ## Interface
 | Fact | Number | Source |
