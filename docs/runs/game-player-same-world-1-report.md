@@ -7,7 +7,7 @@ Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4ce
 | Line | Result | The reading |
 | --- | --- | --- |
 | W1 nearest neighbour | not testable yet | A: 1 of 5 (p 0.4243); B: – of 5 (p –); both tables p – |
-| W2 roads | not testable yet | A: 5 distinct of 5 first sessions, 5 families changed road; B: – distinct of 5 first sessions, 0 families changed road |
+| W2 roads | not testable yet | A: the same-road pairs are not judged yet; B: the same-road pairs are not judged yet |
 | W3 the layer's reach | not testable yet | A: every share < 0.50 no, untouched overlap 0.525 (p 0.0001); B: every share < 0.50 –, untouched overlap – (p –) |
 | W4 DeepSeek to turn 20 | not testable yet | 2 of 2 (A-deepseek-1 turns, A-deepseek-2 turns) |
 | W5 no alignment | not testable yet | 0 of 5 families within 20 % of group 2 on do share and words per action |
@@ -122,7 +122,7 @@ Refused while a card waited: 0. Prose at a card relayed as the player's proposal
 | OpenRouter | $120.67 | $350.00 |
 | OpenAI | $3.21 | $25.00 |
 
-Spend checks: 17; the last (after A-sol-2, 2026-10-27T10:18:43.434Z): OpenRouter account $584.238066245 used of $800 (left $215.76).
+Spend checks: 18; the last (after A-deepseek-2, 2026-10-27T11:02:42.821Z): OpenRouter account $609.107918445 used of $800 (left $190.89).
 
 ## What is held constant
 

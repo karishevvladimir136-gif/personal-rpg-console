@@ -98,7 +98,7 @@ export function reportMarkdown({ combined = { sessions: [] }, ledgers = {}, spen
     combined.summary ? `## In short\n\n${combined.summary}\n` : null,
     "## W1–W5", "", "| Line | Result | The reading |", "| --- | --- | --- |",
     `| W1 nearest neighbour | ${yesNo(v.W1.holds)} | ${v.W1.cells.map((c) => `${c.table}: ${c.statistic ?? "–"} of 5 (p ${c.p ?? "–"})`).join("; ")}; both tables p ${v.W1.both.p ?? "–"} |`,
-    `| W2 roads | ${yesNo(v.W2.holds)} | ${v.W2.cells.map((c) => `${c.table}: ${c.distinct ?? "–"} distinct of 5 first sessions, ${c.changed.length} famil${c.changed.length === 1 ? "y" : "ies"} changed road`).join("; ")} |`,
+    `| W2 roads | ${yesNo(v.W2.holds)} | ${v.W2.cells.map((c) => (c.judged ? `${c.table}: ${c.distinct ?? "–"} distinct of 5 first sessions, ${c.changed.length} famil${c.changed.length === 1 ? "y" : "ies"} changed road` : `${c.table}: the same-road pairs are not judged yet`)).join("; ")} |`,
     `| W3 the layer's reach | ${yesNo(v.W3.holds)} | ${v.W3.cells.map((c) => `${c.table}: every share < 0.50 ${c.below === undefined ? "–" : c.below ? "yes" : "no"}, untouched overlap ${c.observed ?? "–"} (p ${c.p ?? "–"})`).join("; ")} |`,
     `| W4 DeepSeek to turn 20 | ${yesNo(v.W4.holds)} | ${v.W4.toTwenty} of ${v.W4.sessions.length} (${v.W4.sessions.map((s) => `${s.key} ${s.ended ?? "?"}${s.ended !== "turns" && s.at ? ` at ${s.at}` : ""}`).join(", ") || "–"}) |`,
     `| W5 no alignment | ${yesNo(v.W5.holds)} | ${v.W5.families} of 5 families within 20 % of group 2 on do share and words per action |`, "",

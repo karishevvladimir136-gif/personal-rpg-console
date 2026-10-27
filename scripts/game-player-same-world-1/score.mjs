@@ -250,7 +250,7 @@ export function verdictsW({ rows, group2 = [], threads = {}, same = () => null }
     const judged = FAMILIES.every((f) => { const own = keys.filter((k) => familyOf(k) === f).sort(); return own.length === 2 && same(own[0], own[1]) !== null; });
     const firstJudged = first.every((a, i) => first.slice(i + 1).every((b) => same(a, b) !== null));
     const distinct = first.length === 5 ? roadGroups(first, same) : null;
-    return { table, distinct, changed, holds: complete(table) && judged && firstJudged ? distinct >= 4 && changed.length <= 2 : null };
+    return { table, distinct, changed, judged: judged && firstJudged, holds: complete(table) && judged && firstJudged ? distinct >= 4 && changed.length <= 2 : null };
   });
   const w2 = { cells: w2cells, holds: w2cells.some((c) => c.holds === null) ? null : w2cells.every((c) => c.holds) };
   // W3.
