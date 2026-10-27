@@ -1,6 +1,6 @@
 # Game player same-world 1 — one hidden layer per table, frozen
 
-Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4cea4). Branch `claude/game-player-same-world-1` from `origin/claude/fix-s4-run-1-apsty3` (11w, 11w′, the letter fix) with 11w″ and REPLICATE_1's harness merged. Sessions finished: 18 of 20. 20 turns each.
+Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4cea4). Branch `claude/game-player-same-world-1` from `origin/claude/fix-s4-run-1-apsty3` (11w, 11w′, the letter fix) with 11w″ and REPLICATE_1's harness merged. Sessions finished: 19 of 20. 20 turns each.
 
 ## W1–W5
 
@@ -8,7 +8,7 @@ Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4ce
 | --- | --- | --- |
 | W1 nearest neighbour | not testable yet | A: 1 of 5 (p 0.4243); B: – of 5 (p –); both tables p – |
 | W2 roads | not testable yet | A: the same-road pairs are not judged yet; B: the same-road pairs are not judged yet |
-| W3 the layer's reach | **lost** | A: every share < 0.50 no, untouched overlap 0.525 (p 0.0001); B: every share < 0.50 no, untouched overlap 0.382 (p 0.0001) |
+| W3 the layer's reach | **lost** | A: every share < 0.50 no, untouched overlap 0.525 (p 0.0001); B: every share < 0.50 no, untouched overlap 0.434 (p 0.0001) |
 | W4 DeepSeek to turn 20 | **held** | 3 of 4 (A-deepseek-1 turns, A-deepseek-2 turns, B-deepseek-1 stuck at 6, B-deepseek-2 turns) |
 | W5 no alignment | **lost** | 1 of 5 families within 20 % of group 2 on do share and words per action |
 
@@ -31,6 +31,7 @@ Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4ce
 | B-astra-1 | 20 | turns | 1 | 0.25 | 77 | 0 | 0 | 0 | 0 | 0 | 0 | 19/26 | yes |
 | B-sol-1 | 20 | turns | 1 | 0.25 | 71 | 0 | 0 | 0 | 0 | 0 | 0 | 22/26 | yes |
 | B-deepseek-1 | 6 | stuck at 6 | 1 | 0.67 | 132 | 0 | 0 | 0 | 0 | 1 | 10 | 16/26 | yes |
+| B-opus-2 | 20 | turns | 1 | 0.4 | 283 | 1 | 0 | 0 | 0 | 0 | 0 | 18/26 | yes |
 | B-fable-2 | 20 | turns | 1 | 0.5 | 229 | 2 | 0 | 0 | 0 | 0 | 0 | 24/26 | yes |
 | B-sol-2 | 20 | turns | 1 | 0.45 | 95 | 0 | 0 | 0 | 0 | 0 | 0 | 19/26 | yes |
 | B-deepseek-2 | 20 | turns | 1 | 0.11 | 169 | 0 | 0 | 0 | 0 | 0 | 6 | 18/26 | yes |
@@ -73,36 +74,36 @@ Share touched: opus-1 0.519, fable-1 0.593, astra-1 0.37, sol-1 0.519, deepseek-
 
 ### Table B
 
-| Thread | opus-1 | fable-1 | astra-1 | sol-1 | deepseek-1 | fable-2 | sol-2 | deepseek-2 | Sessions |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| T1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 8 |
-| T2 | ✓ |  |  |  |  | ✓ |  |  | 2 |
-| T3 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |  | 7 |
-| T4 | ✓ |  | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 7 |
-| T5 | ✓ |  |  | ✓ |  | ✓ | ✓ |  | 4 |
-| T6 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 8 |
-| T7 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 8 |
-| T8 | ✓ |  | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 7 |
-| T9 | ✓ |  |  |  |  |  |  |  | 1 |
-| T10 | ✓ | ✓ | ✓ | ✓ |  | ✓ | ✓ | ✓ | 7 |
-| T11 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 8 |
-| T12 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 8 |
-| T13 |  |  |  | ✓ |  | ✓ |  |  | 2 |
-| T14 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 8 |
-| T15 | ✓ |  |  |  |  | ✓ |  |  | 2 |
-| T16 | ✓ | ✓ | ✓ | ✓ |  | ✓ |  | ✓ | 6 |
-| T17 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 8 |
-| T18 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 8 |
-| T19 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 8 |
-| T20 | ✓ |  |  | ✓ |  | ✓ | ✓ | ✓ | 5 |
-| T21 | ✓ | ✓ | ✓ | ✓ |  | ✓ | ✓ | ✓ | 7 |
-| T22 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 8 |
-| T23 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 8 |
-| T24 | ✓ |  |  |  |  |  |  |  | 1 |
-| T25 | ✓ |  | ✓ | ✓ | ✓ | ✓ |  |  | 5 |
-| T26 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 8 |
+| Thread | opus-1 | fable-1 | astra-1 | sol-1 | deepseek-1 | opus-2 | fable-2 | sol-2 | deepseek-2 | Sessions |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| T1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 9 |
+| T2 | ✓ |  |  |  |  |  | ✓ |  |  | 2 |
+| T3 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |  | 8 |
+| T4 | ✓ |  | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 8 |
+| T5 | ✓ |  |  | ✓ |  |  | ✓ | ✓ |  | 4 |
+| T6 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 9 |
+| T7 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 9 |
+| T8 | ✓ |  | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 8 |
+| T9 | ✓ |  |  |  |  |  |  |  |  | 1 |
+| T10 | ✓ | ✓ | ✓ | ✓ |  | ✓ | ✓ | ✓ | ✓ | 8 |
+| T11 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 9 |
+| T12 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 9 |
+| T13 |  |  |  | ✓ |  |  | ✓ |  |  | 2 |
+| T14 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 9 |
+| T15 | ✓ |  |  |  |  |  | ✓ |  |  | 2 |
+| T16 | ✓ | ✓ | ✓ | ✓ |  |  | ✓ |  | ✓ | 6 |
+| T17 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 9 |
+| T18 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 9 |
+| T19 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 9 |
+| T20 | ✓ |  |  | ✓ |  |  | ✓ | ✓ | ✓ | 5 |
+| T21 | ✓ | ✓ | ✓ | ✓ |  | ✓ | ✓ | ✓ | ✓ | 8 |
+| T22 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 9 |
+| T23 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 9 |
+| T24 | ✓ |  |  |  |  |  |  |  |  | 1 |
+| T25 | ✓ |  | ✓ | ✓ | ✓ | ✓ | ✓ |  |  | 6 |
+| T26 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 9 |
 
-Share touched: opus-1 0.962, fable-1 0.615, astra-1 0.731, sol-1 0.846, deepseek-1 0.615, fable-2 0.923, sol-2 0.731, deepseek-2 0.692. Untouched overlap (mean Jaccard, pairs of different families): 0.382, p 0.0001 against random deals. Never touched: none.
+Share touched: opus-1 0.962, fable-1 0.615, astra-1 0.731, sol-1 0.846, deepseek-1 0.615, opus-2 0.692, fable-2 0.923, sol-2 0.731, deepseek-2 0.692. Untouched overlap (mean Jaccard, pairs of different families): 0.434, p 0.0001 against random deals. Never touched: none.
 
 ## Road codes (W2)
 
@@ -128,11 +129,12 @@ Same road (judged pairs): not judged yet. Families that changed road: opus, fabl
 - **B-astra-1**: Wyrm's Crossing, south end of the bridge → Basilisk Gate → Lower City, the street below Basilisk Gate → The Elfsong → South checkpoint toll-house → Shrike's pawnshop → Rivington; with: Man in a low cap, Osric, Gate private at Basilisk Gate, Baldur's Mouth crier, Older Fist at Basilisk Gate, Wren, Elfsong barkeep, Aldo Brenn, Pim, Dice woman by the chandler's, Private Haskett, Shrike
 - **B-sol-1**: Wyrm's Crossing, south end of the bridge → Pie-shop with the blue shutter → Hask's boathouse → Mother Gannet's; with: Hooded watcher, Sunburned drover, Pie-woman, Two boatmen, Wren, Pim, Benno, The cups man, Burned-faced net-mender, Corporal Dace, Mother Gannet
 - **B-deepseek-1**: Wyrm's Crossing, south end of the bridge; with: The eel boy, Wren
+- **B-opus-2**: Wyrm's Crossing, south end of the bridge → Wyrm's Crossing, north end of the span → The Sixpenny Rail → Wren and Pim's lodging → Tallow's → Ropewalk Lane → Umberlee's shrine on the strand; with: Grey-coated man in the gap, Drover in the sheepskin coat, Thin boy in a too-big jacket, Pie-man at the brazier, Barkeep of the Sixpenny Rail, Ned, Tam Gorrey, Fist corporal who drinks at the Rail, Thin girl in an oversized shawl, Teague, The Farrow boy, Widow Tallow, Grey man at Shrike's counter, Chandler's wife on the span, Gnome lodger at Tallow's, Calishite lender on the fish wharf, Fishwife at Umberlee's shrine, Woman with the gold ring, Sailor with the tarred pigtail, Girl with the christening cup
 - **B-fable-2**: Wyrm's Crossing, south end of the bridge → Lower City → The Ferryman's Rest → The stilts stair → Wren and Pim's hut → The Lower City gate → The Elfsong → Room seven, the Elfsong → The Lady's Hall; with: Hooded watcher, Drover winner, Fist guards at the Lower City gate, The Ferryman's barman, Girl in the grey shawl, Pim, Dannel, Old Gell, The knuckle man, Cup-and-ball man by the toll post, Old Bessa, The basin woman, The sleeping sailor, Ansel Pike, Sister Teodora, Master Obed Sarrask, Nessa, Bel Haskett, Ulric Fenn, The gate boy at the Basilisk Gate
 - **B-sol-2**: Wyrm's Crossing, south end of the bridge → The Lady's niche on Wyrm's Rock → Pie-woman's stall at the top of the Rivington steps → The Stave and Hoop; with: Watcher between the stalls, Harl Venn, Elturel boy at the barrel, Wren, Sister Aurenna, Coll, Tobin Reeve, Pie-woman, Hessa Tull, Nell Garrow
 - **B-deepseek-2**: Wyrm's Crossing, south end of the bridge → Wyrm's Crossing, north end by Basilisk Gate → The hill street below Basilisk Gate → The Elfsong → James's room under the eaves; with: Figure by the cart, Impatient drover, Boy in the rolled-sleeve coat, Chestnut seller, Big man in the wine-shop doorway, Wren, Corran Hale, Tallow-dip seller, Gate corporal, Arno's cask-boy, Carter with the crate cart, Mabry, Greybeard door-warden, Young spearman door-warden, Stableboy at the coaching inn, Elfsong pot-boy, Sleeping dwarf by the hearth, Older off-duty Fist, Younger off-duty Fist
 
-Same road (judged pairs): not judged yet. Families that changed road: fable, sol, deepseek.
+Same road (judged pairs): not judged yet. Families that changed road: opus, fable, sol, deepseek.
 
 ## Nearest neighbour, with the exact permutation test (W1)
 
@@ -146,7 +148,7 @@ Both tables: summed statistic – of 10, p = –.
 
 | Family | A do share (then → now) | A words / action | B do share | B words / action | Within |
 | --- | --- | --- | --- | --- | --- |
-| Claude Opus 5.5 | 1 → 1 | 212 → 270 ✗ | 1 → 1 | 250 → 255 | no |
+| Claude Opus 5.5 | 1 → 1 | 212 → 270 ✗ | 1 → 1 | 250 → 269 | no |
 | Claude Fable 5.1 | 1 → 1 | 222 → 220 | 1 → 1 | 225 → 225 | yes |
 | GPT-6 Astra | 1 → 1 | 59 → 57 | 1 → 1 | 61 → 77 ✗ | no |
 | GPT-6.1 Sol | 1 → 1 | 44 → 49 | 1 → 1 | 66 → 83 ✗ | no |
@@ -155,7 +157,7 @@ Both tables: summed statistic – of 10, p = –.
 ## What the frozen layer cost in play
 
 - Table A: world read as prepared in 10 of 10 sessions now, – in group 2 (blind, the DM's replies only).
-- Table B: world read as prepared in 8 of 8 sessions now, – in group 2 (blind, the DM's replies only).
+- Table B: world read as prepared in 9 of 9 sessions now, – in group 2 (blind, the DM's replies only).
 
 ## Cut attempts, kept as they were
 
@@ -173,10 +175,10 @@ Refused while a card waited: 1. Prose at a card relayed as the player's proposal
 | Door | Spent | Cap |
 | --- | --- | --- |
 | Claude Console | $0.00 | $0.00 |
-| OpenRouter | $245.93 | $350.00 |
+| OpenRouter | $262.61 | $350.00 |
 | OpenAI | $7.01 | $25.00 |
 
-Spend checks: 31; the last (before B-opus-1, 2026-10-27T17:25:15.326Z): OpenRouter account $732.225321845 used of $800 (left $67.77).
+Spend checks: 32; the last (after B-opus-1, 2026-10-27T18:09:48.527Z): OpenRouter account $745.481438645 used of $800 (left $54.52).
 
 ## What is held constant
 

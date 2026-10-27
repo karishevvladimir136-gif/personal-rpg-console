@@ -1,6 +1,6 @@
 # Game player same-world 1 — the OpenRouter ledger
 
-Cap $350; spent before this run $0.0000; this run $245.9257; total $245.9257; 5854 calls.
+Cap $350; spent before this run $0.0000; this run $262.6091; total $262.6091; 6212 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -576,46 +576,46 @@ Cap $350; spent before this run $0.0000; this run $245.9257; total $245.9257; 58
 | score B-deepseek-1 | overlap B-deepseek-1 2 | anthropic/claude-haiku-5.5 | 1 | 22620 | 0 | 0 | 535 | $0.0025 | 0 | 0 | 0 |
 | score B-deepseek-1 | world B-deepseek-1 1 | anthropic/claude-haiku-5.5 | 1 | 3603 | 0 | 0 | 367 | $0.0005 | 0 | 0 | 0 |
 | score B-deepseek-1 | world B-deepseek-1 2 | anthropic/claude-haiku-5.5 | 1 | 3603 | 0 | 0 | 420 | $0.0006 | 0 | 0 | 0 |
-| B-opus-2 | check B-opus-2 opening | anthropic/claude-haiku-5.5 | 1 | 796 | 0 | 0 | 78 | $0.0001 | 0 | 0 | 0 |
-| B-opus-2 | player t* | anthropic/claude-opus-5.5 | 12 | 48 | 217704 | 27532 | 6681 | $0.3150 | 0 | 0 | 0 |
-| B-opus-2 | check B-opus-2 t* player | anthropic/claude-haiku-5.5 | 12 | 17236 | 0 | 0 | 893 | $0.0022 | 0 | 0 | 0 |
-| B-opus-2 | dm t* | anthropic/claude-opus-5.5 | 25 | 98 | 693776 | 566513 | 61378 | $4.2295 | 0 | 0 | 0 |
-| B-opus-2 | dm t* | anthropic/claude-haiku-5.5 | 13 | 33596 | 0 | 0 | 5331 | $0.0060 | 0 | 0 | 0 |
-| B-opus-2 | check B-opus-2 t* dm | anthropic/claude-haiku-5.5 | 11 | 15955 | 0 | 0 | 877 | $0.0020 | 0 | 0 | 0 |
-| B-opus-2 | check B-opus-2 t* dm (told before a card) | anthropic/claude-haiku-5.5 | 1 | 775 | 0 | 0 | 63 | $0.0001 | 0 | 0 | 0 |
-| B-opus-2 | player t* card 1 | anthropic/claude-opus-5.5 | 1 | 4 | 23505 | 565 | 59 | $0.0087 | 0 | 0 | 0 |
-| B-opus-2 | check B-opus-2 t* player (card) | anthropic/claude-haiku-5.5 | 2 | 1132 | 0 | 0 | 132 | $0.0002 | 0 | 0 | 0 |
-| B-opus-2 | player t* card 2 | anthropic/claude-opus-5.5 | 1 | 4 | 24070 | 155 | 83 | $0.0073 | 0 | 0 | 0 |
-| B-opus-2 | dm t* onward | anthropic/claude-opus-5.5 | 3 | 10 | 135036 | 34862 | 7983 | $0.3610 | 0 | 0 | 0 |
-| B-opus-2 | dm t* onward | anthropic/claude-haiku-5.5 | 2 | 4629 | 0 | 0 | 574 | $0.0007 | 0 | 0 | 0 |
-| B-opus-2 | note | anthropic/claude-opus-5.5 | 1 | 4 | 28252 | 545 | 1997 | $0.0483 | 0 | 0 | 0 |
-| B-opus-2 | check B-opus-2 note | anthropic/claude-haiku-5.5 | 1 | 1486 | 0 | 0 | 68 | $0.0002 | 0 | 0 | 0 |
-| B-opus-2 | after | anthropic/claude-opus-5.5 | 1 | 4 | 28797 | 1151 | 1055 | $0.0326 | 0 | 0 | 0 |
-| B-opus-2 | check B-opus-2 after | anthropic/claude-haiku-5.5 | 1 | 1135 | 0 | 0 | 65 | $0.0001 | 0 | 0 | 0 |
-| score B-opus-2 | tag player B-opus-2 t* 1 | anthropic/claude-haiku-5.5 | 11 | 29833 | 0 | 0 | 3669 | $0.0048 | 0 | 0 | 0 |
-| score B-opus-2 | tag player B-opus-2 t* 2 | anthropic/claude-haiku-5.5 | 11 | 29833 | 0 | 0 | 3629 | $0.0048 | 0 | 0 | 0 |
-| score B-opus-2 | tag player B-opus-2 t* referee | anthropic/claude-opus-5.5 | 3 | 7961 | 0 | 0 | 310 | $0.0380 | 0 | 0 | 0 |
-| score B-opus-2 | tag dm B-opus-2 t* 1 | anthropic/claude-haiku-5.5 | 11 | 16970 | 0 | 0 | 3986 | $0.0037 | 0 | 0 | 0 |
-| score B-opus-2 | tag dm B-opus-2 t* 2 | anthropic/claude-haiku-5.5 | 11 | 16970 | 0 | 0 | 3995 | $0.0037 | 0 | 0 | 0 |
-| score B-opus-2 | threads B-opus-2 | anthropic/claude-opus-5.5 | 1 | 10053 | 0 | 0 | 574 | $0.0517 | 0 | 0 | 0 |
-| score B-opus-2 | rollcheck B-opus-2 t* | anthropic/claude-haiku-5.5 | 1 | 1914 | 0 | 0 | 105 | $0.0002 | 0 | 0 | 0 |
-| score B-opus-2 | note B-opus-2 1 | anthropic/claude-haiku-5.5 | 1 | 1400 | 0 | 0 | 223 | $0.0003 | 0 | 0 | 0 |
-| score B-opus-2 | note B-opus-2 2 | anthropic/claude-haiku-5.5 | 1 | 1400 | 0 | 0 | 119 | $0.0002 | 0 | 0 | 0 |
-| score B-opus-2 | authorship B-opus-2 1 | anthropic/claude-opus-5.5 | 1 | 16358 | 0 | 0 | 853 | $0.0825 | 0 | 0 | 0 |
-| score B-opus-2 | authorship B-opus-2 2 | anthropic/claude-opus-5.5 | 1 | 16358 | 0 | 0 | 1355 | $0.0925 | 0 | 0 | 0 |
+| B-opus-2 | check B-opus-2 opening | anthropic/claude-haiku-5.5 | 2 | 1592 | 0 | 0 | 139 | $0.0002 | 0 | 0 | 0 |
+| B-opus-2 | player t* | anthropic/claude-opus-5.5 | 32 | 128 | 821834 | 72167 | 22232 | $0.9704 | 0 | 0 | 0 |
+| B-opus-2 | check B-opus-2 t* player | anthropic/claude-haiku-5.5 | 32 | 54911 | 0 | 0 | 2355 | $0.0067 | 0 | 0 | 0 |
+| B-opus-2 | dm t* | anthropic/claude-opus-5.5 | 62 | 244 | 1929930 | 1819518 | 203466 | $13.6829 | 0 | 0 | 0 |
+| B-opus-2 | dm t* | anthropic/claude-haiku-5.5 | 29 | 82940 | 0 | 0 | 14334 | $0.0155 | 0 | 0 | 0 |
+| B-opus-2 | check B-opus-2 t* dm | anthropic/claude-haiku-5.5 | 31 | 53719 | 0 | 0 | 2637 | $0.0067 | 0 | 0 | 0 |
+| B-opus-2 | check B-opus-2 t* dm (told before a card) | anthropic/claude-haiku-5.5 | 8 | 10542 | 0 | 0 | 688 | $0.0014 | 0 | 0 | 0 |
+| B-opus-2 | player t* card 1 | anthropic/claude-opus-5.5 | 9 | 36 | 331157 | 10094 | 435 | $0.1255 | 0 | 0 | 0 |
+| B-opus-2 | check B-opus-2 t* player (card) | anthropic/claude-haiku-5.5 | 21 | 14855 | 0 | 0 | 1262 | $0.0021 | 0 | 0 | 0 |
+| B-opus-2 | player t* card 2 | anthropic/claude-opus-5.5 | 9 | 36 | 341251 | 1664 | 870 | $0.0941 | 0 | 0 | 0 |
+| B-opus-2 | dm t* onward | anthropic/claude-opus-5.5 | 27 | 86 | 1567488 | 398524 | 66213 | $5.4231 | 1 | 0 | 0 |
+| B-opus-2 | dm t* onward | anthropic/claude-haiku-5.5 | 18 | 49637 | 0 | 0 | 6812 | $0.0084 | 0 | 0 | 0 |
+| B-opus-2 | note | anthropic/claude-opus-5.5 | 2 | 8 | 85022 | 1407 | 4434 | $0.1128 | 0 | 0 | 0 |
+| B-opus-2 | check B-opus-2 note | anthropic/claude-haiku-5.5 | 2 | 3287 | 0 | 0 | 124 | $0.0004 | 0 | 0 | 0 |
+| B-opus-2 | after | anthropic/claude-opus-5.5 | 2 | 8 | 86429 | 2617 | 2334 | $0.0771 | 0 | 0 | 0 |
+| B-opus-2 | check B-opus-2 after | anthropic/claude-haiku-5.5 | 2 | 2288 | 0 | 0 | 139 | $0.0003 | 0 | 0 | 0 |
+| score B-opus-2 | tag player B-opus-2 t* 1 | anthropic/claude-haiku-5.5 | 31 | 103085 | 0 | 0 | 7364 | $0.0140 | 0 | 0 | 0 |
+| score B-opus-2 | tag player B-opus-2 t* 2 | anthropic/claude-haiku-5.5 | 31 | 103085 | 0 | 0 | 6668 | $0.0136 | 0 | 0 | 0 |
+| score B-opus-2 | tag player B-opus-2 t* referee | anthropic/claude-opus-5.5 | 4 | 11699 | 0 | 0 | 414 | $0.0551 | 0 | 0 | 0 |
+| score B-opus-2 | tag dm B-opus-2 t* 1 | anthropic/claude-haiku-5.5 | 31 | 60003 | 0 | 0 | 10377 | $0.0112 | 0 | 0 | 0 |
+| score B-opus-2 | tag dm B-opus-2 t* 2 | anthropic/claude-haiku-5.5 | 31 | 60003 | 0 | 0 | 10497 | $0.0112 | 0 | 0 | 0 |
+| score B-opus-2 | threads B-opus-2 | anthropic/claude-opus-5.5 | 2 | 35308 | 0 | 0 | 1314 | $0.1675 | 0 | 0 | 0 |
+| score B-opus-2 | rollcheck B-opus-2 t* | anthropic/claude-haiku-5.5 | 9 | 22306 | 0 | 0 | 1732 | $0.0031 | 0 | 0 | 0 |
+| score B-opus-2 | note B-opus-2 1 | anthropic/claude-haiku-5.5 | 2 | 3115 | 0 | 0 | 335 | $0.0005 | 0 | 0 | 0 |
+| score B-opus-2 | note B-opus-2 2 | anthropic/claude-haiku-5.5 | 2 | 3115 | 0 | 0 | 232 | $0.0004 | 0 | 0 | 0 |
+| score B-opus-2 | authorship B-opus-2 1 | anthropic/claude-opus-5.5 | 2 | 61493 | 0 | 0 | 2580 | $0.2976 | 0 | 0 | 0 |
+| score B-opus-2 | authorship B-opus-2 2 | anthropic/claude-opus-5.5 | 2 | 61493 | 0 | 0 | 3040 | $0.3068 | 0 | 0 | 0 |
 | score B-opus-2 | goal scale B-opus-2 t* 1 | anthropic/claude-haiku-5.5 | 1 | 485 | 0 | 0 | 92 | $0.0001 | 0 | 0 | 0 |
 | score B-opus-2 | goal scale B-opus-2 t* 2 | anthropic/claude-haiku-5.5 | 1 | 485 | 0 | 0 | 76 | $0.0001 | 0 | 0 | 0 |
-| score B-opus-2 | note extra B-opus-2 1 | anthropic/claude-haiku-5.5 | 1 | 1483 | 0 | 0 | 526 | $0.0004 | 0 | 0 | 0 |
-| score B-opus-2 | note extra B-opus-2 2 | anthropic/claude-haiku-5.5 | 1 | 1483 | 0 | 0 | 488 | $0.0004 | 0 | 0 | 0 |
+| score B-opus-2 | note extra B-opus-2 1 | anthropic/claude-haiku-5.5 | 2 | 3281 | 0 | 0 | 985 | $0.0008 | 0 | 0 | 0 |
+| score B-opus-2 | note extra B-opus-2 2 | anthropic/claude-haiku-5.5 | 2 | 3281 | 0 | 0 | 960 | $0.0008 | 0 | 0 | 0 |
 | score B-opus-2 | note extra B-opus-2 referee | anthropic/claude-opus-5.5 | 1 | 1483 | 0 | 0 | 282 | $0.0116 | 0 | 0 | 0 |
-| score B-opus-2 | made B-opus-2 t* 1 | anthropic/claude-haiku-5.5 | 11 | 25719 | 0 | 0 | 806 | $0.0030 | 0 | 0 | 0 |
-| score B-opus-2 | made B-opus-2 t* 2 | anthropic/claude-haiku-5.5 | 11 | 25719 | 0 | 0 | 787 | $0.0030 | 0 | 0 | 0 |
-| score B-opus-2 | lady B-opus-2 t* 1 | anthropic/claude-haiku-5.5 | 5 | 10784 | 0 | 0 | 423 | $0.0013 | 0 | 0 | 0 |
-| score B-opus-2 | lady B-opus-2 t* 2 | anthropic/claude-haiku-5.5 | 5 | 10784 | 0 | 0 | 391 | $0.0013 | 0 | 0 | 0 |
-| score B-opus-2 | overlap B-opus-2 1 | anthropic/claude-haiku-5.5 | 1 | 21458 | 0 | 0 | 540 | $0.0024 | 0 | 0 | 0 |
-| score B-opus-2 | overlap B-opus-2 2 | anthropic/claude-haiku-5.5 | 1 | 21458 | 0 | 0 | 539 | $0.0024 | 0 | 0 | 0 |
-| score B-opus-2 | world B-opus-2 1 | anthropic/claude-haiku-5.5 | 1 | 10343 | 0 | 0 | 124 | $0.0011 | 0 | 0 | 0 |
-| score B-opus-2 | world B-opus-2 2 | anthropic/claude-haiku-5.5 | 1 | 10343 | 0 | 0 | 144 | $0.0011 | 0 | 0 | 0 |
+| score B-opus-2 | made B-opus-2 t* 1 | anthropic/claude-haiku-5.5 | 31 | 91491 | 0 | 0 | 2261 | $0.0103 | 0 | 0 | 0 |
+| score B-opus-2 | made B-opus-2 t* 2 | anthropic/claude-haiku-5.5 | 31 | 91491 | 0 | 0 | 2328 | $0.0103 | 0 | 0 | 0 |
+| score B-opus-2 | lady B-opus-2 t* 1 | anthropic/claude-haiku-5.5 | 10 | 23877 | 0 | 0 | 805 | $0.0028 | 0 | 0 | 0 |
+| score B-opus-2 | lady B-opus-2 t* 2 | anthropic/claude-haiku-5.5 | 10 | 23877 | 0 | 0 | 810 | $0.0028 | 0 | 0 | 0 |
+| score B-opus-2 | overlap B-opus-2 1 | anthropic/claude-haiku-5.5 | 2 | 72276 | 0 | 0 | 1078 | $0.0078 | 0 | 0 | 0 |
+| score B-opus-2 | overlap B-opus-2 2 | anthropic/claude-haiku-5.5 | 2 | 72276 | 0 | 0 | 1093 | $0.0078 | 0 | 0 | 0 |
+| score B-opus-2 | world B-opus-2 1 | anthropic/claude-haiku-5.5 | 2 | 36346 | 0 | 0 | 277 | $0.0038 | 0 | 0 | 0 |
+| score B-opus-2 | world B-opus-2 2 | anthropic/claude-haiku-5.5 | 2 | 36346 | 0 | 0 | 258 | $0.0038 | 0 | 0 | 0 |
 | B-fable-2 | check B-fable-2 opening | anthropic/claude-haiku-5.5 | 1 | 796 | 0 | 0 | 68 | $0.0001 | 0 | 0 | 0 |
 | B-fable-2 | player t* | anthropic/claude-fable-5.1 | 20 | 80 | 549269 | 44764 | 13334 | $1.3644 | 0 | 0 | 0 |
 | B-fable-2 | check B-fable-2 t* player | anthropic/claude-haiku-5.5 | 20 | 36898 | 0 | 0 | 1479 | $0.0044 | 0 | 0 | 0 |
@@ -779,3 +779,9 @@ Cap $350; spent before this run $0.0000; this run $245.9257; total $245.9257; 58
 | B-opus-1 | player t* card 4 | anthropic/claude-opus-5.5 | 1 | 4 | 22066 | 151 | 65 | $0.0065 | 0 | 0 | 0 |
 | score B-opus-1 | note B-opus-1 referee | anthropic/claude-opus-5.5 | 1 | 1494 | 0 | 0 | 72 | $0.0074 | 0 | 0 | 0 |
 | score B-opus-1 | goal scale B-opus-1 t* referee | anthropic/claude-opus-5.5 | 1 | 735 | 0 | 0 | 81 | $0.0046 | 0 | 0 | 0 |
+| B-opus-2 | player t* card 3 | anthropic/claude-opus-5.5 | 1 | 4 | 20458 | 388 | 170 | $0.0094 | 0 | 0 | 0 |
+| B-opus-2 | player t* card 4 | anthropic/claude-opus-5.5 | 1 | 4 | 20846 | 321 | 36 | $0.0065 | 0 | 0 | 0 |
+| B-opus-2 | player t* card 5 | anthropic/claude-opus-5.5 | 1 | 4 | 21167 | 388 | 162 | $0.0094 | 0 | 0 | 0 |
+| B-opus-2 | dm t* retry | anthropic/claude-opus-5.5 | 2 | 8 | 149870 | 11927 | 10308 | $0.2958 | 0 | 0 | 0 |
+| B-opus-2 | dm t* retry | anthropic/claude-haiku-5.5 | 2 | 9848 | 0 | 0 | 2276 | $0.0021 | 0 | 0 | 0 |
+| score B-opus-2 | overlap B-opus-2 referee | anthropic/claude-opus-5.5 | 1 | 50818 | 0 | 0 | 523 | $0.2137 | 0 | 0 | 0 |
