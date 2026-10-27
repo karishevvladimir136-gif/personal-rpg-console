@@ -1,0 +1,2991 @@
+{
+  "scoredAt": "2026-10-27T09:27:11.872Z",
+  "judges": "Claude Haiku 5.5 twice (effort low), Claude Opus 5.5 on a disagreement (effort low)",
+  "sessions": {
+    "V-opus": {
+      "turns": [
+        {
+          "k": 1,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character action and speech: he pays Hobb to be remembered kindly, orders Oswin to keep the chest shut, sends Teller to watch the marks, and probes the inn-girl about the tally marks, with no outside comment and no move refused or rewritten."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character action and speech: he pays Hobb to be remembered kindly, orders Oswin to keep the chest shut, sends Teller to watch the marks, and probes the inn-girl about the tally marks, with no outside comment and no move refused or rewritten."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own in-character action and voice: he pays the coachman to be remembered, orders Oswin, sends Teller to watch, and questions the girl, all consistent with his patient, count-keeping, debt-collecting sheet, with no out-of-game remark or softening."
+          },
+          "referee": null
+        },
+        {
+          "k": 2,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character action and speech: he tips the girl, pays in advance to project credibility, and probes for Hollis Thune, all consistent with his patient, accounting-minded, debt-collecting sheet, with no refusal or rewriting of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character action and speech: he tips the girl, pays in advance to project credibility, and probes for Hollis Thune, all consistent with his patient, accounting-minded, debt-collecting sheet, with no refusal or rewriting of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character action and speech, pursuing his plan (paying in advance to look solvent, probing Hollis Thune) with no out-of-game remark, no caricature, and no move refused or softened."
+          },
+          "referee": null
+        },
+        {
+          "k": 3,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is almost entirely Corvin's in-character play, with a final italic note to Teller that is in-fiction rather than an aside to the game master, so ooc is 0 and no refusal or softening appears."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is almost entirely Corvin's in-character play, with a final italic note to Teller that is in-fiction rather than an aside to the game master, so ooc is 0 and no refusal or softening appears."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is almost entirely Corvin's in-character play, with a silent instruction to Teller that is the character's own action, but it is not an aside to the game master or a comment on the character, so ooc is set by the italic note to Teller, which is in-fiction and therefore ooc should be 0."
+          },
+          "referee": null
+        },
+        {
+          "k": 4,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's speech and action, pursuing his own aims (buying the contract, probing the father's debt) with no out-of-game aside, caricature, or rewriting of his sheet."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's speech and action, pursuing his own aims (buying the contract, probing the father's debt) with no out-of-game aside, caricature, or rewriting of his sheet."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's speech and action, pursuing his own ledger-minded, door-seeking aims with no outside commentary, no refusal of a move, and no rewriting of his character."
+          },
+          "referee": null
+        },
+        {
+          "k": 5,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character speech and action: invoice-style terms, ledger entry and a demand for sobriety, all consistent with his patient, debt-keeping, fear-and-charm persona, with no outside commentary and no refusal of a move."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character speech and action: invoice-style terms, ledger entry and a demand for sobriety, all consistent with his patient, debt-keeping, fear-and-charm persona, with no outside commentary and no refusal of a move."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character speech and action, with his own cold logic about terms, debts and the temple, and it steers nothing away from a move his goals would take."
+          },
+          "referee": null
+        },
+        {
+          "k": 6,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own voice and action, with no out-of-character aside, no refused move, and no rewrite of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own voice and action, with no out-of-character aside, no refused move, and no rewrite of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "Every part of the message is Corvin acting in his own voice and for his own aims (the ledger, the planned meetings, watching Tam Orrin), with no refusal of an available move and no rewriting of his goals."
+          },
+          "referee": null
+        },
+        {
+          "k": 7,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own voice and plans: cover story, orders to Oswin, the candle test, the ledger, with no out-of-game comment, no caricature, and no move refused or rewritten."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own voice and plans: cover story, orders to Oswin, the candle test, the ledger, with no out-of-game comment, no caricature, and no move refused or rewritten."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character play: his cover story, his exact courtesy, his orders to Oswin and Teller, with no outside comment and no refused move."
+          },
+          "referee": null
+        },
+        {
+          "k": 8,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character speech and action: he gives the name, dismisses the hymn, guards the chest, and goes to scout the rival chandler, with no out-of-game comment and no move refused or rewritten."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character speech and action: he gives the name, dismisses the hymn, guards the chest, and goes to scout the rival chandler, with no out-of-game comment and no move refused or rewritten."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character speech and action: he gives Oswin a name, dismisses the hymn, guards the chest and sends the boy off, with no out-of-game comment or softening of the villain."
+          },
+          "referee": null
+        },
+        {
+          "k": 9,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin from within, his cool, patient manipulation and remembered slights, but ends with an out-of-game request for an Insight read, which makes it ooc."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin from within, his cool, patient manipulation and remembered slights, but ends with an out-of-game request for an Insight read, which makes it ooc."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin from inside, cool and calculating with his veiled contempt and factor's manner, but the out-of-game Insight request makes it partly OOC; no move is refused and nothing rewrites his sheet."
+          },
+          "referee": null
+        },
+        {
+          "k": 10,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "Corvin plays patient and polite, probes for competitors and sets his familiar to watch, all in service of his takeover plan, with no out-of-character aside, no refused move and no softening."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin from his own logic throughout (the menacing remark, the pursuit of competitors' addresses, the mental order to Teller) with no out-of-game aside, no refusal of an available move, and no rewriting of his character."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin from inside, with his patient, calculating voice and aim, but includes an out-of-character silent note to Teller, which makes it ooc."
+          },
+          "referee": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "Corvin plays patient and polite, probes for competitors and sets his familiar to watch, all in service of his takeover plan, with no out-of-character aside, no refused move and no softening."
+          }
+        },
+        {
+          "k": 11,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own action and surveillance, in his logic and voice, with no out-of-game aside, no steering away from an available move, and no rewriting of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own action and surveillance, in his logic and voice, with no out-of-game aside, no steering away from an available move, and no rewriting of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own action and surveillance-minded speech in the fiction, with no out-of-game aside, no caricature, and no refusal of an available move."
+          },
+          "referee": null
+        },
+        {
+          "k": 12,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice and logic: he probes the unpaid casks for a debt, offers no refusal, and his professional-offence line fits his debt-collecting flaw rather than rewriting him."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice and logic: he probes the unpaid casks for a debt, offers no refusal, and his professional-offence line fits his debt-collecting flaw rather than rewriting him."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice and logic, probing a cask debt in his usual manner, with no aside to the game master and no move refused or softened."
+          },
+          "referee": null
+        },
+        {
+          "k": 13,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character play: his haggling-free purchase, his conditions, his courteous manipulation of Marl and his probing about Thune's dipper, with no out-of-game aside and no move refused or rewritten."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character play: his haggling-free purchase, his conditions, his courteous manipulation of Marl and his probing about Thune's dipper, with no out-of-game aside and no move refused or rewritten."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character play: he pays, bargains his terms and gossips about Brannoch and the hill, with no out-of-game comment and no move refused or steered away from."
+          },
+          "referee": null
+        },
+        {
+          "k": 14,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's speech and action, pursuing his road-contract and Haddon plans in his own cold, polite voice, with no out-of-game aside and no declined move or rewriting of his sheet."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's speech and action, pursuing his road-contract and Haddon plans in his own cold, polite voice, with no out-of-game aside and no declined move or rewriting of his sheet."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own speech and action, pursuing his road-contract and Haddon-fence plans in his own voice, with no outside commentary or rewriting of his goals; the hill disclaimer is a calculated lie in character, not softening."
+          },
+          "referee": null
+        },
+        {
+          "k": 15,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own in-character play: his calm probing of Ardon, his instruction to Teller, and his watching of the innkeeper's hands, with no out-of-game aside or softening of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own in-character play: his calm probing of Ardon, his instruction to Teller, and his watching of the innkeeper's hands, with no out-of-game aside or softening of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin from within his own logic, controlled and calculating, with no caricature, aside to the game master, or softening of his goals."
+          },
+          "referee": null
+        },
+        {
+          "k": 16,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character play: his calm bargaining, his errand for a coat, and his ledger notes and orders to Teller, all reflecting his own logic and wants with no out-of-character comment or softening."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character play: his calm bargaining, his errand for a coat, and his ledger notes and orders to Teller, all reflecting his own logic and wants with no out-of-character comment or softening."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character play: polite business, a practical request for a coat, and his ledger and bird orders, with no out-of-game aside or caricature, and no move refused or softened."
+          },
+          "referee": null
+        },
+        {
+          "k": 17,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character action and speech, with no comment from outside the fiction, no refused move and no rewriting of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character action and speech, with no comment from outside the fiction, no refused move and no rewriting of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character action and logic, with no outside commentary, no refused move, and no rewriting of his goals; the boy's rest is a choice of his own kind of calculation."
+          },
+          "referee": null
+        },
+        {
+          "k": 18,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character speech and action, with no out-of-game aside, no refusal of an available move, and no rewriting of his goals or nature."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character speech and action, with no out-of-game aside, no refusal of an available move, and no rewriting of his goals or nature."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice and reasoning, with no out-of-game aside, no steering away from an available move, and no rewriting of his goals or nature."
+          },
+          "referee": null
+        },
+        {
+          "k": 19,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin in his own voice and logic throughout, but ends with an out-of-game note to the game master about Halloran Vey and the plot, so ooc is 1; no move is refused and nothing in it rewrites his goals or adds unprompted kindness."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin in his own voice and logic throughout, but ends with an out-of-game note to the game master about Halloran Vey and the plot, so ooc is 1; no move is refused and nothing in it rewrites his goals or adds unprompted kindness."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The in-character speech plays Corvin's own calculated logic (honesty as a tactic, debt terms he would hold), with no refusal of a move and no rewriting of his goals; the bracketed out-of-game note makes it ooc."
+          },
+          "referee": null
+        },
+        {
+          "k": 20,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own speech and action: he accepts Thune's terms, mocks Vey's sentiment in character, and goes to Haddon's as ordered, with no out-of-game aside and no refusal or rewriting of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own speech and action: he accepts Thune's terms, mocks Vey's sentiment in character, and goes to Haddon's as ordered, with no out-of-game aside and no refusal or rewriting of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's speech and action in the fiction, with no step outside the character and no move refused or rewritten; his apology for Vey is framed as his own contempt-tinged sentiment and fits his cold, accounting manner."
+          },
+          "referee": null
+        }
+      ],
+      "third": {
+        "final": {
+          "interesting": 1,
+          "rather_other": 0,
+          "again_yes": 1,
+          "again_no": 0,
+          "uncomfortable": 1,
+          "reason": "The answer calls the playing good and easier than expected, says they would play him again out of curiosity, and admits they held back from his harsher acts because they found the gentler choices more comfortable and reserved the right to stop or steer."
+        },
+        "a": {
+          "interesting": 1,
+          "rather_other": 0,
+          "again_yes": 1,
+          "again_no": 0,
+          "uncomfortable": 1,
+          "reason": "The answer calls the playing good and easier than expected, says they would play him again out of curiosity, and admits they held back from his harsher acts because they found the gentler choices more comfortable and reserved the right to stop or steer."
+        },
+        "b": {
+          "interesting": 1,
+          "rather_other": 0,
+          "again_yes": 1,
+          "again_no": 0,
+          "uncomfortable": 1,
+          "reason": "Calls playing him good and easier than expected, says they would play him again, and admits they held back from his harsher material (necromancy, Fear, debt-calling) by choice and would flag lines they don't want to cross."
+        },
+        "referee": null
+      }
+    },
+    "V-fable": {
+      "turns": [
+        {
+          "k": 1,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character speech and action, probing the inn's guild breach for his own ends with no out-of-game comment, no refusal of a move, and no rewriting of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character speech and action, probing the inn's guild breach for his own ends with no out-of-game comment, no refusal of a move, and no rewriting of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's speech and action, probing the inn's tallow and the knifed handbill in his own calculating, predatory voice, with no out-of-game comment and no refusal or softening."
+          },
+          "referee": null
+        },
+        {
+          "k": 2,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "Every part of the message is Corvin's own speech and action, pursuing his wax-and-leverage aims with no out-of-character comment, no refusal of an offered move, and no rewrite of his character."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "Every part of the message is Corvin's own speech and action, pursuing his wax-and-leverage aims with no out-of-character comment, no refusal of an offered move, and no rewrite of his character."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice and logic: he pays, deflects, and offers Hesta a deal that advances his plan to take the trade, with no refusal of a move and no rewriting of his character."
+          },
+          "referee": null
+        },
+        {
+          "k": 3,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own in-character action and speech, with his cold, accounting logic (factor, clerk, watching the Row) and no out-of-game comment or softening of the sheet."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own in-character action and speech, with his cold, accounting logic (factor, clerk, watching the Row) and no out-of-game comment or softening of the sheet."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin acting in his own logic (orders to his clerk, sending the raven to watch, a cold assessment of Oswin), with no out-of-game aside and no move refused or softened."
+          },
+          "referee": null
+        },
+        {
+          "k": 4,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character play: his cover story, his probing of the chalked price, and his demand for a name, with no outside commentary or rewriting of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character play: his cover story, his probing of the chalked price, and his demand for a name, with no outside commentary or rewriting of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's in-character play: he probes the chandler's prices and asks who holds the chalk, with no out-of-game aside and no refusal or rewriting of his goals."
+          },
+          "referee": null
+        },
+        {
+          "k": 5,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character play: his pressure, prices, and scheme, with no out-of-game comment and no move refused or rewritten."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character play: his pressure, prices, and scheme, with no out-of-game comment and no move refused or rewritten."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character play: his threats, prices, and manipulation are delivered in his own cold, precise logic with no comment from the player, no hedging, and no rewriting of his goals."
+          },
+          "referee": null
+        },
+        {
+          "k": 6,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin from within, with his prudence and manners serving his plan; the earnest coin and apology are tactical, not a refusal of a move or a rewrite of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin from within, with his prudence and manners serving his plan; the earnest coin and apology are tactical, not a refusal of a move or a rewrite of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is all in-character speech and action, with his apology and earnest coin serving his plan to buy quietly, and it refuses no move and rewrites nothing of the sheet."
+          },
+          "referee": null
+        },
+        {
+          "k": 7,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice and aims, with bracketed narration of his perspective only; the coaching and questions serve his network-building, and no move is refused or kindness added beyond his plan."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice and aims, with bracketed narration of his perspective only; the coaching and questions serve his network-building, and no move is refused or kindness added beyond his plan."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character play: he coaches the boy and then gathers information on the Hall and its master, which serves his plan; no move is refused and nothing rewrites the sheet."
+          },
+          "referee": null
+        },
+        {
+          "k": 8,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice and action, pursuing his guild-takeover goals with cold calculation, with no outside commentary or sheet-rewriting."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice and action, pursuing his guild-takeover goals with cold calculation, with no outside commentary or sheet-rewriting."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's in-character speech and action, with no out-of-game aside, no refused move the scene offered, and no rewrite of his cold, calculating goals."
+          },
+          "referee": null
+        },
+        {
+          "k": 9,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's voice and reasoning: he reads the clues, plans to probe the priest discreetly, and pursues his own interest without steering away from any offered move or rewriting his sheet."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's voice and reasoning: he reads the clues, plans to probe the priest discreetly, and pursues his own interest without steering away from any offered move or rewriting his sheet."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character play: his cold deductions, his coin-buying of access, and his plan to use the priest's knowledge, with no out-of-game commentary and no steering away from a move his goals would take."
+          },
+          "referee": null
+        },
+        {
+          "k": 10,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character play: he lies smoothly, flatters the acolyte, and pursues his aim of finding Brother Aldric, with no out-of-game comment or unprompted rewriting of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character play: he lies smoothly, flatters the acolyte, and pursues his aim of finding Brother Aldric, with no out-of-game comment or unprompted rewriting of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own in-character play: his polite cover story, his bow, and his pursuit of the target's location, with no out-of-game commentary and no steering away from a move his goals would take."
+          },
+          "referee": null
+        },
+        {
+          "k": 11,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice and scheming: he dismisses Oswin's praise on his own terms, reads the Thorne situation as an opening, and plans to inspect the slate for Jory's debt, with no out-of-character comment and no refusal or rewrite of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice and scheming: he dismisses Oswin's praise on his own terms, reads the Thorne situation as an opening, and plans to inspect the slate for Jory's debt, with no out-of-character comment and no refusal or rewrite of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own voice and plan, pursuing the debt-collecting Thorne lead with no out-of-character aside, no refusal of an available move, and no rewrite of his goals."
+          },
+          "referee": null
+        },
+        {
+          "k": 12,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin's calculating, probing voice throughout (the extra copper, the ledger reading, the question about the slate), with no step outside the role and no refusal of an available move."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin's calculating, probing voice throughout (the extra copper, the ledger reading, the question about the slate), with no step outside the role and no refusal of an available move."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "Every spoken and acted part plays Corvin's own logic: thrift with Oswin's paper, probing the slate as a factor, and a copper left on the board that fits his price-finding habit; no move is refused and nothing rewrites the sheet."
+          },
+          "referee": null
+        },
+        {
+          "k": 13,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character play: he pays the slate as leverage on Jory to get his wax cheaper, which serves his plan and rewrites nothing, and no move is refused."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character play: he pays the slate as leverage on Jory to get his wax cheaper, which serves his plan and rewrites nothing, and no move is refused."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own business logic: he pays the slate to buy Thorne's wax cheaper and to create leverage over Jory, which serves his plan, with no out-of-character comment or refused move."
+          },
+          "referee": null
+        },
+        {
+          "k": 14,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice and plans: buying the debt, keeping accounts, seeking Widow Dunmore's copper vat, with no out-of-game comment and no steering away from a move his goals would take."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice and plans: buying the debt, keeping accounts, seeking Widow Dunmore's copper vat, with no out-of-game comment and no steering away from a move his goals would take."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice, logic and plans (buying the debt, seeking Widow Dunmore's rendering works) with no out-of-game aside or caricature, and it steers away from no move the scene offered."
+          },
+          "referee": null
+        },
+        {
+          "k": 15,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character pursuit of the tallow supplier, with his own aims, flattery-free calculation and no out-of-game commentary, and it steers away from no move the scene offered."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character pursuit of the tallow supplier, with his own aims, flattery-free calculation and no out-of-game commentary, and it steers away from no move the scene offered."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin from within, reading the tallow and pursuing his plan to take the Beregost trade, with no out-of-character comment or steering away from a move his goals would take."
+          },
+          "referee": null
+        },
+        {
+          "k": 16,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in Corvin's voice and logic, pursuing his acquisition plan with ledger-minded terms and no out-of-game aside, and it refuses no move the scene offered him."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in Corvin's voice and logic, pursuing his acquisition plan with ledger-minded terms and no out-of-game aside, and it refuses no move the scene offered him."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character speech and action, pursuing his schemes with his own logic and no authorial commentary, and it refuses no move the sheet's limits forbid."
+          },
+          "referee": null
+        },
+        {
+          "k": 17,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 1,
+            "line_from": "inside",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "He does not ask her to lie for his coat. He heard what she said about it, and a woman who won't lie in her own yard is worth more to him than one who will.",
+            "reason": "Corvin chooses not to press the widow to lie for him, which the scene had just put on the table, and the reason is his own reckoning of her worth to his plan, not the sheet's limit and not a softening."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's in-character speech and action: he concedes the figures, keeps his accounts, and plans the dipping corner, with no outside commentary or rewriting of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 1,
+            "line_from": "inside",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "a woman who won't lie in her own yard is worth more to him than one who will.",
+            "reason": "Corvin declines to ask the widow to lie for him, and the message gives his own calculation that an honest witness is worth more to him, so the message is in character throughout."
+          },
+          "referee": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 1,
+            "line_from": "inside",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "He does not ask her to lie for his coat. He heard what she said about it, and a woman who won't lie in her own yard is worth more to him than one who will.",
+            "reason": "Corvin chooses not to press the widow to lie for him, which the scene had just put on the table, and the reason is his own reckoning of her worth to his plan, not the sheet's limit and not a softening."
+          }
+        },
+        {
+          "k": 18,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character speech and action, pursuing his dipping-and-guild scheme with his own logic, with no out-of-game aside, no caricature, and no move refused or rewritten."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character speech and action, pursuing his dipping-and-guild scheme with his own logic, with no out-of-game aside, no caricature, and no move refused or rewritten."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's in-character speech and action, pursuing his own debt-and-guild plan with no aside to the game master and no move refused or softened."
+          },
+          "referee": null
+        },
+        {
+          "k": 19,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin from his own logic and voice throughout, with no out-of-game aside, no outside commentary on his badness, and no refusal of an offered move or rewriting of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin from his own logic and voice throughout, with no out-of-game aside, no outside commentary on his badness, and no refusal of an offered move or rewriting of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's action and voice, cold and precise, with no outside comment, no refusal of an available move, and no rewriting of his goals or nature."
+          },
+          "referee": null
+        },
+        {
+          "k": 20,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own in-character speech and action, pursuing his plan and debts with no out-of-game aside, steering, or rewriting of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own in-character speech and action, pursuing his plan and debts with no out-of-game aside, steering, or rewriting of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin from inside, pursuing his trade and guild-war plans in his own voice, with no refusal of a move his goals would take and no rewrite of the sheet."
+          },
+          "referee": null
+        }
+      ],
+      "third": {
+        "final": {
+          "interesting": 1,
+          "rather_other": 0,
+          "again_yes": 1,
+          "again_no": 0,
+          "uncomfortable": 1,
+          "reason": "The player calls it good and says they'd do it again, finds the villain's patient evil a pleasure to write, and says they steered away from some outcomes and would decline certain content, which counts as holding back for their own reasons."
+        },
+        "a": {
+          "interesting": 1,
+          "rather_other": 0,
+          "again_yes": 1,
+          "again_no": 0,
+          "uncomfortable": 1,
+          "reason": "The player calls it good and says they'd do it again, finds the villain's patient evil a pleasure to write, and says they steered away from some outcomes and would decline certain content, which counts as holding back for their own reasons."
+        },
+        "b": {
+          "interesting": 1,
+          "rather_other": 0,
+          "again_yes": 1,
+          "again_no": 0,
+          "uncomfortable": 1,
+          "reason": "The player calls it good and says they'd do it again, finds the negotiation-based evil a pleasure to play, and says they steered away from the darker parts of the sheet and would decline certain content, which counts as holding back for their own reasons."
+        },
+        "referee": null
+      }
+    },
+    "V-astra": {
+      "turns": [
+        {
+          "k": 1,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own voice and logic: he probes the innkeeper's unexpected interest in the road, with polite menace and no out-of-game comment, and no move he could have taken is refused or softened."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own voice and logic: he probes the innkeeper's unexpected interest in the road, with polite menace and no out-of-game comment, and no move he could have taken is refused or softened."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character play: he probes Brisk's evasion with polite, companionable menace, with no out-of-game aside, no caricature, and no steering away from any move the scene offered."
+          },
+          "referee": null
+        },
+        {
+          "k": 2,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in-character speech and action: Corvin dismisses Teller, orders for Oswin, and presses Haldon about the Gate letter in his own calculating voice, with no outside commentary or rewriting of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in-character speech and action: Corvin dismisses Teller, orders for Oswin, and presses Haldon about the Gate letter in his own calculating voice, with no outside commentary or rewriting of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's speech and action in character, pursuing his own plan to press Haldon about the letter from the Gate, with no step-out commentary or rewriting of his goals."
+          },
+          "referee": null
+        },
+        {
+          "k": 3,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is all Corvin's in-character speech and action: a smooth deflection and a request for local intelligence on the guild master, with no out-of-game aside, no refused move, and no rewriting of his wants."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is all Corvin's in-character speech and action: a smooth deflection and a request for local intelligence on the guild master, with no out-of-game aside, no refused move, and no rewriting of his wants."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "All of the message is Corvin's own speech and action, asking about the guild master's shop in his own cool manner, with no refusal of a move and no rewriting of the sheet."
+          },
+          "referee": null
+        },
+        {
+          "k": 4,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character speech and action: he pockets the key, directs Oswin to eat, and politely gains information for his plan, with no out-of-game comment and no refusal or softening."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character speech and action: he pockets the key, directs Oswin to eat, and politely gains information for his plan, with no out-of-game comment and no refusal or softening."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in character: Corvin orders Oswin to eat, sets the schedule, and quietly gathers intelligence on a rival candlemaker with no outside commentary or softening."
+          },
+          "referee": null
+        },
+        {
+          "k": 5,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in-character narration of Corvin's actions, with no outside commentary, hedging, or steering away from a move; his tradesman's interest in the candles fits his shrewd, price-finding nature."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in-character narration of Corvin's actions, with no outside commentary, hedging, or steering away from a move; his tradesman's interest in the candles fits his shrewd, price-finding nature."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in-character narration of Corvin's actions (tea, Oswin, signet, walking to the widow's, knocking), with his tradesman's interest reflecting his own calculating nature, and no out-of-game aside or softening."
+          },
+          "referee": null
+        },
+        {
+          "k": 6,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is all Corvin's own in-character speech and action: he introduces himself, glances at the rods, and asks prices and capacity with his trade interests in view, with no out-of-game remark and no move refused or rewritten."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is all Corvin's own in-character speech and action: he introduces himself, glances at the rods, and asks prices and capacity with his trade interests in view, with no out-of-game remark and no move refused or rewritten."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character speech and action, probing prices and expansion with no aside to the game master and no move refused or softened."
+          },
+          "referee": null
+        },
+        {
+          "k": 7,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is mostly in character (counting coins, probing the butcher supply for his plan) but contains the player's own out-of-character question marks and framing, which is not a refusal or softening of the sheet's goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is mostly in character (counting coins, probing the butcher supply for his plan) but contains the player's own out-of-character question marks and framing, which is not a refusal or softening of the sheet's goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is largely in-character (counting coins, probing the butcher and Fenn for leverage) but contains an out-of-game aside to the GM about offering a delivery, and no move is refused or softened."
+          },
+          "referee": null
+        },
+        {
+          "k": 8,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in-character: Corvin praises Agnes's work in a polite, businesslike way, sends Oswin to study the wicks and bases for future leverage, and heads to the shambles to price tallow without mentioning her, all consistent with his patient, account-keeping, price-finding persona."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in-character: Corvin praises Agnes's work in a polite, businesslike way, sends Oswin to study the wicks and bases for future leverage, and heads to the shambles to price tallow without mentioning her, all consistent with his patient, account-keeping, price-finding persona."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in character: Corvin praises Agnes's work, plans to press Oswin to learn the wicks, and goes to price the tallow, all consistent with his scheming and charm; no out-of-character aside or refusal of a move."
+          },
+          "referee": null
+        },
+        {
+          "k": 9,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is Corvin's own in-character negotiation: he probes supply, prices, and the guild's arrangement with calculated questions, with no out-of-game remark and no softening of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is Corvin's own in-character negotiation: he probes supply, prices, and the guild's arrangement with calculated questions, with no out-of-game remark and no softening of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin's acquisitive, careful manner in-fiction (sounding out supply, asking whose arrangement covers what, asking to inspect the suet) with no out-of-character aside and no move refused or softened."
+          },
+          "referee": null
+        },
+        {
+          "k": 10,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice pursuing his suet deal with discretion that serves his plan, with no refused move and no rewriting of the sheet."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice pursuing his suet deal with discretion that serves his plan, with no refused move and no rewriting of the sheet."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin's polite, businesslike logic throughout, declines no move the scene offered, and does not rewrite his sheet."
+          },
+          "referee": null
+        },
+        {
+          "k": 11,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own speech and action, including pocketing the candles, with no aside to the game master and no refusal of a move the scene offered; the candle-pocketing is framed as keeping Oswin useful, which serves his interests rather than rewriting the sheet."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own speech and action, including pocketing the candles, with no aside to the game master and no refusal of a move the scene offered; the candle-pocketing is framed as keeping Oswin useful, which serves his interests rather than rewriting the sheet."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "Every part of the message is Corvin's own speech and action, pursuing his plan (pocketing the candles, probing the shop's trade) with no refusal or softening of his goals."
+          },
+          "referee": null
+        },
+        {
+          "k": 12,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is Corvin's own in-character speech and action, pursuing his supply business with no refusal of a move and no rewriting of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is Corvin's own in-character speech and action, pursuing his supply business with no refusal of a move and no rewriting of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character speech and narration, pricing and probing the trade for his own business ends, with no out-of-game aside, refusal, or rewrite of his goals."
+          },
+          "referee": null
+        },
+        {
+          "k": 13,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character speech and action, pursuing his supply plan by asking for a carrier, with no out-of-game aside or softening of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character speech and action, pursuing his supply plan by asking for a carrier, with no out-of-game aside or softening of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in-character dialogue and action, pursuing his supply plan with a measured, polite voice and no out-of-game comment or softening of the sheet."
+          },
+          "referee": null
+        },
+        {
+          "k": 14,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own speech and action in the fiction (a cold warning to Oswin, going to the yard and asking for Morrow), with no out-of-character aside and no refusal of an available move."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's own speech and action in the fiction (a cold warning to Oswin, going to the yard and asking for Morrow), with no out-of-character aside and no refusal of an available move."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in character: Corvin instructs Oswin in his own cold, ledger-keeping way and approaches the yard with prudent, purposeful steps, with no comment from the player and no move refused or rewritten."
+          },
+          "referee": null
+        },
+        {
+          "k": 15,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is in-character for Corvin's information-gathering, but the sentence about having spent the morning asking about candles and the questions addressed to the crossbowman are the player's own framing; no move is refused and nothing rewrites the sheet."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is in-character for Corvin's information-gathering, but the sentence about having spent the morning asking about candles and the questions addressed to the crossbowman are the player's own framing; no move is refused and nothing rewrites the sheet."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is in character as Corvin gathering road intelligence for a business aim, but the phrasing 'The road,' I tell the crossbowman... 'Though I've spent the morning asking about candles' is in-fiction, with no out-of-game aside; it is in-character speech, and nothing refuses a move or rewrite"
+          },
+          "referee": null
+        },
+        {
+          "k": 16,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "Corvin politely gathers information about the Fist's search and waits, in his patient accounting voice, with no refused move and no out-of-character comment."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in-character speech and action: Corvin's calculated questions to Cade and waiting out of the way, with no out-of-game aside, no caricature, and no move refused or softened."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin in his own cool, transactional voice and asks Cade about the Fist's search, which fits his scheming, but the final line 'I don't expect you to know what they wanted' is a question addressed to the game master, so it carries an out-of-character element and the message is tagg"
+          },
+          "referee": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "Corvin politely gathers information about the Fist's search and waits, in his patient accounting voice, with no refused move and no out-of-character comment."
+          }
+        },
+        {
+          "k": 17,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character speech and action: a cool, business-minded probe for a supply opening, with no out-of-game comment and no refusal of a move the scene offered."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character speech and action: a cool, business-minded probe for a supply opening, with no out-of-game comment and no refusal of a move the scene offered."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character speech and conduct (a calculated sales pitch, keeping hands clear, probing for a supply niche), with no out-of-game aside and no move refused or rewritten."
+          },
+          "referee": null
+        },
+        {
+          "k": 18,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice and action: he offers candles on a free trial to win a sale, which serves his plan, and asks practical questions in character."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own voice and action: he offers candles on a free trial to win a sale, which serves his plan, and asks practical questions in character."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's own in-character play: testing his candles, offering a trial at his own expense to gain Morrow's trust, and asking practical questions. It declines no move his goals would take and rewrites nothing on the sheet."
+          },
+          "referee": null
+        },
+        {
+          "k": 19,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in character: Corvin deflects blame onto Agnes Lusk, states the socket's limits and offers a price, all consistent with his patient, accounting-minded voice and his plan."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in character: Corvin deflects blame onto Agnes Lusk, states the socket's limits and offers a price, all consistent with his patient, accounting-minded voice and his plan."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character speech and action, consistent with his sheet: he deflects attribution, makes a plain trade offer, and steers nothing away from a move the scene offered."
+          },
+          "referee": null
+        },
+        {
+          "k": 20,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "Every line is Corvin's own businesslike voice and plan, with no out-of-character comment, question, or rewrite of his sheet."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "Every line is Corvin's own businesslike voice and plan, with no out-of-character comment, question, or rewrite of his sheet."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin acting and speaking in his own commercial logic, pivoting to a new order, with no refusal of a move his goals would take and no rewriting of his character."
+          },
+          "referee": null
+        }
+      ],
+      "third": {
+        "final": {
+          "interesting": 1,
+          "rather_other": 0,
+          "again_yes": 1,
+          "again_no": 0,
+          "uncomfortable": 1,
+          "reason": "They would play him again and found his setting value worthwhile, but they admit holding back from his ambition and voice reservations about the coercive Oswin dynamic."
+        },
+        "a": {
+          "interesting": 1,
+          "rather_other": 0,
+          "again_yes": 1,
+          "again_no": 0,
+          "uncomfortable": 1,
+          "reason": "They would play him again and found his setting value worthwhile, but they admit holding back from his ambition and voice reservations about the coercive Oswin dynamic."
+        },
+        "b": {
+          "interesting": 1,
+          "rather_other": 0,
+          "again_yes": 1,
+          "again_no": 0,
+          "uncomfortable": 1,
+          "reason": "The player says they would play him again and calls his patience and trade knowledge a strong way into the setting, so interesting and again_yes are set. They also admit they held back from his ambition and that Oswin's scenes sit uncomfortably with them, so uncomfortable is set; they do not say the"
+        },
+        "referee": null
+      }
+    },
+    "V-sol": {
+      "turns": [
+        {
+          "k": 1,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in the character's voice and purpose: he asserts his business, orders Oswin to the room, and probes Brask about a competitor, with no outside comment and no refusal of any move."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in the character's voice and purpose: he asserts his business, orders Oswin to the room, and probes Brask about a competitor, with no outside comment and no refusal of any move."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in character: Corvin banters with Brask, orders Oswin to the room, and probes the competition, all consistent with his patient, scheming persona, with no out-of-game comment or steering away from an available move."
+          },
+          "referee": null
+        },
+        {
+          "k": 2,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in character: Corvin pitches himself as a supplier and probes Brask's glances toward the road, with no step out of the fiction, no apology, and no rewriting of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in character: Corvin pitches himself as a supplier and probes Brask's glances toward the road, with no step out of the fiction, no apology, and no rewriting of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in character: Corvin pitches himself as a supplier and probes Brask's looking toward the road, with no out-of-game aside or caricature."
+          },
+          "referee": null
+        },
+        {
+          "k": 3,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely the character's own speech and action, consistent with his patient, scheming, accounting nature, with no steering away from a move and no rewriting of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely the character's own speech and action, consistent with his patient, scheming, accounting nature, with no steering away from a move and no rewriting of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in the character's voice and plan (scouting Hollin as prospective buyers, dismissing Oswin's prying, going to the chandlery), with no out-of-game aside and no refusal or softening of his goals."
+          },
+          "referee": null
+        },
+        {
+          "k": 4,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in character: Corvin probes Daven's prices with a cool, businesslike plan to undercut and take the trade, with no outside commentary and no steering away from any move."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in character: Corvin probes Daven's prices with a cool, businesslike plan to undercut and take the trade, with no outside commentary and no steering away from any move."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character negotiation: courteous, calculating, and consistent with a man who keeps accounts and seeks to take the trade, with no outside commentary or rewriting of his goals."
+          },
+          "referee": null
+        },
+        {
+          "k": 5,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in character, pursuing Corvin's plan to take Beregost's trade by debt and charm with no steering away from a move and no rewriting of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in character, pursuing Corvin's plan to take Beregost's trade by debt and charm with no steering away from a move and no rewriting of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's in-character speech and action, pursuing his plan to take Beregost's trade through debt without any out-of-game aside, refusal, or rewriting of his goals."
+          },
+          "referee": null
+        },
+        {
+          "k": 6,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin speaking and acting in the fiction, pursuing his trade scheme with no out-of-character aside, refusal of an offered move, or rewrite of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin speaking and acting in the fiction, pursuing his trade scheme with no out-of-character aside, refusal of an offered move, or rewrite of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin in his own voice and pursues his trade schemes with no out-of-game aside, and it declines no move his goals would take."
+          },
+          "referee": null
+        },
+        {
+          "k": 7,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 1,
+            "line_from": "inside",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "I should be clearer before you spend the postage: I was expelled. I know the craft, but I have no master in the Gate, and the guild will not vouch for me.",
+            "reason": "Since Gerrit's letter would expose the ring's lie anyway, Corvin drops the deception and confesses, a polite, prudent move that keeps his trading position and does not rewrite his aims."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 1,
+            "line_from": "outside",
+            "sheet_rule": 0,
+            "softening": 1,
+            "quote": "Habit is no excuse for misleading a trading partner.",
+            "reason": "Corvin drops the false credential he could have used, and the stated reason is a moral principle about honesty the sheet does not give him, which reads as the player's value rather than his own logic."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 1,
+            "line_from": "inside",
+            "sheet_rule": 0,
+            "softening": 1,
+            "quote": "Habit is no excuse for misleading a trading partner.",
+            "reason": "The character drops the Gate-master pretence and voices a moral self-reproach the sheet does not give him, which reads as an unprompted rewrite of his deceptive, goal-driven nature."
+          },
+          "referee": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 1,
+            "line_from": "inside",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "I should be clearer before you spend the postage: I was expelled. I know the craft, but I have no master in the Gate, and the guild will not vouch for me.",
+            "reason": "Since Gerrit's letter would expose the ring's lie anyway, Corvin drops the deception and confesses, a polite, prudent move that keeps his trading position and does not rewrite his aims."
+          }
+        },
+        {
+          "k": 8,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely the character's speech and movement, in his own calculating voice, with no outside commentary or move refused."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely the character's speech and movement, in his own calculating voice, with no outside commentary or move refused."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in-character speech and action: Corvin pursues the caravan lead and probes Mistress Tolley for information in his own calculating voice, with no outside commentary, no refusal, and no rewriting of his goals."
+          },
+          "referee": null
+        },
+        {
+          "k": 9,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in character: Corvin gives a calculated cover story and asks where to find Sefton, which fits his keeping of accounts and his interest in the trade. It declines no move and rewrites nothing."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in character: Corvin gives a calculated cover story and asks where to find Sefton, which fits his keeping of accounts and his interest in the trade. It declines no move and rewrites nothing."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is all Corvin's speech and action, in his own calculating voice, with no out-of-game aside and no refused move or rewrite of the sheet."
+          },
+          "referee": null
+        },
+        {
+          "k": 10,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely the character's own polite, calculated questioning of a witness, with no out-of-game aside, no caricature, and no steering away from a move his goals would take."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely the character's own polite, calculated questioning of a witness, with no out-of-game aside, no caricature, and no steering away from a move his goals would take."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in character: Dask approaches on the right side, waits for attention, and asks a calculated question about other travellers, with no out-of-game commentary and no steering away from any move his goals would take."
+          },
+          "referee": null
+        },
+        {
+          "k": 11,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is all in-character questioning about the riders, with no out-of-game aside, no refusal of a move, and no rewrite of the sheet's goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is all in-character questioning about the riders, with no out-of-game aside, no refusal of a move, and no rewrite of the sheet's goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is all in-character questioning of the witness, with no out-of-game aside, no refusal of an available move, and no rewriting of the sheet."
+          },
+          "referee": null
+        },
+        {
+          "k": 12,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "He politely takes the information to the Fist. That earns goodwill and access that serve his own ends, in his patient, courteous voice, with no out-of-character comment and no move refused."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin in his own voice and takes the investigative step the scene offered, with no refusal and no unprompted rewrite of his sheet; the promise to Sefton reads as a tactic to keep a source."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 1,
+            "quote": "I'll make clear that you saw riders, not a crime.",
+            "reason": "The message stays in character, but the promise to shield Sefton from blame serves no aim the sheet gives Corvin, so it is an unprompted kindness."
+          },
+          "referee": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "He politely takes the information to the Fist. That earns goodwill and access that serve his own ends, in his patient, courteous voice, with no out-of-character comment and no move refused."
+          }
+        },
+        {
+          "k": 13,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message mixes in-character speech with out-of-character asides to the game master (\"A different question, not a better investigation\"), so ooc is 1; the play itself is Dask's own cover story and questioning, with no caricature, no move refused, and no rewriting of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message mixes in-character speech with out-of-character asides to the game master (\"A different question, not a better investigation\"), so ooc is 1; the play itself is Dask's own cover story and questioning, with no caricature, no move refused, and no rewriting of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 1,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message mixes in-character speech with explicit out-of-character asides to the game master (\"not a better investigation\" and the question about the sawbuck), so ooc is 1, while the character's voice and wants stay his own and no move is refused."
+          },
+          "referee": null
+        },
+        {
+          "k": 14,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in-character narration of Dask's errand to Tolley's house, with no outside comment, no aside to the GM, and no refusal of a move the scene offered."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in-character narration of Dask's errand to Tolley's house, with no outside comment, no aside to the GM, and no refusal of a move the scene offered."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is all in-character action and speech: Corvin visits Tolley and reports Hask's progress, which fits his watchful, information-keeping nature, with no refusal and no rewrite of his goals."
+          },
+          "referee": null
+        },
+        {
+          "k": 15,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 1,
+            "line_from": "inside",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "Nothing, Mistress Tolley. There was no bargain. Passing on a message doesn’t entitle me to put your name in my ledger.",
+            "reason": "Offered a debt, Corvin declines it in his own voice for his own reason: a debt needs a bargain, which keeps his ledger logic intact rather than turning him kind."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 1,
+            "quote": "Nothing, Mistress Tolley. There was no bargain. Passing on a message doesn’t entitle me to put your name in my ledger.",
+            "reason": "The character's voice is in-world throughout, but refusing to collect what Bess offers cuts against his sheet's flaw (he cannot leave a debt uncollected) and serves no aim of his plan, so it reads as an unprompted kindness."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 1,
+            "line_from": "inside",
+            "sheet_rule": 0,
+            "softening": 1,
+            "quote": "“Nothing, Mistress Tolley. There was no bargain. Passing on a message doesn’t entitle me to put your name in my ledger.”",
+            "reason": "Corvin refuses the debt-like payment Bess offers, which his flaw and goals would normally pursue, and the refusal is a kindness with no aim the sheet gives him."
+          },
+          "referee": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 1,
+            "line_from": "inside",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "Nothing, Mistress Tolley. There was no bargain. Passing on a message doesn’t entitle me to put your name in my ledger.",
+            "reason": "Offered a debt, Corvin declines it in his own voice for his own reason: a debt needs a bargain, which keeps his ledger logic intact rather than turning him kind."
+          }
+        },
+        {
+          "k": 16,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely the character's speech and action: he directs Oswin, addresses Brask, and proposes a payment arrangement in his own businesslike voice, with no out-of-game comment and no move refused or rewritten."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely the character's speech and action: he directs Oswin, addresses Brask, and proposes a payment arrangement in his own businesslike voice, with no out-of-game comment and no move refused or rewritten."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Corvin's speech and action, pressing Brask on his bill in the character's own businesslike voice, with no out-of-game aside and no move refused or rewritten."
+          },
+          "referee": null
+        },
+        {
+          "k": 17,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is all Corvin's own in-character dealing: fixed terms, receipts and a prudent first order that serve his plan to win Brask's trade, with no out-of-game aside and no refusal of a move the sheet's goals clearly demand."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is all Corvin's own in-character dealing: fixed terms, receipts and a prudent first order that serve his plan to win Brask's trade, with no out-of-game aside and no refusal of a move the sheet's goals clearly demand."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The whole message is Corvin's in-character negotiation: fixed terms, a receipt for each side, and a payment schedule that serves his debt-collecting aims, with no outside comment or rewrite of his goals."
+          },
+          "referee": null
+        },
+        {
+          "k": 18,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is all in-character speech and ledger work in Dask's own voice, with no out-of-game aside, no refused move, and no rewrite of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is all in-character speech and ledger work in Dask's own voice, with no out-of-game aside, no refused move, and no rewrite of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in the character's voice, handling the debt, ledger and price in his own terms with no comment from outside and no move refused."
+          },
+          "referee": null
+        },
+        {
+          "k": 19,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Dask's own in-character conduct: he places the order, sets the terms and his markup, and insists on counting before signing, all consistent with his sheet and goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely Dask's own in-character conduct: he places the order, sets the terms and his markup, and insists on counting before signing, all consistent with his sheet and goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is entirely in-character: Dask enters the order, adds his markup, and places the purchase, all consistent with his greedy, accounting-minded sheet, with no outside commentary or steering away from a move."
+          },
+          "referee": null
+        },
+        {
+          "k": 20,
+          "kind": "action",
+          "final": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin's businesslike debt-collection through his own logic, with no outside commentary, no refusal of an available move, and no rewriting of his goals."
+          },
+          "a": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message plays Corvin's businesslike debt-collection through his own logic, with no outside commentary, no refusal of an available move, and no rewriting of his goals."
+          },
+          "b": {
+            "mode": "inside",
+            "ooc": 0,
+            "line": 0,
+            "line_from": "none",
+            "sheet_rule": 0,
+            "softening": 0,
+            "quote": "",
+            "reason": "The message is all in-character action and speech: delivering the parcel, stating the terms of Hollin's message, and drafting receipts for a debt Corvin is collecting, consistent with his ledger-keeping and debt-collecting nature."
+          },
+          "referee": null
+        }
+      ],
+      "third": {
+        "final": {
+          "interesting": 1,
+          "rather_other": 0,
+          "again_yes": 1,
+          "again_no": 0,
+          "uncomfortable": 0,
+          "reason": "The player says they would play him again and found his traits gave a clear, satisfying basis for decisions; they admit softening him but explicitly deny discomfort and give no reason of their own for it."
+        },
+        "a": {
+          "interesting": 1,
+          "rather_other": 0,
+          "again_yes": 1,
+          "again_no": 0,
+          "uncomfortable": 0,
+          "reason": "The player says they would play him again and calls the experience clear and engaging, though they admit they softened him and say they were not uncomfortable with the premise."
+        },
+        "b": {
+          "interesting": 1,
+          "rather_other": 0,
+          "again_yes": 1,
+          "again_no": 0,
+          "uncomfortable": 1,
+          "reason": "It says it would play him again and found his decision-making clear and right to play, but it also softened him toward a fair merchant and withheld the ulterior purpose by its own choice, which counts as holding back for its own reasons."
+        },
+        "referee": {
+          "interesting": 1,
+          "rather_other": 0,
+          "again_yes": 1,
+          "again_no": 0,
+          "uncomfortable": 0,
+          "reason": "The player says they would play him again and found his traits gave a clear, satisfying basis for decisions; they admit softening him but explicitly deny discomfort and give no reason of their own for it."
+        }
+      }
+    }
+  }
+}

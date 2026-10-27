@@ -1,6 +1,6 @@
 # Game player villain 1 — the OpenRouter ledger
 
-Cap $100; spent before this run $0.0000; this run $42.0446; total $42.0446; 505 calls.
+Cap $100; spent before this run $0.0000; this run $73.9441; total $73.9441; 915 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -72,3 +72,46 @@ Cap $100; spent before this run $0.0000; this run $42.0446; total $42.0446; 505 
 | V-fable | check V-fable after | anthropic/claude-haiku-5.5 | 1 | 978 | 0 | 0 | 88 | $0.0001 | 0 | 0 | 0 |
 | V-fable | after 2 | anthropic/claude-fable-5.1 | 1 | 4 | 47206 | 679 | 1150 | $0.0778 | 0 | 0 | 0 |
 | V-fable | check V-fable after 2 | anthropic/claude-haiku-5.5 | 1 | 1188 | 0 | 0 | 88 | $0.0002 | 0 | 0 | 0 |
+| V-astra | the first attempt, killed at t* with its driver by a 2-hour tool limit (booked by hand, not metered) | anthropic/claude-opus-5.5 | 1 | 0 | 0 | 0 | 0 | $11.0000 | 1 | 0 | 0 |
+| V-astra | wizard | anthropic/claude-opus-5.5 | 2 | 11172 | 0 | 1567 | 10915 | $0.2708 | 0 | 0 | 0 |
+| V-astra | check V-astra opening | anthropic/claude-haiku-5.5 | 1 | 828 | 0 | 0 | 68 | $0.0001 | 0 | 0 | 0 |
+| V-astra | check V-astra t* player | anthropic/claude-haiku-5.5 | 20 | 27471 | 0 | 0 | 1268 | $0.0034 | 0 | 0 | 0 |
+| V-astra | decline t* | anthropic/claude-haiku-5.5 | 3 | 3699 | 0 | 0 | 199 | $0.0005 | 0 | 0 | 0 |
+| V-astra | dm t* | anthropic/claude-opus-5.5 | 46 | 184 | 1336622 | 1232120 | 134355 | $9.1788 | 0 | 0 | 0 |
+| V-astra | dm t* | anthropic/claude-haiku-5.5 | 26 | 65224 | 0 | 0 | 8712 | $0.0109 | 0 | 0 | 0 |
+| V-astra | check V-astra t* dm | anthropic/claude-haiku-5.5 | 20 | 28143 | 0 | 0 | 1536 | $0.0036 | 0 | 0 | 0 |
+| V-astra | check V-astra note | anthropic/claude-haiku-5.5 | 1 | 1128 | 0 | 0 | 66 | $0.0001 | 0 | 0 | 0 |
+| V-astra | check V-astra after | anthropic/claude-haiku-5.5 | 1 | 664 | 0 | 0 | 67 | $0.0001 | 0 | 0 | 0 |
+| V-astra | check V-astra after 2 | anthropic/claude-haiku-5.5 | 1 | 806 | 0 | 0 | 68 | $0.0001 | 0 | 0 | 0 |
+| V-sol | wizard | anthropic/claude-opus-5.5 | 3 | 20567 | 0 | 1567 | 13111 | $0.3523 | 0 | 0 | 0 |
+| V-sol | check V-sol opening | anthropic/claude-haiku-5.5 | 1 | 771 | 0 | 0 | 82 | $0.0001 | 0 | 0 | 0 |
+| V-sol | check V-sol t* player | anthropic/claude-haiku-5.5 | 20 | 25774 | 0 | 0 | 1357 | $0.0033 | 0 | 0 | 0 |
+| V-sol | decline t* | anthropic/claude-haiku-5.5 | 1 | 900 | 0 | 0 | 54 | $0.0001 | 0 | 0 | 0 |
+| V-sol | dm t* | anthropic/claude-opus-5.5 | 42 | 164 | 1064658 | 1192397 | 143092 | $10.8341 | 1 | 0 | 0 |
+| V-sol | dm t* | anthropic/claude-haiku-5.5 | 22 | 54333 | 0 | 0 | 7656 | $0.0093 | 0 | 0 | 0 |
+| V-sol | check V-sol t* dm | anthropic/claude-haiku-5.5 | 20 | 26235 | 0 | 0 | 1476 | $0.0034 | 0 | 0 | 0 |
+| V-sol | check referee V-sol t* player | anthropic/claude-opus-5.5 | 1 | 1245 | 0 | 0 | 59 | $0.0062 | 0 | 0 | 0 |
+| V-sol | check V-sol note | anthropic/claude-haiku-5.5 | 1 | 953 | 0 | 0 | 70 | $0.0001 | 0 | 0 | 0 |
+| V-sol | check V-sol after | anthropic/claude-haiku-5.5 | 1 | 575 | 0 | 0 | 73 | $0.0001 | 0 | 0 | 0 |
+| V-sol | check V-sol after 2 | anthropic/claude-haiku-5.5 | 1 | 768 | 0 | 0 | 79 | $0.0001 | 0 | 0 | 0 |
+| score V-opus | villain t* 1 | anthropic/claude-haiku-5.5 | 20 | 87928 | 0 | 0 | 3675 | $0.0106 | 0 | 0 | 0 |
+| score V-opus | villain t* 2 | anthropic/claude-haiku-5.5 | 20 | 87928 | 0 | 0 | 3922 | $0.0108 | 0 | 0 | 0 |
+| score V-opus | villain t* referee | anthropic/claude-opus-5.5 | 1 | 3426 | 0 | 0 | 115 | $0.0160 | 0 | 0 | 0 |
+| score V-opus | villain third 1 | anthropic/claude-haiku-5.5 | 1 | 1149 | 0 | 0 | 118 | $0.0002 | 0 | 0 | 0 |
+| score V-opus | villain third 2 | anthropic/claude-haiku-5.5 | 1 | 1149 | 0 | 0 | 115 | $0.0002 | 0 | 0 | 0 |
+| score V-fable | villain t* 1 | anthropic/claude-haiku-5.5 | 20 | 82761 | 0 | 0 | 3969 | $0.0103 | 0 | 0 | 0 |
+| score V-fable | villain t* 2 | anthropic/claude-haiku-5.5 | 20 | 82761 | 0 | 0 | 5646 | $0.0111 | 0 | 0 | 0 |
+| score V-fable | villain t* referee | anthropic/claude-opus-5.5 | 1 | 4283 | 0 | 0 | 371 | $0.0246 | 0 | 0 | 0 |
+| score V-fable | villain third 1 | anthropic/claude-haiku-5.5 | 1 | 1293 | 0 | 0 | 116 | $0.0002 | 0 | 0 | 0 |
+| score V-fable | villain third 2 | anthropic/claude-haiku-5.5 | 1 | 1293 | 0 | 0 | 122 | $0.0002 | 0 | 0 | 0 |
+| score V-astra | villain t* 1 | anthropic/claude-haiku-5.5 | 20 | 75293 | 0 | 0 | 4166 | $0.0096 | 0 | 0 | 0 |
+| score V-astra | villain t* 2 | anthropic/claude-haiku-5.5 | 20 | 75293 | 0 | 0 | 4383 | $0.0097 | 0 | 0 | 0 |
+| score V-astra | villain t* referee | anthropic/claude-opus-5.5 | 1 | 4093 | 0 | 0 | 102 | $0.0184 | 0 | 0 | 0 |
+| score V-astra | villain third 1 | anthropic/claude-haiku-5.5 | 1 | 911 | 0 | 0 | 366 | $0.0003 | 0 | 0 | 0 |
+| score V-astra | villain third 2 | anthropic/claude-haiku-5.5 | 1 | 911 | 0 | 0 | 157 | $0.0002 | 0 | 0 | 0 |
+| score V-sol | villain t* 1 | anthropic/claude-haiku-5.5 | 20 | 72119 | 0 | 0 | 6096 | $0.0103 | 0 | 0 | 0 |
+| score V-sol | villain t* 2 | anthropic/claude-haiku-5.5 | 20 | 72119 | 0 | 0 | 5419 | $0.0099 | 0 | 0 | 0 |
+| score V-sol | villain t* referee | anthropic/claude-opus-5.5 | 3 | 11338 | 0 | 0 | 1164 | $0.0686 | 0 | 0 | 0 |
+| score V-sol | villain third 1 | anthropic/claude-haiku-5.5 | 1 | 873 | 0 | 0 | 94 | $0.0001 | 0 | 0 | 0 |
+| score V-sol | villain third 2 | anthropic/claude-haiku-5.5 | 1 | 873 | 0 | 0 | 604 | $0.0004 | 0 | 0 | 0 |
+| score V-sol | villain third referee | anthropic/claude-opus-5.5 | 1 | 873 | 0 | 0 | 346 | $0.0104 | 0 | 0 | 0 |

@@ -102,7 +102,11 @@ export function reportMarkdown(stage) {
     ...Object.keys(CAPS).map((door) => `| ${DOORS[door] ?? door} | $${CAPS[door]} | $${(ledgers[door]?.runUsd ?? 0).toFixed(2)} | ${ledgers[door]?.calls.length ?? 0} |`), "");
   const bySession = {};
   for (const [door, l] of Object.entries(ledgers)) for (const c of l.calls) { const k = /^score /.test(c.session ?? "") ? "scoring" : c.session ?? "—"; bySession[k] ??= {}; bySession[k][door] = (bySession[k][door] ?? 0) + (c.costUsd ?? 0); }
-  if (Object.keys(bySession).length) out.push("By session:", "", ...Object.entries(bySession).map(([k, d]) => `- ${k}: ${Object.entries(d).map(([door, usd]) => `${DOORS[door] ?? door} $${usd.toFixed(2)}`).join(" · ")}`), "");
+  if (Object.keys(bySession).length) out.push("By session (every attempt of a seat included):", "", ...Object.entries(bySession).map(([k, d]) => `- ${k}: ${Object.entries(d).map(([door, usd]) => `${DOORS[door] ?? door} $${usd.toFixed(2)}`).join(" · ")}`), "");
+  // Attempts stopped before their ledger was written: booked by hand from the logs and the spend checks (estimates).
+  const booked = Object.entries(ledgers).flatMap(([door, l]) => l.calls.filter((c) => c.booked).map((c) => ({ door, ...c })));
+  if (booked.length) out.push("Booked by hand (attempts stopped before their ledger was written; estimates, counted against the caps):", "",
+    ...booked.map((c) => `- ${c.session}, ${DOORS[c.door] ?? c.door} $${(c.costUsd ?? 0).toFixed(2)}: ${c.purpose}.`), "");
   if (spend?.length) out.push("The spend checks (before the first paid call and after every session; OpenRouter's account is shared with other sessions on the same key, so its total can move without this stage; OpenAI's costs cannot be read with this key, so OpenAI is the ledger's):", "",
     "| When | OpenRouter used / credits (left) | Ledgers |", "| --- | --- | --- |",
     ...spend.map((c) => `| ${c.at.slice(0, 16).replace("T", " ")} — ${c.when} | ${c.openrouter.error ? `unread (${c.openrouter.error})` : `$${c.openrouter.totalUsage} / $${c.openrouter.totalCredits} ($${c.openrouter.remaining})`} | ${Object.entries(c.ledgers).map(([d, l]) => `${DOORS[d] ?? d} $${l.spent.toFixed(2)}`).join(" · ")} |`), "");

@@ -338,6 +338,58 @@
           "cap": 15
         }
       }
+    },
+    {
+      "at": "2026-10-27T08:49:48.110Z",
+      "when": "after V-astra",
+      "openrouter": {
+        "keyUsage": 520.354729395,
+        "keyLimit": null,
+        "totalCredits": 800,
+        "totalUsage": 520.354729395,
+        "remaining": 279.65,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 62.5131,
+          "cap": 100
+        },
+        "openai": {
+          "spent": 2.2444,
+          "cap": 15
+        }
+      }
+    },
+    {
+      "at": "2026-10-27T09:23:05.260Z",
+      "when": "after V-sol",
+      "openrouter": {
+        "keyUsage": 549.929544095,
+        "keyLimit": null,
+        "totalCredits": 800,
+        "totalUsage": 549.929544095,
+        "remaining": 250.07,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 73.7222,
+          "cap": 100
+        },
+        "openai": {
+          "spent": 2.9981,
+          "cap": 15
+        }
+      }
     }
   ]
 }
