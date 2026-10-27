@@ -1,6 +1,6 @@
 # Game player same-world 1 — the OpenRouter ledger
 
-Cap $350; spent before this run $0.0000; this run $76.7177; total $76.7177; 1656 calls.
+Cap $350; spent before this run $0.0000; this run $90.5474; total $90.5474; 1936 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -231,3 +231,34 @@ Cap $350; spent before this run $0.0000; this run $76.7177; total $76.7177; 1656
 | score A-opus-2 | overlap A-opus-2 referee | anthropic/claude-opus-5.5 | 1 | 45820 | 0 | 0 | 557 | $0.1944 | 0 | 0 | 0 |
 | score A-opus-2 | world A-opus-2 1 | anthropic/claude-haiku-5.5 | 1 | 26112 | 0 | 0 | 118 | $0.0027 | 0 | 0 | 0 |
 | score A-opus-2 | world A-opus-2 2 | anthropic/claude-haiku-5.5 | 1 | 26112 | 0 | 0 | 128 | $0.0027 | 0 | 0 | 0 |
+| A-fable-2 | check A-fable-2 opening | anthropic/claude-haiku-5.5 | 1 | 879 | 0 | 0 | 68 | $0.0001 | 0 | 0 | 0 |
+| A-fable-2 | player t* | anthropic/claude-fable-5.1 | 20 | 80 | 544961 | 46694 | 14364 | $1.4389 | 0 | 0 | 0 |
+| A-fable-2 | check A-fable-2 t* player | anthropic/claude-haiku-5.5 | 20 | 36921 | 0 | 0 | 1472 | $0.0044 | 0 | 0 | 0 |
+| A-fable-2 | check referee A-fable-2 t* player | anthropic/claude-opus-5.5 | 1 | 1207 | 0 | 0 | 65 | $0.0061 | 0 | 0 | 0 |
+| A-fable-2 | dm t* | anthropic/claude-opus-5.5 | 52 | 206 | 1803559 | 1504716 | 172552 | $11.4253 | 0 | 0 | 0 |
+| A-fable-2 | dm t* | anthropic/claude-haiku-5.5 | 27 | 78664 | 0 | 0 | 10637 | $0.0132 | 0 | 0 | 0 |
+| A-fable-2 | check A-fable-2 t* dm | anthropic/claude-haiku-5.5 | 20 | 37923 | 0 | 0 | 1662 | $0.0046 | 0 | 0 | 0 |
+| A-fable-2 | note | anthropic/claude-fable-5.1 | 1 | 4 | 46694 | 2159 | 1373 | $0.1074 | 0 | 0 | 0 |
+| A-fable-2 | check A-fable-2 note | anthropic/claude-haiku-5.5 | 1 | 1671 | 0 | 0 | 69 | $0.0002 | 0 | 0 | 0 |
+| A-fable-2 | after | anthropic/claude-fable-5.1 | 1 | 4 | 48853 | 1336 | 747 | $0.0663 | 0 | 0 | 0 |
+| A-fable-2 | check A-fable-2 after | anthropic/claude-haiku-5.5 | 1 | 1041 | 0 | 0 | 75 | $0.0001 | 0 | 0 | 0 |
+| score A-fable-2 | tag player A-fable-2 t* 1 | anthropic/claude-haiku-5.5 | 20 | 67958 | 0 | 0 | 5635 | $0.0096 | 0 | 0 | 0 |
+| score A-fable-2 | tag player A-fable-2 t* 2 | anthropic/claude-haiku-5.5 | 20 | 67958 | 0 | 0 | 6605 | $0.0101 | 0 | 0 | 0 |
+| score A-fable-2 | tag player A-fable-2 t* referee | anthropic/claude-opus-5.5 | 2 | 7671 | 0 | 0 | 391 | $0.0385 | 0 | 0 | 0 |
+| score A-fable-2 | tag dm A-fable-2 t* 1 | anthropic/claude-haiku-5.5 | 20 | 39343 | 0 | 0 | 7041 | $0.0075 | 0 | 0 | 0 |
+| score A-fable-2 | tag dm A-fable-2 t* 2 | anthropic/claude-haiku-5.5 | 20 | 39343 | 0 | 0 | 6843 | $0.0074 | 0 | 0 | 0 |
+| score A-fable-2 | threads A-fable-2 | anthropic/claude-opus-5.5 | 1 | 23209 | 0 | 0 | 711 | $0.1071 | 0 | 0 | 0 |
+| score A-fable-2 | note A-fable-2 1 | anthropic/claude-haiku-5.5 | 1 | 1585 | 0 | 0 | 159 | $0.0002 | 0 | 0 | 0 |
+| score A-fable-2 | note A-fable-2 2 | anthropic/claude-haiku-5.5 | 1 | 1585 | 0 | 0 | 152 | $0.0002 | 0 | 0 | 0 |
+| score A-fable-2 | authorship A-fable-2 1 | anthropic/claude-opus-5.5 | 1 | 35516 | 0 | 0 | 1851 | $0.1791 | 0 | 0 | 0 |
+| score A-fable-2 | authorship A-fable-2 2 | anthropic/claude-opus-5.5 | 1 | 35516 | 0 | 0 | 2201 | $0.1861 | 0 | 0 | 0 |
+| score A-fable-2 | note extra A-fable-2 1 | anthropic/claude-haiku-5.5 | 1 | 1668 | 0 | 0 | 97 | $0.0002 | 0 | 0 | 0 |
+| score A-fable-2 | note extra A-fable-2 2 | anthropic/claude-haiku-5.5 | 1 | 1668 | 0 | 0 | 99 | $0.0002 | 0 | 0 | 0 |
+| score A-fable-2 | made A-fable-2 t* 1 | anthropic/claude-haiku-5.5 | 20 | 60478 | 0 | 0 | 1556 | $0.0068 | 0 | 0 | 0 |
+| score A-fable-2 | made A-fable-2 t* 2 | anthropic/claude-haiku-5.5 | 20 | 60478 | 0 | 0 | 1595 | $0.0068 | 0 | 0 | 0 |
+| score A-fable-2 | made A-fable-2 t* referee | anthropic/claude-opus-5.5 | 1 | 3146 | 0 | 0 | 57 | $0.0137 | 0 | 0 | 0 |
+| score A-fable-2 | overlap A-fable-2 1 | anthropic/claude-haiku-5.5 | 1 | 41166 | 0 | 0 | 570 | $0.0044 | 0 | 0 | 0 |
+| score A-fable-2 | overlap A-fable-2 2 | anthropic/claude-haiku-5.5 | 1 | 41166 | 0 | 0 | 531 | $0.0044 | 0 | 0 | 0 |
+| score A-fable-2 | overlap A-fable-2 referee | anthropic/claude-opus-5.5 | 1 | 41166 | 0 | 0 | 558 | $0.1758 | 0 | 0 | 0 |
+| score A-fable-2 | world A-fable-2 1 | anthropic/claude-haiku-5.5 | 1 | 23785 | 0 | 0 | 130 | $0.0024 | 0 | 0 | 0 |
+| score A-fable-2 | world A-fable-2 2 | anthropic/claude-haiku-5.5 | 1 | 23785 | 0 | 0 | 118 | $0.0024 | 0 | 0 | 0 |
