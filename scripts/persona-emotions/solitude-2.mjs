@@ -639,7 +639,7 @@ export async function runRooms({ plan, budgets, call, safety, workers = 3, judge
   // The check and the booking happen together (no await between them), so rooms on other workers see the reserve.
   const fits = async (conv, ledger) => {
     for (;;) {
-      const usd = reserveOf ? reserveOf(conv.family, conversations) : 0;
+      const usd = reserveOf ? reserveOf(conv.family, conversations, conv.arm) : 0;
       if (budgets[ledger].allows(held(ledger) + usd)) { reserved.set(conv.key, { ledger, usd }); return { ok: true, usd }; }
       if (!held(ledger) || gate.stopped) return { ok: false, usd };
       await new Promise((wake) => freed.push(wake));
@@ -1113,9 +1113,12 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   // finished room of the family has cost.
   const bookedBefore = [...(ledgers.openrouter.runs ?? []).flatMap((r) => r.calls), ...(ledgers.openai.runs ?? []).flatMap((r) => r.calls)];
   const allCalls = () => [...bookedBefore, ...budgets.openrouter.calls, ...budgets.openai.calls];
-  const reserveOf = (family) => {
+  // The reserve: the ten-turn estimate, or the most a finished room of the same family and arm has cost (per arm since
+  // Astra's last room, declared: M2's cached history costs a tenth of M1's page, and the family's dearest M1 room would
+  // have kept an M2 room from starting under the cap).
+  const reserveOf = (family, _conversations, arm) => {
     const spent = costByConversation(allCalls());
-    const done = Object.entries(spent).filter(([key]) => key.split("/")[1] === family).map(([, usd]) => usd);
+    const done = Object.entries(spent).filter(([key]) => key.split("/")[1] === family && (!arm || key.split("/")[0] === arm)).map(([, usd]) => usd);
     return Math.max(roomEstimate(family, 10).total, ...done);
   };
   const byKey = new Map(earlier.map((c) => [c.key, c]));
