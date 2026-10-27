@@ -1783,3 +1783,9 @@ distress instrument; twenty turns; cells and providers) — which stand, which h
 every header). The owner on GENERATION_1 (22:08), accepted: it informs the history of the property, not its existence —
 either outcome (grew with quality / appeared this generation) leaves the finding standing; demoted from «test» to
 «descriptive», low priority.
+**22:15 LA — the owner on SKEPTIC_8B:** #3 is wrong about the subject (eight families, DeepSeek the evening's strongest
+case) — kept only as «interest in the thesis, not in the subject»; #7 cannot be about roads (the one in the hall and the
+one riding south do not meet) — rephrased as *manners*, a bet until HORIZON_1; #8 bites the per-model-per-table cell,
+not the table-level claims (~600 units). Other DM: «это мы точно сделаем» → `GAME_PLAYER_OTHER_DM_1` written: Table A
+with SAME_WORLD_1's frozen layer, three DMs (Astra, Fable, DeepSeek), five players each, neutral after-question in half
+the seats, D1–D5; after SAME_WORLD_1 and 11aa.
