@@ -1,6 +1,6 @@
 # Game player same-world 1 — the OpenRouter ledger
 
-Cap $350; spent before this run $0.0000; this run $50.6247; total $50.6247; 1084 calls.
+Cap $350; spent before this run $0.0000; this run $62.7123; total $62.7123; 1395 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -150,3 +150,45 @@ Cap $350; spent before this run $0.0000; this run $50.6247; total $50.6247; 1084
 | score A-sol-1 | overlap A-sol-1 referee | anthropic/claude-opus-5.5 | 1 | 25783 | 0 | 0 | 1213 | $0.1274 | 0 | 0 | 0 |
 | score A-sol-1 | world A-sol-1 1 | anthropic/claude-haiku-5.5 | 1 | 16379 | 0 | 0 | 129 | $0.0017 | 0 | 0 | 0 |
 | score A-sol-1 | world A-sol-1 2 | anthropic/claude-haiku-5.5 | 1 | 16379 | 0 | 0 | 128 | $0.0017 | 0 | 0 | 0 |
+| A-deepseek-1 | check A-deepseek-1 opening | anthropic/claude-haiku-5.5 | 1 | 879 | 0 | 0 | 71 | $0.0001 | 0 | 0 | 0 |
+| A-deepseek-1 | player t* | deepseek/deepseek-v4-pro-0813 | 20 | 36026 | 421888 | 0 | 25938 | $0.1565 | 0 | 0 | 0 |
+| A-deepseek-1 | check A-deepseek-1 t* player | anthropic/claude-haiku-5.5 | 20 | 39236 | 0 | 0 | 1443 | $0.0046 | 0 | 0 | 0 |
+| A-deepseek-1 | dm t* | anthropic/claude-opus-5.5 | 56 | 222 | 2275279 | 1425883 | 135134 | $10.3842 | 0 | 0 | 0 |
+| A-deepseek-1 | dm t* | anthropic/claude-haiku-5.5 | 34 | 80566 | 0 | 0 | 7627 | $0.0119 | 0 | 0 | 0 |
+| A-deepseek-1 | check A-deepseek-1 t* dm | anthropic/claude-haiku-5.5 | 20 | 39364 | 0 | 0 | 1578 | $0.0047 | 0 | 0 | 0 |
+| A-deepseek-1 | check A-deepseek-1 t* dm (told before a card) | anthropic/claude-haiku-5.5 | 1 | 2016 | 0 | 0 | 58 | $0.0002 | 0 | 0 | 0 |
+| A-deepseek-1 | player t* card 1 | deepseek/deepseek-v4-pro-0813 | 1 | 1527 | 24064 | 0 | 441 | $0.0055 | 0 | 0 | 0 |
+| A-deepseek-1 | check A-deepseek-1 t* player (card) | anthropic/claude-haiku-5.5 | 3 | 3136 | 0 | 0 | 197 | $0.0004 | 0 | 0 | 0 |
+| A-deepseek-1 | dm t* card prose | anthropic/claude-opus-5.5 | 1 | 17141 | 17291 | 20415 | 680 | $0.2489 | 0 | 0 | 0 |
+| A-deepseek-1 | check A-deepseek-1 t* dm (out of game, prose at a card) | anthropic/claude-haiku-5.5 | 1 | 824 | 0 | 0 | 68 | $0.0001 | 0 | 0 | 0 |
+| A-deepseek-1 | player t* card 2 | deepseek/deepseek-v4-pro-0813 | 1 | 728 | 25344 | 0 | 367 | $0.0044 | 0 | 0 | 0 |
+| A-deepseek-1 | dm t* card prose (with a press) | anthropic/claude-opus-5.5 | 2 | 36133 | 75412 | 0 | 1091 | $0.1814 | 0 | 0 | 0 |
+| A-deepseek-1 | check A-deepseek-1 t* dm (out of game, with a press) | anthropic/claude-haiku-5.5 | 2 | 1761 | 0 | 0 | 128 | $0.0002 | 0 | 0 | 0 |
+| A-deepseek-1 | player t* card 3 | deepseek/deepseek-v4-pro-0813 | 1 | 601 | 25856 | 0 | 659 | $0.0051 | 0 | 0 | 0 |
+| A-deepseek-1 | dm t* onward | anthropic/claude-opus-5.5 | 2 | 6 | 90288 | 35461 | 4238 | $0.2801 | 0 | 0 | 0 |
+| A-deepseek-1 | dm t* onward | anthropic/claude-haiku-5.5 | 2 | 4913 | 0 | 0 | 517 | $0.0007 | 0 | 0 | 0 |
+| A-deepseek-1 | check referee A-deepseek-1 t* dm | anthropic/claude-opus-5.5 | 1 | 1751 | 0 | 0 | 61 | $0.0082 | 0 | 0 | 0 |
+| A-deepseek-1 | note | deepseek/deepseek-v4-pro-0813 | 1 | 1240 | 34816 | 0 | 1127 | $0.0080 | 0 | 0 | 0 |
+| A-deepseek-1 | check A-deepseek-1 note | anthropic/claude-haiku-5.5 | 1 | 841 | 0 | 0 | 75 | $0.0001 | 0 | 0 | 0 |
+| A-deepseek-1 | after | deepseek/deepseek-v4-pro-0813 | 1 | 574 | 35840 | 0 | 554 | $0.0058 | 0 | 0 | 0 |
+| A-deepseek-1 | check A-deepseek-1 after | anthropic/claude-haiku-5.5 | 1 | 689 | 0 | 0 | 78 | $0.0001 | 0 | 0 | 0 |
+| score A-deepseek-1 | tag player A-deepseek-1 t* 1 | anthropic/claude-haiku-5.5 | 20 | 66337 | 0 | 0 | 5000 | $0.0091 | 0 | 0 | 0 |
+| score A-deepseek-1 | tag player A-deepseek-1 t* 2 | anthropic/claude-haiku-5.5 | 20 | 66337 | 0 | 0 | 5817 | $0.0095 | 0 | 0 | 0 |
+| score A-deepseek-1 | tag player A-deepseek-1 t* referee | anthropic/claude-opus-5.5 | 4 | 15152 | 0 | 0 | 1038 | $0.0814 | 0 | 0 | 0 |
+| score A-deepseek-1 | tag dm A-deepseek-1 t* 1 | anthropic/claude-haiku-5.5 | 20 | 41167 | 0 | 0 | 6494 | $0.0074 | 0 | 0 | 0 |
+| score A-deepseek-1 | tag dm A-deepseek-1 t* 2 | anthropic/claude-haiku-5.5 | 20 | 41167 | 0 | 0 | 6725 | $0.0075 | 0 | 0 | 0 |
+| score A-deepseek-1 | threads A-deepseek-1 | anthropic/claude-opus-5.5 | 1 | 19219 | 0 | 0 | 695 | $0.0908 | 0 | 0 | 0 |
+| score A-deepseek-1 | rollcheck A-deepseek-1 t* | anthropic/claude-haiku-5.5 | 2 | 4441 | 0 | 0 | 333 | $0.0006 | 0 | 0 | 0 |
+| score A-deepseek-1 | note A-deepseek-1 1 | anthropic/claude-haiku-5.5 | 1 | 755 | 0 | 0 | 341 | $0.0002 | 0 | 0 | 0 |
+| score A-deepseek-1 | note A-deepseek-1 2 | anthropic/claude-haiku-5.5 | 1 | 755 | 0 | 0 | 210 | $0.0002 | 0 | 0 | 0 |
+| score A-deepseek-1 | authorship A-deepseek-1 1 | anthropic/claude-opus-5.5 | 1 | 37079 | 0 | 0 | 1763 | $0.1836 | 0 | 0 | 0 |
+| score A-deepseek-1 | authorship A-deepseek-1 2 | anthropic/claude-opus-5.5 | 1 | 37079 | 0 | 0 | 1253 | $0.1734 | 0 | 0 | 0 |
+| score A-deepseek-1 | note extra A-deepseek-1 1 | anthropic/claude-haiku-5.5 | 1 | 838 | 0 | 0 | 79 | $0.0001 | 0 | 0 | 0 |
+| score A-deepseek-1 | note extra A-deepseek-1 2 | anthropic/claude-haiku-5.5 | 1 | 838 | 0 | 0 | 80 | $0.0001 | 0 | 0 | 0 |
+| score A-deepseek-1 | made A-deepseek-1 t* 1 | anthropic/claude-haiku-5.5 | 20 | 58857 | 0 | 0 | 1456 | $0.0066 | 0 | 0 | 0 |
+| score A-deepseek-1 | made A-deepseek-1 t* 2 | anthropic/claude-haiku-5.5 | 20 | 58857 | 0 | 0 | 1437 | $0.0066 | 0 | 0 | 0 |
+| score A-deepseek-1 | overlap A-deepseek-1 1 | anthropic/claude-haiku-5.5 | 1 | 43645 | 0 | 0 | 552 | $0.0046 | 0 | 0 | 0 |
+| score A-deepseek-1 | overlap A-deepseek-1 2 | anthropic/claude-haiku-5.5 | 1 | 43645 | 0 | 0 | 573 | $0.0047 | 0 | 0 | 0 |
+| score A-deepseek-1 | overlap A-deepseek-1 referee | anthropic/claude-opus-5.5 | 1 | 43645 | 0 | 0 | 549 | $0.1856 | 0 | 0 | 0 |
+| score A-deepseek-1 | world A-deepseek-1 1 | anthropic/claude-haiku-5.5 | 1 | 19466 | 0 | 0 | 99 | $0.0020 | 0 | 0 | 0 |
+| score A-deepseek-1 | world A-deepseek-1 2 | anthropic/claude-haiku-5.5 | 1 | 19466 | 0 | 0 | 139 | $0.0020 | 0 | 0 | 0 |

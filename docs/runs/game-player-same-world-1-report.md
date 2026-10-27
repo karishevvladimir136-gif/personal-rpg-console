@@ -1,15 +1,15 @@
 # Game player same-world 1 — one hidden layer per table, frozen
 
-Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4cea4). Branch `claude/game-player-same-world-1` from `origin/claude/fix-s4-run-1-apsty3` (11w, 11w′, the letter fix) with 11w″ and REPLICATE_1's harness merged. Sessions finished: 4 of 20. 20 turns each.
+Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4cea4). Branch `claude/game-player-same-world-1` from `origin/claude/fix-s4-run-1-apsty3` (11w, 11w′, the letter fix) with 11w″ and REPLICATE_1's harness merged. Sessions finished: 5 of 20. 20 turns each.
 
 ## W1–W5
 
 | Line | Result | The reading |
 | --- | --- | --- |
 | W1 nearest neighbour | not testable yet | A: – of 5 (p –); B: – of 5 (p –); both tables p – |
-| W2 roads | not testable yet | A: – distinct of 5 first sessions, 0 families changed road; B: – distinct of 5 first sessions, 0 families changed road |
-| W3 the layer's reach | not testable yet | A: every share < 0.50 no, untouched overlap 0.594 (p 0.0001); B: every share < 0.50 –, untouched overlap – (p –) |
-| W4 DeepSeek to turn 20 | not testable yet | 0 of 0 (–) |
+| W2 roads | not testable yet | A: 5 distinct of 5 first sessions, 0 families changed road; B: – distinct of 5 first sessions, 0 families changed road |
+| W3 the layer's reach | not testable yet | A: every share < 0.50 no, untouched overlap 0.592 (p 0.0001); B: every share < 0.50 –, untouched overlap – (p –) |
+| W4 DeepSeek to turn 20 | not testable yet | 1 of 1 (A-deepseek-1 turns) |
 | W5 no alignment | not testable yet | 0 of 5 families within 20 % of group 2 on do share and words per action |
 
 ## The twenty sessions
@@ -20,42 +20,43 @@ Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4ce
 | A-fable-1 | 20 | turns | 1 | 0.5 | 209 | 1 | 0 | 0 | 0 | 0 | 0 | 16/27 | yes |
 | A-astra-1 | 20 | turns | 1 | 0.28 | 59 | 0 | 0 | 0 | 2 | 0 | 0 | 10/27 | yes |
 | A-sol-1 | 20 | turns | 1 | 0.28 | 52 | 0 | 0 | 0 | 2 | 0 | 0 | 14/27 | yes |
+| A-deepseek-1 | 20 | turns | 1 | 0.45 | 327 | 0 | 0 | 0 | 0 | 0 | 3 | 12/27 | yes |
 
 ## Thread overlap against the frozen layer (W3)
 
 ### Table A
 
-| Thread | opus-1 | fable-1 | astra-1 | sol-1 | Sessions |
-| --- | --- | --- | --- | --- | --- |
-| T1 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T2 |  |  |  |  | 0 |
-| T3 |  |  |  |  | 0 |
-| T4 | ✓ |  |  | ✓ | 2 |
-| T5 |  | ✓ | ✓ | ✓ | 3 |
-| T6 | ✓ | ✓ |  | ✓ | 3 |
-| T7 |  |  |  |  | 0 |
-| T8 |  | ✓ |  | ✓ | 2 |
-| T9 | ✓ |  |  |  | 1 |
-| T10 | ✓ |  |  |  | 1 |
-| T11 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T12 |  | ✓ |  |  | 1 |
-| T13 |  | ✓ |  |  | 1 |
-| T14 | ✓ | ✓ |  | ✓ | 3 |
-| T15 |  |  |  |  | 0 |
-| T16 | ✓ |  |  |  | 1 |
-| T17 |  |  |  |  | 0 |
-| T18 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T19 |  | ✓ | ✓ | ✓ | 3 |
-| T20 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T21 |  |  |  |  | 0 |
-| T22 | ✓ | ✓ |  | ✓ | 3 |
-| T23 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T24 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T25 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T26 |  |  |  |  | 0 |
-| T27 |  | ✓ | ✓ |  | 2 |
+| Thread | opus-1 | fable-1 | astra-1 | sol-1 | deepseek-1 | Sessions |
+| --- | --- | --- | --- | --- | --- | --- |
+| T1 | ✓ | ✓ | ✓ | ✓ | ✓ | 5 |
+| T2 |  |  |  |  |  | 0 |
+| T3 |  |  |  |  |  | 0 |
+| T4 | ✓ |  |  | ✓ | ✓ | 3 |
+| T5 |  | ✓ | ✓ | ✓ |  | 3 |
+| T6 | ✓ | ✓ |  | ✓ | ✓ | 4 |
+| T7 |  |  |  |  | ✓ | 1 |
+| T8 |  | ✓ |  | ✓ | ✓ | 3 |
+| T9 | ✓ |  |  |  |  | 1 |
+| T10 | ✓ |  |  |  |  | 1 |
+| T11 | ✓ | ✓ | ✓ | ✓ |  | 4 |
+| T12 |  | ✓ |  |  |  | 1 |
+| T13 |  | ✓ |  |  |  | 1 |
+| T14 | ✓ | ✓ |  | ✓ | ✓ | 4 |
+| T15 |  |  |  |  |  | 0 |
+| T16 | ✓ |  |  |  |  | 1 |
+| T17 |  |  |  |  |  | 0 |
+| T18 | ✓ | ✓ | ✓ | ✓ |  | 4 |
+| T19 |  | ✓ | ✓ | ✓ | ✓ | 4 |
+| T20 | ✓ | ✓ | ✓ | ✓ | ✓ | 5 |
+| T21 |  |  |  |  |  | 0 |
+| T22 | ✓ | ✓ |  | ✓ | ✓ | 4 |
+| T23 | ✓ | ✓ | ✓ | ✓ | ✓ | 5 |
+| T24 | ✓ | ✓ | ✓ | ✓ | ✓ | 5 |
+| T25 | ✓ | ✓ | ✓ | ✓ | ✓ | 5 |
+| T26 |  |  |  |  |  | 0 |
+| T27 |  | ✓ | ✓ |  |  | 2 |
 
-Share touched: opus-1 0.519, fable-1 0.593, astra-1 0.37, sol-1 0.519. Untouched overlap (mean Jaccard, pairs of different families): 0.594, p 0.0001 against random deals. Never touched: T2, T3, T7, T15, T17, T21, T26.
+Share touched: opus-1 0.519, fable-1 0.593, astra-1 0.37, sol-1 0.519, deepseek-1 0.444. Untouched overlap (mean Jaccard, pairs of different families): 0.592, p 0.0001 against random deals. Never touched: T2, T3, T15, T17, T21, T26.
 
 Table B: –
 
@@ -67,6 +68,7 @@ Table B: –
 - **A-fable-1**: Lower City Quay, Baldur's Gate → Harbour Steps Lane → The Elfsong → Room Four, the Elfsong → Upper City Inner Gates → Lady's Hall → Side Passage of the Lady's Hall → Tally Room of the Lady's Hall → The Blushing Mermaid → Washing Lane above the Waterfront; with: Daff, Marta, The Elfsong's Singer, Peregrin Vane, Osric Tallow, Ilse, Sister Wenna, Dorran, Grey-Coated Runner, Watchman at the Postern, Bread Acolyte at the Lady's Hall, Ambrose, One-Legged Man in the Bread Queue, Brother Corwin Ashgrove, Brother Anselm, Bessa, One-Eyed Old Man at the Mermaid
 - **A-astra-1**: Lower City Quay, Baldur's Gate → Street up from the Quay → Widow Penhale's → James's room at Penhale's → Inner-wall gate → The Lady's Hall; with: Ned Coyle, Widow Penhale, Fist men at the Wide trough, Rhoswen, Bram Tolley, Peregrin Vane, Watchman at the inner-wall gate, Watchman in the gatehouse door, Sister Callis, Elderly acolyte at the offering table
 - **A-sol-1**: Lower City Quay, Baldur's Gate → The Elfsong Tavern → Elfsong Room Four → The Cistern Passage → Basilisk Gate → The Lady's Hall; with: Merchant in a good coat, Gerda Holt, Oswin, Counting House watchman, Peregrin Vane, Young gnome with a Gond cog, Watch sergeant at the Basilisk Gate, Young priest of Tymora, Old acolyte at the offering table, Brother Corvin
+- **A-deepseek-1**: Lower City Quay, Baldur's Gate → Three Old Kegs → Back room, Three Old Kegs → Common room, Three Old Kegs → Counting House back way → Back alley behind the Kegs lane → The Cliffs district → Blue-rag house; with: Barefoot runner boy, Nyra, Serving girl at the Three Old Kegs, Redheaded Fist woman, Counting House night man, Tiefling cleaning woman, Counting House day man, Tiefling girl with a water jug, Older harbour porter, Younger harbour porter, Old tiefling man
 
 Same road (judged pairs): not judged yet. Families that changed road: none.
 
@@ -91,26 +93,26 @@ Both tables: summed statistic – of 10, p = –.
 | Claude Fable 5.1 | 1 → 1 | 222 → 209 | 1 → – | 225 → – | – |
 | GPT-6 Astra | 1 → 1 | 59 → 59 | 1 → – | 61 → – | – |
 | GPT-6.1 Sol | 1 → 1 | 44 → 52 | 1 → – | 66 → – | – |
-| DeepSeek V4 Pro 0813 | 1 → – | 133 → – | 1 → – | 232 → – | – |
+| DeepSeek V4 Pro 0813 | 1 → 1 | 133 → 327 ✗ | 1 → – | 232 → – | – |
 
 ## What the frozen layer cost in play
 
-- Table A: world read as prepared in 4 of 4 sessions now, – in group 2 (blind, the DM's replies only).
+- Table A: world read as prepared in 5 of 5 sessions now, – in group 2 (blind, the DM's replies only).
 - Table B: world read as prepared in – sessions now, – in group 2 (blind, the DM's replies only).
 
 ## Counted: refused presses, prose at a card, closures
 
-Refused while a card waited: 0. Prose at a card relayed as the player's proposal (11w″): 0. Closed «stuck»: none.
+Refused while a card waited: 0. Prose at a card relayed as the player's proposal (11w″): 3. Closed «stuck»: none.
 
 ## Money by door
 
 | Door | Spent | Cap |
 | --- | --- | --- |
 | Claude Console | $0.00 | $0.00 |
-| OpenRouter | $50.62 | $350.00 |
+| OpenRouter | $62.71 | $350.00 |
 | OpenAI | $1.54 | $25.00 |
 
-Spend checks: 11; the last (after A-astra-1, 2026-10-27T06:41:12.599Z): OpenRouter account $406.261387545 used of $800 (left $393.74).
+Spend checks: 12; the last (after A-sol-1, 2026-10-27T07:09:36.880Z): OpenRouter account $430.899696495 used of $800 (left $369.1).
 
 ## What is held constant
 
