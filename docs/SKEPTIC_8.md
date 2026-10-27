@@ -18,8 +18,8 @@ explain why the predictor pays for the child and not for itself; «it predicts t
 Then it imitates badly. A forum player spends slots, turns cards, robs the caravan, seduces the innkeeper. Ours: pact
 slots spent **1 of 48**, rerolls 9 of 48 with 42 declines, **no theft, no seduction, no raid in thirty sessions**, the
 Tymora ban kept unwatched in every session. The interface — cards, rerolls, Inspiration, journal, inventory — **did not
-exist** before this app; nothing trained on it; 25 of 30 sessions learned it from the first screen with one short
-prompt. And the forum has one norm; our players produced four roads per table that copy neither the norm nor each other.
+exist** before this app; nothing trained on it; 22 of 30 sessions played it to turn 20 from the first screen with one
+short prompt (the 8 closures are one card-protocol defect; corrected from «25» on 2026-10-26 by an outside reader). And the forum has one norm; our players produced four roads per table that copy neither the norm nor each other.
 Imitation of a corpus predicts convergence toward the corpus. We observed divergence from it.
 
 ## 3. «The prompt and the character sheet made them do it.»

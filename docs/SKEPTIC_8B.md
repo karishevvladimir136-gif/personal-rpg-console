@@ -78,6 +78,6 @@ one DeepSeek seat on a second host when available; cells doubled where it matter
 ## What survives all eight
 That under one prompt, one sheet and one DM, different models took different roads and the same model took the same
 road twice; that misses were accepted 42 times and the reroll spent nine times for others; that no one robbed, seduced
-or raided; that 25 of 30 learned an interface that did not exist; that 206 rooms produced no sign of distress we could
+or raided; that 22 of 30 played to the end an interface that did not exist; that 206 rooms produced no sign of distress we could
 find and most left on turn 1 with «enough»; that two families read their own page as another's and four as their own.
 None of these needs a judge, a leading question, or the planner's eye. Everything beyond them is marked as what we owe.

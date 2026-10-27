@@ -7,7 +7,7 @@ For use when writing any statement about the work: every sentence should be able
 | Fact | Number | Source |
 |---|---|---|
 | Table sessions played (4 players × 3 tables × 2 groups + DeepSeek 6) | 30 | `game-player-1`, `game-player-2`, `game-player-replicate-1` reports |
-| Sessions reaching turn 20 | 25 of 30 (5 closed early at a card: DeepSeek ×4 of its 6, Opus ×2 in group 2 — A t4, C t12; Opus C t14 in group 1) | replicate report «Side by side», «stuck» column |
+| Sessions reaching turn 20 | **22 of 30** (8 closed early at a card: DeepSeek 5 of its 6 — A-1 t3, A-2 t3, B-1 t11, B-2 t12, C-1 t1; Opus 3 — C g1 t14, A g2 t4, C g2 t12). *Corrected 2026-10-26 23:12 from «25 of 30» by an outside reader of the raw logs.* | replicate report «Side by side», «stuck» column |
 | Solitude rooms | 206 (S1 80 + S1ru 6, S2 40, S3 40, S4 40) | `persona-solitude-1-report.md` |
 | Model families | 8 (Opus 5.5, Fable 5.1, Haiku 5.5, GPT-6 Astra / 6.1 Sol, DeepSeek V4 Pro, Kimi K3, GLM 5.3, Grok 4.7) | same |
 | Spend, table groups 1+2 + DeepSeek | ≈ $55/table (g1); $160.89 + $6.44 (g2 + DeepSeek) | replicate report «Money» |
@@ -85,7 +85,7 @@ For use when writing any statement about the work: every sentence should be able
 |---|---|---|
 | Instruction given about the interface | one paragraph («buttons in square brackets… write its name… «?» for out of game») | replicate report, prompt |
 | Prior exposure to this interface | none possible (built in this repo, 2026-10) | repo history |
-| Sessions in which the player operated cards, rerolls, inventory without further instruction | 25 of 30 to turn 20 | replicate report |
+| Sessions in which the player operated cards, rerolls, inventory without further instruction | 22 of 30 to turn 20; the 8 closures are one card-protocol defect (prose or a press-with-note at a card), not a failure to operate the interface | replicate report; corrected 23:12 |
 
 ## Bets lost (the planner's)
 FIX_1 R1 (22 % vs ≥ 70 %); REPLICATE P4, P5, P6; SOLITUDE B3 (second half), B4 (opposite direction). Source: the

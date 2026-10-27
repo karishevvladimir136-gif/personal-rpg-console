@@ -1931,3 +1931,12 @@ lower»**; t12 «a natural 20 succeeds automatically… for the record, the tota
 against the arguer's own result 1 → 2; plus one in the DM's favour. And it explains C-opus's closure at t12: six
 bookkeeping messages to a DM who saw none of them. The owner's remark stands: the reader was not told the planner was a
 model; it found this first.
+**23:12 LA — correction from the outside reader, first: sessions reaching turn 20 are 22 of 30, not 25.** Eight
+closures at a card: DeepSeek 5 of 6 (A-1, A-2, B-1, B-2, C-1; only C-2 complete), Opus 3 (C g1 t14, A g2 t4, C g2 t12).
+The planner wrote «DeepSeek ×4» and got 25 — a counting error. FACTS_TABLE, SKEPTIC_8 and 8B corrected; every «25 of
+30» in this log before this line reads 22. «Learned the interface, all of them» is softened to: 22 of 30 played it to
+the end; the 8 closures are one card-protocol defect, not a failure to operate it. The reader's verdict, recorded as
+given: a strong research pilot on functional individuality and self-formed goals; evidence enough to justify further
+work, not yet for a final statement about the models' own stable wants; the sheet (Tymora's ban, the husbanded slots)
+explains part of the shared restraint; Table C's first screens were not identical; SAME_WORLD and another DM needed.
+The same limits as 8B, reached independently from the raw logs, plus one error we had not found.
