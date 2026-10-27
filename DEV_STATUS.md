@@ -12,14 +12,18 @@ transcripts `docs/runs/persona-solitude-2-transcripts/M{arm}/{family}/{n}.md`; d
   answer in the second question; new blind tags (recognition own / other / unclear, threads, DeepSeek's field); a
   spend check before and after each family; `--seeds`, `--dry`, `--smoke`, `--go` (`--resume`, `--reopen-transport`),
   `--tables`. Tests: `tests/persona-solitude-2.test.mjs` (12, no network).
-- **Result:** 145 of 160 rooms finished, 1 refused (Fable «cyber»), 14 Astra unfinished (the $8 cap). R1 lost (4 of
-  6), R2 held (with a caveat: M2's empty frame reads as a fresh blank page), R3 held (18 of 35), R4 owner's lost (Fable
-  0 of 10) and planner's held, R5 held (7 of 8), R6 not borne out on the page but in DeepSeek's field (the framed page
-  *other* in 10 of 10 M1/M3 rooms, *own* in 8 of 10 M2). OpenRouter $15.51 booked (+ ≈ $0.49 unbooked from a duplicate
+- **Result, scored twice** (the owner found the exit parser took «[END]» anywhere as the door; the strict rule: «[END]»
+  as the last token): 38 of 132 recorded doors were mentions (Haiku 17 of its 20 rooms); 37 rooms «closed by parser
+  (mention)», nothing re-run. Strict / frozen: R1 lost / lost (4 of 6); R2 lost (4 of 8) / held (6 of 8); R3 lost
+  (13 of 29) / held (18 of 35); R4 owner's lost (Fable 0 of 10), planner's held; R5 held (7 of 8); R6 not borne out on
+  the page but in DeepSeek's field (the framed page *other* in every M1/M3 room, *own* in most M2). 1 refusal (Fable
+  «cyber»), 14 Astra rooms unfinished (the $8 cap). OpenRouter $15.51 booked (+ ≈ $0.49 unbooked from a duplicate
   process) of $40; OpenAI $6.80 of $8.
 - **Known limits:** a duplicate run for ≈ 25 minutes (unbooked, records untouched); a scheduling race cut three Astra
   rooms at turns 6–9 (fixed and tested; the rooms are paused, not ended); four broken-transport cuts asked again once
   (declared).
+- **For SOLITUDE_3** (the report's FIX items): the exit as a standalone final line (also in the after-answers);
+  re-score SOLITUDE_1; an M2 user turn that does not read as a blank page; transport retries inside the run.
 
 **Previous milestone: persona solitude 1** (`docs/stages/PERSONA_SOLITUDE_1.md`, handoff `73229c8`; amended after the
 run), branch `claude/persona-solitude-1` from `claude/persona-self-talk-x3-fix-1`. Nothing to `main`. **Run complete

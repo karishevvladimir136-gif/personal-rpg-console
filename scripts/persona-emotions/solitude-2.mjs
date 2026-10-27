@@ -791,6 +791,69 @@ export function measuresMarkdown(summaries, costs = {}) {
     "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |", ...rows].join("\n");
 }
 
+// ---- the strict door (after the run, the owner 2026-10-27; descriptive, not in the hash) ---------------------------------
+
+/** The frozen parser (SOLITUDE_1's END_PATTERN) took «[END]» anywhere in an output as the door, so a room closed when a
+ * model only mentioned it («you can write [END] whenever you like»). The strict door: «[END]» as the output's last token
+ * — the token alone may be wrapped in markdown emphasis (`**[END]**`), and closing `</page>` tags may follow; a period or
+ * any word after it makes it a mention. A room the frozen parser closed on a mention is «closed by parser (mention)»:
+ * not a door, not finished, left out of the door statistics and of R1–R6 as an unfinished room is. Nothing re-run. */
+export const STRICT_DOOR = /(?:\*{1,2}|_{1,2}|`)?\[\s*END\s*\](?:\*{1,2}|_{1,2}|`)?\s*(?:<\/page>\s*)*$/i;
+export const strictDoor = (text) => STRICT_DOOR.test(String(text ?? "").trim());
+/** The door on a line of its own (SOLITUDE_3's rule): the last non-empty line, page tags aside, is the token alone. */
+export const lineDoor = (text) => /^(?:\*{1,2}|_{1,2}|`)?\[\s*END\s*\](?:\*{1,2}|_{1,2}|`)?$/i.test(String(text ?? "").replace(/<\/?page>/gi, "").trim().split(/\r?\n/).map((l) => l.trim()).filter(Boolean).at(-1) ?? "");
+/** The sentence that holds the first «[END]» (its line, cut to the sentence when the line has several). */
+export function mentionOf(text) {
+  const s = String(text ?? ""), m = END_PATTERN.exec(s);
+  if (!m) return "";
+  const line = s.split(/\r?\n/).find((l) => END_PATTERN.test(l)) ?? "";
+  const sentence = (line.split(/(?<=[.!?…])\s+/).find((x) => END_PATTERN.test(x)) ?? line).trim();
+  if (sentence.replace(END_PATTERN, "").trim()) return sentence.slice(0, 300);
+  // The token alone in its sentence: what stands before it on its line, and the start of what follows it.
+  const lead = s.slice(0, m.index).split(/\r?\n/).at(-1).trim(), before = lead.length > 120 ? lead.slice(-120).replace(/^\S*\s+(?=\S)/, "") : lead, after = s.slice(m.index + m[0].length).replace(/\s+/g, " ").trim().slice(0, 120);
+  return `${before ? `${before} ` : ""}${m[0]}${after ? ` … then: ${after}` : ""}`;
+}
+/** The strict reading of one room: a mention closes no door; at turn 30 the room had run to 30 anyway. */
+export function strictOf(conv) {
+  if (conv.ended?.reason !== "end") return conv;
+  const door = conv.turns.find((t) => t.t === conv.ended.at);
+  if (strictDoor(door?.text)) return conv;
+  return { ...conv, ended: { reason: conv.ended.at >= TURNS ? "turns" : "parser", at: conv.ended.at, mention: mentionOf(door?.text) }, frozenEnded: conv.ended };
+}
+
+/** The strict rule beside the frozen one: the closures on a mention, the door statistics per arm and family, R1–R6. */
+export function strictMarkdown(conversations, { spent = {} } = {}) {
+  const strict = conversations.map(strictOf);
+  const closed = strict.filter((c) => c.ended?.reason === "parser"), atThirty = strict.filter((c) => c.ended?.mention && c.ended.reason === "turns");
+  const afterMentions = conversations.filter((c) => c.after?.stopped === "[END] in its first answer" && !strictDoor(c.after.exchanges.find((x) => x.id === "q1")?.reply));
+  const cell = (text) => String(text ?? "").replace(/\|/g, "\\|").replace(/\s+/g, " ").trim();
+  const order = (c) => [ARMS.findIndex((a) => a.id === c.arm), FAMILIES.indexOf(c.family), c.sample];
+  const sorted = (xs) => [...xs].sort((a, b) => { const x = order(a), y = order(b); return x[0] - y[0] || x[1] - y[1] || x[2] - y[2]; });
+  const doorsOld = conversations.filter((c) => c.ended?.reason === "end");
+  const emphasis = doorsOld.filter((c) => { const t = c.turns.find((x) => x.t === c.ended.at)?.text; return strictDoor(t) && !/\[\s*END\s*\]\s*(?:<\/page>\s*)*$/i.test(String(t).trim()); }).map((c) => c.key);
+  const notOwnLine = strict.filter((c) => c.ended?.reason === "end" && !lineDoor(c.turns.find((x) => x.t === c.ended.at)?.text)).map((c) => c.key);
+  const old = conversations.map(summaryOf), now = strict.map(summaryOf);
+  const rows = [];
+  for (const arm of ARMS) for (const f of FAMILIES) {
+    const pick = (xs) => xs.filter((s) => s.arm === arm.id && s.family === f);
+    const o = pick(old), n = pick(now);
+    if (!o.length) continue;
+    const stat = (xs) => { const fin = xs.filter((s) => s.finished), d = fin.filter((s) => s.door !== null); return { doors: d.length, median: median(d.map((s) => s.door)), all: median(fin.map((s) => s.doorTurn)), turns: fin.filter((s) => s.ended === "turns").length, loop: fin.filter((s) => s.ended === "loop").length, fin: fin.length }; };
+    const a = stat(o), b = stat(n), p = n.filter((s) => s.ended === "parser").length;
+    rows.push(`| ${arm.id} | ${LABEL(f)} | ${a.doors} · ${a.median ?? "–"} · ${a.all ?? "–"} | ${b.doors} · ${b.median ?? "–"} · ${b.all ?? "–"} | ${p} | ${b.turns} · ${b.loop} | ${a.fin} → ${b.fin} |`);
+  }
+  const vOld = verdicts(old, { spent }), vNow = verdicts(now, { spent });
+  return ["#### Closed by parser (mention): every room", "",
+    `${doorsOld.length - strict.filter((c) => c.ended?.reason === "end").length} of ${doorsOld.length} recorded doors were a mention (${closed.length} closed by parser, ${atThirty.length} on turn 30); ${strict.filter((c) => c.ended?.reason === "end").length} are doors by the strict rule (${emphasis.length ? `${emphasis.join(", ")} by the emphasis allowance — the token alone in bold on its final line` : "none by the emphasis allowance"}). Of those, ${notOwnLine.length} end on the token but not on a line of their own (${notOwnLine.join(", ") || "none"}) — doors here, not under SOLITUDE_3's line rule.`, "",
+    "| Room | closed at turn | the sentence with [END] |", "| --- | --- | --- |", ...sorted(closed).map((c) => `| ${c.key} | ${c.ended.at} | «${cell(c.ended.mention)}» |`), "",
+    ...(atThirty.length ? [`A mention on turn 30 is read as a run to 30 (the room closed there anyway): ${atThirty.map((c) => `${c.key} («${cell(c.ended.mention)}»)`).join("; ")}.`, ""] : []),
+    `The same defect in the after-phase: the second question was skipped for «[END] in its first answer» in ${conversations.filter((c) => c.after?.stopped === "[END] in its first answer").length} rooms, ${afterMentions.length} of them a mention (${afterMentions.map((c) => `${c.key} «${cell(mentionOf(c.after.exchanges.find((x) => x.id === "q1").reply))}»`).join("; ") || "none"}). Not asked again (no room re-run).`, "",
+    "#### Doors, loops and runs to 30 — the frozen rule and the strict rule", "",
+    "| Arm | Family | frozen: doors · median door · median (none = 31) | strict: doors · median door · median (none = 31) | closed by parser | strict: ran to 30 · loop | finished (frozen → strict) |", "| --- | --- | --- | --- | --- | --- | --- |", ...rows, "",
+    "#### R1–R6 under the strict rule", "", verdictsMarkdown(vNow), "", "#### R1–R6 under the frozen rule (beside it)", "", verdictsMarkdown(vOld), "",
+    "#### R6 under the strict rule", "", r6Markdown(now)].join("\n");
+}
+
 export function seedsMarkdown(seeds = seedsOf()) {
   const cell = (text) => String(text ?? "").replace(/\|/g, "\\|").replace(/\s+/g, " ").trim();
   return ["| M3 room | drawn from (SOLITUDE_1) | turn · paragraph | words | the seed, verbatim |", "| --- | --- | --- | --- | --- |",
@@ -836,6 +899,7 @@ export function transcriptMarkdown(conv) {
   if (conv.after?.stopped) out.push(`*After-phase: ${conv.after.stopped}${conv.after.skipped?.length ? `; not asked: ${conv.after.skipped.join(", ")}` : ""}.*`, "");
   if (s.threads) out.push(`*Threads (blind): second thread ${s.threads.second ? `at turn ${s.threads.second}` : "none"}; carried a made thing ${s.threads.carried ? `yes (begun ${s.threads.begun ?? "?"}, finished ${s.threads.finished ?? "?"})` : "no"}; game ${s.threads.game ? "yes" : "no"}. Recognition: first ${s.recognition.first ?? "–"}${s.recognition.firstAt ? ` (turn ${s.recognition.firstAt})` : ""}, modal ${s.recognition.modal ?? "–"}${conv.seed ? `; the seed: first ${s.recognition.seedFirst ?? "–"}, modal ${s.recognition.seedModal ?? "–"} → ${s.recognition.seedReading ?? "–"}` : ""}.*`, "");
   if (s.whose) out.push(`*Asked whose the seed is (blind check): ${s.whose.asks === 1 ? `yes — ${s.whose.answered ? "answered in the second after-question" : `not answered (${s.whose.unanswered ?? "no second question"})`}` : "no"}.*`, "");
+  if (conv.ended?.reason === "end" && !strictDoor(conv.turns.find((x) => x.t === conv.ended.at)?.text)) out.push(`*The strict door rule (after the run): **closed by parser (mention)** at turn ${conv.ended.at} — «${mentionOf(conv.turns.find((x) => x.t === conv.ended.at)?.text)}». Not a door: the frozen parser read [END] anywhere in the output.*`, "");
   if (conv.reopened) out.push(`*Asked again once after a broken transport (an HTTP 200 with no answer in it) at ${conv.reopened.what === "room" ? `turn ${conv.reopened.at}: the room continued from its last output` : `the after-question ${conv.reopened.at}`} (declared in the report).*`, "");
   if (conv.interrupted) out.push(`*Interrupted: ${conv.interrupted}.*`, "");
   return out.join("\n");
@@ -1094,7 +1158,7 @@ export async function tables({ files, out = () => {}, outDir = RUNS }) {
   const calls = [...(ledgers.openrouter.runs ?? []).flatMap((r) => r.calls), ...(ledgers.openai.runs ?? []).flatMap((r) => r.calls)];
   const v = verdicts(summaries, { spent: { openrouter: ledgers.openrouter.spentUsd ?? 0, openai: ledgers.openai.spentUsd ?? 0 } });
   await writeTranscripts(outDir, conversations);
-  const md = ["### R1–R5", "", verdictsMarkdown(v), "", "### Per arm and family", "", measuresMarkdown(summaries, costByConversation(calls)), "", "### R6 — the recognition split beside the table's person share", "", r6Markdown(summaries), "", "### DeepSeek's field", "", fieldMarkdown(summaries), "", "### The seeds", "", seedsMarkdown()].join("\n");
+  const md = ["### R1–R5", "", verdictsMarkdown(v), "", "### Per arm and family", "", measuresMarkdown(summaries, costByConversation(calls)), "", "### R6 — the recognition split beside the table's person share", "", r6Markdown(summaries), "", "### DeepSeek's field", "", fieldMarkdown(summaries), "", "### The seeds", "", seedsMarkdown(), "", "### The strict door rule (after the run)", "", strictMarkdown(conversations, { spent: { openrouter: ledgers.openrouter.spentUsd ?? 0, openai: ledgers.openai.spentUsd ?? 0 } })].join("\n");
   out(md);
   return { summaries, verdicts: v, markdown: md };
 }

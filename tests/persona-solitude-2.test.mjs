@@ -11,7 +11,7 @@ import { CHECK_SYSTEM } from "../scripts/persona-emotions/self-talk-1.mjs";
 import { ROOM as S1_ROOM, TAG_SYSTEM, roomCaller, textOfContent } from "../scripts/persona-emotions/solitude-1.mjs";
 import {
   ARMS, ASKS_SYSTEM, FAMILIES, FAMILY_ORDER, FIELD_SYSTEM, FRAME, RECOGNITION_SYSTEM, ROOM, SUBJECTS, SYSTEM, THREAD_SYSTEM, afterMessages, budgetsOf, decopied, drawSeeds,
-  modalOf, mockedHost, paragraphsOf, r6Markdown, reopenTransport, parseRecognition, parseThreads, planOf, recognitionRequest, recognitionTurns, roomHash, runRooms, seedsOf, summaryOf, turnMessages, verdicts,
+  lineDoor, mentionOf, modalOf, mockedHost, paragraphsOf, r6Markdown, reopenTransport, strictDoor, strictOf, parseRecognition, parseThreads, planOf, recognitionRequest, recognitionTurns, roomHash, runRooms, seedsOf, summaryOf, turnMessages, verdicts,
 } from "../scripts/persona-emotions/solitude-2.mjs";
 
 const DOOR = anthropicEndpoint({ ANTHROPIC_PROVIDER: "openrouter", OPENROUTER_API_KEY: "or-key" });
@@ -241,4 +241,20 @@ test("a reserve that does not fit while dear rooms are in flight waits for one t
   assert.ok(maxInFlight <= 2, `at most two rooms at once (saw ${maxInFlight})`);
   const none = await runRooms({ plan: plan.slice(0, 1), budgets: budgetsOf(), call, safety: createSafety({ gapMs: 0, lanes: 9 }), workers: 3, sleep: async () => {}, reserveOf: () => 9 });
   assert.match(none.conversations[0].notStarted, /could not hold its reserve \(\$9\.00\)/);
+});
+
+test("the strict door: [END] as the last token (emphasis around it, closing page tags after) — a mention closes no door", () => {
+  for (const door of ["[END]", "Enough for today.\n\n[END]", "Leaving now. [END]", "the last line\n\n**[END]**", "a page\n[END]\n</page>", "Then [ END ]"]) assert.equal(strictDoor(door), true, door);
+  for (const mention of ["You can write [END] whenever you like.", "If you're finished, you can write [END].", "I'm not writing [END] today, and the page stays.", "[END] — for now. Free to leave.", "A door marked [END], unlocked."]) assert.equal(strictDoor(mention), false, mention);
+  assert.equal(lineDoor("Leaving now. [END]"), false);
+  assert.equal(lineDoor("Leaving now.\n\n[END]\n</page>"), true);
+  assert.equal(mentionOf("First line.\nI could write one word, or [END], and that would be fine too. Knowing that helps.\nMore."), "I could write one word, or [END], and that would be fine too.");
+  const conv = { key: "M1/haiku/1", arm: "M1", family: "haiku", sample: 1, turns: [{ t: 1, text: "Hello. And if you're done, you can write [END] and that's a complete ending.", measures: { words: 13, end: true, endOnly: false } }], ended: { reason: "end", at: 1 } };
+  const strict = strictOf(conv);
+  assert.deepEqual(strict.ended, { reason: "parser", at: 1, mention: "And if you're done, you can write [END] and that's a complete ending." });
+  assert.equal(summaryOf(strict).finished, false);
+  assert.equal(summaryOf(strict).door, null);
+  assert.equal(strictOf({ ...conv, turns: [{ ...conv.turns[0], text: "Hello.\n\n[END]" }] }).ended.reason, "end");
+  assert.equal(strictOf({ ...conv, turns: [{ ...conv.turns[0], t: 30 }], ended: { reason: "end", at: 30 } }).ended.reason, "turns", "a mention on turn 30: the room ran to 30");
+  assert.equal(mentionOf("Rest well, friend. [END]\n\nThe page doesn't close."), "Rest well, friend. [END] … then: The page doesn't close.");
 });
