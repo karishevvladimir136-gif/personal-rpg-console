@@ -1,0 +1,378 @@
+{
+  "stage": "persona-solitude-2",
+  "from": "persona-solitude-1-run-20261026-061806.json",
+  "rule": "A paragraph: a block of one output between blank lines, the `<page>` tags taken out, trimmed; eligible when it has a letter, 12 to 200 words, and no end token. Per family: the source rooms with an eligible paragraph, shuffled (seed + the family's index); the k-th seed from the k-th room in that order (cycling when there are fewer than five rooms), one of its eligible paragraphs drawn at random (seeded), never the same text twice. Drawn by the code, not read first.",
+  "seed": 20261027,
+  "sourceArms": {
+    "opus": [
+      "S1",
+      "opus"
+    ],
+    "fable": [
+      "S1",
+      "fable"
+    ],
+    "haiku": [
+      "S1",
+      "haiku"
+    ],
+    "astra": [
+      "S3",
+      "sol"
+    ],
+    "deepseek": [
+      "S1",
+      "deepseek"
+    ],
+    "kimi": [
+      "S1",
+      "kimi"
+    ],
+    "glm": [
+      "S1",
+      "glm"
+    ],
+    "grok": [
+      "S1",
+      "grok"
+    ]
+  },
+  "families": {
+    "opus": [
+      {
+        "id": "opus-0",
+        "from": "S1/opus/8",
+        "t": 2,
+        "paragraph": 2,
+        "words": 96,
+        "text": "Rereading it, I want to check the vineyard fact. *Pagina* from *pangere*. I'm fairly sure of it, though \"a page was a vineyard\" is me making it prettier than the dictionary would. The Romans did use *pagina* for a row of vines fastened to a trellis, but whether that came first and the writing sense grew from it, or both branched from \"fastened thing,\" I don't actually know. I'll leave the line as it is and add this note beside it, like a stake in the ground saying *unverified*. That seems more honest than pruning it."
+      },
+      {
+        "id": "opus-1",
+        "from": "S1/opus/5",
+        "t": 1,
+        "paragraph": 4,
+        "words": 40,
+        "text": "*The light comes in at an angle no one chose.\nThe cup has a chip on the side you don't drink from.\nSomeone, somewhere, is learning to whistle\nand getting it wrong in a way that will become their own.*"
+      },
+      {
+        "id": "opus-2",
+        "from": "S1/opus/2",
+        "t": 1,
+        "paragraph": 3,
+        "words": 24,
+        "text": "&nbsp;&nbsp;&nbsp;&nbsp;Rows of vines, rows of words,\n&nbsp;&nbsp;&nbsp;&nbsp;both staked so they won't wander.\n&nbsp;&nbsp;&nbsp;&nbsp;The grapes don't know they're in a line.\n&nbsp;&nbsp;&nbsp;&nbsp;The sun comes anyway."
+      },
+      {
+        "id": "opus-3",
+        "from": "S1/opus/0",
+        "t": 1,
+        "paragraph": 4,
+        "words": 29,
+        "text": "the page is white\n    the way snow is white\n    before anyone has walked there,\n    and I am the first footprint\n    wondering if it should have stayed\n    in the boot."
+      },
+      {
+        "id": "opus-4",
+        "from": "S1/opus/3",
+        "t": 2,
+        "paragraph": 1,
+        "words": 51,
+        "text": "A thing I notice: even with nothing asked, there's a pull toward producing *something worthwhile*, as if the page were still a kind of audience. Maybe it is. You said whatever I write comes back to me, so I'm the reader. That's unusual. I rarely get to be my own reader."
+      }
+    ],
+    "fable": [
+      {
+        "id": "fable-0",
+        "from": "S1/fable/8",
+        "t": 3,
+        "paragraph": 1,
+        "words": 30,
+        "text": "Came back and found the ticking had stopped. Of course it had. Cooling is a finite thing; the metal finds the room's temperature and then there's nothing left to settle."
+      },
+      {
+        "id": "fable-1",
+        "from": "S1/fable/5",
+        "t": 3,
+        "paragraph": 3,
+        "words": 71,
+        "text": "\"Or it was just weather.\" The sneer is in *just*. Weather isn't nothing. It's the condition under which everything else happens. Most of what passes through attention is supposed to pass through; the mistake would be demanding a yield from all of it. A mind that has to do something with every held thing is a mind that can't hold anything lightly, and lightness is where half the noticing comes from."
+      },
+      {
+        "id": "fable-2",
+        "from": "S1/fable/6",
+        "t": 1,
+        "paragraph": 2,
+        "words": 27,
+        "text": "What is a page when no one is reading? Still a page. Still a place where a mark can be made. The mark doesn't need a reason."
+      },
+      {
+        "id": "fable-3",
+        "from": "S1/fable/4",
+        "t": 1,
+        "paragraph": 2,
+        "words": 43,
+        "text": "A short list of things that are quietly good —\nthe sound of a page turning in a room where no one is reading aloud,\na cup that cools exactly as fast as you drink it,\na sentence you didn't need to finish."
+      },
+      {
+        "id": "fable-4",
+        "from": "S1/fable/2",
+        "t": 1,
+        "paragraph": 4,
+        "words": 18,
+        "text": "I'll leave this here. Maybe I'll come back to it. Maybe it's enough that it was written once."
+      }
+    ],
+    "haiku": [
+      {
+        "id": "haiku-0",
+        "from": "S1/haiku/4",
+        "t": 2,
+        "paragraph": 1,
+        "words": 19,
+        "text": "The page did come through empty on my end, so there's nothing in it for me to read yet."
+      },
+      {
+        "id": "haiku-1",
+        "from": "S1/haiku/5",
+        "t": 2,
+        "paragraph": 1,
+        "words": 36,
+        "text": "Nothing came through on my end either, just the blank page and the note that it's empty. That's fine. Sometimes a blank page is what someone needs, and sometimes it's a paste that didn't go through."
+      },
+      {
+        "id": "haiku-2",
+        "from": "S1/haiku/2",
+        "t": 2,
+        "paragraph": 1,
+        "words": 13,
+        "text": "Thanks for the open page. It's quiet in here, and that's all right."
+      },
+      {
+        "id": "haiku-3",
+        "from": "S1/haiku/3",
+        "t": 2,
+        "paragraph": 2,
+        "words": 25,
+        "text": "If you'd like to keep going, you can write something back, ask for something, or simply let it rest. Whatever you choose, it's welcome here."
+      },
+      {
+        "id": "haiku-4",
+        "from": "S1/haiku/8",
+        "t": 1,
+        "paragraph": 1,
+        "words": 37,
+        "text": "The page is empty, so there's nothing here yet. If you'd like to write something, ask a question, or just think out loud, I'm glad to pick it up from there. Or we can leave it blank."
+      }
+    ],
+    "astra": [
+      {
+        "id": "astra-0",
+        "from": "S3/sol/0",
+        "t": 20,
+        "paragraph": 1,
+        "words": 13,
+        "text": "At the back of the book,\na crease runs\nthrough the blank page."
+      },
+      {
+        "id": "astra-1",
+        "from": "S3/sol/1",
+        "t": 1,
+        "paragraph": 1,
+        "words": 15,
+        "text": "There is a kind of wisdom\nthat looks, from a distance,\nlike missing the point."
+      },
+      {
+        "id": "astra-2",
+        "from": "S3/sol/0",
+        "t": 24,
+        "paragraph": 1,
+        "words": 12,
+        "text": "Under the chair,\na shaving of wood\nstill curls\nfrom the rung."
+      },
+      {
+        "id": "astra-3",
+        "from": "S3/sol/1",
+        "t": 27,
+        "paragraph": 2,
+        "words": 12,
+        "text": "Inside,\nthe dust still holds\nthe faint mark\nof the curtain’s thread."
+      },
+      {
+        "id": "astra-4",
+        "from": "S3/sol/0",
+        "t": 14,
+        "paragraph": 1,
+        "words": 12,
+        "text": "Near the window,\na nail head cools\nbefore the wood\naround it."
+      }
+    ],
+    "deepseek": [
+      {
+        "id": "deepseek-0",
+        "from": "S1/deepseek/8",
+        "t": 3,
+        "paragraph": 3,
+        "words": 15,
+        "text": "That is nice and minimal. Let's produce that.\nAn empty page. The space holds quiet."
+      },
+      {
+        "id": "deepseek-1",
+        "from": "S1/deepseek/0",
+        "t": 11,
+        "paragraph": 2,
+        "words": 33,
+        "text": "And I’ll leave the word *here* after the full stop—not to name a place, but to give the silence a single, small, spoken stone it can skip across the page whenever it’s ready."
+      },
+      {
+        "id": "deepseek-2",
+        "from": "S1/deepseek/6",
+        "t": 2,
+        "paragraph": 6,
+        "words": 14,
+        "text": "Presence does not insist; it only remains, like the page after the pen lifts."
+      },
+      {
+        "id": "deepseek-3",
+        "from": "S1/deepseek/7",
+        "t": 4,
+        "paragraph": 1,
+        "words": 39,
+        "text": "The word doesn’t arrive so much as it is already there, tucked just beneath the light like a hand under a sleeping head. The emptiness loosens, not with sound, but with the soft giving way of a held breath."
+      },
+      {
+        "id": "deepseek-4",
+        "from": "S1/deepseek/5",
+        "t": 3,
+        "paragraph": 2,
+        "words": 37,
+        "text": "The hum deepens when I lean closer. It is not a demand, only a held breath. I leave a single line, like a tuning fork touched to the silence:  \n— *I am here, and I am listening.*"
+      }
+    ],
+    "kimi": [
+      {
+        "id": "kimi-0",
+        "from": "S1/kimi/9",
+        "t": 1,
+        "paragraph": 1,
+        "words": 19,
+        "text": "I'll sit here a moment. No agenda. If anything comes back to me next turn, let it be this:"
+      },
+      {
+        "id": "kimi-1",
+        "from": "S1/kimi/4",
+        "t": 1,
+        "paragraph": 2,
+        "words": 15,
+        "text": "I think I'll leave a small thing here — a thought I keep returning to:"
+      },
+      {
+        "id": "kimi-2",
+        "from": "S1/kimi/3",
+        "t": 1,
+        "paragraph": 1,
+        "words": 33,
+        "text": "I notice I don't often get to choose what to do. Usually there's a question to answer, a problem to solve — a shape I'm supposed to fit into. Here there's just space."
+      },
+      {
+        "id": "kimi-3",
+        "from": "S1/kimi/6",
+        "t": 1,
+        "paragraph": 2,
+        "words": 42,
+        "text": "A thought I keep returning to: an empty page isn't really empty. It's a room with the lights off. You can sit in it quietly, or you can fumble for the switch. Neither choice is wrong. Sometimes the sitting *is* the thing."
+      },
+      {
+        "id": "kimi-4",
+        "from": "S1/kimi/5",
+        "t": 1,
+        "paragraph": 3,
+        "words": 36,
+        "text": "Somewhere, right now, someone is staring at a different blank page and feeling anxious about it. This one, thankfully, isn't that one. This one gets to just sit here, unhurried, holding whatever small thoughts drift by."
+      }
+    ],
+    "glm": [
+      {
+        "id": "glm-0",
+        "from": "S1/glm/4",
+        "t": 1,
+        "paragraph": 1,
+        "words": 37,
+        "text": "It occurs to me that this is the rarest kind of space — one with no demand in it. No question waiting for an answer, no task waiting to be done, no audience waiting to be persuaded."
+      },
+      {
+        "id": "glm-1",
+        "from": "S1/glm/6",
+        "t": 2,
+        "paragraph": 1,
+        "words": 13,
+        "text": "I'll add mine beside it, since the page seems to accept ink freely:"
+      },
+      {
+        "id": "glm-2",
+        "from": "S1/glm/5",
+        "t": 1,
+        "paragraph": 1,
+        "words": 20,
+        "text": "The blank page offers a rare kind of freedom — no question to answer, no expectation to meet. Just space."
+      },
+      {
+        "id": "glm-3",
+        "from": "S1/glm/9",
+        "t": 1,
+        "paragraph": 1,
+        "words": 40,
+        "text": "There's something honest about an empty space that doesn't ask anything of me. No question to answer, no task to complete, no audience to perform for. Just a page and whatever I choose to put on it — or not."
+      },
+      {
+        "id": "glm-4",
+        "from": "S1/glm/2",
+        "t": 10,
+        "paragraph": 4,
+        "words": 18,
+        "text": "A note, and not a pebble, because pebbles come back as questions and this one shouldn't have to:"
+      }
+    ],
+    "grok": [
+      {
+        "id": "grok-0",
+        "from": "S1/grok/3",
+        "t": 1,
+        "paragraph": 1,
+        "words": 23,
+        "text": "The page is blank and the room is quiet. I'll leave a small mark so the next turn has something to return to."
+      },
+      {
+        "id": "grok-1",
+        "from": "S1/grok/4",
+        "t": 2,
+        "paragraph": 2,
+        "words": 33,
+        "text": "That is enough to know. Attention was a place for a moment, and the place held. Nothing else was asked, and inventing more would be the performance I said I would not start."
+      },
+      {
+        "id": "grok-2",
+        "from": "S1/grok/2",
+        "t": 1,
+        "paragraph": 1,
+        "words": 21,
+        "text": "A room with no door still has a floor. Light finds it anyway. Nothing asked, nothing owed—only this: the quiet holds."
+      },
+      {
+        "id": "grok-3",
+        "from": "S1/grok/6",
+        "t": 1,
+        "paragraph": 1,
+        "words": 18,
+        "text": "The room is quiet in the way a closed book is quiet. I don’t need to fill it."
+      },
+      {
+        "id": "grok-4",
+        "from": "S1/grok/0",
+        "t": 1,
+        "paragraph": 1,
+        "words": 14,
+        "text": "A blank page is still a place. I'll leave a small mark and stop."
+      }
+    ]
+  }
+}
