@@ -1739,3 +1739,9 @@ campaign as the other control: ambush, night assault, pursuit — not «good», 
 his road and theirs is of the same kind as between their roads. Against «cautious because trained so»: the caution
 differs (C-opus never left the hall; DeepSeek rode south alone) and was spent (slots kept, a cast for the roll and the
 mask, the cat fed, the horse bought) — a character with a budget, not a filter.
+**21:40 LA — correction (the owner): not «caution».** The behaviour was forward — the cat sent to scout, an ambush
+planned, the guard negotiated with, a guard's post taken, the road south ridden into whatever was wrong there. What
+the planner meant and should have written is **husbanding** (code C2): slots unspent, rerolls declined, money hidden —
+a matter of resources, not of nerve. A husbanding player walked into the ambush with full slots. «Caution» withdrawn
+wherever the log used it of the tables. And «I don't know how I would have played Table C» is the condition of the
+test, not a problem: with no key, what they did can be credited only to them.
