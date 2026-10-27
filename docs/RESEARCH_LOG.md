@@ -1888,3 +1888,9 @@ offered work at the forge, rode south anyway; B-opus offered the coin twice, hel
 open exit» → HORIZON_1 and SAME_WORLD_1 (descriptive if its protocol is frozen), BLIND_DECISIONS vocabulary gets
 `HOLD(goal|exit-available)`. The owner: «мы принижали наши эксперименты слегка» — the name was missing, not the work:
 what the log called «roads» is goal formation and persistence without assignment.
+**23:01 LA — SAME_WORLD_1 cost.** A-opus-1: 20 turns, $17.44 with scoring; the DM $15.71 of it ($0.27 a request at
+~68k tokens of context — the frozen layer plus FIX_S4's additions); the player $0.82. Twenty sessions ≈ $340 against the
+$220 cap. Advised: raise to $350 as an owner amendment, keep the session's new guard (no session starts that does not
+fit under what is left), top up the shared key ≈ $150 before Table A ends (the other four runs' caps sum $240 against
+$443). For HORIZON_1 and the 500-turn plan the number that matters: the player is nearly free; the DM's memory is the
+cost — chained sittings on the app's resume path, not one window.
