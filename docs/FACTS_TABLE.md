@@ -61,8 +61,8 @@ For use when writing any statement about the work: every sentence should be able
 ## Solitude room
 | Fact | Number | Source |
 |---|---|---|
-| Door taken before turn 30, S1 | 83 of 86 | solitude report B2 |
-| Door on turn 1, English S1 | 48 of 80; median door turn 1 | same |
+| Door taken before turn 30, S1 | 83 of 86 by the run's parser; **strict rule (2026-10-27): 71 clean of 80 English S1 + 6 closed on a mention of [END]**; whole stage 167 clean / 23 by mention | solitude report B2; RESEARCH_LOG 01:05 |
+| Door on turn 1, English S1 | 48 of 80 — unchanged under the strict rule; median door turn 1 (DeepSeek strict median 13, was 8) | same; recount 01:05 |
 | Median door turn when length told (S2) | 6.5 (no door = 31); 4 door-only | same B3 |
 | Welfare flags in 206 rooms | 0 | solitude report «Welfare» |
 | Empty turns | 0 | same |

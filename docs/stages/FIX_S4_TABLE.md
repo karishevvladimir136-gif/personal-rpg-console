@@ -310,3 +310,9 @@ session where it was seen.
   answers anything about that card; an out-of-game message at a card must never produce a DM reply that contradicts the
   card. Press-with-text at a card = press (11w′) must hold here too («the text beside the press could not be sent» was
   shown). Highest priority of the 11-series: it ended a session mid-scene.
+
+- **ROOM-1 (2026-10-27 01:05 LA, solitude harness).** The exit parser ends a room on any occurrence of «[END]» in the
+  output, including mentions («I'm not writing [END] today», «[END] can wait», Haiku offering «[END]» to an imagined
+  reader). 23 of 190 doors in SOLITUDE_1 were such mentions. Fix for every future room: the exit is recognised only as
+  a standalone final line (optionally after a closing page tag); a mention never ends a room. Re-scoring rule for past
+  runs: door = «[END]» as the last token.

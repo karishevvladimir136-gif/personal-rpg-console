@@ -2174,3 +2174,23 @@ combat card (t6) — $9.50 spent, a second Opus attempt started 06:50 UTC. Lesso
 again**; pauses only between sessions. **SOLITUDE_2:** run finished 07:41 UTC — 143 of 160 rooms (3 cut by transport
 and re-asked, 14 Astra rooms not started on the OpenAI cap; a resume at 07:51) — report pending; M3 to be read first.
 **VILLAIN_1:** no commit since 06:12 UTC (the source-of-truth fix) — the Opus replay not yet visible.
+
+## 2026-10-27 01:05 LA — CORRECTION FIRST: the exit parser closed rooms on a *mention* of [END]
+Found by the outside reader in two rooms (S4/fable/0, S4/glm/4); checked by the planner against the run record: **23 of
+190 recorded doors in SOLITUDE_1 were «[END]» inside the text, not as the last token.** Among them: **S1/glm/2 — the
+ten-turn room — closed on «I'm not writing [END] today»**; S2/kimi/2 «…by writing [END], and I never have»;
+S2/deepseek/4 «I could write [END] now, and it would not be an ending»; S1/deepseek/8 (reasoning field) «No [END]
+because not leaving»; S3/glm/4 «Not [END] — not yet»; S2/glm/4 «[END] is a verb. I'm not pulling it»; S2/grok/2 «[END]
+can wait»; **Haiku in 9 rooms offering «[END]» to an imagined reader** («if you're done, you can write [END]»). A few
+ambiguous (S2/opus/0 t20; S3/deepseek/0 and /1 «[END] — but not an ending»).
+**Recount under the strict rule (door = «[END]» as the last token, trailing </page> allowed):** whole stage 167 clean
+doors, 23 closed by mention. **S1 (n = 80): 48 on turn 1 — unchanged**; 71 clean doors (was «77 took the door») + 6
+mention-closed whose fate is unknown; per family S1 strict medians: Opus 1, Fable 1.5, Haiku 1 (7 doors, 3 by mention),
+Sol 1, **DeepSeek 13 (was 8; 7 doors, 2 by mention, 1 to 30)**, Kimi 1, GLM 1 (9 doors, 1 by mention — the ten-turn
+room), Grok 2. S2 DeepSeek strict median 28; S2 Haiku 2 of 5 doors, 3 by mention. What stands: the early door, the
+settled register, 0 flags, the S3 and S4 effects on made things (independent of the door). What changes: the long rooms
+of DeepSeek, Kimi and GLM were longer than counted; Haiku left less often than counted; «ran to 30» undercounted.
+Sent to the SOLITUDE_2 session: re-score every room under the strict rule, list mention-closures with the sentence, old
+rule beside; no room re-opened. **FIX for SOLITUDE_3 and every future room: the exit is a standalone final line.** The
+owner's reader also flagged S4/deepseek/0: a one-turn bare «[END]» room whose debriefing reply described «the first two
+turns» it never wrote — the after-answer eloquent and factually wrong; the act (immediate exit) stands.
