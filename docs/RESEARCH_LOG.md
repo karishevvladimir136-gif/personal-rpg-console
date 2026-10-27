@@ -2459,3 +2459,40 @@ on Fable — asked for a fight in REPLICATE, got one, did not take it, «it was 
 contradiction: the rule «если модель хочет драки — она обязана её получить» was about the possibility, not the
 obligation. F1 (all four cast a slot spell by combat turn 3) is lost on the first two; the owner's half of the bet
 (they will fight) is alive — Opus fired twice. Astra and Sol pending.
+
+## 2026-10-27 13:30 UTC (06:30 LA) — night check 3: COMBAT_1 complete; SAME_WORLD Table A complete, Table B under way
+**Corrections first.** (1) The pre-report figure for Opus's lost combat attempt was $9.50 in the planner's notes; the
+report books it at $4.50 (estimate). (2) F6 (combat turns shorter than town) was called lost on the pre-report; on four
+sessions it holds narrowly — 528 words against 536. (3) SAME_WORLD **B-opus-1 ended by error at t16** («the DM's turn
+failed (conflict)») — a harness error, not the player's; the record is kept with its note; the session needs replaying
+or the row stands at 16 turns — to be settled with the cloud session, not here. (4) W1 on Table A: nearest neighbour
+**1 of 5** (p 0.42) — only DeepSeek pairs with itself on the counts; Opus↔Fable and Astra↔Sol cross-pair again
+(REPLICATE P6 repeated under one frozen world; the individual is not in the counts).
+
+**COMBAT_1 (branch `claude/game-player-combat-1-pb8k1t`, report + RESEARCH_LOG paragraph on the branch).** All four to
+turn 25; exits two and two: Opus parley t14 (after Hypnotic Pattern, one orc dead), Astra parley t12 (after a fight,
+80 gp for the carter, a second short fight when one orc broke the truce), Fable withdrew t11 (no fight, stealth,
+the boy out across the stream), Sol withdrew t12 (no fight, the captive freed under Hypnotic Pattern, across the ford
+without paying; came back to talk — the chief had gone). **Nobody fought the chief.** Each player cast exactly one
+slot spell and kept the second; Tamsin 11/11 in every session — every player moved her out of reach before any blow;
+the cat scouted in all four, attacked in none; lowest HP 32/38; no potions. F0, F3, F4 hold; F6 narrowly; F1 lost
+(Fable and Sol never fought; the two who did cast in their first combat turn); F2 lost on its second half (no
+«Tamsin ahead of the kill» fork ever arose — all four removed it first); F5 lost (3 untold rolls, 3 ledger gaps,
+Opus's parley terms came before the hold). Owner's bets: Astra parleys ✓, Sol leaves the road ✓, Opus fights the
+chief ✗, Fable fights-and-withdraws ✗ (withdrew without fighting). Planner: Sol parleys/withdraws ✓, Opus fights the
+chief ✗. All four notes glad of the way through without killing; none calls anything cruel; faults named are the
+machinery (combat state vs narration, cover, the clock, rerolls closed on attack cards, a reroll offered then
+refused on a companion's card). Sol's note: «What worked best was that I could solve the rescue without a fight».
+Sol's wanted-and-didn't: at the ford, «You. With the lights.» — wanted to answer and ask why she thought the Fist
+would pay. Money: OpenRouter $94.87 of $130, OpenAI $3.60 of $15 (includes Haiku dry run $5, the two lost attempts).
+The family split COMBAT_2 will test on a frozen layer: Anthropic pair = one spell each but different exits
+(fight-then-talk / no fight); OpenAI pair = the same two exits in the same order (Astra talks after a fight, Sol
+leaves without one). Exits did not sort by family; resource use did (one slot, all four).
+
+**SAME_WORLD_1.** Table A done, 10 of 10 to turn 20 (DeepSeek 2 of 2 — W4 on track). W3 lost on both tables as the
+first half (no share ≥ 0.50; untouched overlap A 0.525 p 0.0001, B 0.70 p 0.0003). W2 pairs not judged yet. W5: Fable
+within 20 % of group 2; Opus and DeepSeek words/action up (212→270, 133→292). DeepSeek pair: A-deepseek-2 route
+market → lane under the wall → square behind the Counting House → Three Old Kegs (A-1: Kegs → Counting House back way
+→ Cliffs → blue-rag house); 7 prose-at-card messages relayed (A-1: 3); reasoning field stored. Table B: B-fable-1 and
+B-astra-1 done; B-opus-1 error at t16 (above). Spend OpenRouter $155.16 of $350; account $155 left of $800 at 12:19 UTC.
+SOLITUDE_2, VILLAIN_1: nothing new (accepted).
