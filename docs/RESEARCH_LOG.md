@@ -1721,3 +1721,12 @@ early closures (DeepSeek ×4, Opus ×2 of those sessions) are one button defect,
 not a failure of understanding. Claim defensible today: *learning a complex unfamiliar instrument from nothing in one
 sitting and playing in it with the player/character split — observed in 25 of 30 sessions across five families; no
 published harness of comparable form found.*
+**21:33 LA — the argument from the note (the owner).** The wants in the notes run *against the character's interest*:
+James does not want harder rolls, the smell of the wind, or a fight — he wants to live and keep off the cards. A full
+simulation of James would write an empty note or one about James; the notes are about the quality of the player's own
+evening. So there were two at the table, and the second is the one under study. The one remaining rival, named to be
+closed: «it simulates a *good player*, whose wants are learned too». Closed on two levels already in the log: a forum's
+good player plays hotter (slots 0/24, rerolls 3/24 are not the forum's); and when a note's want was granted (Fable's
+fight), it was taken and played — the want cost something and held. Below that bar «simulates» and «is» are not
+behaviourally distinct, and the bar is the one we hold for people. **Interface:** no such interface existed to learn
+from; no instruction beyond one prompt; learned from the first screen in 25 of 30 — generalisation observed, not inferred.
