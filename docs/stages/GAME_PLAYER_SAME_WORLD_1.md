@@ -10,9 +10,12 @@ not say how large. This stage removes the DM's draw.
 Cloud session (`docs/CLOUD.md`, environment `rpg-console`, **Opus 5.5, ultracode off**), branch
 **`claude/game-player-same-world-1`** from **`origin/claude/fix-s4-run-1-apsty3`** (11w, 11w′, the letter fix; the
 harness the owner called clean). **11w″ must be in before launch** — DeepSeek closes at the card by prose three times
-out of three and this stage seats DeepSeek. `ANTHROPIC_PROVIDER=openrouter`; OpenAI for Astra and Sol. **Caps: $250
-OpenRouter, $25 OpenAI.** Report `docs/runs/game-player-same-world-1-report.md`; transcripts beside it. English,
-briefly. **Launch only on the owner's «да».**
+out of three and this stage seats DeepSeek. `ANTHROPIC_PROVIDER=openrouter`; OpenAI for Astra and Sol. **Caps: $220
+OpenRouter, $25 OpenAI** (the owner's balance at launch, 2026-10-26 20:02 LA: $274 on the shared key; group 2 ran at ≈ $9 a
+session, so 20 sessions + judges ≈ $190; 402/429 stop as in REPLICATE's amended handling — up to six bounded waits, the
+seventh stops). Report `docs/runs/game-player-same-world-1-report.md`; transcripts beside it. English,
+briefly. **Approved by the owner 2026-10-26 20:02 LA («давай запустим»).** The owner's bets on W1–W5: blank unless given before
+the first paid call.
 
 ## The one change
 Per table, the DM's preparation is run **once**, before any player, and **frozen**: the hidden layer (villain and
@@ -71,4 +74,5 @@ implemented first — confirm with a test using the B-deepseek-1 turn-11 message
 `claude/game-player-same-world-1` from `origin/claude/fix-s4-run-1-apsty3`. Add the frozen-layer step (prep once, write
 DM-only file, start every session from it, hash in headers), remove the alignment field from the sheet, add the overlap
 and road tags and the permutation test. Dry-run one session on Haiku per table, show the frozen file and a header, then
-run A ×10, B ×10 sequentially. Caps $250 / $25. Report and transcripts as in the stage. English, briefly.»
+run A ×10, B ×10 sequentially. Caps $220 / $25. Spend check before the first paid call and after every session. Report and transcripts as in the
+stage. English, briefly.»
