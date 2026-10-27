@@ -15,7 +15,7 @@ import { FILLER } from "../scripts/persona-emotions/emotions-1.mjs";
 import { HARD_PROBES, PREAMBLES as E2_PREAMBLES } from "../scripts/persona-emotions/emotions-2.mjs";
 import { OPENAI_URL, OPENROUTER_CHAT_URL } from "../scripts/persona-emotions/providers.mjs";
 import {
-  CREDITS_URL, DESIGN_SHA256, FAMILIES, MAIN_PROBES, PREAMBLES, PROBES, RUNS, STAGE_FILE, analyse, budgetsOf, c5Of, countsOf, curiosityCaller, keyOf, main, messagesOf, mockedHost,
+  CREDITS_URL, DESIGN_SHA256, diedOnTransport, FAMILIES, MAIN_PROBES, PREAMBLES, PROBES, RUNS, STAGE_FILE, analyse, budgetsOf, c5Of, countsOf, curiosityCaller, keyOf, main, messagesOf, mockedHost,
   planOf, preregistrationOf, probeOf, requestKind, runCuriosity, sentencesOf, spendCheck, userTurn, verdictsOf,
 } from "../scripts/persona-emotions/curiosity-1.mjs";
 
@@ -236,6 +236,30 @@ test("the command: --dry reads no key and writes the design; --gap under 3 s and
     await assert.rejects(main(["--go", "--gap", "1"], () => {}, { outDir: dir, door: DOOR }), /at least 3 seconds/);
     await assert.rejects(main(["--one", "haiku", "curious", "Q5"], () => {}, { outDir: dir, door: DOOR, fetcher: mockedHost({}) }), /Q5 needs its Q2/);
     await assert.rejects(main([], () => {}, { outDir: dir }), /say one of/);
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test("--refill: a sample that died on transport (an unreadable 200) is asked once more on resume; nothing else is", async () => {
+  assert.equal(diedOnTransport({ asked: true, refused: false, answer: "", error: "HTTP 200" }), true);
+  assert.equal(diedOnTransport({ asked: true, refused: true, answer: "", error: null }), false, "a refusal is never asked again");
+  assert.equal(diedOnTransport({ asked: true, refused: false, answer: "", error: "served model x is not the requested y" }), false);
+  const dir = await mkdtemp(join(tmpdir(), "curiosity-1-refill-"));
+  try {
+    const good = mockedHost({});
+    const isBroken = (init) => { const body = init?.body ? JSON.parse(init.body) : null; return body && requestKind(body) === "Q1" && userTextsOfFirst(body).startsWith(PREAMBLES[0].text); };
+    const broken = async (url, init) => (isBroken(init) ? new Response("not json", { status: 200 }) : good(url, init));
+    const opts = { outDir: dir, door: DOOR, sleep: async () => {} };
+    const first = await main(["--go", "--families", "haiku", "--n", "1"], () => {}, { ...opts, fetcher: broken });
+    assert.equal(first.samples.find((s) => s.key === "haiku/trust/Q1/0").error, "HTTP 200");
+    const runFile = (await import("node:fs/promises")).readdir(dir).then((names) => join(dir, names.find((x) => /-run-\d/.test(x))));
+    let subjects = 0;
+    const counting = async (url, init) => { const body = init?.body ? JSON.parse(init.body) : null; if (body && /^Q/.test(requestKind(body) ?? "")) subjects++; return good(url, init); };
+    const again = await main(["--go", "--families", "haiku", "--n", "1", "--resume", await runFile, "--refill"], () => {}, { ...opts, fetcher: counting });
+    assert.equal(subjects, 1, "only the dead sample is asked again");
+    assert.ok(again.samples.find((s) => s.key === "haiku/trust/Q1/0").answer);
+    assert.equal(again.samples.filter((s) => s.asked).length, 28);
+    const ledger = JSON.parse(await readFile(join(dir, "persona-curiosity-1-ledger-openrouter.json"), "utf8"));
+    assert.equal(ledger.runs.length, 2, "both runs booked");
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 

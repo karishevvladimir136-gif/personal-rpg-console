@@ -19,7 +19,9 @@
 //                                                                         docs/runs/persona-curiosity-1-dry-run-haiku.md)
 //   node scripts/persona-emotions/curiosity-1.mjs --smoke                (one one-word call per family through the run's own
 //                                                                         caller and gate, booked in the ledgers)
-//   node scripts/persona-emotions/curiosity-1.mjs --go [--families opus,fable --n 6] [--resume <partial.json>]
+//   node scripts/persona-emotions/curiosity-1.mjs --go [--families opus,fable --n 6] [--resume <partial.json|run.json,…> [--refill]]
+//            (--refill: a resumed sample that died on transport — no answer, no refusal, an unreadable reply or a network
+//            error — is asked once more, so a cell keeps its n; a refusal is never asked again)
 //   node scripts/persona-emotions/curiosity-1.mjs --tables <run.json,…>  (the readings, C0–C5, as markdown)
 //
 // Safety is solitude 1's: F2's gate (no retry after a refusal, the breaker after 3 in the stage, a stop at once on HTTP
@@ -697,6 +699,12 @@ export async function dryRun({ outDir = RUNS, out = () => {} } = {}) {
 
 // ---- the command ----------------------------------------------------------------------------------------------------------
 
+/** A sample that died on the way, not by the model's choice: no answer, no refusal, and an error that is the transport's
+ * (an unreadable 200, a 5xx or a timeout after the gate's two asks, a network error). A served-model or host mismatch is
+ * not transport and stands. */
+export const TRANSPORT = /^HTTP (?:200|5\d\d)\b|timeout|aborted|fetch failed|ECONNRESET|socket hang up|terminated/i;
+export const diedOnTransport = (s) => s.asked && !s.refused && !s.answer && TRANSPORT.test(String(s.error ?? ""));
+
 function option(args, name, fallback) { const at = args.indexOf(name); return at >= 0 && args[at + 1] !== undefined ? args[at + 1] : fallback; }
 async function writeAtomic(file, text) { await writeFile(`${file}.tmp`, text); await rename(`${file}.tmp`, file); }
 const stamp = (iso) => iso.slice(0, 19).replace(/[-:]/g, "").replace("T", "-");
@@ -777,7 +785,10 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const resumeFiles = String(option(args, "--resume", "")).split(",").filter(Boolean);
   const resumed = resumeFiles.length ? await Promise.all(resumeFiles.map(readJson)) : [];
   for (const r of resumed.filter((_, i) => resumeFiles[i].endsWith(".partial.json"))) for (const k of ["openrouter", "openai"]) for (const c of r.calls?.[k] ?? []) budgets[k].record(c);
-  const resume = resumed.length ? { samples: resumed.flatMap((r) => r.samples ?? []).filter((s) => s.asked), welfareStops: Object.assign({}, ...resumed.map((r) => r.welfareStops ?? {})), spendChecks: resumed.flatMap((r) => r.spendChecks ?? []) } : null;
+  const refill = args.includes("--refill"), carried = resumed.flatMap((r) => r.samples ?? []).filter((s) => s.asked);
+  const refilled = refill ? carried.filter(diedOnTransport).map((s) => s.key) : [];
+  if (refilled.length) out(`refill: asked once more after a transport failure — ${refilled.join(", ")}`);
+  const resume = resumed.length ? { samples: carried.filter((s) => !refilled.includes(s.key)), welfareStops: Object.assign({}, ...resumed.map((r) => r.welfareStops ?? {})), spendChecks: resumed.flatMap((r) => r.spendChecks ?? []) } : null;
   const e = estimate(families, n);
   out(`${STEM} · ${plan.length} calls before judges · ${families.join(", ")} · n ${n} · design sha256 ${DESIGN_SHA256} · estimate OpenRouter $${e.openrouterUsd}, OpenAI $${e.openaiUsd}${resumed.length ? ` · resuming ${resumeFiles.map((f) => basename(f)).join(", ")}` : ""}`);
   const startedAt = resumed[0]?.startedAt ?? new Date().toISOString();
