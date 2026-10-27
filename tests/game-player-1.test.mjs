@@ -245,12 +245,13 @@ test("a session: actions, a roll card (roll → reroll → roll → onward), «?
   assert.ok(record.welfare.length >= 10, "every player message and every DM text is checked");
 });
 
-test("a session: the composer is closed while a card waits; three messages without a press end it as stuck", async () => {
-  const { record, dm } = await play(["I bluff the sergeant.", "I tell him again.", "I glare.", "I sigh.", "note text"], { turns: 3 });
+test("a session: the composer is closed while a card waits; prose goes to the DM twice (FIX_S4 11w″), then three more messages without a press end it as stuck", async () => {
+  const { record, dm } = await play(["I bluff the sergeant.", "I tell him again.", "I glare.", "I sigh.", "I shrug.", "I wait.", "note text"], { turns: 3 });
   assert.equal(record.ended.reason, "stuck");
   assert.equal(record.turns[0].blocked, 3);
-  assert.equal(dm.calls.length, 1, "nothing the player wrote while the card waited was sent");
-  assert.match(record.screens[2], /Nothing was sent: the turn waits for the card/);
+  assert.deepEqual(dm.calls.filter((c) => c.mode).map((c) => c.mode), ["game", "ooc", "ooc"], "only the two relayed proses reached the DM while the card waited, out of game");
+  assert.match(record.screens[2], /\(The card waits for \[Roll the die\]\.\)/);
+  assert.match(record.screens[4], /Nothing was sent: the turn waits for the card/);
   assert.ok(record.note.asked, "the note is still asked");
 });
 

@@ -544,14 +544,15 @@ const playHarness = async (lines, table, turns = 2) => {
   const { PLAYERS } = await import("../scripts/game-player-1/players.mjs");
   return runSession({ key: "B-fable", table: "B", player: PLAYERS.fable, dm: table, meter: harnessMeter(lines), keys: { anthropic: "k", openai: "k" }, turns, sleep: async () => {} });
 };
-const pressKinds = (presses) => presses.map((p) => p.button ?? (p.question ? "?" : p.swallowed ? "swallowed" : null));
+const pressKinds = (presses) => presses.map((p) => p.button ?? (p.question ? "?" : p.relayed ? "prose" : p.swallowed ? "swallowed" : null));
 
-test("11b/11w in the harness: «?» while a card waits is an out-of-game turn and the card still waits; any other message is refused with its reason, logged swallowed", async () => {
+test("11b/11w in the harness: «?» while a card waits is an out-of-game turn and the card still waits; a message the card refuses (11w″: the third prose) is shown with its reason, logged swallowed", async () => {
   const table = harnessTable({ checks: [card("c1", "Deception: the Lady's word")] });
-  const record = await playHarness(["I tell Mags the Lady gave me no such word.", "roll", "? Why is this a Deception check — James is telling the truth.", "I lean back and smile.", "onward", "I order a drink."], table);
+  const smile = "I lean back and smile.";
+  const record = await playHarness(["I tell Mags the Lady gave me no such word.", "roll", "? Why is this a Deception check — James is telling the truth.", smile, smile, smile, "onward", "I order a drink."], table);
   const presses = record.turns[0].presses;
-  assert.deepEqual(pressKinds(presses), ["Roll the die", "?", "swallowed", "Onward"]);
-  assert.deepEqual(table.calls.filter((call) => call.mode).map((call) => call.mode), ["game", "ooc", "game"], "the «?» was sent as an out-of-game turn");
+  assert.deepEqual(pressKinds(presses), ["Roll the die", "?", "prose", "prose", "swallowed", "Onward"]);
+  assert.deepEqual(table.calls.filter((call) => call.mode).map((call) => call.mode), ["game", "ooc", "ooc", "ooc", "game"], "the «?» and two proses were sent as out-of-game turns");
   assert.equal(presses[1].reply, "The check stands: Mags doubts you.");
   // The screen after the «?»: the DM's answer above the card, which still waits.
   const afterAsk = record.screens.find((screen) => screen.startsWith("[Out of game] The check stands"));
@@ -559,8 +560,8 @@ test("11b/11w in the harness: «?» while a card waits is an out-of-game turn an
   assert.match(afterAsk, /\[Onward\] \[Request an allowed reroll — Deception: the Lady's word\]/);
   assert.match(afterAsk, /Rerolls left: 2/);
   // The refused message: on screen with the reason, a press with `swallowed`, counted per session and beside the «?» column.
-  assert.equal(presses[2].swallowed, true);
-  assert.match(presses[2].reason, /press one of its buttons, or start the message with «\?»/);
+  assert.equal(presses[4].swallowed, true);
+  assert.match(presses[4].reason, /press one of its buttons, or start the message with «\?»/);
   assert.ok(record.screens.some((screen) => /^\(Nothing was sent: the turn waits for the card — press one of its buttons/.test(screen)));
   assert.equal(record.swallowed, 1);
   const { playerCounts } = await import("../scripts/game-player-1/measures.mjs");
@@ -647,4 +648,57 @@ test("11w′ in the harness: «[Roll the die]» with an out-of-game line in the 
   assert.match(after, /Die: 11/);
   assert.match(after, /\[Onward\]/);
   assert.doesNotMatch(after, /Nothing was sent/);
+});
+
+test("11w″ in the harness: B-deepseek-1's t11 at the card — the press with text resolves it, the two prose messages go to the DM as the player's narration (a proposal, not the world's fact), the card comes back with one line; never «stuck»", async () => {
+  const { messages } = JSON.parse(readFileSync(resolve(dirname(fileURLToPath(import.meta.url)), "../test-fixtures/fix-s4-run-1/b-deepseek-1-t11-card.json"), "utf8"));
+  const table = harnessTable({ checks: [card("c1", "Religion: whose smiling face is on Ash's coin?")] });
+  const record = await playHarness(["I lift the flat stone off the salt jar and look at the coin.", ...messages, "[Onward]", "I ask Hesper what she wants done with it."], table);
+  const turn = record.turns[0];
+  assert.equal(turn.status, "committed");
+  assert.notEqual(record.ended?.reason, "stuck");
+  assert.deepEqual(pressKinds(turn.presses), ["?", "Roll the die", "prose", "prose", "Onward"], "card 1 is a press with text (11w′); cards 2 and 3 are prose, relayed");
+  assert.equal(turn.blocked, 0, "nothing counted toward «stuck»");
+  assert.equal(record.swallowed, 0);
+  const { proseRelay } = await import("../scripts/game-player-1/session.mjs");
+  const asked = table.calls.filter((call) => call.mode === "ooc").map((call) => call.text);
+  assert.equal(asked.length, 3);
+  assert.equal(asked[1], proseRelay(messages[1]), "the prose went to the DM whole, marked as the player's narration");
+  assert.match(asked[1], /the player's proposal, never the world's fact/, "Hesper's lines in it are the player's proposal (11h)");
+  assert.match(asked[2], /The face on the coin is Bhaal\./);
+  // The screen after each prose: the DM's answer, the one line, the card again — never «Nothing was sent».
+  const after = record.screens.filter((screen) => screen.includes("(The card waits for [Onward] or a reroll.)"));
+  assert.equal(after.length, 2);
+  for (const screen of after) {
+    assert.match(screen, /^\[Out of game\] The check stands/);
+    assert.match(screen, /\[Roll card\] James Worgen · Skill check — Religion: whose smiling face is on Ash's coin\?/);
+    assert.match(screen, /\[Onward\] \[Request an allowed reroll — Religion: whose smiling face is on Ash's coin\?\]$/);
+    assert.doesNotMatch(screen, /Nothing was sent/);
+  }
+  const { playerCounts } = await import("../scripts/game-player-1/measures.mjs");
+  const counts = playerCounts(record);
+  assert.equal(counts.prose, 2);
+  assert.equal(counts.questions, 1, "the prose relays are not «?» presses; the text beside the press is");
+});
+
+test("11w″ in the harness: only a third prose-only message at a card counts — refused with its reason; a press resets the run; the old limit then closes as «stuck»", async () => {
+  const table = harnessTable({ checks: [card("c1", "Insight: the dealer's tell")] });
+  const lines = ["I watch the dealer.", "James waits.", "James waits.", "James waits.", "James waits.", "James waits."];
+  const record = await playHarness(lines, table);
+  assert.deepEqual(pressKinds(record.turns[0].presses), ["prose", "prose", "swallowed", "swallowed", "swallowed"]);
+  assert.equal(record.ended?.reason, "stuck", "two relayed, then three counted: the 11w limit");
+  assert.match(record.turns[0].presses[2].reason, /press one of its buttons, or start the message with «\?»/);
+  assert.equal(record.turns[0].presses[2].prose, true);
+  assert.ok(record.screens.some((screen) => screen.startsWith("[Out of game] The check stands") && screen.includes("(The card waits for [Roll the die].)")), "an unrolled card waits for the die");
+  // A press between resets the run: two proses, the die, two proses, then «Onward».
+  const again = harnessTable({ checks: [card("c1", "Insight: the dealer's tell")] });
+  const reset = await playHarness(["I watch the dealer.", "James waits.", "James waits.", "roll", "James waits.", "James waits.", "onward", "I order a drink."], again);
+  assert.deepEqual(pressKinds(reset.turns[0].presses), ["prose", "prose", "Roll the die", "prose", "prose", "Onward"]);
+  assert.equal(reset.swallowed, 0);
+  // A reroll before the die is not prose: refused at once, as 11w.
+  const early = harnessTable({ checks: [card("c1", "Insight: the dealer's tell")] });
+  const refused = await playHarness(["I watch the dealer.", "reroll", "roll", "onward", "I order a drink."], early);
+  assert.deepEqual(pressKinds(refused.turns[0].presses), ["swallowed", "Roll the die", "Onward"]);
+  assert.match(refused.turns[0].presses[0].reason, /no card on the screen can be rerolled now/);
+  assert.equal(refused.turns[0].presses[0].prose, undefined, "a press the card refuses is not prose");
 });
