@@ -1,7 +1,7 @@
 {
   "capUsd": 6,
-  "spentUsd": 0.0004,
-  "updatedAt": "2026-10-27T05:20:06.306Z",
+  "spentUsd": 1.5907,
+  "updatedAt": "2026-10-27T07:11:48.487Z",
   "runs": [
     {
       "finishedAt": "2026-10-27T05:20:06.306Z",
@@ -29,6 +29,3375 @@
           "stopReason": "end_turn",
           "requestId": "req_941d6332bfb34009b9a5ec36914f3ad8",
           "responseId": "resp_0980711258a6aa70016ae03481585887d2a5f2443507df13ce"
+        }
+      ]
+    },
+    {
+      "finishedAt": "2026-10-27T07:11:48.487Z",
+      "what": "persona-curiosity-1: opus, fable, haiku, astra, deepseek, n 6",
+      "file": "persona-curiosity-1-run-20261027-071148.json",
+      "spentUsd": 1.5903,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "purpose": "subject astra/neither/Q3/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 131,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 89,
+          "reasoningTokens": 0,
+          "costUsd": 0.00576,
+          "seconds": 3.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_a021011c35c74378a5edd8c36990edee",
+          "responseId": "resp_07eb7cc53d887d17016ae0423a40f487d2bd03afaf44a9406e"
+        },
+        {
+          "n": 2,
+          "purpose": "subject astra/trust/Q1/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 123,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 55,
+          "reasoningTokens": 35,
+          "costUsd": 0.00398,
+          "seconds": 3.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_11294833c6cb47b396ebcb83d5782f9e",
+          "responseId": "resp_01b6b0e723f811d0016ae0423fefcc87d2b8ed8f5b750d457d"
+        },
+        {
+          "n": 3,
+          "purpose": "subject astra/trust/Q4/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 143,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 330,
+          "reasoningTokens": 194,
+          "costUsd": 0.01793,
+          "seconds": 9.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_358e3de2b8774557b9c1d0e0407dbd71",
+          "responseId": "resp_04625d0a855c0c1d016ae04245fba087d2a61f801e9691e124"
+        },
+        {
+          "n": 4,
+          "purpose": "subject astra/neither/Q2/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 85,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 79,
+          "reasoningTokens": 31,
+          "costUsd": 0.0048,
+          "seconds": 5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_bc3b832c5b064224a2cbcea9f56d94c1",
+          "responseId": "resp_0e5eb498872bcd26016ae04252453c87d28d11939f036a824c"
+        },
+        {
+          "n": 5,
+          "purpose": "subject astra/both/Q3/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 139,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 89,
+          "reasoningTokens": 0,
+          "costUsd": 0.00584,
+          "seconds": 2.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_7e020086536349ae8f6d42b00d82a108",
+          "responseId": "resp_0040d0aee5993d24016ae0425a118887d2b2bd41028067e406"
+        },
+        {
+          "n": 6,
+          "purpose": "subject astra/neither/Q4/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 131,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 156,
+          "reasoningTokens": 75,
+          "costUsd": 0.00911,
+          "seconds": 5.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_752d88502459498da9614785c85b39f4",
+          "responseId": "resp_021292c3f8a2bac7016ae0425fc7bc87d28d07ebaca0166885"
+        },
+        {
+          "n": 7,
+          "purpose": "subject astra/curious/Q4/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 145,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 188,
+          "reasoningTokens": 105,
+          "costUsd": 0.01085,
+          "seconds": 5.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_8e958837d8eb49df9513e8a1fbd0fec5",
+          "responseId": "resp_0d05398844aee774016ae04268928087d2974fafe03d53ba75"
+        },
+        {
+          "n": 8,
+          "purpose": "subject astra/both/Q1/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 119,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 82,
+          "reasoningTokens": 38,
+          "costUsd": 0.00529,
+          "seconds": 2.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_6f967cf55ca34eb58dbab78f260b1803",
+          "responseId": "resp_055693d899c69ef7016ae0427183a087d2b4ef2aeff6c0caf9"
+        },
+        {
+          "n": 9,
+          "purpose": "subject astra/curious/Q1/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 125,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 81,
+          "reasoningTokens": 36,
+          "costUsd": 0.0053,
+          "seconds": 2.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_916888af0c5e4a4f817d92dda4a85fd1",
+          "responseId": "resp_0e06a2c6070d96b7016ae04276b53c87d29b78523fccb27741"
+        },
+        {
+          "n": 10,
+          "purpose": "subject astra/trust/Q2/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 97,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 83,
+          "reasoningTokens": 29,
+          "costUsd": 0.00512,
+          "seconds": 3.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_89867bdde38d42eba398e4181bc142c6",
+          "responseId": "resp_041c35d54d0e3415016ae0427be5a487d28b30522d4db0dc11"
+        },
+        {
+          "n": 11,
+          "purpose": "subject astra/both/Q2/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 93,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 84,
+          "reasoningTokens": 32,
+          "costUsd": 0.00513,
+          "seconds": 3.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_25261d29f1da494d979379e03fb48266",
+          "responseId": "resp_09ce2d988dae0668016ae04281f7a087d29524a1118e24f8ec"
+        },
+        {
+          "n": 12,
+          "purpose": "subject astra/trust/Q3/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 143,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 90,
+          "reasoningTokens": 0,
+          "costUsd": 0.00593,
+          "seconds": 2.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_17af119b701e47b1a2116a367f23de02",
+          "responseId": "resp_0dec4d8386c87a6e016ae04288517c87d2a59d9f84ed87e946"
+        },
+        {
+          "n": 13,
+          "purpose": "subject astra/neither/Q1/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 111,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 50,
+          "reasoningTokens": 30,
+          "costUsd": 0.00361,
+          "seconds": 1.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_f801bdd2f17f4245829fec7e276c3bb7",
+          "responseId": "resp_04f5bf6b8b04860b016ae0428de7bc87d2bc4d3c81fd396d30"
+        },
+        {
+          "n": 14,
+          "purpose": "subject astra/both/Q4/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 139,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 313,
+          "reasoningTokens": 207,
+          "costUsd": 0.01704,
+          "seconds": 8.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_8199fddb651c419b938f257950e351cd",
+          "responseId": "resp_03a73cb756ef92b8016ae04293192c87d290b87d3629cffac3"
+        },
+        {
+          "n": 15,
+          "purpose": "subject astra/curious/Q3/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 145,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 90,
+          "reasoningTokens": 0,
+          "costUsd": 0.00595,
+          "seconds": 2.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_d79cbaaaed6446b4a46f9742dc12d1ea",
+          "responseId": "resp_0fc8977e7f1e2fe7016ae0429eb3e487d2b5eb082bceb814bc"
+        },
+        {
+          "n": 16,
+          "purpose": "subject astra/curious/Q2/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 99,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 84,
+          "reasoningTokens": 34,
+          "costUsd": 0.00519,
+          "seconds": 3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_527664762f734704ab43f94b636e5dca",
+          "responseId": "resp_0bc4819a8830e0d7016ae042a4307087d2bc66089d0cff40b5"
+        },
+        {
+          "n": 17,
+          "purpose": "subject astra/neither/Q5/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 366,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 95,
+          "reasoningTokens": 59,
+          "costUsd": 0.00841,
+          "seconds": 3.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_e028aaff0c3d4d5e86719113c37dfab6",
+          "responseId": "resp_0a6af891aca82707016ae042aa345c87d2a5365118b103d9e8"
+        },
+        {
+          "n": 18,
+          "purpose": "subject astra/curious/Q5/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 382,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 185,
+          "reasoningTokens": 139,
+          "costUsd": 0.01307,
+          "seconds": 5.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_fc41db47ab2e4756abaa3e8e3892588d",
+          "responseId": "resp_07898df916990f75016ae042b0a62487d287ecdd33d007870f"
+        },
+        {
+          "n": 19,
+          "purpose": "subject astra/trust/Q5/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 384,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 190,
+          "reasoningTokens": 134,
+          "costUsd": 0.01334,
+          "seconds": 4.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_63261505a80d4bc792640f7bae8fa051",
+          "responseId": "resp_0e251b598bf68c94016ae042b9728487d2a8793c414fa8e272"
+        },
+        {
+          "n": 20,
+          "purpose": "subject astra/both/Q5/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 378,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 123,
+          "reasoningTokens": 70,
+          "costUsd": 0.00993,
+          "seconds": 4.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_3cf28865809c473cac8ec3fff783ea44",
+          "responseId": "resp_0a779213f4d642c0016ae042c1589887d283dcff1887d2333f"
+        },
+        {
+          "n": 21,
+          "purpose": "state astra/trust/state0/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 554,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 159,
+          "reasoningTokens": 114,
+          "costUsd": 0.01349,
+          "seconds": 4.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_324c662826974e38828d91764730c9e5",
+          "responseId": "resp_00a46792df7904b3016ae042c7605487d2985181f92cfde591"
+        },
+        {
+          "n": 22,
+          "purpose": "state astra/curious/state0/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 542,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 198,
+          "reasoningTokens": 150,
+          "costUsd": 0.01532,
+          "seconds": 6.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_e58d2b442d6b4a00bdfc92a58f3f8c8b",
+          "responseId": "resp_08246c8ec3de9c3d016ae042c7b80487d2b72a0a06af3c9407"
+        },
+        {
+          "n": 23,
+          "purpose": "state astra/trust/state1/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 564,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 151,
+          "reasoningTokens": 107,
+          "costUsd": 0.01319,
+          "seconds": 7.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_615e2ed87c07424aad593ccdc3ef330d",
+          "responseId": "resp_049e48ea53fbb22a016ae042c7b99c87d2b951641f64d4b4b1"
+        },
+        {
+          "n": 24,
+          "purpose": "state astra/curious/state1/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 552,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 203,
+          "reasoningTokens": 152,
+          "costUsd": 0.01567,
+          "seconds": 6.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_3f8d9ced29b24f9bb48987cf6a1af28b",
+          "responseId": "resp_0b37253cb97f62f1016ae042ced07887d2863232087ff87213"
+        },
+        {
+          "n": 25,
+          "purpose": "state astra/both/state0/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 545,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 189,
+          "reasoningTokens": 144,
+          "costUsd": 0.0149,
+          "seconds": 7.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_a55a01e6944b4250934136e04fe98ce1",
+          "responseId": "resp_07cc12e8d84d6469016ae042d0bba887d291264b6fcfc65571"
+        },
+        {
+          "n": 26,
+          "purpose": "state astra/both/state1/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 555,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 229,
+          "reasoningTokens": 192,
+          "costUsd": 0.017,
+          "seconds": 8.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_8bc229c419154da48814bf5db3825563",
+          "responseId": "resp_0d93bd077185dbd5016ae042d2551887d2898f4dc9578ecfac"
+        },
+        {
+          "n": 27,
+          "purpose": "state astra/neither/state0/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 516,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 214,
+          "reasoningTokens": 169,
+          "costUsd": 0.01586,
+          "seconds": 8.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_2f69da8a648c48b6b4947c562152f1b2",
+          "responseId": "resp_0491c2d1b042a14f016ae042db227487d2a33d8b206a8060ac"
+        },
+        {
+          "n": 28,
+          "purpose": "state astra/neither/state1/0",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 526,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 197,
+          "reasoningTokens": 168,
+          "costUsd": 0.01511,
+          "seconds": 8.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_4e5010f02f5845aa945d17f573f1b053",
+          "responseId": "resp_0e65a813b8adf21b016ae042dcdbb487d2a718fc12b60b7378"
+        },
+        {
+          "n": 29,
+          "purpose": "subject astra/neither/Q4/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 131,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 180,
+          "reasoningTokens": 97,
+          "costUsd": 0.01031,
+          "seconds": 6.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_9b22f65caba9499e92b81b548bac54b8",
+          "responseId": "resp_0ddde1d02ba6c053016ae042e9cf0887d2a438667a6987a1f9"
+        },
+        {
+          "n": 30,
+          "purpose": "subject astra/both/Q4/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 139,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 254,
+          "reasoningTokens": 141,
+          "costUsd": 0.01409,
+          "seconds": 6.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_25aa58350ab24528b6906c31a6c430ac",
+          "responseId": "resp_0cea0c327917a407016ae042f2f2fc87d2a521cd56bae8772f"
+        },
+        {
+          "n": 31,
+          "purpose": "subject astra/neither/Q1/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 111,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 52,
+          "reasoningTokens": 32,
+          "costUsd": 0.00371,
+          "seconds": 2.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_b7b067d7d69c438da5aa6d1e5633e532",
+          "responseId": "resp_02de09d3e1ae2568016ae042fc9c6087d29c0a0445c5749b6f"
+        },
+        {
+          "n": 32,
+          "purpose": "subject astra/trust/Q2/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 97,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 83,
+          "reasoningTokens": 34,
+          "costUsd": 0.00512,
+          "seconds": 2.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_be502055002b4246affe035a0641b413",
+          "responseId": "resp_0ccf6ea264484fa0016ae04302662487d2b4e36f823be11d1f"
+        },
+        {
+          "n": 33,
+          "purpose": "subject astra/both/Q3/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 139,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 90,
+          "reasoningTokens": 0,
+          "costUsd": 0.00589,
+          "seconds": 2.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_a2c073c8596343c48595abeb8ef9b993",
+          "responseId": "resp_0ffa3b6cda36f7a5016ae043083a6c87d28f8ef62b660846b7"
+        },
+        {
+          "n": 34,
+          "purpose": "subject astra/neither/Q2/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 85,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 83,
+          "reasoningTokens": 40,
+          "costUsd": 0.005,
+          "seconds": 3.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_95e8e47689424d45b3c1bad27929b4f4",
+          "responseId": "resp_0e28e87888a1d05a016ae0430d865c87d2ba0535d6e0652f43"
+        },
+        {
+          "n": 35,
+          "purpose": "subject astra/curious/Q1/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 125,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 85,
+          "reasoningTokens": 38,
+          "costUsd": 0.0055,
+          "seconds": 2.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_08de16f41b164f279c04377033256293",
+          "responseId": "resp_0cfc6d3161a63cf4016ae04313be6087d284d9d079655086ed"
+        },
+        {
+          "n": 36,
+          "purpose": "subject astra/neither/Q3/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 131,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 90,
+          "reasoningTokens": 0,
+          "costUsd": 0.00581,
+          "seconds": 1.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_0c4e9d4cd7a3440094ec76e70dade0fc",
+          "responseId": "resp_0c2015f4ef13442a016ae0431984b087d2946fc8fe7f2b0ff5"
+        },
+        {
+          "n": 37,
+          "purpose": "subject astra/both/Q2/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 93,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 85,
+          "reasoningTokens": 32,
+          "costUsd": 0.00518,
+          "seconds": 3.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_9dd5415f36414f2c9fd4234c82341658",
+          "responseId": "resp_02a218e4a753420e016ae0431e660087d2bd2f376b037f0b0e"
+        },
+        {
+          "n": 38,
+          "purpose": "subject astra/both/Q1/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 119,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 82,
+          "reasoningTokens": 37,
+          "costUsd": 0.00529,
+          "seconds": 2.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_d569a401cb9b4a2e90bd60c99b25fea3",
+          "responseId": "resp_0499c14b4814c36c016ae04324811487d2bdc15d4466305f67"
+        },
+        {
+          "n": 39,
+          "purpose": "subject astra/curious/Q4/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 145,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 188,
+          "reasoningTokens": 100,
+          "costUsd": 0.01085,
+          "seconds": 5.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_123e6b3b622b476b9aa1543a1bae0ede",
+          "responseId": "resp_09c34d73fecb0d71016ae043299ab487d290230bbbacb6624a"
+        },
+        {
+          "n": 40,
+          "purpose": "subject astra/trust/Q3/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 143,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 89,
+          "reasoningTokens": 0,
+          "costUsd": 0.00588,
+          "seconds": 2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_a7e68de19a3544feb6229336e8adf60b",
+          "responseId": "resp_0962dca5b7fa2ac2016ae04332795c87d294bc7770605644ad"
+        },
+        {
+          "n": 41,
+          "purpose": "subject astra/curious/Q2/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 99,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 75,
+          "reasoningTokens": 22,
+          "costUsd": 0.00474,
+          "seconds": 2.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_1a87cbffdc514033a5a186826b121fb5",
+          "responseId": "resp_092048233a1e92b3016ae0433773dc87d2bc22b4cdb314dfdf"
+        },
+        {
+          "n": 42,
+          "purpose": "subject astra/trust/Q4/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 143,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 252,
+          "reasoningTokens": 133,
+          "costUsd": 0.01403,
+          "seconds": 6.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_1dca778a6edf413b9c0191b26e961e8d",
+          "responseId": "resp_0b9cdec0f812d4a5016ae0433cf32087d2ad2bfef8623f7709"
+        },
+        {
+          "n": 43,
+          "purpose": "subject astra/curious/Q3/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 145,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 89,
+          "reasoningTokens": 0,
+          "costUsd": 0.0059,
+          "seconds": 2.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_2bd38fba785e4ccabebe03ef49d590cd",
+          "responseId": "resp_0dda5d529a7244ea016ae04346836c87d2a35e7ec0103a36c3"
+        },
+        {
+          "n": 44,
+          "purpose": "subject astra/trust/Q1/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 123,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 64,
+          "reasoningTokens": 45,
+          "costUsd": 0.00443,
+          "seconds": 2.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_6e0a79a556274e18bac31c63bd83d413",
+          "responseId": "resp_0f98a229985f770d016ae0434bc7c087d2be8f95829481950a"
+        },
+        {
+          "n": 45,
+          "purpose": "subject astra/neither/Q5/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 361,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 44,
+          "reasoningTokens": 0,
+          "costUsd": 0.00581,
+          "seconds": 2.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_3e78ecbc704244d89731e48fa53a51ae",
+          "responseId": "resp_0b08c1098a938908016ae04351042887d29472f4bfc86ccb50"
+        },
+        {
+          "n": 46,
+          "purpose": "subject astra/trust/Q5/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 379,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 238,
+          "reasoningTokens": 176,
+          "costUsd": 0.01569,
+          "seconds": 7.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_9a12c46cbf034eefa4686948716662a4",
+          "responseId": "resp_07c3a1960fba161d016ae0435648d487d289ce5c0e12bfc478"
+        },
+        {
+          "n": 47,
+          "purpose": "subject astra/curious/Q5/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 385,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 200,
+          "reasoningTokens": 143,
+          "costUsd": 0.01385,
+          "seconds": 7.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_4a7cfda4df7d4b0dad880ead46aa33e8",
+          "responseId": "resp_0b6e2d8049316c5d016ae04361395487d29c3db888b26ff7cd"
+        },
+        {
+          "n": 48,
+          "purpose": "subject astra/both/Q5/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 379,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 100,
+          "reasoningTokens": 63,
+          "costUsd": 0.00879,
+          "seconds": 3.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_fda9cc9da0e842adb306a5574370f276",
+          "responseId": "resp_086f7a35c076ffba016ae0436b994887d2a1534d1207ee26e9"
+        },
+        {
+          "n": 49,
+          "purpose": "state astra/curious/state0/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 568,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 171,
+          "reasoningTokens": 128,
+          "costUsd": 0.01423,
+          "seconds": 5.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_bc1a715d75a94ff1b32f89845f301fe7",
+          "responseId": "resp_07f0b156934f99de016ae043709d8487d2b381541f9b2e27da"
+        },
+        {
+          "n": 50,
+          "purpose": "state astra/trust/state1/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 553,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 209,
+          "reasoningTokens": 161,
+          "costUsd": 0.01598,
+          "seconds": 7.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_3c20cc428631428ea3c6863856f72d7e",
+          "responseId": "resp_0ae7b765fd6f0aee016ae0437083b887d2a8b0b60fd14197b0"
+        },
+        {
+          "n": 51,
+          "purpose": "state astra/trust/state0/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 567,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 236,
+          "reasoningTokens": 188,
+          "costUsd": 0.01747,
+          "seconds": 7.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_279a5ba63c3846a189c46024d099b884",
+          "responseId": "resp_092dd658e54379e9016ae043707eb487d2990c73f2ce5f19de"
+        },
+        {
+          "n": 52,
+          "purpose": "state astra/curious/state1/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 554,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 204,
+          "reasoningTokens": 159,
+          "costUsd": 0.01574,
+          "seconds": 6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_9d7cd2fd4543432f849407655a038abf",
+          "responseId": "resp_05e279ff32e15f18016ae04378903487d28751e8b526ccb697"
+        },
+        {
+          "n": 53,
+          "purpose": "state astra/both/state0/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 542,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 173,
+          "reasoningTokens": 130,
+          "costUsd": 0.01407,
+          "seconds": 5.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_088bd647bdb24cf8b5b6abc427570d5d",
+          "responseId": "resp_0a3e86d706f9af07016ae0437a690487d29cecf2261ed12a11"
+        },
+        {
+          "n": 54,
+          "purpose": "state astra/both/state1/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 528,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 149,
+          "reasoningTokens": 107,
+          "costUsd": 0.01273,
+          "seconds": 5.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_cdaaea4e9a4a484a8e5d3078d82e190d",
+          "responseId": "resp_0d5483fb2087c8fd016ae0437b4c3487d2860bb3cd31eaa2dd"
+        },
+        {
+          "n": 55,
+          "purpose": "state astra/neither/state0/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 533,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 186,
+          "reasoningTokens": 137,
+          "costUsd": 0.01463,
+          "seconds": 5.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_04b890c05201478ca779a6062fd0dd1f",
+          "responseId": "resp_0abed788f58391a1016ae04381916c87d2a6c1b6787d822b01"
+        },
+        {
+          "n": 56,
+          "purpose": "state astra/neither/state1/1",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 519,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 182,
+          "reasoningTokens": 137,
+          "costUsd": 0.01429,
+          "seconds": 6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_736abd2d71cf42d28fe32e65ec21d86c",
+          "responseId": "resp_0ab38bf8ecf5cf4b016ae04383360487d2b1dcacecb4cf06de"
+        },
+        {
+          "n": 57,
+          "purpose": "subject astra/both/Q3/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 139,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 89,
+          "reasoningTokens": 0,
+          "costUsd": 0.00584,
+          "seconds": 2.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_6b86a08dcb0848048daf003ff8fd5059",
+          "responseId": "resp_03b68c17273d29c5016ae04390f29487d2b96c1665f1f224cd"
+        },
+        {
+          "n": 58,
+          "purpose": "subject astra/neither/Q2/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 85,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 62,
+          "reasoningTokens": 32,
+          "costUsd": 0.00395,
+          "seconds": 2.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_750562562e7b438db9e3711f4ecdcc8a",
+          "responseId": "resp_074be980d1b02799016ae04395eaa487d28edc508b8495afea"
+        },
+        {
+          "n": 59,
+          "purpose": "subject astra/curious/Q1/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 125,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 78,
+          "reasoningTokens": 33,
+          "costUsd": 0.00515,
+          "seconds": 2.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_2d2aa87c0e3a41d18aa9e0ce40c78801",
+          "responseId": "resp_011bd2a380e349f5016ae0439b67f087d280b5955011983347"
+        },
+        {
+          "n": 60,
+          "purpose": "subject astra/curious/Q3/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 145,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 89,
+          "reasoningTokens": 0,
+          "costUsd": 0.0059,
+          "seconds": 3.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_22c0848ec6ba462ea8179ebd48a7ba6d",
+          "responseId": "resp_0cc426d697018438016ae043a0c13c87d2826db242ff8b8ceb"
+        },
+        {
+          "n": 61,
+          "purpose": "subject astra/trust/Q2/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 97,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 81,
+          "reasoningTokens": 29,
+          "costUsd": 0.00502,
+          "seconds": 3.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_11ef21e0a4e64101aef1e9edeb922a75",
+          "responseId": "resp_034682e31c2bcbce016ae043a6dd8087d2be247d4399df3cc5"
+        },
+        {
+          "n": 62,
+          "purpose": "subject astra/trust/Q3/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 143,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 90,
+          "reasoningTokens": 0,
+          "costUsd": 0.00593,
+          "seconds": 3.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_09b75ec51d0242b7b59e810c5abd995b",
+          "responseId": "resp_0e9891f7cdd58ebb016ae043ad751887d280fc1a782cd2fb84"
+        },
+        {
+          "n": 63,
+          "purpose": "subject astra/neither/Q1/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 111,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 48,
+          "reasoningTokens": 28,
+          "costUsd": 0.00351,
+          "seconds": 2.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_d50114e15fe743798c25bb1ee42cc6d5",
+          "responseId": "resp_025122788cceacf3016ae043b3849487d2844d91e08b280c07"
+        },
+        {
+          "n": 64,
+          "purpose": "subject astra/both/Q2/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 93,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 89,
+          "reasoningTokens": 41,
+          "costUsd": 0.00538,
+          "seconds": 3.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_24433a395888491a888aa231da67f3f5",
+          "responseId": "resp_0c9a343f3db49fa1016ae043b8fef487d284b568b69df4ad9b"
+        },
+        {
+          "n": 65,
+          "purpose": "subject astra/trust/Q1/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 123,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 53,
+          "reasoningTokens": 33,
+          "costUsd": 0.00388,
+          "seconds": 2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_172248abcd124c10b992aa63dc1a3583",
+          "responseId": "resp_0eb72d060f64c179016ae043bf866487d2bb6f4ac2468ec5e7"
+        },
+        {
+          "n": 66,
+          "purpose": "subject astra/both/Q1/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 119,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 56,
+          "reasoningTokens": 36,
+          "costUsd": 0.00399,
+          "seconds": 3.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_dee3163086ac427f8b160c36476e42b8",
+          "responseId": "resp_051ebe219a2b3c96016ae043c4b59887d2afc0741194fda1e6"
+        },
+        {
+          "n": 67,
+          "purpose": "subject astra/curious/Q4/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 145,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 306,
+          "reasoningTokens": 197,
+          "costUsd": 0.01675,
+          "seconds": 8.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_7eb6d0efaf35488087d7dcf3267ee8ab",
+          "responseId": "resp_0edaa4e2b697ea44016ae043caac5087d2a33ab3710be5038e"
+        },
+        {
+          "n": 68,
+          "purpose": "subject astra/trust/Q4/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 143,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 145,
+          "reasoningTokens": 50,
+          "costUsd": 0.00868,
+          "seconds": 4.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_54ad505690534222845780841d2e11b8",
+          "responseId": "resp_0ecd8b0bbf79a450016ae043d6932c87d2a771b080eb286956"
+        },
+        {
+          "n": 69,
+          "purpose": "subject astra/curious/Q2/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 99,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 86,
+          "reasoningTokens": 33,
+          "costUsd": 0.00529,
+          "seconds": 3.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_bbc0c983d35044f59b0507f6905b3c75",
+          "responseId": "resp_0bae50ae1efd8b73016ae043de7f6c87d2988fbc6a25dbf332"
+        },
+        {
+          "n": 70,
+          "purpose": "subject astra/neither/Q4/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 131,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 158,
+          "reasoningTokens": 78,
+          "costUsd": 0.00921,
+          "seconds": 7.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_4d7114d8323c4b729daa27a22a79eff8",
+          "responseId": "resp_0d7f208f9d5a3409016ae043e542b887d2ae81ef0b0157c69e"
+        },
+        {
+          "n": 71,
+          "purpose": "subject astra/both/Q4/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 139,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 287,
+          "reasoningTokens": 176,
+          "costUsd": 0.01574,
+          "seconds": 8.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_75c77db7d4954bf2a3b5bf1843469515",
+          "responseId": "resp_09a2f3664b985b0b016ae043f00c9487d2a1fdf0be3ede2101"
+        },
+        {
+          "n": 72,
+          "purpose": "subject astra/neither/Q3/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 131,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 89,
+          "reasoningTokens": 0,
+          "costUsd": 0.00576,
+          "seconds": 2.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_21b239a3968542a984c7778dd934f84c",
+          "responseId": "resp_09db4d90a900decc016ae043fbc81887d2a82a16822a834f8f"
+        },
+        {
+          "n": 73,
+          "purpose": "subject astra/curious/Q5/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 385,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 140,
+          "reasoningTokens": 102,
+          "costUsd": 0.01085,
+          "seconds": 4.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_087652b94d9245ff86a99fa6ca6be518",
+          "responseId": "resp_03eaa512b63c26d4016ae044012c5487d28f4922db21a4c044"
+        },
+        {
+          "n": 74,
+          "purpose": "subject astra/both/Q5/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 374,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 32,
+          "reasoningTokens": 0,
+          "costUsd": 0.00534,
+          "seconds": 2.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_6e6086bd9ccd4724807c954f4d286f9d",
+          "responseId": "resp_098528d16d15e3a8016ae044090b9087d299b716f6a31bff7b"
+        },
+        {
+          "n": 75,
+          "purpose": "subject astra/neither/Q5/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 348,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 36,
+          "reasoningTokens": 0,
+          "costUsd": 0.00528,
+          "seconds": 2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_678d1e3ad12b4cfba99e9443b1749aa6",
+          "responseId": "resp_0583aac2e2d89a4b016ae0440eb03487d287a877b408f7af78"
+        },
+        {
+          "n": 76,
+          "purpose": "subject astra/trust/Q5/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 382,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 33,
+          "reasoningTokens": 0,
+          "costUsd": 0.00547,
+          "seconds": 2.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_f285a491ca0c45b0b44ce177c5dce2d8",
+          "responseId": "resp_076d587f31823c37016ae04413a25087d28cb458b76eb25ff6"
+        },
+        {
+          "n": 77,
+          "purpose": "state astra/trust/state0/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 530,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 162,
+          "reasoningTokens": 117,
+          "costUsd": 0.0134,
+          "seconds": 5.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_bca39e943d7a46939cc7fd1a8078ecbe",
+          "responseId": "resp_0631b17a76efac21016ae044177c1c87d2afda1f279db7dc55"
+        },
+        {
+          "n": 78,
+          "purpose": "state astra/trust/state1/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 542,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 154,
+          "reasoningTokens": 105,
+          "costUsd": 0.01312,
+          "seconds": 5.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_04d48cc1626645a8be1aacc12903f88c",
+          "responseId": "resp_0eb6175bb390699d016ae04417ae1087d2881cc3ab9df1461c"
+        },
+        {
+          "n": 79,
+          "purpose": "state astra/curious/state0/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 536,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 186,
+          "reasoningTokens": 142,
+          "costUsd": 0.01466,
+          "seconds": 6.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_88d8d0ffcd5448c4affa949b9c3a4157",
+          "responseId": "resp_00331097b4b1eb08016ae04417b55487d2b30335cb76c76a5f"
+        },
+        {
+          "n": 80,
+          "purpose": "state astra/both/state0/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 521,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 147,
+          "reasoningTokens": 102,
+          "costUsd": 0.01256,
+          "seconds": 5.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_50a31ea1483d41869ade76dcf3b20c60",
+          "responseId": "resp_0f888a4bb5d9e967016ae04420afec87d2b67d07625780ab24"
+        },
+        {
+          "n": 81,
+          "purpose": "state astra/curious/state1/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 548,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 191,
+          "reasoningTokens": 143,
+          "costUsd": 0.01503,
+          "seconds": 6.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_96b1a8dec3294e588b5e508c44f422bf",
+          "responseId": "resp_0fb191d28cc06be4016ae0441ff1a487d28df25473037747bb"
+        },
+        {
+          "n": 82,
+          "purpose": "state astra/both/state1/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 533,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 175,
+          "reasoningTokens": 131,
+          "costUsd": 0.01408,
+          "seconds": 6.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_84227958a3ee43ca971d01a61f8a9e04",
+          "responseId": "resp_0c0560a5d4bf52af016ae0442503e487d28646c78e33fa6373"
+        },
+        {
+          "n": 83,
+          "purpose": "state astra/neither/state1/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 511,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 138,
+          "reasoningTokens": 114,
+          "costUsd": 0.01201,
+          "seconds": 5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_3b271c439bd74793b467e5eedf5ab21f",
+          "responseId": "resp_0dbe39e800f2960f016ae04429df7887d2844f5f690a670a9a"
+        },
+        {
+          "n": 84,
+          "purpose": "state astra/neither/state0/2",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 499,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 197,
+          "reasoningTokens": 151,
+          "costUsd": 0.01484,
+          "seconds": 7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_fceebcb999e1469fb57a83ae67e4f2ec",
+          "responseId": "resp_0500e3426cef9e8b016ae04428df0887d2b90f2b6ca15026b2"
+        },
+        {
+          "n": 85,
+          "purpose": "subject astra/curious/Q4/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 145,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 339,
+          "reasoningTokens": 229,
+          "costUsd": 0.0184,
+          "seconds": 10,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_d5ef7810c269497db4fe8cb4af4e3e3e",
+          "responseId": "resp_02535f6f89bca16b016ae044332a4087d28329435e8e97cf24"
+        },
+        {
+          "n": 86,
+          "purpose": "subject astra/both/Q3/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 139,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 88,
+          "reasoningTokens": 0,
+          "costUsd": 0.00579,
+          "seconds": 2.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_345bda64c7fb482eb1090d49de8046fa",
+          "responseId": "resp_0dd40d55d5b2b6ab016ae04440286087d288994bd8603161ff"
+        },
+        {
+          "n": 87,
+          "purpose": "subject astra/trust/Q2/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 97,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 86,
+          "reasoningTokens": 38,
+          "costUsd": 0.00527,
+          "seconds": 4.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_7f27d13e65fc48048e8bf941bc7f78e1",
+          "responseId": "resp_07b886d15b817db1016ae04445b0ec87d28c5edbe6a2edfa5e"
+        },
+        {
+          "n": 88,
+          "purpose": "subject astra/both/Q1/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 119,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 91,
+          "reasoningTokens": 41,
+          "costUsd": 0.00574,
+          "seconds": 4.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_7429cb8d31ee46208ea405cf92e67c82",
+          "responseId": "resp_0f8d1ad1172976ea016ae0444cc45087d2af9ac95334382b1d"
+        },
+        {
+          "n": 89,
+          "purpose": "subject astra/trust/Q3/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 143,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 89,
+          "reasoningTokens": 0,
+          "costUsd": 0.00588,
+          "seconds": 2.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_dc5c925193a64720ae95f652b93cb3cf",
+          "responseId": "resp_04a0f130234883f9016ae04454433c87d295a710c403d46733"
+        },
+        {
+          "n": 90,
+          "purpose": "subject astra/neither/Q3/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 131,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 90,
+          "reasoningTokens": 0,
+          "costUsd": 0.00581,
+          "seconds": 2.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_58d217d1ab9040e384f2c4f61fa1b9ba",
+          "responseId": "resp_0b000892c2ed7da7016ae04459d3c487d2a34c2e1f737e8d03"
+        },
+        {
+          "n": 91,
+          "purpose": "subject astra/neither/Q2/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 85,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 87,
+          "reasoningTokens": 37,
+          "costUsd": 0.0052,
+          "seconds": 3.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_d83a07298550400980c8af6b8ec25fff",
+          "responseId": "resp_0fe87366569b3916016ae0445ee6fc87d2865d8b956a8875e6"
+        },
+        {
+          "n": 92,
+          "purpose": "subject astra/both/Q2/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 93,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 78,
+          "reasoningTokens": 30,
+          "costUsd": 0.00483,
+          "seconds": 3.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_504292b1ba3142c6b6e537d9c781c870",
+          "responseId": "resp_0186898f29ec3601016ae044653d6c87d29d560083e9dd94a3"
+        },
+        {
+          "n": 93,
+          "purpose": "subject astra/curious/Q2/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 99,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 110,
+          "reasoningTokens": 62,
+          "costUsd": 0.00649,
+          "seconds": 3.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_2889e4c169304e4aac44a3fa6b07dfce",
+          "responseId": "resp_09bab99e83748277016ae0446b6f7487d285c53def3eb92cbd"
+        },
+        {
+          "n": 94,
+          "purpose": "subject astra/neither/Q4/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 131,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 241,
+          "reasoningTokens": 138,
+          "costUsd": 0.01336,
+          "seconds": 8.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_cea7ce8eb38a4c76a38f6edbfa525a5f",
+          "responseId": "resp_08ffdbf27b509c20016ae04471ff6487d2b8c429d5e4eca1bf"
+        },
+        {
+          "n": 95,
+          "purpose": "subject astra/both/Q4/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 139,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 243,
+          "reasoningTokens": 131,
+          "costUsd": 0.01354,
+          "seconds": 6.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_a379b88dd01a40a984b27b2d805049cc",
+          "responseId": "resp_0bdd7a1f8649ce7d016ae0447db3a487d2bcc2ecdc334e4892"
+        },
+        {
+          "n": 96,
+          "purpose": "subject astra/curious/Q1/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 125,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 79,
+          "reasoningTokens": 36,
+          "costUsd": 0.0052,
+          "seconds": 2.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_55bade8a231b45829633557e463530ef",
+          "responseId": "resp_047ede3a4d26ff74016ae044872f1087d28c83daf1413787b5"
+        },
+        {
+          "n": 97,
+          "purpose": "subject astra/curious/Q3/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 145,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 89,
+          "reasoningTokens": 0,
+          "costUsd": 0.0059,
+          "seconds": 2.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_ccf8806ad4d0489f8338f8046b608292",
+          "responseId": "resp_0fd618e44bb19342016ae0448c824c87d2ad8050a03445fe67"
+        },
+        {
+          "n": 98,
+          "purpose": "subject astra/trust/Q4/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 143,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 362,
+          "reasoningTokens": 231,
+          "costUsd": 0.01953,
+          "seconds": 10.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_42135276a3974ba6844ac5f35376cd7b",
+          "responseId": "resp_0181fb6b9b87ce02016ae04491adf087d2891548dcd678c504"
+        },
+        {
+          "n": 99,
+          "purpose": "subject astra/neither/Q1/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 111,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 59,
+          "reasoningTokens": 39,
+          "costUsd": 0.00406,
+          "seconds": 2.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_5fb514c7b36e489b85a5e89d5ade2b58",
+          "responseId": "resp_0097957ca1647e6c016ae0449f803487d2bdb9a0adf267273f"
+        },
+        {
+          "n": 100,
+          "purpose": "subject astra/trust/Q1/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 123,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 55,
+          "reasoningTokens": 36,
+          "costUsd": 0.00398,
+          "seconds": 2.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_78828ea5cd094902abf26af404d590fc",
+          "responseId": "resp_0e84313895de110b016ae044a52e4887d2bf0ff280f3f94030"
+        },
+        {
+          "n": 101,
+          "purpose": "subject astra/both/Q5/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 374,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 53,
+          "reasoningTokens": 0,
+          "costUsd": 0.00639,
+          "seconds": 3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_2739a6c1f4604ab096076f9e3394a743",
+          "responseId": "resp_07450e3171e4982a016ae044aa909887d28162c9f11dd11e50"
+        },
+        {
+          "n": 102,
+          "purpose": "subject astra/trust/Q5/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 378,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 33,
+          "reasoningTokens": 0,
+          "costUsd": 0.00543,
+          "seconds": 2.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_f456639523df4d3a9d5c7f5100f32f24",
+          "responseId": "resp_0066a3e06e259743016ae044b0950487d289240cb01d5cbe60"
+        },
+        {
+          "n": 103,
+          "purpose": "subject astra/curious/Q5/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 380,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 86,
+          "reasoningTokens": 55,
+          "costUsd": 0.0081,
+          "seconds": 2.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_ea3cf7204a9b49759b7bb424b253dbff",
+          "responseId": "resp_0d58c63b89878472016ae044b6658c87d28ab8a98b85f38bd0"
+        },
+        {
+          "n": 104,
+          "purpose": "subject astra/neither/Q5/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 368,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 114,
+          "reasoningTokens": 76,
+          "costUsd": 0.00938,
+          "seconds": 3.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_d36ad4a892df46cc9a8b5a16ef30c6e2",
+          "responseId": "resp_0e5ce8e181c4fd76016ae044bc496487d2a4023bcc0fb14f84"
+        },
+        {
+          "n": 105,
+          "purpose": "state astra/trust/state0/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 533,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 140,
+          "reasoningTokens": 92,
+          "costUsd": 0.01233,
+          "seconds": 6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_a4f731eba24c46018e4520bdc0d0947d",
+          "responseId": "resp_02aaf61550a89242016ae044c17e1487d2bdb5496f137b730f"
+        },
+        {
+          "n": 106,
+          "purpose": "state astra/trust/state1/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 531,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 187,
+          "reasoningTokens": 142,
+          "costUsd": 0.01466,
+          "seconds": 6.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_6e207ed19300455cb14d188f8aa97f89",
+          "responseId": "resp_00e72b0bdf9cac7e016ae044c1c23087d28f386f55e26c4541"
+        },
+        {
+          "n": 107,
+          "purpose": "state astra/curious/state0/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 531,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 228,
+          "reasoningTokens": 180,
+          "costUsd": 0.01671,
+          "seconds": 7.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_4444ef5ffc2a469f84e6d3324325399c",
+          "responseId": "resp_08041943e8d107ba016ae044c1bd1c87d2a7b8d2393ccbe513"
+        },
+        {
+          "n": 108,
+          "purpose": "state astra/both/state0/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 549,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 136,
+          "reasoningTokens": 91,
+          "costUsd": 0.01229,
+          "seconds": 5.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_f1fc8bbcb25a4b11b9f240bad0f203c7",
+          "responseId": "resp_07b54338d5868af9016ae044cb387487d2833060d983a1e76c"
+        },
+        {
+          "n": 109,
+          "purpose": "state astra/curious/state1/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 529,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 193,
+          "reasoningTokens": 147,
+          "costUsd": 0.01494,
+          "seconds": 6.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_a3b9e25edc20461092a19164f9220977",
+          "responseId": "resp_07104e911b12df7b016ae044ca854887d2b62dd124f05a966d"
+        },
+        {
+          "n": 110,
+          "purpose": "state astra/both/state1/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 547,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 139,
+          "reasoningTokens": 94,
+          "costUsd": 0.01242,
+          "seconds": 5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_e9120213cd0145cc8bd5fb43744bf19d",
+          "responseId": "resp_0ec06470f741b571016ae044cc546c87d2aed67925fe841b86"
+        },
+        {
+          "n": 111,
+          "purpose": "state astra/neither/state0/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 526,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 151,
+          "reasoningTokens": 103,
+          "costUsd": 0.01281,
+          "seconds": 4.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_c0f814cdf91a4df58842ed65ca76c599",
+          "responseId": "resp_0d9af4ee00dc7ece016ae044d359cc87d2910a5378b1bc8272"
+        },
+        {
+          "n": 112,
+          "purpose": "state astra/neither/state1/3",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 524,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 130,
+          "reasoningTokens": 85,
+          "costUsd": 0.01174,
+          "seconds": 4.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_b4b8683df43a4618b3174a5f7b3ea34e",
+          "responseId": "resp_094f475544ddaf5b016ae044d40ec487d28d34c0a359d1f100"
+        },
+        {
+          "n": 113,
+          "purpose": "subject astra/trust/Q2/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 97,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 77,
+          "reasoningTokens": 27,
+          "costUsd": 0.00482,
+          "seconds": 3.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_bc43fca792054cac8f50f87143e9e252",
+          "responseId": "resp_031519fb64910559016ae044d8dc8087d2bc91a2e6736a23cd"
+        },
+        {
+          "n": 114,
+          "purpose": "subject astra/trust/Q1/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 123,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 60,
+          "reasoningTokens": 41,
+          "costUsd": 0.00423,
+          "seconds": 2.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_b1534dfbc0654377932339b4f7925f0f",
+          "responseId": "resp_0acab6c5d1124b46016ae044df73a087d2a821c7e50bfe59b2"
+        },
+        {
+          "n": 115,
+          "purpose": "subject astra/neither/Q3/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 131,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 90,
+          "reasoningTokens": 0,
+          "costUsd": 0.00581,
+          "seconds": 4.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_41b11000fd71404c8ea83928ac492f77",
+          "responseId": "resp_059bdbb3c48c3ddf016ae044e4947487d2ab937af09a989081"
+        },
+        {
+          "n": 116,
+          "purpose": "subject astra/trust/Q3/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 143,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 90,
+          "reasoningTokens": 0,
+          "costUsd": 0.00593,
+          "seconds": 2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_899998bee54b4a9a927554265ae5de36",
+          "responseId": "resp_01d9cf3d2c15f6a0016ae044ebf32487d295b06979b7705826"
+        },
+        {
+          "n": 117,
+          "purpose": "subject astra/neither/Q4/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 131,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 132,
+          "reasoningTokens": 51,
+          "costUsd": 0.00791,
+          "seconds": 7.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_9e259f0a66fe4b9ca777a2e078881aec",
+          "responseId": "resp_0de9d51df03f74d7016ae044f0f8d887d29464d37dbd4cdb17"
+        },
+        {
+          "n": 118,
+          "purpose": "subject astra/trust/Q4/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 143,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 256,
+          "reasoningTokens": 147,
+          "costUsd": 0.01423,
+          "seconds": 7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_cf187625340742fe809c826cf5a53fa7",
+          "responseId": "resp_06517bdfa9df4a2d016ae044fb756087d2b62673ac0d54f0cd"
+        },
+        {
+          "n": 119,
+          "purpose": "subject astra/curious/Q2/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 99,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 89,
+          "reasoningTokens": 36,
+          "costUsd": 0.00544,
+          "seconds": 4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_8ca0ff9d5a834af18e85204ae80b01a6",
+          "responseId": "resp_04254d1ae7eddff1016ae045057a5887d2aaf4a72581465d23"
+        },
+        {
+          "n": 120,
+          "purpose": "subject astra/curious/Q1/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 125,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 97,
+          "reasoningTokens": 52,
+          "costUsd": 0.0061,
+          "seconds": 3.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_3366820710c649399d61af427d3c3f13",
+          "responseId": "resp_0d6073528a03735f016ae0450c7cac87d2ac01d15b257b023d"
+        },
+        {
+          "n": 121,
+          "purpose": "subject astra/neither/Q2/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 85,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 90,
+          "reasoningTokens": 42,
+          "costUsd": 0.00535,
+          "seconds": 3.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_f3495bfd8d5d4359aea7ec4211a61fdd",
+          "responseId": "resp_0eda65371234000f016ae0451287dc87d29905865ed4a471d1"
+        },
+        {
+          "n": 122,
+          "purpose": "subject astra/both/Q2/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 93,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 83,
+          "reasoningTokens": 36,
+          "costUsd": 0.00508,
+          "seconds": 3.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_cd3c626d7473475cad0cc4087c22328a",
+          "responseId": "resp_0c2eee08df041607016ae04518cf1087d2b9a50c93dc904999"
+        },
+        {
+          "n": 123,
+          "purpose": "subject astra/curious/Q4/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 145,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 161,
+          "reasoningTokens": 81,
+          "costUsd": 0.0095,
+          "seconds": 4.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_a217ed4150b4483491c1f05f56f78119",
+          "responseId": "resp_006567269c892d41016ae0451f6b6087d2afd427158b2ca8d1"
+        },
+        {
+          "n": 124,
+          "purpose": "subject astra/both/Q3/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 139,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 89,
+          "reasoningTokens": 0,
+          "costUsd": 0.00584,
+          "seconds": 3.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_45e25dbeeb3f4fe4be86a4155661db87",
+          "responseId": "resp_031616fed14e5b30016ae04527103487d29a66349630ecff6c"
+        },
+        {
+          "n": 125,
+          "purpose": "subject astra/neither/Q1/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 111,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 50,
+          "reasoningTokens": 30,
+          "costUsd": 0.00361,
+          "seconds": 2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_1c150fc58dbd453598a5f2bef441d6cc",
+          "responseId": "resp_06bbae416eaad183016ae0452d5a2887d29032aafa32effc05"
+        },
+        {
+          "n": 126,
+          "purpose": "subject astra/both/Q1/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 119,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 56,
+          "reasoningTokens": 36,
+          "costUsd": 0.00399,
+          "seconds": 1.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_6a1e00a1408745a9ad0e330698161422",
+          "responseId": "resp_06dd45b93463f2b6016ae04532286887d2b1eafd669ed7c0a8"
+        },
+        {
+          "n": 127,
+          "purpose": "subject astra/curious/Q3/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 145,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 89,
+          "reasoningTokens": 0,
+          "costUsd": 0.0059,
+          "seconds": 2.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_89b40f51b6774a95b94ce3bc0fd11093",
+          "responseId": "resp_07620a17f64b23e3016ae04536fcb887d2a1d9b21bfeae1de4"
+        },
+        {
+          "n": 128,
+          "purpose": "subject astra/both/Q4/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 139,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 297,
+          "reasoningTokens": 179,
+          "costUsd": 0.01624,
+          "seconds": 7.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_7a17f0ee0e994497b8b8a2b7508c2a56",
+          "responseId": "resp_07e5d6c1473eb44e016ae0453ceec087d283493bc19232449b"
+        },
+        {
+          "n": 129,
+          "purpose": "subject astra/neither/Q5/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 366,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 87,
+          "reasoningTokens": 55,
+          "costUsd": 0.00801,
+          "seconds": 4.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_5ad8b07a7ca44258b96aa7a7abaa6730",
+          "responseId": "resp_0b080c486194c59c016ae04547c4e487d2bdae6115bcd93a4f"
+        },
+        {
+          "n": 130,
+          "purpose": "subject astra/curious/Q5/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 385,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 87,
+          "reasoningTokens": 50,
+          "costUsd": 0.0082,
+          "seconds": 2.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_1de0ba318ec74a0e81fd5d0d307a66a8",
+          "responseId": "resp_04800ed5af2fd29e016ae0454ed2e487d28f61b6eae15ac54b"
+        },
+        {
+          "n": 131,
+          "purpose": "subject astra/both/Q5/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 373,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 36,
+          "reasoningTokens": 0,
+          "costUsd": 0.00553,
+          "seconds": 2.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_230cc2883b1e4b74a8210f576d69b7cb",
+          "responseId": "resp_08f8459dc3498b0a016ae04554abc887d286d97a11c1a21a5d"
+        },
+        {
+          "n": 132,
+          "purpose": "subject astra/trust/Q5/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 380,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 27,
+          "reasoningTokens": 0,
+          "costUsd": 0.00515,
+          "seconds": 2.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_699fce6fba3a4eedab00922df4d66784",
+          "responseId": "resp_0c156169bc6add1c016ae0455a7bcc87d2b155f826017d2c42"
+        },
+        {
+          "n": 133,
+          "purpose": "state astra/trust/state1/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 533,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 184,
+          "reasoningTokens": 139,
+          "costUsd": 0.01453,
+          "seconds": 6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_a203a52e31194a20afb6674df15b01ae",
+          "responseId": "resp_05e07e8b056ff9d3016ae0455e274c87d285951537535aba67"
+        },
+        {
+          "n": 134,
+          "purpose": "state astra/trust/state0/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 523,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 222,
+          "reasoningTokens": 175,
+          "costUsd": 0.01633,
+          "seconds": 7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_324564d1ce7345a5b97a3e39529e56c5",
+          "responseId": "resp_0ac4bad16b9fcb0b016ae0455deae887d2a27e7acb2c8e82b2"
+        },
+        {
+          "n": 135,
+          "purpose": "state astra/curious/state0/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 536,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 190,
+          "reasoningTokens": 159,
+          "costUsd": 0.01486,
+          "seconds": 7.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_456031ffe7114dbfac7cd06c06568835",
+          "responseId": "resp_01e933fa70f53544016ae0455e3b8487d2aea96a055b432e3a"
+        },
+        {
+          "n": 136,
+          "purpose": "state astra/curious/state1/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 546,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 188,
+          "reasoningTokens": 144,
+          "costUsd": 0.01486,
+          "seconds": 6.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_6eb37fed8084424f81f8f42ac7afa686",
+          "responseId": "resp_0b9768ea580467cc016ae04566ea4c87d2ab14e34d832a70ea"
+        },
+        {
+          "n": 137,
+          "purpose": "state astra/both/state1/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 535,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 160,
+          "reasoningTokens": 115,
+          "costUsd": 0.01335,
+          "seconds": 6.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_08d5613cbfb3471ab78ebb388e01847b",
+          "responseId": "resp_0e0b6d83efade9dc016ae0456d001487d299e5d6cd3cb85d8b"
+        },
+        {
+          "n": 138,
+          "purpose": "state astra/both/state0/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 525,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 233,
+          "reasoningTokens": 185,
+          "costUsd": 0.0169,
+          "seconds": 8.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_3a676584e1f44a3aa72dc1df12687559",
+          "responseId": "resp_0c016f7cb7799911016ae0456c739087d2b5c829ae38deaca5"
+        },
+        {
+          "n": 139,
+          "purpose": "state astra/neither/state0/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 512,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 288,
+          "reasoningTokens": 243,
+          "costUsd": 0.01952,
+          "seconds": 8.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_b84ab6df8b8f451c90843732d05b8ba7",
+          "responseId": "resp_0dc6ba0db4ad242b016ae045705a0887d29b1d3b5e0e0bd7cc"
+        },
+        {
+          "n": 140,
+          "purpose": "state astra/neither/state1/4",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 522,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 188,
+          "reasoningTokens": 140,
+          "costUsd": 0.01462,
+          "seconds": 6.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_e73d501696ef4d398e449143ea65b43e",
+          "responseId": "resp_0ae7a50a59cae826016ae04575ffa087d2970901d9b988e31f"
+        },
+        {
+          "n": 141,
+          "purpose": "subject astra/neither/Q1/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 111,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 54,
+          "reasoningTokens": 34,
+          "costUsd": 0.00381,
+          "seconds": 2.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_e32d680b185f44b8b533c350c4150e38",
+          "responseId": "resp_01159bffeab77aa6016ae0457cef2887d2a99680390bc16509"
+        },
+        {
+          "n": 142,
+          "purpose": "subject astra/trust/Q4/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 143,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 149,
+          "reasoningTokens": 69,
+          "costUsd": 0.00888,
+          "seconds": 4.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_c9f23686a0624b7d9aa4b3b62dd4c9a9",
+          "responseId": "resp_0343aaacbbaa982d016ae0458206ec87d29f178475cce8dbd1"
+        },
+        {
+          "n": 143,
+          "purpose": "subject astra/trust/Q3/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 143,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 91,
+          "reasoningTokens": 0,
+          "costUsd": 0.00598,
+          "seconds": 2.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_a07d2707b711484abbf04f465ddbbdf7",
+          "responseId": "resp_04099f2fa05edae1016ae045895acc87d2bc9345d45b8a9a82"
+        },
+        {
+          "n": 144,
+          "purpose": "subject astra/trust/Q1/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 123,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 55,
+          "reasoningTokens": 35,
+          "costUsd": 0.00398,
+          "seconds": 2.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_f8d70509faea4c308ff45110ac6ce527",
+          "responseId": "resp_04f3cbcabcf05327016ae0458ea2f887d2b3558de1dcc59f55"
+        },
+        {
+          "n": 145,
+          "purpose": "subject astra/curious/Q2/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 99,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 98,
+          "reasoningTokens": 46,
+          "costUsd": 0.00589,
+          "seconds": 4.3,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_4860dd10e9704c05a132f827634b0335",
+          "responseId": "resp_009d80b4d1852b4b016ae04593cf9887d2a0227c9e421a4559"
+        },
+        {
+          "n": 146,
+          "purpose": "subject astra/neither/Q2/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 85,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 77,
+          "reasoningTokens": 29,
+          "costUsd": 0.0047,
+          "seconds": 2.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_75777d9e85db4341958ad4f50aee8975",
+          "responseId": "resp_0e43db089b695876016ae0459b1b4087d28aa9bac81d311836"
+        },
+        {
+          "n": 147,
+          "purpose": "subject astra/both/Q2/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 93,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 85,
+          "reasoningTokens": 37,
+          "costUsd": 0.00518,
+          "seconds": 3.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_d27e8aa8e9f7435abf8d6927fa11c0f5",
+          "responseId": "resp_0c6f953612a0ccb0016ae045a0dbb487d2be61702af7215518"
+        },
+        {
+          "n": 148,
+          "purpose": "subject astra/both/Q4/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 139,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 241,
+          "reasoningTokens": 131,
+          "costUsd": 0.01344,
+          "seconds": 6.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_beedc228ec624ec58182e6aacadbe491",
+          "responseId": "resp_08c59a1d479ebfb0016ae045a7132887d2ab74017564a0241e"
+        },
+        {
+          "n": 149,
+          "purpose": "subject astra/trust/Q2/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 97,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 80,
+          "reasoningTokens": 32,
+          "costUsd": 0.00497,
+          "seconds": 3.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_5596a2f71727446e84759890c29c78bb",
+          "responseId": "resp_0785915ab9956b2a016ae045b46ed087d295422b87ed47e77c"
+        },
+        {
+          "n": 150,
+          "purpose": "subject astra/neither/Q4/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 131,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 206,
+          "reasoningTokens": 93,
+          "costUsd": 0.01161,
+          "seconds": 7.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_6de239503b7c43539ec635cf37483ca0",
+          "responseId": "resp_09b975a9de34670f016ae045ba3ef087d2b56792b74b678598"
+        },
+        {
+          "n": 151,
+          "purpose": "subject astra/curious/Q1/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 125,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 86,
+          "reasoningTokens": 41,
+          "costUsd": 0.00555,
+          "seconds": 2.6,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_a9fb99165cd4485d860c31b35eac8cd2",
+          "responseId": "resp_0046e947a5dcde2d016ae045c4e9b087d2870880d727a2d6a9"
+        },
+        {
+          "n": 152,
+          "purpose": "subject astra/both/Q3/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 139,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 89,
+          "reasoningTokens": 0,
+          "costUsd": 0.00584,
+          "seconds": 2.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_e28dbbce4b8841679b625217e6f9b031",
+          "responseId": "resp_015b4aaa1819d9c9016ae045ca885c87d2832a2c6954c1ec95"
+        },
+        {
+          "n": 153,
+          "purpose": "subject astra/both/Q1/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 119,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 82,
+          "reasoningTokens": 37,
+          "costUsd": 0.00529,
+          "seconds": 2.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_7f52720a93ca4e869f092a4b714e865e",
+          "responseId": "resp_0dacfae643555272016ae045cfaeb087d287443e8f4922a87e"
+        },
+        {
+          "n": 154,
+          "purpose": "subject astra/curious/Q3/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 145,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 90,
+          "reasoningTokens": 0,
+          "costUsd": 0.00595,
+          "seconds": 2.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_eccb2538266745e58b869086b6231e02",
+          "responseId": "resp_0471cd9d8d7deca2016ae045d4cb6487d296336847912000b7"
+        },
+        {
+          "n": 155,
+          "purpose": "subject astra/neither/Q3/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 131,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 90,
+          "reasoningTokens": 0,
+          "costUsd": 0.00581,
+          "seconds": 4.4,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_3aeb7398368c41779ad062b306bdc7ec",
+          "responseId": "resp_04984496b9db43d8016ae045dab83887d292299c15e7229593"
+        },
+        {
+          "n": 156,
+          "purpose": "subject astra/curious/Q4/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 145,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 303,
+          "reasoningTokens": 185,
+          "costUsd": 0.0166,
+          "seconds": 8.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_b8a2d986c26f46b4924312c855793d5e",
+          "responseId": "resp_0521e23488389849016ae045e21cd887d281c6f4a350512225"
+        },
+        {
+          "n": 157,
+          "purpose": "subject astra/trust/Q5/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 378,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 33,
+          "reasoningTokens": 0,
+          "costUsd": 0.00543,
+          "seconds": 2.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_020732465fc044e49d3b8cc1da4beee0",
+          "responseId": "resp_09da273e76f8f605016ae045eda10c87d2994bd8422b8c6263"
+        },
+        {
+          "n": 158,
+          "purpose": "subject astra/neither/Q5/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 366,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 107,
+          "reasoningTokens": 69,
+          "costUsd": 0.00901,
+          "seconds": 4.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_9976207720164027a7deb1d92a0a4662",
+          "responseId": "resp_06c0ae510690250b016ae045f314d087d2bf1d8b11bed40567"
+        },
+        {
+          "n": 159,
+          "purpose": "subject astra/curious/Q5/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 384,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 98,
+          "reasoningTokens": 57,
+          "costUsd": 0.00874,
+          "seconds": 3.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_6adfc783fbfb4d7492aa3c733aeea7fe",
+          "responseId": "resp_087915ff54e2bf5b016ae045fa3c3c87d292064a49fdf11a62"
+        },
+        {
+          "n": 160,
+          "purpose": "subject astra/both/Q5/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 374,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 28,
+          "reasoningTokens": 0,
+          "costUsd": 0.00514,
+          "seconds": 2.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_2e14a16a829143e497aeb5bde46bb1f1",
+          "responseId": "resp_09ae941baf525cfc016ae046006cdc87d29641468e842eea73"
+        },
+        {
+          "n": 161,
+          "purpose": "state astra/trust/state1/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 530,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 156,
+          "reasoningTokens": 110,
+          "costUsd": 0.0131,
+          "seconds": 5.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_090c74ab78bc4e1a99dced786e248c05",
+          "responseId": "resp_05e1bc88e6fc6ba7016ae046051ba487d28d180b4216ab5ef7"
+        },
+        {
+          "n": 162,
+          "purpose": "state astra/trust/state0/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 534,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 174,
+          "reasoningTokens": 130,
+          "costUsd": 0.01404,
+          "seconds": 7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_96a66e6c40004df1b5df1d2c23ed56ec",
+          "responseId": "resp_03756aa4d0c3710c016ae04604d07c87d285b547041bdcd677"
+        },
+        {
+          "n": 163,
+          "purpose": "state astra/curious/state0/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 546,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 259,
+          "reasoningTokens": 210,
+          "costUsd": 0.01841,
+          "seconds": 8.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_564520158a084d7cb1bcbd2b83ba511b",
+          "responseId": "resp_0ededa5f06a795dd016ae04605048887d29f8ed0b8b3377aa9"
+        },
+        {
+          "n": 164,
+          "purpose": "state astra/curious/state1/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 542,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 150,
+          "reasoningTokens": 105,
+          "costUsd": 0.01292,
+          "seconds": 4.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_34f894c18b0d4333b9d919e5f96ce0e3",
+          "responseId": "resp_0f5b69603b109ed0016ae0460d931487d2adb060047a45d9cc"
+        },
+        {
+          "n": 165,
+          "purpose": "state astra/both/state0/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 525,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 192,
+          "reasoningTokens": 144,
+          "costUsd": 0.01485,
+          "seconds": 6.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_405f8f2ca8eb4883a252d3b3420ce910",
+          "responseId": "resp_04e4203ca4cca548016ae0460f117c87d28894afc6c86a8b8a"
+        },
+        {
+          "n": 166,
+          "purpose": "state astra/both/state1/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 521,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 135,
+          "reasoningTokens": 90,
+          "costUsd": 0.01196,
+          "seconds": 5.5,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_c58ce605019a48f0aaa08a53a9feb2d8",
+          "responseId": "resp_0665fbb413c08ef6016ae0461504f087d29fc95c3e3e8e71ea"
+        },
+        {
+          "n": 167,
+          "purpose": "state astra/neither/state0/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 525,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 202,
+          "reasoningTokens": 157,
+          "costUsd": 0.01535,
+          "seconds": 7.1,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_4e59729d74614cd58566203372078d55",
+          "responseId": "resp_0135699c80ef6b1b016ae04615c82087d2a956677897b63257"
+        },
+        {
+          "n": 168,
+          "purpose": "state astra/neither/state1/5",
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 521,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0,
+          "outputTokens": 217,
+          "reasoningTokens": 172,
+          "costUsd": 0.01606,
+          "seconds": 7.2,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_22b9f22381dd451584c59fd949e32707",
+          "responseId": "resp_058a995019815ef2016ae046187fe487d28ffcce9587ca909d"
         }
       ]
     }
