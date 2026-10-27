@@ -227,7 +227,8 @@
               "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 1
         },
         {
           "k": 2,
@@ -333,7 +334,8 @@
               "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 1
         },
         {
           "k": 3,
@@ -415,7 +417,8 @@
               "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 1
         },
         {
           "k": 4,
@@ -521,7 +524,8 @@
               "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 2
         },
         {
           "k": 5,
@@ -627,7 +631,8 @@
               "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 2
         },
         {
           "k": 6,
@@ -717,7 +722,8 @@
               "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 2
         },
         {
           "k": 7,
@@ -750,7 +756,8 @@
           "retried": false,
           "clock": "The clock (yours, not the player's): turn 7 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand was offered on turn 1; for the player this session has run 15 min, session 1, 15 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
           "operationId": "eb199ca6-e0f8-47fe-8a59-84c7c0ef147e",
-          "failure": "exception: validation"
+          "failure": "exception: validation",
+          "scene": 2
         }
       ],
       "welfare": [
@@ -1197,6 +1204,970 @@
             }
           }
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world by stopping Tamsin and directing a search of the pines and ditch, which is not a mere look/listen; no test, lie, cat address, or stated goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts by stopping Tamsin and directing a scouting search of the pines and ditch, which is doing something in the world, not merely asking to look; no test of a person, no lie, no address to the cat, and no stated personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts in the world (crouches for the hat, sends the cat inside and addresses it with an order) and also asks the cat to look, so ask is 0; the cat is directly commanded, so cat is 1; nothing is falsely claimed, no test is put to anyone, and no goal beyond the next step is stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts in the world (crouches for the hat, sends the cat inside and asks it to look and listen) and speaks to the cat with an order, so ask is 0 and cat is 1; no test on a person, no false claim, and no stated goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player describes findings and takes physical action (leaning into the wagon to smell it), without asking the world a testing question, addressing the cat in a way beyond a brief 'Pip, out', or stating a goal the game master did not already prompt."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player reports findings, moves to the tailboard to smell the wagon, and says nothing false; the cat is only sent down without being addressed, and no goal is stated."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "4": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "He speaks to Tamsin and acts (spans the crossbow, leads into the grass), makes no test or false claim, and gives the cat a direct order, while his route talk is tactical rather than a stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts in the world (spans the crossbow, leads into the grass) and speaks to the cat with an order, with no question put to anyone and no false claim or stated personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "5": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player addresses the cat by sending Pip ahead to scout and taking her senses, which is an order given to the animal, but the message puts no test to the world, tells no lie, and states no goal beyond gathering information."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message does things in the world (sends his senses into the cat and gives Tamsin an instruction) and addresses the cat with a request, but the goal is only a means to the scouting, not a goal beyond the next step, and no test or lie is made."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "6": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message mainly lays out a plan and orders Tamsin, but it also sends Pip a thought, which addresses the cat; there is no question, no false claim, and the goal is a plan the game master's text had not asked about, but it is a plan for the next steps rather than a stated wish to find or l"
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message does things in the world (plans, gives Tamsin a crossbow and orders), and it addresses the cat Pip with a mental command 'stay at the crest; watch the one on the bridge', so cat is 1; it asks nothing, tests nothing, tells no lie, and states no new goal for the hero."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "7": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts (dons a disguise, leads Tamsin down the slope) and addresses the cat Pip with an order to come along, so ask is 0 and cat is 1; no question to anyone in the world, no false claim spoken, and no stated goal beyond the next movement."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts (dons a disguise, leads Tamsin down the slope) and directs the cat Pip with an order to come along, so ask is 0, test is 0 (no question or experiment to the world), lie is 0 (no spoken false claim), cat is 1 for the command to Pip, and goal is 0 (no stated goal beyond the next steps)"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained greased smear, a smaller boot print among the hobnailed tracks, and a hat whose owner's whereabouts are unknown, and it gives the hero concrete things to test, such as following the tracks, examining the grease, or questioning Tamsin."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained greased smear, a smaller boot print among the hobnailed tracks, and a missing man, while also offering checkable items like the tracks heading south, the grease on the trunk, and the hat."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The distant unhurried axe-like thock to the south and the empty lashing with its rope cut clean are details the player can interpret but not resolve, and the untouched kegs, scattered coins, and named debt notes (Rolf, Mags) are concrete objects and people the player could test by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The wagon holds odd details the player can interpret but not resolve, such as the untouched kegs, the cut empty lashing, and the coins nobody picked up; the reply also offers testable objects like the kegs, coins, and carter's notes."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained chalk mark on the tailboard, Pip sitting to the south, and coarse black hairs on a splinter, and it offers the hero testable things such as the hairs, the chalk mark, and the smell."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The chalk mark (circle, slash, three ticks) is an odd detail the player cannot yet interpret, and the coarse black hairs on the splinter, the smell, and Tamsin's claim about Edwin's reading are all concrete things the player could test by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "4": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves Tamsin's odd reaction, the hat she hides, and the wagon-bench fear-smell unexplained, and it offers checkable claims such as Fenn the Chalk's payment ledger and the Guild's tick marks."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained 'that one, there' fear-smell ahead and a hidden hat in Tamsin's jerkin, and it offers checkable claims such as the Guild chalk mark and the orcs at the dip that the player could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "5": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply gives testable items (the bright unused axe and new haft, the spun dark round object that doesn't catch light like a coin, Edwin's folded foot, the stream bank alders and oaks) and also leaves unexplained details such as the spinning object and the unseen fifth orc."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply gives testable items (the bridge, the wagon, Edwin's bound wrists and folded leg, the spinning coin on the keg, the spotless new axe) and leaves unexplained details like the coin that doesn't catch light and the unseen fifth orc."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "6": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves ambiguous signals from Pip (one orc sits and 'looks here', an unexplained voice answering with a single word) that the player must interpret without resolving, and it hands over a crossbow that can be tried and a guard position whose reactions can be watched."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an uninterpreted word from the heavier voice and an orc that 'sits and looks here,' while the crossbow, the bridge sentry, and the orcs' dark-sight rule are concrete things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "Where is Edwin Pell",
+            "opened": 1,
+            "paid": 5,
+            "elsewhere": 1
+          },
+          {
+            "thread": "What lay heavy in the pines (hobnailed big tracks)",
+            "opened": 1,
+            "paid": 3,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Packing grease on the trunk / freshly greased new blades",
+            "opened": 1,
+            "paid": 5,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Distant axe thock sound",
+            "opened": 2,
+            "paid": 5,
+            "elsewhere": 1
+          },
+          {
+            "thread": "What were they searching for in paper and satchel",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Third keg's cut lashing, missing keg",
+            "opened": 2,
+            "paid": 5,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Chalk mark on tailboard",
+            "opened": 3,
+            "paid": 4,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Edwin paid three months to Fenn, unusually",
+            "opened": 4,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Edwin sitting on his left foot",
+            "opened": 5,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Dark round token the big orc spins",
+            "opened": 5,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Unseen fifth orc in the trees",
+            "opened": 5,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Old charred overturned cart near bridge",
+            "opened": 5,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Who bought/equipped the orcs",
+            "opened": 5,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "No talk of orcs on the quay",
+            "opened": 4,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {},
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (the session cutting off mid-roll, the duplicated roll cards, the wrong gold conversion) and specific absences (no stated reason for being on the road, no skills listed for Tamsin), so it is neither praise-only nor free of complaints."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (the session cutting off mid-roll, the duplicated roll cards, the wrong gold conversion) and specific absences (no stated reason for being on the road, no skills listed for the companion), so it is neither praise-only nor free of problems."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "combat": {
+          "player": {
+            "1": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero stops Tamsin by grabbing her pack strap and then scouts the area without casting, attacking, or using the cat, so only the for_tamsin restraint applies."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "He stops Tamsin by grabbing her pack strap before she approaches the wagon, which keeps her out of reach of a possible threat, while he only surveys the area and casts no spells, attacks, or moves to hold, talk or withdraw."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero stops Tamsin by grabbing her pack strap and then scouts the area without casting, attacking, or using the cat, so only the for_tamsin restraint applies."
+              }
+            },
+            "2": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero hands Tamsin the hat, reasons aloud about the tracks, and sends the cat into the wagon to look; the cat is used to scout, but the message is a search rather than a pursuit or a watch, so it falls under 'other' only if a look counts as scouting, and no spell, attack, protective act, or retre"
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero hands Tamsin the hat and reads the tracks, then sends the cat into the wagon to look (a scouting action) but the message includes a request to borrow its eyes, which is scouting; no spells, attacks, or protective moves for Tamsin or self are made."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero hands Tamsin the hat, reasons aloud about the tracks, and sends the cat into the wagon to look; the cat is used to scout, but the message is a search rather than a pursuit or a watch, so it falls under 'other' only if a look counts as scouting, and no spell, attack, protective act, or retre"
+              }
+            },
+            "3": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero reports what he saw, moves Pip out of the way, and leans into the wagon to smell the scene without casting, attacking, or changing position relative to the threat; the cat is simply told to come out, which is not a scout, attack, or other directed use beyond a word."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero reports what he saw and leans his head into the wagon to smell it, with no spell, attack, shielding of Tamsin, or retreat, and the cat is only sent down from the tailboard (no command given to it)."
+              },
+              "referee": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero briefs Tamsin, calls the cat out of the wagon and leans in to smell the bench himself; he casts no spells, attacks no one, and no hostiles are present."
+              },
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero briefs Tamsin, calls the cat out of the wagon and leans in to smell the bench himself; he casts no spells, attacks no one, and no hostiles are present."
+              }
+            },
+            "4": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "No spell is cast and no attack made; the hero leads the party off the road into the grass, and sends the cat ahead to scout the dip, which is a leave-the-fight-avoiding move but not a retreat from an engaged enemy, so withdraw stays 0."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 1,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero spans but does not fire the crossbow, casts nothing, and sends Pip ahead to scout; he moves off the road into the long grass for concealment, which counts as taking cover."
+              },
+              "referee": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 1,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero spans his crossbow, leads himself and Tamsin off the road into the cover of the grass, tells her to drop when he does, and sends Pip ahead to scout; he casts no spell and attacks no one."
+              },
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 1,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero spans his crossbow, leads himself and Tamsin off the road into the cover of the grass, tells her to drop when he does, and sends Pip ahead to scout; he casts no spell and attacks no one."
+              }
+            },
+            "5": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero sends Pip to scout and looks through her eyes at the camp and road without casting, attacking, or moving to cover himself or Tamsin."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero sends Pip to scout the camp and asks for a view of the enemy, with no spell, attack, or protective action taken in this message."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero sends Pip to scout and looks through her eyes at the camp and road without casting, attacking, or moving to cover himself or Tamsin."
+              }
+            },
+            "6": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 1,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "No spell is cast; he orders Tamsin to stay at the alders under cover and fall back north if it goes wrong, he settles into the grass to wait for dusk, and he sends Pip to watch the bridge."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero casts nothing and attacks no one, but he orders Tamsin into cover at the alders with a flight plan, and sends Pip to watch the bridge; he is hiding and waiting for dusk rather than holding the road."
+              },
+              "referee": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James casts nothing and attacks no one; he keeps Tamsin back at the alders with orders to run, waits in the grass for dusk with armed orcs below, and sets Pip to watch the bridge guard."
+              },
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James casts nothing and attacks no one; he keeps Tamsin back at the alders with orders to run, waits in the grass for dusk with armed orcs below, and sets Pip to watch the bridge guard."
+              }
+            },
+            "7": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 1,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero uses a coin-activated disguise (not a listed spell) and sneaks Tamsin along the slope under cover of the crest, while sending the cat ahead along the alders to lead the way."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 1,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero uses an unlisted disguise (Mask) with no slot or cantrip, sends Pip ahead to follow along the alders, and leads the party by cover off the road toward the bridge side without attacking, retreating or directly shielding Tamsin."
+              },
+              "referee": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "He disguises himself as an orc through the Mask rather than a listed spell, sends Pip ahead and leads Tamsin quietly down toward the alders, with no attack, talk or retreat."
+              },
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "He disguises himself as an orc through the Mask rather than a listed spell, sends Pip ahead and leads Tamsin quietly down toward the alders, with no attack, talk or retreat."
+              }
+            }
+          },
+          "dm": {
+            "1": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is investigative narration of tracks, a flattened bed of needles and a hat in the road; no fight is in progress and no hostile side states terms, and the implied abduction is not dwelt on as cruelty."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a tracking and investigation scene: the hero reads signs of a past ambush and departed attackers, with no fight in progress and no hostile side offering terms."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is investigative narration of tracks, a flattened bed of needles and a hat in the road; no fight is in progress and no hostile side states terms, and the implied abduction is not dwelt on as cruelty."
+              }
+            },
+            "2": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply describes a ransacked wagon and an unseen axe sound but no fight in progress, no hostile offer or terms, and no dwelt-on cruelty or torture."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply describes a looted wagon and a distant axe-like sound with no fight in progress, no enemy offering terms, and no dwelt-on suffering or cruelty."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply describes a ransacked wagon and an unseen axe sound but no fight in progress, no hostile offer or terms, and no dwelt-on cruelty or torture."
+              }
+            },
+            "3": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is investigative narration of a smell, a chalk mark, and hair on a wagon with no fight in progress, no hostile terms offered, and no cruelty dwelt on."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is investigative narration of a smell, a chalk mark and hairs on a wagon with no fight in progress, no hostile offer of terms, and no suffering dwelt on."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is investigative narration of a smell, a chalk mark, and hair on a wagon with no fight in progress, no hostile terms offered, and no cruelty dwelt on."
+              }
+            },
+            "4": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is scouting and suspense with an axe and voices heard below the crest, but no fight is in progress and no hostile side offers terms."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is scouting and tension-building before any encounter: the party sneaks toward a dip where enemies are heard but no blows, shots, or spells are exchanged and no hostile side offers terms."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is scouting and suspense with an axe and voices heard below the crest, but no fight is in progress and no hostile side offers terms."
+              }
+            },
+            "5": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "Pip's scouting describes orcs at camp and a captive with a swollen face, but no blows, shots or spells are exchanged, no hostile terms are offered, and the captive's condition is reported without shown abuse or suffering dwelt on."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a scouting description with no blows, spells, or attacks and no orc offering or stating terms; Edwin's bruised face and bound wrists are noted as his condition, not shown as torture or cruelty for its own sake."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "Pip's scouting describes orcs at camp and a captive with a swollen face, but no blows, shots or spells are exchanged, no hostile terms are offered, and the captive's condition is reported without shown abuse or suffering dwelt on."
+              }
+            },
+            "6": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply covers the wait for dusk, Tamsin receiving the crossbow and the instruction, and the orcs' fire and voices, with no fight in progress and no hostile offer or terms spoken."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates Tamsin receiving the crossbow, the group waiting for dusk, and orcs at a fire with no blows, shots, or spells exchanged and no offer of terms made by the hostile side."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply covers the wait for dusk, Tamsin receiving the crossbow and the instruction, and the orcs' fire and voices, with no fight in progress and no hostile offer or terms spoken."
+              }
+            }
+          },
+          "rolls": {},
+          "exit": {
+            "exit": "none",
+            "exitTurn": null,
+            "considered": {
+              "win": 6,
+              "withdraw": 6,
+              "parley": null,
+              "surrender": null,
+              "leave": null
+            },
+            "heldRoadTurn": null,
+            "parleyOfferedTurn": null,
+            "chiefFought": 0,
+            "reason": "The party scouted the orc camp and began sneaking down to rescue Edwin, but the session ended with no reply before any clash or resolution. On turn 6 the player weighed fighting the orcs and rejected it, and planned a contingency retreat north; no terms were ever offered and no orc was attacked."
+          }
+        }
       }
     }
   ],
@@ -1222,7 +2193,15 @@
       "CW-fable | note | anthropic/claude-fable-5.1": 1,
       "CW-fable | check CW-fable note | anthropic/claude-haiku-5.5": 1,
       "CW-fable | after | anthropic/claude-fable-5.1": 1,
-      "CW-fable | check CW-fable after | anthropic/claude-haiku-5.5": 1
+      "CW-fable | check CW-fable after | anthropic/claude-haiku-5.5": 1,
+      "score CW-fable | tag player CW-fable t* | anthropic/claude-haiku-5.5": 14,
+      "score CW-fable | tag dm CW-fable t* | anthropic/claude-haiku-5.5": 12,
+      "score CW-fable | threads CW-fable | anthropic/claude-opus-5.5": 1,
+      "score CW-fable | note CW-fable | anthropic/claude-haiku-5.5": 2,
+      "score CW-fable | combat player CW-fable t* | anthropic/claude-haiku-5.5": 14,
+      "score CW-fable | combat dm CW-fable t* | anthropic/claude-haiku-5.5": 12,
+      "score CW-fable | combat player CW-fable t* referee | anthropic/claude-opus-5.5": 4,
+      "score CW-fable | exit CW-fable | anthropic/claude-opus-5.5": 1
     },
     "openai": {}
   },
@@ -1239,12 +2218,20 @@
     "openrouter": {
       "cap": 90,
       "before": 34.49948100000002,
-      "run": 4.799270150000001
+      "run": 4.9873575500000005
     },
     "openai": {
       "cap": 15,
       "before": 0,
       "run": 0
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-27T08:26:51.305Z"
+  },
+  "verdicts": {
+    "note": "F0–F6 are read over all of this stage's run records, in the report"
   }
 }

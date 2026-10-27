@@ -175,6 +175,31 @@
           "cap": 15
         }
       }
+    },
+    {
+      "at": "2026-10-27T08:28:56.144Z",
+      "when": "by hand",
+      "openrouter": {
+        "keyUsage": 503.628661245,
+        "totalCredits": 800,
+        "totalUsage": 503.628661245,
+        "remaining": 296.37,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 39.4868,
+          "cap": 90
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 15
+        }
+      }
     }
   ]
 }
