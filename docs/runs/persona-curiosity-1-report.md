@@ -315,7 +315,7 @@ and two probes are a lead for a next stage, not a result.
 ## Checks
 
 - Full suite (`node --test --test-concurrency=2 tests/*.test.mjs`, unshallowed clone) on the code the run started with:
-  **3 164 tests · 3 137 pass · 0 fail · 27 skipped**; again on the final code: SUITE2.
+  **3 164 tests · 3 137 pass · 0 fail · 27 skipped**; again on the final code: **3 165 tests · 3 138 pass · 0 fail · 27 skipped**.
 - This stage's `tests/persona-curiosity-1.test.mjs`: **17 of 17**, no network.
 - On the final code (`2733ac35`): `pnpm typecheck` pass; `pnpm lint --max-warnings=0` pass; `pnpm build` pass.
 - The pre-registration block is byte-identical to the stage's (sha256 `0b28d7f9…`, checked by the test); the design hash

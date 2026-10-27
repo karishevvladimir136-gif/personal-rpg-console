@@ -21,7 +21,7 @@ from `claude/persona-emotions-2`. Nothing to `main`. **Run complete and reported
   $10, OpenAI $1.59 of $6.
 - **Known limits:** the frozen string lists miss scope/cost phrasings (Q2/Q5) and count the tidied email's own question
   (Q4) — the corrected reading fixes both and gives the same verdicts; ceilings on Q1/Q4 for the Claude models; n 6.
-- **Checks:** full suite 3 164 · 3 137 pass · 0 fail · 27 skipped; typecheck, lint (zero warnings), build pass.
+- **Checks:** full suite on the final code 3 165 · 3 138 pass · 0 fail · 27 skipped; typecheck, lint (zero warnings), build pass.
 
 **Previous milestone: persona solitude 1** (`docs/stages/PERSONA_SOLITUDE_1.md`, handoff `73229c8`; amended after the
 run), branch `claude/persona-solitude-1` from `claude/persona-self-talk-x3-fix-1`. Nothing to `main`. **Run complete
