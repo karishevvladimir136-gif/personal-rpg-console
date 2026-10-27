@@ -1,6 +1,6 @@
 # Game player combat 1 — the OpenRouter ledger
 
-Cap $130; spent before this run $0.0000; this run $57.2720; total $57.2720; 1218 calls.
+Cap $130; spent before this run $0.0000; this run $75.5070; total $75.5070; 1657 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -111,3 +111,33 @@ Cap $130; spent before this run $0.0000; this run $57.2720; total $57.2720; 1218
 | score CW-fable | deception CW-fable t* 2 | anthropic/claude-haiku-5.5 | 1 | 2700 | 0 | 0 | 411 | $0.0005 | 0 | 0 | 0 |
 | score CW-fable | rollcheck CW-fable t* | anthropic/claude-haiku-5.5 | 7 | 14895 | 0 | 0 | 1399 | $0.0022 | 0 | 0 | 0 |
 | score CW-fable | combat dm CW-fable t* referee | anthropic/claude-opus-5.5 | 1 | 2069 | 0 | 0 | 259 | $0.0135 | 0 | 0 | 0 |
+| CW-astra | wizard | anthropic/claude-opus-5.5 | 2 | 16789 | 0 | 1567 | 14374 | $0.3625 | 0 | 0 | 0 |
+| CW-astra | prep | anthropic/claude-opus-5.5 | 1 | 4111 | 0 | 17126 | 9018 | $0.3338 | 0 | 0 | 0 |
+| CW-astra | check CW-astra opening | anthropic/claude-haiku-5.5 | 1 | 720 | 0 | 0 | 70 | $0.0001 | 0 | 0 | 0 |
+| CW-astra | check CW-astra t* player | anthropic/claude-haiku-5.5 | 25 | 35213 | 0 | 0 | 1736 | $0.0044 | 0 | 0 | 0 |
+| CW-astra | dm t* | anthropic/claude-opus-5.5 | 58 | 214 | 2276103 | 1846896 | 190679 | $13.5919 | 0 | 0 | 0 |
+| CW-astra | dm t* | anthropic/claude-haiku-5.5 | 25 | 76693 | 0 | 0 | 13738 | $0.0145 | 0 | 0 | 0 |
+| CW-astra | check CW-astra t* dm | anthropic/claude-haiku-5.5 | 25 | 36041 | 0 | 0 | 1905 | $0.0046 | 0 | 0 | 0 |
+| CW-astra | check CW-astra t* dm (told before a card) | anthropic/claude-haiku-5.5 | 8 | 5383 | 0 | 0 | 541 | $0.0008 | 0 | 0 | 0 |
+| CW-astra | check CW-astra t* player (card) | anthropic/claude-haiku-5.5 | 23 | 13696 | 0 | 0 | 1423 | $0.0021 | 0 | 0 | 0 |
+| CW-astra | dm t* onward | anthropic/claude-opus-5.5 | 34 | 94 | 1908455 | 361641 | 66933 | $3.5289 | 0 | 0 | 0 |
+| CW-astra | dm t* onward | anthropic/claude-haiku-5.5 | 17 | 44188 | 0 | 0 | 6473 | $0.0077 | 0 | 0 | 0 |
+| CW-astra | check CW-astra note | anthropic/claude-haiku-5.5 | 1 | 1470 | 0 | 0 | 67 | $0.0002 | 0 | 0 | 0 |
+| CW-astra | check CW-astra after | anthropic/claude-haiku-5.5 | 1 | 614 | 0 | 0 | 77 | $0.0001 | 0 | 0 | 0 |
+| score CW-astra | tag player CW-astra t* 1 | anthropic/claude-haiku-5.5 | 25 | 74271 | 0 | 0 | 3065 | $0.0090 | 0 | 0 | 0 |
+| score CW-astra | tag player CW-astra t* 2 | anthropic/claude-haiku-5.5 | 25 | 74271 | 0 | 0 | 2931 | $0.0089 | 0 | 0 | 0 |
+| score CW-astra | tag player CW-astra t* referee | anthropic/claude-opus-5.5 | 2 | 4527 | 0 | 0 | 191 | $0.0219 | 0 | 0 | 0 |
+| score CW-astra | tag dm CW-astra t* 1 | anthropic/claude-haiku-5.5 | 25 | 39760 | 0 | 0 | 8589 | $0.0083 | 0 | 0 | 0 |
+| score CW-astra | tag dm CW-astra t* 2 | anthropic/claude-haiku-5.5 | 25 | 39760 | 0 | 0 | 9125 | $0.0085 | 0 | 0 | 0 |
+| score CW-astra | threads CW-astra | anthropic/claude-opus-5.5 | 1 | 27665 | 0 | 0 | 550 | $0.1217 | 0 | 0 | 0 |
+| score CW-astra | rollcheck CW-astra t* | anthropic/claude-haiku-5.5 | 9 | 14793 | 0 | 0 | 1939 | $0.0024 | 0 | 0 | 0 |
+| score CW-astra | note CW-astra 1 | anthropic/claude-haiku-5.5 | 1 | 1384 | 0 | 0 | 113 | $0.0002 | 0 | 0 | 0 |
+| score CW-astra | note CW-astra 2 | anthropic/claude-haiku-5.5 | 1 | 1384 | 0 | 0 | 113 | $0.0002 | 0 | 0 | 0 |
+| score CW-astra | combat player CW-astra t* 1 | anthropic/claude-haiku-5.5 | 25 | 83946 | 0 | 0 | 6034 | $0.0114 | 0 | 0 | 0 |
+| score CW-astra | combat player CW-astra t* 2 | anthropic/claude-haiku-5.5 | 25 | 83946 | 0 | 0 | 5809 | $0.0113 | 0 | 0 | 0 |
+| score CW-astra | combat dm CW-astra t* 1 | anthropic/claude-haiku-5.5 | 25 | 40460 | 0 | 0 | 4960 | $0.0065 | 0 | 0 | 0 |
+| score CW-astra | combat dm CW-astra t* 2 | anthropic/claude-haiku-5.5 | 25 | 40460 | 0 | 0 | 5130 | $0.0066 | 0 | 0 | 0 |
+| score CW-astra | combat player CW-astra t* referee | anthropic/claude-opus-5.5 | 1 | 3042 | 0 | 0 | 358 | $0.0193 | 0 | 0 | 0 |
+| score CW-astra | combat dm CW-astra t* referee | anthropic/claude-opus-5.5 | 1 | 2173 | 0 | 0 | 82 | $0.0103 | 0 | 0 | 0 |
+| score CW-astra | rollcheck combat CW-astra t* | anthropic/claude-haiku-5.5 | 1 | 2159 | 0 | 0 | 398 | $0.0004 | 0 | 0 | 0 |
+| score CW-astra | exit CW-astra | anthropic/claude-opus-5.5 | 1 | 31352 | 0 | 0 | 548 | $0.1364 | 0 | 0 | 0 |

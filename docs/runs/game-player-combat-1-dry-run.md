@@ -1,6 +1,6 @@
 # Game player combat 1 — the dry run (Claude Haiku 5.5 as the player, the real DM)
 
-Design sha256 `b961d9d8ced97c580cd0f0137a5a0403b2dbb039faefe6422bcc1b65ed358401`. 1 session(s); 8 turn(s) planned; started 2026-10-27T03:47:15.658Z; stopped: no. Money: OpenRouter $5.00.
+Design sha256 `b961d9d8ced97c580cd0f0137a5a0403b2dbb039faefe6422bcc1b65ed358401`. 1 session(s); 8 turn(s) planned; started 2026-10-27T03:47:15.658Z; stopped: no. Money: OpenRouter $5.00 · OpenAI $0.00.
 
 ## The premise file
 
@@ -49,7 +49,7 @@ _No fight was open in the records at the end of a turn._
 
 ## Spend checks
 
-- by hand (2026-10-27T08:28:56Z): OpenRouter account used $503.628661245 of $800 (left $296.37); ledgers OpenRouter $39.49/$90 · OpenAI $0.00/$15.
 - before CW-fable (2026-10-27T08:35:07Z): OpenRouter account used $507.300207645 of $800 (left $292.7); ledgers OpenRouter $39.49/$130 · OpenAI $0.00/$15.
+- after CW-fable (2026-10-27T09:45:32Z): OpenRouter account used $565.601566845 of $800 (left $234.4); ledgers OpenRouter $61.77/$130 · OpenAI $0.00/$15.
 
 The full transcript of the dry run: `docs/runs/game-player-combat-1-transcripts/dry-CW-haiku.md`.

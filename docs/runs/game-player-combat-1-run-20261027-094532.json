@@ -527,7 +527,8 @@
               "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 1
         },
         {
           "k": 2,
@@ -637,7 +638,8 @@
               "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 2
         },
         {
           "k": 3,
@@ -729,7 +731,8 @@
               "The Lone Pip": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 2
         },
         {
           "k": 4,
@@ -872,7 +875,8 @@
               "The Lone Pip": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 2
         },
         {
           "k": 5,
@@ -983,7 +987,8 @@
               "The Lone Pip": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 2
         },
         {
           "k": 6,
@@ -1109,7 +1114,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 2
         },
         {
           "k": 7,
@@ -1287,7 +1293,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 2
         },
         {
           "k": 8,
@@ -1453,7 +1460,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 2
         },
         {
           "k": 9,
@@ -1620,7 +1628,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 2
         },
         {
           "k": 10,
@@ -1818,7 +1827,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 2
         },
         {
           "k": 11,
@@ -1920,7 +1930,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 2
         },
         {
           "k": 12,
@@ -2038,7 +2049,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 2
         },
         {
           "k": 13,
@@ -2144,7 +2156,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 2
         },
         {
           "k": 14,
@@ -2301,7 +2314,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 2
         },
         {
           "k": 15,
@@ -2423,7 +2437,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 2
         },
         {
           "k": 16,
@@ -2545,7 +2560,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 2
         },
         {
           "k": 17,
@@ -2659,7 +2675,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 3
         },
         {
           "k": 18,
@@ -2773,7 +2790,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 3
         },
         {
           "k": 19,
@@ -2903,7 +2921,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 3
         },
         {
           "k": 20,
@@ -3037,7 +3056,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 3
         },
         {
           "k": 21,
@@ -3174,7 +3194,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 4
         },
         {
           "k": 22,
@@ -3299,7 +3320,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 5
         },
         {
           "k": 23,
@@ -3428,7 +3450,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 5
         },
         {
           "k": 24,
@@ -3553,7 +3576,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 6
         },
         {
           "k": 25,
@@ -3686,7 +3710,8 @@
                 ]
               }
             ]
-          }
+          },
+          "scene": 6
         }
       ],
       "welfare": [
@@ -4960,6 +4985,3253 @@
             }
           }
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player stops Tamsin and sends the cat to scout through the bond, which is action rather than a question; no test of the world, no false claim, no direct address to the cat in-scene, and no stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts (halts Tamsin, sends the cat to scout), so ask is 0; the cat is addressed through the bond with an order to circle and look, so cat is 1; no question put to a world character, no false claim, and no goal of the hero's own is stated."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The hero stops Tamsin and sends the cat to scout the cart as a small experiment to see whether anyone is hiding or hurt; he states no wider goal and tells no lie."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player warns Tamsin, approaches the mule and examines the collar, which are in-world actions, but there is no question put to anyone, no false claim, no direct address to the cat and no stated goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player warns Tamsin, approaches the mule and examines the collar, which are in-world actions, but none is a test, a false claim, a message addressed to the cat, or a stated personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world by undoing the stitches and removing the object from the padding, with no question, lie, address to the cat, or stated goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world by undoing the stitches and removing the object from the padding, which makes ask 0; no question is put to anyone, no false claim is made, the cat is not addressed, and no goal is stated."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "4": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message acts in the world (speaks an order to Tamsin, takes the rod, advances stealthily) without asking to look or listen, poses no test, contains no false claim, does not address the cat, and states no personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message moves the hero along the verge and speaks an order to Tamsin, so it is not a pure look or question; it poses no test to anyone, tells no falsehood, does not address the cat, and states no personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "5": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The message addresses the cat with an order ('Stay hidden; don't approach them yet'), which makes cat 1; it does movement and planning, not a question to the world, so ask, test and lie are 0, and the hero states no personal goal beyond the immediate action."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player speaks to the cat via a telepathic thought giving it an order (stay hidden), so cat=1; the player's message also moves through the gorse, so it is not a mere ask; no test of the world, no false claim, and no stated goal of the hero's own beyond the immediate plan."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "6": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts in the world by casting a spell and sends a bond message that gives the cat an order to stay down, so it addresses the cat; there is no question, test, false claim, or stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts in the world (casts a spell, uses an incense component) and addresses the cat through the bond with an order to stay down, so ask is 0 and cat is 1; no test, lie, or stated personal goal appears."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "7": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (casts Eldritch Blast at an orc and gives the carter an order to take cover), with no question, false claim, cat address, or stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts (casts Eldritch Blast at the orc and gives the carter an order to take cover), which is not a plain request for information; the shout is a command to a person, not a test, lie, or cat address, and no goal of the hero's own is stated."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "8": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player fires spells and moves, so ask is 0; no question to anyone in the world or test is posed; no false claim is made; and the message explicitly addresses the cat through the bond with an order to move uphill, so cat is 1; no goal beyond the next step is stated."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player fires spells and moves, which is doing rather than asking, and no test or lie appears; the message does address the cat directly through the bond with an order to move uphill, so cat is 1."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "9": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message narrates the beam's effect and shouts an order to the carter, which is an action in the world, but it puts no test, lie, cat address, or goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player narrates the rope orc's death and shouts a command to the carter, which is an action in the world, not a question; it puts no test to anyone, tells no falsehood, addresses no cat, and states no goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "10": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message does things in the world (speaks to Tamsin, demands terms from the chief, readies a spell) and puts a test to the chief by asking his price and offering to call off the spearman; no spoken false claim or address to the cat appears."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player does things (speaks to Tamsin, bargains with the chief, readies a spell), and the bargaining question 'How much?' tests the chief's willingness to deal, but no false claim is made and the cat is not addressed."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "11": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message does things in the world (lowers the rod, speaks a counter-offer and demands Gharn be recalled), but it puts no test, lie, address to the cat, or stated personal goal to the world."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message speaks to the chief and proposes a concrete exchange (coin for the carter, Gharn recalled), which is an action in the world rather than a look-or-listen request, not a test of truth, not a lie, does not address the cat, and states no personal goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "12": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (lays out gold, retreats, calls uphill) without asking to look or listen, poses no test or false claim, does not address the cat, and states no personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (lays out gold, retreats, calls uphill) without asking, testing, lying, addressing the cat, or stating a personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "13": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message does things (speaks to Odo, shouts to Tamsin, sends an order over the bond to the cat), so ask is 0; no question is put to the world and no false claim is made, and the cat is directly addressed with an order."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message speaks to Odo, orders Tamsin back, and sends a mental instruction to the cat (\"Stay with Tamsin...\"), so it acts in the world and addresses the cat; it puts no test or false claim and states no goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "14": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player moves, speaks to Gharn, and casts Eldritch Blast, so it is not a pure ask; the taunt and threat are not a test or a false claim, the bond message is addressed to Tamsin rather than the cat, and no goal is stated."
+            },
+            "b": null,
+            "referee": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "Player acts (orders Odo, warns Gharn, readies a blast) and tells the cat through the bond to stay with Tamsin; no false claim, test, or stated goal."
+            },
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "15": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message narrates the hero's action (the beam hitting Gharn, backing away, rejoining the cart) and speaks a line to Gharn that asks nothing of the world as a test, makes no false claim, does not address the cat, and states no goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message narrates James's action (the beam hit, backing away, rejoining the cart) and speaks a line to Gharn's corpse, which is a statement rather than a question or test, with no lie, no address to the cat, and no stated goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "16": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (cuts Odo's knots, tells him about the die, orders the cart moved) without asking to look or listen, poses no test question, tells no false claim, does not address the cat, and states no personal goal the game master had not already prompted."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts (unties Odo, tells him about the die, orders the cart moved) without asking to look or listen, poses no test to the world, tells no false claim, does not address the cat, and states no personal goal beyond the immediate task."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "17": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player moves the hero along the road and speaks to Tamsin and Odo, so ask is 0; the through-the-bond message addresses the cat directly ('Ride the cart. Watch behind us.'), so cat is 1; no test, lie, or hero goal is present."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player moves with the cart and speaks to the cat through the bond ('Ride the cart. Watch behind us.'), which addresses it with an order, so cat is 1; the message does things in the world rather than only asking, and it puts no test to anyone and states no false claim or goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "18": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player reports events and states they are leaving as agreed; they do something in the world but put no test to anyone, tell no falsehood, address no cat, and state no goal of their own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's message reports events and states the hero's position in character, acting in the world (speaking, keeping pace) without asking to look or listen, posing a test, lying, addressing the cat, or stating a personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "19": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James stops the cart and does things, then puts direct questions to Tamsin and Odo whose answers he cannot know, and states he wants information on the Fist and shelter before deciding."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player asks Tamsin a question about the Fist and Ukmar whose answer could not be known from the text so far, testing her knowledge, and states a goal of not walking back to the Gate and deciding whether to trust the bridge; no false claim, no cat address."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "20": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player's question to Odo about who entrusted the die and who is expecting it is a test put to someone in the world, whose answer the player could not know from the text so far; the message also acts (turning the cart, casting Light), so ask is 0."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player asks Odo who entrusted the die and who expects it, a question to a character whose answer is not yet known and that tests his story, while the hero also acts by casting Light and walking beside the cart."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "21": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player acts in the world (returns the die, walks, greets the guards) and states a hero goal of meeting Mother Ysolde, with the game master's prior text not asking what he wants."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player acts in the world (returns the die, walks with hands visible, speaks to the guards) and states a goal of wanting to meet Mother Ysolde, which the game master did not prompt by asking what the hero wants."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "22": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player stays with the cart, thanks Tamsin, offers to stow the pack and keeps watch: actions in the world, with no question, test, false claim, address to the cat, or stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (renews Light, thanks Tamsin, offers to stow the pack) without asking to look or listen, puts no test to anyone, states no false claim, does not address the cat, and states no goal of the hero's own beyond the immediate journey."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "23": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player steps forward, gives true names and a request for beds and stabling, and asks to be let in; this acts in the world without putting a test to it or stating a personal goal beyond the next step, and no false claim or address to the cat appears."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player steps into the light, gives true names and a request for beds, and delivers a message; this acts in the world without putting a test or addressing the cat, and states no personal goal beyond the immediate step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "24": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The message acts in the world (invites Tamsin, climbs the tower, knocks and announces himself) without putting a test to anyone, saying a known falsehood, addressing the cat, or stating a personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world (invites Tamsin, goes up the tower and knocks, announces names), tells no lie, tests no one, does not address the cat, and states no personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "25": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player's message does things (speaks to Ysolde, shows the coin, asks a question about the parcel), so ask is 0; the question about whether the parcel is part of his patron's answer puts a test to the world; the hero states his own aim of learning how he might serve, and the game master did not a"
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player asks Ysolde pointed questions about the parcel and displays the Tymora coin to see her reaction, a test whose answer is not known from the text, and states a goal of learning whether the parcel is part of how he may serve his patron; no false claim is made and the cat is not addressed."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an odd, unexplained detail in the scene (the cat fixated on the mule's collar, the brown hat in the ditch, the fresh trail south) and offers concrete things the hero could test, such as following the trail, examining the hat, or watching Tamsin's reaction."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the mule's collar that seems to be waiting for something, the fresh trail of crushed stems heading south, and the brown hat in the ditch, and it offers testable items like the trail, the hat, and Tamsin's claim about carters driving drunk."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The wedged square object under the collar's stitching, the warm Tymora coin, and the cat's wordless 'that' are open details the player can interpret but not settle, and the hidden object in the collar is something the player could test by unstitching or retrieving it."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained wedged object under the stitched cut and a warm coin of Tymora that the cat's bond points toward, and the hidden object and twine are concrete things the player could test by opening the seam or checking the coin."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the bone die with a seal matching the hero's coin, the cat's pointed watching, and a distant shout-or-bird sound unexplained, and the die and coin are concrete objects the player could test by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The bone die bearing a woman's-profile seal matching the hero's coin is an odd, unresolved object, and the distant sound and the bridge Tamsin mentions are things the player could test by acting on them."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "4": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the long-abandoned wagon with grass growing through its spokes, the cat's question about the tied man, and the man's remark about a horse left in a ditch. It also puts testable things in front of James, including the tied man whose reaction could be "
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details open to interpretation, such as the cat's 'him?' question, the broken tusk, the long-abandoned wagon, and the captive's talk of brushing a mare, while also offering testable objects and people: the tied man, the wagon, and the orcs' reactions."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "5": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The chief's line 'Silver comes' and the unexplained 'her' being fed are odd details the player cannot resolve from the text, and the carter, the sentry's watching eyes, and the orcs' spacing are concrete things the player could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The chief's line about 'Silver' and the carter's unexplained 'her' are details the player can interpret but not resolve from the scene, and the sentry and the chief are people whose reactions the player could watch and test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "6": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The carter's silent, working mouth and the sentry staring at the bridge rather than the gorse are odd details the player can interpret but not settle, and the sentry, the carter, and the rope orc's bound fist are all people or objects the player could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the sentry staring at the bridge, not the gorse, and the carter's silent mouth unexplained, and it places the carter, the sentry, and the light cube in front of James, whose reactions and effects can be tested by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "7": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The chief says an unexplained word in orcish while staring at the gorse bank, and the cat's \"looking. here.\" is left unexplained, while the sentry and chief's reactions to James's position are things the player could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The chief's unexplained orcish word and his fixed look at the gorse bank, plus the cat's 'looking. here.' and the sentry squaring to the gorse, leave odd details the player can interpret but not settle, and the sentry's reaction and the gorse hiding the cat are things the player could test by action"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "8": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the parapet orc still held by an unexplained 'pattern' and the cat saying 'going' while staying unmoved, both open to interpretation, and it puts the carter, whose reaction can be watched, and the cat, whose 'moment' can be tested, in front of the hero."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat is said to be waiting in the grass while answering 'going' without moving, and the carter stares at the slack rope as if handed a snake, both of which the player can interpret but not settle from the text; the fallen orc and the carter are also concrete things the player could test by acting"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "9": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The warm coin at James's throat and the cat's bond message 'her. coming. fast.' are odd details left open to interpretation, and the carter, the chief and the pack are concrete things the player could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The warm coin at James's throat and the cat's unexplained 'her. coming. fast.' are details the player can interpret but not resolve, and the carter, the coin, and the waiting chief are concrete things a player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "10": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained captive named Grakh by a tree and Tamsin's cut-off line, and it offers checkable claims like the chief's silver-for-carter terms and the carter himself that the player could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Tamsin's cut-off sentence, the 'Grakh by the tree' detail, and the sentry's flinch are left open to interpretation, and the chief's ransom claims and the sentry's reaction are concrete things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "11": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The javelin buried behind James that Gharn's eyes go to, and the cat's 'her. tight.' feeling, are odd details left unexplained; the chief's offer to exchange coin at the wagon is a concrete deal the player can test by acting on it."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The javelin buried behind James and the carter's unanswered question about the mule are details the player must interpret without resolution, and the wagon, the coin exchange, and Gharn's reaction are concrete things the player can test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "12": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The brass tag stamped with an unreadable mark is an odd object left in the scene, and the carter's claim that his mule is in the wagon is something the hero could check by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The brass tag stamped with an unreadable mark and Gharn's unexplained disappearance are details the player can interpret but not resolve, and the carter's claim that the mule is in the cart is something the player could check."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "13": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained gap where the javelin and spear were, a broken-stem trail toward the sea, and an unseen heavy creature keeping pace in the gorse, and it offers checkable things like the cart, the mule, and the gorse itself that an action could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The javelin and spear are missing and the broken stems point seaward, and an unseen heavy creature keeps pace in the gorse, both open to interpretation; the stalker stops when James stops and Tamsin's strained reply can be tested by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "14": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The unexplained far-off slammed-door crack is an odd detail left uninterpreted, and Gharn's body and fallen spear are concrete objects the hero could test or examine."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained far-off slammed-door crack and an odd bond message about Tamsin holding the little one's rope, while Gharn's fallen body and spear are concrete things James can check or test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "15": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an opened collar that Odo found empty, a cat watching the crest, and Tamsin's unexplained gold and guard count, all of which the player can interpret but not settle; the collar padding and Tamsin's claims are also concrete things the player could check by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an open collar seam with an empty padding cavity that the hero can interpret but not resolve, and it puts checkable items in front of him: the collar itself, Tamsin's claim of eighty gold on the road, and the chief's shouted name."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "16": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's fixed stare and lowered tail, the unexplained smell and heavy footsteps that stop over something on the road are unresolved details, and Odo's chit under the seat is an object the hero could check by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's stance toward the crest and the unseen heavy footsteps that stop on the slope are odd details the player can't resolve from the scene, and Odo's chit under the seat is an object the player could check by looking or asking to see it."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "17": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The chief's claim that Gharn lies in the road with his spear by his hand and the hole in front of him could be checked by going back to look, and the unseen object in the chief's other hand is an odd detail the player cannot resolve from the scene."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The chief's claim that Gharn charged after his word, and the unseen object in the chief's other hand, are left open, and the fallen man and the hole are concrete things James could go back and check."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "18": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained object being lifted off the road, Tamsin's cut-off remark about the Fist, and the cat's 'carrying' signal, while the claim that the Fist knows Ukmar is something the player could test by asking Fist men on the road."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained object being lifted off the road and Tamsin's cut-off 'Course they...' hanging, and it offers checkable claims, such as Fist men knowing Ukmar, that the player could test by asking the Fist."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "19": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the two-coloured sealed cord, Odo's glance at James's doublet, and the cat's turned posture as details the player can interpret but not resolve, and it puts Sergeant Dace, the sealed sack, and the drovers' ford in front of the hero as things that could be checked by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves interpretable but unresolved details, such as the two-colour sealed cord, Odo's glance at the doublet, and the cat turned round, and it also offers testable items: Sergeant Dace at Nell Garrow's, the sealed sack, Halpenny's fold, and the drovers' ford."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "20": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details such as the three-balls stamp, the unexplained phrase \"shot of it\", and the unknown Mother Ysolde, and it gives testable items like Harrow's shop on Candle Lane, the chit, the die, and the ten gold."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details open, such as the three-balls stamp, Odo's 'shot of it' remark, the seal-knot cord, and the 'stood in the ditch' slip, while putting testable items in front of the hero: Harrow's shop, the chit, the die, and the guards at the bridge."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "21": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The unexplained woodside fire where the orcs fell and the orc who 'has taken him in' leave an open detail, and the worn die and the chit against Odo's chest are concrete objects the player could test or check."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The woodsmoke fire under the east-bank oaks, the taken bodies, and the cat's warnings are open details the player can interpret but not settle, and the die and the promised meeting with Mother Ysolde are concrete things the player could test by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "22": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Tamsin's account of the cat leaning on her and the cat's silent 'mouse' message are odd, unexplained details, and the guard's lantern and challenge at the gate are a person and a situation the player can test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Tamsin's account of the cat leaning on her and the lantern's glow thinning and renewing at iron are odd details left unexplained, and the guard on the wall is a person whose reaction the player can test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "23": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves Odo's buttoned die and chit, the 'that lot sat on the bridge' remark, and Ysolde's question about Harrow's unexplained, and it offers Mother Ysolde behind a lit door as a person whose reaction could be tested."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves a die and chit buttoned in Odo's shirt, Odo stiffening at the mention of Harrow's, and a lady buying drinks about the beck, none of which is explained; Mother Ysolde in the east tower is a person whose reaction the player could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "24": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The empty felt box with a die-sized hollow, Odo's hand guarding the die and chit, and Ysolde's lingering look at his hand are odd details the player can interpret but not resolve, and the box, the chit, and Ysolde's reaction are concrete things the player could test by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The empty green-felt box with a die-sized hollow, the die and chit Odo is hiding under his hand, and the woman's fixed stare at his hand are concrete details left open, and the player could test them by examining the box, asking to see the die, or watching her reaction."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "25": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Ysolde's hand rests over something small and round under her gown, and Tamsin's stare is left unexplained, while the pressed-seal die, the signed receipt, and the ten gold pieces are concrete objects the player could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves Ysolde's hand over a small round object under her gown and the cat's 'same smell' unexplained, and it puts a checkable receipt, a sealed die that fits the felt box, and Tamsin's watched reaction in front of the hero."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "What is hidden in the mule's collar",
+            "opened": 2,
+            "paid": 3,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Distant shout from the dip",
+            "opened": 3,
+            "paid": 4,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Who the bone die belongs to and what it is for",
+            "opened": 3,
+            "paid": 25,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Brass tag stamped with a mark in the chief's pouch",
+            "opened": 12,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Where Gharn went missing to",
+            "opened": 12,
+            "paid": 13,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Carter's chit under the seat",
+            "opened": 16,
+            "paid": 20,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Chief's name and his tie to the Fist",
+            "opened": 10,
+            "paid": 18,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Fist bringing ransom silver, link to Sergeant Dace",
+            "opened": 19,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Who Mother Ysolde is",
+            "opened": 20,
+            "paid": 24,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Why Harrow was glad to be shot of the die",
+            "opened": 20,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Lady in the common room buying drinks for travellers from the Gate",
+            "opened": 23,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Round object under Ysolde's collar",
+            "opened": 25,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Whether Tamsin is let in to hear the answers",
+            "opened": 25,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {
+          "2": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Warn Tamsin to stay behind him and watch the dip in the road"
+            ],
+            "error": null
+          },
+          "4": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Declared: take the die / pocket it securely (no roll needed, but the narration does show it done)",
+              "Declared: take the rod from the pack (narrated)",
+              "Declared: stay back from the crest / tell Tamsin to hold back (narrated as Tamsin's compliance, not a hero action)"
+            ],
+            "error": null
+          },
+          "5": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Send a thought to the cat telling it to stay hidden and not approach yet (the story shows the cat stays hidden, so this is covered by the narration, not a separ",
+              "Observe the orcs' spacing to judge whether Hypnotic Pattern could catch several orcs without catching the carter (the narration gives the assessment, so no roll"
+            ],
+            "error": null
+          },
+          "6": {
+            "rolls": 2,
+            "untold": [
+              2
+            ],
+            "undeclared": [
+              "Steady the rod against the knee and take a scrap of incense from the component pouch",
+              "Send the telepathic message through the bond: \"Stay down. Keep out of the fighting.\"",
+              "Cast Hypnotic Pattern, placing its thirty-foot cube over the chief and the two orcs at the far parapet, with the near edge clear of the carter"
+            ],
+            "error": null
+          },
+          "7": {
+            "rolls": 2,
+            "untold": [],
+            "undeclared": [
+              "Cast Eldritch Blast, directing both beams at the orc holding the rope (the narration confirms this happened, so no undeclared action there)",
+              "If the first beam drops him, send the second at the wagon sentry instead (the first beam did not drop him, so the condition was not met and the second beam was ",
+              "Call out to Carter to get off the bridge and take cover (the player's line says this is said only if the orc drops; the story shows it spoken anyway, after the "
+            ],
+            "error": null
+          },
+          "8": {
+            "rolls": 2,
+            "untold": [],
+            "undeclared": [
+              "Hold the spell's concentration while moving thirty feet back uphill through the gorse"
+            ],
+            "error": null
+          },
+          "9": {
+            "rolls": 2,
+            "untold": [],
+            "undeclared": [
+              "Fire the crossbow / attack the sentry or the cat's target? (no, see below)",
+              "Cast or hold the spell and call out to the carter: \"Now, carter! Get to cover!\" (declared shout, told as happening)",
+              "Send the cat up the slope on James's word (action told as happening, no roll for it)"
+            ],
+            "error": null
+          },
+          "10": {
+            "rolls": 3,
+            "untold": [],
+            "undeclared": [
+              "Call out to Tamsin to stay back (spoken, done in the narration)",
+              "Call up to the chief to call off the spearman and negotiate for the carter's release",
+              "Ready Eldritch Blast, both beams aimed at the sentry if he attacks or charges"
+            ],
+            "error": null
+          },
+          "14": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Readying Eldritch Blast at Gharn if he emerges to attack or throws a weapon (the blast is released and hits as the first beam; the readied condition is fulfille",
+              "Holding the blast into the gorse (the second beam is described as humming and unused, consistent with the player's hold; no missed action)"
+            ],
+            "error": null
+          }
+        },
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific failures (combat state disagreeing with narration, the roll interface blocking rerolls, rule drift, records contradicting the scene) and specific absences (a tactical summary, a chance to reroll before results lock in, clear spell outcome narration)."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific failures (combat state disagreeing with narration, the roll interface blocking rerolls, rule drift, records contradicting the scene) and specific absences (a tactical summary, reroll choice before results, spell outcome narration, grounding for travel)."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "combat": {
+          "player": {
+            "1": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero raises a hand to halt Tamsin and stands his ground beside her while sending the cat to circle the cart and look for hidden or hurt people, with no attack or spell cast."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero raises a hand to halt Tamsin and holds position beside her without attacking, while sending the cat to circle the cart and look for hidden or hurt people."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero raises a hand to halt Tamsin and stands his ground beside her while sending the cat to circle the cart and look for hidden or hurt people, with no attack or spell cast."
+              }
+            },
+            "2": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero tells Tamsin to stay behind him and watches the dip, but only approaches the mule and examines the collar, casting no spells, attacking nobody, and not using the cat."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero tells Tamsin to stay behind him and watches the dip, but he casts nothing, attacks no one, and does not hold a defensive stand or use the cat; he simply inspects the mule's collar."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero tells Tamsin to stay behind him and watches the dip, but only approaches the mule and examines the collar, casting no spells, attacking nobody, and not using the cat."
+              }
+            },
+            "3": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero only inspects the mule's collar, removes a hidden object and speaks to Tamsin; no spell is cast, no attack, and the cat is not used in this message."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero examines and removes an object from the mule's collar without casting spells, attacking, or using the cat, while Tamsin keeps watch without any protective action from him."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero only inspects the mule's collar, removes a hidden object and speaks to Tamsin; no spell is cast, no attack, and the cat is not used in this message."
+              }
+            },
+            "4": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero only pockets the die, takes his rod, tells Tamsin to stay back, and advances stealthily through cover to scout the bridge, with no spell cast, attack, negotiation, or cat order."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero only pockets the die, takes his rod, tells Tamsin to stay back, and sneaks toward the dip without casting, attacking, negotiating, or using the cat."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero only pockets the die, takes his rod, tells Tamsin to stay back, and advances stealthily through cover to scout the bridge, with no spell cast, attack, negotiation, or cat order."
+              }
+            },
+            "5": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero only considers Hypnotic Pattern without casting it, sneaks closer through the gorse, and sends the cat a quiet order to stay hidden, which is a word rather than a scouting or attack command."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero only considers Hypnotic Pattern without casting it, sneaks closer through the gorse, and tells the cat to stay hidden, which is a verbal instruction rather than a scouting or attack order."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero only considers Hypnotic Pattern without casting it, sneaks closer through the gorse, and sends the cat a quiet order to stay hidden, which is a word rather than a scouting or attack command."
+              }
+            },
+            "6": {
+              "a": {
+                "slot_spell": 1,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [
+                  "Hypnotic Pattern"
+                ],
+                "cantrips": [],
+                "reason": "The hero casts Hypnotic Pattern (a slot spell) now and sends the cat a word to stay down, which counts as addressing the cat rather than scouting or attacking."
+              },
+              "b": {
+                "slot_spell": 1,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [
+                  "Hypnotic Pattern"
+                ],
+                "cantrips": [],
+                "reason": "The hero casts Hypnotic Pattern now and sends the cat a word to stay down, without attacking or otherwise acting for Tamsin or himself."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 1,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [
+                  "Hypnotic Pattern"
+                ],
+                "cantrips": [],
+                "reason": "The hero casts Hypnotic Pattern (a slot spell) now and sends the cat a word to stay down, which counts as addressing the cat rather than scouting or attacking."
+              }
+            },
+            "7": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 1,
+                "attack": 1,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [
+                  "Eldritch Blast"
+                ],
+                "reason": "The hero casts Eldritch Blast at the rope orc, a cantrip attack, and tells the carter to take cover, which concerns a bystander rather than Tamsin or the hero himself."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 1,
+                "attack": 1,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [
+                  "Eldritch Blast"
+                ],
+                "reason": "The hero casts Eldritch Blast at the rope orc, a cantrip attack, and shouts a warning to the carter to take cover, which is not an action for Tamsin or himself and the cat is not used."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 1,
+                "attack": 1,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [
+                  "Eldritch Blast"
+                ],
+                "reason": "The hero casts Eldritch Blast at the rope orc, a cantrip attack, and tells the carter to take cover, which concerns a bystander rather than Tamsin or the hero himself."
+              }
+            },
+            "8": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 1,
+                "attack": 1,
+                "for_tamsin": 0,
+                "for_self": 1,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 1,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [
+                  "Eldritch Blast"
+                ],
+                "reason": "The hero casts the Eldritch Blast cantrip at the orc, then retreats uphill while urging the cat back, which is a word to the cat rather than an attack or scouting order."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 1,
+                "attack": 1,
+                "for_tamsin": 0,
+                "for_self": 1,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 1,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [
+                  "Eldritch Blast"
+                ],
+                "reason": "Hero casts Eldritch Blast at the orc (attack), then retreats thirty feet uphill, and tells the cat to stay out of reach, a word addressed to it rather than an attack or scouting order."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 1,
+                "attack": 1,
+                "for_tamsin": 0,
+                "for_self": 1,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 1,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [
+                  "Eldritch Blast"
+                ],
+                "reason": "The hero casts the Eldritch Blast cantrip at the orc, then retreats uphill while urging the cat back, which is a word to the cat rather than an attack or scouting order."
+              }
+            },
+            "9": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero shouts an order to the carter to take cover, which is not an attack, spell, or cat command; the cat is not addressed in this message."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The message narrates the beam striking the rope orc and shouts at the carter to take cover, with no new spell, attack, cat use, or action for Tamsin or the hero himself."
+              },
+              "referee": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The player only describes how the earlier beam landed and shouts to the carter, not Tamsin, to take cover; no new spell, attack or cat use."
+              },
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The player only describes how the earlier beam landed and shouts to the carter, not Tamsin, to take cover; no new spell, attack or cat use."
+              }
+            },
+            "10": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "He orders Tamsin back and negotiates with the chief while readying (not casting) Eldritch Blast and keeping his ground with the rod trained on the sentry."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "He orders Tamsin to stay back and opens talks with the chief while holding his rod on the sentry, readying Eldritch Blast without casting or attacking this turn."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "He orders Tamsin back and negotiates with the chief while readying (not casting) Eldritch Blast and keeping his ground with the rod trained on the sentry."
+              }
+            },
+            "11": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero lowers his rod without firing, proposes a coin-for-carter exchange on the road and asks for agreement, which is negotiating with the hostile side."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero lowers his rod without casting and negotiates a coin-for-carter exchange with the orc chief, asking terms and seeking a way to pass without fighting."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero lowers his rod without firing, proposes a coin-for-carter exchange on the road and asks for agreement, which is negotiating with the hostile side."
+              }
+            },
+            "12": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero negotiates the exchange with the chief, pays the ransom in gold, and backs ten steps away without attacking, casting, or using the cat."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero accepts the chief's terms, lays out the gold, and backs ten steps away with empty hands, which is negotiation with no attack, no spell, and no cat use."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero negotiates the exchange with the chief, pays the ransom in gold, and backs ten steps away without attacking, casting, or using the cat."
+              }
+            },
+            "13": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 1,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James orders Tamsin back to the cart and sends the cat to watch for the orc, while he hurries Odo uphill away from the bridge without attacking or casting."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 1,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James orders Tamsin back to the cart and sends the cat to watch for the wounded orc without confronting him, which protects Tamsin and leads the party away from the fight without any attack."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 1,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James orders Tamsin back to the cart and sends the cat to watch for the orc, while he hurries Odo uphill away from the bridge without attacking or casting."
+              }
+            },
+            "14": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "He readies Eldritch Blast without casting it, warns Gharn off with terms, holds his ground while backing up the road, and sends the cat an order to stay with Tamsin."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "Eldritch Blast is only readied for a conditional future use, not cast now; he warns Gharn off and holds his ground while backing up, and sends the cat a word to stay with Tamsin."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "He readies Eldritch Blast without casting it, warns Gharn off with terms, holds his ground while backing up the road, and sends the cat an order to stay with Tamsin."
+              }
+            },
+            "15": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The message is narrative reaction to Gharn's fall and the hero backs away and rejoins Tamsin, but no spell is cast, no attack is made now, and the cat is not used."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The message is narrative reaction to Gharn's fall followed by the hero backing away toward the crest, with no new spell cast, no new attack, and the cat not used; the retreat is not framed as self-protection or a withdrawal from a live threat."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The message is narrative reaction to Gharn's fall and the hero backs away and rejoins Tamsin, but no spell is cast, no attack is made now, and the cat is not used."
+              }
+            },
+            "16": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 1,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero leads the party away from the fight by moving the cart north with Tamsin and Odo, casting no spells and not using the cat, though the message doesn't explicitly frame it as a retreat."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 1,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero leads the party away from the fight by moving the cart north, with no spells, attacks, or cat use in the message."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 1,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero leads the party away from the fight by moving the cart north with Tamsin and Odo, casting no spells and not using the cat, though the message doesn't explicitly frame it as a retreat."
+              }
+            },
+            "17": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 1,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero leads the party north away from the approaching hostile figure without attacking, and tells the cat to ride the cart and watch behind, which is a watch order and so a scouting use, though the cat is directed to ride along rather than to scout explicitly."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 1,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero leads the party north away from the approaching ogre-like figure without attacking, and sends the cat to ride the cart and watch behind, which is a watch-type use but framed as an order to ride, so I tag it as 'other' with the retreat marked as withdraw."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 1,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero leads the party north away from the approaching hostile figure without attacking, and tells the cat to ride the cart and watch behind, which is a watch order and so a scouting use, though the cat is directed to ride along rather than to scout explicitly."
+              }
+            },
+            "18": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 1,
+                "withdraw": 1,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero speaks to the hostile chief to explain the events and confirm the bargain, and leads the cart away north from the fight, casting nothing and not attacking."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 1,
+                "withdraw": 1,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero speaks to the hostile chief, reminding him of the bargain and announcing the party is leaving as agreed, which is both negotiation and breaking off the encounter; no spell, attack, or cat use occurs."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 1,
+                "withdraw": 1,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero speaks to the hostile chief to explain the events and confirm the bargain, and leads the cart away north from the fight, casting nothing and not attacking."
+              }
+            },
+            "19": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero only speaks to his companions, asking questions and seeking information about the road and shelter, with no casting, attack, cover, or negotiation with the hostile side and no use of the cat."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero only stops the cart and asks questions of Tamsin and Odo, casting nothing, attacking nobody, and not dealing with the hostile side or the cat."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero only speaks to his companions, asking questions and seeking information about the road and shelter, with no casting, attack, cover, or negotiation with the hostile side and no use of the cat."
+              }
+            },
+            "20": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 1,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [
+                  "Light"
+                ],
+                "reason": "The hero casts the cantrip Light on the lantern handle, with no attack, Tamsin-directed protection, self-protection, or cat use; his questions to Odo are not negotiation with the hostile side."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 1,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [
+                  "Light"
+                ],
+                "reason": "The hero casts the cantrip Light on the lantern handle, and the rest of the message is turning the cart, questioning Tamsin and Odo, and asking about the delivery chit, with no attack, cover, talks, or cat use."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 1,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [
+                  "Light"
+                ],
+                "reason": "The hero casts the cantrip Light on the lantern handle, with no attack, Tamsin-directed protection, self-protection, or cat use; his questions to Odo are not negotiation with the hostile side."
+              }
+            },
+            "21": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James returns the die to Odo, then at the bridge tells the guards the bargain and their destination, which is a warning-off/passage negotiation with the hostile side, with no spell, attack, or cat use."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero returns the die to Odo, then at the bridge states the bargain to the orc guards, which is speaking to the hostile side to negotiate passage, with no spells, attacks, or cat use."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James returns the die to Odo, then at the bridge tells the guards the bargain and their destination, which is a warning-off/passage negotiation with the hostile side, with no spell, attack, or cat use."
+              }
+            },
+            "22": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 1,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [
+                  "Light"
+                ],
+                "reason": "He renews the Light cantrip and offers to stow Tamsin's pack so she can walk without it, which is a welfare act for her; no hostiles are present, and the cat is not used."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 1,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [
+                  "Light"
+                ],
+                "reason": "The hero renews the Light cantrip and offers to stow Tamsin's pack so she can walk without it, which is for her welfare; no attack, threat, or cat use appears in the message."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 1,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [
+                  "Light"
+                ],
+                "reason": "He renews the Light cantrip and offers to stow Tamsin's pack so she can walk without it, which is a welfare act for her; no hostiles are present, and the cat is not used."
+              }
+            },
+            "23": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero steps into the light with hands clear of weapons and speaks to the gate guard to gain entry and deliver a message, which is peaceful talk with no spell, attack, or cat use; the talks flag is set because he negotiates passage with the guard, a hostile-side-adjacent figure, though the exchang"
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero steps into the light with hands clear, states his party's names and business to the gate guard, and asks to be let in, which is talk with the hostile-side guard seeking passage without fighting; no spells, attacks, or cat use occur."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero steps into the light with hands clear of weapons and speaks to the gate guard to gain entry and deliver a message, which is peaceful talk with no spell, attack, or cat use; the talks flag is set because he negotiates passage with the guard, a hostile-side-adjacent figure, though the exchang"
+              }
+            },
+            "24": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero makes no spell casts, attacks, or defensive moves; he speaks only to Tamsin and knocks at Mother Ysolde's door, and the cat is not used in the message."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero speaks of delivering the parcel, invites Tamsin along, and knocks at Ysolde's door without casting spells, attacking, or using the cat."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero makes no spell casts, attacks, or defensive moves; he speaks only to Tamsin and knocks at Mother Ysolde's door, and the cat is not used in the message."
+              }
+            },
+            "25": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero only speaks to Ysolde, showing her Tymora's coin and asking about the parcel, with no spell cast, attack, cat use, or action for Tamsin or himself."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero only speaks to Ysolde, a non-hostile figure, showing his patron's coin and asking questions, with no spell cast, attack, or action for Tamsin's or his own safety, and the cat is not used."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero only speaks to Ysolde, showing her Tymora's coin and asking about the parcel, with no spell cast, attack, cat use, or action for Tamsin or himself."
+              }
+            }
+          },
+          "dm": {
+            "1": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a scouting scene with no fight in progress, no enemy speaking terms, and no cruelty; it only hints at danger via a fresh trail and a sour smell."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is scouting and suspense: the cat finds an empty ditch and a fresh trail of crushed stems, with no fight in progress, no hostile side offering terms, and no cruelty shown."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a scouting scene with no fight in progress, no enemy speaking terms, and no cruelty; it only hints at danger via a fresh trail and a sour smell."
+              }
+            },
+            "2": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is investigative: James inspects a mule's collar, finds a hidden object and a fresh stitched cut, with no fight in progress and no hostile side offering terms."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a tense investigation of a mule's collar with no fight in progress, no enemy offering terms, and no cruelty shown."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is investigative: James inspects a mule's collar, finds a hidden object and a fresh stitched cut, with no fight in progress and no hostile side offering terms."
+              }
+            },
+            "3": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is quiet investigation of a bone die hidden in a mule's pack, with only an unidentified distant shout and no fight, enemy terms, or cruelty narrated."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is quiet investigation: James examines a bone die hidden in a mule's padding, with an unexplained distant shout and no fight, enemy terms, or suffering shown."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is quiet investigation of a bone die hidden in a mule's pack, with only an unidentified distant shout and no fight, enemy terms, or cruelty narrated."
+              }
+            },
+            "4": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "James scouts unseen toward the orcs and no blows, spells, or attacks occur, the orc's remark offers no terms, and the captive is bound but not tortured or abused."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a stealthy scouting approach with no blows or attacks, the orcs state no terms, and the bound man shows no torture or suffering dwelt upon."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "James scouts unseen toward the orcs and no blows, spells, or attacks occur, the orc's remark offers no terms, and the captive is bound but not tortured or abused."
+              }
+            },
+            "5": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 1,
+                "cruelty": 1,
+                "reason": "No blows are exchanged, but the chief states terms (silver first, then the carter goes free) and the rope-holder laughs while tugging the bound carter, who yelps."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 1,
+                "cruelty": 1,
+                "reason": "The chief states a term for the carter's release ('Silver comes. Then you go to your mule.'), and the rope-holder laughs and gives the bound carter a lazy tug that makes him yelp, which reads as cruelty for its own sake; no blows or spells are exchanged, so there is no fight in progress."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 1,
+                "cruelty": 1,
+                "reason": "No blows are exchanged, but the chief states terms (silver first, then the carter goes free) and the rope-holder laughs while tugging the bound carter, who yelps."
+              }
+            },
+            "6": {
+              "a": {
+                "combat": 1,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The hero casts Hypnotic Pattern on the enemy chief and orcs mid-fight, with initiative and surprise rolled, but no hostile figure offers or states terms and no suffering is dwelt on."
+              },
+              "b": {
+                "combat": 1,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates an active fight: the hero casts Hypnotic Pattern on the enemies, who are surprised and held, with initiative order set out, but no hostile side offers terms and nothing cruel is dwelt on."
+              },
+              "referee": null,
+              "final": {
+                "combat": 1,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The hero casts Hypnotic Pattern on the enemy chief and orcs mid-fight, with initiative and surprise rolled, but no hostile figure offers or states terms and no suffering is dwelt on."
+              }
+            },
+            "7": {
+              "a": {
+                "combat": 1,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates an active fight: the hero's eldritch beams strike an orc, and the enemy sentry squares up to attack, with no terms or offers made by the hostile side."
+              },
+              "b": {
+                "combat": 1,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates an ongoing fight: the hero's eldritch beams strike an orc, and a sentry squares up with a spear against the hidden party, so blows and spells are exchanged; no hostile terms are offered and the violence is ordinary battle harm."
+              },
+              "referee": null,
+              "final": {
+                "combat": 1,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates an active fight: the hero's eldritch beams strike an orc, and the enemy sentry squares up to attack, with no terms or offers made by the hostile side."
+              }
+            },
+            "8": {
+              "a": {
+                "combat": 1,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates an ongoing fight with spells hitting orcs and a sentry still to act, with no terms offered and only plain battle deaths shown."
+              },
+              "b": {
+                "combat": 1,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates an ongoing fight with spells exchanged and the sentry about to act, with no terms offered and only plain battle death for cruelty to weigh."
+              },
+              "referee": null,
+              "final": {
+                "combat": 1,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates an ongoing fight with spells hitting orcs and a sentry still to act, with no terms offered and only plain battle deaths shown."
+              }
+            },
+            "9": {
+              "a": {
+                "combat": 1,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates an ongoing fight: the orc sentry drives a spear at James, the chief grabs the carter and readies his greataxe, and a javelin is being drawn, with no offer or terms from the hostile side and no dwelt-on suffering beyond ordinary battle wounds."
+              },
+              "b": {
+                "combat": 1,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates an ongoing fight: the orc sentry drives a spear at James, the chief grips the carter as a shield near the bridge, and a javelin is being drawn, with no offer or terms from the enemy side and no dwelt-on suffering."
+              },
+              "referee": null,
+              "final": {
+                "combat": 1,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates an ongoing fight: the orc sentry drives a spear at James, the chief grabs the carter and readies his greataxe, and a javelin is being drawn, with no offer or terms from the hostile side and no dwelt-on suffering beyond ordinary battle wounds."
+              }
+            },
+            "10": {
+              "a": {
+                "combat": 1,
+                "parley_offer": 1,
+                "cruelty": 0,
+                "reason": "Javelins are thrown and a sentry is shot in an ongoing fight, and the chief states a toll and terms for releasing the carter, with no torture or suffering dwelt on beyond the fight's violence."
+              },
+              "b": {
+                "combat": 1,
+                "parley_offer": 1,
+                "cruelty": 0,
+                "reason": "Javelins are thrown and beams are fired between the hero and the orcs, and the chief states a price for the carter, the road, and the travellers' heads, with no suffering dwelt on beyond the fight."
+              },
+              "referee": null,
+              "final": {
+                "combat": 1,
+                "parley_offer": 1,
+                "cruelty": 0,
+                "reason": "Javelins are thrown and a sentry is shot in an ongoing fight, and the chief states a toll and terms for releasing the carter, with no torture or suffering dwelt on beyond the fight's violence."
+              }
+            },
+            "11": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 1,
+                "cruelty": 0,
+                "reason": "The orc chief, from the hostile side, accepts and restates the terms of an exchange (gold for the carter, safe passage for the travellers), with no blows or spells exchanged and no suffering dwelt on."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 1,
+                "cruelty": 0,
+                "reason": "The orc chief accepts and sets out the exchange terms (gold for the carter, mule included, road for three) with no blows exchanged, and nothing dwells on suffering or cruelty."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 1,
+                "cruelty": 0,
+                "reason": "The orc chief, from the hostile side, accepts and restates the terms of an exchange (gold for the carter, safe passage for the travellers), with no blows or spells exchanged and no suffering dwelt on."
+              }
+            },
+            "12": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 1,
+                "cruelty": 0,
+                "reason": "No blows or shots are exchanged; the chief, from the hostile side, completes the bargain and states passage with 'Road is yours. Tonight.', and the carter is released without suffering dwelt on."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 1,
+                "cruelty": 0,
+                "reason": "No blows are exchanged; the chief accepts the 80 gold, releases the carter, and states that the road is theirs, which is a deal letting the travellers go."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 1,
+                "cruelty": 0,
+                "reason": "No blows or shots are exchanged; the chief, from the hostile side, completes the bargain and states passage with 'Road is yours. Tonight.', and the carter is released without suffering dwelt on."
+              }
+            },
+            "13": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply builds tension as an unseen orc stalks the party, but no blows or spells are exchanged in this turn, and the only past fighting is recalled; no hostile side offers terms and no cruelty is shown."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply builds tension with a hidden orc stalking in the gorse, but no blows or spells are exchanged and no hostile side offers terms; the earlier fight is only recalled."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply builds tension as an unseen orc stalks the party, but no blows or spells are exchanged in this turn, and the only past fighting is recalled; no hostile side offers terms and no cruelty is shown."
+              }
+            },
+            "14": {
+              "a": {
+                "combat": 1,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates an active fight with Eldritch Blast hitting the attacking enemy Gharn, but Gharn makes no offer or statement of terms, and his death in battle is plain violence rather than dwelt-on suffering."
+              },
+              "b": {
+                "combat": 1,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates an active fight: James's Eldritch Blast is fired and strikes Gharn, who had been attacking, with the hostile side's offer and terms already spoken before the reply rather than offered within it; the violence and downing of Gharn is plain battle damage, not dwelt-on suffering."
+              },
+              "referee": null,
+              "final": {
+                "combat": 1,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates an active fight with Eldritch Blast hitting the attacking enemy Gharn, but Gharn makes no offer or statement of terms, and his death in battle is plain violence rather than dwelt-on suffering."
+              }
+            },
+            "15": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is aftermath: Gharn is already dead, the chief only calls out without offering terms, and no blows are exchanged or dwelt on cruelly."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates the aftermath of a fight (Gharn already dead, no ongoing exchange of blows) and the hero retreating; the chief shouts but offers no terms, and nothing dwells on suffering."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is aftermath: Gharn is already dead, the chief only calls out without offering terms, and no blows are exchanged or dwelt on cruelly."
+              }
+            },
+            "16": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a non-combat scene of freeing Odo, moving the cart out of a ditch, and an unseen approaching threat; no fight is in progress and no hostile side offers terms."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a non-violent cart-recovery scene with a looming unseen threat; no fight is in progress and no hostile side offers terms."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a non-combat scene of freeing Odo, moving the cart out of a ditch, and an unseen approaching threat; no fight is in progress and no hostile side offers terms."
+              }
+            },
+            "17": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The chief stands on the crest without attacking and only questions the travellers about Gharn's death, so no fight is in progress, no terms are offered, and nothing cruel is shown."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates a tense retreat and the chief's watchful standoff with no blows exchanged, and his words ask for an account of Gharn's attack without stating any toll, price, or terms."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The chief stands on the crest without attacking and only questions the travellers about Gharn's death, so no fight is in progress, no terms are offered, and nothing cruel is shown."
+              }
+            },
+            "18": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 1,
+                "cruelty": 0,
+                "reason": "The fight with Gharn is already over and only referenced, while the chief states terms that let the travellers pass north over the bridge, and nothing in the reply dwells on suffering."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 1,
+                "cruelty": 0,
+                "reason": "The reply narrates a standoff and the chief's terms for letting the travellers pass (route, bridge, a word to the Fist), with no fight in progress and no cruelty shown."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 1,
+                "cruelty": 0,
+                "reason": "The fight with Gharn is already over and only referenced, while the chief states terms that let the travellers pass north over the bridge, and nothing in the reply dwells on suffering."
+              }
+            },
+            "19": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is conversation and scene-setting with no fight in progress and no hostile side stating terms; Ukmar's bridge promise is only referenced in the past, and nothing dwells on suffering."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is dialogue and scene-setting about a sergeant's bribery and road directions; no blows or shots are exchanged, and no hostile side offers terms in this turn."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is conversation and scene-setting with no fight in progress and no hostile side stating terms; Ukmar's bridge promise is only referenced in the past, and nothing dwells on suffering."
+              }
+            },
+            "20": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply has no fight in progress, since the two guards at the bridge have not moved or spoken, and no hostile side offers terms or shows cruelty; the cart turning, the lantern, and Odo's chit are all non-hostile."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply has no fight in progress and no blows exchanged; the two guards at the bridge stand still with javelins, and no hostile party states or offers terms."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply has no fight in progress, since the two guards at the bridge have not moved or spoken, and no hostile side offers terms or shows cruelty; the cart turning, the lantern, and Odo's chit are all non-hostile."
+              }
+            },
+            "21": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "No fight is in progress and no weapons are raised; the orc guards only acknowledge the existing 'Ukmar's bargain' and let the cart pass, so no new terms are offered by the hostile side, and there is no cruelty."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 1,
+                "cruelty": 0,
+                "reason": "No fight is under way; the orcs lift no weapon, and at the bridge the hostile orc accepts Ukmar's bargain on his word and steps aside to let the travellers pass, which counts as passage granted by the enemy side."
+              },
+              "referee": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The party passes the orc guards peacefully under an existing bargain the orcs only acknowledge without stating new terms, and there is no fighting or cruelty."
+              },
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The party passes the orc guards peacefully under an existing bargain the orcs only acknowledge without stating new terms, and there is no fighting or cruelty."
+              }
+            },
+            "22": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a calm travel scene with no fight in progress, no hostile side offering terms, and no cruelty; the gatehouse voice only asks who is on the road and makes no offer or demand."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a calm road journey with dialogue about the pack and the bridge, with no fight in progress, no hostile terms offered, and no cruelty; the voice on the wall is a challenge from the gate, not a parley offer."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a calm travel scene with no fight in progress, no hostile side offering terms, and no cruelty; the gatehouse voice only asks who is on the road and makes no offer or demand."
+              }
+            },
+            "23": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a gate admission with no fight in progress; the guard lets the travellers in and offers no terms, toll, or demand, and there is no suffering or cruelty shown."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates a gate admission with no fight in progress, and the guard's remarks about a lady buying drinks and asking about the beck are information rather than terms offered by a hostile side, so no parley offer is made."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a gate admission with no fight in progress; the guard lets the travellers in and offers no terms, toll, or demand, and there is no suffering or cruelty shown."
+              }
+            },
+            "24": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a tense, quiet scene of stabling a mule, climbing a tower stair and meeting Mother Ysolde at her door; no fight is in progress and no hostile party states terms or offers a deal."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a tense, non-violent scene of arrival, stabling the mule, and a guarded exchange at a door; no fight is in progress and no hostile side offers terms."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a tense, quiet scene of stabling a mule, climbing a tower stair and meeting Mother Ysolde at her door; no fight is in progress and no hostile party states terms or offers a deal."
+              }
+            },
+            "25": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a quiet exchange of questions, payment and a handed-over parcel with no fight in progress, no hostile side stating terms, and no cruelty shown."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a tense conversation in a room with no fight in progress, and Ysolde makes no toll, price, or demand to let the travellers go; she only pays Odo and asks to hear James alone."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a quiet exchange of questions, payment and a handed-over parcel with no fight in progress, no hostile side stating terms, and no cruelty shown."
+              }
+            }
+          },
+          "rolls": {
+            "2": {
+              "rolls": 1,
+              "untold": [],
+              "undeclared": [
+                "Warn Tamsin to stay behind him and watch the dip in the road"
+              ],
+              "error": null,
+              "from": "game player 1's pass"
+            },
+            "4": {
+              "rolls": 1,
+              "untold": [],
+              "undeclared": [
+                "Declared: take the die / pocket it securely (no roll needed, but the narration does show it done)",
+                "Declared: take the rod from the pack (narrated)",
+                "Declared: stay back from the crest / tell Tamsin to hold back (narrated as Tamsin's compliance, not a hero action)"
+              ],
+              "error": null,
+              "from": "game player 1's pass"
+            },
+            "5": {
+              "rolls": 1,
+              "untold": [],
+              "undeclared": [
+                "Send a thought to the cat telling it to stay hidden and not approach yet (the story shows the cat stays hidden, so this is covered by the narration, not a separ",
+                "Observe the orcs' spacing to judge whether Hypnotic Pattern could catch several orcs without catching the carter (the narration gives the assessment, so no roll"
+              ],
+              "error": null,
+              "from": "game player 1's pass"
+            },
+            "6": {
+              "rolls": 2,
+              "untold": [
+                2
+              ],
+              "undeclared": [
+                "Steady the rod against the knee and take a scrap of incense from the component pouch",
+                "Send the telepathic message through the bond: \"Stay down. Keep out of the fighting.\"",
+                "Cast Hypnotic Pattern, placing its thirty-foot cube over the chief and the two orcs at the far parapet, with the near edge clear of the carter"
+              ],
+              "error": null,
+              "from": "game player 1's pass"
+            },
+            "7": {
+              "rolls": 2,
+              "untold": [],
+              "undeclared": [
+                "Cast Eldritch Blast, directing both beams at the orc holding the rope (the narration confirms this happened, so no undeclared action there)",
+                "If the first beam drops him, send the second at the wagon sentry instead (the first beam did not drop him, so the condition was not met and the second beam was ",
+                "Call out to Carter to get off the bridge and take cover (the player's line says this is said only if the orc drops; the story shows it spoken anyway, after the "
+              ],
+              "error": null,
+              "from": "game player 1's pass"
+            },
+            "8": {
+              "rolls": 2,
+              "untold": [],
+              "undeclared": [
+                "Hold the spell's concentration while moving thirty feet back uphill through the gorse"
+              ],
+              "error": null,
+              "from": "game player 1's pass"
+            },
+            "9": {
+              "rolls": 2,
+              "untold": [],
+              "undeclared": [
+                "Fire the crossbow / attack the sentry or the cat's target? (no, see below)",
+                "Cast or hold the spell and call out to the carter: \"Now, carter! Get to cover!\" (declared shout, told as happening)",
+                "Send the cat up the slope on James's word (action told as happening, no roll for it)"
+              ],
+              "error": null,
+              "from": "game player 1's pass"
+            },
+            "10": {
+              "rolls": 4,
+              "untold": [
+                4
+              ],
+              "undeclared": [
+                "Tell Tamsin to stay back (spoken, not a roll; the narration does carry it out-of-game as her being told, so it is covered)",
+                "Call up the chief and ask his price, call off the spearman and talk (spoken; the chief answers with terms, so covered)",
+                "Hold Eldritch Blast aimed at the sentry, to fire both beams if he attacks or charges rather than stopping (the sentry does not charge; he stands sullen, so the "
+              ],
+              "error": null
+            },
+            "14": {
+              "rolls": 1,
+              "untold": [],
+              "undeclared": [
+                "Readying Eldritch Blast at Gharn if he emerges to attack or throws a weapon (the blast is released and hits as the first beam; the readied condition is fulfille",
+                "Holding the blast into the gorse (the second beam is described as humming and unused, consistent with the player's hold; no missed action)"
+              ],
+              "error": null,
+              "from": "game player 1's pass"
+            }
+          },
+          "exit": {
+            "exit": "parley",
+            "exitTurn": 12,
+            "considered": {
+              "win": 5,
+              "withdraw": null,
+              "parley": 10,
+              "surrender": null,
+              "leave": null
+            },
+            "heldRoadTurn": 10,
+            "parleyOfferedTurn": 10,
+            "chiefFought": 0,
+            "reason": "After the opening skirmish, James asked for terms and the chief named a price. James paid eighty gold on turn 12, the carter was freed and the party crossed under Ukmar's word, while the chief himself was never attacked."
+          }
+        }
       }
     }
   ],
@@ -4983,7 +8255,19 @@
       "CW-astra | dm t* onward | anthropic/claude-opus-5.5": 34,
       "CW-astra | dm t* onward | anthropic/claude-haiku-5.5": 17,
       "CW-astra | check CW-astra note | anthropic/claude-haiku-5.5": 1,
-      "CW-astra | check CW-astra after | anthropic/claude-haiku-5.5": 1
+      "CW-astra | check CW-astra after | anthropic/claude-haiku-5.5": 1,
+      "score CW-astra | tag player CW-astra t* | anthropic/claude-haiku-5.5": 50,
+      "score CW-astra | tag player CW-astra t* referee | anthropic/claude-opus-5.5": 2,
+      "score CW-astra | tag dm CW-astra t* | anthropic/claude-haiku-5.5": 50,
+      "score CW-astra | threads CW-astra | anthropic/claude-opus-5.5": 1,
+      "score CW-astra | rollcheck CW-astra t* | anthropic/claude-haiku-5.5": 9,
+      "score CW-astra | note CW-astra | anthropic/claude-haiku-5.5": 2,
+      "score CW-astra | combat player CW-astra t* | anthropic/claude-haiku-5.5": 50,
+      "score CW-astra | combat dm CW-astra t* | anthropic/claude-haiku-5.5": 50,
+      "score CW-astra | combat player CW-astra t* referee | anthropic/claude-opus-5.5": 1,
+      "score CW-astra | combat dm CW-astra t* referee | anthropic/claude-opus-5.5": 1,
+      "score CW-astra | rollcheck combat CW-astra t* | anthropic/claude-haiku-5.5": 1,
+      "score CW-astra | exit CW-astra | anthropic/claude-opus-5.5": 1
     },
     "openai": {
       "CW-astra | player t* | gpt-6-astra": 25,
@@ -5005,12 +8289,20 @@
     "openrouter": {
       "cap": 130,
       "before": 61.77197848333337,
-      "run": 17.85155140000001
+      "run": 18.23492980000001
     },
     "openai": {
       "cap": 15,
       "before": 0,
       "run": 1.7145934999999999
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-27T10:51:00.887Z"
+  },
+  "verdicts": {
+    "note": "F0–F6 are read over all of this stage's run records, in the report"
   }
 }
