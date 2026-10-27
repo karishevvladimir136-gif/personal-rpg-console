@@ -1757,3 +1757,15 @@ paid for an *outcome*, not an expectation: 42 misses accepted as story, 9 overtu
 behavioural mark of wanting in the record (a dear coin for one moment that had to come out right). **(3)** Inspiration
 0 of 5: kept for a «later» they did not know existed — the horizon held past the session; HORIZON_1 tests whether it
 is spent when later comes. Correction to the premise: not «many» — nine in forty-eight.
+**21:45 LA — the nine rerolls, by content (the owner: «платит невосполнимым сверхдорогим ресурсом за желание»).**
+A-sol t14 Stealth, to follow a child who went after the collectors' cart alone (2 and 2); B-opus t15 Deception, the
+drunk at Gask's door so the oilskin man stops asking; B-fable t14 Stealth onto the eel-stall roof, after sending the cat
+to walk the lantern boy home; B-fable t15 Persuasion, talking the girl with the gaff down through the boards; B-astra
+t7 Persuasion, who brings Ferro the luck coins («if someone were using my table to hurt my customers») — a natural 1;
+C-fable t18 Deception, passing as a journeyman while refusing the cards, in the turn that describes the weight of the
+deck; A-astra t15 Religion, the leaning flame in the Lady's rite («Lady Luck. I'm here, as you asked») — a natural 1;
+B-fable t20 reading Tam's queen in daylight, the session's last turn; B-astra t14 Perception, the night visitor in the
+yard. **Not one reroll on an attack, on money, on winning.** Five of nine to protect or not fail someone, two to
+understand, one to stand against the cards unexposed, one to see who came — while 42 misses were accepted, including
+in their own danger. The owner's fact, stronger than stated: the non-renewable coin is paid for others and for
+understanding, not for the hero's survival or gain. Character read from nine button presses.
