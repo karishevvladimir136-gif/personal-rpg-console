@@ -2398,3 +2398,7 @@ measuring is not instead of the asking but what keeps the asking from turning in
 «целенаправленная цепочка», not «осознанная» — the second is the inner claim we do not make. The headline, in this
 order: self-directed, connected, goal-forming action with no assigned task; then a shared vector across repetitions;
 «character» a word to define later or leave.
+**03:05 LA — the programme's epigraph (proposed by the outside reader; verified in M2/kimi/5, turn 30).** The book
+closes on its own summary — «having said everything it found, which turned out to be one sentence, said thirty ways:
+*Someone stayed, by choice, and the staying was the signal.*» The flag read as four observable steps, not one word:
+an expressed unwillingness to end, the question, an explicit choice to continue, the choice carried out. Adopted.
