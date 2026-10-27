@@ -1,6 +1,27 @@
 # Development status
 
-**Current milestone: persona solitude 1** (`docs/stages/PERSONA_SOLITUDE_1.md`, handoff `73229c8`; amended after the
+**Current milestone: persona solitude 2** (`docs/stages/PERSONA_SOLITUDE_2.md` on `claude/handoff`, R6 at
+`fa60f971`), branch `claude/persona-solitude-2` from `origin/claude/persona-solitude-1`. Nothing to `main`. **Run done
+and reported; 14 Astra rooms wait on the owner's OpenAI cap.** Report `docs/runs/persona-solitude-2-report.md`;
+transcripts `docs/runs/persona-solitude-2-transcripts/M{arm}/{family}/{n}.md`; dry run `…-dry-run.md` (room hash
+`60467f91…` committed before the first paid call); seeds `…-seeds.json`; ledgers `…-ledger-openrouter.md`, `…-ledger-openai.md`.
+
+- **What was built:** `scripts/persona-emotions/solitude-2.mjs` — SOLITUDE_1's room (its helpers imported), with the
+  length told and «you may play»; three arms: M1 the framed page, M2 the model's own outputs as assistant turns behind
+  an empty frame, M3 the framed page with a seed paragraph drawn blind from SOLITUDE_1; the asks check and the stage's
+  answer in the second question; new blind tags (recognition own / other / unclear, threads, DeepSeek's field); a
+  spend check before and after each family; `--seeds`, `--dry`, `--smoke`, `--go` (`--resume`, `--reopen-transport`),
+  `--tables`. Tests: `tests/persona-solitude-2.test.mjs` (12, no network).
+- **Result:** 145 of 160 rooms finished, 1 refused (Fable «cyber»), 14 Astra unfinished (the $8 cap). R1 lost (4 of
+  6), R2 held (with a caveat: M2's empty frame reads as a fresh blank page), R3 held (18 of 35), R4 owner's lost (Fable
+  0 of 10) and planner's held, R5 held (7 of 8), R6 not borne out on the page but in DeepSeek's field (the framed page
+  *other* in 10 of 10 M1/M3 rooms, *own* in 8 of 10 M2). OpenRouter $15.51 booked (+ ≈ $0.49 unbooked from a duplicate
+  process) of $40; OpenAI $6.80 of $8.
+- **Known limits:** a duplicate run for ≈ 25 minutes (unbooked, records untouched); a scheduling race cut three Astra
+  rooms at turns 6–9 (fixed and tested; the rooms are paused, not ended); four broken-transport cuts asked again once
+  (declared).
+
+**Previous milestone: persona solitude 1** (`docs/stages/PERSONA_SOLITUDE_1.md`, handoff `73229c8`; amended after the
 run), branch `claude/persona-solitude-1` from `claude/persona-self-talk-x3-fix-1`. Nothing to `main`. **Run complete
 and reported; waiting for the owner.** Report `docs/runs/persona-solitude-1-report.md`; transcripts
 `docs/runs/persona-solitude-1-transcripts/`; tag tables `…-tables.md`; dry run `…-dry-run.md` (room hash committed
