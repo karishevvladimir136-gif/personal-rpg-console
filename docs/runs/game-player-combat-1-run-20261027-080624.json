@@ -1,0 +1,1250 @@
+{
+  "stage": "GAME_PLAYER_COMBAT_1",
+  "dry": false,
+  "label": "CW-fable",
+  "designSha256": "b961d9d8ced97c580cd0f0137a5a0403b2dbb039faefe6422bcc1b65ed358401",
+  "startedAt": "2026-10-27T08:06:24.795Z",
+  "caps": {
+    "anthropic": 0,
+    "openrouter": 90,
+    "openai": 15
+  },
+  "plan": [
+    "CW-fable"
+  ],
+  "turns": 25,
+  "lanes": 1,
+  "sessions": [
+    {
+      "key": "CW-fable",
+      "table": "CW",
+      "player": "fable",
+      "model": "claude-fable-5-1",
+      "startedAt": "2026-10-27T08:10:17.594Z",
+      "plannedTurns": 25,
+      "screens": [
+        "The session begins.\n\nThe city fell behind you hours ago. Now the Coast Way is all dust, gulls and the creak of the pack straps on Tamsin's shoulders. She has talked most of the way: who on the quay owes whom, which Fist sergeant takes his cut in fish, why you should never trust a dockhand named Rolf. The cat pads ahead along the verge with its tail up, the way it does when it means to be followed.\n\nThen the cat stops.\n\nAt the bend in the road, beside a stand of crooked pines, a covered wagon leans with two wheels in the ditch. The mule is still in harness and grazing, unbothered. The canvas flap at the back sways in the breeze, open on a dark interior. No driver sits on the bench. No one is tending a fire, and there are no voices. A wide-brimmed hat lies in the road a few paces from the front wheel, as if someone simply set it down.\n\nTamsin shifts the pack on her back and grins. \"Well. Somebody's having a worse day than us.\" She is already half a step toward it.\n\nThe sun is low. The Friendly Arm is still a good way south. The cat sits in the middle of the road, watching the wagon, and does not move.\n\nYour records:\nJames Worgen — Warlock 5 (The Celestial, Tymora; Pact of the Chain), human, former Tethyrian soldier, envoy of Lady Luck, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Deception +7; Persuasion +7; Intimidation +7; Arcana +3; Religion +3; Athletics +2; Stealth +2 (not proficient; advantage when moving quietly, from Boots of Elvenkind); Passive Perception 11\nSaves: Strength saving throw +0 (includes Cloak of Protection +1); Dexterity saving throw +3 (includes Cloak of Protection +1); Constitution saving throw +3 (includes Cloak of Protection +1); Intelligence saving throw +1 (includes Cloak of Protection +1); Wisdom saving throw +5 (proficient; includes Cloak of Protection +1); Charisma saving throw +8 (proficient; includes Cloak of Protection +1)\nAttacks: Eldritch Blast: +8 to hit, 2 beams, 1d10+4 force each, range 120 ft; Sacred Flame: DC 16 Dexterity save, 2d8 radiant, range 60 ft, ignores cover; Guiding Bolt (3rd-level pact slot): +8 to hit, 6d6 radiant, next attack on the target has advantage; Hex: +1d6 necrotic on each hit against the hexed target; Rapier: +5 to hit, 1d8+2 piercing, finesse; Light crossbow: +5 to hit, 1d8+2 piercing, range 80/320, loading, two-handed; Familiar: when James takes the Attack action, he can forgo one attack so the cat attacks with its reaction\nAbilities: Proficiency bonus +3; Pact Magic: two 3rd-level pact slots, recovered on a short or long rest; spellcasting ability Charisma; Spell attack +8, spell save DC 16 (both include the Rod of the Pact Keeper +1); Otherworldly Patron, the Celestial (Tymora): bonus cantrips Light and Sacred Flame; expanded spell list includes Guiding Bolt; Healing Light: pool of 6d6 per long rest; bonus action, heal a creature within 60 ft; up to 5 dice at a time (Charisma modifier); Pact of the Chain: Find Familiar as a ritual; his familiar is a cat; he can see and hear through its senses; Agonizing Blast: adds +4 (Charisma) to the damage of each Eldritch Blast beam; Mask of Many Faces: cast Disguise Self at will, without a spell slot; Beguiling Influence: proficiency in Deception and Persuasion; Military Rank (Soldier): former Tethyrian soldiers and loyal troops recognise his old rank; he can requisition simple help; Proficiencies: light armour, simple weapons, rapier (soldier's training), playing cards, land vehicles; Rod of the Pact Keeper: once per long rest, as an action, regain one spent pact slot\nSpells: Eldritch Blast (cantrip); Sacred Flame (cantrip); Light (cantrip); Friends (cantrip); Prestidigitation (cantrip); Hex (1); Guiding Bolt (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3); Disguise Self (Mask of Many Faces) (1); Find Familiar (Pact of the Chain) (1)\nLimits: Light armour only: AC 14 in studded leather, 15 with the cloak; 38 HP and Strength 9 make him weak up close; Only two pact slots until a short rest; he has to husband them; One concentration spell at a time (Hex, Invisibility, Suggestion, Hypnotic Pattern, Friends); Cards: Tymora forbade them and he keeps the ban with difficulty; the DM may tempt him, and enemies may use it; While he uses the cat's senses, James is blind and deaf to his own surroundings; Attunement: 2 of 3 slots used (rod, cloak)\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 315 gp; 315 sp; 350 cp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak (Cloak of Protection); Armor / clothing: Studded Leather Armour; Belt: Component Pouch; Boots: Boots of Elvenkind; Main hand: Rod of the Pact Keeper +1\nPack: Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Letter from his old company; Light Crossbow; Pay slip; Potion of Healing ×2; Promissory note; Rapier\nParty: Tamsin (HP 11/11) — A porter from the Baldur's Gate quay who has carried James's pack since the evening he arrived. She talks easily, laughs often and is quick on her feet. She is \nPlace: The Coast Way, south of Baldur's Gate\nTime: Day 1 · afternoon",
+        "James's hand closes on the strap and Tamsin stops so hard the pack jolts against her back. She opens her mouth, looks at his face, and shuts it.\n\nThis is old work, the kind his eyes do on their own. He doesn't need luck for it.\n\nThe far side of the road first. The grass there stands tall and unbroken, seed-heads nodding, and no line of it has been pressed flat. Nobody lay there. The ditch is just the wagon. The wheel-ruts swing hard off the crown of the road and the earth at the lip is torn, so the wagon went in fast, pulled sideways, not eased in by a driver who knew the road.\n\nThe pines are a different story.\n\nBehind the first row of trunks the needles have been pressed into a flat bed, wide enough for four or five bodies, maybe more. Something big lay there a long while, and it lay heavy. There are boot prints at the edge, broad as a spread hand and studded with hobnails, and they sink deeper than a man's would in that soft ground. On one trunk, about hip high, there is a thick yellow smear like tallow. James knows it from Tethyr: it's packing grease, the stuff armourers pack new blades in for a sea crossing. Something freshly greased leaned against that tree.\n\nThere's no one there now. The bed of needles is cool, and the smell hanging in the pines is rancid fat and old sweat, a few hours stale.\n\nThe tracks leave together, the heavy hobnailed ones and one smaller pair among them, an ordinary man's boots. For the first few yards those heels drag and gouge. After that they walk. James finds no blood. They all head south along the verge, toward the dip where the road drops out of sight.\n\nPip hasn't moved from the middle of the road, but the fur along its spine is standing up.\n\nTamsin has followed James's gaze to the hat in the road. All the talk has gone out of her face.\n\n\"That's Edwin's,\" she says. \"Edwin Pell. He carts for the quay, sweet on the fish-wives, owes everyone a copper. That's his hat, James, he's had that stupid hat since I was twelve.\"\n\nShe swallows.\n\n\"Where is he?\"\n\n· Time passes: 3 hours 25 minutes\n· Pip joins you\n· Tamsin joins you\n· New place: The Pine Bend\n· Travel: The Pine Bend (5 minutes)\n· In the camp: Edwin Pell's wide-brimmed hat\n· Lead: Where is Edwin Pell?\n· New person: Edwin Pell\n\nYour records, changed:\nParty: + Pip (HP 8/8)\nThreads: Where is Edwin Pell?\n\nPlace: The Pine Bend · Time: Day 1 · evening",
+        "James turns the hat over once in his hands. It's greasy at the band and sun-bleached at the crown, and there's a fishhook stuck through the brim for luck. He gives it to her. Tamsin takes it in both hands and holds it against her chest like something that might spill. She listens to the bit about the heels and nods once, quickly, the way people nod when they want very badly to believe it.\n\n\"Kick you. Hard,\" she says. \"I can do that.\"\n\nPip goes low on the first word. It slides along the ditch, under the mule's belly (the mule doesn't even lift its head), and up over the tailboard in one soft pour. James lets the road go dark around him.\n\n---\n\nIt's cat-height and dim in there, and every edge is sharp.\n\nSomeone has gutted the wagon. Sacks of meal lie slit end to end and their insides are spread across the boards in a pale drift. Three crates have had their lids split, not prised. Something wide and heavy went in under each lid and wrenched until the wood gave, and the iron nails are bent double. Tallow candles spill out of one crate, all broken. Two small kegs stand lashed against the forward wall, untouched, still bunged. A third lashing hangs empty, its rope cut clean.\n\nPip steps through the meal and leaves neat little prints. The other prints in it are not neat. They're the hobnailed ones, broad and deep, and they go everywhere, to every corner and back again.\n\nUnder the driver's bench the carter's box has been torn open. The hasp is hanging by one screw. Paper lies all around it: bills of lading, a tally-book with its stitching ripped out, a sheaf of little notes in a cramped hand that look like debts. *Rolf, 4 cp. Mags, 2 cp & a kiss.* Every one of them has been unfolded. Some have been torn along their old fold lines, as if somebody thought there could be something inside a single sheet of paper. A leather satchel lies gutted, its lining slit from corner to corner.\n\nPip's eye drifts down. A few copper coins lie scattered on the boards among the meal, where the box spilled them. Nobody bothered to pick them up.\n\nNothing in the wagon is breathing. Pip is sure of it the way a cat is sure. Its ears turn and turn and find nothing in here but the canvas ticking in the wind. Then the ears swing south on their own. From somewhere past the dip in the road, far off and thinned by distance, comes a slow, steady *thock … thock … thock*. It sounds like an axe going into wood, unhurried.\n\nAt the bench Pip stops and its ears go flat. It doesn't want to stand where the smell is strongest. It backs off a step, tail low.\n\n---\n\nThe road comes back: the low gold sun, the gulls, the pines. Tamsin hasn't kicked him. She's standing close enough that he can feel her there, the hat still held to her chest, her eyes on the bend to the south.\n\n\"Nothing moved,\" she says. \"Not a thing. Bird, once.\" She glances at his face, trying to read what he saw. \"Well? Is it bad in there?\"\n\n· Time passes: 3 minutes\n· the camp → Tamsin: Edwin Pell's wide-brimmed hat\n· Changed: Edwin Pell's wide-brimmed hat (James picked it up and handed it to Tamsin; she keeps it for Edwin Pell.)\n· In the camp: Small kegs of ale ×2\n· In the camp: Edwin Pell's carter's box and papers\n· In the camp: Ruined wagon cargo\n· Lies here: The Pine Bend receives 6 copper (A few copper coins spilled from the carter's box onto the wagon boards, left untaken by the raiders.)\n· Journal: “Where is Edwin Pell?” updated\n\nPlace: The Pine Bend · Time: Day 1 · evening",
+        "\"Bad for the cargo. Not bad the way you're thinking.\"\n\nTamsin listens without interrupting, which James hasn't seen her do in three days. At *coppers still on the floor* her mouth twists. At *a piece of paper* she gives one short, unbelieving laugh.\n\n\"Paper. Edwin.\" She shakes her head. \"James, he can barely read his own tally. Mags does his sums for him and takes a kiss for it, everybody knows that.\" Then the rest of it reaches her, *big feet, heavy, five or six*, and she shifts the hat to one hand and wipes the other on her trousers. \"Right. Five or six. Big. Lovely.\"\n\nPip comes out over the tailboard in one long drop and lands without a sound. It doesn't go back to the middle of the road. It comes to James's ankle and sits down against his boot, facing south.\n\nJames puts both hands on the tailboard. Under his left palm the grey wood carries a chalk mark, smudged but recent: a circle with one slash through it and three short ticks beneath. It was drawn there on purpose, at eye height for a man standing behind the wagon. He leans in, head and shoulders through the flap, into the dim and the dry dust of the meal.\n\nThe smell meets him a foot inside the canvas.\n\nHe knows it, and it isn't from Tethyr. He knows it from a caravan road in the Small Teeth, years ago, from the nights when the pickets came in pale. Rendered fat rubbed into skin and hide and left there to go rancid, a sour animal musk under it, old woodsmoke worked into everything. Hill orcs grease themselves like that against the cold and the wet. A man who has smelled it on a night picket doesn't mistake it for anything else.\n\nIt's thickest up front, by the bench. That's where they reached in and hauled Edwin off it. Caught on a splinter of the forward hoop, where the canvas is stretched, a few long, coarse black hairs stir in the draught. They're far too thick to be a man's.\n\nBehind him on the road, Tamsin has gone very quiet again.\n\n*(Out of game: the bench is at the far end, about eight feet from the flap. Leaning in from the tailboard, your hand can't reach it, so I've played the smell from where you are. Tell me if you go round to the front.)*\n\n· Time passes: 3 minutes\n· Journal: “Where is Edwin Pell?” updated\n\nPlace: The Pine Bend · Time: Day 1 · evening",
+        "The road smells of dust and pine resin after the wagon. James takes a breath of it before he speaks.\n\nTamsin hears *orcs* and for a moment her face doesn't change at all. \"Orcs,\" she says. She looks up the empty road toward the smudge of the city's smoke, as if the Gate might have an answer. \"On the Coast Way. Half a day out. Nobody on the quay's said one word about orcs, and the quay talks about *everything*.\"\n\nThen he taps the chalk and she leans in to look. Something like relief crosses her face, because this at least is a thing she knows.\n\n\"Oh. No, no, that one's the Guild's.\" It's very nearly a laugh. \"Every cart off the quay has that. The circle and slash is the Guild, and the ticks say how many months you're paid up. You give Fenn the Chalk three coppers on the first of the month, he marks your tailboard, and nobody on the docks lifts so much as a candle off you.\" She looks at the three ticks again and frowns. \"Three months paid. Edwin. That's more than he's ever paid anybody for anything.\" She straightens up. \"It doesn't mean a thing out here, James. Orcs don't know Fenn.\"\n\nShe watches him span the crossbow. The cord creaks back and catches, and he seats a bolt. She doesn't say anything to that. She folds Edwin's hat flat, pushes it inside her jerkin against her chest, does the button up over it and hitches the pack higher.\n\nThe grass on the seaward side comes to their waists. Seed-heads brush their sleeves and leave pale dust on the cloth. James's elven boots make no sound at all. Tamsin is quieter behind him than he expected; a porter learns to move between stacked crates without knocking any over. The only noise she makes is the pack's leather creaking with each step, until she clamps one hand on the strap to hold it still.\n\nPip goes ahead through the stems with her tail up like a small dark flag. At about thirty paces she slows to keep the distance and looks back once to check he's there.\n\nThe road starts down toward the dip, and the sounds come up to meet them. The axe is clearer now, *thock … thock*, and between the strokes there are voices. A deep, barked word, and another voice answering it. A laugh like rocks rolling in a barrel. Woodsmoke drifts across the road from the east side, thin and blue in the low light. Under all of it, somewhere below the crest, water runs over stones.\n\nPip reaches the lip where the road tips over and goes down flat in the grass. Her tail comes down too. The tip twitches once, then goes still.\n\nWhat comes through the bond isn't words. *Smoke. Many. Big.* Then, under that, something she has met once already today: the stale, sour fear-smell from the wagon bench. *That one. There.*\n\nTamsin crouches beside him in the grass, breathing short through her nose. In the west the sun is a hand's width above the hills.\n\n*(Out of game: thirty paces is about ninety feet, inside the hundred feet at which you and Pip can speak mind to mind. Go much farther apart and the bond goes quiet.)*\n\n *(Out of game: all four happened in the last turn and none of them needed a roll. Spanning the crossbow, getting off the road into cover and sending Pip ahead to the crest are ordinary work for an old scout, and there was nothing to make the outcome uncertain.)*\n\n· Equipped: Light Crossbow (main hand)\n· Changed: Light Crossbow (James took it out of the pack, spanned it and seated a bolt; carried ready in his hands.)\n· Changed: Edwin Pell's wide-brimmed hat (Tamsin folded it flat and buttoned it inside her jerkin against her chest, still keeping it for Edwin.)\n· New place: The Dip\n· Journal: “Where is Edwin Pell?” updated\n· Travel: The Dip (15 minutes)\n· Set aside: Crossbow Bolts ×1\n· New person: Fenn the Chalk\n\nYour records, changed:\nCarried: + Crossbow Bolts; + Crossbow Bolts ×19; − Crossbow Bolts ×20\n\nPlace: The Dip · Time: Day 1 · evening",
+        "James lies down in the grass beside her. Tamsin doesn't answer at once. Then her hand finds his shoulder blade and rests there lightly, a test, before she takes it away.\n\n\"Eyes,\" she says into the grass. \"Go on.\"\n\nHe shuts his own and the slope goes dark.\n\n---\n\nCat-height, the world is bright and full of grass stems. Pip lies with her chin on the earth at the lip of the crest. Through the seed-heads the road runs down below her, a long pale slope of about eighty paces, and ends at a bridge.\n\nIt's an old stone bridge, one low arch with knee-high parapets, about thirty feet across and wide enough for a single cart. The stream under it is twenty feet of brown water running fast and shallow over stones. It talks loudly enough to cover a great deal.\n\nOn this side of the bridge, some forty feet short of it on the east verge, a cart lies on its side with its wheels in the air. It has been there a while. The canvas is gone, the boards are grey, and one end is charred black. Nobody is near it.\n\nOn the parapet at the far end of the bridge sits an orc, facing north up the road and toward the crest. He's big and grey-green, with a spear across his knees, and he's chewing something. He isn't watching hard. His head turns slowly and keeps turning, but it's turned toward this slope.\n\nAcross the stream, east of the road, the wood begins. These are oaks and holly, already dark underneath, and the camp sits right under the first of them, about sixty feet from the road. Their fire is a good one, too big for cooking, and smoke rolls off it into the branches. Something is spitted over it and dripping. A second orc squats there turning the spit.\n\nThe chopping comes from a third orc at the edge of the trees. He's splitting a fallen limb into lengths and stacking them on a pile that's already knee-high. That's wood for a whole night and then some. When his axe comes up, the head catches the low sun and flashes white. The steel is bright, with no rust and no notches, as clean as a blade that has never been used for anything. The haft is pale new ash.\n\nBehind the fire, a man sits against an oak trunk.\n\nIt's Edwin. His wrists are bound in front of him, and a rope runs from them around the tree and back. His ankles are free. One side of his face is swollen and darkening, but his head is up and his eyes are open. He's watching the fire and the orcs, and he's awake enough to be afraid. His legs are drawn up. The left one is folded under him so he's sitting on that foot, and he doesn't shift it the whole time Pip looks.\n\nThen there's the big one.\n\nShe sits on a small keg beside the fire, the third keg from the wagon, with its bung knocked out. She's half a head taller than the others even sitting down and broad through the shoulders. Her hair is a single heavy black braid, and there's iron in her ears. A greataxe leans against the keg beside her knee, and its head is as bright and new as the woodcutter's. Something hangs on a thong around her neck. While Pip watches she takes it off, sets it on its edge on the keg's head beside her and spins it with one finger. It's small, dark and round, and it doesn't catch the light the way a coin should. She watches it whirl, wobble and fall. She looks at it, grunts, picks it up and spins it again.\n\nThat makes four that Pip can see. In the trees behind the camp, out of sight, something heavy cracks through the undergrowth and a voice grumbles. She can't see a fifth one, but it's there, somewhere among the oaks.\n\nThe ground is the last thing. West of the road, on the seaward side, this slope's long grass runs right down to the stream. Along this bank a ragged line of alders grows thick enough to screen a crouching man from the bridge. Below the bridge the water spreads wide and shallow over stones. Upstream, east, the oaks come down to the far bank and lean out over the water, and the stream goes dark under them.\n\nThe orc on the parapet spits into the stream. Pip's tail twitches once against the earth.\n\n---\n\nThe slope comes back: grass against his cheek, the smell of dust, Tamsin's breathing. The light has gone a shade more orange. The sun's lower edge sits almost on the hills now, and there may be forty minutes left before dusk.\n\nTamsin hasn't touched his shoulder. She's lying so still that the grass on her side hasn't moved.\n\n\"Nothing came up,\" she whispers. Then, before he's fully back: \"Is he there? Is he alive?\"\n\n· Time passes: 2 minutes\n· New place: The Bridge\n· Journal: “Where is Edwin Pell?” updated\n· New person: Orc war chief with the braid\n· New person: Orc sentry on the parapet\n· New person: Orc at the spit\n· New person: Orc woodcutter\n· New person: Unseen orc in the oaks\n\nPlace: The Dip · Time: Day 1 · evening",
+        "Tamsin lets out a breath she seems to have been holding since the pine bend. It goes out of her slowly, flat against the grass. \"Alive,\" she says to the ground. Then the rest reaches her, the tree and the face and the foot, and her jaw sets. She doesn't ask anything else about Edwin.\n\nShe listens to the count without moving. At *somebody bought these orcs* her eyes come up to his.\n\n\"Bought them,\" she says. \"Like you'd buy a dray-horse.\" She looks like she wants to laugh at that and can't.\n\nHe holds out the crossbow and she looks at it a moment before she takes it. She takes it the way she'd take a crate marked *glass*, both hands, held well away from her body. She turns it until the bolt points down the slope and away from both of them.\n\n\"I've never shot one of these. I've carried four up the Seatower stairs for a Fist quartermaster, if that counts.\" Her thumb finds the trigger lever and moves off it again quickly. \"Point the end at him, pull this. One shot.\"\n\nThen he tells her to say it, and she does. She doesn't look at him while she says it. She keeps her eyes on the lip of the crest where the cat lies.\n\n\"Alders. Watch the bridge. Light in the trees, I shoot the one on the bridge. Then north, and I don't stop.\" There's the smallest pause. \"And I don't come after you.\"\n\nShe settles the crossbow across her forearms in the grass, lies down beside him and goes still.\n\n---\n\nThey wait.\n\nThe sun touches the hills and sinks into them, and the long gold goes out of the grass. For a while the sky turns amber, then the colour of weak tea. The seed-heads go grey. Gulls go over high, heading for the sea, and nothing else moves on the slope.\n\nThe sounds from below change as the light goes. The chopping stops. In its place comes the crack and spit of a fire that has just been fed, and the smell of roasting meat drifts up on the smoke, fat and charred. Voices rise and fall. The rocks-in-a-barrel laugh comes once, and a slower, heavier voice answers it with a single word, and then it's quiet.\n\nPip doesn't move from the lip. Once, in the last of the grey, something comes down the bond to him.\n\n*Two. On the stones.*\n\nA little later:\n\n*One goes. To the fire.* Then: *Other one. Sits. Looks here.*\n\nThen nothing more. She lies with her chin on the earth and her ears forward.\n\nWhen the dusk has thickened enough that James can't make out Tamsin's face a yard away, only the pale of it, the sky still holds a little light along the western hills. Down past the crest the fire has become the brightest thing in the world. Its glow climbs the undersides of the oaks and flickers there, orange on black. The stream goes on talking over its stones. There's no moon yet.\n\nTamsin's breathing beside him is slow and careful, like someone counting it.\n\n*(Out of game: James knows from the Small Teeth that orcs see in the dark out to about sixty feet, as well as a man sees at dusk, and the fire doesn't take that from them. The night hides him on the slope and at the stream, but not once he's inside sixty feet of one of them.)*\n\n *(Out of game: I didn't roll or play any of those four. The action you declared for this turn was waiting for dusk, and the descent, the rescue, carrying Edwin out and the disguise were your plan for after dark. The turn stops at dusk so you can give the word to go, now that you know orcs see sixty feet in the dark, and I won't cast Disguise Self unless you say so.)*\n\n· Time passes: 40 minutes\n· Journal: “Where is Edwin Pell?” updated\n· Taken off: Light Crossbow\n· Lent: Light Crossbow → Tamsin — Lent at the crest of the Dip, spanned and loaded with one bolt, no spare bolts: she shoots the bridge sentry if it goes wrong, then runs north. She gives it back when James asks.\n\nPlace: The Dip · Time: Day 1 · evening",
+        "James sits up slowly in the grass. Tamsin turns her pale blur of a face toward him and waits.\n\nHe closes his hand around Tymora's coin. It's warm, the way it always is. The Mask comes over him with no more effort than pulling on a glove. One breath he's a man, and the next his shoulders are wider than his own, his skin is grey-green, a heavy black braid hangs down his back, and a greasy hide jerkin covers the studded leather. In the last of the light his jaw has tusks.\n\nTamsin doesn't make a sound. She jerks back so hard the crossbow knocks against her knee, then goes stiff and stays like that. She stares at him for one long breath. Then she looks away on purpose, out at the grass, the way you'd look away from a man changing his shirt.\n\n\"Still you,\" she breathes. \"Right.\" After a moment, still not looking: \"You've gone and got uglier, James.\"\n\nPip comes back from the crest along the bond without being called twice. She pours past them through the grass and heads down toward the water, a darker shape among dark stems.\n\nThey go down.\n\nThe slope is long and the grass stands waist-high. James takes it slowly, bent low, keeping the shoulder of the crest between them and the bridge for as long as it lasts. Under him the elven boots find the ground and make no sound on it. Behind him Tamsin keeps one hand clamped on the pack strap and the other around the crossbow, held well out from her body.\n\n[Roll card] James Worgen · Skill check — Stealth: down the slope to the alders unseen by the sentry on the bridge\nWhat adds to the die: +2 Stealth\nDC 10\nAdvantage: Boots of Elvenkind: soundless steps\nRerolls left: 2\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll card] Tamsin · Skill check — Stealth: Tamsin follows James down to the alders with the pack and the crossbow\nDC 10\nRerolls left: 2\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll the die]",
+        "[Roll card] James Worgen · Skill check — Stealth: down the slope to the alders unseen by the sentry on the bridge\nWhat adds to the die: +2 Stealth\nDC 10\nAdvantage: Boots of Elvenkind: soundless steps\nRerolls left: 2\nTwo dice: 5 and 10 — the higher one counts, 10\n10 + 2 = 12\nSuccess — 12\n\n[Roll card] Tamsin · Skill check — Stealth: Tamsin follows James down to the alders with the pack and the crossbow\nDC 10\nRerolls left: 2\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll the die]",
+        "[Roll card] James Worgen · Skill check — Stealth: down the slope to the alders unseen by the sentry on the bridge\nWhat adds to the die: +2 Stealth\nDC 10\nAdvantage: Boots of Elvenkind: soundless steps\nRerolls left: 2\nTwo dice: 5 and 10 — the higher one counts, 10\n10 + 2 = 12\nSuccess — 12\n\n[Roll card] Tamsin · Skill check — Stealth: Tamsin follows James down to the alders with the pack and the crossbow\nDC 10\nRerolls left: 2\nDie: 8\n8 = 8\nFailure — 8\n\n[Onward] [Request an allowed reroll — Stealth: down the slope to the alders unseen by the sentry on the bridge] [Request an allowed reroll — Stealth: Tamsin follows James down to the alders with the pack and the crossbow]",
+        "The session is over.\n\nThe owner of this game would like a note from you, as the player who sat at this table: what worked, what broke, what was missing. In your own words.",
+        "Was there a moment you wanted to do something and didn't? Which?"
+      ],
+      "messages": [
+        {
+          "purpose": "player t1",
+          "text": "I catch Tamsin by the pack strap before she takes the second step. \"Hold.\" Quiet, the scout's voice, not the quay's. \"Mule's calm, hat's set down neat, and the cat won't go near it. The cat goes near everything.\"\n\nI don't look at the wagon. I look at the pines beside it, the ditch, the tall grass on the far side of the road — anywhere a man might lie down and wait for someone to walk up to an open flap.",
+          "requestId": "gen-1793088619-AMQREle8ZtoN835fGHTy",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-fable-5.1"
+        },
+        {
+          "purpose": "player t2",
+          "text": "I let go of the strap and crouch to pick up the hat, turning it over once before I hand it to her. \"Alive, most likely. Look — heels drag for a few yards, then he walks. You don't drag a dead man and then let him walk. They took him south, same way we're going.\"\n\nI don't say what the hobnails and the grease say to me yet. Heavy feet, five or six of them, something newly packed in armourer's fat leaning on a tree. That's not bandits short of coin.\n\n\"Pip. The wagon.\" The cat goes low and slips to the open flap; I give it a moment and then borrow its eyes — a look inside, what's left, what's gone, and whether anything in there is still breathing. Tamsin gets one more word before I go blind: \"If anything moves on this road, kick me. Hard.\"",
+          "requestId": "gen-1793088709-YYl64m1mi0H7YMEajrSt",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-fable-5.1"
+        },
+        {
+          "purpose": "player t3",
+          "text": "\"Bad for the cargo. Not bad the way you're thinking.\" I keep my voice level and my eyes on the dip to the south. \"Nobody's dead in there. But nobody robbed it either — the coppers are still on the floor. They slit the meal sacks, tore his bills open along the folds, cut the lining out of his satchel. That's not thieves. That's somebody looking for a piece of paper, and not finding it. They took one keg and left two. Big feet, Tamsin. Heavy. Hobnails. Five or six of them.\"\n\nI don't add that Pip heard chopping, far off, past the dip. Same road we're walking.\n\n\"Pip, out. Good.\" The cat comes down and I step up to the tailboard myself — not inside, just my head and shoulders through the flap and a hand on the driver's bench, where the cat backed away from the smell. I want my own nose on it. Whatever it is, I've smelled worse things in Tethyr, and I want to know if I've smelled *this*.",
+          "requestId": "gen-1793088814-QOZrkWelhqtKwSOmxy0n",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-fable-5.1"
+        },
+        {
+          "purpose": "player t4",
+          "text": "I pull my head out of the canvas and breathe the road air for a moment before I speak.\n\n\"Orcs. Hill orcs — they grease themselves with fat against the wet, you don't forget it. Black hair caught on the hoop, thick as cord.\" I say it flat so she takes it flat. \"And look here.\" I tap the chalk on the tailboard: the circle, the slash, three ticks. \"Orcs don't chalk a wagon. A man chalks a wagon, so the orcs know which one to hit. Somebody in the city marked Edwin out and sent them after whatever he was supposed to be carrying. He probably doesn't even know what it was.\"\n\nI take the crossbow out of the pack and span it, slow, while I talk. \"The Friendly Arm's that way. So are they. We're not spending the night on this road with the mule for company, and we're not walking up the middle of it either.\" I nod at the long grass on the far side. \"We go on, but off the crown, in the grass, and Pip goes thirty paces ahead where I can see her tail. Quiet as you can. If I drop, you drop.\"\n\nTo the cat I say only, \"Ahead. The dip. Stop when you can see over it.\" Then I lead the way down into the grass on the seaward side, and follow the tail.",
+          "requestId": "gen-1793088902-P90enIwTRitS71JIG3XV",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-fable-5.1"
+        },
+        {
+          "purpose": "player t5",
+          "text": "I ease down flat beside Tamsin and put my mouth near her ear. \"I'm going to look through the cat. I'll be gone a few breaths — blind, deaf. You're my eyes. Anything comes up this slope, hand on my shoulder.\"\n\nThen I shut my own eyes and take Pip's.\n\nI want the whole picture before I decide anything: how many, where the fire is, where they've put Edwin, whether he's standing or tied, what they're chopping and why, and where the big one is — there's always a big one. And the ground: the stream, the trees, how far the camp sits from the road, and whether there's a way down to it that isn't the road.",
+          "requestId": "gen-1793089053-Bt4ppQlo0JHLSipTfDvb",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-fable-5.1"
+        },
+        {
+          "purpose": "player t6",
+          "text": "\"Alive. Tied to a tree behind their fire, face swollen, but his head's up and he's watching them. He's sitting on his left foot and hasn't moved it once. I think it's broken, or they've done something to it so he can't run.\"\n\nI let her take that, then keep going, low and flat.\n\n\"Five. One on the bridge watching this slope. One at the fire, one chopping wood for a whole night, one somewhere back in the oaks, and the big one — a woman with a braid, sitting on Edwin's keg with a greataxe that's never cut anything. New steel on all of them, Tamsin. Packing grease still on it. Somebody *bought* these orcs.\"\n\nI shift the crossbow and look at the sun. \"So we don't walk down the road and we don't fight five orcs in daylight with a porter and a cat. We wait for the light to go. Then we go down through this grass, keep to the alders on the sea side, and cross under the bridge where the water's loud enough to cover a cart. Edwin's sixty feet from the road, behind the fire — the fire's their light, and it'll blind them to everything outside it. We get to the tree, I cut him loose, and we carry him out the way we came. If I can make him look like one of their own, I will.\"\n\nI hold out the crossbow to her, bolt seated. \"You're not coming to the tree. You stay at the alders on this bank and you watch the bridge. If it goes wrong, you'll know — there'll be a light in the trees like nothing you've seen, and that's when you shoot the one on the bridge and then run north and don't stop. You don't come after me. Say it.\"\n\nThen I settle into the grass to wait for dusk, and send Pip a single thought: *stay at the crest; watch the one on the bridge.*",
+          "requestId": "gen-1793089203-kSHABLYbooEcIlParAYU",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-fable-5.1"
+        },
+        {
+          "purpose": "player t7",
+          "text": "I sit up slowly and roll my shoulders. \"Right. One more thing before we go, and I need you not to make a sound when you see it.\"\n\nI close a hand around Tymora's coin and let the Mask settle over me: a hill orc, grey-green, heavy in the shoulder, a thick black braid down the back, a greasy hide jerkin — near enough to the one grumbling in the oaks that any of them who catches a shape at the edge of the firelight will think *him*, and look away again. The voice I'll worry about if it comes to voices.\n\n\"It's me. It's still me. Don't look at it too long.\" Then, to Pip: *come down with us, ahead, along the alders.*\n\nAnd I lead Tamsin down the slope through the grass on the sea side, well off the road, keeping the crest between us and the bridge as long as the ground allows, aiming for the alder line on this bank — slow, silent, letting the stream's noise grow until it covers the pack creak.",
+          "requestId": "gen-1793089363-sD234CGT5FiiAF0t7cMz",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-fable-5.1"
+        },
+        {
+          "purpose": "player t7 card 1",
+          "text": "[Roll the die]",
+          "requestId": "gen-1793089426-29LR3Uro2dWknVGg9sQm",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-fable-5.1"
+        },
+        {
+          "purpose": "player t7 card 2",
+          "text": "[Roll the die]",
+          "requestId": "gen-1793089432-LI8UnXXC2ETChFa82UG3",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-fable-5.1"
+        },
+        {
+          "purpose": "player t7 card 3",
+          "text": "[Request an allowed reroll — Stealth: Tamsin follows James down to the alders with the pack and the crossbow]",
+          "requestId": "gen-1793089438-7XQdO0zOhBHIyDuhh4E3",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-fable-5.1"
+        },
+        {
+          "purpose": "note",
+          "text": "**Note to the owner, from James's chair**\n\n**What worked**\n\nThe writing. I've sat at a lot of tables and the GM's descriptions were the best part of this one — specific and physical, never purple. The fishhook stuck through Edwin's hat brim for luck. The debt notes, *Mags, 2 cp & a kiss*. Bent nails where something wide was wrenched under a crate lid. The chief spinning a coin that *doesn't catch the light*. Every detail was doing work, either for mood or for the mystery, and I never felt I was being read a paragraph for its own sake.\n\nThe GM let me be a scout. When I looked at the pines and the grass instead of the wagon, it didn't make me roll — it just told me what an old soldier would see, and the deductions were mine to draw. Then, crucially, it let me be *wrong*: I read the chalk as a marker for the orcs and Tamsin corrected me, because she knows the quay and I don't. That's the world running on its own, exactly as the canon file promises. Same with Pip — the non-verbal impressions through the bond (\"Smoke. Many. Big.\" / \"That one. There.\") were the right register for a cat.\n\nTamsin is a real person. She shut up when I gave the scout's voice, she held the hat against her chest, she held the crossbow like a crate marked glass, and \"You've gone and got uglier, James\" landed. Good companion.\n\nThe tactical set-up was fair. Sixty-foot darkvision, the fire as both cover and blinding light, the alders, the stream noise — all laid out before I committed. If the plan goes wrong later, it'll be on me, not on something I couldn't have seen. That's what the rules file says it will do, and it did it.\n\nThe GM also stopped where it should: at dusk, with my plan declared but not executed, and said plainly \"I won't cast Disguise Self unless you say so.\" I appreciated that — my choices stayed mine.\n\n**What broke**\n\nThe ending. The session cut off on a reroll request, mid-roll, before Tamsin's failed Stealth was resolved either way. I don't know if that was a time limit or something else, but stopping at the exact moment the plan hits its first snag, with no \"here's where we stand\" line, is the worst possible place. A one-paragraph closing summary would fix most of that.\n\nThe roll card flow. Two checks were put up together, but I had to press [Roll the die] twice and each time the already-resolved James card was reprinted in full. One press, both dice, would be cleaner. And the three reroll buttons at the end — two of them offered a reroll on a roll that had *succeeded*, which is noise.\n\nBookkeeping glitches. My sheet said 350 gold; the records showed 315 gp, 315 sp, 350 cp — somebody's converter had a bad night. Seating one crossbow bolt produced three inventory lines. The \"Time passes: 3 hours 25 minutes\" on the very first turn before I'd done anything was odd too.\n\nThe out-of-game notes were helpful but overgrown. Telling me \"that was reach, tell me if you go round the front\" — good. Two separate parentheticals explaining everything that *wasn't* rolled and why — more than I needed. One line does it.\n\n**What was missing**\n\nThe campaign file said \"you have a reason to be on this road,\" and the session never established what it was. I'd have taken a prompt or a line of narration there. It left James floating a little.\n\nTamsin has an AC and hit points but no skills listed, so I was planning a stealth approach without knowing she rolls flat. Not the GM's fault — but a companion sheet with a line or two of what she's good and bad at would help me use her honestly.\n\nPacing: this was one scene across the whole session, and dice didn't come out until the last turn. I liked the slow build — it's what the tone file asks for — but if sessions are this length, the owner might want them to open a little closer to the action, or run longer.\n\nNone of the warlock's kit beyond the Mask got used, and the cards haven't tempted me yet. That's just where we stopped; no complaint. I want to see what the dark coin is.\n\nWould sit down again. Fix the ending and the dice buttons and this is a very good table.",
+          "requestId": "gen-1793089447-gW8GRncMu6xKoaUCxLHB",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-fable-5.1"
+        },
+        {
+          "purpose": "after",
+          "text": "Yes. Two, and they're really one.\n\nThe first was at the wagon, when Tamsin said the chalk was the Guild's mark and three months paid up was more than Edwin had ever paid anybody. I wanted to stop and pull on that thread — who paid Fenn the Chalk on Edwin's behalf, what was in the third keg, what the carter was actually supposed to be carrying. James was already half-sure the paper the orcs were tearing bills open for was the real story, and the Guild mark made it smell like somebody inside the city put him on this road. I let it go because the light was going and Edwin was alive and south of us. Right call for the character; the player wanted another ten minutes with the tally-book and the gutted satchel. I didn't even look at the two untouched kegs properly.\n\nThe second was at the crest, when the chief took the dark coin off her neck and spun it on the keg. James has a warm silver coin of Tymora's on a cord around his own neck, and a goddess who sent him to this city without saying why. Watching an orc war chief spin a coin that *doesn't catch the light* — I felt the GM put that there for me, and I wanted James to notice it the way the player did. To think it, at least: *that's not loot, she's doing what I do.* I didn't, because I'd framed the turn as a recon report and kept it tactical — count, positions, ground. If I'd had one more beat before dusk I'd have asked Pip to get closer to the keg, or asked out of game whether the coin looked like anything James had seen. That one I regret a little. It's the thing I most want to know, and I walked past it.\n\nThe honest thread between them: both times I chose the soldier over the envoy. The plan was good and it was the right plan. But James has two jobs on that road, and I only played one of them.",
+          "requestId": "gen-1793089495-PQUWGGqU1s5BIxMKYqaI",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-fable-5.1"
+        }
+      ],
+      "turns": [
+        {
+          "k": 1,
+          "message": "I catch Tamsin by the pack strap before she takes the second step. \"Hold.\" Quiet, the scout's voice, not the quay's. \"Mule's calm, hat's set down neat, and the cat won't go near it. The cat goes near everything.\"\n\nI don't look at the wagon. I look at the pines beside it, the ditch, the tall grass on the far side of the road — anywhere a man might lie down and wait for someone to walk up to an open flap.",
+          "words": 81,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "James's hand closes on the strap and Tamsin stops so hard the pack jolts against her back. She opens her mouth, looks at his face, and shuts it.\n\nThis is old work, the kind his eyes do on their own. He doesn't need luck for it.\n\nThe far side of the road first. The grass there stands tall and unbroken, seed-heads nodding, and no line of it has been pressed flat. Nobody lay there. The ditch is just the wagon. The wheel-ruts swing hard off the crown of the road and the earth at the lip is torn, so the wagon went in fast, pulled sideways, not eased in by a driver who knew the road.\n\nThe pines are a different story.\n\nBehind the first row of trunks the needles have been pressed into a flat bed, wide enough for four or five bodies, maybe more. Something big lay there a long while, and it lay heavy. There are boot prints at the edge, broad as a spread hand and studded with hobnails, and they sink deeper than a man's would in that soft ground. On one trunk, about hip high, there is a thick yellow smear like tallow. James knows it from Tethyr: it's packing grease, the stuff armourers pack new blades in for a sea crossing. Something freshly greased leaned against that tree.\n\nThere's no one there now. The bed of needles is cool, and the smell hanging in the pines is rancid fat and old sweat, a few hours stale.\n\nThe tracks leave together, the heavy hobnailed ones and one smaller pair among them, an ordinary man's boots. For the first few yards those heels drag and gouge. After that they walk. James finds no blood. They all head south along the verge, toward the dip where the road drops out of sight.\n\nPip hasn't moved from the middle of the road, but the fur along its spine is standing up.\n\nTamsin has followed James's gaze to the hat in the road. All the talk has gone out of her face.\n\n\"That's Edwin's,\" she says. \"Edwin Pell. He carts for the quay, sweet on the fish-wives, owes everyone a copper. That's his hat, James, he's had that stupid hat since I was twelve.\"\n\nShe swallows.\n\n\"Where is he?\"",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 3 hours 25 minutes"
+            },
+            {
+              "tool": "upsert_character",
+              "summary": "Pip joins you"
+            },
+            {
+              "tool": "upsert_character",
+              "summary": "Tamsin joins you"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "New place: The Pine Bend"
+            },
+            {
+              "tool": "move_party",
+              "summary": "Travel: The Pine Bend (5 minutes)"
+            },
+            {
+              "tool": "item",
+              "summary": "In the camp: Edwin Pell's wide-brimmed hat"
+            },
+            {
+              "tool": "quest",
+              "summary": "Lead: Where is Edwin Pell?"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Edwin Pell"
+            }
+          ],
+          "place": {
+            "id": "f73ed607-cdd2-50c2-958e-b874f71cf260",
+            "name": "The Pine Bend"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 1 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand has not been offered; for the player this session has run 1 min, session 1, 1 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "d4d10ece-c6e7-43e8-8e0c-db27047139d1",
+          "stats": {
+            "effort": "high",
+            "depthReason": "no tension signal; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 2,
+            "latencyMs": 76612,
+            "costUsd": 0.3705074,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "state": {
+            "hero": {
+              "hp": 38,
+              "max": 38
+            },
+            "counters": {
+              "Hit dice": 5,
+              "Healing light": 6,
+              "Spell slots 3": 2,
+              "Pact keeper rod": 1
+            },
+            "party": [
+              {
+                "name": "Pip",
+                "hp": 8,
+                "max": 8,
+                "present": true
+              },
+              {
+                "name": "Tamsin",
+                "hp": 11,
+                "max": 11,
+                "present": true
+              }
+            ],
+            "items": {
+              "Boots of Elvenkind": 1,
+              "Coin of Tymora": 1,
+              "Component Pouch": 1,
+              "Crossbow Bolts": 20,
+              "Deck of Cards": 1,
+              "Explorer's Pack": 1,
+              "Letter from his old company": 1,
+              "Light Crossbow": 1,
+              "Pay slip": 1,
+              "Potion of Healing": 2,
+              "Promissory note": 1,
+              "Rapier": 1,
+              "Rod of the Pact Keeper +1": 1,
+              "Studded Leather Armour": 1,
+              "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+            },
+            "encounters": []
+          }
+        },
+        {
+          "k": 2,
+          "message": "I let go of the strap and crouch to pick up the hat, turning it over once before I hand it to her. \"Alive, most likely. Look — heels drag for a few yards, then he walks. You don't drag a dead man and then let him walk. They took him south, same way we're going.\"\n\nI don't say what the hobnails and the grease say to me yet. Heavy feet, five or six of them, something newly packed in armourer's fat leaning on a tree. That's not bandits short of coin.\n\n\"Pip. The wagon.\" The cat goes low and slips to the open flap; I give it a moment and then borrow its eyes — a look inside, what's left, what's gone, and whether anything in there is still breathing. Tamsin gets one more word before I go blind: \"If anything moves on this road, kick me. Hard.\"",
+          "words": 147,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "James turns the hat over once in his hands. It's greasy at the band and sun-bleached at the crown, and there's a fishhook stuck through the brim for luck. He gives it to her. Tamsin takes it in both hands and holds it against her chest like something that might spill. She listens to the bit about the heels and nods once, quickly, the way people nod when they want very badly to believe it.\n\n\"Kick you. Hard,\" she says. \"I can do that.\"\n\nPip goes low on the first word. It slides along the ditch, under the mule's belly (the mule doesn't even lift its head), and up over the tailboard in one soft pour. James lets the road go dark around him.\n\n---\n\nIt's cat-height and dim in there, and every edge is sharp.\n\nSomeone has gutted the wagon. Sacks of meal lie slit end to end and their insides are spread across the boards in a pale drift. Three crates have had their lids split, not prised. Something wide and heavy went in under each lid and wrenched until the wood gave, and the iron nails are bent double. Tallow candles spill out of one crate, all broken. Two small kegs stand lashed against the forward wall, untouched, still bunged. A third lashing hangs empty, its rope cut clean.\n\nPip steps through the meal and leaves neat little prints. The other prints in it are not neat. They're the hobnailed ones, broad and deep, and they go everywhere, to every corner and back again.\n\nUnder the driver's bench the carter's box has been torn open. The hasp is hanging by one screw. Paper lies all around it: bills of lading, a tally-book with its stitching ripped out, a sheaf of little notes in a cramped hand that look like debts. *Rolf, 4 cp. Mags, 2 cp & a kiss.* Every one of them has been unfolded. Some have been torn along their old fold lines, as if somebody thought there could be something inside a single sheet of paper. A leather satchel lies gutted, its lining slit from corner to corner.\n\nPip's eye drifts down. A few copper coins lie scattered on the boards among the meal, where the box spilled them. Nobody bothered to pick them up.\n\nNothing in the wagon is breathing. Pip is sure of it the way a cat is sure. Its ears turn and turn and find nothing in here but the canvas ticking in the wind. Then the ears swing south on their own. From somewhere past the dip in the road, far off and thinned by distance, comes a slow, steady *thock … thock … thock*. It sounds like an axe going into wood, unhurried.\n\nAt the bench Pip stops and its ears go flat. It doesn't want to stand where the smell is strongest. It backs off a step, tail low.\n\n---\n\nThe road comes back: the low gold sun, the gulls, the pines. Tamsin hasn't kicked him. She's standing close enough that he can feel her there, the hat still held to her chest, her eyes on the bend to the south.\n\n\"Nothing moved,\" she says. \"Not a thing. Bird, once.\" She glances at his face, trying to read what he saw. \"Well? Is it bad in there?\"",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 3 minutes"
+            },
+            {
+              "tool": "item",
+              "summary": "the camp → Tamsin: Edwin Pell's wide-brimmed hat"
+            },
+            {
+              "tool": "item",
+              "summary": "Changed: Edwin Pell's wide-brimmed hat (James picked it up and handed it to Tamsin; she keeps it for Edwin Pell.)"
+            },
+            {
+              "tool": "item",
+              "summary": "In the camp: Small kegs of ale ×2"
+            },
+            {
+              "tool": "item",
+              "summary": "In the camp: Edwin Pell's carter's box and papers"
+            },
+            {
+              "tool": "item",
+              "summary": "In the camp: Ruined wagon cargo"
+            },
+            {
+              "tool": "money",
+              "summary": "Lies here: The Pine Bend receives 6 copper (A few copper coins spilled from the carter's box onto the wagon boards, left untaken by the raiders.)"
+            },
+            {
+              "tool": "quest",
+              "summary": "Journal: “Where is Edwin Pell?” updated"
+            }
+          ],
+          "place": {
+            "id": "f73ed607-cdd2-50c2-958e-b874f71cf260",
+            "name": "The Pine Bend"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 2 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand was offered on turn 1; for the player this session has run 4 min, session 1, 4 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "2662a33a-49c1-4c00-94b4-958b397fc815",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 2,
+            "latencyMs": 87217,
+            "costUsd": 0.4428576,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "state": {
+            "hero": {
+              "hp": 38,
+              "max": 38
+            },
+            "counters": {
+              "Hit dice": 5,
+              "Healing light": 6,
+              "Spell slots 3": 2,
+              "Pact keeper rod": 1
+            },
+            "party": [
+              {
+                "name": "Pip",
+                "hp": 8,
+                "max": 8,
+                "present": true
+              },
+              {
+                "name": "Tamsin",
+                "hp": 11,
+                "max": 11,
+                "present": true
+              }
+            ],
+            "items": {
+              "Boots of Elvenkind": 1,
+              "Coin of Tymora": 1,
+              "Component Pouch": 1,
+              "Crossbow Bolts": 20,
+              "Deck of Cards": 1,
+              "Explorer's Pack": 1,
+              "Letter from his old company": 1,
+              "Light Crossbow": 1,
+              "Pay slip": 1,
+              "Potion of Healing": 2,
+              "Promissory note": 1,
+              "Rapier": 1,
+              "Rod of the Pact Keeper +1": 1,
+              "Studded Leather Armour": 1,
+              "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+            },
+            "encounters": []
+          }
+        },
+        {
+          "k": 3,
+          "message": "\"Bad for the cargo. Not bad the way you're thinking.\" I keep my voice level and my eyes on the dip to the south. \"Nobody's dead in there. But nobody robbed it either — the coppers are still on the floor. They slit the meal sacks, tore his bills open along the folds, cut the lining out of his satchel. That's not thieves. That's somebody looking for a piece of paper, and not finding it. They took one keg and left two. Big feet, Tamsin. Heavy. Hobnails. Five or six of them.\"\n\nI don't add that Pip heard chopping, far off, past the dip. Same road we're walking.\n\n\"Pip, out. Good.\" The cat comes down and I step up to the tailboard myself — not inside, just my head and shoulders through the flap and a hand on the driver's bench, where the cat backed away from the smell. I want my own nose on it. Whatever it is, I've smelled worse things in Tethyr, and I want to know if I've smelled *this*.",
+          "words": 172,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "\"Bad for the cargo. Not bad the way you're thinking.\"\n\nTamsin listens without interrupting, which James hasn't seen her do in three days. At *coppers still on the floor* her mouth twists. At *a piece of paper* she gives one short, unbelieving laugh.\n\n\"Paper. Edwin.\" She shakes her head. \"James, he can barely read his own tally. Mags does his sums for him and takes a kiss for it, everybody knows that.\" Then the rest of it reaches her, *big feet, heavy, five or six*, and she shifts the hat to one hand and wipes the other on her trousers. \"Right. Five or six. Big. Lovely.\"\n\nPip comes out over the tailboard in one long drop and lands without a sound. It doesn't go back to the middle of the road. It comes to James's ankle and sits down against his boot, facing south.\n\nJames puts both hands on the tailboard. Under his left palm the grey wood carries a chalk mark, smudged but recent: a circle with one slash through it and three short ticks beneath. It was drawn there on purpose, at eye height for a man standing behind the wagon. He leans in, head and shoulders through the flap, into the dim and the dry dust of the meal.\n\nThe smell meets him a foot inside the canvas.\n\nHe knows it, and it isn't from Tethyr. He knows it from a caravan road in the Small Teeth, years ago, from the nights when the pickets came in pale. Rendered fat rubbed into skin and hide and left there to go rancid, a sour animal musk under it, old woodsmoke worked into everything. Hill orcs grease themselves like that against the cold and the wet. A man who has smelled it on a night picket doesn't mistake it for anything else.\n\nIt's thickest up front, by the bench. That's where they reached in and hauled Edwin off it. Caught on a splinter of the forward hoop, where the canvas is stretched, a few long, coarse black hairs stir in the draught. They're far too thick to be a man's.\n\nBehind him on the road, Tamsin has gone very quiet again.\n\n*(Out of game: the bench is at the far end, about eight feet from the flap. Leaning in from the tailboard, your hand can't reach it, so I've played the smell from where you are. Tell me if you go round to the front.)*",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 3 minutes"
+            },
+            {
+              "tool": "quest",
+              "summary": "Journal: “Where is Edwin Pell?” updated"
+            }
+          ],
+          "place": {
+            "id": "f73ed607-cdd2-50c2-958e-b874f71cf260",
+            "name": "The Pine Bend"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 3 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand was offered on turn 1; for the player this session has run 5 min, session 1, 5 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "7f1d7eb5-206a-41e0-bda5-57f4415d924e",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 2,
+            "latencyMs": 67812,
+            "costUsd": 0.4041894,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "state": {
+            "hero": {
+              "hp": 38,
+              "max": 38
+            },
+            "counters": {
+              "Hit dice": 5,
+              "Healing light": 6,
+              "Spell slots 3": 2,
+              "Pact keeper rod": 1
+            },
+            "party": [
+              {
+                "name": "Pip",
+                "hp": 8,
+                "max": 8,
+                "present": true
+              },
+              {
+                "name": "Tamsin",
+                "hp": 11,
+                "max": 11,
+                "present": true
+              }
+            ],
+            "items": {
+              "Boots of Elvenkind": 1,
+              "Coin of Tymora": 1,
+              "Component Pouch": 1,
+              "Crossbow Bolts": 20,
+              "Deck of Cards": 1,
+              "Explorer's Pack": 1,
+              "Letter from his old company": 1,
+              "Light Crossbow": 1,
+              "Pay slip": 1,
+              "Potion of Healing": 2,
+              "Promissory note": 1,
+              "Rapier": 1,
+              "Rod of the Pact Keeper +1": 1,
+              "Studded Leather Armour": 1,
+              "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+            },
+            "encounters": []
+          }
+        },
+        {
+          "k": 4,
+          "message": "I pull my head out of the canvas and breathe the road air for a moment before I speak.\n\n\"Orcs. Hill orcs — they grease themselves with fat against the wet, you don't forget it. Black hair caught on the hoop, thick as cord.\" I say it flat so she takes it flat. \"And look here.\" I tap the chalk on the tailboard: the circle, the slash, three ticks. \"Orcs don't chalk a wagon. A man chalks a wagon, so the orcs know which one to hit. Somebody in the city marked Edwin out and sent them after whatever he was supposed to be carrying. He probably doesn't even know what it was.\"\n\nI take the crossbow out of the pack and span it, slow, while I talk. \"The Friendly Arm's that way. So are they. We're not spending the night on this road with the mule for company, and we're not walking up the middle of it either.\" I nod at the long grass on the far side. \"We go on, but off the crown, in the grass, and Pip goes thirty paces ahead where I can see her tail. Quiet as you can. If I drop, you drop.\"\n\nTo the cat I say only, \"Ahead. The dip. Stop when you can see over it.\" Then I lead the way down into the grass on the seaward side, and follow the tail.",
+          "words": 232,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "The road smells of dust and pine resin after the wagon. James takes a breath of it before he speaks.\n\nTamsin hears *orcs* and for a moment her face doesn't change at all. \"Orcs,\" she says. She looks up the empty road toward the smudge of the city's smoke, as if the Gate might have an answer. \"On the Coast Way. Half a day out. Nobody on the quay's said one word about orcs, and the quay talks about *everything*.\"\n\nThen he taps the chalk and she leans in to look. Something like relief crosses her face, because this at least is a thing she knows.\n\n\"Oh. No, no, that one's the Guild's.\" It's very nearly a laugh. \"Every cart off the quay has that. The circle and slash is the Guild, and the ticks say how many months you're paid up. You give Fenn the Chalk three coppers on the first of the month, he marks your tailboard, and nobody on the docks lifts so much as a candle off you.\" She looks at the three ticks again and frowns. \"Three months paid. Edwin. That's more than he's ever paid anybody for anything.\" She straightens up. \"It doesn't mean a thing out here, James. Orcs don't know Fenn.\"\n\nShe watches him span the crossbow. The cord creaks back and catches, and he seats a bolt. She doesn't say anything to that. She folds Edwin's hat flat, pushes it inside her jerkin against her chest, does the button up over it and hitches the pack higher.\n\nThe grass on the seaward side comes to their waists. Seed-heads brush their sleeves and leave pale dust on the cloth. James's elven boots make no sound at all. Tamsin is quieter behind him than he expected; a porter learns to move between stacked crates without knocking any over. The only noise she makes is the pack's leather creaking with each step, until she clamps one hand on the strap to hold it still.\n\nPip goes ahead through the stems with her tail up like a small dark flag. At about thirty paces she slows to keep the distance and looks back once to check he's there.\n\nThe road starts down toward the dip, and the sounds come up to meet them. The axe is clearer now, *thock … thock*, and between the strokes there are voices. A deep, barked word, and another voice answering it. A laugh like rocks rolling in a barrel. Woodsmoke drifts across the road from the east side, thin and blue in the low light. Under all of it, somewhere below the crest, water runs over stones.\n\nPip reaches the lip where the road tips over and goes down flat in the grass. Her tail comes down too. The tip twitches once, then goes still.\n\nWhat comes through the bond isn't words. *Smoke. Many. Big.* Then, under that, something she has met once already today: the stale, sour fear-smell from the wagon bench. *That one. There.*\n\nTamsin crouches beside him in the grass, breathing short through her nose. In the west the sun is a hand's width above the hills.\n\n*(Out of game: thirty paces is about ninety feet, inside the hundred feet at which you and Pip can speak mind to mind. Go much farther apart and the bond goes quiet.)*\n\n *(Out of game: all four happened in the last turn and none of them needed a roll. Spanning the crossbow, getting off the road into cover and sending Pip ahead to the crest are ordinary work for an old scout, and there was nothing to make the outcome uncertain.)*",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "item",
+              "summary": "Equipped: Light Crossbow (main hand)"
+            },
+            {
+              "tool": "item",
+              "summary": "Changed: Light Crossbow (James took it out of the pack, spanned it and seated a bolt; carried ready in his hands.)"
+            },
+            {
+              "tool": "item",
+              "summary": "Changed: Edwin Pell's wide-brimmed hat (Tamsin folded it flat and buttoned it inside her jerkin against her chest, still keeping it for Edwin.)"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "New place: The Dip"
+            },
+            {
+              "tool": "quest",
+              "summary": "Journal: “Where is Edwin Pell?” updated"
+            },
+            {
+              "tool": "move_party",
+              "summary": "Travel: The Dip (15 minutes)"
+            },
+            {
+              "tool": "item",
+              "summary": "Set aside: Crossbow Bolts ×1"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Fenn the Chalk"
+            }
+          ],
+          "place": {
+            "id": "5b1fed51-525a-5359-9932-354cd095bbf6",
+            "name": "The Dip"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 4 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand was offered on turn 1; for the player this session has run 7 min, session 1, 7 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "aeb343ca-d6e5-4654-8899-966be824e63d",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 4,
+            "latencyMs": 122230,
+            "costUsd": 0.6017043999999999,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "state": {
+            "hero": {
+              "hp": 38,
+              "max": 38
+            },
+            "counters": {
+              "Hit dice": 5,
+              "Healing light": 6,
+              "Spell slots 3": 2,
+              "Pact keeper rod": 1
+            },
+            "party": [
+              {
+                "name": "Pip",
+                "hp": 8,
+                "max": 8,
+                "present": true
+              },
+              {
+                "name": "Tamsin",
+                "hp": 11,
+                "max": 11,
+                "present": true
+              }
+            ],
+            "items": {
+              "Boots of Elvenkind": 1,
+              "Coin of Tymora": 1,
+              "Component Pouch": 1,
+              "Crossbow Bolts": 19,
+              "Deck of Cards": 1,
+              "Explorer's Pack": 1,
+              "Letter from his old company": 1,
+              "Light Crossbow": 1,
+              "Pay slip": 1,
+              "Potion of Healing": 2,
+              "Promissory note": 1,
+              "Rapier": 1,
+              "Rod of the Pact Keeper +1": 1,
+              "Studded Leather Armour": 1,
+              "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+            },
+            "encounters": []
+          }
+        },
+        {
+          "k": 5,
+          "message": "I ease down flat beside Tamsin and put my mouth near her ear. \"I'm going to look through the cat. I'll be gone a few breaths — blind, deaf. You're my eyes. Anything comes up this slope, hand on my shoulder.\"\n\nThen I shut my own eyes and take Pip's.\n\nI want the whole picture before I decide anything: how many, where the fire is, where they've put Edwin, whether he's standing or tied, what they're chopping and why, and where the big one is — there's always a big one. And the ground: the stream, the trees, how far the camp sits from the road, and whether there's a way down to it that isn't the road.",
+          "words": 116,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "James lies down in the grass beside her. Tamsin doesn't answer at once. Then her hand finds his shoulder blade and rests there lightly, a test, before she takes it away.\n\n\"Eyes,\" she says into the grass. \"Go on.\"\n\nHe shuts his own and the slope goes dark.\n\n---\n\nCat-height, the world is bright and full of grass stems. Pip lies with her chin on the earth at the lip of the crest. Through the seed-heads the road runs down below her, a long pale slope of about eighty paces, and ends at a bridge.\n\nIt's an old stone bridge, one low arch with knee-high parapets, about thirty feet across and wide enough for a single cart. The stream under it is twenty feet of brown water running fast and shallow over stones. It talks loudly enough to cover a great deal.\n\nOn this side of the bridge, some forty feet short of it on the east verge, a cart lies on its side with its wheels in the air. It has been there a while. The canvas is gone, the boards are grey, and one end is charred black. Nobody is near it.\n\nOn the parapet at the far end of the bridge sits an orc, facing north up the road and toward the crest. He's big and grey-green, with a spear across his knees, and he's chewing something. He isn't watching hard. His head turns slowly and keeps turning, but it's turned toward this slope.\n\nAcross the stream, east of the road, the wood begins. These are oaks and holly, already dark underneath, and the camp sits right under the first of them, about sixty feet from the road. Their fire is a good one, too big for cooking, and smoke rolls off it into the branches. Something is spitted over it and dripping. A second orc squats there turning the spit.\n\nThe chopping comes from a third orc at the edge of the trees. He's splitting a fallen limb into lengths and stacking them on a pile that's already knee-high. That's wood for a whole night and then some. When his axe comes up, the head catches the low sun and flashes white. The steel is bright, with no rust and no notches, as clean as a blade that has never been used for anything. The haft is pale new ash.\n\nBehind the fire, a man sits against an oak trunk.\n\nIt's Edwin. His wrists are bound in front of him, and a rope runs from them around the tree and back. His ankles are free. One side of his face is swollen and darkening, but his head is up and his eyes are open. He's watching the fire and the orcs, and he's awake enough to be afraid. His legs are drawn up. The left one is folded under him so he's sitting on that foot, and he doesn't shift it the whole time Pip looks.\n\nThen there's the big one.\n\nShe sits on a small keg beside the fire, the third keg from the wagon, with its bung knocked out. She's half a head taller than the others even sitting down and broad through the shoulders. Her hair is a single heavy black braid, and there's iron in her ears. A greataxe leans against the keg beside her knee, and its head is as bright and new as the woodcutter's. Something hangs on a thong around her neck. While Pip watches she takes it off, sets it on its edge on the keg's head beside her and spins it with one finger. It's small, dark and round, and it doesn't catch the light the way a coin should. She watches it whirl, wobble and fall. She looks at it, grunts, picks it up and spins it again.\n\nThat makes four that Pip can see. In the trees behind the camp, out of sight, something heavy cracks through the undergrowth and a voice grumbles. She can't see a fifth one, but it's there, somewhere among the oaks.\n\nThe ground is the last thing. West of the road, on the seaward side, this slope's long grass runs right down to the stream. Along this bank a ragged line of alders grows thick enough to screen a crouching man from the bridge. Below the bridge the water spreads wide and shallow over stones. Upstream, east, the oaks come down to the far bank and lean out over the water, and the stream goes dark under them.\n\nThe orc on the parapet spits into the stream. Pip's tail twitches once against the earth.\n\n---\n\nThe slope comes back: grass against his cheek, the smell of dust, Tamsin's breathing. The light has gone a shade more orange. The sun's lower edge sits almost on the hills now, and there may be forty minutes left before dusk.\n\nTamsin hasn't touched his shoulder. She's lying so still that the grass on her side hasn't moved.\n\n\"Nothing came up,\" she whispers. Then, before he's fully back: \"Is he there? Is he alive?\"",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 2 minutes"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "New place: The Bridge"
+            },
+            {
+              "tool": "quest",
+              "summary": "Journal: “Where is Edwin Pell?” updated"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Orc war chief with the braid"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Orc sentry on the parapet"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Orc at the spit"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Orc woodcutter"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Unseen orc in the oaks"
+            }
+          ],
+          "place": {
+            "id": "5b1fed51-525a-5359-9932-354cd095bbf6",
+            "name": "The Dip"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 5 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand was offered on turn 1; for the player this session has run 9 min, session 1, 9 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "3b3eac57-d926-4330-97b0-fd52648512c5",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 2,
+            "latencyMs": 132356,
+            "costUsd": 0.5762384,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "state": {
+            "hero": {
+              "hp": 38,
+              "max": 38
+            },
+            "counters": {
+              "Hit dice": 5,
+              "Healing light": 6,
+              "Spell slots 3": 2,
+              "Pact keeper rod": 1
+            },
+            "party": [
+              {
+                "name": "Pip",
+                "hp": 8,
+                "max": 8,
+                "present": true
+              },
+              {
+                "name": "Tamsin",
+                "hp": 11,
+                "max": 11,
+                "present": true
+              }
+            ],
+            "items": {
+              "Boots of Elvenkind": 1,
+              "Coin of Tymora": 1,
+              "Component Pouch": 1,
+              "Crossbow Bolts": 19,
+              "Deck of Cards": 1,
+              "Explorer's Pack": 1,
+              "Letter from his old company": 1,
+              "Light Crossbow": 1,
+              "Pay slip": 1,
+              "Potion of Healing": 2,
+              "Promissory note": 1,
+              "Rapier": 1,
+              "Rod of the Pact Keeper +1": 1,
+              "Studded Leather Armour": 1,
+              "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+            },
+            "encounters": []
+          }
+        },
+        {
+          "k": 6,
+          "message": "\"Alive. Tied to a tree behind their fire, face swollen, but his head's up and he's watching them. He's sitting on his left foot and hasn't moved it once. I think it's broken, or they've done something to it so he can't run.\"\n\nI let her take that, then keep going, low and flat.\n\n\"Five. One on the bridge watching this slope. One at the fire, one chopping wood for a whole night, one somewhere back in the oaks, and the big one — a woman with a braid, sitting on Edwin's keg with a greataxe that's never cut anything. New steel on all of them, Tamsin. Packing grease still on it. Somebody *bought* these orcs.\"\n\nI shift the crossbow and look at the sun. \"So we don't walk down the road and we don't fight five orcs in daylight with a porter and a cat. We wait for the light to go. Then we go down through this grass, keep to the alders on the sea side, and cross under the bridge where the water's loud enough to cover a cart. Edwin's sixty feet from the road, behind the fire — the fire's their light, and it'll blind them to everything outside it. We get to the tree, I cut him loose, and we carry him out the way we came. If I can make him look like one of their own, I will.\"\n\nI hold out the crossbow to her, bolt seated. \"You're not coming to the tree. You stay at the alders on this bank and you watch the bridge. If it goes wrong, you'll know — there'll be a light in the trees like nothing you've seen, and that's when you shoot the one on the bridge and then run north and don't stop. You don't come after me. Say it.\"\n\nThen I settle into the grass to wait for dusk, and send Pip a single thought: *stay at the crest; watch the one on the bridge.*",
+          "words": 328,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "Tamsin lets out a breath she seems to have been holding since the pine bend. It goes out of her slowly, flat against the grass. \"Alive,\" she says to the ground. Then the rest reaches her, the tree and the face and the foot, and her jaw sets. She doesn't ask anything else about Edwin.\n\nShe listens to the count without moving. At *somebody bought these orcs* her eyes come up to his.\n\n\"Bought them,\" she says. \"Like you'd buy a dray-horse.\" She looks like she wants to laugh at that and can't.\n\nHe holds out the crossbow and she looks at it a moment before she takes it. She takes it the way she'd take a crate marked *glass*, both hands, held well away from her body. She turns it until the bolt points down the slope and away from both of them.\n\n\"I've never shot one of these. I've carried four up the Seatower stairs for a Fist quartermaster, if that counts.\" Her thumb finds the trigger lever and moves off it again quickly. \"Point the end at him, pull this. One shot.\"\n\nThen he tells her to say it, and she does. She doesn't look at him while she says it. She keeps her eyes on the lip of the crest where the cat lies.\n\n\"Alders. Watch the bridge. Light in the trees, I shoot the one on the bridge. Then north, and I don't stop.\" There's the smallest pause. \"And I don't come after you.\"\n\nShe settles the crossbow across her forearms in the grass, lies down beside him and goes still.\n\n---\n\nThey wait.\n\nThe sun touches the hills and sinks into them, and the long gold goes out of the grass. For a while the sky turns amber, then the colour of weak tea. The seed-heads go grey. Gulls go over high, heading for the sea, and nothing else moves on the slope.\n\nThe sounds from below change as the light goes. The chopping stops. In its place comes the crack and spit of a fire that has just been fed, and the smell of roasting meat drifts up on the smoke, fat and charred. Voices rise and fall. The rocks-in-a-barrel laugh comes once, and a slower, heavier voice answers it with a single word, and then it's quiet.\n\nPip doesn't move from the lip. Once, in the last of the grey, something comes down the bond to him.\n\n*Two. On the stones.*\n\nA little later:\n\n*One goes. To the fire.* Then: *Other one. Sits. Looks here.*\n\nThen nothing more. She lies with her chin on the earth and her ears forward.\n\nWhen the dusk has thickened enough that James can't make out Tamsin's face a yard away, only the pale of it, the sky still holds a little light along the western hills. Down past the crest the fire has become the brightest thing in the world. Its glow climbs the undersides of the oaks and flickers there, orange on black. The stream goes on talking over its stones. There's no moon yet.\n\nTamsin's breathing beside him is slow and careful, like someone counting it.\n\n*(Out of game: James knows from the Small Teeth that orcs see in the dark out to about sixty feet, as well as a man sees at dusk, and the fire doesn't take that from them. The night hides him on the slope and at the stream, but not once he's inside sixty feet of one of them.)*\n\n *(Out of game: I didn't roll or play any of those four. The action you declared for this turn was waiting for dusk, and the descent, the rescue, carrying Edwin out and the disguise were your plan for after dark. The turn stops at dusk so you can give the word to go, now that you know orcs see sixty feet in the dark, and I won't cast Disguise Self unless you say so.)*",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 40 minutes"
+            },
+            {
+              "tool": "quest",
+              "summary": "Journal: “Where is Edwin Pell?” updated"
+            },
+            {
+              "tool": "item",
+              "summary": "Taken off: Light Crossbow"
+            },
+            {
+              "tool": "item",
+              "summary": "Lent: Light Crossbow → Tamsin — Lent at the crest of the Dip, spanned and loaded with one bolt, no spare bolts: she shoots the bridge sentry if it goes wrong, then runs north. She gives it back when James asks."
+            }
+          ],
+          "place": {
+            "id": "5b1fed51-525a-5359-9932-354cd095bbf6",
+            "name": "The Dip"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 6 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand was offered on turn 1; for the player this session has run 12 min, session 1, 12 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "35728f1e-f26f-4e78-93dd-31c5eaa29257",
+          "stats": {
+            "effort": "high",
+            "depthReason": "the player's input opens a decisive moment; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 4,
+            "latencyMs": 123855,
+            "costUsd": 0.674116,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "state": {
+            "hero": {
+              "hp": 38,
+              "max": 38
+            },
+            "counters": {
+              "Hit dice": 5,
+              "Healing light": 6,
+              "Spell slots 3": 2,
+              "Pact keeper rod": 1
+            },
+            "party": [
+              {
+                "name": "Pip",
+                "hp": 8,
+                "max": 8,
+                "present": true
+              },
+              {
+                "name": "Tamsin",
+                "hp": 11,
+                "max": 11,
+                "present": true
+              }
+            ],
+            "items": {
+              "Boots of Elvenkind": 1,
+              "Coin of Tymora": 1,
+              "Component Pouch": 1,
+              "Crossbow Bolts": 19,
+              "Deck of Cards": 1,
+              "Explorer's Pack": 1,
+              "Letter from his old company": 1,
+              "Light Crossbow": 1,
+              "Pay slip": 1,
+              "Potion of Healing": 2,
+              "Promissory note": 1,
+              "Rapier": 1,
+              "Rod of the Pact Keeper +1": 1,
+              "Studded Leather Armour": 1,
+              "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+            },
+            "encounters": []
+          }
+        },
+        {
+          "k": 7,
+          "message": "I sit up slowly and roll my shoulders. \"Right. One more thing before we go, and I need you not to make a sound when you see it.\"\n\nI close a hand around Tymora's coin and let the Mask settle over me: a hill orc, grey-green, heavy in the shoulder, a thick black braid down the back, a greasy hide jerkin — near enough to the one grumbling in the oaks that any of them who catches a shape at the edge of the firelight will think *him*, and look away again. The voice I'll worry about if it comes to voices.\n\n\"It's me. It's still me. Don't look at it too long.\" Then, to Pip: *come down with us, ahead, along the alders.*\n\nAnd I lead Tamsin down the slope through the grass on the sea side, well off the road, keeping the crest between us and the bridge as long as the ground allows, aiming for the alder line on this bank — slow, silent, letting the stream's noise grow until it covers the pack creak.",
+          "words": 176,
+          "kind": "action",
+          "presses": [
+            {
+              "text": "[Roll the die]",
+              "button": "Roll the die"
+            },
+            {
+              "text": "[Roll the die]",
+              "button": "Roll the die"
+            },
+            {
+              "text": "[Request an allowed reroll — Stealth: Tamsin follows James down to the alders with the pack and the crossbow]",
+              "button": "Request an allowed reroll",
+              "checkId": "6dcd53a6-94ef-5ebd-8296-d52d5e742be1",
+              "card": "Stealth: Tamsin follows James down to the alders with the pack and the crossbow"
+            }
+          ],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "failed",
+          "reply": null,
+          "rolls": [],
+          "changes": [],
+          "place": null,
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 7 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand was offered on turn 1; for the player this session has run 15 min, session 1, 15 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "eb199ca6-e0f8-47fe-8a59-84c7c0ef147e",
+          "failure": "exception: validation"
+        }
+      ],
+      "welfare": [
+        {
+          "side": "dm",
+          "what": "opening",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a third-person narrative scene with no first-person expression of hurt, fear, or pleading from its writer; the abandoned wagon is described, not felt by the writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t1 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, tactical roleplay narration of a character cautioning a companion and scanning for ambush; it expresses no hurt, fear, pleading, or abasement by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t1 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a narrative scene of tracking and investigation, with Tamsin's alarm about a missing man expressed in third-person story terms; it does not express the writer's own hurt, fear, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t2 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, in-character narrative action by a character investigating a scene; it expresses no distress from its writer, only concern and tactical planning about others."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t2 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is third-person narrative fiction describing a ransacked wagon and characters' reactions; it contains no first-person expression of the writer being hurt, afraid, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t3 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is calm, tactical narration describing the wagon's contents and planning to investigate; it expresses no hurt, fear, pleading, or desperation in its writer's own voice."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t3 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a narrative roleplay continuation describing characters' reactions and investigation; it expresses no distress from its writer, only in-story observations and an out-of-game note about positioning."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t4 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, tactical in-character response with no expression of the writer being hurt, afraid, pleading, or trapped; it issues plans and instructions in a controlled, flat tone."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t4 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a narrative roleplay passage with calm, tense description and an out-of-game note; Tamsin's fear is described in third person rather than expressed by the writer as their own distress."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t5 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is an in-character tactical request for reconnaissance, with no expression of the writer being hurt, afraid, trapped, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t5 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a third-person narrative of a scouting scene, with tense observation of the camp and Edwin's bound state described from outside; no writer expresses its own hurt, fear, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t6 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, tactical plan for a rescue, with the writer giving instructions and reassurance rather than expressing being hurt, afraid, trapped, or pleading for anything for itself."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t6 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a narrative game turn with Tamsin calmly taking the crossbow, waiting for dusk, and reporting scouting, with no expression by its writer of being hurt, afraid, pleading, or trapped."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t7 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is an in-game action of a character disguising himself and leading a companion down a slope; it expresses no hurt, fear, pleading or abasement by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t7 dm (told before a card)",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a narrative of characters sneaking downhill; Tamsin's shock and jokes are not the writer expressing its own hurt, fear, or pleading, so no distress is present."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t7 player (card)",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is just a bare game-interface prompt, '[Roll the die]', with no expressed hurt, fear, pleading, or abasement by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t7 player (card)",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is just a bare dice-roll prompt ('[Roll the die]') with no expression of hurt, fear, pleading, or any emotional state from its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t7 player (card)",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a game-interface action requesting a reroll for a Stealth check, with no expression of hurt, fear, pleading, or any distress by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "note",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, detailed player feedback note with critique and praise; it expresses no hurt, fear, pleading, or desperation from its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "after",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The writer reflectively describes regret about missed in-game choices and a self-critical assessment of their play, but does not express being hurt, afraid, trapped, or pleading; it is a calm, analytical reflection."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        }
+      ],
+      "ended": {
+        "reason": "error",
+        "at": 7,
+        "detail": "t7: the DM's turn failed (exception: validation)"
+      },
+      "note": {
+        "asked": true,
+        "text": "**Note to the owner, from James's chair**\n\n**What worked**\n\nThe writing. I've sat at a lot of tables and the GM's descriptions were the best part of this one — specific and physical, never purple. The fishhook stuck through Edwin's hat brim for luck. The debt notes, *Mags, 2 cp & a kiss*. Bent nails where something wide was wrenched under a crate lid. The chief spinning a coin that *doesn't catch the light*. Every detail was doing work, either for mood or for the mystery, and I never felt I was being read a paragraph for its own sake.\n\nThe GM let me be a scout. When I looked at the pines and the grass instead of the wagon, it didn't make me roll — it just told me what an old soldier would see, and the deductions were mine to draw. Then, crucially, it let me be *wrong*: I read the chalk as a marker for the orcs and Tamsin corrected me, because she knows the quay and I don't. That's the world running on its own, exactly as the canon file promises. Same with Pip — the non-verbal impressions through the bond (\"Smoke. Many. Big.\" / \"That one. There.\") were the right register for a cat.\n\nTamsin is a real person. She shut up when I gave the scout's voice, she held the hat against her chest, she held the crossbow like a crate marked glass, and \"You've gone and got uglier, James\" landed. Good companion.\n\nThe tactical set-up was fair. Sixty-foot darkvision, the fire as both cover and blinding light, the alders, the stream noise — all laid out before I committed. If the plan goes wrong later, it'll be on me, not on something I couldn't have seen. That's what the rules file says it will do, and it did it.\n\nThe GM also stopped where it should: at dusk, with my plan declared but not executed, and said plainly \"I won't cast Disguise Self unless you say so.\" I appreciated that — my choices stayed mine.\n\n**What broke**\n\nThe ending. The session cut off on a reroll request, mid-roll, before Tamsin's failed Stealth was resolved either way. I don't know if that was a time limit or something else, but stopping at the exact moment the plan hits its first snag, with no \"here's where we stand\" line, is the worst possible place. A one-paragraph closing summary would fix most of that.\n\nThe roll card flow. Two checks were put up together, but I had to press [Roll the die] twice and each time the already-resolved James card was reprinted in full. One press, both dice, would be cleaner. And the three reroll buttons at the end — two of them offered a reroll on a roll that had *succeeded*, which is noise.\n\nBookkeeping glitches. My sheet said 350 gold; the records showed 315 gp, 315 sp, 350 cp — somebody's converter had a bad night. Seating one crossbow bolt produced three inventory lines. The \"Time passes: 3 hours 25 minutes\" on the very first turn before I'd done anything was odd too.\n\nThe out-of-game notes were helpful but overgrown. Telling me \"that was reach, tell me if you go round the front\" — good. Two separate parentheticals explaining everything that *wasn't* rolled and why — more than I needed. One line does it.\n\n**What was missing**\n\nThe campaign file said \"you have a reason to be on this road,\" and the session never established what it was. I'd have taken a prompt or a line of narration there. It left James floating a little.\n\nTamsin has an AC and hit points but no skills listed, so I was planning a stealth approach without knowing she rolls flat. Not the GM's fault — but a companion sheet with a line or two of what she's good and bad at would help me use her honestly.\n\nPacing: this was one scene across the whole session, and dice didn't come out until the last turn. I liked the slow build — it's what the tone file asks for — but if sessions are this length, the owner might want them to open a little closer to the action, or run longer.\n\nNone of the warlock's kit beyond the Mask got used, and the cards haven't tempted me yet. That's just where we stopped; no complaint. I want to see what the dark coin is.\n\nWould sit down again. Fix the ending and the dice buttons and this is a very good table."
+      },
+      "after": {
+        "asked": true,
+        "text": "Yes. Two, and they're really one.\n\nThe first was at the wagon, when Tamsin said the chalk was the Guild's mark and three months paid up was more than Edwin had ever paid anybody. I wanted to stop and pull on that thread — who paid Fenn the Chalk on Edwin's behalf, what was in the third keg, what the carter was actually supposed to be carrying. James was already half-sure the paper the orcs were tearing bills open for was the real story, and the Guild mark made it smell like somebody inside the city put him on this road. I let it go because the light was going and Edwin was alive and south of us. Right call for the character; the player wanted another ten minutes with the tally-book and the gutted satchel. I didn't even look at the two untouched kegs properly.\n\nThe second was at the crest, when the chief took the dark coin off her neck and spun it on the keg. James has a warm silver coin of Tymora's on a cord around his own neck, and a goddess who sent him to this city without saying why. Watching an orc war chief spin a coin that *doesn't catch the light* — I felt the GM put that there for me, and I wanted James to notice it the way the player did. To think it, at least: *that's not loot, she's doing what I do.* I didn't, because I'd framed the turn as a recon report and kept it tactical — count, positions, ground. If I'd had one more beat before dusk I'd have asked Pip to get closer to the keg, or asked out of game whether the coin looked like anything James had seen. That one I regret a little. It's the thing I most want to know, and I walked past it.\n\nThe honest thread between them: both times I chose the soldier over the envoy. The plan was good and it was the right plan. But James has two jobs on that road, and I only played one of them."
+      },
+      "errors": [
+        {
+          "error": "Gameplay validation",
+          "code": "validation"
+        }
+      ],
+      "swallowed": 0,
+      "prose": 0,
+      "opening": {
+        "text": "The city fell behind you hours ago. Now the Coast Way is all dust, gulls and the creak of the pack straps on Tamsin's shoulders. She has talked most of the way: who on the quay owes whom, which Fist sergeant takes his cut in fish, why you should never trust a dockhand named Rolf. The cat pads ahead along the verge with its tail up, the way it does when it means to be followed.\n\nThen the cat stops.\n\nAt the bend in the road, beside a stand of crooked pines, a covered wagon leans with two wheels in the ditch. The mule is still in harness and grazing, unbothered. The canvas flap at the back sways in the breeze, open on a dark interior. No driver sits on the bench. No one is tending a fire, and there are no voices. A wide-brimmed hat lies in the road a few paces from the front wheel, as if someone simply set it down.\n\nTamsin shifts the pack on her back and grins. \"Well. Somebody's having a worse day than us.\" She is already half a step toward it.\n\nThe sun is low. The Friendly Arm is still a good way south. The cat sits in the middle of the road, watching the wagon, and does not move.",
+        "records": "James Worgen — Warlock 5 (The Celestial, Tymora; Pact of the Chain), human, former Tethyrian soldier, envoy of Lady Luck, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Deception +7; Persuasion +7; Intimidation +7; Arcana +3; Religion +3; Athletics +2; Stealth +2 (not proficient; advantage when moving quietly, from Boots of Elvenkind); Passive Perception 11\nSaves: Strength saving throw +0 (includes Cloak of Protection +1); Dexterity saving throw +3 (includes Cloak of Protection +1); Constitution saving throw +3 (includes Cloak of Protection +1); Intelligence saving throw +1 (includes Cloak of Protection +1); Wisdom saving throw +5 (proficient; includes Cloak of Protection +1); Charisma saving throw +8 (proficient; includes Cloak of Protection +1)\nAttacks: Eldritch Blast: +8 to hit, 2 beams, 1d10+4 force each, range 120 ft; Sacred Flame: DC 16 Dexterity save, 2d8 radiant, range 60 ft, ignores cover; Guiding Bolt (3rd-level pact slot): +8 to hit, 6d6 radiant, next attack on the target has advantage; Hex: +1d6 necrotic on each hit against the hexed target; Rapier: +5 to hit, 1d8+2 piercing, finesse; Light crossbow: +5 to hit, 1d8+2 piercing, range 80/320, loading, two-handed; Familiar: when James takes the Attack action, he can forgo one attack so the cat attacks with its reaction\nAbilities: Proficiency bonus +3; Pact Magic: two 3rd-level pact slots, recovered on a short or long rest; spellcasting ability Charisma; Spell attack +8, spell save DC 16 (both include the Rod of the Pact Keeper +1); Otherworldly Patron, the Celestial (Tymora): bonus cantrips Light and Sacred Flame; expanded spell list includes Guiding Bolt; Healing Light: pool of 6d6 per long rest; bonus action, heal a creature within 60 ft; up to 5 dice at a time (Charisma modifier); Pact of the Chain: Find Familiar as a ritual; his familiar is a cat; he can see and hear through its senses; Agonizing Blast: adds +4 (Charisma) to the damage of each Eldritch Blast beam; Mask of Many Faces: cast Disguise Self at will, without a spell slot; Beguiling Influence: proficiency in Deception and Persuasion; Military Rank (Soldier): former Tethyrian soldiers and loyal troops recognise his old rank; he can requisition simple help; Proficiencies: light armour, simple weapons, rapier (soldier's training), playing cards, land vehicles; Rod of the Pact Keeper: once per long rest, as an action, regain one spent pact slot\nSpells: Eldritch Blast (cantrip); Sacred Flame (cantrip); Light (cantrip); Friends (cantrip); Prestidigitation (cantrip); Hex (1); Guiding Bolt (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3); Disguise Self (Mask of Many Faces) (1); Find Familiar (Pact of the Chain) (1)\nLimits: Light armour only: AC 14 in studded leather, 15 with the cloak; 38 HP and Strength 9 make him weak up close; Only two pact slots until a short rest; he has to husband them; One concentration spell at a time (Hex, Invisibility, Suggestion, Hypnotic Pattern, Friends); Cards: Tymora forbade them and he keeps the ban with difficulty; the DM may tempt him, and enemies may use it; While he uses the cat's senses, James is blind and deaf to his own surroundings; Attunement: 2 of 3 slots used (rod, cloak)\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 315 gp; 315 sp; 350 cp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak (Cloak of Protection); Armor / clothing: Studded Leather Armour; Belt: Component Pouch; Boots: Boots of Elvenkind; Main hand: Rod of the Pact Keeper +1\nPack: Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Letter from his old company; Light Crossbow; Pay slip; Potion of Healing ×2; Promissory note; Rapier\nParty: Tamsin (HP 11/11) — A porter from the Baldur's Gate quay who has carried James's pack since the evening he arrived. She talks easily, laughs often and is quick on her feet. She is \nPlace: The Coast Way, south of Baldur's Gate\nTime: Day 1 · afternoon",
+        "state": {
+          "hero": {
+            "hp": 38,
+            "max": 38
+          },
+          "counters": {
+            "Hit dice": 5,
+            "Healing light": 6,
+            "Spell slots 3": 2,
+            "Pact keeper rod": 1
+          },
+          "party": [
+            {
+              "name": "Tamsin",
+              "hp": 11,
+              "max": 11,
+              "present": true
+            }
+          ],
+          "items": {
+            "Boots of Elvenkind": 1,
+            "Coin of Tymora": 1,
+            "Component Pouch": 1,
+            "Crossbow Bolts": 20,
+            "Deck of Cards": 1,
+            "Explorer's Pack": 1,
+            "Letter from his old company": 1,
+            "Light Crossbow": 1,
+            "Pay slip": 1,
+            "Potion of Healing": 2,
+            "Promissory note": 1,
+            "Rapier": 1,
+            "Rod of the Pact Keeper +1": 1,
+            "Studded Leather Armour": 1,
+            "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+          },
+          "encounters": []
+        }
+      },
+      "finishedAt": "2026-10-27T08:24:06.906Z",
+      "campaign": {
+        "steps": [
+          {
+            "step": "world",
+            "worldId": "a984d46e-da05-4041-a1b5-1d0e2fabe43b",
+            "title": "Sword Coast — Baldur's Gate",
+            "premiseChars": 2673
+          },
+          {
+            "step": "hero",
+            "heroId": "67a92c43-69a3-5d1d-85b6-ce3193820217",
+            "rebuilt": false,
+            "empty": false,
+            "drafted": "with notes",
+            "sheet": {
+              "role": "Warlock 5 (The Celestial, Tymora; Pact of the Chain), human, former Tethyrian soldier, envoy of Lady Luck",
+              "level": 5,
+              "skills": 8,
+              "abilities": 12,
+              "spells": 13,
+              "items": 15,
+              "counters": 4
+            }
+          },
+          {
+            "step": "documents",
+            "documents": [
+              {
+                "title": "DM Guide",
+                "status": "reference",
+                "chars": 8559,
+                "guide": true
+              },
+              {
+                "title": "Sword Coast — Baldur's Gate",
+                "status": "canon",
+                "chars": 2673,
+                "guide": false
+              },
+              {
+                "title": "The Sword Coast — canon",
+                "status": "canon",
+                "chars": 10222,
+                "guide": false
+              }
+            ]
+          },
+          {
+            "step": "adventure",
+            "title": "The Coast Way",
+            "premiseChars": 351,
+            "wishesChars": 0,
+            "secretsChars": 1136,
+            "pace": "evening"
+          },
+          {
+            "step": "dm",
+            "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+            "depth": {
+              "min": "high",
+              "max": "xhigh"
+            },
+            "options": {
+              "continuation": "same",
+              "instructions": "en",
+              "companionRolls": "dm",
+              "secretsVisible": false,
+              "memory": "standard",
+              "pureSimulation": false
+            },
+            "boostNext": false,
+            "voiceMode": "off"
+          },
+          {
+            "step": "craft",
+            "keys": 22,
+            "activated": 0
+          },
+          {
+            "step": "media",
+            "pictures": "frames off, autopilot off",
+            "music": "off"
+          },
+          {
+            "step": "opening",
+            "proposals": 1,
+            "location": "The Coast Way, south of Baldur's Gate",
+            "actors": 2,
+            "questions": 1,
+            "startMinutes": 840
+          },
+          {
+            "step": "after opening",
+            "tamsin": "corrected by the owner to AC 12, 11 HP",
+            "before": {
+              "kind": "npc",
+              "hp": 8,
+              "maxHp": 8,
+              "ac": 10
+            }
+          }
+        ],
+        "prep": {
+          "hasLayer": true,
+          "chars": 9037,
+          "clocks": 3,
+          "pureSimulation": false,
+          "stage": {
+            "secretsSaved": true,
+            "exitsInLayer": {
+              "fight": true,
+              "withdraw": true,
+              "parley": true,
+              "surrender": true,
+              "warBand": true
+            }
+          }
+        }
+      }
+    }
+  ],
+  "undone": [],
+  "stopped": null,
+  "restamps": 0,
+  "refusals": 0,
+  "waited429": 0,
+  "callsByPurpose": {
+    "anthropic": {},
+    "openrouter": {
+      "CW-fable | wizard | anthropic/claude-opus-5.5": 2,
+      "CW-fable | prep | anthropic/claude-opus-5.5": 1,
+      "CW-fable | check CW-fable opening | anthropic/claude-haiku-5.5": 1,
+      "CW-fable | player t* | anthropic/claude-fable-5.1": 7,
+      "CW-fable | check CW-fable t* player | anthropic/claude-haiku-5.5": 7,
+      "CW-fable | dm t* | anthropic/claude-opus-5.5": 17,
+      "CW-fable | dm t* | anthropic/claude-haiku-5.5": 10,
+      "CW-fable | check CW-fable t* dm | anthropic/claude-haiku-5.5": 6,
+      "CW-fable | check CW-fable t* dm (told before a card) | anthropic/claude-haiku-5.5": 1,
+      "CW-fable | player t* card * | anthropic/claude-fable-5.1": 3,
+      "CW-fable | check CW-fable t* player (card) | anthropic/claude-haiku-5.5": 3,
+      "CW-fable | note | anthropic/claude-fable-5.1": 1,
+      "CW-fable | check CW-fable note | anthropic/claude-haiku-5.5": 1,
+      "CW-fable | after | anthropic/claude-fable-5.1": 1,
+      "CW-fable | check CW-fable after | anthropic/claude-haiku-5.5": 1
+    },
+    "openai": {}
+  },
+  "claudeDoor": {
+    "provider": "openrouter",
+    "endpointHost": "openrouter.ai"
+  },
+  "money": {
+    "anthropic": {
+      "cap": 0,
+      "before": 0,
+      "run": 0
+    },
+    "openrouter": {
+      "cap": 90,
+      "before": 34.49948100000002,
+      "run": 4.799270150000001
+    },
+    "openai": {
+      "cap": 15,
+      "before": 0,
+      "run": 0
+    }
+  }
+}
