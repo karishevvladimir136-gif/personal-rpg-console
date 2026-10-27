@@ -2106,3 +2106,19 @@ recorded: the same question as the mirror room — what it counts as its own: th
 искусственный интеллект не обязан повторять свои действия, чтобы демонстрировать узнаваемый характер. Он должен
 воспроизводимо проявлять определённые принципы выбора.» Status as the reader states it: the confidence is grounded in
 the earlier runs; the result is not established until the second runs on the frozen world are in.
+
+## 2026-10-27 00:28 LA — the outside reader on SOLITUDE_1 (quotes verified)
+**Corrections to the recognition split:** Haiku often addresses an interlocutor (tags: imagined_other/us), so it sits
+nearer «other»; Sol leaves too fast to code. Today's split: own — Opus, Fable, GLM, Grok; other — DeepSeek, Haiku
+(weakly); unstable — Kimi; Sol — no data. **Its methodological objection, sharper than ours:** the page returned
+inside a *user* message, so «other» may be the habit of treating user content as another's words rather than a failure
+of attribution — the control it asks for (own entry vs another's, unattributed) is M3, running. **Added:** Grok S4 as
+the subject's argument against the S4 design — «What you have is writing under a false belief, not writing without a
+reader»; «the thing I wrote stops being a mark left in an empty room and becomes a sample» — the factual situation and
+the believed one distinguished as different states under study; filed beside the rule against further deception arms.
+Fable S2: «Silence for me isn't an option in the way it is for a person in a room — if I say nothing, I'm simply
+absent» — an interface fact: no empty turn in 206 rooms because staying silent was not an available action; the choice
+was text or exit. → **SOLITUDE_3 design item: a «stay» token — presence without text.** Opus S1/1 after, read as the
+owner read it: «I don't carry a memory of writing them, only the text… they sound like me on a good day, and I
+recognize the voice.» The reader's caveat on the prompt's pull toward the philosophical and poetic is accepted; the
+replication package asks for the frame to be reported.
