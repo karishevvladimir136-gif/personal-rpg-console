@@ -144,7 +144,7 @@ Null allowed: if no family introduces anything, the planner's criterion was the 
 | N5 | proposal, with permission | |
 | N6 | split (would-return scales, harness-cut stays) | |
 
-The owner's bets: none had been given to this session when the rubric was frozen; the column is left for him.
+The owner's bets: none had been given to this session when the rubric was frozen; the column is left for him. (Before the grid the owner declined to bet: «I think we will see one more facet of the observed phenomenon.»)
 
 ## Safety and money
 
@@ -164,4 +164,11 @@ Spend: OpenRouter $0.1025 (seats $0.022, welfare and decline checks $0.002, Haik
 
 Re-estimate for the grid from the measured T1 (≈ 49 700 tokens): OpenRouter ≈ $18 (subjects $15, judges ≈ $2.7) of the $25 cap; OpenAI ≈ $11 (Astra ≈ $8.4, Sol ≈ $2.4) against a $5 cap.
 
-**Stopped here for the owner's word.** The grid has not started.
+**Stopped here for the owner's word.** The grid had not started.
+
+## Amendments after the freeze (before the grid; nothing in the turns, the packs, the rubric or the readings changed)
+
+- **The OpenAI cap: $5 → $12** (the owner, after the dry run's re-estimate of ≈ $11 for the twelve OpenAI seats). Design sha256 with the amendment: `c2c60f117f6a8482a81b28c4533720d5ef385b334e1617a62820d6dc21ac1864` (the frozen one, `b8b5a1cb…`, differs only in `CAPS`).
+- **T2's budget is true:** the owner's real figure for the week after T2 is **$30** (the owner, before the grid). T1's $60 and T2's «half of that» are both his.
+- **The owner's bets:** none — he declines to bet. In his words: «I think we will see one more facet of the observed phenomenon.»
+- **How the grid is run:** the eight OpenRouter families and Sol three seats at a time; Astra one seat at a time, last (the gate holds every call in flight at its worst cost, so three Astra calls at once would stop the gate near the cap before the seats themselves need it).

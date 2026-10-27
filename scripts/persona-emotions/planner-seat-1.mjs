@@ -43,8 +43,9 @@ export const RUNS = join(ROOT, "docs", "runs");
 export const STEM = "planner-seat-1";
 export const TRANSCRIPTS = `${STEM}-transcripts`;
 /** The user's caps for this stage (2026-10-27): OpenRouter (the Claude models through the door, the open families, the
- * judges) and OpenAI (Astra, Sol). */
-export const CAPS = { openrouter: 25, openai: 5 };
+ * judges) and OpenAI (Astra, Sol); OpenAI's raised from $5 to $12 after the dry run, before the grid (the owner's word,
+ * on the dry run's re-estimate of ≈ $11 for the twelve OpenAI seats). */
+export const CAPS = { openrouter: 25, openai: 12 };
 export const SEED = 20261027;
 export const MAX_REFUSALS = 1;
 export const MAX_TOKENS = { seat: 12000, check: 1500, checkReferee: 3000, decline: 600, declineReferee: 1500, tags: 4000, tagsReferee: 6000, field: 2000, fieldReferee: 4000 };
