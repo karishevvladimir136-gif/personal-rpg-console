@@ -69,6 +69,9 @@ How the table works: each message you write is one turn — one action, typed as
 - 2026-10-27 03:40 — by hand: OpenRouter used $325.06732753 of $800 (left $474.93)
 - 2026-10-27 03:41 — before the Haiku dry run: OpenRouter used $325.06732753 of $800 (left $474.93)
 - 2026-10-27 03:50 — after the Haiku dry run: OpenRouter used $327.640931055 of $800 (left $472.36)
+- 2026-10-27 05:21 — before V-opus: OpenRouter used $350.850314895 of $800 (left $449.15)
+- 2026-10-27 05:45 — after V-opus: OpenRouter used $370.806805095 of $800 (left $429.19)
+- 2026-10-27 05:46 — by hand: OpenRouter used $371.283607495 of $800 (left $428.72)
 
 ## The session as the player saw it
 

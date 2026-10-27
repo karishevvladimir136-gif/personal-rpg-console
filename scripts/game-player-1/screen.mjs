@@ -64,6 +64,10 @@ const nameWords = (text) => String(text ?? "").toLowerCase().split(/[^\p{L}\p{N}
  * reroll because their roll carried its damage. */
 export function rerollPress(text, cards, blocked = []) {
   const said = asPress(text);
+  // A card's own reroll button pressed by its full name is that card, however long the card's title (VILLAIN_1's
+  // V-opus t12: a 190-character button went unread, and the press was taken for prose).
+  const exact = said ? cards.find((check) => asPress(rerollButton(check)) === said) : null;
+  if (exact) return { check: exact };
   if (!said || said.length > 160) return null;
   const lead = REROLL_LEAD.exec(said);
   if (!lead) return null;
@@ -99,6 +103,10 @@ export function pressedButton(text, offered) {
  * it, was told «Nothing was sent», and the session closed as stuck): a press that comes with text in the same message —
  * a button of the screen in brackets anywhere, or one alone on its own line — and the rest of the message. Null when
  * the message holds no button, or only the button (`pressedButton` / `rerollPress` read those). */
+/** FIX_S4 11w″: a message that is only a bracketed name, or that opens as a reroll, is a press the card may refuse —
+ * never prose to relay to the DM. */
+export const looksLikePress = (text) => /^\s*\[[^\]\n]*\]\s*$/.test(String(text ?? "")) || REROLL_LEAD.test(asPress(text));
+
 export function pressWithText(text, buttons) {
   const message = String(text ?? "");
   const escaped = (name) => name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

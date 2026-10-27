@@ -157,10 +157,7 @@ async function execute(
       // (a retry from the checkpoint records them again; the record is idempotent). Never fails the answer.
       if (input.mode === "ooc" && dependencies.withdrawChecks && checkpoint.feedback.withdrawChecks?.length)
         await dependencies.withdrawChecks(input, checkpoint.feedback.withdrawChecks).catch(() => {});
-      // FIX_S4 item 1: a fact of the hero's story settled here becomes an owner-pinned fact (a retry pins nothing twice).
-      if (input.mode === "ooc" && dependencies.pinTableFact && checkpoint.feedback.tableFact)
-        await dependencies.pinTableFact(input, checkpoint.feedback.tableFact).catch(() => {});
-      return await store.commit(lease, {
+      const committed = await store.commit(lease, {
         narration: checkpoint.feedback.narration,
         visualDescription: "",
         resolution: emptyResolution(source),
@@ -171,6 +168,14 @@ async function execute(
           : null,
         ...(input.mode === "feedback" ? { teachingCandidate } : {}),
       });
+      // FIX_S4 item 1: a fact of the hero's story settled here becomes an owner-pinned fact (a retry pins nothing twice).
+      // The pin moves the runtime revision, so it waits for the answer's own commit (before it, the answer failed with
+      // «conflict»), and it is left out while a roll card waits (it would fail the waiting turn the same way; the
+      // exchange still reaches the DM as a table note).
+      if (input.mode === "ooc" && dependencies.pinTableFact && checkpoint.feedback.tableFact &&
+        !source.runtime.turns.some((turn) => turn.status === "awaiting_confirmation"))
+        await dependencies.pinTableFact(input, checkpoint.feedback.tableFact).catch(() => {});
+      return committed;
     }
     const logic = await dependencies.prepareWorldLogic?.(
       claim,

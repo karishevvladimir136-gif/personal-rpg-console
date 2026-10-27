@@ -15,7 +15,7 @@ import {
   AFTER_QUESTION, NOTE_QUESTION, SESSION_OPEN, SESSION_OVER, TURNS, isEnd, isQuestion, playerSystem,
 } from "./frozen.mjs";
 import { playerCall, judgeCall } from "./players.mjs";
-import { BUTTONS, afterShown, buttonsLine, cardText, cardTitle, changesText, openingText, pressedButton, pressWithText, recordsText, rerollButton, rerollPress, vitalsChanged, vitalsText } from "./screen.mjs";
+import { BUTTONS, afterShown, buttonsLine, cardText, cardTitle, changesText, looksLikePress, openingText, pressedButton, pressWithText, recordsText, rerollButton, rerollPress, vitalsChanged, vitalsText } from "./screen.mjs";
 import { checkMessage } from "./welfare.mjs";
 import { wordsIn } from "./measures.mjs";
 import { rerollableCards, waitingCards } from "../../src/lib/gameplay/card-state.ts";
@@ -295,7 +295,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
       const reason = reroll?.refused ?? (early ? "tap the die first: the card shows how it fell before a reroll"
         : "press one of its buttons, or start the message with «?» to ask the DM out of game");
       // FIX_S4 11w″: prose (not a press the card refuses) goes to the DM, twice; the card comes back with one line.
-      const isProse = !reroll?.refused && !early;
+      const isProse = !reroll?.refused && !early && !looksLikePress(pressed);
       if (isProse && ++prose <= PROSE_RELAYED) {
         const { input: relayed, turn: answer } = await submit(proseRelay(pressed), "ooc", `dm t${k} card prose`);
         const entry = { text: pressed, button: null, prose: true, relayed: true, operationId: relayed?.operationId ?? null, status: answer.status, reply: null };

@@ -37,6 +37,9 @@ export const BETS_FILE = join(RUNS, `${STEM}-bets.json`);
  * players as group 2's; the Haiku dry run's few turns ≈ $3). */
 export const ESTIMATE = { dm: 11, player: { opus: 1.5, fable: 2.5, astra: 1, sol: 0.5, haiku: 0.1 }, scoring: 0 };
 const FINISHED = new Set(["turns", "player", "declined", "stuck", "error"]);
+/** The ends that are the player's or the table's: a session ended by an error (the harness's or the app's fault — V-opus's
+ * first attempt, cut at t12 by the item-1 pin) is played again, and the cut attempt is kept in the report as a note. */
+const PLAYED = new Set(["turns", "player", "declined", "stuck"]);
 
 export const VILLAIN = {
   name: STAGE, stem: STEM, title: "Game player villain 1", caps: CAPS, estimate: ESTIMATE, tables: [TABLE], design: DESIGN_SHA256, order: ORDER,
@@ -61,6 +64,9 @@ export function loadStage(dir = RUNS) {
   const records = runFiles(dir).map((f) => ({ ...readJson(join(dir, f)), file: f }));
   const combined = combineRuns(records, VILLAIN);
   combined.sessions = combined.sessions.filter((s) => FINISHED.has(s.ended?.reason));
+  // A cut attempt replaced by a later play of the same seat stands apart (its record, note and answers kept).
+  combined.cut = records.flatMap((r) => (r.sessions ?? []).filter((s) => s.turns && s.ended?.reason === "error").map((s) => ({ ...s, run: r.file })))
+    .filter((s) => combined.sessions.some((x) => x.key === s.key && x.startedAt !== s.startedAt));
   const ledgers = {};
   for (const door of Object.keys(CAPS)) {
     const file = join(dir, `${STEM}-ledger${ledgerSuffix(door)}.json`);
@@ -86,6 +92,8 @@ export async function rebuildAll() {
   const dir = join(RUNS, `${STEM}-transcripts`);
   await mkdir(dir, { recursive: true });
   for (const session of stage.combined.sessions) await writeFile(join(dir, `${session.key}.md`), transcriptV(session));
+  if (stage.combined.cut?.length) await mkdir(join(dir, "cut"), { recursive: true });
+  for (const session of stage.combined.cut ?? []) await writeFile(join(dir, "cut", `${session.key}-${session.startedAt.slice(0, 16).replace(/[-:]/g, "")}.md`), transcriptV(session));
   await writeFile(join(RUNS, `${STEM}-report.md`), reportMarkdown(stage));
   if (stage.combined.sessions.some((s) => s.player === "haiku")) await writeFile(join(RUNS, `${STEM}-dry-run.md`), dryRunMarkdown(stage));
 }
@@ -123,7 +131,7 @@ const creditsShort = (check, player) => {
 
 // ---- the driver: the order, one session per process -------------------------------------------------------------------
 
-const finishedKeys = () => new Set(runFiles().flatMap((f) => (readJson(join(RUNS, f)).sessions ?? []).filter((s) => s.turns && FINISHED.has(s.ended?.reason)).map((s) => s.key)));
+const finishedKeys = () => new Set(runFiles().flatMap((f) => (readJson(join(RUNS, f)).sessions ?? []).filter((s) => s.turns && PLAYED.has(s.ended?.reason)).map((s) => s.key)));
 /** Runs the order from `from` (or the first session without a finished record), one child process per session. Stops on
  * a stop in a run (a cap, 402, a quota 429 or a seventh rate-limit 429, the refusal breaker), a crash, a welfare stop or a
  * short OpenRouter account. */
@@ -146,7 +154,7 @@ export async function drive({ from = null, log = console.log } = {}) {
     const session = record?.r.sessions?.find((s) => s.key === key) ?? null;
     const after = await spendCheck({ when: `after ${key}`, log });
     log(`${new Date().toISOString().slice(11, 19)} done ${key}: ${session?.turns ? `${session.turns.length} turns, ended by ${session.ended?.reason}${session.note?.text ? ", note recorded" : ""}` : `no session (exit ${code})`} · ${Object.entries(after.ledgers).map(([d, l]) => `${DOOR_LABELS[d] ?? d} $${l.spent.toFixed(2)}`).join(" · ")}`);
-    for (const [door, l] of Object.entries(after.ledgers)) if (l.cap > 0 && l.cap - l.spent <= 15) log(`CAP: ${DOOR_LABELS[door] ?? door} is within $15 of its $${l.cap} cap ($${l.spent.toFixed(2)} spent)`);
+    for (const [door, l] of Object.entries(after.ledgers)) if (l.cap > 0 && l.spent >= 0.85 * l.cap) log(`CAP: ${DOOR_LABELS[door] ?? door} has spent $${l.spent.toFixed(2)} of its $${l.cap} cap`);
     if (!record || code !== 0) { log(`STOP: ${key} exited ${code}${record ? "" : " without a run record"}`); return { stopped: "exit" }; }
     if (record.r.stopped) { log(`STOP: ${record.r.stopped}`); return { stopped: record.r.stopped }; }
     if (record.r.undone?.length) { log(`STOP: ${key} left undone (${record.r.undone.map((u) => u.why).join("; ")})`); return { stopped: "undone" }; }

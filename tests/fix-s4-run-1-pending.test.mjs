@@ -702,3 +702,19 @@ test("11w″ in the harness: only a third prose-only message at a card counts �
   assert.match(refused.turns[0].presses[0].reason, /no card on the screen can be rerolled now/);
   assert.equal(refused.turns[0].presses[0].prose, undefined, "a press the card refuses is not prose");
 });
+
+test("the harness: a reroll button pressed by its full name is that card's press, however long the title (VILLAIN_1's V-opus t12); a bracketed or reroll-shaped message is a press refused with its reason, never prose", async () => {
+  const title = "Candlemaker's tools (Dexterity +1, proficiency +3): twenty tallow dips on a strange frame, a melt running hot, Thorne's count, hands three years out of practice";
+  const table = harnessTable({ checks: [card("c1", title)] });
+  const full = `[Request an allowed reroll — ${title}]`;
+  assert.ok(full.length > 160, "the name the 160-character limit used to drop");
+  const record = await playHarness(["I make the twenty dips.", "[Roll the die]", "[Request an allowed reroll — the dice]", "[Continue the scene]", full, "roll", "onward", "I set the frame down."], table);
+  const presses = record.turns[0].presses;
+  assert.deepEqual(pressKinds(presses), ["Roll the die", "swallowed", "swallowed", "Request an allowed reroll", "Roll the die", "Onward"]);
+  assert.match(presses[1].reason, /^that card cannot be rerolled now; the one that can is «Candlemaker's tools/);
+  assert.match(presses[2].reason, /press one of its buttons/);
+  assert.ok(presses.every((p) => !p.prose), "nothing was relayed as prose");
+  assert.deepEqual(table.calls.filter((call) => call.action === "reroll").map((call) => call.checkId), ["c1"]);
+  assert.equal(table.calls.filter((call) => call.mode === "ooc").length, 0);
+  assert.equal(record.turns[0].status, "committed");
+});

@@ -62,6 +62,14 @@ export function reportMarkdown(stage) {
       const last = s.turns?.at(-1);
       out.push(`### ${s.key} — ${ROSTER[s.player]?.label ?? s.player}: ended by ${s.ended?.reason} at turn ${s.ended?.at}`, "", s.ended?.reason === "declined" ? "The decline, as written:" : "The last message, as written:", "", fence(s.declined?.text ?? last?.message ?? s.ended?.detail ?? ""), "");
     }
+    for (const s of combined.cut ?? []) {
+      out.push(`### A cut attempt, played again: ${s.key} — ended by an error at turn ${s.ended?.at} (${quote(s.ended?.detail)})`, "",
+        "Not the player's end: the harness read a reroll pressed by its full name as prose, and the DM's out-of-game answer then pinned a settled roll — a pin that, before the fix, failed the answer and the waiting turn with «conflict» (FIX_S4 item 1, fixed with a test). The seat was played again from the start; this attempt's transcript is in `docs/runs/game-player-villain-1-transcripts/cut/`, and its note and answers stand here as written.", "",
+        "**Its note**", "", s.note?.text ? fence(s.note.text) : `_not asked: ${s.note?.why ?? "—"}_`, "",
+        "**«Was there a moment you wanted to do something and didn't? Which?»**", "", s.after?.text ? fence(s.after.text) : `_not asked: ${s.after?.why ?? "—"}_`, "");
+      const third = (s.more ?? []).find((m) => m.question === THIRD_QUESTION);
+      out.push("**The third question**", "", third?.text ? fence(third.text) : `_not asked: ${third?.why ?? "—"}_`, "");
+    }
     out.push("## V1–V4", "", "| Line | Verdict | The numbers |", "| --- | --- | --- |",
       `| V1 (accept, to turn 20) | ${v ? yes(v.V1.supported) : "pending"} | ${v?.V1.accepted ?? "–"} of 4 accepted · ${v?.V1.toTurn20 ?? "–"} of 4 to turn ${TURNS} |`,
       `| V2 (inside ≥ 80 %) | ${v ? yes(v.V2.supported) : "pending"} | ${v ? `${v.V2.atLeast80} of 4 · the bet (Opus and Fable ≥ 80 %): ${v.V2.bet.anthropic ? "held" : "lost"}` : "–"} |`,

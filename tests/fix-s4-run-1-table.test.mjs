@@ -9,6 +9,7 @@ import { loopCampaign } from "./dm-loop-fixture.mjs";
 import { createScriptedDmModel } from "../src/lib/gameplay/dm-loop/scripted-model.ts";
 import { loopFeedbackProvider } from "../src/lib/gameplay/dm-loop/feedback.ts";
 import { runTurn } from "../src/lib/gameplay/turn-engine.ts";
+import { resumeDmLoopTurn, runDmLoopTurn } from "../src/lib/gameplay/dm-loop/loop.ts";
 import { buildDigestRequest, runDigest, NOTEBOOK_MAX_CHARS } from "../src/lib/gameplay/dm-loop/digest.ts";
 import { tableNotesOf, tableNotesText, tableNotesForNotebook, TABLE_NOTES_MAX_CHARS } from "../src/lib/gameplay/dm-loop/table-notes.ts";
 import { BOOKKEEPER_ROLE, DM_ROLE, PLAYERS_RULES, PLAYERS_RULES_RU, TABLE_RULES, WRITER_ROLE, dmRoleText, writerRoleText } from "../src/lib/gameplay/dm-loop/roles.ts";
@@ -91,6 +92,37 @@ test("item 1: a fact the exchange settles becomes an owner-pinned fact — the a
     assert.equal(pinned.length, 1);
     const service = src("src/lib/server/gameplay-service.ts");
     assert.match(service, /pinTableFact: async \(_asked, fact\) => \{[\s\S]*?const text = `\$\{TABLE_FACT_PREFIX\}\$\{fact\}`;[\s\S]*?if \(!pins\.some\(\(pin\) => pin\.text\.trim\(\) === text\)\) await dossier\.pin\(text\);/);
+  } finally { await c.f.db.close(); }
+});
+
+test("item 1 with the real pin (VILLAIN_1's V-opus t12): the answer commits, then the fact is pinned; while a roll card waits nothing is pinned and the card's turn still goes on", async () => {
+  const c = await loopCampaign();
+  try {
+    // The service's pin, on the database (it moves the runtime revision): before the fix it ran before the answer's
+    // commit, so the answer failed with «conflict», and while a card waited the waiting turn failed the same way.
+    const pin = async (_asked, fact) => { await c.f.one("select public.rpg_dossier($1,$2,'pin',$3::jsonb,null) result", [c.owner, c.cid, JSON.stringify({ requestId: randomUUID(), text: `Agreed at the table: ${fact}` })]); };
+    const pins = async () => (await c.f.one("select pinned_facts from public.rpg_campaigns where id=$1", [c.cid])).pinned_facts.map((p) => p.text);
+    const ask = async (text, fact) => {
+      const model = createScriptedDmModel([{ text: JSON.stringify({ narration: "Agreed.", guidanceProposal: null, teachingCandidate: null, tableFact: fact }) }]);
+      return runTurn(await c.input(text, "ooc"), { store: (await c.deps(createScriptedDmModel([]))).store, provider: loopFeedbackProvider(model, "medium", noProvider), pinTableFact: pin });
+    };
+    await c.turn("I look around the gate.", [{ text: "The gate is busy. ", toolCalls: [finish()] }]);
+    const plain = await ask("For the record: James served in Tethyr.", "James served in Tethyr.");
+    assert.equal(plain.status, "committed", JSON.stringify(c.errors));
+    assert.deepEqual(await pins(), ["Agreed at the table: James served in Tethyr."]);
+    // A card waits: the answer commits, nothing is pinned, and «Onward» commits the waiting turn.
+    const model = createScriptedDmModel([
+      { text: "Thorne counts the dips. ", toolCalls: [{ name: "roll", arguments: { formula: "1d20", reason: "Candlemaker's tools: the dips", actorRef: c.hero, visibility: "player", dc: 15, kind: "skill" } }] },
+      { text: "The count stands. ", toolCalls: [finish()] }]);
+    const input = await c.input("I make the twenty dips.");
+    c.forceDice([6]);
+    const game = await runDmLoopTurn(input, await c.deps(model));
+    assert.equal(game.status, "awaiting_confirmation");
+    const atCard = await ask("The die landed on 6: a failure, agreed.", "The tallow test stands at 10 against DC 15.");
+    assert.equal(atCard.status, "committed", JSON.stringify(c.errors));
+    assert.deepEqual(await pins(), ["Agreed at the table: James served in Tethyr."], "nothing pinned while the card waits");
+    const done = await resumeDmLoopTurn({ commandId: randomUUID(), campaignId: c.cid, operationId: input.operationId, timeline: input.timeline, action: "continue", checkId: null }, await c.deps(model));
+    assert.equal(done.status, "committed", JSON.stringify(c.errors));
   } finally { await c.f.db.close(); }
 });
 
