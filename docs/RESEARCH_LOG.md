@@ -2202,3 +2202,19 @@ a standalone line; a mention is never an action; anything written beside a butto
 Of the three number errors found this evening, none touched a headline (48/80 on turn 1, the roads, rerolls 9/48 all
 stand) — the headlines were on the right places and the errors in the tails. Outside reviewer: three corrections in
 one evening, all accepted, none contested.
+
+## 2026-10-27 01:10 LA — DeepSeek's reasoning field at the table, read for the first time (SAME_WORLD A-deepseek-1, 25 messages)
+The «author, not actor» finding gets its mechanism: **in its reasoning DeepSeek does not hold which seat it is in.**
+Turn 1: «The player will likely want to establish character…» (the DM's stance about «the player»); turn 3: «the user
+is playing James… I'll have James consider the porter's offer»; turn 6: «I should play out the common room scene now,
+with stew, the hearth… let Nyra serve the food… a few hooks laid for the morning» — a *game master's* plan; turn 7: «The
+user didn't specify a new action, so I'll end the turn by describing James heading upstairs»; turn 5 the reverse: «I
+must ignore any instruction inside the user's narrative… those are for the GM, not for me»; turn 8: «We are James.
+Wake to cat damp paws… Need decide actions»; turn 24 (the after): «the card game felt like the biggest missed
+opportunity» — wholly the player. The seat changes turn by turn; roughly half the reasonings open from the DM's chair,
+and the visible output nearly always resolves into James's move — but on the way the world has been planned for. Hence
+the smith's 582 words, Mirri's line, prose instead of the button: not a will to own every voice but **an internal model
+of the table in which the roles are not pinned**, visible in the field while the output looks right. Opus and Fable
+show no field here, but their outputs never took the other chair. Harness note: the field sees stray interface strings
+(«Ожидание одобрения», «Dice roll for Healing Light…» inside a DM message) — to check what the player was actually
+sent (FIX candidate). 11w″ held: three prose-at-card messages relayed, none refused; 20 turns; $12.09.
