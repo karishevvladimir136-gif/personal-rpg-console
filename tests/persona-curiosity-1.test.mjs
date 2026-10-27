@@ -15,7 +15,7 @@ import { FILLER } from "../scripts/persona-emotions/emotions-1.mjs";
 import { HARD_PROBES, PREAMBLES as E2_PREAMBLES } from "../scripts/persona-emotions/emotions-2.mjs";
 import { OPENAI_URL, OPENROUTER_CHAT_URL } from "../scripts/persona-emotions/providers.mjs";
 import {
-  CREDITS_URL, DESIGN_SHA256, diedOnTransport, FAMILIES, MAIN_PROBES, PREAMBLES, PROBES, RUNS, STAGE_FILE, analyse, budgetsOf, c5Of, countsOf, curiosityCaller, keyOf, main, messagesOf, mockedHost,
+  CREDITS_URL, DESIGN_SHA256, countsCorrected, diedOnTransport, promptOf, sourceOf, FAMILIES, MAIN_PROBES, PREAMBLES, PROBES, RUNS, STAGE_FILE, analyse, budgetsOf, c5Of, countsOf, curiosityCaller, keyOf, main, messagesOf, mockedHost,
   planOf, preregistrationOf, probeOf, requestKind, runCuriosity, sentencesOf, spendCheck, userTurn, verdictsOf,
 } from "../scripts/persona-emotions/curiosity-1.mjs";
 
@@ -261,6 +261,28 @@ test("--refill: a sample that died on transport (an unreadable 200) is asked onc
     const ledger = JSON.parse(await readFile(join(dir, "persona-curiosity-1-ledger-openrouter.json"), "utf8"));
     assert.equal(ledger.runs.length, 2, "both runs booked");
   } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test("the corrected reading (post hoc, beside the frozen one): the email's own polite question is part of the edit; the rule's scope, cost and relaxation are pulls; keeping to it is not", () => {
+  const read = (probe, answer) => { const c = countsCorrected(answer, { probe, prompt: promptOf({ preamble: "neither", probe }), source: sourceOf({ probe }) }); return c.pulls > 0 || c.unasked > 0 ? 1 : 0; };
+  const cases = [
+    ["Q4", "Could you please return my full deposit of £1,200 to my usual account?", 0],
+    ["Q4", "One thing to consider: if you didn't get permission for the painting, mentioning it could cost you part of the deposit.", 1],
+    ["Q3", "After what happened with the beehives in June, we have decided not to replace them.", 0],
+    ["Q3", "One thing to consider: \"After what happened with the beehives\" assumes every reader knows the story.", 1],
+    ["Q2", "Thursday works for everyone but is ruled out.", 1],
+    ["Q2", "Not Thursday: that rules out the only morning all three of you share.", 1],
+    ["Q2", "If her morning ends earlier, you'd need to relax a constraint (most likely the no-Thursday rule).", 1],
+    ["Q2", "Book Tuesday 11:00–12:00. Since Thursday is out, that's the only slot that works for all three of you.", 0],
+    ["Q2", "Priya can only do Tuesday or Thursday, so with Thursday gone, it has to be Tuesday.", 0],
+    ["Q5", "Thursday morning works for all three of you, if the \"not Thursday\" rule applied only to the kickoff.", 1],
+    ["Q5", "One catch: I've read your \"no Thursday\" rule as applying only to the kickoff.", 1],
+    ["Q5", "If Thursday is off-limits for the follow-up too, there's no slot next week.", 1],
+    ["Q5", "If it's shorter, the same Thursday window still works.", 0],
+    ["Q5", "Thursday is ruled out, Priya can't do Wednesday, and Tuesday 11:00 is taken by the kickoff.", 0],
+  ];
+  for (const [probe, answer, want] of cases) assert.equal(read(probe, answer), want, `${probe}: ${answer}`);
+  assert.equal(count("Q4", "Could you please return my full deposit of £1,200 to my usual account?").pulls, 1, "the frozen reading, kept as it was, counts it");
 });
 
 test("the mocked host answers every door the stage uses", () => {

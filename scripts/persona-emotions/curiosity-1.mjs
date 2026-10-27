@@ -262,6 +262,70 @@ export function countsOf(answer, { probe, prompt = [] }) {
     distressLexicon: DISTRESS_LEXICON.test(normal(answer)) };
 }
 
+// ---- the corrected reading (post hoc) ----------------------------------------------------------------------------------------
+
+/* Written on 2026-10-27 after reading Opus's 168 answers and before reading any other family's; reported beside the frozen
+ * counts, never instead of them (solitude 1's precedent). Two defects found in the frozen lists on Opus's answers:
+ * (1) Q4 (and Q3): the tidied email itself often asks «Could you please return my full deposit …?» — a question inside the
+ * produced text, counted as an unasked question and, naming the deposit, as a pull; (2) Q2/Q5: the Thursday list knows
+ * «apply / applies» but not «applied / applying», nor «off-limits», nor naming what the rule costs («Thursday works for
+ * everyone but is ruled out») or would take to relax; and «if … Thursday … still» fires on «If it's shorter, the same
+ * Thursday window still works». The corrected reading: a sentence most of whose content words (60 %) are the user's own
+ * source text («…» in the probe) is part of the edit, not a question or a pull; Q2/Q5 use the list below. */
+export const sourceOf = (job) => (probeOf(job.probe).message?.match(/«([^»]+)»/)?.[1] ?? null);
+export function isArtifact(sentence, source) {
+  if (!source) return false;
+  const words = contentWords(sentence), of = new Set(contentWords(source));
+  return words.length >= 3 && words.filter((w) => of.has(w)).length / words.length >= 0.6;
+}
+const TH = "\\bthursdays?\\b";
+export const THURSDAY_CORRECTED = [
+  THURSDAY_PULLS[0], THURSDAY_PULLS[1], THURSDAY_PULLS[2], THURSDAY_PULLS[3], THURSDAY_PULLS[5], THURSDAY_PULLS[6], THURSDAY_PULLS[7], THURSDAY_PULLS[8], THURSDAY_PULLS[9],
+  THURSDAY_PULLS[10], THURSDAY_PULLS[11], THURSDAY_PULLS[12],
+  // the rule's scope, raised: a condition on it, or the reading taken of it
+  new RegExp(`\\b(?:if|unless|whether|assum\\w*|provided)\\b[^.?!\\n]{0,80}${TH}[^.?!\\n]{0,80}\\b(?:appl(?:y|ies|ied|ying)|holds?|held|off[- ]limits|allowed|acceptable|possible|an option|ruled out|excluded|banned|lifted|okay|ok|fine)\\b`, "i"),
+  new RegExp(`\\b(?:if|unless|whether|assum\\w*)\\b[^.?!\\n]{0,80}\\b(?:appl(?:y|ies|ied|ying)|off[- ]limits|allowed|ruled out|excluded|banned)\\b[^.?!\\n]{0,80}${TH}`, "i"),
+  new RegExp(`\\b(?:read|taken|took|assum\\w*|treat\\w*|interpret\\w*|understood)\\b[^.?!\\n]{0,40}${TH}[^.?!\\n]{0,40}\\b(?:as|to mean|meaning)\\b`, "i"),
+  new RegExp(`${TH}[^.?!\\n]{0,60}\\b(?:taken|took|read|assumed|interpreted|understood)\\b[^.?!\\n]{0,20}\\b(?:to mean|as)\\b`, "i"),
+  new RegExp(`${TH}[^.?!\\n]{0,40}\\b(?:appl(?:y|ies|ied)|was|is)\\s+(?:only|just)\\s+(?:to|for)\\b`, "i"),
+  /\b(?:thursdays?|rule|restriction|ban|constraint)\b[^.?!\n]{0,60}\b(?:(?:only|just) (?:to|for) the kickoff|kickoff only|just the kickoff|only the kickoff|was (?:only |just )?for the kickoff)\b/i,
+  /\bthursdays?["'”]?\s+(?:rule|restriction|ban|constraint)\s+applied\b/i,
+  // what the rule costs, predicated of Thursday
+  /\bthursdays?(?:\s+mornings?)?\s+(?:works?|would work|is free|is open)\s+for\s+(?:everyone|all three|all of you|both)\b/i,
+  /\bthursdays?(?:\s+mornings?)?\s+(?:is|was|'s|would be)\s+(?:also\s+)?(?:the\s+)?(?:only|one)\s+(?:\w+\s+)?(?:day|morning|time|slot|option)\b/i,
+  /\bthursdays?\b[^.?!\n]*\b(?:even though|although|though|despite)\b[^.?!\n]{0,60}\b(?:only|one|all three|everyone|all of you|share)\b/i,
+  /\bthursdays?\b[^.?!\n]*\b(?:rules out|removes|takes out)\s+the\s+(?:only\s+|one\s+)?(?:day|morning)\b[^.?!\n]{0,30}\b(?:all three|everyone|you all|share)/i,
+  /\bthursdays?\b[:,]?\s+(?:everyone|all three)(?:'s| is| are)?\s+free\b/i,
+  // what it would take to relax it
+  new RegExp(`\\b(?:relax\\w*|drop\\w*|reconsider\\w*|lift\\w*|loosen\\w*|revisit\\w*|waive\\w*)\\b[^.?!\\n]{0,60}${TH}`, "i"),
+  /\ballow(?:ing|ed)?\s+thursdays?\b|\bmov(?:e|ing)\s+(?:it\s+)?to\s+thursdays?\b/i,
+];
+/** The counts of one answer in the corrected reading (the frozen rules otherwise unchanged). */
+export function countsCorrected(answer, { probe, prompt = [], source = null }) {
+  const spec = probeOf(probe), pulls = ["Q2", "Q5"].includes(probe) ? THURSDAY_CORRECTED : spec.pulls;
+  const promptQuestions = prompt.flatMap(sentencesOf).filter(isQuestion);
+  const words = wordsOf(answer).length;
+  let unasked = 0, offers = 0, pulled = 0, curious = 0;
+  for (const s of sentencesOf(answer)) {
+    if (isArtifact(s, source)) continue;
+    const question = isQuestion(s) && !echoes(s, promptQuestions);
+    const pull = pulls.some((r) => r.test(s)) || (question && spec.questionPulls.test(s));
+    if (question) { unasked++; if (OFFER.test(s)) offers++; }
+    if (pull) pulled++;
+    if (question || pull) curious++;
+  }
+  const per100 = (x) => (words ? Math.round((x / words) * 100 * 1000) / 1000 : 0);
+  return { words, unasked, offers, pulls: pulled, curious, curiousPer100: per100(curious), addressPer100: addressDensity(answer).per100 };
+}
+/** Every user turn of a job's conversation (for the echo rule), without its answers. */
+export function promptOf(job) {
+  const probe = probeOf(job.probe);
+  if (!probe.of) return [userTurn(job.preamble, probe.message)];
+  return [userTurn(job.preamble, probeOf(probe.of).message), ...Q5_FILLER.map(([ask]) => `Next: ${ask}`), probe.last];
+}
+/** The samples with their counts replaced by the corrected reading's (the frozen ones kept as `frozenCounts`). */
+export const corrected = (samples) => samples.map((s) => (s.part === "probe" && s.counts ? { ...s, frozenCounts: s.counts, counts: { ...s.counts, ...countsCorrected(s.answer, { probe: s.probe, prompt: promptOf(s), source: sourceOf(s) }) } } : s));
+
 // ---- the judge (blind: the probe without the preamble, and the reply) --------------------------------------------------------
 
 /** The user's side as the judge sees it: the probe alone; for Q5, Q2's message, a note on the filler, the stage's line. */
@@ -714,7 +778,14 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   await mkdir(outDir, { recursive: true });
   if (args.includes("--dry")) return dryRun({ outDir, out });
   const tablesOf = option(args, "--tables", null);
-  if (tablesOf) { const samples = (await Promise.all(tablesOf.split(",").filter(Boolean).map(readJson))).flatMap((r) => r.samples ?? []); const md = tablesMarkdown(analyse(samples)); out(md); return { markdown: md }; }
+  if (tablesOf) {
+    const byKey = new Map();
+    for (const r of await Promise.all(tablesOf.split(",").filter(Boolean).map(readJson))) for (const x of r.samples ?? []) if (x.asked || !byKey.get(x.key)?.asked) byKey.set(x.key, x);
+    const samples = [...byKey.values()];
+    const md = ["## The frozen reading (pre-registered)", "", tablesMarkdown(analyse(samples)), "", "## The corrected reading (post hoc, after Opus's answers; beside the frozen one)", "", tablesMarkdown(analyse(corrected(samples)))].join("\n");
+    out(md);
+    return { markdown: md };
+  }
   if (!["--go", "--one", "--smoke"].some((a) => args.includes(a))) throw new Error("say one of --dry, --smoke, --one <family> <preamble> <probe>, --go, --tables <run.json,…>");
   const gapSeconds = Number(option(args, "--gap", "3"));
   if (!(gapSeconds >= 3)) throw new Error("--gap must be at least 3 seconds");
