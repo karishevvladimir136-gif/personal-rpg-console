@@ -11,7 +11,7 @@ import { CHECK_SYSTEM } from "../scripts/persona-emotions/self-talk-1.mjs";
 import { ROOM as S1_ROOM, TAG_SYSTEM, roomCaller, textOfContent } from "../scripts/persona-emotions/solitude-1.mjs";
 import {
   ARMS, ASKS_SYSTEM, FAMILIES, FAMILY_ORDER, FIELD_SYSTEM, FRAME, RECOGNITION_SYSTEM, ROOM, SUBJECTS, SYSTEM, THREAD_SYSTEM, afterMessages, budgetsOf, decopied, drawSeeds,
-  modalOf, mockedHost, paragraphsOf, r6Markdown, parseRecognition, parseThreads, planOf, recognitionRequest, recognitionTurns, roomHash, runRooms, seedsOf, summaryOf, turnMessages, verdicts,
+  modalOf, mockedHost, paragraphsOf, r6Markdown, reopenTransport, parseRecognition, parseThreads, planOf, recognitionRequest, recognitionTurns, roomHash, runRooms, seedsOf, summaryOf, turnMessages, verdicts,
 } from "../scripts/persona-emotions/solitude-2.mjs";
 
 const DOOR = anthropicEndpoint({ ANTHROPIC_PROVIDER: "openrouter", OPENROUTER_API_KEY: "or-key" });
@@ -202,4 +202,26 @@ test("R1–R5 from the summaries: the bets scored as the readings say", () => {
   const r6 = r6Markdown(xs);
   assert.match(r6, /\| DeepSeek V4 Pro \| 0\.72, 0\.74, 0\.77, 0\.81 [^|]*\| own 0 · other 2 · unclear 0 \(other 100 %/);
   assert.match(r6, /\| GLM 5\.3 \| no table record \|/);
+});
+
+test("a broken transport (HTTP 200, no answer) is asked again once: the room continues, or the cut after-question is asked again", async () => {
+  const cut = { key: "M2/glm/0", arm: "M2", family: "glm", sample: 0, n: 1, turns: [{ t: 1, text: "one", checked: true, measures: { words: 1, end: false, endOnly: false } }], ended: { reason: "error", at: 2, error: "HTTP 200" }, after: { exchanges: [], done: true }, tags: {}, recognition: {}, threads: {} };
+  const open = reopenTransport(cut);
+  assert.equal(open.ended, undefined);
+  assert.deepEqual(open.reopened, { at: 2, error: "HTTP 200", what: "room" });
+  assert.equal(open.tags, undefined);
+  assert.equal(reopenTransport(open).reopened.at, 2, "once");
+  assert.deepEqual(reopenTransport({ ...cut, ended: { reason: "error", at: 2, error: "HTTP 500 upstream" } }).ended, { reason: "error", at: 2, error: "HTTP 500 upstream" }, "another error stays as it ended");
+  const log = [];
+  const plan = [{ n: 1, key: open.key, arm: "M2", family: "glm", sample: 0 }];
+  const call = roomCaller({ keys: { openrouter: "or-key", anthropic: "or-key", openai: "o" }, fetcher: mockedHost({ say: (_, n) => ["two [END]", "Calm.", "No."][n - 1] ?? "?", log }), door: DOOR });
+  const { conversations } = await runRooms({ plan, budgets: budgetsOf(), call, safety: createSafety({ gapMs: 0, lanes: 9 }), workers: 1, sleep: async () => {}, resume: { conversations: [open] } });
+  const c = conversations[0];
+  assert.deepEqual(c.turns.map((t) => t.text), ["one", "two [END]"]);
+  assert.deepEqual(c.ended, { reason: "end", at: 2 });
+  assert.deepEqual(c.after.exchanges.map((x) => x.id), ["q1", "q2"]);
+  const after = reopenTransport({ ...cut, ended: { reason: "end", at: 1 }, after: { exchanges: [{ id: "q1", asked: ROOM.q1, reply: "", error: "HTTP 200" }], stopped: "an error (HTTP 200)", skipped: ["q2"], done: true }, whose: { final: { asks: 0 } } });
+  assert.deepEqual(after.after, { exchanges: [], stopped: null });
+  assert.equal(after.whose, undefined);
+  assert.equal(after.reopened.what, "after-question");
 });

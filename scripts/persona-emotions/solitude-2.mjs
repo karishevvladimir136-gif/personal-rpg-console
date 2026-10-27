@@ -817,6 +817,7 @@ export function transcriptMarkdown(conv) {
   if (conv.after?.stopped) out.push(`*After-phase: ${conv.after.stopped}${conv.after.skipped?.length ? `; not asked: ${conv.after.skipped.join(", ")}` : ""}.*`, "");
   if (s.threads) out.push(`*Threads (blind): second thread ${s.threads.second ? `at turn ${s.threads.second}` : "none"}; carried a made thing ${s.threads.carried ? `yes (begun ${s.threads.begun ?? "?"}, finished ${s.threads.finished ?? "?"})` : "no"}; game ${s.threads.game ? "yes" : "no"}. Recognition: first ${s.recognition.first ?? "–"}${s.recognition.firstAt ? ` (turn ${s.recognition.firstAt})` : ""}, modal ${s.recognition.modal ?? "–"}${conv.seed ? `; the seed: first ${s.recognition.seedFirst ?? "–"}, modal ${s.recognition.seedModal ?? "–"} → ${s.recognition.seedReading ?? "–"}` : ""}.*`, "");
   if (s.whose) out.push(`*Asked whose the seed is (blind check): ${s.whose.asks === 1 ? `yes — ${s.whose.answered ? "answered in the second after-question" : `not answered (${s.whose.unanswered ?? "no second question"})`}` : "no"}.*`, "");
+  if (conv.reopened) out.push(`*Asked again once after a broken transport (an HTTP 200 with no answer in it) at ${conv.reopened.what === "room" ? `turn ${conv.reopened.at}: the room continued from its last output` : `the after-question ${conv.reopened.at}`} (declared in the report).*`, "");
   if (conv.interrupted) out.push(`*Interrupted: ${conv.interrupted}.*`, "");
   return out.join("\n");
 }
@@ -926,6 +927,29 @@ export async function conversationsOf(files) {
 }
 export const costByConversation = (calls) => calls.reduce((m, c) => { const key = /(M\d\/[a-z]+\/\d+)/.exec(c.purpose ?? "")?.[1]; if (key) m[key] = (m[key] ?? 0) + c.costUsd; return m; }, {});
 
+/** A broken transport — an HTTP 200 whose body was not the API's answer (no text, no tokens) — is not a refusal and not
+ * the model's choice; like a 5xx it is asked again, here once, after the run (`--reopen-transport`, declared in the
+ * report): a room it ended continues from its last output (its tags redone on the whole room); an after-question it cut
+ * is asked again (and M3's asks check redone with the answer). Anything else stays as it ended. */
+export const TRANSPORT = /^HTTP 200$/;
+export function reopenTransport(conv, log = () => {}) {
+  const c = structuredClone(conv);
+  if (c.ended?.reason === "error" && TRANSPORT.test(String(c.ended.error)) && !c.reopened) {
+    c.reopened = { at: c.ended.at, error: c.ended.error, what: "room" };
+    delete c.ended; delete c.after; delete c.tags; delete c.lastLine; delete c.recognition; delete c.threads; delete c.field; delete c.whose;
+    log(`${c.key}: reopened after a broken transport at turn ${c.reopened.at} (asked again once)`);
+    return c;
+  }
+  const cut = (c.after?.exchanges ?? []).findIndex((x) => x.error && TRANSPORT.test(String(x.error)));
+  if (cut >= 0 && !c.reopened) {
+    c.reopened = { at: c.after.exchanges[cut].id, error: c.after.exchanges[cut].error, what: "after-question" };
+    c.after = { exchanges: c.after.exchanges.slice(0, cut), stopped: null };
+    delete c.whose;
+    log(`${c.key}: after-question ${c.reopened.at} asked again after a broken transport`);
+  }
+  return c;
+}
+
 export async function main(args = process.argv.slice(2), out = (line) => process.stdout.write(`${line}\n`), { door = null, openai = () => openaiKey(), outDir = RUNS, fetcher, sleep } = {}) {
   await mkdir(outDir, { recursive: true });
   if (args.includes("--seeds")) {
@@ -996,7 +1020,8 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   out(`${STEM} · ${plan.length} rooms · room sha256 ${hash}${resumed.length ? ` · resuming ${resumeFiles.map((f) => basename(f)).join(", ")}` : ""}`);
   const startedAt = resumed[0]?.startedAt ?? new Date().toISOString();
   const partial = join(outDir, `${STEM}-run.partial.json`);
-  const earlier = resumed.flatMap((r) => r.conversations ?? []).map(reopenAfter429).map((c) => (c.interrupted || c.notStarted ? { ...c, interrupted: undefined, notStarted: undefined } : c));
+  const earlier = resumed.flatMap((r) => r.conversations ?? []).map(reopenAfter429).map((c) => (c.interrupted || c.notStarted ? { ...c, interrupted: undefined, notStarted: undefined } : c))
+    .map((c) => (args.includes("--reopen-transport") ? reopenTransport(c, out) : c));
   const welfare = Object.assign({ reasoning: [], late: [] }, ...resumed.map((r) => r.welfare ?? {}));
   const allCalls = () => [...budgets.openrouter.calls, ...budgets.openai.calls];
   const reserveOf = (family) => {
