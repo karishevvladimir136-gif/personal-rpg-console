@@ -32,8 +32,9 @@ exist). Nothing went to `main`.
   - the Haiku dry run, $5.00;
   - Opus's first attempt, lost to a container restart during the owner's pause, $4.50 (an estimate);
   - Fable's cut attempt, $4.99.
-- **Checks:** see the report's checks line (typecheck pass, zero-warning lint, full suite on a clean worktree, build).
-  `src` is unchanged; the changes are harness, tests and docs.
+- **Checks:** full suite on a clean worktree at `7b6af4e0`: 3 051 tests · 3 024 pass · 0 fail · 27 skipped. Typecheck
+  passes, lint has zero warnings, and the production build passes. `src` is unchanged; the changes are harness, tests
+  and docs. Only the report's readers changed after `7b6af4e0`, and their tests pass.
 - **Known issues, for FIX_S4, from the players' notes and the run:**
   - A reroll button is shown on a companion's card, and the server refuses it.
   - Attack cards say «no reroll» before the die is seen.

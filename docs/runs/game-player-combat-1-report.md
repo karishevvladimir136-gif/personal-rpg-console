@@ -64,6 +64,14 @@ That includes:
 - Opus's first attempt, lost when the container restarted during the owner's pause, $4.50 (an estimate);
 - Fable's first attempt, cut at t7 by a harness bug since fixed, $4.99.
 
+**Checks.**
+- The full suite on a clean worktree at `7b6af4e0`: 3 051 tests · 3 024 pass · 0 fail · 27 skipped.
+- Typecheck pass; zero-warning lint over the repository; the production build passes.
+- `src` is unchanged by this stage.
+- After `7b6af4e0` only the report's readers changed (`scripts/game-player-combat-1/score.mjs` and `report.mjs`: the
+  table rules on combat turns, the terms near the hold). Their tests (`tests/game-player-combat-1.test.mjs`) pass, and
+  lint is clean.
+
 ## The player's system prompt
 
 Game player 1's prompt verbatim, the Coast Way's files, and the stage's one line. The template:
