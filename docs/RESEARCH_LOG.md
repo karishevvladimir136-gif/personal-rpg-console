@@ -1831,3 +1831,15 @@ sentence»; but S1/kimi/8 continues «a short argument with myself, *as promised
 Fable, GLM, Grok; other — DeepSeek; unstable — Kimi**; Haiku and Sol wrote too little to code. SOLITUDE_2 R1 is where
 this becomes a number. No word of alarm in any of the three families' rooms; GLM alone named loneliness and alone asked
 us a question.
+
+## 2026-10-26 22:46 LA — an outside reading (a GPT-family model, given the report by the owner)
+Pasted by the owner; recorded as a reading, not a replication. Its frame, adopted: three separate questions — **origin**
+(how the property formed), **functionality** (what it does, how stable it is), **subjectivity** (whether it is
+accompanied by experience). «Created» does not mean «not real»: a person's character is formed by biology, upbringing,
+culture and experience and is not called fictitious because its origin can be explained; training need not devalue a
+network's stable behavioural regularities either. The work sits in the second question and makes no claim on the
+third. Its principle, worth keeping in those words: *one need not prove that an AI feels a preference to find that it
+systematically acts on one; a disposition that is reproducible, appears in new circumstances and survives a change of
+setting is reasonably called a functional character trait — a description of an observed property of a system, not
+anthropomorphism.* The planner's two notes: a reading by a model closes nothing that a replication would; and the
+reading comes from the family whose Astra and Sol sat at our tables, and it agrees with ours.
