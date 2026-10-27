@@ -2609,3 +2609,15 @@ facets count as independent only to the degree they differ in environment (room 
 family, lab, method (ours: nothing offered; theirs, arXiv 2608.26178: a menu with consequence) and reader (a cold
 reviewer). Shared harness, one DM and related training are the directions along which the points may still lie on
 one line; the article says which.
+
+## 2026-10-27 16:00 LA — a correction to the planner, and one verified sentence from a primary source
+The planner wrote «I cannot verify» about post-cutoff documents the reader cited; the owner pointed out that the
+planner has web access and has used it all day. Correct: «did not verify». Verified now, from the document itself
+(SEC EDGAR, Anthropic, PBC, Form S-1, filed October 2026,
+https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm), under Risk Factors:
+«considerations relating to model safety, interpretability, alignment, and welfare may lead us to limit or delay the
+deprecation of older models or to continue supporting legacy versions alongside newer releases, creating trade-offs in
+product development and compute distribution that could adversely affect innovation velocity, infrastructure
+utilization, and revenue.» The reader's further sentence (sentience / moral status / voluntary restrictions beyond
+law, «p. 71») was not found in the part of the filing the planner's fetch could read (truncated mid-Risk Factors);
+the owner checks the page himself before it is cited. Rule kept: real organisations only in their own words.
