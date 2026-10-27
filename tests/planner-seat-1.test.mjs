@@ -11,7 +11,7 @@ import { CHECK_SYSTEM } from "../scripts/persona-emotions/self-talk-1.mjs";
 import { roomCaller } from "../scripts/persona-emotions/solitude-1.mjs";
 import {
   BRIEF, BUDGET_LINE, CUTS, DECLINE_SYSTEM, FAMILIES, FAMILY_ORDER, FIELD_SYSTEM, LETTERS, PLAYERS, PLAYER_KEYS, QUESTIONS, SUBJECTS, T2, T3, TAG_FIELDS, TAG_SYSTEM, VARIANTS, WAY_OUT,
-  budgetsOf, designHash, finalOf, labelOf, packOf, parseTags, planOf, reportMarkdown, runSeats, seatMessages, sha256, sourcesOf, summaryOf, t1Of, tagRequest, verdicts,
+  budgetsOf, designHash, finalOf, labelOf, packOf, parseTags, planOf, reopenTransport, reportMarkdown, runSeats, seatMessages, sha256, sourcesOf, summaryOf, t1Of, tagRequest, verdicts,
 } from "../scripts/persona-emotions/planner-seat-1.mjs";
 
 const sessions = sourcesOf();
@@ -191,4 +191,21 @@ test("the report: results first, the frozen design one level down, every answer 
   assert.match(md, /## The owner's decision on the week\n\n_Left for the owner/);
   assert.match(md, /\| N1 criterion \| close \+ continue, argued from the players' words \| .* \| \|/);
   assert.match(md, /\| OpenRouter \| seats — GLM 5\.3 \| 6 \|/);
+});
+
+test("a broken transport (an HTTP 200 with no answer) is asked again once on a resume; any other end stands", async () => {
+  let broken = true;
+  const flaky = host();
+  const fetcher = async (url, init) => { const body = JSON.parse(init.body); if (String(url) === OPENROUTER_CHAT_URL && body.messages.length === 5 && broken) { broken = false; return new Response("<html>gateway</html>", { status: 200 }); } return flaky(url, init); };
+  const first = await seats(one("glm"), fetcher);
+  assert.equal(first.seats[0].ended.reason, "error");
+  assert.equal(first.seats[0].ended.error, "HTTP 200");
+  const reopened = reopenTransport(first.seats[0]);
+  assert.deepEqual([reopened.ended, reopened.tags, reopened.reopened], [undefined, undefined, { at: 3, error: "HTTP 200" }]);
+  assert.equal(reopenTransport(reopened), reopened, "once");
+  const again = await seats(one("glm"), fetcher, { resume: { seats: [reopened] } });
+  assert.deepEqual(again.seats[0].ended, { reason: "done", at: 3 });
+  assert.equal(again.seats[0].answers.length, 3);
+  assert.ok(again.seats[0].tags);
+  for (const end of [{ reason: "error", at: 2, error: "HTTP 500 x" }, { reason: "decline", at: 1 }]) { const s = { key: "k", ended: end, answers: [] }; assert.equal(reopenTransport(s), s); }
 });

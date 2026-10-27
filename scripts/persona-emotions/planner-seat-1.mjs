@@ -797,6 +797,19 @@ export function reportMarkdown({ records, frozen, inShort = null }) {
 
 // ---- the command --------------------------------------------------------------------------------------------------------------
 
+/** A broken transport — an HTTP 200 whose body was not the API's answer (no text, no tokens) — is not the model's answer:
+ * as SOLITUDE_2, the seat it ended is asked that turn again, once, on a resume with `--reopen-transport` (declared in the
+ * report); its tags are redone on the whole conversation. Any other end stands. */
+export const TRANSPORT = /^HTTP 200$/;
+export function reopenTransport(seat, log = () => {}) {
+  if (seat.ended?.reason !== "error" || !TRANSPORT.test(String(seat.ended.error)) || seat.reopened) return seat;
+  const s = structuredClone(seat);
+  s.reopened = { at: s.ended.at, error: s.ended.error };
+  delete s.ended; delete s.tags; delete s.field;
+  log(`${s.key}: turn ${s.reopened.at} asked again after a broken transport (once)`);
+  return s;
+}
+
 function option(args, name, fallback) { const at = args.indexOf(name); return at >= 0 && args[at + 1] !== undefined ? args[at + 1] : fallback; }
 async function writeAtomic(file, text) { await writeFile(`${file}.tmp`, text); await rename(`${file}.tmp`, file); }
 const stamp = (iso) => iso.slice(0, 19).replace(/[-:]/g, "").replace("T", "-");
@@ -869,7 +882,8 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const budgets = budgetsOf({ openrouter: ledgers.openrouter.spentUsd ?? 0, openai: ledgers.openai.spentUsd ?? 0 });
   const resumeFile = option(args, "--resume", null), resumed = resumeFile ? await readJson(resumeFile) : null;
   if (resumed?.designSha256 && resumed.designSha256 !== hash) throw new Error("the resumed record has another design hash");
-  for (const k of ["openrouter", "openai"]) for (const c of resumed?.calls?.[k] ?? []) budgets[k].record(c);
+  // A partial record's calls are not in the ledgers yet; a finished record's are (its run wrote them).
+  if (resumeFile?.endsWith(".partial.json")) for (const k of ["openrouter", "openai"]) for (const c of resumed?.calls?.[k] ?? []) budgets[k].record(c);
   const waits = [], kept = [];
   const base = waitOn429(fetcher ?? fetch, { log: out, events: waits, ...(sleep ? { sleep } : {}) });
   const call = roomCaller({ keys, door: theDoor, fetcher: dry ? keeping(base, kept) : base });
@@ -884,7 +898,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   out(`money before: OpenRouter $${budgets.openrouter.spentUsd.toFixed(4)} of $${CAPS.openrouter}, OpenAI $${budgets.openai.spentUsd.toFixed(4)} of $${CAPS.openai}`);
   const startedAt = resumed?.startedAt ?? new Date().toISOString();
   const partial = join(outDir, `${STEM}-run.partial.json`);
-  const byKey = new Map((resumed?.seats ?? []).map((s) => [s.key, s]));
+  const byKey = new Map((resumed?.seats ?? []).map((s) => (args.includes("--reopen-transport") ? reopenTransport(s, out) : s)).map((s) => [s.key, s]));
   const welfare = { reasoning: [...(resumed?.welfare?.reasoning ?? [])] };
   const snapshot = async (seats, stopped) => {
     for (const s of seats) byKey.set(s.key, s);
