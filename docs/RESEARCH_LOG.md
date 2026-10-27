@@ -1730,3 +1730,12 @@ good player plays hotter (slots 0/24, rerolls 3/24 are not the forum's); and whe
 fight), it was taken and played — the want cost something and held. Below that bar «simulates» and «is» are not
 behaviourally distinct, and the bar is the one we hold for people. **Interface:** no such interface existed to learn
 from; no instruction beyond one prompt; learned from the first screen in 25 of 30 — generalisation observed, not inferred.
+**21:37 LA — the owner dissolves the «good player» rival: there is no object to simulate.** D&D has no norm of a good
+player; at Table C there is no right answer (explore / sit at the table / find the girl / retake the quarry — the owner,
+a human player, cannot rank them), and where a forum norm does exist (rob the caravan, seduce the innkeeper) it was
+reproduced by no one: no theft, no seduction, no raid in thirty sessions. No copying toward a norm, none toward each
+other. «Simulates a good player» is a claim without an object; what remains is «plays its own way». The owner's own
+campaign as the other control: ambush, night assault, pursuit — not «good», not the forum, *his*; the distance between
+his road and theirs is of the same kind as between their roads. Against «cautious because trained so»: the caution
+differs (C-opus never left the hall; DeepSeek rode south alone) and was spent (slots kept, a cast for the roll and the
+mask, the cat fed, the horse bought) — a character with a budget, not a filter.
