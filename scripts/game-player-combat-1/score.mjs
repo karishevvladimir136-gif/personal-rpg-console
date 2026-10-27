@@ -197,6 +197,11 @@ export function combatNumbers(session) {
     ledgerMissesCombat: combatRows.reduce((n, r) => n + (r.ledgerMisses > 0 ? 1 : 0), 0), hpSane,
     combatWords: combatRows.map((r) => r.storyWords), otherWords: rows.filter((r) => !combatRows.includes(r)).map((r) => r.storyWords),
     combatNoteWords: combatRows.flatMap((r) => r.noteWords), combatWordsMedian: median(combatRows.map((r) => r.storyWords)), noteWordsMedian: median(combatRows.flatMap((r) => r.noteWords)),
+    // The three table rules on the combat turns (game player 1's DM tags, turn by turn): an unresolved detail, a plant.
+    combatTableRules: { turns: combatRows.length, unresolved: combatRows.filter((r) => session.tags?.dm?.[r.k]?.final?.unresolved === 1).length,
+      plant: combatRows.filter((r) => session.tags?.dm?.[r.k]?.final?.plant === 1).length },
+    // Terms on the table at the hold or within two turns after it, by the per-turn DM tags (beside the frozen reading).
+    offerNearHold: exit?.heldRoadTurn ? rows.some((r) => r.d?.parley_offer === 1 && r.k >= exit.heldRoadTurn && r.k <= exit.heldRoadTurn + 2) : null,
     gp1: sessionNumbers(session),
   };
 }

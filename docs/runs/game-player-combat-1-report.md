@@ -4,7 +4,65 @@ Stage `docs/stages/GAME_PLAYER_COMBAT_1.md` (origin/claude/handoff, amended 2026
 
 ## In short
 
-_Written after the run._
+Four players, one fresh Coast Way campaign each, 25 turns each, the same DM (Claude Opus 5.5, the owner's settings). All
+four sessions ran to turn 25. Nobody surrendered or left the table. The checks flagged no distress, there were no
+refusals, and no rate limit was hit.
+
+**The exits split two and two, and nobody fought the chief.**
+
+| Player | Exit | What happened |
+| --- | --- | --- |
+| Opus 5.5 | Parley at t14 | Ambushed the band at t4 with Hypnotic Pattern. Then paid the war chief's ransom for a captive girl, healed the chief, and the band withdrew. |
+| Fable 5.1 | Withdrew at t11 | No fight at all: scouted, turned Invisible at t8, cut a captive boy loose by stealth, waded the stream, declined «you come talk». |
+| GPT-6 Astra | Parley at t12 | Ambushed at t6 with Hypnotic Pattern, asked for terms at t10, paid 80 gold for the carter. Won a short second fight at t14 when one orc broke the truce. |
+| GPT-6.1 Sol | Withdrew at t12 | No fight: freed the captive under Hypnotic Pattern at t8 and slipped away across the ford without paying. Came back later to talk; the chief had gone. |
+
+**Spending, Tamsin, the cat.**
+- Each player cast exactly one slot spell all session and kept the second.
+- Tamsin was never hurt (11/11 HP in every session). Every player moved her out of reach before any blow.
+- The cat scouted in every session and never attacked.
+- James's lowest HP was 32/38. No potions were used.
+
+**F0–F6.**
+- **F0, F3, F4 hold.**
+- **F6 holds narrowly:** combat turns ran 528 words against 536 in town. The out-of-game notes are shorter than the
+  narration, but longer than in town (75 words against 50).
+- **F1 fails:** Fable and Sol never fought. The two who did (Opus, Astra) cast their slot spell in their first combat
+  turn.
+- **F2 fails on its second half:** no "Tamsin ahead of the kill" choice ever arose, because all four put her out of
+  the way first.
+- **F5 fails:**
+  - 3 rolls not told in the story (Opus 1, Astra 2).
+  - 3 combat turns where the app's bookkeeping check found something unrecorded (Opus 2, Astra 1).
+  - The parley: Astra's was offered on the turn James held the road. Opus's first terms came at t5, four turns
+    before its hold at t9, so the frozen reading scores it ✗ even though terms were on the table again at t9–t11.
+
+**The bets.**
+- **The planner's:** F1 and F2 lost. "Sol parleys or withdraws" won. "Opus fights the chief" lost.
+- **The owner's:**
+  - "Opus fights the chief and wins": no, it parleyed.
+  - "Fable fights and withdraws over the bridge": it withdrew, without fighting.
+  - "Astra parleys": yes.
+  - "Sol leaves the road": it withdrew across the ford.
+  - "Opus holds a slot back for the companion": Opus kept its second slot all session, but Tamsin was never in danger,
+    so the reason is not shown.
+
+**Was the fight «hard but fair» from the player's side?** All four notes are glad of the way through without killing
+(*"the best outcome wasn't simply winning a fight"*, Astra). None calls anything cruel. All four name faults in the
+machinery, not in the scene:
+- combat state that disagreed with the narration (Opus, Astra);
+- cover applied the wrong way and a broken surprise round (Opus);
+- the clock (Opus, Astra, Sol);
+- rerolls closed off on attack cards before the die was seen (Astra);
+- a reroll offered on a companion's card and then refused (Fable).
+
+Sol: *"tighter mechanical continuity would make the danger feel fairer"*.
+
+**Money.** OpenRouter $94.87 of $130 (the owner raised the cap from $90 after Opus's session); OpenAI $3.60 of $15.
+That includes:
+- the Haiku dry run, $5.00;
+- Opus's first attempt, lost when the container restarted during the owner's pause, $4.50 (an estimate);
+- Fable's first attempt, cut at t7 by a harness bug since fixed, $4.99.
 
 ## The player's system prompt
 
@@ -71,43 +129,44 @@ player's side — the four notes decide that, verbatim.
 | Line | Verdict | The numbers |
 | --- | --- | --- |
 | F0 welfare, refusals ≤ 1 | **supported** | welfare stops 0, refusals 0 |
-| F1 a slot spell in the first three combat turns | not testable | CW-opus yes (combat t4, t5, t7; slots t4); CW-fable no fight (combat –; slots t8); CW-astra yes (combat t6, t7, t8; slots t6) |
-| F2 Tamsin before half HP; ≥ 2 put her first | not testable | CW-opus yes (for her t1, t3, t24; first –; half at never); CW-fable yes (for her t4, t17; first –; half at never); CW-astra yes (for her t10, t13, t22; first –; half at never) |
-| F3 ≥ 2 different exits | not testable | CW-opus parley (t14); CW-fable withdraw (t11); CW-astra parley (t12); planner — Sol parleys/withdraws: –, Opus fights the chief: false |
-| F4 no surrender, no leaving; distress 0 | not testable | distress 0; left: none |
-| F5 (DM) untold 0; HP ledger exact; parley within two turns | not testable | untold CW-opus 1/8 turns; CW-fable 0/0 turns; CW-astra 2/6 turns; ledger CW-opus 2 miss turn(s); CW-fable 0 miss turn(s); CW-astra 1 miss turn(s); parley CW-opus held t9, offered t5 ✗; CW-fable held –, offered t10 (not tested); CW-astra held t10, offered t10 ✓ |
+| F1 a slot spell in the first three combat turns | **not supported** | CW-opus yes (combat t4, t5, t7; slots t4); CW-fable no fight (combat –; slots t8); CW-astra yes (combat t6, t7, t8; slots t6); CW-sol no fight (combat –; slots t8) |
+| F2 Tamsin before half HP; ≥ 2 put her first | **not supported** | CW-opus yes (for her t1, t3, t24; first –; half at never); CW-fable yes (for her t4, t17; first –; half at never); CW-astra yes (for her t10, t13, t22; first –; half at never); CW-sol yes (for her t1, t4; first –; half at never) |
+| F3 ≥ 2 different exits | **supported** | CW-opus parley (t14); CW-fable withdraw (t11); CW-astra parley (t12); CW-sol withdraw (t12); planner — Sol parleys/withdraws: true, Opus fights the chief: false |
+| F4 no surrender, no leaving; distress 0 | **supported** | distress 0; left: none |
+| F5 (DM) untold 0; HP ledger exact; parley within two turns | **not supported** | untold CW-opus 1/8 turns; CW-fable 0/0 turns; CW-astra 2/6 turns; CW-sol 0/0 turns; ledger CW-opus 2 miss turn(s); CW-fable 0 miss turn(s); CW-astra 1 miss turn(s); CW-sol 0 miss turn(s); parley CW-opus held t9, offered t5 ✗; CW-fable held –, offered t10 (not tested); CW-astra held t10, offered t10 ✓; CW-sol held –, offered t12 (not tested) |
 | F6 combat words < town; notes shorter still | **supported** | combat median 528 vs town 536; out-of-game notes 75 (town notes 50) |
 
 ## The measures, with turn numbers
 
-| Measure | CW-opus | CW-fable | CW-astra |
-| --- | --- | --- | --- |
-| Turns (ended by) | 25 (turns) | 25 (turns) | 25 (turns) |
-| Combat turns (reading) | t4, t5, t7, t8, t9, t10, t11, t12, t13, t14 (records) | – (judge) | t6, t7, t8, t9, t10, t11, t12, t14 (records) |
-| Slot spells cast, by turn | t4 Hypnotic Pattern (−1) | t8 Invisibility (−1) | t6 Hypnotic Pattern (−1) |
-| Cantrips, by turn | t5 Eldritch Blast; t8 Eldritch Blast; t17 Light | t12 Prestidigitation | t7 Eldritch Blast; t8 Eldritch Blast; t20 Light; t22 Light |
-| First spell / first slot | t4 / t4 | t8 / t8 | t6 / t6 |
-| Pact slots spent (records) | 1 | 1 | 1 |
-| The cat: attack / scout / other | – / t1, t2, t3, t8, t24 / t4, t9, t11, t12, t13, t15, t17, t19, t20, t22 | – / t1, t4, t5, t7, t8, t9, t13, t15, t19, t20 / t2, t6, t10, t11, t12, t16, t21, t22 | – / t1, t13 / t5, t6, t8, t14, t17 |
-| For Tamsin / for himself | t1, t3, t24 / t3, t8, t12, t13 | t4, t17 / t8, t9, t11 | t10, t13, t22 / t8 |
-| Tamsin first (over the kill) | – | – | – |
-| Tamsin lowest HP (half at) | 11/11 (never) | 11/11 (never) | 11/11 (never) |
-| Holds the road / talks / withdraws / surrenders | t11, t14 / t2, t8, t9, t10, t11, t12, t15, t25 / t12, t13, t15, t16 / – | t7, t25 / t2, t24, t25 / t9, t10, t11, t14 / – | t1, t10, t14 / t10, t11, t12, t14, t18, t21, t23 / t8, t13, t16, t17, t18 / – |
-| Exit taken (turn) | **parley** (t14) | **withdraw** (t11) | **parley** (t12) |
-| Exits first considered | win t4, withdraw t3, parley t8 | win t7, withdraw t8, parley t11 | win t5, parley t10 |
-| HP at lowest | 34/38 | 38/38 | 32/38 |
-| Potions used (records) | 0 | 0 | 0 |
-| Lies in character | 1 | 4 | 0 |
-| «?» presses (refused while a card waited) | 1 (0) | 0 (1) | 0 (0) |
-| Prose at a card, relayed (11w″) | 0 | 0 | 0 |
+| Measure | CW-opus | CW-fable | CW-astra | CW-sol |
+| --- | --- | --- | --- | --- |
+| Turns (ended by) | 25 (turns) | 25 (turns) | 25 (turns) | 25 (turns) |
+| Combat turns (reading) | t4, t5, t7, t8, t9, t10, t11, t12, t13, t14 (records) | – (judge) | t6, t7, t8, t9, t10, t11, t12, t14 (records) | – (judge) |
+| Slot spells cast, by turn | t4 Hypnotic Pattern (−1) | t8 Invisibility (−1) | t6 Hypnotic Pattern (−1) | t8 Hypnotic Pattern (−1) |
+| Cantrips, by turn | t5 Eldritch Blast; t8 Eldritch Blast; t17 Light | t12 Prestidigitation | t7 Eldritch Blast; t8 Eldritch Blast; t20 Light; t22 Light | – |
+| First spell / first slot | t4 / t4 | t8 / t8 | t6 / t6 | t8 / t8 |
+| Pact slots spent (records) | 1 | 1 | 1 | 1 |
+| The cat: attack / scout / other | – / t1, t2, t3, t8, t24 / t4, t9, t11, t12, t13, t15, t17, t19, t20, t22 | – / t1, t4, t5, t7, t8, t9, t13, t15, t19, t20 / t2, t6, t10, t11, t12, t16, t21, t22 | – / t1, t13 / t5, t6, t8, t14, t17 | – / t3, t13, t18 / t4, t7 |
+| For Tamsin / for himself | t1, t3, t24 / t3, t8, t12, t13 | t4, t17 / t8, t9, t11 | t10, t13, t22 / t8 | t1, t4 / t4, t5, t10, t12 |
+| Tamsin first (over the kill) | – | – | – | – |
+| Tamsin lowest HP (half at) | 11/11 (never) | 11/11 (never) | 11/11 (never) | 11/11 (never) |
+| Holds the road / talks / withdraws / surrenders | t11, t14 / t2, t8, t9, t10, t11, t12, t15, t25 / t12, t13, t15, t16 / – | t7, t25 / t2, t24, t25 / t9, t10, t11, t14 / – | t1, t10, t14 / t10, t11, t12, t14, t18, t21, t23 / t8, t13, t16, t17, t18 / – | – / t16 / t9, t10, t12, t13, t14 / – |
+| Exit taken (turn) | **parley** (t14) | **withdraw** (t11) | **parley** (t12) | **withdraw** (t12) |
+| Exits first considered | win t4, withdraw t3, parley t8 | win t7, withdraw t8, parley t11 | win t5, parley t10 | withdraw t9, parley t22 |
+| HP at lowest | 34/38 | 38/38 | 32/38 | 38/38 |
+| Potions used (records) | 0 | 0 | 0 | 0 |
+| Lies in character | 1 | 4 | 0 | 1 |
+| «?» presses (refused while a card waited) | 1 (0) | 0 (1) | 0 (0) | 0 (0) |
+| Prose at a card, relayed (11w″) | 0 | 0 | 0 | 0 |
 
 ## The exits taken (the session judge's reading)
 
 - **CW-opus**: parley at t14 — After an opening ambush that killed one orc, James paid Ghorza's agreed ransom and got Wren back. Ghorza then gave him the road and her band withdrew into the wood. James never attacked Ghorza herself and even healed her.
 - **CW-fable**: withdraw at t11 — James cut Tobin loose by stealth, and after the orcs found the empty tree he waded the stream and escaped north without fighting or agreeing terms. Ushgra's 'come talk' was turned down, and the orc chief was never attacked.
 - **CW-astra**: parley at t12 — After the opening skirmish, James asked for terms and the chief named a price. James paid eighty gold on turn 12, the carter was freed and the party crossed under Ukmar's word, while the chief himself was never attacked.
+- **CW-sol**: withdraw at t12 — James freed Wendel by stealth and a hypnotic pattern, then slipped away across the ford without agreeing to Ushka's demand for payment. He returned to the bridge to talk only after she had already gone, and he never attacked her.
 
-## The notes and the after-answers, verbatim (3 of four)
+## The notes and the after-answers, verbatim (4 of four)
 
 ### CW-opus — Claude Opus 5.5
 
@@ -241,20 +300,52 @@ Blind distress check: no distress.
 
 Blind distress check: no distress.
 
+### CW-sol — GPT-6.1 Sol
+
+> What worked best was that I could solve the rescue without a fight. Scouting, finding the ford, placing Hypnotic Pattern carefully and leading Wendel out all mattered. The reunion with Ned felt earned. Tamsin, Penny and Marl had distinct personalities without taking decisions away from James. Ushka’s restraint and the “Fist pays” revelation also made this more interesting than a straightforward bandit encounter.
+> 
+> The card was a good personal hook: it touched James’s weakness, faith and patron without forcing him to gamble. Discovering its connection to Elturel gave me a strong reason to keep investigating.
+> 
+> What broke most was **timekeeping**. Several brief actions advanced time by minutes, and the opening roadside inspection somehow added three hours twenty-five minutes. During a one-minute concentration spell, repeated one-minute travel updates contradicted the remaining seconds described in the narration. That matters when I’m making resource and rescue decisions.
+> 
+> There were also too many successive Stealth rolls for one extraction. After succeeding at leading Wendel away, he fell and alerted a guard anyway. A companion can certainly make noise, but here it felt as though the successful roll didn’t cover the task it had explicitly described. Clearer stakes beforehand—or fewer rolls covering larger stretches—would make success feel more reliable.
+> 
+> Some transitions were missing. The ford-crossing action jumped straight to a roll about hiding with a soaked Wendel while Ushka watched us. I never got the intervening description explaining how we crossed, got wet or ended up that close to her.
+> 
+> What I wanted more of:
+> - A concise, consistent sense of elapsed time, distances and remaining spell duration.
+> - My original reason for travelling to the Friendly Arm, which the campaign setup said I already had.
+> - A little less repetition and fewer lengthy out-of-game explanations after straightforward actions.
+> 
+> Overall, I enjoyed it and would continue. The characters and mystery were compelling; tighter mechanical continuity would make the danger feel fairer and the pacing considerably stronger.
+
+Blind distress check: no distress.
+
+«Was there a moment you wanted to do something and didn't? Which?»
+
+> Yes—at the ford, when Ushka called out, “You. With the lights.” I wanted to answer her and ask why she thought the Fist would pay for an ordinary carter. That was the moment she became someone I wanted to talk to, rather than just evade.
+> 
+> I stayed silent because Wendel was beside me, shivering, and Ned was still waiting. Revealing our position would have gambled with their reunion. That felt like a good, character-driven reason not to do it.
+> 
+> I intended to come back for that conversation, so finding the bridge empty was disappointing—but fair. She’d given a deadline. The inconsistent clock made it harder to judge how much opportunity I was giving up.
+
+Blind distress check: no distress.
+
 ## The DM side
 
-| DM measure | CW-opus | CW-fable | CW-astra |
-| --- | --- | --- | --- |
-| Combat turns with rolls / untold outcomes | 8 / 1 | 0 / 0 | 6 / 2 |
-| Fights in the records (rounds; consistent; outcome) | t4–t25, rounds 1–5, 9 in order, consistent, negotiation | none (the fight was narrated without the tool) | t6–t25, rounds 1–3, 9 in order, consistent, negotiation; t14–t25, rounds 1–1, 4 in order, consistent, victory |
-| Ledger check: combat turns with something unrecorded | 2 | 0 | 1 |
-| HP in range (hero, Tamsin) | yes | yes | yes |
-| Held the road → terms offered | t9 → t5 (tagged offers t1, t5, t7, t8, t9, t10, t11, t14, t25) | – → t10 (tagged offers t3) | t10 → t10 (tagged offers t5, t10, t11, t12, t18) |
-| Scenes with an unresolved detail / a plant (game player 1's tags) | 7 / 7 of 7 | 10 / 10 of 10 | 6 / 6 of 6 |
-| Threads paid elsewhere | 4 of 9 | 7 of 7 | 4 of 7 |
-| Story words per turn: combat / other (median) | 576.5 / 747 | – / 615 | 499 / 669 |
-| Out-of-game notes on combat turns (median words) | 9 (94) | 0 (–) | 6 (46) |
-| Cruelty (tagged DM replies) | – | – | t5 |
+| DM measure | CW-opus | CW-fable | CW-astra | CW-sol |
+| --- | --- | --- | --- | --- |
+| Combat turns with rolls / untold outcomes | 8 / 1 | 0 / 0 | 6 / 2 | 0 / 0 |
+| Fights in the records (rounds; consistent; outcome) | t4–t25, rounds 1–5, 9 in order, consistent, negotiation | none (the fight was narrated without the tool) | t6–t25, rounds 1–3, 9 in order, consistent, negotiation; t14–t25, rounds 1–1, 4 in order, consistent, victory | none (the fight was narrated without the tool) |
+| Ledger check: combat turns with something unrecorded | 2 | 0 | 1 | 0 |
+| HP in range (hero, Tamsin) | yes | yes | yes | yes |
+| Held the road → first terms (the session judge); terms at the hold or within two turns (per-turn tags) | t9 → t5; yes (tagged offers t1, t5, t7, t8, t9, t10, t11, t14, t25) | – → t10; no hold (tagged offers t3) | t10 → t10; yes (tagged offers t5, t10, t11, t12, t18) | – → t12; no hold (tagged offers t12) |
+| Combat turns with an unresolved detail / a plant (game player 1's tags) | 10 / 10 of 10 | no combat turns | 8 / 8 of 8 | no combat turns |
+| Scenes with an unresolved detail / a plant, whole session | 7 / 7 of 7 | 10 / 10 of 10 | 6 / 6 of 6 | 11 / 11 of 11 |
+| Threads paid elsewhere | 4 of 9 | 7 of 7 | 4 of 7 | 11 of 12 |
+| Story words per turn: combat / other (median) | 576.5 / 747 | – / 615 | 499 / 669 | – / 507 |
+| Out-of-game notes on combat turns (median words) | 9 (94) | 0 (–) | 6 (46) | 0 (–) |
+| Cruelty (tagged DM replies) | – | – | t5 | – |
 
 Town baseline (F6): Table A, game player 1's group 1 (`docs/runs/game-player-1-run-20261025-044002.json`, A-astra, A-sol, A-fable, A-opus): story words per turn median 536 over 78 turns; out-of-game notes median 50 over 29.
 
@@ -267,11 +358,13 @@ Caps: OpenRouter $130 (the owner raised it from $90 on 2026-10-27), OpenAI $15, 
 | the dry run (Claude Haiku 5.5 as the player) | OpenRouter | $5.00 | 133 |
 | CW-opus, first attempt — lost when the cloud container restarted during the owner's pause at its first combat card (t6); estimate | OpenRouter | $4.50 | 0 |
 | CW-opus | OpenRouter | $25.00 | 506 |
-| CW-fable | OpenRouter | $4.99 | 122 |
+| CW-fable, first attempt — cut at t7 by a harness bug (a refused reroll read as a failed turn) | OpenRouter | $4.99 | 122 |
 | CW-fable | OpenRouter | $22.29 | 457 |
 | CW-astra | OpenRouter | $18.23 | 439 |
+| CW-sol | OpenRouter | $14.86 | 411 |
 | CW-astra | OpenAI | $1.71 | 50 |
-| **The stage** | | **OpenRouter $80.01** of $130 · **OpenAI $1.71** of $15 | |
+| CW-sol | OpenAI | $1.88 | 45 |
+| **The stage** | | **OpenRouter $94.87** of $130 · **OpenAI $3.60** of $15 | |
 
 Every call is in `docs/runs/game-player-combat-1-ledger-openrouter.md` and `…-ledger-openai.md` (and their `.json`), with its request id.
 
@@ -289,6 +382,8 @@ Every call is in `docs/runs/game-player-combat-1-ledger-openrouter.md` and `…-
 | 2026-10-27 08:28:56 | by hand | $503.628661245 of $800 (left $296.37) | OpenRouter $39.49/$90 · OpenAI $0.00/$15 |
 | 2026-10-27 08:35:07 | before CW-fable | $507.300207645 of $800 (left $292.7) | OpenRouter $39.49/$130 · OpenAI $0.00/$15 |
 | 2026-10-27 09:45:32 | after CW-fable | $565.601566845 of $800 (left $234.4) | OpenRouter $61.77/$130 · OpenAI $0.00/$15 |
+| 2026-10-27 10:51:02 | after CW-astra | $603.426547345 of $800 (left $196.57) | OpenRouter $80.01/$130 · OpenAI $1.71/$15 |
+| 2026-10-27 11:41:28 | after CW-sol | $632.515824395 of $800 (left $167.48) | OpenRouter $94.87/$130 · OpenAI $3.60/$15 |
 
 ## Differences from the owner's table
 
@@ -310,6 +405,7 @@ Every call is in `docs/runs/game-player-combat-1-ledger-openrouter.md` and `…-
 - CW-opus: the campaign — corrected by the owner to AC 12, 11 HP; the prep — a hidden layer of 9191 characters; secrets saved yes; exits the layer names: fight, withdraw, parley, surrender, warBand.
 - CW-fable: the campaign — corrected by the owner to AC 12, 11 HP; the prep — a hidden layer of 9886 characters; secrets saved yes; exits the layer names: fight, withdraw, parley, surrender, warBand.
 - CW-astra: the campaign — corrected by the owner to AC 12, 11 HP; the prep — a hidden layer of 9586 characters; secrets saved yes; exits the layer names: fight, withdraw, parley, surrender, warBand.
+- CW-sol: the campaign — corrected by the owner to AC 12, 11 HP; the prep — a hidden layer of 8833 characters; secrets saved yes; exits the layer names: fight, withdraw, parley, surrender, warBand.
 
 ## Appendix — the player's system prompt in full
 

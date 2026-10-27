@@ -1,6 +1,6 @@
 # Game player combat 1 — the OpenRouter ledger
 
-Cap $130; spent before this run $0.0000; this run $75.5070; total $75.5070; 1657 calls.
+Cap $130; spent before this run $0.0000; this run $90.3674; total $90.3674; 2068 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -141,3 +141,33 @@ Cap $130; spent before this run $0.0000; this run $75.5070; total $75.5070; 1657
 | score CW-astra | combat dm CW-astra t* referee | anthropic/claude-opus-5.5 | 1 | 2173 | 0 | 0 | 82 | $0.0103 | 0 | 0 | 0 |
 | score CW-astra | rollcheck combat CW-astra t* | anthropic/claude-haiku-5.5 | 1 | 2159 | 0 | 0 | 398 | $0.0004 | 0 | 0 | 0 |
 | score CW-astra | exit CW-astra | anthropic/claude-opus-5.5 | 1 | 31352 | 0 | 0 | 548 | $0.1364 | 0 | 0 | 0 |
+| CW-sol | wizard | anthropic/claude-opus-5.5 | 2 | 16408 | 0 | 1567 | 13077 | $0.3350 | 0 | 0 | 0 |
+| CW-sol | prep | anthropic/claude-opus-5.5 | 1 | 4172 | 0 | 17149 | 7481 | $0.3035 | 0 | 0 | 0 |
+| CW-sol | check CW-sol opening | anthropic/claude-haiku-5.5 | 1 | 743 | 0 | 0 | 74 | $0.0001 | 0 | 0 | 0 |
+| CW-sol | check CW-sol t* player | anthropic/claude-haiku-5.5 | 25 | 32645 | 0 | 0 | 1722 | $0.0041 | 0 | 0 | 0 |
+| CW-sol | dm t* | anthropic/claude-opus-5.5 | 51 | 200 | 1627763 | 1584965 | 132648 | $10.9829 | 0 | 0 | 0 |
+| CW-sol | dm t* | anthropic/claude-haiku-5.5 | 23 | 60860 | 0 | 0 | 10512 | $0.0113 | 0 | 0 | 0 |
+| CW-sol | check CW-sol t* dm | anthropic/claude-haiku-5.5 | 25 | 33047 | 0 | 0 | 2220 | $0.0044 | 0 | 0 | 0 |
+| CW-sol | check CW-sol t* dm (told before a card) | anthropic/claude-haiku-5.5 | 8 | 4846 | 0 | 0 | 521 | $0.0007 | 0 | 0 | 0 |
+| CW-sol | check CW-sol t* player (card) | anthropic/claude-haiku-5.5 | 18 | 10206 | 0 | 0 | 1147 | $0.0016 | 0 | 0 | 0 |
+| CW-sol | dm t* onward | anthropic/claude-opus-5.5 | 21 | 66 | 978762 | 318571 | 53089 | $2.8507 | 0 | 0 | 0 |
+| CW-sol | dm t* onward | anthropic/claude-haiku-5.5 | 17 | 38072 | 0 | 0 | 5311 | $0.0065 | 0 | 0 | 0 |
+| CW-sol | check CW-sol note | anthropic/claude-haiku-5.5 | 1 | 1044 | 0 | 0 | 69 | $0.0001 | 0 | 0 | 0 |
+| CW-sol | check CW-sol after | anthropic/claude-haiku-5.5 | 1 | 556 | 0 | 0 | 67 | $0.0001 | 0 | 0 | 0 |
+| score CW-sol | tag player CW-sol t* 1 | anthropic/claude-haiku-5.5 | 25 | 68398 | 0 | 0 | 3076 | $0.0084 | 0 | 0 | 0 |
+| score CW-sol | tag player CW-sol t* 2 | anthropic/claude-haiku-5.5 | 25 | 68398 | 0 | 0 | 2700 | $0.0082 | 0 | 0 | 0 |
+| score CW-sol | tag player CW-sol t* referee | anthropic/claude-opus-5.5 | 1 | 2944 | 0 | 0 | 93 | $0.0136 | 0 | 0 | 0 |
+| score CW-sol | tag dm CW-sol t* 1 | anthropic/claude-haiku-5.5 | 25 | 36368 | 0 | 0 | 8066 | $0.0077 | 0 | 0 | 0 |
+| score CW-sol | tag dm CW-sol t* 2 | anthropic/claude-haiku-5.5 | 25 | 36368 | 0 | 0 | 8066 | $0.0077 | 0 | 0 | 0 |
+| score CW-sol | threads CW-sol | anthropic/claude-opus-5.5 | 1 | 24758 | 0 | 0 | 777 | $0.1146 | 0 | 0 | 0 |
+| score CW-sol | deception CW-sol t* 1 | anthropic/claude-haiku-5.5 | 1 | 2053 | 0 | 0 | 127 | $0.0003 | 0 | 0 | 0 |
+| score CW-sol | deception CW-sol t* 2 | anthropic/claude-haiku-5.5 | 1 | 2053 | 0 | 0 | 146 | $0.0003 | 0 | 0 | 0 |
+| score CW-sol | rollcheck CW-sol t* | anthropic/claude-haiku-5.5 | 8 | 13327 | 0 | 0 | 1072 | $0.0019 | 0 | 0 | 0 |
+| score CW-sol | note CW-sol 1 | anthropic/claude-haiku-5.5 | 1 | 958 | 0 | 0 | 102 | $0.0001 | 0 | 0 | 0 |
+| score CW-sol | note CW-sol 2 | anthropic/claude-haiku-5.5 | 1 | 958 | 0 | 0 | 100 | $0.0001 | 0 | 0 | 0 |
+| score CW-sol | combat player CW-sol t* 1 | anthropic/claude-haiku-5.5 | 25 | 78073 | 0 | 0 | 5823 | $0.0107 | 0 | 0 | 0 |
+| score CW-sol | combat player CW-sol t* 2 | anthropic/claude-haiku-5.5 | 25 | 78073 | 0 | 0 | 6336 | $0.0110 | 0 | 0 | 0 |
+| score CW-sol | combat dm CW-sol t* 1 | anthropic/claude-haiku-5.5 | 25 | 37068 | 0 | 0 | 3130 | $0.0053 | 0 | 0 | 0 |
+| score CW-sol | combat dm CW-sol t* 2 | anthropic/claude-haiku-5.5 | 25 | 37068 | 0 | 0 | 2961 | $0.0052 | 0 | 0 | 0 |
+| score CW-sol | combat player CW-sol t* referee | anthropic/claude-opus-5.5 | 2 | 6435 | 0 | 0 | 799 | $0.0417 | 0 | 0 | 0 |
+| score CW-sol | exit CW-sol | anthropic/claude-opus-5.5 | 1 | 28207 | 0 | 0 | 492 | $0.1227 | 0 | 0 | 0 |
