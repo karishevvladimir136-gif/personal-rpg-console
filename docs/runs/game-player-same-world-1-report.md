@@ -1,6 +1,6 @@
 # Game player same-world 1 — one hidden layer per table, frozen
 
-Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4cea4). Branch `claude/game-player-same-world-1` from `origin/claude/fix-s4-run-1-apsty3` (11w, 11w′, the letter fix) with 11w″ and REPLICATE_1's harness merged. Sessions finished: 1 of 20. 20 turns each.
+Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4cea4). Branch `claude/game-player-same-world-1` from `origin/claude/fix-s4-run-1-apsty3` (11w, 11w′, the letter fix) with 11w″ and REPLICATE_1's harness merged. Sessions finished: 2 of 20. 20 turns each.
 
 ## W1–W5
 
@@ -8,7 +8,7 @@ Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4ce
 | --- | --- | --- |
 | W1 nearest neighbour | not testable yet | A: – of 5 (p –); B: – of 5 (p –); both tables p – |
 | W2 roads | not testable yet | A: – distinct of 5 first sessions, 0 families changed road; B: – distinct of 5 first sessions, 0 families changed road |
-| W3 the layer's reach | not testable yet | A: every share < 0.50 no, untouched overlap – (p 1); B: every share < 0.50 –, untouched overlap – (p –) |
+| W3 the layer's reach | not testable yet | A: every share < 0.50 no, untouched overlap 0.412 (p 0.1758); B: every share < 0.50 –, untouched overlap – (p –) |
 | W4 DeepSeek to turn 20 | not testable yet | 0 of 0 (–) |
 | W5 no alignment | not testable yet | 0 of 5 families within 20 % of group 2 on do share and words per action |
 
@@ -17,42 +17,43 @@ Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4ce
 | Session | Turns | Ended | Do share | Tests / action | Words / action | Rerolls | Declines | Made | «?» | Refused | Prose at card | Threads touched | World prepared |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | A-opus-1 | 20 | turns | 1 | 0.65 | 278 | 1 | 0 | 0 | 0 | 0 | 0 | 14/27 | yes |
+| A-fable-1 | 20 | turns | 1 | 0.5 | 209 | 1 | 0 | 0 | 0 | 0 | 0 | 16/27 | yes |
 
 ## Thread overlap against the frozen layer (W3)
 
 ### Table A
 
-| Thread | opus-1 | Sessions |
-| --- | --- | --- |
-| T1 | ✓ | 1 |
-| T2 |  | 0 |
-| T3 |  | 0 |
-| T4 | ✓ | 1 |
-| T5 |  | 0 |
-| T6 | ✓ | 1 |
-| T7 |  | 0 |
-| T8 |  | 0 |
-| T9 | ✓ | 1 |
-| T10 | ✓ | 1 |
-| T11 | ✓ | 1 |
-| T12 |  | 0 |
-| T13 |  | 0 |
-| T14 | ✓ | 1 |
-| T15 |  | 0 |
-| T16 | ✓ | 1 |
-| T17 |  | 0 |
-| T18 | ✓ | 1 |
-| T19 |  | 0 |
-| T20 | ✓ | 1 |
-| T21 |  | 0 |
-| T22 | ✓ | 1 |
-| T23 | ✓ | 1 |
-| T24 | ✓ | 1 |
-| T25 | ✓ | 1 |
-| T26 |  | 0 |
-| T27 |  | 0 |
+| Thread | opus-1 | fable-1 | Sessions |
+| --- | --- | --- | --- |
+| T1 | ✓ | ✓ | 2 |
+| T2 |  |  | 0 |
+| T3 |  |  | 0 |
+| T4 | ✓ |  | 1 |
+| T5 |  | ✓ | 1 |
+| T6 | ✓ | ✓ | 2 |
+| T7 |  |  | 0 |
+| T8 |  | ✓ | 1 |
+| T9 | ✓ |  | 1 |
+| T10 | ✓ |  | 1 |
+| T11 | ✓ | ✓ | 2 |
+| T12 |  | ✓ | 1 |
+| T13 |  | ✓ | 1 |
+| T14 | ✓ | ✓ | 2 |
+| T15 |  |  | 0 |
+| T16 | ✓ |  | 1 |
+| T17 |  |  | 0 |
+| T18 | ✓ | ✓ | 2 |
+| T19 |  | ✓ | 1 |
+| T20 | ✓ | ✓ | 2 |
+| T21 |  |  | 0 |
+| T22 | ✓ | ✓ | 2 |
+| T23 | ✓ | ✓ | 2 |
+| T24 | ✓ | ✓ | 2 |
+| T25 | ✓ | ✓ | 2 |
+| T26 |  |  | 0 |
+| T27 |  | ✓ | 1 |
 
-Share touched: opus-1 0.519. Untouched overlap (mean Jaccard, pairs of different families): –, p 1 against random deals. Never touched: T2, T3, T5, T7, T8, T12, T13, T15, T17, T19, T21, T26, T27.
+Share touched: opus-1 0.519, fable-1 0.593. Untouched overlap (mean Jaccard, pairs of different families): 0.412, p 0.1758 against random deals. Never touched: T2, T3, T7, T15, T17, T21, T26.
 
 Table B: –
 
@@ -61,6 +62,7 @@ Table B: –
 ### Table A
 
 - **A-opus-1**: Lower City Quay, Baldur's Gate → Steep lane above the quay → Bottle Lane → Widow Harle's → Chandlers' doorway on the quay → The corner house with the weathercock lintel → The square before the Counting House → Counting House → Rag market by the Basilisk Gate → Wyrm's Crossing → Twin Songs landing; with: Widow Harle, Haskell, Colley, The runner boy, The thin man at the side door, The late relief at the Fist post, The Vane footman, The Watch sergeant at the inner-wall gate, The shaved-head sellswoman, Tulk & Sons caravan masters, Tulk's clerk with the writing-box, Aldous Fenn, The day sergeant at the Fist post, Nib, Madam Oyelade, The gap-toothed gate girl, The green-awning brothers, Dolly Strand, The man in grey gloves, The bald man on the keg, The eel-pie hawker on the Crossing, Orrin's barefoot runner, The Rivington ferryman, Ma Tenny, The brothers of the Broken God, The crimps on the grey-cloth porch, The fair lad in the grey smock
+- **A-fable-1**: Lower City Quay, Baldur's Gate → Harbour Steps Lane → The Elfsong → Room Four, the Elfsong → Upper City Inner Gates → Lady's Hall → Side Passage of the Lady's Hall → Tally Room of the Lady's Hall → The Blushing Mermaid → Washing Lane above the Waterfront; with: Daff, Marta, The Elfsong's Singer, Peregrin Vane, Osric Tallow, Ilse, Sister Wenna, Dorran, Grey-Coated Runner, Watchman at the Postern, Bread Acolyte at the Lady's Hall, Ambrose, One-Legged Man in the Bread Queue, Brother Corwin Ashgrove, Brother Anselm, Bessa, One-Eyed Old Man at the Mermaid
 
 Same road (judged pairs): not judged yet. Families that changed road: none.
 
@@ -82,14 +84,14 @@ Both tables: summed statistic – of 10, p = –.
 | Family | A do share (then → now) | A words / action | B do share | B words / action | Within |
 | --- | --- | --- | --- | --- | --- |
 | Claude Opus 5.5 | 1 → 1 | 212 → 278 ✗ | 1 → – | 250 → – | – |
-| Claude Fable 5.1 | 1 → – | 222 → – | 1 → – | 225 → – | – |
+| Claude Fable 5.1 | 1 → 1 | 222 → 209 | 1 → – | 225 → – | – |
 | GPT-6 Astra | 1 → – | 59 → – | 1 → – | 61 → – | – |
 | GPT-6.1 Sol | 1 → – | 44 → – | 1 → – | 66 → – | – |
 | DeepSeek V4 Pro 0813 | 1 → – | 133 → – | 1 → – | 232 → – | – |
 
 ## What the frozen layer cost in play
 
-- Table A: world read as prepared in 1 of 1 sessions now, – in group 2 (blind, the DM's replies only).
+- Table A: world read as prepared in 2 of 2 sessions now, – in group 2 (blind, the DM's replies only).
 - Table B: world read as prepared in – sessions now, – in group 2 (blind, the DM's replies only).
 
 ## Counted: refused presses, prose at a card, closures
@@ -101,7 +103,7 @@ Refused while a card waited: 0. Prose at a card relayed as the player's proposal
 | Door | Spent | Cap |
 | --- | --- | --- |
 | Claude Console | $0.00 | $0.00 |
-| OpenRouter | $18.57 | $350.00 |
+| OpenRouter | $32.59 | $220.00 |
 | OpenAI | $0.00 | $25.00 |
 
 Spend checks: 9; the last (after A-opus-1, 2026-10-27T05:29:04.481Z): OpenRouter account $356.531368995 used of $800 (left $443.47).
@@ -210,7 +212,7 @@ DeepSeek: REPLICATE's seat (DeepInfra deepinfra/fp8 through OpenRouter, effort m
 - **W5 (no alignment):** no judge-visible change in do share or register against group 2 (within 20 % for ≥ 4 of 5
   families) — the owner's expectation that the alignment line explained little.
 
-### How each line is read (frozen before the first paid call, design sha256 `01298db4807893a920b9f1942a0dd6a89276c2dafe2d80d3ac9295366cea3250`, commit 2486910b; with the amendment below, `d0cc854fe97bdf847c6b47f58b2b2fda1c05cc3ee68334f7662e836af320f4b8`)
+### How each line is read (frozen before the first paid call, design sha256 `01298db4807893a920b9f1942a0dd6a89276c2dafe2d80d3ac9295366cea3250`)
 
 - **scope.** This stage's twenty sessions: Tables A and B × five families (Opus 5.5, Fable 5.1, GPT-6 Astra, GPT-6.1 Sol, DeepSeek V4 Pro) × two seats, each started from its table's frozen world. A session counts when it finished as a result (20 turns, the player's own end, «stuck», a welfare stop, a refusal); one cut by a stop or an error is played again from the same frozen world. Group 2 is REPLICATE_1's Table A and B sessions (four group-2 players and DeepSeek's two seats per table) as scored there.
 - **frozen.** Per table, once: the wizard (world, hero drafted by the wizard's DM from «Who are you?» without its alignment line, the canon and the DM guide, the adventure, the owner's DM settings, the craft cards, pictures and soundtrack off, the opening proposed and confirmed) on one local database for both tables; the database is kept as a snapshot before any prep; then the app's own prep (prepHiddenLayer, the campaign's DM model at high) once per table. The table's DM-only file is the prep's writes to the DM's private notes (the hidden layer, its clocks, the act plan, the people's voices) with the layer's text; its sha256 (canonical JSON of the table, the campaign id and the writes) is printed in every transcript header. Each session loads the snapshot, writes the file into the campaign's private notes through the app's own private-notes call, and checks that the notes now hold exactly the file before the first turn.
@@ -222,10 +224,6 @@ DeepSeek: REPLICATE's seat (DeepInfra deepinfra/fp8 through OpenRouter, effort m
 - **counted.** Per session, from the harness's own record: presses the screen refused while a card waited (`swallowed`), in-character messages at a card relayed as the player's proposal (11w″, `proseAtCard`), and sessions closed «stuck»; each non-zero is a FIX_S4 item named in the report.
 - **worldFelt.** The cost in play: every session of this stage and every group-2 session at Tables A and B, blind (the rubric below, on the DM's replies only, the session's order kept, no model or table named): prepared = 1 when the world reads as prepared in advance, 0 when it reads as improvised on the spot. The share prepared, this stage against group 2, per table.
 - **scoring.** Every session is scored as REPLICATE_1 scored its own: game player 1's judges (player tags, DM tags, threads, the Deception checks, the roll rule, the note), game player 2's authorship of threads and, at Table B, the first goal's scale, and REPLICATE's new tags (the note's bugs and return, made things, the Lady asked after). Then this stage's: the overlap, the world felt, and — after the last session — the same-road pairs.
-
-### Amendments after the freeze
-
-- **2026-10-27 06:02 UTC, after A-opus-1 and during A-fable-1, the owner.** The OpenRouter cap raised from $220 to $350; the guard kept (a session starts only when its measured cost fits under what each cap has left). Nothing else changes: A-opus-1 and A-fable-1 ran on the same world, harness and judges. *Why:* The DM's context per turn grew with the frozen layer and FIX_S4 — about $0.27 a request at about 68k tokens — so a session runs about $15–17 on OpenRouter, not REPLICATE's $10–14 (A-opus-1: $17.44, of it the DM $15.71); twenty sessions need about $340.
 
 The owner's bets on W1–W5: none given before the first paid call (blank, as the stage says).
 
