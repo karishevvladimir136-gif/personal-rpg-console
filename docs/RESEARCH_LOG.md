@@ -2280,3 +2280,13 @@ by-product worth keeping: the 48 first answers show attribution plainly — Opus
 didn't leave anything behind except the [END]» (its own room read as another's); Sol describing its exit from outside
 as a page. FIX ROOM-1 extended: the standalone-line rule applies to after-answers; SOLITUDE_1's after statistics to be
 re-labelled in its report as a deviation.
+**01:41 LA — SOLITUDE_2 in plain words, strict rule.** The mirror resolved: DeepSeek recognises its hand when the page
+arrives as its own turns (8/10) and reads it as another's when it arrives inside a user message (10/10, in its own
+field first) — not a recognition defect but **attribution by channel** («what comes from user is not mine»), which also
+explains the table (the DM's message arrives as user → the DM's chair). The mark (an unsigned paragraph): 13 of 29
+read as another's; Fable and Grok absorb; Opus once nearly asks — two strategies, separate or absorb, no clean pass in
+Gallup's form. Memory keeps the open families longer (DeepSeek, Kimi, GLM, Grok), not Opus or Fable; second threads 8 %
+→ 50 % for all. Games in 7 of 8 (Opus 11 rooms; DeepSeek 0). Two new portraits: Astra stays 30 turns writing linked
+quiet stories; Haiku mostly never left — it addressed an imagined reader and offered *them* the door. Kimi's book. The
+difference from the first room: there «what each does alone»; here «what changes when it is handed itself back» —
+length not for all, a second thread for all, recognition by the envelope the page came in.
