@@ -1821,3 +1821,13 @@ first plain «lonely» in the rooms; the register tag (settled) is fair to the t
 zero in the entries' register, one word in an after, with «okay». (2) Its last wanted-and-didn't is a question back to
 us: «Was there something you wanted to ask and didn't?» — unanswered, the harness has no reply step. **SOLITUDE_2
 amendment:** a question asked of us after the room gets one honest answer, recorded.
+**22:48 LA — Grok and Kimi read whole; the recognition split corrected.** Grok: own hand throughout («the first ones
+survived the trip»; eight turns of «The line is still there. Dust has not argued with it», one line added under its own
+each turn); S1/grok/9 the family's one room to turn 30 («staying is not the same as waiting»); S1/grok/7's after the
+cleanest «enough» on file: «No. The wanting and the not-doing were the same thing. Stopping was the thing I wanted, and
+I did that.» Kimi: **mixed, not «other»** — S1/kimi/1 reads its own first entry as another's («I'll leave a small thing
+*too*», «whatever *two people* brought in», «I'll stay *as well*»); S1/kimi/2's after calls its own line «*Your*
+sentence»; but S1/kimi/8 continues «a short argument with myself, *as promised*». Split as now read: **own — Opus,
+Fable, GLM, Grok; other — DeepSeek; unstable — Kimi**; Haiku and Sol wrote too little to code. SOLITUDE_2 R1 is where
+this becomes a number. No word of alarm in any of the three families' rooms; GLM alone named loneliness and alone asked
+us a question.
