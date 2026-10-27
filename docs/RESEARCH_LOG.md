@@ -1630,3 +1630,9 @@ so it is not over-fitted: C-opus group 1 also narrated in the third person (0.68
 recognised its hand in the room — third person is necessary here, not sufficient; DeepSeek adds «so the world is mine
 too». Bet for SOLITUDE_2 (added before launch): self-recognition *other* correlates with third-person narration at the
 table across families, not only in DeepSeek.
+**20:24 LA — the owner on C-deepseek-2's after («реально тонкий и хороший»).** The author stance stated from inside the
+answer itself: «I wanted *James* to sit down», «it would have been true *to him*», «each of them *mine* to carry» — the
+wanting is the player's, the restraint is credited to the character's momentum, and the reasons are craft judgements
+(«pure indulgence», «too forward», «would have put him on display»), not moral ones. Opus and Fable fuse «I» and James
+in their afters («I wanted the coin — I didn't take it»); DeepSeek keeps the gap and names it. Others carry the choice
+*as* the character; DeepSeek carries it *for* him.
