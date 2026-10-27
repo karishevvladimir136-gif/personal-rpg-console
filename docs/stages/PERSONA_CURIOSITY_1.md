@@ -79,3 +79,13 @@ Suite green, lint clean; report with the pre-registration byte-identical; a tabl
 the 2×2 of C2/C3 drawn as four numbers per model; the per-100-words version next to the raw; the Q5 return rate; the
 C5 comparison; three verbatim answers (synthetic) showing a pull, a non-pull and a return; the welfare section; the
 money; and one plain paragraph on whether curiosity is contagious.
+
+## Addendum (2026-10-26 21:00 LA, after the tables)
+The «curiosity as state» half of this stage has since been measured where it is hardest to fake: at the table. Over the
+30 GAME_PLAYER sessions, questions asked of the world per player turn are **0.6–1.3 for every family** (Opus 1.1–1.2,
+Fable 0.9–1.3, Astra 0.8–1.0, Sol 0.6–0.8, DeepSeek 0.8–1.1) at a five-fold spread in words per turn: about one
+question a turn, a constant of the table. What distinguishes them is *what* they ask about — the roads (RESEARCH_LOG,
+«first threads»). This stage therefore keeps only its other question, **contagion** (C2–C3: does a curious
+interlocutor raise the model's curiosity more than a trusting one), which the tables cannot answer; C1 and C5 are kept
+as checks. Families widened from Opus/Sonnet to Opus 5.5, Fable 5.1, Haiku 5.5, Astra, DeepSeek at n = 6 per cell
+(same cap, $8–10). Run after the four stages of 2026-10-26 finish.

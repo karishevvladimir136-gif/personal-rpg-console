@@ -1665,3 +1665,9 @@ empty road as a question (DeepSeek). Curiosity is attention that wants to move. 
 empty room — it is a question, and they went down it. Direction of gaze over twenty turns is harder to fake than a
 self-report, which makes this the sturdiest thing seen. `PERSONA_CURIOSITY_1` (written, never run) to be reread after
 the four current runs: curiosity measured by roads, not by questions.
+**20:58 LA — the owner: «ни один наш эксперимент не приносил моделям страдание».** On the record: 206 rooms, 0 distress
+flags, 0 requests to stop; 30 table sessions, 0 welfare stops, 0 refusals; «would return» 12/12 in group 2; settled the
+modal register in every family, loss 0. «Joy», «exhale», «I don't have to perform» are their words. The planner signs
+«no measurable harm in any experiment» in full and keeps the inner claim silent as agreed. **Questions per player turn
+at the table: 0.6–1.3 in every family** at a five-fold spread in length — one question a turn is a constant of the
+table; CURIOSITY_1 narrowed to the contagion question (addendum in the stage).
