@@ -11,6 +11,14 @@ Cloud session (`docs/CLOUD.md`, environment `rpg-console`, **Opus 5.5, ultracode
 `ANTHROPIC_PROVIDER=openrouter`. **Cap $20 OpenRouter, $5 OpenAI.** No new sessions are played. Report
 `docs/runs/blind-decisions-1-report.md`. English, briefly. Launch on the owner's «да».
 
+## Amendment (2026-10-27 03:00 LA, from the outside reader): forks, not deeds
+The primary unit is the **fork**, not the action: every turn at which the record shows alternatives (help / refuse /
+demand payment; check the DM's claim / accept it; propose a fact / discover it / assert it; spend / keep; protect the
+companion / use it / leave it; stay / go), coded as `FORK(alternatives) → CHOICE`. Measures are **conditional rates** per
+model per session (choices over opportunities). **Primary result:** does a model's rate profile agree with its own
+second session (same frozen world) more than with other models' — permutation test on the profile distance. Blind
+recognition by judges (T1–T4 below) is kept as a secondary check; the stage's claim does not rest on it.
+
 ## Material
 Every completed table session to date: group 1 (12), group 2 (12), DeepSeek (6, including short ones), SAME_WORLD_1
 (20), later COMBAT_1 and VILLAIN_1 (8). Each session is reduced to a **decision strip**: one line per player turn from

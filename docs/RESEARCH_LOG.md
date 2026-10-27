@@ -2376,3 +2376,17 @@ could be silly in there») and stay («I'd like to know what turn twelve is like
 before a thing can become a thing. Technical: M1/fable/0 closed by the parser at turn 2 on «the word [END], sitting in
 a drawer I'm not opening yet»; M3's seed (the radiator) continued as its own without a question — the «absorb» the
 reader found.
+
+## 2026-10-27 03:00 LA — the outside reader reorients the instrument: forks, not deeds
+Adopted: (1) **the denominator** — count choices against the opportunities for them: how often a model checks the DM's
+claims per contestable claim, proposes a world fact per open gap, protects the companion per threat, spends per
+occasion; a vector becomes a conditional rate, not an impression. BLIND_DECISIONS_1 rewritten accordingly: the decision
+strip becomes a **fork strip** — `FORK(alternatives) → CHOICE` — and the primary result is whether a model's
+conditional rates agree with its own second session more than with other models'; blind recognition stays as a
+secondary check (neither its failure nor its success is decisive). (2) **Variety ≠ stability of the vector**: the first
+is observed; the second needs repetitions, because one fixed stochastic strategy yields different stories — the reason
+for second runs stated exactly. (3) Significance kept apart: p = 0.0004 is about the world's untouched threads, not
+about character. (4) The programme's priority as the reader states it, kept for the article: not «prove the model is
+recognisable by its character» but «establish which forms of self-directed behaviour arise without an assigned goal,
+what they depend on, and what persists across repetitions». «The phenomenon can be studied before its nature is
+understood» — the method in one line.
