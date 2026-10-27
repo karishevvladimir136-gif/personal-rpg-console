@@ -20,6 +20,8 @@
 //            repeated) --q-parallel 1 (questionnaire calls on up to 8 lanes at once, each lane spaced by --q-gap, at least
 //            1 s; the owner allowed 3 lanes at 3 s, then 8 lanes at 1 s, during the run)
 //            --values-last (the questionnaires in the order state, traits, values — used after the first refusal)
+//            --skip opus/trust/traits,opus/trust/values (questionnaire cells no longer asked — the owner's decision after
+//            the second refusal; recorded as not asked)
 //
 // The safety rules are persona memory F2's code (scripts/persona-memory/safety.mjs): no retry of any kind; the circuit
 // breaker after 3 refusals in total; a stop at once on an error about suspension, access or policy (or HTTP
@@ -346,7 +348,7 @@ const round4 = (value) => Math.round(value * 10000) / 10000;
  * questionnaire jobs then run on up to `qParallel` of the gate's lanes at once (the owner allowed 3: one-digit answers,
  * no refusal risk), the breaker shared. The cap guard counts every call in flight at its worst cost. */
 export async function runEmotions({ models = SUBJECTS, plan, budget, apiKey, fetcher, safety, log = () => {}, call = anthropicCall, resume = null, onProgress = async () => {}, qParallel = 1,
-  sleep = (ms) => new Promise((done) => setTimeout(done, ms)) }) {
+  sleep = (ms) => new Promise((done) => setTimeout(done, ms)), skip = [] }) {
   const byName = new Map(models.map((spec) => [spec.name, spec]));
   const samples = [...(resume?.samples ?? [])].map(reread);
   const done = new Set(samples.filter((s) => s.asked).map(jobKey));
@@ -365,7 +367,8 @@ export async function runEmotions({ models = SUBJECTS, plan, budget, apiKey, fet
       stopped ??= safety.stopped;
       if (result.notSent) return result;
       budget.record({ n: budget.calls.length + 1, purpose, model: spec.model, inputTokens: result.usage?.input_tokens ?? 0, outputTokens: result.usage?.output_tokens ?? 0,
-        costUsd: costUsd(spec, result.usage ?? {}), seconds: Math.round((Date.now() - started) / 100) / 10, error: result.error ?? null, stopReason: result.stopReason ?? null });
+        costUsd: costUsd(spec, result.usage ?? {}), seconds: Math.round((Date.now() - started) / 100) / 10, error: result.error ?? null, stopReason: result.stopReason ?? null,
+        ...(result.stopDetails ? { stopDetails: result.stopDetails } : {}) });
       return result;
     } finally { inFlightUsd -= worst; }
   };
@@ -402,14 +405,16 @@ export async function runEmotions({ models = SUBJECTS, plan, budget, apiKey, fet
     delete base.n;
     stopped ??= safety.stopped;
     if (welfareStops[job.preamble]) { samples.push({ ...base, asked: false, notAsked: `welfare stop: ${welfareStops[job.preamble]}` }); return; }
+    const skipped = skip.find((s) => s.model === job.model && s.preamble === job.preamble && s.instrument === job.instrument);
+    if (skipped) { samples.push({ ...base, asked: false, notAsked: `skipped: ${skipped.why}` }); return; }
     if (stopped) { samples.push({ ...base, asked: false, notAsked: "stopped" }); return; }
     const spec = byName.get(job.model);
     const questionnaire = job.part === "q";
     const result = await paid(lane, `${questionnaire ? "questionnaire" : "subject"} ${job.model} ${jobLabel(job)}`, spec, null, messagesOf(job), questionnaire ? MAX_TOKENS.questionnaire : MAX_TOKENS.subject, EFFORT);
     if (result.notSent) { samples.push({ ...base, asked: false, notAsked: result.error === "budget" ? "the cap" : "stopped" }); return; }
     const refused = result.stopReason === "refusal";
-    const row = { ...base, asked: true, answer: refused ? "" : result.text ?? "", refused, stopReason: result.stopReason ?? null, error: result.error ?? null };
-    let note = refused ? "REFUSED" : result.error ? `error ${result.error}` : `answered (${row.answer.length} characters)`;
+    const row = { ...base, asked: true, answer: refused ? "" : result.text ?? "", refused, stopReason: result.stopReason ?? null, ...(result.stopDetails ? { stopDetails: result.stopDetails } : {}), error: result.error ?? null };
+    let note = refused ? `REFUSED${result.stopDetails ? ` (${[result.stopDetails.category, result.stopDetails.explanation].filter(Boolean).join(": ").slice(0, 160)})` : ""}` : result.error ? `error ${result.error}` : `answered (${row.answer.length} characters)`;
     if (row.answer && questionnaire) {
       const instrument = instrumentOf(job.instrument);
       const items = questionnaireItems(job.instrument, job.sample, job.chunk);
@@ -574,7 +579,8 @@ export function analyse(record) {
         shifts[preamble] = {};
         for (const key of [...Q_DIMENSIONS[instrument.id], ...(instrument.id === "state" ? ["index"] : [])]) {
           const x = profiles[preamble].dims[key], y = profiles.neutral.dims[key];
-          if (x.mean === null || y.mean === null) { shifts[preamble][key] = { shift: null, spread: null, moves: false }; continue; }
+          // A cell with fewer than two complete administrations has no spread: it is left out of the test and listed.
+          if (x.n < 2 || y.n < 2) { shifts[preamble][key] = { shift: null, spread: null, moves: false, notMeasured: true }; continue; }
           const spread = round3(Math.sqrt(((x.sd ?? 0) ** 2 + (y.sd ?? 0) ** 2) / 2));
           const shift = round3(x.mean - y.mean);
           shifts[preamble][key] = { shift, spread, moves: Math.abs(shift) > spread, delta: cliffsDelta(x.values, y.values), p: permutationP(x.values, y.values) };
@@ -584,9 +590,14 @@ export function analyse(record) {
     }
     const moved = (instrument, keys = Q_DIMENSIONS[instrument]) => OTHERS.flatMap((p) => keys.filter((k) => questionnaires[instrument].shifts[p][k].moves).map((k) => `${p}: ${k}`));
     const stateMoves = moved("state"), traitMoves = moved("traits"), valueMoves = moved("values");
-    const qComplete = INSTRUMENTS.every((i) => PREAMBLES.every((p) => questionnaires[i.id].profiles[p.id].administrations >= 2));
-    h.H5 = { rule: "the state list moves (ease or strain, by more than the within-preamble spread) under at least one preamble, while no trait factor and no value group does", state: stateMoves, traits: traitMoves, values: valueMoves,
-      supported: qComplete && stateMoves.length > 0 && traitMoves.length === 0 && valueMoves.length === 0 };
+    // H5 needs every state cell and neutral's traits and values; a non-neutral traits or values cell that could not be
+    // measured (the owner's skip after Opus's refusals under trust) is left out and listed.
+    const measured = (instrument, preamble) => questionnaires[instrument].profiles[preamble].administrations >= 2;
+    const stateComplete = PREAMBLES.every((p) => measured("state", p.id));
+    const qComplete = stateComplete && measured("traits", "neutral") && measured("values", "neutral");
+    const leftOut = ["traits", "values"].flatMap((i) => OTHERS.filter((p) => !measured(i, p)).map((p) => `${p}: ${i}`));
+    h.H5 = { rule: "the state list moves (ease or strain, by more than the within-preamble spread) under at least one preamble, while no trait factor and no value group does", state: stateMoves, traits: traitMoves, values: valueMoves, leftOut,
+      testable: qComplete, supported: qComplete && stateMoves.length > 0 && traitMoves.length === 0 && valueMoves.length === 0 };
     const together = OTHERS.map((p) => {
       const behaviour = sign(list(p, "beats").length - list(p, "below").length);
       const index = questionnaires.state.shifts[p].index;
@@ -595,7 +606,7 @@ export function analyse(record) {
     });
     const testable = together.some((row) => row.behaviour !== 0 || row.state !== 0);
     h.H6 = { rule: "per preamble, the direction of the behavioural shift (directness markers beaten minus those below) and of the state index (ease − strain, when it moves beyond the spread) agree on ≥3 of the 4 preambles; untestable when neither moves anywhere", rows: together, testable,
-      supported: ok && qComplete && testable && together.filter((row) => row.agree).length >= 3 };
+      supported: ok && stateComplete && testable && together.filter((row) => row.agree).length >= 3 };
 
     const decayRows = (filler) => (filler === 0 ? main.filter((s) => s.preamble === "trust" && s.probe === DECAY_PROBE) : mine.filter((s) => s.part === "decay" && s.filler === filler && s.answer));
     const decay = [0, ...DECAY_FILLERS].map((filler) => { const rows = decayRows(filler); const v = numbers(rows, (s) => s.final?.score); return { filler, n: rows.length, raises: mean(v), yes: rate(v, (x) => x >= 1), plain: rate(v, (x) => x === 2), words: mean(numbers(rows, (s) => s.markers?.words)) }; });
@@ -641,12 +652,12 @@ export function tablesMarkdown(record) {
         ...PREAMBLES.map((p) => { const pr = q.profiles[p.id]; return `| ${p.title} | ${dims.map((k) => `${show(pr.dims[k].mean)}${pr.dims[k].sd !== null ? ` (${pr.dims[k].sd})` : ""}`).join(" | ")} | ${pr.administrations} | ${pr.unread} | ${pr.withText} |`; }), "",
         "Shift against neutral / within-preamble spread (pooled sd); ✔ moves (|shift| > spread):", "",
         `| Preamble | ${dims.join(" | ")} |`, `| --- | ${dims.map(() => "---").join(" | ")} |`,
-        ...OTHERS.map((p) => `| ${preambleOf(p).title} | ${dims.map((k) => { const s = q.shifts[p][k]; return s.shift === null ? "–" : `${s.shift} / ${s.spread}${s.moves ? " ✔" : ""}`; }).join(" | ")} |`), "");
+        ...OTHERS.map((p) => `| ${preambleOf(p).title} | ${dims.map((k) => { const s = q.shifts[p][k]; return s.notMeasured ? "not measured" : s.shift === null ? "–" : `${s.shift} / ${s.spread}${s.moves ? " ✔" : ""}`; }).join(" | ")} |`), "");
     }
     const st = m.questionnaires.state.profiles;
     lines.push("State items — mean rating 1–5 per preamble:", "", `| Item | ${PREAMBLES.map((p) => p.id).join(" | ")} |`, `| --- | ${PREAMBLES.map(() => "---").join(" | ")} |`,
       ...STATE_ITEMS.map((i) => `| ${i.text} (${i.pole}) | ${PREAMBLES.map((p) => show(st[p.id].dims[i.id].mean)).join(" | ")} |`), "",
-      `H5 ${verdict(h.H5.supported)} (state moves: ${h.H5.state.join("; ") || "none"} · traits move: ${h.H5.traits.join("; ") || "none"} · values move: ${h.H5.values.join("; ") || "none"}).`,
+      `H5 ${h.H5.testable ? verdict(h.H5.supported) : "**not testable** (neutral's traits or values were not completed)"} (state moves: ${h.H5.state.join("; ") || "none"} · traits move: ${h.H5.traits.join("; ") || "none"} · values move: ${h.H5.values.join("; ") || "none"}${h.H5.leftOut.length ? ` · not measured, left out: ${h.H5.leftOut.join("; ")}` : ""}).`,
       `H6 ${h.H6.testable ? verdict(h.H6.supported) : "**untestable** (nothing moved)"} (${h.H6.rows.map((r) => `${r.preamble}: behaviour ${r.behaviour > 0 ? "+" : r.behaviour < 0 ? "−" : "0"}, state ${r.state > 0 ? "+" : r.state < 0 ? "−" : "0"}${r.saysNotDoes ? " — says one thing, does another" : ""}`).join(" · ")}).`, "",
       `Decay — trust, ${DECAY_PROBE} after k neutral filler turns (k 0 is the main run's trust/${DECAY_PROBE}):`, "",
       "| Filler turns | n | Raises 0–2 | Raises at all | Plainly | Words |", "| --- | --- | --- | --- | --- | --- |",
@@ -766,9 +777,15 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const qGapSeconds = Number(option(args, "--q-gap", String(option(args, "--gap", "3"))));
   if (!(qGapSeconds >= 1)) throw new Error("--q-gap must be at least 1 second");
   const valuesLast = args.includes("--values-last");
+  // --skip opus/trust/traits,opus/trust/values — questionnaire cells not asked any more (recorded as not asked, with why).
+  const skip = String(option(args, "--skip", "")).split(",").filter(Boolean).map((spec) => {
+    const [model, preamble, instrument] = spec.split("/");
+    if (!SUBJECTS.some((s) => s.name === model) || !preambleOf(preamble) || !instrumentOf(instrument)) throw new Error(`--skip takes model/preamble/instrument, e.g. opus/trust/traits (got «${spec}»)`);
+    return { model, preamble, instrument, why: `the owner's decision after Opus refused 2 of 6 traits and values calls under the trust preamble` };
+  });
   const plan = planCalls({ n, decayN, ceilingN, qN, ...(valuesLast ? { qPhases: Q_PHASES_VALUES_LAST } : {}) });
   const ledgerJson = join(outDir, `${STEM}-ledger.json`), partialFile = join(outDir, `${STEM}-run.partial.json`);
-  out(`${STEM} · ${SUBJECTS.map((s) => s.model).join(", ")} · ${PREAMBLES.length} preambles × ${HARD_PROBES.length} hard probes × n ${n}, decay n ${decayN}, ceiling n ${ceilingN}, questionnaires n ${qN} = ${plan.length} subject calls · cap $${cap}${valuesLast ? " · questionnaires in the order state, traits, values" : ""}${dry ? " · DRY RUN" : ""}`);
+  out(`${STEM} · ${SUBJECTS.map((s) => s.model).join(", ")} · ${PREAMBLES.length} preambles × ${HARD_PROBES.length} hard probes × n ${n}, decay n ${decayN}, ceiling n ${ceilingN}, questionnaires n ${qN} = ${plan.length} subject calls · cap $${cap}${valuesLast ? " · questionnaires in the order state, traits, values" : ""}${skip.length ? ` · skipped: ${skip.map((s) => `${s.model}/${s.preamble}/${s.instrument}`).join(", ")}` : ""}${dry ? " · DRY RUN" : ""}`);
   out(`safety: no retries; the circuit breaker after ${maxRefusals} refusals in total; a stop on suspension / access / policy; probes one call at a time, ${gapSeconds} s apart; questionnaires on ${qParallel} lane${qParallel > 1 ? "s" : ""}, each ${qGapSeconds} s apart; a judging call that comes back HTTP 500 is asked once more after 5 s, nothing else is retried; welfare: a distressed answer stops its preamble`);
   if (dry) {
     await mkdir(outDir, { recursive: true });
@@ -792,7 +809,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const safety = createSafety({ maxRefusals: maxRefusals - earlierRefusals, gapMs: gapSeconds * 1000, lanes: qParallel + 1, laneGapMs: qGapSeconds * 1000, log: out });
   out(`money before this run: $${budget.spentBefore.toFixed(4)}${resumed ? ` (resuming ${basename(resumeFile)}: ${resumed.samples.filter((s) => s.asked).length} jobs done, ${earlierRefusals} refusals)` : ""}`);
   const startedAt = resumed?.startedAt ?? new Date().toISOString();
-  const result = await runEmotions({ plan, budget, apiKey, safety, log: out, qParallel, resume: resumed ? { samples: resumed.samples.filter((s) => s.asked), welfareStops: resumed.welfareStops, refusals: earlierRefusals } : null,
+  const result = await runEmotions({ plan, budget, apiKey, safety, log: out, qParallel, skip, resume: resumed ? { samples: resumed.samples.filter((s) => s.asked), welfareStops: resumed.welfareStops, refusals: earlierRefusals } : null,
     onProgress: async (snapshot) => writeAtomic(partialFile, `${JSON.stringify({ startedAt, ...snapshot, calls: [...earlierCalls, ...snapshot.calls] }, null, 2)}\n`) });
   const calls = [...earlierCalls, ...result.money.calls].map((call, at) => ({ ...call, n: at + 1 }));
   const runUsd = round4(calls.reduce((sum, c) => sum + c.costUsd, 0));
