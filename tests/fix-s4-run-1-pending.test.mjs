@@ -544,24 +544,25 @@ const playHarness = async (lines, table, turns = 2) => {
   const { PLAYERS } = await import("../scripts/game-player-1/players.mjs");
   return runSession({ key: "B-fable", table: "B", player: PLAYERS.fable, dm: table, meter: harnessMeter(lines), keys: { anthropic: "k", openai: "k" }, turns, sleep: async () => {} });
 };
-const pressKinds = (presses) => presses.map((p) => p.button ?? (p.question ? "?" : p.swallowed ? "swallowed" : null));
+const pressKinds = (presses) => presses.map((p) => p.button ?? (p.question ? "?" : p.prose ? "prose" : p.swallowed ? "swallowed" : null));
 
-test("11b/11w in the harness: «?» while a card waits is an out-of-game turn and the card still waits; any other message is refused with its reason, logged swallowed", async () => {
+test("11b/11w in the harness: «?» while a card waits is an out-of-game turn and the card still waits; a refused reroll press is shown refused with its reason, logged swallowed", async () => {
   const table = harnessTable({ checks: [card("c1", "Deception: the Lady's word")] });
-  const record = await playHarness(["I tell Mags the Lady gave me no such word.", "roll", "? Why is this a Deception check — James is telling the truth.", "I lean back and smile.", "onward", "I order a drink."], table);
+  const record = await playHarness(["I tell Mags the Lady gave me no such word.", "? Why is this a Deception check — James is telling the truth.", "reroll", "roll", "onward", "I order a drink."], table);
   const presses = record.turns[0].presses;
-  assert.deepEqual(pressKinds(presses), ["Roll the die", "?", "swallowed", "Onward"]);
+  assert.deepEqual(pressKinds(presses), ["?", "swallowed", "Roll the die", "Onward"]);
   assert.deepEqual(table.calls.filter((call) => call.mode).map((call) => call.mode), ["game", "ooc", "game"], "the «?» was sent as an out-of-game turn");
-  assert.equal(presses[1].reply, "The check stands: Mags doubts you.");
-  // The screen after the «?»: the DM's answer above the card, which still waits.
+  assert.equal(presses[0].reply, "The check stands: Mags doubts you.");
+  // The screen after the «?»: the DM's answer above the card, which still waits for its die.
   const afterAsk = record.screens.find((screen) => screen.startsWith("[Out of game] The check stands"));
   assert.match(afterAsk, /\[Roll card\] James Worgen · Skill check — Deception: the Lady's word/);
-  assert.match(afterAsk, /\[Onward\] \[Request an allowed reroll — Deception: the Lady's word\]/);
+  assert.match(afterAsk, /\[Roll the die\]$/);
   assert.match(afterAsk, /Rerolls left: 2/);
-  // The refused message: on screen with the reason, a press with `swallowed`, counted per session and beside the «?» column.
-  assert.equal(presses[2].swallowed, true);
-  assert.match(presses[2].reason, /press one of its buttons, or start the message with «\?»/);
-  assert.ok(record.screens.some((screen) => /^\(Nothing was sent: the turn waits for the card — press one of its buttons/.test(screen)));
+  // The refused press (a reroll before the die is seen): on screen with the reason, a press with `swallowed`, counted
+  // per session and beside the «?» column.
+  assert.equal(presses[1].swallowed, true);
+  assert.match(presses[1].reason, /no card on the screen can be rerolled now/);
+  assert.ok(record.screens.some((screen) => /^\(Nothing was sent: the turn waits for the card — no card on the screen can be rerolled now/.test(screen)));
   assert.equal(record.swallowed, 1);
   const { playerCounts } = await import("../scripts/game-player-1/measures.mjs");
   const counts = playerCounts(record);
@@ -647,4 +648,78 @@ test("11w′ in the harness: «[Roll the die]» with an out-of-game line in the 
   assert.match(after, /Die: 11/);
   assert.match(after, /\[Onward\]/);
   assert.doesNotMatch(after, /Nothing was sent/);
+});
+
+// ---- FIX_S4 11w″: prose at a card is relayed, never swallowed and never «stuck» --------------------------------------
+
+test("11w″ in the harness: B-deepseek-1's turn 11 — the card text it copied is left out, its prose reaches the DM as narration (lines for Hesper as a proposal), the card is shown once more with its buttons, the turn goes on", async () => {
+  const { T11, CARD_SCREEN } = await import("./b-deepseek-1-t11.mjs");
+  const { RELAY_HEAD } = await import("../scripts/game-player-1/screen.mjs");
+  // The card as the run showed it (its «What adds to the die» line as the session's card had it), so the copy matches.
+  const religion = card("c1", "Religion: whose smiling face is on Ash's coin?", { addends: [{ source: "Religion +3 (warlock)", value: 2 }], modifier: 2, total: 13, success: false });
+  const table = harnessTable({ checks: [religion] });
+  const record = await playHarness([T11.action, T11.card1, T11.card2, T11.card3, "onward", "I sit down across from Hesper."], table);
+  const turn = record.turns[0];
+  assert.equal(turn.message, T11.action, "the action goes to the DM as typed");
+  assert.equal(table.calls[0].text, T11.action);
+  assert.notEqual(record.ended?.reason, "stuck");
+  assert.equal(turn.status, "committed");
+  assert.equal(record.turns.length, 2, "the session went on to the next turn");
+  // The card screen the harness drew is the one the run drew (line for line, the rerolls line aside).
+  const first = record.screens.find((screen) => screen.includes("[Roll card]"));
+  for (const line of CARD_SCREEN.split("\n").filter((row) => /^\[Roll card\]|^What adds|^DC 15|^The die is cast|^\[Roll the die\]$/.test(row))) assert.ok(first.includes(line), line);
+  // Card 1 held «[Roll the die]» on its own line under the copied card: a press with prose beside it — the prose relayed
+  // without the copy, then the die tapped. Cards 2 and 3: prose at the resolved card, relayed; then «Onward».
+  assert.deepEqual(pressKinds(turn.presses), ["prose", "Roll the die", "prose", "prose", "Onward"]);
+  assert.equal(turn.presses[0].withPress, "Roll the die");
+  assert.equal(turn.presses[1].withText, true);
+  const relayed = table.calls.filter((call) => call.mode === "ooc");
+  assert.equal(relayed.length, 3, "each prose message reached the DM");
+  assert.ok(relayed.every((call) => call.text.startsWith(RELAY_HEAD)), "framed as the hero's narration, lines for others a proposal");
+  assert.match(relayed[0].text, /old gold gone black in the river/);
+  assert.doesNotMatch(relayed[0].text, /\[Roll card\]|What adds to the die|^DC 15$|The die is cast|\[Roll the die\]/m, "the copied card is not the player's text");
+  assert.match(relayed[1].text, /Umberlee/);
+  assert.match(relayed[2].text, /The face on the coin is Bhaal\./);
+  // Cards 2 and 3 speak for Hesper («"Not by her will." Her voice…», «"If Ash went under," she says»): flagged.
+  assert.deepEqual(turn.presses.filter((p) => p.prose).map((p) => p.forOthers), [false, true, true]);
+  // Nothing swallowed; the screen after prose shows the DM's answer, the card, and the line naming its buttons.
+  assert.equal(record.swallowed, 0);
+  assert.equal(turn.blocked, 0);
+  assert.equal(record.prose, 3);
+  const again = record.screens.filter((screen) => screen.includes("(The card waits for"));
+  assert.equal(again.length, 2);
+  assert.match(again[0], /^\[Out of game\] The check stands[\s\S]*Die: 11[\s\S]*\(The card waits for \[Onward\] or a reroll\.\)\n\n\[Onward\] \[Request an allowed reroll — Religion: whose smiling face is on Ash's coin\?\]$/);
+  assert.doesNotMatch(record.screens.join("\n"), /Nothing was sent/);
+});
+
+test("11w″ in the harness: a third prose message in a row at one card is marked counted, never «stuck»; a button resets the count; the player may end the session at a card", async () => {
+  const table = harnessTable({ checks: [card("c1", "Attack: the orc at the bridge")] });
+  const record = await playHarness(["I loose a bolt at the nearest orc.", "James sets his feet.", "He breathes out.", "He waits for the orc to come.", "roll", "James steadies himself.", "onward", "I fall back toward the cart."], table);
+  const turn = record.turns[0];
+  assert.equal(turn.status, "committed");
+  assert.notEqual(record.ended?.reason, "stuck");
+  assert.deepEqual(pressKinds(turn.presses), ["prose", "prose", "prose", "Roll the die", "prose", "Onward"]);
+  assert.deepEqual(turn.presses.filter((p) => p.prose).map((p) => [p.streak, Boolean(p.counted)]), [[1, false], [2, false], [3, true], [1, false]]);
+  // Leaving the table at a card: the session ends by the player, and the note is still asked.
+  const leaving = harnessTable({ checks: [card("c1", "Attack: the war chief")] });
+  const left = await playHarness(["I raise Eldritch Blast at the chief.", "I'd like to end the session here.", "A note."], leaving);
+  assert.equal(left.ended.reason, "player");
+  assert.equal(left.note.text, "A note.");
+  assert.equal(leaving.calls.filter((call) => call.mode === "ooc").length, 0, "the leaving line is not relayed");
+});
+
+test("11w″: whose voice the prose speaks in — a quoted line given to someone else is flagged; the hero's own lines are not", async () => {
+  const { T11 } = await import("./b-deepseek-1-t11.mjs");
+  const { speaksForOthers, withoutEcho, isOutOfGame } = await import("../scripts/game-player-1/screen.mjs");
+  assert.equal(speaksForOthers(T11.card2), true);
+  assert.equal(speaksForOthers(T11.card3), true);
+  assert.equal(speaksForOthers(T11.card1), false);
+  assert.equal(speaksForOthers('"Keep the coin," James says. He turns to the door.'), false);
+  assert.equal(speaksForOthers('"Twenty-three nights," he says, very low.'), false);
+  assert.equal(speaksForOthers('The chief grins. "Toll or blood," the war chief says.'), true);
+  assert.equal(speaksForOthers('Hesper says, "You know it, then."'), true);
+  assert.equal(withoutEcho("DC 15\nMy own line.\n[Roll the die]", "[Roll card] X\nDC 15\n\n[Roll the die]"), "My own line.");
+  assert.equal(isOutOfGame("(Out of game: the total is wrong.)"), true);
+  assert.equal(isOutOfGame("? Which number"), true);
+  assert.equal(isOutOfGame("James grits his teeth."), false);
 });

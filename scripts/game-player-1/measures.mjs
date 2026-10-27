@@ -92,6 +92,8 @@ export function playerCounts(session) {
     questions: questions.length + cardQuestions.length,
     questionTexts: [...questions.map((t) => t.message), ...cardQuestions.map((p) => p.text)],
     swallowed: presses.filter((p) => p.swallowed).length,
+    // FIX_S4 11w″: prose written at a card, relayed to the DM as narration (not a «?», not swallowed).
+    prose: presses.filter((p) => p.prose).length,
     rollsPressed: turns.reduce((n, t) => n + (t.presses ?? []).filter((p) => p.button === "Roll the die").length, 0),
     wordsPerAction: median(actions.map((t) => wordsIn(t.message).length)),
     endedEarly: session.ended?.reason === "player" && turns.length < session.plannedTurns,

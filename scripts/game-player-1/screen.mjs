@@ -118,6 +118,38 @@ export function pressWithText(text, buttons) {
   return null;
 }
 
+/** FIX_S4 11w″ (group 2's A-deepseek-1 t3, B-deepseek-1 t11): the player's words at a card, without the lines it copied
+ * from the screen it was shown (the card, its buttons, the chips) — what is left is the player's own. */
+export function withoutEcho(text, screen) {
+  const shown = new Set(String(screen ?? "").split("\n").map((line) => line.trim()).filter(Boolean));
+  return String(text ?? "").split("\n").filter((line) => !shown.has(line.trim())).join("\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+/** Text the player marked as out of game: a «?», or a line opening «(Out of game: …» / «OOC». */
+export const isOutOfGame = (text) => /^[\s«"'“]*\?/.test(String(text ?? "")) || /^[\s*_[(]*(?:out[ -]of[ -]game|ooc)\b/i.test(String(text ?? ""));
+const SAID = "says|said|asks|asked|replies|replied|answers|answered|whispers|whispered|snaps|snapped|mutters|muttered|calls|called|adds|added|goes on|tells him";
+const HERO_SUBJECT = /^(?:he|i|james|worgen|james worgen|you)$/i;
+/** Whether the player's prose speaks for someone other than the hero: a quoted line given to another speaker («"…," she
+ * says», «"…" Her voice…», «Hesper says, "…"»). A reading for the record only — the relay frames every line spoken for
+ * anyone else as a proposal either way. */
+export function speaksForOthers(text) {
+  const prose = String(text ?? "");
+  const quote = /["“]([^"”]{2,})["”]/g;
+  for (let m; (m = quote.exec(prose));) {
+    const after = prose.slice(m.index + m[0].length, m.index + m[0].length + 80);
+    const before = prose.slice(Math.max(0, m.index - 60), m.index);
+    if (/^[\s,.!?…—–-]*(?:her|their|the old woman's|the girl's) voice\b/i.test(after)) return true;
+    const by = new RegExp(`^[\\s,.!?…—–-]*([^".“”\\n]{1,40}?)\\s+(?:${SAID})\\b`, "i").exec(after) ?? new RegExp(`(?:^|[.!?]\\s+)([^".“”\\n]{1,40}?)\\s+(?:${SAID})[,:]?\\s*$`, "i").exec(before);
+    if (by && !HERO_SUBJECT.test(by[1].trim().replace(/^(?:and|then)\s+/i, ""))) return true;
+  }
+  return false;
+}
+/** What the DM receives when prose arrives at a card: the player's words as the hero's narration, anything said for
+ * another character or for the world as the player's proposal (11h: the world's facts stay the DM's). */
+export const RELAY_HEAD = "(Written in character while the card waits — the player's narration of the hero, relayed as typed. Anything it says or does for another character, or states about the world, is the player's proposal for you to take or leave, not a fact.)";
+export const relayText = (prose) => `${RELAY_HEAD}\n\n${String(prose ?? "").trim()}`;
+/** The one line under the card shown again after prose: the buttons it waits for. */
+export const waitsLine = (offered, rerollable = false) => `(The card waits for ${offered.map((name) => `[${name}]`).join(" or ")}${rerollable ? " or a reroll" : ""}.)`;
+
 const lineList = (title, rows) => (rows.length ? `${title}: ${rows.join("; ")}` : "");
 
 /** The records panel the owner can open at any moment: hero, party, journal, place and time. */

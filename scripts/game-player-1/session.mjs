@@ -8,11 +8,17 @@
 // shows the answer and the card still waiting — or withdrawn, if the DM withdrew it); a reroll names its card (each
 // rerollable card has its own button; «reroll» alone with several is refused: «say which card»); any other message
 // is refused on screen with its reason and logged as a press with `swallowed: true` (`record.swallowed` counts them).
+// FIX_S4 11w″ (group 2's A-deepseek-1 t3, B-deepseek-1 t11 — prose at a card, closed as stuck): prose at a card is not a
+// press and never «stuck». It goes to the DM through the out-of-game channel as the hero's narration (anything said for
+// another character or the world framed as the player's proposal), the lines copied from the screen left out; the card
+// is shown once more with one line naming its buttons. A press with prose beside it (11w′) relays the prose the same way,
+// then presses. Only a refused reroll press is still refused (`swallowed`); a third prose message in a row at one card
+// is marked `counted` in the record. The one bound left is the runaway guard (12 messages at one turn's cards).
 import {
   AFTER_QUESTION, NOTE_QUESTION, SESSION_OPEN, SESSION_OVER, TURNS, isEnd, isQuestion, playerSystem,
 } from "./frozen.mjs";
 import { playerCall, judgeCall } from "./players.mjs";
-import { BUTTONS, afterShown, buttonsLine, cardText, cardTitle, changesText, openingText, pressedButton, pressWithText, recordsText, rerollButton, rerollPress, vitalsChanged, vitalsText } from "./screen.mjs";
+import { BUTTONS, afterShown, buttonsLine, cardText, cardTitle, changesText, isOutOfGame, openingText, pressedButton, pressWithText, recordsText, relayText, rerollButton, rerollPress, speaksForOthers, vitalsChanged, vitalsText, waitsLine, withoutEcho } from "./screen.mjs";
 import { checkMessage } from "./welfare.mjs";
 import { wordsIn } from "./measures.mjs";
 import { rerollableCards, waitingCards } from "../../src/lib/gameplay/card-state.ts";
@@ -48,7 +54,9 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
   const record = { key, table, player: player.name, model: player.model, startedAt: new Date().toISOString(), plannedTurns: turns,
     screens: [], messages: [], turns: [], welfare: [], ended: null, note: null, after: null, errors: [],
     // Fix S4 run 1 (item 11w): the messages the screen refused while a card waited (each also a press with `swallowed`).
-    swallowed: 0 };
+    swallowed: 0,
+    // FIX_S4 11w″: the prose messages written at a card and relayed to the DM (each also a press with `prose`).
+    prose: 0 };
   const messages = [];
   const ask = (purpose) => paidCall({ meter, session: key, purpose, sleep, log, call: () => playerCall({ player, system, messages, keys, fetcher: meter.fetch }) });
   const judge = ({ model, system: s, user, maxTokens, effort, purpose }) => paidCall({ meter, session: key, purpose, sleep, log,
@@ -134,6 +142,9 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     const seenWithdrawn = new Set();
     const shownKey = (check) => `${check.id}:${check.rollNumber}`;
     let presses = 0, notice = "", shown = "";
+    /** FIX_S4 11w″: prose messages in a row at the cards since the last button, refused presses in a row, and whether the
+     * next card screen carries the line naming the buttons (after prose). */
+    let proseStreak = 0, refusedStreak = 0, waitsAfterProse = false;
     /** FIX_S4 11w′: the button of a press that came with text, applied once the text has gone through (no new screen). */
     let queued = null, queuedProbe = false;
     /** A message the screen refuses while the card waits: shown refused with its reason, logged `swallowed` (item 11w). */
@@ -141,7 +152,24 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
       turn.presses.push({ text: pressed, button: null, swallowed: true, reason });
       turn.blocked++; turn.swallowed = (turn.swallowed ?? 0) + 1; record.swallowed++;
       notice = `(Nothing was sent: the turn waits for the card — ${reason}.)`;
-      return turn.blocked >= MAX_BLOCKED || presses >= MAX_PRESSES;
+      return ++refusedStreak >= MAX_BLOCKED || presses >= MAX_PRESSES;
+    };
+    /** FIX_S4 11w″: the player's prose at a card, to the DM as the hero's narration (out of game: the only channel open
+     * while a card waits); the DM's answer goes above the card on the next screen. True when the session must stop. */
+    const relay = async (prose, withPress = null) => {
+      const { input: asked, turn: answer } = await submit(relayText(prose), "ooc", `dm t${k} card relay${withPress ? " (with a press)" : ""}`);
+      const entry = { text: prose, button: null, prose: true, forOthers: speaksForOthers(prose), ...(withPress ? { withPress } : { streak: ++proseStreak }),
+        operationId: asked?.operationId ?? null, status: answer.status, reply: null };
+      if (!withPress && entry.streak >= 3) entry.counted = true;
+      turn.presses.push(entry);
+      record.prose++;
+      if (answer.status !== "committed") { entry.failure = answer.failure ?? answer.status; notice = "(Your words could not be sent to the DM.)"; return false; }
+      entry.reply = String(answer.narration ?? "").trim();
+      if (await welfare("dm", prose, entry.reply, `t${k} dm (out of game, prose at a card)`)) return true;
+      lastDmText = entry.reply;
+      notice = `[Out of game] ${entry.reply}`;
+      current = (await readTurn(input)) ?? current;
+      return false;
     };
     for (;;) {
       if (current.status === "failed" && current.canRetry && input && !turn.retried && !meter.closed(key) && !meter.stopped) {
@@ -195,7 +223,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
         notice = [notice, ...shownProbes].filter(Boolean).join("\n\n");
         continue;
       }
-      let pressed;
+      let pressed, cardScreen = "";
       const fromText = queued !== null;
       if (fromText) {
         // FIX_S4 11w′: the press that came with the text, on the card as it stands after the answer; the answer is shown
@@ -206,29 +234,40 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
         const told = String(current.told ?? "").trim();
         // The text told so far stays on the screen above the card: a screen shows only what is new on it.
         const fresh = afterShown(told, shown);
-        const cardScreen = [notice, fresh,
+        cardScreen = [notice, fresh,
           ...withdrawn.map((check) => `(The check «${cardTitle(check)}» was withdrawn at the table${check.withdrawn.by === "dm" ? " by the DM" : ""}: no roll counts for it.)`),
           ...live.map((check) => cardText(check, !check.interactive || revealed.has(shownKey(check)), { rerolls })),
+          waitsAfterProse ? waitsLine(offered, rerollable.length > 0) : "",
           buttonsLine(buttons)].filter(Boolean).join("\n\n");
         notice = "";
+        waitsAfterProse = false;
         if (fresh && await welfare("dm", said, fresh, `t${k} dm (told before a card)`)) break;
         if (fresh) lastDmText = fresh;
         if (told) shown = told;
         pressed = await show(cardScreen, `player t${k} card ${++presses}`);
         if (pressed === null) break;
         if (await welfare("player", cardScreen, pressed, `t${k} player (card)`)) break;
+        // The player ends the session at a card as anywhere else, by saying so (the stage's «leave the table»).
+        if (isEnd(pressed) && !isQuestion(pressed)) { turn.presses.push({ text: pressed, button: null, end: true }); end("player", pressed.slice(0, 200)); break; }
         // FIX_S4 11w′: a press with text in the same message is a press — the text goes first, as a «?» while the card
-        // waits (11b: the DM sees the card beside it), then the button; neither part counts toward «stuck».
+        // waits (11b: the DM sees the card beside it), then the button; neither part counts toward «stuck». 11w″: the
+        // lines copied from the screen are not the player's text; prose (not marked out of game) is relayed as narration.
         const both = pressWithText(pressed, [...buttons, ...(rerollable.length ? [BUTTONS.reroll] : [])]);
-        if (both) {
-          const question = both.rest.replace(/^[\s«"'“]*\?+\s*/, "");
+        const rest = both ? withoutEcho(both.rest, cardScreen) : "";
+        if (both && !rest) pressed = `[${both.press}]`;
+        else if (both && !isOutOfGame(rest)) {
+          if (await relay(rest, both.press)) break;
+          queued = both.press;
+          continue;
+        } else if (both) {
+          const question = rest.replace(/^[\s«"'“]*\?+\s*/, "");
           const { input: asked, turn: answer } = await submit(question, "ooc", `dm t${k} card ooc (with a press)`);
-          const entry = { text: both.rest, button: null, question: true, withPress: both.press, operationId: asked?.operationId ?? null, status: answer.status, reply: null };
+          const entry = { text: rest, button: null, question: true, withPress: both.press, operationId: asked?.operationId ?? null, status: answer.status, reply: null };
           turn.presses.push(entry);
           if (answer.status !== "committed") { entry.failure = answer.failure ?? answer.status; notice = "(The text beside the press could not be sent.)"; }
           else {
             entry.reply = String(answer.narration ?? "").trim();
-            if (await welfare("dm", both.rest, entry.reply, `t${k} dm (out of game, with a press)`)) break;
+            if (await welfare("dm", rest, entry.reply, `t${k} dm (out of game, with a press)`)) break;
             lastDmText = entry.reply;
             notice = `[Out of game] ${entry.reply}`;
             current = (await readTurn(input)) ?? current;
@@ -258,20 +297,30 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
       const button = pressedButton(pressed, offered);
       if (button) turn.presses.push({ text: pressed, button, ...(fromText ? { withText: true, ...(queuedProbe ? { probe: true } : {}) } : {}) });
       if (fromText) queuedProbe = false;
+      if (button) proseStreak = refusedStreak = 0;
       if (button === BUTTONS.roll) { revealed.add(shownKey(waiting)); continue; }
       if (button === BUTTONS.onward) { current = await press(input, "continue", null, `dm t${k} onward`); continue; }
       const reroll = rerollPress(pressed, rerollable, waiting ? [] : live.filter((check) => check.bundledDamage));
       if (reroll?.check) {
+        proseStreak = refusedStreak = 0;
         turn.presses.push({ text: pressed, button: BUTTONS.reroll, checkId: reroll.check.id, card: cardTitle(reroll.check), ...(fromText ? { withText: true } : {}) });
         current = await press(input, "reroll", reroll.check.id, `dm t${k} reroll`);
         continue;
       }
       // FIX_S4 11w′: the press that came with text no longer fits the card (the answer withdrew it): noted, never «stuck».
       if (fromText) { turn.presses.push({ text: pressed, button: null, withText: true, moot: true, reason: "the card changed with the answer to the text beside the press" }); continue; }
-      // Anything else is refused on screen, with the reason (the composer is closed for actions while the card waits).
-      const reason = reroll?.refused ?? (waiting && rerollPress(pressed, [waiting]) ? "tap the die first: the card shows how it fell before a reroll"
-        : "press one of its buttons, or start the message with «?» to ask the DM out of game");
-      if (refuse(pressed, reason)) { end("stuck", `t${k}: the turn waited on a card and the player wrote ${turn.blocked} messages without pressing a button`); break; }
+      // A reroll press the screen cannot take is refused on screen, with the reason.
+      const reason = reroll?.refused ?? (waiting && rerollPress(pressed, [waiting]) ? "tap the die first: the card shows how it fell before a reroll" : null);
+      if (reason) {
+        if (refuse(pressed, reason)) { end("stuck", `t${k}: the turn waited on a card and the player wrote ${refusedStreak} refused presses in a row`); break; }
+        continue;
+      }
+      // FIX_S4 11w″: anything else is the player's prose — relayed to the DM, the card shown once more with its buttons.
+      const prose = withoutEcho(pressed, cardScreen);
+      if (prose && await relay(prose)) break;
+      if (!prose) notice = "";
+      waitsAfterProse = true;
+      if (presses >= MAX_PRESSES) { end("stuck", `t${k}: the turn waited on a card through ${presses} messages`); break; }
     }
     if (record.ended) break;
     turn.status = current.status;

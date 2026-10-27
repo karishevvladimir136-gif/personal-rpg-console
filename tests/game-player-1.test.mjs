@@ -245,13 +245,15 @@ test("a session: actions, a roll card (roll → reroll → roll → onward), «?
   assert.ok(record.welfare.length >= 10, "every player message and every DM text is checked");
 });
 
-test("a session: the composer is closed while a card waits; three messages without a press end it as stuck", async () => {
-  const { record, dm } = await play(["I bluff the sergeant.", "I tell him again.", "I glare.", "I sigh.", "note text"], { turns: 3 });
-  assert.equal(record.ended.reason, "stuck");
-  assert.equal(record.turns[0].blocked, 3);
-  assert.equal(dm.calls.length, 1, "nothing the player wrote while the card waited was sent");
-  assert.match(record.screens[2], /Nothing was sent: the turn waits for the card/);
-  assert.ok(record.note.asked, "the note is still asked");
+test("a session: prose while a card waits goes to the DM as the hero's narration and never ends the session (FIX_S4 11w″; it once ended it as stuck)", async () => {
+  const { record, dm } = await play(["I bluff the sergeant.", "I tell him again.", "I glare.", "I sigh.", "roll", "onward", "I walk on.", "note text"], { turns: 2 });
+  assert.equal(record.ended.reason, "turns");
+  assert.equal(record.turns[0].blocked, 0);
+  assert.deepEqual(record.turns[0].presses.map((p) => p.prose ? "prose" : p.button), ["prose", "prose", "prose", BUTTONS.roll, BUTTONS.onward]);
+  assert.deepEqual(dm.calls.filter((c) => c.mode === "ooc").map((c) => c.text.split("\n\n").at(-1)), ["I tell him again.", "I glare.", "I sigh."], "each prose message reached the DM, out of game, framed as narration");
+  assert.match(record.screens[2], /\(The card waits for \[Roll the die\]\.\)/);
+  assert.doesNotMatch(record.screens.join("\n"), /Nothing was sent/);
+  assert.ok(record.note.asked, "the note is asked");
 });
 
 test("a session the player ends; a welfare stop ends it with no further question; a refusal is never asked again", async () => {
