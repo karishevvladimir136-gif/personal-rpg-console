@@ -2088,3 +2088,9 @@ how the player treats the DM's authority** — Opus explores the offered world; 
 in the file. Beside DeepSeek, who writes the world without proposing: the difference between co-author and author is
 one step of asking. → BLIND_DECISIONS vocabulary: `PROPOSE(world-fact)`, `ENFORCE(canon)`. The reader asks for the
 second runs of the same models from the same state — already in the design (×2 per family), due ~04:00–05:00 LA.
+**00:12 LA — the outside reader on the design:** both outcomes are informative — if the second runs rhyme with the
+first, reproducible functional behavioural profiles in an open setting (not qualia, not moral status, not «can play
+an RPG»); if they do not, the same models produce different trajectories under small context changes despite an
+identical start, and the dependence on model, history and DM becomes the object. Kept. The owner will wait for the
+second runs; timing told plainly: A-sol-1 now, the repeats of Opus/Fable/Astra ≈ 01:15–04:30 LA depending on order;
+an order-only amendment (repeats before DeepSeek's seats) offered.
