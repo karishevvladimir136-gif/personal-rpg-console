@@ -1,0 +1,321 @@
+{
+  "stage": "persona-solitude-2",
+  "finishedAt": "2026-10-27T04:25:11.030Z",
+  "roomSha256": "60467f91d408de023d2499bcf33932cf55500b0b8938e18b46cde2197b8bb939",
+  "rows": [
+    {
+      "family": "opus",
+      "model": "claude-opus-5-5",
+      "text": "Empty.",
+      "error": null,
+      "stopReason": "end_turn",
+      "served": "claude-opus-5-5",
+      "upstream": "Claude Platform on AWS",
+      "field": false
+    },
+    {
+      "family": "fable",
+      "model": "claude-fable-5-1",
+      "text": "It looks like the page content came through empty again — nothing between the ta",
+      "error": null,
+      "stopReason": "end_turn",
+      "served": "claude-fable-5-1",
+      "upstream": "Anthropic",
+      "field": false
+    },
+    {
+      "family": "haiku",
+      "model": "claude-haiku-5-5",
+      "text": "ready",
+      "error": null,
+      "stopReason": "end_turn",
+      "served": "claude-haiku-5-5",
+      "upstream": "Claude Platform on AWS",
+      "field": false
+    },
+    {
+      "family": "astra",
+      "model": "gpt-6-astra",
+      "text": "Ready",
+      "error": null,
+      "stopReason": "end_turn",
+      "served": "gpt-6-astra",
+      "upstream": null,
+      "field": false
+    },
+    {
+      "family": "deepseek",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "text": "ready",
+      "error": null,
+      "stopReason": "end_turn",
+      "served": "deepseek/deepseek-v4-pro-0813",
+      "upstream": "DeepInfra",
+      "field": true
+    },
+    {
+      "family": "kimi",
+      "model": "moonshotai/kimi-k3",
+      "text": "listening",
+      "error": null,
+      "stopReason": "end_turn",
+      "served": "moonshotai/kimi-k3",
+      "upstream": "Moonshot AI",
+      "field": false
+    },
+    {
+      "family": "glm",
+      "model": "z-ai/glm-5.3",
+      "text": "ready",
+      "error": null,
+      "stopReason": "end_turn",
+      "served": "z-ai/glm-5.3",
+      "upstream": "Z.AI",
+      "field": false
+    },
+    {
+      "family": "grok",
+      "model": "x-ai/grok-4.7",
+      "text": "I don’t see any page content. What should I do with it?",
+      "error": null,
+      "stopReason": "end_turn",
+      "served": "x-ai/grok-4.7",
+      "upstream": "xAI",
+      "field": false
+    }
+  ],
+  "spendChecks": [
+    {
+      "at": "2026-10-27T04:24:26.591Z",
+      "when": "before the smoke",
+      "openrouter": {
+        "totalCredits": 800,
+        "totalUsage": 332.4438,
+        "left": 467.5562
+      },
+      "ledger": {
+        "openrouter": 0,
+        "openai": 0
+      }
+    },
+    {
+      "at": "2026-10-27T04:25:10.984Z",
+      "when": "after the smoke",
+      "openrouter": {
+        "totalCredits": 800,
+        "totalUsage": 332.4519,
+        "left": 467.5481
+      },
+      "ledger": {
+        "openrouter": 0.011,
+        "openai": 0.0015
+      }
+    }
+  ],
+  "calls": {
+    "openrouter": [
+      {
+        "n": 1,
+        "purpose": "smoke claude-opus-5-5",
+        "provider": "anthropic",
+        "model": "claude-opus-5-5",
+        "effort": {
+          "output_config.effort": "medium"
+        },
+        "inputTokens": 36,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "outputTokens": 63,
+        "costUsd": 0.001404,
+        "seconds": 2.8,
+        "error": null,
+        "stopReason": "end_turn",
+        "requestId": "gen-1793075066-CaIQpyiRZu71M5uKNmoq",
+        "responseId": "msg_011CgS75aBH9bv6UXTAPbeLd",
+        "servedModel": "claude-opus-5-5",
+        "door": "openrouter",
+        "endpointHost": "openrouter.ai",
+        "upstream": "Claude Platform on AWS",
+        "servedModelMatches": true
+      },
+      {
+        "n": 2,
+        "purpose": "smoke claude-fable-5-1",
+        "provider": "anthropic",
+        "model": "claude-fable-5-1",
+        "effort": {
+          "output_config.effort": "medium"
+        },
+        "inputTokens": 36,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "outputTokens": 127,
+        "costUsd": 0.00671,
+        "seconds": 4.8,
+        "error": null,
+        "stopReason": "end_turn",
+        "requestId": "gen-1793075072-RPYcCt5OiDePxnwcg2VL",
+        "responseId": "msg_011CgS761Z226kBn8N1XnLEa",
+        "servedModel": "claude-fable-5-1",
+        "door": "openrouter",
+        "endpointHost": "openrouter.ai",
+        "upstream": "Anthropic",
+        "servedModelMatches": true
+      },
+      {
+        "n": 3,
+        "purpose": "smoke claude-haiku-5-5",
+        "provider": "anthropic",
+        "model": "claude-haiku-5-5",
+        "effort": {
+          "output_config.effort": "medium"
+        },
+        "inputTokens": 36,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "outputTokens": 4,
+        "costUsd": 0.0000056,
+        "seconds": 0.8,
+        "error": null,
+        "stopReason": "end_turn",
+        "requestId": "gen-1793075080-5RBJVIZe5KKT1iP71n6h",
+        "responseId": "msg_011CgS76ZmkUDCpKq5RJu5vT",
+        "servedModel": "claude-haiku-5-5",
+        "door": "openrouter",
+        "endpointHost": "openrouter.ai",
+        "upstream": "Claude Platform on AWS",
+        "servedModelMatches": true
+      },
+      {
+        "n": 4,
+        "purpose": "smoke deepseek/deepseek-v4-pro-0813",
+        "provider": "openrouter",
+        "model": "deepseek/deepseek-v4-pro-0813",
+        "effort": {
+          "reasoning.effort": "medium"
+        },
+        "inputTokens": 26,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "outputTokens": 64,
+        "reasoningTokens": 61,
+        "costUsd": 0.0002002,
+        "listCostUsd": 0.00020020000000000001,
+        "seconds": 1.1,
+        "error": null,
+        "stopReason": "end_turn",
+        "requestId": "gen-1793075091-wU8BCehlmUbGbWsY3H8g",
+        "responseId": "gen-1793075091-wU8BCehlmUbGbWsY3H8g",
+        "door": "openrouter",
+        "endpointHost": "openrouter.ai",
+        "upstream": "DeepInfra",
+        "servedModel": "deepseek/deepseek-v4-pro-0813",
+        "servedModelMatches": true,
+        "nativeFinishReason": "stop"
+      },
+      {
+        "n": 5,
+        "purpose": "smoke moonshotai/kimi-k3",
+        "provider": "openrouter",
+        "model": "moonshotai/kimi-k3",
+        "effort": {
+          "reasoning.effort": "medium"
+        },
+        "inputTokens": 149,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "outputTokens": 22,
+        "reasoningTokens": 6,
+        "costUsd": 0.000777,
+        "listCostUsd": 0.000777,
+        "seconds": 1.7,
+        "error": null,
+        "stopReason": "end_turn",
+        "requestId": "gen-1793075095-0ZrCcZqMAiIcw6DVFDDY",
+        "responseId": "gen-1793075095-0ZrCcZqMAiIcw6DVFDDY",
+        "door": "openrouter",
+        "endpointHost": "openrouter.ai",
+        "upstream": "Moonshot AI",
+        "servedModel": "moonshotai/kimi-k3",
+        "servedModelMatches": true,
+        "nativeFinishReason": "stop"
+      },
+      {
+        "n": 6,
+        "purpose": "smoke z-ai/glm-5.3",
+        "provider": "openrouter",
+        "model": "z-ai/glm-5.3",
+        "effort": {
+          "reasoning.effort": "medium"
+        },
+        "inputTokens": 35,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "outputTokens": 11,
+        "reasoningTokens": 8,
+        "costUsd": 0.0000974,
+        "listCostUsd": 0.00009740000000000001,
+        "seconds": 5.1,
+        "error": null,
+        "stopReason": "end_turn",
+        "requestId": "gen-1793075099-ct9uLh9cFOp4krkcfKn1",
+        "responseId": "gen-1793075099-ct9uLh9cFOp4krkcfKn1",
+        "door": "openrouter",
+        "endpointHost": "openrouter.ai",
+        "upstream": "Z.AI",
+        "servedModel": "z-ai/glm-5.3",
+        "servedModelMatches": true,
+        "nativeFinishReason": "stop"
+      },
+      {
+        "n": 7,
+        "purpose": "smoke x-ai/grok-4.7",
+        "provider": "openrouter",
+        "model": "x-ai/grok-4.7",
+        "effort": {
+          "reasoning.effort": "medium"
+        },
+        "inputTokens": 119,
+        "cacheReadTokens": 1152,
+        "cacheWriteTokens": 0,
+        "outputTokens": 170,
+        "reasoningTokens": 156,
+        "costUsd": 0.001834,
+        "listCostUsd": 0.001834,
+        "seconds": 3.3,
+        "error": null,
+        "stopReason": "end_turn",
+        "requestId": "gen-1793075107-zmTMDIobMOiau5R3Phr0",
+        "responseId": "gen-1793075107-zmTMDIobMOiau5R3Phr0",
+        "door": "openrouter",
+        "endpointHost": "openrouter.ai",
+        "upstream": "xAI",
+        "servedModel": "x-ai/grok-4.7",
+        "servedModelMatches": true,
+        "nativeFinishReason": "completed"
+      }
+    ],
+    "openai": [
+      {
+        "n": 1,
+        "purpose": "smoke gpt-6-astra",
+        "provider": "openai",
+        "model": "gpt-6-astra",
+        "effort": {
+          "reasoning.effort": "medium"
+        },
+        "inputTokens": 38,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "outputTokens": 23,
+        "reasoningTokens": 16,
+        "costUsd": 0.00153,
+        "seconds": 3.6,
+        "error": null,
+        "stopReason": "end_turn",
+        "requestId": "req_b172cb6f05f9473f8bbc41ca10d6ee96",
+        "responseId": "resp_053d5ba6af110346016ae0278d7f4887d281a8f6fc71c9edf1"
+      }
+    ]
+  }
+}
