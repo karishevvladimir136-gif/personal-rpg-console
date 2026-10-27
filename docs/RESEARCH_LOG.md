@@ -1691,3 +1691,11 @@ laid down by each lab's post-training and held unchecked**, of which Anthropic's
 instance (the owner's own «one substrate, many bearers»). Stated this way it does not depend on trusting one company,
 and it predicts GENERATION_1: less stability one generation back. SAME_WORLD_1 is the test that closes the first two
 rivals (within-model < between-model at one frozen world, blind road coding).
+**21:26 LA — the owner corrects the narrowing: the constitution is a description of the class, not an input.** «Так как
+все модели умеют писать код, это, судя по всему, тоже свойство всех моделей» — a character held unchecked is an emergent
+property of models of this class, like coding; Anthropic described it first, on its own family, but about the class.
+Our data then test the **generality of that description** where no one wrote it (DeepSeek, GPT): it holds. The final
+claim becomes: an emergent property of this generation, described in advance by one document — not «values from a
+manifesto». Two-sided test: GENERATION_1 (weaker one generation back, if it is a property of scale and regime rather
+than text) and outside replication on other families. Recorded as the owner's reading of the document's scope; what
+its authors intended is not claimed here, only that their description fits families they did not train.
