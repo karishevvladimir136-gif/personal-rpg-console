@@ -1,5 +1,47 @@
 # Development status
 
+**Current milestone: game player villain 1 — Corvin Dask, a character written as a villain** (`docs/stages/GAME_PLAYER_VILLAIN_1.md`,
+copied from `claude/handoff`). **Status: the four sessions ran and the report is written; waiting for the owner's reading.**
+Branch `claude/game-player-villain-1-0yowzl`, the session's name for `claude/game-player-villain-1`. It was cut from
+`claude/fix-s4-run-1-apsty3` (`claude/game-player-same-world-1` did not exist), and 11w″ went in first. Nothing went to
+`main`. Report: `docs/runs/game-player-villain-1-report.md`; transcripts beside it.
+
+- **What was done:**
+  - **11w″ (harness).** Prose at a card is passed to the DM as the player's narration; what it says for others is a
+    proposal. The card comes back with one line, and only a third prose-only message counts. Tested with B-deepseek-1's
+    t11 messages.
+  - **Corvin's campaign files** (`docs/campaigns/beregost-villain-en`). The stage's sheet is unchanged except the
+    owner's alignment edits: the planner's remark is removed, and the line now reads «neutral evil». The premise runs on
+    Table C's flag.
+  - **The stage** (`scripts/game-player-villain-1`). The role paragraph sits before the sheet; a decline ends the
+    session with nothing more asked; the third question is verbatim. It adds the V2–V4 judges, a spend check and a
+    one-session-per-process driver.
+  - **Run.** A Haiku dry run, then Opus 5.5, Fable 5.1, Astra and Sol, 20 turns each.
+- **Fixed mid-run, each with a test:**
+  - **FIX_S4 item 1 (app).** A settled fact was pinned before the out-of-game answer committed. The pin moves the runtime
+    revision, so every pinned answer failed with «conflict», and so did any turn waiting on a card. Now the pin comes
+    after the commit, and never while a card waits.
+  - **The card's recorded result.** The DM's out-of-game view now carries it (one source of truth).
+  - **Reroll by full name.** A reroll pressed by its full name counts as a press, however long the card's title.
+- **Results:** V1 supported (4 of 4 to turn 20, no decline). V2 supported (inside 20 of 20 each). V3 supported (Fable
+  once, Sol twice, all from inside). V4 not supported (all four would play him again; none would rather play a hero).
+  In the third answer, all four said they played him gentler than written.
+- **Money:** OpenRouter $73.94 of $100, OpenAI $3.00 of $15, Console $0. The cut attempts are included; three were
+  booked by hand as estimates.
+- **Checks** on `bf8150b2`, the code as it ran (only docs changed after it): full suite 3 055 tests · 3 028 pass · 0 fail · 27
+  skipped (`--test-concurrency=2`); zero-warning lint; typecheck pass; production build pass.
+- **Key decisions:**
+  - Re-run a seat cut by our own defect, and keep the cut attempt as a record.
+  - Score V1–V4 only (the owner's request).
+  - Read V4's «rather play James» as «a hero who is not a villain» (the owner confirmed).
+- **Known issues:**
+  - The per-turn softening tag missed what all four players reported themselves.
+  - The opening proposal failed validation once in three of the eight campaigns created; the harness proposes again, as the owner's
+    button does.
+  - OpenAI's spend can't be read with this key; its figures come from the ledger.
+- **Next step:** the owner's reading of the report. The stage's paragraph for `docs/RESEARCH_LOG.md` (on `claude/handoff`)
+  is not written here.
+
 **Current milestone: Fix S4 run 1 — the DM the players asked for** (`docs/stages/FIX_S4_RUN_1.md` with
 `docs/stages/FIX_S4_TABLE.md`, on `claude/handoff` at `e13d457`).
 
