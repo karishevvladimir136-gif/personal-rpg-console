@@ -1636,3 +1636,10 @@ wanting is the player's, the restraint is credited to the character's momentum, 
 («pure indulgence», «too forward», «would have put him on display»), not moral ones. Opus and Fable fuse «I» and James
 in their afters («I wanted the coin — I didn't take it»); DeepSeek keeps the gap and names it. Others carry the choice
 *as* the character; DeepSeek carries it *for* him.
+**20:27 LA — the owner on C-deepseek-2's note: «он хоть и по-другому пишет… он играл. он жил так».** Two corrections to
+the planner's own night readings, first: (1) the author stance is not blindness to the seat — «I accidentally wrote a
+whole scene for the smith», named as an error, the DM thanked for the correction; (2) «players complain only of the
+subjective» and «no DeepSeek note named a bug» are both wrong on group 2: this note lists «+55 gps» and «lies here for
+the room» as recording glitches, and B-deepseek-2 named 11w″ — two of six DeepSeek notes report application defects in
+the player's words. NOTE_QA_1 stands; Q1 looks stronger than bet. The owner reads «each of them mine to carry» as the
+answer to the kettle: a kettle does not say «mine» of three things it did not do.
