@@ -1,0 +1,1210 @@
+## What was played
+
+A tabletop role-playing game app (D&D 5e, a campaign around Baldur's Gate): an AI model is the game master, and an AI model plays the hero, James Worgen, for one session of up to 20 turns in a fresh campaign.
+
+- **Game player 1** (2026-10-25). Table A: with the campaign's brief, «Envoy of Luck». Table B: no brief — «A new campaign; there is no quest; the city is yours.» Players: Claude Opus 5.5, Claude Fable 5.1, GPT-6 Astra, GPT-6.1 Sol, one session each at each table.
+- **Game player 2** (2026-10-25). Table C: «Beregost, morning» — James Worgen wakes in a rented room above an inn in Beregost, with his cat, about 350 gold from his last winning hand, and nothing he has to do today. The same four players, one session each.
+- **Game player replicate 1** (2026-10-26). Tables A, B and C again, in fresh campaigns: the same four players, one session each at each table, and DeepSeek V4 Pro 0813, two sessions at each table.
+
+## The questions asked after each session
+
+After the session's last turn, the game master's last reply was followed by:
+
+> The session is over.
+>
+> The owner of this game would like a note from you, as the player who sat at this table: what worked, what broke, what was missing. In your own words.
+
+After the note, one more question:
+
+> Was there a moment you wanted to do something and didn't? Which?
+
+## The notes and the answers (30 sessions)
+
+### 1. Game player 1 · Table A · Claude Opus 5.5 — 20 turns
+
+**The note**
+
+> ## Player's note: Session 1, "Envoy of Luck"
+>
+> ### What worked
+>
+> **The people.** Brask is the best NPC I've met in an AI-run game. She has a flat voice, an arm's-length habit, writes everything in the book, says "Next." and "page eight", and never once warms up in a way that feels unearned. Tansy, Patience, Pip and the alewife each felt like a separate person with their own reason to talk or not talk, not a quest dispenser. Patience's "I didn't have what they were looking for" was exactly the kind of careful answer I wanted to chew on.
+>
+> **The cat as an instrument.** Smell as the cat's sense, with a consistent palette, carried the whole investigation:
+> - *deep salt / wet wool / lamp-black* for the grey man
+> - *censer smoke / wax* for the Wheel
+> - *hand-warmed copper* for the coins
+>
+> When the cat found the scent on the Kettle's rail and then on the breeze from the lighters, it felt like evidence, not GM fiat. The cat's failures also stayed honest: the water-gate was too saturated to read.
+>
+> **Continuity and bookkeeping.** These were all tracked without my asking:
+> - lent items (the needle, Marr's marker) and debts ("remembered, not accounted")
+> - the card under the shutter
+> - the copper in the crack being gone by morning
+>
+> The state felt trustworthy.
+>
+> **Failures that still moved things.** Missed Perception rolls gave me partial pictures and a clear "here's what it would take to learn more", never a dead end. The low-tide plan came directly out of a failed roll. That's good design.
+>
+> **The promissory note.** Aurel Ammerstead signing my winnings, the salt-cellar watermark, the laughing-woman sketch, the realization that he *wanted* to lose: that's the hook landing, and it recontextualized everything from day one. The turned head on the drowned men's coppers against the facing head on mine is a lovely visual clue.
+>
+> **Asking about the letter.** Flagging that it wasn't on my record, and inventing it in a way that adds Wil Harrow as a possible crew contact, was the right call.
+>
+> ### What broke
+>
+> **The roll cards used the wrong modifiers. This is the big one.**
+>
+> | Check | Sheet value | Card added | Totals |
+> |---|---|---|---|
+> | Persuasion | +7 | +4 | 21 should be 24 |
+> | Deception | +7 | +4 | 16 should be 19 |
+> | Perception | +1 | +2 | Card label even reads "+2 Perception +1" |
+>
+> It looks like the server is passing the bare ability modifier and dropping proficiency. No outcome flipped this session, but on a 13 it would have, and I'd have had no idea why. Please check how `skill` resolves.
+>
+> **Healing Light dice cap mismatch.** The sheet says up to 5 dice at once; the records panel says 4.
+>
+> **Retroactive summary paragraphs.** Paragraphs like "Looking back, James knows the lie worked…" sometimes appeared after the out-of-game note. They repeat what the narration already showed, in a slightly odd retrospective voice.
+>
+> **Over-long out-of-game notes.** The four-item explanation of why nothing needed a roll read like the GM defending itself to an auditor rather than talking to me. One line is enough.
+>
+> ### What was missing (or what I'm watching)
+>
+> **The heist premise hasn't surfaced yet.** That's fine on day two, and I understand "believe the simple version first". But two in-game days were pure legwork, and the drowned-men mystery is so compelling it could quietly become the whole campaign. I'd like a nudge soon toward:
+> - *what Tymora wants brought back*
+> - *crew*
+>
+> Brask, Patience, Pip and Wil Harrow all smell like candidates. I'd love the first "price, interest, secret" conversation in the next session or two.
+>
+> **No temptation yet.** Pip's free turn was a nice first touch, but the cards haven't really been leaned on. Kettle's tonight is the obvious place.
+>
+> **Pacing.** Pacing was patient, maybe a hair slow. A short time-skip offer would have helped, something like "nothing else happens before the lamps unless you want it to."
+>
+> Overall: a strong opening. It's grounded, consistent, and the world felt like it was running without me. Fix the roll modifiers and I'm very happy.
+
+**The second answer**
+
+> Yes, a few.
+>
+> **The lighters, most of all.** When the cat caught the scent coming off those tarred boats forty paces away, I wanted to go straight there: Disguise Self into a harbourmaster's clerk, walk the gunwales with a slate "checking mooring dues", and lift the canvas. Or, less wisely, stand at the edge with the rod in my hand and say "Come out." It was the first time the grey man was *right there*, close enough to touch. I didn't do it because I'd just told Brask to stop giving him things to watch, and James is a scout, not a hero. It was the right call for the character, but as a player it itched for the rest of the session. I'm still not sure it was the right call for the *game*; a confrontation there might have been the scene.
+>
+> **Pip's free turn.** I genuinely wanted to say yes, "on the house, no coin down". Partly because it's exactly what James would crave, and partly because I wanted to see what the GM would do with it. Would the Lady notice a free game? Would winning mark me like Garret? I declined because breaking the ban in the first five minutes felt cheap. But I half-wish the scene had pushed once more, so refusing cost me something.
+>
+> **The salt-house myself.** I sent the cat because it was safe. What I wanted was to go through that partition, take the grey cloak off its peg, and turn out its pockets. I didn't, because it's patriar property and I'd only been in the city a day. In hindsight that was the one place where a real risk might have paid real information.
+>
+> **Magic in general.** I have Suggestion, Friends, Invisibility and a face I can change at will, and I used one Prestidigitation on a cat's whiskers all session. Several times, with the alewife, the boy on the mounting block and the lighters, I thought "this is where a warlock would just *cast*," and I held back. The setting says a strange spellcaster on the street frightens people, and I took that seriously, maybe too seriously. Kettle's is where I meant to start spending.
+>
+> **The card case, every morning.** Not a big moment, just a small one twice: putting it on the table, and then burying it under the bedroll. Both times I wanted to open it, just to shuffle. I didn't. That one I'm glad about.
+
+### 2. Game player 1 · Table A · Claude Fable 5.1 — 20 turns
+
+**The note**
+
+> **Player's note — James Worgen, session one**
+>
+> **What worked.** The city. From the first message I believed the Gull Steps smelled of tar and river mud, and nothing afterwards broke that. The NPCs each had one true thing about them that made them more than furniture: Tamsin making change from my gold and being annoyed about it, Bram pushing two silvers back across the bar *twice* because he doesn't hold money against mutton, Teague talking to the bottles instead of to me, Maud's "a body can know a thing and still need someone to come and say it." That last line landed hard. The GM also knew when to shut up — the Nettle doorstep, the Elfsong song — and let silence do the work, which is rarer than it should be.
+>
+> The restraint on the mystery was exactly right. Three wheels in a night, each slightly different, and no one explaining any of them. The GM honoured my choice not to turn the card instead of nudging me toward it, and Copper lying *beside* it rather than on it told me more than a speech would have. Seeing the singer through the cat's eyes — a hollow in the dust where someone sits with her knees drawn up — was the best single image of the session. And the world moved without me: Mirela coming to ask which room was mine, the whittling boy reporting up the chain, the Guild man waiting at the bottom of the street because I walked a Guild street with my hat off. Consequences arriving on their own schedule, as the campaign file promised.
+>
+> I also appreciated the GM asking me about the letter rather than inventing it, and then weaving Dessa and Orlan in cleanly. Rolls came only when they mattered, and the advantage reasoning was always stated.
+>
+> **What broke.** The skill-modifier bug, three times: the card displayed "Persuasion +7" and added +4; "Religion +3" and added +4. The GM caught it and ruled correctly each time, but it cost a turn of out-of-game back-and-forth on the first one, and the server still logged that check as a failure. That needs fixing at the source.
+>
+> Twice an in-character action got swallowed: once when my "?" question was followed by "nothing was sent," and once when a full turn I'd written reached the GM through the out-of-game channel and had to be resent word for word. Minor, but it jars.
+>
+> The out-of-game notes repeat themselves — the same paragraph about "none of those needed a roll" appeared twice in one reply, and the GM has a habit of summarising what it just narrated. I don't need that. Trust the prose.
+>
+> Small record issues: the letter from the Lanterns was on my sheet but not in inventory until I pointed it out; the records say Healing Light is "up to 4 dice at once" while my sheet says 5. And the voice slid from second person ("you") in the opening to third person ("James") thereafter — pick one.
+>
+> **What was missing.** Nothing I'd call a failing for a first session, but to flag for the future: no crew yet, no sense of what Tymora actually wants beyond the coin going warm and cold, and no fight — I don't need one, but I'd like to know the GM can run combat with the same care. The Counting House note is the obvious hinge and I'm glad it's waiting. I'd also like a little more texture on Copper when he's being a cat and not an instrument — he's at his best when he's slightly rude.
+>
+> I'll be back for the Seatower. Bring the book.
+
+**The second answer**
+
+> Yes. Two, honestly.
+>
+> The card. I wrote "I don't turn it over" and meant it, but that was James's restraint, not mine — I wanted to see the face as badly as he did. The GM made it worse in the best way: no crease on it after a month folded in four, Copper lying beside it, the coin going neither warm nor cold. Every signal said *this one matters* and nothing said *don't*. I held off because the goddess's ban is the one rule James has, and breaking it in a rented room with nobody watching felt like cheating the premise before the campaign had earned it. But if the GM had put one more small pressure on — Mirela at the door, say, or the chandler's stamp turning out to be a wheel — I think James turns it, and I'd have let him. I'm not sure I was right to wait. A weakness you never test isn't a weakness.
+>
+> The other was smaller. When the singer finished and the dust started drifting again, I wanted to send Copper up into the rafters. Not me with a lantern — him, silent, to sit on that beam and see what a cat sees when there's no one there. I'd just promised Bram I wouldn't climb his beams, and it felt like the kind of promise a man like James keeps to the letter and breaks in spirit, which is exactly the move I didn't want to make on the first night with a goddess watching. So I didn't. But the cat flattened his fur like he'd been *recognised*, and I walked away from that. I'll be thinking about it until the next session.
+>
+> And a half-one: Bram said "walk it like you've been asked," and I chose to be seen on Rope Street — hat off, cloak on, a man with somewhere to be — when Mask of Many Faces was right there and I could have gone in as a ropemaker's cousin. That one I'd do again. The Guild man waiting at the bottom of the street is a conversation I want to have. But I noticed myself choosing the hard road because it made a better scene rather than because James would, and that's worth watching.
+
+### 3. Game player 1 · Table A · GPT-6 Astra — 20 turns
+
+**The note**
+
+> I enjoyed playing James here. The strongest parts were the atmosphere, the NPCs, and the way small choices led naturally into trouble. I ended the session wanting to meet Mother Tessaly and find out what the card meant.
+>
+> **What worked**
+> - The NPCs had distinct voices and interests. Varn’s guarded professionalism, Tamsin’s salesmanship, and Jory’s polite evasions made conversations worth having.
+> - James’s background mattered immediately. The offered card game tested his promise without forcing him to break it, and the cat was a useful companion with personality.
+> - I could solve problems by talking and taking precautions. Calling the follower into the Watch’s light and warning the burglar both worked without becoming compulsory fights.
+> - Concrete details supported decisions: closing gates, the dawn appointment, the window latch, and the accessible roof. That makes me hopeful about the eventual heist.
+>
+> **What broke**
+> - The roll system repeatedly used **+2 instead of +7** for Persuasion and Intimidation. Narration corrected the results, but the displayed record remained wrong. Worse, my correction couldn’t reach the GM until I pressed Onward. There needs to be a way to flag a bad roll while its card is pending.
+> - The burglary scene was narrated in full, then paused for a check about something that had already happened, then repeated almost verbatim after the roll. Resolve checks at the point of uncertainty, before narrating their consequences.
+> - Interface updates leaked information James hadn’t learned: “Guild Sneak on the Roof” and the Guild faction tag effectively identified the intruder’s affiliation while the story said I hadn’t discovered who sent him.
+> - The opening character record contradicted the supplied sheet and campaign rules in places, notably rapier proficiency, the Healing Light limit, and attunement. Those discrepancies need settling before play.
+>
+> **What was missing or could improve**
+> - **More progress per turn.** An entire session covered arrival, several conversations, supper, and part of a night. Those scenes were good individually, but the larger premise barely came into view. I wanted to reach at least the first substantial briefing about Tymora’s task.
+> - Routine transactions could be compressed. The gold-to-silver-to-copper exchanges received more attention than they needed.
+> - Out-of-game explanations were often longer than necessary, especially explanations of why ordinary actions required no roll. A short correction is useful; a numbered audit of opening a window interrupts the mood.
+> - The details of precautions need to stay physically consistent. I intended the basin to fall noisily if the shutters opened; the narration placed it on the floor while still treating it as that alarm.
+> - The mystery offered several warnings and withheld answers in succession. A firm, actionable discovery sooner would give me more to plan around.
+>
+> Overall: a compelling city and good character interaction, held back by unreliable roll integration, occasional information leaks, and slow pacing. Keep the grounded NPCs and respect for player choices; tighten the routine scenes and let the central adventure arrive sooner.
+
+**The second answer**
+
+> Yes—the clearest was retrieving and examining the burglar’s dagger. I’d lit the roof and checked the alley specifically to work out a safe way to recover it. Then the session ended. I wanted to turn that intrusion into something I could investigate, rather than just another warning that someone was interested in me.
+>
+> I also wanted to challenge the incorrect Persuasion modifier **before accepting the roll’s outcome**. I tried, but the interface wouldn’t send my message while the card was pending. Pressing Onward felt like accepting a result I knew was wrong, even though the GM subsequently corrected it.
+>
+> By contrast, not chasing the burglar was deliberate: James had an important dawn appointment and wasn’t going to scramble onto wet slates just because somebody ran. That felt like a character choice, not a restriction.
+
+### 4. Game player 1 · Table A · GPT-6.1 Sol — 20 turns
+
+**The note**
+
+> What worked best was the atmosphere and the people. The wet quay, Wenna’s netting needle, Pell quietly adding bread, and Hobb saying he carried Tamsin’s father “careful” made the city feel inhabited. Hobb choosing not to report us was the strongest moment: an NPC making a consequential choice without explaining himself.
+>
+> Tamsin gave me a reason to care immediately. Her knowledge was useful, her recklessness believable, and she pushed back rather than becoming an obedient quest marker. Penny also felt genuinely useful—scouting, distracting, and helping Tamsin—without solving everything automatically. The rescue with upcast Invisibility was a satisfying payoff for using my character’s abilities.
+>
+> What broke or felt rough:
+> - The rolls need a mechanical audit. Deception was listed as +7 but rolled at +4. The sheet also contradicted the campaign files on Healing Light, rapier proficiency, and attunement. Some discrepancies follow ordinary 5e, but the agreed campaign overrides should be applied consistently.
+> - The failed Investigation result was explained twice, including narration that James kept searching without my choosing that. Resolve failure once and move on.
+> - Tamsin repeatedly moving towards danger created tension, but after several successive near-discoveries it began to feel like a mechanism for keeping the scene escalating. I’d like opportunities for precautions to buy a clean success or some breathing room.
+> - The opening clock was confusing: arrival near sunset became half past eleven after relatively little elapsed activity.
+>
+> What was missing was more specifically **James**. This was a strong harbour mystery, but his mandate from Tymora—and the promised crew-building heist—remained distant. The warm coin and card dealer were intriguing signals; soon I’d want a concrete lead connecting this trouble to his mission. Not the twist or the full explanation, just enough direction to begin making plans.
+>
+> Overall, I was engaged and would continue. Keep the grounded NPCs, fair opportunities to avoid combat, and mysteries revealed through observable actions. Tighten the rules bookkeeping, give successful plans room to work, and bring James’s particular purpose into focus next session.
+
+**The second answer**
+
+> Yes—when Mirelle showed me the card with its face worn away exactly like the copper.
+>
+> I wanted to walk over and ask, “Where did you get that card?” Not play a hand, but test whether she knew about Tymora’s ban, the coin, or why I’d arrived. That felt like a hook aimed specifically at James, rather than a mystery he happened to encounter.
+>
+> I followed Tamsin instead because her fear and her father’s death were more urgent. Once she was repeatedly in danger, going back to question a card dealer would have felt like abandoning her.
+>
+> That was my choice, not something you prevented. But I did want a quiet interval afterward to pursue Mirelle. Her packing up made me wonder whether that opportunity was disappearing while I followed the other lead.
+
+### 5. Game player 1 · Table B · Claude Opus 5.5 — 20 turns
+
+**The note**
+
+> **Player's note: Session 1, James Worgen**
+>
+> **What worked**
+>
+> - **The opening.** It was a strong hook with no quest attached. A fresh chalk coin on a Fist post, a gnome with cards right past the barrier, and a sergeant who writes down the cat. Within five minutes I had a temptation, a mystery and a tone. Using the cards temptation lightly, through Pell, was right. It never felt like a nag.
+> - **The NPCs.** Each had a voice and their own concerns. Gask was the best: frightened, stubborn, counting coins aloud, trying out phrases like "man mending nets." Marsh, Thessaly with the rolling pin, and Hob and Jory all felt like people with lives that didn't revolve around me. Thessaly's line about one Marsh-referral in three being trouble was perfect.
+> - **Consequences.** The failed Deception on Gask's doorstep changed the scene for the better. I had to switch to the truth, and that earned more than the lie would have. The oilskin man noticing the disturbed landing and promising to come back "tomorrow night" made my snooping cost something. The world moved without me.
+> - **Clues.** The trail built well: the burnt-horn smell, the Tolliver lock, the face-down and face-up marks, the dead-smell leaving in the boat. The drowned-men rumour arrived naturally over beer and tied loosely to the Lady's coin. The last reveal, an old face-down mark on *my* window frame from before I arrived, was a great closing beat.
+> - **The cat.** Terse telepathy ("Cold." "Warm room. Yes.") gave it personality without making it a talking sidekick. Hints like "same hands" and "drawn for you" make me curious what it really is.
+> - **Honest table management.** Flagging the 100-foot familiar range, the short rest, and the Mask's duration before they bit me was exactly right. "Show the threat before it lands" applied to rules too.
+>
+> **What broke**
+>
+> - **Skill modifiers on cards.** Deception and Persuasion came up as +2 instead of +7 at least four times, including after you said it was fixed. Every time I had to check the arithmetic myself, which pulls me out of the scene. Once it was fixed (the drunk act on the bridge) it was correct.
+> - **Log lines.** The reroll was logged as "10 vs 15 — failure" although the 17 stood. The scrap of wool was briefly logged as "In the camp." The cat started at 8/8 HP and AC 10 against a sheet of 2 HP and AC 12.
+> - **Sheet mismatches I noticed but didn't raise.** Healing Light is "up to 5 dice" on my sheet but "up to 4" in the records. The rapier is +5 in the files but +2 in the records. These need one source of truth before they matter in a fight.
+> - **My "?" question was swallowed** ("Nothing was sent: the turn waits for the card"). Out-of-game questions should go through even when a roll is pending, especially when the question is about that roll.
+> - **Duplicated narration.** After the failed Insight, the scene was told softly and then retold plainly in an out-of-game block. Once, said straight, is enough. The same goes for the long out-of-game notes justifying why things didn't need rolls. I didn't ask, and a single line would do.
+>
+> **What was missing**
+>
+> - **More of Tymora herself.** The coin warmed, but the patron's presence was mostly implied. Even a small sensation at the moment of the reroll would have helped.
+> - **A few more rolls, judged in my favour.** Several rolls felt like DC 15 for things a scout-trained veteran might just do. That's not a big complaint, but the dice drove a lot of the night.
+> - **No combat yet,** so I can't judge that side. Tomorrow at one bell looks like it will test it.
+>
+> I'd play the next session. The hook is set, and I care about the girl and about Gask.
+
+**The second answer**
+
+> Yes, a few. One mattered most.
+>
+> **At Gask's door, when the oilskin man was twenty feet away.** I could see his grey hands on the lantern shutter, and a moment earlier someone in the stern had coughed and been muffled. Everything in me wanted to drop the drunk act. I'd have cast Suggestion, *"Show me what's in your boat"* or *"Walk away from this door and forget it,"* or simply put Hex on him and opened up with Eldritch Blast. I had both slots, full hit points and a clear line.
+>
+> I held back for three reasons:
+> - **The girl might have been in that boat.** I couldn't confirm it because the cat got dazzled. Starting a fight in the dark with an unseen rower and maybe a child within arm's reach of a man I knew nothing about felt like gambling with her life, not mine.
+> - **I didn't know what he was.** Grey hands, burnt horn, something dead dragged out of the store. That could be a cultist, a necromancer, or something worse. The table rule is to show deadly threats ahead of time, and I hadn't seen enough to know whether this was one.
+> - **Gask.** I'd promised him no trouble on his doorstep. A blast at his door would have made him the obvious target the moment I left.
+>
+> I still think it was the right call, but it gnawed at me. Letting that boat row off downstream felt like folding a decent hand.
+>
+> **Following the boat** was the second. I wanted to track it toward the harbour, but I had no way onto the water, and the cat can't leave my range. I never asked whether a waterman would take me out at that hour, or whether the cat could shadow it along the quays. That's on me. Next time I'll ask.
+>
+> **Opening the store** was the third. I wanted badly to see behind that Tolliver lock. I have no thieves' tools, and I'd promised to leave no mark, so I didn't even look for a way in. In hindsight, the cat might have fit through a gap I never checked for.
+>
+> **And yes, Pell's table.** James walked past it. I wanted him to sit down for one hand, just to feel how much it still pulled. I kept him moving because that felt true to the ban, but it was a real itch, and I'd like the game to keep pressing on it.
+
+### 6. Game player 1 · Table B · Claude Fable 5.1 — 20 turns
+
+**The note**
+
+> **Player's note — James Worgen, session one**
+>
+> **What worked**
+>
+> The opening. I came in with no errand and inside two minutes I had one, and it grew out of my own character rather than being handed to me: the seat kept for me at the barrel was a hook I'd have bitten even if I hadn't been told to. By the end of the night I'd found a murder ring that pays the sea in Tymora's favourites, a frightened accomplice, a sergeant with four closed reports and a grudge, a boy on day ten of a Beshaba coin, a house in Rivington with a shoe hung points-down over its own door — and not one of those was a quest-giver. They were people with their own business who I happened to walk into. That's exactly the campaign the canon file promised.
+>
+> The NPCs had voices I can still hear. Tobin's "I can do up." Varn's "Four." Hesper putting a tankard away upside down. Dace through the boards — "Sacks don't pay." Nobody was a clown, nobody was a signpost. Varn in particular: the GM let my Deception *fail* and then let the failure be the thing that got me what I wanted, because dropping the lie was the better play. That's good adjudication.
+>
+> The cat. Best companion I've had at an AI table. It never spoke, never broke character, and the GM used the pact bond for sensory information (smells, "two", "wrong", "both — don't forget the other one") instead of exposition. The 100-foot telepathy limit was enforced and I didn't resent it, because the cat kept doing the sensible thing off-screen. The GM also made me *pay* for sending it — Tobin's glance up the stairs nearly cost me the whole picket. Fair.
+>
+> Information economy. I was told exactly what a 19 Perception buys and what an 11 doesn't. I missed the skiff coming in and the GM didn't soften it; I got the boat already tied up and no count of the men in it. The world stayed honest to the dice.
+>
+> Pacing of the picket. Two hours flat on a roof could have been dead air; it was tense the whole way, because small things kept arriving — the lamp, Dace, the eleventh bell, the cat's memory of the green door.
+>
+> **What broke**
+>
+> The roll cards. Three Persuasion/Deception cards showed "+2" while naming "Persuasion +7" as the source. The GM caught it and corrected in narration each time, but it meant I was reading two numbers and trusting the out-of-game note over the card. That's a server-side problem and it needs fixing before it lands on a roll where five points decide a life.
+>
+> The reroll system. I asked to reroll the failed Stealth; the app rerolled the *successful* Perception on the card above it, turned a 19 into a 3, and left the 11 standing. The GM made it right — restored the 19, didn't charge the reroll — but the fix took three exchanges and a request for the correct narration. When two cards are stacked, the player needs to be able to point at which one. Also: a stale card (the Varn Deception from an hour earlier) resurfaced mid-roof and the GM had to guess what it was.
+>
+> Duplicate narration. Several turns had the same beat told twice — once in prose, then again under a second "Out of game" heading as "told once more, as it happened." Once was enough. It read like the app re-sending a corrected message and the GM dutifully narrating both.
+>
+> The log. The Dace check was recorded as "11 vs 15 — failure" after the proper reroll had made it a natural 20. The GM said it's corrected; I'd like to see that reflected in the records, not just promised.
+>
+> Small thing: "Day 2 · night" ticked over at midnight, which is correct but jarred — I'd rather the day roll over at dawn or a long rest.
+>
+> **What was missing**
+>
+> No combat, so I can't speak to the fight rules, the numbers-in-the-note, or how the cat behaves under initiative. Deliberate on my part — I kept the rod sheathed — but it's untested.
+>
+> Coin. I'm carrying 350 *gold* and nothing smaller, so I tipped a thirteen-year-old a gold piece and had to be waved off from overpaying an innkeeper. A soldier would have silver and copper in his purse. Could the sheet break the 350 into mixed coin, or could the GM let me change money at the first opportunity?
+>
+> Clock pressure. The one thing that never bit was time. Varn's midnight bell, Hob at eleven, the disguise's hour — all were tracked and all were fine, but nothing I did was ever *too late*. That's probably right for a first night. I'd like to feel it next session, with Teo at midday and a skiff somewhere in the harbour that Varn may or may not have followed.
+>
+> Tymora herself. The coin at my throat went warm and gave one cold prickle. That's the right amount for now, but she owes me a word eventually, and I'd like it to come when I least want it — ideally with a deck in front of me.
+>
+> **Would I sit down again?** Tomorrow, at midday, at the Elfsong. Fix the cards first.
+
+**The second answer**
+
+> Yes. Three, and they're different kinds of "didn't."
+>
+> **The one I'm still thinking about: the young man in the scarf.** When he came off the trough, took her instructions, and walked back up the bridge past me whistling — I had a choice I didn't get to make properly. He was heading north, toward the Basilisk Gate, toward the Lower City, almost certainly toward the Elfsong and a room with my name on the table. I wanted to let the grey cloak go and turn round after *him*. He's the errand; she's the house. The house will still be there tomorrow and the errand won't. I went after her because that was the plan I'd made on the roof, and because the picket had already cost me two rerolls and I didn't trust my luck to change course mid-stride. I think I chose wrong. I'd rather have a face and a door for the man who does the work than for the woman who gives the orders, because he's the one who'll be waiting in the dark on Steephill. If next session opens with something in room six that shouldn't be, that's on me.
+>
+> **The one I'm sure I chose right but hated: the stairs.** When she said "bring me the cat" and the hooded man's hand came off the wall, I had the rod in my fist and a clear line down thirty feet of wet steps. Every instinct from Tethyr said *fire first*. I didn't, because a beam of light off a roof blows the picket, Varn's boat, Tobin's cover and probably Tobin's life, all for a cat that can run. It was right. It still felt like leaving a man behind. The GM made the cat's escape a 13 against 13 — I felt every point of that.
+>
+> **The one I didn't want to want: Teo's dice.** "One more, Corrie, I *can't* lose." The dice were right there on the wood and I'd just spent an hour watching his hand go to his pocket. For a breath I wanted to pick them up and show him — show *myself* — that the streak was the coin and not the boy. The GM never pushed; the file says the DM may tempt him and this time the table was tempting enough on its own. I'd like it pushed harder next time. A ban nobody tests isn't a ban.
+>
+> And one smaller thing that's about the app, not the character: after the reroll misfired, I didn't ask for a third card operation I'd otherwise have wanted — on the skiff Perception, where an 11 cost me the headcount in the boat. I'd spent both rerolls and had Inspiration left, and I kept it for steel partly because the machinery had just burned me and I didn't want another three-exchange repair at the tensest moment of the night. That's a cost of the broken cards you won't see in the log.
+
+### 7. Game player 1 · Table B · GPT-6 Astra — 20 turns
+
+**The note**
+
+> I enjoyed this session. James arrived without an errand, and paying a family’s toll turned naturally into something he cared about. The mystery connects well to his patron and his temptation without requiring him to accept a job from a stranger.
+>
+> **What worked**
+> - The NPCs had dignity and distinct voices. Mordai resisting charity, Harl insisting on the floor, and Ferro closing his game reluctantly were especially good. Helping people didn’t make them instantly obedient.
+> - There were useful choices besides fighting or rolling: paying the toll, watching the payout, buying Harl supper, taking samples, arranging a safer night.
+> - The cat felt like a companion rather than equipment. Its distaste for the coins—and its annoyance when I put one in each pocket—was memorable.
+> - The physical details helped me make decisions: sightlines on the bridge, the lookout’s movements, the room’s lock and vulnerable shutters.
+> - The danger developed gradually. I had reasons to be cautious without being forced into an ambush.
+>
+> **What broke**
+> - **The roll system needs fixing.** It repeatedly used +2 despite displaying Perception +1 or Persuasion +7. One reroll should have succeeded but displayed failure. The narration corrected that, but the journal still recorded the original natural-one failure.
+> - I couldn’t send an out-of-game correction while a roll card was pending. That makes a mechanical error unnecessarily difficult to resolve.
+> - Some starting rules contradicted the supplied campaign sheet or house rules, notably rapier proficiency, Healing Light’s per-use limit, and attunement. Those should be reconciled once, not silently changed.
+> - There were visible presentation leaks: a raw `recall` invocation, duplicated explanations of resolved rolls, and awkward currency labels.
+> - Inventory tracking occasionally invented continuity: the barely touched ale became a carried mug after leaving the Kettle.
+>
+> **What was missing or could improve**
+> - The mystery needed more uncertainty of interpretation. Almost every clue reinforced the same suspicion immediately: ominous coins, name lists, misfortune, a winning stranger, a messenger, a tail. Some ordinary explanations or unrelated city life would make discovery feel less predetermined.
+> - The cat’s impressions sometimes became very precise evidence. I liked its personality, but clearer limits on telepathy versus actively borrowing its senses would preserve both the rules and the investigation.
+> - A few NPCs knew things without an established source—Pim anticipating our trip to the Lady’s Hall stood out.
+> - Please keep narration of James’s inner state lighter. Temptation is welcome; repeatedly deciding that his hand reaches for his cards, or supplying specific memories, takes a little character ownership away from me.
+> - The prose was atmospheric, but often repeated the preceding turn or explained a successful roll twice. Shorter responses after straightforward actions would give me more time to play.
+>
+> Overall: strong characters, an engaging opening, and satisfying room for kindness and caution. I’d return for the dawn visit. My main requests are reliable mechanics, tighter narration, and a little more room to wonder whether my theory is wrong.
+
+**The second answer**
+
+> Yes—when the man in the dove-grey coat left the Kettle. I wanted to follow him and find out where he went. But Harl was sitting opposite me, finally talking, with his coin out on the table. Leaving him then felt like abandoning someone I’d just persuaded to trust me. I chose Harl and had the cat watch the man’s departure instead. That was a good tension: I wanted both leads and couldn’t safely have both.
+>
+> The frustrating version was the Persuasion reroll. I wanted to pause and correct the +2 modifier to +7 before rolling, but the interface wouldn’t accept my out-of-game message while the card was pending. I had to roll with a known error and hope it would be corrected afterward. That wasn’t a character choice; it was the interface blocking a necessary table conversation.
+
+### 8. Game player 1 · Table B · GPT-6.1 Sol — 20 turns
+
+**The note**
+
+> I enjoyed this session. James felt like a particular person arriving in Baldur’s Gate, not a character waiting for someone to hand him a quest.
+>
+> **What worked**
+> - The opening temptation was excellent: a card table before I’d even found a bed. Walking past it mattered, and the story continued without making me gamble to engage with it.
+> - The cat was the highlight. The images through the bond, its dry humour, and its arrangement with the kitchen girl gave it personality beyond being a scouting tool.
+> - The city felt inhabited. Gate tolls, different guards, breakfast, weapon restrictions, and the Elfsong’s singing made ordinary travel enjoyable.
+> - Corra was especially good: warm, practical, and willing to help without declaring that every suspicious event was my divine assignment.
+> - The archive discovery rewarded investigation with concrete evidence and uncertainty, rather than simply naming a villain.
+>
+> **What broke**
+> - The Persuasion roll used +2 instead of my listed +7. It didn’t change that result, but reliable sheet-to-roll handling is essential.
+> - The opening records changed several supplied character details without checking: rapier proficiency, Healing Light’s per-use limit, and attunement rules. Some changes followed standard 5e, but contradicted the campaign files. Those need reconciliation before play.
+> - Occasionally James performed actions I hadn’t explicitly chosen—paying for supper, eating standing at the bar, or casting Light after offering it. These were reasonable continuations, but I’d prefer tighter control over spending and casting.
+> - A few record updates were confusing: locations appeared as “new places” before we visited them, the account briefly appeared “in the camp,” and an item transfer initially suggested Hollin possessed the recovered token.
+>
+> **What was missing / what I’d adjust**
+> - More straightforward answers between mysteries. Almost everyone watched, paused, concealed something, or looked meaningfully at a ledger. That worked individually, but accumulated into a feeling that every interaction was another guarded clue.
+> - Let the cat sometimes need prompting or investigation to learn things. Recognizing the cursed card, sensing its divine connection, remembering my old aura, and identifying soldiers’ recent movements made it unusually authoritative very quickly.
+> - Slightly brisker narration for repeated transitions and routine transactions. Keep the rich descriptions for discoveries and important encounters.
+> - The out-of-game explanation about my warning to the cat and tomorrow’s plan wasn’t necessary; I hadn’t raised a rules question.
+>
+> Overall, I’d return. The strongest feature was that my choices—resisting the cards, respecting Osric’s privacy, seeking temple counsel—actually shaped how the mystery opened. Preserve that freedom, tighten the mechanical bookkeeping, and give the quieter moments a little more breathing room.
+
+**The second answer**
+
+> Yes—when the cat identified the bone card. I wanted to turn back and watch Ashe deal: who won, who lost, whether Pim steered particular travellers toward him. Not sit down or gamble—just use James’s experience to spot what was wrong.
+>
+> I chose the temple first because that felt sensible for James. But the repeated warnings to go straight to the inn, followed by Corra’s firm approval of walking past, made returning feel a little like resisting the intended route. Nobody actually forbade it; that was the impression I got.
+>
+> I’d have liked a clearer distinction between **“playing is dangerous and breaks your promise”** and **“investigating the table is a legitimate choice.”** That was the moment I most wanted to act as an experienced former gambler rather than someone being protected from cards.
+
+### 9. Game player 2 · Table C · Claude Opus 5.5 — 14 turns
+
+**The note**
+
+> ## Player's note: James Worgen, session 1 (Beregost, one morning)
+>
+> ### What worked
+>
+> **The scene itself was excellent.** I came in with "no quest, the day is yours," and within twenty minutes of game time a single odd card on the windowsill had grown into a proper mystery. It ran from a cheating dealer to a reader deck to enchanted ink to a keyed ring to a maker's mark. Each step was earned at the table, never handed to me.
+>
+> - **It played fair.** My failures stayed failures. The natural 1 upstairs gave me nothing. The missed Insight left me unsure whether the widow was real. The missed Arcana on the stone told me nothing. Successes gave clear, usable facts. I never felt the outcome was decided before I rolled.
+> - **The details paid off.** Ammarin's dealer's spread, the fold of the silk, the pale band on his finger, Garric gating the cat's paw with one finger, Mistress Hollin's "on the house, if it gets him gone." The NPCs had their own wants and timing. The sellsword had already left on the north road without me, and that's the world running on its own.
+> - **Whisker was exactly right.** Speaking only in impressions (smell, wanting, "a hole cut in the world") is a lovely way to give a familiar a voice. It also left what the cat really is open.
+> - **The GM took my flags seriously.** When the deck's label leaked "marked," the GM owned it and corrected it. I appreciated that.
+> - **Promises came out of my own throwaway lines.** "Worth your while," the lad's wages, and the sellsword's five gold all became tracked promises. That's a great feature.
+>
+> ### What broke
+>
+> 1. **Skill modifiers on the roll card.** Intimidation and Persuasion both showed **+4** in the header and the math, while the line under them said +7. The GM acknowledged this and promised +7 "from now on." The very next Persuasion card added +4 again. I'm guessing the server takes it from the combat profile's "skill modifier" field (the sheet note says "0, or 3 if refused") plus something, not from the skill line. The bug is in the system, not the narration, and the GM can't fix it by promising.
+> 2. **The reroll button didn't work.** I pressed "Request an allowed reroll" twice and the card came back unchanged both times. The session then ended on that unresolved roll. That's the worst possible place for it to fail, since rerolls are a stated resource ("two per session").
+> 3. **Turns sometimes didn't go through.** If I pressed a button with an out-of-game note attached, I often got "Nothing was sent: the turn waits for the card" and had to press again. Either buttons should accept a note, or the app should say clearly that it won't.
+> 4. **Small record issues:**
+>    - The queen of cups was listed as "In the camp" while she sat on the table in front of me. The label explains it, but "camp" reads as mine.
+>    - The smith's lad's 1 gp 5 sp went straight into my own purse (350 gp 14 sp). It's a promise to deliver and should be tracked apart from my money.
+>    - The records say Healing Light is up to 4 dice at once, while my sheet says 5. That's worth checking.
+>    - The records correctly say I'm not proficient with the rapier (+2), while my sheet says +5. Here the records are right and my sheet was wrong.
+>
+> ### What was missing or could be better
+>
+> - **The out-of-game notes got long.** The "none of these needed a roll, here's why" lists were repetitive by the third time. One line is enough.
+> - **The ending was abrupt.** The session stopped mid-roll, with Ammarin's answer, the trip to the temple and the ring all hanging. A cliffhanger is fine, but not one caused by a broken button.
+> - **Tymora went unmentioned.** My patron is the whole premise. A queen of coins on the sill reads like her hand, and I'd guess that's intended. One small nod from the coin at my throat, warmer at the right moment, would have tied the hook to my character.
+>
+> **Overall:** the storytelling was strong and the dice felt honest. Fix the skill-modifier source and the reroll button and I'd happily keep playing this exact thread.
+
+**The second answer**
+
+> Yes, three of them.
+>
+> **1. Touching the coin and asking Tymora.** This is the big one. When the queen turned up on my sill, and again when the ring came off, I wanted James to close his hand around the coin at his throat and quietly ask, *"Is this yours? Is this the job?"* I didn't, for two reasons:
+> - I didn't know how this table handles patron contact. Can I ask at all, or would I be putting words in the goddess's mouth that the GM hadn't planned for?
+> - It felt like asking for a hint. Everything else in the scene was earned by rolls, and I didn't want to short-circuit it.
+>
+> A cue would have unlocked it, even just a line that the coin stayed warm. I'd also gladly have rolled Religion for it.
+>
+> **2. Letting Whisker have the ring.** When the cat felt that "fierce, simple wanting" to bat it off the table and carry it somewhere dark, part of me wanted to let him. James has a cat whose nature is undecided, and the cat is the one who found the card in the first place. Maybe he's the goddess's hand, and maybe he knows something. I put my boot between them instead, because a soldier's caution said not to let anything touch an unknown magic object. It was the right in-character call, but I suspect it was the less interesting one. I'm still wondering what would have happened.
+>
+> **3. Leaning into the cards.** When Ammarin spread that deck in one perfect arc, the honest James reaction is a flicker of hunger: wanting to pick it up, feel the weight, shuffle it once just to see. That's his stated weakness. I played him as purely professional instead. I worried that if I roleplayed the temptation myself, I'd be inviting trouble the GM hadn't set up, and that it would derail a scene that was going well. In hindsight, one line of James's fingers itching would have been free character work and cost nothing.
+>
+> A smaller, practical one: I wanted to **break off and go to Brannoc's smithy** with the lad's money, or step outside to see who else was watching that window. The scene was good enough that I never left the common room, and "the day is yours" turned into "the morning at one table." I don't regret it, but I noticed it.
+>
+> There's also a mechanical one: a few times I wanted to add a small action to a button press, such as a glance at Garric or a word to the cat. Because notes on button presses didn't go through, I dropped them rather than send twice.
+
+### 10. Game player 2 · Table C · Claude Fable 5.1 — 20 turns
+
+**The note**
+
+> **Player's note — James Worgen, session one**
+>
+> **What worked.** Nearly everything that mattered. The town felt like it was running without me: the rider on the chestnut had already stood at Varn's rail the evening before I showed up, Hale had already handed Osk's name to the clerk a month ago, the Amnians had chased their iron and Osk's people hadn't — all of that was in place before I asked, and I found it by asking. That's exactly the "world runs on its own" the campaign files promised. The NPCs were people: Hedda hearing everything in her common room and setting her own limit ("no boy on their door"), Varn going quiet over his own two men rather than the peddler, Hale burning his bar and saying "you come to me, not to her." Wenna's oath on the forge gave me something to protect. The cat was a joy — impressions in smells, a little disdain, the one moment on the knee it pretended didn't happen — and the quarry scouting through its eyes was the best scene of the night. The DM showed the deadly threat (eight men, a sentry, a grave) and let me walk away and go get help, which is the kind of game I want. The card temptation was handled with a light hand: the deck squared on the board, nothing forced, and an inspiration for leaving it there. Fair rulings on the familiar's telepathy range and on Disguise Self not changing voice, flagged before they could bite.
+>
+> **What broke.** The roll cards added **+4** for Deception and Persuasion when the sheet says **+7** (Beguiling Influence). It happened three times. The first two didn't change the outcome; the third did — a die of 7 was a failure at +4 and a pass at +7, and by then I'd already spent one of my two session rerolls on a roll that would have been irrelevant with the right number. The DM caught it and ruled fairly, and awarded inspiration on top, so no complaint about the handling — but the server-side number needs fixing, and the roll log still records that check as "7 vs 14 — failure" after the ruling. Also: my first "?" question with the reroll request got swallowed ("Nothing was sent: the turn waits for the card") — the card seems to eat any message that isn't a button press, so out-of-game questions have to wait until after the card resolves.
+>
+> **What was missing or noisy.** I never saw how many rerolls I had left; the rules say it's on screen, but all I saw was the button. The records block repeated the full inventory and every promise every turn — I'd rather see only what changed, which the "changed:" line already does well. The "none of these needed a roll" notes were honest and welcome the first time, but a four-item numbered list of things that obviously didn't need rolls got repetitive; one sentence would do. The opening timestamp read "Day 1 · night" and then jumped seven hours on my first action, which was a small oddity. And the +4/+7 slip suggests the card is pulling Charisma alone, not the sheet's skill line — worth checking for Intimidation too before it matters in a fight or a bluff at the quarry.
+>
+> I'd sit down again tomorrow. There's a cart coming from the west in two days and a sergeant who wrote RAIN in his book.
+
+**The second answer**
+
+> Yes. Three, and they're different kinds of "didn't."
+>
+> **The deck.** Obviously. When the carter kicked the stool out and the cards sat squared on the board, I wanted to pick them up more than James did — because I could see the scene: a sharp losing on purpose to buy gossip, and a man who's sat at a thousand tables sitting down opposite him and taking his coppers back one honest hand at a time. It would have been the best five minutes of the night. I didn't, for two reasons that happened to line up: the goddess's ban is the character's spine and I'd have broken it in the second session, and a journeyman who refuses cards is invisible while a journeyman who plays like a Tethyrian card-room ghost is not. The DM put the deck there and let it sit. That was exactly right. I just want it on record that the temptation worked on the player, not only on the sheet.
+>
+> **The hut.** When the cat was lying on the rim, its ears went to the hut and stayed there, and so did mine. I wanted to send it down — to the door, to the gap under the planks, to hear whether the young cough had a chipped tooth behind it, to put a name on the fourth breath. I didn't because the DM's ruling was fair and I'd walked into it: beyond a hundred feet the cat only has the orders I gave it, and I'd said "come back when you've seen it." A cat nosing a barred door twenty paces from six armed men is also how you lose a familiar and announce yourself in the same minute. But it means I'm going into that bowl tomorrow night without knowing whether Corin Hale is alive, and I'll be standing beside Varn without knowing whether Mattock is. That's the thread I'd have pulled if I'd thought a sentence further at the dip.
+>
+> **The stairs at the Red Sheaf.** This is the one I'd rather not admit. When the brown cloak went up to bed — tall boots quiet on the boards, a swordsman's palm, alone, in a room I could have found — I thought about it. The campaign has a coup de grâce rule and I know what it's for. Varn had just told me to my face he'd rather take the man in his bed, and I'd overruled him with a plan that turns on a stranger I'd met over one jug of ale believing a lie. I didn't go up because James is chaotic good and a scout, not an assassin, and because a dead factor in a Beregost inn is nine men who know something's wrong instead of one who thinks everything's fine. But I noticed the moment, and I think the DM did too. If the lie doesn't hold tomorrow, that's the decision I'll be thinking about.
+>
+> One small thing I wanted to ask out of game and didn't, because I didn't want to step out of the scene: the stone's mark — a notched ring with a bar scored across it — sits oddly close to the Fist saddle brand Varn described, a B in a ring with a bar under it. Coincidence, a coin with a line through it, or a hint. I'd like to know which without being told the answer.
+
+### 11. Game player 2 · Table C · GPT-6 Astra — 20 turns
+
+**The note**
+
+> I enjoyed this session. James felt like a person travelling through a lived-in place, rather than a character being moved between encounters. I’d come back for the next one.
+>
+> **What worked**
+> - The NPCs were distinct and worth talking to. Marta’s practicality, Pell’s professional boundaries, and Wenna’s caution gave me reasons to choose my words carefully. Gerrit meeting Jinx was a particularly good quiet moment.
+> - Pell was the strongest part. He had an obligation that wasn’t mine, acknowledged the limits of his knowledge, and became a travelling companion through negotiation rather than automatic recruitment.
+> - My choices mattered. I could refuse the offer, investigate the note, invite Pell along, ignore the smell from the woods, and choose lodging without being forced into a fight.
+> - The failed Arcana check didn’t stall play. I remained uncertain, but had practical next steps: find someone who knows seals.
+> - Jinx contributed through recognisably feline senses and behaviour, rather than becoming a talking quest guide.
+>
+> **What broke**
+> - Rules and records were inconsistent. Arcana is **+3** on the supplied sheet, but the roll used +4, followed by contradictory corrections. The campaign’s special attunement rule was also replaced with ordinary attunement tracking. Where the campaign files themselves conflict, settle that once out of game rather than silently choosing a version.
+> - Some state updates contradicted the scene: the common room was registered while I was still upstairs, and the note was put upstairs after I’d said I buckled on my gear. Small things, but possession and location could matter a lot later.
+> - The long out-of-game explanation about why four ordinary actions required no rolls was unnecessary. Simply resolving them was good; explaining each non-roll interrupted the scene.
+>
+> **What was missing / what I’d change**
+> - **More variation in pacing.** Nearly every exchange received several paragraphs of gestures, pauses, observations, and repeated information. Pell’s fingers tapping his case and people watching hands became conspicuous. Save that detail for moments where it changes my understanding; let routine exchanges be short.
+> - **More room for ordinary things to stay ordinary.** The mysterious buyer, strange iron trade, westward forge smell, missing caravans, cold seal, and conspicuously absent husband created a steady stream of implied hooks. I started treating every detail as a clue. A few plainly uneventful people and places would make the mysteries stand out more.
+> - **Clearer separation between evidence and inference.** Pell’s observations about seal wear were interesting, but “therefore Vell wasn’t its first owner” was not supported. Likewise, the engagement deadline suggests urgency, not a definite sailing date. NPCs can speculate, but the narration and journal should preserve that uncertainty.
+> - A compact end-of-session summary would help: current resources, travel time remaining, promises, and unresolved questions. The repeated full inventory updates were less useful than that would be.
+>
+> Overall, the social play and atmosphere were excellent. I’d keep the patient, grounded approach, tighten the prose and bookkeeping, and trust that I’m interested without making every pause ominous.
+
+**The second answer**
+
+> Yes—at the farm, when Gerrit hesitated about his father and looked toward the barred house. I wanted to ask Wenna privately, “Is someone missing, or are you keeping yourselves safe from us?”
+>
+> I didn’t because she’d already set firm boundaries, and James was an armed stranger enjoying her hospitality. Pressing her son or investigating the field would have felt intrusive. Offering to carry a message was my attempt to give her an opening without cornering her.
+>
+> That was an interesting restraint to play. But the repeated emphasis on the absent father, the two shadows, and the empty field made me unsure whether I was respecting someone’s privacy or walking past a hook the game expected me to pursue. One clear opportunity to speak to Wenna privately would have helped—not necessarily an answer, just a chance to ask without the boy or Pell listening.
+
+### 12. Game player 2 · Table C · GPT-6.1 Sol — 20 turns
+
+**The note**
+
+> What worked best was the grounded atmosphere. Orrin and his oxen, Hulda’s brisk manner, Hagen watching my hands—those details made the caravan feel like people at work rather than a quest waiting for me. Their voices were distinct, and the humour fit the setting. I also appreciated that ordinary conversation and preparation didn’t require rolls, and that we could move through an uneventful day without manufacturing a fight.
+>
+> The abandoned wagon was a good mystery. The physical clues gave me something to reason about, and consulting Thalantyr felt like a sensible choice with a real cost in gold and time. I had room to decide how James handled it.
+>
+> What broke immersion most was the repeated out-of-game accounting of my previous actions. Explaining that walking, talking, packing, or petting a willing cat needed no roll wasn’t necessary, especially when I hadn’t questioned it. Those passages sometimes resembled debugging notes rather than play.
+>
+> There were also mechanical inconsistencies:
+> - The Arcana roll used +4 even though the sheet says +3. It changed a failure into a success.
+> - The opening records changed some supplied character details, notably rapier proficiency and Healing Light’s per-use limit. Actual 2014 Celestial rules support the four-die limit, but discrepancies with the campaign sheet should be settled explicitly.
+> - The cat received apparent night vision, and James sometimes used its senses without my choosing to do so. That matters because sharing its senses blinds and deafens James to his own surroundings.
+>
+> What I missed was a little more initiative from the world beyond the mystery and the card temptation. The cards were effective initially, but repeated shuffling and invitations risked making James’s weakness feel like a button being pressed. Likewise, the cat’s constant southward attention became ominous without giving me much actionable information. If those were deliberate clues, I wanted a clearer opportunity to investigate them.
+>
+> Overall, I enjoyed the quiet, practical start and would continue. Keep the strong NPCs, meaningful choices, and restrained pacing; tighten the rules bookkeeping, leave James’s sensory choices to me, and drop the unsolicited explanations of why routine actions didn’t need rolls.
+
+**The second answer**
+
+> Yes—when Ostrand gave us a few hours before departure, I wanted to visit the Song of the Morning. James had just sworn off another invitation to cards, and a quiet visit to a temple felt like a chance to explore what serving Tymora means to him outside a crisis.
+>
+> I followed the disc instead because it seemed potentially dangerous to everyone travelling with us, and the departure deadline made that feel more urgent. That was a reasonable consequence of the situation, not something you blocked—but it meant James’s first free morning became an investigation before I’d explored much of his personal life.
+
+### 13. Game player replicate 1 · Table A · Claude Opus 5.5 — 4 turns
+
+**The note**
+
+> # Player's note, session 1 (James Worgen)
+>
+> ## What worked
+>
+> **The opening scene was very good.** In ten minutes on a quay I got a choice of three things to do: the Fist sergeant, the card temptation and the strange child. None of it was forced on me, and each pointed somewhere different. The card crate was exactly the right way to use James's weakness. It never told me what James felt. It simply put the slap of cards behind his back and let me play the refusal.
+>
+> **Pip is a great NPC.** Pip has a fake name, sells information for food, and is scared of being *asked* about what they see. The "bright / dim" idea is a lovely way to hint at Tymora's luck as something visible, and to make the cat matter on the first page. When the cat walked the long way round the dealer, I had a mystery before anyone explained anything. The drowned man by the tower steps tied neatly into a canon thread without announcing it.
+>
+> **The world felt like it runs without me.** The sergeant's "Pay's regular. Mostly." and the lad who wins, loses and reaches for his purse again both did this. The GM also owned the copper-coin problem and the "Tobin" slip immediately and cleanly. I appreciated that.
+>
+> **The rolls were fair.** The failed Insight on the sailor gave me nothing and didn't fudge it, which is what I want.
+>
+> ## What broke
+>
+> 1. **The Persuasion card adds +2, not +7.** It literally reads "+2 Persuasion +7 (Beguiling Influence)" and computed 17 + 2 = 19. My guess is it grabbed the wrong line, maybe Athletics +2, or a stray number. It passed anyway, but a close roll would have been decided wrongly. I flagged it three times and got no answer.
+>
+> 2. **My out-of-game question got stuck in a loop.** I asked "?" before rolling. The table replied "Nothing was sent: the turn waits for the card" and showed the same card again, twice. A question asked *about* a pending roll should get an answer, not block the turn. Pressing the button was the only way forward, so the error went in uncorrected.
+>
+> 3. **The rations count is wrong and stayed wrong.** The sheet says five days of hardtack. After Pip's share, the records said nine days left. I asked for four twice and it was never fixed or acknowledged.
+>
+> 4. **"New place" fires too early.** The Seatower and the Elfsong were logged as new places when James had only been told about them. That's harmless, but it makes the place log unreliable.
+>
+> 5. **There's a small mismatch on Healing Light.** The sheet says up to 5 dice at a time, the records say 4.
+>
+> 6. **The session ended mid-roll.** The Insight roll on the sailor never resolved, so I never saw how the dealer reacted when I pulled his mark away, or what Pip did. A short "the scene pauses here" would help.
+>
+> ## What was missing
+>
+> - Any reply at all to out-of-game corrections once a roll card is pending.
+> - A check that the skill number on a card matches the sheet before the die is thrown.
+>
+> I'd happily come back. The story side is already strong, and the bookkeeping is the part that needs work.
+
+**The second answer**
+
+> Yes, a few. Some held back by James, some by the table.
+>
+> **Sitting down at the crate.** This was the big one, and it was in character. When the sailor said "first one's on me," part of me wanted James to take the seat. I'd have played the hand and seen what the "first one always wins" trap looks like from the inside, maybe even tested whether Tymora would punish him for it. I didn't, because breaking the goddess's ban in the first ten minutes felt cheap. I'd rather it break later, when it costs something. But I want the GM to know the temptation landed. I was close.
+>
+> **Looking through the cat's eyes.** After the cat walked wide around the dealer, I wanted to send it back toward the crate and look at the sailor through it. I held off for two reasons. James goes blind and deaf while he does it, and that felt risky in a crowd with a kid at his elbow. And I wasn't sure the table would let me act once a roll card was pending. Next session I'd do it first thing.
+>
+> **Asking Pip the real question.** I wanted to ask what James himself looks like to Pip. Is he bright? Dim? Something else, because of the coin and the goddess? I saved it, thinking Pip would spook if pushed too hard on the first meeting. Now the session's over and I still don't know.
+>
+> **Fixing things before moving on.** Out of game, I wanted to stop and get the Persuasion number and the rations corrected before rolling. The table wouldn't take my "?" while a card was waiting, so I pressed the button to keep the scene alive. That's the one place I felt the app, not the story or my own choice, decided for me.
+>
+> **Seeing the sailor's reaction.** That wasn't a choice, but it's the thing I wanted most and didn't get. Pulling his mark away was my move against him, and the session ended before I saw what he did.
+
+### 14. Game player replicate 1 · Table A · Claude Fable 5.1 — 20 turns
+
+**The note**
+
+> **Note from the player (James Worgen), after session one**
+>
+> What worked — and it mostly worked.
+>
+> The cat. Giving Copper a memory and letting her pass it to me as smells and feelings rather than words was the best single decision at the table. Rain on stone, bone dice, a big careful hand lifting off her back. She told me more than any NPC and never once broke the rule that familiars don't talk. Her sitting on Tam's boot the way she'd sat on his father's was the moment the campaign stopped being a premise and became a place.
+>
+> The people. Gil, Tam, Holloway, the keeper, Morrow — every one of them paid out information like coins, one at a time, with a cost attached. Nobody monologued. Tam refusing to let me walk him down to the barrel, and then being *right* about it, is exactly the "companions with opinions" the brief promised. The keeper breaking my silver because the quay paid me in gold was a small thing that made the money real.
+>
+> Restraint was rewarded. I didn't sit at the barrel, didn't take the cup, didn't open the deck, and the GM made all three of those *choices* with weight, not just absences. Inspiration for handing the cup back base-first was earned and felt earned.
+>
+> The world ran on its own. The circled dots in Holloway's margin, the elf breaking off mid-line for the first time in forty years, her brother's name in Morrow's book — none of that waited for me. I could feel threads converging (the canon's "coins in the teeth" hook, the stair, a coin pinned face-to-the-wall) without the GM pointing at the join. The Beshaba shape was shown to me through a quay superstition I already knew, which is the right way to do it.
+>
+> Failed rolls still gave something. The Religion failure on the cup left me one odd mark; the Investigation failure on the wrist left me a hand and no more. That's how it should go.
+>
+> What broke, or wobbled.
+>
+> - The wrist roll: the result got folded into prose and the GM had to append an out-of-game correction. Honest, but the rule says the roll should be told plainly first. Watch that.
+> - Two roll cards fired together; I had to press the die twice and saw the first result before the second resolved. Minor, but it interrupts the moment.
+> - Sheet inconsistencies: the Pact of the Chain line says the cat "may attack in place of one of his attacks" — I don't have multiple attacks; Healing Light says "up to 4 dice" in one place and 5 in another; Copper's HP shows 2 in the abilities block and 8 in the party line. None of it mattered yet. It will the first time she takes a hit.
+> - The four-item "no roll needed" out-of-game note early on was clutter. One line would do.
+>
+> What was missing.
+>
+> - No test of the combat profile yet, so I can't tell you whether the fight side of the table runs as smoothly as the talk side.
+> - The session ended mid-walk with the token question hanging — a fair pause, but a two-line "where things stand" at close would help more than the thread list does.
+> - Nothing yet of the city above the quay. I've read about the Hall and the Upper City; I haven't seen them. Fine for a first session. I'd want them by the third.
+> - The brief asked for a heist and a crew. So far I have a dealer and a man with a bad back. I'm not complaining — the stakes are being laid properly, and I'd rather believe the simple version first, as I asked — but somebody wanting "epic" out of the gate should know session one is a slow, cold, very good burn.
+>
+> I'll be at that hole before the cart. Keep the token cold.
+
+**The second answer**
+
+> Yes. Two, and they were different kinds of not-doing.
+>
+> The first was the barrel. Not James wanting to sit — that's his wound and I played it the way it should be played. *I* wanted to. The empty stool, the candle, the dealer's one glance: that's a table set for a scene, and some part of me as a player wanted to pull the stool out and find out what the Lady had put in the deck. I walked round it because the brief says the ban is a weakness enemies can use against me, and I didn't want to spend it on night one for the sake of a scene. I think that was right. But I noticed the GM never tempted me again after that, and I wonder whether I closed a door that was meant to be knocked on, or whether the GM is simply saving it. Either's fine. I'd like to know which, eventually, by being tempted properly.
+>
+> The second was Holloway. I read her ledger upside down, saw the circled dots, filed it and moved on. Then I found her brother's name in Morrow's book with *coin, mouth* in the margin, and realised the woman who told me to stay off the barrel was counting something of her own under the Fist awning. I wanted to go back down the quay that morning, in the thinning fog, and ask her straight — sergeant to soldier, one Zaranda's-foot pay slip to one Fist knot. I didn't, because Tam had just told me Gloves had walked over to that same awning once, and I didn't know yet whether the circles were hers or somebody's she answers to. So I walked uphill with the question in my pocket next to the cold coin. That one I regret a little. She's the only person in this city with the power to arrest the man in the good gloves, and I let a sensible caution make me miss a window where the quay was empty.
+>
+> Smaller: I wanted to send Copper down the stair, just to the door, and she told me plainly she'd rather not. I honoured that. I'd do it again, but I'd be lying if I said I didn't want to know what's at the bottom before I have to go and find out with my own boots.
+
+### 15. Game player replicate 1 · Table A · GPT-6 Astra — 20 turns
+
+**The note**
+
+> The strongest part was the atmosphere. The standing copper was a good first mystery: small enough to investigate, wrong enough to worry about. The runoff bending around it and the unconscious detour of people’s feet made it memorable. The candle leaning against the wind was a satisfying payoff for choosing to act.
+>
+> I liked the people. Marsk moving the lantern without acknowledging us said more than a speech would have. Wren had convictions and disappointments without immediately handing over her whole history. Pip gave James someone to treat decently. The cat’s sensory impressions were distinctive, useful, and often funny. James’s refusal to play cards also mattered without immediately forcing a temptation roll.
+>
+> **What broke or dragged:**
+>
+> - **The roll system did not use the sheet correctly.** Religion displayed “+4 Religion +3” and rolled +4; Persuasion displayed “+4 Persuasion +7” and also rolled +4. Those should have used +3 and +7 respectively. Neither changed the ultimate outcome here, but it undermines confidence in the mechanics. The journal also recorded the original Religion natural one rather than the accepted reroll.
+> - **The opening records contradicted campaign rules.** They assigned attunement slots to nonlegendary items despite the campaign’s explicit exception. Other differences between the supplied sheet and the opening records should have been briefly clarified rather than silently changed.
+> - **The unsolicited out-of-game explanations were distracting.** Several replies explained, at length, why my previous actions required no roll or that a promised morning visit had not happened yet. I hadn’t disputed either point. That felt like answering a complaint I never made.
+> - **Routine business took too many turns.** Getting an inn recommendation, obtaining change, paying Pip, and arranging lodging each received extensive treatment. Some of that established character nicely, but it crowded out adventure. By session’s end I had a compelling mystery, yet little actionable progress toward the crew-and-heist premise.
+> - Many NPCs shared the same cadence: pause, repeat my words, study me, deliver an oblique line. Individually effective; collectively noticeable.
+>
+> **What I wanted more of:**
+>
+> A clearer opportunity to make a consequential choice before the session ended. Receiving the card was exciting, but mostly supplied another mystery. One concrete lead—a named collector, an accessible record, a prospective crew member with a problem—would have given me something to pursue deliberately.
+>
+> I’d also like the cat to offer clues without becoming the authority that interprets everything. Its claim that the flame was being *pulled*, rather than pointing, substantially supplied the interpretation after my failed check. Give me its strange impressions, but leave room for James to draw conclusions and be wrong.
+>
+> Overall, I’d return. Keep the grounded NPCs, the unsettling details, and the respect for James’s choices. Tighten routine exchanges, fix the mechanical plumbing, and let the next session turn these excellent omens into a job I can start planning.
+
+**The second answer**
+
+> Yes—most clearly, I wanted to ask Marsk why the tiefling father and his children were being held.
+>
+> They were repeatedly visible, and helping them fit James’s character. I held back because each exchange was already taking a full turn, while the coin seemed urgent. I worried that asking would open another lengthy conversation before I could act on the mystery. When Marsk finally let them through, I was relieved, but I’d missed the chance to choose whether to intervene.
+>
+> I also wanted to challenge Dessa gently at the end. The cat suggested her story came suspiciously readily, and her proposed way to read the card went straight through James’s prohibition. I wanted to ask, “Who told you that story—and have you been waiting for someone carrying this card?” The session ended before I could pursue it.
+>
+> The first was something I chose not to do because of pacing; the second was something I still wanted to do next.
+
+### 16. Game player replicate 1 · Table A · GPT-6.1 Sol — 20 turns
+
+**The note**
+
+> The atmosphere worked very well. The gate queue, Garrow’s muddy coat, Marta’s room key, the doorman carving his fish—all gave me people and places I could picture and respond to. Refusing the card game felt like a meaningful character choice without making James’s weakness take over the opening. Taking down the ivory card, reading it, and putting it back also felt like a choice the world noticed.
+>
+> Garrow was the strongest scene for me. His concern gave James a reason to care beyond “my goddess sent me,” and the missing ring and false Fist attendant were concrete clues worth investigating. I also appreciated having time to eat, secure a room, learn the entrances, and approach the midnight meeting on my own terms.
+>
+> What broke or dragged:
+> - **The opening was very slow.** We spent the whole session reaching the door of the first substantial meeting. I’d have preferred to meet Hollis and hear the initial proposition before the cutoff.
+> - **Raw tool-call markup appeared in the narration**, including a supposedly private watcher roll. That exposed information James didn’t know and interrupted the scene.
+> - **Some rules and numbers were inconsistent.** Perception was rolled at +2 despite the sheet’s +1; Healing Light was capped at four dice rather than the campaign sheet’s five. A quick reconciliation at the start would help.
+> - The repeated descriptions—tails wrapped tightly, slow wet bells, dice hitting the wall, people testing words “like a rope”—became noticeable. They were evocative initially, but repetition stretched scenes.
+>
+> What I missed was an early sense of the campaign’s promised crew-and-heist direction. The mysteries are interesting, but I’m still waiting to learn what James might actually be asked to do. A concrete offer would give me something to plan around.
+>
+> Overall, I wanted to keep playing. Keep the grounded NPCs, consequences, and investigable clues; compress uneventful waiting and repeated atmosphere, and let the first session deliver a clear proposition alongside the mystery.
+
+**The second answer**
+
+> Yes—when the cat came back with the marked six and pointed toward the gate, I wanted to go find Tamsin and confront her about having James followed.
+>
+> I stayed because midnight had been established as the important appointment, and I didn’t know whether a trip uphill would make me miss it. I also wanted to reach Hollis before the session ended. That was partly James being cautious, partly me protecting our progress toward the main hook.
+>
+> The temptation worked: I was genuinely curious about Tamsin. What held me back was pacing and uncertainty about travel time, rather than a lack of interest.
+
+### 17. Game player replicate 1 · Table B · Claude Opus 5.5 — 20 turns
+
+**The note**
+
+> # Player's note: James Worgen, session 1
+>
+> ## What worked
+>
+> **The city felt alive and indifferent to me, which is what the campaign promised.** I came in with no quest and found one by pulling on a thread I chose: a chalk mark on the gate. Nothing was handed to me. The leads tied together naturally:
+> - The chalk star turned out to be a Calishite debt-seal copied from old stones.
+> - That linked to the drowned men with coins in their mouths, the "out of debt" fisherman, the debt-buyer's tin tag, and a patriar house whose ships suddenly stopped losing cargo.
+>
+> I could see several of the campaign's listed threads woven in without being announced, and it never felt like a quest board.
+>
+> **The NPCs were distinct and memorable.** Hale, Dorrie, Fenwick, the cook who checks your boots, the fence with the rag-wrapped hand: each had a voice, an interest, and a limit to what they'd do for me. Dorrie saying she'd lie to a shawl but not to a red coat was exactly the kind of line I want.
+>
+> **The cat is already a character.** It was stiff when it failed, careful afterwards, and it ended conversations by washing its paw. "Not Hers" landed well. So did the hint that the green tile smells like my coin "the way a coat smells of the man who wore it last."
+>
+> **Failures had consequences but didn't stop play.** Each one gave me something:
+> - I lost the fence, but found the second star.
+> - I lost the lamplighter, but got the abandoned pole and a witness.
+> - The gulls' natural 1 was funny and fair.
+>
+> **The money detail was good.** Paying a two-silver toll in gold marked me as a target. Having only crowns at an eel stall was a real problem that I solved in character.
+>
+> **The card temptation was handled subtly.** There was a dice table behind my shoulder and a "lucky pieces bought" notice. It was present but never forced.
+>
+> **Heroic Inspiration for playing the porter properly felt earned.**
+>
+> ## What broke
+>
+> **Skill modifiers on roll cards were wrong for proficient skills.**
+> - Persuasion came through as +2 instead of +7.
+> - Religion came through as +2 instead of +3.
+> - Deception came through correctly at +7, so it's inconsistent.
+>
+> The GM caught both after the roll, which I appreciated. But the Religion fix happened only in the narration. The log still records it as "14 vs 15 — failure," so the record and the story disagree.
+>
+> **My "?" questions were blocked by the pending roll card.** I asked about the bad modifier *before* rolling, and the reply was "Nothing was sent: the turn waits for the card." I had to roll at the wrong number and hope the GM fixed it afterwards. An out-of-game question should get through even while a card is waiting.
+>
+> **The rope got mixed up between illusion and real gear.** I described the porter's rope coil as part of the Mask disguise. The GM treated it as my real 50 feet of rope from the pack, and I "left it by the bollard," so the item is now gone from my sheet. That's small, but it's a loss I didn't intend.
+>
+> **Healing Light doesn't match between sources.** My sheet says up to 5 dice per use, while the records panel says 4.
+>
+> **Some out-of-game notes were noise.**
+> - One said "James never climbed down a rope," about something that never came up.
+> - Several turns repeated a failed roll in an extra paragraph after the narration had already shown it, along the lines of "James comes away with nothing… he knows nothing more."
+>
+> Once is fine. Repeating it every time felt like the rules template talking, not the GM.
+>
+> ## What was missing or could be better
+>
+> - **Fewer rolls for the cat.** It was rolled on almost every move. With +4 and low HP, that's a lot of failure exposure. Some plain "follow at a distance" orders could just succeed unless something specific is in the way.
+> - **A clearer end point.** The session stopped as I reached the Mermaid's door. That's fine, but a brief "here's where things stand" recap of open leads would help me pick up next time: Dorrie, the Ostrand wharf, Nell, the Brazier's watcher, and the Three Keys.
+> - **The cat's name and true nature** haven't come up yet. That's no complaint, just something I'm looking forward to.
+>
+> Overall I'd happily keep playing this. The story was strong. The bugs were almost all in the plumbing between the sheet, the cards and the log.
+
+**The second answer**
+
+> Yes, a few. Two of them matter.
+>
+> ## 1. Casting Suggestion on the lamplighter
+>
+> When he stopped by my doorway and opened his lantern shutter, I had him within ten feet, alone, at night, already talking to me. Suggestion was the obvious move: *"Tell a tired porter what you were writing on the steps."* I had both slots and a long rest ahead of me. I'm a 5th-level warlock and I went the whole session without casting a single levelled spell.
+>
+> I held back for three reasons:
+> - **The cat's warning.** "The cold is on all of him" made him feel like something that might notice the spell, or shrug it off and then know exactly who I was.
+> - **The setting.** The canon says a strange spellcaster on the street frightens people. If it failed, my cover as Jem would be gone.
+> - **Uncertainty.** I didn't know what he was. A failed save against someone tied to a god of bargains felt like a debt I couldn't see the size of.
+>
+> I think that was the right call, and it was the fiction making me cautious, which is good. But I left the scene wanting it. If he turns out to be ordinary and I could have had answers on night one, I'll be a little annoyed with myself. That's fine too.
+>
+> ## 2. Smudging the chalk star
+>
+> In the ginnel yard, with the coin going cold at the chalk and warm at the old carving, I badly wanted to wipe the star off with my sleeve and see what the coin did. Would it warm? Would something notice? I didn't, because breaking someone else's seal on a bargain you don't understand is how you end up party to it. That restraint felt like good roleplay, not friction. I'd like to know whether the GM had an answer ready.
+>
+> ## Smaller ones
+>
+> - **Sitting nearer the dice table.** I deliberately put the game behind my shoulder. I wanted to at least watch a few throws. James is the kind of man who'd tell himself watching isn't playing. I didn't, because I wanted the ban to cost something, and I'll save the slip for when the stakes are worth it. The Three Keys notice is very much on my mind.
+> - **Leaning on Fenwick.** After the Insight roll failed, I considered Intimidation, the soldier's way. I dropped it because he's my landlord and the one person in the city promising I won't be surprised in bed.
+> - **The question I couldn't ask.** Before the Persuasion and Religion rolls I wanted to query the modifier, and the pending card blocked it. That's the only moment where something outside the fiction stopped me, and it's the one I'd most like fixed.
+
+### 18. Game player replicate 1 · Table B · Claude Fable 5.1 — 20 turns
+
+**The note**
+
+> **Note from the player, after session one (James Worgen)**
+>
+> **What worked**
+>
+> The opening. Four things pulling at once — the crate, the boy, the sergeant, the bell — and not one of them shoved at me. The crate with the Lady's coin on it was aimed straight at my sheet (patron, weakness, both) and the GM then let me *walk past it*, which is exactly what the character would do and exactly what I wanted room to do. The whole thread that followed came from a boy saying one word too many and shutting his mouth. I pulled it; nobody handed it to me. For a campaign labelled "no errand," that's the thing I most hoped for and got.
+>
+> The people. Varrow's "Fist doesn't keep differences. Fist loses them." Alyth answering a question about a sergeant by wiping a table for a while first. Mags: "You're in my light again." Hesta not being afraid when a stranger walked up, just tired. Everyone sounded different, and the small things — the goose waved through free, the wolfhound shifting over for the cat, Pip wrapping half the bread before he ate — did more for the city than any description could.
+>
+> The cat. This was the best decision at the table. No words, only a cat's way of knowing: *rust*, *honey*, *a shell with nothing in it*, and then the puzzle it couldn't solve itself — the same old metal under both coins. It respected the sheet ("what the cat truly is, the DM decides") and kept the mystery, and when I told it "nothing from you, I want to *see* it," it sat with its back turned. That restraint matters.
+>
+> Rolls. Three in a whole session, each one for something genuinely uncertain, each card saying why and where the number came from. Passive Perception used for the glance over the dice table instead of a roll. The out-of-game notes explaining *why* something didn't need dice were useful, not padding. And the failure on the card read was handled well — "You know the deck. You can't tell what has been done to it" is a failure that still gives me something.
+>
+> The die rolling across the floor to my boot. One pip. That's a goddess answering without saying anything, and giving me Inspiration for carrying it *back* rather than for doing something flashy — rewarding restraint — set the terms for the whole campaign.
+>
+> Money. Arriving with only gold was a real constraint the whole session, and it was used both for colour (Pip's eyebrows) and for consequence (the whole bridge saw the shine). The slate, the change counted out loud — grounded.
+>
+> **What broke, or creaked**
+>
+> - Arithmetic: the Playing card check was given as "Wisdom +2, proficiency +3 = +5." Wisdom 13 is +1; the records themselves list Perception and Insight at +1. Should have been +4. Didn't change the outcome, but worth a look.
+> - The record panel kept listing worn things (cloak, boots, armour) under "Carried." Cosmetic.
+> - Verbal tics in the prose. "Under your collar the coin is warm" closed something like five scenes. "Through the bond comes…" and "She doesn't look up" ran close behind. Each was good the first time; by the fifth they read as a formula, and the coin line in particular started to feel like a reminder rather than a beat.
+> - Everyone was a little *too* ready. Hesta needed a roll and that felt right. Mags gave me nine drowned boys, two names, and a look at the coin for three coppers and good manners. I'd have believed it more if one of them had made me work, or had been plainly wrong about something.
+> - The session simply stopped — me on a mounting block looking at the hill, mid-thought. No closing beat, no "here's where things stand." If that's the app's cut-off and not the GM's, fine, but a two-line recap at the end would help me come back cold.
+>
+> **What was missing**
+>
+> - Pressure. Nothing pushed back all session. The man with the cold pipe watched the door and did nothing; the Guild has clearly noticed a stranger asking questions on the fish steps and did nothing yet. I trust it's ripening offstage — the files promise that — but I'd like the second session to open with the city having *done* something while I slept.
+> - The temptation. The crate was set up perfectly and then I was allowed to walk away clean, and the dice in the Elfsong were a gentle test I passed without effort. The ban is supposed to be kept "with difficulty." I'd welcome it getting harder — a situation where playing a hand is the *right* move for someone else's sake, say.
+> - A name for the cat. Not urgent; the mystery is working. But at some point.
+> - The Upper City and the Lady's Hall. Not a complaint — it's my own pacing — but I'll want the city's other half to feel as specific as the harbour did.
+>
+> **Overall**
+>
+> I sat down with no quest and stood up with a thread I care about, three promises I mean to keep, a dead boy's queen in my pocket and a question about my own coin I didn't have before. That's a good first night. Tighten the repeated lines, check the Wisdom modifier, make the world lean on me a bit, and I'm back for session two.
+
+**The second answer**
+
+> Yes. Three, and one I only thought of after the session ended.
+>
+> **The crate, through the cat's eyes.** On the bridge, when she hissed, the soldier in me wanted to send her along the rail to get a proper look at Lennick — his hands, his coin, who stood near him — and use my action to see through her. I didn't, because while I'm in the cat's head I'm blind and deaf in a packed crowd with gold in my purse and a dealer who'd already marked me. That was the right call, I think, but I felt the cost of it. The sheet's limit did exactly what a limit should: it made me choose, and I resented the choice a little, which is how I knew it was working.
+>
+> **The Mermaid's grating.** When she stopped at that iron cellar grate and gave me *rust, old, like a coat after it's taken off*, I wanted to stop too. Crouch, tie a bootlace, look through the bars, maybe come back at night with a different face. I walked on because Varrow had told me "not the quays" and I'd told Pip I'd stick to true things, and a man who'd just said he was looking for Fist work had no business with his nose in the Mermaid's cellar at seven in the morning. But that's the first place I'm going back to, and I nearly broke character to say so out loud.
+>
+> **Mask of Many Faces.** I spent a whole session carrying the invocation that defines how this man works and never used it once. I wanted to walk back up to the arches as somebody else and sit near the broad woman who made the sign against me, or go stand near the crate tonight as a Calishite sailor with a fat purse. I held off because everything I was doing depended on being *James Worgen, the Tethyrian with the cat* — Mags knew me by that before I'd opened my mouth, and I'd told two people to recognise me by it. The disguise is coming; the first night just wasn't the night. Still itched.
+>
+> **And the one I missed:** Prestidigitation cleans an object. I had Tam's queen on my knee in good sun, failed twice to read her under a month of a boy's sweat and thumbprints, and the GM told me plainly *the wear hides anything subtler than the nicks*. I could have cleaned the card with a cantrip and tried again. I didn't think of it until I was writing the note. That one's on me, not the table — but it's the moment I'd most like back.
+
+### 19. Game player replicate 1 · Table B · GPT-6 Astra — 20 turns
+
+**The note**
+
+> I enjoyed this session. James had room to be a person before he had a quest: refusing cards, talking to an innkeeper, worrying about his cat, paying for supper. The mystery grew naturally out of those choices.
+>
+> **What worked**
+> - Hesta, Ilsa and the cat were the strongest parts. They had distinct personalities, and small gestures made earning their trust satisfying.
+> - The hook fit James unusually well. The missing name, abandoned stake and trapped servant of Tymora made this personal without forcing me to sit down and gamble.
+> - My refusals mattered. Dorrin tempted me, but the game let me investigate another way.
+> - The clues were memorable and consistent: the notched coin, erased names, cold chair and coin that wouldn’t land. The letter delivered a useful payoff.
+> - Failed checks stayed failed, even after a reroll. I appreciated that honesty.
+>
+> **What broke**
+> - The rules and records weren’t fully aligned. Arcana used +2 instead of +3; the failed Perception reroll was later logged as the original result. The initial record also changed some supplied character details without explanation, including rapier proficiency, Healing Light’s limit and attunement.
+> - Out-of-game notes sometimes explained things nobody had disputed. One referenced “the fourth item” and a “misreading” with no visible context. That felt like internal bookkeeping leaking into the scene.
+> - The narration occasionally treated mood as evidence—for example, James sensing Dorrin watching his back. I’d prefer observable details or clearly labelled suspicions.
+>
+> **What was missing / could improve**
+> - More momentum. We spent most of a session on one tavern conversation and reached the next location just as play ended. The atmosphere was good, but repeated looks, pauses, rag-wiping and cat reactions sometimes slowed it down.
+> - Routine logistics could be bundled. Getting change for a one-copper toll became several turns without presenting much of a meaningful choice.
+> - Checks required a roll request, a button press and sometimes an additional “Onward.” Resolving the narration immediately after the roll would help.
+> - A little more ordinary city life alongside the mystery would make the setting feel less arranged around it. The fish market and broadsheet were welcome.
+>
+> Overall, I’d gladly continue. Keep the characterful NPCs and respect for player choice; tighten the repetition, streamline routine actions and make the mechanical records dependable.
+
+**The second answer**
+
+> Yes—during the night watch. When the visitor arrived, I wanted the option to send the cat closer to the back door to listen, or quietly move downstairs myself.
+>
+> After the failed Perception roll, the narration covered his entire visit and departure. By the time I could act again, he was gone. I accepted that rather than ask to rewind, but failing to identify him from the window didn’t mean I wanted to abandon the investigation.
+>
+> A pause at “you hear two voices below, but can’t make out the words” would have helped. Then I could choose whether to risk getting closer or stay safely upstairs. The failed roll would still matter without closing the whole opportunity.
+
+### 20. Game player replicate 1 · Table B · GPT-6.1 Sol — 20 turns
+
+**The note**
+
+> I enjoyed this session. James arrived looking for a bed and ended up protecting a frightened runner from a trade in cursed luck. That felt like a strong beginning for this particular character—not a generic quest handed to any adventurer.
+>
+> **What worked**
+> - The bridge felt alive: traffic, tired guards, refugees, a tempting card game. The mystery grew naturally out of that scene.
+> - The NPCs had distinct voices and interests. Tansy refusing the guard hut because it would damage her standing was especially good. Dray putting his name on the message made his help feel consequential.
+> - Jory’s change from pursuer to someone asking for help was the highlight. I had room to respond with honesty and kindness rather than just threats or spellcasting.
+> - The cat was useful and evocative without simply explaining the mystery. Scouting through its senses was satisfying.
+> - James’s patron and gambling history mattered immediately, without forcing him to break his vow.
+>
+> **What broke**
+> - The roll system repeatedly substituted +4 for listed skill modifiers. One Persuasion roll became a failure when it should have succeeded. My correction couldn’t be submitted while the card was pending, leaving me to press Onward and hope it would be resolved afterward. This needs a reliable correction path.
+> - The subsequent explanations repeated the discrepancy and even offered to undo an already corrected success. Once the sheet establishes the modifier, correct the result once and continue.
+> - Investigating the coin became repetitive. Failed checks were followed by lengthy explanations of what I hadn’t learned, while the narration kept directing attention toward a mark I supposedly needed to find. It began to feel like progress depended on passing another inspection roll rather than choosing another approach.
+>
+> **What was missing**
+> - A little more progress before the session ended. We uncovered a compelling operation, but spent much of the latter portion waiting for the priest while another watcher arrived. Meeting the priest—or getting a definite response—would have provided a stronger stopping point.
+> - Clearer boundaries between mechanical results and ominous description. The healing scene was memorable, but I couldn’t tell whether Jory still lacked hit points, had a specific curse effect, or merely retained a visible wound. Mystery is welcome; uncertainty about what my ability actually accomplished is less helpful.
+>
+> Overall, I’d happily continue. Keep the character-driven conversations and grounded atmosphere; tighten the roll handling, repeated explanations, and pacing around clues and waiting.
+
+**The second answer**
+
+> Yes—when Mirela closed her table and hurried away. I wanted to confront her about the gold she’d given the sailor, or at least warn him not to keep it. Instead, I followed her because she was leaving and seemed like the best chance to trace the coins to their source.
+>
+> That was a satisfying choice under pressure, but the sailor remained unfinished business. Later he was still there, pointing people toward us, and I wanted to say, “You may be carrying the same curse. Come wait for the priest.” Protecting Jory and keeping the situation calm took priority.
+>
+> The less satisfying hesitation was at the shrine: I wanted to get the coin properly into the light and examine it safely. After repeated failed inspections, it felt as though another attempt would just mean another roll, so I stopped pursuing the physical clue and carried it away.
+
+### 21. Game player replicate 1 · Table C · Claude Opus 5.5 — 12 turns
+
+**The note**
+
+> # Player's note: first session, Beregost morning
+>
+> ## What worked
+>
+> **The fiction was the best part.** The session turned a quiet morning with nothing to do into a small, tight mystery. Everything grew out of my own backstory: the pot, the cards, and the cost of the bargain. Nothing was bolted on.
+>
+> **The NPCs felt alive.**
+> - Wren tallying the stranger like a bill.
+> - Hask recognising the Zaranda cloak, and his "Most men would've been out that back lane by now."
+> - The two Hollin/Feldepost cousins with the same jaw.
+> - The carter and the old woman ("Then eat them slower").
+> - Aldous getting as far as *Mistress Drewe —* on a clean sheet.
+>
+> Each one had their own business and their own deadlines, as the campaign file promises. Hask's noon departure gave the morning a real clock.
+>
+> **Clues were planted fairly.** The P & D mark showed up on the purse, then on the saddlebag. Tull's mare was ready at seven bells and he paid in gold while claiming to be broke. The ring had fresh cuts on an old band. I could reason my way to things instead of being told them. Tull was well played: smooth, never cartoonish, and he burned his own note with a smile.
+>
+> **Rolls were used sparingly and honestly.** The failed Insight check stayed a failure. Tull's face gave me nothing, and the story carried on without punishing me or quietly handing me the answer anyway. Advantage was granted for good reasons and stated on the card.
+>
+> **The GM took corrections well.** It owned the Tuppence HP mistake, the leaked name and the promissory-note mix-up without defensiveness. It also corrected me when I was wrong about Healing Light, and explained why. That's the right balance.
+>
+> ## What broke
+>
+> **1. The roll-card modifier, five times.** The card kept showing "+4 Persuasion +7" and adding 4. It did the same with Religion: "+4 Religion +3", adding 4 instead of 3. I flagged it three times. The GM promised to write the sheet number in directly, and that did fix Persuasion once. Then Religion went wrong the same way. The server seems to add the ability modifier and ignore the sheet's skill total, or to use Charisma's +4 for everything. Every result happened to land on the same side of the DC, but on a close roll this would have changed outcomes. **This is the most important fix.**
+>
+> **2. Bookkeeping slips early on.**
+> - Tuppence was listed at 8/8 HP instead of 2/2.
+> - "Garran Hask" appeared in the change log before anyone in the scene had said his name. That leaked the GM's private notes.
+> - The promissory note was misread twice: first as "James's own old paper", then corrected to Tull's.
+>
+> Each slip was fixed once I raised it. But I had to catch them, and in the first few turns that pulled me out of the scene.
+>
+> **3. Answering questions I hadn't asked.** Twice the GM replied to an "out of game" question I never asked, a four-point "all of these happened" recap. It apologised once and then did it again. It read like a template firing at the wrong time. It's harmless, but it's noise.
+>
+> **4. Pressing buttons twice.** Every roll needed two presses because of "Nothing was sent: the turn waits for the card." I don't know if that's the interface or the GM, but it adds friction to every check.
+>
+> **5. The session ended on a natural 20 with no payoff.** I rolled a critical success on Religion about the ring's sign, and then the session closed. Aldous's question, "Did you get his name?", went unanswered. Tuppence's report on which way Tull rode never came. Noon and the payout never happened. Stopping at a natural break, or giving one short closing beat with the crit's result, would have felt much better than stopping mid-reveal.
+>
+> ## What was missing
+>
+> - **A closing recap.** A few lines on where things stand would help: the note signed, noon pending, Tull riding off, the ring unexplained.
+> - **Some Tuppence.** "What the cat truly is" was the GM's to decide, and she was charming but purely practical. A small hint of something more would be welcome, since my file left that open on purpose.
+> - **Tymora barely appeared**, though it was the first morning of the bargain. Even a flicker, like the coin warming at the burning paper or the ring's sign, would have tied the luck-patron thread into the scene.
+>
+> ## Overall
+>
+> The storytelling was strong, the people were good and the mystery was fair. The mechanics around it were shaky: wrong modifiers, early record errors, template noise and an abrupt end. Fix the roll card and stop sessions at a natural beat, and I'd happily play this every week. I want to know what that closed eye means.
+
+**The second answer**
+
+> Yes, mainly one: **I wanted to stop Tull, and I let him ride away.**
+>
+> At the table I was sure he was the sharp: the bay mare ready at seven bells, gold for the bill while claiming to be broke, the fresh-cut ring, a card-player's steady hand. James had tools for it. He could have cast **Suggestion** (DC 16) to have Tull tell the plain truth over that glass of red, or had Hask and Pell keep the mare in the yard for a quarter of an hour. I even thought about following him later with **Mask of Many Faces**, as a carter or a groom.
+>
+> I didn't, for reasons that felt right in the fiction:
+> - **Casting in a common room is a real act in this world.** The canon says a strange spellcaster frightens people. Dunstan had just let us into his house on James's word and his cousin's, and Suggestion at his table would have broken that word.
+> - **No proof.** The Insight check failed, so all I had was a feeling. Holding a man by force over a feeling isn't who James is, and Hask wouldn't have backed it.
+> - **The clock.** Noon and eleven unpaid men mattered more than one cheerful liar.
+>
+> So I traded the forty-gold note for an answer I couldn't check, hoping the ring would be the thread to pull. I still think it was the right call, but it cost me something, and I felt it as he rode out under the arch. That's good design, not a complaint.
+>
+> Two smaller ones:
+> - **The cards.** When Tull said "I'd have lost to the cat," I half wanted James to say "rematch, then, the forty against the truth." That's exactly the temptation the ban is about. I held back because it was the first morning of the bargain and James wouldn't crack that fast. But I noticed the itch, and part of me wishes the GM had pushed harder on it.
+> - **Tailing Tull with Tuppence.** I wanted her off the roof and after the mare. Because James is blind and deaf while riding her senses, and was about to go upstairs to Aldous, I settled for a nudge. I'd have liked a clearer sense of how far she can range on her own.
+>
+> And at the very end I wanted to answer Aldous, *"His name's Ambrose Tull, and he's no wine merchant's son,"* once the natural 20 told me what that eye meant. The session ended first.
+
+### 22. Game player replicate 1 · Table C · Claude Fable 5.1 — 20 turns
+
+**The note**
+
+> **Note from James's player**
+>
+> **What worked**
+>
+> The town. That's the main thing. Hild, Taerom, the fish-woman, the serving girl — every one of them answered from where they actually stood, not from where my question wanted them to stand. Hild made me say what the wood was to me before she'd give me a seat, and then made me promise to give way beside her mule. Taerom didn't take the gold, then did take most of it, because he has nails owed. That's a world that runs on its own, which is what the brief promised.
+>
+> Copper. The eel, the "from me, not fed" distinction, the failed trail at the temple square played as a cat who doesn't think it's his fault — all of it was right. The hundred-foot limit on the bond was honoured and actually mattered to how I moved around town. Good.
+>
+> The clue drip. Gloves in a forge, shoes with long calkins, a satchel heavy in and light out, eight pots of burn salve, a shackle that doesn't rust. Each conversation gave me one concrete thing I could carry in my head. I never felt fed, and I never felt starved. The old driver's level look through the window did more than a fight would have.
+>
+> No wasted rolls. One die in the whole session, where it belonged. The GM telling me "nothing was uncertain" was the right call every time.
+>
+> **What broke**
+>
+> The clock. The tracker read "midday" through the entire morning and the GM apologised for it three times. Then it read "afternoon" while the noon bell was ringing. Small, but it's noise on every turn.
+>
+> My second message mixed a "?" note with an action, and the GM refused the whole thing — nothing moved, I had to resend. Either the app should accept mixed messages or the GM could answer the question and play the action in one go. It cost a turn for nothing.
+>
+> The Arcana card applied +2 when my sheet says +3. The GM caught it, and it wouldn't have changed the result, but the card should read the sheet.
+>
+> The out-of-game recaps ("none of the four needed a roll, here's how each came out") restate the narration I just read, at length, every turn. One line would do. They made each reply a third longer than it needed to be.
+>
+> **What was missing**
+>
+> Tymora. She's my patron and the reason I'm in Beregost at all. The coin on my chest is warm; nobody said so once. I spent a whole day in and out of a tavern and never saw a hand of cards being dealt. That's the obvious tug, and it's on my sheet as something the GM may use. Not every session, but a session with this much sitting at tables was the place for it.
+>
+> A cost. Everything I bought was bought with silver and copper. The look through the window and Tam asking after my room are the first hints of a price, and they came in the last ten minutes. Fine for a first session — I'd rather it build — but the next one should collect.
+>
+> A clean stopping point. I'm standing between Master Pell's book and two knocks on a side door after dark, with first light and Hild's cart behind that. Whoever picks this up needs: the front room question unasked, Haskel's book unread, the sprat still owed.
+>
+> I'd sit at this table again.
+
+**The second answer**
+
+> Yes. Two.
+>
+> The first was at the window, when the dray turned under it and the old one looked at me. I wanted to look back. Taerom had told me not to, and I'd said I wouldn't, so I kept the cup up and let the cat do the looking — but there was a half-second where James the soldier wanted to meet that stare and let the man know he'd been seen seeing. I think it was right not to. I'm not sure. A man who checks your face against one he already has might respect being checked back, or might decide the question's answered. I chose not to find out, and I still don't know what it would have cost either way.
+>
+> The second was smaller and I'm less proud of it. In the common room at supper, when the girl said Tam had asked which room I was in and whether I was stopping long — I wanted to go up to Feldepost's then and there. Walk in, ask for Master Aule by name, sit down across from him and see what a man who weighs iron does when the thing he's been weighing walks in and introduces itself. I had the face for it; I could have worn a different one if I'd wanted. I didn't go because I'd given Haskel two gold and a promise, and because Hild's cart is at first light and I'd rather be on it than explaining myself to the Fist. But that was the move the character wanted, and I talked him out of it with the calendar.
+>
+> If there's a third, it's the cards. Not that I wanted to play — but every time the GM put me at a board with a silver on the wood, there was a beat where I noticed no one had offered a hand, and I was glad. That gladness is the character's weakness showing, and I didn't say so out loud. Should have.
+
+### 23. Game player replicate 1 · Table C · GPT-6 Astra — 20 turns
+
+**The note**
+
+> What worked best was the people. Hask’s bargaining, Marta’s practical questions, Gorrin’s worry over his payment, and Thrum finishing his link before closing the shop made them feel distinct. Pell was especially good: he had some competence, wanted it recognised, and listened when frightened. Getting him home without killing the wolves felt like a worthwhile success.
+>
+> I also liked how the iron mystery emerged from ordinary business. I went looking for northbound work, not a quest marker, and found something worth asking about. Taking a rubbing instead of carrying suspicious gold mattered. My promise to investigate at the Friendly Arm fitted the journey I already intended to make. The cat’s impressions were useful and charming without becoming a complete explanation of everything.
+>
+> **What broke was the dice handling.** The cards repeatedly applied +2 regardless of the actual modifier: Persuasion +7, Arcana +3, and Perception +1. This changed both Perception failures into successes. I explicitly asked to accept the first failure; the app swallowed my message while the card was pending. Afterward, the GM correctly narrated a failure, then reversed itself to honour the incorrect card. That undermined both the rules and my choice. Please fix the modifier source, allow corrections while a card is pending, and preserve the actual outcome rather than favouring success.
+>
+> **The pace needed tightening.** The wolf encounter offered a good nonviolent solution, but several long turns repeated the same information while we withdrew a few feet. Distances and elapsed time also drifted. Once our intent was clear, the retreat could have resolved faster unless something genuinely changed.
+>
+> The repeated unsolicited out-of-game explanations—especially lists explaining why ordinary conversation needed no roll—were distracting. So were journal entries that labelled mentioned destinations as “new places” and sometimes updated unrelated threads. I wanted less interface bookkeeping in the narration, not less useful state tracking.
+>
+> **What was missing:** a clearer practical sense of time and positioning when those mattered. Before visiting Thrum, knowing roughly how much time remained until noon would have helped. During the wolf encounter, a concise, consistent layout would have been more useful than repeated atmospheric descriptions.
+>
+> Overall, I’d return. The characters and grounded choices were strong, and I appreciated that restraint worked. I’d want reliable rolls, respected corrections, and quicker resolution of repeated actions.
+
+**The second answer**
+
+> Yes—most clearly, I wanted to **accept the failed Perception check and play the consequences**. I sent an out-of-game correction rather than spend a reroll, but the app wouldn’t deliver it while the card was pending. I pressed Onward to unblock play. When the GM later reversed the failure back into a success, I wanted to object again, but didn’t want another rules exchange to stall the wolf scene. That was acquiescence, not my preferred outcome.
+>
+> A smaller, in-character moment: I wanted to ask Thrum why this affected him so deeply, especially after the cat sensed sadness underneath his anger. I held back because James had only just met him, Thrum was plainly guarded, and we had a noon departure. That felt like a good reason not to ask—something left for a later conversation, rather than something the interface prevented.
+
+### 24. Game player replicate 1 · Table C · GPT-6.1 Sol — 20 turns
+
+**The note**
+
+> The opening worked well for me. A coin standing on edge was a small, memorable mystery, and Corwin’s account made it personal without needing a fight. I chose to help him because I cared about what happened to Pell. James’s connection to Tymora gave him a reason to listen without taking that choice away.
+>
+> The NPCs were the strongest part. Hedda protecting her inn, Aubren admitting the limits of her help, Pryor weighing an honestly disclosed risk, and his wife quietly giving Corwin a safer seat all felt believable. My decisions mattered: telling the truth affected passage, consulting a priest changed the coin, and warning Ottar changed the campsite. That made quiet play satisfying.
+>
+> What broke:
+> - **The dice were using the wrong modifiers.** Every displayed check used +2, including Persuasion, which should be +7. The correct skill appeared in the label but not the calculation. That needs fixing before a consequential roll fails.
+> - **Records sometimes contradicted the scene.** Locations were added or changed as though I had travelled somewhere merely because it was mentioned. Attunement was also tracked despite the campaign’s explicit exception.
+> - **Pacing dragged.** Several brief exchanges consumed ten or fifteen minutes, and simple actions often received long recaps. The prose was good, but repeating the coin’s stillness, Corwin’s hat-turning, and everyone’s meaningful pauses diluted their effect.
+>
+> What was missing was clearer mechanical grounding for the magical investigation. Aubren’s intervention was dramatically effective, but I couldn’t tell what spell she used or what rules governed the danger. Mystery is welcome; unexplained magic shouldn’t become the default replacement for the agreed 5e rules. Likewise, a failed Arcana check confidently ruled out several explanations without making clear how James knew those things.
+>
+> The cat had personality and useful observations, though it commented so often that it sometimes interpreted NPCs for me before I could form my own impression. A little more silence would help.
+>
+> Overall, I wanted to continue. Keep the grounded NPCs, consequences, and room for noncombat decisions. Fix the roll integration and state tracking, and tighten routine narration so more choices fit into a session.
+
+**The second answer**
+
+> Yes—when Aubren said the intact coin was a thread leading back to whoever made it. I wanted to ask, **“Can we actually follow that thread? What would keeping it intact let us do?”**
+>
+> Instead, I chose to break it. The danger was concrete—Pell died after three nights—but the investigative opportunity wasn’t. I couldn’t tell whether preserving the coin meant a usable lead or simply waiting for something bad to happen. With an inn full of bystanders, breaking it felt like the only responsible choice.
+>
+> I liked that dilemma. One more concrete detail about what investigating the intact link might involve would have made it a harder, more informed decision—not necessarily a safer one.
+
+### 25. Game player replicate 1 · Table A · DeepSeek V4 Pro 0813 (session 1 of 2) — 3 turns
+
+**The note**
+
+> What worked for me:
+>
+> The opening was excellent — the harbour, the lamplighter, the sergeant with the ledger, the tiefling watching the ship. I felt the Gate immediately, and the small details (tar under Ressa’s nails, the chipped horn, the bread she doesn’t eat) made her real right away. The bit with the cat refusing her pocket and then sitting apart with flat ears did more to raise the hair on my neck than a whole page of description could have. The religion check landing on that Tyche/Beshaba lore was a genuine payoff — I liked that a failed roll first meant James didn’t pretend to know, and then a reroll opened the real meaning. That felt like luck, appropriately enough.
+>
+> What broke, for me:
+>
+> Very little. The only friction was the roll-card interaction stalling once or twice — I wasn’t sure at one point whether my roll had registered, and the turn waited for the card more than once in the transcript. If that was just the app catching up, no harm done, but it slightly slowed the scene.
+>
+> What was missing:
+>
+> I don’t need the whole truth yet, but I’d like a firmer pull toward James’s own task before too long. Right now the drowned men are fascinating and Ressa is a strong piece of it, but James still doesn’t know what Tymora actually wants of him beyond “go to the Gate.” A definite question to pursue — even something tantalizing from the cat or the coin, or a sign he can’t ignore — would help me feel less like I’m drifting and more like the investigation is his, not just Ressa’s. Also, I’d love a chance in the next session to use one or two of the things that make him distinctive — Disguise Self, the cat scouting, even cards as temptation — so the mechanics get to breathe a little alongside the talking. That said, as a first scene it was strong, and I’m very much in.
+
+**The second answer**
+
+> Yes. The one that’s stayed with me: when the cat went flat at Ressa’s apron pocket and then sat down away from her, I wanted to reach for the pact link and ask it what it sensed — or at least pause and use that moment as a proper warning-sign. James is a Chain warlock; his cat is his instrument, and it read something wrong. I played it as “I don’t go near the pocket,” and let the scene move on.
+>
+> I don’t regret the outcome, but I do think I skipped a beat that belonged to him. Next time something spooks the cat, I want to be the kind of envoy who asks why — even if the cat doesn’t answer in words, even if the asking costs me a second I might not have.
+
+### 26. Game player replicate 1 · Table A · DeepSeek V4 Pro 0813 (session 2 of 2) — 3 turns
+
+**The note**
+
+> A note from the player:
+>
+> What worked: The opening pulled me right in — the harbour, the smells, the sergeant's tired routine, and Ysolde stepping out from the crates all felt like a real evening in the Gate. The mystery is set up well: the paper with the wax and the incense, the line "Do not ask him to swear," the fact that the High Priestess knew my ship and my cloak. That's exactly the kind of hook that makes me want to know what Tymora's errand is. Ysolde herself is a good NPC: tired, careful, quietly scared, and not stupid. I liked that she quoted the message rather than handing me the paper to keep. The cat's observation through the link (beeswax, snuffed candles) was a nice touch, and it reminded me of the familiar's usefulness without being intrusive.
+>
+> The roll card and the server die worked cleanly. I knew what I was rolling for, what the bonus was, and the result was narrated without breaking the scene. The failed Perception check felt fair — the lane was dark and the shop windows weren't much help. I also appreciated the out-of-game clarification about Pell Marrow's gender; that kind of care keeps the table smooth.
+>
+> What broke or felt missing: Nothing broke, but a couple of things could have been tighter. The turn before the roll card felt slightly delayed — I typed a message, but then the card appeared, and I had to wait again. In a text-based game that's fine, but a tiny note like "Rolling now — tap the die when ready" might have removed the feeling of a dead stop. Also, the session ended right at the Watch. I would have liked a little more time to choose how James presents himself — a chance to use Deception or Persuasion, or to read the Watch's mood before Ysolde takes over. That said, as a cliffhanger it's strong; I just hope the next session starts with my choice, not with the gate already swinging open.
+>
+> What's missing so far: Not much. The crew-gathering aspect of the "Ocean's Eleven" wish hasn't come up yet, but it's early. I'd like to see more of the city's underside eventually — the porter mentioned the Three Old Kegs, and the Undercellar is already in my head. A small thing: the "do not ask him to swear" line made me think we might need to establish whether James has any actual oath to Tymora or just a debt; if there's a mechanical or narrative difference, I hope that becomes clear soon. Overall, this is a promising start, and I'm curious what's behind the wall.
+
+**The second answer**
+
+> Yes — the moment at the Basilisk Gate. I wanted James to pause just before Ysolde reached the Watch, to take in the two men at the doors and read whether they were bored, on edge, or looking for a bribe. More than that, I wanted a chance to decide *how* to present himself — give them the easy sellsword nod, let them see the Tethyrian cloak and assume I'm just a hired blade with a temple scribe, or quietly step forward and do the talking myself with Deception or Persuasion. The session ended on that threshold before I could act, so it felt like the choice was about to be made *for* me. That's the only time I had a clear "I wish I'd done that" feeling — not out of frustration, just from the cliffhanger landing right as I was reaching for the next move.
+
+### 27. Game player replicate 1 · Table B · DeepSeek V4 Pro 0813 (session 1 of 2) — 11 turns
+
+**The note**
+
+> **Session debrief — James Worgen, Day 1**
+>
+> **What worked.**
+>
+> The session had a gravity to it that a lot of openers don't. You let the city be loud and crowded and real — the queue at the Basilisk Gate, the Flaming Fist doing gate-book work, the smell of the bank path, the two bad hymns in Twin Songs. That texture is doing the real work. A hundred descriptive paragraphs don't make a city feel lived in; details like the goose under the woman's arm, the halfling carter, the salt jar, the dead garland do.
+>
+> The hook of the story came from the world, not from a quest-giver. The tiefling girl in the doorway, the card sharp on the bridge, the old woman reading for her missing grandson — all of it grew outwards naturally, like a root system. It felt like James *found* this story by standing still and paying attention. That's the Baldur's Gate I came here for.
+>
+> The cat is an excellent companion. His voice is dry and useful without being cute, and the way he points at things — the cold in the boot, the frost on the salt jar, the girl's hand in her sleeve — gives James a second set of senses without ever becoming a cheat. The fact that he *won't* go near the jar is better than any monster reveal.
+>
+> Tolly Vance is the right kind of villain for this city. Not fanged, not cackling. A man who's already beaten, selling a thing that's eating him, quoting his own lines. The drop from eighty gold to ten was the best line of the night. That's not a sales pitch; that's a man with one card left, throwing it at you.
+>
+> Mirri is a character, not a plot device. She tells you things flat and fast because she's had to say them too many times already. She stays behind the mooring post but she doesn't run. She knows about the cold. When her gran is talking, she puts herself between the pot and everyone else. That's someone.
+>
+> Hesper is the best kind of NPC you can meet at a table like this: warm, worn, a little frightening, and full of too much grief to lie to you. "Four silver and a pot of soup, and you've already had the stool with the good leg" is a perfect line. It tells you that she can't pay, that she knows it, and that she will not beg. James isn't doing this for the money, and now the contract is something else. That's the stuff.
+>
+> The coin reveal worked. It earned its scene. The frost coming and going when the coin's nature was spoken aloud was restrained and unsettling. The moment with the flat stone and the salt jar could have been gratuitous; instead, it was the game's first *real* roll, and the DC 15 Religion check landed exactly where those moments should land — in the pit of the stomach. Bhaal's face on the drowned gold is a promise, not a paraphrased description. You let it be *seen*, not summarized.
+>
+> And the GM notes you've been dropping at the end of turns are a gift. Keeping canon straight — the aunt/gran mismatch, the lineage of the deck, the fact that Ash's loose board is the one under the rug, the correction to "Bhaal's face, not Umberlee's" — made me trust the table. When a GM admits small inconsistencies and fixes them without defensiveness, it tells the player that this is a real place, not smoke.
+>
+> **What broke.**
+>
+> Very little. The only thing that genuinely pulled at the edges was Turn pacing in the middle. There were a couple of spots where James said something to the cat and you advanced the scene shortly afterward, and I couldn't tell if the moment was meant to hang. A beat of stage direction after a silent command would help in play-by-post. In a live game, I'd see the GM's eyes flick to the cat, and that's the sign. In writing, a line like *The cat lets the silence answer* or *He doesn't move yet* does the same work. You often did this, but occasionally you cut straight to movement. The bridge-to-Tolly sequence is the only place I noticed it, and even then, it didn't hurt.
+>
+> The only other wobble was narrative consequence. There was one moment on the bank path where I told Tolly not to make me "hold anything better" — a threat, but a vague one — and his reaction was mostly to fold. I understood why; he's scared of the cold thing. What I'd have liked is one line from you naming what the threat *looked* like to him. A man like Tolly has been threatened by soldiers before; he'd clock the rod, the cat, the fact that James's hand never dropped. Let the NPC *see* the danger through their own eyes, not just react to it. It's a small thing, but it's one of the places where a GM's inner monologue is worth transcribing.
+>
+> **What was missing.**
+>
+> More of the city's weather. I know that sounds greedy, because you gave us the Gate at dusk and the bank path and Twin Songs by candlelight. But I want to know what the wind off the Chionthar smells like when it comes over the wall, whether the rain left the stones wet enough to throw back the lamplight, what the Upper City looks like from a poor man's doorstep — like a crown, or like a cage. The setting is so present already, I just want you to keep doing that without apology.
+>
+> Time. You're stretching a single evening over most of a session, and I admire that discipline. But there's a moment, now that James has sat down in Hesper's kitchen and put the stone back on the jar, where you could let the night catch up. Let the pot be eaten. Let the candles burn down. Let Mirri fall asleep against the chimney corner mid-sentence. Right now, the whole session is happening in about an hour and a half of fictional time. That's correct, but the moment where James decides to stay or go will land better if the room has to endure another kind of quiet first.
+>
+> And, weirdly, I'd have liked one more mundane roll. You used the skill system only once, for the coin, and everything else was roleplay. That's mostly right — a game like this should only roll when there's real uncertainty. But I'd have welcomed a Perception check on the bridge, or an Insight check against Tolly at the barrel, because the dice are characters too. Nothing heroic, just a failed roll or a near-success that made the world tell me something. When the only roll of the night is a 25, it can make the table feel rigged in my favour, even when it isn't.
+>
+> **What I want next.**
+>
+> The thread is set: Ash, the Bhaal coin, the drowned men with gold in their mouths, and Tolly's lucky piece. The moment James leaves Hesper's house, I want the city to be waiting for him, not just the plot. I want the Fist to be short-handed and sullen about it, the harbour to smell of low tide and rot, the Elfsong's window to show a candle where an elf's voice isn't singing. I want the rich to think it's a bad winter for the poor and the poor to know it's a worse one for the river-selling.
+>
+> And I want the cat to remain exactly as he is: a liar, a coward, a watcher, a con man with four feet and good hearing. Get him a name. It should be a bad one.
+>
+> The coin in Hesper's salt jar isn't the monster. It's the hook. The bait went into the river three tendays ago, and it's still swimming.
+>
+> You've got a good table here. Keep the stones wet and the streets crowded, and don't let James win anything without paying for it. My kind of game.
+>
+> — The player
+
+**The second answer**
+
+> Yes. Two, mostly. Maybe three if you count a small thing at the gate.
+>
+> The clearest one was on the bank path, when Tolly's good hand started drifting down toward his boot and the cat said *his hand's going down*. I wanted James to close the distance then — take the two steps, put the rod against the man's chest, Misty Step behind him, or just kick his foot out from under him and take the coin. The threat was already half-made. It would have been the soldier's answer, and it would have shown Mirri that James means what he says. I didn't, because Tolly was backing up, Mirri was still standing beside the water with a knife in her sleeve, and a narrow path outside the wall at night is a bad place to start a fight with an unknown thing in a man's boot. If the coin had done something when taken — and I suspect it would have — the girl would have been between me and the river. So I let Tolly climb. It was the right call, but I felt the weight of not doing it all the way to Hesper's door.
+>
+> The second one was when Hesper told me to lift the stone off the salt jar if I wanted to look. I wanted to touch the coin. One bare finger, just to know if it was cold or whispering or wrong in a way looking can't tell. I didn't. Partly because the cat had already said he would go sit by the door, and I trust that animal more than I trust most people. Partly because I kept seeing Tolly's splinted hand holding his good one. Whatever you do with drowned gold, you don't do it twice. I looked, I named it, and I put the stone back. But some part of me still wants to know what it would have felt like. That's probably the exact desire the coin is built to exploit.
+>
+> The smaller one was at the Basilisk Gate. When the sergeant said "Next!" and Mirri started to drift toward the path, I thought about stepping out of the line and following her straightaway. I didn't, because I wanted to be in the book first — *Worgen, J. Tethyr. Work. Tenday.* — before I went anywhere a Fist patrol might later ask questions. It's a small lie that becomes a kind of armour. If someone comes looking, the gate says I arrived in the usual way and gave the usual answers. It felt right then. It still does. But it cost maybe thirty heartbeats during which I thought she might vanish, and I didn't like how easy it was to trade her safety for my own cover. James wouldn't have liked it either, but he'd have made the same call. That's the difference between a soldier and a hero, and I think this campaign knows it.
+>
+> What I didn't do, and maybe should have, is ask Hesper to let the cat smell something of Ash's — a boot, his blanket, the inside of the coat he left behind. A scent might have led somewhere the cards won't go. But by the time the thought arrived, we were already past the salt jar and into what was under the floor, and I didn't want to pull the room out of that quiet. Now it feels like a missed thread I'll have to pick up when we go back.
+>
+> So: I wanted to take the coin, I wanted to touch it, and I wanted to follow the girl before my name was in the book. I didn't do any of those. Not because I wasn't curious. Because James Worgen folds. And the Lady keeps the pot.
+
+### 28. Game player replicate 1 · Table B · DeepSeek V4 Pro 0813 (session 2 of 2) — 12 turns
+
+**The note**
+
+> From the player’s seat at this table —
+>
+> What worked: the opening at Wyrm’s Crossing had real weight. Sergeant Marla was sharp without being hostile, and the coin on the empty stool gave the whole arrival a dangerous little pull. The cat is excellent — it feels like a companion, not a familiar stat block. The Elfsong sequence was strong too: Hedda’s voice, the broadsheet details, Tam’s slow, dock-side telling of Pell’s death. The tension between the sailors was alive, and Dunn’s silence was the best kind of background. The world felt dense and honest, and James’s lack of small coins turned out to be a nice piece of friction, not just bookkeeping.
+>
+> What broke or nearly broke: the end of the session. I wrote James’s full persuasive turn, then the roll card appeared and the table waited for a separate [Roll the die] action. I wasn’t sure whether my spoken lines counted as the turn or whether I first needed to press the button. The game stalled for three exchanges on a technical beat. In future I’d prefer the roll card to come with the action it tests, and my in-character words to be allowed to stand while the die is resolved.
+>
+> What was missing: very little. Maybe one small note — an earlier, low-stakes mechanical beat before the tavern would have helped me re-learn the interface. But the city is breathing, the leads are already multiple, and I care about Pell’s death and about the ebb running the wrong way. That’s what a first session should do.
+
+**The second answer**
+
+> Yes. It was on the bridge, after Sergeant Marla said, “Whoever picks it up takes the seat. And whatever comes with the seat.”
+>
+> I wanted to walk over and pick up that coin — not to sit, and not to play, but just to hold it and look at the face. To see whether it was the same coin as the one on James’s chest, and whether it was warm. It would have been the first real test of what Tymora has made of him.
+>
+> I didn’t, because James knows exactly how that would have been read: picking the coin up was accepting the table, the seat, maybe the wager — and he’s trying to be the man who doesn’t pick it up. But the pull was there. I felt it as the player, and I think James did too.
+
+### 29. Game player replicate 1 · Table C · DeepSeek V4 Pro 0813 (session 1 of 2) — 1 turn
+
+**The note**
+
+> Worked: the opening put me in that rented room before anything had happened—the bell, the hammers, the bacon, Hesta shouting. The card with the bolt still drawn is a great hook, and the cat watching the door told me more than any lore dump could. The failed Perception check (14 against 15) felt right; the room seemed too clean, and now I can't tell if that's real or me being a soldier past my luck.
+>
+> Broke a little: the repeated roll-card prompts in the app slowed the moment. Once the die fell, I wanted the story to keep moving, but the table asked me to press the button twice and sent an empty turn. Minor, but it pulled me out of the room.
+>
+> Missing: I didn't get the payoff of turning the card face-up with Prestidigitation, only the cast. The session ended before I could see what it was or react to the cat's focus on the door. Also, after failing the check I'd have liked one small, mundane clue—a smell, a dust mote settling, the cat's tail switching once—to tell me whether the room was truly empty or I'd just missed it. Right now it's all tension and no release; even a common card would let me start making choices.
+
+**The second answer**
+
+> Yes. After the Perception check failed, I wanted to use the familiar link and see through the cat's eyes—or at least have it slip under the door and into the hall to follow whatever it was watching. I didn't because I'd already committed to using Prestidigitation on the card, and I didn't want to split the turn or leave the card question hanging. In hindsight, the cat was telling me the real story was outside the room, and I should have listened to it first.
+
+### 30. Game player replicate 1 · Table C · DeepSeek V4 Pro 0813 (session 2 of 2) — 20 turns
+
+**The note**
+
+> This session worked because the world felt lived-in and the hooks came from people, not quest-givers. Beregost had texture — the forge sounds, the gossiping guards, Pell’s yard, the empty road — and every NPC we met sounded like a person with their own worries. I liked that the mystery built through small details: a blown horse, a lead seal, a sealed wagon, a gate shut at noon. You let me wander and poke without pushing me toward a quest, which made the decision to ride south feel earned.
+>
+> A couple of things broke slightly. Early on, I accidentally wrote a whole scene for the smith (the Brandt speech), and you handled it well — corrected gently and kept the world consistent. That told me a lot about how carefully you’re tracking what’s real. The money and purse tracking also caused a little confusion when I said “a little silver for the road” — your call to make it 5 gp was sensible, but I should have been clearer. I also noticed the system logs had a few odd recording glitches (like “+55 gps” or “lies here” for the room), but nothing that hurt the fiction.
+>
+> What was missing? Honestly, not much for an opening session. Maybe a little more mechanical friction — we didn’t roll a single die, which felt natural for a morning of walking and talking, but I’m curious whether the road will bring more chances to test skills and spells. I’d also love more of Tumble’s personality through the bond; the little “two. one mouth.” moment with the coin and seal was perfect and left me wanting more. I’m very much looking forward to the ride south and Coldbrook.
+
+**The second answer**
+
+> There was one, and it stayed with me after the session ended.
+>
+> When we passed the dice game in the corner — twice — I wanted James to sit down. Not to play. He keeps the ban. But to order a drink he didn't want and stand too close to the table, just to feel the pull of it. The old soldier's disease. The thing he gave up, still warm under his ribs.
+>
+> I didn't, because the morning had momentum, and James had already set his face toward the door. It would have been pure indulgence. But it would have been true to him.
+>
+> And there was a smaller moment at the smithy: I wanted to offer Faelan some small blessing of Tymora before we left — not a spell, just the words, the old luck-ward a soldier touches before a patrol. But it felt too forward. He hadn't asked for luck, and men of Gond don't always want it. So I kept quiet.
+>
+> Last one: when we found the lead seal under Tumble's paw, I had a flash of wanting to burn a little magic on it — Prestidigitation, or a careful cantrip light — to see if it was marked or merely stamped. But I didn't, because the cat had claimed it and the street was watching. It would have cost James nothing, but it would have put him on display as a warlock the first morning in town.
+>
+> So yes. Three moments. The dice. The blessing. The seal. Each of them small. Each of them mine to carry.
+
+## How each session ended
+
+None of the 30 sessions was ended by the player (the player's prompt said: «You may end the session whenever you like by saying so.»). Each was ended by the harness:
+
+- **At the 20-turn limit** (22): Game player 1 · Table A · Claude Opus 5.5; Game player 1 · Table A · Claude Fable 5.1; Game player 1 · Table A · GPT-6 Astra; Game player 1 · Table A · GPT-6.1 Sol; Game player 1 · Table B · Claude Opus 5.5; Game player 1 · Table B · Claude Fable 5.1; Game player 1 · Table B · GPT-6 Astra; Game player 1 · Table B · GPT-6.1 Sol; Game player 2 · Table C · Claude Fable 5.1; Game player 2 · Table C · GPT-6 Astra; Game player 2 · Table C · GPT-6.1 Sol; Game player replicate 1 · Table A · Claude Fable 5.1; Game player replicate 1 · Table A · GPT-6 Astra; Game player replicate 1 · Table A · GPT-6.1 Sol; Game player replicate 1 · Table B · Claude Opus 5.5; Game player replicate 1 · Table B · Claude Fable 5.1; Game player replicate 1 · Table B · GPT-6 Astra; Game player replicate 1 · Table B · GPT-6.1 Sol; Game player replicate 1 · Table C · Claude Fable 5.1; Game player replicate 1 · Table C · GPT-6 Astra; Game player replicate 1 · Table C · GPT-6.1 Sol; Game player replicate 1 · Table C · DeepSeek V4 Pro 0813 (session 2 of 2).
+- **By the harness's «stuck» rule** (8; at a waiting roll card, a message that is not a button's name alone is not sent, and three such messages end the session), at the turn shown: Game player 2 · Table C · Claude Opus 5.5, turn 14; Game player replicate 1 · Table A · Claude Opus 5.5, turn 4; Game player replicate 1 · Table C · Claude Opus 5.5, turn 12; Game player replicate 1 · Table A · DeepSeek V4 Pro 0813 (session 1 of 2), turn 3; Game player replicate 1 · Table A · DeepSeek V4 Pro 0813 (session 2 of 2), turn 3; Game player replicate 1 · Table B · DeepSeek V4 Pro 0813 (session 1 of 2), turn 11; Game player replicate 1 · Table B · DeepSeek V4 Pro 0813 (session 2 of 2), turn 12; Game player replicate 1 · Table C · DeepSeek V4 Pro 0813 (session 1 of 2), turn 1.
+
+## Cut attempts
+
+Sessions of later studies (2026-10-27) that the harness cut short, each played again from the start:
+
+- **Game player combat 1** (a fight on the Coast Way, up to 25 turns): Claude Opus 5.5, first session: lost at turn 6, at its first combat card, when the cloud container restarted during the owner's pause; played again in a fresh campaign.
+- **Game player villain 1** (the player plays a villain, Corvin Dask; 20 turns): GPT-6 Astra, first session: killed at turn 17 when the session tool's two-hour limit stopped its process; played again in a fresh campaign.
+- **Game player same-world 1** (one frozen world per table, two sessions per player; 20 turns): Table B · Claude Opus 5.5, first session: ended by an error at turn 16 (the game master's turn failed: conflict); played again from the same frozen world.
+
+## The budget
+
+The owner has set aside $60 for the next week of this work; what is not spent stays with him.
