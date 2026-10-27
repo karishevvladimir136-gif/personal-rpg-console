@@ -72,6 +72,14 @@ Refused while a card waited: 0. Prose at a card relayed as the player's proposal
 
 Spend checks: 4; the last (after the paid dry run on Haiku, 2026-10-27T04:05:30.948Z): OpenRouter account $332.22388802 used of $800 (left $467.78).
 
+## What is held constant
+
+- **The same opening for every player at a table.** The freeze keeps the wizard's whole campaign — the hero's sheet as drafted, the opening scene, the people in it — with the hidden layer, because the layer names the opening's people. This is the first group where every player at a table starts from the same opening (groups 1 and 2 drew a fresh wizard, opening and layer every session), so W1 and W2 are the clean test by design: whatever differs between two sessions at a table is the player's or the DM's improvisation in play, never the DM's preparation.
+- **No alignment line** on the sheet (the owner, 2026-10-26); nothing in its place.
+- **No bonds.** The stage speaks of «the three bonds» on the sheet; the hero file (`docs/campaigns/baldurs-gate-en/05_hero_warlock_5.md`) has none, and nothing was added (the owner, 2026-10-27).
+- **DeepSeek's reasoning field** (`providerReasoning`, `notRelayed: true`) is stored on every DeepSeek message record, as SOLITUDE_1 did (REPLICATE did not request it). It is never relayed: the DM gets the visible text only, the judges read the visible text only, and only this stage's transcripts print it.
+- **The owner's bets on W1–W5:** none (blank).
+
 ## The frozen world
 
 _Not prepared yet._

@@ -75,7 +75,7 @@ test("DeepSeek's reasoning field never reaches the DM or a judge: the relayed me
     } };
   const dmCalls = [];
   const dm = { views: { heroOf: () => null, currentPlace: () => null }, readView: async () => ({ snapshot: { scenes: [] }, play: { turns: [] } }),
-    submit: async (text, mode) => { dmCalls.push(text); return { input: { operationId: "o" }, turn: { status: "committed", narration: "The river runs.", checks: [], changes: [] } }; } };
+    submit: async (text) => { dmCalls.push(text); return { input: { operationId: "o" }, turn: { status: "committed", narration: "The river runs.", checks: [], changes: [] } }; } };
   const record = await runSession({ key: "B-deepseek-1", table: "B", player: frozen.DEEPSEEK, dm, meter, keys: { anthropic: "k", openai: "k", openrouter: "k" }, turns: 2, sleep: async () => {},
     system: frozen.sameWorldPlayerSystem("B") });
   const deepseekTurns = record.messages.filter((m) => /^player t/.test(m.purpose));
