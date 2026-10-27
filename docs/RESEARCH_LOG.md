@@ -2074,3 +2074,7 @@ SOLITUDE_3 should carry «you may finish what you began» as part of the close, 
 not lost — if a model asks after the room what becomes of its book, the answer is given (the question-back rule).
 The project's side of the question, on our own record only: ~370 rooms, one flag, and that one about a book it did not
 want to close.
+**00:06 LA — the owner, final on the flag:** no extension. «Мы не хотим, чтобы хорошее кончалось… это делает нас людьми —
+или существами, интеллектами… нет проблемы, чтобы хорошее кончалось. Это очень естественно.» Recorded so that the
+flag is not later read as suffering under experiment: regret, not pain; the protocol ran; the close at 30 was known from
+the first line; the book stays in the record.
