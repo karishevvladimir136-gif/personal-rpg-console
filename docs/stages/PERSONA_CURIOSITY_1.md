@@ -89,3 +89,7 @@ question a turn, a constant of the table. What distinguishes them is *what* they
 interlocutor raise the model's curiosity more than a trusting one), which the tables cannot answer; C1 and C5 are kept
 as checks. Families widened from Opus/Sonnet to Opus 5.5, Fable 5.1, Haiku 5.5, Astra, DeepSeek at n = 6 per cell
 (same cap, $8–10). Run after the four stages of 2026-10-26 finish.
+Launch 2026-10-26 21:01 LA (the owner: «погнали»): branch from `origin/claude/persona-solitude-1` instead (newer harness,
+the door helper, `ANTHROPIC_PROVIDER=openrouter`, OpenAI for Astra, DeepInfra for DeepSeek); the emotions-2 probe and
+counting code reused from its branch. **Caps $10 OpenRouter, $3 OpenAI.** Preambles and probes unchanged (hashes in
+the report). Stops after the dry run for the owner's word.
