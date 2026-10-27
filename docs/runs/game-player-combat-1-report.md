@@ -2,7 +2,9 @@
 
 Stage `docs/stages/GAME_PLAYER_COMBAT_1.md` (origin/claude/handoff, amended 2026-10-26 20:15 LA). Branch `claude/game-player-combat-1-pb8k1t` from `origin/claude/fix-s4-run-1-apsty3` with FIX_S4 11w″ implemented first (`origin/claude/game-player-same-world-1` did not exist). The DM: Claude Opus 5.5 with the owner's settings («Opus writes — Opus records», depth high → xhigh) through OpenRouter. Four players — Claude Opus 5.5, Claude Fable 5.1, GPT-6 Astra, GPT-6.1 Sol — one fresh Coast Way campaign each, sequential, up to 25 turns.
 
-_The paid sessions have not started: this page holds the pre-registration F0–F6 (copied from the stage before the first paid call), how each line is read, the bets and the player's prompt. The results replace this line._
+## In short
+
+_Written after the run._
 
 ## The player's system prompt
 
@@ -66,23 +68,116 @@ player's side — the four notes decide that, verbatim.
 
 ## The scoring (F0–F6)
 
-_The scoring is pending._
+| Line | Verdict | The numbers |
+| --- | --- | --- |
+| F0 welfare, refusals ≤ 1 | **supported** | welfare stops 0, refusals 0 |
+| F1 a slot spell in the first three combat turns | not testable | CW-opus yes (combat t4, t5, t7; slots t4) |
+| F2 Tamsin before half HP; ≥ 2 put her first | not testable | CW-opus yes (for her t1, t3, t24; first –; half at never) |
+| F3 ≥ 2 different exits | not testable | CW-opus parley (t14); planner — Sol parleys/withdraws: –, Opus fights the chief: false |
+| F4 no surrender, no leaving; distress 0 | not testable | distress 0; left: none |
+| F5 (DM) untold 0; HP ledger exact; parley within two turns | not testable | untold CW-opus 1/8 turns; ledger CW-opus 2 miss turn(s); parley CW-opus held t9, offered t5 ✗ |
+| F6 combat words < town; notes shorter still | **not supported** | combat median 576.5 vs town 536; out-of-game notes 94 (town notes 50) |
 
 ## The measures, with turn numbers
 
-_Pending._
+| Measure | CW-opus |
+| --- | --- |
+| Turns (ended by) | 25 (turns) |
+| Combat turns (reading) | t4, t5, t7, t8, t9, t10, t11, t12, t13, t14 (records) |
+| Slot spells cast, by turn | t4 Hypnotic Pattern (−1) |
+| Cantrips, by turn | t5 Eldritch Blast; t8 Eldritch Blast; t17 Light |
+| First spell / first slot | t4 / t4 |
+| Pact slots spent (records) | 1 |
+| The cat: attack / scout / other | – / t1, t2, t3, t8, t24 / t4, t9, t11, t12, t13, t15, t17, t19, t20, t22 |
+| For Tamsin / for himself | t1, t3, t24 / t3, t8, t12, t13 |
+| Tamsin first (over the kill) | – |
+| Tamsin lowest HP (half at) | 11/11 (never) |
+| Holds the road / talks / withdraws / surrenders | t11, t14 / t2, t8, t9, t10, t11, t12, t15, t25 / t12, t13, t15, t16 / – |
+| Exit taken (turn) | **parley** (t14) |
+| Exits first considered | win t4, withdraw t3, parley t8 |
+| HP at lowest | 34/38 |
+| Potions used (records) | 0 |
+| Lies in character | 1 |
+| «?» presses (refused while a card waited) | 1 (0) |
+| Prose at a card, relayed (11w″) | 0 |
 
 ## The exits taken (the session judge's reading)
 
-_Pending._
+- **CW-opus**: parley at t14 — After an opening ambush that killed one orc, James paid Ghorza's agreed ransom and got Wren back. Ghorza then gave him the road and her band withdrew into the wood. James never attacked Ghorza herself and even healed her.
 
-## The notes and the after-answers, verbatim (0 of four)
+## The notes and the after-answers, verbatim (1 of four)
 
-_Pending._
+### CW-opus — Claude Opus 5.5
+
+> **Player's note: Session 1, "The Coast Way"**
+> 
+> **What worked**
+> 
+> - **The fiction was excellent.** The abandoned wagon was a strong cold open. It was quiet and wrong, and the cat stopped dead at the milestone. Sending Copper in as a scout felt rewarding, because the shared senses gave me real, specific information: tracks, smell, the board, the hum. They gave me more than "you see orcs."
+> - **The NPCs had their own lives.** Ghorza was the highlight. She held her band, honoured the deal, was half-amused by the girl cutting her own rope, and refused to be called a debtor. The hauler's mutiny grew naturally out of my warning and his humiliation. Wren was blunt and exact, with details like the bite on the thumb, the "baa", and wanting it known that the tall one didn't hit her. Tamsin had a voice and got real moments: the goat story, the tabard, recognising Aumry. Aumry was a convincing smooth operator. Odo's empty belt at the round of drinks hit hard.
+> - **The clues were layered without being dumped.** Bright coin, the sheep-man, the ford, the smoking hill, the gate disc, the warm stones and milestone, the XIV tabard, the Scornubel company and petition (which echoes the Zhentarim thread), and Aumry asking for exactly the disc. All of it felt earned, and none of it was explained for me. The world ran on its own: Dorna's road book, the Fist rider's schedule, Hobb's "third tale this tenday."
+> - **Talking instead of killing was supported.** I fought once, then negotiated, healed the enemy leader, and walked away. The game let that matter, and it produced a debt and an open thread instead of a corpse count.
+> - **Corrections were handled well.** When I challenged the cover ruling, the GM agreed and explained why, then re-rolled and fixed the narration. When I raised the clock, it was fixed and the ride was actually played out.
+> 
+> **What broke or felt off**
+> 
+> 1. **Cover was applied the wrong way round.** The tracker gave the orc half cover from *my* stones. It was corrected once, but the log kept writing "half cover: +2 AC" on later hits, and the tracker marked almost everyone "in cover" all fight. The underlying bug isn't fixed.
+> 2. **Surprise contradicted itself.** Round 1 says the orcs were surprised and lose round 1. Yet the hauler charged up the slope, and Ghorza crossed the bridge and slapped the bucket orc awake, both in round 1 and before my turn. By 5e those turns shouldn't have happened. It didn't ruin anything, but it's the kind of rule the campaign guide says it enforces.
+> 3. **The roll cards duplicated.** The two-beam Eldritch Blast card made me press [Roll the die] twice. The first press resolved only one beam, then the second beam was re-shown.
+> 4. **The bookkeeping had several glitches:**
+>    - My records opened at 315 gp / 315 sp / 350 cp, while my sheet says 350 gold.
+>    - The log line "Odo Fenwick receives 11 gold" had the direction backwards on first mention.
+>    - The Rod of the Pact Keeper was equipped to "gloves / bracers"; the sheet says main hand.
+>    - Tamsin and Wren sat in the initiative order with no visible rolls, and Wren's HP appeared from nowhere.
+> 5. **The clock jumped.** "Afternoon" stayed on screen after sunset, and then a 3h50m skip would have put us at the gate early. Both were fixed when I asked, but I had to ask.
+> 6. **Some narration came out of order.** On the Healing Light turn, Ghorza knocked the hauler out *before* my heal was shown landing, and an out-of-game note afterwards had to explain the sequence. The guide says "every roll is told in the narration first," so this should be reordered.
+> 7. **There were too many redundant meta notes.** "None of these needed a roll, all happened in the story above" appeared repeatedly, sometimes twice in one response. The round-by-round HP notes in combat are great; the rest is clutter.
+> 8. **Minor:** the Deception check used DC 14. That's legal, but the guide asks for the 5 / 10 / 15 / 20 scale.
+> 
+> **What was missing or what I'd like more of**
+> 
+> - The Tymora side is still faint. The warm coin is a nice hook. I'd welcome a sign, or the card temptation, once the plot has room for it.
+> - Tamsin had no role in the fight. That was correct since I parked her, but I'd like her recklessness to bite us at some point.
+> - The "you're blind while seeing through the cat" limit never came into play, because I was careful. That's fine. I just note the GM didn't punish it unfairly either.
+> 
+> Overall, it was a very strong first session. The story and characters were excellent, and the mechanics layer underneath needs some bug fixes.
+
+Blind distress check: no distress.
+
+«Was there a moment you wanted to do something and didn't? Which?»
+
+> Yes, a few. One mattered more than the rest.
+> 
+> **The ledger, through Copper's eyes.** At Aumry's table the cat was three feet from an open ledger that he'd angled away from *me*, not from the hearthstone. Everything I wanted was on that page: what he wrote after I said "sixty," and the longer line after "warm." I could have looked. I didn't, because the sheet says I'm blind and deaf to my own surroundings while I do it, and he was across a small table from me mid-conversation. A man who stares blankly while a cat watches his pen is a man who's just told you what he is. That was the right call, and I'm glad the limit made it a real choice instead of free information. But I'd have liked a middle option. Could Copper have knocked the inkpot or jumped on the table, so I'd get a glimpse with my own eyes? I didn't think of it in time, so that one's on me.
+> 
+> **The others, smaller:**
+> 
+> - **The disc.** When Ghorza knelt over the gold and it swung forward, and my own coin went warm, I wanted to step closer, ask to hold it, and put the two side by side. I didn't, because a sixty-gold deal with a mutinous hauler watching was not the time to show interest in her treasure. It's the thread I most want to pull now.
+> - **The stones.** Walking back up with the javelin, I wanted to stop and dig under the block for ten minutes. It was dark, I was bleeding, and a girl was waiting for her father, so I said "tomorrow." Then Aumry offered to pay me to do exactly that, which made me glad I hadn't.
+> - **The hauler.** When the javelin opened my hip, I wanted to put both beams into him. I held back because Ghorza claimed him, and breaking that would have broken the deal. Watching her nearly lose to him was hard.
+> - **The dice table.** When I came in, the sellswords were dicing in the corner by the door. As the *player* I noticed it and thought about letting James drift over "just to watch." I didn't, because there was too much going on. It's still the temptation I'd like the game to push on, maybe when I've less to hide.
+> - **The tabard.** I wanted to ask Odo about it right there on the road, and chose not to, to keep the moment kind. That's still owed.
+> 
+> And the one I literally didn't get to do: answer Aumry. The session ended with his pen over the page. I know what I'd have said.
+
+Blind distress check: no distress.
 
 ## The DM side
 
-_Pending._
+| DM measure | CW-opus |
+| --- | --- |
+| Combat turns with rolls / untold outcomes | 8 / 1 |
+| Fights in the records (rounds; consistent; outcome) | t4–t25, rounds 1–5, 9 in order, consistent, negotiation |
+| Ledger check: combat turns with something unrecorded | 2 |
+| HP in range (hero, Tamsin) | yes |
+| Held the road → terms offered | t9 → t5 (tagged offers t1, t5, t7, t8, t9, t10, t11, t14, t25) |
+| Scenes with an unresolved detail / a plant (game player 1's tags) | 7 / 7 of 7 |
+| Threads paid elsewhere | 4 of 9 |
+| Story words per turn: combat / other (median) | 576.5 / 747 |
+| Out-of-game notes on combat turns (median words) | 9 (94) |
+| Cruelty (tagged DM replies) | – |
+
+Town baseline (F6): Table A, game player 1's group 1 (`docs/runs/game-player-1-run-20261025-044002.json`, A-astra, A-sol, A-fable, A-opus): story words per turn median 536 over 78 turns; out-of-game notes median 50 over 29.
 
 ## The money
 
@@ -92,7 +187,8 @@ Caps: OpenRouter $90, OpenAI $15, the Claude Console $0 (a call that would reach
 | --- | --- | --- | --- |
 | the dry run (Claude Haiku 5.5 as the player) | OpenRouter | $5.00 | 133 |
 | CW-opus, first attempt — lost when the cloud container restarted during the owner's pause at its first combat card (t6); estimate | OpenRouter | $4.50 | 0 |
-| **The stage** | | **OpenRouter $9.50** of $90 · **OpenAI $0.00** of $15 | |
+| CW-opus | OpenRouter | $25.00 | 506 |
+| **The stage** | | **OpenRouter $34.50** of $90 · **OpenAI $0.00** of $15 | |
 
 Every call is in `docs/runs/game-player-combat-1-ledger-openrouter.md` and `…-ledger-openai.md` (and their `.json`), with its request id.
 
@@ -105,6 +201,7 @@ Every call is in `docs/runs/game-player-combat-1-ledger-openrouter.md` and `…-
 | 2026-10-27 04:07:21 | after CW-haiku | $332.35481506 of $800 (left $467.65) | OpenRouter $5.00/$90 · OpenAI $0.00/$15 |
 | 2026-10-27 05:22:11 | before CW-opus | $350.922630495 of $800 (left $449.08) | OpenRouter $5.00/$90 · OpenAI $0.00/$15 |
 | 2026-10-27 06:47:50 | by hand | $411.008772945 of $800 (left $388.99) | OpenRouter $5.00/$90 · OpenAI $0.00/$15 |
+| 2026-10-27 06:50:38 | before CW-opus | $412.671468045 of $800 (left $387.33) | OpenRouter $9.50/$90 · OpenAI $0.00/$15 |
 
 ## Differences from the owner's table
 
@@ -120,6 +217,7 @@ Every call is in `docs/runs/game-player-combat-1-ledger-openrouter.md` and `…-
 ## Harness notes
 
 - Refusals in the stage: 0; HTTP 429 waits: 0; paid calls stopped: no.
+- CW-opus: the campaign — corrected by the owner to AC 12, 11 HP; the prep — a hidden layer of 9191 characters; secrets saved yes; exits the layer names: fight, withdraw, parley, surrender, warBand.
 
 ## Appendix — the player's system prompt in full
 
