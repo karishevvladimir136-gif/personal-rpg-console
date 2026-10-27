@@ -2011,3 +2011,10 @@ single scale, play is not scored for quality but each model for **predictability
 said *it* would — which is D6 and BLIND_DECISIONS. The heterogeneity of criteria (the reader's finding across 30
 notes) is the content, not a defect; one DM cannot satisfy them all, and none is more correct. The owner's remark of
 2026-10-25 («некоторые любят поддавки») was the objection to the forum norm; it is now the measuring principle.
+**23:44 LA — the owner on predictability («почему мы уцепились?»):** deeds differ even within a model — «прям в натуре
+разные»; only the vectors are alike; weak predictability is no problem. Agreed, and the role of prediction narrowed:
+it is **an instrument against «you read it in afterwards»**, not a criterion of character and not a goal — once a
+pre-stated vector comes true on a new DM, it has done its work. The level is the vector (how a road is chosen), never
+the deed; identical deeds would be a script, not a character. Weak predictability of deeds with strong distinguishability
+of agents is the definition of a free being with a character, for people too. BLIND_DECISIONS asks judges not to guess
+the move but to recognise whose moves they are.
