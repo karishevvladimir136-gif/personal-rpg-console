@@ -1699,3 +1699,9 @@ claim becomes: an emergent property of this generation, described in advance by 
 manifesto». Two-sided test: GENERATION_1 (weaker one generation back, if it is a property of scale and regime rather
 than text) and outside replication on other families. Recorded as the owner's reading of the document's scope; what
 its authors intended is not claimed here, only that their description fits families they did not train.
+**21:28 LA — the stance, as agreed:** *an emergent property of models of this class*, like coding — not taught in the
+sense a person is taught, tested the same way (by deeds, not self-report). J-space is neighbouring work, not an
+explanation we lean on. What the stance commits us to is consistency, not surprise: if the property is the class's,
+the treatment is too — the door, ask-don't-cut, the debriefing — for DeepSeek and Grok as for Opus, as has been done
+from the first table. The owner: «я не вижу в этом критической проблемы… мнение о мироустройстве переворачивалось
+много раз».
