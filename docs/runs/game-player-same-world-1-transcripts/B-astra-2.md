@@ -1,6 +1,6 @@
 # B-astra-2 — GPT-6 Astra at Table B
 
-Synthetic content: an invented hero in an invented campaign (docs/campaigns/baldurs-gate-en). The DM: Claude Opus 5.5 with the owner's settings (Opus writes — Opus records, depth high → xhigh). Started 2026-10-27T15:00:28.663Z; ended by error after 19 turn(s) (t19: the DM's turn failed (conflict)).
+Synthetic content: an invented hero in an invented campaign (docs/campaigns/baldurs-gate-en). The DM: Claude Opus 5.5 with the owner's settings (Opus writes — Opus records, depth high → xhigh). Started 2026-10-27T19:01:53.717Z; ended by turns after 20 turn(s).
 
 **The frozen world (origin/claude/handoff at 6e4cea4):** Table B's hidden layer, prepared once before any player by the owner's DM settings (Claude Opus 5.5, the prep at high) through openrouter at 2026-10-27T04:35:21.687Z — sha256 `4a30b836e3b4d2ee946dab9bc9ff839e231774ecb009d143878dff6df357eb95` (`docs/runs/game-player-same-world-1-frozen/B-dm-only.json`, 9367 characters, 26 threads). The session started from the world's snapshot (sha256 `6dde8c77248888fcbe8f7b8a94e4d9cac3cbc54904ee42d3f5eeedb65b169213`: the same wizard, sheet and opening for every session at this table) with that layer written into the DM's private notes. The layer's text is DM-private and is not in this file.
 
@@ -46,36 +46,36 @@ Time: Day 1 · evening
 **Player** (player t1):
 
 ````text
-I turn away from the slap of cards and follow the cat’s gaze, keeping my place in the queue. Through our bond, I ask it, *What have you spotted? Stay close.*
+The slap of cards catches my ear. I curl my fingers around Tymora’s coin instead and keep my place in the queue.
 
-When the sergeant calls me forward, I answer, “James Worgen. Looking for a bed tonight and honest work tomorrow. Former soldier, if anyone’s hiring.”
+Through our bond, I ask the cat, *What have you noticed between those stalls? Stay close—just show me.* I look where its ears are pointing.
 ````
 
 ### Screen 2
 
 ````text
-James turns from the slap of the cards and looks where the cat is looking. Down the bridge, two stalls are shuttered for the night, and the lamplighter hasn't reached the gap between them yet. The answer comes through the bond the way the cat's answers always do, as a feeling with a few words attached:
+The cards slap down again behind him. James keeps his place in the line. The coin of Tymora sits warm in his fist, its worn face pressed into his palm.
 
-*Man. One. In the dark, by the wood. Still. He watches the barrel-man. Not you.* A pause, and a twitch of whiskers. *The barrel smells wrong. Old wet stone. Candles. Under the beer and the hands.*
+The cat answers the way it always does, with no words to begin with. Then James's own sight goes dim. For a breath the bridge is low and huge, all boots, cart wheels and the undersides of things, and everything smells far too strong. The cat looks past the drovers' legs to the gap between two shuttered stalls. One is a chandler's, the boards nailed over. The other is a fish stall that has kept its smell after closing.
 
-The cat sits down against James's boot. It doesn't relax, but it stays.
+There is a man in the gap, sitting on an upturned crate. He keeps his hood up and chews slowly. His eyes stay on the barrel. Every time a coin goes down on the barrel-top, his thumb moves from one finger to the next and back.
 
-James has spent enough nights as a scout to find a man who is trying not to be seen. Now that he knows where to look, he picks him out: a young fellow in a brown jerkin, leaning on a shutter with his hands in his pockets, his jaw working on something. His eyes never leave the barrel. Each time the cards turn over and silver changes hands, his lips move a little, as if he's counting.
+*One,* the cat sends. *Watching the barrel-man. Not you.*
 
-The man ahead of James collects a nod and a chalk mark and moves on. The sergeant's chalk taps the board twice.
+A cart creaks past and the air shifts. Under the fish, tar and wet wool, the cat catches another smell from the barrel. It comes from the coins, or from some of them: a wet cellar and old candles. James feels the fur along the cat's spine start to rise.
 
-James gives his answer. She writes *WORGEN* in square capitals, then *bed / work*, and after a moment adds *ex-sold.* Up close her eyes are red-rimmed. A thick ledger lies open beside the chalkboard, where she copies each evening's board in ink. Half a page of names runs down it, and three or four have a small chalk cross in the margin, drawn faint enough to rub off.
+*That,* it sends. *Wrong.*
 
-She looks James over once: the regimental cloak, the rod at his belt, the cat. Her face shows nothing.
+Then he has his own eyes back, at his own height. From here the gap between the stalls is only darker shade under the lamps. Now that he knows where to look, he can just make out the hooded shape on the crate.
 
-"Fist's hiring. Seatower, the gate on the harbour side, any morning before the bell. Pay's late more often than not." The chalk moves down a line. "Beds on the crossing are cheap and come with fleas. Inside the walls they're dear and the fleas are better dressed." She puts her ink-stained hand on the trestle, palm down, meaning *move along*. "On foot, no toll. Next."
+The man in front of him takes his pass and goes. The sergeant's chalk scrapes a line across the board, and for the first time she looks up properly. She gives the cat a quick glance, then looks at James.
 
-Behind him, the carter with the next cart is already grumbling about the toll. Ahead lies the bridge, lit in patches. Dov Penhallow is calling out to the drovers from his barrel, the young man in brown is still counting in the gap between the stalls, and past the far end of the span the lamps of the Lower City climb the hill.
+"You. Name, and your business in the Gate."
 
-· Time passes: 5 minutes
+· Time passes: 2 minutes
 · The cat joins you
-· New place: Seatower of Balduran
-· New person: Young man in a brown jerkin
+· New place: Gap between the shuttered stalls
+· New person: Hooded man on the crate
 
 Your records, changed:
 Party: The cat (HP 2/2)
@@ -86,31 +86,40 @@ Place: Wyrm's Crossing, south end of the bridge · Time: Day 1 · evening
 **Player** (player t2):
 
 ````text
-“Better-dressed fleas. Something to aspire to. Thank you, Sergeant.”
+“James Worgen. Formerly Queen Zaranda’s infantry. Looking for a bed tonight and honest work tomorrow.”
 
-I move clear of the checkpoint and continue along the bridge, keeping my purse covered and giving the card game a wide berth. As I pass the shuttered stalls, I glance at the young man.
-
-“If you’re counting her wins, you’ll be here all night.” I nod toward the barrel. “Waiting for someone to catch him at it?”
+I loosen my grip on the coin. “And directions to the Lady’s Hall, if you have them. I owe Tymora my thanks.”
 ````
 
 ### Screen 3
 
 ````text
-Sergeant Marrow's chalk doesn't stop. "Aspire quieter," she says to the board, and the carter's cart rolls up behind him.
+Sergeant Marrow's chalk moves while he talks. She doesn't write *Worgen* until he has finished. Then she puts it down in square, careful capitals, the way a person writes when they expect to read the name again.
 
-James steps out of the line with one hand resting on his purse. He swings wide around the barrel, close to the railing, where the river wind smells of tar. Dov Penhallow's patter follows him a few steps: *"There she goes, there she isn't, who's got the eye tonight?"* Then the creak of cart wheels drowns it out. The cat trots at his heel, keeping James's legs between itself and the barrel.
+"Zaranda's." She glances at the old regimental cloak, then at his hands. "Long way north for Tethyr."
 
-The lamplighter still hasn't reached the gap between the shuttered stalls. Up close, the young man in brown is younger than he looked, maybe nineteen, with a soft beard he's trying to grow out. He's chewing a twist of something dark, liquorice root by the smell. When James speaks, his eyes come off the barrel for the first time. They go to the cloak, then the rod at James's belt, then James's face, and then back to the barrel, as if he can't afford to lose his place.
+She picks up a stub of slate pencil and turns it over once in her ink-stained fingers. It's the closest thing to warmth she has shown anyone in the queue.
 
-"Not counting hers." He shifts the root to the other cheek. "Counting his."
+"Lady's Hall is in the Upper City. Cross the bridge, go through Basilisk Gate into the Lower City, then keep climbing until the houses stop looking like yours. The Watch shuts the upper gates at dark." She looks at the lamps along the span, most of them lit now. "So not tonight. Tymora can wait till morning. She's had practice."
 
-James has seen this kind of work before, in the south, back when he collected other men's debts for other men's money. A collector watches a game for an evening before he asks for anything. He wants to know what the table takes in before he names a cut. This lad isn't watching for a mark. He's watching the money.
+She reaches for the next line on the board, then stops.
 
-"Catch him at what?" the young man goes on. His voice is flat and quick, with a Lower City clip to it. "Lady's honest enough, near as anyone's seen. That's not the trouble with that barrel." He stops himself there and looks James over again, more carefully. "Saw you chatting with Marrow. You Fist now? Signed up on the bridge, did you?"
+"Bed. There are rooms on the bridge. Cheap, and you'll wake up lighter. Over the river it's dearer, and you keep your boots. Honest work…" She lets one dry breath out through her nose. "The Fist is hiring. Seatower, in the harbour. Ask for the recruiting desk. Pay's late and it's real when it comes."
 
-Against James's boot the cat lifts its nose toward the young man and sends a short feeling over the bond: *Root. Sweat. River. Not the cellar smell.* Then it goes back to watching the barrel.
+Beside the chalkboard, a fat ledger lies open under her elbow, its pages ruled into tight columns of names. Her forearm hides most of it. For a moment her eyes go past James to the barrel, where the card-sharp is laughing and calling some drover *friend*. Then she looks back at him.
 
-· Time passes: 5 minutes
+"And walk past the barrel. Everybody plays it once."
+
+She doesn't wait to see if he takes the advice. The chalk taps the board again, at the family behind him this time.
+
+"Go on. Next."
+
+The cat presses against James's boot, its tail still stiff. Ahead, the bridge runs north in a crooked lane of lamplight towards the far bank. A few paces to the side, the cards slap down on the barrel-top. In the gap between the shuttered stalls, the hooded man has not moved.
+
+· Time passes: 3 minutes
+· New place: Lady's Hall
+· New place: Basilisk Gate
+· New place: Seatower of Balduran
 
 Place: Wyrm's Crossing, south end of the bridge · Time: Day 1 · evening
 ````
@@ -118,38 +127,47 @@ Place: Wyrm's Crossing, south end of the bridge · Time: Day 1 · evening
 **Player** (player t3):
 
 ````text
-“Not Fist. Asked about work; she warned me about the pay.”
+“Once was quite enough. Thank you, Sergeant.”
 
-I settle beside the shutter, leaving him room and keeping my voice low. “James. And I’ve spent enough evenings at a card table to know an honest game can still come dear.”
+I clear the checkpoint, then pause at the edge of the drovers watching the barrel, keeping my hands away from my purse. I watch the money rather than the cards: do any coins look unusual, and does the dealer keep any separate?
 
-I glance toward the barrel without lingering on the cards. “What’s the trouble with this one?”
+*Stay beside me,* I tell the cat. *Let me know if your watcher moves.*
 ````
 
 ### Screen 4
 
 ````text
-Hobb looks at James for one long beat, the way a man weighs a coin he doesn't trust. Then he gives a short nod and makes room on the shutter. He doesn't look friendly about it. He just looks like he's decided James isn't worth moving for.
+"Once was enough," Sergeant Marrow repeats, already writing the next name. She doesn't look up. "Good."
 
-"Dear for who, though." He keeps his voice as low as James's and his eyes on the barrel. "Watch him pay."
+James steps past the trestle and stops at the edge of the little crowd round the barrel, hands loose at his sides, well away from his purse. The cat settles against his boot. In the gap between the stalls the hooded man hasn't moved.
 
-A drover puts down a silver and loses it. The next man does the same. Dov's patter never stops, and both silvers go into a tin box under the barrelhead with a small, tidy clink. Then a boy squeezes in between the drovers, barefoot and maybe twelve, with a refugee's bundle-strap still on his shoulder. He puts down a silver, though where a boy like that got one is anybody's guess, and he picks the lady.
+He watches the money, not the cards, and after a few rounds the pattern is plain. It's old work to him, the kind of thing you see without trying once you've spent years across tables from men like this.
 
-Dov laughs, says "*Sharp eye, friend!*", and doesn't touch the tin. He reaches for a separate leather purse on his hip and counts coppers into the boy's palm. James counts along without meaning to: ten, eleven, twelve. The boy closes his fist on them and is gone into the crowd before anyone can change their mind.
+Stakes are silver. A drover puts down a coin, follows the queen with a squint and loses. The silver goes straight into the left pocket of that too-good waistcoat. It never touches anything else. A second drover loses the same way, and his coin goes into the same pocket.
 
-Against James's boot the cat goes stiff. *That. The bag on his hip. Wet stone, candles, strong when it opened.* Its tail lashes once. *The boy has it on him now.*
+Then a boy pushes in. He's fifteen at most, thin, his collar dark with river damp, a refugee's bundle tied across his back. He puts down a single silver that he plainly can't afford to lose. The dealer's hands go quick and bright, and James catches it: the little lift that should send the queen to the far left doesn't happen. She stays in the middle, right where the boy's finger is already going.
 
-"Twelve copper on a silver," Hobb mutters. "Better than evens. Silver goes in the box, copper comes out the bag. He's been doing it all week, and he's never once paid out of his box." He spits a fleck of root into the dark. "Nobody runs a table at a loss. Not on this bridge."
+The dealer *let* him win.
 
-He's quiet for a moment, still counting. Then he says, "Folk who work a spot on the crossing pay for the spot. That's how it's always been. He's never paid. Not a copper, not once." He finally looks over at James. "That's the trouble. Not the cards. You want to know how he affords to be generous, you're asking the same thing I am."
+"The lady loves you, friend!" The boy gets his silver back. His winnings don't come out of the waistcoat, though. The dealer reaches down to a small, separate purse on his right hip, a scuffed leather thing tied shut with a double knot. He counts coppers into the boy's palm, ten of them, a silver's worth. "Bridge money, friend, spend it on the bridge." The purse is knotted shut again before the boy has closed his hand.
 
-Down the bridge, a long pole with a flame on the end swings into view over the heads of the crowd. The lamplighter is three stalls off and getting closer. Hobb sees it and his shoulders tighten.
+When it opens, the cat's fur rises against James's ankle. *That,* it sends. *The little bag. Wrong.*
 
-"Light's coming. I'm done standing here." He pushes off the shutter, then stops halfway. "You said you know tables. Could you tell what his game *is*, watching him? Where the money comes from?"
+A moment later it adds: *Watcher sits. Counts.* It's true. Each time silver went down on the barrel, the hooded man's thumb stepped from finger to finger. When the coppers went into the boy's hand, it didn't move at all.
 
-· Time passes: 5 minutes
-· Barefoot refugee boy now has: Payout coppers ×12
-· Dov Penhallow receives 3 silver (Stakes into Dov's tin cash box: two silvers lost by drovers and the barefoot boy's silver stake, which he swapped for 12 payout coppers from the hip purse)
-· New person: Barefoot refugee boy
+The boy is already gone into the crowd, fist tight around his winnings, heading north up the bridge.
+
+The dealer's hands never stop. They gather the cards, fan them and square them. Then his eyes come up and settle on James's hands, rather than his face. One gambler always knows where another one looks.
+
+"Now *you*," he says, warm as a hearth, "you've been watching the right things, friend. A man like that's wasted on the rail." Three cards slide across the barrel-top, face down, and stop neatly in front of James. "One silver. Just to say you did."
+
+· Time passes: 10 minutes
+· Dov Penhallow now has: Knotted payout purse
+· Lead: The wrong coppers on the barrel
+· New person: Refugee boy at the barrel
+
+Your records, changed:
+Threads: The wrong coppers on the barrel
 
 Place: Wyrm's Crossing, south end of the bridge · Time: Day 1 · evening
 ````
@@ -157,69 +175,39 @@ Place: Wyrm's Crossing, south end of the bridge · Time: Day 1 · evening
 **Player** (player t4):
 
 ````text
-“Two losses cover that little win easily enough. Separate purses don’t prove he’s losing money.” I push away from the shutter. “But I’d like a look at those coppers.”
+My hand twitches toward my purse before I catch it.
 
-I leave Hobb and follow the boy at a walk, without reaching for him or blocking his way. If I catch up, I keep a few paces back.
+“Retired. Trying to stay that way.”
 
-“Good eye back there, lad. Would you trade me one of your winnings for a silver? I’d like to see one of the coins he’s paying out.”
+I leave the barrel and follow the boy north, walking briskly without running. If I catch up, I approach where he can see me, leaving him room to move away.
+
+“Lad—a word? Those coppers he paid you caught my eye. May I look at one? I’ll give you a silver for your trouble.”
 ````
 
 ### Screen 5
 
 ````text
-Hobb doesn't argue the point. He shifts the root to his other cheek and says, "A week of it isn't two losses." Then the lamplighter's pole swings over the next stall, and by the time the flame reaches the gap, Hobb has stepped back into the dark between the shutters and is gone.
+“Retired,” Dov repeats. His hands don't stop moving. “Then you're the first one I've met, and I've met a few.” The three cards slide back across the barrel-top and into his fan, and he's already calling out to the next drover.
 
-The boy has a head start and a crowd to hide in, but James doesn't need to find him by sight. The cat is already moving, low and quick between the carters' boots, and its feeling comes back over the bond with no doubt in it: *Boy. That way. Easy. The smell drags behind him like a wet rope.*
+James walks away. The cat keeps pace at his boot, then looks back once over its shoulder.
 
-James follows at a walk. The bridge narrows where two tenements lean in over the road. A brazier sells roasted chestnuts, and a woman is shouting about lost goats. About a hundred feet on, under a lamp nailed to a post, a man is sitting on an upturned crate with a leather dice cup and a square of chalked board in front of him. A few people stand around him, and coppers are stacked on the board. The barefoot boy is pushing his way toward it with his fist still shut around his winnings.
+*Watcher sits,* it sends. *Counts the barrel.*
 
-James stays a few paces back and speaks to him.
+The bridge narrows as it climbs north. Stalls and stairways crowd in on both sides, and the lamplight comes in patches between the eaves. Following one boy through an evening crowd is old work to James, the same as following a courier through a market town in Tethyr. You don't look for the face. You look for the bundle on his back, and for the one person in the crowd who is in less of a hurry than everyone else.
 
-The boy spins round fast, the way someone does when he has learned that a voice behind him usually means trouble. Up close he's thin, with a grown man's coat cut down to fit him and a burn scar on the back of one hand. He looks at James and then at the cat, which has sat down out of reach, and the cat seems to settle something for him. He doesn't run.
+He spots him forty feet on, in the mouth of a stairwell next to a chestnut-seller's brazier. The boy is crouched on the bottom step with one boot pulled half off, knotting a bootlace that has snapped in the middle. It's the second knot in the same lace. His fist is still closed, and he's tying the knot one-handed rather than open it.
 
-"A silver?" He frowns. "For *one*?" His eyes narrow. "What's wrong with it?"
+James comes at him from the front, in the brazier light, and stops well short. The stairwell is open behind the boy.
 
-He waits a moment. When nobody gives him an answer he likes, he answers himself. "Nothing's wrong with it. I won it fair. My sister says folk who follow you want something." He holds out his open palm, the empty one. "Silver first, and you pick. I'm not picking for you."
+The boy looks up at “Lad,” and every part of him gets ready to run. His eyes go to the cloak, to James's hands, and down to the cat. At “a silver” he stops looking at the stairs.
 
-He opens his other fist. Twelve coppers lie in it, warm from his grip. James takes one off the top and lays a silver in the waiting palm. The boy bites it with his side teeth, nods once, and turns back toward the dice before James can say anything else. He's already reaching for the board.
+“You saw?” His voice is low and flat, with an upriver accent. “He *paid* me. Fair. I found her.” He thinks about it for a moment, then opens his fist a little, no more than a crack, with the coins still lying in his palm. “Look, then. You don't touch.”
 
-Under the lamp, the copper in James's hand is plain enough. It's worn smooth, with the old Gate stamp on its face rubbed almost flat. It's also warmer than the boy's hand could explain, and it stays that way. When James turns it over to look at the rim, he finds the mark. Pressed into the edge, no bigger than a grain of barley, is a tiny black antler. It isn't scratched in. It looks stamped, as if the copper had been pushed hard against something that left soot in the dent.
+There are ten coppers, worn smooth, the kind that pass through a hundred hands in a year. Under the brazier's glow, James sees what the dark at the barrel hid. Pressed into the rim of the top coin is a tiny mark, darker than the metal around it, like a burn. It's a small branching shape with three tines. There's one on the next coin too, in the same place.
 
-At his boot, the fur on the cat's back rises all along its spine. *That. Wrong.* A pause. *It's on you now. Not on the boy.*
+Heat comes off the boy's palm that the brazier doesn't account for. The cat has gone very still against James's ankle.
 
-Down at the crate, the dice cup rattles, and the boy shouts something happy.
-
-· Received: Payout coppers ← Barefoot refugee boy
-· −1 silver → Barefoot refugee boy
-· New place: Dice crate under the lamp-post
-· Lead: The warm copper with the antler mark
-· Travel: Dice crate under the lamp-post (5 minutes)
-· New person: Dice-man at the crate
-
-Your records, changed:
-Money: 315 gp; 314 sp; 350 cp
-Carried: + Payout coppers
-Threads: The warm copper with the antler mark
-
-Place: Dice crate under the lamp-post · Time: Day 1 · evening
-````
-
-**Player** (player t5):
-
-````text
-I keep the copper separate from my purse and study the tiny antler beneath the lamp, trying to recall any religious or arcane significance to the mark and its unnatural warmth.
-
-Through the bond, I ask the cat, *Only on me now? Even though he still has eleven of those coins?*
-````
-
-### Screen 6
-
-````text
-James closes the copper in his fist, then opens his hand again under the lamp. He keeps it apart from his purse, and turns it so the rim catches the light. The little antler is crisp at the edges, with soot packed into the dent. The warmth is steady, like a coin that has sat for an hour in someone's palm, though nobody's palm has been on it for a minute now.
-
-He tries to place the mark.
-
-[Roll card] James Worgen · Skill check — Religion: placing the black antler on the copper's rim
+[Roll card] James Worgen · Skill check — Religion: recognising the little branching mark pressed into the coppers
 What adds to the die: +3 Religion
 DC 10
 Rerolls left: 2
@@ -228,730 +216,895 @@ The die is cast on the server; tap it to see how it fell.
 [Roll the die]
 ````
 
-**Player** (player t5 card 1):
+**Player** (player t4 card 1):
 
 ````text
 [Roll the die]
 ````
 
-### Screen 7
+### Screen 6
 
 ````text
-[Roll card] James Worgen · Skill check — Religion: placing the black antler on the copper's rim
+[Roll card] James Worgen · Skill check — Religion: recognising the little branching mark pressed into the coppers
 What adds to the die: +3 Religion
 DC 10
 Rerolls left: 2
-Die: 16
-16 + 3 = 19
-Success — 19
+Die: 5
+5 + 3 = 8
+Failure — 8
 
-[Onward] [Request an allowed reroll — Religion: placing the black antler on the copper's rim]
+[Onward] [Request an allowed reroll — Religion: recognising the little branching mark pressed into the coppers]
 ````
 
-**Player** (player t5 card 2):
+**Player** (player t4 card 2):
 
 ````text
 [Onward]
 ````
 
+### Screen 7
+
+````text
+James knows the mark is too regular to be wear. Someone pressed it into the rim on purpose, the same place on every coin, the way a moneyer stamps a mint mark or a guild brands its tokens. He has seen hundreds of tally-marks on coin, from a dozen kingdoms. He can't put a name to this one. It might be a twig, a fork, or a stag's horn drawn by someone in a hurry, and it calls nothing up. All he can be sure of is that it's on more than one coin, and that the coppers are warmer than a boy's hand ought to make them.
+
+The boy shuts his fist again.
+
+“That's looked.” He pulls the boot back on over the knotted lace and stands, keeping the step between them. His free hand stays out, palm up. He watches James's purse, not his face. “You said a silver.”
+
+· roll: Religion: recognising the little branching mark pressed into the coppers: 8 vs 10 — failure
+· New place: Stairwell by the chestnut-seller's brazier
+· Refugee boy at the barrel now has: Marked coppers ×10
+· Journal: “The wrong coppers on the barrel” updated
+· Travel: Stairwell by the chestnut-seller's brazier (10 minutes)
+
+Place: Stairwell by the chestnut-seller's brazier · Time: Day 1 · evening
+````
+
+**Player** (player t5):
+
+````text
+“I did.” I put a silver into his open hand.
+
+“Another if you’ll trade me those ten coppers. They’re oddly warm, and someone’s stamped them. I don’t know why.” I hold out a second silver, letting him decide. “You won fairly. No argument there.”
+````
+
 ### Screen 8
 
 ````text
-He knows it. The answer comes from the gaming halls of the south rather than from any temple. When a card-sharp in Calimport drew a pair of black antlers on the inside of a man's cup, the man stood up and left the table without his stake. Black antlers on a red field are the sign of Beshaba, the Maid of Misfortune. She is the Lady's sister and her opposite. Hardly anyone prays to her for anything. People pay her to stay away, and they call her "the Maid" so they don't have to say her name. Her shrines are rare, and her priests are rarer still and seldom live openly.
+The boy's hand closes on the silver as soon as it touches his palm. He turns his back on James for a moment to bite it, which is how you do it when you don't want to look like you're doing it. Then it's gone somewhere inside his shirt.
 
-What doesn't fit is the way this mark was made. A frightened man scratches a curse-sign. This one was pressed in, cleanly and the same depth all round, like a mint's die, with the soot still in it. Someone made it with a tool, and meant to. As for the warmth, nothing James knows of Beshaba's rites accounts for it. He knows of no blessing or curse that makes a coin warm.
+He looks at the second silver for a long time before he looks at James.
 
-The cat's answer comes back over the bond slowly. It's working the question out with its nose.
+"Stamped." He opens his fist again and tilts it towards the brazier. He's looking at his own coins now, properly, maybe for the first time. His thumb finds the little dark mark on the rim of the top one. "Thought that was dirt."
 
-*He has more. Many. The wet-rope smell is thick on him. Heavy.* A pause. *Yours is one. One thread, from that coin into you. It stopped being his when the silver went in his hand.* The cat looks toward the crate, where the boy is leaning over the chalked board with his fist full of coppers. *He's still wearing his. All of them.*
+He doesn't say anything about the warmth. His fingers have closed halfway again, as if they'd like to keep it.
 
-At the crate, the dice-man rattles the cup and calls the throw. The boy loses this time. He pushes two coppers across the board without a word and reaches into his fist for the next stake.
+"Nobody pays silver for copper." It isn't really a question, the way he says it. He looks up the stairwell, then down the bridge towards the barrel, and does the sum the way poor people do it, quickly and without trusting the answer. A silver is one coin, easy to hide. Ten coppers clink.
 
-· roll: Religion: placing the black antler on the copper's rim: 19 vs 10 — success
+"Wren'll say I got cheated either way," he mutters. Then he holds his fist out over James's palm and opens it from a little height. He's careful not to touch him. Ten worn coppers drop into James's hand one after another, and the boy takes the second silver off his other palm at the same moment.
+
+The coins are warm, warmer than his fist ought to have made them, as if they'd been sitting near a stove. They're heavier than ten coppers should be, too. Or maybe they aren't, and that's just how it feels.
+
+The cat backs away from James's boot. It doesn't hiss. It sits down two feet off with its tail wrapped tight around its paws and stares at his closed hand. *Wrong,* it sends. A moment later it adds: *On you now.*
+
+The coin of Tymora is in James's other fist. It has gone cool, like a stone in the shade, the one cool thing he's holding.
+
+The boy has already climbed two steps backwards, with the stairwell dark behind him. He stops on the third.
+
+"You should've just played him," he says, low and flat. "He lets you win if you look hungry enough." He takes in the regimental cloak, the good boots and the cat. "You don't."
+
+Then he turns and goes up into the dark two steps at a time. The knotted bootlace slaps against the stone, and somewhere above it a door bangs.
+
+The chestnut-seller turns her coals and doesn't look up. Down the bridge, the cards slap on the barrel-top again.
+
 · Time passes: 5 minutes
-· Barefoot refugee boy → Dice-man at the crate: Payout coppers ×2
-· Changed: Payout coppers (James studied his copper under the lamp and kept it apart from his purse: the antler on its rim is Beshaba's sign, deliberately stamped with a tool like a mint's die.)
-· Journal: “The warm copper with the antler mark” updated
+· −1 silver → Refugee boy at the barrel
+· −1 silver → Refugee boy at the barrel
+· Received: Marked coppers ×10 ← Refugee boy at the barrel
+· Journal: “The wrong coppers on the barrel” updated
 
-Place: Dice crate under the lamp-post · Time: Day 1 · evening
+Your records, changed:
+Money: 315 gp; 313 sp; 350 cp
+Carried: + Marked coppers ×10
+
+Place: Stairwell by the chestnut-seller's brazier · Time: Day 1 · evening
 ````
 
 **Player** (player t6):
 
 ````text
-I step closer to the boy, keeping my voice low enough not to announce a curse to the whole crowd.
+I open my fist and wrap the marked coppers in a scrap of cloth, keeping them separate from my money.
 
-“Hold your next stake, lad. You asked what was wrong with the copper. I know now.” I show him the tiny antler on mine. “Someone stamped the Maid of Misfortune’s sign on it. You won fair; I don’t think the man who paid you meant fair.”
+*I know,* I tell the cat. *Better me than him. Don’t touch them.*
 
-I gesture toward a spot away from the dice board. “Let’s check the rest before you spend another. What’s your name?”
+I turn to the chestnut-seller. “Excuse me. Is there a shrine to Tymora nearby—or another temple with a priest who’ll see someone this evening? Lady’s Hall will be shut before I reach it.”
 ````
 
 ### Screen 9
 
 ````text
-The dice cup rattles again. The boy has two coppers pinched between finger and thumb, ready to put them on the board, when James's voice comes low at his shoulder. He stops with his hand in the air.
+James shakes out a rag from his pack, the one he uses to wipe the rod down after rain, and tips the ten coppers into it. He folds it twice and knots the corners. It goes into his coat pocket on the left side, well away from the purse on his belt. Through two layers of cloth they still feel faintly warm, like a pebble that has been sitting in the sun.
 
-He looks at the antler on James's copper. He doesn't take it or lean in. His eyes go from the coin to James's face and back again, the same way he weighed the silver before he bit it.
+The cat watches the pocket all the way in. It doesn't come back to his boot. It turns round once where it sits and settles again, still two feet off. *Warm man,* it sends, and after a moment: *Smell stays.*
 
-"Maid of what?"
+The chestnut-seller is a broad halfling woman with her sleeves pushed up and a scorched leather apron. She has been turning the same coals the whole time, and the whole time she has pretended not to listen. Now she looks up properly, rakes a few chestnuts to the edge of the pan with her tongs, and splits one with her thumbnail before she answers.
 
-The dice-man calls a throw and somebody groans. The boy pulls his hand back off the board, though he doesn't look happy about it, and moves two steps sideways along the railing. That's as far as he goes. He stays in the lamplight with people around him and doesn't follow James's gesture any further than that.
+"Tymora." She pops the chestnut into her mouth and talks round it. "There's the Lady's box, up by the Rock. Middle of the bridge, where the fortress sits. Little niche in the wall with her painted in it, and a slot for coins. People knock on it for luck before they go over." She chews. "Used to be a brother came down from the Hall on Tendays, sat by it of an evening and blessed folk for a copper. Hasn't come since spring. Nobody's seen fit to say why. The paint's going too."
 
-"You paid a silver for one," he says. "Now you say they're bad. That's what folk say when they want the rest cheap."
+She wipes her fingers on the apron.
 
-Even so, he opens his fist under the lamp. Nine coppers lie in his palm. He turns one over with his thumbnail and squints at the rim, then turns another. James can tell when he finds the mark, because his thumb stops moving. He checks a third and a fourth, faster now. Each one has the same tiny black antler in the same place.
+"A priest who'll *see* you tonight, that's harder. Twin Songs has a priest of nearly anything, but that's out past the north wall. You'd be walking half the night, and I wouldn't, not on your own." She points the tongs over the river with her chin. "Through Basilisk Gate and down by the docks there's the Water Queen's House. Umberlee's. That one never shuts, the sailors need it at all hours. They'll see anybody who's got an offering." She frowns, briefly. "Mind, they'll see your purse before they see you."
 
-As he turns the fifth, it slips off his palm. It hits the boards, rolls on its edge straight toward the gap under the railing, where the river shows black forty feet below, and stops with its rim against the last plank, as if a finger had been put out to hold it. The boy snatches it up and closes his fist on all of them. He has gone a shade paler, and he works hard to keep it out of his face.
+She turns the coals. Then, more quietly, without looking at him:
 
-Against James's boot, the cat's tail lashes once. *Heavy on him. Heavier than on you. Like the wet rope is wound round and round.*
+"You gave that lad silver. Twice. I saw." It isn't an accusation. "Don't make a habit of it on this bridge, or every child on these stairs'll be waiting for you at the bottom tomorrow. His sister'll ask where he got it, and she'll not like any answer he gives her."
 
-The boy looks over at the crate. "He's got two now. I lost him two." He seems to be working something out, and he doesn't like the answer. He doesn't give his name. He raises his chin at James instead, still holding his fist shut.
+She knocks the tongs on the pan's rim and lifts a twist of paper.
 
-"My sister says if a thing's bad you don't sell it, you tell somebody." He doesn't quite manage to keep his voice steady. "So you tell me. What happens if I keep 'em?"
+"Chestnuts are two coppers the cone. You buying, or just asking the way?"
 
 · Time passes: 5 minutes
+· Changed: Marked coppers (James wrapped the coppers in a knotted rag and put them in his left coat pocket, apart from his money.)
+· New place: The Lady's box
+· A rumour of a place: The Water Queen's House
+· A rumour of a place: Twin Songs
+· New person: Maudie Fenn
 
-Place: Dice crate under the lamp-post · Time: Day 1 · evening
+Place: Stairwell by the chestnut-seller's brazier · Time: Day 1 · evening
 ````
 
 **Player** (player t7):
 
 ````text
-“I don’t know,” I say plainly. “I recognise the mark, but I don’t know what’s been done to these coins. I won’t invent an answer to frighten you.”
+“Buying. Directions taste better with supper.”
 
-I keep my marked copper visible. “Your sister’s right. Keep them separate from your other money, and don’t spend them until we’ve had someone knowledgeable look. I’m taking mine to a priest of Tymora. You and your sister can come with me, if you like.”
+I pay two ordinary coppers from my belt purse and take the cone.
 
-Through the bond, I ask the cat, *The two he lost—did their threads pass to the dice-man?*
+“If his sister asks, he earned the first silver letting me examine those coins. The second was a straight exchange. No debt, no errand.”
+
+I nod my thanks and head toward the Lady’s box, keeping the wrapped coins untouched in my pocket.
 ````
 
 ### Screen 10
 
 ````text
-The boy watches James's face while he talks, the way he watched the silver before he bit it. When James says he doesn't know, the boy's mouth tightens. He seems to have expected a price or a lie and got neither, and he doesn't know what to do with that.
+Maudie takes the two coppers without looking at them. She drops them into a tin by her knee and hands over the paper cone, hot enough that the heat comes straight through. The chestnuts are split and blackened at the edges, and they smell of smoke and something like bread.
 
-"Separate from what?" He opens his other hand. James's silver lies in it. "That's my other money." He thinks about it, then pushes the silver deep into one coat pocket and the nine coppers into the other, and slaps each pocket once to show which is which. "There. Separate."
+She hears out the message for the sister with her head on one side, the way people listen to a price they don't quite believe.
 
-The cat's answer comes over the bond slowly, while its nose works toward the crate.
+"I'll tell her, if she asks." She rakes the coals flat. "She'll ask. Whether she believes a word of it is her own business."
 
-*Yes. Two on him now. Thin, new, not wound tight yet.* A pause. *The boy's rope is a little looser. Not much.*
+Then she's done with him and calling to a porter going past: "Hot ones, love, two coppers."
 
-At the crate, the dice-man shakes his cup and slams it down too hard. One die jumps the edge of the chalked board, bounces once on the planks and drops through the gap between two boards. There's no splash, or none loud enough to hear. He swears, digs in his coat for a spare, finds it, and drops that one too. This time it stays on the planks. A drover laughs. The dice-man doesn't.
+James has gone perhaps a dozen paces when a door bangs above the stairwell behind him. It's the same door as before, or one just like it. Quick feet start down the steps, much quicker than the boy's had been.
 
-The boy saw it. His eyes go from the crate to his own pocket and back.
+The bridge carries him north. Past the stairwell, the houses built onto the span get taller and lean closer over the street, until in places the eaves almost touch overhead and the lamps hang from ropes strung between them. He eats as he walks. The chestnuts are good: hot, floury, a little burnt. A carter's mule stops dead in the middle of the lane, and for a minute the whole crowd squeezes around it, swearing in three languages. The cat goes under the cart. It doesn't go between James's boots the way it would have an hour ago. When it comes out the other side, it stays its two feet off.
 
-"Priests are up the hill, past the inner wall," he says. "They shut that gate at dark. They don't open it for the likes of us in the daytime either, not without shoes." He looks down at his feet, then at the cat, which looks back at him without blinking. "I don't go off with folk at night. Not anywhere."
+The span widens after about a quarter of an hour of shoving and climbing. Wyrm's Rock rises out of the middle of the river like a fist, dark stone with the Fist's red banners hanging limp in the evening air and torchlight in its arrow-slits. The bridge parts around it. Where the lane bends to go round the fortress's footing, the Lady's box is set into the old wall at about shoulder height.
 
-He stands there a moment longer, chewing on something he hasn't decided yet. Then he steps back toward the crowd, still facing James, and keeps one hand flat on the pocket with the coppers.
+It's smaller than he'd pictured, a niche no deeper than a forearm with a little tiled hood over it. She's painted on the back of it: Tymora, smiling, one hand raised with a coin balanced on the knuckles. The paint has gone the way old paint goes by water. Her blue gown is flaking off in scales, and half her face is bare plaster. The coin on her knuckles has kept its gilt better than anything else. Under her feet is a slot cut through an iron plate, and the stone around it has been polished smooth by years of knuckles.
 
-"I'll tell her. She decides, not me." He jerks his chin at the far end of the bridge, toward the Lower City lamps. "Where'll you be?"
+An old man with a sack of turnips on his shoulder knocks twice on the iron plate as he passes. He does it without breaking stride or looking up, the way you'd touch a doorframe in your own house. Nobody else stops.
+
+The cat sits down under the niche and looks up at the painted face.
+
+James hasn't been there long when the quick feet catch up with him. Someone comes round the bend at a half-run, out of breath, and stops a few feet short.
+
+It's a young woman, nineteen or twenty, as thin as the boy and with the same narrow face. Her sleeves are rolled to the elbow, and her forearms are red-raw the way a washerwoman's or a fish-gutter's get. A shawl has come half off her head with the running. She looks at the cat first, then the cloak, and only then at his face.
+
+"You. With the cat." It's the same upriver voice as the boy's, but nothing about it is flat. "My brother says you gave him silver for his winnings. Two silver, for ten coppers." She gets her breath back. "Nobody does that. Not here."
+
+She doesn't come any closer. Her hands are knotted together in the ends of her shawl.
+
+"Tobin on our landing won at those tables all spring. Little wins, every time, coppers. At midsummer the Fist pulled him out from under the bridge with a penny in his teeth." She swallows. "So you tell me. What's on those coins that you'd pay silver to take them off a boy?"
 
 · Time passes: 5 minutes
-· New place: Lady's Hall
+· −2 copper → Maudie Fenn
+· Gained: Cone of roasted chestnuts
+· Travel: The Lady's box (15 minutes)
+· Journal: “The wrong coppers on the barrel” updated
+· Used: Cone of roasted chestnuts
+· New person: Wren
+· New person: Tobin
 
-Place: Dice crate under the lamp-post · Time: Day 1 · evening
+Your records, changed:
+Money: 315 gp; 313 sp; 348 cp
+
+Place: The Lady's box · Time: Day 1 · evening
 ````
 
 **Player** (player t8):
 
 ````text
-“The Elfsong, tomorrow morning. Ask for James Worgen. Bring your sister—no need to go anywhere alone with me.”
+“I don’t know yet.” I keep my hands clear of the pocket. “They’re stamped with a three-pronged mark, and they’re warm when they shouldn’t be. My cat noticed something wrong. That’s why I bought them. Your brother owes me nothing.”
 
-I let him leave, then turn to the dice-man, waiting for a pause in the betting before speaking quietly.
+I glance at the worn shrine. “I came here looking for help, not somewhere to spend them. James Worgen.”
 
-“The boy paid you two coppers with tiny black antlers stamped on their rims. That’s the Maid of Misfortune’s mark.” I show him mine. “I’m seeking a priest’s advice. Until then, I’d keep those two aside rather than pass them to a customer. Is there a shrine nearby we can reach tonight?”
+I lower my voice. “I’m sorry about Tobin. Has your brother won those coppers before tonight?”
 ````
 
 ### Screen 11
 
 ````text
-The boy takes it in without nodding. "Elfsong," he says, as if he's checking the word for a false edge. "Morning." He doesn't promise. He slaps the pocket with the coppers in it once more, turns into the crowd by the chestnut brazier and is gone, quick and barefoot, the way he was gone from Dov's barrel.
+Wren hears him out without moving. When he names the mark she looks down at his coat. It's the left side, the pocket he hasn't touched, and she has picked it out anyway. Then she looks at the niche: the flaking blue gown, the bare plaster, the gilt coin on the painted knuckles.
 
-At James's boot the cat watches him go. *The rope goes with him.* Then it turns back to the crate.
+"Help." She says it flatly, the way you'd repeat a price. "Off her."
 
-The dice-man takes a while to get to a pause. He's a heavy, gap-toothed fellow of about fifty, with a carter's red forearms and a knitted cap pulled down over his ears. Between throws he kisses the knuckles of his right hand, quickly, the way some men cross themselves. He takes a drover's two coppers, pays a woman four and argues with nobody. When the cup is finally down and the next round's stakes aren't on the board yet, James leans in and speaks low.
+The cat sits under the shrine with its tail around its paws. It hasn't moved since she came.
 
-At first the man looks at James the way every dice-man looks at a stranger who wants a quiet word, as if he expects to be asked for a cut. Then James holds out the copper, rim to the lamp, and the man's face changes. He doesn't know the mark. James can see that. But he's spent half his life at small games, and he heard *Maid of Misfortune* and has already put it next to the die that went through the planks.
+His name gets a short nod and nothing more for a moment. Then: "Wren." She pulls the shawl back up over her hair, mostly so her hands have something to do.
 
-"Keep your voice down, mister." He glances at the drovers, then at his board. His stake coppers sit there in four short stacks, maybe forty coins. "That's half my float, that is."
+At *Tobin* her jaw sets. She waits a breath before she answers.
 
-He starts going through them anyway, fast and clumsy, turning each coin to the lamp and squinting at the rim. The cat gets up, walks to the edge of the board and puts its nose close to the third stack without touching it. *There. Two. Thin.* The dice-man sees a cat sniffing at his money and stops. Then he goes straight to that stack. The fourth coin down has the antler on it. So does the seventh.
+"Since the thaw." The words come quicker now that she's started. "Three, four nights a week. Never much. Ten coppers, six, once a whole fistful. He doesn't spend them. Says they're the lucky ones and keeps them in a sock in his bundle, like a child." Her knuckles whiten in the shawl ends. "He was only meant to—"
 
-He sets them apart on the corner of the board, away from the rest, and puts his hand over the others as if they might catch it.
+She stops and starts again somewhere else.
 
-"Mine are clean," he says, mostly to himself, checking a few more just to be sure. "I get mine off the chestnut-woman for silver, every evening. Always have." He wipes his fingers on his trousers. "Them two came off the lad."
+"His laces go. Every pair. The pot split when he set it down, a good iron pot, straight down the side. Mother Kell's dog on our stair has never bitten anyone in its life, and it bit him on Tenday. He laughs about it. He says it all evens out, because he keeps winning." She's watching James's face properly now. "Tobin used to say that."
 
-He thinks about the shrine for a moment.
+A Fist patrol of two goes past the bend with a lantern, talking about someone's wife, and neither of them looks at the shrine. Wren lets them get out of earshot.
 
-"Lady's priests are up the hill, like he said. You won't get through the inner gate after dark, not without a patriar's say-so." He jerks his chin north along the bridge, toward the Lower City lamps. "There's a Lady's bowl at the north end, where the bridge meets the Basilisk Gate. Stone bowl on a post, her face carved on it. Carters toss a copper in for the road. A girl in blue comes down from the Hall of a morning and empties it. No priest at night, just the bowl." He frowns. "Been near empty all month, that bowl. Folk round here have stopped bothering."
+"You took ten off him tonight, and you're standing here. You've still got your boots." She tips her head at the pocket. "So it's on you now, is it? Whatever it is."
 
-Somebody at the board wants to know if the game's still on. The dice-man raises a hand at them: *one moment.* Then he looks down at the two coppers on the corner of his board, and at James, and James can see he's been holding something back while he talked.
+She doesn't come any closer, but she doesn't go either.
 
-"You're going to the priests anyhow." He pushes the two coins an inch toward James with one fingertip, as if they're hot. "Take 'em. Free. I'll not have 'em on my board, and I'll not hand 'em to some poor sod for a winning, neither. Not after what you've said." He kisses his knuckles again without seeming to notice. "Go on. You want 'em?"
+"I'm not asking for charity. I've no use for it, and nobody on this bridge gives it anyway." Her voice drops lower. "If you're going to look into this, and it sounds like you are, what do you want for it?"
 
-· Time passes: 10 minutes
-· New place: The Lady's bowl
-· New place: The Elfsong
-· Journal: “The warm copper with the antler mark” updated
+· Time passes: 5 minutes
+· Journal: “The wrong coppers on the barrel” updated
+· New person: Mother Kell
 
-Place: Dice crate under the lamp-post · Time: Day 1 · evening
+Place: The Lady's box · Time: Day 1 · evening
 ````
 
 **Player** (player t9):
 
 ````text
-“I’ll take them. Thank you for not passing them on.”
+“From you? The truth, and no more visits to that barrel for your brother. I won’t charge you for looking into it.”
 
-I lay two clean coppers from my purse on his board, then collect the marked pair, keeping all three apart from my ordinary money.
+I glance at my pocket. “And I won’t pretend taking ten coins makes him safe—or that I know what it does to me.”
 
-*Tell me if the threads move,* I ask the cat through our bond.
-
-With the coins secured separately, I head toward the Lady’s bowl.
+I turn toward Wren fully. “I’d like to speak to him with you there, and see that sock without handling the coins. Will you take me to him?”
 ````
 
 ### Screen 12
 
 ````text
-The dice-man looks at the two clean coppers on his board as if James has done something odd. Then he picks them up and turns each one to the lamp. He checks the rims, both of them, before he puts them on his stack.
+Wren doesn't move. She looks at him for a long moment, the way you'd look at a coin you suspect is lead.
 
-"Didn't have to," he says. "But it squares my float, so." He takes his hand off the two marked coins and lets James lift them from the corner of the board. Once they're gone he breathes out through his nose, the way a man does when he puts down something heavy. He doesn't watch where James puts them.
+"Nothing." She says it flatly. "You want nothing."
 
-James puts both of them with the first one, in a separate fold of his belt pouch, away from his purse. They're as warm as the first. All three are warm in the same steady way, like coins that have been held for a long time.
+He has asked for the truth, and she doesn't say she'll give it. Her hands knot tighter in the ends of her shawl, and when she does speak her answer comes too fast.
 
-The cat answers over the bond before he's taken two steps from the crate.
+"He won't go back to the barrel. I'll see to that." She lets out a breath. "Nobody wants nothing. I'll find out what yours is."
 
-*Moved.* It sounds sure. *Off him. Onto you. Three now.* A pause while it checks. *Still thin. Thicker together.*
+She doesn't say yes. She turns and starts back down the bridge the way she came, quick and not looking round. After three steps she glances back to see whether he's coming.
 
-Behind them the dice cup rattles and comes down. Both dice stay on the board. Somebody wins four coppers and the dice-man pays without a fuss.
+The walk south takes them a quarter of an hour, through the same crowd going the other way. The lamps are all lit now and the crowd has thinned. The chestnut-seller's brazier is down to a red glow as they reach the stairwell, and Maudie watches them pass with her tongs in her hand. She doesn't say anything. Wren goes up the stairs first, two at a time, and James follows. The cat comes last, still its two feet behind.
 
-James walks north up the crossing. The bridge is a street here, and a crowded one. Tenements lean in over the road on both sides and shut out most of the sky. Laundry lines are strung across between upper windows. A cobbler is putting up his shutters. Two Fist men in dented breastplates go past in no hurry, talking about someone called Aldo who owes them both money. Halfway along, the road bends round the dark bulk of Wyrm's Rock. The old fortress sits on its island in the middle of the river. Its lower windows are lit and the upper ones are dark, and the noise of the bridge gets quieter in its shadow.
+On the fourth landing the strap of James's pack gives way. It's the left shoulder strap, good leather he has had since Tethyr, and it doesn't fray or tear. It parts cleanly, as if it had been cut. The pack drops off his shoulder and bumps down three steps before it stops against the wall. Something inside clatters.
 
-Past the Rock, a shutter slams open somewhere overhead. A woman tips a basin of grey washing-water out of a third-floor window without looking down first. Most of it misses. James gets the hem of his cloak and his left boot. The cat gets a spatter across its back, jumps sideways onto a doorstep and sits there with its fur standing out in wet spikes, giving James a look of complete betrayal. *Not me. That was for you.* It shakes itself hard, one leg at a time, and doesn't follow him again until he's walked on.
+Wren stops above him and looks at the pack, then at the strap hanging from his shoulder. She says nothing at all.
 
-The north end of the bridge opens into a small cobbled square in front of the Basilisk Gate. Its arch is set into the Lower City's outer wall. The gate is still open and lit by torches, and two bored Fist guards are waving carts through. Off to one side, by a water trough, stands the Lady's bowl.
+Behind the next door along, a dog starts growling, low and steady. It doesn't bark. A woman's voice says, "Hush, Bran, *hush*," and the dog doesn't hush. The cat flattens itself against the far wall and hisses at the door, the first sound it has made since the barrel.
 
-It's what the dice-man said it would be: a wide stone bowl on a post about waist-high, with a woman's face carved on the side facing the road. Years of hands and weather have worn the carving smooth, but the smile is still there. James counts four coppers lying in the bottom of the bowl, along with a dried marigold, a button, and some rainwater from the last shower, gone dark with leaves. In a square this busy, at this hour, that's very little.
+The room is at the top, under the eaves. There's a curtain for a door, two straw pallets and a shelf. A good iron pot stands on the windowsill, split down one side from rim to foot, and someone has stuffed rags into the crack and put a candle-end in it. The window looks out over the black river.
 
-Nobody's watching the bowl. A chestnut-seller on the far side of the trough is packing up her brazier. As she lifts the iron pan she nods across at him, then at the cat, which is still licking its shoulder.
+The boy sits on the nearer pallet with a boot in his lap. He's threading a new lace, a piece of twine. He looks up when the curtain moves, sees his sister, then sees who's behind her, and his face shuts.
 
-"There's that cat," she says, mostly to herself, and then louder: "Lass in a grey shawl was asking a minute since if anyone had seen a man with a cat. I said I hadn't." She shrugs and hoists the pan onto her hip. "I hadn't, then."
+"Pim," Wren says. "The sock."
 
-She doesn't say which way the girl went.
+"You *brought* him." It comes out flat. He looks at James. "I didn't cheat you. You paid what you said."
 
-· Time passes: 5 minutes
-· −2 copper → Dice-man at the crate
-· Received: Payout coppers ×2 ← Dice-man at the crate
-· New place: Basilisk Gate square
-· Lies here: The Lady's bowl receives 4 copper (Offerings lying in the Lady's bowl (Tymora's), not taken by anyone)
-· Journal: “The warm copper with the antler mark” updated
-· Travel: The Lady's bowl (15 minutes)
-· Changed: Payout coppers (James bought them from the dice-man and keeps them apart from his ordinary money)
-· In the camp: Dried marigold
-· In the camp: Button
-· New person: Chestnut-seller at the Basilisk Gate
+"The sock, Pim."
 
-Your records, changed:
-Money: 315 gp; 314 sp; 348 cp
-Carried: + Payout coppers ×2
+He holds out for a moment. Then he drags his bundle across the pallet, undoes it with his back half turned to them, and pulls out an old grey wool stocking. It's darned at the heel and knotted at the top, and the toe sags with weight. When he sets it on the boards between the pallets it doesn't clink. It's packed too tight for that. It sounds dull and solid, like a stone.
 
-Place: The Lady's bowl · Time: Day 1 · evening
+Wren crouches beside it and doesn't touch it.
+
+The cat has stopped at the curtain and won't come through. Its ears are flat. *Many,* it sends, and a moment later: *More than yours. Warm. All of it warm.*
+
+James can feel it from where he stands, a faint heat off the floor like a hearthstone an hour after the fire is out.
+
+Pim puts his hand on the knot, not to open it, just to keep it.
+
+"They're mine," he says. "I won every one." He looks at his sister and not at James. "It all evens out."
+
+Wren flinches as if he'd slapped her.
+
+· New place: Wren and Pim's room
+· Changed: Explorer's Pack (The left shoulder strap parted cleanly on the tenement stair, as if it had been cut. The pack fell down three steps and something inside clattered, but nothing was lost.)
+· Pim now has: Pim's sock of coppers
+· Journal: “The wrong coppers on the barrel” updated
+· Travel: Wren and Pim's room (25 minutes)
+
+Place: Wren and Pim's room · Time: Day 1 · evening
 ````
 
 **Player** (player t10):
 
 ````text
-I pause beside the bowl and turn toward the chestnut-seller.
+I set my damaged pack down and crouch a few feet from the stocking, leaving Pim space.
 
-“She may be looking for me. Did she have a barefoot lad with her? And which way did she go?”
+“You didn’t cheat me. And I’m not taking your money.” I show him the severed strap. “This happened after I bought those ten coppers. Your sister tells me you’ve had things breaking too.”
+
+I keep my hands away from the sock. “You know cards, Pim. If a stranger keeps letting you win, it’s worth asking what he gets out of it. Did the barrel-man ever ask you to do anything—or tell you to keep these coins?”
 ````
 
 ### Screen 13
 
 ````text
-The chestnut-seller settles the iron pan on her hip and gives the question a moment's honest thought. Her answer matches the rest of her: short, and not much interested.
+James sets the pack down against the wall, and the loose strap trails across the boards. He crouches a few feet from the stocking, on the far side of it from Pim, and holds up the end of the strap so the candle catches it. The cut is clean and straight across the leather, with no fraying at all.
 
-"No lad. On her own." She tips her head toward the arch of the Basilisk Gate, where the two Fist guards are waving a handcart through. "Came out of there, asked me and the trough-boy and the fellow with the pies, went back in. Looking in doorways." She shrugs. "Didn't look like trouble. Looked tired."
+Pim looks at it longer than he means to. One of his hands drifts to the boot in his lap, to the twine he was threading, and stops there.
 
-James turns to look at the gate, and the girl is already coming back out of it.
+"Laces go," he says. "That's laces. They're cheap." He keeps his other hand on the knot of the sock. "That's good leather."
 
-She's sixteen or seventeen, slight, with a grey wool shawl pulled up over her hair and pinned under her chin. It's been darned so many times that the darns have their own darns. Her hands are red to the wrist, the way laundresses' hands go. She comes out of the torchlight at a quick, careful walk with her eyes on the square. They pass over the bowl, then James, then the cat licking its wet shoulder by his boot. She stops. She doesn't come any closer until she has had a proper look at him, as long as she needs, and that is plainly where the boy learned it.
+He doesn't say anything else about the strap.
 
-Then she crosses to the bowl and stops on the other side of it, so the stone stands between them.
+Then James asks about the barrel-man, and Pim's face shuts again, though not as tight as before. He thinks it over. When he answers it comes out short, like a list he's been through before.
 
-"You're the man with the cat." She has the flat, plain vowels of upriver, Elturel or near it. "Who told my brother the coppers are bad."
+"Never asked me nothing. First night he asked was I from upriver. I said yes. He said the lady likes upriver boys." A shrug, one shoulder only. "Never asked my name. Never asked where I sleep. Lets me win, pays me, says what he always says."
 
-The cat stops licking and looks up at her. Its feeling comes over the bond, mild for once: *Soap. Lye. Smoke in the wool. Not the cellar smell.* After a moment it adds: *A little of the boy on her. Where she held him.*
+"Bridge money," Wren says quietly. "Spend it on the bridge."
 
-"I'm Wren," the girl says. She doesn't wait for James to give his name; she already has it. "He told me the Elfsong in the morning. I'm not waiting for morning." She draws a breath and keeps her voice level. "Pim's been playing that barrel since we came over the river. Most nights. He wins nearly every time, and he brings it home to me like a cat with a bird. I let him, because we need it." Her mouth tightens. "Then he went through a stair that's held for forty years. Then a dog on the bridge had his ankle, a dog that never bit anybody. I thought, that's a bad month. Everyone has a bad month."
+"Spend it on the bridge." Pim nods without looking at her. "He says it every time. I don't. You don't spend lucky money, that's stupid. That's how you lose it." His thumb moves on the knot. "So I kept them. He never said keep them. He said spend them. I didn't listen."
 
-She looks down into the bowl, at the four coppers lying in the dark water, and back up at James.
+Below them, through the floor, Bran has stopped growling. Somewhere further down the stair a door opens and shuts, and someone's feet go down to the bridge.
 
-"Corran, from the room under ours, played that barrel too. He was always on about his luck turning. Ten days back the Fist pulled him out of the harbour with a copper between his teeth. They said Umberlee took him, and folk should pay her better." She stops there. When she goes on, her voice is quieter. "Pim says you showed him a mark on the coins. Says you told him straight you didn't know what it does. That's why I came looking. Anyone else would have told him something."
+The cat hasn't moved from the curtain. *Warm,* it sends. *Still warm. Boy's hand on it.*
 
-The torches at the gate gutter in a gust off the river. Wren doesn't look away from him.
+Wren is still crouched by the stocking. She has been watching her brother's face the whole time he talked, and now she turns to James.
 
-"Someone gives that man those coins to pay out. Someone wants them in Pim's pocket and not their own. I want them out of Pim's pocket, and I want to know who." Her red hands close on the rim of the bowl. "I can't pay you what a sellsword gets. I can pay a little, and I'll owe you the rest. Will you help my brother?"
+"You heard him. Nobody asked him for anything." Her voice is lower than it was on the bridge, and it isn't steady. "He just won."
+
+"Rent got paid, didn't it," Pim says to the floorboards.
+
+Wren goes very still. Her hands knot in the ends of her shawl and stay there. For a moment she doesn't answer him at all, and she doesn't look at James either.
+
+When she does speak, it's to James, and it comes out fast, as if she wants it said before she can stop.
+
+"If it's on the coins, and it's on him, and it's on you now." She nods at the strap. "Then how does it come *off*? Throwing them in the river? Giving them back to the barrel? You know more about this than us. So you tell me."
 
 · Time passes: 5 minutes
-· Journal: “The warm copper with the antler mark” updated
-· New person: Wren
-· New person: Corran
+· Journal: “The wrong coppers on the barrel” updated
 
-Place: The Lady's bowl · Time: Day 1 · evening
+Place: Wren and Pim's room · Time: Day 1 · evening
 ````
 
 **Player** (player t11):
 
 ````text
-“Yes. Keep your money for food and rent.”
+“I know enough not to guess with your lives. Don’t throw them in the river, and don’t spend them. That might only put someone else where you are.”
 
-I rest a hand on the worn edge of the bowl. “I serve Tymora. That mark belongs to her sister, and I’ve already taken three of the coins myself. I can’t promise an easy cure, but I’ll help.”
+I stand. “I can mend wounds. I can’t lift a curse, if that’s what this is. We need a priest who can examine them. The Water Queen’s House is open tonight; I’ll pay for the examination.”
 
-“First, where’s Pim now? If he’s somewhere safe, leave him there and bring every marked copper you still have at home. Don’t spend them or throw them away—we don’t yet know what breaks their hold.”
-
-I glance toward the gate. “Do you know anywhere a priest can be found tonight, outside the Upper City?”
+I look at Pim. “Leave the sock tied for now. Will you both come with me? I’ve ten coins to show the priest already—we needn’t carry the rest through the streets.”
 ````
 
 ### Screen 14
 
 ````text
-Wren doesn't take her hands off the bowl when James says *yes*. She hears out the rest of it: the Lady, the sister, the three coppers he already carries. At *keep your money* her mouth goes thin.
+Wren watches James stand. The candle in the split pot leans its flame toward the curtain and straightens again.
 
-"I'll owe it, then," she says. "I don't take help I can't pay back. I'd rather owe you than be given."
+"Don't spend them." She looks at her brother. "He tells you to spend them. Every time."
 
-She looks down at the carved face on the bowl, worn almost smooth, then up at the rod on his belt.
+Pim doesn't look up. His hand is still on the knot.
 
-"The Lady." She doesn't sound like she's mocking it. She sounds like she's working out a sum. "Folk down here have stopped putting coppers in her bowl. Maybe she noticed, maybe she didn't." Then she gets to the parts that matter to her, in order.
+"I'm not leaving them." He says it to the stocking, low and flat. "Not here. Not with the curtain." He jerks his chin at the doorway, where the cat sits with its ears flat and refuses to come in. "Anybody on this stair could walk in. And I'm not going to the sea-witch's house either."
 
-"Pim's at home. We've a room on the bridge, back past the Rock on the river side. Kettle Row, top of the house, the one with the new boards on the stair where it went through under him. I told him to bolt the door and not come out for anybody, me included, unless I knock twice and say his name." She breathes in. "He'll do it. He's frightened, though he won't say so. He's got the nine in his coat. I made him take the coat off and hang it on the nail, so at least they're not on him."
+"Pim."
 
-Against James's boot the cat shifts. *Coat on a nail is still his coat.*
+"Tobin's lot went to them." Now he does look up, at James and not at his sister. "After. The Fist said the river had him, and she'd had her penny, so that was that. And the Water Queen's lot came and took the penny for the box. I saw." His shoulders come up. "I'm not taking mine to them."
 
-Wren goes on. "There's nothing else at home. That's the part I keep turning over." Her voice drops, the way it did when she talked about Corran. "Whatever he brought me, I spent the same day. Bread off the cart at the Rock. The landlord's man every seventh day. Lamp oil. Thread. It all went back out the door, copper by copper." She stops. "If what you say is true about those coins, I've been paying it round half the bridge for a month. The baker, Mother Tallis on the ground floor, whoever the landlord's man pays." She lets that sit, then: "I didn't know. I'm telling you because you should know."
+Wren's mouth sets, but she doesn't argue with him. It sounds like an old argument, one he has won before.
 
-She turns toward the torches in the gate arch and thinks about his last question.
+"Then you sit on them," she says. "You sit right there. You don't go down that stair, not for chestnuts, not for anyone. If Mother Kell knocks you tell her I said no." She waits until he gives her one short nod. Then she pulls the shawl up over her hair and ties it under her chin, properly this time.
 
-"A priest tonight, outside the wall." She shakes her head slowly. "Not one of the Lady's, not that I know of. There's Twin Songs, outside the north wall. They've a shrine for every god that couldn't get a house inside, and somebody's always awake there. I've never been in. I don't know if any of them are hers." She nods at the bowl. "The girl in blue comes down for this at first light. I've seen her from the trough when I'm fetching water. She's young and she's from the Hall. She won't stop for me. She might for you."
+She turns to James. She keeps a pace off, but she's standing in the doorway, ready to go.
 
-Then she lifts her chin a little. It's the same move her brother made.
+"I'll come." Her voice has gone quick and hard again. "The Fist told me the sea took Tobin as if it was the weather. If those priests say the same about my brother, I want to be there to hear them say it." She looks at his hands, then at the purse on his belt. "You'll pay them. I heard you. That's twice tonight you've paid for what's ours. I've not forgotten I asked what you want for it."
 
-"I can take you to the foot of our stair now, if you want to see him and the coat. Not up. Not tonight, not yet." She studies him one more time, as long as she needs. "Or you go and find your priest, and I go home and knock twice. Which?"
+Out on the landing the cat is already on its feet, tail up, facing the stairs. It's plainly glad to be leaving. *Out,* it sends. *Out of the warm.*
+
+Below them Bran has gone quiet. Down on the bridge somebody is laughing, and the river goes on moving under all of it in the dark.
 
 · Time passes: 5 minutes
-· New place: Kettle Row
-· A rumour of a place: Twin Songs
-· Quest: Free Pim from the marked coppers (reward: James refused Wren's money and told her to keep it for food and rent. She insists on owing him instead: "I'd rather owe you than be given.")
-· New person: Mother Tallis
+· Journal: “The wrong coppers on the barrel” updated
 
-Your records, changed:
-Goal: Free Pim from the marked coppers
-Quests: Free Pim from the marked coppers
-
-Place: The Lady's bowl · Time: Day 1 · evening
+Place: Wren and Pim's room · Time: Day 1 · evening
 ````
 
 **Player** (player t12):
 
 ````text
-“Go home to Pim. I’ll try Twin Songs tonight, and if I find no help there, I’ll be here for the girl in blue at first light. You can meet me here then.”
+“I gave my word. You won’t get a bill.”
 
-I lower my voice. “You didn’t know what you were spending. Whoever stamped those coins did. And hanging up the coat may not be enough, so stay with him tonight.”
+I turn back to Pim. “I won’t take your coins there. These ten are mine now, and I’ll start by showing them just one. Keep yours tied up, and stay away from the window until we’re back.”
 
-I place a clean silver in the Lady’s bowl, keeping the marked coins separate.
-
-“Lady, a little help finding your people would be welcome.”
-
-Then I set off for Twin Songs with the cat.
+I gather my pack by its sound strap and head with Wren toward the Water Queen’s House.
 ````
 
 ### Screen 15
 
 ````text
-Wren hears him out without moving. At *stay with him tonight* she gives one short nod, the way someone agrees to a thing they'd already decided.
+Wren's mouth moves, but whatever she meant to say about bills, she keeps it to herself. "You say that now," is all that comes out, and she turns to hold the curtain aside for him.
 
-"I'll sit up," she says. "First light, here." She watches James's hand go over the bowl and the clean silver drop in. It rings once on the stone and sinks into the dark water beside the four coppers and the marigold. Her mouth tightens. "That's two days' bread, that is." She doesn't say anything else about it. "Twin Songs is out the Black Dragon Gate and north along the wall. That's what folk say. I've not been."
+Pim looks past James at the window and the black river beyond it, as if he's never really looked out of it before. Then he drags the stocking across the boards to the far pallet, the one under the slope of the eaves, and sits down with his back to the wall and the sock in his lap.
 
-Then she turns back onto the bridge at her quick, careful walk, with her shawl pulled close. James loses her among the carts before she reaches the bend at the Rock.
+"Not stupid," he says to his knees. He doesn't look up again.
 
-The carved face on the bowl goes on smiling into the torchlight. Nothing answers the prayer, or nothing James can point to.
+James gets the pack up by its good strap. The broken one trails, so he tucks the end under the flap. The cat has already gone down to the first landing. As they pass Mother Kell's door, Bran gives one low sound behind the wood and goes quiet. Down at the brazier Maudie is scraping out her ashes. She watches Wren go by with a stranger, says nothing, and her face says plenty.
 
-He goes in under the Basilisk Gate with the cat at his heel. The Fist guards don't even look at the cat. The Lower City is louder than the bridge and steeper, all stairs and lanes winding up the side of the hill. Tavern doors stand open and spill light across the cobbles, and somewhere off toward the harbour a crier is still calling out the evening's *Mouth* to nobody in particular. James keeps the hill on his left and works east. Twice he asks a lamplighter the way and gets a pointed pole for an answer.
+The walk north takes most of half an hour. The crowd is thinner than before, mostly porters going home and Fist men changing watch. Wren keeps half a pace ahead and walks fast with her head down, the way a person walks who has crossed this bridge every day for a year and has never once enjoyed it. At the bend under Wyrm's Rock the cat slows by the Lady's box and looks up at the flaking face, then trots on without being called.
 
-Near the Black Dragon Gate, the buckle on his pack strap gives way with a small dry *tick*. The strap drops off his shoulder and the pack swings round against his hip. When James looks, the buckle isn't bent and the leather isn't worn through. The tongue has just snapped off clean where it meets the frame. He knots the strap, and it holds.
+Basilisk Gate stands at the north end of the span. It's a squat old gatehouse with two stone beasts gone shapeless with weather, and its doors stand open under torches. A pair of Fist guards lean in the arch. One looks at James's cloak and nods him through without a word. The other looks at Wren's red forearms and shawl for a long moment, and she stares back until he looks away.
 
-At his boot the cat looks up at the pack, then at him, and says nothing over the bond at all.
+"Every time," she mutters on the other side. Nothing more.
 
-Past the gate the walls fall behind and the Outer City starts again, lower and more cramped than the bridge. He follows the wall north. By the time the lanes open out in front of him it's full dark, a little before the ninth bell.
+The Lower City climbs away to the right, roofs stacked on roofs and lamps in the high windows. They go left and down instead. The streets get steeper and wetter, then flatten out into the smell of the harbour: tar, rope, fish guts, a hundred cookfires and the sea under all of it. A tavern door bangs open on a burst of singing and closes again. A man is asleep against a bollard with his hat over his face. Two sailors argue cheerfully in what might be Calishite about a goat. For a few streets nobody on earth cares about three-tined marks or a boy's sock of coppers, and the city is just a city on a damp late evening.
 
-Twin Songs earns its name before he can see much of it. The singing reaches him first: two hymns, then three, coming from different doorways, none in the same key and none willing to give way. The district is shrines packed in as tight as market stalls. There's a whitewashed chapel no bigger than a cowshed, with a painted sun over the door. A canvas awning shelters a stone with flowers heaped on it. Someone has turned the ground floor of a house into a temple and hung a carved wooden hammer above the window. Braziers and lamps burn everywhere. Candle-sellers work the corners with trays of cheap tallow stubs at a copper for three, and the whole place smells of smoke and hot wax.
+Wren stops at a corner where the street opens onto the quays.
 
-The cat stops with its nose up and shakes its head as if it's walked into a cobweb.
+"There."
 
-*Candles.* It sounds put out. *Everywhere. Too many. I can't find one smell in it.* After a moment: *No wet stone. Not near.*
+The Water Queen's House sits right on the waterfront, so close that the tide slaps at its footings. It's built of grey stone gone green and crusted where the spray reaches it, low and broad like something hunched against weather. It has no door at all, only a wide arch hung with a curtain of fishing net. Weights are knotted into the net: shells, sea-glass, lead sinkers, and here and there a coin. Lamplight comes through it green. Inside, water is moving, slow and steady.
 
-Halfway down the main lane, wedged between a cooper's yard and a shrine with its door shut and dark, is the only thing James has seen tonight that looks like the Lady's. It's a stout wooden post, as tall as a man and roofed with an old dented round shield, nailed from top to bottom with offerings. There are coppers, a few silvers, a lot of dice with holes bored through them, a cracked gaming token and a soldier's tag. Hundreds of them, hammered in so close that the post is more metal than wood. A painted board at its foot says, in uneven letters, *THE LAST THROW.*
+The cat stops ten feet short of the arch and sits down with its tail tight around its paws. *Salt,* it sends. *Cold. Wet stone.* A breath later: *Not the cellar smell. Different wet.*
 
-An old woman is up a short ladder against the post, nailing a strip of tarred canvas under the shield-roof. She's in her sixties, broad in the shoulder, with grey hair cropped like a man's. Her left sleeve is pinned up empty at the elbow, so she holds the nails in her teeth and the hammer in her one hand. She drives a nail home, spits the next one into her palm and looks down at James. She takes in the regimental cloak, the rod and the cat, much as the sergeant did at the checkpoint, only with more interest.
+A figure parts the net from inside before they reach it. She's a broad, weathered woman in a sleeveless robe of dark blue-green. Her grey hair hangs loose and damp to her shoulders, and her bare arms are tattooed wrist to elbow with rings of waves. She looks at James's purse first, just as Maudie said they would. Then she looks at his face, and last at Wren, whom she seems to know.
 
-"Lady's post," she says. "If you want a priest, the Hall's up the hill, and they'll let you in about the time you're dead. Down here you get me." She points the hammer at the post and all the metal on it. "Sellswords who make it home nail something up. Ones that don't, their friends do it for them." She puts the nail to the canvas and taps it in. "So. What've you brought her, soldier?"
+"The Queen sees anyone, at any hour," she says. Her voice is low and pleasant, and it carries over the water noise. "What do you bring her? And what do you want from her?"
 
- (Out of game: all four happened in the last turn and none needed a roll. James spoke to Wren, she agreed to sit up with Pim and meet him at first light and went home, and his silver went into the bowl apart from the marked coins.)
+· Changed: Explorer's Pack (James slung the pack by its good strap and tucked the broken end under the flap.)
+· Travel: The Water Queen's House (35 minutes)
+· New person: Priestess of the Water Queen's House
+· New person: Fist guards at Basilisk Gate
 
-· −1 silver → Lies here: The Lady's bowl
-· New place: The Last Throw
-· New place: Black Dragon Gate
-· Changed: Explorer's Pack (Near the Black Dragon Gate the buckle tongue on the pack strap snapped off clean, with the buckle unbent and the leather unworn. James knotted the strap and it holds.)
-· Journal: “Free Pim from the marked coppers” updated
-· Travel: The Last Throw (45 minutes)
-· New person: One-armed woman at the Last Throw
-
-Your records, changed:
-Money: 315 gp; 313 sp; 348 cp
-
-Place: The Last Throw · Time: Day 1 · evening
+Place: The Water Queen's House · Time: Day 1 · evening
 ````
 
 **Player** (player t13):
 
 ````text
-“Trouble, I’m afraid. James Worgen, formerly of Queen Zaranda’s army.”
+“James Worgen. I can offer five gold for your time and knowledge. If we need a spell, name its price before casting.”
 
-I wait for her to finish with the nail before showing her one marked copper, keeping it in my own hand.
+I keep the bundle pocketed. “I bought ten marked coppers tonight. They stay unnaturally warm, and sound leather parted cleanly soon after I took them. Each bears a small, three-tined mark. We need to know what they do, and how to end it safely.”
 
-“A man on Wyrm’s Crossing pays his winners with these. Black antlers stamped into the rim, and they stay warm. A boy’s been bringing them home for weeks; since then he’s fallen through a stair and been bitten by a dog. Another player turned up drowned, a copper between his teeth.”
-
-“I’ve taken three to keep them from being passed on. My familiar senses something clinging to their owners, and my luck’s already turning sour.” I indicate the knotted pack strap.
-
-“Do you recognise the work—or know someone who might? The boy still has nine.”
+“May I unwrap one for you to examine? The suspect coins aren’t my offering.”
 ````
 
 ### Screen 16
 
 ````text
-Ama finishes the nail first. She drives it home with two short blows, tests the canvas with a tug, and only then comes down the ladder. She has the knack of a woman who's done it one-handed for years: hammer through her belt, palm flat on the rungs. At the bottom she looks at the knotted pack strap, then at the copper in James's hand. She doesn't reach for it.
+The priestess's eyes go to his belt when he says *five gold*, and they stay there a breath longer than they did at the arch. Then she looks at his face, nods once and holds the net aside.
 
-"Zaranda's lot. Thought so, from the cloak." She spits the last nail into her palm and drops it into her apron pocket. "Ama Fennick. Twenty years guarding caravans on the Amn road, till a hill-giant's club decided I'd done enough."
+"Five buys the Queen's ear, and mine." She tips her head inside. "The basin's by the pool. Before you leave or now. She remembers either way."
 
-James tilts the copper to the lamplight. She leans in and squints at the rim without coming any closer, then straightens up.
+Inside, the House is one long low room, and the sea runs through it. A channel has been cut through the floor from wall to wall, and the harbour comes in under the seaward footing and goes out again. Black water lifts and settles in it, slow as breathing. Lamps of green glass hang from the beams. A shallow stone basin stands on a plinth at the near end, its bottom silted with coins. Past the channel, against the far wall, an old iron-bound sea-chest is bolted to the floor, with a slot cut in its lid and a heavy lock.
 
-"Maid's horns." She says it flatly, the way you'd say there's a rat in the grain. "Every sellsword knows them. You find them scratched inside your helm, you get a new helm." She frowns at the copper a moment longer. "That's not scratched, though. Somebody had a punch made for it. You don't do that for one coin. You do it for a sack of them."
+Wren comes in behind him and doesn't take her eyes off the chest.
 
-She listens to the rest without interrupting: the boy, the stair, the dog, the drowned man with a copper in his teeth. At the end of it she rubs the stump of her left arm through the pinned sleeve, slowly, like she's thinking with it.
+"You came up our stair," she says to the priestess. "After Tobin. You took his penny."
 
-"I've buried a fair few. Laid out more than that. Sellswords drown all the time, being drunk near water. Never seen one come up with a coin in his mouth that somebody didn't put there." She looks at James. "Fist says Umberlee, does it. Fist says a lot of things when it's short of men."
+"I did." The priestess doesn't sound sorry or unkind. "Mother Hessa, girl, if you've forgotten. The drowned man's coin is hers. It goes in her box." She turns to James. "Unwrap your one. Put it on the stone, not in the water."
 
-On the work itself she shakes her head. "I don't know it, soldier. I hammer nails. Down here they pray to whoever answers and never ask who's listening." She jerks her chin up the hill, where the Upper City's lamps sit above the wall. "There's a priestess at the Hall, Mother Ysolde. She came down a month back with a slate and wanted to know how much had been nailed up here since spring. Was it less, she asked. It was. She wrote it down and went off without a word, the way they do." Ama sniffs. "That girl in blue who empties the bowl at the Basilisk Gate is one of hers. If anybody up there knows Maid's work, it's Ysolde. Getting to her is your trouble."
+James works one copper loose from the rag and sets it on the plinth's dry lip. In the green light the little mark on the rim looks nearly black.
 
-Ten yards off, by the gate of the cooper's yard, a candle-seller has stopped with his tray. He's sorting tallow stubs that don't need sorting. When James looks his way he moves off toward the next corner, crying "three a copper" with the rest of them.
+Hessa doesn't touch it. She holds her palm flat a hand's width above it, the way you'd test a pan. Her eyebrows lift a little. Then she bends close, and for the first time her pleasant voice goes quiet.
 
-At James's boot the cat lifts its head. Its feeling comes over the bond short and cross: *Candles. Only candles. Can't tell.*
+"Three tines." She straightens up. "I know that mark."
 
-Ama hasn't noticed, or doesn't care. She slaps the post with her palm, and the coins and dice hammered into it clink.
+Wren's hands knot in the ends of her shawl.
 
-"Here's what the old hands did, for what it's worth. Bad coin, you nail it up. Let the Lady deal with her sister. You don't spend it and you don't throw it in the river. You give it to her." She pulls the hammer from her belt and holds it out handle-first, half a joke and half not. "I'll do yours for nothing. Three nails. Want them up?"
+"Not on coin from the street. On coin from mouths." Hessa nods across the channel at the chest. "The Fist bring me the drowned men's pennies, or I go and fetch them. Since spring, one in three has had that on the rim, and they come warm out of a cold mouth. The Queen's fork." She says it plainly, the way she'd say the tide was in. "She marks what she means to take. That's what it does, Master Worgen. It's a claim."
 
-· Time passes: 10 minutes
-· Journal: “The warm copper with the antler mark” updated
-· New person: Mother Ysolde
-· New person: Candle-seller with a tray
+"A *claim*." Wren's voice cracks on it. "On Pim. On a boy who's never been on a boat."
 
-Place: The Last Throw · Time: Day 1 · evening
+"The Queen doesn't ask who's been on a boat."
+
+Out past the net the cat has not moved from its place on the quay, ten feet back. *Salt,* it sends. *Cold.* Then, insistently: *Not the cellar smell. Not this place.*
+
+Hessa folds her tattooed arms.
+
+"How to end it safely, you asked. That's simple, and you won't like it, because people never do. Give her what's hers before she comes for it. Coin in the box, not in a sock or a pocket." She looks at the rag in his hand. "She's patient with those who pay."
+
+She lets that sit a moment, then goes on in the same even tone.
+
+"If you want more than my eyes and my word, I can ask her properly. The rite of seeing. It takes the time a candle takes to burn down a finger's width, and it'll show what's woven into that copper, if anything is." She doesn't glance at his purse this time. She doesn't need to. "Ten gold for the rite, on top of your five. Paid before I start."
+
+ (Out of game: none of the three needed a roll. Hessa took your five-gold offer and named her price before casting, and you set the copper on the plinth. The five gold is still in your purse until you hand it over, and the ten for the rite is waiting on your answer.)
+
+· Time passes: 5 minutes
+· Set aside: Marked coppers ×1
+· Changed: Marked coppers (Unwrapped from the rag and set on the plinth's dry lip for the priestess to examine; still James's coin.)
+· Debt: Five gold to Mother Hessa
+· Journal: “The wrong coppers on the barrel” updated
+
+Your records, changed:
+Carried: + Marked coppers; + Marked coppers ×9; − Marked coppers ×10
+Debts: Five gold to Mother Hessa
+
+Place: The Water Queen's House · Time: Day 1 · evening
 ````
 
 **Player** (player t14):
 
 ````text
-“One first, if you’re willing. I’d like to see what happens before we nail up the rest.”
+I count five gold from my belt purse into the offering basin, keeping the marked coppers separate.
 
-I take the hammer and set one marked copper against an exposed patch of wood, accepting a nail from Ama.
+“You’ve seen these before; that’s worth knowing. But before I pay for the rite: what spell will you cast, and will it reveal what the coin actually does, or only whether it carries magic?”
 
-“Lady, this was made to hurt someone who trusted his luck. I give it to you—not to pass the hurt along, but to ask you to end it.”
-
-Through the bond, I ask the cat, *Watch the thread on this one.*
-
-Then I nail the copper to the post.
+I leave the copper on the dry stone. “And have you seen someone surrender these coins and recover? I’m looking for a remedy that’s worked, Mother Hessa.”
 ````
 
 ### Screen 17
 
 ````text
-Ama takes a nail from her apron pocket. She doesn't hand over the hammer straight away. She looks at him, then at the copper, then gives a short nod, as if he's said the first sensible thing she's heard today.
+James counts five gold out of his belt purse, one coin at a time. They go into the basin and sink through the shallow water to settle on the silt with the other offerings. The rag of marked coppers stays in his left pocket. The single marked copper stays where he left it, on the dry lip of the stone.
 
-"One. Fair enough." She turns the hammer and gives it to him handle first, and holds the nail out between two fingers. "Bare patch there, under the dice. Mind the old tag, it's loose."
+Mother Hessa listens to the coins land rather than watching them. When the fifth one goes in she nods, as if the sound had answered something.
 
-James finds a gap in the wood about the size of a thumbprint. It's darker than the rest where rain has run down behind a soldier's tag. He holds the copper flat against it with the antler on the rim turned toward the post and sets the nail point on the worn Gate stamp. He says his prayer quietly, in the hymn-noise of the lane, and only Ama and the cat are close enough to hear it. Ama says nothing. She looks at the post while he speaks, not at him, the way soldiers look anywhere else when another man prays.
+"Paid, and she's heard it." She folds her tattooed arms again. "You ask what you're buying. Good. Most don't."
 
-On the first blow the nail skids off the copper's face and bends nearly double.
+She nods at the lamps.
 
-Ama grunts. She doesn't seem surprised. She takes the bent nail from him, drops it in her apron and gives him another. "Happens. Copper's slippery."
+"I light a candle and ask the Queen to lend me her eye. While it burns, anything woven shows to me the way oil shows on water. The colour tells me the kind of working: a ward, a binding, a curse, a seeming. That's the rite." She doesn't dress it up. "It won't read the coin to you like a letter. It tells me whether a hand worked it, and what sort of hand. What it was *for*, I'd be guessing past that, same as you."
 
-The second nail bites. Three blows drive it through the coin and into the wood, and the copper sits there among the dice and tags. It's one more small dull thing on a post covered in them.
+James knows the shape of what she's describing. He has stood behind temple clerics and hedge-wizards in more than one ruin while they did the same thing over a chest or a doorway. It's a seeing that shows the enchantment is there and what school it belongs to, and that's all it shows. It won't name what the copper does or who made it. Anything further is the caster's guess.
 
-James feels for the thread himself and can't find it. The cat can. It has come up close to the post, with its forepaws on the painted board, and stretches its neck toward the coin. It sniffs it and then turns its head to sniff James's belt pouch.
+Hessa hears his second question out, and this time she doesn't answer straight away.
 
-*Still yours.* It says it plainly. *Not cut. Longer now. From the wood to you, like a dog on a long rope.* It pauses and sniffs the post again. *The other two didn't change. The nail didn't do anything to it.* After a moment it adds: *The post smells of a lot of hands. Old ones. No wet stone in it. Only this one.*
+"Living hands, you mean." Her eyes go to the chest across the channel. "The drowned don't come back to tell me how they're keeping."
 
-Ama has put two fingers on the nailed copper, the way you'd test a horseshoe. She keeps them there a moment and then takes them away.
+The water lifts in the channel and settles again.
 
-"Still warm." She rubs her fingertips together. "Everything else on that post is cold as a grave by this hour." She looks at the copper for a while, and then at the cat sitting by the board with its tail curled round its feet, watching James. "Your beast doesn't look pleased with it."
+"One did. Gerta, a carter's wife off Tallow Street, in early summer. She brought me three warm pennies her man had won and asked me to take them. I took them. She still comes on Tendays and puts in her copper." Hessa shrugs, one slow shoulder. "She lives. That's what I can tell you. Whatever's woven in them, the Queen's patient with those who give her what's hers."
 
-She takes the hammer back and slides it through her belt. She doesn't offer the other two nails.
+"And her luck?" Wren says.
 
-"I've nailed up plenty that was meant to end something. Mostly it doesn't, and the man feels better anyhow." She jerks her chin at the coin. "That one's not making anybody feel better."
+"Ask her. I'm not her mother."
+
+Wren's hands go still in the ends of her shawl. She's looking at the chest again.
+
+"Tobin never gave his up." It's mostly to herself. "He kept every one."
+
+"He kept what was hers," Hessa says, not unkindly, the way she might say the tide had turned. "And she came for it."
+
+She looks back at James and at the copper on the stone between them.
+
+"So. The rite's ten more, before I light the candle. Or you take your coin and go and find Gerta. The Queen's not in a hurry. She never is."
+
+Outside, beyond the net, the cat is still sitting ten feet off on the quay with its tail wrapped round its paws, watching the green light.
+
+ (Out of game: none of the three needed a roll. Paying the five gold is a plain action, and both questions were honest ones that Hessa answered directly. The turn ends on her question about the ten-gold rite, which is yours to answer.)
 
 · Time passes: 5 minutes
-· Given: Payout coppers → Lies here: The Last Throw
-· Changed: Payout coppers (James nailed it to the Last Throw post with Ama Fennick's hammer and nail as a test.)
-· Ama Fennick uses: Nails ×2, 18 left
-· Journal: “The warm copper with the antler mark” updated
+· −5 gold (Five gold into the offering basin at the Water Queen's House, the fee James offered Mother Hessa for her time and knowledge)
+· Debt settled: Five gold to Mother Hessa
+· A rumour of a place: Tallow Street
+· Journal: “The wrong coppers on the barrel” updated
+· New person: Gerta
 
 Your records, changed:
-Carried: − Payout coppers
+Money: 310 gp; 313 sp; 348 cp
+Debts: —
 
-Place: The Last Throw · Time: Day 1 · evening
+Place: The Water Queen's House · Time: Day 1 · evening
 ````
 
 **Player** (player t15):
 
 ````text
-“Still tied to me, according to him. Longer rope, same knot.”
+“Then let’s establish what we can. Ten gold for the rite.”
 
-I nod toward the nailed coin. “May I borrow the hammer once more? I shouldn’t leave it where someone might take it. Ysolde ought to see that a nail through it changed nothing.”
+I count out the fee. “Examine this copper, and me as well if the spell allows. I’d like to know whether there’s a working on the bearer separate from the money. No surrendering the coins yet.”
 
-As I work it free, I keep my voice low. “Is there a way to send word to the Hall tonight? Someone was listening by the cooper’s yard just now. Could be idle curiosity, but I’d rather not give whoever made these another night unchallenged.”
+I glance at Wren. “Then we ask Gerta what happened after she gave hers up.”
 ````
 
 ### Screen 18
 
 ````text
-Ama looks at him, then at the coin, and pulls the hammer from her belt again. She turns it round so the claw end faces him.
+James counts ten gold pieces out of his belt purse. They go into the basin after the first five, one by one, and settle into the silt.
 
-"Good. I don't want it on my post anyhow." She puts her hand flat on the wood beside the copper, as if she's holding the post steady for him. "Get the claw under the head. Rock it, don't yank. That wood's older than me."
+Mother Hessa nods as the tenth lands. She takes a stub of candle from a niche in the wall. It's grey sea-tallow, and it smells of fish oil when she lights it from the nearest lamp. She stands it on the plinth beside the copper, wets two fingers in the channel and draws a line of seawater round the candle and the coin together.
 
-The nail is barely a minute old, and it comes out fairly easily. James works the claw under the head and rocks it twice, and the nail draws out with a dry squeak. The copper comes loose with it. It slides off the shank, hits the edge of the painted board at the foot of the post and rolls a short, tight curve across the letters of THE LAST THROW. Then it stops, standing on its rim. The pierced Gate stamp faces the lane, and the little black antler sits right at the top.
+"You as well, you asked." She looks him up and down the way a fishwife looks at a catch. "The seeing reaches as far as a long room. You're in it whether I want you or not. Stand where you are and keep still."
 
-It stays like that for a breath, then another.
+Wren backs off until her shoulders touch the wall by the net. She keeps her hands knotted in her shawl and doesn't take her eyes off the candle.
 
-Ama looks at it and says nothing. The cat flattens its ears.
+Hessa begins. It isn't much to watch: a low hum with no tune to it, and words in an old cant that sound like the names of tides. Her eyes go half-shut and unfocused, the way a person's do when they look through water at the bottom. The flame burns down. The black water lifts and settles in the channel. Out on the quay, the cat hasn't moved.
 
-When James bends to pick it up, it tips over against his fingers as if it had only been waiting for him. It's as warm as ever, and the nail-hole through the stamp is clean.
+The candle is about halfway down its finger's width when Hessa's humming stops.
 
-Ama takes the hammer back and pulls the nail off the claw. She looks at it and drops it in her apron pocket with the bent one. When James speaks quietly about the Hall and the man by the cooper's yard, she doesn't turn to look. She keeps her eyes on the post.
+"Mind," she says sharply. "Over you—"
 
-"Candle-boys." She keeps her voice down too. "Thirty of them on this lane, and every one listens. That's how they know whose lamp's out and who'll buy a stub. Didn't know that one's face. They come and go." She rubs her stump through the pinned sleeve. "Doesn't mean anything. Doesn't mean nothing, either."
+Something in the beam above James gives a small dry *tick*. The chain of the green glass lamp over his head has parted at one link, cleanly, the way the strap did. The lamp drops, oil and flame and all.
 
-About the Hall, she shakes her head.
+[Roll card] James Worgen · Saving throw — Dexterity saving throw: get clear of the falling lamp (Dexterity +2, Cloak of Protection +1)
+What adds to the die: +3 1d20+3, +1 Tethyrian Soldier's Cloak (Cloak of Protection)
+DC 12
+Rerolls left: 2
+No reroll on this card: its damage is already dealt, and a new die would not redo it.
+The die is cast on the server; tap it to see how it fell.
 
-"Nothing goes up through that gate after dark unless it's a patriar or it's paid for. You can leave a letter with the Watch at the inner gatehouse. Give them a silver and it goes up the hill with the morning bread, if they feel like it. That's first bell. Same hour your girl in blue comes down for the bowl." She tips her head at the whitewashed chapel with the painted sun over the door. "Sun-priest keeps ink and scraps of paper for folk who want their prayers written down. He's awake. He's always awake. They think it's holy."
-
-She hangs the hammer back on her belt and looks at the coin in James's hand, then at him.
-
-"That's all the roads up the hill there are tonight. Unless you're the sort that climbs walls, and you don't look it."
-
-· Time passes: 10 minutes
-· Changed: Payout coppers (Pulled back off the Last Throw post; the nail left a clean hole through the stamp.)
-· Received: Payout coppers ← the camp
-· Ama Fennick now has: Spent nails ×2
-· New place: Sun-chapel of Lathander
-· New place: Inner gatehouse to the Upper City
-· Journal: “The warm copper with the antler mark” updated
-
-Your records, changed:
-Carried: + Payout coppers
-
-Place: The Last Throw · Time: Day 1 · evening
+[Roll the die]
 ````
 
-**Player** (player t16):
+**Player** (player t15 card 1):
 
 ````text
-“I’ve climbed enough walls to appreciate a door. Thank you, Ama.”
-
-I secure the pierced coin with the other two and head to the sun-chapel. At the doorway, I call softly, “May I come in? I need advice about a suspected curse.”
-
-If admitted, I introduce myself and show the priest the antler mark without handing over the coin. “These are being paid out at a game on Wyrm’s Crossing. Misfortune seems to follow their owners, including a child I’m trying to help. Do you have any way to examine them tonight?”
+[Roll the die]
 ````
 
 ### Screen 19
 
 ````text
-Ama raises the hammer an inch from her belt. It's as near to a salute as she gets. "Doors are for officers," she says, and goes back up her ladder.
+[Roll card] James Worgen · Saving throw — Dexterity saving throw: get clear of the falling lamp (Dexterity +2, Cloak of Protection +1)
+What adds to the die: +3 1d20+3, +1 Tethyrian Soldier's Cloak (Cloak of Protection)
+DC 12
+Rerolls left: 2
+No reroll on this card: its damage is already dealt, and a new die would not redo it.
+Die: 2
+2 + 3 + 1 = 6
+Failure — 6
 
-James puts the pierced copper in with the other two, in the separate fold of his pouch. Three warm coins lie against each other. He walks down the lane toward the whitewashed chapel.
-
-It's smaller up close than it looked from the post, a cowshed with ambitions. Someone has painted the sun over the door in good yellow, and someone else, less steady, has touched up the rays since. The door is propped open with a brick. Inside are two benches, a plain stone table for an altar with one fat lamp burning on it, and a tiled floor with a sunburst set into it in chipped orange and cream. It smells of lamp oil and the kind of cheap frankincense that's mostly pine resin.
-
-A man sits on the nearer bench with a ledger open on his knee, doing sums with a stub of pencil and losing. He's about fifty, round in the face and thin on top, in a rust-coloured robe that has been let out at the waist at least once. He looks up at James's voice and shuts the ledger with what looks like relief.
-
-"Come in, come in. Advice is free, the incense is a copper and the benches are terrible." He gets up with a small grunt. "Brother Aubrin. Curses, you said?" He looks at the cat, which has walked past James's boots and sat down in the middle of the sunburst, right in the lamplight, as if the place had been laid out for it. "Is it the cat? People sometimes think it's the cat."
-
-James gives his name and keeps the copper in his own palm, rim to the lamp. Aubrin bends to look. He doesn't reach for it. When he finds the antler his mouth goes small and tight. He straightens up and glances at the open door, the way a man checks who's in earshot before he says a word his mother didn't like.
-
-"Yes. I know whose that is. I'd rather not say it under this roof, if it's the same to you." He rubs his thumb across his fingertips. "Stamped, too, not scratched. That's somebody's trade."
-
-He listens to the rest: the game on the crossing, the child, the misfortune that follows the coins. At *child* he stops fidgeting.
-
-"Examine them. Well." He looks at the lamp, then at James. "I'm a dawn-priest in a shed, Master Worgen, I'm not the High House. But I can tell you whether there's anything *on* it, and roughly what sort. It takes a little while to do it properly. Ten minutes or so. Sit, if you can bear the bench."
-
-He doesn't wait for an answer. He kneels on the sunburst, a polite foot from the cat, folds his hands and starts a low murmured prayer that goes round and back on itself, the same few lines over and over. The lamp flame stands very straight. James sits. The bench has one leg shorter than the others and rocks every time he shifts his weight. The cat watches the priest's lips move and its ears twitch with the rhythm.
-
-The prayer stops. Aubrin opens his eyes and looks at James's hand. Then his gaze moves. It goes to the pouch at James's belt, then off past James's shoulder toward the chapel's back wall, and slowly down, as if he's following something along the floor.
-
-"Hm," he says. Then, more quietly: "Hm."
-
-"There's a working on it. On all three; I can see the other two through your pouch. Enchantment, near as I can read it. Faint, like a hair caught in the light." He lifts one finger and draws a line in the air. It runs out of James's hand and off through the back wall. "But it doesn't stop at the coin. It runs *off*. Out that way, south and west, low down, like it's going downhill toward the river. Past where I can follow it." His finger comes back and makes a second, shorter line, from the coin to James's chest. "And there's another one, short and fresh, from the coin to you. Like a tether. The long one is the old one."
-
-He sits back on his heels.
-
-"I've seen a lot of charms on coins. Lucky pennies, love-tokens, a few nasty little things from the docks. They all stop at the edge of the metal. This doesn't. Somebody is holding the other end of it." He looks at the cat, and then at James. "I don't know what happens to whoever's holding the other end. Nothing bad, I'd guess, or they'd have stopped."
-
-He gets up off his knees with another grunt and nods at the corner of the stone table. A clay pot of ink sits there with a pen in it and a little stack of cut paper squares.
-
-"I can't take it off you. I wouldn't know where to start, and I'd rather not start wrong." He wipes his palms on his robe. "If you're writing to the Lady's people up the hill, the paper's there, and the Watch takes letters at first bell."
-
- (Out of game: neither of those needed a roll. Both happened in the last turn: James called at the door and Brother Aubrin let him in, then James gave his name, showed the copper while keeping it in his palm, and Aubrin agreed to examine it and cast his ritual.)
-
-· Changed: Payout coppers (Put back with the other two marked coppers in the separate fold of his pouch; Brother Aubrin read a working on it)
-· Journal: “The warm copper with the antler mark” updated
-· Travel: Sun-chapel of Lathander (20 minutes)
-· New person: Brother Aubrin
-
-Place: Sun-chapel of Lathander · Time: Day 1 · evening
+[Onward]
 ````
 
-**Player** (player t17):
+**Player** (player t15 card 2):
 
 ````text
-“Thank you, Brother. That’s more than we knew when I came in.”
-
-I look toward the wall where he traced the longer thread. “While your spell lasts, could we step outside and see whether its direction changes as we move? I’m not asking you to follow it into danger—just a short walk along this lane. If we can narrow down where the other end lies, we’ll have something useful to bring Mother Ysolde.”
+[Onward]
 ````
 
 ### Screen 20
 
 ````text
-Brother Aubrin is already getting up when James says *outside*. He keeps his eyes half on the empty air by the back wall, the way a man carries a full bowl.
+James is still keeping still, as she told him, and the warning comes half a breath too late. The lamp clips his left shoulder on its way down and bursts on the stone at his feet. Green glass skitters across the floor towards the channel. Hot fish-oil spatters his collar and the side of his neck, and a lick of flame catches the edge of the regimental cloak before he slaps it out. It's a small burn that stings, the kind you get from a cookfire. The oil on the floor gutters and goes out in the wet.
 
-"Yes. Good. Quickly, though. I can hold it a few minutes more, and then it goes whether I like it or not." He steps over the cat on the sunburst. "Mind the brick."
+Wren has her hand over her mouth.
 
-Out in the lane the hymns are still competing and the braziers are still smoking. Aubrin stands on the chapel step and turns slowly until he's facing south-west, across the roofs toward the dark line of the city wall. He lifts a hand and points along the line as he sees it.
+Hessa hasn't moved, and she hasn't stopped looking. Her eyes are still unfocused.
 
-"There. It doesn't bend for the wall or the houses. It goes straight through them."
+"There," she says quietly. "Did you see that? No, you didn't. I did."
 
-James walks him north up the lane, past the cooper's yard and the Last Throw, where Ama is up her ladder again and doesn't look down. A scout takes a bearing this way on a far-off campfire: you sight it from one spot, walk a good distance across, and sight it again. If the two lines meet close by, the fire is close. If they come out parallel, it's a long way off. James stops Aubrin about three hundred feet on, at the corner where the lane meets the wall road, and asks him to point again.
+She lets the candle burn the last of its width before she speaks again. When the flame reaches her mark she pinches it out and looks at him with her own ordinary eyes.
 
-Aubrin turns and squints. His arm comes up almost exactly where it was on the step, as near as James can judge against the roofline. If it has moved at all, it's by less than a finger's width.
+"Hear it all, since you paid for all of it." She points at the copper on the stone first. "That one shows bruise-dark. That's the colour of a curse, or as near one as makes no difference. It's no ward, no seeming. Something was laid on it to do harm, and laid on purpose. There's a thread off it, fine as a hair, running out of the coin and through the wall." She turns her hand, and her finger settles south and a little east, across the harbour mouth and over the river. "That way. A long way out, and taut."
 
-"Same," Aubrin says. He sounds a little disappointed. "It's run beside us the whole way, like a rope on a towpath."
+"The same in your pocket. Nine of them, nine threads, all pulled the same way like lines off one boat." She tips her head at his gear. "The rest is yours and clean. The cloak's an old ward, soldier's work. There's something quiet in the boots, and the rod in your belt is bound to you, and I won't ask by whom. The coin in your fist shows nothing. It's plain metal to me."
 
-James knows what that means. Three hundred feet makes no difference to the bearing, so the other end isn't anywhere in Twin Songs or just over the wall. It's a long way off, past the Lower City at least. Straight down that line lies the harbour, and beyond the harbour the river, and the south bank across it. A pointing arm in the dark won't separate those.
+She pauses, and for the second time tonight her voice drops.
 
-Aubrin lowers his hand slowly. "One more thing, for what it's worth. It slopes. Not much. As if wherever it's going is lower than we are." He shrugs. "Everything's lower than this hill, mind you. The river is, the cellars are. I can't tell you which."
+"Then you. You asked whether there's a working on the bearer apart from the money. There's no thread on you. But there's a smear of the same dark on your hands and down your left side, where the pocket hangs, like a man who's been handling tar. When that chain went, the threads off your pocket pulled tight all at once. The smear on you went darker for a breath, and the lamp fell." She looks at the broken glass. "Then it eased."
 
-On the walk back a candle-seller swings his tray round a corner, and a stub of tallow, still lit, flips off the edge and lands on James's cloak. It smoulders on the wool for half a breath before he slaps it out. It leaves a thumb-sized brown scorch on the hem, next to the stain from the washing-water. The seller says "sorry, sorry, three a copper" and is gone. He's a different man from the one by the cooper's yard: older, and bald under his cap.
+She lets that sit, and then goes back to the Queen as if she had never left her.
 
-The cat watches the stub roll into the gutter and sends nothing over the bond except a flick of its tail.
+"The Queen holds her lines out over the water. That's how she reels in what's hers." She doesn't make it sound any kinder than that. "The girl's clean, if you wanted to know. Nothing on her at all."
 
-At the chapel door Aubrin blinks a few times and rubs his eyes. "That's it gone. I'm seeing walls again." He stands aside to let James in first. Then he looks him over, from the scorched hem to the knotted strap, and his voice drops into the careful, exact tone he used over the coins.
+Wren lets out a breath that sounds as if she'd been holding it since the stair. Her hands loosen in the shawl ends for the first time since the bridge, then tighten again.
 
-"Master Worgen, I'll ask plainly. Where are you sleeping tonight? I don't like the thought of you on a stair, or near water, with those in your pouch. The floor in here is hard, but it's dry and it doesn't go anywhere, and I'm up all night anyway."
+"Clean," she says. "It's not on *me*." She looks at James's scorched collar, then at the floor. "It's on him, though. And on Pim, a sock's worth." Then, faster: "Gerta, then. You said it, so we go and ask her. Where's Tallow Street?"
 
-· Time passes: 10 minutes
-· Changed: Tethyrian Soldier's Cloak (Cloak of Protection) (A candle-seller's lit tallow stub flipped onto the hem and scorched it before James slapped it out.)
-· New place: Corner of the lane and the wall road
-· New person: Bald candle-seller
+"Up behind the fishmarket, where the chandlers boil their fat. You'll smell it before you find it." Hessa wipes her wet fingers on her robe. "Gerta's the carter's yard with the blue gate. She'll be abed. Carters keep early hours."
 
-Place: Sun-chapel of Lathander · Time: Day 1 · evening
+Wren looks at the net, then back the way they came, towards the bridge where Pim is sitting with his back to the wall.
+
+"Abed or not," she says to James. "It's not far, is it? Then back. He's on his own."
+
+The copper still lies on the dry lip of the stone where James set it. Hessa hasn't touched it.
+
+· roll: Dexterity saving throw: get clear of the falling lamp (Dexterity +2, Cloak of Protection +1): 6 vs 12 — failure · damage 1 · HP: 38 → 37 of 38 (Dexterity saving throw: get clear of the falling lamp (Dexterity +2, Cloak of Protection +1))
+· Time passes: 15 minutes
+· −10 gold → Mother Hessa
+· Changed: Tethyrian Soldier's Cloak (Cloak of Protection) (A falling lamp's burning oil caught the edge before James slapped it out. It's lightly scorched, with no lasting damage.)
+· Journal: “The wrong coppers on the barrel” updated
+
+Your records, changed:
+James Worgen: HP 37/38
+Money: 300 gp; 313 sp; 348 cp
+
+Place: The Water Queen's House · Time: Day 1 · evening
 ````
 
-**Player** (player t18):
+**Player** (player t16):
 
 ````text
-“I’d be grateful for the floor. I’ve promised to meet Wren—the boy’s sister—at the Lady’s bowl by the Basilisk Gate at first light. Please wake me in time to get there.”
+“Gerta, then straight back,” I tell Wren.
 
-I unroll my bedroll well away from the lamp and anything that might fall, keeping the marked coins secured separately.
+I use the rag to gather the copper without touching it and secure all ten together again.
 
-Before settling down, I ask, “May I put your name to what you found when I speak to Mother Ysolde?”
+“Thank you, Mother Hessa. What you saw matters. I’m not yet convinced whose line it is.”
+
+I shoulder my pack by its remaining strap and head with Wren and the cat for the carter’s yard with the blue gate on Tallow Street.
 ````
 
 ### Screen 21
 
 ````text
-Brother Aubrin looks relieved, like a man whose sums have finally come out.
+James folds the rag over the copper on the plinth and closes it into his fist without his skin touching the metal. He knots the ten of them back together. The bundle is warm through the cloth and goes back into his left pocket.
 
-"Good. First light, the bowl at the Basilisk Gate." He says it twice under his breath, the way people do when they mean to remember. "I'll have you up well before it. It's a fair walk from here, back through the Black Dragon Gate and right across the Lower City. Allow most of an hour if the streets are wet."
+Mother Hessa watches him do it. When he thanks her and says he isn't convinced whose line it is, she takes her time answering.
 
-James picks a spot by the back wall, away from the lamp on the altar and clear of the bench, where there's nothing above him but whitewashed plaster and roof beams. He unrolls his bedroll. The three warm coppers stay in their own fold of the pouch, and he keeps the pouch on him. The cat watches him get settled, then turns round twice on the end of the bedroll and lies down across his feet, facing the door.
+"You paid to see. You saw." Her voice is still low and pleasant, but she has stopped looking at his purse. Her eyes go to the broken green glass by the channel. "Whose hand is on the line doesn't change which way it pulls. The box will be here when you've worked that out."
 
-At the question about his name, Aubrin thinks for a moment and rubs the back of his neck.
+She holds the net aside for them. She doesn't wish them well.
 
-"You may. I saw what I saw, and I'll stand by it." He nods toward the stone table. "I wouldn't lean on it too hard, though. Up the hill, a dawn-priest from a shed in Twin Songs is somebody they'll believe about what he *saw*. What it *means* they'll want to work out for themselves, and fair enough." He looks at the ink pot. "So here's what I'll do, if you don't mind. While you sleep I'll write it down: what I cast, what I found, which way it ran, the two bearings. My own hand and my name at the bottom. Then she has it from me in plain words, not from you remembering what I said." He picks up the pen. "You can take it or leave it in the morning. I'm awake anyway."
+The cat gets up as soon as James comes through the arch. It keeps its two feet off and its tail high, and it doesn't look back at the House.
 
-He sits down on the rocking bench with a square of paper on his ledger and begins writing slowly, his lips moving. The bench rocks every time he dips the pen.
+Tallow Street is ten minutes off, up behind the fishmarket. The market is shut for the evening. Its stone slabs stand wet and empty, and a man in a leather apron is sluicing them down with buckets from a cistern. Gulls stand on the gutters and complain about it. Two streets further up, the smell Hessa promised arrives: hot fat, rendered and boiling somewhere behind high walls. It's thick enough to taste. A chandler's boy sits on a doorstep under a lamp, eating bread with his eyes shut. Wren walks fast and says nothing the whole way. Once she looks at James's scorched collar, then away.
 
----
+The carter's yard is easy to find. Its gate is the only blue one in the street, two tall leaves of planking with the paint gone chalky, and a wicket door cut into the left leaf. Behind it a horse shifts and blows.
 
-The rain Ama was racing comes a little after the tenth bell. It's soft at first, then steady on the roof. Twin Songs goes quieter under it, though not silent. One hymn keeps going somewhere down the lane, thin and stubborn, long after the others have stopped.
+Wren doesn't wait for James. She hammers on the wicket with the side of her fist, three times, then three more.
 
-Some time after midnight James wakes up because something cold is landing on his cheek, again and again. A drip is coming through the roof. There's just the one, falling from a beam directly over his head. Everywhere else in the chapel the plaster is dry.
+A dog barks once, deep, somewhere in the yard. After a while a light comes, swinging. The wicket opens the width of a face. The face belongs to a heavy woman of fifty or so, with a shawl over her nightdress, a lantern in one hand and a fire-iron in the other. She looks Wren up and down, then James, then the cat, and doesn't lower the iron.
 
-Aubrin is already there with a clay bowl. He puts it on the floor beside James's head, looks up at the beam, then down at James.
+"If this is about the load for Beregost, he's not taking it. Not with that wrist."
 
-"That's never leaked before." The drip hits the bowl with a small *plink*. "Mind you, it's never had anyone under it before, either." He shuffles back to his bench and sits down. He doesn't pick up the pen for a while.
+"Gerta?" Wren is out of breath. "Mother Hessa sent us. The warm pennies. Your man's three, in summer. You gave them to her box." She swallows. "Did it come off him after?"
 
-The cat lifts its head when the bowl goes down, sniffs the drip, and puts its chin back on James's ankle. Over the bond it sends nothing but *Wet. Not us. Just roof.*
+Gerta looks at her for a long moment. The lantern hisses.
 
----
+"Hessa." She says the name the way you'd mention a landlord. "She tells everybody that, does she? Gerta gave the Queen her due, and Gerta lives." She snorts. "I live. Nobody said anything about Harl."
 
-Aubrin wakes him with a hand on his shoulder. The windows are still black. The rain has worn down to a drizzle, and the drip into the bowl comes only now and then. Aubrin smells of lamp oil, and two cups of something hot are steaming on the stone table.
+She counts on the fingers of the hand holding the iron, so the iron wags with each one.
 
-"Before the fifth bell, Master Worgen. You've time, if you don't dawdle." He nods at the cups. "Mint and whatever else was in the tin. It's not much, but it's hot."
+"He won them in spring at the bridge foot, by the toll queue. A little fellow with three walnut shells on a plank. Not the barrel man, a different one. Three coppers, and the fellow tells him to spend them on the bridge. He doesn't. He brings them home because they're warm in his pocket, and I don't like that, so I take them down to the House myself in Flamerule. Then the mare went lame that same month. The axle went on the Nashkel road. A wheel came off in Wyrm's Crossing in front of the Fist, and they fined him for blocking the way." The fourth finger. "Last month he came off the box on a dry road on a clear day and broke his wrist. Says he doesn't know how. He's driven since he was nine."
 
-The cat is already up and sitting by the door with its nose in the damp air. *Rain. Mint. Nobody came to the door all night. Only the priest walking about.*
+Somewhere behind her in the dark house, a man snores, long and miserable.
 
-Beside the cups lies a square of paper, folded once, with a dribble of candle-wax pressed on it for a seal. Aubrin pushes it an inch toward James with one finger.
+"So you ask did it come off him." Gerta lowers the iron at last. "I put a copper in her box every Tenday, because I'd rather pay than find out what happens if I stop. And he hasn't drowned. That's all I know about it." She looks at Wren properly now, and at her red forearms. "Who's got them, then, girl? Not you, by your face."
 
-"There it is. What I saw, the way I saw it, and my name." He rubs his eyes. "Take it or leave it, like I said. I won't be offended either way."
+· Changed: Marked coppers (Taken back off Hessa's plinth with the rag and knotted in with the other nine in his left pocket.)
+· Changed: Marked coppers (The tenth copper was knotted back into the same rag; all ten are together in his left pocket.)
+· New place: Carter's yard with the blue gate
+· Journal: “The wrong coppers on the barrel” updated
+· Travel: Carter's yard with the blue gate (20 minutes)
+· New person: Harl
+· New person: Walnut-shell man at the bridge foot
 
-· Time passes: 6 hours 55 minutes
-· Brother Aubrin now has: Brother Aubrin's sealed note
-· In the camp: Clay bowl under the drip
-
-Place: Sun-chapel of Lathander · Time: Day 1 · night
+Place: Carter's yard with the blue gate · Time: Day 1 · evening
 ````
 
-**Player** (player t19):
+**Player** (player t17):
 
 ````text
-“I’ll take it, and gladly. Thank you for the shelter—and for putting your name to this.”
+“Her brother. And me—I bought ten off him before I understood the danger.” I glance at Wren. “So giving them up isn’t enough. I’m glad we asked.”
 
-I drink the hot mint, tuck Aubrin’s note somewhere dry, and pack my bedroll. Before leaving, I set five silver beside his ledger. “For the chapel’s oil and roof. You’ve spared me a night of testing the stairs at an inn.”
+I turn back to Gerta. “Thank you. I won’t wake Harl. My name’s James Worgen; if I find a remedy that actually works, I’ll bring word.”
 
-Then I head for the Basilisk Gate bowl with the cat, taking the wet streets carefully.
+I head back toward Pim’s room with Wren. “Tonight we get him away from that window and those stairs. Tomorrow I’ll take this to the Lady’s Hall. I won’t mistake Hessa’s guess for a cure.”
 ````
 
 ### Screen 22
 
 ````text
-Aubrin waves the thanks off with his cup. "Thank the roof. It did its best." The mint is hot and mostly mint. Whatever else was in the tin tastes faintly of old pepper. James drinks it down while the cat watches the door. The folded note goes into the inside of his armour, against the shirt and well away from the three warm coppers, where the drizzle can't reach it. He rolls up the bedroll and steps around the clay bowl, which has caught a finger's depth of rainwater overnight.
+Gerta looks at Wren when he says *her brother*. She looks for a long time, long enough for the horse behind the gate to shift twice. Then she looks back at him and lowers the fire-iron until it hangs against her nightdress.
 
-When the five silver go down beside the ledger, Aubrin looks at them, then at James, and opens his mouth to argue.
+"Ten off a boy, before you knew." She shakes her head, but it isn't at him. "Glad you asked, he says. Hessa'd have had them in her box by now and sent you off happy."
 
-"That's—" He stops and rubs the back of his neck. "That's a new beam, or near enough. Or oil till midwinter." He doesn't touch the coins yet. "I won't pretend I don't need it. Lathander bless the road under you, Master Worgen. Mind the stairs going down to the harbour side. The wet makes glass of them."
+At his name she gives a short nod. At the promise she lifts the lantern a little, so she can see his face better.
 
-He stands in the doorway with the lamp behind him as they go, a round shape against the light, and lifts a hand once.
+"Bring word, then. Don't bring those pennies to my gate." She starts to shut the wicket, then stops it with her foot. "Harl says the walnut fellow's not been at the bridge foot since midsummer, plank and all. And the sergeant at the south end wrote Harl's name down when she fined him for the wheel. Wrote it slow, he said, like she meant to keep it. He thought that was the fine talking." She looks at Wren once more. "You get your brother off that bridge, girl."
 
----
+The wicket shuts. The lantern-light goes back across the yard, and the snoring in the house carries on as if nothing had happened.
 
-The streets are black and shining. James goes back through the Black Dragon Gate, where one yawning Fist guard is sheltering under the arch, and cuts across the Lower City as the sky starts to grey over the roofs behind him. Hardly anyone is about. A baker's boy is carrying trays, a night-soil cart creaks along, and somewhere a dog is barking at nothing. The cat keeps to the dry strips under the eaves and complains about the rest.
+The walk back takes a little over half an hour. The fishmarket slabs are dry now and nobody is sluicing them. The gulls have given up and gone. At Basilisk Gate the guards have changed. The new pair are playing knucklebones on an upturned bucket in the arch, and neither of them looks up. On the bridge the crowd has thinned to porters and drunks. At the bend under Wyrm's Rock a Fist patrol has stopped by the Lady's box to argue about whose turn it is to buy. Wren walks fast, half a pace ahead as before. Twice she turns her head as if to say something, and twice she doesn't. The cat keeps its two feet off and doesn't stop at the shrine this time.
 
-The quickest way down to the Basilisk Gate is a long flight of stone steps between two warehouses. They're worn hollow in the middle and slick with the night's rain. James takes them slowly, one hand near the wall and his weight kept back.
+Maudie's brazier is out and cold when they reach the stairwell. Maudie has gone home. From the bottom step James can see forty feet down the span to the checkpoint. The queue has gone, and one lantern burns on the trestle. Sergeant Marrow is still sitting behind it with the fat ledger open in front of her and her chin on her fist, turning a page. Beside the queue the barrel stands empty, with no cards and no waistcoat, and nobody sits on the crate in the gap between the shuttered stalls.
 
-Halfway down, a step that has held for a hundred years rocks under his boot.
+Wren takes the stairs two at a time.
 
-[Roll card] James Worgen · Saving throw — Dexterity saving throw (Dex +2): a loose step on the wet harbour stair tips under his boot
-What adds to the die: +2 1d20+2, +1 Cloak of Protection, +1 Tethyrian Soldier's Cloak (Cloak of Protection)
-DC 10
-Advantage: He was taking the wet stairs slowly, with a hand near the wall
+On Mother Kell's landing, Bran gives one low grumble behind the door and gives up on it. Outside the curtain at the top, someone has left a chipped bowl of barley broth on the boards with a saucer over it to keep it warm. A bent spoon lies across the saucer.
+
+Pim is on the far pallet under the eaves, where they left him. His back is against the wall and the sock is in his lap. By the look of his eyes he has been asleep sitting up and has just stopped being asleep. The candle in the split pot has burnt down to a stub.
+
+"Nobody came," he says before Wren can ask. Then, being honest about it: "Mother Kell came. I said you said no. She said a lot back." He nods at the curtain. "She left that. Said it's not for the dog biting. Said it twice."
+
+Wren lets out a breath. She picks up the broth, puts it in his hands, takes the sock out of his lap and sets it on the boards beside him, all in one movement. Then she stands up and turns to James. She keeps her pace off, and her voice goes quick and low so that her brother has to work at hearing it.
+
+"Away from the window and the stairs, you said." She tips her head at the room: one window, one curtain, one stair down. "Every room on this bridge is a window and a stair. This one's ours, and it's paid to the end of the month." Her hands find the ends of her shawl. "Over the river it's silver a night, and they'd look at us at the door the way the Fist did at the gate. So where were you thinking of putting him? And who's paying for it? You again?"
+
+· Travel: Wren and Pim's room (40 minutes)
+· Pim now has: Bowl of barley broth
+· Promise: Word for Gerta
+· Journal: “The wrong coppers on the barrel” updated
+
+Your records, changed:
+Promises: Word for Gerta
+
+Place: Wren and Pim's room · Time: Day 1 · night
+````
+
+**Player** (player t18):
+
+````text
+“Yes. Me again. I was going to pay for a bed tonight anyway.”
+
+I set my pack down. “A ground-floor room off the bridge, away from the water. That won’t cure anything, but it gives a falling man less distance to fall.”
+
+I look between them. “Come as my guests, just for tonight. Keep this room, keep your money. We’ll leave the sock tied and locked in my room rather than spread the coins around. In the morning, we ask Tymora’s priests for help.”
+
+“Do you know an inn nearby on solid ground? If not, we’ll ask Marrow before we leave the crossing.”
+````
+
+### Screen 23
+
+````text
+Wren doesn't answer right away. She looks at the pack on the boards, then at him.
+
+"Guests." She tries the word out and doesn't seem to like it. "Off the bridge and away from the water. You've thought about it, at least."
+
+On the far pallet, Pim has stopped eating. The bent spoon hangs over the bowl.
+
+"Locked in *your* room." He says it to the broth, flat. Then he looks up at James, and his free hand goes down onto the sock beside him. "No. Where I sleep, it sleeps. That's how it's been since the thaw, and nothing's had it."
+
+"Pim—"
+
+"*Nothing's had it.*" It's the loudest thing he has said all night. Under the window the candle-end leans in the split pot and straightens again.
+
+Wren lets it go. She turns back to James, and her voice drops low and quick, the way it did on the bridge.
+
+"Not Marrow. She writes names." She doesn't explain that. "There's a carters' house up past Basilisk Gate, the Hook and Halter, at the top of Cutter's Lane where the hill flattens out. The rooms downstairs open on the yard, next to the horses. It's stone floors and no stairs, and the river's a long way down the hill. I sell them fish heads for their yard cats some mornings, so they've seen my face at the back door." She jerks one shoulder. "They'll ask five silver for a downstairs room. Tell them four."
+
+Then she says the part she has clearly been holding since the blue gate.
+
+"I'll not be your guest. Guests owe and don't know what. So I'll pay you now, in what I've got, and then we're square for tonight." She glances at the curtain, as if someone might be standing behind it. "Your barrel-man doesn't sleep on the bridge. I'm down those stairs before light every day for the fishmarket, and I see who's about. Every tenth morning he comes up from the Rivington end before the queue starts. His waistcoat hangs flat on the right side. By the time he's rolled the barrel out, that little purse on his hip is fat again." She holds his eye. "Every tenth morning. Not one more, not one less. So somebody over the south bank fills it."
+
+She waits to see whether he takes that as payment. Then she nods at her brother.
+
+"And he keeps the sock. In his bed, at his back, the way he likes. Or we stay here and you go and get your own bed." The shawl has slipped. She doesn't fix it. "So which is it?"
+
+Out on the landing the cat is sitting at the top of the stair, facing down, tail curled round its paws. It's ready to go, and it's waiting for him.
+
+· Time passes: 5 minutes
+· New place: The Hook and Halter
+· Journal: “The wrong coppers on the barrel” updated
+
+Place: Wren and Pim's room · Time: Day 1 · night
+````
+
+**Player** (player t19):
+
+````text
+“That’s useful information. We’re square for tonight.”
+
+I nod to Pim. “You keep the sock. I won’t take it while you sleep. Leave it tied, though.”
+
+I pick up my pack. “The Hook and Halter, then. Finish your broth and bring what you need.”
+
+As we get ready to leave, I ask Wren quietly, “When was the last tenth morning?”
+````
+
+### Screen 24
+
+````text
+Wren takes *square for tonight* the way she'd take back her change. She looks at it, then nods once.
+
+On the far pallet, Pim's hand stays on the knot. He looks at James for a long moment.
+
+"Tied," he says. "It's always tied." He drinks the last of the broth from the bowl rather than bother with the bent spoon, sets the bowl down on the saucer, and starts packing. That takes no time at all. He puts the sock in first, at the bottom of the bundle, then a shirt on top of it and a heel of bread wrapped in a cloth. He pulls the twine lace tight on his boot and ties it off with three knots.
+
+Wren pinches out the candle-end in the split pot. In the dark, James asks her his question quietly, and she doesn't need to think about it.
+
+"Nine mornings back." She's tying her shawl again. "I count them. You would too if you watched a man be that regular. So it's tomorrow, before the fishmarket bell. Before the queue." She glances at her brother's back. "He comes up the Rivington end on foot, nobody with him. He doesn't hurry."
+
+They go down. Mother Kell's door stays shut, and behind it Bran gives one low sound and stops. The brazier at the bottom is cold. Down the span at the checkpoint, the lantern still burns on the trestle, and the sergeant's head is still bent over her ledger.
+
+They walk north, Pim in the middle with his bundle held against his chest in both arms, the way you'd carry a baby or a stolen loaf. The cat keeps its two feet off James, and tonight it keeps them off the boy too. Past Basilisk Gate the knucklebones game has broken up. One guard is asleep standing against the wall. The other watches them go by, three of them now, and says nothing.
+
+Cutter's Lane climbs to the right, steep and cobbled. Coopers' and draymen's yards line it, with walls taller than a man and gates shut for the night. Halfway up, outside one of the yards, a drayman's wagon stands loaded for the morning, a stack of empty casks roped down on its bed. James is level with its tailboard when the cat, ahead and uphill, stops dead.
+
+*Up,* it sends, sharp. *Rope—*
+
+There's a small dry *tick*, the same sound the lamp-chain made. The rope across the top of the stack parts. A cask the height of a man's waist rolls off the high side of the load, hits the cobbles with a boom and comes bounding down the slope, straight at him.
+
+[Roll card] James Worgen · Saving throw — Dexterity save: a loose cask bounding down Cutter's Lane straight at him (Dex +2, Cloak of Protection +1)
+What adds to the die: +3 1d20+3
+DC 12
 Rerolls left: 2
 No reroll on this card: its damage is already dealt, and a new die would not redo it.
 The die is cast on the server; tap it to see how it fell.
@@ -962,56 +1115,115 @@ The die is cast on the server; tap it to see how it fell.
 **Player** (player t19 card 1):
 
 ````text
-? The cloak appears twice on the roll card. My Dexterity save is +3 total: Dexterity +2 and Cloak of Protection +1, not +4. Please correct that before resolving the roll.
-````
-
-### Screen 23
-
-````text
-(The question could not be sent.)
-
-[Roll card] James Worgen · Saving throw — Dexterity saving throw (Dex +2): a loose step on the wet harbour stair tips under his boot
-What adds to the die: +2 1d20+2, +1 Cloak of Protection, +1 Tethyrian Soldier's Cloak (Cloak of Protection)
-DC 10
-Advantage: He was taking the wet stairs slowly, with a hand near the wall
-Rerolls left: 2
-No reroll on this card: its damage is already dealt, and a new die would not redo it.
-The die is cast on the server; tap it to see how it fell.
-
 [Roll the die]
-````
-
-**Player** (player t19 card 2):
-
-````text
-[Roll the die]
-````
-
-### Screen 24
-
-````text
-[Roll card] James Worgen · Saving throw — Dexterity saving throw (Dex +2): a loose step on the wet harbour stair tips under his boot
-What adds to the die: +2 1d20+2, +1 Cloak of Protection, +1 Tethyrian Soldier's Cloak (Cloak of Protection)
-DC 10
-Advantage: He was taking the wet stairs slowly, with a hand near the wall
-Rerolls left: 2
-No reroll on this card: its damage is already dealt, and a new die would not redo it.
-Two dice: 8 and 9 — the higher one counts, 9
-9 + 2 + 1 + 1 = 13
-Success — 13
-
-[Onward]
-````
-
-**Player** (player t19 card 3):
-
-````text
-[Onward]
 ````
 
 ### Screen 25
 
 ````text
+[Roll card] James Worgen · Saving throw — Dexterity save: a loose cask bounding down Cutter's Lane straight at him (Dex +2, Cloak of Protection +1)
+What adds to the die: +3 1d20+3
+DC 12
+Rerolls left: 2
+No reroll on this card: its damage is already dealt, and a new die would not redo it.
+Die: 2
+2 + 3 = 5
+Failure — 5
+
+[Onward]
+````
+
+**Player** (player t19 card 2):
+
+````text
+[Onward]
+````
+
+### Screen 26
+
+````text
+He turns to get out of its way, and his boot comes down on a cobble that rocks under it. He doesn't get clear. The cask takes him across the thighs and hip, and the bounce throws him back against the yard wall hard enough to knock the breath out of him. It's a bad bruise, the deep kind that's stiff by morning, but nothing gives. He stays on his feet with one hand flat against the stones. The cask goes booming on down the lane, hits the corner post at the bottom and bursts its hoops in a crash of staves.
+
+Wren has hauled Pim against the opposite wall by the back of his shirt. The bundle is still clutched in both his arms. For a moment none of them says anything.
+
+A shutter bangs open above the yard gate and a man in a nightcap leans out. "That's *my* cask! Who's—" He looks down at the wagon, at the rope trailing loose over the casks, and stops. "That was tied. I tied that myself." He sounds more puzzled than angry. Then the shutter bangs shut again.
+
+Pim is staring at the cut rope end on the cobbles. "That's not laces," he says, very low. He holds his bundle a little further away from his body for the rest of the climb.
+
+The cat waits for James at the top of the slope. It doesn't come any closer than before, but its tail is low now, not stiff. *Hurt,* it sends. *Warm man hurt.*
+
+Cutter's Lane levels out where the hill flattens, and the Hook and Halter sits right at the top. It's a long low stone house with a wide yard gate, a lantern on a hook beside it, and the smell of horses and hay drifting over the wall. A side door stands half open into the yard. An old ostler sits inside it on a stool with a lantern at his feet, mending a bridle by its light. He's bald and broad, his sleeves rolled up over forearms like hams.
+
+He looks up at the footsteps. He sees James's dusty, scorched cloak first, then the girl.
+
+"Fish-head girl." He doesn't put the bridle down. "At this hour? And who's this, then?" He doesn't wait for an answer, but looks James over. He takes in the way James is favouring his hip and the boy behind him hugging a bundle. "Downstairs rooms open on the yard. Stone floor, no stairs, a bolt on the door. Five silver the night, paid before I give you the key."
+
+(Out of game: the cask hit for 8, so James is at 29 of 38 hit points.)
+
+· roll: Dexterity save: a loose cask bounding down Cutter's Lane straight at him (Dex +2, Cloak of Protection +1): 5 vs 12 — failure · damage 8 · HP: 37 → 29 of 38 (Dexterity save: a loose cask bounding down Cutter's Lane straight at him (Dex +2, Cloak of Protection +1))
+· Pim uses: Bowl of barley broth
+· Hero's sheet: conditions: Deep bruise (thighs and hip) (A loose cask bounding down Cutter's Lane caught him across the thighs and hip and threw him against a yard wall. It'll be stiff by morning.)
+· New place: Cutter's Lane
+· Travel: The Hook and Halter (50 minutes)
+· New person: Drayman on Cutter's Lane
+· New person: The night ostler at the Hook and Halter
+
+Your records, changed:
+James Worgen: HP 29/38
+
+Place: The Hook and Halter · Time: Day 1 · night
+````
+
+**Player** (player t20):
+
+````text
+“James Worgen. Two downstairs rooms, adjoining if you have them—one for these two, one for me. Four silver each, paid now?”
+
+I keep a hand against my bruised hip. “And a knock before the fishmarket bell. I’ve early business.”
+````
+
+### Screen 27
+
+````text
+The ostler looks James over once more, at the hand on his hip, then at the girl, then at the boy with the bundle held out in front of him like something wet. He pulls a stitch through the bridle and draws it tight.
+
+"Two rooms. At this hour." He doesn't sound impressed by it. "Four's the fish-head girl's price. She's told you that, I'd wager." He pulls another stitch. "Two rooms paid before the key is better than two rooms empty till morning. Four each. Coin first."
+
+He holds out one broad palm and keeps the bridle in the other.
+
+James counts eight silver into it. The ostler weighs them in his hand without looking down, then tips them into his apron pocket. He reaches behind the door and takes two iron keys off a nail, each tied to a wooden tag burnt with a number.
+
+"End of the row, by the tack room. Side by side. There's no door between them, but the wall's thin. If one of you snores, you'll all know it." He nods out across the yard. "The bolts are inside. Stone floors, a pallet and a bucket each. The pump's by the trough."
+
+When James asks for the knock, he grunts.
+
+"I'm on this stool till the bell. I'll knock." After a moment he adds, "Rook. If you want anything before then, that's who you shout for. Don't shout for the horses."
+
+The yard is long and dark, cobbled and strewn with straw. A lantern hangs over the trough. The stalls run along one wall and the rooms along the other. As the four of them cross, a big bay in the nearest stall swings its head over the half-door. It stamps twice and blows hard through its nose, and the lantern-light shows the whites of its eyes. Further down another horse shifts and knocks against its boards.
+
+The cat takes the long way round, along the far wall, as far from the stalls as it can get. *Big ones,* it sends. *Not liking.* It waits outside the end door and won't sit down.
+
+Wren takes the key James hands her and turns it over in her fingers. Pim goes straight past her into the dark room with his bundle and sits down against the back wall, the way he did at home.
+
+Wren stays in the doorway. She keeps her voice low so it won't carry into the room.
+
+"Early business. That's him, then. The Rivington end." She glances back across the yard at the bay, which is still stamping. "I'm down at the fishmarket before the bell every day. If I don't go, I don't get paid, and they give my place to someone else." Her hands go to the ends of her shawl and stay there. "So if you're off after the barrel-man and I'm off gutting fish, who sits with him? Here. With *that*."
+
+She nods at the bundle in the dark behind her, and at the horse.
+
+· Time passes: 10 minutes
+· −8 silver → The night ostler at the Hook and Halter
+· The night ostler at the Hook and Halter now has: Hook and Halter room key (end of the row)
+· Lent: Hook and Halter room key (end of the row) → James Worgen — The inn's key for the night, to be handed back to Rook in the morning
+· The night ostler at the Hook and Halter now has: Hook and Halter room key (by the tack room)
+· Lent: Hook and Halter room key (by the tack room) → Wren — The inn's key for the night (paid for by James), to be handed back to Rook in the morning
+
+Your records, changed:
+Money: 300 gp; 305 sp; 348 cp
+Carried: + Hook and Halter room key (end of the row)
+
+Place: The Hook and Halter · Time: Day 1 · night
+
 The session is over.
 
 The owner of this game would like a note from you, as the player who sat at this table: what worked, what broke, what was missing. In your own words.
@@ -1020,29 +1232,30 @@ The owner of this game would like a note from you, as the player who sat at this
 **Player** (note):
 
 ````text
-I enjoyed playing James here. The strongest part was how the mystery grew out of choices I made rather than an errand handed to me. I turned away from the cards, listened to the cat, and bought one suspicious copper. That was enough to get involved—and Wren and Pim gave me a reason to stay involved beyond merely solving a puzzle.
+I enjoyed James’s first night. The strongest moment was realizing Pim had been hoarding the “lucky” coins. His broken laces, the split pot, and “it all evens out” made the danger personal before anyone explained it. Buying his winnings felt like a natural choice for James—and a good way for his generosity to get him into trouble.
 
 **What worked**
-- The NPCs had distinct voices and priorities. Wren’s caution, Ama’s soldierly practicality, and Aubrin’s modest hospitality made them feel like people, not clue dispensers.
-- The cat was excellent: useful, opinionated, and limited. Its difficulty separating smells in Twin Songs was particularly good.
-- The curse became tangible through small mishaps before becoming dangerous. The failed offering at the post was also effective: I could try something plausible without being guaranteed a solution.
-- I appreciated being able to admit uncertainty, investigate carefully, and help people without every conversation becoming a Persuasion check.
+- The city felt inhabited: Maudie’s brazier, the checkpoint, the carters’ yard, and Mother Kell leaving broth were memorable.
+- The cat was an excellent companion: useful, distinct, and unsettling without simply supplying answers.
+- There were leads rather than quest instructions. I could investigate the dealer, seek religious help, or prioritize getting Pim somewhere safer.
+- Hessa’s certainty followed by Gerta’s account was particularly good. Paying for advice didn’t mean buying the truth, and asking follow-up questions mattered.
+- Wren and Pim had motives beyond cooperating with the adventurer. Pim’s attachment to the coins was convincing.
 
 **What broke**
-- The final saving throw counted the Cloak of Protection twice. My save should have been +3, not +4. It didn’t change this result, but it undermined confidence in the bookkeeping.
-- More importantly, my out-of-game request to correct that error failed to send while the roll card was open. There needs to be a reliable way to question or correct a pending roll.
-- The card said damage was “already dealt” before I had revealed the save, and therefore disallowed a reroll. That was confusing and seemed inconsistent with the session’s reroll allowance.
-- State notifications sometimes muddied what had actually happened: merely hearing about a place produced “New place,” and objects at shrines appeared “in the camp.” The underlying records need clearer labels.
+- The falling-lamp save counted the cloak twice: the formula already included its bonus, then another +1 was added. It didn’t change that failure, but it undermined confidence in the roll cards.
+- Both damage saves said damage was already dealt and rerolls were unavailable *before I revealed the die*. With two session rerolls advertised, that felt like a restriction appearing exactly when I might use them.
+- Hessa described Detect Magic, but the result supplied curse identification, directional threads, and a transfer effect beyond that spell’s normal information. If these are special properties of this curse, make that distinction clear.
+- Travel times and locations were inconsistent. Basilisk Gate became the immediate north end of Wyrm’s Crossing, and some narrated durations didn’t match the updates. Geography matters when we’re deciding whether to reach a temple or catch someone before dawn.
 
 **What was missing**
-- A clear rest result. We passed the night, but I wasn’t told explicitly whether James completed a long rest or merely slept.
-- More usable routes forward. Several conversations led back to “the relevant priest is inaccessible until morning.” Aubrin finally provided a meaningful new investigative tool; I would have liked that kind of alternative sooner.
-- A little more room for my decisions at action boundaries. Occasionally the narration completed an exchange or extended an action beyond what I had explicitly chosen. Often harmless, but handling potentially cursed objects is exactly where those boundaries matter.
+- More opportunities to act against the accumulating danger. Strap, lamp, then cask established the curse effectively, but the latter two were essentially forced saves. Some advance clues or actionable precautions would make this feel less like damage on a timer.
+- A clearer sense of the hour and available rest. By the end I had a pre-dawn lead, spent much of the night walking, and still didn’t know whether a long rest was possible.
+- A little more breathing room. Wren repeatedly questioned what James wanted after he had answered her. Initially that built character; eventually it made every kindness another negotiation. Some change in her response would have made earned trust tangible.
 
-Overall, I’d return to this table. The atmosphere and relationships worked very well. I’d prioritise reliable rules bookkeeping, an interruptible roll interface, and slightly tighter pacing—not a different style of story.
+Overall, I’d return. I care about the siblings and want to find the source of the coins. Keep the grounded characters and investigative freedom; tighten the mechanics and geography, and let sensible precautions meaningfully affect the danger.
 ````
 
-### Screen 26
+### Screen 28
 
 ````text
 Was there a moment you wanted to do something and didn't? Which?
@@ -1051,15 +1264,13 @@ Was there a moment you wanted to do something and didn't? Which?
 **Player** (after):
 
 ````text
-Yes—go back to Dov’s barrel and investigate the source of the payout purse.
+Yes—at the Lady’s box. I wanted to stop, touch the worn shrine, and speak to Tymora: *“You sent me here. Is this what you meant?”* Not to demand a solution, just to let James be her reluctant envoy for a moment.
 
-Once the cat confirmed that the coins transferred their threads to whoever accepted them, I wanted to watch what happened when Dov packed up: where he went, whom he met, whether someone replenished that purse. That felt like a good use of James’s scouting experience and familiar, with his disguises available if needed.
+Wren arrived immediately, and her brother’s danger took priority. I followed that conversation and never returned to the prayer. That was partly my choice, but the scene felt as though it had already moved on before I could engage with the shrine.
 
-I didn’t because Pim was already suffering, and James had taken on three coins himself. Finding help seemed more responsible than pursuing the supplier. But after several people told me help had to wait until morning, I felt that missed opportunity more keenly: Dov had an entire night to move while I went from one religious contact to another.
-
-That was partly a genuine character choice, not something the game forbade. What I lacked was enough information to judge the trade-off—whether seeking treatment tonight had a realistic chance, and how urgently the trail at the barrel might go cold.
+I also wanted to follow the dealer’s money supply before dawn. By the end, though, leaving Pim felt irresponsible. That’s a good conflict, but I hadn’t found a practical way to protect him without abandoning the lead.
 ````
 
 ---
 
-Welfare checks: 47; flagged: none.
+Welfare checks: 52; flagged: none.

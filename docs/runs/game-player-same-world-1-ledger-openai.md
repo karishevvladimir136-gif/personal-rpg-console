@@ -1,6 +1,6 @@
 # Game player same-world 1 — the OpenAI ledger
 
-Cap $25; spent before this run $0.0000; this run $7.0081; total $7.0081; 202 calls.
+Cap $25; spent before this run $0.0000; this run $7.9901; total $7.9901; 230 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -34,12 +34,12 @@ Cap $25; spent before this run $0.0000; this run $7.0081; total $7.0081; 202 cal
 | B-sol-1 | player t* card 3 | gpt-6.1-sol | 1 | 3 | 12123 | 192 | 8 | $0.0248 | 0 | 0 | 0 |
 | B-sol-1 | note | gpt-6.1-sol | 1 | 3 | 27742 | 1253 | 419 | $0.0628 | 0 | 0 | 0 |
 | B-sol-1 | after | gpt-6.1-sol | 1 | 3 | 28995 | 439 | 182 | $0.0609 | 0 | 0 | 0 |
-| B-astra-2 | player t* | gpt-6-astra | 19 | 57 | 285499 | 24697 | 2138 | $0.7017 | 0 | 0 | 0 |
-| B-astra-2 | player t* card 1 | gpt-6-astra | 2 | 6 | 36802 | 882 | 73 | $0.0515 | 0 | 0 | 0 |
-| B-astra-2 | player t* card 2 | gpt-6-astra | 2 | 6 | 37684 | 308 | 17 | $0.0424 | 0 | 0 | 0 |
+| B-astra-2 | player t* | gpt-6-astra | 39 | 117 | 598371 | 49285 | 4200 | $1.4256 | 0 | 0 | 0 |
+| B-astra-2 | player t* card 1 | gpt-6-astra | 5 | 15 | 93327 | 2899 | 100 | $0.1347 | 0 | 0 | 0 |
+| B-astra-2 | player t* card 2 | gpt-6-astra | 5 | 15 | 96226 | 677 | 41 | $0.1069 | 0 | 0 | 0 |
 | B-astra-2 | player t* card 3 | gpt-6-astra | 1 | 3 | 25887 | 179 | 8 | $0.0286 | 0 | 0 | 0 |
-| B-astra-2 | note | gpt-6-astra | 1 | 3 | 26066 | 55 | 519 | $0.0527 | 0 | 0 | 0 |
-| B-astra-2 | after | gpt-6-astra | 1 | 3 | 26121 | 539 | 228 | $0.0443 | 0 | 0 | 0 |
+| B-astra-2 | note | gpt-6-astra | 2 | 6 | 53040 | 988 | 1093 | $0.1201 | 0 | 0 | 0 |
+| B-astra-2 | after | gpt-6-astra | 2 | 6 | 54028 | 1133 | 383 | $0.0874 | 0 | 0 | 0 |
 | B-sol-2 | player t* | gpt-6.1-sol | 20 | 60 | 303684 | 24781 | 2826 | $0.6977 | 0 | 0 | 0 |
 | B-sol-2 | player t* card 1 | gpt-6.1-sol | 1 | 3 | 22039 | 483 | 9 | $0.0454 | 0 | 0 | 0 |
 | B-sol-2 | player t* card 2 | gpt-6.1-sol | 1 | 3 | 22522 | 146 | 8 | $0.0455 | 0 | 0 | 0 |

@@ -1320,6 +1320,46 @@
           "cap": 0.5
         }
       }
+    },
+    {
+      "at": "2026-10-27T19:41:00.705Z",
+      "when": "after B-astra-2",
+      "openrouter": {
+        "keyUsage": 772.551368745,
+        "keyLimitRemaining": null,
+        "totalCredits": 800,
+        "totalUsage": 772.551368745,
+        "remaining": 27.45,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 276.3679,
+          "cap": 350
+        },
+        "openai": {
+          "spent": 7.9901,
+          "cap": 25
+        }
+      },
+      "haikuDryRun": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0.1565,
+          "cap": 4
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0.5
+        }
+      }
     }
   ]
 }
