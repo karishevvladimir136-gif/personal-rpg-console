@@ -3476,7 +3476,7 @@
       "what": "CW-opus, first attempt \u2014 lost when the cloud container restarted during the owner's pause at its first combat card (t6); estimate",
       "spentUsd": 4.5,
       "estimated": true,
-      "estimate": "The app's own cost log for the attempt (docs/runs/game-player-combat-1-lost-attempt.log: the wizard, the prep, 5\u00bd DM turns) sums to $3.23; the player's six calls and the welfare checks were metered in memory and lost with the process (about $0.3 at list prices); booked at $4.50 to stay on the safe side of the cap. The shared OpenRouter account cannot separate it (other sessions spent on the same key in the same hour).",
+      "estimate": "The app's own cost log for the attempt (docs/runs/game-player-combat-1-lost-attempt.jsonl: the wizard, the prep, 5\u00bd DM turns) sums to $3.23; the player's six calls and the welfare checks were metered in memory and lost with the process (about $0.3 at list prices); booked at $4.50 to stay on the safe side of the cap. The shared OpenRouter account cannot separate it (other sessions spent on the same key in the same hour).",
       "stopped": "the container restarted",
       "calls": []
     }

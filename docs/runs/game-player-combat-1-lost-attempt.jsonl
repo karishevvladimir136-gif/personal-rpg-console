@@ -1,0 +1,179 @@
+(node:496) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+the order: CW-opus, CW-fable, CW-astra, CW-sol
+spend (before CW-opus): OpenRouter account used $350.922630495 of $800 credits (left $449.08) · ledgers Anthropic $0.00/$0 · OpenRouter $5.00/$90 · OpenAI $0.00/$15
+05:22:11 start CW-opus
+(node:507) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+05:22:17 start CW-opus
+{"event":"bootstrap_provider_attempt","kind":"creation","draft":"hero-one-pass","provider":"anthropic","model":"claude-opus-5-5","reasoning":"high"}
+{"event":"bootstrap_provider_done","kind":"creation","draft":"hero-one-pass","provider":"anthropic","model":"claude-opus-5-5","reasoning":"high","latencyMs":92328,"stop":"end","costUsd":0.2405,"inputTokens":5936,"outputTokens":11136,"items":15,"counters":4,"spells":13,"notes":6}
+  CW: campaign created (hero drafted by the DM)
+{"event":"bootstrap_provider_attempt","kind":"opening","provider":"anthropic","model":"claude-opus-5-5","reasoning":"high"}
+{"event":"bootstrap_provider_done","kind":"opening","provider":"anthropic","model":"claude-opus-5-5","reasoning":"high","latencyMs":28486}
+  CW: opening committed
+{"event":"hidden_layer_prep","campaignId":"7c7be642-fc61-4a28-9c9e-92d998c81d7c","reason":"first","model":"claude-opus-5-5","requestTokens":15259,"chars":9144,"clocks":3,"costUsd":0.2123,"latencyMs":107654}
+  CW-opus: prep — a hidden layer of 9144 characters, 3 clock(s)
+{"event":"dm_loop_request_started","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","request":1,"requestBytes":98710,"cachedPrefixBytes":51255}
+{"event":"dm_loop_request","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","request":1,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":38330,"cacheReadTokens":18085,"cacheWriteTokens":20241,"cacheReadShare":0.472,"outputTokens":2633,"costUsd":0.15871,"latencyMs":30542,"firstTextMs":28824,"toolCalls":1,"stop":"tool_use"}
+{"event":"dm_loop_tool","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","position":0,"tool":"roll","ok":true}
+{"event":"dm_loop_request_started","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","request":2,"requestBytes":113210,"cachedPrefixBytes":51255}
+{"event":"dm_loop_request","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","request":2,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":41138,"cacheReadTokens":38326,"cacheWriteTokens":2810,"cacheReadShare":0.932,"outputTokens":1662,"costUsd":0.05496,"latencyMs":22144,"firstTextMs":16880,"toolCalls":0,"stop":"end"}
+{"event":"dm_loop_writer_finished","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","atMs":52978,"requests":2,"ledgerFound":true,"ledgerChars":1277,"narrationChars":2959}
+{"event":"dm_loop_request_started","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","request":3,"requestBytes":66189,"cachedPrefixBytes":13970}
+{"event":"dm_loop_request","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","request":3,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":42991,"cacheReadTokens":21377,"cacheWriteTokens":21610,"cacheReadShare":0.497,"outputTokens":3526,"costUsd":0.18286,"latencyMs":31883,"firstTextMs":null,"toolCalls":9,"stop":"tool_use"}
+{"event":"dm_loop_tool","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","position":1,"tool":"advance_time","ok":true}
+{"event":"dm_loop_tool","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","position":2,"tool":"upsert_character","ok":true}
+{"event":"dm_loop_tool","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","position":3,"tool":"upsert_character","ok":true}
+{"event":"dm_loop_tool","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","position":4,"tool":"upsert_place","ok":true}
+{"event":"dm_loop_tool","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","position":5,"tool":"upsert_character","ok":true}
+{"event":"dm_loop_tool","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","position":6,"tool":"note_character","ok":true}
+{"event":"dm_loop_tool","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","position":7,"tool":"note_world","ok":true}
+{"event":"dm_loop_tool","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","position":8,"tool":"note_world","ok":true}
+{"event":"dm_loop_tool","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","position":9,"tool":"finish_turn","ok":true}
+{"event":"dm_loop_diagnostic","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","kind":"ledger_checked","misses":["Three candle crates near the tailboard prised open and half emptied"],"costUsd":0.000672,"error":null}
+{"event":"dm_loop_request_started","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","request":4,"requestBytes":84211,"cachedPrefixBytes":13970}
+{"event":"dm_loop_request","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","request":4,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":47361,"cacheReadTokens":42987,"cacheWriteTokens":4370,"cacheReadShare":0.908,"outputTokens":528,"costUsd":0.04102,"latencyMs":6018,"firstTextMs":null,"toolCalls":2,"stop":"tool_use"}
+{"event":"dm_loop_tool","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","position":10,"tool":"item","ok":true}
+{"event":"dm_loop_tool","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","position":11,"tool":"finish_turn","ok":true}
+{"event":"dm_loop_diagnostic","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","kind":"ledger_checked","misses":["Small metal object gleams under the wagon box, fixed to the seat's underside"],"costUsd":0.000564,"error":null}
+{"event":"dm_loop_diagnostic","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","kind":"ledger_unrecorded","chips":["not recorded: Small metal object gleams under the wagon box, fixed to the seat's underside"]}
+{"event":"dm_loop_bookkeeper_finished","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","atMs":99611,"requests":2,"calls":11,"rejected":0,"finished":true}
+{"event":"dm_loop_turn","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","effort":"high","depthReason":"no tension signal; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)","firstWordMs":29075,"turnMs":99695,"requests":4,"toolCalls":12,"cacheReadShare":0.711,"costUsd":0.43756}
+{"event":"turn_snapshot_saved","campaignId":"7c7be642-fc61-4a28-9c9e-92d998c81d7c","operationId":"e00cd066-f688-4f59-a1f0-1b8f26b833e4","turnNo":1,"pruned":0}
+{"event":"world_bridge_skipped","campaignId":"7c7be642-fc61-4a28-9c9e-92d998c81d7c","message":"This record changed. Reload before saving again."}
+{"event":"legacy_memory_skipped","campaignId":"7c7be642-fc61-4a28-9c9e-92d998c81d7c","reason":"dm-loop-v1 keeps one memory: the dossier"}
+  CW-opus t1 committed
+{"event":"dm_loop_request_started","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","request":1,"requestBytes":115239,"cachedPrefixBytes":56270}
+{"event":"dm_loop_request","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","request":1,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":44770,"cacheReadTokens":18489,"cacheWriteTokens":26277,"cacheReadShare":0.413,"outputTokens":4044,"costUsd":0.22007,"latencyMs":48734,"firstTextMs":37181,"toolCalls":0,"stop":"end"}
+{"event":"dm_loop_diagnostic","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","kind":"rolls_checked","rolls":0,"untold":0,"undeclared":4,"costUsd":0.000305,"error":null}
+{"event":"dm_loop_request_started","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","request":2,"requestBytes":137821,"cachedPrefixBytes":56270}
+{"event":"dm_loop_request","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","request":2,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":49135,"cacheReadTokens":44766,"cacheWriteTokens":4365,"cacheReadShare":0.911,"outputTokens":138,"costUsd":0.03355,"latencyMs":5704,"firstTextMs":5682,"toolCalls":0,"stop":"end"}
+{"event":"dm_loop_writer_finished","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","atMs":56792,"requests":2,"ledgerFound":true,"ledgerChars":1172,"narrationChars":2813}
+{"event":"dm_loop_request_started","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","request":3,"requestBytes":78332,"cachedPrefixBytes":15120}
+{"event":"dm_loop_request","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","request":3,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":47926,"cacheReadTokens":21377,"cacheWriteTokens":26545,"cacheReadShare":0.446,"outputTokens":3807,"costUsd":0.21316,"latencyMs":33288,"firstTextMs":null,"toolCalls":12,"stop":"tool_use"}
+{"event":"dm_loop_tool","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","position":0,"tool":"upsert_character","ok":true}
+{"event":"dm_loop_tool","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","position":1,"tool":"upsert_character","ok":true}
+{"event":"dm_loop_tool","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","position":2,"tool":"upsert_place","ok":true}
+{"event":"dm_loop_tool","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","position":3,"tool":"quest","ok":true}
+{"event":"dm_loop_tool","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","position":4,"tool":"upsert_place","ok":true}
+{"event":"dm_loop_tool","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","position":5,"tool":"upsert_character","ok":true}
+{"event":"dm_loop_tool","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","position":6,"tool":"note_character","ok":true}
+{"event":"dm_loop_tool","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","position":7,"tool":"note_world","ok":true}
+{"event":"dm_loop_tool","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","position":8,"tool":"note_world","ok":true}
+{"event":"dm_loop_tool","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","position":9,"tool":"note_world","ok":true}
+{"event":"dm_loop_tool","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","position":10,"tool":"move_party","ok":true}
+{"event":"dm_loop_tool","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","position":11,"tool":"finish_turn","ok":true}
+{"event":"dm_loop_diagnostic","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","kind":"ledger_checked","misses":[],"costUsd":0.000498,"error":null}
+{"event":"dm_loop_bookkeeper_finished","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","atMs":93762,"requests":1,"calls":12,"rejected":0,"finished":true}
+{"event":"dm_loop_turn","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","effort":"high","depthReason":"DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)","firstWordMs":37486,"turnMs":93865,"requests":3,"toolCalls":12,"cacheReadShare":0.597,"costUsd":0.46678}
+{"event":"turn_snapshot_saved","campaignId":"7c7be642-fc61-4a28-9c9e-92d998c81d7c","operationId":"9e780f49-855b-49ed-9bc8-7bf7ab5c0285","turnNo":2,"pruned":0}
+{"event":"world_bridge_skipped","campaignId":"7c7be642-fc61-4a28-9c9e-92d998c81d7c","message":"This record changed. Reload before saving again."}
+{"event":"legacy_memory_skipped","campaignId":"7c7be642-fc61-4a28-9c9e-92d998c81d7c","reason":"dm-loop-v1 keeps one memory: the dossier"}
+  CW-opus t2 committed
+{"event":"dm_loop_request_started","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","request":1,"requestBytes":118163,"cachedPrefixBytes":60844}
+{"event":"dm_loop_request","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","request":1,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":45340,"cacheReadTokens":19852,"cacheWriteTokens":25484,"cacheReadShare":0.438,"outputTokens":3053,"costUsd":0.1968,"latencyMs":38387,"firstTextMs":24766,"toolCalls":0,"stop":"end"}
+{"event":"dm_loop_writer_finished","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","atMs":38664,"requests":1,"ledgerFound":true,"ledgerChars":1315,"narrationChars":2650}
+{"event":"dm_loop_request_started","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","request":2,"requestBytes":76008,"cachedPrefixBytes":15554}
+{"event":"dm_loop_request","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","request":2,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":46761,"cacheReadTokens":21377,"cacheWriteTokens":25380,"cacheReadShare":0.457,"outputTokens":3120,"costUsd":0.19359,"latencyMs":28613,"firstTextMs":null,"toolCalls":10,"stop":"tool_use"}
+{"event":"dm_loop_tool","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","position":0,"tool":"advance_time","ok":true}
+{"event":"dm_loop_tool","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","position":1,"tool":"upsert_character","ok":true}
+{"event":"dm_loop_tool","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","position":2,"tool":"upsert_character","ok":true}
+{"event":"dm_loop_tool","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","position":3,"tool":"upsert_character","ok":true}
+{"event":"dm_loop_tool","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","position":4,"tool":"upsert_place","ok":true}
+{"event":"dm_loop_tool","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","position":5,"tool":"quest","ok":true}
+{"event":"dm_loop_tool","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","position":6,"tool":"note_world","ok":true}
+{"event":"dm_loop_tool","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","position":7,"tool":"note_world","ok":true}
+{"event":"dm_loop_tool","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","position":8,"tool":"note_character","ok":true}
+{"event":"dm_loop_tool","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","position":9,"tool":"finish_turn","ok":true}
+{"event":"dm_loop_diagnostic","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","kind":"ledger_checked","misses":[],"costUsd":0.000396,"error":null}
+{"event":"dm_loop_bookkeeper_finished","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","atMs":69682,"requests":1,"calls":10,"rejected":0,"finished":true}
+{"event":"dm_loop_turn","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","effort":"high","depthReason":"DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)","firstWordMs":25031,"turnMs":69753,"requests":2,"toolCalls":10,"cacheReadShare":0.448,"costUsd":0.39039}
+{"event":"turn_snapshot_saved","campaignId":"7c7be642-fc61-4a28-9c9e-92d998c81d7c","operationId":"8a53889a-95cc-456e-9401-ee18fe8a8759","turnNo":3,"pruned":0}
+{"event":"world_bridge_skipped","campaignId":"7c7be642-fc61-4a28-9c9e-92d998c81d7c","message":"This record changed. Reload before saving again."}
+{"event":"legacy_memory_skipped","campaignId":"7c7be642-fc61-4a28-9c9e-92d998c81d7c","reason":"dm-loop-v1 keeps one memory: the dossier"}
+  CW-opus t3 committed
+{"event":"dm_loop_request_started","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","request":1,"requestBytes":126714,"cachedPrefixBytes":64930}
+{"event":"dm_loop_request","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","request":1,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":48545,"cacheReadTokens":21295,"cacheWriteTokens":27246,"cacheReadShare":0.439,"outputTokens":4310,"costUsd":0.23045,"latencyMs":51914,"firstTextMs":35390,"toolCalls":0,"stop":"end"}
+{"event":"dm_loop_writer_finished","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","atMs":52184,"requests":1,"ledgerFound":true,"ledgerChars":1534,"narrationChars":3122}
+{"event":"dm_loop_request_started","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","request":2,"requestBytes":82151,"cachedPrefixBytes":16015}
+{"event":"dm_loop_request","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","request":2,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":49131,"cacheReadTokens":21377,"cacheWriteTokens":27750,"cacheReadShare":0.435,"outputTokens":4065,"costUsd":0.22434,"latencyMs":37039,"firstTextMs":null,"toolCalls":14,"stop":"tool_use"}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":0,"tool":"item","ok":false}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":1,"tool":"item","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":2,"tool":"item","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":3,"tool":"upsert_character","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":4,"tool":"upsert_character","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":5,"tool":"upsert_character","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":6,"tool":"note_character","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":7,"tool":"upsert_place","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":8,"tool":"upsert_place","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":9,"tool":"quest","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":10,"tool":"note_world","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":11,"tool":"note_world","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":12,"tool":"move_party","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":13,"tool":"finish_turn","ok":true}
+{"event":"dm_loop_diagnostic","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","kind":"ledger_checked","misses":["Sorrow gives the hatchet to James, who hands it to Tamsin","Five heavy shapes sensed by the cat at the bridge, including one bigger, Ushk's band"],"costUsd":0.000775,"error":null}
+{"event":"dm_loop_request_started","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","request":3,"requestBytes":104168,"cachedPrefixBytes":16015}
+{"event":"dm_loop_request","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","request":3,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":54562,"cacheReadTokens":49127,"cacheWriteTokens":5431,"cacheReadShare":0.9,"outputTokens":2291,"costUsd":0.08282,"latencyMs":22087,"firstTextMs":null,"toolCalls":7,"stop":"tool_use"}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":14,"tool":"item","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":15,"tool":"item","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":16,"tool":"item","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":17,"tool":"item","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":18,"tool":"upsert_character","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":19,"tool":"upsert_character","ok":true}
+{"event":"dm_loop_tool","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","position":20,"tool":"finish_turn","ok":true}
+{"event":"dm_loop_diagnostic","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","kind":"ledger_checked","misses":[],"costUsd":0.000483,"error":null}
+{"event":"dm_loop_bookkeeper_finished","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","atMs":119930,"requests":2,"calls":21,"rejected":1,"finished":true}
+{"event":"dm_loop_turn","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","effort":"high","depthReason":"the player's input opens a decisive moment; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)","firstWordMs":35645,"turnMs":120056,"requests":3,"toolCalls":21,"cacheReadShare":0.603,"costUsd":0.53761}
+{"event":"turn_snapshot_saved","campaignId":"7c7be642-fc61-4a28-9c9e-92d998c81d7c","operationId":"2131ca4f-c641-4330-a35c-43628f0cb270","turnNo":4,"pruned":0}
+{"event":"world_bridge_skipped","campaignId":"7c7be642-fc61-4a28-9c9e-92d998c81d7c","message":"This record changed. Reload before saving again."}
+{"event":"legacy_memory_skipped","campaignId":"7c7be642-fc61-4a28-9c9e-92d998c81d7c","reason":"dm-loop-v1 keeps one memory: the dossier"}
+  CW-opus t4 committed
+{"event":"dm_loop_request_started","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","request":1,"requestBytes":136903,"cachedPrefixBytes":70465}
+{"event":"dm_loop_request","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","request":1,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":52353,"cacheReadTokens":22544,"cacheWriteTokens":29805,"cacheReadShare":0.431,"outputTokens":4531,"costUsd":0.24889,"latencyMs":55346,"firstTextMs":35190,"toolCalls":0,"stop":"end"}
+{"event":"dm_loop_writer_finished","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","atMs":55685,"requests":1,"ledgerFound":true,"ledgerChars":1781,"narrationChars":4403}
+{"event":"dm_loop_request_started","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","request":2,"requestBytes":89310,"cachedPrefixBytes":17055}
+{"event":"dm_loop_request","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","request":2,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":51888,"cacheReadTokens":21377,"cacheWriteTokens":30507,"cacheReadShare":0.412,"outputTokens":3247,"costUsd":0.22177,"latencyMs":31147,"firstTextMs":null,"toolCalls":10,"stop":"tool_use"}
+{"event":"dm_loop_tool","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","position":0,"tool":"advance_time","ok":true}
+{"event":"dm_loop_tool","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","position":1,"tool":"upsert_character","ok":true}
+{"event":"dm_loop_tool","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","position":2,"tool":"upsert_character","ok":true}
+{"event":"dm_loop_tool","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","position":3,"tool":"item","ok":true}
+{"event":"dm_loop_tool","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","position":4,"tool":"upsert_place","ok":true}
+{"event":"dm_loop_tool","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","position":5,"tool":"note_world","ok":true}
+{"event":"dm_loop_tool","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","position":6,"tool":"note_world","ok":true}
+{"event":"dm_loop_tool","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","position":7,"tool":"note_character","ok":true}
+{"event":"dm_loop_tool","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","position":8,"tool":"quest","ok":true}
+{"event":"dm_loop_tool","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","position":9,"tool":"finish_turn","ok":true}
+{"event":"dm_loop_diagnostic","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","kind":"ledger_checked","misses":[],"costUsd":0.000607,"error":null}
+{"event":"dm_loop_bookkeeper_finished","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","atMs":90635,"requests":1,"calls":10,"rejected":0,"finished":true}
+{"event":"dm_loop_turn","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","effort":"high","depthReason":"DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)","firstWordMs":35508,"turnMs":90781,"requests":2,"toolCalls":10,"cacheReadShare":0.421,"costUsd":0.47066}
+{"event":"turn_snapshot_saved","campaignId":"7c7be642-fc61-4a28-9c9e-92d998c81d7c","operationId":"a7e37c1c-a77d-4847-9665-e0217fcf0d65","turnNo":5,"pruned":0}
+{"event":"world_bridge_skipped","campaignId":"7c7be642-fc61-4a28-9c9e-92d998c81d7c","message":"This record changed. Reload before saving again."}
+{"event":"legacy_memory_skipped","campaignId":"7c7be642-fc61-4a28-9c9e-92d998c81d7c","reason":"dm-loop-v1 keeps one memory: the dossier"}
+  CW-opus t5 committed
+{"event":"dm_loop_request_started","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","request":1,"requestBytes":144576,"cachedPrefixBytes":76309}
+{"event":"dm_loop_request","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","request":1,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":54902,"cacheReadTokens":24117,"cacheWriteTokens":30781,"cacheReadShare":0.439,"outputTokens":4437,"costUsd":0.25308,"latencyMs":54726,"firstTextMs":52033,"toolCalls":1,"stop":"tool_use"}
+{"event":"dm_loop_tool","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","position":0,"tool":"roll","ok":true}
+{"event":"dm_loop_request_started","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","request":2,"requestBytes":168172,"cachedPrefixBytes":76309}
+{"event":"dm_loop_request","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","request":2,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":59771,"cacheReadTokens":54898,"cacheWriteTokens":4871,"cacheReadShare":0.918,"outputTokens":1517,"costUsd":0.06568,"latencyMs":17972,"firstTextMs":null,"toolCalls":4,"stop":"tool_use"}
+{"event":"dm_loop_tool","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","position":1,"tool":"roll","ok":true}
+{"event":"dm_loop_tool","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","position":2,"tool":"roll","ok":false}
+{"event":"dm_loop_tool","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","position":3,"tool":"roll","ok":false}
+{"event":"dm_loop_tool","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","position":4,"tool":"roll","ok":true}
+{"event":"dm_loop_request_started","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","request":3,"requestBytes":177943,"cachedPrefixBytes":76309}
+{"event":"dm_loop_request","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","request":3,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":61956,"cacheReadTokens":59769,"cacheWriteTokens":2185,"cacheReadShare":0.965,"outputTokens":475,"costUsd":0.03239,"latencyMs":6290,"firstTextMs":null,"toolCalls":2,"stop":"tool_use"}
+{"event":"dm_loop_tool","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","position":5,"tool":"roll","ok":true}
+{"event":"dm_loop_tool","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","position":6,"tool":"roll","ok":true}
+{"event":"dm_loop_request_started","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","request":4,"requestBytes":181821,"cachedPrefixBytes":76309}
+{"event":"dm_loop_request","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","request":4,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":62832,"cacheReadTokens":61954,"cacheWriteTokens":876,"cacheReadShare":0.986,"outputTokens":1092,"costUsd":0.03862,"latencyMs":23370,"firstTextMs":null,"toolCalls":2,"stop":"tool_use"}
+{"event":"dm_loop_tool","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","position":7,"tool":"roll","ok":true}
+{"event":"dm_loop_tool","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","position":8,"tool":"roll","ok":true}
+{"event":"dm_loop_request_started","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","request":5,"requestBytes":189400,"cachedPrefixBytes":76309}
+{"event":"dm_loop_request","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","request":5,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":64262,"cacheReadTokens":62830,"cacheWriteTokens":1430,"cacheReadShare":0.978,"outputTokens":1141,"costUsd":0.04254,"latencyMs":12515,"firstTextMs":9934,"toolCalls":2,"stop":"tool_use"}
+{"event":"dm_loop_tool","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","position":9,"tool":"roll","ok":false}
+{"event":"dm_loop_tool","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","position":10,"tool":"roll","ok":false}
+{"event":"dm_loop_request_started","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","request":6,"requestBytes":195669,"cachedPrefixBytes":76309}
+{"event":"dm_loop_request","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","request":6,"model":"anthropic/claude-opus-5-5","effort":"high","inputTokens":65566,"cacheReadTokens":64260,"cacheWriteTokens":1304,"cacheReadShare":0.98,"outputTokens":708,"costUsd":0.03354,"latencyMs":7164,"firstTextMs":null,"toolCalls":2,"stop":"tool_use"}
+{"event":"dm_loop_tool","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","position":11,"tool":"roll","ok":true}
+{"event":"dm_loop_tool","operationId":"2c437010-a252-4a5d-bfc5-0585ffedf1c8","position":12,"tool":"roll","ok":true}
+PAUSED at the first combat card: CW-opus t6 — waiting for /tmp/claude-0/-home-user-personal-rpg-console/f7678a5f-cd19-586c-96df-6456fd6294ba/scratchpad/opus-pause.md.go
