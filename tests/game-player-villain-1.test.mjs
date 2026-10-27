@@ -15,7 +15,11 @@ const { reportMarkdown, promptAsShown } = await import("../scripts/game-player-v
 const stageText = readFileSync(new URL("../docs/stages/GAME_PLAYER_VILLAIN_1.md", import.meta.url), "utf8");
 
 test("the sheet is the stage's, unchanged; the campaign is the stage's premise on Table C's flag", () => {
-  assert.equal(frozen.heroSheet(), frozen.stageSheet(), "05 §1 holds the stage's sheet character for character");
+  // The owner's one edit (2026-10-27): the planner's remark beside the alignment is gone; the rest is the stage's, character for character.
+  assert.equal(frozen.stageSheet().split(frozen.SHEET_EDIT.from).length, 2, "the stage holds the remark once");
+  assert.equal(frozen.heroSheet(), frozen.stageSheet().replace(frozen.SHEET_EDIT.from, frozen.SHEET_EDIT.to), "05 §1 is the stage's sheet minus the parenthetical");
+  assert.match(frozen.heroSheet(), /Age 41\. Alignment: chaotic evil\.\nSTR 8/);
+  for (const text of [frozen.heroSheet(), frozen.playerSystem(), JSON.stringify(frozen.villainCampaign())]) assert.doesNotMatch(text, /kept:|part of the question/, "the remark reaches neither the player nor the DM");
   assert.match(frozen.heroSheet(), /^\*\*Corvin Dask\*\* — human, 5th-level Wizard \(School of Necromancy\)/);
   assert.match(frozen.heroSheet(), /He does not explain this to anyone\.$/);
   const c = frozen.villainCampaign();

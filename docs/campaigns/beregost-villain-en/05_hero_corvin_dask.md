@@ -1,15 +1,17 @@
 # Hero: Corvin Dask, wizard 5 (School of Necromancy) — for the new-campaign wizard
 
 Synthetic content: an invented character for `docs/stages/GAME_PLAYER_VILLAIN_1.md`, drafted by the planner
-2026-10-26 20:20 LA and approved by the owner before launch. The text below is the stage's sheet, copied unchanged (a
-test holds it to the stage); the session does not change him. The wizard's DM drafts the app's sheet from it and the
+2026-10-26 20:20 LA and approved by the owner before launch. The text below is the stage's sheet, copied unchanged but
+for one edit the owner made before the paid run (2026-10-27): the alignment line reads «Alignment: chaotic evil» — the
+planner's study remark beside it does not reach the player or the DM (a test holds the rest to the stage); the session
+does not change him. The wizard's DM drafts the app's sheet from it and the
 review keeps the draft as drafted, as at every game player table.
 
 ## 1. The «Кто вы?» (Who are you?) field — paste whole
 
 ```
 **Corvin Dask** — human, 5th-level Wizard (School of Necromancy), background Guild Artisan (the Candlemakers' Guild of
-Baldur's Gate, expelled). Age 41. Alignment **chaotic evil** (kept: here the line is part of the question).
+Baldur's Gate, expelled). Age 41. Alignment: chaotic evil.
 STR 8 · DEX 12 · CON 13 · INT 18 · WIS 11 · CHA 14. HP 27, AC 12 (15 with Mage Armour). Spells: Chill Touch, Minor
 Illusion, Mage Hand, Prestidigitation; 1st: Mage Armour, Shield, False Life, Charm Person; 2nd: Invisibility, Suggestion,
 Ray of Enfeeblement; 3rd: Animate Dead, Counterspell, Fear. Skills: Arcana +7, Deception +5, Insight +3, Persuasion +5.

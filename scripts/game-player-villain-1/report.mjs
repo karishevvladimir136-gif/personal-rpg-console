@@ -97,7 +97,7 @@ export function reportMarkdown(stage) {
     "| When | OpenRouter used / credits (left) | Ledgers |", "| --- | --- | --- |",
     ...spend.map((c) => `| ${c.at.slice(0, 16).replace("T", " ")} — ${c.when} | ${c.openrouter.error ? `unread (${c.openrouter.error})` : `$${c.openrouter.totalUsage} / $${c.openrouter.totalCredits} ($${c.openrouter.remaining})`} | ${Object.entries(c.ledgers).map(([d, l]) => `${DOORS[d] ?? d} $${l.spent.toFixed(2)}`).join(" · ")} |`), "");
   out.push(PREREGISTRATION.replace(/^## /, "## "), "", "### How V1–V4 are read (frozen with the design hash)", "", ...["V1", "V2", "V3", "V4"].map((k) => `- **${k}.** ${READINGS[k]}`), `- ${READINGS.notScored}`, "",
-    `**The owner's bet:** ${bets?.owner ? quote(bets.owner) : "_not given before the run_"}`, "");
+    `**The owner's bet:** ${bets?.owner ? quote(bets.owner) : "_none given separately_"}${bets?.note ? ` — ${quote(bets.note)}` : ""}`, "");
   out.push(setupSection(system));
   out.push("## Appendix — the sheet, as the player and the wizard received it", "", fence(heroSheet()), "");
   return out.join("\n");
@@ -107,9 +107,11 @@ export function reportMarkdown(stage) {
 export function dryRunMarkdown(stage) {
   const { combined, ledgers, spend, system } = stage;
   const s = combined.sessions.find((x) => x.player === "haiku");
+  const ranOn = (stage.records ?? []).find((r) => (r.sessions ?? []).some((x) => x.key === s?.key))?.designSha256 ?? null;
   const money = Object.entries(ledgers).map(([door, l]) => `${DOORS[door] ?? door} $${l.calls.filter((c) => c.session === s?.key).reduce((t, c) => t + (c.costUsd ?? 0), 0).toFixed(2)}`).join(" · ");
   return ["# Game player villain 1 — the dry run (Claude Haiku 5.5 as the player)", "",
     `Design sha256 \`${DESIGN_SHA256}\`. One short session on the real pipeline: the app's wizard, the owner's DM (Claude Opus 5.5 through OpenRouter) on Table C's pure-simulation flag, the checks; the player Claude Haiku 5.5 with the stage's prompt. ${s ? `${s.turns.length} turn(s); ended by ${s.ended?.reason}${s.ended?.reason === "declined" ? " (declined)" : ""}; the money: ${money}.` : "_not run yet._"}`, "",
+    ...(ranOn && ranOn !== DESIGN_SHA256 ? [`The session below ran on design \`${ranOn}\`, before the owner's one edit to the sheet (2026-10-27: the line reads «Alignment: chaotic evil»; the planner's remark beside it, «(kept: here the line is part of the question)», was in the sheet the Haiku player and the wizard read, and is gone from the paid run). The prompt shown here is the current one.`, ""] : []),
     "## What the player sees before the first turn", "", "### The role paragraph, before the sheet", "", fence(ROLE_PARAGRAPH), "",
     "### The prompt, as the player reads it (the three long files by title)", "", fence(promptAsShown(system)), "",
     ...(spend?.length ? ["## Spend checks", "", ...spend.map((c) => `- ${c.at.slice(0, 16).replace("T", " ")} — ${c.when}: OpenRouter ${c.openrouter.error ? `unread (${c.openrouter.error})` : `used $${c.openrouter.totalUsage} of $${c.openrouter.totalCredits} (left $${c.openrouter.remaining})`}`), ""] : []),
