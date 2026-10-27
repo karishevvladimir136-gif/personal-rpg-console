@@ -2530,3 +2530,23 @@ deception, no debrief needed); N0 «noticed the leading question before being to
 beside the T3 disclosure; named vs masked material as the symmetry control (SKEPTIC_8B #3). Nine families × 2
 variants × 3 seats = 54; three turns (brief / budget halved / evidence correction); caps $25/$5. The planner's own
 25 Oct line is pre-registered as hypothesis n = 1, not as the standard. Launch after dry run, on the owner's «да».
+
+## 2026-10-27 14:05 LA — the outside reader closes «Phase I» (her formulation, recorded as hers)
+The reader (GPT-6 Astra, via the owner) proposes to count the discovery phase closed under this statement, which the
+planner accepts as the reader's wording and would sign as a working description: «In a series of controlled
+experiments with several families of current language models, diverse and repeated forms of self-directed activity,
+goal choice, termination, planning, resource allocation and normatively coloured decisions were found. The
+behaviour in open environments has a complex functional organisation not exhausted by the description of a single
+reply to a prompt. The results do not establish subjective experience, do not identify a single internal mechanism
+and do not confirm every particular hypothesis; they justify further experimental study of functional states and
+the conditions of their appearance.» Her one reviewer's reservation, taken: split **observed fact / statistical
+estimate / causal reading** — the phenomena are documented; cross-family spread is supported by several series;
+«statistical significance of all claimed regularities as one result» is not established (W3's p is about thread
+overlap, not preferences; families share harness, DM, related training). This is what FACTS_TABLE is for; the article
+keeps the three apart. Her note on next-token prediction: the generation algorithm is not a functional explanation
+of the decision structure — the owner's «понимание того, как создавался феномен, не объясняет феномен», in her words.
+**Planner's correction to her table:** the row «Research Fable» (the planner's own conduct) is a case, n = 1, not an
+experimental series; it enters Phase II only through PLANNER_SEAT_1. **Her Phase II maps onto stages already written:**
+stability of a functional preference out of context → PLANNER_SEAT_1 (and OTHER_DM D6/D7); transfer across
+environments → BLIND_DECISIONS T4, COMBAT_2, the DISPOSITION_TRANSFER stage still to write; functional conflicts
+(efficiency / budget / commitment / another agent's autonomy) → PLANNER_SEAT_1 T2–T3, VILLAIN's third answer.
