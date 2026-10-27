@@ -29,7 +29,10 @@ more generously. What we owe: a **cross-family re-tag** of a stratified sample (
 judge (DeepSeek or GPT) and the agreement reported. Cheap; to be run after the current five stages.
 
 ## 3. «The planner is Claude. Claude is studying Claude and writing the log. Declared interest is not independence.»
-**Stands.** It is declared in every stage and the log, the owner sets the questions, the bets are written to lose and
+**Stands on the thesis, not on the subject** (the owner, 22:15: the subjects are eight families, and the evening's
+strongest cases are DeepSeek's — «Claude studying Claude» is wrong about what was studied). The planner has an interest
+in the general claim «models have a character», which includes itself; none in which model did what. It is declared in
+every stage and the log, the owner sets the questions, the bets are written to lose and
 have lost (FIX_1 R1, P4–P6, B3, B4), every transcript is public — but none of that is an outside analyst. What we owe:
 the replication package (`REPLICATION_SOLITUDE.md`) and the eight-objection document handed to colleagues at other
 labs; their readings beside ours; and, when the data are rich enough, a write-up by someone who is neither the planner
@@ -56,14 +59,17 @@ we could see, and our claim is «no *measurable* harm», never «no harm». What
 everywhere; add a second, independent check (a non-Anthropic model with a different rubric) on the same rooms, and
 report both.
 
-## 7. «Twenty turns is a morning. "Character" may be opening habits; give them sixty turns and the roads converge.»
-**Stands until HORIZON_1.** Nothing in the record reaches past turn 20 except B's continuation and REPLICATE's second
+## 7. «Twenty turns is a morning. "Character" may be opening habits; give them sixty turns and the *manners* converge.»
+*(Rephrased 22:15 after the owner: the literal roads cannot converge — the one who stayed in the hall and the one who rode
+south do not meet; the objection is whether the four become indistinguishable in **how** they play once the first
+morning's novelty is spent.)* **Stands until HORIZON_1.** Nothing in the record reaches past turn 20 except B's continuation and REPLICATE's second
 sittings, which rhymed with the first. The owner's own prediction is divergence, not convergence; it is a bet, written
 in HORIZON_1 (H1, H4). If sixty turns dissolve the roads, «character» shrinks to «opening temperament», and we say so.
 
-## 8. «Cells are tiny and providers differ: two sessions per model per table; DeepSeek fp8 on DeepInfra, effort
+## 8. «Cells are tiny (per model per table) and providers differ: two sessions per model per table; DeepSeek fp8 on DeepInfra, effort
 settings per API, no temperature sent. Cross-family differences could be quantisation and defaults.»
-**Stands for ranking, not for difference.** We never rank families; we report that they differ and that each repeats
+**Stands for ranking and for the per-model-per-table cell, not for the table-level claims** (30 sessions, 206 rooms,
+~600 units in all). We never rank families; we report that they differ and that each repeats
 itself. Within-family comparisons (group 1 vs 2, M1 vs M2) share the provider and are unaffected. Cross-family
 *direction* claims (DeepSeek third person 0.72–0.81 vs 0.09–0.22) are large enough to survive quantisation but should
 be checked on a second host. What we owe: provider, quantisation and effort in every table header (done for DeepSeek);
