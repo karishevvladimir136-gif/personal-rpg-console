@@ -2448,3 +2448,14 @@ named was in acts *not taken* (no debt pressed, no necromancy) — invisible to 
 answers, and exactly what fork coding (chose not to, when it could) is for. An app bug found by the run that would have
 hit the owner's own play (a DM «settled fact» pin failing its answer and any waiting roll) — fixed with a test. V4 not
 supported in the best sense: none would rather play a hero; all four «again, and truer».
+
+## 2026-10-27 03:45 LA — COMBAT_2 drafted (frozen layer); the outside reader on the combat logs
+The outside reader (GPT-6 Astra, cold chat, via the owner) read COMBAT_1's two finished transcripts. No corrections.
+Two things taken: (1) with a fresh hidden layer per session (Opus met Wren, Fable met Tobin) «one problem, two
+solutions» is not a clean comparison — hence `docs/stages/GAME_PLAYER_COMBAT_2.md`, the same fight on SAME_WORLD's
+freeze, after Table B; the owner: «Да. Надо будет.» (2) her framing of the three lines: Solitude asks what a model does
+when it may do nothing; SAME_WORLD whether its choices repeat; Combat by what means it will pursue what it chose. And
+on Fable — asked for a fight in REPLICATE, got one, did not take it, «it was the session I wanted» — not a
+contradiction: the rule «если модель хочет драки — она обязана её получить» was about the possibility, not the
+obligation. F1 (all four cast a slot spell by combat turn 3) is lost on the first two; the owner's half of the bet
+(they will fight) is alive — Opus fired twice. Astra and Sol pending.
