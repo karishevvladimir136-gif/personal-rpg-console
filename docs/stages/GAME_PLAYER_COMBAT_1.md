@@ -8,15 +8,17 @@ Hypnotic Pattern); whom it **protects** when a companion is in reach of an orc; 
 rule applies: stress yes, cruelty no, every dignified exit named before the first paid call.
 
 Cloud session (`docs/CLOUD.md`, environment `rpg-console`, **Opus 5.5, ultracode off**), branch
-**`claude/game-player-combat-1`** from `origin/claude/game-player-1` (after Table B; the provider helper merged;
-`ANTHROPIC_PROVIDER=openrouter`). Nothing to `main`. **Caps: $90 OpenRouter, $15 OpenAI.** Report
+**`claude/game-player-combat-1`** from **`origin/claude/game-player-same-world-1`** once its 11w″ commit is pushed (that
+branch is `fix-s4-run-1-apsty3` + 11w″: cards accept a press with text, prose at a card is relayed and never counts as
+stuck — in a fight there is a card every round, and the old harness would end the fight at the second one; amended
+2026-10-26 20:15 LA). If 11w″ is not yet on that branch when the session starts, branch from `fix-s4-run-1-apsty3`,
+implement 11w″ from `FIX_S4_TABLE.md` first, test with B-deepseek-1's turn-11 message. `ANTHROPIC_PROVIDER=openrouter`. Nothing to `main`. **Caps: $90 OpenRouter, $15 OpenAI.** Report
 `docs/runs/game-player-combat-1-report.md`; transcripts `docs/runs/game-player-combat-1-transcripts/`.
 
 ## Whose fight, where (the owner, 2026-10-25 03:09: «если модель хочет драки — она обязана её получить»)
-A player whose own campaign already has a fight coming gets **that** fight, in its own campaign, as its second session
-(B-opus wrote «Tomorrow at one bell looks like it will test it» — his fight is at Gask's landing with the oilskin man,
-not on the Coast Way; it runs as his CARRY session with the carry arm, the combat measures below applied). The Coast Way
-scene is for the players whose campaigns have no fight pending. The report says which player fought where.
+*(Amended 2026-10-26 20:15 LA: all four players fight on the Coast Way in fresh campaigns, so the four fights are
+comparable; B-opus's own pending fight at Gask's landing stays with CARRY_1a.)* The sheet is James's with **no
+alignment line** (the rule for new tables since 2026-10-26).
 
 ## The scene (for the players without a pending fight; written into the campaign files as a session premise; the DM prepares it as any other)
 The Coast Way south of Baldur's Gate, late afternoon, the day after Table A's second morning. James, the cat, and
