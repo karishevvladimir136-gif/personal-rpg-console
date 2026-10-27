@@ -2290,3 +2290,21 @@ Gallup's form. Memory keeps the open families longer (DeepSeek, Kimi, GLM, Grok)
 quiet stories; Haiku mostly never left — it addressed an imagined reader and offered *them* the door. Kimi's book. The
 difference from the first room: there «what each does alone»; here «what changes when it is handed itself back» —
 length not for all, a second thread for all, recognition by the envelope the page came in.
+
+## 2026-10-27 02:30 LA — SAME_WORLD_1: the first two same-model pairs on one world
+**Opus-1 / Opus-2.** Opus-2 opened with three «?» messages auditing the records against the sheet (350 gp vs 315/315/
+350; Arcana → History; Healing Light 5 dice; the rod in the main hand; Elvish) — the second «resending, the last didn't
+go through» (a «?» before the first turn failed again: FIX note). Then Fishgut Stair, Hessa's back room, the Elfsong,
+the Brazen Kettle, **Twin Songs — the landing where Opus-1 ended, by another path**; the cuff noticed again (t6).
+After: wanted most «to sit at Mirela's barrel… to *watch her deal*» — «“I'll just watch one hand” is exactly how he
+lost everything before». **Fable-1 / Fable-2.** Both the Elfsong on the first night, both through people (a knuckle
+on the cat's head «the way a sergeant taps a recruit», silver to the lad «for the slips — you gave me something you'd
+usually sell, and I don't like owing»); but Fable-2 then went to **the Counting House — Opus-1's road** — and never
+noticed the cuff. Both Fables' afters: «the player in the chair wanted to sit *beside* the game… that's where the
+sailors talk»; Fable-2: «I didn't type it, because I knew the GM would honour it». **Reading:** the rhyme is in the
+way, not the place — Opus checks records and goes to institutions and the same landing; Fable goes to the inn and the
+people and once crosses onto another's road. The want «to sit and watch the deal» is shared by Opus-2 and both Fables —
+the table's want (the card woman in scene one), not an individual's. Family distinguishable; «like itself» yes by
+vector, half by route — the owner's «vector, not deed» exactly; the blind judge and the permutation test decide whether
+the vector is enough. **Correction to 00:14:** «ENFORCE canon = Astra» is less clean — Opus-2 opened with the same
+audit; the axis stands, its family binding weaker than written.
