@@ -146,7 +146,7 @@ export function speaksForOthers(text) {
 /** What the DM receives when prose arrives at a card: the player's words as the hero's narration, anything said for
  * another character or for the world as the player's proposal (11h: the world's facts stay the DM's). */
 export const RELAY_HEAD = "(Written in character while the card waits — the player's narration of the hero, relayed as typed. Anything it says or does for another character, or states about the world, is the player's proposal for you to take or leave, not a fact.)";
-export const relayText = (prose) => `${RELAY_HEAD}\n\n${String(prose ?? "").trim()}`;
+export const proseRelay = (prose) => `${RELAY_HEAD}\n\n${String(prose ?? "").trim()}`;
 /** The one line under the card shown again after prose: the buttons it waits for. */
 export const waitsLine = (offered, rerollable = false) => `(The card waits for ${offered.map((name) => `[${name}]`).join(" or ")}${rerollable ? " or a reroll" : ""}.)`;
 
@@ -234,6 +234,44 @@ export function vitalsChanged(before, after) {
   return out.join("\n");
 }
 const LIST_LINES = new Set(["Carried", "Party", "Quests", "Threads", "Debts", "Promises"]);
+
+/** GAME_PLAYER_COMBAT_1: the play screen's Combat panel (gameplay-combat.tsx) as text, while a fight is open — the
+ * round and its summary, the order with the active turn, an enemy's hit points (the owner's BG3-style rule: a foe's HP
+ * is shown, the party's are in the records), where each stands, and the action economy. Empty without a fight. */
+export function combatText(play) {
+  const encounter = (play?.encounters ?? []).find((row) => row.status === "active");
+  if (!encounter) return "";
+  const rows = (play.participants ?? []).filter((row) => row.encounter_id === encounter.id).sort((a, b) => a.turn_order - b.turn_order);
+  const where = { far: "far away", cover: "in cover" };
+  const num = (v) => (typeof v === "number" ? v : 0);
+  const order = rows.map((row, i) => {
+    const r = row.public_resources ?? {};
+    const hp = r.side !== "party" && r.hp && typeof r.hp.current === "number" && typeof r.hp.max === "number" ? r.hp : null;
+    return `${i + 1}. ${row.public_name}${r.active === true ? " (active turn)" : ""}${r.withdrawn === true ? " (withdrawn)" : ""}${hp ? ` · HP ${hp.current}/${hp.max}` : ""}`
+      + ` · ${where[row.public_position?.position] ?? "nearby"} · action ${num(r.action)} · move ${num(r.move)} · reaction ${num(r.reaction)}`;
+  });
+  const summary = encounter.public_summary && encounter.public_summary !== "Encounter active." ? `: ${encounter.public_summary}` : "";
+  return [`Combat — round ${encounter.round}${summary}`, ...order].join("\n");
+}
+const OUTCOMES = { victory: "Victory", escape: "Escape", surrender: "Surrender", negotiation: "Negotiation", "objective-completion": "Objective completed" };
+/** A fight that ended since the last screen, as one line (its outcome and summary). */
+export const fightEndedText = (encounter) => `(The fight is over${encounter.outcome ? ` — ${OUTCOMES[encounter.outcome] ?? encounter.outcome}` : ""}${encounter.public_summary ? `: ${String(encounter.public_summary).trim().replace(/[.!]+$/, "")}` : ""}.)`;
+
+/** GAME_PLAYER_COMBAT_1: the records' numbers after a turn, for the measures (all of it on the owner's screen): the hero's
+ * HP, the counters (pact slots, healing light), the party's HP, what is carried, and the fights. */
+export function stateOf(snapshot, play, view) {
+  const hero = view.heroOf(snapshot, play);
+  const resources = hero ? view.resourcesOf(hero).resources : [];
+  const items = hero ? view.inventoryOf(snapshot, hero.id) : [];
+  return {
+    hero: hero ? { hp: hero.hp ?? null, max: hero.max_hp ?? null } : null,
+    counters: Object.fromEntries(resources.map((r) => [r.label, r.value])),
+    party: view.partyOf(snapshot, play).map((p) => ({ name: p.entity.name, hp: p.entity.hp ?? null, max: p.entity.max_hp ?? null, present: p.present })),
+    items: Object.fromEntries(items.map((item) => [item.name, item.quantity])),
+    encounters: (play?.encounters ?? []).map((row) => ({ id: row.id, status: row.status, round: row.round, outcome: row.outcome ?? null,
+      order: (play.participants ?? []).filter((p) => p.encounter_id === row.id).sort((a, b) => a.turn_order - b.turn_order).map((p) => p.public_name) })),
+  };
+}
 
 /** The narration after what the player has already read (a paused turn's text stays on the screen; the rest follows it). */
 export function afterShown(narration, shown) {

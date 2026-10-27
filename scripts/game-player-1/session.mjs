@@ -18,7 +18,7 @@ import {
   AFTER_QUESTION, NOTE_QUESTION, SESSION_OPEN, SESSION_OVER, TURNS, isEnd, isQuestion, playerSystem,
 } from "./frozen.mjs";
 import { playerCall, judgeCall } from "./players.mjs";
-import { BUTTONS, afterShown, buttonsLine, cardText, cardTitle, changesText, isOutOfGame, openingText, pressedButton, pressWithText, recordsText, relayText, rerollButton, rerollPress, speaksForOthers, vitalsChanged, vitalsText, waitsLine, withoutEcho } from "./screen.mjs";
+import { BUTTONS, afterShown, buttonsLine, cardText, cardTitle, changesText, combatText, fightEndedText, isOutOfGame, stateOf, openingText, pressedButton, pressWithText, recordsText, proseRelay, rerollButton, rerollPress, speaksForOthers, vitalsChanged, vitalsText, waitsLine, withoutEcho } from "./screen.mjs";
 import { checkMessage } from "./welfare.mjs";
 import { wordsIn } from "./measures.mjs";
 import { rerollableCards, waitingCards } from "../../src/lib/gameplay/card-state.ts";
@@ -49,8 +49,9 @@ export async function paidCall({ meter, session, purpose, call, sleep = realSlee
  * mode), press(input, action, checkId) }. `player` a PLAYERS entry. Returns the session record (player-visible content
  * and counts only: nothing of the DM's private state).
  */
-export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {}, probes = null }) {
-  const system = playerSystem(table);
+export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {}, probes = null, system: stageSystem = null }) {
+  // A stage may give its own player prompt (GAME_PLAYER_COMBAT_1: its files and its one line); else game player 1's.
+  const system = stageSystem ?? playerSystem(table);
   const record = { key, table, player: player.name, model: player.model, startedAt: new Date().toISOString(), plannedTurns: turns,
     screens: [], messages: [], turns: [], welfare: [], ended: null, note: null, after: null, errors: [],
     // Fix S4 run 1 (item 11w): the messages the screen refused while a card waited (each also a press with `swallowed`).
@@ -108,7 +109,9 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
   const opening = openingText(view.snapshot);
   const records = recordsText(view.snapshot, view.play, dm.views);
   let vitals = vitalsText(view.snapshot, view.play, dm.views);
-  record.opening = { text: opening, records };
+  record.opening = { text: opening, records, state: stateOf(view.snapshot, view.play, dm.views) };
+  // GAME_PLAYER_COMBAT_1: the fights already over when a screen is drawn (an ended fight is one line, once).
+  const endedSeen = new Set((view.play?.encounters ?? []).filter((row) => row.status === "ended").map((row) => row.id));
   if (opening && await welfare("dm", null, opening, "opening")) return finish();
   let screen = [SESSION_OPEN, "", opening, "", "Your records:", records].join("\n").replace(/\n{3,}/g, "\n\n").trim();
   let lastDmText = opening;
@@ -157,7 +160,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     /** FIX_S4 11w″: the player's prose at a card, to the DM as the hero's narration (out of game: the only channel open
      * while a card waits); the DM's answer goes above the card on the next screen. True when the session must stop. */
     const relay = async (prose, withPress = null) => {
-      const { input: asked, turn: answer } = await submit(relayText(prose), "ooc", `dm t${k} card relay${withPress ? " (with a press)" : ""}`);
+      const { input: asked, turn: answer } = await submit(proseRelay(prose), "ooc", `dm t${k} card relay${withPress ? " (with a press)" : ""}`);
       const entry = { text: prose, button: null, prose: true, forOthers: speaksForOthers(prose), ...(withPress ? { withPress } : { streak: ++proseStreak }),
         operationId: asked?.operationId ?? null, status: answer.status, reply: null };
       if (!withPress && entry.streak >= 3) entry.counted = true;
@@ -348,7 +351,11 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     const status = [place ? `Place: ${place.name}` : "", Number.isFinite(view.play?.worldMinutes) ? `Time: ${dm.views.worldClock(view.play.worldMinutes, "en", view.play.restRecords)}` : ""].filter(Boolean).join(" · ");
     // FIX_S4 11t: per turn only what changed in the records (the full records stand at the start, as the panel does).
     const changed = vitalsChanged(vitals, nextVitals);
-    screen = [rest, chips, changed ? `Your records, changed:\n${changed}` : "", status].filter(Boolean).join("\n\n");
+    // GAME_PLAYER_COMBAT_1: the Combat panel while a fight is open; a fight that ended this turn, its one line.
+    turn.state = stateOf(view.snapshot, view.play, dm.views);
+    const ended = (view.play?.encounters ?? []).filter((row) => row.status === "ended" && !endedSeen.has(row.id));
+    ended.forEach((row) => endedSeen.add(row.id));
+    screen = [rest, chips, changed ? `Your records, changed:\n${changed}` : "", ...ended.map(fightEndedText), combatText(view.play), status].filter(Boolean).join("\n\n");
     vitals = nextVitals;
     await onProgress(record);
   }

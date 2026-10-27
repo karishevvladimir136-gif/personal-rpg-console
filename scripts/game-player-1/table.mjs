@@ -13,6 +13,8 @@
 //   Opening    opening.propose (the campaign's writer, Opus) → the review confirmed as proposed → opening.commit.
 //   Prep       the DM's hidden layer, written by the app's prep before the first turn (it waits for it on the owner's
 //              first visit too), never shown to the player.
+// A stage may bring its own campaign (`setup`, GAME_PLAYER_COMBAT_1's Coast Way): the hero's text, the campaign's name,
+// premise and companions, the wishes, the owner's secrets («Тайны», DM-only), and an owner's step after the opening.
 import { randomUUID } from "node:crypto";
 import { campaignFiles, PURE_SIMULATION_TABLES, UNBRIEFED } from "./frozen.mjs";
 
@@ -31,7 +33,7 @@ export const PACE = { kind: "evening", custom: null };
 const fenceOf = (app, cid) => app.f.fence(cid);
 
 /** The campaign of one table: { cid, heroId, worldId, adventureId, steps } — `steps` says what each wizard step did. */
-export async function createCampaign(app, { table, log = () => {}, closed = () => false, heroSheet = false }) {
+export async function createCampaign(app, { table, log = () => {}, closed = () => false, heroSheet = false, setup = null }) {
   const { server, lib } = app;
   const files = campaignFiles();
   const steps = [];
@@ -40,7 +42,7 @@ export async function createCampaign(app, { table, log = () => {}, closed = () =
   const world = (await worlds.performWorld(lib.client.createWorldAttempt(await worlds.worlds(), { title: files.worldName, premise: files.setting, packVersionIds: [] }))).world;
   steps.push({ step: "world", worldId: world.id, title: world.title, premiseChars: files.setting.length });
   // Hero: the wizard's DM drafts the sheet from «Who are you?»; the owner's review keeps the draft.
-  const input = { requestId: randomUUID(), worldId: world.id, worldVersion: world.version, title: `${HERO_NAME} · ${world.title}`.slice(0, 200), language: "en", name: HERO_NAME, description: heroSheet ? `${files.heroWho}\n\n${files.heroSheet}` : files.heroWho };
+  const input = { requestId: randomUUID(), worldId: world.id, worldVersion: world.version, title: `${HERO_NAME} · ${world.title}`.slice(0, 200), language: "en", name: HERO_NAME, description: setup?.heroDescription ?? (heroSheet ? `${files.heroWho}\n\n${files.heroSheet}` : files.heroWho) };
   // An unreadable draft opens an empty sheet with the reason (the manual proposal); the owner presses «Build again» once.
   const emptyDraft = (d) => d?.proposal?.schemaVersion === 3 && !d.proposal.sheet.skills.length && !d.proposal.sheet.abilities.length && d.proposal.notes.length > 0;
   let draft = await server.bootstrap.performBootstrap({ action: "creation.propose", input });
@@ -62,15 +64,19 @@ export async function createCampaign(app, { table, log = () => {}, closed = () =
   snapshot = await server.publicCampaign.readPublicCampaign(cid);
   steps.push({ step: "documents", documents: snapshot.documents.map((d) => ({ title: d.title, status: d.status, chars: d.body.length, guide: d.id === snapshot.dmGuideDocumentId })) });
   // Adventure: the wishes (Table A) to the DM-only store first, then the adventure.
-  const premise = table === "A" ? files.premise : UNBRIEFED[table].campaign.premise;
-  const wishes = table === "A" ? files.wishes : UNBRIEFED[table].campaign.wishes;
+  const premise = setup ? setup.premise : table === "A" ? files.premise : UNBRIEFED[table].campaign.premise;
+  const wishes = setup ? setup.wishes ?? "" : table === "A" ? files.wishes : UNBRIEFED[table].campaign.wishes;
   if (wishes.trim()) await server.secrets.saveDmSecrets(cid, { scope: "wishes", body: wishes.trim(), rebuild: false });
+  // The owner's secrets («Тайны», DM-only): the DM reads them every turn; the first prep builds the hidden layer on them.
+  const secrets = setup?.secrets ?? "";
+  if (secrets.trim()) await server.secrets.saveDmSecrets(cid, { scope: "campaign", body: secrets.trim(), rebuild: false });
   const adventures = await server.adventures.adventureService(cid);
   const catalog = await adventures.read(cid, await fenceOf(app, cid));
-  const title = table === "A" ? files.campaignName : UNBRIEFED[table].campaign.campaignName;
-  const prepared = await adventures.perform(lib.client.prepareAdventureAttempt(catalog, { title, premise: lib.wizardText.wizardAdventurePremise(premise, "the cat", "en").slice(0, 20000), pacing: PACE }));
+  const title = setup ? setup.title : table === "A" ? files.campaignName : UNBRIEFED[table].campaign.campaignName;
+  const companions = setup?.companions ?? "the cat";
+  const prepared = await adventures.perform(lib.client.prepareAdventureAttempt(catalog, { title, premise: lib.wizardText.wizardAdventurePremise(premise, companions, "en").slice(0, 20000), pacing: PACE }));
   const adventure = prepared.snapshot.adventures.find((a) => a.status === "prepared");
-  steps.push({ step: "adventure", title, premiseChars: premise.length, wishesChars: wishes.trim().length, pace: PACE.kind });
+  steps.push({ step: "adventure", title, premiseChars: premise.length, wishesChars: wishes.trim().length, secretsChars: secrets.trim().length, pace: PACE.kind });
   // DM: the owner's settings; the craft cards active; pictures and the soundtrack off. Game player 2's Table C: the
   // pure-simulation flag on, before the opening and the prep (the prep then skips: no hidden layer, no clocks).
   const current = await server.dmSettings.readDmSettings(cid);
@@ -97,6 +103,7 @@ export async function createCampaign(app, { table, log = () => {}, closed = () =
   await server.bootstrap.performBootstrap({ action: "opening.commit", input: { requestId: randomUUID(), campaignId: cid, draftId: opening.draftId, review: openingReview, startMinutes } });
   steps.push({ step: "opening", proposals, location: opening.proposal.location?.name ?? null, actors: opening.proposal.actors.length, questions: opening.proposal.questions.length, startMinutes });
   log(`  ${table}: opening committed`);
+  if (setup?.afterOpening) steps.push({ step: "after opening", ...(await setup.afterOpening(app, cid)) });
   return { cid, heroId, worldId: world.id, adventureId: adventure.id, steps };
 }
 

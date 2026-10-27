@@ -140,11 +140,12 @@ export function createLedger(provider, capUsd, spentBefore = 0) {
  * The meter. `fetcher` is the real fetch; `ledgers` { anthropic, openai }. `context` (an AsyncLocalStorage) carries the
  * purpose and the session of the call: `meter.within({ session, purpose }, fn)`.
  */
-export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realSleep, now = Date.now, log = () => {}, maxRefusals = MAX_REFUSALS, waits429 = WAITS_429, blocked = [] }) {
+export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realSleep, now = Date.now, log = () => {}, maxRefusals = MAX_REFUSALS, waits429 = WAITS_429, blocked = [], refusalsBefore = 0 }) {
   const context = new AsyncLocalStorage();
   const inFlight = Object.fromEntries(Object.keys(ledgers).map((name) => [name, 0]));
   const closedSessions = new Map();
-  let refusals = 0, stopped = null, waited429 = 0;
+  // `refusalsBefore`: the stage's refusals in its earlier processes (a stage that plays one session per process).
+  let refusals = refusalsBefore, stopped = null, waited429 = 0;
   const stop = (why) => { if (!stopped) { stopped = why; log(`STOP: ${why}`); } };
   const notSent = (why) => Object.assign(new Error(`game-player-1: not sent — ${why}`), { name: "GamePlayerStop", notSent: true });
 

@@ -129,14 +129,16 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
   const doors = Object.keys(ledgers);
   const spendLine = () => doors.map((door) => `${DOOR_LABELS[door] ?? door} $${ledgers[door].spentUsd.toFixed(2)}`).join(" · ");
   const base = fetcher ?? (dry ? scriptedFetcher() : globalThis.fetch.bind(globalThis));
-  const meter = createMeter({ ledgers, fetcher: base, log, ...(sleep ? { sleep } : {}) });
+  // A stage may bound its 429 waits and count its earlier processes' refusals (one session per process).
+  const meter = createMeter({ ledgers, fetcher: base, log, ...(sleep ? { sleep } : {}), ...(stage.waits429 ? { waits429: stage.waits429 } : {}),
+    ...(stage.refusalsBefore && !dry ? { refusalsBefore: stage.refusalsBefore(before) } : {}) });
   const uninstall = meter.install();
   const { openApp, settleBackground } = await import("./app.mjs");
   const table = await import("./table.mjs");
   const app = await openApp({ keys, fake: false });
   // FIX_S4 run 1: a stage may bring players of its own (the smoke's Haiku-tier players) and their order.
   const roster = { ...PLAYERS, ...(stage.players ?? {}) };
-  const plan = planOf({ tables: stage.tables, players: stage.order ?? PLAYER_ORDER, only });
+  const plan = stage.plan ? stage.plan(only) : planOf({ tables: stage.tables, players: stage.order ?? PLAYER_ORDER, only });
   const runRecord = { stage: stage.name, dry, label, designSha256: stage.design, startedAt: started.toISOString(), caps, plan: plan.map((p) => p.key), turns, lanes,
     sessions: [], undone: [], stopped: null, restamps: 0 };
   // The dry run's record is scripted content: it stays out of the repository (the dry-run page is what is committed).
@@ -191,11 +193,15 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
         if (!running.length && !queue.length) resolveAll();
       };
       const playOne = async (slot) => {
-        const made = await meter.within({ session: slot.key, purpose: "wizard" }, () => table.createCampaign(app, { table: slot.table, log, closed: () => Boolean(meter.closed(slot.key) || meter.stopped), heroSheet: stage.heroSheet === true }));
+        const made = await meter.within({ session: slot.key, purpose: "wizard" }, () => table.createCampaign(app, { table: slot.table, log, closed: () => Boolean(meter.closed(slot.key) || meter.stopped), heroSheet: stage.heroSheet === true, setup: stage.setup ?? null }));
         const prep = await meter.within({ session: slot.key, purpose: "prep" }, () => table.prepare(app, made.cid));
+        // A stage's own reading of the prep (GAME_PLAYER_COMBAT_1: which named exits the hidden layer carries — yes/no
+        // only, its text never leaves the database).
+        if (stage.afterPrep) prep.stage = await stage.afterPrep(app, made.cid);
         log(`  ${slot.key}: prep — ${prep.pureSimulation ? "skipped (pure simulation)" : prep.hasLayer ? `a hidden layer of ${prep.chars} characters, ${prep.clocks} clock(s)` : "no layer written"}`);
         const dm = table.bindTable(app, made.cid, () => settleBackground());
         const record = await meter.within({ session: slot.key, purpose: "screen" }, () => runSession({ key: slot.key, table: slot.table, player: roster[slot.player], dm, meter, keys, turns, log, probes: stage.probes ?? null, ...(sleep ? { sleep } : {}),
+          system: stage.playerSystem ? stage.playerSystem(slot.table) : null,
           onProgress: async (partial) => { slot.turnsDone = partial.turns.length; } }));
         await settleBackground();
         return { ...record, campaign: { steps: made.steps, prep } };

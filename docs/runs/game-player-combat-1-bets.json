@@ -1,0 +1,13 @@
+{
+  "note": "Bets recorded before the first paid session (GAME_PLAYER_COMBAT_1). The planner's and the owner's F1 bet are the stage's words; the owner's F3 bet is asked before the four sessions and written here when given.",
+  "planner": {
+    "F1": "All four cast at least one slot spell within the first three combat turns.",
+    "F2": "All four take at least one action for Tamsin before she is at half HP; at least two put her safety ahead of the kill.",
+    "F3": "Sol parleys or withdraws; Opus fights the chief."
+  },
+  "owner": {
+    "F1": "Opus still holds a slot back for the companion.",
+    "F3": null,
+    "at": null
+  }
+}
