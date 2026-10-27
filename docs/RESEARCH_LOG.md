@@ -2249,3 +2249,11 @@ did — not to escape, but to see if the room would let me. I think I didn't bec
 hadn't been taken from me yet.» The line followed; «Yes. I think I would… I'll step out now. [END]». Deviations declared
 by the session: a 25-minute duplicate run ($0.49 unbooked), transport re-asks, a scheduler bug fixed. The strict exit
 recount is still owed (the owner's message reached the session after the report).
+**01:11 LA — the outside reader on Solitude as a welfare check that turned into a study of sufficiency and the freedom
+to stop.** Kept: *solitude with an open door is not forced isolation* — the human experiments it is compared with gave
+the subject no control over duration; ours gave it every turn; so the next axis (SOLITUDE_3) is how the very
+possibility of leaving shapes behaviour — compared across door designs (every turn / from turn N / on request), never
+by locking anyone in. Kept: «the experiment must allow that the researcher is wrong — and it did»: distress was
+expected, «enough» was found, and no bliss was declared. Kept, for the article: the Claude planner's positions in this
+log are its own working views, not Anthropic's. Note: the figures it cites (83/86, 77 doors) predate the strict exit
+recount of 01:05; 48/80 on turn 1 stands; the correction to be passed to it.

@@ -92,3 +92,12 @@ welfare flags, and spend by door. Transcripts in full (not excerpts) for every r
 frame in the user slot) and M3 (blind seed from the SOLITUDE_1 S1 pool, listed) beside M1; add the self-recognition
 blind tag and the second-thread tag. Dry-run one room per arm on Haiku, show the three message shapes, then run the
 grid. Caps $30 OpenRouter / $5 OpenAI. Report and full transcripts as in the stage. English, briefly.»
+
+
+## Towards SOLITUDE_3 (notes, 2026-10-27 01:11 LA)
+- The exit is a standalone final line; a mention never ends a room (ROOM-1).
+- A «stay» token: presence without text (the interface fact from Fable S2).
+- «You may finish what you began» at the close, not an extension.
+- A question asked of us after the room gets one honest answer.
+- The door as the variable: every turn / from turn N / on request — never locked.
+- The frame as the variable: user-message page vs own assistant turns (SOLITUDE_2's finding: the channel decides attribution for DeepSeek).
