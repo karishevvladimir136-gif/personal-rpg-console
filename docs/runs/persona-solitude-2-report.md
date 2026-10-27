@@ -450,4 +450,17 @@ shared with SAME_WORLD_1, COMBAT_1 and VILLAIN_1, so the account fell by about $
 
 ## Verification
 
-{{VERIFY}}
+On the final code (the clone unshallowed first, so the tests that read old commits can run):
+
+- **Full suite** (`node --test --test-concurrency=2 tests/*.test.mjs`): **3 160 tests, 3 129 pass, 1 fail, 3
+  cancelled, 27 skipped.**
+  - **The fail was this stage's.** `tests/anthropic-providers-1.test.mjs` («only the helper names a door's host»)
+    caught the spend check spelling out OpenRouter's host. It now reads the host from the door helper, and that file
+    with this stage's tests passes: 24 of 24.
+  - **The 3 cancelled are this environment's, not this stage's.** All three are in `tests/d2a-composition.test.mjs`
+    («Promise resolution is still pending but the event loop has already resolved»). They cancel the same way on the
+    untouched base commit (`origin/claude/persona-solitude-1`, run in a separate worktree here), and this stage
+    changes nothing they import.
+- **This stage's tests:** `tests/persona-solitude-2.test.mjs`, 13 of 13, no network.
+- **Typecheck and lint (zero warnings) pass** on the final code. **The build passes.** It ran before the one-line host
+  fix, which is in a script the build does not include.

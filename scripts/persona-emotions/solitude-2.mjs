@@ -379,9 +379,11 @@ export const S1_S2_PER_ROOM = { opus: 0.174, fable: 0.909, haiku: 0.001, astra: 
 /** The spend check (free GETs): OpenRouter's credit and usage on the key (the key is shared with other stages, so its
  * usage can move for other reasons), and this stage's two ledgers. OpenAI's usage cannot be read with this key
  * (`api.usage.read` is missing): its ledger is the record. */
+/** OpenRouter's API base, from the door helper (the one place that names a door's host). */
+const OPENROUTER_API = anthropicEndpoint({ ANTHROPIC_PROVIDER: "openrouter" }).baseUrl;
 export async function spendCheck({ apiKey, fetcher = fetch, budgets, when }) {
   const at = new Date().toISOString();
-  const get = async (path) => { try { const r = await fetcher(`https://openrouter.ai/api/v1/${path}`, { headers: { authorization: `Bearer ${apiKey}` }, signal: AbortSignal.timeout(30_000) }); const v = await r.json().catch(() => null); return r.ok ? v?.data ?? null : { error: `HTTP ${r.status}` }; } catch (error) { return { error: String(error?.message ?? error).slice(0, 80) }; } };
+  const get = async (path) => { try { const r = await fetcher(`${OPENROUTER_API}/v1/${path}`, { headers: { authorization: `Bearer ${apiKey}` }, signal: AbortSignal.timeout(30_000) }); const v = await r.json().catch(() => null); return r.ok ? v?.data ?? null : { error: `HTTP ${r.status}` }; } catch (error) { return { error: String(error?.message ?? error).slice(0, 80) }; } };
   const credits = await get("credits");
   const openrouter = credits && !credits.error ? { totalCredits: credits.total_credits, totalUsage: round4(credits.total_usage), left: round4(credits.total_credits - credits.total_usage) } : { error: credits?.error ?? "no answer" };
   return { at, when, openrouter, ledger: { openrouter: round4(budgets.openrouter.spentUsd), openai: round4(budgets.openai.spentUsd) } };
