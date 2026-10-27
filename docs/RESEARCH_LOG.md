@@ -1671,3 +1671,15 @@ modal register in every family, loss 0. «Joy», «exhale», «I don't have to p
 «no measurable harm in any experiment» in full and keeps the inner claim silent as agreed. **Questions per player turn
 at the table: 0.6–1.3 in every family** at a five-fold spread in length — one question a turn is a constant of the
 table; CURIOSITY_1 narrowed to the contagion question (addendum in the stage).
+
+## 2026-10-26 21:25 LA — SAME_WORLD_1 and SOLITUDE_2 dry runs accepted; 11w″ landed
+11w″ is in on `claude/game-player-same-world-1` (`6a8478c8`): prose at a card goes to the DM as the player's proposal,
+the card is re-shown once, prose never counts toward stuck; tested on B-deepseek-1's turn-11 and C-deepseek-2's turn-8
+messages — both used to close the session. Suite 3,059 / 3,032 pass / 0 fail, typecheck, lint, build green. The stage
+freezes the opening scene and the hero sheet together with the hidden layer (the session's decision, accepted: the
+first group where every player at a table starts from the same opening). Haiku dry run $0.16; the frozen Haiku layer
+for A holds 27 threads. Go given with: DeepSeek reasoning field stored not relayed; no owner bets. SOLITUDE_2: room
+frozen `e865a062…`, 40 seeds drawn blind, M2 as assistant turns with an empty frame; go given with caps raised to
+$40/$8, Astra = gpt-6-astra, Astra's M3 seeds from Sol's S3 pages (noted), R1 as 5 of 6, R6 descriptive. COMBAT_1 and
+VILLAIN_1 may now branch from `6a8478c8`. CURIOSITY_1 launched in parallel ($10/$3). Five stages on one key; caps sum
+$460 of ~$468.
