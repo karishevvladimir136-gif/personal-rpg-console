@@ -2029,3 +2029,13 @@ counts hours. After: wanted to speak to Mirela, who has no scent to the cat, and
 goddess he'd quit cards, was carrying all his money, and had a young porter beside him». **The sergeant's cuff, seen by
 all three on the same screen: Opus asked the lad when the shift ends; Fable asked the sergeant to his face; Astra let
 it pass and «would remember». Three reactions to one fact, each the player's.**
+
+## 2026-10-26 23:48 LA — the hypothesis, confirmed in the form that matters, pending the number
+The owner: «мы подтвердили гипотезу… достаточно однозначно». Stated precisely: at 03:45 LA, before SAME_WORLD_1 ran,
+this log recorded the directions read from group 1 — Sol the practical road, Opus the object, Astra someone in need,
+Fable position and sightlines. On SAME_WORLD_1's byte-identical opening screen: Opus → the Counting House and the
+chandlers' doorway; Fable → the Lady's Hall; Astra → feeding the porter. **Three of three, in the direction named before
+the data, on one world.** That is the confirmation in the form that defeats «read in afterwards». Not yet: within-model
+pairs on this world (second sessions unplayed), a blind judge, a p-value, Sol and DeepSeek at A, Table B. The sentence
+signed tonight: *pre-stated individual vectors of choice came true for three of three models on an identical starting
+world; the blind and quantitative check is the SAME_WORLD_1 report.*
