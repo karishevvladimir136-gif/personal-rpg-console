@@ -1614,3 +1614,8 @@ valuable than tokens: an outside replication of the solitude room on the labs' o
 published sha256, 30 turns, ≈ $25 across families; two independent runs showing the same picture would close «did you
 read it in yourselves». A replication package (prompt, protocol, tag rules, what counts as the same result) to be
 written in English as a single document.
+
+**20:14 LA.** The owner topped up: $474.93 on the shared OpenRouter key. Four stages approved for launch tonight on
+it — SAME_WORLD_1 ($220), SOLITUDE_2 ($30), COMBAT_1 ($90), VILLAIN_1 ($100; Corvin Dask's sheet drafted by the planner,
+approved by the owner's «нам щас на всё хватит» after the sheet was shown) — caps sum $440. Each session stops after its
+dry run and waits for the owner before the first paid call. COMBAT and VILLAIN rebased on fix-s4 + 11w″ (e9d2fc8b).
