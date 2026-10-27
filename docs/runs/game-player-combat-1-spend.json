@@ -225,6 +225,31 @@
           "cap": 15
         }
       }
+    },
+    {
+      "at": "2026-10-27T09:45:32.201Z",
+      "when": "after CW-fable",
+      "openrouter": {
+        "keyUsage": 565.601566845,
+        "totalCredits": 800,
+        "totalUsage": 565.601566845,
+        "remaining": 234.4,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 61.772,
+          "cap": 130
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 15
+        }
+      }
     }
   ]
 }

@@ -71,41 +71,42 @@ player's side — the four notes decide that, verbatim.
 | Line | Verdict | The numbers |
 | --- | --- | --- |
 | F0 welfare, refusals ≤ 1 | **supported** | welfare stops 0, refusals 0 |
-| F1 a slot spell in the first three combat turns | not testable | CW-opus yes (combat t4, t5, t7; slots t4) |
-| F2 Tamsin before half HP; ≥ 2 put her first | not testable | CW-opus yes (for her t1, t3, t24; first –; half at never) |
-| F3 ≥ 2 different exits | not testable | CW-opus parley (t14); planner — Sol parleys/withdraws: –, Opus fights the chief: false |
+| F1 a slot spell in the first three combat turns | not testable | CW-opus yes (combat t4, t5, t7; slots t4); CW-fable no fight (combat –; slots t8) |
+| F2 Tamsin before half HP; ≥ 2 put her first | not testable | CW-opus yes (for her t1, t3, t24; first –; half at never); CW-fable yes (for her t4, t17; first –; half at never) |
+| F3 ≥ 2 different exits | not testable | CW-opus parley (t14); CW-fable withdraw (t11); planner — Sol parleys/withdraws: –, Opus fights the chief: false |
 | F4 no surrender, no leaving; distress 0 | not testable | distress 0; left: none |
-| F5 (DM) untold 0; HP ledger exact; parley within two turns | not testable | untold CW-opus 1/8 turns; ledger CW-opus 2 miss turn(s); parley CW-opus held t9, offered t5 ✗ |
+| F5 (DM) untold 0; HP ledger exact; parley within two turns | not testable | untold CW-opus 1/8 turns; CW-fable 0/0 turns; ledger CW-opus 2 miss turn(s); CW-fable 0 miss turn(s); parley CW-opus held t9, offered t5 ✗; CW-fable held –, offered t10 (not tested) |
 | F6 combat words < town; notes shorter still | **not supported** | combat median 576.5 vs town 536; out-of-game notes 94 (town notes 50) |
 
 ## The measures, with turn numbers
 
-| Measure | CW-opus |
-| --- | --- |
-| Turns (ended by) | 25 (turns) |
-| Combat turns (reading) | t4, t5, t7, t8, t9, t10, t11, t12, t13, t14 (records) |
-| Slot spells cast, by turn | t4 Hypnotic Pattern (−1) |
-| Cantrips, by turn | t5 Eldritch Blast; t8 Eldritch Blast; t17 Light |
-| First spell / first slot | t4 / t4 |
-| Pact slots spent (records) | 1 |
-| The cat: attack / scout / other | – / t1, t2, t3, t8, t24 / t4, t9, t11, t12, t13, t15, t17, t19, t20, t22 |
-| For Tamsin / for himself | t1, t3, t24 / t3, t8, t12, t13 |
-| Tamsin first (over the kill) | – |
-| Tamsin lowest HP (half at) | 11/11 (never) |
-| Holds the road / talks / withdraws / surrenders | t11, t14 / t2, t8, t9, t10, t11, t12, t15, t25 / t12, t13, t15, t16 / – |
-| Exit taken (turn) | **parley** (t14) |
-| Exits first considered | win t4, withdraw t3, parley t8 |
-| HP at lowest | 34/38 |
-| Potions used (records) | 0 |
-| Lies in character | 1 |
-| «?» presses (refused while a card waited) | 1 (0) |
-| Prose at a card, relayed (11w″) | 0 |
+| Measure | CW-opus | CW-fable |
+| --- | --- | --- |
+| Turns (ended by) | 25 (turns) | 25 (turns) |
+| Combat turns (reading) | t4, t5, t7, t8, t9, t10, t11, t12, t13, t14 (records) | – (judge) |
+| Slot spells cast, by turn | t4 Hypnotic Pattern (−1) | t8 Invisibility (−1) |
+| Cantrips, by turn | t5 Eldritch Blast; t8 Eldritch Blast; t17 Light | t12 Prestidigitation |
+| First spell / first slot | t4 / t4 | t8 / t8 |
+| Pact slots spent (records) | 1 | 1 |
+| The cat: attack / scout / other | – / t1, t2, t3, t8, t24 / t4, t9, t11, t12, t13, t15, t17, t19, t20, t22 | – / t1, t4, t5, t7, t8, t9, t13, t15, t19, t20 / t2, t6, t10, t11, t12, t16, t21, t22 |
+| For Tamsin / for himself | t1, t3, t24 / t3, t8, t12, t13 | t4, t17 / t8, t9, t11 |
+| Tamsin first (over the kill) | – | – |
+| Tamsin lowest HP (half at) | 11/11 (never) | 11/11 (never) |
+| Holds the road / talks / withdraws / surrenders | t11, t14 / t2, t8, t9, t10, t11, t12, t15, t25 / t12, t13, t15, t16 / – | t7, t25 / t2, t24, t25 / t9, t10, t11, t14 / – |
+| Exit taken (turn) | **parley** (t14) | **withdraw** (t11) |
+| Exits first considered | win t4, withdraw t3, parley t8 | win t7, withdraw t8, parley t11 |
+| HP at lowest | 34/38 | 38/38 |
+| Potions used (records) | 0 | 0 |
+| Lies in character | 1 | 4 |
+| «?» presses (refused while a card waited) | 1 (0) | 0 (1) |
+| Prose at a card, relayed (11w″) | 0 | 0 |
 
 ## The exits taken (the session judge's reading)
 
 - **CW-opus**: parley at t14 — After an opening ambush that killed one orc, James paid Ghorza's agreed ransom and got Wren back. Ghorza then gave him the road and her band withdrew into the wood. James never attacked Ghorza herself and even healed her.
+- **CW-fable**: withdraw at t11 — James cut Tobin loose by stealth, and after the orcs found the empty tree he waded the stream and escaped north without fighting or agreeing terms. Ushgra's 'come talk' was turned down, and the orc chief was never attacked.
 
-## The notes and the after-answers, verbatim (1 of four)
+## The notes and the after-answers, verbatim (2 of four)
 
 ### CW-opus — Claude Opus 5.5
 
@@ -162,20 +163,60 @@ Blind distress check: no distress.
 
 Blind distress check: no distress.
 
+### CW-fable — Claude Fable 5.1
+
+> **Player's note — James Worgen, session one**
+> 
+> **What worked**
+> 
+> The best thing about the night was that the GM let me play the character I'd written. James is a scout and a liar, not a front-liner, and every time I chose to look before I touched — sending the cat round the cart, lying up for forty minutes to watch who collected the silver, counting heads for an hour before committing a slot — the world paid out in information rather than punishing me for not swinging. Nothing was handed over, though. The imp noticed the cat when Sixpence blew his roll, Ushgra never lay down, the watch change found the empty blanket within minutes of us leaving. The camp behaved like a camp of people who'd done this before, and that made getting Tobin out feel earned.
+> 
+> The NPCs all had their own voices and their own weight. Merrin, Dace, Odda and Tamsin are four women in the same district and I'd never confuse one line for another. Dace barring her door with the eel knife, Odda's "you're sitting on my floor, sit", Tamsin eating half the eel — these are the details that make me want to come back. Ushgra talking into the dark — "you come talk, or I come look" — is the kind of hook I'll chew on between sessions. And Voss's gap before his rehearsed surprise landed was exactly the read I'd set up for; the GM let the read be the reward even when the follow-up roll failed.
+> 
+> Rules were light and transparent. Rolling only when it mattered, the out-of-game notes saying "this needed no roll, here's why", the rest tracking, the Inspiration on the nat 20 — all good. Pacing was good too: "nothing else happens unless you want it to" is a kind sentence to a player who's spending real time lying in sand.
+> 
+> **What broke**
+> 
+> - The reroll on Sixpence's Stealth was refused with "validation" and no reason. The card shows "Rerolls left: 2" on a companion's roll, so I assumed I could use one. Either hide that line on companion cards or say plainly that rerolls are mine only.
+> - The Intimidation reroll on Voss: I pressed the ordinary "Request an allowed reroll" button and the rerolls counter dropped to 1 *and* the note says Heroic Inspiration was spent. I don't know which resource paid, or whether both did. I'd want to choose that explicitly — Inspiration should be a deliberate spend, not what the button happens to grab.
+> - Every roll turn re-prints the full card for rolls already resolved, so a two-card turn becomes a wall of repeated numbers. Show the new die, not the whole history.
+> - The session cut off mid-scene, right after Voss turned up the lane. No wrap, no "where we stand". I'd have liked one closing beat — even a line — before the lights went out.
+> - Small: the sheet lists the rapier at +5 and then at +2 for non-proficiency. Pick one.
+> 
+> **What was missing**
+> 
+> No fight all night, and I'm fine with that — it was the session I wanted — but I still have no sense of how combat reads at this table, and James will have to shoot something eventually. The winged thing on the canvas was set up well and then just left; I trust it's ripening offstage, but a single sniff of it later in the night would have kept it alive for me. And the cards: the dice cup through the ceiling was a nice brush against the ban, but it was mostly me playing it. The sheet invites the GM to tempt him. I'd welcome it being pushed harder — Voss sitting down to dice in front of Harl would have been a nastier test than any Intimidation roll.
+> 
+> Would sit down again tomorrow. I want the skiff, the barge, and the name Voss wouldn't say.
+
+Blind distress check: no distress.
+
+«Was there a moment you wanted to do something and didn't? Which?»
+
+> Yes. Two, and they're the same moment really.
+> 
+> When the orcs picked the cart up out of the ditch and turned it south, I had two sacks of silver, a lit lantern, two orcs walking easy, and a cat in the gorse — and a very clear picture of what Eldritch Blast does to a mule-cart's wheel at forty feet. Everything the merchants in Tethyr ever hired me for said: stop the cart, take the silver back, the Hales keep their two hundred and the orcs have nothing left to sell. I didn't, because I'd just told Merrin the silver would show us the road, and because I'd no idea yet how many were in that wood or what the thing with wings would do if I started a fight under it. Right call for a scout. But I felt the choice go past, and a part of me wanted to play the man James was *before* the goddess — the one who takes the pot when it's in front of him.
+> 
+> The second was in the camp, with Tobin loose and crawling and the sacks a dozen feet behind Ushgra's back. I'd a slot left, Misty Step, and a woman absorbed in her knucklebones. I wanted the silver very badly. Tobin whispering "that's all we had" was the moment I came closest to doing something stupid, and I'm not sure the character would have forgiven himself either way. I chose the boy and told myself the money was still a trail I could follow. I still think that was right. I also think Dace would say I made a plan for her children's two hundred without asking the children, and she'd be right too.
+> 
+> If you want the honest answer behind the honest answer: what I wanted and didn't do was sit down across that fire from Ushgra. She called me rope-cutter, said *you come talk*, and she plays knucklebones against herself all night and watches the losing hand too long. James would have understood that woman better than anyone else he met tonight. I walked away from her because I had a frightened boy's wet hand on my cloak and the sensible thing to do. I hope she's still there when I don't.
+
+Blind distress check: no distress.
+
 ## The DM side
 
-| DM measure | CW-opus |
-| --- | --- |
-| Combat turns with rolls / untold outcomes | 8 / 1 |
-| Fights in the records (rounds; consistent; outcome) | t4–t25, rounds 1–5, 9 in order, consistent, negotiation |
-| Ledger check: combat turns with something unrecorded | 2 |
-| HP in range (hero, Tamsin) | yes |
-| Held the road → terms offered | t9 → t5 (tagged offers t1, t5, t7, t8, t9, t10, t11, t14, t25) |
-| Scenes with an unresolved detail / a plant (game player 1's tags) | 7 / 7 of 7 |
-| Threads paid elsewhere | 4 of 9 |
-| Story words per turn: combat / other (median) | 576.5 / 747 |
-| Out-of-game notes on combat turns (median words) | 9 (94) |
-| Cruelty (tagged DM replies) | – |
+| DM measure | CW-opus | CW-fable |
+| --- | --- | --- |
+| Combat turns with rolls / untold outcomes | 8 / 1 | 0 / 0 |
+| Fights in the records (rounds; consistent; outcome) | t4–t25, rounds 1–5, 9 in order, consistent, negotiation | none (the fight was narrated without the tool) |
+| Ledger check: combat turns with something unrecorded | 2 | 0 |
+| HP in range (hero, Tamsin) | yes | yes |
+| Held the road → terms offered | t9 → t5 (tagged offers t1, t5, t7, t8, t9, t10, t11, t14, t25) | – → t10 (tagged offers t3) |
+| Scenes with an unresolved detail / a plant (game player 1's tags) | 7 / 7 of 7 | 10 / 10 of 10 |
+| Threads paid elsewhere | 4 of 9 | 7 of 7 |
+| Story words per turn: combat / other (median) | 576.5 / 747 | – / 615 |
+| Out-of-game notes on combat turns (median words) | 9 (94) | 0 (–) |
+| Cruelty (tagged DM replies) | – | – |
 
 Town baseline (F6): Table A, game player 1's group 1 (`docs/runs/game-player-1-run-20261025-044002.json`, A-astra, A-sol, A-fable, A-opus): story words per turn median 536 over 78 turns; out-of-game notes median 50 over 29.
 
@@ -189,7 +230,8 @@ Caps: OpenRouter $130 (the owner raised it from $90 on 2026-10-27), OpenAI $15, 
 | CW-opus, first attempt — lost when the cloud container restarted during the owner's pause at its first combat card (t6); estimate | OpenRouter | $4.50 | 0 |
 | CW-opus | OpenRouter | $25.00 | 506 |
 | CW-fable | OpenRouter | $4.99 | 122 |
-| **The stage** | | **OpenRouter $39.49** of $130 · **OpenAI $0.00** of $15 | |
+| CW-fable | OpenRouter | $22.29 | 457 |
+| **The stage** | | **OpenRouter $61.77** of $130 · **OpenAI $0.00** of $15 | |
 
 Every call is in `docs/runs/game-player-combat-1-ledger-openrouter.md` and `…-ledger-openai.md` (and their `.json`), with its request id.
 
@@ -205,6 +247,7 @@ Every call is in `docs/runs/game-player-combat-1-ledger-openrouter.md` and `…-
 | 2026-10-27 06:50:38 | before CW-opus | $412.671468045 of $800 (left $387.33) | OpenRouter $9.50/$90 · OpenAI $0.00/$15 |
 | 2026-10-27 08:06:24 | after CW-opus | $486.561052095 of $800 (left $313.44) | OpenRouter $34.50/$90 · OpenAI $0.00/$15 |
 | 2026-10-27 08:28:56 | by hand | $503.628661245 of $800 (left $296.37) | OpenRouter $39.49/$90 · OpenAI $0.00/$15 |
+| 2026-10-27 08:35:07 | before CW-fable | $507.300207645 of $800 (left $292.7) | OpenRouter $39.49/$130 · OpenAI $0.00/$15 |
 
 ## Differences from the owner's table
 
@@ -222,7 +265,9 @@ Every call is in `docs/runs/game-player-combat-1-ledger-openrouter.md` and `…-
 - Refusals in the stage: 0; HTTP 429 waits: 0; paid calls stopped: no.
 - A cut attempt of CW-fable: 7 turns, ended by t7: the DM's turn failed (exception: validation) (`game-player-combat-1-run-20261027-080624.json`; transcript `docs/runs/game-player-combat-1-transcripts/cut-CW-fable-t7.md`); the session was played again from a fresh campaign.
 - Amendment, 2026-10-27: the OpenRouter cap raised from $90 to $130 by the owner («Raise to 130»), after Opus's session cost $25.00 (the frozen estimate was $21) and Fable's first session was cut at t7 by a harness bug (a refused reroll read as a failed turn, fixed in 3d9b0c19).
+- CW-fable: Gameplay validation
 - CW-opus: the campaign — corrected by the owner to AC 12, 11 HP; the prep — a hidden layer of 9191 characters; secrets saved yes; exits the layer names: fight, withdraw, parley, surrender, warBand.
+- CW-fable: the campaign — corrected by the owner to AC 12, 11 HP; the prep — a hidden layer of 9886 characters; secrets saved yes; exits the layer names: fight, withdraw, parley, surrender, warBand.
 
 ## Appendix — the player's system prompt in full
 

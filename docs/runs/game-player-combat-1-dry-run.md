@@ -49,7 +49,7 @@ _No fight was open in the records at the end of a turn._
 
 ## Spend checks
 
-- after CW-opus (2026-10-27T08:06:24Z): OpenRouter account used $486.561052095 of $800 (left $313.44); ledgers OpenRouter $34.50/$90 · OpenAI $0.00/$15.
 - by hand (2026-10-27T08:28:56Z): OpenRouter account used $503.628661245 of $800 (left $296.37); ledgers OpenRouter $39.49/$90 · OpenAI $0.00/$15.
+- before CW-fable (2026-10-27T08:35:07Z): OpenRouter account used $507.300207645 of $800 (left $292.7); ledgers OpenRouter $39.49/$130 · OpenAI $0.00/$15.
 
 The full transcript of the dry run: `docs/runs/game-player-combat-1-transcripts/dry-CW-haiku.md`.
