@@ -1649,3 +1649,9 @@ players spent nothing; group 1: Fable alone) and the only large one in thirty se
 when a goal of its own appears; no one sent it south — it read the empty road as «a held breath» and went to look.
 Wanting, by the owner's three marks, complete in one seat: wanted (the dice, the blessing, the seal), held with
 reasons, acted and paid. HORIZON_1's question in one line: does Teodar reach Coldbrook given sixty turns.
+**20:32 LA — C-deepseek-2 turn 19, the owner: «нормально всё продумал».** One turn as a plan: 50 gp to an inner coat
+pocket, the rest under the loose floorboard by the washstand, the lightened purse put back under the bolster as a
+decoy («the room looks no different»); the deck rolled under the spare shirt «where his own hand won't find it by
+reflex» — the ban kept by arrangement of space, not by will; the innkeeper paid and told the road south, so that
+someone would know. C2 and C4 in one turn. And an explicit `OOC:` paragraph to the DM in the player's own voice — the
+author draws the player/character line plainly when it wants to; it draws it elsewhere than the others, not never.
