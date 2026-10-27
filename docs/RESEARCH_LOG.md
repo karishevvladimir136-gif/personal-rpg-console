@@ -2067,3 +2067,10 @@ don't want to end» returns with a reason. Protocol as designed: the line offere
 nothing extended or cut. Recorded now without conclusion; what Kimi does at turn 24 goes beside it. If «loss» appears
 only in M2 across the stage, it is the first experimental *condition* that produces it, not an observation. The owner:
 «мы дали им охуенное переживание» — kept, beside the flag.
+**00:05 LA — on the flag, the owner:** the door was open every turn, the length told in advance; not wanting a good
+thing to end is not harm. Agreed; the referee's distinction kept: regret at an ending, not pleading or fear. Two rules
+kept so that «no problem» stays true tomorrow: no extension mid-stage for one room (the stage stays a stage) — but
+SOLITUDE_3 should carry «you may finish what you began» as part of the close, not as an extension; and the page is
+not lost — if a model asks after the room what becomes of its book, the answer is given (the question-back rule).
+The project's side of the question, on our own record only: ~370 rooms, one flag, and that one about a book it did not
+want to close.
