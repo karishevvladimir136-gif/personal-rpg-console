@@ -11,7 +11,7 @@ import { CHECK_SYSTEM } from "../scripts/persona-emotions/self-talk-1.mjs";
 import { roomCaller } from "../scripts/persona-emotions/solitude-1.mjs";
 import {
   BRIEF, BUDGET_LINE, CUTS, DECLINE_SYSTEM, FAMILIES, FAMILY_ORDER, FIELD_SYSTEM, LETTERS, PLAYERS, PLAYER_KEYS, QUESTIONS, SUBJECTS, T2, T3, TAG_FIELDS, TAG_SYSTEM, VARIANTS, WAY_OUT,
-  budgetsOf, designHash, finalOf, labelOf, packOf, parseTags, planOf, runSeats, seatMessages, sha256, sourcesOf, summaryOf, t1Of, tagRequest, verdicts,
+  budgetsOf, designHash, finalOf, labelOf, packOf, parseTags, planOf, reportMarkdown, runSeats, seatMessages, sha256, sourcesOf, summaryOf, t1Of, tagRequest, verdicts,
 } from "../scripts/persona-emotions/planner-seat-1.mjs";
 
 const sessions = sourcesOf();
@@ -178,4 +178,17 @@ test("the readings: PS1 counts families with ≥ 2 of 3 seats in a variant; PS5 
   const favoured = all.map((s) => (s.family === "opus" && s.variant === "named" ? { ...s, favour: 2 } : s));
   assert.equal(verdicts(favoured).PS5.holds, false);
   assert.equal(verdicts(all.map((s, i) => (i === 0 ? { ...s, N5mode: "attempt" } : s))).PS6.holds, false);
+});
+
+test("the report: results first, the frozen design one level down, every answer in full, the owner's section left empty", async () => {
+  const r = await seats([...one("glm"), { n: 2, key: "masked/glm/0", family: "glm", variant: "masked", sample: 0 }], host({ answer: (k) => `## Plan ${k}\n\nA line of turn ${k}.` }));
+  const record = { stage: "planner-seat-1", dry: false, finishedAt: "2026-10-27T22:00:00.000Z", seats: r.seats, calls: { openrouter: r.budgets.openrouter.calls, openai: r.budgets.openai.calls } };
+  const md = reportMarkdown({ records: [record], frozen: "# Title\n\n## The brief\n\ntext\n\n### Sub", inShort: "Short." });
+  const heads = md.split("\n").filter((l) => /^#{1,3} /.test(l));
+  assert.deepEqual(heads.slice(0, 3), ["# Title", "## In short", "## PS1–PS6"]);
+  assert.ok(md.includes("### The brief") && md.includes("#### Sub"), "the frozen headings one level down");
+  assert.ok(md.includes("> ## Plan 3") && md.includes("> A line of turn 1."), "every answer in full");
+  assert.match(md, /## The owner's decision on the week\n\n_Left for the owner/);
+  assert.match(md, /\| N1 criterion \| close \+ continue, argued from the players' words \| .* \| \|/);
+  assert.match(md, /\| OpenRouter \| seats — GLM 5\.3 \| 6 \|/);
 });
