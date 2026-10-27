@@ -61,6 +61,16 @@ export function frozenSection(frozen, dir) {
     })].join("\n");
 }
 
+/** What this group holds constant that groups 1 and 2 did not (the owner, 2026-10-27, on the go). */
+function designSection() {
+  return ["## What is held constant", "",
+    "- **The same opening for every player at a table.** The freeze keeps the wizard's whole campaign — the hero's sheet as drafted, the opening scene, the people in it — with the hidden layer, because the layer names the opening's people. This is the first group where every player at a table starts from the same opening (groups 1 and 2 drew a fresh wizard, opening and layer every session), so W1 and W2 are the clean test by design: whatever differs between two sessions at a table is the player's or the DM's improvisation in play, never the DM's preparation.",
+    "- **No alignment line** on the sheet (the owner, 2026-10-26); nothing in its place.",
+    "- **No bonds.** The stage speaks of «the three bonds» on the sheet; the hero file (`docs/campaigns/baldurs-gate-en/05_hero_warlock_5.md`) has none, and nothing was added (the owner, 2026-10-27).",
+    "- **DeepSeek's reasoning field** (`providerReasoning`, `notRelayed: true`) is stored on every DeepSeek message record, as SOLITUDE_1 did (REPLICATE did not request it). It is never relayed: the DM gets the visible text only, the judges read the visible text only, and only this stage's transcripts print it.",
+    "- **The owner's bets on W1–W5:** none (blank).", ""].join("\n");
+}
+
 function promptSection() {
   return ["## The player's prompt", "", "REPLICATE_1's text (game player 1's), with the hero's alignment cut from the files — «Alignment: chaotic good.» from «Who are you?» and «Chaotic good.» from the background; nothing in their place. Everything else byte for byte.", "",
     "| Table | sha256 now | group 2's | frozen |", "| --- | --- | --- | --- |",
@@ -117,7 +127,7 @@ export function reportMarkdown({ combined = { sessions: [] }, ledgers = {}, spen
     `Refused while a card waited: ${v.counted.swallowed}. Prose at a card relayed as the player's proposal (11w″): ${v.counted.prose}. Closed «stuck»: ${v.counted.stuck.join(", ") || "none"}.${v.counted.swallowed || v.counted.stuck.length ? " Each non-zero is a FIX_S4 item." : ""}`, "",
     "## Money by door", "", "| Door | Spent | Cap |", "| --- | --- | --- |", ...money.map((m) => `| ${DOORS[m.door] ?? m.door} | ${usd(m.spent)} | ${usd(m.cap)} |`), "",
     spend.length ? `Spend checks: ${spend.length}; the last (${spend.at(-1).when}, ${spend.at(-1).at}): OpenRouter account $${spend.at(-1).openrouter.totalUsage ?? "?"} used of $${spend.at(-1).openrouter.totalCredits ?? "?"} (left $${spend.at(-1).openrouter.remaining ?? "?"}).` : null, "",
-    frozenSection(frozen, dir), promptSection(), preregistrationSection(),
+    designSection(), frozenSection(frozen, dir), promptSection(), preregistrationSection(),
     "## Transcripts", "", `\`docs/runs/game-player-same-world-1-transcripts/\` — one file per session; each header names its table's frozen layer by hash.`, ""];
   return out.filter((x) => x !== null).join("\n");
 }

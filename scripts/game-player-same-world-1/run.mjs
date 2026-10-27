@@ -183,6 +183,27 @@ export async function freeze({ dir = FROZEN_DIR, dry = false, haiku = false, log
   return manifest;
 }
 
+// ---- a probe: does DeepSeek's reasoning field come back? ------------------------------------------------------------
+
+/** One tiny DeepSeek call on the stage's ledger (before the run): whether the provider's reasoning field comes back with
+ * `reasoning.exclude: false`, and its length — never its text. */
+export async function probeDeepSeek({ log = console.log } = {}) {
+  const { playerCall } = await import("../game-player-1/players.mjs");
+  const keys = await runKeys();
+  const stage = stageOf();
+  const { before, ledgers } = await stageLedgers(stage);
+  const meter = createMeter({ ledgers, fetcher: globalThis.fetch.bind(globalThis), log, waits429: WAITS_429 });
+  const uninstall = meter.install();
+  let result;
+  try {
+    result = await meter.within({ session: "probe deepseek", purpose: "probe reasoning field" }, () => playerCall({ player: DEEPSEEK, system: "You are a player at a tabletop game.", messages: [{ role: "user", content: "The session begins. A door stands open. One short sentence: what do you do?" }], keys, fetcher: meter.fetch, maxTokens: 1200 }));
+    await meter.drain();
+  } finally { uninstall(); }
+  await bookRun(stage, ledgers, before, { what: "probe: DeepSeek's reasoning field (one call)", file: "(no file)", stopped: meter.stopped });
+  log(`probe: ${result.error ? `error ${result.error}` : `text ${String(result.text).length} chars; provider reasoning field ${result.providerReasoning ? `present, ${result.providerReasoning.length} chars` : "ABSENT"}; reasoning tokens ${result.reasoningTokens ?? "?"}; upstream ${result.upstream ?? "?"}`} · OpenRouter $${ledgers.openrouter.runUsd.toFixed(4)}`);
+  return result;
+}
+
 // ---- the spend check -----------------------------------------------------------------------------------------------------
 
 /** One spend check from free reads: OpenRouter's key and credits (the account is shared with other sessions) and this
@@ -342,6 +363,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   else if (a.freeze) done(spendCheck({ when: "before the freeze" }).then(() => freeze({})).then(() => spendCheck({ when: "after the freeze" })));
   else if (a.drive) done(drive({ from: a.from, until: a.until }).then((r) => { if (r.stopped) process.exitCode = 3; }));
   else if (a.final) done(finalTags());
+  else if (process.argv.includes("--probe-deepseek")) done(probeDeepSeek());
   else if (a.go) {
     if (!a.only || a.only.length !== 1) { console.error("--go plays one session at a time: give --sessions <key> (the driver gives the order)"); process.exit(2); }
     done(run({ stage: stageOf(), only: a.only, turns: a.turns, lanes: 1, score: a.score, label: a.label }).then(async (r) => {

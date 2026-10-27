@@ -61,6 +61,32 @@ test("DeepSeek's provider reasoning field: requested, stored on the message reco
   assert.equal(plain.providerReasoning, undefined, "REPLICATE's seat: not requested, not kept");
 });
 
+test("DeepSeek's reasoning field never reaches the DM or a judge: the relayed messages, the judges' session text and game player 1's transcript carry the visible text only", async () => {
+  const { runSession } = await import("../scripts/game-player-1/session.mjs");
+  const { transcriptMarkdown } = await import("../scripts/game-player-1/report.mjs");
+  const SECRET = "PRIVATE-REASONING-7f3";
+  const seen = [];
+  const meter = { stopped: null, refusals: 0, closed: () => null, within: async (_, fn) => fn(),
+    fetch: async (url, init) => {
+      const body = JSON.parse(init.body);
+      seen.push(JSON.stringify(body));
+      if (/chat\/completions/.test(url)) return new Response(JSON.stringify({ id: "gen-1", model: frozen.DEEPSEEK.model, provider: "DeepInfra", choices: [{ finish_reason: "stop", message: { role: "assistant", content: "I wait by the bridge.", reasoning: SECRET } }], usage: {} }), { status: 200 });
+      return new Response(JSON.stringify({ id: "m", content: [{ type: "text", text: '{"distress":0,"reason":"calm"}' }], stop_reason: "end_turn", usage: {} }), { status: 200 });
+    } };
+  const dmCalls = [];
+  const dm = { views: { heroOf: () => null, currentPlace: () => null }, readView: async () => ({ snapshot: { scenes: [] }, play: { turns: [] } }),
+    submit: async (text, mode) => { dmCalls.push(text); return { input: { operationId: "o" }, turn: { status: "committed", narration: "The river runs.", checks: [], changes: [] } }; } };
+  const record = await runSession({ key: "B-deepseek-1", table: "B", player: frozen.DEEPSEEK, dm, meter, keys: { anthropic: "k", openai: "k", openrouter: "k" }, turns: 2, sleep: async () => {},
+    system: frozen.sameWorldPlayerSystem("B") });
+  const deepseekTurns = record.messages.filter((m) => /^player t/.test(m.purpose));
+  assert.ok(deepseekTurns.length >= 2 && deepseekTurns.every((m) => m.providerReasoning === SECRET && m.notRelayed === true), "stored on every DeepSeek message");
+  assert.ok(dmCalls.every((text) => !text.includes(SECRET)), "the DM never gets it");
+  assert.ok(seen.length > 4 && seen.every((b) => !b.includes(SECRET)), "no request carries it: not the player's own later calls (its earlier messages go back as visible text only), not the welfare checks");
+  assert.doesNotMatch(score.sessionText(record), new RegExp(SECRET), "the judges' session text");
+  assert.doesNotMatch(transcriptMarkdown(record), new RegExp(SECRET), "game player 1's transcript (the authorship judges read it)");
+  assert.doesNotMatch(JSON.stringify(score.worldRequest(record)), new RegExp(SECRET));
+});
+
 test("the Haiku dry run's swap: every Claude request goes out as Claude Haiku 5.5; DeepSeek and OpenAI are left alone", async () => {
   const { haikuRewrite } = await import("../scripts/game-player-same-world-1/run.mjs");
   const body = (model) => ({ method: "POST", body: JSON.stringify({ model, max_tokens: 10, output_config: { effort: "xhigh" } }) });
