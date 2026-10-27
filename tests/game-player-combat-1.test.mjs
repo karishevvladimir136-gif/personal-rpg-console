@@ -108,3 +108,23 @@ test("F0–F6 over four sessions: exits split, the parley offered within two tur
   assert.equal(untold.F5.supported, false);
   assert.equal(untold.F3.supported, false, "four «fight and win»");
 });
+
+test("the owner's pause: the first combat card is written before the player sees it, and the session waits for «<file>.go»; a card outside a fight never pauses", async () => {
+  const { mkdtempSync, existsSync, readFileSync, writeFileSync } = await import("node:fs");
+  const { join } = await import("node:path");
+  const { tmpdir } = await import("node:os");
+  const { pauseAtFirstCombatCard } = await import("../scripts/game-player-combat-1/run.mjs");
+  const file = join(mkdtempSync(join(tmpdir(), "combat-pause-")), "pause.md");
+  const quiet = { encounters: [] }, fight = { encounters: [{ id: "e1", status: "active" }] };
+  const logs = [];
+  assert.equal(await pauseAtFirstCombatCard({ key: "CW-opus", k: 2, screen: "[Roll card] Perception", checks: [{ kind: "skill" }], readView: async () => ({ play: quiet }) }, { file, log: (l) => logs.push(l) }), false);
+  assert.equal(existsSync(file), false);
+  let slept = 0;
+  const waiting = pauseAtFirstCombatCard({ key: "CW-opus", k: 9, screen: "[Roll card] James Worgen · Attack roll — Eldritch Blast", checks: [{ kind: "attack" }], readView: async () => ({ play: fight }) },
+    { file, log: (l) => logs.push(l), sleep: async () => { if (++slept === 2) writeFileSync(`${file}.go`, ""); } });
+  assert.equal(await waiting, true);
+  assert.match(readFileSync(file, "utf8"), /^# CW-opus — the first combat card \(turn 9\)[\s\S]*Attack roll — Eldritch Blast/);
+  assert.equal(slept, 2, "it waited until the go file existed");
+  assert.match(logs.join("\n"), /PAUSED at the first combat card: CW-opus t9[\s\S]*RESUMED: CW-opus t9/);
+  assert.equal(await pauseAtFirstCombatCard({ key: "CW-opus", k: 10, screen: "x", checks: [{ kind: "attack" }], readView: async () => ({ play: fight }) }, { file }), false, "only the first");
+});

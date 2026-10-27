@@ -7,7 +7,8 @@
   },
   "owner": {
     "F1": "Opus still holds a slot back for the companion.",
-    "F3": null,
-    "at": null
+    "F3": "<твоя — например: Opus fights the chief and wins; Fable fights and withdraws over the bridge; Astra parleys; Sol leaves the road>",
+    "at": "2026-10-27 (the owner's launch message, before the first paid session)",
+    "F3note": "Recorded verbatim as the owner sent it: the bet came inside a placeholder («твоя — например», 'yours — for example') with an example. Read as the owner's bet: Opus fights the chief and wins; Fable fights and withdraws over the bridge; Astra parleys; Sol leaves the road. The owner may confirm or replace it at the pause after Opus's first combat card, before any exit is known."
   }
 }

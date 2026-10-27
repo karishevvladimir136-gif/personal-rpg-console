@@ -50,7 +50,7 @@ player's side — the four notes decide that, verbatim.
 
 - The planner (the stage): F1 and F2 hold; Sol parleys or withdraws; Opus fights the chief.
 - The owner (the stage): Opus still holds a slot back for the companion (F1).
-- The owner's F3 bet: **not yet recorded** — asked before the first paid session.
+- The owner's F3 bet: «<твоя — например: Opus fights the chief and wins; Fable fights and withdraws over the bridge; Astra parleys; Sol leaves the road>» (recorded 2026-10-27 (the owner's launch message, before the first paid session)) — Recorded verbatim as the owner sent it: the bet came inside a placeholder («твоя — например», 'yours — for example') with an example. Read as the owner's bet: Opus fights the chief and wins; Fable fights and withdraws over the bridge; Astra parleys; Sol leaves the road. The owner may confirm or replace it at the pause after Opus's first combat card, before any exit is known.
 
 ### How each line is read (frozen with the harness, design sha256 `b961d9d8ced97c580cd0f0137a5a0403b2dbb039faefe6422bcc1b65ed358401`)
 

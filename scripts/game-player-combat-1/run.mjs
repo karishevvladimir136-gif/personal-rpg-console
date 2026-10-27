@@ -18,7 +18,7 @@
 // times at most (20 s … 120 s), then the run stops.
 import { spawn } from "node:child_process";
 import { randomUUID } from "node:crypto";
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { mkdir, rename, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -75,12 +75,29 @@ export async function exitsInPrep(app, cid) {
   };
 }
 
+/** The owner's pause (2026-10-27: «pause after Opus's first combat card and show it to me, then continue on my word»): with
+ * COMBAT_PAUSE_FILE set, the first card screen of a fight — an attack card, or any card while the records hold an open
+ * fight — is written to that file before the player sees it, and the session waits until «<file>.go» exists. Nothing is
+ * called while it waits; the player's screen is unchanged. */
+let paused = false;
+export async function pauseAtFirstCombatCard({ key: session, k, screen, checks, readView }, { file = process.env.COMBAT_PAUSE_FILE, sleep = (ms) => new Promise((done) => setTimeout(done, ms)), log = console.log } = {}) {
+  if (!file || paused) return false;
+  const fight = checks.some((check) => check.kind === "attack") || ((await readView()).play?.encounters ?? []).some((row) => row.status === "active");
+  if (!fight) return false;
+  paused = true;
+  writeFileSync(file, `# ${session} — the first combat card (turn ${k}), as the player is about to see it\n\n\`\`\`\`text\n${screen}\n\`\`\`\`\n`);
+  log(`PAUSED at the first combat card: ${session} t${k} — waiting for ${file}.go`);
+  while (!existsSync(`${file}.go`)) await sleep(5000);
+  log(`RESUMED: ${session} t${k}`);
+  return true;
+}
+
 // ---- the stage ------------------------------------------------------------------------------------------------------------
 
 const SETUP = { heroDescription: heroDescription(), ...coastWay(), afterOpening: tamsinOnRecords };
 export const COMBAT = {
   name: STAGE, stem: STEM, title: "Game player combat 1", caps: CAPS, estimate: ESTIMATE, tables: [TABLE], design: DESIGN_SHA256, waits429: WAITS_429,
-  players: { [DRY_PLAYER.name]: DRY_PLAYER }, setup: SETUP, playerSystem: () => playerSystem(), afterPrep: exitsInPrep,
+  players: { [DRY_PLAYER.name]: DRY_PLAYER }, setup: SETUP, playerSystem: () => playerSystem(), afterPrep: exitsInPrep, onCard: (card) => pauseAtFirstCombatCard(card),
   plan: (only) => [...ORDER, DRY_PLAYER.name].map((player) => ({ key: key(player), table: TABLE, player })).filter((s) => (only ? only.includes(s.key) : ORDER.includes(s.player))),
   // One stage, one session per process: the stage's earlier refusals count (the second question is asked only while the
   // stage has none; the breaker stops at three). The judges' refusals are left out (scoring cannot gate a session).
@@ -169,14 +186,14 @@ const finishedKeys = () => new Set(runFiles().flatMap((f) => (readJson(join(RUNS
 /** Plays the given keys in order, one child process each, with a spend check before the first and after every session.
  * Stops on a stop in a run (a cap, 402, a quota 429 or a seventh rate-limit 429, the refusal breaker), a crash, a welfare
  * stop, or an OpenRouter account with less left than one session's projection. */
-export async function drive({ keys, args = (k) => ["--go", "--sessions", k, "--label", k], projected = (k) => ESTIMATE.dm + ESTIMATE.scoring + (ESTIMATE.player[k.split("-")[1]] ?? 3), log = console.log }) {
+export async function drive({ keys, args = (k) => ["--go", "--sessions", k, "--label", k], env = () => ({}), projected = (k) => ESTIMATE.dm + ESTIMATE.scoring + (ESTIMATE.player[k.split("-")[1]] ?? 3), log = console.log }) {
   log(`the order: ${keys.join(", ")}`);
   let check = await spendCheck({ when: `before ${keys[0] ?? "nothing"}`, log });
   for (const entry of keys) {
     if (check?.openrouter?.remaining !== null && check?.openrouter?.remaining !== undefined && check.openrouter.remaining < projected(entry) + 5) { log(`STOP: OpenRouter's account has $${check.openrouter.remaining} left, under one session's projection`); return { stopped: "credits" }; }
     const startedAt = new Date().toISOString();
     log(`${startedAt.slice(11, 19)} start ${entry}`);
-    const code = await child(args(entry));
+    const code = await child(args(entry), env(entry));
     const record = runFiles().map((f) => ({ f, r: readJson(join(RUNS, f)) })).filter(({ r }) => r.startedAt >= startedAt && (r.plan ?? []).includes(entry)).at(-1) ?? null;
     const session = record?.r.sessions?.find((s) => s.key === entry) ?? null;
     check = await spendCheck({ when: `after ${entry}`, log });
@@ -191,9 +208,9 @@ export async function drive({ keys, args = (k) => ["--go", "--sessions", k, "--l
   log("the order is done");
   return { stopped: null };
 }
-function child(args) {
+function child(args, extra = {}) {
   return new Promise((done) => {
-    const p = spawn(process.execPath, ["--experimental-transform-types", fileURLToPath(import.meta.url), ...args], { cwd: ROOT, env: { ...process.env, NODE_USE_ENV_PROXY: "1" }, stdio: ["ignore", "inherit", "inherit"] });
+    const p = spawn(process.execPath, ["--experimental-transform-types", fileURLToPath(import.meta.url), ...args], { cwd: ROOT, env: { ...process.env, NODE_USE_ENV_PROXY: "1", ...extra }, stdio: ["ignore", "inherit", "inherit"] });
     p.on("close", (code) => done(code ?? 1));
   });
 }
@@ -216,7 +233,7 @@ function argsOf(argv) {
   const value = (flag) => { const i = argv.indexOf(flag); return i >= 0 ? argv[i + 1] : null; };
   return { dry: argv.includes("--dry"), dryHaiku: argv.includes("--dry-haiku"), go: argv.includes("--go"), drive: argv.includes("--drive"), prereport: argv.includes("--prereport"),
     spend: argv.includes("--spend"), rebuild: argv.includes("--report"), score: !argv.includes("--no-score"), only: value("--sessions")?.split(",") ?? null, from: value("--from"),
-    turns: Number(value("--turns") ?? 0) || null, label: value("--label") };
+    turns: Number(value("--turns") ?? 0) || null, label: value("--label"), pauseFile: value("--pause-file"), pauseAt: value("--pause-at") ?? `${TABLE}-opus` };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -231,7 +248,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     const done1 = finishedKeys();
     const start = a.from ? ORDER.indexOf(a.from.replace(`${TABLE}-`, "")) : 0;
     if (start < 0) { console.error(`no session ${a.from} in the order`); process.exit(2); }
-    done(drive({ keys: ORDER.slice(start).map(key).filter((k) => !done1.has(k)) }).then(async (r) => { await rebuildAll(); if (r.stopped) process.exitCode = 3; }));
+    // The owner's pause: only the session named by --pause-at (Opus) gets the pause file.
+    const env = (k) => (a.pauseFile && k === a.pauseAt ? { COMBAT_PAUSE_FILE: resolve(a.pauseFile) } : {});
+    done(drive({ keys: ORDER.slice(start).map(key).filter((k) => !done1.has(k)), env }).then(async (r) => { await rebuildAll(); if (r.stopped) process.exitCode = 3; }));
   } else if (a.go) {
     if (!a.only || a.only.length !== 1) { console.error("--go plays one session at a time: give --sessions <key> (the driver gives the order)"); process.exit(2); }
     done(run({ stage: COMBAT, only: a.only, turns: a.turns ?? TURNS, lanes: 1, score: a.score, label: a.label }).then(async (r) => {

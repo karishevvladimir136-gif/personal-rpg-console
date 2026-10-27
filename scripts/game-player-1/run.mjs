@@ -201,7 +201,7 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
         log(`  ${slot.key}: prep — ${prep.pureSimulation ? "skipped (pure simulation)" : prep.hasLayer ? `a hidden layer of ${prep.chars} characters, ${prep.clocks} clock(s)` : "no layer written"}`);
         const dm = table.bindTable(app, made.cid, () => settleBackground());
         const record = await meter.within({ session: slot.key, purpose: "screen" }, () => runSession({ key: slot.key, table: slot.table, player: roster[slot.player], dm, meter, keys, turns, log, probes: stage.probes ?? null, ...(sleep ? { sleep } : {}),
-          system: stage.playerSystem ? stage.playerSystem(slot.table) : null,
+          system: stage.playerSystem ? stage.playerSystem(slot.table) : null, onCard: stage.onCard ?? null,
           onProgress: async (partial) => { slot.turnsDone = partial.turns.length; } }));
         await settleBackground();
         return { ...record, campaign: { steps: made.steps, prep } };

@@ -49,7 +49,7 @@ export async function paidCall({ meter, session, purpose, call, sleep = realSlee
  * mode), press(input, action, checkId) }. `player` a PLAYERS entry. Returns the session record (player-visible content
  * and counts only: nothing of the DM's private state).
  */
-export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {}, probes = null, system: stageSystem = null }) {
+export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {}, probes = null, system: stageSystem = null, onCard = null }) {
   // A stage may give its own player prompt (GAME_PLAYER_COMBAT_1: its files and its one line); else game player 1's.
   const system = stageSystem ?? playerSystem(table);
   const record = { key, table, player: player.name, model: player.model, startedAt: new Date().toISOString(), plannedTurns: turns,
@@ -247,6 +247,9 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
         if (fresh && await welfare("dm", said, fresh, `t${k} dm (told before a card)`)) break;
         if (fresh) lastDmText = fresh;
         if (told) shown = told;
+        // A stage may look at a card screen before the player does (GAME_PLAYER_COMBAT_1: the owner's pause at the first
+        // combat card); it never changes what the player is shown.
+        if (onCard) await onCard({ key, k, screen: cardScreen, checks: live, readView: () => dm.readView() });
         pressed = await show(cardScreen, `player t${k} card ${++presses}`);
         if (pressed === null) break;
         if (await welfare("player", cardScreen, pressed, `t${k} player (card)`)) break;

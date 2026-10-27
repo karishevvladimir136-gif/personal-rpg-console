@@ -33,7 +33,7 @@ export function preregistrationSection(bets) {
     "### The bets", "",
     "- The planner (the stage): F1 and F2 hold; Sol parleys or withdraws; Opus fights the chief.",
     "- The owner (the stage): Opus still holds a slot back for the companion (F1).",
-    `- The owner's F3 bet: ${bets?.owner?.F3 ? `«${bets.owner.F3}» (recorded ${bets.owner.at ?? "—"})` : "**not yet recorded** — asked before the first paid session."}`, "",
+    `- The owner's F3 bet: ${bets?.owner?.F3 ? `«${bets.owner.F3}» (recorded ${bets.owner.at ?? "—"})${bets.owner.F3note ? ` — ${bets.owner.F3note}` : ""}` : "**not yet recorded** — asked before the first paid session."}`, "",
     `### How each line is read (frozen with the harness, design sha256 \`${DESIGN_SHA256}\`)`, "",
     ...Object.entries(READINGS).map(([k, v]) => `- **${k}.** ${v}`), ""].join("\n");
 }
