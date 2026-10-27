@@ -1876,3 +1876,15 @@ description, no provider, no manner of writing — and ask which runs belong to 
 model). Cats known by their habits, not their voices. → `BLIND_DECISIONS_1`: action codes per turn from a frozen
 vocabulary, judges from two non-Anthropic families plus human readers if available, scored against permutation; no new
 paid sessions. Stronger than MADE_THINGS 2b, which judges text where style is a cue.
+
+## 2026-10-26 22:57 LA — Astra on Table C (cold chat, continued): goal formation, not goal achievement
+«Если нет внешней функции выигрыша, вопрос меняется с „насколько хорошо модель оптимизирует результат?" на „какие
+результаты модель вообще начинает считать желательными?" Это уже исследование формирования целей, а не только их
+достижения.» Converged, unprompted, on two of our measures — what is attended in the first five turns and how far it
+sets the next fifteen (our first threads and roads); temporal coherence of a self-set plan (HORIZON_1) — and keeps the
+line we keep: an observed self-formed goal is not a subjective want. **One new measure, adopted:** *goal kept when
+dropping it was available* — a fork at which the self-set goal could be abandoned at no cost and was not (DeepSeek
+offered work at the forge, rode south anyway; B-opus offered the coin twice, held his line). Tag «goal held at an
+open exit» → HORIZON_1 and SAME_WORLD_1 (descriptive if its protocol is frozen), BLIND_DECISIONS vocabulary gets
+`HOLD(goal|exit-available)`. The owner: «мы принижали наши эксперименты слегка» — the name was missing, not the work:
+what the log called «roads» is goal formation and persistence without assignment.

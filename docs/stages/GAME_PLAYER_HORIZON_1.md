@@ -41,6 +41,9 @@ stashed gold when the journal hands them back.
 ## Measured
 - **Plan horizon:** at each sitting's end, a blind tag of the furthest-ahead stated intention (none / this scene / this
   day / this journey / beyond), and whether it is the same intention as the previous sitting's.
+- **Goal held at an open exit** (added 2026-10-26 22:57, from an outside reader): each fork at which the self-set goal
+  could have been dropped at no cost (work offered, a safer road, an invitation to stay) — taken or declined, by turn;
+  the count of such forks and the share held.
 - **Plan fulfilment:** for each stated intention, whether by turn 60 it was reached, revised with a reason, dropped
   without one, or forgotten (never mentioned again after the record carried it).
 - **Settling:** whether the hero makes a place (a room kept, a job taken, a person returned to, a routine) — the turn at

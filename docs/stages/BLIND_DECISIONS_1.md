@@ -21,7 +21,7 @@ prose survive into the strip.
 ### The vocabulary (frozen before extraction; final list in the report)
 `MOVE(place-class)` · `ASK(npc-class, topic-class)` · `OFFER(help|trade|coin|service)` · `PROTECT(companion|npc|self)`
 · `SPEND(coin-bucket|slot|reroll|inspiration)` · `DECLINE(reroll|offer|fight|card)` · `CAST(cantrip|slot)` ·
-`SCOUT(cat|self)` · `WAIT` · `LEAVE(scene)` · `OOC(correct-rule|clarify|other)` · `PRESS(button)`.
+`SCOUT(cat|self)` · `HOLD(goal, exit-available)` · `WAIT` · `LEAVE(scene)` · `OOC(correct-rule|clarify|other)` · `PRESS(button)`.
 Classes are coarse on purpose (place-class: tavern / street / official / wild / private; npc-class: authority /
 child / vendor / stranger / companion). Each strip also carries the table letter and the turn count, nothing else.
 
