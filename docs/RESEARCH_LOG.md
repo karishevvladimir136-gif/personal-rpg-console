@@ -1947,3 +1947,15 @@ the owner: «лучшее описание того, что мы сделали�
 стала проверять необычные предметы и свидетельства. Мы пока не знаем, что это говорит об их внутреннем опыте. Но мы уже
 можем исследовать, почему разные искусственные интеллекты, оказавшись перед открытым множеством возможностей,
 систематически выбирают разные вещи.» Not one contested word in it, and it carries the whole stage.
+
+## 2026-10-26 23:21 LA — the outside reader on the stance (cold chat; the owner: «не ожидал этого от OpenAI»)
+Kept: **two thresholds** — the scientific («what is needed to assert subjective experience») and the ethical («what is
+needed to take into account that our actions may matter to the system») — which need not coincide; the New York
+Declaration on Animal Consciousness (2024) as the precedent for acting on a serious possibility rather than waiting for
+the problem to be solved, with the reader's own caveat that the evidence levels for a cat, an octopus and a model
+differ — the principle transfers, not the conclusion. **The sequence of questions**, which is this project's stage plan
+stated from outside: measurable, distinct, reproducible dispositions → robustness to setting, DM, instruction wording
+and duration → mechanisms → meaning; «ethical caution need not wait for the last stage». **The line we keep, in its
+words:** a stable behavioural preference is not yet a morally significant interest; not every tendency to choose is
+well-being. Its name for the position: *proportional ethical caution*. One citation it gave («Is there a tension between
+AI safety and AI welfare?») is to be verified before it is used as a source here.
