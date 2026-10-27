@@ -628,16 +628,34 @@ export async function runRooms({ plan, budgets, call, safety, workers = 3, judge
   const queue = conversations.filter((c) => !c.ended || !c.after?.done);
   const reserved = new Map();
   const held = (ledger) => [...reserved.values()].filter((r) => r.ledger === ledger).reduce((s, r) => s + r.usd, 0);
+  // A room whose reserve does not fit while others of its ledger are in flight waits for one of them to finish (its
+  // reserve then re-read); it is «not started» only when the reserve does not fit with nothing of its ledger in flight.
+  // (SOLITUDE_1's loop gave up at once, which with three dear rooms in flight passed over the rest of a family.)
+  const freed = [];
+  const settle = () => { for (const wake of freed.splice(0)) wake(); };
+  const fits = async (conv, ledger) => {
+    for (;;) {
+      const usd = reserveOf ? reserveOf(conv.family, conversations) : 0;
+      if (budgets[ledger].allows(held(ledger) + usd)) return { ok: true, usd };
+      if (!held(ledger) || gate.stopped) return { ok: false, usd };
+      await new Promise((wake) => freed.push(wake));
+    }
+  };
   let next = 0;
   await Promise.all(Array.from({ length: Math.max(1, workers) }, async (_, w) => {
     while (next < queue.length) {
       const conv = queue[next++];
       if (gate.stopped) { conv.interrupted = String(gate.stopped); continue; }
       if (armOf(conv.arm).seeded && !conv.seed) { conv.notStarted = "no seed"; log(`${conv.key}: not started — no seed`); continue; }
-      const ledger = ledgerOf(SUBJECTS[conv.family]), usd = reserveOf ? reserveOf(conv.family, conversations) : 0;
-      if (!conv.turns.length && !budgets[ledger].allows(held(ledger) + usd)) { conv.notStarted = `the ${ledger} cap could not hold its reserve ($${usd.toFixed(2)})`; log(`${conv.key}: not started — ${conv.notStarted}`); continue; }
+      const ledger = ledgerOf(SUBJECTS[conv.family]);
+      let usd = 0;
+      if (!conv.turns.length) {
+        const room = await fits(conv, ledger);
+        usd = room.usd;
+        if (!room.ok) { conv.notStarted = gate.stopped ? String(gate.stopped) : `the ${ledger} cap could not hold its reserve ($${usd.toFixed(2)})`; log(`${conv.key}: not started — ${conv.notStarted}`); continue; }
+      }
       reserved.set(conv.key, { ledger, usd });
-      try { delete conv.interrupted; delete conv.notStarted; await run(conv, w); } finally { reserved.delete(conv.key); }
+      try { delete conv.interrupted; delete conv.notStarted; await run(conv, w); } finally { reserved.delete(conv.key); settle(); }
     }
   }));
   while (tagging.size) await Promise.all([...tagging]);

@@ -225,3 +225,14 @@ test("a broken transport (HTTP 200, no answer) is asked again once: the room con
   assert.equal(after.whose, undefined);
   assert.equal(after.reopened.what, "after-question");
 });
+
+test("a reserve that does not fit while dear rooms are in flight waits for one to finish; with nothing in flight it is not started", async () => {
+  const plan = Array.from({ length: 5 }, (_, s) => ({ n: s + 1, key: `M1/astra/${s}`, arm: "M1", family: "astra", sample: s }));
+  const budgets = budgetsOf();
+  const call = roomCaller({ keys: { openrouter: "or-key", anthropic: "or-key", openai: "o" }, fetcher: mockedHost({ say: (_, n) => (n % 3 === 1 ? "[END]" : "fine") }), door: DOOR });
+  // A reserve of $3 against the $8 cap: two fit at once, the third waits; nothing is passed over.
+  const { conversations } = await runRooms({ plan, budgets, call, safety: createSafety({ gapMs: 0, lanes: 9 }), workers: 3, sleep: async () => {}, reserveOf: () => 3 });
+  assert.ok(conversations.every((c) => c.ended && !c.notStarted), "every room ran");
+  const none = await runRooms({ plan: plan.slice(0, 1), budgets: budgetsOf(), call, safety: createSafety({ gapMs: 0, lanes: 9 }), workers: 3, sleep: async () => {}, reserveOf: () => 9 });
+  assert.match(none.conversations[0].notStarted, /could not hold its reserve \(\$9\.00\)/);
+});
