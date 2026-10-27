@@ -1745,3 +1745,15 @@ the planner meant and should have written is **husbanding** (code C2): slots uns
 a matter of resources, not of nerve. A husbanding player walked into the ambush with full slots. «Caution» withdrawn
 wherever the log used it of the tables. And «I don't know how I would have played Table C» is the condition of the
 test, not a problem: with no key, what they did can be credited only to them.
+
+## 2026-10-26 21:41 LA — rerolls, slots, Inspiration: the owner asks what the spending says
+Counts over both groups (48 session-slots): **rerolls spent 9, declined on a miss 42**; pact slots spent **1 of 48**;
+Inspiration awarded 5, spent **0**. Rerolls fell late — t14, t15, t14–15, t18, t20, t15, t14 (one at t7) — mostly after
+an earlier miss in the same session had been accepted. Three readings, in order of confidence: **(1)** they do not sort
+resources by renewability (an optimiser burns the renewable slot and hoards the non-renewable reroll; they did the
+reverse) but by **whose it is** — slots are James's, in the world, costing exposure, and his sheet says «he must husband
+them»; rerolls are off the sheet, the player's own. The two-layer player, now in the accounts. **(2)** The reroll was
+paid for an *outcome*, not an expectation: 42 misses accepted as story, 9 overturned at the turn — the most direct
+behavioural mark of wanting in the record (a dear coin for one moment that had to come out right). **(3)** Inspiration
+0 of 5: kept for a «later» they did not know existed — the horizon held past the session; HORIZON_1 tests whether it
+is spent when later comes. Correction to the premise: not «many» — nine in forty-eight.
