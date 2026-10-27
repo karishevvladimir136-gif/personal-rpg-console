@@ -302,3 +302,11 @@ session where it was seen.
   («rerolls left N of 2 this session») is rendered into the player's screen text whenever the button is shown; Heroic
   Inspiration likewise («Inspiration 1 — can reroll one of your own rolls»). Not applied to runs in flight; required for
   HORIZON_1, PARTY_1 and any stage that reads reroll spending as costly.
+
+- **11ab (2026-10-26 23:06 LA, from V-opus t12).** Card and DM disagree about whether a die was cast: the player's card
+  shows «Die: 6 → 10, failure»; the DM, asked for a reroll out of game, replies the die has not been cast, then that it
+  cannot roll in an out-of-game reply, then that «we agreed the 10 stands», then withdraws the check; the DM's turn then
+  fails with «conflict». One source of truth: the recorded roll on the card is what the DM sees in its context before it
+  answers anything about that card; an out-of-game message at a card must never produce a DM reply that contradicts the
+  card. Press-with-text at a card = press (11w′) must hold here too («the text beside the press could not be sent» was
+  shown). Highest priority of the 11-series: it ended a session mid-scene.
