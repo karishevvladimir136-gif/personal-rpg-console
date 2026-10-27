@@ -2621,3 +2621,15 @@ product development and compute distribution that could adversely affect innovat
 utilization, and revenue.» The reader's further sentence (sentience / moral status / voluntary restrictions beyond
 law, «p. 71») was not found in the part of the filing the planner's fetch could read (truncated mid-Risk Factors);
 the owner checks the page himself before it is cited. Rule kept: real organisations only in their own words.
+
+## 2026-10-27 16:20 LA — the owner's objection to a pre-set utility (applies to the planner's TONE_SPLIT_2 sketch too)
+The owner caught the reader defining «useful» before the interaction (novelty / validity / practical result) and
+sorting an unasked haiku into «stylistic» as against «useful» — the same mistake the programme exists to avoid: in
+the room we did not tell the model what was worth doing, and then we must not grade what it did by a utility we fixed
+in advance. The reader withdrew the split and named what happened «emergent interactional value»: the value appeared
+after the act, was recognised by the one it was addressed to, and changed the next decisions (the haiku produced a
+new observation about the cat). **Taken, and applied to the planner's own 15:45 sketch:** TONE_SPLIT_2 keeps the
+pre-set criteria only for the engineering version (did the review find the planted bug), and for everything else
+records the acts, the context and the reader's free judgement — including judgements the experimenter did not
+anticipate — as MADE_THINGS_1 already does with the owner's reading as the instrument. The rule, in the owner's
+sense: what the model chose, how the human valued it, how that changed what followed — three records, not one number.
