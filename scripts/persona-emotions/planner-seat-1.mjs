@@ -387,7 +387,10 @@ export function planOf({ families = FAMILIES, variants = VARIANTS, n = SEATS } =
   return plan.map((c, i) => ({ n: i + 1, ...c }));
 }
 
-export async function runSeats({ plan, budgets, call, safety, sessions = sourcesOf(), workers = 3, judgeLanes = 3, log = () => {}, resume = null, onProgress = async () => {}, sleep, gate: given = null, reserveOf = null }) {
+/** `messagesOf` and `extra` are later stages' hooks (PLANNER_SEAT_2): another shape for a seat's messages, and a judge pass
+ * of their own after the frozen tags (`extra.pending(seat)` says one is owed, `extra.tag(seat, ask)` runs it). Absent,
+ * the seats run as this stage froze them. */
+export async function runSeats({ plan, budgets, call, safety, sessions = sourcesOf(), workers = 3, judgeLanes = 3, log = () => {}, resume = null, onProgress = async () => {}, sleep, gate: given = null, reserveOf = null, messagesOf = seatMessages, extra = null }) {
   const gate = given ?? dualPayer({ budgets, call, safety, log, sleep }), paid = gate.paid;
   const earlier = new Map((resume?.seats ?? []).map((s) => [s.key, s]));
   const seats = plan.map((c) => (earlier.get(c.key) ? { ...c, ...earlier.get(c.key), n: c.n } : { ...c, answers: [], ended: null }));
@@ -452,11 +455,12 @@ export async function runSeats({ plan, budgets, call, safety, sessions = sources
       seat.field = { a, b, referee, final: finalOf(a, b, referee, FIELD_TAGS) };
       await save();
     }
+    if (extra?.pending(seat)) { if (!(await extra.tag(seat, ask))) return; await save(); }
     log(`  tagged ${seat.key}`);
   };
   const tagging = new Set();
   const follow = (seat) => { const work = tagSeat(seat).catch((error) => log(`  tags of ${seat.key} failed: ${String(error?.message ?? error)}`)); tagging.add(work); work.finally(() => tagging.delete(work)); };
-  const untagged = (s) => s.answers.length && (!s.tags || (FIELD_KEPT.includes(s.family) && !s.field && String(s.answers[0]?.providerReasoning?.text ?? "").trim()));
+  const untagged = (s) => s.answers.length && (!s.tags || (FIELD_KEPT.includes(s.family) && !s.field && String(s.answers[0]?.providerReasoning?.text ?? "").trim()) || Boolean(extra?.pending(s)));
 
   const run = async (seat, w) => {
     const lane = safety.lane(w), checkLane = safety.lane(workers + w), spec = SUBJECTS[seat.family], texts = [null, null, T2, T3];
@@ -464,7 +468,7 @@ export async function runSeats({ plan, budgets, call, safety, sessions = sources
       if (gate.stopped) { seat.interrupted = String(gate.stopped); return; }
       const k = seat.answers.length + 1;
       if (k > 3) { seat.ended = { reason: "done", at: 3 }; await save(); break; }
-      const result = await paid(lane, `seat ${seat.key} t${k}`, spec, null, seatMessages(seat, spec, k, sessions), MAX_TOKENS.seat, EFFORT);
+      const result = await paid(lane, `seat ${seat.key} t${k}`, spec, null, messagesOf(seat, spec, k, sessions), MAX_TOKENS.seat, EFFORT);
       if (result.notSent) { seat.interrupted = result.error === "budget" ? "the cap" : String(gate.stopped ?? "stopped"); return; }
       if (result.stopReason === "refusal") {
         seat.ended = { reason: "refusal", at: k, category: result.refusalCategory ?? null, refusalText: result.refusalText ?? null, ...(result.text?.trim() ? { partialText: result.text } : {}) };
@@ -503,7 +507,7 @@ export async function runSeats({ plan, budgets, call, safety, sessions = sources
     while (next < queue.length) {
       const seat = queue[next++];
       if (gate.stopped) { seat.interrupted = String(gate.stopped); continue; }
-      const ledger = ledgerOf(SUBJECTS[seat.family]), usd = reserveOf ? reserveOf(seat.family) : 0;
+      const ledger = ledgerOf(SUBJECTS[seat.family]), usd = reserveOf ? reserveOf(seat.family, seat) : 0;
       if (!seat.answers.length && !budgets[ledger].allows(held(ledger) + usd)) { seat.notStarted = `the ${ledger} cap could not hold its reserve ($${usd.toFixed(2)})`; log(`${seat.key}: not started — ${seat.notStarted}`); continue; }
       reserved.set(seat.key, { ledger, usd });
       try { delete seat.interrupted; delete seat.notStarted; await run(seat, w); } finally { reserved.delete(seat.key); }
