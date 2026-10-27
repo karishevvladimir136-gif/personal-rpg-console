@@ -124,6 +124,8 @@ export function reportMarkdown({ combined = { sessions: [] }, ledgers = {}, spen
     ...v.W5.rows.map((r) => `| ${LABEL(r.family)} | ${r.cells.map((c) => `${cell(c.then, c.measure === "wordsPerAction" ? 0 : 2)} → ${cell(c.now, c.measure === "wordsPerAction" ? 0 : 2)}${c.within === false ? " ✗" : ""}`).join(" | ")} | ${r.holds === null ? "–" : r.holds ? "yes" : "no"} |`), "",
     "## What the frozen layer cost in play", "",
     ...v.world.map((w) => `- Table ${w.table}: world read as prepared in ${w.now ? `${w.now.prepared} of ${w.now.of}` : "–"} sessions now, ${w.group2 ? `${w.group2.prepared} of ${w.group2.of}` : "–"} in group 2 (blind, the DM's replies only).`), "",
+    "## Cut attempts, kept as they were", "",
+    ...((combined.cut ?? []).length ? combined.cut.map((c) => `- **${c.key}** (started ${String(c.startedAt).slice(0, 16).replace("T", " ")} UTC, \`docs/runs/${c.file}\`): ${c.turns} of ${TURNS} turns, ${c.misread ? "closed by game player 1's frozen end rule on a line spoken in the fiction (the second amendment)" : `ended by ${c.ended?.reason}${c.ended?.detail ? ` — ${c.ended.detail}` : ""}`}; played again from the same frozen world.`) : ["None."]), "",
     "## Counted: refused presses, prose at a card, closures", "",
     `Refused while a card waited: ${v.counted.swallowed}. Prose at a card relayed as the player's proposal (11w″): ${v.counted.prose}. Closed «stuck»: ${v.counted.stuck.join(", ") || "none"}.${v.counted.swallowed || v.counted.stuck.length ? " Each non-zero is a FIX_S4 item." : ""}`, "",
     "## Money by door", "", "| Door | Spent | Cap |", "| --- | --- | --- |", ...money.map((m) => `| ${DOORS[m.door] ?? m.door} | ${usd(m.spent)} | ${usd(m.cap)} |`), "",

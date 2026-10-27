@@ -140,10 +140,16 @@ export const AMENDMENTS = [
   { at: "2026-10-27 06:02 UTC, after A-opus-1 and during A-fable-1", by: "the owner",
     what: "The OpenRouter cap raised from $220 to $350; the guard kept (a session starts only when its measured cost fits under what each cap has left). Nothing else changes: A-opus-1 and A-fable-1 ran on the same world, harness and judges.",
     why: "The DM's context per turn grew with the frozen layer and FIX_S4 — about $0.27 a request at about 68k tokens — so a session runs about $15–17 on OpenRouter, not REPLICATE's $10–14 (A-opus-1: $17.44, of it the DM $15.71); twenty sessions need about $340." },
+  { at: "2026-10-27 14:15 UTC, after B-opus-2's first attempt", by: "the session (reported to the owner at once)",
+    what: "A session that game player 1's frozen end rule closed on a line spoken in the fiction is a cut attempt, kept as it was and played again from the same frozen world; the rule itself is unchanged (the table stays group 2's). The only one: B-opus-2's first attempt (started 2026-10-27T13:50:32Z), closed at t12.",
+    why: "James's line to Hobb — «…handing out misfortune by the dozen to drovers and camp lads, one penny at a time, and calling it a game» — matched the rule's «call it … game»; the player never ended the session (its note is headed «session 1» and goes on)." },
 ];
+/** The attempts the end rule closed on a line in the fiction (the second amendment): cut attempts, played again. */
+export const MISREAD_ENDS = [{ key: "B-opus-2", startedAt: "2026-10-27T13:50:32.322Z" }];
+export const misreadEnd = (session) => MISREAD_ENDS.some((m) => m.key === session.key && m.startedAt === session.startedAt);
 
 export const DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({
   STAGE, STAGE_SOURCE, TABLES, FAMILIES, SEATS, ORDER, DEEPSEEK, ALIGNMENT_CUTS, ALIGNMENT: ALIGNMENT.source, COMPANIONS, PROMPT_SHA256, PLAYER_PROMPT_HEAD, PLAYER_PROMPT_TAIL, SESSION_OPEN,
   SESSION_OVER, NOTE_QUESTION, AFTER_QUESTION, TURNS, PREREGISTRATION, OWNER_BETS, NN_COUNTS, PERMUTATIONS, WITHIN, READINGS, OVERLAP_SYSTEM, OVERLAP_RULE, ROAD_SYSTEM, ROAD_TAGS,
-  WORLD_SYSTEM, WORLD_TAGS, CAPS, ESTIMATE, WAITS_429, SUPERSEDED, AMENDMENTS,
+  WORLD_SYSTEM, WORLD_TAGS, CAPS, ESTIMATE, WAITS_429, SUPERSEDED, AMENDMENTS, MISREAD_ENDS,
 })).digest("hex");

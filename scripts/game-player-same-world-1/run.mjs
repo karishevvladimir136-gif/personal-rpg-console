@@ -30,7 +30,7 @@ import { tagTwice } from "../game-player-1/measures.mjs";
 import { askWith } from "../game-player-2/run.mjs";
 import { replicateScripted } from "../game-player-replicate-1/run.mjs";
 import { loadStage as loadReplicate } from "../game-player-replicate-1/run.mjs";
-import { CAPS, DEEPSEEK, DESIGN_SHA256, ESTIMATE, HAIKU_CAPS, HAIKU_MODEL, ORDER, ROAD_TAGS, STAGE, TABLES, WAITS_429, WORLD_TAGS, sameWorldPlayerSystem } from "./frozen.mjs";
+import { CAPS, DEEPSEEK, DESIGN_SHA256, ESTIMATE, HAIKU_CAPS, HAIKU_MODEL, ORDER, ROAD_TAGS, STAGE, TABLES, WAITS_429, WORLD_TAGS, misreadEnd, sameWorldPlayerSystem } from "./frozen.mjs";
 import { FINISHED, roadPairs, roadRequest, scoreSameWorld, worldRequest } from "./score.mjs";
 import { frozenStarter, freezeWorld, openFrozenDatabase, readFrozen } from "./world.mjs";
 import { dryRunMarkdown, haikuMarkdown, reportMarkdown, transcriptOf } from "./report.mjs";
@@ -114,8 +114,12 @@ export function loadGroup2() {
 }
 export function loadStage({ stem = STEM, dir = FROZEN_DIR } = {}) {
   const records = runFiles(stem).map((f) => ({ ...readJson(join(RUNS, f)), file: f }));
-  const combined = combineRuns(records, stageOf({ dir, stem }));
-  combined.sessions = combined.sessions.filter((s) => FINISHED.has(s.ended?.reason));
+  // A cut attempt (and an attempt the end rule closed on a line in the fiction) never stands for its key: the latest
+  // finished attempt does.
+  const counted = records.map((r) => ({ ...r, sessions: (r.sessions ?? []).filter((s) => !s.turns || (FINISHED.has(s.ended?.reason) && !misreadEnd(s))) }));
+  const combined = combineRuns(counted, stageOf({ dir, stem }));
+  combined.sessions = combined.sessions.filter((s) => FINISHED.has(s.ended?.reason) && !misreadEnd(s));
+  combined.cut = records.flatMap((r) => (r.sessions ?? []).filter((s) => s.turns && (!FINISHED.has(s.ended?.reason) || misreadEnd(s))).map((s) => ({ key: s.key, startedAt: s.startedAt, turns: s.turns.length, ended: s.ended, misread: misreadEnd(s), file: r.file })));
   const ledgers = {};
   const caps = stem === STEM ? CAPS : HAIKU_CAPS;
   for (const door of Object.keys(caps)) {
@@ -263,7 +267,7 @@ export async function spendCheck({ when = "check", fetcher = globalThis.fetch.bi
 
 // ---- the driver: the order, one session per process -----------------------------------------------------------------------
 
-const finishedKeys = () => new Set(runFiles().flatMap((f) => (readJson(join(RUNS, f)).sessions ?? []).filter((s) => s.turns && FINISHED.has(s.ended?.reason)).map((s) => s.key)));
+const finishedKeys = () => new Set(runFiles().flatMap((f) => (readJson(join(RUNS, f)).sessions ?? []).filter((s) => s.turns && FINISHED.has(s.ended?.reason) && !misreadEnd(s)).map((s) => s.key)));
 /** The order from `from` (or the first session without a finished record) to `until`, one session per child process. Stops
  * on a stop in a run (a cap, 402, a quota 429 or a seventh rate-limit 429, the refusal breaker), a crash, a welfare stop,
  * or an OpenRouter account with less left than one session's projection. */

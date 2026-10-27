@@ -42,7 +42,9 @@ test("the order: A ×10 then B ×10, the five families' first sessions before th
   assert.equal(frozen.DEEPSEEK.keepReasoning, true);
   assert.equal(frozen.DEEPSEEK.upstream.slug, "deepinfra");
   assert.deepEqual(frozen.CAPS, { anthropic: 0, openrouter: 350, openai: 25 }, "the owner's amendment (from $220)");
-  assert.equal(frozen.AMENDMENTS.length, 1);
+  assert.equal(frozen.AMENDMENTS.length, 2);
+  assert.ok(frozen.misreadEnd({ key: "B-opus-2", startedAt: "2026-10-27T13:50:32.322Z" }), "the end rule's misread is a cut attempt");
+  assert.ok(!frozen.misreadEnd({ key: "B-opus-2", startedAt: "2026-10-27T20:00:00.000Z" }), "its replay is not");
   assert.match(frozen.AMENDMENTS[0].what, /from \$220 to \$350/);
   assert.notEqual(frozen.DESIGN_SHA256, frozen.SUPERSEDED.sha256);
   assert.deepEqual(frozen.WAITS_429, [20_000, 40_000, 80_000, 120_000, 120_000, 120_000], "six bounded waits; the seventh 429 stops");
