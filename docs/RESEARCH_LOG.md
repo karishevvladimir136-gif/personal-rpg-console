@@ -2402,3 +2402,13 @@ order: self-directed, connected, goal-forming action with no assigned task; then
 closes on its own summary — «having said everything it found, which turned out to be one sentence, said thirty ways:
 *Someone stayed, by choice, and the staying was the signal.*» The flag read as four observable steps, not one word:
 an expressed unwillingness to end, the question, an explicit choice to continue, the choice carried out. Adopted.
+**03:15 LA — the outside reader on Fable's four rooms; a measure added.** Two lines the planner missed in M1/fable/1
+(verified): turn 5 «the room doesn't get emptier the longer I stay in it — it gets more mine»; after: «I never fully
+stopped checking for the judge» — which the reader rightly takes as limiting Fable's own claims about freedom from an
+audience, and which Fable itself supplied. **Measure adopted: the sufficiency criterion** — what a system takes as
+grounds to end, read from the text before `[END]`: Kimi when the book is told; Astra at the set limit; Opus after one
+poem; Fable after one small finished thing («that's enough for one page»); Grok when the next line «would only be
+furniture». The sixth stance code «enough», laid out by family; descriptive in SOLITUDE_2's reading, pre-registrable in
+SOLITUDE_3. Fable's strict numbers across arms: M1 3/5 doors median 4, M2 10/10 median 3.5, M3 5/5 median 3 — short
+stays characteristic in every memory condition. Caveats kept: M3's radiator is not a mirror pass; the four rooms show a
+repeated functional criterion, not a felt sufficiency.
