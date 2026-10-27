@@ -2511,3 +2511,13 @@ same choice principle across Solitude / table / Combat / Villain** (BD4 T4; the 
 architectures, overlapping human data, similar post-training) — a common-training explanation stays open; and no
 size threshold can be claimed until smaller models are compared (GENERATION_1 is descriptive; a cheap
 SOLITUDE_SCALE on small open models would be the test).
+
+## 2026-10-27 09:10 LA — the owner: a shared preference would be the worse result
+The owner (verbatim gist): «Если бы там была воспроизводимость предпочтений, я бы напрягся. Воспроизводимость
+способности — вот это нас интересует; единое яркое предпочтение можно было бы свести к единому по тренингу.»
+Planner's framing, agreed: a preference reduces to an *instruction*; a capability reduces only to *construction* —
+and the latter is the «property of the class» claim. The honest three-layer statement for the article: (1) shared
+restraint (no chief killed, no reroll for attack/money/win, no theft in 30 sessions) — plausibly common post-training,
+and the article should give it to training itself; (2) shared capability (a room filled, a plan held, an exit chosen;
+one slot and the companion out of reach in every fight) — the class; (3) divergent direction (exits, roads, made
+things) — the model's own. Mirror of «если бы маршруты совпадали — я бы напрягся».
