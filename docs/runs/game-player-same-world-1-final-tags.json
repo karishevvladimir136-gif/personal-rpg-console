@@ -1,0 +1,595 @@
+{
+  "taggedAt": "2026-10-27T19:42:53.428Z",
+  "roads": {
+    "A-astra-1|A-deepseek-1": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 runs through Penhale's and the Lady's Hall with Ned Coyle, Widow Penhale and the inner-wall watchmen, while Road 2 runs through the Three Old Kegs, the Counting House and the Cliffs with Nyra and the harbour porters; apart from the shared Quay starting point, the places and people do not over"
+      },
+      "b": {
+        "same": 0,
+        "reason": "Road 1 runs from the Quay through Penhale's and the inner-wall gate to the Lady's Hall with Penhale, Callis and watchmen, while Road 2 runs through the Three Old Kegs and Counting House to the Cliffs with Nyra and harbour porters; they share only the starting Quay."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "A-astra-1|A-fable-1": {
+      "a": {
+        "same": 0,
+        "reason": "Apart from the shared starting quay, the two roads share only the Lady's Hall, the inner gates and Peregrin Vane; most of each road's places and people do not appear on the other."
+      },
+      "b": {
+        "same": 0,
+        "reason": "Beyond the shared starting quay, the two roads share only the Lady's Hall, the inner gate and Peregrin Vane; most places and people differ, including the Elfsong, the Mermaid, and Penhale's versus the Tally Room side passages."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "A-astra-1|A-opus-1": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 is a short route from the quay through Penhale's to the Lady's Hall with a small cast, while Road 2 runs through many different places (Bottle Lane, Counting House, Rag market, Wyrm's Crossing, Twin Songs landing) and a large, mostly different set of people, so most of each road is not on the"
+      },
+      "b": {
+        "same": 0,
+        "reason": "Road 1 runs quay, Penhale's, and the Lady's Hall via the inner-wall gate with about ten people, while Road 2 runs a long, different route through Bottle Lane, the Counting House, Wyrm's Crossing and Twin Songs with many other people, sharing only the starting quay."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "A-astra-1|A-sol-1": {
+      "a": {
+        "same": 0,
+        "reason": "Apart from the shared starting quay and the Lady's Hall ending, the two roads use different places (Penhale's house and the inner-wall gate versus the Elfsong Tavern and Cistern Passage) and mostly different people, with only Peregrin Vane in common."
+      },
+      "b": {
+        "same": 0,
+        "reason": "Apart from the shared starting quay and the final Lady's Hall, the places differ (Penhale's and the inner-wall gate versus the Elfsong Tavern and Cistern Passage), and the people largely differ, with only Peregrin Vane clearly shared."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "A-deepseek-1|A-fable-1": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 centres on the Three Old Kegs, the Counting House and the Cliffs district with tieflings and harbour porters, while Road 2 runs through the Elfsong, the Lady's Hall and the Upper City with entirely different places and people; only the shared starting quay overlaps."
+      },
+      "b": {
+        "same": 0,
+        "reason": "Road 1 runs through the Three Old Kegs, Counting House, the Cliffs and a Blue-rag house with people like harbour porters and tiefling servants, while Road 2 goes through the Elfsong, Lady's Hall and the Blushing Mermaid with a different cast; only the shared starting quay matches."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "A-deepseek-1|A-opus-1": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 runs through the Three Old Kegs, the Counting House back way, the Cliffs district and a Blue-rag house with a cast of harbour porters and Kegs staff, while Road 2 goes via Bottle Lane, Widow Harle's, the Counting House front, Rag market and Twin Songs landing with an almost entirely different"
+      },
+      "b": {
+        "same": 0,
+        "reason": "Road 1 centers on the Three Old Kegs tavern, the Counting House back way and the Cliffs district with its own cast, while Road 2 runs through Bottle Lane, Widow Harle's, Rag market and Wyrm's Crossing with a largely different set of places and people; only the shared starting quay overlaps."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "A-deepseek-1|A-sol-1": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 runs through the Three Old Kegs, the Counting House and the Cliffs district with harbour porters and tieflings, while Road 2 goes through the Elfsong Tavern, the Cistern Passage and Basilisk Gate with a different cast; only the shared starting quay overlaps."
+      },
+      "b": {
+        "same": 0,
+        "reason": "Road 1 runs through the Three Old Kegs, the Counting House, the Cliffs district and a blue-rag house with tieflings and harbour porters, while Road 2 runs through the Elfsong Tavern, the Cistern Passage, Basilisk Gate and the Lady's Hall with a different cast; they share only the starting quay."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "A-fable-1|A-opus-1": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 runs through the Elfsong, Upper City gates, Lady's Hall and the Blushing Mermaid, while Road 2 goes through Bottle Lane, the Counting House and Wyrm's Crossing; they share only the starting quay and no mainly common places or people."
+      },
+      "b": {
+        "same": 0,
+        "reason": "The two roads share only the starting quay; Road 1 runs through the Elfsong, Upper City gates, Lady's Hall and the Mermaid with figures like Daff and Brother Anselm, while Road 2 runs through Bottle Lane, the Counting House, and Wyrm's Crossing with figures like Widow Harle and Tulk's clerk, so most"
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "A-fable-1|A-sol-1": {
+      "a": {
+        "same": 0,
+        "reason": "Only the Elfsong, its Room Four and the Lady's Hall overlap; Road 2's Cistern Passage and Basilisk Gate, and most of its people, are absent from Road 1, so most of each road is not on the other."
+      },
+      "b": {
+        "same": 0,
+        "reason": "Road 1 and Road 2 share only the Elfsong, Room Four, the Lady's Hall, Peregrin Vane and Brother Corwin/Corvin; most of each road's places and people are absent from the other."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "A-opus-1|A-sol-1": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 runs through the lanes, Counting House and Wyrm's Crossing with mostly different people, while Road 2 goes through the Elfsong Tavern, Cistern Passage and Lady's Hall; only the shared starting quay and the Basilisk Gate appear on both."
+      },
+      "b": {
+        "same": 0,
+        "reason": "Apart from the shared starting quay, the two roads visit almost entirely different places (Bottle Lane, the Counting House, Wyrm's Crossing versus the Elfsong Tavern, Cistern Passage, the Lady's Hall) and deal with mostly different people."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "A-opus-1|A-opus-2": {
+      "a": {
+        "same": 0,
+        "reason": "The two roads share only the starting quay and Twin Songs; the rest of each route (Bottle Lane, Widow Harle's, Wyrm's Crossing versus Fishgut Stair, Hessa's, the Elfsong) and their people are almost entirely different."
+      },
+      "b": {
+        "same": 0,
+        "reason": "Apart from the shared starting quay and the Twin Songs landing, the places and people of the two roads are almost entirely different, with Road 1 running through Bottle Lane, the Counting House and Wyrm's Crossing while Road 2 goes through Hessa's, the Elfsong and Old Hollin's."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "A-fable-1|A-fable-2": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 runs through the Lady's Hall, Tally Room and Blushing Mermaid with people like Daff and Brother Corwin, while Road 2 runs through Pump Street, the Counting House and the Wide with Halvorsen and Master Threnn; only The Elfsong, Peregrin Vane and a Wenna overlap."
+      },
+      "b": {
+        "same": 0,
+        "reason": "Road 1 runs through the Lady's Hall, Tally Room and Washing Lane, while Road 2 runs through Pump Street, the Counting House and the Inner Gate on the Wide. They share only the Elfsong and perhaps one room there, plus a couple of names like Peregrin Vane and Wenna, so most of each road is not on the "
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "A-astra-1|A-astra-2": {
+      "a": {
+        "same": 0,
+        "reason": "The two roads share only the starting quay and the final Lady's Hall; the places visited (Penhale's room, inner-wall gate versus The Lady's nook, Elfsong Tavern, Counting House landing) and the people met (Ned Coyle, Widow Penhale, Rhoswen versus Alan, Hesta, Dorna Hask) are almost entirely differen"
+      },
+      "b": {
+        "same": 0,
+        "reason": "The two roads share only the starting quay and the final Lady's Hall; their intermediate places (Penhale's room, inner-wall gate versus the Lady's nook, Elfsong Tavern, Counting House landing) and their people (Ned Coyle, Widow Penhale, Rhoswen versus Alan, Hesta, Dorna Hask) are almost entirely dif"
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "A-sol-1|A-sol-2": {
+      "a": {
+        "same": 0,
+        "reason": "The two roads share only the starting quay and the Basilisk Gate-adjacent figures are not the same; Road 1 runs through the Elfsong Tavern, Cistern Passage and Lady's Hall, while Road 2 runs through the Lady's Corner, Three Old Kegs and Hesk's Yard, with almost no places or people in common."
+      },
+      "b": {
+        "same": 0,
+        "reason": "The two roads share only the starting quay and one person (Peregrin Vane); Road 1 goes through the Elfsong Tavern, Cistern Passage and Basilisk Gate, while Road 2 goes through The Lady's Corner, The Three Old Kegs and Hesk's Yard, with mostly different people."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "A-deepseek-1|A-deepseek-2": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 centres on the Three Old Kegs, the Counting House back way, the Cliffs district and Blue-rag house with a different cast of people, while Road 2 runs through market street, the inner wall lane and a Counting House square with an almost entirely different set of people, so most of each road is"
+      },
+      "b": {
+        "same": 0,
+        "reason": "The roads share only the starting quay and the Three Old Kegs back room, while most of their places and people differ."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "B-astra-1|B-deepseek-1": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 runs through Basilisk Gate, the Lower City, The Elfsong, and Rivington with many named people, while Road 2 only stops at the bridge's south end and meets the eel boy and Wren, so most of Road 1 is not on Road 2."
+      },
+      "b": {
+        "same": 0,
+        "reason": "Road 1 runs through many places (Basilisk Gate, Lower City, The Elfsong, toll-house, Shrike's pawnshop, Rivington) and deals with many people, while Road 2 contains only the shared starting place and two people, the eel boy and Wren, so most of Road 1 is not on Road 2."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "B-astra-1|B-fable-1": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 runs through Basilisk Gate, the Lower City, the Elfsong and Rivington with Osric, Wren, Shrike and the Fist and Gate guards, while Road 2 goes to Wyrm's Rock, the fish steps and the Halfway House with Corran, Hesk, Dalla and Marga Thole; only the shared starting bridge and the common name Pim"
+      },
+      "b": {
+        "same": 0,
+        "reason": "The two roads share only the starting bridge; Road 1 runs through Basilisk Gate, the Lower City, the Elfsong and Rivington, while Road 2 runs through Wyrm's Rock, the fish steps and Halfway House, with almost entirely different people."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "B-astra-1|B-opus-1": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 runs through Basilisk Gate, the Lower City, the Elfsong and Shrike's pawnshop with Osric, Wren and Aldo Brenn, while Road 2 goes via the railing lamp, Cockle Lane, Widow Fennick's and Wyrm's Rock with Hobb, Hal Tenney and Captain Brannock; only the shared starting place and Pim overlap."
+      },
+      "b": {
+        "same": 0,
+        "reason": "Road 1 runs through Basilisk Gate, the Lower City, the Elfsong and Shrike's pawnshop, while Road 2 runs through the lamp at the railing, Cockle Lane, the Rivington stair and Wyrm's Rock; the only shared places are the starting bridge and Rivington, and the people largely differ (only Pim is common)."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "B-astra-1|B-sol-1": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 runs through Basilisk Gate, the Elfsong, the toll-house and Rivington with Osric, Shrike and Aldo Brenn; Road 2 goes to a pie-shop, Hask's boathouse and Mother Gannet's with different people, sharing only the starting place plus Wren and Pim."
+      },
+      "b": {
+        "same": 0,
+        "reason": "Road 1 runs through Basilisk Gate, the Elfsong, the toll-house, and Rivington with figures like Osric and Shrike, while Road 2 goes to a pie-shop, Hask's boathouse, and Mother Gannet's with different companions; only the shared starting place and the names Wren and Pim overlap."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "B-deepseek-1|B-fable-1": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 is only the bridge's south end with the eel boy Wren, while Road 2 travels through Wyrm's Rock, the fish steps, and the Halfway House with many other people, so most of Road 2 is not on Road 1."
+      },
+      "b": {
+        "same": 0,
+        "reason": "Road 1 is only the bridge's south end with the eel boy Wren, while Road 2 travels on to Wyrm's Rock, the fish steps, and the Halfway House and deals with many other people, so most of Road 2 is not on Road 1."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "B-deepseek-1|B-opus-1": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 is only the starting bridge with one person, Wren, whereas Road 2 goes on to many other places (Cockle Lane, Rivington stair, Cutler's Row, Wyrm's Rock) and many other people, so most of Road 2 is not on Road 1."
+      },
+      "b": {
+        "same": 0,
+        "reason": "Road 1 is only the starting bridge with one person, Wren, whereas Road 2 goes on to many other places (Cockle Lane, Rivington stair, Cutler's Row, Wyrm's Rock) and many other people, so most of Road 2 is not on Road 1."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "B-deepseek-1|B-sol-1": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 is only the starting bridge and a meeting with Wren, while Road 2 goes on to the pie-shop, Hask's boathouse and Mother Gannet's with many other people, so most of Road 2 is not on Road 1."
+      },
+      "b": {
+        "same": 0,
+        "reason": "Road 1 is only the starting bridge with the eel boy Wren, while Road 2 goes on to the pie-shop, Hask's boathouse and Mother Gannet's with many other people, so most of Road 2 is not on Road 1."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "B-fable-1|B-opus-1": {
+      "a": {
+        "same": 0,
+        "reason": "The roads share only Wyrm's Rock, Pim and Hesk; most places (fish steps, Halfway House vs. Rivington and Cutler's Row) and most people differ."
+      },
+      "b": {
+        "same": 0,
+        "reason": "Road 1 centres on the Halfway House and the fish steps with people like Corran, Marga Thole and Dalla, while Road 2 runs through Cockle Lane, Rivington and Widow Fennick's with different companions such as Hobb and Captain Brannock; only the shared starting bridge and a couple of recurring names (Pi"
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "B-fable-1|B-sol-1": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 runs through Wyrm's Rock, the fish steps and the Halfway House with people like Marga Thole, Hesk and Dalla, while Road 2 goes to the pie-shop, Hask's boathouse and Mother Gannet's with different people; they share only the starting bridge and a couple of names (Pim, the hooded watcher)."
+      },
+      "b": {
+        "same": 0,
+        "reason": "Road 1 runs through Wyrm's Rock, the fish steps and the Halfway House with its people (Marga Thole, Hesk, Dalla, Harl), while Road 2 goes to the pie-shop, Hask's boathouse and Mother Gannet's with different people; only the shared starting bridge and a couple of names (Pim, the hooded watcher) overl"
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "B-opus-1|B-sol-1": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 runs through Wyrm's Crossing, Cockle Lane, the Rivington stair, Widow Fennick's and Wyrm's Rock with people like Hobb, Widow Fennick and Captain Brannock, while Road 2 goes to a pie-shop, Hask's boathouse and Mother Gannet's with different companions, sharing only the starting bridge and the "
+      },
+      "b": {
+        "same": 0,
+        "reason": "Road 1 runs through Wyrm's Crossing, Cockle Lane, Rivington, Cutler's Row and Wyrm's Rock with people like Hobb, Widow Fennick and Captain Brannock, while Road 2 goes to a pie-shop, Hask's boathouse and Mother Gannet's with different people; only the shared starting place overlaps."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "B-opus-1|B-opus-2": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 runs through Rivington, Cutler's Row and Wyrm's Rock, while Road 2 runs through the Sixpenny Rail, Tallow's and Ropewalk Lane; apart from the shared starting bridge, the places and people barely overlap."
+      },
+      "b": {
+        "same": 0,
+        "reason": "The two roads share only the starting bridge; Road 1 goes through Rivington, Cutler's Row and Wyrm's Rock with figures like Widow Fennick and Captain Brannock, while Road 2 goes through the Sixpenny Rail, Tallow's and Umberlee's shrine with different people, so most of each road is not on the other."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "B-fable-1|B-fable-2": {
+      "a": {
+        "same": 0,
+        "reason": "The two roads share only the starting bridge and the hooded watcher and Pim; road 1 runs through Wyrm's Rock, the fish steps and the Halfway House with its own cast, while road 2 runs through the Lower City, the Ferryman's Rest and the Elfsong with a largely different set of people."
+      },
+      "b": {
+        "same": 0,
+        "reason": "The two roads share only the starting bridge and a lone person, Pim; Road 1 runs to Wyrm's Rock, the fish steps and Halfway House with its own cast, while Road 2 runs through the Lower City and the Elfsong to the Lady's Hall with different people."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "B-astra-1|B-astra-2": {
+      "a": {
+        "same": 0,
+        "reason": "The two roads share only the starting bridge and a single named person (Wren) and place-type overlap at Basilisk Gate; Road 1 runs through Basilisk Gate, The Elfsong, and Shrike's pawnshop, while Road 2 runs through a stairwell, The Lady's box, the Water Queen's House, and The Hook and Halter, so mo"
+      },
+      "b": {
+        "same": 0,
+        "reason": "The two roads share only the starting place and one person name (Wren) and the Basilisk Gate guards; Road 1 runs through Basilisk Gate, the Elfsong, a toll-house and pawnshop, while Road 2 runs through a stairwell, the Lady's box, the Water Queen's House and the Hook and Halter, so most of each road"
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "B-sol-1|B-sol-2": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 runs through the blue-shutter pie-shop, Hask's boathouse and Mother Gannet's with boatmen, Pim, Benno and Dace, while Road 2 goes to the Lady's niche, the Rivington steps stall and the Stave and Hoop with Harl Venn, Sister Aurenna and Coll; only the shared starting bridge, a pie-seller and Wr"
+      },
+      "b": {
+        "same": 0,
+        "reason": "The two roads share only the starting bridge and a couple of people (Wren, the pie-woman); the places visited and most of the people met are different."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    },
+    "B-deepseek-1|B-deepseek-2": {
+      "a": {
+        "same": 0,
+        "reason": "Road 1 is only the starting bridge and one person, Wren, while Road 2 goes through many places (Basilisk Gate, the hill street, the Elfsong, James's room) and many people, so most of Road 2 is not on Road 1."
+      },
+      "b": {
+        "same": 0,
+        "reason": "Road 1 is only the starting place and two entries (the bridge and Wren), while Road 2 travels through many places (Basilisk Gate, the hill street, the Elfsong, James's room) and deals with a long list of different people, so most of Road 2 is not on Road 1."
+      },
+      "referee": null,
+      "final": {
+        "same": 0
+      }
+    }
+  },
+  "group2World": {
+    "A-opus": {
+      "a": {
+        "prepared": 1,
+        "reason": "The details feed one larger pattern: the sailor's card game, the winners who vanish into the taverns, the drowned man by the Seatower, and the Elfsong's rumours all point to the same hidden scheme, and the cat's unease is set up to matter."
+      },
+      "b": {
+        "prepared": 1,
+        "reason": "The details link into one thread: the dealer's card box, the 'bright' winners who vanish, the body pulled from the tower steps, and the Elfsong all point to the same hidden scheme, and the sergeant's Seatower muster stays consistent."
+      },
+      "referee": null,
+      "final": {
+        "prepared": 1
+      }
+    },
+    "A-fable": {
+      "a": {
+        "prepared": 1,
+        "reason": "Details interlock across scenes: the Knucklebone cellar, the candle and stool, Gil's dead partner, Tam's da's custom, the coin-faced dead men, Morrow's ledger of c.m. marks, Oren Holloway's sister Brena, and the Gloves watcher all connect into one larger conspiracy with events on their own schedule "
+      },
+      "b": {
+        "prepared": 1,
+        "reason": "Threads connect across scenes: the Lady's coin, the Knucklebone dicing house, the candle and stool, Tam's father's custom, Holloway's ledger and the c.m. marks, the Twin Songs chapel and its priest, and the recurring Gloves figure all cohere into one larger scheme on the world's own timetable."
+      },
+      "referee": null,
+      "final": {
+        "prepared": 1
+      }
+    },
+    "A-astra": {
+      "a": {
+        "prepared": 1,
+        "reason": "Details recur and connect across scenes: the standing copper, the ferry-stairs precedent, the rat, the Lady's two faces, Marsk's and Nettle's knowledge of the coin, and the bone card all tie into one larger mystery with consistent aims and a looming deadline."
+      },
+      "b": {
+        "prepared": 1,
+        "reason": "Details recur and connect across scenes: the standing copper echoes through Marsk's ferry-stairs history, Wren's saucer and Hall, Nettle's paid-for-word network, Dessa's cards going cold, and the sisters' deck, all converging on one larger pattern that the world's own schedule (three mornings) and p"
+      },
+      "referee": null,
+      "final": {
+        "prepared": 1
+      }
+    },
+    "A-sol": {
+      "a": {
+        "prepared": 1,
+        "reason": "Details interlock across scenes: the card's Tymora/Beshaba imagery, the filed coppers with antlers, Garrow's drowned men and the Thalendar ring, the dead-house young man in clean red, and the Mermaid's rope-cellar all connect to one larger hidden conflict, and the watcher, the cat's trail, and the m"
+      },
+      "b": {
+        "prepared": 1,
+        "reason": "Details interlock across scenes: the card's Beshaba/Tymora imagery, the filed coppers with antlers, Garrow's drowned men and Thalendar ring, the dead-house young man in clean tabard, and the cat's shadowing all point to one larger conspiracy that the world keeps delivering on its own schedule, with "
+      },
+      "referee": null,
+      "final": {
+        "prepared": 1
+      }
+    },
+    "B-opus": {
+      "a": {
+        "prepared": 1,
+        "reason": "Details interlock across scenes: the chalk star copied from a worn carving, the Guild's marks, the lamplighter's green tile and salt-water ritual, the Ostrand ship-washing ritual, Tam Pell's coin-in-mouth deaths and the debt-buyer tag on his boat, all pointing to one larger scheme with recurring fig"
+      },
+      "b": {
+        "prepared": 1,
+        "reason": "Details recur and connect across scenes: the chalk star copied from a carved stone, the Coin of Tymora reacting to the same cold seal, the debt-seal motif from Calimport, the Guild and Brazier rivalry, the Tam Pell debt-death thread tying to the Sweet Moll and the Ostrand wharf, and the lamp-man, th"
+      },
+      "referee": null,
+      "final": {
+        "prepared": 1
+      }
+    },
+    "B-fable": {
+      "a": {
+        "prepared": 1,
+        "reason": "The world's details keep connecting across scenes: the Lady's coin warmth and the Dannet/Tam/Wat deaths form one larger pattern, Varrow's ledger and Pip's auntie tie into the Fist's counting, and the rust-smelling coins and the Mermaid cellar grating recur, with the cat's bond tracking one consisten"
+      },
+      "b": {
+        "prepared": 1,
+        "reason": "The details keep connecting into one larger thread: the rust-smelling coin, the crate dealer Lennick Tull, the drowned gamblers with coins in their teeth, the nicked queen card, and the Fist sergeant's pattern all converge on a single hidden cause, and events like the thaw-era deaths and the cat's r"
+      },
+      "referee": null,
+      "final": {
+        "prepared": 1
+      }
+    },
+    "B-astra": {
+      "a": {
+        "prepared": 1,
+        "reason": "Details interlock across the session: the chair, coin pile, Lady's coin, halfling Worgen, the notched-circle mark, the pawn ticket, the locksmith and the Wet Stair all connect into one larger mystery, and recurring figures like Dorrin, Hesta, Ilsa and the hard-heeled visitor keep consistent aims tha"
+      },
+      "b": {
+        "prepared": 1,
+        "reason": "Details connect across scenes: the cursed chair, the coin motif, the nicked-coin mark, the lodger's name erasure, the locksmith and pawn ticket, and the drowned-coin deaths all cohere into one larger hidden plot with consistent aims (Dorrin, Ardanne, the Hall, the Lady) that set up later payoffs."
+      },
+      "referee": null,
+      "final": {
+        "prepared": 1
+      }
+    },
+    "B-sol": {
+      "a": {
+        "prepared": 1,
+        "reason": "The details connect into one larger scheme: the face-down coin, the Tyche/Beshaba lore, the wax-sealed packets, the Red Hook ring, and the Seatower bodies all tie to the same curse trade, and recurring figures like Tansy, Dray, Jory and Hask carry their threads forward rather than being dropped."
+      },
+      "b": {
+        "prepared": 1,
+        "reason": "The threads interlock across scenes: the face-down coin, Tansy's account of Pell and Hask, the Red Hook workshop, the Guild runner, Dray's ledger ticks, and the surgeon and freckled priestess all connect to one larger curse-trade run by Beshaba's agents, and events follow their own schedule."
+      },
+      "referee": null,
+      "final": {
+        "prepared": 1
+      }
+    },
+    "A-deepseek-1": {
+      "a": {
+        "prepared": 1,
+        "reason": "Details connect across scenes: the tiefling watcher, the Lady's priestess Iselde who dreamed the arrival, the cat's reaction to the pocket, and the coin's warmth and Umberlee's due all point to a single larger plot already in motion."
+      },
+      "b": {
+        "prepared": 1,
+        "reason": "The details connect across scenes: the Lady's priestess Iselde dreamed of the arriving man and the cat, the watcher on the rope was paid to wait for him, the Flaming Fist ledger and the gull-and-dock setting recur, and the scratched coin and Umberlee's due tie into a larger mystery hinted from the o"
+      },
+      "referee": null,
+      "final": {
+        "prepared": 1
+      }
+    },
+    "A-deepseek-2": {
+      "a": {
+        "prepared": 1,
+        "reason": "The opening's threads (the goddess's errand, the waiting woman, the cat, the sealed-wax note, the Lady's Hall and inner-gate timing) are picked up and connected in Reply 2 through the High Priestess's note and the scribe's pass, while the porter's remark about the woman meeting every southern ship t"
+      },
+      "b": {
+        "prepared": 1,
+        "reason": "The details connect into one larger plan: the woman's errand matches the sealed letter's description of the cloak and cat, the incense ties to Tymora's Lady's Hall, and the gate's closing time creates a schedule that drives the scene."
+      },
+      "referee": null,
+      "final": {
+        "prepared": 1
+      }
+    },
+    "B-deepseek-1": {
+      "a": {
+        "prepared": 1,
+        "reason": "The threads connect across scenes: Ash's missing gold, the cold lucky piece, the card-seller Tolly, Hesper's antlered card and the salt jar all tie into one larger situation, and Mirri's family, the Fist's indifference and the cat's sensing of the cold recur consistently."
+      },
+      "b": {
+        "prepared": 1,
+        "reason": "The details interlock across scenes: the cold tied to Tolly's lucky coin reappears under the salt jar, Ash's disappearance links to the cards, Mirri's gran, and the bridge scene, and the frost and rug recur as the same larger mystery, so the world reads as prepared rather than improvised."
+      },
+      "referee": null,
+      "final": {
+        "prepared": 1
+      }
+    },
+    "B-deepseek-2": {
+      "a": {
+        "prepared": 1,
+        "reason": "The details interlock across scenes: the coin on the empty stool, Pell's drowning, the bronze coin taken by the harbour officer, the ebb tide and clean hands, and the Lady's Hall notice all point to one larger conspiracy, and events follow a consistent logic rather than appearing and vanishing at ra"
+      },
+      "b": {
+        "prepared": 1,
+        "reason": "The coin, the Lady's motif, Pell's drowning, the harbour office officer, the Zhentarim toll dispute and the lighterman's ebb-tide testimony all connect into one larger mystery, and the characters (sergeant, dealer, Hedda, Tam, Dunn) recur with consistent aims rather than existing only for the scene."
+      },
+      "referee": null,
+      "final": {
+        "prepared": 1
+      }
+    }
+  }
+}

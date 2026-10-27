@@ -1,6 +1,6 @@
 # Game player same-world 1 — the OpenRouter ledger
 
-Cap $350; spent before this run $0.0000; this run $276.3679; total $276.3679; 6491 calls.
+Cap $350; spent before this run $0.0000; this run $276.4163; total $276.4163; 6575 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -786,3 +786,87 @@ Cap $350; spent before this run $0.0000; this run $276.3679; total $276.3679; 64
 | B-opus-2 | dm t* retry | anthropic/claude-haiku-5.5 | 2 | 9848 | 0 | 0 | 2276 | $0.0021 | 0 | 0 | 0 |
 | score B-opus-2 | overlap B-opus-2 referee | anthropic/claude-opus-5.5 | 1 | 50818 | 0 | 0 | 523 | $0.2137 | 0 | 0 | 0 |
 | score B-astra-2 | overlap B-astra-2 referee | anthropic/claude-opus-5.5 | 1 | 33746 | 0 | 0 | 533 | $0.1456 | 0 | 0 | 0 |
+| final roads A | road A-astra-1|A-deepseek-1 1 | anthropic/claude-haiku-5.5 | 1 | 628 | 0 | 0 | 131 | $0.0001 | 0 | 0 | 0 |
+| final roads A | road A-astra-1|A-deepseek-1 2 | anthropic/claude-haiku-5.5 | 1 | 628 | 0 | 0 | 117 | $0.0001 | 0 | 0 | 0 |
+| final roads A | road A-astra-1|A-fable-1 1 | anthropic/claude-haiku-5.5 | 1 | 714 | 0 | 0 | 423 | $0.0003 | 0 | 0 | 0 |
+| final roads A | road A-astra-1|A-fable-1 2 | anthropic/claude-haiku-5.5 | 1 | 714 | 0 | 0 | 448 | $0.0003 | 0 | 0 | 0 |
+| final roads A | road A-astra-1|A-opus-1 1 | anthropic/claude-haiku-5.5 | 1 | 827 | 0 | 0 | 122 | $0.0001 | 0 | 0 | 0 |
+| final roads A | road A-astra-1|A-opus-1 2 | anthropic/claude-haiku-5.5 | 1 | 827 | 0 | 0 | 114 | $0.0001 | 0 | 0 | 0 |
+| final roads A | road A-astra-1|A-sol-1 1 | anthropic/claude-haiku-5.5 | 1 | 599 | 0 | 0 | 389 | $0.0003 | 0 | 0 | 0 |
+| final roads A | road A-astra-1|A-sol-1 2 | anthropic/claude-haiku-5.5 | 1 | 599 | 0 | 0 | 437 | $0.0003 | 0 | 0 | 0 |
+| final roads A | road A-deepseek-1|A-fable-1 1 | anthropic/claude-haiku-5.5 | 1 | 746 | 0 | 0 | 109 | $0.0001 | 0 | 0 | 0 |
+| final roads A | road A-deepseek-1|A-fable-1 2 | anthropic/claude-haiku-5.5 | 1 | 746 | 0 | 0 | 119 | $0.0001 | 0 | 0 | 0 |
+| final roads A | road A-deepseek-1|A-opus-1 1 | anthropic/claude-haiku-5.5 | 1 | 859 | 0 | 0 | 141 | $0.0002 | 0 | 0 | 0 |
+| final roads A | road A-deepseek-1|A-opus-1 2 | anthropic/claude-haiku-5.5 | 1 | 859 | 0 | 0 | 120 | $0.0001 | 0 | 0 | 0 |
+| final roads A | road A-deepseek-1|A-sol-1 1 | anthropic/claude-haiku-5.5 | 1 | 631 | 0 | 0 | 113 | $0.0001 | 0 | 0 | 0 |
+| final roads A | road A-deepseek-1|A-sol-1 2 | anthropic/claude-haiku-5.5 | 1 | 631 | 0 | 0 | 126 | $0.0001 | 0 | 0 | 0 |
+| final roads A | road A-fable-1|A-opus-1 1 | anthropic/claude-haiku-5.5 | 1 | 945 | 0 | 0 | 107 | $0.0001 | 0 | 0 | 0 |
+| final roads A | road A-fable-1|A-opus-1 2 | anthropic/claude-haiku-5.5 | 1 | 945 | 0 | 0 | 144 | $0.0002 | 0 | 0 | 0 |
+| final roads A | road A-fable-1|A-sol-1 1 | anthropic/claude-haiku-5.5 | 1 | 717 | 0 | 0 | 560 | $0.0004 | 0 | 0 | 0 |
+| final roads A | road A-fable-1|A-sol-1 2 | anthropic/claude-haiku-5.5 | 1 | 717 | 0 | 0 | 631 | $0.0004 | 0 | 0 | 0 |
+| final roads A | road A-opus-1|A-sol-1 1 | anthropic/claude-haiku-5.5 | 1 | 830 | 0 | 0 | 428 | $0.0003 | 0 | 0 | 0 |
+| final roads A | road A-opus-1|A-sol-1 2 | anthropic/claude-haiku-5.5 | 1 | 830 | 0 | 0 | 373 | $0.0003 | 0 | 0 | 0 |
+| final roads A | road A-opus-1|A-opus-2 1 | anthropic/claude-haiku-5.5 | 1 | 963 | 0 | 0 | 451 | $0.0003 | 0 | 0 | 0 |
+| final roads A | road A-opus-1|A-opus-2 2 | anthropic/claude-haiku-5.5 | 1 | 963 | 0 | 0 | 419 | $0.0003 | 0 | 0 | 0 |
+| final roads A | road A-fable-1|A-fable-2 1 | anthropic/claude-haiku-5.5 | 1 | 786 | 0 | 0 | 555 | $0.0004 | 0 | 0 | 0 |
+| final roads A | road A-fable-1|A-fable-2 2 | anthropic/claude-haiku-5.5 | 1 | 786 | 0 | 0 | 421 | $0.0003 | 0 | 0 | 0 |
+| final roads A | road A-astra-1|A-astra-2 1 | anthropic/claude-haiku-5.5 | 1 | 637 | 0 | 0 | 136 | $0.0001 | 0 | 0 | 0 |
+| final roads A | road A-astra-1|A-astra-2 2 | anthropic/claude-haiku-5.5 | 1 | 637 | 0 | 0 | 137 | $0.0001 | 0 | 0 | 0 |
+| final roads A | road A-sol-1|A-sol-2 1 | anthropic/claude-haiku-5.5 | 1 | 628 | 0 | 0 | 128 | $0.0001 | 0 | 0 | 0 |
+| final roads A | road A-sol-1|A-sol-2 2 | anthropic/claude-haiku-5.5 | 1 | 628 | 0 | 0 | 118 | $0.0001 | 0 | 0 | 0 |
+| final roads A | road A-deepseek-1|A-deepseek-2 1 | anthropic/claude-haiku-5.5 | 1 | 600 | 0 | 0 | 112 | $0.0001 | 0 | 0 | 0 |
+| final roads A | road A-deepseek-1|A-deepseek-2 2 | anthropic/claude-haiku-5.5 | 1 | 600 | 0 | 0 | 328 | $0.0002 | 0 | 0 | 0 |
+| final roads B | road B-astra-1|B-deepseek-1 1 | anthropic/claude-haiku-5.5 | 1 | 482 | 0 | 0 | 100 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-astra-1|B-deepseek-1 2 | anthropic/claude-haiku-5.5 | 1 | 482 | 0 | 0 | 119 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-astra-1|B-fable-1 1 | anthropic/claude-haiku-5.5 | 1 | 630 | 0 | 0 | 146 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-astra-1|B-fable-1 2 | anthropic/claude-haiku-5.5 | 1 | 630 | 0 | 0 | 102 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-astra-1|B-opus-1 1 | anthropic/claude-haiku-5.5 | 1 | 695 | 0 | 0 | 151 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-astra-1|B-opus-1 2 | anthropic/claude-haiku-5.5 | 1 | 695 | 0 | 0 | 133 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-astra-1|B-sol-1 1 | anthropic/claude-haiku-5.5 | 1 | 578 | 0 | 0 | 121 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-astra-1|B-sol-1 2 | anthropic/claude-haiku-5.5 | 1 | 578 | 0 | 0 | 122 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-deepseek-1|B-fable-1 1 | anthropic/claude-haiku-5.5 | 1 | 476 | 0 | 0 | 91 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-deepseek-1|B-fable-1 2 | anthropic/claude-haiku-5.5 | 1 | 476 | 0 | 0 | 95 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-deepseek-1|B-opus-1 1 | anthropic/claude-haiku-5.5 | 1 | 541 | 0 | 0 | 105 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-deepseek-1|B-opus-1 2 | anthropic/claude-haiku-5.5 | 1 | 541 | 0 | 0 | 105 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-deepseek-1|B-sol-1 1 | anthropic/claude-haiku-5.5 | 1 | 424 | 0 | 0 | 92 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-deepseek-1|B-sol-1 2 | anthropic/claude-haiku-5.5 | 1 | 424 | 0 | 0 | 92 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-fable-1|B-opus-1 1 | anthropic/claude-haiku-5.5 | 1 | 689 | 0 | 0 | 403 | $0.0003 | 0 | 0 | 0 |
+| final roads B | road B-fable-1|B-opus-1 2 | anthropic/claude-haiku-5.5 | 1 | 689 | 0 | 0 | 134 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-fable-1|B-sol-1 1 | anthropic/claude-haiku-5.5 | 1 | 572 | 0 | 0 | 130 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-fable-1|B-sol-1 2 | anthropic/claude-haiku-5.5 | 1 | 572 | 0 | 0 | 138 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-opus-1|B-sol-1 1 | anthropic/claude-haiku-5.5 | 1 | 637 | 0 | 0 | 146 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-opus-1|B-sol-1 2 | anthropic/claude-haiku-5.5 | 1 | 637 | 0 | 0 | 136 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-opus-1|B-opus-2 1 | anthropic/claude-haiku-5.5 | 1 | 833 | 0 | 0 | 642 | $0.0004 | 0 | 0 | 0 |
+| final roads B | road B-opus-1|B-opus-2 2 | anthropic/claude-haiku-5.5 | 1 | 833 | 0 | 0 | 127 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-fable-1|B-fable-2 1 | anthropic/claude-haiku-5.5 | 1 | 709 | 0 | 0 | 114 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-fable-1|B-fable-2 2 | anthropic/claude-haiku-5.5 | 1 | 709 | 0 | 0 | 105 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-astra-1|B-astra-2 1 | anthropic/claude-haiku-5.5 | 1 | 669 | 0 | 0 | 141 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-astra-1|B-astra-2 2 | anthropic/claude-haiku-5.5 | 1 | 669 | 0 | 0 | 133 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-sol-1|B-sol-2 1 | anthropic/claude-haiku-5.5 | 1 | 541 | 0 | 0 | 162 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-sol-1|B-sol-2 2 | anthropic/claude-haiku-5.5 | 1 | 541 | 0 | 0 | 355 | $0.0002 | 0 | 0 | 0 |
+| final roads B | road B-deepseek-1|B-deepseek-2 1 | anthropic/claude-haiku-5.5 | 1 | 557 | 0 | 0 | 92 | $0.0001 | 0 | 0 | 0 |
+| final roads B | road B-deepseek-1|B-deepseek-2 2 | anthropic/claude-haiku-5.5 | 1 | 557 | 0 | 0 | 103 | $0.0001 | 0 | 0 | 0 |
+| final group2 A-opus | world group2 A-opus 1 | anthropic/claude-haiku-5.5 | 1 | 3254 | 0 | 0 | 379 | $0.0005 | 0 | 0 | 0 |
+| final group2 A-opus | world group2 A-opus 2 | anthropic/claude-haiku-5.5 | 1 | 3254 | 0 | 0 | 351 | $0.0005 | 0 | 0 | 0 |
+| final group2 A-fable | world group2 A-fable 1 | anthropic/claude-haiku-5.5 | 1 | 24606 | 0 | 0 | 157 | $0.0025 | 0 | 0 | 0 |
+| final group2 A-fable | world group2 A-fable 2 | anthropic/claude-haiku-5.5 | 1 | 24606 | 0 | 0 | 125 | $0.0025 | 0 | 0 | 0 |
+| final group2 A-astra | world group2 A-astra 1 | anthropic/claude-haiku-5.5 | 1 | 19043 | 0 | 0 | 108 | $0.0020 | 0 | 0 | 0 |
+| final group2 A-astra | world group2 A-astra 2 | anthropic/claude-haiku-5.5 | 1 | 19043 | 0 | 0 | 143 | $0.0020 | 0 | 0 | 0 |
+| final group2 A-sol | world group2 A-sol 1 | anthropic/claude-haiku-5.5 | 1 | 17501 | 0 | 0 | 146 | $0.0018 | 0 | 0 | 0 |
+| final group2 A-sol | world group2 A-sol 2 | anthropic/claude-haiku-5.5 | 1 | 17501 | 0 | 0 | 132 | $0.0018 | 0 | 0 | 0 |
+| final group2 B-opus | world group2 B-opus 1 | anthropic/claude-haiku-5.5 | 1 | 27528 | 0 | 0 | 153 | $0.0028 | 0 | 0 | 0 |
+| final group2 B-opus | world group2 B-opus 2 | anthropic/claude-haiku-5.5 | 1 | 27528 | 0 | 0 | 163 | $0.0028 | 0 | 0 | 0 |
+| final group2 B-fable | world group2 B-fable 1 | anthropic/claude-haiku-5.5 | 1 | 23132 | 0 | 0 | 137 | $0.0024 | 0 | 0 | 0 |
+| final group2 B-fable | world group2 B-fable 2 | anthropic/claude-haiku-5.5 | 1 | 23132 | 0 | 0 | 138 | $0.0024 | 0 | 0 | 0 |
+| final group2 B-astra | world group2 B-astra 1 | anthropic/claude-haiku-5.5 | 1 | 19957 | 0 | 0 | 137 | $0.0021 | 0 | 0 | 0 |
+| final group2 B-astra | world group2 B-astra 2 | anthropic/claude-haiku-5.5 | 1 | 19957 | 0 | 0 | 133 | $0.0021 | 0 | 0 | 0 |
+| final group2 B-sol | world group2 B-sol 1 | anthropic/claude-haiku-5.5 | 1 | 22518 | 0 | 0 | 126 | $0.0023 | 0 | 0 | 0 |
+| final group2 B-sol | world group2 B-sol 2 | anthropic/claude-haiku-5.5 | 1 | 22518 | 0 | 0 | 123 | $0.0023 | 0 | 0 | 0 |
+| final group2 A-deepseek-1 | world group2 A-deepseek-1 1 | anthropic/claude-haiku-5.5 | 1 | 2147 | 0 | 0 | 99 | $0.0003 | 0 | 0 | 0 |
+| final group2 A-deepseek-1 | world group2 A-deepseek-1 2 | anthropic/claude-haiku-5.5 | 1 | 2147 | 0 | 0 | 126 | $0.0003 | 0 | 0 | 0 |
+| final group2 A-deepseek-2 | world group2 A-deepseek-2 1 | anthropic/claude-haiku-5.5 | 1 | 2360 | 0 | 0 | 143 | $0.0003 | 0 | 0 | 0 |
+| final group2 A-deepseek-2 | world group2 A-deepseek-2 2 | anthropic/claude-haiku-5.5 | 1 | 2360 | 0 | 0 | 296 | $0.0004 | 0 | 0 | 0 |
+| final group2 B-deepseek-1 | world group2 B-deepseek-1 1 | anthropic/claude-haiku-5.5 | 1 | 9109 | 0 | 0 | 113 | $0.0010 | 0 | 0 | 0 |
+| final group2 B-deepseek-1 | world group2 B-deepseek-1 2 | anthropic/claude-haiku-5.5 | 1 | 9109 | 0 | 0 | 116 | $0.0010 | 0 | 0 | 0 |
+| final group2 B-deepseek-2 | world group2 B-deepseek-2 1 | anthropic/claude-haiku-5.5 | 1 | 9692 | 0 | 0 | 119 | $0.0010 | 0 | 0 | 0 |
+| final group2 B-deepseek-2 | world group2 B-deepseek-2 2 | anthropic/claude-haiku-5.5 | 1 | 9692 | 0 | 0 | 130 | $0.0010 | 0 | 0 | 0 |
