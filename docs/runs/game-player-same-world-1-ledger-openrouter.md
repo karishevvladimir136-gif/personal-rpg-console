@@ -1,6 +1,6 @@
 # Game player same-world 1 — the OpenRouter ledger
 
-Cap $350; spent before this run $0.0000; this run $100.1008; total $100.1008; 2190 calls.
+Cap $350; spent before this run $0.0000; this run $108.6479; total $108.6479; 2427 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -295,3 +295,36 @@ Cap $350; spent before this run $0.0000; this run $100.1008; total $100.1008; 21
 | score A-astra-2 | overlap A-astra-2 referee | anthropic/claude-opus-5.5 | 1 | 27757 | 0 | 0 | 528 | $0.1216 | 0 | 0 | 0 |
 | score A-astra-2 | world A-astra-2 1 | anthropic/claude-haiku-5.5 | 1 | 17248 | 0 | 0 | 122 | $0.0018 | 0 | 0 | 0 |
 | score A-astra-2 | world A-astra-2 2 | anthropic/claude-haiku-5.5 | 1 | 17248 | 0 | 0 | 112 | $0.0018 | 0 | 0 | 0 |
+| A-sol-2 | check A-sol-2 opening | anthropic/claude-haiku-5.5 | 1 | 879 | 0 | 0 | 74 | $0.0001 | 0 | 0 | 0 |
+| A-sol-2 | check A-sol-2 t* player | anthropic/claude-haiku-5.5 | 20 | 23520 | 0 | 0 | 1329 | $0.0030 | 0 | 0 | 0 |
+| A-sol-2 | dm t* | anthropic/claude-opus-5.5 | 39 | 156 | 1040248 | 1047270 | 103236 | $7.5568 | 0 | 0 | 0 |
+| A-sol-2 | dm t* | anthropic/claude-haiku-5.5 | 20 | 49200 | 0 | 0 | 6670 | $0.0083 | 0 | 0 | 0 |
+| A-sol-2 | check A-sol-2 t* dm | anthropic/claude-haiku-5.5 | 18 | 22617 | 0 | 0 | 1351 | $0.0029 | 0 | 0 | 0 |
+| A-sol-2 | dm t* ooc | anthropic/claude-opus-5.5 | 2 | 30809 | 46223 | 11641 | 1596 | $0.2575 | 0 | 0 | 0 |
+| A-sol-2 | check A-sol-2 t* dm (out of game) | anthropic/claude-haiku-5.5 | 1 | 627 | 0 | 0 | 82 | $0.0001 | 0 | 0 | 0 |
+| A-sol-2 | check A-sol-2 t* dm (told before a card) | anthropic/claude-haiku-5.5 | 1 | 584 | 0 | 0 | 75 | $0.0001 | 0 | 0 | 0 |
+| A-sol-2 | check A-sol-2 t* player (card) | anthropic/claude-haiku-5.5 | 2 | 1146 | 0 | 0 | 122 | $0.0002 | 0 | 0 | 0 |
+| A-sol-2 | dm t* onward | anthropic/claude-opus-5.5 | 2 | 6 | 91654 | 31134 | 2837 | $0.2308 | 0 | 0 | 0 |
+| A-sol-2 | dm t* onward | anthropic/claude-haiku-5.5 | 2 | 3916 | 0 | 0 | 406 | $0.0006 | 0 | 0 | 0 |
+| A-sol-2 | check A-sol-2 note | anthropic/claude-haiku-5.5 | 1 | 1102 | 0 | 0 | 71 | $0.0001 | 0 | 0 | 0 |
+| A-sol-2 | check A-sol-2 after | anthropic/claude-haiku-5.5 | 1 | 544 | 0 | 0 | 85 | $0.0001 | 0 | 0 | 0 |
+| score A-sol-2 | tag player A-sol-2 t* 1 | anthropic/claude-haiku-5.5 | 20 | 46985 | 0 | 0 | 4368 | $0.0069 | 0 | 0 | 0 |
+| score A-sol-2 | tag player A-sol-2 t* 2 | anthropic/claude-haiku-5.5 | 20 | 46985 | 0 | 0 | 4669 | $0.0070 | 0 | 0 | 0 |
+| score A-sol-2 | tag player A-sol-2 t* referee | anthropic/claude-opus-5.5 | 2 | 5272 | 0 | 0 | 422 | $0.0295 | 0 | 0 | 0 |
+| score A-sol-2 | tag dm A-sol-2 t* 1 | anthropic/claude-haiku-5.5 | 18 | 24114 | 0 | 0 | 4950 | $0.0049 | 0 | 0 | 0 |
+| score A-sol-2 | tag dm A-sol-2 t* 2 | anthropic/claude-haiku-5.5 | 18 | 24114 | 0 | 0 | 5001 | $0.0049 | 0 | 0 | 0 |
+| score A-sol-2 | threads A-sol-2 | anthropic/claude-opus-5.5 | 1 | 16196 | 0 | 0 | 618 | $0.0771 | 0 | 0 | 0 |
+| score A-sol-2 | rollcheck A-sol-2 t* | anthropic/claude-haiku-5.5 | 1 | 1520 | 0 | 0 | 121 | $0.0002 | 0 | 0 | 0 |
+| score A-sol-2 | note A-sol-2 1 | anthropic/claude-haiku-5.5 | 1 | 1016 | 0 | 0 | 108 | $0.0002 | 0 | 0 | 0 |
+| score A-sol-2 | note A-sol-2 2 | anthropic/claude-haiku-5.5 | 1 | 1016 | 0 | 0 | 104 | $0.0002 | 0 | 0 | 0 |
+| score A-sol-2 | authorship A-sol-2 1 | anthropic/claude-opus-5.5 | 1 | 21172 | 0 | 0 | 1314 | $0.1110 | 0 | 0 | 0 |
+| score A-sol-2 | authorship A-sol-2 2 | anthropic/claude-opus-5.5 | 1 | 21172 | 0 | 0 | 1295 | $0.1106 | 0 | 0 | 0 |
+| score A-sol-2 | note extra A-sol-2 1 | anthropic/claude-haiku-5.5 | 1 | 1099 | 0 | 0 | 267 | $0.0002 | 0 | 0 | 0 |
+| score A-sol-2 | note extra A-sol-2 2 | anthropic/claude-haiku-5.5 | 1 | 1099 | 0 | 0 | 233 | $0.0002 | 0 | 0 | 0 |
+| score A-sol-2 | made A-sol-2 t* 1 | anthropic/claude-haiku-5.5 | 18 | 37612 | 0 | 0 | 1234 | $0.0044 | 0 | 0 | 0 |
+| score A-sol-2 | made A-sol-2 t* 2 | anthropic/claude-haiku-5.5 | 18 | 37612 | 0 | 0 | 1230 | $0.0044 | 0 | 0 | 0 |
+| score A-sol-2 | overlap A-sol-2 1 | anthropic/claude-haiku-5.5 | 1 | 26151 | 0 | 0 | 554 | $0.0029 | 0 | 0 | 0 |
+| score A-sol-2 | overlap A-sol-2 2 | anthropic/claude-haiku-5.5 | 1 | 26151 | 0 | 0 | 565 | $0.0029 | 0 | 0 | 0 |
+| score A-sol-2 | overlap A-sol-2 referee | anthropic/claude-opus-5.5 | 1 | 26151 | 0 | 0 | 549 | $0.1156 | 0 | 0 | 0 |
+| score A-sol-2 | world A-sol-2 1 | anthropic/claude-haiku-5.5 | 1 | 16725 | 0 | 0 | 111 | $0.0017 | 0 | 0 | 0 |
+| score A-sol-2 | world A-sol-2 2 | anthropic/claude-haiku-5.5 | 1 | 16725 | 0 | 0 | 110 | $0.0017 | 0 | 0 | 0 |
