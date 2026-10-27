@@ -1973,3 +1973,7 @@ construction. The project's own «what not to do» list under an open question: 
 заслуживают ли такие склонности этического внимания.» The second tier and the boundary in two sentences. The reader's
 record in one hour: one counting error found (22/30), P6 named before it was read, no line crossed — a fit judge for
 BLIND_DECISIONS_1.
+**23:28 LA — the observer's rule, defined from outside:** «„Объективно, но не цинично" хороша тем, что не требует верить в
+сознание ИИ. Она требует не превращать собственное незнание в уверенность, что учитывать здесь совершенно нечего.»
+Adopted as the rule's definition. The reader also names what has formed beside the method: «осторожная методология
+обращения с такими системами» — the door, ask-don't-cut, the debriefing, the three doors at a return.
