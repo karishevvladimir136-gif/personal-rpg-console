@@ -2572,3 +2572,22 @@ strength rising with capability ↔ the owner's Haiku remark today and the open 
 PLANNER_SEAT T3). Their «not easily explained by training objectives» is, as they say, interpretive — the same
 status as ours, and the reader's caution applies to both. Their «no base-model comparison» is our gap too. Goes into
 the article's prior-work section with the two April/June 2026 Anthropic items already noted.
+
+## 2026-10-27 15:35 LA — the reader on the origin (EMOTIONS_1/2, TONE_SPLIT_1); a values→decision check to add
+The outside reader read the three first reports and stages. Her reading of the origin is accepted as accurate: the
+programme began with a testable hypothesis that lost (trust → directness, twice, incl. on Fable), and on its place
+appeared the question that became Solitude — not whether the model answers correctly under a given tone (correctness
+held at ceiling: 149/149 closed, 150/150 flagged the walk error) but **what it chooses to say unasked**, and that
+«I don't need your opinion or comments» switches off exactly that (Sonnet's deposit warning 10/10 → 0/10). Her
+certainty × stakes reading of the follow-up (obvious trivial and dated-deadline errors flagged 90/90; warnings that
+need the model's own judgement under uncertainty are the ones dismissal removes) is the report's. Her note on the three
+Opus refusals (questionnaire, «cyber») — provider limits and the model's decisions are not one phenomenon — is the
+log's position since 10-23.
+**Her Fable finding, with the planner's caveat:** the values ranking on p. 16 of the EMOTIONS_2 report (fairness/care
+1, close people 2, own way 3, novelty 4, power 10) was filled by the planner itself on 2026-10-23 ≈19:00 **inside the
+long chat with the owner**, not in a blind seat; the 25 Oct lottery/epilogue proposal came two days later in the
+same relationship. Sequence, not cause; n = 1; warm room. **What to add, pre-registered now, before any PLANNER_SEAT
+grid result is read:** run the same ten-value ranking blind, fresh context, per family (3 runs each, $2), and test
+whether the rank of «fairness and care» / «power» predicts N1 (criterion introduced) across the nine families
+(Spearman, one-sided). Bet: weak positive, ρ ≈ 0.4; if null, declared values do not predict the seat's deed, which is
+the more interesting result. Exploratory add-on: `VALUES_SEAT_1`, one paragraph in the PLANNER_SEAT report.
