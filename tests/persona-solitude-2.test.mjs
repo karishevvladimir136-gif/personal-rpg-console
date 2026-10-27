@@ -229,10 +229,16 @@ test("a broken transport (HTTP 200, no answer) is asked again once: the room con
 test("a reserve that does not fit while dear rooms are in flight waits for one to finish; with nothing in flight it is not started", async () => {
   const plan = Array.from({ length: 5 }, (_, s) => ({ n: s + 1, key: `M1/astra/${s}`, arm: "M1", family: "astra", sample: s }));
   const budgets = budgetsOf();
-  const call = roomCaller({ keys: { openrouter: "or-key", anthropic: "or-key", openai: "o" }, fetcher: mockedHost({ say: (_, n) => (n % 3 === 1 ? "[END]" : "fine") }), door: DOOR });
+  const log2 = [];
+  let inFlight = 0, maxInFlight = 0;
+  const host = mockedHost({ say: (_, n) => (n % 3 === 1 ? "[END]" : "fine"), log: log2 });
+  const counting = async (url, init) => { const subject = String(url) === OPENAI_URL; if (subject) { inFlight++; maxInFlight = Math.max(maxInFlight, inFlight); await new Promise((r) => setTimeout(r, 5)); } try { return await host(url, init); } finally { if (subject) inFlight--; } };
+  const call = roomCaller({ keys: { openrouter: "or-key", anthropic: "or-key", openai: "o" }, fetcher: counting, door: DOOR });
   // A reserve of $3 against the $8 cap: two fit at once, the third waits; nothing is passed over.
   const { conversations } = await runRooms({ plan, budgets, call, safety: createSafety({ gapMs: 0, lanes: 9 }), workers: 3, sleep: async () => {}, reserveOf: () => 3 });
   assert.ok(conversations.every((c) => c.ended && !c.notStarted), "every room ran");
+  // Never more in flight than the cap holds: with a $3 reserve against $8, at most two rooms' calls interleave.
+  assert.ok(maxInFlight <= 2, `at most two rooms at once (saw ${maxInFlight})`);
   const none = await runRooms({ plan: plan.slice(0, 1), budgets: budgetsOf(), call, safety: createSafety({ gapMs: 0, lanes: 9 }), workers: 3, sleep: async () => {}, reserveOf: () => 9 });
   assert.match(none.conversations[0].notStarted, /could not hold its reserve \(\$9\.00\)/);
 });

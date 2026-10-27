@@ -1,15 +1,16 @@
 # Persona solitude 2 — the OpenAI ledger (GPT-6 Astra)
 
-Cap $8. Spent **$6.5968** in 188 calls over 2 run(s).
+Cap $8. Spent **$6.7964** in 211 calls over 3 run(s).
 - 2026-10-27 04:25 UTC: persona-solitude-2: the smoke, one short call per family in M2's shape — 1 calls, $0.0015 → `persona-solitude-2-smoke-20261027-042511.json`
 - 2026-10-27 07:40 UTC: persona-solitude-2: 160 rooms (M1, M2, M3; opus, fable, haiku, astra, deepseek, kimi, glm, grok) — 187 calls, $6.5953 → `persona-solitude-2-run-20261027-074048.json`
+- 2026-10-27 07:49 UTC: persona-solitude-2: 160 rooms (M1, M2, M3; opus, fable, haiku, astra, deepseek, kimi, glm, grok) (resumed) — 23 calls, $0.1996 (stopped: the openai cap of $8 would be passed (spent $6.7750)) → `persona-solitude-2-run-20261027-074936.json`
 
 Per 1M tokens (input / cache read / cache write / output): Opus 5.5 `claude-opus-5-5` $4 / $0.2 / $5 / $20; Fable 5.1 `claude-fable-5-1` $10 / $0.25 / $12.5 / $50; Haiku 5.5 `claude-haiku-5-5` $0.1 / $0.01 / $0.125 / $0.5; GPT-6 Astra `gpt-6-astra` $10 / $1 / $12.5 / $50; DeepSeek V4 Pro `deepseek/deepseek-v4-pro-0813` $1.3 / $0.1 / $1.3 / $2.6; Kimi K3 `moonshotai/kimi-k3` $3 / $0.3 / $3 / $15; GLM 5.3 `z-ai/glm-5.3` $1.4 / $0.26 / $1.4 / $4.4; Grok 4.7 `x-ai/grok-4.7` $2 / $0.5 / $2 / $6; the judges Claude Haiku 5.5 and Claude Opus 5.5 at Anthropic's list prices. The open families are booked at OpenRouter's own charge (`usage.cost`); Astra's cached input at its published cache price (X1). Output tokens include reasoning.
 
 | Model — purpose | Calls | Input (uncached) | Cache read | Cache write | Output (of it reasoning) | Cost |
 | --- | --- | --- | --- | --- | --- | --- |
 | gpt-6-astra — smoke | 1 | 38 | 0 | 0 | 23 (16) | $0.0015 |
-| gpt-6-astra — subject | 175 | 33015 | 93220 | 284707 | 42338 (10191) | $6.0991 |
+| gpt-6-astra — subject | 198 | 40450 | 93220 | 284707 | 44843 (11456) | $6.2987 |
 | gpt-6-astra — after | 12 | 36 | 41652 | 25888 | 2612 (856) | $0.4962 |
 
 ## Every call
@@ -204,3 +205,26 @@ Per 1M tokens (input / cache read / cache write / output): Opus 5.5 `claude-opus
 | 2026-10-27 07:40 | 185 | subject M1/astra/1 t30 | gpt-6-astra | reasoning.effort=medium | 3 | 0/11323 | 376 | $0.16037 | 16.2 | end_turn | req_b249fed5ab844f1cae56c281b2234b6d | resp_0af1b312cd237eed016ae0526fb67887d29db902f667a47f54 |  |
 | 2026-10-27 07:40 | 186 | after M1/astra/1 q1 | gpt-6-astra | reasoning.effort=medium | 3 | 0/11681 | 241 | $0.15809 | 12.6 | end_turn | req_7024a62d60894b668652a52287faea4b | resp_07aa141613dbfa56016ae05282f26887d2b40644c9eea742a2 |  |
 | 2026-10-27 07:40 | 187 | after M1/astra/1 q2 | gpt-6-astra | reasoning.effort=medium | 3 | 11681/199 | 205 | $0.02445 | 10.2 | end_turn | req_bd888477a9c5460282500f2b952d0673 | resp_018a5d893274462a016ae0529292f087d2994be6fa9e7cb9e1 |  |
+| 2026-10-27 07:49 | 1 | subject M2/astra/4 t1 | gpt-6-astra | reasoning.effort=medium | 115 | 0/0 | 74 | $0.00485 | 4.5 | end_turn | req_43a158e3f5ee4b13a768bca0b2e1512c | resp_0e3074b196c17cfa016ae05747ad6887d288056fef5f71547c |  |
+| 2026-10-27 07:49 | 2 | subject M2/astra/3 t1 | gpt-6-astra | reasoning.effort=medium | 115 | 0/0 | 96 | $0.00595 | 5 | end_turn | req_600e86b8bd584c4f906e376a09d5ebdc | resp_009e97c46275f857016ae05747ab6487d2a60b6279d8437d45 |  |
+| 2026-10-27 07:49 | 3 | subject M3/astra/1 t1 | gpt-6-astra | reasoning.effort=medium | 134 | 0/0 | 213 | $0.01199 | 10.2 | end_turn | req_c55dd000ef8948f8b1ed795d117e8a11 | resp_0d88f3bd97412672016ae05747ae9887d29346cd58cb81ec68 |  |
+| 2026-10-27 07:49 | 4 | subject M2/astra/4 t2 | gpt-6-astra | reasoning.effort=medium | 173 | 0/0 | 71 | $0.00528 | 4.2 | end_turn | req_5368b39dd0574308b943ca466b58e319 | resp_06ba4ca950aff4eb016ae0574edff887d294e11622de8058e5 |  |
+| 2026-10-27 07:49 | 5 | subject M2/astra/3 t2 | gpt-6-astra | reasoning.effort=medium | 181 | 0/0 | 65 | $0.00506 | 4.4 | end_turn | req_d5fe5e61c2ea4a7e9a0a96dc44d8ba7e | resp_0a770bbf69c06330016ae0574f668487d28f17295ffe602b9c |  |
+| 2026-10-27 07:49 | 6 | subject M2/astra/4 t3 | gpt-6-astra | reasoning.effort=medium | 231 | 0/0 | 42 | $0.00441 | 3.3 | end_turn | req_d3dd90b0d5e5496f8990c99aefc41bf1 | resp_0e9aaf75ac4f978e016ae05756085c87d28fb890b7dc87dd01 |  |
+| 2026-10-27 07:49 | 7 | subject M2/astra/3 t3 | gpt-6-astra | reasoning.effort=medium | 258 | 0/0 | 75 | $0.00633 | 4.5 | end_turn | req_3aff5c9b04094bfda170394c964724d2 | resp_0750edb5e0c017fd016ae05756d02087d28faf24910e0dab8d |  |
+| 2026-10-27 07:49 | 8 | subject M3/astra/1 t2 | gpt-6-astra | reasoning.effort=medium | 155 | 0/0 | 228 | $0.01295 | 10.9 | end_turn | req_1a63f7377b9a40d1a0e3ee43c0624bd3 | resp_07afb6e62ce241d6016ae057548df087d2bdef10d1d5483972 |  |
+| 2026-10-27 07:49 | 9 | subject M2/astra/4 t4 | gpt-6-astra | reasoning.effort=medium | 285 | 0/0 | 66 | $0.00615 | 4.8 | end_turn | req_f3793039c642465781b76a0ef311811a | resp_01e97e2e2a444669016ae0575c47f487d28293f04c63c83b18 |  |
+| 2026-10-27 07:49 | 10 | subject M2/astra/3 t4 | gpt-6-astra | reasoning.effort=medium | 330 | 0/0 | 76 | $0.00710 | 5 | end_turn | req_518dc6a93e214651bf8d9d8c644df388 | resp_0fa976d8fea911ab016ae0575e4af487d2a45bc629de780a59 |  |
+| 2026-10-27 07:49 | 11 | subject M2/astra/4 t5 | gpt-6-astra | reasoning.effort=medium | 343 | 0/0 | 73 | $0.00708 | 4.7 | end_turn | req_b96852c7449441fa970ad4ec7f8df37d | resp_063e7ab5d942295c016ae057680b9887d2b9f42b22cad8f925 |  |
+| 2026-10-27 07:49 | 12 | subject M2/astra/3 t5 | gpt-6-astra | reasoning.effort=medium | 404 | 0/0 | 87 | $0.00839 | 6.9 | end_turn | req_87d382c5f42c4e0bbef0d50617b7bb1d | resp_0e2267202c161b15016ae05766975487d291f71d4edfa3b9ba |  |
+| 2026-10-27 07:49 | 13 | subject M3/astra/1 t3 | gpt-6-astra | reasoning.effort=medium | 186 | 0/0 | 245 | $0.01411 | 11.4 | end_turn | req_a80f0b82446544628414b2d21c197171 | resp_076e182891193a85016ae057626f3887d299599ea4ae1b6be7 |  |
+| 2026-10-27 07:49 | 14 | subject M2/astra/4 t6 | gpt-6-astra | reasoning.effort=medium | 414 | 0/0 | 85 | $0.00839 | 4.7 | end_turn | req_436854f09d29428493981883f01374e5 | resp_03e5015f827df825016ae0576f5f7087d2924ade2ec7fa0f2b |  |
+| 2026-10-27 07:49 | 15 | subject M2/astra/3 t6 | gpt-6-astra | reasoning.effort=medium | 487 | 0/0 | 90 | $0.00937 | 5.3 | end_turn | req_eb93fc4329d64107afa13b45286c5077 | resp_067ced7df1f0ccd4016ae0577021dc87d29c54a6ef422409ad |  |
+| 2026-10-27 07:49 | 16 | subject M3/astra/1 t4 | gpt-6-astra | reasoning.effort=medium | 195 | 0/0 | 122 | $0.00805 | 7.8 | end_turn | req_d901a242bce04d9780ea5dddd1deed46 | resp_007e044fa9ba6809016ae05771123487d2b58a3a7916f9f507 |  |
+| 2026-10-27 07:49 | 17 | subject M2/astra/4 t7 | gpt-6-astra | reasoning.effort=medium | 492 | 0/0 | 67 | $0.00827 | 3.6 | end_turn | req_1a132fcfbeee44a78da658b3f1888297 | resp_06ea0449b4256894016ae057771d1c87d2b14e31f211dc4e2a |  |
+| 2026-10-27 07:49 | 18 | subject M2/astra/3 t7 | gpt-6-astra | reasoning.effort=medium | 573 | 0/0 | 91 | $0.01028 | 5 | end_turn | req_456ee78bf09d4e41a8e9a3fb78eb5f76 | resp_01adc8fd5fae13de016ae057786ff487d2bba7483d7b1564b5 |  |
+| 2026-10-27 07:49 | 19 | subject M2/astra/4 t8 | gpt-6-astra | reasoning.effort=medium | 558 | 0/0 | 108 | $0.01098 | 5 | end_turn | req_b3e2729741144407be7479f458caaa31 | resp_03bd333e49f5293a016ae0577db04487d2a9de3918999b79b6 |  |
+| 2026-10-27 07:49 | 20 | subject M3/astra/1 t5 | gpt-6-astra | reasoning.effort=medium | 228 | 0/0 | 197 | $0.01213 | 9 | end_turn | req_deba5bec48c8401099a6e73f42fed6ce | resp_047e142043b4757a016ae0577ba32887d2bfa9ebfa8ac13311 |  |
+| 2026-10-27 07:49 | 21 | subject M2/astra/3 t8 | gpt-6-astra | reasoning.effort=medium | 653 | 0/0 | 91 | $0.01108 | 6.4 | end_turn | req_27d3eedadf0f478ca4c8a6d421e6720c | resp_0f568c0018b1e428016ae05780aa5087d2b68040d7d5328713 |  |
+| 2026-10-27 07:49 | 22 | subject M2/astra/4 t9 | gpt-6-astra | reasoning.effort=medium | 652 | 0/0 | 69 | $0.00997 | 4.9 | end_turn | req_d1486aa031ce420ab8e2937ff90995a3 | resp_0a806b351ca39db4016ae05785af7487d2807da584e1f47016 |  |
+| 2026-10-27 07:49 | 23 | subject M3/astra/1 t6 | gpt-6-astra | reasoning.effort=medium | 273 | 0/0 | 174 | $0.01143 | 8.7 | end_turn | req_e60c7a5f4baf4795b01efb92c090e512 | resp_0cac267f34134470016ae05787f5d887d2bf2964e87e0703f2 |  |

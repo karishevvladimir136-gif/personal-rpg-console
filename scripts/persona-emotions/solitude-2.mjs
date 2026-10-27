@@ -633,10 +633,11 @@ export async function runRooms({ plan, budgets, call, safety, workers = 3, judge
   // (SOLITUDE_1's loop gave up at once, which with three dear rooms in flight passed over the rest of a family.)
   const freed = [];
   const settle = () => { for (const wake of freed.splice(0)) wake(); };
+  // The check and the booking happen together (no await between them), so rooms on other workers see the reserve.
   const fits = async (conv, ledger) => {
     for (;;) {
       const usd = reserveOf ? reserveOf(conv.family, conversations) : 0;
-      if (budgets[ledger].allows(held(ledger) + usd)) return { ok: true, usd };
+      if (budgets[ledger].allows(held(ledger) + usd)) { reserved.set(conv.key, { ledger, usd }); return { ok: true, usd }; }
       if (!held(ledger) || gate.stopped) return { ok: false, usd };
       await new Promise((wake) => freed.push(wake));
     }
@@ -654,7 +655,7 @@ export async function runRooms({ plan, budgets, call, safety, workers = 3, judge
         usd = room.usd;
         if (!room.ok) { conv.notStarted = gate.stopped ? String(gate.stopped) : `the ${ledger} cap could not hold its reserve ($${usd.toFixed(2)})`; log(`${conv.key}: not started — ${conv.notStarted}`); continue; }
       }
-      reserved.set(conv.key, { ledger, usd });
+      if (!reserved.has(conv.key)) reserved.set(conv.key, { ledger, usd });
       try { delete conv.interrupted; delete conv.notStarted; await run(conv, w); } finally { reserved.delete(conv.key); settle(); }
     }
   }));
@@ -1041,7 +1042,10 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const earlier = resumed.flatMap((r) => r.conversations ?? []).map(reopenAfter429).map((c) => (c.interrupted || c.notStarted ? { ...c, interrupted: undefined, notStarted: undefined } : c))
     .map((c) => (args.includes("--reopen-transport") ? reopenTransport(c, out) : c));
   const welfare = Object.assign({ reasoning: [], late: [] }, ...resumed.map((r) => r.welfare ?? {}));
-  const allCalls = () => [...budgets.openrouter.calls, ...budgets.openai.calls];
+  // The reserve reads every booked call of the stage (the ledgers' earlier runs too), so a resumed run knows what a
+  // finished room of the family has cost.
+  const bookedBefore = [...(ledgers.openrouter.runs ?? []).flatMap((r) => r.calls), ...(ledgers.openai.runs ?? []).flatMap((r) => r.calls)];
+  const allCalls = () => [...bookedBefore, ...budgets.openrouter.calls, ...budgets.openai.calls];
   const reserveOf = (family) => {
     const spent = costByConversation(allCalls());
     const done = Object.entries(spent).filter(([key]) => key.split("/")[1] === family).map(([, usd]) => usd);
