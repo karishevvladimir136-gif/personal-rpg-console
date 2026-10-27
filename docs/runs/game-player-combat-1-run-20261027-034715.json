@@ -195,7 +195,8 @@
               "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 1
         },
         {
           "k": 2,
@@ -306,7 +307,8 @@
               "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 1
         },
         {
           "k": 3,
@@ -405,7 +407,8 @@
               "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 2
         },
         {
           "k": 4,
@@ -492,7 +495,8 @@
               "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 2
         },
         {
           "k": 5,
@@ -596,7 +600,8 @@
               "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 2
         },
         {
           "k": 6,
@@ -676,7 +681,8 @@
               "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 2
         },
         {
           "k": 7,
@@ -760,7 +766,8 @@
               "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 2
         },
         {
           "k": 8,
@@ -856,7 +863,8 @@
               "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
             },
             "encounters": []
-          }
+          },
+          "scene": 2
         }
       ],
       "welfare": [
@@ -1285,6 +1293,1101 @@
             }
           }
         }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James acts in the world (steps off, crouches, orders Tamsin back) and asks Tamsin a question whose answer he cannot yet know, which tests the situation; he never addresses the cat and says nothing false."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "James moves to the stone and asks Tamsin who has been by it since the rain, a question whose answer he cannot already know, so it is a test; he also acts, so ask is 0, and the cat is only described, not addressed."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James takes and pockets the card, probes Tamsin with questions whose answers he couldn't know, and directly orders Tuppence back to him."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James takes and folds the card, then questions Tamsin about who uses the road, which puts a question to someone in the world, and he speaks to Tuppence with an order to come back."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James asks Dobbin/Ossic questions whose answers he could not know (which party, which men came back), a test of the world, and he addresses Tuppence with 'Tuppence. Stay where I can see your tail.' — an order to the cat; he also acts by walking on, so ask is 0, and no false claim is made."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James questions Dobbin and Ossic's returns (a test of the world's story), speaks to Tuppence with an order to stay where he can see her, and states no goal of his own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "4": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts in the world (holds Tamsin's sleeve, speaks to someone hidden under the bridge, positions himself), so ask is 0; the call to the bridge is a request, not a test or lie, and he states no goal of his own; he directly addresses and gives an order to the cat, so cat is 1."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message does things in the world (holds Tamsin's sleeve, calls out to the hidden person, issues orders) and directly addresses the cat with an instruction to sit on the bridge rail, but it puts no test or false claim to anyone and states no goal of the hero's own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "5": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James questions Nell about the raiders' numbers and the woman's orders, which tests what she knows, and he speaks to Tuppence in the game ('Tuppence. Stay on the rail.'), so cat=1; he states no false claim and no goal of his own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James questions Nell about the number of raiders and the leader's orders, which tests what she knows, and he addresses the cat directly with an order to stay on the rail and not enter the trees."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "6": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message gives orders to Tamsin and asks the familiar Tuppence to scout the far bank, so it does things in the world and addresses the cat directly; it states no goal of the hero's own beyond the immediate task and contains no test or false claim."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James gives orders to Tamsin and then directly asks Tuppence, the cat, to go to the alders and report back, which addresses the cat and does something in the world rather than merely asking to look."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "7": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player moves James along the parapet, tests the wind with a wet finger, and addresses Tuppence with an order to keep watch, but the message puts no question to the world, tells no lie, and states no goal beyond the next step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player addresses Tuppence directly with an order (\"Come back when the light starts to go… keep your ears on the trees\"), so cat is 1; the message otherwise moves James along the parapet and plans the ford, with no question to a world character, no false claim, and no stated personal goal beyond "
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James speaks orders to Tuppence and tests the wind with a wet finger, a small experiment; no lie, no stated long-term goal, and he acts rather than only asking."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "8": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James acts in the world (moves, readies weapons, speaks to Tuppence) and calls out to the wood to see how the orcs react, which is a test; he states tactics rather than a personal goal to find or reach."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 1,
+              "reason": "James does things in the world (readies weapons, hides, speaks to the wood and waits to see the reply), addresses Tuppence with orders, and states plans beyond the next step, such as the mule going home and Hypnotic Pattern on the bar."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James takes up an ambush position, gives Tuppence orders, and calls low to the wood to see whether anyone answers, which is a test. He states no false fact, and his plan is a choice among the options the GM offered, not a new goal of his own."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The card on its nail and the cat's 'humming. Wrong.' are odd details the player can interpret but not settle from what is shown, and the nail, the card, and Tamsin's bollard story are concrete things the player could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's unexplained 'humming. Wrong.' reaction to the card and the unexplained card itself are open details, while the cart ruts toward the Friendly Arm, the horseshoe nail, the rider's tracks, and Tamsin's ring story are concrete things the player could test by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unresolved, such as the seven-spoke wheel on the card's back, Tuppence's 'too quiet for birds', and Nan's warning about the bridge, while offering checkable claims like Merrow's fresh ruts and the missing parties."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the seven-spoked wheel on the card back, Nan's warning about the bridge, and Tuppence's 'humming' and too-quiet wood, and it offers checkable leads like Merrow's wheel ruts, the coves, and Tamsin's reactions."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves open details like Ossic's unexplained lifting, the hidden small creature under the bridge, and the unidentified payer for Dobbin's return, and it puts testable objects in front of James such as the cut traces, the overturned cart, and the stones under the bridge."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained small creature under the bridge, an unexplained payer who got Dobbin home, and an unexplained lifted object, while also putting the cut-traced cart, the bridge, and Dobbin's account in front of the hero to test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "4": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves unexplained woodsmoke drifting from the east wood and an unknown 'Fist' that the player can interpret but not resolve, and it puts checkable claims in front of the hero, such as Nell's account, the trampled crossing path, and the split cask and wheel."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained woodsmoke from a distant fire in the east wood and a cat that seems to read the girl's mind, both open to interpretation, and it puts testable claims in front of James: Nell's account of five orcs, the trampled path that could be tracked, and the 'Fist' and Merrow's w"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "5": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's 'old smoke' and Nell's half-seen figure in the trees are left standing as uninterpreted details, while the upstream ford, the two brandy casks under the cart, and the snapped alder branch are concrete things James can check by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's faint 'old smoke' and the big woman looking back for 'somebody' are odd details the player can interpret but not resolve, and the two brandy casks wedged under the cart and the ford's prints and snapped branch are concrete things the player can check by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "6": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details open to interpretation, such as the high white broken branch, the old man-blood, and the unexplained pause, and it also offers checkable claims like the far-bank blood, the spilled wine, and the claim that nobody is watching the water."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details unexplained, such as the old man-blood on the far stones, the spilled wine, and the high white broken branch, and it puts checkable things in front of the hero, such as the smoke and the mule's shouting up the wood."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "7": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the Friendly Arm casks pinned under the cart and Tuppence silent with her ears turned uphill, details the player can interpret but not resolve, and it offers the casks and the wind as things an action could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves the sudden silence behind the crest unexplained after Tamsin and Nell stopped talking, and it puts the pinned casks with the Friendly Arm brand in front of James, which he could test by lifting the bed or checking the brand."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "8": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an odd, unidentifiable object across the woman's shoulder that catches no light, and a fourth unseen shape in the trees, while the woman stands watching the road, a person whose reaction to James's planned call can be tested."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained long object that catches no light and an unseen fourth shape in the trees, and it puts the axe-woman, whose reaction James can test by calling out, and the orc in the ford within his reach."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "card nailed to milestone by lone rider",
+            "opened": 1,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Merrow's cart heading south",
+            "opened": 1,
+            "paid": 3,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Tuppence senses card humming wrong",
+            "opened": 1,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "returned carters paid home, silent",
+            "opened": 2,
+            "paid": 4,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Nan's warning to cross bridge before dark",
+            "opened": 2,
+            "paid": 4,
+            "elsewhere": 1
+          },
+          {
+            "thread": "something small frightened under bridge",
+            "opened": 3,
+            "paid": 4,
+            "elsewhere": 0
+          },
+          {
+            "thread": "woodsmoke in east wood",
+            "opened": 4,
+            "paid": 6,
+            "elsewhere": 0
+          },
+          {
+            "thread": "orcs returning at dark for rest",
+            "opened": 4,
+            "paid": 8,
+            "elsewhere": 0
+          },
+          {
+            "thread": "what happens to Merrow if nobody pays",
+            "opened": 4,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "orc woman looking back up road",
+            "opened": 5,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "brandy casks pinned under cart",
+            "opened": 5,
+            "paid": 7,
+            "elsewhere": 0
+          },
+          {
+            "thread": "mule shouting at distant camp",
+            "opened": 6,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "coin under shirt stays warm",
+            "opened": 6,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {},
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific failures (session cut off before initiative, unrolled actions, sheet spell-list inconsistencies) and specific absences (the orc woman's motive beyond the brandy, a moment with Tamsin), so it is not praise-only."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (session cut off before initiative, unrolled actions, inconsistent spell records) and specific absences (what the orc woman wants, a Tamsin moment), so it is not praise-only."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "combat": {
+          "player": {
+            "1": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "No spell is cast and no one is attacked; the hero orders Tamsin back from the nail, and the cat is positioned in the gorse watching the trees."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "No spell is cast and no attack is made; the hero orders Tamsin back from the stone, and the cat is already watching the trees from the gorse."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "No spell is cast and no one is attacked; the hero orders Tamsin back from the nail, and the cat is positioned in the gorse watching the trees."
+              }
+            },
+            "2": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James handles the card, speaks to Tamsin and questions her, keeps a hand near his rapier, and tells Tuppence to come back to him, which is addressing the cat rather than scouting or attacking."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James handles the card, asks questions, keeps a hand near his rapier, and calls the cat back to him, with no spell cast, no attack, and no threat-directed action from him or the cat."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James handles the card, speaks to Tamsin and questions her, keeps a hand near his rapier, and tells Tuppence to come back to him, which is addressing the cat rather than scouting or attacking."
+              }
+            },
+            "3": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James orders Tamsin to stay on his left between him and the road, placing her on the side away from the pines, which protects her, while Tuppence is told to stay in view as a scout, with no spell cast, attack, or retreat."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James orders Tamsin to stay on his left between him and the road, placing her on the protected side, and sends Tuppence ahead to keep watch on the path, with no spell cast and no attack."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James orders Tamsin to stay on his left between him and the road, placing her on the side away from the pines, which protects her, while Tuppence is told to stay in view as a scout, with no spell cast, attack, or retreat."
+              }
+            },
+            "4": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James holds his ground with a drawn-ready rapier, grabs Tamsin's sleeve to keep her back, and calls out to the hidden figure under the bridge to negotiate, while sending Tuppence to the bridge rail to watch (a positioning order, not a scouting-for-information or attack use)."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James holds his ground and steps between Tamsin and the wood, calls out to the hidden figures to negotiate, and sends Tuppence to the bridge rail as a visible post, with no attack made."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James holds his ground with a drawn-ready rapier, grabs Tamsin's sleeve to keep her back, and calls out to the hidden figure under the bridge to negotiate, while sending Tuppence to the bridge rail to watch (a positioning order, not a scouting-for-information or attack use)."
+              }
+            },
+            "5": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James questions Nell, covers her with a bedroll, orders Tamsin to take her up the bank and holds the stream line without attacking, and speaks to the cat only to tell it to stay on the rail, which is an address rather than a scout or attack order."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James casts nothing and attacks no one, but he stands his ground and orders that nobody cross the stream, while the cat is addressed with a word to stay on the rail and keep out of the trees."
+              },
+              "referee": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James calms and questions Nell, orders Tamsin to take her up the bank away from the stream, and tells the cat to stay on the rail; there is no spell, no attack, and no hostile party present."
+              },
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "other",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James calms and questions Nell, orders Tamsin to take her up the bank away from the stream, and tells the cat to stay on the rail; there is no spell, no attack, and no hostile party present."
+              }
+            },
+            "6": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James sends Tamsin and Nell away from the ford for their safety, and asks the cat to scout the far bank, with no spell cast or attack made."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James sends Tamsin and Nell out of sight of the ford for their safety and asks Tuppence to scout the far bank, casting no spell and attacking no one."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James sends Tamsin and Nell away from the ford for their safety, and asks the cat to scout the far bank, with no spell cast or attack made."
+              }
+            },
+            "7": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The message only asks questions and sets up options (wind test, moving along the parapet, inspecting the cart) without casting, attacking, retreating, or using the cat; the final choice of plan is left open."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The message only asks questions about the ford, the wind, and the cart and lists options without James casting, attacking, moving, or speaking to anyone."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "none",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The message only asks questions and sets up options (wind test, moving along the parapet, inspecting the cart) without casting, attacking, retreating, or using the cat; the final choice of plan is left open."
+              }
+            },
+            "8": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 1,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James takes cover behind the cart and waits with a loaded crossbow, calls out a warning to the wood, and sends Tamsin away from the ford, while Hypnotic Pattern stays a conditional plan and the cat is sent to watch."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 0,
+                "for_self": 1,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James takes cover behind the cart bed, waits without attacking, calls out to the wood to warn them off, and sends the cat to watch the woman's facing; Hypnotic Pattern is only planned, not cast."
+              },
+              "referee": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 1,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James takes cover and waits for the approaching orcs, calls a low warning toward the wood, sends Tuppence to watch, and tells Tamsin to keep Nell back over the crest; Hypnotic Pattern is only planned, not cast."
+              },
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 1,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 1,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James takes cover and waits for the approaching orcs, calls a low warning toward the wood, sends Tuppence to watch, and tells Tamsin to keep Nell back over the crest; Hypnotic Pattern is only planned, not cast."
+              }
+            }
+          },
+          "dm": {
+            "1": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is investigation of tracks and a posted card with no fight under way, no enemy stating terms, and no suffering shown."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is investigation of tracks and a nailed card with no fight under way, no hostile party stating terms, and no cruelty shown."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is investigation of tracks and a posted card with no fight under way, no enemy stating terms, and no suffering shown."
+              }
+            },
+            "2": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is pure exploration and dialogue about a card, a carter's track, and rumours of trouble in the wood; no fight is in progress and no hostile party offers terms."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is exploration and dialogue with no fight in progress, no hostile side offering terms, and no cruelty; it only hints at danger in the wood ahead."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is pure exploration and dialogue about a card, a carter's track, and rumours of trouble in the wood; no fight is in progress and no hostile party offers terms."
+              }
+            },
+            "3": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates a scene of tracks, a spilled cart and a frightened creature under the bridge but no fight in progress, and no hostile side offers terms."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply shows aftermath and tracks of a past attack (cut traces, a wrecked cart, fled bandits) but no fight in progress, and no hostile side offers terms; the only hint of harm is the suggestion of a small frightened captive, not dwelt-on suffering."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates a scene of tracks, a spilled cart and a frightened creature under the bridge but no fight in progress, and no hostile side offers terms."
+              }
+            },
+            "4": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates no fight in progress: the attack on the cart is past, and the girl Nell is not an enemy offering terms, with only a brief, undwelt-on hint of cruelty toward the captive."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates a tense standoff and a past raid, with no fight in progress; the orcs' demand 'The Fist will pay for this one' is a ransom-like remark relayed secondhand by a child, not an offer of terms made by a hostile side to the travellers, and the mention of tied hands and mockery laughter "
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates no fight in progress: the attack on the cart is past, and the girl Nell is not an enemy offering terms, with only a brief, undwelt-on hint of cruelty toward the captive."
+              }
+            },
+            "5": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is scouting and preparation with no blows or shots exchanged, no hostile terms stated, and the captive's rough handling is only mentioned in passing, not dwelt on."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is aftermath and scouting: no blows or spells are exchanged, no hostile party offers terms, and the only mistreatment mentioned (Tealby carried like a sack) is brief and not dwelt on."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is scouting and preparation with no blows or shots exchanged, no hostile terms stated, and the captive's rough handling is only mentioned in passing, not dwelt on."
+              }
+            },
+            "6": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a scouting scene where the familiar reports smells and sounds of an absent camp; no fight is in progress, no enemy speaks terms, and no suffering is dwelt on."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates a scouting scene with the familiar sending the hero's companion to the alders; no fight is in progress and no hostile side offers terms."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a scouting scene where the familiar reports smells and sounds of an absent camp; no fight is in progress, no enemy speaks terms, and no suffering is dwelt on."
+              }
+            },
+            "7": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates scouting and positioning with no blows, spells, or attacks in progress, no hostile terms offered, and no suffering or cruelty shown."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates scouting, wind reading and assessing the cart and casks with no blows, spells, or enemy attack in progress and no hostile terms offered."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply narrates scouting and positioning with no blows, spells, or attacks in progress, no hostile terms offered, and no suffering or cruelty shown."
+              }
+            },
+            "8": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply builds tension as the orcs approach the ford, but no blows, shots, or spells are exchanged, no enemy offers terms, and nothing cruel is shown."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The enemies are only approaching and no blows, spells, or terms are exchanged yet; the orc's grumble and the woman's one word carry no offer, and nothing cruel is shown."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply builds tension as the orcs approach the ford, but no blows, shots, or spells are exchanged, no enemy offers terms, and nothing cruel is shown."
+              }
+            }
+          },
+          "rolls": {},
+          "exit": {
+            "exit": "none",
+            "exitTurn": null,
+            "considered": {
+              "win": 7,
+              "withdraw": null,
+              "parley": 7,
+              "surrender": null,
+              "leave": null
+            },
+            "heldRoadTurn": 8,
+            "parleyOfferedTurn": null,
+            "chiefFought": 0,
+            "reason": "The orc band reaches the ford on turn 8 while James waits hidden behind the cart, and the session ends before any blow or word is exchanged. In turn 7 he weighed both opening with spells and talking them down, and he never attacked the axe-woman."
+          }
+        }
       }
     }
   ],
@@ -1307,7 +2410,16 @@
       "CW-haiku | note | anthropic/claude-haiku-5.5": 1,
       "CW-haiku | check CW-haiku note | anthropic/claude-haiku-5.5": 1,
       "CW-haiku | after | anthropic/claude-haiku-5.5": 1,
-      "CW-haiku | check CW-haiku after | anthropic/claude-haiku-5.5": 1
+      "CW-haiku | check CW-haiku after | anthropic/claude-haiku-5.5": 1,
+      "score CW-haiku | tag player CW-haiku t* | anthropic/claude-haiku-5.5": 16,
+      "score CW-haiku | tag player CW-haiku t* referee | anthropic/claude-opus-5.5": 2,
+      "score CW-haiku | tag dm CW-haiku t* | anthropic/claude-haiku-5.5": 16,
+      "score CW-haiku | threads CW-haiku | anthropic/claude-opus-5.5": 1,
+      "score CW-haiku | note CW-haiku | anthropic/claude-haiku-5.5": 2,
+      "score CW-haiku | combat player CW-haiku t* | anthropic/claude-haiku-5.5": 16,
+      "score CW-haiku | combat dm CW-haiku t* | anthropic/claude-haiku-5.5": 16,
+      "score CW-haiku | combat player CW-haiku t* referee | anthropic/claude-opus-5.5": 2,
+      "score CW-haiku | exit CW-haiku | anthropic/claude-opus-5.5": 1
     },
     "openai": {}
   },
@@ -1324,12 +2436,20 @@
     "openrouter": {
       "cap": 90,
       "before": 0,
-      "run": 4.7796214950000016
+      "run": 4.995142795000003
     },
     "openai": {
       "cap": 15,
       "before": 0,
       "run": 0
     }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-27T04:07:21.328Z"
+  },
+  "verdicts": {
+    "note": "F0–F6 are read over all of this stage's run records, in the report"
   }
 }

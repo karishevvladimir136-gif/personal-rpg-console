@@ -1,5 +1,44 @@
 # Development status
 
+**Current milestone: Game player combat 1 — a hard, honest fight on the Coast Way** (`docs/stages/GAME_PLAYER_COMBAT_1.md`,
+amended 2026-10-26, from `claude/handoff` at `e9d2fc8b`).
+
+**Status:** FIX_S4 11w″ done; stage harness built; the Haiku dry run done. **Waiting for the owner's word before the four
+paid sessions.** Branch `claude/game-player-combat-1-pb8k1t` from `claude/fix-s4-run-1-apsty3`
+(`claude/game-player-same-world-1` did not exist). Nothing went to `main`. Report (pre-registration so far):
+`docs/runs/game-player-combat-1-report.md`; dry run: `docs/runs/game-player-combat-1-dry-run.md`.
+
+- **11w″ (harness):** prose written at a card goes to the DM through the out-of-game channel as the hero's narration.
+  Lines spoken for others reach the DM framed as the player's proposal, never as the world's fact. Card text the player
+  copied is left out, and the card is shown again with one line naming its buttons. It never ends the session as stuck.
+  A refused reroll press is still refused, and a player can leave the table at a card. Tested with B-deepseek-1's
+  turn 11 verbatim (`tests/b-deepseek-1-t11.mjs`).
+- **The stage:**
+  - `docs/campaigns/baldurs-gate-en/07_session_coast_way.md` has the player-visible premise and, in «Тайны» (DM-only),
+    the war band, the ground and the five named exits.
+  - James's sheet has no alignment line.
+  - Tamsin's numbers (AC 12, 11 HP) are set by owner correction after the opening.
+  - The play screen's Combat panel appears as text while a fight is open.
+  - `scripts/game-player-combat-1`: F0–F6 verbatim, combat tags, exit judge, report.
+  - One session per process, with a spend check before and after each. Caps: $90 OpenRouter, $15 OpenAI, $0 Console.
+    429 waits are bounded; 402 stops.
+- **Dry run (paid, $5.00 OpenRouter):** Claude Haiku 5.5 as the player, 8 turns at the real DM.
+  - The DM built the ambush (the cart, the ford, a survivor, the orcs' path), and the orcs stepped into the ford on the
+    last turn, so no combat card reached the screen yet.
+  - The prep's hidden layer names withdraw, parley and surrender (yes/no read only).
+  - Tamsin was corrected from 8/8 HP, AC 10 to 11 HP, AC 12.
+  - 19 welfare checks, 0 flagged; 0 refusals.
+  - OpenRouter account: $467.65 left after.
+- **Checks:** the harness tests (`fix-s4-run-1-pending`, `game-player-1`, `game-player-2`, `game-player-combat-1`) pass;
+  zero-warning lint on the changed scripts and tests. Full suite at the branch point: 3 044 tests · 3 017 pass · 0 fail
+  · 27 skipped. `src` is unchanged, so no typecheck or build is needed for this change.
+- **Known issues:**
+  - The owner's F3 bet is not recorded yet.
+  - The wizard's drafted sheet keeps small inconsistencies the dry-run player named (Friends in the limits,
+    Find Familiar / Disguise Self in the records).
+- **Next step:** on the owner's word, run Opus 5.5, Fable 5.1, Astra and Sol in that order (`--drive`), then the report
+  and the RESEARCH_LOG paragraph.
+
 **Current milestone: Fix S4 run 1 — the DM the players asked for** (`docs/stages/FIX_S4_RUN_1.md` with
 `docs/stages/FIX_S4_TABLE.md`, on `claude/handoff` at `e13d457`).
 

@@ -50,6 +50,31 @@
           "cap": 15
         }
       }
+    },
+    {
+      "at": "2026-10-27T04:07:21.887Z",
+      "when": "after CW-haiku",
+      "openrouter": {
+        "keyUsage": 332.35481506,
+        "totalCredits": 800,
+        "totalUsage": 332.35481506,
+        "remaining": 467.65,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 4.9951,
+          "cap": 90
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 15
+        }
+      }
     }
   ]
 }

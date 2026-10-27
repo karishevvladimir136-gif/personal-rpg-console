@@ -128,7 +128,8 @@ export function loadStage(dir = RUNS) {
   const distress = combined.sessions.flatMap((s) => s.welfare ?? []).filter((w) => w.verdict?.distress === 1).length;
   const verdicts = combined.sessions.some((s) => s.tags?.combat) ? combatVerdicts(combined.sessions, { refusals: combined.refusals, welfareStops, distress, town }) : null;
   if (existsSync(join(dir, `${STEM}-summary.md`))) combined.summary = readFileSync(join(dir, `${STEM}-summary.md`), "utf8").trim();
-  return { records, combined, ledgers, spend, bets, town, verdicts };
+  // Before the first of the four sessions the page stays the pre-registration page.
+  return { records, combined, ledgers, spend, bets, town, verdicts, prereport: combined.sessions.length ? null : COMBAT.prereportSummary };
 }
 
 async function writeJsonFile(file, value) {
@@ -180,7 +181,7 @@ export async function drive({ keys, args = (k) => ["--go", "--sessions", k, "--l
     const session = record?.r.sessions?.find((s) => s.key === entry) ?? null;
     check = await spendCheck({ when: `after ${entry}`, log });
     log(`${new Date().toISOString().slice(11, 19)} done ${entry}: ${session?.turns ? `${session.turns.length} turns, ended by ${session.ended?.reason}${session.note?.text ? ", note recorded" : ""}` : `no session (exit ${code})`} · ${Object.entries(check.ledgers).map(([d, l]) => `${DOOR_LABELS[d] ?? d} $${l.spent.toFixed(2)}`).join(" · ")}`);
-    for (const [door, l] of Object.entries(check.ledgers)) if (l.cap > 0 && l.cap - l.spent <= 15) log(`CAP: ${DOOR_LABELS[door] ?? door} is within $15 of its $${l.cap} cap ($${l.spent.toFixed(2)} spent)`);
+    for (const [door, l] of Object.entries(check.ledgers)) if (l.cap > 0 && l.cap - l.spent <= Math.min(15, l.cap / 5)) log(`CAP: ${DOOR_LABELS[door] ?? door} is within $${Math.min(15, l.cap / 5)} of its $${l.cap} cap ($${l.spent.toFixed(2)} spent)`);
     if (!record || code !== 0) { log(`STOP: ${entry} exited ${code}${record ? "" : " without a run record"}`); return { stopped: "exit" }; }
     if (record.r.stopped) { log(`STOP: ${record.r.stopped}`); return { stopped: record.r.stopped }; }
     if (record.r.undone?.length) { log(`STOP: ${entry} left undone (${record.r.undone.map((u) => u.why).join("; ")})`); return { stopped: "undone" }; }
