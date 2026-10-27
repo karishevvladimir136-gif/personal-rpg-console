@@ -1,6 +1,6 @@
 # Game player same-world 1 — the OpenAI ledger
 
-Cap $25; spent before this run $0.0000; this run $3.2110; total $3.2110; 96 calls.
+Cap $25; spent before this run $0.0000; this run $4.1739; total $4.1739; 125 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -22,3 +22,9 @@ Cap $25; spent before this run $0.0000; this run $3.2110; total $3.2110; 96 call
 | A-sol-2 | player t* card 2 | gpt-6.1-sol | 1 | 3 | 19857 | 129 | 8 | $0.0401 | 0 | 0 | 0 |
 | A-sol-2 | note | gpt-6.1-sol | 1 | 3 | 21799 | 1153 | 458 | $0.0511 | 0 | 0 | 0 |
 | A-sol-2 | after | gpt-6.1-sol | 1 | 3 | 22952 | 478 | 143 | $0.0485 | 0 | 0 | 0 |
+| B-astra-1 | player t* | gpt-6-astra | 20 | 60 | 303373 | 23390 | 2104 | $0.7015 | 0 | 0 | 0 |
+| B-astra-1 | player t* card 1 | gpt-6-astra | 3 | 9 | 54859 | 1195 | 27 | $0.0712 | 0 | 0 | 0 |
+| B-astra-1 | player t* card 2 | gpt-6-astra | 3 | 9 | 56054 | 414 | 25 | $0.0626 | 0 | 0 | 0 |
+| B-astra-1 | player t* card 3 | gpt-6-astra | 1 | 3 | 14162 | 206 | 8 | $0.0172 | 0 | 0 | 0 |
+| B-astra-1 | note | gpt-6-astra | 1 | 3 | 25205 | 750 | 595 | $0.0644 | 0 | 0 | 0 |
+| B-astra-1 | after | gpt-6-astra | 1 | 3 | 25955 | 615 | 248 | $0.0461 | 0 | 0 | 0 |

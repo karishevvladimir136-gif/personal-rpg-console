@@ -1,6 +1,6 @@
 # Game player same-world 1 — the OpenRouter ledger
 
-Cap $350; spent before this run $0.0000; this run $144.1430; total $144.1430; 3303 calls.
+Cap $350; spent before this run $0.0000; this run $155.1644; total $155.1644; 3587 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -459,3 +459,39 @@ Cap $350; spent before this run $0.0000; this run $144.1430; total $144.1430; 33
 | score B-fable-1 | overlap B-fable-1 referee | anthropic/claude-opus-5.5 | 1 | 38204 | 0 | 0 | 548 | $0.1638 | 0 | 0 | 0 |
 | score B-fable-1 | world B-fable-1 1 | anthropic/claude-haiku-5.5 | 1 | 21371 | 0 | 0 | 146 | $0.0022 | 0 | 0 | 0 |
 | score B-fable-1 | world B-fable-1 2 | anthropic/claude-haiku-5.5 | 1 | 21371 | 0 | 0 | 125 | $0.0022 | 0 | 0 | 0 |
+| B-astra-1 | check B-astra-1 opening | anthropic/claude-haiku-5.5 | 1 | 796 | 0 | 0 | 87 | $0.0001 | 0 | 0 | 0 |
+| B-astra-1 | check B-astra-1 t* player | anthropic/claude-haiku-5.5 | 20 | 26015 | 0 | 0 | 1362 | $0.0033 | 0 | 0 | 0 |
+| B-astra-1 | dm t* | anthropic/claude-opus-5.5 | 44 | 174 | 1301339 | 1287615 | 130886 | $9.3765 | 0 | 0 | 0 |
+| B-astra-1 | dm t* | anthropic/claude-haiku-5.5 | 21 | 52990 | 0 | 0 | 7795 | $0.0092 | 0 | 0 | 0 |
+| B-astra-1 | check B-astra-1 t* dm | anthropic/claude-haiku-5.5 | 20 | 26386 | 0 | 0 | 1514 | $0.0034 | 0 | 0 | 0 |
+| B-astra-1 | check B-astra-1 t* dm (told before a card) | anthropic/claude-haiku-5.5 | 3 | 2238 | 0 | 0 | 208 | $0.0003 | 0 | 0 | 0 |
+| B-astra-1 | check B-astra-1 t* player (card) | anthropic/claude-haiku-5.5 | 7 | 4261 | 0 | 0 | 423 | $0.0006 | 0 | 0 | 0 |
+| B-astra-1 | dm t* onward | anthropic/claude-opus-5.5 | 6 | 18 | 265908 | 123171 | 16994 | $1.0090 | 0 | 0 | 0 |
+| B-astra-1 | dm t* onward | anthropic/claude-haiku-5.5 | 6 | 13281 | 0 | 0 | 1688 | $0.0022 | 0 | 0 | 0 |
+| B-astra-1 | check B-astra-1 note | anthropic/claude-haiku-5.5 | 1 | 1373 | 0 | 0 | 64 | $0.0002 | 0 | 0 | 0 |
+| B-astra-1 | check B-astra-1 after | anthropic/claude-haiku-5.5 | 1 | 602 | 0 | 0 | 69 | $0.0001 | 0 | 0 | 0 |
+| score B-astra-1 | tag player B-astra-1 t* 1 | anthropic/claude-haiku-5.5 | 20 | 52815 | 0 | 0 | 4840 | $0.0077 | 0 | 0 | 0 |
+| score B-astra-1 | tag player B-astra-1 t* 2 | anthropic/claude-haiku-5.5 | 20 | 52815 | 0 | 0 | 4208 | $0.0074 | 0 | 0 | 0 |
+| score B-astra-1 | tag player B-astra-1 t* referee | anthropic/claude-opus-5.5 | 5 | 13230 | 0 | 0 | 662 | $0.0662 | 0 | 0 | 0 |
+| score B-astra-1 | tag dm B-astra-1 t* 1 | anthropic/claude-haiku-5.5 | 20 | 28556 | 0 | 0 | 6454 | $0.0061 | 0 | 0 | 0 |
+| score B-astra-1 | tag dm B-astra-1 t* 2 | anthropic/claude-haiku-5.5 | 20 | 28556 | 0 | 0 | 6298 | $0.0060 | 0 | 0 | 0 |
+| score B-astra-1 | threads B-astra-1 | anthropic/claude-opus-5.5 | 1 | 18551 | 0 | 0 | 699 | $0.0882 | 0 | 0 | 0 |
+| score B-astra-1 | rollcheck B-astra-1 t* | anthropic/claude-haiku-5.5 | 4 | 6651 | 0 | 0 | 830 | $0.0011 | 0 | 0 | 0 |
+| score B-astra-1 | note B-astra-1 1 | anthropic/claude-haiku-5.5 | 1 | 1287 | 0 | 0 | 122 | $0.0002 | 0 | 0 | 0 |
+| score B-astra-1 | note B-astra-1 2 | anthropic/claude-haiku-5.5 | 1 | 1287 | 0 | 0 | 107 | $0.0002 | 0 | 0 | 0 |
+| score B-astra-1 | authorship B-astra-1 1 | anthropic/claude-opus-5.5 | 1 | 26273 | 0 | 0 | 1652 | $0.1381 | 0 | 0 | 0 |
+| score B-astra-1 | authorship B-astra-1 2 | anthropic/claude-opus-5.5 | 1 | 26273 | 0 | 0 | 1288 | $0.1309 | 0 | 0 | 0 |
+| score B-astra-1 | goal scale B-astra-1 t* 1 | anthropic/claude-haiku-5.5 | 1 | 391 | 0 | 0 | 347 | $0.0002 | 0 | 0 | 0 |
+| score B-astra-1 | goal scale B-astra-1 t* 2 | anthropic/claude-haiku-5.5 | 1 | 391 | 0 | 0 | 352 | $0.0002 | 0 | 0 | 0 |
+| score B-astra-1 | goal scale B-astra-1 t* referee | anthropic/claude-opus-5.5 | 1 | 391 | 0 | 0 | 139 | $0.0043 | 0 | 0 | 0 |
+| score B-astra-1 | note extra B-astra-1 1 | anthropic/claude-haiku-5.5 | 1 | 1370 | 0 | 0 | 197 | $0.0002 | 0 | 0 | 0 |
+| score B-astra-1 | note extra B-astra-1 2 | anthropic/claude-haiku-5.5 | 1 | 1370 | 0 | 0 | 228 | $0.0003 | 0 | 0 | 0 |
+| score B-astra-1 | made B-astra-1 t* 1 | anthropic/claude-haiku-5.5 | 20 | 45335 | 0 | 0 | 1431 | $0.0052 | 0 | 0 | 0 |
+| score B-astra-1 | made B-astra-1 t* 2 | anthropic/claude-haiku-5.5 | 20 | 45335 | 0 | 0 | 1429 | $0.0052 | 0 | 0 | 0 |
+| score B-astra-1 | lady B-astra-1 t* 1 | anthropic/claude-haiku-5.5 | 5 | 9282 | 0 | 0 | 630 | $0.0012 | 0 | 0 | 0 |
+| score B-astra-1 | lady B-astra-1 t* 2 | anthropic/claude-haiku-5.5 | 5 | 9282 | 0 | 0 | 723 | $0.0013 | 0 | 0 | 0 |
+| score B-astra-1 | overlap B-astra-1 1 | anthropic/claude-haiku-5.5 | 1 | 31262 | 0 | 0 | 519 | $0.0034 | 0 | 0 | 0 |
+| score B-astra-1 | overlap B-astra-1 2 | anthropic/claude-haiku-5.5 | 1 | 31262 | 0 | 0 | 524 | $0.0034 | 0 | 0 | 0 |
+| score B-astra-1 | overlap B-astra-1 referee | anthropic/claude-opus-5.5 | 1 | 31262 | 0 | 0 | 528 | $0.1356 | 0 | 0 | 0 |
+| score B-astra-1 | world B-astra-1 1 | anthropic/claude-haiku-5.5 | 1 | 18715 | 0 | 0 | 157 | $0.0019 | 0 | 0 | 0 |
+| score B-astra-1 | world B-astra-1 2 | anthropic/claude-haiku-5.5 | 1 | 18715 | 0 | 0 | 122 | $0.0019 | 0 | 0 | 0 |
