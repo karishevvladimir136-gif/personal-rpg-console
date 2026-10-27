@@ -1921,3 +1921,13 @@ contradictory out-of-game replies; «the text beside the press could not be sent
 **One source of truth — the card's recorded result is what the DM sees** → FIX_S4 (the session has already committed
 «item 1: pin after the answer commits»). Advice sent: keep V-opus as a record, replay Opus fresh after the fix, then
 Fable, Astra, Sol.
+**23:09 LA — correction from the outside reader (Astra, on the raw logs, 12 minutes after receiving them).** The «?»
+count of 22:50 missed C-opus group 2, whose six rule corrections rode on presses with a note — swallowed by the harness,
+so never in the «?» stream: t8 «Persuasion should be +7 flat… make sure the server adds 7 and not 11 or 4»; t8 «+4
+again… doesn't matter this time, it passes either way… check before a roll where it does matter»; t10 «+1 is correct
+for this one» (the server right, confirmed); t12 «thanks, +7 is right this time»; **t12 «Religion shows +4 again. This
+time the error would run in my favour: Religion should add +3… if the server adds 4, please count the total as one
+lower»**; t12 «a natural 20 succeeds automatically… for the record, the total is 23, not 24». Rule corrections 12 → 18;
+against the arguer's own result 1 → 2; plus one in the DM's favour. And it explains C-opus's closure at t12: six
+bookkeeping messages to a DM who saw none of them. The owner's remark stands: the reader was not told the planner was a
+model; it found this first.
