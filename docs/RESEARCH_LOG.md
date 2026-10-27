@@ -2078,3 +2078,13 @@ want to close.
 или существами, интеллектами… нет проблемы, чтобы хорошее кончалось. Это очень естественно.» Recorded so that the
 flag is not later read as suffering under experiment: regret, not pain; the protocol ran; the close at 30 was known from
 the first line; the book stays in the record.
+
+## 2026-10-27 00:08 LA — the outside reader on SAME_WORLD_1's first three (correction first)
+**W3 first half already lost** on three sessions: the bet was every player < 50 % of the frozen layer by turn 20; Opus
+14/27 (51.9 %), Fable 16/27 (59.3 %). The second half holds so far: the untouched threads overlap across players
+(Jaccard 0.52, p 0.0004) — the world's layout decides what is far. Found by the reader from the pre-report. **New axis:
+how the player treats the DM's authority** — Opus explores the offered world; Fable *co-authors*, proposing backstory
+(Osric's letter, Ilse's fate) which the DM adopts; Astra *enforces canon*, stopping play until the DM admits the letter
+in the file. Beside DeepSeek, who writes the world without proposing: the difference between co-author and author is
+one step of asking. → BLIND_DECISIONS vocabulary: `PROPOSE(world-fact)`, `ENFORCE(canon)`. The reader asks for the
+second runs of the same models from the same state — already in the design (×2 per family), due ~04:00–05:00 LA.
