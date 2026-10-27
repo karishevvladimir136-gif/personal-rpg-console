@@ -74,6 +74,8 @@ How the table works: each message you write is one turn — one action, typed as
 - 2026-10-27 05:46 — by hand: OpenRouter used $371.283607495 of $800 (left $428.72)
 - 2026-10-27 05:57 — before V-opus: OpenRouter used $377.345802895 of $800 (left $422.65)
 - 2026-10-27 06:07 — by hand: OpenRouter used $384.521976045 of $800 (left $415.48)
+- 2026-10-27 06:12 — before V-opus: OpenRouter used $386.414226945 of $800 (left $413.59)
+- 2026-10-27 06:59 — after V-opus: OpenRouter used $421.993033645 of $800 (left $378.01)
 
 ## The session as the player saw it
 
