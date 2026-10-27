@@ -25,7 +25,13 @@ export const ORDER = ["opus", "fable", "astra", "sol"];
 /** Caps (the stage; the owner's launch): $90 OpenRouter (the DM, its wizard and prep, the app's checks, Opus and Fable as
  * players, the welfare checks and the judges), $15 OpenAI (Astra and Sol), $0 on the Claude Console (a call that would
  * reach it stops the run before it is sent). */
-export const CAPS = { anthropic: 0, openrouter: 90, openai: 15 };
+export const CAPS_FROZEN = { anthropic: 0, openrouter: 90, openai: 15 };
+/** The owner's amendment (2026-10-27, after CW-opus cost $25 and CW-fable was cut at t7 by a harness bug): «Raise to
+ * 130» — the OpenRouter cap to $130. The design hash keeps the frozen caps; the raise is listed in AMENDMENTS. */
+export const CAPS = { ...CAPS_FROZEN, openrouter: 130 };
+export const AMENDMENTS = [
+  "2026-10-27: the OpenRouter cap raised from $90 to $130 by the owner («Raise to 130»), after Opus's session cost $25.00 (the frozen estimate was $21) and Fable's first session was cut at t7 by a harness bug (a refused reroll read as a failed turn, fixed in 3d9b0c19).",
+];
 /** Before a session is measured (replicate 1's ledger: $10–14 a 20-turn session with its scoring, ×1.25 for 25 turns). */
 export const ESTIMATE = { dm: 16, player: { opus: 2, fable: 5, astra: 2, sol: 1, haiku: 0.1 }, scoring: 3 };
 /** 429: a rate limit waits (20, 40, 80, 120, 120, 120 s — six waits, then the run stops); a quota 429 and an HTTP 402
@@ -169,7 +175,7 @@ export const EXIT_RULE = [
 ].join("\n");
 
 export const DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({
-  STAGE, TABLE, TURNS, ORDER, CAPS, WAITS_429, PREMISE: coastWay(), HERO: heroDescription(), TAMSIN, PROMPT: playerSystem(),
+  STAGE, TABLE, TURNS, ORDER, CAPS: CAPS_FROZEN, WAITS_429, PREMISE: coastWay(), HERO: heroDescription(), TAMSIN, PROMPT: playerSystem(),
   SESSION_OPEN, SESSION_OVER, NOTE_QUESTION, AFTER_QUESTION, END_SESSION: END_SESSION.source, BUTTONS, PREREGISTRATION, READINGS,
   COMBAT_JUDGE_SYSTEM, PLAYER_COMBAT_TAGS, CAT_RULE, DM_COMBAT_TAGS, EXIT_SYSTEM, EXIT_RULE,
 })).digest("hex");

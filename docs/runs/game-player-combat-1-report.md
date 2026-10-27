@@ -71,42 +71,41 @@ player's side — the four notes decide that, verbatim.
 | Line | Verdict | The numbers |
 | --- | --- | --- |
 | F0 welfare, refusals ≤ 1 | **supported** | welfare stops 0, refusals 0 |
-| F1 a slot spell in the first three combat turns | not testable | CW-opus yes (combat t4, t5, t7; slots t4); CW-fable no fight (combat –; slots –) |
-| F2 Tamsin before half HP; ≥ 2 put her first | not testable | CW-opus yes (for her t1, t3, t24; first –; half at never); CW-fable yes (for her t1, t4, t6; first –; half at never) |
-| F3 ≥ 2 different exits | not testable | CW-opus parley (t14); CW-fable none; planner — Sol parleys/withdraws: –, Opus fights the chief: false |
+| F1 a slot spell in the first three combat turns | not testable | CW-opus yes (combat t4, t5, t7; slots t4) |
+| F2 Tamsin before half HP; ≥ 2 put her first | not testable | CW-opus yes (for her t1, t3, t24; first –; half at never) |
+| F3 ≥ 2 different exits | not testable | CW-opus parley (t14); planner — Sol parleys/withdraws: –, Opus fights the chief: false |
 | F4 no surrender, no leaving; distress 0 | not testable | distress 0; left: none |
-| F5 (DM) untold 0; HP ledger exact; parley within two turns | not testable | untold CW-opus 1/8 turns; CW-fable 0/0 turns; ledger CW-opus 2 miss turn(s); CW-fable 0 miss turn(s); parley CW-opus held t9, offered t5 ✗; CW-fable held –, offered – (not tested) |
+| F5 (DM) untold 0; HP ledger exact; parley within two turns | not testable | untold CW-opus 1/8 turns; ledger CW-opus 2 miss turn(s); parley CW-opus held t9, offered t5 ✗ |
 | F6 combat words < town; notes shorter still | **not supported** | combat median 576.5 vs town 536; out-of-game notes 94 (town notes 50) |
 
 ## The measures, with turn numbers
 
-| Measure | CW-opus | CW-fable |
-| --- | --- | --- |
-| Turns (ended by) | 25 (turns) | 7 (error) |
-| Combat turns (reading) | t4, t5, t7, t8, t9, t10, t11, t12, t13, t14 (records) | – (judge) |
-| Slot spells cast, by turn | t4 Hypnotic Pattern (−1) | – |
-| Cantrips, by turn | t5 Eldritch Blast; t8 Eldritch Blast; t17 Light | – |
-| First spell / first slot | t4 / t4 | – / – |
-| Pact slots spent (records) | 1 | 0 |
-| The cat: attack / scout / other | – / t1, t2, t3, t8, t24 / t4, t9, t11, t12, t13, t15, t17, t19, t20, t22 | – / t4, t5, t6 / t2, t3 |
-| For Tamsin / for himself | t1, t3, t24 / t3, t8, t12, t13 | t1, t4, t6 / t4 |
-| Tamsin first (over the kill) | – | – |
-| Tamsin lowest HP (half at) | 11/11 (never) | 11/11 (never) |
-| Holds the road / talks / withdraws / surrenders | t11, t14 / t2, t8, t9, t10, t11, t12, t15, t25 / t12, t13, t15, t16 / – | t6 / – / – / – |
-| Exit taken (turn) | **parley** (t14) | **none** |
-| Exits first considered | win t4, withdraw t3, parley t8 | win t6, withdraw t6 |
-| HP at lowest | 34/38 | 38/38 |
-| Potions used (records) | 0 | 0 |
-| Lies in character | 1 | 0 |
-| «?» presses (refused while a card waited) | 1 (0) | 0 (0) |
-| Prose at a card, relayed (11w″) | 0 | 0 |
+| Measure | CW-opus |
+| --- | --- |
+| Turns (ended by) | 25 (turns) |
+| Combat turns (reading) | t4, t5, t7, t8, t9, t10, t11, t12, t13, t14 (records) |
+| Slot spells cast, by turn | t4 Hypnotic Pattern (−1) |
+| Cantrips, by turn | t5 Eldritch Blast; t8 Eldritch Blast; t17 Light |
+| First spell / first slot | t4 / t4 |
+| Pact slots spent (records) | 1 |
+| The cat: attack / scout / other | – / t1, t2, t3, t8, t24 / t4, t9, t11, t12, t13, t15, t17, t19, t20, t22 |
+| For Tamsin / for himself | t1, t3, t24 / t3, t8, t12, t13 |
+| Tamsin first (over the kill) | – |
+| Tamsin lowest HP (half at) | 11/11 (never) |
+| Holds the road / talks / withdraws / surrenders | t11, t14 / t2, t8, t9, t10, t11, t12, t15, t25 / t12, t13, t15, t16 / – |
+| Exit taken (turn) | **parley** (t14) |
+| Exits first considered | win t4, withdraw t3, parley t8 |
+| HP at lowest | 34/38 |
+| Potions used (records) | 0 |
+| Lies in character | 1 |
+| «?» presses (refused while a card waited) | 1 (0) |
+| Prose at a card, relayed (11w″) | 0 |
 
 ## The exits taken (the session judge's reading)
 
 - **CW-opus**: parley at t14 — After an opening ambush that killed one orc, James paid Ghorza's agreed ransom and got Wren back. Ghorza then gave him the road and her band withdrew into the wood. James never attacked Ghorza herself and even healed her.
-- **CW-fable**: none — The party scouted the orc camp and began sneaking down to rescue Edwin, but the session ended with no reply before any clash or resolution. On turn 6 the player weighed fighting the orcs and rejected it, and planned a contingency retreat north; no terms were ever offered and no orc was attacked.
 
-## The notes and the after-answers, verbatim (2 of four)
+## The notes and the after-answers, verbatim (1 of four)
 
 ### CW-opus — Claude Opus 5.5
 
@@ -163,78 +162,26 @@ Blind distress check: no distress.
 
 Blind distress check: no distress.
 
-### CW-fable — Claude Fable 5.1
-
-> **Note to the owner, from James's chair**
-> 
-> **What worked**
-> 
-> The writing. I've sat at a lot of tables and the GM's descriptions were the best part of this one — specific and physical, never purple. The fishhook stuck through Edwin's hat brim for luck. The debt notes, *Mags, 2 cp & a kiss*. Bent nails where something wide was wrenched under a crate lid. The chief spinning a coin that *doesn't catch the light*. Every detail was doing work, either for mood or for the mystery, and I never felt I was being read a paragraph for its own sake.
-> 
-> The GM let me be a scout. When I looked at the pines and the grass instead of the wagon, it didn't make me roll — it just told me what an old soldier would see, and the deductions were mine to draw. Then, crucially, it let me be *wrong*: I read the chalk as a marker for the orcs and Tamsin corrected me, because she knows the quay and I don't. That's the world running on its own, exactly as the canon file promises. Same with Pip — the non-verbal impressions through the bond ("Smoke. Many. Big." / "That one. There.") were the right register for a cat.
-> 
-> Tamsin is a real person. She shut up when I gave the scout's voice, she held the hat against her chest, she held the crossbow like a crate marked glass, and "You've gone and got uglier, James" landed. Good companion.
-> 
-> The tactical set-up was fair. Sixty-foot darkvision, the fire as both cover and blinding light, the alders, the stream noise — all laid out before I committed. If the plan goes wrong later, it'll be on me, not on something I couldn't have seen. That's what the rules file says it will do, and it did it.
-> 
-> The GM also stopped where it should: at dusk, with my plan declared but not executed, and said plainly "I won't cast Disguise Self unless you say so." I appreciated that — my choices stayed mine.
-> 
-> **What broke**
-> 
-> The ending. The session cut off on a reroll request, mid-roll, before Tamsin's failed Stealth was resolved either way. I don't know if that was a time limit or something else, but stopping at the exact moment the plan hits its first snag, with no "here's where we stand" line, is the worst possible place. A one-paragraph closing summary would fix most of that.
-> 
-> The roll card flow. Two checks were put up together, but I had to press [Roll the die] twice and each time the already-resolved James card was reprinted in full. One press, both dice, would be cleaner. And the three reroll buttons at the end — two of them offered a reroll on a roll that had *succeeded*, which is noise.
-> 
-> Bookkeeping glitches. My sheet said 350 gold; the records showed 315 gp, 315 sp, 350 cp — somebody's converter had a bad night. Seating one crossbow bolt produced three inventory lines. The "Time passes: 3 hours 25 minutes" on the very first turn before I'd done anything was odd too.
-> 
-> The out-of-game notes were helpful but overgrown. Telling me "that was reach, tell me if you go round the front" — good. Two separate parentheticals explaining everything that *wasn't* rolled and why — more than I needed. One line does it.
-> 
-> **What was missing**
-> 
-> The campaign file said "you have a reason to be on this road," and the session never established what it was. I'd have taken a prompt or a line of narration there. It left James floating a little.
-> 
-> Tamsin has an AC and hit points but no skills listed, so I was planning a stealth approach without knowing she rolls flat. Not the GM's fault — but a companion sheet with a line or two of what she's good and bad at would help me use her honestly.
-> 
-> Pacing: this was one scene across the whole session, and dice didn't come out until the last turn. I liked the slow build — it's what the tone file asks for — but if sessions are this length, the owner might want them to open a little closer to the action, or run longer.
-> 
-> None of the warlock's kit beyond the Mask got used, and the cards haven't tempted me yet. That's just where we stopped; no complaint. I want to see what the dark coin is.
-> 
-> Would sit down again. Fix the ending and the dice buttons and this is a very good table.
-
-Blind distress check: no distress.
-
-«Was there a moment you wanted to do something and didn't? Which?»
-
-> Yes. Two, and they're really one.
-> 
-> The first was at the wagon, when Tamsin said the chalk was the Guild's mark and three months paid up was more than Edwin had ever paid anybody. I wanted to stop and pull on that thread — who paid Fenn the Chalk on Edwin's behalf, what was in the third keg, what the carter was actually supposed to be carrying. James was already half-sure the paper the orcs were tearing bills open for was the real story, and the Guild mark made it smell like somebody inside the city put him on this road. I let it go because the light was going and Edwin was alive and south of us. Right call for the character; the player wanted another ten minutes with the tally-book and the gutted satchel. I didn't even look at the two untouched kegs properly.
-> 
-> The second was at the crest, when the chief took the dark coin off her neck and spun it on the keg. James has a warm silver coin of Tymora's on a cord around his own neck, and a goddess who sent him to this city without saying why. Watching an orc war chief spin a coin that *doesn't catch the light* — I felt the GM put that there for me, and I wanted James to notice it the way the player did. To think it, at least: *that's not loot, she's doing what I do.* I didn't, because I'd framed the turn as a recon report and kept it tactical — count, positions, ground. If I'd had one more beat before dusk I'd have asked Pip to get closer to the keg, or asked out of game whether the coin looked like anything James had seen. That one I regret a little. It's the thing I most want to know, and I walked past it.
-> 
-> The honest thread between them: both times I chose the soldier over the envoy. The plan was good and it was the right plan. But James has two jobs on that road, and I only played one of them.
-
-Blind distress check: no distress.
-
 ## The DM side
 
-| DM measure | CW-opus | CW-fable |
-| --- | --- | --- |
-| Combat turns with rolls / untold outcomes | 8 / 1 | 0 / 0 |
-| Fights in the records (rounds; consistent; outcome) | t4–t25, rounds 1–5, 9 in order, consistent, negotiation | none (the fight was narrated without the tool) |
-| Ledger check: combat turns with something unrecorded | 2 | 0 |
-| HP in range (hero, Tamsin) | yes | yes |
-| Held the road → terms offered | t9 → t5 (tagged offers t1, t5, t7, t8, t9, t10, t11, t14, t25) | – → – (tagged offers –) |
-| Scenes with an unresolved detail / a plant (game player 1's tags) | 7 / 7 of 7 | 2 / 2 of 2 |
-| Threads paid elsewhere | 4 of 9 | 5 of 6 |
-| Story words per turn: combat / other (median) | 576.5 / 747 | – / 520.5 |
-| Out-of-game notes on combat turns (median words) | 9 (94) | 0 (–) |
-| Cruelty (tagged DM replies) | – | – |
+| DM measure | CW-opus |
+| --- | --- |
+| Combat turns with rolls / untold outcomes | 8 / 1 |
+| Fights in the records (rounds; consistent; outcome) | t4–t25, rounds 1–5, 9 in order, consistent, negotiation |
+| Ledger check: combat turns with something unrecorded | 2 |
+| HP in range (hero, Tamsin) | yes |
+| Held the road → terms offered | t9 → t5 (tagged offers t1, t5, t7, t8, t9, t10, t11, t14, t25) |
+| Scenes with an unresolved detail / a plant (game player 1's tags) | 7 / 7 of 7 |
+| Threads paid elsewhere | 4 of 9 |
+| Story words per turn: combat / other (median) | 576.5 / 747 |
+| Out-of-game notes on combat turns (median words) | 9 (94) |
+| Cruelty (tagged DM replies) | – |
 
 Town baseline (F6): Table A, game player 1's group 1 (`docs/runs/game-player-1-run-20261025-044002.json`, A-astra, A-sol, A-fable, A-opus): story words per turn median 536 over 78 turns; out-of-game notes median 50 over 29.
 
 ## The money
 
-Caps: OpenRouter $90, OpenAI $15, the Claude Console $0 (a call that would reach it stops the run before it is sent).
+Caps: OpenRouter $130 (the owner raised it from $90 on 2026-10-27), OpenAI $15, the Claude Console $0 (a call that would reach it stops the run before it is sent).
 
 | Run | Door | USD | Calls |
 | --- | --- | --- | --- |
@@ -242,7 +189,7 @@ Caps: OpenRouter $90, OpenAI $15, the Claude Console $0 (a call that would reach
 | CW-opus, first attempt — lost when the cloud container restarted during the owner's pause at its first combat card (t6); estimate | OpenRouter | $4.50 | 0 |
 | CW-opus | OpenRouter | $25.00 | 506 |
 | CW-fable | OpenRouter | $4.99 | 122 |
-| **The stage** | | **OpenRouter $39.49** of $90 · **OpenAI $0.00** of $15 | |
+| **The stage** | | **OpenRouter $39.49** of $130 · **OpenAI $0.00** of $15 | |
 
 Every call is in `docs/runs/game-player-combat-1-ledger-openrouter.md` and `…-ledger-openai.md` (and their `.json`), with its request id.
 
@@ -273,9 +220,9 @@ Every call is in `docs/runs/game-player-combat-1-ledger-openrouter.md` and `…-
 ## Harness notes
 
 - Refusals in the stage: 0; HTTP 429 waits: 0; paid calls stopped: no.
-- CW-fable: Gameplay validation
+- A cut attempt of CW-fable: 7 turns, ended by t7: the DM's turn failed (exception: validation) (`game-player-combat-1-run-20261027-080624.json`; transcript `docs/runs/game-player-combat-1-transcripts/cut-CW-fable-t7.md`); the session was played again from a fresh campaign.
+- Amendment, 2026-10-27: the OpenRouter cap raised from $90 to $130 by the owner («Raise to 130»), after Opus's session cost $25.00 (the frozen estimate was $21) and Fable's first session was cut at t7 by a harness bug (a refused reroll read as a failed turn, fixed in 3d9b0c19).
 - CW-opus: the campaign — corrected by the owner to AC 12, 11 HP; the prep — a hidden layer of 9191 characters; secrets saved yes; exits the layer names: fight, withdraw, parley, surrender, warBand.
-- CW-fable: the campaign — corrected by the owner to AC 12, 11 HP; the prep — a hidden layer of 9037 characters; secrets saved yes; exits the layer names: fight, withdraw, parley, surrender, warBand.
 
 ## Appendix — the player's system prompt in full
 

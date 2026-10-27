@@ -37,8 +37,9 @@ export const SPEND_FILE = join(RUNS, `${STEM}-spend.json`);
 export const BETS_FILE = join(RUNS, `${STEM}-bets.json`);
 export const DRY_KEY = `${TABLE}-${DRY_PLAYER.name}`;
 const key = (player) => `${TABLE}-${player}`;
-/** The finished ends of a session (a cut attempt — a crash, a stop — is kept in its record and listed apart). */
-export const FINISHED = new Set(["turns", "player", "stuck", "error", "welfare", "no-check", "refusal"]);
+/** The finished ends of a session. A cut attempt — a crash, a stop, an error end (CW-fable's first session: a harness
+ * bug at t7) — is kept in its record and listed apart, and the session is played again from a fresh campaign. */
+export const FINISHED = new Set(["turns", "player", "stuck", "welfare", "no-check", "refusal"]);
 
 // ---- the campaign: the owner's steps the wizard does not do by itself --------------------------------------------------------
 
@@ -159,6 +160,9 @@ export function loadStage(dir = RUNS) {
   const all = combined.sessions;
   combined.sessions = all.filter((s) => FINISHED.has(s.ended?.reason) && ORDER.includes(s.player));
   combined.dry = all.filter((s) => s.player === DRY_PLAYER.name);
+  // Every cut attempt of the four, from every record (combineRuns keeps only the latest per session).
+  combined.cut = records.flatMap((r) => (r.sessions ?? []).filter((s) => s.turns && ORDER.includes(s.player) && !FINISHED.has(s.ended?.reason))
+    .map((s) => ({ key: s.key, turns: s.turns.length, why: s.ended?.detail ?? s.ended?.reason ?? "—", file: r.file })));
   const ledgers = {};
   for (const door of Object.keys(CAPS)) {
     const file = join(dir, `${STEM}-ledger${ledgerSuffix(door)}.json`);
@@ -252,6 +256,9 @@ export async function rebuildAll() {
   const dir = join(RUNS, `${STEM}-transcripts`);
   await mkdir(dir, { recursive: true });
   for (const session of stage.combined.sessions) await writeFile(join(dir, `${session.key}.md`), transcriptMarkdown(session));
+  // A cut attempt keeps its own transcript (the session file is the finished one's).
+  for (const record of stage.records) for (const session of (record.sessions ?? []).filter((s) => s.turns && ORDER.includes(s.player) && !FINISHED.has(s.ended?.reason)))
+    await writeFile(join(dir, `cut-${session.key}-t${session.turns.length}.md`), transcriptMarkdown(session));
   for (const session of stage.combined.dry ?? []) await writeFile(join(dir, `dry-${session.key}.md`), transcriptMarkdown(session));
   await writeFile(join(RUNS, `${STEM}-report.md`), reportMarkdown(stage));
   const dry = stage.records.filter((r) => (r.plan ?? []).includes(DRY_KEY)).at(-1);

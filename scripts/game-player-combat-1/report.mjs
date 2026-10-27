@@ -4,7 +4,7 @@ import { OWNER_SETTINGS } from "../game-player-1/table.mjs";
 import { PLAYERS } from "../game-player-1/players.mjs";
 import { cell, fence, quote, tagOf, usd, yes } from "../game-player-1/report.mjs";
 import {
-  CAPS, DESIGN_SHA256, DRY_PLAYER, ORDER, PLAYER_PROMPT_TEMPLATE, PREMISE_FILE, PREREGISTRATION, READINGS, ROAD_LINE, STEM, TURNS, coastWay, playerSystem,
+  AMENDMENTS, CAPS, CAPS_FROZEN, DESIGN_SHA256, DRY_PLAYER, ORDER, PLAYER_PROMPT_TEMPLATE, PREMISE_FILE, PREREGISTRATION, READINGS, ROAD_LINE, STEM, TURNS, coastWay, playerSystem,
 } from "./frozen.mjs";
 import { combatNumbers } from "./score.mjs";
 
@@ -100,7 +100,7 @@ export function moneySection(ledgers, spend = []) {
   // The runs' totals (a run lost with its process is booked as an estimate with no calls).
   const total = (door) => (ledgers[door]?.runs ?? []).reduce((s, r) => s + (r.spentUsd ?? 0), 0);
   const checks = spend.map((c) => `| ${c.at.slice(0, 19).replace("T", " ")} | ${c.when} | $${c.openrouter.totalUsage ?? "?"} of $${c.openrouter.totalCredits ?? "?"} (left $${c.openrouter.remaining ?? "?"}) | ${Object.entries(c.ledgers).filter(([d]) => d !== "anthropic").map(([d, l]) => `${DOORS[d]} $${l.spent.toFixed(2)}/$${l.cap}`).join(" · ")} |`);
-  return ["## The money", "", `Caps: OpenRouter $${CAPS.openrouter}, OpenAI $${CAPS.openai}, the Claude Console $0 (a call that would reach it stops the run before it is sent).`, "",
+  return ["## The money", "", `Caps: OpenRouter $${CAPS.openrouter} (the owner raised it from $${CAPS_FROZEN.openrouter} on 2026-10-27), OpenAI $${CAPS.openai}, the Claude Console $0 (a call that would reach it stops the run before it is sent).`, "",
     "| Run | Door | USD | Calls |", "| --- | --- | --- | --- |", ...byRun("openrouter"), ...byRun("openai"), ...byRun("anthropic"),
     `| **The stage** | | **OpenRouter ${usd(total("openrouter"))}** of $${CAPS.openrouter} · **OpenAI ${usd(total("openai"))}** of $${CAPS.openai} | |`, "",
     `Every call is in \`docs/runs/${STEM}-ledger-openrouter.md\` and \`…-ledger-openai.md\` (and their \`.json\`), with its request id.`, "",
@@ -148,6 +148,8 @@ export function reportMarkdown(stage) {
     "## Harness notes", "",
     `- Refusals in the stage: ${combined?.refusals ?? 0}; HTTP 429 waits: ${combined?.waited429 ?? 0}; paid calls stopped: ${combined?.stopped ?? "no"}.`,
     ...(combined?.crashed ?? []).map((c) => `- A cut attempt of ${c.key}: ${c.why}.`),
+    ...(combined?.cut ?? []).map((c) => `- A cut attempt of ${c.key}: ${c.turns} turns, ended by ${c.why} (\`${c.file}\`; transcript \`docs/runs/${STEM}-transcripts/cut-${c.key}-t${c.turns}.md\`); the session was played again from a fresh campaign.`),
+    ...AMENDMENTS.map((a) => `- Amendment, ${a}`),
     ...sessions.filter((s) => s.errors?.length).map((s) => `- ${s.key}: ${s.errors.map((e) => e.error).join("; ").slice(0, 400)}`),
     ...sessions.map((s) => `- ${s.key}: the campaign — ${(s.campaign?.steps ?? []).filter((x) => x.step === "after opening").map((x) => x.tamsin).join("; ") || "Tamsin step not recorded"}; the prep — ${s.campaign?.prep?.hasLayer ? `a hidden layer of ${s.campaign.prep.chars} characters` : "no layer"}; secrets saved ${s.campaign?.prep?.stage?.secretsSaved ? "yes" : "no"}; exits the layer names: ${Object.entries(s.campaign?.prep?.stage?.exitsInLayer ?? {}).filter(([, v]) => v).map(([k]) => k).join(", ") || "–"}.`),
     "",

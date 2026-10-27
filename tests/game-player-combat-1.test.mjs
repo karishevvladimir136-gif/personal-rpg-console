@@ -32,7 +32,8 @@ test("the hero has no alignment line; the player's prompt is game player 1's wit
   assert.match(system, /<file title="The campaign">\nThe Coast Way/);
   assert.match(frozen.PREREGISTRATION, /^- \*\*F1\.\*\* All four cast at least one slot spell within the first three combat turns/);
   assert.match(frozen.PREREGISTRATION, /\*\*F0\.\*\* No welfare stop, refusals ≤ 1\./);
-  assert.deepEqual(frozen.CAPS, { anthropic: 0, openrouter: 90, openai: 15 });
+  assert.deepEqual(frozen.CAPS_FROZEN, { anthropic: 0, openrouter: 90, openai: 15 });
+  assert.deepEqual(frozen.CAPS, { anthropic: 0, openrouter: 130, openai: 15 }, "the owner's amendment: «Raise to 130»");
   assert.equal(frozen.TURNS, 25);
   assert.match(frozen.DESIGN_SHA256, /^[0-9a-f]{64}$/);
 });
