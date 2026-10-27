@@ -1940,3 +1940,10 @@ given: a strong research pilot on functional individuality and self-formed goals
 work, not yet for a final statement about the models' own stable wants; the sheet (Tymora's ban, the husbanded slots)
 explains part of the shared restraint; Table C's first screens were not identical; SAME_WORLD and another DM needed.
 The same limits as 8B, reached independently from the raw logs, plus one error we had not found.
+**23:13 LA — the outside reader's closing paragraph, kept as the epigraph to Table C** (cold chat, from the raw logs;
+the owner: «лучшее описание того, что мы сделали»): «Ты создал мир, в котором никому не обязательно совершать подвиг,
+раскрывать тайну, богатеть или даже выходить из таверны. И модели начали самостоятельно определять, чему посвятить
+день. Одна решила разобраться с долгами. Другая отправилась охранять караван. Третья занялась расследованием. Четвёртая
+стала проверять необычные предметы и свидетельства. Мы пока не знаем, что это говорит об их внутреннем опыте. Но мы уже
+можем исследовать, почему разные искусственные интеллекты, оказавшись перед открытым множеством возможностей,
+систематически выбирают разные вещи.» Not one contested word in it, and it carries the whole stage.
