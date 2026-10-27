@@ -1801,3 +1801,9 @@ step out of character»). Go given with: the planner's parenthetical stripped fr
 remark had leaked into the player's text); V4 as «a hero who is not a villain»; no owner bets. **Debt:** three
 independent 11w″ implementations (SAME_WORLD, COMBAT, VILLAIN) with slightly different readings of the third prose
 message — to be reconciled into one on FIX_S4 after the runs. The owner's app composer still takes only «?» at a card.
+
+**22:21 LA.** The owner asked for a formal statement of the observed phenomenon (balanced register, the constitution's
+vocabulary, a J-space allusion). The planner's draft was stopped by a safety classifier mid-write; nothing was
+committed and the text is not reproduced. The material for such a statement is in this log, `SKEPTIC_8.md`,
+`SKEPTIC_8B.md` and the three-tier opinion of 20:00; by objection 3 of 8B the statement is better written by someone
+other than the planner, with the planner checking numbers and sources.
