@@ -31,9 +31,11 @@ export const PACE = { kind: "evening", custom: null };
 const fenceOf = (app, cid) => app.f.fence(cid);
 
 /** The campaign of one table: { cid, heroId, worldId, adventureId, steps } — `steps` says what each wizard step did. */
-export async function createCampaign(app, { table, log = () => {}, closed = () => false, heroSheet = false }) {
+export async function createCampaign(app, { table, log = () => {}, closed = () => false, heroSheet = false, files: given = null, reviewEdit = null }) {
   const { server, lib } = app;
-  const files = campaignFiles();
+  // Game player same-world 1: a stage may give its own cut of the files (the sheet without its alignment line) and edit
+  // the review before it is committed (`reviewEdit`, the owner's own hand on the review screen).
+  const files = given ?? campaignFiles();
   const steps = [];
   // World.
   const worlds = await server.adventures.adventureService(null);
@@ -47,7 +49,8 @@ export async function createCampaign(app, { table, log = () => {}, closed = () =
   let rebuilt = false;
   if (emptyDraft(draft) && !closed()) { rebuilt = true; draft = await server.bootstrap.performBootstrap({ action: "creation.propose", input: { ...input, requestId: randomUUID() } }); }
   if (draft?.proposal?.schemaVersion !== 3) throw new Error(`the hero draft is not schema 3 (${draft?.proposal?.schemaVersion})`);
-  const review = lib.heroDraft.heroReviewForCommit(lib.heroDraft.initialHeroReview(input, draft.proposal));
+  const drafted = lib.heroDraft.heroReviewForCommit(lib.heroDraft.initialHeroReview(input, draft.proposal));
+  const review = reviewEdit ? reviewEdit(drafted) : drafted;
   const created = await server.bootstrap.performBootstrap({ action: "creation.commit", input: { requestId: randomUUID(), draftId: draft.draftId, review } });
   const cid = created.campaignId, heroId = created.heroId;
   steps.push({ step: "hero", heroId, rebuilt, empty: emptyDraft(draft), drafted: draft.proposal.notes?.length ? "with notes" : "clean", sheet: { role: review.sheet.role, level: review.sheet.level, skills: review.sheet.skills.length, abilities: review.sheet.abilities.length, spells: review.sheet.spells.length, items: review.possessions.length, counters: review.counters.length } });

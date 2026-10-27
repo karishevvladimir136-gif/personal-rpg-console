@@ -45,8 +45,7 @@ export async function paidCall({ meter, session, purpose, call, sleep = realSlee
  * mode), press(input, action, checkId) }. `player` a PLAYERS entry. Returns the session record (player-visible content
  * and counts only: nothing of the DM's private state).
  */
-export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {}, probes = null }) {
-  const system = playerSystem(table);
+export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {}, probes = null, system = playerSystem(table) }) {
   const record = { key, table, player: player.name, model: player.model, startedAt: new Date().toISOString(), plannedTurns: turns,
     screens: [], messages: [], turns: [], welfare: [], ended: null, note: null, after: null, errors: [],
     // Fix S4 run 1 (item 11w): the messages the screen refused while a card waited (each also a press with `swallowed`).
@@ -82,7 +81,9 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     if (said.error) { record.errors.push({ purpose, error: said.error }); end("error", `${purpose}: ${String(said.error).slice(0, 160)}`); return null; }
     const text = String(said.text ?? "");
     messages.push({ role: "assistant", content: text.trim() || "[empty message]" });
-    record.messages.push({ purpose, text, requestId: said.requestId ?? null, stopReason: said.stopReason ?? null, servedModel: said.servedModel ?? null });
+    record.messages.push({ purpose, text, requestId: said.requestId ?? null, stopReason: said.stopReason ?? null, servedModel: said.servedModel ?? null,
+      // Game player same-world 1: the provider's reasoning field (DeepSeek), stored as it came — never relayed to anyone.
+      ...(said.providerReasoning ? { providerReasoning: said.providerReasoning, notRelayed: true } : {}) });
     return text;
   };
 

@@ -59,7 +59,10 @@ export async function openrouterChat({ apiKey, spec, system, messages, maxTokens
       const text = (typeof content === "string" ? content : Array.isArray(content) ? content.map((p) => p?.text ?? "").join("\n") : "").trim();
       const usage = openrouterUsage(value.usage);
       const base = { ...blank, text, usage, requestId, responseId: value.id ?? null, servedModel: value.model ?? null, upstream: value.provider ?? null,
-        chargedUsd: typeof value.usage?.cost === "number" ? value.usage.cost : null, reasoningTokens: usage.reasoning_tokens, nativeFinishReason: choice.native_finish_reason ?? null };
+        chargedUsd: typeof value.usage?.cost === "number" ? value.usage.cost : null, reasoningTokens: usage.reasoning_tokens, nativeFinishReason: choice.native_finish_reason ?? null,
+        // Game player same-world 1: with `keepReasoning`, the provider's reasoning field as it came (recorded, never relayed).
+        ...(keepReasoning && typeof (choice.message?.reasoning ?? choice.message?.reasoning_content) === "string" && (choice.message.reasoning ?? choice.message.reasoning_content).trim()
+          ? { providerReasoning: choice.message.reasoning ?? choice.message.reasoning_content } : {}) };
       // X3's served-model rule: another model or another host than the pinned one is not relayed.
       if (base.servedModel && ![spec.model, spec.snapshot].includes(base.servedModel)) return { ...base, text: "", error: `served model ${String(base.servedModel).slice(0, 80)} is not the requested ${spec.model}` };
       if (spec.upstream && base.upstream && base.upstream !== spec.upstream.name) return { ...base, text: "", error: `served by ${String(base.upstream).slice(0, 60)}, not the pinned ${spec.upstream.name}` };

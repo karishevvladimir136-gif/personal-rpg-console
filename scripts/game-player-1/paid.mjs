@@ -157,7 +157,7 @@ export function createLedger(provider, capUsd, spentBefore = 0) {
  * The meter. `fetcher` is the real fetch; `ledgers` { anthropic, openai }. `context` (an AsyncLocalStorage) carries the
  * purpose and the session of the call: `meter.within({ session, purpose }, fn)`.
  */
-export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realSleep, now = Date.now, log = () => {}, maxRefusals = MAX_REFUSALS, waits429 = WAITS_429, blocked = [], refusalsBefore = 0 }) {
+export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realSleep, now = Date.now, log = () => {}, maxRefusals = MAX_REFUSALS, waits429 = WAITS_429, blocked = [], refusalsBefore = 0, rewrite = null }) {
   const context = new AsyncLocalStorage();
   const inFlight = Object.fromEntries(Object.keys(ledgers).map((name) => [name, 0]));
   const closedSessions = new Map();
@@ -167,6 +167,9 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
   const notSent = (why) => Object.assign(new Error(`game-player-1: not sent — ${why}`), { name: "GamePlayerStop", notSent: true });
 
   async function metered(input, init = {}) {
+    // Game player same-world 1: `rewrite(url, init)` → init, before anything is read (the paid dry run on Haiku sends every
+    // Claude call as Claude Haiku 5.5, and the ledger books what is sent).
+    if (rewrite) init = rewrite(typeof input === "string" ? input : input?.url ?? String(input), init) ?? init;
     const url = typeof input === "string" ? input : input?.url ?? String(input);
     if (BLOCKED(url)) throw notSent("pictures, soundtrack and Live frames are off for this run");
     const paid = paidOf(url);

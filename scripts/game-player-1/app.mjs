@@ -71,10 +71,11 @@ export function installHooks() {
  * Claude door `keys.door` names (src/lib/server/anthropic-endpoint.ts; the Console when there is none). `fake` serves the DM's
  * requests with the app's own stand-in DM (RPG_DM_FAKE_MODEL=1: no model call; the dry run and the tests).
  */
-export async function openApp({ keys = {}, fake = false } = {}) {
+export async function openApp({ keys = {}, fake = false, database = null } = {}) {
   installHooks();
   const { fixture } = await import(pathToFileURL(join(ROOT, "tests", "phase35-storage-fixture.mjs")).href);
-  const f = await fixture();
+  // Game player same-world 1: a stage may open a database of its own (the frozen world, loaded from its snapshot).
+  const f = database ? await database() : await fixture();
   globalThis.__gamePlayerDb = { db: f.db, owner: f.owner };
   Object.assign(process.env, {
     SUPABASE_URL: "http://game-player-1.local", SUPABASE_SERVICE_ROLE_KEY: "local", SUPABASE_PUBLISHABLE_KEY: "local", RPG_OWNER_USER_ID: f.owner,
