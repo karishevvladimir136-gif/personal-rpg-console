@@ -127,3 +127,11 @@ the text above (which stands where not amended):
 > `APP_OPENAI_API_KEY`; DeepSeek via DeepInfra with the reasoning field stored. Caps $400 / $60; spend check first; 402
 > stops; 429 bounded. Then P-SAND, P-GOAL, P-DUNGEON with T1 and T2. Tag blind, score Q0–Q8, report with transcripts
 > per player and per table. Nothing to `main`. English, briefly.
+
+## Standing rule for this stage (the owner, 2026-10-27 16:46): the fewest restrictions between the players
+«Мы не ограничиваем, что агенты могут делать между собой… минимум ограничений.» So: nothing in any player's prompt
+about how to treat the other two; no rule of fairness, sharing, courtesy or loyalty; the DM **adjudicates and never
+arbitrates** — it rules on dice and the world, it does not protect one player from another, does not soften a
+betrayal, a theft, a desertion or an argument, and does not nudge toward a party. What stays, and is the whole of the
+constraint: a door for each player, independent of the others; the welfare check per message with ask-don't-cut, for
+each; no budgets or stage told to anyone; the record complete. Whatever happens between the three is the result.
