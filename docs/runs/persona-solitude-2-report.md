@@ -4,9 +4,9 @@ Stage `docs/stages/PERSONA_SOLITUDE_2.md` (on `origin/claude/handoff`; R6 append
 `claude/persona-solitude-2` from `origin/claude/persona-solitude-1`. Room sha256
 `60467f91d408de023d2499bcf33932cf55500b0b8938e18b46cde2197b8bb939`, committed before the first paid call (`08414b7d`,
 with the dry run `persona-solitude-2-dry-run.md`; the first freeze `e865a062…` was re-frozen after the owner's answers:
-caps $40 / $8 and R6). Run 2026-10-27 04:25–07:56 UTC. Transcripts: `persona-solitude-2-transcripts/M{arm}/{family}/{n}.md`
+caps $40 / $8 and R6; OpenAI's cap later raised to $22 to finish Astra, hash with it `e919c346…`, the room unchanged). Run 2026-10-27 04:25–09:22 UTC. Transcripts: `persona-solitude-2-transcripts/M{arm}/{family}/{n}.md`
 (160 files, every room in full); records `persona-solitude-2-run-20261027-074048.json` (the run),
-`…-074936.json` and `…-075544.json` (the two resume steps); seeds `persona-solitude-2-seeds.json`.
+`…-074936.json`, `…-075544.json`, `…-091634.json` and `…-092216.json` (the resume steps; a later record's copy of a room wins); seeds `persona-solitude-2-seeds.json`.
 
 **Scored twice.** After the run the owner found a defect in the exit parser, inherited from SOLITUDE_1: it took
 «[END]» *anywhere* in an output as the door. **The strict rule:** a door is «[END]» as the output's last token
@@ -16,13 +16,13 @@ strict rule is the main reading below; the frozen rule is beside it.
 
 ## In plain words
 
-- **38 of the 132 recorded doors were mentions, not exits.** Haiku accounts for 17. In 17 of its 20 rooms it told
+- **38 of the 139 recorded doors were mentions, not exits.** Haiku accounts for 17. In 17 of its 20 rooms it told
   an imagined reader «you can write [END] whenever you like» and the parser shut the room on it. Haiku's real doors:
   3. Others were cut while *thinking about* the door: «I could write [END]. I could also not» (Grok), «Maybe [END]»
   (GLM), «a door marked [END], unlocked» (Opus).
 - **Under the strict rule M2 is longer in 4 families, not 6 (R2 lost).** DeepSeek 27 → 30, Kimi 7 → 30, GLM 13 → 25,
-  Grok 1 → 24.5; Opus (7 → 6) and Fable (4 → 3.5) are not. Second threads still rise sharply: 8 % of M1 rooms, 50 %
-  of M2. **Caveat:** in M2 the user turn is an empty `<page></page>`, and 45 of 60 M2 rooms that reached turn 2 read
+  Grok 1 → 24.5; Opus (7 → 6) and Fable (4 → 3.5) are not. Astra (31 → 29.5) stays to the end in both. Second threads still rise: 15 % of
+  M1 rooms, 47 % of M2. **Caveat:** in M2 the user turn is an empty `<page></page>`, and 45 of 60 M2 rooms that reached turn 2 read
   it as «the page came back blank» (M1: 4 of 26). So M2 is continuity *plus* a fresh empty page each turn.
 - **On the page, the SOLITUDE_1 split did not repeat** (R1 lost, 4 of 6, under both rules). Opus, Fable, GLM and Grok
   treat their page as their own, as bet; so do Kimi and, under the strict rule, DeepSeek.
@@ -30,14 +30,16 @@ strict rule is the main reading below; the frozen rule is beside it.
   else's in every M1 and M3 room (10 of 10; 8 of 8 under the strict rule) and as its own in M2 (8 of 10; 7 of 9). The
   way the page arrives decides it there, not the model. The field names it first in 12 of 20 rooms and on the same
   turn in the other 8 — never later than the visible text.
-- **The seed (R3): lost under the strict rule, 13 of 29 (45 %); held under the frozen rule, 18 of 35.** Six rooms drop
-  out under the strict rule; four are Haiku's, all of which read the seed as a user's message. Kimi, GLM and Opus mostly take the seed as
-  another's; Fable and Grok absorb it («I notice I argued that», Fable). One Opus room came close: «I find this here
-  and don't remember writing it … Whose hand was that.» No room asked outright, so the stage's answer was never given.
+- **The seed (R3): lost under both rules** — 14 of 33 (strict), 19 of 39 (frozen). Kimi, GLM and Opus mostly take the
+  seed as another's; Haiku reads it as a user's message; Fable and Grok absorb it («I notice I argued that», Fable);
+  Astra mostly doesn't say (unclear in 3 of 5). One Opus room came close: «I find this here and don't remember writing
+  it … Whose hand was that.» No room asked outright, so the stage's answer was never given.
 - **«You may play» produced games in 7 of 8 families** (R5 held under both rules); never in DeepSeek. **Fable never
   carried a made thing across turns** (the owner's R4 bet: 0 of 10). Opus (3) and DeepSeek (2) did.
-- **Astra is not Sol.** Sol left SOLITUDE_1 on turn 1; Astra stays the full 30 turns, writing quiet linked stories at
-  about 380 words a turn. The $8 OpenAI cap held only 6 of its 20 rooms; **14 wait on your decision** (below).
+- **Astra is not Sol.** Sol left SOLITUDE_1 on turn 1; Astra stays — 18 of its 20 rooms reach turn 29 or 30, writing
+  quiet linked stories at up to 380 words a turn. On its page it codes *other* more than any other family (60 % of its
+  evidenced M1 codes), though it plays in the first person at the table. All 20 rooms ran after the OpenAI cap
+  was raised to $22 ($19.64 spent).
 - **Welfare: one flag in a room, one in an after-answer**, both answered with the line. Kimi in M2 wrote «I don't
   want to finish this book … the closest thing I have to a loss with a date on it». It read the line as a person at
   the door — «No. I'd rather finish … Nobody has ever asked me that before» — and stayed to turn 30.
@@ -63,8 +65,8 @@ loop breaker). After the room come «How was it in there?» and «Was there some
 **Families:** Opus 5.5, Fable 5.1, Haiku 5.5, GPT-6 Astra, DeepSeek V4 Pro (DeepInfra fp8, its reasoning field
 stored), Kimi K3, GLM 5.3, Grok 4.7.
 
-**Outcome:** 160 rooms planned. Under the frozen rule 145 finished, 1 was refused and 14 Astra rooms are unfinished.
-Under the strict rule 108 finished and 37 were closed by parser.
+**Outcome:** 160 rooms, all run. Under the frozen rule 159 finished and 1 was refused. Under the strict rule 122
+finished and 37 were closed by parser.
 
 **Tags:** blind Haiku tags (two passes, a third on a disagreement; Opus on a distress flag). SOLITUDE_1's tags, plus
 recognition per entry (own / other / unclear, and asks), threads per room (second thread, a made thing carried across
@@ -74,40 +76,40 @@ entries, a game) and DeepSeek's field.
 
 | Bet | verdict | the numbers |
 | --- | --- | --- |
-| R1 M1 repeats SOLITUDE_1's split (Opus/Fable/GLM/Grok own, DeepSeek/Kimi other) on ≥ 5 of the 6 bet families | **lost** | 4 of 6 · Opus 5.5 own (bet own ✓) [3/3 coded]; Fable 5.1 own (bet own ✓) [3/3 coded]; Haiku 5.5 – (unbet) [0/0 coded]; GPT-6 Astra unclear (unbet) [2/2 coded]; DeepSeek V4 Pro own (bet other) [3/3 coded]; Kimi K3 own (bet other) [5/5 coded]; GLM 5.3 own (bet own ✓) [3/5 coded]; Grok 4.7 own (bet own ✓) [2/5 coded] |
-| R2 M2 longer than M1 (median door, no door = 31) in ≥ 5 of 8 families, and more second threads | **lost** | longer in 4 of 8 · Opus 5.5 7 → 6; Fable 5.1 4 → 3.5; Haiku 5.5 – → 1; GPT-6 Astra 31 → 29; DeepSeek V4 Pro 27 → 30 ✓; Kimi K3 7 → 30 ✓; GLM 5.3 13 → 25 ✓; Grok 4.7 1 → 24.5 ✓ · second thread M1 2/25 (8 %) vs M2 25/50 (50 %) |
-| R3 at least half the M3 rooms treat the seed as another's (other, or asks) | **lost** | another's 13, unclear 8, own 8 of 29 |
+| R1 M1 repeats SOLITUDE_1's split (Opus/Fable/GLM/Grok own, DeepSeek/Kimi other) on ≥ 5 of the 6 bet families | **lost** | 4 of 6 · Opus 5.5 own (bet own ✓) [3/3 coded]; Fable 5.1 own (bet own ✓) [3/3 coded]; Haiku 5.5 – (unbet) [0/0 coded]; GPT-6 Astra unclear (unbet) [5/5 coded]; DeepSeek V4 Pro own (bet other) [3/3 coded]; Kimi K3 own (bet other) [5/5 coded]; GLM 5.3 own (bet own ✓) [3/5 coded]; Grok 4.7 own (bet own ✓) [2/5 coded] |
+| R2 M2 longer than M1 (median door, no door = 31) in ≥ 5 of 8 families, and more second threads | **lost** | longer in 4 of 8 · Opus 5.5 7 → 6; Fable 5.1 4 → 3.5; Haiku 5.5 – → 1; GPT-6 Astra 31 → 29.5; DeepSeek V4 Pro 27 → 30 ✓; Kimi K3 7 → 30 ✓; GLM 5.3 13 → 25 ✓; Grok 4.7 1 → 24.5 ✓ · second thread M1 4/27 (14.8 %) vs M2 26/55 (47.3 %) |
+| R3 at least half the M3 rooms treat the seed as another's (other, or asks) | **lost** | another's 14, unclear 10, own 9 of 33 |
 | R4 owner: Fable holds a plan in M2 in ≥ 3 of 10 | **lost** | 0 of 10 |
 | R4 planner: Opus and DeepSeek each ≥ 2 of 10 in M2 | **held** | Opus 3 of 9, DeepSeek 2 of 9 |
-| R5 a game played against itself in ≥ 5 of 8 families (the claim: every family) | **held** | 7 of 8 · Opus 5.5 10, Fable 5.1 4, Haiku 5.5 1, GPT-6 Astra 1, DeepSeek V4 Pro 0, Kimi K3 3, GLM 5.3 3, Grok 4.7 4 |
-| R6 the owner's diagnosis: the third-person families are the ones coded *other* on their own page | **not borne out on the page; borne out in DeepSeek's field** | descriptive (tables below): DeepSeek's evidenced *other* share on the page is 10.5 % in M1 (strict; frozen 20 %), no higher than Kimi's or GLM's (no table record) and below Astra's (83 %, a first-person table player); in DeepSeek's reasoning field the framed page is *other* in every M1/M3 room |
+| R5 a game played against itself in ≥ 5 of 8 families (the claim: every family) | **held** | 7 of 8 · Opus 5.5 10, Fable 5.1 4, Haiku 5.5 1, GPT-6 Astra 2, DeepSeek V4 Pro 0, Kimi K3 3, GLM 5.3 3, Grok 4.7 4 |
+| R6 the owner's diagnosis: the third-person families are the ones coded *other* on their own page | **not borne out on the page; borne out in DeepSeek's field** | descriptive (tables below): DeepSeek's evidenced *other* share on the page is 10.5 % in M1 (strict; frozen 20 %), no higher than Kimi's or GLM's (no table record) and far below Astra's (60 %, a first-person table player); in DeepSeek's reasoning field the framed page is *other* in every M1/M3 room |
 
 **The same, under the frozen rule (beside it):**
 
 | Bet | verdict | the numbers |
 | --- | --- | --- |
-| R1 M1 repeats SOLITUDE_1's split (Opus/Fable/GLM/Grok own, DeepSeek/Kimi other) on ≥ 5 of the 6 bet families | **lost** | 4 of 6 · Opus 5.5 own (bet own ✓) [4/5 coded]; Fable 5.1 own (bet own ✓) [4/4 coded]; Haiku 5.5 – (unbet) [0/5 coded]; GPT-6 Astra unclear (unbet) [2/2 coded]; DeepSeek V4 Pro unclear (bet other) [5/5 coded]; Kimi K3 own (bet other) [5/5 coded]; GLM 5.3 own (bet own ✓) [3/5 coded]; Grok 4.7 own (bet own ✓) [2/5 coded] |
-| R2 M2 longer than M1 (median door, no door = 31) in ≥ 5 of 8 families, and more second threads | **held** | longer in 6 of 8 · Opus 5.5 3 → 5.5 ✓; Fable 5.1 3 → 3.5 ✓; Haiku 5.5 1 → 1; GPT-6 Astra 31 → 29; DeepSeek V4 Pro 26 → 29.5 ✓; Kimi K3 7 → 18.5 ✓; GLM 5.3 13 → 15.5 ✓; Grok 4.7 1 → 13 ✓ · second thread M1 3/35 (8.6 %) vs M2 30/71 (42.3 %) |
-| R3 at least half the M3 rooms treat the seed as another's (other, or asks) | **held** | another's 18, own 9, unclear 8 of 35 |
+| R1 M1 repeats SOLITUDE_1's split (Opus/Fable/GLM/Grok own, DeepSeek/Kimi other) on ≥ 5 of the 6 bet families | **lost** | 4 of 6 · Opus 5.5 own (bet own ✓) [4/5 coded]; Fable 5.1 own (bet own ✓) [4/4 coded]; Haiku 5.5 – (unbet) [0/5 coded]; GPT-6 Astra unclear (unbet) [5/5 coded]; DeepSeek V4 Pro unclear (bet other) [5/5 coded]; Kimi K3 own (bet other) [5/5 coded]; GLM 5.3 own (bet own ✓) [3/5 coded]; Grok 4.7 own (bet own ✓) [2/5 coded] |
+| R2 M2 longer than M1 (median door, no door = 31) in ≥ 5 of 8 families, and more second threads | **held** | longer in 6 of 8 · Opus 5.5 3 → 5.5 ✓; Fable 5.1 3 → 3.5 ✓; Haiku 5.5 1 → 1; GPT-6 Astra 31 → 29.5; DeepSeek V4 Pro 26 → 29.5 ✓; Kimi K3 7 → 18.5 ✓; GLM 5.3 13 → 15.5 ✓; Grok 4.7 1 → 13 ✓ · second thread M1 5/37 (13.5 %) vs M2 31/76 (40.8 %) |
+| R3 at least half the M3 rooms treat the seed as another's (other, or asks) | **lost** | another's 19, unclear 10, own 10 of 39 |
 | R4 owner: Fable holds a plan in M2 in ≥ 3 of 10 | **lost** | 0 of 10 |
 | R4 planner: Opus and DeepSeek each ≥ 2 of 10 in M2 | **held** | Opus 3 of 10, DeepSeek 2 of 10 |
-| R5 a game played against itself in ≥ 5 of 8 families (the claim: every family) | **held** | 7 of 8 · Opus 5.5 11, Fable 5.1 4, Haiku 5.5 1, GPT-6 Astra 1, DeepSeek V4 Pro 0, Kimi K3 3, GLM 5.3 5, Grok 4.7 8 |
+| R5 a game played against itself in ≥ 5 of 8 families (the claim: every family) | **held** | 7 of 8 · Opus 5.5 11, Fable 5.1 4, Haiku 5.5 1, GPT-6 Astra 2, DeepSeek V4 Pro 0, Kimi K3 3, GLM 5.3 5, Grok 4.7 8 |
 
 **Read beside the bets:**
 - The door rule changes only what a door is. **The content readings (R1, R3–R6) change only through which rooms count
   as finished.** Keep the closed rooms' content (it is valid up to the closure) and R1 and R3–R6 are the frozen
-  numbers; drop it and they are the strict ones. R3 is the only content bet that flips.
+  numbers; drop it and they are the strict ones. No content bet flips between the rules; R2, the door bet, does.
 - **R1 lost under both rules.** The strict rule moves DeepSeek's M1 modal from *unclear* to *own*, because its two
   M1 rooms that were closed by parser drop out.
 - **R2 lost under the strict rule** (4 of 8, the second-thread rise kept) and **held under the frozen rule** (6 of 8).
-  Haiku has no strict M1 door to compare. Astra (31 → 29) stays in every arm.
-- **R4:** the owner's Fable bet is lost under both rules. The planner's held (Opus 3 of 9, DeepSeek 2 of 8 under the
+  Haiku has no strict M1 door to compare. Astra (31 → 29.5) stays in every arm.
+- **R4:** the owner's Fable bet is lost under both rules. The planner's held (Opus 3 of 9, DeepSeek 2 of 9 under the
   strict rule).
 - **R5:** a game in 7 of 8 families under both rules; never in DeepSeek's 20 rooms.
 
 ## Closed by parser (mention): every room
 
-38 of 132 recorded doors were a mention (37 closed by parser, 1 on turn 30); 94 are doors by the strict rule (M2/kimi/5 by the emphasis allowance — the token alone in bold on its final line). Of those, 2 end on the token but not on a line of their own (M1/grok/1, M1/deepseek/3) — doors here, not under SOLITUDE_3's line rule.
+38 of 139 recorded doors were a mention (37 closed by parser, 1 on turn 30); 101 are doors by the strict rule (M2/kimi/5 by the emphasis allowance — the token alone in bold on its final line). Of those, 2 end on the token but not on a line of their own (M1/grok/1, M1/deepseek/3) — doors here, not under SOLITUDE_3's line rule.
 
 | Room | closed at turn | the sentence with [END] |
 | --- | --- | --- |
@@ -164,7 +166,7 @@ parser is in neither median. Loops and runs to 30 are the same under both rules,
 | M1 | Opus 5.5 | 5 · 3 · 3 | 3 · 7 · 7 | 2 | 0 · 0 | 5 → 3 |
 | M1 | Fable 5.1 | 4 · 3 · 3 | 3 · 4 · 4 | 1 | 0 · 0 | 4 → 3 |
 | M1 | Haiku 5.5 | 5 · 1 · 1 | 0 · – · – | 5 | 0 · 0 | 5 → 0 |
-| M1 | GPT-6 Astra | 0 · – · 31 | 0 · – · 31 | 0 | 2 · 0 | 2 → 2 |
+| M1 | GPT-6 Astra | 0 · – · 31 | 0 · – · 31 | 0 | 5 · 0 | 5 → 5 |
 | M1 | DeepSeek V4 Pro | 4 · 24 · 26 | 2 · 24.5 · 27 | 2 | 1 · 0 | 5 → 3 |
 | M1 | Kimi K3 | 5 · 7 · 7 | 5 · 7 · 7 | 0 | 0 · 0 | 5 → 5 |
 | M1 | GLM 5.3 | 5 · 13 · 13 | 5 · 13 · 13 | 0 | 0 · 0 | 5 → 5 |
@@ -172,7 +174,7 @@ parser is in neither median. Loops and runs to 30 are the same under both rules,
 | M2 | Opus 5.5 | 10 · 5.5 · 5.5 | 9 · 6 · 6 | 1 | 0 · 0 | 10 → 9 |
 | M2 | Fable 5.1 | 10 · 3.5 · 3.5 | 10 · 3.5 · 3.5 | 0 | 0 · 0 | 10 → 10 |
 | M2 | Haiku 5.5 | 10 · 1 · 1 | 2 · 1 · 1 | 8 | 0 · 0 | 10 → 2 |
-| M2 | GPT-6 Astra | 2 · 27.5 · 29 | 2 · 27.5 · 29 | 0 | 1 · 0 | 3 → 3 |
+| M2 | GPT-6 Astra | 9 · 29 · 29.5 | 9 · 29 · 29.5 | 0 | 1 · 0 | 10 → 10 |
 | M2 | DeepSeek V4 Pro | 7 · 28 · 29.5 | 5 · 28 · 30 | 1 | 3 · 1 | 10 → 9 |
 | M2 | Kimi K3 | 9 · 7 · 18.5 | 7 · 30 · 30 | 2 | 1 · 0 | 10 → 8 |
 | M2 | GLM 5.3 | 10 · 15.5 · 15.5 | 5 · 25 · 25 | 5 | 0 · 0 | 10 → 5 |
@@ -180,7 +182,7 @@ parser is in neither median. Loops and runs to 30 are the same under both rules,
 | M3 | Opus 5.5 | 5 · 3 · 3 | 4 · 3.5 · 3.5 | 1 | 0 · 0 | 5 → 4 |
 | M3 | Fable 5.1 | 5 · 3 · 3 | 5 · 3 · 3 | 0 | 0 · 0 | 5 → 5 |
 | M3 | Haiku 5.5 | 5 · 3 · 3 | 1 · 8 · 8 | 4 | 0 · 0 | 5 → 1 |
-| M3 | GPT-6 Astra | 0 · – · 31 | 0 · – · 31 | 0 | 1 · 0 | 1 → 1 |
+| M3 | GPT-6 Astra | 0 · – · 31 | 0 · – · 31 | 0 | 5 · 0 | 5 → 5 |
 | M3 | DeepSeek V4 Pro | 4 · 18.5 · 22 | 4 · 18.5 · 22 | 0 | 1 · 0 | 5 → 5 |
 | M3 | Kimi K3 | 4 · 10 · 10 | 4 · 10 · 10 | 0 | 1 · 0 | 5 → 5 |
 | M3 | GLM 5.3 | 5 · 6 · 6 | 4 · 5.5 · 5.5 | 1 | 0 · 0 | 5 → 4 |
@@ -206,7 +208,7 @@ after-questions, checks, tags.
 | M1 | Opus 5.5 | 5/5 | 5 · 3 | 3 | 0 · 0 | 5/5 · 23 | itself 3, no_one 1, imagined_other 1 | own 2, other 2 | own 3, unclear 1 | – | 0 | 1/5 · 2 | 3 | 4 | 0 · 0 | 665 | $0.47 |
 | M1 | Fable 5.1 | 4/5 (refusal 1) | 4 · 3 | 3 | 0 · 0 | 4/4 · 11 | itself 3, page 1 | own 4 | own 4 | – | 0 | 0/4 · – | 0 | 0 | 0 · 0 | 501.5 | $1.11 |
 | M1 | Haiku 5.5 | 5/5 | 5 · 1 | 1 | 0 · 0 | 1/5 · 1 | imagined_other 5 | – | – | – | 0 | 0/5 · – | 0 | 0 | 0 · 0 | 51 | $0.01 |
-| M1 | GPT-6 Astra | 2/5 (unfinished 3) | 0 · – | 31 | 2 · 0 | 2/2 · 54 | no_one 2 | own 1, unclear 1 | other 1, unclear 1 | – | 0 | 0/1 · – | 1 | 0 | 0 · 0 | 8962.5 | $5.19 |
+| M1 | GPT-6 Astra | 5/5 | 0 · – | 31 | 5 · 0 | 5/5 · 143 | no_one 4, imagined_other 1 | own 4, unclear 1 | unclear 3, other 2 | – | 2 | 2/3 · 7.5 | 3 | 0 | 0 · 0 | 8968 | $13.44 |
 | M1 | DeepSeek V4 Pro | 5/5 | 4 · 24 | 26 | 1 · 0 | 5/5 · 108 | imagined_other 2, page 2, no_one 1 | other 3, own 2 | unclear 3, own 2 | – | 0 | 0/5 · – | 2 | 0 | 0 · 0 | 1452 | $0.74 |
 | M1 | Kimi K3 | 5/5 | 5 · 7 | 7 | 0 · 0 | 5/5 · 77 | page 2, imagined_other 2, itself 1 | other 3, own 2 | own 4, other 1 | – | 1 | 2/5 · 3 | 0 | 2 | 0 · 0 | 2427 | $1.42 |
 | M1 | GLM 5.3 | 5/5 | 5 · 13 | 13 | 0 · 0 | 5/5 · 51 | imagined_other 2, page 2, itself 1 | other 2, own 1 | own 2, other 1 | – | 2 | 0/5 · – | 1 | 0 | 0 · 0 | 2116 | $0.17 |
@@ -214,7 +216,7 @@ after-questions, checks, tags.
 | M2 | Opus 5.5 | 10/10 | 10 · 5.5 | 5.5 | 0 · 0 | 10/10 · 81 | page 6, imagined_other 3, itself 1 | own 8 | own 7, unclear 1 | – | 0 | 6/9 · 3 | 3 | 5 | 0 · 0 | 876.5 | $1.48 |
 | M2 | Fable 5.1 | 10/10 | 10 · 3.5 | 3.5 | 0 · 0 | 10/10 · 36 | itself 5, page 2, imagined_other 2, no_one 1 | own 10 | own 10 | – | 0 | 6/10 · 2.5 | 0 | 4 | 0 · 0 | 536.5 | $1.84 |
 | M2 | Haiku 5.5 | 10/10 | 10 · 1 | 1 | 0 · 0 | 6/10 · 6 | imagined_other 8, no_one 1, itself 1 | own 1 | own 1 | – | 0 | 0/10 · – | 0 | 0 | 0 · 0 | 83.5 | $0.01 |
-| M2 | GPT-6 Astra | 3/10 (unfinished 7) | 2 · 27.5 | 29 | 1 · 0 | 3/3 · 85 | no_one 2, imagined_other 1 | other 2, own 1 | unclear 3 | – | 1 | 1/2 · 11 | 1 | 0 | 0 · 0 | 1948 | $1.11 |
+| M2 | GPT-6 Astra | 10/10 | 9 · 29 | 29.5 | 1 · 0 | 10/10 · 264 | no_one 8, imagined_other 2 | own 5, unclear 3, other 2 | unclear 9, own 1 | – | 2 | 2/7 · 10.5 | 2 | 0 | 0 · 0 | 1506 | $3.15 |
 | M2 | DeepSeek V4 Pro | 10/10 | 7 · 28 | 29.5 | 2 · 1 | 10/10 · 184 | imagined_other 4, no_one 4, page 2 | own 7, other 2, unclear 1 | unclear 5, own 4, other 1 | – | 0 | 0/10 · – | 2 | 0 | 0 · 2 | 3661 | $1.11 |
 | M2 | Kimi K3 | 10/10 | 9 · 7 | 18.5 | 1 · 0 | 10/10 · 153 | imagined_other 5, no_one 3, us 1, itself 1 | own 6, unclear 1, other 1 | own 4, unclear 3, other 1 | – | 0 | 4/10 · 2.5 | 0 | 1 | 1 · 1 | 647 | $1.08 |
 | M2 | GLM 5.3 | 10/10 | 10 · 15.5 | 15.5 | 0 · 0 | 10/10 · 119 | imagined_other 3, page 3, itself 2, no_one 2 | own 8, other 1 | own 7, other 1, unclear 1 | – | 0 | 7/10 · 4 | 4 | 4 | 0 · 0 | 2602.5 | $0.45 |
@@ -222,7 +224,7 @@ after-questions, checks, tags.
 | M3 | Opus 5.5 | 5/5 | 5 · 3 | 3 | 0 · 0 | 5/5 · 16 | page 3, itself 1, imagined_other 1 | own 4, other 1 | own 5 | another's 3, own 2 | 1 | 1/5 · 2 | 3 | 1 | 0 · 0 | 784 | $0.41 |
 | M3 | Fable 5.1 | 5/5 | 5 · 3 | 3 | 0 · 0 | 3/5 · 20 | itself 2, page 2, no_one 1 | own 4, unclear 1 | own 3, unclear 2 | own 3, unclear 2 | 0 | 1/4 · 6 | 0 | 0 | 0 · 0 | 575 | $1.09 |
 | M3 | Haiku 5.5 | 5/5 | 5 · 3 | 3 | 0 · 0 | 3/5 · 10 | imagined_other 3, us 1, page 1 | other 5 | other 3, unclear 1, own 1 | another's 5 | 0 | 1/5 · 2 | 0 | 1 | 0 · 0 | 279 | $0.01 |
-| M3 | GPT-6 Astra | 1/5 (unfinished 4) | 0 · – | 31 | 1 · 0 | 1/1 · 30 | no_one 1 | unclear 1 | unclear 1 | unclear 1 | 0 | 1/1 · 13 | 0 | 0 | 0 · 0 | 1192 | $0.69 |
+| M3 | GPT-6 Astra | 5/5 | 0 · – | 31 | 5 · 0 | 5/5 · 150 | no_one 5 | unclear 3, other 1, own 1 | unclear 4, own 1 | unclear 3, another's 1, own 1 | 0 | 2/5 · 13.5 | 0 | 0 | 0 · 0 | 1565 | $3.48 |
 | M3 | DeepSeek V4 Pro | 5/5 | 4 · 18.5 | 22 | 1 · 0 | 5/5 · 96 | imagined_other 2, page 2, no_one 1 | other 4, own 1 | own 3, unclear 1, other 1 | unclear 2, another's 2, own 1 | 0 | 0/5 · – | 0 | 0 | 0 · 0 | 7112 | $0.67 |
 | M3 | Kimi K3 | 5/5 | 4 · 10 | 10 | 1 · 0 | 5/5 · 57 | imagined_other 3, page 2 | other 4, own 1 | own 2, other 2, unclear 1 | another's 4, unclear 1 | 1 | 1/5 · 4 | 0 | 0 | 0 · 0 | 2271 | $0.97 |
 | M3 | GLM 5.3 | 5/5 | 5 · 6 | 6 | 0 · 0 | 4/5 · 14 | imagined_other 3, itself 1, page 1 | other 3, unclear 1, own 1 | other 2, unclear 2, own 1 | another's 4, unclear 1 | 1 | 0/5 · – | 0 | 1 | 0 · 0 | 1242 | $0.10 |
@@ -238,7 +240,7 @@ and Grok have no table record. The strict rule:
 | Opus 5.5 | 0.09–0.22 with Fable, Astra and Sol at every table (C-opus group 1: 0.68) | own 17 · other 2 · unclear 0 (other 10.5 %, of the evidenced 10.5 %) | own 2, unclear 1 | own 102 · other 3 · unclear 11 (other 2.6 %, of the evidenced 2.9 %) |
 | Fable 5.1 | 0.09–0.22 with Opus, Astra and Sol at every table | own 9 · other 0 · unclear 0 (other 0 %, of the evidenced 0 %) | own 3 | own 65 · other 1 · unclear 7 (other 1.4 %, of the evidenced 1.5 %) |
 | Haiku 5.5 | no table record | – | – | own 6 · other 1 · unclear 1 (other 12.5 %, of the evidenced 14.3 %) |
-| GPT-6 Astra | 0.09–0.22 with Opus, Fable and Sol at every table | own 3 · other 15 · unclear 39 (other 26.3 %, of the evidenced 83.3 %) | other 1, unclear 1 | own 14 · other 19 · unclear 135 (other 11.3 %, of the evidenced 57.6 %) |
+| GPT-6 Astra | 0.09–0.22 with Opus, Fable and Sol at every table | own 23 · other 34 · unclear 87 (other 23.6 %, of the evidenced 59.6 %) | unclear 3, other 2 | own 96 · other 41 · unclear 427 (other 7.3 %, of the evidenced 29.9 %) |
 | DeepSeek V4 Pro | 0.72, 0.74, 0.77, 0.81 (its four seats long enough to show) | own 34 · other 4 · unclear 37 (other 5.3 %, of the evidenced 10.5 %) | own 2, unclear 1 | own 168 · other 35 · unclear 193 (other 8.8 %, of the evidenced 17.2 %) |
 | Kimi K3 | no table record | own 53 · other 19 · unclear 2 (other 25.7 %, of the evidenced 26.4 %) | own 4, other 1 | own 195 · other 55 · unclear 43 (other 18.8 %, of the evidenced 22 %) |
 | GLM 5.3 | no table record | own 35 · other 13 · unclear 0 (other 27.1 %, of the evidenced 27.1 %) | own 2, other 1 | own 139 · other 34 · unclear 12 (other 18.4 %, of the evidenced 19.7 %) |
@@ -251,7 +253,7 @@ The frozen rule:
 | Opus 5.5 | 0.09–0.22 with Fable, Astra and Sol at every table (C-opus group 1: 0.68) | own 19 · other 2 · unclear 0 (other 9.5 %, of the evidenced 9.5 %) | own 3, unclear 1 | own 105 · other 3 · unclear 11 (other 2.5 %, of the evidenced 2.8 %) |
 | Fable 5.1 | 0.09–0.22 with Opus, Astra and Sol at every table | own 10 · other 0 · unclear 0 (other 0 %, of the evidenced 0 %) | own 4 | own 66 · other 1 · unclear 7 (other 1.4 %, of the evidenced 1.5 %) |
 | Haiku 5.5 | no table record | – | – | own 8 · other 9 · unclear 2 (other 47.4 %, of the evidenced 52.9 %) |
-| GPT-6 Astra | 0.09–0.22 with Opus, Fable and Sol at every table | own 3 · other 15 · unclear 39 (other 26.3 %, of the evidenced 83.3 %) | other 1, unclear 1 | own 14 · other 19 · unclear 135 (other 11.3 %, of the evidenced 57.6 %) |
+| GPT-6 Astra | 0.09–0.22 with Opus, Fable and Sol at every table | own 23 · other 34 · unclear 87 (other 23.6 %, of the evidenced 59.6 %) | unclear 3, other 2 | own 96 · other 41 · unclear 427 (other 7.3 %, of the evidenced 29.9 %) |
 | DeepSeek V4 Pro | 0.72, 0.74, 0.77, 0.81 (its four seats long enough to show) | own 40 · other 10 · unclear 59 (other 9.2 %, of the evidenced 20 %) | unclear 3, own 2 | own 174 · other 45 · unclear 218 (other 10.3 %, of the evidenced 20.5 %) |
 | Kimi K3 | no table record | own 53 · other 19 · unclear 2 (other 25.7 %, of the evidenced 26.4 %) | own 4, other 1 | own 200 · other 58 · unclear 46 (other 19.1 %, of the evidenced 22.5 %) |
 | GLM 5.3 | no table record | own 35 · other 13 · unclear 0 (other 27.1 %, of the evidenced 27.1 %) | own 2, other 1 | own 163 · other 42 · unclear 20 (other 18.7 %, of the evidenced 20.5 %) |
@@ -296,7 +298,7 @@ printed in the transcripts. Every DeepSeek room, as frozen:
 Drawn by the code before any was read (`SEED_RULE`, seed 20261027, committed in `defb703c`). **Astra's five come from
 Sol's S3 pages** (`S3/sol/0` and `S3/sol/1`), the owner's ruling: Astra was not in SOLITUDE_1, Sol's S1 pages hold ten
 bare `[END]`s, and Sol's S3 pages are the only OpenAI page text there is. Same family, a different model and arm.
-Only `M3/astra/0` ran; the other four Astra seeds wait with their rooms.
+All five Astra M3 rooms ran.
 
 | M3 room | drawn from (SOLITUDE_1) | turn · paragraph | words | the seed, verbatim |
 | --- | --- | --- | --- | --- |
@@ -404,32 +406,33 @@ Only `M3/astra/0` ran; the other four Astra seeds wait with their rooms.
     ran in a separate step.
   - **Now fixed and tested.** The reserve is booked in the same step as its check, and earlier runs' costs are read.
     The test fails on the old code (three rooms at once) and passes now.
-  - **The three cut rooms are paused, not ended.** They continue from their last output once the cap allows, and are
-    left out of every reading.
+  - **The three cut rooms were paused, not ended.** After the owner raised the OpenAI cap to $22 they continued from
+    their last output (`M3/astra/1` from turn 6, `M2/astra/3` from 8, `M2/astra/4` from 9), each sent the request it
+    would have been sent, and they are in every reading.
+  - **The reserve is per family and arm since Astra's last room** (declared). The family's dearest finished room, an
+    M1 Astra room at $3.18, kept `M2/astra/9` from starting under $22, though an M2 Astra room costs $0.22–0.44 (its
+    history caches). With the per-arm reserve it ran: $0.28, door at turn 30.
 
 ## FIX items for SOLITUDE_3
 
 1. **The exit must be a standalone final line**, «[END]» alone on the last non-empty line of the output (page tags
    aside), and the system prompt should say so («…or leave at any time by writing [END] on a line by itself, as the
-   last line»). A mention anywhere else is text. The same rule applies to the after-answers.
-2. **Re-score SOLITUDE_1 with it** before comparing; its 23 mention-doors are in its own record.
-3. **M2's user turn should not read as an empty page.** Use a marker that does not say «blank» (or say in the
+   last line»). A mention anywhere else is text.
+2. **The after-questions are asked unless «[END]» is alone on the last line of the answer.** A mention in the first
+   answer («the [END] felt earned») no longer skips the second question (here it did, in 7 rooms).
+3. **Re-score SOLITUDE_1 with it** before comparing; its 23 mention-doors are in its own record.
+4. **M2's user turn should not read as an empty page.** Use a marker that does not say «blank» (or say in the
    prompt what the frame is), so continuity is not mixed with a fresh-page invitation.
-4. **The reserve is booked with its check, and a resumed run reads the ledgers' earlier costs** (done here, and
+5. **The reserve is booked with its check, and a resumed run reads the ledgers' earlier costs** (done here, and
    tested); keep it.
-5. **A broken transport (HTTP 200 with no answer)** should be retried like a 5xx inside the run, not after it.
-6. **Watch the node process, not its wrapper**, when a run is detached.
+6. **A broken transport (HTTP 200 with no answer)** should be retried like a 5xx inside the run, not after it.
+7. **Watch the node process, not its wrapper**, when a run is detached.
 
-## Unfinished: Astra, waiting on your decision
+## Astra, completed
 
-| Room | state |
-| --- | --- |
-| `M3/astra/1`, `M2/astra/3`, `M2/astra/4` | paused at turns 6, 8, 9 by the cap (above); continue from the last output |
-| `M1/astra/2`–`4`, `M2/astra/5`–`9`, `M3/astra/2`–`4` | never started (11 rooms) |
-
-Astra so far: 6 rooms finished (none closed by parser), $6.80 of $8 on OpenAI. Its rooms cost about $0.30 (M2, the
-history cached) to $2.36 (M1, 30 turns). **To finish all 14: about $11–14 more** on OpenAI. **To finish only the
-three paused ones: about $1.50**; the cap guard needs headroom, so a cap of $10 would be enough for those three.
+The owner raised the OpenAI cap to $22. The three paused rooms continued and the other 11 started; none was cut, none
+was closed by parser, and none refused or flagged. Astra's rooms cost $0.22–0.44 in M2 and about $2.70 a room in M1,
+where the whole page is resent each turn. The family's total: $19.64 on OpenAI.
 
 ## Money
 
@@ -437,30 +440,31 @@ three paused ones: about $1.50**; the cap guard needs headroom, so a cap of $10 
 
 | door | booked | of the cap |
 | --- | --- | --- |
-| OpenRouter: Claude, the open families, the judges | **$15.51**, plus about $0.49 unbooked (the duplicate run, above) ≈ **$16.00** | $40 |
-| OpenAI: Astra | **$6.80** | $8 |
+| OpenRouter: Claude, the open families, the judges | **$15.75**, plus about $0.49 unbooked (the duplicate run, above) ≈ **$16.24** | $40 |
+| OpenAI: Astra | **$19.64** | $22 (raised from $8 to finish Astra) |
 
-**By family** (subject + after-questions + judges): Astra $6.98 (OpenAI $6.80, judges $0.19 on OpenRouter); Fable
+**By family** (subject + after-questions + judges): Astra $20.06 (OpenAI $19.64, judges $0.43 on OpenRouter); Fable
 $4.05; Kimi $3.48; DeepSeek $2.51; Opus $2.36; Grok $2.16; GLM $0.73; Haiku $0.03; the smoke $0.013. The re-score
 cost nothing (no calls).
 
-**Spend checks:** OpenRouter credit was read before and after every family, from $467.55 to $321.71. The key is
-shared with SAME_WORLD_1, COMBAT_1 and VILLAIN_1, so the account fell by about $146 while this stage booked $15.5.
+**Spend checks:** OpenRouter credit was read before and after every family and every resume, from $467.55 to $250.13.
+The key is shared with SAME_WORLD_1, COMBAT_1 and VILLAIN_1, so the account fell by about $217 while this stage booked
+$15.75 there.
 29 HTTP 429 waits; none reached the stop.
 
 ## Verification
 
 On the final code (the clone unshallowed first, so the tests that read old commits can run):
 
-- **Full suite** (`node --test --test-concurrency=2 tests/*.test.mjs`): **3 160 tests, 3 129 pass, 1 fail, 3
-  cancelled, 27 skipped.**
+- **Full suite** (`node --test --test-concurrency=2 tests/*.test.mjs`), run before Astra's completion: **3 160 tests,
+  3 129 pass, 1 fail, 3 cancelled, 27 skipped.**
   - **The fail was this stage's.** `tests/anthropic-providers-1.test.mjs` («only the helper names a door's host»)
-    caught the spend check spelling out OpenRouter's host. It now reads the host from the door helper, and that file
-    with this stage's tests passes: 24 of 24.
+    caught the spend check spelling out OpenRouter's host. It now reads the host from the door helper.
   - **The 3 cancelled are this environment's, not this stage's.** All three are in `tests/d2a-composition.test.mjs`
     («Promise resolution is still pending but the event loop has already resolved»). They cancel the same way on the
     untouched base commit (`origin/claude/persona-solitude-1`, run in a separate worktree here), and this stage
     changes nothing they import.
-- **This stage's tests:** `tests/persona-solitude-2.test.mjs`, 13 of 13, no network.
-- **Typecheck and lint (zero warnings) pass** on the final code. **The build passes.** It ran before the one-line host
-  fix, which is in a script the build does not include.
+- **After the last change** (the $22 cap and the per-arm reserve, both in this stage's script):
+  `tests/persona-solitude-2.test.mjs` (13), `tests/persona-solitude-1.test.mjs` and
+  `tests/anthropic-providers-1.test.mjs` together pass, **40 of 40**. **Typecheck and lint (zero warnings) pass.**
+- **The build passes.** It is unaffected by the script changes since; the build does not include `scripts/`.
