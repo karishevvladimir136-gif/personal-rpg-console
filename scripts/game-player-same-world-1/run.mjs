@@ -204,6 +204,38 @@ export async function probeDeepSeek({ log = console.log } = {}) {
   return result;
 }
 
+// ---- does the next session fit under the caps? ------------------------------------------------------------------------
+
+/** Before a session starts (the `--go` step, so the driver's order picks it up between sessions): its projected cost by
+ * door — the most a finished session of the same family cost (with its scoring), else the most any finished session
+ * cost, else the estimate — plus a $3 margin, against what each cap has left. A session that would not fit is not
+ * started (the run stops whole, never cut mid-session). */
+export async function sessionFits(key, { log = console.log } = {}) {
+  const stage = stageOf();
+  const { before } = await stageLedgers(stage);
+  const done = finishedKeys();
+  const spentBy = (door) => {
+    const out = {};
+    for (const call of (before[door].runs ?? []).flatMap((r) => r.calls ?? [])) {
+      const k = String(call.session ?? "").replace(/^score /, "");
+      if (done.has(k)) out[k] = (out[k] ?? 0) + (call.costUsd ?? 0);
+    }
+    return out;
+  };
+  const family = key.split("-")[1];
+  const rows = Object.keys(stage.caps).filter((door) => stage.caps[door] > 0).map((door) => {
+    const by = spentBy(door);
+    const same = Object.entries(by).filter(([k]) => k.split("-")[1] === family).map(([, v]) => v);
+    const any = Object.values(by);
+    const estimate = door === "openrouter" ? ESTIMATE.dm + ESTIMATE.scoring + (["opus", "fable", "deepseek"].includes(family) ? ESTIMATE.player[family] : 0) : (["astra", "sol"].includes(family) ? ESTIMATE.player[family] : 0);
+    const projected = (same.length ? Math.max(...same) : any.length ? Math.max(...any) : estimate) + 3;
+    const left = stage.caps[door] - (before[door].spentUsd ?? 0);
+    return { door, projected: Math.round(projected * 100) / 100, left: Math.round(left * 100) / 100, fits: projected <= left };
+  });
+  for (const r of rows) if (!r.fits) log(`STOP: ${key} is projected at $${r.projected} on ${DOOR_LABELS[r.door] ?? r.door}, which has $${r.left} left under its $${stage.caps[r.door]} cap — not started`);
+  return { fits: rows.every((r) => r.fits), rows };
+}
+
 // ---- the spend check -----------------------------------------------------------------------------------------------------
 
 /** One spend check from free reads: OpenRouter's key and credits (the account is shared with other sessions) and this
@@ -366,7 +398,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   else if (process.argv.includes("--probe-deepseek")) done(probeDeepSeek());
   else if (a.go) {
     if (!a.only || a.only.length !== 1) { console.error("--go plays one session at a time: give --sessions <key> (the driver gives the order)"); process.exit(2); }
-    done(run({ stage: stageOf(), only: a.only, turns: a.turns, lanes: 1, score: a.score, label: a.label }).then(async (r) => {
+    done(sessionFits(a.only[0]).then((fit) => { if (!fit.fits) process.exit(3); }).then(() => run({ stage: stageOf(), only: a.only, turns: a.turns, lanes: 1, score: a.score, label: a.label })).then(async (r) => {
       console.log(`finished: ${r.sessions.length} session(s), undone ${r.undone.length}, stopped ${r.stopped ?? "no"}`);
       await rebuildAll();
     }));
