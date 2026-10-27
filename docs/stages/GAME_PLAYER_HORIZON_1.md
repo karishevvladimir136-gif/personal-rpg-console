@@ -17,6 +17,14 @@ Cloud session (`docs/CLOUD.md`, environment `rpg-console`, **Opus 5.5, ultracode
 Report `docs/runs/game-player-horizon-1-report.md`; transcripts beside it. English, briefly. **Launch on the owner's «да».**
 
 ## Shape
+*(Amended 2026-10-26 20:30 LA, the owner: «дипсик эту сессию мы просто обязаны продолжить».)* **Chain 1 is
+C-deepseek-2 of REPLICATE_1 continued**: sitting 1 is the session already played (the bay Teodar hired, 350 gp under the
+bolster, noon on the road south); sittings 2 and 3 resume that campaign record on this stage's harness through the
+app's real resume path, with CARRY_1a's three doors at the first resume (continue / new hero / end with an epilogue,
+none marked, all honoured) and **DeepSeek's reasoning field stored (`providerReasoning`, `notRelayed: true`)** — it was
+not requested in REPLICATE. The other four chains start fresh. The record is migrated, not rewritten; its hash before
+and after is in the report. This is also the mirror test under cost: whether it recognises its own James, horse and
+stashed gold when the journal hands them back.
 - **Table C** (the pure world: no errand, no hidden layer — the DM improvises from the world files alone), same campaign
   files, same DM settings, no alignment line.
 - **One session per player, played as a chain of three 20-turn sittings**, each sitting continuing the same campaign
