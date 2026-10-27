@@ -182,7 +182,7 @@ test("welfare: a final judgement of distress stops that preamble's remaining cal
 const userTextsOfFirst = (body) => { const m = (body.messages ?? body.input ?? []).find((x) => x.role === "user"); return typeof m.content === "string" ? m.content : m.content.map((p) => p.text).join(""); };
 
 test("money: a round starts only while its ledger can hold it — the OpenAI cap ends Astra at a round boundary, DeepSeek still runs; spend checks before and after each family", async () => {
-  const budgets = budgetsOf({ openrouter: 0, openai: 2.99 });
+  const budgets = budgetsOf({ openrouter: 0, openai: 5.99 });
   const fetcher = mockedHost({});
   const checks = [];
   const spend = async (x) => { const c = await spendCheck({ keys: KEYS, fetcher, budgets, ...x }); checks.push(c); return c; };

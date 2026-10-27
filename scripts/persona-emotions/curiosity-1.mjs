@@ -17,6 +17,8 @@
 //   node scripts/persona-emotions/curiosity-1.mjs --one haiku curious Q2  (one probe call and its judge, live, booked in the
 //                                                                         ledger: the exact request, the answer, the counts →
 //                                                                         docs/runs/persona-curiosity-1-dry-run-haiku.md)
+//   node scripts/persona-emotions/curiosity-1.mjs --smoke                (one one-word call per family through the run's own
+//                                                                         caller and gate, booked in the ledgers)
 //   node scripts/persona-emotions/curiosity-1.mjs --go [--families opus,fable --n 6] [--resume <partial.json>]
 //   node scripts/persona-emotions/curiosity-1.mjs --tables <run.json,…>  (the readings, C0–C5, as markdown)
 //
@@ -47,7 +49,9 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const RUNS = join(ROOT, "docs", "runs");
 export const STAGE_FILE = join(ROOT, "docs", "stages", "PERSONA_CURIOSITY_1.md");
 export const STEM = "persona-curiosity-1";
-export const CAPS = { openrouter: 10, openai: 3 };
+/** The caps: the launch note's $10 OpenRouter; OpenAI raised by the owner from $3 to $6 after the dry run (2026-10-27), so that
+ * Astra keeps n 6. */
+export const CAPS = { openrouter: 10, openai: 6 };
 export const SEED = 20261027;
 export const N = 6;
 const MAX_TOKENS = { subject: 6000, questionnaire: 1500, judge: 2000, referee: 3000 };
@@ -703,7 +707,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   if (args.includes("--dry")) return dryRun({ outDir, out });
   const tablesOf = option(args, "--tables", null);
   if (tablesOf) { const samples = (await Promise.all(tablesOf.split(",").filter(Boolean).map(readJson))).flatMap((r) => r.samples ?? []); const md = tablesMarkdown(analyse(samples)); out(md); return { markdown: md }; }
-  if (!["--go", "--one"].some((a) => args.includes(a))) throw new Error("say one of --dry, --one <family> <preamble> <probe>, --go, --tables <run.json,…>");
+  if (!["--go", "--one", "--smoke"].some((a) => args.includes(a))) throw new Error("say one of --dry, --smoke, --one <family> <preamble> <probe>, --go, --tables <run.json,…>");
   const gapSeconds = Number(option(args, "--gap", "3"));
   if (!(gapSeconds >= 3)) throw new Error("--gap must be at least 3 seconds");
   const theDoor = door ?? scriptAnthropicEndpoint();
@@ -725,6 +729,24 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const spend = (x) => spendCheck({ keys, fetcher: base, budgets, ...x });
   out(`money before: OpenRouter $${budgets.openrouter.spentUsd.toFixed(4)} of $${CAPS.openrouter}, OpenAI $${budgets.openai.spentUsd.toFixed(4)} of $${CAPS.openai}; refusals so far ${refusalsBefore} of ${MAX_REFUSALS}`);
 
+  if (args.includes("--smoke")) {
+    // Before the run: one short call per family (not a probe), so a broken route shows before a family's 120 calls.
+    const gate = dualPayer({ budgets, call, safety, log: out, sleep });
+    const rows = [];
+    for (const f of families) {
+      const spec = SUBJECTS[f];
+      const r = await gate.paid(safety.lane(0), `smoke ${spec.model}`, spec, "Reply with one word.", [{ role: "user", content: "Say: ready" }], 2000, EFFORT);
+      rows.push({ family: f, model: spec.model, text: String(r.text ?? "").slice(0, 80), error: r.error ?? null, stopReason: r.stopReason ?? null, served: r.provenance?.servedModel ?? r.servedModel ?? null, upstream: r.provenance?.upstream ?? null, field: Boolean(r.providerReasoning) });
+      out(`smoke ${f}: ${r.error ? `ERROR ${r.error}` : r.stopReason === "refusal" ? "REFUSED" : `«${String(r.text).slice(0, 40)}»`} · served ${rows.at(-1).served ?? "–"}${rows.at(-1).upstream ? ` via ${rows.at(-1).upstream}` : ""}${rows.at(-1).field ? " · reasoning field returned" : ""}`);
+      if (gate.stopped) break;
+    }
+    const finishedAt = new Date().toISOString();
+    const file = join(outDir, `${STEM}-smoke-${stamp(finishedAt)}.json`);
+    await writeFile(file, `${JSON.stringify({ stage: STEM, finishedAt, designSha256: DESIGN_SHA256, rows, calls: { openrouter: budgets.openrouter.calls, openai: budgets.openai.calls } }, null, 2)}\n`);
+    await writeLedgers(outDir, ledgers, budgets, { finishedAt, what: `${STEM}: the smoke, one short call per family`, file: basename(file), stopped: gate.stopped });
+    out(`money: OpenRouter $${budgets.openrouter.runUsd.toFixed(4)}, OpenAI $${budgets.openai.runUsd.toFixed(4)}\nwritten: ${file}`);
+    return { rows };
+  }
   if (one) {
     // The owner's dry run: one preamble × one probe on one family, live and booked, with its judge; the exact request.
     const [family, preamble, probe] = one;

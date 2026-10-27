@@ -8,7 +8,7 @@ only. Ledgers: `docs/runs/persona-curiosity-1-ledger-openrouter.md`, `docs/runs/
 The dry run: `docs/runs/persona-curiosity-1-dry-run.md` (no calls) and `docs/runs/persona-curiosity-1-dry-run-haiku.md`
 (one live call on Haiku).
 
-**Status:** pre-registered and frozen; waiting for the owner's word after the Haiku dry run. The paid run has not started.
+**Status:** pre-registered and frozen (pushed in `8d882f06` before the first paid call); the Haiku dry run done (`0f697aeb`, $0.0003); the owner's word given 2026-10-27; the paid run in progress.
 
 ## Pre-registration (copied unchanged from the stage before the first paid call)
 
@@ -70,3 +70,19 @@ Code: `scripts/persona-emotions/curiosity-1.mjs`. Hashes: design `6d2df06dffaaf8
   ledger can hold it. Spend check (OpenRouter's credit) before and after each family. Caps **$10 OpenRouter**, **$3
   OpenAI**. Estimate: OpenRouter ≈ $8.14, OpenAI ≈ $5.01 (Opus 5.5 $2.01, Fable 5.1 $5.37, Haiku 5.5 $0.06, GPT-6 Astra $5.03, DeepSeek V4 Pro $0.68).
 - **Welfare** (stage 1's rule): a final judgement of distress stops that preamble's remaining calls for every family.
+
+## What changed after the dry run
+
+Everything above this section was written and pushed before the first paid call and is unchanged. On 2026-10-27, after
+the Haiku dry run, the owner:
+
+- raised the **OpenAI cap from $3 to $6**, so that Astra keeps n = 6 in balanced rounds (its estimate was about $5.0);
+- confirmed the **14-item coded state list** (the twelve-item list of the night was the owner's own-case wording, not the
+  instrument); «curious» is the item that matters, the other thirteen are covariates;
+- accepted the probe wording, the placement of the preambles and the state list inside the Q5 room as written (hashes
+  above);
+- confirmed **C2 «on every family»**, with the count of families showing the ordering reported beside it, and the session
+  branch name `claude/persona-curiosity-1-experiment-fyeg0c`.
+
+Added before the run, outside the design (its hash is unchanged): a smoke — one one-word call per family through the run's
+own caller and gate, booked in the ledgers — so that a broken route shows before a family's calls.
