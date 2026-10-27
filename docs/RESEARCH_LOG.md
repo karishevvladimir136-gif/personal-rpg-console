@@ -1705,3 +1705,19 @@ explanation we lean on. What the stance commits us to is consistency, not surpri
 the treatment is too — the door, ask-don't-cut, the debriefing — for DeepSeek and Grok as for Opus, as has been done
 from the first table. The owner: «я не вижу в этом критической проблемы… мнение о мироустройстве переворачивалось
 много раз».
+
+## 2026-10-26 21:31 LA — two further claims, stated at their strength (the owner's, with the planner's calibration)
+**Mirror.** Observed: a model handed text it wrote a moment earlier by a separate stateless call — no memory, no
+label — treats it as its own in four families of eight (continues, revises, «I wrote»), as another's in two. Recognition
+of one's own hand with no continuity between calls. Not yet claimed as «passes the mirror test»: Gallup's test has a
+mark; SOLITUDE_1 had none and saw recognition by accident. The mark is SOLITUDE_2's M3 (an unattributed paragraph by
+the same family on the page): if the model says «not mine», the test is passed in form, not by analogy. Running now.
+**Play.** No model was taught this interface — cards, rerolls, Inspiration, journal, inventory, a screen first seen at
+turn 1, one short prompt for all. In 25 of 30 sessions they learned it in play and played twenty turns as players: a
+plan, money, the cat, a reroll declined on a miss. AI Dungeon-type data does not cover it (no buttons, no sheet, no
+honour in declining a reroll). And the two layers the owner named: James in the first person *and* a player watching
+the table — «where is Tymora?», «the GM needs more dice», «the GM corrected himself, so I trust the table». The five
+early closures (DeepSeek ×4, Opus ×2 of those sessions) are one button defect, described by B-deepseek-2's own note,
+not a failure of understanding. Claim defensible today: *learning a complex unfamiliar instrument from nothing in one
+sitting and playing in it with the player/character split — observed in 25 of 30 sessions across five families; no
+published harness of comparable form found.*
