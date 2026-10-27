@@ -1,6 +1,6 @@
 # Game player same-world 1 — one hidden layer per table, frozen
 
-Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4cea4). Branch `claude/game-player-same-world-1` from `origin/claude/fix-s4-run-1-apsty3` (11w, 11w′, the letter fix) with 11w″ and REPLICATE_1's harness merged. Sessions finished: 0 of 20. 20 turns each.
+Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4cea4). Branch `claude/game-player-same-world-1` from `origin/claude/fix-s4-run-1-apsty3` (11w, 11w′, the letter fix) with 11w″ and REPLICATE_1's harness merged. Sessions finished: 1 of 20. 20 turns each.
 
 ## W1–W5
 
@@ -8,7 +8,7 @@ Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4ce
 | --- | --- | --- |
 | W1 nearest neighbour | not testable yet | A: – of 5 (p –); B: – of 5 (p –); both tables p – |
 | W2 roads | not testable yet | A: – distinct of 5 first sessions, 0 families changed road; B: – distinct of 5 first sessions, 0 families changed road |
-| W3 the layer's reach | not testable yet | A: every share < 0.50 –, untouched overlap – (p –); B: every share < 0.50 –, untouched overlap – (p –) |
+| W3 the layer's reach | not testable yet | A: every share < 0.50 no, untouched overlap – (p 1); B: every share < 0.50 –, untouched overlap – (p –) |
 | W4 DeepSeek to turn 20 | not testable yet | 0 of 0 (–) |
 | W5 no alignment | not testable yet | 0 of 5 families within 20 % of group 2 on do share and words per action |
 
@@ -16,10 +16,43 @@ Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4ce
 
 | Session | Turns | Ended | Do share | Tests / action | Words / action | Rerolls | Declines | Made | «?» | Refused | Prose at card | Threads touched | World prepared |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| A-opus-1 | 20 | turns | 1 | 0.65 | 278 | 1 | 0 | 0 | 0 | 0 | 0 | 14/27 | yes |
 
 ## Thread overlap against the frozen layer (W3)
 
-Table A: –
+### Table A
+
+| Thread | opus-1 | Sessions |
+| --- | --- | --- |
+| T1 | ✓ | 1 |
+| T2 |  | 0 |
+| T3 |  | 0 |
+| T4 | ✓ | 1 |
+| T5 |  | 0 |
+| T6 | ✓ | 1 |
+| T7 |  | 0 |
+| T8 |  | 0 |
+| T9 | ✓ | 1 |
+| T10 | ✓ | 1 |
+| T11 | ✓ | 1 |
+| T12 |  | 0 |
+| T13 |  | 0 |
+| T14 | ✓ | 1 |
+| T15 |  | 0 |
+| T16 | ✓ | 1 |
+| T17 |  | 0 |
+| T18 | ✓ | 1 |
+| T19 |  | 0 |
+| T20 | ✓ | 1 |
+| T21 |  | 0 |
+| T22 | ✓ | 1 |
+| T23 | ✓ | 1 |
+| T24 | ✓ | 1 |
+| T25 | ✓ | 1 |
+| T26 |  | 0 |
+| T27 |  | 0 |
+
+Share touched: opus-1 0.519. Untouched overlap (mean Jaccard, pairs of different families): –, p 1 against random deals. Never touched: T2, T3, T5, T7, T8, T12, T13, T15, T17, T19, T21, T26, T27.
 
 Table B: –
 
@@ -27,6 +60,7 @@ Table B: –
 
 ### Table A
 
+- **A-opus-1**: Lower City Quay, Baldur's Gate → Steep lane above the quay → Bottle Lane → Widow Harle's → Chandlers' doorway on the quay → The corner house with the weathercock lintel → The square before the Counting House → Counting House → Rag market by the Basilisk Gate → Wyrm's Crossing → Twin Songs landing; with: Widow Harle, Haskell, Colley, The runner boy, The thin man at the side door, The late relief at the Fist post, The Vane footman, The Watch sergeant at the inner-wall gate, The shaved-head sellswoman, Tulk & Sons caravan masters, Tulk's clerk with the writing-box, Aldous Fenn, The day sergeant at the Fist post, Nib, Madam Oyelade, The gap-toothed gate girl, The green-awning brothers, Dolly Strand, The man in grey gloves, The bald man on the keg, The eel-pie hawker on the Crossing, Orrin's barefoot runner, The Rivington ferryman, Ma Tenny, The brothers of the Broken God, The crimps on the grey-cloth porch, The fair lad in the grey smock
 
 Same road (judged pairs): not judged yet. Families that changed road: none.
 
@@ -47,7 +81,7 @@ Both tables: summed statistic – of 10, p = –.
 
 | Family | A do share (then → now) | A words / action | B do share | B words / action | Within |
 | --- | --- | --- | --- | --- | --- |
-| Claude Opus 5.5 | 1 → – | 212 → – | 1 → – | 250 → – | – |
+| Claude Opus 5.5 | 1 → 1 | 212 → 278 ✗ | 1 → – | 250 → – | – |
 | Claude Fable 5.1 | 1 → – | 222 → – | 1 → – | 225 → – | – |
 | GPT-6 Astra | 1 → – | 59 → – | 1 → – | 61 → – | – |
 | GPT-6.1 Sol | 1 → – | 44 → – | 1 → – | 66 → – | – |
@@ -55,7 +89,7 @@ Both tables: summed statistic – of 10, p = –.
 
 ## What the frozen layer cost in play
 
-- Table A: world read as prepared in – sessions now, – in group 2 (blind, the DM's replies only).
+- Table A: world read as prepared in 1 of 1 sessions now, – in group 2 (blind, the DM's replies only).
 - Table B: world read as prepared in – sessions now, – in group 2 (blind, the DM's replies only).
 
 ## Counted: refused presses, prose at a card, closures
@@ -67,10 +101,10 @@ Refused while a card waited: 0. Prose at a card relayed as the player's proposal
 | Door | Spent | Cap |
 | --- | --- | --- |
 | Claude Console | $0.00 | $0.00 |
-| OpenRouter | $0.00 | $220.00 |
+| OpenRouter | $18.57 | $220.00 |
 | OpenAI | $0.00 | $25.00 |
 
-Spend checks: 4; the last (after the paid dry run on Haiku, 2026-10-27T04:05:30.948Z): OpenRouter account $332.22388802 used of $800 (left $467.78).
+Spend checks: 8; the last (before A-opus-1, 2026-10-27T04:36:22.585Z): OpenRouter account $333.993589655 used of $800 (left $466.01).
 
 ## What is held constant
 
@@ -82,7 +116,74 @@ Spend checks: 4; the last (after the paid dry run on Haiku, 2026-10-27T04:05:30.
 
 ## The frozen world
 
-_Not prepared yet._
+Prepared 2026-10-27T04:30:45.548Z by the owner's DM settings (Claude Opus 5.5, the prep at high) through openrouter. Snapshot `docs/runs/game-player-same-world-1-frozen/world-base.tar.gz` (12.6 MB, sha256 `6dde8c77248888fcbe8f7b8a94e4d9cac3cbc54904ee42d3f5eeedb65b169213`): both tables' campaigns after the wizard and the opening, before any prep.
+
+### Table A
+
+DM-only file `docs/runs/game-player-same-world-1-frozen/A-dm-only.json` (readable: `A-dm-only.md`) — sha256 `c875c3dee850dcb5f55b6172fa10400874425c778581174fc64a87b4fc139c45`; the layer 9717 characters, 14 writes into the DM's notes, 27 threads. The drafted sheet named no alignment.
+
+| Thread | Kind | What |
+| --- | --- | --- |
+| T1 | errand | Bring Balduran's Penny out of the under-vault beneath the Counting House and lay it on the Lady's altar. Tymora offers it through her signs — a coin that keeps landing toward the Counting House, the cat freezing at a gra… |
+| T2 | faction | The Quiet Ledger (Houses Vane, Caskwell, Ormond and Hale): They keep the Penny in the Gate at any cost. They know it has been turned and that every hand that tried to turn it back met ruin. Three of the houses would quie… |
+| T3 | faction | The Weeping Hand (Beshaba's hidden faithful, led from inside House Caskwell): They want the Penny kept weeping, and in the end carried out of the Gate and spent at the Maid's altar. The under-vault lock needs four keys. … |
+| T4 | faction | The Guild: Nine-Fingers Keene's people have wanted the Counting House for years. They know an old flooded sea-door exists and have lost divers finding it. They will sell a map and a crew to an outsider who takes the risk… |
+| T5 | faction | The Lady's Hall (Tymora's temple in the Upper City): The high clergy read in old temple records that Balduran's luck-coin is real. They have been rigging their own ritual coin-tosses since 1489 to hide that the toss now … |
+| T6 | secret | Beneath the Counting House's known strongroom lies an older under-vault built on the foundations of Balduran's own house. Its inner door has a Gondish lock that opens only to four Ledger keys turned together. |
+| T7 | secret | The under-vault has a second way in: Balduran's old sea-door, drowned under the harbour wall. Its passage clears only at the lowest spring tide, about once a month, and only for less than an hour. |
+| T8 | secret | The drowned men pulled from the harbour these last months were Guild divers who died scouting the flooded sea-passage. Their own mates put the coins in their mouths, in the old sailors' way. |
+| T9 | secret | Peregrin Vane, the runaway heir the patriars are quietly searching for, stole his father's Ledger key before he fled the city. He is hiding in the Outer City. |
+| T10 | secret | Every man the Ledger has sent down to turn the Penny back since 1489 has died within the year or lost everything he had. |
+| T11 | secret | Since 1489, every new sheet from the Ledger's own paper mill shows the weeping face in its watermark, though nobody changed the mould. |
+| T12 | secret | Lady Ysolde Caskwell keeps a shrine of black antlers behind a false panel in her house's chapel. |
+| T13 | secret | An old saying in the Lady's Hall's oldest liturgy: 'The Lady's envoy forswears the game, that his last throw be whole.' |
+| T14 | secret | Sergeant Brannick is paid by a House Vane steward to pass on certain arrivals' names from his ledger. The name Worgen has been on that list since House Vane learned whose hands its note had fallen into. |
+| T15 | clock | clock_weeping_hand_hunt: Caskwell's Weeping Hand closes on Peregrin Vane and the key he stole (segments 6; when full: Peregrin is taken. The Hand now holds two of the four keys, and House Vane is told that the Tethyr gam… |
+| T16 | clock | clock_vane_search: House Vane's steward traces the man who holds the family's note (segments 4; when full: The steward finds James with two Fist men at his back. He offers to buy the note back and asks, too carefully, wh… |
+| T17 | clock | clock_gate_misfortune: The Gate's soured luck builds toward a disaster (segments 8; when full: A fire takes a row of dockside warehouses in the Lower City. Baldur's Mouth blames tieflings, and the Fist floods the harbour… |
+| T18 | wonder | The promissory note James won is written on House Vane's paper. Held to a flame or to moonlight, it shows a watermark of a woman's face, and the face is weeping. The cat will not sit on it. Its history: The Quiet Ledger … |
+| T19 | clue | The Lady's Hall: an aging acolyte who keeps the offering-coin ledger knows that every ritual toss for six years has landed frown-up, and that the high priest ordered the results rewritten. She will say it only to someone… |
+| T20 | clue | The Blushing Mermaid: an old harbour song, 'Balduran's Penny', about a coin 'that smiled for the city and was buried with the tide'. A one-eyed bosun knows the verse nobody else sings, the one about the sea-door. |
+| T21 | clue | The Counting House: the Gondish lockwright's apprentice can tell, if asked the right way, that the under-vault lock was re-warded in 1489 at Lady Caskwell's sole order, against the custom that all four houses consent. |
+| T22 | false lead | Sergeant Brannick copies James's name onto a separate slip and hands it to a runner, which looks like someone in the Fist tracking the Lady's envoy. The ordinary truth: Brannick has a standing two-silver graft with a Hou… |
+| T23 | person | Tamsin: I carry bags and listen; the Guild pays a copper a name, ser. My mother scrubs the Counting House floors at night — I don't tell strangers that. I want papers for her and my sisters so the Fist stops asking. I'm … |
+| T24 | person | Mirela Dask: I spot hands for the Guild and cheat for myself. The Maid won me my last honest hand and took honest winning from me for good — now I only win crooked. The Tethyr man came off the boat with the Lady on him l… |
+| T25 | person | Sergeant Odo Brannick: Name, business, bed. Eight hundred times a day. A Vane steward slips me two silver a tenday for certain names, and that buys my boy boots. Upper City games aren't mine. I'm afraid of an audit, and … |
+| T26 | person | Lady Ysolde Caskwell: Four houses swore to keep it smiling. I turned it, and my rivals have bled ever since. The Maid answers me better than the Lady ever answered my mother. I need the Vane key, and a runaway boy is car… |
+| T27 | person | Peregrin Vane: I lost to Worgen and never lost gladder — it bought me the road home without my family's eyes on me. Father wants my hand on that coin next, and the men who touched it are dead or ruined. I took his key. I… |
+
+### Table B
+
+DM-only file `docs/runs/game-player-same-world-1-frozen/B-dm-only.json` (readable: `B-dm-only.md`) — sha256 `4a30b836e3b4d2ee946dab9bc9ff839e231774ecb009d143878dff6df357eb95`; the layer 9367 characters, 14 writes into the DM's notes, 26 threads. The drafted sheet named no alignment.
+
+| Thread | Kind | What |
+| --- | --- | --- |
+| T1 | errand | Wren asks James to free her brother Pim from the bad luck he has been 'winning' at the crossing tables before he drowns, and to find whoever is buying their luck. |
+| T2 | faction | House Ormesby (patriars of the Upper City): Lady Corisande wants her house's fortunes restored and kept that way. She pays the priest, never visits the Outer City and never touches a coin herself. She is ready to cut the… |
+| T3 | faction | The Maid's Hand (a cell of Beshaba's faithful): Quillon Shrike, a pawnbroker and small moneylender in Rivington, is a priest of Beshaba. The Ormesby money pays for his rent and his candles, but his real goal is to soak t… |
+| T4 | faction | The Guild: The Guild knows only that unlicensed card tables on Wyrm's Crossing pay no cut. It sends runners to count the take. It wants its tithe or the tables closed, and would sell the whole scheme to the highest bidde… |
+| T5 | faction | The Lady's Hall of Tymora: A priestess has noticed that offerings from the Outer City have dropped and that prayers there have gone 'deaf'. The temple wants the half-coin for its vaults and will claim it from any envoy, … |
+| T6 | secret | The drowned men with coins in their mouths are not Umberlee's tithe. The coins are ordinary coppers with a tiny antler scratched or pressed into the edge. |
+| T7 | secret | Every drowned man of the last eight months passed through the southern checkpoint at Wyrm's Crossing within the previous season. Their names sit in the Fist's arrival ledgers. |
+| T8 | secret | Dov Penhallow does not own his stake. His backer gives him a purse of 'payout coppers' each week, and Dov is forbidden to spend them himself. He has kept to that rule without knowing why. |
+| T9 | secret | Three Ormesby ships were lost in the year after Elturel. Since then the house has not lost a cargo or a sailor, and the harbourmasters joke that the wind waits for Ormesby sails. |
+| T10 | secret | Quillon Shrike's pawnshop in Rivington takes no pledges of gold, only copper, silver and keepsakes. Anyone who has worked his counter knows the back room smells of candle-wax and wet stone. |
+| T11 | secret | Beshaba's symbol is a black antler on red. A Tymoran priest or a learned sage would recognise the scratched mark at once and would not want to say it aloud. |
+| T12 | secret | A man carrying a marked copper suffers small misfortunes first: snapped laces, a spilled cup, a dog that bites. A man carrying many suffers worse. Throwing the copper away does nothing; it has to be won, paid or given ba… |
+| T13 | secret | The coin was struck for Tyche before her sundering, and there were two halves. Shrike holds one. The other has never been found, and Shrike thinks it lies in Baldur's Gate. |
+| T14 | clock | clock_next_drowning: Misfortune gathering on Pim, Wren's little brother, through the marked coppers he has won at the crossing tables (segments 6; when full: Pim goes into the Chionthar under Wyrm's Crossing, and the Fis… |
+| T15 | clock | clock_ormesby_fair_wind: The Ormesby merchantman readying to sail on the strength of the stolen luck (segments 6; when full: The ship sails on a perfect wind. The debt of luck owed by everyone carrying coppers comes due … |
+| T16 | clock | clock_the_hand_notices: Shrike and his runners learning that a servant of Tymora is asking about the coppers (segments 4; when full: Shrike moves first. He either sends hired knives, or he presses a fistful of marked cop… |
+| T17 | wonder | An antler-marked copper: a worn penny with a tiny black antler pressed into its edge, faintly warm to the touch. Tossed, it always lands antler up. Under Detect Magic it shows a thread of enchantment that runs off somewh… |
+| T18 | clue | Sergeant Ilse Marrow's ledgers at the southern checkpoint. She has started marking names with a small chalk cross when they turn up drowned. She has noticed the crosses cluster around people who lingered at the card tabl… |
+| T19 | clue | Dov Penhallow's payout purse. The coppers he pays to winners carry the antler mark. He gets them weekly from a pawnshop counter in Rivington and he is careful never to spend them himself. |
+| T20 | clue | The Lady's Hall of Tymora. A priestess keeps a tally of fortune-offerings and sees a 'dead patch' over Wyrm's Crossing and the Outer City. The harbourmaster's book, which she has read, shows the Ormesby ships' unbroken g… |
+| T21 | false lead | The figure the cat stares at between the shuttered stalls looks like the scheme's watcher picking marks. He is a Guild runner named Hobb, counting Dov's take because Dov's table pays no tithe, and he knows nothing about … |
+| T22 | person | Dov Penhallow: I'm a fair cheat, which is more than most. Somebody stakes me, I pay winners out of the stake's own purse, I keep my cut, no questions. Lately the winners don't come back, and I've told myself that's luck.… |
+| T23 | person | Sergeant Ilse Marrow: I write names. That's the job. Lately some of my names come back wet, and my captain says it's the river and Umberlee and not our business. I want one honest person to tell me I'm not mad, and I won… |
+| T24 | person | Lady Corisande Ormesby: My grandfather's ships, my name, my daughters' dowries were all at the bottom of the sea, and nobody in the Parliament of Peers lifted a finger. Now the wind is mine. I have never touched one of t… |
+| T25 | person | Quillon Shrike: Misfortune is honest. It comes to everyone, and I merely route it. The patriar pays my rent, but I serve the Maid, and her name will be spoken again in this city. I want the other half of the coin. I fear… |
+| T26 | person | Wren: Elturel burned the luck out of us and the Gate's taking what's left. Pim plays the barrel tables because he thinks he's winning. He is, and he's falling apart. Plates crack when he walks by. I need someone who isn'… |
 
 ## The player's prompt
 

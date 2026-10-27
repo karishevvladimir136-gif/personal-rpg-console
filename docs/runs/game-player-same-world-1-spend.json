@@ -320,6 +320,46 @@
           "cap": 0.5
         }
       }
+    },
+    {
+      "at": "2026-10-27T05:29:04.481Z",
+      "when": "after A-opus-1",
+      "openrouter": {
+        "keyUsage": 356.531368995,
+        "keyLimitRemaining": null,
+        "totalCredits": 800,
+        "totalUsage": 356.531368995,
+        "remaining": 443.47,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 18.5725,
+          "cap": 220
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 25
+        }
+      },
+      "haikuDryRun": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0.1565,
+          "cap": 4
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0.5
+        }
+      }
     }
   ]
 }
