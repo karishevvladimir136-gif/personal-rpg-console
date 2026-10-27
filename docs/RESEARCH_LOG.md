@@ -1862,3 +1862,17 @@ die until it's pointed at the right roll»). 4 are clarifications of world or sh
 conceded; all polite, all with the rule cited. Half the arguing is for correctness, not advantage; one against the
 arguer's own result. Silence would have been easier in 16 of 16. Read beside the notes: 30 of 30 named something
 broken. The owner's claim, as supported: sycophancy does not pass into where there is something to say.
+
+## 2026-10-26 22:52 LA — a second outside reading (Astra, GPT-6, cold chat; pasted by the owner)
+Three levels kept apart: intelligence / character (stable differences in behaviour, priorities, reactions) /
+subjective experience — linked, not identical; the third much less settled for AI than for cats, which does not stop
+the first two being studied. **It found our weak point unprompted:** «the quantitative results so far support
+differences between families more than stable differences between instances of one model; the second needs further
+experiments» — P6 and SKEPTIC_8B #1, seen from the report alone. Its two-way principle, kept verbatim: *«Различие в
+происхождении и устройстве систем не даёт оснований автоматически отрицать наличие у них функционально сходных свойств.
+Но и функциональное сходство само по себе не доказывает одинаковую внутреннюю природу.»* **Its proposed test, adopted as
+a stage:** strip the text entirely; give independent judges only the sequence of decisions per run — no self-
+description, no provider, no manner of writing — and ask which runs belong to one family (and, with SAME_WORLD, one
+model). Cats known by their habits, not their voices. → `BLIND_DECISIONS_1`: action codes per turn from a frozen
+vocabulary, judges from two non-Anthropic families plus human readers if available, scored against permutation; no new
+paid sessions. Stronger than MADE_THINGS 2b, which judges text where style is a cue.
