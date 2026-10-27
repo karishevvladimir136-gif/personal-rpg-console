@@ -59,10 +59,14 @@ export const claudeDoor = (keys) => keys?.door?.provider ?? "anthropic";
 /** The run's keys, never printed: the Claude door (`APP_ANTHROPIC_PROVIDER`; scripts/eval/lib/anthropic-endpoint.mjs reads
  * .env.local, else the APP_ variables) with its key, and OpenAI's. `door` is null on the Console (as before the doors). */
 export async function runKeys() {
-  const { scriptAnthropicEndpoint } = await import("../eval/lib/anthropic-endpoint.mjs");
+  const { scriptAnthropicEndpoint, scriptDoorEnv, anthropicEndpoint: endpointOf } = await import("../eval/lib/anthropic-endpoint.mjs");
   const { providerKey } = await import("../eval/lib/keys.mjs");
   const door = scriptAnthropicEndpoint();
-  return { anthropic: door.apiKey || null, openai: providerKey("OPENAI_API_KEY"), door: door.provider === "anthropic" ? null : door, keyName: door.keyName };
+  // OpenRouter's key for a player on OpenRouter's own API (game player replicate 1's DeepSeek): the door's key when the
+  // door is OpenRouter, else its variable.
+  const openrouter = door.provider === "openrouter" ? door.apiKey || null
+    : endpointOf(scriptDoorEnv((name) => (name === "ANTHROPIC_PROVIDER" ? "openrouter" : providerKey(name)))).apiKey || null;
+  return { anthropic: door.apiKey || null, openai: providerKey("OPENAI_API_KEY"), openrouter, door: door.provider === "anthropic" ? null : door, keyName: door.keyName };
 }
 
 export const sessionKey = (table, player) => `${table}-${player}`;
@@ -77,16 +81,18 @@ export function projection(entry, { ledgers, finished, running, estimate = ESTIM
   const PLAYERS = roster;
   const spentOf = (key, door) => (ledgers[door]?.calls ?? []).filter((c) => c.session === key).reduce((s, c) => s + (c.costUsd ?? 0), 0);
   const done = finished.filter((s) => s.record);
-  const player = PLAYERS[entry.player];
   const out = Object.fromEntries(Object.keys(ledgers).map((door) => [door, 0]));
   // The DM side (always a Claude model, on the run's door): the mean of finished sessions, else the per-turn pace of
   // running ones, else the estimate.
-  const dmFinished = done.map((s) => spentOf(s.key, claude) - (PLAYERS[s.player].provider === "anthropic" ? playerSpent(ledgers, s.key) : 0));
-  const paced = running.filter((s) => s.turnsDone >= 3).map((s) => ((spentOf(s.key, claude) - (PLAYERS[s.player].provider === "anthropic" ? playerSpent(ledgers, s.key) : 0)) / s.turnsDone) * TURNS);
+  // A player whose calls share the DM's ledger (a Claude player on the run's door; DeepSeek on OpenRouter when the door is
+  // OpenRouter) has its own spend taken out of the DM's.
+  const doorOf = (name) => (PLAYERS[name].provider === "anthropic" ? claude : PLAYERS[name].provider);
+  const dmFinished = done.map((s) => spentOf(s.key, claude) - (doorOf(s.player) === claude ? playerSpent(ledgers, s.key) : 0));
+  const paced = running.filter((s) => s.turnsDone >= 3).map((s) => ((spentOf(s.key, claude) - (doorOf(s.player) === claude ? playerSpent(ledgers, s.key) : 0)) / s.turnsDone) * TURNS);
   const dm = dmFinished.length ? Math.max(...dmFinished) : paced.length ? Math.max(...paced) : estimate.dm;
   out[claude] = (out[claude] ?? 0) + dm + estimate.scoring;
   const samePlayer = done.filter((s) => s.player === entry.player).map((s) => playerSpent(ledgers, s.key));
-  const playerDoor = player.provider === "anthropic" ? claude : player.provider;
+  const playerDoor = doorOf(entry.player);
   out[playerDoor] = (out[playerDoor] ?? 0) + (samePlayer.length ? Math.max(...samePlayer) : estimate.player[entry.player]);
   return out;
 }
@@ -129,14 +135,16 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
   const doors = Object.keys(ledgers);
   const spendLine = () => doors.map((door) => `${DOOR_LABELS[door] ?? door} $${ledgers[door].spentUsd.toFixed(2)}`).join(" · ");
   const base = fetcher ?? (dry ? scriptedFetcher() : globalThis.fetch.bind(globalThis));
-  const meter = createMeter({ ledgers, fetcher: base, log, ...(sleep ? { sleep } : {}) });
+  const meter = createMeter({ ledgers, fetcher: base, log, ...(sleep ? { sleep } : {}), ...(stage.waits429 ? { waits429: stage.waits429 } : {}),
+    ...(stage.refusalsBefore && !dry ? { refusalsBefore: stage.refusalsBefore(before) } : {}) });
   const uninstall = meter.install();
   const { openApp, settleBackground } = await import("./app.mjs");
   const table = await import("./table.mjs");
   const app = await openApp({ keys, fake: false });
   // FIX_S4 run 1: a stage may bring players of its own (the smoke's Haiku-tier players) and their order.
   const roster = { ...PLAYERS, ...(stage.players ?? {}) };
-  const plan = planOf({ tables: stage.tables, players: stage.order ?? PLAYER_ORDER, only });
+  // A stage may give its own order (game player replicate 1: one key per seat, DeepSeek twice per table).
+  const plan = stage.plan ? stage.plan(only) : planOf({ tables: stage.tables, players: stage.order ?? PLAYER_ORDER, only });
   const runRecord = { stage: stage.name, dry, label, designSha256: stage.design, startedAt: started.toISOString(), caps, plan: plan.map((p) => p.key), turns, lanes,
     sessions: [], undone: [], stopped: null, restamps: 0 };
   // The dry run's record is scripted content: it stays out of the repository (the dry-run page is what is committed).

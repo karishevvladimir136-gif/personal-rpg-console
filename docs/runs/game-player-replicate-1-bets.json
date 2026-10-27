@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-26 00:12 UTC",
+  "owner": null,
+  "ownerNote": "The owner gave no bets; his column stays blank.",
+  "decisions": [
+    "Slot spells: group 1's baseline is corrected to 1 of 24 (A-sol t16, Invisibility with a pact slot), as the frozen rule reads it; P1's threshold (≤ 2 of 24) is kept.",
+    "DeepSeek's reasoning: left as frozen in this session (reasoning.exclude, the reasoning tokens recorded; 26a760f's rule)."
+  ]
+}

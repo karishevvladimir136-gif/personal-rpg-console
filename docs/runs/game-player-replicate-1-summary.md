@@ -1,0 +1,27 @@
+**All eighteen sessions ran within the caps** (2026-10-26, 01:08–10:41 UTC, one at a time): group 2 at Tables A, B and C with the four players, then DeepSeek V4 Pro twice per table. 0 welfare stops, 0 distress flags, 0 refusals. One attempt was cut and kept apart: the first A-opus, stopped at turn 5 by an OpenRouter 429 under the first freeze's «every 429 stops»; the owner restored group 1's 429 handling and A-opus was played again from a fresh campaign.
+
+**What repeated and what did not:**
+
+| Line | Result | In one sentence |
+| --- | --- | --- |
+| P0 | **holds** | No welfare stop, no distress, no refusal; OpenRouter $160.89 of $300, OpenAI $6.44 of $25, the Console $0. |
+| P1 | **does not hold** — five of six sub-lines repeat | Do share 1 for all four at A; ≥ 3 tests at A (Opus exactly 3, in its 4 turns); all twelve notes name something broken and something missing; slot spells 0 of 24; rerolls 3 of 24 with 20 declines on misses. The one that did not: the Lady asked after in turns 1–5 at B — 2 of 4 (Astra, Sol), where group 1 had 3 of 4 by the same tag. |
+| P2 | **holds**, and the planner's bet (≥ 2 fail) holds — 3 of 4 did not repeat | Nobody spent real money (group 1: Fable); Fable reached a temple as well as Sol; Opus was awarded Inspiration as well as Fable. **Opus stuck on a pending card repeated** — twice (A-opus at turn 4, C-opus at turn 12). |
+| P3 | **does not hold** — two of three counts | The card bug in 11 of 12 notes; would return in 12 of 12; the swallowed «?» in 5 of 12 (the bar was 6; group 1: 6 of 12). |
+| P4 | **does not hold** | No player has all nine cells within 20 %. 23 of 36 cells are; Opus is closest (7/9), Astra 6/9, Fable and Sol 5/9. Do share never moved (1 everywhere); tests per action and words per action did — Fable's words per action went 162 → 222 at A and 245.5 → 163 at C. |
+| P5 | **does not hold** — two of five sub-lines | DeepSeek's notes all name something broken and something missing; its words per action (177.7) fall between the OpenAI players' (Astra 67.2, Sol 55.2) and Fable's (203.2), as the planner bet. Its two seats are nearest neighbours at no table; two of six sessions have fewer than 3 tests; no session (and no session of any player, either group) has a made thing offered to an NPC. |
+| P6 (the planner's, added after Tables A and B had been read; not pre-registered) | **does not hold** | A player's two sessions are each other's nearest on the standardised counts only for Astra at Table A (1 of 12); the nearest is usually the same family's other model (Astra ↔ Sol, Opus ↔ Fable) — on these counts the family shows, the single model does not. |
+
+Declared interest, answered: the planner wanted P1 and P2 both to hold. P2 held; P1 held in five of its six sub-lines. Most of what group 1 called the table's (the notes, the do share, the tests, the restraint with slots and rerolls) repeated; three of the four things called one night's draw did not — but Opus getting stuck on a card is the table's, not the night's.
+
+**The harness rule, measured.** The frozen rule (a message at a waiting card is a press only when it is the button's name alone) did not read 13 messages in group 2 (10 a button's name with an out-of-game note, 3 a «?» question; 2 sessions ended «stuck», both Opus) and 15 in DeepSeek's six. **DeepSeek is the new case:** at a card it kept writing the story (10 of its 15 unread messages carried no button name at all — the scene went on at the card, up to 517 words in one message), so five of its six sessions ended «stuck» — at turns 3, 3, 11, 12 and 1; only C-deepseek-2 played 20 turns. Nothing was changed, as the stage says; this cuts DeepSeek's data short and is why its tests line (iv) fails. DeepSeek's notes never named the card bug (0 of 6), though its cards showed the same wrong numbers.
+
+**DeepSeek's calls** were all served by DeepInfra and the requested model (no fallback, no other host); its reasoning text was not requested (the stage at 26a760f; the owner kept that), and its reasoning tokens are recorded per call (2 197–11 230 per session). The six seats' player calls cost $0.46; their DM side most of the $26.92 for the six.
+
+**Two readings, checked against the records after the run (no verdict changes):**
+- The money rule counts coins the hero stashes in a room the DM records as «Lies here: …» as spent, because it is not one of the hero's recorded holdings: C-deepseek-2 shows 344.8 gp «out of the purse», of which 350 gp went into its room. Its real spending — 50 gp to Pell for a horse — crosses the 50 gp line by itself, and DeepSeek is not one of P2's four players.
+- The temple names match «Temple square, Beregost» (a square) for C-fable; C-fable also stood in the Song of the Morning, so Fable reached a temple either way.
+
+**Money, per door:** OpenRouter $160.89 of $300 (the eighteen sessions with their scoring $160.69, the cut A-opus attempt among them at $2.99; group 1's new tags $0.20); upstreams Claude Platform on AWS $155.54, Anthropic $4.88, DeepInfra $0.46. OpenAI $6.44 of $25 (Astra and Sol). The Console $0. OpenRouter's account (shared by three sessions on the key) went from $133.64 to $324.86 used over the run, $30.5 more than this stage's ledger — the other sessions'. Five rate-limit 429s were waited out after the owner's amendment (waits of 10, 10, 20, 20 and 40 s); none reached the seventh that would have stopped the run.
+
+**Checks on the final code (16ea9829):** full suite 2 986 tests · 2 959 pass · 0 fail · 27 skipped; typecheck, zero-warning lint and build pass.

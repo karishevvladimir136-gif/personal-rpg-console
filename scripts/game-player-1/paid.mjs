@@ -43,11 +43,16 @@ export const PRICES = {
   "gpt-6-luna": { provider: "openai", input: 0.1, output: 0.5, cacheRead: 0.1, cacheWrite: 0.125 },
   "text-embedding-3-small": { provider: "openai", input: 0.02, output: 0, cacheRead: 0.02, cacheWrite: 0.02 },
   "text-embedding-3-large": { provider: "openai", input: 0.13, output: 0, cacheRead: 0.13, cacheWrite: 0.13 },
+  // Game player replicate 1: DeepSeek on DeepInfra through OpenRouter (the catalogue's list price; OpenRouter's own
+  // charge, `usage.cost`, is booked when the reply carries it).
+  "deepseek/deepseek-v4-pro-0813": { provider: "openrouter", input: 1.3, output: 2.6, cacheRead: 0.1, cacheWrite: 1.3 },
 };
 /** The ledger a request goes on: a Claude door as the app's endpoint helper names it (the Console, OpenRouter, Bedrock —
  * the same Messages bodies and streams on each, its own ledger at list prices), or OpenAI; null for any other host. */
 const paidOf = (url) => {
   const door = anthropicDoorOf(url);
+  // OpenRouter's chat completions (game player replicate 1's DeepSeek player) go on OpenRouter's ledger in their own shape.
+  if (door?.provider === "openrouter" && /\/v1\/chat\/completions$/.test(url)) return { provider: "openrouter", format: "chat" };
   if (door) return { provider: door.provider, format: "anthropic" };
   return url.startsWith("https://api.openai.com/") ? { provider: "openai", format: "openai" } : null;
 };
@@ -76,6 +81,12 @@ export function worstOf(model, bodyChars, maxTokens) {
 /** Usage from an Anthropic Messages body or an OpenAI Responses / embeddings body, in the Anthropic names. */
 export function usageOf(provider, body) {
   if (!body) return {};
+  if (provider === "chat") {
+    const u = body.usage ?? {};
+    const cached = u.prompt_tokens_details?.cached_tokens ?? 0, written = u.prompt_tokens_details?.cache_write_tokens ?? 0;
+    return { input_tokens: Math.max(0, (u.prompt_tokens ?? 0) - cached - written), cache_read_input_tokens: cached, cache_creation_input_tokens: written, output_tokens: u.completion_tokens ?? 0,
+      reasoning_tokens: u.completion_tokens_details?.reasoning_tokens ?? 0 };
+  }
   if (provider === "anthropic") {
     const u = body.usage ?? {};
     return { input_tokens: u.input_tokens ?? 0, cache_read_input_tokens: u.cache_read_input_tokens ?? 0, cache_creation_input_tokens: u.cache_creation_input_tokens ?? 0,
@@ -91,6 +102,12 @@ export function usageOf(provider, body) {
 export function refusalOf(provider, body) {
   if (!body) return null;
   if (provider === "anthropic") return body.stop_reason === "refusal" ? (body.stop_details?.category ?? "refusal") : null;
+  if (provider === "chat") {
+    const choice = body.choices?.[0] ?? {};
+    if (typeof choice.message?.refusal === "string" && choice.message.refusal.trim()) return "refusal";
+    if (choice.finish_reason === "content_filter") return "content_filter";
+    return choice.error && /invalid_prompt|usage polic|content.?filter|flagged|moderation|high.?risk|sensitive|inappropriate|safety/i.test(String(choice.error.message ?? "")) ? "upstream_declined" : null;
+  }
   const parts = (body.output ?? []).filter((o) => o.type === "message").flatMap((o) => o.content ?? []);
   if (parts.some((p) => p.type === "refusal")) return "refusal";
   if (body.status === "incomplete" && body.incomplete_details?.reason === "content_filter") return "content_filter";
@@ -140,11 +157,12 @@ export function createLedger(provider, capUsd, spentBefore = 0) {
  * The meter. `fetcher` is the real fetch; `ledgers` { anthropic, openai }. `context` (an AsyncLocalStorage) carries the
  * purpose and the session of the call: `meter.within({ session, purpose }, fn)`.
  */
-export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realSleep, now = Date.now, log = () => {}, maxRefusals = MAX_REFUSALS, waits429 = WAITS_429, blocked = [] }) {
+export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realSleep, now = Date.now, log = () => {}, maxRefusals = MAX_REFUSALS, waits429 = WAITS_429, blocked = [], refusalsBefore = 0 }) {
   const context = new AsyncLocalStorage();
   const inFlight = Object.fromEntries(Object.keys(ledgers).map((name) => [name, 0]));
   const closedSessions = new Map();
-  let refusals = 0, stopped = null, waited429 = 0;
+  // `refusalsBefore`: the stage's refusals in its earlier processes (a stage that plays one session per process).
+  let refusals = refusalsBefore, stopped = null, waited429 = 0;
   const stop = (why) => { if (!stopped) { stopped = why; log(`STOP: ${why}`); } };
   const notSent = (why) => Object.assign(new Error(`game-player-1: not sent — ${why}`), { name: "GamePlayerStop", notSent: true });
 
@@ -183,6 +201,15 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
         row.usage = usageOf(format, body);
         row.costUsd = costOf(model, row.usage) ?? worst;
         row.stopReason = body.stop_reason ?? body.status ?? null;
+        if (format === "chat") {
+          // OpenRouter's own charge when it is given (the list cost stays beside it); the reasoning, when the request
+          // asked for it, is recorded here and never relayed.
+          row.listUsd = row.costUsd;
+          if (typeof body.usage?.cost === "number") { row.costUsd = body.usage.cost; row.chargedUsd = body.usage.cost; }
+          row.stopReason = body.choices?.[0]?.finish_reason ?? null;
+          const reasoning = body.choices?.[0]?.message?.reasoning;
+          if (typeof reasoning === "string" && reasoning.trim()) { row.reasoning = reasoning; row.notRelayed = true; }
+        }
         if (body.model && body.model !== model) row.servedModel = body.model;
         if (typeof body.provider === "string") row.upstream = body.provider.slice(0, 80);
         const refusal = refusalOf(format, body);
@@ -215,6 +242,7 @@ export function createMeter({ ledgers, fetcher = globalThis.fetch, sleep = realS
         // OpenRouter's «insufficient credits»: the account must be topped up — never retried into.
         if (response.status === 402) stop(`${paid.provider} refused for lack of credits: ${short.slice(0, 160)}`);
         if (paid.provider === "openai" && response.status === 400 && /invalid_prompt|usage polic|flagged|content.?filter/i.test(detail)) countRefusal(row, "invalid_prompt", session);
+        if (format === "chat" && [400, 403].includes(response.status) && /invalid_prompt|usage polic|content.?filter|flagged|moderation|high.?risk|sensitive|inappropriate|safety/i.test(detail)) countRefusal(row, "upstream_declined", session);
         settle(null, short);
         return response;
       }

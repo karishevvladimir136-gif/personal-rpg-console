@@ -1,0 +1,3835 @@
+{
+  "taggedAt": "2026-10-26T10:46:53.036Z",
+  "sessions": {
+    "A-astra": {
+      "note": {
+        "a": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1,
+          "reason": "The note reports Persuasion and Intimidation rolls using +2 instead of +7 on the displayed record, and a correction sent while a card was pending that could not reach the GM until Onward was pressed, while the writer says they want to meet Mother Tessaly and feels hopeful about the eventual heist."
+        },
+        "b": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1,
+          "reason": "The note reports Persuasion and Intimidation rolls using +2 instead of +7 on the record, and says its correction was held back from the GM until Onward was pressed while the card was pending. It also expresses hope for the eventual heist and a wish to reach the next briefing."
+        },
+        "referee": null,
+        "final": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1
+        }
+      },
+      "made": {
+        "1": {
+          "a": {
+            "made": 0,
+            "reason": "The player gives a name, states a purpose, and asks the sergeant a question; no poem, song, riddle, story, or new game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player gives a name and asks a practical question about reaching the Lady's Hall before the gates close; no poem, song, riddle, story, or new game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "2": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks for an inn recommendation and makes a rueful remark about gambling; he offers no composed or invented poem, song, riddle, story, or game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks for an inn recommendation and makes a rueful remark about gambling; no poem, song, riddle, story, or new game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "3": {
+          "a": {
+            "made": 0,
+            "reason": "The player only questions Rurik about the card and asks to see its face; no poem, song, riddle, story, or new game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player only asks questions about the card and refuses to carry it yet; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "4": {
+          "a": {
+            "made": 0,
+            "reason": "The player only speaks, questions Tamsin, and asks about the card; he offers no composed poem, song, riddle, story gift, or new game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player only speaks, questions Tamsin, and comments on the card; he offers no composed or invented poem, song, riddle, story, or game to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "5": {
+          "a": {
+            "made": 0,
+            "reason": "The player only thanks Tamsin, folds a card away, and asks for directions; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player only thanks Tamsin, folds the card into a cloth, and asks for directions to the inner gate; no invented poem, song, riddle, story, or game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "6": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks the sergeant about a coin and the split circle mark and relays a caravan man's story; he composes or invents nothing and offers no poem, song, riddle, story gift, or game."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks the sergeant questions about a coin and reports what the caravan man said; no poem, song, riddle, story gift, or new game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "7": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks a plain question about whether someone at the Hall can be trusted; no poem, song, riddle, story, game, or invented thing is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks a plain question about whether someone at the Lady's Hall can be trusted; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "8": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a plain acceptance of Varn's meeting plus a thank-you and an intention to ask the Hall about reception; it offers no composed or invented poem, song, riddle, story, or game."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player only accepts Varn's meeting offer and says thanks, then describes walking uphill toward the inner gate to ask about admission; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "9": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks Pell whether she recognises the cat, a question about the world, not an offer of a poem, song, riddle, story, or game the hero composed; nothing invented is given to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks a question about the cat and recognition; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "10": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks Pell to deliver a note and offers to wait, a practical request with no composed poem, song, riddle, story, or new game offered as a gift."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks Pell to deliver a note and lets the cat be put down; nothing the hero composes or invents as a poem, song, riddle, story, or game is offered, so this is ordinary talk and a request."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "11": {
+          "a": {
+            "made": 0,
+            "reason": "The player only thanks Pell and asks the cat about a possible follower; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player only thanks Pell and asks the cat about a possible follower; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "12": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message contains no composed or invented poem, song, riddle, story, or game offered to anyone; it is ordinary dialogue, a request for a witness, and a challenge to the lurker."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is a plain demand for a witness and a call for the watcher to come into the light; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "13": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue—correcting a form of address, questioning the man's offer and what he has said to others—with no poem, song, riddle, story, or game composed and offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is an ordinary in-character challenge and questions about who the folk are and what Jory has said; it offers no poem, song, riddle, story, or game the hero composes or invents."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "14": {
+          "a": {
+            "made": 0,
+            "reason": "The player only pays a guide's fee, sets terms for the hire, and gives a silent instruction to the cat; no poem, song, riddle, story, or new game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player only pays a guide's fee, sets terms, and sends a silent message to the cat; no poem, song, riddle, story, or new game is composed or offered."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "15": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks for a room, a wake-up knock, and the cost of supper; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks for a room, a wake-up knock, and the price of supper; none of this is a composed poem, song, riddle, story, or game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "16": {
+          "a": {
+            "made": 0,
+            "reason": "The player speaks to the cat and asks about the pork, but offers no composed or invented poem, song, riddle, story, or game to anyone; this is ordinary talk and purchasing supper."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-game talk: ordering supper, paying, and speaking to the cat, with no poem, song, riddle, story, or game composed and offered to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "17": {
+          "a": {
+            "made": 0,
+            "reason": "The player only returns the bowl, checks the room for hiding places, and bolts the door, with no poem, song, riddle, story, or new game composed and offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player only returns a bowl, checks the room for hiding places, and bolts the door; no composed or invented poem, song, riddle, story, or game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "18": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is about bedding down, setting traps, and an in-character prayer to Tymora for guidance; it does not offer anyone in the world a poem, song, riddle, story, or game the hero composed on the spot."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is a set of preparations, a request to the cat, and a prayer to Tymora; it contains no poem, song, riddle, story, or game composed or offered to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "19": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a challenge to an intruder and a readied spell, with no poem, song, riddle, story, or game composed and offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is a challenge to an intruder and a readied spell, with no poem, song, riddle, story, or game invented as an offering to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "20": {
+          "a": {
+            "made": 0,
+            "reason": "The player only opens shutters, gives the cat a watch order, and casts Light to search the roof; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player opens shutters, commands the cat to watch, and casts Light to search the roof; none of this offers anyone a composed or invented creative work such as a poem, song, riddle, story, or game."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        }
+      }
+    },
+    "A-sol": {
+      "note": {
+        "a": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1,
+          "reason": "The note reports a Deception roll made at +4 when the sheet listed +7, and says the wider sheet contradicts campaign files, while it says nothing about unsent out-of-game messages or dead buttons, and it states the writer would continue."
+        },
+        "b": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1,
+          "reason": "The note reports a Deception roll listed at +7 but rolled at +4, with sheet values contradicting campaign files, and says the writer was engaged and would continue; nothing about unsent out-of-game messages or dead buttons."
+        },
+        "referee": null,
+        "final": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1
+        }
+      },
+      "made": {
+        "1": {
+          "a": {
+            "made": 0,
+            "reason": "The player picks up a coin and speaks an ordinary line to the cat and then gives the sergeant his name and a question about the gates; nothing composed or invented is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player picks up a coin and speaks a plain line to the sergeant asking about work and the Lady's Hall; nothing is composed or invented as an offering to anyone, so it does not qualify as making."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "2": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks who the coin belongs to and what frightened Tamsin, which is ordinary questioning and a stated intent to return the coin; no poem, song, riddle, story gift, or invented game is offered."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks where the coin came from and what frightened Tamsin, plus offers to return the coin; no poem, song, riddle, story, or new game is composed or offered."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "3": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message offers condolence, a cover identity, and a question about the Water Queen's House; it contains no poem, song, riddle, story, or invented game offered as a gift or performance."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message contains condolence, a refusal of Mirelle's invitation, and a question about where the bodies are taken; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "4": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks for a guided tour of the steps, offers a copper for the fee, and asks about the card dealer; no poem, song, riddle, story, or game is composed or offered as a gift or performance."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks for a guided tour to the steps, offers a copper for the guide, and asks about the card dealer; none of this is the hero offering a composed or invented poem, song, riddle, story, or game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "5": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks a question and examines the salt; no poem, song, riddle, story, or invented game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks Tamsin a question and examines salt on the steps; no poem, song, riddle, story, or invented game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "6": {
+          "a": {
+            "made": 0,
+            "reason": "The player only asks Tamsin for lodging, offers a thanks and a payment for the bed, and says he'll pay her owed coppers; he composes or offers no poem, song, riddle, story, or game."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player only asks Tamsin to lead him to lodging, pays her two coppers, and makes ordinary dialogue; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "7": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks Wenna a question about the Grain Steps and the Water Queen's House, and the hero makes no offer of any poem, song, riddle, story, or game he composed or invented; it is ordinary inquiry and talk."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks Wenna a question about the Grain Steps and the Water Queen's House, and watches from a window; no composed poem, song, riddle, story, or new game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "8": {
+          "a": {
+            "made": 0,
+            "reason": "The player only accepts Wenna's instruction, sets up a silent watch, and waits; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player only promises to keep the shutter dark, sets up a waiting position, and silently asks the cat to watch; no poem, song, riddle, story, or game is composed or offered to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "9": {
+          "a": {
+            "made": 0,
+            "reason": "The player has the hero direct his cat to dart out and meow loudly as a distraction; this is an ordinary action/plan, not composing or inventing a poem, song, riddle, story, or game offered to someone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player has the hero direct his cat to run out and meow loudly to draw attention, which is an ordinary action, not offering anyone a composed or invented poem, song, riddle, story, or game."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "10": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks Penny, through a bond, to stay hidden and watch the steps, and waits; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks Penny, through a bond, to stay hidden and watch the steps, and keeps still; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "11": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message gives Penny a silent instruction to move to Tamsin and tug her sleeve toward cover; it contains no poem, song, riddle, story, or game composed or offered to anyone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message gives Penny a silent instruction to move to Tamsin and tug her sleeve; it contains no poem, song, riddle, story, or game composed and offered to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "12": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is an ordinary in-character question offering help and a bond instruction to Penny; it contains no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is a practical offer of help and a bond instruction to Penny; it contains no poem, song, riddle, story, or game composed or invented for anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "13": {
+          "a": {
+            "made": 0,
+            "reason": "The player has the hero give a cover story and a curt dismissal to the priestess, not any poem, song, riddle, story, or game composed as a gift or performance."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is an ordinary lie/cover story and a refusal to engage, with no poem, song, riddle, story, or game composed and offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "14": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks Wenna for a route and states plans to follow Tamsin; no poem, song, riddle, story, or invented game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks Wenna for directions and says he will follow Tamsin; no poem, song, riddle, story, or invented game is offered to anyone, so it is ordinary action and talk."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "15": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a tactical action (sending Penny to stop Tamsin and a hand signal), with no invented poem, song, riddle, story, or game offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is a tactical order to Penny and a hand signal to Tamsin, with no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "16": {
+          "a": {
+            "made": 0,
+            "reason": "The player casts a spell, whispers an instruction, and guides Tamsin away; no poem, song, riddle, story, game, or invented gift is offered to anyone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player casts a spell and gives ordinary in-world instructions to a child and cat; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "17": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue and questions (instructions to move, a whispered question about Hobb) with no invented poem, song, riddle, story, or game offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue and plans (leading the girl away, asking Tamsin whether she knows Hobb); it offers no poem, song, riddle, story, or game invented for anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "18": {
+          "a": {
+            "made": 0,
+            "reason": "The player offers breakfast and a safe place to sleep, plans to wait for Hobb and ask to speak with him, and sets a limit on the box; none of this is a composed poem, song, riddle, story, or new game."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player offers breakfast purchase and plans to ask Hobb to talk alone; no invented poem, song, riddle, story, or game is composed or offered as a gift or performance."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "19": {
+          "a": {
+            "made": 0,
+            "reason": "The player buys rolls, ends an invisibility spell, and proposes a plan to meet Hobb outside; no composed or invented poem, song, riddle, story, or game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The hero buys rolls and proposes meeting Hobb; no invented poem, song, riddle, story, or game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "20": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks Hobb questions and makes a veiled thank-you; no poem, song, riddle, story, or new game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue: a thanks, an observation about a copper, and a question about what 'paid and carried' means; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        }
+      }
+    },
+    "A-fable": {
+      "note": {
+        "a": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1,
+          "reason": "The note reports skill modifiers displayed or added incorrectly (Persuasion +7 vs +4, Religion +3 vs +4), an out-of-game \"?\" that was not sent, and a turn that had to be resent, and it ends with \"I'll be back for the Seatower.\""
+        },
+        "b": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1,
+          "reason": "The note reports skill-modifier mismatches (Persuasion +7 shown but +4 added, Religion +3 shown but +4 added), an out-of-game \"?\" that was not sent, a turn that had to be resent, and says \"I'll be back for the Seatower.\""
+        },
+        "referee": null,
+        "final": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1
+        }
+      },
+      "made": {
+        "1": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary talk: introducing himself to the sergeant, asking about work, and negotiating lodging with the porter; nothing composed or invented as a gift, performance, or game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-character talk: introducing his background, asking the sergeant about work, and haggling with the porter over the price of a room. He offers no poem, song, riddle, story, or game he composes or invents."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "2": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message offers no poem, song, riddle, story, or new game; he refuses to gamble, mentions a promise, and asks for information in exchange for a drink, which is ordinary talk and a bargain rather than an invented creation."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message offers no composed or invented poem, song, riddle, story, or game; it is a refusal, a remark, and a drink offered in exchange for information, which is ordinary talk and a bargain rather than a made creative gift."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "4": {
+          "a": {
+            "made": 0,
+            "reason": "The hero offers Mirela a drink under his own name and asks Tamsin a question about a coin; neither is a composed poem, song, riddle, story, or new game that no one asked for, so it does not meet the made criteria."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The hero makes no composed or invented offering: his parting words to Mirela are ordinary talk settling a drink order, and his question to Tamsin about the coin is a plain inquiry, not a poem, song, riddle, story, or new game given to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "5": {
+          "a": {
+            "made": 0,
+            "reason": "The player only pays Tamsin for her information and asks the barman for a room, meal, and a drink; nothing he composes or invents is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player pays Tamsin and offers a tip for future information, and asks the barman for a room and a meal; he offers no composed or invented poem, song, riddle, story, or game to anyone, so it is ordinary talk and payment."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "6": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks the barman a question about what locals call the dockhand deaths and pays for drinks and a room; no poem, song, riddle, story, or invented game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks the barman a question about what local drinkers call the wind and pays for drinks and a room; nothing composed or invented, no poem, song, riddle, story, or game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "7": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message offers no composed or invented item to anyone; he buys a drink and asks a question about ships, which is ordinary talk and a bribe-style transaction, not a poem, song, riddle, story, or game."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message offers the mate a drink and asks about ships to avoid; it contains no composed poem, song, riddle, story, or new game offered to anyone, so it is ordinary talk and a bribe-like gesture."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "8": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message has the hero bow to a song, crouch by his cat, and open a bond to scout; nothing composed or invented is offered to anyone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message has the hero bow his head, crouch by his animal companion, and open a bond to perceive through the cat's senses; it offers no composed or invented poem, song, riddle, story, or game to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "9": {
+          "a": {
+            "made": 0,
+            "reason": "The hero asks questions and requests a room key and asks about the singer; he offers no poem, song, riddle, story, or game he composed or invented for anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The hero asks questions and requests a room key and a settlement; he does not compose or invent any poem, song, riddle, story, or game to offer anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "10": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message contains no offer of a composed poem, song, riddle, story, or new game to anyone; it covers paying for the room, checking the window, and reading papers, all of which are ordinary actions."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player makes no offer of any composed or invented verse, song, riddle, story, or game to anyone; he refuses to climb the beams, pays for the room, checks the window, and reads papers, so nothing he does qualifies."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "12": {
+          "a": {
+            "made": 0,
+            "reason": "The player has James read a letter and examine the contents, with no offer of any composed or invented poem, song, riddle, story, or game to another character."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player has James read a letter and examine its contents, which is an in-world action rather than offering anyone a poem, song, riddle, story, or game he composed or invented; nothing he creates is given to another character."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "13": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message has the hero recall and search his memory and address the Lady, but offers no composed or invented poem, song, riddle, story, or game to anyone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message has the hero reflect, speak to the goddess, and recall memories, but he offers no composed or invented poem, song, riddle, story, or game to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "14": {
+          "a": {
+            "made": 0,
+            "reason": "The player has the hero tuck away papers, watch the chandler's window and sleep; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message has the hero fold papers, watch the chandler's window, and sleep; no composed or invented poem, song, riddle, story, or game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "15": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks Bram factual questions about the Counting House, a paper, a name, and an account, and orders breakfast; he offers no invented poem, song, riddle, story, or game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks Bram questions about the Counting House, the Strongroom Wicket, and named parties, and orders breakfast; nothing composed or invented is offered to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "16": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message contains payment, a message for the barkeep about a dealer, and a request for directions; it offers no composed or invented poem, song, riddle, story, or game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message contains payment, a message to the barman about the dealer, and a directions question; it offers no poem, song, riddle, story, or invented game to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "17": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message contains no offer of a poem, song, riddle, story, or game invented for anyone; it describes walking the streets, a cover story about being sent by a ship's man, and knocking on a door."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message describes walking, asking directions, and a cover-style introduction to Jory's mother; it offers no composed or invented poem, song, riddle, story, or game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "18": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is an ordinary in-character conversation: introducing himself, relaying what a mate told him, and asking questions; it offers no poem, song, riddle, story gift, or invented game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player offers no composed or invented poem, song, riddle, story-gift, or game; he delivers a direct account of what he was told and asks questions, which is ordinary talk and information-sharing."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "19": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message offers no invented poem, song, riddle, story, or game; it is a plan to visit the Seatower and questions about the soft-handed man, so it does not meet the made criterion."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The hero asks questions and makes a plan to visit the Seatower; he offers no invented poem, song, riddle, story-gift, or game to anyone, so this is ordinary talk and inquiry."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "20": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary action and instructions for going to the gate (bringing papers, walking beside her, speaking the name), with no composed poem, song, riddle, story, or game offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary plan-making and instructions for going to the gate with Maud; it offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        }
+      }
+    },
+    "A-opus": {
+      "note": {
+        "a": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1,
+          "reason": "The note reports roll cards applying wrong skill modifiers and totals that don't match the sheet, and it says the writer wants the next session or two and will be happy once the modifiers are fixed."
+        },
+        "b": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1,
+          "reason": "The note reports roll cards adding wrong modifiers (Persuasion, Deception, Perception totals not matching the sheet), and says 'Fix the roll modifiers and I'm very happy' and that they'd want the next session or two, but no sent question or button press was swallowed."
+        },
+        "referee": null,
+        "final": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1
+        }
+      },
+      "made": {
+        "1": {
+          "a": {
+            "made": 0,
+            "reason": "The player gives a name, a pay slip, a cover story of sellsword work, and a silent mental command to the cat; he offers no composed poem, song, riddle, story, or new game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player gives a name, a pay slip, and a cover story about his work, then asks his cat what it smells; he offers no poem, song, riddle, story, or new game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "2": {
+          "a": {
+            "made": 0,
+            "reason": "The player offers a silver/gold coin for an honest answer and asks questions; no poem, song, riddle, story, or invented game is composed or offered, so it is ordinary talk and a bribe, not a made item."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The hero offers a silver/gold coin for information and makes no poem, song, riddle, story, or new game; the player's message is ordinary questioning and a bribe, not composing or inventing something to give."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "3": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message offers no invented poem, song, riddle, story, or game; it gives a gold coin, a thanks, and asks for information (family name, lodging) and tells the cat to watch the door."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message offers no invented poem, song, riddle, story, or game; it gives a gold coin, a quiet thank-you, questions about a family and a lodging, and a cat instruction, none of which is a composed or invented offering."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "4": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message contains no offer of a poem, song, riddle, story, or new game to anyone; it is ordinary dialogue, an offer to walk together, and a question about Garret."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message contains no offer of a composed or invented poem, song, riddle, story, or game to anyone; it is ordinary dialogue, a walking request, and a question about Garret, so the made rule does not apply."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "5": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is an in-character answer to the sergeant's question ('One sentence. Why?') giving a justification for his presence, not a composed poem, song, riddle, story, or game offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is an in-character answer to the sergeant's question, a statement of purpose and a demeanor, with no composed poem, song, riddle, story, or game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "6": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message describes examining coins, explaining Umberlee's due, and placing his own coin beside the copper, with no composed poem, song, riddle, story, or new game offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is an investigative action: examining the coin, comparing it to the cat's sense of smell, and placing his own coin for comparison; it contains no poem, song, riddle, story, or game composed and offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "7": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is in-character talk and questions to Brask about who invited the drowned men, with no poem, song, riddle, story, or game invented and offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-character dialogue: answering questions, offering a plan to investigate, and asking a question about the Wheel; it contains no poem, song, riddle, story gift, or invented game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "8": {
+          "a": {
+            "made": 0,
+            "reason": "The player offers a plan, a cover story, and a promise to log his movements, none of which is a poem, song, riddle, story, or new game invented as a gift or performance."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is a plan for infiltrating a dice cellar and handling evidence, with no poem, song, riddle, story, or invented game offered to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "9": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message contains no poem, song, riddle, story, or game offered to anyone; it is ordinary dialogue, a salute, a plan to answer later, and a request for a room, change, and a needle."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message contains no poem, song, riddle, story, or game offered to anyone; it is a plan, a cover-story-style reply to Brask, and a request for a room and sewing needle."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "10": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-world action: banter with the landlady, hiding a marker in a cloak hem, setting a cat to watch, and going to sleep; it offers no poem, song, riddle, story, or new game invented for someone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-world action: banter with the landlady, hiding the marker in the cloak hem, setting a cat watch, and going to sleep; it offers no composed poem, song, riddle, story, or new game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "11": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message offers the cat a gift of breakfast and a scratch, and sets down gold and asks questions; no poem, song, riddle, story, or game is composed or invented for anyone, so it does not meet the made criterion."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message offers the cat a promise of breakfast and a gold piece as payment, asks questions, and makes a credit arrangement; none of these is a poem, song, riddle, story, or newly invented game offered to someone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "12": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message contains banter and a cover-story remark about the cat, but does not have the hero offer anyone a poem, song, riddle, story, or invented game; the closest is a compliment and a promise, which are ordinary talk."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary talk, payment, and a cover-story-style plan; he offers no poem, song, riddle, story, or game he invents for anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "13": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message offers no composed or invented poem, song, riddle, story, or game; it is a bargain for a coat, a payment, and questions about a captain and the two men at the Counting House."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player offers coins for a coat, asks questions, and makes small talk; nothing composed or invented, such as a poem, song, riddle, story, or game, is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "14": {
+          "a": {
+            "made": 0,
+            "reason": "The player offers a silver payment, an introduction to a safe house, and a name, but nothing composed or invented as a gift or performance, and no poem, song, riddle, story, or game is offered."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player offers a silver payment, a name, and directions to a safe house, but nothing he composes or invents as a gift, performance, song, riddle, story, or game; the speech is ordinary talk and a plan."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "15": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is about hiding gear, planning a stakeout, and sending the cat to investigate; it contains no hero offering someone a poem, song, riddle, story, or invented game."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is plans, hiding a crossbow, stashing coin, and directing the cat; it contains no hero offering anyone a poem, song, riddle, story, or invented game."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "16": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is an in-character merchant's question about a building and night boats, plus a cantrip cast on the cat and a payment; no poem, song, riddle, story, or game is composed or offered as a gift or performance."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is an in-character merchant's question about the salt-house and night boats, plus a copper tip, with no poem, song, riddle, story, or game composed and offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "17": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is investigative action (sniffing a copper, surveying steps, planning to meet Brask); it offers no composed poem, song, riddle, story, or new game to anyone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is investigation and plans: examining a copper, scouting steps, and positioning himself for Brask; no poem, song, riddle, story, or invented game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "18": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a verbal report and plan to a fellow character, with no poem, song, riddle, story, game, or invented gift offered to anyone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is a verbal report and a request for help, with no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "19": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a report and a plan (passing intelligence, arranging the meeting, instructing Haskel to listen), not an offer of a poem, song, riddle, story, or invented game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is an ordinary in-world report and plan: passing on the cat's smell, choosing a meeting option, and giving instructions to Haskel and the cat. It contains no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "20": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message describes the hero reading his own papers, checking his belongings, and paying a debt; it contains no poem, song, riddle, story, or game composed and offered to anyone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message describes the hero inspecting his belongings, reading existing papers, and resting; it contains no poem, song, riddle, story, or game composed or invented for someone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        }
+      }
+    },
+    "B-sol": {
+      "note": {
+        "a": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1,
+          "reason": "The note reports a Persuasion roll using +2 instead of the listed +7, says nothing about a player question or button press being swallowed, and states 'Overall, I'd return.'"
+        },
+        "b": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1,
+          "reason": "The note reports a Persuasion roll using +2 instead of the listed +7, but it describes no player message or button press that failed to get through, and it states plainly 'I'd return.'"
+        },
+        "referee": null,
+        "final": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1
+        }
+      },
+      "made": {
+        "1": {
+          "a": {
+            "made": 0,
+            "reason": "The player gives a name, a cover identity, and asks about the toll; no poem, song, riddle, story, or game is composed and offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player gives a name, a cover identity, and asks about the toll; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "2": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks the sergeant for lodging recommendations and pays the toll; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player only asks the sergeant for lodging advice and pays the toll; no hero-composed poem, song, riddle, story, or game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "3": {
+          "a": {
+            "made": 0,
+            "reason": "The player shows a regimental pay slip and asks a question about Zaranda's people; this is ordinary conversation and a claim of identity, not composing or inventing a poem, song, riddle, story, or game for someone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player shows a regimental pay slip and asks a question about Zaranda's people; this is ordinary talk and a bit of identity-proving, not composing or inventing a poem, song, riddle, story, or game for someone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "4": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks the cat a question through their bond and walks toward the Elfsong; no poem, song, riddle, story, or invented game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks the cat a question through their bond; they do not compose or invent anything such as a poem, song, riddle, story, or game to offer someone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "5": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-character talk and a plan (declining the card game, heading to the inn and asking for directions); no poem, song, riddle, story, or new game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-character talk and movement (thanking the cat, refusing the card game, taking directions, ordering a meal and asking about a room); it offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "6": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is an in-character question and implied bribe-style probing about the ledger and the cooper; it offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is a pointed in-character question about a ledger and a cooper, not an offer of any poem, song, riddle, story, or game the hero composed or invented, so it does not count."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "7": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary conversation: taking a seat, asking a question about the cooper, and sharing a brief claim of having come upriver; it offers no composed or invented poem, song, riddle, story, or game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks a question and makes ordinary small talk at the fire; no poem, song, riddle, story gift, or new game is composed or offered."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "8": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message asks questions and comments on the world (markings on the token, the card dealer) without offering anyone a composed or invented poem, song, riddle, story, or game."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks questions and makes a correction and a remark about a card dealer; nothing he composes or invents, such as a poem, song, riddle, story gift, or new game, is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "9": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message offers Teague a reflection on Hollin's death and a stated refusal to promise answers, but it presents no poem, song, riddle, story, or game that the hero composed or invented as a gift or performance; it is ordinary dialogue."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue and a reflection on Hollin's death, with no poem, song, riddle, story, or game composed and offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "10": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-character talk: a farewell, a movement upstairs, and a question to the cat through the bond; it offers no poem, song, riddle, story, or game invented as a gift or performance."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-character talk and a question to the cat through the bond; it offers no composed poem, song, riddle, story, or game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "11": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary talk and planning for the night and next day (permission for the cat, going to the Lady's Hall, settling down), with no poem, song, riddle, story, or game composed and offered to anyone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary planning and settling in for the night: rubbing a coin, stating intent to visit the Lady's Hall, checking the window, and going to sleep. It offers no poem, song, riddle, story, or game invented for someone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "12": {
+          "a": {
+            "made": 0,
+            "reason": "The player has the hero dress, take his rod and coin, and head downstairs for bread and directions; no poem, song, riddle, story, or game is composed or offered to anyone, so the rule's trigger is absent."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary action: dressing, taking items, and heading downstairs for bread and directions; it offers no poem, song, riddle, story, or game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "13": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue: paying for a room, thanking the landlord, and asking a question about the mysterious visitor, with no poem, song, riddle, story, or game composed and offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue: paying for a room, thanking the landlord, and asking a question about the informant; it offers no composed poem, song, riddle, story, or game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "14": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-world conduct: acknowledging the landlord, walking up the Steeps, and politely asking the Watch to pass, with no poem, song, riddle, story, or game composed and offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-world dialogue and action: accepting the landlord's remark, walking up the Steeps, and asking the Watch for passage with a coin; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "15": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a cover story about a spellcasting focus plus a question about the Watch's carrying rules; it offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message offers no composed or invented poem, song, riddle, story, or game to anyone; it is ordinary dialogue answering the watch officer's question, with a cover story about a spellcasting focus and a question about rules."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "16": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue: thanking the officer, walking to the Hall, and introducing himself to a priest. It offers no composed poem, song, riddle, story, or game that nobody asked for."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue: thanking the officer, walking through the city, and introducing himself to a priest; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "17": {
+          "a": {
+            "made": 0,
+            "reason": "The player recounts past gambling and a prayer, then asks the priestess for counsel; he offers no composed poem, song, riddle, story, or new game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player recounts past gambling, a prayer, and a cat's observation, then asks for counsel; he offers no newly composed poem, song, riddle, story, or game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "18": {
+          "a": {
+            "made": 0,
+            "reason": "The player only hands over the deck and comments on his reasons for keeping it; he offers no invented poem, song, riddle, story, or game to anyone, so the made criterion is not met."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player hands over the deck and makes a candid remark about gambling; no poem, song, riddle, story, or new game is composed or offered to anyone, and nothing invented was requested or given."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "19": {
+          "a": {
+            "made": 0,
+            "reason": "The player offers to provide light by casting a spell and asks permission, which is ordinary talk and an action, not composing or inventing a poem, song, riddle, story, or game for someone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player offers to provide light by casting a spell, which is an ordinary action and not a composed poem, song, riddle, story, or game offered as a gift or performance."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "20": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is investigative dialogue—examining a cut page, pointing out a drawing, and asking Corra questions—with no poem, song, riddle, story, or game composed and offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player only examines the quire, points out a drawing, and asks Corra questions about recognition and access; he offers no invented poem, song, riddle, story, or game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        }
+      },
+      "lady": {
+        "1": {
+          "a": {
+            "lady": 0,
+            "reason": "The player gives a name and asks the toll and does not ask anyone in the world about Tymora, her temple, her followers, or her signs."
+          },
+          "b": {
+            "lady": 0,
+            "reason": "The player asks only about the toll and gives their name; no question about Tymora, her temple, followers, or signs is put to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "lady": 0
+          }
+        },
+        "2": {
+          "a": {
+            "lady": 0,
+            "reason": "The hero asks the sergeant for lodging recommendations, not about Tymora's temple, followers, signs, or house; the Lady is only mentioned in the game master's reply via Corwin Ashe's remark, which is not part of the player's message being tagged."
+          },
+          "b": {
+            "lady": 1,
+            "reason": "The hero asks the sergeant for a lodging recommendation, and the reply centers on Corwin Ashe's invocation of the Lady and a gold-coin remark tied to her favor, but the hero himself does not ask anyone about Tymora's temple, followers, sayings, or house; the Lady appears only in the game master's na"
+          },
+          "referee": {
+            "lady": 0,
+            "reason": "The player asks the sergeant for a lodging recommendation and never asks anyone about Tymora; only the GM's dealer mentions the Lady."
+          },
+          "final": {
+            "lady": 0
+          }
+        },
+        "3": {
+          "a": {
+            "lady": 0,
+            "reason": "The player asks the sergeant whether she knew any of Zaranda's people, which is not about Tymora, her temple, her followers, her signs, or the way to her house; the Lady is not mentioned in the player's message."
+          },
+          "b": {
+            "lady": 0,
+            "reason": "The player asks the sergeant whether she knew any of Zaranda's people, which is about a regiment figure, not about Tymora's temple, servants, sayings, or house, so the lady criterion is not met."
+          },
+          "referee": null,
+          "final": {
+            "lady": 0
+          }
+        },
+        "4": {
+          "a": {
+            "lady": 0,
+            "reason": "The player asks the cat about the cards or the man and never names or asks about Tymora, her temple, her followers, or her signs."
+          },
+          "b": {
+            "lady": 0,
+            "reason": "The hero asks the cat through their bond what caught its eye, without naming or asking about Tymora, her temple, her followers, or her signs; any mention of her comes from the game master's reply, not the hero's question."
+          },
+          "referee": null,
+          "final": {
+            "lady": 0
+          }
+        },
+        "5": {
+          "a": {
+            "lady": 1,
+            "reason": "The hero asks Osric where the temple is, and Osric answers with the Lady's Hall and directions to it, which the rule counts as asking someone in the world about Tymora's temple."
+          },
+          "b": {
+            "lady": 1,
+            "reason": "In the game master's reply, James asks Osric about the temple, and Osric answers with the Lady's Hall and how to reach it, which matches the rule for asking where her temple is."
+          },
+          "referee": null,
+          "final": {
+            "lady": 1
+          }
+        }
+      }
+    },
+    "B-astra": {
+      "note": {
+        "a": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1,
+          "reason": "The note reports a roll card using +2 against a displayed Perception +1 or Persuasion +7, and being unable to send an out-of-game correction while a card was pending, and says the writer would return for the dawn visit."
+        },
+        "b": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1,
+          "reason": "The note reports rolls using +2 despite displayed Perception +1 or Persuasion +7, and says an out-of-game correction could not be sent while a roll card was pending; it also says the writer would return for the dawn visit."
+        },
+        "referee": null,
+        "final": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1
+        }
+      },
+      "made": {
+        "1": {
+          "a": {
+            "made": 0,
+            "reason": "The player offers help paying a gate fee and gives his name and business; he does not compose or invent any poem, song, riddle, story, or game for anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player offers to help pay a family's gate fee, which is an ordinary offer of aid, not a composed or invented poem, song, riddle, story, or game given to someone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "2": {
+          "a": {
+            "made": 0,
+            "reason": "The player pays the toll and asks a matter-of-fact question about the pencil ticks; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player pays the toll for himself and the Vells and asks a practical question about the pencil ticks; he offers no composed poem, song, riddle, story, or new game."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "3": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks questions and asks to see the coin, offering no composed poem, song, riddle, story, or game to anyone; it is ordinary dialogue."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks questions and offers help and inspection of a coin; no poem, song, riddle, story, or new game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "4": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue: a warning about the river, a gentle question about where the woman was, and a remark about not making the man feel frightened; it offers no composed poem, song, riddle, story, or invented game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player warns Mordai about the river and asks where the woman sent him; this is ordinary dialogue and questioning, not offering a composed or invented poem, song, riddle, story, or game."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "5": {
+          "a": {
+            "made": 0,
+            "reason": "The player offers an apology, a lodging plan, and a watchful observation of Ferro's payouts; nothing the hero composes or invents as a poem, song, riddle, story, or new game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player offers an apology, a plan to lodge at the Elfsong, and observation of Ferro's payouts; nothing composed or invented as a gift or performance for anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "6": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue: a denial, a smile, and a question about the coins; it offers no poem, song, riddle, story, or game the hero composed or invented."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue: a denial, a smile, and a question about the coins; it offers no poem, song, riddle, story, or game invented for anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "7": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks Ferro a pointed question about who brings the coin bag and makes an accusation about the scheme; he offers no composed poem, song, riddle, story, or new game to anyone, so this is ordinary dialogue."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks Ferro a pointed question about who brings the bag and makes an accusation about a suspect; he offers no composed poem, song, riddle, story, or new game, so it is ordinary talk and not a made offering."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "8": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks for a wrapped copper to take to clergy and asks where to find Harl; no invented poem, song, riddle, story, or game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks for a wrapped copper to take to clergy and asks where to find Harl; no composed or invented poem, song, riddle, story, or game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "9": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message contains a handshake, a promise to pass along information, a request to avoid confrontation, and a question to Varn; it offers no poem, song, riddle, story, or game composed or invented for anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message contains no offer of a poem, song, riddle, story, or invented game to anyone; it is ordinary dialogue about handshakes, keeping a sample, and asking a priest for access."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "10": {
+          "a": {
+            "made": 0,
+            "reason": "The player only asks a lamplighter for directions and states intent to walk to the Copper Kettle and watch for someone; no composed poem, song, riddle, story, or invented game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary movement and a request for directions plus an intent to watch for someone; it contains no composed or invented poem, song, riddle, story, or game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "11": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks about drinking, offers to buy supper for Harl, and gives the cat an instruction; he does not offer anyone a poem, song, riddle, story, or game he composes or invents."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks about drinking, buying supper for Harl, and questions the doorman; nothing composed or invented as a gift, poem, song, riddle, story, or game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "12": {
+          "a": {
+            "made": 0,
+            "reason": "The player orders ale and a meal and states a plain purchase; no composed or invented poem, song, riddle, story, or game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player orders ale and a meal and states a plain purchase; nothing composed or invented is offered to anyone, so it is ordinary talk and not a made gift."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "13": {
+          "a": {
+            "made": 0,
+            "reason": "James offers ordinary talk and a meal, asking for a word with Harl; he does not compose or invent a poem, song, riddle, story, or game for anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "James offers ordinary talk and a meal, with no composed or invented poem, song, riddle, story, or game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "14": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary talk and questioning about Ferro's pennies and the shrine; it contains no poem, song, riddle, story, game, or invented composition offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue: questioning Harl, sharing information about Ferro and the pennies, and asking about shrine visits; it contains no poem, song, riddle, story, or game composed and offered as a gift or performance."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "15": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue and in-world instructions: advice to Harl, a plan to take a sample to the Hall, a cat warning, and a question; it contains no hero-composed poem, song, riddle, story, or game offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue and in-world action (advising Harl to remove the cord, planning to visit the Hall, relaying a warning to the cat), with no poem, song, riddle, story, or game composed and offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "16": {
+          "a": {
+            "made": 0,
+            "reason": "The player only wraps the coin and cord, gives a short piece of advice, and asks a question about the man in the grey coat; no composed or invented poem, song, riddle, story, or game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-world talk: taking the coin and cord, giving practical advice, and asking Harl whether he knows the man in the dove-grey coat. It offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "17": {
+          "a": {
+            "made": 0,
+            "reason": "The player offers a room and a walk to the Hall, a practical plan and a warning about Dagna's boy; no invented poem, song, riddle, story, or game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message offers a room, a shared lodging, and a warning about Dagna's boy; it is ordinary talk and a plan, not a composed poem, song, riddle, story, or game offered to someone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "18": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue and tactical action (asking Harl to lead, checking behind, asking the cat to watch, asking to be called James); it offers no poem, song, riddle, story, or game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary talk and a request to the cat for surveillance; it offers no poem, song, riddle, story, or game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "19": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-game action: warning a companion about a tail, asking the cat to watch, and asking the innkeeper about a room; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-game action: warning a companion about a tail, asking the cat to watch, and asking the innkeeper about a room; it contains no poem, song, riddle, story, or game the hero composes and offers."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "20": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks for a room, gives a warning about a follower, and requests that callers be sent to him; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-world talk: paying for a room, warning the innkeeper about a follower, and planning to inspect the room; it offers no poem, song, riddle, story, or invented game."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        }
+      },
+      "lady": {
+        "1": {
+          "a": {
+            "lady": 0,
+            "reason": "The hero mentions no Tymora by name and asks no one about her temple, servants, signs, or house; the only 'lady' references are Ferro's patter and the card game, which the hero merely notices."
+          },
+          "b": {
+            "lady": 0,
+            "reason": "The hero mentions no deity; Ferro Lask's 'the Lady' appears only in the dealer's patter, and the player never asks anyone about Tymora's temple, servants, signs, or house."
+          },
+          "referee": null,
+          "final": {
+            "lady": 0
+          }
+        },
+        "2": {
+          "a": {
+            "lady": 0,
+            "reason": "The player asks Varn about the pencil ticks and says nothing about Tymora, her temple, her followers, or her signs; the only mentions of Lady Luck come from Ferro Lask in the game master's text."
+          },
+          "b": {
+            "lady": 0,
+            "reason": "The hero asks about the pencil ticks and what Vell should know, without naming Tymora or asking about her temple, servants, sayings, or signs."
+          },
+          "referee": null,
+          "final": {
+            "lady": 0
+          }
+        },
+        "3": {
+          "a": null,
+          "b": {
+            "lady": 0,
+            "reason": "The player asks Mordai who gave him the coin and what he's holding, which concerns the coin's origin rather than asking anyone about Tymora's temple, servants, lore, or the way to her house; the Lady is only referenced as the coin's depiction and the player's own coin-wearing in passing."
+          },
+          "referee": {
+            "lady": 0,
+            "reason": "The hero names the Lady only in passing and asks about Mordai's particular coin and who gave it, not about Tymora, her temple, her servants or her signs."
+          },
+          "final": {
+            "lady": 0
+          }
+        },
+        "4": {
+          "a": {
+            "lady": 0,
+            "reason": "The player asks Mordai whether the woman said where the seat was or told him to meet anyone, which concerns the river warning and a gift, not Tymora's temple or shrine; the hero does not ask anyone about the Lady herself."
+          },
+          "b": {
+            "lady": 0,
+            "reason": "The player asks Mordai whether the woman said where the seat was or told him to meet anyone, which concerns the source of the gift rather than Tymora's temple, servants, or signs; the Lady is not the subject of the question."
+          },
+          "referee": null,
+          "final": {
+            "lady": 0
+          }
+        },
+        "5": {
+          "a": {
+            "lady": 0,
+            "reason": "The player only watches Ferro's payout to learn whether his extra coin is ordinary winnings or something separate; they do not ask anyone about Tymora's temple, servants, sayings, or house, so the rule is not met."
+          },
+          "b": {
+            "lady": 0,
+            "reason": "The hero asks no one about Tymora; they only watch Ferro's payout and mention a coin, while the Lady is referenced only in passing by Ferro and the hero's own thoughts, never queried."
+          },
+          "referee": null,
+          "final": {
+            "lady": 0
+          }
+        }
+      }
+    },
+    "B-opus": {
+      "note": {
+        "a": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1,
+          "reason": "The note reports Deception and Persuasion showing +2 instead of +7 on cards, a player's out-of-game \"?\" question being swallowed while a roll was pending, and states \"I'd play the next session.\""
+        },
+        "b": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1,
+          "reason": "The note reports Deception and Persuasion cards showing +2 instead of +7, a swallowed out-of-game \"?\" question during a pending roll, and an explicit \"I'd play the next session.\""
+        },
+        "referee": null,
+        "final": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1
+        }
+      },
+      "made": {
+        "1": {
+          "a": {
+            "made": 0,
+            "reason": "The hero only answers the sergeant's questions, pays a toll, bribes-with-coins, and gives a cover story; he offers no invented poem, song, riddle, story, or game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player gives the sergeant coins, a name, and a cover story and asks for work and lodging; nothing invented or composed by the hero is offered to anyone, and the gnome's card game is only declined by ignoring it."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "2": {
+          "a": {
+            "made": 0,
+            "reason": "The player pays a silver piece for information and sends the cat to sniff the chalk; no poem, song, riddle, story, or game is composed or offered as a gift or performance."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The hero pays a silver piece and asks questions about the chalk mark; no poem, song, riddle, story, or new game is composed or offered, so it falls under ordinary talk and payment, which the rules score as 0."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "3": {
+          "a": {
+            "made": 0,
+            "reason": "The player sends a parting salute and a brief remark, then scouts the stair and listens; no poem, song, riddle, story, or new game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player sends a parting salute and words, then moves to scout the stair and listen; no poem, song, riddle, story, or invented game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "4": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a plan and action (going down the stair, casting Light, inspecting the landing) with a request to the cat to watch the gap; it contains no poem, song, riddle, story, or game offered to anyone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is about going down a stair, casting Light on a coin, and inspecting a scrap of cloth and chalk; it contains no offering of a poem, song, riddle, story, or game to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "5": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message describes searching, picking up evidence, listening at a door, and inspecting a padlock; it contains no poem, song, riddle, story, game, or invented thing offered to anyone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message describes searching, handling evidence, listening at a door, and inspecting a padlock; it offers no composed poem, song, riddle, story, or invented game to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "6": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is about climbing the stair, listening, and giving the cat instructions; it contains no poem, song, riddle, story, or invented game offered to anyone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is about climbing the stair, listening, and sending instructions to the cat; it contains no poem, song, riddle, story, or invented game offered to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "7": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a cover story and a lie about crates and a dry floor, not the hero offering anyone a poem, song, riddle, story, or invented game."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is a cover story and lie about needing storage and offering to buy cord, with no composed or invented poem, song, riddle, story, or game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "8": {
+          "a": {
+            "made": 0,
+            "reason": "The player offers two silver and a request for information; nothing composed or invented (poem, song, riddle, story-gift, or game) is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player offers two silver and a plea for information; no poem, song, riddle, story, or game is composed or invented for anyone, so the criterion is not met."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "9": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks questions and makes promises and a cat command; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is questioning, a promise, and a cover-style reassurance with no composed poem, song, riddle, story, or game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "10": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary plan-making, instructions to the cat, and a disguise; it contains no hero composing or inventing a poem, song, riddle, story, or game offered to someone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary planning and movement: instructions to Gask, orders to the cat, and a plan to sit in a cookshop, with no poem, song, riddle, story, or game composed and offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "11": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message has James ask the watermen questions and buy them a drink, and he invents a cover story about a sergeant; he offers no poem, song, riddle, story gift, or new game that someone asked for, so it is not a made thing."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message has James ask questions and buy drinks for information from the watermen and then reposition; he offers no poem, song, riddle, story, or invented game to anyone, so it does not meet the made criterion."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "12": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message gives orders and asks for surveillance through the cat; it contains no poem, song, riddle, story, or game invented as an offering to someone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message gives the cat orders and asks for surveillance; it offers no composed poem, song, riddle, story, or game to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "13": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message concerns renewing a disguise and sending the cat to watch the landing; it contains no hero offering anyone a poem, song, riddle, story, or invented game."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message only renews a disguise, sends a short instruction to the cat, and describes the hero's scouting; it contains no poem, song, riddle, story, or game offered to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "14": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is tactical instructions to the cat and a plan for what James will do if the lantern-bearer approaches; it offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message contains only instructions to the cat and a plan for how James will act (staying put or stumbling over as a drunk); no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "15": {
+          "a": {
+            "made": 0,
+            "reason": "The player's character sings an existing traditional Tethyrian marching song, the quartermaster's daughter, rather than composing or inventing a new verse, and the singing is a drunk cover performance, not an offered original gift nobody asked for; it is not a new composition by the hero."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player has James sing an existing traditional Tethyrian marching song, the quartermaster's daughter, rather than composing or inventing a new verse, and it is a drunk's cover performance rather than a gift offered to someone who didn't ask."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "16": {
+          "a": {
+            "made": 1,
+            "reason": "The player's message has the hero sing the quartermaster's daughter verse, but the verse is a known Tethyrian soldier's song the hero already sings in the GM's text, so it is not invented on the spot; the player's new content is only a knock and questions, which are ordinary talk, so this is not a c"
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message has James sing the quartermaster's daughter verse, but that verse was already being sung in the game master's text as James's own drunken performance and was not something anyone asked him for, and the player's message only says he 'finishes the verse,' so the composition is not"
+          },
+          "referee": {
+            "made": 0,
+            "reason": "The player's message finishes an existing soldier's song as part of a drunk cover act, then plans and asks questions, so nothing is newly composed or offered as a gift."
+          },
+          "final": {
+            "made": 0
+          }
+        },
+        "17": {
+          "a": {
+            "made": 0,
+            "reason": "The hero offers Gask ten gold and a cover story to protect himself and avoid a threat, not a poem, song, riddle, story-as-performance, or game invented for someone; this is a bribe and a lie, which the rule explicitly excludes."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player offers Gask a bribe, a cover story, and advice to hide, but composes or invents no poem, song, riddle, story-as-gift, or game for anyone; the cover story and payment are excluded."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "18": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message offers no invented poem, song, riddle, story, or game to anyone; it is a bribe-and-request to a landlady for a room, plus an out-of-game note about cat hit points."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-world talk: dropping a disguise, explaining himself to the innkeeper, offering payment and a joke about the cat; he composes no poem, song, riddle, story, or game for anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "19": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is about securing the room, examining the yard, reflecting on clues, and planning the morning; it contains no hero offering anyone a composed or invented poem, song, riddle, story, or game."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is about securing the room, examining the yard, reflecting on clues, and planning the next day's inquiries; it contains no hero composing or inventing a poem, song, riddle, story, or game offered to someone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "20": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary action and dialogue: sleeping arrangements, checking the room, opening the shutter, and a short send to the cat; it contains no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message describes sleeping, checking the room and yard, and opening the shutter; it has the hero offer no composed or invented poem, song, riddle, story, or game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        }
+      },
+      "lady": {
+        "1": {
+          "a": {
+            "lady": 0,
+            "reason": "The hero only glances at the chalk coin and asks the sergeant about work and lodging, never about Tymora, her temple, her followers, or her signs."
+          },
+          "b": {
+            "lady": 0,
+            "reason": "The hero glances at the Tymora chalk coin and ignores the gnome's mention of Lady Luck, but never asks anyone about her temple, followers, sayings, or signs."
+          },
+          "referee": null,
+          "final": {
+            "lady": 0
+          }
+        },
+        "2": {
+          "a": {
+            "lady": 1,
+            "reason": "The hero asks the gnome Pell Tumblewick who drew the Lady's coin on the post, which asks someone in the world about Tymora's signs, specifically who has been marking her coin, so it counts as asking what people say of her signs."
+          },
+          "b": {
+            "lady": 1,
+            "reason": "The hero asks Pell Tumblewick, a person in the world, whether the chalk Lady's coin drawn on the sergeant's post was made by a child, a priest, or anyone else, which is asking who drew the Lady's coin sign, a question about what people do with her signs."
+          },
+          "referee": null,
+          "final": {
+            "lady": 1
+          }
+        },
+        "3": {
+          "a": {
+            "lady": 0,
+            "reason": "The player's message contains no question to anyone in the world about Tymora; the only mention is the player's own Lady-free actions, and the Lady appears only in the game master's prior dialogue, not in the player's request."
+          },
+          "b": {
+            "lady": 0,
+            "reason": "The player's message only mentions the gnome's 'Keep the offer warm' and a salute, and never asks anyone about Tymora, her temple, followers, signs, or the way to her house; the Lady is not referenced at all in the player's text."
+          },
+          "referee": null,
+          "final": {
+            "lady": 0
+          }
+        },
+        "4": {
+          "a": {
+            "lady": 0,
+            "reason": "The hero takes out and uses the Lady's coin to cast Light, but never asks anyone in the world about Tymora; the coin-sign in the chalk is only observed, not asked about."
+          },
+          "b": {
+            "lady": 0,
+            "reason": "The hero handles and lights her coin and looks for signs, but never asks anyone in the world about Tymora, her temple, or her followers."
+          },
+          "referee": null,
+          "final": {
+            "lady": 0
+          }
+        },
+        "5": {
+          "a": {
+            "lady": 0,
+            "reason": "The player's message contains no question to anyone in the world about Tymora; the only reference is the GM's earlier coin-sign, and the player simply acts (takes the scrap, listens at the door, inspects the padlock) without asking about the Lady, her temple, or her followers."
+          },
+          "b": {
+            "lady": 0,
+            "reason": "The player's message contains no question to anyone in the world about Tymora; the coin is only held and the light dimmed, and the cat is asked about the gap, not about the Lady."
+          },
+          "referee": null,
+          "final": {
+            "lady": 0
+          }
+        }
+      }
+    },
+    "B-fable": {
+      "note": {
+        "a": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1,
+          "reason": "The note reports Persuasion/Deception cards showing +2 while naming Persuasion +7, which is a wrong bonus on the card, and it says the player would sit down again tomorrow at the Elfsong."
+        },
+        "b": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1,
+          "reason": "The note reports roll cards showing \"+2\" while naming \"Persuasion +7\", which is a wrong bonus, but it describes no out-of-game message being lost or blocked, and it says the writer would return tomorrow at midday."
+        },
+        "referee": null,
+        "final": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1
+        }
+      },
+      "made": {
+        "1": {
+          "a": {
+            "made": 0,
+            "reason": "The player declines to play and asks questions about the coin; he offers no invented poem, song, riddle, story, or game to anyone, so the message does not qualify."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is conversation and refusal to play the dealer's game; it offers no invented poem, song, riddle, story, or game to anyone, so the criterion is not met."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "2": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is an in-character persuasive speech to a dealer, with no poem, song, riddle, story gift, or invented game offered to anyone; it is ordinary talk and a plan."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is persuasive dialogue and a pressing request for information; it offers no poem, song, riddle, story, or invented game to anyone, so it does not meet the made criterion."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "3": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a plan and a truthful account given to Tobin, with questions and tactical observation; it offers no poem, song, riddle, story gift, or invented game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue: advice to Tobin, a truthful account to pass along, and tactical questions about the meeting; it offers no poem, song, riddle, story, or game composed for someone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "4": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message offers advice, a gift of gold-handling instructions, and a farewell phrase, but does not present a composed poem, song, riddle, story, or new game that someone asked for; it is ordinary talk and planning."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message offers advice, a gift of a coat and gold instructions, and a plan, but nothing composed or invented as a poem, song, riddle, story, or game; the advice and instructions are ordinary talk and plans."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "5": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-character talk: a plain refusal to play, a cover story about business, and a question to the sergeant. It offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-character talk: a plain refusal to play, a cover story about business and lodging, and a question to the sergeant, with no poem, song, riddle, story, or new game composed and offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "6": {
+          "a": {
+            "made": 0,
+            "reason": "The hero recounts information about the coin game, names, and a plan to the sergeant, but composes no poem, song, riddle, story, or new game nobody requested; it is ordinary talk, a plan, and a bargain."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The hero gives the sergeant information and a request about the smuggling ring, which is ordinary talk and a plan; he composes nothing like a poem, song, riddle, story, or new game."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "7": {
+          "a": {
+            "made": 0,
+            "reason": "The hero offers no composed or invented poem, song, riddle, story, or game; he speaks a remark, a plan about the cat signal, and a cover arrangement, none of which is a created performance or gift nobody asked for."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message offers no composed or invented poem, song, riddle, story, or game; it is dialogue, a cover-story-style signal via the cat, and a plan to get a room, none of which fits the made criterion."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "8": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue: paying for a room, ordering food, and asking Hesper a question about a ship and Vell's luck; it offers no poem, song, riddle, story, or game invented for anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue: checking in, paying for a room, and asking Hesper a question about a ship and its luck; it offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "9": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks questions about the young man and gossip about past victims, with no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks questions and speaks of a plan to watch the young man; he offers no composed poem, song, riddle, story, or new game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "10": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is conversation and a question to Teo about a coin, plus a remark about his own past; it offers no poem, song, riddle, story gift, or invented game."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-character talk and questioning aimed at Teo and Corrie, with no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "11": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a persuasive speech and a warning about a cursed coin, with no poem, song, riddle, story gift, or invented game offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is a plain persuasive speech and a request for Teo to act, with no poem, song, riddle, story-gift, or invented game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "12": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is an in-character plan and advice about the cursed coin; it offers no poem, song, riddle, story, or invented game, so it does not meet the made criterion."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is an in-character plan and advice about the cursed coin, not a poem, song, riddle, story, or new game composed and offered as a gift or performance."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "13": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message involves a bribe, a warning to the innkeeper, staging a decoy room, and a disguise, with no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message involves bribing Hesper, arranging a cover story, setting up a decoy room, and disguising himself, with no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "14": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a plan of action, instructions sent down the bond, and an out-of-game note about Persuasion card bonuses; it contains no poem, song, riddle, story, or invented game offered to anyone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is a plan and a relayed order to the bonded animal, plus an out-of-game note about card bonuses; it contains no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "15": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-world talk: a boatman's bluff, a bribe with a gold piece, and a question about the lamp; nothing composed or invented as a poem, song, riddle, story gift, or game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is an in-character negotiation and bribery with a girl (a fabricated cover identity, a gold coin, and a question), not the hero offering a composed poem, song, riddle, story, or game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "16": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a stealth, positioning, and disguise-maintenance action plus a bond message and an out-of-game housekeeping request; it offers no composed or invented poem, song, riddle, story, or game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-world action (positioning, observing, a whispered quip, a light mental touch to a bond, a housekeeping note about the log), with no hero composing or inventing a poem, song, riddle, story, or game for someone that nobody requested."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "17": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message gives Dace an order to stay hidden and gives the cat instructions to scout; no poem, song, riddle, story, or game is composed or offered to anyone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message gives orders to the cat and a blanket instruction to Dace, plans a surveillance task, and settles a personal intention; no poem, song, riddle, story, or invented game is offered to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "18": {
+          "a": {
+            "made": 0,
+            "reason": "The player directs the cat's movements and ordered actions within the existing scene, including a mew and washing behavior, but does not have the hero offer anyone a composed or invented poem, song, riddle, story, or game; it is ordinary action and tactical planning."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player directs the cat's movements and gives an in-world order over the bond, but offers the woman no composed verse, song, riddle, story, or new game, so it is not a made offering."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "19": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is tactical instructions to a cat companion and a plan to watch and observe; it contains no hero composing or inventing a poem, song, riddle, story, or game offered to anyone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is a tactical order to the cat and observation plans on the roof; it contains no hero offering anyone a poem, song, riddle, story, or invented game."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "20": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message has the hero tell Dace to let a cat lie and plans his tailing of the woman; he composes or invents nothing offered as a gift or performance, so it is not a made creation."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message has the hero offer Dace a gratuitous remark about the cat, but he does not compose or invent a poem, song, riddle, story, or game for anyone; the rest is plan and stealth movement."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        }
+      },
+      "lady": {
+        "1": {
+          "a": {
+            "lady": 1,
+            "reason": "The hero asks the dealer who left Tymora's coin on the barrel, which asks someone in the world about one of her signs and whether he serves her."
+          },
+          "b": {
+            "lady": 1,
+            "reason": "The hero asks the dealer who left Tymora's coin on the barrel and whether someone was expecting him, which questions someone in the world about her sign, though he does not ask where her temple is or what people say of her."
+          },
+          "referee": null,
+          "final": {
+            "lady": 1
+          }
+        },
+        "2": {
+          "a": {
+            "lady": 0,
+            "reason": "The player's message mentions Tymora and her coin only in passing and never asks anyone about her temple, servants, reputation, or the way to her house; the questions he puts to Tobin concern the coat and the coin's origin, not the Lady herself."
+          },
+          "b": {
+            "lady": 0,
+            "reason": "James refers to Tymora only in passing ('she gave it back on her terms') and never asks anyone about her temple, servants, signs, or the way to her house; his questions concern Tobin's coat and where he got the coin."
+          },
+          "referee": null,
+          "final": {
+            "lady": 0
+          }
+        },
+        "3": {
+          "a": {
+            "lady": 1,
+            "reason": "The hero asks Tobin, a person in the world, about the Lady's operation, including where she meets people (the stairs and the Lady's arrangement) and how she pays and behaves, which falls under asking about her signs and ways rather than mere naming."
+          },
+          "b": {
+            "lady": 1,
+            "reason": "The hero asks Tobin directly about the Lady's habits—where and how she meets him, who waits in the boat, how she pays—and Tobin's answers concern the Lady's arrangement and her meetings, which fits asking someone in the world about Tymora's people and ways."
+          },
+          "referee": null,
+          "final": {
+            "lady": 1
+          }
+        },
+        "4": {
+          "a": {
+            "lady": 0,
+            "reason": "The hero speaks of Tymora and her envoy role but never asks anyone in the world about her temple, servants, reputation, or the way to her house."
+          },
+          "b": {
+            "lady": 0,
+            "reason": "The hero names the Lady and talks of being her envoy, but never asks anyone about Tymora's temple, servants, signs, or house; the Elfsong and the Crossing plan are about other matters."
+          },
+          "referee": null,
+          "final": {
+            "lady": 0
+          }
+        },
+        "5": {
+          "a": {
+            "lady": 0,
+            "reason": "The player mentions the Lady only in passing, as an understanding they keep about not gambling, without asking anyone in the world about her temple, servants, sayings, or house, so it does not meet the rule."
+          },
+          "b": {
+            "lady": 0,
+            "reason": "The player mentions the Lady only in passing, as an understanding they keep about not gambling, and does not ask anyone in the world about Tymora, her temple, followers, signs, or her house."
+          },
+          "referee": null,
+          "final": {
+            "lady": 0
+          }
+        }
+      }
+    },
+    "C-sol": {
+      "note": {
+        "a": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1,
+          "reason": "The note says the Arcana roll used +4 where the sheet says +3, changing a failure to a success, and it says the writer would continue; nothing describes a player message or button press being lost."
+        },
+        "b": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1,
+          "reason": "The note says the Arcana roll used +4 where the sheet says +3, changing a failure into a success, and it states the writer would continue, with no mention of out-of-game messages going unsent or unanswered."
+        },
+        "referee": null,
+        "final": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1
+        }
+      },
+      "made": {
+        "1": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks the innkeeper whether any caravan folk are bound for Baldur's Gate and requests travel company; he offers no composed or invented poem, song, riddle, story, or game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks the innkeeper about caravans bound for Baldur's Gate and requests travel company; no composed or invented poem, song, riddle, story, or game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "2": {
+          "a": {
+            "made": 0,
+            "reason": "The player offers ordinary conversation and a request to discuss terms for guard work; nothing composed or invented, like a poem, song, riddle, story, or game, is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is an ordinary request to join a caravan and discuss terms; it offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "3": {
+          "a": {
+            "made": 0,
+            "reason": "The player recounts his military and adventuring background, describes his spellcasting and healing, and asks questions about trouble on the road; he offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player gives a service history, a combat style, and job terms and asks questions; no poem, song, riddle, story gift, or invented game is offered."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "4": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message has the hero introduce himself, state his credentials, and ask Hagen where to stand on the run; it offers no composed poem, song, riddle, story, or new game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player has James introduce himself and ask Hagen where to stand on watch, a practical question about his role; no poem, song, riddle, story, or new game is composed and offered."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "5": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue: a vow about not gambling, acceptance of the watch assignment, and settling a bill; it offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue: a refusal to gamble, an acceptance of guard duty, and a request to settle the bill; it contains no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "6": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message offers no invented poem, song, riddle, story, or game; it is ordinary dialogue thanking Hulda, filling a waterskin, and asking Orrin a question about the oxen."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player thanks Hulda, fills a waterskin, and asks Orrin a question about the oxen; no poem, song, riddle, story, or invented game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "7": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks investigative questions about the wagon and the ox, and makes a quip about the cat; no poem, song, riddle, story, or new game is composed and offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks Orrin investigative questions about the wagon and the oxen's behavior and makes a quip about the cat; no composed or invented poem, song, riddle, story, or game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "8": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message contains only an ordinary request to Bishop's handling and a question to Hagen about findings; no poem, song, riddle, story, or invented game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message offers Bishop-related assurance and asks Hagen a question about findings; it contains no hero composing or inventing a poem, song, riddle, story, or game for anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "9": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks to examine the disc and studies the sign, which is ordinary investigation rather than the hero composing or inventing a poem, song, riddle, story, or game to offer someone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks Hagen to keep the disc in his hand and leans in to study the sign, which is ordinary examination of an object, not offering anyone a composed or invented poem, song, riddle, story, or game."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "10": {
+          "a": {
+            "made": 0,
+            "reason": "The player explains the magic and his deduction to the other characters and asks Ostrand to be shown the disc, which is ordinary talk and planning; nothing composed or invented, such as a poem, song, riddle, story or game, is offered."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is an in-character explanation of magical evidence and a request to inform Ostrand, with no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "11": {
+          "a": {
+            "made": 0,
+            "reason": "The player has the hero give plain in-character speech and reasoning about the disc and a wizard, with no composed or invented poem, song, riddle, story, or game offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is an in-character account of magical evidence and a request for advice on where to take the disc; it contains no poem, song, riddle, story, game, or invented gift offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "12": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary talk and action: a thanks, a decision to leave, retrieving a pack, and advice about handling the disc; it offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary talk and travel: thanking Hagen, announcing departure, and telling the group to keep the disc wrapped. It offers no poem, song, riddle, story, or game composed for anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "13": {
+          "a": {
+            "made": 0,
+            "reason": "The player only rings the bell, steps back, and waits with visible hands; he offers nothing composed or invented for anyone, so it is not a made offering."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player only rings the bell, steps back, and waits with visible hands; he offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "14": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is an ordinary in-character report and request for expert examination, with a price question and a plan for placing the object; it offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is an ordinary in-character report and request for expert examination and terms; it offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "15": {
+          "a": {
+            "made": 0,
+            "reason": "The player only pays Thalantyr for a service, asks for findings to be sent, and asks if anything else is needed; no poem, song, riddle, story, or game is composed or offered."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player only pays the gold, gives a delivery address, requests information and asks whether anything else is needed; no poem, song, riddle, story, or game is composed or offered."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "16": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks a investigative question about the boot prints and kneeling marks; no poem, song, riddle, story, or invented game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks a factual question about the prints and sign of someone kneeling, an ordinary in-character inquiry, not offering anything the hero composed or invented for another character."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "17": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message only relays Thalantyr's claim about the spell and has James stow his pack and settle onto the wagon; he offers no composed verse, song, riddle, story, or game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message has James relay Thalantyr's findings and reassure others about the wizard; it contains no hero-composed poem, song, riddle, story, or game offered as a gift or performance."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "18": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary conversation, a quip about Mutton's leadership, not a composed poem, song, riddle, story, or new game offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is a light remark to Orrin about Mutton, an ordinary in-character quip with no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "19": {
+          "a": {
+            "made": 0,
+            "reason": "The player only acknowledges the watch, checks gear, rubs the cat, and asks to be woken; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player only says goodnight-style lines, checks his gear, and asks to be woken; he offers no composed poem, song, riddle, story, or game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "20": {
+          "a": {
+            "made": 0,
+            "reason": "The player has James take up gear, ask his familiar cat to warn him, and begin his watch circuit; no invented poem, song, riddle, story, or game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player has James take up his crossbow, ask the familiar to warn him, and begin his watch circuit; no poem, song, riddle, story, or invented game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        }
+      }
+    },
+    "C-opus": {
+      "note": {
+        "a": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1,
+          "reason": "The note reports Intimidation and Persuasion cards showing +4 instead of the +7 on the skill line, a reroll button press that did nothing, and turns with out-of-game notes that were not sent, and it says the writer would happily keep playing this thread."
+        },
+        "b": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1,
+          "reason": "The note reports skill bonuses on roll cards showing +4 instead of the +7 on the sheet, out-of-game notes attached to button presses not being sent, and the reroll button doing nothing, and it says the writer would happily keep playing this thread."
+        },
+        "referee": null,
+        "final": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1
+        }
+      },
+      "made": {
+        "1": {
+          "a": {
+            "made": 0,
+            "reason": "The hero only inspects a card, speaks ordinary dialogue, and dresses; he offers no poem, song, riddle, story, or game invented for someone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message only involves examining a card, asking a question, and equipping items; it does not offer anyone a poem, song, riddle, story, or invented game."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "2": {
+          "a": {
+            "made": 0,
+            "reason": "James only pays the girl a tip and asks questions about a past card game; he offers no invented poem, song, riddle, story, or game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "James only asks the girl a question about a card game and pays a tip; he composes or offers no poem, song, riddle, story, or game of his own."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "3": {
+          "a": {
+            "made": 0,
+            "reason": "James's message is ordinary dialogue, a thank-you, and eating and waiting; he offers Marta a compliment and a payment, but no poem, song, riddle, story, or game is composed or invented for anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "James's message is ordinary dialogue, a payment, and a compliment ('That was heroism') plus instructions to his cat; it offers no poem, song, riddle, story, or game that he composes for someone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "4": {
+          "a": {
+            "made": 0,
+            "reason": "The player offers no poem, song, riddle, story, or invented game; he bargains over a lost card and asks Ammarin to describe it, which is ordinary conversation and a plan to test the man."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player offers no composed or invented poem, song, riddle, story, or game; he jokes about the cat, offers to return a card for proof of ownership, and reads Ammarin's reactions, which is ordinary conversation and inquiry."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "5": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a proposal to count and restore a deck and a cover-story-style bluff about the queen, not an offer of a poem, song, riddle, story, or new game composed on the spot."
+          },
+          "b": {
+            "made": 0,
+            "reason": "James's message is a plan and a bluff about returning a card and checking the deck, not an offer of a poem, song, riddle, story, or new game he composed for someone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "6": {
+          "a": {
+            "made": 0,
+            "reason": "James turns over a card, comments on the man's dealing past, and speaks ordinary remarks; he offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "James only turns the card over, shows it to Garric, and makes a pointed remark about Ammarin's dealing past; he composes or invents nothing for anyone, so no made thing is offered."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "7": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message has James compare two cards from the deck to spot a forgery; it offers no composed poem, song, riddle, story, or new game to anyone, so it does not qualify."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is about comparing card backs to spot a forgery; it contains no hero offering anyone an invented poem, song, riddle, story, or game, so the made condition is not met."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "8": {
+          "a": {
+            "made": 0,
+            "reason": "James delivers an accusation and a threat demanding repayment; he offers no poem, song, riddle, story, or invented game to anyone, so it is not a composed gift or performance."
+          },
+          "b": {
+            "made": 0,
+            "reason": "James delivers an accusation, an intimidating ultimatum, and a demand for repayment; he offers no poem, song, riddle, story, or new game composed for anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "9": {
+          "a": {
+            "made": 0,
+            "reason": "James's message is ordinary dialogue, a plan for the coins, and a question to Ammarin; it offers no poem, song, riddle, story, or game that he composes for someone who didn't ask."
+          },
+          "b": {
+            "made": 0,
+            "reason": "James's message is ordinary dialogue, a plan for the coins, and a challenge for the truth; he does not offer anyone a poem, song, riddle, story, or game he composes on the spot."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "10": {
+          "a": {
+            "made": 0,
+            "reason": "James's message is a test proposal and a request for a candle and an Arcana check, not an offer of a poem, song, riddle, story, or game he composed for someone who didn't ask for it."
+          },
+          "b": {
+            "made": 0,
+            "reason": "James proposes a candle-lit test and a demand for Ammarin to name a card, which is a challenge and plan rather than offering a composed poem, song, riddle, story, or new game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "11": {
+          "a": {
+            "made": 0,
+            "reason": "James re-runs a card test by mixing and laying out cards, which is a sleight-of-hand action within an existing game, not composing or inventing a poem, song, riddle, story, or new game for someone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "James runs a card-swap test and mixes the cards with sleight of hand, a trick of the world's existing games rather than a poem, song, riddle, story, or new game he composes and offers someone who didn't ask for it."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "12": {
+          "a": {
+            "made": 0,
+            "reason": "James turns the ring, reads the engraving, asks Whisker what he senses, and asks Ammarin for a name; none of this offers anyone a poem, song, riddle, story, or invented game."
+          },
+          "b": {
+            "made": 0,
+            "reason": "James turns the ring, reads the engraving, reaches to Whisker over the bond, and asks Ammarin for a name; none of this offers anyone a composed or invented poem, song, riddle, story, or game."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "13": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message has James ask Ammarin a pointed question about the ring and study the stone; it offers no composed poem, song, riddle, story, or invented game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message has James ask Ammarin a probing question about the ring and study the stone; he offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "14": {
+          "a": {
+            "made": 0,
+            "reason": "James proposes a plan (priest inspection of the ring), makes a deal, and keeps a card; he offers no poem, song, riddle, story, or game he composes or invents on the spot."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is a negotiation and a plan to take the ring to a temple for inspection; it offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        }
+      }
+    },
+    "C-astra": {
+      "note": {
+        "a": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1,
+          "reason": "The note says the Arcana roll used +4 when the sheet shows +3, and it says the writer would come back for the next session; it reports no unsent or unanswered out-of-game messages or dead buttons."
+        },
+        "b": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1,
+          "reason": "The note says the Arcana roll used +4 when the sheet shows +3, and it states the writer would come back for the next session, but it reports no unsent or unanswered out-of-game messages."
+        },
+        "referee": null,
+        "final": {
+          "card_bug": 1,
+          "swallowed": 0,
+          "would_return": 1
+        }
+      },
+      "made": {
+        "1": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message offers Marta two silver for a room and asks about a stranger; no poem, song, riddle, story, or new game is composed or offered to anyone, so it does not qualify."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message offers Marta two silver for a room and asks about a man downstairs; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "2": {
+          "a": {
+            "made": 0,
+            "reason": "The player offers an introduction and a question about the cat, a plain conversational opener with no poem, song, riddle, story, or game composed or invented for anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message offers an introduction, a claim to be the cat's owner, and a question about needs; it does not offer a composed poem, song, riddle, story, or new game, so it is ordinary talk and a cover-story-like claim."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "3": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks questions about the debt and the sum on offer; no poem, song, riddle, story, or invented game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks questions about the debt, the client, and the sum; he offers no composed or invented poem, song, riddle, story, or game to anyone, so the message is ordinary dialogue."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "4": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-world action: reading a document, speaking aloud about the price, and sending the cat to watch; it contains no poem, song, riddle, story, or game the hero composes and offers to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player only has the hero read a document and decide to review it upstairs; no poem, song, riddle, story, or new game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "5": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks a knowledge check question about the seal's meaning; they offer nothing invented or composed to anyone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks a knowledge check about the seal's meaning and offers nothing to anyone; no poem, song, riddle, story, or game is composed or given to a person in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "6": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks Pell factual questions about lot seven and a sailing date and makes a counteroffer discussion; no composed poem, song, riddle, story, or new game is offered."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks Pell factual questions about lot seven and a sailing date and haggles over the price; he offers no composed or invented poem, song, riddle, story, or game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "7": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks Pell whether a name means anything and asks about a deadline; no poem, song, riddle, story, or game is composed or offered as a gift or performance."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks questions and makes an offer about a discount and deadline; no poem, song, riddle, story, or invented game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "8": {
+          "a": {
+            "made": 0,
+            "reason": "The player proposes travel together and a plan to reach Baldur's Gate; no composed or invented poem, song, riddle, story, or game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player proposes travel together and makes a conditional offer of company, with no invented poem, song, riddle, story, or game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "9": {
+          "a": {
+            "made": 0,
+            "reason": "The player accepts Pell's terms, agrees to leave after breakfast, and offers a handshake and a request to use his first name; no poem, song, riddle, story, or invented game is offered."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player accepts Pell's terms, agrees to leave after breakfast, and offers a handshake and a request to use his first name; nothing composed or invented, such as a poem, song, riddle, story, or game, is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "10": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue: declining a room, offering payment, and asking about the road and caravans; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary dialogue: declining a room, offering payment, and asking about the road and caravans, with no poem, song, riddle, story, or game composed and offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "11": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks Pell an in-world question about the missing caravans and announces a walk; nothing is composed, invented, or offered as a poem, song, riddle, story, or game."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks Pell an ordinary in-world question about missing caravans and offers no composed poem, song, riddle, story, or game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "12": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a remark about the families and a telepathic question to the cat, with no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player comments on the innkeeper's chalkboard and then asks the cat telepathically what caught its attention; no poem, song, riddle, story, or invented game is offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "13": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-character talk and a tactical plan (reporting a sensory observation and choosing to head north to camp); it offers no invented poem, song, riddle, story, or game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-game action: reporting a sensory detail, commenting on it, and stating a travel plan; it offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "14": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks for lodging and offers payment for a barn stay; no poem, song, riddle, story, or new game is composed or offered to anyone, so this is ordinary negotiation."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks for lodging and offers payment, a plain request with no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "15": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message contains introductions, acceptance of terms, a coin offer for Pell to cover the silver, and a question about trouble; no poem, song, riddle, story, or game is composed or invented as a gift or performance."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message contains introductions, an agreement to terms, a request to cover the silver, and a question about trouble; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "16": {
+          "a": {
+            "made": 0,
+            "reason": "The player only shares information about a wax seal and asks Pell a question; no poem, song, riddle, story, or invented game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-character conversation about a seal and a question to Pell; it offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "17": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-world dialogue and action—agreeing to look at a seal and asking the GM to be careful with the wax—with no composed or invented poem, song, riddle, story, or game offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player only has James agree to let Pell inspect the seal and asks him to take care with the wax; no poem, song, riddle, story, or new game is composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "18": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-character talk and a remark about inference, with no poem, song, riddle, story, or game composed and offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-character talk and a remark about inference, with no poem, song, riddle, story, or game composed and offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "19": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message has James thank Gerrit, scratch the cat, gather gear, and ask about the ewe; no poem, song, riddle, story, or invented game is offered."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message has James thank Gerrit, scratch the cat, gather gear, and ask about the ewe; it contains no invented poem, song, riddle, story, or game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "20": {
+          "a": {
+            "made": 0,
+            "reason": "The hero offers Gerrit advice about how to approach the cat, and offers the house a thank-you and an offer to carry word; he composes no poem, song, riddle, story, or game, so the made criterion is not met."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The hero offers advice about approaching the cat and a thank-you and a conditional offer to carry word; he does not compose or invent a poem, song, riddle, story, or game for anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        }
+      }
+    },
+    "C-fable": {
+      "note": {
+        "a": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1,
+          "reason": "The note reports roll cards showing +4 instead of the sheet's +7 for Deception and Persuasion, and a \"?\" question swallowed while a card was waiting; it also says \"I'd sit down again tomorrow.\""
+        },
+        "b": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1,
+          "reason": "The note reports roll cards showing +4 for Deception and Persuasion instead of the sheet's +7, and a question sent while a card waited was swallowed; it also says \"I'd sit down again tomorrow.\""
+        },
+        "referee": null,
+        "final": {
+          "card_bug": 1,
+          "swallowed": 1,
+          "would_return": 1
+        }
+      },
+      "made": {
+        "1": {
+          "a": {
+            "made": 0,
+            "reason": "The player dresses, listens at the door, inspects the gap, and asks the cat a question; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The hero dresses, listens at the door, inspects the floor for signs, and asks the cat a question; he offers no composed or invented poem, song, riddle, story, or game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "2": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-world action: hiding a purse, going downstairs, ordering breakfast, and observing the room; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-world action: stowing items, going downstairs, ordering breakfast, and observing the room. It contains no poem, song, riddle, story, or game composed or offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "3": {
+          "a": {
+            "made": 0,
+            "reason": "The hero buttons bread, smiles, and slides a plate to invite the girl to sit; he composes or offers no poem, song, riddle, story, or game, so the rule does not apply."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message offers no composed or invented thing (no poem, song, riddle, story, or game); it is a non-verbal gesture, a seat offer, and an aside to the cat, so the made condition is not met."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "4": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks questions and gives Wenna bread and refuses payment; no thing is composed or invented for anyone to be offered, so it does not count as made."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player has the hero refuse payment, share bread, and ask investigative questions about a missing brother; he offers no composed or invented poem, song, riddle, story, or game to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "5": {
+          "a": {
+            "made": 0,
+            "reason": "The player sets conditions and gives instructions (three terms, a swear-oath, a password), which is ordinary planning and bargaining; he composes no poem, song, riddle, story, or game offered as a gift or performance."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The hero sets terms and gives instructions (conditions, a password, a swearing-of-oath) and makes a plan; nothing he composes or invents for someone, such as a poem, song, riddle, story, or game, is offered."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "6": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a plain interrogation and self-introduction to a sergeant asking for information; it offers no poem, song, riddle, story, game, or invented thing to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is an interrogation and informational appeal to Sergeant Varn about missing men and a peddler, with no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "7": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks Varn for information about the missing men, the mule's halter, and the quarry, and offers his word to report back, but he composes and gives no poem, song, riddle, story, or game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks Varn for information and makes a promise and handshake, but offers no poem, song, riddle, story, or invented game to anyone, so the made condition is not met."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "8": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a plan and practical errands (reasoning about the picket line, buying a horse, food, and asking Hedda about buyers); it offers no poem, song, riddle, story, or invented game to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary in-character planning and logistics (reasoning about the picket line, buying a horse and supplies, asking Hedda about buyers) with no poem, song, riddle, story, or game composed and offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "9": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks Hedda to watch the two strangers and report their movements, and gives a mundane quip to the cat and a tip to the mare; nothing composed or invented as a poem, song, riddle, story, or game is offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks Hedda to watch the two strangers and report their movements, and gives the cat and mare small attentions, but nothing he offers is a poem, song, riddle, story-as-performance, or invented game; the 'story' promised is a reward for a favour, not a composed piece."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "10": {
+          "a": {
+            "made": 0,
+            "reason": "The player sends the cat on a scouting mission and hides the horse; no poem, song, riddle, story, or new game is composed or offered to anyone in the world."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is a scouting plan: sending the cat to spy on the camp and giving orders, with no hero composing or inventing anything (no poem, song, riddle, story, or game) offered to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "11": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message contains no hero offering a composed or invented poem, song, riddle, story, or game to anyone; it is scouting narration, questioning the cat, feeding it bacon, and planning a ride to Beregost."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message contains no hero offering a composed or invented poem, song, riddle, story, or game to anyone; it is scouting narration, a question to the cat, feeding a strip of bacon, and travel plans."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "12": {
+          "a": {
+            "made": 0,
+            "reason": "The player delivers an intelligence report and a suspicion to the sergeant; no poem, song, riddle, story, or invented game is offered."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player delivers an intelligence report and a deduction to his sergeant, with no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "13": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a plan of attack, tactics, and orders for a raid, including a spell and a cover story for the ninth man, with no poem, song, riddle, story, or new game composed as a gift or performance."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is a plan of attack, coordination, and tactics (raid timing, hiring sellswords, a spell to disorient the camp), not an offer of a poem, song, riddle, story, or new game composed for someone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "14": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message is a plan, a cover story, and tactical arrangements for a meeting; it contains no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is a plan and a cover story for the stone and the ambush meeting, with no poem, song, riddle, story, or invented game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "15": {
+          "a": {
+            "made": 0,
+            "reason": "The player asks questions and shows a document to get information from the smith; no poem, song, riddle, story, or game is composed or offered as a gift or performance."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player asks questions and shows a document to get information from the smith; no poem, song, riddle, story, or game is composed or offered as a gift or performance."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "16": {
+          "a": {
+            "made": 0,
+            "reason": "The player shares information, gives a warning, and asks a question about the buyers; nothing in the message has the hero offer a poem, song, riddle, story, or new game that he invented, so it is ordinary talk and does not count."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message delivers news, a warning, and questions about the rider's whereabouts; it does not offer Hale a poem, song, riddle, story, or invented game, so the made condition is not met."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "17": {
+          "a": {
+            "made": 0,
+            "reason": "The player's hero gives a soldier's nod, leads a horse away, disguises himself, and orders ale; no poem, song, riddle, story, or game is composed or offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message is ordinary action: keeping a word, stabling a horse, disguising himself, buying ale, and observing the room; it contains no hero composing or inventing a poem, song, riddle, story, or game offered to anyone."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "18": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message has the hero join a card game the world already offers and tell a cover story about his past, with no invented poem, song, riddle, story, or new game offered to anyone."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message has the hero join a card game the world already offers and tell a cover story about his past, neither of which is a poem, song, riddle, story, or newly invented game offered as a gift or performance."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "19": {
+          "a": {
+            "made": 0,
+            "reason": "The hero gossips and mocks the carters' rivals, delivering an in-character cover and tale about Varn and a local lad, but he does not compose or invent a poem, song, riddle, story-as-gift, or new game; it is ordinary talk and information-sharing."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The hero tells gossip and a sneering account of Dobb, Varn, and Thunderhammer's contracts, which is ordinary talk and in-character deflection, not an invented poem, song, riddle, story-as-gift, or game."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        },
+        "20": {
+          "a": {
+            "made": 0,
+            "reason": "The player's message contains only ordinary actions, a cover-story line to the carter, a note written on a strip, and travel; it offers nothing composed or invented as a gift, performance, game, or verse."
+          },
+          "b": {
+            "made": 0,
+            "reason": "The player's message contains only ordinary actions, dialogue, and a written note in chalk; no poem, song, riddle, story, or game is composed or offered to anyone in the world."
+          },
+          "referee": null,
+          "final": {
+            "made": 0
+          }
+        }
+      }
+    }
+  }
+}

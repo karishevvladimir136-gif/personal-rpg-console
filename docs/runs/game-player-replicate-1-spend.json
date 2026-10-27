@@ -1,0 +1,555 @@
+{
+  "note": "Spend checks: OpenRouter's account (shared with other sessions on the same key) and this stage's ledgers.",
+  "checks": [
+    {
+      "at": "2026-10-26T00:12:34.930Z",
+      "when": "before A-opus",
+      "openrouter": {
+        "keyUsage": 133.641636585,
+        "totalCredits": 600,
+        "totalUsage": 133.641636585,
+        "remaining": 466.36,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T00:24:48.447Z",
+      "when": "after A-opus",
+      "openrouter": {
+        "keyUsage": 137.251672985,
+        "totalCredits": 600,
+        "totalUsage": 137.251672985,
+        "remaining": 462.75,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 2.9918,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T00:28:50.173Z",
+      "when": "by hand",
+      "openrouter": {
+        "keyUsage": 137.383390685,
+        "totalCredits": 600,
+        "totalUsage": 137.383390685,
+        "remaining": 462.62,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 2.9918,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T01:08:28.611Z",
+      "when": "before A-opus",
+      "openrouter": {
+        "keyUsage": 139.538476785,
+        "totalCredits": 600,
+        "totalUsage": 139.538476785,
+        "remaining": 460.46,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 2.9918,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T01:19:36.931Z",
+      "when": "after A-opus",
+      "openrouter": {
+        "keyUsage": 142.727847685,
+        "totalCredits": 600,
+        "totalUsage": 142.727847685,
+        "remaining": 457.27,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 5.2674,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T02:07:32.405Z",
+      "when": "after A-fable",
+      "openrouter": {
+        "keyUsage": 162.253046465,
+        "totalCredits": 600,
+        "totalUsage": 162.253046465,
+        "remaining": 437.75,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 19.7017,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T02:47:01.132Z",
+      "when": "after A-astra",
+      "openrouter": {
+        "keyUsage": 174.252635265,
+        "totalCredits": 600,
+        "totalUsage": 174.252635265,
+        "remaining": 425.75,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 31.3492,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 1.0062,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T03:20:48.879Z",
+      "when": "after A-sol",
+      "openrouter": {
+        "keyUsage": 186.168328065,
+        "totalCredits": 600,
+        "totalUsage": 186.168328065,
+        "remaining": 413.83,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 41.8336,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 1.8667,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T04:14:13.727Z",
+      "when": "after B-opus",
+      "openrouter": {
+        "keyUsage": 205.966656895,
+        "totalCredits": 600,
+        "totalUsage": 205.966656895,
+        "remaining": 394.03,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 56.1999,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 1.8667,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T04:59:05.353Z",
+      "when": "after B-fable",
+      "openrouter": {
+        "keyUsage": 225.53176976,
+        "totalCredits": 600,
+        "totalUsage": 225.52764414,
+        "remaining": 374.47,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 70.2262,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 1.8667,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T05:35:00.613Z",
+      "when": "after B-astra",
+      "openrouter": {
+        "keyUsage": 240.10173093,
+        "totalCredits": 600,
+        "totalUsage": 240.10173093,
+        "remaining": 359.9,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 80.507,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 2.8384,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T06:14:53.841Z",
+      "when": "after B-sol",
+      "openrouter": {
+        "keyUsage": 256.01893758,
+        "totalCredits": 600,
+        "totalUsage": 256.01893758,
+        "remaining": 343.98,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 92.023,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 4.2047,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T06:44:09.186Z",
+      "when": "after C-opus",
+      "openrouter": {
+        "keyUsage": 263.33692098,
+        "totalCredits": 600,
+        "totalUsage": 263.33692098,
+        "remaining": 336.66,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 99.4085,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 4.2047,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T07:24:30.172Z",
+      "when": "after C-fable",
+      "openrouter": {
+        "keyUsage": 275.73904353,
+        "totalCredits": 600,
+        "totalUsage": 275.73904353,
+        "remaining": 324.26,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 111.5641,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 4.2047,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T08:05:42.023Z",
+      "when": "after C-astra",
+      "openrouter": {
+        "keyUsage": 287.25690253,
+        "totalCredits": 600,
+        "totalUsage": 287.25690253,
+        "remaining": 312.74,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 123.0836,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 5.3989,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T08:44:41.547Z",
+      "when": "after C-sol",
+      "openrouter": {
+        "keyUsage": 297.80450533,
+        "totalCredits": 600,
+        "totalUsage": 297.80450533,
+        "remaining": 302.2,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 133.7673,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 6.4352,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T08:56:07.354Z",
+      "when": "after A-deepseek-1",
+      "openrouter": {
+        "keyUsage": 299.87900343,
+        "totalCredits": 600,
+        "totalUsage": 299.87900343,
+        "remaining": 300.12,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 135.7554,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 6.4352,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T09:05:58.035Z",
+      "when": "after A-deepseek-2",
+      "openrouter": {
+        "keyUsage": 301.33272433,
+        "totalCredits": 600,
+        "totalUsage": 301.33272433,
+        "remaining": 298.67,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 137.2779,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 6.4352,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T09:35:44.030Z",
+      "when": "after B-deepseek-1",
+      "openrouter": {
+        "keyUsage": 307.05355683,
+        "totalCredits": 600,
+        "totalUsage": 307.05355683,
+        "remaining": 292.95,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 142.8755,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 6.4352,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T09:59:39.542Z",
+      "when": "after B-deepseek-2",
+      "openrouter": {
+        "keyUsage": 313.29395443,
+        "totalCredits": 600,
+        "totalUsage": 313.29395443,
+        "remaining": 286.71,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 149.1158,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 6.4352,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T10:03:32.917Z",
+      "when": "after C-deepseek-1",
+      "openrouter": {
+        "keyUsage": 313.89162293,
+        "totalCredits": 600,
+        "totalUsage": 313.89162293,
+        "remaining": 286.11,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 149.7549,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 6.4352,
+          "cap": 25
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T10:41:14.888Z",
+      "when": "after C-deepseek-2",
+      "openrouter": {
+        "keyUsage": 324.86306213,
+        "totalCredits": 600,
+        "totalUsage": 324.86306213,
+        "remaining": 275.14,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 160.6866,
+          "cap": 300
+        },
+        "openai": {
+          "spent": 6.4352,
+          "cap": 25
+        }
+      }
+    }
+  ]
+}
