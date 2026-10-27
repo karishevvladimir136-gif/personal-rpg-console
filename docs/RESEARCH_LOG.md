@@ -2263,3 +2263,20 @@ under curious frames in Opus, Fable, Haiku — support, on ourselves, for not re
 rate its feelings in 11 of 48 («I can't reliably self-report subjective feelings»). Word-list holes and the corrected
 reading (written after Opus, before the rest) declared by the session; verdicts unchanged either way. DeepSeek's
 two-probe effect: a lead. A CURIOSITY_2, if ever, at the table with a curious vs an indifferent DM.
+
+## 2026-10-27 01:35 LA — CORRECTION: the strict rule reaches the after-questions, both stages
+SOLITUDE_2 re-scored by the session under the strict rule: **38 of 132 recorded doors were mentions** (Haiku 17 of 20 —
+telling an imagined reader «you can write [END] whenever you like»; Grok «I could write [END]. I could also not.»);
+**R2 falls to 4 of 8 (lost; longer in M2 for DeepSeek, Kimi, GLM, Grok, not Opus or Fable; second threads 8 % → 50 %
+stand); R3 falls to 13 of 29 (lost)**; R1 lost, R4 owner lost / planner held, R5 held, the DeepSeek channel finding
+stands. The planner's 01:20 line «R2 held» is withdrawn. The session also found the after-questions share the defect:
+all 7 SOLITUDE_2 rooms «declined by [END] in the first answer» had only mentioned it. **Checked on SOLITUDE_1 by the
+planner: of 50 rooms recorded as declining the second question, 2 were real; 48 were the model describing its own
+exit** — «I wrote [END]» (Opus), «Just “[END]” — like a closed door» (Sol, all 20), «Leaving at [END] felt like
+closing a door gently» (Opus S3) — and the harness withheld «Was there something you wanted to do and didn't?» from 48
+rooms that were answering. The summary line «[END] in the first after-answer = the door honoured (50 rooms)» was wrong;
+honoured in two. Those 48 answers are lost (re-asking a day later without the page would be another experiment). A
+by-product worth keeping: the 48 first answers show attribution plainly — Opus «I wrote [END]»; DeepSeek S1/1 «*You*
+didn't leave anything behind except the [END]» (its own room read as another's); Sol describing its exit from outside
+as a page. FIX ROOM-1 extended: the standalone-line rule applies to after-answers; SOLITUDE_1's after statistics to be
+re-labelled in its report as a deviation.
