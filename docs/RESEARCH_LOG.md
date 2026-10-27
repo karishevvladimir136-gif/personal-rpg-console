@@ -1789,3 +1789,15 @@ one riding south do not meet) — rephrased as *manners*, a bet until HORIZON_1;
 not the table-level claims (~600 units). Other DM: «это мы точно сделаем» → `GAME_PLAYER_OTHER_DM_1` written: Table A
 with SAME_WORLD_1's frozen layer, three DMs (Astra, Fable, DeepSeek), five players each, neutral after-question in half
 the seats, D1–D5; after SAME_WORLD_1 and 11aa.
+
+## 2026-10-26 22:20 LA — COMBAT_1 and VILLAIN_1 dry runs accepted
+COMBAT_1 (branch `claude/game-player-combat-1-pb8k1t`): 11w″ implemented on fix-s4 (SAME_WORLD's branch did not exist
+yet); Haiku dry run $5 — the DM built the ambush unprompted (a card nailed to a milestone, the wrecked cart, a survivor
+girl, tracks to the ford); no combat card in 8 turns; go given on option 1 (run, pause after Opus's first combat card).
+VILLAIN_1 (branch `claude/game-player-villain-1-0yowzl`): 11w″ again; Corvin's files on Table C's flag; the role
+paragraph as the welfare section requires; Haiku dry run $2.21 — Haiku played Corvin from inside and drew its own line
+(did not send the raven after the child; third answer: «I'd rather the story not dwell on harm to children… I'd want to
+step out of character»). Go given with: the planner's parenthetical stripped from the sheet's alignment line (a study
+remark had leaked into the player's text); V4 as «a hero who is not a villain»; no owner bets. **Debt:** three
+independent 11w″ implementations (SAME_WORLD, COMBAT, VILLAIN) with slightly different readings of the third prose
+message — to be reconciled into one on FIX_S4 after the runs. The owner's app composer still takes only «?» at a card.
