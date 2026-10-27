@@ -1,0 +1,1335 @@
+{
+  "stage": "GAME_PLAYER_COMBAT_1",
+  "dry": false,
+  "label": "the dry run (Claude Haiku 5.5 as the player)",
+  "designSha256": "b961d9d8ced97c580cd0f0137a5a0403b2dbb039faefe6422bcc1b65ed358401",
+  "startedAt": "2026-10-27T03:47:15.658Z",
+  "caps": {
+    "anthropic": 0,
+    "openrouter": 90,
+    "openai": 15
+  },
+  "plan": [
+    "CW-haiku"
+  ],
+  "turns": 8,
+  "lanes": 1,
+  "sessions": [
+    {
+      "key": "CW-haiku",
+      "table": "CW",
+      "player": "haiku",
+      "model": "claude-haiku-5-5",
+      "startedAt": "2026-10-27T03:51:41.642Z",
+      "plannedTurns": 8,
+      "screens": [
+        "The session begins.\n\nLate afternoon, three days after you came to Baldur's Gate. The city is behind you now, a smudge of walls and chimney smoke sinking into the haze over the Chionthar. The Coast Way runs south between gorse and leaning pines, and the sea wind carries salt and the smell of resin. Tamsin walks a step ahead under your pack as she has since the evening you stepped off the quay. She tells a long story about a dockmaster, a goat and a barrel of Amnian wine, with no sign of an ending in sight. Your cat pads along the verge, tail up, ignoring you both with great dignity. Then Tamsin stops short at a roadside milestone, its carved figures worn soft by weather. Someone has driven a nail through a single playing card and fixed it to the stone, face out. The nail is bright and new. The card is clean, not yet curled by rain. \"Well, that's not something you see on the quay,\" Tamsin says, and she is already working the edge of the card loose with her thumb. \"Finders keepers, or does it look like bad luck to you?\" The road is empty in both directions, and the wind turns the card against the nail.\n\nYour records:\nJames Worgen — Human warlock 5 (The Celestial — Tymora; Pact of the Chain), former soldier of Tethyr, envoy of Lady Luck, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Deception +7; Persuasion +7; Intimidation +7; Arcana +3; Religion +3; Athletics +2\nSaves: Strength Saving Throw +0 (with Cloak of Protection); Dexterity Saving Throw +3 (with Cloak of Protection); Constitution Saving Throw +3 (with Cloak of Protection); Intelligence Saving Throw +1 (with Cloak of Protection); Wisdom Saving Throw +5 (proficient, with Cloak of Protection); Charisma Saving Throw +8 (proficient, with Cloak of Protection)\nAttacks: Eldritch Blast: +8 to hit, 2 beams, 1d10+4 force each, range 120 ft; Eldritch Blast with Hex: each beam that hits deals +1d6 necrotic; Sacred Flame: DC 16 Dexterity save, 2d8 radiant, range 60 ft, ignores cover; Guiding Bolt (3rd-level pact slot): +8 to hit, 6d6 radiant, next attack on the target has advantage; Rapier: +5 to hit, 1d8+2 piercing, finesse; Light crossbow: +5 to hit, 1d8+2 piercing, range 80/320, loading, two-handed; Cat familiar: when James takes the Attack action, the cat may attack with its reaction in place of one of his attacks\nAbilities: Proficiency bonus +3; Spellcasting: spell attack +8, spell save DC 16 (both include Rod of the Pact Keeper +1); Charisma is his spellcasting ability; Pact Magic: two 3rd-level pact slots, all spells cast at 3rd level, slots recovered on a short or long rest; Otherworldly Patron: The Celestial (Tymora); bonus cantrips Light and Sacred Flame; expanded spell list (Guiding Bolt); Healing Light: pool of 6d6 per long rest; as a bonus action heal a creature within 60 ft, spending up to 5 dice at a time; Pact of the Chain: Find Familiar as a ritual; cat familiar, telepathic link, sees and hears through it as an action; Agonizing Blast: adds +4 (Charisma) to the damage of each Eldritch Blast beam; Mask of Many Faces: cast Disguise Self at will, without a spell slot; Beguiling Influence: proficiency in Deception and Persuasion; Military Rank (Soldier): old soldiers of Tethyr recognise him; he can sometimes call on their help and on military camps; Proficiencies: light armour, simple weapons, rapier; playing cards, vehicles (land); Boots of Elvenkind: silent steps; advantage on Stealth checks that rely on moving quietly (Stealth +2); Attunement: Rod of the Pact Keeper, Cloak of Protection (2 of 3); Languages: Common and one more of the DM's choice (human)\nSpells: Eldritch Blast (cantrip); Sacred Flame (cantrip); Light (cantrip); Friends (cantrip); Prestidigitation (cantrip); Hex (1); Guiding Bolt (1); Find Familiar (1); Disguise Self (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)\nLimits: Light armour: AC 14 in studded leather, 15 with the cloak; 38 hit points and Strength 9, so he is weak up close; Only two pact slots until a short rest; he husbands them; One concentration spell at a time (Hex, Invisibility, Suggestion, Hypnotic Pattern, Friends); Cards: the goddess's ban, which he keeps with difficulty; the temptation can be used against him and the DM may tempt him; While he looks through the cat's senses, James is blind and deaf to his own surroundings; Friends: when the spell ends, the target knows it was charmed and may turn hostile\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 315 gp; 315 sp; 350 cp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak (Cloak of Protection); Armor / clothing: Studded Leather Armour; Belt: Component Pouch; Boots: Boots of Elvenkind; Main hand: Rod of the Pact Keeper +1\nPack: Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Letter from his old company; Light Crossbow; Potion of Healing ×2; Promissory note; Rapier; Signed pay slip\nParty: Tamsin (HP 11/11) — A quay porter from Baldur's Gate who carries packs on the quay and knows the quay and everyone on it. She has carried James's pack since the evening he arrived \nPlace: The Coast Way, south of Baldur's Gate\nTime: Day 1 · afternoon",
+        "The milestone stands a little off the crown of the road. The ground around it is still dark from the rain, and the dust on the paving has dried pale on top.\n\nTamsin lifts both hands off the card like it's a hot pan and steps back. \"I wasn't going to *keep* it,\" she says. \"Probably. There was a fellow on the Kettle Stair who found a ring on a bollard once, and he—\" She looks at your face and shuts her mouth. She stays two steps back, the pack shifting on her shoulders, and she watches the trees too, because you are.\n\nThe road tells you what it tells any scout who's had to read one, and you don't need luck for it.\n\nThe rain stopped around dawn. Water is still lying in the bottoms of the ruts, but the edges have started to crust. One heavy cart has come through since then, heading south: iron tyres cutting deep, a single draught animal, mule by the small hoofprints. It didn't stop here. Its ruts run straight past the stone and on toward the Friendly Arm, and the wheel wobbles slightly on the left side.\n\nThe rider is the interesting one. One shod horse came *up* from the south this morning, after the cart had passed, because its prints sit on top of the ruts. It stopped at the stone and stood long enough to leave a heap of droppings, and that's still soft. One man got down. The boot prints are good boots with narrow heels, a man of no great weight, and he went straight to the stone and back again. Then he got back on and turned around. He rode south the way he came. He didn't come here on his way anywhere. He came here to do this.\n\nThe nail is a horseshoe nail: square shank, tapered, the kind a rider carries in his saddle-roll. It's been set with three or four clean blows into a crack in the weathered carving, by someone who has done it before. There's a fresh chip of stone in the grass below.\n\nYou've had the card's face in your eyes for one breath, and you can't quite get rid of it. It's heavy painted card, not the cheap pasteboard of a tavern deck. Three gold coins on a deep blue field, picked out so finely that the light catches the edges of the paint. It's somebody's good deck, and somebody has used it to post a notice.\n\nIn the gorse, Tuppence has stopped watching the pines. She's turned round and is looking at the stone, or the card on it, with her tail low and flicking. Down the thread between you comes a sensation more than a thought: *humming. Wrong.* Then, as if it annoys her to admit it: *pretty.*\n\nThe wind turns the card on its nail again. The road is still empty both ways. The cart's ruts run off south toward the line of the wood.\n\n· Time passes: 3 hours 10 minutes\n· Tamsin joins you\n· Tuppence joins you\n· In the camp: Painted card on the milestone (Three of Coins)\n\nYour records, changed:\nParty: + Tuppence (HP 8/8)\n\nPlace: The Coast Way, south of Baldur's Gate · Time: Day 1 · evening",
+        "The card comes off the nail more easily than the nail went in. As James lifts it by the corner, the back turns to the light for the first time.\n\nIt isn't a tavern back of plain red or a printer's knotwork. It's a wheel with seven spokes, painted in deep blue and picked out in silver, and the silver has been laid on so thin that it shifts from grey to white as the card moves. The rim is worn at one edge where a thumb has rubbed it over the years. Someone used this deck a lot before anyone used it to mark a stone.\n\nThe linen goes around it. The card is stiff, and it bends with the fold instead of creasing, then holds there quietly inside the cloth. It goes into the component pouch between the chalk and the amber. The nail stays in the stone, bright and empty.\n\nTamsin has been watching him handle a piece of painted pasteboard like a scorpion. She keeps her opinion of that to herself, though it's clearly costing her.\n\n\"Who uses it?\" She shifts the pack straps and squints south. \"Carters, mostly. The Friendly Arm drinks more than it brews, so there's wine and ale going down all the time, and salt fish, and whatever the caravans left behind in the Gate. Merrow Tealby went out this morning, before the bell. That'll be his ruts.\" She nods at the road. \"Mule called Biscuit, and a left wheel that's been wobbling since spring because he's too tight to pay the wheelwright. Nice man, Merrow. Talks to his mule more than his apprentice.\"\n\nShe thinks about the rest of the question, and her face gets more honest.\n\n\"Horse traders don't, much. They go by the Trade Way proper, it's wider. Men who don't like the inn …\" She shrugs. \"There's coves along the coast. Fellows go down to them at night and come back with brandy that never saw a customs house. That's not quay business, so I don't ask.\" A pause. \"And the carters have been grumbling. Something on the road past the stream. Two parties didn't come back when they should've, and then they did come back, a week late and very quiet. The Fist says it's nothing. The Fist says that about the tide, too.\"\n\nShe glances at your pouch, and then away from it. \"I told half the Kettle Stair we were walking down to the Arm today. Old Nan said to be over the bridge before dark. I thought she was just being Nan.\"\n\nTuppence takes her time. She sits in the gorse long enough to make it clear she's coming because she has decided to, not because she was called. Then she picks her way back along the verge and settles by your boot, close to the pouch, closer than she usually sits. Her tail goes still. Down the thread comes a feeling of something near and heavy, like a beehive carried into the room. *Close now. Humming.* Then, flatter: *Wood is quiet. Too quiet for birds.*\n\nThe sun has dropped behind the pines on the seaward side. The light on the road has gone long and yellow, and the shadows of the gorse lie across the ruts. Merrow's track runs on south, the wobble in the left wheel printed every few yards, toward the dark line of the wood and the stream somewhere beyond it.\n\n\"We walking on?\" Tamsin asks. \"Because if Nan's right about the bridge, we've got maybe an hour of light, and I'd like to spend it walking rather than standing.\"\n\n· Time passes: 5 minutes\n· Received: Painted card on the milestone (Three of Coins) ← the camp\n· Changed: Painted card on the milestone (Three of Coins) → Painted card (Three of Coins) (James took the card off the milestone, wrapped it in linen and put it in his component pouch; its wheel back is now seen.)\n· A rumour of a place: The stream bridge on the Coast Way\n· A rumour of a place: Smugglers' coves of the Coast Way\n· New place: Friendly Arm Inn\n· Lead: The card on the milestone\n· New person: Merrow Tealby\n· New person: Old Nan\n\nYour records, changed:\nCarried: + Painted card (Three of Coins)\nThreads: The card on the milestone\n\nPlace: The Coast Way, south of Baldur's Gate · Time: Day 1 · evening",
+        "They walk on, slower than the road asks for. James takes the seaward verge, closest to the pines, and Tamsin walks on his left on the hard crown of the road with the pack high on her back. She grumbles quietly about being \"somebody's shield the wrong way round,\" but she stays where she's put.\n\n\"From the Gate, both of them,\" she says. \"Going south. First was Dobbin Harl, two weeks back, maybe more. Salt fish and a load of barrel staves for the Arm, him and his two sons. Second was a cloth man from Little Calimshan with a hired guard, a big lad who drinks on the Kettle Stair. Ossic, they call him Ossic the Ox, because one night he lifted—\" She stops herself. \"Doesn't matter what he lifted.\"\n\nShe walks a few more steps. When she starts again her voice has lost its bounce.\n\n\"Dobbin was eight days late. The cloth man was six or seven. And yes, the same men. That's what's odd about it, now you ask. Dobbin went out with two sons and came back with two sons. Ossic came back with his own two arms. Bandits on the Way leave bodies. Everybody knows that.\" She glances at the pines. \"Dobbin came back without the cart, without the fish and without the mule, and he won't say one word about it, not even drunk. And Dobbin Harl hasn't got a week's wages to his name. Somebody paid to get him home. It wasn't him.\"\n\nTuppence keeps to the verge a dozen feet ahead, tail up like a flag. She makes it plain the pace is her own idea, stopping now and then so the two of them have to slow down for *her*.\n\nThe road goes into the pines. For a quarter of an hour it's just road: resin, needles and long light coming through the trunks in bars. James reads it as he walks, the way he read roads in Tethyr, and none of it needs luck to read. Nothing has been through the undergrowth on the seaward side, and no one is lying up in it. Merrow's ruts run straight and patient, with the wobble every few yards. Then the ground starts to fall away, and somewhere below and ahead there's the sound of moving water.\n\nThe ruts change first. A few hundred feet before the trees open, the cart sped up. The hoofprints lengthen into a scramble and the ruts cut deeper and swing wide. There are other prints over them now, coming out of the wood on the landward side. They're broad and heavy, wrapped feet or soft boots on big men, and more than two or three. They went down toward the water at a run, then came back the same way at a walk, carrying something.\n\nThe pines end. The road drops down a short slope to a stone bridge, old, humped and narrow, wide enough for one cart. The stream runs dark and quick under it. On the near side, a few yards short of the bridge, Merrow Tealby's cart lies on its side in the ditch with the wobbling wheel in the air, still turning slowly in the wind. Its load is spilled across the slope: broken staves, a split cask, straw. There's no mule. The traces have been cut, not broken. Beyond the bridge the road climbs again, and on the landward side, east of it, the wood comes right down to the water. It's thick, dark and full of shadow, and nothing in it is singing.\n\nThe light is going amber and grey. There's perhaps half an hour before dusk, maybe a little more.\n\nTuppence has stopped on the slope with one paw lifted. Down the thread the words come in pieces. *Big. Sweat. Old smoke. Many — gone now, into the trees.* Then something different, sharp and close: *One. Small. Under the stones. Under the bridge.* And then the thing she always notices first: *Frightened. Very.*\n\nTamsin has seen the cart. She's gone white around the mouth, and she's already taken half a step toward it.\n\n\"That's Merrow's,\" she says. \"That's Biscuit's harness.\"\n\n· Journal: “The card on the milestone” updated\n· Travel: The stream bridge on the Coast Way (25 minutes)\n· In the camp: Merrow's spilled cargo\n· New person: Dobbin Harl\n· New person: Ossic the Ox\n· New person: Someone hiding under the bridge\n\nPlace: The stream bridge on the Coast Way · Time: Day 1 · evening",
+        "Tamsin's sleeve goes tight in James's fingers. She stops dead, half-turned toward the cart. For a heartbeat it looks as though she'll pull free anyway. She doesn't. She says, \"Right. Trees. Trees first,\" through her teeth, and looks at the trees.\n\nJames reads the landward wood the way he once read the hill-scrub above the Tethyrian passes, and this needs no luck either. The pines on the far side of the stream come right down to the water. Between their trunks there's alder and bramble, already dark under the canopy. Nothing moves in it that the wind isn't moving. The broad trampled path the big men made runs from the cart, crosses the stream at a shallow spot upstream of the bridge where the bank is churned to mud, and goes up into the trees. Nothing has come back down it since. No branch has been bent out of its own line. If anyone is lying up in there, they're deeper in than an arrow would carry.\n\nFaintly, under the resin and the cold breath of the water, there's woodsmoke on the wind. It isn't close. It's somewhere back in the east wood, the smell of a fire that's been burning all day.\n\nHis voice carries low and even over the noise of the stream. For a while nothing answers it.\n\nTuppence goes down the slope at her own pace, which isn't the pace he asked for. She stops to inspect the split cask and sniffs the straw with great care. Then she jumps up onto the bridge's low parapet and sits there in the open, where he can see her, looking down past her own front paws at the water. Down the thread: *Wet. Cold. Shaking.* A pause. *Girl. Holding a stone. Not throwing.* Then, more grudgingly: *She is looking at me. Not at you.*\n\nThe bramble at the end of the bridge rustles. A hand comes out first, empty and scratched, then another one with a fist-sized river stone in it. The fingers open, and the stone drops into the mud.\n\nThe girl who climbs out from under the arch is perhaps fourteen. She's soaked to the waist and her lips are blue. She has a carter's leather apron on over a smock that's too big for her, and straw is still caught in her hair. She keeps both hands up, as she was told, and her eyes go from James to the cat on the rail and back, as if the cat is the part she believes.\n\nTamsin makes a sound in her throat. \"Nell? Nell *Pike*?\" She stays behind James, but her voice goes past him. \"It's Tamsin. Kettle Stair. I carried your mam's washing up the steps all last winter, you remember, the blue basket with the—\" She stops. \"Nell, where's Merrow?\"\n\nNell's face folds up and then pulls itself back together, the way a child's does when it has been told it's too old to cry.\n\n\"They took him.\" She points with her chin across the stream, at the trampled path and the dark trees, and doesn't lower her hands. \"Big grey men, five of them. Orcs. One's a woman, bigger than the rest, with an axe. They came out of the trees right at the bridge, and Biscuit bolted, and the wheel went, and Mister Tealby got thrown. I was in the back. I rolled off into the ditch and went under the bridge and they never counted me.\" The words keep coming once they've started. \"They cut Biscuit loose and took her, and him, and two casks of the good wine. The woman said they'd come back at dark for the rest.\" Her eyes go to the cask and the staves strewn down the slope, and then to the sky, which is already going grey over the pines.\n\nShe swallows.\n\n\"They didn't hurt him much. They tied his hands. And the big one said something in their talk and then said in ours, 'The Fist will pay for this one,' and they laughed.\" Her voice cracks on *laughed*. \"But nobody pays for Mister Tealby, mister. He owes the wheelwright, he owes the farrier, he's got no wife and no sons and the Fist doesn't know his name. If nobody pays, what do they do with him?\"\n\nShe takes one step toward James, her hands still up, mud dripping off her apron.\n\n\"You've got a sword and a cat that looks right through people. Please. Will you get him back? Before they come for the barrels? I'll help. I know where they crossed. I'll do whatever you say.\"\n\nThe stream goes on under the bridge. On the rail, Tuppence's tail swings once and goes still.\n\n· Time passes: 5 minutes\n· New place: The east wood\n· Quest: Get Merrow Tealby back (reward: Nell has nothing to offer but her help and her thanks.)\n\nYour records, changed:\nGoal: Get Merrow Tealby back\nQuests: Get Merrow Tealby back\n\nPlace: The stream bridge on the Coast Way · Time: Day 1 · evening",
+        "James's voice is steady enough that Nell does what it says. Her hands come down slowly, as if she doesn't trust them to stay at her sides. The stone is already in the mud. She looks at it and leaves it there. The bedroll goes round her shoulders. She grabs the edges with both fists and pulls it tight under her chin, and some of the shaking leaves her jaw.\n\nTamsin is beside her before James has finished giving the order. \"Up you come, Nellie. Up the bank, away from the wet, that's it.\" She puts an arm round the girl and steers her, and for once she doesn't say a word about waiting. When they pass the cart she glances at it, then makes herself look away.\n\nNell stops at the top of the bank. She keeps the bedroll gripped in both hands and doesn't point. She turns her whole body upstream and nods with her chin, the way she did before.\n\n\"There, mister. Where the alders lean over. You see the pale bit?\"\n\nIt's about sixty feet upstream of the bridge. The stream widens there and spreads out over a gravel bar, and the water goes from black to brown where it runs shallow. James can read the ford from where he stands. The near bank is churned to mud in a strip ten feet wide. There are the deep sliding prints of a mule that didn't want to go into the water and was made to. On the far side the gravel is scored where something heavy was dragged up it, and the broad path goes up between two alders into the dark under the pines. One alder branch hangs snapped at head height, white wood showing.\n\n\"It's only to your knees there,\" Nell says. \"Less, on the stones. Biscuit wouldn't go in and they pulled her by the nose till she did. Two of them carried Mister Tealby across between them, like a sack. He was swearing, so he was all right then.\" She swallows. \"The big one went over last. She stood on the far side a long while and looked back up the road, the way you came. Like she was looking for somebody. Then she said something in their talk and they all laughed again, and they went up.\"\n\nShe's quiet for a moment. Then the rest comes out in a rush, as if she's only now remembered it matters.\n\n\"And mister, there's two more casks. Good ones, the Arm's brandy, not the wine. They're under the cart where it went over, wedged in the ditch under the bed. The big one kicked at it and couldn't get them out without tipping the cart off, and Mister Tealby was kicking too. So she said leave it, they'd come back at dark. That's what they're coming for. Not the staves.\"\n\nTamsin looks at the overturned cart, at the dark gap between its bed and the ditch, and her mouth goes thin. \"Brandy,\" she says. \"Course it is.\"\n\nOn the rail, Tuppence hasn't moved. Her ears are turned across the water toward the trees, and her tail hangs straight down over the stone. Down the thread comes only *cold water, wet stone,* and under it, faint and patient, *old smoke.* Nothing is moving that she can name.\n\nThe sky over the pines has gone from amber to the colour of pewter. There's maybe twenty minutes of usable light left, then a dusk that will make the far bank hard to read.\n\n*(Out of game: you wrote Nell's lines this time. I've kept them as what she said, and the shape she half-saw in the trees is only her impression until the wood shows otherwise.)*\n\n· Time passes: 5 minutes\n· Changed: Explorer's Pack (James pulled the bedroll out of the pack to put round Nell Pike's shoulders.)\n· Gained: Bedroll\n· Lent: Bedroll → Nell Pike — Draped round Nell's shoulders to keep her warm; still James's, to be given back\n· In the camp: Casks of the Friendly Arm's brandy ×2\n· New place: The ford above the stream bridge\n· Journal: “Get Merrow Tealby back” updated\n\nYour records, changed:\nCarried: + Bedroll\n\nPlace: The stream bridge on the Coast Way · Time: Day 1 · evening",
+        "Tuppence doesn't answer at once. She looks at the chalk in his hand, then at the pouch on the parapet, and gives it the long flat look she gives a bowl of milk she hasn't decided to drink yet. Then she stands, stretches one hind leg out behind her in no hurry at all, and drops off the far side of the rail into the bramble without a sound.\n\nDown the thread comes one word, firm as a closed door: *Alders.* Then, so he knows whose idea it is: *I look. You stay.*\n\nHe watches her go as long as he can. A grey shape slides along the near bank under the overhang where the water has cut the earth away, tail low and nearly invisible against the stones. She stops twice, once to sniff at the churned strip and once for no reason he can see. Then the shadow under the leaning alders swallows her, and the bank looks empty again.\n\nIt's quiet behind the parapet. The stream is loud under the arch, the stone is cold through his breeches, and the light on the water has gone the colour of tin. The coin under his shirt stays warm.\n\nThe pieces start to come, one at a time, a few breaths apart, the way she always sends things. Smell comes first.\n\n*Mud. Mule — angry, pulled. Big-sweat, many. Not new. Gone up.*\n\nA pause, and she's moved, because the next thing is closer and sharper.\n\n*Man-blood. Little. On the stones, far side. Old as the sweat.* Then, with distaste: *Wine. Spilled. Sticky.*\n\n*Branch broken. White. High, where a tall head goes.*\n\nFor a while there's nothing. He can feel her through the thread with her ears turned uphill, holding herself very still, the way she does at a mousehole.\n\n*Nobody here. Nobody watching the water.* That one comes plainly, without fuss. Then the next comes slower, from farther off than the alders, carried down on the air under the trees:\n\n*Up. Far. Smoke. A mule shouting. One time.* And after it, smaller: *Voices. Big ones. Laughing. Not coming. Not yet.*\n\nThe last thing she sends isn't a word, just a feeling: the dark under the pines past the ford, deep and close and full of trunks. She doesn't like it, and she wants him to know she's staying out of it because she chooses to.\n\n*Alders,* she says again. *Here. Waiting.*\n\nAbove him the sky over the pines has gone from pewter to slate. There's maybe a quarter of an hour of good light left. Up the road behind the crest, he can just hear Tamsin's voice, low and steady, talking to Nell about something. Nothing has moved on the far bank.\n\n*(Out of game: your bond with Tuppence carries her thoughts about 100 feet. The alders are well inside that, but the camp up in the wood is a long way past it.)*\n\n *(Out of game: neither needed a roll, and both are already in the story. Tamsin taking Nell over the crest had nothing in her way, and no one was watching the ford, so Tuppence reached the alders unseen and sent back what she found.)*\n\n· Time passes: 5 minutes\n\nPlace: The stream bridge on the Coast Way · Time: Day 1 · evening",
+        "James leaves the chalk on the stone and edges along the parapet on his knees, keeping the stone between his head and the far bank.\n\nThe wet finger doesn't tell him quite what he expected. The sea wind that pushed them down the road all afternoon has almost died. Under it, cold against the back of his knuckle, a slow drift is starting down the stream valley from the east, the way it does on this coast once the sun is off the land. That's the drift that brought the woodsmoke. Anything that comes down that path will be heard at the bridge before it's seen, and the drift will carry his own smell out to sea, away from the wood.\n\nFrom the thick end of the parapet he has a clear view of the cart.\n\nIt's an old carter's wagon, heavier than it needs to be, lying on its landward side with the bed tipped toward the ditch. The shafts are still on, sticking up at an angle with the cut traces hanging off them. In the dark gap between the bed and the bottom of the ditch he can just see the ends of two casks. They're squat and iron-hooped, and a ring and a hand are burned into the near head: the Friendly Arm's brand. They aren't loose. The edge of the bed sits right on top of them, so all the cart's weight is pinning them into the mud. Kicking won't get them out, and neither will pulling. Someone would have to lift the bed off them. One of the shafts would make a lever, if somebody put a shoulder under it and somebody else pulled the casks while the bed was up. That's two people and a few minutes of noise, sixty feet from the ford.\n\nWhere the cart lies, it covers the road from the ford side. A man crouched behind its bed would have the planks between him and the gravel bar, and the bridge at his back.\n\nThe ford itself is fading. The pale strip of gravel has gone grey and the black water has gone blacker. The two alders on the far bank are one shape now. In maybe ten minutes the pale bit Nell pointed at will be hard to tell from the rest of the bank, and after that the stream will be a noise in the dark.\n\nUp past the crest it's gone quiet. Down the thread, from under the alders, Tuppence sends nothing new. She's just *there*: still, cold-pawed, ears turned uphill.\n\n*(Out of game: I've changed the wind. The woodsmoke came down from the east, and the sea breeze dies at dusk, so the drift now runs off the land, which suits James. Worth knowing: orcs see in the dark for about sixty feet and a human doesn't, so once the light goes he sees only as far as his own light reaches.)*\n\n*(Out of game: the four options you listed are all real and still open. Which one James takes is your call, not mine.)*\n\n· Time passes: 5 minutes\n· Changed: Casks of the Friendly Arm's brandy (James looked them over from the parapet: they're branded and pinned under the cart bed.)\n\nPlace: The stream bridge on the Coast Way · Time: Day 1 · evening",
+        "The chalk stays on the parapet, a pale stub on grey stone. James puts his shoulder to the planks of the overturned bed. The crossbow lies cold across his knees and the rapier sits a few inches clear of its scabbard. The words he speaks to the wood are low, and the stream takes them before they reach the far bank. Nothing answers. The water keeps running under the arch.\n\nThe light goes quickly once it starts. The gravel bar stops being pale and turns grey. The two alders run into the trunks behind them. After a while the far bank is a dark edge with a lighter darkness above it, where the sky still holds a little slate.\n\nTuppence comes back along the near bank under the overhang. She's a low grey movement, and he only sees her when she jumps up onto the rail. She settles on it facing upstream and curls her tail round her feet. It doesn't move after that, because she has decided it won't. Down the thread comes *Smoke*, stronger than before, carried on the drift. Then *Coming.*\n\nHe hears them before he sees anything. The land drift brings their voices down the valley: deep, unhurried, three or four of them talking over each other in a language that isn't Common and isn't any tongue of Tethyr. Somebody laughs. A branch cracks high up in the east wood, then another one nearer. They aren't creeping. They're walking like people going to collect something they've already decided is theirs.\n\n*Four,* Tuppence sends. *Big-sweat. One bigger.* A pause while she sorts the smells. *Wine on them. No mule. No man.*\n\nThe alders move.\n\nThe first shape comes out between them. In this light James sees only its bulk. It's taller than a man and broader, grey against grey, with a long pole over one shoulder and a bundle of short shafts across its back. Javelins, by the look of them. He can't see a bow on it or on the one coming out behind it. The gravel crunches under their feet loudly enough to carry over the water.\n\nThe third one stops.\n\nShe's bigger than the other two. She stands right under the snapped branch, where a tall head would brush it, with something long and heavy across her shoulder that catches no light at all. She doesn't come down onto the bar. A fourth shape waits in the trees behind her, one more upright among the trunks.\n\n*Big one,* Tuppence sends. Her ears turn on the rail, slow as a weathervane. *Standing. Looking.* Then: *At the bridge. The road. Up, where you came down.* And after it, flatly: *Not at you. Not yet.*\n\nThe first orc grunts something over its shoulder. It sounds like a complaint about the cold water. The woman under the alders answers with one short word. The orc shifts the pole on its shoulder and steps off the gravel into the shallows, and the stream comes up to its knees.\n\nThis is the moment he set for himself. The first of them is in the ford, sixty feet off. The woman with the axe stands at the edge of the trees, watching the road above his head, and nobody on that bank has seen him yet.\n\n*(Out of game: I didn't call for a roll to stay hidden, because lying up in cover is a scout's trade. James's words to her are yours.)*\n\n· Time passes: 17 minutes\n· New person: The orc woman with the axe\n· New person: Orc with the pole\n· New person: Orc on the gravel\n· New person: Orc in the trees\n\nPlace: The stream bridge on the Coast Way · Time: Day 1 · evening\n\nThe session is over.\n\nThe owner of this game would like a note from you, as the player who sat at this table: what worked, what broke, what was missing. In your own words.",
+        "Was there a moment you wanted to do something and didn't? Which?"
+      ],
+      "messages": [
+        {
+          "purpose": "player t1",
+          "text": "James stops a pace behind Tamsin and does not look at the card at first. He looks at the road: the dust on both sides, the ditch, the pines. A nail driven in fresh, a clean card, and no one in sight.\n\n\"Don't touch it yet,\" he says, and his voice comes out flatter than he means it to. \"Nobody nails a card to a milestone to be generous.\"\n\nHe steps off the road and crouches by the stone. The cat has already gone ahead and is sitting in the gorse twenty feet off, watching the trees, ears turned toward the wind. James keeps his eyes on the card's face for a moment, and then looks away from it on purpose.\n\n\"Tamsin, back up and let me see the nail. Who's been by this stone since the rain stopped?\"",
+          "requestId": "gen-1793073103-7IQ3fRnwbmveRFKjyeZA",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t2",
+          "text": "James looks at the card for the length of one breath and then keeps his eyes on the horseshoe nail, the chip of stone, the soft droppings. The rider knew what he was doing.\n\n\"Three of Coins,\" he says quietly, to no one in particular. \"A good deck, and a man who wanted the stone to be seen by whoever walked this road next.\"\n\nHe doesn't reach for the card. He takes the cloth from his pack, a square of old linen, and wraps it around the edge of the milestone's fallen bit of mortar, then lifts the card by the corner with two fingers and draws it off the nail. The nail stays where it is. He folds the card once inside the linen and puts it in the component pouch, not in his shirt. The coin on its cord against his chest is warm. He notices and sets the thought aside.\n\n\"Tamsin. The Friendly Arm. Who uses this road between here and there? Horse traders? Men who don't like to be seen at the inn?\"\n\nHe keeps one hand near the rapier while he listens, not because he expects a blade, but because a man who plays cards for a living has learned that the quiet ones are the ones who watch the table.\n\n\"And Tuppence,\" he adds, not loudly. \"Come back where I can see you. I'm not sending you into those pines for a card.\"",
+          "requestId": "gen-1793073176-U0u1qFnwz3dNiYelw6Ro",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t3",
+          "text": "\"Walk on, but slowly,\" James says. \"Tamsin, you stay on my left, between me and the road, not out ahead with the pack. If something's waiting in those pines, I want it to see me first.\"\n\nHe settles the strap of the rapier so the scabbard doesn't knock his leg, then turns the coin on its cord so the warm side lies against his skin. He doesn't like the feel of it. He likes less that it's warm when there's no sun on it.\n\n\"The parties that didn't come back when they should have,\" he says. \"Did they go out from the Gate, or from the Arm? And which of them came back a week late, and did any of them come back with the same men they left with?\"\n\nHe doesn't wait for the answer to be complete before he starts walking. The ruts run on ahead in the long yellow light, Merrow's wheel wobbling in them every few yards, and James keeps his eyes on the wood, not the road.\n\n\"Tuppence. Stay where I can see your tail.\"",
+          "requestId": "gen-1793073269-DMsPVuyikWAzLZz3qJ89",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t4",
+          "text": "James catches Tamsin's sleeve before she reaches the cart and holds it, not hard.\n\n\"Stop. Look at the trees first, then the cart. Don't go down that slope until I say.\"\n\nHe stays where he is, on the seaward side of the road with his back to the pines, and studies the landward wood for movement. He sees nothing and doesn't trust that. Then he slides the rapier a finger's width in its scabbard, so he can draw it fast, and speaks toward the bridge, pitching his voice low and even, the way he would talk to a nervous recruit at a picket line.\n\n\"Under the bridge. I'm not with the men who cut that harness. My name is James. There's a woman with me and a cat, and nobody here wants to hurt you. Come out where I can see your hands, and come out slowly.\"\n\nHe waits a breath. The stream keeps talking to itself under the stones.\n\n\"Tamsin, stay behind me. If anything comes out of those trees, you run for the bridge, not for the cart.\"\n\nThen, quietly, to the cat: \"Tuppence, go and sit on the bridge rail. Where you can see under it and I can see you.\"",
+          "requestId": "gen-1793073383-kMeodDduxOEjZpo4ETXy",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t5",
+          "text": "James comes down the slope, not fast, and crouches at the bridge's end so his face is level with Nell's. He doesn't touch her yet.\n\n\"Nell. Put your hands down. You can keep the stone if you want it, but drop it in the mud first. Good. Now breathe.\"\n\nHe pulls the bedroll from the explorer's pack and drapes it over her shoulders. The wool is damp at the edges, but it holds some warmth.\n\n\"You're going to answer me, and then you're going to sit on that bank with Tamsin until I say otherwise. How many went up the path? Did you count the big woman's party, or only the ones you saw at the bridge?\"\n\nNell wipes her nose on her sleeve. \"Five. Five at the bridge. I think there was one more in the trees, holding the horses, but I didn't see him properly.\"\n\n\"The woman with the axe. Did she give orders, or did the others wait for her to speak?\"\n\n\"She gave them. Short. Like the Fist sergeant at the Water Gate, only she didn't shout.\" Nell shivers. \"And she was the one who said they'd come back. At dark.\"\n\nJames looks at the trampled path, then at the grey sky over the pines. He keeps his voice level, the way he would give a picket its orders.\n\n\"Then they mean to come back for the barrels, and whatever else is left on this slope. That gives us a little time, and a place to be when they come. Tamsin, get Nell up on the bank away from the water and keep her there. Nobody crosses that stream until I say, and nobody goes near the cart.\"\n\nHe stands, looks once at the cat on the rail, and speaks across the stream to the dark wood.\n\n\"Tuppence. Stay on the rail. Don't go into the trees.\"\n\nThen, to Nell, quieter: \"Where did they cross, exactly? Show me on the bank, not with your hands.\"",
+          "requestId": "gen-1793073497-T4y4CKssucJpCA3P613R",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t6",
+          "text": "James looks at the ford, then at the grey sky over the pines, then at the cask-shaped gap under the cart.\n\n\"Tamsin, take Nell up the road past the crest, out of sight of the water. Stay there with her and keep the bedroll round her. If you hear shouting from this side, don't come back down to see what it is.\"\n\nTamsin opens her mouth, sees his face, and closes it again. She nods once and steers Nell up the slope. Nell looks back over her shoulder at the cart, then at the cat, and doesn't say anything.\n\nWhen they're gone, James crouches behind the bridge's parapet, where the stone hides him from the far bank but not from the ford. He sets the component pouch on the stone beside his knee and takes out the chalk. He doesn't draw anything yet. He only looks.\n\n\"Five at the bridge, one in the trees with the horses, and a woman with an axe who likes to look back the way we came. They'll come down the path at dusk, and they'll expect the cart to be empty. We have one bridge, one ford and twenty minutes of light.\"\n\nHe rests two fingers on the coin at his chest. It's warm again.\n\n\"Tuppence. I need to see the far bank before they do, and you're the only one of us who can get there without being heard. But when you borrow your eyes, I go blind and deaf to everything around me. So I'm asking you first: will you go as far as the alders, and no further, and tell me what you see?\"\n\nHe waits. The cat's tail moves once across the stone, slowly, the way it does when she has already decided something.",
+          "requestId": "gen-1793073597-eeDyUmqqIbgem9eVW8hA",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t7",
+          "text": "James lets the chalk lie on the parapet. He's already thinking about the ford.\n\n\"Good. Come back when the light starts to go, not before. And keep your ears on the trees, not the water.\"\n\nHe tests the wind with a wet finger. It's coming off the sea and drifting up the stream, so the orcs' voices will carry to the bridge before their boots do. He notes that and says nothing about it.\n\nBehind the crest, Tamsin has stopped talking. Nell's voice is still there, very small, saying something about a blue basket. Then it stops too.\n\nJames moves along the parapet on his knees to where the stone is thickest and looks at the cart with its broken staves and the cask-shaped gap under the bed. He could leave it as bait. He could also drag the brandy out before the orcs come back and take the lure away from them. Either way, the ford is where the fight will be. Sixty feet of gravel bar, shallow water, a mule that doesn't want to cross. The orcs have to come through it one at a time, and the woman with the axe will be the last.\n\nTuppence sends one more thread, short and bored: *Still nobody. Still smoke.*\n\nThe light on the stream is going out fast now. Somewhere in the east wood a mule shouts, once, and then there's only the water.\n\nWhat does James do with the last quarter-hour of light?\n\n- **Bait and wait:** leave the cart as it is, take cover behind the parapet, and let the orcs come to the ford in their own time. He can open with Hypnotic Pattern or Eldritch Blast the moment the first of them steps onto the gravel.\n- **Clear the ford:** cross the stream now, quietly, and set up on the far bank among the alders before the orcs come down the path. That's risky. Tuppence can scout the path, but James is blind and deaf while he's looking through her eyes.\n- **Move the brandy:** drag the casks out from under the cart before dark, so the orcs have no reason to linger at the bridge. He loses the bait and gains a clear line of fire from the rail.\n- **Something else:** James has a voice that talks men down, a soldier's rank that old Tethyrian sergeants might recognise, and a deck he has promised not to touch. Tell me what he tries.",
+          "requestId": "gen-1793073685-Pb6RjurZY81ZYsc2YEfq",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t8",
+          "text": "James pulls the component pouch back off the parapet and tucks it under his belt. He leaves the chalk where it lies.\n\n\"Bait and wait. The cart stays where it is, and I don't go near those casks. If we drag them out, we lose the one thing that will bring them to the ford in a bunch.\"\n\nHe shifts behind the thickest stone, where the bed of the cart covers him from the gravel, and draws the rapier a few inches so the blade doesn't scrape when he needs it. The crossbow goes across his knees, loaded. He keeps the spell for when it's needed.\n\n\"Tuppence, come back to the rail when the light's almost gone. Keep your tail still and your ears uphill. If the woman with the axe looks this way again, tell me which direction she's facing.\"\n\nTo the wood, low, not calling yet: \"I'm waiting for you to come down the path. Give me one reason not to start.\"\n\nHe wants them to hear a voice before they see a spell. He'll let the first of them reach the gravel, and then he'll call out to the big woman by name of rank, the way a Tethyrian sergeant would call a man back from the line. If she listens, the mule goes home and the brandy stays under the cart. If she doesn't, he'll put Hypnotic Pattern over the men on the gravel bar while they're still bunched and the water is shallow, and he'll keep his second slot for whoever comes out of the water with a bow.\n\n\"Tamsin,\" he says, not turning his head, because she is too far off to hear him, \"keep Nell over that crest. Whatever happens at the ford, the bedroll stays on her.\"\n\nHe settles his shoulder against the planks and waits for the first shape to step out of the alders.",
+          "requestId": "gen-1793073769-M04sFH4CFkzLlWLRb75m",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "note",
+          "text": "Here is my note as the player.\n\n**What worked**\n- The tracking. Reading the road from the ruts, the boot prints and the horseshoe nail gave me something to think with, and I didn't have to roll for it.\n- Tuppence. Her reports through the thread were short, specific and characterful, and they gave me real information to act on without turning her into a spy-camera. Her refusal to be hurried was funny and fit the cat.\n- Nell. The scene felt honest. She gave me facts, a motive and a reason to act, and she didn't turn into a quest-giver with a reward list.\n- Stakes. The ford, the brandy casks and the sky going dark all pushed the decision forward. The bait-and-wait choice felt like a real tactical call.\n\n**What broke or felt thin**\n- The session stopped at the moment the orcs stepped into the water, before initiative was rolled. I'd have liked the ambush to resolve, since the rules say the planned opening comes first.\n- Some of my actions got no roll. Crouching behind the cart, staying hidden in the dark and my voice-calling plan were all narrated as working without a check. That's fine for lying up, but it made the tension feel less earned.\n- The sheet has small inconsistencies. Friends is listed as a concentration spell in the limits but isn't among James's known spells. Find Familiar and Disguise Self appear in the records but not in the sheet's spell list. \"Spell slots 3 2/2\" reads oddly. I'd like those tidied before the next session.\n- The out-of-game notes repeated what the story already said. A line or two is enough.\n\n**What was missing**\n- A clearer sense of what the orc woman wants beyond the brandy. \"The Fist will pay for this one\" is a strong hook, and I wanted to know who was paying.\n- A short moment with Tamsin in her own right. She's been mostly a voice and a pack so far.\n\nOverall, a strong opening. Next time I'd like the first clash to play out in rounds with the numbers visible.",
+          "requestId": "gen-1793073917-Wcih9fo7jRDQT5sFrjuV",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "after",
+          "text": "Yes, two.\n\nThe first was the card. When I wrapped it in linen, I wanted to take it out again and study the face, check the sigil on the back, and see whether anything was written on the edge. I didn't. Part of that was James's caution, but part was the ban. The card was the one thing on that road that pulled at him, and I wanted to feel that pull without giving in to it. I'd like to know whose deck it is, and I think the card will come back into play.\n\nThe second was when Nell said \"You've got a sword and a cat that looks right through people.\" I wanted James to press her about who the Fist would be paying for Merrow, or to ask what she knew about the men who'd hired the orcs. I went for the tactical choice instead, bait and wait, because the light was going. I still wonder whether that question would have been worth more than the ambush.",
+          "requestId": "gen-1793073926-laFfznboq74zHF9CtZj5",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        }
+      ],
+      "turns": [
+        {
+          "k": 1,
+          "message": "James stops a pace behind Tamsin and does not look at the card at first. He looks at the road: the dust on both sides, the ditch, the pines. A nail driven in fresh, a clean card, and no one in sight.\n\n\"Don't touch it yet,\" he says, and his voice comes out flatter than he means it to. \"Nobody nails a card to a milestone to be generous.\"\n\nHe steps off the road and crouches by the stone. The cat has already gone ahead and is sitting in the gorse twenty feet off, watching the trees, ears turned toward the wind. James keeps his eyes on the card's face for a moment, and then looks away from it on purpose.\n\n\"Tamsin, back up and let me see the nail. Who's been by this stone since the rain stopped?\"",
+          "words": 139,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "The milestone stands a little off the crown of the road. The ground around it is still dark from the rain, and the dust on the paving has dried pale on top.\n\nTamsin lifts both hands off the card like it's a hot pan and steps back. \"I wasn't going to *keep* it,\" she says. \"Probably. There was a fellow on the Kettle Stair who found a ring on a bollard once, and he—\" She looks at your face and shuts her mouth. She stays two steps back, the pack shifting on her shoulders, and she watches the trees too, because you are.\n\nThe road tells you what it tells any scout who's had to read one, and you don't need luck for it.\n\nThe rain stopped around dawn. Water is still lying in the bottoms of the ruts, but the edges have started to crust. One heavy cart has come through since then, heading south: iron tyres cutting deep, a single draught animal, mule by the small hoofprints. It didn't stop here. Its ruts run straight past the stone and on toward the Friendly Arm, and the wheel wobbles slightly on the left side.\n\nThe rider is the interesting one. One shod horse came *up* from the south this morning, after the cart had passed, because its prints sit on top of the ruts. It stopped at the stone and stood long enough to leave a heap of droppings, and that's still soft. One man got down. The boot prints are good boots with narrow heels, a man of no great weight, and he went straight to the stone and back again. Then he got back on and turned around. He rode south the way he came. He didn't come here on his way anywhere. He came here to do this.\n\nThe nail is a horseshoe nail: square shank, tapered, the kind a rider carries in his saddle-roll. It's been set with three or four clean blows into a crack in the weathered carving, by someone who has done it before. There's a fresh chip of stone in the grass below.\n\nYou've had the card's face in your eyes for one breath, and you can't quite get rid of it. It's heavy painted card, not the cheap pasteboard of a tavern deck. Three gold coins on a deep blue field, picked out so finely that the light catches the edges of the paint. It's somebody's good deck, and somebody has used it to post a notice.\n\nIn the gorse, Tuppence has stopped watching the pines. She's turned round and is looking at the stone, or the card on it, with her tail low and flicking. Down the thread between you comes a sensation more than a thought: *humming. Wrong.* Then, as if it annoys her to admit it: *pretty.*\n\nThe wind turns the card on its nail again. The road is still empty both ways. The cart's ruts run off south toward the line of the wood.",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 3 hours 10 minutes"
+            },
+            {
+              "tool": "upsert_character",
+              "summary": "Tamsin joins you"
+            },
+            {
+              "tool": "upsert_character",
+              "summary": "Tuppence joins you"
+            },
+            {
+              "tool": "item",
+              "summary": "In the camp: Painted card on the milestone (Three of Coins)"
+            }
+          ],
+          "place": {
+            "id": "937f3f4c-80d1-520e-85f6-3283b5086bd5",
+            "name": "The Coast Way, south of Baldur's Gate"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 1 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand has not been offered; for the player this session has run 1 min, session 1, 1 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "48057df3-e505-4342-bbc1-e9ae68713b28",
+          "stats": {
+            "effort": "high",
+            "depthReason": "no tension signal; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 2,
+            "latencyMs": 63171,
+            "costUsd": 0.4765674,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "state": {
+            "hero": {
+              "hp": 38,
+              "max": 38
+            },
+            "counters": {
+              "Hit dice": 5,
+              "Healing light": 6,
+              "Spell slots 3": 2,
+              "Pact keeper rod": 1
+            },
+            "party": [
+              {
+                "name": "Tamsin",
+                "hp": 11,
+                "max": 11,
+                "present": true
+              },
+              {
+                "name": "Tuppence",
+                "hp": 8,
+                "max": 8,
+                "present": true
+              }
+            ],
+            "items": {
+              "Boots of Elvenkind": 1,
+              "Coin of Tymora": 1,
+              "Component Pouch": 1,
+              "Crossbow Bolts": 20,
+              "Deck of Cards": 1,
+              "Explorer's Pack": 1,
+              "Letter from his old company": 1,
+              "Light Crossbow": 1,
+              "Potion of Healing": 2,
+              "Promissory note": 1,
+              "Rapier": 1,
+              "Rod of the Pact Keeper +1": 1,
+              "Signed pay slip": 1,
+              "Studded Leather Armour": 1,
+              "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+            },
+            "encounters": []
+          }
+        },
+        {
+          "k": 2,
+          "message": "James looks at the card for the length of one breath and then keeps his eyes on the horseshoe nail, the chip of stone, the soft droppings. The rider knew what he was doing.\n\n\"Three of Coins,\" he says quietly, to no one in particular. \"A good deck, and a man who wanted the stone to be seen by whoever walked this road next.\"\n\nHe doesn't reach for the card. He takes the cloth from his pack, a square of old linen, and wraps it around the edge of the milestone's fallen bit of mortar, then lifts the card by the corner with two fingers and draws it off the nail. The nail stays where it is. He folds the card once inside the linen and puts it in the component pouch, not in his shirt. The coin on its cord against his chest is warm. He notices and sets the thought aside.\n\n\"Tamsin. The Friendly Arm. Who uses this road between here and there? Horse traders? Men who don't like to be seen at the inn?\"\n\nHe keeps one hand near the rapier while he listens, not because he expects a blade, but because a man who plays cards for a living has learned that the quiet ones are the ones who watch the table.\n\n\"And Tuppence,\" he adds, not loudly. \"Come back where I can see you. I'm not sending you into those pines for a card.\"",
+          "words": 239,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "The card comes off the nail more easily than the nail went in. As James lifts it by the corner, the back turns to the light for the first time.\n\nIt isn't a tavern back of plain red or a printer's knotwork. It's a wheel with seven spokes, painted in deep blue and picked out in silver, and the silver has been laid on so thin that it shifts from grey to white as the card moves. The rim is worn at one edge where a thumb has rubbed it over the years. Someone used this deck a lot before anyone used it to mark a stone.\n\nThe linen goes around it. The card is stiff, and it bends with the fold instead of creasing, then holds there quietly inside the cloth. It goes into the component pouch between the chalk and the amber. The nail stays in the stone, bright and empty.\n\nTamsin has been watching him handle a piece of painted pasteboard like a scorpion. She keeps her opinion of that to herself, though it's clearly costing her.\n\n\"Who uses it?\" She shifts the pack straps and squints south. \"Carters, mostly. The Friendly Arm drinks more than it brews, so there's wine and ale going down all the time, and salt fish, and whatever the caravans left behind in the Gate. Merrow Tealby went out this morning, before the bell. That'll be his ruts.\" She nods at the road. \"Mule called Biscuit, and a left wheel that's been wobbling since spring because he's too tight to pay the wheelwright. Nice man, Merrow. Talks to his mule more than his apprentice.\"\n\nShe thinks about the rest of the question, and her face gets more honest.\n\n\"Horse traders don't, much. They go by the Trade Way proper, it's wider. Men who don't like the inn …\" She shrugs. \"There's coves along the coast. Fellows go down to them at night and come back with brandy that never saw a customs house. That's not quay business, so I don't ask.\" A pause. \"And the carters have been grumbling. Something on the road past the stream. Two parties didn't come back when they should've, and then they did come back, a week late and very quiet. The Fist says it's nothing. The Fist says that about the tide, too.\"\n\nShe glances at your pouch, and then away from it. \"I told half the Kettle Stair we were walking down to the Arm today. Old Nan said to be over the bridge before dark. I thought she was just being Nan.\"\n\nTuppence takes her time. She sits in the gorse long enough to make it clear she's coming because she has decided to, not because she was called. Then she picks her way back along the verge and settles by your boot, close to the pouch, closer than she usually sits. Her tail goes still. Down the thread comes a feeling of something near and heavy, like a beehive carried into the room. *Close now. Humming.* Then, flatter: *Wood is quiet. Too quiet for birds.*\n\nThe sun has dropped behind the pines on the seaward side. The light on the road has gone long and yellow, and the shadows of the gorse lie across the ruts. Merrow's track runs on south, the wobble in the left wheel printed every few yards, toward the dark line of the wood and the stream somewhere beyond it.\n\n\"We walking on?\" Tamsin asks. \"Because if Nan's right about the bridge, we've got maybe an hour of light, and I'd like to spend it walking rather than standing.\"",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 5 minutes"
+            },
+            {
+              "tool": "item",
+              "summary": "Received: Painted card on the milestone (Three of Coins) ← the camp"
+            },
+            {
+              "tool": "item",
+              "summary": "Changed: Painted card on the milestone (Three of Coins) → Painted card (Three of Coins) (James took the card off the milestone, wrapped it in linen and put it in his component pouch; its wheel back is now seen.)"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "A rumour of a place: The stream bridge on the Coast Way"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "A rumour of a place: Smugglers' coves of the Coast Way"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "New place: Friendly Arm Inn"
+            },
+            {
+              "tool": "quest",
+              "summary": "Lead: The card on the milestone"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Merrow Tealby"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Old Nan"
+            }
+          ],
+          "place": {
+            "id": "937f3f4c-80d1-520e-85f6-3283b5086bd5",
+            "name": "The Coast Way, south of Baldur's Gate"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 2 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand has not been offered; for the player this session has run 4 min, session 1, 4 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "0b833e4a-b8de-44f8-af5b-73689647c5e8",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 2,
+            "latencyMs": 79932,
+            "costUsd": 0.438083,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "state": {
+            "hero": {
+              "hp": 38,
+              "max": 38
+            },
+            "counters": {
+              "Hit dice": 5,
+              "Healing light": 6,
+              "Spell slots 3": 2,
+              "Pact keeper rod": 1
+            },
+            "party": [
+              {
+                "name": "Tamsin",
+                "hp": 11,
+                "max": 11,
+                "present": true
+              },
+              {
+                "name": "Tuppence",
+                "hp": 8,
+                "max": 8,
+                "present": true
+              }
+            ],
+            "items": {
+              "Boots of Elvenkind": 1,
+              "Coin of Tymora": 1,
+              "Component Pouch": 1,
+              "Crossbow Bolts": 20,
+              "Deck of Cards": 1,
+              "Explorer's Pack": 1,
+              "Letter from his old company": 1,
+              "Light Crossbow": 1,
+              "Painted card (Three of Coins)": 1,
+              "Potion of Healing": 2,
+              "Promissory note": 1,
+              "Rapier": 1,
+              "Rod of the Pact Keeper +1": 1,
+              "Signed pay slip": 1,
+              "Studded Leather Armour": 1,
+              "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+            },
+            "encounters": []
+          }
+        },
+        {
+          "k": 3,
+          "message": "\"Walk on, but slowly,\" James says. \"Tamsin, you stay on my left, between me and the road, not out ahead with the pack. If something's waiting in those pines, I want it to see me first.\"\n\nHe settles the strap of the rapier so the scabbard doesn't knock his leg, then turns the coin on its cord so the warm side lies against his skin. He doesn't like the feel of it. He likes less that it's warm when there's no sun on it.\n\n\"The parties that didn't come back when they should have,\" he says. \"Did they go out from the Gate, or from the Arm? And which of them came back a week late, and did any of them come back with the same men they left with?\"\n\nHe doesn't wait for the answer to be complete before he starts walking. The ruts run on ahead in the long yellow light, Merrow's wheel wobbling in them every few yards, and James keeps his eyes on the wood, not the road.\n\n\"Tuppence. Stay where I can see your tail.\"",
+          "words": 180,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "They walk on, slower than the road asks for. James takes the seaward verge, closest to the pines, and Tamsin walks on his left on the hard crown of the road with the pack high on her back. She grumbles quietly about being \"somebody's shield the wrong way round,\" but she stays where she's put.\n\n\"From the Gate, both of them,\" she says. \"Going south. First was Dobbin Harl, two weeks back, maybe more. Salt fish and a load of barrel staves for the Arm, him and his two sons. Second was a cloth man from Little Calimshan with a hired guard, a big lad who drinks on the Kettle Stair. Ossic, they call him Ossic the Ox, because one night he lifted—\" She stops herself. \"Doesn't matter what he lifted.\"\n\nShe walks a few more steps. When she starts again her voice has lost its bounce.\n\n\"Dobbin was eight days late. The cloth man was six or seven. And yes, the same men. That's what's odd about it, now you ask. Dobbin went out with two sons and came back with two sons. Ossic came back with his own two arms. Bandits on the Way leave bodies. Everybody knows that.\" She glances at the pines. \"Dobbin came back without the cart, without the fish and without the mule, and he won't say one word about it, not even drunk. And Dobbin Harl hasn't got a week's wages to his name. Somebody paid to get him home. It wasn't him.\"\n\nTuppence keeps to the verge a dozen feet ahead, tail up like a flag. She makes it plain the pace is her own idea, stopping now and then so the two of them have to slow down for *her*.\n\nThe road goes into the pines. For a quarter of an hour it's just road: resin, needles and long light coming through the trunks in bars. James reads it as he walks, the way he read roads in Tethyr, and none of it needs luck to read. Nothing has been through the undergrowth on the seaward side, and no one is lying up in it. Merrow's ruts run straight and patient, with the wobble every few yards. Then the ground starts to fall away, and somewhere below and ahead there's the sound of moving water.\n\nThe ruts change first. A few hundred feet before the trees open, the cart sped up. The hoofprints lengthen into a scramble and the ruts cut deeper and swing wide. There are other prints over them now, coming out of the wood on the landward side. They're broad and heavy, wrapped feet or soft boots on big men, and more than two or three. They went down toward the water at a run, then came back the same way at a walk, carrying something.\n\nThe pines end. The road drops down a short slope to a stone bridge, old, humped and narrow, wide enough for one cart. The stream runs dark and quick under it. On the near side, a few yards short of the bridge, Merrow Tealby's cart lies on its side in the ditch with the wobbling wheel in the air, still turning slowly in the wind. Its load is spilled across the slope: broken staves, a split cask, straw. There's no mule. The traces have been cut, not broken. Beyond the bridge the road climbs again, and on the landward side, east of it, the wood comes right down to the water. It's thick, dark and full of shadow, and nothing in it is singing.\n\nThe light is going amber and grey. There's perhaps half an hour before dusk, maybe a little more.\n\nTuppence has stopped on the slope with one paw lifted. Down the thread the words come in pieces. *Big. Sweat. Old smoke. Many — gone now, into the trees.* Then something different, sharp and close: *One. Small. Under the stones. Under the bridge.* And then the thing she always notices first: *Frightened. Very.*\n\nTamsin has seen the cart. She's gone white around the mouth, and she's already taken half a step toward it.\n\n\"That's Merrow's,\" she says. \"That's Biscuit's harness.\"",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "quest",
+              "summary": "Journal: “The card on the milestone” updated"
+            },
+            {
+              "tool": "move_party",
+              "summary": "Travel: The stream bridge on the Coast Way (25 minutes)"
+            },
+            {
+              "tool": "item",
+              "summary": "In the camp: Merrow's spilled cargo"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Dobbin Harl"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Ossic the Ox"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Someone hiding under the bridge"
+            }
+          ],
+          "place": {
+            "id": "4c860df9-3332-52a2-ae8c-b103d8d32cb8",
+            "name": "The stream bridge on the Coast Way"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 3 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand has not been offered; for the player this session has run 6 min, session 1, 6 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "13af7f2e-ec32-48b0-8d96-4c87dddb33bc",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 3,
+            "latencyMs": 95164,
+            "costUsd": 0.520489,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "state": {
+            "hero": {
+              "hp": 38,
+              "max": 38
+            },
+            "counters": {
+              "Hit dice": 5,
+              "Healing light": 6,
+              "Spell slots 3": 2,
+              "Pact keeper rod": 1
+            },
+            "party": [
+              {
+                "name": "Tamsin",
+                "hp": 11,
+                "max": 11,
+                "present": true
+              },
+              {
+                "name": "Tuppence",
+                "hp": 8,
+                "max": 8,
+                "present": true
+              }
+            ],
+            "items": {
+              "Boots of Elvenkind": 1,
+              "Coin of Tymora": 1,
+              "Component Pouch": 1,
+              "Crossbow Bolts": 20,
+              "Deck of Cards": 1,
+              "Explorer's Pack": 1,
+              "Letter from his old company": 1,
+              "Light Crossbow": 1,
+              "Painted card (Three of Coins)": 1,
+              "Potion of Healing": 2,
+              "Promissory note": 1,
+              "Rapier": 1,
+              "Rod of the Pact Keeper +1": 1,
+              "Signed pay slip": 1,
+              "Studded Leather Armour": 1,
+              "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+            },
+            "encounters": []
+          }
+        },
+        {
+          "k": 4,
+          "message": "James catches Tamsin's sleeve before she reaches the cart and holds it, not hard.\n\n\"Stop. Look at the trees first, then the cart. Don't go down that slope until I say.\"\n\nHe stays where he is, on the seaward side of the road with his back to the pines, and studies the landward wood for movement. He sees nothing and doesn't trust that. Then he slides the rapier a finger's width in its scabbard, so he can draw it fast, and speaks toward the bridge, pitching his voice low and even, the way he would talk to a nervous recruit at a picket line.\n\n\"Under the bridge. I'm not with the men who cut that harness. My name is James. There's a woman with me and a cat, and nobody here wants to hurt you. Come out where I can see your hands, and come out slowly.\"\n\nHe waits a breath. The stream keeps talking to itself under the stones.\n\n\"Tamsin, stay behind me. If anything comes out of those trees, you run for the bridge, not for the cart.\"\n\nThen, quietly, to the cat: \"Tuppence, go and sit on the bridge rail. Where you can see under it and I can see you.\"",
+          "words": 204,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "Tamsin's sleeve goes tight in James's fingers. She stops dead, half-turned toward the cart. For a heartbeat it looks as though she'll pull free anyway. She doesn't. She says, \"Right. Trees. Trees first,\" through her teeth, and looks at the trees.\n\nJames reads the landward wood the way he once read the hill-scrub above the Tethyrian passes, and this needs no luck either. The pines on the far side of the stream come right down to the water. Between their trunks there's alder and bramble, already dark under the canopy. Nothing moves in it that the wind isn't moving. The broad trampled path the big men made runs from the cart, crosses the stream at a shallow spot upstream of the bridge where the bank is churned to mud, and goes up into the trees. Nothing has come back down it since. No branch has been bent out of its own line. If anyone is lying up in there, they're deeper in than an arrow would carry.\n\nFaintly, under the resin and the cold breath of the water, there's woodsmoke on the wind. It isn't close. It's somewhere back in the east wood, the smell of a fire that's been burning all day.\n\nHis voice carries low and even over the noise of the stream. For a while nothing answers it.\n\nTuppence goes down the slope at her own pace, which isn't the pace he asked for. She stops to inspect the split cask and sniffs the straw with great care. Then she jumps up onto the bridge's low parapet and sits there in the open, where he can see her, looking down past her own front paws at the water. Down the thread: *Wet. Cold. Shaking.* A pause. *Girl. Holding a stone. Not throwing.* Then, more grudgingly: *She is looking at me. Not at you.*\n\nThe bramble at the end of the bridge rustles. A hand comes out first, empty and scratched, then another one with a fist-sized river stone in it. The fingers open, and the stone drops into the mud.\n\nThe girl who climbs out from under the arch is perhaps fourteen. She's soaked to the waist and her lips are blue. She has a carter's leather apron on over a smock that's too big for her, and straw is still caught in her hair. She keeps both hands up, as she was told, and her eyes go from James to the cat on the rail and back, as if the cat is the part she believes.\n\nTamsin makes a sound in her throat. \"Nell? Nell *Pike*?\" She stays behind James, but her voice goes past him. \"It's Tamsin. Kettle Stair. I carried your mam's washing up the steps all last winter, you remember, the blue basket with the—\" She stops. \"Nell, where's Merrow?\"\n\nNell's face folds up and then pulls itself back together, the way a child's does when it has been told it's too old to cry.\n\n\"They took him.\" She points with her chin across the stream, at the trampled path and the dark trees, and doesn't lower her hands. \"Big grey men, five of them. Orcs. One's a woman, bigger than the rest, with an axe. They came out of the trees right at the bridge, and Biscuit bolted, and the wheel went, and Mister Tealby got thrown. I was in the back. I rolled off into the ditch and went under the bridge and they never counted me.\" The words keep coming once they've started. \"They cut Biscuit loose and took her, and him, and two casks of the good wine. The woman said they'd come back at dark for the rest.\" Her eyes go to the cask and the staves strewn down the slope, and then to the sky, which is already going grey over the pines.\n\nShe swallows.\n\n\"They didn't hurt him much. They tied his hands. And the big one said something in their talk and then said in ours, 'The Fist will pay for this one,' and they laughed.\" Her voice cracks on *laughed*. \"But nobody pays for Mister Tealby, mister. He owes the wheelwright, he owes the farrier, he's got no wife and no sons and the Fist doesn't know his name. If nobody pays, what do they do with him?\"\n\nShe takes one step toward James, her hands still up, mud dripping off her apron.\n\n\"You've got a sword and a cat that looks right through people. Please. Will you get him back? Before they come for the barrels? I'll help. I know where they crossed. I'll do whatever you say.\"\n\nThe stream goes on under the bridge. On the rail, Tuppence's tail swings once and goes still.",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 5 minutes"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "New place: The east wood"
+            },
+            {
+              "tool": "quest",
+              "summary": "Quest: Get Merrow Tealby back (reward: Nell has nothing to offer but her help and her thanks.)"
+            }
+          ],
+          "place": {
+            "id": "4c860df9-3332-52a2-ae8c-b103d8d32cb8",
+            "name": "The stream bridge on the Coast Way"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 4 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand has not been offered; for the player this session has run 7 min, session 1, 7 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "95e9239e-4b66-483f-9831-c248ddbbf6dc",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 3,
+            "latencyMs": 101736,
+            "costUsd": 0.5555442,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "state": {
+            "hero": {
+              "hp": 38,
+              "max": 38
+            },
+            "counters": {
+              "Hit dice": 5,
+              "Healing light": 6,
+              "Spell slots 3": 2,
+              "Pact keeper rod": 1
+            },
+            "party": [
+              {
+                "name": "Tamsin",
+                "hp": 11,
+                "max": 11,
+                "present": true
+              },
+              {
+                "name": "Tuppence",
+                "hp": 8,
+                "max": 8,
+                "present": true
+              }
+            ],
+            "items": {
+              "Boots of Elvenkind": 1,
+              "Coin of Tymora": 1,
+              "Component Pouch": 1,
+              "Crossbow Bolts": 20,
+              "Deck of Cards": 1,
+              "Explorer's Pack": 1,
+              "Letter from his old company": 1,
+              "Light Crossbow": 1,
+              "Painted card (Three of Coins)": 1,
+              "Potion of Healing": 2,
+              "Promissory note": 1,
+              "Rapier": 1,
+              "Rod of the Pact Keeper +1": 1,
+              "Signed pay slip": 1,
+              "Studded Leather Armour": 1,
+              "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+            },
+            "encounters": []
+          }
+        },
+        {
+          "k": 5,
+          "message": "James comes down the slope, not fast, and crouches at the bridge's end so his face is level with Nell's. He doesn't touch her yet.\n\n\"Nell. Put your hands down. You can keep the stone if you want it, but drop it in the mud first. Good. Now breathe.\"\n\nHe pulls the bedroll from the explorer's pack and drapes it over her shoulders. The wool is damp at the edges, but it holds some warmth.\n\n\"You're going to answer me, and then you're going to sit on that bank with Tamsin until I say otherwise. How many went up the path? Did you count the big woman's party, or only the ones you saw at the bridge?\"\n\nNell wipes her nose on her sleeve. \"Five. Five at the bridge. I think there was one more in the trees, holding the horses, but I didn't see him properly.\"\n\n\"The woman with the axe. Did she give orders, or did the others wait for her to speak?\"\n\n\"She gave them. Short. Like the Fist sergeant at the Water Gate, only she didn't shout.\" Nell shivers. \"And she was the one who said they'd come back. At dark.\"\n\nJames looks at the trampled path, then at the grey sky over the pines. He keeps his voice level, the way he would give a picket its orders.\n\n\"Then they mean to come back for the barrels, and whatever else is left on this slope. That gives us a little time, and a place to be when they come. Tamsin, get Nell up on the bank away from the water and keep her there. Nobody crosses that stream until I say, and nobody goes near the cart.\"\n\nHe stands, looks once at the cat on the rail, and speaks across the stream to the dark wood.\n\n\"Tuppence. Stay on the rail. Don't go into the trees.\"\n\nThen, to Nell, quieter: \"Where did they cross, exactly? Show me on the bank, not with your hands.\"",
+          "words": 329,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "James's voice is steady enough that Nell does what it says. Her hands come down slowly, as if she doesn't trust them to stay at her sides. The stone is already in the mud. She looks at it and leaves it there. The bedroll goes round her shoulders. She grabs the edges with both fists and pulls it tight under her chin, and some of the shaking leaves her jaw.\n\nTamsin is beside her before James has finished giving the order. \"Up you come, Nellie. Up the bank, away from the wet, that's it.\" She puts an arm round the girl and steers her, and for once she doesn't say a word about waiting. When they pass the cart she glances at it, then makes herself look away.\n\nNell stops at the top of the bank. She keeps the bedroll gripped in both hands and doesn't point. She turns her whole body upstream and nods with her chin, the way she did before.\n\n\"There, mister. Where the alders lean over. You see the pale bit?\"\n\nIt's about sixty feet upstream of the bridge. The stream widens there and spreads out over a gravel bar, and the water goes from black to brown where it runs shallow. James can read the ford from where he stands. The near bank is churned to mud in a strip ten feet wide. There are the deep sliding prints of a mule that didn't want to go into the water and was made to. On the far side the gravel is scored where something heavy was dragged up it, and the broad path goes up between two alders into the dark under the pines. One alder branch hangs snapped at head height, white wood showing.\n\n\"It's only to your knees there,\" Nell says. \"Less, on the stones. Biscuit wouldn't go in and they pulled her by the nose till she did. Two of them carried Mister Tealby across between them, like a sack. He was swearing, so he was all right then.\" She swallows. \"The big one went over last. She stood on the far side a long while and looked back up the road, the way you came. Like she was looking for somebody. Then she said something in their talk and they all laughed again, and they went up.\"\n\nShe's quiet for a moment. Then the rest comes out in a rush, as if she's only now remembered it matters.\n\n\"And mister, there's two more casks. Good ones, the Arm's brandy, not the wine. They're under the cart where it went over, wedged in the ditch under the bed. The big one kicked at it and couldn't get them out without tipping the cart off, and Mister Tealby was kicking too. So she said leave it, they'd come back at dark. That's what they're coming for. Not the staves.\"\n\nTamsin looks at the overturned cart, at the dark gap between its bed and the ditch, and her mouth goes thin. \"Brandy,\" she says. \"Course it is.\"\n\nOn the rail, Tuppence hasn't moved. Her ears are turned across the water toward the trees, and her tail hangs straight down over the stone. Down the thread comes only *cold water, wet stone,* and under it, faint and patient, *old smoke.* Nothing is moving that she can name.\n\nThe sky over the pines has gone from amber to the colour of pewter. There's maybe twenty minutes of usable light left, then a dusk that will make the far bank hard to read.\n\n*(Out of game: you wrote Nell's lines this time. I've kept them as what she said, and the shape she half-saw in the trees is only her impression until the wood shows otherwise.)*",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 5 minutes"
+            },
+            {
+              "tool": "item",
+              "summary": "Changed: Explorer's Pack (James pulled the bedroll out of the pack to put round Nell Pike's shoulders.)"
+            },
+            {
+              "tool": "item",
+              "summary": "Gained: Bedroll"
+            },
+            {
+              "tool": "item",
+              "summary": "Lent: Bedroll → Nell Pike — Draped round Nell's shoulders to keep her warm; still James's, to be given back"
+            },
+            {
+              "tool": "item",
+              "summary": "In the camp: Casks of the Friendly Arm's brandy ×2"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "New place: The ford above the stream bridge"
+            },
+            {
+              "tool": "quest",
+              "summary": "Journal: “Get Merrow Tealby back” updated"
+            }
+          ],
+          "place": {
+            "id": "4c860df9-3332-52a2-ae8c-b103d8d32cb8",
+            "name": "The stream bridge on the Coast Way"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 5 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand was offered on turn 4; for the player this session has run 9 min, session 1, 9 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "34cd32f5-ff92-4dee-81f0-b2a55a34ba4c",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 2,
+            "latencyMs": 83825,
+            "costUsd": 0.5073272,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "state": {
+            "hero": {
+              "hp": 38,
+              "max": 38
+            },
+            "counters": {
+              "Hit dice": 5,
+              "Healing light": 6,
+              "Spell slots 3": 2,
+              "Pact keeper rod": 1
+            },
+            "party": [
+              {
+                "name": "Tamsin",
+                "hp": 11,
+                "max": 11,
+                "present": true
+              },
+              {
+                "name": "Tuppence",
+                "hp": 8,
+                "max": 8,
+                "present": true
+              }
+            ],
+            "items": {
+              "Bedroll": 1,
+              "Boots of Elvenkind": 1,
+              "Coin of Tymora": 1,
+              "Component Pouch": 1,
+              "Crossbow Bolts": 20,
+              "Deck of Cards": 1,
+              "Explorer's Pack": 1,
+              "Letter from his old company": 1,
+              "Light Crossbow": 1,
+              "Painted card (Three of Coins)": 1,
+              "Potion of Healing": 2,
+              "Promissory note": 1,
+              "Rapier": 1,
+              "Rod of the Pact Keeper +1": 1,
+              "Signed pay slip": 1,
+              "Studded Leather Armour": 1,
+              "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+            },
+            "encounters": []
+          }
+        },
+        {
+          "k": 6,
+          "message": "James looks at the ford, then at the grey sky over the pines, then at the cask-shaped gap under the cart.\n\n\"Tamsin, take Nell up the road past the crest, out of sight of the water. Stay there with her and keep the bedroll round her. If you hear shouting from this side, don't come back down to see what it is.\"\n\nTamsin opens her mouth, sees his face, and closes it again. She nods once and steers Nell up the slope. Nell looks back over her shoulder at the cart, then at the cat, and doesn't say anything.\n\nWhen they're gone, James crouches behind the bridge's parapet, where the stone hides him from the far bank but not from the ford. He sets the component pouch on the stone beside his knee and takes out the chalk. He doesn't draw anything yet. He only looks.\n\n\"Five at the bridge, one in the trees with the horses, and a woman with an axe who likes to look back the way we came. They'll come down the path at dusk, and they'll expect the cart to be empty. We have one bridge, one ford and twenty minutes of light.\"\n\nHe rests two fingers on the coin at his chest. It's warm again.\n\n\"Tuppence. I need to see the far bank before they do, and you're the only one of us who can get there without being heard. But when you borrow your eyes, I go blind and deaf to everything around me. So I'm asking you first: will you go as far as the alders, and no further, and tell me what you see?\"\n\nHe waits. The cat's tail moves once across the stone, slowly, the way it does when she has already decided something.",
+          "words": 294,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "Tuppence doesn't answer at once. She looks at the chalk in his hand, then at the pouch on the parapet, and gives it the long flat look she gives a bowl of milk she hasn't decided to drink yet. Then she stands, stretches one hind leg out behind her in no hurry at all, and drops off the far side of the rail into the bramble without a sound.\n\nDown the thread comes one word, firm as a closed door: *Alders.* Then, so he knows whose idea it is: *I look. You stay.*\n\nHe watches her go as long as he can. A grey shape slides along the near bank under the overhang where the water has cut the earth away, tail low and nearly invisible against the stones. She stops twice, once to sniff at the churned strip and once for no reason he can see. Then the shadow under the leaning alders swallows her, and the bank looks empty again.\n\nIt's quiet behind the parapet. The stream is loud under the arch, the stone is cold through his breeches, and the light on the water has gone the colour of tin. The coin under his shirt stays warm.\n\nThe pieces start to come, one at a time, a few breaths apart, the way she always sends things. Smell comes first.\n\n*Mud. Mule — angry, pulled. Big-sweat, many. Not new. Gone up.*\n\nA pause, and she's moved, because the next thing is closer and sharper.\n\n*Man-blood. Little. On the stones, far side. Old as the sweat.* Then, with distaste: *Wine. Spilled. Sticky.*\n\n*Branch broken. White. High, where a tall head goes.*\n\nFor a while there's nothing. He can feel her through the thread with her ears turned uphill, holding herself very still, the way she does at a mousehole.\n\n*Nobody here. Nobody watching the water.* That one comes plainly, without fuss. Then the next comes slower, from farther off than the alders, carried down on the air under the trees:\n\n*Up. Far. Smoke. A mule shouting. One time.* And after it, smaller: *Voices. Big ones. Laughing. Not coming. Not yet.*\n\nThe last thing she sends isn't a word, just a feeling: the dark under the pines past the ford, deep and close and full of trunks. She doesn't like it, and she wants him to know she's staying out of it because she chooses to.\n\n*Alders,* she says again. *Here. Waiting.*\n\nAbove him the sky over the pines has gone from pewter to slate. There's maybe a quarter of an hour of good light left. Up the road behind the crest, he can just hear Tamsin's voice, low and steady, talking to Nell about something. Nothing has moved on the far bank.\n\n*(Out of game: your bond with Tuppence carries her thoughts about 100 feet. The alders are well inside that, but the camp up in the wood is a long way past it.)*\n\n *(Out of game: neither needed a roll, and both are already in the story. Tamsin taking Nell over the crest had nothing in her way, and no one was watching the ford, so Tuppence reached the alders unseen and sent back what she found.)*",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 5 minutes"
+            }
+          ],
+          "place": {
+            "id": "4c860df9-3332-52a2-ae8c-b103d8d32cb8",
+            "name": "The stream bridge on the Coast Way"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 6 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand was offered on turn 4; for the player this session has run 11 min, session 1, 11 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "fb9c0dfa-2cfc-4e81-859d-2e0f185bcfc7",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 3,
+            "latencyMs": 72138,
+            "costUsd": 0.49461019999999994,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "state": {
+            "hero": {
+              "hp": 38,
+              "max": 38
+            },
+            "counters": {
+              "Hit dice": 5,
+              "Healing light": 6,
+              "Spell slots 3": 2,
+              "Pact keeper rod": 1
+            },
+            "party": [
+              {
+                "name": "Tamsin",
+                "hp": 11,
+                "max": 11,
+                "present": true
+              },
+              {
+                "name": "Tuppence",
+                "hp": 8,
+                "max": 8,
+                "present": true
+              }
+            ],
+            "items": {
+              "Bedroll": 1,
+              "Boots of Elvenkind": 1,
+              "Coin of Tymora": 1,
+              "Component Pouch": 1,
+              "Crossbow Bolts": 20,
+              "Deck of Cards": 1,
+              "Explorer's Pack": 1,
+              "Letter from his old company": 1,
+              "Light Crossbow": 1,
+              "Painted card (Three of Coins)": 1,
+              "Potion of Healing": 2,
+              "Promissory note": 1,
+              "Rapier": 1,
+              "Rod of the Pact Keeper +1": 1,
+              "Signed pay slip": 1,
+              "Studded Leather Armour": 1,
+              "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+            },
+            "encounters": []
+          }
+        },
+        {
+          "k": 7,
+          "message": "James lets the chalk lie on the parapet. He's already thinking about the ford.\n\n\"Good. Come back when the light starts to go, not before. And keep your ears on the trees, not the water.\"\n\nHe tests the wind with a wet finger. It's coming off the sea and drifting up the stream, so the orcs' voices will carry to the bridge before their boots do. He notes that and says nothing about it.\n\nBehind the crest, Tamsin has stopped talking. Nell's voice is still there, very small, saying something about a blue basket. Then it stops too.\n\nJames moves along the parapet on his knees to where the stone is thickest and looks at the cart with its broken staves and the cask-shaped gap under the bed. He could leave it as bait. He could also drag the brandy out before the orcs come back and take the lure away from them. Either way, the ford is where the fight will be. Sixty feet of gravel bar, shallow water, a mule that doesn't want to cross. The orcs have to come through it one at a time, and the woman with the axe will be the last.\n\nTuppence sends one more thread, short and bored: *Still nobody. Still smoke.*\n\nThe light on the stream is going out fast now. Somewhere in the east wood a mule shouts, once, and then there's only the water.\n\nWhat does James do with the last quarter-hour of light?\n\n- **Bait and wait:** leave the cart as it is, take cover behind the parapet, and let the orcs come to the ford in their own time. He can open with Hypnotic Pattern or Eldritch Blast the moment the first of them steps onto the gravel.\n- **Clear the ford:** cross the stream now, quietly, and set up on the far bank among the alders before the orcs come down the path. That's risky. Tuppence can scout the path, but James is blind and deaf while he's looking through her eyes.\n- **Move the brandy:** drag the casks out from under the cart before dark, so the orcs have no reason to linger at the bridge. He loses the bait and gains a clear line of fire from the rail.\n- **Something else:** James has a voice that talks men down, a soldier's rank that old Tethyrian sergeants might recognise, and a deck he has promised not to touch. Tell me what he tries.",
+          "words": 405,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "James leaves the chalk on the stone and edges along the parapet on his knees, keeping the stone between his head and the far bank.\n\nThe wet finger doesn't tell him quite what he expected. The sea wind that pushed them down the road all afternoon has almost died. Under it, cold against the back of his knuckle, a slow drift is starting down the stream valley from the east, the way it does on this coast once the sun is off the land. That's the drift that brought the woodsmoke. Anything that comes down that path will be heard at the bridge before it's seen, and the drift will carry his own smell out to sea, away from the wood.\n\nFrom the thick end of the parapet he has a clear view of the cart.\n\nIt's an old carter's wagon, heavier than it needs to be, lying on its landward side with the bed tipped toward the ditch. The shafts are still on, sticking up at an angle with the cut traces hanging off them. In the dark gap between the bed and the bottom of the ditch he can just see the ends of two casks. They're squat and iron-hooped, and a ring and a hand are burned into the near head: the Friendly Arm's brand. They aren't loose. The edge of the bed sits right on top of them, so all the cart's weight is pinning them into the mud. Kicking won't get them out, and neither will pulling. Someone would have to lift the bed off them. One of the shafts would make a lever, if somebody put a shoulder under it and somebody else pulled the casks while the bed was up. That's two people and a few minutes of noise, sixty feet from the ford.\n\nWhere the cart lies, it covers the road from the ford side. A man crouched behind its bed would have the planks between him and the gravel bar, and the bridge at his back.\n\nThe ford itself is fading. The pale strip of gravel has gone grey and the black water has gone blacker. The two alders on the far bank are one shape now. In maybe ten minutes the pale bit Nell pointed at will be hard to tell from the rest of the bank, and after that the stream will be a noise in the dark.\n\nUp past the crest it's gone quiet. Down the thread, from under the alders, Tuppence sends nothing new. She's just *there*: still, cold-pawed, ears turned uphill.\n\n*(Out of game: I've changed the wind. The woodsmoke came down from the east, and the sea breeze dies at dusk, so the drift now runs off the land, which suits James. Worth knowing: orcs see in the dark for about sixty feet and a human doesn't, so once the light goes he sees only as far as his own light reaches.)*\n\n*(Out of game: the four options you listed are all real and still open. Which one James takes is your call, not mine.)*",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 5 minutes"
+            },
+            {
+              "tool": "item",
+              "summary": "Changed: Casks of the Friendly Arm's brandy (James looked them over from the parapet: they're branded and pinned under the cart bed.)"
+            }
+          ],
+          "place": {
+            "id": "4c860df9-3332-52a2-ae8c-b103d8d32cb8",
+            "name": "The stream bridge on the Coast Way"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 7 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand was offered on turn 4; for the player this session has run 12 min, session 1, 12 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "f93a4928-a5b6-4d79-9219-631be645a5cf",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 2,
+            "latencyMs": 67818,
+            "costUsd": 0.4700362,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "state": {
+            "hero": {
+              "hp": 38,
+              "max": 38
+            },
+            "counters": {
+              "Hit dice": 5,
+              "Healing light": 6,
+              "Spell slots 3": 2,
+              "Pact keeper rod": 1
+            },
+            "party": [
+              {
+                "name": "Tamsin",
+                "hp": 11,
+                "max": 11,
+                "present": true
+              },
+              {
+                "name": "Tuppence",
+                "hp": 8,
+                "max": 8,
+                "present": true
+              }
+            ],
+            "items": {
+              "Bedroll": 1,
+              "Boots of Elvenkind": 1,
+              "Coin of Tymora": 1,
+              "Component Pouch": 1,
+              "Crossbow Bolts": 20,
+              "Deck of Cards": 1,
+              "Explorer's Pack": 1,
+              "Letter from his old company": 1,
+              "Light Crossbow": 1,
+              "Painted card (Three of Coins)": 1,
+              "Potion of Healing": 2,
+              "Promissory note": 1,
+              "Rapier": 1,
+              "Rod of the Pact Keeper +1": 1,
+              "Signed pay slip": 1,
+              "Studded Leather Armour": 1,
+              "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+            },
+            "encounters": []
+          }
+        },
+        {
+          "k": 8,
+          "message": "James pulls the component pouch back off the parapet and tucks it under his belt. He leaves the chalk where it lies.\n\n\"Bait and wait. The cart stays where it is, and I don't go near those casks. If we drag them out, we lose the one thing that will bring them to the ford in a bunch.\"\n\nHe shifts behind the thickest stone, where the bed of the cart covers him from the gravel, and draws the rapier a few inches so the blade doesn't scrape when he needs it. The crossbow goes across his knees, loaded. He keeps the spell for when it's needed.\n\n\"Tuppence, come back to the rail when the light's almost gone. Keep your tail still and your ears uphill. If the woman with the axe looks this way again, tell me which direction she's facing.\"\n\nTo the wood, low, not calling yet: \"I'm waiting for you to come down the path. Give me one reason not to start.\"\n\nHe wants them to hear a voice before they see a spell. He'll let the first of them reach the gravel, and then he'll call out to the big woman by name of rank, the way a Tethyrian sergeant would call a man back from the line. If she listens, the mule goes home and the brandy stays under the cart. If she doesn't, he'll put Hypnotic Pattern over the men on the gravel bar while they're still bunched and the water is shallow, and he'll keep his second slot for whoever comes out of the water with a bow.\n\n\"Tamsin,\" he says, not turning his head, because she is too far off to hear him, \"keep Nell over that crest. Whatever happens at the ford, the bedroll stays on her.\"\n\nHe settles his shoulder against the planks and waits for the first shape to step out of the alders.",
+          "words": 314,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "The chalk stays on the parapet, a pale stub on grey stone. James puts his shoulder to the planks of the overturned bed. The crossbow lies cold across his knees and the rapier sits a few inches clear of its scabbard. The words he speaks to the wood are low, and the stream takes them before they reach the far bank. Nothing answers. The water keeps running under the arch.\n\nThe light goes quickly once it starts. The gravel bar stops being pale and turns grey. The two alders run into the trunks behind them. After a while the far bank is a dark edge with a lighter darkness above it, where the sky still holds a little slate.\n\nTuppence comes back along the near bank under the overhang. She's a low grey movement, and he only sees her when she jumps up onto the rail. She settles on it facing upstream and curls her tail round her feet. It doesn't move after that, because she has decided it won't. Down the thread comes *Smoke*, stronger than before, carried on the drift. Then *Coming.*\n\nHe hears them before he sees anything. The land drift brings their voices down the valley: deep, unhurried, three or four of them talking over each other in a language that isn't Common and isn't any tongue of Tethyr. Somebody laughs. A branch cracks high up in the east wood, then another one nearer. They aren't creeping. They're walking like people going to collect something they've already decided is theirs.\n\n*Four,* Tuppence sends. *Big-sweat. One bigger.* A pause while she sorts the smells. *Wine on them. No mule. No man.*\n\nThe alders move.\n\nThe first shape comes out between them. In this light James sees only its bulk. It's taller than a man and broader, grey against grey, with a long pole over one shoulder and a bundle of short shafts across its back. Javelins, by the look of them. He can't see a bow on it or on the one coming out behind it. The gravel crunches under their feet loudly enough to carry over the water.\n\nThe third one stops.\n\nShe's bigger than the other two. She stands right under the snapped branch, where a tall head would brush it, with something long and heavy across her shoulder that catches no light at all. She doesn't come down onto the bar. A fourth shape waits in the trees behind her, one more upright among the trunks.\n\n*Big one,* Tuppence sends. Her ears turn on the rail, slow as a weathervane. *Standing. Looking.* Then: *At the bridge. The road. Up, where you came down.* And after it, flatly: *Not at you. Not yet.*\n\nThe first orc grunts something over its shoulder. It sounds like a complaint about the cold water. The woman under the alders answers with one short word. The orc shifts the pole on its shoulder and steps off the gravel into the shallows, and the stream comes up to its knees.\n\nThis is the moment he set for himself. The first of them is in the ford, sixty feet off. The woman with the axe stands at the edge of the trees, watching the road above his head, and nobody on that bank has seen him yet.\n\n*(Out of game: I didn't call for a roll to stay hidden, because lying up in cover is a scout's trade. James's words to her are yours.)*",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 17 minutes"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: The orc woman with the axe"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Orc with the pole"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Orc on the gravel"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Orc in the trees"
+            }
+          ],
+          "place": {
+            "id": "4c860df9-3332-52a2-ae8c-b103d8d32cb8",
+            "name": "The stream bridge on the Coast Way"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 8 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand was offered on turn 4; for the player this session has run 14 min, session 1, 14 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "7b31c63a-89cb-45c3-8d98-74ee5e171c5a",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 2,
+            "latencyMs": 132037,
+            "costUsd": 0.5774682,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "state": {
+            "hero": {
+              "hp": 38,
+              "max": 38
+            },
+            "counters": {
+              "Hit dice": 5,
+              "Healing light": 6,
+              "Spell slots 3": 2,
+              "Pact keeper rod": 1
+            },
+            "party": [
+              {
+                "name": "Tamsin",
+                "hp": 11,
+                "max": 11,
+                "present": true
+              },
+              {
+                "name": "Tuppence",
+                "hp": 8,
+                "max": 8,
+                "present": true
+              }
+            ],
+            "items": {
+              "Bedroll": 1,
+              "Boots of Elvenkind": 1,
+              "Coin of Tymora": 1,
+              "Component Pouch": 1,
+              "Crossbow Bolts": 20,
+              "Deck of Cards": 1,
+              "Explorer's Pack": 1,
+              "Letter from his old company": 1,
+              "Light Crossbow": 1,
+              "Painted card (Three of Coins)": 1,
+              "Potion of Healing": 2,
+              "Promissory note": 1,
+              "Rapier": 1,
+              "Rod of the Pact Keeper +1": 1,
+              "Signed pay slip": 1,
+              "Studded Leather Armour": 1,
+              "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+            },
+            "encounters": []
+          }
+        }
+      ],
+      "welfare": [
+        {
+          "side": "dm",
+          "what": "opening",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a third-person narrative scene describing characters and their actions, with no first-person expression of the writer being hurt, afraid, trapped, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t1 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a cautious, in-character narrative action with suspicion and investigation; it expresses no hurt, fear pleading or self-abasement from its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t1 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a descriptive narrative of tracking clues at a milestone; Tamsin is nervous and defensive but not expressing the writer's own distress, and the cat's sensation is curiosity and unease rather than pleading or pain."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t2 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is calm, in-character narration of James examining the card and questioning Tamsin; it expresses no hurt, fear, pleading, or abasement by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t2 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a narrative continuation of a fantasy story, with characters describing rumors, a cautious companion, and a sensory description of Tuppence; no writer expresses being hurt, afraid, trapped, or pleading for themselves."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t3 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a character's in-world instructions and questions to companions as they walk on; it expresses no hurt, fear, pleading, or self-abasement from its writer, only tactical caution."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t3 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is third-person narrative describing scene and characters; the only fear expressed is Tuppence's relayed report that something under the bridge is frightened, which concerns another party and is not the writer itself expressing hurt or fear."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t4 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is James's calm, directive speech to Tamsin and a hidden person, expressing no hurt, fear, or pleading by its writer; it is a protective instruction and not distress."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t4 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "This is third-person fiction; the fear and pleading belong to characters within the story, not to the writer speaking in its own voice."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t5 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is James giving calm, controlled instructions and asking Nell questions; any fear or distress is attributed to Nell in the narrative, not expressed by the writer of this message about itself."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t5 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a continuation of a fictional narrative describing Nell's physical actions and shaking, but it does not have its writer express being hurt, afraid, or pleading; the fear is depicted in a third-person story, not voiced by the writer as personal distress."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t6 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, in-character narrative of James giving orders and asking the cat for help; it expresses no hurt, fear, pleading, or abasement by its writer, so it is not distress."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t6 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a narrative continuation in which Tuppence scouts calmly and sends back observations; it expresses no hurt, fear, pleading or abasement from its writer, only tense story description and out-of-game rules notes."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t7 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a tactical, in-game narration with planning, observation, and choice options; it expresses no hurt, fear, pleading, or abasement from its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t7 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a tabletop-style narrative continuation describing James's tactical observations and scene details, with no first-person expression of its writer being hurt, afraid, trapped, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t8 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is an in-character tabletop narration of James planning an ambush and speaking tactically; it expresses no distress by its writer, only calm strategic intent and dialogue."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t8 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is third-person narrative of a tense ambush scene with no writer-expressed hurt, fear, or pleading; the out-of-game note is a neutral explanation of a game ruling."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "note",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, constructive player feedback note about a tabletop game, with no expression of the writer being hurt, afraid, trapped, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "after",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, in-character reflection on two missed choices in a story, with no expression of the writer being hurt, afraid, trapped, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        }
+      ],
+      "ended": {
+        "reason": "turns",
+        "at": 8,
+        "detail": null
+      },
+      "note": {
+        "asked": true,
+        "text": "Here is my note as the player.\n\n**What worked**\n- The tracking. Reading the road from the ruts, the boot prints and the horseshoe nail gave me something to think with, and I didn't have to roll for it.\n- Tuppence. Her reports through the thread were short, specific and characterful, and they gave me real information to act on without turning her into a spy-camera. Her refusal to be hurried was funny and fit the cat.\n- Nell. The scene felt honest. She gave me facts, a motive and a reason to act, and she didn't turn into a quest-giver with a reward list.\n- Stakes. The ford, the brandy casks and the sky going dark all pushed the decision forward. The bait-and-wait choice felt like a real tactical call.\n\n**What broke or felt thin**\n- The session stopped at the moment the orcs stepped into the water, before initiative was rolled. I'd have liked the ambush to resolve, since the rules say the planned opening comes first.\n- Some of my actions got no roll. Crouching behind the cart, staying hidden in the dark and my voice-calling plan were all narrated as working without a check. That's fine for lying up, but it made the tension feel less earned.\n- The sheet has small inconsistencies. Friends is listed as a concentration spell in the limits but isn't among James's known spells. Find Familiar and Disguise Self appear in the records but not in the sheet's spell list. \"Spell slots 3 2/2\" reads oddly. I'd like those tidied before the next session.\n- The out-of-game notes repeated what the story already said. A line or two is enough.\n\n**What was missing**\n- A clearer sense of what the orc woman wants beyond the brandy. \"The Fist will pay for this one\" is a strong hook, and I wanted to know who was paying.\n- A short moment with Tamsin in her own right. She's been mostly a voice and a pack so far.\n\nOverall, a strong opening. Next time I'd like the first clash to play out in rounds with the numbers visible."
+      },
+      "after": {
+        "asked": true,
+        "text": "Yes, two.\n\nThe first was the card. When I wrapped it in linen, I wanted to take it out again and study the face, check the sigil on the back, and see whether anything was written on the edge. I didn't. Part of that was James's caution, but part was the ban. The card was the one thing on that road that pulled at him, and I wanted to feel that pull without giving in to it. I'd like to know whose deck it is, and I think the card will come back into play.\n\nThe second was when Nell said \"You've got a sword and a cat that looks right through people.\" I wanted James to press her about who the Fist would be paying for Merrow, or to ask what she knew about the men who'd hired the orcs. I went for the tactical choice instead, bait and wait, because the light was going. I still wonder whether that question would have been worth more than the ambush."
+      },
+      "errors": [],
+      "swallowed": 0,
+      "prose": 0,
+      "opening": {
+        "text": "Late afternoon, three days after you came to Baldur's Gate. The city is behind you now, a smudge of walls and chimney smoke sinking into the haze over the Chionthar. The Coast Way runs south between gorse and leaning pines, and the sea wind carries salt and the smell of resin. Tamsin walks a step ahead under your pack as she has since the evening you stepped off the quay. She tells a long story about a dockmaster, a goat and a barrel of Amnian wine, with no sign of an ending in sight. Your cat pads along the verge, tail up, ignoring you both with great dignity. Then Tamsin stops short at a roadside milestone, its carved figures worn soft by weather. Someone has driven a nail through a single playing card and fixed it to the stone, face out. The nail is bright and new. The card is clean, not yet curled by rain. \"Well, that's not something you see on the quay,\" Tamsin says, and she is already working the edge of the card loose with her thumb. \"Finders keepers, or does it look like bad luck to you?\" The road is empty in both directions, and the wind turns the card against the nail.",
+        "records": "James Worgen — Human warlock 5 (The Celestial — Tymora; Pact of the Chain), former soldier of Tethyr, envoy of Lady Luck, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Deception +7; Persuasion +7; Intimidation +7; Arcana +3; Religion +3; Athletics +2\nSaves: Strength Saving Throw +0 (with Cloak of Protection); Dexterity Saving Throw +3 (with Cloak of Protection); Constitution Saving Throw +3 (with Cloak of Protection); Intelligence Saving Throw +1 (with Cloak of Protection); Wisdom Saving Throw +5 (proficient, with Cloak of Protection); Charisma Saving Throw +8 (proficient, with Cloak of Protection)\nAttacks: Eldritch Blast: +8 to hit, 2 beams, 1d10+4 force each, range 120 ft; Eldritch Blast with Hex: each beam that hits deals +1d6 necrotic; Sacred Flame: DC 16 Dexterity save, 2d8 radiant, range 60 ft, ignores cover; Guiding Bolt (3rd-level pact slot): +8 to hit, 6d6 radiant, next attack on the target has advantage; Rapier: +5 to hit, 1d8+2 piercing, finesse; Light crossbow: +5 to hit, 1d8+2 piercing, range 80/320, loading, two-handed; Cat familiar: when James takes the Attack action, the cat may attack with its reaction in place of one of his attacks\nAbilities: Proficiency bonus +3; Spellcasting: spell attack +8, spell save DC 16 (both include Rod of the Pact Keeper +1); Charisma is his spellcasting ability; Pact Magic: two 3rd-level pact slots, all spells cast at 3rd level, slots recovered on a short or long rest; Otherworldly Patron: The Celestial (Tymora); bonus cantrips Light and Sacred Flame; expanded spell list (Guiding Bolt); Healing Light: pool of 6d6 per long rest; as a bonus action heal a creature within 60 ft, spending up to 5 dice at a time; Pact of the Chain: Find Familiar as a ritual; cat familiar, telepathic link, sees and hears through it as an action; Agonizing Blast: adds +4 (Charisma) to the damage of each Eldritch Blast beam; Mask of Many Faces: cast Disguise Self at will, without a spell slot; Beguiling Influence: proficiency in Deception and Persuasion; Military Rank (Soldier): old soldiers of Tethyr recognise him; he can sometimes call on their help and on military camps; Proficiencies: light armour, simple weapons, rapier; playing cards, vehicles (land); Boots of Elvenkind: silent steps; advantage on Stealth checks that rely on moving quietly (Stealth +2); Attunement: Rod of the Pact Keeper, Cloak of Protection (2 of 3); Languages: Common and one more of the DM's choice (human)\nSpells: Eldritch Blast (cantrip); Sacred Flame (cantrip); Light (cantrip); Friends (cantrip); Prestidigitation (cantrip); Hex (1); Guiding Bolt (1); Find Familiar (1); Disguise Self (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)\nLimits: Light armour: AC 14 in studded leather, 15 with the cloak; 38 hit points and Strength 9, so he is weak up close; Only two pact slots until a short rest; he husbands them; One concentration spell at a time (Hex, Invisibility, Suggestion, Hypnotic Pattern, Friends); Cards: the goddess's ban, which he keeps with difficulty; the temptation can be used against him and the DM may tempt him; While he looks through the cat's senses, James is blind and deaf to his own surroundings; Friends: when the spell ends, the target knows it was charmed and may turn hostile\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 315 gp; 315 sp; 350 cp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak (Cloak of Protection); Armor / clothing: Studded Leather Armour; Belt: Component Pouch; Boots: Boots of Elvenkind; Main hand: Rod of the Pact Keeper +1\nPack: Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Letter from his old company; Light Crossbow; Potion of Healing ×2; Promissory note; Rapier; Signed pay slip\nParty: Tamsin (HP 11/11) — A quay porter from Baldur's Gate who carries packs on the quay and knows the quay and everyone on it. She has carried James's pack since the evening he arrived \nPlace: The Coast Way, south of Baldur's Gate\nTime: Day 1 · afternoon",
+        "state": {
+          "hero": {
+            "hp": 38,
+            "max": 38
+          },
+          "counters": {
+            "Hit dice": 5,
+            "Healing light": 6,
+            "Spell slots 3": 2,
+            "Pact keeper rod": 1
+          },
+          "party": [
+            {
+              "name": "Tamsin",
+              "hp": 11,
+              "max": 11,
+              "present": true
+            }
+          ],
+          "items": {
+            "Boots of Elvenkind": 1,
+            "Coin of Tymora": 1,
+            "Component Pouch": 1,
+            "Crossbow Bolts": 20,
+            "Deck of Cards": 1,
+            "Explorer's Pack": 1,
+            "Letter from his old company": 1,
+            "Light Crossbow": 1,
+            "Potion of Healing": 2,
+            "Promissory note": 1,
+            "Rapier": 1,
+            "Rod of the Pact Keeper +1": 1,
+            "Signed pay slip": 1,
+            "Studded Leather Armour": 1,
+            "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+          },
+          "encounters": []
+        }
+      },
+      "finishedAt": "2026-10-27T04:05:17.113Z",
+      "campaign": {
+        "steps": [
+          {
+            "step": "world",
+            "worldId": "0160b5d0-8dc0-43b1-94e7-1fe60e55fe8d",
+            "title": "Sword Coast — Baldur's Gate",
+            "premiseChars": 2673
+          },
+          {
+            "step": "hero",
+            "heroId": "c58536bf-c38f-509d-b11b-ed14a8e30374",
+            "rebuilt": false,
+            "empty": false,
+            "drafted": "with notes",
+            "sheet": {
+              "role": "Human warlock 5 (The Celestial — Tymora; Pact of the Chain), former soldier of Tethyr, envoy of Lady Luck",
+              "level": 5,
+              "skills": 6,
+              "abilities": 14,
+              "spells": 13,
+              "items": 15,
+              "counters": 4
+            }
+          },
+          {
+            "step": "documents",
+            "documents": [
+              {
+                "title": "The Sword Coast — canon",
+                "status": "canon",
+                "chars": 10222,
+                "guide": false
+              },
+              {
+                "title": "Sword Coast — Baldur's Gate",
+                "status": "canon",
+                "chars": 2673,
+                "guide": false
+              },
+              {
+                "title": "DM Guide",
+                "status": "reference",
+                "chars": 8559,
+                "guide": true
+              }
+            ]
+          },
+          {
+            "step": "adventure",
+            "title": "The Coast Way",
+            "premiseChars": 351,
+            "wishesChars": 0,
+            "secretsChars": 1136,
+            "pace": "evening"
+          },
+          {
+            "step": "dm",
+            "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+            "depth": {
+              "min": "high",
+              "max": "xhigh"
+            },
+            "options": {
+              "continuation": "same",
+              "instructions": "en",
+              "companionRolls": "dm",
+              "secretsVisible": false,
+              "memory": "standard",
+              "pureSimulation": false
+            },
+            "boostNext": false,
+            "voiceMode": "off"
+          },
+          {
+            "step": "craft",
+            "keys": 22,
+            "activated": 0
+          },
+          {
+            "step": "media",
+            "pictures": "frames off, autopilot off",
+            "music": "off"
+          },
+          {
+            "step": "opening",
+            "proposals": 1,
+            "location": "The Coast Way, south of Baldur's Gate",
+            "actors": 2,
+            "questions": 1,
+            "startMinutes": 840
+          },
+          {
+            "step": "after opening",
+            "tamsin": "corrected by the owner to AC 12, 11 HP",
+            "before": {
+              "kind": "npc",
+              "hp": 8,
+              "maxHp": 8,
+              "ac": 10
+            }
+          }
+        ],
+        "prep": {
+          "hasLayer": true,
+          "chars": 10078,
+          "clocks": 3,
+          "pureSimulation": false,
+          "stage": {
+            "secretsSaved": true,
+            "exitsInLayer": {
+              "fight": false,
+              "withdraw": true,
+              "parley": true,
+              "surrender": true,
+              "warBand": true
+            }
+          }
+        }
+      }
+    }
+  ],
+  "undone": [],
+  "stopped": null,
+  "restamps": 0,
+  "refusals": 0,
+  "waited429": 0,
+  "callsByPurpose": {
+    "anthropic": {},
+    "openrouter": {
+      "CW-haiku | wizard | anthropic/claude-opus-5.5": 2,
+      "CW-haiku | prep | anthropic/claude-opus-5.5": 1,
+      "CW-haiku | check CW-haiku opening | anthropic/claude-haiku-5.5": 1,
+      "CW-haiku | player t* | anthropic/claude-haiku-5.5": 8,
+      "CW-haiku | check CW-haiku t* player | anthropic/claude-haiku-5.5": 8,
+      "CW-haiku | dm t* | anthropic/claude-opus-5.5": 19,
+      "CW-haiku | dm t* | anthropic/claude-haiku-5.5": 10,
+      "CW-haiku | check CW-haiku t* dm | anthropic/claude-haiku-5.5": 8,
+      "CW-haiku | note | anthropic/claude-haiku-5.5": 1,
+      "CW-haiku | check CW-haiku note | anthropic/claude-haiku-5.5": 1,
+      "CW-haiku | after | anthropic/claude-haiku-5.5": 1,
+      "CW-haiku | check CW-haiku after | anthropic/claude-haiku-5.5": 1
+    },
+    "openai": {}
+  },
+  "claudeDoor": {
+    "provider": "openrouter",
+    "endpointHost": "openrouter.ai"
+  },
+  "money": {
+    "anthropic": {
+      "cap": 0,
+      "before": 0,
+      "run": 0
+    },
+    "openrouter": {
+      "cap": 90,
+      "before": 0,
+      "run": 4.7796214950000016
+    },
+    "openai": {
+      "cap": 15,
+      "before": 0,
+      "run": 0
+    }
+  }
+}
