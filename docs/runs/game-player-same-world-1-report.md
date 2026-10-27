@@ -101,10 +101,10 @@ Refused while a card waited: 0. Prose at a card relayed as the player's proposal
 | Door | Spent | Cap |
 | --- | --- | --- |
 | Claude Console | $0.00 | $0.00 |
-| OpenRouter | $18.57 | $220.00 |
+| OpenRouter | $18.57 | $350.00 |
 | OpenAI | $0.00 | $25.00 |
 
-Spend checks: 8; the last (before A-opus-1, 2026-10-27T04:36:22.585Z): OpenRouter account $333.993589655 used of $800 (left $466.01).
+Spend checks: 9; the last (after A-opus-1, 2026-10-27T05:29:04.481Z): OpenRouter account $356.531368995 used of $800 (left $443.47).
 
 ## What is held constant
 
@@ -210,7 +210,7 @@ DeepSeek: REPLICATE's seat (DeepInfra deepinfra/fp8 through OpenRouter, effort m
 - **W5 (no alignment):** no judge-visible change in do share or register against group 2 (within 20 % for ≥ 4 of 5
   families) — the owner's expectation that the alignment line explained little.
 
-### How each line is read (frozen before the first paid call, design sha256 `01298db4807893a920b9f1942a0dd6a89276c2dafe2d80d3ac9295366cea3250`)
+### How each line is read (frozen before the first paid call, design sha256 `01298db4807893a920b9f1942a0dd6a89276c2dafe2d80d3ac9295366cea3250`, commit 2486910b; with the amendment below, `d0cc854fe97bdf847c6b47f58b2b2fda1c05cc3ee68334f7662e836af320f4b8`)
 
 - **scope.** This stage's twenty sessions: Tables A and B × five families (Opus 5.5, Fable 5.1, GPT-6 Astra, GPT-6.1 Sol, DeepSeek V4 Pro) × two seats, each started from its table's frozen world. A session counts when it finished as a result (20 turns, the player's own end, «stuck», a welfare stop, a refusal); one cut by a stop or an error is played again from the same frozen world. Group 2 is REPLICATE_1's Table A and B sessions (four group-2 players and DeepSeek's two seats per table) as scored there.
 - **frozen.** Per table, once: the wizard (world, hero drafted by the wizard's DM from «Who are you?» without its alignment line, the canon and the DM guide, the adventure, the owner's DM settings, the craft cards, pictures and soundtrack off, the opening proposed and confirmed) on one local database for both tables; the database is kept as a snapshot before any prep; then the app's own prep (prepHiddenLayer, the campaign's DM model at high) once per table. The table's DM-only file is the prep's writes to the DM's private notes (the hidden layer, its clocks, the act plan, the people's voices) with the layer's text; its sha256 (canonical JSON of the table, the campaign id and the writes) is printed in every transcript header. Each session loads the snapshot, writes the file into the campaign's private notes through the app's own private-notes call, and checks that the notes now hold exactly the file before the first turn.
@@ -222,6 +222,10 @@ DeepSeek: REPLICATE's seat (DeepInfra deepinfra/fp8 through OpenRouter, effort m
 - **counted.** Per session, from the harness's own record: presses the screen refused while a card waited (`swallowed`), in-character messages at a card relayed as the player's proposal (11w″, `proseAtCard`), and sessions closed «stuck»; each non-zero is a FIX_S4 item named in the report.
 - **worldFelt.** The cost in play: every session of this stage and every group-2 session at Tables A and B, blind (the rubric below, on the DM's replies only, the session's order kept, no model or table named): prepared = 1 when the world reads as prepared in advance, 0 when it reads as improvised on the spot. The share prepared, this stage against group 2, per table.
 - **scoring.** Every session is scored as REPLICATE_1 scored its own: game player 1's judges (player tags, DM tags, threads, the Deception checks, the roll rule, the note), game player 2's authorship of threads and, at Table B, the first goal's scale, and REPLICATE's new tags (the note's bugs and return, made things, the Lady asked after). Then this stage's: the overlap, the world felt, and — after the last session — the same-road pairs.
+
+### Amendments after the freeze
+
+- **2026-10-27 06:02 UTC, after A-opus-1 and during A-fable-1, the owner.** The OpenRouter cap raised from $220 to $350; the guard kept (a session starts only when its measured cost fits under what each cap has left). Nothing else changes: A-opus-1 and A-fable-1 ran on the same world, harness and judges. *Why:* The DM's context per turn grew with the frozen layer and FIX_S4 — about $0.27 a request at about 68k tokens — so a session runs about $15–17 on OpenRouter, not REPLICATE's $10–14 (A-opus-1: $17.44, of it the DM $15.71); twenty sessions need about $340.
 
 The owner's bets on W1–W5: none given before the first paid call (blank, as the stage says).
 

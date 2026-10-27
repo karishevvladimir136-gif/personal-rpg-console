@@ -123,7 +123,7 @@ export const WORLD_TAGS = [
 
 // ---- money and waits -------------------------------------------------------------------------------------------------
 
-export const CAPS = { anthropic: 0, openrouter: 220, openai: 25 };
+export const CAPS = { anthropic: 0, openrouter: 350, openai: 25 };
 /** The paid dry run on Haiku: its own ledgers and caps (every Claude call sent as Claude Haiku 5.5). */
 export const HAIKU_CAPS = { anthropic: 0, openrouter: 4, openai: 0.5 };
 export const HAIKU_MODEL = "claude-haiku-5-5";
@@ -134,8 +134,16 @@ export const ESTIMATE = { dm: 7.5, player: { opus: 1.5, fable: 3, astra: 1.5, so
  * 80 s, 120 s, 120 s, 120 s) and a seventh stops the run; a quota 429, any 402 and every cap stop it at once. */
 export const WAITS_429 = GROUP1_WAITS_429;
 
+/** The design as first frozen (before the first paid call), and what changed since, with the owner's word. */
+export const SUPERSEDED = { sha256: "01298db4807893a920b9f1942a0dd6a89276c2dafe2d80d3ac9295366cea3250", commit: "2486910b" };
+export const AMENDMENTS = [
+  { at: "2026-10-27 06:02 UTC, after A-opus-1 and during A-fable-1", by: "the owner",
+    what: "The OpenRouter cap raised from $220 to $350; the guard kept (a session starts only when its measured cost fits under what each cap has left). Nothing else changes: A-opus-1 and A-fable-1 ran on the same world, harness and judges.",
+    why: "The DM's context per turn grew with the frozen layer and FIX_S4 — about $0.27 a request at about 68k tokens — so a session runs about $15–17 on OpenRouter, not REPLICATE's $10–14 (A-opus-1: $17.44, of it the DM $15.71); twenty sessions need about $340." },
+];
+
 export const DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({
   STAGE, STAGE_SOURCE, TABLES, FAMILIES, SEATS, ORDER, DEEPSEEK, ALIGNMENT_CUTS, ALIGNMENT: ALIGNMENT.source, COMPANIONS, PROMPT_SHA256, PLAYER_PROMPT_HEAD, PLAYER_PROMPT_TAIL, SESSION_OPEN,
   SESSION_OVER, NOTE_QUESTION, AFTER_QUESTION, TURNS, PREREGISTRATION, OWNER_BETS, NN_COUNTS, PERMUTATIONS, WITHIN, READINGS, OVERLAP_SYSTEM, OVERLAP_RULE, ROAD_SYSTEM, ROAD_TAGS,
-  WORLD_SYSTEM, WORLD_TAGS, CAPS, ESTIMATE, WAITS_429,
+  WORLD_SYSTEM, WORLD_TAGS, CAPS, ESTIMATE, WAITS_429, SUPERSEDED, AMENDMENTS,
 })).digest("hex");

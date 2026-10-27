@@ -5,7 +5,7 @@ import { PLAYERS } from "../game-player-1/players.mjs";
 import { OWNER_SETTINGS } from "../game-player-1/table.mjs";
 import { fence } from "../game-player-1/report.mjs";
 import {
-  CAPS, DEEPSEEK, DESIGN_SHA256, FAMILIES, GROUP2_PROMPT_SHA256, ORDER, OWNER_BETS, PREREGISTRATION, PROMPT_SHA256, READINGS, STAGE_SOURCE, TABLES, TURNS, promptSha256,
+  AMENDMENTS, CAPS, DEEPSEEK, DESIGN_SHA256, FAMILIES, GROUP2_PROMPT_SHA256, ORDER, OWNER_BETS, PREREGISTRATION, PROMPT_SHA256, READINGS, STAGE_SOURCE, SUPERSEDED, TABLES, TURNS, promptSha256,
 } from "./frozen.mjs";
 import { rowOf as group2RowOf } from "../game-player-replicate-1/score.mjs";
 import { familyOf, rowOf, seatOf, verdictsW } from "./score.mjs";
@@ -78,7 +78,8 @@ function promptSection() {
     `DeepSeek: REPLICATE's seat (${DEEPSEEK.upstream.name} ${DEEPSEEK.upstream.tag} through OpenRouter, effort medium) with the provider's reasoning field stored (\`reasoning.exclude: false\`), printed in its transcripts under «Provider reasoning field, not relayed», never sent on.`, ""].join("\n");
 }
 function preregistrationSection() {
-  return [PREREGISTRATION, "", `### How each line is read (frozen before the first paid call, design sha256 \`${DESIGN_SHA256}\`)`, "", ...Object.entries(READINGS).map(([k, v]) => `- **${k}.** ${v}`), "",
+  return [PREREGISTRATION, "", `### How each line is read (frozen before the first paid call, design sha256 \`${SUPERSEDED.sha256}\`, commit ${SUPERSEDED.commit}; with the amendment below, \`${DESIGN_SHA256}\`)`, "", ...Object.entries(READINGS).map(([k, v]) => `- **${k}.** ${v}`), "",
+    "### Amendments after the freeze", "", ...AMENDMENTS.map((a) => `- **${a.at}, ${a.by}.** ${a.what} *Why:* ${a.why}`), "",
     `The owner's bets on W1–W5: ${Object.values(OWNER_BETS).every((x) => x === null) ? "none given before the first paid call (blank, as the stage says)." : Object.entries(OWNER_BETS).map(([k, v]) => `${k} ${v ?? "–"}`).join(", ")}`, ""].join("\n");
 }
 
