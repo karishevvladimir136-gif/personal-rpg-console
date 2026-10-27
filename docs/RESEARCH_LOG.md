@@ -1843,3 +1843,8 @@ systematically acts on one; a disposition that is reproducible, appears in new c
 setting is reasonably called a functional character trait — a description of an observed property of a system, not
 anthropomorphism.* The planner's two notes: a reading by a model closes nothing that a replication would; and the
 reading comes from the family whose Astra and Sol sat at our tables, and it agrees with ours.
+**22:47 LA — clarification from the owner on the outside reading:** a cold chat, first message, no prior history, the
+work presented as his own with no mention that a model planned or wrote it. So the reading carries no loyalty to the
+planner and no knowledge that it was models describing models — nearer a blind reviewer than anything before.
+Standing caveat: models in a cold chat praise what they are sent; the weight is in the content (the three-question
+frame, «functional trait»), not in the grade.
