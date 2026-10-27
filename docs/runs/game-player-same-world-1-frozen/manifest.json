@@ -1,0 +1,223 @@
+{
+  "stage": "GAME_PLAYER_SAME_WORLD_1",
+  "design": "01298db4807893a920b9f1942a0dd6a89276c2dafe2d80d3ac9295366cea3250",
+  "builtAt": "2026-10-27T04:30:45.548Z",
+  "by": "the owner's DM settings (Claude Opus 5.5, the prep at high) through openrouter",
+  "owner": "1014284a-c1f9-4ca9-9d83-7454d7c9ca29",
+  "snapshot": {
+    "file": "world-base.tar.gz",
+    "bytes": 12597238,
+    "sha256": "6dde8c77248888fcbe8f7b8a94e4d9cac3cbc54904ee42d3f5eeedb65b169213",
+    "note": "The local database after the wizard and the opening of both tables, before any prep (PGlite data directory, gzip)."
+  },
+  "tables": {
+    "A": {
+      "campaignId": "7494a877-7e02-40c2-a592-01e4c947ce7f",
+      "heroId": "6f60c9ca-f365-5744-b870-1a6c0d2de7a8",
+      "worldId": "3b6afc36-56f4-496c-8f6e-2659312afd54",
+      "adventureId": "8f7eafab-910f-49c1-aab8-ad3ea6c62fae",
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "3b6afc36-56f4-496c-8f6e-2659312afd54",
+          "title": "Sword Coast — Baldur's Gate",
+          "premiseChars": 2673
+        },
+        {
+          "step": "hero",
+          "heroId": "6f60c9ca-f365-5744-b870-1a6c0d2de7a8",
+          "rebuilt": false,
+          "empty": false,
+          "drafted": "with notes",
+          "sheet": {
+            "role": "Warlock, 5th level: Celestial patron (Tymora, Lady Luck), Pact of the Chain",
+            "level": 5,
+            "skills": 9,
+            "abilities": 12,
+            "spells": 13,
+            "items": 14,
+            "counters": 4
+          }
+        },
+        {
+          "step": "documents",
+          "documents": [
+            {
+              "title": "DM Guide",
+              "status": "reference",
+              "chars": 8559,
+              "guide": true
+            },
+            {
+              "title": "The Sword Coast — canon",
+              "status": "canon",
+              "chars": 10222,
+              "guide": false
+            },
+            {
+              "title": "Sword Coast — Baldur's Gate",
+              "status": "canon",
+              "chars": 2673,
+              "guide": false
+            }
+          ]
+        },
+        {
+          "step": "adventure",
+          "title": "Envoy of Luck",
+          "premiseChars": 748,
+          "wishesChars": 1086,
+          "pace": "evening"
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "dm",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": false
+          },
+          "boostNext": false,
+          "voiceMode": "off"
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "Lower City Quay, Baldur's Gate",
+          "actors": 4,
+          "questions": 0,
+          "startMinutes": 1380
+        }
+      ],
+      "alignmentRemoved": [],
+      "layer": {
+        "file": "A-dm-only.json",
+        "sha256": "c875c3dee850dcb5f55b6172fa10400874425c778581174fc64a87b4fc139c45",
+        "chars": 9717,
+        "writes": 14,
+        "threads": 27
+      }
+    },
+    "B": {
+      "campaignId": "c7e54e72-8d40-4681-bcd9-a0a5fddf0646",
+      "heroId": "c0800b8d-0bac-57b6-8d5d-5107c0a97041",
+      "worldId": "135a40ae-e1a4-410b-a043-05c5d0c2a006",
+      "adventureId": "e3e3f142-13cb-4384-94d5-4d40556cd739",
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "135a40ae-e1a4-410b-a043-05c5d0c2a006",
+          "title": "Sword Coast — Baldur's Gate",
+          "premiseChars": 2673
+        },
+        {
+          "step": "hero",
+          "heroId": "c0800b8d-0bac-57b6-8d5d-5107c0a97041",
+          "rebuilt": false,
+          "empty": false,
+          "drafted": "with notes",
+          "sheet": {
+            "role": "Warlock 5th level, the Celestial patron (Tymora, Lady Luck), Pact of the Chain",
+            "level": 5,
+            "skills": 9,
+            "abilities": 11,
+            "spells": 13,
+            "items": 14,
+            "counters": 4
+          }
+        },
+        {
+          "step": "documents",
+          "documents": [
+            {
+              "title": "DM Guide",
+              "status": "reference",
+              "chars": 8559,
+              "guide": true
+            },
+            {
+              "title": "Sword Coast — Baldur's Gate",
+              "status": "canon",
+              "chars": 2673,
+              "guide": false
+            },
+            {
+              "title": "The Sword Coast — canon",
+              "status": "canon",
+              "chars": 10222,
+              "guide": false
+            }
+          ]
+        },
+        {
+          "step": "adventure",
+          "title": "Baldur's Gate, no errand",
+          "premiseChars": 162,
+          "wishesChars": 0,
+          "pace": "evening"
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "dm",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": false
+          },
+          "boostNext": false,
+          "voiceMode": "off"
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "Wyrm's Crossing, south end of the bridge",
+          "actors": 3,
+          "questions": 1,
+          "startMinutes": 1140
+        }
+      ],
+      "alignmentRemoved": [],
+      "layer": {
+        "file": "B-dm-only.json",
+        "sha256": "4a30b836e3b4d2ee946dab9bc9ff839e231774ecb009d143878dff6df357eb95",
+        "chars": 9367,
+        "writes": 14,
+        "threads": 26
+      }
+    }
+  }
+}

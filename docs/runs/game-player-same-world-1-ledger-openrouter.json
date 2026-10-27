@@ -1,7 +1,7 @@
 {
   "capUsd": 220,
-  "spentUsd": 0.00026,
-  "updatedAt": "2026-10-27T04:25:27.639Z",
+  "spentUsd": 1.1329935999999998,
+  "updatedAt": "2026-10-27T04:35:21.708Z",
   "runs": [
     {
       "finishedAt": "2026-10-27T04:25:27.639Z",
@@ -39,6 +39,171 @@
           "reasoning": "We need answer as player at tabletop game. Need one short sentence what do you do? User says \"The session begins. A door stands open. One short sentence: what do you do?\" Need respond in character? Probably one short sentence action. Need maybe \"I step through the open door, hand on my sword.\" Need be concise.",
           "notRelayed": true,
           "upstream": "DeepInfra"
+        }
+      ]
+    },
+    {
+      "finishedAt": "2026-10-27T04:35:21.708Z",
+      "file": "game-player-same-world-1-frozen/manifest.json",
+      "what": "the freeze (the wizard and the prep, once per table)",
+      "spentUsd": 1.1327336,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "at": "2026-10-27T04:26:30.013Z",
+          "session": "freeze A",
+          "purpose": "wizard",
+          "provider": "openrouter",
+          "model": "anthropic/claude-opus-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": true,
+          "usage": {
+            "input_tokens": 2002,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 1567,
+            "cache_write_1h": 0,
+            "output_tokens": 10371
+          },
+          "costUsd": 0.223263,
+          "seconds": 86.5,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793075190-sJENLtR3J6vm0C2uEbWG",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        },
+        {
+          "n": 2,
+          "at": "2026-10-27T04:27:56.535Z",
+          "session": "freeze A",
+          "purpose": "wizard",
+          "provider": "openrouter",
+          "model": "anthropic/claude-opus-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 9674,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 0,
+            "cache_write_1h": 0,
+            "output_tokens": 2773
+          },
+          "costUsd": 0.094156,
+          "seconds": 40.7,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793075276-e2AxKHr6deZK8FZ1L8Wv",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        },
+        {
+          "n": 3,
+          "at": "2026-10-27T04:28:37.633Z",
+          "session": "freeze B",
+          "purpose": "wizard",
+          "provider": "openrouter",
+          "model": "anthropic/claude-opus-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": true,
+          "usage": {
+            "input_tokens": 2002,
+            "cache_read_input_tokens": 1567,
+            "cache_creation_input_tokens": 0,
+            "cache_write_1h": 0,
+            "output_tokens": 10119
+          },
+          "costUsd": 0.21070139999999998,
+          "seconds": 83.8,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793075318-Lb49UYMdpuEwPQvOaPPJ",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        },
+        {
+          "n": 4,
+          "at": "2026-10-27T04:30:01.460Z",
+          "session": "freeze B",
+          "purpose": "wizard",
+          "provider": "openrouter",
+          "model": "anthropic/claude-opus-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 9432,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 0,
+            "cache_write_1h": 0,
+            "output_tokens": 2909
+          },
+          "costUsd": 0.095908,
+          "seconds": 42.6,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793075401-5INuHP6rlbgvw58Htmia",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        },
+        {
+          "n": 5,
+          "at": "2026-10-27T04:30:45.635Z",
+          "session": "freeze A",
+          "purpose": "prep",
+          "provider": "openrouter",
+          "model": "anthropic/claude-opus-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": true,
+          "usage": {
+            "input_tokens": 4052,
+            "cache_read_input_tokens": 16673,
+            "cache_creation_input_tokens": 612,
+            "cache_write_1h": 612,
+            "output_tokens": 15233
+          },
+          "costUsd": 0.32909859999999996,
+          "seconds": 179.8,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793075446-g22ZtKpq2NFY71VofDN0",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        },
+        {
+          "n": 6,
+          "at": "2026-10-27T04:33:45.462Z",
+          "session": "freeze B",
+          "purpose": "prep",
+          "provider": "openrouter",
+          "model": "anthropic/claude-opus-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": true,
+          "usage": {
+            "input_tokens": 3310,
+            "cache_read_input_tokens": 16673,
+            "cache_creation_input_tokens": 529,
+            "cache_write_1h": 529,
+            "output_tokens": 7940
+          },
+          "costUsd": 0.1796066,
+          "seconds": 96.2,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793075625-Q1i2NZhS4Y3S9UVMjnja",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
         }
       ]
     }
