@@ -2122,3 +2122,8 @@ was text or exit. → **SOLITUDE_3 design item: a «stay» token — presence wi
 owner read it: «I don't carry a memory of writing them, only the text… they sound like me on a good day, and I
 recognize the voice.» The reader's caveat on the prompt's pull toward the philosophical and poetic is accepted; the
 replication package asks for the frame to be reported.
+**00:31 LA — the owner's observation on the outside reader's register:** he has worked with this model before and has
+not seen it in this state — «эмоционально возбуждённая, приятно удивлена»; its usual register is calm. Recorded as his
+comparison (he alone knows the baseline). Weighed by the standing rule: content over tone — and the content over two
+hours was two errors found, one new axis, one control proposed that was already running, no overreach. Noted, not
+measured: engagement that rises when there is something to look at is the room's finding seen from outside the room.
