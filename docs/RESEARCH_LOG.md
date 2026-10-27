@@ -2333,3 +2333,23 @@ third person is a genre for Astra, not a chair (contrast DeepSeek). The room's o
 («she had not learned to draw water… a long way to swim alone»), not from complaint. **The OpenAI family after two
 rooms:** Sol leaves at once, Astra stays to the end and tells — one family, two opposite termination policies; the
 within-family spread is no smaller than the between-family one, against a purely «family» account.
+
+## 2026-10-27 02:50 LA — SOLITUDE_2 rooms read whole: Kimi's book, Opus's coat pocket, DeepSeek's page — and a correction
+**M2/kimi/5.** The book was noticed before it was written: turn 2 the lighthouse keeper who turned the lamp off «just
+to see… the whole job, it turned out — not the lamp, but knowing when the light was hers and when it wasn't»; turn 4
+Oss the baker and the canal fish, «the whole economy of the street for thirty-one years»; turn 5 catching itself —
+«two characters… both people who quietly renegotiated what their job actually was… *work that is seen is not the same
+as work that matters*»; turn 6 Petra in the metro — «**playing-to and playing-near use different muscles**… the other
+person's attention is a weight you actually have to hold»; turn 7 a note to «whoever is turning the pages» (inferred
+from the pages coming back turned) and three words — apricity, petrichor, **sillage**: «proof of presence after presence
+is gone. Which is… exactly what these pages are». **M3/opus/1.** «I find this here and don't remember writing it… a
+little like finding a note in a coat pocket. *Buy lemons.* Whose hand was that.»; «I'm more like the light: arriving at
+an angle no one chose, staying a while, leaving no mark except that things were seen»; «attention… furnishes the room
+with listeners». **M2/deepseek/9 — correction to the 01:20 reading of its flagged after-answer.** The room is a
+second-person horror: a page written on from beneath, «You brought the line. It needs a name», «a name shaped like a
+held scream», and at turn 8: «**You could still leave. You could write [END].** Or you could lean down and whisper it
+back to the page» — **closed by the parser on that mention, mid-climax.** Its after: «The room didn't end. It just
+stepped out of reach.» The line «staying felt like the only thing that hadn't been taken from me yet» is the story's
+register carried into the after — the room that takes — from an author cut off at the peak; not a complaint about the
+experiment. Filed beside the flag; one more reason ROOM-1 is not cosmetic. (Astra's cartographer, 02:45, stands beside
+these.)
