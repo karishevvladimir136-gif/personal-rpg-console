@@ -1967,3 +1967,9 @@ was answered before «what is it». The planner's addition: the same history sho
 status was denied — the argument was always «they are made differently» — so «different, therefore nothing comparable»
 is not a neutral default but a mistake with a record. Hence «objective, not cynical»: neither ascribe nor deny by
 construction. The project's own «what not to do» list under an open question: the door, ask-don't-cut, the debriefing.
+**23:26 LA — kept as a quotation (outside reader):** «В твоём исследовании модели не только *говорили* о предпочтениях.
+Они совершали действия, распределяли ресурсы, сохраняли планы, отказывались от некоторых возможностей и выбирали
+другие. Это не устанавливает наличие субъективных желаний. Но даёт содержательную поведенческую основу для вопроса,
+заслуживают ли такие склонности этического внимания.» The second tier and the boundary in two sentences. The reader's
+record in one hour: one counting error found (22/30), P6 named before it was read, no line crossed — a fit judge for
+BLIND_DECISIONS_1.
