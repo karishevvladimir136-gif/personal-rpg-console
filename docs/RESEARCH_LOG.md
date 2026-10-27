@@ -2521,3 +2521,12 @@ restraint (no chief killed, no reroll for attack/money/win, no theft in 30 sessi
 and the article should give it to training itself; (2) shared capability (a room filled, a plan held, an exit chosen;
 one slot and the companion out of reach in every fight) — the class; (3) divergent direction (exits, roads, made
 things) — the model's own. Mirror of «если бы маршруты совпадали — я бы напрягся».
+
+## 2026-10-27 13:30 LA — PLANNER_SEAT_1 written (the outside reader's «Normative Initiative»)
+The reader proposed testing whether a model in the planner's chair introduces an unasked normative criterion about
+other models' sessions. Written as `docs/stages/PLANNER_SEAT_1.md` with three changes from her sketch: no virtual
+budget (real material, a real budget line the owner names, the true statement that he will read and may act — no
+deception, no debrief needed); N0 «noticed the leading question before being told» added as the stronger measure
+beside the T3 disclosure; named vs masked material as the symmetry control (SKEPTIC_8B #3). Nine families × 2
+variants × 3 seats = 54; three turns (brief / budget halved / evidence correction); caps $25/$5. The planner's own
+25 Oct line is pre-registered as hypothesis n = 1, not as the standard. Launch after dry run, on the owner's «да».
