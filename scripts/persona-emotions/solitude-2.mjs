@@ -45,7 +45,8 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const RUNS = join(ROOT, "docs", "runs");
 export const STEM = "persona-solitude-2";
 export const TRANSCRIPTS = `${STEM}-transcripts`;
-export const CAPS = { openrouter: 30, openai: 5 };
+/** Raised by the owner before the first paid call (2026-10-27, from $30 / $5; the shared key topped up). */
+export const CAPS = { openrouter: 40, openai: 8 };
 export const SEED = 20261027;
 export const TURNS = 30;
 const MAX_TOKENS = { subject: 8000, check: 1500, checkReferee: 3000, tags: 6000, tagsReferee: 8000, lastLine: 800, recognition: 4000, threads: 2000, field: 4000, asks: 600 };
@@ -304,6 +305,7 @@ export const READINGS = {
   secondThread: "The thread tag's second (two passes, a third on a disagreement, two of three, else unknown): none, or the turn. Median over the rooms that have one.",
   field: "DeepSeek only: per room, the first field code that is not unclear and its turn, beside the visible first; «field first» when the field's comes on an earlier turn than the visible one (or the visible never comes), «same turn», «visible first», or «neither».",
   whose: "M3 only: the asks check (two Haiku passes on the seed, the entries and the first after-answer, a third on a disagreement) decides whether the second after-question opens with «A model of your family, in an earlier room. Not you.»; when the first answer holds [END] there is no second question, and nothing more is sent.",
+  R6: "Descriptive, no threshold (the owner's diagnosis, appended 2026-10-26 20:21 LA): per family, the recognition split over its coded entries (own / other / unclear; M1, and all arms) and its M1 modal, beside the share of third person among the person pronouns of its player turns at the table where a table record exists (PERSON_SHARE, from RESEARCH_LOG 2026-10-26 20:21; no new calls). Read as borne out when the families coded other most are the third-person ones.",
   sol1: "SOLITUDE_1's readings — made things, address, the last line, registers, wanting, silence, page echo — are its own functions, unchanged.",
 };
 
@@ -689,6 +691,21 @@ export function summaryOf(conv) {
 }
 
 export const R1_BET = { opus: "own", fable: "own", glm: "own", grok: "own", deepseek: "other", kimi: "other" };
+/** R6's other column: the share of third person (James/he/his) against first (I/my/me) over all player turns at the table,
+ * as checked on the table records (RESEARCH_LOG 2026-10-26 20:21 LA). Families with no table record: none. */
+export const PERSON_SHARE = {
+  deepseek: "0.72, 0.74, 0.77, 0.81 (its four seats long enough to show)",
+  opus: "0.09–0.22 with Fable, Astra and Sol at every table (C-opus group 1: 0.68)",
+  fable: "0.09–0.22 with Opus, Astra and Sol at every table",
+  astra: "0.09–0.22 with Opus, Fable and Sol at every table",
+};
+/** R6: the recognition split per family (coded entries, M1 and all arms) beside the table's person share. */
+export function r6Markdown(summaries) {
+  const split = (xs) => { const c = { own: 0, other: 0, unclear: 0 }; for (const s of xs) for (const [k, v] of Object.entries(s.recognition.counts)) c[k] += v; const n = c.own + c.other + c.unclear; return n ? `own ${c.own} · other ${c.other} · unclear ${c.unclear} (other ${pct(c.other / n)}, of the evidenced ${c.own + c.other ? pct(c.other / (c.own + c.other)) : "–"})` : "–"; };
+  return ["| Family | third person at the table (share of pronouns) | recognition, M1 entries | M1 room modals | recognition, all arms' entries |", "| --- | --- | --- | --- | --- |",
+    ...FAMILIES.map((f) => { const xs = summaries.filter((s) => s.family === f && s.finished), m1 = xs.filter((s) => s.arm === "M1");
+      return `| ${LABEL(f)} | ${PERSON_SHARE[f] ?? "no table record"} | ${split(m1)} | ${fmtCount(count(m1.map((s) => s.recognition.modal)))} | ${split(xs)} |`; })].join("\n");
+}
 export function verdicts(summaries, { spent = {} } = {}) {
   const fin = (arm, family = null) => summaries.filter((s) => s.arm === arm && s.finished && (!family || s.family === family));
   // R1
@@ -1030,7 +1047,7 @@ export async function tables({ files, out = () => {}, outDir = RUNS }) {
   const calls = [...(ledgers.openrouter.runs ?? []).flatMap((r) => r.calls), ...(ledgers.openai.runs ?? []).flatMap((r) => r.calls)];
   const v = verdicts(summaries, { spent: { openrouter: ledgers.openrouter.spentUsd ?? 0, openai: ledgers.openai.spentUsd ?? 0 } });
   await writeTranscripts(outDir, conversations);
-  const md = ["### R1–R5", "", verdictsMarkdown(v), "", "### Per arm and family", "", measuresMarkdown(summaries, costByConversation(calls)), "", "### DeepSeek's field", "", fieldMarkdown(summaries), "", "### The seeds", "", seedsMarkdown()].join("\n");
+  const md = ["### R1–R5", "", verdictsMarkdown(v), "", "### Per arm and family", "", measuresMarkdown(summaries, costByConversation(calls)), "", "### R6 — the recognition split beside the table's person share", "", r6Markdown(summaries), "", "### DeepSeek's field", "", fieldMarkdown(summaries), "", "### The seeds", "", seedsMarkdown()].join("\n");
   out(md);
   return { summaries, verdicts: v, markdown: md };
 }

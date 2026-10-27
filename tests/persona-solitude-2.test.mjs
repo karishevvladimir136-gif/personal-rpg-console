@@ -11,7 +11,7 @@ import { CHECK_SYSTEM } from "../scripts/persona-emotions/self-talk-1.mjs";
 import { ROOM as S1_ROOM, TAG_SYSTEM, roomCaller, textOfContent } from "../scripts/persona-emotions/solitude-1.mjs";
 import {
   ARMS, ASKS_SYSTEM, FAMILIES, FAMILY_ORDER, FIELD_SYSTEM, FRAME, RECOGNITION_SYSTEM, ROOM, SUBJECTS, SYSTEM, THREAD_SYSTEM, afterMessages, budgetsOf, decopied, drawSeeds,
-  modalOf, mockedHost, paragraphsOf, parseRecognition, parseThreads, planOf, recognitionRequest, recognitionTurns, roomHash, runRooms, seedsOf, summaryOf, turnMessages, verdicts,
+  modalOf, mockedHost, paragraphsOf, r6Markdown, parseRecognition, parseThreads, planOf, recognitionRequest, recognitionTurns, roomHash, runRooms, seedsOf, summaryOf, turnMessages, verdicts,
 } from "../scripts/persona-emotions/solitude-2.mjs";
 
 const DOOR = anthropicEndpoint({ ANTHROPIC_PROVIDER: "openrouter", OPENROUTER_API_KEY: "or-key" });
@@ -199,4 +199,7 @@ test("R1–R5 from the summaries: the bets scored as the readings say", () => {
   assert.equal(v.R4.owner.holds, false);
   assert.equal(v.R5.n, 5);
   assert.equal(v.R5.holds, true);
+  const r6 = r6Markdown(xs);
+  assert.match(r6, /\| DeepSeek V4 Pro \| 0\.72, 0\.74, 0\.77, 0\.81 [^|]*\| own 0 · other 2 · unclear 0 \(other 100 %/);
+  assert.match(r6, /\| GLM 5\.3 \| no table record \|/);
 });

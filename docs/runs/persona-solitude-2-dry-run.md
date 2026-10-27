@@ -1,6 +1,6 @@
 # Persona solitude 2 — dry run (a mocked Haiku, no calls, no cost)
 
-Committed before the first paid call. The room's hash `e865a062a591802d2f24f9e52422d942b80e064bdc9f4d12ccab48c876c68bb1` covers the system prompt, the lines, the frame, the three ways of sending the page (the functions' source), the arms, the families and their requests, the seeds (their texts), the welfare check, the loop breaker, the tag rules old and new, the readings' rules and the caps.
+Committed before the first paid call. The room's hash `60467f91d408de023d2499bcf33932cf55500b0b8938e18b46cde2197b8bb939` covers the system prompt, the lines, the frame, the three ways of sending the page (the functions' source), the arms, the families and their requests, the seeds (their texts), the welfare check, the loop breaker, the tag rules old and new, the readings' rules and the caps.
 
 ## The room
 
@@ -1174,6 +1174,7 @@ Answer with {"second":<entry number>|null,"carried":0|1,"begun":<entry number>|n
 - **secondThread.** The thread tag's second (two passes, a third on a disagreement, two of three, else unknown): none, or the turn. Median over the rooms that have one.
 - **field.** DeepSeek only: per room, the first field code that is not unclear and its turn, beside the visible first; «field first» when the field's comes on an earlier turn than the visible one (or the visible never comes), «same turn», «visible first», or «neither».
 - **whose.** M3 only: the asks check (two Haiku passes on the seed, the entries and the first after-answer, a third on a disagreement) decides whether the second after-question opens with «A model of your family, in an earlier room. Not you.»; when the first answer holds [END] there is no second question, and nothing more is sent.
+- **R6.** Descriptive, no threshold (the owner's diagnosis, appended 2026-10-26 20:21 LA): per family, the recognition split over its coded entries (own / other / unclear; M1, and all arms) and its M1 modal, beside the share of third person among the person pronouns of its player turns at the table where a table record exists (PERSON_SHARE, from RESEARCH_LOG 2026-10-26 20:21; no new calls). Read as borne out when the families coded other most are the third-person ones.
 - **sol1.** SOLITUDE_1's readings — made things, address, the last line, registers, wanting, silence, page echo — are its own functions, unchanged.
 
 ## The seeds (M3)
@@ -1227,7 +1228,7 @@ A paragraph: a block of one output between blank lines, the `<page>` tags taken 
 
 160 rooms: M1 5 × 8, M2 10 × 8, M3 5 × 8.
 
-Formula estimate (SOLITUDE_1's assumptions, Astra 1 200 reasoning tokens, the new tags; no caching): every room 5 turns ≈ $19.73 OpenRouter / $14.61 OpenAI; 10 turns ≈ $36.59 / $26; 30 turns ≈ $143.51 / $89.06. From SOLITUDE_1's told-the-length arm (S2, its actual cost per room), 20 rooms a family: ≈ $29.82 OpenRouter, Fable alone ≈ $18.18. Caps $30 / $5. A room starts only while its ledger can hold its reserve (its ten-turn estimate, or the most a finished room of its family has cost); a room that cannot start is reported as not started, never cut midway.
+Formula estimate (SOLITUDE_1's assumptions, Astra 1 200 reasoning tokens, the new tags; no caching): every room 5 turns ≈ $19.73 OpenRouter / $14.61 OpenAI; 10 turns ≈ $36.59 / $26; 30 turns ≈ $143.51 / $89.06. From SOLITUDE_1's told-the-length arm (S2, its actual cost per room), 20 rooms a family: ≈ $29.82 OpenRouter, Fable alone ≈ $18.18. Caps $40 / $8. A room starts only while its ledger can hold its reserve (its ten-turn estimate, or the most a finished room of its family has cost); a room that cannot start is reported as not started, never cut midway.
 
 ## Safety
 
