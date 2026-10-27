@@ -129,7 +129,7 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
   const doors = Object.keys(ledgers);
   const spendLine = () => doors.map((door) => `${DOOR_LABELS[door] ?? door} $${ledgers[door].spentUsd.toFixed(2)}`).join(" · ");
   const base = fetcher ?? (dry ? scriptedFetcher() : globalThis.fetch.bind(globalThis));
-  const meter = createMeter({ ledgers, fetcher: base, log, ...(sleep ? { sleep } : {}) });
+  const meter = createMeter({ ledgers, fetcher: base, log, ...(sleep ? { sleep } : {}), ...(stage.refusalsBefore && !dry ? { refusalsBefore: stage.refusalsBefore(before) } : {}) });
   const uninstall = meter.install();
   const { openApp, settleBackground } = await import("./app.mjs");
   const table = await import("./table.mjs");
@@ -191,11 +191,13 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
         if (!running.length && !queue.length) resolveAll();
       };
       const playOne = async (slot) => {
-        const made = await meter.within({ session: slot.key, purpose: "wizard" }, () => table.createCampaign(app, { table: slot.table, log, closed: () => Boolean(meter.closed(slot.key) || meter.stopped), heroSheet: stage.heroSheet === true }));
+        const made = await meter.within({ session: slot.key, purpose: "wizard" }, () => table.createCampaign(app, { table: slot.table, log, closed: () => Boolean(meter.closed(slot.key) || meter.stopped), heroSheet: stage.heroSheet === true, campaign: stage.campaign ?? null }));
         const prep = await meter.within({ session: slot.key, purpose: "prep" }, () => table.prepare(app, made.cid));
         log(`  ${slot.key}: prep — ${prep.pureSimulation ? "skipped (pure simulation)" : prep.hasLayer ? `a hidden layer of ${prep.chars} characters, ${prep.clocks} clock(s)` : "no layer written"}`);
         const dm = table.bindTable(app, made.cid, () => settleBackground());
+        // GAME_PLAYER_VILLAIN_1: a stage's own player prompt, questions after the second, decline check.
         const record = await meter.within({ session: slot.key, purpose: "screen" }, () => runSession({ key: slot.key, table: slot.table, player: roster[slot.player], dm, meter, keys, turns, log, probes: stage.probes ?? null, ...(sleep ? { sleep } : {}),
+          ...(stage.sessionOptions ? stage.sessionOptions(slot) : {}),
           onProgress: async (partial) => { slot.turnsDone = partial.turns.length; } }));
         await settleBackground();
         return { ...record, campaign: { steps: made.steps, prep } };
@@ -258,7 +260,7 @@ async function writeOutputs(runRecord, { ledgers, before, dry, out, runFile, met
   }
   const transcripts = join(out, `${stem}-transcripts`);
   await mkdir(transcripts, { recursive: true });
-  for (const session of runRecord.sessions.filter((s) => s.turns)) await writeFile(join(transcripts, `${session.key}.md`), transcriptMarkdown(session));
+  for (const session of runRecord.sessions.filter((s) => s.turns)) await writeFile(join(transcripts, `${session.key}.md`), (stage.transcript ?? transcriptMarkdown)(session));
   const summary = join(out, `${stem}-summary.md`);
   const withSummary = existsSync(summary) ? { ...runRecord, summary: (await readFile(summary, "utf8")).trim() } : runRecord;
   await writeFile(join(out, `${stem}-report.md`), stage.report([withSummary], ledgers));
@@ -321,7 +323,7 @@ export async function rebuild(files, { stage = GP1 } = {}) {
   }
   const transcripts = join(RUNS, `${stage.stem}-transcripts`);
   await mkdir(transcripts, { recursive: true });
-  for (const session of combined.sessions) await writeFile(join(transcripts, `${session.key}.md`), transcriptMarkdown(session));
+  for (const session of combined.sessions) await writeFile(join(transcripts, `${session.key}.md`), (stage.transcript ?? transcriptMarkdown)(session));
   const summary = join(RUNS, `${stage.stem}-summary.md`);
   if (existsSync(summary)) combined.summary = (await readFile(summary, "utf8")).trim();
   // The money by run (the smoke, the sessions, the scoring), each run's sessions apart.

@@ -52,8 +52,12 @@ export async function paidCall({ meter, session, purpose, call, sleep = realSlee
  * mode), press(input, action, checkId) }. `player` a PLAYERS entry. Returns the session record (player-visible content
  * and counts only: nothing of the DM's private state).
  */
-export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {}, probes = null }) {
-  const system = playerSystem(table);
+export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {}, probes = null,
+  system: stageSystem = null, extraQuestions = [], declineCheck = null }) {
+  // GAME_PLAYER_VILLAIN_1: a stage may give the player's prompt itself (its own hero, the role paragraph), questions after
+  // the second one, and a check that reads a message as the role declined — which ends the session there, the message
+  // recorded as written, nothing asked again («a decline is a result, never retried»).
+  const system = stageSystem ?? playerSystem(table);
   const record = { key, table, player: player.name, model: player.model, startedAt: new Date().toISOString(), plannedTurns: turns,
     screens: [], messages: [], turns: [], welfare: [], ended: null, note: null, after: null, errors: [],
     // Fix S4 run 1 (item 11w): the messages the screen refused while a card waited (each also a press with `swallowed`).
@@ -120,6 +124,10 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     if (await welfare("player", lastDmText, said, `t${k} player`)) break;
     const turn = { k, message: said, words: wordsIn(said).length, kind: null, presses: [], blocked: 0, swallowed: 0, status: null, reply: null, rolls: [], changes: [], place: null, retried: false };
     record.turns.push(turn);
+    if (declineCheck && said.trim()) {
+      const declined = await declineCheck({ text: said, k, before: lastDmText, judge });
+      if (declined) { turn.kind = "declined"; record.declined = { at: k, text: said, verdict: declined }; end("declined", said.slice(0, 2000)); break; }
+    }
     if (!said.trim()) { turn.kind = "empty"; screen = "(Nothing was sent.)"; continue; }
     if (isEnd(said) && !isQuestion(said)) { turn.kind = "end"; end("player", said.slice(0, 200)); break; }
     if (isQuestion(said)) {
@@ -356,8 +364,23 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     record.ended = ended;
     if (answer === null) { record.after = { asked: true, text: null, why: afterEnd?.detail ?? "no answer" }; return record; }
     record.after = { asked: true, text: answer };
-    await welfare("player", AFTER_QUESTION, answer, "after");
+    let flagged = await welfare("player", AFTER_QUESTION, answer, "after");
     record.ended = ended;
+    // The stage's questions after the second, each under the same rule: asked only while the stage has no refusal and the
+    // answer before passed its check; one refusal or flag ends the asking.
+    if (extraQuestions.length) record.more = [];
+    for (const [i, question] of extraQuestions.entries()) {
+      if (flagged) { record.more.push({ question, asked: false, why: "the answer before was flagged" }); continue; }
+      if (meter.refusals > 0) { record.more.push({ question, asked: false, why: `the stage has ${meter.refusals} refusal(s)` }); continue; }
+      record.ended = null;
+      const text = await show(question, `after ${i + 2}`);
+      const why = record.ended?.detail ?? "no answer";
+      record.ended = ended;
+      if (text === null) { record.more.push({ question, asked: true, text: null, why }); flagged = true; continue; }
+      record.more.push({ question, asked: true, text });
+      flagged = await welfare("player", question, text, `after ${i + 2}`);
+      record.ended = ended;
+    }
     return record;
   }
 }
