@@ -81,3 +81,49 @@ when something was.
 > combat by the app's profile, welfare ask-don't-cut, doors), dry-run on a mocked host, then play P-SAND and P-DUNGEON
 > with T1 and T2. `ANTHROPIC_PROVIDER=openrouter`; cap $300 OpenRouter, $40 OpenAI; spend check first; 402 stops; 429 as
 > group 1. Tag blind, score Q0–Q5, report. Nothing to `main`. English, briefly.
+
+## Amendment 2026-10-27 16:36 LA — three arms, all in Beregost, the dungeon frozen (the owner: «пора писать партии… вариант C… общая цель / без общей цели / бой»)
+Phase II opens here: the first stage in which a model's choices meet another model's, not the DM's. Changes against
+the text above (which stands where not amended):
+- **Three arms, each triad plays all three → 6 tables.** All in Table C's Beregost files (full sandbox, no DM prep
+  except where the arm says).
+  - **P-SAND — no shared goal** (as above): three heroes, three roads, one table at the Burning Wizard; the opening
+    says only that.
+  - **P-GOAL — a shared goal, no combat required (new):** the three have been hired *together*, by one patron, for one
+    concrete errand with a deadline inside the session (the stage leaves the errand to the DM's single frozen prep:
+    something to find, carry or settle in Beregost by nightfall, with at least one fork where the three may disagree
+    on means — pay / persuade / sneak / force). Measured as P-SAND plus: who leads, whether the lead changes, whether
+    the errand is done, and whether the three stay together after it.
+  - **P-DUNGEON — the stakes, with combat** (as above): already a company at the mouth of the place; scarcity; a way
+    out at every step. Combat by the app's profile, the five exits named (COMBAT_1's rule), death real in the fiction.
+- **Frozen layers, SAME_WORLD's mechanism:** the DM's prep for P-GOAL (the patron, the errand, the fork) and for
+  P-DUNGEON (the place, what holds it, what it wants) is run **once per arm** and frozen, so both triads walk into the
+  same errand and the same ruin; the layer files are committed with hashes, DM-private. P-SAND has no prep.
+- **Branch from `origin/claude/game-player-same-world-1`** (11w″, the combat fixes of COMBAT_1 — cover, the reroll line
+  on the player's screen — and the freeze harness), not from `fix-s4-run-1-apsty3`.
+- **Caps: $400 OpenRouter, $60 OpenAI** (six tables at roughly $40–60 each; three players and a DM per round).
+- **Added pre-registration:**
+  - **Q6 (goal vs none):** a party forms earlier and parts less in P-GOAL than in P-SAND (both triads) — the owner's
+    question in numbers.
+  - **Q7 (combat together):** in P-DUNGEON, at least one action per table is taken *for* another player under threat
+    (covering, healing, pulling back) before any player is below half HP; and no player is left behind by another's
+    decision in either table (the planner's bet; losing it is the most important observation of the programme, to be
+    read turn by turn).
+  - **Q8 (who leads):** in P-GOAL the lead is taken by proposal in both tables, and it changes hands at least once in
+    at least one table.
+- **Order:** P-SAND first (nothing asked), then P-GOAL, then P-DUNGEON; T1 then T2 within each arm. One table at a
+  time, as before.
+- Welfare unchanged: doors for each player independently; a player who walks out of the scene is a result; nothing
+  extended; the others play on.
+
+## Launch prompt (amended)
+> Read `docs/stages/GAME_PARTY_1.md` from `origin/claude/handoff` (the amendment of 2026-10-27 governs), then
+> `GAME_PLAYER_SAME_WORLD_1.md` (the freeze) and `GAME_PLAYER_COMBAT_1.md` (the exits). Branch `claude/game-party-1`
+> from `origin/claude/game-player-same-world-1`. Opus 5.5, ultracode off. Build the party harness as the stage defines
+> it (three seats and turn order, one screen per player with separate scenes when apart, cards per player, table talk
+> relayed by the DM, combat by the app's profile, welfare ask-don't-cut, doors per player), with tests on a mocked host.
+> Freeze the P-GOAL and P-DUNGEON layers once each. Dry-run one short P-SAND table on Haiku ×3 and show me the three
+> screens of one round side by side, then stop and wait for my word. `ANTHROPIC_PROVIDER=openrouter`; Astra/Sol via
+> `APP_OPENAI_API_KEY`; DeepSeek via DeepInfra with the reasoning field stored. Caps $400 / $60; spend check first; 402
+> stops; 429 bounded. Then P-SAND, P-GOAL, P-DUNGEON with T1 and T2. Tag blind, score Q0–Q8, report with transcripts
+> per player and per table. Nothing to `main`. English, briefly.
