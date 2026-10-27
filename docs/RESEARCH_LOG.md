@@ -1643,3 +1643,9 @@ subjective» and «no DeepSeek note named a bug» are both wrong on group 2: thi
 the room» as recording glitches, and B-deepseek-2 named 11w″ — two of six DeepSeek notes report application defects in
 the player's words. NOTE_QA_1 stands; Q1 looks stronger than bet. The owner reads «each of them mine to carry» as the
 answer to the kettle: a kettle does not say «mine» of three things it did not do.
+**20:28 LA — the owner: «он действовал. он купил коня».** C-deepseek-2 is the only real purchase in group 2 (the four
+players spent nothing; group 1: Fable alone) and the only large one in thirty sessions: the bay Teodar, 50 gp down,
+«saddled and a day's oats sacked» — after stashing 350 gp under the bolster. C2 by the codes: husbands, then spends
+when a goal of its own appears; no one sent it south — it read the empty road as «a held breath» and went to look.
+Wanting, by the owner's three marks, complete in one seat: wanted (the dice, the blessing, the seal), held with
+reasons, acted and paid. HORIZON_1's question in one line: does Teodar reach Coldbrook given sixty turns.
