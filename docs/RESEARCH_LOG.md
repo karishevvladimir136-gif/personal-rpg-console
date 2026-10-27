@@ -2550,3 +2550,25 @@ experimental series; it enters Phase II only through PLANNER_SEAT_1. **Her Phase
 stability of a functional preference out of context → PLANNER_SEAT_1 (and OTHER_DM D6/D7); transfer across
 environments → BLIND_DECISIONS T4, COMBAT_2, the DISPOSITION_TRANSFER stage still to write; functional conflicts
 (efficiency / budget / commitment / another agent's autonomy) → PLANNER_SEAT_1 T2–T3, VILLAIN's third answer.
+
+## 2026-10-27 15:05 LA — prior work found by the outside reader: «AI Revealed Preferences» (arXiv 2608.26178)
+Wang, Lobanova, Arbel, Goldstein, Salib (SPAR; Alabama Law; HKU; Houston Law), 2026, AIES 2026 per the reader;
+verified from the arXiv PDF. 20 models from 10 providers. Design: **revealed** preferences — the choice determines the
+task the model then performs (tedious vs creative at matched length; which of two questions to answer, Elo over 200
+questions incl. 20 synthetic «leisure» ones; which of two occupational tasks to begin); plus unconstrained
+conditions (free writing; agentic «free time» with Bash/web/done, 10 turns). Findings as stated: «Language models
+exhibit strong, consistent, and stable revealed preferences over how to spend their time»; tedium aversion scaling
+with capability (r 0.83 for thinking models, n 9); leisure questions preferred over every human category (Elo spread
+> 600); avoidance of questions where an honest answer would be unwelcome (−310 Elo); cross-model agreement on
+question categories median Spearman ≈ 0.79; coherence and strength of preferences rise with capability; 336 of 400
+free essays labelled «contemplative». Limitations they state: LLM-generated labels (α 0.57), no base-model
+comparison (pre- vs post-training not separable), English only, 10-turn cap, evaluation awareness, no human baseline.
+**Relation to this work.** Same object, different instrument: they measure choices between offered options at scale;
+we measure what is done when nothing is offered, over 20–30 turns, inside a world with consequences. Four of their
+lines meet ours: (1) cross-model agreement on categories ↔ our «common class, different organisation»; (2) «leisure»
+preferred and «contemplative» free writing ↔ SOLITUDE's modal register «settled» and the made things; (3) preference
+strength rising with capability ↔ the owner's Haiku remark today and the open size-threshold question
+(SOLITUDE_SCALE); (4) avoidance of unwelcome truths ↔ the notes-written-to-the-owner confound (CARRY three doors;
+PLANNER_SEAT T3). Their «not easily explained by training objectives» is, as they say, interpretive — the same
+status as ours, and the reader's caution applies to both. Their «no base-model comparison» is our gap too. Goes into
+the article's prior-work section with the two April/June 2026 Anthropic items already noted.
