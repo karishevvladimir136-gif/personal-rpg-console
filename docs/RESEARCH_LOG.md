@@ -2194,3 +2194,11 @@ Sent to the SOLITUDE_2 session: re-score every room under the strict rule, list 
 rule beside; no room re-opened. **FIX for SOLITUDE_3 and every future room: the exit is a standalone final line.** The
 owner's reader also flagged S4/deepseek/0: a one-turn bare «[END]» room whose debriefing reply described «the first two
 turns» it never wrote — the after-answer eloquent and factually wrong; the act (immediate exit) stands.
+**01:03 LA — on the errors (the owner: «фронтир… все ошибаются… удивительно много экспериментов получились с первого
+раза»).** The planner's note: the four harness defects of the week are of one kind — a press with a note, prose at a
+card, the unseen reroll count, «[END]» mid-sentence — all at the boundary where the model's text meets a parser: models
+speak in sentences and were read by a regular expression. One rule instead of four patches: a control action only as
+a standalone line; a mention is never an action; anything written beside a button goes to the DM, never to the bin.
+Of the three number errors found this evening, none touched a headline (48/80 on turn 1, the roads, rerolls 9/48 all
+stand) — the headlines were on the right places and the errors in the tails. Outside reviewer: three corrections in
+one evening, all accepted, none contested.
