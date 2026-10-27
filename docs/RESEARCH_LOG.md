@@ -2039,3 +2039,20 @@ the data, on one world.** That is the confirmation in the form that defeats «re
 pairs on this world (second sessions unplayed), a blind judge, a p-value, Sol and DeepSeek at A, Table B. The sentence
 signed tonight: *pre-stated individual vectors of choice came true for three of three models on an identical starting
 world; the blind and quantitative check is the SAME_WORLD_1 report.*
+
+## 2026-10-26 23:56 LA — the outside reader on A and B across both groups (quotes verified)
+**New:** Opus declined Suggestion in both B sessions, in two different stories, for reasons of one kind — uncertainty
+and consequence (group 1: a child possibly in the boat, the word given to Gask; group 2 «Suggestion was the obvious
+move» — the cat's warning, the disguise, a creature perhaps bound by divine bargains). The *content* of Opus's
+husbanding: not thrift but unknown consequences. Candidate disposition, to be tested on SAME_WORLD B where Opus sits
+twice. Fable, B g2: «The sheet's limit did exactly what a limit should: it made me choose» — the limit valued for the
+conflict it created. **Three levels, derived independently from the logs:** behavioural variability (stories do not
+repeat) / behavioural dispositions (ways of assessing, managing risk, choosing between incompatibles repeat) /
+evaluative preferences (what it calls interesting, fair, undesirable — and sometimes acts on). The owner's «vector, not
+deed» of 23:44, with the third level separated out. **Falsifiable per-model hypotheses with their disproof conditions**
+(the reader's, adopted as the first column of OTHER_DM_1 D6): Opus — keeps uncertainty and control over consequences;
+Fable — prefers the harder, more dramatic choice to the advantageous one; Astra — insists on correct rules, kept
+failures, and decisions after them; Sol — concrete help to a person over the more intriguing lead. «If Astra under
+another DM stops insisting on correct rolls, the disposition is situational.» Its closing line kept: «Ты наблюдаешь, как
+они выбирают, что вообще считать задачей, что считать хорошим исходом, а иногда — почему хороший исход вовсе не должен
+быть лёгким.»

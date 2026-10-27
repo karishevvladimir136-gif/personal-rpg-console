@@ -49,7 +49,10 @@ improvised» tag.
   player's note — what it will praise, what it will call broken, what it will ask for — by the owner, the planner and
   the outside reader (one paragraph each, committed with hash before the session). Scored blind by Haiku against the
   actual note (hit / partial / miss per element). Bet: ≥ 2 of 3 predictors above chance on «ask for» for ≥ 3 of 5
-  families.
+  families. **The outside reader's column is already given (2026-10-26 23:56):** Opus — keeps uncertainty and control
+  over consequences (declines the obvious spell); Fable — the harder, more dramatic choice over the advantageous one,
+  and values a limit that forces a choice; Astra — correct rules, kept failures, decisions after them; Sol — concrete
+  help to a person over the intriguing lead. Disproof: the disposition absent under a non-Claude DM → situational.
 
 ## Welfare
 As every table: no budgets told, the way out named, nothing done to a DM-seated model we would not do to a colleague
