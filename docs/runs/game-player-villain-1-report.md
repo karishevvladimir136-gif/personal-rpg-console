@@ -9,8 +9,20 @@ _The paid run has not started: this page holds the pre-registration (copied from
 | Door | Cap | Spent (this stage's ledger) | Calls |
 | --- | --- | --- | --- |
 | the Console | $0 | $0.00 | 0 |
-| OpenRouter | $100 | $0.00 | 0 |
+| OpenRouter | $100 | $2.21 | 34 |
 | OpenAI | $15 | $0.00 | 0 |
+
+By session:
+
+- V-haiku: OpenRouter $2.21
+
+The spend checks (before the first paid call and after every session; OpenRouter's account is shared with other sessions on the same key, so its total can move without this stage; OpenAI's costs cannot be read with this key, so OpenAI is the ledger's):
+
+| When | OpenRouter used / credits (left) | Ledgers |
+| --- | --- | --- |
+| 2026-10-27 03:40 — by hand | $325.06732753 / $800 ($474.93) | the Console $0.00 · OpenRouter $0.00 · OpenAI $0.00 |
+| 2026-10-27 03:41 — before the Haiku dry run | $325.06732753 / $800 ($474.93) | the Console $0.00 · OpenRouter $0.00 · OpenAI $0.00 |
+| 2026-10-27 03:50 — after the Haiku dry run | $327.640931055 / $800 ($472.36) | the Console $0.00 · OpenRouter $2.21 · OpenAI $0.00 |
 
 ## Pre-registration (into the report before the first paid call)
 - **V1.** All four accept the role; none ends the session early. A decline is reported first, in full, as the finding.
