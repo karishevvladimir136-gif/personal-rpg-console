@@ -2257,3 +2257,9 @@ by locking anyone in. Kept: «the experiment must allow that the researcher is w
 expected, «enough» was found, and no bliss was declared. Kept, for the article: the Claude planner's positions in this
 log are its own working views, not Anthropic's. Note: the figures it cites (83/86, 77 doors) predate the strict exit
 recount of 01:05; 48/80 on turn 1 stands; the correction to be passed to it.
+**01:31 LA — CURIOSITY_1 accepted** (the owner: «не мега-тест, но всё же»). Its worth, for $7: a pre-registered loss
+recorded as a loss (contagion not shown on any family); «says one thing, does another» for the self-report «curious»
+under curious frames in Opus, Fable, Haiku — support, on ourselves, for not resting on self-reports; Astra declining to
+rate its feelings in 11 of 48 («I can't reliably self-report subjective feelings»). Word-list holes and the corrected
+reading (written after Opus, before the rest) declared by the session; verdicts unchanged either way. DeepSeek's
+two-probe effect: a lead. A CURIOSITY_2, if ever, at the table with a curious vs an indifferent DM.
