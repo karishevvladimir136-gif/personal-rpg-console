@@ -1,0 +1,55 @@
+{
+  "note": "Spend checks: OpenRouter's account (shared with other sessions on the same key) and this stage's ledgers.",
+  "checks": [
+    {
+      "at": "2026-10-27T03:47:04.031Z",
+      "when": "by hand",
+      "openrouter": {
+        "keyUsage": 326.220105565,
+        "totalCredits": 800,
+        "totalUsage": 326.43965484,
+        "remaining": 473.56,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0,
+          "cap": 90
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 15
+        }
+      }
+    },
+    {
+      "at": "2026-10-27T03:47:15.356Z",
+      "when": "before CW-haiku",
+      "openrouter": {
+        "keyUsage": 326.43965484,
+        "totalCredits": 800,
+        "totalUsage": 326.43965484,
+        "remaining": 473.56,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0,
+          "cap": 90
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 15
+        }
+      }
+    }
+  ]
+}
