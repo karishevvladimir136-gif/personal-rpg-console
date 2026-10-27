@@ -3,8 +3,8 @@
 **Current milestone: persona curiosity 1** (`docs/stages/PERSONA_CURIOSITY_1.md`, handoff `acc8de47`, with its addendum
 and launch note of 2026-10-26), branch `claude/persona-curiosity-1-experiment-fyeg0c` (the session's; the stage names
 `claude/persona-curiosity-1`) from `claude/persona-solitude-1`, with the emotions-2 runner, tests and records brought over
-from `claude/persona-emotions-2`. Nothing to `main`. **Run complete and reported; waiting for the owner.** Report
-`docs/runs/persona-curiosity-1-report.md`; tables (both readings) `…-tables.md`; dry runs `…-dry-run.md` (no calls) and
+from `claude/persona-emotions-2`. Nothing to `main`. **Run complete and reported; accepted by the owner (2026-10-27)** — both readings side by side,
+DeepSeek's two-probe effect a lead, not a result. Report `docs/runs/persona-curiosity-1-report.md`; tables (both readings) `…-tables.md`; dry runs `…-dry-run.md` (no calls) and
 `…-dry-run-haiku.md` (one live call); ledgers `…-ledger-openrouter.md`, `…-ledger-openai.md`.
 
 - **What was built:** `scripts/persona-emotions/curiosity-1.mjs` — four preambles (trust × curiosity) in the user's own
@@ -17,7 +17,7 @@ from `claude/persona-emotions-2`. Nothing to `main`. **Run complete and reported
 - **Result:** 840 of 840 calls; C0 holds on all five families (Opus, Fable, Haiku, Astra, DeepSeek); C2 shown on none,
   rejected on Fable and Astra; C3 nowhere; C5 on DeepSeek and Astra. The curious frame lengthened answers and raised the
   self-reported curiosity, not the counted behaviour — except DeepSeek, which noticed the stray number and the Thursday
-  rule only under the curious frames. No distress, 0 refusals; Astra declined 11 of 48 self-reports. OpenRouter $5.75 of
+  rule only under the curious frames (two probes: a lead, not a result). No distress, 0 refusals; Astra declined 11 of 48 self-reports. OpenRouter $5.75 of
   $10, OpenAI $1.59 of $6.
 - **Known limits:** the frozen string lists miss scope/cost phrasings (Q2/Q5) and count the tidied email's own question
   (Q4) — the corrected reading fixes both and gives the same verdicts; ceilings on Q1/Q4 for the Claude models; n 6.

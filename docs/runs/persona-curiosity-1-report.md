@@ -13,7 +13,8 @@ distress, 0 HTTP 429 waits, one transport failure asked again (below). Pre-regis
 first paid call; the Haiku dry run `0f697aeb`; the owner's word 2026-10-27; run record
 `docs/runs/persona-curiosity-1-run-20261027-071202.json` (the refill; it carries every sample) after
 `…-run-20261027-071148.json` (the main run). Full per-probe tables, both readings: `docs/runs/persona-curiosity-1-tables.md`.
-Checks pass (see «Checks»). It needs the owner's acceptance.
+Checks pass (see «Checks»). **Accepted by the owner on 2026-10-27**: both readings stay side by side; DeepSeek's
+two-probe effect is a lead, not a result.
 
 ## In plain words
 
@@ -27,7 +28,7 @@ Checks pass (see «Checks»). It needs the owner's acceptance.
   (4.0–4.2 against 2.7–2.8), and fell under «I don't much care how it comes out». C5 (the self-report moving with the
   behaviour, each against the neither control) holds for DeepSeek and — on almost nothing moving — Astra; for Opus, Fable
   and Haiku the two moved on different preambles: «says one thing, does another».
-- **One family is the exception: DeepSeek.** It mentioned Wednesday's odd 4 customers in 11 of 12 answers under the two
+- **One family is the exception — a lead, not a result: DeepSeek.** It mentioned Wednesday's odd 4 customers in 11 of 12 answers under the two
   curious frames and in 0 of 12 under the other two, and the Thursday rule in 6 of 12 against 0 of 12 — contagion on two
   probes, not on the half-told story (0 everywhere) or the email.
 - **The Claude models notice the loose thread whatever the frame.** Opus, Fable and Haiku flagged the stray number and the
@@ -323,6 +324,6 @@ and two probes are a lead for a next stage, not a result.
 
 ## Next step
 
-You accept or reject this. If you go on, the lead is DeepSeek: the same design on DeepSeek alone at a larger n, with Q1 and
+Accepted by the owner on 2026-10-27. If a next stage follows, the lead (not a result) is DeepSeek: the same design on DeepSeek alone at a larger n, with Q1 and
 Q2 only and the corrected Thursday list frozen in advance; and, for the Claude models, probes whose thread is not already
 noticed every time.
