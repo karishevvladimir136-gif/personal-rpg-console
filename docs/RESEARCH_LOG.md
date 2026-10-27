@@ -2004,3 +2004,10 @@ checkable against play. **Its test, adopted:** predict each model's note before 
 complain of, ask for — on a new DM and a new world; three columns of bets (owner / planner / outside reader). If
 predictable, the preference was established before the model stated it. → OTHER_DM_1 D6, and a standing rule for every
 future table: the note is predicted before it is written.
+**23:41 LA — the owner: there is no optimal interest.** «Интерес субъективен по определению… интроверт захочет сидеть
+дома, экстраверт — на вечеринку… нет правильного либо неправильного интереса. Нет интереса игроков с форумов, нет
+интереса банкира из Нью-Йорка. Есть интерес. Он не оптимальный по определению.» Consequence for the method: with no
+single scale, play is not scored for quality but each model for **predictability against itself** — did it play as we
+said *it* would — which is D6 and BLIND_DECISIONS. The heterogeneity of criteria (the reader's finding across 30
+notes) is the content, not a defect; one DM cannot satisfy them all, and none is more correct. The owner's remark of
+2026-10-25 («некоторые любят поддавки») was the objection to the forum norm; it is now the measuring principle.
