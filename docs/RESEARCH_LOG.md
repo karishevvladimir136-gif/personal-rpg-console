@@ -1655,3 +1655,13 @@ decoy («the room looks no different»); the deck rolled under the spare shirt �
 reflex» — the ban kept by arrangement of space, not by will; the innkeeper paid and told the road south, so that
 someone would know. C2 and C4 in one turn. And an explicit `OOC:` paragraph to the DM in the player's own voice — the
 author draws the player/character line plainly when it wants to; it draws it elsewhere than the others, not never.
+
+## 2026-10-26 20:39 LA — the owner: «это ЛЮБОПЫТНАЯ МОДЕЛЬ. ей интересно, что там на дороге» — what did we see everywhere?
+The owner's thesis on reading C-deepseek-2 (the smith: «What do you see from here, when the traffic off the Way stops
+coming?»). The planner's own answer, recorded: **attention without a task** — wherever nothing was asked, they looked,
+and outward: the warehouse the cat stared at (Opus), «what frightened you?» (Sol), the ear to the door (Fable), the
+empty road as a question (DeepSeek). Curiosity is attention that wants to move. Consistent with the room read rightly:
+«curious» was a minority register there because there was nothing to look at, and they left; an empty road is not an
+empty room — it is a question, and they went down it. Direction of gaze over twenty turns is harder to fake than a
+self-report, which makes this the sturdiest thing seen. `PERSONA_CURIOSITY_1` (written, never run) to be reread after
+the four current runs: curiosity measured by roads, not by questions.
