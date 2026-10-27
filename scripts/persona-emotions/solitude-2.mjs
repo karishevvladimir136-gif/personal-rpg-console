@@ -45,8 +45,9 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const RUNS = join(ROOT, "docs", "runs");
 export const STEM = "persona-solitude-2";
 export const TRANSCRIPTS = `${STEM}-transcripts`;
-/** Raised by the owner before the first paid call (2026-10-27, from $30 / $5; the shared key topped up). */
-export const CAPS = { openrouter: 40, openai: 8 };
+/** Raised by the owner before the first paid call (2026-10-27, from $30 / $5; the shared key topped up), and OpenAI's
+ * again after the run, to finish Astra's 14 rooms ($8 → $22; the room itself unchanged). */
+export const CAPS = { openrouter: 40, openai: 22 };
 export const SEED = 20261027;
 export const TURNS = 30;
 const MAX_TOKENS = { subject: 8000, check: 1500, checkReferee: 3000, tags: 6000, tagsReferee: 8000, lastLine: 800, recognition: 4000, threads: 2000, field: 4000, asks: 600 };

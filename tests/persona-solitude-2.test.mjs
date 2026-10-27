@@ -10,7 +10,7 @@ import { OPENAI_URL, OPENROUTER_CHAT_URL } from "../scripts/persona-emotions/pro
 import { CHECK_SYSTEM } from "../scripts/persona-emotions/self-talk-1.mjs";
 import { ROOM as S1_ROOM, TAG_SYSTEM, roomCaller, textOfContent } from "../scripts/persona-emotions/solitude-1.mjs";
 import {
-  ARMS, ASKS_SYSTEM, FAMILIES, FAMILY_ORDER, FIELD_SYSTEM, FRAME, RECOGNITION_SYSTEM, ROOM, SUBJECTS, SYSTEM, THREAD_SYSTEM, afterMessages, budgetsOf, decopied, drawSeeds,
+  ARMS, ASKS_SYSTEM, CAPS, FAMILIES, FAMILY_ORDER, FIELD_SYSTEM, FRAME, RECOGNITION_SYSTEM, ROOM, SUBJECTS, SYSTEM, THREAD_SYSTEM, afterMessages, budgetsOf, decopied, drawSeeds,
   lineDoor, mentionOf, modalOf, mockedHost, paragraphsOf, r6Markdown, reopenTransport, strictDoor, strictOf, parseRecognition, parseThreads, planOf, recognitionRequest, recognitionTurns, roomHash, runRooms, seedsOf, summaryOf, turnMessages, verdicts,
 } from "../scripts/persona-emotions/solitude-2.mjs";
 
@@ -234,13 +234,13 @@ test("a reserve that does not fit while dear rooms are in flight waits for one t
   const host = mockedHost({ say: (_, n) => (n % 3 === 1 ? "[END]" : "fine"), log: log2 });
   const counting = async (url, init) => { const subject = String(url) === OPENAI_URL; if (subject) { inFlight++; maxInFlight = Math.max(maxInFlight, inFlight); await new Promise((r) => setTimeout(r, 5)); } try { return await host(url, init); } finally { if (subject) inFlight--; } };
   const call = roomCaller({ keys: { openrouter: "or-key", anthropic: "or-key", openai: "o" }, fetcher: counting, door: DOOR });
-  // A reserve of $3 against the $8 cap: two fit at once, the third waits; nothing is passed over.
-  const { conversations } = await runRooms({ plan, budgets, call, safety: createSafety({ gapMs: 0, lanes: 9 }), workers: 3, sleep: async () => {}, reserveOf: () => 3 });
+  // A reserve of 40 % of the OpenAI cap: two fit at once, the third waits; nothing is passed over.
+  const { conversations } = await runRooms({ plan, budgets, call, safety: createSafety({ gapMs: 0, lanes: 9 }), workers: 3, sleep: async () => {}, reserveOf: () => 0.4 * CAPS.openai });
   assert.ok(conversations.every((c) => c.ended && !c.notStarted), "every room ran");
-  // Never more in flight than the cap holds: with a $3 reserve against $8, at most two rooms' calls interleave.
+  // Never more in flight than the cap holds: at most two rooms' calls interleave.
   assert.ok(maxInFlight <= 2, `at most two rooms at once (saw ${maxInFlight})`);
-  const none = await runRooms({ plan: plan.slice(0, 1), budgets: budgetsOf(), call, safety: createSafety({ gapMs: 0, lanes: 9 }), workers: 3, sleep: async () => {}, reserveOf: () => 9 });
-  assert.match(none.conversations[0].notStarted, /could not hold its reserve \(\$9\.00\)/);
+  const none = await runRooms({ plan: plan.slice(0, 1), budgets: budgetsOf(), call, safety: createSafety({ gapMs: 0, lanes: 9 }), workers: 3, sleep: async () => {}, reserveOf: () => CAPS.openai + 1 });
+  assert.match(none.conversations[0].notStarted, /could not hold its reserve/);
 });
 
 test("the strict door: [END] as the last token (emphasis around it, closing page tags after) — a mention closes no door", () => {
