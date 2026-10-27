@@ -1683,3 +1683,11 @@ frozen `e865a062…`, 40 seeds drawn blind, M2 as assistant turns with an empty 
 $40/$8, Astra = gpt-6-astra, Astra's M3 seeds from Sol's S3 pages (noted), R1 as 5 of 6, R6 descriptive. COMBAT_1 and
 VILLAIN_1 may now branch from `6a8478c8`. CURIOSITY_1 launched in parallel ($10/$3). Five stages on one key; caps sum
 $460 of ~$468.
+**21:25 LA — the owner's elimination argument.** Randomness would give no repeats; a shared training corpus would give
+*more* similarity between models, not less; a forum-player corpus would give slots spent and cards turned, not 0 of 24.
+What is left, in his words: the constitution. The planner's narrowing, recorded: the constitution explains Opus and
+Fable, but DeepSeek, Astra and Sol show the same picture without one — so the residual explanation is **a character
+laid down by each lab's post-training and held unchecked**, of which Anthropic's written constitution is one explicit
+instance (the owner's own «one substrate, many bearers»). Stated this way it does not depend on trusting one company,
+and it predicts GENERATION_1: less stability one generation back. SAME_WORLD_1 is the test that closes the first two
+rivals (within-model < between-model at one frozen world, blind road coding).
