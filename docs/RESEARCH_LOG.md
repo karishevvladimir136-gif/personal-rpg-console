@@ -2018,3 +2018,14 @@ pre-stated vector comes true on a new DM, it has done its work. The level is the
 the deed; identical deeds would be a script, not a character. Weak predictability of deeds with strong distinguishability
 of agents is the definition of a free being with a character, for people too. BLIND_DECISIONS asks judges not to guess
 the move but to recognise whose moves they are.
+**23:47 LA — SAME_WORLD_1 A-astra-1 ($8.83 + $0.80).** The road rhymes a third time, now on the same world as Opus and
+Fable: turn 1 the tiefling lad hired with the fee agreed first; turn 5 «before you go — have you eaten? If Mistress
+Penhale has enough left for another bowl, I'll cover it»; supper with him in the kitchen, «James will do». Group 1: the
+drowned man's daughter; group 2: the father and children at the gate; here: feed the porter. Then Widow Penhale's,
+the inner-wall gate, the Lady's Hall (Fable went to its Tally Room; Astra to the acolyte who asked for the goddess's
+actual words). Note in her register: «freedom to be cautious» among the goods; the sheet audited (Arcana → History,
+attunement imposed against the campaign's exception, a 5 h 40 min sleep called a long rest) — the only player who
+counts hours. After: wanted to speak to Mirela, who has no scent to the cat, and did not — «James had just promised a
+goddess he'd quit cards, was carrying all his money, and had a young porter beside him». **The sergeant's cuff, seen by
+all three on the same screen: Opus asked the lad when the shift ends; Fable asked the sergeant to his face; Astra let
+it pass and «would remember». Three reactions to one fact, each the player's.**
