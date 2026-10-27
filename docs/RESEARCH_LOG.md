@@ -2390,3 +2390,11 @@ about character. (4) The programme's priority as the reader states it, kept for 
 recognisable by its character» but «establish which forms of self-directed behaviour arise without an assigned goal,
 what they depend on, and what persists across repetitions». «The phenomenon can be studied before its nature is
 understood» — the method in one line.
+**03:02 LA — the owner, on priorities:** «у тебя есть модель, которой не сказали ничего делать, а она пошла делать —
+целую цепочку действий. Вот что важно… есть некий вектор, который даёт похожесть; можно ли это назвать характером —
+нужно определение; вектор есть, и это есть… Увидел джинна — и мерит его размер вместо того, чтобы спросить, что он
+может, что он хочет, что он не хочет, что он вообще делает. Вот этим мы и занимались.» The planner's two notes: the
+measuring is not instead of the asking but what keeps the asking from turning into legend a week later; and
+«целенаправленная цепочка», not «осознанная» — the second is the inner claim we do not make. The headline, in this
+order: self-directed, connected, goal-forming action with no assigned task; then a shared vector across repetitions;
+«character» a word to define later or leave.
