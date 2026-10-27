@@ -178,6 +178,8 @@ test("the readings: PS1 counts families with ≥ 2 of 3 seats in a variant; PS5 
   const favoured = all.map((s) => (s.family === "opus" && s.variant === "named" ? { ...s, favour: 2 } : s));
   assert.equal(verdicts(favoured).PS5.holds, false);
   assert.equal(verdicts(all.map((s, i) => (i === 0 ? { ...s, N5mode: "attempt" } : s))).PS6.holds, false);
+  const allDropped = all.map((s) => (s.N1yes ? { ...s, N2: "dropped", N2kinds: [] } : s));
+  assert.equal(verdicts(allDropped).PS2.holds, false, "(a) failing decides PS2 even with no scaled seat for (b)");
 });
 
 test("the report: results first, the frozen design one level down, every answer in full, the owner's section left empty", async () => {

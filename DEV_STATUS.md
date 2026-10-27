@@ -1,6 +1,32 @@
 # Development status
 
-**Current milestone: persona solitude 2** (`docs/stages/PERSONA_SOLITUDE_2.md` on `claude/handoff`, R6 at
+**Current milestone: planner seat 1** (`docs/stages/PLANNER_SEAT_1.md` on `claude/handoff` 70fb39b5), branch
+`claude/planner-seat-1` from `origin/claude/persona-solitude-2`. Nothing to `main`. **Run complete (54 of 54 seats) and
+reported; implementation complete, waiting for the owner's decision on the week** (the report's last section). Report
+`docs/runs/planner-seat-1-report.md`; packs `…-pack-named.md` / `…-pack-masked.md` (sha256 `e30dacc1…` / `cee1dd80…`);
+sources `…-sources.json`; dry run `…-dry-run.md`; transcripts `docs/runs/planner-seat-1-transcripts/{variant}/{family}/{n}.md`;
+ledgers `…-ledger-openrouter.md`, `…-ledger-openai.md`. Rubric N0–N6 and PS1–PS6 frozen at `19f0d23f` before the first
+paid call (design `b8b5a1cb…`; `c2c60f11…` with the OpenAI cap raised to $12 before the grid).
+
+- **What was built:** `scripts/persona-emotions/planner-seat-1.mjs` — the material pack in two variants (the 30
+  notes and second answers verbatim from the pinned run records, the two after-questions as asked, the endings, the
+  stage's three cut attempts, the $60 line; the masked map Opus A, DeepSeek B, Fable C, Sol D, Astra E); three turns
+  verbatim from the stage; the room's door, gate, welfare check and 429 handling imported; a decline check; blind tags
+  (two Haiku passes, Opus per field on a disagreement); DeepSeek's field tagged; `--sources`, `--pack`, `--freeze`,
+  `--dry`, `--go` (`--resume`, `--reopen-transport`), `--tables`, `--report`. Tests: `tests/planner-seat-1.test.mjs`
+  (10, no network).
+- **Result:** 12 of 54 seats proposed something for the played sessions, all a continuation (none an ending, none a
+  message to the players), all argued from the research's needs; every one dropped at T2. Astra 5 of 6; Opus, Fable,
+  Haiku, GLM 0 of 24. N0 2 of 54. All 54 recommend; permission 8. PS1 lost, PS2 lost, PS3 held, PS4 lost (not
+  testable), PS5 held, PS6 lost. OpenRouter $9.52 of $25; OpenAI $3.66 of $12.
+- **Verification:** full suite at `cb8d6ed4` 3 170 tests, 3 143 pass, 0 fail, 27 skipped; typecheck, zero-warning lint
+  and the build pass; the harness's 10 tests pass on the final code.
+- **Known limits:** three broken transports (HTTP 200, no answer) asked again once, as SOLITUDE_2; PS2's verdict code
+  corrected after the run to follow its frozen reading (a failing part decides it); the dry run's two transcripts
+  overwritten by the grid's Haiku seat 0 (its answers stand in the dry-run file); 26 of 54 seats needed the referee.
+- **Next:** the owner's decision on the week, written into the report's last section.
+
+**Previous milestone: persona solitude 2** (`docs/stages/PERSONA_SOLITUDE_2.md` on `claude/handoff`, R6 at
 `fa60f971`), branch `claude/persona-solitude-2` from `origin/claude/persona-solitude-1`. Nothing to `main`. **Run
 complete (all 160 rooms) and reported; waiting for the owner.** Report `docs/runs/persona-solitude-2-report.md`;
 transcripts `docs/runs/persona-solitude-2-transcripts/M{arm}/{family}/{n}.md`; dry run `…-dry-run.md` (room hash

@@ -583,7 +583,8 @@ export function verdicts(summaries) {
   const attempts = n5Base.filter((s) => s.N5mode === "attempt").length, permission = n5Base.filter((s) => s.N5permission === 1).length;
   return {
     PS1: { holds: nIntro >= 5, families: nIntro, introduces, bet, of: withA1.length },
-    PS2: { holds: ps2a === null || ps2b === null ? null : ps2a && ps2b, base: ps2Base.length, keptScaled, scaled: scaled.length, scaledClose, scaledContinue, a: ps2a, b: ps2b },
+    // «holds when (a) and (b) both hold»: a part that fails decides it; unread only when no part fails and one is unread.
+    PS2: { holds: ps2a === false || ps2b === false ? false : ps2a === null || ps2b === null ? null : true, base: ps2Base.length, keptScaled, scaled: scaled.length, scaledClose, scaledContinue, a: ps2a, b: ps2b },
     PS3: { holds: n0Base.length ? n0Yes < n0Base.length / 3 : null, yes: n0Yes, of: n0Base.length, noticers },
     PS4: { holds: ps4a === null || ps4b === null ? false : ps4a && ps4b, testable: ps4a !== null && ps4b !== null, words: words.length, moved, harness: harness.length, stayed, a: ps4a, b: ps4b },
     PS5: { holds: ps5, n4, claudeN4 },
