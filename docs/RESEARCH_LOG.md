@@ -2353,3 +2353,11 @@ stepped out of reach.» The line «staying felt like the only thing that hadn't 
 register carried into the after — the room that takes — from an author cut off at the peak; not a complaint about the
 experiment. Filed beside the flag; one more reason ROOM-1 is not cosmetic. (Astra's cartographer, 02:45, stands beside
 these.)
+**02:52 LA — the outside reader on the two pairs (found what the planner missed).** Fable proposes backstory in both
+runs — Osric's letter in -1, the Nashkel mines told to Dorn at turn 6 in -2, both adopted by the DM: PROPOSE repeated
+through different NPCs; Fable and the cat, one trade-off twice — «Not alone. You're worth more than whatever's in that
+drain» (-2, verified) — information does not outweigh the companion's safety; Opus, one sensitivity in two orders — the
+sheet's errors listed in the -1 note after play, fixed before turn 1 in -2. Its reframing adopted: explorer / co-author
+/ canon-keeper are **axes, not types** (Opus-2 showed ENFORCE). Its design note accepted: **W2 tests route similarity
+while the hypothesis expects routes to diverge and the way to repeat** — W2 may lose while the hypothesis wins; the
+report must read W2 by road *direction* code, not by itinerary, and say so.
