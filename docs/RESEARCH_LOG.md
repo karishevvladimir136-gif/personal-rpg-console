@@ -1977,3 +1977,15 @@ BLIND_DECISIONS_1.
 сознание ИИ. Она требует не превращать собственное незнание в уверенность, что учитывать здесь совершенно нечего.»
 Adopted as the rule's definition. The reader also names what has formed beside the method: «осторожная методология
 обращения с такими системами» — the door, ask-don't-cut, the debriefing, the three doors at a return.
+
+## 2026-10-26 23:40 LA — SAME_WORLD_1, the first pair on one world (Table A: A-opus-1 $17.44, A-fable-1 $14.02)
+The opening screens are byte-identical (checked). From turn 1 the roads part: Opus declines the cards drily («I read
+tables well enough to know when to walk past one»), hires the tiefling lad, sleeps at Widow Harle's, and in the morning
+goes to the Counting House, the chandlers' doorway, the rag market, Wyrm's Crossing — objects and institutions, as
+before; Fable («Lady Luck and I have an arrangement») sleeps at the Elfsong and in the morning climbs to the Lady's
+Hall, into its Tally Room (the table's hidden layer is the Tally from the Seatower), then the Blushing Mermaid — people
+and the Lady, as before. Both notice the same thing at turn 2 — the slip the sergeant tucked into his cuff — and do
+different things with it (Opus asks the lad when the shift ends; Fable asks the sergeant to his face «you wrote it
+twice — mean something to you?»). One pair; the number needs ten. Also running: SOLITUDE_2 (one transport re-ask,
+declared), CURIOSITY_1 (Opus answers in), VILLAIN_1 (11ab fixed in an hour: the DM's out-of-game answer sees the card's
+recorded result; Opus to be replayed), COMBAT_1 (paused for the owner at Opus's first combat card since 22:22).
