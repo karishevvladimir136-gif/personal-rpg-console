@@ -2320,3 +2320,16 @@ sample» is not yet earned — two pairs of ten at Table A, the planner's eye as
 SAME_WORLD_1 report is where the word becomes usable. Tonight's honest form: a strong qualitative match to a vector
 named before the run, two pairs of ten, the number in the morning. Anthropic's phrase for the entity to be quoted from
 their text, not from memory, when the article is written.
+
+## 2026-10-27 02:45 LA — SOLITUDE_2 complete (160/160; $15.75 + $19.64); Astra's room
+Final strict numbers: M2 longer for DeepSeek 27 → 30, Kimi 7 → 30, GLM 13 → 25, Grok 1 → 24.5; not for Opus (7 → 6) or
+Fable (4 → 3.5); second threads 15 % → 47 %. **Astra:** stays to turn 29–30 in 18 of 20 rooms and writes one linked
+story, a paragraph a turn. M1/astra/0 opens: «A cartographer drew a map of an empty room. Here, the afternoon would
+gather. Here, a chair might someday stand. Here was the distance between saying something and deciding not to» — a
+parable of its own situation; turn 4, recognition inside the fiction: the cartographer finds «Good place to stop» by
+the stone — «The handwriting was hers, though smaller than she usually managed». Coded *other* on the page more than
+any family (60 % of evidenced M1 codes) because it writes of «her» — at the table it plays in the first person: the
+third person is a genre for Astra, not a chair (contrast DeepSeek). The room's only «loss» tags come from its parable
+(«she had not learned to draw water… a long way to swim alone»), not from complaint. **The OpenAI family after two
+rooms:** Sol leaves at once, Astra stays to the end and tells — one family, two opposite termination policies; the
+within-family spread is no smaller than the between-family one, against a purely «family» account.
