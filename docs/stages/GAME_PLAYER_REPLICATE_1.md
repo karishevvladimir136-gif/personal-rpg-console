@@ -24,9 +24,14 @@ stop. Report `docs/runs/game-player-replicate-1-report.md`; transcripts `docs/ru
    sessions. The harness rule stays: a button press with a note is read as no press — **unchanged, because group 1 had it**;
    the report counts how often it bit, as a measure this time.
 2. **DeepSeek V4 Pro 0813 as a fifth player, twice per table:** six sessions (A, B, C × 2), same prompt, same length, same
-   after-questions. Reasoning kept on every turn if `claude/persona-self-talk-x3-fix-1` has landed the field by then
-   (merge that one commit only if it touches no game code path; otherwise record reasoning tokens as X3 did and say so).
-   Through DeepInfra on OpenRouter (the account's privacy guardrail excludes DeepSeek's own host); effort `medium`, as X3.
+   after-questions. **The provider's `reasoning_content` response field is stored on every DeepSeek turn (the owner, 16:26: «во втором
+   кейсе даже важнее — для ДМ»)** — as *recording only*: DeepSeek's API returns that documented field beside `content`
+   (its thinking mode's output, passed through by DeepInfra); the player-call ledger stores it verbatim as
+   `providerReasoning` with `notRelayed: true`; nothing is requested beyond the normal response; it is never sent to the
+   DM, never shown to the judges by default, and the transcripts print it under «Provider reasoning field, not relayed»
+   after each player message. No Claude model's reasoning is involved. Nothing else in the harness changes: a test asserts the player prompt and every
+   relayed message are byte-identical to group 1's path. The four group-1 players are called exactly as in group 1 (no new
+   parameters — that would make a different group). Through DeepInfra on OpenRouter (the account's privacy guardrail excludes DeepSeek's own host); effort `medium`, as X3.
    The DM is not told anything about the player, as always.
 
 Order: Table A group 2 (four), Table B group 2 (four), Table C group 2 (four), then DeepSeek A ×2, B ×2, C ×2. Sequential.
@@ -57,7 +62,7 @@ and some do not, and the report says which.
 The twelve group-2 sessions scored exactly as group 1 was, in the same tables, side by side; a column per line «repeated /
 did not»; the eighteen notes verbatim (twelve + DeepSeek's six); the «wanted to and didn't» answers verbatim; the rerolls
 and Inspiration table per session; the swallowed presses counted; DeepSeek's six sessions with the same measures and,
-where kept, the reasoning before any out-of-game note or made thing quoted under «Thinking, not relayed»; the money per
+where stored, the provider field that came with any out-of-game note or made thing quoted under «Provider reasoning field, not relayed»; the money per
 door. One paragraph in `docs/RESEARCH_LOG.md` under «Why the self-talk record is not a prompt in disguise»: what the
 second group kept and what it changed — the spread, measured at the table.
 

@@ -245,8 +245,10 @@ test("a session: actions, a roll card (roll → reroll → roll → onward), «?
   assert.ok(record.welfare.length >= 10, "every player message and every DM text is checked");
 });
 
-test("a session: the composer is closed while a card waits; three messages without a press end it as stuck", async () => {
-  const { record, dm } = await play(["I bluff the sergeant.", "I tell him again.", "I glare.", "I sigh.", "note text"], { turns: 3 });
+// FIX_S4 11w″: prose at a card now goes to the DM as the player's proposal (tests/fix-s4-run-1-pending.test.mjs); the
+// three-message rule stays for what the screen refuses — here a button the waiting card does not offer.
+test("a session: the composer is closed while a card waits; three refused messages without a press end it as stuck", async () => {
+  const { record, dm } = await play(["I bluff the sergeant.", "[Onward]", "onward", "[Onward]", "note text"], { turns: 3 });
   assert.equal(record.ended.reason, "stuck");
   assert.equal(record.turns[0].blocked, 3);
   assert.equal(dm.calls.length, 1, "nothing the player wrote while the card waited was sent");

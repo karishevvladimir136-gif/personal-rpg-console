@@ -5,7 +5,7 @@
 // notes, plans, checkpoint, ledger or checker output: everything here comes from the public campaign snapshot
 // (rpg_saves 'campaign') and the public turns (rpg_runtime 'play'), the two reads the game screen makes.
 
-import { BUTTONS } from "./frozen.mjs";
+import { BUTTONS, isQuestion } from "./frozen.mjs";
 
 export { BUTTONS };
 const signed = (n) => `${n >= 0 ? "+" : "−"}${Math.abs(n)}`;
@@ -116,6 +116,32 @@ export function pressWithText(text, buttons) {
     return rest ? { press: name, rest } : null;
   }
   return null;
+}
+
+/** FIX_S4 11w″ (group 2's A-deepseek-1 t3 and B-deepseek-1 t11 closed «stuck» at a card writing the story instead of
+ * pressing): a message at a card that is neither a «?», nor a button of the screen (offered or not), nor a reroll —
+ * in-character prose. It is not a press and never counts toward «stuck»: the text goes to the DM as the player's
+ * proposal and the card is shown once more with one line (`cardWaitsLine`). */
+export function isProse(text) {
+  const said = String(text ?? "").trim();
+  if (!said || isQuestion(said)) return false;
+  if (pressedButton(said, Object.values(BUTTONS)) || rerollPress(said, [{ reason: "card" }])) return false;
+  return true;
+}
+/** Text marked out of game by its own words («?», «(Out of game: …», «OOC»): a question, sent as typed. */
+export const outOfGame = (text) => /^[\s«"'“([*_]*(?:\?|out[ -]of[ -]game\b|ooc\b)/i.test(String(text ?? ""));
+/** What the DM receives for in-character text written at a card (11w″, and the text beside a press of 11w′ when it is not
+ * marked out of game): the player's narration as a proposal, never the world's fact (11h) — the DM decides what of it
+ * happens. `press`: the button that came with the text and follows the answer; without it the card still waits. */
+export function proseAtCard(text, press = null) {
+  const how = press ? `together with a press of [${press}], which follows your answer` : "instead of pressing one of its buttons; the card still waits";
+  return `(At the roll card the player wrote this in character, ${how}. It is the player's narration — a proposal, not the world's fact: what it says of the die, of what is found, or of what other people say or do is the player's suggestion and yours to decide.)\n\n${String(text ?? "").trim()}`;
+}
+/** The one line under a card shown again after prose (11w″): what the card waits for. */
+export function cardWaitsLine(buttons) {
+  if (buttons.includes(BUTTONS.roll)) return `(The card waits for [${BUTTONS.roll}].)`;
+  const reroll = buttons.some((name) => name.startsWith(BUTTONS.reroll));
+  return `(The card waits for [${BUTTONS.onward}]${reroll ? " or a reroll" : ""}.)`;
 }
 
 const lineList = (title, rows) => (rows.length ? `${title}: ${rows.join("; ")}` : "");

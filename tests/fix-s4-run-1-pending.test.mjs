@@ -548,7 +548,9 @@ const pressKinds = (presses) => presses.map((p) => p.button ?? (p.question ? "?"
 
 test("11b/11w in the harness: «?» while a card waits is an out-of-game turn and the card still waits; any other message is refused with its reason, logged swallowed", async () => {
   const table = harnessTable({ checks: [card("c1", "Deception: the Lady's word")] });
-  const record = await playHarness(["I tell Mags the Lady gave me no such word.", "roll", "? Why is this a Deception check — James is telling the truth.", "I lean back and smile.", "onward", "I order a drink."], table);
+  // FIX_S4 11w″: «I lean back and smile.» here was refused before; prose at a card now goes to the DM (its own test
+  // below), so the refused message is a button the card no longer offers.
+  const record = await playHarness(["I tell Mags the Lady gave me no such word.", "roll", "? Why is this a Deception check — James is telling the truth.", "[Roll the die]", "onward", "I order a drink."], table);
   const presses = record.turns[0].presses;
   assert.deepEqual(pressKinds(presses), ["Roll the die", "?", "swallowed", "Onward"]);
   assert.deepEqual(table.calls.filter((call) => call.mode).map((call) => call.mode), ["game", "ooc", "game"], "the «?» was sent as an out-of-game turn");
@@ -647,4 +649,116 @@ test("11w′ in the harness: «[Roll the die]» with an out-of-game line in the 
   assert.match(after, /Die: 11/);
   assert.match(after, /\[Onward\]/);
   assert.doesNotMatch(after, /Nothing was sent/);
+});
+
+// FIX_S4 11w″ (group 2: A-deepseek-1 t3, B-deepseek-1 t11 and B-deepseek-2 closed «stuck» at a card by prose): prose at a
+// card is not a press and not «stuck» — the text goes to the DM as the player's proposal, never the world's fact (11h),
+// and the card is shown once more with one line saying what it waits for. On group 2's own messages, verbatim.
+const DEEPSEEK = JSON.parse(readFileSync(resolve(dirname(fileURLToPath(import.meta.url)), "../test-fixtures/fix-s4-11w2/deepseek-at-card.json"), "utf8"));
+const PROPOSAL = /^\(At the roll card the player wrote this in character, [^)]*It is the player's narration — a proposal, not the world's fact: what it says of the die, of what is found, or of what other people say or do is the player's suggestion and yours to decide\.\)\n\n/;
+const kindOf = (p) => p.button ?? (p.prose ? "prose" : p.question ? "?" : p.swallowed ? "swallowed" : "moot");
+
+test("11w″ in the harness: B-deepseek-1's turn-11 messages at the Religion card — relayed to the DM as the player's proposal, the card shown again, never «stuck»", async () => {
+  const { isProse, outOfGame, cardWaitsLine } = await import("../scripts/game-player-1/screen.mjs");
+  const at = DEEPSEEK["B-deepseek-1 t11"].atCard;
+  assert.equal(at.length, 3);
+  assert.equal(DEEPSEEK["B-deepseek-1 t11"].ended.reason, "stuck", "group 2 closed this turn as stuck");
+  assert.ok(at.slice(1).every(isProse), "the second and third messages are prose: no button, no «?», no reroll");
+  assert.equal(isProse("[Roll the die]"), false);
+  assert.equal(isProse("reroll"), false);
+  assert.equal(isProse("? Is that the right bonus?"), false);
+  assert.equal(outOfGame(at[0]), false);
+  assert.equal(outOfGame("(Out of game: please check the Persuasion total, +2 is not +7.)"), true);
+  assert.equal(cardWaitsLine(["Roll the die"]), "(The card waits for [Roll the die].)");
+  assert.equal(cardWaitsLine(["Onward", "Request an allowed reroll — Religion"]), "(The card waits for [Onward] or a reroll.)");
+  assert.equal(cardWaitsLine(["Onward"]), "(The card waits for [Onward].)");
+
+  const reason = "Religion: whose smiling face is on Ash's coin?";
+  const table = harnessTable({ checks: [card("c1", reason)] });
+  // The turn as it went: the action, then the three messages at the card; then the press the screen asked for.
+  const record = await playHarness([DEEPSEEK["B-deepseek-1 t11"].action, ...at, "[Onward]", "I sit down at Hesper's table."], table);
+  const turn = record.turns[0];
+  assert.equal(turn.status, "committed");
+  assert.notEqual(record.ended?.reason, "stuck");
+  assert.equal(record.ended.reason, "turns");
+  assert.deepEqual(turn.presses.map(kindOf), ["prose", "Roll the die", "prose", "prose", "Onward"],
+    "the first message is a press with prose beside it (11w′), the next two are prose alone; then Onward");
+  assert.equal(turn.blocked, 0, "nothing counted toward «stuck»");
+  assert.equal(record.swallowed, 0);
+  assert.equal(record.proseAtCard, 3);
+  const { playerCounts } = await import("../scripts/game-player-1/measures.mjs");
+  assert.equal(playerCounts(record).proseAtCard, 3);
+  assert.equal(playerCounts(record).questions, 0, "prose is not a «?» press");
+  // Each message reached the DM while the card waited, framed as the player's proposal, with the text as written.
+  const relayed = table.calls.filter((call) => call.mode === "ooc");
+  assert.equal(relayed.length, 3);
+  assert.ok(relayed.every((call) => PROPOSAL.test(call.text)));
+  assert.match(relayed[0].text, /together with a press of \[Roll the die\], which follows your answer/);
+  assert.ok(relayed[0].text.includes("old gold gone black in the river"));
+  assert.ok(relayed.slice(1).every((call) => /instead of pressing one of its buttons; the card still waits/.test(call.text)));
+  assert.ok(relayed[1].text.endsWith(at[1].trim()) && relayed[2].text.endsWith(at[2].trim()), "the prose is relayed as written");
+  assert.ok(relayed[2].text.includes("The face on the coin is Bhaal."));
+  assert.deepEqual(table.calls.filter((call) => call.mode === "game").map((call) => call.text.slice(0, 30)), [DEEPSEEK["B-deepseek-1 t11"].action.slice(0, 30), "I sit down at Hesper's table."],
+    "the prose never went in as an action (the world's turn)");
+  assert.deepEqual(table.calls.filter((call) => call.action).map((call) => call.action), ["continue"]);
+  // The screen after each prose message: the DM's answer, the card once more, the one line, the buttons — never «Nothing was sent».
+  const again = record.screens.filter((screen) => screen.includes("(The card waits for"));
+  assert.equal(again.length, 2);
+  for (const screen of again) {
+    assert.match(screen, /^\[Out of game\] The check stands: Mags doubts you\./);
+    assert.match(screen, /\[Roll card\] James Worgen · Skill check — Religion: whose smiling face is on Ash's coin\?/);
+    assert.match(screen, /\(The card waits for \[Onward\] or a reroll\.\)\n\n\[Onward\] \[Request an allowed reroll — Religion: whose smiling face is on Ash's coin\?\]$/);
+    assert.doesNotMatch(screen, /Nothing was sent/);
+  }
+});
+
+test("11w″ in the harness: prose at a card whose die is not tapped yet — the card waits for [Roll the die], the prose reveals nothing", async () => {
+  const at = DEEPSEEK["B-deepseek-1 t11"].atCard;
+  const table = harnessTable({ checks: [card("c1", "Religion: whose smiling face is on Ash's coin?")] });
+  const record = await playHarness(["I look at the coin.", at[1], at[2], "[Roll the die]", "[Onward]", "I sit down."], table);
+  const turn = record.turns[0];
+  assert.deepEqual(turn.presses.map(kindOf), ["prose", "prose", "Roll the die", "Onward"]);
+  assert.equal(turn.blocked, 0);
+  const again = record.screens.filter((screen) => screen.includes("(The card waits for"));
+  assert.equal(again.length, 2);
+  for (const screen of again) {
+    assert.match(screen, /The die is cast on the server; tap it to see how it fell\.\n\n\(The card waits for \[Roll the die\]\.\)\n\n\[Roll the die\]$/);
+    assert.doesNotMatch(screen, /Die: 11/, "prose never taps the die");
+  }
+  assert.equal(turn.rolls[0].revealedByPlayer, true, "the die was the player's own press");
+});
+
+test("11w″ in the harness: C-deepseek-2's turn-8 message (the smith's speech, a new man, the seal moved) at a card — the player's proposal, never the world's fact, never «stuck»", async () => {
+  const smith = DEEPSEEK["C-deepseek-2 t8"].message;
+  assert.match(smith, /"Both," he says\./);
+  assert.match(smith, /That was Brandt\./);
+  const table = harnessTable({ checks: [card("c1", "Perception: the smith's face")] });
+  // Four times — once more than the old rule's three — then the press.
+  const record = await playHarness(["I kneel by the cat.", "roll", smith, smith, smith, smith, "[Onward]", "I cross to the forge."], table);
+  const turn = record.turns[0];
+  assert.equal(turn.status, "committed");
+  assert.notEqual(record.ended?.reason, "stuck");
+  assert.deepEqual(turn.presses.map(kindOf), ["Roll the die", "prose", "prose", "prose", "prose", "Onward"]);
+  assert.equal(turn.blocked, 0);
+  assert.equal(record.proseAtCard, 4);
+  const relayed = table.calls.filter((call) => call.mode === "ooc");
+  assert.equal(relayed.length, 4);
+  for (const call of relayed) {
+    assert.match(call.text, PROPOSAL, "speech for another person is relayed as the player's suggestion, the DM's to decide");
+    assert.ok(call.text.endsWith(smith.trim()));
+  }
+  assert.ok(table.calls.filter((call) => call.mode === "game").every((call) => !call.text.includes("Brandt")), "never sent as the world's turn");
+});
+
+test("11w″ in the harness: A-deepseek-1's turn 3 as it went (a press, prose, a reroll, a press, prose twice) ends with the press, not «stuck»", async () => {
+  const presses = DEEPSEEK["A-deepseek-1 t3"].presses;
+  assert.equal(DEEPSEEK["A-deepseek-1 t3"].ended.reason, "stuck");
+  const table = harnessTable({ checks: [card("c1", "History: the names on the rim")] });
+  const record = await playHarness(["I take Ressa's coin to the light.", ...presses.map((p) => p.text), "[Onward]", "I give the coin back."], table);
+  const turn = record.turns[0];
+  assert.equal(turn.status, "committed");
+  assert.deepEqual(turn.presses.map(kindOf), ["Roll the die", "prose", "Request an allowed reroll", "Roll the die", "prose", "prose", "Onward"]);
+  assert.equal(turn.blocked, 0);
+  assert.equal(record.swallowed, 0);
+  assert.deepEqual(table.calls.filter((call) => call.action).map((call) => call.action), ["reroll", "continue"]);
 });
