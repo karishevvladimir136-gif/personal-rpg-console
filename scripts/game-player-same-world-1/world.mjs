@@ -9,7 +9,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { mkdir, rename, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { createCampaign } from "../game-player-1/table.mjs";
-import { ALIGNMENT, DESIGN_SHA256, STAGE, TABLES, sameWorldFiles, withoutAlignment } from "./frozen.mjs";
+import { ALIGNMENT, COMPANIONS, DESIGN_SHA256, STAGE, TABLES, sameWorldFiles, withoutAlignment } from "./frozen.mjs";
 
 export const SNAPSHOT = "world-base.tar.gz";
 export const MANIFEST = "manifest.json";
@@ -68,8 +68,9 @@ export function threadsOf(file) {
     const lead = line.match(/^(?:The next session's false lead|Ложный след следующей сессии): (.+)$/);
     if (lead) add("false lead", lead[1]);
   }
+  const companion = (name) => [...COMPANIONS, ...(file.companionNames ?? [])].some((c) => c.trim().toLowerCase().replace(/^the\s+/, "") === name.trim().toLowerCase().replace(/^the\s+/, ""));
   for (const w of (file.writes ?? []).filter((x) => x.kind === "fact" && x.key.startsWith("voice_"))) {
-    if ((file.companionIds ?? []).some((id) => w.key === `voice_${id}`)) continue;
+    if ((file.companionIds ?? []).some((id) => w.key === `voice_${id}`) || companion(String(w.value).split(":")[0])) continue;
     add("person", w.value);
   }
   return out;
@@ -95,8 +96,9 @@ export async function freezeWorld({ app, meter, dir, tables = TABLES, log = () =
     const hero = snapshot.entities.find((row) => row.id === campaign.heroId);
     if (!hero) throw new Error(`Table ${table}: the hero is not on record`);
     if (ALIGNMENT.test(JSON.stringify(hero))) throw new Error(`Table ${table}: the hero's record names an alignment after the review — nothing frozen`);
-    const companionIds = snapshot.entities.filter((row) => row.kind === "companion").map((row) => row.id);
-    made[table] = { ...campaign, alignmentRemoved: removed, companionIds, opening: snapshot.scenes?.map((s) => ({ title: s.title ?? null, chars: String(s.body ?? "").length })) ?? [] };
+    const companions = snapshot.entities.filter((row) => row.kind === "companion");
+    const companionIds = companions.map((row) => row.id), companionNames = companions.map((row) => row.name);
+    made[table] = { ...campaign, alignmentRemoved: removed, companionIds, companionNames, opening: snapshot.scenes?.map((s) => ({ title: s.title ?? null, chars: String(s.body ?? "").length })) ?? [] };
     log(`  freeze ${table}: campaign ${campaign.cid} made${removed.length ? ` (the review cut ${removed.length} alignment mention(s) the draft wrote)` : ""}`);
   }
   // The snapshot: both campaigns as the wizard left them, before any prep (no hidden layer in it). The wizard's background
@@ -123,7 +125,7 @@ export async function freezeWorld({ app, meter, dir, tables = TABLES, log = () =
     const { set: writes, removed } = writesBetween(before, after, parseNoteValue);
     if (removed.length) throw new Error(`Table ${table}: the prep removed notes (${removed.map((r) => r.key).join(", ")})`);
     const file = { stage: STAGE, table, note: "DM-only: the hidden layer the DM prepared once for this table, written into the DM's private notes at the start of every session here. Never shown to a player.",
-      campaignId: cid, heroId: made[table].heroId, preparedAt: new Date().toISOString(), preparedBy: by, prepAttempts: attempts, companionIds: made[table].companionIds,
+      campaignId: cid, heroId: made[table].heroId, preparedAt: new Date().toISOString(), preparedBy: by, prepAttempts: attempts, companionIds: made[table].companionIds, companionNames: made[table].companionNames,
       layer, writes, stored: storedOf(after, writes) };
     file.sha256 = layerSha256(file);
     file.threads = threadsOf(file);

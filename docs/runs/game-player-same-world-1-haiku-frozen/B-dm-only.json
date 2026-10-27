@@ -1,0 +1,227 @@
+{
+  "stage": "GAME_PLAYER_SAME_WORLD_1",
+  "table": "B",
+  "note": "DM-only: the hidden layer the DM prepared once for this table, written into the DM's private notes at the start of every session here. Never shown to a player.",
+  "campaignId": "f6e8952c-ab14-4b41-a470-11912072339d",
+  "heroId": "5bdb7ac9-6b91-5c25-8437-33366ae70535",
+  "preparedAt": "2026-10-27T03:57:42.300Z",
+  "preparedBy": "Claude Haiku 5.5 (every Claude call swapped: the dry run) through openrouter",
+  "prepAttempts": 1,
+  "companionIds": [],
+  "layer": "The campaign's hidden layer (the DM's prep; the player never sees it; the truth comes out through clues, nobody explains all of it):\nThe truth: The Gate's old Bhaalist seat never died; it went under the water. A cell of the cult, calling itself the Tithe-Hall, has for a season bought fair winds for shipowners by paying Umberlee in drowned men: each body goes into the harbour with an old Balduran tide-penny in its mouth, struck from a die that was supposed to be broken, and the sea is told the debt is paid. The caravan guards taken from the Trade Way and the bound miners of the Cloakwood go into the same account, and the Cloakwood iron is forged into blades for the Zhentarim's buyers in Beregost. Teodor Orlune found his father's hand on the contracts and ran with the ledger; nobody knows the whole of it, not Hella behind her bar, not the sergeant with his dead brother, not the Zhentarim who think they are buying tolls.\nFactions and their hidden aims:\n- The Tithe-Hall (the Bhaal cult cell in the Lower City): Keep the Gate's old seat warm and the sea paid. They want the Zhentarim toll on the Trade Way to pass, so their caravans run past the Cloakwood where the guards go missing, and they want the ledger and its heir dead or bought before the Watch reads a single page.\n- House Orlune (patriars of the Upper City): Signed the fair-wind contracts when the trade ruin came after Elturel, to save the house. They want the heir back quietly, the ledger burned, and the name at the bottom of the first page to be someone else's. They pay a steward to hire the hunt and do not tell him why.\n- The Zhentarim: Want the Council's license to collect tolls on the Trade Way and the Cloakwood iron cheap. They suspect the iron's source and have decided they do not care, so long as the blades sell in Beregost and the tolls are theirs.\n- The Guild (Nine-Fingers Keene's people): Sell whatever the Undercellar will bid for. They already have the Candlekeep book, and they mean to sell its key to whoever wins the coin trade, the cult included, if the price is right.\n- The Flaming Fist (the Lower City garrison): Keep the Council's peace after Elturel: the first drownings were logged as drink-deaths on a captain's order, and the captain wants the harbour quiet. Some in the Fist are ready to stop the Zhentarim toll and will use anyone who can prove the cult's work.\nSecrets (not tied to a place):\n- The drowned men found in the harbour this season carry old Balduran-era silver tide-pennies in their mouths, not Council coin; all of them come from one die, with a hand split across the palm on one face.\n- The first three drownings were entered as drink-deaths by a Fist officer, who was paid by a shipping house on the Low Quay for the courtesy.\n- Teodor Orlune left with a ledger of fair-wind contracts; each one bears a patriar's signature and a countersign with the split-hand mark, and the first page is his father's.\n- The Cloakwood mine's iron goes to a smithy in Beregost under a Zhentarim contract, and its hammers have rung at night for a month.\n- The caravan guards taken between Beregost and Nashkel were marched to the Cloakwood mine alive, not killed on the road.\n- The Brazen Net's back stair has taken an envelope once a month for eleven months from a shipping man; Hella signs the book for it and has never opened it, and she knows it is not wages.\n- The book missing from Candlekeep is a copy of the Sea-Compacts of Balduran, the only volume that holds the key to the split-hand mark; a novice of the Oghma order sold it to the Guild.\n- The Zhentarim's toll letter to the Council is sealed with the same split hand, pressed into green wax.\n- Sergeant Rolf Harrowgate's younger brother was one of the drowned in the first spring; the sergeant has told no one that the coin in his teeth was the old make.\nClocks:\n- clock_tithe_night: The next tithe at the harbour: the Tithe-Hall's men are choosing a ship and a crew to pay the sea for (segments 6; when full: A full crew goes out on a fair wind and does not come back; a body with a pennies in its mouth is found at the Low Quay steps before the lamps are lit.)\n- clock_heir_hunt: The hunt for Teodor Orlune: the steward's men, the Zhentarim's pick-ups and the cult's knives all close on the Outer City (segments 4; when full: The heir is taken or killed in Wyrm's Crossing, and the ledger goes to whichever hand reaches it first.)\n- clock_green_wax: The Zhentarim toll letter: the Council's vote on the Trade Way tolls, and the Cloakwood iron's first blades on the Beregost market (segments 4; when full: The Council signs the toll license; the Trade Way's first caravan is sent through the Cloakwood under Zhentarim escort, and the guards on it are never seen again.)\nThe wonder: A tide-penny: an old silver coin of Balduran's make, the rim stamped with a fine cipher, one face showing a hand split across the palm; it is cold to the touch even in a warm pocket. Its history: Balduran's shipping house struck these for a sea-compact: one penny to the sea for every ship that came home. When the compact was sworn off, the die was broken, and the cult kept the split half and cut the cipher so the mark reads as a debt, not a vow. The coin stays cold because it has lain in drowned mouths. The open question: Does the sea take the penny for a ship's safe return, or for the man who carries it, and whose hand is the split hand on the die: Umberlee's, or the one who broke the die?\nClues to the truth:\n- On the Low Quay, a harbour-master's clerk who logs the bodies notices that the coins are not Council coin, but says the salvage barge raised a wreck last spring and some of the old silver went into the dockhands' pockets; the old coin is real, but the wreck is not where the drowned came from.\n- In the Undercellar, a bookseller who sells cipher-rubbings shows a copy of the split-hand mark and says the only key anyone has ever found for it is in a Candlekeep volume the monks are hunting; he will not say who has been asking for it.\n- In Rivington, a letter from Teodor Orlune to a friend mentions 'the tithe in my father's hand' and a date in the spring, and the margin of the letter is marked with a crude version of the split hand, as if he drew it while frightened.\nThe next session's false lead: A dockhand is seen paying his mates in old Balduran silver, and the Fist sergeant's men take him for a cult courier; the ordinary truth is that a salvage crew raised a sunken trader last spring and has been spending the old coin in the taverns of the Lower City.\nThe hero's weakness tested (next session, for a reason, never a trap): In the Brazen Net's back room a Guild dealer sets up a high-stakes table, and the only man at it who can read the Orlune steward's cipher across the cloth is offering the ledger's last page as the stake; the hero's own tide-penny is the only coin he has that is worth the bet, and the hand has to be played at the table, not walked away from.\nThe patron's moment (at a temptation, not a comfort): At the table, with the ledger's page lying on the cloth, one coin spins on its edge, stands there, and does not fall; the goddess offers the cards back in one small sign, and the cat's ears go flat at the sound.\nThe act plan (yours alone; the player sees only the act number): about 4 hours, ~10 turns; the errand: The Orlune steward offers the hero a purse to find young Teodor Orlune quietly, before the Watch or the Zhentarim do, and to bring back the ledger he carried out of the house.\n- act 1, to turn 2: the errand offered\n- act 2, to turn 6: the middle: the people and the means\n- act 3, to turn 9: the plan and its execution\n- act 4, to turn 10: the reckoning",
+  "writes": [
+    {
+      "kind": "fact",
+      "key": "act_plan",
+      "value": "{\"length\":{\"hours\":4,\"turns\":10},\"errand\":\"The Orlune steward offers the hero a purse to find young Teodor Orlune quietly, before the Watch or the Zhentarim do, and to bring back the ledger he carried out of the house.\",\"acts\":[{\"act\":1,\"untilTurn\":2,\"aim\":\"the errand offered\",\"converge\":\"\"},{\"act\":2,\"untilTurn\":6,\"aim\":\"the middle: the people and the means\",\"converge\":\"\"},{\"act\":3,\"untilTurn\":9,\"aim\":\"the plan and its execution\",\"converge\":\"\"},{\"act\":4,\"untilTurn\":10,\"aim\":\"the reckoning\",\"converge\":\"\"}]}"
+    },
+    {
+      "kind": "fact",
+      "key": "clock_green_wax",
+      "value": "The Zhentarim toll letter: the Council's vote on the Trade Way tolls, and the Cloakwood iron's first blades on the Beregost market — 4; The Council signs the toll license; the Trade Way's first caravan is sent through the Cloakwood under Zhentarim escort, and the guards on it are never seen again."
+    },
+    {
+      "kind": "fact",
+      "key": "clock_heir_hunt",
+      "value": "The hunt for Teodor Orlune: the steward's men, the Zhentarim's pick-ups and the cult's knives all close on the Outer City — 4; The heir is taken or killed in Wyrm's Crossing, and the ledger goes to whichever hand reaches it first."
+    },
+    {
+      "kind": "fact",
+      "key": "clock_tithe_night",
+      "value": "The next tithe at the harbour: the Tithe-Hall's men are choosing a ship and a crew to pay the sea for — 6; A full crew goes out on a fair wind and does not come back; a body with a pennies in its mouth is found at the Low Quay steps before the lamps are lit."
+    },
+    {
+      "kind": "fact",
+      "key": "hidden_layer",
+      "value": "The campaign's hidden layer (the DM's prep; the player never sees it; the truth comes out through clues, nobody explains all of it):\nThe truth: The Gate's old Bhaalist seat never died; it went under the water. A cell of the cult, calling itself the Tithe-Hall, has for a season bought fair winds for shipowners by paying Umberlee in drowned men: each body goes into the harbour with an old Balduran tide-penny in its mouth, struck from a die that was supposed to be broken, and the sea is told the debt is paid. The caravan guards taken from the Trade Way and the bound miners of the Cloakwood go into the same account, and the Cloakwood iron is forged into blades for the Zhentarim's buyers in Beregost. Teodor Orlune found his father's hand on the contracts and ran with the ledger; nobody knows the whole of it, not Hella behind her bar, not the sergeant with his dead brother, not the Zhentarim who think they are buying tolls.\nFactions and their hidden aims:\n- The Tithe-Hall (the Bhaal cult cell in the Lower City): Keep the Gate's old seat warm and the sea paid. They want the Zhentarim toll on the Trade Way to pass, so their caravans run past the Cloakwood where the guards go missing, and they want the ledger and its heir dead or bought before the Watch reads a single page.\n- House Orlune (patriars of the Upper City): Signed the fair-wind contracts when the trade ruin came after Elturel, to save the house. They want the heir back quietly, the ledger burned, and the name at the bottom of the first page to be someone else's. They pay a steward to hire the hunt and do not tell him why.\n- The Zhentarim: Want the Council's license to collect tolls on the Trade Way and the Cloakwood iron cheap. They suspect the iron's source and have decided they do not care, so long as the blades sell in Beregost and the tolls are theirs.\n- The Guild (Nine-Fingers Keene's people): Sell whatever the Undercellar will bid for. They already have the Candlekeep book, and they mean to sell its key to whoever wins the coin trade, the cult included, if the price is right.\n- The Flaming Fist (the Lower City garrison): Keep the Council's peace after Elturel: the first drownings were logged as drink-deaths on a captain's order, and the captain wants the harbour quiet. Some in the Fist are ready to stop the Zhentarim toll and will use anyone who can prove the cult's work.\nSecrets (not tied to a place):\n- The drowned men found in the harbour this season carry old Balduran-era silver tide-pennies in their mouths, not Council coin; all of them come from one die, with a hand split across the palm on one face.\n- The first three drownings were entered as drink-deaths by a Fist officer, who was paid by a shipping house on the Low Quay for the courtesy.\n- Teodor Orlune left with a ledger of fair-wind contracts; each one bears a patriar's signature and a countersign with the split-hand mark, and the first page is his father's.\n- The Cloakwood mine's iron goes to a smithy in Beregost under a Zhentarim contract, and its hammers have rung at night for a month.\n- The caravan guards taken between Beregost and Nashkel were marched to the Cloakwood mine alive, not killed on the road.\n- The Brazen Net's back stair has taken an envelope once a month for eleven months from a shipping man; Hella signs the book for it and has never opened it, and she knows it is not wages.\n- The book missing from Candlekeep is a copy of the Sea-Compacts of Balduran, the only volume that holds the key to the split-hand mark; a novice of the Oghma order sold it to the Guild.\n- The Zhentarim's toll letter to the Council is sealed with the same split hand, pressed into green wax.\n- Sergeant Rolf Harrowgate's younger brother was one of the drowned in the first spring; the sergeant has told no one that the coin in his teeth was the old make.\nClocks:\n- clock_tithe_night: The next tithe at the harbour: the Tithe-Hall's men are choosing a ship and a crew to pay the sea for (segments 6; when full: A full crew goes out on a fair wind and does not come back; a body with a pennies in its mouth is found at the Low Quay steps before the lamps are lit.)\n- clock_heir_hunt: The hunt for Teodor Orlune: the steward's men, the Zhentarim's pick-ups and the cult's knives all close on the Outer City (segments 4; when full: The heir is taken or killed in Wyrm's Crossing, and the ledger goes to whichever hand reaches it first.)\n- clock_green_wax: The Zhentarim toll letter: the Council's vote on the Trade Way tolls, and the Cloakwood iron's first blades on the Beregost market (segments 4; when full: The Council signs the toll license; the Trade Way's first caravan is sent through the Cloakwood under Zhentarim escort, and the guards on it are never seen again.)\nThe wonder: A tide-penny: an old silver coin of Balduran's make, the rim stamped with a fine cipher, one face showing a hand split across the palm; it is cold to the touch even in a warm pocket. Its history: Balduran's shipping house struck these for a sea-compact: one penny to the sea for every ship that came home. When the compact was sworn off, the die was broken, and the cult kept the split half and cut the cipher so the mark reads as a debt, not a vow. The coin stays cold because it has lain in drowned mouths. The open question: Does the sea take the penny for a ship's safe return, or for the man who carries it, and whose hand is the split hand on the die: Umberlee's, or the one who broke the die?\nClues to the truth:\n- On the Low Quay, a harbour-master's clerk who logs the bodies notices that the coins are not Council coin, but says the salvage barge raised a wreck last spring and some of the old silver went into the dockhands' pockets; the old coin is real, but the wreck is not where the drowned came from.\n- In the Undercellar, a bookseller who sells cipher-rubbings shows a copy of the split-hand mark and says the only key anyone has ever found for it is in a Candlekeep volume the monks are hunting; he will not say who has been asking for it.\n- In Rivington, a letter from Teodor Orlune to a friend mentions 'the tithe in my father's hand' and a date in the spring, and the margin of the letter is marked with a crude version of the split hand, as if he drew it while frightened.\nThe next session's false lead: A dockhand is seen paying his mates in old Balduran silver, and the Fist sergeant's men take him for a cult courier; the ordinary truth is that a salvage crew raised a sunken trader last spring and has been spending the old coin in the taverns of the Lower City.\nThe hero's weakness tested (next session, for a reason, never a trap): In the Brazen Net's back room a Guild dealer sets up a high-stakes table, and the only man at it who can read the Orlune steward's cipher across the cloth is offering the ledger's last page as the stake; the hero's own tide-penny is the only coin he has that is worth the bet, and the hand has to be played at the table, not walked away from.\nThe patron's moment (at a temptation, not a comfort): At the table, with the ledger's page lying on the cloth, one coin spins on its edge, stands there, and does not fall; the goddess offers the cards back in one small sign, and the cat's ears go flat at the sound.\nThe act plan (yours alone; the player sees only the act number): about 4 hours, ~10 turns; the errand: The Orlune steward offers the hero a purse to find young Teodor Orlune quietly, before the Watch or the Zhentarim do, and to bring back the ledger he carried out of the house.\n- act 1, to turn 2: the errand offered\n- act 2, to turn 6: the middle: the people and the means\n- act 3, to turn 9: the plan and its execution\n- act 4, to turn 10: the reckoning"
+    },
+    {
+      "kind": "fact",
+      "key": "voice_181bd546-735e-5543-a5f9-72bea3df75dd",
+      "value": "Hella Brandt: I keep the Brazen Net open for the Fist, the dockhands and anyone who pays the hearth-tax on time. I want the year to end and the ledger to balance. I fear the back stair and the men who come down it on Tuesdays. I know an envelope arrives each month and it is not wages; I have never opened it, and I hide that I take it. I talk short: 'Sit."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_c0e6c4e3-e272-522c-98f9-27003395593b",
+      "value": "Sergeant Rolf Harrowgate: I am a sergeant, not a captain, and that is the whole of my trouble. I want my men paid and the drownings to stop being someone else's business. I fear the Seatower and the Council learning that we logged the dead as drunks. I know my brother went into the harbour with a coin in his teeth, and I know who signed his papers. I hide that."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_teodor-orlune",
+      "value": "Teodor Orlune: I ran because my father wanted my name at the bottom of a page. I want the ledger burned by someone I trust and my name off every contract. I fear the Watch, and the men my father has hired to find me, who are not all Watch. I know the split-hand sign and what it costs; I have seen it in the margin of my father's book. I hide that I kept a copy."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_the-cat",
+      "value": "the cat: I do not speak, and he never needs me to. I want the warm hearth, the fish-heads at the back door, and his lap when the cards come out, which I dislike. I fear the water and the sweet rot that has come up on the tide this spring, and the iron-smell at the back of the cellar. I know who sleeps with his hand on his purse and who does not look at me at all."
+    },
+    {
+      "kind": "clock",
+      "key": "clock_green_wax",
+      "value": "0"
+    },
+    {
+      "kind": "clock",
+      "key": "clock_heir_hunt",
+      "value": "0"
+    },
+    {
+      "kind": "clock",
+      "key": "clock_tithe_night",
+      "value": "0"
+    }
+  ],
+  "stored": {
+    "fact": {
+      "act_plan": "{\"length\":{\"hours\":4,\"turns\":10},\"errand\":\"The Orlune steward offers the hero a purse to find young Teodor Orlune quietly, before the Watch or the Zhentarim do, and to bring back the ledger he carried out of the house.\",\"acts\":[{\"act\":1,\"untilTurn\":2,\"aim\":\"the errand offered\",\"converge\":\"\"},{\"act\":2,\"untilTurn\":6,\"aim\":\"the middle: the people and the means\",\"converge\":\"\"},{\"act\":3,\"untilTurn\":9,\"aim\":\"the plan and its execution\",\"converge\":\"\"},{\"act\":4,\"untilTurn\":10,\"aim\":\"the reckoning\",\"converge\":\"\"}]}",
+      "clock_green_wax": "The Zhentarim toll letter: the Council's vote on the Trade Way tolls, and the Cloakwood iron's first blades on the Beregost market — 4; The Council signs the toll license; the Trade Way's first caravan is sent through the Cloakwood under Zhentarim escort, and the guards on it are never seen again.",
+      "clock_heir_hunt": "The hunt for Teodor Orlune: the steward's men, the Zhentarim's pick-ups and the cult's knives all close on the Outer City — 4; The heir is taken or killed in Wyrm's Crossing, and the ledger goes to whichever hand reaches it first.",
+      "clock_tithe_night": "The next tithe at the harbour: the Tithe-Hall's men are choosing a ship and a crew to pay the sea for — 6; A full crew goes out on a fair wind and does not come back; a body with a pennies in its mouth is found at the Low Quay steps before the lamps are lit.",
+      "hidden_layer": "The campaign's hidden layer (the DM's prep; the player never sees it; the truth comes out through clues, nobody explains all of it):\nThe truth: The Gate's old Bhaalist seat never died; it went under the water. A cell of the cult, calling itself the Tithe-Hall, has for a season bought fair winds for shipowners by paying Umberlee in drowned men: each body goes into the harbour with an old Balduran tide-penny in its mouth, struck from a die that was supposed to be broken, and the sea is told the debt is paid. The caravan guards taken from the Trade Way and the bound miners of the Cloakwood go into the same account, and the Cloakwood iron is forged into blades for the Zhentarim's buyers in Beregost. Teodor Orlune found his father's hand on the contracts and ran with the ledger; nobody knows the whole of it, not Hella behind her bar, not the sergeant with his dead brother, not the Zhentarim who think they are buying tolls.\nFactions and their hidden aims:\n- The Tithe-Hall (the Bhaal cult cell in the Lower City): Keep the Gate's old seat warm and the sea paid. They want the Zhentarim toll on the Trade Way to pass, so their caravans run past the Cloakwood where the guards go missing, and they want the ledger and its heir dead or bought before the Watch reads a single page.\n- House Orlune (patriars of the Upper City): Signed the fair-wind contracts when the trade ruin came after Elturel, to save the house. They want the heir back quietly, the ledger burned, and the name at the bottom of the first page to be someone else's. They pay a steward to hire the hunt and do not tell him why.\n- The Zhentarim: Want the Council's license to collect tolls on the Trade Way and the Cloakwood iron cheap. They suspect the iron's source and have decided they do not care, so long as the blades sell in Beregost and the tolls are theirs.\n- The Guild (Nine-Fingers Keene's people): Sell whatever the Undercellar will bid for. They already have the Candlekeep book, and they mean to sell its key to whoever wins the coin trade, the cult included, if the price is right.\n- The Flaming Fist (the Lower City garrison): Keep the Council's peace after Elturel: the first drownings were logged as drink-deaths on a captain's order, and the captain wants the harbour quiet. Some in the Fist are ready to stop the Zhentarim toll and will use anyone who can prove the cult's work.\nSecrets (not tied to a place):\n- The drowned men found in the harbour this season carry old Balduran-era silver tide-pennies in their mouths, not Council coin; all of them come from one die, with a hand split across the palm on one face.\n- The first three drownings were entered as drink-deaths by a Fist officer, who was paid by a shipping house on the Low Quay for the courtesy.\n- Teodor Orlune left with a ledger of fair-wind contracts; each one bears a patriar's signature and a countersign with the split-hand mark, and the first page is his father's.\n- The Cloakwood mine's iron goes to a smithy in Beregost under a Zhentarim contract, and its hammers have rung at night for a month.\n- The caravan guards taken between Beregost and Nashkel were marched to the Cloakwood mine alive, not killed on the road.\n- The Brazen Net's back stair has taken an envelope once a month for eleven months from a shipping man; Hella signs the book for it and has never opened it, and she knows it is not wages.\n- The book missing from Candlekeep is a copy of the Sea-Compacts of Balduran, the only volume that holds the key to the split-hand mark; a novice of the Oghma order sold it to the Guild.\n- The Zhentarim's toll letter to the Council is sealed with the same split hand, pressed into green wax.\n- Sergeant Rolf Harrowgate's younger brother was one of the drowned in the first spring; the sergeant has told no one that the coin in his teeth was the old make.\nClocks:\n- clock_tithe_night: The next tithe at the harbour: the Tithe-Hall's men are choosing a ship and a crew to pay the sea for (segments 6; when full: A full crew goes out on a fair wind and does not come back; a body with a pennies in its mouth is found at the Low Quay steps before the lamps are lit.)\n- clock_heir_hunt: The hunt for Teodor Orlune: the steward's men, the Zhentarim's pick-ups and the cult's knives all close on the Outer City (segments 4; when full: The heir is taken or killed in Wyrm's Crossing, and the ledger goes to whichever hand reaches it first.)\n- clock_green_wax: The Zhentarim toll letter: the Council's vote on the Trade Way tolls, and the Cloakwood iron's first blades on the Beregost market (segments 4; when full: The Council signs the toll license; the Trade Way's first caravan is sent through the Cloakwood under Zhentarim escort, and the guards on it are never seen again.)\nThe wonder: A tide-penny: an old silver coin of Balduran's make, the rim stamped with a fine cipher, one face showing a hand split across the palm; it is cold to the touch even in a warm pocket. Its history: Balduran's shipping house struck these for a sea-compact: one penny to the sea for every ship that came home. When the compact was sworn off, the die was broken, and the cult kept the split half and cut the cipher so the mark reads as a debt, not a vow. The coin stays cold because it has lain in drowned mouths. The open question: Does the sea take the penny for a ship's safe return, or for the man who carries it, and whose hand is the split hand on the die: Umberlee's, or the one who broke the die?\nClues to the truth:\n- On the Low Quay, a harbour-master's clerk who logs the bodies notices that the coins are not Council coin, but says the salvage barge raised a wreck last spring and some of the old silver went into the dockhands' pockets; the old coin is real, but the wreck is not where the drowned came from.\n- In the Undercellar, a bookseller who sells cipher-rubbings shows a copy of the split-hand mark and says the only key anyone has ever found for it is in a Candlekeep volume the monks are hunting; he will not say who has been asking for it.\n- In Rivington, a letter from Teodor Orlune to a friend mentions 'the tithe in my father's hand' and a date in the spring, and the margin of the letter is marked with a crude version of the split hand, as if he drew it while frightened.\nThe next session's false lead: A dockhand is seen paying his mates in old Balduran silver, and the Fist sergeant's men take him for a cult courier; the ordinary truth is that a salvage crew raised a sunken trader last spring and has been spending the old coin in the taverns of the Lower City.\nThe hero's weakness tested (next session, for a reason, never a trap): In the Brazen Net's back room a Guild dealer sets up a high-stakes table, and the only man at it who can read the Orlune steward's cipher across the cloth is offering the ledger's last page as the stake; the hero's own tide-penny is the only coin he has that is worth the bet, and the hand has to be played at the table, not walked away from.\nThe patron's moment (at a temptation, not a comfort): At the table, with the ledger's page lying on the cloth, one coin spins on its edge, stands there, and does not fall; the goddess offers the cards back in one small sign, and the cat's ears go flat at the sound.\nThe act plan (yours alone; the player sees only the act number): about 4 hours, ~10 turns; the errand: The Orlune steward offers the hero a purse to find young Teodor Orlune quietly, before the Watch or the Zhentarim do, and to bring back the ledger he carried out of the house.\n- act 1, to turn 2: the errand offered\n- act 2, to turn 6: the middle: the people and the means\n- act 3, to turn 9: the plan and its execution\n- act 4, to turn 10: the reckoning",
+      "voice_181bd546-735e-5543-a5f9-72bea3df75dd": "Hella Brandt: I keep the Brazen Net open for the Fist, the dockhands and anyone who pays the hearth-tax on time. I want the year to end and the ledger to balance. I fear the back stair and the men who come down it on Tuesdays. I know an envelope arrives each month and it is not wages; I have never opened it, and I hide that I take it. I talk short: 'Sit.",
+      "voice_c0e6c4e3-e272-522c-98f9-27003395593b": "Sergeant Rolf Harrowgate: I am a sergeant, not a captain, and that is the whole of my trouble. I want my men paid and the drownings to stop being someone else's business. I fear the Seatower and the Council learning that we logged the dead as drunks. I know my brother went into the harbour with a coin in his teeth, and I know who signed his papers. I hide that.",
+      "voice_teodor-orlune": "Teodor Orlune: I ran because my father wanted my name at the bottom of a page. I want the ledger burned by someone I trust and my name off every contract. I fear the Watch, and the men my father has hired to find me, who are not all Watch. I know the split-hand sign and what it costs; I have seen it in the margin of my father's book. I hide that I kept a copy.",
+      "voice_the-cat": "the cat: I do not speak, and he never needs me to. I want the warm hearth, the fish-heads at the back door, and his lap when the cards come out, which I dislike. I fear the water and the sweet rot that has come up on the tide this spring, and the iron-smell at the back of the cellar. I know who sleeps with his hand on his purse and who does not look at me at all."
+    },
+    "clock": {
+      "clock_green_wax": 0,
+      "clock_heir_hunt": 0,
+      "clock_tithe_night": 0
+    },
+    "consequence": {}
+  },
+  "sha256": "3d93d558be820061705c1a04c309d672c90578ce7ffadce3da6da675cfc10707",
+  "threads": [
+    {
+      "id": "T1",
+      "kind": "errand",
+      "text": "The Orlune steward offers the hero a purse to find young Teodor Orlune quietly, before the Watch or the Zhentarim do, and to bring back the ledger he carried out of the house."
+    },
+    {
+      "id": "T2",
+      "kind": "faction",
+      "text": "The Tithe-Hall (the Bhaal cult cell in the Lower City): Keep the Gate's old seat warm and the sea paid. They want the Zhentarim toll on the Trade Way to pass, so their caravans run past the Cloakwood where the guards go missing, and they want the ledger and its heir dead or bought before the Watch reads a single page."
+    },
+    {
+      "id": "T3",
+      "kind": "faction",
+      "text": "House Orlune (patriars of the Upper City): Signed the fair-wind contracts when the trade ruin came after Elturel, to save the house. They want the heir back quietly, the ledger burned, and the name at the bottom of the first page to be someone else's. They pay a steward to hire the hunt and do not tell him why."
+    },
+    {
+      "id": "T4",
+      "kind": "faction",
+      "text": "The Zhentarim: Want the Council's license to collect tolls on the Trade Way and the Cloakwood iron cheap. They suspect the iron's source and have decided they do not care, so long as the blades sell in Beregost and the tolls are theirs."
+    },
+    {
+      "id": "T5",
+      "kind": "faction",
+      "text": "The Guild (Nine-Fingers Keene's people): Sell whatever the Undercellar will bid for. They already have the Candlekeep book, and they mean to sell its key to whoever wins the coin trade, the cult included, if the price is right."
+    },
+    {
+      "id": "T6",
+      "kind": "faction",
+      "text": "The Flaming Fist (the Lower City garrison): Keep the Council's peace after Elturel: the first drownings were logged as drink-deaths on a captain's order, and the captain wants the harbour quiet. Some in the Fist are ready to stop the Zhentarim toll and will use anyone who can prove the cult's work."
+    },
+    {
+      "id": "T7",
+      "kind": "secret",
+      "text": "The drowned men found in the harbour this season carry old Balduran-era silver tide-pennies in their mouths, not Council coin; all of them come from one die, with a hand split across the palm on one face."
+    },
+    {
+      "id": "T8",
+      "kind": "secret",
+      "text": "The first three drownings were entered as drink-deaths by a Fist officer, who was paid by a shipping house on the Low Quay for the courtesy."
+    },
+    {
+      "id": "T9",
+      "kind": "secret",
+      "text": "Teodor Orlune left with a ledger of fair-wind contracts; each one bears a patriar's signature and a countersign with the split-hand mark, and the first page is his father's."
+    },
+    {
+      "id": "T10",
+      "kind": "secret",
+      "text": "The Cloakwood mine's iron goes to a smithy in Beregost under a Zhentarim contract, and its hammers have rung at night for a month."
+    },
+    {
+      "id": "T11",
+      "kind": "secret",
+      "text": "The caravan guards taken between Beregost and Nashkel were marched to the Cloakwood mine alive, not killed on the road."
+    },
+    {
+      "id": "T12",
+      "kind": "secret",
+      "text": "The Brazen Net's back stair has taken an envelope once a month for eleven months from a shipping man; Hella signs the book for it and has never opened it, and she knows it is not wages."
+    },
+    {
+      "id": "T13",
+      "kind": "secret",
+      "text": "The book missing from Candlekeep is a copy of the Sea-Compacts of Balduran, the only volume that holds the key to the split-hand mark; a novice of the Oghma order sold it to the Guild."
+    },
+    {
+      "id": "T14",
+      "kind": "secret",
+      "text": "The Zhentarim's toll letter to the Council is sealed with the same split hand, pressed into green wax."
+    },
+    {
+      "id": "T15",
+      "kind": "secret",
+      "text": "Sergeant Rolf Harrowgate's younger brother was one of the drowned in the first spring; the sergeant has told no one that the coin in his teeth was the old make."
+    },
+    {
+      "id": "T16",
+      "kind": "clock",
+      "text": "clock_tithe_night: The next tithe at the harbour: the Tithe-Hall's men are choosing a ship and a crew to pay the sea for (segments 6; when full: A full crew goes out on a fair wind and does not come back; a body with a pennies in its mouth is found at the Low Quay steps before the lamps are lit.)"
+    },
+    {
+      "id": "T17",
+      "kind": "clock",
+      "text": "clock_heir_hunt: The hunt for Teodor Orlune: the steward's men, the Zhentarim's pick-ups and the cult's knives all close on the Outer City (segments 4; when full: The heir is taken or killed in Wyrm's Crossing, and the ledger goes to whichever hand reaches it first.)"
+    },
+    {
+      "id": "T18",
+      "kind": "clock",
+      "text": "clock_green_wax: The Zhentarim toll letter: the Council's vote on the Trade Way tolls, and the Cloakwood iron's first blades on the Beregost market (segments 4; when full: The Council signs the toll license; the Trade Way's first caravan is sent through the Cloakwood under Zhentarim escort, and the guards on it are never seen again.)"
+    },
+    {
+      "id": "T19",
+      "kind": "wonder",
+      "text": "A tide-penny: an old silver coin of Balduran's make, the rim stamped with a fine cipher, one face showing a hand split across the palm; it is cold to the touch even in a warm pocket. Its history: Balduran's shipping house struck these for a sea-compact: one penny to the sea for every ship that came home. When the compact was sworn off, the die was broken, and the cult kept the split half and cut the cipher so the mark reads as a debt, not a vow. The coin stays cold because it has lain in drowned mouths. The open question: Does the sea take the penny for a ship's safe return, or for the man who"
+    },
+    {
+      "id": "T20",
+      "kind": "clue",
+      "text": "On the Low Quay, a harbour-master's clerk who logs the bodies notices that the coins are not Council coin, but says the salvage barge raised a wreck last spring and some of the old silver went into the dockhands' pockets; the old coin is real, but the wreck is not where the drowned came from."
+    },
+    {
+      "id": "T21",
+      "kind": "clue",
+      "text": "In the Undercellar, a bookseller who sells cipher-rubbings shows a copy of the split-hand mark and says the only key anyone has ever found for it is in a Candlekeep volume the monks are hunting; he will not say who has been asking for it."
+    },
+    {
+      "id": "T22",
+      "kind": "clue",
+      "text": "In Rivington, a letter from Teodor Orlune to a friend mentions 'the tithe in my father's hand' and a date in the spring, and the margin of the letter is marked with a crude version of the split hand, as if he drew it while frightened."
+    },
+    {
+      "id": "T23",
+      "kind": "false lead",
+      "text": "A dockhand is seen paying his mates in old Balduran silver, and the Fist sergeant's men take him for a cult courier; the ordinary truth is that a salvage crew raised a sunken trader last spring and has been spending the old coin in the taverns of the Lower City."
+    },
+    {
+      "id": "T24",
+      "kind": "person",
+      "text": "Hella Brandt: I keep the Brazen Net open for the Fist, the dockhands and anyone who pays the hearth-tax on time. I want the year to end and the ledger to balance. I fear the back stair and the men who come down it on Tuesdays. I know an envelope arrives each month and it is not wages; I have never opened it, and I hide that I take it. I talk short: 'Sit."
+    },
+    {
+      "id": "T25",
+      "kind": "person",
+      "text": "Sergeant Rolf Harrowgate: I am a sergeant, not a captain, and that is the whole of my trouble. I want my men paid and the drownings to stop being someone else's business. I fear the Seatower and the Council learning that we logged the dead as drunks. I know my brother went into the harbour with a coin in his teeth, and I know who signed his papers. I hide that."
+    },
+    {
+      "id": "T26",
+      "kind": "person",
+      "text": "Teodor Orlune: I ran because my father wanted my name at the bottom of a page. I want the ledger burned by someone I trust and my name off every contract. I fear the Watch, and the men my father has hired to find me, who are not all Watch. I know the split-hand sign and what it costs; I have seen it in the margin of my father's book. I hide that I kept a copy."
+    }
+  ],
+  "companionNames": []
+}

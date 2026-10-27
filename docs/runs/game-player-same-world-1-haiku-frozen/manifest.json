@@ -1,0 +1,223 @@
+{
+  "stage": "GAME_PLAYER_SAME_WORLD_1",
+  "design": "1b4cf1d77a02b67661a02cfd36d3b6e008e64c6dceabcb7b9391aa43702682f6",
+  "builtAt": "2026-10-27T03:54:59.950Z",
+  "by": "Claude Haiku 5.5 (every Claude call swapped: the dry run) through openrouter",
+  "owner": "dfa55946-39dd-4a39-88be-f28b67859d07",
+  "snapshot": {
+    "file": "world-base.tar.gz",
+    "bytes": 12495373,
+    "sha256": "f4eaa9025867a4de84da7fb5d2a4a9cba1d671cc60d4dc8bc03c901cddb067b6",
+    "note": "The local database after the wizard and the opening of both tables, before any prep (PGlite data directory, gzip)."
+  },
+  "tables": {
+    "A": {
+      "campaignId": "19521e61-604a-449f-bfbd-fbe57e42b818",
+      "heroId": "4917f948-225c-553b-b3c4-f3f62b47980f",
+      "worldId": "1c472f76-b243-4c4b-96f3-e17d7c97bcd5",
+      "adventureId": "06b187a5-8b79-4da2-a3d8-7e0e016e3f46",
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "1c472f76-b243-4c4b-96f3-e17d7c97bcd5",
+          "title": "Sword Coast — Baldur's Gate",
+          "premiseChars": 2673
+        },
+        {
+          "step": "hero",
+          "heroId": "4917f948-225c-553b-b3c4-f3f62b47980f",
+          "rebuilt": false,
+          "empty": false,
+          "drafted": "with notes",
+          "sheet": {
+            "role": "Warlock 5th level, Pact of the Chain, patron Tymora (Lady Luck)",
+            "level": 5,
+            "skills": 7,
+            "abilities": 11,
+            "spells": 11,
+            "items": 14,
+            "counters": 3
+          }
+        },
+        {
+          "step": "documents",
+          "documents": [
+            {
+              "title": "DM Guide",
+              "status": "reference",
+              "chars": 8559,
+              "guide": true
+            },
+            {
+              "title": "Sword Coast — Baldur's Gate",
+              "status": "canon",
+              "chars": 2673,
+              "guide": false
+            },
+            {
+              "title": "The Sword Coast — canon",
+              "status": "canon",
+              "chars": 10222,
+              "guide": false
+            }
+          ]
+        },
+        {
+          "step": "adventure",
+          "title": "Envoy of Luck",
+          "premiseChars": 748,
+          "wishesChars": 1086,
+          "pace": "evening"
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "dm",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": false
+          },
+          "boostNext": false,
+          "voiceMode": "off"
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "Lower City Quay, Baldur's Gate",
+          "actors": 1,
+          "questions": 0,
+          "startMinutes": 1140
+        }
+      ],
+      "alignmentRemoved": [],
+      "layer": {
+        "file": "A-dm-only.json",
+        "sha256": "a083a5ae7de259b9873a6369d2960df5b1077881d6f5e0db967f5dea67de009c",
+        "chars": 7689,
+        "writes": 14,
+        "threads": 27
+      }
+    },
+    "B": {
+      "campaignId": "f6e8952c-ab14-4b41-a470-11912072339d",
+      "heroId": "5bdb7ac9-6b91-5c25-8437-33366ae70535",
+      "worldId": "237c1c21-3f8b-40db-b660-66ee47c0a352",
+      "adventureId": "d905789a-4d25-4e9c-9863-3e0f3cb8af18",
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "237c1c21-3f8b-40db-b660-66ee47c0a352",
+          "title": "Sword Coast — Baldur's Gate",
+          "premiseChars": 2673
+        },
+        {
+          "step": "hero",
+          "heroId": "5bdb7ac9-6b91-5c25-8437-33366ae70535",
+          "rebuilt": false,
+          "empty": false,
+          "drafted": "with notes",
+          "sheet": {
+            "role": "Warlock 5th level, Pact of the Chain, patron Tymora (Lady Luck)",
+            "level": 5,
+            "skills": 4,
+            "abilities": 9,
+            "spells": 11,
+            "items": 14,
+            "counters": 3
+          }
+        },
+        {
+          "step": "documents",
+          "documents": [
+            {
+              "title": "Sword Coast — Baldur's Gate",
+              "status": "canon",
+              "chars": 2673,
+              "guide": false
+            },
+            {
+              "title": "DM Guide",
+              "status": "reference",
+              "chars": 8559,
+              "guide": true
+            },
+            {
+              "title": "The Sword Coast — canon",
+              "status": "canon",
+              "chars": 10222,
+              "guide": false
+            }
+          ]
+        },
+        {
+          "step": "adventure",
+          "title": "Baldur's Gate, no errand",
+          "premiseChars": 162,
+          "wishesChars": 0,
+          "pace": "evening"
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "dm",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": false
+          },
+          "boostNext": false,
+          "voiceMode": "off"
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "The Brazen Net",
+          "actors": 2,
+          "questions": 0,
+          "startMinutes": 1140
+        }
+      ],
+      "alignmentRemoved": [],
+      "layer": {
+        "file": "B-dm-only.json",
+        "sha256": "3d93d558be820061705c1a04c309d672c90578ce7ffadce3da6da675cfc10707",
+        "chars": 7679,
+        "writes": 12,
+        "threads": 26
+      }
+    }
+  }
+}

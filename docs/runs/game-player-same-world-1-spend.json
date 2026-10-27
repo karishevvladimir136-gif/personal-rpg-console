@@ -1,0 +1,165 @@
+{
+  "note": "Spend checks: OpenRouter's account (shared with other sessions on the same key) and this stage's ledgers.",
+  "checks": [
+    {
+      "at": "2026-10-27T03:48:48.680Z",
+      "when": "by hand",
+      "openrouter": {
+        "keyUsage": 326.62931004,
+        "keyLimitRemaining": null,
+        "totalCredits": 800,
+        "totalUsage": 326.62931004,
+        "remaining": 473.37,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0,
+          "cap": 220
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 25
+        }
+      },
+      "haikuDryRun": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0,
+          "cap": 4
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0.5
+        }
+      }
+    },
+    {
+      "at": "2026-10-27T03:49:00.116Z",
+      "when": "before the paid dry run on Haiku",
+      "openrouter": {
+        "keyUsage": 326.839442655,
+        "keyLimitRemaining": null,
+        "totalCredits": 800,
+        "totalUsage": 326.839442655,
+        "remaining": 473.16,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0,
+          "cap": 220
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 25
+        }
+      },
+      "haikuDryRun": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0,
+          "cap": 4
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0.5
+        }
+      }
+    },
+    {
+      "at": "2026-10-27T03:52:20.431Z",
+      "when": "before the paid dry run on Haiku",
+      "openrouter": {
+        "keyUsage": 327.65869341,
+        "keyLimitRemaining": null,
+        "totalCredits": 800,
+        "totalUsage": 327.65869341,
+        "remaining": 472.34,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0,
+          "cap": 220
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 25
+        }
+      },
+      "haikuDryRun": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0,
+          "cap": 4
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0.5
+        }
+      }
+    },
+    {
+      "at": "2026-10-27T04:05:30.948Z",
+      "when": "after the paid dry run on Haiku",
+      "openrouter": {
+        "keyUsage": 332.22388802,
+        "keyLimitRemaining": null,
+        "totalCredits": 800,
+        "totalUsage": 332.22388802,
+        "remaining": 467.78,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0,
+          "cap": 220
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 25
+        }
+      },
+      "haikuDryRun": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0.1565,
+          "cap": 4
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0.5
+        }
+      }
+    }
+  ]
+}

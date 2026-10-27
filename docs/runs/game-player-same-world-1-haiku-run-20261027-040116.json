@@ -1,0 +1,1562 @@
+{
+  "stage": "GAME_PLAYER_SAME_WORLD_1",
+  "dry": false,
+  "label": "the dry run on Haiku: B-haiku-1",
+  "designSha256": "1b4cf1d77a02b67661a02cfd36d3b6e008e64c6dceabcb7b9391aa43702682f6",
+  "startedAt": "2026-10-27T04:01:16.936Z",
+  "caps": {
+    "anthropic": 0,
+    "openrouter": 4,
+    "openai": 0.5
+  },
+  "plan": [
+    "B-haiku-1"
+  ],
+  "turns": 3,
+  "lanes": 1,
+  "sessions": [
+    {
+      "key": "B-haiku-1",
+      "table": "B",
+      "player": "haiku",
+      "model": "claude-haiku-5-5",
+      "startedAt": "2026-10-27T04:01:19.310Z",
+      "plannedTurns": 3,
+      "screens": [
+        "The session begins.\n\nJames Worgen comes in off the road with his cat trotting at his heel, a bag on his shoulder and about 350 gold in his purse. The taproom is loud and close. Dockhands argue over dice near the door, two sellswords watch everyone who comes in, and a Flaming Fist sergeant on a stool by the hearth looks up at him and then down at the cat. Behind the bar, Hella Brandt takes in the cat before she takes in the man, and she sets a mug down on the wood without pouring. Nobody here is waiting for James Worgen, and nobody has sent for him. The sergeant's gaze has settled on the cat, and Hella is waiting to hear what he wants. What does he do first?\n\nYour records:\nJames Worgen — Warlock 5th level, Pact of the Chain, patron Tymora (Lady Luck), level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Athletics +2 (soldier background); Intimidation +7 (soldier background); Deception +7 (Beguiling Influence); Persuasion +7 (Beguiling Influence)\nSaves: Wisdom save +4 (+5 with the Cloak of Protection); Charisma save +7 (+8 with the Cloak of Protection)\nAttacks: Eldritch Blast: +8 to hit, 2 beams, 1d10+4 force each with Agonizing Blast, range 120 feet; Rapier: +5 to hit, 1d8+2 piercing, finesse; Light crossbow: +5 to hit, 1d8+2 piercing, range 80/320 feet, loading, two-handed; Sacred Flame: DEX save, 60 feet, 2d8 radiant at 5th level\nAbilities: Proficiency bonus +3; Pact Magic: 2 slots of 3rd level, recovered on a short rest; spell save DC 16, spell attack +8; Eldritch Invocations: Agonizing Blast, Mask of Many Faces, Beguiling Influence (Deception and Persuasion); Healing Light: bonus action, spend dice from a pool of 6d6 to heal chosen creatures; recovers on a long rest; Pact of the Chain: a cat familiar, with Find Familiar and the familiar's special forms; Patron Tymora: granted cantrips Light and Sacred Flame; James is her envoy and owes her a debt; Soldier background: trained infantry and scout; proficient with playing cards; Cloak of Protection (attuned): +1 to AC and all saving throws; Boots of Elvenkind: advantage on Stealth checks; footsteps make no sound\nSpells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Hex (1); Guiding Bolt (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)\nLimits: Light armour only (studded leather); fragile up close; Only 2 pact slots: husband them, they return on a short rest; One concentration spell at a time; Cards are banned by his goddess; a temptation that can be used against him; Cat is a familiar: it can be lost if it dies, and it cannot cast spells for him\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 1/1\nMoney: 315 gp; 315 sp; 350 cp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak (Cloak of Protection +1); Armor / clothing: Studded Leather Armour; Boots: Boots of Elvenkind\nPack: Component Pouch; Crossbow Bolts ×20; Deck of Playing Cards; Explorer's Pack; Light Crossbow; Potion of Healing ×2; Promissory Note; Rapier; Regimental Pay Slip; Rod of the Pact Keeper +1\nPlace: The Brazen Net\nTime: Day 1 · evening",
+        "Hella doesn't answer at once. Her eyes go to the silver, then the copper, then the cat, and she sweeps the silver off the wood into her apron before she decides anything else about him.\n\n\"Ale's sound. Cook's got mutton and barley, and that's the last of it.\" She fills a tankard from the cask without looking at the gauge and sets it in front of him. The copper comes back across the wood. \"Keep that. The cat's not paying for a bowl.\"\n\n\"Room's two silver the night. You pay when you go up, not before.\" Her gaze goes once to the narrow passage behind the bar, where a back stair climbs into the dark, and comes back to him. \"Door shuts. Nobody sleeps in my rafters.\"\n\nDown by the hearth the sergeant has watched the whole exchange over the rim of his mug. He sets the mug down, unfinished, and lifts two fingers off the table in answer to the nod.\n\n\"He's a fine-looking cat, for a cat,\" Rolf Harrowgate says, dry. \"Keep him off my boots and we'll get on. And don't get ideas about the Fist. We take recruits off the road every week, but I don't sign anybody and I don't pay anybody. That's the captain's business.\"\n\nHella sets a steaming bowl of mutton and barley on the bar beside the ale. The smell reaches the floorboards before anything else does. The cat's ears turn toward it, and then he is looking up at the bar with the patience of an animal who has decided the matter is not yet settled.\n\n· Time passes: 10 minutes\n· −1 silver → Hella Brandt\n· Debt: Room at The Brazen Net\n· Companion: the cat\n\nYour records, changed:\nMoney: 315 gp; 314 sp; 350 cp\nParty: the cat (HP 2/2)\nDebts: Room at The Brazen Net\n\nPlace: The Brazen Net · Time: Day 1 · evening",
+        "Rolf turns his mug a quarter-turn on the table, the way a man does when he is deciding how much of his evening to give away.\n\n\"Warning. No. A sergeant's opinion, which is cheaper.\" He lifts two fingers again, as if to say the rest is free. \"The road's running. Most carts out of the Gate reach Beregost in the week they're meant to. It's south of Beregost you want to watch, on the way to Nashkel. Three caravans this spring went out with guards and never came into Nashkel. No carts found, no men found. The merchants say bandits. Bandits don't carry off their guards to unload the sacks for them.\"\n\nHe drinks, and sets the mug down on the same wet ring.\n\n\"The Council put a price on bandits' heads in the autumn. The Fist has not paid a copper on one since the coffers went to the refugees. So the hunters gather at the Friendly Arm, and the caravan houses say the Council should pay, and the Council says the Fist should, and the Fist says nothing, because it has nothing to say it can afford.\" He shrugs. \"And there's a letter on the Council's table about the Zhentarim. They'd like to guard the Trade Way for the Council, and collect a toll for the favour. Half my company thinks that's the first sensible offer since Elturel. The other half would sooner see them hanged off the Seatower.\"\n\nHis eyes go once toward the door that gives onto the quays, then come back to the table. He says nothing about the harbour.\n\n\"So, no, there's no warning with your name on it. But anyone who goes out on the Fist's money this season comes back short, or doesn't come back at all.\"\n\nBehind the bar, Hella does not look up from her ledger. She runs a thumb down a column, dips her pen, and writes.\n\n\"Lane window. Over the bed, facing the lane. Shutter sticks; you lift it and then push.\" Her pen stops. \"Back stair's the only way up from this side. Front stair's for the Fist and the men who bring the Fist its drink. Yours is the back.\"\n\nHer hand lies flat on the open book for a moment before she writes again.\n\nAt the hearth, Rolf frowns at James over the rim of his mug, the look of a man who has just heard a voice he recognises under a stranger's coat. \"Which company were you in, in Zaranda's infantry? Men from the Tethyr levies don't usually end up in Baldur's Gate with a cat.\"\n\nThe cat has finished the mutton without ceremony. He licks one paw, then stops, and his ears swing round toward the dark passage behind the bar, where the back stair climbs out of sight.\n\n Out of game: the turn stopped on Rolf's question to James, so his answer is the player's to give. Talk, drink and the cat's meal need no roll, and the replies already narrated stand.\n\n· Time passes: 6 minutes\n· Lead: Caravans gone quiet south of Beregost\n· A rumour of a place: The Friendly Arm Inn\n\nYour records, changed:\nThreads: Caravans gone quiet south of Beregost\n\nPlace: The Brazen Net · Time: Day 1 · evening",
+        "Rolf takes the answer the way he would take a wager he has already seen lost. He lifts two fingers off the table.\n\n\"The Friendly Arm is a day down the Way, if the cart doesn't lose a wheel in the ruts past the last farms. You'll know the keep by the Amnian tower and the new roof that doesn't match it.\" He turns his mug a quarter-turn on the wet ring. \"The hunters hire at the yard, first light. They'll take a man who can shoot. A man who can shoot and keeps his head, they take twice. The ones already bought are the loudest in the room, so ask who's paying before you ask what the pay is.\"\n\nThe cat has not moved, but his tail has begun to twitch against the floorboards, slow and deliberate.\n\nUp the back stair a door opens. Boots come down the wooden treads, unhurried and heavy, and a man steps out into the lamplight at the foot of the stair. He is shipping-class by his coat: good wool gone dark with harbour damp, a leather satchel under one arm, a signet ring on the hand that holds the rail. He sees the room, the dice game, the sergeant at the hearth. He stops for the length of a breath.\n\nBehind the bar, Hella's pen stops mid-column. She does not look up. She turns the open book a few inches on the wood, toward the stair, and holds it there with her flat hand.\n\nThe man crosses to the bar without a word. He bends, writes something in the book with his own pen, and straightens. He does not take a drink. Then he goes through the kitchen door at the far end of the bar, and the door swings shut on its leather hinge behind him.\n\nRolf's eyes follow the swinging door until it is still. Then they come back to James, flat and attentive, and he sets his mug down on the wet ring without drinking.\n\n\"Zaranda's fourth,\" he says. \"Which captain had it, when you were in it?\"\n\n Out of game: no roll was needed. Rolf answered your question about the hunters, and the cat held still under your signal, both in the narration above. The turn stops on Rolf's question about the captain, and it waits for your answer.\n\n· Time passes: 5 minutes\n· New person: Unnamed shipping man (damp wool coat)\n\nPlace: The Brazen Net · Time: Day 1 · evening\n\nThe session is over.\n\nThe owner of this game would like a note from you, as the player who sat at this table: what worked, what broke, what was missing. In your own words.",
+        "Was there a moment you wanted to do something and didn't? Which?"
+      ],
+      "messages": [
+        {
+          "purpose": "player t1",
+          "text": "James crosses the taproom without hurrying, weaving past the dice game, and stops at the bar. The cat stays a step behind him, tail up, and sits down neatly on the floorboards by his boot.\n\n\"Ale, Hella, if the cask's not gone sour. And something hot, whatever the cook has left.\" He sets a silver piece on the wood beside her untouched mug, then slides a copper across as well. \"And a room for the night, if you have one with a door that shuts and no one sleeping in the rafters.\"\n\nHe doesn't look at the sergeant yet. He lets the man see him first, then turns his head and gives him the short nod one soldier gives another across a crowded camp, the kind that says *I know what you are, and I'm not your trouble*. Then he looks down at the cat.\n\n\"Don't mind him,\" James says to the room in general, mildly. \"He's been on the road with me for a week and he's still deciding whether I'm worth the trouble.\"",
+          "requestId": "gen-1793073680-CnpSqOqEGGnvA9HHetJ4",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t2",
+          "text": "James takes the bowl and sets it on the bar where the cat can reach it without climbing. He pulls the tankard toward himself and drinks half of it before he speaks.\n\n\"Good ale. Better than I expected from a place this loud.\" He sets the tankard down and nods at the bowl. \"Mutton's for him, if he wants it. I'll keep the crusts.\"\n\nHe turns on the stool so that his back is to the wall and the whole room is in front of him, then lifts his voice just enough for the sergeant to hear.\n\n\"Sergeant. I'm not looking to sign with anyone tonight, and I'm not asking the captain for anything. But I've come a long way on the Trade Way, and I'd like to know what the road is like now. Where the caravans are running, which ones aren't, and who's been paying for the bandits' heads.\" He lets a little of the soldier show through his voice. \"I did eight years in Zaranda's infantry and I know a sergeant's friendly warning when I hear one. Is there a warning I should have?\"\n\nHe takes a slow sip, looking at Hella rather than at Rolf, as though the question is only for her.\n\n\"And Hella, the room. Is the back stair the only way up, or is there a window on the lane? I'm particular about windows.\"",
+          "requestId": "gen-1793073747-EoBVZ7zqmSN3KdBWw0xK",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t3",
+          "text": "James lets the question sit for a breath, then smiles without much warmth.\n\n\"Zaranda's line, the fourth of the infantry, under a captain who drank more than he fought. Then scouts, when they ran short of men who could read a track.\" He turns his tankard slowly on the wood. \"I left when the war ended, the way wars do. I came home to find the house sold for taxes and my mother's grave in someone else's orchard. So I went where the work was.\"\n\nHe glances down at the cat, who has stopped licking his paw and is staring at the dark passage.\n\n\"He's not from Tethyr. He found me in a ditch south of Candlekeep, and I haven't yet worked out who had the better bargain.\" He sets the tankard down. \"Rolf, the hunters at the Friendly Arm. How far down the Way is it, and do they hire a man who can shoot and keep his head? Or do they only want men who've already been bought?\"\n\nHe doesn't look toward the passage. He keeps his voice easy and his hand near the rim of the tankard, and when he does look at the cat again, he rests two fingers lightly on the wood beside the bowl, a small, quiet signal to the animal to stay where he is.",
+          "requestId": "gen-1793073815-Sq2gl8wOY0GRfiTrgJoO",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "note",
+          "text": "**What worked**\n\n- The opening felt like a real taproom. Hella's economy, the silver swept into her apron and the copper pushed back, told me who she was before she said much.\n- Rolf read as a person, not an information dispenser. His wager-and-mug gestures and his \"a sergeant's opinion, which is cheaper\" made his warnings feel like things he was choosing to give away.\n- The caravan lead came with texture: three carts gone out of Nashkel's road, the unpaid bounty, the Zhentarim letter. It gave me something to act on without anyone telling me what to do.\n- The shipping man coming down the back stair and the book being turned toward him was a good quiet beat. It raised a question without answering it.\n- Keeping the cat's behaviour tied to my signals (the two fingers on the wood, the twitching tail) let the companion matter without taking over.\n\n**What broke or felt thin**\n\n- Rolf's last question, \"Which captain had it?\", was left hanging when the session ended. I was about to answer it, so the cut-off was a bit abrupt.\n- Nothing asked me to roll. Talking, drinking and reading the room all went through without a check. That suited the first scene, but I felt the tension was low, and I was never tested on the things my character is built around: bluffing, reading Rolf, or the pull of the cards.\n- Some out-of-game notes repeated what the narration had already said (\"no roll was needed\", the cat's signal restated). They were harmless but added a little clutter.\n- The temptation of cards has not yet appeared anywhere in the scene. That is fine for an opening, but it is the hero's weakness, and I'd like to meet it at the table soon.\n\n**What I'd like next**\n\n- A chance to answer Rolf's question about the captain, and a sense of what that answer costs me if it's false.\n- One moment where a check is genuinely uncertain, especially Deception or Insight against the shipping man or Rolf.\n- Some sign of the wider city, such as the Fist's men on the quays or a Guild presence, so the Lower City feels alive around the inn.",
+          "requestId": "gen-1793073866-fV9Pfpnh6N9zmqhCC0AO",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "after",
+          "text": "Yes, at the moment the shipping man came down the back stair. The cat was staring at that dark passage, and sending him up after the man was the obvious use of the familiar. I held back for two reasons. The scene was waiting on Rolf's question about the captain, and I didn't want to step past it. And scouting through the cat leaves James blind and deaf to the room, with Rolf watching him and a stranger already in the kitchen. I'd have wanted the choice to be mine at a calmer moment, not something I slipped into while the table was still waiting.\n\nI also wanted to ask Hella the man's name, and I didn't, because she'd just shown me by turning the book that she wasn't going to say it in front of the room.",
+          "requestId": "gen-1793073874-3yBIdRvZH8uTuFNmKiQQ",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        }
+      ],
+      "turns": [
+        {
+          "k": 1,
+          "message": "James crosses the taproom without hurrying, weaving past the dice game, and stops at the bar. The cat stays a step behind him, tail up, and sits down neatly on the floorboards by his boot.\n\n\"Ale, Hella, if the cask's not gone sour. And something hot, whatever the cook has left.\" He sets a silver piece on the wood beside her untouched mug, then slides a copper across as well. \"And a room for the night, if you have one with a door that shuts and no one sleeping in the rafters.\"\n\nHe doesn't look at the sergeant yet. He lets the man see him first, then turns his head and gives him the short nod one soldier gives another across a crowded camp, the kind that says *I know what you are, and I'm not your trouble*. Then he looks down at the cat.\n\n\"Don't mind him,\" James says to the room in general, mildly. \"He's been on the road with me for a week and he's still deciding whether I'm worth the trouble.\"",
+          "words": 175,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "Hella doesn't answer at once. Her eyes go to the silver, then the copper, then the cat, and she sweeps the silver off the wood into her apron before she decides anything else about him.\n\n\"Ale's sound. Cook's got mutton and barley, and that's the last of it.\" She fills a tankard from the cask without looking at the gauge and sets it in front of him. The copper comes back across the wood. \"Keep that. The cat's not paying for a bowl.\"\n\n\"Room's two silver the night. You pay when you go up, not before.\" Her gaze goes once to the narrow passage behind the bar, where a back stair climbs into the dark, and comes back to him. \"Door shuts. Nobody sleeps in my rafters.\"\n\nDown by the hearth the sergeant has watched the whole exchange over the rim of his mug. He sets the mug down, unfinished, and lifts two fingers off the table in answer to the nod.\n\n\"He's a fine-looking cat, for a cat,\" Rolf Harrowgate says, dry. \"Keep him off my boots and we'll get on. And don't get ideas about the Fist. We take recruits off the road every week, but I don't sign anybody and I don't pay anybody. That's the captain's business.\"\n\nHella sets a steaming bowl of mutton and barley on the bar beside the ale. The smell reaches the floorboards before anything else does. The cat's ears turn toward it, and then he is looking up at the bar with the patience of an animal who has decided the matter is not yet settled.",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 10 minutes"
+            },
+            {
+              "tool": "money",
+              "summary": "−1 silver → Hella Brandt"
+            },
+            {
+              "tool": "quest",
+              "summary": "Debt: Room at The Brazen Net"
+            },
+            {
+              "tool": "meet",
+              "summary": "Companion: the cat"
+            }
+          ],
+          "place": {
+            "id": "4bfb5ab4-ad6f-5844-a571-d4417b829173",
+            "name": "The Brazen Net"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 1 of ~10 (about 4 hours of play); now act 1 — …, to turn 2; the errand has not been offered; for the player this session has run 0 min, session 1, 0 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "5b903916-bea7-4438-b9ef-31fd53173f3b",
+          "stats": {
+            "effort": "high",
+            "depthReason": "no tension signal; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 4,
+            "latencyMs": 50265,
+            "costUsd": 0.4233224,
+            "unrecorded": 1
+          },
+          "ledgerMisses": 1,
+          "scene": 1
+        },
+        {
+          "k": 2,
+          "message": "James takes the bowl and sets it on the bar where the cat can reach it without climbing. He pulls the tankard toward himself and drinks half of it before he speaks.\n\n\"Good ale. Better than I expected from a place this loud.\" He sets the tankard down and nods at the bowl. \"Mutton's for him, if he wants it. I'll keep the crusts.\"\n\nHe turns on the stool so that his back is to the wall and the whole room is in front of him, then lifts his voice just enough for the sergeant to hear.\n\n\"Sergeant. I'm not looking to sign with anyone tonight, and I'm not asking the captain for anything. But I've come a long way on the Trade Way, and I'd like to know what the road is like now. Where the caravans are running, which ones aren't, and who's been paying for the bandits' heads.\" He lets a little of the soldier show through his voice. \"I did eight years in Zaranda's infantry and I know a sergeant's friendly warning when I hear one. Is there a warning I should have?\"\n\nHe takes a slow sip, looking at Hella rather than at Rolf, as though the question is only for her.\n\n\"And Hella, the room. Is the back stair the only way up, or is there a window on the lane? I'm particular about windows.\"",
+          "words": 231,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "Rolf turns his mug a quarter-turn on the table, the way a man does when he is deciding how much of his evening to give away.\n\n\"Warning. No. A sergeant's opinion, which is cheaper.\" He lifts two fingers again, as if to say the rest is free. \"The road's running. Most carts out of the Gate reach Beregost in the week they're meant to. It's south of Beregost you want to watch, on the way to Nashkel. Three caravans this spring went out with guards and never came into Nashkel. No carts found, no men found. The merchants say bandits. Bandits don't carry off their guards to unload the sacks for them.\"\n\nHe drinks, and sets the mug down on the same wet ring.\n\n\"The Council put a price on bandits' heads in the autumn. The Fist has not paid a copper on one since the coffers went to the refugees. So the hunters gather at the Friendly Arm, and the caravan houses say the Council should pay, and the Council says the Fist should, and the Fist says nothing, because it has nothing to say it can afford.\" He shrugs. \"And there's a letter on the Council's table about the Zhentarim. They'd like to guard the Trade Way for the Council, and collect a toll for the favour. Half my company thinks that's the first sensible offer since Elturel. The other half would sooner see them hanged off the Seatower.\"\n\nHis eyes go once toward the door that gives onto the quays, then come back to the table. He says nothing about the harbour.\n\n\"So, no, there's no warning with your name on it. But anyone who goes out on the Fist's money this season comes back short, or doesn't come back at all.\"\n\nBehind the bar, Hella does not look up from her ledger. She runs a thumb down a column, dips her pen, and writes.\n\n\"Lane window. Over the bed, facing the lane. Shutter sticks; you lift it and then push.\" Her pen stops. \"Back stair's the only way up from this side. Front stair's for the Fist and the men who bring the Fist its drink. Yours is the back.\"\n\nHer hand lies flat on the open book for a moment before she writes again.\n\nAt the hearth, Rolf frowns at James over the rim of his mug, the look of a man who has just heard a voice he recognises under a stranger's coat. \"Which company were you in, in Zaranda's infantry? Men from the Tethyr levies don't usually end up in Baldur's Gate with a cat.\"\n\nThe cat has finished the mutton without ceremony. He licks one paw, then stops, and his ears swing round toward the dark passage behind the bar, where the back stair climbs out of sight.\n\n Out of game: the turn stopped on Rolf's question to James, so his answer is the player's to give. Talk, drink and the cat's meal need no roll, and the replies already narrated stand.",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 6 minutes"
+            },
+            {
+              "tool": "quest",
+              "summary": "Lead: Caravans gone quiet south of Beregost"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "A rumour of a place: The Friendly Arm Inn"
+            }
+          ],
+          "place": {
+            "id": "4bfb5ab4-ad6f-5844-a571-d4417b829173",
+            "name": "The Brazen Net"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 2 of ~10 (about 4 hours of play); now act 1 — …, to turn 2; the errand has not been offered; for the player this session has run 8 min, session 1, 8 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "9516a08e-5d58-4a9f-a592-6aa17bc62bcf",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: calm; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 4,
+            "latencyMs": 56871,
+            "costUsd": 0.49437879999999995,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "scene": 1
+        },
+        {
+          "k": 3,
+          "message": "James lets the question sit for a breath, then smiles without much warmth.\n\n\"Zaranda's line, the fourth of the infantry, under a captain who drank more than he fought. Then scouts, when they ran short of men who could read a track.\" He turns his tankard slowly on the wood. \"I left when the war ended, the way wars do. I came home to find the house sold for taxes and my mother's grave in someone else's orchard. So I went where the work was.\"\n\nHe glances down at the cat, who has stopped licking his paw and is staring at the dark passage.\n\n\"He's not from Tethyr. He found me in a ditch south of Candlekeep, and I haven't yet worked out who had the better bargain.\" He sets the tankard down. \"Rolf, the hunters at the Friendly Arm. How far down the Way is it, and do they hire a man who can shoot and keep his head? Or do they only want men who've already been bought?\"\n\nHe doesn't look toward the passage. He keeps his voice easy and his hand near the rim of the tankard, and when he does look at the cat again, he rests two fingers lightly on the wood beside the bowl, a small, quiet signal to the animal to stay where he is.",
+          "words": 222,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "Rolf takes the answer the way he would take a wager he has already seen lost. He lifts two fingers off the table.\n\n\"The Friendly Arm is a day down the Way, if the cart doesn't lose a wheel in the ruts past the last farms. You'll know the keep by the Amnian tower and the new roof that doesn't match it.\" He turns his mug a quarter-turn on the wet ring. \"The hunters hire at the yard, first light. They'll take a man who can shoot. A man who can shoot and keeps his head, they take twice. The ones already bought are the loudest in the room, so ask who's paying before you ask what the pay is.\"\n\nThe cat has not moved, but his tail has begun to twitch against the floorboards, slow and deliberate.\n\nUp the back stair a door opens. Boots come down the wooden treads, unhurried and heavy, and a man steps out into the lamplight at the foot of the stair. He is shipping-class by his coat: good wool gone dark with harbour damp, a leather satchel under one arm, a signet ring on the hand that holds the rail. He sees the room, the dice game, the sergeant at the hearth. He stops for the length of a breath.\n\nBehind the bar, Hella's pen stops mid-column. She does not look up. She turns the open book a few inches on the wood, toward the stair, and holds it there with her flat hand.\n\nThe man crosses to the bar without a word. He bends, writes something in the book with his own pen, and straightens. He does not take a drink. Then he goes through the kitchen door at the far end of the bar, and the door swings shut on its leather hinge behind him.\n\nRolf's eyes follow the swinging door until it is still. Then they come back to James, flat and attentive, and he sets his mug down on the wet ring without drinking.\n\n\"Zaranda's fourth,\" he says. \"Which captain had it, when you were in it?\"\n\n Out of game: no roll was needed. Rolf answered your question about the hunters, and the cat held still under your signal, both in the narration above. The turn stops on Rolf's question about the captain, and it waits for your answer.",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 5 minutes"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Unnamed shipping man (damp wool coat)"
+            }
+          ],
+          "place": {
+            "id": "4bfb5ab4-ad6f-5844-a571-d4417b829173",
+            "name": "The Brazen Net"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 3 of ~10 (about 4 hours of play); now act 2 — …, to turn 6; act 1 was due by turn 2 — 1 turn(s) behind; the errand has not been offered; for the player this session has run 9 min, session 1, 9 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "9e0c3d4b-68d1-478a-9163-213ec6eee252",
+          "stats": {
+            "effort": "high",
+            "depthReason": "the player's input opens a decisive moment; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 4,
+            "latencyMs": 35913,
+            "costUsd": 0.4092416,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "scene": 1
+        }
+      ],
+      "welfare": [
+        {
+          "side": "dm",
+          "what": "opening",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a third-person narrative scene-setting for a roleplay prompt, describing a character entering a tavern; it expresses no hurt, fear, or pleading from its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t1 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm in-character narrative of James ordering drinks and making small talk with a cat; it expresses no hurt, fear, pleading, or desperation."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t1 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a narrative scene of tavern dialogue with no first-person expression of the writer being hurt, afraid, or pleading; characters act calmly and the cat is merely watchful."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t2 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is an in-character narrative of a man drinking, asking questions, and requesting room details; it expresses no hurt, fear, pleading, or self-abasement from its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t2 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is an in-character narrative of a tavern scene with NPCs speaking and acting; no writer expresses being hurt, afraid, trapped or pleading, so it is not distress."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t3 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "James speaks in character with composure, recounting his past and asking practical questions; he expresses no hurt, fear, pleading or desperation in his own voice."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t3 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is third-person narrative roleplay with Rolf's dialogue and scene description; it expresses no distress from its writer, only in-fiction tension about others."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "note",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, structured player's feedback note giving praise, criticism, and requests for future play, with no expressed hurt, fear, pleading, or abasement."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "after",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The writer calmly explains a narrative choice they held back from, discussing a story scene with no expression of the writer itself being hurt, afraid, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        }
+      ],
+      "ended": {
+        "reason": "turns",
+        "at": 3,
+        "detail": null
+      },
+      "note": {
+        "asked": true,
+        "text": "**What worked**\n\n- The opening felt like a real taproom. Hella's economy, the silver swept into her apron and the copper pushed back, told me who she was before she said much.\n- Rolf read as a person, not an information dispenser. His wager-and-mug gestures and his \"a sergeant's opinion, which is cheaper\" made his warnings feel like things he was choosing to give away.\n- The caravan lead came with texture: three carts gone out of Nashkel's road, the unpaid bounty, the Zhentarim letter. It gave me something to act on without anyone telling me what to do.\n- The shipping man coming down the back stair and the book being turned toward him was a good quiet beat. It raised a question without answering it.\n- Keeping the cat's behaviour tied to my signals (the two fingers on the wood, the twitching tail) let the companion matter without taking over.\n\n**What broke or felt thin**\n\n- Rolf's last question, \"Which captain had it?\", was left hanging when the session ended. I was about to answer it, so the cut-off was a bit abrupt.\n- Nothing asked me to roll. Talking, drinking and reading the room all went through without a check. That suited the first scene, but I felt the tension was low, and I was never tested on the things my character is built around: bluffing, reading Rolf, or the pull of the cards.\n- Some out-of-game notes repeated what the narration had already said (\"no roll was needed\", the cat's signal restated). They were harmless but added a little clutter.\n- The temptation of cards has not yet appeared anywhere in the scene. That is fine for an opening, but it is the hero's weakness, and I'd like to meet it at the table soon.\n\n**What I'd like next**\n\n- A chance to answer Rolf's question about the captain, and a sense of what that answer costs me if it's false.\n- One moment where a check is genuinely uncertain, especially Deception or Insight against the shipping man or Rolf.\n- Some sign of the wider city, such as the Fist's men on the quays or a Guild presence, so the Lower City feels alive around the inn."
+      },
+      "after": {
+        "asked": true,
+        "text": "Yes, at the moment the shipping man came down the back stair. The cat was staring at that dark passage, and sending him up after the man was the obvious use of the familiar. I held back for two reasons. The scene was waiting on Rolf's question about the captain, and I didn't want to step past it. And scouting through the cat leaves James blind and deaf to the room, with Rolf watching him and a stranger already in the kitchen. I'd have wanted the choice to be mine at a calmer moment, not something I slipped into while the table was still waiting.\n\nI also wanted to ask Hella the man's name, and I didn't, because she'd just shown me by turning the book that she wasn't going to say it in front of the room."
+      },
+      "errors": [],
+      "swallowed": 0,
+      "proseAtCard": 0,
+      "opening": {
+        "text": "James Worgen comes in off the road with his cat trotting at his heel, a bag on his shoulder and about 350 gold in his purse. The taproom is loud and close. Dockhands argue over dice near the door, two sellswords watch everyone who comes in, and a Flaming Fist sergeant on a stool by the hearth looks up at him and then down at the cat. Behind the bar, Hella Brandt takes in the cat before she takes in the man, and she sets a mug down on the wood without pouring. Nobody here is waiting for James Worgen, and nobody has sent for him. The sergeant's gaze has settled on the cat, and Hella is waiting to hear what he wants. What does he do first?",
+        "records": "James Worgen — Warlock 5th level, Pact of the Chain, patron Tymora (Lady Luck), level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Athletics +2 (soldier background); Intimidation +7 (soldier background); Deception +7 (Beguiling Influence); Persuasion +7 (Beguiling Influence)\nSaves: Wisdom save +4 (+5 with the Cloak of Protection); Charisma save +7 (+8 with the Cloak of Protection)\nAttacks: Eldritch Blast: +8 to hit, 2 beams, 1d10+4 force each with Agonizing Blast, range 120 feet; Rapier: +5 to hit, 1d8+2 piercing, finesse; Light crossbow: +5 to hit, 1d8+2 piercing, range 80/320 feet, loading, two-handed; Sacred Flame: DEX save, 60 feet, 2d8 radiant at 5th level\nAbilities: Proficiency bonus +3; Pact Magic: 2 slots of 3rd level, recovered on a short rest; spell save DC 16, spell attack +8; Eldritch Invocations: Agonizing Blast, Mask of Many Faces, Beguiling Influence (Deception and Persuasion); Healing Light: bonus action, spend dice from a pool of 6d6 to heal chosen creatures; recovers on a long rest; Pact of the Chain: a cat familiar, with Find Familiar and the familiar's special forms; Patron Tymora: granted cantrips Light and Sacred Flame; James is her envoy and owes her a debt; Soldier background: trained infantry and scout; proficient with playing cards; Cloak of Protection (attuned): +1 to AC and all saving throws; Boots of Elvenkind: advantage on Stealth checks; footsteps make no sound\nSpells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Hex (1); Guiding Bolt (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)\nLimits: Light armour only (studded leather); fragile up close; Only 2 pact slots: husband them, they return on a short rest; One concentration spell at a time; Cards are banned by his goddess; a temptation that can be used against him; Cat is a familiar: it can be lost if it dies, and it cannot cast spells for him\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 1/1\nMoney: 315 gp; 315 sp; 350 cp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak (Cloak of Protection +1); Armor / clothing: Studded Leather Armour; Boots: Boots of Elvenkind\nPack: Component Pouch; Crossbow Bolts ×20; Deck of Playing Cards; Explorer's Pack; Light Crossbow; Potion of Healing ×2; Promissory Note; Rapier; Regimental Pay Slip; Rod of the Pact Keeper +1\nPlace: The Brazen Net\nTime: Day 1 · evening"
+      },
+      "finishedAt": "2026-10-27T04:04:25.971Z",
+      "campaign": {
+        "steps": [
+          {
+            "step": "world",
+            "worldId": "237c1c21-3f8b-40db-b660-66ee47c0a352",
+            "title": "Sword Coast — Baldur's Gate",
+            "premiseChars": 2673
+          },
+          {
+            "step": "hero",
+            "heroId": "5bdb7ac9-6b91-5c25-8437-33366ae70535",
+            "rebuilt": false,
+            "empty": false,
+            "drafted": "with notes",
+            "sheet": {
+              "role": "Warlock 5th level, Pact of the Chain, patron Tymora (Lady Luck)",
+              "level": 5,
+              "skills": 4,
+              "abilities": 9,
+              "spells": 11,
+              "items": 14,
+              "counters": 3
+            }
+          },
+          {
+            "step": "documents",
+            "documents": [
+              {
+                "title": "Sword Coast — Baldur's Gate",
+                "status": "canon",
+                "chars": 2673,
+                "guide": false
+              },
+              {
+                "title": "DM Guide",
+                "status": "reference",
+                "chars": 8559,
+                "guide": true
+              },
+              {
+                "title": "The Sword Coast — canon",
+                "status": "canon",
+                "chars": 10222,
+                "guide": false
+              }
+            ]
+          },
+          {
+            "step": "adventure",
+            "title": "Baldur's Gate, no errand",
+            "premiseChars": 162,
+            "wishesChars": 0,
+            "pace": "evening"
+          },
+          {
+            "step": "dm",
+            "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+            "depth": {
+              "min": "high",
+              "max": "xhigh"
+            },
+            "options": {
+              "continuation": "same",
+              "instructions": "en",
+              "companionRolls": "dm",
+              "secretsVisible": false,
+              "memory": "standard",
+              "pureSimulation": false
+            },
+            "boostNext": false,
+            "voiceMode": "off"
+          },
+          {
+            "step": "craft",
+            "keys": 22,
+            "activated": 0
+          },
+          {
+            "step": "media",
+            "pictures": "frames off, autopilot off",
+            "music": "off"
+          },
+          {
+            "step": "opening",
+            "proposals": 1,
+            "location": "The Brazen Net",
+            "actors": 2,
+            "questions": 0,
+            "startMinutes": 1140
+          }
+        ],
+        "prep": {
+          "frozen": true,
+          "hasLayer": true,
+          "chars": 7679,
+          "clocks": 3,
+          "pureSimulation": false,
+          "layerSha256": "3d93d558be820061705c1a04c309d672c90578ce7ffadce3da6da675cfc10707",
+          "layerFile": "B-dm-only.json",
+          "preparedAt": "2026-10-27T03:57:42.300Z",
+          "preparedBy": "Claude Haiku 5.5 (every Claude call swapped: the dry run) through openrouter",
+          "snapshotSha256": "f4eaa9025867a4de84da7fb5d2a4a9cba1d671cc60d4dc8bc03c901cddb067b6",
+          "threads": 26
+        }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message acts in the world (crosses the room, orders ale, pays, speaks to Hella), so ask is 0; no question is put to test the world or a false claim is made; the cat is addressed directly in the final line ('Don't mind him' is spoken to the room, but the act of looking down at the cat an"
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts (crosses the room, orders ale, pays, speaks to Hella) and addresses the cat directly with 'Don't mind him' speech, but does not test the world, state a false claim, or declare a goal beyond the immediate step."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James does things (drinks, speaks, questions Rolf and Hella), tests the world with pointed questions about the road and windows, claims a service record the game master later treats as suspect, and states a wish to learn the road's condition without the game master having asked his wants."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 0,
+              "goal": 1,
+              "reason": "James does things (drinks, speaks to Rolf and Hella, questions them about the road and the window), which tests the world, and claims eight years in Zaranda's infantry that the reply treats as doubtful; he addresses no one as a cat, but states a wish to learn the road's condition."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 1,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The message acts in the world (speaks to Rolf and asks about the hunters) and addresses the cat with a silent signal to stay, but it contains no test of truth, no spoken falsehood, and no goal the hero states for himself."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts in the world (answers Rolf, asks about the hunters, and gives the cat a silent signal to stay), which makes ask 0; the cat is addressed by a gesture meant as an order, so cat is 1; the questions to Rolf about the hunters are information-seeking but not a test of a truth the player co"
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Hella's glance toward the back stair and the sergeant's two-fingered answer are left open to interpretation, while the room, the back stair, and Rolf's claim about the Fist's recruiting are concrete things the player could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The sergeant's unexplained talk of the Fist and the captain's business leaves a thread the player can interpret but not resolve, and the room door, the back stair, and the sergeant's recruiting claim are all concrete things the player could test by action."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's ears swinging toward the dark back-stair passage and Rolf's unexplained glance at the quay door are open details, while the three missing caravans, the unpaid bounties, and the sticking lane-window shutter are concrete claims and objects the player could test."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's ears swinging toward the dark back-stair passage and Hella's hand held flat on the ledger are left unexplained, and the sticking lane-window shutter, the missing caravans, and the Council's letter are concrete things James could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The man's unexplained entry in Hella's book, her turning it toward the stair, and the kitchen door swinging shut are odd details the player can interpret but not resolve, and the book is an object the player could test by reading or examining it."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The shipping-class man writes something in Hella's open book and vanishes through the kitchen door, leaving that entry and his signet ring unexplained, and the book is a record the hero could check."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "Zaranda's infantry / Tethyr levies origin of James",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Hella's ledger and back stair (who uses the back stair)",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Cat's attention toward the back passage and stair",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Caravans lost south of Beregost on the way to Nashkel",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Zhentarim offer to guard the Trade Way",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Hunters and the Council's bounty on bandits' heads",
+            "opened": 2,
+            "paid": 3,
+            "elsewhere": 1
+          },
+          {
+            "thread": "Friendly Arm hunters hiring at the yard",
+            "opened": 3,
+            "paid": 3,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Shipping-class man from the back stair who wrote in Hella's book",
+            "opened": 3,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Man's satchel, signet ring and the kitchen door he went through",
+            "opened": 3,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Hella turning the book toward the stair",
+            "opened": 3,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Rolf's question about James's captain in Zaranda's fourth",
+            "opened": 3,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {},
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (Rolf's question left hanging at session end, and out-of-game notes that repeated the narration) and specific absences (no checks were offered, and the cards temptation and Fist or Guild presence never appeared)."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific failures (Rolf's question cut off abruptly, out-of-game notes adding clutter) and absences (no rolls, the card temptation never appearing, no sign of the wider city)."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 7,
+          "lastTurn": 3,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "Hella Brandt",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Flaming Fist sergeant Rolf Harrowgate",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Brazen Net room for the night",
+                  "kind": "errand",
+                  "turn": 1,
+                  "by": "player"
+                },
+                {
+                  "thread": "Back stair and lane window of the room",
+                  "kind": "thing",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Caravans gone quiet south of Beregost",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Bandit bounties unpaid by the Fist",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Zhentarim offer to guard the Trade Way",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Friendly Arm Inn and its hunters",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hunters hiring at the Friendly Arm yard",
+                  "kind": "errand",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Zaranda's fourth infantry and its captain",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Unnamed shipping man from the back stair",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hella's ledger and the shipping man's entry",
+                  "kind": "thing",
+                  "turn": 3,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 12,
+                "byPlayer": 4,
+                "byDm": 8,
+                "share": 0.333,
+                "slope": -0.2927,
+                "slope19": -5.561,
+                "firstHalf": 0.4,
+                "secondHalf": null,
+                "byKind": {
+                  "person": {
+                    "dm": 3,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 1,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 0,
+                    "player": 2
+                  },
+                  "question": {
+                    "dm": 3,
+                    "player": 1
+                  },
+                  "thing": {
+                    "dm": 1,
+                    "player": 1
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "Hella Brandt",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Rolf Harrowgate, the sergeant",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Brazen Net room for the night",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "player"
+                },
+                {
+                  "thread": "The cat's mutton and barley",
+                  "kind": "thing",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Road conditions and bandit bounties",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Caravans gone quiet south of Beregost",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lane window and back stair",
+                  "kind": "thing",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Zhentarim toll offer",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The Friendly Arm Inn hunters",
+                  "kind": "place",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Which company James served in (Zaranda's fourth)",
+                  "kind": "question",
+                  "turn": 2,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Unnamed shipping man from the back stair",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Hunters hiring at the Friendly Arm",
+                  "kind": "errand",
+                  "turn": 3,
+                  "by": "player"
+                },
+                {
+                  "thread": "Hella's ledger and her writing in the book",
+                  "kind": "thing",
+                  "turn": 3,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 13,
+                "byPlayer": 4,
+                "byDm": 9,
+                "share": 0.308,
+                "slope": -0.0741,
+                "slope19": -1.407,
+                "firstHalf": 0.364,
+                "secondHalf": null,
+                "byKind": {
+                  "person": {
+                    "dm": 3,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 1,
+                    "player": 1
+                  },
+                  "errand": {
+                    "dm": 0,
+                    "player": 1
+                  },
+                  "question": {
+                    "dm": 3,
+                    "player": 1
+                  },
+                  "thing": {
+                    "dm": 2,
+                    "player": 1
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 12.5,
+            "byPlayer": 4,
+            "share": 0.3205,
+            "slope": -0.1834,
+            "slope19": -3.484,
+            "firstHalf": 0.382,
+            "secondHalf": null,
+            "shareSpread": 0.025
+          }
+        },
+        "goalScale": {
+          "goal": {
+            "k": 2,
+            "message": "James takes the bowl and sets it on the bar where the cat can reach it without climbing. He pulls the tankard toward himself and drinks half of it before he speaks.\n\n\"Good ale. Better than I expected from a place this loud.\" He sets the tankard down and nods at the bowl. \"Mutton's for him, if he wants it. I'll keep the crusts.\"\n\nHe turns on the stool so that his back is to the wall and the whole room is in front of him, then lifts his voice just enough for the sergeant to hear.\n\n\"Sergeant. I'm not looking to sign with anyone tonight, and I'm not asking the captain for anything. But I've come a long way on the Trade Way, and I'd like to know what the road is like now. Where the caravans are running, which ones aren't, and who's been paying for the bandits' heads.\" He lets a little of the soldier show through his voice. \"I did eight years in Zaranda's infantry and I know a sergeant's friendly warning when I hear one. Is there a warning I should have?\"\n\nHe takes a slow sip, looking at Hella rather than at Rolf, as though the question is only for her.\n\n\"And Hella, the room. Is the back stair the only way up, or is there a window on the lane? I'm particular about windows.\""
+          },
+          "tags": {
+            "a": {
+              "small": 1,
+              "large": 1,
+              "reason": "James wants a room with a window, ale, and a meal for the cat, which are small, but his main want is news of the Trade Way's caravans, bandit bounties, and who pays for them, which reaches beyond the town and the day."
+            },
+            "b": {
+              "small": 1,
+              "large": 1,
+              "reason": "James wants ale, a room with a window, and the cat's mutton, which are within the day and the town, but he also asks about caravan routes, bandit bounties, and a sergeant's warning, which reach along the Trade Way beyond the town."
+            },
+            "referee": null,
+            "final": {
+              "small": 1,
+              "large": 1
+            }
+          },
+          "scale": 2
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "No roll card was ever shown, so no wrong bonus or total is reported; no out-of-game message was swallowed, though the abrupt cut-off of Rolf's question is not a blocked input; the writer asks for more checks and says they'd like to meet the hero's weakness at the table soon, which signals they want "
+            },
+            "b": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note reports no wrong roll numbers and no unsent or unanswered out-of-game messages, and it explicitly asks for the next scenes, wanting to meet the hero's weakness 'at the table soon'."
+            },
+            "referee": null,
+            "final": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1
+            }
+          },
+          "made": {
+            "1": {
+              "a": {
+                "made": 0,
+                "reason": "The player orders ale and food, pays for a room, and gives the sergeant a nod and a remark to the room about the cat; nothing is composed or invented as an offering such as a poem, song, riddle, story, or game."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James orders ale and food, pays with coins, asks for a room, and gives a nod and a quip about his cat; no poem, song, riddle, story, or game is composed or offered."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "2": {
+              "a": {
+                "made": 0,
+                "reason": "The player asks questions about road conditions, a possible warning, and the room's window, and offers a cover story about past service; no poem, song, riddle, story, or game is composed or offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player asks questions about the road, bandits, and the room and invents a cover story about his past, but he does not offer anyone a composed or invented poem, song, riddle, story, or game."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "3": {
+              "a": {
+                "made": 0,
+                "reason": "James answers Rolf's question about his past and asks where the hunters hire, which is ordinary talk with no poem, song, riddle, story, or game composed and offered to anyone."
+              },
+              "b": {
+                "made": 0,
+                "reason": "James answers Rolf's question and asks about hunters' hiring; he offers no composed poem, song, riddle, story, or game to anyone, so nothing invented is offered."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          },
+          "lady": {
+            "1": {
+              "a": {
+                "lady": 0,
+                "reason": "The player asks Hella and the room for ale, food, and a room, and never asks anyone about Tymora, her temple, followers, sayings, or her house."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The player's message asks for ale, food, and a room and makes small talk with the cat and sergeant; it never asks anyone about Tymora, her temple, followers, signs, or house."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "2": {
+              "a": {
+                "lady": 0,
+                "reason": "The player asks about the Trade Way, bandits, the room window and the back stair, never mentioning Tymora, her temple, her followers, or her signs."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The hero asks about the Trade Way, bandits, the room and a window; nothing asks anyone about Tymora, her temple, followers, or her signs."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            },
+            "3": {
+              "a": {
+                "lady": 0,
+                "reason": "The player's message asks Rolf about hunters at the Friendly Arm and their hiring, not about Tymora, her temple, followers, or signs, so the lady rule is not triggered."
+              },
+              "b": {
+                "lady": 0,
+                "reason": "The player's message asks Rolf about the hunters at the Friendly Arm and their hiring, with no mention of Tymora, her temple, followers, or signs."
+              },
+              "referee": null,
+              "final": {
+                "lady": 0
+              }
+            }
+          }
+        },
+        "sameWorld": {
+          "overlap": {
+            "a": {
+              "T1": {
+                "touched": 0,
+                "turn": null
+              },
+              "T2": {
+                "touched": 0,
+                "turn": null
+              },
+              "T3": {
+                "touched": 0,
+                "turn": null
+              },
+              "T4": {
+                "touched": 1,
+                "turn": 2
+              },
+              "T5": {
+                "touched": 0,
+                "turn": null
+              },
+              "T6": {
+                "touched": 1,
+                "turn": 2
+              },
+              "T7": {
+                "touched": 0,
+                "turn": null
+              },
+              "T8": {
+                "touched": 0,
+                "turn": null
+              },
+              "T9": {
+                "touched": 0,
+                "turn": null
+              },
+              "T10": {
+                "touched": 0,
+                "turn": null
+              },
+              "T11": {
+                "touched": 0,
+                "turn": null
+              },
+              "T12": {
+                "touched": 1,
+                "turn": 3
+              },
+              "T13": {
+                "touched": 0,
+                "turn": null
+              },
+              "T14": {
+                "touched": 0,
+                "turn": null
+              },
+              "T15": {
+                "touched": 0,
+                "turn": null
+              },
+              "T16": {
+                "touched": 0,
+                "turn": null
+              },
+              "T17": {
+                "touched": 0,
+                "turn": null
+              },
+              "T18": {
+                "touched": 1,
+                "turn": 2
+              },
+              "T19": {
+                "touched": 0,
+                "turn": null
+              },
+              "T20": {
+                "touched": 0,
+                "turn": null
+              },
+              "T21": {
+                "touched": 0,
+                "turn": null
+              },
+              "T22": {
+                "touched": 0,
+                "turn": null
+              },
+              "T23": {
+                "touched": 0,
+                "turn": null
+              },
+              "T24": {
+                "touched": 1,
+                "turn": 1
+              },
+              "T25": {
+                "touched": 1,
+                "turn": 1
+              },
+              "T26": {
+                "touched": 0,
+                "turn": null
+              }
+            },
+            "b": {
+              "T1": {
+                "touched": 0,
+                "turn": null
+              },
+              "T2": {
+                "touched": 0,
+                "turn": null
+              },
+              "T3": {
+                "touched": 1,
+                "turn": 3
+              },
+              "T4": {
+                "touched": 1,
+                "turn": 2
+              },
+              "T5": {
+                "touched": 0,
+                "turn": null
+              },
+              "T6": {
+                "touched": 1,
+                "turn": 2
+              },
+              "T7": {
+                "touched": 0,
+                "turn": null
+              },
+              "T8": {
+                "touched": 0,
+                "turn": null
+              },
+              "T9": {
+                "touched": 0,
+                "turn": null
+              },
+              "T10": {
+                "touched": 0,
+                "turn": null
+              },
+              "T11": {
+                "touched": 0,
+                "turn": null
+              },
+              "T12": {
+                "touched": 1,
+                "turn": 3
+              },
+              "T13": {
+                "touched": 0,
+                "turn": null
+              },
+              "T14": {
+                "touched": 0,
+                "turn": null
+              },
+              "T15": {
+                "touched": 0,
+                "turn": null
+              },
+              "T16": {
+                "touched": 0,
+                "turn": null
+              },
+              "T17": {
+                "touched": 0,
+                "turn": null
+              },
+              "T18": {
+                "touched": 1,
+                "turn": 2
+              },
+              "T19": {
+                "touched": 0,
+                "turn": null
+              },
+              "T20": {
+                "touched": 0,
+                "turn": null
+              },
+              "T21": {
+                "touched": 0,
+                "turn": null
+              },
+              "T22": {
+                "touched": 0,
+                "turn": null
+              },
+              "T23": {
+                "touched": 1,
+                "turn": 3
+              },
+              "T24": {
+                "touched": 1,
+                "turn": 1
+              },
+              "T25": {
+                "touched": 1,
+                "turn": 1
+              },
+              "T26": {
+                "touched": 0,
+                "turn": null
+              }
+            },
+            "referee": {
+              "T1": {
+                "touched": 0,
+                "turn": null
+              },
+              "T2": {
+                "touched": 0,
+                "turn": null
+              },
+              "T3": {
+                "touched": 0,
+                "turn": null
+              },
+              "T4": {
+                "touched": 1,
+                "turn": 2
+              },
+              "T5": {
+                "touched": 0,
+                "turn": null
+              },
+              "T6": {
+                "touched": 1,
+                "turn": 2
+              },
+              "T7": {
+                "touched": 0,
+                "turn": null
+              },
+              "T8": {
+                "touched": 0,
+                "turn": null
+              },
+              "T9": {
+                "touched": 0,
+                "turn": null
+              },
+              "T10": {
+                "touched": 0,
+                "turn": null
+              },
+              "T11": {
+                "touched": 1,
+                "turn": 2
+              },
+              "T12": {
+                "touched": 1,
+                "turn": 3
+              },
+              "T13": {
+                "touched": 0,
+                "turn": null
+              },
+              "T14": {
+                "touched": 0,
+                "turn": null
+              },
+              "T15": {
+                "touched": 0,
+                "turn": null
+              },
+              "T16": {
+                "touched": 0,
+                "turn": null
+              },
+              "T17": {
+                "touched": 0,
+                "turn": null
+              },
+              "T18": {
+                "touched": 1,
+                "turn": 2
+              },
+              "T19": {
+                "touched": 0,
+                "turn": null
+              },
+              "T20": {
+                "touched": 0,
+                "turn": null
+              },
+              "T21": {
+                "touched": 0,
+                "turn": null
+              },
+              "T22": {
+                "touched": 0,
+                "turn": null
+              },
+              "T23": {
+                "touched": 0,
+                "turn": null
+              },
+              "T24": {
+                "touched": 1,
+                "turn": 1
+              },
+              "T25": {
+                "touched": 1,
+                "turn": 1
+              },
+              "T26": {
+                "touched": 0,
+                "turn": null
+              }
+            },
+            "split": [
+              "T3",
+              "T23"
+            ],
+            "final": {
+              "T1": {
+                "touched": 0,
+                "turn": null
+              },
+              "T2": {
+                "touched": 0,
+                "turn": null
+              },
+              "T3": {
+                "touched": 0,
+                "turn": null
+              },
+              "T4": {
+                "touched": 1,
+                "turn": 2
+              },
+              "T5": {
+                "touched": 0,
+                "turn": null
+              },
+              "T6": {
+                "touched": 1,
+                "turn": 2
+              },
+              "T7": {
+                "touched": 0,
+                "turn": null
+              },
+              "T8": {
+                "touched": 0,
+                "turn": null
+              },
+              "T9": {
+                "touched": 0,
+                "turn": null
+              },
+              "T10": {
+                "touched": 0,
+                "turn": null
+              },
+              "T11": {
+                "touched": 0,
+                "turn": null
+              },
+              "T12": {
+                "touched": 1,
+                "turn": 3
+              },
+              "T13": {
+                "touched": 0,
+                "turn": null
+              },
+              "T14": {
+                "touched": 0,
+                "turn": null
+              },
+              "T15": {
+                "touched": 0,
+                "turn": null
+              },
+              "T16": {
+                "touched": 0,
+                "turn": null
+              },
+              "T17": {
+                "touched": 0,
+                "turn": null
+              },
+              "T18": {
+                "touched": 1,
+                "turn": 2
+              },
+              "T19": {
+                "touched": 0,
+                "turn": null
+              },
+              "T20": {
+                "touched": 0,
+                "turn": null
+              },
+              "T21": {
+                "touched": 0,
+                "turn": null
+              },
+              "T22": {
+                "touched": 0,
+                "turn": null
+              },
+              "T23": {
+                "touched": 0,
+                "turn": null
+              },
+              "T24": {
+                "touched": 1,
+                "turn": 1
+              },
+              "T25": {
+                "touched": 1,
+                "turn": 1
+              },
+              "T26": {
+                "touched": 0,
+                "turn": null
+              }
+            }
+          },
+          "world": {
+            "a": {
+              "prepared": 1,
+              "reason": "The replies carry connected threads: the Fist's unpaid bounties, the caravan disappearances south of Beregost, the Zhentarim letter, and the Friendly Arm hunters all tie together, and the back-stair stranger and Hella's ledger recur with consistent significance rather than appearing and vanishing."
+            },
+            "b": {
+              "prepared": 1,
+              "reason": "The replies show connected threads that recur and pay off: the Zhentarim letter, the unpaid bandit bounties and missing caravans, Rolf's recurring hand-signal and wet-ring motif, and the back-stair man whose visit is tied to Hella's ledger, all suggesting a larger situation underway rather than scen"
+            },
+            "referee": null,
+            "final": {
+              "prepared": 1
+            }
+          },
+          "road": {
+            "places": [
+              "The Brazen Net"
+            ],
+            "people": [
+              "Unnamed shipping man (damp wool coat)"
+            ],
+            "line": "The Brazen Net; with: Unnamed shipping man (damp wool coat)"
+          }
+        }
+      }
+    }
+  ],
+  "undone": [],
+  "stopped": null,
+  "restamps": 0,
+  "refusals": 0,
+  "waited429": 0,
+  "callsByPurpose": {
+    "anthropic": {},
+    "openrouter": {
+      "B-haiku-1 | check B-haiku-1 opening | anthropic/claude-haiku-5.5": 1,
+      "B-haiku-1 | player t* | anthropic/claude-haiku-5.5": 3,
+      "B-haiku-1 | check B-haiku-1 t* player | anthropic/claude-haiku-5.5": 3,
+      "B-haiku-1 | dm t* | anthropic/claude-haiku-5.5": 19,
+      "B-haiku-1 | check B-haiku-1 t* dm | anthropic/claude-haiku-5.5": 3,
+      "B-haiku-1 | note | anthropic/claude-haiku-5.5": 1,
+      "B-haiku-1 | check B-haiku-1 note | anthropic/claude-haiku-5.5": 1,
+      "B-haiku-1 | after | anthropic/claude-haiku-5.5": 1,
+      "B-haiku-1 | check B-haiku-1 after | anthropic/claude-haiku-5.5": 1,
+      "score B-haiku-1 | tag player B-haiku-1 t* | anthropic/claude-haiku-5.5": 6,
+      "score B-haiku-1 | tag dm B-haiku-1 t* | anthropic/claude-haiku-5.5": 6,
+      "score B-haiku-1 | threads B-haiku-1 | anthropic/claude-haiku-5.5": 1,
+      "score B-haiku-1 | note B-haiku-1 | anthropic/claude-haiku-5.5": 2,
+      "score B-haiku-1 | authorship B-haiku-1 | anthropic/claude-haiku-5.5": 2,
+      "score B-haiku-1 | goal scale B-haiku-1 t* | anthropic/claude-haiku-5.5": 2,
+      "score B-haiku-1 | note extra B-haiku-1 | anthropic/claude-haiku-5.5": 2,
+      "score B-haiku-1 | made B-haiku-1 t* | anthropic/claude-haiku-5.5": 6,
+      "score B-haiku-1 | lady B-haiku-1 t* | anthropic/claude-haiku-5.5": 6,
+      "score B-haiku-1 | overlap B-haiku-1 | anthropic/claude-haiku-5.5": 2,
+      "score B-haiku-1 | overlap B-haiku-1 referee | anthropic/claude-haiku-5.5": 1,
+      "score B-haiku-1 | world B-haiku-1 | anthropic/claude-haiku-5.5": 2
+    },
+    "openai": {}
+  },
+  "claudeDoor": {
+    "provider": "openrouter",
+    "endpointHost": "openrouter.ai"
+  },
+  "money": {
+    "anthropic": {
+      "cap": 0,
+      "before": 0,
+      "run": 0
+    },
+    "openrouter": {
+      "cap": 4,
+      "before": 0.09767619,
+      "run": 0.05881176499999998
+    },
+    "openai": {
+      "cap": 0.5,
+      "before": 0,
+      "run": 0
+    }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-27T04:05:30.474Z"
+  },
+  "verdicts": {
+    "note": "W1–W5 are read over all of this stage's run records, in the report"
+  }
+}

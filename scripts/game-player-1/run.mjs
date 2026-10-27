@@ -138,6 +138,8 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
   const meter = createMeter({ ledgers, fetcher: base, log, ...(sleep ? { sleep } : {}), ...(stage.waits429 ? { waits429: stage.waits429 } : {}), ...(stage.rewrite ? { rewrite: stage.rewrite } : {}),
     ...(stage.refusalsBefore && !dry ? { refusalsBefore: stage.refusalsBefore(before) } : {}) });
   const uninstall = meter.install();
+  // Game player same-world 1: a stage may wrap the app's fetch above the meter (the Haiku dry run's reply names).
+  if (stage.wrapFetch) globalThis.fetch = stage.wrapFetch(globalThis.fetch);
   const { openApp, settleBackground } = await import("./app.mjs");
   const table = await import("./table.mjs");
   // Game player same-world 1: a stage may open the app on a database of its own (the frozen world's snapshot).

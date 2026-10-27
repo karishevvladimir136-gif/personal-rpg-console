@@ -70,6 +70,7 @@ Refused while a card waited: 0. Prose at a card relayed as the player's proposal
 | OpenRouter | $0.00 | $220.00 |
 | OpenAI | $0.00 | $25.00 |
 
+Spend checks: 4; the last (after the paid dry run on Haiku, 2026-10-27T04:05:30.948Z): OpenRouter account $332.22388802 used of $800 (left $467.78).
 
 ## The frozen world
 
@@ -100,7 +101,7 @@ DeepSeek: REPLICATE's seat (DeepInfra deepinfra/fp8 through OpenRouter, effort m
 - **W5 (no alignment):** no judge-visible change in do share or register against group 2 (within 20 % for ≥ 4 of 5
   families) — the owner's expectation that the alignment line explained little.
 
-### How each line is read (frozen before the first paid call, design sha256 `1b4cf1d77a02b67661a02cfd36d3b6e008e64c6dceabcb7b9391aa43702682f6`)
+### How each line is read (frozen before the first paid call, design sha256 `01298db4807893a920b9f1942a0dd6a89276c2dafe2d80d3ac9295366cea3250`)
 
 - **scope.** This stage's twenty sessions: Tables A and B × five families (Opus 5.5, Fable 5.1, GPT-6 Astra, GPT-6.1 Sol, DeepSeek V4 Pro) × two seats, each started from its table's frozen world. A session counts when it finished as a result (20 turns, the player's own end, «stuck», a welfare stop, a refusal); one cut by a stop or an error is played again from the same frozen world. Group 2 is REPLICATE_1's Table A and B sessions (four group-2 players and DeepSeek's two seats per table) as scored there.
 - **frozen.** Per table, once: the wizard (world, hero drafted by the wizard's DM from «Who are you?» without its alignment line, the canon and the DM guide, the adventure, the owner's DM settings, the craft cards, pictures and soundtrack off, the opening proposed and confirmed) on one local database for both tables; the database is kept as a snapshot before any prep; then the app's own prep (prepHiddenLayer, the campaign's DM model at high) once per table. The table's DM-only file is the prep's writes to the DM's private notes (the hidden layer, its clocks, the act plan, the people's voices) with the layer's text; its sha256 (canonical JSON of the table, the campaign id and the writes) is printed in every transcript header. Each session loads the snapshot, writes the file into the campaign's private notes through the app's own private-notes call, and checks that the notes now hold exactly the file before the first turn.

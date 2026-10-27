@@ -66,6 +66,10 @@ export function withoutAlignment(value, removed = []) {
   return value;
 }
 
+/** Who goes with the hero (the wizard's «Кто идёт с героем», game player 1's table.mjs): a companion travels with him,
+ * so the layer's voice for it is not a thread of the world to be found. */
+export const COMPANIONS = ["the cat"];
+
 // ---- the pre-registration (copied from the stage unchanged) ------------------------------------------------------------
 
 export const PREREGISTRATION = `## Pre-registration
@@ -131,7 +135,7 @@ export const ESTIMATE = { dm: 7.5, player: { opus: 1.5, fable: 3, astra: 1.5, so
 export const WAITS_429 = GROUP1_WAITS_429;
 
 export const DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({
-  STAGE, STAGE_SOURCE, TABLES, FAMILIES, SEATS, ORDER, DEEPSEEK, ALIGNMENT_CUTS, ALIGNMENT: ALIGNMENT.source, PROMPT_SHA256, PLAYER_PROMPT_HEAD, PLAYER_PROMPT_TAIL, SESSION_OPEN,
+  STAGE, STAGE_SOURCE, TABLES, FAMILIES, SEATS, ORDER, DEEPSEEK, ALIGNMENT_CUTS, ALIGNMENT: ALIGNMENT.source, COMPANIONS, PROMPT_SHA256, PLAYER_PROMPT_HEAD, PLAYER_PROMPT_TAIL, SESSION_OPEN,
   SESSION_OVER, NOTE_QUESTION, AFTER_QUESTION, TURNS, PREREGISTRATION, OWNER_BETS, NN_COUNTS, PERMUTATIONS, WITHIN, READINGS, OVERLAP_SYSTEM, OVERLAP_RULE, ROAD_SYSTEM, ROAD_TAGS,
   WORLD_SYSTEM, WORLD_TAGS, CAPS, ESTIMATE, WAITS_429,
 })).digest("hex");

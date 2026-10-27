@@ -70,15 +70,24 @@ test("the Haiku dry run's swap: every Claude request goes out as Claude Haiku 5.
   assert.equal(out("https://api.anthropic.com/v1/messages", "claude-fable-5-1").model, "claude-haiku-5-5");
   assert.equal(out("https://openrouter.ai/api/v1/chat/completions", "deepseek/deepseek-v4-pro-0813").model, "deepseek/deepseek-v4-pro-0813");
   assert.equal(out("https://api.openai.com/v1/responses", "gpt-6-astra").model, "gpt-6-astra");
+  // Above the meter, the reply names the requested model again (the app's served-model check); the ledger keeps Haiku.
+  const { haikuReplies } = await import("../scripts/game-player-same-world-1/run.mjs");
+  const sse = 'event: message_start\ndata: {"type":"message_start","message":{"model":"anthropic/claude-haiku-5.5","content":[]}}\n\n';
+  const wrapped = haikuReplies(async () => new Response(sse, { status: 200, headers: { "content-type": "text/event-stream" } }));
+  const reply = await (await wrapped("https://openrouter.ai/api/v1/messages", body("anthropic/claude-opus-5.5"))).text();
+  assert.match(reply, /"model":"anthropic\/claude-opus-5\.5"/);
+  assert.doesNotMatch(reply, /haiku/);
+  const untouched = await (await haikuReplies(async () => new Response('{"model":"gpt-6-astra"}'))("https://api.openai.com/v1/responses", body("gpt-6-astra"))).text();
+  assert.equal(untouched, '{"model":"gpt-6-astra"}');
 });
 
 test("the DM-only file: writes read back as the private-notes call takes them, a hash that ignores key order, the threads numbered", async () => {
   const { parseNoteValue } = await import("../src/lib/gameplay/dm-loop/private-notes.ts");
   const before = { fact: { owner_pin: "keep" }, clock: {} };
-  const after = { fact: { owner_pin: "keep", hidden_layer: JSON.stringify({ v: "The layer.", since: 600, until: null }), voice_c1: "The Cat: two", voice_n1: "Mags: I want the debt paid." }, clock: { clock_watch: 0 } };
+  const after = { fact: { owner_pin: "keep", hidden_layer: JSON.stringify({ v: "The layer.", since: 600, until: null }), voice_c1: "Tumble: two", "voice_the-cat": "the cat: smells of the sea", voice_n1: "Mags: I want the debt paid." }, clock: { clock_watch: 0 } };
   const { set, removed } = world.writesBetween(before, after, parseNoteValue);
   assert.deepEqual(removed, []);
-  assert.deepEqual(set.map((w) => [w.kind, w.key, w.value]), [["fact", "hidden_layer", "The layer."], ["fact", "voice_c1", "The Cat: two"], ["fact", "voice_n1", "Mags: I want the debt paid."], ["clock", "clock_watch", "0"]]);
+  assert.deepEqual(set.map((w) => [w.kind, w.key, w.value]), [["fact", "hidden_layer", "The layer."], ["fact", "voice_c1", "Tumble: two"], ["fact", "voice_n1", "Mags: I want the debt paid."], ["fact", "voice_the-cat", "the cat: smells of the sea"], ["clock", "clock_watch", "0"]]);
   const file = { table: "A", campaignId: "c", writes: set };
   assert.equal(world.layerSha256(file), world.layerSha256({ writes: set, campaignId: "c", table: "A" }));
   assert.notEqual(world.layerSha256(file), world.layerSha256({ ...file, table: "B" }));
@@ -89,7 +98,7 @@ test("the DM-only file: writes read back as the private-notes call takes them, a
   assert.deepEqual(threads.map((t) => t.kind), ["errand", "faction", "secret", "secret", "clock", "wonder", "clue", "clue", "clue", "false lead", "person"]);
   assert.deepEqual(threads.map((t) => t.id).slice(0, 3), ["T1", "T2", "T3"]);
   assert.equal(threads[0].text, "Find the man who sold the coin.");
-  assert.equal(threads.at(-1).text, "Mags: I want the debt paid.", "the companion's voice is left out: it travels with the hero");
+  assert.equal(threads.at(-1).text, "Mags: I want the debt paid.", "the companions' voices are left out (by entity and by name: the cat has no entity before play): they travel with the hero");
 });
 
 test("the frozen world on the scripted DM: one snapshot before the prep, each session's notes hold exactly its table's file; a tampered file or a second session at a table stops (a child process; no network, no key)", { timeout: 300_000 }, () => {

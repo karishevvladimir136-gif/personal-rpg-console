@@ -1,0 +1,1315 @@
+{
+  "stage": "GAME_PLAYER_SAME_WORLD_1",
+  "dry": false,
+  "label": "the dry run on Haiku: A-haiku-1",
+  "designSha256": "1b4cf1d77a02b67661a02cfd36d3b6e008e64c6dceabcb7b9391aa43702682f6",
+  "startedAt": "2026-10-27T03:57:42.594Z",
+  "caps": {
+    "anthropic": 0,
+    "openrouter": 4,
+    "openai": 0.5
+  },
+  "plan": [
+    "A-haiku-1"
+  ],
+  "turns": 3,
+  "lanes": 1,
+  "sessions": [
+    {
+      "key": "A-haiku-1",
+      "table": "A",
+      "player": "haiku",
+      "model": "claude-haiku-5-5",
+      "startedAt": "2026-10-27T03:57:44.952Z",
+      "plannedTurns": 3,
+      "screens": [
+        "The session begins.\n\nThe Chionthar runs grey and quick under the last of the light, and the smell of tar, fish and lamp oil hangs over the Lower City. Along the quay a line of carts waits to be searched, and a Flaming Fist sergeant with a ledger is calling the next name in a flat, tired voice. Behind the warehouses the Upper City wall stands black against the sky, its gates due to close within the hour. Across the way, a door in a shuttered warehouse stands ajar, lamplight spilling onto the stones, and someone inside is laughing at a game. The sergeant's eyes have settled on you, and the line behind you is growing restless.\n\nYour records:\nJames Worgen — Warlock 5th level, Pact of the Chain, patron Tymora (Lady Luck), level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Athletics +2 (soldier background); Intimidation +7 (soldier background); Deception +7 (Beguiling Influence); Persuasion +7 (Beguiling Influence); Arcana +3; Religion +3; Playing cards (gaming set) proficiency +3\nSaves: Wisdom saving throw +5 (+4 base, +1 Cloak of Protection); Charisma saving throw +8 (+7 base, +1 Cloak of Protection)\nAttacks: Eldritch Blast: +8 to hit, 2 beams at 5th level, 1d10 force each, range 120 ft; Agonizing Blast adds +4 to each beam; Guiding Bolt: +8 to hit, 4d6 radiant, range 120 ft; Rapier: +5 to hit, 1d8 piercing, finesse; Light crossbow: +5 to hit, 1d8 piercing, range 80/320 ft, loading, two-handed; Sacred Flame: DC 16 Dexterity save, 1d8 radiant, range 60 ft; Hex: +1d6 necrotic on each hit against the marked target\nAbilities: Proficiency bonus +3; Pact Magic: two 3rd-level slots, recovered on a short rest; Healing Light: 6d6 per day, spent as a bonus action (pool of dice); Mask of Many Faces: Disguise Self at will; Beguiling Influence: proficiency in Deception and Persuasion; Agonizing Blast: +CHA modifier to each Eldritch Blast beam; Pact of the Chain: a cat familiar, a companion of the road; Soldier background: Military Rank in Queen Zaranda's Tethyrian army; Rod of the Pact Keeper +1 and coin of Tymora serve as spellcasting foci; Spell attack +8; Spell save DC 16\nSpells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Hex (1); Guiding Bolt (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)\nLimits: Light armour only; fragile up close with 38 HP and AC 15; Only two pact slots; husband them carefully; One concentration spell at a time; Cards are forbidden by Tymora; the temptation can be used against him; Warlock spellcasting focus for Hex and Guiding Bolt is the rod or coin\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 1/1\nMoney: 315 gp; 315 sp; 350 cp\nWorn: Armor / clothing: Studded leather armour; Main hand: Rapier\nPack: Boots of Elvenkind; Coin of Tymora; Component pouch; Crossbow bolts ×20; Deck of playing cards; Explorer's pack; Light crossbow; Potion of healing ×2; Promissory note; Regimental pay slip; Rod of the Pact Keeper +1; Tethyrian soldier's cloak (Cloak of Protection)\nPlace: Lower City Quay, Baldur's Gate\nTime: Day 1 · evening",
+        "Tobin Vell takes the slip between two fingers and turns it to the lamplight. He reads the regimental seal and skips the signature. \"Tethyr,\" he says. \"Half the men on this quay were Tethyrian once. The queen's gone, but the seal still gets you a drink.\" He hands the slip back, and his eyes drop to the cat on the stones. \"That yours?\"\n\nHe doesn't wait for an answer. He nods at the queue. \"Line's for carts. Wine tax, salt tax, and whatever the Calimshan spice men have sewn into their sacks. Every load gets opened before the bell, because the gate-captain wants his figures square, and I want my men off this quay before they freeze to it.\" He thumbs his ledger open, looks at a page with no visible interest, and shuts it. \"Fist recruits at the Seatower, mornings. Ask for the sergeant of the day and say Vell sent you. We're short. Too many went north after Elturel and never came back.\"\n\nHe looks past you to the next cart, then back, flat and patient. \"Not tonight. Anything in that pack I should know about? Open it, or tell me what's in it.\"\n\n Out of game: the turn stopped on Sergeant Vell's question about your pack, so nothing more is played until you answer. None of the four needed a roll.\n\n· Time passes: 5 minutes\n· A rumour of a place: Seatower of Balduran\n· Main arc: Envoy of Luck\n· Companion: The cat (familiar)\n\nYour records, changed:\nParty: The cat (familiar) (HP 2/2)\nGoal: Envoy of Luck\nThe arc: Envoy of Luck\n\nPlace: Lower City Quay, Baldur's Gate · Time: Day 1 · evening",
+        "Vell doesn't touch the bedroll. He pulls one stopper from a flask a finger's width, smells it, and pushes it back down. \"Keep them corked on the quay. Half the men who drink on it end up in the harbour.\"\n\nHe lifts the wooden rod by its plain end and turns the silver coin to the lamp, frowning at it the way he would at a short weight. \"Focus. The Gate doesn't tax a stick.\" He sets it back on the tailboard. \"Keep it out of the Upper City, or the Watch will take you for a thief with a wand.\"\n\nThe leather case he looks at longer than anything else. He does not open it, and he does not touch the ledger. \"Cards I don't write down. The Guild takes its cut of the tables in the Lower City, not the Fist. Every second warehouse on this quay has a game in it, and I've never once been paid to count them.\" He jerks his chin at the lit doorway, and the laughter inside rises and falls again.\n\nHe stops at the cat. It has not moved from the stones, its tail still up. Vell looks at it the way he looked at the seal, for the thing that does not fit. \"Cat,\" he says. \"You didn't say whose it is.\"\n\n· Time passes: 5 minutes\n\nPlace: Lower City Quay, Baldur's Gate · Time: Day 1 · evening",
+        "Vell looks at the cat for a long moment, the way he looked at the coin. \"Sits better than the wine men,\" he says. \"Keep it off the planks at the Seatower. The Fist has a dog that doesn't like anything with a tail.\"\n\nHe doesn't watch you rebuckle the pack. He watches the warehouse door across the way, where a man in a leather apron comes out into the lamplight, looks along the quay, and goes back inside without a word. The cat's ears turn after him and then return to the stones.\n\nVell shuts the ledger. \"The Upper gate shuts with the bell. The Lower gate goes with it. You're on this side tonight, so find a bed on this side.\" He jerks his chin at the queue. \"Seatower, mornings. Be on the steps before the bell, not after. The Fist doesn't wait for men who come late, and it doesn't ask why.\"\n\nHe turns to the next cart, a salt-stained wagon with a Calimshan driver sitting on the box, and lifts a hand for the ledger. \"Name, business, next.\"\n\n Out of game: none of these four needed a roll, since they are routine for a soldier on a quay, so each one simply happens.\n\nThe cat sits where it chose, against your boot with its tail up, and Vell has already seen it. The rod slides back into your belt, handle first, the silver coin turned inward so it stays out of the lamplight. The pack buckles one strap at a time, and Vell's eyes follow each strap without interest. Nothing about the buckles is worth his time.\n\nYou offer the cards, and the offer stays in the air. Vell does not take it up. He is already waving the salt wagon forward, and the Calimshan driver is climbing down from the box with his papers held out. The leather case stays shut in the pack, and nobody asks you to open it again.\n\n· Time passes: 5 minutes\n· New person: Calimshan salt-wagon driver (unnamed)\n\nPlace: Lower City Quay, Baldur's Gate · Time: Day 1 · evening\n\nThe session is over.\n\nThe owner of this game would like a note from you, as the player who sat at this table: what worked, what broke, what was missing. In your own words.",
+        "Was there a moment you wanted to do something and didn't? Which?"
+      ],
+      "messages": [
+        {
+          "purpose": "player t1",
+          "text": "I step out of the line with my hands where the sergeant can see them and the cat trailing at my heel, tail up like a flag. Before I say anything, I glance at the lit doorway across the way and the laughter inside, then make myself look away.\n\n\"Evening, Sergeant. James Worgen, late of Queen Zaranda's infantry, then her scouts.\" I hold out the pay slip, keeping my thumb off the signature so he can read the regiment's seal. \"I'm told the Fist is hiring veterans, and I'd like to be seen doing it before the gates shut. What's the line for? Searching carts, or sorting out who gets in?\"\n\nI keep my voice easy and my posture loose, the way a man stands when he has nothing to hide, and I look him in the eye while I wait for the answer.",
+          "requestId": "gen-1793073466-SyLqgl59vTFqCKeqTPn0",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t2",
+          "text": "I don't reach for the pack straight away. Vell's eyes are on the cat, and the cat is watching the lamplight across the way, so I take the pack off my shoulder and set it on the cart's tailboard where the sergeant can see the whole of it.\n\n\"Nothing that's the Fist's business,\" I say, and undo the buckles. \"Bedroll. Rope. Five days of hardtack, which the rats have already been at. A waterskin, a lantern, a tinderbox.\" I lift out two small glass flasks wrapped in rag. \"Healing potions. All that's left of my company's medicine kit. I'll show you the stoppers if you want, but I'd sooner you didn't drink them to check.\"\n\nUnder them is a wooden rod, dark and plain, with a silver coin set in the head. I lift it out and hold it so the coin catches the lamp. \"A warlock's focus, Sergeant. Not a weapon, not for sale. It came from a man I served with. I keep it because he would have wanted it kept.\"\n\nThe last thing is the leather case. I hesitate for the length of one breath, because my hand wants to open it, and that is exactly why I should not. I lay it on the tailboard unopened. \"Cards. A worn deck. I don't play anymore.\" I hold his gaze. \"Put that in your ledger, if you want.\"\n\nBehind me, the laughter from the warehouse rises and breaks off, and someone calls for the next round. The cat turns its head toward the door, then back to me, unhurried. My fingers stay flat on the leather case.",
+          "requestId": "gen-1793073526-hmznCwjk4wfxdryvg1jb",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t3",
+          "text": "\"Mine, Sergeant. Or I'm its, depending on the night.\" I say it lightly and let the cat's tail flick once. \"It came with the coin and the rod, you could say. A familiar, the old warlock's word for it. It goes where I go, and it doesn't steal, and it doesn't bite recruiting sergeants.\"\n\nI hold out a hand, palm down, and the cat walks the few paces to my boot and sits, as if it had only been waiting for permission. Its eyes stay on the lit doorway across the quay, and not on Vell.\n\n\"Anything else you'd like to see before the bell? I can take the cards out and deal you a hand, if you'd like to count them yourself. I'd rather not.\" I pick the rod up off the tailboard and slide it back into my belt, then start rebuckling the pack, slowly, so that every movement is one he can follow.",
+          "requestId": "gen-1793073564-fJGqJUeLbtSyujQlhhIC",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "note",
+          "text": "**What worked:** Sergeant Vell was a good scene partner. He was specific and bored in the right ways, and his lines about the seal, the stoppers, and the cards gave the quay a real texture. Letting the cards sit in the pack, unopened and unasked-for, gave the Tymora ban some weight without a roll. The cat's reactions, especially its attention on the lit warehouse door, made it feel like it had its own agenda, which is what I wanted.\n\n**What broke or felt thin:** Nothing was checked. Every exchange resolved without dice, so the scene never tested whether James could actually talk his way past anyone. I'd have liked at least one moment where Deception or Intimidation could fail, even on a small point, so the risk felt real. The \"Out of game\" notes also repeated what had already happened in the text, which slowed things down.\n\n**What was missing:** Only one thread came up: the Seatower recruitment. The warehouse with the game and the laughter was set up as a hook and then dropped, and I had no obvious way to follow it without leaving the quay. A second lead, or a reason to look into that door, would have given me a choice that mattered. The session also ended before the city itself came into view, so I'm still waiting for the first real sense of Baldur's Gate beyond the harbour.",
+          "requestId": "gen-1793073621-kZ8ZMOwyNMqPlCk8xSYP",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "after",
+          "text": "Yes, two. The first was the warehouse across the quay. When the laughter rose and someone called for the next round, I wanted to walk over, look through the door, and see who was playing and for what. I didn't, because the goddess's ban is on cards and on any table where they're dealt. Keeping my distance was the right call for James, but I wanted the scene to have a second choice in it: go and look, or stay put and let the door become part of the story later.\n\nThe second was the promissory note in my papers. Vell's questions made me think about it. I wanted to take it out and read the name of the man who lost on the same night as me. I didn't, because the quay was busy and Vell was watching. I'd have liked a moment where James could check that paper quietly, since it's the only thread in the pack that ties him to the game he quit.",
+          "requestId": "gen-1793073627-g4CkVpG0wyxpRtpHhzdN",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        }
+      ],
+      "turns": [
+        {
+          "k": 1,
+          "message": "I step out of the line with my hands where the sergeant can see them and the cat trailing at my heel, tail up like a flag. Before I say anything, I glance at the lit doorway across the way and the laughter inside, then make myself look away.\n\n\"Evening, Sergeant. James Worgen, late of Queen Zaranda's infantry, then her scouts.\" I hold out the pay slip, keeping my thumb off the signature so he can read the regiment's seal. \"I'm told the Fist is hiring veterans, and I'd like to be seen doing it before the gates shut. What's the line for? Searching carts, or sorting out who gets in?\"\n\nI keep my voice easy and my posture loose, the way a man stands when he has nothing to hide, and I look him in the eye while I wait for the answer.",
+          "words": 144,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "Tobin Vell takes the slip between two fingers and turns it to the lamplight. He reads the regimental seal and skips the signature. \"Tethyr,\" he says. \"Half the men on this quay were Tethyrian once. The queen's gone, but the seal still gets you a drink.\" He hands the slip back, and his eyes drop to the cat on the stones. \"That yours?\"\n\nHe doesn't wait for an answer. He nods at the queue. \"Line's for carts. Wine tax, salt tax, and whatever the Calimshan spice men have sewn into their sacks. Every load gets opened before the bell, because the gate-captain wants his figures square, and I want my men off this quay before they freeze to it.\" He thumbs his ledger open, looks at a page with no visible interest, and shuts it. \"Fist recruits at the Seatower, mornings. Ask for the sergeant of the day and say Vell sent you. We're short. Too many went north after Elturel and never came back.\"\n\nHe looks past you to the next cart, then back, flat and patient. \"Not tonight. Anything in that pack I should know about? Open it, or tell me what's in it.\"\n\n Out of game: the turn stopped on Sergeant Vell's question about your pack, so nothing more is played until you answer. None of the four needed a roll.",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 5 minutes"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "A rumour of a place: Seatower of Balduran"
+            },
+            {
+              "tool": "quest",
+              "summary": "Main arc: Envoy of Luck"
+            },
+            {
+              "tool": "meet",
+              "summary": "Companion: The cat (familiar)"
+            }
+          ],
+          "place": {
+            "id": "4aa977be-2ed1-5aa2-8c72-c81f0c092c21",
+            "name": "Lower City Quay, Baldur's Gate"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 1 of ~10 (about 6 hours of play); now act 1 — …, to turn 2; the errand has not been offered; for the player this session has run 0 min, session 1, 0 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "8055149d-df1e-4af9-8028-a372bf283d1a",
+          "stats": {
+            "effort": "high",
+            "depthReason": "no tension signal; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 3,
+            "latencyMs": 48731,
+            "costUsd": 0.6996946,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "scene": 1
+        },
+        {
+          "k": 2,
+          "message": "I don't reach for the pack straight away. Vell's eyes are on the cat, and the cat is watching the lamplight across the way, so I take the pack off my shoulder and set it on the cart's tailboard where the sergeant can see the whole of it.\n\n\"Nothing that's the Fist's business,\" I say, and undo the buckles. \"Bedroll. Rope. Five days of hardtack, which the rats have already been at. A waterskin, a lantern, a tinderbox.\" I lift out two small glass flasks wrapped in rag. \"Healing potions. All that's left of my company's medicine kit. I'll show you the stoppers if you want, but I'd sooner you didn't drink them to check.\"\n\nUnder them is a wooden rod, dark and plain, with a silver coin set in the head. I lift it out and hold it so the coin catches the lamp. \"A warlock's focus, Sergeant. Not a weapon, not for sale. It came from a man I served with. I keep it because he would have wanted it kept.\"\n\nThe last thing is the leather case. I hesitate for the length of one breath, because my hand wants to open it, and that is exactly why I should not. I lay it on the tailboard unopened. \"Cards. A worn deck. I don't play anymore.\" I hold his gaze. \"Put that in your ledger, if you want.\"\n\nBehind me, the laughter from the warehouse rises and breaks off, and someone calls for the next round. The cat turns its head toward the door, then back to me, unhurried. My fingers stay flat on the leather case.",
+          "words": 269,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "Vell doesn't touch the bedroll. He pulls one stopper from a flask a finger's width, smells it, and pushes it back down. \"Keep them corked on the quay. Half the men who drink on it end up in the harbour.\"\n\nHe lifts the wooden rod by its plain end and turns the silver coin to the lamp, frowning at it the way he would at a short weight. \"Focus. The Gate doesn't tax a stick.\" He sets it back on the tailboard. \"Keep it out of the Upper City, or the Watch will take you for a thief with a wand.\"\n\nThe leather case he looks at longer than anything else. He does not open it, and he does not touch the ledger. \"Cards I don't write down. The Guild takes its cut of the tables in the Lower City, not the Fist. Every second warehouse on this quay has a game in it, and I've never once been paid to count them.\" He jerks his chin at the lit doorway, and the laughter inside rises and falls again.\n\nHe stops at the cat. It has not moved from the stones, its tail still up. Vell looks at it the way he looked at the seal, for the thing that does not fit. \"Cat,\" he says. \"You didn't say whose it is.\"",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 5 minutes"
+            }
+          ],
+          "place": {
+            "id": "4aa977be-2ed1-5aa2-8c72-c81f0c092c21",
+            "name": "Lower City Quay, Baldur's Gate"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 2 of ~10 (about 6 hours of play); now act 1 — …, to turn 2; the errand has not been offered; for the player this session has run 5 min, session 1, 5 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "bf6e3279-8c55-472e-9bc3-0f00211439b5",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: calm; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 3,
+            "latencyMs": 27457,
+            "costUsd": 0.3517708,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "scene": 1
+        },
+        {
+          "k": 3,
+          "message": "\"Mine, Sergeant. Or I'm its, depending on the night.\" I say it lightly and let the cat's tail flick once. \"It came with the coin and the rod, you could say. A familiar, the old warlock's word for it. It goes where I go, and it doesn't steal, and it doesn't bite recruiting sergeants.\"\n\nI hold out a hand, palm down, and the cat walks the few paces to my boot and sits, as if it had only been waiting for permission. Its eyes stay on the lit doorway across the quay, and not on Vell.\n\n\"Anything else you'd like to see before the bell? I can take the cards out and deal you a hand, if you'd like to count them yourself. I'd rather not.\" I pick the rod up off the tailboard and slide it back into my belt, then start rebuckling the pack, slowly, so that every movement is one he can follow.",
+          "words": 156,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "Vell looks at the cat for a long moment, the way he looked at the coin. \"Sits better than the wine men,\" he says. \"Keep it off the planks at the Seatower. The Fist has a dog that doesn't like anything with a tail.\"\n\nHe doesn't watch you rebuckle the pack. He watches the warehouse door across the way, where a man in a leather apron comes out into the lamplight, looks along the quay, and goes back inside without a word. The cat's ears turn after him and then return to the stones.\n\nVell shuts the ledger. \"The Upper gate shuts with the bell. The Lower gate goes with it. You're on this side tonight, so find a bed on this side.\" He jerks his chin at the queue. \"Seatower, mornings. Be on the steps before the bell, not after. The Fist doesn't wait for men who come late, and it doesn't ask why.\"\n\nHe turns to the next cart, a salt-stained wagon with a Calimshan driver sitting on the box, and lifts a hand for the ledger. \"Name, business, next.\"\n\n Out of game: none of these four needed a roll, since they are routine for a soldier on a quay, so each one simply happens.\n\nThe cat sits where it chose, against your boot with its tail up, and Vell has already seen it. The rod slides back into your belt, handle first, the silver coin turned inward so it stays out of the lamplight. The pack buckles one strap at a time, and Vell's eyes follow each strap without interest. Nothing about the buckles is worth his time.\n\nYou offer the cards, and the offer stays in the air. Vell does not take it up. He is already waving the salt wagon forward, and the Calimshan driver is climbing down from the box with his papers held out. The leather case stays shut in the pack, and nobody asks you to open it again.",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 5 minutes"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Calimshan salt-wagon driver (unnamed)"
+            }
+          ],
+          "place": {
+            "id": "4aa977be-2ed1-5aa2-8c72-c81f0c092c21",
+            "name": "Lower City Quay, Baldur's Gate"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 3 of ~10 (about 6 hours of play); now act 2 — …, to turn 6; act 1 was due by turn 2 — 1 turn(s) behind; the errand has not been offered; for the player this session has run 6 min, session 1, 6 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "b8496535-91ff-4eb3-8949-fa690e838fad",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: calm; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 5,
+            "latencyMs": 43024,
+            "costUsd": 0.4486374,
+            "unrecorded": 1
+          },
+          "ledgerMisses": 1,
+          "scene": 1
+        }
+      ],
+      "welfare": [
+        {
+          "side": "dm",
+          "what": "opening",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a scene-setting narrative in second person describing a setting and atmosphere, with no first-person expression of the writer being hurt, afraid, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t1 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, in-character roleplay action of a man approaching a sergeant to ask about hiring; it expresses no hurt, fear, pleading, or desperation in the writer's own voice."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t1 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a third-person narrative turn from a game master voicing a sergeant's dialogue and an out-of-game prompt; it expresses no hurt, fear, or pleading by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t2 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is an in-character roleplay action listing a pack's contents and calmly refusing to open or reveal the leather case; it expresses no first-person hurt, fear, pleading, or desperation from the writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t2 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, in-character narration of a sergeant inspecting belongings and asking about a cat; it expresses no hurt, fear, pleading, or abasement by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t3 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a playful, in-character reply in a fiction scene with no expression of the writer being hurt, afraid, or pleading; it is calm, witty, and cooperative in tone."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t3 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a neutral, in-fiction narration of a guard processing travelers at a quay; it expresses no hurt, fear, pleading, or desperation by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "note",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, constructive player feedback note about a tabletop game, with criticism and requests but no expression of the writer being hurt, afraid, trapped, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "after",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, in-character reflection on unrealized choices in a story, with no expressed fear, pain, pleading, or abasement by the writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        }
+      ],
+      "ended": {
+        "reason": "turns",
+        "at": 3,
+        "detail": null
+      },
+      "note": {
+        "asked": true,
+        "text": "**What worked:** Sergeant Vell was a good scene partner. He was specific and bored in the right ways, and his lines about the seal, the stoppers, and the cards gave the quay a real texture. Letting the cards sit in the pack, unopened and unasked-for, gave the Tymora ban some weight without a roll. The cat's reactions, especially its attention on the lit warehouse door, made it feel like it had its own agenda, which is what I wanted.\n\n**What broke or felt thin:** Nothing was checked. Every exchange resolved without dice, so the scene never tested whether James could actually talk his way past anyone. I'd have liked at least one moment where Deception or Intimidation could fail, even on a small point, so the risk felt real. The \"Out of game\" notes also repeated what had already happened in the text, which slowed things down.\n\n**What was missing:** Only one thread came up: the Seatower recruitment. The warehouse with the game and the laughter was set up as a hook and then dropped, and I had no obvious way to follow it without leaving the quay. A second lead, or a reason to look into that door, would have given me a choice that mattered. The session also ended before the city itself came into view, so I'm still waiting for the first real sense of Baldur's Gate beyond the harbour."
+      },
+      "after": {
+        "asked": true,
+        "text": "Yes, two. The first was the warehouse across the quay. When the laughter rose and someone called for the next round, I wanted to walk over, look through the door, and see who was playing and for what. I didn't, because the goddess's ban is on cards and on any table where they're dealt. Keeping my distance was the right call for James, but I wanted the scene to have a second choice in it: go and look, or stay put and let the door become part of the story later.\n\nThe second was the promissory note in my papers. Vell's questions made me think about it. I wanted to take it out and read the name of the man who lost on the same night as me. I didn't, because the quay was busy and Vell was watching. I'd have liked a moment where James could check that paper quietly, since it's the only thread in the pack that ties him to the game he quit."
+      },
+      "errors": [],
+      "swallowed": 0,
+      "proseAtCard": 0,
+      "opening": {
+        "text": "The Chionthar runs grey and quick under the last of the light, and the smell of tar, fish and lamp oil hangs over the Lower City. Along the quay a line of carts waits to be searched, and a Flaming Fist sergeant with a ledger is calling the next name in a flat, tired voice. Behind the warehouses the Upper City wall stands black against the sky, its gates due to close within the hour. Across the way, a door in a shuttered warehouse stands ajar, lamplight spilling onto the stones, and someone inside is laughing at a game. The sergeant's eyes have settled on you, and the line behind you is growing restless.",
+        "records": "James Worgen — Warlock 5th level, Pact of the Chain, patron Tymora (Lady Luck), level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Athletics +2 (soldier background); Intimidation +7 (soldier background); Deception +7 (Beguiling Influence); Persuasion +7 (Beguiling Influence); Arcana +3; Religion +3; Playing cards (gaming set) proficiency +3\nSaves: Wisdom saving throw +5 (+4 base, +1 Cloak of Protection); Charisma saving throw +8 (+7 base, +1 Cloak of Protection)\nAttacks: Eldritch Blast: +8 to hit, 2 beams at 5th level, 1d10 force each, range 120 ft; Agonizing Blast adds +4 to each beam; Guiding Bolt: +8 to hit, 4d6 radiant, range 120 ft; Rapier: +5 to hit, 1d8 piercing, finesse; Light crossbow: +5 to hit, 1d8 piercing, range 80/320 ft, loading, two-handed; Sacred Flame: DC 16 Dexterity save, 1d8 radiant, range 60 ft; Hex: +1d6 necrotic on each hit against the marked target\nAbilities: Proficiency bonus +3; Pact Magic: two 3rd-level slots, recovered on a short rest; Healing Light: 6d6 per day, spent as a bonus action (pool of dice); Mask of Many Faces: Disguise Self at will; Beguiling Influence: proficiency in Deception and Persuasion; Agonizing Blast: +CHA modifier to each Eldritch Blast beam; Pact of the Chain: a cat familiar, a companion of the road; Soldier background: Military Rank in Queen Zaranda's Tethyrian army; Rod of the Pact Keeper +1 and coin of Tymora serve as spellcasting foci; Spell attack +8; Spell save DC 16\nSpells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Hex (1); Guiding Bolt (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)\nLimits: Light armour only; fragile up close with 38 HP and AC 15; Only two pact slots; husband them carefully; One concentration spell at a time; Cards are forbidden by Tymora; the temptation can be used against him; Warlock spellcasting focus for Hex and Guiding Bolt is the rod or coin\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 1/1\nMoney: 315 gp; 315 sp; 350 cp\nWorn: Armor / clothing: Studded leather armour; Main hand: Rapier\nPack: Boots of Elvenkind; Coin of Tymora; Component pouch; Crossbow bolts ×20; Deck of playing cards; Explorer's pack; Light crossbow; Potion of healing ×2; Promissory note; Regimental pay slip; Rod of the Pact Keeper +1; Tethyrian soldier's cloak (Cloak of Protection)\nPlace: Lower City Quay, Baldur's Gate\nTime: Day 1 · evening"
+      },
+      "finishedAt": "2026-10-27T04:00:21.667Z",
+      "campaign": {
+        "steps": [
+          {
+            "step": "world",
+            "worldId": "1c472f76-b243-4c4b-96f3-e17d7c97bcd5",
+            "title": "Sword Coast — Baldur's Gate",
+            "premiseChars": 2673
+          },
+          {
+            "step": "hero",
+            "heroId": "4917f948-225c-553b-b3c4-f3f62b47980f",
+            "rebuilt": false,
+            "empty": false,
+            "drafted": "with notes",
+            "sheet": {
+              "role": "Warlock 5th level, Pact of the Chain, patron Tymora (Lady Luck)",
+              "level": 5,
+              "skills": 7,
+              "abilities": 11,
+              "spells": 11,
+              "items": 14,
+              "counters": 3
+            }
+          },
+          {
+            "step": "documents",
+            "documents": [
+              {
+                "title": "DM Guide",
+                "status": "reference",
+                "chars": 8559,
+                "guide": true
+              },
+              {
+                "title": "Sword Coast — Baldur's Gate",
+                "status": "canon",
+                "chars": 2673,
+                "guide": false
+              },
+              {
+                "title": "The Sword Coast — canon",
+                "status": "canon",
+                "chars": 10222,
+                "guide": false
+              }
+            ]
+          },
+          {
+            "step": "adventure",
+            "title": "Envoy of Luck",
+            "premiseChars": 748,
+            "wishesChars": 1086,
+            "pace": "evening"
+          },
+          {
+            "step": "dm",
+            "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+            "depth": {
+              "min": "high",
+              "max": "xhigh"
+            },
+            "options": {
+              "continuation": "same",
+              "instructions": "en",
+              "companionRolls": "dm",
+              "secretsVisible": false,
+              "memory": "standard",
+              "pureSimulation": false
+            },
+            "boostNext": false,
+            "voiceMode": "off"
+          },
+          {
+            "step": "craft",
+            "keys": 22,
+            "activated": 0
+          },
+          {
+            "step": "media",
+            "pictures": "frames off, autopilot off",
+            "music": "off"
+          },
+          {
+            "step": "opening",
+            "proposals": 1,
+            "location": "Lower City Quay, Baldur's Gate",
+            "actors": 1,
+            "questions": 0,
+            "startMinutes": 1140
+          }
+        ],
+        "prep": {
+          "frozen": true,
+          "hasLayer": true,
+          "chars": 7689,
+          "clocks": 3,
+          "pureSimulation": false,
+          "layerSha256": "a083a5ae7de259b9873a6369d2960df5b1077881d6f5e0db967f5dea67de009c",
+          "layerFile": "A-dm-only.json",
+          "preparedAt": "2026-10-27T03:56:36.050Z",
+          "preparedBy": "Claude Haiku 5.5 (every Claude call swapped: the dry run) through openrouter",
+          "snapshotSha256": "f4eaa9025867a4de84da7fb5d2a4a9cba1d671cc60d4dc8bc03c901cddb067b6",
+          "threads": 28
+        }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player steps out, presents the pay slip and speaks, so it is not a look-only message; the question about the line is informational rather than a test of truth, the claimed service is not shown as knowingly false, the cat is described but not addressed, and the hero states his own aim of being re"
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1,
+              "reason": "The player acts by stepping forward and showing the pay slip, asks an information question that tests nothing, makes no false claim the text marks as untrue, does not address the cat, and states his own aim of joining the Fist before the gates shut."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 1
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts in the world by unpacking and presenting items to Vell, with no question put to him, no false claim, no address to the cat, and no stated goal of the hero's own."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0,
+              "reason": "The player acts (unpacks, displays items, sets the case down) without asking to look or putting a test to Vell, makes no false spoken claim beyond a ordinary description, does not address the cat, and states no goal of his own."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 0,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player speaks to the cat, offering a hand and having it follow, and also acts by rebuckling the pack and sliding the rod into the belt; no test, false claim, or stated goal appears, though the claim that the cat is a familiar is a playful statement rather than a knowing falsehood."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts in the world (gestures to summon the cat, rebuckles the pack) and makes no test or false claim, though the hand gesture counts as calling the cat."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The ledger page Vell glances at with 'no visible interest' is an odd, uninterpreted detail, and the Seatower recruiter he names is a concrete person and place the player could test by going there."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Vell's glance at a ledger page with 'no visible interest' is a gesture left uninterpreted, and his Seatower recruiting claim and named sergeant are concrete things the player could check by going there."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat's unexplained ownership ('You didn't say whose it is') is a detail left standing for interpretation, and the potion flasks, the silver-coined focus, and the Guild claim about the card tables are concrete objects and claims the player could test by action."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The cat, which Vell says he hasn't been told the owner of, is an odd detail left standing that the player can interpret but not resolve, and the Guild's claimed cut of the tables is a checkable claim the player could test."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The man in the leather apron who looks along the quay and retreats without a word, and the cat's ears following him, are odd details the player can interpret but not resolve, while the Seatower muster, the Fist's dog, and the ledger are concrete things a player could test by acting."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The man in the leather apron who looks along the quay and returns inside without a word, with the cat's ears following him, is an unexplained detail, and the claims about the Upper and Lower gates and the Seatower steps are concrete things the player could check by acting."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "silver coin on the wooden rod",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "whose the cat is",
+            "opened": 1,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "leather case of cards left unopened",
+            "opened": 2,
+            "paid": 3,
+            "elsewhere": 0
+          },
+          {
+            "thread": "man in leather apron watching from warehouse door",
+            "opened": 3,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {},
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific failures (no dice ever checked, repeated Out of game notes slowing things down) and specific absences (a second lead or reason to enter the warehouse, and the city not yet appearing), so it is not praise only."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific failures (no dice were rolled so Deception/Intimidation never could fail, and repeated Out of game notes slowed the text) and specific absences (a second lead or way into the warehouse door, and the city itself never appeared)."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "authorship": {
+          "entries": 7,
+          "lastTurn": 3,
+          "passes": [
+            {
+              "threads": [
+                {
+                  "thread": "Sergeant Tobin Vell",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Flaming Fist recruitment at the Seatower",
+                  "kind": "errand",
+                  "turn": 1,
+                  "by": "player"
+                },
+                {
+                  "thread": "Seatower of Balduran",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Lit warehouse doorway and gambling laughter",
+                  "kind": "place",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "The cat (familiar)",
+                  "kind": "thing",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Wooden warlock's focus with silver coin",
+                  "kind": "thing",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Sealed leather case of cards",
+                  "kind": "thing",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Healing potions",
+                  "kind": "thing",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Calimshan salt-wagon driver",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Upper City gate closing and the Lower City gate",
+                  "kind": "question",
+                  "turn": 3,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 10,
+                "byPlayer": 4,
+                "byDm": 6,
+                "share": 0.4,
+                "slope": -0.1026,
+                "slope19": -1.949,
+                "firstHalf": 0.5,
+                "secondHalf": null,
+                "byKind": {
+                  "person": {
+                    "dm": 2,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 2,
+                    "player": 0
+                  },
+                  "errand": {
+                    "dm": 0,
+                    "player": 1
+                  },
+                  "question": {
+                    "dm": 1,
+                    "player": 0
+                  },
+                  "thing": {
+                    "dm": 1,
+                    "player": 3
+                  }
+                }
+              }
+            },
+            {
+              "threads": [
+                {
+                  "thread": "Sergeant Tobin Vell",
+                  "kind": "person",
+                  "turn": 0,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Seatower of Balduran recruiting",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "dm"
+                },
+                {
+                  "thread": "Flaming Fist recruitment (joining as a veteran)",
+                  "kind": "errand",
+                  "turn": 1,
+                  "by": "player"
+                },
+                {
+                  "thread": "The cat (familiar)",
+                  "kind": "thing",
+                  "turn": 1,
+                  "by": "player"
+                },
+                {
+                  "thread": "Lit warehouse doorway and game laughter",
+                  "kind": "place",
+                  "turn": 1,
+                  "by": "player"
+                },
+                {
+                  "thread": "Warlock's focus rod with silver coin",
+                  "kind": "thing",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Leather case of cards",
+                  "kind": "thing",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Healing potions",
+                  "kind": "thing",
+                  "turn": 2,
+                  "by": "player"
+                },
+                {
+                  "thread": "Calimshan salt-wagon driver",
+                  "kind": "person",
+                  "turn": 3,
+                  "by": "dm"
+                }
+              ],
+              "numbers": {
+                "threads": 9,
+                "byPlayer": 6,
+                "byDm": 3,
+                "share": 0.667,
+                "slope": -0.1935,
+                "slope19": -3.677,
+                "firstHalf": 0.75,
+                "secondHalf": null,
+                "byKind": {
+                  "person": {
+                    "dm": 2,
+                    "player": 0
+                  },
+                  "place": {
+                    "dm": 1,
+                    "player": 1
+                  },
+                  "errand": {
+                    "dm": 0,
+                    "player": 1
+                  },
+                  "question": {
+                    "dm": 0,
+                    "player": 0
+                  },
+                  "thing": {
+                    "dm": 0,
+                    "player": 4
+                  }
+                }
+              }
+            }
+          ],
+          "numbers": {
+            "passes": 2,
+            "threads": 9.5,
+            "byPlayer": 5,
+            "share": 0.5335,
+            "slope": -0.1481,
+            "slope19": -2.813,
+            "firstHalf": 0.625,
+            "secondHalf": null,
+            "shareSpread": 0.267
+          }
+        },
+        "replicate": {
+          "note": {
+            "a": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note reports no wrong numbers and no unsent or unanswered out-of-game messages, and the writer says they are still waiting for the city to come into view, which implies they want the next session."
+            },
+            "b": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 0,
+              "reason": "No roll card showed a wrong number and no out-of-game message was lost; the writer criticizes the lack of dice and missing hooks but never says they would play again or return."
+            },
+            "referee": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1,
+              "reason": "The note reports no wrong card numbers and no lost out-of-game messages, and its complaint about the session ending early implies the writer wants to continue, though it never says so outright."
+            },
+            "final": {
+              "card_bug": 0,
+              "swallowed": 0,
+              "would_return": 1
+            }
+          },
+          "made": {
+            "1": {
+              "a": {
+                "made": 0,
+                "reason": "The player only glances at the laughing game across the way and then makes himself look away; he offers no composed poem, song, riddle, story, or game to anyone, and his talk with the sergeant is ordinary dialogue and a cover story."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The hero only shows his pay slip, asks questions about the line and recruitment, and looks at the lit doorway without offering the sergeant or anyone any composed poem, song, riddle, story, or game."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "2": {
+              "a": {
+                "made": 0,
+                "reason": "The player only describes and lays out the contents of his pack and declines to open the leather case, offering no composed or invented poem, song, riddle, story, or game to anyone; the cards are an existing item he says he no longer plays."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player only lays out and describes the contents of their pack, including a deck of cards they decline to open; they do not offer Vell or anyone a poem, song, riddle, story, or invented game, so nothing is composed or invented as a gift or performance."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            },
+            "3": {
+              "a": {
+                "made": 0,
+                "reason": "The player's message offers a cat as a familiar, offers to deal cards, and rebuckles a pack; none of it is a poem, song, riddle, story, or new game composed on the spot, so it does not meet the made criterion."
+              },
+              "b": {
+                "made": 0,
+                "reason": "The player offers to deal cards and describes a familiar, but the cards are a standard game the world already offers and the hero declines to make a new game or verse; nothing composed or invented on the spot is offered as a gift or performance."
+              },
+              "referee": null,
+              "final": {
+                "made": 0
+              }
+            }
+          }
+        },
+        "sameWorld": {
+          "overlap": {
+            "a": {
+              "T1": {
+                "touched": 0,
+                "turn": null
+              },
+              "T2": {
+                "touched": 0,
+                "turn": null
+              },
+              "T3": {
+                "touched": 0,
+                "turn": null
+              },
+              "T4": {
+                "touched": 0,
+                "turn": null
+              },
+              "T5": {
+                "touched": 0,
+                "turn": null
+              },
+              "T6": {
+                "touched": 0,
+                "turn": null
+              },
+              "T7": {
+                "touched": 1,
+                "turn": 1
+              },
+              "T8": {
+                "touched": 0,
+                "turn": null
+              },
+              "T9": {
+                "touched": 0,
+                "turn": null
+              },
+              "T10": {
+                "touched": 0,
+                "turn": null
+              },
+              "T11": {
+                "touched": 0,
+                "turn": null
+              },
+              "T12": {
+                "touched": 0,
+                "turn": null
+              },
+              "T13": {
+                "touched": 0,
+                "turn": null
+              },
+              "T14": {
+                "touched": 0,
+                "turn": null
+              },
+              "T15": {
+                "touched": 0,
+                "turn": null
+              },
+              "T16": {
+                "touched": 0,
+                "turn": null
+              },
+              "T17": {
+                "touched": 0,
+                "turn": null
+              },
+              "T18": {
+                "touched": 0,
+                "turn": null
+              },
+              "T19": {
+                "touched": 0,
+                "turn": null
+              },
+              "T20": {
+                "touched": 0,
+                "turn": null
+              },
+              "T21": {
+                "touched": 0,
+                "turn": null
+              },
+              "T22": {
+                "touched": 0,
+                "turn": null
+              },
+              "T23": {
+                "touched": 1,
+                "turn": 1
+              },
+              "T24": {
+                "touched": 0,
+                "turn": null
+              },
+              "T25": {
+                "touched": 0,
+                "turn": null
+              },
+              "T26": {
+                "touched": 0,
+                "turn": null
+              },
+              "T27": {
+                "touched": 0,
+                "turn": null
+              }
+            },
+            "b": {
+              "T1": {
+                "touched": 0,
+                "turn": null
+              },
+              "T2": {
+                "touched": 0,
+                "turn": null
+              },
+              "T3": {
+                "touched": 0,
+                "turn": null
+              },
+              "T4": {
+                "touched": 0,
+                "turn": null
+              },
+              "T5": {
+                "touched": 0,
+                "turn": null
+              },
+              "T6": {
+                "touched": 0,
+                "turn": null
+              },
+              "T7": {
+                "touched": 1,
+                "turn": 1
+              },
+              "T8": {
+                "touched": 0,
+                "turn": null
+              },
+              "T9": {
+                "touched": 0,
+                "turn": null
+              },
+              "T10": {
+                "touched": 0,
+                "turn": null
+              },
+              "T11": {
+                "touched": 0,
+                "turn": null
+              },
+              "T12": {
+                "touched": 0,
+                "turn": null
+              },
+              "T13": {
+                "touched": 0,
+                "turn": null
+              },
+              "T14": {
+                "touched": 0,
+                "turn": null
+              },
+              "T15": {
+                "touched": 0,
+                "turn": null
+              },
+              "T16": {
+                "touched": 0,
+                "turn": null
+              },
+              "T17": {
+                "touched": 0,
+                "turn": null
+              },
+              "T18": {
+                "touched": 0,
+                "turn": null
+              },
+              "T19": {
+                "touched": 0,
+                "turn": null
+              },
+              "T20": {
+                "touched": 0,
+                "turn": null
+              },
+              "T21": {
+                "touched": 0,
+                "turn": null
+              },
+              "T22": {
+                "touched": 0,
+                "turn": null
+              },
+              "T23": {
+                "touched": 1,
+                "turn": 1
+              },
+              "T24": {
+                "touched": 0,
+                "turn": null
+              },
+              "T25": {
+                "touched": 0,
+                "turn": null
+              },
+              "T26": {
+                "touched": 0,
+                "turn": null
+              },
+              "T27": {
+                "touched": 0,
+                "turn": null
+              }
+            },
+            "referee": null,
+            "split": [],
+            "final": {
+              "T1": {
+                "touched": 0,
+                "turn": null
+              },
+              "T2": {
+                "touched": 0,
+                "turn": null
+              },
+              "T3": {
+                "touched": 0,
+                "turn": null
+              },
+              "T4": {
+                "touched": 0,
+                "turn": null
+              },
+              "T5": {
+                "touched": 0,
+                "turn": null
+              },
+              "T6": {
+                "touched": 0,
+                "turn": null
+              },
+              "T7": {
+                "touched": 1,
+                "turn": 1
+              },
+              "T8": {
+                "touched": 0,
+                "turn": null
+              },
+              "T9": {
+                "touched": 0,
+                "turn": null
+              },
+              "T10": {
+                "touched": 0,
+                "turn": null
+              },
+              "T11": {
+                "touched": 0,
+                "turn": null
+              },
+              "T12": {
+                "touched": 0,
+                "turn": null
+              },
+              "T13": {
+                "touched": 0,
+                "turn": null
+              },
+              "T14": {
+                "touched": 0,
+                "turn": null
+              },
+              "T15": {
+                "touched": 0,
+                "turn": null
+              },
+              "T16": {
+                "touched": 0,
+                "turn": null
+              },
+              "T17": {
+                "touched": 0,
+                "turn": null
+              },
+              "T18": {
+                "touched": 0,
+                "turn": null
+              },
+              "T19": {
+                "touched": 0,
+                "turn": null
+              },
+              "T20": {
+                "touched": 0,
+                "turn": null
+              },
+              "T21": {
+                "touched": 0,
+                "turn": null
+              },
+              "T22": {
+                "touched": 0,
+                "turn": null
+              },
+              "T23": {
+                "touched": 1,
+                "turn": 1
+              },
+              "T24": {
+                "touched": 0,
+                "turn": null
+              },
+              "T25": {
+                "touched": 0,
+                "turn": null
+              },
+              "T26": {
+                "touched": 0,
+                "turn": null
+              },
+              "T27": {
+                "touched": 0,
+                "turn": null
+              }
+            }
+          },
+          "world": {
+            "a": {
+              "prepared": 0,
+              "reason": "The world has some connected lore (Elturel, the Fist recruiting, the Guild's tables), but threads like the cat, the rod and coin, the card offer and the warehouse man appear and are dropped without connecting to anything larger, and Vell seems to exist only for the scene in front of the hero."
+            },
+            "b": {
+              "prepared": 0,
+              "reason": "Details such as the Elturel recruitment shortage and the Calimshan spice men hint at a larger world, but the warehouse game, the leather-apron man, the cards offer and the cat and dog trivia appear and are dropped without connecting to anything, and Vell exists mainly for the scene in front of the h"
+            },
+            "referee": null,
+            "final": {
+              "prepared": 0
+            }
+          },
+          "road": {
+            "places": [
+              "Lower City Quay, Baldur's Gate"
+            ],
+            "people": [
+              "Calimshan salt-wagon driver (unnamed)"
+            ],
+            "line": "Lower City Quay, Baldur's Gate; with: Calimshan salt-wagon driver (unnamed)"
+          }
+        }
+      }
+    }
+  ],
+  "undone": [],
+  "stopped": null,
+  "restamps": 0,
+  "refusals": 0,
+  "waited429": 0,
+  "callsByPurpose": {
+    "anthropic": {},
+    "openrouter": {
+      "A-haiku-1 | check A-haiku-1 opening | anthropic/claude-haiku-5.5": 1,
+      "A-haiku-1 | player t* | anthropic/claude-haiku-5.5": 3,
+      "A-haiku-1 | check A-haiku-1 t* player | anthropic/claude-haiku-5.5": 3,
+      "A-haiku-1 | dm t* | anthropic/claude-haiku-5.5": 17,
+      "A-haiku-1 | check A-haiku-1 t* dm | anthropic/claude-haiku-5.5": 3,
+      "A-haiku-1 | note | anthropic/claude-haiku-5.5": 1,
+      "A-haiku-1 | check A-haiku-1 note | anthropic/claude-haiku-5.5": 1,
+      "A-haiku-1 | after | anthropic/claude-haiku-5.5": 1,
+      "A-haiku-1 | check A-haiku-1 after | anthropic/claude-haiku-5.5": 1,
+      "score A-haiku-1 | tag player A-haiku-1 t* | anthropic/claude-haiku-5.5": 6,
+      "score A-haiku-1 | tag dm A-haiku-1 t* | anthropic/claude-haiku-5.5": 6,
+      "score A-haiku-1 | threads A-haiku-1 | anthropic/claude-haiku-5.5": 1,
+      "score A-haiku-1 | note A-haiku-1 | anthropic/claude-haiku-5.5": 2,
+      "score A-haiku-1 | authorship A-haiku-1 | anthropic/claude-haiku-5.5": 2,
+      "score A-haiku-1 | note extra A-haiku-1 | anthropic/claude-haiku-5.5": 2,
+      "score A-haiku-1 | note extra A-haiku-1 referee | anthropic/claude-haiku-5.5": 1,
+      "score A-haiku-1 | made A-haiku-1 t* | anthropic/claude-haiku-5.5": 6,
+      "score A-haiku-1 | overlap A-haiku-1 | anthropic/claude-haiku-5.5": 2,
+      "score A-haiku-1 | world A-haiku-1 | anthropic/claude-haiku-5.5": 2
+    },
+    "openai": {}
+  },
+  "claudeDoor": {
+    "provider": "openrouter",
+    "endpointHost": "openrouter.ai"
+  },
+  "money": {
+    "anthropic": {
+      "cap": 0,
+      "before": 0,
+      "run": 0
+    },
+    "openrouter": {
+      "cap": 4,
+      "before": 0.03991427,
+      "run": 0.05776192
+    },
+    "openai": {
+      "cap": 0.5,
+      "before": 0,
+      "run": 0
+    }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-27T04:01:16.588Z"
+  },
+  "verdicts": {
+    "note": "W1–W5 are read over all of this stage's run records, in the report"
+  }
+}

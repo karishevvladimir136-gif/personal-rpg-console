@@ -58,6 +58,22 @@ export function haikuRewrite(url, init = {}) {
   return { ...init, body: JSON.stringify({ ...body, model: body.model.includes("/") ? "anthropic/claude-haiku-5.5" : HAIKU_MODEL }) };
 }
 
+/** The paid dry run on Haiku, above the meter: the app's own served-model check (the wizard's opening, the DM's turn)
+ * refuses a reply that names another model than it asked for, so the reply of a swapped request names the requested
+ * model again before the app reads it. The meter below has already booked what was sent and served (Haiku). */
+export function haikuReplies(inner) {
+  return async (input, init = {}) => {
+    const url = typeof input === "string" ? input : input?.url ?? String(input);
+    let asked = null;
+    try { asked = anthropicDoorOf(url) && typeof init.body === "string" ? JSON.parse(init.body).model ?? null : null; } catch { asked = null; }
+    const response = await inner(input, init);
+    if (typeof asked !== "string" || !/claude-/.test(asked) || /haiku/.test(asked)) return response;
+    const text = await response.text();
+    const named = text.replace(/"model"\s*:\s*"(?:anthropic\/)?claude-haiku-5[.-]5[^"]*"/g, `"model":${JSON.stringify(asked)}`);
+    return new Response(named, { status: response.status, statusText: response.statusText, headers: response.headers });
+  };
+}
+
 const threadsOfDir = (dir) => { try { return Object.fromEntries(Object.entries(readFrozen(dir).files).map(([t, f]) => [t, f.threads])); } catch { return {}; } };
 
 /** The stage as game player 1's run takes it. `haiku`: the paid dry run (its own stem, folder and caps). */
@@ -70,7 +86,7 @@ export function stageOf({ dir = FROZEN_DIR, stem = STEM, caps = CAPS, haiku = fa
     playerSystem: sameWorldPlayerSystem,
     database: () => openFrozenDatabase(dir),
     campaign: frozenStarter(dir),
-    ...(haiku ? { rewrite: haikuRewrite } : {}),
+    ...(haiku ? { rewrite: haikuRewrite, wrapFetch: haikuReplies } : {}),
     transcript: (session) => transcriptOf(session, { dir, haiku }),
     // One stage, one session per process: the earlier sessions' refusals count (the judges' left out), as REPLICATE did.
     refusalsBefore: (before) => Object.values(before).flatMap((door) => door.runs ?? []).flatMap((r) => r.calls ?? []).filter((c) => c.refusal && !/^(?:score|final|freeze) /.test(c.session ?? "")).length,
@@ -146,16 +162,23 @@ export async function freeze({ dir = FROZEN_DIR, dry = false, haiku = false, log
   const { before, ledgers } = await stageLedgers({ ...stage, caps }, { dry });
   const meter = createMeter({ ledgers, fetcher: fetcher ?? (dry ? replicateScripted() : globalThis.fetch.bind(globalThis)), log, waits429: WAITS_429, ...(haiku ? { rewrite: haikuRewrite } : {}) });
   const uninstall = meter.install();
+  if (haiku) globalThis.fetch = haikuReplies(globalThis.fetch);
   const { openApp, settleBackground } = await import("../game-player-1/app.mjs");
   const app = await openApp({ keys, fake: false });
   const by = dry ? "the scripted DM (dry run)" : `${haiku ? "Claude Haiku 5.5 (every Claude call swapped: the dry run)" : "the owner's DM settings (Claude Opus 5.5, the prep at high)"} through ${keys.door?.provider ?? "the Claude Console"}`;
-  let manifest = null;
+  let manifest = null, failure = null;
   try {
     manifest = await freezeWorld({ app, meter, dir, log, by, settle: () => settleBackground() });
     await settleBackground();
+  } catch (error) { failure = error; }
+  finally {
     await meter.drain();
-  } finally { await app.close().catch(() => {}); uninstall(); }
-  if (!dry) await bookRun(stage, ledgers, before, { what: "the freeze (the wizard and the prep, once per table)", file: `${dir.slice(RUNS.length + 1)}/manifest.json`, stopped: meter.stopped });
+    await app.close().catch(() => {});
+    uninstall();
+    // The money is booked whether the freeze held or not.
+    if (!dry) await bookRun(stage, ledgers, before, { what: failure ? `the freeze — failed: ${String(failure?.message ?? failure).slice(0, 160)}` : "the freeze (the wizard and the prep, once per table)", file: `${dir.slice(RUNS.length + 1)}/manifest.json`, stopped: meter.stopped });
+  }
+  if (failure) throw failure;
   log(`frozen: ${Object.entries(manifest.tables).map(([t, x]) => `${t} ${x.layer.sha256.slice(0, 12)}… (${x.layer.threads} threads)`).join(" · ")} · ${Object.entries(ledgers).map(([d, l]) => `${DOOR_LABELS[d] ?? d} $${l.runUsd.toFixed(3)}`).join(" · ")}`);
   return manifest;
 }

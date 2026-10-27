@@ -1,6 +1,44 @@
 # Development status
 
-**Current milestone: Fix S4 run 1 — the DM the players asked for** (`docs/stages/FIX_S4_RUN_1.md` with
+**Current milestone: game player same-world 1 — one hidden layer per table, frozen**
+(`docs/stages/GAME_PLAYER_SAME_WORLD_1.md`, origin/claude/handoff at 6e4cea4) — **harness built and dry-run; waiting for
+the owner's word before the first paid call of the run.** Branch `claude/game-player-same-world-1` from
+`origin/claude/fix-s4-run-1-apsty3`, with `origin/claude/game-player-replicate-1` merged (REPLICATE's harness and group 2's
+records). Nothing to `main`. Report `docs/runs/game-player-same-world-1-report.md` (pre-registration only so far).
+
+- **11w″ (FIX_S4):** in the harness, in-character prose at a roll card is no longer refused, and it never counts toward
+  «stuck». It goes to the DM through the out-of-game channel, framed as the player's proposal and never the world's fact
+  (11h). The card is then shown again with one line: «(The card waits for [Onward] or a reroll.)», or «… for [Roll the die].)».
+  Text beside a press (11w′) is framed the same way unless it is marked out of game. The twelve-message ceiling at one
+  card stays. Tests use group 2's own messages: B-deepseek-1 t11, C-deepseek-2 t8 and A-deepseek-1 t3.
+- **The frozen world:**
+  - Both tables' campaigns are made once by the wizard. The hero's sheet has no alignment line.
+  - The local database is kept as a snapshot before any prep. Then the app's own prep runs once per table, and its writes
+    to the DM's private notes become the table's DM-only file (`…-frozen/A-dm-only.json`, with a hash).
+  - Each session loads the snapshot, writes the file into the DM's notes and checks it. The hash is in every transcript
+    header.
+- **Measures:**
+  - The thread overlap against the layer, judged blind.
+  - Road codes, with same-road pairs.
+  - «World felt prepared», also tagged on group 2.
+  - The nearest-neighbour test with an exact permutation p over all 30 240 deals.
+  - W1–W5 as pre-registered.
+- **DeepSeek's reasoning field** is stored and printed as «not relayed».
+- **Checks:**
+  - Full suite at `6a8478c8` (11w″) on a clean worktree: 3 059 tests · 3 032 pass · 0 fail · 27 skipped.
+  - Zero-warning lint and typecheck pass on the stage tree; the production build passes (`src` unchanged).
+  - The harness tests (game player 1/2, replicate, FIX_S4 pending, same world): 81/81.
+- **Dry runs:**
+  - Scripted, no calls: passes.
+  - Paid, on Haiku: `docs/runs/game-player-same-world-1-haiku-report.md`. Every Claude call is swapped to Claude Haiku 5.5.
+    One short session per table.
+- **Known issues:** the stage's «three bonds» are not in the hero file (05), and nothing was added for them. The Haiku dry
+  run puts the requested model's name back into each reply, because the app refuses a reply from another model; the
+  ledger books Haiku.
+- **Next step:** on the owner's word: `--freeze` (the prep with the owner's DM settings, Opus 5.5), then `--drive` (A ×10,
+  B ×10), `--final`, and the report. Caps: $220 OpenRouter, $25 OpenAI.
+
+**Previous milestone: Fix S4 run 1 — the DM the players asked for** (`docs/stages/FIX_S4_RUN_1.md` with
 `docs/stages/FIX_S4_TABLE.md`, on `claude/handoff` at `e13d457`).
 
 **Status:** implementation done and smoke-tested on `claude/fix-s4-run-1-apsty3`, the session's name for
