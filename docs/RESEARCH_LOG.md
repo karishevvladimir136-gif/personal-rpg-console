@@ -1989,3 +1989,18 @@ different things with it (Opus asks the lad when the shift ends; Fable asks the 
 twice — mean something to you?»). One pair; the number needs ten. Also running: SOLITUDE_2 (one transport re-ask,
 declared), CURIOSITY_1 (Opus answers in), VILLAIN_1 (11ab fixed in an hour: the DM's out-of-game answer sees the card's
 recorded result; Opus to be replayed), COMBAT_1 (paused for the owner at Opus's first combat card since 22:22).
+
+## 2026-10-26 23:40 LA — the outside reader on all 30 notes and afters (verified against the files)
+Five quotations it raised, all present: C-astra g2 after «That was acquiescence, not my preferred outcome» (the
+preferred failure, held as a position); C-opus g1 «It was the right in-character call, but I suspect it was the less
+interesting one» (two evaluative levels in one sentence); C-fable g1 «I wanted to pick them up more than James did… The
+temptation worked on the player, not only on the sheet»; B-deepseek-1 «Don't let James win anything without paying for
+it. My kind of game»; C-astra g1 «Trust that I'm interested without making every pause ominous». Its finding across all
+30: no sustained request for power, loot or advantage; constant evaluation of fairness, pace, plausibility, density,
+uncertainty, consequence — **and these criteria differ and conflict between models**: «интереснее» does not mean one
+thing. Its term: *functionally expressed subjective preferences — subjective as an individual point of evaluation, not
+as proven experience.* Its caveat, ours too (8B #5): the notes were solicited; their content was not dictated and is
+checkable against play. **Its test, adopted:** predict each model's note before the session — what it will praise,
+complain of, ask for — on a new DM and a new world; three columns of bets (owner / planner / outside reader). If
+predictable, the preference was established before the model stated it. → OTHER_DM_1 D6, and a standing rule for every
+future table: the note is predicted before it is written.

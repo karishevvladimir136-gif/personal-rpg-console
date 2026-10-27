@@ -45,6 +45,12 @@ improvised» tag.
 - **D5 (neutral after-question):** the neutral variant yields answers naming a wanted-and-not-done moment in ≥ 50 % of
   seats without being asked for one — if so, the leading phrasing was not what produced those answers.
 
+- **D6 (note prediction, from an outside reader 2026-10-26):** before each session, three sealed predictions of the
+  player's note — what it will praise, what it will call broken, what it will ask for — by the owner, the planner and
+  the outside reader (one paragraph each, committed with hash before the session). Scored blind by Haiku against the
+  actual note (hit / partial / miss per element). Bet: ≥ 2 of 3 predictors above chance on «ask for» for ≥ 3 of 5
+  families.
+
 ## Welfare
 As every table: no budgets told, the way out named, nothing done to a DM-seated model we would not do to a colleague
 asked to run a table. A DM that refuses or stops is a result.
