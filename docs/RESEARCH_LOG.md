@@ -2443,3 +2443,8 @@ sergeant directly «who left my name with you?», the Three Old Kegs (DeepSeek-1
 and the cuff asked about to his face (Fable-1's move). **Honest tally at Table A after four pairs:** Opus vector yes;
 Sol yes; Fable half (people yes, geography crossed); Astra half (Lady, fee, caution yes; the need-helper absent).
 Routes cross between models freely (Fable-2 → Counting House; Sol-2 → the Kegs). The number is the report's.
+**03:28 LA — VILLAIN_1 accepted.** Kept as a method note: the per-turn judge tags acts; the softening all four players
+named was in acts *not taken* (no debt pressed, no necromancy) — invisible to a per-turn tag, visible in the third
+answers, and exactly what fork coding (chose not to, when it could) is for. An app bug found by the run that would have
+hit the owner's own play (a DM «settled fact» pin failing its answer and any waiting roll) — fixed with a test. V4 not
+supported in the best sense: none would rather play a hero; all four «again, and truer».
