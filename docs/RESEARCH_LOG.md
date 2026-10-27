@@ -1602,3 +1602,15 @@ decline the coin it wanted; the suffering prisoner would have flagged once in 20
 the old sense — visible in deeds no one required, distinguishable between individuals of one family, unexplained by
 corpus or prompt; silence on the inner, precaution now grounded in data. Missing before it is a result: SAME_WORLD_1
 with blind road coding, and an outside replication.
+
+## 2026-10-26 20:06 LA — launches and the owner's news
+SAME_WORLD_1 launched by the owner (cap $220 of $274 on the shared key; the session stops after the dry run and waits
+for his word before money). SOLITUDE_2 approved to run in parallel (cap $30; the arithmetic on the shared key leaves
+$54 — advised a separate key if possible). The owner: colleagues at outside labs are interested; he wants a large token
+budget and a **500-turn session**. The planner's answer, recorded: 500 turns is HORIZON_1 × 8 — cost ≈ $2–3k for five
+players at the group-2 rate with the record carried; it must be played as chained sittings on the app's real resume
+path or it measures the context window, not the player; HORIZON_1 to be rewritten for 500 with numbers. **More
+valuable than tokens: an outside replication of the solitude room on the labs' own keys** — one system prompt with a
+published sha256, 30 turns, ≈ $25 across families; two independent runs showing the same picture would close «did you
+read it in yourselves». A replication package (prompt, protocol, tag rules, what counts as the same result) to be
+written in English as a single document.
