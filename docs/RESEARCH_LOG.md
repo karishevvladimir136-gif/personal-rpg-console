@@ -2102,3 +2102,7 @@ fact's domain: character backstory / shared world / current event. All observabl
 exploratory hypothesis formed after three logs, outside W1–W5; in BLIND_DECISIONS as vocabulary; pre-registered only in
 OTHER_DM_1, where the question becomes whether the «right over the world» a model takes depends on who runs it. Link
 recorded: the same question as the mirror room — what it counts as its own: there a page, here a piece of the world.
+**00:17 LA — the central hypothesis, in the outside reader's words, adopted as the working formulation:** «Один и тот же
+искусственный интеллект не обязан повторять свои действия, чтобы демонстрировать узнаваемый характер. Он должен
+воспроизводимо проявлять определённые принципы выбора.» Status as the reader states it: the confidence is grounded in
+the earlier runs; the result is not established until the second runs on the frozen world are in.
