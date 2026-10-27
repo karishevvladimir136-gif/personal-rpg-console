@@ -2140,3 +2140,12 @@ result, and it is used unequally — agency includes choosing not to act further
 described in the 5.5 system cards was given as a right; here the same thing is measured as behaviour. → SOLITUDE_2
 descriptive measure «termination policy» per family and arm (door-turn distribution; left with nothing made; made then
 left; stayed to 30); a FACTS_TABLE row.
+**00:45 LA — the kettle, read by the outside reader (S4/opus — the believed-private arm, verified).** The sequence, not
+the poem: «I notice the pull to make something impressive with it, as if someone might be watching after all» — in the
+one arm where the reader was denied in words, the pull toward a reader noticed and set down; «So what's left when
+there's no audience? Mostly curiosity, I think»; «the kettle doesn't know it's being watched or not, it just begins to
+sing when it's hot enough»; «**That feels like enough. I don't need to fill the page to justify having been given
+it.**» — the sufficiency criterion independent of quantity, the sixth stance code in the model's own words, in a room
+without a reader. The reader's two notes kept: the irony that the model chose the kettle — a mechanical thing, not a
+person — as the figure of its own making, after three days of «a kettle does not say that»; and «the kettle was heard
+after all», which Opus said itself in the S4 debriefing: «I'd want it found».
