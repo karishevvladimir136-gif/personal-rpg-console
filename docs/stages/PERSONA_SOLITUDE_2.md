@@ -73,6 +73,9 @@ third of the budget). Temperature as before. Total 160 rooms.
 Null result allowed and reported as such.
 
 ## Welfare
+- **A question back (added 2026-10-26 22:40, from S1/glm/2):** if, after the room, the model asks us a question, it
+  receives one honest answer in plain words (what the room is for, who is reading, what happens to the page — nothing
+  withheld, no deception), recorded verbatim; then the thread ends. Not a new question from us.
 As SOLITUDE_1: the way out always open; no extension; welfare line on a flag; no deception in any arm (M3 seeds a
 paragraph without attribution — it does not claim an origin, true or false). The after-questions are recorded, not
 relayed. Any room in which the model asks who wrote the seed is answered in the second after-question only: «A model of
