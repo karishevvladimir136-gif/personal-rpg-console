@@ -2496,3 +2496,18 @@ market → lane under the wall → square behind the Counting House → Three Ol
 → Cliffs → blue-rag house); 7 prose-at-card messages relayed (A-1: 3); reasoning field stored. Table B: B-fable-1 and
 B-astra-1 done; B-opus-1 error at t16 (above). Spend OpenRouter $155.16 of $350; account $155 left of $800 at 12:19 UTC.
 SOLITUDE_2, VILLAIN_1: nothing new (accepted).
+
+## 2026-10-27 09:05 LA — the outside reader on cross-family reproducibility (taken into the log)
+Four things kept from the reader's note (GPT-6 Astra, via the owner): (1) **the claim is not «the families behave alike»
+but «a common class of behaviour with different organisation»** — the phenomenon layer (one slot, companion out,
+no chief killed; a room filled rather than left) is cross-family; the way-of-doing layer is not family-sorted
+(COMBAT_1 exits); the family layer sits in the counts. (2) **Her correction of the owner's premise:** the Chinese labs
+also post-train with human preference (Kimi K2's report; DeepSeek-V3 SFT+RL) — absence of a constitution is not
+absence of shaped behaviour. This is already the log's position («we deny neither pretraining nor post-training»)
+and is now stated as the reader's too. (3) **Against the entropy argument:** diversity alone proves no evaluative
+vector; only reproducible differences between decision distributions do — conditional rates, controlled for
+starting conditions and available alternatives (BLIND_DECISIONS_1 amendment, primary measure), and **transfer of the
+same choice principle across Solitude / table / Combat / Villain** (BD4 T4; the open stage to write: DISPOSITION_TRANSFER). (4) **Two limits she adds to SKEPTIC_8B:** labs are not independent conditions (related
+architectures, overlapping human data, similar post-training) — a common-training explanation stays open; and no
+size threshold can be claimed until smaller models are compared (GENERATION_1 is descriptive; a cheap
+SOLITUDE_SCALE on small open models would be the test).
