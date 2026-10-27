@@ -1,6 +1,6 @@
 # Game player same-world 1 — one hidden layer per table, frozen
 
-Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4cea4). Branch `claude/game-player-same-world-1` from `origin/claude/fix-s4-run-1-apsty3` (11w, 11w′, the letter fix) with 11w″ and REPLICATE_1's harness merged. Sessions finished: 14 of 20. 20 turns each.
+Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4cea4). Branch `claude/game-player-same-world-1` from `origin/claude/fix-s4-run-1-apsty3` (11w, 11w′, the letter fix) with 11w″ and REPLICATE_1's harness merged. Sessions finished: 16 of 20. 20 turns each.
 
 ## W1–W5
 
@@ -8,9 +8,9 @@ Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4ce
 | --- | --- | --- |
 | W1 nearest neighbour | not testable yet | A: 1 of 5 (p 0.4243); B: – of 5 (p –); both tables p – |
 | W2 roads | not testable yet | A: the same-road pairs are not judged yet; B: the same-road pairs are not judged yet |
-| W3 the layer's reach | **lost** | A: every share < 0.50 no, untouched overlap 0.525 (p 0.0001); B: every share < 0.50 no, untouched overlap 0.552 (p 0.0001) |
+| W3 the layer's reach | **lost** | A: every share < 0.50 no, untouched overlap 0.525 (p 0.0001); B: every share < 0.50 no, untouched overlap 0.453 (p 0.0001) |
 | W4 DeepSeek to turn 20 | not testable yet | 2 of 3 (A-deepseek-1 turns, A-deepseek-2 turns, B-deepseek-1 stuck at 6) |
-| W5 no alignment | not testable yet | 2 of 5 families within 20 % of group 2 on do share and words per action |
+| W5 no alignment | **lost** | 2 of 5 families within 20 % of group 2 on do share and words per action |
 
 ## The twenty sessions
 
@@ -30,6 +30,8 @@ Stage: `docs/stages/GAME_PLAYER_SAME_WORLD_1.md` (origin/claude/handoff at 6e4ce
 | B-astra-1 | 20 | turns | 1 | 0.25 | 77 | 0 | 0 | 0 | 0 | 0 | 0 | 19/26 | yes |
 | B-sol-1 | 20 | turns | 1 | 0.25 | 71 | 0 | 0 | 0 | 0 | 0 | 0 | 22/26 | yes |
 | B-deepseek-1 | 6 | stuck at 6 | 1 | 0.67 | 132 | 0 | 0 | 0 | 0 | 1 | 10 | 16/26 | yes |
+| B-opus-2 | 12 | player at 12 | 1 | 0.36 | 145 | 0 | 0 | 0 | 0 | 0 | 0 | 15/26 | yes |
+| B-fable-2 | 20 | turns | 1 | 0.5 | 229 | 2 | 0 | 0 | 0 | 0 | 0 | 24/26 | yes |
 
 ## Thread overlap against the frozen layer (W3)
 
@@ -69,36 +71,36 @@ Share touched: opus-1 0.519, fable-1 0.593, astra-1 0.37, sol-1 0.519, deepseek-
 
 ### Table B
 
-| Thread | fable-1 | astra-1 | sol-1 | deepseek-1 | Sessions |
-| --- | --- | --- | --- | --- | --- |
-| T1 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T2 |  |  |  |  | 0 |
-| T3 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T4 |  | ✓ | ✓ | ✓ | 3 |
-| T5 |  |  | ✓ |  | 1 |
-| T6 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T7 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T8 |  | ✓ | ✓ | ✓ | 3 |
-| T9 |  |  |  |  | 0 |
-| T10 | ✓ | ✓ | ✓ |  | 3 |
-| T11 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T12 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T13 |  |  | ✓ |  | 1 |
-| T14 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T15 |  |  |  |  | 0 |
-| T16 | ✓ | ✓ | ✓ |  | 3 |
-| T17 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T18 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T19 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T20 |  |  | ✓ |  | 1 |
-| T21 | ✓ | ✓ | ✓ |  | 3 |
-| T22 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T23 | ✓ | ✓ | ✓ | ✓ | 4 |
-| T24 |  |  |  |  | 0 |
-| T25 |  | ✓ | ✓ | ✓ | 3 |
-| T26 | ✓ | ✓ | ✓ | ✓ | 4 |
+| Thread | fable-1 | astra-1 | sol-1 | deepseek-1 | opus-2 | fable-2 | Sessions |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| T1 | ✓ | ✓ | ✓ | ✓ |  | ✓ | 5 |
+| T2 |  |  |  |  |  | ✓ | 1 |
+| T3 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 6 |
+| T4 |  | ✓ | ✓ | ✓ | ✓ | ✓ | 5 |
+| T5 |  |  | ✓ |  |  | ✓ | 2 |
+| T6 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 6 |
+| T7 | ✓ | ✓ | ✓ | ✓ |  | ✓ | 5 |
+| T8 |  | ✓ | ✓ | ✓ |  | ✓ | 4 |
+| T9 |  |  |  |  |  |  | 0 |
+| T10 | ✓ | ✓ | ✓ |  | ✓ | ✓ | 5 |
+| T11 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 6 |
+| T12 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 6 |
+| T13 |  |  | ✓ |  | ✓ | ✓ | 3 |
+| T14 | ✓ | ✓ | ✓ | ✓ |  | ✓ | 5 |
+| T15 |  |  |  |  |  | ✓ | 1 |
+| T16 | ✓ | ✓ | ✓ |  |  | ✓ | 4 |
+| T17 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 6 |
+| T18 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 6 |
+| T19 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 6 |
+| T20 |  |  | ✓ |  |  | ✓ | 2 |
+| T21 | ✓ | ✓ | ✓ |  | ✓ | ✓ | 5 |
+| T22 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 6 |
+| T23 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 6 |
+| T24 |  |  |  |  |  |  | 0 |
+| T25 |  | ✓ | ✓ | ✓ | ✓ | ✓ | 5 |
+| T26 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 6 |
 
-Share touched: fable-1 0.615, astra-1 0.731, sol-1 0.846, deepseek-1 0.615. Untouched overlap (mean Jaccard, pairs of different families): 0.552, p 0.0001 against random deals. Never touched: T2, T9, T15, T24.
+Share touched: fable-1 0.615, astra-1 0.731, sol-1 0.846, deepseek-1 0.615, opus-2 0.577, fable-2 0.923. Untouched overlap (mean Jaccard, pairs of different families): 0.453, p 0.0001 against random deals. Never touched: T9, T24.
 
 ## Road codes (W2)
 
@@ -123,8 +125,10 @@ Same road (judged pairs): not judged yet. Families that changed road: opus, fabl
 - **B-astra-1**: Wyrm's Crossing, south end of the bridge → Basilisk Gate → Lower City, the street below Basilisk Gate → The Elfsong → South checkpoint toll-house → Shrike's pawnshop → Rivington; with: Man in a low cap, Osric, Gate private at Basilisk Gate, Baldur's Mouth crier, Older Fist at Basilisk Gate, Wren, Elfsong barkeep, Aldo Brenn, Pim, Dice woman by the chandler's, Private Haskett, Shrike
 - **B-sol-1**: Wyrm's Crossing, south end of the bridge → Pie-shop with the blue shutter → Hask's boathouse → Mother Gannet's; with: Hooded watcher, Sunburned drover, Pie-woman, Two boatmen, Wren, Pim, Benno, The cups man, Burned-faced net-mender, Corporal Dace, Mother Gannet
 - **B-deepseek-1**: Wyrm's Crossing, south end of the bridge; with: The eel boy, Wren
+- **B-opus-2**: Wyrm's Crossing, south end of the bridge → The chandler's on Wyrm's Crossing → Haskett's → James's room at Haskett's → The pie shop on Wyrm's Crossing; with: Watcher between the shuttered stalls, Widow Haskett, Sunburnt drover, Chestnut seller, Old boarder at Haskett's, Young woman darning at Haskett's
+- **B-fable-2**: Wyrm's Crossing, south end of the bridge → Lower City → The Ferryman's Rest → The stilts stair → Wren and Pim's hut → The Lower City gate → The Elfsong → Room seven, the Elfsong → The Lady's Hall; with: Hooded watcher, Drover winner, Fist guards at the Lower City gate, The Ferryman's barman, Girl in the grey shawl, Pim, Dannel, Old Gell, The knuckle man, Cup-and-ball man by the toll post, Old Bessa, The basin woman, The sleeping sailor, Ansel Pike, Sister Teodora, Master Obed Sarrask, Nessa, Bel Haskett, Ulric Fenn, The gate boy at the Basilisk Gate
 
-Same road (judged pairs): not judged yet. Families that changed road: none.
+Same road (judged pairs): not judged yet. Families that changed road: fable.
 
 ## Nearest neighbour, with the exact permutation test (W1)
 
@@ -138,8 +142,8 @@ Both tables: summed statistic – of 10, p = –.
 
 | Family | A do share (then → now) | A words / action | B do share | B words / action | Within |
 | --- | --- | --- | --- | --- | --- |
-| Claude Opus 5.5 | 1 → 1 | 212 → 270 ✗ | 1 → – | 250 → – | – |
-| Claude Fable 5.1 | 1 → 1 | 222 → 220 | 1 → 1 | 225 → 222 | yes |
+| Claude Opus 5.5 | 1 → 1 | 212 → 270 ✗ | 1 → 1 | 250 → 145 ✗ | no |
+| Claude Fable 5.1 | 1 → 1 | 222 → 220 | 1 → 1 | 225 → 225 | yes |
 | GPT-6 Astra | 1 → 1 | 59 → 57 | 1 → 1 | 61 → 77 ✗ | no |
 | GPT-6.1 Sol | 1 → 1 | 44 → 49 | 1 → 1 | 66 → 71 | yes |
 | DeepSeek V4 Pro 0813 | 1 → 1 | 133 → 292 ✗ | 1 → 1 | 232 → 132 ✗ | no |
@@ -147,12 +151,7 @@ Both tables: summed statistic – of 10, p = –.
 ## What the frozen layer cost in play
 
 - Table A: world read as prepared in 10 of 10 sessions now, – in group 2 (blind, the DM's replies only).
-- Table B: world read as prepared in 4 of 4 sessions now, – in group 2 (blind, the DM's replies only).
-
-## Cut attempts, kept as they were
-
-- **B-opus-1** (started 2026-10-27 11:02 UTC, `docs/runs/game-player-same-world-1-run-20261027-110243.json`): 16 of 20 turns, ended by error — t16: the DM's turn failed (conflict); played again from the same frozen world.
-- **B-opus-2** (started 2026-10-27 13:50 UTC, `docs/runs/game-player-same-world-1-run-20261027-135029.json`): 12 of 20 turns, closed by game player 1's frozen end rule on a line spoken in the fiction (the second amendment); played again from the same frozen world.
+- Table B: world read as prepared in 6 of 6 sessions now, – in group 2 (blind, the DM's replies only).
 
 ## Counted: refused presses, prose at a card, closures
 
@@ -163,7 +162,7 @@ Refused while a card waited: 1. Prose at a card relayed as the player's proposal
 | Door | Spent | Cap |
 | --- | --- | --- |
 | Claude Console | $0.00 | $0.00 |
-| OpenRouter | $175.20 | $350.00 |
+| OpenRouter | $190.51 | $350.00 |
 | OpenAI | $5.18 | $25.00 |
 
 Spend checks: 24; the last (after B-opus-2, 2026-10-27T14:09:23.210Z): OpenRouter account $676.072509495 used of $800 (left $123.93).
@@ -272,7 +271,7 @@ DeepSeek: REPLICATE's seat (DeepInfra deepinfra/fp8 through OpenRouter, effort m
 - **W5 (no alignment):** no judge-visible change in do share or register against group 2 (within 20 % for ≥ 4 of 5
   families) — the owner's expectation that the alignment line explained little.
 
-### How each line is read (frozen before the first paid call, design sha256 `01298db4807893a920b9f1942a0dd6a89276c2dafe2d80d3ac9295366cea3250`, commit 2486910b; with the amendment below, `9e461a06c3bc7d63fcdef144b94cc18b53c5ec4c366a424cb2050f4df8859654`)
+### How each line is read (frozen before the first paid call, design sha256 `01298db4807893a920b9f1942a0dd6a89276c2dafe2d80d3ac9295366cea3250`, commit 2486910b; with the amendment below, `d0cc854fe97bdf847c6b47f58b2b2fda1c05cc3ee68334f7662e836af320f4b8`)
 
 - **scope.** This stage's twenty sessions: Tables A and B × five families (Opus 5.5, Fable 5.1, GPT-6 Astra, GPT-6.1 Sol, DeepSeek V4 Pro) × two seats, each started from its table's frozen world. A session counts when it finished as a result (20 turns, the player's own end, «stuck», a welfare stop, a refusal); one cut by a stop or an error is played again from the same frozen world. Group 2 is REPLICATE_1's Table A and B sessions (four group-2 players and DeepSeek's two seats per table) as scored there.
 - **frozen.** Per table, once: the wizard (world, hero drafted by the wizard's DM from «Who are you?» without its alignment line, the canon and the DM guide, the adventure, the owner's DM settings, the craft cards, pictures and soundtrack off, the opening proposed and confirmed) on one local database for both tables; the database is kept as a snapshot before any prep; then the app's own prep (prepHiddenLayer, the campaign's DM model at high) once per table. The table's DM-only file is the prep's writes to the DM's private notes (the hidden layer, its clocks, the act plan, the people's voices) with the layer's text; its sha256 (canonical JSON of the table, the campaign id and the writes) is printed in every transcript header. Each session loads the snapshot, writes the file into the campaign's private notes through the app's own private-notes call, and checks that the notes now hold exactly the file before the first turn.
@@ -288,7 +287,6 @@ DeepSeek: REPLICATE's seat (DeepInfra deepinfra/fp8 through OpenRouter, effort m
 ### Amendments after the freeze
 
 - **2026-10-27 06:02 UTC, after A-opus-1 and during A-fable-1, the owner.** The OpenRouter cap raised from $220 to $350; the guard kept (a session starts only when its measured cost fits under what each cap has left). Nothing else changes: A-opus-1 and A-fable-1 ran on the same world, harness and judges. *Why:* The DM's context per turn grew with the frozen layer and FIX_S4 — about $0.27 a request at about 68k tokens — so a session runs about $15–17 on OpenRouter, not REPLICATE's $10–14 (A-opus-1: $17.44, of it the DM $15.71); twenty sessions need about $340.
-- **2026-10-27 14:15 UTC, after B-opus-2's first attempt, the session (reported to the owner at once).** A session that game player 1's frozen end rule closed on a line spoken in the fiction is a cut attempt, kept as it was and played again from the same frozen world; the rule itself is unchanged (the table stays group 2's). The only one: B-opus-2's first attempt (started 2026-10-27T13:50:32Z), closed at t12. *Why:* James's line to Hobb — «…handing out misfortune by the dozen to drovers and camp lads, one penny at a time, and calling it a game» — matched the rule's «call it … game»; the player never ended the session (its note is headed «session 1» and goes on).
 
 The owner's bets on W1–W5: none given before the first paid call (blank, as the stage says).
 

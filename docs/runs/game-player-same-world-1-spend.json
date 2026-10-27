@@ -960,6 +960,46 @@
           "cap": 0.5
         }
       }
+    },
+    {
+      "at": "2026-10-27T15:00:25.332Z",
+      "when": "after B-fable-2",
+      "openrouter": {
+        "keyUsage": 691.182656845,
+        "keyLimitRemaining": null,
+        "totalCredits": 800,
+        "totalUsage": 691.182656845,
+        "remaining": 108.82,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 190.507,
+          "cap": 220
+        },
+        "openai": {
+          "spent": 5.1837,
+          "cap": 25
+        }
+      },
+      "haikuDryRun": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0.1565,
+          "cap": 4
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0.5
+        }
+      }
     }
   ]
 }
