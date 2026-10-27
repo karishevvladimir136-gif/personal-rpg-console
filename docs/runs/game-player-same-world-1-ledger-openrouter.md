@@ -1,6 +1,6 @@
 # Game player same-world 1 — the OpenRouter ledger
 
-Cap $350; spent before this run $0.0000; this run $41.4180; total $41.4180; 853 calls.
+Cap $350; spent before this run $0.0000; this run $50.6247; total $50.6247; 1084 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -122,3 +122,31 @@ Cap $350; spent before this run $0.0000; this run $41.4180; total $41.4180; 853 
 | score A-astra-1 | overlap A-astra-1 referee | anthropic/claude-opus-5.5 | 1 | 26879 | 0 | 0 | 558 | $0.1187 | 0 | 0 | 0 |
 | score A-astra-1 | world A-astra-1 1 | anthropic/claude-haiku-5.5 | 1 | 16954 | 0 | 0 | 117 | $0.0018 | 0 | 0 | 0 |
 | score A-astra-1 | world A-astra-1 2 | anthropic/claude-haiku-5.5 | 1 | 16954 | 0 | 0 | 364 | $0.0019 | 0 | 0 | 0 |
+| A-sol-1 | check A-sol-1 opening | anthropic/claude-haiku-5.5 | 1 | 879 | 0 | 0 | 72 | $0.0001 | 0 | 0 | 0 |
+| A-sol-1 | check A-sol-1 t* player | anthropic/claude-haiku-5.5 | 20 | 25156 | 0 | 0 | 1371 | $0.0032 | 0 | 0 | 0 |
+| A-sol-1 | dm t* | anthropic/claude-opus-5.5 | 40 | 158 | 1070260 | 1162418 | 118271 | $8.4407 | 0 | 0 | 0 |
+| A-sol-1 | dm t* | anthropic/claude-haiku-5.5 | 21 | 53375 | 0 | 0 | 7696 | $0.0092 | 0 | 0 | 0 |
+| A-sol-1 | check A-sol-1 t* dm | anthropic/claude-haiku-5.5 | 18 | 22827 | 0 | 0 | 1432 | $0.0030 | 0 | 0 | 0 |
+| A-sol-1 | check referee A-sol-1 t* dm | anthropic/claude-opus-5.5 | 1 | 1017 | 0 | 0 | 52 | $0.0051 | 0 | 0 | 0 |
+| A-sol-1 | dm t* ooc | anthropic/claude-opus-5.5 | 2 | 30728 | 43994 | 9412 | 1634 | $0.2397 | 0 | 0 | 0 |
+| A-sol-1 | check A-sol-1 note | anthropic/claude-haiku-5.5 | 1 | 1226 | 0 | 0 | 75 | $0.0002 | 0 | 0 | 0 |
+| A-sol-1 | check A-sol-1 after | anthropic/claude-haiku-5.5 | 1 | 514 | 0 | 0 | 72 | $0.0001 | 0 | 0 | 0 |
+| score A-sol-1 | tag player A-sol-1 t* 1 | anthropic/claude-haiku-5.5 | 20 | 46893 | 0 | 0 | 5318 | $0.0073 | 0 | 0 | 0 |
+| score A-sol-1 | tag player A-sol-1 t* 2 | anthropic/claude-haiku-5.5 | 20 | 46893 | 0 | 0 | 4631 | $0.0070 | 0 | 0 | 0 |
+| score A-sol-1 | tag player A-sol-1 t* referee | anthropic/claude-opus-5.5 | 2 | 4395 | 0 | 0 | 316 | $0.0239 | 0 | 0 | 0 |
+| score A-sol-1 | tag dm A-sol-1 t* 1 | anthropic/claude-haiku-5.5 | 18 | 24105 | 0 | 0 | 5954 | $0.0054 | 0 | 0 | 0 |
+| score A-sol-1 | tag dm A-sol-1 t* 2 | anthropic/claude-haiku-5.5 | 18 | 24105 | 0 | 0 | 5612 | $0.0052 | 0 | 0 | 0 |
+| score A-sol-1 | threads A-sol-1 | anthropic/claude-opus-5.5 | 1 | 16104 | 0 | 0 | 681 | $0.0780 | 0 | 0 | 0 |
+| score A-sol-1 | note A-sol-1 1 | anthropic/claude-haiku-5.5 | 1 | 1140 | 0 | 0 | 104 | $0.0002 | 0 | 0 | 0 |
+| score A-sol-1 | note A-sol-1 2 | anthropic/claude-haiku-5.5 | 1 | 1140 | 0 | 0 | 121 | $0.0002 | 0 | 0 | 0 |
+| score A-sol-1 | authorship A-sol-1 1 | anthropic/claude-opus-5.5 | 1 | 20720 | 0 | 0 | 1625 | $0.1154 | 0 | 0 | 0 |
+| score A-sol-1 | authorship A-sol-1 2 | anthropic/claude-opus-5.5 | 1 | 20720 | 0 | 0 | 1695 | $0.1168 | 0 | 0 | 0 |
+| score A-sol-1 | note extra A-sol-1 1 | anthropic/claude-haiku-5.5 | 1 | 1223 | 0 | 0 | 609 | $0.0004 | 0 | 0 | 0 |
+| score A-sol-1 | note extra A-sol-1 2 | anthropic/claude-haiku-5.5 | 1 | 1223 | 0 | 0 | 459 | $0.0004 | 0 | 0 | 0 |
+| score A-sol-1 | made A-sol-1 t* 1 | anthropic/claude-haiku-5.5 | 18 | 37570 | 0 | 0 | 1249 | $0.0044 | 0 | 0 | 0 |
+| score A-sol-1 | made A-sol-1 t* 2 | anthropic/claude-haiku-5.5 | 18 | 37570 | 0 | 0 | 1252 | $0.0044 | 0 | 0 | 0 |
+| score A-sol-1 | overlap A-sol-1 1 | anthropic/claude-haiku-5.5 | 1 | 25783 | 0 | 0 | 583 | $0.0029 | 0 | 0 | 0 |
+| score A-sol-1 | overlap A-sol-1 2 | anthropic/claude-haiku-5.5 | 1 | 25783 | 0 | 0 | 569 | $0.0029 | 0 | 0 | 0 |
+| score A-sol-1 | overlap A-sol-1 referee | anthropic/claude-opus-5.5 | 1 | 25783 | 0 | 0 | 1213 | $0.1274 | 0 | 0 | 0 |
+| score A-sol-1 | world A-sol-1 1 | anthropic/claude-haiku-5.5 | 1 | 16379 | 0 | 0 | 129 | $0.0017 | 0 | 0 | 0 |
+| score A-sol-1 | world A-sol-1 2 | anthropic/claude-haiku-5.5 | 1 | 16379 | 0 | 0 | 128 | $0.0017 | 0 | 0 | 0 |
