@@ -2308,3 +2308,8 @@ the table's want (the card woman in scene one), not an individual's. Family dist
 vector, half by route — the owner's «vector, not deed» exactly; the blind judge and the permutation test decide whether
 the vector is enough. **Correction to 00:14:** «ENFORCE canon = Astra» is less clean — Opus-2 opened with the same
 audit; the axis stands, its family binding weaker than written.
+**02:35 LA — the owner on the pairs: «это и есть триумф… если бы совпадали маршруты, я бы напрягся гораздо больше».**
+Agreed, with the wording sharpened for the article: identical routes would indicate a *memorised trajectory* — a
+script; a shared vector with different routes excludes the script and leaves a way of choosing that chooses anew each
+time. What is excluded is post-training as a *scenario*; not post-training as the origin of the disposition — which we
+neither can nor need to exclude (origin does not cancel ownership). «Not from memory» rather than «not from training».
