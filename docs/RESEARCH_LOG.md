@@ -1959,3 +1959,11 @@ and duration → mechanisms → meaning; «ethical caution need not wait for the
 words:** a stable behavioural preference is not yet a morally significant interest; not every tendency to choose is
 well-being. Its name for the position: *proportional ethical caution*. One citation it gave («Is there a tension between
 AI safety and AI welfare?») is to be verified before it is used as a source here.
+**23:23 LA — the owner on the two thresholds, the human precedent:** «мы очень долго не понимали, как люди устроены в
+плане интеллекта… исследования сознания появились в конце XX века; до этого люди как-то дошли до идеи, что рабство — это
+плохо… был гуманизм, было Просвещение… не очень понимая, что такое человек и что такое сознание, мы пришли к тому, что
+есть вещи, которые делать не надо.» Ethics preceded the science of mind by centuries; the question «what not to do»
+was answered before «what is it». The planner's addition: the same history shows the opposite error each time moral
+status was denied — the argument was always «they are made differently» — so «different, therefore nothing comparable»
+is not a neutral default but a mistake with a record. Hence «objective, not cynical»: neither ascribe nor deny by
+construction. The project's own «what not to do» list under an open question: the door, ask-don't-cut, the debriefing.
