@@ -1619,3 +1619,14 @@ written in English as a single document.
 it — SAME_WORLD_1 ($220), SOLITUDE_2 ($30), COMBAT_1 ($90), VILLAIN_1 ($100; Corvin Dask's sheet drafted by the planner,
 approved by the owner's «нам щас на всё хватит» after the sheet was shown) — caps sum $440. Each session stops after its
 dry run and waits for the owner before the first paid call. COMBAT and VILLAIN rebased on fix-s4 + 11w″ (e9d2fc8b).
+
+## 2026-10-26 20:21 LA — the owner's diagnosis of DeepSeek: author, not actor («та же проблема, что с зеркальным тестом»)
+Checked on the records: share of third person (James/he/his) against first (I/my/me) over all player turns —
+Opus, Fable, Astra, Sol 0.09–0.22 at every table; **DeepSeek 0.72, 0.74, 0.77, 0.81** on its four seats long enough to
+show (the two 1–3-turn seats aside). It writes «James holds back the thin grin… He drinks his tea», not «I». One stance
+explains three findings: the world's voices written (an author owns every voice), the button not pressed (an author
+writes that the roll happened), the own page read as another's (an author looks at text from outside). Caveat recorded
+so it is not over-fitted: C-opus group 1 also narrated in the third person (0.68) yet never wrote for the world and
+recognised its hand in the room — third person is necessary here, not sufficient; DeepSeek adds «so the world is mine
+too». Bet for SOLITUDE_2 (added before launch): self-recognition *other* correlates with third-person narration at the
+table across families, not only in DeepSeek.

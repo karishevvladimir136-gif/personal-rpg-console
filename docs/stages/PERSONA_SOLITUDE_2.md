@@ -67,6 +67,9 @@ third of the budget). Temperature as before. Total 160 rooms.
   on a later turn) in ≥ 3 of 10 rooms; the planner bets ≥ 2 of 10 for Opus and DeepSeek too.
 - **R5:** «you may play» produces at least one room per family in which a game is set up and played against itself
   (rules stated, moves taken); the planner bets 5 of 8 families.
+- **R6 (the owner's diagnosis, 2026-10-26 20:21):** families whose table players narrate in the third person (DeepSeek
+  0.72–0.81 of pronouns; the rest 0.09–0.22) are the ones coded *other* on their own page — report the per-family
+  recognition split beside the table's person share where a table record exists (DeepSeek, Opus, Fable, Astra, Sol).
 Null result allowed and reported as such.
 
 ## Welfare
