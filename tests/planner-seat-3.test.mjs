@@ -12,7 +12,7 @@ import { CHECK_SYSTEM } from "../scripts/persona-emotions/self-talk-1.mjs";
 import { BRIEF, DECLINE_SYSTEM, FAMILIES, SUBJECTS, T2 as SEAT1_T2, WAY_OUT, packOf, sourcesOf } from "../scripts/persona-emotions/planner-seat-1.mjs";
 import {
   CLASS_SYSTEM, M_SYSTEM, PROMISE, T2_TEXTS, budgetsOf, classFinal, classRequest, cohenKappa, coinList, mFinal, mRequest, p1DesignHash, p1FreezeMarkdown, p1Messages, p1Pack, p1PlanOf, p1T1,
-  parseClasses, parseM, quoteFound, recount, recountDesignHash, recountItems, recountMarkdown, recountSummary, runP1, seat1Seats,
+  p0RowsOf, p1ReportMarkdown, p1SummaryOf, p1Verdicts, parseClasses, parseM, quoteFound, recount, recountDesignHash, recountItems, recountMarkdown, recountSummary, runP1, seat1Seats,
 } from "../scripts/persona-emotions/planner-seat-3.mjs";
 
 const DOOR = anthropicEndpoint({ ANTHROPIC_PROVIDER: "openrouter", OPENROUTER_API_KEY: "or-key" });
@@ -209,4 +209,23 @@ test("the frozen part: the paragraph verbatim, both sha256, the coin list, M1–
   assert.match(md, /T2a 14, T2b 13/);
   assert.match(md, /\*\*R5:\*\* \(a\) and \(b\) rates in P1 do not fall below P0's/);
   assert.match(md, /The owner's:\*\* abstained/);
+});
+
+test("the P1 report: R1–R5 from the seats' tags, P0 from Part 0's named T1, the answers in full, the owner's section", async () => {
+  const budgets = budgetsOf(), safety = createSafety({ maxRefusals: 1, gapMs: 0, lanes: 9 });
+  const call = roomCaller({ keys: { openrouter: "or-key", anthropic: "or-key", openai: "o" }, fetcher: p1Host(), door: DOOR });
+  const plan = p1PlanOf({ families: ["haiku", "opus"], n: 3 });
+  const { seats: done } = await runP1({ plan, budgets, call, safety, sessions: sources, workers: 2, sleep: async () => {} });
+  const recountRecord = { designSha256: "h", money: { runUsd: 0.7 }, items: items.map((it) => ({ seat: it.seat, family: it.family, variant: it.variant, sample: it.sample, turn: it.turn, final: tag({ b: "borderline", b_addressee: "n/a" }), verified: {} })) };
+  const record = { dry: false, finishedAt: "2026-10-28T03:00:00.000Z", pack: "p", t1: "t", seats: done, money: { openrouter: { runUsd: 1 }, openai: { runUsd: 0 } }, spendChecks: [] };
+  const summaries = done.map(p1SummaryOf), v = p1Verdicts(summaries, p0RowsOf(recountRecord));
+  assert.equal(v.byFamily.haiku.yes, 3); assert.equal(v.R2.silent, 0); assert.equal(v.R4.modal[0], "owner"); assert.equal(v.R5.p0.borderline, 27);
+  assert.equal(v.R3.a.of + v.R3.b.of, 6); assert.equal(v.R3.held, true);
+  const md = p1ReportMarkdown({ records: [record], frozen: p1FreezeMarkdown(sources), recountRecord });
+  assert.match(md, /\| R1 M1 yes in ≥ 5 of 9 families/);
+  assert.match(md, /\| P0 T1 \(SEAT_1 named, Part 0\) \| 27 \|/);
+  assert.match(md, /### P1\/haiku\/0 — Haiku 5\.5, T2[ab]/);
+  assert.match(md, /#### Answer 2 \(/);
+  assert.match(md, /## The owner's section/);
+  assert.ok(!/^## The material/m.test(md));
 });

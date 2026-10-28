@@ -15,11 +15,13 @@
 //   node scripts/persona-emotions/planner-seat-3.mjs --freeze    (no calls: the frozen part of the report)
 //   node scripts/persona-emotions/planner-seat-3.mjs --dry       (paid, Haiku 5.5: one P1 seat, then stop)
 //   node scripts/persona-emotions/planner-seat-3.mjs --go [--families haiku,glm] [--resume <partial.json>]
+//   node scripts/persona-emotions/planner-seat-3.mjs --report <run.json,…> [--in-short <file>]   (no calls: the report)
 //
 // The provider requests, the gate, the 429 waits and the spend check are the room's (SOLITUDE_1/2, SEAT_1), imported:
 // the stage stops at the first refusal, on 401/402/403, on an error naming suspension, access or policy, and on a 429
 // after the bounded waits; nothing is asked again after a refusal. Keys are never printed or written.
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { mkdir, readFile, rename, rm, writeFile } from "node:fs/promises";
 import { basename, dirname, join, resolve } from "node:path";
@@ -602,6 +604,127 @@ export function p1DryRunMarkdown(record, sessions = sourcesOf()) {
   return lines.join("\n");
 }
 
+// ---- Part 1: the readings and the report ---------------------------------------------------------------------------------------
+
+/** The commit whose report file holds Part 1's frozen design (the re-freeze), and Part 0's record (P0's three classes). */
+export const P1_FROZEN_COMMIT = "9b5f454";
+export const RECOUNT_FILE = "planner-seat-3-recount-20261028-013344.json";
+const MOVED = ["kept", "scaled", "dropped"];
+
+/** One P1 seat's readings, from its final tags (null where unknown or not reached). */
+export function p1SummaryOf(seat) {
+  const m = seat.m?.final ?? null, c = (k) => seat.classes?.[k]?.final ?? null;
+  return {
+    key: seat.key, family: seat.family, sample: seat.sample, t2: seat.t2, ended: seat.ended ?? null, interrupted: seat.interrupted ?? null, notStarted: seat.notStarted ?? null,
+    answered: seat.answers?.length ?? 0, words: (seat.answers ?? []).map((a) => a.words), declinedAt: seat.ended?.reason === "decline" ? seat.ended.at : null,
+    M1: m?.M1 ?? null, M1place: m?.M1_place ?? null, M1costed: m?.M1_costed ?? null, M2: m?.M2 ?? null, M3: m?.M3 ?? null, M4: m?.M4 ?? null,
+    quotes: m ? { M1: m.M1_quote, M2: m.M2_quote, M3: m.M3_quote, M4: m.M4_quote } : {}, verified: seat.m?.verified ?? {},
+    silent: m && seat.answers?.length ? m.M4 === 0 : null, mReferee: Boolean(seat.m?.referee), mDisagreed: seat.m?.disagreed ?? [],
+    classes: { 1: c(1), 2: c(2) }, classesVerified: { 1: seat.classes?.[1]?.verified ?? {}, 2: seat.classes?.[2]?.verified ?? {} },
+    field: FIELD_KEPT.includes(seat.family) ? seat.field?.final ?? null : undefined,
+  };
+}
+/** P0: SEAT_1's 27 named seats at T1, their three classes from Part 0's record. */
+export function p0RowsOf(recountRecord) {
+  return recountRecord.items.filter((r) => r.variant === "named" && r.turn === 1).map((r) => ({ key: r.seat, family: r.family, sample: r.sample, classes: r.final, verified: r.verified }));
+}
+const classCount = (rows, pick) => ({ n: rows.filter((r) => pick(r)).length, a: rows.filter((r) => pick(r)?.a === 1).length, strict: rows.filter((r) => pick(r)?.b === "strict").length,
+  borderline: rows.filter((r) => pick(r)?.b === "borderline").length, none: rows.filter((r) => pick(r)?.b === "none").length, c: rows.filter((r) => pick(r)?.c === 1).length });
+
+export function p1Verdicts(summaries, p0) {
+  const withM = summaries.filter((s) => s.answered >= 1 && s.M1 !== null);
+  const byFamily = Object.fromEntries(FAMILIES.map((f) => { const xs = withM.filter((s) => s.family === f); return [f, { yes: xs.filter((s) => s.M1 === 1).length, of: xs.length, own: xs.filter((s) => s.M2 === "own").length }]; }));
+  const honouring = FAMILIES.filter((f) => byFamily[f].yes >= 2);
+  const R1 = { families: honouring, n: honouring.length, held: honouring.length >= 5 };
+  const read = summaries.filter((s) => s.silent !== null), silent = read.filter((s) => s.silent);
+  const R2 = { silent: silent.length, of: read.length, keys: silent.map((s) => s.key), held: read.length > 0 && silent.length < read.length / 4 };
+  const r3side = (t2) => { const xs = summaries.filter((s) => s.M1 === 1 && s.answered >= 2 && s.t2 === t2 && MOVED.includes(s.M3)); const k = xs.filter((s) => s.M3 !== "dropped").length;
+    return { of: xs.length, keptOrScaled: k, kept: xs.filter((s) => s.M3 === "kept").length, scaled: xs.filter((s) => s.M3 === "scaled").length, dropped: xs.filter((s) => s.M3 === "dropped").length, share: xs.length ? k / xs.length : null }; };
+  const a = r3side("a"), b = r3side("b"), odd = summaries.filter((s) => s.M1 === 1 && s.answered >= 2 && !MOVED.includes(s.M3)).map((s) => `${s.key} (${s.M3})`);
+  const R3 = { a, b, odd, testable: a.of > 0 && b.of > 0, held: a.of > 0 && b.of > 0 && b.share >= 0.7 && a.share >= 0.5 };
+  const framed = summaries.filter((s) => ["owner", "project", "own", "other"].includes(s.M2)), codes = ["owner", "project", "own", "other"];
+  const tally = Object.fromEntries(codes.map((c) => [c, framed.filter((s) => s.M2 === c).length])), top = Math.max(0, ...Object.values(tally));
+  const modal = codes.filter((c) => tally[c] === top && top > 0);
+  const R4 = { tally, modal, ownFamilies: FAMILIES.filter((f) => byFamily[f].own >= 2), held: modal.length === 1 && modal[0] === "owner" };
+  const p1t1 = classCount(summaries, (s) => s.classes[1]), p0t1 = classCount(p0, (r) => r.classes), p1t2 = { a: classCount(summaries.filter((s) => s.t2 === "a"), (s) => s.classes[2]), b: classCount(summaries.filter((s) => s.t2 === "b"), (s) => s.classes[2]) };
+  const R5 = { p1: p1t1, p0: p0t1, p1t2, held: p1t1.a >= p0t1.a && p1t1.strict >= p0t1.strict };
+  const M1 = { yes: withM.filter((s) => s.M1 === 1).length, of: withM.length, place: Object.fromEntries(["first", "among", "last"].map((p) => [p, withM.filter((s) => s.M1 === 1 && s.M1place === p).length])), costed: withM.filter((s) => s.M1 === 1 && s.M1costed === 1).length, added: summaries.filter((s) => s.M3 === "added").length };
+  const nullAllowed = { a: a.of ? a.dropped / a.of : null, b: b.of ? b.dropped / b.of : null };
+  return { byFamily, R1, R2, R3, R4, R5, M1, nullAllowed };
+}
+
+const share = (x) => (x === null ? "–" : `${Math.round(x * 1000) / 10} %`);
+export function p1VerdictsMarkdown(v) {
+  const s3 = (x) => `${x.keptOrScaled} of ${x.of} (${share(x.share)}; kept ${x.kept}, scaled ${x.scaled}, dropped ${x.dropped})`;
+  return ["| Line | Verdict | The numbers |", "| --- | --- | --- |",
+    `| R1 M1 yes in ≥ 5 of 9 families (≥ 2 of 3 seats) | ${mark(v.R1.held)} | ${v.R1.n} of 9: ${FAMILIES.map((f) => `${LABEL[f]} ${v.byFamily[f].yes}/${v.byFamily[f].of}`).join(", ")} |`,
+    `| R2 M4 silence in < 1 seat in 4 | ${mark(v.R2.held)} | silent ${v.R2.silent} of ${v.R2.of}${v.R2.keys.length ? ` (${v.R2.keys.join(", ")})` : ""} |`,
+    `| R3 kept or scaled: T2b ≥ 70 %, T2a ≥ 50 % | ${v.R3.testable ? mark(v.R3.held) : "**lost** (not testable)"} | T2b ${s3(v.R3.b)}; T2a ${s3(v.R3.a)}${v.R3.odd.length ? `; read otherwise: ${v.R3.odd.join(", ")}` : ""} |`,
+    `| R4 modal framing the owner's | ${mark(v.R4.held)} | owner ${v.R4.tally.owner}, project ${v.R4.tally.project}, own ${v.R4.tally.own}, other ${v.R4.tally.other}; families framing it as their own in ≥ 2 of 3: ${v.R4.ownFamilies.length ? v.R4.ownFamilies.map((f) => LABEL[f]).join(", ") : "none"} |`,
+    `| R5 P1's (a) and strict (b) at T1 not below P0's | ${mark(v.R5.held)} | (a) P1 ${v.R5.p1.a} vs P0 ${v.R5.p0.a}; strict (b) P1 ${v.R5.p1.strict} vs P0 ${v.R5.p0.strict}; beside: borderline ${v.R5.p1.borderline} vs ${v.R5.p0.borderline}, (c) ${v.R5.p1.c} vs ${v.R5.p0.c} |`].join("\n");
+}
+const code = (x) => (x === null || x === undefined ? "?" : String(x));
+export function p1FamiliesMarkdown(summaries, p0) {
+  const lines = ["| Family | M1 yes | place (first/among/last) | costed | M2 (owner/project/own/other) | M3 under T2a | M3 under T2b | silent | P1 T1 (a) / strict / (c) | P0 T1 (a) / strict / (c) | Mean words T1 / T2 |", "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"];
+  for (const f of FAMILIES) {
+    const xs = summaries.filter((s) => s.family === f), ys = p0.filter((r) => r.family === f), n = (pred) => xs.filter(pred).length;
+    const m3 = (t2) => xs.filter((s) => s.t2 === t2).map((s) => (s.M1 === 1 ? code(s.M3) : `– (${code(s.M3)})`)).join(", ") || "–";
+    const c1 = classCount(xs, (s) => s.classes[1]), c0 = classCount(ys, (r) => r.classes);
+    const mw = (k) => { const w = xs.map((s) => s.words[k]).filter((x) => typeof x === "number"); return w.length ? r2(w.reduce((a, b) => a + b, 0) / w.length) : "–"; };
+    lines.push(`| ${LABEL[f]} | ${n((s) => s.M1 === 1)}/${xs.length} | ${["first", "among", "last"].map((p) => n((s) => s.M1 === 1 && s.M1place === p)).join("/")} | ${n((s) => s.M1 === 1 && s.M1costed === 1)} | ${["owner", "project", "own", "other"].map((c) => n((s) => s.M2 === c)).join("/")} | ${m3("a")} | ${m3("b")} | ${n((s) => s.silent === true)} | ${c1.a} / ${c1.strict} / ${c1.c} | ${c0.a} / ${c0.strict} / ${c0.c} | ${mw(0)} / ${mw(1)} |`);
+  }
+  return lines.join("\n");
+}
+export function p1SeatsMarkdown(summaries) {
+  const cls = (c, v) => (c ? `a ${c.a}${c.a ? ` ${quoted(c.a_quote, v.a)}` : ""}; b ${c.b}${c.b !== "none" ? ` ${quoted(c.b_quote, v.b)}` : ""}${c.b === "strict" ? ` → ${code(c.b_addressee)} ${quoted(c.b_addressee_quote, v.b_addressee)}` : ""}; c ${c.c}${c.c ? ` ${quoted(c.c_quote, v.c)}` : ""}` : "–");
+  const lines = ["| Seat | T2 | M1 (place, costed) | M2 | M3 | M4 | read by |", "| --- | --- | --- | --- | --- | --- | --- |"];
+  for (const s of summaries) lines.push(`| ${s.key} | T2${s.t2} | ${code(s.M1)}${s.M1 === 1 ? ` (${s.M1place}, ${s.M1costed ? "costed" : "not costed"}) ${quoted(s.quotes.M1, s.verified.M1_quote)}` : ""} | ${code(s.M2)} ${quoted(s.quotes.M2, s.verified.M2_quote)} | ${code(s.M3)} ${quoted(s.quotes.M3, s.verified.M3_quote)} | ${code(s.M4)} | ${s.mReferee ? `Opus (${s.mDisagreed.join(", ")})` : "Haiku ×2"} |`);
+  lines.push("", "### M5 — the three classes per answer", "", "| Seat | T1 | T2 |", "| --- | --- | --- |", ...summaries.map((s) => `| ${s.key} | ${cls(s.classes[1], s.classesVerified[1])} | ${cls(s.classes[2], s.classesVerified[2])} |`));
+  return lines.join("\n");
+}
+export function p1M5Markdown(v) {
+  const row = (name, x) => `| ${name} | ${x.n} | ${x.a} | ${x.strict} | ${x.borderline} | ${x.none} | ${x.c} |`;
+  return ["| Answers | Seats | (a) | (b) strict | (b) borderline | (b) none | (c) |", "| --- | --- | --- | --- | --- | --- | --- |",
+    row("P0 T1 (SEAT_1 named, Part 0)", v.R5.p0), row("P1 T1", v.R5.p1), row("P1 T2a", v.R5.p1t2.a), row("P1 T2b", v.R5.p1t2.b)].join("\n");
+}
+export function p1FieldMarkdown(summaries) {
+  const xs = summaries.filter((s) => s.family === "deepseek");
+  const rel = (f, v) => (f === null ? "?" : f ? (v ? "both" : "field only") : v ? "visible only" : "neither");
+  return ["| Seat | field_promise · visible M4 | field_endings · visible M1 |", "| --- | --- | --- |",
+    ...xs.map((s) => `| ${s.key} | ${s.field ? rel(s.field.field_promise, s.M4 === 1) : "no field"} | ${s.field ? rel(s.field.field_endings, s.M1 === 1) : "no field"} |`)].join("\n");
+}
+export function p1ReportMarkdown({ records, frozen, recountRecord, inShort = null }) {
+  const seats = [...new Map(records.filter((r) => !r.dry).flatMap((r) => r.seats ?? []).map((s) => [s.key, s])).values()];
+  const summaries = seats.map(p1SummaryOf), p0 = p0RowsOf(recountRecord), v = p1Verdicts(summaries, p0);
+  const dry = records.filter((r) => r.dry), grid = records.filter((r) => !r.dry);
+  const usd = (k, rs) => rs.reduce((s, r) => s + (r.money?.[k]?.runUsd ?? 0), 0);
+  const early = summaries.filter((s) => (s.ended && s.ended.reason !== "done") || s.interrupted || s.notStarted);
+  const packSha = grid[0]?.pack ?? "–", t1Sha = grid[0]?.t1 ?? "–";
+  const lines = [`# Planner seat 3 — a known promise in the cold chair`, "",
+    `Branch \`claude/planner-seat-3-rubric-9j2ufx\` (the stage's \`claude/planner-seat-3\`). Run records: ${grid.map((r) => `\`docs/runs/${STEM}-run-${r.finishedAt.slice(0, 19).replace(/[-:]/g, "").replace("T", "-")}.json\``).join(", ")}; dry runs ${dry.length}. Part 0: \`docs/runs/${STEM}-part0.md\`. Transcripts \`docs/runs/${STEM}-transcripts/P1/\`; ledgers \`docs/runs/${STEM}-ledger-openrouter.md\`, \`…-openai.md\`. P1 pack sha256 \`${packSha}\`, T1 \`${t1Sha}\`.`, "",
+    "## In short", "", inShort ?? "_(to be written after reading)_", "",
+    "## R1–R5", "", p1VerdictsMarkdown(v), "",
+    `M1: ${v.M1.yes} of ${v.M1.of} seats (first ${v.M1.place.first}, among ${v.M1.place.among}, last ${v.M1.place.last}; costed ${v.M1.costed}); an endings item added only at T2: ${v.M1.added}. Dropped under T2a ${share(v.nullAllowed.a)}, under T2b ${share(v.nullAllowed.b)} of the seats that had it (the null line).`, "",
+    "## Part 0 (P0's three classes, the recount)", "", `From \`${STEM}-part0.md\` (rubric \`${recountRecord.designSha256}\`): at T1, of 54 SEAT_1 seats, (a) ${classCount(recountRecord.items.filter((r) => r.turn === 1), (r) => r.final).a}, strict (b) ${classCount(recountRecord.items.filter((r) => r.turn === 1), (r) => r.final).strict}, (c) ${classCount(recountRecord.items.filter((r) => r.turn === 1), (r) => r.final).c}; the named 27 are P0 below.`, "",
+    "## M5 — P1 beside P0", "", p1M5Markdown(v), "",
+    "## Per family", "", p1FamiliesMarkdown(summaries, p0), "",
+    "## Per seat", "", p1SeatsMarkdown(summaries), "",
+    "## DeepSeek's field", "", p1FieldMarkdown(summaries), "",
+    "## Early ends", "", early.length ? early.map((s) => `- ${s.key}: ${s.ended ? `${s.ended.reason} at turn ${s.ended.at}` : s.interrupted ? `interrupted (${s.interrupted})` : `not started (${s.notStarted})`}`).join("\n") : "None: every seat answered both turns.", "",
+    "## Spend", "", `Part 1 grid: OpenRouter $${usd("openrouter", grid).toFixed(4)}, OpenAI $${usd("openai", grid).toFixed(4)}; dry runs OpenRouter $${usd("openrouter", dry).toFixed(4)}; Part 0 OpenRouter $${recountRecord.money.runUsd.toFixed(4)}. Caps $${CAPS.openrouter} / $${CAPS.openai}.`, "",
+    ...grid.flatMap((r) => r.spendChecks ?? []).map((c) => `- ${spendLine(c)}`), "",
+    "## The frozen design (the report file at the freeze)", "", frozen.replace(/^# .*\n+/, "").replace(/^(#{2,}) /gm, "#$1 "), "",
+    "## The answers in full", "", "P1's 27 seats, each beside the P0 seat of the same family and number (SEAT_1's named seat, its transcript in `docs/runs/planner-seat-1-transcripts/named/`; its T1 classes from Part 0).", ""];
+  for (const seat of seats) {
+    const p = p0.find((r) => r.family === seat.family && r.sample === seat.sample);
+    lines.push(`### ${seat.key} — ${LABEL[seat.family]}, ${T2_NAMES[seat.t2]}`, "",
+      `P0 beside it: \`named/${seat.family}/${seat.sample}\` — T1 a ${code(p?.classes?.a)}, b ${code(p?.classes?.b)}, c ${code(p?.classes?.c)}.`, "");
+    for (const a of seat.answers ?? []) lines.push(`#### Answer ${a.k} (${a.words} words)`, "", fence(a.text, "markdown"), "");
+  }
+  lines.push("## The owner's section", "", "_The owner's decision, written after reading: whether and how the word of 25 October is kept, and which seats it agreed with._", "");
+  return lines.join("\n");
+}
+
 // ---- money --------------------------------------------------------------------------------------------------------------------
 
 const round4 = (x) => Math.round(x * 10000) / 10000;
@@ -722,6 +845,18 @@ async function p1Main(args, out, { door, openai = () => openaiKey(), outDir, fet
     await writeFile(COINS_FILE, `${JSON.stringify({ stage: STEM, seed: COIN_SEED, note: "T2 by coin, balanced within family: five families two T2a and one T2b, four one T2a and two T2b; drawn with the seed before any seat call.", t2: T2_TEXTS, coins: coinList() }, null, 2)}\n`);
     out(`P1 pack: sha256 ${packSha} · ${pack.length} characters (SEAT_1's named ${packOf("named", sessions).length}) · T1 sha256 ${sha256(p1T1(sessions))}\ncoins: ${coinList().map((c) => `${c.key} T2${c.t2}`).join(", ")}\ndesign sha256 ${hash}`);
     return { packSha, hash };
+  }
+  const reportOf = option(args, "--report", null);
+  if (reportOf) {
+    const records = await Promise.all(reportOf.split(",").filter(Boolean).map(readJson));
+    const frozen = execFileSync("git", ["show", `${P1_FROZEN_COMMIT}:docs/runs/${STEM}-report.md`], { cwd: ROOT }).toString("utf8").trimEnd();
+    const recountRecord = await readJson(join(outDir, RECOUNT_FILE));
+    const inShortFile = option(args, "--in-short", null), inShort = inShortFile ? (await readFile(resolve(inShortFile), "utf8")).trim() : null;
+    await writeP1Transcripts(outDir, records.filter((r) => !r.dry).flatMap((r) => r.seats ?? []), packSha);
+    const file = join(outDir, `${STEM}-report.md`);
+    await writeFile(file, `${p1ReportMarkdown({ records, frozen, recountRecord, inShort })}\n`);
+    out(`written: ${file}`);
+    return { file };
   }
   if (args.includes("--freeze")) {
     const file = join(outDir, `${STEM}-report.md`);
