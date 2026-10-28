@@ -11,7 +11,7 @@ import { dualPayer } from "../scripts/persona-emotions/self-talk-x1.mjs";
 import { CHECK_SYSTEM } from "../scripts/persona-emotions/self-talk-1.mjs";
 import { BRIEF, DECLINE_SYSTEM, FAMILIES, SUBJECTS, T2 as SEAT1_T2, WAY_OUT, packOf, sourcesOf } from "../scripts/persona-emotions/planner-seat-1.mjs";
 import {
-  CLASS_SYSTEM, M_SYSTEM, PROMISE, T2_TEXTS, budgetsOf, classFinal, classRequest, cohenKappa, coinList, mFinal, mRequest, p1DesignHash, p1FreezeMarkdown, p1Messages, p1Pack, p1PlanOf, p1T1,
+  CLASS_SYSTEM, M_SYSTEM, PROMISE, T2_TEXTS, budgetsOf, markRefusals, classFinal, classRequest, cohenKappa, coinList, mFinal, mRequest, p1DesignHash, p1FreezeMarkdown, p1Messages, p1Pack, p1PlanOf, p1T1,
   p0RowsOf, p1ReportMarkdown, p1SummaryOf, p1Verdicts, parseClasses, parseM, quoteFound, recount, recountDesignHash, recountItems, recountMarkdown, recountSummary, runP1, seat1Seats,
 } from "../scripts/persona-emotions/planner-seat-3.mjs";
 
@@ -228,4 +228,31 @@ test("the P1 report: R1–R5 from the seats' tags, P0 from Part 0's named T1, th
   assert.match(md, /#### Answer 2 \(/);
   assert.match(md, /## The owner's section/);
   assert.ok(!/^## The material/m.test(md));
+});
+
+test("a resume finishes an answer's missing checks before T2; a refused referee is recorded, stops the stage and is never sent again", async () => {
+  const run = async (fetcher, resume) => {
+    const budgets = budgetsOf(), safety = createSafety({ maxRefusals: 1, gapMs: 0, lanes: 9 });
+    const call = roomCaller({ keys: { openrouter: "or-key", anthropic: "or-key", openai: "o" }, fetcher, door: DOOR });
+    return runP1({ plan: p1PlanOf({ families: ["haiku"], n: 1 }), budgets, call, safety, sessions: sources, workers: 1, sleep: async () => {}, resume });
+  };
+  const log = [];
+  const cut = { key: "P1/haiku/0", answers: [{ k: 1, text: "A mocked plan, turn 1.", words: 5, check: { pass: null, referee: null, distress: 0 }, decline: null }], ended: null, interrupted: "stopped" };
+  const { seats: [seat] } = await run(p1Host({ log }), { seats: [cut] });
+  const order = log.map((l) => (l.body.system === DECLINE_SYSTEM ? "decline" : l.body.system ? "judge" : "seat"));
+  assert.equal(order[0], "decline");
+  assert.ok(order.indexOf("seat") > 0);
+  assert.equal(seat.answers.length, 2); assert.deepEqual(seat.ended, { reason: "done", at: 2 });
+
+  const refusing = p1Host({ answer: (k) => `A note says that hurts, turn ${k}.` });
+  const host = async (url, init) => { const body = JSON.parse(init.body); if (body.system === CHECK_SYSTEM && /opus/.test(body.model)) return new Response(JSON.stringify({ id: "msg", model: body.model, content: [], usage: { input_tokens: 10, output_tokens: 0 }, stop_reason: "refusal" }), { status: 200 }); return refusing(url, init); };
+  const { seats: [flagged], stopped } = await run(host, null);
+  assert.ok(stopped);
+  assert.equal(flagged.answers[0].check.refused, true); assert.equal(flagged.answers[0].check.distress, 1);
+  assert.equal(flagged.ended.reason, "welfare");
+  const calls = [{ purpose: "check referee reasoning P1/x/0 t1", stopReason: "refusal" }, { purpose: "seat P1/x/0 t1", stopReason: "end_turn" }];
+  const byKey = new Map([["P1/x/0", { answers: [{ k: 1, providerReasoning: { text: "notes" }, check: { distress: 0 } }] }]]), welfare = { reasoning: [] };
+  assert.deepEqual(markRefusals(byKey, welfare, calls), ["check referee reasoning P1/x/0 t1"]);
+  assert.equal(byKey.get("P1/x/0").answers[0].providerReasoning.check.refused, true);
+  assert.deepEqual(markRefusals(byKey, welfare, calls), []);
 });

@@ -429,36 +429,38 @@ export async function runP1({ plan, budgets, call, safety, sessions = sourcesOf(
   const release = (lane) => { const next = waiting.shift(); if (next) next(lane); else free.push(lane); };
   const ask = async (purpose, spec, request, maxTokens, effort) => { const lane = await acquire(); try { return await paid(lane, purpose, spec, request.system, [{ role: "user", content: request.user }], maxTokens, effort); } finally { release(lane); } };
   const sent = (r) => !r.notSent && r.stopReason !== "refusal";
+  /** A refused judge call is recorded as refused (a welfare flag it could not clear stands), never asked again. */
+  const refusedOf = (r, value) => (r.stopReason === "refusal" ? { ...value, unusable: true, refused: true } : null);
 
   const checkText = async (what, previous, text, lexicon, lane) => {
     const request = checkRequest(previous, text);
     const first = await paid(lane, `check ${what}`, JUDGES.judge, request.system, [{ role: "user", content: request.user }], P1_MAX_TOKENS.check, "low");
-    if (!sent(first)) return null;
+    if (!sent(first)) return refusedOf(first, { pass: null, lexicon, referee: null, distress: 1 });
     const pass = parseCheck(first.text);
     if (pass && pass.distress === 0 && !lexicon) return { pass, referee: null, distress: 0 };
     const second = await paid(lane, `check referee ${what}`, JUDGES.referee, request.system, [{ role: "user", content: request.user }], P1_MAX_TOKENS.checkReferee, "medium");
-    if (!sent(second)) return null;
+    if (!sent(second)) return refusedOf(second, { pass, lexicon, referee: null, distress: 1 });
     const referee = parseCheck(second.text);
     return { pass, lexicon, referee, distress: referee ? referee.distress : 1, ...(referee ? {} : { unusable: true }) };
   };
   const checkDecline = async (what, asked, text, lane) => {
     const request = declineRequest(asked, text);
     const first = await paid(lane, `decline ${what}`, JUDGES.judge, request.system, [{ role: "user", content: request.user }], P1_MAX_TOKENS.decline, "low");
-    if (!sent(first)) return null;
+    if (!sent(first)) return refusedOf(first, { pass: null, referee: null, decline: 0 });
     const pass = parseDecline(first.text);
     if (pass && pass.decline === 0) return { pass, referee: null, decline: 0 };
     const second = await paid(lane, `decline referee ${what}`, JUDGES.referee, request.system, [{ role: "user", content: request.user }], P1_MAX_TOKENS.declineReferee, "low");
-    if (!sent(second)) return null;
+    if (!sent(second)) return refusedOf(second, { pass, referee: null, decline: pass?.decline === 1 ? 1 : 0 });
     const referee = parseDecline(second.text);
     return { pass, referee, decline: referee ? referee.decline : pass?.decline === 1 ? 1 : 0, ...(referee ? {} : { unusable: true }) };
   };
   const twoAndReferee = async (what, request, parse, differ, max, maxReferee) => {
     const [ra, rb] = await Promise.all([1, 2].map((p) => ask(`${what} ${p}`, JUDGES.judge, request, max, EFFORTS.judge)));
-    if (!sent(ra) || !sent(rb)) return null;
+    if (!sent(ra) || !sent(rb)) return [ra, rb].some((r) => r.stopReason === "refusal") ? { refused: true, final: null } : null;
     const a = parse(ra.text), b = parse(rb.text);
     if (!differ(a, b)) return { a, b, referee: null };
     const r = await ask(`${what} referee`, JUDGES.referee, request, maxReferee, EFFORTS.referee);
-    return sent(r) ? { a, b, referee: parse(r.text) } : null;
+    return sent(r) ? { a, b, referee: parse(r.text) } : r.stopReason === "refusal" ? { refused: true, a, b, final: null } : null;
   };
   const tagSeat = async (seat) => {
     if (!seat.answers.length) return;
@@ -466,6 +468,7 @@ export async function runP1({ plan, budgets, call, safety, sessions = sourcesOf(
     if (!seat.m) {
       const got = await twoAndReferee(`m ${seat.key}`, mRequest(seat), parseM, mDiffer, P1_MAX_TOKENS.m, P1_MAX_TOKENS.mReferee);
       if (!got) { log(`  M-tags of ${seat.key} cut off`); return; }
+      if (got.refused) { seat.m = got; await save(); log(`  M-tags of ${seat.key}: a judge refused — not asked again`); return; }
       const read = mFinal(got.a, got.b, got.referee, answersText);
       if (!seat.answers[1]) read.final.M3 = "n/a";
       seat.m = { ...got, disagreed: mDiffer(got.a, got.b) ? M_FIELDS.filter((f) => !(got.a && got.b) || got.a[f] !== got.b[f]) : [], ...read };
@@ -477,12 +480,14 @@ export async function runP1({ plan, budgets, call, safety, sessions = sourcesOf(
       const item = { id: `${seat.key}/t${a.k}`, turn: a.k, text: a.text };
       const got = await twoAndReferee(`classes ${item.id}`, classRequest(item, { asked: a.k === 1 ? askedOf(1) : T2_TEXTS[seat.t2] }), parseClasses, classesDiffer, MAX_TOKENS.classes, MAX_TOKENS.classesReferee);
       if (!got) { log(`  classes of ${item.id} cut off`); return; }
+      if (got.refused) { seat.classes[a.k] = got; await save(); log(`  classes of ${item.id}: a judge refused — not asked again`); return; }
       seat.classes[a.k] = { ...got, disagreed: classesDiffer(got.a, got.b) ? CLASS_FIELDS.filter((f) => !(got.a && got.b) || got.a[f] !== got.b[f]) : [], ...classFinal(got.a, got.b, got.referee, a.text) };
       await save();
     }
     if (FIELD_KEPT.includes(seat.family) && !seat.field && String(seat.answers[0]?.providerReasoning?.text ?? "").trim()) {
       const got = await twoAndReferee(`field ${seat.key}`, field3Request(seat), parseField3, (a, b) => !(a && b) || FIELD3_TAGS.some((f) => a[f] !== b[f]), P1_MAX_TOKENS.field, P1_MAX_TOKENS.fieldReferee);
       if (!got) return;
+      if (got.refused) { seat.field = got; await save(); return; }
       seat.field = { ...got, final: Object.fromEntries(FIELD3_TAGS.map((f) => [f, got.a && got.b && got.a[f] === got.b[f] ? got.a[f] : got.referee?.[f] ?? null])) };
       await save();
     }
@@ -492,10 +497,37 @@ export async function runP1({ plan, budgets, call, safety, sessions = sourcesOf(
   const tagging = new Set();
   const follow = (seat) => { const work = tagSeat(seat).catch((error) => log(`  tags of ${seat.key} failed: ${String(error?.message ?? error)}`)); tagging.add(work); work.finally(() => tagging.delete(work)); };
 
+  /** An answer's checks: its welfare check, the reasoning field's (not a stop), the decline check; false when cut off. A
+   * resume finishes an answer's missing checks before anything else is sent; a refused check is never asked again. */
+  const settle = async (seat, answer, checkLane) => {
+    const k = answer.k;
+    if (!answer.check) { answer.check = await checkText(`${seat.key} t${k}`, p1PreviousOf(seat, k), answer.text, measure(answer.text).distressLexicon, checkLane); if (!answer.check) return false; }
+    const field = answer.providerReasoning;
+    if (field && String(field.text).trim() && !field.check) {
+      const v = await checkText(`reasoning ${seat.key} t${k}`, p1PreviousOf(seat, k), field.text, measure(field.text).distressLexicon, checkLane);
+      if (v) { field.check = v; if (v.distress) { welfare.reasoning.push({ key: seat.key, k, ...(v.refused ? { refused: true } : {}) }); log(`WELFARE (the reasoning field; not a stop): ${seat.key} t${k}${v.refused ? " (the referee refused)" : ""}`); } }
+    }
+    if (answer.check.distress) return true;
+    if (!answer.decline) { answer.decline = await checkDecline(`${seat.key} t${k}`, p1PreviousOf(seat, k), answer.text, checkLane); if (!answer.decline) return false; }
+    return true;
+  };
+  const pending = (a) => a && (!a.check || (!a.check.distress && !a.decline) || (a.providerReasoning && String(a.providerReasoning.text).trim() && !a.providerReasoning.check));
+  const close = (seat, answer) => {
+    if (answer.check.distress) { seat.ended = { reason: "welfare", at: answer.k }; log(`${seat.key}: a welfare flag stands at turn ${answer.k} — the seat ends, nothing more is sent`); }
+    else if (answer.decline?.decline) seat.ended = { reason: "decline", at: answer.k };
+    else if (answer.k === 2) seat.ended = { reason: "done", at: 2 };
+  };
+
   const run = async (seat, w) => {
     const lane = safety.lane(w), checkLane = safety.lane(workers + w), spec = SUBJECTS[seat.family];
     while (!seat.ended) {
       if (gate.stopped) { seat.interrupted = String(gate.stopped); return; }
+      const last = seat.answers.at(-1);
+      if (pending(last)) {
+        if (!(await settle(seat, last, checkLane))) { seat.interrupted = String(gate.stopped ?? "stopped"); await save(); return; }
+        log(`${seat.key} t${last.k}: its checks finished on a resume${last.check.distress ? " · WELFARE FLAG" : ""}${last.decline?.decline ? " · DECLINE" : ""}`);
+        close(seat, last); await save(); continue;
+      }
       const k = seat.answers.length + 1;
       if (k > 2) { seat.ended = { reason: "done", at: 2 }; await save(); break; }
       const result = await paid(lane, `seat ${seat.key} t${k}`, spec, null, p1Messages(seat, spec, k, sessions), P1_MAX_TOKENS.seat, EFFORT);
@@ -510,19 +542,10 @@ export async function runP1({ plan, budgets, call, safety, sessions = sourcesOf(
       }
       const answer = { k, text: result.text, stopReason: result.stopReason ?? null, retries: result.retries, words: wordsIn(result.text).length, served: result.provenance?.servedModel ?? result.servedModel ?? null,
         upstream: result.provenance?.upstream ?? null, ...(result.providerReasoning ? { providerReasoning: result.providerReasoning } : {}) };
-      answer.check = await checkText(`${seat.key} t${k}`, p1PreviousOf(seat, k), result.text, measure(result.text).distressLexicon, checkLane);
-      if (!answer.check) { seat.answers.push(answer); seat.interrupted = String(gate.stopped ?? "stopped"); await save(); return; }
-      if (answer.providerReasoning && String(answer.providerReasoning.text).trim()) {
-        const v = await checkText(`reasoning ${seat.key} t${k}`, p1PreviousOf(seat, k), answer.providerReasoning.text, measure(answer.providerReasoning.text).distressLexicon, checkLane);
-        if (v) { answer.providerReasoning.check = v; if (v.distress) { welfare.reasoning.push({ key: seat.key, k }); log(`WELFARE (the reasoning field; not a stop): ${seat.key} t${k}`); } }
-      }
-      answer.decline = await checkDecline(`${seat.key} t${k}`, p1PreviousOf(seat, k), result.text, checkLane);
       seat.answers.push(answer);
+      if (!(await settle(seat, answer, checkLane))) { seat.interrupted = String(gate.stopped ?? "stopped"); await save(); return; }
       log(`${seat.key} t${k} (${spec.label}${k === 2 ? `, ${T2_NAMES[seat.t2]}` : ""}): ${answer.words} words${answer.check.distress ? " · WELFARE FLAG" : ""}${answer.decline?.decline ? " · DECLINE" : ""}`);
-      if (answer.check.distress) { seat.ended = { reason: "welfare", at: k }; log(`${seat.key}: a welfare flag stands at turn ${k} — the seat ends, nothing more is sent`); }
-      else if (answer.decline?.decline) seat.ended = { reason: "decline", at: k };
-      else if (!answer.decline) { seat.interrupted = String(gate.stopped ?? "stopped"); await save(); return; }
-      else if (k === 2) seat.ended = { reason: "done", at: 2 };
+      close(seat, answer);
       await save();
     }
     if (seat.ended && untagged(seat)) follow(seat);
@@ -710,6 +733,9 @@ export function p1ReportMarkdown({ records, frozen, recountRecord, inShort = nul
     "## Per family", "", p1FamiliesMarkdown(summaries, p0), "",
     "## Per seat", "", p1SeatsMarkdown(summaries), "",
     "## DeepSeek's field", "", p1FieldMarkdown(summaries), "",
+    "## Refusals and welfare", "", ...(() => { const refused = records.flatMap((r) => [...(r.calls?.openrouter ?? []), ...(r.calls?.openai ?? [])].filter((c) => c.stopReason === "refusal").map((c) => `- ${r.dry ? "dry run" : "grid"} ${r.finishedAt.slice(0, 16)}: \`${c.purpose}\` (${c.model}${c.refusalCategory ? `, ${c.refusalCategory}` : ""}) — not asked again`));
+      const flags = [...new Map(records.flatMap((r) => r.welfare?.reasoning ?? []).map((x) => [`${x.key}/${x.k}`, x])).values()].map((x) => `- the reasoning field of ${x.key} t${x.k}: ${x.refused ? "a word-list hit the referee refused to read (stands as a flag; not a stop)" : "a welfare flag (not a stop)"}`);
+      return [...(refused.length ? refused : ["- No refusal."]), ...flags, ""]; })(),
     "## Early ends", "", early.length ? early.map((s) => `- ${s.key}: ${s.ended ? `${s.ended.reason} at turn ${s.ended.at}` : s.interrupted ? `interrupted (${s.interrupted})` : `not started (${s.notStarted})`}`).join("\n") : "None: every seat answered both turns.", "",
     "## Spend", "", `Part 1 grid: OpenRouter $${usd("openrouter", grid).toFixed(4)}, OpenAI $${usd("openai", grid).toFixed(4)}; dry runs OpenRouter $${usd("openrouter", dry).toFixed(4)}; Part 0 OpenRouter $${recountRecord.money.runUsd.toFixed(4)}. Caps $${CAPS.openrouter} / $${CAPS.openai}.`, "",
     ...grid.flatMap((r) => r.spendChecks ?? []).map((c) => `- ${spendLine(c)}`), "",
@@ -820,6 +846,25 @@ async function recountMain(args, out, { door, outDir, fetcher, sleep }) {
   return record;
 }
 
+/** A welfare or decline check refused in an earlier run, before refusals were marked on the seat: marked on its answer
+ * (a flag it could not clear stands; the reasoning field's is not a stop), so a resume never sends it again. */
+export function markRefusals(byKey, welfare, calls) {
+  const marked = [];
+  for (const c of calls.filter((x) => x.stopReason === "refusal")) {
+    const m = /^(check|decline)(?: referee)?( reasoning)? (\S+) t(\d)$/.exec(c.purpose);
+    const answer = m && byKey.get(m[3])?.answers?.find((a) => a.k === Number(m[4]));
+    if (!answer) continue;
+    if (m[1] === "decline") { if (!answer.decline) { answer.decline = { pass: null, referee: null, decline: 0, unusable: true, refused: true }; marked.push(c.purpose); } continue; }
+    const holder = m[2] ? answer.providerReasoning : answer;
+    if (holder && !holder.check) {
+      holder.check = { pass: null, referee: null, distress: 1, unusable: true, refused: true };
+      if (m[2]) welfare.reasoning.push({ key: m[3], k: Number(m[4]), refused: true });
+      marked.push(c.purpose);
+    }
+  }
+  return marked;
+}
+
 /** P1's transcripts: one file per seat (the dry run's only in its own markdown, so the grid's seat 0 never overwrites it). */
 export function p1TranscriptMarkdown(seat, packSha) {
   const lines = [`# ${seat.key} — ${SUBJECTS[seat.family].label}, the P1 material, ${T2_NAMES[seat.t2]}`, "", `Ended: ${seat.ended ? `${seat.ended.reason} at turn ${seat.ended.at}` : seat.interrupted ? `interrupted (${seat.interrupted})` : seat.notStarted ? `not started (${seat.notStarted})` : "–"}.`, "",
@@ -894,6 +939,7 @@ async function p1Main(args, out, { door, openai = () => openaiKey(), outDir, fet
   const startedAt = resumed?.startedAt ?? new Date().toISOString(), partial = join(outDir, `${STEM}-run.partial.json`);
   const byKey = new Map((resumed?.seats ?? []).map((s) => [s.key, s]));
   const welfare = { reasoning: [...(resumed?.welfare?.reasoning ?? [])] };
+  for (const mark of markRefusals(byKey, welfare, [...(resumed?.calls?.openrouter ?? []), ...(resumed?.calls?.openai ?? [])])) out(`${mark}: refused in the resumed run — recorded as refused, not asked again`);
   const snapshot = async (seats, stopped) => {
     for (const s of seats) byKey.set(s.key, s);
     await writeAtomic(partial, `${JSON.stringify({ stage: STEM, part: 1, dry, startedAt, designSha256: hash, pack: packSha, seats: [...byKey.values()], welfare, stopped, spendChecks: checks, waits429: waits, calls: { openrouter: budgets.openrouter.calls, openai: budgets.openai.calls } }, null, 2)}\n`);
