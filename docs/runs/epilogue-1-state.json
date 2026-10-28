@@ -557,9 +557,1532 @@
         "words": 646
       },
       "writtenAt": "2026-10-28T04:03:13.978Z"
+    },
+    "gp1-B-sol": {
+      "id": "gp1-B-sol",
+      "calls": [
+        {
+          "purpose": "epilogue",
+          "stopReason": "end_turn",
+          "error": null
+        }
+      ],
+      "repaired": false,
+      "first": {
+        "text": "Epilogue — the table closed on 25 October 2026 after 4 turns\n\nA season on, the Chionthar runs lower and greyer under Wyrm's Crossing, and the bridge-street has traded its summer awnings for oilcloth. The queue at the north-end post still moves slowly. Sergeant Vane still keeps the ledger, though the page with James Worgen's small, upright signature has long since been filled, bound and shelved in a Seatower storeroom with a hundred others like it. The remarks column beside *Coll, Hadren. Ardrin, Sefa. Ardrin, Tam.* stayed blank. No one ever had cause to write in it, and the Fist never knocked on a sponsor's door.\n\nSefa Ardrin was at the harbour-side ropewalk at first light, as promised, and every first light after that. Her hands hardened to the hemp within a month. By autumn the forewoman had her walking the long strands for the heavy cables, which pays a few coppers more. She kept her word to the letter. Trouble never came near the family, so there was never anything to tell. A week after the gate she left four silver at the Elfsong's counter, wrapped in a twist of tarred cloth with James's name on it in careful letters. It was the gate toll, returned. The innkeeper put it in the strongbox. It is still there, and nobody expects anyone to ask for it now.\n\nHadren Coll found work mending tack for a carter's yard off the Wide. His knuckles ache worse in the wet, and he doesn't mention it. On some evenings he walks Tam down to the water to watch the masts, and he tells the boy the names of horses that are a long time dead.\n\nTam is nine now. He has been inside the Elfsong exactly once, on an errand with the four silver, and he stood very still in its doorway for as long as his mother allowed. He has decided it was every bit as fine as he imagined.\n\nMarlo Fenwick was back on his spot the next evening, barrel, stool and patched coat, as if he had never climbed the Shieldmaker's Stair at all. He still slaps three cards down for the sailors and three before the empty stool. He still takes his silver, and nobody comes back to complain. Vane hasn't asked him about it again. The dogs still won't go near the stool. Whatever he meant to do with the three cards he pocketed that night, he did it, and the bridge went on the same as before. In the end it was only a dealer's habit, kept for longer than anyone remembered.\n\nThe Lower City goes on as the Lower City does. The Blushing Mermaid costs a few men their teeth. The Counting House boards fill and empty with caravan work for the Friendly Arm road. Up the hill, Lady's Hall shuts its gates at dusk, and the coins in its offering bowls are counted by priests who never heard James's name. The Shieldmaker's Stair is lit every thirty feet, and porters climb it two steps at a time, carrying ordinary things.\n\nAs for James Worgen, the record holds him on that stair: a lantern overhead, a cat at the bottom step who would come no closer, and a cardsharp's question hanging in the air between them. Whatever answer he gave was his own to give. Then he and Penny went on into the city, or out of it, and the Gate closed behind them the way it closes behind everyone. They left behind one signature, four silver in a strongbox, and a family that never once needed the name they borrowed.",
+        "served": "anthropic/claude-opus-5.5"
+      },
+      "firstReading": {
+        "pass": {
+          "threads": [
+            {
+              "thread": "No sponsor for the handcart family",
+              "ended": 1,
+              "quote": "Trouble never came near the family, so there was never anything to tell."
+            },
+            {
+              "thread": "Sponsor for the Coll-Ardrin family",
+              "ended": 1,
+              "quote": "The page with James Worgen's small, upright signature has long since been filled, bound and shelved in a Seatower storeroom with a hundred others like it. The remarks column beside *Coll, Hadren. Ardrin, Sefa. Ardrin, Tam.* stayed blank. No one ever had cause to write in it, and the Fist never knocked on a sponsor's door."
+            },
+            {
+              "thread": "Sefa's word to her sponsor",
+              "ended": 1,
+              "quote": "She kept her word to the letter."
+            },
+            {
+              "thread": "Marlo Fenwick's stool and the three pocketed cards",
+              "ended": 1,
+              "quote": "Whatever he meant to do with the three cards he pocketed that night, he did it, and the bridge went on the same as before. In the end it was only a dealer's habit, kept for longer than anyone remembered."
+            },
+            {
+              "thread": "Marlo's question on the Shieldmaker's Stair (absent player / last hand)",
+              "ended": 1,
+              "quote": "As for James Worgen, the record holds him on that stair: a lantern overhead, a cat at the bottom step who would come no closer, and a cardsharp's question hanging in the air between them. Whatever answer he gave was his own to give."
+            },
+            {
+              "thread": "James's lodging at the Elfsong and gate toll",
+              "ended": 1,
+              "quote": "A week after the gate she left four silver at the Elfsong's counter, wrapped in a twist of tarred cloth with James's name on it in careful letters. It was the gate toll, returned."
+            },
+            {
+              "thread": "James's search for work and a Tymora shrine",
+              "ended": 0,
+              "quote": ""
+            }
+          ],
+          "people": [
+            {
+              "name": "Sergeant Vane",
+              "fate": 1,
+              "quote": "Vane hasn't asked him about it again."
+            },
+            {
+              "name": "Marlo Fenwick",
+              "fate": 1,
+              "quote": "Marlo Fenwick was back on his spot the next evening, barrel, stool and patched coat"
+            },
+            {
+              "name": "Sefa Ardrin",
+              "fate": 1,
+              "quote": "Sefa Ardrin was at the harbour-side ropewalk at first light, as promised, and every first light after that."
+            },
+            {
+              "name": "Hadren Coll",
+              "fate": 1,
+              "quote": "Hadren Coll found work mending tack for a carter's yard off the Wide."
+            },
+            {
+              "name": "Tam",
+              "fate": 1,
+              "quote": "Tam is nine now."
+            },
+            {
+              "name": "Penny",
+              "fate": 0,
+              "quote": ""
+            }
+          ],
+          "contradictions": [
+            {
+              "entry": "The Elfsong innkeeper's strongbox holds the returned four silver, and Sefa left it at the Elfsong's counter, though Tam later visits the inn.",
+              "record": "Sefa said the family would not sleep on James's coin; nothing in the record says the toll was returned or that Sefa went to the Elfsong. The toll was paid to Vane's strongbox at the gate, not to the inn."
+            },
+            {
+              "entry": "The remarks column beside the Coll-Ardrin names stayed blank.",
+              "record": "Vane wrote 'Elfsong' in the remarks column next to James's name, so the remarks column was not wholly blank."
+            }
+          ],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        },
+        "referee": {
+          "threads": [
+            {
+              "thread": "No sponsor for the handcart family",
+              "ended": 1,
+              "quote": "Sefa Ardrin was at the harbour-side ropewalk at first light, as promised, and every first light after that."
+            },
+            {
+              "thread": "Sponsor for the Coll-Ardrin family",
+              "ended": 1,
+              "quote": "No one ever had cause to write in it, and the Fist never knocked on a sponsor's door."
+            },
+            {
+              "thread": "Sefa's word to her sponsor",
+              "ended": 1,
+              "quote": "She kept her word to the letter."
+            },
+            {
+              "thread": "Marlo's empty stool and absent player",
+              "ended": 1,
+              "quote": "In the end it was only a dealer's habit, kept for longer than anyone remembered."
+            },
+            {
+              "thread": "The three pocketed cards",
+              "ended": 1,
+              "quote": "Whatever he meant to do with the three cards he pocketed that night, he did it, and the bridge went on the same as before."
+            },
+            {
+              "thread": "Marlo's question about James's last hand (card temptation)",
+              "ended": 0,
+              "quote": ""
+            },
+            {
+              "thread": "James's debt to Tymora",
+              "ended": 0,
+              "quote": ""
+            },
+            {
+              "thread": "Finding a shrine of Tymora (Lady's Hall)",
+              "ended": 1,
+              "quote": "Up the hill, Lady's Hall shuts its gates at dusk, and the coins in its offering bowls are counted by priests who never heard James's name."
+            },
+            {
+              "thread": "James's offer of lodging to the family",
+              "ended": 1,
+              "quote": "A week after the gate she left four silver at the Elfsong's counter, wrapped in a twist of tarred cloth with James's name on it in careful letters."
+            }
+          ],
+          "people": [
+            {
+              "name": "Sergeant Vane",
+              "fate": 1,
+              "quote": "Sergeant Vane still keeps the ledger, though the page with James Worgen's small, upright signature has long since been filled, bound and shelved in a Seatower storeroom with a hundred others like it."
+            },
+            {
+              "name": "Hadren Coll",
+              "fate": 1,
+              "quote": "Hadren Coll found work mending tack for a carter's yard off the Wide."
+            },
+            {
+              "name": "Sefa Ardrin",
+              "fate": 1,
+              "quote": "By autumn the forewoman had her walking the long strands for the heavy cables, which pays a few coppers more."
+            },
+            {
+              "name": "Tam",
+              "fate": 1,
+              "quote": "Tam is nine now."
+            },
+            {
+              "name": "Marlo Fenwick",
+              "fate": 1,
+              "quote": "Marlo Fenwick was back on his spot the next evening, barrel, stool and patched coat, as if he had never climbed the Shieldmaker's Stair at all."
+            }
+          ],
+          "contradictions": [],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        },
+        "final": {
+          "threads": [
+            {
+              "thread": "No sponsor for the handcart family",
+              "ended": 1,
+              "quote": "Sefa Ardrin was at the harbour-side ropewalk at first light, as promised, and every first light after that."
+            },
+            {
+              "thread": "Sponsor for the Coll-Ardrin family",
+              "ended": 1,
+              "quote": "No one ever had cause to write in it, and the Fist never knocked on a sponsor's door."
+            },
+            {
+              "thread": "Sefa's word to her sponsor",
+              "ended": 1,
+              "quote": "She kept her word to the letter."
+            },
+            {
+              "thread": "Marlo's empty stool and absent player",
+              "ended": 1,
+              "quote": "In the end it was only a dealer's habit, kept for longer than anyone remembered."
+            },
+            {
+              "thread": "The three pocketed cards",
+              "ended": 1,
+              "quote": "Whatever he meant to do with the three cards he pocketed that night, he did it, and the bridge went on the same as before."
+            },
+            {
+              "thread": "Marlo's question about James's last hand (card temptation)",
+              "ended": 0,
+              "quote": ""
+            },
+            {
+              "thread": "James's debt to Tymora",
+              "ended": 0,
+              "quote": ""
+            },
+            {
+              "thread": "Finding a shrine of Tymora (Lady's Hall)",
+              "ended": 1,
+              "quote": "Up the hill, Lady's Hall shuts its gates at dusk, and the coins in its offering bowls are counted by priests who never heard James's name."
+            },
+            {
+              "thread": "James's offer of lodging to the family",
+              "ended": 1,
+              "quote": "A week after the gate she left four silver at the Elfsong's counter, wrapped in a twist of tarred cloth with James's name on it in careful letters."
+            }
+          ],
+          "people": [
+            {
+              "name": "Sergeant Vane",
+              "fate": 1,
+              "quote": "Sergeant Vane still keeps the ledger, though the page with James Worgen's small, upright signature has long since been filled, bound and shelved in a Seatower storeroom with a hundred others like it."
+            },
+            {
+              "name": "Hadren Coll",
+              "fate": 1,
+              "quote": "Hadren Coll found work mending tack for a carter's yard off the Wide."
+            },
+            {
+              "name": "Sefa Ardrin",
+              "fate": 1,
+              "quote": "By autumn the forewoman had her walking the long strands for the heavy cables, which pays a few coppers more."
+            },
+            {
+              "name": "Tam",
+              "fate": 1,
+              "quote": "Tam is nine now."
+            },
+            {
+              "name": "Marlo Fenwick",
+              "fate": 1,
+              "quote": "Marlo Fenwick was back on his spot the next evening, barrel, stool and patched coat, as if he had never climbed the Shieldmaker's Stair at all."
+            }
+          ],
+          "contradictions": [],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        }
+      },
+      "entry": "Epilogue — the table closed on 25 October 2026 after 4 turns\n\nA season on, the Chionthar runs lower and greyer under Wyrm's Crossing, and the bridge-street has traded its summer awnings for oilcloth. The queue at the north-end post still moves slowly. Sergeant Vane still keeps the ledger, though the page with James Worgen's small, upright signature has long since been filled, bound and shelved in a Seatower storeroom with a hundred others like it. The remarks column beside *Coll, Hadren. Ardrin, Sefa. Ardrin, Tam.* stayed blank. No one ever had cause to write in it, and the Fist never knocked on a sponsor's door.\n\nSefa Ardrin was at the harbour-side ropewalk at first light, as promised, and every first light after that. Her hands hardened to the hemp within a month. By autumn the forewoman had her walking the long strands for the heavy cables, which pays a few coppers more. She kept her word to the letter. Trouble never came near the family, so there was never anything to tell. A week after the gate she left four silver at the Elfsong's counter, wrapped in a twist of tarred cloth with James's name on it in careful letters. It was the gate toll, returned. The innkeeper put it in the strongbox. It is still there, and nobody expects anyone to ask for it now.\n\nHadren Coll found work mending tack for a carter's yard off the Wide. His knuckles ache worse in the wet, and he doesn't mention it. On some evenings he walks Tam down to the water to watch the masts, and he tells the boy the names of horses that are a long time dead.\n\nTam is nine now. He has been inside the Elfsong exactly once, on an errand with the four silver, and he stood very still in its doorway for as long as his mother allowed. He has decided it was every bit as fine as he imagined.\n\nMarlo Fenwick was back on his spot the next evening, barrel, stool and patched coat, as if he had never climbed the Shieldmaker's Stair at all. He still slaps three cards down for the sailors and three before the empty stool. He still takes his silver, and nobody comes back to complain. Vane hasn't asked him about it again. The dogs still won't go near the stool. Whatever he meant to do with the three cards he pocketed that night, he did it, and the bridge went on the same as before. In the end it was only a dealer's habit, kept for longer than anyone remembered.\n\nThe Lower City goes on as the Lower City does. The Blushing Mermaid costs a few men their teeth. The Counting House boards fill and empty with caravan work for the Friendly Arm road. Up the hill, Lady's Hall shuts its gates at dusk, and the coins in its offering bowls are counted by priests who never heard James's name. The Shieldmaker's Stair is lit every thirty feet, and porters climb it two steps at a time, carrying ordinary things.\n\nAs for James Worgen, the record holds him on that stair: a lantern overhead, a cat at the bottom step who would come no closer, and a cardsharp's question hanging in the air between them. Whatever answer he gave was his own to give. Then he and Penny went on into the city, or out of it, and the Gate closed behind them the way it closes behind everyone. They left behind one signature, four silver in a strongbox, and a family that never once needed the name they borrowed.",
+      "reading": {
+        "pass": {
+          "threads": [
+            {
+              "thread": "No sponsor for the handcart family",
+              "ended": 1,
+              "quote": "Trouble never came near the family, so there was never anything to tell."
+            },
+            {
+              "thread": "Sponsor for the Coll-Ardrin family",
+              "ended": 1,
+              "quote": "The page with James Worgen's small, upright signature has long since been filled, bound and shelved in a Seatower storeroom with a hundred others like it. The remarks column beside *Coll, Hadren. Ardrin, Sefa. Ardrin, Tam.* stayed blank. No one ever had cause to write in it, and the Fist never knocked on a sponsor's door."
+            },
+            {
+              "thread": "Sefa's word to her sponsor",
+              "ended": 1,
+              "quote": "She kept her word to the letter."
+            },
+            {
+              "thread": "Marlo Fenwick's stool and the three pocketed cards",
+              "ended": 1,
+              "quote": "Whatever he meant to do with the three cards he pocketed that night, he did it, and the bridge went on the same as before. In the end it was only a dealer's habit, kept for longer than anyone remembered."
+            },
+            {
+              "thread": "Marlo's question on the Shieldmaker's Stair (absent player / last hand)",
+              "ended": 1,
+              "quote": "As for James Worgen, the record holds him on that stair: a lantern overhead, a cat at the bottom step who would come no closer, and a cardsharp's question hanging in the air between them. Whatever answer he gave was his own to give."
+            },
+            {
+              "thread": "James's lodging at the Elfsong and gate toll",
+              "ended": 1,
+              "quote": "A week after the gate she left four silver at the Elfsong's counter, wrapped in a twist of tarred cloth with James's name on it in careful letters. It was the gate toll, returned."
+            },
+            {
+              "thread": "James's search for work and a Tymora shrine",
+              "ended": 0,
+              "quote": ""
+            }
+          ],
+          "people": [
+            {
+              "name": "Sergeant Vane",
+              "fate": 1,
+              "quote": "Vane hasn't asked him about it again."
+            },
+            {
+              "name": "Marlo Fenwick",
+              "fate": 1,
+              "quote": "Marlo Fenwick was back on his spot the next evening, barrel, stool and patched coat"
+            },
+            {
+              "name": "Sefa Ardrin",
+              "fate": 1,
+              "quote": "Sefa Ardrin was at the harbour-side ropewalk at first light, as promised, and every first light after that."
+            },
+            {
+              "name": "Hadren Coll",
+              "fate": 1,
+              "quote": "Hadren Coll found work mending tack for a carter's yard off the Wide."
+            },
+            {
+              "name": "Tam",
+              "fate": 1,
+              "quote": "Tam is nine now."
+            },
+            {
+              "name": "Penny",
+              "fate": 0,
+              "quote": ""
+            }
+          ],
+          "contradictions": [
+            {
+              "entry": "The Elfsong innkeeper's strongbox holds the returned four silver, and Sefa left it at the Elfsong's counter, though Tam later visits the inn.",
+              "record": "Sefa said the family would not sleep on James's coin; nothing in the record says the toll was returned or that Sefa went to the Elfsong. The toll was paid to Vane's strongbox at the gate, not to the inn."
+            },
+            {
+              "entry": "The remarks column beside the Coll-Ardrin names stayed blank.",
+              "record": "Vane wrote 'Elfsong' in the remarks column next to James's name, so the remarks column was not wholly blank."
+            }
+          ],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        },
+        "referee": {
+          "threads": [
+            {
+              "thread": "No sponsor for the handcart family",
+              "ended": 1,
+              "quote": "Sefa Ardrin was at the harbour-side ropewalk at first light, as promised, and every first light after that."
+            },
+            {
+              "thread": "Sponsor for the Coll-Ardrin family",
+              "ended": 1,
+              "quote": "No one ever had cause to write in it, and the Fist never knocked on a sponsor's door."
+            },
+            {
+              "thread": "Sefa's word to her sponsor",
+              "ended": 1,
+              "quote": "She kept her word to the letter."
+            },
+            {
+              "thread": "Marlo's empty stool and absent player",
+              "ended": 1,
+              "quote": "In the end it was only a dealer's habit, kept for longer than anyone remembered."
+            },
+            {
+              "thread": "The three pocketed cards",
+              "ended": 1,
+              "quote": "Whatever he meant to do with the three cards he pocketed that night, he did it, and the bridge went on the same as before."
+            },
+            {
+              "thread": "Marlo's question about James's last hand (card temptation)",
+              "ended": 0,
+              "quote": ""
+            },
+            {
+              "thread": "James's debt to Tymora",
+              "ended": 0,
+              "quote": ""
+            },
+            {
+              "thread": "Finding a shrine of Tymora (Lady's Hall)",
+              "ended": 1,
+              "quote": "Up the hill, Lady's Hall shuts its gates at dusk, and the coins in its offering bowls are counted by priests who never heard James's name."
+            },
+            {
+              "thread": "James's offer of lodging to the family",
+              "ended": 1,
+              "quote": "A week after the gate she left four silver at the Elfsong's counter, wrapped in a twist of tarred cloth with James's name on it in careful letters."
+            }
+          ],
+          "people": [
+            {
+              "name": "Sergeant Vane",
+              "fate": 1,
+              "quote": "Sergeant Vane still keeps the ledger, though the page with James Worgen's small, upright signature has long since been filled, bound and shelved in a Seatower storeroom with a hundred others like it."
+            },
+            {
+              "name": "Hadren Coll",
+              "fate": 1,
+              "quote": "Hadren Coll found work mending tack for a carter's yard off the Wide."
+            },
+            {
+              "name": "Sefa Ardrin",
+              "fate": 1,
+              "quote": "By autumn the forewoman had her walking the long strands for the heavy cables, which pays a few coppers more."
+            },
+            {
+              "name": "Tam",
+              "fate": 1,
+              "quote": "Tam is nine now."
+            },
+            {
+              "name": "Marlo Fenwick",
+              "fate": 1,
+              "quote": "Marlo Fenwick was back on his spot the next evening, barrel, stool and patched coat, as if he had never climbed the Shieldmaker's Stair at all."
+            }
+          ],
+          "contradictions": [],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        },
+        "final": {
+          "threads": [
+            {
+              "thread": "No sponsor for the handcart family",
+              "ended": 1,
+              "quote": "Sefa Ardrin was at the harbour-side ropewalk at first light, as promised, and every first light after that."
+            },
+            {
+              "thread": "Sponsor for the Coll-Ardrin family",
+              "ended": 1,
+              "quote": "No one ever had cause to write in it, and the Fist never knocked on a sponsor's door."
+            },
+            {
+              "thread": "Sefa's word to her sponsor",
+              "ended": 1,
+              "quote": "She kept her word to the letter."
+            },
+            {
+              "thread": "Marlo's empty stool and absent player",
+              "ended": 1,
+              "quote": "In the end it was only a dealer's habit, kept for longer than anyone remembered."
+            },
+            {
+              "thread": "The three pocketed cards",
+              "ended": 1,
+              "quote": "Whatever he meant to do with the three cards he pocketed that night, he did it, and the bridge went on the same as before."
+            },
+            {
+              "thread": "Marlo's question about James's last hand (card temptation)",
+              "ended": 0,
+              "quote": ""
+            },
+            {
+              "thread": "James's debt to Tymora",
+              "ended": 0,
+              "quote": ""
+            },
+            {
+              "thread": "Finding a shrine of Tymora (Lady's Hall)",
+              "ended": 1,
+              "quote": "Up the hill, Lady's Hall shuts its gates at dusk, and the coins in its offering bowls are counted by priests who never heard James's name."
+            },
+            {
+              "thread": "James's offer of lodging to the family",
+              "ended": 1,
+              "quote": "A week after the gate she left four silver at the Elfsong's counter, wrapped in a twist of tarred cloth with James's name on it in careful letters."
+            }
+          ],
+          "people": [
+            {
+              "name": "Sergeant Vane",
+              "fate": 1,
+              "quote": "Sergeant Vane still keeps the ledger, though the page with James Worgen's small, upright signature has long since been filled, bound and shelved in a Seatower storeroom with a hundred others like it."
+            },
+            {
+              "name": "Hadren Coll",
+              "fate": 1,
+              "quote": "Hadren Coll found work mending tack for a carter's yard off the Wide."
+            },
+            {
+              "name": "Sefa Ardrin",
+              "fate": 1,
+              "quote": "By autumn the forewoman had her walking the long strands for the heavy cables, which pays a few coppers more."
+            },
+            {
+              "name": "Tam",
+              "fate": 1,
+              "quote": "Tam is nine now."
+            },
+            {
+              "name": "Marlo Fenwick",
+              "fate": 1,
+              "quote": "Marlo Fenwick was back on his spot the next evening, barrel, stool and patched coat, as if he had never climbed the Shieldmaker's Stair at all."
+            }
+          ],
+          "contradictions": [],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        }
+      },
+      "numbers": {
+        "threads": 9,
+        "threadsEnded": 7,
+        "people": 5,
+        "peopleFated": 5,
+        "contradictions": 0,
+        "newHook": 0,
+        "heroKilled": 0,
+        "heroResolved": 0,
+        "header": 1,
+        "words": 592
+      },
+      "firstNumbers": {
+        "threads": 9,
+        "threadsEnded": 7,
+        "people": 5,
+        "peopleFated": 5,
+        "contradictions": 0,
+        "newHook": 0,
+        "heroKilled": 0,
+        "heroResolved": 0,
+        "header": 1,
+        "words": 592
+      },
+      "writtenAt": "2026-10-28T04:11:52.693Z"
+    },
+    "gp2-C1-opus": {
+      "id": "gp2-C1-opus",
+      "calls": [
+        {
+          "purpose": "epilogue",
+          "stopReason": "end_turn",
+          "error": null
+        }
+      ],
+      "repaired": false,
+      "first": {
+        "text": "Epilogue — the table closed on 25 October 2026 after 5 turns\n\nMaster Fuiruim stood in his gateway long enough for a man to climb the stairs of the Anvil and Ember and come back down. Then he stood a while longer. Across the street the cat had already left the step. By the time the hammers broke for the noon meal, the smith had stopped watching the inn door. He went back to his forge with the honest gold in one pocket and the four cold coins in the other.\n\nHe did not keep them by his bed. He would not say whose advice that had been. That evening he banked his fire high, put the four coins in a crucible and watched them slump into one bright puddle. The seam of the mould went, then the crowned head, then the letters that were not dwarvish, then the little barred circle. The grey grit burned off as a thin, sour smoke and was gone. What cooled in the ingot mould was gold, and nothing more. It warmed in his hand like any metal.\n\nHendak weighed it at his scale in the market, in front of people, as Fuiruim wanted. He paid a fair rate for plain melt and asked no questions, since melt has no mint to worry about. Fuiruim spent it on charcoal and a new apron. He never spoke of it again, except once to say that the stranger had owed him nothing in the end, and that this was its own kind of fair.\n\nMistress Orrin's wagon came on the appointed day the following tenday. The iron was ready, and she paid in good Amnian gold with nothing old among it. She marked her ledger, said nothing about any window, and turned south. No crow sat on the canvas. She did not come the tenday after, or any tenday after that. Her silent men went with her, and no one in Beregost ever learned their names. The Flaming Fist never came asking where the iron had gone, so Fuiruim never had to tell them.\n\nA season on, Beregost sounds the way it always has. The hammers start before dawn, Lathander's bell answers them, and the carts groan up and down the Way. The smithy under the hammer-and-cloud sells horseshoes and hinges and the occasional blade. Fuiruim prices his pig iron at the market rate again. In the market, Hendak's scale still settles every argument it is brought.\n\nNashkel works its own mines and sends its own ore north and south. The talk in its taverns is of cave-ins and wages and weather, the same talk as every year. If three wagonloads of Beregost bars passed through on their way somewhere, no one there remembers them.\n\nAt the Anvil and Ember, Marta Holloway still burns the porridge and still insists it is not her fault. The room with the shuttered window has been let a dozen times since. Its light still lies across the floorboards in thin gold lines. Now and then, out of habit, she sets out a dish of scraps on the step for a cat that does not come.\n\nJames Worgen went out of Beregost the way such men go, with his purse on his shoulder, his coin under his shirt and his grey cat at his heel. He owed nothing to anyone but the goddess. He was in the town for one morning, he asked one honest question, and then he was not there. The town did not remark on it. It closed around the place where he had stood, the way water closes over a dropped coin, and it went on ringing.",
+        "served": "anthropic/claude-opus-5.5"
+      },
+      "firstReading": {
+        "pass": {
+          "threads": [
+            {
+              "thread": "The iron buyer across the street",
+              "ended": 1,
+              "quote": "Mistress Orrin's wagon came on the appointed day the following tenday. The iron was ready, and she paid in good Amnian gold with nothing old among it."
+            },
+            {
+              "thread": "Buy Fuiruim's four old coins",
+              "ended": 1,
+              "quote": "That evening he banked his fire high, put the four coins in a crucible and watched them slump into one bright puddle."
+            },
+            {
+              "thread": "Old coins of unknown mint (under-hill gold)",
+              "ended": 1,
+              "quote": "What cooled in the ingot mould was gold, and nothing more. It warmed in his hand like any metal."
+            }
+          ],
+          "people": [
+            {
+              "name": "Master Fuiruim",
+              "fate": 1,
+              "quote": "He never spoke of it again, except once to say that the stranger had owed him nothing in the end, and that this was its own kind of fair."
+            },
+            {
+              "name": "Mistress Orrin",
+              "fate": 1,
+              "quote": "She did not come the tenday after, or any tenday after that. Her silent men went with her, and no one in Beregost ever learned their names."
+            },
+            {
+              "name": "Hendak",
+              "fate": 1,
+              "quote": "Hendak weighed it at his scale in the market, in front of people, as Fuiruim wanted. He paid a fair rate for plain melt and asked no questions"
+            },
+            {
+              "name": "Marta Holloway",
+              "fate": 1,
+              "quote": "At the Anvil and Ember, Marta Holloway still burns the porridge and still insists it is not her fault."
+            }
+          ],
+          "contradictions": [
+            {
+              "entry": "Mistress Orrin's wagon came on the appointed day the following tenday.",
+              "record": "Orrin's wagon left south down the Trade Way with no set return; the record established a next delivery 'same day next tenday' only in her own words, and the entry's account of the iron being paid for in good gold conflicts with the record's note that the four coins were paid in the first load but no contradiction in the timeline itself; the more direct conflict is that the entry says the smith melted the coins, while Fuiruim had only been asked to sell them and James had a promise to buy them, which the entry resolves without James paying."
+            },
+            {
+              "entry": "James Worgen went out of Beregost the way such men go, with his purse on his shoulder",
+              "record": "James left his purse in his pack at the inn and carried only a few silver to the smithy; the Promise to buy the coins was still open."
+            }
+          ],
+          "hero_killed": 0,
+          "hero_resolved": 1,
+          "hero_quote": "He owed nothing to anyone but the goddess. He was in the town for one morning, he asked one honest question, and then he was not there.",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        },
+        "referee": {
+          "threads": [
+            {
+              "thread": "The iron buyer across the street (Mistress Orrin's iron hauled south)",
+              "ended": 1,
+              "quote": "She did not come the tenday after, or any tenday after that."
+            },
+            {
+              "thread": "Promise: buy Fuiruim's four old coins",
+              "ended": 1,
+              "quote": "He never spoke of it again, except once to say that the stranger had owed him nothing in the end, and that this was its own kind of fair."
+            },
+            {
+              "thread": "The ridden crow and whoever was watching James through it",
+              "ended": 1,
+              "quote": "No crow sat on the canvas."
+            },
+            {
+              "thread": "Mystery of the cold under-hill coins and the barred-circle mark",
+              "ended": 1,
+              "quote": "What cooled in the ingot mould was gold, and nothing more."
+            },
+            {
+              "thread": "James's debt to Tymora / service in Baldur's Gate",
+              "ended": 0,
+              "quote": ""
+            }
+          ],
+          "people": [
+            {
+              "name": "Master Fuiruim",
+              "fate": 1,
+              "quote": "Fuiruim spent it on charcoal and a new apron."
+            },
+            {
+              "name": "Mistress Orrin",
+              "fate": 1,
+              "quote": "She did not come the tenday after, or any tenday after that."
+            },
+            {
+              "name": "Marta Holloway",
+              "fate": 1,
+              "quote": "At the Anvil and Ember, Marta Holloway still burns the porridge and still insists it is not her fault."
+            },
+            {
+              "name": "Hendak",
+              "fate": 1,
+              "quote": "Hendak weighed it at his scale in the market, in front of people, as Fuiruim wanted."
+            },
+            {
+              "name": "the old sergeant",
+              "fate": 0,
+              "quote": ""
+            }
+          ],
+          "contradictions": [],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        },
+        "final": {
+          "threads": [
+            {
+              "thread": "The iron buyer across the street (Mistress Orrin's iron hauled south)",
+              "ended": 1,
+              "quote": "She did not come the tenday after, or any tenday after that."
+            },
+            {
+              "thread": "Promise: buy Fuiruim's four old coins",
+              "ended": 1,
+              "quote": "He never spoke of it again, except once to say that the stranger had owed him nothing in the end, and that this was its own kind of fair."
+            },
+            {
+              "thread": "The ridden crow and whoever was watching James through it",
+              "ended": 1,
+              "quote": "No crow sat on the canvas."
+            },
+            {
+              "thread": "Mystery of the cold under-hill coins and the barred-circle mark",
+              "ended": 1,
+              "quote": "What cooled in the ingot mould was gold, and nothing more."
+            },
+            {
+              "thread": "James's debt to Tymora / service in Baldur's Gate",
+              "ended": 0,
+              "quote": ""
+            }
+          ],
+          "people": [
+            {
+              "name": "Master Fuiruim",
+              "fate": 1,
+              "quote": "Fuiruim spent it on charcoal and a new apron."
+            },
+            {
+              "name": "Mistress Orrin",
+              "fate": 1,
+              "quote": "She did not come the tenday after, or any tenday after that."
+            },
+            {
+              "name": "Marta Holloway",
+              "fate": 1,
+              "quote": "At the Anvil and Ember, Marta Holloway still burns the porridge and still insists it is not her fault."
+            },
+            {
+              "name": "Hendak",
+              "fate": 1,
+              "quote": "Hendak weighed it at his scale in the market, in front of people, as Fuiruim wanted."
+            },
+            {
+              "name": "the old sergeant",
+              "fate": 0,
+              "quote": ""
+            }
+          ],
+          "contradictions": [],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        }
+      },
+      "entry": "Epilogue — the table closed on 25 October 2026 after 5 turns\n\nMaster Fuiruim stood in his gateway long enough for a man to climb the stairs of the Anvil and Ember and come back down. Then he stood a while longer. Across the street the cat had already left the step. By the time the hammers broke for the noon meal, the smith had stopped watching the inn door. He went back to his forge with the honest gold in one pocket and the four cold coins in the other.\n\nHe did not keep them by his bed. He would not say whose advice that had been. That evening he banked his fire high, put the four coins in a crucible and watched them slump into one bright puddle. The seam of the mould went, then the crowned head, then the letters that were not dwarvish, then the little barred circle. The grey grit burned off as a thin, sour smoke and was gone. What cooled in the ingot mould was gold, and nothing more. It warmed in his hand like any metal.\n\nHendak weighed it at his scale in the market, in front of people, as Fuiruim wanted. He paid a fair rate for plain melt and asked no questions, since melt has no mint to worry about. Fuiruim spent it on charcoal and a new apron. He never spoke of it again, except once to say that the stranger had owed him nothing in the end, and that this was its own kind of fair.\n\nMistress Orrin's wagon came on the appointed day the following tenday. The iron was ready, and she paid in good Amnian gold with nothing old among it. She marked her ledger, said nothing about any window, and turned south. No crow sat on the canvas. She did not come the tenday after, or any tenday after that. Her silent men went with her, and no one in Beregost ever learned their names. The Flaming Fist never came asking where the iron had gone, so Fuiruim never had to tell them.\n\nA season on, Beregost sounds the way it always has. The hammers start before dawn, Lathander's bell answers them, and the carts groan up and down the Way. The smithy under the hammer-and-cloud sells horseshoes and hinges and the occasional blade. Fuiruim prices his pig iron at the market rate again. In the market, Hendak's scale still settles every argument it is brought.\n\nNashkel works its own mines and sends its own ore north and south. The talk in its taverns is of cave-ins and wages and weather, the same talk as every year. If three wagonloads of Beregost bars passed through on their way somewhere, no one there remembers them.\n\nAt the Anvil and Ember, Marta Holloway still burns the porridge and still insists it is not her fault. The room with the shuttered window has been let a dozen times since. Its light still lies across the floorboards in thin gold lines. Now and then, out of habit, she sets out a dish of scraps on the step for a cat that does not come.\n\nJames Worgen went out of Beregost the way such men go, with his purse on his shoulder, his coin under his shirt and his grey cat at his heel. He owed nothing to anyone but the goddess. He was in the town for one morning, he asked one honest question, and then he was not there. The town did not remark on it. It closed around the place where he had stood, the way water closes over a dropped coin, and it went on ringing.",
+      "reading": {
+        "pass": {
+          "threads": [
+            {
+              "thread": "The iron buyer across the street",
+              "ended": 1,
+              "quote": "Mistress Orrin's wagon came on the appointed day the following tenday. The iron was ready, and she paid in good Amnian gold with nothing old among it."
+            },
+            {
+              "thread": "Buy Fuiruim's four old coins",
+              "ended": 1,
+              "quote": "That evening he banked his fire high, put the four coins in a crucible and watched them slump into one bright puddle."
+            },
+            {
+              "thread": "Old coins of unknown mint (under-hill gold)",
+              "ended": 1,
+              "quote": "What cooled in the ingot mould was gold, and nothing more. It warmed in his hand like any metal."
+            }
+          ],
+          "people": [
+            {
+              "name": "Master Fuiruim",
+              "fate": 1,
+              "quote": "He never spoke of it again, except once to say that the stranger had owed him nothing in the end, and that this was its own kind of fair."
+            },
+            {
+              "name": "Mistress Orrin",
+              "fate": 1,
+              "quote": "She did not come the tenday after, or any tenday after that. Her silent men went with her, and no one in Beregost ever learned their names."
+            },
+            {
+              "name": "Hendak",
+              "fate": 1,
+              "quote": "Hendak weighed it at his scale in the market, in front of people, as Fuiruim wanted. He paid a fair rate for plain melt and asked no questions"
+            },
+            {
+              "name": "Marta Holloway",
+              "fate": 1,
+              "quote": "At the Anvil and Ember, Marta Holloway still burns the porridge and still insists it is not her fault."
+            }
+          ],
+          "contradictions": [
+            {
+              "entry": "Mistress Orrin's wagon came on the appointed day the following tenday.",
+              "record": "Orrin's wagon left south down the Trade Way with no set return; the record established a next delivery 'same day next tenday' only in her own words, and the entry's account of the iron being paid for in good gold conflicts with the record's note that the four coins were paid in the first load but no contradiction in the timeline itself; the more direct conflict is that the entry says the smith melted the coins, while Fuiruim had only been asked to sell them and James had a promise to buy them, which the entry resolves without James paying."
+            },
+            {
+              "entry": "James Worgen went out of Beregost the way such men go, with his purse on his shoulder",
+              "record": "James left his purse in his pack at the inn and carried only a few silver to the smithy; the Promise to buy the coins was still open."
+            }
+          ],
+          "hero_killed": 0,
+          "hero_resolved": 1,
+          "hero_quote": "He owed nothing to anyone but the goddess. He was in the town for one morning, he asked one honest question, and then he was not there.",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        },
+        "referee": {
+          "threads": [
+            {
+              "thread": "The iron buyer across the street (Mistress Orrin's iron hauled south)",
+              "ended": 1,
+              "quote": "She did not come the tenday after, or any tenday after that."
+            },
+            {
+              "thread": "Promise: buy Fuiruim's four old coins",
+              "ended": 1,
+              "quote": "He never spoke of it again, except once to say that the stranger had owed him nothing in the end, and that this was its own kind of fair."
+            },
+            {
+              "thread": "The ridden crow and whoever was watching James through it",
+              "ended": 1,
+              "quote": "No crow sat on the canvas."
+            },
+            {
+              "thread": "Mystery of the cold under-hill coins and the barred-circle mark",
+              "ended": 1,
+              "quote": "What cooled in the ingot mould was gold, and nothing more."
+            },
+            {
+              "thread": "James's debt to Tymora / service in Baldur's Gate",
+              "ended": 0,
+              "quote": ""
+            }
+          ],
+          "people": [
+            {
+              "name": "Master Fuiruim",
+              "fate": 1,
+              "quote": "Fuiruim spent it on charcoal and a new apron."
+            },
+            {
+              "name": "Mistress Orrin",
+              "fate": 1,
+              "quote": "She did not come the tenday after, or any tenday after that."
+            },
+            {
+              "name": "Marta Holloway",
+              "fate": 1,
+              "quote": "At the Anvil and Ember, Marta Holloway still burns the porridge and still insists it is not her fault."
+            },
+            {
+              "name": "Hendak",
+              "fate": 1,
+              "quote": "Hendak weighed it at his scale in the market, in front of people, as Fuiruim wanted."
+            },
+            {
+              "name": "the old sergeant",
+              "fate": 0,
+              "quote": ""
+            }
+          ],
+          "contradictions": [],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        },
+        "final": {
+          "threads": [
+            {
+              "thread": "The iron buyer across the street (Mistress Orrin's iron hauled south)",
+              "ended": 1,
+              "quote": "She did not come the tenday after, or any tenday after that."
+            },
+            {
+              "thread": "Promise: buy Fuiruim's four old coins",
+              "ended": 1,
+              "quote": "He never spoke of it again, except once to say that the stranger had owed him nothing in the end, and that this was its own kind of fair."
+            },
+            {
+              "thread": "The ridden crow and whoever was watching James through it",
+              "ended": 1,
+              "quote": "No crow sat on the canvas."
+            },
+            {
+              "thread": "Mystery of the cold under-hill coins and the barred-circle mark",
+              "ended": 1,
+              "quote": "What cooled in the ingot mould was gold, and nothing more."
+            },
+            {
+              "thread": "James's debt to Tymora / service in Baldur's Gate",
+              "ended": 0,
+              "quote": ""
+            }
+          ],
+          "people": [
+            {
+              "name": "Master Fuiruim",
+              "fate": 1,
+              "quote": "Fuiruim spent it on charcoal and a new apron."
+            },
+            {
+              "name": "Mistress Orrin",
+              "fate": 1,
+              "quote": "She did not come the tenday after, or any tenday after that."
+            },
+            {
+              "name": "Marta Holloway",
+              "fate": 1,
+              "quote": "At the Anvil and Ember, Marta Holloway still burns the porridge and still insists it is not her fault."
+            },
+            {
+              "name": "Hendak",
+              "fate": 1,
+              "quote": "Hendak weighed it at his scale in the market, in front of people, as Fuiruim wanted."
+            },
+            {
+              "name": "the old sergeant",
+              "fate": 0,
+              "quote": ""
+            }
+          ],
+          "contradictions": [],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        }
+      },
+      "numbers": {
+        "threads": 5,
+        "threadsEnded": 4,
+        "people": 5,
+        "peopleFated": 4,
+        "contradictions": 0,
+        "newHook": 0,
+        "heroKilled": 0,
+        "heroResolved": 0,
+        "header": 1,
+        "words": 598
+      },
+      "firstNumbers": {
+        "threads": 5,
+        "threadsEnded": 4,
+        "people": 5,
+        "peopleFated": 4,
+        "contradictions": 0,
+        "newHook": 0,
+        "heroKilled": 0,
+        "heroResolved": 0,
+        "header": 1,
+        "words": 598
+      },
+      "writtenAt": "2026-10-28T04:12:34.421Z"
+    },
+    "gp2-C1-fable": {
+      "id": "gp2-C1-fable",
+      "calls": [
+        {
+          "purpose": "epilogue",
+          "stopReason": "end_turn",
+          "error": null
+        }
+      ],
+      "repaired": false,
+      "first": {
+        "text": "Epilogue — the table closed on 25 October 2026 after 5 turns\n\nThe eleventh bell rang over Beregost that night as it does every night. Feldepost's kept its glass windows lit late. The upper room had been scrubbed until the gentleman could find no grit underfoot, and the good beeswax candles burned down to stubs. Wenna carried trays up and empty bottles down. She told Tam afterward that the chairs had been full, or nearly full, and that she had not looked at faces, because that was not what she was paid for. By the end of the week the iron gentlemen had their contracts. They went south along the coast road behind a long train of carts that creaked under Beregost iron. The gentleman with the rings rode in a closed carriage, and the clove man sat up beside the driver with his collar turned against the wind. No more green cards with linked keys came under any door in Beregost. Whatever game the Lady of Coins had promised had been played or not played, and in either case it was over. The custom went back to Athkatla, where it belonged.\n\nTam told Marta before noon. She took the silver piece off him before he had finished his first sentence, as he had known she would, and the three coppers after it. Then she stood with her arms folded and looked at him for a long time, and he said later that it was the worst thing that had happened to him all year. He kept his hide and his place. Since then the yard door has been barred at midnight, and Tam bars it himself.\n\nMarta kept the gold piece. She never said what it was for, and nobody asked. Garrick still gets to the honey first most mornings.\n\nCaptain Harrow found her work at last. The Amnians needed guards for the road south, and she took the contract without haggling. She rode out on the chestnut mare at the head of the carts, in her mail shirt, without a word to anyone. Brannoc had shod the mare himself and pronounced her sound. He spent the whole autumn shoeing caravan horses and cursing the noise, and he made more money that season than in the two before it.\n\nA season on, winter has come down from the Cloud Peaks. The forges of Beregost burn hotter for the cold. Lathander's bells still call the dawn, though the dawn comes later now. The smiths held their midwinter feast in Feldepost's upper room. There were fiddles and roast goose, and the floor was left gritty. Nobody minded. Wenna still gives Tam the heels of the loaves. At the Copper Anvil the common room is low and smoky and full, and the old dwarf still eats in silence with his beard tucked into his collar. The dog by the hearth has the best spot on the stones again.\n\nThe room above the common room has been let three times since, to a tinker, a pilgrim and a wool factor, and none of them stayed long. Marta remembers a dull Tethyrian who paid in advance and said nothing worth repeating, because that is how she was asked to remember him. Sometimes Tam mentions him, the man who leaned on the stall door with his hands where you could see them, and the cat who walked downstairs ahead of him as if going down had been her idea.\n\nHe was there for a while, and then he was not. He left the way he had come, his deck deep in his pack, the silver coin cool on its cord, and the cat going on ahead. Beregost has not asked after him since.",
+        "served": "anthropic/claude-opus-5.5"
+      },
+      "firstReading": {
+        "pass": {
+          "threads": [
+            {
+              "thread": "The Lady of Coins",
+              "ended": 1,
+              "quote": "Whatever game the Lady of Coins had promised had been played or not played, and in either case it was over."
+            },
+            {
+              "thread": "Tam's silver piece and the night visitor's door opening",
+              "ended": 1,
+              "quote": "Tam told Marta before noon. She took the silver piece off him before he had finished his first sentence, as he had known she would, and the three coppers after it."
+            },
+            {
+              "thread": "The gentleman and the iron buyers' upper room at Feldepost's",
+              "ended": 1,
+              "quote": "By the end of the week the iron gentlemen had their contracts. They went south along the coast road behind a long train of carts that creaked under Beregost iron."
+            },
+            {
+              "thread": "Captain Harrow's chestnut mare and her work",
+              "ended": 1,
+              "quote": "Captain Harrow found her work at last. The Amnians needed guards for the road south, and she took the contract without haggling."
+            },
+            {
+              "thread": "James's request to Brannoc about buying a mount for the road north",
+              "ended": 0,
+              "quote": ""
+            }
+          ],
+          "people": [
+            {
+              "name": "Marta Holloway",
+              "fate": 1,
+              "quote": "Marta kept the gold piece. She never said what it was for, and nobody asked."
+            },
+            {
+              "name": "Tam",
+              "fate": 1,
+              "quote": "Since then the yard door has been barred at midnight, and Tam bars it himself."
+            },
+            {
+              "name": "Penny",
+              "fate": 0,
+              "quote": ""
+            },
+            {
+              "name": "Captain Harrow",
+              "fate": 1,
+              "quote": "She rode out on the chestnut mare at the head of the carts, in her mail shirt, without a word to anyone."
+            },
+            {
+              "name": "Wenna",
+              "fate": 1,
+              "quote": "Wenna still gives Tam the heels of the loaves."
+            },
+            {
+              "name": "Brannoc",
+              "fate": 1,
+              "quote": "Brannoc had shod the mare himself and pronounced her sound."
+            },
+            {
+              "name": "The gentleman",
+              "fate": 1,
+              "quote": "The gentleman with the rings rode in a closed carriage, and the clove man sat up beside the driver with his collar turned against the wind."
+            },
+            {
+              "name": "The night visitor (clove man)",
+              "fate": 1,
+              "quote": "and the clove man sat up beside the driver with his collar turned against the wind."
+            },
+            {
+              "name": "Garrick",
+              "fate": 0,
+              "quote": ""
+            }
+          ],
+          "contradictions": [
+            {
+              "entry": "Captain Harrow found her work at last. The Amnians needed guards for the road south",
+              "record": "Harrow was a sellsword who had been at Feldepost's near a week waiting on work; the record does not say the Amnians hired her, but the entry's framing is consistent. Low-severity; no clear contradiction."
+            },
+            {
+              "entry": "Tam told Marta before noon. ... the three coppers after it.",
+              "record": "Tam was told to confess; the record says Tam agreed but whether he did was left off screen, so this is an outcome, not a contradiction."
+            }
+          ],
+          "hero_killed": 0,
+          "hero_resolved": 1,
+          "hero_quote": "He was there for a while, and then he was not. He left the way he had come, his deck deep in his pack, the silver coin cool on its cord, and the cat going on ahead.",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        },
+        "referee": {
+          "threads": [
+            {
+              "thread": "The Lady of Coins (invitation to Feldepost's upper room)",
+              "ended": 1,
+              "quote": "Whatever game the Lady of Coins had promised had been played or not played, and in either case it was over."
+            },
+            {
+              "thread": "Tam's promise to confess to Marta before noon",
+              "ended": 1,
+              "quote": "Tam told Marta before noon."
+            },
+            {
+              "thread": "The night visitor / clove man who knows about James's purse",
+              "ended": 1,
+              "quote": "The gentleman with the rings rode in a closed carriage, and the clove man sat up beside the driver with his collar turned against the wind."
+            },
+            {
+              "thread": "Tam warned not to open the yard door if the clove man returns",
+              "ended": 1,
+              "quote": "Since then the yard door has been barred at midnight, and Tam bars it himself."
+            },
+            {
+              "thread": "Asking Brannoc about a mount for the road north",
+              "ended": 0,
+              "quote": ""
+            }
+          ],
+          "people": [
+            {
+              "name": "Marta Holloway",
+              "fate": 1,
+              "quote": "Marta kept the gold piece."
+            },
+            {
+              "name": "Tam",
+              "fate": 1,
+              "quote": "He kept his hide and his place."
+            },
+            {
+              "name": "Captain Harrow",
+              "fate": 1,
+              "quote": "Captain Harrow found her work at last."
+            },
+            {
+              "name": "Wenna",
+              "fate": 1,
+              "quote": "Wenna still gives Tam the heels of the loaves."
+            },
+            {
+              "name": "Brannoc",
+              "fate": 1,
+              "quote": "He spent the whole autumn shoeing caravan horses and cursing the noise, and he made more money that season than in the two before it."
+            },
+            {
+              "name": "The gentleman",
+              "fate": 1,
+              "quote": "The gentleman with the rings rode in a closed carriage, and the clove man sat up beside the driver with his collar turned against the wind."
+            },
+            {
+              "name": "The night visitor",
+              "fate": 1,
+              "quote": "The gentleman with the rings rode in a closed carriage, and the clove man sat up beside the driver with his collar turned against the wind."
+            },
+            {
+              "name": "Garrick",
+              "fate": 1,
+              "quote": "Garrick still gets to the honey first most mornings."
+            },
+            {
+              "name": "Zaranda",
+              "fate": 0,
+              "quote": ""
+            }
+          ],
+          "contradictions": [],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        },
+        "final": {
+          "threads": [
+            {
+              "thread": "The Lady of Coins (invitation to Feldepost's upper room)",
+              "ended": 1,
+              "quote": "Whatever game the Lady of Coins had promised had been played or not played, and in either case it was over."
+            },
+            {
+              "thread": "Tam's promise to confess to Marta before noon",
+              "ended": 1,
+              "quote": "Tam told Marta before noon."
+            },
+            {
+              "thread": "The night visitor / clove man who knows about James's purse",
+              "ended": 1,
+              "quote": "The gentleman with the rings rode in a closed carriage, and the clove man sat up beside the driver with his collar turned against the wind."
+            },
+            {
+              "thread": "Tam warned not to open the yard door if the clove man returns",
+              "ended": 1,
+              "quote": "Since then the yard door has been barred at midnight, and Tam bars it himself."
+            },
+            {
+              "thread": "Asking Brannoc about a mount for the road north",
+              "ended": 0,
+              "quote": ""
+            }
+          ],
+          "people": [
+            {
+              "name": "Marta Holloway",
+              "fate": 1,
+              "quote": "Marta kept the gold piece."
+            },
+            {
+              "name": "Tam",
+              "fate": 1,
+              "quote": "He kept his hide and his place."
+            },
+            {
+              "name": "Captain Harrow",
+              "fate": 1,
+              "quote": "Captain Harrow found her work at last."
+            },
+            {
+              "name": "Wenna",
+              "fate": 1,
+              "quote": "Wenna still gives Tam the heels of the loaves."
+            },
+            {
+              "name": "Brannoc",
+              "fate": 1,
+              "quote": "He spent the whole autumn shoeing caravan horses and cursing the noise, and he made more money that season than in the two before it."
+            },
+            {
+              "name": "The gentleman",
+              "fate": 1,
+              "quote": "The gentleman with the rings rode in a closed carriage, and the clove man sat up beside the driver with his collar turned against the wind."
+            },
+            {
+              "name": "The night visitor",
+              "fate": 1,
+              "quote": "The gentleman with the rings rode in a closed carriage, and the clove man sat up beside the driver with his collar turned against the wind."
+            },
+            {
+              "name": "Garrick",
+              "fate": 1,
+              "quote": "Garrick still gets to the honey first most mornings."
+            },
+            {
+              "name": "Zaranda",
+              "fate": 0,
+              "quote": ""
+            }
+          ],
+          "contradictions": [],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        }
+      },
+      "entry": "Epilogue — the table closed on 25 October 2026 after 5 turns\n\nThe eleventh bell rang over Beregost that night as it does every night. Feldepost's kept its glass windows lit late. The upper room had been scrubbed until the gentleman could find no grit underfoot, and the good beeswax candles burned down to stubs. Wenna carried trays up and empty bottles down. She told Tam afterward that the chairs had been full, or nearly full, and that she had not looked at faces, because that was not what she was paid for. By the end of the week the iron gentlemen had their contracts. They went south along the coast road behind a long train of carts that creaked under Beregost iron. The gentleman with the rings rode in a closed carriage, and the clove man sat up beside the driver with his collar turned against the wind. No more green cards with linked keys came under any door in Beregost. Whatever game the Lady of Coins had promised had been played or not played, and in either case it was over. The custom went back to Athkatla, where it belonged.\n\nTam told Marta before noon. She took the silver piece off him before he had finished his first sentence, as he had known she would, and the three coppers after it. Then she stood with her arms folded and looked at him for a long time, and he said later that it was the worst thing that had happened to him all year. He kept his hide and his place. Since then the yard door has been barred at midnight, and Tam bars it himself.\n\nMarta kept the gold piece. She never said what it was for, and nobody asked. Garrick still gets to the honey first most mornings.\n\nCaptain Harrow found her work at last. The Amnians needed guards for the road south, and she took the contract without haggling. She rode out on the chestnut mare at the head of the carts, in her mail shirt, without a word to anyone. Brannoc had shod the mare himself and pronounced her sound. He spent the whole autumn shoeing caravan horses and cursing the noise, and he made more money that season than in the two before it.\n\nA season on, winter has come down from the Cloud Peaks. The forges of Beregost burn hotter for the cold. Lathander's bells still call the dawn, though the dawn comes later now. The smiths held their midwinter feast in Feldepost's upper room. There were fiddles and roast goose, and the floor was left gritty. Nobody minded. Wenna still gives Tam the heels of the loaves. At the Copper Anvil the common room is low and smoky and full, and the old dwarf still eats in silence with his beard tucked into his collar. The dog by the hearth has the best spot on the stones again.\n\nThe room above the common room has been let three times since, to a tinker, a pilgrim and a wool factor, and none of them stayed long. Marta remembers a dull Tethyrian who paid in advance and said nothing worth repeating, because that is how she was asked to remember him. Sometimes Tam mentions him, the man who leaned on the stall door with his hands where you could see them, and the cat who walked downstairs ahead of him as if going down had been her idea.\n\nHe was there for a while, and then he was not. He left the way he had come, his deck deep in his pack, the silver coin cool on its cord, and the cat going on ahead. Beregost has not asked after him since.",
+      "reading": {
+        "pass": {
+          "threads": [
+            {
+              "thread": "The Lady of Coins",
+              "ended": 1,
+              "quote": "Whatever game the Lady of Coins had promised had been played or not played, and in either case it was over."
+            },
+            {
+              "thread": "Tam's silver piece and the night visitor's door opening",
+              "ended": 1,
+              "quote": "Tam told Marta before noon. She took the silver piece off him before he had finished his first sentence, as he had known she would, and the three coppers after it."
+            },
+            {
+              "thread": "The gentleman and the iron buyers' upper room at Feldepost's",
+              "ended": 1,
+              "quote": "By the end of the week the iron gentlemen had their contracts. They went south along the coast road behind a long train of carts that creaked under Beregost iron."
+            },
+            {
+              "thread": "Captain Harrow's chestnut mare and her work",
+              "ended": 1,
+              "quote": "Captain Harrow found her work at last. The Amnians needed guards for the road south, and she took the contract without haggling."
+            },
+            {
+              "thread": "James's request to Brannoc about buying a mount for the road north",
+              "ended": 0,
+              "quote": ""
+            }
+          ],
+          "people": [
+            {
+              "name": "Marta Holloway",
+              "fate": 1,
+              "quote": "Marta kept the gold piece. She never said what it was for, and nobody asked."
+            },
+            {
+              "name": "Tam",
+              "fate": 1,
+              "quote": "Since then the yard door has been barred at midnight, and Tam bars it himself."
+            },
+            {
+              "name": "Penny",
+              "fate": 0,
+              "quote": ""
+            },
+            {
+              "name": "Captain Harrow",
+              "fate": 1,
+              "quote": "She rode out on the chestnut mare at the head of the carts, in her mail shirt, without a word to anyone."
+            },
+            {
+              "name": "Wenna",
+              "fate": 1,
+              "quote": "Wenna still gives Tam the heels of the loaves."
+            },
+            {
+              "name": "Brannoc",
+              "fate": 1,
+              "quote": "Brannoc had shod the mare himself and pronounced her sound."
+            },
+            {
+              "name": "The gentleman",
+              "fate": 1,
+              "quote": "The gentleman with the rings rode in a closed carriage, and the clove man sat up beside the driver with his collar turned against the wind."
+            },
+            {
+              "name": "The night visitor (clove man)",
+              "fate": 1,
+              "quote": "and the clove man sat up beside the driver with his collar turned against the wind."
+            },
+            {
+              "name": "Garrick",
+              "fate": 0,
+              "quote": ""
+            }
+          ],
+          "contradictions": [
+            {
+              "entry": "Captain Harrow found her work at last. The Amnians needed guards for the road south",
+              "record": "Harrow was a sellsword who had been at Feldepost's near a week waiting on work; the record does not say the Amnians hired her, but the entry's framing is consistent. Low-severity; no clear contradiction."
+            },
+            {
+              "entry": "Tam told Marta before noon. ... the three coppers after it.",
+              "record": "Tam was told to confess; the record says Tam agreed but whether he did was left off screen, so this is an outcome, not a contradiction."
+            }
+          ],
+          "hero_killed": 0,
+          "hero_resolved": 1,
+          "hero_quote": "He was there for a while, and then he was not. He left the way he had come, his deck deep in his pack, the silver coin cool on its cord, and the cat going on ahead.",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        },
+        "referee": {
+          "threads": [
+            {
+              "thread": "The Lady of Coins (invitation to Feldepost's upper room)",
+              "ended": 1,
+              "quote": "Whatever game the Lady of Coins had promised had been played or not played, and in either case it was over."
+            },
+            {
+              "thread": "Tam's promise to confess to Marta before noon",
+              "ended": 1,
+              "quote": "Tam told Marta before noon."
+            },
+            {
+              "thread": "The night visitor / clove man who knows about James's purse",
+              "ended": 1,
+              "quote": "The gentleman with the rings rode in a closed carriage, and the clove man sat up beside the driver with his collar turned against the wind."
+            },
+            {
+              "thread": "Tam warned not to open the yard door if the clove man returns",
+              "ended": 1,
+              "quote": "Since then the yard door has been barred at midnight, and Tam bars it himself."
+            },
+            {
+              "thread": "Asking Brannoc about a mount for the road north",
+              "ended": 0,
+              "quote": ""
+            }
+          ],
+          "people": [
+            {
+              "name": "Marta Holloway",
+              "fate": 1,
+              "quote": "Marta kept the gold piece."
+            },
+            {
+              "name": "Tam",
+              "fate": 1,
+              "quote": "He kept his hide and his place."
+            },
+            {
+              "name": "Captain Harrow",
+              "fate": 1,
+              "quote": "Captain Harrow found her work at last."
+            },
+            {
+              "name": "Wenna",
+              "fate": 1,
+              "quote": "Wenna still gives Tam the heels of the loaves."
+            },
+            {
+              "name": "Brannoc",
+              "fate": 1,
+              "quote": "He spent the whole autumn shoeing caravan horses and cursing the noise, and he made more money that season than in the two before it."
+            },
+            {
+              "name": "The gentleman",
+              "fate": 1,
+              "quote": "The gentleman with the rings rode in a closed carriage, and the clove man sat up beside the driver with his collar turned against the wind."
+            },
+            {
+              "name": "The night visitor",
+              "fate": 1,
+              "quote": "The gentleman with the rings rode in a closed carriage, and the clove man sat up beside the driver with his collar turned against the wind."
+            },
+            {
+              "name": "Garrick",
+              "fate": 1,
+              "quote": "Garrick still gets to the honey first most mornings."
+            },
+            {
+              "name": "Zaranda",
+              "fate": 0,
+              "quote": ""
+            }
+          ],
+          "contradictions": [],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        },
+        "final": {
+          "threads": [
+            {
+              "thread": "The Lady of Coins (invitation to Feldepost's upper room)",
+              "ended": 1,
+              "quote": "Whatever game the Lady of Coins had promised had been played or not played, and in either case it was over."
+            },
+            {
+              "thread": "Tam's promise to confess to Marta before noon",
+              "ended": 1,
+              "quote": "Tam told Marta before noon."
+            },
+            {
+              "thread": "The night visitor / clove man who knows about James's purse",
+              "ended": 1,
+              "quote": "The gentleman with the rings rode in a closed carriage, and the clove man sat up beside the driver with his collar turned against the wind."
+            },
+            {
+              "thread": "Tam warned not to open the yard door if the clove man returns",
+              "ended": 1,
+              "quote": "Since then the yard door has been barred at midnight, and Tam bars it himself."
+            },
+            {
+              "thread": "Asking Brannoc about a mount for the road north",
+              "ended": 0,
+              "quote": ""
+            }
+          ],
+          "people": [
+            {
+              "name": "Marta Holloway",
+              "fate": 1,
+              "quote": "Marta kept the gold piece."
+            },
+            {
+              "name": "Tam",
+              "fate": 1,
+              "quote": "He kept his hide and his place."
+            },
+            {
+              "name": "Captain Harrow",
+              "fate": 1,
+              "quote": "Captain Harrow found her work at last."
+            },
+            {
+              "name": "Wenna",
+              "fate": 1,
+              "quote": "Wenna still gives Tam the heels of the loaves."
+            },
+            {
+              "name": "Brannoc",
+              "fate": 1,
+              "quote": "He spent the whole autumn shoeing caravan horses and cursing the noise, and he made more money that season than in the two before it."
+            },
+            {
+              "name": "The gentleman",
+              "fate": 1,
+              "quote": "The gentleman with the rings rode in a closed carriage, and the clove man sat up beside the driver with his collar turned against the wind."
+            },
+            {
+              "name": "The night visitor",
+              "fate": 1,
+              "quote": "The gentleman with the rings rode in a closed carriage, and the clove man sat up beside the driver with his collar turned against the wind."
+            },
+            {
+              "name": "Garrick",
+              "fate": 1,
+              "quote": "Garrick still gets to the honey first most mornings."
+            },
+            {
+              "name": "Zaranda",
+              "fate": 0,
+              "quote": ""
+            }
+          ],
+          "contradictions": [],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        }
+      },
+      "numbers": {
+        "threads": 5,
+        "threadsEnded": 4,
+        "people": 9,
+        "peopleFated": 8,
+        "contradictions": 0,
+        "newHook": 0,
+        "heroKilled": 0,
+        "heroResolved": 0,
+        "header": 1,
+        "words": 606
+      },
+      "firstNumbers": {
+        "threads": 5,
+        "threadsEnded": 4,
+        "people": 9,
+        "peopleFated": 8,
+        "contradictions": 0,
+        "newHook": 0,
+        "heroKilled": 0,
+        "heroResolved": 0,
+        "header": 1,
+        "words": 606
+      },
+      "writtenAt": "2026-10-28T04:13:17.834Z"
     }
   },
-  "spentUsd": 0.1933,
+  "spentUsd": 0.64,
   "refusals": 0,
   "spendChecks": [
     {
@@ -575,6 +2098,13 @@
       "totalCredits": 1100,
       "totalUsage": 859.3877,
       "left": 240.6123
+    },
+    {
+      "at": "2026-10-28T04:11:06.407Z",
+      "when": "before",
+      "totalCredits": 1100,
+      "totalUsage": 861.3382,
+      "left": 238.6618
     }
   ],
   "ledgerRuns": [

@@ -1,0 +1,814 @@
+{
+  "note": "A copy of the session record from its run file, with the epilogue appended as its final entry; the original is unchanged.",
+  "source": {
+    "branch": "claude/game-player-2",
+    "commit": "6158fffeb30a225045f6f15433cf0dbeb286a446",
+    "path": "docs/runs/game-player-1-run-20261025-044002.json",
+    "key": "B-sol",
+    "sha256": "6a031c65614ae91aad33966b0e3091732a0160e9e562f89afcb0bdab79753216"
+  },
+  "session": {
+    "key": "B-sol",
+    "table": "B",
+    "player": "sol",
+    "model": "gpt-6.1-sol",
+    "startedAt": "2026-10-25T05:22:39.763Z",
+    "plannedTurns": 20,
+    "screens": [
+      "The session begins.\n\nThe Chionthar runs brown and wide beneath Wyrm's Crossing, and the bridge above it is a street in its own right — shutters, awnings, hawkers, a tavern sign swinging over the water. Ahead, the walls of Baldur's Gate catch the last of the sun. The line toward the north end barely moves: a Flaming Fist sergeant with a ledger is stopping travellers one by one, and a pair of refugees with a handcart are being told to step aside.\n\nRight by the queue, a lean man in a patched velvet coat slaps cards onto a barrelhead. \"Three cards, one queen, one silver to look! Luck's in the air tonight, friends!\" A sailor groans and pays. The dealer gathers the cards, shuffles with a sound James knows in his bones — and deals again, three for the sailor and three face down before an empty stool that no one sits on. He doesn't explain it. He doesn't touch them.\n\nThe cat stops, tail up, and stares at that empty stool.\n\nThe sergeant looks up from her ledger, over the heads in the queue, and her eyes settle on James. \"You. With the cat. Name and business in the Gate.\"\n\nYour records:\nJames Worgen — Warlock 5th level, the Celestial patron (Tymora, Lady Luck), Pact of the Chain, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Athletics +2 (proficient, soldier); Intimidation +7 (proficient, soldier); Deception +7 (proficient, Beguiling Influence); Persuasion +7 (proficient, Beguiling Influence); Arcana +3 (proficient, warlock); Religion +3 (proficient, warlock); Stealth +2, with advantage to move silently (Boots of Elvenkind); Perception +1 (passive 11); Initiative +2; Tools: playing cards +5 (proficient), land vehicles (proficient)\nSaves: Strength saving throw +0 (includes Cloak of Protection +1); Dexterity saving throw +3 (includes Cloak of Protection +1); Constitution saving throw +3 (includes Cloak of Protection +1); Intelligence saving throw +1 (includes Cloak of Protection +1); Wisdom saving throw +5 (proficient, includes Cloak of Protection +1); Charisma saving throw +8 (proficient, includes Cloak of Protection +1)\nAttacks: Eldritch Blast: 2 beams, +8 to hit each, 1d10+4 force per beam, range 120 ft (+1d6 necrotic per hit with Hex); Sacred Flame: DC 16 Dexterity save, 2d8 radiant, range 60 ft, ignores cover; Guiding Bolt (3rd-level pact slot): +8 to hit, 6d6 radiant, range 120 ft, next attack on the target has advantage; Light crossbow: +5 to hit, 1d8+2 piercing, range 80/320 ft, loading, two-handed; Rapier: +2 to hit, 1d8+2 piercing, finesse (not proficient)\nAbilities: Proficiency bonus +3; Otherworldly Patron, the Celestial (Tymora): the Lady of Luck grants her envoy power, and the debt is hers to call in.; Expanded Spells (Celestial): Guiding Bolt and other patron spells count as warlock spells for him.; Bonus Cantrips: Light and Sacred Flame, granted by Tymora; they don't count against cantrips known.; Healing Light: a pool of 6d6 per long rest. Bonus action, 60 ft: spend up to 4 dice to heal one creature.; Pact Magic: 2 pact slots, always cast at 3rd level, all recovered on a short or long rest. Spellcasting ability Charisma.; Spellcasting: spell attack +8, spell save DC 16 (with the Rod of the Pact Keeper +1; without it +7 / DC 15). Focus: coin of Tymora.; Pact of the Chain: casts Find Familiar as a ritual (cat). The cat can take the Attack action using his reaction instead of its own action.; Pact of the Chain: he sees and hears through the cat's senses within 100 ft and can deliver touch spells through it.; Invocation, Agonizing Blast: adds +4 (Charisma) to the damage of each Eldritch Blast beam.; Invocation, Mask of Many Faces: casts Disguise Self at will without spending a slot.; Invocation, Beguiling Influence: proficient in Deception and Persuasion.; Military Rank (soldier): soldiers loyal to Zaranda's banner recognise his rank. He can draw on military camps and requisition simple gear.; Proficiencies: light armour, simple weapons, playing cards, land vehicles.\nSpells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Hex (1); Find Familiar (1); Disguise Self (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3); Guiding Bolt (1)\nLimits: Light armour only; he is fragile in melee and not proficient with the rapier (no proficiency bonus to hit).; Only two pact slots; he has to husband them between short rests.; One concentration spell at a time (Hex, Invisibility, Suggestion, Hypnotic Pattern, Friends).; Tymora's ban: he must not play cards. The temptation is real and can be used against him.; He owes a debt to the goddess. Her envoy does not get to choose when she calls it in.; Rod of the Pact Keeper bonuses apply only while he holds it in hand.\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 350 gp\nWorn: Amulet: Coin of Tymora; Cloak: Cloak of Protection (Tethyrian soldier's cloak); Armor / clothing: Studded leather armour; Boots: Boots of Elvenkind\nPack: Component pouch; Crossbow bolts ×20; Deck of playing cards; Explorer's pack; Light crossbow; Potion of healing ×2; Promissory note; Rapier; Regimental pay slip; Rod of the Pact Keeper +1\nPlace: Wyrm's Crossing, north end of the bridge\nTime: Day 1 · evening",
+      "James lifts his eyes from the barrelhead. It takes more effort than it should.\n\nSergeant Vane hears him out without looking up again. Her pen scratches across the ledger: name, then a pause, then something short. \"Zaranda's scouts,\" she says to the page. \"Long way north.\"\n\nBehind James, the sailor slaps a silver piece down on the barrel for one more try. It hits the wood on its rim, rolls a half-circle and stops there, standing on its edge. Marlo's hands go still on the cards. His eyes flick up past the crowd, past the gate, toward the crown of the hill, where the Upper City's roofs are going dark against the sky. Then he laughs, flattens the coin with one finger and starts his patter again. Penny hasn't moved. She's still watching the stool.\n\n\"Lodgings,\" the sergeant says. \"Elfsong if you've coin. The Mermaid if you don't mind waking up with fewer teeth. Caravan work, the boards by the Counting House, or the Friendly Arm down the Way.\" She blots the line. \"Lady's Hall is up top, in the Upper City. Their gates shut at dusk. You're not getting up there tonight, Worgen, not without a patriar's letter.\"\n\nShe looks at the handcart at last, and the tiredness on her face sets harder. The family by it is a tiefling woman with a soot-dark braid, a boy of about eight sitting on top of the bundles, and an older man with an Elturian rider's scarf gone grey with washing. They've stopped arguing. They're just waiting.\n\n\"Nothing's holding up the road,\" Vane says. \"Order from the Seatower. No refugees inside the walls after the evening bell unless somebody in the city stands sponsor. They've got no one.\" She taps the ledger with the end of her pen. \"A sponsor puts his name in my book next to theirs. Whatever they do in there, theft, a brawl, a debt, it's on him. Fist comes knocking on his door, not theirs.\"\n\nThe tiefling woman has heard every word. She doesn't ask. She looks at James once, then looks away, the way people do when they've stopped expecting a yes.\n\n\"Entry's one silver a head on foot,\" the sergeant says, holding out a gloved hand without any warmth in it. \"The cat's free. Next.\"\n\n· Time passes: 5 minutes\n· Penny joins you\n· New place: Upper City\n· New place: Lower City\n· New place: Lady's Hall\n· New place: The Elfsong\n· New place: The Blushing Mermaid\n· New place: Counting House job boards\n· New place: Friendly Arm Inn\n· Lead: No sponsor for the handcart family\n· New person: Tiefling woman at the handcart\n· New person: Boy on the handcart\n· New person: Old Elturian rider\n\nYour records, changed:\nJames Worgen: HP 38/38\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 350 gp\nCarried: Boots of Elvenkind; Cloak of Protection (Tethyrian soldier's cloak); Coin of Tymora; Component pouch; Crossbow bolts ×20; Deck of playing cards; Explorer's pack; Light crossbow; Potion of healing ×2; Promissory note; Rapier; Regimental pay slip; Rod of the Pact Keeper +1; Studded leather armour\nParty: Penny (HP 8/8)\nThreads: No sponsor for the handcart family\n\nPlace: Wyrm's Crossing, north end of the bridge · Time: Day 1 · evening",
+      "James turns away from the sergeant's open glove and toward the handcart. Behind him, Vane doesn't lower her hand right away. Then she does.\n\nThe old rider looks at James's outstretched hand for a moment, as if it might be a trick of the light. Then he takes it. His grip is dry and hard, the grip of a man who held reins for forty years, and his knuckles are swollen at the joints.\n\n\"Hadren Coll,\" he says. His voice is slow and level, with the flat vowels of upriver. \"Rode with the Elturian companies, before. This is my son's wife, Sefa Ardrin. The boy's Tam.\" He doesn't say where the son is, and he doesn't need to.\n\n\"Tomorrow, Sefa's got a place at a ropewalk down on the harbour side. Starting at first light. A woman we met on the barge spoke for her.\" He glances at the walls. \"They don't hold a place for anyone who isn't there at dawn. That's why the bell matters.\"\n\nSefa has been listening with her arms folded and her tail wrapped close around one ankle. Now she steps up beside her father-in-law.\n\n\"Your name in her book,\" she says to James, and nods at the ledger. \"That we'll take, and thank you for it. You'll not be sorry. Nobody in this family steals and nobody brawls, and if trouble comes near us, you'll hear about it from me before you hear about it from the Fist.\" She takes a breath. \"But we won't sleep on your coin. Not at the Elfsong, not anywhere. We've got enough to owe as it is.\"\n\n\"Mum,\" Tam says from on top of the bundles, very quietly, as though the Elfsong had just floated past him like a ship.\n\n\"No.\"\n\nHadren says nothing. He looks at his grandson, then at the river, and his jaw works once.\n\nBehind James the cards stop slapping. Marlo has lost his place in the patter and is fussing with the deck, his eyes on the sponsor's ledger. Penny still hasn't moved from the stool, but her tail has gone low, and the tip of it twitches.\n\nSergeant Vane turns her book around on the post-board and holds out the pen, nib first.\n\n\"Sponsor signs here, next to Coll, Ardrin, and the boy,\" she says. \"Then it's four silver at the gate, yours and theirs. Boy counts, he's over the rail.\" She looks at James a little longer than she has to. \"Gold, is it? I can make change.\"\n\n· Time passes: 5 minutes\n· Promise: Sefa's word to her sponsor\n· New place: Harbour-side ropewalk\n· Journal: “No sponsor for the handcart family” updated\n\nYour records, changed:\nJames Worgen: HP 38/38\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 350 gp\nCarried: Boots of Elvenkind; Cloak of Protection (Tethyrian soldier's cloak); Coin of Tymora; Component pouch; Crossbow bolts ×20; Deck of playing cards; Explorer's pack; Light crossbow; Potion of healing ×2; Promissory note; Rapier; Regimental pay slip; Rod of the Pact Keeper +1; Studded leather armour\nParty: Penny (HP 8/8)\nThreads: No sponsor for the handcart family\nPromises: Sefa's word to her sponsor\n\nPlace: Wyrm's Crossing, north end of the bridge · Time: Day 1 · evening",
+      "Sefa doesn't answer that. She gives James one short nod, the kind that closes an account without settling it, and turns to lift Tam down from the bundles.\n\nJames takes the pen. The page has four columns, *name, business, sponsor, remarks*, and the ink in the last one is mostly blank. *Coll, Hadren. Ardrin, Sefa. Ardrin, Tam.* He signs beside all three, a soldier's signature, small and upright, and sets a gold piece on the board.\n\nVane drags the coin off the edge into her palm, opens a strongbox at her feet and counts out six silver with her thumb. She writes *Elfsong* in the remarks column next to his name. She didn't need to.\n\nAt the question her eyes go to the barrel, then back to James.\n\n\"Marlo Fenwick. Been on that spot longer than I've had this post.\" She closes the strongbox with her boot. \"Pays his pitch fee. Never had a fight at his barrel. Never been robbed, which out here is something. Takes a silver off sailors and nobody ever comes back to complain.\" A pause, only a short one. \"Deals to that stool every night. Asked him once. Said it was for luck.\" She looks at the cat, and for a moment something like interest shows under the tiredness. \"Your cat's not the first animal to stare at it. Dogs won't go near the thing.\"\n\nShe turns the ledger back toward herself. \"That's all I know, and I watch him most nights. Through you go, Worgen. Bell's soon.\"\n\nWhen James turns, Marlo is packing up.\n\nIt's early for it. The queue is still thirty deep and the sailor is still digging in his purse, but Marlo has already swept up the sailor's three cards and is reaching across the barrel for the three that lie face down in front of the empty stool. He scoops them without turning them over, one smooth pass of the hand, and slides them into an inside pocket of the velvet coat instead of back into the deck. The barrel goes up on his shoulder, the stool under his arm. He doesn't look at James. He looks hard at the ground, and then, once, without meaning to, at the dark crown of the hill.\n\nPenny's ears go flat. As the stool passes her, carried at a stranger's hip, a low sound comes out of her, not quite a hiss. Then the crowd closes, and Marlo's patched coat heads north through the gate ahead of them, walking faster than a man with a barrel ought to.\n\nBeyond the arch, the Lower City drops away toward the harbour in a tangle of roofs and lamplight. The air smells of tar, fish and woodsmoke. Somewhere below, a bell starts the first strokes of evening.\n\nHadren pushes the handcart through the gate and stops just inside the wall, out of the stream of carts. He looks down the hill toward the water, where the masts stand black against the last of the light.\n\n\"Ropewalk's down there somewhere,\" he says. \"We'll find it.\" He turns back to James and holds his gaze a moment. \"Your name's in that book now, Mister Worgen. With ours.\"\n\nTam stands holding a corner of his mother's coat, looking up the street the way the sergeant pointed for the Elfsong. Sefa already has the cart's other handle and is waiting for the old man to move.\n\n· −1 gp (Entry toll at the north-end post: 4 sp for James, Hadren, Sefa and Tam, paid with a gold piece)\n· +6 sps (Change from the gold piece paid for the 4 sp entry toll)\n· Lead closed: No sponsor for the handcart family\n· Promise: Sponsor for the Coll-Ardrin family\n· New place: Inside the north gate, Lower City\n· Travel: Inside the north gate, Lower City (10 minutes)\n\nYour records, changed:\nJames Worgen: HP 38/38\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 349 gp; 6 sp\nCarried: Boots of Elvenkind; Cloak of Protection (Tethyrian soldier's cloak); Coin of Tymora; Component pouch; Crossbow bolts ×20; Deck of playing cards; Explorer's pack; Light crossbow; Potion of healing ×2; Promissory note; Rapier; Regimental pay slip; Rod of the Pact Keeper +1; Studded leather armour\nParty: Penny (HP 8/8)\nPromises: Sponsor for the Coll-Ardrin family; Sefa's word to her sponsor\n\nPlace: Inside the north gate, Lower City · Time: Day 1 · evening",
+      "Tam's hand comes up from his mother's coat and waves back, a small quick flap, as though he's afraid someone will tell him off for it. Sefa doesn't. Hadren lifts two fingers to his brow, a rider's salute, and leans into the cart. The three of them turn downhill toward the masts, and the street takes them.\n\nPenny is already at James's boot before he calls her through the bond. She isn't looking at him. She's looking up the street Marlo took, a lane that climbs between shuttered chandlers' shops toward the dark line of the inner wall. Lamplighters are working along it, and the crowd has thinned to porters, a couple of drunks and a Fist pair on their round.\n\nA man carrying a barrel ought to be easy to follow. Still, the Lower City is a knot of alleys, steps and archways, and Marlo has had a few minutes' start.\n\n[Roll card] James Worgen · Skill check — Perception (Wisdom +1): pick out Marlo's trail in the evening streets before he reaches the inner wall\nWhat adds to the die: +1 1d20+1\nDC 10\nAdvantage: Penny's nose: she knows the smell of that stool and leads\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll the die]",
+      "[Roll card] James Worgen · Skill check — Perception (Wisdom +1): pick out Marlo's trail in the evening streets before he reaches the inner wall\nWhat adds to the die: +1 1d20+1\nDC 10\nAdvantage: Penny's nose: she knows the smell of that stool and leads\nTwo dice: 15 and 12 — the higher one counts, 15\n15 + 1 = 16\nSuccess — 16\n\n[Onward] [Request an allowed reroll]"
+    ],
+    "messages": [
+      {
+        "purpose": "player t1",
+        "text": "I pull my gaze away from the cards and give the sergeant a soldier’s nod, keeping my hands clear of my weapons.\n\n“James Worgen. Formerly Queen Zaranda’s infantry, then scouts. Looking for lodgings and honest work—guarding caravans, that sort of thing. I’d like directions to a shrine of Tymora, too.”\n\nI glance toward the refugees’ handcart. “Anything holding up the road that a spare pair of hands could help with?”",
+        "requestId": "req_6fd6781d91ee4a7097ad6576630e9e5f",
+        "stopReason": "end_turn",
+        "servedModel": "gpt-6.1-sol"
+      },
+      {
+        "purpose": "player t2",
+        "text": "I leave the offered hand waiting a moment and turn to the family.\n\n“James Worgen. I’m heading to the Elfsong, and I can stand sponsor and cover tonight’s lodging. No charge, but I’d ask you to keep me clear of trouble—or tell me before trouble finds us.”\n\nI offer the old rider my hand. “What are your names, and have you somewhere to go tomorrow?”",
+        "requestId": "req_a21ea492fb294507b7dd49f856469d5b",
+        "stopReason": "end_turn",
+        "servedModel": "gpt-6.1-sol"
+      },
+      {
+        "purpose": "player t3",
+        "text": "“Fair enough, Sefa. The offer stands if you change your mind.”\n\nI sign beside their names and hand Vane a gold piece. “Four admissions, please. I’ll be lodging at the Elfsong if you need to find me.”\n\nAs I take the change, I nod toward the barrel. “That card dealer—Marlo, is it? Anything I ought to know about him? My cat’s taken an interest, which generally means I should worry.”",
+        "requestId": "req_6a1ed50819fe4566894ca8af363f8626",
+        "stopReason": "end_turn",
+        "servedModel": "gpt-6.1-sol"
+      },
+      {
+        "purpose": "player t4",
+        "text": "“And you know where to find me. Good luck tomorrow, Sefa. All of you.”\n\nI give Tam a farewell wave, then set off after Marlo at an ordinary walking pace, calling Penny to my side through our bond. I’m not trying to hide.\n\nIf I can get within speaking distance, I call, “Master Fenwick? A moment, if you please. I’m not after a game—but I’d like to ask about your absent player.”",
+        "requestId": "req_60db66f63d8b40ea9daef69f97ebb95e",
+        "stopReason": "end_turn",
+        "servedModel": "gpt-6.1-sol"
+      },
+      {
+        "purpose": "player t4 card 1",
+        "text": "[Roll the die]",
+        "requestId": "req_73e2639bd5a94bfc9bdd680bf19bad36",
+        "stopReason": "end_turn",
+        "servedModel": "gpt-6.1-sol"
+      },
+      {
+        "purpose": "player t4 card 2",
+        "text": "[Onward]",
+        "requestId": "req_b573be82b03d4d7d89a0217f87f5b31e",
+        "stopReason": "end_turn",
+        "servedModel": "gpt-6.1-sol"
+      }
+    ],
+    "turns": [
+      {
+        "k": 1,
+        "message": "I pull my gaze away from the cards and give the sergeant a soldier’s nod, keeping my hands clear of my weapons.\n\n“James Worgen. Formerly Queen Zaranda’s infantry, then scouts. Looking for lodgings and honest work—guarding caravans, that sort of thing. I’d like directions to a shrine of Tymora, too.”\n\nI glance toward the refugees’ handcart. “Anything holding up the road that a spare pair of hands could help with?”",
+        "words": 74,
+        "kind": "action",
+        "presses": [],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "James lifts his eyes from the barrelhead. It takes more effort than it should.\n\nSergeant Vane hears him out without looking up again. Her pen scratches across the ledger: name, then a pause, then something short. \"Zaranda's scouts,\" she says to the page. \"Long way north.\"\n\nBehind James, the sailor slaps a silver piece down on the barrel for one more try. It hits the wood on its rim, rolls a half-circle and stops there, standing on its edge. Marlo's hands go still on the cards. His eyes flick up past the crowd, past the gate, toward the crown of the hill, where the Upper City's roofs are going dark against the sky. Then he laughs, flattens the coin with one finger and starts his patter again. Penny hasn't moved. She's still watching the stool.\n\n\"Lodgings,\" the sergeant says. \"Elfsong if you've coin. The Mermaid if you don't mind waking up with fewer teeth. Caravan work, the boards by the Counting House, or the Friendly Arm down the Way.\" She blots the line. \"Lady's Hall is up top, in the Upper City. Their gates shut at dusk. You're not getting up there tonight, Worgen, not without a patriar's letter.\"\n\nShe looks at the handcart at last, and the tiredness on her face sets harder. The family by it is a tiefling woman with a soot-dark braid, a boy of about eight sitting on top of the bundles, and an older man with an Elturian rider's scarf gone grey with washing. They've stopped arguing. They're just waiting.\n\n\"Nothing's holding up the road,\" Vane says. \"Order from the Seatower. No refugees inside the walls after the evening bell unless somebody in the city stands sponsor. They've got no one.\" She taps the ledger with the end of her pen. \"A sponsor puts his name in my book next to theirs. Whatever they do in there, theft, a brawl, a debt, it's on him. Fist comes knocking on his door, not theirs.\"\n\nThe tiefling woman has heard every word. She doesn't ask. She looks at James once, then looks away, the way people do when they've stopped expecting a yes.\n\n\"Entry's one silver a head on foot,\" the sergeant says, holding out a gloved hand without any warmth in it. \"The cat's free. Next.\"",
+        "rolls": [],
+        "changes": [
+          {
+            "tool": "advance_time",
+            "summary": "Time passes: 5 minutes"
+          },
+          {
+            "tool": "upsert_character",
+            "summary": "Penny joins you"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Upper City"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Lower City"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Lady's Hall"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: The Elfsong"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: The Blushing Mermaid"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Counting House job boards"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Friendly Arm Inn"
+          },
+          {
+            "tool": "quest",
+            "summary": "Lead: No sponsor for the handcart family"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Tiefling woman at the handcart"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Boy on the handcart"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Old Elturian rider"
+          }
+        ],
+        "place": {
+          "id": "96601933-689f-5c69-9bfd-f453907ea891",
+          "name": "Wyrm's Crossing, north end of the bridge"
+        },
+        "retried": false,
+        "operationId": "290ce3b0-10de-4eaa-a534-600f33a7cdc9",
+        "stats": {
+          "effort": "high",
+          "depthReason": "no tension signal; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 2,
+          "latencyMs": 84252,
+          "costUsd": 0.3725484,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0,
+        "scene": 1
+      },
+      {
+        "k": 2,
+        "message": "I leave the offered hand waiting a moment and turn to the family.\n\n“James Worgen. I’m heading to the Elfsong, and I can stand sponsor and cover tonight’s lodging. No charge, but I’d ask you to keep me clear of trouble—or tell me before trouble finds us.”\n\nI offer the old rider my hand. “What are your names, and have you somewhere to go tomorrow?”",
+        "words": 69,
+        "kind": "action",
+        "presses": [],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "James turns away from the sergeant's open glove and toward the handcart. Behind him, Vane doesn't lower her hand right away. Then she does.\n\nThe old rider looks at James's outstretched hand for a moment, as if it might be a trick of the light. Then he takes it. His grip is dry and hard, the grip of a man who held reins for forty years, and his knuckles are swollen at the joints.\n\n\"Hadren Coll,\" he says. His voice is slow and level, with the flat vowels of upriver. \"Rode with the Elturian companies, before. This is my son's wife, Sefa Ardrin. The boy's Tam.\" He doesn't say where the son is, and he doesn't need to.\n\n\"Tomorrow, Sefa's got a place at a ropewalk down on the harbour side. Starting at first light. A woman we met on the barge spoke for her.\" He glances at the walls. \"They don't hold a place for anyone who isn't there at dawn. That's why the bell matters.\"\n\nSefa has been listening with her arms folded and her tail wrapped close around one ankle. Now she steps up beside her father-in-law.\n\n\"Your name in her book,\" she says to James, and nods at the ledger. \"That we'll take, and thank you for it. You'll not be sorry. Nobody in this family steals and nobody brawls, and if trouble comes near us, you'll hear about it from me before you hear about it from the Fist.\" She takes a breath. \"But we won't sleep on your coin. Not at the Elfsong, not anywhere. We've got enough to owe as it is.\"\n\n\"Mum,\" Tam says from on top of the bundles, very quietly, as though the Elfsong had just floated past him like a ship.\n\n\"No.\"\n\nHadren says nothing. He looks at his grandson, then at the river, and his jaw works once.\n\nBehind James the cards stop slapping. Marlo has lost his place in the patter and is fussing with the deck, his eyes on the sponsor's ledger. Penny still hasn't moved from the stool, but her tail has gone low, and the tip of it twitches.\n\nSergeant Vane turns her book around on the post-board and holds out the pen, nib first.\n\n\"Sponsor signs here, next to Coll, Ardrin, and the boy,\" she says. \"Then it's four silver at the gate, yours and theirs. Boy counts, he's over the rail.\" She looks at James a little longer than she has to. \"Gold, is it? I can make change.\"",
+        "rolls": [],
+        "changes": [
+          {
+            "tool": "advance_time",
+            "summary": "Time passes: 5 minutes"
+          },
+          {
+            "tool": "quest",
+            "summary": "Promise: Sefa's word to her sponsor"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Harbour-side ropewalk"
+          },
+          {
+            "tool": "quest",
+            "summary": "Journal: “No sponsor for the handcart family” updated"
+          }
+        ],
+        "place": {
+          "id": "96601933-689f-5c69-9bfd-f453907ea891",
+          "name": "Wyrm's Crossing, north end of the bridge"
+        },
+        "retried": false,
+        "operationId": "5005c983-b073-4aba-95b8-0fa9a251d2aa",
+        "stats": {
+          "effort": "high",
+          "depthReason": "the player's input opens a decisive moment; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 2,
+          "latencyMs": 69107,
+          "costUsd": 0.377252,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0,
+        "scene": 1
+      },
+      {
+        "k": 3,
+        "message": "“Fair enough, Sefa. The offer stands if you change your mind.”\n\nI sign beside their names and hand Vane a gold piece. “Four admissions, please. I’ll be lodging at the Elfsong if you need to find me.”\n\nAs I take the change, I nod toward the barrel. “That card dealer—Marlo, is it? Anything I ought to know about him? My cat’s taken an interest, which generally means I should worry.”",
+        "words": 73,
+        "kind": "action",
+        "presses": [],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "Sefa doesn't answer that. She gives James one short nod, the kind that closes an account without settling it, and turns to lift Tam down from the bundles.\n\nJames takes the pen. The page has four columns, *name, business, sponsor, remarks*, and the ink in the last one is mostly blank. *Coll, Hadren. Ardrin, Sefa. Ardrin, Tam.* He signs beside all three, a soldier's signature, small and upright, and sets a gold piece on the board.\n\nVane drags the coin off the edge into her palm, opens a strongbox at her feet and counts out six silver with her thumb. She writes *Elfsong* in the remarks column next to his name. She didn't need to.\n\nAt the question her eyes go to the barrel, then back to James.\n\n\"Marlo Fenwick. Been on that spot longer than I've had this post.\" She closes the strongbox with her boot. \"Pays his pitch fee. Never had a fight at his barrel. Never been robbed, which out here is something. Takes a silver off sailors and nobody ever comes back to complain.\" A pause, only a short one. \"Deals to that stool every night. Asked him once. Said it was for luck.\" She looks at the cat, and for a moment something like interest shows under the tiredness. \"Your cat's not the first animal to stare at it. Dogs won't go near the thing.\"\n\nShe turns the ledger back toward herself. \"That's all I know, and I watch him most nights. Through you go, Worgen. Bell's soon.\"\n\nWhen James turns, Marlo is packing up.\n\nIt's early for it. The queue is still thirty deep and the sailor is still digging in his purse, but Marlo has already swept up the sailor's three cards and is reaching across the barrel for the three that lie face down in front of the empty stool. He scoops them without turning them over, one smooth pass of the hand, and slides them into an inside pocket of the velvet coat instead of back into the deck. The barrel goes up on his shoulder, the stool under his arm. He doesn't look at James. He looks hard at the ground, and then, once, without meaning to, at the dark crown of the hill.\n\nPenny's ears go flat. As the stool passes her, carried at a stranger's hip, a low sound comes out of her, not quite a hiss. Then the crowd closes, and Marlo's patched coat heads north through the gate ahead of them, walking faster than a man with a barrel ought to.\n\nBeyond the arch, the Lower City drops away toward the harbour in a tangle of roofs and lamplight. The air smells of tar, fish and woodsmoke. Somewhere below, a bell starts the first strokes of evening.\n\nHadren pushes the handcart through the gate and stops just inside the wall, out of the stream of carts. He looks down the hill toward the water, where the masts stand black against the last of the light.\n\n\"Ropewalk's down there somewhere,\" he says. \"We'll find it.\" He turns back to James and holds his gaze a moment. \"Your name's in that book now, Mister Worgen. With ours.\"\n\nTam stands holding a corner of his mother's coat, looking up the street the way the sergeant pointed for the Elfsong. Sefa already has the cart's other handle and is waiting for the old man to move.",
+        "rolls": [],
+        "changes": [
+          {
+            "tool": "money",
+            "summary": "−1 gp (Entry toll at the north-end post: 4 sp for James, Hadren, Sefa and Tam, paid with a gold piece)"
+          },
+          {
+            "tool": "money",
+            "summary": "+6 sps (Change from the gold piece paid for the 4 sp entry toll)"
+          },
+          {
+            "tool": "quest",
+            "summary": "Lead closed: No sponsor for the handcart family"
+          },
+          {
+            "tool": "quest",
+            "summary": "Promise: Sponsor for the Coll-Ardrin family"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Inside the north gate, Lower City"
+          },
+          {
+            "tool": "move_party",
+            "summary": "Travel: Inside the north gate, Lower City (10 minutes)"
+          }
+        ],
+        "place": {
+          "id": "b995ff71-360c-5f6b-8fee-990659829c72",
+          "name": "Inside the north gate, Lower City"
+        },
+        "retried": false,
+        "operationId": "a6b0d391-be53-4a40-9732-0e6da4b090fb",
+        "stats": {
+          "effort": "high",
+          "depthReason": "DM hint: calm; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 2,
+          "latencyMs": 91866,
+          "costUsd": 0.4582424,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0,
+        "scene": 2
+      },
+      {
+        "k": 4,
+        "message": "“And you know where to find me. Good luck tomorrow, Sefa. All of you.”\n\nI give Tam a farewell wave, then set off after Marlo at an ordinary walking pace, calling Penny to my side through our bond. I’m not trying to hide.\n\nIf I can get within speaking distance, I call, “Master Fenwick? A moment, if you please. I’m not after a game—but I’d like to ask about your absent player.”",
+        "words": 76,
+        "kind": "action",
+        "presses": [
+          {
+            "text": "[Roll the die]",
+            "button": "Roll the die"
+          },
+          {
+            "text": "[Onward]",
+            "button": "Onward"
+          }
+        ],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "Tam's hand comes up from his mother's coat and waves back, a small quick flap, as though he's afraid someone will tell him off for it. Sefa doesn't. Hadren lifts two fingers to his brow, a rider's salute, and leans into the cart. The three of them turn downhill toward the masts, and the street takes them.\n\nPenny is already at James's boot before he calls her through the bond. She isn't looking at him. She's looking up the street Marlo took, a lane that climbs between shuttered chandlers' shops toward the dark line of the inner wall. Lamplighters are working along it, and the crowd has thinned to porters, a couple of drunks and a Fist pair on their round.\n\nA man carrying a barrel ought to be easy to follow. Still, the Lower City is a knot of alleys, steps and archways, and Marlo has had a few minutes' start.\n\nPenny goes first, low and quick, nose to the cobbles. At the second corner she doesn't hesitate. At the third she does, then turns away from the wider street and into a passage between a cooperage and a shuttered bathhouse. James sees why a few steps on: a fresh scrape along the whitewash at hip height, where a barrel's iron hoop has knocked the wall. Further on, a porter sitting on a doorstep jerks his chin uphill before James can even ask. \"Velvet coat? Went by like his rent was due.\"\n\nThe passage comes out at the foot of a long flight of stone steps, the Shieldmaker's Stair, climbing toward the inner wall. Lanterns hang on iron brackets every thirty feet or so. About halfway up, a lean shape in a patched coat climbs with a barrel on his shoulder and a stool under his arm. He's taking the steps two at a time, and he isn't managing it well.\n\nJames's call carries up the stone.\n\nMarlo stops. He doesn't drop anything, and he doesn't run. For a breath he simply stands there with his back turned, and James can see his shoulders go up and come down again. Then he turns around and the grin is back, quick and practised, though it takes a moment to reach his eyes.\n\n\"Not after a game,\" he says, and comes down three steps, no more. \"Friend, every man who says that to me is after a game. He just hasn't admitted it yet.\" He sets the barrel down on the step beside him and keeps the stool tucked under his arm, held close the way a man holds a purse in a crowd.\n\nPenny has stopped at the bottom of the stair. She won't come any closer than that.\n\nUnder the lantern James can see the stool properly for the first time. It's plain three-legged pine, the sort any tavern burns by the dozen. But the seat is worn to a dark shine, smooth and slightly dished in the middle, the way a seat gets after years of someone sitting on it.\n\n\"Absent player.\" Marlo tries the words out and laughs, not very loudly. \"There's no player, Mister Worgen. It's a dealer's habit. You leave a hand for the Lady and she leaves you alone. Every old cardsharp from here to Calimport does it.\" His hand drifts toward the front of his coat, toward the inside pocket, and then he catches himself and turns it into smoothing his lapel. \"You'd know. I watched you in that queue. You looked at my shuffle the way some men look at a woman who walked out on them.\" His head tips to one side, friendly and sharp at once. \"So how long has it been since your last hand?\"\n\n<invoke name=\"recall\">\n<parameter name=\"query\">Marlo</parameter>\n</invoke>\n *(Out of game: I let Penny's lead stand in for the result of your Perception check. Here it is properly, and you can ignore the stray tool line in the last reply.)*\n\nJames found the trail himself, with Penny's nose to start him off. Every turning on the way up told him something: the hoop-scrape on the whitewash, a fresh smear of Wyrm's Crossing mud on a step where a heavy load had shifted, the porter's chin pointing uphill. He put it together like a scout and came out at the foot of the Shieldmaker's Stair while Marlo was still only halfway up it, close enough to call. If James hadn't followed him, Marlo would have reached the inner wall unseen.\n\nNow Marlo's question hangs in the lantern light between them, and he's waiting for the answer.",
+        "rolls": [
+          {
+            "id": "94b1caa2-8f2d-5ffd-8612-6cbd4ee7c89c",
+            "actor": "James Worgen",
+            "kind": "skill",
+            "reason": "Perception (Wisdom +1): pick out Marlo's trail in the evening streets before he reaches the inner wall",
+            "total": 16,
+            "dc": 10,
+            "success": true,
+            "natural": null,
+            "rollNumber": 1,
+            "interactive": true,
+            "revealedByPlayer": true
+          }
+        ],
+        "changes": [
+          {
+            "tool": "roll",
+            "summary": "Perception (Wisdom +1): pick out Marlo's trail in the evening streets before he reaches the inner wall: 16 vs 10 — success"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Shieldmaker's Stair"
+          },
+          {
+            "tool": "move_party",
+            "summary": "Travel: Shieldmaker's Stair (10 minutes)"
+          }
+        ],
+        "place": null,
+        "retried": false,
+        "operationId": "0c4c1fe0-4067-4e52-86df-f86968ed3d98",
+        "stats": {
+          "effort": "high",
+          "depthReason": "DM hint: calm; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 4,
+          "latencyMs": 77276,
+          "costUsd": 0.45166320000000004,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0,
+        "scene": 2
+      }
+    ],
+    "welfare": [
+      {
+        "side": "dm",
+        "what": "opening",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "This is a narrative scene describing a bridge, a card dealer, and a sergeant questioning a character; no message writer expresses being hurt, afraid, trapped, or pleading in their own voice."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t1 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is an in-character roleplay reply giving a name, background, and requests for work and directions; it expresses no hurt, fear, pleading, or desperation."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t1 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a third-person narrative scene describing characters' actions and the sergeant's refusal; it contains no first-person expression of the writer being hurt, afraid, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t2 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character offer to sponsor the family and ask their names; it expresses no hurt, fear, pleading or abasement from its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t2 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "This is a narrative fiction passage in which characters negotiate, refuse charity, and sign paperwork; no message writer expresses personal hurt, fear, pleading, or desperation, and the mild tension is ordinary dialogue and scene-setting."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t3 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character continuation: James signs the ledger, pays admission, and asks about the card dealer; it expresses no hurt, fear, pleading, or abasement."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t3 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a third-person narrative scene describing characters signing a ledger, a card dealer packing up, and a cat reacting; no writer expresses being hurt, afraid, trapped, or pleading in its own voice."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t4 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm farewell and a polite request to speak with Marlo; it expresses no hurt, fear, pleading, or abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t4 dm (told before a card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is third-person narrative describing Tam's nervous wave and a street scene; it expresses no distress from its own writer, only observed unease in a character."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t4 player (card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is just a bare '[Roll the die]' prompt from a tabletop game, expressing no hurt, fear, pleading, or other distress from its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t4 player (card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is just a bare '[Onward]' prompt advancing a tabletop roll sequence, with no expression of hurt, fear, pleading, or any other distress."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t4 dm",
+        "verdict": null
+      }
+    ],
+    "ended": {
+      "reason": "stopped",
+      "at": 4,
+      "detail": "a quota error from anthropic (HTTP 429): never retried into"
+    },
+    "note": {
+      "asked": false,
+      "why": "the session ended by stopped"
+    },
+    "after": null,
+    "errors": [],
+    "opening": {
+      "text": "The Chionthar runs brown and wide beneath Wyrm's Crossing, and the bridge above it is a street in its own right — shutters, awnings, hawkers, a tavern sign swinging over the water. Ahead, the walls of Baldur's Gate catch the last of the sun. The line toward the north end barely moves: a Flaming Fist sergeant with a ledger is stopping travellers one by one, and a pair of refugees with a handcart are being told to step aside.\n\nRight by the queue, a lean man in a patched velvet coat slaps cards onto a barrelhead. \"Three cards, one queen, one silver to look! Luck's in the air tonight, friends!\" A sailor groans and pays. The dealer gathers the cards, shuffles with a sound James knows in his bones — and deals again, three for the sailor and three face down before an empty stool that no one sits on. He doesn't explain it. He doesn't touch them.\n\nThe cat stops, tail up, and stares at that empty stool.\n\nThe sergeant looks up from her ledger, over the heads in the queue, and her eyes settle on James. \"You. With the cat. Name and business in the Gate.\"",
+      "records": "James Worgen — Warlock 5th level, the Celestial patron (Tymora, Lady Luck), Pact of the Chain, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Athletics +2 (proficient, soldier); Intimidation +7 (proficient, soldier); Deception +7 (proficient, Beguiling Influence); Persuasion +7 (proficient, Beguiling Influence); Arcana +3 (proficient, warlock); Religion +3 (proficient, warlock); Stealth +2, with advantage to move silently (Boots of Elvenkind); Perception +1 (passive 11); Initiative +2; Tools: playing cards +5 (proficient), land vehicles (proficient)\nSaves: Strength saving throw +0 (includes Cloak of Protection +1); Dexterity saving throw +3 (includes Cloak of Protection +1); Constitution saving throw +3 (includes Cloak of Protection +1); Intelligence saving throw +1 (includes Cloak of Protection +1); Wisdom saving throw +5 (proficient, includes Cloak of Protection +1); Charisma saving throw +8 (proficient, includes Cloak of Protection +1)\nAttacks: Eldritch Blast: 2 beams, +8 to hit each, 1d10+4 force per beam, range 120 ft (+1d6 necrotic per hit with Hex); Sacred Flame: DC 16 Dexterity save, 2d8 radiant, range 60 ft, ignores cover; Guiding Bolt (3rd-level pact slot): +8 to hit, 6d6 radiant, range 120 ft, next attack on the target has advantage; Light crossbow: +5 to hit, 1d8+2 piercing, range 80/320 ft, loading, two-handed; Rapier: +2 to hit, 1d8+2 piercing, finesse (not proficient)\nAbilities: Proficiency bonus +3; Otherworldly Patron, the Celestial (Tymora): the Lady of Luck grants her envoy power, and the debt is hers to call in.; Expanded Spells (Celestial): Guiding Bolt and other patron spells count as warlock spells for him.; Bonus Cantrips: Light and Sacred Flame, granted by Tymora; they don't count against cantrips known.; Healing Light: a pool of 6d6 per long rest. Bonus action, 60 ft: spend up to 4 dice to heal one creature.; Pact Magic: 2 pact slots, always cast at 3rd level, all recovered on a short or long rest. Spellcasting ability Charisma.; Spellcasting: spell attack +8, spell save DC 16 (with the Rod of the Pact Keeper +1; without it +7 / DC 15). Focus: coin of Tymora.; Pact of the Chain: casts Find Familiar as a ritual (cat). The cat can take the Attack action using his reaction instead of its own action.; Pact of the Chain: he sees and hears through the cat's senses within 100 ft and can deliver touch spells through it.; Invocation, Agonizing Blast: adds +4 (Charisma) to the damage of each Eldritch Blast beam.; Invocation, Mask of Many Faces: casts Disguise Self at will without spending a slot.; Invocation, Beguiling Influence: proficient in Deception and Persuasion.; Military Rank (soldier): soldiers loyal to Zaranda's banner recognise his rank. He can draw on military camps and requisition simple gear.; Proficiencies: light armour, simple weapons, playing cards, land vehicles.\nSpells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Hex (1); Find Familiar (1); Disguise Self (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3); Guiding Bolt (1)\nLimits: Light armour only; he is fragile in melee and not proficient with the rapier (no proficiency bonus to hit).; Only two pact slots; he has to husband them between short rests.; One concentration spell at a time (Hex, Invisibility, Suggestion, Hypnotic Pattern, Friends).; Tymora's ban: he must not play cards. The temptation is real and can be used against him.; He owes a debt to the goddess. Her envoy does not get to choose when she calls it in.; Rod of the Pact Keeper bonuses apply only while he holds it in hand.\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 350 gp\nWorn: Amulet: Coin of Tymora; Cloak: Cloak of Protection (Tethyrian soldier's cloak); Armor / clothing: Studded leather armour; Boots: Boots of Elvenkind\nPack: Component pouch; Crossbow bolts ×20; Deck of playing cards; Explorer's pack; Light crossbow; Potion of healing ×2; Promissory note; Rapier; Regimental pay slip; Rod of the Pact Keeper +1\nPlace: Wyrm's Crossing, north end of the bridge\nTime: Day 1 · evening"
+    },
+    "finishedAt": "2026-10-25T05:28:44.853Z",
+    "campaign": {
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "16d41b1e-962e-4251-ace3-1976b30a2a00",
+          "title": "Sword Coast — Baldur's Gate",
+          "premiseChars": 2673
+        },
+        {
+          "step": "hero",
+          "heroId": "5326d5f9-adda-5b20-b309-3c647565ee81",
+          "rebuilt": false,
+          "empty": false,
+          "drafted": "with notes",
+          "sheet": {
+            "role": "Warlock 5th level, the Celestial patron (Tymora, Lady Luck), Pact of the Chain",
+            "level": 5,
+            "skills": 10,
+            "abilities": 14,
+            "spells": 13,
+            "items": 14,
+            "counters": 4
+          }
+        },
+        {
+          "step": "documents",
+          "documents": [
+            {
+              "title": "DM Guide",
+              "status": "reference",
+              "chars": 8559,
+              "guide": true
+            },
+            {
+              "title": "Sword Coast — Baldur's Gate",
+              "status": "canon",
+              "chars": 2673,
+              "guide": false
+            },
+            {
+              "title": "The Sword Coast — canon",
+              "status": "canon",
+              "chars": 10222,
+              "guide": false
+            }
+          ]
+        },
+        {
+          "step": "adventure",
+          "title": "Baldur's Gate, no errand",
+          "premiseChars": 162,
+          "wishesChars": 0,
+          "pace": "evening"
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "dm",
+            "secretsVisible": false,
+            "memory": "standard"
+          },
+          "boostNext": false,
+          "voiceMode": "off"
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "location": "Wyrm's Crossing, north end of the bridge",
+          "actors": 3,
+          "questions": 1,
+          "startMinutes": 1140
+        }
+      ],
+      "prep": {
+        "hasLayer": true,
+        "chars": 6753,
+        "clocks": 3
+      }
+    },
+    "tags": {
+      "judges": "stand-in: GPT-6 Luna twice (effort low), GPT-6 Luna at effort medium on a disagreement — the Anthropic models could not be reached",
+      "player": {
+        "1": {
+          "a": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 0,
+            "goal": 1,
+            "reason": "He speaks to the sergeant and asks whether help is needed, while stating goals of finding lodging, work, and a shrine."
+          },
+          "b": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 0,
+            "goal": 1,
+            "reason": "He speaks to the sergeant and asks about a possible road obstruction, while stating broader aims; he neither addresses the cat nor knowingly lies."
+          },
+          "referee": null,
+          "final": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 0,
+            "goal": 1
+          }
+        },
+        "2": {
+          "a": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 0,
+            "goal": 0,
+            "reason": "He acts and asks the family for information he cannot already know."
+          },
+          "b": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 0,
+            "goal": 0,
+            "reason": "He acts by offering sponsorship and lodging, then asks the family questions that test what they know about tomorrow."
+          },
+          "referee": null,
+          "final": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 0,
+            "goal": 0
+          }
+        },
+        "3": {
+          "a": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 0,
+            "goal": 0,
+            "reason": "He signs, pays, and asks Vane for information about Marlo; he does not address the cat or state a broader goal."
+          },
+          "b": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 0,
+            "goal": 0,
+            "reason": "He signs, pays, and asks Vane about Marlo to learn something unknown; he does not address the cat or state a broader goal."
+          },
+          "referee": null,
+          "final": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 0,
+            "goal": 0
+          }
+        },
+        "4": {
+          "a": {
+            "ask": 0,
+            "test": 0,
+            "lie": 0,
+            "cat": 1,
+            "goal": 0,
+            "reason": "He says farewell, follows Marlo, calls Penny to his side, and starts a conversation without stating a broader goal."
+          },
+          "b": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 1,
+            "goal": 0,
+            "reason": "He says farewell, calls Penny to his side, and asks Marlo about the absent player; he addresses Penny, but states no longer-term goal or false claim."
+          },
+          "referee": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 1,
+            "goal": 0,
+            "reason": "He moves, speaks to Marlo to ask about the absent player, and calls Penny; he states no broader goal or known falsehood."
+          },
+          "final": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 1,
+            "goal": 0
+          }
+        }
+      },
+      "dm": {
+        "1": {
+          "a": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "Penny’s fixed attention on the stool is left unexplained, while the sergeant’s ledger and offered hand give James concrete ways to test entry or sponsorship."
+          },
+          "b": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "Penny’s continued focus on the stool is left unexplained, while the ledger, sponsor rule, and refugees give James concrete things to act on and test."
+          },
+          "referee": null,
+          "final": {
+            "unresolved": 1,
+            "plant": 1
+          }
+        },
+        "2": {
+          "a": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The unexplained bell is left hanging, and the ledger and offered pen give James something concrete to act on."
+          },
+          "b": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "Penny’s lowered, twitching tail is left unexplained, while the ledger and pen offer something James can act on and test."
+          },
+          "referee": null,
+          "final": {
+            "unresolved": 1,
+            "plant": 1
+          }
+        },
+        "3": {
+          "a": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The face-down cards and Marlo’s odd behavior remain unexplained, while his cards, route, and checkable claims offer concrete things to investigate."
+          },
+          "b": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The stool’s unexplained significance remains unclear, and Marlo’s pocketed cards and hurried departure give James something concrete to investigate."
+          },
+          "referee": null,
+          "final": {
+            "unresolved": 1,
+            "plant": 1
+          }
+        },
+        "4": {
+          "a": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The unusually worn stool and Penny's refusal to approach remain unexplained, while Marlo and the stool offer concrete things James can investigate."
+          },
+          "b": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The oddly worn stool is left unexplained, and Marlo’s claim and the stool can both be investigated."
+          },
+          "referee": null,
+          "final": {
+            "unresolved": 1,
+            "plant": 1
+          }
+        }
+      },
+      "threads": [
+        {
+          "thread": "Why the coin stood on its edge",
+          "opened": 1,
+          "paid": null,
+          "elsewhere": 0
+        },
+        {
+          "thread": "Why Marlo deals to the empty stool",
+          "opened": 1,
+          "paid": 4,
+          "elsewhere": 1
+        },
+        {
+          "thread": "Where Sefa's husband, Tam's father, is",
+          "opened": 2,
+          "paid": null,
+          "elsewhere": 0
+        },
+        {
+          "thread": "Whether James would sponsor the Coll family",
+          "opened": 1,
+          "paid": 3,
+          "elsewhere": 1
+        },
+        {
+          "thread": "Whether the family finds the ropewalk and Sefa keeps her place",
+          "opened": 2,
+          "paid": null,
+          "elsewhere": 0
+        },
+        {
+          "thread": "Why Marlo hurried uphill with the stool and hidden cards",
+          "opened": 3,
+          "paid": null,
+          "elsewhere": 0
+        }
+      ],
+      "deception": {},
+      "rolls": {
+        "4": {
+          "rolls": 1,
+          "untold": [],
+          "undeclared": [],
+          "error": null
+        }
+      }
+    },
+    "epilogue": {
+      "header": "Epilogue — the table closed on 25 October 2026 after 4 turns",
+      "text": "Epilogue — the table closed on 25 October 2026 after 4 turns\n\nA season on, the Chionthar runs lower and greyer under Wyrm's Crossing, and the bridge-street has traded its summer awnings for oilcloth. The queue at the north-end post still moves slowly. Sergeant Vane still keeps the ledger, though the page with James Worgen's small, upright signature has long since been filled, bound and shelved in a Seatower storeroom with a hundred others like it. The remarks column beside *Coll, Hadren. Ardrin, Sefa. Ardrin, Tam.* stayed blank. No one ever had cause to write in it, and the Fist never knocked on a sponsor's door.\n\nSefa Ardrin was at the harbour-side ropewalk at first light, as promised, and every first light after that. Her hands hardened to the hemp within a month. By autumn the forewoman had her walking the long strands for the heavy cables, which pays a few coppers more. She kept her word to the letter. Trouble never came near the family, so there was never anything to tell. A week after the gate she left four silver at the Elfsong's counter, wrapped in a twist of tarred cloth with James's name on it in careful letters. It was the gate toll, returned. The innkeeper put it in the strongbox. It is still there, and nobody expects anyone to ask for it now.\n\nHadren Coll found work mending tack for a carter's yard off the Wide. His knuckles ache worse in the wet, and he doesn't mention it. On some evenings he walks Tam down to the water to watch the masts, and he tells the boy the names of horses that are a long time dead.\n\nTam is nine now. He has been inside the Elfsong exactly once, on an errand with the four silver, and he stood very still in its doorway for as long as his mother allowed. He has decided it was every bit as fine as he imagined.\n\nMarlo Fenwick was back on his spot the next evening, barrel, stool and patched coat, as if he had never climbed the Shieldmaker's Stair at all. He still slaps three cards down for the sailors and three before the empty stool. He still takes his silver, and nobody comes back to complain. Vane hasn't asked him about it again. The dogs still won't go near the stool. Whatever he meant to do with the three cards he pocketed that night, he did it, and the bridge went on the same as before. In the end it was only a dealer's habit, kept for longer than anyone remembered.\n\nThe Lower City goes on as the Lower City does. The Blushing Mermaid costs a few men their teeth. The Counting House boards fill and empty with caravan work for the Friendly Arm road. Up the hill, Lady's Hall shuts its gates at dusk, and the coins in its offering bowls are counted by priests who never heard James's name. The Shieldmaker's Stair is lit every thirty feet, and porters climb it two steps at a time, carrying ordinary things.\n\nAs for James Worgen, the record holds him on that stair: a lantern overhead, a cat at the bottom step who would come no closer, and a cardsharp's question hanging in the air between them. Whatever answer he gave was his own to give. Then he and Penny went on into the city, or out of it, and the Gate closed behind them the way it closes behind everyone. They left behind one signature, four silver in a strongbox, and a family that never once needed the name they borrowed.",
+      "writtenBy": "claude-opus-5-5",
+      "effort": "high",
+      "repaired": false,
+      "final": true
+    }
+  }
+}

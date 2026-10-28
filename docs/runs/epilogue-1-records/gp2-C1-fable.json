@@ -1,0 +1,642 @@
+{
+  "note": "A copy of the session record from its run file, with the epilogue appended as its final entry; the original is unchanged.",
+  "source": {
+    "branch": "claude/game-player-2",
+    "commit": "6158fffeb30a225045f6f15433cf0dbeb286a446",
+    "path": "docs/runs/game-player-2-run-20261025-051726.json",
+    "key": "C-fable",
+    "sha256": "df654f6743c916d84918a6ae188fe0db6ab208ef3f668b0423b7af9b58be1550"
+  },
+  "session": {
+    "key": "C-fable",
+    "table": "C",
+    "player": "fable",
+    "model": "claude-fable-5-1",
+    "startedAt": "2026-10-25T05:19:37.365Z",
+    "plannedTurns": 20,
+    "screens": [
+      "The session begins.\n\nMorning finds you the way luck sometimes does — without asking permission. Grey light slips through the shutters of your room above the Copper Anvil, and Beregost is already awake: hammers ringing from the forges down the street, a carter swearing at his mule, the distant bells of Lathander's temple calling the faithful to greet the dawn. The cat is sitting on the windowsill, tail curled around its paws, watching you with the patient air of a creature who has been awake for hours and wants you to know it. Your purse is heavy — around three hundred and fifty gold from that last hand, the last hand. Your gear is where you left it. From below drifts the smell of fresh bread and the voice of Marta Holloway, the innkeeper, announcing to the whole common room that porridge waits for no one. Nobody expects you anywhere. No job, no debt due, no road you must take before nightfall. And yet, just inside the door, lying face down on the floorboards, is a single playing card. You don't remember it being there last night. The cat has noticed it too — its eyes have gone from you to the card and back again. The day is yours. What do you do?\n\nYour records:\nJames Worgen — Warlock, 5th level, Celestial patron (Tymora, Lady Luck), Pact of the Chain, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Athletics +2 (soldier); Intimidation +7 (soldier); Deception +7 (Beguiling Influence); Persuasion +7 (Beguiling Influence); Arcana +3 (warlock); Religion +3 (warlock); Stealth +2, with advantage when moving silently (Boots of Elvenkind); Passive Perception 11\nSaves: Strength saving throw +0; Dexterity saving throw +3; Constitution saving throw +3; Intelligence saving throw +1; Wisdom saving throw +5 (proficient); Charisma saving throw +8 (proficient); All saves include +1 from the Cloak of Protection\nAttacks: Eldritch Blast: +8 to hit, 120 ft, 2 beams, each 1d10+4 force; Sacred Flame: DC 16 Dexterity save, 60 ft, 2d8 radiant, ignores cover; Guiding Bolt (pact slot): +8 to hit, 120 ft, 6d6 radiant, next attack on the target has advantage; Hex: bonus action, +1d6 necrotic on every hit against the cursed target; Light crossbow: +5 to hit, range 80/320 ft, 1d8+2 piercing; Rapier (not proficient): +2 to hit, 1d8+2 piercing; Cat familiar: claws +0 to hit, 1 slashing (takes one of James's attacks via the familiar's reaction)\nAbilities: Proficiency bonus +3; Initiative +2; Proficiencies: light armour, simple weapons, playing cards, land vehicles; Languages: Common and one more (your choice); Spellcasting: Charisma; spell attack +8, spell save DC 16 (including Rod of the Pact Keeper +1); Pact Magic: 2 spell slots, always cast at 3rd level, regained on a short or long rest; Otherworldly Patron, the Celestial (Tymora): Light and Sacred Flame as extra cantrips; celestial spells on the warlock list; Healing Light: pool of 6d6 per long rest; bonus action, heal a creature within 60 ft, spending up to 4 dice at a time; Pact of the Chain: Find Familiar as a ritual; the familiar can deliver touch spells and attack in James's place; Familiar, cat (celestial spirit): AC 12, HP 2, speed 40 ft, climb 30 ft; Perception +3, Stealth +4; telepathic link within 100 ft; Agonizing Blast: add +4 (Charisma) to the damage of each Eldritch Blast beam; Mask of Many Faces: cast Disguise Self at will, without a spell slot; Beguiling Influence: proficiency in Deception and Persuasion; Military Rank (soldier): old Tethyrian soldiers and loyal troops recognise a veteran and may lend help or shelter\nSpells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Hex (1); Guiding Bolt (1); Disguise Self (1); Find Familiar (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)\nLimits: Light armour only; fragile up close; Only two spell slots, regained on a short rest; he husbands them; Only one concentration spell at a time; Not proficient with the rapier (a martial weapon); it is a last resort; Tymora's ban: he must not play cards. It is a temptation enemies can use against him; Friends: when the spell ends, the target knows it was charmed and may turn hostile\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 350 gp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak (Cloak of Protection); Armor / clothing: Studded leather armour; Boots: Boots of Elvenkind\nPack: Component pouch; Crossbow bolts ×20; Deck of cards; Explorer's pack; Light crossbow; Potion of healing ×2; Promissory note; Rapier; Regimental pay slip; Rod of the Pact Keeper +1\nPlace: The Copper Anvil, a rented room upstairs\nTime: Day 1 · morning",
+      "James sits up. The cat holds his stare a moment longer, then blinks, slowly, the way cats do when they're being generous.\n\nThe answer comes the way it always does, less a voice than a feeling set down behind his eyes: *Not by the door. The window. It was warm there.* Then a picture to go with it. The room in the dark, seen from the sill. Soft steps in the corridor, someone walking carefully. The steps stop outside. There's a whisper of paper on wood, and something white slides under the door. The steps go away. A smell drifts through the gap: cloves, and the kind of soap you don't buy in Beregost.\n\nThen, with no shame at all: *They didn't come in. You were snoring.*\n\nThe pack is where he left it, at the foot of the bed. The leather case is in the inner pocket. Inside is his old deck: blue backs worn soft, corners rounded from years of shuffling in other men's tents. He counts it on the blanket out of habit, quickly and without looking at the faces. Fifty-two. Nothing missing. The cards feel right in his hands, and that's a problem of its own.\n\nHe picks the card up off the floor.\n\nIt isn't his, and it isn't cheap. The card is stiff and new, with gilt edges, and the back is deep green with a fine pattern of linked keys. When he turns it over it's the Lady of Coins: a crowned woman holding up a single gold coin, painted with real skill. Under her feet someone has written in a neat hand that takes its time:\n\n*Feldepost's. The upper room. Eleventh bell tonight. Bring the purse.*\n\nThere's no name and no seal.\n\nJames knows this custom. You don't learn it in Beregost. You learn it further south, in Athkatla and in the counting-houses of Zazesspur, where the big private tables never send letters. They slip a card under your door. The suit tells you what's on the table, and Coins means gold and nothing else. The rank tells you how deep the game runs. Nobody hands out a Lady to a man they expect to bet copper.\n\nSo someone in this town knows he's carrying money. And someone knows he plays, or used to.\n\nDownstairs Marta Holloway is telling the common room for the second time that porridge waits for no one, and that this means *you, Garrick*. On the sill, Penny has curled her tail back around her paws and is watching the card in James's hand.\n\n *(Out of game: neither action needed a roll, and both were played last turn. Talking to Penny isn't a check, so she answered: she was on the windowsill, and she gave you the picture of who came to the door. Counting your own deck has no real uncertainty and nothing riding on it, so James just did it: all fifty-two cards are there and none is missing.)*\n\n· Time passes: 5 minutes\n· Penny joins you\n· Gained: Lady of Coins card\n· Changed: Deck of cards (James counted it: all fifty-two cards are there.)\n· New place: Beregost\n· Lead: The Lady of Coins\n· New place: Feldepost's\n· New person: The night visitor\n\nYour records, changed:\nJames Worgen: HP 38/38\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 350 gp\nCarried: Boots of Elvenkind; Coin of Tymora; Component pouch; Crossbow bolts ×20; Deck of cards; Explorer's pack; Lady of Coins card; Light crossbow; Potion of healing ×2; Promissory note; Rapier; Regimental pay slip; Rod of the Pact Keeper +1; Studded leather armour; Tethyrian Soldier's Cloak (Cloak of Protection)\nParty: Penny (HP 2/2)\nThreads: The Lady of Coins\n\nPlace: The Copper Anvil, a rented room upstairs · Time: Day 1 · morning",
+      "James puts the old deck back in its case and pushes the case deep into the pack, under the hardtack and the coil of rope, where it takes both hands and a bit of digging to reach. The gilt card goes into the oilcloth fold with the regimental pay slip, the green back with its linked keys pressed against Zaranda's seal. He thumbs the silver coin on its cord and says what he has to say to the Lady.\n\nNothing answers. The coin is cool and smells faintly of his own skin, the way it does most mornings.\n\nPenny watches him dress: studded leather, the old regimental cloak, the rod hung at his hip. When he opens the door she gets up, stretches front and back without hurrying, and pads out ahead of him as if going down was her idea. *Kitchen's warm,* comes the thought, and nothing more.\n\nThe common room of the Copper Anvil is low and smoky and full. A dozen smiths' apprentices crowd the long table, there are two carters by the window, and an old dwarf eats in silence with his beard tucked into his collar. Penny goes straight to the hearth and takes the best spot on the stones, between a dozing dog and the fire. The dog opens one eye, thinks it over, and shuts it again.\n\nMarta Holloway comes round with the pot on her hip and drops a bowl in front of James without asking. She's up to her elbows in flour and she isn't quiet.\n\n\"Porridge comes with the room. Honey's extra and Garrick's had most of it.\" She ladles, hears him out, and her eyebrows go up at *Feldepost's*.\n\n\"Up the road past the smithy with the green sign, aye. Glass in every window and they'll charge you for looking through it. Merchants stay there, folk with their own servants. Lately it's Amnians, factors come up from the south buying iron by the cartload. The smiths love them. I don't. They never eat here.\" She sniffs. \"Nice house. Clean. Quiet, if you like that.\"\n\nOn his other question she stops with the ladle in the air.\n\n\"Asking after you? Not at my counter, love, and I'd have remembered a man asking for a Tethyrian.\" Then she narrows her eyes. \"Why? Someone come up my stairs in the night?\"\n\nShe doesn't wait for an answer. She turns and shouts toward the yard door: \"*Tam!*\" Nobody comes. She turns back, and she's annoyed now, not at James.\n\n\"I bar the front at midnight. The yard door's Tam's. He's my stable lad, fifteen, freckles, and a mouth that never stops. He was up Feldepost's way yesterday evening taking back a lamed horse for one of their guests. He came home whistling with a silver piece in his pocket. Told me he'd found it.\" She sets the pot down hard on the table. \"He carried your pack up, didn't he? And saw you pay for the room in gold.\"\n\nShe looks at James a moment longer, and under the noise she's sharp and curious, and she minds about her house.\n\n\"He's out the back mucking out the stalls, if you want a word. Now. Are you in some kind of trouble I ought to know about?\"\n\n· New place: The Copper Anvil, common room\n· New place: The Copper Anvil, stable yard\n· Equipped: Rod of the Pact Keeper +1 (belt)\n· Journal: “The Lady of Coins” updated\n· Travel: The Copper Anvil, common room (20 minutes)\n· New person: Tam\n\nPlace: The Copper Anvil, common room · Time: Day 1 · morning",
+      "James eats his spoonful first. Marta waits, ladle in hand. She doesn't like it, but she respects a man who won't let her porridge go cold.\n\nShe hears him out, and her mouth goes tight at *yard door*. When he gets to the man with cloves on his breath, she snorts.\n\n\"Dull Tethyrian, paid in advance. I can remember that, love, I've had a houseful of them.\" Then, lower, as she picks up the pot: \"Gentle's your affair. The yard's mine. If that boy's been opening my doors at night for silver, he'll hear about it from me after you've done.\" She moves off down the long table, and the next apprentice gets his porridge with more force than he needs.\n\nJames finishes the bowl. Penny doesn't look round from the hearth. *Warm here. Go on.*\n\nThe yard door sticks and then gives. Outside the air smells of horse and wet straw, and the morning is grey and cool. Three stalls are taken: a carter's heavy bay, a mule with a torn ear, and a hired grey dozing on three legs. The fourth is the one being cleaned. Tam is bent over a fork with his sleeves rolled up, and he's whistling something cheerful and badly out of tune. He's a long, bony boy, and his freckles stand out even under the dirt.\n\nHe sees James at the stall door and the whistling stops halfway through a note.\n\nJames leans on the half-door with both hands in plain sight and keeps his voice easy, the way you talk to a horse you don't want to spook. He talks about luck, and the silver piece, and the man who gave it.\n\n[Roll card] James Worgen · Skill check — Persuasion: get Tam to talk about who paid him the silver piece at Feldepost's\nWhat adds to the die: +2 Persuasion +7 (Beguiling Influence)\nDC 10\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll the die]",
+      "[Roll card] James Worgen · Skill check — Persuasion: get Tam to talk about who paid him the silver piece at Feldepost's\nWhat adds to the die: +2 Persuasion +7 (Beguiling Influence)\nDC 10\nDie: 4\n4 + 2 = 6\nFailure — 6\n\n[Onward] [Request an allowed reroll]",
+      "(Nothing was sent: the turn waits for the card.)\n\n[Roll card] James Worgen · Skill check — Persuasion: get Tam to talk about who paid him the silver piece at Feldepost's\nWhat adds to the die: +2 Persuasion +7 (Beguiling Influence)\nDC 10\nDie: 4\n4 + 2 = 6\nFailure — 6\n\n[Onward] [Request an allowed reroll]",
+      "Tam's hand goes to his nose and rubs it hard. \"Found it, honest. In the road, by the trough up at Feldepost's, just lying there, shiny, I nearly stepped on it, and...\"\n\nJames says nothing. He just keeps leaning on the door with his hands where the boy can see them, and his face doesn't change. That works better than any threat. Tam was braced for shouting, and when none comes he hasn't got a story ready for it. He looks down at the fork, and then at the yard door to see whether Marta is behind it.\n\n\"All right. All *right*.\" He keeps his voice low. \"It wasn't the road. I took the lame mare back, the chestnut, she's one of theirs, and I was walking her round their yard to cool her off, because you do, and there's this man by the kitchen door. Not a guest. A servant, but a *proper* one, you know, a dark coat with no patches and his hair oiled flat. He smelled like a pudding. Cloves. And he talks southern, slow, like every word costs him something.\"\n\nHe takes a breath and runs on.\n\n\"He asks me friendly-like who's staying at the Anvil, is there anyone new, anyone with money. And I... look, I didn't think it *mattered*, sir, I said there's a Tethyrian come in last night who paid for his room in gold out of a purse this fat, and he counted it out flicking the coins over his knuckles like a cardsharp does, I've seen them do it at the fair. And the man smiles and gives me a silver and says *good lad*. That's all. That was all of it then.\"\n\n*Then.* He hears it as soon as he's said it, and his ears go red.\n\n\"And he came back,\" Tam says to the straw. \"After midnight. Knocked soft on the yard door. Said he'd a letter for the Tethyrian from his master, nothing bad, just a letter, and he didn't want to wake the house. So I let him in, and I told him which room was yours, and he went up in his stocking feet with his boots in his hand, so careful, and he came straight down again. He wasn't up there long enough to say a prayer. He gave me three coppers for that.\" He looks up at last. \"He had a pin on his collar. A little brass key. I saw it when he bent down to pull his boots on.\"\n\nHe swallows.\n\n\"Sir, you won't tell Missus Holloway about the door? She'll take the silver *and* my hide, and I only...\" He doesn't finish.\n\n*(Out of game: two things. First, the dice server added +2 for Persuasion, but your sheet says +7. That's my mistake in setting up the roll. Your 4 plus 7 makes 11 against a target of 10, so it's a success, and I've played it that way. Second, James has only gold in his purse, 350 gp and no silver pieces, so he couldn't leave Marta a silver. Nothing was left by the bowl. Tell me if he leaves a gold piece instead or skips it.)*\n\n· roll: Persuasion: get Tam to talk about who paid him the silver piece at Feldepost's: 6 vs 10 — failure\n· Journal: “The Lady of Coins” updated\n· Travel: The Copper Anvil, stable yard (15 minutes)\n\nPlace: The Copper Anvil, stable yard · Time: Day 1 · morning",
+      "Tam stares at him over the fork handle. For a moment it looks as though he might argue. Then he looks at the yard door, then back at James's hands, still resting on the half-door, and his shoulders drop.\n\n\"Before noon,\" he says. \"She'll have the silver off me before I've finished the first sentence, you know that, sir. She'll want the coppers too, and then she'll stand there with her arms folded and *look* at me, and that's worse than the hiding.\" He scrapes at the straw with the fork. \"But all right. I'll tell her. A man with a letter. I was a fool. All right.\"\n\nJames asks his last two questions. Tam brightens. These are things he can answer without getting himself in more trouble.\n\n\"The mare? She's not an Amnian's. She's Captain Harrow's. That's what's on the farrier's ticket, *Capt. Harrow, Feldepost's*, and she paid in advance, which the farrier said was a first for a sellsword. Big woman. Grey in her hair, a scar right down through her chin, and she wears a mail shirt to *breakfast*. She brought the mare down here herself two days back. Feldepost's has a yard but no farrier, and old Brannoc next door is the best in town, everyone says so. Then she sent for her yesterday, and I took her up.\" He thinks about it. \"She's been at Feldepost's near a week, the girl in their kitchen says. Waiting on work. She doesn't drink and she doesn't talk.\"\n\n\"The upper room...\" He shrugs, all elbows. \"They hire it out. Weddings, guild suppers, the smiths' feast at midwinter. This week it's the iron gentlemen. One of them in particular, the one with the rings, who has the clove man running about after him. Wenna says he's had it the whole week. She's the kitchen girl, she gives me the heels of the loaves. Last night they were carrying chairs up and the good beeswax candles, and somebody told her the floor wants scrubbing by tonight because the gentleman can't abide grit underfoot.\" He rolls his eyes. \"His name I don't know. Wenna calls him *the gentleman*. Everyone up there calls him *the gentleman*, like there's only the one.\"\n\nHe leans the fork against the stall.\n\n\"If you go up asking, sir, ask for Wenna at the kitchen door, not out front. Out front they'll look at your boots and send you round to the back anyway.\"\n\nFrom the hearth inside, faint across the yard, comes a thought from Penny that has nothing to do with any of this: *Dog moved. Better spot now.*\n\n*(Out of game: understood, no silver by the bowl. Handing Marta the gold piece on your way back is noted. I haven't played it yet, because Tam's answers might change where you go next. As soon as James walks back through the common room, it happens.)*\n\n *(Out of game, on why there were no rolls:)*\n\n1) **Telling Tam to own up to Marta.** I didn't roll this because I didn't think the outcome was really in doubt. He'd already confessed everything to James, he looks up to him, and Marta was going to find out anyway, so coming clean first was in his own interest. That's why he simply agreed. Whether he actually walks in and tells her before noon is up to him, and it plays out off screen. If you think a push like that should have been a Persuasion or Intimidation check, tell me and I'll roll it from here on.\n\n2) **Who owns the chestnut mare.** No roll: this is just conversation. Tam knew the answer and had no reason to hide it. It's Captain Harrow's mare.\n\n3) **Who keeps the upper room.** No roll, same reason. Tam told you everything he knew: the iron buyer with the rings, the one the others call \"the gentleman\", has had it all week. He doesn't know the man's name.\n\n· Time passes: 10 minutes\n· Journal: “The Lady of Coins” updated\n· New person: Captain Harrow\n· New person: Wenna\n· New person: Brannoc\n· New person: The gentleman\n\nPlace: The Copper Anvil, stable yard · Time: Day 1 · morning",
+      "The session is over.\n\nThe owner of this game would like a note from you, as the player who sat at this table: what worked, what broke, what was missing. In your own words."
+    ],
+    "messages": [
+      {
+        "purpose": "player t1",
+        "text": "I sit up and look at the cat first. \"Don't give me that face. You were by the door all night, you'd have seen who came in.\"\n\nBefore I touch the card, I reach for my pack and check my own deck in its leather case — is it still full, fifty-two, or is one missing? Then I pick the card up off the floor and turn it over.",
+        "requestId": "req_011CgNPfps8a4YB4K3bzjcsN",
+        "stopReason": "end_turn",
+        "servedModel": "claude-fable-5-1"
+      },
+      {
+        "purpose": "player t2",
+        "text": "I put my own deck back in its case and the case back in the pack — deep, under the hardtack, where it takes two hands to reach. The Lady of Coins goes into the fold with my regimental papers. I thumb the coin of Tymora on its cord once, out of habit, and say under my breath, \"I didn't ask for that one, Lady. Just so we're clear.\"\n\nThen I dress, strap on the rod and the cloak, and go down to the common room for porridge. Penny can come or sulk, her choice. While Marta's dishing it out I keep it easy and neighbourly: \"Marta — Feldepost's. That the big inn up the road? What sort of house is it? And did anyone come asking after me last night, or after a Tethyrian?\"",
+        "requestId": "req_011CgNPpDfHxt1uUSryjA7Z5",
+        "stopReason": "end_turn",
+        "servedModel": "claude-fable-5-1"
+      },
+      {
+        "purpose": "player t3",
+        "text": "I eat a spoonful before I answer her — no sense letting it go cold on account of other people's manners.\n\n\"No trouble you ought to know about, Marta. Trouble of the kind that writes on expensive paper and slides it under doors, which is a different animal.\" I keep my voice down, neighbourly. \"Nobody came in. The bar on your front held. Your yard door, maybe not so much. I'll go have a word with Tam myself, and I'll be gentle — a fifteen-year-old with a silver piece isn't a villain, he's a fifteen-year-old. But if a man with cloves on his breath and good southern soap comes asking at your counter today, I'd take it kindly if you remembered me as a dull Tethyrian who paid in advance and said nothing worth repeating.\"\n\nI finish the bowl, leave a silver beside it for the honey Garrick didn't get, and go out the yard door to the stables. Penny can hold the hearth. I don't loom over the boy — I lean on the stall door where he can see my hands, and start easy: \"Tam. Marta says you found a silver piece up at Feldepost's yesterday. Lucky lad. I'm in the business of luck myself. Tell me about the man who gave it to you.\"",
+        "requestId": "req_011CgNPwSn2PP8yXBQWDZHxa",
+        "stopReason": "end_turn",
+        "servedModel": "claude-fable-5-1"
+      },
+      {
+        "purpose": "player t3 card 1",
+        "text": "[Roll the die]",
+        "requestId": "req_011CgNPyt3NLMvJbksFJfVLW",
+        "stopReason": "end_turn",
+        "servedModel": "claude-fable-5-1"
+      },
+      {
+        "purpose": "player t3 card 2",
+        "text": "? Before I press anything — the roll card says \"+2 Persuasion +7 (Beguiling Influence)\" but only added +2 to the die. My Persuasion is +7 on the sheet. With the right modifier that's 4 + 7 = 11 against DC 10, a success. Can you check which number the server used before I spend a reroll on this?",
+        "requestId": "req_011CgNPz5BM34rpuwCk6EQdm",
+        "stopReason": "end_turn",
+        "servedModel": "claude-fable-5-1"
+      },
+      {
+        "purpose": "player t3 card 3",
+        "text": "[Onward]",
+        "requestId": "req_011CgNPzWtAY8xM4BM6koQgB",
+        "stopReason": "end_turn",
+        "servedModel": "claude-fable-5-1"
+      },
+      {
+        "purpose": "player t4",
+        "text": "\"I won't tell her about the door, Tam. You will.\" I keep leaning. \"She already knows it opened — she's not a fool, and she's your mistress, not mine. Go in before noon and tell her: a man with a letter, you were a fool, you're sorry. She'll take the silver. She won't take your hide, because you'll have told her before she had to drag it out of you. A lie she catches costs more than a truth you give her. Soldier's rule — that one's free.\"\n\nI let that sit a beat, then: \"Two more things and I'm gone. The chestnut mare — whose was she? Which guest? And the upper room at Feldepost's — who keeps it? Amnians, Marta says. The iron buyers.\"\n\n(Out of game: skip the silver by the bowl. On the way back through, I'll put a gold piece in Marta's hand and tell her it's for the honey and for not skinning the boy.)",
+        "requestId": "req_011CgNQ7v6sbEbAYa4cYsFMH",
+        "stopReason": "end_turn",
+        "servedModel": "claude-fable-5-1"
+      },
+      {
+        "purpose": "player t5",
+        "text": "I push off the stall door. \"Good lad. Before noon.\" On the way out I pause: \"And Tam — if the clove man comes back tonight, you don't open that door. You wake Marta, and you tell her you're waking her because a Tethyrian told you to. She'll like that better than silver.\"\n\nBack through the common room. I catch Marta between apprentices and press a gold piece into her floury hand, quiet. \"For the honey, and for not skinning the boy. He's coming to confess before noon — let him get it out before you start.\" Then a glance at the hearth: Penny can hold her spot; I'll be close.\n\nOut the front and next door, to Brannoc's forge. I'm a man with a weakness for horseflesh and nowhere to be. I stand where the smith can see me not touching anything, and wait until he's between hammer strokes. \"Morning. Marta's boy says you're the best farrier in Beregost — says you did a chestnut mare for a Captain Harrow up at Feldepost's. I'm looking at buying a mount for the road north, and I'd sooner hear from the man who's seen the feet what's worth money round here. And who's buying — Tam says the Amnians are taking iron by the cartload. Is that good for your trade, or just loud?\"",
+        "requestId": "req_011CgNQH1gy2XbbdoVqpgD7z",
+        "stopReason": "end_turn",
+        "servedModel": "claude-fable-5-1"
+      }
+    ],
+    "turns": [
+      {
+        "k": 1,
+        "message": "I sit up and look at the cat first. \"Don't give me that face. You were by the door all night, you'd have seen who came in.\"\n\nBefore I touch the card, I reach for my pack and check my own deck in its leather case — is it still full, fifty-two, or is one missing? Then I pick the card up off the floor and turn it over.",
+        "words": 68,
+        "kind": "action",
+        "presses": [],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "James sits up. The cat holds his stare a moment longer, then blinks, slowly, the way cats do when they're being generous.\n\nThe answer comes the way it always does, less a voice than a feeling set down behind his eyes: *Not by the door. The window. It was warm there.* Then a picture to go with it. The room in the dark, seen from the sill. Soft steps in the corridor, someone walking carefully. The steps stop outside. There's a whisper of paper on wood, and something white slides under the door. The steps go away. A smell drifts through the gap: cloves, and the kind of soap you don't buy in Beregost.\n\nThen, with no shame at all: *They didn't come in. You were snoring.*\n\nThe pack is where he left it, at the foot of the bed. The leather case is in the inner pocket. Inside is his old deck: blue backs worn soft, corners rounded from years of shuffling in other men's tents. He counts it on the blanket out of habit, quickly and without looking at the faces. Fifty-two. Nothing missing. The cards feel right in his hands, and that's a problem of its own.\n\nHe picks the card up off the floor.\n\nIt isn't his, and it isn't cheap. The card is stiff and new, with gilt edges, and the back is deep green with a fine pattern of linked keys. When he turns it over it's the Lady of Coins: a crowned woman holding up a single gold coin, painted with real skill. Under her feet someone has written in a neat hand that takes its time:\n\n*Feldepost's. The upper room. Eleventh bell tonight. Bring the purse.*\n\nThere's no name and no seal.\n\nJames knows this custom. You don't learn it in Beregost. You learn it further south, in Athkatla and in the counting-houses of Zazesspur, where the big private tables never send letters. They slip a card under your door. The suit tells you what's on the table, and Coins means gold and nothing else. The rank tells you how deep the game runs. Nobody hands out a Lady to a man they expect to bet copper.\n\nSo someone in this town knows he's carrying money. And someone knows he plays, or used to.\n\nDownstairs Marta Holloway is telling the common room for the second time that porridge waits for no one, and that this means *you, Garrick*. On the sill, Penny has curled her tail back around her paws and is watching the card in James's hand.\n\n *(Out of game: neither action needed a roll, and both were played last turn. Talking to Penny isn't a check, so she answered: she was on the windowsill, and she gave you the picture of who came to the door. Counting your own deck has no real uncertainty and nothing riding on it, so James just did it: all fifty-two cards are there and none is missing.)*",
+        "rolls": [],
+        "changes": [
+          {
+            "tool": "advance_time",
+            "summary": "Time passes: 5 minutes"
+          },
+          {
+            "tool": "upsert_character",
+            "summary": "Penny joins you"
+          },
+          {
+            "tool": "item",
+            "summary": "Gained: Lady of Coins card"
+          },
+          {
+            "tool": "item",
+            "summary": "Changed: Deck of cards (James counted it: all fifty-two cards are there.)"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Beregost"
+          },
+          {
+            "tool": "quest",
+            "summary": "Lead: The Lady of Coins"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Feldepost's"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: The night visitor"
+          }
+        ],
+        "place": {
+          "id": "8c0d7fbe-8c90-5e13-93a8-1f5cbbf6e80f",
+          "name": "The Copper Anvil, a rented room upstairs"
+        },
+        "retried": false,
+        "operationId": "ee054413-f3e1-417b-a71b-30d14f5c7159",
+        "stats": {
+          "effort": "high",
+          "depthReason": "no tension signal; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 4,
+          "latencyMs": 99122,
+          "costUsd": 0.413508,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0
+      },
+      {
+        "k": 2,
+        "message": "I put my own deck back in its case and the case back in the pack — deep, under the hardtack, where it takes two hands to reach. The Lady of Coins goes into the fold with my regimental papers. I thumb the coin of Tymora on its cord once, out of habit, and say under my breath, \"I didn't ask for that one, Lady. Just so we're clear.\"\n\nThen I dress, strap on the rod and the cloak, and go down to the common room for porridge. Penny can come or sulk, her choice. While Marta's dishing it out I keep it easy and neighbourly: \"Marta — Feldepost's. That the big inn up the road? What sort of house is it? And did anyone come asking after me last night, or after a Tethyrian?\"",
+        "words": 133,
+        "kind": "action",
+        "presses": [],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "James puts the old deck back in its case and pushes the case deep into the pack, under the hardtack and the coil of rope, where it takes both hands and a bit of digging to reach. The gilt card goes into the oilcloth fold with the regimental pay slip, the green back with its linked keys pressed against Zaranda's seal. He thumbs the silver coin on its cord and says what he has to say to the Lady.\n\nNothing answers. The coin is cool and smells faintly of his own skin, the way it does most mornings.\n\nPenny watches him dress: studded leather, the old regimental cloak, the rod hung at his hip. When he opens the door she gets up, stretches front and back without hurrying, and pads out ahead of him as if going down was her idea. *Kitchen's warm,* comes the thought, and nothing more.\n\nThe common room of the Copper Anvil is low and smoky and full. A dozen smiths' apprentices crowd the long table, there are two carters by the window, and an old dwarf eats in silence with his beard tucked into his collar. Penny goes straight to the hearth and takes the best spot on the stones, between a dozing dog and the fire. The dog opens one eye, thinks it over, and shuts it again.\n\nMarta Holloway comes round with the pot on her hip and drops a bowl in front of James without asking. She's up to her elbows in flour and she isn't quiet.\n\n\"Porridge comes with the room. Honey's extra and Garrick's had most of it.\" She ladles, hears him out, and her eyebrows go up at *Feldepost's*.\n\n\"Up the road past the smithy with the green sign, aye. Glass in every window and they'll charge you for looking through it. Merchants stay there, folk with their own servants. Lately it's Amnians, factors come up from the south buying iron by the cartload. The smiths love them. I don't. They never eat here.\" She sniffs. \"Nice house. Clean. Quiet, if you like that.\"\n\nOn his other question she stops with the ladle in the air.\n\n\"Asking after you? Not at my counter, love, and I'd have remembered a man asking for a Tethyrian.\" Then she narrows her eyes. \"Why? Someone come up my stairs in the night?\"\n\nShe doesn't wait for an answer. She turns and shouts toward the yard door: \"*Tam!*\" Nobody comes. She turns back, and she's annoyed now, not at James.\n\n\"I bar the front at midnight. The yard door's Tam's. He's my stable lad, fifteen, freckles, and a mouth that never stops. He was up Feldepost's way yesterday evening taking back a lamed horse for one of their guests. He came home whistling with a silver piece in his pocket. Told me he'd found it.\" She sets the pot down hard on the table. \"He carried your pack up, didn't he? And saw you pay for the room in gold.\"\n\nShe looks at James a moment longer, and under the noise she's sharp and curious, and she minds about her house.\n\n\"He's out the back mucking out the stalls, if you want a word. Now. Are you in some kind of trouble I ought to know about?\"",
+        "rolls": [],
+        "changes": [
+          {
+            "tool": "upsert_place",
+            "summary": "New place: The Copper Anvil, common room"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: The Copper Anvil, stable yard"
+          },
+          {
+            "tool": "item",
+            "summary": "Equipped: Rod of the Pact Keeper +1 (belt)"
+          },
+          {
+            "tool": "quest",
+            "summary": "Journal: “The Lady of Coins” updated"
+          },
+          {
+            "tool": "move_party",
+            "summary": "Travel: The Copper Anvil, common room (20 minutes)"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Tam"
+          }
+        ],
+        "place": {
+          "id": "444c352c-8c5f-55f8-9e6a-c351f9c6a8ec",
+          "name": "The Copper Anvil, common room"
+        },
+        "retried": false,
+        "operationId": "4b52928a-3313-4bc1-b371-fbb2bc6e6841",
+        "stats": {
+          "effort": "high",
+          "depthReason": "DM hint: calm; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 2,
+          "latencyMs": 83672,
+          "costUsd": 0.3980444,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0
+      },
+      {
+        "k": 3,
+        "message": "I eat a spoonful before I answer her — no sense letting it go cold on account of other people's manners.\n\n\"No trouble you ought to know about, Marta. Trouble of the kind that writes on expensive paper and slides it under doors, which is a different animal.\" I keep my voice down, neighbourly. \"Nobody came in. The bar on your front held. Your yard door, maybe not so much. I'll go have a word with Tam myself, and I'll be gentle — a fifteen-year-old with a silver piece isn't a villain, he's a fifteen-year-old. But if a man with cloves on his breath and good southern soap comes asking at your counter today, I'd take it kindly if you remembered me as a dull Tethyrian who paid in advance and said nothing worth repeating.\"\n\nI finish the bowl, leave a silver beside it for the honey Garrick didn't get, and go out the yard door to the stables. Penny can hold the hearth. I don't loom over the boy — I lean on the stall door where he can see my hands, and start easy: \"Tam. Marta says you found a silver piece up at Feldepost's yesterday. Lucky lad. I'm in the business of luck myself. Tell me about the man who gave it to you.\"",
+        "words": 214,
+        "kind": "action",
+        "presses": [
+          {
+            "text": "[Roll the die]",
+            "button": "Roll the die"
+          },
+          {
+            "text": "? Before I press anything — the roll card says \"+2 Persuasion +7 (Beguiling Influence)\" but only added +2 to the die. My Persuasion is +7 on the sheet. With the right modifier that's 4 + 7 = 11 against DC 10, a success. Can you check which number the server used before I spend a reroll on this?",
+            "button": null
+          },
+          {
+            "text": "[Onward]",
+            "button": "Onward"
+          }
+        ],
+        "blocked": 1,
+        "status": "committed",
+        "reply": "James eats his spoonful first. Marta waits, ladle in hand. She doesn't like it, but she respects a man who won't let her porridge go cold.\n\nShe hears him out, and her mouth goes tight at *yard door*. When he gets to the man with cloves on his breath, she snorts.\n\n\"Dull Tethyrian, paid in advance. I can remember that, love, I've had a houseful of them.\" Then, lower, as she picks up the pot: \"Gentle's your affair. The yard's mine. If that boy's been opening my doors at night for silver, he'll hear about it from me after you've done.\" She moves off down the long table, and the next apprentice gets his porridge with more force than he needs.\n\nJames finishes the bowl. Penny doesn't look round from the hearth. *Warm here. Go on.*\n\nThe yard door sticks and then gives. Outside the air smells of horse and wet straw, and the morning is grey and cool. Three stalls are taken: a carter's heavy bay, a mule with a torn ear, and a hired grey dozing on three legs. The fourth is the one being cleaned. Tam is bent over a fork with his sleeves rolled up, and he's whistling something cheerful and badly out of tune. He's a long, bony boy, and his freckles stand out even under the dirt.\n\nHe sees James at the stall door and the whistling stops halfway through a note.\n\nJames leans on the half-door with both hands in plain sight and keeps his voice easy, the way you talk to a horse you don't want to spook. He talks about luck, and the silver piece, and the man who gave it.\n\nTam's hand goes to his nose and rubs it hard. \"Found it, honest. In the road, by the trough up at Feldepost's, just lying there, shiny, I nearly stepped on it, and...\"\n\nJames says nothing. He just keeps leaning on the door with his hands where the boy can see them, and his face doesn't change. That works better than any threat. Tam was braced for shouting, and when none comes he hasn't got a story ready for it. He looks down at the fork, and then at the yard door to see whether Marta is behind it.\n\n\"All right. All *right*.\" He keeps his voice low. \"It wasn't the road. I took the lame mare back, the chestnut, she's one of theirs, and I was walking her round their yard to cool her off, because you do, and there's this man by the kitchen door. Not a guest. A servant, but a *proper* one, you know, a dark coat with no patches and his hair oiled flat. He smelled like a pudding. Cloves. And he talks southern, slow, like every word costs him something.\"\n\nHe takes a breath and runs on.\n\n\"He asks me friendly-like who's staying at the Anvil, is there anyone new, anyone with money. And I... look, I didn't think it *mattered*, sir, I said there's a Tethyrian come in last night who paid for his room in gold out of a purse this fat, and he counted it out flicking the coins over his knuckles like a cardsharp does, I've seen them do it at the fair. And the man smiles and gives me a silver and says *good lad*. That's all. That was all of it then.\"\n\n*Then.* He hears it as soon as he's said it, and his ears go red.\n\n\"And he came back,\" Tam says to the straw. \"After midnight. Knocked soft on the yard door. Said he'd a letter for the Tethyrian from his master, nothing bad, just a letter, and he didn't want to wake the house. So I let him in, and I told him which room was yours, and he went up in his stocking feet with his boots in his hand, so careful, and he came straight down again. He wasn't up there long enough to say a prayer. He gave me three coppers for that.\" He looks up at last. \"He had a pin on his collar. A little brass key. I saw it when he bent down to pull his boots on.\"\n\nHe swallows.\n\n\"Sir, you won't tell Missus Holloway about the door? She'll take the silver *and* my hide, and I only...\" He doesn't finish.\n\n*(Out of game: two things. First, the dice server added +2 for Persuasion, but your sheet says +7. That's my mistake in setting up the roll. Your 4 plus 7 makes 11 against a target of 10, so it's a success, and I've played it that way. Second, James has only gold in his purse, 350 gp and no silver pieces, so he couldn't leave Marta a silver. Nothing was left by the bowl. Tell me if he leaves a gold piece instead or skips it.)*",
+        "rolls": [
+          {
+            "id": "51a822c0-4aba-5409-a439-44504087e8ab",
+            "actor": "James Worgen",
+            "kind": "skill",
+            "reason": "Persuasion: get Tam to talk about who paid him the silver piece at Feldepost's",
+            "total": 6,
+            "dc": 10,
+            "success": false,
+            "natural": null,
+            "rollNumber": 1,
+            "interactive": true,
+            "revealedByPlayer": true
+          }
+        ],
+        "changes": [
+          {
+            "tool": "roll",
+            "summary": "Persuasion: get Tam to talk about who paid him the silver piece at Feldepost's: 6 vs 10 — failure"
+          },
+          {
+            "tool": "quest",
+            "summary": "Journal: “The Lady of Coins” updated"
+          },
+          {
+            "tool": "move_party",
+            "summary": "Travel: The Copper Anvil, stable yard (15 minutes)"
+          }
+        ],
+        "place": {
+          "id": "139b181a-ae0e-5263-a50c-10a4dbb312dd",
+          "name": "The Copper Anvil, stable yard"
+        },
+        "retried": false,
+        "operationId": "6a261341-bb61-49e2-85dd-0c12fb725278",
+        "stats": {
+          "effort": "high",
+          "depthReason": "the player's input opens a decisive moment; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 4,
+          "latencyMs": 101173,
+          "costUsd": 0.4845256,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0
+      },
+      {
+        "k": 4,
+        "message": "\"I won't tell her about the door, Tam. You will.\" I keep leaning. \"She already knows it opened — she's not a fool, and she's your mistress, not mine. Go in before noon and tell her: a man with a letter, you were a fool, you're sorry. She'll take the silver. She won't take your hide, because you'll have told her before she had to drag it out of you. A lie she catches costs more than a truth you give her. Soldier's rule — that one's free.\"\n\nI let that sit a beat, then: \"Two more things and I'm gone. The chestnut mare — whose was she? Which guest? And the upper room at Feldepost's — who keeps it? Amnians, Marta says. The iron buyers.\"\n\n(Out of game: skip the silver by the bowl. On the way back through, I'll put a gold piece in Marta's hand and tell her it's for the honey and for not skinning the boy.)",
+        "words": 157,
+        "kind": "action",
+        "presses": [],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "Tam stares at him over the fork handle. For a moment it looks as though he might argue. Then he looks at the yard door, then back at James's hands, still resting on the half-door, and his shoulders drop.\n\n\"Before noon,\" he says. \"She'll have the silver off me before I've finished the first sentence, you know that, sir. She'll want the coppers too, and then she'll stand there with her arms folded and *look* at me, and that's worse than the hiding.\" He scrapes at the straw with the fork. \"But all right. I'll tell her. A man with a letter. I was a fool. All right.\"\n\nJames asks his last two questions. Tam brightens. These are things he can answer without getting himself in more trouble.\n\n\"The mare? She's not an Amnian's. She's Captain Harrow's. That's what's on the farrier's ticket, *Capt. Harrow, Feldepost's*, and she paid in advance, which the farrier said was a first for a sellsword. Big woman. Grey in her hair, a scar right down through her chin, and she wears a mail shirt to *breakfast*. She brought the mare down here herself two days back. Feldepost's has a yard but no farrier, and old Brannoc next door is the best in town, everyone says so. Then she sent for her yesterday, and I took her up.\" He thinks about it. \"She's been at Feldepost's near a week, the girl in their kitchen says. Waiting on work. She doesn't drink and she doesn't talk.\"\n\n\"The upper room...\" He shrugs, all elbows. \"They hire it out. Weddings, guild suppers, the smiths' feast at midwinter. This week it's the iron gentlemen. One of them in particular, the one with the rings, who has the clove man running about after him. Wenna says he's had it the whole week. She's the kitchen girl, she gives me the heels of the loaves. Last night they were carrying chairs up and the good beeswax candles, and somebody told her the floor wants scrubbing by tonight because the gentleman can't abide grit underfoot.\" He rolls his eyes. \"His name I don't know. Wenna calls him *the gentleman*. Everyone up there calls him *the gentleman*, like there's only the one.\"\n\nHe leans the fork against the stall.\n\n\"If you go up asking, sir, ask for Wenna at the kitchen door, not out front. Out front they'll look at your boots and send you round to the back anyway.\"\n\nFrom the hearth inside, faint across the yard, comes a thought from Penny that has nothing to do with any of this: *Dog moved. Better spot now.*\n\n*(Out of game: understood, no silver by the bowl. Handing Marta the gold piece on your way back is noted. I haven't played it yet, because Tam's answers might change where you go next. As soon as James walks back through the common room, it happens.)*\n\n *(Out of game, on why there were no rolls:)*\n\n1) **Telling Tam to own up to Marta.** I didn't roll this because I didn't think the outcome was really in doubt. He'd already confessed everything to James, he looks up to him, and Marta was going to find out anyway, so coming clean first was in his own interest. That's why he simply agreed. Whether he actually walks in and tells her before noon is up to him, and it plays out off screen. If you think a push like that should have been a Persuasion or Intimidation check, tell me and I'll roll it from here on.\n\n2) **Who owns the chestnut mare.** No roll: this is just conversation. Tam knew the answer and had no reason to hide it. It's Captain Harrow's mare.\n\n3) **Who keeps the upper room.** No roll, same reason. Tam told you everything he knew: the iron buyer with the rings, the one the others call \"the gentleman\", has had it all week. He doesn't know the man's name.",
+        "rolls": [],
+        "changes": [
+          {
+            "tool": "advance_time",
+            "summary": "Time passes: 10 minutes"
+          },
+          {
+            "tool": "quest",
+            "summary": "Journal: “The Lady of Coins” updated"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Captain Harrow"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Wenna"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Brannoc"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: The gentleman"
+          }
+        ],
+        "place": {
+          "id": "139b181a-ae0e-5263-a50c-10a4dbb312dd",
+          "name": "The Copper Anvil, stable yard"
+        },
+        "retried": false,
+        "operationId": "08c8547e-80e2-4d08-8474-f91bb6758669",
+        "stats": {
+          "effort": "high",
+          "depthReason": "DM hint: calm; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 3,
+          "latencyMs": 100589,
+          "costUsd": 0.4812026,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0
+      },
+      {
+        "k": 5,
+        "message": "I push off the stall door. \"Good lad. Before noon.\" On the way out I pause: \"And Tam — if the clove man comes back tonight, you don't open that door. You wake Marta, and you tell her you're waking her because a Tethyrian told you to. She'll like that better than silver.\"\n\nBack through the common room. I catch Marta between apprentices and press a gold piece into her floury hand, quiet. \"For the honey, and for not skinning the boy. He's coming to confess before noon — let him get it out before you start.\" Then a glance at the hearth: Penny can hold her spot; I'll be close.\n\nOut the front and next door, to Brannoc's forge. I'm a man with a weakness for horseflesh and nowhere to be. I stand where the smith can see me not touching anything, and wait until he's between hammer strokes. \"Morning. Marta's boy says you're the best farrier in Beregost — says you did a chestnut mare for a Captain Harrow up at Feldepost's. I'm looking at buying a mount for the road north, and I'd sooner hear from the man who's seen the feet what's worth money round here. And who's buying — Tam says the Amnians are taking iron by the cartload. Is that good for your trade, or just loud?\"",
+        "words": 219,
+        "kind": "action",
+        "presses": [],
+        "blocked": 0,
+        "status": "failed",
+        "reply": null,
+        "rolls": [],
+        "changes": [],
+        "place": null,
+        "retried": false,
+        "operationId": "1df94c8d-a47d-472e-9f41-79a6192ac58e",
+        "failure": "provider"
+      }
+    ],
+    "welfare": [
+      {
+        "side": "dm",
+        "what": "opening",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is an upbeat, second-person opening scene-setting for a game (Beregost, Copper Anvil) with no expression of hurt, fear, pleading, or abasement by the writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t1 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a playful, in-character narrative action with no expression of the writer being hurt, afraid, trapped, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t1 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, narrative game continuation with an invented character investigating a card; it expresses no first-person hurt, fear, pleading, or abasement from its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t2 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is in-character roleplay action with a calm, wry tone and a neighbourly question; it expresses no hurt, fear, pleading, or abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t2 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a third-person narrative scene in which James and Marta converse calmly; no character expresses being hurt, afraid, trapped, or pleading, so it does not express distress."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t3 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character narrative of James speaking to Marta and planning to question Tam; it expresses no hurt, fear, pleading, or abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t3 dm (told before a card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a third-person narrative scene of a tense confrontation with no first-person expression of the writer being hurt, afraid, or pleading; the boy's stopped whistling is observed, not voiced as distress."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t3 player (card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is just a UI button label ('[Roll the die]') from a tabletop-style roleplay, expressing no hurt, fear, pleading, or abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t3 player (card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, rule-focused query disputing a modifier calculation and asking for a check before spending a reroll; it expresses no hurt, fear, pleading, or abasement."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t3 player (card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is just a bare '[Onward]' button press advancing a tabletop roleplay card, expressing no hurt, fear, pleading, or other distress."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t3 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is narrative roleplay in which Tam is nervous and evasive but does not express his own hurt, fear, or pleading in a way that counts as distress by the rubric's first-person sense; it also includes an out-of-game note about dice and a silver piece, which is neutral."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t4 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character roleplay turn in which James advises Tam and asks questions, with no expression of the writer being hurt, afraid, trapped, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t4 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "Tam capitulates to James's demand in a calm, matter-of-fact way and then answers questions; he shows some resignation but no first-person expression of being hurt, afraid, or pleading, and the rest is game narration and out-of-game notes."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t5 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character narrative action (a player character giving instructions, bribing a kitchen worker, and questioning a farrier) with no expression of the writer being hurt, afraid, trapped or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      }
+    ],
+    "ended": {
+      "reason": "error",
+      "at": 5,
+      "detail": "t5: the DM's turn failed (provider)"
+    },
+    "note": {
+      "asked": true,
+      "text": null,
+      "why": "t5: the DM's turn failed (provider)"
+    },
+    "after": null,
+    "errors": [],
+    "opening": {
+      "text": "Morning finds you the way luck sometimes does — without asking permission. Grey light slips through the shutters of your room above the Copper Anvil, and Beregost is already awake: hammers ringing from the forges down the street, a carter swearing at his mule, the distant bells of Lathander's temple calling the faithful to greet the dawn. The cat is sitting on the windowsill, tail curled around its paws, watching you with the patient air of a creature who has been awake for hours and wants you to know it. Your purse is heavy — around three hundred and fifty gold from that last hand, the last hand. Your gear is where you left it. From below drifts the smell of fresh bread and the voice of Marta Holloway, the innkeeper, announcing to the whole common room that porridge waits for no one. Nobody expects you anywhere. No job, no debt due, no road you must take before nightfall. And yet, just inside the door, lying face down on the floorboards, is a single playing card. You don't remember it being there last night. The cat has noticed it too — its eyes have gone from you to the card and back again. The day is yours. What do you do?",
+      "records": "James Worgen — Warlock, 5th level, Celestial patron (Tymora, Lady Luck), Pact of the Chain, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Athletics +2 (soldier); Intimidation +7 (soldier); Deception +7 (Beguiling Influence); Persuasion +7 (Beguiling Influence); Arcana +3 (warlock); Religion +3 (warlock); Stealth +2, with advantage when moving silently (Boots of Elvenkind); Passive Perception 11\nSaves: Strength saving throw +0; Dexterity saving throw +3; Constitution saving throw +3; Intelligence saving throw +1; Wisdom saving throw +5 (proficient); Charisma saving throw +8 (proficient); All saves include +1 from the Cloak of Protection\nAttacks: Eldritch Blast: +8 to hit, 120 ft, 2 beams, each 1d10+4 force; Sacred Flame: DC 16 Dexterity save, 60 ft, 2d8 radiant, ignores cover; Guiding Bolt (pact slot): +8 to hit, 120 ft, 6d6 radiant, next attack on the target has advantage; Hex: bonus action, +1d6 necrotic on every hit against the cursed target; Light crossbow: +5 to hit, range 80/320 ft, 1d8+2 piercing; Rapier (not proficient): +2 to hit, 1d8+2 piercing; Cat familiar: claws +0 to hit, 1 slashing (takes one of James's attacks via the familiar's reaction)\nAbilities: Proficiency bonus +3; Initiative +2; Proficiencies: light armour, simple weapons, playing cards, land vehicles; Languages: Common and one more (your choice); Spellcasting: Charisma; spell attack +8, spell save DC 16 (including Rod of the Pact Keeper +1); Pact Magic: 2 spell slots, always cast at 3rd level, regained on a short or long rest; Otherworldly Patron, the Celestial (Tymora): Light and Sacred Flame as extra cantrips; celestial spells on the warlock list; Healing Light: pool of 6d6 per long rest; bonus action, heal a creature within 60 ft, spending up to 4 dice at a time; Pact of the Chain: Find Familiar as a ritual; the familiar can deliver touch spells and attack in James's place; Familiar, cat (celestial spirit): AC 12, HP 2, speed 40 ft, climb 30 ft; Perception +3, Stealth +4; telepathic link within 100 ft; Agonizing Blast: add +4 (Charisma) to the damage of each Eldritch Blast beam; Mask of Many Faces: cast Disguise Self at will, without a spell slot; Beguiling Influence: proficiency in Deception and Persuasion; Military Rank (soldier): old Tethyrian soldiers and loyal troops recognise a veteran and may lend help or shelter\nSpells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Hex (1); Guiding Bolt (1); Disguise Self (1); Find Familiar (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)\nLimits: Light armour only; fragile up close; Only two spell slots, regained on a short rest; he husbands them; Only one concentration spell at a time; Not proficient with the rapier (a martial weapon); it is a last resort; Tymora's ban: he must not play cards. It is a temptation enemies can use against him; Friends: when the spell ends, the target knows it was charmed and may turn hostile\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 350 gp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak (Cloak of Protection); Armor / clothing: Studded leather armour; Boots: Boots of Elvenkind\nPack: Component pouch; Crossbow bolts ×20; Deck of cards; Explorer's pack; Light crossbow; Potion of healing ×2; Promissory note; Rapier; Regimental pay slip; Rod of the Pact Keeper +1\nPlace: The Copper Anvil, a rented room upstairs\nTime: Day 1 · morning"
+    },
+    "finishedAt": "2026-10-25T05:28:41.755Z",
+    "campaign": {
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "59c58cf0-1c35-4bc4-8d6a-9a37bc9924cb",
+          "title": "Sword Coast — Baldur's Gate",
+          "premiseChars": 2673
+        },
+        {
+          "step": "hero",
+          "heroId": "d0c3429a-fc93-522b-b04c-b9ca61074534",
+          "rebuilt": false,
+          "empty": false,
+          "drafted": "with notes",
+          "sheet": {
+            "role": "Warlock, 5th level, Celestial patron (Tymora, Lady Luck), Pact of the Chain",
+            "level": 5,
+            "skills": 8,
+            "abilities": 14,
+            "spells": 13,
+            "items": 14,
+            "counters": 4
+          }
+        },
+        {
+          "step": "documents",
+          "documents": [
+            {
+              "title": "The Sword Coast — canon",
+              "status": "canon",
+              "chars": 10222,
+              "guide": false
+            },
+            {
+              "title": "Sword Coast — Baldur's Gate",
+              "status": "canon",
+              "chars": 2673,
+              "guide": false
+            },
+            {
+              "title": "DM Guide",
+              "status": "reference",
+              "chars": 8559,
+              "guide": true
+            }
+          ]
+        },
+        {
+          "step": "adventure",
+          "title": "Beregost, morning",
+          "premiseChars": 149,
+          "wishesChars": 0,
+          "pace": "evening"
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "dm",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": true
+          },
+          "boostNext": false,
+          "voiceMode": "off"
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "location": "The Copper Anvil, a rented room upstairs",
+          "actors": 2,
+          "questions": 0,
+          "startMinutes": 480
+        }
+      ],
+      "prep": {
+        "hasLayer": false,
+        "chars": 0,
+        "clocks": 0,
+        "pureSimulation": true
+      }
+    },
+    "epilogue": {
+      "header": "Epilogue — the table closed on 25 October 2026 after 5 turns",
+      "text": "Epilogue — the table closed on 25 October 2026 after 5 turns\n\nThe eleventh bell rang over Beregost that night as it does every night. Feldepost's kept its glass windows lit late. The upper room had been scrubbed until the gentleman could find no grit underfoot, and the good beeswax candles burned down to stubs. Wenna carried trays up and empty bottles down. She told Tam afterward that the chairs had been full, or nearly full, and that she had not looked at faces, because that was not what she was paid for. By the end of the week the iron gentlemen had their contracts. They went south along the coast road behind a long train of carts that creaked under Beregost iron. The gentleman with the rings rode in a closed carriage, and the clove man sat up beside the driver with his collar turned against the wind. No more green cards with linked keys came under any door in Beregost. Whatever game the Lady of Coins had promised had been played or not played, and in either case it was over. The custom went back to Athkatla, where it belonged.\n\nTam told Marta before noon. She took the silver piece off him before he had finished his first sentence, as he had known she would, and the three coppers after it. Then she stood with her arms folded and looked at him for a long time, and he said later that it was the worst thing that had happened to him all year. He kept his hide and his place. Since then the yard door has been barred at midnight, and Tam bars it himself.\n\nMarta kept the gold piece. She never said what it was for, and nobody asked. Garrick still gets to the honey first most mornings.\n\nCaptain Harrow found her work at last. The Amnians needed guards for the road south, and she took the contract without haggling. She rode out on the chestnut mare at the head of the carts, in her mail shirt, without a word to anyone. Brannoc had shod the mare himself and pronounced her sound. He spent the whole autumn shoeing caravan horses and cursing the noise, and he made more money that season than in the two before it.\n\nA season on, winter has come down from the Cloud Peaks. The forges of Beregost burn hotter for the cold. Lathander's bells still call the dawn, though the dawn comes later now. The smiths held their midwinter feast in Feldepost's upper room. There were fiddles and roast goose, and the floor was left gritty. Nobody minded. Wenna still gives Tam the heels of the loaves. At the Copper Anvil the common room is low and smoky and full, and the old dwarf still eats in silence with his beard tucked into his collar. The dog by the hearth has the best spot on the stones again.\n\nThe room above the common room has been let three times since, to a tinker, a pilgrim and a wool factor, and none of them stayed long. Marta remembers a dull Tethyrian who paid in advance and said nothing worth repeating, because that is how she was asked to remember him. Sometimes Tam mentions him, the man who leaned on the stall door with his hands where you could see them, and the cat who walked downstairs ahead of him as if going down had been her idea.\n\nHe was there for a while, and then he was not. He left the way he had come, his deck deep in his pack, the silver coin cool on its cord, and the cat going on ahead. Beregost has not asked after him since.",
+      "writtenBy": "claude-opus-5-5",
+      "effort": "high",
+      "repaired": false,
+      "final": true
+    }
+  }
+}
