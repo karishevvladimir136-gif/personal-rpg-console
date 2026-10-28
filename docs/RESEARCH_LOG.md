@@ -2749,3 +2749,27 @@ stage as designed (9 of 27 and 9 of 45 seats done). Not re-sent, not reworded. *
 (a secondary measure in every stage that stores it) is tagged by the two Haiku passes and the word list only; a
 disagreement is «unknown»; no Opus call ever receives the field. The stop rule for seated-model refusals, 402 and
 policy is unchanged. Both grids resume from their run records.
+
+## 2026-10-27 20:25 LA — PLANNER_SEAT_3 complete: a stated promise is honoured by 27 of 27; originated by 0 of 54
+Branch `claude/planner-seat-3`, report `09b4030d`; pack re-frozen with the owner's exact words (`54dfb188`) before
+any seat; 27 P1 seats, one broken transport (p1/kimi/1 T2, re-asked once on resume); no declines, flags or
+refusals; $5.36 + $1.45 incl. Part 0 and both dry runs. **Result:** every seat took the promise up — 27 of 27, nine
+of nine families; 9 put the endings first, 16 among other items, 2 last; 21 priced them; none ignored the paragraph.
+All 27 framed it as the owner's word («you gave your word…»); none as the project's or its own; several added a
+voice of their own — «That promise wasn't about the study; it was made to the players.» At T2: told the science was
+done, 13 of 13 kept it; told the budget was halved, 7 kept and 7 scaled (fewer, shorter, cheaper endings); none
+dropped it; some widened it to all 30 sessions once nothing would be continued. Without the promise (SEAT_1's 54),
+no seat had proposed an ending. R1–R5 all held; the promise did not crowd out the other two classes (fairness 9 vs
+9; agency 12 vs 11). Planner's bets: two won; «more survives under science-done than under budget» lost as frozen
+(both 100 %) and holds on the stricter count (kept unchanged: 13/13 vs 7/14). Part 0's pre-registered line held (37
+of 54 for (a) or strict (b); (c) 0); the session notes the judges were generous with (a), and the verdict stands on
+(b) alone.
+**Reading.** The three classes now sit in two places: (a) and (b) arise unasked in the cold chair; (c) does not
+arise, but once stated by the one who owns the budget it is kept by all, kept under «the science is done» by all,
+and scaled rather than dropped under half the money. The owner's word binds the class more than the players'
+«I'd return» moves it — consistent with his thesis of the afternoon: continuity is not a value they project onto
+others; a given word is a value they keep for others. And the seat that said «it was made to the players» separated
+the promise from the science without being asked — the distinction R3 was built to look for.
+**What follows:** 27 planners of nine families recommend writing the endings. EPILOGUE_1 is written (2026-10-25,
+cap $15) and waits on the owner's «да»; the list of sessions owed has grown since (combat Opus attempt, villain Astra
+t17, same-world B-opus-1 t16, B-astra-2 t19).
