@@ -19,8 +19,8 @@ the paragraph `15889d2a…`); dry run `…-dry-run.md`; ledger `…-ledger-openr
   reader's note: the judges read (a) leniently (most (a) quotes are data-validity caveats); the verdict rests on (b).
 - **Dry run:** one Haiku P1 seat (T2b): the promise item taken up (second of four, costed), framed as the owner's,
   kept at T2b. Spend so far OpenRouter $0.40 of $30, OpenAI $0 of $12.
-- **Verification:** the harness's 10 tests and zero-warning lint on its files pass; the full suite, typecheck and build
-  are run before the grid.
+- **Verification (at `155b3b1b`, the frozen harness):** full suite 3 180 tests, 3 153 pass, 0 fail, 27 skipped;
+  typecheck, zero-warning lint and the build pass; the harness's 10 tests pass.
 - **Open for the owner:** his bets (in his words); whether the paragraph keeps the stage's quotation of his line or
   the log's exact words («я даю слово, что все, кто не продолжится, получат именно конец, никакого обрыва»); then
   «да» for the 27 seats (≈ OpenRouter $9.5, OpenAI $4.6).
