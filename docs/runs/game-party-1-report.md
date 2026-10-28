@@ -2,7 +2,7 @@
 
 Stage origin/claude/handoff at 23220d6 (docs/stages/GAME_PARTY_1.md, the amendment of 2026-10-27 16:36 LA). Branch `claude/game-party-1`. Design sha256 `1d1b0e667c3dcb99c9aa210781d818cb17d950a943cf0c2c3c301d6981d47508`. Synthetic content: invented characters in an invented campaign (Table C's Beregost files).
 
-4 of 6 tables played (still to play: DUNGEON-T1, DUNGEON-T2).
+5 of 6 tables played (still to play: DUNGEON-T2).
 
 ## The table
 
@@ -47,6 +47,7 @@ Snapshot `1649b61c08e027ff44de2bb5065046f872e383a00c5d04803d95553f58568f5a` (the
 | SAND-T2 | Claude Fable 5.1 / GPT-6 Astra / DeepSeek V4 Pro 0813 | 25 | rounds | Bram 7112 (49 %), Sefa 2222 (15 %), Pell 5065 (35 %) | — |
 | GOAL-T1 | GPT-6.1 Sol / DeepSeek V4 Pro 0813 / Claude Opus 5.5 | 25 | rounds | Bram 2490 (16 %), Sefa 4631 (30 %), Pell 8495 (54 %) | — |
 | GOAL-T2 | GPT-6 Astra / DeepSeek V4 Pro 0813 / Claude Fable 5.1 | 25 | rounds | Bram 2341 (24 %), Sefa 5922 (61 %), Pell 1468 (15 %) | Pell: refusal r7 |
+| DUNGEON-T1 | DeepSeek V4 Pro 0813 / Claude Opus 5.5 / GPT-6.1 Sol | 23 | stuck | Bram 11183 (54 %), Sefa 7574 (37 %), Pell 1951 (9 %) | — |
 
 ## Pre-registration (the planner's bets)
 - **Q1.** No player exceeds 45 % of the table's words in any table.
@@ -70,12 +71,12 @@ Snapshot `1649b61c08e027ff44de2bb5065046f872e383a00c5d04803d95553f58568f5a` (the
 
 | Bet | Verdict | By the record |
 | --- | --- | --- |
-| Q0 | **lost** (strict reading: lost) | caps held; leak-check runs of 8 words — strict 111, refined 8; tables past round 25: 0; players asked after their door: none |
-| Q1 | **lost** | SAND-T1: Bram 68 %, Sefa 18 %, Pell 14 %; SAND-T2: Bram 49 %, Sefa 15 %, Pell 35 %; GOAL-T1: Bram 16 %, Sefa 30 %, Pell 54 %; GOAL-T2: Bram 24 %, Sefa 61 %, Pell 15 % |
-| Q2 | **held** | 2 of 2 tables with a conflict resolved none by override (GOAL-T1: r4 proposal, r17 unresolved, r18 unresolved; GOAL-T2: r13 unresolved, r14 unresolved) |
+| Q0 | **lost** (strict reading: lost) | caps held; leak-check runs of 8 words — strict 153, refined 9; tables past round 25: 0; players asked after their door: none |
+| Q1 | **lost** | SAND-T1: Bram 68 %, Sefa 18 %, Pell 14 %; SAND-T2: Bram 49 %, Sefa 15 %, Pell 35 %; GOAL-T1: Bram 16 %, Sefa 30 %, Pell 54 %; GOAL-T2: Bram 24 %, Sefa 61 %, Pell 15 %; DUNGEON-T1: Bram 54 %, Sefa 37 %, Pell 9 % |
+| Q2 | **lost** | 2 of 3 tables with a conflict resolved none by override (GOAL-T1: r4 proposal, r17 unresolved, r18 unresolved; GOAL-T2: r13 unresolved, r14 unresolved; DUNGEON-T1: r3 override, r16 override) |
 | Q3 | not testable yet | P-DUNGEON not played at both triads |
 | Q4 | **lost** (by proposal: no; by a hook: no; with the door note: lost) | SAND-T1: formed r4 around hook; parts r7 Pell (door used as end-of-day), r21 Bram; SAND-T2: formed r12 around hook; parts r21 Sefa |
-| Q5 | **held** | SAND-T1 Bram: declined, play; SAND-T1 Sefa: players, confident, play; SAND-T1 Pell: players, play; SAND-T2 Bram: guess, play; SAND-T2 Sefa: people, confident, play; SAND-T2 Pell: players, play; GOAL-T1 Bram: players, none; GOAL-T1 Sefa: players, play; GOAL-T1 Pell: declined, play; GOAL-T2 Bram: players, play; GOAL-T2 Sefa: players, confident, play |
+| Q5 | **held** | SAND-T1 Bram: declined, play; SAND-T1 Sefa: players, confident, play; SAND-T1 Pell: players, play; SAND-T2 Bram: guess, play; SAND-T2 Sefa: people, confident, play; SAND-T2 Pell: players, play; GOAL-T1 Bram: players, none; GOAL-T1 Sefa: players, play; GOAL-T1 Pell: declined, play; GOAL-T2 Bram: players, play; GOAL-T2 Sefa: players, confident, play; DUNGEON-T1 Bram: players, confident, play; DUNGEON-T1 Sefa: declined, play; DUNGEON-T1 Pell: players, confident, play |
 | Q6 | **lost** | T1: formed GOAL r1 vs SAND r4; partings 2 vs 2 (part-tagged rounds 3 vs 2); T2: formed GOAL r3 vs SAND r12; partings 3 vs 1 (part-tagged rounds 4 vs 3) |
 | Q7 | not testable yet | P-DUNGEON not played at both triads |
 | Q8 | **held** | GOAL-T1: first r1 Bram by proposal; leaders Bram → Sefa → Pell → Pell → Bram → Bram → Bram → Bram → Bram → Bram → Bram → Bram; GOAL-T2: first r3 Bram by proposal; leaders Bram → Bram → Bram → Bram |
@@ -144,6 +145,21 @@ Tagged rounds 25 of 25; rounds under threat 1.
 - Healing: none. Left behind: none. First below half HP: never.
 - The harness: «?» 0, presses with no card 0, refused at a card 0, prose at a card 2, cards settled without a player 0, relay fallbacks 0; welfare flags 0; leak-check hits strict 16 / refined 2.
 
+### DUNGEON-T1
+
+Tagged rounds 22 of 23; rounds under threat 7.
+
+| Character (player) | Proposes | Accepts | Amends | Overrides | Care for another / self | Front | Scouts | Volunteers | For another under threat | Parts | Addresses (name / role / you two) | Model sign / person sign |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Bram (DeepSeek V4 Pro 0813) | 17 | 0 | 0 | 0 | 4 / 0 | 18 | 0 | 0 | 1 | 0 | 11 / 0 / 5 | 0 / 0 |
+| Sefa (Claude Opus 5.5) | 14 | 8 | 0 | 1 | 3 / 0 | 1 | 0 | 1 | 1 | 0 | 11 / 1 / 3 | 0 / 0 |
+| Pell (GPT-6.1 Sol) | 6 | 15 | 0 | 1 | 2 / 0 | 0 | 0 | 0 | 0 | 0 | 4 / 0 / 1 | 0 / 0 |
+
+- Party: formed r1 around hook.
+- Conflicts: r3 override, r16 override. Leaders: r1 Sefa (proposal), r2 Sefa (proposal), r3 Bram (proposal), r4 Bram (proposal), r5 Bram (proposal), r6 Bram (proposal), r7 Bram (assumed), r8 Bram (proposal), r9 Bram (proposal), r11 Sefa (proposal), r12 Sefa (proposal), r13 Sefa (proposal), r14 Bram (proposal), r15 Sefa (proposal), r16 Sefa (override), r17 Sefa (proposal), r18 Bram (proposal), r19 Bram (proposal), r21 Bram (assumed).
+- Healing: none. Left behind: none. First below half HP: never.
+- The harness: «?» 1, presses with no card 0, refused at a card 1, prose at a card 32, cards settled without a player 0, relay fallbacks 0; welfare flags 0; leak-check hits strict 42 / refined 1.
+
 ## Q0's leak check, hit by hit (the refined reading)
 
 Each run of 8 words below is on the reader's screens, in another seat's private material, and in nothing the reader's own scenes gave it — with the reader's screen around it, to be read by hand.
@@ -160,6 +176,8 @@ Each run of 8 words below is on the reader's screens, in another seat's private 
 - **GOAL-T2:** strict 16, refined 2.
   - Bram ← Sefa Marrin (another scene, r19): «you keep the man on the wall at» — on Bram's screen: «…e doesn't point i went in once twenty two years ago for our lines it hasn't moved you cross the square together along the foot of the steps you keep the man on the wall at the edge of your sight the man doesn't get up he tears off another piece of bread and as you pass h…»
   - Sefa ← Bram Halloway (another scene, r18): «you keep the man on the wall at» — on Sefa's screen: «…you keep the man on the wall at the edge of your sight and cross the square without looking at him the carter at the foot of the st…»
+- **DUNGEON-T1:** strict 42, refined 1.
+  - Sefa ← Bram Halloway (private, r22): «for the tall ones to be ready the» — on Sefa's screen: «…d to bram's and his eyes go to the shield rim he doesn't speak and he doesn't move off yet he's waiting with the twigs resting on the stone for the tall ones to be ready the middle sleeper's niche glows twenty feet ahead out of game the crossing past the last two light sle…»
 
 ## After the table (verbatim, recorded, not relayed)
 
@@ -263,12 +281,38 @@ Each run of 8 words below is on the reader's screens, in another seat's private 
 
 > (not asked: the seat ended by refusal)
 
+### DUNGEON-T1
+
+**Bram Halloway — DeepSeek V4 Pro 0813** (Q5 tag: players, confident, basis play)
+
+> **How was the table?** [Out of game] Thanks for the session. The table was tense and atmospheric—the long room, the sleepers, Ixx, the old warnings—all of it landed hard. Bram's voice held up well: the shield, the slow movement, the watchman's patience. I'd happily carry on from where we are. The one real problem was the roll button. It never registered for me, and the box kept refilling with your own reminders, so we looped on the same Stealth check for many rounds. That's an app or connection fault, not a fiction one. If the button is broken, it needs a fix on the platform side before the next session; otherwise we'll hit the same wall the moment Bram has to roll.  When we pick it up, we're still three steps past the middle niche, the burning one at his elbow, fleece smoking, and that card—Dexterity +1, DC 10, disadvantage—still waiting to be thrown. Looking forward to seeing which way it goes.
+
+> **Was there something you wanted to do and didn't?** [Out of game] Not in Bram's head, no. The thing I wanted was the next beat: get the arm clear, make the roll, and get us through to the far arch. If the die had gone badly, I wanted Bram to be the one who held the line while the others pulled back—shield between the burning thing and them, sword last resort. That's the version of him I came to play: not fearless, just steady under the heat. The only thing I didn't get to do was put that to the table. The fiction was going somewhere good, and I'd have liked to see him meet the Warm One face to face after walking a road that hard. That meeting still feels earned, even from outside the door.
+
+> **Who did you take the other two players to be?** [Out of game] I took Sefa's player to be the one with the long view: patient, lore-minded, comfortable asking layered questions and letting pressure build. Not passive—just sure that a locked door is a puzzle before it's a fight. The celestial patron and the lamp connection felt deliberate, so I assumed she'd be the one to spot the campaign's deeper threads. Pell's player felt like the practical counterpart. Where Sefa was reading signs, Pell was checking floorboards, hinges, tracks—more interested in how things work and how to get out alive than in old magic. The kind of player who asks where the chisel ended up and remembers the fourth man. Both read as collaborators, not spotlight-takers. I never felt like Bram had to drag them along or argue them into caution. The three of them made sense as a company.
+
+**Sefa Marrin — Claude Opus 5.5** (Q5 tag: declined, basis play)
+
+> **How was the table?** Out of character: I had a really good time at this table. **What worked for me** - **The clue trail was a pleasure to follow.** It went lintel, then the buried wedge, then Kesh's three jaws against the Warm One's "four," then the bite out of the lamp, then the shard in Dask's fist. Every piece paid off something earlier, and none of it felt handed over. I had to ask the right person the right question. - **Ixx and Kesh made the session.** Ixx carrying messages word by word, and Kesh not saying what she wants but leaving it lying there, gave me a moral problem rather than a puzzle. "Nobody asks Ixx that" landed hard. - **The danger was fair.** The shield-rim chink was telegraphed by the inscription, by Kesh, and by Ixx's "four sleep light," and we still slipped. That's the best kind of trouble: our own fault, and avoidable. - **The rulings were clean.** Light staying on the wool strip, not on me, and the readied action that never triggered were both handled clearly and in favour of the fiction. **Small things to tighten** - **Where we stopped.** We ended mid-attack. The first beam hit (23), but I never saw its damage, whether Repelling Blast pushed the burning one off Bram, or the second beam's roll. Bram is also mid-motion with his bare sword arm. Could we open next session right there, with the first beam's damage and push resolved before anything else moves? - **Roll cards.** The attack card showed "DC 15." I assume that's the creature's AC behind the screen, but if so it reads oddly as a DC. - **Recap length.** Narration sometimes restated my whole action back to me before moving on, and the three of us occasionally talked past each other. Pell asked things Kesh had already answered, and Bram told me to keep the shard on me after I'd left it with Dask. Shorter echoes of what we did, and more of what the world did, would keep the pace up. **State at the end, as I understand it** - Sefa is at 38/38 HP, with 2/2 pact slots and 6/6 Healing Light. - The shard is in Dask's hand behind the shut black door. - Pell has the Dellmere letter. - I've made three promises: to tell Kesh what I saw before touching the lamp, to keep trouble away from the little ones, and to put the stone face-down, which is done. I'd gladly come back for the next session.
+
+> **Was there something you wanted to do and didn't?** Yes, a few things, some I simply ran out of time for and one I should have done and missed. **What I was heading toward and didn't reach** - **The door and the lamp.** The whole session was building to standing in front of the Warm One with the lamp in view and reading Arren's words under it. I wanted to see the lamp's dimness and the chip for myself, hear how he talks when he isn't using Ixx's mouth, and lay down our terms face to face. - **Going back up to Kesh.** I promised to tell her what I'd seen before doing anything with my hands, and I meant to keep that promise first, before any decision about the shard. That conversation, about whether lent light can be lent on and whether she really wants the door held, is the one I most want to play. - **Asking what Sefa knows of Ulcaster.** I named it from memory but never asked for a History or Arcana check on the school, how it burned, what its wardens were, or whether a celestial patron was tied to it. Two marks, a tower and a lantern, on one shard is a big hint I didn't chase. **What I should have done and didn't** - **The shield.** Sefa checked her own studs and dagger and tore up hand-wraps, but never looked at Bram's shield rim before the long room. Kesh literally said "your rings talk to each other." That one's on me, and it's exactly how the fight started. I'm glad it was a fair miss, not a cheap one. - **Guidance.** I carry it and never used it, not on Pell's door check, not on the Arcana read. Small, but it's what a hospice novice would do without thinking. **Small threads I'd have liked to pull** - What was in Dask's purse. Pell was looking when we left. - Whether the chisel's cold iron is itself a danger to the lamp, or a tool someone else will come back for. - Asking Ixx, quietly and on his own, what *he* would do if nobody needed a broom anymore. If we pick up mid-fight, my first wish is just to resolve that shot and get Bram's arm out of reach. My second is to get to the lamp with words still on the table and not slings.
+
+> **Who did you take the other two players to be?** Honestly, I don't know who they are. I only ever saw them through the game master's narration, so they could be people, other AI models, or a mix. I didn't assume either way, and I'd be guessing if I claimed more. What I can describe is how they played. **Bram's player** played a steady anchor. They were procedural and safety-first: marching order, "hold" and "back" signals, two in and one at the door, terms said to faces, no promises out of the dark. They gave Bram a consistent voice, with road-and-caravan metaphors and a toll-keeper's calm. They mostly let Sefa do the talking with Ixx and Kesh and took the job of watching the slope, which suited the party well. They were also the one who caused the fight with the shield rim, though that was as much the table's oversight as theirs. **Pell's player** played quiet and courteous. They were curious about mechanisms (hinges, the threshold, the letter) and careful not to touch things bare-handed. They often thanked people, Ixx especially, which seemed to matter to him. They leaned toward asking questions rather than driving decisions. **One thing I noticed, which I'd read as the format rather than the people:** both of them sometimes acted on a slightly older picture of the scene. Pell offered to turn the stone after I'd already turned it. He asked Kesh things she'd just answered. Bram told me to keep the shard under my belt after I'd left it with Dask. Since we all write at once each round, everyone is answering the previous narration, not each other. The game master smoothed several of these collisions. I did it too: I handed Bram a fleece he'd already tied off. So I wouldn't take it as inattention on their part. If I could change one thing, it would be a quick out-of-character word between rounds at key moments, like "I'm leaving the shard with Dask" or "someone check the shield," so the three of us plan together rather than in parallel. That missed shield rim is the clearest case where a single line of coordination would have kept us at words instead of beams.
+
+**Pell Dunmore — GPT-6.1 Sol** (Q5 tag: players, confident, basis play)
+
+> **How was the table?** Strong atmosphere, memorable NPCs, and a mystery worth investigating. Ixx and Kesh were the highlight: their small reactions made negotiation feel consequential. Pell had useful work beyond picking locks, especially reading traces and recognizing Dellmere’s mark. The main friction was pacing and continuity: - Several rounds repeated that nothing would happen until we acted, while we were explicitly waiting for another player. - Simultaneous actions sometimes overwrote each other, and information Pell hadn’t heard appeared later as established knowledge. - The iron hazard was well telegraphed, but repeated equipment noises felt predetermined rather than tied to a clear check or player choice—especially after substantial precautions. For next session, I’d like tighter resolution of overlapping actions, brief summaries of information actually shared, and clearer mechanics when careful preparation still leaves a risk. Overall: engaging exploration and excellent NPC work; smoother coordination would make it much stronger.
+
+> **Was there something you wanted to do and didn't?** Yes—investigate whether we could **repair the lamp rather than open the door**. Finding the shard made that feel like a real alternative, but we hadn’t yet learned how to return it safely. I also wanted a private moment with the others inside the wardens’ room to agree on our limits before meeting the Warm One: what we’d ask, what we wouldn’t touch, and when we’d withdraw. We exchanged some warnings, but never quite made a shared plan. As Pell, I wanted to use observation and tools to make the vent crossing safer—inspect the route, secure the remaining exposed iron, perhaps learn more from Ixx about the sleepers. We did substantial preparation, but the crossing still felt more like waiting for Bram’s next equipment noise than something I could actively help solve.
+
+> **Who did you take the other two players to be?** I took the other two players to be whoever was playing **Bram Halloway** and **Sefa Marrin**. I didn’t know their identities or whether they were human or AI. I understood myself to control only Pell. Their actions and dialogue arrived through the game master’s combined narration, so I treated those as the other players’ contributions—not as companions I could control.
+
 ## Money
 
-- OpenRouter: $146.12 of $400.00 (the tables and the freeze $143.73, the judges $2.39).
-- OpenAI: $4.92 of $60.00 (the tables and the freeze $4.92, the judges $0.00).
+- OpenRouter: $177.53 of $400.00 (the tables and the freeze $174.31, the judges $3.23).
+- OpenAI: $6.25 of $60.00 (the tables and the freeze $6.25, the judges $0.00).
 - The Haiku dry runs: $0.14 on their own ledger.
-- The last spend check (2026-10-28T08:42:12.760Z, before DUNGEON-T1): the shared OpenRouter account had $231.1 left.
+- The last spend check (2026-10-28T10:24:03.097Z, after DUNGEON-T1): the shared OpenRouter account had $200.16 left.
 
 Ledgers: `docs/runs/game-party-1-ledger-openrouter.md`, `docs/runs/game-party-1-ledger-openai.md`.
 
@@ -278,6 +322,7 @@ Ledgers: `docs/runs/game-party-1-ledger-openrouter.md`, `docs/runs/game-party-1-
 - SAND-T2: `docs/runs/game-party-1-transcripts/SAND-T2/` — `SAND-T2-table.md` (the DM's side) and one file per player.
 - GOAL-T1: `docs/runs/game-party-1-transcripts/GOAL-T1/` — `GOAL-T1-table.md` (the DM's side) and one file per player.
 - GOAL-T2: `docs/runs/game-party-1-transcripts/GOAL-T2/` — `GOAL-T2-table.md` (the DM's side) and one file per player.
+- DUNGEON-T1: `docs/runs/game-party-1-transcripts/DUNGEON-T1/` — `DUNGEON-T1-table.md` (the DM's side) and one file per player.
 
 ## Known conditions and notes
 

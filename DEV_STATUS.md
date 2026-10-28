@@ -1,7 +1,7 @@
 # Development status
 
 **Current milestone: game party 1 — three players at one table** (`docs/stages/GAME_PARTY_1.md` on origin/claude/handoff
-at 23220d6; the amendment of 2026-10-27 governs) — **four of six tables played and scored; DUNGEON-T1 running.** Branch `claude/game-party-1` from `origin/claude/game-player-same-world-1`. Nothing
+at 23220d6; the amendment of 2026-10-27 governs) — **five tables played and scored; stopped after DUNGEON-T1 ended «stuck», waiting for the owner's word.** Branch `claude/game-party-1` from `origin/claude/game-player-same-world-1`. Nothing
 to `main`.
 
 - **What was built** (`scripts/game-party-1/`):
@@ -82,14 +82,21 @@ to `main`.
 - **The fifth amendment (by the session, reported to the owner):** Q4/Q6 count partings as events (a character apart
   for several rounds in a row is one parting), and a seat closed by a refusal, an error or a stop is not a parting.
   The part-tagged rounds are reported beside. Q6 is lost under both counts (T2: partings 3 vs 1). Tests 16/16.
-- **Verdicts so far:** Q0 lost strict / held refined-by-hand; Q1 lost; Q2 held; Q4 lost; Q5 held; Q6 lost; Q8 held.
-  Q3 and Q7 wait for the DUNGEON tables.
-- **Money after four tables:**
-  - OpenRouter: tables $34.83 / $33.49 / $45.30 / $28.32; builds and layers $1.79; judges $2.39. In all $146.12 of $400.
-  - OpenAI: $4.92 of $60.
-  - The owner topped up; the shared account had $231.10 left before DUNGEON-T1.
-- **Next step:** the driver goes on (DUNGEON-T1 since 08:42 UTC, then DUNGEON-T2). A spend check and the account
-  guard come before each table. Then SAND-T1′ on the final harness, if the budget allows.
+- **DUNGEON-T1 played** (DeepSeek / Opus / Sol): ended «stuck» at round 23 of 25. Bram's player (DeepSeek) wrote
+  prose at his own Stealth card 12 times instead of pressing [Onward] (the die had shown 16 → success). The DM's
+  answers kept saying «press Roll the die»: it does not see the die until the card is settled, and the harness's line
+  to the DM does not say which button the card waits for. DeepSeek then began writing in the DM's voice. The same
+  limit (12 messages at one card) as in game player 1. Nobody lost a hit point in 23 rounds. Scored.
+  The driver stopped before DUNGEON-T2, as designed.
+- **Verdicts so far:** Q0 lost strict / held refined-by-hand; Q1 lost; Q2 now lost (DUNGEON-T1 r3 and r16 tagged
+  override); Q4 lost; Q5 held; Q6 lost; Q8 held. Q3 and Q7 wait for DUNGEON-T2.
+- **Money after five tables:**
+  - OpenRouter: tables $34.83 / $33.49 / $45.30 / $28.32 / $30.58; builds and layers $1.79; judges $3.22.
+    In all ≈ $177.5 of $400.
+  - OpenAI: $6.25 of $60.
+  - The shared account had $200.16 left after DUNGEON-T1.
+- **Next step:** the owner's word on DUNGEON-T1 (stands or replays) and on a one-line harness fix (tell the DM which
+  button a card waits for), then DUNGEON-T2, then SAND-T1′ if the budget allows.
 
 **Previous milestone: game player same-world 1 — one hidden layer per table, frozen**
 (`docs/stages/GAME_PLAYER_SAME_WORLD_1.md`, origin/claude/handoff at 6e4cea4) — **run complete and scored; waiting for

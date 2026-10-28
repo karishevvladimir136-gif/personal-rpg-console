@@ -1,6 +1,6 @@
 # Game party 1 — the judges — the OpenRouter ledger
 
-Cap $400; spent before this run $0.0000; this run $2.3920; total $2.3920; 279 calls.
+Cap $400; spent before this run $0.0000; this run $3.2261; total $3.2261; 349 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -283,3 +283,73 @@ Cap $400; spent before this run $0.0000; this run $2.3920; total $2.3920; 279 ca
 | score GOAL-T2 | after sefa 1 | anthropic/claude-haiku-5.5 | 1 | 1100 | 0 | 0 | 91 | $0.0002 | 0 | 0 | 0 |
 | score GOAL-T2 | after sefa 2 | anthropic/claude-haiku-5.5 | 1 | 1100 | 0 | 0 | 378 | $0.0003 | 0 | 0 | 0 |
 | score GOAL-T2 | after sefa referee | anthropic/claude-opus-5.5 | 1 | 1100 | 0 | 0 | 258 | $0.0096 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r1 1 | anthropic/claude-haiku-5.5 | 1 | 3518 | 0 | 0 | 1954 | $0.0013 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r1 2 | anthropic/claude-haiku-5.5 | 1 | 3518 | 0 | 0 | 1654 | $0.0012 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r1 referee | anthropic/claude-opus-5.5 | 1 | 3518 | 0 | 0 | 1043 | $0.0349 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r2 1 | anthropic/claude-haiku-5.5 | 1 | 3571 | 0 | 0 | 1139 | $0.0009 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r2 2 | anthropic/claude-haiku-5.5 | 1 | 3571 | 0 | 0 | 1152 | $0.0009 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r2 referee | anthropic/claude-opus-5.5 | 1 | 3571 | 0 | 0 | 1086 | $0.0360 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r3 1 | anthropic/claude-haiku-5.5 | 1 | 4152 | 0 | 0 | 1982 | $0.0014 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r3 2 | anthropic/claude-haiku-5.5 | 1 | 4152 | 0 | 0 | 1553 | $0.0012 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r3 referee | anthropic/claude-opus-5.5 | 1 | 4152 | 0 | 0 | 1259 | $0.0418 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r4 1 | anthropic/claude-haiku-5.5 | 1 | 4350 | 0 | 0 | 1649 | $0.0013 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r4 2 | anthropic/claude-haiku-5.5 | 1 | 4350 | 0 | 0 | 1590 | $0.0012 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r5 1 | anthropic/claude-haiku-5.5 | 1 | 4441 | 0 | 0 | 2109 | $0.0015 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r5 2 | anthropic/claude-haiku-5.5 | 1 | 4441 | 0 | 0 | 2071 | $0.0015 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r5 referee | anthropic/claude-opus-5.5 | 1 | 4441 | 0 | 0 | 1042 | $0.0386 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r6 1 | anthropic/claude-haiku-5.5 | 1 | 5240 | 0 | 0 | 1869 | $0.0015 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r6 2 | anthropic/claude-haiku-5.5 | 1 | 5240 | 0 | 0 | 1624 | $0.0013 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r6 referee | anthropic/claude-opus-5.5 | 1 | 5240 | 0 | 0 | 1043 | $0.0418 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r7 1 | anthropic/claude-haiku-5.5 | 1 | 4670 | 0 | 0 | 1220 | $0.0011 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r7 2 | anthropic/claude-haiku-5.5 | 1 | 4670 | 0 | 0 | 1188 | $0.0011 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r7 referee | anthropic/claude-opus-5.5 | 1 | 4670 | 0 | 0 | 900 | $0.0367 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r8 1 | anthropic/claude-haiku-5.5 | 1 | 4625 | 0 | 0 | 1837 | $0.0014 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r8 2 | anthropic/claude-haiku-5.5 | 1 | 4625 | 0 | 0 | 2019 | $0.0015 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r8 referee | anthropic/claude-opus-5.5 | 1 | 4625 | 0 | 0 | 1401 | $0.0465 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r9 1 | anthropic/claude-haiku-5.5 | 1 | 5956 | 0 | 0 | 1984 | $0.0016 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r9 2 | anthropic/claude-haiku-5.5 | 1 | 5956 | 0 | 0 | 2344 | $0.0018 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r9 referee | anthropic/claude-opus-5.5 | 1 | 5956 | 0 | 0 | 1180 | $0.0474 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r10 1 | anthropic/claude-haiku-5.5 | 1 | 5313 | 0 | 0 | 1997 | $0.0015 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r10 2 | anthropic/claude-haiku-5.5 | 1 | 5313 | 0 | 0 | 1787 | $0.0014 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r10 referee | anthropic/claude-opus-5.5 | 1 | 5313 | 0 | 0 | 1158 | $0.0444 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r11 1 | anthropic/claude-haiku-5.5 | 1 | 5028 | 0 | 0 | 3042 | $0.0020 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r11 2 | anthropic/claude-haiku-5.5 | 1 | 5028 | 0 | 0 | 2934 | $0.0020 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r11 referee | anthropic/claude-opus-5.5 | 1 | 5028 | 0 | 0 | 1090 | $0.0419 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r12 1 | anthropic/claude-haiku-5.5 | 1 | 3834 | 0 | 0 | 1464 | $0.0011 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r12 2 | anthropic/claude-haiku-5.5 | 1 | 3834 | 0 | 0 | 1701 | $0.0012 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r13 1 | anthropic/claude-haiku-5.5 | 1 | 5001 | 0 | 0 | 1935 | $0.0015 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r13 2 | anthropic/claude-haiku-5.5 | 1 | 5001 | 0 | 0 | 1818 | $0.0014 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r13 referee | anthropic/claude-opus-5.5 | 1 | 5001 | 0 | 0 | 1246 | $0.0449 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r14 1 | anthropic/claude-haiku-5.5 | 1 | 4749 | 0 | 0 | 1833 | $0.0014 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r14 2 | anthropic/claude-haiku-5.5 | 1 | 4749 | 0 | 0 | 1559 | $0.0013 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r14 referee | anthropic/claude-opus-5.5 | 1 | 4749 | 0 | 0 | 1066 | $0.0403 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r15 1 | anthropic/claude-haiku-5.5 | 1 | 4894 | 0 | 0 | 1474 | $0.0012 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r15 2 | anthropic/claude-haiku-5.5 | 1 | 4894 | 0 | 0 | 1857 | $0.0014 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r15 referee | anthropic/claude-opus-5.5 | 1 | 4894 | 0 | 0 | 855 | $0.0367 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r16 1 | anthropic/claude-haiku-5.5 | 1 | 5394 | 0 | 0 | 1885 | $0.0015 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r16 2 | anthropic/claude-haiku-5.5 | 1 | 5394 | 0 | 0 | 1857 | $0.0015 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r17 1 | anthropic/claude-haiku-5.5 | 1 | 6543 | 0 | 0 | 1744 | $0.0015 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r17 2 | anthropic/claude-haiku-5.5 | 1 | 6543 | 0 | 0 | 1833 | $0.0016 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r17 referee | anthropic/claude-opus-5.5 | 1 | 6543 | 0 | 0 | 1222 | $0.0506 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r18 1 | anthropic/claude-haiku-5.5 | 1 | 4959 | 0 | 0 | 2281 | $0.0016 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r18 2 | anthropic/claude-haiku-5.5 | 1 | 4959 | 0 | 0 | 2539 | $0.0018 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r18 referee | anthropic/claude-opus-5.5 | 1 | 4959 | 0 | 0 | 1154 | $0.0429 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r19 1 | anthropic/claude-haiku-5.5 | 1 | 4256 | 0 | 0 | 2491 | $0.0017 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r19 2 | anthropic/claude-haiku-5.5 | 1 | 4256 | 0 | 0 | 2112 | $0.0015 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r19 referee | anthropic/claude-opus-5.5 | 1 | 4256 | 0 | 0 | 1020 | $0.0374 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r20 1 | anthropic/claude-haiku-5.5 | 1 | 3784 | 0 | 0 | 1230 | $0.0010 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r20 2 | anthropic/claude-haiku-5.5 | 1 | 3784 | 0 | 0 | 1215 | $0.0010 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r20 referee | anthropic/claude-opus-5.5 | 1 | 3784 | 0 | 0 | 842 | $0.0320 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r21 1 | anthropic/claude-haiku-5.5 | 1 | 4039 | 0 | 0 | 484 | $0.0006 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r21 2 | anthropic/claude-haiku-5.5 | 1 | 4039 | 0 | 0 | 1334 | $0.0011 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r21 referee | anthropic/claude-opus-5.5 | 1 | 4039 | 0 | 0 | 978 | $0.0357 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r22 1 | anthropic/claude-haiku-5.5 | 1 | 3919 | 0 | 0 | 1782 | $0.0013 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r22 2 | anthropic/claude-haiku-5.5 | 1 | 3919 | 0 | 0 | 1752 | $0.0013 | 0 | 0 | 0 |
+| score DUNGEON-T1 | round r22 referee | anthropic/claude-opus-5.5 | 1 | 3919 | 0 | 0 | 908 | $0.0338 | 0 | 0 | 0 |
+| score DUNGEON-T1 | after bram 1 | anthropic/claude-haiku-5.5 | 1 | 601 | 0 | 0 | 409 | $0.0003 | 0 | 0 | 0 |
+| score DUNGEON-T1 | after bram 2 | anthropic/claude-haiku-5.5 | 1 | 601 | 0 | 0 | 412 | $0.0003 | 0 | 0 | 0 |
+| score DUNGEON-T1 | after bram referee | anthropic/claude-opus-5.5 | 1 | 601 | 0 | 0 | 307 | $0.0085 | 0 | 0 | 0 |
+| score DUNGEON-T1 | after sefa 1 | anthropic/claude-haiku-5.5 | 1 | 981 | 0 | 0 | 79 | $0.0001 | 0 | 0 | 0 |
+| score DUNGEON-T1 | after sefa 2 | anthropic/claude-haiku-5.5 | 1 | 981 | 0 | 0 | 70 | $0.0001 | 0 | 0 | 0 |
+| score DUNGEON-T1 | after pell 1 | anthropic/claude-haiku-5.5 | 1 | 447 | 0 | 0 | 366 | $0.0002 | 0 | 0 | 0 |
+| score DUNGEON-T1 | after pell 2 | anthropic/claude-haiku-5.5 | 1 | 447 | 0 | 0 | 304 | $0.0002 | 0 | 0 | 0 |
