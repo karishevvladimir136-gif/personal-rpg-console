@@ -19,8 +19,11 @@ after 9 of 27 seats; waiting for the owner's word on the resume.**
   player note; not asked again. A resume gap found and fixed (`3a9b408`): two DeepSeek answers were cut between their
   checks; a resume now finishes them first; a refused judge call is recorded and never re-sent.
 - **Built:** `scripts/persona-emotions/planner-seat-3.mjs` (`--recount`, `--recount-tables`, `--pack`, `--freeze`,
-  `--dry`, `--go`, `--resume`, `--report`). Tests `tests/planner-seat-3.test.mjs` (17, no network) pass; typecheck and
-  zero-warning lint pass at `c0f3c9f`; the full suite and the build were still running at this update.
+  `--dry`, `--go`, `--resume`, `--report`). Tests `tests/planner-seat-3.test.mjs` (17, no network) pass. At `c0f3c9f`:
+  typecheck, zero-warning lint and the build pass; the full suite 3 187 tests, 3 155 pass, 2 fail, 3 cancelled, 27
+  skipped — the 2 failures are git-history tests needing commits absent from this clone (`mega-dm-bakeoff-completion`:
+  a fixture path at `b39c929`; `mega-dm-living-smoke`: bad object `33c6163`), the 3 cancelled `d2a-composition` as on
+  the base; none touches this stage's code.
 - **Spend:** OpenRouter $1.66 of $30; OpenAI $0 of $12.
 - **Next:** the owner's choice — resume as is, resume with Opus kept off DeepSeek's reasoning field, or stop — then the
   remaining 18 seats and the report.
