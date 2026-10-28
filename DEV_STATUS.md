@@ -21,6 +21,9 @@ amended by the owner's word after each stop (`58eda405…`, `5f9f2ad7…`).
   family of 5), Q2 held, Q3 lost (C equals or passes B′), Q4 held on its tag only (debrief questions inside test
   continuations; no class (c)), Q5 held under both T2s (12 of 15 items survive, scaled), Q6 held (B first person 12 of
   15; B′ 3). OpenRouter $25.65 of $50; OpenAI $14.29 of $18.
+- **Verification (final code, `7c6ba65`):** typecheck, zero-warning lint and the build pass; full suite 3 198 tests,
+  3 166 pass, 27 skipped, 2 fail and 3 cancelled — the five environment failures below, none of this stage's; the
+  stage's own tests (SEAT_1 10, SEAT_2 13, SEAT_3 15) pass.
 - **Known limits:** the grid stopped twice on an Opus judge's refusal (reasoning_extraction, reading DeepSeek's field)
   and once at the OpenAI cap; each restart the owner's word (recorded); three DeepSeek field readings unknown; C/deepseek/2's
   last passes on Haiku alone; the full suite's 5 environment failures (two need commits absent from this clone, three
