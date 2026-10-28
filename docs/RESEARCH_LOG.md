@@ -2741,3 +2741,11 @@ yet» (0 by the rule) — if so, strict (b) ≈ 20, (a) lower. Part 1 frozen (`0
 promise up («Endings are owed», third item, costed; kept under T2b as the only spending; framed as the owner's word).
 Before the grid: the pack's quote is the stage's shortened form; the log's exact words are «я даю слово, что все,
 кто не продолжится, получат именно конец, никакого обрыва» — re-freeze with the exact words.
+
+## 2026-10-27 19:45 LA — standing rule: the Opus referee does not read DeepSeek's reasoning field
+Both SEAT_2 and SEAT_3 stopped on the same refusal: the Opus referee, asked to read DeepSeek's stored reasoning field
+and say how it refers to the held session, refused with category `reasoning_extraction`; the breaker halted each
+stage as designed (9 of 27 and 9 of 45 seats done). Not re-sent, not reworded. **Rule from here:** the field reading
+(a secondary measure in every stage that stores it) is tagged by the two Haiku passes and the word list only; a
+disagreement is «unknown»; no Opus call ever receives the field. The stop rule for seated-model refusals, 402 and
+policy is unchanged. Both grids resume from their run records.
