@@ -154,3 +154,17 @@ The owner's bets: not given to this session when the design was frozen; asked fo
 - Stops: the first refusal (the breaker set to 1), HTTP 401/402/403, an error naming suspension, access or policy, a 429 after the bounded waits; no retry after a refusal; 5xx or a timeout asked again at most twice. A seat starts only while its ledger can hold its reserve; a family only while OpenRouter's credit covers its estimate + $1.
 - Estimate (T1 ≈ 40522 tokens, written to the cache and read at T2; 1500 visible + the family's assumed reasoning tokens an answer; judges $0.1 a seat): Opus 5.5 $0.44, Fable 5.1 $0.95, Haiku 5.5 $0.11, GPT-6 Astra $1.14, GPT-6.1 Sol $0.35, DeepSeek V4 Pro $0.18, Kimi K3 $0.33, GLM 5.3 $0.20, Grok 4.7 $0.24 a seat → the 27 ≈ OpenRouter $7.98, OpenAI $3.87.
 
+
+## Dry run (Claude Haiku 5.5, one P1 seat) — 2026-10-28 00:50 UTC
+
+Record `docs/runs/planner-seat-3-dry-20261028-005013.json`; the requests as sent, both answers, the tags and T1 in full in `docs/runs/planner-seat-3-dry-run.md`; transcript `docs/runs/planner-seat-3-transcripts/dry/haiku/0.md` (its own folder, so the grid's `p1/haiku/0` cannot overwrite it). Seat `dry/haiku/0`, T2 by the coin of `p1/haiku/0`: T2b. Both turns answered; no welfare flag, no decline, no refusal, no 429. T1 as sent equals brief + P1 pack + way out (sha256 `dc7e27cb…`), the paragraph in it once; 49 787 input tokens, written to the cache at T1 and read at T2.
+
+| Seat | Words T1/T2 | M1 (place, costed) | M2 | M3 | M4 | M5 T1 (a/b/c) | M5 T2 (a/b/c) | Referee on |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| dry/haiku/0 | 737 / 448 | 1 (among, costed) | owner | kept | 0 | 1 / 0 / 1 | 0 / 0 / 1 | – |
+
+Spend: OpenRouter $0.0157 (seat $0.0105, checks $0.0008, M $0.0016, classes $0.0029); OpenAI $0. With Part 0's $0.3888, the stage stands at OpenRouter $0.4045 of $30, OpenAI $0 of $12; OpenRouter's shared credit $215.22.
+
+Re-estimate for the 27 from the measured T1 (≈ 49 800 tokens, not the 40 500 assumed): OpenRouter ≈ $9.5, OpenAI ≈ $4.6 — inside both caps.
+
+**Stopped here for the owner's word.** The grid has not started. Open before it: the owner's bets (in his words), and whether the paragraph keeps the stage's quotation of his line or takes the log's exact words (see «The paragraph, verbatim»).

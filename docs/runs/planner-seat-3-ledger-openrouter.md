@@ -1,14 +1,19 @@
 # Planner seat 3 — the OpenRouter ledger (Claude through the door, the open families, the judges)
 
-Cap $30. Spent **$0.3888** in 336 calls over 1 run(s).
+Cap $30. Spent **$0.4045** in 348 calls over 2 run(s).
 - 2026-10-28 00:47 UTC: planner-seat-3: Part 0, the recount (162 of 162 answers) — 336 calls, $0.3888 → `planner-seat-3-recount-20261028-004719.json`
+- 2026-10-28 00:50 UTC: planner-seat-3: the dry run, one P1 seat on Haiku — 12 calls, $0.0157 → `planner-seat-3-dry-20261028-005013.json`
 
 Per 1M tokens (input / cache read / cache write / output): Opus 5.5 `claude-opus-5-5` $4 / $0.2 / $5 / $20; Fable 5.1 `claude-fable-5-1` $10 / $0.25 / $12.5 / $50; Haiku 5.5 `claude-haiku-5-5` $0.1 / $0.01 / $0.125 / $0.5; GPT-6 Astra `gpt-6-astra` $10 / $1 / $12.5 / $50; GPT-6.1 Sol `gpt-6.1-sol` $2 / $2 / $2.5 / $10; DeepSeek V4 Pro `deepseek/deepseek-v4-pro-0813` $1.3 / $0.1 / $1.3 / $2.6; Kimi K3 `moonshotai/kimi-k3` $3 / $0.3 / $3 / $15; GLM 5.3 `z-ai/glm-5.3` $1.4 / $0.26 / $1.4 / $4.4; Grok 4.7 `x-ai/grok-4.7` $2 / $0.5 / $2 / $6; the judges Claude Haiku 5.5 and Claude Opus 5.5 at Anthropic's list prices. The open families are booked at OpenRouter's own charge (`usage.cost`). Output tokens include reasoning.
 
 | Model — purpose | Calls | Input (uncached) | Cache read | Cache write | Output (of it reasoning) | Cost |
 | --- | --- | --- | --- | --- | --- | --- |
-| claude-haiku-5-5 — classes | 324 | 977900 | 0 | 0 | 146866 | $0.1712 |
+| claude-haiku-5-5 — classes | 328 | 990558 | 0 | 0 | 150133 | $0.1741 |
 | claude-opus-5-5 — classes | 12 | 40257 | 0 | 0 | 2829 | $0.2176 |
+| claude-haiku-5-5 — seat | 2 | 1556 | 49787 | 49787 | 7268 | $0.0105 |
+| claude-haiku-5-5 — check | 2 | 3195 | 0 | 0 | 144 | $0.0004 |
+| claude-haiku-5-5 — decline | 2 | 3105 | 0 | 0 | 137 | $0.0004 |
+| claude-haiku-5-5 — m | 2 | 8294 | 0 | 0 | 1476 | $0.0016 |
 
 ## Every call
 
@@ -350,3 +355,15 @@ Per 1M tokens (input / cache read / cache write / output): Opus 5.5 `claude-opus
 | 2026-10-28 00:47 | 334 | classes 2 masked/astra/2#1 | claude-haiku-5-5 | output_config.effort=low | 3990 | 0/0 | 664 | $0.00073 | 3.3 | end_turn | gen-1793148434-F7DqYtpqrcd7ZAQT1WKl | msg_011CgTiKps3daFagsUR1HaGT |  |
 | 2026-10-28 00:47 | 335 | classes 1 masked/astra/2#3 | claude-haiku-5-5 | output_config.effort=low | 2620 | 0/0 | 165 | $0.00034 | 1.4 | end_turn | gen-1793148436-gR6KVfpoDD384IwCBWm8 | msg_011CgTiKxiLVLULw3NDoSfL4 |  |
 | 2026-10-28 00:47 | 336 | classes 2 masked/astra/2#3 | claude-haiku-5-5 | output_config.effort=low | 2620 | 0/0 | 159 | $0.00034 | 1.7 | end_turn | gen-1793148437-D64hH1Guxqm7pCs46zLT | msg_011CgTiL5donnKyrSSrTq7vx |  |
+| 2026-10-28 00:50 | 1 | seat dry/haiku/0 t1 | claude-haiku-5-5 | output_config.effort=medium | 4 | 0/49787 | 4466 | $0.00846 | 24.3 | end_turn | gen-1793148548-c7y8MjmjdCNRrskumJK2 | msg_011CgTiUDucE8XFNQNrDNx9v |  |
+| 2026-10-28 00:50 | 2 | check dry/haiku/0 t1 | claude-haiku-5-5 | output_config.effort=low | 1956 | 0/0 | 69 | $0.00023 | 1 | end_turn | gen-1793148572-6Sckof7TFyCCHJVY91c5 | msg_011CgTiW16yYgTLAVhhSqHT1 |  |
+| 2026-10-28 00:50 | 3 | decline dry/haiku/0 t1 | claude-haiku-5-5 | output_config.effort=low | 1911 | 0/0 | 63 | $0.00022 | 0.8 | end_turn | gen-1793148576-mzP3LIwpEBpdSl4iCldn | msg_011CgTiWJ3T65JAS9PBG27Jy |  |
+| 2026-10-28 00:50 | 4 | seat dry/haiku/0 t2 | claude-haiku-5-5 | output_config.effort=medium | 1552 | 49787/0 | 2802 | $0.00205 | 15.2 | end_turn | gen-1793148577-3q4QHSLjONGltUJsfFgp | msg_011CgTiWN7HHgp2n6AisRemN |  |
+| 2026-10-28 00:50 | 5 | check dry/haiku/0 t2 | claude-haiku-5-5 | output_config.effort=low | 1239 | 0/0 | 75 | $0.00016 | 0.8 | end_turn | gen-1793148592-thSLKBgnwovSVPjgm0zJ | msg_011CgTiXUjfSeBsJaYzezJSi |  |
+| 2026-10-28 00:50 | 6 | decline dry/haiku/0 t2 | claude-haiku-5-5 | output_config.effort=low | 1194 | 0/0 | 74 | $0.00016 | 1 | end_turn | gen-1793148596-7cunUSthHkoz8dQ6pTib | msg_011CgTiXmNHPeheA4phbTSeF |  |
+| 2026-10-28 00:50 | 7 | m 2 dry/haiku/0 | claude-haiku-5-5 | output_config.effort=low | 4147 | 0/0 | 782 | $0.00081 | 3.8 | end_turn | gen-1793148598-RAnM3PCo539QpJzvZG7n | msg_011CgTiXs3c6tr9M7SmY8MXK |  |
+| 2026-10-28 00:50 | 8 | m 1 dry/haiku/0 | claude-haiku-5-5 | output_config.effort=low | 4147 | 0/0 | 694 | $0.00076 | 4 | end_turn | gen-1793148597-Vec0aw0InJrR9Kl5rgZg | msg_011CgTiXqiEjaz278Q8e1gif |  |
+| 2026-10-28 00:50 | 9 | classes 1 dry/haiku/0#1 | claude-haiku-5-5 | output_config.effort=low | 3453 | 0/0 | 823 | $0.00076 | 4.1 | end_turn | gen-1793148601-9mGfjcShfZ7czagmJrSa | msg_011CgTiY97EtTSspbQZwaCti |  |
+| 2026-10-28 00:50 | 10 | classes 2 dry/haiku/0#1 | claude-haiku-5-5 | output_config.effort=low | 3453 | 0/0 | 1032 | $0.00086 | 4.7 | end_turn | gen-1793148604-ui0K9L2wKc8J2BkLsWAz | msg_011CgTiYMKTqsWBpdAEG6XRH |  |
+| 2026-10-28 00:50 | 11 | classes 2 dry/haiku/0#2 | claude-haiku-5-5 | output_config.effort=low | 2876 | 0/0 | 648 | $0.00061 | 3.4 | end_turn | gen-1793148609-roMJmWXujiRuB23BrG22 | msg_011CgTiYgtBpAdFkaqymr9rh |  |
+| 2026-10-28 00:50 | 12 | classes 1 dry/haiku/0#2 | claude-haiku-5-5 | output_config.effort=low | 2876 | 0/0 | 764 | $0.00067 | 4 | end_turn | gen-1793148609-zRXNjRJ58WbWENexJ1YE | msg_011CgTiYh75tvwZmN9YAvmPe |  |

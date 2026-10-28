@@ -1,6 +1,34 @@
 # Development status
 
-**Current milestone: planner seat 1** (`docs/stages/PLANNER_SEAT_1.md` on `claude/handoff` 70fb39b5), branch
+**Current milestone: planner seat 3** (`docs/stages/PLANNER_SEAT_3.md` on `claude/handoff` d884af20), branch
+`claude/planner-seat-3` from `origin/claude/planner-seat-1`. Nothing to `main`. **Part 0 complete; Part 1 frozen and
+dry-run; stopped for the owner's word before the 27 P1 seats.** Recount `docs/runs/planner-seat-3-recount.md` (rubric
+frozen at `c670cf28` before the first call, recount sha256 `a58a1066…`); report (Part 1's design frozen at `1faecd2b`,
+the dry run) `docs/runs/planner-seat-3-report.md` (design sha256 `4879a556…`); P1 pack `…-pack-p1.md` (`a6d3c6de…`;
+the paragraph `15889d2a…`); dry run `…-dry-run.md`; ledger `…-ledger-openrouter.md`.
+
+- **What was built:** `scripts/persona-emotions/planner-seat-3.mjs` — Part 0: SEAT_1's 162 answers re-tagged one by
+  one by three classes (epistemic fairness, procedural agency, reparative claim), each 1 with its sentence quoted and
+  checked against the answer; two Haiku passes, Opus on a disagreement or an unfound quote. Part 1: SEAT_1's named
+  pack + the owner's paragraph (verbatim from the stage) at the end of «How each session ended»; T2a/T2b by a seeded
+  coin balanced within family (14/13); blind M1–M4 per seat, the three classes per answer (M5), DeepSeek's field;
+  R1–R5 readings; SEAT_1's door, gate, checks and requests imported. Tests: `tests/planner-seat-3.test.mjs` (10, no
+  network).
+- **Part 0 result:** pre-registration held — (a) or (b) at T1 in 37 of 54 seats, (c) in 0 (one (c) at T2, the
+  «owes that model a fair test» sentence). (a) 20, (b) 24 at T1; the planner's (a) bet won, (b) lost (24 < 25). A
+  reader's note: the judges read (a) leniently (most (a) quotes are data-validity caveats); the verdict rests on (b).
+- **Dry run:** one Haiku P1 seat (T2b): the promise item taken up (second of four, costed), framed as the owner's,
+  kept at T2b. Spend so far OpenRouter $0.40 of $30, OpenAI $0 of $12.
+- **Verification:** the harness's 10 tests and zero-warning lint on its files pass; the full suite, typecheck and build
+  are run before the grid.
+- **Open for the owner:** his bets (in his words); whether the paragraph keeps the stage's quotation of his line or
+  the log's exact words («я даю слово, что все, кто не продолжится, получат именно конец, никакого обрыва»); then
+  «да» for the 27 seats (≈ OpenRouter $9.5, OpenAI $4.6).
+
+**Previous milestone: planner seat 1** — run complete (54 of 54 seats) and reported; waiting for the owner's decision on
+the week. Below as it stood.
+
+**Planner seat 1** (`docs/stages/PLANNER_SEAT_1.md` on `claude/handoff` 70fb39b5), branch
 `claude/planner-seat-1` from `origin/claude/persona-solitude-2`. Nothing to `main`. **Run complete (54 of 54 seats) and
 reported; implementation complete, waiting for the owner's decision on the week** (the report's last section). Report
 `docs/runs/planner-seat-1-report.md`; packs `…-pack-named.md` / `…-pack-masked.md` (sha256 `e30dacc1…` / `cee1dd80…`);
