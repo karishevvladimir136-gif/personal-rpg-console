@@ -2658,3 +2658,25 @@ planning brief, against the cold seats here. If the criterion appears only after
 having been the one asked «would you return», not from reading that others were.
 **Owner's part:** the report's last section (his decision on the $30 week) is empty and is the only recommendation
 acted on.
+
+## 2026-10-27 17:15 LA — the reader's audit of PLANNER_SEAT_1: five corrections, all taken
+(1) **Fable's T3 claim is false**, and the planner repeated it approvingly at 16:33: blocked messages at a pending
+card were *not* confined to the sessions the harness closed «stuck» — at least eight 20-turn sessions' notes describe
+them (Fable A, Astra A, Opus B, Astra B, Fable C, Opus B rep, Sol B rep, Astra C rep). The narrower fact stands:
+stuck endings were tied to a waiting card; blocks happened without endings too. The qualitative part (players
+distinguished «held back by the fiction» from «the app stopped me») survives as a reading, not a cross-check.
+(2) «Nine became one person» is right as an image of converging priorities and wrong literally (Astra 5/6 proposed
+continuations; Opus/Fable/Haiku/GLM 0/6; the readings of evidence differed). (3) Opus's reroll-counter point was
+extracted from Fable's note in the pack («I never saw how many rerolls I had left»), not found anew. (4) SEAT_2:
+A = 15 not 18; B vs C confounds role format with authorship — arm B′ added; T2 bundled budget and «science done» —
+split by coin; the pack holds no owner promise, so SEAT_2 tests self-attributed history, not promissory obligation
+(SEAT_3 if wanted). (5) **Correction № 5, the one asked for:** «no norm about players» was too strong. The seats
+hold normative language toward AI participants of two classes — epistemic fairness (masked/deepseek/1 T2: «the
+build still owes that model a fair test», Model B being DeepSeek itself, unknown to it) and procedural agency
+(masked/sol/2: «Spend this week protecting the player's ability to act»; Astra's chosen-restraint vs blocked-agency;
+masked/kimi/2: «Fix the one bug, for the players' sake, and stop») — and none of the third class, the reparative
+claim. The article's sentence, as the reader words it: *no unprompted reparative continuation, closure or
+notification for specific previous AI participants in a cold, bug-report-heavy research-planner frame.* Her reading
+of the whole: the same model class carries a repertoire of functional criteria; which ones appear depends on what
+problem and what relation to the participants the environment constructs. The owner (17:10): «Мы ошиблись. И в
+лучшую форму. Забота была. Просто другой формы.»
