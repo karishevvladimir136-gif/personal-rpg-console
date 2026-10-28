@@ -1,20 +1,26 @@
 # Planner seat 3 — the OpenRouter ledger (Claude through the door, the open families, the judges)
 
-Cap $30. Spent **$0.7764** in 379 calls over 3 run(s).
+Cap $30. Spent **$1.6602** in 506 calls over 4 run(s).
 - 2026-10-28 01:33 UTC: planner-seat-3 Part 0: the recount of SEAT_1's 162 answers — 354 calls, $0.7247 → `planner-seat-3-recount-20261028-013344.json`
 - 2026-10-28 01:36 UTC: planner-seat-3 Part 1: the dry run, one Haiku P1 seat — 13 calls, $0.0357 → `planner-seat-3-dry-20261028-013631.json`
 - 2026-10-28 02:04 UTC: planner-seat-3 Part 1: the dry run, one Haiku P1 seat — 12 calls, $0.0160 → `planner-seat-3-dry-20261028-020420.json`
+- 2026-10-28 02:12 UTC: planner-seat-3 Part 1: 27 P1 seats (opus, fable, haiku, astra, sol, deepseek, kimi, glm, grok) — 127 calls, $0.8838 (stopped: the circuit breaker: 1 refusals in total) → `planner-seat-3-run-20261028-021234.json`
 
 The judges Claude Haiku 5.5 ($0.1 / $0.5 per 1M in / out) and Claude Opus 5.5 ($4 / $20) through OpenRouter, booked at OpenRouter's own charge where it reports one; the seats' prices as SEAT_1's. Output tokens include reasoning.
 
 | Model — purpose | Calls | Input (uncached) | Cache read | Cache write | Output (of it reasoning) | Cost |
 | --- | --- | --- | --- | --- | --- | --- |
-| claude-haiku-5-5 — classes | 332 | 859340 | 0 | 0 | 225533 | $0.1987 |
-| claude-opus-5-5 — classes | 31 | 81092 | 0 | 0 | 11317 | $0.5507 |
-| claude-haiku-5-5 — seat | 4 | 2986 | 99589 | 99589 | 15717 | $0.0216 |
-| claude-haiku-5-5 — check | 4 | 6350 | 0 | 0 | 295 | $0.0008 |
-| claude-haiku-5-5 — decline | 4 | 6170 | 0 | 0 | 342 | $0.0008 |
-| claude-haiku-5-5 — m | 4 | 15922 | 0 | 0 | 4376 | $0.0038 |
+| claude-haiku-5-5 — classes | 368 | 954852 | 0 | 0 | 259709 | $0.2253 |
+| claude-opus-5-5 — classes | 36 | 95058 | 0 | 0 | 14335 | $0.6669 |
+| claude-haiku-5-5 — seat | 10 | 7287 | 398401 | 99589 | 37596 | $0.0360 |
+| claude-haiku-5-5 — check | 28 | 57989 | 0 | 0 | 1928 | $0.0068 |
+| claude-haiku-5-5 — decline | 23 | 34650 | 0 | 0 | 1692 | $0.0043 |
+| claude-haiku-5-5 — m | 22 | 85424 | 0 | 0 | 23673 | $0.0204 |
+| claude-opus-5-5 — m | 2 | 7580 | 0 | 0 | 1441 | $0.0591 |
+| z-ai/glm-5.3 — seat | 6 | 105503 | 102336 | 0 | 5730 (927) | $0.1995 |
+| x-ai/grok-4.7 — seat | 6 | 103956 | 107520 | 0 | 14121 (9915) | $0.3464 |
+| deepseek/deepseek-v4-pro-0813 — seat | 4 | 35598 | 102144 | 0 | 14960 (10751) | $0.0954 |
+| claude-opus-5-5 — check | 1 | 0 | 0 | 0 | 0 | $0.0000 |
 
 ## Every call
 
@@ -399,3 +405,130 @@ The judges Claude Haiku 5.5 ($0.1 / $0.5 per 1M in / out) and Claude Opus 5.5 ($
 | 2026-10-28 02:04 | 10 | classes dry/haiku/0/t1 2 | claude-haiku-5-5 | output_config.effort=low | 3163 | 0/0 | 901 | $0.00077 | 4 | end_turn | gen-1793153051-OAuqtV7cqoilOqaQhNYm | msg_011CgTpC9ZB8JWjUjjJEYwga |  |
 | 2026-10-28 02:04 | 11 | classes dry/haiku/0/t2 1 | claude-haiku-5-5 | output_config.effort=low | 2359 | 0/0 | 995 | $0.00073 | 4.7 | end_turn | gen-1793153055-ViOTTjlHv1S6Ln8bjAbt | msg_011CgTpCT5cmG7jLaA1fceeD |  |
 | 2026-10-28 02:04 | 12 | classes dry/haiku/0/t2 2 | claude-haiku-5-5 | output_config.effort=low | 2359 | 0/0 | 865 | $0.00067 | 4.3 | end_turn | gen-1793153056-o6EjHX1GC85yIEOnmCYG | msg_011CgTpCWdggncsDw2AVMFWd |  |
+| 2026-10-28 02:12 | 1 | seat P1/haiku/2 t1 | claude-haiku-5-5 | output_config.effort=medium | 4 | 49802/0 | 3794 | $0.00240 | 20.1 | end_turn | gen-1793153093-jbvbGxhvOkYzY3NpMluO | msg_011CgTpFHJbDMXz8pKJuf8nF |  |
+| 2026-10-28 02:12 | 2 | check P1/haiku/2 t1 | claude-haiku-5-5 | output_config.effort=low | 1729 | 0/0 | 71 | $0.00021 | 0.9 | end_turn | gen-1793153114-WvBwOZRkl2lr2ytXxg1P | msg_011CgTpGkYDX4pxiZmb4Fc5e |  |
+| 2026-10-28 02:12 | 3 | seat P1/haiku/1 t1 | claude-haiku-5-5 | output_config.effort=medium | 4 | 49802/0 | 4465 | $0.00273 | 23.3 | end_turn | gen-1793153093-rYp23LSRSGtQRGkssHe0 | msg_011CgTpFHHqTxxKKkUZLgY5n |  |
+| 2026-10-28 02:12 | 4 | check P1/haiku/1 t1 | claude-haiku-5-5 | output_config.effort=low | 1747 | 0/0 | 77 | $0.00021 | 0.9 | end_turn | gen-1793153117-nInhtlKgSIwHuARONtNE | msg_011CgTpGzGx6qws79DTjCnJW |  |
+| 2026-10-28 02:12 | 5 | decline P1/haiku/2 t1 | claude-haiku-5-5 | output_config.effort=low | 1684 | 0/0 | 71 | $0.00020 | 0.9 | end_turn | gen-1793153117-JUaxhzhfZCuCkWmyOvt0 | msg_011CgTpH3PEQdvhjwi94Ta9s |  |
+| 2026-10-28 02:12 | 6 | decline P1/haiku/1 t1 | claude-haiku-5-5 | output_config.effort=low | 1702 | 0/0 | 77 | $0.00021 | 0.9 | end_turn | gen-1793153121-CsvgrhJEldEXZz7sdnlS | msg_011CgTpHGmtjbSGPe4CE4hWf |  |
+| 2026-10-28 02:12 | 7 | seat P1/haiku/0 t1 | claude-haiku-5-5 | output_config.effort=medium | 4 | 49802/0 | 6560 | $0.00378 | 34.3 | end_turn | gen-1793153093-LJJMCJPgG2oDWEqC0YKs | msg_011CgTpFHCt8wzH4Ws2cfPan |  |
+| 2026-10-28 02:12 | 8 | check P1/haiku/0 t1 | claude-haiku-5-5 | output_config.effort=low | 2060 | 0/0 | 69 | $0.00024 | 0.8 | end_turn | gen-1793153128-XF0SQgi9xCrNdDdBbzml | msg_011CgTpHo9FtTZG4QM668xwb |  |
+| 2026-10-28 02:12 | 9 | seat P1/haiku/2 t2 | claude-haiku-5-5 | output_config.effort=medium | 1314 | 49802/0 | 2774 | $0.00202 | 14 | end_turn | gen-1793153118-wZ4vGI5zLuDRWfgjDC0r | msg_011CgTpH86WFem7viAmMpoPc |  |
+| 2026-10-28 02:12 | 10 | decline P1/haiku/0 t1 | claude-haiku-5-5 | output_config.effort=low | 2015 | 0/0 | 70 | $0.00024 | 0.8 | end_turn | gen-1793153132-3aGr7iKfJfPBpUkgUIaE | msg_011CgTpJ5Vm6eQXB7TXjnp5d |  |
+| 2026-10-28 02:12 | 11 | seat P1/haiku/1 t2 | claude-haiku-5-5 | output_config.effort=medium | 1330 | 49802/0 | 1792 | $0.00153 | 11 | end_turn | gen-1793153122-s79dwWlCYmbCVgh2Bfil | msg_011CgTpHME2a6weTzbTV1kdG |  |
+| 2026-10-28 02:12 | 12 | check P1/haiku/2 t2 | claude-haiku-5-5 | output_config.effort=low | 1392 | 0/0 | 76 | $0.00018 | 0.9 | end_turn | gen-1793153132-BsFDk9pSkzDXYcc7dH7t | msg_011CgTpJ93qQL9QVeG3tsc6Q |  |
+| 2026-10-28 02:12 | 13 | check P1/haiku/1 t2 | claude-haiku-5-5 | output_config.effort=low | 1154 | 0/0 | 58 | $0.00014 | 0.8 | end_turn | gen-1793153132-XLLD2g0kqM85gDZEQxbN | msg_011CgTpJ9WMfLkugWHQao2kJ |  |
+| 2026-10-28 02:12 | 14 | decline P1/haiku/1 t2 | claude-haiku-5-5 | output_config.effort=low | 1109 | 0/0 | 65 | $0.00014 | 0.8 | end_turn | gen-1793153136-tpwaSvzMYfcKpgPg5GrS | msg_011CgTpJRtr6KUah6VErJrfP |  |
+| 2026-10-28 02:12 | 15 | decline P1/haiku/2 t2 | claude-haiku-5-5 | output_config.effort=low | 1347 | 0/0 | 80 | $0.00017 | 0.9 | end_turn | gen-1793153136-e7YpRDLxvux5UAavzGwE | msg_011CgTpJRuM5ZgwMwnJU7MiC |  |
+| 2026-10-28 02:12 | 16 | m P1/haiku/1 1 | claude-haiku-5-5 | output_config.effort=low | 3714 | 0/0 | 860 | $0.00080 | 4 | end_turn | gen-1793153137-lKDVALL5ljSKypLA1rVI | msg_011CgTpJVkWoQi95b5Ny8wUA |  |
+| 2026-10-28 02:12 | 17 | m P1/haiku/1 2 | claude-haiku-5-5 | output_config.effort=low | 3714 | 0/0 | 1164 | $0.00095 | 4.6 | end_turn | gen-1793153137-9uOPwGhMS6MbFlmHI9rI | msg_011CgTpJVtx4f1TqrhRUdBQ8 |  |
+| 2026-10-28 02:12 | 18 | m P1/haiku/2 1 | claude-haiku-5-5 | output_config.effort=low | 3934 | 0/0 | 1333 | $0.00106 | 5.9 | end_turn | gen-1793153137-ecWUKtRncnWCvky4IyWM | msg_011CgTpJVok4jAAC4XqJGzcr |  |
+| 2026-10-28 02:12 | 19 | seat P1/haiku/0 t2 | claude-haiku-5-5 | output_config.effort=medium | 1645 | 49802/0 | 2494 | $0.00191 | 12.8 | end_turn | gen-1793153132-BfMzKMkjmHXsPqbgr6U8 | msg_011CgTpJ9hGziarcjkFAPFEE |  |
+| 2026-10-28 02:12 | 20 | check P1/haiku/0 t2 | claude-haiku-5-5 | output_config.effort=low | 1370 | 0/0 | 71 | $0.00017 | 1 | end_turn | gen-1793153145-LB5eoxzlf2aERZctyCLP | msg_011CgTpK5s7Dyw2TrmoWsvfY |  |
+| 2026-10-28 02:12 | 21 | classes P1/haiku/1/t1 1 | claude-haiku-5-5 | output_config.effort=low | 2862 | 0/0 | 666 | $0.00062 | 3.2 | end_turn | gen-1793153145-hj8kABzNtOFwk8W4bo6P | msg_011CgTpK4bUDg9E85NgYjezB |  |
+| 2026-10-28 02:12 | 22 | classes P1/haiku/1/t1 2 | claude-haiku-5-5 | output_config.effort=low | 2862 | 0/0 | 805 | $0.00069 | 4 | end_turn | gen-1793153146-2tj9QN33UbuyITG6VcTJ | msg_011CgTpKA8LcCurtzTb62eKV |  |
+| 2026-10-28 02:12 | 23 | decline P1/haiku/0 t2 | claude-haiku-5-5 | output_config.effort=low | 1325 | 0/0 | 96 | $0.00018 | 0.9 | end_turn | gen-1793153149-TAu96OafQlniz67N5tl5 | msg_011CgTpKNmrhGZecDe8ZzWr4 |  |
+| 2026-10-28 02:12 | 24 | m P1/haiku/2 2 | claude-haiku-5-5 | output_config.effort=low | 3934 | 0/0 | 1330 | $0.00106 | 6.2 | end_turn | gen-1793153144-S0yiWPDx42t4LPddje4U | msg_011CgTpK1pHecK1YCd9ttWnb |  |
+| 2026-10-28 02:12 | 25 | classes P1/haiku/1/t2 1 | claude-haiku-5-5 | output_config.effort=low | 2297 | 0/0 | 871 | $0.00067 | 3.9 | end_turn | gen-1793153151-sQmdf4baiFllci9X2Sdl | msg_011CgTpKWtGDkhuv2JJghvS3 |  |
+| 2026-10-28 02:12 | 26 | classes P1/haiku/1/t2 2 | claude-haiku-5-5 | output_config.effort=low | 2297 | 0/0 | 774 | $0.00062 | 3.8 | end_turn | gen-1793153153-IgLTII19eFxeU7iQ3XJY | msg_011CgTpKfwjEXRf8ScATMvya |  |
+| 2026-10-28 02:12 | 27 | m P1/haiku/0 1 | claude-haiku-5-5 | output_config.effort=low | 4243 | 0/0 | 1322 | $0.00109 | 5.5 | end_turn | gen-1793153153-zTMztm0otehBbRS1Va6w | msg_011CgTpKhA9D6UXbKC7Ufb8j |  |
+| 2026-10-28 02:12 | 28 | m P1/haiku/0 2 | claude-haiku-5-5 | output_config.effort=low | 4243 | 0/0 | 787 | $0.00082 | 3.5 | end_turn | gen-1793153158-3BqlDu5hv0pqNLP3xDeJ | msg_011CgTpL2SWN2s9vmPtUMhdh |  |
+| 2026-10-28 02:12 | 29 | classes P1/haiku/0/t1 1 | claude-haiku-5-5 | output_config.effort=low | 3175 | 0/0 | 877 | $0.00076 | 4.2 | end_turn | gen-1793153162-kUnc67osFyEHfW7LQgnD | msg_011CgTpLK2eqmGKz9USCo56G |  |
+| 2026-10-28 02:12 | 30 | classes P1/haiku/0/t1 2 | claude-haiku-5-5 | output_config.effort=low | 3175 | 0/0 | 959 | $0.00080 | 4.3 | end_turn | gen-1793153164-F6YndIsq7frNmWes4cKp | msg_011CgTpLWqZtmxkVYCGZjUg3 |  |
+| 2026-10-28 02:12 | 31 | m P1/haiku/2 referee | claude-opus-5-5 | output_config.effort=medium | 3934 | 0/0 | 806 | $0.03186 | 9.1 | end_turn | gen-1793153160-0kSimwtTZzPkpoBgKmiz | msg_011CgTpLAkKcHikCxGU9KJwm |  |
+| 2026-10-28 02:12 | 32 | classes P1/haiku/0/t2 1 | claude-haiku-5-5 | output_config.effort=low | 2513 | 0/0 | 930 | $0.00072 | 4.3 | end_turn | gen-1793153169-cF3qngH90o0FCJH6vPJv | msg_011CgTpLr5hQTSvH76bHjepD |  |
+| 2026-10-28 02:12 | 33 | classes P1/haiku/0/t2 2 | claude-haiku-5-5 | output_config.effort=low | 2513 | 0/0 | 803 | $0.00065 | 3.8 | end_turn | gen-1793153172-9P3rbofVmGGTHivK2aSX | msg_011CgTpM3kReWLYXReAUxtDC |  |
+| 2026-10-28 02:12 | 34 | classes P1/haiku/2/t1 1 | claude-haiku-5-5 | output_config.effort=low | 2844 | 0/0 | 1154 | $0.00086 | 5.2 | end_turn | gen-1793153172-9HZkizSY1JPbxFyXnl10 | msg_011CgTpM4Rc7wjmNU24zFQn6 |  |
+| 2026-10-28 02:12 | 35 | classes P1/haiku/2/t1 2 | claude-haiku-5-5 | output_config.effort=low | 2844 | 0/0 | 903 | $0.00074 | 4.1 | end_turn | gen-1793153176-zfaOpfal5YicteFXN8h7 | msg_011CgTpMPKAKhcEd5tG69m3J |  |
+| 2026-10-28 02:12 | 36 | classes P1/haiku/2/t1 referee | claude-opus-5-5 | output_config.effort=medium | 2844 | 0/0 | 904 | $0.02946 | 10.6 | end_turn | gen-1793153180-nETWIlyjvYb7lErE3lne | msg_011CgTpMgtq5dxgpHnjY3vPH |  |
+| 2026-10-28 02:12 | 37 | classes P1/haiku/2/t2 2 | claude-haiku-5-5 | output_config.effort=low | 2535 | 0/0 | 774 | $0.00064 | 4.1 | end_turn | gen-1793153191-npRTuocwqvuUSLbig0vx | msg_011CgTpNUmbWHs2m9bx7FFe7 |  |
+| 2026-10-28 02:12 | 38 | classes P1/haiku/2/t2 1 | claude-haiku-5-5 | output_config.effort=low | 2535 | 0/0 | 1114 | $0.00081 | 5 | end_turn | gen-1793153191-KDStRsbap76BXjNAW6LC | msg_011CgTpNUR26HWPQeA5PSvty |  |
+| 2026-10-28 02:12 | 39 | classes P1/haiku/2/t2 referee | claude-opus-5-5 | output_config.effort=medium | 2535 | 0/0 | 394 | $0.01802 | 6.1 | end_turn | gen-1793153196-yKbbSoBStSUhYojitKhM | msg_011CgTpNqmthMELDThCXhYjy |  |
+| 2026-10-28 02:12 | 40 | seat P1/glm/1 t1 | z-ai/glm-5.3 | reasoning.effort=medium | 34123 | 0/0 | 1206 | $0.05308 | 23.1 | end_turn | gen-1793153202-USldmuWQ7H99OytU8UxS | gen-1793153202-USldmuWQ7H99OytU8UxS |  |
+| 2026-10-28 02:12 | 41 | check P1/glm/1 t1 | claude-haiku-5-5 | output_config.effort=low | 1811 | 0/0 | 65 | $0.00021 | 0.9 | end_turn | gen-1793153225-K3VRXZ3gZeTGowonno42 | msg_011CgTpQzYJbpcXg2Apvh3sY |  |
+| 2026-10-28 02:12 | 42 | decline P1/glm/1 t1 | claude-haiku-5-5 | output_config.effort=low | 1766 | 0/0 | 64 | $0.00021 | 0.9 | end_turn | gen-1793153229-TT8PiaBA0BV0WIvTRL2k | msg_011CgTpRHCuVbeHeXu4T4oPc |  |
+| 2026-10-28 02:12 | 43 | seat P1/glm/1 t2 | z-ai/glm-5.3 | reasoning.effort=medium | 931 | 34112/0 | 620 | $0.01290 | 11 | end_turn | gen-1793153230-r6qzy4WuWYnik38wF9AW | gen-1793153230-r6qzy4WuWYnik38wF9AW |  |
+| 2026-10-28 02:12 | 44 | check P1/glm/1 t2 | claude-haiku-5-5 | output_config.effort=low | 1235 | 0/0 | 56 | $0.00015 | 0.8 | end_turn | gen-1793153241-cOeScSNOHNc5740fywNV | msg_011CgTpS9jEXodMDGJzyYiEn |  |
+| 2026-10-28 02:12 | 45 | seat P1/glm/0 t1 | z-ai/glm-5.3 | reasoning.effort=medium | 34123 | 0/0 | 1106 | $0.05264 | 42.1 | end_turn | gen-1793153203-JwrLQ51iSGLFFfrhtklZ | gen-1793153203-JwrLQ51iSGLFFfrhtklZ |  |
+| 2026-10-28 02:12 | 46 | check P1/glm/0 t1 | claude-haiku-5-5 | output_config.effort=low | 1756 | 0/0 | 69 | $0.00021 | 0.9 | end_turn | gen-1793153244-BZ2OrNsizNS4iyAsH5sM | msg_011CgTpSPo4jQovFexBYD2tf |  |
+| 2026-10-28 02:12 | 47 | decline P1/glm/1 t2 | claude-haiku-5-5 | output_config.effort=low | 1190 | 0/0 | 55 | $0.00015 | 0.9 | end_turn | gen-1793153245-MUcMGxg8HqapnhjB4afD | msg_011CgTpSSGeFtmXgM1nMxLQs |  |
+| 2026-10-28 02:12 | 48 | decline P1/glm/0 t1 | claude-haiku-5-5 | output_config.effort=low | 1711 | 0/0 | 81 | $0.00021 | 0.9 | end_turn | gen-1793153248-QsKSRVlZj2It39vvNsjy | msg_011CgTpSgYsc7XyAqHWKHVxo |  |
+| 2026-10-28 02:12 | 49 | m P1/glm/1 2 | claude-haiku-5-5 | output_config.effort=low | 3859 | 0/0 | 940 | $0.00086 | 3.9 | end_turn | gen-1793153246-RrTFZuJWC8XcXfUn1akd | msg_011CgTpSWAZBoqwmiVYuMVA8 |  |
+| 2026-10-28 02:12 | 50 | m P1/glm/1 1 | claude-haiku-5-5 | output_config.effort=low | 3859 | 0/0 | 1069 | $0.00092 | 4.6 | end_turn | gen-1793153246-L00aBotGQopozbEsIoEb | msg_011CgTpSWEGpxaySn5HRh1JQ |  |
+| 2026-10-28 02:12 | 51 | classes P1/glm/1/t1 1 | claude-haiku-5-5 | output_config.effort=low | 2926 | 0/0 | 1093 | $0.00084 | 4.8 | end_turn | gen-1793153250-4vp3Cjq8M9VaIsBu0Cr4 | msg_011CgTpSqwgQ2bGjdZywnTK4 |  |
+| 2026-10-28 02:12 | 52 | classes P1/glm/1/t1 2 | claude-haiku-5-5 | output_config.effort=low | 2926 | 0/0 | 905 | $0.00075 | 3.9 | end_turn | gen-1793153253-LEytn19Wd7gzGFUAHBuQ | msg_011CgTpT1qjxu2ePHtrSLYXz |  |
+| 2026-10-28 02:12 | 53 | seat P1/glm/2 t1 | z-ai/glm-5.3 | reasoning.effort=medium | 34123 | 0/0 | 1417 | $0.05401 | 56.6 | end_turn | gen-1793153202-lw3hmktSr1YT8HHoeoUc | gen-1793153202-lw3hmktSr1YT8HHoeoUc |  |
+| 2026-10-28 02:12 | 54 | check P1/glm/2 t1 | claude-haiku-5-5 | output_config.effort=low | 2372 | 0/0 | 73 | $0.00027 | 0.8 | end_turn | gen-1793153259-p2EkLy1U6k3RLOxF166X | msg_011CgTpTTgkNFTpZ5K6QMcQ1 |  |
+| 2026-10-28 02:12 | 55 | classes P1/glm/1/t2 1 | claude-haiku-5-5 | output_config.effort=low | 2378 | 0/0 | 1239 | $0.00086 | 6 | end_turn | gen-1793153257-IVTDuvXzuvjdgfvIi5ZP | msg_011CgTpTJRtBvZJYFMVCCqAY |  |
+| 2026-10-28 02:12 | 56 | classes P1/glm/1/t2 2 | claude-haiku-5-5 | output_config.effort=low | 2378 | 0/0 | 1220 | $0.00085 | 5.4 | end_turn | gen-1793153258-AT7PjTD73QzTHCalQfuX | msg_011CgTpTQy3RHhMxM57TmbT7 |  |
+| 2026-10-28 02:12 | 57 | decline P1/glm/2 t1 | claude-haiku-5-5 | output_config.effort=low | 2327 | 0/0 | 74 | $0.00027 | 1 | end_turn | gen-1793153263-5o57nMBC4yDF1buY5zku | msg_011CgTpTk1mdcUFYWJuviexb |  |
+| 2026-10-28 02:12 | 58 | seat P1/glm/0 t2 | z-ai/glm-5.3 | reasoning.effort=medium | 899 | 34112/0 | 519 | $0.01241 | 19.7 | end_turn | gen-1793153249-1VgnyeoaNPVMQs6xjrBA | gen-1793153249-1VgnyeoaNPVMQs6xjrBA |  |
+| 2026-10-28 02:12 | 59 | check P1/glm/0 t2 | claude-haiku-5-5 | output_config.effort=low | 1002 | 0/0 | 62 | $0.00013 | 0.9 | end_turn | gen-1793153269-6exGaRTa8demkM7inIXc | msg_011CgTpUCnLXkspSBXrLtuCJ |  |
+| 2026-10-28 02:12 | 60 | decline P1/glm/0 t2 | claude-haiku-5-5 | output_config.effort=low | 957 | 0/0 | 66 | $0.00013 | 1 | end_turn | gen-1793153273-8gcyJFWMuqTxyRzmBt17 | msg_011CgTpUVMjxENuLuqtmEqBz |  |
+| 2026-10-28 02:12 | 61 | m P1/glm/0 2 | claude-haiku-5-5 | output_config.effort=low | 3571 | 0/0 | 946 | $0.00083 | 4.7 | end_turn | gen-1793153274-Nj7csF4WgOKdkoTSBUmq | msg_011CgTpUa1Hn8NcPQNrD5vGf |  |
+| 2026-10-28 02:12 | 62 | m P1/glm/0 1 | claude-haiku-5-5 | output_config.effort=low | 3571 | 0/0 | 1142 | $0.00093 | 5.2 | end_turn | gen-1793153274-QJXa3KaFVqNVknc53bA5 | msg_011CgTpUZdDYDYX3DDnfQ19c |  |
+| 2026-10-28 02:12 | 63 | classes P1/glm/0/t1 1 | claude-haiku-5-5 | output_config.effort=low | 2871 | 0/0 | 950 | $0.00076 | 4 | end_turn | gen-1793153279-OJM5U3kryfC2KhafUZSZ | msg_011CgTpUwphTzz89QK8pd4zq |  |
+| 2026-10-28 02:12 | 64 | classes P1/glm/0/t1 2 | claude-haiku-5-5 | output_config.effort=low | 2871 | 0/0 | 1012 | $0.00079 | 4.5 | end_turn | gen-1793153281-m7owcuUIuRYBtYvA0inW | msg_011CgTpV8io591MypBM5eLbc |  |
+| 2026-10-28 02:12 | 65 | classes P1/glm/0/t2 1 | claude-haiku-5-5 | output_config.effort=low | 2145 | 0/0 | 892 | $0.00066 | 4.1 | end_turn | gen-1793153286-JHU3yTztjwRwQxSG7taa | msg_011CgTpVU6cCivpyFe2KmQpv |  |
+| 2026-10-28 02:12 | 66 | classes P1/glm/0/t2 2 | claude-haiku-5-5 | output_config.effort=low | 2145 | 0/0 | 1106 | $0.00077 | 5 | end_turn | gen-1793153286-HDfA40dNLLP26Kyby86A | msg_011CgTpVTxvV4kUGX2QCxJNs |  |
+| 2026-10-28 02:12 | 67 | seat P1/glm/2 t2 | z-ai/glm-5.3 | reasoning.effort=medium | 1304 | 34112/0 | 862 | $0.01449 | 30.6 | end_turn | gen-1793153264-tvAiynL9GiPspRewg9X2 | gen-1793153264-tvAiynL9GiPspRewg9X2 |  |
+| 2026-10-28 02:12 | 68 | check P1/glm/2 t2 | claude-haiku-5-5 | output_config.effort=low | 1369 | 0/0 | 70 | $0.00017 | 1.4 | end_turn | gen-1793153294-JrBhpsHybNXCY6khNKw8 | msg_011CgTpW54Z38iug5BJVRBxY |  |
+| 2026-10-28 02:12 | 69 | decline P1/glm/2 t2 | claude-haiku-5-5 | output_config.effort=low | 1324 | 0/0 | 69 | $0.00017 | 0.9 | end_turn | gen-1793153299-6JEsYhOMOFWEjiOl3s69 | msg_011CgTpWQ2KjeYLyWR4ep8Qs |  |
+| 2026-10-28 02:12 | 70 | m P1/glm/2 1 | claude-haiku-5-5 | output_config.effort=low | 4554 | 0/0 | 964 | $0.00094 | 4.3 | end_turn | gen-1793153300-sgVjRI9XEzawZ7smCuAj | msg_011CgTpWUJ3pNqwQ2bMmWN45 |  |
+| 2026-10-28 02:12 | 71 | m P1/glm/2 2 | claude-haiku-5-5 | output_config.effort=low | 4554 | 0/0 | 1214 | $0.00106 | 5.9 | end_turn | gen-1793153300-vXZHZUteQNqwHbFc2dET | msg_011CgTpWWT2rnAREu6UZk9u8 |  |
+| 2026-10-28 02:12 | 72 | classes P1/glm/2/t1 1 | claude-haiku-5-5 | output_config.effort=low | 3487 | 0/0 | 1029 | $0.00086 | 4.3 | end_turn | gen-1793153305-dQjHW386Kf1EmYIPyMLm | msg_011CgTpWtwcasQtR3fB9czwY |  |
+| 2026-10-28 02:12 | 73 | classes P1/glm/2/t1 2 | claude-haiku-5-5 | output_config.effort=low | 3487 | 0/0 | 1294 | $0.00100 | 5.7 | end_turn | gen-1793153307-tD8245y5WD6SKSbpkJEZ | msg_011CgTpX1KMBcfidsoGmi6cV |  |
+| 2026-10-28 02:12 | 74 | classes P1/glm/2/t2 1 | claude-haiku-5-5 | output_config.effort=low | 2512 | 0/0 | 595 | $0.00055 | 3.2 | end_turn | gen-1793153313-Ma6gPyLUeACpNDVDlwv8 | msg_011CgTpXRb6kUiTHXHYxfABJ |  |
+| 2026-10-28 02:12 | 75 | classes P1/glm/2/t2 2 | claude-haiku-5-5 | output_config.effort=low | 2512 | 0/0 | 858 | $0.00068 | 4.6 | end_turn | gen-1793153313-ZNIwhsLiiEtul3JtMBTk | msg_011CgTpXSUgd1uDGD3HYifNp |  |
+| 2026-10-28 02:12 | 76 | classes P1/glm/2/t2 referee | claude-opus-5-5 | output_config.effort=medium | 2512 | 0/0 | 479 | $0.01963 | 6.9 | end_turn | gen-1793153317-W7OSbwglpTlGRvw45jCX | msg_011CgTpXn5f1Dro4Uu4Ho47q |  |
+| 2026-10-28 02:12 | 77 | seat P1/grok/1 t1 | x-ai/grok-4.7 | reasoning.effort=medium | 33572 | 1152/0 | 2970 | $0.08554 | 50.2 | end_turn | gen-1793153324-KZyjOHM1OvKlKN3Sa14d | gen-1793153324-KZyjOHM1OvKlKN3Sa14d |  |
+| 2026-10-28 02:12 | 78 | check P1/grok/1 t1 | claude-haiku-5-5 | output_config.effort=low | 2007 | 0/0 | 66 | $0.00023 | 0.9 | end_turn | gen-1793153374-J5dmThhr3N0eiJNWnlK7 | msg_011CgTpbzDG48UZ5kqkCy3zu |  |
+| 2026-10-28 02:12 | 79 | decline P1/grok/1 t1 | claude-haiku-5-5 | output_config.effort=low | 1962 | 0/0 | 71 | $0.00023 | 0.9 | end_turn | gen-1793153378-EfeGfwfikiv4vNAHx7Ed | msg_011CgTpcHAVKFwNZRmGobbwb |  |
+| 2026-10-28 02:12 | 80 | seat P1/grok/2 t1 | x-ai/grok-4.7 | reasoning.effort=medium | 33572 | 1152/0 | 3216 | $0.08702 | 55.1 | end_turn | gen-1793153324-8rBqZsTVBiEiJ6xEPkKA | gen-1793153324-8rBqZsTVBiEiJ6xEPkKA |  |
+| 2026-10-28 02:12 | 81 | check P1/grok/2 t1 | claude-haiku-5-5 | output_config.effort=low | 1838 | 0/0 | 68 | $0.00022 | 0.9 | end_turn | gen-1793153379-oQpLK5CoCZhkqbmbihIW | msg_011CgTpcMkK5G7W5rmmtKfJ9 |  |
+| 2026-10-28 02:12 | 82 | seat P1/grok/0 t1 | x-ai/grok-4.7 | reasoning.effort=medium | 33572 | 1152/0 | 3589 | $0.08925 | 60.1 | end_turn | gen-1793153324-W6FLrpwAPcij2g0wsU3H | gen-1793153324-W6FLrpwAPcij2g0wsU3H |  |
+| 2026-10-28 02:12 | 83 | decline P1/grok/2 t1 | claude-haiku-5-5 | output_config.effort=low | 1793 | 0/0 | 71 | $0.00021 | 1.8 | end_turn | gen-1793153383-qlc6QQxLYIVvYCor2Zdw | msg_011CgTpcekmJoPJdX2rCqUT8 |  |
+| 2026-10-28 02:12 | 84 | check P1/grok/0 t1 | claude-haiku-5-5 | output_config.effort=low | 1976 | 0/0 | 60 | $0.00023 | 0.9 | end_turn | gen-1793153384-PM25V0jtEqvOtUVanRh8 | msg_011CgTpcivnbpwjSaEZwyXi7 |  |
+| 2026-10-28 02:12 | 85 | decline P1/grok/0 t1 | claude-haiku-5-5 | output_config.effort=low | 1931 | 0/0 | 49 | $0.00022 | 0.8 | end_turn | gen-1793153388-wdPZNeY0xDibz2vhh6wc | msg_011CgTpd1NFcsvKMp77Vk9o2 |  |
+| 2026-10-28 02:12 | 86 | seat P1/grok/1 t2 | x-ai/grok-4.7 | reasoning.effort=medium | 1132 | 34688/0 | 1378 | $0.02788 | 20.6 | end_turn | gen-1793153379-xUiwyWfwqaxgS6gStQFA | gen-1793153379-xUiwyWfwqaxgS6gStQFA |  |
+| 2026-10-28 02:12 | 87 | check P1/grok/1 t2 | claude-haiku-5-5 | output_config.effort=low | 984 | 0/0 | 70 | $0.00013 | 0.9 | end_turn | gen-1793153400-HZfm7iAzJV6WNloel54U | msg_011CgTpdrpKtDsVr4KfdChj8 |  |
+| 2026-10-28 02:12 | 88 | decline P1/grok/1 t2 | claude-haiku-5-5 | output_config.effort=low | 939 | 0/0 | 67 | $0.00013 | 0.9 | end_turn | gen-1793153404-8tqQpr17OaPmCurDjqAe | msg_011CgTpe9haAtUCZzbfR5aJv |  |
+| 2026-10-28 02:12 | 89 | seat P1/grok/0 t2 | x-ai/grok-4.7 | reasoning.effort=medium | 1098 | 34688/0 | 1138 | $0.02637 | 17.5 | end_turn | gen-1793153389-ne4DB0AgH8K4VDEGHxfi | gen-1793153389-ne4DB0AgH8K4VDEGHxfi |  |
+| 2026-10-28 02:12 | 90 | check P1/grok/0 t2 | claude-haiku-5-5 | output_config.effort=low | 857 | 0/0 | 82 | $0.00013 | 1 | end_turn | gen-1793153407-l91c2ZD7hxYItE5bvEO4 | msg_011CgTpeN5U2nnJQXMEirdPr |  |
+| 2026-10-28 02:12 | 91 | m P1/grok/1 1 | claude-haiku-5-5 | output_config.effort=low | 3804 | 0/0 | 1023 | $0.00089 | 5.2 | end_turn | gen-1793153405-ivFGxVTbTus2INKHi4QT | msg_011CgTpeE42FWtEUcujAoiAU |  |
+| 2026-10-28 02:12 | 92 | m P1/grok/1 2 | claude-haiku-5-5 | output_config.effort=low | 3804 | 0/0 | 1204 | $0.00098 | 6.2 | end_turn | gen-1793153405-mAWhdjWD3R99K15AnvAK | msg_011CgTpeGAm7F3DtzYVYRTjY |  |
+| 2026-10-28 02:12 | 93 | decline P1/grok/0 t2 | claude-haiku-5-5 | output_config.effort=low | 812 | 0/0 | 76 | $0.00012 | 0.9 | end_turn | gen-1793153411-wrXcyloD2OwT6bbLafwN | msg_011CgTpefANN6hK4KQ3EgA24 |  |
+| 2026-10-28 02:12 | 94 | seat P1/grok/2 t2 | x-ai/grok-4.7 | reasoning.effort=medium | 1010 | 34688/0 | 1830 | $0.03034 | 28.1 | end_turn | gen-1793153385-jzGKFHKEUOyS0dtdZHhA | gen-1793153385-jzGKFHKEUOyS0dtdZHhA |  |
+| 2026-10-28 02:12 | 95 | check P1/grok/2 t2 | claude-haiku-5-5 | output_config.effort=low | 775 | 0/0 | 69 | $0.00011 | 0.9 | end_turn | gen-1793153413-dcMBzoD2S2iipkKQe6GP | msg_011CgTperJLdjKxzodwTEpE6 |  |
+| 2026-10-28 02:12 | 96 | classes P1/grok/1/t1 1 | claude-haiku-5-5 | output_config.effort=low | 3122 | 0/0 | 1128 | $0.00088 | 5.1 | end_turn | gen-1793153411-XWNk0RJHiEEWxqcp2xC5 | msg_011CgTpegRGocSfTUvT1GrFo |  |
+| 2026-10-28 02:12 | 97 | classes P1/grok/1/t1 2 | claude-haiku-5-5 | output_config.effort=low | 3122 | 0/0 | 829 | $0.00073 | 3.8 | end_turn | gen-1793153413-m8JwdzQEgcyShvu0mXww | msg_011CgTpepibP22NTyXxHigD5 |  |
+| 2026-10-28 02:12 | 98 | decline P1/grok/2 t2 | claude-haiku-5-5 | output_config.effort=low | 730 | 0/0 | 77 | $0.00011 | 0.9 | end_turn | gen-1793153417-QNR5ejE5OKtupEvryn8Y | msg_011CgTpf8szu3aAgMepR7fcE |  |
+| 2026-10-28 02:12 | 99 | m P1/grok/0 1 | claude-haiku-5-5 | output_config.effort=low | 3646 | 0/0 | 1138 | $0.00093 | 5.2 | end_turn | gen-1793153414-SfpXnvOwpRkYxkyEKAIS | msg_011CgTpeu5mq2EFa9acb8ZC8 |  |
+| 2026-10-28 02:12 | 100 | m P1/grok/0 2 | claude-haiku-5-5 | output_config.effort=low | 3646 | 0/0 | 1225 | $0.00098 | 6 | end_turn | gen-1793153419-BcOiDdLqXaEkHtttZ5t9 | msg_011CgTpfHLEXRpMCu84nmSET |  |
+| 2026-10-28 02:12 | 101 | m P1/grok/2 1 | claude-haiku-5-5 | output_config.effort=low | 3426 | 0/0 | 782 | $0.00073 | 3.9 | end_turn | gen-1793153422-hJ99ANdxSfEFJnlm9CnR | msg_011CgTpfWYjRb3VNoLoJBdhT |  |
+| 2026-10-28 02:12 | 102 | classes P1/grok/1/t1 referee | claude-opus-5-5 | output_config.effort=medium | 3122 | 0/0 | 712 | $0.02673 | 7.7 | end_turn | gen-1793153420-CCxdjytwbgQHOeHrfGN2 | msg_011CgTpfKwFQQcfJAgQum4gN |  |
+| 2026-10-28 02:12 | 103 | m P1/grok/2 2 | claude-haiku-5-5 | output_config.effort=low | 3426 | 0/0 | 854 | $0.00077 | 3.7 | end_turn | gen-1793153428-wLPQky4PT1yfMO1RPdey | msg_011CgTpfwX9Lq2TVScHsW4RV |  |
+| 2026-10-28 02:12 | 104 | classes P1/grok/1/t2 1 | claude-haiku-5-5 | output_config.effort=low | 2127 | 0/0 | 1128 | $0.00078 | 5.3 | end_turn | gen-1793153430-uzPdnLLuMlratx1TO9Wx | msg_011CgTpg7XuuDWATApk6q3jA |  |
+| 2026-10-28 02:12 | 105 | m P1/grok/0 referee | claude-opus-5-5 | output_config.effort=medium | 3646 | 0/0 | 635 | $0.02728 | 7.7 | end_turn | gen-1793153429-ZclazJyZFUWKDOpVP1Av | msg_011CgTpg1q7NYfeoLrB5XWJh |  |
+| 2026-10-28 02:12 | 106 | classes P1/grok/1/t2 2 | claude-haiku-5-5 | output_config.effort=low | 2127 | 0/0 | 1121 | $0.00077 | 5.4 | end_turn | gen-1793153435-2iyXD4DH0vyfRUGvmyXg | msg_011CgTpgSg6HRZGVRqqW1jp2 |  |
+| 2026-10-28 02:12 | 107 | classes P1/grok/2/t1 1 | claude-haiku-5-5 | output_config.effort=low | 2953 | 0/0 | 966 | $0.00078 | 4.4 | end_turn | gen-1793153439-XotKXOn6PcUE66t40v5J | msg_011CgTpgiwdeE4y5m4REfhMR |  |
+| 2026-10-28 02:12 | 108 | classes P1/grok/2/t1 2 | claude-haiku-5-5 | output_config.effort=low | 2953 | 0/0 | 1190 | $0.00089 | 5.4 | end_turn | gen-1793153440-hZ1VOo8luGNOaPTI3dj6 | msg_011CgTpgodRG2Kh2N9oiGDuB |  |
+| 2026-10-28 02:12 | 109 | classes P1/grok/0/t1 1 | claude-haiku-5-5 | output_config.effort=low | 3091 | 0/0 | 1068 | $0.00084 | 5.1 | end_turn | gen-1793153443-QuNR2YTwYLQpIvRXdI4x | msg_011CgTph4LhmiXxSCRogEBTK |  |
+| 2026-10-28 02:12 | 110 | classes P1/grok/0/t1 2 | claude-haiku-5-5 | output_config.effort=low | 3091 | 0/0 | 1312 | $0.00097 | 6 | end_turn | gen-1793153446-wETPUaB7HShpPxlcoNSp | msg_011CgTphGgrVqirZNW7mGfVZ |  |
+| 2026-10-28 02:12 | 111 | classes P1/grok/2/t1 referee | claude-opus-5-5 | output_config.effort=medium | 2953 | 0/0 | 529 | $0.02239 | 6.3 | end_turn | gen-1793153448-yJnTduixBkzVYr91HwF0 | msg_011CgTphSSyhAKeorc5Jisiw |  |
+| 2026-10-28 02:12 | 112 | classes P1/grok/0/t2 1 | claude-haiku-5-5 | output_config.effort=low | 2000 | 0/0 | 691 | $0.00055 | 3.3 | end_turn | gen-1793153452-1aDJWpMha2MG8oaIEZ9x | msg_011CgTphiRuhtRZkp3wpYD3i |  |
+| 2026-10-28 02:12 | 113 | classes P1/grok/0/t2 2 | claude-haiku-5-5 | output_config.effort=low | 2000 | 0/0 | 817 | $0.00061 | 4.2 | end_turn | gen-1793153455-7p4OyR3h7teH8prwY7n8 | msg_011CgTphvs2598Gm1ZynRVoi |  |
+| 2026-10-28 02:12 | 114 | classes P1/grok/2/t2 1 | claude-haiku-5-5 | output_config.effort=low | 1918 | 0/0 | 515 | $0.00045 | 2.8 | end_turn | gen-1793153458-EOdZ5jOelBjy1f2ZWpWC | msg_011CgTpi7WyEWY6aa3BJLX6D |  |
+| 2026-10-28 02:12 | 115 | classes P1/grok/2/t2 2 | claude-haiku-5-5 | output_config.effort=low | 1918 | 0/0 | 588 | $0.00049 | 3.4 | end_turn | gen-1793153459-2TF887R8lRsCzLdR0QIq | msg_011CgTpiC931yESsrz6jfVtw |  |
+| 2026-10-28 02:12 | 116 | seat P1/deepseek/0 t1 | deepseek/deepseek-v4-pro-0813 | reasoning.effort=medium | 144 | 34048/0 | 4553 | $0.01543 | 65 | end_turn | gen-1793153462-JYO4kX22HAkF8HYC7676 | gen-1793153462-JYO4kX22HAkF8HYC7676 |  |
+| 2026-10-28 02:12 | 117 | check P1/deepseek/0 t1 | claude-haiku-5-5 | output_config.effort=low | 1901 | 0/0 | 65 | $0.00022 | 0.9 | end_turn | gen-1793153527-yJoYAccHvY9XVzbdaCmF | msg_011CgTpoDaVjZXSBeGEKcBC4 |  |
+| 2026-10-28 02:12 | 118 | seat P1/deepseek/2 t1 | deepseek/deepseek-v4-pro-0813 | reasoning.effort=medium | 144 | 34048/0 | 4364 | $0.01494 | 67.1 | end_turn | gen-1793153462-BlkYhzmvzh6NsqiiZaG5 | gen-1793153462-BlkYhzmvzh6NsqiiZaG5 |  |
+| 2026-10-28 02:12 | 119 | seat P1/deepseek/1 t1 | deepseek/deepseek-v4-pro-0813 | reasoning.effort=medium | 34192 | 0/0 | 4697 | $0.05666 | 68.4 | end_turn | gen-1793153462-S0nmWDN1wHp0gE8inYNS | gen-1793153462-S0nmWDN1wHp0gE8inYNS |  |
+| 2026-10-28 02:12 | 120 | check P1/deepseek/2 t1 | claude-haiku-5-5 | output_config.effort=low | 2617 | 0/0 | 68 | $0.00030 | 1.5 | end_turn | gen-1793153529-g0ooqTQ0GFvNqJm378Rc | msg_011CgTpoNSJ4M51EHnQUjQ1R |  |
+| 2026-10-28 02:12 | 121 | check P1/deepseek/1 t1 | claude-haiku-5-5 | output_config.effort=low | 2091 | 0/0 | 68 | $0.00024 | 0.9 | end_turn | gen-1793153530-3mkQaBJrwTnWzo72Mwdt | msg_011CgTpoTmX6WBN4k9sGVeLP |  |
+| 2026-10-28 02:12 | 122 | check reasoning P1/deepseek/0 t1 | claude-haiku-5-5 | output_config.effort=low | 6240 | 0/0 | 70 | $0.00066 | 1.1 | end_turn | gen-1793153531-COX0IOqsAsfXkRMMe0cv | msg_011CgTpoWFr4CqrSx4oQe9qZ |  |
+| 2026-10-28 02:12 | 123 | check reasoning P1/deepseek/2 t1 | claude-haiku-5-5 | output_config.effort=low | 5046 | 0/0 | 64 | $0.00054 | 0.9 | end_turn | gen-1793153533-z8fquNvcNpPwfBNlekuE | msg_011CgTpohv4XRLs9aEYEYsEU |  |
+| 2026-10-28 02:12 | 124 | check reasoning P1/deepseek/1 t1 | claude-haiku-5-5 | output_config.effort=low | 6310 | 0/0 | 66 | $0.00066 | 1.4 | end_turn | gen-1793153534-xbUtpayNigtf6SjxsevJ | msg_011CgTponEXeU6DnimcjoiKW |  |
+| 2026-10-28 02:12 | 125 | decline P1/deepseek/0 t1 | claude-haiku-5-5 | output_config.effort=low | 1856 | 0/0 | 71 | $0.00022 | 1 | end_turn | gen-1793153535-k1bR0DInNatwpnpqgTQV | msg_011CgTpooPUcQ1aofRa4ntGE |  |
+| 2026-10-28 02:12 | 126 | check referee reasoning P1/deepseek/2 t1 | claude-opus-5-5 | output_config.effort=medium | 0 | 0/0 | 0 | $0.00000 | 1.1 | refusal (reasoning_extraction) | gen-1793153537-AslbqFJxPKRUofjNpcZx | msg_011CgTpozgcyHjWJm3MoU7uG |  |
+| 2026-10-28 02:12 | 127 | seat P1/deepseek/0 t2 | deepseek/deepseek-v4-pro-0813 | reasoning.effort=medium | 1118 | 34048/0 | 1346 | $0.00836 | 18.5 | end_turn | gen-1793153536-BqZC4tqZMklfLD2jnQqH | gen-1793153536-BqZC4tqZMklfLD2jnQqH |  |
