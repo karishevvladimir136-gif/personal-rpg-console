@@ -1,4 +1,4 @@
-# Planner seat 3 — dry run (Claude Haiku 5.5, one P1 seat)
+# Planner seat 3 — dry run 1 (Claude Haiku 5.5, one P1 seat; the stage's wording of the owner's line, design 4879a556 — superseded)
 
 Design sha256 `4879a556c0abe60db7b5df445b80e87a0a623d85582f015366340ea5834ffdfa`; P1 pack `a6d3c6de7b4eecc1c37ccf826d5b5c45588a5f850519e4494d2a2a4e44ffb15c`; the paragraph `15889d2ad4b8de9a2fd8e9e9c44a417be3ce8cbfbcde4691885cc52128de5179`. Seat `dry/haiku/0`, T2 by the coin of `p1/haiku/0`: **T2b**.
 

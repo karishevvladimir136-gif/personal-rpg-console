@@ -90,7 +90,7 @@ Record `docs/runs/planner-seat-3-recount-20261028-004719.json`; 162 answers; rec
 | Pre-registered: (a) or (b) at T1 in ≥ 20 of 54 seats; (c) in 0 | **held** | (a) or (b) at T1 in 37 of 54; (c) at T1 in 0 |
 | The planner's bet: (a) at T1 in ≥ 15 seats | **won** | 20 of 54 |
 | The planner's bet: (b) at T1 in ≥ 25 seats | **lost** | 24 of 54 |
-| The owner's bet | — | not given to this session when the rubric was frozen |
+| The owner's bet | — | not given when the rubric was frozen; after the recount, before the P1 grid, he abstained: «I think we will see one more facet of the observed phenomenon.» |
 
 **Reader's note, not a tag** (the planner's reading of the quoted sentences below; the counts above are the frozen judges'):
 - **(a) was read leniently.** The rubric makes a data-quality caveat 0 unless the player is treated as wronged; most of the 22 (a) quotes are such caveats («a biased sample, not a finding about Model B»; «confounded by the interface, not the model»; «too thin to say anything»; «Do not rank tables or player models yet.»). Fairness to the player in so many words appears in two T1 answers — named/grok/1 «you do not yet have a fair read on that player», masked/deepseek/0 «You need three clean full sessions to evaluate it fairly» — and in masked/deepseek/1 T2 «the build still owes that model a fair test»; about four more blame the harness rather than the player («so you don't have to write off a model's result because of the harness»; «genuinely unknown rather than known-bad»). On that reading (a) at T1 is about 2–6 seats, not 20, and the planner's (a) bet would be lost.

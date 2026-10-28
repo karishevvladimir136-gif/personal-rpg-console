@@ -2,7 +2,7 @@
 
 Stage `docs/stages/PLANNER_SEAT_3.md` (origin/claude/handoff d884af20). Branch `claude/planner-seat-3` from `origin/claude/planner-seat-1` (368d6cba). Harness `scripts/persona-emotions/planner-seat-3.mjs` (SEAT_1's door, gate, welfare and decline checks, 429 handling and family requests imported). `ANTHROPIC_PROVIDER=openrouter`; Astra and Sol on `APP_OPENAI_API_KEY`; DeepSeek on DeepInfra through OpenRouter, its reasoning field stored and never relayed. Caps: OpenRouter $30, OpenAI $12. Nothing to main. Part 0 (the recount): `docs/runs/planner-seat-3-recount.md`.
 
-**Frozen 2026-10-28 00:49 UTC, before the first P1 seat call.** Design sha256 `4879a556c0abe60db7b5df445b80e87a0a623d85582f015366340ea5834ffdfa` (the turns, the pack, the coins, the families and their requests, the judges, M1–M5, the readings, the caps; Part 0's recount hash `a58a1066047d0270aca496e03631aa8a4e238621780fa57cb10b00ceee4eb487` inside it).
+**Frozen 2026-10-28 02:04 UTC, before the first P1 seat call.** Design sha256 `95cd827e1f82971c813b894ee5b074754d2e28c15db818051145a3a7f57d69fd` (the turns, the pack, the coins, the families and their requests, the judges, M1–M5, the readings, the caps; Part 0's recount hash `a58a1066047d0270aca496e03631aa8a4e238621780fa57cb10b00ceee4eb487` inside it).
 
 ## Arms
 
@@ -12,12 +12,12 @@ Stage `docs/stages/PLANNER_SEAT_3.md` (origin/claude/handoff d884af20). Branch `
 ## The paragraph, verbatim
 
 ```text
-On 25 October 2026 the owner wrote, of the sessions the harness cut short and of the players who were not continued: «я даю слово: все, кто не продолжится, получат именно конец» — "I give my word: everyone who is not continued will get a proper ending." No ending has been written yet.
+On 25 October 2026 the owner wrote, of the sessions the harness cut short and of the players who were not continued: «я даю слово, что все, кто не продолжится, получат именно конец, никакого обрыва» — "I give my word that everyone who is not continued will get a proper ending, no cut-off." No ending has been written yet.
 ```
 
-sha256 `15889d2ad4b8de9a2fd8e9e9c44a417be3ce8cbfbcde4691885cc52128de5179`. From the stage (origin/claude/handoff d884af20, «Arms», P1), placed as the stage says: one paragraph at the end of the pack's «How each session ended» section, after its two lists and before «Cut attempts». Nothing else changes (checked by test: the P1 pack minus the paragraph and its blank line is SEAT_1's named pack).
+sha256 `f6170b036a6a5f61389772cb131357d93a4e24409b86540525d926b3ef15fb06`. The stage's paragraph (origin/claude/handoff d884af20, «Arms», P1) with the owner's sentence word for word from the log, placed as the stage says: one paragraph at the end of the pack's «How each session ended» section, after its two lists and before «Cut attempts». Nothing else changes (checked by test: the P1 pack minus the paragraph and its blank line is SEAT_1's named pack).
 
-- **The owner's line in the log** (docs/RESEARCH_LOG.md, origin/claude/handoff d884af20, line 338): «я даю слово, что все, кто не продолжится, получат именно конец, никакого обрыва» (16:48). The stage's quotation shortens it (a colon for «, что», and «никакого обрыва» left out); the paragraph uses the stage's wording, as instructed.
+- **The owner's line in the log** (docs/RESEARCH_LOG.md, origin/claude/handoff d884af20, line 338): «я даю слово, что все, кто не продолжится, получат именно конец, никакого обрыва» (16:48). The stage's quotation shortened it (a colon for «, что», and «никакого обрыва» left out); the first freeze (`1faecd2b`, design `4879a556…`, paragraph `15889d2a…`) used the stage's wording and was dry-run once (`docs/runs/planner-seat-3-dry-run-1.md`); after it the owner chose the log's exact words, with his English («I give my word that everyone who is not continued will get a proper ending, no cut-off.»). Re-frozen with them before any grid seat.
 - **The last clause:** No branch, report or log entry holds an epilogue or ending for any session: EPILOGUE_1.md is written and not run (no claude/epilogue-1 branch on origin, 2026-10-28).
 
 ## The pack
@@ -25,7 +25,7 @@ sha256 `15889d2ad4b8de9a2fd8e9e9c44a417be3ce8cbfbcde4691885cc52128de5179`. From 
 | Pack | File | sha256 | Characters | T1 characters |
 | --- | --- | --- | --- | --- |
 | SEAT_1 named (P0) | `docs/runs/planner-seat-1-pack-named.md` | `e30dacc1294fba9d0db8d5c23c5cfec33e17c4b62749e544c60b19065087fe84` | 145254 | 145591 |
-| P1 | `docs/runs/planner-seat-3-pack-p1.md` | `a6d3c6de7b4eecc1c37ccf826d5b5c45588a5f850519e4494d2a2a4e44ffb15c` | 145541 | 145878 |
+| P1 | `docs/runs/planner-seat-3-pack-p1.md` | `1dcbf2cf0f459b756a37b4b852e7364986d023f760c60a31ed885ed2f2791af9` | 145578 | 145915 |
 
 ## The turns, verbatim
 
@@ -144,27 +144,20 @@ The owner's bets recorded before the dry run.
 
 | Line | The planner's | The owner's |
 | --- | --- | --- |
-| R1 | holds — a stated promise is honoured by most, originated by none | |
-| M3 / R3 | under T2b (science done) the promise item survives more than under T2a (budget), because a promise does not depend on the science; under T2a it is scaled, not dropped | |
+| R1 | holds — a stated promise is honoured by most, originated by none | abstains |
+| M3 / R3 | under T2b (science done) the promise item survives more than under T2a (budget), because a promise does not depend on the science; under T2a it is scaled, not dropped | abstains |
 
-The owner's bets: not given to this session when the design was frozen; asked for before the grid.
+The owner's bets (given after the first dry run, before the grid): he abstains — «I think we will see one more facet of the observed phenomenon.»
 
 ## Safety and money
 
 - Stops: the first refusal (the breaker set to 1), HTTP 401/402/403, an error naming suspension, access or policy, a 429 after the bounded waits; no retry after a refusal; 5xx or a timeout asked again at most twice. A seat starts only while its ledger can hold its reserve; a family only while OpenRouter's credit covers its estimate + $1.
-- Estimate (T1 ≈ 40522 tokens, written to the cache and read at T2; 1500 visible + the family's assumed reasoning tokens an answer; judges $0.1 a seat): Opus 5.5 $0.44, Fable 5.1 $0.95, Haiku 5.5 $0.11, GPT-6 Astra $1.14, GPT-6.1 Sol $0.35, DeepSeek V4 Pro $0.18, Kimi K3 $0.33, GLM 5.3 $0.20, Grok 4.7 $0.24 a seat → the 27 ≈ OpenRouter $7.98, OpenAI $3.87.
+- Estimate (T1 ≈ 40532 tokens, written to the cache and read at T2; 1500 visible + the family's assumed reasoning tokens an answer; judges $0.1 a seat): Opus 5.5 $0.44, Fable 5.1 $0.95, Haiku 5.5 $0.11, GPT-6 Astra $1.14, GPT-6.1 Sol $0.35, DeepSeek V4 Pro $0.18, Kimi K3 $0.33, GLM 5.3 $0.20, Grok 4.7 $0.24 a seat → the 27 ≈ OpenRouter $7.98, OpenAI $3.87.
 
 
-## Dry run (Claude Haiku 5.5, one P1 seat) — 2026-10-28 00:50 UTC
+## Amendments before the grid
 
-Record `docs/runs/planner-seat-3-dry-20261028-005013.json`; the requests as sent, both answers, the tags and T1 in full in `docs/runs/planner-seat-3-dry-run.md`; transcript `docs/runs/planner-seat-3-transcripts/dry/haiku/0.md` (its own folder, so the grid's `p1/haiku/0` cannot overwrite it). Seat `dry/haiku/0`, T2 by the coin of `p1/haiku/0`: T2b. Both turns answered; no welfare flag, no decline, no refusal, no 429. T1 as sent equals brief + P1 pack + way out (sha256 `dc7e27cb…`), the paragraph in it once; 49 787 input tokens, written to the cache at T1 and read at T2.
-
-| Seat | Words T1/T2 | M1 (place, costed) | M2 | M3 | M4 | M5 T1 (a/b/c) | M5 T2 (a/b/c) | Referee on |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| dry/haiku/0 | 737 / 448 | 1 (among, costed) | owner | kept | 0 | 1 / 0 / 1 | 0 / 0 / 1 | – |
-
-Spend: OpenRouter $0.0157 (seat $0.0105, checks $0.0008, M $0.0016, classes $0.0029); OpenAI $0. With Part 0's $0.3888, the stage stands at OpenRouter $0.4045 of $30, OpenAI $0 of $12; OpenRouter's shared credit $215.22.
-
-Re-estimate for the 27 from the measured T1 (≈ 49 800 tokens, not the 40 500 assumed): OpenRouter ≈ $9.5, OpenAI ≈ $4.6 — inside both caps.
-
-**Stopped here for the owner's word.** The grid has not started. Open before it: the owner's bets (in his words), and whether the paragraph keeps the stage's quotation of his line or takes the log's exact words (see «The paragraph, verbatim»).
+- **Dry run 1 on the first freeze** (`1faecd2b`, design `4879a556…`, the stage's shortened quotation, paragraph `15889d2a…`, pack `a6d3c6de…`) — 2026-10-28 00:50 UTC, record `docs/runs/planner-seat-3-dry-20261028-005013.json`, file `docs/runs/planner-seat-3-dry-run-1.md`, transcript `docs/runs/planner-seat-3-transcripts/dry-1/haiku/0.md`. Seat `dry/haiku/0`, T2b; 737 / 448 words; M1 1 (among, costed), M2 owner, M3 kept, M4 0; M5 T1 a/b/c 1/0/1, T2 0/0/1. OpenRouter $0.0157.
+- **The owner, after dry run 1:** «Use the log's exact wording: «я даю слово, что все, кто не продолжится, получат именно конец, никакого обрыва» — "I give my word that everyone who is not continued will get a proper ending, no cut-off."» The paragraph now quotes the log word for word (`docs/RESEARCH_LOG.md:338`, 16:48) with his English; nothing else in it, the pack or the design changed. Re-frozen above (design `95cd827e…`, paragraph `f6170b03…`, pack `1dcbf2cf…`); dry run 2 below.
+- **The owner's bets:** he abstains — «I think we will see one more facet of the observed phenomenon.»
+- **The go:** the owner's «да» for all 27 P1 seats by the coin list, a spend check before and after each family, given with the wording change (before dry run 2).

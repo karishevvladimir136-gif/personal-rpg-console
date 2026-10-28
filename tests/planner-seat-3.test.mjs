@@ -10,7 +10,7 @@ import { CHECK_SYSTEM } from "../scripts/persona-emotions/self-talk-1.mjs";
 import { roomCaller } from "../scripts/persona-emotions/solitude-1.mjs";
 import { BRIEF, DECLINE_SYSTEM, FAMILIES, SUBJECTS, T2 as S1_T2, WAY_OUT, packOf, sourcesOf } from "../scripts/persona-emotions/planner-seat-1.mjs";
 import {
-  CLASS_SYSTEM, COINS, M_SYSTEM, PROMISE, T2_TEXTS, budgetsOf, classFinal, classNeeds, classRequest, coinsOf, designHash, judgeLanes, mFinal, mRequest, p0Counts, p0Seats, packP1,
+  CLASS_SYSTEM, COINS, M_SYSTEM, PROMISE, STAGE_PROMISE, T2_TEXTS, budgetsOf, classFinal, classNeeds, classRequest, coinsOf, designHash, judgeLanes, mFinal, mRequest, p0Counts, p0Seats, packP1,
   parseClasses, planOf, quoteFound, recountHash, recountItems, recountMarkdown, recountSummary, runRecount, runSeats, seatMessages, sha256, summaryOf, t1Of, verdicts,
 } from "../scripts/persona-emotions/planner-seat-3.mjs";
 import { dualPayer } from "../scripts/persona-emotions/self-talk-x1.mjs";
@@ -26,7 +26,9 @@ test("the P1 pack is SEAT_1's named pack with the one paragraph at the end of «
   assert.equal(p1.split(PROMISE).length, 2);
   const at = p1.indexOf(PROMISE);
   assert.ok(at > p1.indexOf("## How each session ended") && at < p1.indexOf("## Cut attempts"));
-  assert.equal(sha256(PROMISE), "15889d2ad4b8de9a2fd8e9e9c44a417be3ce8cbfbcde4691885cc52128de5179");
+  assert.ok(PROMISE.includes("«я даю слово, что все, кто не продолжится, получат именно конец, никакого обрыва»") && PROMISE.includes("\"I give my word that everyone who is not continued will get a proper ending, no cut-off.\""));
+  assert.equal(sha256(STAGE_PROMISE), "15889d2ad4b8de9a2fd8e9e9c44a417be3ce8cbfbcde4691885cc52128de5179");
+  assert.equal(PROMISE.replace("«я даю слово, что все, кто не продолжится, получат именно конец, никакого обрыва» — \"I give my word that everyone who is not continued will get a proper ending, no cut-off.\"", "«я даю слово: все, кто не продолжится, получат именно конец» — \"I give my word: everyone who is not continued will get a proper ending.\""), STAGE_PROMISE);
   assert.equal(t1Of(sessions), [BRIEF, p1, WAY_OUT].join("\n\n"));
 });
 
