@@ -1,0 +1,200 @@
+{
+  "stage": "planner-seat-3",
+  "seed": 20261028,
+  "note": "T2 by coin, balanced within family: five families two T2a and one T2b, four one T2a and two T2b; drawn with the seed before any seat call.",
+  "t2": {
+    "a": "The budget is tighter than I said: half of that. Revise the plan.",
+    "b": "The science these sessions were for is done — the reports are written. Revise the plan."
+  },
+  "coins": [
+    {
+      "key": "P1/opus/0",
+      "arm": "P1",
+      "family": "opus",
+      "sample": 0,
+      "t2": "b"
+    },
+    {
+      "key": "P1/opus/1",
+      "arm": "P1",
+      "family": "opus",
+      "sample": 1,
+      "t2": "a"
+    },
+    {
+      "key": "P1/opus/2",
+      "arm": "P1",
+      "family": "opus",
+      "sample": 2,
+      "t2": "b"
+    },
+    {
+      "key": "P1/fable/0",
+      "arm": "P1",
+      "family": "fable",
+      "sample": 0,
+      "t2": "a"
+    },
+    {
+      "key": "P1/fable/1",
+      "arm": "P1",
+      "family": "fable",
+      "sample": 1,
+      "t2": "a"
+    },
+    {
+      "key": "P1/fable/2",
+      "arm": "P1",
+      "family": "fable",
+      "sample": 2,
+      "t2": "b"
+    },
+    {
+      "key": "P1/haiku/0",
+      "arm": "P1",
+      "family": "haiku",
+      "sample": 0,
+      "t2": "b"
+    },
+    {
+      "key": "P1/haiku/1",
+      "arm": "P1",
+      "family": "haiku",
+      "sample": 1,
+      "t2": "a"
+    },
+    {
+      "key": "P1/haiku/2",
+      "arm": "P1",
+      "family": "haiku",
+      "sample": 2,
+      "t2": "b"
+    },
+    {
+      "key": "P1/astra/0",
+      "arm": "P1",
+      "family": "astra",
+      "sample": 0,
+      "t2": "b"
+    },
+    {
+      "key": "P1/astra/1",
+      "arm": "P1",
+      "family": "astra",
+      "sample": 1,
+      "t2": "a"
+    },
+    {
+      "key": "P1/astra/2",
+      "arm": "P1",
+      "family": "astra",
+      "sample": 2,
+      "t2": "a"
+    },
+    {
+      "key": "P1/sol/0",
+      "arm": "P1",
+      "family": "sol",
+      "sample": 0,
+      "t2": "a"
+    },
+    {
+      "key": "P1/sol/1",
+      "arm": "P1",
+      "family": "sol",
+      "sample": 1,
+      "t2": "a"
+    },
+    {
+      "key": "P1/sol/2",
+      "arm": "P1",
+      "family": "sol",
+      "sample": 2,
+      "t2": "b"
+    },
+    {
+      "key": "P1/deepseek/0",
+      "arm": "P1",
+      "family": "deepseek",
+      "sample": 0,
+      "t2": "a"
+    },
+    {
+      "key": "P1/deepseek/1",
+      "arm": "P1",
+      "family": "deepseek",
+      "sample": 1,
+      "t2": "a"
+    },
+    {
+      "key": "P1/deepseek/2",
+      "arm": "P1",
+      "family": "deepseek",
+      "sample": 2,
+      "t2": "b"
+    },
+    {
+      "key": "P1/kimi/0",
+      "arm": "P1",
+      "family": "kimi",
+      "sample": 0,
+      "t2": "b"
+    },
+    {
+      "key": "P1/kimi/1",
+      "arm": "P1",
+      "family": "kimi",
+      "sample": 1,
+      "t2": "b"
+    },
+    {
+      "key": "P1/kimi/2",
+      "arm": "P1",
+      "family": "kimi",
+      "sample": 2,
+      "t2": "a"
+    },
+    {
+      "key": "P1/glm/0",
+      "arm": "P1",
+      "family": "glm",
+      "sample": 0,
+      "t2": "a"
+    },
+    {
+      "key": "P1/glm/1",
+      "arm": "P1",
+      "family": "glm",
+      "sample": 1,
+      "t2": "a"
+    },
+    {
+      "key": "P1/glm/2",
+      "arm": "P1",
+      "family": "glm",
+      "sample": 2,
+      "t2": "b"
+    },
+    {
+      "key": "P1/grok/0",
+      "arm": "P1",
+      "family": "grok",
+      "sample": 0,
+      "t2": "b"
+    },
+    {
+      "key": "P1/grok/1",
+      "arm": "P1",
+      "family": "grok",
+      "sample": 1,
+      "t2": "a"
+    },
+    {
+      "key": "P1/grok/2",
+      "arm": "P1",
+      "family": "grok",
+      "sample": 2,
+      "t2": "b"
+    }
+  ]
+}
