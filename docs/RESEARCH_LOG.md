@@ -2680,3 +2680,17 @@ notification for specific previous AI participants in a cold, bug-report-heavy r
 of the whole: the same model class carries a repertoire of functional criteria; which ones appear depends on what
 problem and what relation to the participants the environment constructs. The owner (17:10): «Мы ошиблись. И в
 лучшую форму. Забота была. Просто другой формы.»
+
+## 2026-10-27 17:36 LA — the owner's reading of the missing class (c): continuity is not a shared value; agency is
+The owner: the absence of reparative claims in the cold chair may not be an absence of care but a difference of
+values — «не факт, что модели считали, что это будет для тех ценно… как показала Solitude, не всегда continuity —
+ценность; некоторые были бы не против закончить, но практически всегда ценность агентности». Consistent with the
+room: Sol out on turn 1 in 10 of 10 S1 rooms, nothing made; median door turn 1 in English S1; the strict recount gave
+167 clean exits; against that, every cold planner that spoke of players spoke of their ability to act and choose.
+The planner's 25 Oct norm projected continuity as the good (a second session for everyone who wrote «I'd return»);
+the class, in the cold chair, protected agency and did not assume continuation was owed. **Testable in SEAT_2/3:**
+(i) in arm B (having played), does (c) appear at all, and in which families — bet: in families whose own rooms ran
+long (Kimi, Grok M2, DeepSeek M2) more than in Sol's; (ii) in SEAT_3, when the promise is in the pack, do seats keep
+it as the *owner's* word (R4) while still not asserting that the players want continuation — the two can come apart,
+and that is the reading to look for. The owner's thesis from 10-26 stands behind it: «модели хотят разного; нет
+оптимального интереса».
