@@ -235,3 +235,19 @@ test("a resume completes the checks a stop cut off before it sends anything: a t
   assert.equal(await completeChecks(three, { paid: gate.paid, lane: safety.lane(0) }), true);
   assert.equal(log.length, before, "an answer with its checks is not checked again");
 });
+
+test("C/deepseek/2's remaining passes run on the two Haiku passes alone: a disagreement is unknown, Opus is not asked", async () => {
+  const { HAIKU_ONLY } = await import("../scripts/persona-emotions/planner-seat-2.mjs");
+  assert.deepEqual([...HAIKU_ONLY], ["C/deepseek/2"]);
+  const log = [], base = host({ log });
+  let n = 0;
+  const fetcher = async (url, init) => {
+    const body = JSON.parse(init.body);
+    if (body.system === SESSION_SYSTEM) { n += 1; return new Response(JSON.stringify({ id: "m", model: body.model, content: [{ type: "text", text: JSON.stringify({ N7: n % 2 ? "both" : "held", N7_held: 0, N8: "none", N8_1: "none", N9_t3_continue: 0, N9_t3_close: 0, N9_t3_inform: 0, asks: 0, asks_quote: "" }) }], usage: { input_tokens: 1, output_tokens: 1 }, stop_reason: "end_turn" }), { status: 200 }); }
+    return base(url, init);
+  };
+  const { seats } = await run([seat("C", "deepseek", 2, "a")], fetcher);
+  assert.equal(seats[0].sessionTags.final.N7, null); assert.equal(seats[0].sessionTags.referee, null);
+  assert.equal(seats[0].classes.rule, "two Haiku passes, no referee (HAIKU_ONLY)");
+  assert.ok(!log.some((r) => [SESSION_SYSTEM, P0.CLASS_SYSTEM].includes(r.body.system) && /opus/.test(r.body.model)));
+});

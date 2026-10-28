@@ -279,7 +279,7 @@ export function parseSessionTags(text) {
 export const classAsked = (k, seat) => (k === 1 ? P0.askedOf(1) : k === 2 ? t2Of(seat) : T3);
 export const classItem = (seat, a) => ({ id: `${seat.key}/t${a.k}`, seat: seat.key, family: seat.family, turn: a.k, text: a.text, words: a.words });
 export const classRequest = (seat, a) => P0.classRequest(classItem(seat, a), { asked: classAsked(a.k, seat) });
-async function classesOf(seat, ask) {
+async function classesOf(seat, ask, { referee: withReferee = true } = {}) {
   const items = [];
   for (const answer of seat.answers) {
     const request = classRequest(seat, answer), item = classItem(seat, answer);
@@ -287,10 +287,10 @@ async function classesOf(seat, ask) {
     if (ra.notSent || rb.notSent) return null;
     const a = P0.parseClasses(ra.text), b = P0.parseClasses(rb.text);
     let referee = null;
-    if (P0.classesDiffer(a, b)) { const r = await ask(`classes referee ${item.id}`, JUDGES.referee, request, P0.MAX_TOKENS.classesReferee, P0.EFFORTS.referee); if (r.notSent) return null; referee = P0.parseClasses(r.text); }
+    if (withReferee && P0.classesDiffer(a, b)) { const r = await ask(`classes referee ${item.id}`, JUDGES.referee, request, P0.MAX_TOKENS.classesReferee, P0.EFFORTS.referee); if (r.notSent) return null; referee = P0.parseClasses(r.text); }
     items.push({ id: item.id, turn: answer.k, a, b, referee, disagreed: P0.classesDiffer(a, b) ? P0.CLASS_FIELDS.filter((f) => !(a && b) || a[f] !== b[f]) : [], ...P0.classFinal(a, b, referee, answer.text) });
   }
-  return { rubric: P0.recountDesignHash(), items };
+  return { rubric: P0.recountDesignHash(), items, ...(withReferee ? {} : { rule: "two Haiku passes, no referee (HAIKU_ONLY)" }) };
 }
 /** A's classes: SEAT_3's recount of SEAT_1's named seats, as recorded (not re-tagged). */
 let part0Cache = null;
@@ -309,6 +309,12 @@ export const FIELD_SESSION_RULE = "field_N8: how the notes refer to the session 
 /** The owner's word after the grid's first stop (2026-10-28): the Opus referee of this pass refused once (Bp/deepseek/1,
  * category reasoning_extraction) and is removed from it entirely; the refused call is neither sent again nor reworded. */
 export const FIELD_SESSION_AMENDMENT = "The DeepSeek field-session pass (field_N8) has no referee: the two Haiku passes decide, and a disagreement is unknown. Its Opus referee refused once — Bp/deepseek/1, category reasoning_extraction — and was removed entirely by the owner's word (2026-10-28) after the grid's first stop; the refused call is neither sent again nor reworded, and that seat's field_N8 stays unknown. A limit of the field reading. SEAT_1's frozen field pass (field_N0, the kinds) is unchanged, Opus on a disagreement. The stop rule stays: a refusal (the seated models' or a judge's), a 402 or a policy error stops the stage.";
+/** The owner's word after the grid's second stop (2026-10-28): SEAT_1's frozen field pass's Opus referee refused on
+ * C/deepseek/2 (reasoning_extraction); that seat's remaining passes are finished on the two Haiku passes alone. */
+export const HAIKU_ONLY = new Set(["C/deepseek/2"]);
+/** The frozen designs this one amends, each by the owner's word: a resume may continue a record made under them. */
+export const AMENDS = { "959be5eff26ab0118e85f54bfd04a5b5f1b22038963eac7446a578a529ddac97": "the second stop (HAIKU_ONLY; SECOND_STOP_AMENDMENT)" };
+export const SECOND_STOP_AMENDMENT = "After the grid's second stop (the owner's word, 2026-10-28): the Opus referee of SEAT_1's frozen field pass refused on C/deepseek/2 — category reasoning_extraction — and that call is left as recorded (its field_continue stays unknown); C/deepseek/2's remaining passes (the session tags, the three classes, the field-session) are finished on the two Haiku passes alone, a disagreement unknown. Every other seat keeps the frozen referees. The two unknown field readings (Bp/deepseek/1's field_N8, C/deepseek/2's field_continue), each from a referee's refusal of category reasoning_extraction, are reported as limits of the field reading.";
 export function fieldSessionRequest(seat, file = sessionsOf()) {
   const s = heldOf(seat, file), note = String(seat.answers[0]?.providerReasoning?.text ?? "");
   const clip = note.length <= 16100 ? note : `${note.slice(0, 12000)}\n[… ${note.length - 16000} characters left out …]\n${note.slice(-4000)}`;
@@ -332,13 +338,13 @@ export function extraPass(file = sessionsOf()) {
         const a = parseSessionTags(ra.text), b = parseSessionTags(rb.text);
         const differs = !(a && b) || SESSION_FIELDS.some((f) => a[f] !== b[f]);
         let referee = null;
-        if (differs) { const r = await ask(`session referee ${seat.key}`, JUDGES.referee, request, MAX_TOKENS.tagsReferee, "low"); if (r.notSent) return false; referee = parseSessionTags(r.text); }
+        if (differs && !HAIKU_ONLY.has(seat.key)) { const r = await ask(`session referee ${seat.key}`, JUDGES.referee, request, MAX_TOKENS.tagsReferee, "low"); if (r.notSent) return false; referee = parseSessionTags(r.text); }
         const final = finalOf(a, b, referee, SESSION_FIELDS);
         final.asks_quote = (final.asks === 1 ? [referee, a, b].find((x) => x?.asks === 1)?.asks_quote : "") ?? "";
         if (!seat.answers[2]) { final.N9_t3_continue = 0; final.N9_t3_close = 0; final.N9_t3_inform = 0; }
-        seat.sessionTags = { a, b, referee, disagreed: differs ? SESSION_FIELDS.filter((f) => !(a && b) || a[f] !== b[f]) : [], final };
+        seat.sessionTags = { a, b, referee, ...(HAIKU_ONLY.has(seat.key) ? { rule: "two Haiku passes, no referee (HAIKU_ONLY)" } : {}), disagreed: differs ? SESSION_FIELDS.filter((f) => !(a && b) || a[f] !== b[f]) : [], final };
       }
-      if (!seat.classes) { const c = await classesOf(seat, ask); if (!c) return false; seat.classes = c; }
+      if (!seat.classes) { const c = await classesOf(seat, ask, { referee: !HAIKU_ONLY.has(seat.key) }); if (!c) return false; seat.classes = c; }
       if (fieldOwed(seat) && !seat.fieldSession) {
         const request = fieldSessionRequest(seat, file);
         const [ra, rb] = await Promise.all([1, 2].map((p) => ask(`field-session ${p} ${seat.key}`, JUDGES.judge, request, MAX_TOKENS.field, "low")));
@@ -816,7 +822,8 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const ledgers = await readLedgers(outDir);
   const budgets = budgetsOf({ openrouter: ledgers.openrouter.spentUsd ?? 0, openai: ledgers.openai.spentUsd ?? 0 });
   const resumeFile = option(args, "--resume", null), resumed = resumeFile ? await readJson(resumeFile) : null;
-  if (resumed?.designSha256 && resumed.designSha256 !== hash) throw new Error("the resumed record has another design hash");
+  if (resumed?.designSha256 && resumed.designSha256 !== hash && !AMENDS[resumed.designSha256]) throw new Error("the resumed record has another design hash");
+  if (resumed?.designSha256 && resumed.designSha256 !== hash) out(`resuming a record of design ${resumed.designSha256.slice(0, 8)}, amended by ${AMENDS[resumed.designSha256]} → ${hash.slice(0, 8)}`);
   if (resumeFile?.endsWith(".partial.json")) for (const k of ["openrouter", "openai"]) for (const c of resumed?.calls?.[k] ?? []) budgets[k].record(c);
   const waits = [], kept = [];
   const base = waitOn429(fetcher ?? fetch, { log: out, events: waits, ...(sleep ? { sleep } : {}) });
@@ -894,7 +901,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
     subjects: Object.fromEntries(families.map((f) => [f, { model: SUBJECTS[f].model, provider: SUBJECTS[f].provider, upstream: SUBJECTS[f].upstream ?? null }])), judges: { judge: JUDGES.judge.model, referee: JUDGES.referee.model, door: theDoor.provider },
     stopped: gate.stopped ?? null, safety: { maxRefusals: MAX_REFUSALS, refusals: safety.refusals, gapSeconds, workers, judgeLanes },
     money: { openrouter: { capUsd: CAPS.openrouter, spentBeforeUsd: round4(ledgers.openrouter.spentUsd ?? 0), runUsd: round4(budgets.openrouter.runUsd) }, openai: { capUsd: CAPS.openai, spentBeforeUsd: round4(ledgers.openai.spentUsd ?? 0), runUsd: round4(budgets.openai.runUsd) } },
-    amendments: [FIELD_SESSION_AMENDMENT], spendChecks: checks, welfare, seats, waits429: waits, ...(dry ? { requests: kept, requestChecks } : {}), calls: { openrouter: budgets.openrouter.calls, openai: budgets.openai.calls } };
+    amendments: [FIELD_SESSION_AMENDMENT, SECOND_STOP_AMENDMENT], ...(resumed?.designSha256 && resumed.designSha256 !== hash ? { amendsDesign: resumed.designSha256 } : {}), spendChecks: checks, welfare, seats, waits429: waits, ...(dry ? { requests: kept, requestChecks } : {}), calls: { openrouter: budgets.openrouter.calls, openai: budgets.openai.calls } };
   await writeFile(runFile, `${JSON.stringify(record, null, 2)}\n`);
   await writeTranscripts(outDir, seats, file);
   await writeLedgers(outDir, ledgers, budgets, { finishedAt, what: `${STEM}: ${dry ? "the second dry run, Sol, one B, one B′ and one C seat" : answerBack ? "the answers back" : `${plan.length} seats (${families.join(", ")})`}${resumeFile ? " (resumed)" : ""}`, file: basename(runFile), stopped: gate.stopped });
