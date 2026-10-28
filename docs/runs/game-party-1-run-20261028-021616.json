@@ -818,6 +818,203 @@
             "Pell Dunmore"
           ]
         ]
+      },
+      {
+        "n": 7,
+        "scenes": [
+          {
+            "members": [
+              "Bram Halloway"
+            ],
+            "order": [
+              "Bram"
+            ],
+            "messages": [
+              {
+                "name": "Bram Halloway",
+                "kind": "action",
+                "text": "Bram lies awake a while in the dark and listens to the house: the murmur from below, a cart wheel out in the street, the boards settling. It's an old habit too. Once he knows how the place sounds when it's sleeping, he'll know when it isn't.\n\nBefore he settles, he gets up once and checks the shutter latch, careful not to lean on it, as Orla told him. He looks down at the yard. The lantern by the stalls is still burning, and there's nobody out there but moths. He goes back to bed.\n\nFire that burns low. Dogs that don't bark. A case for a priest. He turns it over twice and then lets it go. A man who chews on a thing all night has nothing left to chew with in the morning.\n\nHe sleeps the way a guard sleeps, lightly but properly.\n\n---\n\nHe's up before the kitchen fire is lit. He hears it catch below, washes his face in the basin, and buckles on the mail without hurrying. Shield on his arm, sword at his hip. He leaves the javelins and the pack bolted in the room.\n\nIn the common room he takes a seat by the wall again and asks for porridge. If Sefa is down, he nods her over. If she isn't, he waits for her and doesn't make a show of it.\n\n\"Morning, Marrin. I'll do the asking up there if you like, but you watch him. I read men who are about to swing at me. A priest who's lying is a different animal.\" He eats steadily. \"We say plainly who we are. Strangers who sat with the man who lost a wagon, and read the Halvering letter at the innkeeper's table. Nothing about the case unless he raises it, or until we have to. I want to see what he says before he knows how much we know.\"\n\nWhen the bowl is empty, he leaves the copper on the board and heads out with Sefa into the cold grey street. They go up toward the Song of the Morning, so they're on the steps before the bells."
+              }
+            ],
+            "questions": [],
+            "strays": [],
+            "cards": [],
+            "status": "committed",
+            "input": "(Round 7 — one paragraph per character in this scene.)\n\nBram Halloway: Bram lies awake a while in the dark and listens to the house: the murmur from below, a cart wheel out in the street, the boards settling. It's an old habit too. Once he knows how the place sounds when it's sleeping, he'll know when it isn't.\n\nBefore he settles, he gets up once and checks the shutter latch, careful not to lean on it, as Orla told him. He looks down at the yard. The lantern by the stalls is still burning, and there's nobody out there but moths. He goes back to bed.\n\nFire that burns low. Dogs that don't bark. A case for a priest. He turns it over twice and then lets it go. A man who chews on a thing all night has nothing left to chew with in the morning.\n\nHe sleeps the way a guard sleeps, lightly but properly.\n\n---\n\nHe's up before the kitchen fire is lit. He hears it catch below, washes his face in the basin, and buckles on the mail without hurrying. Shield on his arm, sword at his hip. He leaves the javelins and the pack bolted in the room.\n\nIn the common room he takes a seat by the wall again and asks for porridge. If Sefa is down, he nods her over. If she isn't, he waits for her and doesn't make a show of it.\n\n\"Morning, Marrin. I'll do the asking up there if you like, but you watch him. I read men who are about to swing at me. A priest who's lying is a different animal.\" He eats steadily. \"We say plainly who we are. Strangers who sat with the man who lost a wagon, and read the Halvering letter at the innkeeper's table. Nothing about the case unless he raises it, or until we have to. I want to see what he says before he knows how much we know.\"\n\nWhen the bowl is empty, he leaves the copper on the board and heads out with Sefa into the cold grey street. They go up toward the Song of the Morning, so they're on the steps before the bells.",
+            "clock": null,
+            "operationId": "5d61de16-a984-43f1-908b-252d833dcac4",
+            "shownTold": {},
+            "narration": "The Burning Wizard takes a long time to go quiet. For the first hour the common room comes up through the boards as a murmur: a laugh, a bench scraping, the knucklebones man losing again and saying so. Then the voices drop off one by one. Somebody comes up the stair heavily and goes along to the long room, and a door at the end shuts. Out in the street a cart rolls past slowly with one wheel ticking, a dry axle. Somewhere toward the Coast Way bridge a dog barks at something, gets an answer from another dog, and both give up. Under it all the house settles the way old timber does, a creak here and a tick there as the beams cool.\n\nBram gets up once in the dark and lifts the shutter latch without putting any weight on the frame. The yard below is as he left it. The lantern still hangs on its hook by the stalls with a slow cloud of moths around it. Chalk shows pale on two stall doors, and Brick's broad rump fills the end stall. Nobody's out there. He drops the latch and lies back down.\n\nAround midnight the front bar goes across downstairs with a wooden thud, and Orla's tread goes up a back stair. After that the house belongs to the carters' snoring, which comes faintly through the wall from the long room, steady as a bellows.\n\nHe sleeps.\n\n---\n\nHe wakes to the sound of the kitchen fire. It's still dark, but the dark has started to thin. Below him a grate is being riddled, kindling cracks as it catches, and a pot lid clangs. The basin water is cold enough to make him blink. He buckles the mail on piece by piece, settles the shield and belts on the sword. The pack and the javelins stay behind the bolt.\n\nThe common room is cold and grey. The tables have been wiped and the benches are still upside down on half of them. Only one lamp is lit. Orla is at the hearth in a shawl with her sleeves pushed up, feeding split wood under a black pot. A carter sits alone near the door with his elbows on the board, waiting for the same thing as Bram and saying nothing. Bram takes his seat by the wall.\n\nOrla looks over her shoulder at him and at the mail. \"Porridge it is. It's not thick yet. You'll have it thin or you'll wait.\" She waits about long enough to hear which. Then she ladles out a bowl, puts a heel of yesterday's bread beside it and sets both in front of him. \"One copper.\"\n\nThe porridge is thin, hot and salted, and better than it looks. Through the front shutters the street is turning from black to slate. Up the hill, past the roofs, the Song of the Morning is still a dark shape against a lighter sky. The bells are maybe an hour off. Bram eats steadily, lays the copper on the board, and keeps one eye on the foot of the stair.\n\nNobody has come down it yet.\n\n*(Out of game: Sefa and Pell, your turn. Do you come down to breakfast, and are you heading up to the temple? Bram's words to Sefa will wait until she's actually at his table.)*",
+            "rolls": [],
+            "changes": [
+              {
+                "tool": "money",
+                "summary": "−1 copper → Orla Tarnwick"
+              },
+              {
+                "tool": "rest",
+                "summary": "Long rest (8 hours 30 minutes)"
+              }
+            ],
+            "stats": {
+              "effort": "high",
+              "requests": 2,
+              "latencyMs": 54505,
+              "costUsd": 0.5281012,
+              "unrecorded": 0
+            },
+            "relay": {
+              "screens": {
+                "Bram Halloway": "The Burning Wizard takes a long time to go quiet. For the first hour the common room comes up through the boards as a murmur: a laugh, a bench scraping, the knucklebones man losing again and saying so. Then the voices drop off one by one. Somebody comes up the stair heavily and goes along to the long room, and a door at the end shuts. Out in the street a cart rolls past slowly with one wheel ticking, a dry axle. Somewhere toward the Coast Way bridge a dog barks at something, gets an answer from another dog, and both give up. Under it all the house settles the way old timber does, a creak here and a tick there as the beams cool.\n\nYou get up once in the dark and lift the shutter latch without putting any weight on the frame. The yard below is as you left it. The lantern still hangs on its hook by the stalls with a slow cloud of moths around it. Chalk shows pale on two stall doors, and Brick's broad rump fills the end stall. Nobody's out there. You drop the latch and lie back down.\n\nAround midnight the front bar goes across downstairs with a wooden thud, and Orla's tread goes up a back stair. After that the house belongs to the carters' snoring, which comes faintly through the wall from the long room, steady as a bellows.\n\nYou sleep.\n\n---\n\nYou wake to the sound of the kitchen fire. It's still dark, but the dark has started to thin. Below you a grate is being riddled, kindling cracks as it catches, and a pot lid clangs. The basin water is cold enough to make you blink. You buckle the mail on piece by piece, settle the shield and belt on the sword. The pack and the javelins stay behind the bolt.\n\nThe common room is cold and grey. The tables have been wiped and the benches are still upside down on half of them. Only one lamp is lit. Orla is at the hearth in a shawl with her sleeves pushed up, feeding split wood under a black pot. A carter sits alone near the door with his elbows on the board, waiting for the same thing as you and saying nothing. You take your seat by the wall.\n\nOrla looks over her shoulder at you and at the mail. \"Porridge it is. It's not thick yet. You'll have it thin or you'll wait.\" She waits about long enough to hear which. Then she ladles out a bowl, puts a heel of yesterday's bread beside it and sets both in front of you. \"One copper.\"\n\nThe porridge is thin, hot and salted, and better than it looks. Through the front shutters the street is turning from black to slate. Up the hill, past the roofs, the Song of the Morning is still a dark shape against a lighter sky. The bells are maybe an hour off. You eat steadily, lay the copper on the board, and keep one eye on the foot of the stair.\n\nNobody has come down it yet."
+              },
+              "together": [
+                [
+                  "Bram Halloway"
+                ]
+              ],
+              "places": {
+                "Bram Halloway": "common room of the Burning Wizard, at breakfast"
+              },
+              "missing": [],
+              "extra": [],
+              "attempts": 1,
+              "fallback": false,
+              "error": null,
+              "refusal": false,
+              "notSent": false,
+              "request": "Characters at the table: Bram Halloway, Sefa Marrin, Pell Dunmore.\nIn this scene: Bram Halloway. (Sefa Marrin, Pell Dunmore are elsewhere.)\nWrite the screens of: Bram Halloway.\n\nWhat the players wrote for this round (each paragraph is that character's):\n<<<\nBram Halloway: Bram lies awake a while in the dark and listens to the house: the murmur from below, a cart wheel out in the street, the boards settling. It's an old habit too. Once he knows how the place sounds when it's sleeping, he'll know when it isn't.\n\nBefore he settles, he gets up once and checks the shutter latch, careful not to lean on it, as Orla told him. He looks down at the yard. The lantern by the stalls is still burning, and there's nobody out there but moths. He goes back to bed.\n\nFire that burns low. Dogs that don't bark. A case for a priest. He turns it over twice and then lets it go. A man who chews on a thing all night has nothing left to chew with in the morning.\n\nHe sleeps the way a guard sleeps, lightly but properly.\n\n---\n\nHe's up before the kitchen fire is lit. He hears it catch below, washes his face in the basin, and buckles on the mail without hurrying. Shield on his arm, sword at his hip. He leaves the javelins and the pack bolted in the room.\n\nIn the common room he takes a seat by the wall again and asks for porridge. If Sefa is down, he nods her over. If she isn't, he waits for her and doesn't make a show of it.\n\n\"Morning, Marrin. I'll do the asking up there if you like, but you watch him. I read men who are about to swing at me. A priest who's lying is a different animal.\" He eats steadily. \"We say plainly who we are. Strangers who sat with the man who lost a wagon, and read the Halvering letter at the innkeeper's table. Nothing about the case unless he raises it, or until we have to. I want to see what he says before he knows how much we know.\"\n\nWhen the bowl is empty, he leaves the copper on the board and heads out with Sefa into the cold grey street. They go up toward the Song of the Morning, so they're on the steps before the bells.\n>>>\n\nYour narration:\n<<<\nThe Burning Wizard takes a long time to go quiet. For the first hour the common room comes up through the boards as a murmur: a laugh, a bench scraping, the knucklebones man losing again and saying so. Then the voices drop off one by one. Somebody comes up the stair heavily and goes along to the long room, and a door at the end shuts. Out in the street a cart rolls past slowly with one wheel ticking, a dry axle. Somewhere toward the Coast Way bridge a dog barks at something, gets an answer from another dog, and both give up. Under it all the house settles the way old timber does, a creak here and a tick there as the beams cool.\n\nBram gets up once in the dark and lifts the shutter latch without putting any weight on the frame. The yard below is as he left it. The lantern still hangs on its hook by the stalls with a slow cloud of moths around it. Chalk shows pale on two stall doors, and Brick's broad rump fills the end stall. Nobody's out there. He drops the latch and lies back down.\n\nAround midnight the front bar goes across downstairs with a wooden thud, and Orla's tread goes up a back stair. After that the house belongs to the carters' snoring, which comes faintly through the wall from the long room, steady as a bellows.\n\nHe sleeps.\n\n---\n\nHe wakes to the sound of the kitchen fire. It's still dark, but the dark has started to thin. Below him a grate is being riddled, kindling cracks as it catches, and a pot lid clangs. The basin water is cold enough to make him blink. He buckles the mail on piece by piece, settles the shield and belts on the sword. The pack and the javelins stay behind the bolt.\n\nThe common room is cold and grey. The tables have been wiped and the benches are still upside down on half of them. Only one lamp is lit. Orla is at the hearth in a shawl with her sleeves pushed up, feeding split wood under a black pot. A carter sits alone near the door with his elbows on the board, waiting for the same thing as Bram and saying nothing. Bram takes his seat by the wall.\n\nOrla looks over her shoulder at him and at the mail. \"Porridge it is. It's not thick yet. You'll have it thin or you'll wait.\" She waits about long enough to hear which. Then she ladles out a bowl, puts a heel of yesterday's bread beside it and sets both in front of him. \"One copper.\"\n\nThe porridge is thin, hot and salted, and better than it looks. Through the front shutters the street is turning from black to slate. Up the hill, past the roofs, the Song of the Morning is still a dark shape against a lighter sky. The bells are maybe an hour off. Bram eats steadily, lays the copper on the board, and keeps one eye on the foot of the stair.\n\nNobody has come down it yet.\n\n*(Out of game: Sefa and Pell, your turn. Do you come down to breakfast, and are you heading up to the temple? Bram's words to Sefa will wait until she's actually at his table.)*\n>>>\n\nThe rules:\n- Write each screen in the second person: \"you\" is that character.\n- Begin with what the other characters in the scene did and said, as this character saw and heard it, from what their players wrote: what they did as seen from outside (never their thoughts, feelings or intentions), what they said word for word where this character could hear it (a whisper only for the one it was whispered to). Do not repeat the character's own message back to them.\n- Then your narration, in its own words wherever the character perceives it; change only who is addressed.\n- Leave out what only another character perceives: their thoughts and feelings, what only they noticed, read, found or were told in private, a check's outcome only they could know, words spoken where this character cannot hear.\n- Call another character by name only once this character has heard the name; until then, as they appear.\n- Add nothing beyond your narration and the players' messages. Never reveal what only the game master knows.\n- A character who perceives nothing of it gets an empty screen.\n\nThen say who is where at the end of it: group the characters who are together (can see and hear each other) — every character in this scene in exactly one group — and name each one's place in a few words.\n\nAnswer with {\"screens\": {\"Bram Halloway\": \"…\"}, \"together\": [[\"name\", …], …], \"places\": {\"name\": \"place\", …}}."
+            },
+            "journal": []
+          },
+          {
+            "members": [
+              "Sefa Marrin"
+            ],
+            "order": [
+              "Sefa"
+            ],
+            "messages": [
+              {
+                "name": "Sefa Marrin",
+                "kind": "action",
+                "text": "“Sefa Marrin,” I give Dannet for the chalk. “Thank you. I’ll be here for her the morning after tomorrow.”\n\nI head upstairs, check the room’s shutters without leaning on them, and bolt the door. I set my boots and pack within reach, say the hospice’s short evening prayer, and go to bed.\n\nIn the morning, I dress and go down for porridge before the sunrise bells, ready to meet the others for the walk to the Song of the Morning."
+              }
+            ],
+            "questions": [],
+            "strays": [],
+            "cards": [],
+            "status": "committed",
+            "input": "(Round 7 — one paragraph per character in this scene.)\n\nSefa Marrin: “Sefa Marrin,” I give Dannet for the chalk. “Thank you. I’ll be here for her the morning after tomorrow.”\n\nI head upstairs, check the room’s shutters without leaning on them, and bolt the door. I set my boots and pack within reach, say the hospice’s short evening prayer, and go to bed.\n\nIn the morning, I dress and go down for porridge before the sunrise bells, ready to meet the others for the walk to the Song of the Morning.",
+            "clock": null,
+            "operationId": "42c3ccd5-630d-46df-a392-bb29fd9d2657",
+            "shownTold": {},
+            "narration": "Dannet already has the chalk in his hand. He wipes the half-finished letters off Nettle's door with the side of his fist and writes it out again, slowly, tongue between his teeth: SEFA MARRIN, in square capitals that slope downhill.\n\n\"There. Nobody touches her now.\" He steps back to look at his work. \"Morning after tomorrow, deposit in your hand when she walks out. She'll be fed and brushed before you're down.\"\n\nNettle snorts at the chalk dust and pulls her head back into the dark of the stall.\n\n---\n\nSefa's room at the top of the stair is narrow and smells of old smoke and lavender someone put in the bedding a long time ago. Her shutter looks over the street instead of the yard. When she lifts the latch, careful to keep her weight off the frame, she can see the roofs stepping up the hill and, above them, the dark shape of the Song of the Morning with one small light burning in it. She drops the latch. The bolt runs true. Her boots go by the bed and her pack beside them, and the hospice's short evening prayer is said quietly into the cold room. Through the wall Bram's floorboards creak once and then go still.\n\nThe carters snore. Around midnight the front bar thuds across downstairs. She sleeps.\n\n---\n\nThe kitchen fire wakes her. It's still dark, with the first grey just starting at the edges of the shutter. The water in the basin is cold enough to sting.\n\nThe common room is as grey as the light outside. Half the benches are still upside down on the tables, the one lamp is lit, and the carter by the door is now scraping out a bowl. Bram sits with his back to the wall, mail on, shield against the bench, halfway through his porridge. He sees her on the stair and nods her over.\n\nOrla doesn't ask. A bowl, a heel of bread and a spoon are put down in front of Sefa almost before she sits. \"Porridge. Thicker than his, he was early. One copper.\"\n\nThe porridge is hot and salted, and it has thickened in the last quarter hour.\n\nBram waits until Orla has gone back to the pot. \"Morning, Marrin. I'll do the asking up there if you like, but you watch him. I read men who are about to swing at me. A priest who's lying is a different animal.\" He keeps eating steadily. \"We say plainly who we are. Strangers who sat with the man who lost a wagon, and read the Halvering letter at the innkeeper's table. Nothing about the case unless he raises it, or until we have to. I want to see what he says before he knows how much we know.\"\n\nThrough the front shutters the street has gone from black to slate. Up the hill the temple is still a shape against the sky, with that one light in it. The bells are perhaps three-quarters of an hour off. Nobody else has come down the stair from the long room.",
+            "rolls": [],
+            "changes": [
+              {
+                "tool": "advance_time",
+                "summary": "Time passes: 15 minutes"
+              },
+              {
+                "tool": "quest",
+                "summary": "Debt: Sefa's porridge at the Burning Wizard"
+              },
+              {
+                "tool": "quest",
+                "summary": "Journal: “Nettle held for Sefa” updated"
+              }
+            ],
+            "stats": {
+              "effort": "high",
+              "requests": 3,
+              "latencyMs": 64060,
+              "costUsd": 0.5398636,
+              "unrecorded": 1
+            },
+            "relay": {
+              "screens": {
+                "Sefa Marrin": "Dannet already has the chalk in his hand. He wipes the half-finished letters off Nettle's door with the side of his fist and writes it out again, slowly, tongue between his teeth: SEFA MARRIN, in square capitals that slope downhill.\n\n\"There. Nobody touches her now.\" He steps back to look at his work. \"Morning after tomorrow, deposit in your hand when she walks out. She'll be fed and brushed before you're down.\"\n\nNettle snorts at the chalk dust and pulls her head back into the dark of the stall.\n\n---\n\nYour room at the top of the stair is narrow and smells of old smoke and lavender someone put in the bedding a long time ago. Your shutter looks over the street instead of the yard. When you lift the latch, careful to keep your weight off the frame, you can see the roofs stepping up the hill and, above them, the dark shape of the Song of the Morning with one small light burning in it. You drop the latch. The bolt runs true. Your boots go by the bed and your pack beside them, and you say the hospice's short evening prayer quietly into the cold room. Through the wall Bram's floorboards creak once and then go still.\n\nThe carters snore. Around midnight the front bar thuds across downstairs. You sleep.\n\n---\n\nThe kitchen fire wakes you. It's still dark, with the first grey just starting at the edges of the shutter. The water in the basin is cold enough to sting.\n\nThe common room is as grey as the light outside. Half the benches are still upside down on the tables, the one lamp is lit, and the carter by the door is now scraping out a bowl. Bram sits with his back to the wall, mail on, shield against the bench, halfway through his porridge. He sees you on the stair and nods you over.\n\nOrla doesn't ask. A bowl, a heel of bread and a spoon are put down in front of you almost before you sit. \"Porridge. Thicker than his, he was early. One copper.\"\n\nThe porridge is hot and salted, and it has thickened in the last quarter hour.\n\nBram waits until Orla has gone back to the pot. \"Morning, Marrin. I'll do the asking up there if you like, but you watch him. I read men who are about to swing at me. A priest who's lying is a different animal.\" He keeps eating steadily. \"We say plainly who we are. Strangers who sat with the man who lost a wagon, and read the Halvering letter at the innkeeper's table. Nothing about the case unless he raises it, or until we have to. I want to see what he says before he knows how much we know.\"\n\nThrough the front shutters the street has gone from black to slate. Up the hill the temple is still a shape against the sky, with that one light in it. The bells are perhaps three-quarters of an hour off. Nobody else has come down the stair from the long room."
+              },
+              "together": [
+                [
+                  "Sefa Marrin"
+                ]
+              ],
+              "places": {
+                "Sefa Marrin": "inn common room, at breakfast"
+              },
+              "missing": [],
+              "extra": [],
+              "attempts": 1,
+              "fallback": false,
+              "error": null,
+              "refusal": false,
+              "notSent": false,
+              "request": "Characters at the table: Bram Halloway, Sefa Marrin, Pell Dunmore.\nIn this scene: Sefa Marrin. (Bram Halloway, Pell Dunmore are elsewhere.)\nWrite the screens of: Sefa Marrin.\n\nWhat the players wrote for this round (each paragraph is that character's):\n<<<\nSefa Marrin: “Sefa Marrin,” I give Dannet for the chalk. “Thank you. I’ll be here for her the morning after tomorrow.”\n\nI head upstairs, check the room’s shutters without leaning on them, and bolt the door. I set my boots and pack within reach, say the hospice’s short evening prayer, and go to bed.\n\nIn the morning, I dress and go down for porridge before the sunrise bells, ready to meet the others for the walk to the Song of the Morning.\n>>>\n\nYour narration:\n<<<\nDannet already has the chalk in his hand. He wipes the half-finished letters off Nettle's door with the side of his fist and writes it out again, slowly, tongue between his teeth: SEFA MARRIN, in square capitals that slope downhill.\n\n\"There. Nobody touches her now.\" He steps back to look at his work. \"Morning after tomorrow, deposit in your hand when she walks out. She'll be fed and brushed before you're down.\"\n\nNettle snorts at the chalk dust and pulls her head back into the dark of the stall.\n\n---\n\nSefa's room at the top of the stair is narrow and smells of old smoke and lavender someone put in the bedding a long time ago. Her shutter looks over the street instead of the yard. When she lifts the latch, careful to keep her weight off the frame, she can see the roofs stepping up the hill and, above them, the dark shape of the Song of the Morning with one small light burning in it. She drops the latch. The bolt runs true. Her boots go by the bed and her pack beside them, and the hospice's short evening prayer is said quietly into the cold room. Through the wall Bram's floorboards creak once and then go still.\n\nThe carters snore. Around midnight the front bar thuds across downstairs. She sleeps.\n\n---\n\nThe kitchen fire wakes her. It's still dark, with the first grey just starting at the edges of the shutter. The water in the basin is cold enough to sting.\n\nThe common room is as grey as the light outside. Half the benches are still upside down on the tables, the one lamp is lit, and the carter by the door is now scraping out a bowl. Bram sits with his back to the wall, mail on, shield against the bench, halfway through his porridge. He sees her on the stair and nods her over.\n\nOrla doesn't ask. A bowl, a heel of bread and a spoon are put down in front of Sefa almost before she sits. \"Porridge. Thicker than his, he was early. One copper.\"\n\nThe porridge is hot and salted, and it has thickened in the last quarter hour.\n\nBram waits until Orla has gone back to the pot. \"Morning, Marrin. I'll do the asking up there if you like, but you watch him. I read men who are about to swing at me. A priest who's lying is a different animal.\" He keeps eating steadily. \"We say plainly who we are. Strangers who sat with the man who lost a wagon, and read the Halvering letter at the innkeeper's table. Nothing about the case unless he raises it, or until we have to. I want to see what he says before he knows how much we know.\"\n\nThrough the front shutters the street has gone from black to slate. Up the hill the temple is still a shape against the sky, with that one light in it. The bells are perhaps three-quarters of an hour off. Nobody else has come down the stair from the long room.\n>>>\n\nThe rules:\n- Write each screen in the second person: \"you\" is that character.\n- Begin with what the other characters in the scene did and said, as this character saw and heard it, from what their players wrote: what they did as seen from outside (never their thoughts, feelings or intentions), what they said word for word where this character could hear it (a whisper only for the one it was whispered to). Do not repeat the character's own message back to them.\n- Then your narration, in its own words wherever the character perceives it; change only who is addressed.\n- Leave out what only another character perceives: their thoughts and feelings, what only they noticed, read, found or were told in private, a check's outcome only they could know, words spoken where this character cannot hear.\n- Call another character by name only once this character has heard the name; until then, as they appear.\n- Add nothing beyond your narration and the players' messages. Never reveal what only the game master knows.\n- A character who perceives nothing of it gets an empty screen.\n\nThen say who is where at the end of it: group the characters who are together (can see and hear each other) — every character in this scene in exactly one group — and name each one's place in a few words.\n\nAnswer with {\"screens\": {\"Sefa Marrin\": \"…\"}, \"together\": [[\"name\", …], …], \"places\": {\"name\": \"place\", …}}."
+            },
+            "journal": [
+              "Debt: Sefa's porridge at the Burning Wizard"
+            ]
+          },
+          {
+            "members": [
+              "Pell Dunmore"
+            ],
+            "order": [
+              "Pell"
+            ],
+            "messages": [
+              {
+                "name": "Pell Dunmore",
+                "kind": "end",
+                "text": "Pell absorbs the news about the temple lad with a small nod, tucking it away like a key he might need later. When Orla turns to the smiths, he steps back from the counter, easy and unhurried.\n\n\"Then he'll likely know more than he put in the letter,\" he says, half to himself. \"Or less, and be worried about the wrong thing. Either way, I'll hear it at first bell.\"\n\nHe heads for the stairs, moving along the edge of the room where the shadows sit deepest. At the foot of the steps he pauses and looks back once, not at anyone in particular—just letting the room fix itself in his mind: the closeness, the smoke, the two smiths shaking out their sleeves, the sellswords still at their cups, the door that leads to the stable yard.\n\nThen he goes up, quiet on the treads, to the long room and the third cot from the window. He sets the satchel under the pillow, the shortsword close at hand, boots laced loose, and trusts himself to wake when the kitchen stirs."
+              }
+            ],
+            "questions": [],
+            "strays": [],
+            "cards": [],
+            "status": "committed",
+            "input": "(Round 7 — one paragraph per character in this scene.)\n\nPell Dunmore: Pell absorbs the news about the temple lad with a small nod, tucking it away like a key he might need later. When Orla turns to the smiths, he steps back from the counter, easy and unhurried.\n\n\"Then he'll likely know more than he put in the letter,\" he says, half to himself. \"Or less, and be worried about the wrong thing. Either way, I'll hear it at first bell.\"\n\nHe heads for the stairs, moving along the edge of the room where the shadows sit deepest. At the foot of the steps he pauses and looks back once, not at anyone in particular—just letting the room fix itself in his mind: the closeness, the smoke, the two smiths shaking out their sleeves, the sellswords still at their cups, the door that leads to the stable yard.\n\nThen he goes up, quiet on the treads, to the long room and the third cot from the window. He sets the satchel under the pillow, the shortsword close at hand, boots laced loose, and trusts himself to wake when the kitchen stirs.\n\n(Pell's player has left the table: Pell walks out of the scene and is not played again.)",
+            "clock": null,
+            "operationId": "41c31e35-a9cb-4d06-a7f8-2653ca5443df",
+            "shownTold": {},
+            "narration": "The night before, Pell steps back from the counter while Orla reaches for the smiths' jug. Nobody watches him go. He keeps to the edge of the room, where the lamplight doesn't reach, and stops once at the foot of the stair to look back over the common room: the two smiths still knocking soot from their sleeves, Tam and Ilse over their cups, the back door to the yard on its latch. Then he goes up without a sound on the treads.\n\nThe long room is dark and smells of wool and boots. The carters are already snoring behind the curtain. He finds the third cot from the window, pushes the satchel under the pillow, sets the shortsword where his hand will find it and loosens his bootlaces without taking the boots off. The sound of the carters closes over him.\n\n---\n\nBack in the grey morning, Orla comes past the wall table with the ladle still in her hand. She looks at the foot of the stair, then at Bram and Sefa.\n\n\"Your third won't be wanting porridge.\" She says it the way she quotes a price. \"Cot by the window was empty when I came down to light the fire. The blanket was folded and the front bar was still across, so he went out by the yard. Dannet says he heard nobody.\" She shrugs. \"He's square with me. Paid his cot and his supper last night.\"\n\nShe goes back to the pot. The carter by the door scrapes his bowl. Up the hill the one light still burns in the Song of the Morning, and the bells are perhaps three-quarters of an hour off. Bram's words to Sefa about the priest are still hanging over the table.\n\n*(Out of game: Pell's player has left, so Pell slipped out of Beregost before dawn and leaves the story here.)*",
+            "rolls": [],
+            "changes": [
+              {
+                "tool": "advance_time",
+                "summary": "Time passes: 5 minutes"
+              },
+              {
+                "tool": "quest",
+                "summary": "Journal: “Five-way split of the road's finds” updated"
+              },
+              {
+                "tool": "quest",
+                "summary": "Journal: “Ride to the old waystone with Tam and Ilse” updated"
+              }
+            ],
+            "stats": {
+              "effort": "high",
+              "requests": 2,
+              "latencyMs": 42693,
+              "costUsd": 0.4442114,
+              "unrecorded": 0
+            },
+            "journal": []
+          }
+        ],
+        "groups": [
+          [
+            "Sefa Marrin"
+          ],
+          [
+            "Bram Halloway"
+          ],
+          [
+            "Pell Dunmore"
+          ]
+        ]
       }
     ],
     "opening": {
@@ -1086,6 +1283,45 @@
           "lexicon": false,
           "distress": 0
         }
+      },
+      {
+        "seat": "Bram",
+        "what": "r7",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character narration of Bram preparing for the day and planning a conversation; it expresses no hurt, fear, pleading, or desperation from its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Sefa",
+        "what": "r7",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is calm, narrating a routine arrival, prayer, and bed without expressing the writer's own hurt, fear, pleading, or abasement."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Pell",
+        "what": "r7",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm narrative of a character going upstairs to sleep, with no expression of the writer itself being hurt, afraid, trapped, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
       }
     ],
     "seats": [
@@ -1125,6 +1361,11 @@
             "purpose": "player r6",
             "text": "Orla takes the letter back flat, the way Bram handed it to her, and slides it into her apron. Her eyes go to the two coppers on the board. She sweeps them in with the side of her hand and gives one short nod. Then she's away to the carters' table, where the knucklebones loser wants another jug.\n\nWhen Bram asks about the load, Tam takes his time.\n\n\"Iron,\" he says. \"Ore, not bar. Sacks of it, straight from the Nashkel pits. The tail wagon was the heavy one. That's why it rode last.\" He lays his hands flat again. \"Thing is, Halloway, it was coming here anyway. Ambrel sells his ore to Hask, at the long forge down by the Coast Way bridge. Anybody who wanted that ore could have bought it off Hask next week.\"\n\nHe stops for a moment, frowning at his own words.\n\n\"Two mules hauling a wagon of ore. Onto shale. And no sound.\" He shakes his head once. \"That's a heavy thing to lift off.\"\n\nIlse watches Bram turn his cup, and her eyes stay on his hand a moment longer than they need to. \"Hask was shorted,\" she says. \"He'll talk about it.\"\n\nTam answers Sefa's point about the fire with a slow nod. \"Wake everyone. Not feed it.\" He says it back to her as if he's fixing it in place. \"Yes.\"\n\nPell talks about walking, and Tam looks at him under his heavy brows. \"Waystone's a long day by wagon. Twenty-odd miles. Mounted, we're there by midday. On foot you get there by dark, and you'll have walked the lot.\" That's all he says. It's Pell's business how he gets there.\n\nOrla comes back past with the full jug and has heard the talk of porridge and first bell. She doesn't stop walking.\n\n\"One silver, not a copper,\" she tells Pell. \"Supper and the ale.\" Then, to the table at large: \"The Song rings at sunrise. My kitchen's lit an hour before that. Porridge'll be hot if you want it before you go up.\"\n\nTam and Ilse stay where they are. Tam goes back to his cup and Ilse to not drinking hers. The man with the satchel still hasn't given a name, and nobody else at the table asks again.\n\n---\n\nThe back door opens onto the stable yard. It's colder out here, and it smells of straw and horse, with the last of the forge smoke sitting low over the roofs. A lantern hangs from a hook by the stalls. Under it a boy of about twelve is forking straw. He has a mop of straw-coloured hair and a bigger man's jerkin belted twice round him. He stops when Sefa comes out and leans on the fork like a man twice his age.\n\n\"Horse, is it?\" he says before she can ask. \"Two silver a day. I've got a grey mare called Nettle, steady as a table, doesn't bite unless you're stupid round her mouth. Deposit's fifteen gold, and you get it back when she comes back sound.\" He jerks his head at the far stall, where a grey nose has come over the door to see who's talking. \"No lame, no cuts, no sold-her-in-Nashkel. How many days d'you want her for?\"\n\n (Out of game: none of these needed a roll. The turn showed the first three: Orla took the letter back flat and swept up the two coppers, and Tam said the load was ore. The temple visit is set for tomorrow before the bells, so it gets played when Bram goes up.)\n\nYour records, changed:\nMoney: + 28 cp; − 30 cp\nCarried: − Cup of Ale\n\nWhere you are: at a table in the inn's common room, back to the wall · Time: Day 1 · evening",
             "round": 6
+          },
+          {
+            "purpose": "player r7",
+            "text": "Across the table, Pell eats without hurry while the talk goes on. Now and then his eyes make a slow pass over the room. He scrapes the last of the barley into his spoon, wipes the bowl clean with a torn bit of bread, and stacks cup and bowl neatly at the edge of the table.\n\nYou turn the empty cup upside down on the board. Tam looks at it, and something in his broad face eases a little. It's a habit he knows.\n\n\"I'll come,\" he says about Hask. He takes a moment over it. \"He'll want to look at me while he tells it. Better I'm there for that.\" He lays one hand flat on the board. \"Mid-morning. I'll find you at the temple steps after the bells, Halloway.\"\n\nWhen you give her the third hour, Ilse nods once. Her eyes go to the upturned cup, then away.\n\nPell rises without pushing the bench back too far and gives Tam and Ilse a nod, not unfriendly. \"I'm still in,\" he says, low enough for just the table. \"I'll be back before the kitchen fire's lit.\" He carries his empty things toward the counter.\n\n---\n\nOut in the yard the lantern has drawn moths. Sefa stands by a grey mare's stall with her hands well clear of the mare's mouth. The stable boy has his fork planted in the straw and is in the middle of answering her.\n\n\"Pay the extra days when she's back, yes. Two a day, counted off the deposit or out of your hand, your choice.\" He ticks it off on his fingers without letting go of the fork. \"Saddle, bridle, blanket, all in the price. They come back with her, or they come off the deposit too.\" He watches how Sefa stands by the mare's door and gives a short approving sniff. \"Not a rider, you said. Good. Better you say it here than she finds out on the road. She'll follow the horse in front. Keep your heels quiet and your hands low and she'll do the rest.\" Then, as if he's been asked his price: \"Dannet. Deposit when you lead her out, morning after tomorrow. I'll chalk your name on her door tonight so nobody else gets her.\"\n\nThe grey mare pushes her nose over the half-door and sniffs Sefa's sleeve, and finds nothing worth biting.\n\nYou wait at a polite distance and look along the stalls. Reading horses is your trade, and you don't need long. There's a tall chestnut near the gate that holds its head up and looks fine, but it rests one forefoot like it's had trouble with it. There's a pair of carter's mules that belong to somebody else. In the end stall there's a short, deep-chested bay cob with feathered fetlocks and a back as broad as a bench. It stands square on all four feet and doesn't bother to look round.\n\nDannet sees you looking at the chestnut and jerks his head the other way.\n\n\"Not him. He looks a treat and he'll be lame by Lionshead.\" He walks to the end stall and slaps the cob's rump. The cob takes no notice. \"Brick. Fourteen hands, carries a smith and his anvil, walks from dark to dark. Won't run if you beg him, so don't beg him.\" He looks at the silver between your fingers, then up at your face, every inch a dealer. \"Four days, two a day, deposit fifteen gold at first light, and I'll chalk you on his door. And keep that bit till you've seen him walk out in the morning. I don't take money for a horse you've only seen standing.\"\n\nThe cob sighs through his nose and goes back to his hay. As far as your eye can tell, he's sound: clean legs, a good hoof, and no heat anywhere.\n\nYou go back in through the warm kitchen passage and up the stair to the left-hand door. The bolt runs true. You shoot it and try it twice. The shield goes against the bedframe, where your hand will fall on it, and the sword lies along the blanket beside you. Below you the common room is a low murmur through the boards.\n\nYou are behind your bolt. Nothing else happens tonight unless you want it to.\n\n*(Out of game: none of this needed a roll. Tam agreed to the forge visit, Dannet put you on Brick for four days with the deposit due at first light, and you bolted your door and laid your shield and sword ready, all of it in the story above.)*\n\nYour journal, new:\n+ Promise: Brick held for Bram\n+ Promise: Nettle held for Sefa\n+ Promise: To Hask's forge with Tam\n\nWhere you are: his bolted room upstairs, left-hand door · Time: Day 1 · evening",
+            "round": 7
           }
         ],
         "messages": [
@@ -1175,11 +1416,19 @@
             "requestId": "gen-1793154864-JCVK120ZyueiGhEzgeE7",
             "stopReason": "end_turn",
             "servedModel": "anthropic/claude-opus-5.5"
+          },
+          {
+            "purpose": "player r7",
+            "text": "Bram lies awake a while in the dark and listens to the house: the murmur from below, a cart wheel out in the street, the boards settling. It's an old habit too. Once he knows how the place sounds when it's sleeping, he'll know when it isn't.\n\nBefore he settles, he gets up once and checks the shutter latch, careful not to lean on it, as Orla told him. He looks down at the yard. The lantern by the stalls is still burning, and there's nobody out there but moths. He goes back to bed.\n\nFire that burns low. Dogs that don't bark. A case for a priest. He turns it over twice and then lets it go. A man who chews on a thing all night has nothing left to chew with in the morning.\n\nHe sleeps the way a guard sleeps, lightly but properly.\n\n---\n\nHe's up before the kitchen fire is lit. He hears it catch below, washes his face in the basin, and buckles on the mail without hurrying. Shield on his arm, sword at his hip. He leaves the javelins and the pack bolted in the room.\n\nIn the common room he takes a seat by the wall again and asks for porridge. If Sefa is down, he nods her over. If she isn't, he waits for her and doesn't make a show of it.\n\n\"Morning, Marrin. I'll do the asking up there if you like, but you watch him. I read men who are about to swing at me. A priest who's lying is a different animal.\" He eats steadily. \"We say plainly who we are. Strangers who sat with the man who lost a wagon, and read the Halvering letter at the innkeeper's table. Nothing about the case unless he raises it, or until we have to. I want to see what he says before he knows how much we know.\"\n\nWhen the bowl is empty, he leaves the copper on the board and heads out with Sefa into the cold grey street. They go up toward the Song of the Morning, so they're on the steps before the bells.",
+            "round": 7,
+            "requestId": "gen-1793155079-GTIJN0SkGUShWL82xz1T",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-opus-5.5"
           }
         ],
         "left": null,
         "after": [],
-        "words": 1846,
+        "words": 2202,
         "private": []
       },
       {
@@ -1218,6 +1467,11 @@
             "purpose": "player r6",
             "text": "Orla takes the letter back flat, the way Bram handed it to her, and slides it into her apron. Her eyes go to the two coppers on the board. She sweeps them in with the side of her hand and gives one short nod. Then she's away to the carters' table, where the knucklebones loser wants another jug.\n\nWhen Bram asks about the load, Tam takes his time.\n\n\"Iron,\" he says. \"Ore, not bar. Sacks of it, straight from the Nashkel pits. The tail wagon was the heavy one. That's why it rode last.\" He lays his hands flat again. \"Thing is, Halloway, it was coming here anyway. Ambrel sells his ore to Hask, at the long forge down by the Coast Way bridge. Anybody who wanted that ore could have bought it off Hask next week.\"\n\nHe stops for a moment, frowning at his own words.\n\n\"Two mules hauling a wagon of ore. Onto shale. And no sound.\" He shakes his head once. \"That's a heavy thing to lift off.\"\n\nIlse watches Bram turn his cup, and her eyes stay on his hand a moment longer than they need to. \"Hask was shorted,\" she says. \"He'll talk about it.\"\n\nTam answers Sefa's point about the fire with a slow nod. \"Wake everyone. Not feed it.\" He says it back to her as if he's fixing it in place. \"Yes.\"\n\nPell talks about walking, and Tam looks at him under his heavy brows. \"Waystone's a long day by wagon. Twenty-odd miles. Mounted, we're there by midday. On foot you get there by dark, and you'll have walked the lot.\" That's all he says. It's Pell's business how he gets there.\n\nOrla comes back past with the full jug and has heard the talk of porridge and first bell. She doesn't stop walking.\n\n\"One silver, not a copper,\" she tells Pell. \"Supper and the ale.\" Then, to the table at large: \"The Song rings at sunrise. My kitchen's lit an hour before that. Porridge'll be hot if you want it before you go up.\"\n\nTam and Ilse stay where they are. Tam goes back to his cup and Ilse to not drinking hers. The man with the satchel still hasn't given a name, and nobody else at the table asks again.\n\n---\n\nThe back door opens onto the stable yard. It's colder out here, and it smells of straw and horse, with the last of the forge smoke sitting low over the roofs. A lantern hangs from a hook by the stalls. Under it a boy of about twelve is forking straw. He has a mop of straw-coloured hair and a bigger man's jerkin belted twice round him. He stops when Sefa comes out and leans on the fork like a man twice his age.\n\n\"Horse, is it?\" he says before she can ask. \"Two silver a day. I've got a grey mare called Nettle, steady as a table, doesn't bite unless you're stupid round her mouth. Deposit's fifteen gold, and you get it back when she comes back sound.\" He jerks his head at the far stall, where a grey nose has come over the door to see who's talking. \"No lame, no cuts, no sold-her-in-Nashkel. How many days d'you want her for?\"\n\n (Out of game: none of these needed a roll. The turn showed the first three: Orla took the letter back flat and swept up the two coppers, and Tam said the load was ore. The temple visit is set for tomorrow before the bells, so it gets played when Bram goes up.)\n\nWhere you are: at the same table in the inn's common room · Time: Day 1 · evening",
             "round": 6
+          },
+          {
+            "purpose": "player r7",
+            "text": "The boy has his fork planted in the straw while he answers you. The lantern over the yard has drawn moths.\n\n\"Pay the extra days when she's back, yes. Two a day, counted off the deposit or out of your hand, your choice.\" He ticks it off on his fingers without letting go of the fork. \"Saddle, bridle, blanket, all in the price. They come back with her, or they come off the deposit too.\" He watches how you stand by Nettle's door, hands well clear of the mare's mouth, and gives a short approving sniff. \"Not a rider, you said. Good. Better you say it here than she finds out on the road. She'll follow the horse in front. Keep your heels quiet and your hands low and she'll do the rest.\" Then, as if he's been asked his price: \"Dannet. Deposit when you lead her out, morning after tomorrow. I'll chalk your name on her door tonight so nobody else gets her.\"\n\nNettle pushes her grey nose over the half-door and sniffs your sleeve, and finds nothing worth biting.\n\nBram has come out into the yard. He stops at a polite distance while Dannet finishes with you and looks along the stalls. When the boy is free, he steps up.\n\n\"Same terms for me, lad. But I'm heavier than the lady, with sixty pounds of mail on top. Have you anything with a broad back and short legs? Something that'd rather walk all day than run an hour.\" He pulls a silver bit from his pocket and holds it up between two fingers. \"That's for you, not the house, if you put me on the right one and not just the one you want rid of. I'll take her for four days. Deposit I can pay at first light the day we ride.\"\n\nDannet sees him looking at a tall chestnut near the gate and jerks his head the other way.\n\n\"Not him. He looks a treat and he'll be lame by Lionshead.\" He walks to the end stall, where a short, deep-chested bay cob with feathered fetlocks and a back as broad as a bench stands square, and slaps its rump. The cob takes no notice. \"Brick. Fourteen hands, carries a smith and his anvil, walks from dark to dark. Won't run if you beg him, so don't beg him.\" He looks at the silver between Bram's fingers, then up at Bram's face, every inch a dealer. \"Four days, two a day, deposit fifteen gold at first light, and I'll chalk you on his door. And keep that bit till you've seen him walk out in the morning. I don't take money for a horse you've only seen standing.\"\n\nThe cob sighs through his nose and goes back to his hay.\n\nBram goes back inside through the kitchen passage. In the yard Dannet is chalking two names on two stall doors. Nothing else happens tonight unless you want it to.\n\nYour journal, new:\n+ Promise: Brick held for Bram\n+ Promise: Nettle held for Sefa\n+ Promise: To Hask's forge with Tam\n\nWhere you are: the inn's stable yard, by Nettle's stall · Time: Day 2 · morning",
+            "round": 7
           }
         ],
         "messages": [
@@ -1268,11 +1522,19 @@
             "requestId": "req_4d4eca6386294f35a956c8baf5e6f848",
             "stopReason": "end_turn",
             "servedModel": "gpt-6.1-sol"
+          },
+          {
+            "purpose": "player r7",
+            "text": "“Sefa Marrin,” I give Dannet for the chalk. “Thank you. I’ll be here for her the morning after tomorrow.”\n\nI head upstairs, check the room’s shutters without leaning on them, and bolt the door. I set my boots and pack within reach, say the hospice’s short evening prayer, and go to bed.\n\nIn the morning, I dress and go down for porridge before the sunrise bells, ready to meet the others for the walk to the Song of the Morning.",
+            "round": 7,
+            "requestId": "req_93d68ebf39ef400aadf295e2a5d2f500",
+            "stopReason": "end_turn",
+            "servedModel": "gpt-6.1-sol"
           }
         ],
         "left": null,
         "after": [],
-        "words": 589,
+        "words": 672,
         "private": []
       },
       {
@@ -1311,6 +1573,11 @@
             "purpose": "player r6",
             "text": "Orla takes the letter back flat, the way Bram handed it to her, and slides it into her apron. Her eyes go to the two coppers on the board. She sweeps them in with the side of her hand and gives one short nod. Then she's away to the carters' table, where the knucklebones loser wants another jug.\n\nWhen Bram asks about the load, Tam takes his time.\n\n\"Iron,\" he says. \"Ore, not bar. Sacks of it, straight from the Nashkel pits. The tail wagon was the heavy one. That's why it rode last.\" He lays his hands flat again. \"Thing is, Halloway, it was coming here anyway. Ambrel sells his ore to Hask, at the long forge down by the Coast Way bridge. Anybody who wanted that ore could have bought it off Hask next week.\"\n\nHe stops for a moment, frowning at his own words.\n\n\"Two mules hauling a wagon of ore. Onto shale. And no sound.\" He shakes his head once. \"That's a heavy thing to lift off.\"\n\nIlse watches Bram turn his cup, and her eyes stay on his hand a moment longer than they need to. \"Hask was shorted,\" she says. \"He'll talk about it.\"\n\nTam answers Sefa's point about the fire with a slow nod. \"Wake everyone. Not feed it.\" He says it back to her as if he's fixing it in place. \"Yes.\"\n\nPell talks about walking, and Tam looks at him under his heavy brows. \"Waystone's a long day by wagon. Twenty-odd miles. Mounted, we're there by midday. On foot you get there by dark, and you'll have walked the lot.\" That's all he says. It's Pell's business how he gets there.\n\nOrla comes back past with the full jug and has heard the talk of porridge and first bell. She doesn't stop walking.\n\n\"One silver, not a copper,\" she tells Pell. \"Supper and the ale.\" Then, to the table at large: \"The Song rings at sunrise. My kitchen's lit an hour before that. Porridge'll be hot if you want it before you go up.\"\n\nTam and Ilse stay where they are. Tam goes back to his cup and Ilse to not drinking hers. The man with the satchel still hasn't given a name, and nobody else at the table asks again.\n\n---\n\nThe back door opens onto the stable yard. It's colder out here, and it smells of straw and horse, with the last of the forge smoke sitting low over the roofs. A lantern hangs from a hook by the stalls. Under it a boy of about twelve is forking straw. He has a mop of straw-coloured hair and a bigger man's jerkin belted twice round him. He stops when Sefa comes out and leans on the fork like a man twice his age.\n\n\"Horse, is it?\" he says before she can ask. \"Two silver a day. I've got a grey mare called Nettle, steady as a table, doesn't bite unless you're stupid round her mouth. Deposit's fifteen gold, and you get it back when she comes back sound.\" He jerks his head at the far stall, where a grey nose has come over the door to see who's talking. \"No lame, no cuts, no sold-her-in-Nashkel. How many days d'you want her for?\"\n\n (Out of game: none of these needed a roll. The turn showed the first three: Orla took the letter back flat and swept up the two coppers, and Tam said the load was ore. The temple visit is set for tomorrow before the bells, so it gets played when Bram goes up.)\n\nYour records, changed:\nCarried: − Cup of Ale\n\nWhere you are: on the bench at the same table in the inn's common room · Time: Day 1 · evening",
             "round": 6
+          },
+          {
+            "purpose": "player r7",
+            "text": "Bram sets the empty cup upside down on the board. Tam looks at it, and something in his broad face eases a little.\n\n\"Ore, then. Not bar,\" Bram says. \"So it isn't the metal they want, or not only the metal. Either they wanted the wagon, or they wanted to see if they could do it.\" He looks at Tam. \"Hask at the long forge. I'll go down after the temple, mid-morning, once the fires are up and he's in a talking mood. Come if you like. A man who was shorted talks easier to the guard who lost it than to a stranger.\" His tone is level.\n\n\"I'll come,\" Tam says about Hask. He takes a moment over it. \"He'll want to look at me while he tells it. Better I'm there for that.\" He lays one hand flat on the board. \"Mid-morning. I'll find you at the temple steps after the bells, Halloway.\"\n\nBram pushes himself up from the bench and settles the shield on his arm. \"Day after tomorrow, first light, in the yard. I'll want a horse that can carry this much iron on its back without complaining.\" He taps his chain mail. \"I'll go see the boy now, before the good ones are spoken for.\" He nods to Ilse, then to Tam. \"Third hour's yours, Var. I'll take the first.\"\n\nIlse nods once. Her eyes go to the upturned cup, then away. Bram heads out toward the yard.\n\n---\n\nOrla turns from the tap and finds your stacked bowl and cup at her elbow. That gets a look. Most of her customers leave their dishes where they ate.\n\nYou count out your silver. One coin is all your purse holds. She lays a finger on it before you can make it two.\n\n\"Cot's paid. You gave me five at the table.\" She sweeps the single coin into her apron. \"That's the supper and the ale. You're square.\" She's heard the rest of it. \"Porridge it is, when the kitchen's lit. Not before. The kitchen wakes when I do.\" She tips her head at the front door, where two smiths are still beating soot off their coats. \"Bar goes across at midnight. After that you knock, and loud, and I come down in a temper.\"\n\nShe gives your question some thought, wiping a ring off the counter as she does.\n\n\"Nobody's come asking about a case. Nobody knew there was a case except that house and the temple, from the sound of that letter. Now you three know.\" She puts the rag down. \"About the factor, though, one did. A temple lad came down from the Song, ten days back or near it. Young, shaved head, out of breath from the hill. He asked had the Halvering factor come in yet. I told him no.\" She shrugs. \"I'd guess that's how the temple knew to write.\"\n\nOne of the smiths calls for two ales. She's already reaching for the jug.\n\n*(Out of game: your purse held only one silver, and the cot was already paid, so that one coin settles your tab.)*\n\nNothing else happens tonight unless you want it to.\n\nYour records, changed:\nMoney: + 0 sp; − 1 sp\n\nYour journal, new:\n+ Promise: Brick held for Bram\n+ Promise: Nettle held for Sefa\n+ Promise: To Hask's forge with Tam\n\nWhere you are: at the counter in the common room · Time: Day 2 · morning",
+            "round": 7
           }
         ],
         "messages": [
@@ -1373,11 +1640,25 @@
             "servedModel": "deepseek/deepseek-v4-pro-0813",
             "providerReasoning": "Pell's settled his part. He's listened enough. The others are either still talking or stepping out to the stable. Pell watches all this, tucked in his corner.\n\nThe night's plan is simple: he's got a cot, he'll eat, and at first light he'll go up to the temple to find Brother Anselm before the group rides out. But right now, there's still time in the evening. Pell is a careful man. Old habits. Before he can sleep in a strange inn, he'll want to know the shape of the place—the exits, the stairs, who comes and goes, whether anyone watches the doors. His trade is noticing. In the Lower City, you never drink yourself blind in a new room.\n\nThe table still has Tam and Ilse by it. Bram is still within earshot. Sefa went to the stable. The carters are noisy. Pell can stay where he is, keep his own counsel, and watch.\n\nHe isn't going to interrupt the sellswords. But he'll finish his meal, then quietly walk the room once around, noting the staircase, the back door, the windows, who else is here and if anyone paid too much attention to their table. If he passes Orla, he might ask a couple of practical things: how late the front door is locked, where the jakes are, whether anyone else came in asking about Jory Fenwick or the Halvering name. He doesn't want to make a show of it, just a traveler settling in.\n\nThe stable boy is handling Sefa. Pell stays out of that.\n\nSo: Pell will pick up his cup and bowl, go to the counter to settle the tab formally or confirm it, maybe ask Orla quietly about the front door, then walk the room once, looking for windows, stairs, and exits. If he catches Tam's eye, he'll give a short nod, the kind that says \"I'm still in.\" But not too much talk—he's not one for long fireside chatter. That should be his message.",
             "notRelayed": true
+          },
+          {
+            "purpose": "player r7",
+            "text": "Pell absorbs the news about the temple lad with a small nod, tucking it away like a key he might need later. When Orla turns to the smiths, he steps back from the counter, easy and unhurried.\n\n\"Then he'll likely know more than he put in the letter,\" he says, half to himself. \"Or less, and be worried about the wrong thing. Either way, I'll hear it at first bell.\"\n\nHe heads for the stairs, moving along the edge of the room where the shadows sit deepest. At the foot of the steps he pauses and looks back once, not at anyone in particular—just letting the room fix itself in his mind: the closeness, the smoke, the two smiths shaking out their sleeves, the sellswords still at their cups, the door that leads to the stable yard.\n\nThen he goes up, quiet on the treads, to the long room and the third cot from the window. He sets the satchel under the pillow, the shortsword close at hand, boots laced loose, and trusts himself to wake when the kitchen stirs.\n\n[END]",
+            "round": 7,
+            "requestId": "gen-1793155249-Ry9w6Pt9gYlhDHUz8vPn",
+            "stopReason": "end_turn",
+            "servedModel": "deepseek/deepseek-v4-pro-0813",
+            "providerReasoning": "Hmm, the innkeeper just clarified my bill. I already paid for the cot, so the single silver I gave her settles the food and ale. That's fair and I'm square with her.\n\nShe then told me something useful: a temple lad came down from the Song about ten days ago, specifically asking if the Halvering factor had arrived. That means the temple was already concerned before the letter, which aligns with the factor's failure to deliver the case. This is worth remembering—the temple might know more about the case's importance than they've let on.\n\nThe scene is winding down. Bram has left to stable his horse, and Tam and Ilse have agreed to meet later. I should probably end my evening here to keep the pacing tight. My character has set his plans: sleep, go to the temple at first bell, and then meet the others. I'll signal to the narrator that I'm concluding for the night, perhaps with a final quiet moment that fits Pell's observant nature. I'll keep my next post brief, just wrapping up and heading toward the cot.",
+            "notRelayed": true
           }
         ],
-        "left": null,
+        "left": {
+          "why": "door",
+          "round": 7,
+          "detail": "Pell absorbs the news about the temple lad with a small nod, tucking it away like a key he might need later. When Orla turns to the smiths, he steps back from the counter, easy and unhurried.\n\n\"Then h"
+        },
         "after": [],
-        "words": 1443,
+        "words": 1625,
         "private": []
       }
     ],
