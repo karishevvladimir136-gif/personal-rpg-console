@@ -1,6 +1,6 @@
 # Game party 1 — the OpenAI ledger
 
-Cap $60; spent before this run $0.0000; this run $2.4544; total $2.4544; 65 calls.
+Cap $60; spent before this run $0.0000; this run $3.7952; total $3.7952; 93 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -63,3 +63,31 @@ Cap $60; spent before this run $0.0000; this run $2.4544; total $2.4544; 65 call
 | SAND-T2/Sefa | after 1 | gpt-6-astra | 1 | 3 | 25588 | 843 | 209 | $0.0466 | 0 | 0 | 0 |
 | SAND-T2/Sefa | after 2 | gpt-6-astra | 1 | 3 | 26431 | 225 | 149 | $0.0367 | 0 | 0 | 0 |
 | SAND-T2/Sefa | after 3 | gpt-6-astra | 1 | 3 | 26656 | 166 | 77 | $0.0326 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r1 | gpt-6.1-sol | 1 | 3 | 0 | 7087 | 63 | $0.0184 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r2 | gpt-6.1-sol | 1 | 3 | 7087 | 911 | 107 | $0.0175 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r3 | gpt-6.1-sol | 1 | 3 | 7998 | 1544 | 169 | $0.0216 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r4 | gpt-6.1-sol | 1 | 3 | 9542 | 1656 | 159 | $0.0248 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r5 | gpt-6.1-sol | 1 | 3 | 11198 | 1170 | 92 | $0.0262 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r6 | gpt-6.1-sol | 1 | 3 | 12368 | 1273 | 141 | $0.0293 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r7 | gpt-6.1-sol | 1 | 3 | 13641 | 1035 | 186 | $0.0317 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r8 | gpt-6.1-sol | 1 | 3 | 14676 | 1138 | 166 | $0.0339 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r9 | gpt-6.1-sol | 1 | 3 | 15814 | 962 | 161 | $0.0356 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r10 | gpt-6.1-sol | 1 | 3 | 16776 | 1417 | 157 | $0.0387 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r11 | gpt-6.1-sol | 1 | 3 | 18193 | 1083 | 118 | $0.0403 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r12 | gpt-6.1-sol | 1 | 3 | 0 | 20129 | 119 | $0.0515 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r13 | gpt-6.1-sol | 1 | 3 | 20129 | 874 | 149 | $0.0439 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r14 | gpt-6.1-sol | 1 | 3 | 21003 | 901 | 92 | $0.0452 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r15 | gpt-6.1-sol | 1 | 3 | 21904 | 1060 | 139 | $0.0479 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r16 | gpt-6.1-sol | 1 | 3 | 22964 | 1117 | 112 | $0.0498 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r17 | gpt-6.1-sol | 1 | 3 | 24081 | 924 | 200 | $0.0525 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r18 | gpt-6.1-sol | 1 | 3 | 25005 | 1220 | 220 | $0.0553 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r19 | gpt-6.1-sol | 1 | 3 | 26225 | 1114 | 123 | $0.0565 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r20 | gpt-6.1-sol | 1 | 3 | 27339 | 1318 | 190 | $0.0599 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r21 | gpt-6.1-sol | 1 | 3 | 28657 | 1563 | 192 | $0.0631 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r22 | gpt-6.1-sol | 1 | 3 | 30220 | 1695 | 124 | $0.0659 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r23 | gpt-6.1-sol | 1 | 3 | 31915 | 1114 | 171 | $0.0683 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r24 | gpt-6.1-sol | 1 | 3 | 33029 | 928 | 111 | $0.0695 | 0 | 0 | 0 |
+| GOAL-T1/Bram | player r25 | gpt-6.1-sol | 1 | 3 | 33957 | 811 | 85 | $0.0708 | 0 | 0 | 0 |
+| GOAL-T1/Bram | after 1 | gpt-6.1-sol | 1 | 3 | 34768 | 974 | 306 | $0.0750 | 0 | 0 | 0 |
+| GOAL-T1/Bram | after 2 | gpt-6.1-sol | 1 | 3 | 35742 | 297 | 146 | $0.0737 | 0 | 0 | 0 |
+| GOAL-T1/Bram | after 3 | gpt-6.1-sol | 1 | 3 | 36039 | 163 | 146 | $0.0740 | 0 | 0 | 0 |

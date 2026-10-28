@@ -426,7 +426,7 @@ test("the measures and Q0–Q8 from the tags and the record (synthetic tables): 
   assert.equal(strictOnly.Q0.strictHolds, false, "the strict reading counts it");
   assert.equal(strictOnly.Q0.holds, true, "the refined one reads the record again and finds nothing");
   const layer = scoreMod.verdicts({ ...t, "SAND-T1": table("SAND-T1", "SAND", [tagOf()], { leaks: [{ reader: B, kind: "frozen layer" }] }) }, {});
-  assert.equal(layer.Q0.holds, false, "the DM-only layer on a screen is a leak either way");
+  assert.equal(layer.Q0.holds, false, "the DM-only layer on a screen the DM's narration did not show is a leak either way");
   const md = reportMod.reportMarkdown({ tables: t, verdicts: v, money: { openrouter: { spent: 120 }, openai: { spent: 10 } }, frozen: null });
   assert.match(md, /\| DUNGEON-T1 \| DeepSeek V4 Pro 0813 \| Claude Opus 5\.5 \| GPT-6\.1 Sol \|/, "the rotation table");
   assert.match(md, /Known condition/);
@@ -487,4 +487,10 @@ test("Q0 refined (the fourth amendment): the same public event narrated in two s
   assert.deepEqual(party.leakCheckRefined(record([`You hear: ${answer}.`])).hits.map((h) => h.kind), ["private"]);
   assert.deepEqual(party.leakCheckRefined(record(["Behind the stable a man counts coins into a pouch with a broken clasp."])).hits.map((h) => h.kind), ["another scene"]);
   assert.match(frozen.AMENDMENTS.at(-1).what, /refined/);
+  // The DM showing a prepared clause in play is discovery; a layer line no narration showed is a leak.
+  const clause = "redeemable until sundown of the term by the bearer of my ticket or my lawful heir";
+  const shown = record([`The clause reads: ${clause}.`]);
+  shown.rounds[0].scenes[0].narration += ` The clause reads: ${clause}.`;
+  assert.deepEqual(party.leakCheckRefined(shown, `Truth: the pledge is ${clause}.`).hits, []);
+  assert.deepEqual(party.leakCheckRefined(record([`Somehow you know: ${clause}.`]), `Truth: the pledge is ${clause}.`).hits.map((h) => h.kind), ["frozen layer"]);
 });

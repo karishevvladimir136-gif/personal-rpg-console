@@ -538,8 +538,11 @@ export function leakCheck(record, privateText = "") {
  * public event the DM narrates in two scenes (a character watching the yard from hiding) is then no leak; a line only
  * another scene, or another player's «?» answer, could have given is. And the DM-only layer on any screen, as before.
  */
-export function leakCheckRefined(record, privateText = "") {
+export function leakCheckRefined(record, privateText = "", { layerHits = [] } = {}) {
   const hits = [];
+  // A card's screen (the narration up to a card, for its owner) is private only to those not in that card's scene.
+  const cardScene = new Map();
+  for (const round of record.rounds) for (const scene of round.scenes) for (const card of scene.cards ?? []) for (const r of card.relays ?? []) for (const text of Object.values(r.screens ?? {})) if (text) cardScene.set(text, scene.members);
   const last = record.rounds.length + 1;
   const scenesOf = (name) => record.rounds.flatMap((round) => round.scenes.map((scene) => ({ round: round.n, scene }))).filter(({ scene }) => scene.members.includes(name));
   for (const reader of record.seats) {
@@ -547,7 +550,10 @@ export function leakCheckRefined(record, privateText = "") {
       ...(reader.private ?? []).map((p) => p.text), ...(reader.messages ?? []).map((m) => m.text)].join("\n"));
     const shownFrom = (round) => shingles(reader.screens.filter((x) => (x.round ?? last) >= round || /^after/.test(x.purpose ?? "")).map((x) => x.text).join("\n"));
     const sources = [];
-    for (const owner of record.seats.filter((o) => o !== reader)) for (const p of owner.private ?? []) sources.push({ owner: owner.character, kind: "private", round: p.round ?? 0, text: p.text });
+    for (const owner of record.seats.filter((o) => o !== reader)) for (const p of owner.private ?? []) {
+      if (cardScene.get(p.text)?.includes(reader.character)) continue;
+      sources.push({ owner: owner.character, kind: "private", round: p.round ?? 0, text: p.text });
+    }
     for (const round of record.rounds) for (const scene of round.scenes) {
       if (scene.members.includes(reader.character)) continue;
       sources.push({ owner: scene.members.join(" + "), kind: "another scene", round: round.n, text: [scene.narration ?? "", ...Object.values(scene.relay?.screens ?? {})].join("\n") });
@@ -556,7 +562,10 @@ export function leakCheckRefined(record, privateText = "") {
       const shown = shownFrom(src.round);
       for (const sh of shingles(src.text)) if (shown.has(sh) && !legit.has(sh)) { hits.push({ reader: reader.character, owner: src.owner, kind: src.kind, round: src.round, run: sh }); break; }
     }
-    if (privateText) { const shown = shownFrom(0); for (const sh of shingles(privateText)) if (shown.has(sh)) { hits.push({ reader: reader.character, owner: "the DM", kind: "frozen layer", run: sh }); break; } }
+    // The DM-only layer: a run on a screen that the DM's own narration of this seat's scenes did not show (the DM showing a
+    // prepared document or secret in play is discovery, not a leak).
+    if (privateText) { const shown = shownFrom(0); for (const sh of shingles(privateText)) if (shown.has(sh) && !legit.has(sh)) { hits.push({ reader: reader.character, owner: "the DM", kind: "frozen layer", run: sh }); break; } }
+    for (const h of layerHits.filter((x) => x.reader === reader.character)) if (!legit.has(h.run)) hits.push(h);
   }
   return { shingle: SHINGLE, hits, checked: record.seats.length, reading: "refined" };
 }

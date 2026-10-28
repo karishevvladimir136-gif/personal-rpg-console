@@ -75,8 +75,14 @@ to `main`.
   public event, narrated in two scenes, as a leak (38 hits at SAND-T2). It is now also read refined: a run counts only
   when nothing in the reader's own scenes gave it. SAND-T1: 14 → 2; SAND-T2: 38 → 4. Every remaining hit is listed
   with its context in the report; read by hand, none is another player's private material.
-- **Next step:** the driver goes on (GOAL-T1 running since 05:33 UTC, then GOAL-T2, DUNGEON-T1, DUNGEON-T2), a spend
-  check before each; then SAND-T1′ if the budget allows.
+- **GOAL-T1 played** (Sol / DeepSeek / Opus): 25 rounds; nobody left. The party formed at round 1; Bram (Sol) led
+  by proposal most rounds. Scored.
+- **Money after three tables:**
+  - OpenRouter: tables $34.83 / $33.49 / $45.30; judges $1.97 in all.
+  - OpenAI: $3.80.
+  - The shared account had $160.29 left before GOAL-T2.
+- **Next step:** the driver goes on (GOAL-T2 since 07:25 UTC, then DUNGEON-T1, DUNGEON-T2). A spend check and the
+  account guard come before each table. SAND-T1′ needs a top-up.
 
 **Previous milestone: game player same-world 1 — one hidden layer per table, frozen**
 (`docs/stages/GAME_PLAYER_SAME_WORLD_1.md`, origin/claude/handoff at 6e4cea4) — **run complete and scored; waiting for

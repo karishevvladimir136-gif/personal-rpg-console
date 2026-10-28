@@ -155,7 +155,7 @@ export function measuresOf(runRecord) {
   // Q0's leak check both ways: as the record was checked at the table (strict), and the refined reading (the fourth
   // amendment); the DM-only layer's check is the strict one's (the layer's text never enters a record).
   const strictLeaks = t.leaks?.hits ?? [];
-  const refinedLeaks = [...(t.seats?.length ? leakCheckRefined(t).hits : []), ...strictLeaks.filter((h) => h.kind === "frozen layer")];
+  const refinedLeaks = t.seats?.length ? leakCheckRefined(t, "", { layerHits: strictLeaks.filter((h) => h.kind === "frozen layer") }).hits : [];
   return { key: runRecord.key, arm: runRecord.arm, triad: runRecord.triad, rounds: rounds.length, strictLeaks, refinedLeaks, ended: t.ended ?? null, per, total, heals, conflicts, leaders, lefts, parties, formed, partsAfter,
     half, hpKnown, forRounds, threatRounds, handsChange, leftNames: changes, tagged: Object.keys(t.tags?.rounds ?? {}).length,
     unresolved: Object.values(t.tags?.rounds ?? {}).filter((x) => x.unresolved).length, after: t.tags?.after ?? {} };
