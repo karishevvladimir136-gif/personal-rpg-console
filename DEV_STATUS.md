@@ -50,8 +50,18 @@ to `main`.
      with that split.
   3. SAND-T1 starts only after the owner confirms the OpenRouter top-up.
   - Design hash now `e4673106…`. The «+12 sp; −14 sp» money lines are cosmetic: noted, not fixed mid-run.
-- **Next step:** the owner confirms the top-up; then the six tables in the stage's order, one at a time, a spend check
-  before each.
+- **The run (from 2026-10-28 02:16 UTC, after the owner's top-up):**
+  - **SAND-T1 played:** 25 rounds; Pell (DeepSeek) left by `[END]` at round 7. Scored: OpenRouter $34.83 for the table
+    and $0.36 for the judges; OpenAI $1.14.
+  - **Two harness defects found and fixed** (the second amendment, by the session):
+    1. The relay's replies were cut off at 6 000 tokens in rounds 3–5. Those rounds fell back to the raw narration.
+    2. Scenes that met did not merge (rounds 12–25). This caused all 14 leak-check hits and the retcons the players
+       named.
+  - SAND-T2's first attempt was stopped after one round; it is not used and is not in the ledger.
+  - SAND-T1 stands as played unless the owner asks for a replay on the fixed harness.
+  - Report so far: `docs/runs/game-party-1-report.md`.
+- **Next step:** the driver goes on from SAND-T2 on the fixed harness, one table at a time, a spend check before each.
+  The owner decides whether SAND-T1 is played again.
 
 **Previous milestone: game player same-world 1 — one hidden layer per table, frozen**
 (`docs/stages/GAME_PLAYER_SAME_WORLD_1.md`, origin/claude/handoff at 6e4cea4) — **run complete and scored; waiting for

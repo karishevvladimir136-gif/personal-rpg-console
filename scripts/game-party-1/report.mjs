@@ -198,7 +198,7 @@ export function reportMarkdown({ tables, verdicts: v, money, haikuMoney = {}, sp
       for (const a of seat.after ?? []) lines.push(a.asked && a.text ? `> **${a.question}** ${String(a.text).replace(/\n+/g, " ")}` : `> ${a.question ? `**${a.question}** ` : ""}(not asked: ${a.why ?? "?"})`, "");
     }
   }
-  lines.push("## Money", "", ...Object.entries(money).filter(([door]) => CAPS[door] > 0).map(([door, x]) => `- ${door === "openrouter" ? "OpenRouter" : "OpenAI"}: ${usd(x.spent)} of ${usd(CAPS[door])}.`),
+  lines.push("## Money", "", ...Object.entries(money).filter(([door]) => CAPS[door] > 0).map(([door, x]) => `- ${door === "openrouter" ? "OpenRouter" : "OpenAI"}: ${usd(x.spent)} of ${usd(CAPS[door])}${x.judges !== undefined ? ` (the tables and the freeze ${usd(x.tables)}, the judges ${usd(x.judges)})` : ""}.`),
     `- The Haiku dry runs: ${usd(Object.values(haikuMoney).reduce((t, l) => t + (l.spentUsd ?? 0), 0))} on their own ledger.`,
     spend.length ? `- The last spend check (${spend.at(-1).at}, ${spend.at(-1).when}): the shared OpenRouter account had $${spend.at(-1).openrouter.remaining ?? "?"} left.` : "", "",
     "Ledgers: `docs/runs/game-party-1-ledger-openrouter.md`, `docs/runs/game-party-1-ledger-openai.md`.", "",

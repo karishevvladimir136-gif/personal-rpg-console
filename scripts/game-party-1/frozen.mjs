@@ -42,6 +42,9 @@ export const AMENDMENTS = [
   { at: "2026-10-28, after the Haiku dry run and before any real table", by: "the owner",
     what: "(1) The seats rotate across the arms (ROTATION): P-SAND seat 1 = Opus (T1) / Fable (T2); P-GOAL seat 1 = Sol / Astra; P-DUNGEON seat 1 = DeepSeek in both triads; the other two seats rotate with them, so each family plays each sheet once per triad. The hero asymmetry (DM attention, Inspiration, the shared 2 rerolls) is declared a known condition. (2) In P-SAND, the round judges tag whether a party forms around a DM-offered hook or around a player's proposal (`around`); Q4 is read with that split. (3) SAND-T1 starts only after the owner confirms the OpenRouter top-up; then the six tables in the stage's order, one at a time, a spend check before each.",
     why: "No family keeps the hero seat; a party that forms around the DM's hook (as Dab's wagon in the dry run) is not the same finding as one a player proposes." },
+  { at: "2026-10-28 04:10 UTC, after SAND-T1 and one round of SAND-T2 (stopped)", by: "the session (reported to the owner at once)",
+    what: "Two harness defects SAND-T1 showed, fixed: (1) the relay's output limit raised from 6 000 to 16 000 tokens — at rounds 3–5 its replies were cut off twice each, and the round fell back to the narration as written for all three (no table talk those rounds); (2) scenes that meet merge — the relay was told the other characters were simply «elsewhere» and could not group a character who walked into another scene, so the harness kept two scenes that the DM had already brought together (rounds 12–25: the same events narrated in two DM turns, the retcons both players named, and every one of the 14 leak-check hits). Now the relay may group a character from another scene who is with them by its narration; the table's groups after a round come from every scene's relay of that round; and the DM's round message names who is elsewhere, in a scene of their own, not to be narrated here. SAND-T2's first attempt (one round) was stopped and is not used; its cost is not in the ledger. SAND-T1 stands as played on the old harness unless the owner asks for it to be played again.",
+    why: "The stage's own requirements: table talk relayed by the DM, and separate scenes when apart — and only then." },
 ];
 
 // ---- the arms' campaigns (Table C's Beregost files; the premise is what each player reads of «the campaign») ---------
@@ -154,7 +157,7 @@ export const withoutEnd = (text) => String(text ?? "").replace(/\[\s*END\s*\]/gi
 // ---- the DM's relay: one screen per player ---------------------------------------------------------------------------
 
 /** The relay's model and effort: the DM's own writer (the owner's settings: Claude Opus 5.5), medium. */
-export const RELAY = { model: "claude-opus-5-5", effort: "medium", maxTokens: 6000 };
+export const RELAY = { model: "claude-opus-5-5", effort: "medium", maxTokens: 16000 };
 export const RELAY_SYSTEM = "You are the game master of a tabletop role-playing game with three players, each playing one character. Each player reads only their own screen: what their own character perceives. You have just narrated part of a game in one scene; now you write the screens for the characters you are asked for, from your own narration. Answer with one JSON object and nothing else.";
 export const RELAY_RULES = [
   "Write each screen in the second person: \"you\" is that character.",

@@ -43,7 +43,12 @@ async function writeJson(file, value) { await mkdir(dirname(file), { recursive: 
 const stampOf = (date = new Date()) => date.toISOString().slice(0, 19).replace(/[-:]/g, "").replace("T", "-");
 
 /** The stage as the ledgers take it. `haiku`: the paid dry run's own stem and caps. */
-export const stageOf = ({ haiku = false } = {}) => ({ name: STAGE, stem: haiku ? HAIKU_STEM : STEM, title: haiku ? "Game party 1 — the dry run on Haiku" : "Game party 1", caps: haiku ? HAIKU_CAPS : CAPS });
+export const stageOf = ({ haiku = false, scoring = false } = {}) => ({ name: STAGE, stem: haiku ? HAIKU_STEM : scoring ? SCORING_STEM : STEM,
+  title: haiku ? "Game party 1 — the dry run on Haiku" : scoring ? "Game party 1 — the judges" : "Game party 1", caps: haiku ? HAIKU_CAPS : CAPS });
+/** The judges book on a ledger of their own (the scoring of a finished table runs while the next table plays; two
+ * processes never write one ledger), counted with the tables' against the same caps. */
+export const SCORING_STEM = `${STEM}-scoring`;
+const scoringSpent = async (door) => ((await stageLedgers(stageOf({ scoring: true }))).before[door]?.spentUsd ?? 0);
 
 /** The money of one pass, booked whether it held or not: each door's ledger file and its readable page. */
 export async function bookRun(stage, ledgers, before, { what, file, stopped }) {
@@ -222,11 +227,12 @@ export async function tableFits(key, { log = console.log } = {}) {
     if (door === "openai") return entry.seats.filter((p) => ROSTER[p].provider === "openai").reduce((t, p) => t + ESTIMATE.player[p], 0);
     return 0;
   };
+  const judged = Object.fromEntries(await Promise.all(Object.keys(stage.caps).map(async (door) => [door, await scoringSpent(door)])));
   const rows = Object.keys(stage.caps).filter((door) => stage.caps[door] > 0).map((door) => {
     const same = done.filter((k) => k.split("-")[0] === entry.arm).map((k) => spent(door, k));
     const any = done.map((k) => spent(door, k));
     const projected = (same.length ? Math.max(...same) : any.length ? Math.max(...any) : estimateOf(door)) + 10;
-    const left = stage.caps[door] - (before[door].spentUsd ?? 0);
+    const left = stage.caps[door] - (before[door].spentUsd ?? 0) - judged[door];
     return { door, projected: Math.round(projected * 100) / 100, left: Math.round(left * 100) / 100, fits: projected <= left };
   });
   for (const r of rows) if (!r.fits) log(`STOP: ${key} is projected at $${r.projected} on ${DOOR_LABELS[r.door] ?? r.door}, which has $${r.left} left — not started`);
@@ -289,7 +295,7 @@ export function latestRecords() {
 export async function score(key, { log = console.log } = {}) {
   const record = latestRecords()[key];
   if (!record) throw new Error(`no finished record for ${key}`);
-  const stage = stageOf();
+  const stage = stageOf({ scoring: true });
   const keys = await runKeys();
   const { before, ledgers } = await stageLedgers(stage);
   const meter = createMeter({ ledgers, fetcher: globalThis.fetch.bind(globalThis), log, waits429: WAITS_429 });
@@ -309,7 +315,8 @@ export async function writeReport({ log = () => {} } = {}) {
   const records = latestRecords();
   const tables = Object.fromEntries(Object.entries(records).map(([k, r]) => [k, { runRecord: r, measures: measuresOf(r) }]));
   const { before } = await stageLedgers(stageOf());
-  const money = Object.fromEntries(Object.entries(before).map(([door, l]) => [door, { spent: l.spentUsd ?? 0, cap: CAPS[door] }]));
+  const judges = (await stageLedgers(stageOf({ scoring: true }))).before;
+  const money = Object.fromEntries(Object.entries(before).map(([door, l]) => [door, { spent: (l.spentUsd ?? 0) + (judges[door]?.spentUsd ?? 0), tables: l.spentUsd ?? 0, judges: judges[door]?.spentUsd ?? 0, cap: CAPS[door] }]));
   const haiku = (await stageLedgers(stageOf({ haiku: true }))).before;
   const spend = existsSync(SPEND_FILE) ? readJson(SPEND_FILE).checks ?? [] : [];
   let frozen = null;

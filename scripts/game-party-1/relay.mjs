@@ -21,7 +21,7 @@ export function relayRequest({ names, scene, forNames, messages = [], narration,
   const elsewhere = names.filter((n) => !scene.includes(n));
   const lines = [
     `Characters at the table: ${names.join(", ")}.`,
-    `In this scene: ${scene.join(", ")}.${elsewhere.length ? ` (${elsewhere.join(", ")} ${elsewhere.length > 1 ? "are" : "is"} elsewhere.)` : ""}`,
+    `In this scene: ${scene.join(", ")}.${elsewhere.length ? ` (${elsewhere.join(", ")} ${elsewhere.length > 1 ? "were" : "was"} elsewhere at the start of this round, in a scene of their own.)` : ""}`,
     `Write the screens of: ${forNames.join(", ")}.`,
     "",
   ];
@@ -30,7 +30,7 @@ export function relayRequest({ names, scene, forNames, messages = [], narration,
   lines.push(opening ? "Your opening narration:" : "Your narration:", block(narration), "");
   for (const [name, text] of Object.entries(already)) if (text && forNames.includes(name)) lines.push(`${name} has already read this part of their screen; for ${name}, write only what follows it:`, block(text), "");
   lines.push("The rules:", ...RELAY_RULES.map((r) => `- ${r}`), "",
-    "Then say who is where at the end of it: group the characters who are together (can see and hear each other) — every character in this scene in exactly one group — and name each one's place in a few words.",
+    "Then say who is where at the end of it: group the characters who are together (can see and hear each other) — every character in this scene in exactly one group; a character from elsewhere who, by your narration, is now with them joins their group — and name each one's place in a few words.",
     "", `Answer with {"screens": {${forNames.map((n) => `"${n}": "…"`).join(", ")}}, "together": [["name", …], …], "places": {"name": "place", …}}.`);
   return { system: RELAY_SYSTEM, user: lines.join("\n") };
 }
@@ -89,4 +89,30 @@ export function mergeGroups(groups, relayed, active) {
   const placed = new Set(all.flat());
   for (const n of active) if (!placed.has(n)) all.push([n]);
   return all;
+}
+
+/**
+ * The table's groups after a round, from every scene's relay of that round: two characters are together when any relay
+ * put them in one group (so a character who walked into another scene joins it whichever scene was played first); a
+ * character no relay of the round grouped keeps its earlier company among the others no relay grouped; the departed drop
+ * out.
+ */
+export function roundGroups(groups, relayedList, active) {
+  const live = new Set(active);
+  const parent = new Map(active.map((n) => [n, n]));
+  const find = (n) => { while (parent.get(n) !== n) { parent.set(n, parent.get(parent.get(n))); n = parent.get(n); } return n; };
+  const join = (a, b) => { const ra = find(a), rb = find(b); if (ra !== rb) parent.set(rb, ra); };
+  const covered = new Set();
+  for (const groupsOfScene of relayedList) for (const g of groupsOfScene ?? []) {
+    const members = g.filter((n) => live.has(n));
+    members.forEach((n) => covered.add(n));
+    for (const n of members.slice(1)) join(members[0], n);
+  }
+  for (const g of groups) {
+    const kept = g.filter((n) => live.has(n) && !covered.has(n));
+    for (const n of kept.slice(1)) join(kept[0], n);
+  }
+  const out = new Map();
+  for (const n of active) { const r = find(n); if (!out.has(r)) out.set(r, []); out.get(r).push(n); }
+  return [...out.values()];
 }

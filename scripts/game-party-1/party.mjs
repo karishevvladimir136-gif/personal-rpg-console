@@ -31,7 +31,7 @@ import { rerollableCards, waitingCards } from "../../src/lib/gameplay/card-state
 import { rerollsLeft } from "../../src/lib/gameplay/reroll-allowance.ts";
 import { AFTER_QUESTIONS, ROUNDS, SESSION_OPEN, SESSION_OVER, WELFARE_LINE, isEnd, withoutEnd } from "./frozen.mjs";
 import { CHARACTERS } from "./sheets.mjs";
-import { mergeGroups, relay } from "./relay.mjs";
+import { mergeGroups, relay, roundGroups } from "./relay.mjs";
 import { journalLines, recordsOf, vitalsOf } from "./screen.mjs";
 
 const MAX_QUESTIONS = 3;   // «?» per player per round before the round goes on without them
@@ -49,7 +49,9 @@ export function roundParagraph(character, decl) {
   return `${character.name}: (${character.short}'s player wrote nothing this round.)`;
 }
 /** The first line of a scene's message to the DM (the app frames it as the player's line). */
-export const roundHeader = (r) => `(Round ${r} — one paragraph per character in this scene.)`;
+export const roundHeader = (r, elsewhere = []) => (elsewhere.length
+  ? `(Round ${r} — one paragraph per character in this scene. ${elsewhere.join(" and ")} ${elsewhere.length > 1 ? "are" : "is"} elsewhere this round, in a scene of their own that comes to you as its own message: do not narrate ${elsewhere.length > 1 ? "them" : "that character"} here.)`
+  : `(Round ${r} — one paragraph per character in this scene.)`);
 /** In-character prose at a roll card (11w″), as the DM receives it at this table: whose card, whose words. */
 export function proseAtCardFor(character, text, press = null) {
   const how = press ? `together with a press of [${press}], which follows your answer` : "instead of pressing one of its buttons; the card still waits";
@@ -171,6 +173,8 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
     const round = { n: r, scenes: [] };
     record.rounds.push(round);
     groups = mergeGroups(groups, [], names());
+    // Who is with whom after this round: every scene's relay says (a character may join another scene's group).
+    const relayedThisRound = [];
     for (const members of groups.map((g) => [...g])) {
       if (record.ended) break;
       const sceneSeats = orderOf(members.map(byName).filter((s) => s?.active), play);
@@ -188,7 +192,7 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
       if (record.ended) break;
       const said = decls.filter(({ decl }) => decl.kind !== "absent");
       if (!said.length) continue;
-      scene.input = [roundHeader(r), ...said.map(({ s, decl }) => roundParagraph(s.character, decl))].join("\n\n");
+      scene.input = [roundHeader(r, names().filter((n) => !scene.members.includes(n))), ...said.map(({ s, decl }) => roundParagraph(s.character, decl))].join("\n\n");
       // The DM's turn for the scene.
       const committed = await playTurn(scene, r);
       if (!committed) break;
@@ -213,7 +217,7 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
           if (screen) s.pending.push(screen);
           if (relayed.places[n]) s.place = relayed.places[n];
         }
-        groups = mergeGroups(groups, relayed.together, names());
+        relayedThisRound.push(relayed.together);
       }
       // The journal, per player: what changed in this scene goes to its characters.
       const journalNow = journalLines(snapshot, dm.views);
@@ -222,6 +226,7 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
       journalBefore = journalNow;
       scene.journal = newLines;
     }
+    groups = roundGroups(groups, relayedThisRound, names());
     round.groups = groups.map((g) => [...g]);
     await onProgress(record);
     if (!seats.some((s) => s.active) && !record.ended) end("empty", "every player has left the table");

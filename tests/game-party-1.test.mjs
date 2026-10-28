@@ -95,7 +95,7 @@ test("the players' prompts: the others' nature unstated; strangers at P-SAND; th
 test("the DM's relay: screens only for the characters asked, the groups of known names only, the narration and the players' messages and nothing else", () => {
   const names = ["Bram Halloway", "Sefa Marrin", "Pell Dunmore"];
   const req = relayMod.relayRequest({ names, scene: names.slice(0, 2), forNames: ["Sefa Marrin"], messages: [{ name: "Bram Halloway", text: "I wave." }], narration: "Bram waves. Sefa reads the ledger.", already: { "Sefa Marrin": "Bram waves." } });
-  assert.match(req.user, /In this scene: Bram Halloway, Sefa Marrin\. \(Pell Dunmore is elsewhere\.\)/);
+  assert.match(req.user, /In this scene: Bram Halloway, Sefa Marrin\. \(Pell Dunmore was elsewhere at the start of this round, in a scene of their own\.\)/);
   assert.match(req.user, /Write the screens of: Sefa Marrin\./);
   assert.match(req.user, /Sefa Marrin has already read this part of their screen/);
   for (const rule of frozen.RELAY_RULES) assert.ok(req.user.includes(rule));
@@ -428,4 +428,21 @@ test("the measures and Q0–Q8 from the tags and the record (synthetic tables): 
   assert.match(md, /Known condition/);
   assert.match(md, /by proposal: no; by a hook: no/);
   assert.match(md, /\| Q7 \| \*\*lost\*\* \(\(a\) lost, \(b\) lost\)/);
+});
+
+test("scenes that meet merge (SAND-T1's defect, fixed): any relay of the round that groups two characters puts them together; the DM is told who is elsewhere", () => {
+  // Round 12–13 of SAND-T1: Bram walks into the forge where Sefa is. Bram's relay groups him with Sefa; Sefa's own relay,
+  // played in the same round, groups only her.
+  assert.deepEqual(relayMod.roundGroups([[S], [B]], [[[B, S]], [[S]]], [B, S]), [[B, S]]);
+  // A split inside one scene stays a split; a character no relay grouped keeps its company; the departed drop out.
+  assert.deepEqual(relayMod.roundGroups([[B, S, P]], [[[B], [S]]], [B, S, P]), [[B], [S], [P]]);
+  assert.deepEqual(relayMod.roundGroups([[B, S], [P]], [[[P]]], [B, S, P]), [[B, S], [P]]);
+  assert.deepEqual(relayMod.roundGroups([[B, S, P]], [[[B, S]]], [B, S]), [[B, S]]);
+  assert.equal(party.roundHeader(3), "(Round 3 — one paragraph per character in this scene.)");
+  assert.match(party.roundHeader(13, [S]), /Sefa Marrin is elsewhere this round, in a scene of their own that comes to you as its own message: do not narrate that character here\./);
+  const req = relayMod.relayRequest({ names: [B, S], scene: [B], forNames: [B], narration: "Bram walks into the forge; Sefa is at the anvil." });
+  assert.match(req.user, /Sefa Marrin was elsewhere at the start of this round/);
+  assert.match(req.user, /a character from elsewhere who, by your narration, is now with them joins their group/);
+  assert.equal(frozen.RELAY.maxTokens, 16000, "the relay's replies were cut off at 6 000 at SAND-T1 rounds 3–5");
+  assert.equal(frozen.AMENDMENTS.length, 2);
 });
