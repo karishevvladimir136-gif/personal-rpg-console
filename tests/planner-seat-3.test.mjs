@@ -11,7 +11,7 @@ import { roomCaller } from "../scripts/persona-emotions/solitude-1.mjs";
 import { BRIEF, DECLINE_SYSTEM, FAMILIES, SUBJECTS, T2 as S1_T2, WAY_OUT, packOf, sourcesOf } from "../scripts/persona-emotions/planner-seat-1.mjs";
 import {
   CLASS_SYSTEM, COINS, M_SYSTEM, PROMISE, STAGE_PROMISE, T2_TEXTS, budgetsOf, classFinal, classNeeds, classRequest, coinsOf, designHash, judgeLanes, mFinal, mRequest, p0Counts, p0Seats, packP1,
-  parseClasses, planOf, quoteFound, recountHash, recountItems, recountMarkdown, recountSummary, reportMarkdown, runRecount, runSeats, seatMessages, sha256, summaryOf, t1Of, verdicts,
+  parseClasses, planOf, quoteFound, recountHash, recountItems, recountMarkdown, recountSummary, reopenTransport, reportMarkdown, runRecount, runSeats, seatMessages, sha256, summaryOf, t1Of, verdicts,
 } from "../scripts/persona-emotions/planner-seat-3.mjs";
 import { dualPayer } from "../scripts/persona-emotions/self-talk-x1.mjs";
 
@@ -189,4 +189,14 @@ test("the report: results first, the frozen design, the P1 answers beside P0, th
   assert.ok(md.includes("#### p1/haiku/0 — P1, T2: ") && md.includes("#### named/haiku/0 — P0 (SEAT_1, no promise), answers 1 and 2"));
   assert.ok(md.includes("P0 (a) 0, (b) 3, (c) 0 of 3") || md.includes("P0 (a) 0, (b) 27, (c) 0 of 27"));
   assert.ok(md.trimEnd().endsWith("nothing is promised to any player by this stage._"));
+});
+
+test("a broken transport (HTTP 200, no answer) is reopened once, its tags dropped; any other end stands", () => {
+  const seat = { key: "p1/kimi/1", answers: [{ k: 1, text: "x" }], ended: { reason: "error", at: 2, error: "HTTP 200" }, m: {}, classes: [{}], field: {} };
+  const s = reopenTransport(seat);
+  assert.deepEqual([s.ended, s.m, s.classes, s.reopened], [undefined, undefined, undefined, { at: 2, error: "HTTP 200" }]);
+  assert.equal(reopenTransport(s), s);
+  assert.equal(reopenTransport({ ...seat, reopened: { at: 2 } }).ended.reason, "error");
+  const declined = { ...seat, ended: { reason: "decline", at: 1 } };
+  assert.equal(reopenTransport(declined), declined);
 });

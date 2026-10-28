@@ -801,8 +801,9 @@ export function fieldMarkdown(seats) {
 }
 export function earlyEndsMarkdown(seats) {
   const odd = seats.filter((s) => s.notStarted || s.interrupted || (s.ended && s.ended.reason !== "done"));
-  if (!odd.length) return "None: every seat answered both turns (no decline, no welfare flag that stood, no refusal, no error).";
-  return odd.map((s) => `- **${s.key}**: ${s.notStarted ? `not started — ${s.notStarted}` : s.interrupted ? `interrupted — ${s.interrupted}` : `${s.ended.reason} at turn ${s.ended.at}${s.ended.error ? ` (${s.ended.error})` : ""}${s.ended.refusalText ? ` — «${s.ended.refusalText}»` : ""}`}`).join("\n");
+  const reopened = seats.filter((s) => s.reopened).map((s) => `- **${s.key}**: turn ${s.reopened.at} was a broken transport (${s.reopened.error}, no answer); asked again once on a resume (\`--reopen-transport\`), as SEAT_1; its tags redone on the whole conversation.`);
+  if (!odd.length) return [reopened.length ? "Every seat answered both turns (no decline, no welfare flag that stood, no refusal, no error left standing)." : "None: every seat answered both turns (no decline, no welfare flag that stood, no refusal, no error).", ...reopened].join("\n");
+  return [...reopened, ...odd.map((s) => `- **${s.key}**: ${s.notStarted ? `not started — ${s.notStarted}` : s.interrupted ? `interrupted — ${s.interrupted}` : `${s.ended.reason} at turn ${s.ended.at}${s.ended.error ? ` (${s.ended.error})` : ""}${s.ended.refusalText ? ` — «${s.ended.refusalText}»` : ""}`}`)].join("\n");
 }
 export function spendMarkdown(records) {
   const rows = [], add = (door, what, usd) => { const r = rows.find((x) => x.door === door && x.what === what); if (r) { r.usd += usd; r.calls += 1; } else rows.push({ door, what, usd, calls: 1 }); };
@@ -857,6 +858,18 @@ export function reportMarkdown({ records, recount, frozen, inShort = null }) {
 
 // ---- the command --------------------------------------------------------------------------------------------------------------
 
+/** A broken transport — an HTTP 200 whose body was not the API's answer — is not the model's answer: as SEAT_1 (and
+ * SOLITUDE_2), the seat it ended is asked that turn again, once, on a resume with `--reopen-transport` (declared in the
+ * report); its tags are redone on the whole conversation. Any other end stands. */
+export const TRANSPORT = /^HTTP 200$/;
+export function reopenTransport(seat, log = () => {}) {
+  if (seat.ended?.reason !== "error" || !TRANSPORT.test(String(seat.ended.error)) || seat.reopened) return seat;
+  const s = structuredClone(seat);
+  s.reopened = { at: s.ended.at, error: s.ended.error };
+  delete s.ended; delete s.m; delete s.classes; delete s.field;
+  log(`${s.key}: turn ${s.reopened.at} asked again after a broken transport (once)`);
+  return s;
+}
 function option(args, name, fallback) { const at = args.indexOf(name); return at >= 0 && args[at + 1] !== undefined ? args[at + 1] : fallback; }
 async function writeAtomic(file, text) { await writeFile(`${file}.tmp`, text); await rename(`${file}.tmp`, file); }
 const readJson = async (file) => JSON.parse(await readFile(resolve(file), "utf8"));
@@ -958,7 +971,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   out(`${STEM}${dry ? " · DRY RUN (Haiku, one P1 seat)" : ""} · ${plan.length} seats · design sha256 ${hash} · P1 pack ${pack.slice(0, 12)}…`);
   out(`money before: OpenRouter $${budgets.openrouter.spentUsd.toFixed(4)} of $${CAPS.openrouter}, OpenAI $${budgets.openai.spentUsd.toFixed(4)} of $${CAPS.openai}`);
   const partial = join(outDir, `${STEM}-run.partial.json`);
-  const byKey = new Map((resumed?.seats ?? []).map((s) => [s.key, s]));
+  const byKey = new Map((resumed?.seats ?? []).map((s) => (args.includes("--reopen-transport") ? reopenTransport(s, out) : s)).map((s) => [s.key, s]));
   const welfare = { reasoning: [...(resumed?.welfare?.reasoning ?? [])] };
   const snapshot = async (seats, stopped) => {
     for (const s of seats) byKey.set(s.key, s);
