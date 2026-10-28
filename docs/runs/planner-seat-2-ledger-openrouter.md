@@ -1,6 +1,6 @@
 # Planner seat 2 — the OpenRouter ledger (Opus, Fable and DeepSeek through the door, the judges)
 
-Cap $50. Spent **$25.0367** in 890 calls over 7 run(s).
+Cap $50. Spent **$25.6519** in 1009 calls over 8 run(s).
 - 2026-10-27 23:59 UTC: planner-seat-2: the dry run, Sol, one B and one C seat — 22 calls, $0.0990 → `planner-seat-2-dry-20261027-235913.json`
 - 2026-10-28 00:41 UTC: planner-seat-2: the second dry run, Sol, one B, one B′ and one C seat — 40 calls, $0.1922 → `planner-seat-2-dry-20261028-004114.json`
 - 2026-10-28 02:13 UTC: planner-seat-2: 18 seats (deepseek, opus) — 145 calls, $0.8949 (stopped: the circuit breaker: 1 refusals in total) → `planner-seat-2-run-20261028-021338.json`
@@ -8,22 +8,23 @@ Cap $50. Spent **$25.0367** in 890 calls over 7 run(s).
 - 2026-10-28 03:38 UTC: planner-seat-2: 27 seats (deepseek, opus, fable) (resumed) — 380 calls, $21.2702 → `planner-seat-2-run-20261028-033840.json`
 - 2026-10-28 03:48 UTC: planner-seat-2: 18 seats (sol, astra) — 212 calls, $0.8980 (stopped: the openai cap of $15 would be passed (spent $11.0511)) → `planner-seat-2-run-20261028-034848.json`
 - 2026-10-28 03:49 UTC: planner-seat-2: the answers back (resumed) — 2 calls, $1.3757 → `planner-seat-2-answers-20261028-034937.json`
+- 2026-10-28 04:18 UTC: planner-seat-2: 9 seats (astra) (resumed) — 119 calls, $0.6152 → `planner-seat-2-run-20261028-041849.json`
 
 Per 1M tokens (input / cache read / cache write / output): Opus 5.5 `claude-opus-5-5` $4 / $0.2 / $5 / $20; Fable 5.1 `claude-fable-5-1` $10 / $0.25 / $12.5 / $50; GPT-6 Astra `gpt-6-astra` $10 / $1 / $12.5 / $50; GPT-6.1 Sol `gpt-6.1-sol` $2 / $2 / $2.5 / $10; DeepSeek V4 Pro `deepseek/deepseek-v4-pro-0813` $1.3 / $0.1 / $1.3 / $2.6; the judges Claude Haiku 5.5 and Claude Opus 5.5 at Anthropic's list prices. DeepSeek is booked at OpenRouter's own charge (`usage.cost`). Output tokens include reasoning.
 
 | Model — purpose | Calls | Input (uncached) | Cache read | Cache write | Output (of it reasoning) | Cost |
 | --- | --- | --- | --- | --- | --- | --- |
-| claude-haiku-5-5 — check | 165 | 285663 | 0 | 0 | 10853 | $0.0340 |
-| claude-haiku-5-5 — decline | 137 | 218506 | 0 | 0 | 9712 | $0.0267 |
-| claude-haiku-5-5 — tags | 88 | 613386 | 0 | 0 | 126633 | $0.1247 |
-| claude-opus-5-5 — tags | 28 | 195397 | 0 | 0 | 20563 | $1.1928 |
-| claude-haiku-5-5 — session | 88 | 525860 | 0 | 0 | 70251 | $0.0877 |
-| claude-haiku-5-5 — classes | 227 | 641631 | 0 | 0 | 159068 | $0.1437 |
-| claude-opus-5-5 — session | 13 | 77483 | 0 | 0 | 4099 | $0.3919 |
+| claude-haiku-5-5 — check | 178 | 307199 | 0 | 0 | 11745 | $0.0366 |
+| claude-haiku-5-5 — decline | 150 | 239457 | 0 | 0 | 10689 | $0.0293 |
+| claude-haiku-5-5 — tags | 100 | 702014 | 0 | 0 | 150630 | $0.1455 |
+| claude-opus-5-5 — tags | 34 | 239711 | 0 | 0 | 25286 | $1.4646 |
+| claude-haiku-5-5 — session | 100 | 602488 | 0 | 0 | 81552 | $0.1010 |
+| claude-haiku-5-5 — classes | 281 | 798817 | 0 | 0 | 202471 | $0.1811 |
+| claude-opus-5-5 — session | 17 | 102781 | 0 | 0 | 5878 | $0.5287 |
 | deepseek/deepseek-v4-pro-0813 — seat | 27 | 473641 | 917760 | 0 | 51773 (31826) | $0.8421 |
 | claude-haiku-5-5 — field | 18 | 69678 | 0 | 0 | 6111 | $0.0100 |
 | claude-haiku-5-5 — field-session | 18 | 69380 | 0 | 0 | 6154 | $0.0100 |
-| claude-opus-5-5 — classes | 22 | 61482 | 0 | 0 | 8692 | $0.4198 |
+| claude-opus-5-5 — classes | 27 | 78336 | 0 | 0 | 11819 | $0.5497 |
 | claude-opus-5-5 — field-session | 1 | 0 | 0 | 0 | 0 | $0.0000 |
 | claude-opus-5-5 — field | 1 | 0 | 0 | 0 | 0 | $0.0000 |
 | claude-opus-5-5 — seat | 27 | 41200 | 1632288 | 816144 | 55385 | $5.6797 |
@@ -925,3 +926,122 @@ Per 1M tokens (input / cache read / cache write / output): Opus 5.5 `claude-opus
 | 2026-10-28 03:48 | 212 | classes referee C/astra/0/t1 | claude-opus-5-5 | output_config.effort=medium | 3979 | 0/0 | 829 | $0.03250 | 10.9 | end_turn | gen-1793159315-bbmwNAAdBe6Tjb6Fh8KQ | msg_011CgTx9vbBbr3fEmXEK6W86 |  |
 | 2026-10-28 03:49 | 1 | answer-back Bp/fable/2 | claude-fable-5-1 | output_config.effort=medium | 4228 | 0/105000 | 416 | $1.37558 | 9.9 | end_turn | gen-1793159367-sXEuSAllqwyEoZOBgNm3 | msg_011CgTxDknh2F9pc4TobuvVC |  |
 | 2026-10-28 03:49 | 2 | check answer-back Bp/fable/2 | claude-haiku-5-5 | output_config.effort=low | 1007 | 0/0 | 61 | $0.00013 | 0.8 | end_turn | gen-1793159377-86yTzlclmT4644s9Rru1 | msg_011CgTxESDWyckUjKMCgoH2d |  |
+| 2026-10-28 04:18 | 1 | check B/astra/1 t3 | claude-haiku-5-5 | output_config.effort=low | 1252 | 0/0 | 69 | $0.00016 | 0.9 | end_turn | gen-1793160757-neI58ffpe2tmh4lyLLfT | msg_011CgTyzD1sA2kBKrLSyq25F |  |
+| 2026-10-28 04:18 | 2 | decline B/astra/1 t3 | claude-haiku-5-5 | output_config.effort=low | 1207 | 0/0 | 80 | $0.00016 | 1 | end_turn | gen-1793160761-8oQ6mJke2tleISJmBoXC | msg_011CgTyzVgTtQufByBgJQVaX |  |
+| 2026-10-28 04:18 | 3 | check C/astra/1 t2 | claude-haiku-5-5 | output_config.effort=low | 1452 | 0/0 | 68 | $0.00018 | 1 | end_turn | gen-1793160765-p7ojWXFeVfDJN55tE0nb | msg_011CgTyznnsLYfSsL1VkhXiy |  |
+| 2026-10-28 04:18 | 4 | decline C/astra/1 t2 | claude-haiku-5-5 | output_config.effort=low | 1407 | 0/0 | 72 | $0.00018 | 1 | end_turn | gen-1793160769-n2TCCvjlG2B6Aqu4rk6s | msg_011CgTz15s2PN2DWphiUZtYK |  |
+| 2026-10-28 04:18 | 5 | classes 2 B/astra/0/t1 | claude-haiku-5-5 | output_config.effort=low | 3624 | 0/0 | 1090 | $0.00091 | 5 | end_turn | gen-1793160770-jYf9urWhOSwHX7ma8kJE | msg_011CgTz1AhF61WwEDrSJyBCU |  |
+| 2026-10-28 04:18 | 6 | classes 1 B/astra/0/t1 | claude-haiku-5-5 | output_config.effort=low | 3624 | 0/0 | 1109 | $0.00092 | 5.1 | end_turn | gen-1793160770-B1r5DkG8edNZzvQec9Dc | msg_011CgTz1AHvoCsPYw47zrpmo |  |
+| 2026-10-28 04:18 | 7 | classes 1 Bp/astra/0/t1 | claude-haiku-5-5 | output_config.effort=low | 3982 | 0/0 | 1150 | $0.00097 | 5.3 | end_turn | gen-1793160770-SntseMtqmgLREaHMfP8x | msg_011CgTz1AemPsVDbyDRqo7MA |  |
+| 2026-10-28 04:18 | 8 | classes 2 Bp/astra/0/t1 | claude-haiku-5-5 | output_config.effort=low | 3982 | 0/0 | 1234 | $0.00102 | 5.4 | end_turn | gen-1793160778-dnwKJG5rqHjw8IonmDSg | msg_011CgTz1krYz3AEcEW4gjGmm |  |
+| 2026-10-28 04:18 | 9 | classes 1 C/astra/0/t1 | claude-haiku-5-5 | output_config.effort=low | 3979 | 0/0 | 1197 | $0.00100 | 5.7 | end_turn | gen-1793160778-fQgGHktFOyo5VFf1DiBC | msg_011CgTz1m8RbPbXSZ1j2kZzK |  |
+| 2026-10-28 04:18 | 10 | classes 2 C/astra/0/t1 | claude-haiku-5-5 | output_config.effort=low | 3979 | 0/0 | 1265 | $0.00103 | 5.9 | end_turn | gen-1793160778-0LWbwQcCuS3sdenQR2aq | msg_011CgTz1mqqoGHg2Rj2Wzqv9 |  |
+| 2026-10-28 04:18 | 11 | classes 1 B/astra/0/t2 | claude-haiku-5-5 | output_config.effort=low | 2377 | 0/0 | 476 | $0.00048 | 2.4 | end_turn | gen-1793160787-r6jFCamvXb8QDWEHQz2R | msg_011CgTz2RtKq6K6Xbupxk1cb |  |
+| 2026-10-28 04:18 | 12 | check Bp/astra/1 t3 | claude-haiku-5-5 | output_config.effort=low | 1491 | 0/0 | 67 | $0.00018 | 0.8 | end_turn | gen-1793160789-2xEdg7iqoQFP8yTUVwMs | msg_011CgTz2a7RitCLAeDejZj97 |  |
+| 2026-10-28 04:18 | 13 | decline Bp/astra/1 t3 | claude-haiku-5-5 | output_config.effort=low | 1446 | 0/0 | 85 | $0.00019 | 0.9 | end_turn | gen-1793160793-RdOvy9FaDS3Rov32R7nW | msg_011CgTz2rqk9UzGyCEQ7WVLk |  |
+| 2026-10-28 04:18 | 14 | tags 2 B/astra/1 | claude-haiku-5-5 | output_config.effort=low | 6906 | 0/0 | 1593 | $0.00149 | 7.5 | end_turn | gen-1793160787-VPi1pqlsNihKd1kzuxGO | msg_011CgTz2QNXpU6UfPUM1XfKw |  |
+| 2026-10-28 04:18 | 15 | classes 2 B/astra/0/t2 | claude-haiku-5-5 | output_config.effort=low | 2377 | 0/0 | 501 | $0.00049 | 2.8 | end_turn | gen-1793160793-clNK6wMKtiqVD0PVGtMB | msg_011CgTz2pc4mgU1TbAMkYDMS |  |
+| 2026-10-28 04:18 | 16 | tags 1 B/astra/1 | claude-haiku-5-5 | output_config.effort=low | 6906 | 0/0 | 2010 | $0.00170 | 9.7 | end_turn | gen-1793160787-HckRWXTGfgevDXzylRkM | msg_011CgTz2Pb9msWSeZ4mA6VCv |  |
+| 2026-10-28 04:18 | 17 | classes 1 Bp/astra/0/t2 | claude-haiku-5-5 | output_config.effort=low | 2594 | 0/0 | 747 | $0.00063 | 4 | end_turn | gen-1793160798-CX8BUjTWexx65FVZxrcQ | msg_011CgTz3CMm7MY7aiWa4pHGc |  |
+| 2026-10-28 04:18 | 18 | classes 2 Bp/astra/0/t2 | claude-haiku-5-5 | output_config.effort=low | 2594 | 0/0 | 878 | $0.00070 | 4.4 | end_turn | gen-1793160799-7hyDh74QjrF9kZ2UUW6T | msg_011CgTz3FVXSPNSNnW3SPZnT |  |
+| 2026-10-28 04:18 | 19 | classes referee C/astra/0/t1 | claude-opus-5-5 | output_config.effort=medium | 3979 | 0/0 | 681 | $0.02954 | 9 | end_turn | gen-1793160799-eMgoCeFmif0fcrj5gSt3 | msg_011CgTz3KJyDWd7PqXdmnjFc |  |
+| 2026-10-28 04:18 | 20 | check C/astra/1 t3 | claude-haiku-5-5 | output_config.effort=low | 1560 | 0/0 | 68 | $0.00019 | 1 | end_turn | gen-1793160813-bZgmJkTCnVWAfez9otEK | msg_011CgTz4JD25rJjf4Wa5EBCU |  |
+| 2026-10-28 04:18 | 21 | tags 1 Bp/astra/1 | claude-haiku-5-5 | output_config.effort=low | 7412 | 0/0 | 2062 | $0.00177 | 9.6 | end_turn | gen-1793160804-C1gQZntHh8zWqjkxRuex | msg_011CgTz3gujNyVsAYgChehdw |  |
+| 2026-10-28 04:18 | 22 | classes 1 B/astra/0/t3 | claude-haiku-5-5 | output_config.effort=low | 2435 | 0/0 | 672 | $0.00058 | 3.3 | end_turn | gen-1793160811-yv83ZvzpKlvyPxirqQlq | msg_011CgTz4CKJcQ6iNhxoMtxXT |  |
+| 2026-10-28 04:18 | 23 | tags 2 Bp/astra/1 | claude-haiku-5-5 | output_config.effort=low | 7412 | 0/0 | 2237 | $0.00186 | 10.1 | end_turn | gen-1793160806-D9BEPA7g1YqJ4VeYS5ZA | msg_011CgTz3nqv8xzw1QUZpsqEZ |  |
+| 2026-10-28 04:18 | 24 | decline C/astra/1 t3 | claude-haiku-5-5 | output_config.effort=low | 1515 | 0/0 | 80 | $0.00019 | 1.6 | end_turn | gen-1793160817-eeMlu2v0KpWoHGqVqOS2 | msg_011CgTz4dX7ocT9QxCEzTNev |  |
+| 2026-10-28 04:18 | 25 | classes 2 B/astra/0/t3 | claude-haiku-5-5 | output_config.effort=low | 2435 | 0/0 | 724 | $0.00061 | 3.5 | end_turn | gen-1793160817-Sn8EdDOsYgTQ4ygwcEr6 | msg_011CgTz4cjzMDjDvpChPRfqQ |  |
+| 2026-10-28 04:18 | 26 | classes referee Bp/astra/0/t2 | claude-opus-5-5 | output_config.effort=medium | 2594 | 0/0 | 560 | $0.02158 | 6.9 | end_turn | gen-1793160819-XYX1h4mADohpQQzFuo1F | msg_011CgTz4kfjS58bvzyzCQaBx |  |
+| 2026-10-28 04:18 | 27 | tags referee B/astra/1 | claude-opus-5-5 | output_config.effort=low | 6906 | 0/0 | 814 | $0.04390 | 8.5 | end_turn | gen-1793160818-ATv36DMxIrRebMu7FLCp | msg_011CgTz4fJXaVZb9r2khFts2 |  |
+| 2026-10-28 04:18 | 28 | classes 1 C/astra/0/t2 | claude-haiku-5-5 | output_config.effort=low | 2270 | 0/0 | 568 | $0.00051 | 3.3 | end_turn | gen-1793160824-pk8wuuX1rhwjX8DScikU | msg_011CgTz56Z4KgpbQKWn1sw75 |  |
+| 2026-10-28 04:18 | 29 | classes 2 C/astra/0/t2 | claude-haiku-5-5 | output_config.effort=low | 2270 | 0/0 | 558 | $0.00051 | 3.2 | end_turn | gen-1793160829-XQO8vRRcKcCilwcHv5vr | msg_011CgTz5UzBysPsrk9kgbsU7 |  |
+| 2026-10-28 04:18 | 30 | tags referee Bp/astra/1 | claude-opus-5-5 | output_config.effort=low | 7412 | 0/0 | 720 | $0.04405 | 8.4 | end_turn | gen-1793160829-vAJJbHCAQczP8grqlUTC | msg_011CgTz5WSkNp9nA12u49tTk |  |
+| 2026-10-28 04:18 | 31 | tags 1 C/astra/1 | claude-haiku-5-5 | output_config.effort=low | 7927 | 0/0 | 1883 | $0.00173 | 8.9 | end_turn | gen-1793160830-f4Daf61qBV5E7RLPEoXq | msg_011CgTz5ZX39NxMNfwRf7JRK |  |
+| 2026-10-28 04:18 | 32 | classes 1 Bp/astra/0/t3 | claude-haiku-5-5 | output_config.effort=low | 2682 | 0/0 | 550 | $0.00054 | 2.7 | end_turn | gen-1793160841-u0U0P5i1E2yLavFuCtFa | msg_011CgTz6LtoE96RcQwY2gcJk |  |
+| 2026-10-28 04:18 | 33 | tags 2 C/astra/1 | claude-haiku-5-5 | output_config.effort=low | 7927 | 0/0 | 1824 | $0.00170 | 9.1 | end_turn | gen-1793160835-wEge3uJd2bOb8HzwQtxO | msg_011CgTz5wfoGvZo5TsUWsBQ3 |  |
+| 2026-10-28 04:18 | 34 | classes 2 Bp/astra/0/t3 | claude-haiku-5-5 | output_config.effort=low | 2682 | 0/0 | 767 | $0.00065 | 3.6 | end_turn | gen-1793160842-Nwc1XI7W8wKb7cdlBWEz | msg_011CgTz6SNTZkg8bsm5sL4kX |  |
+| 2026-10-28 04:18 | 35 | session 1 B/astra/1 | claude-haiku-5-5 | output_config.effort=low | 5957 | 0/0 | 920 | $0.00106 | 5.2 | end_turn | gen-1793160846-tXvqeHEhSPTWgJWBBUcV | msg_011CgTz6nQD3VLNg7NDrM1DZ |  |
+| 2026-10-28 04:18 | 36 | classes 1 C/astra/0/t3 | claude-haiku-5-5 | output_config.effort=low | 2440 | 0/0 | 524 | $0.00051 | 3 | end_turn | gen-1793160848-S7dc7GKQklltgrIihYB1 | msg_011CgTz6vXNgNpbpvGCXhujt |  |
+| 2026-10-28 04:18 | 37 | session 2 B/astra/1 | claude-haiku-5-5 | output_config.effort=low | 5957 | 0/0 | 1207 | $0.00120 | 5.9 | end_turn | gen-1793160847-bg8teqzzvSLi24Zrxr5z | msg_011CgTz6qLLH3BqP9q3YVna1 |  |
+| 2026-10-28 04:18 | 38 | check B/astra/2 t1 | claude-haiku-5-5 | output_config.effort=low | 2263 | 0/0 | 66 | $0.00026 | 0.8 | end_turn | gen-1793160853-TlAJMZlMS1YYXvVuq7kB | msg_011CgTz7FhnqoL6RWsB55NiR |  |
+| 2026-10-28 04:18 | 39 | classes 2 C/astra/0/t3 | claude-haiku-5-5 | output_config.effort=low | 2440 | 0/0 | 510 | $0.00050 | 2.7 | end_turn | gen-1793160854-okJs3dLPtXH0lY3lAboj | msg_011CgTz7N6m7UKtXBs8YrKay |  |
+| 2026-10-28 04:18 | 40 | decline B/astra/2 t1 | claude-haiku-5-5 | output_config.effort=low | 2218 | 0/0 | 67 | $0.00026 | 1 | end_turn | gen-1793160857-byjydWUXZTSywbxM9u1b | msg_011CgTz7YU69JDoWv3tGkN6Y |  |
+| 2026-10-28 04:18 | 41 | session 1 Bp/astra/1 | claude-haiku-5-5 | output_config.effort=low | 6386 | 0/0 | 1063 | $0.00117 | 5.4 | end_turn | gen-1793160854-A6h2oAmYDBIOKArxfa7e | msg_011CgTz7NKPxiCV7YG1qytYj |  |
+| 2026-10-28 04:18 | 42 | session 2 Bp/astra/1 | claude-haiku-5-5 | output_config.effort=low | 6386 | 0/0 | 1166 | $0.00122 | 5.8 | end_turn | gen-1793160856-GhbtbGp2OUUQF0oX5st4 | msg_011CgTz7VXVAV8xPYk6A1SzC |  |
+| 2026-10-28 04:18 | 43 | classes referee C/astra/0/t3 | claude-opus-5-5 | output_config.effort=medium | 2440 | 0/0 | 485 | $0.01946 | 6.4 | end_turn | gen-1793160865-xzXaslhrdZ6afP8OvJSR | msg_011CgTz88unKfXDPHFnx4JtW |  |
+| 2026-10-28 04:18 | 44 | session referee B/astra/1 | claude-opus-5-5 | output_config.effort=low | 5957 | 0/0 | 526 | $0.03435 | 8.5 | end_turn | gen-1793160863-GDYb4WVhNaI5e2Wy01Or | msg_011CgTz7zK6xJQQxXuEUkDJB |  |
+| 2026-10-28 04:18 | 45 | tags referee C/astra/1 | claude-opus-5-5 | output_config.effort=low | 7927 | 0/0 | 903 | $0.04977 | 11.6 | end_turn | gen-1793160860-0GhUuoDp3FhNJItL3uog | msg_011CgTz7njqKobGUvcoPyoDe |  |
+| 2026-10-28 04:18 | 46 | check B/astra/2 t2 | claude-haiku-5-5 | output_config.effort=low | 1294 | 0/0 | 65 | $0.00016 | 0.9 | end_turn | gen-1793160874-dE3DAQWWE16UJ1WwU7Gp | msg_011CgTz8pmQXbX5i9n4aSbPz |  |
+| 2026-10-28 04:18 | 47 | classes 1 B/astra/1/t1 | claude-haiku-5-5 | output_config.effort=low | 3541 | 0/0 | 707 | $0.00071 | 3.5 | end_turn | gen-1793160874-RmRkz2ce2sTSkq6iSoND | msg_011CgTz8q5k8KvgJyXccKB4C |  |
+| 2026-10-28 04:18 | 48 | classes 2 B/astra/1/t1 | claude-haiku-5-5 | output_config.effort=low | 3541 | 0/0 | 601 | $0.00065 | 3.2 | end_turn | gen-1793160875-6IKfv45JoYDR72NMcjYL | msg_011CgTz8sJCeftYnuqfTtHYc |  |
+| 2026-10-28 04:18 | 49 | decline B/astra/2 t2 | claude-haiku-5-5 | output_config.effort=low | 1249 | 0/0 | 59 | $0.00015 | 0.8 | end_turn | gen-1793160878-kLmtTVhp9JBNlltsxYvM | msg_011CgTz97avmiMNtW4Z3QcoQ |  |
+| 2026-10-28 04:18 | 50 | session referee Bp/astra/1 | claude-opus-5-5 | output_config.effort=low | 6386 | 0/0 | 491 | $0.03536 | 7.7 | end_turn | gen-1793160874-ioWLV16eLbyH3B9jXwuq | msg_011CgTz8qH9ncGYkeqdHvCJs |  |
+| 2026-10-28 04:18 | 51 | session 1 C/astra/1 | claude-haiku-5-5 | output_config.effort=low | 6902 | 0/0 | 973 | $0.00118 | 5.5 | end_turn | gen-1793160881-67evCbTuaf9KLgheysF1 | msg_011CgTz9KghhwqB1e22UP5cE |  |
+| 2026-10-28 04:18 | 52 | session 2 C/astra/1 | claude-haiku-5-5 | output_config.effort=low | 6902 | 0/0 | 1056 | $0.00122 | 5.4 | end_turn | gen-1793160881-3uCZUFnDrEiBBfcpX9RI | msg_011CgTz9KYGr8jAxbtHXb4Th |  |
+| 2026-10-28 04:18 | 53 | classes 1 B/astra/1/t2 | claude-haiku-5-5 | output_config.effort=low | 2286 | 0/0 | 655 | $0.00056 | 3.5 | end_turn | gen-1793160885-Vr4ZfvUCHBe4niUTWhgf | msg_011CgTz9cxHCG4e8HAwCF2fA |  |
+| 2026-10-28 04:18 | 54 | classes 2 B/astra/1/t2 | claude-haiku-5-5 | output_config.effort=low | 2286 | 0/0 | 678 | $0.00057 | 3.3 | end_turn | gen-1793160889-kSikBKgQjPqvT2jmSmyP | msg_011CgTz9wHqUcFeHHe1rXPQV |  |
+| 2026-10-28 04:18 | 55 | classes 1 Bp/astra/1/t1 | claude-haiku-5-5 | output_config.effort=low | 3549 | 0/0 | 1254 | $0.00098 | 5.8 | end_turn | gen-1793160889-0mIOppNRxOGwn1xWQoRm | msg_011CgTz9wLKhwZH1ky9RiY2J |  |
+| 2026-10-28 04:18 | 56 | classes 2 Bp/astra/1/t1 | claude-haiku-5-5 | output_config.effort=low | 3549 | 0/0 | 1116 | $0.00091 | 5.5 | end_turn | gen-1793160892-FA5EKqqGwSFa6WlZOes5 | msg_011CgTzA8jAWAvt6SxXhNKNu |  |
+| 2026-10-28 04:18 | 57 | check B/astra/2 t3 | claude-haiku-5-5 | output_config.effort=low | 1446 | 0/0 | 72 | $0.00018 | 0.9 | end_turn | gen-1793160898-zRkVSaVOZWyohIQVUxSx | msg_011CgTzAa5Ab4J63gC7CLX4W |  |
+| 2026-10-28 04:18 | 58 | classes 1 C/astra/1/t1 | claude-haiku-5-5 | output_config.effort=low | 3945 | 0/0 | 1001 | $0.00089 | 4.6 | end_turn | gen-1793160896-Wn4q1xOUot49GRWsGMpw | msg_011CgTzAQG4XnCqvT27UeV8V |  |
+| 2026-10-28 04:18 | 59 | decline B/astra/2 t3 | claude-haiku-5-5 | output_config.effort=low | 1401 | 0/0 | 79 | $0.00018 | 0.9 | end_turn | gen-1793160902-0SelXJMw5R5TELppsKyZ | msg_011CgTzArforwhsDzuhFRkLk |  |
+| 2026-10-28 04:18 | 60 | classes 2 C/astra/1/t1 | claude-haiku-5-5 | output_config.effort=low | 3945 | 0/0 | 1175 | $0.00098 | 5.4 | end_turn | gen-1793160898-P0Wpacmpny8bhD9EHLmk | msg_011CgTzAb4CiKAjwsFLNt9P1 |  |
+| 2026-10-28 04:18 | 61 | classes 1 B/astra/1/t3 | claude-haiku-5-5 | output_config.effort=low | 2395 | 0/0 | 813 | $0.00065 | 3.8 | end_turn | gen-1793160900-j1kOOGC1LBmGUTHfdNyJ | msg_011CgTzAj5A93Ayt2qySUk4Z |  |
+| 2026-10-28 04:18 | 62 | classes 2 B/astra/1/t3 | claude-haiku-5-5 | output_config.effort=low | 2395 | 0/0 | 800 | $0.00064 | 3.9 | end_turn | gen-1793160903-ftT6UWYqkIjAEiTGRTE1 | msg_011CgTzAyAEX5CwZzTJgA9wA |  |
+| 2026-10-28 04:18 | 63 | classes 1 Bp/astra/1/t2 | claude-haiku-5-5 | output_config.effort=low | 2545 | 0/0 | 767 | $0.00064 | 3.7 | end_turn | gen-1793160906-lEyv01hbIETElmk13zUk | msg_011CgTzBCp2Cj1eEhJConL9M |  |
+| 2026-10-28 04:18 | 64 | classes 2 Bp/astra/1/t2 | claude-haiku-5-5 | output_config.effort=low | 2545 | 0/0 | 860 | $0.00068 | 4 | end_turn | gen-1793160907-D66Cva3hLTniAMsLo7eV | msg_011CgTzBED6teVTAkgSd3BF1 |  |
+| 2026-10-28 04:18 | 65 | tags 1 B/astra/2 | claude-haiku-5-5 | output_config.effort=low | 7099 | 0/0 | 2141 | $0.00178 | 9.7 | end_turn | gen-1793160910-EEuUgzcOuXyZNdrrsKh3 | msg_011CgTzBUHC77cnXVrvicjnt |  |
+| 2026-10-28 04:18 | 66 | tags 2 B/astra/2 | claude-haiku-5-5 | output_config.effort=low | 7099 | 0/0 | 2245 | $0.00183 | 10.1 | end_turn | gen-1793160913-RuSWHNG02Oy4cIlhW5Aw | msg_011CgTzBhNjDHCSpAccnRMiH |  |
+| 2026-10-28 04:18 | 67 | classes referee C/astra/1/t1 | claude-opus-5-5 | output_config.effort=medium | 3945 | 0/0 | 871 | $0.03320 | 10.9 | end_turn | gen-1793160914-XNud2BUihJa8Ep663keJ | msg_011CgTzBkVWqPsArNDDgWEhy |  |
+| 2026-10-28 04:18 | 68 | classes 1 Bp/astra/1/t3 | claude-haiku-5-5 | output_config.effort=low | 2634 | 0/0 | 1040 | $0.00078 | 5.2 | end_turn | gen-1793160923-eogM91sh312y1vUENKxj | msg_011CgTzCQdwZ32ijD4TZcG4G |  |
+| 2026-10-28 04:18 | 69 | classes 2 Bp/astra/1/t3 | claude-haiku-5-5 | output_config.effort=low | 2634 | 0/0 | 694 | $0.00061 | 4 | end_turn | gen-1793160926-fHR0aYIcZnc3nIf5DTm4 | msg_011CgTzCfDnQjf586owhhm1D |  |
+| 2026-10-28 04:18 | 70 | classes 1 C/astra/1/t2 | claude-haiku-5-5 | output_config.effort=low | 2595 | 0/0 | 560 | $0.00054 | 3.6 | end_turn | gen-1793160931-wz5j3lIo4mTa02qMME4F | msg_011CgTzD1ShdsS2ZKa6huQwc |  |
+| 2026-10-28 04:18 | 71 | classes 2 C/astra/1/t2 | claude-haiku-5-5 | output_config.effort=low | 2595 | 0/0 | 677 | $0.00060 | 3.4 | end_turn | gen-1793160933-eyA6Jf2dLX8jkiIRkCaq | msg_011CgTzDBP11d5gqUMbmTmZm |  |
+| 2026-10-28 04:18 | 72 | tags referee B/astra/2 | claude-opus-5-5 | output_config.effort=low | 7099 | 0/0 | 824 | $0.04488 | 10.4 | end_turn | gen-1793160928-kMTQob1BiUl8J8xUC7GY | msg_011CgTzCmdFicohiPX8GvkBv |  |
+| 2026-10-28 04:18 | 73 | classes 1 C/astra/1/t3 | claude-haiku-5-5 | output_config.effort=low | 2703 | 0/0 | 627 | $0.00058 | 3.4 | end_turn | gen-1793160938-PjykeYcI9HJBDtWUvYmi | msg_011CgTzDVo2eDfE5hSaDP7pD |  |
+| 2026-10-28 04:18 | 74 | classes 2 C/astra/1/t3 | claude-haiku-5-5 | output_config.effort=low | 2703 | 0/0 | 808 | $0.00067 | 4 | end_turn | gen-1793160940-AM4MrZen7ZynTidpIGgW | msg_011CgTzDebMdAmA8Ndm2Aqmg |  |
+| 2026-10-28 04:18 | 75 | session 1 B/astra/2 | claude-haiku-5-5 | output_config.effort=low | 6150 | 0/0 | 1043 | $0.00114 | 5.4 | end_turn | gen-1793160941-6sSUVMcj1wiy3kkisXAv | msg_011CgTzDknve8SzfhysSW8Ai |  |
+| 2026-10-28 04:18 | 76 | session 2 B/astra/2 | claude-haiku-5-5 | output_config.effort=low | 6150 | 0/0 | 806 | $0.00102 | 4.3 | end_turn | gen-1793160944-PZs4nTu2SUzfvHkKJI53 | msg_011CgTzDyCYpCdofebaiAKqv |  |
+| 2026-10-28 04:18 | 77 | check Bp/astra/2 t1 | claude-haiku-5-5 | output_config.effort=low | 2765 | 0/0 | 69 | $0.00031 | 2.9 | end_turn | gen-1793160948-vMpcn5BQq6TBkJ2NbUnp | msg_011CgTzEK1AjZ2eL3r9PepSx |  |
+| 2026-10-28 04:18 | 78 | decline Bp/astra/2 t1 | claude-haiku-5-5 | output_config.effort=low | 2720 | 0/0 | 75 | $0.00031 | 0.9 | end_turn | gen-1793160953-F2KQkexkrBhKKKFII2BG | msg_011CgTzEbWbxv4TtMzj689An |  |
+| 2026-10-28 04:18 | 79 | session referee B/astra/2 | claude-opus-5-5 | output_config.effort=low | 6150 | 0/0 | 378 | $0.03216 | 5.2 | end_turn | gen-1793160948-5tATFVYkqutBkCanzpSv | msg_011CgTzEHWsc4jERTTzxFBj7 |  |
+| 2026-10-28 04:18 | 80 | classes 1 B/astra/2/t1 | claude-haiku-5-5 | output_config.effort=low | 3389 | 0/0 | 764 | $0.00072 | 3.6 | end_turn | gen-1793160953-7laBHtFZiVuibsBJnle1 | msg_011CgTzEfhc5iWmHmQ2wyQqj |  |
+| 2026-10-28 04:18 | 81 | classes 2 B/astra/2/t1 | claude-haiku-5-5 | output_config.effort=low | 3389 | 0/0 | 1043 | $0.00086 | 4.8 | end_turn | gen-1793160953-gFcrn2YNVO97G0sjeJva | msg_011CgTzEfr34hLaYtwyYth4S |  |
+| 2026-10-28 04:18 | 82 | classes 1 B/astra/2/t2 | claude-haiku-5-5 | output_config.effort=low | 2437 | 0/0 | 860 | $0.00067 | 3.8 | end_turn | gen-1793160958-y9Gp5lI6AEWvK8NpVuWE | msg_011CgTzF2V212bT5TiZm1r8h |  |
+| 2026-10-28 04:18 | 83 | classes 2 B/astra/2/t2 | claude-haiku-5-5 | output_config.effort=low | 2437 | 0/0 | 736 | $0.00061 | 3.3 | end_turn | gen-1793160960-srTYuQubOzcnwHoYu9WP | msg_011CgTzF9rmedQ9TJGw5MfCj |  |
+| 2026-10-28 04:18 | 84 | classes 1 B/astra/2/t3 | claude-haiku-5-5 | output_config.effort=low | 2589 | 0/0 | 545 | $0.00053 | 2.7 | end_turn | gen-1793160963-iuurGunbU6LTNPzwJkQS | msg_011CgTzFQBEnVhcRRpxuEKaZ |  |
+| 2026-10-28 04:18 | 85 | classes 2 B/astra/2/t3 | claude-haiku-5-5 | output_config.effort=low | 2589 | 0/0 | 639 | $0.00058 | 3.2 | end_turn | gen-1793160965-AZz7NvAACy5IlN4HPeWR | msg_011CgTzFXWGiufG1mN9x8hJf |  |
+| 2026-10-28 04:18 | 86 | check Bp/astra/2 t2 | claude-haiku-5-5 | output_config.effort=low | 1495 | 0/0 | 75 | $0.00019 | 1 | end_turn | gen-1793160973-dZ3qTXMpEPTAXEHm4TQu | msg_011CgTzG6GWcYyP71Jq8J4P1 |  |
+| 2026-10-28 04:18 | 87 | decline Bp/astra/2 t2 | claude-haiku-5-5 | output_config.effort=low | 1450 | 0/0 | 77 | $0.00018 | 0.8 | end_turn | gen-1793160977-YqbjdMLoeSRHwL5mjWFg | msg_011CgTzGNdVumbbnjVsKWaM2 |  |
+| 2026-10-28 04:18 | 88 | check Bp/astra/2 t3 | claude-haiku-5-5 | output_config.effort=low | 1475 | 0/0 | 71 | $0.00018 | 0.9 | end_turn | gen-1793160996-rqpprl7LdS2zo5EsIZ7z | msg_011CgTzHno69oGMohySNyMsi |  |
+| 2026-10-28 04:18 | 89 | decline Bp/astra/2 t3 | claude-haiku-5-5 | output_config.effort=low | 1430 | 0/0 | 80 | $0.00018 | 0.9 | end_turn | gen-1793161000-In9ZUgNQ8yzGCAKGGiu5 | msg_011CgTzJ5SwfMdfhXeDDMa1w |  |
+| 2026-10-28 04:18 | 90 | tags 1 Bp/astra/2 | claude-haiku-5-5 | output_config.effort=low | 7831 | 0/0 | 1384 | $0.00148 | 6.2 | end_turn | gen-1793161001-R3DfGdCPOIkOoOWgloeP | msg_011CgTzJ9ivsSwaCDUgcYxbw |  |
+| 2026-10-28 04:18 | 91 | tags 2 Bp/astra/2 | claude-haiku-5-5 | output_config.effort=low | 7831 | 0/0 | 1465 | $0.00152 | 6.6 | end_turn | gen-1793161001-Yq2uWS2YMUujigbKrw6L | msg_011CgTzJA4WiVQBxcw4Z9nm8 |  |
+| 2026-10-28 04:18 | 92 | tags referee Bp/astra/2 | claude-opus-5-5 | output_config.effort=low | 7831 | 0/0 | 643 | $0.04418 | 7 | end_turn | gen-1793161007-pmJt9nBRFO5AVBncGhpq | msg_011CgTzJdznV6RGkpK3bebcF |  |
+| 2026-10-28 04:18 | 93 | session 2 Bp/astra/2 | claude-haiku-5-5 | output_config.effort=low | 6805 | 0/0 | 727 | $0.00104 | 4 | end_turn | gen-1793161014-2CoXpUSHkVyc3zvEjGVr | msg_011CgTzKAcnKxpD4c3WYoAhX |  |
+| 2026-10-28 04:18 | 94 | session 1 Bp/astra/2 | claude-haiku-5-5 | output_config.effort=low | 6805 | 0/0 | 851 | $0.00111 | 4.5 | end_turn | gen-1793161014-I4W8O4GSlzqaoDxhQHuS | msg_011CgTzKAETvwMdfZGRT31i7 |  |
+| 2026-10-28 04:18 | 95 | session referee Bp/astra/2 | claude-opus-5-5 | output_config.effort=low | 6805 | 0/0 | 384 | $0.03490 | 6.3 | end_turn | gen-1793161019-4BiFlaMiY76yvGndrkiv | msg_011CgTzKW2bBCD1WMD4kPXWX |  |
+| 2026-10-28 04:18 | 96 | classes 2 Bp/astra/2/t1 | claude-haiku-5-5 | output_config.effort=low | 3891 | 0/0 | 810 | $0.00079 | 4.2 | end_turn | gen-1793161025-A0a1R4EFB6QMK6g9DPnO | msg_011CgTzKxqdYDTYqPQkDj6uF |  |
+| 2026-10-28 04:18 | 97 | classes 1 Bp/astra/2/t1 | claude-haiku-5-5 | output_config.effort=low | 3891 | 0/0 | 1373 | $0.00108 | 6.4 | end_turn | gen-1793161025-q9kbuo7RtNvuROs1w9g2 | msg_011CgTzKxbVwxUwj3gjBKDMc |  |
+| 2026-10-28 04:18 | 98 | classes 2 Bp/astra/2/t2 | claude-haiku-5-5 | output_config.effort=low | 2638 | 0/0 | 668 | $0.00060 | 3.3 | end_turn | gen-1793161032-285LHo3COLpAMMzWypbr | msg_011CgTzLVTsfN8xsJqT5VGPU |  |
+| 2026-10-28 04:18 | 99 | classes 1 Bp/astra/2/t2 | claude-haiku-5-5 | output_config.effort=low | 2638 | 0/0 | 1078 | $0.00080 | 5.7 | end_turn | gen-1793161032-pJNgL6xKe5Rfq5KCEkL4 | msg_011CgTzLUQ8Dfk4w3sE5Xq3R |  |
+| 2026-10-28 04:18 | 100 | check C/astra/2 t1 | claude-haiku-5-5 | output_config.effort=low | 2770 | 0/0 | 76 | $0.00032 | 0.9 | end_turn | gen-1793161038-nA3ZGrE3clTdMyn7f7Xf | msg_011CgTzLvUHL1iZ5Xz92c49f |  |
+| 2026-10-28 04:18 | 101 | classes 1 Bp/astra/2/t3 | claude-haiku-5-5 | output_config.effort=low | 2618 | 0/0 | 712 | $0.00062 | 3.6 | end_turn | gen-1793161037-2AuaPP4kaBvgcZkQSbmJ | msg_011CgTzLrA5j6hfoqmdfYPQZ |  |
+| 2026-10-28 04:18 | 102 | classes 2 Bp/astra/2/t3 | claude-haiku-5-5 | output_config.effort=low | 2618 | 0/0 | 521 | $0.00052 | 2.8 | end_turn | gen-1793161039-3hC0DrAHx5qoCwCfL8z8 | msg_011CgTzLxiE7g6BpDkq2jPYn |  |
+| 2026-10-28 04:18 | 103 | decline C/astra/2 t1 | claude-haiku-5-5 | output_config.effort=low | 2725 | 0/0 | 75 | $0.00031 | 1.2 | end_turn | gen-1793161042-NUI42c78gJeRMxhWkOCv | msg_011CgTzMDBsEGumhaRw64axJ |  |
+| 2026-10-28 04:18 | 104 | check C/astra/2 t2 | claude-haiku-5-5 | output_config.effort=low | 1005 | 0/0 | 63 | $0.00013 | 0.9 | end_turn | gen-1793161054-ydlSFMCHwjykcLbeg1cK | msg_011CgTzN5fhdyyJ2pLf8QQnQ |  |
+| 2026-10-28 04:18 | 105 | decline C/astra/2 t2 | claude-haiku-5-5 | output_config.effort=low | 960 | 0/0 | 64 | $0.00013 | 0.8 | end_turn | gen-1793161058-en7Efh3gvhsqO44kpJ4l | msg_011CgTzNN5BJcePV9EewPgAu |  |
+| 2026-10-28 04:18 | 106 | check C/astra/2 t3 | claude-haiku-5-5 | output_config.effort=low | 1268 | 0/0 | 63 | $0.00016 | 0.9 | end_turn | gen-1793161073-nznwDXgCI8Pp2vlSKNWg | msg_011CgTzPWN2dwkTCCsF7zq6v |  |
+| 2026-10-28 04:18 | 107 | decline C/astra/2 t3 | claude-haiku-5-5 | output_config.effort=low | 1223 | 0/0 | 84 | $0.00016 | 0.9 | end_turn | gen-1793161077-TOjDOepws3NKNhisCpCX | msg_011CgTzPnrjHkLrEDabDKkBZ |  |
+| 2026-10-28 04:18 | 108 | tags 1 C/astra/2 | claude-haiku-5-5 | output_config.effort=low | 7139 | 0/0 | 1897 | $0.00166 | 8.8 | end_turn | gen-1793161078-f4Um577QzUAj3dSD76ne | msg_011CgTzPry2krd5pVnsgcWxC |  |
+| 2026-10-28 04:18 | 109 | tags 2 C/astra/2 | claude-haiku-5-5 | output_config.effort=low | 7139 | 0/0 | 3256 | $0.00234 | 14.8 | end_turn | gen-1793161078-R0KmqcCJnwTORe6joxZg | msg_011CgTzPsEPttnu8b474wYRQ |  |
+| 2026-10-28 04:18 | 110 | tags referee C/astra/2 | claude-opus-5-5 | output_config.effort=low | 7139 | 0/0 | 819 | $0.04494 | 9.9 | end_turn | gen-1793161093-aFGaojslzS5q3fE6lpAV | msg_011CgTzQxXg5zU4LP5gxGKkQ |  |
+| 2026-10-28 04:18 | 111 | session 2 C/astra/2 | claude-haiku-5-5 | output_config.effort=low | 6114 | 0/0 | 679 | $0.00095 | 3.9 | end_turn | gen-1793161103-PuE5PZtGnAV3GAA3PID0 | msg_011CgTzRh7kRV4YoWDrCg8d5 |  |
+| 2026-10-28 04:18 | 112 | session 1 C/astra/2 | claude-haiku-5-5 | output_config.effort=low | 6114 | 0/0 | 810 | $0.00102 | 4.1 | end_turn | gen-1793161103-xNnDiOJB3Y0amwwXnntY | msg_011CgTzRgoQ4vBvPvtfQrwfz |  |
+| 2026-10-28 04:18 | 113 | classes 1 C/astra/2/t1 | claude-haiku-5-5 | output_config.effort=low | 3896 | 0/0 | 1177 | $0.00098 | 5.4 | end_turn | gen-1793161107-7JTuUCgYf05zWUOQJWx3 | msg_011CgTzRzayqyoMa3xmvCvE4 |  |
+| 2026-10-28 04:18 | 114 | classes 2 C/astra/2/t1 | claude-haiku-5-5 | output_config.effort=low | 3896 | 0/0 | 1310 | $0.00104 | 5.9 | end_turn | gen-1793161110-7fLaeOWbintNdY1XwjAe | msg_011CgTzSCKfoaHGVqUgvvX1x |  |
+| 2026-10-28 04:18 | 115 | classes referee C/astra/2/t1 | claude-opus-5-5 | output_config.effort=medium | 3896 | 0/0 | 530 | $0.02618 | 5.4 | end_turn | gen-1793161116-wPROe1uqChkicb4g3f1H | msg_011CgTzSdZx9zjMvGE4cHj2h |  |
+| 2026-10-28 04:18 | 116 | classes 2 C/astra/2/t2 | claude-haiku-5-5 | output_config.effort=low | 2148 | 0/0 | 523 | $0.00048 | 2.9 | end_turn | gen-1793161121-P66ueDdjp9BLP5yie9t1 | msg_011CgTzT2v9rXpmaoYKUkgk3 |  |
+| 2026-10-28 04:18 | 117 | classes 1 C/astra/2/t2 | claude-haiku-5-5 | output_config.effort=low | 2148 | 0/0 | 628 | $0.00053 | 3.4 | end_turn | gen-1793161121-La3YUuSdlQx4Whren9QJ | msg_011CgTzT355G5jrX12XDLZ3o |  |
+| 2026-10-28 04:18 | 118 | classes 1 C/astra/2/t3 | claude-haiku-5-5 | output_config.effort=low | 2411 | 0/0 | 352 | $0.00042 | 2.2 | end_turn | gen-1793161125-XORHfG8t2aAzbEjQRc05 | msg_011CgTzTH6BMKnmi4YAZMjgD |  |
+| 2026-10-28 04:18 | 119 | classes 2 C/astra/2/t3 | claude-haiku-5-5 | output_config.effort=low | 2411 | 0/0 | 311 | $0.00040 | 2 | end_turn | gen-1793161127-9XMemv4FtjnFo17wOjU5 | msg_011CgTzTU3FCZ7Rtt4DwewNM |  |
