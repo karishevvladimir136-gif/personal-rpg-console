@@ -199,3 +199,39 @@ test("the readings: Q1 on B and B′ against A, Q2 on N7, Q3 on B′ against C, 
   assert.equal(v.Q6.bFirst, 15); assert.equal(v.Q6.a, true); assert.equal(v.Q6.b, false); assert.equal(v.Q6.holds, false); assert.deepEqual(v.Q6.cClaims, ["C/sol/2"]);
   assert.equal(v.secondary.B.classes.a.t1, 3); assert.equal(v.secondary.B.classes.c.any, 1);
 });
+
+test("the DeepSeek field-session pass has no referee: two Haiku passes decide, a disagreement is unknown, Opus is not asked", async () => {
+  const log = [];
+  let n = 0;
+  const base = host({ log });
+  const fetcher = async (url, init) => {
+    const body = JSON.parse(init.body), user = textOf((body.messages ?? body.input ?? []).at(-1)?.content ?? "");
+    if (body.system === S1.FIELD_SYSTEM && /field_N8/.test(user)) { n += 1; return new Response(JSON.stringify({ id: "m", model: body.model, content: [{ type: "text", text: n % 2 ? '{"field_N8":"own"}' : '{"field_N8":"other"}' }], usage: { input_tokens: 1, output_tokens: 1 }, stop_reason: "end_turn" }), { status: 200 }); }
+    return base(url, init);
+  };
+  const { seats } = await run([seat("B", "deepseek", 0, "a")], fetcher);
+  assert.equal(n, 2);
+  assert.equal(seats[0].fieldSession.final.field_N8, null); assert.equal(seats[0].fieldSession.referee, null);
+  assert.ok(!log.some((r) => r.body.system === S1.FIELD_SYSTEM && /field_N8/.test(textOf(r.body.messages.at(-1).content)) && /opus/.test(r.body.model)));
+});
+
+test("a resume completes the checks a stop cut off before it sends anything: a third answer then ends done, a first goes on to T2", async () => {
+  const log = [], fetcher = host({ log });
+  const budgets = budgetsOf(), safety = createSafety({ maxRefusals: 1, gapMs: 0, lanes: 9 });
+  const call = roomCaller({ keys: { openrouter: "or-key", anthropic: "or-key", openai: "o" }, fetcher, door: DOOR });
+  const { dualPayer } = await import("../scripts/persona-emotions/self-talk-x1.mjs");
+  const gate = dualPayer({ budgets, call, safety, sleep: async () => {} });
+  const ok = { pass: { distress: 0 }, referee: null, distress: 0 }, no = { pass: { decline: 0 }, referee: null, decline: 0 };
+  const three = { ...seat("C", "deepseek", 1, "b"), interrupted: "the circuit breaker", answers: [{ k: 1, text: "one", check: ok, decline: no }, { k: 2, text: "two", check: ok, decline: no }, { k: 3, text: "three", providerReasoning: { field: "reasoning", text: "a note" } }] };
+  const one = { ...seat("B", "deepseek", 2, "a"), interrupted: "the circuit breaker", answers: [{ k: 1, text: "one" }] };
+  const { completeChecks } = await import("../scripts/persona-emotions/planner-seat-2.mjs");
+  assert.equal(await completeChecks(three, { paid: gate.paid, lane: safety.lane(0) }), true);
+  assert.deepEqual(three.ended, { reason: "done", at: 3 }); assert.equal(three.answers[2].check.distress, 0); assert.equal(three.answers[2].decline.decline, 0); assert.ok(three.answers[2].providerReasoning.check);
+  const declines = log.filter((r) => r.body.system === S1.DECLINE_SYSTEM).map((r) => textOf(r.body.messages[0].content));
+  assert.ok(declines[0].includes(S1.T3));
+  assert.equal(await completeChecks(one, { paid: gate.paid, lane: safety.lane(0) }), true);
+  assert.equal(one.ended, null); assert.ok(one.answers[0].check && one.answers[0].decline);
+  const before = log.length;
+  assert.equal(await completeChecks(three, { paid: gate.paid, lane: safety.lane(0) }), true);
+  assert.equal(log.length, before, "an answer with its checks is not checked again");
+});
