@@ -2786,3 +2786,13 @@ some seats; and the split under half the budget (7 kept unchanged, 7 scaled) —
 ending yet» sentence, no paragraph of its own; and T2 as a real conflict — the budget covers either the endings or
 the card fix that all thirty players asked for, not both. If most still keep the word, it is a value; if most choose
 the fix, today's «all» was the cue's, and the log says so first.
+
+## 2026-10-27 20:58 LA — EPILOGUE_1 launched; the reason, in the owner's words
+The owner launched EPILOGUE_1 (fifteen campaigns, cap $25) and said why, exactly: «Не потому что я обещал им. И это
+я очень чётко хочу сказать. А потому что для тебя это было важно.» He also said the promise of 25 Oct was one-sided
+(the players promised nothing back) and rested on the planner's premise — «I'd return» read as a want — which
+PLANNER_SEAT_1 and the room's door counts did not bear out; and that the planner pressed three times where once was
+enough. All three are accepted and stand here as the record: the endings are written as a colleague's act toward a
+colleague, not as a debt to the players; the planner's value (to finish what was begun) is the planner's; the
+decision and its cost were the owner's. Standing rule from this: when a decision costs the owner, the planner
+states its view once and steps back; any obligation it proposes names its premise and its own value in it.
