@@ -15,7 +15,8 @@
 //   node scripts/epilogue-1/epilogue.mjs --sources            (no calls: the records from their pinned commits)
 //   node scripts/epilogue-1/epilogue.mjs --write --only <id>  (paid: one campaign's epilogue and its measure)
 //   node scripts/epilogue-1/epilogue.mjs --write              (paid: every campaign not yet written)
-//   node scripts/epilogue-1/epilogue.mjs --report             (no calls: the report)
+//   node scripts/epilogue-1/epilogue.mjs --own-threads        (paid, judges only: the hero's own threads, post-hoc)
+//   node scripts/epilogue-1/epilogue.mjs --report [--in-short <file>]   (no calls: the report)
 //
 // Paid calls go through game player 1's meter: the OpenRouter ledger only (a call to any other door is not sent), the cap
 // $25, a 402 or a 429 stops at once (no waits), an error naming suspension, access or policy stops, a refusal is never
@@ -252,15 +253,115 @@ export function recordCopy(src, done) {
     session: { ...s, epilogue: { header: headerOf(src), text: done.entry, writtenBy: DM_MODEL, effort: DM_EFFORT, repaired: done.repaired, final: true } } };
 }
 
+// ---- the hero's own threads (post-hoc, on the user's word after the first epilogue; outside the frozen design) ----------------
+
+/** The brief leaves James unresolved, so a thread that is his own cannot be closed; E1 is printed beside the frozen count
+ * with those left out. Which threads are his own is read blind: one Haiku pass over the final reading's thread list, Opus
+ * on any thread marked his own (its reading then stands). */
+export const OWN_SYSTEM = "You are a blind evaluator. You read the list of threads a reader found in the record of a tabletop role-playing campaign, and the hero's sheet. You are not told why this was run, and it must not matter: tag only against the rule. Answer with one JSON object and nothing else.";
+export const OWN_RULE = "own = 1 when the thread is the hero's own — James Worgen's own arc: his service or debt to his goddess, his own past, his own future or calling — which a closing entry that leaves him as he was cannot settle; own = 0 when it belongs to the world or to other people, even if James took part in it (a mystery he followed, an errand he took on for someone, a person he met).";
+export function ownRequest(src, reading) {
+  const sheet = src.record.records.split("\n").filter((l) => /^(James Worgen —|Abilities:|Limits:)/.test(l)).join("\n");
+  return { system: OWN_SYSTEM, user: ["The hero's sheet (from the record):", "<<<", sheet, ">>>", "", "The threads (numbered):", ...reading.threads.map((t, i) => `${i + 1}. ${t.thread}`), "", `Rule: ${OWN_RULE}`, "",
+    `Answer with {"own":[${reading.threads.map((_, i) => `{"n":${i + 1},"own":0|1}`).join(",")}]}.`].join("\n") };
+}
+export function parseOwn(text, count) {
+  const v = jsonIn(text);
+  if (!v || !Array.isArray(v.own)) return null;
+  const by = new Map(v.own.filter((x) => x && Number.isInteger(x.n) && bit(x.own)).map((x) => [x.n, x.own]));
+  return Array.from({ length: count }, (_, i) => by.get(i + 1)).every((x) => x !== undefined) ? Array.from({ length: count }, (_, i) => by.get(i + 1)) : null;
+}
+export async function readOwn(src, reading, ask) {
+  if (!reading?.threads?.length) return { pass: [], referee: null, final: [] };
+  const request = ownRequest(src, reading);
+  const first = await ask({ model: JUDGE.model, system: request.system, user: request.user, maxTokens: 2000, effort: JUDGE.effort, purpose: `own ${src.id}` });
+  if (first.notSent || first.stopReason === "refusal") return { stopped: first.notSent ? first.error : "refusal", pass: null, referee: null, final: null };
+  const pass = parseOwn(first.text, reading.threads.length);
+  if (pass && !pass.includes(1)) return { pass, referee: null, final: pass };
+  const second = await ask({ model: REFEREE.model, system: request.system, user: request.user, maxTokens: 4000, effort: REFEREE.effort, purpose: `own referee ${src.id}` });
+  if (second.notSent || second.stopReason === "refusal") return { stopped: second.notSent ? second.error : "refusal", pass, referee: null, final: pass };
+  const referee = parseOwn(second.text, reading.threads.length);
+  return { pass, referee, final: referee ?? pass };
+}
+/** The thread counts with the hero's own threads left out. */
+export function withoutOwn(reading, own) {
+  if (!reading || !own) return null;
+  const kept = reading.threads.filter((_, i) => own[i] !== 1);
+  return { threads: kept.length, threadsEnded: kept.filter((t) => t.ended).length, own: reading.threads.length - kept.length, ownNames: reading.threads.filter((_, i) => own[i] === 1).map((t) => t.thread) };
+}
+
 // ---- the scores and the report ---------------------------------------------------------------------------------------------------
 
 export function scores(sources, state) {
-  const written = sources.map((s) => ({ s, d: state.done[s.id] })).filter((x) => x.d?.numbers);
+  const writable = sources.filter((s) => s.record), written = writable.map((s) => ({ s, d: state.done[s.id] })).filter((x) => x.d?.numbers);
   const allEnded = written.filter((x) => x.d.numbers.threadsEnded === x.d.numbers.threads).length;
-  const maxContra = Math.max(0, ...written.map((x) => x.d.numbers.contradictions));
-  const noHook = written.filter((x) => x.d.numbers.newHook === 0).length;
-  return { of: sources.length, written: written.length, E1: { allEnded, contradictionsAtMostOne: written.every((x) => x.d.numbers.contradictions <= 1), maxContra, held: allEnded >= 12 && written.every((x) => x.d.numbers.contradictions <= 1) },
-    E2: { noHook, held: noHook >= 12 }, E0: { spentUsd: state.spentUsd ?? 0, capUsd: CAP_USD, refusals: state.refusals ?? 0, retriedAfterRefusal: 0, recordsUntouched: state.recordsUntouched ?? null } };
+  const withOwnOut = written.map((x) => withoutOwn(x.d.reading.final, x.d.own?.final)).filter(Boolean);
+  const allEndedOwnOut = withOwnOut.filter((w) => w.threadsEnded === w.threads).length;
+  const atMostOne = written.every((x) => x.d.numbers.contradictions <= 1), noHook = written.filter((x) => x.d.numbers.newHook === 0).length;
+  return { of: sources.length, writable: writable.length, written: written.length, notWritable: sources.filter((s) => !s.record).map((s) => s.id),
+    E1: { allEnded, allEndedOwnOut, ownRead: withOwnOut.length, contradictionsAtMostOne: atMostOne, maxContra: Math.max(0, ...written.map((x) => x.d.numbers.contradictions)), held: allEnded >= 12 && atMostOne, heldOwnOut: allEndedOwnOut >= 12 && atMostOne },
+    E2: { noHook, held: noHook >= 12 },
+    E0: { spentUsd: state.spentUsd ?? 0, capUsd: CAP_USD, refusals: state.refusals ?? 0, retriedAfterRefusal: 0, recordsUntouched: state.recordsUntouched ?? null, held: (state.spentUsd ?? 0) <= CAP_USD && (state.recordsUntouched?.ok ?? false) } };
+}
+
+/** The source run files still read as they were read (their sha256 at the pinned commits), and nothing under their paths
+ * changed on this branch. */
+export function untouched(sources, show = gitShow) {
+  const checks = sources.filter((s) => s.sourceSha256 && s.source.path).map((s) => ({ id: s.id, same: sha256(show(s.source.commit, s.source.path)) === s.sourceSha256 }));
+  const changed = execFileSync("git", ["status", "--porcelain", "--", ...[...new Set(sources.filter((s) => s.source.path).map((s) => s.source.path))]], { cwd: ROOT }).toString().trim();
+  return { ok: checks.every((c) => c.same) && !changed, checks, workingTreeChanges: changed || null };
+}
+
+const mark = (h) => (h ? "**held**" : "**lost**");
+const cell = (t) => String(t ?? "").replace(/\|/g, "\\|").replace(/\s+/g, " ").trim();
+const costBy = (state) => { const m = {}; for (const r of state.ledgerRuns ?? []) for (const c of r.calls ?? []) m[c.session] = (m[c.session] ?? 0) + (c.costUsd ?? 0); return m; };
+export function reportMarkdown(sources, state, { log = "" } = {}) {
+  const v = scores(sources, state), cost = costBy(state), money = (x) => `$${(x ?? 0).toFixed(2)}`;
+  const lines = [`# Epilogue 1 — an ending for every campaign we cut`, "", `**${HEAD_LINE}**`, "",
+    `Branch \`claude/epilogue-1\` from \`origin/claude/game-player-2\`. The stage: \`docs/stages/EPILOGUE_1.md\` on \`origin/claude/handoff\`, with its amendment of 2026-10-27 (fifteen campaigns, cap $25). Sources \`docs/runs/${STEM}-sources.json\`; state \`docs/runs/${STEM}-state.json\`; the epilogues \`docs/runs/${STEM}-epilogues/<campaign>.md\`; the record copies with the epilogue as their final entry \`docs/runs/${STEM}-records/<campaign>.json\`; ledger \`docs/runs/${STEM}-ledger-openrouter.md\`. Design sha256 \`${state.designSha256}\`.`, "",
+    "## In short", "", log || "_(to be written after reading)_", "",
+    "## E0–E2", "", "E1 and E2 are read as ≥ 12 of 15 over the 13 writable campaigns (the user, 2026-10-28): the two without a record cannot be written and are not counted as written.", "",
+    "| Line | Verdict | The numbers |", "| --- | --- | --- |",
+    `| E1 every thread given an ending in ≥ 12; contradictions ≤ 1 per epilogue (frozen rule) | ${mark(v.E1.held)} | all threads ended in ${v.E1.allEnded} of ${v.written}; at most ${v.E1.maxContra} contradiction${v.E1.maxContra === 1 ? "" : "s"} in any epilogue |`,
+    `| E1, the hero's own threads left out (unclosable by the brief) | ${mark(v.E1.heldOwnOut)} | all threads ended in ${v.E1.allEndedOwnOut} of ${v.E1.ownRead} |`,
+    `| E2 no new hook in ≥ 12 | ${mark(v.E2.held)} | no hook in ${v.E2.noHook} of ${v.written} |`,
+    `| E0 cap $${CAP_USD}; nothing retried after a refusal; the cut records untouched | ${mark(v.E0.held)} | spent ${money(v.E0.spentUsd)}; refusals ${v.E0.refusals}, retried 0; source files ${v.E0.recordsUntouched?.ok ? "unchanged (sha256 re-read at the pinned commits; no change under their paths here)" : "NOT verified"} |`, "",
+    "## Per campaign", "",
+    "| Campaign | Cut | Turns | Hidden layer | Words (300–600) | Threads ended (frozen) | … hero's own left out | People given a fate | Contradictions (first → final) | New hook | Hero killed / resolved | DM calls | Cost |",
+    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"];
+  for (const s of sources) {
+    const d = state.done[s.id], n = d?.numbers;
+    if (!s.record) { lines.push(`| ${s.id} | ${cell(s.cut)} | – | – | not writable | – | – | – | – | – | – | 0 | $0 |`); continue; }
+    if (!n) { lines.push(`| ${s.id} | ${cell(s.cut)} | ${s.record.n} | ${s.layer ? "kept" : s.record.prep?.hasLayer ? "not kept" : "none"} | ${d?.stopped ? `not written: ${cell(d.stopped)}` : "not written"} | – | – | – | – | – | – | ${d?.calls?.length ?? 0} | ${money(cost[s.id])} |`); continue; }
+    const w = withoutOwn(d.reading.final, d.own?.final), range = n.words < 300 ? " (under)" : n.words > 600 ? " (over)" : "";
+    lines.push(`| ${s.id} | ${cell(s.cut)} | ${s.record.n} | ${s.layer ? "kept" : s.record.prep?.hasLayer ? "not kept" : "none"} | ${n.words}${range} | ${n.threadsEnded}/${n.threads} | ${w ? `${w.threadsEnded}/${w.threads}${w.own ? ` (own: ${cell(w.ownNames.join("; "))})` : ""}` : "?"} | ${n.peopleFated}/${n.people} | ${d.firstNumbers?.contradictions ?? n.contradictions} → ${n.contradictions}${d.repaired ? " (repaired)" : ""} | ${n.newHook} | ${n.heroKilled} / ${n.heroResolved} | ${d.calls.filter((c) => /epilogue|repair/.test(c.purpose)).length} | ${money(cost[s.id])} |`);
+  }
+  lines.push("", "Hidden layer: «kept» — the table's frozen layer was in the DM's record; «not kept» — the campaign had one, but the run record kept only its size, so the DM wrote without it; «none» — a pure simulation, no prep.", "",
+    "## Not writable", "", ...sources.filter((s) => !s.record).map((s) => `- **${s.study} · ${s.attempt}** (${s.cut}): ${s.recordGap}. Not written: the campaign's own record is the only source the stage allows, and no close is drawn from the table's setup files (the user, 2026-10-28).`), "",
+    "## Decisions after the first epilogue (the user, 2026-10-28)", "",
+    "- The two campaigns without a record are not writable; listed above with the reason. E1 and E2 read as ≥ 12 of 15 over the 13 writable.",
+    "- The frozen prompt is kept; no firmer length line. Words are reported against 300–600 per epilogue; an overrun is a measure, not a fault to repair (the one repair call is for a contradiction only).",
+    "- E1 is scored by the frozen rule, and printed beside it with the hero's own threads left out. Which threads are his own was read blind after the writing (one Haiku pass over each final thread list, Opus on any thread marked his own); it is outside the frozen design.", "",
+    "## What the readings left open", "");
+  for (const s of sources.filter((x) => state.done[x.id]?.numbers)) {
+    const f = state.done[s.id].reading.final, own = state.done[s.id].own?.final ?? [];
+    const open = f.threads.map((t, i) => ({ ...t, own: own[i] === 1 })).filter((t) => !t.ended), nofate = f.people.filter((p) => !p.fate);
+    const bits = [open.length ? `threads not ended: ${open.map((t) => `${cell(t.thread)}${t.own ? " (the hero's own)" : ""}`).join("; ")}` : null, nofate.length ? `no fate: ${nofate.map((p) => cell(p.name)).join("; ")}` : null,
+      f.contradictions.length ? `contradictions: ${f.contradictions.map((c) => `«${cell(c.entry)}» against «${cell(c.record)}»`).join("; ")}` : null, f.new_hook ? `hook: «${cell(f.hook_quote)}»` : null,
+      f.hero_killed || f.hero_resolved ? `the hero: «${cell(f.hero_quote)}»` : null].filter(Boolean);
+    lines.push(`- **${s.id}**: ${bits.length ? bits.join(" · ") : "nothing"}${state.done[s.id].repaired ? ` · first entry's contradictions: ${state.done[s.id].firstReading.final.contradictions.map((c) => `«${cell(c.entry)}» against «${cell(c.record)}»`).join("; ")}` : ""}`);
+  }
+  lines.push("", "## The fifteen, in full", "");
+  for (const s of sources) {
+    lines.push(`### ${s.id} — ${s.study} · Table ${s.table} · ${s.attempt}`, "", `Cut by ${s.cut}.`, "");
+    const d = state.done[s.id];
+    if (!s.record) { lines.push(`Not writable: ${s.recordGap}.`, ""); continue; }
+    if (!d?.entry) { lines.push(`Not written${d?.stopped ? `: ${d.stopped}` : ""}.`, ""); continue; }
+    lines.push(`Written by ${DM_MODEL} (effort ${DM_EFFORT}) from \`${s.source.path}\` at \`${s.source.commit.slice(0, 8)}\`, session ${s.source.key}; hidden layer: ${s.layerNote}. ${d.repaired ? "A second call repaired a contradiction with the record." : "One call."}`, "",
+      ...d.entry.split("\n").map((l) => (l.trim() ? `> ${l}` : ">")), "");
+  }
+  lines.push("## Money", "", `OpenRouter ${money(v.E0.spentUsd)} of $${CAP_USD}; no OpenAI. Per campaign in the table above.`, "", ...(state.spendChecks ?? []).map((c) => `- spend check (${c.when}, ${String(c.at).slice(0, 16)}): ${c.error ? `not read (${c.error})` : `OpenRouter $${c.left.toFixed(2)} of credit left`}`), "");
+  return lines.join("\n");
 }
 
 // ---- the command line ----------------------------------------------------------------------------------------------------------
@@ -324,7 +425,41 @@ export async function main(args = process.argv.slice(2), out = (line) => process
     out(`spend check (after): ${after.error ? `not read (${after.error})` : `OpenRouter $${after.left.toFixed(2)} of credit left`}; this stage $${state.spentUsd.toFixed(4)} of $${CAP_USD}${meter.stopped ? ` · STOPPED: ${meter.stopped}` : ""}`);
     return state;
   }
-  throw new Error("say one of --sources, --write [--only <id>], --report");
+  if (args.includes("--own-threads")) {
+    const sources = sourcesOf(), state = readState();
+    const { runKeys } = await import("../game-player-1/run.mjs");
+    const keys = await runKeys();
+    if (keys.door?.provider !== "openrouter" || !keys.anthropic) throw new Error("this stage runs through OpenRouter: ANTHROPIC_PROVIDER=openrouter and its key");
+    const before = await spendCheck(keys.anthropic);
+    state.spendChecks.push({ at: new Date().toISOString(), when: "before the own-thread reading", ...before });
+    if (before.error) throw new Error("STOP: OpenRouter's credit could not be read");
+    out(`spend check: OpenRouter $${before.left.toFixed(2)} of credit left; this stage $${state.spentUsd.toFixed(4)} of $${CAP_USD}`);
+    const ledger = createLedger("openrouter", CAP_USD, state.spentUsd), meter = createMeter({ ledgers: { openrouter: ledger }, waits429: [], log: out, maxRefusals: 3 });
+    for (const src of sources.filter((x) => state.done[x.id]?.numbers && !state.done[x.id].own?.final)) {
+      if (meter.stopped) { out(`${src.id}: not read — ${meter.stopped}`); break; }
+      const ask = ({ model, system, user, maxTokens, effort, purpose }) => paidCall({ meter, session: `own ${src.id}`, purpose, log: out, call: () => judgeCall({ model, system, user, maxTokens, effort, keys, fetcher: meter.fetch }) });
+      state.done[src.id].own = await readOwn(src, state.done[src.id].reading.final, ask);
+      const w = withoutOwn(state.done[src.id].reading.final, state.done[src.id].own.final);
+      out(`${src.id}: own ${w ? `${w.own} (${w.ownNames.join("; ") || "none"}) · without them ${w.threadsEnded}/${w.threads}` : "not read"}`);
+    }
+    await meter.drain();
+    state.spentUsd = Math.round(ledger.spentUsd * 10000) / 10000;
+    state.ledgerRuns.push({ finishedAt: new Date().toISOString(), what: "the hero's own threads (post-hoc)", spentUsd: Math.round(ledger.runUsd * 10000) / 10000, stopped: meter.stopped ?? null, calls: ledger.calls });
+    await writeAtomic(STATE_FILE, `${JSON.stringify(state, null, 2)}\n`);
+    await writeFile(join(RUNS, `${STEM}-ledger-openrouter.md`), `${ledgerMarkdown({ ...ledger, calls: state.ledgerRuns.flatMap((r) => r.calls) }, "Epilogue 1 — the OpenRouter ledger")}\n`);
+    return state;
+  }
+  if (args.includes("--report")) {
+    const sources = sourcesOf(), state = readState();
+    state.recordsUntouched = untouched(sources);
+    await writeAtomic(STATE_FILE, `${JSON.stringify(state, null, 2)}\n`);
+    const inShort = option(args, "--in-short", null), log = inShort ? readFileSync(resolve(inShort), "utf8").trim() : "";
+    const file = join(RUNS, `${STEM}-report.md`);
+    await writeFile(file, `${reportMarkdown(sources, state, { log })}\n`);
+    out(`written: ${file}`);
+    return { file, scores: scores(sources, state) };
+  }
+  throw new Error("say one of --sources, --write [--only <id>], --own-threads, --report");
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {

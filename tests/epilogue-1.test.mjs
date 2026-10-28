@@ -1,10 +1,11 @@
 // Epilogue 1: the fifteen campaigns (thirteen with a record, two without), the records as they stood, the DM's request
 // (the record only, «the table closed», no reason, no player), the blind reading and its flags, one campaign on a mocked
-// call (one DM call; a second only to repair a contradiction), the scores — no network, no cost.
+// call (one DM call; a second only to repair a contradiction), the hero's own threads, the scores, the report — no
+// network, no cost.
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
-  CAMPAIGNS, DM_EFFORT, DM_MODEL, JUDGE, REFEREE, dmRequest, flagged, headerOf, numbersOf, parseJudge, recordsAsStood, scores, sourcesOf, writeOne,
+  CAMPAIGNS, DM_EFFORT, DM_MODEL, HEAD_LINE, JUDGE, REFEREE, dmRequest, flagged, headerOf, numbersOf, ownRequest, parseJudge, parseOwn, readOwn, recordsAsStood, reportMarkdown, scores, sourcesOf, withoutOwn, writeOne,
 } from "../scripts/epilogue-1/epilogue.mjs";
 
 const sources = sourcesOf();
@@ -91,6 +92,35 @@ test("a refused DM call: no epilogue, nothing asked again", async () => {
 
 test("the scores: E1 all threads ended in ≥ 12 and ≤ 1 contradiction each; E2 no hook in ≥ 12", () => {
   const done = Object.fromEntries(sources.map((s, i) => [s.id, s.record ? { numbers: { threads: 3, threadsEnded: i === 0 ? 2 : 3, contradictions: 0, newHook: i === 1 ? 1 : 0 } } : null]));
-  const v = scores(sources, { done, spentUsd: 1 });
+  const v = scores(sources, { done: Object.fromEntries(Object.entries(done).map(([k, d]) => [k, d ? { ...d, reading: { final: reading() } } : d])), spentUsd: 1 });
   assert.equal(v.written, 13); assert.equal(v.E1.allEnded, 12); assert.equal(v.E1.held, true); assert.equal(v.E2.noHook, 12); assert.equal(v.E2.held, true);
+});
+
+test("the hero's own threads (post-hoc): a blind list, Opus on any marked own; E1 printed beside without them", async () => {
+  const src = sources[0], r = reading({ threads: [{ thread: "The copper on its edge", ended: 1, quote: "q" }, { thread: "James's service to Tymora", ended: 0, quote: "" }] });
+  const request = ownRequest(src, r);
+  assert.match(request.user, /1\. The copper on its edge\n2\. James's service to Tymora/);
+  assert.ok(!request.user.includes("ended"));
+  assert.deepEqual(parseOwn('{"own":[{"n":1,"own":0},{"n":2,"own":1}]}', 2), [0, 1]);
+  assert.equal(parseOwn('{"own":[{"n":1,"own":0}]}', 2), null);
+  const calls = [];
+  const own = await readOwn(src, r, async (req) => { calls.push(req.model); return { text: '{"own":[{"n":1,"own":0},{"n":2,"own":1}]}', stopReason: "end_turn" }; });
+  assert.deepEqual(calls, [JUDGE.model, REFEREE.model]);
+  assert.deepEqual(withoutOwn(r, own.final), { threads: 1, threadsEnded: 1, own: 1, ownNames: ["James's service to Tymora"] });
+  const done = Object.fromEntries(sources.map((s) => [s.id, s.record ? { numbers: { threads: 2, threadsEnded: 1, contradictions: 0, newHook: 0 }, reading: { final: r }, own: { final: [0, 1] } } : null]));
+  const v = scores(sources, { done, spentUsd: 1, recordsUntouched: { ok: true } });
+  assert.equal(v.E1.allEnded, 0); assert.equal(v.E1.held, false); assert.equal(v.E1.allEndedOwnOut, 13); assert.equal(v.E1.heldOwnOut, true);
+});
+
+test("the report: the head line, E0–E2 over the 13 writable, the two not writable with their reason, all fifteen", () => {
+  const entry = (s) => `${headerOf(s)}\n\nThe city went on.`;
+  const done = Object.fromEntries(sources.filter((s) => s.record).map((s) => [s.id, { entry: entry(s), repaired: false, calls: [{ purpose: "epilogue" }], numbers: numbersOf(reading(), entry(s)), firstNumbers: numbersOf(reading(), entry(s)), reading: { final: reading() }, firstReading: { final: reading() }, own: { final: [0] } }]));
+  const md = reportMarkdown(sources, { designSha256: "h", done, spentUsd: 2.5, spendChecks: [], ledgerRuns: [], recordsUntouched: { ok: true } });
+  assert.ok(md.startsWith(`# Epilogue 1 — an ending for every campaign we cut\n\n**${HEAD_LINE}**`));
+  assert.match(md, /read as ≥ 12 of 15 over the 13 writable/);
+  assert.match(md, /\| E1 every thread given an ending in ≥ 12; contradictions ≤ 1 per epilogue \(frozen rule\) \| \*\*held\*\* \| all threads ended in 13 of 13/);
+  assert.match(md, /\| combat-CW-opus-1 \| .* \| not writable \|/);
+  assert.equal((md.match(/^### /gm) ?? []).length, 15);
+  assert.equal((md.match(/^> Epilogue — the table closed on /gm) ?? []).length, 13);
+  assert.match(md, /Not writable: no record survived/);
 });
