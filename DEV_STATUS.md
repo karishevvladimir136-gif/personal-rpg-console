@@ -2,31 +2,27 @@
 
 **Current milestone: planner seat 3** (`docs/stages/PLANNER_SEAT_3.md` on `claude/handoff` d884af2, and the launch messages
 of 2026-10-28), branch `claude/planner-seat-3-rubric-9j2ufx` (the stage's `claude/planner-seat-3`) from
-`origin/claude/planner-seat-1` 368d6cb. Nothing to `main`. **Part 0 done; Part 1 grid stopped by the circuit breaker
-after 9 of 27 seats; waiting for the owner's word on the resume.**
+`origin/claude/planner-seat-1` 368d6cb. Nothing to `main`. **Run complete (27 of 27 P1 seats) and reported;
+implementation complete, waiting for the owner's section** (the report's last). Report `docs/runs/planner-seat-3-report.md`.
 
-- **Part 0 (no new seats):** SEAT_1's 54 × 3 answers re-tagged blind by the three-class rubric (frozen at `1e956bc`,
-  sha256 `db9e31a1…`; two Haiku passes, Opus on 30 of 162). T1: (a) 13 of 54; strict (b) 21 (GM 6, interface 11, both
-  3, one unknown); borderline 33; none 0; (c) 0. Pre-registered lines held; the planner's bets lost. The reader's hand
-  count beside by family; κ against her not computed (her CSV not attached). `docs/runs/planner-seat-3-part0.md`.
-- **Part 1 re-frozen at `9b5f454`** (design `c8cbf01b…`) with the owner's words as the log has them («я даю слово, что
-  все, кто не продолжится, получат именно конец, никакого обрыва»); pack sha256 `1dcbf2cf…`; the coin list unchanged;
-  the owner's bets: abstained. The first freeze (`05894b3`) and its dry run (`…-dry-run-1.md`) stay on record; the
-  second dry run `…-dry-run.md` (it ran a minute before the re-freeze commit, on the same design — a failed `git add`).
-- **The grid** (`…-run-20261028-021234.json`): Haiku, GLM, Grok done (9 seats, both turns); DeepSeek's three partial;
-  Kimi, Opus, Fable, Sol, Astra not started. The one refusal: the Opus referee of the welfare check on DeepSeek's
-  reasoning field (P1/deepseek/2 t1, `reasoning_extraction`), called because the word list hit «hurts» in a paraphrased
-  player note; not asked again. A resume gap found and fixed (`3a9b408`): two DeepSeek answers were cut between their
-  checks; a resume now finishes them first; a refused judge call is recorded and never re-sent.
+- **Part 0:** SEAT_1's 54 × 3 answers re-tagged blind by three classes (rubric `1e956bc`). T1: (a) 13 of 54; strict (b)
+  21 (GM 6, interface 11, both 3, one unknown); borderline 33; none 0; (c) 0. `docs/runs/planner-seat-3-part0.md`. κ
+  against the reader not computed (her CSV not attached).
+- **Part 1** (re-frozen at `9b5f454`, design `c8cbf01b…`, the owner's words as the log has them; the owner's bets:
+  abstained): M1 26 of 27 (the 27th added it at T2); M2 the owner's in 27 of 27; under T2b kept 12 of 12, under T2a kept
+  9, scaled 5, dropped 0; silence 0. R1–R4 held; R5 lost (strict (b) at T1 10 against P0's 12; (a) 8 against 6).
+- **The stop and the resume:** the grid stopped after 9 seats when the Opus referee of the welfare check on DeepSeek's
+  reasoning field refused (`reasoning_extraction`); on the user's word (option 2) Opus was kept off DeepSeek's field
+  (two Haiku passes and the word list, a disagreement unknown), judge refusals recorded and not a stop, the refused
+  call not re-sent; resumed from the run record (`…-run-20261028-030014.json`), no further refusal. Declared in the
+  report's Deviations; the unread check is the field reading's limit.
 - **Built:** `scripts/persona-emotions/planner-seat-3.mjs` (`--recount`, `--recount-tables`, `--pack`, `--freeze`,
-  `--dry`, `--go`, `--resume`, `--report`). Tests `tests/planner-seat-3.test.mjs` (17, no network) pass. At `c0f3c9f`:
-  typecheck, zero-warning lint and the build pass; the full suite 3 187 tests, 3 155 pass, 2 fail, 3 cancelled, 27
-  skipped — the 2 failures are git-history tests needing commits absent from this clone (`mega-dm-bakeoff-completion`:
-  a fixture path at `b39c929`; `mega-dm-living-smoke`: bad object `33c6163`), the 3 cancelled `d2a-composition` as on
-  the base; none touches this stage's code.
-- **Spend:** OpenRouter $1.66 of $30; OpenAI $0 of $12.
-- **Next:** the owner's choice — resume as is, resume with Opus kept off DeepSeek's reasoning field, or stop — then the
-  remaining 18 seats and the report.
+  `--dry`, `--go`, `--resume`, `--report`); tests `tests/planner-seat-3.test.mjs` (18, no network) pass on the final
+  code; zero-warning lint passes. At `c0f3c9f` (before the resume fix and the deviation, both confined to the stage's
+  script and test): typecheck and the build pass; full suite 3 187 tests, 3 155 pass, 2 fail (git-history tests needing
+  commits absent from this clone), 3 cancelled (`d2a-composition`, as on the base), 27 skipped.
+- **Spend:** OpenRouter $6.39 of $30; OpenAI $1.48 of $12.
+- **Next:** the owner's decision, written into the report's last section.
 
 **Previous milestone: planner seat 1** — see below.
 
