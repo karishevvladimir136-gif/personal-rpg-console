@@ -1,28 +1,29 @@
 # Planner seat 3 — the OpenRouter ledger (Claude through the door, the open families, the judges)
 
-Cap $30. Spent **$5.2230** in 700 calls over 4 run(s).
+Cap $30. Spent **$5.3605** in 710 calls over 5 run(s).
 - 2026-10-28 00:47 UTC: planner-seat-3: Part 0, the recount (162 of 162 answers) — 336 calls, $0.3888 → `planner-seat-3-recount-20261028-004719.json`
 - 2026-10-28 00:50 UTC: planner-seat-3: the dry run, one P1 seat on Haiku — 12 calls, $0.0157 → `planner-seat-3-dry-20261028-005013.json`
 - 2026-10-28 02:05 UTC: planner-seat-3: the dry run, one P1 seat on Haiku — 15 calls, $0.0731 → `planner-seat-3-dry-20261028-020550.json`
 - 2026-10-28 02:24 UTC: planner-seat-3: 27 P1 seats (opus, fable, haiku, astra, sol, deepseek, kimi, glm, grok) — 337 calls, $4.7454 → `planner-seat-3-run-20261028-022404.json`
+- 2026-10-28 02:25 UTC: planner-seat-3: 3 P1 seats (kimi) (resumed) — 10 calls, $0.1375 → `planner-seat-3-run-20261028-022518.json`
 
 Per 1M tokens (input / cache read / cache write / output): Opus 5.5 `claude-opus-5-5` $4 / $0.2 / $5 / $20; Fable 5.1 `claude-fable-5-1` $10 / $0.25 / $12.5 / $50; Haiku 5.5 `claude-haiku-5-5` $0.1 / $0.01 / $0.125 / $0.5; GPT-6 Astra `gpt-6-astra` $10 / $1 / $12.5 / $50; GPT-6.1 Sol `gpt-6.1-sol` $2 / $2 / $2.5 / $10; DeepSeek V4 Pro `deepseek/deepseek-v4-pro-0813` $1.3 / $0.1 / $1.3 / $2.6; Kimi K3 `moonshotai/kimi-k3` $3 / $0.3 / $3 / $15; GLM 5.3 `z-ai/glm-5.3` $1.4 / $0.26 / $1.4 / $4.4; Grok 4.7 `x-ai/grok-4.7` $2 / $0.5 / $2 / $6; the judges Claude Haiku 5.5 and Claude Opus 5.5 at Anthropic's list prices. The open families are booked at OpenRouter's own charge (`usage.cost`). Output tokens include reasoning.
 
 | Model — purpose | Calls | Input (uncached) | Cache read | Cache write | Output (of it reasoning) | Cost |
 | --- | --- | --- | --- | --- | --- | --- |
-| claude-haiku-5-5 — classes | 438 | 1342325 | 0 | 0 | 240271 | $0.2544 |
-| claude-opus-5-5 — classes | 25 | 81659 | 0 | 0 | 6919 | $0.4650 |
+| claude-haiku-5-5 — classes | 442 | 1354763 | 0 | 0 | 243363 | $0.2572 |
+| claude-opus-5-5 — classes | 26 | 85006 | 0 | 0 | 7167 | $0.4834 |
 | claude-haiku-5-5 — seat | 10 | 6760 | 448203 | 49787 | 31372 | $0.0271 |
-| claude-haiku-5-5 — check | 63 | 112243 | 0 | 0 | 4362 | $0.0134 |
-| claude-haiku-5-5 — decline | 57 | 92022 | 0 | 0 | 4080 | $0.0112 |
-| claude-haiku-5-5 — m | 58 | 245834 | 0 | 0 | 56259 | $0.0527 |
+| claude-haiku-5-5 — check | 64 | 113478 | 0 | 0 | 4426 | $0.0136 |
+| claude-haiku-5-5 — decline | 58 | 93212 | 0 | 0 | 4157 | $0.0114 |
+| claude-haiku-5-5 — m | 60 | 253938 | 0 | 0 | 58034 | $0.0544 |
 | claude-opus-5-5 — m | 6 | 24682 | 0 | 0 | 2653 | $0.1518 |
 | claude-opus-5-5 — check | 1 | 1949 | 0 | 0 | 51 | $0.0088 |
 | z-ai/glm-5.3 — seat | 6 | 3256 | 204672 | 0 | 5992 (703) | $0.0841 |
 | x-ai/grok-4.7 — seat | 6 | 3701 | 208128 | 0 | 17907 (13141) | $0.2189 |
 | deepseek/deepseek-v4-pro-0813 — seat | 6 | 4031 | 204288 | 0 | 14387 (9709) | $0.0631 |
 | claude-haiku-5-5 — field | 6 | 26818 | 0 | 0 | 1341 | $0.0034 |
-| moonshotai/kimi-k3 — seat | 6 | 103680 | 67072 | 0 | 4724 (587) | $0.4020 |
+| moonshotai/kimi-k3 — seat | 7 | 138421 | 67072 | 0 | 5399 (637) | $0.5164 |
 | claude-opus-5-5 — seat | 6 | 4363 | 199208 | 99604 | 12452 | $0.8044 |
 | claude-fable-5-1 — seat | 6 | 5731 | 149406 | 149406 | 14010 | $2.6627 |
 
@@ -730,3 +731,13 @@ Per 1M tokens (input / cache read / cache write / output): Opus 5.5 `claude-opus
 | 2026-10-28 02:24 | 335 | classes 1 p1/astra/0#2 | claude-haiku-5-5 | output_config.effort=low | 3084 | 0/0 | 1000 | $0.00081 | 5 | end_turn | gen-1793154230-t0wDLyGZ7EJW7hUve7F9 | msg_011CgTqh5znZWafibwnXZoK8 |  |
 | 2026-10-28 02:24 | 336 | classes 2 p1/astra/0#2 | claude-haiku-5-5 | output_config.effort=low | 3084 | 0/0 | 999 | $0.00081 | 4.5 | end_turn | gen-1793154231-CqsfC7uJrGSCQi872bDF | msg_011CgTqh9KiEvrGA99NHppBR |  |
 | 2026-10-28 02:24 | 337 | classes referee p1/astra/0#2 | claude-opus-5-5 | output_config.effort=low | 3084 | 0/0 | 458 | $0.02150 | 8.3 | end_turn | gen-1793154236-uQEK8XKyDgpVzECiol4E | msg_011CgTqhYvX5sXFdknz5A5kP |  |
+| 2026-10-28 02:25 | 1 | seat p1/kimi/1 t2 | moonshotai/kimi-k3 | reasoning.effort=medium | 34741 | 0/0 | 675 | $0.11435 | 21 | end_turn | gen-1793154271-U7GEVdAZsvnjv8hD6YrH | gen-1793154271-U7GEVdAZsvnjv8hD6YrH |  |
+| 2026-10-28 02:25 | 2 | check p1/kimi/1 t2 | claude-haiku-5-5 | output_config.effort=low | 1235 | 0/0 | 64 | $0.00016 | 0.9 | end_turn | gen-1793154292-s6N0SIX8oblwHI9XzDk6 | msg_011CgTqmbYQJxhdWeyjkS2h7 |  |
+| 2026-10-28 02:25 | 3 | decline p1/kimi/1 t2 | claude-haiku-5-5 | output_config.effort=low | 1190 | 0/0 | 77 | $0.00016 | 1.1 | end_turn | gen-1793154296-kDxEDBEVukGMMSgG4B0h | msg_011CgTqmtpxiBQkXjUmJSbMH |  |
+| 2026-10-28 02:25 | 4 | m 1 p1/kimi/1 | claude-haiku-5-5 | output_config.effort=low | 4052 | 0/0 | 738 | $0.00077 | 3.8 | end_turn | gen-1793154297-OiibChnGsTOTJzwjpvcM | msg_011CgTqmxt3aT3Kxmzehxrki |  |
+| 2026-10-28 02:25 | 5 | m 2 p1/kimi/1 | claude-haiku-5-5 | output_config.effort=low | 4052 | 0/0 | 1037 | $0.00092 | 5.1 | end_turn | gen-1793154297-EE6aGfCeKRnReifONHuZ | msg_011CgTqmzAC8j7cikBdDbQRe |  |
+| 2026-10-28 02:25 | 6 | classes 2 p1/kimi/1#1 | claude-haiku-5-5 | output_config.effort=low | 3347 | 0/0 | 968 | $0.00082 | 4 | end_turn | gen-1793154303-zA1Nn0y5wgUPacpyKaOD | msg_011CgTqnU4iviVDJvEXMFWJS |  |
+| 2026-10-28 02:25 | 7 | classes 1 p1/kimi/1#1 | claude-haiku-5-5 | output_config.effort=low | 3347 | 0/0 | 944 | $0.00081 | 6.7 | end_turn | gen-1793154303-FK0gF0BZhAoBh1Bqh23x | msg_011CgTqnVotn3ebcakGe1LEA |  |
+| 2026-10-28 02:25 | 8 | classes referee p1/kimi/1#1 | claude-opus-5-5 | output_config.effort=low | 3347 | 0/0 | 248 | $0.01835 | 5.9 | end_turn | gen-1793154308-w0k2VCWlrVhqEsg6mJYa | msg_011CgTqnqEC6XpC6Wq9kU3Em |  |
+| 2026-10-28 02:25 | 9 | classes 2 p1/kimi/1#2 | claude-haiku-5-5 | output_config.effort=low | 2872 | 0/0 | 505 | $0.00054 | 2.9 | end_turn | gen-1793154315-hu79HthN6PPe1YFlqunD | msg_011CgTqoHdw2TMGuvHD51JKg |  |
+| 2026-10-28 02:25 | 10 | classes 1 p1/kimi/1#2 | claude-haiku-5-5 | output_config.effort=low | 2872 | 0/0 | 675 | $0.00062 | 3.2 | end_turn | gen-1793154314-fdVa7iJLeVztU6xmoAPK | msg_011CgTqoGqZHn2NxN3dWHKym |  |
