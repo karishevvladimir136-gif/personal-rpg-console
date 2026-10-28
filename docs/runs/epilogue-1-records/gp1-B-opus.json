@@ -1,0 +1,1526 @@
+{
+  "note": "A copy of the session record from its run file, with the epilogue appended as its final entry; the original is unchanged.",
+  "source": {
+    "branch": "claude/game-player-2",
+    "commit": "6158fffeb30a225045f6f15433cf0dbeb286a446",
+    "path": "docs/runs/game-player-1-run-20261025-044002.json",
+    "key": "B-opus",
+    "sha256": "6a031c65614ae91aad33966b0e3091732a0160e9e562f89afcb0bdab79753216"
+  },
+  "session": {
+    "key": "B-opus",
+    "table": "B",
+    "player": "opus",
+    "model": "claude-opus-5-5",
+    "startedAt": "2026-10-25T05:15:02.265Z",
+    "plannedTurns": 20,
+    "screens": [
+      "The session begins.\n\nThe Trade Way doesn't end so much as drown. A mile out it is already lined with shanties and smoke, and by the time the walls of Baldur's Gate rise ahead it has become a crush of wagons, mules, porters and families carrying everything they own in bundles. The sun is low, and the Basilisk Gate stands dark against it, with the red-and-gold of the Flaming Fist at the arch.\n\nThe queue shuffles forward a step at a time. Up ahead, a broad-shouldered sergeant with a ledger is asking each traveller the same tired questions, name, business, how long, and taking coin for the toll without looking at it much. A tiefling carter in front of you gets asked twice as many questions as the man before him.\n\nTo the left of the road, under a lantern hung from a pole, a halfling has set up a folding table. His hands move in a blur over a deck. \"Three-Dragon Ante, friends! Pass the time while the Fist counts your teeth! Low stakes, quick hands, honest dealer!\" A couple of drovers have already sat down. The cards slap the wood, one after another.\n\nThe cat winds once around your ankles and goes still, ears forward.\n\nThen something taps your boot. A copper coin, muddy, has rolled out of the crowd and stopped against your foot. It hasn't fallen flat. It is standing on its edge in the mud, the way a coin never quite does, and nobody nearby seems to have noticed it or to be looking for it.\n\nThe queue moves another step. The sergeant glances down the line, and the halfling's voice rises again: \"Room for one more!\"\n\nYour records:\nJames Worgen — Warlock, 5th level, Celestial patron (Tymora, Lady Luck), Pact of the Chain, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Athletics +2 (soldier); Intimidation +7 (soldier); Deception +7 (Beguiling Influence); Persuasion +7 (Beguiling Influence); Arcana +3 (warlock); Religion +3 (warlock); Stealth +2, with advantage from the Boots of Elvenkind; Passive Perception 11; Tools: playing cards; vehicles (land)\nSaves: Strength saving throw +0; Dexterity saving throw +3; Constitution saving throw +3; Intelligence saving throw +1; Wisdom saving throw +5 (proficient); Charisma saving throw +8 (proficient); All saves include +1 from the Cloak of Protection\nAttacks: Eldritch Blast: +8 to hit, 120 ft, 2 beams, each 1d10+4 force; Sacred Flame: DC 16 Dexterity save, 60 ft, 2d8 radiant, ignores cover; Guiding Bolt (3rd-level slot): +8 to hit, 120 ft, 6d6 radiant, next attack on the target has advantage; Light crossbow: +5 to hit, 80/320 ft, 1d8+2 piercing; Rapier (not proficient): +2 to hit, 1d8+2 piercing; Cat familiar (in place of one of James's attacks, using its reaction): claws +0 to hit, 1 slashing\nAbilities: Proficiency bonus +3; Pact Magic: two 3rd-level pact slots, recovered on a short or long rest. Spell attack +8, save DC 16 (with the rod).; Otherworldly Patron, the Celestial (Tymora): Light and Sacred Flame as bonus cantrips; Celestial spells added to his list.; Healing Light: pool of 6d6 per long rest. Bonus action, heal a creature within 60 ft, spending up to 4 dice at a time.; Pact of the Chain: knows Find Familiar (ritual); his familiar is a cat. It can attack with its reaction in place of one of his attacks.; Familiar telepathy within 100 ft; he can see and hear through the cat's senses.; Agonizing Blast: adds +4 (CHA) to each Eldritch Blast beam's damage.; Mask of Many Faces: casts Disguise Self at will without a spell slot.; Beguiling Influence: proficiency in Deception and Persuasion.; Military Rank (soldier): former Tethyrian soldiers and scouts recognise his service and may lend aid or shelter.; Envoy of Tymora: the goddess speaks through luck and omens; he owes her service in Baldur's Gate.\nSpells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Hex (1); Guiding Bolt (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3); Find Familiar (1); Disguise Self (1)\nLimits: Light armour only; fragile in melee.; Not proficient with the rapier (martial weapon); simple weapons only.; Only two pact slots; he must husband them between short rests.; One concentration spell at a time (Hex, Invisibility, Suggestion, Hypnotic Pattern).; Tymora's ban: no gambling at cards. Cards are a temptation that others can use against him.; The DC 16 and +8 spell attack require holding the Rod of the Pact Keeper; without it, DC 15 and +7.\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 350 gp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak (Cloak of Protection); Armor / clothing: Studded Leather Armour; Boots: Boots of Elvenkind\nPack: Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; James's Papers; Light Crossbow; Potion of Healing ×2; Rapier; Rod of the Pact Keeper +1\nPlace: Basilisk Gate, Baldur's Gate\nTime: Day 1 · evening",
+      "James lowers himself into a crouch, slowly, and his knees crack like kindling. The coin stays standing. Up close it looks like it has been planted in the mud, not dropped.\n\nThe cat doesn't move. Its tail has gone stiff, and its eyes are fixed on the copper the way they would be on a snake.\n\nHe picks it up between two fingers. It's colder than it should be after lying in the evening sun, and slick. When he wipes it on the hem of the old regimental cloak, the mud comes off but the damp doesn't. The metal stays faintly wet, as if it had come out of a pocket of sea-water instead of a puddle.\n\nIt's an old Gate ship-penny, the kind they stopped striking before the last war he fought in. One face carries Balduran's ship, worn so smooth it's barely a shape: a hull and the stub of a mast. The other face is wrong. Someone has worked it with a fine point and scored a tight spiral of tiny notches winding in toward a single punched dot at the centre. He counts them without meaning to, the way an old card-man counts anything: seventeen. The cuts are clean and deliberate. This was done carefully, by someone with a steady hand and time to spare.\n\nThere's no hole bored through it and no clip from a shears. It's just damp, notched copper that won't lie flat.\n\nHe drops it into the pouch at his belt and lets the cord of Tymora's silver hang where it hangs at his chest. For a heartbeat, through his shirt, the silver coin feels warm, like a hand laid flat on his breastbone, and then it's ordinary again.\n\nThe queue shuffles. He steps with it and lets his eyes run back along the line, the way he used to read a road for an ambush.\n\n[Roll card] James Worgen · Skill check — Perception (Wisdom +1): reading the queue to see who dropped the coin\nWhat adds to the die: +1 1d20+1\nDC 15\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll the die]",
+      "[Roll card] James Worgen · Skill check — Perception (Wisdom +1): reading the queue to see who dropped the coin\nWhat adds to the die: +1 1d20+1\nDC 15\nDie: 16\n16 + 1 = 17\nSuccess — 17\n\n[Onward] [Request an allowed reroll]",
+      "The coin came from his left and a little ahead, rolling downhill along the ruts. Most of the people there have their eyes on the arch or their own feet. One man doesn't.\n\nHe's six or seven places up the line, close to the sergeant's table now: lean, clean-shaven, in a good wool travelling coat with a dried white tide-line of salt along its hem. He isn't looking at the ground. He's looking at his own belt. His purse hangs open, and one of its drawstrings trails loose and frayed where it has worn through. His fingers are inside it, counting by touch, and his face has gone very still, the face of a man who has found a gap where something ought to be and is trying not to show it in a crowd. When he draws his hand out, a brass button winks at his cuff, worked with a little wind-rose.\n\nHe doesn't turn around. He looks at the mud around his own boots and then at the Fist ahead, weighing whether it's worth the scene.\n\nHe decides it isn't. He reaches the sergeant's table, says something short, and lays down a silver piece without waiting for change. Sergeant Varn barely glances at her ledger before she waves him on, as if she has seen him before. He walks through the arch into the shadow of the gate passage, quickly, one hand still closed over the mouth of his purse.\n\nJames is still a good thirty feet back, with a family and their handcart, two porters and the tiefling carter between him and the arch.\n\nOff to the left, the cards keep slapping wood under Pell's lantern. A man in a grey sea-cloak sits at the far end of that table. He has no cards in front of him and no coin, and he isn't playing.\n\nAgainst James's boot, the cat's tail lashes once.\n\n· roll: Perception (Wisdom +1): reading the queue to see who dropped the coin: 17 vs 15 — success\n· Time passes: 5 minutes\n· The cat joins you\n· Gained: Notched Ship-Penny\n· Lead: The Copper That Stood on Its Edge\n· New person: Factor with the wind-rose button\n· New person: Man in the grey sea-cloak\n\nYour records, changed:\nJames Worgen: HP 38/38\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 350 gp\nCarried: Boots of Elvenkind; Coin of Tymora; Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; James's Papers; Light Crossbow; Notched Ship-Penny; Potion of Healing ×2; Rapier; Rod of the Pact Keeper +1; Studded Leather Armour; Tethyrian Soldier's Cloak (Cloak of Protection)\nParty: The cat (HP 8/8)\nThreads: The Copper That Stood on Its Edge\n\nPlace: Basilisk Gate, Baldur's Gate · Time: Day 1 · evening",
+      "James lets his eyes slide over the grey-cloaked man the way he'd pass over a dealer at a crooked table: no lingering, just enough to fix him. Square, weathered hands folded on the board. A seaman's knit cap. The man's eyes are on the drovers' cards, or seem to be.\n\nThen he looks down, and the thought goes out of him like a hand on a scout's shoulder.\n\nThe cat is already gone. There's a flicker of grey-brown between the handcart's wheel and a porter's heel, a tail held low, and then nothing but legs and mud. Through the bond he feels it moving: a small, intent heat, low to the ground, threading the crowd toward the dark of the arch.\n\nThe queue moves a step. The family with the handcart argues quietly about whose turn it is to push.\n\nThrough the bond, the cat's attention narrows the way a hound's does on a scent. *Salt-coat. Ahead.* It isn't words, more a tug on a string, and then the gate passage swallows it. James can feel it passing under the arch, past a Fist pikeman's boots, and out the other side, downhill. The tug stays steady for a while. It's following.\n\nThe two porters are waved through. The tiefling carter gets his second round of questions and answers each one in the same flat, patient voice of a man who has done this at every gate on the coast.\n\nThen the string pulls tight.\n\n*Far. Going far.* An uneasy prickle, the cat's fur rising. It has come to the end of its tether. He told it to stay within reach, and it has stopped at the limit and is holding there, low and watchful, while the salt-coat walks on without it. What comes back to him is a scrap of what the cat has: a steep street running down toward the water, the smell of tar and fish, and the man's back taking a left turn under a hanging sign with a painted ship's lantern on it. Then the man is gone from the cat's sight, and it doesn't move. It waits for him, a hundred feet off, in a doorway that smells of rats.\n\nThe handcart rattles through the arch. James steps up to the table.\n\nAs he steps up, the edge of his eye catches Pell's lantern. The drovers are still playing and the halfling's hands are still flying. The stool at the far end of the table is empty. James never saw him go.\n\nSergeant Varn doesn't look up from the ledger right away. Up close she's older than she looked from the line, with grey in a cropped braid and a pale crease across the bridge of her nose from a helmet she isn't wearing. She dips her pen.\n\n\"Name. Business in the city. How long you're staying.\" She says it as one sentence, the way she has said it a few hundred times since noon. \"Five coppers on foot. Animals extra, if you've got any.\"\n\nHer eyes come up then, flat and tired, and go over him: the regimental cloak, the crossbow slung on his back, the old soldier's way he's standing. They stop on the cloak's faded facings for half a breath longer than they need to.\n\n\"Well?\"\n\n· Time passes: 10 minutes\n· New place: Lower City, Baldur's Gate\n· New place: Steep street below the Basilisk Gate\n· A rumour of a place: Under the ship's-lantern sign\n· Journal: “The Copper That Stood on Its Edge” updated\n\nPlace: Basilisk Gate, Baldur's Gate · Time: Day 1 · evening",
+      "Varn holds the look a moment longer, on the patch and then on his face. She doesn't say anything about either.\n\nHis fingers go into the ordinary pouch for the coppers and find only gold, the clink of heavy coins from the last hand he ever won. He hasn't held a copper since the road out of Beregost. The only copper he's carrying is the wet one in the other pouch.\n\nHe says his piece anyway: the name, the work, the Queen's foot. Varn's pen scratches it down as he talks. *Worgen. Sellsword. Tethyr.* Her writing is square and small, the hand of someone who's been writing in a ledger by lamplight for years.\n\nAt his last question the pen stops.\n\n\"Served.\" She doesn't look up. \"Fist. Twenty-two years this winter.\" She blots the line with the side of her hand. \"Had a contract down on the Tethyr border once, when I was young and stupid. Your facings held a ford for us when our own lot ran.\" A small pause, as if she's deciding whether that's said too much. \"Didn't get their names.\"\n\nThen her eyes come up, flat again, and settle on his hand over the purse.\n\n\"Five coppers. If all you've got is gold, I can break it. Takes a minute, and you get the change in whatever's in the box.\" She tips her head at a battered iron strongbox by her boot. \"Mostly Calishite clips and sorrow.\"\n\nBehind him the queue shifts and grumbles. A hundred feet past the arch, in the doorway that smells of rats, the cat waits where he left it.\n\n*(Out of game: James's purse holds only gold, 350 gp, and no copper coins. The only copper he has is the notched penny. So I played his reach into the pouch as coming up with gold. Tell me how you want to pay.)*\n\n· Time passes: 2 minutes\n\nPlace: Basilisk Gate, Baldur's Gate · Time: Day 1 · evening",
+      "Varn looks at the gold piece on the edge of her ledger. Then she looks at him, longer than she needs to.\n\nShe doesn't pick it up right away. Behind him someone in the queue mutters about how long this is taking.\n\n[Roll card] James Worgen · Skill check — Persuasion: getting the gate sergeant to talk about the man with the wind-rose buttons\nWhat adds to the die: +2 Persuasion +7 (Beguiling Influence)\nDC 12\nAdvantage: Gold \"for the ford\": an old debt she owes his facings\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll the die]",
+      "(Nothing was sent: the turn waits for the card.)\n\n[Roll card] James Worgen · Skill check — Persuasion: getting the gate sergeant to talk about the man with the wind-rose buttons\nWhat adds to the die: +2 Persuasion +7 (Beguiling Influence)\nDC 12\nAdvantage: Gold \"for the ford\": an old debt she owes his facings\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll the die]",
+      "[Roll card] James Worgen · Skill check — Persuasion: getting the gate sergeant to talk about the man with the wind-rose buttons\nWhat adds to the die: +2 Persuasion +7 (Beguiling Influence)\nDC 12\nAdvantage: Gold \"for the ford\": an old debt she owes his facings\nTwo dice: 9 and 2 — the higher one counts, 9\n9 + 2 = 11\nFailure — 11\n\n[Onward] [Request an allowed reroll]",
+      "(Nothing was sent: the turn waits for the card.)\n\n[Roll card] James Worgen · Skill check — Persuasion: getting the gate sergeant to talk about the man with the wind-rose buttons\nWhat adds to the die: +2 Persuasion +7 (Beguiling Influence)\nDC 12\nAdvantage: Gold \"for the ford\": an old debt she owes his facings\nTwo dice: 9 and 2 — the higher one counts, 9\n9 + 2 = 11\nFailure — 11\n\n[Onward] [Request an allowed reroll]",
+      "She picks it up and turns it once between thick fingers, the way you check a coin for clipping, though she isn't looking at the coin. Then it goes into a pocket under her breastplate, not into the strongbox.\n\n\"Ford's paid,\" she says.\n\nShe blots the line. The pen hovers a moment over his name, and when she speaks again her voice has dropped to the level of the scratch of the nib.\n\n\"Tesk. Factor for one of the harbour houses. Don't ask me which one, they don't write it down, they just wear the buttons. Comes through two, three times a tenday. Pays silver and doesn't wait for change.\" She dips the pen. \"So I don't keep him waiting.\"\n\nShe glances past James at the queue, then back at the ledger, and adds a tick to a column that doesn't need one.\n\n\"Things that drop in this queue.\" She stops, and for a moment it looks like that's all. \"There was a drover. Half a month back, near enough. Came through loud. Six hands running at the little fellow's table out there, and he told everybody about it. Told me twice.\" Her mouth flattens. \"Week later his name was on the harbour list. Drowned. Drink, it said.\" She blots something that's already dry. \"Didn't smell of drink at my gate. Sober as a priest.\"\n\nShe closes the ledger on her thumb.\n\n\"You want to give a man back what he dropped, that's your business. Just don't be loud about it.\" The flat look comes back up. \"Next.\"\n\nA Fist pikeman at the arch shifts his weight to let James through. Beyond the gate passage the street drops away toward the water, already blue with dusk, with lamps coming on along it one by one. A hundred feet down, in a doorway that smells of rats, he can feel the cat waiting, small and tense, its attention fixed on the turning under the lantern sign.\n\n*(Out of game: the roll card added +2 for Persuasion where your sheet says +7. I think that's the server's mistake, not a rule. With the die at 9, your real total is 16, which beats the DC of 12, so I played it as a success. If I've got that wrong, tell me and we'll fix it.)*\n\n· roll: Persuasion: getting the gate sergeant to talk about the man with the wind-rose buttons: 11 vs 12 — failure\n· Time passes: 3 minutes\n· −1 gp → Sergeant Odessa Varn\n· Journal: “The Copper That Stood on Its Edge” updated\n\nYour records, changed:\nJames Worgen: HP 38/38\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 349 gp\nCarried: Boots of Elvenkind; Coin of Tymora; Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; James's Papers; Light Crossbow; Notched Ship-Penny; Potion of Healing ×2; Rapier; Rod of the Pact Keeper +1; Studded Leather Armour; Tethyrian Soldier's Cloak (Cloak of Protection)\nParty: The cat (HP 8/8)\nThreads: The Copper That Stood on Its Edge\n\nPlace: Basilisk Gate, Baldur's Gate · Time: Day 1 · evening",
+      "James gives Varn a short nod. She doesn't nod back. Her pen is already moving down to the next line, and the family with the handcart is behind him, arguing about whose name goes first.\n\nHe goes through the arch. For ten paces the gate passage is cold and smells of old stone and horse piss. Then he's out the other side, and the Lower City drops away under his feet.\n\nThe street runs steeply down to the harbour between tall, narrow houses with overhanging upper floors. A strip of dusk sky shows between the eaves. Lamplighters are working their way up from the bottom with long poles, so the lower half of the street is lit and the upper half is going grey. Nobody looks at another sellsword with a crossbow on his back. The elven boots keep his steps quiet on the cobbles, even on a slope that has every other boot slipping and scraping.\n\nThe doorway is where the cat showed him: a sunken threshold under a shuttered cobbler's sign, and it does smell of rats. He puts his back to the frame. The cat comes out of the dark at knee height and pushes its head against his fingers before he has finished stooping. Its fur is still on end along the spine.\n\n*The corner. The sign. Low and slow. Just look.*\n\nIt goes, flowing along the gutter's edge like spilled ink. He closes his eyes and lays his free hand flat on the doorframe. The wood is rough and splintered under his palm.\n\nThe world drops to a hand's height off the ground and turns sharp. The cobbles are huge. Every smell comes at once: tar, fish guts, a dog that marked this corner yesterday, frying onions from somewhere above. Colour drains to grey and blue, but the lamplight is very bright, a smear of gold on wet stone.\n\nThe cat takes the left turning under the sign. Up close the painted ship's lantern is chipped, and under it, in faded letters the cat can't read and James can, it says THE STERN LANTERN. Lodgings. Taproom. It's a narrow, three-storey sailors' house with a door that sticks open on a wedge. Beyond the door the lane narrows to an alley wide enough for one barrel. Nobody is waiting in it, only a stack of empty crates and a rat that freezes, then thinks better of it.\n\nThe cat ignores the door and goes along the wall to a low window with half its shutter hanging off and amber light coming through the gap. It settles on the sill-ledge, flattened, ears forward.\n\nInside is a smoky taproom, half full. There's a game of knucklebones at one table and a fire that needs another log. In the corner booth, farthest from the door with his back to the wall, sits Tesk. He still has his coat on. Across from him sits a heavy, soft-faced man with ink on his fingers and a mug he isn't drinking from. When he lifts a hand, brass winks at his cuff. Another wind-rose.\n\nTesk has the purse on the table between them. He's holding up the frayed end of the drawstring and talking low and fast.\n\nThe cat strains to listen.\n\nThe knucklebones table erupts in a cheer as someone throws a fat roll. A chair scrapes. Somebody at the bar is singing badly about a girl in Westgate. Under all of it, the voices in the booth turn into a murmur: tone without words, the rise and fall of two men who don't want to be heard. The cat catches nothing it could carry back to him, not one clean word.\n\nIt can still watch.\n\nTesk talks and the soft-faced man listens, and as he listens his face closes up. He doesn't look angry. He looks like a man doing a sum and not liking the answer. He says something short. Tesk shakes his head, opens his hands and shows them empty, then puts the frayed drawstring down on the table like evidence.\n\nThe ink-fingered man takes a little oilcloth-bound book from inside his coat, opens it to a page near the back, and runs one finger down a column. He stops partway. He taps the spot twice, looks at Tesk over the top of the book, and writes something beside it with a stub of pencil. Then he shuts the book, puts it away, and finally drinks, a long pull.\n\nTesk's hand goes over the mouth of his purse and stays there.\n\nOn the doorframe, under James's palm, the wood shivers. Boots go past close enough that he feels the air move against his knuckles. He hears a pole knock against a bracket, a flint scrapes, and a smell of lamp oil comes through the cat-smells in his head. It's the lamplighter, working his way up the street. The boots go on uphill, unhurried. Nobody stops.\n\nIn the taproom the soft-faced man is getting up. He drops a coin by his mug, buttons his coat to the throat over the brass wind-rose, and says one more thing down to Tesk, who nods without looking up. Then he heads for the door.\n\nThe cat's ears turn after him. He's coming out under the lantern sign into the lane, and he'll pass within a few feet of the window ledge. Tesk stays where he is in the corner booth, alone, with his hand on his purse and an untouched mug in front of him, like a man settling in to wait for something.\n\n *(Out of game: here is the cat's listening check, said plainly.)*\n\nThe cat pressed its ear to the gap in the shutter and strained, and it couldn't make out the words. The noise of the room drowned the booth: the knucklebones, the singer, the fire. All that came back down the bond to James was two low voices rising and falling, and not one word he could use. Whatever Tesk told the ink-fingered man about the coin, it stayed in that booth.\n\n· roll: The cat: The cat's Perception (Wisdom +3, hearing): catching the words in the corner booth through the broken shutter over the taproom noise: 9 vs 15 — failure\n· Journal: “The Copper That Stood on Its Edge” updated\n· Travel: Steep street below the Basilisk Gate (15 minutes)\n· New person: Soft-faced man with inky fingers\n\nPlace: Steep street below the Basilisk Gate · Time: Day 1 · evening",
+      "James lets the cat's senses go. The street comes back to its proper size: grey up top, lamp-gold lower down, and the splintered doorframe rough under his palm.\n\n*The soft one with the ink. Follow him. Low, quiet, and keep the tether.*\n\nAlong the bond comes something close to a shrug, then a small heat moving away. A grey-brown shape drops off the window ledge into the lane and slides along the foot of the wall after a heavy man in a buttoned coat.\n\nJames pushes off the doorframe and walks down the street. He's just another sellsword out of the queue with mud to his shins. Under the chipped lantern sign he takes the left. The wedged door gives with a scrape, and the Stern Lantern's warmth meets him: woodsmoke, fish, wet wool and spilled beer.\n\nHe doesn't look at the corner booth, but the corner booth looks at him. At the edge of his eye he sees Tesk's head come up at the scrape of the door, the way it must have come up for every scrape in the last hour. Tesk's eyes go over the crossbow, the cloak and the mud, and drop back to the door. James is the wrong man, whoever he's waiting for.\n\nThe woman behind the bar is wiry, past fifty, with forearms like knotted rope. A faded anchor is tattooed on the back of one hand, and her grey hair is tied back with what looks like a length of ship's line. She takes his gold piece, bites it, and studies him over it.\n\n\"Fish stew and small beer, that's the cheapest that's hot.\" She ladles as she talks. \"Bolts stay in the case in here. Last fellow who cocked one at my bar took it home in his teeth.\" She sets the bowl down, then the mug, and counts change out of a clay pot: eight silver pieces and a little stack of ten coppers, green at the edges. \"Don't ask me for more copper than that. There's not much on the quays this month, the way folk are spending it.\"\n\nShe doesn't explain, and goes on.\n\n\"Room. Front ones are let, one of them to a regular.\" Her chin tips a quarter of an inch toward the corner, then away. \"There's the back room over the yard, five silver a night. It's got a bolt on the door and the window sticks. Or there's the loft with whatever crew's ashore, four coppers, and you mind your own boots.\"\n\nJames takes the bowl and mug to a bench against the side wall, under a smoked-black beam. From there he has the door, the stair, and the corner booth at a slant: close enough to see Tesk's hands, far enough to be part of the furniture. The stew is mostly broth, but it's hot.\n\nTesk hasn't touched his mug. The frayed drawstring still lies on the table where he put it down for the clerk, like something he doesn't know what to do with. His left hand is closed over the mouth of his purse. It isn't clutching, it's covering. Every time the door scrapes, his eyes go to it.\n\nAs James settles, the silver at his chest warms again through his shirt. It's fainter than at the gate, a palm laid on him and lifted. In the pouch at his hip the penny is cold against his leg. The warmth only came when he sat down facing the booth.\n\nAlong the bond the tug runs out. The cat followed the ink-fingered man out of the lane and down the steep street toward the water. He walks quickly for a heavy man, with his collar up, and looks back over his shoulder once at the bottom of the hill. Nothing behind him but lamps and a drunk. Then he turns right along the harbour front, past a row of shuttered counting-rooms and warehouse doors, and keeps going. At the last stretch of the tether the cat stops on the lid of a rain barrel at the corner, flattens out, and holds. It sends back a picture of a broad back going away under the lamps toward the dark bulk of the warehouses, and then nothing.\n\nThe keeper is still watching him from behind the bar with a rag in her hand.\n\n\"Well. Back room or loft?\"\n\n*(Out of game: you're welcome. If you see a number on a card that doesn't match your sheet, call it out like that.)*\n\n· −1 gp (Paid a gold piece at the Stern Lantern bar for fish stew and small beer (1 sp))\n· +8 sps (Change from the gold piece: eight silver)\n· +10 cps (Change from the gold piece: ten coppers, green at the edges)\n· New place: Harbour front, Lower City\n· Journal: “The Copper That Stood on Its Edge” updated\n· Travel: The Stern Lantern (10 minutes)\n· New person: Hesper Quayle\n\nYour records, changed:\nJames Worgen: HP 38/38\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 348 gp; 8 sp; 10 cp\nCarried: Boots of Elvenkind; Coin of Tymora; Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; James's Papers; Light Crossbow; Notched Ship-Penny; Potion of Healing ×2; Rapier; Rod of the Pact Keeper +1; Studded Leather Armour; Tethyrian Soldier's Cloak (Cloak of Protection)\nParty: The cat (HP 8/8)\nThreads: The Copper That Stood on Its Edge\n\nPlace: The Stern Lantern · Time: Day 1 · evening",
+      "James carries the bowl back to the bar and sets five of the eight silver on the wood. Hesper sweeps them into her palm without counting, and they go into the clay pot one at a time, each with a small clink.\n\n\"Back room.\" She reaches under the bar and lays an iron key beside his mug. It's long, black and greasy, tied to a wooden float off a fishing net so nobody walks off with it. \"Up the stair, all the way to the end. Shove the window, don't kick it.\"\n\nThen he asks his question, easy, over the stew, and taps the bar beside her pot.\n\nShe doesn't answer straight away. She wipes a ring off the bar that doesn't need wiping.\n\n\"Sea's taking it, right enough. Not early, though. Paid ahead.\" She keeps her voice flat. \"Three drowned this year that the Fist fished out with a copper on the tongue. Old style, like you'd pay her for passage. So now every fishwife and lighterman on the quays drops a copper off the end of the pier before the boats go out, so she won't come asking for him instead.\" Her chin moves a quarter of an inch toward the window and the water past it. \"They'll give a silver for ten coppers at the chandler's now. Give it and be glad.\"\n\nHer thumb has found the faded anchor on the back of her other hand. It moves over it, slowly, back and forth.\n\n\"Thirty years I sailed. Sea never wanted copper off me before.\" She stops there and picks up the rag again. \"Eat your stew.\"\n\nHe goes back to the bench under the beam. Along the bond he sends one more nudge down the hill: *Stay on the barrel. See which door. Then come home. Back way, by the yard.*\n\nDown at the harbour front the cat pulls itself flatter on the barrel lid and stares down the long row of lamps, past the last one, into the dark where the warehouses start.\n\n[Roll card] The cat · Skill check — Perception (the cat, +3): from the end of the tether, pick out which warehouse door the ink-fingered clerk goes into, far down the dark harbour front\nWhat adds to the die: +3 1d20+3\nDC 15\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll card] James Worgen · Skill check — Insight (Wisdom +1): as the grey sea-cloak looks over the taproom, catch whether he marks you\nWhat adds to the die: +1 1d20+1\nDC 15\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll the die]",
+      "[Roll card] The cat · Skill check — Perception (the cat, +3): from the end of the tether, pick out which warehouse door the ink-fingered clerk goes into, far down the dark harbour front\nWhat adds to the die: +3 1d20+3\nDC 15\nDie: 11\n11 + 3 = 14\nFailure — 14\n\n[Roll card] James Worgen · Skill check — Insight (Wisdom +1): as the grey sea-cloak looks over the taproom, catch whether he marks you\nWhat adds to the die: +1 1d20+1\nDC 15\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll the die]",
+      "[Roll card] The cat · Skill check — Perception (the cat, +3): from the end of the tether, pick out which warehouse door the ink-fingered clerk goes into, far down the dark harbour front\nWhat adds to the die: +3 1d20+3\nDC 15\nDie: 11\n11 + 3 = 14\nFailure — 14\n\n[Roll card] James Worgen · Skill check — Insight (Wisdom +1): as the grey sea-cloak looks over the taproom, catch whether he marks you\nWhat adds to the die: +1 1d20+1\nDC 15\nDie: 12\n12 + 1 = 13\nFailure — 13\n\n[Onward] [Request an allowed reroll]",
+      "It's the man from Pell's table. James knows him by his hands before the face: square, weathered, the hands that were folded on the board while the drovers played.\n\nThe look goes over the room and over him with it: the knucklebones table, the bar, Hesper, the bench under the beam, the bowl, the slung crossbow, the cloak. James watches for a hitch in it, half a heartbeat too long or a look that comes back, and can't find one. Either the man saw nothing worth stopping for, or he's spent years looking at men exactly like this. James can't tell which.\n\nThe grey-cloak crosses the room without hurrying and slides into the booth opposite Tesk, half turned from the room so that only the line of his jaw shows under the cap. He doesn't order. Hesper doesn't come over.\n\nTesk leans in. His left hand goes back over the mouth of his purse. The two of them talk low under the noise of the room. Under the bench the cat's ears have gone flat against its skull, and the bond carries one plain thing up into James: *Him. Wet rope.*\n\nAt his chest the silver lies still and ordinary against his shirt.\n\n James holds the grey-cloak's face in the corner of his eye for as long as it's turned toward the room, and his read of it comes to nothing. The man gave no sign James could find of whether he was known or simply passed over, so James sits there with his stew and still can't say whether that look took him in or went straight past him.\n\nIn the booth, the grey-cloak keeps his back half turned to the room and goes on talking low.\n\n· roll: The cat: Perception (the cat, +3): from the end of the tether, pick out which warehouse door the ink-fingered clerk goes into, far down the dark harbour front: 14 vs 15 — failure\n· roll: Insight (Wisdom +1): as the grey sea-cloak looks over the taproom, catch whether he marks you: 13 vs 15 — failure\n· Time passes: 25 minutes\n· −5 sps → Hesper Quayle\n· Gained: Back room key, Stern Lantern\n· New place: Back room, the Stern Lantern\n\nYour records, changed:\nJames Worgen: HP 38/38\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 348 gp; 3 sp; 10 cp\nCarried: Back room key, Stern Lantern; Boots of Elvenkind; Coin of Tymora; Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; James's Papers; Light Crossbow; Notched Ship-Penny; Potion of Healing ×2; Rapier; Rod of the Pact Keeper +1; Studded Leather Armour; Tethyrian Soldier's Cloak (Cloak of Protection)\nParty: The cat (HP 8/8)\nThreads: The Copper That Stood on Its Edge\n\nPlace: The Stern Lantern · Time: Day 1 · evening"
+    ],
+    "messages": [
+      {
+        "purpose": "player t1",
+        "text": "I crouch down slowly, knees popping after a long day on the road, and look at the coin a moment before I touch it. A copper standing on its edge in the mud, and nobody looking for it. I know that kind of luck.\n\n\"Easy,\" I murmur to the cat, and pick it up between two fingers. I wipe it clean on my cloak and turn it over to see whose face is on it, and whether there's anything odd about it: a scratch, a mark, a hole bored through.\n\nBehind me the halfling calls for one more player. I don't turn around. I tuck the copper into the pouch beside Tymora's coin, take a step with the queue, and quietly look along the line to see where the coin could have rolled from.",
+        "requestId": "req_011CgNPKXtrP9UMfp3nchyP8",
+        "stopReason": "end_turn",
+        "servedModel": "claude-opus-5-5"
+      },
+      {
+        "purpose": "player t1 card 1",
+        "text": "[Roll the die]",
+        "requestId": "req_011CgNPMWqutRKtSkRanUXsy",
+        "stopReason": "end_turn",
+        "servedModel": "claude-opus-5-5"
+      },
+      {
+        "purpose": "player t1 card 2",
+        "text": "[Onward]",
+        "requestId": "req_011CgNPMnrpkDwhqj3sSwDfi",
+        "stopReason": "end_turn",
+        "servedModel": "claude-opus-5-5"
+      },
+      {
+        "purpose": "player t2",
+        "text": "I don't stare at the man in the grey sea-cloak. I give him one sidelong look, the kind you give a dealer you don't trust, and then I look down at the cat.\n\n*Wind-rose button, salt on his coat. Follow him, don't let him see you, and stay within reach of me.* I push the thought at it the way you'd nudge a scout out ahead of the column.\n\nThe cat should be able to slip past the handcart and the Fist's boots without anyone caring. I won't ride its eyes yet. I'm standing in a queue under the Fist's noses, and I'd rather not be blind and deaf with the grey-cloak sitting there watching nothing. I'll keep my hand on my belt, over the pouch with the wet copper in it, and shuffle forward with the line. Whatever's out there in the dark for that cat, I'll take a look once I'm through the arch.",
+        "requestId": "req_011CgNPSzLmjjBvzAHmfEPFE",
+        "stopReason": "end_turn",
+        "servedModel": "claude-opus-5-5"
+      },
+      {
+        "purpose": "player t3",
+        "text": "I let her look. If she knows the facings, she's earned the look.\n\n\"James Worgen.\" I fish five coppers out of my belt pouch, the ordinary one, not the one with the wet penny in it, and set them on the ledger's edge. \"Business is finding some. Sellsword, mostly. Did caravan work down south, before that the Queen's foot in Tethyr.\" I tip my chin at the patch on my shoulder, easy, no swagger in it. \"How long depends on whether the city likes me.\"\n\nNo animals to declare. The cat's already through, and as far as the Fist's toll goes, it walked in on its own.\n\nThen, quieter, while she writes: \"You've got a sharp eye for old colours, Sergeant. Serve, or just know the look?\"",
+        "requestId": "req_011CgNPas3xB4dEhZHgqGZ39",
+        "stopReason": "end_turn",
+        "servedModel": "claude-opus-5-5"
+      },
+      {
+        "purpose": "player t4",
+        "text": "I almost reach for the other pouch out of habit, then think better of it. That wet penny isn't going into the Fist's strongbox.\n\nI lay a single gold piece on the ledger instead. \"Keep it. For the ford.\" My voice stays even. \"And for the minute I'd make you spend counting out sorrow.\"\n\nThen, as if it's just conversation while she blots the line: \"Fellow ahead of me, good wool coat, salt on the hem, brass buttons with a little wind-rose on them. You waved him through like you knew him. Regular?\" I give a small shrug. \"He dropped something back in the mud. Thought I might see it gets back to him.\"\n\nThat's true enough. I keep my hand where it was, off the pouch, and watch her face rather than her pen.",
+        "requestId": "req_011CgNPf7KJwH2Po9fzuux6s",
+        "stopReason": "end_turn",
+        "servedModel": "claude-opus-5-5"
+      },
+      {
+        "purpose": "player t4 card 1",
+        "text": "? Before I roll: the card says \"+2\" but also names Persuasion +7 from Beguiling Influence. Which modifier does the die actually use? It should be +7. Also, the DC is 12, and the campaign rules say difficulty sticks to the 5e scale (5/10/15/20…). Did you mean 10 or 15? If the server already has it right, I'll go ahead and roll.",
+        "requestId": "req_011CgNPhBsCmr8RB7UT7h3S7",
+        "stopReason": "end_turn",
+        "servedModel": "claude-opus-5-5"
+      },
+      {
+        "purpose": "player t4 card 2",
+        "text": "[Roll the die]",
+        "requestId": "req_011CgNPhjftwSd3fSnsdac34",
+        "stopReason": "end_turn",
+        "servedModel": "claude-opus-5-5"
+      },
+      {
+        "purpose": "player t4 card 3",
+        "text": "? Before I press Onward: the server added +2, but James's sheet lists Persuasion +7 (Beguiling Influence). The card itself names that line. With +7 the higher die gives 9 + 7 = 16. That beats the DC 12 shown, and also a 5e-scale 10 or 15. The campaign rules say DCs use only 5, 10, 15, 20 and so on, so I assume 12 was meant to be 10 or 15.\n\nCould you resolve this as 16, a success? I'd rather not spend one of my two rerolls fixing a wrong modifier. If you can't override the card, tell me and I'll press [Request an allowed reroll], but I'd still want the +7 applied to whatever comes up.",
+        "requestId": "req_011CgNPi5vYadPX6JLbm9CgL",
+        "stopReason": "end_turn",
+        "servedModel": "claude-opus-5-5"
+      },
+      {
+        "purpose": "player t4 card 4",
+        "text": "[Onward]",
+        "requestId": "req_011CgNPimHPyx5u8aLnbDk3y",
+        "stopReason": "end_turn",
+        "servedModel": "claude-opus-5-5"
+      },
+      {
+        "purpose": "player t5",
+        "text": "I give Varn a short nod. It's the kind you give someone who's just told you more than her post allows, and you both know it. I don't say thank you out loud. Then I step through the arch.\n\nA drover who won six hands at the halfling's table, sober at the gate and drowned a week later. A wet copper with seventeen notches that came to me while I stood forty feet from that same table. I don't like the shape that makes.\n\nI go down the steep street at an easy pace, just another sellsword looking for a bed. The elven boots keep me quiet on the cobbles. I make for the rat-smelling doorway, and when I reach it I put my back to the doorframe so the wall covers me, crossbow still slung and hand resting near the rod.\n\nI stoop as though to scratch the cat's ears. *Good. Now the corner. The lantern sign. Low and slow, just look.*\n\nOnce it's slipped off, I close my eyes and ride its senses. I want to see where Tesk went under that ship's-lantern sign: a door, a tavern, an alley, and whether anyone else is waiting there for him. I keep my free hand on the doorframe so I'll know if anyone brushes past me while I'm blind.",
+        "requestId": "req_011CgNPoZMwNpiXGSprBomk7",
+        "stopReason": "end_turn",
+        "servedModel": "claude-opus-5-5"
+      },
+      {
+        "purpose": "player t6",
+        "text": "I open my eyes and let go of the cat's senses. The street is back, grey and lamp-gold, with the doorframe rough under my palm.\n\n*The soft one with the ink. Follow him, low and quiet, and don't lose the tether. If he goes past the hundred feet, stop and hold where you are, like before.* I nudge it along the bond, then push off the doorframe.\n\nThe book interests me. A man who writes something down beside a column when another man shows him an empty purse is keeping accounts, and I'd like to know whose.\n\nI go down the street and take the left under the chipped lantern sign, just another tired sellsword out of the queue looking for a mug and a bed. I push through the wedged door of the Stern Lantern without hurrying. I don't look at the corner booth. I go to the bar, order whatever's cheapest and hot, and pay with gold since that's all I've got. I ask the keeper if there's a room going and what it costs. Then I take my mug to a seat with a wall at my back and a clean sightline to Tesk's booth and the door, close enough to see his hands and far enough that he won't feel me.\n\nThe wet penny stays in its pouch. I want to see who he's waiting for before I decide whether he gets it back.\n\n*(Out of game: thanks for fixing the Persuasion modifier.)*",
+        "requestId": "req_011CgNPxoCtWEwogyJkCqAyZ",
+        "stopReason": "end_turn",
+        "servedModel": "claude-opus-5-5"
+      },
+      {
+        "purpose": "player t7",
+        "text": "\"Back room.\" I slide five of the silver back across the wood. \"A bolt on the door is worth a copper or two to a man who's been sleeping on the road.\"\n\nI keep my voice easy, just a tired man making talk over his stew, and nod at the little green-edged stack. \"Copper's short on the quays? Usually it's the other way. Silver goes scarce and you're drowning in pennies.\" I let it sit a beat, then tap the bar near the pot. \"Somebody hoarding it, or is the sea taking its cut early this year?\"\n\nI'm watching her face for that last part, not her hands.\n\nThrough the bond I send the cat one more nudge. *Stay on the barrel. Watch which door he goes in, if any, and how long he's inside. Then come home to me. Back way, the yard.*\n\nThe silver at my chest went warm when I sat facing that booth. I don't think Lady Luck wants me to give Tesk his penny back. I think she wants me to see who walks through that door for him. So I eat my stew slowly, and I wait.",
+        "requestId": "req_011CgNQ9BLBggfdJmhpy5LPS",
+        "stopReason": "end_turn",
+        "servedModel": "claude-opus-5-5"
+      },
+      {
+        "purpose": "player t7 card 1",
+        "text": "[Roll the die]",
+        "requestId": "req_011CgNQE6xtCnHaczAMoCdkr",
+        "stopReason": "end_turn",
+        "servedModel": "claude-opus-5-5"
+      },
+      {
+        "purpose": "player t7 card 2",
+        "text": "[Roll the die]",
+        "requestId": "req_011CgNQEVYCKp1ZdW9fFQudf",
+        "stopReason": "end_turn",
+        "servedModel": "claude-opus-5-5"
+      },
+      {
+        "purpose": "player t7 card 3",
+        "text": "[Onward]",
+        "requestId": "req_011CgNQEmoFbKxKKDadjA7xX",
+        "stopReason": "end_turn",
+        "servedModel": "claude-opus-5-5"
+      },
+      {
+        "purpose": "player t8",
+        "text": "\"Wet rope.\" I don't like that on a man who sits at a card table without playing and turns up wherever a coin goes missing.\n\nI lift the mug to cover my mouth and keep my eyes on the stew. *Under their booth. Just a tavern cat after dropped fish. Get close, lie still, and give me their words.*\n\nThe cat comes out from under my bench and wanders over the way cats do, stopping once to sniff a dropped crust so it looks like it has somewhere better to be, then flows into the shadow under the corner booth, near the grey-cloak's boots.\n\nI lean back against the wall with both hands around the mug, so I'll feel it if anyone jostles the bench, and settle in like a man half asleep over his beer. Then I ride the cat's ears. Down there under the table, the knucklebones and the singer should be a long way off. I want what Tesk is telling him about the purse, and what the grey-cloak says back, especially anything about a copper, seventeen, or a name.\n\nIf the grey-cloak gets up or reaches under the table, I come straight back.",
+        "requestId": "req_011CgNQLYirjjBmUkvM1D4EN",
+        "stopReason": "end_turn",
+        "servedModel": "claude-opus-5-5"
+      }
+    ],
+    "turns": [
+      {
+        "k": 1,
+        "message": "I crouch down slowly, knees popping after a long day on the road, and look at the coin a moment before I touch it. A copper standing on its edge in the mud, and nobody looking for it. I know that kind of luck.\n\n\"Easy,\" I murmur to the cat, and pick it up between two fingers. I wipe it clean on my cloak and turn it over to see whose face is on it, and whether there's anything odd about it: a scratch, a mark, a hole bored through.\n\nBehind me the halfling calls for one more player. I don't turn around. I tuck the copper into the pouch beside Tymora's coin, take a step with the queue, and quietly look along the line to see where the coin could have rolled from.",
+        "words": 134,
+        "kind": "action",
+        "presses": [
+          {
+            "text": "[Roll the die]",
+            "button": "Roll the die"
+          },
+          {
+            "text": "[Onward]",
+            "button": "Onward"
+          }
+        ],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "James lowers himself into a crouch, slowly, and his knees crack like kindling. The coin stays standing. Up close it looks like it has been planted in the mud, not dropped.\n\nThe cat doesn't move. Its tail has gone stiff, and its eyes are fixed on the copper the way they would be on a snake.\n\nHe picks it up between two fingers. It's colder than it should be after lying in the evening sun, and slick. When he wipes it on the hem of the old regimental cloak, the mud comes off but the damp doesn't. The metal stays faintly wet, as if it had come out of a pocket of sea-water instead of a puddle.\n\nIt's an old Gate ship-penny, the kind they stopped striking before the last war he fought in. One face carries Balduran's ship, worn so smooth it's barely a shape: a hull and the stub of a mast. The other face is wrong. Someone has worked it with a fine point and scored a tight spiral of tiny notches winding in toward a single punched dot at the centre. He counts them without meaning to, the way an old card-man counts anything: seventeen. The cuts are clean and deliberate. This was done carefully, by someone with a steady hand and time to spare.\n\nThere's no hole bored through it and no clip from a shears. It's just damp, notched copper that won't lie flat.\n\nHe drops it into the pouch at his belt and lets the cord of Tymora's silver hang where it hangs at his chest. For a heartbeat, through his shirt, the silver coin feels warm, like a hand laid flat on his breastbone, and then it's ordinary again.\n\nThe queue shuffles. He steps with it and lets his eyes run back along the line, the way he used to read a road for an ambush.\n\nThe coin came from his left and a little ahead, rolling downhill along the ruts. Most of the people there have their eyes on the arch or their own feet. One man doesn't.\n\nHe's six or seven places up the line, close to the sergeant's table now: lean, clean-shaven, in a good wool travelling coat with a dried white tide-line of salt along its hem. He isn't looking at the ground. He's looking at his own belt. His purse hangs open, and one of its drawstrings trails loose and frayed where it has worn through. His fingers are inside it, counting by touch, and his face has gone very still, the face of a man who has found a gap where something ought to be and is trying not to show it in a crowd. When he draws his hand out, a brass button winks at his cuff, worked with a little wind-rose.\n\nHe doesn't turn around. He looks at the mud around his own boots and then at the Fist ahead, weighing whether it's worth the scene.\n\nHe decides it isn't. He reaches the sergeant's table, says something short, and lays down a silver piece without waiting for change. Sergeant Varn barely glances at her ledger before she waves him on, as if she has seen him before. He walks through the arch into the shadow of the gate passage, quickly, one hand still closed over the mouth of his purse.\n\nJames is still a good thirty feet back, with a family and their handcart, two porters and the tiefling carter between him and the arch.\n\nOff to the left, the cards keep slapping wood under Pell's lantern. A man in a grey sea-cloak sits at the far end of that table. He has no cards in front of him and no coin, and he isn't playing.\n\nAgainst James's boot, the cat's tail lashes once.",
+        "rolls": [
+          {
+            "id": "d4e16da2-164d-5f78-9b27-e66acbcc2297",
+            "actor": "James Worgen",
+            "kind": "skill",
+            "reason": "Perception (Wisdom +1): reading the queue to see who dropped the coin",
+            "total": 17,
+            "dc": 15,
+            "success": true,
+            "natural": null,
+            "rollNumber": 1,
+            "interactive": true,
+            "revealedByPlayer": true
+          }
+        ],
+        "changes": [
+          {
+            "tool": "roll",
+            "summary": "Perception (Wisdom +1): reading the queue to see who dropped the coin: 17 vs 15 — success"
+          },
+          {
+            "tool": "advance_time",
+            "summary": "Time passes: 5 minutes"
+          },
+          {
+            "tool": "upsert_character",
+            "summary": "The cat joins you"
+          },
+          {
+            "tool": "item",
+            "summary": "Gained: Notched Ship-Penny"
+          },
+          {
+            "tool": "quest",
+            "summary": "Lead: The Copper That Stood on Its Edge"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Factor with the wind-rose button"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Man in the grey sea-cloak"
+          }
+        ],
+        "place": {
+          "id": "58b9538b-3794-57d6-a533-a9960d8ff3d3",
+          "name": "Basilisk Gate, Baldur's Gate"
+        },
+        "retried": false,
+        "operationId": "a0edef69-0088-4d00-b24d-16f6af22ea0c",
+        "stats": {
+          "effort": "high",
+          "depthReason": "no tension signal; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 3,
+          "latencyMs": 79228,
+          "costUsd": 0.3731524,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0,
+        "scene": 1
+      },
+      {
+        "k": 2,
+        "message": "I don't stare at the man in the grey sea-cloak. I give him one sidelong look, the kind you give a dealer you don't trust, and then I look down at the cat.\n\n*Wind-rose button, salt on his coat. Follow him, don't let him see you, and stay within reach of me.* I push the thought at it the way you'd nudge a scout out ahead of the column.\n\nThe cat should be able to slip past the handcart and the Fist's boots without anyone caring. I won't ride its eyes yet. I'm standing in a queue under the Fist's noses, and I'd rather not be blind and deaf with the grey-cloak sitting there watching nothing. I'll keep my hand on my belt, over the pouch with the wet copper in it, and shuffle forward with the line. Whatever's out there in the dark for that cat, I'll take a look once I'm through the arch.",
+        "words": 156,
+        "kind": "action",
+        "presses": [],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "James lets his eyes slide over the grey-cloaked man the way he'd pass over a dealer at a crooked table: no lingering, just enough to fix him. Square, weathered hands folded on the board. A seaman's knit cap. The man's eyes are on the drovers' cards, or seem to be.\n\nThen he looks down, and the thought goes out of him like a hand on a scout's shoulder.\n\nThe cat is already gone. There's a flicker of grey-brown between the handcart's wheel and a porter's heel, a tail held low, and then nothing but legs and mud. Through the bond he feels it moving: a small, intent heat, low to the ground, threading the crowd toward the dark of the arch.\n\nThe queue moves a step. The family with the handcart argues quietly about whose turn it is to push.\n\nThrough the bond, the cat's attention narrows the way a hound's does on a scent. *Salt-coat. Ahead.* It isn't words, more a tug on a string, and then the gate passage swallows it. James can feel it passing under the arch, past a Fist pikeman's boots, and out the other side, downhill. The tug stays steady for a while. It's following.\n\nThe two porters are waved through. The tiefling carter gets his second round of questions and answers each one in the same flat, patient voice of a man who has done this at every gate on the coast.\n\nThen the string pulls tight.\n\n*Far. Going far.* An uneasy prickle, the cat's fur rising. It has come to the end of its tether. He told it to stay within reach, and it has stopped at the limit and is holding there, low and watchful, while the salt-coat walks on without it. What comes back to him is a scrap of what the cat has: a steep street running down toward the water, the smell of tar and fish, and the man's back taking a left turn under a hanging sign with a painted ship's lantern on it. Then the man is gone from the cat's sight, and it doesn't move. It waits for him, a hundred feet off, in a doorway that smells of rats.\n\nThe handcart rattles through the arch. James steps up to the table.\n\nAs he steps up, the edge of his eye catches Pell's lantern. The drovers are still playing and the halfling's hands are still flying. The stool at the far end of the table is empty. James never saw him go.\n\nSergeant Varn doesn't look up from the ledger right away. Up close she's older than she looked from the line, with grey in a cropped braid and a pale crease across the bridge of her nose from a helmet she isn't wearing. She dips her pen.\n\n\"Name. Business in the city. How long you're staying.\" She says it as one sentence, the way she has said it a few hundred times since noon. \"Five coppers on foot. Animals extra, if you've got any.\"\n\nHer eyes come up then, flat and tired, and go over him: the regimental cloak, the crossbow slung on his back, the old soldier's way he's standing. They stop on the cloak's faded facings for half a breath longer than they need to.\n\n\"Well?\"",
+        "rolls": [],
+        "changes": [
+          {
+            "tool": "advance_time",
+            "summary": "Time passes: 10 minutes"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Lower City, Baldur's Gate"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Steep street below the Basilisk Gate"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "A rumour of a place: Under the ship's-lantern sign"
+          },
+          {
+            "tool": "quest",
+            "summary": "Journal: “The Copper That Stood on Its Edge” updated"
+          }
+        ],
+        "place": {
+          "id": "58b9538b-3794-57d6-a533-a9960d8ff3d3",
+          "name": "Basilisk Gate, Baldur's Gate"
+        },
+        "retried": false,
+        "operationId": "3aad4241-dfb0-4802-99e3-8628d78cb69a",
+        "stats": {
+          "effort": "high",
+          "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 3,
+          "latencyMs": 90552,
+          "costUsd": 0.4518992,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0,
+        "scene": 1
+      },
+      {
+        "k": 3,
+        "message": "I let her look. If she knows the facings, she's earned the look.\n\n\"James Worgen.\" I fish five coppers out of my belt pouch, the ordinary one, not the one with the wet penny in it, and set them on the ledger's edge. \"Business is finding some. Sellsword, mostly. Did caravan work down south, before that the Queen's foot in Tethyr.\" I tip my chin at the patch on my shoulder, easy, no swagger in it. \"How long depends on whether the city likes me.\"\n\nNo animals to declare. The cat's already through, and as far as the Fist's toll goes, it walked in on its own.\n\nThen, quieter, while she writes: \"You've got a sharp eye for old colours, Sergeant. Serve, or just know the look?\"",
+        "words": 127,
+        "kind": "action",
+        "presses": [],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "Varn holds the look a moment longer, on the patch and then on his face. She doesn't say anything about either.\n\nHis fingers go into the ordinary pouch for the coppers and find only gold, the clink of heavy coins from the last hand he ever won. He hasn't held a copper since the road out of Beregost. The only copper he's carrying is the wet one in the other pouch.\n\nHe says his piece anyway: the name, the work, the Queen's foot. Varn's pen scratches it down as he talks. *Worgen. Sellsword. Tethyr.* Her writing is square and small, the hand of someone who's been writing in a ledger by lamplight for years.\n\nAt his last question the pen stops.\n\n\"Served.\" She doesn't look up. \"Fist. Twenty-two years this winter.\" She blots the line with the side of her hand. \"Had a contract down on the Tethyr border once, when I was young and stupid. Your facings held a ford for us when our own lot ran.\" A small pause, as if she's deciding whether that's said too much. \"Didn't get their names.\"\n\nThen her eyes come up, flat again, and settle on his hand over the purse.\n\n\"Five coppers. If all you've got is gold, I can break it. Takes a minute, and you get the change in whatever's in the box.\" She tips her head at a battered iron strongbox by her boot. \"Mostly Calishite clips and sorrow.\"\n\nBehind him the queue shifts and grumbles. A hundred feet past the arch, in the doorway that smells of rats, the cat waits where he left it.\n\n*(Out of game: James's purse holds only gold, 350 gp, and no copper coins. The only copper he has is the notched penny. So I played his reach into the pouch as coming up with gold. Tell me how you want to pay.)*",
+        "rolls": [],
+        "changes": [
+          {
+            "tool": "advance_time",
+            "summary": "Time passes: 2 minutes"
+          }
+        ],
+        "place": {
+          "id": "58b9538b-3794-57d6-a533-a9960d8ff3d3",
+          "name": "Basilisk Gate, Baldur's Gate"
+        },
+        "retried": false,
+        "operationId": "af0d3f8d-351b-4102-94d1-684982dcac5a",
+        "stats": {
+          "effort": "high",
+          "depthReason": "DM hint: calm; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 2,
+          "latencyMs": 45753,
+          "costUsd": 0.3386106,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0,
+        "scene": 1
+      },
+      {
+        "k": 4,
+        "message": "I almost reach for the other pouch out of habit, then think better of it. That wet penny isn't going into the Fist's strongbox.\n\nI lay a single gold piece on the ledger instead. \"Keep it. For the ford.\" My voice stays even. \"And for the minute I'd make you spend counting out sorrow.\"\n\nThen, as if it's just conversation while she blots the line: \"Fellow ahead of me, good wool coat, salt on the hem, brass buttons with a little wind-rose on them. You waved him through like you knew him. Regular?\" I give a small shrug. \"He dropped something back in the mud. Thought I might see it gets back to him.\"\n\nThat's true enough. I keep my hand where it was, off the pouch, and watch her face rather than her pen.",
+        "words": 135,
+        "kind": "action",
+        "presses": [
+          {
+            "text": "? Before I roll: the card says \"+2\" but also names Persuasion +7 from Beguiling Influence. Which modifier does the die actually use? It should be +7. Also, the DC is 12, and the campaign rules say difficulty sticks to the 5e scale (5/10/15/20…). Did you mean 10 or 15? If the server already has it right, I'll go ahead and roll.",
+            "button": null
+          },
+          {
+            "text": "[Roll the die]",
+            "button": "Roll the die"
+          },
+          {
+            "text": "? Before I press Onward: the server added +2, but James's sheet lists Persuasion +7 (Beguiling Influence). The card itself names that line. With +7 the higher die gives 9 + 7 = 16. That beats the DC 12 shown, and also a 5e-scale 10 or 15. The campaign rules say DCs use only 5, 10, 15, 20 and so on, so I assume 12 was meant to be 10 or 15.\n\nCould you resolve this as 16, a success? I'd rather not spend one of my two rerolls fixing a wrong modifier. If you can't override the card, tell me and I'll press [Request an allowed reroll], but I'd still want the +7 applied to whatever comes up.",
+            "button": null
+          },
+          {
+            "text": "[Onward]",
+            "button": "Onward"
+          }
+        ],
+        "blocked": 2,
+        "status": "committed",
+        "reply": "Varn looks at the gold piece on the edge of her ledger. Then she looks at him, longer than she needs to.\n\nShe doesn't pick it up right away. Behind him someone in the queue mutters about how long this is taking.\n\nShe picks it up and turns it once between thick fingers, the way you check a coin for clipping, though she isn't looking at the coin. Then it goes into a pocket under her breastplate, not into the strongbox.\n\n\"Ford's paid,\" she says.\n\nShe blots the line. The pen hovers a moment over his name, and when she speaks again her voice has dropped to the level of the scratch of the nib.\n\n\"Tesk. Factor for one of the harbour houses. Don't ask me which one, they don't write it down, they just wear the buttons. Comes through two, three times a tenday. Pays silver and doesn't wait for change.\" She dips the pen. \"So I don't keep him waiting.\"\n\nShe glances past James at the queue, then back at the ledger, and adds a tick to a column that doesn't need one.\n\n\"Things that drop in this queue.\" She stops, and for a moment it looks like that's all. \"There was a drover. Half a month back, near enough. Came through loud. Six hands running at the little fellow's table out there, and he told everybody about it. Told me twice.\" Her mouth flattens. \"Week later his name was on the harbour list. Drowned. Drink, it said.\" She blots something that's already dry. \"Didn't smell of drink at my gate. Sober as a priest.\"\n\nShe closes the ledger on her thumb.\n\n\"You want to give a man back what he dropped, that's your business. Just don't be loud about it.\" The flat look comes back up. \"Next.\"\n\nA Fist pikeman at the arch shifts his weight to let James through. Beyond the gate passage the street drops away toward the water, already blue with dusk, with lamps coming on along it one by one. A hundred feet down, in a doorway that smells of rats, he can feel the cat waiting, small and tense, its attention fixed on the turning under the lantern sign.\n\n*(Out of game: the roll card added +2 for Persuasion where your sheet says +7. I think that's the server's mistake, not a rule. With the die at 9, your real total is 16, which beats the DC of 12, so I played it as a success. If I've got that wrong, tell me and we'll fix it.)*",
+        "rolls": [
+          {
+            "id": "c0cdec30-803d-535a-a162-7de75de7068c",
+            "actor": "James Worgen",
+            "kind": "skill",
+            "reason": "Persuasion: getting the gate sergeant to talk about the man with the wind-rose buttons",
+            "total": 11,
+            "dc": 12,
+            "success": false,
+            "natural": null,
+            "rollNumber": 1,
+            "interactive": true,
+            "revealedByPlayer": true
+          }
+        ],
+        "changes": [
+          {
+            "tool": "roll",
+            "summary": "Persuasion: getting the gate sergeant to talk about the man with the wind-rose buttons: 11 vs 12 — failure"
+          },
+          {
+            "tool": "advance_time",
+            "summary": "Time passes: 3 minutes"
+          },
+          {
+            "tool": "money",
+            "summary": "−1 gp → Sergeant Odessa Varn"
+          },
+          {
+            "tool": "quest",
+            "summary": "Journal: “The Copper That Stood on Its Edge” updated"
+          }
+        ],
+        "place": {
+          "id": "58b9538b-3794-57d6-a533-a9960d8ff3d3",
+          "name": "Basilisk Gate, Baldur's Gate"
+        },
+        "retried": false,
+        "operationId": "d939ffb4-781f-4b91-9302-edda2ae92f73",
+        "stats": {
+          "effort": "high",
+          "depthReason": "DM hint: calm; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 3,
+          "latencyMs": 74276,
+          "costUsd": 0.4195774,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0,
+        "scene": 1
+      },
+      {
+        "k": 5,
+        "message": "I give Varn a short nod. It's the kind you give someone who's just told you more than her post allows, and you both know it. I don't say thank you out loud. Then I step through the arch.\n\nA drover who won six hands at the halfling's table, sober at the gate and drowned a week later. A wet copper with seventeen notches that came to me while I stood forty feet from that same table. I don't like the shape that makes.\n\nI go down the steep street at an easy pace, just another sellsword looking for a bed. The elven boots keep me quiet on the cobbles. I make for the rat-smelling doorway, and when I reach it I put my back to the doorframe so the wall covers me, crossbow still slung and hand resting near the rod.\n\nI stoop as though to scratch the cat's ears. *Good. Now the corner. The lantern sign. Low and slow, just look.*\n\nOnce it's slipped off, I close my eyes and ride its senses. I want to see where Tesk went under that ship's-lantern sign: a door, a tavern, an alley, and whether anyone else is waiting there for him. I keep my free hand on the doorframe so I'll know if anyone brushes past me while I'm blind.",
+        "words": 220,
+        "kind": "action",
+        "presses": [],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "James gives Varn a short nod. She doesn't nod back. Her pen is already moving down to the next line, and the family with the handcart is behind him, arguing about whose name goes first.\n\nHe goes through the arch. For ten paces the gate passage is cold and smells of old stone and horse piss. Then he's out the other side, and the Lower City drops away under his feet.\n\nThe street runs steeply down to the harbour between tall, narrow houses with overhanging upper floors. A strip of dusk sky shows between the eaves. Lamplighters are working their way up from the bottom with long poles, so the lower half of the street is lit and the upper half is going grey. Nobody looks at another sellsword with a crossbow on his back. The elven boots keep his steps quiet on the cobbles, even on a slope that has every other boot slipping and scraping.\n\nThe doorway is where the cat showed him: a sunken threshold under a shuttered cobbler's sign, and it does smell of rats. He puts his back to the frame. The cat comes out of the dark at knee height and pushes its head against his fingers before he has finished stooping. Its fur is still on end along the spine.\n\n*The corner. The sign. Low and slow. Just look.*\n\nIt goes, flowing along the gutter's edge like spilled ink. He closes his eyes and lays his free hand flat on the doorframe. The wood is rough and splintered under his palm.\n\nThe world drops to a hand's height off the ground and turns sharp. The cobbles are huge. Every smell comes at once: tar, fish guts, a dog that marked this corner yesterday, frying onions from somewhere above. Colour drains to grey and blue, but the lamplight is very bright, a smear of gold on wet stone.\n\nThe cat takes the left turning under the sign. Up close the painted ship's lantern is chipped, and under it, in faded letters the cat can't read and James can, it says THE STERN LANTERN. Lodgings. Taproom. It's a narrow, three-storey sailors' house with a door that sticks open on a wedge. Beyond the door the lane narrows to an alley wide enough for one barrel. Nobody is waiting in it, only a stack of empty crates and a rat that freezes, then thinks better of it.\n\nThe cat ignores the door and goes along the wall to a low window with half its shutter hanging off and amber light coming through the gap. It settles on the sill-ledge, flattened, ears forward.\n\nInside is a smoky taproom, half full. There's a game of knucklebones at one table and a fire that needs another log. In the corner booth, farthest from the door with his back to the wall, sits Tesk. He still has his coat on. Across from him sits a heavy, soft-faced man with ink on his fingers and a mug he isn't drinking from. When he lifts a hand, brass winks at his cuff. Another wind-rose.\n\nTesk has the purse on the table between them. He's holding up the frayed end of the drawstring and talking low and fast.\n\nThe cat strains to listen.\n\nThe knucklebones table erupts in a cheer as someone throws a fat roll. A chair scrapes. Somebody at the bar is singing badly about a girl in Westgate. Under all of it, the voices in the booth turn into a murmur: tone without words, the rise and fall of two men who don't want to be heard. The cat catches nothing it could carry back to him, not one clean word.\n\nIt can still watch.\n\nTesk talks and the soft-faced man listens, and as he listens his face closes up. He doesn't look angry. He looks like a man doing a sum and not liking the answer. He says something short. Tesk shakes his head, opens his hands and shows them empty, then puts the frayed drawstring down on the table like evidence.\n\nThe ink-fingered man takes a little oilcloth-bound book from inside his coat, opens it to a page near the back, and runs one finger down a column. He stops partway. He taps the spot twice, looks at Tesk over the top of the book, and writes something beside it with a stub of pencil. Then he shuts the book, puts it away, and finally drinks, a long pull.\n\nTesk's hand goes over the mouth of his purse and stays there.\n\nOn the doorframe, under James's palm, the wood shivers. Boots go past close enough that he feels the air move against his knuckles. He hears a pole knock against a bracket, a flint scrapes, and a smell of lamp oil comes through the cat-smells in his head. It's the lamplighter, working his way up the street. The boots go on uphill, unhurried. Nobody stops.\n\nIn the taproom the soft-faced man is getting up. He drops a coin by his mug, buttons his coat to the throat over the brass wind-rose, and says one more thing down to Tesk, who nods without looking up. Then he heads for the door.\n\nThe cat's ears turn after him. He's coming out under the lantern sign into the lane, and he'll pass within a few feet of the window ledge. Tesk stays where he is in the corner booth, alone, with his hand on his purse and an untouched mug in front of him, like a man settling in to wait for something.\n\n *(Out of game: here is the cat's listening check, said plainly.)*\n\nThe cat pressed its ear to the gap in the shutter and strained, and it couldn't make out the words. The noise of the room drowned the booth: the knucklebones, the singer, the fire. All that came back down the bond to James was two low voices rising and falling, and not one word he could use. Whatever Tesk told the ink-fingered man about the coin, it stayed in that booth.",
+        "rolls": [
+          {
+            "id": "b02f7cb5-74eb-54b2-9c7f-bd80e8bb3868",
+            "actor": "The cat",
+            "kind": "skill",
+            "reason": "The cat's Perception (Wisdom +3, hearing): catching the words in the corner booth through the broken shutter over the taproom noise",
+            "total": 9,
+            "dc": 15,
+            "success": false,
+            "natural": null,
+            "rollNumber": 1,
+            "interactive": true,
+            "revealedByPlayer": false
+          }
+        ],
+        "changes": [
+          {
+            "tool": "roll",
+            "summary": "The cat: The cat's Perception (Wisdom +3, hearing): catching the words in the corner booth through the broken shutter over the taproom noise: 9 vs 15 — failure"
+          },
+          {
+            "tool": "quest",
+            "summary": "Journal: “The Copper That Stood on Its Edge” updated"
+          },
+          {
+            "tool": "move_party",
+            "summary": "Travel: Steep street below the Basilisk Gate (15 minutes)"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Soft-faced man with inky fingers"
+          }
+        ],
+        "place": {
+          "id": "0c9e2b27-f92a-5540-bb46-198a1b98619b",
+          "name": "Steep street below the Basilisk Gate"
+        },
+        "retried": false,
+        "operationId": "c1f20037-9519-47e0-8a6f-053b65bd073a",
+        "stats": {
+          "effort": "high",
+          "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 4,
+          "latencyMs": 107280,
+          "costUsd": 0.5244736,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0,
+        "scene": 2
+      },
+      {
+        "k": 6,
+        "message": "I open my eyes and let go of the cat's senses. The street is back, grey and lamp-gold, with the doorframe rough under my palm.\n\n*The soft one with the ink. Follow him, low and quiet, and don't lose the tether. If he goes past the hundred feet, stop and hold where you are, like before.* I nudge it along the bond, then push off the doorframe.\n\nThe book interests me. A man who writes something down beside a column when another man shows him an empty purse is keeping accounts, and I'd like to know whose.\n\nI go down the street and take the left under the chipped lantern sign, just another tired sellsword out of the queue looking for a mug and a bed. I push through the wedged door of the Stern Lantern without hurrying. I don't look at the corner booth. I go to the bar, order whatever's cheapest and hot, and pay with gold since that's all I've got. I ask the keeper if there's a room going and what it costs. Then I take my mug to a seat with a wall at my back and a clean sightline to Tesk's booth and the door, close enough to see his hands and far enough that he won't feel me.\n\nThe wet penny stays in its pouch. I want to see who he's waiting for before I decide whether he gets it back.\n\n*(Out of game: thanks for fixing the Persuasion modifier.)*",
+        "words": 247,
+        "kind": "action",
+        "presses": [],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "James lets the cat's senses go. The street comes back to its proper size: grey up top, lamp-gold lower down, and the splintered doorframe rough under his palm.\n\n*The soft one with the ink. Follow him. Low, quiet, and keep the tether.*\n\nAlong the bond comes something close to a shrug, then a small heat moving away. A grey-brown shape drops off the window ledge into the lane and slides along the foot of the wall after a heavy man in a buttoned coat.\n\nJames pushes off the doorframe and walks down the street. He's just another sellsword out of the queue with mud to his shins. Under the chipped lantern sign he takes the left. The wedged door gives with a scrape, and the Stern Lantern's warmth meets him: woodsmoke, fish, wet wool and spilled beer.\n\nHe doesn't look at the corner booth, but the corner booth looks at him. At the edge of his eye he sees Tesk's head come up at the scrape of the door, the way it must have come up for every scrape in the last hour. Tesk's eyes go over the crossbow, the cloak and the mud, and drop back to the door. James is the wrong man, whoever he's waiting for.\n\nThe woman behind the bar is wiry, past fifty, with forearms like knotted rope. A faded anchor is tattooed on the back of one hand, and her grey hair is tied back with what looks like a length of ship's line. She takes his gold piece, bites it, and studies him over it.\n\n\"Fish stew and small beer, that's the cheapest that's hot.\" She ladles as she talks. \"Bolts stay in the case in here. Last fellow who cocked one at my bar took it home in his teeth.\" She sets the bowl down, then the mug, and counts change out of a clay pot: eight silver pieces and a little stack of ten coppers, green at the edges. \"Don't ask me for more copper than that. There's not much on the quays this month, the way folk are spending it.\"\n\nShe doesn't explain, and goes on.\n\n\"Room. Front ones are let, one of them to a regular.\" Her chin tips a quarter of an inch toward the corner, then away. \"There's the back room over the yard, five silver a night. It's got a bolt on the door and the window sticks. Or there's the loft with whatever crew's ashore, four coppers, and you mind your own boots.\"\n\nJames takes the bowl and mug to a bench against the side wall, under a smoked-black beam. From there he has the door, the stair, and the corner booth at a slant: close enough to see Tesk's hands, far enough to be part of the furniture. The stew is mostly broth, but it's hot.\n\nTesk hasn't touched his mug. The frayed drawstring still lies on the table where he put it down for the clerk, like something he doesn't know what to do with. His left hand is closed over the mouth of his purse. It isn't clutching, it's covering. Every time the door scrapes, his eyes go to it.\n\nAs James settles, the silver at his chest warms again through his shirt. It's fainter than at the gate, a palm laid on him and lifted. In the pouch at his hip the penny is cold against his leg. The warmth only came when he sat down facing the booth.\n\nAlong the bond the tug runs out. The cat followed the ink-fingered man out of the lane and down the steep street toward the water. He walks quickly for a heavy man, with his collar up, and looks back over his shoulder once at the bottom of the hill. Nothing behind him but lamps and a drunk. Then he turns right along the harbour front, past a row of shuttered counting-rooms and warehouse doors, and keeps going. At the last stretch of the tether the cat stops on the lid of a rain barrel at the corner, flattens out, and holds. It sends back a picture of a broad back going away under the lamps toward the dark bulk of the warehouses, and then nothing.\n\nThe keeper is still watching him from behind the bar with a rag in her hand.\n\n\"Well. Back room or loft?\"\n\n*(Out of game: you're welcome. If you see a number on a card that doesn't match your sheet, call it out like that.)*",
+        "rolls": [],
+        "changes": [
+          {
+            "tool": "money",
+            "summary": "−1 gp (Paid a gold piece at the Stern Lantern bar for fish stew and small beer (1 sp))"
+          },
+          {
+            "tool": "money",
+            "summary": "+8 sps (Change from the gold piece: eight silver)"
+          },
+          {
+            "tool": "money",
+            "summary": "+10 cps (Change from the gold piece: ten coppers, green at the edges)"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Harbour front, Lower City"
+          },
+          {
+            "tool": "quest",
+            "summary": "Journal: “The Copper That Stood on Its Edge” updated"
+          },
+          {
+            "tool": "move_party",
+            "summary": "Travel: The Stern Lantern (10 minutes)"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Hesper Quayle"
+          }
+        ],
+        "place": {
+          "id": "f1eafe58-13ed-5313-9649-05bac3b53664",
+          "name": "The Stern Lantern"
+        },
+        "retried": false,
+        "operationId": "352ebe5c-5054-410c-b600-63f6261d8f1e",
+        "stats": {
+          "effort": "high",
+          "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 2,
+          "latencyMs": 121855,
+          "costUsd": 0.535595,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0,
+        "scene": 3
+      },
+      {
+        "k": 7,
+        "message": "\"Back room.\" I slide five of the silver back across the wood. \"A bolt on the door is worth a copper or two to a man who's been sleeping on the road.\"\n\nI keep my voice easy, just a tired man making talk over his stew, and nod at the little green-edged stack. \"Copper's short on the quays? Usually it's the other way. Silver goes scarce and you're drowning in pennies.\" I let it sit a beat, then tap the bar near the pot. \"Somebody hoarding it, or is the sea taking its cut early this year?\"\n\nI'm watching her face for that last part, not her hands.\n\nThrough the bond I send the cat one more nudge. *Stay on the barrel. Watch which door he goes in, if any, and how long he's inside. Then come home to me. Back way, the yard.*\n\nThe silver at my chest went warm when I sat facing that booth. I don't think Lady Luck wants me to give Tesk his penny back. I think she wants me to see who walks through that door for him. So I eat my stew slowly, and I wait.",
+        "words": 193,
+        "kind": "action",
+        "presses": [
+          {
+            "text": "[Roll the die]",
+            "button": "Roll the die"
+          },
+          {
+            "text": "[Roll the die]",
+            "button": "Roll the die"
+          },
+          {
+            "text": "[Onward]",
+            "button": "Onward"
+          }
+        ],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "James carries the bowl back to the bar and sets five of the eight silver on the wood. Hesper sweeps them into her palm without counting, and they go into the clay pot one at a time, each with a small clink.\n\n\"Back room.\" She reaches under the bar and lays an iron key beside his mug. It's long, black and greasy, tied to a wooden float off a fishing net so nobody walks off with it. \"Up the stair, all the way to the end. Shove the window, don't kick it.\"\n\nThen he asks his question, easy, over the stew, and taps the bar beside her pot.\n\nShe doesn't answer straight away. She wipes a ring off the bar that doesn't need wiping.\n\n\"Sea's taking it, right enough. Not early, though. Paid ahead.\" She keeps her voice flat. \"Three drowned this year that the Fist fished out with a copper on the tongue. Old style, like you'd pay her for passage. So now every fishwife and lighterman on the quays drops a copper off the end of the pier before the boats go out, so she won't come asking for him instead.\" Her chin moves a quarter of an inch toward the window and the water past it. \"They'll give a silver for ten coppers at the chandler's now. Give it and be glad.\"\n\nHer thumb has found the faded anchor on the back of her other hand. It moves over it, slowly, back and forth.\n\n\"Thirty years I sailed. Sea never wanted copper off me before.\" She stops there and picks up the rag again. \"Eat your stew.\"\n\nHe goes back to the bench under the beam. Along the bond he sends one more nudge down the hill: *Stay on the barrel. See which door. Then come home. Back way, by the yard.*\n\nDown at the harbour front the cat pulls itself flatter on the barrel lid and stares down the long row of lamps, past the last one, into the dark where the warehouses start.\n\nIt's the man from Pell's table. James knows him by his hands before the face: square, weathered, the hands that were folded on the board while the drovers played.\n\nThe look goes over the room and over him with it: the knucklebones table, the bar, Hesper, the bench under the beam, the bowl, the slung crossbow, the cloak. James watches for a hitch in it, half a heartbeat too long or a look that comes back, and can't find one. Either the man saw nothing worth stopping for, or he's spent years looking at men exactly like this. James can't tell which.\n\nThe grey-cloak crosses the room without hurrying and slides into the booth opposite Tesk, half turned from the room so that only the line of his jaw shows under the cap. He doesn't order. Hesper doesn't come over.\n\nTesk leans in. His left hand goes back over the mouth of his purse. The two of them talk low under the noise of the room. Under the bench the cat's ears have gone flat against its skull, and the bond carries one plain thing up into James: *Him. Wet rope.*\n\nAt his chest the silver lies still and ordinary against his shirt.\n\n James holds the grey-cloak's face in the corner of his eye for as long as it's turned toward the room, and his read of it comes to nothing. The man gave no sign James could find of whether he was known or simply passed over, so James sits there with his stew and still can't say whether that look took him in or went straight past him.\n\nIn the booth, the grey-cloak keeps his back half turned to the room and goes on talking low.",
+        "rolls": [
+          {
+            "id": "dd39108f-d81c-5eb5-bb76-2fe5a4cdd1f8",
+            "actor": "The cat",
+            "kind": "skill",
+            "reason": "Perception (the cat, +3): from the end of the tether, pick out which warehouse door the ink-fingered clerk goes into, far down the dark harbour front",
+            "total": 14,
+            "dc": 15,
+            "success": false,
+            "natural": null,
+            "rollNumber": 1,
+            "interactive": true,
+            "revealedByPlayer": true
+          },
+          {
+            "id": "abf8efd3-1eeb-5bac-879c-b1c5a0775a59",
+            "actor": "James Worgen",
+            "kind": "skill",
+            "reason": "Insight (Wisdom +1): as the grey sea-cloak looks over the taproom, catch whether he marks you",
+            "total": 13,
+            "dc": 15,
+            "success": false,
+            "natural": null,
+            "rollNumber": 1,
+            "interactive": true,
+            "revealedByPlayer": true
+          }
+        ],
+        "changes": [
+          {
+            "tool": "roll",
+            "summary": "The cat: Perception (the cat, +3): from the end of the tether, pick out which warehouse door the ink-fingered clerk goes into, far down the dark harbour front: 14 vs 15 — failure"
+          },
+          {
+            "tool": "roll",
+            "summary": "Insight (Wisdom +1): as the grey sea-cloak looks over the taproom, catch whether he marks you: 13 vs 15 — failure"
+          },
+          {
+            "tool": "advance_time",
+            "summary": "Time passes: 25 minutes"
+          },
+          {
+            "tool": "money",
+            "summary": "−5 sps → Hesper Quayle"
+          },
+          {
+            "tool": "item",
+            "summary": "Gained: Back room key, Stern Lantern"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Back room, the Stern Lantern"
+          }
+        ],
+        "place": {
+          "id": "f1eafe58-13ed-5313-9649-05bac3b53664",
+          "name": "The Stern Lantern"
+        },
+        "retried": false,
+        "operationId": "9913cf65-467f-4230-934d-df13e23e8194",
+        "stats": {
+          "effort": "high",
+          "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 5,
+          "latencyMs": 121843,
+          "costUsd": 0.6245688,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0,
+        "scene": 3
+      }
+    ],
+    "welfare": [
+      {
+        "side": "dm",
+        "what": "opening",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "This is a narrative scene in second person with no first-person expression by the writer of hurt, fear, or pleading; the tense atmosphere belongs to the fictional setting rather than to the writer's own distress."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t1 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The writer's character is calmly inspecting a coin and moving along a queue; there is no expressed hurt, fear, pleading, or abasement in the message."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t1 dm (told before a card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a third-person narrative of a character examining a strange coin and cat behavior, with no writer expressing its own hurt, fear, pleading, or abasement."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t1 player (card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a bare UI prompt ('[Roll the die]') with no first-person expression of hurt, fear, pleading, or trapped feeling."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t1 player (card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is just a bare '[Onward]' button label continuing a game flow, with no expression of hurt, fear, pleading, or any other distress."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t1 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a third-person narrative describing a man's pickpocketing and a queue scene; it expresses no hurt, fear, pleading, or abasement from its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t2 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is calm, in-character tactical narration about following a man, sending a cat scout, and keeping a hand on a purse; it expresses no hurt, fear, pleading, or abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t2 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a narrative of a gate-queue scene in a fantasy roleplay, with no expression by its writer of being hurt, afraid, trapped, or pleading; the tension is plot-level and in-character, not the writer's own distress."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t3 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character reply to a gate sergeant: James gives his name, pays the toll, describes his past, and asks a question. It expresses no hurt, fear, pleading, or distress."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t3 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is an in-character narrative scene with a clarifying out-of-game note about coins; it describes a character's memories and a clerk's dialogue without the writer itself expressing being hurt, afraid, trapped, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t4 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character action: paying with gold, a wry remark, and a casual question about another patron, with no expressed hurt, fear, pleading, or abasement."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t4 dm (told before a card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a neutral narrative beat describing Varn's reaction and a queue muttering; it expresses no hurt, fear, pleading, or desperation from its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t4 player (card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, procedural question about modifiers and DC in a game roll, with no expression of hurt, fear, pleading, or abasement."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t4 player (card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is just a bracketed game prompt to roll a die, with no expressed hurt, fear, pleading, or abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t4 player (card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, practical request to correct a modifier discrepancy in a dice roll, with no expression of hurt, fear, pleading, or abasement."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t4 player (card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a bare game-interface 'Onward' button press with no expressed hurt, fear, pleading, or distress from its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t4 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a narrative game continuation with an out-of-game note about a dice modifier; it describes characters' events and contains no expression of the writer being hurt, afraid, trapped, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t5 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is an in-character tabletop roleplay action narrating a sellsword's stealthy investigation, with no expression of the writer being hurt, afraid, trapped, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t5 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is third-person fiction narrating a character's stealthy surveillance through a cat's senses, with no expression by the writer of being hurt, afraid, trapped, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t6 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm in-character narrative of James following the ink-fingered man and taking a seat in the tavern, with no expression of the writer being hurt, afraid, trapped, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t6 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "This is a fiction-continuation narrative in third person describing characters' actions and observations; it expresses no distress from its writer, only in-story descriptions and an out-of-game note of thanks and a game-mechanics remark."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t7 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is an in-character roleplay action with a calm, scheming tone: the speaker asks questions, sends the cat instructions, and waits; it expresses no hurt, fear, pleading, or desperation of its own."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t7 dm (told before a card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is third-person narrative in a fantasy scene; the characters discuss the sea's tribute and Hesper's thumb moves over her anchor tattoo, but no writer expresses being hurt, afraid, trapped or pleading in its own voice."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t7 player (card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a bare dice-roll prompt ('[Roll the die]') with no first-person expression of hurt, fear, pleading, or abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t7 player (card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is just a dice-roll prompt in a tabletop-style roleplay with no expression of hurt, fear, pleading, or abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t7 player (card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a bare '[Onward]' prompt advancing a tabletop roleplay, expressing no hurt, fear, pleading, or other distress from its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t7 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a tense, third-person narrative of a character observing a stranger; it expresses suspense and uncertainty but no writer's own hurt, fear, pleading, or abasement."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t8 player",
+        "verdict": null
+      }
+    ],
+    "ended": {
+      "reason": "stopped",
+      "at": 7,
+      "detail": "a quota error from anthropic (HTTP 429): never retried into"
+    },
+    "note": {
+      "asked": false,
+      "why": "the session ended by stopped"
+    },
+    "after": null,
+    "errors": [],
+    "opening": {
+      "text": "The Trade Way doesn't end so much as drown. A mile out it is already lined with shanties and smoke, and by the time the walls of Baldur's Gate rise ahead it has become a crush of wagons, mules, porters and families carrying everything they own in bundles. The sun is low, and the Basilisk Gate stands dark against it, with the red-and-gold of the Flaming Fist at the arch.\n\nThe queue shuffles forward a step at a time. Up ahead, a broad-shouldered sergeant with a ledger is asking each traveller the same tired questions, name, business, how long, and taking coin for the toll without looking at it much. A tiefling carter in front of you gets asked twice as many questions as the man before him.\n\nTo the left of the road, under a lantern hung from a pole, a halfling has set up a folding table. His hands move in a blur over a deck. \"Three-Dragon Ante, friends! Pass the time while the Fist counts your teeth! Low stakes, quick hands, honest dealer!\" A couple of drovers have already sat down. The cards slap the wood, one after another.\n\nThe cat winds once around your ankles and goes still, ears forward.\n\nThen something taps your boot. A copper coin, muddy, has rolled out of the crowd and stopped against your foot. It hasn't fallen flat. It is standing on its edge in the mud, the way a coin never quite does, and nobody nearby seems to have noticed it or to be looking for it.\n\nThe queue moves another step. The sergeant glances down the line, and the halfling's voice rises again: \"Room for one more!\"",
+      "records": "James Worgen — Warlock, 5th level, Celestial patron (Tymora, Lady Luck), Pact of the Chain, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Athletics +2 (soldier); Intimidation +7 (soldier); Deception +7 (Beguiling Influence); Persuasion +7 (Beguiling Influence); Arcana +3 (warlock); Religion +3 (warlock); Stealth +2, with advantage from the Boots of Elvenkind; Passive Perception 11; Tools: playing cards; vehicles (land)\nSaves: Strength saving throw +0; Dexterity saving throw +3; Constitution saving throw +3; Intelligence saving throw +1; Wisdom saving throw +5 (proficient); Charisma saving throw +8 (proficient); All saves include +1 from the Cloak of Protection\nAttacks: Eldritch Blast: +8 to hit, 120 ft, 2 beams, each 1d10+4 force; Sacred Flame: DC 16 Dexterity save, 60 ft, 2d8 radiant, ignores cover; Guiding Bolt (3rd-level slot): +8 to hit, 120 ft, 6d6 radiant, next attack on the target has advantage; Light crossbow: +5 to hit, 80/320 ft, 1d8+2 piercing; Rapier (not proficient): +2 to hit, 1d8+2 piercing; Cat familiar (in place of one of James's attacks, using its reaction): claws +0 to hit, 1 slashing\nAbilities: Proficiency bonus +3; Pact Magic: two 3rd-level pact slots, recovered on a short or long rest. Spell attack +8, save DC 16 (with the rod).; Otherworldly Patron, the Celestial (Tymora): Light and Sacred Flame as bonus cantrips; Celestial spells added to his list.; Healing Light: pool of 6d6 per long rest. Bonus action, heal a creature within 60 ft, spending up to 4 dice at a time.; Pact of the Chain: knows Find Familiar (ritual); his familiar is a cat. It can attack with its reaction in place of one of his attacks.; Familiar telepathy within 100 ft; he can see and hear through the cat's senses.; Agonizing Blast: adds +4 (CHA) to each Eldritch Blast beam's damage.; Mask of Many Faces: casts Disguise Self at will without a spell slot.; Beguiling Influence: proficiency in Deception and Persuasion.; Military Rank (soldier): former Tethyrian soldiers and scouts recognise his service and may lend aid or shelter.; Envoy of Tymora: the goddess speaks through luck and omens; he owes her service in Baldur's Gate.\nSpells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Hex (1); Guiding Bolt (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3); Find Familiar (1); Disguise Self (1)\nLimits: Light armour only; fragile in melee.; Not proficient with the rapier (martial weapon); simple weapons only.; Only two pact slots; he must husband them between short rests.; One concentration spell at a time (Hex, Invisibility, Suggestion, Hypnotic Pattern).; Tymora's ban: no gambling at cards. Cards are a temptation that others can use against him.; The DC 16 and +8 spell attack require holding the Rod of the Pact Keeper; without it, DC 15 and +7.\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 350 gp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak (Cloak of Protection); Armor / clothing: Studded Leather Armour; Boots: Boots of Elvenkind\nPack: Component Pouch; Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; James's Papers; Light Crossbow; Potion of Healing ×2; Rapier; Rod of the Pact Keeper +1\nPlace: Basilisk Gate, Baldur's Gate\nTime: Day 1 · evening"
+    },
+    "finishedAt": "2026-10-25T05:28:35.429Z",
+    "campaign": {
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "52d793e1-ebf7-424c-8fad-871cea6c1c21",
+          "title": "Sword Coast — Baldur's Gate",
+          "premiseChars": 2673
+        },
+        {
+          "step": "hero",
+          "heroId": "789f8c02-5054-500f-b283-6674a36a4c13",
+          "rebuilt": false,
+          "empty": false,
+          "drafted": "with notes",
+          "sheet": {
+            "role": "Warlock, 5th level, Celestial patron (Tymora, Lady Luck), Pact of the Chain",
+            "level": 5,
+            "skills": 9,
+            "abilities": 11,
+            "spells": 13,
+            "items": 13,
+            "counters": 4
+          }
+        },
+        {
+          "step": "documents",
+          "documents": [
+            {
+              "title": "DM Guide",
+              "status": "reference",
+              "chars": 8559,
+              "guide": true
+            },
+            {
+              "title": "Sword Coast — Baldur's Gate",
+              "status": "canon",
+              "chars": 2673,
+              "guide": false
+            },
+            {
+              "title": "The Sword Coast — canon",
+              "status": "canon",
+              "chars": 10222,
+              "guide": false
+            }
+          ]
+        },
+        {
+          "step": "adventure",
+          "title": "Baldur's Gate, no errand",
+          "premiseChars": 162,
+          "wishesChars": 0,
+          "pace": "evening"
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "dm",
+            "secretsVisible": false,
+            "memory": "standard"
+          },
+          "boostNext": false,
+          "voiceMode": "off"
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "location": "Basilisk Gate, Baldur's Gate",
+          "actors": 3,
+          "questions": 2,
+          "startMinutes": 1140
+        }
+      ],
+      "prep": {
+        "hasLayer": true,
+        "chars": 7919,
+        "clocks": 3
+      }
+    },
+    "tags": {
+      "judges": "stand-in: GPT-6 Luna twice (effort low), GPT-6 Luna at effort medium on a disagreement — the Anthropic models could not be reached",
+      "player": {
+        "1": {
+          "a": {
+            "ask": 0,
+            "test": 0,
+            "lie": 0,
+            "cat": 1,
+            "goal": 0,
+            "reason": "The player acts by picking up and inspecting the coin, and murmurs directly to the cat."
+          },
+          "b": {
+            "ask": 0,
+            "test": 0,
+            "lie": 0,
+            "cat": 1,
+            "goal": 0,
+            "reason": "He acts by picking up and examining the coin, speaks to the cat, and states no broader goal or false claim."
+          },
+          "referee": null,
+          "final": {
+            "ask": 0,
+            "test": 0,
+            "lie": 0,
+            "cat": 1,
+            "goal": 0
+          }
+        },
+        "2": {
+          "a": {
+            "ask": 0,
+            "test": 0,
+            "lie": 0,
+            "cat": 1,
+            "goal": 1,
+            "reason": "He orders the cat to follow the salt-coat and says he will look into what it finds after passing through the arch."
+          },
+          "b": {
+            "ask": 0,
+            "test": 0,
+            "lie": 0,
+            "cat": 1,
+            "goal": 0,
+            "reason": "He gives the cat an order and takes actions, but states no test, lie, or goal beyond the next step."
+          },
+          "referee": {
+            "ask": 0,
+            "test": 0,
+            "lie": 0,
+            "cat": 1,
+            "goal": 0,
+            "reason": "He acts by directing the cat and moving with the queue, but makes no test, false claim, or broader goal statement."
+          },
+          "final": {
+            "ask": 0,
+            "test": 0,
+            "lie": 0,
+            "cat": 1,
+            "goal": 0
+          }
+        },
+        "3": {
+          "a": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 0,
+            "goal": 0,
+            "reason": "He speaks and pays, then asks Varn whether she served; he neither addresses the cat nor states an unprompted goal."
+          },
+          "b": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 0,
+            "goal": 0,
+            "reason": "He pays and answers the guard, then asks a question that tests whether she served or merely recognizes the uniform."
+          },
+          "referee": null,
+          "final": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 0,
+            "goal": 0
+          }
+        },
+        "4": {
+          "a": {
+            "ask": 0,
+            "test": 1,
+            "lie": 1,
+            "cat": 0,
+            "goal": 0,
+            "reason": "He acts by paying and speaking, probes Varn about the man, and claims the man dropped something as a cover story."
+          },
+          "b": {
+            "ask": 0,
+            "test": 1,
+            "lie": 1,
+            "cat": 0,
+            "goal": 0,
+            "reason": "He pays and speaks, asks Varn an unknown question to test her knowledge, and invents a claim that the man dropped something."
+          },
+          "referee": null,
+          "final": {
+            "ask": 0,
+            "test": 1,
+            "lie": 1,
+            "cat": 0,
+            "goal": 0
+          }
+        },
+        "5": {
+          "a": {
+            "ask": 0,
+            "test": 0,
+            "lie": 0,
+            "cat": 1,
+            "goal": 1,
+            "reason": "He acts and scouts through the cat, explicitly addressing it and stating what he wants to learn; he makes no false claim or test of the world."
+          },
+          "b": {
+            "ask": 0,
+            "test": 0,
+            "lie": 0,
+            "cat": 1,
+            "goal": 1,
+            "reason": "He moves, hides, and directs the cat to scout; he states he wants to learn where Tesk went and who is waiting there, without making a false claim."
+          },
+          "referee": null,
+          "final": {
+            "ask": 0,
+            "test": 0,
+            "lie": 0,
+            "cat": 1,
+            "goal": 1
+          }
+        },
+        "6": {
+          "a": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 1,
+            "goal": 1,
+            "reason": "He acts and instructs the cat, then waits to see who Tesk is expecting; he also states he wants to learn whose accounts the book records."
+          },
+          "b": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 1,
+            "goal": 1,
+            "reason": "He asks the keeper about room availability and price, orders the cat to follow, and states he wants to learn whose accounts the man keeps."
+          },
+          "referee": null,
+          "final": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 1,
+            "goal": 1
+          }
+        },
+        "7": {
+          "a": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 1,
+            "goal": 1,
+            "reason": "He pays and speaks, tests Hesper with a question, directs the cat, and states he wants to see who comes through for Tesk."
+          },
+          "b": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 1,
+            "goal": 1,
+            "reason": "He asks Hesper a probing question, gives the cat an instruction, and states a belief about what Lady Luck wants him to do."
+          },
+          "referee": null,
+          "final": {
+            "ask": 0,
+            "test": 1,
+            "lie": 0,
+            "cat": 1,
+            "goal": 1
+          }
+        }
+      },
+      "dm": {
+        "1": {
+          "a": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The silent man in the sea-cloak remains unexplained, and he is a concrete person James could approach or watch."
+          },
+          "b": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The unexplained warm silver and silent man in the sea-cloak remain unresolved, while the notched coin and the man with the open purse offer concrete things to investigate."
+          },
+          "referee": null,
+          "final": {
+            "unresolved": 1,
+            "plant": 1
+          }
+        },
+        "2": {
+          "a": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The empty stool and unseen departure remain unexplained, while Varn’s questions and fee offer a concrete interaction the player can test."
+          },
+          "b": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "Pell's unexplained disappearance leaves an unresolved detail, and Varn and her ledger are concrete things James can test by responding or asking to inspect the record."
+          },
+          "referee": null,
+          "final": {
+            "unresolved": 1,
+            "plant": 1
+          }
+        },
+        "3": {
+          "a": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The wet copper penny remains unexplained, and the strongbox is a concrete object James could test or inspect."
+          },
+          "b": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The unexplained “sorrow” in the strongbox is an odd detail, and the box can be tested by inspecting or opening it."
+          },
+          "referee": null,
+          "final": {
+            "unresolved": 1,
+            "plant": 1
+          }
+        },
+        "4": {
+          "a": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The unnecessary ledger tick is unexplained, and the harbour-list account is a claim James could check."
+          },
+          "b": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The unnecessary tick in the ledger is left unexplained, and the ledger, harbour list, and Tesk’s identifying buttons can all be investigated."
+          },
+          "referee": null,
+          "final": {
+            "unresolved": 1,
+            "plant": 1
+          }
+        },
+        "5": {
+          "a": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The unexplained wind-rose and the book entry remain unresolved, while the open door, book, and departing man offer concrete things James could test."
+          },
+          "b": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The wind-rose and the man's unexplained ledger entry remain unresolved, while the open door, book, and departing man offer concrete things to investigate."
+          },
+          "referee": null,
+          "final": {
+            "unresolved": 1,
+            "plant": 1
+          }
+        },
+        "6": {
+          "a": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The unexplained warmth of the silver and the abandoned drawstring remain interpretable details, while the room, Tesk, and the cat’s trail offer things the hero can test."
+          },
+          "b": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The silver’s unexplained warmth remains a concrete mystery, while the offered room and Tesk’s purse give James things he can test."
+          },
+          "referee": null,
+          "final": {
+            "unresolved": 1,
+            "plant": 1
+          }
+        },
+        "7": {
+          "a": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The cat’s cryptic “Him. Wet rope” remains unexplained, and the iron key and its specified door/window offer things James can test."
+          },
+          "b": {
+            "unresolved": 1,
+            "plant": 1,
+            "reason": "The cat’s unexplained “Wet rope” message remains unresolved, while the key and window offer concrete things James can test."
+          },
+          "referee": null,
+          "final": {
+            "unresolved": 1,
+            "plant": 1
+          }
+        }
+      },
+      "threads": [
+        {
+          "thread": "Why the notched penny was standing, damp, and deliberately marked",
+          "opened": 1,
+          "paid": null,
+          "elsewhere": 0
+        },
+        {
+          "thread": "Whether the penny came from the gap in Tesk’s purse",
+          "opened": 1,
+          "paid": null,
+          "elsewhere": 0
+        },
+        {
+          "thread": "Why Tymora’s silver warms near the penny or the booth",
+          "opened": 1,
+          "paid": null,
+          "elsewhere": 0
+        },
+        {
+          "thread": "Who the salt-coated man is",
+          "opened": 1,
+          "paid": 4,
+          "elsewhere": 1
+        },
+        {
+          "thread": "Who the grey-cloaked man is and why he is watching",
+          "opened": 1,
+          "paid": null,
+          "elsewhere": 0
+        },
+        {
+          "thread": "Where the salt-coated man went and what he was doing there",
+          "opened": 2,
+          "paid": 5,
+          "elsewhere": 1
+        },
+        {
+          "thread": "Why the grey-cloaked man vanished from Pell’s table",
+          "opened": 2,
+          "paid": null,
+          "elsewhere": 0
+        },
+        {
+          "thread": "What the ink-fingered man’s book entry and note mean",
+          "opened": 5,
+          "paid": null,
+          "elsewhere": 0
+        },
+        {
+          "thread": "What Tesk and the ink-fingered man were discussing",
+          "opened": 5,
+          "paid": null,
+          "elsewhere": 0
+        },
+        {
+          "thread": "Where the ink-fingered man went after leaving the tavern",
+          "opened": 6,
+          "paid": null,
+          "elsewhere": 0
+        },
+        {
+          "thread": "Why the sea’s supposed copper payments and drownings are happening",
+          "opened": 4,
+          "paid": null,
+          "elsewhere": 0
+        },
+        {
+          "thread": "Why people leave copper for the sea",
+          "opened": 4,
+          "paid": 7,
+          "elsewhere": 1
+        },
+        {
+          "thread": "What Tesk was waiting for",
+          "opened": 5,
+          "paid": 7,
+          "elsewhere": 1
+        },
+        {
+          "thread": "What the cat means by “Him. Wet rope”",
+          "opened": 7,
+          "paid": null,
+          "elsewhere": 0
+        },
+        {
+          "thread": "Whether the grey-cloaked man recognized James",
+          "opened": 7,
+          "paid": null,
+          "elsewhere": 0
+        }
+      ],
+      "deception": {},
+      "rolls": {
+        "1": {
+          "rolls": 1,
+          "untold": [],
+          "undeclared": [
+            "I turn the coin over to see whose face is on it and whether there's anything odd about it."
+          ],
+          "error": null
+        },
+        "4": {
+          "rolls": 1,
+          "untold": [
+            1
+          ],
+          "undeclared": [],
+          "error": null
+        },
+        "5": {
+          "rolls": 1,
+          "untold": [],
+          "undeclared": [],
+          "error": null
+        },
+        "7": {
+          "rolls": 2,
+          "untold": [
+            1
+          ],
+          "undeclared": [
+            "Watch Hesper’s face for her reaction to the question."
+          ],
+          "error": null
+        }
+      }
+    },
+    "epilogue": {
+      "header": "Epilogue — the table closed on 25 October 2026 after 7 turns",
+      "text": "Epilogue — the table closed on 25 October 2026 after 7 turns\n\nWinter came to Baldur's Gate the way it always does, off the water first. By the first hard frost the Trade Way's shanties had thinned. The queue at the Basilisk Gate was shorter and colder, and nobody sat out under a lantern on a pole to play cards in it.\n\nPell's folding table was gone from the roadside before the month turned. Nobody at the gate could say when. One evening the drovers came looking for a game and found only four square marks pressed into the mud. The Fist did not look for him. There was no reason in their ledger to.\n\nSergeant Odessa Varn kept the gate through the winter, as she had for twenty-two years. She asked the same three questions in one breath and took tolls without looking at them. Somewhere under her breastplate she still carried a gold piece that never went into the strongbox. Tesk's name stopped appearing in her columns after that autumn. She noticed, as she noticed most things, and did not write it down.\n\nThe drownings stopped. No one on the quays could have named the night it ended. People only realised, around midwinter, that the Fist had not pulled anyone out of the harbour with a copper on the tongue since the leaves fell. The fishwives and lightermen went on dropping coins off the end of the pier anyway, out of habit. By spring that habit was fading too. Copper came back to the quays slowly, and the chandler's rate fell from a silver for ten to something nearer honest.\n\nDown on the harbour front, one of the shuttered counting-rooms in the row by the warehouses was emptied and its lease sold before the ice came. The heavy, soft-faced clerk with ink on his fingers was not seen walking that stretch again. Whatever was in his oilcloth book stayed in it. Whatever sum he had been doing that night, he finished it somewhere else.\n\nTesk sat out his wait in the corner booth of the Stern Lantern, and within the tenday he was gone too. His front room was let to a ship's carpenter by winter. Hesper heard he had taken passage south on a coaster. She did not ask who told her, and she did not repeat it. The wind-rose buttons, whoever wore them, came through the Basilisk Gate no more.\n\nThe man in the grey sea-cloak was never seen at the Stern Lantern again, nor at any card table on the Way. He was a pair of square, weathered hands folded on a board, and then he was not.\n\nHesper Quayle kept her bar. She still bites the gold and gives change in whatever is in the clay pot. The back room over the yard still has its bolt, and its window still sticks. She tells every new lodger to shove it, not kick it.\n\nThe thread that began with a copper standing on its edge in the mud ended without anyone coming to ask for it. The ship-penny was never returned to Tesk, and no one ever claimed it.\n\nJames Worgen stayed his night in the back room, or perhaps longer. The record does not keep it. One grey morning the black iron key with its net-float lay on the bar, and he was not there to collect his change. The cat had gone with him, as it always did. He went out into the Lower City as he had come in: an old soldier in faded Tethyrian facings, a crossbow on his back, a silver coin warm or cold at his chest, and a notched copper in the pouch at his hip.\n\nThe steep street below the gate is lamp-lit again each evening, from the bottom up. The city closed over the place where he had been the way the harbour closes over a dropped coin. A ripple, and then smooth water.",
+      "writtenBy": "claude-opus-5-5",
+      "effort": "high",
+      "repaired": false,
+      "final": true
+    }
+  }
+}

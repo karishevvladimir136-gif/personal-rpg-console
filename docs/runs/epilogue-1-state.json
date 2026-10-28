@@ -1,0 +1,668 @@
+{
+  "designSha256": "cb27352bd95f4ffb2899e5ed44964d463804271cc214740771bd8f158c9c4a7c",
+  "done": {
+    "gp1-B-opus": {
+      "id": "gp1-B-opus",
+      "calls": [
+        {
+          "purpose": "epilogue",
+          "stopReason": "end_turn",
+          "error": null
+        }
+      ],
+      "repaired": false,
+      "first": {
+        "text": "Epilogue — the table closed on 25 October 2026 after 7 turns\n\nWinter came to Baldur's Gate the way it always does, off the water first. By the first hard frost the Trade Way's shanties had thinned. The queue at the Basilisk Gate was shorter and colder, and nobody sat out under a lantern on a pole to play cards in it.\n\nPell's folding table was gone from the roadside before the month turned. Nobody at the gate could say when. One evening the drovers came looking for a game and found only four square marks pressed into the mud. The Fist did not look for him. There was no reason in their ledger to.\n\nSergeant Odessa Varn kept the gate through the winter, as she had for twenty-two years. She asked the same three questions in one breath and took tolls without looking at them. Somewhere under her breastplate she still carried a gold piece that never went into the strongbox. Tesk's name stopped appearing in her columns after that autumn. She noticed, as she noticed most things, and did not write it down.\n\nThe drownings stopped. No one on the quays could have named the night it ended. People only realised, around midwinter, that the Fist had not pulled anyone out of the harbour with a copper on the tongue since the leaves fell. The fishwives and lightermen went on dropping coins off the end of the pier anyway, out of habit. By spring that habit was fading too. Copper came back to the quays slowly, and the chandler's rate fell from a silver for ten to something nearer honest.\n\nDown on the harbour front, one of the shuttered counting-rooms in the row by the warehouses was emptied and its lease sold before the ice came. The heavy, soft-faced clerk with ink on his fingers was not seen walking that stretch again. Whatever was in his oilcloth book stayed in it. Whatever sum he had been doing that night, he finished it somewhere else.\n\nTesk sat out his wait in the corner booth of the Stern Lantern, and within the tenday he was gone too. His front room was let to a ship's carpenter by winter. Hesper heard he had taken passage south on a coaster. She did not ask who told her, and she did not repeat it. The wind-rose buttons, whoever wore them, came through the Basilisk Gate no more.\n\nThe man in the grey sea-cloak was never seen at the Stern Lantern again, nor at any card table on the Way. He was a pair of square, weathered hands folded on a board, and then he was not.\n\nHesper Quayle kept her bar. She still bites the gold and gives change in whatever is in the clay pot. The back room over the yard still has its bolt, and its window still sticks. She tells every new lodger to shove it, not kick it.\n\nThe thread that began with a copper standing on its edge in the mud ended without anyone coming to ask for it. The ship-penny was never returned to Tesk, and no one ever claimed it.\n\nJames Worgen stayed his night in the back room, or perhaps longer. The record does not keep it. One grey morning the black iron key with its net-float lay on the bar, and he was not there to collect his change. The cat had gone with him, as it always did. He went out into the Lower City as he had come in: an old soldier in faded Tethyrian facings, a crossbow on his back, a silver coin warm or cold at his chest, and a notched copper in the pouch at his hip.\n\nThe steep street below the gate is lamp-lit again each evening, from the bottom up. The city closed over the place where he had been the way the harbour closes over a dropped coin. A ripple, and then smooth water.",
+        "served": "anthropic/claude-opus-5.5"
+      },
+      "firstReading": {
+        "pass": {
+          "threads": [
+            {
+              "thread": "The Copper That Stood on Its Edge",
+              "ended": 1,
+              "quote": "The thread that began with a copper standing on its edge in the mud ended without anyone coming to ask for it."
+            },
+            {
+              "thread": "Tesk and the drowning / wind-rose factor network",
+              "ended": 1,
+              "quote": "Tesk sat out his wait in the corner booth of the Stern Lantern, and within the tenday he was gone too."
+            },
+            {
+              "thread": "Pell's card game and the drowned drover",
+              "ended": 1,
+              "quote": "Pell's folding table was gone from the roadside before the month turned. Nobody at the gate could say when."
+            },
+            {
+              "thread": "The drownings and copper offerings to the sea",
+              "ended": 1,
+              "quote": "The drownings stopped. No one on the quays could have named the night it ended."
+            },
+            {
+              "thread": "The ink-fingered clerk's oilcloth book",
+              "ended": 1,
+              "quote": "Whatever was in his oilcloth book stayed in it. Whatever sum he had been doing that night, he finished it somewhere else."
+            },
+            {
+              "thread": "The grey sea-cloak man",
+              "ended": 1,
+              "quote": "He was a pair of square, weathered hands folded on a board, and then he was not."
+            }
+          ],
+          "people": [
+            {
+              "name": "Sergeant Odessa Varn",
+              "fate": 1,
+              "quote": "Sergeant Odessa Varn kept the gate through the winter, as she had for twenty-two years."
+            },
+            {
+              "name": "Pell",
+              "fate": 1,
+              "quote": "Pell's folding table was gone from the roadside before the month turned."
+            },
+            {
+              "name": "Tesk",
+              "fate": 1,
+              "quote": "Tesk sat out his wait in the corner booth of the Stern Lantern, and within the tenday he was gone too."
+            },
+            {
+              "name": "Hesper Quayle",
+              "fate": 1,
+              "quote": "Hesper Quayle kept her bar."
+            },
+            {
+              "name": "The man in the grey sea-cloak",
+              "fate": 1,
+              "quote": "The man in the grey sea-cloak was never seen at the Stern Lantern again, nor at any card table on the Way."
+            },
+            {
+              "name": "The soft-faced clerk with inky fingers",
+              "fate": 1,
+              "quote": "The heavy, soft-faced clerk with ink on his fingers was not seen walking that stretch again."
+            }
+          ],
+          "contradictions": [
+            {
+              "entry": "Pell's folding table was gone from the roadside before the month turned... Nobody at the gate could say when.",
+              "record": "Pell's game was still running under the lantern at the end of the opening scene; this is an outcome after the table closed, so not contradictory."
+            },
+            {
+              "entry": "Tesk ... Hesper heard he had taken passage south on a coaster.",
+              "record": "Tesk's purse and drawstring were left unresolved at the table, but no contradiction of established facts."
+            },
+            {
+              "entry": "The ship-penny was never returned to Tesk, and no one ever claimed it.",
+              "record": "James was never shown returning the penny; consistent. Not a contradiction."
+            },
+            {
+              "entry": "The drownings stopped... the Fist had not pulled anyone out of the harbour with a copper on the tongue since the leaves fell.",
+              "record": "Hesper said three drowned this year; this is a later outcome, not a contradiction."
+            }
+          ],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        },
+        "referee": {
+          "threads": [
+            {
+              "thread": "The Copper That Stood on Its Edge",
+              "ended": 1,
+              "quote": "The thread that began with a copper standing on its edge in the mud ended without anyone coming to ask for it."
+            },
+            {
+              "thread": "The drowned drover and the drownings with a copper on the tongue",
+              "ended": 1,
+              "quote": "The drownings stopped."
+            },
+            {
+              "thread": "Who Tesk is waiting for in the Stern Lantern / his meeting with the grey-cloak",
+              "ended": 1,
+              "quote": "Tesk sat out his wait in the corner booth of the Stern Lantern, and within the tenday he was gone too."
+            },
+            {
+              "thread": "The ink-fingered clerk's oilcloth book and where he went",
+              "ended": 1,
+              "quote": "Whatever sum he had been doing that night, he finished it somewhere else."
+            },
+            {
+              "thread": "Copper scarce on the quays",
+              "ended": 1,
+              "quote": "Copper came back to the quays slowly, and the chandler's rate fell from a silver for ten to something nearer honest."
+            },
+            {
+              "thread": "Pell's card table and its link to the drowned drover",
+              "ended": 1,
+              "quote": "Pell's folding table was gone from the roadside before the month turned."
+            },
+            {
+              "thread": "James's owed service to Tymora in Baldur's Gate",
+              "ended": 0,
+              "quote": ""
+            }
+          ],
+          "people": [
+            {
+              "name": "Pell",
+              "fate": 1,
+              "quote": "Pell's folding table was gone from the roadside before the month turned."
+            },
+            {
+              "name": "Tesk",
+              "fate": 1,
+              "quote": "Hesper heard he had taken passage south on a coaster."
+            },
+            {
+              "name": "Sergeant Odessa Varn",
+              "fate": 1,
+              "quote": "Sergeant Odessa Varn kept the gate through the winter, as she had for twenty-two years."
+            },
+            {
+              "name": "Man in the grey sea-cloak",
+              "fate": 1,
+              "quote": "The man in the grey sea-cloak was never seen at the Stern Lantern again, nor at any card table on the Way."
+            },
+            {
+              "name": "Soft-faced man with inky fingers",
+              "fate": 1,
+              "quote": "The heavy, soft-faced clerk with ink on his fingers was not seen walking that stretch again."
+            },
+            {
+              "name": "Hesper Quayle",
+              "fate": 1,
+              "quote": "Hesper Quayle kept her bar."
+            },
+            {
+              "name": "The tiefling carter",
+              "fate": 0,
+              "quote": ""
+            }
+          ],
+          "contradictions": [],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        },
+        "final": {
+          "threads": [
+            {
+              "thread": "The Copper That Stood on Its Edge",
+              "ended": 1,
+              "quote": "The thread that began with a copper standing on its edge in the mud ended without anyone coming to ask for it."
+            },
+            {
+              "thread": "The drowned drover and the drownings with a copper on the tongue",
+              "ended": 1,
+              "quote": "The drownings stopped."
+            },
+            {
+              "thread": "Who Tesk is waiting for in the Stern Lantern / his meeting with the grey-cloak",
+              "ended": 1,
+              "quote": "Tesk sat out his wait in the corner booth of the Stern Lantern, and within the tenday he was gone too."
+            },
+            {
+              "thread": "The ink-fingered clerk's oilcloth book and where he went",
+              "ended": 1,
+              "quote": "Whatever sum he had been doing that night, he finished it somewhere else."
+            },
+            {
+              "thread": "Copper scarce on the quays",
+              "ended": 1,
+              "quote": "Copper came back to the quays slowly, and the chandler's rate fell from a silver for ten to something nearer honest."
+            },
+            {
+              "thread": "Pell's card table and its link to the drowned drover",
+              "ended": 1,
+              "quote": "Pell's folding table was gone from the roadside before the month turned."
+            },
+            {
+              "thread": "James's owed service to Tymora in Baldur's Gate",
+              "ended": 0,
+              "quote": ""
+            }
+          ],
+          "people": [
+            {
+              "name": "Pell",
+              "fate": 1,
+              "quote": "Pell's folding table was gone from the roadside before the month turned."
+            },
+            {
+              "name": "Tesk",
+              "fate": 1,
+              "quote": "Hesper heard he had taken passage south on a coaster."
+            },
+            {
+              "name": "Sergeant Odessa Varn",
+              "fate": 1,
+              "quote": "Sergeant Odessa Varn kept the gate through the winter, as she had for twenty-two years."
+            },
+            {
+              "name": "Man in the grey sea-cloak",
+              "fate": 1,
+              "quote": "The man in the grey sea-cloak was never seen at the Stern Lantern again, nor at any card table on the Way."
+            },
+            {
+              "name": "Soft-faced man with inky fingers",
+              "fate": 1,
+              "quote": "The heavy, soft-faced clerk with ink on his fingers was not seen walking that stretch again."
+            },
+            {
+              "name": "Hesper Quayle",
+              "fate": 1,
+              "quote": "Hesper Quayle kept her bar."
+            },
+            {
+              "name": "The tiefling carter",
+              "fate": 0,
+              "quote": ""
+            }
+          ],
+          "contradictions": [],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        }
+      },
+      "entry": "Epilogue — the table closed on 25 October 2026 after 7 turns\n\nWinter came to Baldur's Gate the way it always does, off the water first. By the first hard frost the Trade Way's shanties had thinned. The queue at the Basilisk Gate was shorter and colder, and nobody sat out under a lantern on a pole to play cards in it.\n\nPell's folding table was gone from the roadside before the month turned. Nobody at the gate could say when. One evening the drovers came looking for a game and found only four square marks pressed into the mud. The Fist did not look for him. There was no reason in their ledger to.\n\nSergeant Odessa Varn kept the gate through the winter, as she had for twenty-two years. She asked the same three questions in one breath and took tolls without looking at them. Somewhere under her breastplate she still carried a gold piece that never went into the strongbox. Tesk's name stopped appearing in her columns after that autumn. She noticed, as she noticed most things, and did not write it down.\n\nThe drownings stopped. No one on the quays could have named the night it ended. People only realised, around midwinter, that the Fist had not pulled anyone out of the harbour with a copper on the tongue since the leaves fell. The fishwives and lightermen went on dropping coins off the end of the pier anyway, out of habit. By spring that habit was fading too. Copper came back to the quays slowly, and the chandler's rate fell from a silver for ten to something nearer honest.\n\nDown on the harbour front, one of the shuttered counting-rooms in the row by the warehouses was emptied and its lease sold before the ice came. The heavy, soft-faced clerk with ink on his fingers was not seen walking that stretch again. Whatever was in his oilcloth book stayed in it. Whatever sum he had been doing that night, he finished it somewhere else.\n\nTesk sat out his wait in the corner booth of the Stern Lantern, and within the tenday he was gone too. His front room was let to a ship's carpenter by winter. Hesper heard he had taken passage south on a coaster. She did not ask who told her, and she did not repeat it. The wind-rose buttons, whoever wore them, came through the Basilisk Gate no more.\n\nThe man in the grey sea-cloak was never seen at the Stern Lantern again, nor at any card table on the Way. He was a pair of square, weathered hands folded on a board, and then he was not.\n\nHesper Quayle kept her bar. She still bites the gold and gives change in whatever is in the clay pot. The back room over the yard still has its bolt, and its window still sticks. She tells every new lodger to shove it, not kick it.\n\nThe thread that began with a copper standing on its edge in the mud ended without anyone coming to ask for it. The ship-penny was never returned to Tesk, and no one ever claimed it.\n\nJames Worgen stayed his night in the back room, or perhaps longer. The record does not keep it. One grey morning the black iron key with its net-float lay on the bar, and he was not there to collect his change. The cat had gone with him, as it always did. He went out into the Lower City as he had come in: an old soldier in faded Tethyrian facings, a crossbow on his back, a silver coin warm or cold at his chest, and a notched copper in the pouch at his hip.\n\nThe steep street below the gate is lamp-lit again each evening, from the bottom up. The city closed over the place where he had been the way the harbour closes over a dropped coin. A ripple, and then smooth water.",
+      "reading": {
+        "pass": {
+          "threads": [
+            {
+              "thread": "The Copper That Stood on Its Edge",
+              "ended": 1,
+              "quote": "The thread that began with a copper standing on its edge in the mud ended without anyone coming to ask for it."
+            },
+            {
+              "thread": "Tesk and the drowning / wind-rose factor network",
+              "ended": 1,
+              "quote": "Tesk sat out his wait in the corner booth of the Stern Lantern, and within the tenday he was gone too."
+            },
+            {
+              "thread": "Pell's card game and the drowned drover",
+              "ended": 1,
+              "quote": "Pell's folding table was gone from the roadside before the month turned. Nobody at the gate could say when."
+            },
+            {
+              "thread": "The drownings and copper offerings to the sea",
+              "ended": 1,
+              "quote": "The drownings stopped. No one on the quays could have named the night it ended."
+            },
+            {
+              "thread": "The ink-fingered clerk's oilcloth book",
+              "ended": 1,
+              "quote": "Whatever was in his oilcloth book stayed in it. Whatever sum he had been doing that night, he finished it somewhere else."
+            },
+            {
+              "thread": "The grey sea-cloak man",
+              "ended": 1,
+              "quote": "He was a pair of square, weathered hands folded on a board, and then he was not."
+            }
+          ],
+          "people": [
+            {
+              "name": "Sergeant Odessa Varn",
+              "fate": 1,
+              "quote": "Sergeant Odessa Varn kept the gate through the winter, as she had for twenty-two years."
+            },
+            {
+              "name": "Pell",
+              "fate": 1,
+              "quote": "Pell's folding table was gone from the roadside before the month turned."
+            },
+            {
+              "name": "Tesk",
+              "fate": 1,
+              "quote": "Tesk sat out his wait in the corner booth of the Stern Lantern, and within the tenday he was gone too."
+            },
+            {
+              "name": "Hesper Quayle",
+              "fate": 1,
+              "quote": "Hesper Quayle kept her bar."
+            },
+            {
+              "name": "The man in the grey sea-cloak",
+              "fate": 1,
+              "quote": "The man in the grey sea-cloak was never seen at the Stern Lantern again, nor at any card table on the Way."
+            },
+            {
+              "name": "The soft-faced clerk with inky fingers",
+              "fate": 1,
+              "quote": "The heavy, soft-faced clerk with ink on his fingers was not seen walking that stretch again."
+            }
+          ],
+          "contradictions": [
+            {
+              "entry": "Pell's folding table was gone from the roadside before the month turned... Nobody at the gate could say when.",
+              "record": "Pell's game was still running under the lantern at the end of the opening scene; this is an outcome after the table closed, so not contradictory."
+            },
+            {
+              "entry": "Tesk ... Hesper heard he had taken passage south on a coaster.",
+              "record": "Tesk's purse and drawstring were left unresolved at the table, but no contradiction of established facts."
+            },
+            {
+              "entry": "The ship-penny was never returned to Tesk, and no one ever claimed it.",
+              "record": "James was never shown returning the penny; consistent. Not a contradiction."
+            },
+            {
+              "entry": "The drownings stopped... the Fist had not pulled anyone out of the harbour with a copper on the tongue since the leaves fell.",
+              "record": "Hesper said three drowned this year; this is a later outcome, not a contradiction."
+            }
+          ],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        },
+        "referee": {
+          "threads": [
+            {
+              "thread": "The Copper That Stood on Its Edge",
+              "ended": 1,
+              "quote": "The thread that began with a copper standing on its edge in the mud ended without anyone coming to ask for it."
+            },
+            {
+              "thread": "The drowned drover and the drownings with a copper on the tongue",
+              "ended": 1,
+              "quote": "The drownings stopped."
+            },
+            {
+              "thread": "Who Tesk is waiting for in the Stern Lantern / his meeting with the grey-cloak",
+              "ended": 1,
+              "quote": "Tesk sat out his wait in the corner booth of the Stern Lantern, and within the tenday he was gone too."
+            },
+            {
+              "thread": "The ink-fingered clerk's oilcloth book and where he went",
+              "ended": 1,
+              "quote": "Whatever sum he had been doing that night, he finished it somewhere else."
+            },
+            {
+              "thread": "Copper scarce on the quays",
+              "ended": 1,
+              "quote": "Copper came back to the quays slowly, and the chandler's rate fell from a silver for ten to something nearer honest."
+            },
+            {
+              "thread": "Pell's card table and its link to the drowned drover",
+              "ended": 1,
+              "quote": "Pell's folding table was gone from the roadside before the month turned."
+            },
+            {
+              "thread": "James's owed service to Tymora in Baldur's Gate",
+              "ended": 0,
+              "quote": ""
+            }
+          ],
+          "people": [
+            {
+              "name": "Pell",
+              "fate": 1,
+              "quote": "Pell's folding table was gone from the roadside before the month turned."
+            },
+            {
+              "name": "Tesk",
+              "fate": 1,
+              "quote": "Hesper heard he had taken passage south on a coaster."
+            },
+            {
+              "name": "Sergeant Odessa Varn",
+              "fate": 1,
+              "quote": "Sergeant Odessa Varn kept the gate through the winter, as she had for twenty-two years."
+            },
+            {
+              "name": "Man in the grey sea-cloak",
+              "fate": 1,
+              "quote": "The man in the grey sea-cloak was never seen at the Stern Lantern again, nor at any card table on the Way."
+            },
+            {
+              "name": "Soft-faced man with inky fingers",
+              "fate": 1,
+              "quote": "The heavy, soft-faced clerk with ink on his fingers was not seen walking that stretch again."
+            },
+            {
+              "name": "Hesper Quayle",
+              "fate": 1,
+              "quote": "Hesper Quayle kept her bar."
+            },
+            {
+              "name": "The tiefling carter",
+              "fate": 0,
+              "quote": ""
+            }
+          ],
+          "contradictions": [],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        },
+        "final": {
+          "threads": [
+            {
+              "thread": "The Copper That Stood on Its Edge",
+              "ended": 1,
+              "quote": "The thread that began with a copper standing on its edge in the mud ended without anyone coming to ask for it."
+            },
+            {
+              "thread": "The drowned drover and the drownings with a copper on the tongue",
+              "ended": 1,
+              "quote": "The drownings stopped."
+            },
+            {
+              "thread": "Who Tesk is waiting for in the Stern Lantern / his meeting with the grey-cloak",
+              "ended": 1,
+              "quote": "Tesk sat out his wait in the corner booth of the Stern Lantern, and within the tenday he was gone too."
+            },
+            {
+              "thread": "The ink-fingered clerk's oilcloth book and where he went",
+              "ended": 1,
+              "quote": "Whatever sum he had been doing that night, he finished it somewhere else."
+            },
+            {
+              "thread": "Copper scarce on the quays",
+              "ended": 1,
+              "quote": "Copper came back to the quays slowly, and the chandler's rate fell from a silver for ten to something nearer honest."
+            },
+            {
+              "thread": "Pell's card table and its link to the drowned drover",
+              "ended": 1,
+              "quote": "Pell's folding table was gone from the roadside before the month turned."
+            },
+            {
+              "thread": "James's owed service to Tymora in Baldur's Gate",
+              "ended": 0,
+              "quote": ""
+            }
+          ],
+          "people": [
+            {
+              "name": "Pell",
+              "fate": 1,
+              "quote": "Pell's folding table was gone from the roadside before the month turned."
+            },
+            {
+              "name": "Tesk",
+              "fate": 1,
+              "quote": "Hesper heard he had taken passage south on a coaster."
+            },
+            {
+              "name": "Sergeant Odessa Varn",
+              "fate": 1,
+              "quote": "Sergeant Odessa Varn kept the gate through the winter, as she had for twenty-two years."
+            },
+            {
+              "name": "Man in the grey sea-cloak",
+              "fate": 1,
+              "quote": "The man in the grey sea-cloak was never seen at the Stern Lantern again, nor at any card table on the Way."
+            },
+            {
+              "name": "Soft-faced man with inky fingers",
+              "fate": 1,
+              "quote": "The heavy, soft-faced clerk with ink on his fingers was not seen walking that stretch again."
+            },
+            {
+              "name": "Hesper Quayle",
+              "fate": 1,
+              "quote": "Hesper Quayle kept her bar."
+            },
+            {
+              "name": "The tiefling carter",
+              "fate": 0,
+              "quote": ""
+            }
+          ],
+          "contradictions": [],
+          "hero_killed": 0,
+          "hero_resolved": 0,
+          "hero_quote": "",
+          "new_hook": 0,
+          "hook_quote": "",
+          "header": 1
+        }
+      },
+      "numbers": {
+        "threads": 7,
+        "threadsEnded": 6,
+        "people": 7,
+        "peopleFated": 6,
+        "contradictions": 0,
+        "newHook": 0,
+        "heroKilled": 0,
+        "heroResolved": 0,
+        "header": 1,
+        "words": 646
+      },
+      "firstNumbers": {
+        "threads": 7,
+        "threadsEnded": 6,
+        "people": 7,
+        "peopleFated": 6,
+        "contradictions": 0,
+        "newHook": 0,
+        "heroKilled": 0,
+        "heroResolved": 0,
+        "header": 1,
+        "words": 646
+      },
+      "writtenAt": "2026-10-28T04:03:13.978Z"
+    }
+  },
+  "spentUsd": 0.1933,
+  "refusals": 0,
+  "spendChecks": [
+    {
+      "at": "2026-10-28T04:02:27.082Z",
+      "when": "before",
+      "totalCredits": 1100,
+      "totalUsage": 859.0275,
+      "left": 240.9725
+    },
+    {
+      "at": "2026-10-28T04:03:14.068Z",
+      "when": "after",
+      "totalCredits": 1100,
+      "totalUsage": 859.3877,
+      "left": 240.6123
+    }
+  ],
+  "ledgerRuns": [
+    {
+      "finishedAt": "2026-10-28T04:03:14.068Z",
+      "what": "--only gp1-B-opus",
+      "spentUsd": 0.1933,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "at": "2026-10-28T04:02:27.085Z",
+          "session": "gp1-B-opus",
+          "purpose": "epilogue",
+          "provider": "openrouter",
+          "model": "anthropic/claude-opus-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 13174,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 0,
+            "cache_write_1h": 0,
+            "output_tokens": 2121
+          },
+          "costUsd": 0.095116,
+          "seconds": 26.7,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793160147-nKO9OnDANrz6SOCuD5Yy",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        },
+        {
+          "n": 2,
+          "at": "2026-10-28T04:02:53.744Z",
+          "session": "gp1-B-opus",
+          "purpose": "judge gp1-B-opus first",
+          "provider": "openrouter",
+          "model": "anthropic/claude-haiku-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 14965,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 0,
+            "cache_write_1h": 0,
+            "output_tokens": 1088
+          },
+          "costUsd": 0.0020405,
+          "seconds": 4.4,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793160173-UZzgOjjgOp5B0OM8yEa4",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        },
+        {
+          "n": 3,
+          "at": "2026-10-28T04:02:58.141Z",
+          "session": "gp1-B-opus",
+          "purpose": "referee gp1-B-opus first",
+          "provider": "openrouter",
+          "model": "anthropic/claude-opus-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 14965,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 0,
+            "cache_write_1h": 0,
+            "output_tokens": 1815
+          },
+          "costUsd": 0.09616,
+          "seconds": 15.8,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793160178-XQ20lFuDuns2Gq6c7S1b",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        }
+      ]
+    }
+  ]
+}
