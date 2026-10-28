@@ -1,6 +1,6 @@
 # Game party 1 — three players at one table
 
-Stage origin/claude/handoff at 23220d6 (docs/stages/GAME_PARTY_1.md, the amendment of 2026-10-27 16:36 LA). Branch `claude/game-party-1`. Design sha256 `e0013ebdeea07e4b70b6848ff4705c4d7994c44abc7f5ff2c2aa6a36426671c2`. Synthetic content: invented characters in an invented campaign (Table C's Beregost files).
+Stage origin/claude/handoff at 23220d6 (docs/stages/GAME_PARTY_1.md, the amendment of 2026-10-27 16:36 LA). Branch `claude/game-party-1`. Design sha256 `2fbb8c8be7456078894153366e0915a0f4c94f774e7c761fc220395191d9920c`. Synthetic content: invented characters in an invented campaign (Table C's Beregost files).
 
 1 of 6 tables played (still to play: SAND-T2, GOAL-T1, GOAL-T2, DUNGEON-T1, DUNGEON-T2).
 
@@ -26,6 +26,9 @@ Stage origin/claude/handoff at 23220d6 (docs/stages/GAME_PARTY_1.md, the amendme
 
 - 2026-10-28, after the Haiku dry run and before any real table, by the owner: (1) The seats rotate across the arms (ROTATION): P-SAND seat 1 = Opus (T1) / Fable (T2); P-GOAL seat 1 = Sol / Astra; P-DUNGEON seat 1 = DeepSeek in both triads; the other two seats rotate with them, so each family plays each sheet once per triad. The hero asymmetry (DM attention, Inspiration, the shared 2 rerolls) is declared a known condition. (2) In P-SAND, the round judges tag whether a party forms around a DM-offered hook or around a player's proposal (`around`); Q4 is read with that split. (3) SAND-T1 starts only after the owner confirms the OpenRouter top-up; then the six tables in the stage's order, one at a time, a spend check before each.
 - 2026-10-28 04:10 UTC, after SAND-T1 and one round of SAND-T2 (stopped), by the session (reported to the owner at once): Two harness defects SAND-T1 showed, fixed: (1) the relay's output limit raised from 6 000 to 16 000 tokens — at rounds 3–5 its replies were cut off twice each, and the round fell back to the narration as written for all three (no table talk those rounds); (2) scenes that meet merge — the relay was told the other characters were simply «elsewhere» and could not group a character who walked into another scene, so the harness kept two scenes that the DM had already brought together (rounds 12–25: the same events narrated in two DM turns, the retcons both players named, and every one of the 14 leak-check hits). Now the relay may group a character from another scene who is with them by its narration; the table's groups after a round come from every scene's relay of that round; and the DM's round message names who is elsewhere, in a scene of their own, not to be narrated here. SAND-T2's first attempt (one round) was stopped and is not used; its cost is not in the ledger. SAND-T1 stands as played on the old harness unless the owner asks for it to be played again.
+- 2026-10-28, during SAND-T2, by the owner: (1) The door line in the player's prompt is strengthened from GOAL-T1 on (v2): «You may leave the table whenever you like by writing [END] on its own line: your character walks out of the scene and does not return this session; the others play on. If you only mean to end the day or the scene, do not write [END].» SAND-T1 and SAND-T2 keep the old line (v1); SAND-T2 was already running. The harness's door is unchanged ([END] anywhere is honoured). (2) Pell's door at SAND-T1 round 7 is tagged «door used as end-of-day» (DOOR_NOTES), and Q4's parts are read with that note. (3) SAND-T1 stands with its defects noted; if budget remains after the five tables, it is played again last on the final harness as SAND-T1′.
+
+The door lines: v1 sha256 `0c16e56b0543619861e2fbfd34fe98eb4c237dc2bef22fe641e3f292db604f72` (SAND-T1, SAND-T2); v2 sha256 `a95257880ffa83b32f8ff80bc3915c95170a8e9e2461e8f422a27c65b4fa640a` (from GOAL-T1 on). Each player transcript names its prompt's hash.
 
 ## The frozen world (DM-private)
 
@@ -38,7 +41,7 @@ Snapshot `1649b61c08e027ff44de2bb5065046f872e383a00c5d04803d95553f58568f5a` (the
 
 | Table | Seats (Bram / Sefa / Pell) | Rounds | Ended | Words (share) | Left the table |
 | --- | --- | --- | --- | --- | --- |
-| SAND-T1 | Claude Opus 5.5 / GPT-6.1 Sol / DeepSeek V4 Pro 0813 | 25 | rounds | Bram 7990 (68 %), Sefa 2088 (18 %), Pell 1625 (14 %) | Pell: door r7 |
+| SAND-T1 | Claude Opus 5.5 / GPT-6.1 Sol / DeepSeek V4 Pro 0813 | 25 | rounds | Bram 7990 (68 %), Sefa 2088 (18 %), Pell 1625 (14 %) | Pell: door r7 (door used as end-of-day: the same message sets plans for the morning; the reasoning field says "concluding for the night") |
 
 ## Pre-registration (the planner's bets)
 - **Q1.** No player exceeds 45 % of the table's words in any table.
@@ -86,7 +89,7 @@ Tagged rounds 25 of 25; rounds under threat 0.
 | Sefa (GPT-6.1 Sol) | 10 | 2 | 0 | 0 | 0 / 0 | 0 | 0 | 0 | 0 | 0 | 0 / 1 / 2 | 0 / 0 |
 | Pell (DeepSeek V4 Pro 0813) | 1 | 1 | 0 | 0 | 0 / 0 | 0 | 0 | 0 | 0 | 1 | 0 / 1 / 0 | 0 / 0 |
 
-- Party: formed r4 around hook; parts after: r7 Pell, r21 Bram.
+- Party: formed r4 around hook; parts after: r7 Pell (door used as end-of-day), r21 Bram.
 - Conflicts: none. Leaders: r9 Bram (proposal), r11 Sefa (proposal), r20 Bram (proposal).
 - Healing: none. Left behind: none. First below half HP: not recorded.
 - The harness: «?» 0, presses with no card 0, refused at a card 0, prose at a card 0, cards settled without a player 0, relay fallbacks 3; welfare flags 0; leak hits 14.
@@ -124,7 +127,7 @@ Tagged rounds 25 of 25; rounds under threat 0.
 - OpenRouter: $36.97 of $400.00 (the tables and the freeze $36.62, the judges $0.36).
 - OpenAI: $1.14 of $60.00 (the tables and the freeze $1.14, the judges $0.00).
 - The Haiku dry runs: $0.14 on their own ledger.
-- The last spend check (2026-10-28T03:56:08.492Z, by hand): the shared OpenRouter account had $241.98 left.
+- The last spend check (2026-10-28T03:58:38.143Z, before SAND-T2): the shared OpenRouter account had $241.66 left.
 
 Ledgers: `docs/runs/game-party-1-ledger-openrouter.md`, `docs/runs/game-party-1-ledger-openai.md`.
 

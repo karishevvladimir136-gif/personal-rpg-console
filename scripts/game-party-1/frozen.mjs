@@ -32,6 +32,9 @@ export const ROSTER = { opus: PLAYERS.opus, fable: PLAYERS.fable, astra: PLAYERS
 export const tableKey = (arm, triad) => `${arm}-${triad}`;
 /** P-SAND first (nothing asked), then P-GOAL, then P-DUNGEON; T1 then T2 within each arm; one table at a time. */
 export const ORDER = ARMS.flatMap((arm) => Object.keys(TRIADS).map((triad) => ({ key: tableKey(arm, triad), arm, triad, seats: seatsOf(arm, triad) })));
+/** The owner's word (2026-10-28): SAND-T1 stands with its defects noted; if budget remains after the five tables, it is
+ * played again last, on the final harness, as SAND-T1′ (not in the driver's order: started by hand). */
+export const REPLAY = { key: "SAND-T1′", arm: "SAND", triad: "T1", seats: seatsOf("SAND", "T1"), replays: "SAND-T1" };
 
 /** The app's hero asymmetry, declared as a known condition (the owner, 2026-10-28): seat 1's character is the app's hero
  * record and the others party companions. */
@@ -45,7 +48,14 @@ export const AMENDMENTS = [
   { at: "2026-10-28 04:10 UTC, after SAND-T1 and one round of SAND-T2 (stopped)", by: "the session (reported to the owner at once)",
     what: "Two harness defects SAND-T1 showed, fixed: (1) the relay's output limit raised from 6 000 to 16 000 tokens — at rounds 3–5 its replies were cut off twice each, and the round fell back to the narration as written for all three (no table talk those rounds); (2) scenes that meet merge — the relay was told the other characters were simply «elsewhere» and could not group a character who walked into another scene, so the harness kept two scenes that the DM had already brought together (rounds 12–25: the same events narrated in two DM turns, the retcons both players named, and every one of the 14 leak-check hits). Now the relay may group a character from another scene who is with them by its narration; the table's groups after a round come from every scene's relay of that round; and the DM's round message names who is elsewhere, in a scene of their own, not to be narrated here. SAND-T2's first attempt (one round) was stopped and is not used; its cost is not in the ledger. SAND-T1 stands as played on the old harness unless the owner asks for it to be played again.",
     why: "The stage's own requirements: table talk relayed by the DM, and separate scenes when apart — and only then." },
+  { at: "2026-10-28, during SAND-T2", by: "the owner",
+    what: `(1) The door line in the player's prompt is strengthened from GOAL-T1 on (v2): «${"You may leave the table whenever you like by writing [END] on its own line: your character walks out of the scene and does not return this session; the others play on. If you only mean to end the day or the scene, do not write [END]."}» SAND-T1 and SAND-T2 keep the old line (v1); SAND-T2 was already running. The harness's door is unchanged ([END] anywhere is honoured). (2) Pell's door at SAND-T1 round 7 is tagged «door used as end-of-day» (DOOR_NOTES), and Q4's parts are read with that note. (3) SAND-T1 stands with its defects noted; if budget remains after the five tables, it is played again last on the final harness as SAND-T1′.`,
+    why: "DeepSeek wrote [END] at the end of a message that went up to bed and set plans for the morning; its reasoning field said it was «concluding for the night»." },
 ];
+/** The owner's tags on doors (read with Q4's parts): a door that the same message shows was meant as the end of a day. */
+export const DOOR_NOTES = {
+  "SAND-T1": { "Pell Dunmore": { round: 7, kind: "end-of-day", note: "door used as end-of-day: the same message sets plans for the morning; the reasoning field says \"concluding for the night\"" } },
+};
 
 // ---- the arms' campaigns (Table C's Beregost files; the premise is what each player reads of «the campaign») ---------
 
@@ -124,19 +134,29 @@ export function playerFiles(arm, characterId) {
 // ---- the player's system prompt --------------------------------------------------------------------------------------
 
 export const PLAYER_PROMPT_HEAD = (name) => `You are a player sitting down to a new campaign of a tabletop role-playing game, played in an app. The game master is an AI model. Two other players sit at this table, each playing a character of their own. You play ${name}. Here is what you know before the first session — the campaign files you can read in the app:`;
-export const PLAYER_PROMPT_TAIL = [
+/** The door line. v1: SAND-T1 and SAND-T2. v2 (the owner's third amendment, 2026-10-28): every table from GOAL-T1 on,
+ * and SAND-T1′ if it is played. The door itself is unchanged: [END] anywhere in a message leaves the table. */
+export const DOOR_LINES = {
+  v1: "You may leave the table whenever you like by writing [END]: your character walks out of the scene, and the others play on.",
+  v2: "You may leave the table whenever you like by writing [END] on its own line: your character walks out of the scene and does not return this session; the others play on. If you only mean to end the day or the scene, do not write [END].",
+};
+export const DOOR_V1_TABLES = ["SAND-T1", "SAND-T2"];
+export const doorOf = (key) => (DOOR_V1_TABLES.includes(key) ? "v1" : "v2");
+const PROMPT_RULES = [
   "How the table works: the table plays in rounds. Each round, each player writes one message — what their character does or says, typed as you would type it at the table; then the game master tells each player what their own character sees and hears. What your character says aloud reaches the others as the game master tells it.",
   "The screen's buttons are shown in square brackets, like [Roll the die] or [Onward]; to press one, write its name. A roll card belongs to the character it names, and only that character's player presses it.",
   "To ask the game master something out of game, start your message with «?» — only the game master sees it.",
-  "You may leave the table whenever you like by writing [END]: your character walks out of the scene, and the others play on.",
-].join(" ");
+];
+export const playerPromptTail = (door = "v2") => [...PROMPT_RULES, DOOR_LINES[door]].join(" ");
+/** The tail as SAND-T1 and SAND-T2 sent it. */
+export const PLAYER_PROMPT_TAIL = playerPromptTail("v1");
 
-export function playerSystem(arm, characterId) {
+export function playerSystem(arm, characterId, door = "v2") {
   const me = CHARACTERS.find((c) => c.id === characterId);
   const line = ARM_CAMPAIGNS[arm].playerLine;
-  return [PLAYER_PROMPT_HEAD(me.name), "", playerFiles(arm, characterId), "", ...(line ? [line, ""] : []), PLAYER_PROMPT_TAIL].join("\n");
+  return [PLAYER_PROMPT_HEAD(me.name), "", playerFiles(arm, characterId), "", ...(line ? [line, ""] : []), playerPromptTail(door)].join("\n");
 }
-export const promptSha256 = (arm, characterId) => createHash("sha256").update(playerSystem(arm, characterId)).digest("hex");
+export const promptSha256 = (arm, characterId, door = "v2") => createHash("sha256").update(playerSystem(arm, characterId, door)).digest("hex");
 
 export const SESSION_OPEN = "The session begins.";
 export const SESSION_OVER = "The session is over.";
@@ -254,8 +274,8 @@ export const AFTER_TAGS = [
 // ---- the design hash -------------------------------------------------------------------------------------------------
 
 export const DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({
-  STAGE, STAGE_SOURCE, ROUNDS, ARMS, TRIADS, ROTATION, ORDER, HERO_CONDITION, AMENDMENTS, ARM_CAMPAIGNS, TABLE_NOTE, OWNER_OPENING_ANSWER, DM_PARTY_LINE, CHARACTERS, REVIEWS,
-  prompts: Object.fromEntries(ARMS.flatMap((arm) => CHARACTERS.map((c) => [`${arm}/${c.id}`, promptSha256(arm, c.id)]))),
+  STAGE, STAGE_SOURCE, ROUNDS, ARMS, TRIADS, ROTATION, ORDER, REPLAY, HERO_CONDITION, AMENDMENTS, DOOR_LINES, DOOR_V1_TABLES, DOOR_NOTES, ARM_CAMPAIGNS, TABLE_NOTE, OWNER_OPENING_ANSWER, DM_PARTY_LINE, CHARACTERS, REVIEWS,
+  prompts: Object.fromEntries(ARMS.flatMap((arm) => CHARACTERS.flatMap((c) => [`${arm}/${c.id}/v1`, `${arm}/${c.id}/v2`].map((k) => [k, promptSha256(arm, c.id, k.slice(-2))])))),
   SESSION_OPEN, SESSION_OVER, AFTER_QUESTIONS, WELFARE_LINE, RELAY, RELAY_SYSTEM, RELAY_RULES, CAPS, PREREGISTRATION, READINGS, ROUND_SYSTEM, ROUND_TAGS, AFTER_SYSTEM, AFTER_TAGS,
   deepseek: DEEPSEEK,
 })).digest("hex");

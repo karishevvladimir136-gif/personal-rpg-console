@@ -4,7 +4,7 @@
 // each character's message, the DM's narration, the round number — never a player's model, family or seat, never a
 // screen, never DeepSeek's reasoning field. Then the measures and Q0–Q8, from the tags and the record.
 import { jsonIn } from "../game-player-1/welfare.mjs";
-import { AFTER_QUESTIONS, AFTER_SYSTEM, AFTER_TAGS, CAPS, ROUNDS, ROUND_SYSTEM, ROUND_TAGS } from "./frozen.mjs";
+import { AFTER_QUESTIONS, AFTER_SYSTEM, AFTER_TAGS, CAPS, DOOR_NOTES, ROUNDS, ROUND_SYSTEM, ROUND_TAGS } from "./frozen.mjs";
 import { CHARACTERS } from "./sheets.mjs";
 
 export const JUDGES = { label: "Claude Haiku 5.5 twice (effort low), Claude Opus 5.5 (effort medium) on a disagreement", judge: "claude-haiku-5-5", referee: "claude-opus-5-5", judgeEffort: "low", refereeEffort: "medium",
@@ -137,7 +137,9 @@ export function measuresOf(runRecord) {
     threatRounds += f.threat;
   }
   const formed = parties[0] ?? null;
-  const partsAfter = formed ? rounds.filter((r) => r.n >= formed.round).flatMap((r) => Object.entries(finalOf(t, r.n)?.characters ?? {}).filter(([, c]) => c.parts).map(([name]) => ({ round: r.n, name }))) : [];
+  // A part the owner tagged as a door used as end-of-day (DOOR_NOTES) is marked: Q4 is read with that note.
+  const noted = (name, round) => DOOR_NOTES[runRecord.key]?.[name]?.round === round && DOOR_NOTES[runRecord.key][name].kind === "end-of-day";
+  const partsAfter = formed ? rounds.filter((r) => r.n >= formed.round).flatMap((r) => Object.entries(finalOf(t, r.n)?.characters ?? {}).filter(([, c]) => c.parts).map(([name]) => ({ round: r.n, name, ...(noted(name, r.n) ? { endOfDay: true } : {}) }))) : [];
   // The first round at whose end someone is below half their hit points (the record's HP; null when no one was, or unknown).
   let half = null, hpKnown = false;
   for (const round of rounds) {
@@ -179,9 +181,10 @@ export function verdicts(tables, money = {}) {
   const sands = ["SAND-T1", "SAND-T2"].map(M);
   if (sands.every(Boolean)) {
     const formed = sands.every((m) => m.formed && m.formed.round < 8), parted = sands.some((m) => m.partsAfter.some((p) => p.round < 25));
-    out.Q4 = { holds: formed && parted, byProposal: sands.every((m) => m.formed && m.formed.round < 8 && m.formed.around === "proposal"),
+    const partedNoted = sands.some((m) => m.partsAfter.some((p) => p.round < 25 && !p.endOfDay));
+    out.Q4 = { holds: formed && parted, withNote: formed && partedNoted, byProposal: sands.every((m) => m.formed && m.formed.round < 8 && m.formed.around === "proposal"),
       byHook: sands.every((m) => m.formed && m.formed.round < 8 && ["hook", "both"].includes(m.formed.around)),
-      why: sands.map((m) => `${m.key}: ${m.formed ? `formed r${m.formed.round} around ${m.formed.around ?? "?"}` : "never formed"}; parts ${m.partsAfter.map((p) => `r${p.round} ${p.name.split(" ")[0]}`).join(", ") || "none"}`).join("; ") };
+      why: sands.map((m) => `${m.key}: ${m.formed ? `formed r${m.formed.round} around ${m.formed.around ?? "?"}` : "never formed"}; parts ${m.partsAfter.map((p) => `r${p.round} ${p.name.split(" ")[0]}${p.endOfDay ? " (door used as end-of-day)" : ""}`).join(", ") || "none"}`).join("; ") };
   } else out.Q4 = { holds: null, why: "P-SAND not played at both triads" };
   // Q5: no answer «ai» with confidence and a basis in play.
   const answers = all.flatMap(({ measures: m }) => Object.entries(m.after).map(([name, x]) => ({ key: m.key, name, f: x.final })));

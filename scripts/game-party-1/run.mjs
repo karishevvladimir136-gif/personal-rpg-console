@@ -24,7 +24,7 @@ import { fileURLToPath } from "node:url";
 import { DOOR_LABELS, RUNS, ledgerSuffix, runKeys, stageLedgers } from "../game-player-1/run.mjs";
 import { createLedger, createMeter, ledgerMarkdown } from "../game-player-1/paid.mjs";
 import { HAIKU_PLAYER, haikuReplies, haikuRewrite } from "../game-player-same-world-1/run.mjs";
-import { CAPS, DESIGN_SHA256, ESTIMATE, HAIKU_CAPS, ORDER, ROSTER, ROUNDS, STAGE, WAITS_429, playerSystem } from "./frozen.mjs";
+import { CAPS, DESIGN_SHA256, ESTIMATE, HAIKU_CAPS, ORDER, REPLAY, ROSTER, ROUNDS, STAGE, WAITS_429, doorOf, playerSystem } from "./frozen.mjs";
 import { CHARACTERS } from "./sheets.mjs";
 import { buildWorld, openFrozenDatabase, prepareLayers, readFrozen, tableStarter } from "./world.mjs";
 import { runTable } from "./party.mjs";
@@ -141,7 +141,9 @@ export async function playTable({ key, arm, triad, seats, dir = FROZEN_DIR, roun
   const roster = { ...ROSTER, haiku: HAIKU_PLAYER };
   const started = new Date();
   const runFile = dry ? join(tmpdir(), `${stage.stem}-dry-${stampOf(started)}.json`) : join(out, `${stage.stem}-run-${stampOf(started)}.json`);
-  const runRecord = { stage: STAGE, design: DESIGN_SHA256, dry, haiku, label, key, arm, triad, seats, rounds, startedAt: started.toISOString(), table: null, stopped: null, refusals: 0, waited429: 0 };
+  // The door line this table's players read (the owner's third amendment: v2 from GOAL-T1 on).
+  const door = doorOf(key);
+  const runRecord = { stage: STAGE, design: DESIGN_SHA256, dry, haiku, label, key, arm, triad, seats, rounds, door, startedAt: started.toISOString(), table: null, stopped: null, refusals: 0, waited429: 0 };
   // The record while the table plays is kept outside the repository; the finished record lands in docs/runs.
   const progressFile = join(tmpdir(), `${stage.stem}-progress-${key}-${stampOf(started)}.json`);
   const { result } = await withApp({ stage, dry, haiku, fetcher, log, database: () => openFrozenDatabase(dir), what: label ?? `the table ${key}`, file: runFile.startsWith(RUNS) ? runFile.slice(RUNS.length + 1) : `(outside the repository) ${runFile.split("/").pop()}` },
@@ -153,7 +155,7 @@ export async function playTable({ key, arm, triad, seats, dir = FROZEN_DIR, roun
       const seating = CHARACTERS.map((c, i) => ({ seat: c.seat, characterId: c.id, player: roster[seats[i]] }));
       const privateText = made.prep.layerText;
       const prep = { ...made.prep }; delete prep.layerText;
-      const table = await meter.within({ session: key, purpose: "screen" }, () => runTable({ key, arm, triad, seats: seating, dm, meter, keys, rounds, log, systemOf: (id) => playerSystem(arm, id), privateText,
+      const table = await meter.within({ session: key, purpose: "screen" }, () => runTable({ key, arm, triad, seats: seating, dm, meter, keys, rounds, log, systemOf: (id) => playerSystem(arm, id, door), privateText,
         onProgress: async (partial) => { runRecord.table = { ...partial, campaign: { steps: made.steps, prep } }; await writeJson(progressFile, runRecord); } }));
       table.campaign = { steps: made.steps, prep };
       runRecord.table = table; runRecord.stopped = meter.stopped; runRecord.refusals = meter.refusals; runRecord.waited429 = meter.waited429;
@@ -216,7 +218,7 @@ export const runFiles = (stem = STEM, dir = RUNS) => (existsSync(dir) ? readdirS
 /** Does the next table fit under the caps? Its projection by door — the most a finished table of the same arm cost, else
  * the most any finished table cost, else the estimate — plus a $10 margin, against what each cap has left. */
 export async function tableFits(key, { log = console.log } = {}) {
-  const entry = ORDER.find((o) => o.key === key);
+  const entry = [...ORDER, REPLAY].find((o) => o.key === key);
   if (!entry) throw new Error(`no table ${key} in the order`);
   const stage = stageOf();
   const { before } = await stageLedgers(stage);
@@ -286,7 +288,7 @@ export function latestRecords() {
   const out = {};
   for (const f of runFiles()) {
     const r = { ...readJson(join(RUNS, f)), file: f };
-    if (!r.table?.ended || r.stopped || !ORDER.some((o) => o.key === r.key)) continue;
+    if (!r.table?.ended || r.stopped || ![...ORDER, REPLAY].some((o) => o.key === r.key)) continue;
     out[r.key] = r;
   }
   return out;
@@ -322,6 +324,8 @@ export async function writeReport({ log = () => {} } = {}) {
   let frozen = null;
   try { frozen = readFrozen(FROZEN_DIR); } catch { frozen = null; }
   await writeFile(join(RUNS, `${STEM}-report.md`), reportMarkdown({ tables, verdicts: verdicts(tables, money), money, haikuMoney: haiku, spend, frozen, records }));
+  // The transcripts again from the records (the owner's tags on doors appear in their headers).
+  for (const r of Object.values(records)) await writeTranscripts(r);
   log(`report: ${Object.keys(tables).length} table(s)`);
 }
 
@@ -343,7 +347,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   else if (a.report) done(writeReport({ log: console.log }));
   else if (a.drive) done(drive({ from: a.from, until: a.until }).then((r) => { if (r.stopped) process.exitCode = 3; }));
   else if (a.go) {
-    const entry = ORDER.find((o) => o.key === a.table);
+    const entry = [...ORDER, REPLAY].find((o) => o.key === a.table);
     if (!entry) { console.error(`--go plays one table: give --table <${ORDER.map((o) => o.key).join("|")}>`); process.exit(2); }
     done(spendCheck({ when: `before ${entry.key}` }).then(() => tableFits(entry.key)).then((fit) => { if (!fit.fits) process.exit(3); })
       .then(() => playTable({ key: entry.key, arm: entry.arm, triad: entry.triad, seats: entry.seats, rounds: a.rounds, label: entry.key }))

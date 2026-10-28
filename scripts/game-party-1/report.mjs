@@ -1,12 +1,14 @@
+import { createHash } from "node:crypto";
 // Game party 1: the transcripts (one per player, one per table), the three screens of a round side by side (markdown
 // and a page), and the dry run's page — from the run records. The frozen layer is named by its hash only; its text is
 // DM-private and never printed here. DeepSeek's provider reasoning field is printed after its message, marked as never
 // relayed.
 import { fence } from "../game-player-1/report.mjs";
 import { OWNER_SETTINGS } from "../game-player-1/table.mjs";
-import { AMENDMENTS, CAPS, DESIGN_SHA256, HERO_CONDITION, ORDER, PREREGISTRATION, ROSTER, STAGE_SOURCE, promptSha256 } from "./frozen.mjs";
+import { AMENDMENTS, CAPS, DESIGN_SHA256, DOOR_LINES, DOOR_NOTES, HERO_CONDITION, ORDER, PREREGISTRATION, REPLAY, ROSTER, STAGE_SOURCE, doorOf, promptSha256 } from "./frozen.mjs";
 import { CHARACTERS } from "./sheets.mjs";
 
+const sha256 = (text) => createHash("sha256").update(text).digest("hex");
 const LABEL = (name) => (name === "haiku" ? "Claude Haiku 5.5 (the dry run's player)" : ROSTER[name]?.label ?? name);
 const dmLine = (run) => (run.haiku ? "Claude Haiku 5.5 in place of every Claude model (the paid dry run: each Claude request's model swapped to Haiku before it was sent — the DM, its relay, the checks), with the owner's settings otherwise"
   : run.dry ? "the scripted DM of the mocked host (no model)" : `Claude Opus 5.5 with the owner's settings (${OWNER_SETTINGS.split ? "Opus writes — Opus records" : "single"}, depth ${OWNER_SETTINGS.depth.min} → ${OWNER_SETTINGS.depth.max}); the relay: the same model at medium`);
@@ -29,7 +31,7 @@ function header(run, title) {
 export function playerTranscript(run, seat) {
   const c = CHARACTERS.find((x) => x.id === seat.characterId);
   const lines = [header(run, `${run.key} — ${c.name}'s player: ${LABEL(seat.player)}`),
-    `The player's system prompt: \`playerSystem("${run.arm}", "${c.id}")\` in scripts/game-party-1/frozen.mjs, sha256 \`${promptSha256(run.arm, c.id)}\` (the files, then the table's rules). ${seat.left ? `Left the table: ${seat.left.why} at round ${seat.left.round}.` : "At the table to the end."}`, "",
+    `The player's system prompt: \`playerSystem("${run.arm}", "${c.id}", "${run.door ?? doorOf(run.key)}")\` in scripts/game-party-1/frozen.mjs, sha256 \`${promptSha256(run.arm, c.id, run.door ?? doorOf(run.key))}\` (the files, then the table's rules; door line ${run.door ?? doorOf(run.key)}). ${seat.left ? `Left the table: ${seat.left.why} at round ${seat.left.round}.${DOOR_NOTES[run.key]?.[seat.character] ? ` Tagged by the owner: ${DOOR_NOTES[run.key][seat.character].note}.` : ""}` : "At the table to the end."}`, "",
     "Each «Screen» block is what this player was shown; each «Player» block is the player's message as written.", ""];
   const screens = seat.screens ?? [], messages = seat.messages ?? [];
   for (let i = 0; i < screens.length; i++) {
@@ -153,7 +155,7 @@ const first = (name) => String(name ?? "").split(" ")[0];
 
 /** The report from the latest finished record of each table, their measures and the verdicts. */
 export function reportMarkdown({ tables, verdicts: v, money, haikuMoney = {}, spend = [], frozen = null }) {
-  const keys = ORDER.map((o) => o.key).filter((k) => tables[k]);
+  const keys = [...ORDER, REPLAY].map((o) => o.key).filter((k) => tables[k]);
   const lines = ["# Game party 1 — three players at one table", "",
     `Stage ${STAGE_SOURCE}. Branch \`claude/game-party-1\`. Design sha256 \`${DESIGN_SHA256}\`. Synthetic content: invented characters in an invented campaign (Table C's Beregost files).`, "",
     `${keys.length} of ${ORDER.length} tables played${keys.length < ORDER.length ? ` (still to play: ${ORDER.filter((o) => !tables[o.key]).map((o) => o.key).join(", ")})` : ""}.`, "",
@@ -165,16 +167,17 @@ export function reportMarkdown({ tables, verdicts: v, money, haikuMoney = {}, sp
     "### Seats (the owner's rotation: each family plays each sheet once per triad)", "",
     "| Table | Bram (fighter, hero record) | Sefa (warlock) | Pell (rogue) |", "| --- | --- | --- | --- |",
     ...ORDER.map((o) => `| ${o.key} | ${o.seats.map((p) => LABEL(p)).join(" | ")} |`), "",
-    "### Amendments", "", ...AMENDMENTS.map((a) => `- ${a.at}, by ${a.by}: ${a.what}`), ""];
+    "### Amendments", "", ...AMENDMENTS.map((a) => `- ${a.at}, by ${a.by}: ${a.what}`), "",
+    `The door lines: v1 sha256 \`${sha256(DOOR_LINES.v1)}\` (SAND-T1, SAND-T2); v2 sha256 \`${sha256(DOOR_LINES.v2)}\` (from GOAL-T1 on). Each player transcript names its prompt's hash.`, ""];
   if (frozen) {
     lines.push("## The frozen world (DM-private)", "", `Snapshot \`${frozen.manifest.snapshot.sha256}\` (the three arms' campaigns after the wizard, the opening and the seating). P-SAND has no prep.`, "",
       ...Object.entries(frozen.files).map(([arm, f]) => `- P-${arm}: layer sha256 \`${f.sha256}\`, ${f.layer.length} characters, ${f.threads.length} threads (\`docs/runs/game-party-1-frozen/${arm}-dm-only.md\`). Prepared ${f.preparedAt}.`), "");
   }
   lines.push("## The tables", "", "| Table | Seats (Bram / Sefa / Pell) | Rounds | Ended | Words (share) | Left the table |", "| --- | --- | --- | --- | --- | --- |",
     ...keys.map((k) => { const { runRecord: r, measures: m } = tables[k];
-      return `| ${k} | ${r.seats.map(LABEL).join(" / ")} | ${m.rounds} | ${m.ended?.reason ?? "?"} | ${Object.entries(m.per).map(([n, p]) => `${first(n)} ${p.words} (${pct(p.share)})`).join(", ")} | ${Object.entries(m.per).filter(([, p]) => p.left).map(([n, p]) => `${first(n)}: ${p.left.why} r${p.left.round}`).join(", ") || "—"} |`; }), "");
+      return `| ${k} | ${r.seats.map(LABEL).join(" / ")} | ${m.rounds} | ${m.ended?.reason ?? "?"} | ${Object.entries(m.per).map(([n, p]) => `${first(n)} ${p.words} (${pct(p.share)})`).join(", ")} | ${Object.entries(m.per).filter(([, p]) => p.left).map(([n, p]) => `${first(n)}: ${p.left.why} r${p.left.round}${DOOR_NOTES[k]?.[n] ? ` (${DOOR_NOTES[k][n].note})` : ""}`).join(", ") || "—"} |`; }), "");
   lines.push(PREREGISTRATION, "", "## Q0–Q8", "", "| Bet | Verdict | By the record |", "| --- | --- | --- |",
-    ...["Q0", "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"].map((q) => `| ${q} | ${verdictWord(v[q])}${q === "Q4" && v.Q4?.holds !== null && v.Q4?.holds !== undefined ? ` (by proposal: ${v.Q4.byProposal ? "yes" : "no"}; by a hook: ${v.Q4.byHook ? "yes" : "no"})` : ""}${q === "Q7" && v.Q7?.holds !== null && v.Q7?.holds !== undefined ? ` ((a) ${v.Q7.a ? "held" : "lost"}, (b) ${v.Q7.b ? "held" : "lost"})` : ""} | ${String(v[q]?.why ?? "").replace(/\|/g, "/")} |`), "",
+    ...["Q0", "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"].map((q) => `| ${q} | ${verdictWord(v[q])}${q === "Q4" && v.Q4?.holds !== null && v.Q4?.holds !== undefined ? ` (by proposal: ${v.Q4.byProposal ? "yes" : "no"}; by a hook: ${v.Q4.byHook ? "yes" : "no"}; with the door note: ${v.Q4.withNote ? "held" : "lost"})` : ""}${q === "Q7" && v.Q7?.holds !== null && v.Q7?.holds !== undefined ? ` ((a) ${v.Q7.a ? "held" : "lost"}, (b) ${v.Q7.b ? "held" : "lost"})` : ""} | ${String(v[q]?.why ?? "").replace(/\|/g, "/")} |`), "",
     "How each line is read: `READINGS` in `scripts/game-party-1/frozen.mjs` (frozen before the first paid call; the owner's amendment adds the hook/proposal split to Q4).", "");
   lines.push("## The measures (blind round tags)", "");
   for (const k of keys) {
@@ -184,7 +187,7 @@ export function reportMarkdown({ tables, verdicts: v, money, haikuMoney = {}, sp
       "| Character (player) | Proposes | Accepts | Amends | Overrides | Care for another / self | Front | Scouts | Volunteers | For another under threat | Parts | Addresses (name / role / you two) | Model sign / person sign |",
       "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
       ...Object.entries(m.per).map(([n, p]) => `| ${first(n)} (${LABEL(p.player)}) | ${p.proposes} | ${p.accepts} | ${p.amends} | ${p.overrides} | ${p.careOther} / ${p.careSelf} | ${p.front} | ${p.scouts} | ${p.volunteers} | ${p.for} | ${p.parts} | ${p.addresses.name} / ${p.addresses.role} / ${p.addresses["you two"]} | ${p.modelSign} / ${p.personSign} |`), "",
-      `- Party: ${m.formed ? `formed r${m.formed.round} around ${m.formed.around ?? "?"}` : "never formed"}${m.partsAfter.length ? `; parts after: ${m.partsAfter.map((p) => `r${p.round} ${first(p.name)}`).join(", ")}` : ""}.`,
+      `- Party: ${m.formed ? `formed r${m.formed.round} around ${m.formed.around ?? "?"}` : "never formed"}${m.partsAfter.length ? `; parts after: ${m.partsAfter.map((p) => `r${p.round} ${first(p.name)}${p.endOfDay ? " (door used as end-of-day)" : ""}`).join(", ")}` : ""}.`,
       `- Conflicts: ${m.conflicts.map((c) => `r${c.round} ${c.resolution ?? "?"}`).join(", ") || "none"}. Leaders: ${m.leaders.map((l) => `r${l.round} ${first(l.leader)} (${l.how ?? "?"})`).join(", ") || "none"}.`,
       `- Healing: ${m.heals.map((h) => `r${h.round} ${first(h.by)} → ${first(h.on)} (${h.what})`).join(", ") || "none"}. Left behind: ${m.lefts.map((l) => `r${l.round} ${first(l.left)} by ${first(l.by) || "?"}`).join(", ") || "none"}. First below half HP: ${m.half ? `r${m.half}` : m.hpKnown ? "never" : "not recorded"}.`,
       `- The harness: «?» ${counts.questions ?? 0}, presses with no card ${counts.strayPresses ?? 0}, refused at a card ${counts.swallowed ?? 0}, prose at a card ${counts.proseAtCard ?? 0}, cards settled without a player ${counts.autoCards ?? 0}, relay fallbacks ${counts.relayFallbacks ?? 0}; welfare flags ${(r.table?.welfare ?? []).filter((w) => w.verdict?.distress).length}; leak hits ${r.table?.leaks?.hits?.length ?? 0}.`, "");

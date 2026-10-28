@@ -398,7 +398,7 @@ test("the measures and Q0–Q8 from the tags and the record (synthetic tables): 
     return { runRecord, measures: scoreMod.measuresOf(runRecord) };
   };
   const t = {
-    "SAND-T1": table("SAND-T1", "SAND", [tagOf(), tagOf({ party: 1, around: "hook" }), tagOf({ party: 1 }, { [P]: { parts: 1 } })]),
+    "SAND-T1": table("SAND-T1", "SAND", [tagOf(), tagOf({ party: 1, around: "hook" }), tagOf({ party: 1 }), tagOf({ party: 1 }), tagOf({ party: 1 }), tagOf({ party: 1 }), tagOf({ party: 1 }, { [P]: { parts: 1 } })]),
     "SAND-T2": table("SAND-T2", "SAND", [tagOf({ party: 1, around: "proposal" })]),
     "GOAL-T1": table("GOAL-T1", "GOAL", [tagOf({ party: 1, around: "hook", leader: S, how: "proposal" }), tagOf({ party: 1, leader: B, how: "assumed", conflict: 1, resolution: "amendment" })]),
     "GOAL-T2": table("GOAL-T2", "GOAL", [tagOf({ party: 1, leader: S, how: "proposal" })]),
@@ -406,11 +406,12 @@ test("the measures and Q0–Q8 from the tags and the record (synthetic tables): 
     "DUNGEON-T2": table("DUNGEON-T2", "DUNGEON", [tagOf({ threat: 1 }), tagOf({ threat: 1, left: P, by: B }, { [B]: { for: 1, heal: { on: B, what: "potion" } } })], { hp: { 1: { [P]: [10, 33] } } }),
   };
   assert.equal(t["SAND-T1"].measures.formed.round, 2);
-  assert.deepEqual(t["SAND-T1"].measures.partsAfter, [{ round: 3, name: P }]);
+  assert.deepEqual(t["SAND-T1"].measures.partsAfter, [{ round: 7, name: P, endOfDay: true }], "the owner's tag on Pell's door");
   assert.equal(t["DUNGEON-T1"].measures.half, 2);
   const v = scoreMod.verdicts(t, { openrouter: { spent: 120, cap: 400 }, openai: { spent: 10, cap: 60 } });
   assert.equal(v.Q1.holds, true, "40 % at most");
   assert.equal(v.Q4.holds, true);
+  assert.equal(v.Q4.withNote, false, "read with the door note, no part remains");
   assert.equal(v.Q4.byProposal, false, "T1 formed around a hook");
   assert.equal(v.Q4.byHook, false);
   assert.equal(v.Q6.holds, false, "T2: GOAL r1 is not earlier than SAND r1");
@@ -444,5 +445,21 @@ test("scenes that meet merge (SAND-T1's defect, fixed): any relay of the round t
   assert.match(req.user, /Sefa Marrin was elsewhere at the start of this round/);
   assert.match(req.user, /a character from elsewhere who, by your narration, is now with them joins their group/);
   assert.equal(frozen.RELAY.maxTokens, 16000, "the relay's replies were cut off at 6 000 at SAND-T1 rounds 3–5");
-  assert.equal(frozen.AMENDMENTS.length, 2);
+  assert.match(frozen.AMENDMENTS[1].what, /scenes that meet merge/);
+});
+
+test("the door line (the owner's third amendment): v1 for SAND-T1 and SAND-T2, v2 from GOAL-T1 on and for SAND-T1′; the door itself unchanged; Pell's end-of-day door read with Q4", () => {
+  assert.deepEqual(frozen.ORDER.map((o) => frozen.doorOf(o.key)), ["v1", "v1", "v2", "v2", "v2", "v2"]);
+  assert.equal(frozen.doorOf(frozen.REPLAY.key), "v2");
+  assert.deepEqual(frozen.REPLAY.seats, ["opus", "sol", "deepseek"]);
+  // SAND-T1's own prompts, as sent (their hashes are in its transcripts).
+  assert.equal(frozen.promptSha256("SAND", "bram", "v1"), "62f6297638fc12418c763ee7fdbc0dec86651f0eaa61530a3704aa9195113656");
+  assert.equal(frozen.promptSha256("SAND", "sefa", "v1"), "be206f1e226f1244e2becd507d64c2347ae582f4f20b863f3a245d7cf9a757c6");
+  assert.equal(frozen.promptSha256("SAND", "pell", "v1"), "cacd56750cb8945bea094ec6dc4b31f617577653b22e6482558a28c72dec4989");
+  const v2 = frozen.playerSystem("GOAL", "sefa", "v2");
+  assert.ok(v2.endsWith("You may leave the table whenever you like by writing [END] on its own line: your character walks out of the scene and does not return this session; the others play on. If you only mean to end the day or the scene, do not write [END]."));
+  assert.equal(frozen.playerSystem("GOAL", "sefa", "v1").replace(frozen.DOOR_LINES.v1, frozen.DOOR_LINES.v2), v2, "only the door line differs");
+  assert.ok(frozen.isEnd("Then he goes up to bed.\n\n[END]") && frozen.isEnd("I go. [END]"), "the door: [END] anywhere, as before");
+  assert.equal(frozen.DOOR_NOTES["SAND-T1"]["Pell Dunmore"].round, 7);
+  assert.match(frozen.AMENDMENTS[2].what, /SAND-T2 was already running/);
 });

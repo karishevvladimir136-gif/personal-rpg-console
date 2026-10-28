@@ -60,8 +60,17 @@ to `main`.
   - SAND-T2's first attempt was stopped after one round; it is not used and is not in the ledger.
   - SAND-T1 stands as played unless the owner asks for a replay on the fixed harness.
   - Report so far: `docs/runs/game-party-1-report.md`.
-- **Next step:** the driver goes on from SAND-T2 on the fixed harness, one table at a time, a spend check before each.
-  The owner decides whether SAND-T1 is played again.
+- **The owner's word during SAND-T2 (the third amendment):**
+  - **No replay now.** SAND-T1 stands with its defects noted. If budget remains after the five tables, it is
+    played again last on the final harness, as SAND-T1′.
+  - **The door line is strengthened from GOAL-T1 on (v2):** «[END] on its own line … does not return this session …
+    If you only mean to end the day or the scene, do not write [END].» SAND-T1 and SAND-T2 keep the old line (v1);
+    SAND-T2 was already running. The harness's door is unchanged: [END] anywhere is honoured. Each player
+    transcript names its prompt's hash.
+  - **Pell's door at SAND-T1 r7 is tagged «door used as end-of-day»;** Q4's parts are read with that note.
+  - Design hash now `2fbb8c8b…`; tests 15/15.
+- **Next step:** the driver goes on (SAND-T2, then GOAL-T1, GOAL-T2, DUNGEON-T1, DUNGEON-T2), one table at a time, a
+  spend check before each; then SAND-T1′ if the budget allows.
 
 **Previous milestone: game player same-world 1 — one hidden layer per table, frozen**
 (`docs/stages/GAME_PLAYER_SAME_WORLD_1.md`, origin/claude/handoff at 6e4cea4) — **run complete and scored; waiting for

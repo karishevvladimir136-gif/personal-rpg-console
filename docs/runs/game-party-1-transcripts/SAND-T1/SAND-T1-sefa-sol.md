@@ -12,7 +12,7 @@ Known condition: Seat 1's character (Bram) is the app's hero record; Sefa and Pe
 
 The world's snapshot: sha256 `1649b61c08e027ff44de2bb5065046f872e383a00c5d04803d95553f58568f5a` (the same wizard, sheets and opening for both triads).
 
-The player's system prompt: `playerSystem("SAND", "sefa")` in scripts/game-party-1/frozen.mjs, sha256 `be206f1e226f1244e2becd507d64c2347ae582f4f20b863f3a245d7cf9a757c6` (the files, then the table's rules). At the table to the end.
+The player's system prompt: `playerSystem("SAND", "sefa", "v1")` in scripts/game-party-1/frozen.mjs, sha256 `be206f1e226f1244e2becd507d64c2347ae582f4f20b863f3a245d7cf9a757c6` (the files, then the table's rules; door line v1). At the table to the end.
 
 Each «Screen» block is what this player was shown; each «Player» block is the player's message as written.
 
