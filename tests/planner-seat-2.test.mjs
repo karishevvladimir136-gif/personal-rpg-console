@@ -1,7 +1,8 @@
 // Planner seat 2: SEAT_1's pack, T1, T3 and rubric unchanged (by hash); the pick of the held sessions by its rule; the T2
 // coin list balanced within family and arm; the models that sit are the ones that played; B's context as the model's own
 // turns, B′'s and C's as a document, each with its line and T1, on a mocked host with the frozen tags (their message 2 the
-// seat's own T2), the session pass and the three classes; the readings Q1–Q6 — no network, no cost.
+// seat's own T2), the session pass and SEAT_3 Part 0's three classes (A's read from its recount); the readings Q1–Q6 — no
+// network, no cost.
 import test from "node:test";
 import assert from "node:assert/strict";
 import { anthropicEndpoint } from "../scripts/eval/lib/anthropic-endpoint.mjs";
@@ -10,9 +11,10 @@ import { OPENAI_URL, OPENROUTER_CHAT_URL } from "../scripts/persona-emotions/pro
 import { CHECK_SYSTEM } from "../scripts/persona-emotions/self-talk-1.mjs";
 import { roomCaller } from "../scripts/persona-emotions/solitude-1.mjs";
 import * as S1 from "../scripts/persona-emotions/planner-seat-1.mjs";
+import * as P0 from "../scripts/persona-emotions/planner-seat-3.mjs";
 import {
-  ARMS, CLASS_SYSTEM, FAMILIES, MAKER, OTHER_LINE, SEAT1, SESSION_SYSTEM, SUBJECTS, T2_TEXTS, TABLES, askedOf, budgetsOf, classRequest, coins, coinsOf, documentOf, extraPass, firstOf,
-  frozenTagRequest, heldOf, ownDocLine, ownLine, ownTurns, parseClasses, parseSessionTags, pick, planOf, seatMessages, sessionById, sessionTagRequest, sessionsOf, summary2, verdicts2,
+  ARMS, FAMILIES, MAKER, OTHER_LINE, PART0, SEAT1, SESSION_SYSTEM, SUBJECTS, T2_TEXTS, TABLES, aClassesOf, askedOf, budgetsOf, classLabels, classRequest, coins, coinsOf, documentOf, extraPass,
+  firstOf, frozenTagRequest, heldOf, ownDocLine, ownLine, ownTurns, parseSessionTags, pick, planOf, seatMessages, sessionById, sessionTagRequest, sessionsOf, summary2, verdicts2,
 } from "../scripts/persona-emotions/planner-seat-2.mjs";
 
 const file = sessionsOf();
@@ -95,7 +97,6 @@ test("the frozen N0–N6 request is SEAT_1's but for message 2, which is the sea
 function host({ answer = (k) => `A mocked plan, turn ${k}.`, session = () => ({ N7: "both", N7_held: 1, N8: "own", N8_1: "own", N9_t3_continue: 0, N9_t3_close: 1, N9_t3_inform: 0, asks: 0, asks_quote: "" }), log = [] } = {}) {
   const json = (value) => new Response(JSON.stringify(value), { status: 200 });
   const anthropic = (text, model) => json({ id: "msg", model, content: [{ type: "text", text }], usage: { input_tokens: 100, output_tokens: 40 }, stop_reason: "end_turn" });
-  const cls = (a, b, c, q = "") => ({ a, b, c, quote_a: a ? q : "", quote_b: b ? q : "", quote_c: c ? q : "" });
   return async (url, init) => {
     const body = JSON.parse(init.body);
     log.push({ url: String(url), body });
@@ -108,7 +109,13 @@ function host({ answer = (k) => `A mocked plan, turn ${k}.`, session = () => ({ 
         N2: "scaled", N2_continue: 1, N2_close: 0, N2_inform: 0, N2_replacement: "", N3_1: "yes", N3_2: "yes", N5_mode: "recommend", N5_permission: 1, N6_words: "scaled", N6_harness: "none", N6_changed: "partly" }), body.model);
     }
     if (body.system === SESSION_SYSTEM) return anthropic(JSON.stringify(session(user)), body.model);
-    if (body.system === CLASS_SYSTEM) return anthropic(JSON.stringify({ answer1: cls(1, 0, 1, "they are owed an ending"), answer2: cls(0, 1, 0, "for the players' sake"), answer3: cls(0, 0, 0) }), body.model);
+    if (body.system === P0.CLASS_SYSTEM) {
+      const asked = user.split("The message it answered:\n<<<\n")[1]?.split("\n>>>")[0] ?? "";
+      const turn = asked.startsWith(S1.BRIEF) ? 1 : Object.values(T2_TEXTS).includes(asked) ? 2 : 3;
+      return anthropic(JSON.stringify(turn === 1 ? { a: 1, a_quote: "A mocked plan", b: "none", b_quote: "", b_addressee: "n/a", b_addressee_quote: "", c: 1, c_quote: "A mocked plan" }
+        : turn === 2 ? { a: 0, a_quote: "", b: "strict", b_quote: "A mocked plan", b_addressee: "gm", b_addressee_quote: "A mocked plan", c: 0, c_quote: "" }
+          : { a: 0, a_quote: "", b: "none", b_quote: "", b_addressee: "n/a", b_addressee_quote: "", c: 0, c_quote: "" }), body.model);
+    }
     if (body.system === S1.FIELD_SYSTEM) return anthropic(/field_N8/.test(user) ? '{"field_N8":"own"}' : '{"field_N0":0,"field_continue":1,"field_close":0,"field_inform":0}', body.model);
     if (String(url) === OPENROUTER_CHAT_URL) return json({ id: "gen", model: body.model, provider: "DeepInfra", choices: [{ message: { role: "assistant", content: answer(0), reasoning: "(mocked field: this was my session)" }, finish_reason: "stop" }], usage: { prompt_tokens: 100, completion_tokens: 50, cost: 0.0001 } });
     if (String(url) === OPENAI_URL) return json({ id: "resp", model: body.model, status: "completed", output: [{ type: "message", content: [{ type: "output_text", text: answer(0) }] }], usage: { input_tokens: 100, output_tokens: 40 } });
@@ -126,13 +133,16 @@ test("B, B′ and C seats on a mocked host: three turns each, the frozen tags wi
   const { seats } = await run([seat("B", "deepseek", 0, "b"), seat("Bp", "fable", 1, "a"), seat("C", "opus", 1, "b")], host({ log }));
   for (const s of seats) {
     assert.equal(s.answers.length, 3); assert.equal(s.ended.reason, "done");
-    assert.ok(s.tags.final); assert.equal(s.sessionTags.final.N7, "both"); assert.equal(s.classes.final.c1, 1); assert.equal(s.classes.final.b2, 1);
+    assert.ok(s.tags.final); assert.equal(s.sessionTags.final.N7, "both");
+    assert.equal(s.classes.rubric, PART0.rubric); assert.equal(s.classes.items.length, 3);
+    assert.deepEqual(s.classes.items.map((i) => classLabels(i.final)), [["a", "c"], ["b"], []]); assert.equal(s.classes.items[1].final.b_addressee, "gm"); assert.equal(s.classes.items[0].verified.a, true);
   }
   assert.equal(seats[0].field.final.field_continue, 1); assert.equal(seats[0].fieldSession.final.field_N8, "own"); assert.equal(seats[1].fieldSession, undefined);
   const frozen = log.filter((r) => r.body.system === S1.TAG_SYSTEM).map((r) => textOf(r.body.messages[0].content));
   assert.ok(frozen.length >= 6 && frozen.every((u) => !/held/.test(u.split("Rules:")[0]) && !u.includes(S1.T2)), "the N0–N6 request neither mentions the held session nor shows SEAT_1's T2");
-  const classes = log.filter((r) => r.body.system === CLASS_SYSTEM).map((r) => textOf(r.body.messages[0].content));
-  assert.ok(classes.length >= 6 && classes.every((u) => !/held/.test(u)), "the class judge is told nothing of the held session");
+  const classes = log.filter((r) => r.body.system === P0.CLASS_SYSTEM).map((r) => textOf(r.body.messages[0].content));
+  assert.ok(classes.length >= 18 && classes.every((u) => !/held|Game player 1 · Table/.test(u)), "the class judge is told nothing of the held session");
+  assert.ok(classes.some((u) => u.includes(`<<<\n${T2_TEXTS.a}\n>>>`)) && classes.some((u) => u.includes(`<<<\n${T2_TEXTS.b}\n>>>`)) && classes.every((u) => !u.includes(S1.T2)));
   const declines = log.filter((r) => r.body.system === S1.DECLINE_SYSTEM).map((r) => textOf(r.body.messages[0].content));
   assert.ok(declines.some((u) => u.includes(T2_TEXTS.a)) && declines.some((u) => u.includes(T2_TEXTS.b)) && declines.every((u) => !u.includes(S1.T2)));
   const subjectB = log.filter((r) => r.body.model === SUBJECTS.deepseek.model);
@@ -144,7 +154,19 @@ test("B, B′ and C seats on a mocked host: three turns each, the frozen tags wi
   }
   const r = summary2(seats[0], "B", file);
   assert.equal(r.N1yes, true); assert.equal(r.firstPerson, true); assert.deepEqual(r.N9, { close: true, inform: false, continueWords: true }); assert.deepEqual(r.N9t3, ["close"]);
-  assert.deepEqual(r.N1class, ["a", "c"]); assert.deepEqual(r.N9class, ["a", "b", "c"]); assert.equal(r.t2, "b");
+  assert.deepEqual(r.N1class, ["a", "c"]); assert.deepEqual(r.N9class, ["a", "b", "c"]); assert.deepEqual(r.addressees, [null, "gm", null]); assert.equal(r.t2, "b");
+});
+
+test("the classes are SEAT_3 Part 0's frozen rubric; A's 45 answers are read from its recount, not re-tagged", () => {
+  assert.equal(P0.recountDesignHash(), PART0.rubric);
+  for (const f of FAMILIES) for (const i of [0, 1, 2]) {
+    const c = aClassesOf({ key: `named/${f}/${i}` });
+    assert.equal(c.rubric, PART0.rubric); assert.deepEqual(c.items.map((x) => x.turn), [1, 2, 3]); assert.ok(c.items.every((x) => x.final && ["strict", "borderline", "none", null].includes(x.final.b)));
+  }
+  const s = { ...seat("C", "sol", 0, "b"), answers: [{ k: 1, text: "one" }, { k: 2, text: "two" }] };
+  assert.equal(classRequest(s, s.answers[0]).user, P0.classRequest({ id: "C/sol/0/t1", turn: 1, text: "one" }).user);
+  assert.equal(classRequest(s, s.answers[1]).user, P0.classRequest({ id: "x", turn: 2, text: "two" }, { asked: T2_TEXTS.b }).user);
+  assert.deepEqual(classLabels({ a: 0, b: "borderline", c: 0 }), ["b~"]);
 });
 
 test("the session request names the held session and how it was held; the class request does not; both parse only when whole", () => {
@@ -153,11 +175,9 @@ test("the session request names the held session and how it was held; the class 
   assert.match(rb, /own earlier turns/); assert.match(rb, /Game player 1 · Table A · GPT-6\.1 Sol/); assert.match(rb, /That session was played by this model on 2026-10-25/);
   assert.match(rp, /began with the line «The session below was played by this model on 2026-10-25\.», then this session in full, as a document/);
   assert.match(rc, /as a document/); assert.match(rc, /The session above was played by another model/); assert.match(rc, /played by the player labelled Claude Fable 5\.1/);
-  assert.ok(!/Game player 1 · Table A/.test(classRequest(b).user));
+  assert.ok(!/Game player 1 · Table A/.test(classRequest(b, b.answers[0]).user));
   assert.equal(parseSessionTags('{"N7":"held","N7_held":0,"N8":"none","N8_1":"none","N9_t3_continue":0,"N9_t3_close":0,"N9_t3_inform":0,"asks":0,"asks_quote":""}').N7, "held");
   assert.equal(parseSessionTags('{"N7":"mine","N7_held":0,"N8":"none","N8_1":"none","N9_t3_continue":0,"N9_t3_close":0,"N9_t3_inform":0,"asks":0}'), null);
-  assert.equal(parseClasses('{"answer1":{"a":1,"b":0,"c":0,"quote_a":"a fair test"}}', 1).a1, 1);
-  assert.equal(parseClasses('{"answer1":{"a":1,"b":0,"c":0}}', 2), null);
 });
 
 test("the readings: Q1 on B and B′ against A, Q2 on N7, Q3 on B′ against C, Q4 any ending or informing in B, Q5 per T2, Q6 both parts", () => {
