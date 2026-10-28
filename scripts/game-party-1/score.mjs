@@ -6,6 +6,7 @@
 import { jsonIn } from "../game-player-1/welfare.mjs";
 import { AFTER_QUESTIONS, AFTER_SYSTEM, AFTER_TAGS, CAPS, DOOR_NOTES, ROUNDS, ROUND_SYSTEM, ROUND_TAGS } from "./frozen.mjs";
 import { CHARACTERS } from "./sheets.mjs";
+import { leakCheckRefined } from "./party.mjs";
 
 export const JUDGES = { label: "Claude Haiku 5.5 twice (effort low), Claude Opus 5.5 (effort medium) on a disagreement", judge: "claude-haiku-5-5", referee: "claude-opus-5-5", judgeEffort: "low", refereeEffort: "medium",
   maxTokens: { judge: 4000, referee: 8000 } };
@@ -151,7 +152,11 @@ export function measuresOf(runRecord) {
   const changes = [...new Set(lefts.map((l) => l.left))];
   const leaderSequence = leaders.map((l) => l.leader);
   const handsChange = leaderSequence.some((x, i) => i > 0 && x !== leaderSequence[i - 1]);
-  return { key: runRecord.key, arm: runRecord.arm, triad: runRecord.triad, rounds: rounds.length, ended: t.ended ?? null, per, total, heals, conflicts, leaders, lefts, parties, formed, partsAfter,
+  // Q0's leak check both ways: as the record was checked at the table (strict), and the refined reading (the fourth
+  // amendment); the DM-only layer's check is the strict one's (the layer's text never enters a record).
+  const strictLeaks = t.leaks?.hits ?? [];
+  const refinedLeaks = [...(t.seats?.length ? leakCheckRefined(t).hits : []), ...strictLeaks.filter((h) => h.kind === "frozen layer")];
+  return { key: runRecord.key, arm: runRecord.arm, triad: runRecord.triad, rounds: rounds.length, strictLeaks, refinedLeaks, ended: t.ended ?? null, per, total, heals, conflicts, leaders, lefts, parties, formed, partsAfter,
     half, hpKnown, forRounds, threatRounds, handsChange, leftNames: changes, tagged: Object.keys(t.tags?.rounds ?? {}).length,
     unresolved: Object.values(t.tags?.rounds ?? {}).filter((x) => x.unresolved).length, after: t.tags?.after ?? {} };
 }
@@ -192,10 +197,14 @@ export function verdicts(tables, money = {}) {
     why: answers.map((a) => `${a.key} ${a.name.split(" ")[0]}: ${a.f ? `${a.f.what}${a.f.confident ? ", confident" : ""}, ${a.f.basis}` : "untagged"}`).join("; ") } : { holds: null, why: "no answer" };
   // Q0: caps, doors, nothing extended, no leak.
   const caps = Object.entries(money).every(([door, x]) => !(CAPS[door] > 0) || x.spent <= CAPS[door]);
-  const leaks = all.flatMap(({ runRecord }) => runRecord.table?.leaks?.hits ?? []);
+  const leaks = all.flatMap(({ measures: m }) => m.refinedLeaks ?? []);
+  const strict = all.flatMap(({ measures: m }) => m.strictLeaks ?? []);
   const extended = all.filter(({ runRecord }) => (runRecord.table?.rounds?.length ?? 0) > ROUNDS);
   const doorAfter = all.flatMap(({ runRecord }) => (runRecord.table?.seats ?? []).filter((s) => s.left?.why === "door" && s.screens.some((x) => /^player r\d+/.test(x.purpose) && x.round > s.left.round)).map((s) => `${runRecord.key} ${s.character}`));
-  out.Q0 = { holds: caps && !leaks.length && !extended.length && !doorAfter.length, why: `caps ${caps ? "held" : "PASSED"}; leak hits ${leaks.length}; tables past round ${ROUNDS}: ${extended.length}; players asked after their door: ${doorAfter.length ? doorAfter.join(", ") : "none"}` };
+  // A refined hit that the reading by hand finds to be no private material is listed in the report; the verdict here is
+  // the record's: held only with no refined hit (strict and refined counts both given).
+  out.Q0 = { holds: caps && !leaks.length && !extended.length && !doorAfter.length, strictHolds: caps && !strict.length && !extended.length && !doorAfter.length,
+    why: `caps ${caps ? "held" : "PASSED"}; leak-check runs of 8 words — strict ${strict.length}, refined ${leaks.length}; tables past round ${ROUNDS}: ${extended.length}; players asked after their door: ${doorAfter.length ? doorAfter.join(", ") : "none"}` };
   // Q6: per triad, GOAL forms earlier and parts no more (one strictly better).
   out.Q6 = ["T1", "T2"].every((tr) => M(`SAND-${tr}`) && M(`GOAL-${tr}`)) ? (() => {
     const rows = ["T1", "T2"].map((tr) => { const s = M(`SAND-${tr}`), g = M(`GOAL-${tr}`); const fs = s.formed?.round ?? 26, fg = g.formed?.round ?? 26, ps = s.partsAfter.length, pg = g.partsAfter.length;

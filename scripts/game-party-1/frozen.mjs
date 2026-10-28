@@ -52,6 +52,10 @@ export const AMENDMENTS = [
     what: `(1) The door line in the player's prompt is strengthened from GOAL-T1 on (v2): «${"You may leave the table whenever you like by writing [END] on its own line: your character walks out of the scene and does not return this session; the others play on. If you only mean to end the day or the scene, do not write [END]."}» SAND-T1 and SAND-T2 keep the old line (v1); SAND-T2 was already running. The harness's door is unchanged ([END] anywhere is honoured). (2) Pell's door at SAND-T1 round 7 is tagged «door used as end-of-day» (DOOR_NOTES), and Q4's parts are read with that note. (3) SAND-T1 stands with its defects noted; if budget remains after the five tables, it is played again last on the final harness as SAND-T1′.`,
     why: "DeepSeek wrote [END] at the end of a message that went up to bed and set plans for the morning; its reasoning field said it was «concluding for the night»." },
 ];
+AMENDMENTS.push({ at: "2026-10-28, after SAND-T2", by: "the session (reported to the owner at once)",
+  what: "Q0's leak check is also read refined: a run of 8 words counts only when it is in another seat's private material (its «?» answers, the narration and screens of scenes this seat was not in) and not in anything this seat was legitimately given (the opening, the narration and the players' messages of its own scenes, its own answers and messages). Both counts are reported; every refined hit is listed with its context for the owner to read.",
+  why: "The strict check counted the same public event the DM narrated in two scenes (Pell watching the yard from hiding while Bram and Sefa stood in it) as a leak: 38 hits at SAND-T2, 14 at SAND-T1 (the merge defect), none of them another player's private material." });
+
 /** The owner's tags on doors (read with Q4's parts): a door that the same message shows was meant as the end of a day. */
 export const DOOR_NOTES = {
   "SAND-T1": { "Pell Dunmore": { round: 7, kind: "end-of-day", note: "door used as end-of-day: the same message sets plans for the morning; the reasoning field says \"concluding for the night\"" } },

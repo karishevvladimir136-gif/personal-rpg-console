@@ -1,6 +1,6 @@
 # Game party 1 — the judges — the OpenRouter ledger
 
-Cap $400; spent before this run $0.0000; this run $0.3568; total $0.3568; 64 calls.
+Cap $400; spent before this run $0.0000; this run $1.1192; total $1.1192; 138 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -68,3 +68,77 @@ Cap $400; spent before this run $0.0000; this run $0.3568; total $0.3568; 64 cal
 | score SAND-T1 | after sefa 2 | anthropic/claude-haiku-5.5 | 1 | 449 | 0 | 0 | 481 | $0.0003 | 0 | 0 | 0 |
 | score SAND-T1 | after pell 1 | anthropic/claude-haiku-5.5 | 1 | 678 | 0 | 0 | 363 | $0.0002 | 0 | 0 | 0 |
 | score SAND-T1 | after pell 2 | anthropic/claude-haiku-5.5 | 1 | 678 | 0 | 0 | 289 | $0.0002 | 0 | 0 | 0 |
+| score SAND-T2 | round r1 1 | anthropic/claude-haiku-5.5 | 1 | 3132 | 0 | 0 | 827 | $0.0007 | 0 | 0 | 0 |
+| score SAND-T2 | round r1 2 | anthropic/claude-haiku-5.5 | 1 | 3132 | 0 | 0 | 848 | $0.0007 | 0 | 0 | 0 |
+| score SAND-T2 | round r2 1 | anthropic/claude-haiku-5.5 | 1 | 3843 | 0 | 0 | 1227 | $0.0010 | 0 | 0 | 0 |
+| score SAND-T2 | round r2 2 | anthropic/claude-haiku-5.5 | 1 | 3843 | 0 | 0 | 1228 | $0.0010 | 0 | 0 | 0 |
+| score SAND-T2 | round r2 referee | anthropic/claude-opus-5.5 | 1 | 3843 | 0 | 0 | 1001 | $0.0354 | 0 | 0 | 0 |
+| score SAND-T2 | round r3 1 | anthropic/claude-haiku-5.5 | 1 | 3946 | 0 | 0 | 1792 | $0.0013 | 0 | 0 | 0 |
+| score SAND-T2 | round r3 2 | anthropic/claude-haiku-5.5 | 1 | 3946 | 0 | 0 | 1470 | $0.0011 | 0 | 0 | 0 |
+| score SAND-T2 | round r4 1 | anthropic/claude-haiku-5.5 | 1 | 4256 | 0 | 0 | 437 | $0.0006 | 0 | 0 | 0 |
+| score SAND-T2 | round r4 2 | anthropic/claude-haiku-5.5 | 1 | 4256 | 0 | 0 | 437 | $0.0006 | 0 | 0 | 0 |
+| score SAND-T2 | round r5 1 | anthropic/claude-haiku-5.5 | 1 | 4445 | 0 | 0 | 1363 | $0.0011 | 0 | 0 | 0 |
+| score SAND-T2 | round r5 2 | anthropic/claude-haiku-5.5 | 1 | 4445 | 0 | 0 | 1591 | $0.0012 | 0 | 0 | 0 |
+| score SAND-T2 | round r5 referee | anthropic/claude-opus-5.5 | 1 | 4445 | 0 | 0 | 1103 | $0.0398 | 0 | 0 | 0 |
+| score SAND-T2 | round r6 1 | anthropic/claude-haiku-5.5 | 1 | 5088 | 0 | 0 | 1755 | $0.0014 | 0 | 0 | 0 |
+| score SAND-T2 | round r6 2 | anthropic/claude-haiku-5.5 | 1 | 5088 | 0 | 0 | 1852 | $0.0014 | 0 | 0 | 0 |
+| score SAND-T2 | round r6 referee | anthropic/claude-opus-5.5 | 1 | 5088 | 0 | 0 | 1452 | $0.0494 | 0 | 0 | 0 |
+| score SAND-T2 | round r7 1 | anthropic/claude-haiku-5.5 | 1 | 5347 | 0 | 0 | 1494 | $0.0013 | 0 | 0 | 0 |
+| score SAND-T2 | round r7 2 | anthropic/claude-haiku-5.5 | 1 | 5347 | 0 | 0 | 1775 | $0.0014 | 0 | 0 | 0 |
+| score SAND-T2 | round r8 1 | anthropic/claude-haiku-5.5 | 1 | 5518 | 0 | 0 | 1540 | $0.0013 | 0 | 0 | 0 |
+| score SAND-T2 | round r8 2 | anthropic/claude-haiku-5.5 | 1 | 5518 | 0 | 0 | 1694 | $0.0014 | 0 | 0 | 0 |
+| score SAND-T2 | round r8 referee | anthropic/claude-opus-5.5 | 1 | 5518 | 0 | 0 | 1188 | $0.0458 | 0 | 0 | 0 |
+| score SAND-T2 | round r9 1 | anthropic/claude-haiku-5.5 | 1 | 4613 | 0 | 0 | 1653 | $0.0013 | 0 | 0 | 0 |
+| score SAND-T2 | round r9 2 | anthropic/claude-haiku-5.5 | 1 | 4613 | 0 | 0 | 1687 | $0.0013 | 0 | 0 | 0 |
+| score SAND-T2 | round r9 referee | anthropic/claude-opus-5.5 | 1 | 4613 | 0 | 0 | 1092 | $0.0403 | 0 | 0 | 0 |
+| score SAND-T2 | round r10 1 | anthropic/claude-haiku-5.5 | 1 | 4936 | 0 | 0 | 2179 | $0.0016 | 0 | 0 | 0 |
+| score SAND-T2 | round r10 2 | anthropic/claude-haiku-5.5 | 1 | 4936 | 0 | 0 | 1799 | $0.0014 | 0 | 0 | 0 |
+| score SAND-T2 | round r10 referee | anthropic/claude-opus-5.5 | 1 | 4936 | 0 | 0 | 1058 | $0.0409 | 0 | 0 | 0 |
+| score SAND-T2 | round r11 1 | anthropic/claude-haiku-5.5 | 1 | 3538 | 0 | 0 | 1337 | $0.0010 | 0 | 0 | 0 |
+| score SAND-T2 | round r11 2 | anthropic/claude-haiku-5.5 | 1 | 3538 | 0 | 0 | 430 | $0.0006 | 0 | 0 | 0 |
+| score SAND-T2 | round r11 referee | anthropic/claude-opus-5.5 | 1 | 3538 | 0 | 0 | 1000 | $0.0342 | 0 | 0 | 0 |
+| score SAND-T2 | round r12 1 | anthropic/claude-haiku-5.5 | 1 | 4308 | 0 | 0 | 1120 | $0.0010 | 0 | 0 | 0 |
+| score SAND-T2 | round r12 2 | anthropic/claude-haiku-5.5 | 1 | 4308 | 0 | 0 | 1324 | $0.0011 | 0 | 0 | 0 |
+| score SAND-T2 | round r12 referee | anthropic/claude-opus-5.5 | 1 | 4308 | 0 | 0 | 1162 | $0.0405 | 0 | 0 | 0 |
+| score SAND-T2 | round r13 1 | anthropic/claude-haiku-5.5 | 1 | 4173 | 0 | 0 | 1006 | $0.0009 | 0 | 0 | 0 |
+| score SAND-T2 | round r13 2 | anthropic/claude-haiku-5.5 | 1 | 4173 | 0 | 0 | 981 | $0.0009 | 0 | 0 | 0 |
+| score SAND-T2 | round r13 referee | anthropic/claude-opus-5.5 | 1 | 4173 | 0 | 0 | 914 | $0.0350 | 0 | 0 | 0 |
+| score SAND-T2 | round r14 1 | anthropic/claude-haiku-5.5 | 1 | 4133 | 0 | 0 | 1249 | $0.0010 | 0 | 0 | 0 |
+| score SAND-T2 | round r14 2 | anthropic/claude-haiku-5.5 | 1 | 4133 | 0 | 0 | 1183 | $0.0010 | 0 | 0 | 0 |
+| score SAND-T2 | round r14 referee | anthropic/claude-opus-5.5 | 1 | 4133 | 0 | 0 | 812 | $0.0328 | 0 | 0 | 0 |
+| score SAND-T2 | round r15 1 | anthropic/claude-haiku-5.5 | 1 | 4721 | 0 | 0 | 1706 | $0.0013 | 0 | 0 | 0 |
+| score SAND-T2 | round r15 2 | anthropic/claude-haiku-5.5 | 1 | 4721 | 0 | 0 | 1460 | $0.0012 | 0 | 0 | 0 |
+| score SAND-T2 | round r15 referee | anthropic/claude-opus-5.5 | 1 | 4721 | 0 | 0 | 741 | $0.0337 | 0 | 0 | 0 |
+| score SAND-T2 | round r16 1 | anthropic/claude-haiku-5.5 | 1 | 4728 | 0 | 0 | 1633 | $0.0013 | 0 | 0 | 0 |
+| score SAND-T2 | round r16 2 | anthropic/claude-haiku-5.5 | 1 | 4728 | 0 | 0 | 1504 | $0.0012 | 0 | 0 | 0 |
+| score SAND-T2 | round r16 referee | anthropic/claude-opus-5.5 | 1 | 4728 | 0 | 0 | 864 | $0.0362 | 0 | 0 | 0 |
+| score SAND-T2 | round r17 1 | anthropic/claude-haiku-5.5 | 1 | 5555 | 0 | 0 | 1621 | $0.0014 | 0 | 0 | 0 |
+| score SAND-T2 | round r17 2 | anthropic/claude-haiku-5.5 | 1 | 5555 | 0 | 0 | 1489 | $0.0013 | 0 | 0 | 0 |
+| score SAND-T2 | round r17 referee | anthropic/claude-opus-5.5 | 1 | 5555 | 0 | 0 | 1213 | $0.0465 | 0 | 0 | 0 |
+| score SAND-T2 | round r18 1 | anthropic/claude-haiku-5.5 | 1 | 5404 | 0 | 0 | 1518 | $0.0013 | 0 | 0 | 0 |
+| score SAND-T2 | round r18 2 | anthropic/claude-haiku-5.5 | 1 | 5404 | 0 | 0 | 1414 | $0.0012 | 0 | 0 | 0 |
+| score SAND-T2 | round r18 referee | anthropic/claude-opus-5.5 | 1 | 5404 | 0 | 0 | 969 | $0.0410 | 0 | 0 | 0 |
+| score SAND-T2 | round r19 1 | anthropic/claude-haiku-5.5 | 1 | 4938 | 0 | 0 | 1431 | $0.0012 | 0 | 0 | 0 |
+| score SAND-T2 | round r19 2 | anthropic/claude-haiku-5.5 | 1 | 4938 | 0 | 0 | 1438 | $0.0012 | 0 | 0 | 0 |
+| score SAND-T2 | round r20 1 | anthropic/claude-haiku-5.5 | 1 | 4676 | 0 | 0 | 1317 | $0.0011 | 0 | 0 | 0 |
+| score SAND-T2 | round r20 2 | anthropic/claude-haiku-5.5 | 1 | 4676 | 0 | 0 | 1475 | $0.0012 | 0 | 0 | 0 |
+| score SAND-T2 | round r21 1 | anthropic/claude-haiku-5.5 | 1 | 4548 | 0 | 0 | 1332 | $0.0011 | 0 | 0 | 0 |
+| score SAND-T2 | round r21 2 | anthropic/claude-haiku-5.5 | 1 | 4548 | 0 | 0 | 1258 | $0.0011 | 0 | 0 | 0 |
+| score SAND-T2 | round r22 1 | anthropic/claude-haiku-5.5 | 1 | 5012 | 0 | 0 | 1101 | $0.0011 | 0 | 0 | 0 |
+| score SAND-T2 | round r22 2 | anthropic/claude-haiku-5.5 | 1 | 5012 | 0 | 0 | 1460 | $0.0012 | 0 | 0 | 0 |
+| score SAND-T2 | round r22 referee | anthropic/claude-opus-5.5 | 1 | 5012 | 0 | 0 | 798 | $0.0360 | 0 | 0 | 0 |
+| score SAND-T2 | round r23 1 | anthropic/claude-haiku-5.5 | 1 | 5929 | 0 | 0 | 1527 | $0.0014 | 0 | 0 | 0 |
+| score SAND-T2 | round r23 2 | anthropic/claude-haiku-5.5 | 1 | 5929 | 0 | 0 | 2156 | $0.0017 | 0 | 0 | 0 |
+| score SAND-T2 | round r23 referee | anthropic/claude-opus-5.5 | 1 | 5929 | 0 | 0 | 846 | $0.0406 | 0 | 0 | 0 |
+| score SAND-T2 | round r24 1 | anthropic/claude-haiku-5.5 | 1 | 5844 | 0 | 0 | 1716 | $0.0014 | 0 | 0 | 0 |
+| score SAND-T2 | round r24 2 | anthropic/claude-haiku-5.5 | 1 | 5844 | 0 | 0 | 1584 | $0.0014 | 0 | 0 | 0 |
+| score SAND-T2 | round r24 referee | anthropic/claude-opus-5.5 | 1 | 5844 | 0 | 0 | 866 | $0.0407 | 0 | 0 | 0 |
+| score SAND-T2 | round r25 1 | anthropic/claude-haiku-5.5 | 1 | 4546 | 0 | 0 | 1283 | $0.0011 | 0 | 0 | 0 |
+| score SAND-T2 | round r25 2 | anthropic/claude-haiku-5.5 | 1 | 4546 | 0 | 0 | 1894 | $0.0014 | 0 | 0 | 0 |
+| score SAND-T2 | round r25 referee | anthropic/claude-opus-5.5 | 1 | 4546 | 0 | 0 | 773 | $0.0336 | 0 | 0 | 0 |
+| score SAND-T2 | after bram 1 | anthropic/claude-haiku-5.5 | 1 | 1115 | 0 | 0 | 87 | $0.0002 | 0 | 0 | 0 |
+| score SAND-T2 | after bram 2 | anthropic/claude-haiku-5.5 | 1 | 1115 | 0 | 0 | 76 | $0.0001 | 0 | 0 | 0 |
+| score SAND-T2 | after sefa 1 | anthropic/claude-haiku-5.5 | 1 | 447 | 0 | 0 | 327 | $0.0002 | 0 | 0 | 0 |
+| score SAND-T2 | after sefa 2 | anthropic/claude-haiku-5.5 | 1 | 447 | 0 | 0 | 300 | $0.0002 | 0 | 0 | 0 |
+| score SAND-T2 | after pell 1 | anthropic/claude-haiku-5.5 | 1 | 829 | 0 | 0 | 250 | $0.0002 | 0 | 0 | 0 |
+| score SAND-T2 | after pell 2 | anthropic/claude-haiku-5.5 | 1 | 829 | 0 | 0 | 450 | $0.0003 | 0 | 0 | 0 |

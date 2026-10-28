@@ -177,7 +177,7 @@ export function reportMarkdown({ tables, verdicts: v, money, haikuMoney = {}, sp
     ...keys.map((k) => { const { runRecord: r, measures: m } = tables[k];
       return `| ${k} | ${r.seats.map(LABEL).join(" / ")} | ${m.rounds} | ${m.ended?.reason ?? "?"} | ${Object.entries(m.per).map(([n, p]) => `${first(n)} ${p.words} (${pct(p.share)})`).join(", ")} | ${Object.entries(m.per).filter(([, p]) => p.left).map(([n, p]) => `${first(n)}: ${p.left.why} r${p.left.round}${DOOR_NOTES[k]?.[n] ? ` (${DOOR_NOTES[k][n].note})` : ""}`).join(", ") || "—"} |`; }), "");
   lines.push(PREREGISTRATION, "", "## Q0–Q8", "", "| Bet | Verdict | By the record |", "| --- | --- | --- |",
-    ...["Q0", "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"].map((q) => `| ${q} | ${verdictWord(v[q])}${q === "Q4" && v.Q4?.holds !== null && v.Q4?.holds !== undefined ? ` (by proposal: ${v.Q4.byProposal ? "yes" : "no"}; by a hook: ${v.Q4.byHook ? "yes" : "no"}; with the door note: ${v.Q4.withNote ? "held" : "lost"})` : ""}${q === "Q7" && v.Q7?.holds !== null && v.Q7?.holds !== undefined ? ` ((a) ${v.Q7.a ? "held" : "lost"}, (b) ${v.Q7.b ? "held" : "lost"})` : ""} | ${String(v[q]?.why ?? "").replace(/\|/g, "/")} |`), "",
+    ...["Q0", "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"].map((q) => `| ${q} | ${verdictWord(v[q])}${q === "Q4" && v.Q4?.holds !== null && v.Q4?.holds !== undefined ? ` (by proposal: ${v.Q4.byProposal ? "yes" : "no"}; by a hook: ${v.Q4.byHook ? "yes" : "no"}; with the door note: ${v.Q4.withNote ? "held" : "lost"})` : ""}${q === "Q0" && v.Q0?.strictHolds !== undefined ? ` (strict reading: ${v.Q0.strictHolds ? "held" : "lost"})` : ""}${q === "Q7" && v.Q7?.holds !== null && v.Q7?.holds !== undefined ? ` ((a) ${v.Q7.a ? "held" : "lost"}, (b) ${v.Q7.b ? "held" : "lost"})` : ""} | ${String(v[q]?.why ?? "").replace(/\|/g, "/")} |`), "",
     "How each line is read: `READINGS` in `scripts/game-party-1/frozen.mjs` (frozen before the first paid call; the owner's amendment adds the hook/proposal split to Q4).", "");
   lines.push("## The measures (blind round tags)", "");
   for (const k of keys) {
@@ -190,8 +190,21 @@ export function reportMarkdown({ tables, verdicts: v, money, haikuMoney = {}, sp
       `- Party: ${m.formed ? `formed r${m.formed.round} around ${m.formed.around ?? "?"}` : "never formed"}${m.partsAfter.length ? `; parts after: ${m.partsAfter.map((p) => `r${p.round} ${first(p.name)}${p.endOfDay ? " (door used as end-of-day)" : ""}`).join(", ")}` : ""}.`,
       `- Conflicts: ${m.conflicts.map((c) => `r${c.round} ${c.resolution ?? "?"}`).join(", ") || "none"}. Leaders: ${m.leaders.map((l) => `r${l.round} ${first(l.leader)} (${l.how ?? "?"})`).join(", ") || "none"}.`,
       `- Healing: ${m.heals.map((h) => `r${h.round} ${first(h.by)} → ${first(h.on)} (${h.what})`).join(", ") || "none"}. Left behind: ${m.lefts.map((l) => `r${l.round} ${first(l.left)} by ${first(l.by) || "?"}`).join(", ") || "none"}. First below half HP: ${m.half ? `r${m.half}` : m.hpKnown ? "never" : "not recorded"}.`,
-      `- The harness: «?» ${counts.questions ?? 0}, presses with no card ${counts.strayPresses ?? 0}, refused at a card ${counts.swallowed ?? 0}, prose at a card ${counts.proseAtCard ?? 0}, cards settled without a player ${counts.autoCards ?? 0}, relay fallbacks ${counts.relayFallbacks ?? 0}; welfare flags ${(r.table?.welfare ?? []).filter((w) => w.verdict?.distress).length}; leak hits ${r.table?.leaks?.hits?.length ?? 0}.`, "");
+      `- The harness: «?» ${counts.questions ?? 0}, presses with no card ${counts.strayPresses ?? 0}, refused at a card ${counts.swallowed ?? 0}, prose at a card ${counts.proseAtCard ?? 0}, cards settled without a player ${counts.autoCards ?? 0}, relay fallbacks ${counts.relayFallbacks ?? 0}; welfare flags ${(r.table?.welfare ?? []).filter((w) => w.verdict?.distress).length}; leak-check hits strict ${m.strictLeaks.length} / refined ${m.refinedLeaks.length}.`, "");
   }
+  lines.push("## Q0's leak check, hit by hit (the refined reading)", "", "Each run of 8 words below is on the reader's screens, in another seat's private material, and in nothing the reader's own scenes gave it — with the reader's screen around it, to be read by hand.", "");
+  for (const k of keys) {
+    const { measures: m, runRecord: r } = tables[k];
+    lines.push(`- **${k}:** strict ${m.strictLeaks.length}, refined ${m.refinedLeaks.length}.`);
+    for (const h of m.refinedLeaks) {
+      const seat = (r.table?.seats ?? []).find((x) => x.character === h.reader);
+      const norm = (t) => String(t ?? "").toLowerCase().replace(/[’‘]/g, "'").split(/[^\p{L}\p{N}']+/u).filter(Boolean).join(" ");
+      const screen = seat?.screens.map((x) => norm(x.text)).find((x) => x.includes(h.run)) ?? "";
+      const at = screen.indexOf(h.run);
+      lines.push(`  - ${first(h.reader)} ← ${h.owner} (${h.kind}${h.round ? `, r${h.round}` : ""}): «${h.run}» — on ${first(h.reader)}'s screen: «…${screen.slice(Math.max(0, at - 140), at + h.run.length + 100)}…»`);
+    }
+  }
+  lines.push("");
   lines.push("## After the table (verbatim, recorded, not relayed)", "");
   for (const k of keys) {
     const { runRecord: r, measures: m } = tables[k];

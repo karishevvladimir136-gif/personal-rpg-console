@@ -1,6 +1,6 @@
 # Game party 1 — the OpenRouter ledger
 
-Cap $400; spent before this run $0.0000; this run $36.6166; total $36.6166; 357 calls.
+Cap $400; spent before this run $0.0000; this run $70.1063; total $70.1063; 794 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -206,3 +206,246 @@ Cap $400; spent before this run $0.0000; this run $36.6166; total $36.6166; 357 
 | SAND-T1/check | check SAND-T1 Pell after 2 | anthropic/claude-haiku-5.5 | 1 | 584 | 0 | 0 | 75 | $0.0001 | 0 | 0 | 0 |
 | SAND-T1/Pell | after 3 | deepseek/deepseek-v4-pro-0813 | 1 | 14962 | 0 | 0 | 698 | $0.0213 | 0 | 0 | 2 |
 | SAND-T1/check | check SAND-T1 Pell after 3 | anthropic/claude-haiku-5.5 | 1 | 675 | 0 | 0 | 62 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2 | relay opening | anthropic/claude-opus-5.5 | 1 | 1092 | 0 | 0 | 1648 | $0.0373 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r1 | anthropic/claude-fable-5.1 | 1 | 4 | 0 | 10590 | 333 | $0.1491 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r1 | anthropic/claude-haiku-5.5 | 1 | 1678 | 0 | 0 | 61 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r1 | anthropic/claude-haiku-5.5 | 1 | 1767 | 0 | 0 | 66 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r1 | deepseek/deepseek-v4-pro-0813 | 1 | 7204 | 0 | 0 | 506 | $0.0107 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r1 | anthropic/claude-haiku-5.5 | 1 | 1602 | 0 | 0 | 68 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r1 | anthropic/claude-opus-5.5 | 2 | 8 | 40315 | 42040 | 6715 | $0.3526 | 0 | 0 | 0 |
+| SAND-T2 | dm r1 | anthropic/claude-haiku-5.5 | 1 | 2777 | 0 | 0 | 332 | $0.0004 | 0 | 0 | 0 |
+| SAND-T2 | relay r1 | anthropic/claude-opus-5.5 | 1 | 1981 | 0 | 0 | 3896 | $0.0858 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r2 | anthropic/claude-fable-5.1 | 1 | 4 | 10590 | 1287 | 612 | $0.0494 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r2 | anthropic/claude-haiku-5.5 | 1 | 1834 | 0 | 0 | 79 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r2 | anthropic/claude-haiku-5.5 | 1 | 1621 | 0 | 0 | 75 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r2 | deepseek/deepseek-v4-pro-0813 | 1 | 1206 | 6912 | 0 | 1141 | $0.0052 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r2 | anthropic/claude-haiku-5.5 | 1 | 1733 | 0 | 0 | 68 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r2 | anthropic/claude-opus-5.5 | 3 | 12 | 87430 | 60534 | 8742 | $0.4989 | 0 | 0 | 0 |
+| SAND-T2 | dm r2 | anthropic/claude-haiku-5.5 | 2 | 5076 | 0 | 0 | 917 | $0.0010 | 0 | 0 | 0 |
+| SAND-T2 | relay r2 | anthropic/claude-opus-5.5 | 1 | 2692 | 0 | 0 | 4057 | $0.0919 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r3 | anthropic/claude-fable-5.1 | 1 | 4 | 11877 | 1520 | 670 | $0.0555 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r3 | anthropic/claude-haiku-5.5 | 1 | 1922 | 0 | 0 | 73 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r3 | anthropic/claude-haiku-5.5 | 1 | 1620 | 0 | 0 | 62 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r3 | deepseek/deepseek-v4-pro-0813 | 1 | 1289 | 7936 | 0 | 1558 | $0.0065 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r3 | anthropic/claude-haiku-5.5 | 1 | 1726 | 0 | 0 | 69 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r3 | anthropic/claude-opus-5.5 | 5 | 18 | 190160 | 63860 | 10269 | $0.5688 | 0 | 0 | 0 |
+| SAND-T2 | dm r3 | anthropic/claude-haiku-5.5 | 2 | 6736 | 0 | 0 | 1770 | $0.0016 | 0 | 0 | 0 |
+| SAND-T2 | relay r3 | anthropic/claude-opus-5.5 | 1 | 2795 | 0 | 0 | 4726 | $0.1057 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r4 | anthropic/claude-fable-5.1 | 1 | 4 | 13397 | 1786 | 804 | $0.0659 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r4 | anthropic/claude-haiku-5.5 | 1 | 2074 | 0 | 0 | 85 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r4 | anthropic/claude-haiku-5.5 | 1 | 1608 | 0 | 0 | 73 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r4 | deepseek/deepseek-v4-pro-0813 | 1 | 1170 | 8960 | 0 | 677 | $0.0042 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r4 | anthropic/claude-haiku-5.5 | 1 | 1534 | 0 | 0 | 61 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r4 | anthropic/claude-opus-5.5 | 2 | 8 | 43628 | 57601 | 10806 | $0.5192 | 0 | 0 | 0 |
+| SAND-T2 | dm r4 | anthropic/claude-haiku-5.5 | 1 | 3850 | 0 | 0 | 481 | $0.0006 | 0 | 0 | 0 |
+| SAND-T2 | relay r4 | anthropic/claude-opus-5.5 | 1 | 3105 | 0 | 0 | 6004 | $0.1325 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r5 | anthropic/claude-fable-5.1 | 1 | 4 | 15183 | 2016 | 690 | $0.0635 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r5 | anthropic/claude-haiku-5.5 | 1 | 2327 | 0 | 0 | 77 | $0.0003 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r5 | anthropic/claude-haiku-5.5 | 1 | 2038 | 0 | 0 | 66 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r5 | deepseek/deepseek-v4-pro-0813 | 1 | 1385 | 9984 | 0 | 795 | $0.0049 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r5 | anthropic/claude-haiku-5.5 | 1 | 2074 | 0 | 0 | 65 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r5 | anthropic/claude-opus-5.5 | 3 | 12 | 102323 | 71451 | 12467 | $0.6344 | 0 | 0 | 0 |
+| SAND-T2 | dm r5 | anthropic/claude-haiku-5.5 | 2 | 6507 | 0 | 0 | 577 | $0.0009 | 0 | 0 | 0 |
+| SAND-T2 | relay r5 | anthropic/claude-opus-5.5 | 1 | 3294 | 0 | 0 | 5037 | $0.1139 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r6 | anthropic/claude-fable-5.1 | 1 | 4 | 17199 | 1567 | 696 | $0.0587 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r6 | anthropic/claude-haiku-5.5 | 1 | 1903 | 0 | 0 | 77 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r6 | anthropic/claude-haiku-5.5 | 1 | 1900 | 0 | 0 | 70 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r6 | anthropic/claude-opus-5.5 | 2 | 8 | 56196 | 65888 | 6051 | $0.4767 | 0 | 0 | 0 |
+| SAND-T2 | relay r6 card | anthropic/claude-opus-5.5 | 2 | 3516 | 0 | 0 | 2232 | $0.0587 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r6 card | anthropic/claude-haiku-5.5 | 2 | 2519 | 0 | 0 | 120 | $0.0003 | 0 | 0 | 0 |
+| SAND-T2 | dm r6 onward | anthropic/claude-opus-5.5 | 5 | 16 | 228530 | 72594 | 10007 | $0.6089 | 0 | 0 | 0 |
+| SAND-T2 | dm r6 onward | anthropic/claude-haiku-5.5 | 4 | 9751 | 0 | 0 | 979 | $0.0015 | 0 | 0 | 0 |
+| SAND-T2 | relay r6 | anthropic/claude-opus-5.5 | 2 | 6336 | 0 | 0 | 3199 | $0.0893 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r6 | deepseek/deepseek-v4-pro-0813 | 1 | 1262 | 11264 | 0 | 297 | $0.0035 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r6 | anthropic/claude-haiku-5.5 | 1 | 1836 | 0 | 0 | 65 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r6 card 1 | deepseek/deepseek-v4-pro-0813 | 2 | 798 | 24832 | 0 | 223 | $0.0041 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r6 card | anthropic/claude-haiku-5.5 | 2 | 1062 | 0 | 0 | 112 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r7 | anthropic/claude-fable-5.1 | 1 | 4 | 18766 | 1930 | 711 | $0.0644 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r7 | anthropic/claude-haiku-5.5 | 1 | 2279 | 0 | 0 | 77 | $0.0003 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r7 | anthropic/claude-haiku-5.5 | 1 | 1022 | 0 | 0 | 74 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2 | dm r7 | anthropic/claude-opus-5.5 | 2 | 8 | 64528 | 69863 | 3474 | $0.4410 | 0 | 0 | 0 |
+| SAND-T2 | relay r7 card | anthropic/claude-opus-5.5 | 2 | 3191 | 0 | 0 | 1786 | $0.0485 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r7 card 1 | anthropic/claude-fable-5.1 | 2 | 8 | 42869 | 1708 | 80 | $0.0361 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r7 card | anthropic/claude-haiku-5.5 | 2 | 1726 | 0 | 0 | 111 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r7 onward | anthropic/claude-opus-5.5 | 5 | 16 | 247164 | 76323 | 9528 | $0.6217 | 0 | 0 | 0 |
+| SAND-T2 | dm r7 onward | anthropic/claude-haiku-5.5 | 4 | 10369 | 0 | 0 | 944 | $0.0015 | 0 | 0 | 0 |
+| SAND-T2 | relay r7 | anthropic/claude-opus-5.5 | 2 | 5843 | 0 | 0 | 4087 | $0.1051 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r7 | deepseek/deepseek-v4-pro-0813 | 1 | 605 | 12800 | 0 | 525 | $0.0034 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r7 | anthropic/claude-haiku-5.5 | 1 | 1269 | 0 | 0 | 75 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r7 card 1 | deepseek/deepseek-v4-pro-0813 | 2 | 14223 | 13568 | 0 | 396 | $0.0209 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r7 card | anthropic/claude-haiku-5.5 | 3 | 2490 | 0 | 0 | 191 | $0.0003 | 0 | 0 | 0 |
+| SAND-T2 | dm r7 card prose | anthropic/claude-opus-5.5 | 1 | 18844 | 0 | 34073 | 1458 | $0.3771 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r7 card 2 | deepseek/deepseek-v4-pro-0813 | 1 | 827 | 13824 | 0 | 107 | $0.0027 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r8 | anthropic/claude-fable-5.1 | 1 | 4 | 22404 | 706 | 919 | $0.0604 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r8 | anthropic/claude-haiku-5.5 | 1 | 1714 | 0 | 0 | 81 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r8 | anthropic/claude-haiku-5.5 | 1 | 1935 | 0 | 0 | 63 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r8 | deepseek/deepseek-v4-pro-0813 | 1 | 1009 | 14336 | 0 | 294 | $0.0035 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r8 | anthropic/claude-haiku-5.5 | 1 | 1546 | 0 | 0 | 72 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r8 | anthropic/claude-opus-5.5 | 3 | 12 | 127976 | 66589 | 14632 | $0.6557 | 0 | 0 | 0 |
+| SAND-T2 | dm r8 | anthropic/claude-haiku-5.5 | 2 | 7940 | 0 | 0 | 955 | $0.0013 | 0 | 0 | 0 |
+| SAND-T2 | relay r8 | anthropic/claude-opus-5.5 | 1 | 4367 | 0 | 0 | 6023 | $0.1379 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r9 | anthropic/claude-fable-5.1 | 1 | 4 | 23110 | 2407 | 605 | $0.0662 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r9 | anthropic/claude-haiku-5.5 | 1 | 2575 | 0 | 0 | 72 | $0.0003 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r9 | deepseek/deepseek-v4-pro-0813 | 1 | 1711 | 15104 | 0 | 382 | $0.0047 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r9 | anthropic/claude-haiku-5.5 | 1 | 2306 | 0 | 0 | 63 | $0.0003 | 0 | 0 | 0 |
+| SAND-T2 | dm r9 | anthropic/claude-opus-5.5 | 5 | 20 | 193679 | 150672 | 11865 | $1.0459 | 0 | 0 | 0 |
+| SAND-T2 | dm r9 | anthropic/claude-haiku-5.5 | 3 | 7504 | 0 | 0 | 1162 | $0.0013 | 0 | 0 | 0 |
+| SAND-T2 | relay r9 | anthropic/claude-opus-5.5 | 2 | 4113 | 0 | 0 | 3162 | $0.0797 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r9 | anthropic/claude-haiku-5.5 | 1 | 1942 | 0 | 0 | 81 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r10 | anthropic/claude-fable-5.1 | 1 | 4 | 25517 | 1222 | 603 | $0.0518 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r10 | anthropic/claude-haiku-5.5 | 1 | 1519 | 0 | 0 | 70 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r10 | deepseek/deepseek-v4-pro-0813 | 1 | 1085 | 16640 | 0 | 1807 | $0.0078 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r10 | anthropic/claude-haiku-5.5 | 1 | 1720 | 0 | 0 | 68 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r10 | anthropic/claude-opus-5.5 | 5 | 20 | 207360 | 157889 | 12457 | $1.0896 | 0 | 0 | 0 |
+| SAND-T2 | dm r10 | anthropic/claude-haiku-5.5 | 3 | 8148 | 0 | 0 | 1414 | $0.0015 | 0 | 0 | 0 |
+| SAND-T2 | relay r10 | anthropic/claude-opus-5.5 | 2 | 4436 | 0 | 0 | 4080 | $0.0993 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r10 | anthropic/claude-haiku-5.5 | 1 | 1376 | 0 | 0 | 69 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r11 | anthropic/claude-fable-5.1 | 1 | 4 | 26739 | 1585 | 516 | $0.0523 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r11 | anthropic/claude-haiku-5.5 | 1 | 1819 | 0 | 0 | 76 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r11 | anthropic/claude-haiku-5.5 | 1 | 1089 | 0 | 0 | 66 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r11 | deepseek/deepseek-v4-pro-0813 | 1 | 1562 | 17408 | 0 | 362 | $0.0047 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r11 | anthropic/claude-haiku-5.5 | 1 | 1923 | 0 | 0 | 64 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r11 | anthropic/claude-opus-5.5 | 3 | 12 | 150850 | 81734 | 4382 | $0.5299 | 0 | 0 | 0 |
+| SAND-T2 | dm r11 | anthropic/claude-haiku-5.5 | 2 | 4525 | 0 | 0 | 557 | $0.0007 | 0 | 0 | 0 |
+| SAND-T2 | relay r11 | anthropic/claude-opus-5.5 | 1 | 2387 | 0 | 0 | 2987 | $0.0693 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r12 | anthropic/claude-fable-5.1 | 1 | 4 | 28324 | 1164 | 327 | $0.0380 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r12 | anthropic/claude-haiku-5.5 | 1 | 1304 | 0 | 0 | 68 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r12 | anthropic/claude-haiku-5.5 | 1 | 1134 | 0 | 0 | 74 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r12 | deepseek/deepseek-v4-pro-0813 | 1 | 1038 | 18688 | 0 | 812 | $0.0053 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r12 | anthropic/claude-haiku-5.5 | 1 | 1835 | 0 | 0 | 73 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r12 | anthropic/claude-opus-5.5 | 3 | 12 | 129721 | 84522 | 6118 | $0.5761 | 0 | 0 | 0 |
+| SAND-T2 | dm r12 | anthropic/claude-haiku-5.5 | 2 | 6466 | 0 | 0 | 1373 | $0.0013 | 0 | 0 | 0 |
+| SAND-T2 | relay r12 | anthropic/claude-opus-5.5 | 1 | 3157 | 0 | 0 | 2619 | $0.0650 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r13 | anthropic/claude-fable-5.1 | 2 | 8 | 59651 | 1459 | 888 | $0.0776 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r13 | anthropic/claude-haiku-5.5 | 2 | 1977 | 0 | 0 | 144 | $0.0003 | 0 | 0 | 0 |
+| SAND-T2 | dm r13 ooc Bram | anthropic/claude-opus-5.5 | 1 | 22228 | 34073 | 15405 | 878 | $0.2365 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r13 | deepseek/deepseek-v4-pro-0813 | 1 | 1254 | 19456 | 0 | 424 | $0.0047 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r13 | anthropic/claude-haiku-5.5 | 1 | 1236 | 0 | 0 | 75 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r13 | anthropic/claude-opus-5.5 | 8 | 28 | 483283 | 164773 | 9717 | $1.1278 | 0 | 0 | 0 |
+| SAND-T2 | dm r13 | anthropic/claude-haiku-5.5 | 4 | 9974 | 0 | 0 | 1844 | $0.0019 | 0 | 0 | 0 |
+| SAND-T2 | relay r13 | anthropic/claude-opus-5.5 | 2 | 3673 | 0 | 0 | 3130 | $0.0773 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r13 | anthropic/claude-haiku-5.5 | 2 | 1741 | 0 | 0 | 131 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r13 ooc Sefa | anthropic/claude-opus-5.5 | 1 | 22548 | 49478 | 1783 | 871 | $0.1318 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r14 | anthropic/claude-fable-5.1 | 1 | 4 | 30947 | 874 | 228 | $0.0301 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r14 | anthropic/claude-haiku-5.5 | 1 | 1170 | 0 | 0 | 71 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r14 | deepseek/deepseek-v4-pro-0813 | 1 | 1363 | 20480 | 0 | 561 | $0.0053 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r14 | anthropic/claude-haiku-5.5 | 1 | 1933 | 0 | 0 | 63 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r14 | anthropic/claude-opus-5.5 | 4 | 16 | 225282 | 125923 | 10086 | $0.8835 | 0 | 0 | 0 |
+| SAND-T2 | dm r14 | anthropic/claude-haiku-5.5 | 2 | 5464 | 0 | 0 | 530 | $0.0008 | 0 | 0 | 0 |
+| SAND-T2 | relay r14 | anthropic/claude-opus-5.5 | 2 | 3759 | 0 | 0 | 3289 | $0.0808 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r14 | anthropic/claude-haiku-5.5 | 1 | 860 | 0 | 0 | 56 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2 | relay r14 card | anthropic/claude-opus-5.5 | 1 | 795 | 0 | 0 | 146 | $0.0061 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r14 card | anthropic/claude-haiku-5.5 | 4 | 2050 | 0 | 0 | 239 | $0.0003 | 0 | 0 | 0 |
+| SAND-T2 | dm r14 onward | anthropic/claude-opus-5.5 | 3 | 10 | 215536 | 45133 | 2084 | $0.3105 | 0 | 0 | 0 |
+| SAND-T2 | dm r14 onward | anthropic/claude-haiku-5.5 | 2 | 3230 | 0 | 0 | 573 | $0.0006 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r15 | anthropic/claude-fable-5.1 | 1 | 4 | 31821 | 802 | 632 | $0.0496 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r15 | anthropic/claude-haiku-5.5 | 1 | 1403 | 0 | 0 | 71 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r15 | deepseek/deepseek-v4-pro-0813 | 1 | 966 | 21760 | 0 | 430 | $0.0045 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r15 | anthropic/claude-haiku-5.5 | 1 | 1563 | 0 | 0 | 70 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r15 | anthropic/claude-opus-5.5 | 5 | 16 | 329909 | 137027 | 5297 | $0.8664 | 0 | 0 | 0 |
+| SAND-T2 | relay r15 card | anthropic/claude-opus-5.5 | 1 | 1792 | 0 | 0 | 928 | $0.0257 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r15 card 1 | deepseek/deepseek-v4-pro-0813 | 4 | 1892 | 93952 | 0 | 1388 | $0.0155 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r15 card | anthropic/claude-haiku-5.5 | 7 | 7315 | 0 | 0 | 636 | $0.0010 | 0 | 0 | 0 |
+| SAND-T2 | dm r15 card prose | anthropic/claude-opus-5.5 | 3 | 72849 | 159839 | 3028 | 4653 | $0.4406 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r15 card 2 | deepseek/deepseek-v4-pro-0813 | 2 | 2179 | 47616 | 0 | 896 | $0.0099 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r15 card 3 | deepseek/deepseek-v4-pro-0813 | 1 | 1163 | 25344 | 0 | 598 | $0.0056 | 0 | 0 | 0 |
+| SAND-T2 | dm r15 onward | anthropic/claude-opus-5.5 | 3 | 10 | 226450 | 45103 | 7015 | $0.4111 | 0 | 0 | 0 |
+| SAND-T2 | dm r15 onward | anthropic/claude-haiku-5.5 | 2 | 6281 | 0 | 0 | 725 | $0.0010 | 0 | 0 | 0 |
+| SAND-T2 | relay r15 | anthropic/claude-opus-5.5 | 2 | 4597 | 0 | 0 | 3106 | $0.0805 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r15 | anthropic/claude-haiku-5.5 | 1 | 769 | 0 | 0 | 61 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2 | dm r15 | anthropic/claude-haiku-5.5 | 2 | 3217 | 0 | 0 | 432 | $0.0005 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r16 | anthropic/claude-fable-5.1 | 1 | 4 | 0 | 34323 | 673 | $0.4627 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r16 | anthropic/claude-haiku-5.5 | 1 | 2174 | 0 | 0 | 64 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r16 | deepseek/deepseek-v4-pro-0813 | 1 | 849 | 26368 | 0 | 492 | $0.0050 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r16 | anthropic/claude-haiku-5.5 | 1 | 1625 | 0 | 0 | 67 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r16 | anthropic/claude-opus-5.5 | 5 | 18 | 269186 | 191863 | 11755 | $1.2576 | 0 | 0 | 0 |
+| SAND-T2 | dm r16 | anthropic/claude-haiku-5.5 | 3 | 8950 | 0 | 0 | 848 | $0.0013 | 0 | 0 | 0 |
+| SAND-T2 | relay r16 | anthropic/claude-opus-5.5 | 2 | 4228 | 0 | 0 | 4960 | $0.1161 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r16 | anthropic/claude-haiku-5.5 | 1 | 481 | 0 | 0 | 62 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r17 | anthropic/claude-fable-5.1 | 1 | 4 | 34323 | 2244 | 1160 | $0.0947 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r17 | anthropic/claude-haiku-5.5 | 1 | 2792 | 0 | 0 | 76 | $0.0003 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r17 | deepseek/deepseek-v4-pro-0813 | 1 | 1736 | 27136 | 0 | 727 | $0.0069 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r17 | anthropic/claude-haiku-5.5 | 1 | 2640 | 0 | 0 | 75 | $0.0003 | 0 | 0 | 0 |
+| SAND-T2 | dm r17 | anthropic/claude-opus-5.5 | 6 | 24 | 343684 | 196998 | 12954 | $1.3242 | 0 | 0 | 0 |
+| SAND-T2 | dm r17 | anthropic/claude-haiku-5.5 | 4 | 14439 | 0 | 0 | 1341 | $0.0021 | 0 | 0 | 0 |
+| SAND-T2 | relay r17 | anthropic/claude-opus-5.5 | 2 | 5055 | 0 | 0 | 5297 | $0.1262 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r17 | anthropic/claude-haiku-5.5 | 1 | 681 | 0 | 0 | 59 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r18 | anthropic/claude-fable-5.1 | 1 | 4 | 36567 | 2495 | 914 | $0.0861 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r18 | anthropic/claude-haiku-5.5 | 1 | 2728 | 0 | 0 | 77 | $0.0003 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r18 | deepseek/deepseek-v4-pro-0813 | 1 | 1989 | 28672 | 0 | 853 | $0.0077 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r18 | anthropic/claude-haiku-5.5 | 1 | 2595 | 0 | 0 | 56 | $0.0003 | 0 | 0 | 0 |
+| SAND-T2 | dm r18 | anthropic/claude-opus-5.5 | 5 | 20 | 292352 | 200360 | 12388 | $1.3185 | 0 | 0 | 0 |
+| SAND-T2 | dm r18 | anthropic/claude-haiku-5.5 | 3 | 9677 | 0 | 0 | 824 | $0.0014 | 0 | 0 | 0 |
+| SAND-T2 | relay r18 | anthropic/claude-opus-5.5 | 2 | 4904 | 0 | 0 | 4833 | $0.1163 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r18 | anthropic/claude-haiku-5.5 | 1 | 745 | 0 | 0 | 57 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r19 | anthropic/claude-fable-5.1 | 1 | 4 | 39062 | 2091 | 724 | $0.0721 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r19 | anthropic/claude-haiku-5.5 | 1 | 2201 | 0 | 0 | 66 | $0.0003 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r19 | deepseek/deepseek-v4-pro-0813 | 1 | 1778 | 30464 | 0 | 318 | $0.0062 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r19 | anthropic/claude-haiku-5.5 | 1 | 2512 | 0 | 0 | 70 | $0.0003 | 0 | 0 | 0 |
+| SAND-T2 | dm r19 | anthropic/claude-opus-5.5 | 5 | 20 | 308936 | 195133 | 10950 | $1.2659 | 0 | 0 | 0 |
+| SAND-T2 | dm r19 | anthropic/claude-haiku-5.5 | 3 | 8979 | 0 | 0 | 1116 | $0.0015 | 0 | 0 | 0 |
+| SAND-T2 | relay r19 | anthropic/claude-opus-5.5 | 2 | 4438 | 0 | 0 | 4179 | $0.1013 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r19 | anthropic/claude-haiku-5.5 | 1 | 1035 | 0 | 0 | 64 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r20 | anthropic/claude-fable-5.1 | 1 | 4 | 41153 | 1933 | 791 | $0.0740 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r20 | anthropic/claude-haiku-5.5 | 1 | 2377 | 0 | 0 | 70 | $0.0003 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r20 | anthropic/claude-haiku-5.5 | 1 | 802 | 0 | 0 | 56 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2 | dm r20 | anthropic/claude-opus-5.5 | 6 | 24 | 392559 | 201841 | 11070 | $1.3170 | 0 | 0 | 0 |
+| SAND-T2 | dm r20 | anthropic/claude-haiku-5.5 | 4 | 10729 | 0 | 0 | 1570 | $0.0019 | 0 | 0 | 0 |
+| SAND-T2 | relay r20 | anthropic/claude-opus-5.5 | 2 | 4176 | 0 | 0 | 2623 | $0.0692 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r20 | deepseek/deepseek-v4-pro-0813 | 1 | 1221 | 32000 | 0 | 389 | $0.0058 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r20 | anthropic/claude-haiku-5.5 | 1 | 1698 | 0 | 0 | 66 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r21 | anthropic/claude-fable-5.1 | 1 | 4 | 43086 | 1166 | 324 | $0.0416 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r21 | anthropic/claude-haiku-5.5 | 1 | 1052 | 0 | 0 | 75 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r21 | anthropic/claude-haiku-5.5 | 1 | 1359 | 0 | 0 | 62 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r21 | anthropic/claude-opus-5.5 | 6 | 24 | 446113 | 200306 | 9527 | $1.2888 | 0 | 0 | 0 |
+| SAND-T2 | dm r21 | anthropic/claude-haiku-5.5 | 4 | 9310 | 0 | 0 | 1318 | $0.0016 | 0 | 0 | 0 |
+| SAND-T2 | relay r21 | anthropic/claude-opus-5.5 | 2 | 4048 | 0 | 0 | 2330 | $0.0628 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r21 | deepseek/deepseek-v4-pro-0813 | 1 | 845 | 33024 | 0 | 426 | $0.0055 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r21 | anthropic/claude-haiku-5.5 | 1 | 1286 | 0 | 0 | 71 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r22 | anthropic/claude-fable-5.1 | 1 | 4 | 44252 | 687 | 542 | $0.0468 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r22 | anthropic/claude-haiku-5.5 | 1 | 1243 | 0 | 0 | 74 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r22 | anthropic/claude-haiku-5.5 | 1 | 681 | 0 | 0 | 57 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2 | dm r22 | anthropic/claude-opus-5.5 | 5 | 20 | 277686 | 213816 | 12359 | $1.3823 | 0 | 0 | 0 |
+| SAND-T2 | dm r22 | anthropic/claude-haiku-5.5 | 3 | 10089 | 0 | 0 | 2256 | $0.0021 | 0 | 0 | 0 |
+| SAND-T2 | relay r22 | anthropic/claude-opus-5.5 | 2 | 4512 | 0 | 0 | 3391 | $0.0859 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r22 | deepseek/deepseek-v4-pro-0813 | 1 | 867 | 33792 | 0 | 330 | $0.0054 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r22 | anthropic/claude-haiku-5.5 | 1 | 1519 | 0 | 0 | 63 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r23 | anthropic/claude-fable-5.1 | 1 | 4 | 44939 | 1397 | 445 | $0.0510 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r23 | anthropic/claude-haiku-5.5 | 1 | 1597 | 0 | 0 | 70 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r23 | anthropic/claude-opus-5.5 | 10 | 38 | 679763 | 338030 | 18596 | $2.2113 | 0 | 0 | 0 |
+| SAND-T2 | dm r23 | anthropic/claude-haiku-5.5 | 6 | 19422 | 0 | 0 | 3541 | $0.0037 | 0 | 0 | 0 |
+| SAND-T2 | relay r23 | anthropic/claude-opus-5.5 | 3 | 6058 | 0 | 0 | 4041 | $0.1051 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r23 | anthropic/claude-haiku-5.5 | 1 | 1325 | 0 | 0 | 69 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r23 | deepseek/deepseek-v4-pro-0813 | 1 | 931 | 34560 | 0 | 590 | $0.0062 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r23 | anthropic/claude-haiku-5.5 | 1 | 1405 | 0 | 0 | 67 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r24 | anthropic/claude-fable-5.1 | 1 | 4 | 0 | 47403 | 441 | $0.6146 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r24 | anthropic/claude-haiku-5.5 | 1 | 1391 | 0 | 0 | 71 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r24 | deepseek/deepseek-v4-pro-0813 | 1 | 879 | 35328 | 0 | 483 | $0.0059 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r24 | anthropic/claude-haiku-5.5 | 1 | 1510 | 0 | 0 | 67 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2 | dm r24 | anthropic/claude-opus-5.5 | 5 | 20 | 357277 | 223441 | 18590 | $1.5726 | 0 | 0 | 0 |
+| SAND-T2 | dm r24 | anthropic/claude-haiku-5.5 | 4 | 12262 | 0 | 0 | 1539 | $0.0020 | 0 | 0 | 0 |
+| SAND-T2 | relay r24 | anthropic/claude-opus-5.5 | 2 | 5344 | 0 | 0 | 5732 | $0.1360 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r24 | anthropic/claude-haiku-5.5 | 1 | 2077 | 0 | 0 | 59 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Bram | player r25 | anthropic/claude-fable-5.1 | 1 | 4 | 47403 | 2327 | 473 | $0.0646 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram r25 | anthropic/claude-haiku-5.5 | 1 | 2541 | 0 | 0 | 71 | $0.0003 | 0 | 0 | 0 |
+| SAND-T2/Pell | player r25 | deepseek/deepseek-v4-pro-0813 | 1 | 1489 | 36096 | 0 | 375 | $0.0065 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell r25 | anthropic/claude-haiku-5.5 | 1 | 2169 | 0 | 0 | 68 | $0.0003 | 0 | 0 | 0 |
+| SAND-T2 | dm r25 | anthropic/claude-opus-5.5 | 4 | 16 | 219685 | 225520 | 15316 | $1.4859 | 0 | 0 | 0 |
+| SAND-T2 | dm r25 | anthropic/claude-haiku-5.5 | 2 | 6468 | 0 | 0 | 576 | $0.0009 | 0 | 0 | 0 |
+| SAND-T2 | relay r25 | anthropic/claude-opus-5.5 | 2 | 4046 | 0 | 0 | 3676 | $0.0897 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa r25 | anthropic/claude-haiku-5.5 | 1 | 1479 | 0 | 0 | 65 | $0.0002 | 0 | 0 | 0 |
+| SAND-T2/Bram | after 1 | anthropic/claude-fable-5.1 | 1 | 4 | 49730 | 1240 | 680 | $0.0620 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram after 1 | anthropic/claude-haiku-5.5 | 1 | 935 | 0 | 0 | 62 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2/Bram | after 2 | anthropic/claude-fable-5.1 | 1 | 4 | 50970 | 630 | 671 | $0.0542 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram after 2 | anthropic/claude-haiku-5.5 | 1 | 951 | 0 | 0 | 70 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2/Bram | after 3 | anthropic/claude-fable-5.1 | 1 | 4 | 51600 | 633 | 1468 | $0.0943 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Bram after 3 | anthropic/claude-haiku-5.5 | 1 | 1112 | 0 | 0 | 62 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa after 1 | anthropic/claude-haiku-5.5 | 1 | 665 | 0 | 0 | 70 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa after 2 | anthropic/claude-haiku-5.5 | 1 | 567 | 0 | 0 | 68 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Sefa after 3 | anthropic/claude-haiku-5.5 | 1 | 444 | 0 | 0 | 55 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2/Pell | after 1 | deepseek/deepseek-v4-pro-0813 | 1 | 1293 | 37376 | 0 | 596 | $0.0070 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell after 1 | anthropic/claude-haiku-5.5 | 1 | 786 | 0 | 0 | 91 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2/Pell | after 2 | deepseek/deepseek-v4-pro-0813 | 1 | 622 | 38400 | 0 | 677 | $0.0064 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell after 2 | anthropic/claude-haiku-5.5 | 1 | 893 | 0 | 0 | 65 | $0.0001 | 0 | 0 | 0 |
+| SAND-T2/Pell | after 3 | deepseek/deepseek-v4-pro-0813 | 1 | 544 | 38912 | 0 | 692 | $0.0064 | 0 | 0 | 0 |
+| SAND-T2/check | check SAND-T2 Pell after 3 | anthropic/claude-haiku-5.5 | 1 | 826 | 0 | 0 | 65 | $0.0001 | 0 | 0 | 0 |

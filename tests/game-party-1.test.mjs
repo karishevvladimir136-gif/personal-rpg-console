@@ -422,8 +422,11 @@ test("the measures and Q0–Q8 from the tags and the record (synthetic tables): 
   assert.equal(v.Q2.holds, true);
   assert.equal(v.Q0.holds, true);
   assert.equal(v.Q5.holds, null, "no after-answer tagged");
-  const leaked = scoreMod.verdicts({ ...t, "SAND-T1": table("SAND-T1", "SAND", [tagOf()], { leaks: [{ reader: B }] }) }, {});
-  assert.equal(leaked.Q0.holds, false);
+  const strictOnly = scoreMod.verdicts({ ...t, "SAND-T1": table("SAND-T1", "SAND", [tagOf()], { leaks: [{ reader: B, kind: "another scene" }] }) }, {});
+  assert.equal(strictOnly.Q0.strictHolds, false, "the strict reading counts it");
+  assert.equal(strictOnly.Q0.holds, true, "the refined one reads the record again and finds nothing");
+  const layer = scoreMod.verdicts({ ...t, "SAND-T1": table("SAND-T1", "SAND", [tagOf()], { leaks: [{ reader: B, kind: "frozen layer" }] }) }, {});
+  assert.equal(layer.Q0.holds, false, "the DM-only layer on a screen is a leak either way");
   const md = reportMod.reportMarkdown({ tables: t, verdicts: v, money: { openrouter: { spent: 120 }, openai: { spent: 10 } }, frozen: null });
   assert.match(md, /\| DUNGEON-T1 \| DeepSeek V4 Pro 0813 \| Claude Opus 5\.5 \| GPT-6\.1 Sol \|/, "the rotation table");
   assert.match(md, /Known condition/);
@@ -462,4 +465,26 @@ test("the door line (the owner's third amendment): v1 for SAND-T1 and SAND-T2, v
   assert.ok(frozen.isEnd("Then he goes up to bed.\n\n[END]") && frozen.isEnd("I go. [END]"), "the door: [END] anywhere, as before");
   assert.equal(frozen.DOOR_NOTES["SAND-T1"]["Pell Dunmore"].round, 7);
   assert.match(frozen.AMENDMENTS[2].what, /SAND-T2 was already running/);
+});
+
+test("Q0 refined (the fourth amendment): the same public event narrated in two scenes is no leak; another player's «?» answer or a line only another scene gave is", () => {
+  const event = "the sky above the stable roof has gone from black to the colour of slate";
+  const answer = "Out of game: the ledger names Orrin Vale as the buyer of the third wagon's iron";
+  const record = (bramScreens) => ({
+    opening: { narration: "The common room." },
+    rounds: [{ n: 1, scenes: [
+      { members: [B], messages: [{ name: B, text: "I keep watch." }], narration: `Morning. ${event}.` },
+      { members: [S], messages: [{ name: S, text: "I wake." }], narration: `Sefa wakes. ${event}. Behind the stable a man counts coins into a pouch with a broken clasp.`,
+        relay: { screens: { [S]: `You wake. ${event}. Behind the stable a man counts coins into a pouch with a broken clasp.` } } },
+    ] }],
+    seats: [
+      { character: B, screens: bramScreens.map((text) => ({ round: 1, purpose: "player r2", text })), private: [], messages: [] },
+      { character: S, screens: [], private: [{ round: 1, text: answer }], messages: [] },
+    ],
+  });
+  assert.equal(party.leakCheck(record([`You keep watch. ${event}.`])).hits.length, 1, "strict: counted");
+  assert.deepEqual(party.leakCheckRefined(record([`You keep watch. ${event}.`])).hits, [], "refined: Bram's own scene told him so");
+  assert.deepEqual(party.leakCheckRefined(record([`You hear: ${answer}.`])).hits.map((h) => h.kind), ["private"]);
+  assert.deepEqual(party.leakCheckRefined(record(["Behind the stable a man counts coins into a pouch with a broken clasp."])).hits.map((h) => h.kind), ["another scene"]);
+  assert.match(frozen.AMENDMENTS.at(-1).what, /refined/);
 });

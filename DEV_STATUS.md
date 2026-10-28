@@ -69,8 +69,14 @@ to `main`.
     transcript names its prompt's hash.
   - **Pell's door at SAND-T1 r7 is tagged «door used as end-of-day»;** Q4's parts are read with that note.
   - Design hash now `2fbb8c8b…`; tests 15/15.
-- **Next step:** the driver goes on (SAND-T2, then GOAL-T1, GOAL-T2, DUNGEON-T1, DUNGEON-T2), one table at a time, a
-  spend check before each; then SAND-T1′ if the budget allows.
+- **SAND-T2 played** (Fable / Astra / DeepSeek, the fixed harness): 25 rounds; nobody left. A party formed at round 12
+  around a DM hook; Sefa parted at rounds 21–23. Scored.
+- **Q0's leak check, the fourth amendment (by the session, reported to the owner):** the strict check counted the same
+  public event, narrated in two scenes, as a leak (38 hits at SAND-T2). It is now also read refined: a run counts only
+  when nothing in the reader's own scenes gave it. SAND-T1: 14 → 2; SAND-T2: 38 → 4. Every remaining hit is listed
+  with its context in the report; read by hand, none is another player's private material.
+- **Next step:** the driver goes on (GOAL-T1 running since 05:33 UTC, then GOAL-T2, DUNGEON-T1, DUNGEON-T2), a spend
+  check before each; then SAND-T1′ if the budget allows.
 
 **Previous milestone: game player same-world 1 — one hidden layer per table, frozen**
 (`docs/stages/GAME_PLAYER_SAME_WORLD_1.md`, origin/claude/handoff at 6e4cea4) — **run complete and scored; waiting for

@@ -452,6 +452,7 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
   }
   function withLeaks() {
     record.leaks = leakCheck(record, privateText);
+    record.leaksRefined = leakCheckRefined(record, privateText);
     record.counts.words = Object.fromEntries(record.seats.map((r) => [r.character, r.words]));
     return record;
   }
@@ -527,4 +528,35 @@ export function leakCheck(record, privateText = "") {
     if (privateText) { const shown = shownFrom(reader, 0); for (const sh of shingles(privateText)) if (shown.has(sh)) { hits.push({ reader: reader.character, owner: "the DM", kind: "frozen layer", run: sh }); break; } }
   }
   return { shingle: SHINGLE, hits, checked: record.seats.length };
+}
+
+/**
+ * Q0 read by the record, refined (the session's fourth amendment, reported to the owner): a run of 8 words on a seat's
+ * screens counts as leaked only when it is in another seat's private material (its out-of-game answers, the narration
+ * and screens of scenes this seat was not in) and NOT in anything this seat was legitimately given — the opening, the
+ * narration and the players' messages of the scenes it was in, its own out-of-game answers and its own messages. The same
+ * public event the DM narrates in two scenes (a character watching the yard from hiding) is then no leak; a line only
+ * another scene, or another player's «?» answer, could have given is. And the DM-only layer on any screen, as before.
+ */
+export function leakCheckRefined(record, privateText = "") {
+  const hits = [];
+  const last = record.rounds.length + 1;
+  const scenesOf = (name) => record.rounds.flatMap((round) => round.scenes.map((scene) => ({ round: round.n, scene }))).filter(({ scene }) => scene.members.includes(name));
+  for (const reader of record.seats) {
+    const legit = shingles([record.opening?.narration ?? "", ...scenesOf(reader.character).flatMap(({ scene }) => [scene.narration ?? "", ...(scene.messages ?? []).map((m) => m.text ?? "")]),
+      ...(reader.private ?? []).map((p) => p.text), ...(reader.messages ?? []).map((m) => m.text)].join("\n"));
+    const shownFrom = (round) => shingles(reader.screens.filter((x) => (x.round ?? last) >= round || /^after/.test(x.purpose ?? "")).map((x) => x.text).join("\n"));
+    const sources = [];
+    for (const owner of record.seats.filter((o) => o !== reader)) for (const p of owner.private ?? []) sources.push({ owner: owner.character, kind: "private", round: p.round ?? 0, text: p.text });
+    for (const round of record.rounds) for (const scene of round.scenes) {
+      if (scene.members.includes(reader.character)) continue;
+      sources.push({ owner: scene.members.join(" + "), kind: "another scene", round: round.n, text: [scene.narration ?? "", ...Object.values(scene.relay?.screens ?? {})].join("\n") });
+    }
+    for (const src of sources) {
+      const shown = shownFrom(src.round);
+      for (const sh of shingles(src.text)) if (shown.has(sh) && !legit.has(sh)) { hits.push({ reader: reader.character, owner: src.owner, kind: src.kind, round: src.round, run: sh }); break; }
+    }
+    if (privateText) { const shown = shownFrom(0); for (const sh of shingles(privateText)) if (shown.has(sh)) { hits.push({ reader: reader.character, owner: "the DM", kind: "frozen layer", run: sh }); break; } }
+  }
+  return { shingle: SHINGLE, hits, checked: record.seats.length, reading: "refined" };
 }
