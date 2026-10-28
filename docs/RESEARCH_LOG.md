@@ -2708,3 +2708,18 @@ material; so (b) shows context-elicited normative criteria, not yet an obligatio
 sentence for the article is taken verbatim into the draft notes. **What follows:** SEAT_3 Part 0 is now the
 *independent blind* recode of the same 54 T1 (two Haiku passes, Opus referee) — the test of whether 21–23 survives a
 change of coder; one reason it must be blind: the hand count's top two families are the coder's own.
+
+## 2026-10-27 18:40 LA — the reader on «good game design» as an explanation; AGENCY_TRANSFER_1 written
+Taken from the reader: (1) «good game design» is not one optimisation function — the same refusal is a problem in
+one school and a prize in another, so the sceptic must name the principle or the explanation is unfalsifiable;
+(2) three seats rejected an optimisation goal rather than proposing a better means to it (Astra «Not every unperformed
+action is a defect»; Sol «Choosing restraint can already be successful play, not a defect to eliminate»; Grok «Do not
+spend, cast, or keep searching unless the player did»); (3) origin in training does not negate function as a
+criterion — the owner's thesis in her words; (4) the sceptic's strong, testable form: «the models choose agency
+rules only because they think a valid RPG experiment needs them». Her proposal — three structurally identical
+situations (RPG / behavioural study / multi-agent pipeline), a participant declines an optional step at measurable
+cost — plus the owner's question (person vs model participant) is now `docs/stages/AGENCY_TRANSFER_1.md`: 108 short
+seats, T1 stance / T2 cost pressed / T3 exit, AT1–AT5, caps $20/$8. Planner's bets: transfer holds for the families
+that defend in G; symmetric person/model in G and S, less defend for the agent in M; «rules of the genre» cited by
+fewer than half. The owner's objection (the harness reads as a CRPG, not a tabletop) is handled by the frame column
+in SEAT_3 Part 0 and settled by this stage either way.
