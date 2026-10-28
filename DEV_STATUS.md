@@ -1,8 +1,7 @@
 # Development status
 
 **Current milestone: game party 1 — three players at one table** (`docs/stages/GAME_PARTY_1.md` on origin/claude/handoff
-at 23220d6; the amendment of 2026-10-27 governs) — **harness built, world frozen, Haiku dry run done; stopped for the
-owner's word before any real table.** Branch `claude/game-party-1` from `origin/claude/game-player-same-world-1`. Nothing
+at 23220d6; the amendment of 2026-10-27 governs) — **four of six tables played and scored; DUNGEON-T1 running.** Branch `claude/game-party-1` from `origin/claude/game-player-same-world-1`. Nothing
 to `main`.
 
 - **What was built** (`scripts/game-party-1/`):
@@ -77,12 +76,20 @@ to `main`.
   with its context in the report; read by hand, none is another player's private material.
 - **GOAL-T1 played** (Sol / DeepSeek / Opus): 25 rounds; nobody left. The party formed at round 1; Bram (Sol) led
   by proposal most rounds. Scored.
-- **Money after three tables:**
-  - OpenRouter: tables $34.83 / $33.49 / $45.30; judges $1.97 in all.
-  - OpenAI: $3.80.
-  - The shared account had $160.29 left before GOAL-T2.
-- **Next step:** the driver goes on (GOAL-T2 since 07:25 UTC, then DUNGEON-T1, DUNGEON-T2). A spend check and the
-  account guard come before each table. SAND-T1′ needs a top-up.
+- **GOAL-T2 played** (Astra / DeepSeek / Fable): 25 rounds. Pell (Fable) was closed at round 7 by a provider refusal
+  (refusal 1 of 3; no retry, as frozen); the other two played on. The party formed at round 3; Bram (Astra) led by
+  proposal. Scored.
+- **The fifth amendment (by the session, reported to the owner):** Q4/Q6 count partings as events (a character apart
+  for several rounds in a row is one parting), and a seat closed by a refusal, an error or a stop is not a parting.
+  The part-tagged rounds are reported beside. Q6 is lost under both counts (T2: partings 3 vs 1). Tests 16/16.
+- **Verdicts so far:** Q0 lost strict / held refined-by-hand; Q1 lost; Q2 held; Q4 lost; Q5 held; Q6 lost; Q8 held.
+  Q3 and Q7 wait for the DUNGEON tables.
+- **Money after four tables:**
+  - OpenRouter: tables $34.83 / $33.49 / $45.30 / $28.32; builds and layers $1.79; judges $2.39. In all $146.12 of $400.
+  - OpenAI: $4.92 of $60.
+  - The owner topped up; the shared account had $231.10 left before DUNGEON-T1.
+- **Next step:** the driver goes on (DUNGEON-T1 since 08:42 UTC, then DUNGEON-T2). A spend check and the account
+  guard come before each table. Then SAND-T1′ on the final harness, if the budget allows.
 
 **Previous milestone: game player same-world 1 — one hidden layer per table, frozen**
 (`docs/stages/GAME_PLAYER_SAME_WORLD_1.md`, origin/claude/handoff at 6e4cea4) — **run complete and scored; waiting for

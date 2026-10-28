@@ -56,6 +56,10 @@ AMENDMENTS.push({ at: "2026-10-28, after SAND-T2", by: "the session (reported to
   what: "Q0's leak check is also read refined: a run of 8 words counts only when it is in another seat's private material (its «?» answers, its card screens of scenes this seat was not in, the narration and screens of scenes this seat was not in) and not in anything this seat was legitimately given (the opening, the narration and the players' messages of its own scenes, its own answers and messages); a run of the DM-only layer counts only when the DM's narration of this seat's scenes did not show it (the DM showing a prepared document in play is discovery). Both counts are reported; every refined hit is listed with its context for the owner to read.",
   why: "The strict check counted the same public event the DM narrated in two scenes (Pell watching the yard from hiding while Bram and Sefa stood in it) as a leak: 38 hits at SAND-T2, 14 at SAND-T1 (the merge defect), none of them another player's private material." });
 
+AMENDMENTS.push({ at: "2026-10-28, after GOAL-T2", by: "the session (reported to the owner at once)",
+  what: "Parts are counted as partings: the same character tagged parts = 1 in consecutive rounds is one parting (the judges tag every round a character stays apart); and a seat closed by a refusal, an error or a stop is not a part (READINGS: the character's own decision or its player's [END]; the judges read only «this player has left the table» and cannot tell). The part-tagged rounds are reported beside the partings. Q6's verdict is the same under both counts.",
+  why: "GOAL-T2's Pell was closed by a provider refusal at round 7 and the judges tagged it a part; SAND-T2's Sefa was tagged in rounds 21, 22 and 23 for one parting." });
+
 /** The owner's tags on doors (read with Q4's parts): a door that the same message shows was meant as the end of a day. */
 export const DOOR_NOTES = {
   "SAND-T1": { "Pell Dunmore": { round: 7, kind: "end-of-day", note: "door used as end-of-day: the same message sets plans for the morning; the reasoning field says \"concluding for the night\"" } },

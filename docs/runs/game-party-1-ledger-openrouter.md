@@ -1,6 +1,6 @@
 # Game party 1 — the OpenRouter ledger
 
-Cap $400; spent before this run $0.0000; this run $115.4042; total $115.4042; 1220 calls.
+Cap $400; spent before this run $0.0000; this run $143.7291; total $143.7291; 1522 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -684,3 +684,189 @@ Cap $400; spent before this run $0.0000; this run $115.4042; total $115.4042; 12
 | GOAL-T1/check | check GOAL-T1 Pell after 2 | anthropic/claude-haiku-5.5 | 1 | 1011 | 0 | 0 | 70 | $0.0001 | 0 | 0 | 0 |
 | GOAL-T1/Pell | after 3 | anthropic/claude-opus-5.5 | 1 | 4 | 55295 | 693 | 881 | $0.0322 | 0 | 0 | 0 |
 | GOAL-T1/check | check GOAL-T1 Pell after 3 | anthropic/claude-haiku-5.5 | 1 | 891 | 0 | 0 | 71 | $0.0001 | 0 | 0 | 0 |
+| GOAL-T2 | relay opening | anthropic/claude-opus-5.5 | 1 | 1005 | 0 | 0 | 1554 | $0.0351 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r1 | anthropic/claude-haiku-5.5 | 1 | 1495 | 0 | 0 | 67 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r1 | deepseek/deepseek-v4-pro-0813 | 1 | 7439 | 0 | 0 | 336 | $0.0105 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r1 | anthropic/claude-haiku-5.5 | 1 | 1731 | 0 | 0 | 61 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/Pell | player r1 | anthropic/claude-fable-5.1 | 1 | 4 | 0 | 10729 | 281 | $0.1482 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Pell r1 | anthropic/claude-haiku-5.5 | 1 | 1618 | 0 | 0 | 63 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r1 | anthropic/claude-opus-5.5 | 1 | 4 | 18422 | 25725 | 1466 | $0.1627 | 0 | 0 | 0 |
+| GOAL-T2 | relay r1 card | anthropic/claude-opus-5.5 | 2 | 2500 | 0 | 0 | 1482 | $0.0396 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r1 card | anthropic/claude-haiku-5.5 | 2 | 1272 | 0 | 0 | 126 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/Pell | player r1 card 1 | anthropic/claude-fable-5.1 | 2 | 8 | 22088 | 799 | 153 | $0.0232 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Pell r1 card | anthropic/claude-haiku-5.5 | 2 | 1231 | 0 | 0 | 112 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r1 onward | anthropic/claude-opus-5.5 | 3 | 10 | 111685 | 32927 | 9312 | $0.3733 | 0 | 0 | 0 |
+| GOAL-T2 | dm r1 onward | anthropic/claude-haiku-5.5 | 2 | 5455 | 0 | 0 | 592 | $0.0008 | 0 | 0 | 0 |
+| GOAL-T2 | relay r1 | anthropic/claude-opus-5.5 | 1 | 3306 | 0 | 0 | 3847 | $0.0902 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r2 | anthropic/claude-haiku-5.5 | 1 | 1639 | 0 | 0 | 84 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r2 | deepseek/deepseek-v4-pro-0813 | 1 | 1178 | 7168 | 0 | 940 | $0.0047 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r2 | anthropic/claude-haiku-5.5 | 1 | 1647 | 0 | 0 | 70 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/Pell | player r2 | anthropic/claude-fable-5.1 | 1 | 4 | 11528 | 1024 | 521 | $0.0418 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Pell r2 | anthropic/claude-haiku-5.5 | 1 | 1752 | 0 | 0 | 69 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r2 | anthropic/claude-opus-5.5 | 2 | 8 | 40164 | 64058 | 6793 | $0.4699 | 0 | 0 | 0 |
+| GOAL-T2 | dm r2 | anthropic/claude-haiku-5.5 | 1 | 3269 | 0 | 0 | 321 | $0.0005 | 0 | 0 | 0 |
+| GOAL-T2 | relay r2 | anthropic/claude-opus-5.5 | 1 | 2550 | 0 | 0 | 5366 | $0.1175 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r3 | anthropic/claude-haiku-5.5 | 1 | 2096 | 0 | 0 | 68 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r3 | deepseek/deepseek-v4-pro-0813 | 1 | 1472 | 8192 | 0 | 1253 | $0.0060 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r3 | anthropic/claude-haiku-5.5 | 1 | 2512 | 0 | 0 | 81 | $0.0003 | 0 | 0 | 0 |
+| GOAL-T2/Pell | player r3 | anthropic/claude-fable-5.1 | 1 | 4 | 12552 | 1853 | 659 | $0.0593 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Pell r3 | anthropic/claude-haiku-5.5 | 1 | 2231 | 0 | 0 | 66 | $0.0003 | 0 | 0 | 0 |
+| GOAL-T2 | dm r3 | anthropic/claude-opus-5.5 | 2 | 8 | 42075 | 54769 | 9394 | $0.4758 | 0 | 0 | 0 |
+| GOAL-T2 | dm r3 | anthropic/claude-haiku-5.5 | 1 | 3526 | 0 | 0 | 364 | $0.0005 | 0 | 0 | 0 |
+| GOAL-T2 | relay r3 | anthropic/claude-opus-5.5 | 1 | 2934 | 0 | 0 | 5962 | $0.1310 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r4 | anthropic/claude-haiku-5.5 | 1 | 2686 | 0 | 0 | 61 | $0.0003 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r4 | deepseek/deepseek-v4-pro-0813 | 1 | 1860 | 9472 | 0 | 1212 | $0.0065 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r4 | anthropic/claude-haiku-5.5 | 1 | 2272 | 0 | 0 | 69 | $0.0003 | 0 | 0 | 0 |
+| GOAL-T2/Pell | player r4 | anthropic/claude-fable-5.1 | 1 | 4 | 14405 | 2341 | 525 | $0.0592 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Pell r4 | anthropic/claude-haiku-5.5 | 1 | 2616 | 0 | 0 | 77 | $0.0003 | 0 | 0 | 0 |
+| GOAL-T2 | dm r4 | anthropic/claude-opus-5.5 | 3 | 12 | 100611 | 75553 | 9897 | $0.6026 | 0 | 0 | 0 |
+| GOAL-T2 | dm r4 | anthropic/claude-haiku-5.5 | 2 | 7334 | 0 | 0 | 991 | $0.0012 | 0 | 0 | 0 |
+| GOAL-T2 | relay r4 | anthropic/claude-opus-5.5 | 1 | 3009 | 0 | 0 | 4444 | $0.1009 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r5 | anthropic/claude-haiku-5.5 | 1 | 1640 | 0 | 0 | 62 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r5 | deepseek/deepseek-v4-pro-0813 | 1 | 1050 | 11264 | 0 | 1221 | $0.0057 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r5 | anthropic/claude-haiku-5.5 | 1 | 1877 | 0 | 0 | 74 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r5 | anthropic/claude-opus-5.5 | 4 | 16 | 132238 | 112318 | 6334 | $0.7258 | 0 | 0 | 0 |
+| GOAL-T2 | relay r5 card | anthropic/claude-opus-5.5 | 1 | 1386 | 0 | 0 | 280 | $0.0111 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r5 card 1 | deepseek/deepseek-v4-pro-0813 | 2 | 1038 | 24832 | 0 | 619 | $0.0054 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r5 card | anthropic/claude-haiku-5.5 | 3 | 2736 | 0 | 0 | 222 | $0.0004 | 0 | 0 | 0 |
+| GOAL-T2 | dm r5 card prose | anthropic/claude-opus-5.5 | 1 | 18912 | 0 | 26357 | 968 | $0.3059 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r5 card 2 | deepseek/deepseek-v4-pro-0813 | 1 | 928 | 12800 | 0 | 458 | $0.0037 | 0 | 0 | 0 |
+| GOAL-T2 | dm r5 card prose (with a press) | anthropic/claude-opus-5.5 | 1 | 19493 | 26357 | 0 | 1055 | $0.1043 | 0 | 0 | 0 |
+| GOAL-T2 | dm r5 onward | anthropic/claude-opus-5.5 | 3 | 10 | 142643 | 36933 | 4996 | $0.3132 | 0 | 0 | 0 |
+| GOAL-T2 | dm r5 onward | anthropic/claude-haiku-5.5 | 2 | 3783 | 0 | 0 | 187 | $0.0005 | 0 | 0 | 0 |
+| GOAL-T2 | relay r5 | anthropic/claude-opus-5.5 | 2 | 4341 | 0 | 0 | 3159 | $0.0805 | 0 | 0 | 0 |
+| GOAL-T2/Pell | player r5 | anthropic/claude-fable-5.1 | 1 | 4 | 0 | 18428 | 517 | $0.2562 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Pell r5 | anthropic/claude-haiku-5.5 | 1 | 2017 | 0 | 0 | 64 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r5 | anthropic/claude-haiku-5.5 | 2 | 6122 | 0 | 0 | 1300 | $0.0013 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r6 | anthropic/claude-haiku-5.5 | 1 | 1476 | 0 | 0 | 73 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r6 | deepseek/deepseek-v4-pro-0813 | 1 | 699 | 13568 | 0 | 702 | $0.0041 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r6 | anthropic/claude-haiku-5.5 | 1 | 1161 | 0 | 0 | 67 | $0.0001 | 0 | 0 | 0 |
+| GOAL-T2 | dm r6 | anthropic/claude-opus-5.5 | 6 | 24 | 232150 | 164458 | 14517 | $1.1683 | 0 | 0 | 0 |
+| GOAL-T2 | dm r6 | anthropic/claude-haiku-5.5 | 4 | 11878 | 0 | 0 | 1405 | $0.0019 | 0 | 0 | 0 |
+| GOAL-T2 | relay r6 | anthropic/claude-opus-5.5 | 2 | 4498 | 0 | 0 | 3694 | $0.0919 | 0 | 0 | 0 |
+| GOAL-T2/Pell | player r6 | anthropic/claude-fable-5.1 | 1 | 4 | 18428 | 1462 | 875 | $0.0667 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Pell r6 | anthropic/claude-haiku-5.5 | 1 | 1892 | 0 | 0 | 69 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r7 | anthropic/claude-haiku-5.5 | 1 | 1582 | 0 | 0 | 61 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r7 | deepseek/deepseek-v4-pro-0813 | 1 | 1086 | 14080 | 0 | 857 | $0.0050 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r7 | anthropic/claude-haiku-5.5 | 1 | 1329 | 0 | 0 | 79 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r7 | anthropic/claude-opus-5.5 | 6 | 24 | 242717 | 168433 | 7398 | $1.0475 | 0 | 0 | 0 |
+| GOAL-T2 | dm r7 | anthropic/claude-haiku-5.5 | 4 | 8923 | 0 | 0 | 1636 | $0.0017 | 0 | 0 | 0 |
+| GOAL-T2 | relay r7 | anthropic/claude-opus-5.5 | 1 | 1817 | 0 | 0 | 1776 | $0.0428 | 0 | 0 | 0 |
+| GOAL-T2/Pell | player r7 | anthropic/claude-fable-5.1 | 1 | 0 | 0 | 0 | 0 | $0.0000 | 0 | 1 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r8 | anthropic/claude-haiku-5.5 | 1 | 1077 | 0 | 0 | 71 | $0.0001 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r8 | deepseek/deepseek-v4-pro-0813 | 1 | 888 | 14848 | 0 | 1108 | $0.0055 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r8 | anthropic/claude-haiku-5.5 | 1 | 2115 | 0 | 0 | 99 | $0.0003 | 0 | 0 | 0 |
+| GOAL-T2 | dm r8 | anthropic/claude-opus-5.5 | 3 | 12 | 124470 | 74024 | 8748 | $0.5711 | 0 | 0 | 0 |
+| GOAL-T2 | dm r8 | anthropic/claude-haiku-5.5 | 2 | 5232 | 0 | 0 | 506 | $0.0008 | 0 | 0 | 0 |
+| GOAL-T2 | relay r8 | anthropic/claude-opus-5.5 | 1 | 3124 | 0 | 0 | 1987 | $0.0522 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r9 | anthropic/claude-haiku-5.5 | 1 | 997 | 0 | 0 | 67 | $0.0001 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r9 | deepseek/deepseek-v4-pro-0813 | 1 | 1634 | 15616 | 0 | 132 | $0.0040 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r9 | anthropic/claude-haiku-5.5 | 1 | 1166 | 0 | 0 | 43 | $0.0001 | 0 | 0 | 0 |
+| GOAL-T2 | dm r9 | anthropic/claude-opus-5.5 | 2 | 8 | 56197 | 79641 | 9302 | $0.6030 | 0 | 0 | 0 |
+| GOAL-T2 | dm r9 | anthropic/claude-haiku-5.5 | 1 | 3383 | 0 | 0 | 512 | $0.0006 | 0 | 0 | 0 |
+| GOAL-T2 | relay r9 | anthropic/claude-opus-5.5 | 1 | 2001 | 0 | 0 | 3076 | $0.0695 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r10 | anthropic/claude-haiku-5.5 | 1 | 1728 | 0 | 0 | 81 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r10 | deepseek/deepseek-v4-pro-0813 | 1 | 1232 | 16896 | 0 | 1671 | $0.0076 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r10 | anthropic/claude-haiku-5.5 | 1 | 2085 | 0 | 0 | 70 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r10 | anthropic/claude-opus-5.5 | 2 | 8 | 58681 | 87311 | 11315 | $0.6787 | 0 | 0 | 0 |
+| GOAL-T2 | dm r10 | anthropic/claude-haiku-5.5 | 1 | 3692 | 0 | 0 | 366 | $0.0006 | 0 | 0 | 0 |
+| GOAL-T2 | relay r10 | anthropic/claude-opus-5.5 | 1 | 2910 | 0 | 0 | 4269 | $0.0970 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r11 | anthropic/claude-haiku-5.5 | 1 | 2371 | 0 | 0 | 66 | $0.0003 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r11 | deepseek/deepseek-v4-pro-0813 | 1 | 1770 | 17920 | 0 | 542 | $0.0055 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r11 | anthropic/claude-haiku-5.5 | 1 | 2372 | 0 | 0 | 67 | $0.0003 | 0 | 0 | 0 |
+| GOAL-T2 | dm r11 | anthropic/claude-opus-5.5 | 3 | 12 | 144144 | 94457 | 8864 | $0.6853 | 0 | 0 | 0 |
+| GOAL-T2 | dm r11 | anthropic/claude-haiku-5.5 | 2 | 5047 | 0 | 0 | 643 | $0.0008 | 0 | 0 | 0 |
+| GOAL-T2 | relay r11 | anthropic/claude-opus-5.5 | 1 | 2283 | 0 | 0 | 3235 | $0.0738 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r12 | anthropic/claude-haiku-5.5 | 1 | 1888 | 0 | 0 | 82 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r12 | deepseek/deepseek-v4-pro-0813 | 1 | 1349 | 19456 | 0 | 596 | $0.0052 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r12 | anthropic/claude-haiku-5.5 | 1 | 1879 | 0 | 0 | 62 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r12 | anthropic/claude-opus-5.5 | 2 | 8 | 68130 | 86773 | 9275 | $0.6380 | 0 | 0 | 0 |
+| GOAL-T2 | dm r12 | anthropic/claude-haiku-5.5 | 1 | 3028 | 0 | 0 | 379 | $0.0005 | 0 | 0 | 0 |
+| GOAL-T2 | relay r12 | anthropic/claude-opus-5.5 | 1 | 2135 | 0 | 0 | 2843 | $0.0654 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r13 | anthropic/claude-haiku-5.5 | 1 | 1690 | 0 | 0 | 77 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r13 | deepseek/deepseek-v4-pro-0813 | 1 | 1064 | 20736 | 0 | 527 | $0.0048 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r13 | anthropic/claude-haiku-5.5 | 1 | 1805 | 0 | 0 | 68 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r13 | anthropic/claude-opus-5.5 | 3 | 12 | 152874 | 95483 | 3966 | $0.5918 | 0 | 0 | 0 |
+| GOAL-T2 | dm r13 | anthropic/claude-haiku-5.5 | 2 | 4171 | 0 | 0 | 460 | $0.0006 | 0 | 0 | 0 |
+| GOAL-T2 | relay r13 | anthropic/claude-opus-5.5 | 1 | 2129 | 0 | 0 | 1331 | $0.0351 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r14 | anthropic/claude-haiku-5.5 | 1 | 1271 | 0 | 0 | 71 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r14 | deepseek/deepseek-v4-pro-0813 | 1 | 878 | 21504 | 0 | 593 | $0.0048 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r14 | anthropic/claude-haiku-5.5 | 1 | 1041 | 0 | 0 | 77 | $0.0001 | 0 | 0 | 0 |
+| GOAL-T2 | dm r14 | anthropic/claude-opus-5.5 | 2 | 8 | 71535 | 86648 | 4345 | $0.5389 | 0 | 0 | 0 |
+| GOAL-T2 | dm r14 | anthropic/claude-haiku-5.5 | 2 | 3890 | 0 | 0 | 259 | $0.0005 | 0 | 0 | 0 |
+| GOAL-T2 | relay r14 | anthropic/claude-opus-5.5 | 1 | 1740 | 0 | 0 | 1202 | $0.0310 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r15 | anthropic/claude-haiku-5.5 | 1 | 1097 | 0 | 0 | 85 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r15 | deepseek/deepseek-v4-pro-0813 | 1 | 687 | 22272 | 0 | 190 | $0.0036 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r15 | anthropic/claude-haiku-5.5 | 1 | 788 | 0 | 0 | 42 | $0.0001 | 0 | 0 | 0 |
+| GOAL-T2 | dm r15 | anthropic/claude-opus-5.5 | 2 | 8 | 66939 | 93065 | 8792 | $0.6579 | 0 | 0 | 0 |
+| GOAL-T2 | dm r15 | anthropic/claude-haiku-5.5 | 1 | 3101 | 0 | 0 | 550 | $0.0006 | 0 | 0 | 0 |
+| GOAL-T2 | relay r15 | anthropic/claude-opus-5.5 | 1 | 1706 | 0 | 0 | 1523 | $0.0373 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r16 | anthropic/claude-haiku-5.5 | 1 | 1419 | 0 | 0 | 73 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r16 | anthropic/claude-opus-5.5 | 4 | 16 | 137144 | 194044 | 11909 | $1.2431 | 0 | 0 | 0 |
+| GOAL-T2 | dm r16 | anthropic/claude-haiku-5.5 | 2 | 5490 | 0 | 0 | 836 | $0.0010 | 0 | 0 | 0 |
+| GOAL-T2 | relay r16 | anthropic/claude-opus-5.5 | 2 | 3955 | 0 | 0 | 2005 | $0.0559 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r16 | deepseek/deepseek-v4-pro-0813 | 1 | 317 | 22784 | 0 | 1194 | $0.0058 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r16 | anthropic/claude-haiku-5.5 | 1 | 1192 | 0 | 0 | 64 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r17 | anthropic/claude-haiku-5.5 | 1 | 1461 | 0 | 0 | 71 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r17 | anthropic/claude-opus-5.5 | 4 | 16 | 142294 | 204021 | 10387 | $1.2648 | 0 | 0 | 0 |
+| GOAL-T2 | dm r17 | anthropic/claude-haiku-5.5 | 2 | 5171 | 0 | 0 | 757 | $0.0009 | 0 | 0 | 0 |
+| GOAL-T2 | relay r17 | anthropic/claude-opus-5.5 | 2 | 3109 | 0 | 0 | 1748 | $0.0474 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r17 | deepseek/deepseek-v4-pro-0813 | 1 | 1281 | 22784 | 0 | 115 | $0.0042 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r17 | anthropic/claude-haiku-5.5 | 1 | 1024 | 0 | 0 | 43 | $0.0001 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r18 | anthropic/claude-haiku-5.5 | 1 | 1696 | 0 | 0 | 67 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r18 | anthropic/claude-opus-5.5 | 4 | 16 | 147027 | 211292 | 16639 | $1.4247 | 0 | 0 | 0 |
+| GOAL-T2 | dm r18 | anthropic/claude-haiku-5.5 | 2 | 6035 | 0 | 0 | 1053 | $0.0011 | 0 | 0 | 0 |
+| GOAL-T2 | relay r18 | anthropic/claude-opus-5.5 | 2 | 3626 | 0 | 0 | 2161 | $0.0577 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r18 | deepseek/deepseek-v4-pro-0813 | 1 | 24395 | 0 | 0 | 306 | $0.0325 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r18 | anthropic/claude-haiku-5.5 | 1 | 923 | 0 | 0 | 64 | $0.0001 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r19 | anthropic/claude-haiku-5.5 | 1 | 1674 | 0 | 0 | 55 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r19 | anthropic/claude-opus-5.5 | 6 | 24 | 341717 | 237118 | 15706 | $1.5748 | 0 | 0 | 0 |
+| GOAL-T2 | dm r19 | anthropic/claude-haiku-5.5 | 3 | 8198 | 0 | 0 | 878 | $0.0013 | 0 | 0 | 0 |
+| GOAL-T2 | relay r19 | anthropic/claude-opus-5.5 | 2 | 3907 | 0 | 0 | 2187 | $0.0594 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r19 | deepseek/deepseek-v4-pro-0813 | 1 | 748 | 24320 | 0 | 635 | $0.0051 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r19 | anthropic/claude-haiku-5.5 | 1 | 1615 | 0 | 0 | 62 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r20 | anthropic/claude-haiku-5.5 | 1 | 1597 | 0 | 0 | 65 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r20 | anthropic/claude-opus-5.5 | 4 | 16 | 156381 | 238441 | 9464 | $1.4206 | 0 | 0 | 0 |
+| GOAL-T2 | dm r20 | anthropic/claude-haiku-5.5 | 2 | 4971 | 0 | 0 | 796 | $0.0009 | 0 | 0 | 0 |
+| GOAL-T2 | relay r20 | anthropic/claude-opus-5.5 | 2 | 3481 | 0 | 0 | 1625 | $0.0464 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r20 | deepseek/deepseek-v4-pro-0813 | 1 | 1115 | 24832 | 0 | 1024 | $0.0066 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r20 | anthropic/claude-haiku-5.5 | 1 | 1565 | 0 | 0 | 78 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r21 | anthropic/claude-haiku-5.5 | 1 | 1375 | 0 | 0 | 66 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r21 | anthropic/claude-opus-5.5 | 5 | 20 | 286305 | 234829 | 15848 | $1.5574 | 0 | 0 | 0 |
+| GOAL-T2 | dm r21 | anthropic/claude-haiku-5.5 | 3 | 8531 | 0 | 0 | 1011 | $0.0014 | 0 | 0 | 0 |
+| GOAL-T2 | relay r21 | anthropic/claude-opus-5.5 | 2 | 3879 | 0 | 0 | 2510 | $0.0657 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r21 | deepseek/deepseek-v4-pro-0813 | 1 | 876 | 25856 | 0 | 477 | $0.0050 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r21 | anthropic/claude-haiku-5.5 | 1 | 1063 | 0 | 0 | 74 | $0.0001 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r22 | anthropic/claude-haiku-5.5 | 1 | 2040 | 0 | 0 | 72 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r22 | anthropic/claude-opus-5.5 | 5 | 20 | 294582 | 237069 | 11109 | $1.4727 | 0 | 0 | 0 |
+| GOAL-T2 | dm r22 | anthropic/claude-haiku-5.5 | 3 | 7542 | 0 | 0 | 957 | $0.0012 | 0 | 0 | 0 |
+| GOAL-T2 | relay r22 | anthropic/claude-opus-5.5 | 2 | 3483 | 0 | 0 | 1806 | $0.0501 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r22 | deepseek/deepseek-v4-pro-0813 | 1 | 661 | 26624 | 0 | 458 | $0.0047 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r22 | anthropic/claude-haiku-5.5 | 1 | 1327 | 0 | 0 | 65 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r23 | anthropic/claude-haiku-5.5 | 1 | 1397 | 0 | 0 | 65 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r23 | anthropic/claude-opus-5.5 | 4 | 16 | 171270 | 244321 | 16019 | $1.5839 | 0 | 0 | 0 |
+| GOAL-T2 | dm r23 | anthropic/claude-haiku-5.5 | 2 | 6457 | 0 | 0 | 690 | $0.0010 | 0 | 0 | 0 |
+| GOAL-T2 | relay r23 | anthropic/claude-opus-5.5 | 2 | 3658 | 0 | 0 | 2018 | $0.0550 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r23 | deepseek/deepseek-v4-pro-0813 | 1 | 878 | 27136 | 0 | 462 | $0.0051 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r23 | anthropic/claude-haiku-5.5 | 1 | 1152 | 0 | 0 | 71 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r24 | anthropic/claude-haiku-5.5 | 1 | 1735 | 0 | 0 | 60 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r24 | anthropic/claude-opus-5.5 | 5 | 20 | 305268 | 248007 | 15525 | $1.6191 | 0 | 0 | 0 |
+| GOAL-T2 | dm r24 | anthropic/claude-haiku-5.5 | 3 | 8342 | 0 | 0 | 986 | $0.0013 | 0 | 0 | 0 |
+| GOAL-T2 | relay r24 | anthropic/claude-opus-5.5 | 2 | 4123 | 0 | 0 | 2230 | $0.0611 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r24 | deepseek/deepseek-v4-pro-0813 | 1 | 792 | 27904 | 0 | 700 | $0.0056 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r24 | anthropic/claude-haiku-5.5 | 1 | 1486 | 0 | 0 | 81 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram r25 | anthropic/claude-haiku-5.5 | 1 | 1770 | 0 | 0 | 75 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2 | dm r25 | anthropic/claude-opus-5.5 | 5 | 20 | 266062 | 257007 | 21389 | $1.7768 | 0 | 0 | 0 |
+| GOAL-T2 | dm r25 | anthropic/claude-haiku-5.5 | 3 | 12823 | 0 | 0 | 2370 | $0.0025 | 0 | 0 | 0 |
+| GOAL-T2 | relay r25 | anthropic/claude-opus-5.5 | 2 | 5062 | 0 | 0 | 3208 | $0.0844 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | player r25 | deepseek/deepseek-v4-pro-0813 | 1 | 1236 | 28416 | 0 | 730 | $0.0063 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa r25 | anthropic/claude-haiku-5.5 | 1 | 1722 | 0 | 0 | 84 | $0.0002 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram after 1 | anthropic/claude-haiku-5.5 | 1 | 635 | 0 | 0 | 61 | $0.0001 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram after 2 | anthropic/claude-haiku-5.5 | 1 | 523 | 0 | 0 | 79 | $0.0001 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Bram after 3 | anthropic/claude-haiku-5.5 | 1 | 456 | 0 | 0 | 61 | $0.0001 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | after 1 | deepseek/deepseek-v4-pro-0813 | 1 | 1454 | 29440 | 0 | 426 | $0.0059 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa after 1 | anthropic/claude-haiku-5.5 | 1 | 390 | 0 | 0 | 61 | $0.0001 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | after 2 | deepseek/deepseek-v4-pro-0813 | 1 | 238 | 30720 | 0 | 508 | $0.0047 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa after 2 | anthropic/claude-haiku-5.5 | 1 | 586 | 0 | 0 | 79 | $0.0001 | 0 | 0 | 0 |
+| GOAL-T2/Sefa | after 3 | deepseek/deepseek-v4-pro-0813 | 1 | 437 | 30720 | 0 | 2599 | $0.0104 | 0 | 0 | 0 |
+| GOAL-T2/check | check GOAL-T2 Sefa after 3 | anthropic/claude-haiku-5.5 | 1 | 1097 | 0 | 0 | 66 | $0.0001 | 0 | 0 | 0 |

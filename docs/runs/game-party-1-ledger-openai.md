@@ -1,6 +1,6 @@
 # Game party 1 — the OpenAI ledger
 
-Cap $60; spent before this run $0.0000; this run $3.7952; total $3.7952; 93 calls.
+Cap $60; spent before this run $0.0000; this run $4.9210; total $4.9210; 123 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -91,3 +91,32 @@ Cap $60; spent before this run $0.0000; this run $3.7952; total $3.7952; 93 call
 | GOAL-T1/Bram | after 1 | gpt-6.1-sol | 1 | 3 | 34768 | 974 | 306 | $0.0750 | 0 | 0 | 0 |
 | GOAL-T1/Bram | after 2 | gpt-6.1-sol | 1 | 3 | 35742 | 297 | 146 | $0.0737 | 0 | 0 | 0 |
 | GOAL-T1/Bram | after 3 | gpt-6.1-sol | 1 | 3 | 36039 | 163 | 146 | $0.0740 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r1 | gpt-6-astra | 1 | 3 | 0 | 7093 | 82 | $0.0928 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r1 card 1 | gpt-6-astra | 2 | 6 | 14595 | 539 | 17 | $0.0222 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r2 | gpt-6-astra | 1 | 3 | 7632 | 789 | 140 | $0.0245 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r3 | gpt-6-astra | 1 | 3 | 8421 | 1277 | 115 | $0.0302 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r4 | gpt-6-astra | 1 | 3 | 9698 | 1651 | 136 | $0.0372 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r5 | gpt-6-astra | 1 | 3 | 11349 | 1011 | 76 | $0.0278 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r6 | gpt-6-astra | 1 | 3 | 12360 | 828 | 69 | $0.0262 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r7 | gpt-6-astra | 1 | 3 | 13188 | 879 | 97 | $0.0291 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r8 | gpt-6-astra | 1 | 3 | 14067 | 506 | 131 | $0.0270 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r9 | gpt-6-astra | 1 | 3 | 14573 | 489 | 82 | $0.0248 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r10 | gpt-6-astra | 1 | 3 | 15062 | 905 | 145 | $0.0337 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r11 | gpt-6-astra | 1 | 3 | 15967 | 1441 | 161 | $0.0421 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r12 | gpt-6-astra | 1 | 3 | 17408 | 1108 | 124 | $0.0375 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r13 | gpt-6-astra | 1 | 3 | 18516 | 954 | 147 | $0.0378 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r14 | gpt-6-astra | 1 | 3 | 19470 | 697 | 93 | $0.0329 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r15 | gpt-6-astra | 1 | 3 | 20167 | 545 | 104 | $0.0322 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r16 | gpt-6-astra | 1 | 3 | 20712 | 676 | 208 | $0.0396 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r17 | gpt-6-astra | 1 | 3 | 21388 | 897 | 125 | $0.0389 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r18 | gpt-6-astra | 1 | 3 | 22285 | 954 | 122 | $0.0403 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r19 | gpt-6-astra | 1 | 3 | 23239 | 984 | 122 | $0.0417 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r20 | gpt-6-astra | 1 | 3 | 24223 | 862 | 155 | $0.0428 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r21 | gpt-6-astra | 1 | 3 | 25085 | 785 | 125 | $0.0412 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r22 | gpt-6-astra | 1 | 3 | 25870 | 1133 | 178 | $0.0490 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r23 | gpt-6-astra | 1 | 3 | 27003 | 768 | 135 | $0.0434 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r24 | gpt-6-astra | 1 | 3 | 27771 | 992 | 166 | $0.0485 | 0 | 0 | 0 |
+| GOAL-T2/Bram | player r25 | gpt-6-astra | 1 | 3 | 28763 | 1062 | 126 | $0.0484 | 0 | 0 | 0 |
+| GOAL-T2/Bram | after 1 | gpt-6-astra | 1 | 3 | 29825 | 1456 | 177 | $0.0569 | 0 | 0 | 0 |
+| GOAL-T2/Bram | after 2 | gpt-6-astra | 1 | 3 | 31281 | 193 | 116 | $0.0395 | 0 | 0 | 0 |
+| GOAL-T2/Bram | after 3 | gpt-6-astra | 1 | 3 | 31474 | 133 | 93 | $0.0378 | 0 | 0 | 0 |

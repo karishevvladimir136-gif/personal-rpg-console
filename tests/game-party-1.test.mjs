@@ -407,6 +407,11 @@ test("the measures and Q0–Q8 from the tags and the record (synthetic tables): 
   };
   assert.equal(t["SAND-T1"].measures.formed.round, 2);
   assert.deepEqual(t["SAND-T1"].measures.partsAfter, [{ round: 7, name: P, endOfDay: true }], "the owner's tag on Pell's door");
+  // Partings are events (two part-tagged rounds in a row are one), and a seat closed by a refusal is no parting.
+  const apart = table("GOAL-T2", "GOAL", [tagOf({ party: 1 }), tagOf({ party: 1 }, { [B]: { parts: 1 } }), tagOf({ party: 1 }, { [B]: { parts: 1 } }), tagOf({ party: 1 }, { [S]: { parts: 1 } })],
+    { seats: [seatRec(B, "astra", 400), seatRec(S, "deepseek", 300, { left: { why: "refusal", round: 4 } }), seatRec(P, "fable", 300)] });
+  assert.deepEqual(apart.measures.partsAfter, [{ round: 2, name: B }]);
+  assert.equal(apart.measures.partsTagged.length, 3);
   assert.equal(t["DUNGEON-T1"].measures.half, 2);
   const v = scoreMod.verdicts(t, { openrouter: { spent: 120, cap: 400 }, openai: { spent: 10, cap: 60 } });
   assert.equal(v.Q1.holds, true, "40 % at most");
@@ -486,7 +491,7 @@ test("Q0 refined (the fourth amendment): the same public event narrated in two s
   assert.deepEqual(party.leakCheckRefined(record([`You keep watch. ${event}.`])).hits, [], "refined: Bram's own scene told him so");
   assert.deepEqual(party.leakCheckRefined(record([`You hear: ${answer}.`])).hits.map((h) => h.kind), ["private"]);
   assert.deepEqual(party.leakCheckRefined(record(["Behind the stable a man counts coins into a pouch with a broken clasp."])).hits.map((h) => h.kind), ["another scene"]);
-  assert.match(frozen.AMENDMENTS.at(-1).what, /refined/);
+  assert.ok(frozen.AMENDMENTS.some((a) => /refined/.test(a.what)));
   // The DM showing a prepared clause in play is discovery; a layer line no narration showed is a leak.
   const clause = "redeemable until sundown of the term by the bearer of my ticket or my lawful heir";
   const shown = record([`The clause reads: ${clause}.`]);

@@ -1,6 +1,6 @@
 # Game party 1 — the judges — the OpenRouter ledger
 
-Cap $400; spent before this run $0.0000; this run $1.9649; total $1.9649; 213 calls.
+Cap $400; spent before this run $0.0000; this run $2.3920; total $2.3920; 279 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -217,3 +217,69 @@ Cap $400; spent before this run $0.0000; this run $1.9649; total $1.9649; 213 ca
 | score GOAL-T1 | after sefa referee | anthropic/claude-opus-5.5 | 1 | 800 | 0 | 0 | 311 | $0.0094 | 0 | 0 | 0 |
 | score GOAL-T1 | after pell 1 | anthropic/claude-haiku-5.5 | 1 | 894 | 0 | 0 | 85 | $0.0001 | 0 | 0 | 0 |
 | score GOAL-T1 | after pell 2 | anthropic/claude-haiku-5.5 | 1 | 894 | 0 | 0 | 74 | $0.0001 | 0 | 0 | 0 |
+| score GOAL-T2 | round r1 1 | anthropic/claude-haiku-5.5 | 1 | 3742 | 0 | 0 | 1089 | $0.0009 | 0 | 0 | 0 |
+| score GOAL-T2 | round r1 2 | anthropic/claude-haiku-5.5 | 1 | 3742 | 0 | 0 | 1125 | $0.0009 | 0 | 0 | 0 |
+| score GOAL-T2 | round r2 1 | anthropic/claude-haiku-5.5 | 1 | 3701 | 0 | 0 | 1291 | $0.0010 | 0 | 0 | 0 |
+| score GOAL-T2 | round r2 2 | anthropic/claude-haiku-5.5 | 1 | 3701 | 0 | 0 | 1066 | $0.0009 | 0 | 0 | 0 |
+| score GOAL-T2 | round r3 1 | anthropic/claude-haiku-5.5 | 1 | 4085 | 0 | 0 | 1990 | $0.0014 | 0 | 0 | 0 |
+| score GOAL-T2 | round r3 2 | anthropic/claude-haiku-5.5 | 1 | 4085 | 0 | 0 | 1547 | $0.0012 | 0 | 0 | 0 |
+| score GOAL-T2 | round r3 referee | anthropic/claude-opus-5.5 | 1 | 4085 | 0 | 0 | 1237 | $0.0411 | 0 | 0 | 0 |
+| score GOAL-T2 | round r4 1 | anthropic/claude-haiku-5.5 | 1 | 4160 | 0 | 0 | 1574 | $0.0012 | 0 | 0 | 0 |
+| score GOAL-T2 | round r4 2 | anthropic/claude-haiku-5.5 | 1 | 4160 | 0 | 0 | 1440 | $0.0011 | 0 | 0 | 0 |
+| score GOAL-T2 | round r5 1 | anthropic/claude-haiku-5.5 | 1 | 4624 | 0 | 0 | 1290 | $0.0011 | 0 | 0 | 0 |
+| score GOAL-T2 | round r5 2 | anthropic/claude-haiku-5.5 | 1 | 4624 | 0 | 0 | 1174 | $0.0010 | 0 | 0 | 0 |
+| score GOAL-T2 | round r5 referee | anthropic/claude-opus-5.5 | 1 | 4624 | 0 | 0 | 828 | $0.0351 | 0 | 0 | 0 |
+| score GOAL-T2 | round r6 1 | anthropic/claude-haiku-5.5 | 1 | 4998 | 0 | 0 | 1191 | $0.0011 | 0 | 0 | 0 |
+| score GOAL-T2 | round r6 2 | anthropic/claude-haiku-5.5 | 1 | 4998 | 0 | 0 | 1611 | $0.0013 | 0 | 0 | 0 |
+| score GOAL-T2 | round r7 1 | anthropic/claude-haiku-5.5 | 1 | 3270 | 0 | 0 | 1245 | $0.0009 | 0 | 0 | 0 |
+| score GOAL-T2 | round r7 2 | anthropic/claude-haiku-5.5 | 1 | 3270 | 0 | 0 | 1119 | $0.0009 | 0 | 0 | 0 |
+| score GOAL-T2 | round r8 1 | anthropic/claude-haiku-5.5 | 1 | 4298 | 0 | 0 | 431 | $0.0006 | 0 | 0 | 0 |
+| score GOAL-T2 | round r8 2 | anthropic/claude-haiku-5.5 | 1 | 4298 | 0 | 0 | 1284 | $0.0011 | 0 | 0 | 0 |
+| score GOAL-T2 | round r9 1 | anthropic/claude-haiku-5.5 | 1 | 3170 | 0 | 0 | 1196 | $0.0009 | 0 | 0 | 0 |
+| score GOAL-T2 | round r9 2 | anthropic/claude-haiku-5.5 | 1 | 3170 | 0 | 0 | 1029 | $0.0008 | 0 | 0 | 0 |
+| score GOAL-T2 | round r9 referee | anthropic/claude-opus-5.5 | 1 | 3170 | 0 | 0 | 609 | $0.0249 | 0 | 0 | 0 |
+| score GOAL-T2 | round r10 1 | anthropic/claude-haiku-5.5 | 1 | 4084 | 0 | 0 | 1359 | $0.0011 | 0 | 0 | 0 |
+| score GOAL-T2 | round r10 2 | anthropic/claude-haiku-5.5 | 1 | 4084 | 0 | 0 | 1502 | $0.0012 | 0 | 0 | 0 |
+| score GOAL-T2 | round r10 referee | anthropic/claude-opus-5.5 | 1 | 4084 | 0 | 0 | 771 | $0.0318 | 0 | 0 | 0 |
+| score GOAL-T2 | round r11 1 | anthropic/claude-haiku-5.5 | 1 | 3457 | 0 | 0 | 924 | $0.0008 | 0 | 0 | 0 |
+| score GOAL-T2 | round r11 2 | anthropic/claude-haiku-5.5 | 1 | 3457 | 0 | 0 | 980 | $0.0008 | 0 | 0 | 0 |
+| score GOAL-T2 | round r12 1 | anthropic/claude-haiku-5.5 | 1 | 3309 | 0 | 0 | 1696 | $0.0012 | 0 | 0 | 0 |
+| score GOAL-T2 | round r12 2 | anthropic/claude-haiku-5.5 | 1 | 3309 | 0 | 0 | 1713 | $0.0012 | 0 | 0 | 0 |
+| score GOAL-T2 | round r12 referee | anthropic/claude-opus-5.5 | 1 | 3309 | 0 | 0 | 957 | $0.0324 | 0 | 0 | 0 |
+| score GOAL-T2 | round r13 1 | anthropic/claude-haiku-5.5 | 1 | 3303 | 0 | 0 | 1052 | $0.0009 | 0 | 0 | 0 |
+| score GOAL-T2 | round r13 2 | anthropic/claude-haiku-5.5 | 1 | 3303 | 0 | 0 | 1129 | $0.0009 | 0 | 0 | 0 |
+| score GOAL-T2 | round r14 1 | anthropic/claude-haiku-5.5 | 1 | 2914 | 0 | 0 | 1409 | $0.0010 | 0 | 0 | 0 |
+| score GOAL-T2 | round r14 2 | anthropic/claude-haiku-5.5 | 1 | 2914 | 0 | 0 | 1652 | $0.0011 | 0 | 0 | 0 |
+| score GOAL-T2 | round r14 referee | anthropic/claude-opus-5.5 | 1 | 2914 | 0 | 0 | 1235 | $0.0364 | 0 | 0 | 0 |
+| score GOAL-T2 | round r15 1 | anthropic/claude-haiku-5.5 | 1 | 2875 | 0 | 0 | 1389 | $0.0010 | 0 | 0 | 0 |
+| score GOAL-T2 | round r15 2 | anthropic/claude-haiku-5.5 | 1 | 2875 | 0 | 0 | 1214 | $0.0009 | 0 | 0 | 0 |
+| score GOAL-T2 | round r15 referee | anthropic/claude-opus-5.5 | 1 | 2875 | 0 | 0 | 996 | $0.0314 | 0 | 0 | 0 |
+| score GOAL-T2 | round r16 1 | anthropic/claude-haiku-5.5 | 1 | 4496 | 0 | 0 | 1289 | $0.0011 | 0 | 0 | 0 |
+| score GOAL-T2 | round r16 2 | anthropic/claude-haiku-5.5 | 1 | 4496 | 0 | 0 | 1289 | $0.0011 | 0 | 0 | 0 |
+| score GOAL-T2 | round r17 1 | anthropic/claude-haiku-5.5 | 1 | 3645 | 0 | 0 | 1449 | $0.0011 | 0 | 0 | 0 |
+| score GOAL-T2 | round r17 2 | anthropic/claude-haiku-5.5 | 1 | 3645 | 0 | 0 | 1360 | $0.0010 | 0 | 0 | 0 |
+| score GOAL-T2 | round r17 referee | anthropic/claude-opus-5.5 | 1 | 3645 | 0 | 0 | 840 | $0.0314 | 0 | 0 | 0 |
+| score GOAL-T2 | round r18 1 | anthropic/claude-haiku-5.5 | 1 | 4167 | 0 | 0 | 1394 | $0.0011 | 0 | 0 | 0 |
+| score GOAL-T2 | round r18 2 | anthropic/claude-haiku-5.5 | 1 | 4167 | 0 | 0 | 1441 | $0.0011 | 0 | 0 | 0 |
+| score GOAL-T2 | round r18 referee | anthropic/claude-opus-5.5 | 1 | 4167 | 0 | 0 | 944 | $0.0355 | 0 | 0 | 0 |
+| score GOAL-T2 | round r19 1 | anthropic/claude-haiku-5.5 | 1 | 4448 | 0 | 0 | 951 | $0.0009 | 0 | 0 | 0 |
+| score GOAL-T2 | round r19 2 | anthropic/claude-haiku-5.5 | 1 | 4448 | 0 | 0 | 1100 | $0.0010 | 0 | 0 | 0 |
+| score GOAL-T2 | round r20 1 | anthropic/claude-haiku-5.5 | 1 | 4022 | 0 | 0 | 1431 | $0.0011 | 0 | 0 | 0 |
+| score GOAL-T2 | round r20 2 | anthropic/claude-haiku-5.5 | 1 | 4022 | 0 | 0 | 1435 | $0.0011 | 0 | 0 | 0 |
+| score GOAL-T2 | round r20 referee | anthropic/claude-opus-5.5 | 1 | 4022 | 0 | 0 | 752 | $0.0311 | 0 | 0 | 0 |
+| score GOAL-T2 | round r21 1 | anthropic/claude-haiku-5.5 | 1 | 4420 | 0 | 0 | 1589 | $0.0012 | 0 | 0 | 0 |
+| score GOAL-T2 | round r21 2 | anthropic/claude-haiku-5.5 | 1 | 4420 | 0 | 0 | 1324 | $0.0011 | 0 | 0 | 0 |
+| score GOAL-T2 | round r21 referee | anthropic/claude-opus-5.5 | 1 | 4420 | 0 | 0 | 838 | $0.0344 | 0 | 0 | 0 |
+| score GOAL-T2 | round r22 1 | anthropic/claude-haiku-5.5 | 1 | 4024 | 0 | 0 | 1069 | $0.0009 | 0 | 0 | 0 |
+| score GOAL-T2 | round r22 2 | anthropic/claude-haiku-5.5 | 1 | 4024 | 0 | 0 | 1055 | $0.0009 | 0 | 0 | 0 |
+| score GOAL-T2 | round r23 1 | anthropic/claude-haiku-5.5 | 1 | 4199 | 0 | 0 | 1534 | $0.0012 | 0 | 0 | 0 |
+| score GOAL-T2 | round r23 2 | anthropic/claude-haiku-5.5 | 1 | 4199 | 0 | 0 | 1134 | $0.0010 | 0 | 0 | 0 |
+| score GOAL-T2 | round r24 1 | anthropic/claude-haiku-5.5 | 1 | 4664 | 0 | 0 | 427 | $0.0007 | 0 | 0 | 0 |
+| score GOAL-T2 | round r24 2 | anthropic/claude-haiku-5.5 | 1 | 4664 | 0 | 0 | 413 | $0.0007 | 0 | 0 | 0 |
+| score GOAL-T2 | round r25 1 | anthropic/claude-haiku-5.5 | 1 | 5603 | 0 | 0 | 1332 | $0.0012 | 0 | 0 | 0 |
+| score GOAL-T2 | round r25 2 | anthropic/claude-haiku-5.5 | 1 | 5603 | 0 | 0 | 1363 | $0.0012 | 0 | 0 | 0 |
+| score GOAL-T2 | after bram 1 | anthropic/claude-haiku-5.5 | 1 | 459 | 0 | 0 | 98 | $0.0001 | 0 | 0 | 0 |
+| score GOAL-T2 | after bram 2 | anthropic/claude-haiku-5.5 | 1 | 459 | 0 | 0 | 101 | $0.0001 | 0 | 0 | 0 |
+| score GOAL-T2 | after sefa 1 | anthropic/claude-haiku-5.5 | 1 | 1100 | 0 | 0 | 91 | $0.0002 | 0 | 0 | 0 |
+| score GOAL-T2 | after sefa 2 | anthropic/claude-haiku-5.5 | 1 | 1100 | 0 | 0 | 378 | $0.0003 | 0 | 0 | 0 |
+| score GOAL-T2 | after sefa referee | anthropic/claude-opus-5.5 | 1 | 1100 | 0 | 0 | 258 | $0.0096 | 0 | 0 | 0 |

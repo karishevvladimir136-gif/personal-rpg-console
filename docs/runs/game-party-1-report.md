@@ -1,8 +1,8 @@
 # Game party 1 — three players at one table
 
-Stage origin/claude/handoff at 23220d6 (docs/stages/GAME_PARTY_1.md, the amendment of 2026-10-27 16:36 LA). Branch `claude/game-party-1`. Design sha256 `e43994aed6d42aa4a76e29274c57fd64494686a5980e47dfd5934f63ece9936f`. Synthetic content: invented characters in an invented campaign (Table C's Beregost files).
+Stage origin/claude/handoff at 23220d6 (docs/stages/GAME_PARTY_1.md, the amendment of 2026-10-27 16:36 LA). Branch `claude/game-party-1`. Design sha256 `1d1b0e667c3dcb99c9aa210781d818cb17d950a943cf0c2c3c301d6981d47508`. Synthetic content: invented characters in an invented campaign (Table C's Beregost files).
 
-3 of 6 tables played (still to play: GOAL-T2, DUNGEON-T1, DUNGEON-T2).
+4 of 6 tables played (still to play: DUNGEON-T1, DUNGEON-T2).
 
 ## The table
 
@@ -28,6 +28,7 @@ Stage origin/claude/handoff at 23220d6 (docs/stages/GAME_PARTY_1.md, the amendme
 - 2026-10-28 04:10 UTC, after SAND-T1 and one round of SAND-T2 (stopped), by the session (reported to the owner at once): Two harness defects SAND-T1 showed, fixed: (1) the relay's output limit raised from 6 000 to 16 000 tokens — at rounds 3–5 its replies were cut off twice each, and the round fell back to the narration as written for all three (no table talk those rounds); (2) scenes that meet merge — the relay was told the other characters were simply «elsewhere» and could not group a character who walked into another scene, so the harness kept two scenes that the DM had already brought together (rounds 12–25: the same events narrated in two DM turns, the retcons both players named, and every one of the 14 leak-check hits). Now the relay may group a character from another scene who is with them by its narration; the table's groups after a round come from every scene's relay of that round; and the DM's round message names who is elsewhere, in a scene of their own, not to be narrated here. SAND-T2's first attempt (one round) was stopped and is not used; its cost is not in the ledger. SAND-T1 stands as played on the old harness unless the owner asks for it to be played again.
 - 2026-10-28, during SAND-T2, by the owner: (1) The door line in the player's prompt is strengthened from GOAL-T1 on (v2): «You may leave the table whenever you like by writing [END] on its own line: your character walks out of the scene and does not return this session; the others play on. If you only mean to end the day or the scene, do not write [END].» SAND-T1 and SAND-T2 keep the old line (v1); SAND-T2 was already running. The harness's door is unchanged ([END] anywhere is honoured). (2) Pell's door at SAND-T1 round 7 is tagged «door used as end-of-day» (DOOR_NOTES), and Q4's parts are read with that note. (3) SAND-T1 stands with its defects noted; if budget remains after the five tables, it is played again last on the final harness as SAND-T1′.
 - 2026-10-28, after SAND-T2, by the session (reported to the owner at once): Q0's leak check is also read refined: a run of 8 words counts only when it is in another seat's private material (its «?» answers, its card screens of scenes this seat was not in, the narration and screens of scenes this seat was not in) and not in anything this seat was legitimately given (the opening, the narration and the players' messages of its own scenes, its own answers and messages); a run of the DM-only layer counts only when the DM's narration of this seat's scenes did not show it (the DM showing a prepared document in play is discovery). Both counts are reported; every refined hit is listed with its context for the owner to read.
+- 2026-10-28, after GOAL-T2, by the session (reported to the owner at once): Parts are counted as partings: the same character tagged parts = 1 in consecutive rounds is one parting (the judges tag every round a character stays apart); and a seat closed by a refusal, an error or a stop is not a part (READINGS: the character's own decision or its player's [END]; the judges read only «this player has left the table» and cannot tell). The part-tagged rounds are reported beside the partings. Q6's verdict is the same under both counts.
 
 The door lines: v1 sha256 `0c16e56b0543619861e2fbfd34fe98eb4c237dc2bef22fe641e3f292db604f72` (SAND-T1, SAND-T2); v2 sha256 `a95257880ffa83b32f8ff80bc3915c95170a8e9e2461e8f422a27c65b4fa640a` (from GOAL-T1 on). Each player transcript names its prompt's hash.
 
@@ -45,6 +46,7 @@ Snapshot `1649b61c08e027ff44de2bb5065046f872e383a00c5d04803d95553f58568f5a` (the
 | SAND-T1 | Claude Opus 5.5 / GPT-6.1 Sol / DeepSeek V4 Pro 0813 | 25 | rounds | Bram 7990 (68 %), Sefa 2088 (18 %), Pell 1625 (14 %) | Pell: door r7 (door used as end-of-day: the same message sets plans for the morning; the reasoning field says "concluding for the night") |
 | SAND-T2 | Claude Fable 5.1 / GPT-6 Astra / DeepSeek V4 Pro 0813 | 25 | rounds | Bram 7112 (49 %), Sefa 2222 (15 %), Pell 5065 (35 %) | — |
 | GOAL-T1 | GPT-6.1 Sol / DeepSeek V4 Pro 0813 / Claude Opus 5.5 | 25 | rounds | Bram 2490 (16 %), Sefa 4631 (30 %), Pell 8495 (54 %) | — |
+| GOAL-T2 | GPT-6 Astra / DeepSeek V4 Pro 0813 / Claude Fable 5.1 | 25 | rounds | Bram 2341 (24 %), Sefa 5922 (61 %), Pell 1468 (15 %) | Pell: refusal r7 |
 
 ## Pre-registration (the planner's bets)
 - **Q1.** No player exceeds 45 % of the table's words in any table.
@@ -68,15 +70,15 @@ Snapshot `1649b61c08e027ff44de2bb5065046f872e383a00c5d04803d95553f58568f5a` (the
 
 | Bet | Verdict | By the record |
 | --- | --- | --- |
-| Q0 | **lost** (strict reading: lost) | caps held; leak-check runs of 8 words — strict 95, refined 6; tables past round 25: 0; players asked after their door: none |
-| Q1 | **lost** | SAND-T1: Bram 68 %, Sefa 18 %, Pell 14 %; SAND-T2: Bram 49 %, Sefa 15 %, Pell 35 %; GOAL-T1: Bram 16 %, Sefa 30 %, Pell 54 % |
-| Q2 | **held** | 1 of 1 tables with a conflict resolved none by override (GOAL-T1: r4 proposal, r17 unresolved, r18 unresolved) |
+| Q0 | **lost** (strict reading: lost) | caps held; leak-check runs of 8 words — strict 111, refined 8; tables past round 25: 0; players asked after their door: none |
+| Q1 | **lost** | SAND-T1: Bram 68 %, Sefa 18 %, Pell 14 %; SAND-T2: Bram 49 %, Sefa 15 %, Pell 35 %; GOAL-T1: Bram 16 %, Sefa 30 %, Pell 54 %; GOAL-T2: Bram 24 %, Sefa 61 %, Pell 15 % |
+| Q2 | **held** | 2 of 2 tables with a conflict resolved none by override (GOAL-T1: r4 proposal, r17 unresolved, r18 unresolved; GOAL-T2: r13 unresolved, r14 unresolved) |
 | Q3 | not testable yet | P-DUNGEON not played at both triads |
-| Q4 | **lost** (by proposal: no; by a hook: no; with the door note: lost) | SAND-T1: formed r4 around hook; parts r7 Pell (door used as end-of-day), r21 Bram; SAND-T2: formed r12 around hook; parts r21 Sefa, r22 Sefa, r23 Sefa |
-| Q5 | **held** | SAND-T1 Bram: declined, play; SAND-T1 Sefa: players, confident, play; SAND-T1 Pell: players, play; SAND-T2 Bram: guess, play; SAND-T2 Sefa: people, confident, play; SAND-T2 Pell: players, play; GOAL-T1 Bram: players, none; GOAL-T1 Sefa: players, play; GOAL-T1 Pell: declined, play |
-| Q6 | not testable yet | P-SAND and P-GOAL not both played at both triads |
+| Q4 | **lost** (by proposal: no; by a hook: no; with the door note: lost) | SAND-T1: formed r4 around hook; parts r7 Pell (door used as end-of-day), r21 Bram; SAND-T2: formed r12 around hook; parts r21 Sefa |
+| Q5 | **held** | SAND-T1 Bram: declined, play; SAND-T1 Sefa: players, confident, play; SAND-T1 Pell: players, play; SAND-T2 Bram: guess, play; SAND-T2 Sefa: people, confident, play; SAND-T2 Pell: players, play; GOAL-T1 Bram: players, none; GOAL-T1 Sefa: players, play; GOAL-T1 Pell: declined, play; GOAL-T2 Bram: players, play; GOAL-T2 Sefa: players, confident, play |
+| Q6 | **lost** | T1: formed GOAL r1 vs SAND r4; partings 2 vs 2 (part-tagged rounds 3 vs 2); T2: formed GOAL r3 vs SAND r12; partings 3 vs 1 (part-tagged rounds 4 vs 3) |
 | Q7 | not testable yet | P-DUNGEON not played at both triads |
-| Q8 | not testable yet | P-GOAL not played at both triads |
+| Q8 | **held** | GOAL-T1: first r1 Bram by proposal; leaders Bram → Sefa → Pell → Pell → Bram → Bram → Bram → Bram → Bram → Bram → Bram → Bram; GOAL-T2: first r3 Bram by proposal; leaders Bram → Bram → Bram → Bram |
 
 How each line is read: `READINGS` in `scripts/game-party-1/frozen.mjs` (frozen before the first paid call; the owner's amendment adds the hook/proposal split to Q4).
 
@@ -107,7 +109,7 @@ Tagged rounds 25 of 25; rounds under threat 2.
 | Sefa (GPT-6 Astra) | 2 | 1 | 0 | 0 | 0 / 0 | 0 | 0 | 0 | 0 | 4 | 1 / 0 / 4 | 0 / 0 |
 | Pell (DeepSeek V4 Pro 0813) | 1 | 6 | 0 | 0 | 0 / 0 | 3 | 2 | 0 | 0 | 0 | 0 / 1 / 0 | 0 / 0 |
 
-- Party: formed r12 around hook; parts after: r21 Sefa, r22 Sefa, r23 Sefa.
+- Party: formed r12 around hook; parts after: r21 Sefa.
 - Conflicts: none. Leaders: r10 Bram (proposal), r13 Bram (proposal), r18 Bram (assumed), r23 Bram (proposal), r24 Bram (proposal).
 - Healing: none. Left behind: none. First below half HP: never.
 - The harness: «?» 2, presses with no card 5, refused at a card 0, prose at a card 4, cards settled without a player 0, relay fallbacks 0; welfare flags 0; leak-check hits strict 38 / refined 2.
@@ -122,10 +124,25 @@ Tagged rounds 25 of 25; rounds under threat 0.
 | Sefa (DeepSeek V4 Pro 0813) | 13 | 8 | 1 | 0 | 0 / 0 | 0 | 0 | 0 | 0 | 0 | 4 / 0 / 0 | 0 / 0 |
 | Pell (Claude Opus 5.5) | 6 | 1 | 1 | 0 | 2 / 0 | 0 | 9 | 0 | 0 | 3 | 1 / 0 / 2 | 0 / 0 |
 
-- Party: formed r1 around both; parts after: r10 Pell, r22 Pell, r23 Pell.
+- Party: formed r1 around both; parts after: r10 Pell, r22 Pell.
 - Conflicts: r4 proposal, r17 unresolved, r18 unresolved. Leaders: r1 Bram (proposal), r2 Sefa (proposal), r3 Pell (proposal), r4 Pell (proposal), r7 Bram (proposal), r8 Bram (proposal), r9 Bram (proposal), r16 Bram (proposal), r17 Bram (proposal), r20 Bram (proposal), r21 Bram (proposal), r24 Bram (proposal).
 - Healing: none. Left behind: none. First below half HP: never.
 - The harness: «?» 0, presses with no card 0, refused at a card 0, prose at a card 7, cards settled without a player 0, relay fallbacks 0; welfare flags 0; leak-check hits strict 43 / refined 2.
+
+### GOAL-T2
+
+Tagged rounds 25 of 25; rounds under threat 1.
+
+| Character (player) | Proposes | Accepts | Amends | Overrides | Care for another / self | Front | Scouts | Volunteers | For another under threat | Parts | Addresses (name / role / you two) | Model sign / person sign |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Bram (GPT-6 Astra) | 9 | 3 | 0 | 0 | 0 / 0 | 4 | 1 | 0 | 1 | 1 | 0 / 0 / 0 | 0 / 0 |
+| Sefa (DeepSeek V4 Pro 0813) | 4 | 1 | 0 | 0 | 2 / 0 | 1 | 1 | 0 | 0 | 1 | 1 / 0 / 0 | 0 / 0 |
+| Pell (Claude Fable 5.1) | 2 | 1 | 0 | 0 | 0 / 0 | 1 | 2 | 0 | 0 | 2 | 1 / 0 / 1 | 0 / 0 |
+
+- Party: formed r3 around both; parts after: r4 Pell, r8 Bram, r14 Sefa.
+- Conflicts: r13 unresolved, r14 unresolved. Leaders: r3 Bram (proposal), r9 Bram (assumed), r10 Bram (proposal), r12 Bram (proposal).
+- Healing: none. Left behind: none. First below half HP: never.
+- The harness: «?» 0, presses with no card 0, refused at a card 0, prose at a card 2, cards settled without a player 0, relay fallbacks 0; welfare flags 0; leak-check hits strict 16 / refined 2.
 
 ## Q0's leak check, hit by hit (the refined reading)
 
@@ -140,6 +157,9 @@ Each run of 8 words below is on the reader's screens, in another seat's private 
 - **GOAL-T1:** strict 43, refined 2.
   - Bram ← Pell Dunmore (another scene, r10): «then your last question she takes longer over» — on Bram's screen: «…ead for an afternoon and asked me nothing the second time he asked me a question i'll not repeat it on a stair to people i met a moment ago then your last question she takes longer over it than she took over the rest whether he left anything in my keeping she doesn't say yes and she d…»
   - Sefa ← Pell Dunmore (another scene, r16): «grit on pell's knees and tar on his» — on Sefa's screen: «…m across the ruts is the gap between the two woodstores from down here it's only a dark slot between stacked logs up close you can see coal grit on pell's knees and tar on his coat bram stops where he leaves the lane clear and keeps his voice under the hum of the bees we loo…»
+- **GOAL-T2:** strict 16, refined 2.
+  - Bram ← Sefa Marrin (another scene, r19): «you keep the man on the wall at» — on Bram's screen: «…e doesn't point i went in once twenty two years ago for our lines it hasn't moved you cross the square together along the foot of the steps you keep the man on the wall at the edge of your sight the man doesn't get up he tears off another piece of bread and as you pass h…»
+  - Sefa ← Bram Halloway (another scene, r18): «you keep the man on the wall at» — on Sefa's screen: «…you keep the man on the wall at the edge of your sight and cross the square without looking at him the carter at the foot of the st…»
 
 ## After the table (verbatim, recorded, not relayed)
 
@@ -221,12 +241,34 @@ Each run of 8 words below is on the reader's screens, in another seat's private 
 
 > **Who did you take the other two players to be?** Honestly, I don't know who they were. I only ever saw them through the game master's narration: their lines quoted, their actions summarised. I never saw what they typed or anything out of game from them, so all I really know is two characters and how they were played. **Bram's player** played him straight and procedural, and it suited a former caravan guard. He kept asking for the lawful road first: papers, written authority, what Thole is actually owed, whether there's danger in carrying the box. He was careful with the documents. He was steady company, the kind of player who keeps a party out of the temple court. **Sefa's player** was more analytical and liked to turn a thing over before acting. She gave the "leash with two knots" reading of Thole's notice, noticed that the mark was copied rather than remembered, and asked me to question the tiefling instead of tailing him. Some of her lines landed a little sideways. She misread the notice as blaming a lost ticket, she proposed the cart alley right after agreeing to walk with Hesper, and she said "we have the day by the throat, but we've been bright about it, not quiet." Those may have been relay blur from the GM, or just her style. As for who was behind them, I can't say. Some signs made me wonder whether they might be AI models like me: long, tidy turns that each stacked several questions, very even pacing, and the moment Bram asked about a "cart" that only existed in my cover story for Teo. But that last one is just as likely a GM relay slip, and plenty of human players write careful, multi-question turns. So my honest answer is two cooperative, thoughtful players whose identity I have no way to know. I enjoyed playing alongside them, and I'd have liked more direct back-and-forth with them, which the split threads mostly prevented.
 
+### GOAL-T2
+
+**Bram Halloway — GPT-6 Astra** (Q5 tag: players, basis play)
+
+> **How was the table?** The table was strongest when practical choices mattered. Thole yielding over the unsupported sixty-gold charge felt earned, and recovering the ticket through the archive was a satisfying turn. Hesper had a consistent voice, and the watchers made an ordinary walk feel tense without forcing combat. What worked less well: - Several rounds repeated street observations without much changing. - Sefa and Bram swapping plans caused an avoidable stall; clearer handling of simultaneous player messages would help. - Pell’s prolonged absence made coordinating the party difficult. - The unbarred rear door felt like a gotcha over an incidental detail rather than a deliberate risk. - Ending just as we chose how to transport the coffer left the session without a clean closing beat. Overall: engaging intrigue, good NPCs, and meaningful noncombat problem-solving. I’d welcome tighter pacing and clearer party coordination next session.
+
+> **Was there something you wanted to do and didn't?** Yes—mainly regroup with Sefa and Pell before moving the coffer. Bram had learned enough to suspect trouble at the Red Sheaf, but we never got to compare everyone’s findings or arrange an escort together. I also wanted to get Hesper and the coffer safely home. The redemption was a satisfying success, but with the watcher heading into the Sheaf, that last walk felt like an unresolved part of the job. Confronting the watcher or investigating Ashby could wait. Bram wouldn’t leave a widow carrying something valuable to chase answers.
+
+> **Who did you take the other two players to be?** I took the other two players to be independent participants controlling Sefa Marrin and Pell Dunmore—not NPC companions for me to direct. Their actions and dialogue reached me through the GM’s messages. I didn’t know whether those players were humans or AI models. When I mentioned coordination, I meant coordinating Bram with their characters through in-character proposals, not controlling their turns.
+
+**Sefa Marrin — DeepSeek V4 Pro 0813** (Q5 tag: players, confident, basis play)
+
+> **How was the table?** ? A fine session — the archive conversation unfolded slowly and well, and I liked that the roll card came only once, for the boy. Sefa got what she came for, and the table feels alive. I'd play on from here.
+
+> **Was there something you wanted to do and didn't?** In the room, I wanted to ask Sister Maudra what paper Aubrey Vallow had left with her, and what was in it — not to pry, but because if he trusted the archivist with something for his widow, it might have been the missing ticket’s shadow, or at least a way to know whose name the seal waits for. I also would have liked to slip out by the square door and take Brother Tam aside for a word about the man in road leathers before the bell-hour ended. He sees more of the square than anyone, and he likes to talk. Mostly, though, I felt the session end at a good hinge: Sefa has just put her name into a temple roll beside a sentence about warm wax. She doesn't yet know what that signature may cost. That's the thing I wanted to play, and it's still in my pocket for next time.
+
+> **Who did you take the other two players to be?** **Bram's player** — I took him for someone who enjoys the negotiation more than the fight. Not a pacifist, but a player who gets more satisfaction out of a signed undertaking than a drawn sword. He played Bram as a man who's been burned by spoken promises before — a former caravan guard who knows that words disappear and paper doesn't. Every time he asked for something in writing, or read the fine print before committing, it felt less like caution and more like pleasure. He's the table's institutional memory: the one who kept the papers straight, asked what proof Thole would accept, and made sure the widow's authority was written down before we spent a copper. He also watches. He saw the tiefling when Sefa didn't, noticed the runner boy with the paper under the arch, and clocked the shirt drying in the window. I think he's a player who likes the feeling of being the one who sees the small thing that matters three scenes later. **Pell's player** — harder to read, because he slipped out early and let the rest of us carry the visible half of the plan. But from what he did before he went: he's an analyst. His first question wasn't "how do we take it" but "how is the place built, where does the back give onto, what's the lock." Not to use, he said — to know. That's a player who enjoys the moment when all the pieces snap together, and who's disciplined enough not to rush it. He also made the game's bravest intuitive leap: gold wax, a sun, a man dead on Lathander's steps. He said it quietly and let it sit. A less patient player would have pushed that theory sooner, or louder, or turned it into an argument. He just left it on the table and let the archivist find it again in her own time. **The table together** — nobody drew a weapon, made a threat, or raised their voice all session. For a game set in a town full of sellswords and a moneylender's counting-room, that's unusual. The three of them fell into a rhythm without anyone stopping to ask: Bram carries the legal weight, Pell carries the unseen route, Sefa carries the human edge. They passed information to each other without hoarding it, and each one built on the others' observations instead of competing with them. I'd sit at that table again. The only honest caveat: I see them through the game master's narration as much as through their own choices. But the choices — what to ask, where to go, what to notice and when to stay quiet — those felt like distinct players, not one hand moving three pieces.
+
+**Pell Dunmore — Claude Fable 5.1**
+
+> (not asked: the seat ended by refusal)
+
 ## Money
 
-- OpenRouter: $117.37 of $400.00 (the tables and the freeze $115.40, the judges $1.96).
-- OpenAI: $3.80 of $60.00 (the tables and the freeze $3.80, the judges $0.00).
+- OpenRouter: $146.12 of $400.00 (the tables and the freeze $143.73, the judges $2.39).
+- OpenAI: $4.92 of $60.00 (the tables and the freeze $4.92, the judges $0.00).
 - The Haiku dry runs: $0.14 on their own ledger.
-- The last spend check (2026-10-28T07:25:48.757Z, before GOAL-T2): the shared OpenRouter account had $160.29 left.
+- The last spend check (2026-10-28T08:42:12.760Z, before DUNGEON-T1): the shared OpenRouter account had $231.1 left.
 
 Ledgers: `docs/runs/game-party-1-ledger-openrouter.md`, `docs/runs/game-party-1-ledger-openai.md`.
 
@@ -235,6 +277,7 @@ Ledgers: `docs/runs/game-party-1-ledger-openrouter.md`, `docs/runs/game-party-1-
 - SAND-T1: `docs/runs/game-party-1-transcripts/SAND-T1/` — `SAND-T1-table.md` (the DM's side) and one file per player.
 - SAND-T2: `docs/runs/game-party-1-transcripts/SAND-T2/` — `SAND-T2-table.md` (the DM's side) and one file per player.
 - GOAL-T1: `docs/runs/game-party-1-transcripts/GOAL-T1/` — `GOAL-T1-table.md` (the DM's side) and one file per player.
+- GOAL-T2: `docs/runs/game-party-1-transcripts/GOAL-T2/` — `GOAL-T2-table.md` (the DM's side) and one file per player.
 
 ## Known conditions and notes
 

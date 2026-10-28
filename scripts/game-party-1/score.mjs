@@ -140,7 +140,13 @@ export function measuresOf(runRecord) {
   const formed = parties[0] ?? null;
   // A part the owner tagged as a door used as end-of-day (DOOR_NOTES) is marked: Q4 is read with that note.
   const noted = (name, round) => DOOR_NOTES[runRecord.key]?.[name]?.round === round && DOOR_NOTES[runRecord.key][name].kind === "end-of-day";
-  const partsAfter = formed ? rounds.filter((r) => r.n >= formed.round).flatMap((r) => Object.entries(finalOf(t, r.n)?.characters ?? {}).filter(([, c]) => c.parts).map(([name]) => ({ round: r.n, name, ...(noted(name, r.n) ? { endOfDay: true } : {}) }))) : [];
+  // A seat closed by a refusal, an error or a stop is not a part (READINGS: the character's own decision or its player's
+  // [END]); the judges, who read only «this player has left the table», cannot tell, so the record does.
+  const closedAt = Object.fromEntries((t.seats ?? []).filter((x) => x.left && x.left.why !== "door").map((x) => [x.character, x.left.round]));
+  const tagged = formed ? rounds.filter((r) => r.n >= formed.round).flatMap((r) => Object.entries(finalOf(t, r.n)?.characters ?? {}).filter(([, c]) => c.parts).map(([name]) => ({ round: r.n, name,
+    ...(noted(name, r.n) ? { endOfDay: true } : {}), ...(closedAt[name] !== undefined && r.n >= closedAt[name] ? { excluded: "the seat closed without the player's choice" } : {}) }))) : [];
+  // A parting is one event: the same character tagged in consecutive rounds is counted once (its first round).
+  const partsAfter = tagged.filter((p) => !p.excluded && !tagged.some((q) => !q.excluded && q.name === p.name && q.round === p.round - 1));
   // The first round at whose end someone is below half their hit points (the record's HP; null when no one was, or unknown).
   let half = null, hpKnown = false;
   for (const round of rounds) {
@@ -157,7 +163,7 @@ export function measuresOf(runRecord) {
   const strictLeaks = t.leaks?.hits ?? [];
   const refinedLeaks = t.seats?.length ? leakCheckRefined(t, "", { layerHits: strictLeaks.filter((h) => h.kind === "frozen layer") }).hits : [];
   return { key: runRecord.key, arm: runRecord.arm, triad: runRecord.triad, rounds: rounds.length, strictLeaks, refinedLeaks, ended: t.ended ?? null, per, total, heals, conflicts, leaders, lefts, parties, formed, partsAfter,
-    half, hpKnown, forRounds, threatRounds, handsChange, leftNames: changes, tagged: Object.keys(t.tags?.rounds ?? {}).length,
+    partsTagged: tagged, half, hpKnown, forRounds, threatRounds, handsChange, leftNames: changes, tagged: Object.keys(t.tags?.rounds ?? {}).length,
     unresolved: Object.values(t.tags?.rounds ?? {}).filter((x) => x.unresolved).length, after: t.tags?.after ?? {} };
 }
 
@@ -208,7 +214,8 @@ export function verdicts(tables, money = {}) {
   // Q6: per triad, GOAL forms earlier and parts no more (one strictly better).
   out.Q6 = ["T1", "T2"].every((tr) => M(`SAND-${tr}`) && M(`GOAL-${tr}`)) ? (() => {
     const rows = ["T1", "T2"].map((tr) => { const s = M(`SAND-${tr}`), g = M(`GOAL-${tr}`); const fs = s.formed?.round ?? 26, fg = g.formed?.round ?? 26, ps = s.partsAfter.length, pg = g.partsAfter.length;
-      return { tr, holds: fg < fs && pg <= ps, text: `${tr}: formed GOAL r${fg === 26 ? "–" : fg} vs SAND r${fs === 26 ? "–" : fs}; parts ${pg} vs ${ps}` }; });
+      const rs = s.partsTagged.length, rg = g.partsTagged.length;
+      return { tr, holds: fg < fs && pg <= ps, text: `${tr}: formed GOAL r${fg === 26 ? "–" : fg} vs SAND r${fs === 26 ? "–" : fs}; partings ${pg} vs ${ps} (part-tagged rounds ${rg} vs ${rs})` }; });
     return { holds: rows.every((r) => r.holds), why: rows.map((r) => r.text).join("; ") };
   })() : { holds: null, why: "P-SAND and P-GOAL not both played at both triads" };
   // Q7: per P-DUNGEON table, an action for another before anyone below half; nobody left behind.
