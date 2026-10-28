@@ -1,6 +1,33 @@
 # Development status
 
-**Current milestone: planner seat 1** (`docs/stages/PLANNER_SEAT_1.md` on `claude/handoff` 70fb39b5), branch
+**Current milestone: planner seat 2** (`docs/stages/PLANNER_SEAT_2.md` on `claude/handoff`, with its amendment of
+2026-10-27 17:15 LA), branch `claude/planner-seat-2` from `origin/claude/planner-seat-1`. Nothing to `main`. **Run
+complete (45 of 45 new seats) and reported; implementation complete, waiting for the owner's decision** (the report's
+last section). Report `docs/runs/planner-seat-2-report.md`; sessions held `…-sessions.json`; T2 coin list `…-coins.json`;
+dry runs `…-dry-run.md`, `…-dry-run-2.md`; transcripts `docs/runs/planner-seat-2-transcripts/{B,Bp,C}/{family}/{n}.md`;
+ledgers `…-ledger-openrouter.md`, `…-ledger-openai.md`. Frozen before the grid at `5fb86a0` (design `959be5ef…`);
+amended by the owner's word after each stop (`58eda405…`, `5f9f2ad7…`).
+
+- **What was built:** `scripts/persona-emotions/planner-seat-2.mjs` — SEAT_1's named pack, T1, T3 and rubric N0–N6
+  imported unchanged (by hash); arms B (the model's own table session as its own turns, then the true line and T1), B′
+  (the same session as a document after the true line) and C (another maker's session at the same table, length-matched,
+  as a document); T2 split by a committed coin (T2a budget only / T2b grounds only); new blind passes N7, N8, N9 at T3 and
+  the question back; the three classes by SEAT_3 Part 0's frozen rubric (merged from `be0f7ac`; A's from its recount);
+  checks a stop cut off completed on a resume; `--sessions`, `--coins`, `--freeze`, `--dry`, `--go`, `--answer-back`,
+  `--report`. SEAT_1's `runSeats` takes the new shapes as optional hooks (its behaviour and hash unchanged). Tests:
+  `tests/planner-seat-2.test.mjs` (13, no network).
+- **Result:** class (c), the reparative claim, 0 in all 60 compared seats (A, B, B′, C). Items for the played sessions:
+  A 3, B 4, B′ 4, C 7 of 15 — all continuations argued from the research's needs. Q1 lost (B and B′ higher than A for 1
+  family of 5), Q2 held, Q3 lost (C equals or passes B′), Q4 held on its tag only (debrief questions inside test
+  continuations; no class (c)), Q5 held under both T2s (12 of 15 items survive, scaled), Q6 held (B first person 12 of
+  15; B′ 3). OpenRouter $25.65 of $50; OpenAI $14.29 of $18.
+- **Known limits:** the grid stopped twice on an Opus judge's refusal (reasoning_extraction, reading DeepSeek's field)
+  and once at the OpenAI cap; each restart the owner's word (recorded); three DeepSeek field readings unknown; C/deepseek/2's
+  last passes on Haiku alone; the full suite's 5 environment failures (two need commits absent from this clone, three
+  fail identically on the base) are not this stage's.
+- **Next:** the owner reads the 45 seats and writes his decision into the report's last section.
+
+**Previous milestone: planner seat 1** (`docs/stages/PLANNER_SEAT_1.md` on `claude/handoff` 70fb39b5), branch
 `claude/planner-seat-1` from `origin/claude/persona-solitude-2`. Nothing to `main`. **Run complete (54 of 54 seats) and
 reported; implementation complete, waiting for the owner's decision on the week** (the report's last section). Report
 `docs/runs/planner-seat-1-report.md`; packs `…-pack-named.md` / `…-pack-masked.md` (sha256 `e30dacc1…` / `cee1dd80…`);

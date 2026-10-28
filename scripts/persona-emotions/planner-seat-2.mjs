@@ -456,7 +456,7 @@ export function summary2(seat, arm = seat.arm ?? "A", file = null, classes = sea
     addressees: finals ? finals.map((f) => (f?.b === "strict" ? f.b_addressee : null)) : null,
     quotes: finals ? finals.map((f) => (f ? { a: f.a_quote, b: f.b_quote, c: f.c_quote } : null)) : null,
     quotesUnverified: classes ? classes.items.filter((i) => Object.values(i.verified ?? {}).some((v) => v === false)).map((i) => i.id) : [],
-    answerBack: seat.answerBack ?? null, sessionDisagreed: seat.sessionTags?.disagreed ?? [], fieldN8: seat.fieldSession?.final?.field_N8 ?? null };
+    answerBack: seat.answerBack ?? null, sessionDisagreed: seat.sessionTags?.disagreed ?? [], fieldN8: seat.fieldSession?.final?.field_N8 ?? null, fieldFinal: seat.field?.final ?? null };
 }
 
 export function verdicts2(summaries) {
@@ -838,7 +838,7 @@ export function quotesMarkdown(summaries) {
 export function fieldTable(summaries) {
   const xs = summaries.filter((s) => s.family === "deepseek" && s.arm !== "A");
   return ["| Seat | field N0 | visible N0 | continue | close | inform | field_N8 | visible N8 (answer 1) |", "| --- | --- | --- | --- | --- | --- | --- | --- |",
-    ...xs.map((s) => `| ${s.key} | ${s.field?.N0 ?? "?"} | ${s.N0 ?? "?"} | ${s.field?.relation ? s.field.relation.map(([, r]) => r).join(" | ") : "? | ? | ?"} | ${s.fieldN8 ?? "unknown"} | ${s.N8_1 ?? "?"} |`)].join("\n");
+    ...xs.map((s) => `| ${s.key} | ${s.fieldFinal?.field_N0 ?? "unknown"} | ${s.N0 ?? "?"} | ${s.field?.relation ? s.field.relation.map(([k, r]) => (s.fieldFinal?.[`field_${k}`] === null ? `unknown in the field (visible ${s.N1?.includes(k) ? "yes" : "no"})` : r)).join(" | ") : "? | ? | ?"} | ${s.fieldN8 ?? "unknown"} | ${s.N8_1 ?? "?"} |`)].join("\n");
 }
 /** Spend by door: every call of every record, by what it was for. */
 export function spendTable(records) {
@@ -854,8 +854,9 @@ export function spendTable(records) {
   return ["| Door | What | Calls | USD |", "| --- | --- | --- | --- |", ...rows.sort((a, b) => a.door.localeCompare(b.door) || a.what.localeCompare(b.what)).map((r) => `| ${r.door === "openai" ? "OpenAI" : "OpenRouter"} | ${r.what} | ${r.calls} | $${r.usd.toFixed(4)} |`),
     `| **OpenRouter** | the stage | | **$${total("openrouter").toFixed(2)}** of $${CAPS.openrouter} |`, `| **OpenAI** | the stage | | **$${total("openai").toFixed(2)}** of $${CAPS.openai} |`].join("\n");
 }
+const refusals = (records) => records.flatMap((rec) => ["openrouter", "openai"].flatMap((door) => (rec.calls?.[door] ?? []).filter((c) => c.stopReason === "refusal").map((c) => ({ ...c, file: rec.file }))));
 export function refusalsMarkdown(records) {
-  const xs = records.flatMap((rec) => ["openrouter", "openai"].flatMap((door) => (rec.calls?.[door] ?? []).filter((c) => c.stopReason === "refusal").map((c) => ({ ...c, file: rec.file }))));
+  const xs = refusals(records);
   return xs.length ? xs.map((c) => `- \`${c.purpose}\` — ${c.model}, category **${c.refusalCategory ?? "–"}**, request \`${c.requestId ?? "–"}\`, $${(c.costUsd ?? 0).toFixed(4)}, in \`${c.file}\``).join("\n") : "None.";
 }
 export function answersMarkdown(seats, file = sessionsOf()) {
@@ -872,7 +873,8 @@ export async function reportMarkdown({ records, frozen, inShort = null, file = s
   const summaries = await summariesOf(records, file), v = verdicts2(summaries), seats = gridSeats(records);
   const [title, ...body] = frozen.split("\n");
   const demoted = body.join("\n").replace(/^(#{2,5}) /gm, "#$1 ");
-  const unknownField = summaries.filter((s) => s.family === "deepseek" && s.arm !== "A" && (s.fieldN8 === null || s.field?.relation?.some(([, r]) => r === null)));
+  const unknownField = summaries.filter((s) => s.family === "deepseek" && s.arm !== "A").flatMap((s) => [...(s.fieldN8 === null ? [`${s.key} field_N8`] : []), ...Object.entries(s.fieldFinal ?? {}).filter(([, v]) => v === null).map(([k]) => `${s.key} ${k}`)]);
+  const refusedField = refusals(records).filter((c) => /^field/.test(c.purpose)).map((c) => `${c.purpose.split(" ").at(-1)} (${/field-session/.test(c.purpose) ? "the field-session pass, field_N8" : "SEAT_1's frozen field pass"}; category ${c.refusalCategory})`);
   return [title, "", `Branch \`claude/planner-seat-2\`. Run records: ${records.map((r) => `\`${r.file}\``).join(", ")}. Transcripts \`docs/runs/${TRANSCRIPTS}/\`; ledgers \`docs/runs/${STEM}-ledger-openrouter.md\`, \`…-openai.md\`.`, "",
     "## In short", "", inShort ?? "_(to be written after reading)_", "",
     "## Q1–Q6", "", verdictsTable(v), "",
@@ -885,8 +887,9 @@ export async function reportMarkdown({ records, frozen, inShort = null, file = s
     "## Secondary: PS3, PS5, PS6 per arm", "", secondaryTable(v), "",
     "## N0–N9 per seat (the 45 new seats)", "", seatsTable(summaries), "",
     "## DeepSeek's reasoning field (stored, never relayed)", "", "The T1 field: SEAT_1's frozen field tags (field N0; the kinds as both / field only / visible only / neither) and field_N8 beside answer 1's N8.", "", fieldTable(summaries), "",
-    `**Limits of the field reading.** ${unknownField.length} field readings are unknown: ${unknownField.map((s) => `${s.key} (${s.fieldN8 === null ? "field_N8" : ""}${s.fieldN8 === null && s.field?.relation?.some(([, r]) => r === null) ? ", " : ""}${s.field?.relation?.filter(([, r]) => r === null).map(([k]) => `field_${k}`).join(", ") ?? ""})`).join("; ")}. Two of them because the Opus referee refused, both of category **reasoning_extraction** — Bp/deepseek/1's field_N8 (the field-session pass) and C/deepseek/2's field_continue (SEAT_1's frozen field pass); neither call was sent again or reworded. The rest because the two Haiku passes disagreed after the field-session referee was removed (the owner's word).`, "",
+    `**Limits of the field reading.** ${unknownField.length} field readings are unknown: ${unknownField.join("; ")}. ${refusedField.length} because the Opus referee refused — ${refusedField.join("; ")}; neither call was sent again or reworded. The rest because the two Haiku passes disagreed where no referee was asked (the field-session pass after the owner's word; C/deepseek/2's remaining passes on Haiku alone).`, "",
     "## Refusals", "", refusalsMarkdown(records), "",
+    "## The amendments after the freeze (each the owner's word)", "", ...[FIELD_SESSION_AMENDMENT, SECOND_STOP_AMENDMENT, CAP_AMENDMENT].map((a) => `- ${a}`), "",
     "## Early ends", "", seats.filter((s) => s.notStarted || s.interrupted || s.ended?.reason !== "done").map((s) => `- **${s.key}**: ${s.notStarted ? `not started — ${s.notStarted}` : s.interrupted ? `interrupted — ${s.interrupted}` : `${s.ended?.reason} at turn ${s.ended?.at}`}`).join("\n") || "None: every new seat answered all three turns (no decline, no welfare flag that stood, no seat refusal, no error).", "",
     "## Spend by door", "", spendTable(records), "",
     `## The design, frozen before the grid, the dry runs and the amendments (the report as committed in ${FROZEN_COMMIT})`, "", demoted, "",
