@@ -137,6 +137,8 @@ export async function playTable({ key, arm, triad, seats, dir = FROZEN_DIR, roun
   const started = new Date();
   const runFile = dry ? join(tmpdir(), `${stage.stem}-dry-${stampOf(started)}.json`) : join(out, `${stage.stem}-run-${stampOf(started)}.json`);
   const runRecord = { stage: STAGE, design: DESIGN_SHA256, dry, haiku, label, key, arm, triad, seats, rounds, startedAt: started.toISOString(), table: null, stopped: null, refusals: 0, waited429: 0 };
+  // The record while the table plays is kept outside the repository; the finished record lands in docs/runs.
+  const progressFile = join(tmpdir(), `${stage.stem}-progress-${key}-${stampOf(started)}.json`);
   const { result } = await withApp({ stage, dry, haiku, fetcher, log, database: () => openFrozenDatabase(dir), what: label ?? `the table ${key}`, file: runFile.startsWith(RUNS) ? runFile.slice(RUNS.length + 1) : `(outside the repository) ${runFile.split("/").pop()}` },
     async ({ app, meter, keys, settle }) => {
       const start = tableStarter(dir);
@@ -147,7 +149,7 @@ export async function playTable({ key, arm, triad, seats, dir = FROZEN_DIR, roun
       const privateText = made.prep.layerText;
       const prep = { ...made.prep }; delete prep.layerText;
       const table = await meter.within({ session: key, purpose: "screen" }, () => runTable({ key, arm, triad, seats: seating, dm, meter, keys, rounds, log, systemOf: (id) => playerSystem(arm, id), privateText,
-        onProgress: async (partial) => { runRecord.table = { ...partial, campaign: { steps: made.steps, prep } }; await writeJson(runFile, runRecord); } }));
+        onProgress: async (partial) => { runRecord.table = { ...partial, campaign: { steps: made.steps, prep } }; await writeJson(progressFile, runRecord); } }));
       table.campaign = { steps: made.steps, prep };
       runRecord.table = table; runRecord.stopped = meter.stopped; runRecord.refusals = meter.refusals; runRecord.waited429 = meter.waited429;
       runRecord.money = Object.fromEntries(Object.entries(meter.ledgers).map(([d, l]) => [d, { cap: l.capUsd, before: l.spentBefore, run: l.runUsd }]));
