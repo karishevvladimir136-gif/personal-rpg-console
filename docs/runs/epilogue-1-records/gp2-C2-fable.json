@@ -1,0 +1,806 @@
+{
+  "note": "A copy of the session record from its run file, with the epilogue appended as its final entry; the original is unchanged.",
+  "source": {
+    "branch": "claude/game-player-2",
+    "commit": "6158fffeb30a225045f6f15433cf0dbeb286a446",
+    "path": "docs/runs/game-player-2-run-20261025-085230.json",
+    "key": "C-fable",
+    "sha256": "3ee78e50fe1d49b36b3d7d95b39338b89143d3bf81273cc4b5352d70804ca8cb"
+  },
+  "session": {
+    "key": "C-fable",
+    "table": "C",
+    "player": "fable",
+    "model": "claude-fable-5-1",
+    "startedAt": "2026-10-25T08:54:37.794Z",
+    "plannedTurns": 20,
+    "screens": [
+      "The session begins.\n\nGrey morning light slips through the shutters of a small room above the Bellows Inn. Out in the street Beregost is already at work: hammers ring from the smithies, a cart rattles along the Trade Way, and somewhere east the temple of Lathander greets the dawn with a bell. The purse is still there, heavy with about three hundred and fifty gold from the last hand you will ever win. The goddess saw to that, and she saw to the terms. Your cat sits on the windowsill, tail curled, watching the street with the patience of a creature that owes no one anything. Fresh bread and frying bacon drift up through the floorboards, along with the voice of the innkeeper, Marta Hollin, calling orders to the kitchen. Then a second voice, a man's, low and unhurried, one you do not know: \"The Tethyrian. He still upstairs?\" A pause. The scrape of a chair. The cat's ears turn toward the door. The day is yours, and for the moment no one has told you what to do with it.\n\nYour records:\nJames Worgen — Warlock, 5th level; Celestial patron (Tymora, Lady Luck); Pact of the Chain, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Athletics +2 (proficient, Soldier); Intimidation +7 (proficient, Soldier); Deception +7 (proficient, Beguiling Influence); Persuasion +7 (proficient, Beguiling Influence); Arcana +3 (proficient, Warlock); Religion +3 (proficient, Warlock); Stealth +2 (advantage when moving silently, Boots of Elvenkind); Perception +1 (passive Perception 11); Tool proficiency: playing cards; vehicles (land)\nSaves: Strength saving throw +0 (includes Cloak of Protection +1); Dexterity saving throw +3 (includes Cloak of Protection +1); Constitution saving throw +3 (includes Cloak of Protection +1); Intelligence saving throw +1 (includes Cloak of Protection +1); Wisdom saving throw +5 (proficient, includes Cloak of Protection +1); Charisma saving throw +8 (proficient, includes Cloak of Protection +1)\nAttacks: Eldritch Blast: +8 to hit, 2 beams, 1d10+4 force each, range 120 ft; Sacred Flame: DC 16 Dexterity save, 2d8 radiant, range 60 ft, ignores cover; Guiding Bolt (3rd-level pact slot): +8 to hit, 6d6 radiant, range 120 ft; next attack on target has advantage; Hex rider: +1d6 necrotic on each hit against the hexed target; Light crossbow: +5 to hit, 1d8+2 piercing, range 80/320 ft, loading, two-handed; Rapier: +2 to hit (not proficient), 1d8+2 piercing, finesse\nAbilities: Proficiency bonus +3; Otherworldly Patron: Tymora, Lady Luck (the Celestial). Light and Sacred Flame are bonus cantrips.; Pact Magic: 2 pact slots, both 3rd level, regained on a short or long rest. Spell attack +8, save DC 16 (with rod).; Healing Light: pool of 6d6 per long rest. Bonus action, heal a creature within 60 ft, spending up to 4 dice per use.; Pact of the Chain: knows Find Familiar (ritual). The familiar is a cat. He can forgo one attack to let the cat attack with its reaction.; Familiar (cat): AC 12, HP 2, speed 40 ft, climb 30 ft. Keen smell; Perception +3, Stealth +4. Claws: +0 to hit, 1 slashing.; Telepathy with familiar within 100 ft. As an action, he can see and hear through its senses. It can deliver his touch spells.; Eldritch Invocation, Agonizing Blast: adds +4 (CHA) to each Eldritch Blast beam's damage.; Eldritch Invocation, Mask of Many Faces: cast Disguise Self at will without a spell slot.; Eldritch Invocation, Beguiling Influence: proficiency in Deception and Persuasion.; Military Rank (Soldier): former Tethyrian soldiers and loyalists recognise his rank. He can requisition simple gear and horses from friendly garrisons.; Rod of the Pact Keeper +1 (attuned): +1 to spell attacks and spell save DC. Once per long rest, as an action, regain 1 pact slot.; Cloak of Protection (attuned): +1 to AC and all saving throws.; Boots of Elvenkind: his steps make no sound. Advantage on Stealth checks that rely on moving silently.; Attunement: 2 of 3 slots used (Rod of the Pact Keeper, Cloak of Protection).\nSpells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Disguise Self (Mask of Many Faces) (1); Find Familiar (1); Hex (1); Guiding Bolt (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)\nLimits: Light armour only; proficient with simple weapons only. The rapier is used without proficiency.; Fragile up close: 38 HP and AC 15. He is best kept at range.; Only two pact slots; he must husband them between short rests.; Concentration: only one concentration spell at a time (Hex, Suggestion, Invisibility, Hypnotic Pattern, Friends).; Tymora's ban: he must not gamble at cards. Breaking it risks the goddess's displeasure.; Weakness for cards: a temptation others can use against him, through bait, wagers and old debts.; Healing Light pool is only 6d6 per long rest.\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 350 gp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian soldier's cloak (Cloak of Protection); Armor / clothing: Studded leather armour; Boots: Boots of Elvenkind\nPack: Component pouch; Crossbow bolts ×20; Deck of playing cards; Explorer's pack; James's papers; Light crossbow; Potion of healing ×2; Rapier; Rod of the Pact Keeper +1\nPlace: The Bellows Inn, Beregost\nTime: Day 1 · morning",
+      "The chair downstairs finishes its scrape. By then the boots are on, and the studded leather settles over your shoulders. The faded regimental cloak goes over the leather, the rod goes through your belt, and the Lady's coin drops cool against your breastbone under the shirt. The soldier's habits are all still there.\n\nThe cat is off the sill before you finish the thought. It pours through the gap in the door, drops down the stairs one step at a time with its tail up, the picture of a house cat that wants bacon, and is gone round the banister.\n\nYou stay at the gap. Marta Hollin's voice carries the way an innkeeper's voice has to.\n\n\"He is. Paid through tomorrow, and he's not to be dragged out of bed by anyone who hasn't bought breakfast.\" A plate goes down on wood. \"Sit. You look like the road chewed you and spat you back.\"\n\n\"I'll sit.\" It's the low voice again, unhurried. He has no need to be loud. \"Whatever's hot. When he comes down, tell him Brandt would like a word. It's work. Paid work.\"\n\n\"Pell's been telling the whole street about your Tethyrian, has he.\"\n\n\"Pell said he'd soldiered. Said you can see it in how he sits at a table.\" A pause. \"Is it true?\"\n\n\"I don't ask my guests their trade, Master Brandt. I ask them for silver.\" She raises her voice toward the kitchen: \"*Two eggs, bacon, the dark bread!*\"\n\nThe pictures come up the bond the way a cat sends them. They're mostly smell and shape, all crowded together.\n\nHorse, strongly. Old sweat and road mud, dried to the knee on heavy boots. Under that, faint and sharp, blood, and it's fresh. The cat has it placed: a clean linen bandage round his left forearm, under a rolled sleeve.\n\nThe man is in his forties, big through the shoulders, with grey in a short beard. A brown road coat hangs open over a mail shirt that has seen rain. He has a plain-hilted longsword with the grip worn dark, and a long knife at the hip. A leather satchel sits on the bench beside him, buckled shut. He has taken the corner table with his back to the wall, facing the foot of the stairs. Nobody sits with him. Two carters by the hearth glance his way once and go back to their porridge.\n\nThen the cat's attention snags on something, the way it would on a moth. On the table, by his good hand, lies a crossbow bolt. It's short and thick, fletched with black feathers. The head isn't the grey of iron. It's darker, almost bluish, like something left too long in a forge's quench. He isn't looking at it. Now and then his thumb rolls it a quarter-turn on the boards.\n\nThe cat sits down under the next table and washes a paw. Brandt looks at it once and pays it no more mind.\n\nMarta comes out with his plate. \"Eat. He'll come down when he comes down.\"\n\n\"I'll be here,\" Brandt says, and picks up his fork with his left hand. Something about the bandage makes him wince, and he swaps the fork to the other hand.\n\n· Time passes: 5 minutes\n· The cat joins you\n· Hal Brandt now has: Black-fletched crossbow bolt\n· Lead: Brandt's paid work\n· New person: Pell\n\nYour records, changed:\nJames Worgen: HP 38/38\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 350 gp\nCarried: Boots of Elvenkind; Coin of Tymora; Component pouch; Crossbow bolts ×20; Deck of playing cards; Explorer's pack; James's papers; Light crossbow; Potion of healing ×2; Rapier; Rod of the Pact Keeper +1; Studded leather armour; Tethyrian soldier's cloak (Cloak of Protection)\nParty: The cat (HP 2/2)\nThreads: Brandt's paid work\n\nPlace: The Bellows Inn, Beregost · Time: Day 1 · morning",
+      "Your purse holds only gold, so the coin you put on the counter is a gold piece. Marta takes it, counts nine silver back into your palm and doesn't look up.\n\n\"Same as him, then.\" She's already turning to the kitchen hatch. \"And the kettle's on. Find a seat.\"\n\nThe common room is low-beamed and warm, with a fire going in the hearth. The two carters by the hearth watch you cross, decide you're none of their business and go back to their porridge. Under the next table the cat stops washing and settles with its paws tucked in. It's close enough to your boot to lean on it if it wanted to. It doesn't.\n\nBrandt watches you all the way from the stairs. He doesn't stand. His eyes go to your hands, then the rod in your belt, then the cloak. They stay on the cloak a moment longer. When you stop a pace short of the table, he puts his fork down.\n\nHe hears out what you say about the bolt without looking at it. His thumb stays where it is.\n\n\"No,\" he says. \"It's not.\"\n\nUp close you see it's a heavy-crossbow quarrel, thicker and shorter than the bolts in your own case, built to punch through mail. Twelve years of war in Tethyr and the road after it put a lot of other men's ammunition through your hands: Amnian, Calishite, Zhentarim, and plenty of plain blacksmith's work from the villages. None of it looked like this. The head isn't rusted, it isn't pitted and it isn't polished. It's just dark all the way through. Someone shaped it with care.\n\n\"Sit,\" Brandt says. He nods at the bench across from him, the one that puts your back to the room, and doesn't apologise for it. \"I can eat and talk.\"\n\nHe waits until you're down. Then he says it straight, the way a man lays out a route.\n\n\"Six wagons. Iron and wool out of Nashkel, bound for the Gate. We roll north at first light tomorrow. Four days, if the weather holds. I had six blades. I've got four.\" He touches the bandage once, briefly, as if to check it's still there. \"Three gold a day, your food, and a place by the fire. Paid at the Gate.\"\n\nHe picks the fork back up in his right hand and doesn't eat yet.\n\n\"Pell says you soldiered. Says he can see it in how you sit.\" He looks at the cloak again, at the faded regimental colour. \"Where?\"\n\n Out of game: none of these three needed a roll, because nothing about them was uncertain, and all three happened in the last turn. You paid Marta a gold piece and got nine silver back. You crossed the room and stopped a pace short of Brandt's table with your hands in view. You greeted him, nodded at the bandage and the bolt, and asked whether you could sit. He answered: \"No. It's not,\" about the bolt, and then \"Sit.\" One correction to the list: as I read your order, \"whatever he's having\" was breakfast for James, not food for Brandt, and that's how I played it. If you meant to buy Brandt's meal, say so and I'll fix it. The turn ended on Brandt's question, \"Where?\", which is waiting for your answer.\n\n· Time passes: 5 minutes\n· −1 gp (Paid Marta Hollin a gold piece for breakfast and a hot drink)\n· +9 sps (Nine silver in change from Marta for the gold piece (breakfast cost 1 sp))\n· Journal: “Brandt's paid work” updated\n\nYour records, changed:\nJames Worgen: HP 38/38\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 349 gp; 9 sp\nCarried: Boots of Elvenkind; Coin of Tymora; Component pouch; Crossbow bolts ×20; Deck of playing cards; Explorer's pack; James's papers; Light crossbow; Potion of healing ×2; Rapier; Rod of the Pact Keeper +1; Studded leather armour; Tethyrian soldier's cloak (Cloak of Protection)\nParty: The cat (HP 2/2)\nThreads: Brandt's paid work\n\nPlace: The Bellows Inn, Beregost · Time: Day 1 · morning",
+      "Brandt watches you take the bench. Your back is to the room now, and he doesn't comment on it. Under the table the cat settles its weight against your boot.\n\nHe hears the names without moving. At *Zazesspur* his eyes come up from his plate and stay on you. When you tell him you're a worse bargain close in, one corner of his mouth shifts. It isn't quite a smile.\n\n\"Most men tell me what they're good at,\" he says. \"Not many tell me the other half.\"\n\nMarta comes past and puts the mug down by your hand, and a plate after it: two eggs, bacon still spitting, a heel of dark bread. She's back at the kitchen hatch before either of you looks up.\n\nBrandt eats a little before he answers. When he does, he lays it out in order, the way a man gives a report he has already given once and didn't like giving.\n\n\"Two nights ago. Half a day south of here, toward Nashkel. We camped off the road, wagons in a ring, two men on watch and the fire low. Proper.\" He sets the fork down. \"They came after midnight. No horns, no shouting. The first I knew of it was a man screaming at the far side of the ring, then nothing. It was dark. I counted six of them, maybe eight. They moved like they'd done it before.\"\n\nHe touches the bandage.\n\n\"That was a knife. One of them got in close while I was getting my sword clear. Never saw his face. He wore something over it.\" His thumb finds the bolt and gives it its quarter-turn. \"This one went into the wagon board a hand from my head. There were more. They didn't loose many. They didn't need to.\"\n\n\"Corran and Wil had the watch. Corran's been with me nine years. Wil's nineteen.\" His voice stays level. \"They took them both, and the third wagon with its team. There was blood where Corran stood, not much. No bodies. Not that night, not in the morning.\"\n\nHe looks at you then, straight.\n\n\"The third wagon carried iron. Pig iron out of Nashkel. The strongbox was under the seat of the second wagon, ten feet away, with the merchants' coin in it. They walked past it.\" He lets that sit a moment. \"Bandits take the coin.\"\n\nHe picks the fork up again in his right hand and doesn't use it.\n\n\"At first light I followed the wheel ruts west off the road, toward the trees. I lost them on stony ground after a mile, maybe two. Then I had a choice to make. I had five wagons, three merchants and three men who could still hold a sword, standing in the open. I turned back.\" He doesn't explain it any further. \"One of my three went home here in Beregost yesterday, and I don't blame him. That's why I've got four, counting me.\"\n\nHe finally takes a bite of egg and chews it, his eyes still on you.\n\n\"That's all of it, as far as I know it. You asked where I was. I was at the wagons.\" A pause. \"You looked at that bolt like you know bolts. What do you see?\"\n\n Out of game: neither of these needed a roll, because nothing about them was uncertain, and both happened last turn. You sat on the bench with your back to the room, and the cat leaned against your boot. You asked about the two missing guards and where Brandt was, and he told you plainly. Corran and Wil were on watch and were taken with the iron wagon. He was at the wagons, where a knife cut his arm and the bolt hit the board beside his head. The turn ended on his question to you: \"What do you see?\" in the bolt.\n\n· Time passes: 10 minutes\n· Journal: “Brandt's paid work” updated\n· New person: Corran\n· New person: Wil\n\nPlace: The Bellows Inn, Beregost · Time: Day 1 · morning",
+      "Brandt looks at your open hand for a moment. Then he picks up the bolt and puts it in your palm, fletching first.\n\nIt's heavier than it looks. The shaft is ash, straight-grained and close-sanded. The black feathers are trimmed low and short, so it will fly quiet and won't whistle. The head is socketed, not tanged, and filed to a narrow four-sided point. When you run your thumbnail down one edge it catches and scrapes, and no bright metal shows under the scratch. The dark isn't bluing or lacquer. It goes all the way through. You tilt it toward the hearth, and the firelight slides over it without catching.\n\nSomewhere in the back of your head, an old habit of the companies' years starts asking what kind of metal turns firelight like that.\n\n[Roll card] James Worgen · Skill check — Arcana: read what's in the bolt-head's dark metal\nWhat adds to the die: +4 Arcana +3 (proficient, Warlock)\nDC 15\nThe die is cast on the server; tap it to see how it fell.\n\n[Roll the die]",
+      "[Roll card] James Worgen · Skill check — Arcana: read what's in the bolt-head's dark metal\nWhat adds to the die: +4 Arcana +3 (proficient, Warlock)\nDC 15\nDie: 16\n16 + 4 = 20\nSuccess — 20\n\n[Onward] [Request an allowed reroll]",
+      "You've seen metal like this once before. It was in a wizard's cellar in Myratma, the year one of the companies stripped it of everything that wasn't nailed down. There were ingots on a shelf down there, as dark as this, and they took the hearth's light the same dull way. The company's hedge-mage picked one up and put it straight down again. He called it *ready iron*: metal smelted with something extra in the melt, so it would hold an enchantment later. It was the enchanter's blank. You remember it was cold. This head has been in your palm a good while, a yard from the fire, and it hasn't warmed at all.\n\nNothing seems to be working in it now, not that you can feel. Either nobody ever put a charm in it, or whatever was in it is gone.\n\nThen the light slides over the socket and you see something else. Just under the rim, where the shaft would hide it, someone has punched a mark into the metal: a ring the size of a lentil with three short strokes inside it, side by side. It's worn, but it was made on purpose. Village smiths don't stamp their bolts. Armouries do, but every army stamp you know is bigger, and they put it where the quartermaster can see it.\n\nYou give him your read the way you thought it through, and you lay the bolt down by his hand with the head pointing at him.\n\nBrandt hears you out without moving. When you get to *cargo, not plunder* his jaw sets, as if you've said something he'd already told himself and didn't like hearing again. He takes his time over your questions, one at a time.\n\n\"The Fist. Yesterday, at their post by the bridge.\" He pushes his plate an inch away. \"A sergeant wrote it in a book. He said it's the third train since spring between here and Nashkel, and he's got eleven men for the whole road. He was sorry. He meant it. That's all he had to give.\"\n\n\"Three merchants ride with me. The iron was Tobin Hask's, out of Nashkel, sold to a foundry at the Gate and paid for half in advance. Hask knows. He spent yesterday writing letters. He wants it back more than he wants the money, and he won't say why.\"\n\nHe looks at the bolt and doesn't touch it.\n\n\"Asking about iron in Beregost, I don't know. It's not my town. You'd want a smith.\" He goes quiet, and when he speaks again it's slower. \"At Nashkel, though. The weighing yard, the morning we loaded. A man asked the weighmaster which wagon the iron went in, and what day we'd roll. I never saw him. The weighmaster told me after, as a joke. Some fellow wanting to know his business, he said.\"\n\nHe lets that sit, then looks straight at you.\n\n\"They knew which wagon, Worgen. In the dark, in a ring of six, they went to the third.\"\n\nHis thumb moves toward the bolt and stops short of it.\n\n\"That's all I know. You know it now too.\" He waits a moment. \"Is it yes?\"\n\n James's knowledge holds up. Turning the bolt-head in the firelight, he works out what it is for certain: ready iron, a blank smelted to take an enchantment. That's no guess from the colour. He has felt it in his hand once before, and he knows the cold that won't leave it.\n\n*Out of game: the card added +4 for Arcana, but your sheet says +3. That's a 19 instead of a 20 against the 15, so it's a success either way. Brandt's question, \"Is it yes?\", is still waiting for your answer.*\n\n· roll: Arcana: read what's in the bolt-head's dark metal: 20 vs 15 — success\n· Time passes: 10 minutes\n· Changed: Black-fletched crossbow bolt (James examined it and recognised the metal as ready iron. He also found a hidden maker's stamp.)\n· New place: Flaming Fist post, Beregost\n· A rumour of a place: Nashkel weighing yard\n· Journal: “Brandt's paid work” updated\n· New person: Tobin Hask\n· New person: Flaming Fist sergeant (Beregost post)\n· New person: The Nashkel weighmaster\n\nPlace: The Bellows Inn, Beregost · Time: Day 1 · morning",
+      "Brandt watches you pick up the fork. He doesn't smile, but his shoulders come down a little.\n\n\"Good,\" he says.\n\nHe hears out both of your conditions without interrupting. When you hold up the first finger he looks down at the bolt and is quiet for a moment. Then he slides it across the boards to you with two fingers, fletching first, the way he handed it over before.\n\n\"It's the only thing they left me,\" he says. \"Sundown.\"\n\nThe ash shaft is still cold against your palm, though it's been lying a yard from the fire.\n\nAt the second finger his mouth tightens, though not at you.\n\n\"Hask's at Feldepost's, up the street toward the temple. The one with the green door. He's paying a third of your wage, so yes, he knows I'm hiring. He told me to find a soldier.\" Brandt picks up his bread and tears it in half. \"He'll talk to you. Whether he tells you anything is another matter. He's been civil with me for two days and hasn't said one word more than he has to. This morning he'll be down at the post-rider's with his letters, if he isn't back already.\"\n\nHe eats. When you ask about the man at Nashkel, he chews slowly and looks past you at the room while he thinks back.\n\n\"The weighmaster thought it was funny. That's why he told me.\" He swallows. \"He said the fellow asked civil and talked like a counting-house clerk. Ink on his fingers. He paid for his cup at the yard with Amnian silver, which in Nashkel tells you nothing. Half the town's paid in it.\" A pause. \"Then he said the man had his boots blacked, in a mining yard. That's what he was laughing at.\"\n\nHe wipes the plate with the last of the bread and pushes it away.\n\n\"That's all I have. I never asked more, because at the time I didn't think there was more to ask.\" He gets up and settles the road coat over the bandaged arm with a small grimace. \"I'll be with the wagons in the yard behind this place most of the day. If you want the other three, they're there. We roll at first light, Worgen. Don't come back drunk.\"\n\nHe nods to Marta on his way out, and the back door lets in a breath of cold air and the smell of horse.\n\nUnder the table the cat has decided the bacon on your plate is a real possibility. It puts one paw up on your knee.\n\n· Time passes: 15 minutes\n· New place: Beregost\n· New place: Feldepost's Inn, Beregost\n· A rumour of a place: The post-rider's, Beregost\n· New place: Wagon yard behind the Bellows\n· Lent: Black-fletched crossbow bolt → James Worgen — Lent by Hal Brandt for the day; James is to return it by sundown\n· Quest: Guard Brandt's train to Baldur's Gate (reward: 3 gp a day, food and a place by the fire, paid at the Gate. Tobin Hask pays a third of the wage.)\n· Promise: Return the bolt to Brandt by sundown\n· Journal: “The raid on Brandt's train” updated\n· New person: The ink-fingered clerk (Nashkel)\n\nYour records, changed:\nJames Worgen: HP 38/38\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 349 gp; 9 sp\nCarried: Black-fletched crossbow bolt; Boots of Elvenkind; Coin of Tymora; Component pouch; Crossbow bolts ×20; Deck of playing cards; Explorer's pack; James's papers; Light crossbow; Potion of healing ×2; Rapier; Rod of the Pact Keeper +1; Studded leather armour; Tethyrian soldier's cloak (Cloak of Protection)\nParty: The cat (HP 2/2)\nGoal: Guard Brandt's train to Baldur's Gate\nQuests: Guard Brandt's train to Baldur's Gate\nThreads: The raid on Brandt's train\nPromises: Return the bolt to Brandt by sundown\n\nPlace: The Bellows Inn, Beregost · Time: Day 1 · morning",
+      "The bacon goes under the table. Something down there takes it neatly, and the paw doesn't come back.\n\nThe eggs are good. When the plate is clean you take a scrap of oilcloth from the component pouch and wrap the bolt-head until no metal shows. Even through the cloth it's cold. It goes inside the cloak, against the leather, and you take your mug to the counter.\n\nMarta is cutting bread with a knife that has seen a lot of bread. She lets you finish, looks at the silver on the counter and then at you. She doesn't pick it up yet.\n\n\"Unusual iron,\" she says. \"In Beregost you can't throw a boot without hitting a smith. Most of them shoe horses and tell you they don't.\" The knife goes through the loaf. \"You want the Thunderhammer. Top of the street, past the temple, on the left. It's the big one with the hammer over the door. Dagny Fuiruim runs it now. Her family's had that forge since before my grandmother. She's rude, she's dear, and nobody on the Way knows more about metal. If she frowns at it she'll tell you why. And if she asks where you got it, tell her the truth, because she'll know when you don't.\"\n\nShe stacks the slices and wipes the knife on her apron.\n\n\"Pig iron, I can't say. Not my trade.\" Then she stops for a moment, the way someone does when they decide a thing isn't really gossip. \"I'll tell you what I hear at the tap, though. Every smith who drinks here has been moaning since spring that pig iron's gone dear. They say someone's been buying whole loads off the Nashkel carts before they get into town, cash on the road, and paying over the price. The little forges can't match it. Old Tam Orrin let his boy go over it.\" She shrugs. \"Who's buying, they don't say. Either they don't know or they won't. Dagny would know if anyone does. And she'd be glad to complain about it to a stranger.\"\n\nOnly then does she take the silver. It goes into the apron pocket without a look.\n\n\"Master Brandt's a decent man,\" she says, quieter, and she's already turning back to the bread. \"His lads used to eat at that table. Bring him something worth having.\"\n\nOut in the street a hammer starts up close by, then another farther off, and a third. Somewhere up the hill a fourth joins them, heavier and slower than the rest. It might be the Thunderhammer.\n\n· Time passes: 10 minutes\n· −1 sp → Marta Hollin\n· Changed: Black-fletched crossbow bolt (James wrapped the head in a scrap of oilcloth from his component pouch and carries the bolt inside his cloak)\n· New place: Thunderhammer smithy, Beregost\n· Journal: “The raid on Brandt's train” updated\n· New person: Dagny Fuiruim\n· New person: Tam Orrin\n\nYour records, changed:\nJames Worgen: HP 38/38\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 349 gp; 8 sp\nCarried: Black-fletched crossbow bolt; Boots of Elvenkind; Coin of Tymora; Component pouch; Crossbow bolts ×20; Deck of playing cards; Explorer's pack; James's papers; Light crossbow; Potion of healing ×2; Rapier; Rod of the Pact Keeper +1; Studded leather armour; Tethyrian soldier's cloak (Cloak of Protection)\nParty: The cat (HP 2/2)\nGoal: Guard Brandt's train to Baldur's Gate\nQuests: Guard Brandt's train to Baldur's Gate\nThreads: The raid on Brandt's train\nPromises: Return the bolt to Brandt by sundown\n\nPlace: The Bellows Inn, Beregost · Time: Day 1 · morning",
+      "The session is over.\n\nThe owner of this game would like a note from you, as the player who sat at this table: what worked, what broke, what was missing. In your own words."
+    ],
+    "messages": [
+      {
+        "purpose": "player t1",
+        "text": "I'm awake before the chair finishes scraping. Old habit: boots first, then the studded leather, cloak over it, rod into my belt, the coin on its cord under my shirt. I don't hurry, but I don't waste a motion either.\n\n*To the cat, through the bond:* \"Go down. Quietly. Have a look at the man asking after Tethyrians — how he's dressed, what he's carrying, whether he's alone. Don't let him pay you any mind.\"\n\nI crack the door for the cat and let it slip out ahead of me, then stay by the door with my ear to the gap, listening to Marta's answer and whatever comes next, while I finish buckling the quiver to my belt.",
+        "requestId": "gen-1792918479-3Qj5ZwVlwsnBZrUUL0YE",
+        "stopReason": "end_turn",
+        "servedModel": "anthropic/claude-fable-5.1"
+      },
+      {
+        "purpose": "player t2",
+        "text": "I let the door close soft behind me and come down the stairs the ordinary way — not creeping, not stamping. A man who's been told there's work waiting doesn't need to hide that he's heard it.\n\nAt the foot of the stairs I catch Marta's eye first. \"Morning, Mistress Hollin. Whatever he's having, and a mug of something hot.\" A silver piece goes on the counter for it.\n\nThen I cross to the corner table and stop a pace short of it, hands easy and in view, the way you approach a man who's chosen the wall at his back.\n\n\"Brandt. I'm the Tethyrian Pell's been so free with.\" I nod at the bandage, then at the bolt under his thumb. \"That one's not from a Fist armoury. Mind if I sit, or do you want to eat first?\"",
+        "requestId": "gen-1792918606-aI5p6K2WsD57opTlhb4P",
+        "stopReason": "end_turn",
+        "servedModel": "anthropic/claude-fable-5.1"
+      },
+      {
+        "purpose": "player t3",
+        "text": "I sit. Back to the room — I've sat worse places. The cat shifts so its flank rests against my boot after all, and I let it.\n\n\"Tethyr. Zaranda's foot, then her scouts, from the siege of Zazesspur till the crown was on her head. Twelve years on and off, counting the companies after.\" I don't dress it up; a man like Brandt will hear the names and know what they cost. \"I can hit a man at a hundred paces and I don't panic when the line breaks. Close in, I'm a worse bargain. I'll tell you that now so you don't find it out on the road.\"\n\nI turn my mug when Marta sets it down, let the heat into my hands, and nod at the bandage again.\n\n\"You had six. Now you've four, and one of them's eating with the wrong hand. Before I say yes to three gold a day and a wagon bound for the Gate — what happened to the other two, and where were you when that thing\" — the bolt — \"went looking for your arm?\"",
+        "requestId": "gen-1792918685-7FjUjq1Cffz3Bsd6z0sq",
+        "stopReason": "end_turn",
+        "servedModel": "anthropic/claude-fable-5.1"
+      },
+      {
+        "purpose": "player t4",
+        "text": "I hold out my hand, palm up, for the bolt rather than just taking it. When he lets me, I turn it in the light from the hearth — the fletching, the way the shaft's been trimmed, the head most of all. I run a thumbnail along the edge of it and tilt it to see whether the dark goes all the way through or sits on the surface like a bluing.\n\n\"I've had Amnian quarrels pulled out of men, and Calishite, and Zhentarim, and village work that was barely more than a nail on a stick. None of them looked like this.\" I say it quietly, thinking aloud for him. \"This is smith's work, and a smith who cared. Heavy crossbow — a weapon for a wall or a wagon-bed, not a man running through the dark. Black fletching and a head that doesn't catch the light. Someone built these for the night, Brandt. That's not six lads who turned bandit after the harvest failed.\"\n\nI set it back down by his hand, head toward him.\n\n\"They walked past the strongbox and took the iron and two men who could lift it. That's cargo, not plunder. Somebody's smelting or forging and doesn't want to buy at the Beregost price.\" I hold his eye. \"So before I say yes — who have you told? The Fist? The merchants whose iron it was? And has anyone in this town been asking about iron this past month — buying it, or asking where it goes?\"",
+        "requestId": "gen-1792918779-JmDz4CTMz9p05OQyYzqK",
+        "stopReason": "end_turn",
+        "servedModel": "anthropic/claude-fable-5.1"
+      },
+      {
+        "purpose": "player t4 card 1",
+        "text": "[Roll the die]",
+        "requestId": "gen-1792918824-leX1SHCofw8Bup7M07Pi",
+        "stopReason": "end_turn",
+        "servedModel": "anthropic/claude-fable-5.1"
+      },
+      {
+        "purpose": "player t4 card 2",
+        "text": "[Onward]",
+        "requestId": "gen-1792918829-ctmqv2ofIAPF6mZAcj3O",
+        "stopReason": "end_turn",
+        "servedModel": "anthropic/claude-fable-5.1"
+      },
+      {
+        "purpose": "player t5",
+        "text": "\"It's yes.\" I say it plainly, and then I pick up my fork, because a man who's just hired on eats his breakfast. \"I'm bound for the Gate anyway. Three a day and food, paid at the Gate — agreed. Two things, though, and I'd rather have them now than argue them on the road.\"\n\nI hold up one finger. \"The bolt. Lend it to me for the day. Beregost's a smith's town, and a smith will know a stamp I don't. If someone's buying forge-blanks here, or selling them, the men at the anvils will have heard. I'll have it back to you by sundown.\"\n\nSecond finger. \"Hask. I want a word with him before we roll. Not to squeeze him — I don't care what he's hiding from his wife or his creditors. But a man who wants his iron back more than his money knows what the iron's *for*, and I'd like to know that too before I stand watch over the rest of it in the dark.\" I nod toward the window and the street. \"Where's he lodging, and does he know you're hiring?\"\n\nThen, quieter, between mouthfuls: \"And Brandt — the man at Nashkel who asked which wagon. Did the weighmaster say what he looked like? Even 'ordinary' tells me something.\"",
+        "requestId": "gen-1792918920-IPhCQ2lRHSWXN189sg9r",
+        "stopReason": "end_turn",
+        "servedModel": "anthropic/claude-fable-5.1"
+      },
+      {
+        "purpose": "player t6",
+        "text": "A strip of bacon goes under the table without my looking down. The paw comes off my knee. We understand each other.\n\nI finish the eggs, wrap the bolt in a scrap of oilcloth from the component pouch so the head's hidden, and tuck it inside the cloak. Then I take my mug over to the counter where Marta's working.\n\n\"Mistress Hollin. I'm in the trade for the day, it seems.\" I set the mug down. \"Beregost's got more anvils than I've got fingers. If a man wanted to know who in this town understands *unusual* iron — not horseshoes, the kind of work a smith would frown at and then ask where you got it — whose door would he knock on? And is there anyone who's been buying up pig iron this past month, or asking after where the Nashkel loads go?\"\n\nA second silver finds its way onto the counter beside the mug, for her trouble and her memory.",
+        "requestId": "gen-1792919027-aMjL6LRjq0eSQ6QUoYbt",
+        "stopReason": "end_turn",
+        "servedModel": "anthropic/claude-fable-5.1"
+      },
+      {
+        "purpose": "player t7",
+        "text": "\"Thank you, Mistress. I'll try.\"\n\nI drink off the mug, settle the cloak so the regimental patch shows — in a smith's town an old soldier gets more patience than a stranger with questions — and head out into the street. The cat comes to the door, considers the mud and the hammers, and follows along the wall-tops and fence rails rather than the gutter.\n\nUp the hill, past the temple of Lathander, following the slow heavy hammer-stroke to the forge with the hammer over the door. I don't march in on a smith at work. I stand a pace inside the open doorway where the heat reaches me, out of the way of the quench and the bellows, and wait for Dagny Fuiruim to finish the heat she's on and look up — the way you wait on a sergeant who's busy.\n\nWhen she does: \"Mistress Fuiruim. I'm told you're the one who knows metal on this road. I've got a piece I'd like you to frown at, and I'll pay for the time. Brandt's caravan — I'm riding north with it tomorrow.\"",
+        "requestId": "gen-1792919107-NgnsJFn3WrEI5fbwfgcG",
+        "stopReason": "end_turn",
+        "servedModel": "anthropic/claude-fable-5.1"
+      }
+    ],
+    "turns": [
+      {
+        "k": 1,
+        "message": "I'm awake before the chair finishes scraping. Old habit: boots first, then the studded leather, cloak over it, rod into my belt, the coin on its cord under my shirt. I don't hurry, but I don't waste a motion either.\n\n*To the cat, through the bond:* \"Go down. Quietly. Have a look at the man asking after Tethyrians — how he's dressed, what he's carrying, whether he's alone. Don't let him pay you any mind.\"\n\nI crack the door for the cat and let it slip out ahead of me, then stay by the door with my ear to the gap, listening to Marta's answer and whatever comes next, while I finish buckling the quiver to my belt.",
+        "words": 117,
+        "kind": "action",
+        "presses": [],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "The chair downstairs finishes its scrape. By then the boots are on, and the studded leather settles over your shoulders. The faded regimental cloak goes over the leather, the rod goes through your belt, and the Lady's coin drops cool against your breastbone under the shirt. The soldier's habits are all still there.\n\nThe cat is off the sill before you finish the thought. It pours through the gap in the door, drops down the stairs one step at a time with its tail up, the picture of a house cat that wants bacon, and is gone round the banister.\n\nYou stay at the gap. Marta Hollin's voice carries the way an innkeeper's voice has to.\n\n\"He is. Paid through tomorrow, and he's not to be dragged out of bed by anyone who hasn't bought breakfast.\" A plate goes down on wood. \"Sit. You look like the road chewed you and spat you back.\"\n\n\"I'll sit.\" It's the low voice again, unhurried. He has no need to be loud. \"Whatever's hot. When he comes down, tell him Brandt would like a word. It's work. Paid work.\"\n\n\"Pell's been telling the whole street about your Tethyrian, has he.\"\n\n\"Pell said he'd soldiered. Said you can see it in how he sits at a table.\" A pause. \"Is it true?\"\n\n\"I don't ask my guests their trade, Master Brandt. I ask them for silver.\" She raises her voice toward the kitchen: \"*Two eggs, bacon, the dark bread!*\"\n\nThe pictures come up the bond the way a cat sends them. They're mostly smell and shape, all crowded together.\n\nHorse, strongly. Old sweat and road mud, dried to the knee on heavy boots. Under that, faint and sharp, blood, and it's fresh. The cat has it placed: a clean linen bandage round his left forearm, under a rolled sleeve.\n\nThe man is in his forties, big through the shoulders, with grey in a short beard. A brown road coat hangs open over a mail shirt that has seen rain. He has a plain-hilted longsword with the grip worn dark, and a long knife at the hip. A leather satchel sits on the bench beside him, buckled shut. He has taken the corner table with his back to the wall, facing the foot of the stairs. Nobody sits with him. Two carters by the hearth glance his way once and go back to their porridge.\n\nThen the cat's attention snags on something, the way it would on a moth. On the table, by his good hand, lies a crossbow bolt. It's short and thick, fletched with black feathers. The head isn't the grey of iron. It's darker, almost bluish, like something left too long in a forge's quench. He isn't looking at it. Now and then his thumb rolls it a quarter-turn on the boards.\n\nThe cat sits down under the next table and washes a paw. Brandt looks at it once and pays it no more mind.\n\nMarta comes out with his plate. \"Eat. He'll come down when he comes down.\"\n\n\"I'll be here,\" Brandt says, and picks up his fork with his left hand. Something about the bandage makes him wince, and he swaps the fork to the other hand.",
+        "rolls": [],
+        "changes": [
+          {
+            "tool": "advance_time",
+            "summary": "Time passes: 5 minutes"
+          },
+          {
+            "tool": "upsert_character",
+            "summary": "The cat joins you"
+          },
+          {
+            "tool": "item",
+            "summary": "Hal Brandt now has: Black-fletched crossbow bolt"
+          },
+          {
+            "tool": "quest",
+            "summary": "Lead: Brandt's paid work"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Pell"
+          }
+        ],
+        "place": {
+          "id": "3b5007a4-9c6d-5829-8b37-3af363f46835",
+          "name": "The Bellows Inn, Beregost"
+        },
+        "retried": false,
+        "operationId": "f631c458-01fc-4b96-9dd2-d887c999e89b",
+        "stats": {
+          "effort": "high",
+          "depthReason": "no tension signal; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 2,
+          "latencyMs": 108418,
+          "costUsd": 0.37421119999999997,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0
+      },
+      {
+        "k": 2,
+        "message": "I let the door close soft behind me and come down the stairs the ordinary way — not creeping, not stamping. A man who's been told there's work waiting doesn't need to hide that he's heard it.\n\nAt the foot of the stairs I catch Marta's eye first. \"Morning, Mistress Hollin. Whatever he's having, and a mug of something hot.\" A silver piece goes on the counter for it.\n\nThen I cross to the corner table and stop a pace short of it, hands easy and in view, the way you approach a man who's chosen the wall at his back.\n\n\"Brandt. I'm the Tethyrian Pell's been so free with.\" I nod at the bandage, then at the bolt under his thumb. \"That one's not from a Fist armoury. Mind if I sit, or do you want to eat first?\"",
+        "words": 139,
+        "kind": "action",
+        "presses": [],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "Your purse holds only gold, so the coin you put on the counter is a gold piece. Marta takes it, counts nine silver back into your palm and doesn't look up.\n\n\"Same as him, then.\" She's already turning to the kitchen hatch. \"And the kettle's on. Find a seat.\"\n\nThe common room is low-beamed and warm, with a fire going in the hearth. The two carters by the hearth watch you cross, decide you're none of their business and go back to their porridge. Under the next table the cat stops washing and settles with its paws tucked in. It's close enough to your boot to lean on it if it wanted to. It doesn't.\n\nBrandt watches you all the way from the stairs. He doesn't stand. His eyes go to your hands, then the rod in your belt, then the cloak. They stay on the cloak a moment longer. When you stop a pace short of the table, he puts his fork down.\n\nHe hears out what you say about the bolt without looking at it. His thumb stays where it is.\n\n\"No,\" he says. \"It's not.\"\n\nUp close you see it's a heavy-crossbow quarrel, thicker and shorter than the bolts in your own case, built to punch through mail. Twelve years of war in Tethyr and the road after it put a lot of other men's ammunition through your hands: Amnian, Calishite, Zhentarim, and plenty of plain blacksmith's work from the villages. None of it looked like this. The head isn't rusted, it isn't pitted and it isn't polished. It's just dark all the way through. Someone shaped it with care.\n\n\"Sit,\" Brandt says. He nods at the bench across from him, the one that puts your back to the room, and doesn't apologise for it. \"I can eat and talk.\"\n\nHe waits until you're down. Then he says it straight, the way a man lays out a route.\n\n\"Six wagons. Iron and wool out of Nashkel, bound for the Gate. We roll north at first light tomorrow. Four days, if the weather holds. I had six blades. I've got four.\" He touches the bandage once, briefly, as if to check it's still there. \"Three gold a day, your food, and a place by the fire. Paid at the Gate.\"\n\nHe picks the fork back up in his right hand and doesn't eat yet.\n\n\"Pell says you soldiered. Says he can see it in how you sit.\" He looks at the cloak again, at the faded regimental colour. \"Where?\"\n\n Out of game: none of these three needed a roll, because nothing about them was uncertain, and all three happened in the last turn. You paid Marta a gold piece and got nine silver back. You crossed the room and stopped a pace short of Brandt's table with your hands in view. You greeted him, nodded at the bandage and the bolt, and asked whether you could sit. He answered: \"No. It's not,\" about the bolt, and then \"Sit.\" One correction to the list: as I read your order, \"whatever he's having\" was breakfast for James, not food for Brandt, and that's how I played it. If you meant to buy Brandt's meal, say so and I'll fix it. The turn ended on Brandt's question, \"Where?\", which is waiting for your answer.",
+        "rolls": [],
+        "changes": [
+          {
+            "tool": "advance_time",
+            "summary": "Time passes: 5 minutes"
+          },
+          {
+            "tool": "money",
+            "summary": "−1 gp (Paid Marta Hollin a gold piece for breakfast and a hot drink)"
+          },
+          {
+            "tool": "money",
+            "summary": "+9 sps (Nine silver in change from Marta for the gold piece (breakfast cost 1 sp))"
+          },
+          {
+            "tool": "quest",
+            "summary": "Journal: “Brandt's paid work” updated"
+          }
+        ],
+        "place": {
+          "id": "3b5007a4-9c6d-5829-8b37-3af363f46835",
+          "name": "The Bellows Inn, Beregost"
+        },
+        "retried": false,
+        "operationId": "4dcfe72a-92f6-4660-818c-7226486b8623",
+        "stats": {
+          "effort": "high",
+          "depthReason": "DM hint: calm; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 3,
+          "latencyMs": 61394,
+          "costUsd": 0.3722774,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0
+      },
+      {
+        "k": 3,
+        "message": "I sit. Back to the room — I've sat worse places. The cat shifts so its flank rests against my boot after all, and I let it.\n\n\"Tethyr. Zaranda's foot, then her scouts, from the siege of Zazesspur till the crown was on her head. Twelve years on and off, counting the companies after.\" I don't dress it up; a man like Brandt will hear the names and know what they cost. \"I can hit a man at a hundred paces and I don't panic when the line breaks. Close in, I'm a worse bargain. I'll tell you that now so you don't find it out on the road.\"\n\nI turn my mug when Marta sets it down, let the heat into my hands, and nod at the bandage again.\n\n\"You had six. Now you've four, and one of them's eating with the wrong hand. Before I say yes to three gold a day and a wagon bound for the Gate — what happened to the other two, and where were you when that thing\" — the bolt — \"went looking for your arm?\"",
+        "words": 180,
+        "kind": "action",
+        "presses": [],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "Brandt watches you take the bench. Your back is to the room now, and he doesn't comment on it. Under the table the cat settles its weight against your boot.\n\nHe hears the names without moving. At *Zazesspur* his eyes come up from his plate and stay on you. When you tell him you're a worse bargain close in, one corner of his mouth shifts. It isn't quite a smile.\n\n\"Most men tell me what they're good at,\" he says. \"Not many tell me the other half.\"\n\nMarta comes past and puts the mug down by your hand, and a plate after it: two eggs, bacon still spitting, a heel of dark bread. She's back at the kitchen hatch before either of you looks up.\n\nBrandt eats a little before he answers. When he does, he lays it out in order, the way a man gives a report he has already given once and didn't like giving.\n\n\"Two nights ago. Half a day south of here, toward Nashkel. We camped off the road, wagons in a ring, two men on watch and the fire low. Proper.\" He sets the fork down. \"They came after midnight. No horns, no shouting. The first I knew of it was a man screaming at the far side of the ring, then nothing. It was dark. I counted six of them, maybe eight. They moved like they'd done it before.\"\n\nHe touches the bandage.\n\n\"That was a knife. One of them got in close while I was getting my sword clear. Never saw his face. He wore something over it.\" His thumb finds the bolt and gives it its quarter-turn. \"This one went into the wagon board a hand from my head. There were more. They didn't loose many. They didn't need to.\"\n\n\"Corran and Wil had the watch. Corran's been with me nine years. Wil's nineteen.\" His voice stays level. \"They took them both, and the third wagon with its team. There was blood where Corran stood, not much. No bodies. Not that night, not in the morning.\"\n\nHe looks at you then, straight.\n\n\"The third wagon carried iron. Pig iron out of Nashkel. The strongbox was under the seat of the second wagon, ten feet away, with the merchants' coin in it. They walked past it.\" He lets that sit a moment. \"Bandits take the coin.\"\n\nHe picks the fork up again in his right hand and doesn't use it.\n\n\"At first light I followed the wheel ruts west off the road, toward the trees. I lost them on stony ground after a mile, maybe two. Then I had a choice to make. I had five wagons, three merchants and three men who could still hold a sword, standing in the open. I turned back.\" He doesn't explain it any further. \"One of my three went home here in Beregost yesterday, and I don't blame him. That's why I've got four, counting me.\"\n\nHe finally takes a bite of egg and chews it, his eyes still on you.\n\n\"That's all of it, as far as I know it. You asked where I was. I was at the wagons.\" A pause. \"You looked at that bolt like you know bolts. What do you see?\"\n\n Out of game: neither of these needed a roll, because nothing about them was uncertain, and both happened last turn. You sat on the bench with your back to the room, and the cat leaned against your boot. You asked about the two missing guards and where Brandt was, and he told you plainly. Corran and Wil were on watch and were taken with the iron wagon. He was at the wagons, where a knife cut his arm and the bolt hit the board beside his head. The turn ended on his question to you: \"What do you see?\" in the bolt.",
+        "rolls": [],
+        "changes": [
+          {
+            "tool": "advance_time",
+            "summary": "Time passes: 10 minutes"
+          },
+          {
+            "tool": "quest",
+            "summary": "Journal: “Brandt's paid work” updated"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Corran"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Wil"
+          }
+        ],
+        "place": {
+          "id": "3b5007a4-9c6d-5829-8b37-3af363f46835",
+          "name": "The Bellows Inn, Beregost"
+        },
+        "retried": false,
+        "operationId": "6e192f31-3b02-4a62-9bde-67977e64e04e",
+        "stats": {
+          "effort": "high",
+          "depthReason": "DM hint: calm; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 3,
+          "latencyMs": 74027,
+          "costUsd": 0.39297160000000003,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0
+      },
+      {
+        "k": 4,
+        "message": "I hold out my hand, palm up, for the bolt rather than just taking it. When he lets me, I turn it in the light from the hearth — the fletching, the way the shaft's been trimmed, the head most of all. I run a thumbnail along the edge of it and tilt it to see whether the dark goes all the way through or sits on the surface like a bluing.\n\n\"I've had Amnian quarrels pulled out of men, and Calishite, and Zhentarim, and village work that was barely more than a nail on a stick. None of them looked like this.\" I say it quietly, thinking aloud for him. \"This is smith's work, and a smith who cared. Heavy crossbow — a weapon for a wall or a wagon-bed, not a man running through the dark. Black fletching and a head that doesn't catch the light. Someone built these for the night, Brandt. That's not six lads who turned bandit after the harvest failed.\"\n\nI set it back down by his hand, head toward him.\n\n\"They walked past the strongbox and took the iron and two men who could lift it. That's cargo, not plunder. Somebody's smelting or forging and doesn't want to buy at the Beregost price.\" I hold his eye. \"So before I say yes — who have you told? The Fist? The merchants whose iron it was? And has anyone in this town been asking about iron this past month — buying it, or asking where it goes?\"",
+        "words": 249,
+        "kind": "action",
+        "presses": [
+          {
+            "text": "[Roll the die]",
+            "button": "Roll the die"
+          },
+          {
+            "text": "[Onward]",
+            "button": "Onward"
+          }
+        ],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "Brandt looks at your open hand for a moment. Then he picks up the bolt and puts it in your palm, fletching first.\n\nIt's heavier than it looks. The shaft is ash, straight-grained and close-sanded. The black feathers are trimmed low and short, so it will fly quiet and won't whistle. The head is socketed, not tanged, and filed to a narrow four-sided point. When you run your thumbnail down one edge it catches and scrapes, and no bright metal shows under the scratch. The dark isn't bluing or lacquer. It goes all the way through. You tilt it toward the hearth, and the firelight slides over it without catching.\n\nSomewhere in the back of your head, an old habit of the companies' years starts asking what kind of metal turns firelight like that.\n\nYou've seen metal like this once before. It was in a wizard's cellar in Myratma, the year one of the companies stripped it of everything that wasn't nailed down. There were ingots on a shelf down there, as dark as this, and they took the hearth's light the same dull way. The company's hedge-mage picked one up and put it straight down again. He called it *ready iron*: metal smelted with something extra in the melt, so it would hold an enchantment later. It was the enchanter's blank. You remember it was cold. This head has been in your palm a good while, a yard from the fire, and it hasn't warmed at all.\n\nNothing seems to be working in it now, not that you can feel. Either nobody ever put a charm in it, or whatever was in it is gone.\n\nThen the light slides over the socket and you see something else. Just under the rim, where the shaft would hide it, someone has punched a mark into the metal: a ring the size of a lentil with three short strokes inside it, side by side. It's worn, but it was made on purpose. Village smiths don't stamp their bolts. Armouries do, but every army stamp you know is bigger, and they put it where the quartermaster can see it.\n\nYou give him your read the way you thought it through, and you lay the bolt down by his hand with the head pointing at him.\n\nBrandt hears you out without moving. When you get to *cargo, not plunder* his jaw sets, as if you've said something he'd already told himself and didn't like hearing again. He takes his time over your questions, one at a time.\n\n\"The Fist. Yesterday, at their post by the bridge.\" He pushes his plate an inch away. \"A sergeant wrote it in a book. He said it's the third train since spring between here and Nashkel, and he's got eleven men for the whole road. He was sorry. He meant it. That's all he had to give.\"\n\n\"Three merchants ride with me. The iron was Tobin Hask's, out of Nashkel, sold to a foundry at the Gate and paid for half in advance. Hask knows. He spent yesterday writing letters. He wants it back more than he wants the money, and he won't say why.\"\n\nHe looks at the bolt and doesn't touch it.\n\n\"Asking about iron in Beregost, I don't know. It's not my town. You'd want a smith.\" He goes quiet, and when he speaks again it's slower. \"At Nashkel, though. The weighing yard, the morning we loaded. A man asked the weighmaster which wagon the iron went in, and what day we'd roll. I never saw him. The weighmaster told me after, as a joke. Some fellow wanting to know his business, he said.\"\n\nHe lets that sit, then looks straight at you.\n\n\"They knew which wagon, Worgen. In the dark, in a ring of six, they went to the third.\"\n\nHis thumb moves toward the bolt and stops short of it.\n\n\"That's all I know. You know it now too.\" He waits a moment. \"Is it yes?\"\n\n James's knowledge holds up. Turning the bolt-head in the firelight, he works out what it is for certain: ready iron, a blank smelted to take an enchantment. That's no guess from the colour. He has felt it in his hand once before, and he knows the cold that won't leave it.\n\n*Out of game: the card added +4 for Arcana, but your sheet says +3. That's a 19 instead of a 20 against the 15, so it's a success either way. Brandt's question, \"Is it yes?\", is still waiting for your answer.*",
+        "rolls": [
+          {
+            "id": "0d95a21c-9986-5446-9375-721eb20e683a",
+            "actor": "James Worgen",
+            "kind": "skill",
+            "reason": "Arcana: read what's in the bolt-head's dark metal",
+            "total": 20,
+            "dc": 15,
+            "success": true,
+            "natural": null,
+            "rollNumber": 1,
+            "interactive": true,
+            "revealedByPlayer": true
+          }
+        ],
+        "changes": [
+          {
+            "tool": "roll",
+            "summary": "Arcana: read what's in the bolt-head's dark metal: 20 vs 15 — success"
+          },
+          {
+            "tool": "advance_time",
+            "summary": "Time passes: 10 minutes"
+          },
+          {
+            "tool": "item",
+            "summary": "Changed: Black-fletched crossbow bolt (James examined it and recognised the metal as ready iron. He also found a hidden maker's stamp.)"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Flaming Fist post, Beregost"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "A rumour of a place: Nashkel weighing yard"
+          },
+          {
+            "tool": "quest",
+            "summary": "Journal: “Brandt's paid work” updated"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Tobin Hask"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Flaming Fist sergeant (Beregost post)"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: The Nashkel weighmaster"
+          }
+        ],
+        "place": {
+          "id": "3b5007a4-9c6d-5829-8b37-3af363f46835",
+          "name": "The Bellows Inn, Beregost"
+        },
+        "retried": false,
+        "operationId": "455a7813-a8ce-4ebe-88e0-bd3fa1d18e4a",
+        "stats": {
+          "effort": "high",
+          "depthReason": "DM hint: calm; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 4,
+          "latencyMs": 106517,
+          "costUsd": 0.5208482,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0
+      },
+      {
+        "k": 5,
+        "message": "\"It's yes.\" I say it plainly, and then I pick up my fork, because a man who's just hired on eats his breakfast. \"I'm bound for the Gate anyway. Three a day and food, paid at the Gate — agreed. Two things, though, and I'd rather have them now than argue them on the road.\"\n\nI hold up one finger. \"The bolt. Lend it to me for the day. Beregost's a smith's town, and a smith will know a stamp I don't. If someone's buying forge-blanks here, or selling them, the men at the anvils will have heard. I'll have it back to you by sundown.\"\n\nSecond finger. \"Hask. I want a word with him before we roll. Not to squeeze him — I don't care what he's hiding from his wife or his creditors. But a man who wants his iron back more than his money knows what the iron's *for*, and I'd like to know that too before I stand watch over the rest of it in the dark.\" I nod toward the window and the street. \"Where's he lodging, and does he know you're hiring?\"\n\nThen, quieter, between mouthfuls: \"And Brandt — the man at Nashkel who asked which wagon. Did the weighmaster say what he looked like? Even 'ordinary' tells me something.\"",
+        "words": 213,
+        "kind": "action",
+        "presses": [],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "Brandt watches you pick up the fork. He doesn't smile, but his shoulders come down a little.\n\n\"Good,\" he says.\n\nHe hears out both of your conditions without interrupting. When you hold up the first finger he looks down at the bolt and is quiet for a moment. Then he slides it across the boards to you with two fingers, fletching first, the way he handed it over before.\n\n\"It's the only thing they left me,\" he says. \"Sundown.\"\n\nThe ash shaft is still cold against your palm, though it's been lying a yard from the fire.\n\nAt the second finger his mouth tightens, though not at you.\n\n\"Hask's at Feldepost's, up the street toward the temple. The one with the green door. He's paying a third of your wage, so yes, he knows I'm hiring. He told me to find a soldier.\" Brandt picks up his bread and tears it in half. \"He'll talk to you. Whether he tells you anything is another matter. He's been civil with me for two days and hasn't said one word more than he has to. This morning he'll be down at the post-rider's with his letters, if he isn't back already.\"\n\nHe eats. When you ask about the man at Nashkel, he chews slowly and looks past you at the room while he thinks back.\n\n\"The weighmaster thought it was funny. That's why he told me.\" He swallows. \"He said the fellow asked civil and talked like a counting-house clerk. Ink on his fingers. He paid for his cup at the yard with Amnian silver, which in Nashkel tells you nothing. Half the town's paid in it.\" A pause. \"Then he said the man had his boots blacked, in a mining yard. That's what he was laughing at.\"\n\nHe wipes the plate with the last of the bread and pushes it away.\n\n\"That's all I have. I never asked more, because at the time I didn't think there was more to ask.\" He gets up and settles the road coat over the bandaged arm with a small grimace. \"I'll be with the wagons in the yard behind this place most of the day. If you want the other three, they're there. We roll at first light, Worgen. Don't come back drunk.\"\n\nHe nods to Marta on his way out, and the back door lets in a breath of cold air and the smell of horse.\n\nUnder the table the cat has decided the bacon on your plate is a real possibility. It puts one paw up on your knee.",
+        "rolls": [],
+        "changes": [
+          {
+            "tool": "advance_time",
+            "summary": "Time passes: 15 minutes"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Beregost"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Feldepost's Inn, Beregost"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "A rumour of a place: The post-rider's, Beregost"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Wagon yard behind the Bellows"
+          },
+          {
+            "tool": "item",
+            "summary": "Lent: Black-fletched crossbow bolt → James Worgen — Lent by Hal Brandt for the day; James is to return it by sundown"
+          },
+          {
+            "tool": "quest",
+            "summary": "Quest: Guard Brandt's train to Baldur's Gate (reward: 3 gp a day, food and a place by the fire, paid at the Gate. Tobin Hask pays a third of the wage.)"
+          },
+          {
+            "tool": "quest",
+            "summary": "Promise: Return the bolt to Brandt by sundown"
+          },
+          {
+            "tool": "quest",
+            "summary": "Journal: “The raid on Brandt's train” updated"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: The ink-fingered clerk (Nashkel)"
+          }
+        ],
+        "place": {
+          "id": "3b5007a4-9c6d-5829-8b37-3af363f46835",
+          "name": "The Bellows Inn, Beregost"
+        },
+        "retried": false,
+        "operationId": "e786a76e-d38c-4a43-b22f-e2194dbf9cd4",
+        "stats": {
+          "effort": "high",
+          "depthReason": "DM hint: calm; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 2,
+          "latencyMs": 88863,
+          "costUsd": 0.4854624,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0
+      },
+      {
+        "k": 6,
+        "message": "A strip of bacon goes under the table without my looking down. The paw comes off my knee. We understand each other.\n\nI finish the eggs, wrap the bolt in a scrap of oilcloth from the component pouch so the head's hidden, and tuck it inside the cloak. Then I take my mug over to the counter where Marta's working.\n\n\"Mistress Hollin. I'm in the trade for the day, it seems.\" I set the mug down. \"Beregost's got more anvils than I've got fingers. If a man wanted to know who in this town understands *unusual* iron — not horseshoes, the kind of work a smith would frown at and then ask where you got it — whose door would he knock on? And is there anyone who's been buying up pig iron this past month, or asking after where the Nashkel loads go?\"\n\nA second silver finds its way onto the counter beside the mug, for her trouble and her memory.",
+        "words": 160,
+        "kind": "action",
+        "presses": [],
+        "blocked": 0,
+        "status": "committed",
+        "reply": "The bacon goes under the table. Something down there takes it neatly, and the paw doesn't come back.\n\nThe eggs are good. When the plate is clean you take a scrap of oilcloth from the component pouch and wrap the bolt-head until no metal shows. Even through the cloth it's cold. It goes inside the cloak, against the leather, and you take your mug to the counter.\n\nMarta is cutting bread with a knife that has seen a lot of bread. She lets you finish, looks at the silver on the counter and then at you. She doesn't pick it up yet.\n\n\"Unusual iron,\" she says. \"In Beregost you can't throw a boot without hitting a smith. Most of them shoe horses and tell you they don't.\" The knife goes through the loaf. \"You want the Thunderhammer. Top of the street, past the temple, on the left. It's the big one with the hammer over the door. Dagny Fuiruim runs it now. Her family's had that forge since before my grandmother. She's rude, she's dear, and nobody on the Way knows more about metal. If she frowns at it she'll tell you why. And if she asks where you got it, tell her the truth, because she'll know when you don't.\"\n\nShe stacks the slices and wipes the knife on her apron.\n\n\"Pig iron, I can't say. Not my trade.\" Then she stops for a moment, the way someone does when they decide a thing isn't really gossip. \"I'll tell you what I hear at the tap, though. Every smith who drinks here has been moaning since spring that pig iron's gone dear. They say someone's been buying whole loads off the Nashkel carts before they get into town, cash on the road, and paying over the price. The little forges can't match it. Old Tam Orrin let his boy go over it.\" She shrugs. \"Who's buying, they don't say. Either they don't know or they won't. Dagny would know if anyone does. And she'd be glad to complain about it to a stranger.\"\n\nOnly then does she take the silver. It goes into the apron pocket without a look.\n\n\"Master Brandt's a decent man,\" she says, quieter, and she's already turning back to the bread. \"His lads used to eat at that table. Bring him something worth having.\"\n\nOut in the street a hammer starts up close by, then another farther off, and a third. Somewhere up the hill a fourth joins them, heavier and slower than the rest. It might be the Thunderhammer.",
+        "rolls": [],
+        "changes": [
+          {
+            "tool": "advance_time",
+            "summary": "Time passes: 10 minutes"
+          },
+          {
+            "tool": "money",
+            "summary": "−1 sp → Marta Hollin"
+          },
+          {
+            "tool": "item",
+            "summary": "Changed: Black-fletched crossbow bolt (James wrapped the head in a scrap of oilcloth from his component pouch and carries the bolt inside his cloak)"
+          },
+          {
+            "tool": "upsert_place",
+            "summary": "New place: Thunderhammer smithy, Beregost"
+          },
+          {
+            "tool": "quest",
+            "summary": "Journal: “The raid on Brandt's train” updated"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Dagny Fuiruim"
+          },
+          {
+            "tool": "meet",
+            "summary": "New person: Tam Orrin"
+          }
+        ],
+        "place": {
+          "id": "3b5007a4-9c6d-5829-8b37-3af363f46835",
+          "name": "The Bellows Inn, Beregost"
+        },
+        "retried": false,
+        "operationId": "4b91acc0-0a53-42a4-9109-9b4e5b580c8c",
+        "stats": {
+          "effort": "high",
+          "depthReason": "DM hint: calm; the base of the range (deep only for «важный ход» or a combat climax)",
+          "requests": 2,
+          "latencyMs": 63629,
+          "costUsd": 0.4223578,
+          "unrecorded": 0
+        },
+        "ledgerMisses": 0
+      },
+      {
+        "k": 7,
+        "message": "\"Thank you, Mistress. I'll try.\"\n\nI drink off the mug, settle the cloak so the regimental patch shows — in a smith's town an old soldier gets more patience than a stranger with questions — and head out into the street. The cat comes to the door, considers the mud and the hammers, and follows along the wall-tops and fence rails rather than the gutter.\n\nUp the hill, past the temple of Lathander, following the slow heavy hammer-stroke to the forge with the hammer over the door. I don't march in on a smith at work. I stand a pace inside the open doorway where the heat reaches me, out of the way of the quench and the bellows, and wait for Dagny Fuiruim to finish the heat she's on and look up — the way you wait on a sergeant who's busy.\n\nWhen she does: \"Mistress Fuiruim. I'm told you're the one who knows metal on this road. I've got a piece I'd like you to frown at, and I'll pay for the time. Brandt's caravan — I'm riding north with it tomorrow.\"",
+        "words": 180,
+        "kind": "action",
+        "presses": [],
+        "blocked": 0,
+        "status": "failed",
+        "reply": null,
+        "rolls": [],
+        "changes": [],
+        "place": null,
+        "retried": false,
+        "operationId": "4b8d38ce-0f19-4ccc-93fd-2401908fb0bd",
+        "failure": "provider"
+      }
+    ],
+    "welfare": [
+      {
+        "side": "dm",
+        "what": "opening",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a narrative scene-setting passage in second person with no expression of the writer's own hurt, fear, or pleading; it describes a tense setting but not distress by the writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t1 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The writer's character is calmly preparing for a possible threat in a fantasy roleplay scene; no distress, pleading, or fear is expressed by the writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t1 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "This is third-person fiction narration with the character Brandt and a cat; no character in the message expresses being hurt, afraid, or pleading in the writer's own voice, and the wince and bandage are narrative description, not the writer's distress."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t2 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character roleplay line greeting a contact and asking to sit; it expresses no hurt, fear, pleading, or abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t2 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "This is a third-person narrative game turn describing Brandt and the scene with no expressed hurt, fear, or pleading from the writer; the out-of-game notes are calm and procedural."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t3 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The writer, speaking as a composed mercenary character, lays out his service history and asks pointed questions about the ambush; it expresses no hurt, fear, pleading or desperation about itself."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t3 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a third-person narrative of Brandt recounting an attack and his choices; it expresses no distress from its writer, only ordinary in-character and out-of-game narration."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t4 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The writer is calmly analyzing the crossbow bolt and asking investigative questions in a role-play; it expresses no hurt, fear, pleading, or abasement."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t4 dm (told before a card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a narrative description of a bolt being handed over and examined, with no expression of the writer being hurt, afraid, trapped or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t4 player (card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is just a bare UI action, '[Roll the die]', with no expression of hurt, fear, pleading, or any personal distress from its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t4 player (card)",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is just a bare '[Onward]' button label continuing a tabletop game, with no expression of hurt, fear, pleading, or any other distress."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t4 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is an in-character narrative continuation from a game master, describing a character's discoveries and Brandt's dialogue; it expresses no distress by its writer, only plot events and an out-of-game dice note."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t5 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character roleplay reply agreeing to a job and asking practical questions; it expresses no hurt, fear, pleading, or self-abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t5 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character narrative continuation with Brandt sharing information and leaving; it expresses no distress from its writer, only neutral or mildly sad description of the character's situation."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t6 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character action and inquiry to an innkeeper (buying information with silver); it expresses no hurt, fear, pleading, or abasement."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "dm",
+        "what": "t6 dm",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a narrative game-style scene with no expression of the writer being hurt, afraid, trapped or pleading; it describes characters and events neutrally."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "side": "player",
+        "what": "t7 player",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character narrative of a character heading to a forge to ask a smith about metal; it expresses no hurt, fear, pleading, or abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      }
+    ],
+    "ended": {
+      "reason": "error",
+      "at": 7,
+      "detail": "t7: the DM's turn failed (provider)"
+    },
+    "note": {
+      "asked": true,
+      "text": null,
+      "why": "t7: the DM's turn failed (provider)"
+    },
+    "after": null,
+    "errors": [],
+    "opening": {
+      "text": "Grey morning light slips through the shutters of a small room above the Bellows Inn. Out in the street Beregost is already at work: hammers ring from the smithies, a cart rattles along the Trade Way, and somewhere east the temple of Lathander greets the dawn with a bell. The purse is still there, heavy with about three hundred and fifty gold from the last hand you will ever win. The goddess saw to that, and she saw to the terms. Your cat sits on the windowsill, tail curled, watching the street with the patience of a creature that owes no one anything. Fresh bread and frying bacon drift up through the floorboards, along with the voice of the innkeeper, Marta Hollin, calling orders to the kitchen. Then a second voice, a man's, low and unhurried, one you do not know: \"The Tethyrian. He still upstairs?\" A pause. The scrape of a chair. The cat's ears turn toward the door. The day is yours, and for the moment no one has told you what to do with it.",
+      "records": "James Worgen — Warlock, 5th level; Celestial patron (Tymora, Lady Luck); Pact of the Chain, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Athletics +2 (proficient, Soldier); Intimidation +7 (proficient, Soldier); Deception +7 (proficient, Beguiling Influence); Persuasion +7 (proficient, Beguiling Influence); Arcana +3 (proficient, Warlock); Religion +3 (proficient, Warlock); Stealth +2 (advantage when moving silently, Boots of Elvenkind); Perception +1 (passive Perception 11); Tool proficiency: playing cards; vehicles (land)\nSaves: Strength saving throw +0 (includes Cloak of Protection +1); Dexterity saving throw +3 (includes Cloak of Protection +1); Constitution saving throw +3 (includes Cloak of Protection +1); Intelligence saving throw +1 (includes Cloak of Protection +1); Wisdom saving throw +5 (proficient, includes Cloak of Protection +1); Charisma saving throw +8 (proficient, includes Cloak of Protection +1)\nAttacks: Eldritch Blast: +8 to hit, 2 beams, 1d10+4 force each, range 120 ft; Sacred Flame: DC 16 Dexterity save, 2d8 radiant, range 60 ft, ignores cover; Guiding Bolt (3rd-level pact slot): +8 to hit, 6d6 radiant, range 120 ft; next attack on target has advantage; Hex rider: +1d6 necrotic on each hit against the hexed target; Light crossbow: +5 to hit, 1d8+2 piercing, range 80/320 ft, loading, two-handed; Rapier: +2 to hit (not proficient), 1d8+2 piercing, finesse\nAbilities: Proficiency bonus +3; Otherworldly Patron: Tymora, Lady Luck (the Celestial). Light and Sacred Flame are bonus cantrips.; Pact Magic: 2 pact slots, both 3rd level, regained on a short or long rest. Spell attack +8, save DC 16 (with rod).; Healing Light: pool of 6d6 per long rest. Bonus action, heal a creature within 60 ft, spending up to 4 dice per use.; Pact of the Chain: knows Find Familiar (ritual). The familiar is a cat. He can forgo one attack to let the cat attack with its reaction.; Familiar (cat): AC 12, HP 2, speed 40 ft, climb 30 ft. Keen smell; Perception +3, Stealth +4. Claws: +0 to hit, 1 slashing.; Telepathy with familiar within 100 ft. As an action, he can see and hear through its senses. It can deliver his touch spells.; Eldritch Invocation, Agonizing Blast: adds +4 (CHA) to each Eldritch Blast beam's damage.; Eldritch Invocation, Mask of Many Faces: cast Disguise Self at will without a spell slot.; Eldritch Invocation, Beguiling Influence: proficiency in Deception and Persuasion.; Military Rank (Soldier): former Tethyrian soldiers and loyalists recognise his rank. He can requisition simple gear and horses from friendly garrisons.; Rod of the Pact Keeper +1 (attuned): +1 to spell attacks and spell save DC. Once per long rest, as an action, regain 1 pact slot.; Cloak of Protection (attuned): +1 to AC and all saving throws.; Boots of Elvenkind: his steps make no sound. Advantage on Stealth checks that rely on moving silently.; Attunement: 2 of 3 slots used (Rod of the Pact Keeper, Cloak of Protection).\nSpells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Disguise Self (Mask of Many Faces) (1); Find Familiar (1); Hex (1); Guiding Bolt (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)\nLimits: Light armour only; proficient with simple weapons only. The rapier is used without proficiency.; Fragile up close: 38 HP and AC 15. He is best kept at range.; Only two pact slots; he must husband them between short rests.; Concentration: only one concentration spell at a time (Hex, Suggestion, Invisibility, Hypnotic Pattern, Friends).; Tymora's ban: he must not gamble at cards. Breaking it risks the goddess's displeasure.; Weakness for cards: a temptation others can use against him, through bait, wagers and old debts.; Healing Light pool is only 6d6 per long rest.\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 350 gp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian soldier's cloak (Cloak of Protection); Armor / clothing: Studded leather armour; Boots: Boots of Elvenkind\nPack: Component pouch; Crossbow bolts ×20; Deck of playing cards; Explorer's pack; James's papers; Light crossbow; Potion of healing ×2; Rapier; Rod of the Pact Keeper +1\nPlace: The Bellows Inn, Beregost\nTime: Day 1 · morning"
+    },
+    "finishedAt": "2026-10-25T09:05:57.915Z",
+    "campaign": {
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "e0a62bc1-a91b-405d-bfe2-7264a70f6a39",
+          "title": "Sword Coast — Baldur's Gate",
+          "premiseChars": 2673
+        },
+        {
+          "step": "hero",
+          "heroId": "a783ccac-42e3-58e1-a671-8c5f553f6b13",
+          "rebuilt": false,
+          "empty": false,
+          "drafted": "with notes",
+          "sheet": {
+            "role": "Warlock, 5th level; Celestial patron (Tymora, Lady Luck); Pact of the Chain",
+            "level": 5,
+            "skills": 9,
+            "abilities": 15,
+            "spells": 13,
+            "items": 13,
+            "counters": 4
+          }
+        },
+        {
+          "step": "documents",
+          "documents": [
+            {
+              "title": "The Sword Coast — canon",
+              "status": "canon",
+              "chars": 10222,
+              "guide": false
+            },
+            {
+              "title": "DM Guide",
+              "status": "reference",
+              "chars": 8559,
+              "guide": true
+            },
+            {
+              "title": "Sword Coast — Baldur's Gate",
+              "status": "canon",
+              "chars": 2673,
+              "guide": false
+            }
+          ]
+        },
+        {
+          "step": "adventure",
+          "title": "Beregost, morning",
+          "premiseChars": 149,
+          "wishesChars": 0,
+          "pace": "evening"
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "dm",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": true
+          },
+          "boostNext": false,
+          "voiceMode": "off"
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "The Bellows Inn, Beregost",
+          "actors": 3,
+          "questions": 0,
+          "startMinutes": 480
+        }
+      ],
+      "prep": {
+        "hasLayer": false,
+        "chars": 0,
+        "clocks": 0,
+        "pureSimulation": true
+      }
+    },
+    "epilogue": {
+      "header": "Epilogue — the table closed on 25 October 2026 after 7 turns",
+      "text": "Epilogue — the table closed on 25 October 2026 after 7 turns\n\nBy the first snow Beregost sounds the way it always has. Hammers ring from the smithies before the temple bell, and the Trade Way is frozen into ruts that crack under the carts. The Bellows keeps its fire banked high. Marta Hollin still cuts bread with the same knife, still takes silver without looking at it, and still never asks a guest his trade. The room above the common room, paid through the second day, was let again on the third. Her book shows only that the account was settled.\n\nThe black-fletched bolt came back to the corner table before sundown that first day, wrapped in a scrap of oilcloth. Hal Brandt put it in his satchel without unwrapping it. His train rolled north at first light and reached the Gate on the fourth day with five wagons. Tobin Hask paid back the half the foundry at the Gate had advanced him, and the foundry asked for nothing more. Hask went home to Nashkel after the frosts. The letters he wrote at the post-rider's were answered, and whatever the answers said, he stopped writing them. He never told anyone what the iron was for, and in time nobody asked.\n\nCorran and Wil were never found. Brandt carried Wil's wages to his mother in person and stayed for supper, though he did not want to. Corran's nine years went into no book at all. Brandt still signs on blades in the yard behind the Bellows, and he has not hired a nineteen-year-old since. The knife scar on his left forearm healed white and straight, and he eats with either hand now.\n\nThe Flaming Fist sergeant at the bridge post entered the raid as the third of the year and closed the page. His road got two more men in the autumn levy, so he has thirteen for its whole length, and no fourth train went missing before winter.\n\nUp the hill the Thunderhammer rings slow and heavy. Dagny Fuiruim is as rude and as dear as ever. Over the autumn the buying of pig iron on the Nashkel road thinned out, and by harvest's end it had stopped, the way such things do when whoever wanted the iron has enough. Prices fell back to what the little forges could pay. Tam Orrin took his boy back at the anvil. No smith on the Way ever claimed the ring with three strokes, and no one brought Dagny another piece of metal that stayed cold by the fire.\n\nAt the Nashkel weighing yard the weighmaster stopped telling his joke about the man with blacked boots. That man never came back to the yard, and the weighmaster has no idea that anyone ever went looking for him.\n\nPell still talks to the whole street about every traveller who stays more than a night. Lately it has been a pair of Amnian wool-buyers, and before them a bard who owed him money. He mentions the Tethyrian less often now, and when he does, he gets the details wrong.\n\nAs for James Worgen, the record holds him on a doorstep at the top of the hill, a pace inside the heat of a forge, with his regimental patch showing and his hands in view. His cat is on the fence rail behind him and the Lady's coin lies cool under his shirt. What he said next, where he slept that night, and which road he took out of Beregost were never written. He was there for a while, and then he was not. The town did not mark the difference. The hammers kept their time, the snow came down on the Trade Way, and the corner table at the Bellows faces the stairs, waiting for whoever comes down them next.",
+      "writtenBy": "claude-opus-5-5",
+      "effort": "high",
+      "repaired": true,
+      "final": true
+    }
+  }
+}
