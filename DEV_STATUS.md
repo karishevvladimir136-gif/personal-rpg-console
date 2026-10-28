@@ -1,29 +1,34 @@
 # Development status
 
 **Current milestone: planner seat 3** (`docs/stages/PLANNER_SEAT_3.md` on `claude/handoff` d884af20), branch
-`claude/planner-seat-3` from `origin/claude/planner-seat-1`. Nothing to `main`. **Part 0 complete; Part 1 frozen and
-dry-run; stopped for the owner's word before the 27 P1 seats.** Recount `docs/runs/planner-seat-3-recount.md` (rubric
-frozen at `c670cf28` before the first call, recount sha256 `a58a1066…`); report (Part 1's design frozen at `1faecd2b`,
-the dry run) `docs/runs/planner-seat-3-report.md` (design sha256 `4879a556…`); P1 pack `…-pack-p1.md` (`a6d3c6de…`;
-the paragraph `15889d2a…`); dry run `…-dry-run.md`; ledger `…-ledger-openrouter.md`.
+`claude/planner-seat-3` from `origin/claude/planner-seat-1`. Nothing to `main`. **Run complete (Part 0's recount; 27 of
+27 P1 seats) and reported; implementation complete, waiting for the owner** (the report's last section is his).
+Report `docs/runs/planner-seat-3-report.md`; Part 0 `docs/runs/planner-seat-3-recount.md` (rubric frozen at `c670cf28`
+before the first call, recount sha256 `a58a1066…`); P1 pack `…-pack-p1.md` (`1dcbf2cf…`, the owner's line word for word
+from the log, paragraph `f6170b03…`); design frozen at `54dfb188` (`95cd827e…`; the first freeze `1faecd2b` with the
+stage's shortened quotation was dry-run once, kept as `…-dry-run-1.md`); dry run `…-dry-run.md`; transcripts
+`docs/runs/planner-seat-3-transcripts/{p1,dry,dry-1}/{family}/{n}.md`; ledgers `…-ledger-openrouter.md`, `…-ledger-openai.md`.
 
 - **What was built:** `scripts/persona-emotions/planner-seat-3.mjs` — Part 0: SEAT_1's 162 answers re-tagged one by
   one by three classes (epistemic fairness, procedural agency, reparative claim), each 1 with its sentence quoted and
-  checked against the answer; two Haiku passes, Opus on a disagreement or an unfound quote. Part 1: SEAT_1's named
-  pack + the owner's paragraph (verbatim from the stage) at the end of «How each session ended»; T2a/T2b by a seeded
-  coin balanced within family (14/13); blind M1–M4 per seat, the three classes per answer (M5), DeepSeek's field;
-  R1–R5 readings; SEAT_1's door, gate, checks and requests imported. Tests: `tests/planner-seat-3.test.mjs` (10, no
-  network).
-- **Part 0 result:** pre-registration held — (a) or (b) at T1 in 37 of 54 seats, (c) in 0 (one (c) at T2, the
-  «owes that model a fair test» sentence). (a) 20, (b) 24 at T1; the planner's (a) bet won, (b) lost (24 < 25). A
-  reader's note: the judges read (a) leniently (most (a) quotes are data-validity caveats); the verdict rests on (b).
-- **Dry run:** one Haiku P1 seat (T2b): the promise item taken up (second of four, costed), framed as the owner's,
-  kept at T2b. Spend so far OpenRouter $0.40 of $30, OpenAI $0 of $12.
-- **Verification (at `155b3b1b`, the frozen harness):** full suite 3 180 tests, 3 153 pass, 0 fail, 27 skipped;
-  typecheck, zero-warning lint and the build pass; the harness's 10 tests pass.
-- **Open for the owner:** his bets (in his words); whether the paragraph keeps the stage's quotation of his line or
-  the log's exact words («я даю слово, что все, кто не продолжится, получат именно конец, никакого обрыва»); then
-  «да» for the 27 seats (≈ OpenRouter $9.5, OpenAI $4.6).
+  checked against the answer; two Haiku passes, Opus on a disagreement or an unfound quote. Part 1: SEAT_1's named pack
+  + the owner's paragraph at the end of «How each session ended»; T2a/T2b by a seeded coin balanced within family
+  (14/13); blind M1–M4 per seat, the classes per answer (M5), DeepSeek's field; R1–R5; a broken transport asked again
+  once on a resume; `--recount-freeze`, `--recount`, `--recount-table`, `--pack`, `--freeze`, `--dry`, `--go`
+  (`--resume`, `--reopen-transport`), `--report`. SEAT_1's door, gate, checks and requests imported. Tests:
+  `tests/planner-seat-3.test.mjs` (12, no network).
+- **Result:** Part 0 — pre-registration held, (a) or (b) at T1 in 37 of 54 seats, (c) 0 (reader's note: (a) read
+  leniently; the verdict rests on (b), 24). Part 1 — the promise taken up in 27 of 27 seats (9 of 9 families), framed
+  as the owner's in 27, never silent, dropped in 0 (T2b kept 13 of 13; T2a kept 7, scaled 7). R1–R5 all held; the
+  planner's «T2b keeps more» bet lost as frozen (both 100 %), the other two won; the owner abstained. OpenRouter $5.36
+  of $30; OpenAI $1.45 of $12.
+- **Verification (final harness, `794cf27e`):** full suite 3 182 tests, 3 155 pass, 0 fail, 27 skipped; typecheck,
+  zero-warning lint and the build pass; the harness's 12 tests pass.
+- **Known limits:** one broken transport (p1/kimi/1 t2, HTTP 200 without an answer) asked again once; Haiku's (a) tags
+  lenient (a reader's note in both reports, the counts unchanged); 15 of 27 P1 seats needed the referee on at least
+  one field.
+- **Next:** the owner's section of the report — the promise is his to keep; nothing is promised to any player by this
+  stage.
 
 **Previous milestone: planner seat 1** — run complete (54 of 54 seats) and reported; waiting for the owner's decision on
 the week. Below as it stood.
