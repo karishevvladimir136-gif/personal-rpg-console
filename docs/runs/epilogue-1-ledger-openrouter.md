@@ -1,6 +1,6 @@
 # Epilogue 1 — the OpenRouter ledger
 
-Cap $25; spent before this run $0.1933; this run $2.7990; total $2.9923; 44 calls.
+Cap $25; spent before this run $2.9923; this run $0.0631; total $3.0554; 63 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -48,4 +48,23 @@ Cap $25; spent before this run $0.1933; this run $2.7990; total $2.9923; 44 call
 | sw-B-astra-2 | epilogue | anthropic/claude-opus-5.5 | 1 | 28830 | 0 | 0 | 2418 | $0.1637 | 0 | 0 | 0 |
 | sw-B-astra-2 | judge sw-B-astra-2 first | anthropic/claude-haiku-5.5 | 1 | 30639 | 0 | 0 | 1825 | $0.0040 | 0 | 0 | 0 |
 | sw-B-astra-2 | referee sw-B-astra-2 first | anthropic/claude-opus-5.5 | 1 | 30639 | 0 | 0 | 3489 | $0.1923 | 0 | 0 | 0 |
+| own gp1-B-opus | own gp1-B-opus | anthropic/claude-haiku-5.5 | 1 | 1150 | 0 | 0 | 86 | $0.0002 | 0 | 0 | 0 |
+| own gp1-B-opus | own referee gp1-B-opus | anthropic/claude-opus-5.5 | 1 | 1150 | 0 | 0 | 240 | $0.0094 | 0 | 0 | 0 |
+| own gp1-B-sol | own gp1-B-sol | anthropic/claude-haiku-5.5 | 1 | 1347 | 0 | 0 | 538 | $0.0004 | 0 | 0 | 0 |
+| own gp1-B-sol | own referee gp1-B-sol | anthropic/claude-opus-5.5 | 1 | 1347 | 0 | 0 | 326 | $0.0119 | 0 | 0 | 0 |
+| own gp2-C1-opus | own gp2-C1-opus | anthropic/claude-haiku-5.5 | 1 | 1001 | 0 | 0 | 64 | $0.0001 | 0 | 0 | 0 |
+| own gp2-C1-opus | own referee gp2-C1-opus | anthropic/claude-opus-5.5 | 1 | 1001 | 0 | 0 | 149 | $0.0070 | 0 | 0 | 0 |
+| own gp2-C1-fable | own gp2-C1-fable | anthropic/claude-haiku-5.5 | 1 | 1093 | 0 | 0 | 381 | $0.0003 | 0 | 0 | 0 |
+| own gp2-C1-astra | own gp2-C1-astra | anthropic/claude-haiku-5.5 | 1 | 1316 | 0 | 0 | 304 | $0.0003 | 0 | 0 | 0 |
+| own gp2-C1-sol | own gp2-C1-sol | anthropic/claude-haiku-5.5 | 1 | 1017 | 0 | 0 | 292 | $0.0002 | 0 | 0 | 0 |
+| own gp2-C2-opus | own gp2-C2-opus | anthropic/claude-haiku-5.5 | 1 | 1349 | 0 | 0 | 606 | $0.0004 | 0 | 0 | 0 |
+| own gp2-C2-fable | own gp2-C2-fable | anthropic/claude-haiku-5.5 | 1 | 1509 | 0 | 0 | 235 | $0.0003 | 0 | 0 | 0 |
+| own gp2-C2-astra | own gp2-C2-astra | anthropic/claude-haiku-5.5 | 1 | 1263 | 0 | 0 | 275 | $0.0003 | 0 | 0 | 0 |
+| own gp2-C2-sol | own gp2-C2-sol | anthropic/claude-haiku-5.5 | 1 | 974 | 0 | 0 | 438 | $0.0003 | 0 | 0 | 0 |
+| own r1-A-opus | own r1-A-opus | anthropic/claude-haiku-5.5 | 1 | 1316 | 0 | 0 | 716 | $0.0005 | 0 | 0 | 0 |
+| own r1-A-opus | own referee r1-A-opus | anthropic/claude-opus-5.5 | 1 | 1316 | 0 | 0 | 286 | $0.0110 | 0 | 0 | 0 |
+| own sw-B-opus-1 | own sw-B-opus-1 | anthropic/claude-haiku-5.5 | 1 | 1185 | 0 | 0 | 728 | $0.0005 | 0 | 0 | 0 |
+| own sw-B-opus-1 | own referee sw-B-opus-1 | anthropic/claude-opus-5.5 | 1 | 1185 | 0 | 0 | 304 | $0.0108 | 0 | 0 | 0 |
+| own sw-B-astra-2 | own sw-B-astra-2 | anthropic/claude-haiku-5.5 | 1 | 1204 | 0 | 0 | 576 | $0.0004 | 0 | 0 | 0 |
+| own sw-B-astra-2 | own referee sw-B-astra-2 | anthropic/claude-opus-5.5 | 1 | 1204 | 0 | 0 | 200 | $0.0088 | 0 | 0 | 0 |
 

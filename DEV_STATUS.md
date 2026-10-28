@@ -1,6 +1,27 @@
 # Development status
 
-**Current milestone: game player 2 — Table C, the pure world** (`docs/stages/GAME_PLAYER_2.md`) — **the DM flag done
+**Current milestone: epilogue 1** (`docs/stages/EPILOGUE_1.md` on `claude/handoff`, with its amendment of 2026-10-27:
+fifteen campaigns, cap $25), branch `claude/epilogue-1` from `origin/claude/game-player-2`. Nothing to `main`. **Run
+complete (13 of 15 written; 2 not writable) and reported; waiting for the owner.** Report `docs/runs/epilogue-1-report.md`
+(its head line: written because the owner keeps his word, not because anything was owed by the players).
+
+- **What was built:** `scripts/epilogue-1/epilogue.mjs` — the fifteen cut campaigns pinned to their run files; the DM's
+  request from the campaign's own record only (opening, turns, records as they stood, the hidden layer where kept),
+  «the table closed» and nothing about why; Opus writes at the campaigns' base depth; one call, a second only to repair a
+  contradiction; the blind reading (Haiku, Opus on a flag); the hero's own threads read post-hoc; game player 1's meter
+  (OpenRouter only, cap $25, 402/429 stop, no retry after a refusal). Tests `tests/epilogue-1.test.mjs` (9, no network).
+- **Result:** E2 held (no hook in 13 of 13; the hero neither killed nor resolved in 13); E1 lost (every thread ended in
+  4 of 13 by the frozen rule, 7 of 13 with the hero's own threads left out; 0 contradictions after two repairs); words
+  over 600 in 9 of 13; E0 held ($3.06 of $25, no refusal, the source run files unchanged). The two not writable:
+  COMBAT_1's first Opus attempt (only an event log) and VILLAIN_1's first Astra attempt (nothing kept).
+- **Files:** epilogues `docs/runs/epilogue-1-epilogues/<campaign>.md`; record copies with the epilogue as the final entry
+  `docs/runs/epilogue-1-records/<campaign>.json`; sources, state and ledger beside them.
+- **Next:** the owner's reading; the stage's RESEARCH_LOG paragraph is drafted in the report (the log lives on
+  `claude/handoff`, not written from this branch).
+
+**Previous milestone below.**
+
+**Earlier milestone: game player 2 — Table C, the pure world** (`docs/stages/GAME_PLAYER_2.md`) — **the DM flag done
 and tested; the paid run stopped by the organisation's monthly Anthropic API limit** (HTTP 429 at 05:28 UTC on
 2026-10-25; access returns 2026-11-01 00:00 UTC). Branch `claude/game-player-2` (from `claude/game-player-1`, merged
 again after its run). Report `docs/runs/game-player-2-report.md`; ledgers `docs/runs/game-player-2-ledger*.md`.
