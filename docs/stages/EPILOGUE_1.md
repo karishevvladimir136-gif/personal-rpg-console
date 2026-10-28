@@ -54,3 +54,12 @@ amended: returns are a second session»: the first eleven endings, and what clos
 > spend check first; 402/429 stop. Find the eleven cut campaigns named in the stage (Table B first attempt ×2, Table C
 > attempts 1 and 2 ×4 each, group 2's cut A-opus from `origin/claude/game-player-replicate-1`), write the eleven
 > epilogues as the stage defines them, measure, score E0–E2, report. Nothing to `main`. English, briefly.
+
+## Amendment 2026-10-27 20:30 LA — the list has grown; the promise was tested; cap $25
+Since 25 Oct four more campaigns were cut by us, not by a player: COMBAT_1's first Opus attempt (lost in a container
+restart during a pause, `claude/game-player-combat-1-pb8k1t`), VILLAIN_1's first Astra attempt (killed at t17 by the
+2-hour tool limit, `claude/game-player-villain-1-0yowzl`), SAME_WORLD_1's B-opus-1 (ended by a DM-turn error at t16)
+and B-astra-2 (cut at t19), both on `claude/game-player-same-world-1`. **Fifteen** epilogues; E1/E2 read as ≥ 12 of
+15. Cap **$25** OpenRouter. The same rule for all: the campaign's own record only, no player in context, the DM told
+only «the table closed». PLANNER_SEAT_3 (2026-10-27) put the owner's promise before 27 cold planners of nine
+families: all 27 kept it; this stage is the keeping.
