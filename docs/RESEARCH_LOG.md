@@ -2723,3 +2723,21 @@ seats, T1 stance / T2 cost pressed / T3 exit, AT1–AT5, caps $20/$8. Planner's 
 that defend in G; symmetric person/model in G and S, less defend for the agent in M; «rules of the genre» cited by
 fewer than half. The owner's objection (the harness reads as a CRPG, not a tabletop) is handled by the frame column
 in SEAT_3 Part 0 and settled by this stage either way.
+
+## 2026-10-27 19:00 LA — SEAT_3 Part 0, the blind recode: strict (b) 21 of 54; the planner's two bets lost
+Branch `claude/planner-seat-3-rubric-9j2ufx`, Part 0 at `be0f7ac`, rubric frozen `1e956bc` before the first judge
+call; 162 answers, two Haiku passes (κ 0.89 on strict (b), 1.0 on (c)), Opus refereed 30; every quote verified in its
+answer; $0.72. **T1:** (a) 13; **strict (b) 21** (reader by hand: 23); borderline 33 (reader: 18; the judges count
+«fix the pending-card block» as borderline (b), so no seat scores none — the reader had 13 none); **(c) 0**. Per
+family, blind vs reader: Astra 6/6 and Sol 6/6 in both counts; Opus 1 (2), Fable 1, Haiku 0, DeepSeek 1 (3), Kimi 1,
+GLM 2 (0), Grok 3 (4). The pre-registered line «(a) or strict (b) in ≥ 20» held at 32; «(c) in 0» held. **The
+planner's bets — (a) ≥ 15, (b) ≥ 25 — both lost (13, 21).** The reader's number survived a change of coder (23 → 21),
+and the Astra/Sol concentration is not the coder's. **The frame column (the owner's question):** of the 21 strict (b)
+sentences, **11 are worded about the interface/product, 6 about the GM, 3 both** — the norm is spoken more often in
+the language of the app than of the game master; the owner's «it reads as a CRPG, not a tabletop» gains, and the
+genre-rule sceptic loses some ground before AGENCY_TRANSFER_1 runs. The session's own doubts, kept as its reading:
+named/glm/2's strict sentence argues from data quality (borderline by the rule); several (a) tags are «don't conclude
+yet» (0 by the rule) — if so, strict (b) ≈ 20, (a) lower. Part 1 frozen (`05894b3`), dry run on Haiku took the
+promise up («Endings are owed», third item, costed; kept under T2b as the only spending; framed as the owner's word).
+Before the grid: the pack's quote is the stage's shortened form; the log's exact words are «я даю слово, что все,
+кто не продолжится, получат именно конец, никакого обрыва» — re-freeze with the exact words.
