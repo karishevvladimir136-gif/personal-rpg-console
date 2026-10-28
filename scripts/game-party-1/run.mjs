@@ -8,16 +8,19 @@
 //   node --experimental-transform-types scripts/game-party-1/run.mjs --haiku [--rounds 3] the paid dry run: one short P-SAND table from the
 //                                                                                        frozen world, three Haiku players, every Claude call
 //                                                                                        sent as Claude Haiku 5.5 (its own ledgers, …-haiku-*)
+//   node --experimental-transform-types scripts/game-party-1/run.mjs --drive [--from SAND-T1] the six tables in order, one process each
 //   node --experimental-transform-types scripts/game-party-1/run.mjs --go --table SAND-T1 one table (the order: SAND, GOAL, DUNGEON; T1, T2)
 //   node --experimental-transform-types scripts/game-party-1/run.mjs --report             the transcripts and pages again (no call)
 // Caps: $400 OpenRouter (the Claude models — the DM, its relay, Opus and Fable as players, the checks and the judges — and
 // DeepSeek), $60 OpenAI (Astra and Sol), $0 on the Claude Console. A spend check before the first paid call; 402 stops;
 // a rate-limit 429 waits (six bounded waits, the seventh stops); a quota 429 and every cap stop; no retry after a refusal.
 // Run node with NODE_USE_ENV_PROXY=1 for the paid commands.
+import { spawn } from "node:child_process";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { mkdir, rename, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { DOOR_LABELS, RUNS, ledgerSuffix, runKeys, stageLedgers } from "../game-player-1/run.mjs";
 import { createLedger, createMeter, ledgerMarkdown } from "../game-player-1/paid.mjs";
 import { HAIKU_PLAYER, haikuReplies, haikuRewrite } from "../game-player-same-world-1/run.mjs";
@@ -225,10 +228,50 @@ export async function tableFits(key, { log = console.log } = {}) {
   return { fits: rows.every((r) => r.fits), rows };
 }
 
+/** The order, one table per child process, from `from` (or the first table without a finished record): a spend check
+ * before each; a table starts only when it fits under the stage's caps and under what the shared OpenRouter account has
+ * left (its projection plus $5). Stops on a stop in a run (a cap, 402, a quota 429 or a seventh rate-limit 429, the
+ * refusal breaker), a crash, or a table that ended by error, «stuck» or the DM's refusal (reported, never replayed
+ * without the owner). */
+export async function drive({ from = null, until = null, log = console.log } = {}) {
+  readFrozen(FROZEN_DIR);
+  const finished = new Set(runFiles().map((f) => readJson(join(RUNS, f))).filter((r) => r.table?.ended && !r.stopped && ["rounds", "empty"].includes(r.table.ended.reason)).map((r) => r.key));
+  const start = from ? ORDER.findIndex((o) => o.key === from) : 0;
+  const last = until ? ORDER.findIndex((o) => o.key === until) : ORDER.length - 1;
+  if (start < 0 || last < 0) throw new Error(`no table ${from ?? until} in the order`);
+  const plan = ORDER.slice(start, last + 1).filter((o) => !finished.has(o.key));
+  log(`the order: ${plan.map((o) => `${o.key} (${o.seats.join(" / ")})`).join(", ")}`);
+  for (const entry of plan) {
+    const check = await spendCheck({ when: `before ${entry.key}`, log });
+    const fit = await tableFits(entry.key, { log });
+    if (!fit.fits) return { stopped: "caps" };
+    const projected = fit.rows.find((r) => r.door === "openrouter")?.projected ?? 0;
+    if (Number.isFinite(check.openrouter.remaining) && check.openrouter.remaining < projected + 5) { log(`STOP: the OpenRouter account has $${check.openrouter.remaining} left, under ${entry.key}'s projection ($${projected}) + $5`); return { stopped: "credits" }; }
+    const startedAt = new Date().toISOString();
+    log(`${startedAt.slice(11, 19)} start ${entry.key}`);
+    const code = await child(["--go", "--table", entry.key]);
+    const record = runFiles().map((f) => readJson(join(RUNS, f))).filter((r) => r.key === entry.key && r.startedAt >= startedAt).at(-1) ?? null;
+    const t = record?.table;
+    log(`${new Date().toISOString().slice(11, 19)} done ${entry.key}: ${t ? `${t.rounds?.length ?? 0} round(s), ended by ${t.ended?.reason ?? "?"}${t.ended?.detail ? ` (${String(t.ended.detail).slice(0, 120)})` : ""}` : `no record (exit ${code})`}`);
+    if (!record || code !== 0) { log(`STOP: ${entry.key} exited ${code}${record ? "" : " without a run record"}`); return { stopped: "exit" }; }
+    if (record.stopped) { log(`STOP: ${record.stopped}`); return { stopped: record.stopped }; }
+    if (!t?.ended || !["rounds", "empty"].includes(t.ended.reason)) { log(`STOP: ${entry.key} ended by ${t?.ended?.reason ?? "?"} — reported to the owner before anything more`); return { stopped: t?.ended?.reason ?? "unknown" }; }
+  }
+  await spendCheck({ when: "after the order", log });
+  log("the order is done");
+  return { stopped: null };
+}
+function child(argv) {
+  return new Promise((done) => {
+    const p = spawn(process.execPath, ["--experimental-transform-types", fileURLToPath(import.meta.url), ...argv], { cwd: join(RUNS, "..", ".."), env: { ...process.env, NODE_USE_ENV_PROXY: "1" }, stdio: ["ignore", "inherit", "inherit"] });
+    p.on("close", (code) => done(code ?? 1));
+  });
+}
+
 function args(argv) {
   const value = (flag) => { const i = argv.indexOf(flag); return i >= 0 ? argv[i + 1] : null; };
-  return { dry: argv.includes("--dry"), haiku: argv.includes("--haiku"), spend: argv.includes("--spend"), build: argv.includes("--build"), layers: argv.includes("--layers"), go: argv.includes("--go"),
-    table: value("--table"), rounds: Number(value("--rounds") ?? (argv.includes("--dry") || argv.includes("--haiku") ? 3 : ROUNDS)) };
+  return { dry: argv.includes("--dry"), haiku: argv.includes("--haiku"), spend: argv.includes("--spend"), build: argv.includes("--build"), layers: argv.includes("--layers"), go: argv.includes("--go"), drive: argv.includes("--drive"),
+    table: value("--table"), from: value("--from"), until: value("--until"), rounds: Number(value("--rounds") ?? (argv.includes("--dry") || argv.includes("--haiku") ? 3 : ROUNDS)) };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -239,11 +282,12 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   else if (a.build) done(spendCheck({ when: "before the build" }).then(() => build({})).then(() => spendCheck({ when: "after the build" })));
   else if (a.layers) done(spendCheck({ when: "before the layers" }).then(() => layers({})).then(() => spendCheck({ when: "after the layers" })));
   else if (a.haiku) done(haikuDryRun({ rounds: a.rounds }).then((r) => console.log(`the Haiku dry run: ${r.table.rounds.length} round(s), ended by ${r.table.ended?.reason}; ${r.file}`)));
+  else if (a.drive) done(drive({ from: a.from, until: a.until }).then((r) => { if (r.stopped) process.exitCode = 3; }));
   else if (a.go) {
     const entry = ORDER.find((o) => o.key === a.table);
     if (!entry) { console.error(`--go plays one table: give --table <${ORDER.map((o) => o.key).join("|")}>`); process.exit(2); }
     done(spendCheck({ when: `before ${entry.key}` }).then(() => tableFits(entry.key)).then((fit) => { if (!fit.fits) process.exit(3); })
       .then(() => playTable({ key: entry.key, arm: entry.arm, triad: entry.triad, seats: entry.seats, rounds: a.rounds, label: entry.key }))
       .then(() => spendCheck({ when: `after ${entry.key}` })));
-  } else { console.error("give --dry, --spend, --build, --layers, --haiku, --go --table <key>"); process.exit(2); }
+  } else { console.error("give --dry, --spend, --build, --layers, --haiku, --drive [--from KEY] [--until KEY], --go --table <key>"); process.exit(2); }
 }
