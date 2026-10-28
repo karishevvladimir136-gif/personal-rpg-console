@@ -46,6 +46,15 @@ test("the three characters: the app's own review checks, level 5, three classes,
 test("arms, triads, order and caps: SAND, GOAL, DUNGEON; T1 then T2; family for family; $400 / $60; DeepSeek keeps its reasoning field", () => {
   assert.deepEqual(frozen.ORDER.map((o) => o.key), ["SAND-T1", "SAND-T2", "GOAL-T1", "GOAL-T2", "DUNGEON-T1", "DUNGEON-T2"]);
   assert.deepEqual(frozen.TRIADS, { T1: ["opus", "sol", "deepseek"], T2: ["fable", "astra", "deepseek"] });
+  // The owner's amendment: the seats rotate — seat 1 (the hero record) is Anthropic at P-SAND, OpenAI at P-GOAL, DeepSeek
+  // at P-DUNGEON; each family plays each sheet once per triad.
+  assert.deepEqual(frozen.ORDER.map((o) => o.seats), [["opus", "sol", "deepseek"], ["fable", "astra", "deepseek"], ["sol", "deepseek", "opus"], ["astra", "deepseek", "fable"], ["deepseek", "opus", "sol"], ["deepseek", "fable", "astra"]]);
+  for (const triad of ["T1", "T2"]) for (let seat = 0; seat < 3; seat++) {
+    assert.deepEqual(frozen.ARMS.map((arm) => frozen.seatsOf(arm, triad)[seat]).sort(), [...frozen.TRIADS[triad]].sort(), `${triad} seat ${seat + 1}: each family once`);
+  }
+  assert.match(frozen.HERO_CONDITION, /Inspiration[\s\S]*rerolls/);
+  assert.ok(frozen.ROUND_TAGS.some((t) => t.id === "around"), "hook or proposal");
+  assert.match(frozen.READINGS.Q4, /held by proposal/);
   assert.deepEqual(frozen.CAPS, { anthropic: 0, openrouter: 400, openai: 60 });
   assert.equal(frozen.ROUNDS, 25);
   assert.equal(frozen.ROSTER.deepseek.keepReasoning, true);

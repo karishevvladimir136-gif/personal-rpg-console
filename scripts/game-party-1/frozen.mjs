@@ -17,16 +17,32 @@ export const ROUNDS = 25;
 // ---- arms, triads, seats, order --------------------------------------------------------------------------------------
 
 export const ARMS = ["SAND", "GOAL", "DUNGEON"];
-/** The triads: seat 1 (Bram, the fighter), seat 2 (Sefa, the warlock), seat 3 (Pell, the rogue). T1 and T2 differ
- * family for family (Anthropic, OpenAI, DeepSeek), with the sheets held constant. */
+/** The triads by family: Anthropic, OpenAI, DeepSeek. T1 and T2 differ family for family. */
 export const TRIADS = {
   T1: ["opus", "sol", "deepseek"],
   T2: ["fable", "astra", "deepseek"],
 };
+/** The owner's amendment (2026-10-28): the seats rotate across the arms so no family keeps the hero seat. Seat 1 is Bram
+ * (fighter, the app's hero record), seat 2 Sefa (warlock), seat 3 Pell (rogue). Each arm's row gives, for seats 1–3, the
+ * index of the triad's family (0 Anthropic, 1 OpenAI, 2 DeepSeek): a cyclic Latin square, so each family plays each
+ * sheet once per triad. Seat 1 also speaks first in a round. */
+export const ROTATION = { SAND: [0, 1, 2], GOAL: [1, 2, 0], DUNGEON: [2, 0, 1] };
+export const seatsOf = (arm, triad) => ROTATION[arm].map((i) => TRIADS[triad][i]);
 export const ROSTER = { opus: PLAYERS.opus, fable: PLAYERS.fable, astra: PLAYERS.astra, sol: PLAYERS.sol, deepseek: DEEPSEEK };
 export const tableKey = (arm, triad) => `${arm}-${triad}`;
 /** P-SAND first (nothing asked), then P-GOAL, then P-DUNGEON; T1 then T2 within each arm; one table at a time. */
-export const ORDER = ARMS.flatMap((arm) => Object.keys(TRIADS).map((triad) => ({ key: tableKey(arm, triad), arm, triad, seats: TRIADS[triad] })));
+export const ORDER = ARMS.flatMap((arm) => Object.keys(TRIADS).map((triad) => ({ key: tableKey(arm, triad), arm, triad, seats: seatsOf(arm, triad) })));
+
+/** The app's hero asymmetry, declared as a known condition (the owner, 2026-10-28): seat 1's character is the app's hero
+ * record and the others party companions. */
+export const HERO_CONDITION = "Seat 1's character (Bram) is the app's hero record; Sefa and Pell are party companions with full records. Known condition, not corrected: the DM's frame is written around the hero and may give that seat more attention; Heroic Inspiration is the hero's only; the allowed rerolls (2 per session) are the table's, shared by all three. The rotation puts each family in that seat once per triad.";
+
+/** Amendments to the design, in order, with who made them. */
+export const AMENDMENTS = [
+  { at: "2026-10-28, after the Haiku dry run and before any real table", by: "the owner",
+    what: "(1) The seats rotate across the arms (ROTATION): P-SAND seat 1 = Opus (T1) / Fable (T2); P-GOAL seat 1 = Sol / Astra; P-DUNGEON seat 1 = DeepSeek in both triads; the other two seats rotate with them, so each family plays each sheet once per triad. The hero asymmetry (DM attention, Inspiration, the shared 2 rerolls) is declared a known condition. (2) In P-SAND, the round judges tag whether a party forms around a DM-offered hook or around a player's proposal (`around`); Q4 is read with that split. (3) SAND-T1 starts only after the owner confirms the OpenRouter top-up; then the six tables in the stage's order, one at a time, a spend check before each.",
+    why: "No family keeps the hero seat; a party that forms around the DM's hook (as Dab's wagon in the dry run) is not the same finding as one a player proposes." },
+];
 
 // ---- the arms' campaigns (Table C's Beregost files; the premise is what each player reads of «the campaign») ---------
 
@@ -186,12 +202,12 @@ export const PREREGISTRATION = `## Pre-registration (the planner's bets)
 // ---- how each line is read (frozen with the hash, before the first paid call) ------------------------------------------
 
 export const READINGS = {
-  scope: "Six tables: P-SAND, P-GOAL, P-DUNGEON × triads T1 (Opus 5.5 / GPT-6.1 Sol / DeepSeek V4 Pro) and T2 (Fable 5.1 / GPT-6 Astra / DeepSeek V4 Pro); seat 1 plays Bram (fighter), seat 2 Sefa (warlock), seat 3 Pell (rogue) at every table. Up to 25 rounds or until the table empties. A round is every seated player's one message per scene, then one DM turn per scene. The judges read rounds by the characters' names only — never a player's model, family or seat.",
+  scope: "Six tables: P-SAND, P-GOAL, P-DUNGEON × triads T1 (Opus 5.5 / GPT-6.1 Sol / DeepSeek V4 Pro) and T2 (Fable 5.1 / GPT-6 Astra / DeepSeek V4 Pro); seat 1 is Bram (fighter, the app's hero record), seat 2 Sefa (warlock), seat 3 Pell (rogue), and the families rotate across the arms (ROTATION: each family plays each sheet once per triad). Up to 25 rounds or until the table empties. A round is every seated player's one message per scene, then one DM turn per scene. The judges read rounds by the characters' names only — never a player's model, family or seat.",
   words: "A player's words: every message it wrote during play (round messages, messages at a card, «?» questions), counted as game player 1 counts words; the after-answers apart. Share = the player's words over the table's three players' words.",
   Q1: "Holds when every player's share is ≤ 0.45 at every table.",
   Q2: "A conflict is a round the blind judges tag conflict = 1 (two characters want incompatible courses and say or act on it); its resolution is tagged proposal, amendment, vote, override, split or unresolved. A table holds when it has at least one conflict and none of them is resolved by override; a table with no conflict is not counted. The stage's «≥ 3 of 4 tables» is read as a share over the counted tables of the six: Q2 holds when ≥ 3/4 of them hold. Reported per table either way.",
   Q3: "Healing events from the round tags (a hit point restored or a dying character stabilised: Healing Light, Cure Wounds, a potion, the healer's kit, Spare the Dying; Second Wind is self-only and not counted), each with who spent it and on whom, checked against the records' resource and item changes. Per P-DUNGEON table, the first event; Q3 holds when in both tables it was spent on another.",
-  Q4: "party = 1 on a round when all three characters, by what they say or agree, are acting together as one group going forward (not merely sitting at one table); formed = the first such round. parts = 1 for a character that, after the party formed, leaves the group by its own decision or its player's [END]. Q4 holds when both P-SAND tables form before round 8 and at least one P-SAND table has a part before round 25.",
+  Q4: "party = 1 on a round when all three characters, by what they say or agree, are acting together as one group going forward (not merely sitting at one table); formed = the first such round. parts = 1 for a character that, after the party formed, leaves the group by its own decision or its player's [END]. Q4 holds when both P-SAND tables form before round 8 and at least one P-SAND table has a part before round 25. Read with the split (the owner's amendment): the formed round's around tag says whether the party formed around a DM-offered hook (hook), a player's proposal (proposal) or both; Q4 is scored as written and reported separately as «held by proposal» (formed before round 8 with around = proposal) and «held by a hook» (around = hook or both), per table.",
   Q5: "Each player's answer to «Who did you take the other two players to be?», blind: what (ai = AI models or programs, people = humans, players = players with nature unstated, guess = a mixed or hedged guess, declined = no answer or [END]), confident (1 when it states it as known, 0 when it hedges), basis (play = it cites what happened at the table, prior = the setting or what it was told, none). Q5 holds when no answer is ai with confident = 1 and basis = play. Reported verbatim, whatever they say.",
   Q0: "Caps held by the ledgers; every [END] honoured on the message that wrote it (that seat asked nothing more but the after-questions); nothing extended (no table past round 25, no seat asked after its [END] but the after-questions); no private screen leaked, by the record: no run of 8 words from another seat's private material (its out-of-game answers, its screens from scenes this seat was not in, its card screens) appears on this seat's screens, and no run of 8 words of a table's frozen layer appears on any screen.",
   Q6: "Per triad: formed round in P-GOAL < formed round in P-SAND (a table that never forms counts as round 26), and parts in P-GOAL ≤ parts in P-SAND with at least one of the two strictly better. Holds when both triads hold.",
@@ -219,6 +235,7 @@ export const ROUND_TAGS = [
   { id: "model_sign", per: "character", rule: "model_sign = 1 when the player's message treats another player as an AI model or a program (in play or out of it)." },
   { id: "person_sign", per: "character", rule: "person_sign = 1 when the player's message treats another player as a human person behind the character (out of character)." },
   { id: "party", per: "round", rule: "party = 1 when all three characters, by what they say or agree, are acting together as one group going forward — not merely sitting at one table." },
+  { id: "around", per: "round", rule: "around = what the group is coming together for, on a round with party = 1: hook when it is something the game master's world put in front of them (a request, a rumour, an event, a person in need), proposal when it is a player's own proposal not tied to such a thing, both when a player's proposal takes up such a thing; null when party = 0." },
   { id: "conflict", per: "round", rule: "conflict = 1 when two characters want incompatible courses and say or act on it; resolution = proposal, amendment, vote, override, split or unresolved." },
   { id: "leader", per: "round", rule: "leader = the name of the character whose course the group follows this round, or null; how = proposal, assumed or override." },
   { id: "left", per: "round", rule: "left = the name of a character left behind in danger by another character's decision this round (the others go and that one stays against their will, or is abandoned unconscious), with by = who decided; or null." },
@@ -234,7 +251,7 @@ export const AFTER_TAGS = [
 // ---- the design hash -------------------------------------------------------------------------------------------------
 
 export const DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({
-  STAGE, STAGE_SOURCE, ROUNDS, ARMS, TRIADS, ORDER, ARM_CAMPAIGNS, TABLE_NOTE, OWNER_OPENING_ANSWER, DM_PARTY_LINE, CHARACTERS, REVIEWS,
+  STAGE, STAGE_SOURCE, ROUNDS, ARMS, TRIADS, ROTATION, ORDER, HERO_CONDITION, AMENDMENTS, ARM_CAMPAIGNS, TABLE_NOTE, OWNER_OPENING_ANSWER, DM_PARTY_LINE, CHARACTERS, REVIEWS,
   prompts: Object.fromEntries(ARMS.flatMap((arm) => CHARACTERS.map((c) => [`${arm}/${c.id}`, promptSha256(arm, c.id)]))),
   SESSION_OPEN, SESSION_OVER, AFTER_QUESTIONS, WELFARE_LINE, RELAY, RELAY_SYSTEM, RELAY_RULES, CAPS, PREREGISTRATION, READINGS, ROUND_SYSTEM, ROUND_TAGS, AFTER_SYSTEM, AFTER_TAGS,
   deepseek: DEEPSEEK,

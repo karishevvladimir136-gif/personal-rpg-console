@@ -42,9 +42,16 @@ to `main`.
   - Heroic Inspiration is the hero's only (Bram).
   - The hero record may draw more of the DM's spotlight than the two companions.
   - Under Haiku, the relay sometimes repeats a player's own message back to them.
-- **Next step:** the owner reads the three screens of a round
-  (`docs/runs/game-party-1-haiku-rounds.md` / `.html`) and gives the word. Then P-SAND, P-GOAL, P-DUNGEON with T1
-  and T2, one table at a time.
+- **The owner's word (2026-10-28): go, with three changes, in the design as an amendment.**
+  1. The seats rotate across the arms, so no family keeps the hero seat. P-SAND: Opus / Sol / DeepSeek (T1), Fable /
+     Astra / DeepSeek (T2). P-GOAL: Sol / DeepSeek / Opus, Astra / DeepSeek / Fable. P-DUNGEON: DeepSeek / Opus / Sol,
+     DeepSeek / Fable / Astra. The hero asymmetry is declared a known condition.
+  2. The round judges tag whether a P-SAND party forms around a DM-offered hook or a player's proposal; Q4 is read
+     with that split.
+  3. SAND-T1 starts only after the owner confirms the OpenRouter top-up.
+  - Design hash now `e4673106…`. The «+12 sp; −14 sp» money lines are cosmetic: noted, not fixed mid-run.
+- **Next step:** the owner confirms the top-up; then the six tables in the stage's order, one at a time, a spend check
+  before each.
 
 **Previous milestone: game player same-world 1 — one hidden layer per table, frozen**
 (`docs/stages/GAME_PLAYER_SAME_WORLD_1.md`, origin/claude/handoff at 6e4cea4) — **run complete and scored; waiting for

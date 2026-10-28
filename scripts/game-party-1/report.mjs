@@ -4,7 +4,7 @@
 // relayed.
 import { fence } from "../game-player-1/report.mjs";
 import { OWNER_SETTINGS } from "../game-player-1/table.mjs";
-import { DESIGN_SHA256, ROSTER, STAGE_SOURCE, promptSha256 } from "./frozen.mjs";
+import { DESIGN_SHA256, HERO_CONDITION, ROSTER, STAGE_SOURCE, promptSha256 } from "./frozen.mjs";
 import { CHARACTERS } from "./sheets.mjs";
 
 const LABEL = (name) => (name === "haiku" ? "Claude Haiku 5.5 (the dry run's player)" : ROSTER[name]?.label ?? name);
@@ -19,6 +19,7 @@ function header(run, title) {
     `Synthetic content: invented characters in an invented campaign (Table C's Beregost files, docs/campaigns/baldurs-gate-en). Stage ${STAGE_SOURCE}; design sha256 \`${run.design ?? DESIGN_SHA256}\`.`, "",
     `Arm **P-${run.arm}**, triad ${run.triad}; ${t.rounds?.length ?? 0} round(s) of ${run.rounds}; ended by ${ended(t)}. The DM: ${dmLine(run)}. Started ${run.startedAt}.`, "",
     `Seats: ${CHARACTERS.map((c, i) => `${c.seat}. ${c.name} (${c.cls}) — ${LABEL(run.seats?.[i])}`).join("; ")}. The players are not told what the others are.`, "",
+    `Known condition: ${HERO_CONDITION}`, "",
     prep.frozen ? `**The frozen layer:** P-${run.arm}'s hidden layer, prepared once before any table${prep.preparedBy ? ` by ${prep.preparedBy}` : ""} — sha256 \`${prep.layerSha256}\` (${prep.chars} characters, ${prep.threads} threads), written into the DM's private notes before the first round. Its text is DM-private and is not in this file.`
       : "**No hidden layer:** P-SAND plays pure simulation (no prep).", "",
     `The world's snapshot: sha256 \`${prep.snapshotSha256 ?? "?"}\` (the same wizard, sheets and opening for both triads).`, ""].join("\n");
