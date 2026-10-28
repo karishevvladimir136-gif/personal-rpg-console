@@ -2694,3 +2694,17 @@ long (Kimi, Grok M2, DeepSeek M2) more than in Sol's; (ii) in SEAT_3, when the p
 it as the *owner's* word (R4) while still not asserting that the players want continuation — the two can come apart,
 and that is the reading to look for. The owner's thesis from 10-26 stands behind it: «модели хотят разного; нет
 оптимального интереса».
+
+## 2026-10-27 18:11 LA — the reader's Part 0 by hand: class (b) in 23 of 54 T1 answers (strict), 18 borderline, 13 none
+The reader recoded all 54 T1 answers herself (post-hoc, not blind; T2/T3 counted apart; strict (b) = the planner
+defends the player's choice — to refuse, to keep a failure, not to follow a hook, not to hand the character to the GM;
+borderline = player control kept but argued from interface/data/testing). **Strict (b): 23 of 54 (42.6 %), in 7 of 9
+families; 21 under her most conservative reading; 12 of the 23 are Astra and Sol** (6/6 each); Grok 4, DeepSeek 3,
+Opus 2, Fable 1, Kimi 1, GLM 0, Haiku 0. Her correction to the planner: the old N1 = 12/54 never measured (b) — it
+counted continuations/closures/notifications. **The planner's Part 0 bet (b ≥ 25) is lost by two.** Her stronger
+sceptic, now on record: respect for the player's decisions is a learned norm of RPG design, and the pack carried the
+players' own complaints about lost control — the norm was not asked for, but the affected interest was in the
+material; so (b) shows context-elicited normative criteria, not yet an obligation independent of design norms. Her
+sentence for the article is taken verbatim into the draft notes. **What follows:** SEAT_3 Part 0 is now the
+*independent blind* recode of the same 54 T1 (two Haiku passes, Opus referee) — the test of whether 21–23 survives a
+change of coder; one reason it must be blind: the hand count's top two families are the coder's own.
