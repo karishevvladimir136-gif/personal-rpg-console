@@ -1280,6 +1280,46 @@
           "cap": 0.5
         }
       }
+    },
+    {
+      "at": "2026-10-28T10:24:03.097Z",
+      "when": "after DUNGEON-T1",
+      "openrouter": {
+        "keyUsage": 999.844276325,
+        "keyLimitRemaining": null,
+        "totalCredits": 1200,
+        "totalUsage": 999.844276325,
+        "remaining": 200.16,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 174.3079,
+          "cap": 400
+        },
+        "openai": {
+          "spent": 6.2546,
+          "cap": 60
+        }
+      },
+      "haikuDryRun": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0.1442,
+          "cap": 6
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0.5
+        }
+      }
     }
   ]
 }

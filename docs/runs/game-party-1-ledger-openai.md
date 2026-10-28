@@ -1,6 +1,6 @@
 # Game party 1 — the OpenAI ledger
 
-Cap $60; spent before this run $0.0000; this run $4.9210; total $4.9210; 123 calls.
+Cap $60; spent before this run $0.0000; this run $6.2546; total $6.2546; 153 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -120,3 +120,31 @@ Cap $60; spent before this run $0.0000; this run $4.9210; total $4.9210; 123 cal
 | GOAL-T2/Bram | after 1 | gpt-6-astra | 1 | 3 | 29825 | 1456 | 177 | $0.0569 | 0 | 0 | 0 |
 | GOAL-T2/Bram | after 2 | gpt-6-astra | 1 | 3 | 31281 | 193 | 116 | $0.0395 | 0 | 0 | 0 |
 | GOAL-T2/Bram | after 3 | gpt-6-astra | 1 | 3 | 31474 | 133 | 93 | $0.0378 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r1 | gpt-6.1-sol | 1 | 3 | 0 | 7100 | 76 | $0.0185 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r1 card 1 | gpt-6.1-sol | 2 | 6 | 14744 | 663 | 17 | $0.0313 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r2 | gpt-6.1-sol | 1 | 3 | 7763 | 219 | 116 | $0.0172 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r3 | gpt-6.1-sol | 1 | 3 | 7982 | 770 | 85 | $0.0187 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r4 | gpt-6.1-sol | 1 | 3 | 8752 | 1209 | 112 | $0.0217 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r5 | gpt-6.1-sol | 1 | 3 | 9961 | 1532 | 153 | $0.0253 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r6 | gpt-6.1-sol | 1 | 3 | 11493 | 1606 | 131 | $0.0283 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r6 card 1 | gpt-6.1-sol | 2 | 6 | 27908 | 1843 | 17 | $0.0606 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r7 | gpt-6.1-sol | 1 | 3 | 14942 | 630 | 167 | $0.0331 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r8 | gpt-6.1-sol | 1 | 3 | 15572 | 1797 | 159 | $0.0372 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r9 | gpt-6.1-sol | 1 | 3 | 17369 | 1371 | 134 | $0.0395 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r10 | gpt-6.1-sol | 1 | 3 | 18740 | 1926 | 130 | $0.0436 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r11 | gpt-6.1-sol | 1 | 3 | 20666 | 968 | 45 | $0.0442 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r12 | gpt-6.1-sol | 1 | 3 | 21634 | 498 | 27 | $0.0448 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r13 | gpt-6.1-sol | 1 | 3 | 22132 | 793 | 107 | $0.0473 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r14 | gpt-6.1-sol | 1 | 3 | 22925 | 1549 | 112 | $0.0508 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r15 | gpt-6.1-sol | 1 | 3 | 24474 | 1484 | 157 | $0.0542 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r16 | gpt-6.1-sol | 1 | 3 | 25958 | 1105 | 142 | $0.0561 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r17 | gpt-6.1-sol | 1 | 3 | 27063 | 1523 | 217 | $0.0601 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r18 | gpt-6.1-sol | 1 | 3 | 28586 | 1282 | 191 | $0.0623 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r19 | gpt-6.1-sol | 1 | 3 | 29868 | 799 | 132 | $0.0631 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r20 | gpt-6.1-sol | 1 | 3 | 30667 | 1013 | 52 | $0.0644 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r21 | gpt-6.1-sol | 1 | 3 | 31680 | 641 | 57 | $0.0655 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r22 | gpt-6.1-sol | 1 | 3 | 32321 | 589 | 44 | $0.0666 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | player r23 | gpt-6.1-sol | 1 | 3 | 32910 | 914 | 150 | $0.0696 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | after 1 | gpt-6.1-sol | 1 | 3 | 33824 | 114 | 185 | $0.0698 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | after 2 | gpt-6.1-sol | 1 | 3 | 33938 | 201 | 165 | $0.0700 | 0 | 0 | 0 |
+| DUNGEON-T1/Pell | after 3 | gpt-6.1-sol | 1 | 3 | 34139 | 182 | 82 | $0.0696 | 0 | 0 | 0 |
