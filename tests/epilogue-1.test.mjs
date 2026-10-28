@@ -5,7 +5,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
-  CAMPAIGNS, DM_EFFORT, DM_MODEL, HEAD_LINE, JUDGE, REFEREE, dmRequest, flagged, headerOf, numbersOf, ownRequest, parseJudge, parseOwn, readOwn, recordsAsStood, reportMarkdown, scores, sourcesOf, withoutOwn, writeOne,
+  CAMPAIGNS, DM_EFFORT, DM_MODEL, HEAD_LINE, JUDGE, REFEREE, dmRequest, flagged, headerOf, numbersOf, ownRequest, parseJudge, parseOwn, readOwn, recordsAsStood, reportMarkdown, scores, sourcesOf, spendCheck, withoutOwn, writeOne,
 } from "../scripts/epilogue-1/epilogue.mjs";
 
 const sources = sourcesOf();
@@ -123,4 +123,14 @@ test("the report: the head line, E0–E2 over the 13 writable, the two not writa
   assert.equal((md.match(/^### /gm) ?? []).length, 15);
   assert.equal((md.match(/^> Epilogue — the table closed on /gm) ?? []).length, 13);
   assert.match(md, /Not writable: no record survived/);
+});
+
+test("the spend check reads the door's own credits URL (no host named here)", async () => {
+  const { anthropicEndpoint } = await import("../scripts/eval/lib/anthropic-endpoint.mjs");
+  const door = anthropicEndpoint({ ANTHROPIC_PROVIDER: "openrouter", OPENROUTER_API_KEY: "or-key" }), seen = [];
+  const c = await spendCheck(door, async (url, init) => { seen.push({ url, auth: init.headers.authorization }); return new Response(JSON.stringify({ data: { total_credits: 10, total_usage: 2.5 } }), { status: 200 }); });
+  assert.equal(seen[0].url, new URL("credits", door.messagesUrl).href);
+  assert.match(seen[0].url, /\/api\/v1\/credits$/);
+  assert.equal(seen[0].auth, "Bearer or-key");
+  assert.deepEqual(c, { totalCredits: 10, totalUsage: 2.5, left: 7.5 });
 });

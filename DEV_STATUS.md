@@ -9,11 +9,17 @@ complete (13 of 15 written; 2 not writable) and reported; waiting for the owner.
   request from the campaign's own record only (opening, turns, records as they stood, the hidden layer where kept),
   «the table closed» and nothing about why; Opus writes at the campaigns' base depth; one call, a second only to repair a
   contradiction; the blind reading (Haiku, Opus on a flag); the hero's own threads read post-hoc; game player 1's meter
-  (OpenRouter only, cap $25, 402/429 stop, no retry after a refusal). Tests `tests/epilogue-1.test.mjs` (9, no network).
+  (OpenRouter only, cap $25, 402/429 stop, no retry after a refusal). Tests `tests/epilogue-1.test.mjs` (10, no network).
 - **Result:** E2 held (no hook in 13 of 13; the hero neither killed nor resolved in 13); E1 lost (every thread ended in
   4 of 13 by the frozen rule, 7 of 13 with the hero's own threads left out; 0 contradictions after two repairs); words
   over 600 in 9 of 13; E0 held ($3.06 of $25, no refusal, the source run files unchanged). The two not writable:
   COMBAT_1's first Opus attempt (only an event log) and VILLAIN_1's first Astra attempt (nothing kept).
+- **Verification:** typecheck, zero-warning lint and the build pass. Full suite on the run's code: 2 981 tests, 2 948
+  pass, 3 fail, 3 cancelled, 27 skipped. One failure was this stage's: `anthropic-providers-1` forbids a provider host
+  outside the endpoint helper, and the spend check named it. Fixed at the root (the URL comes from the door object),
+  with a test; that test and the stage's 10 now pass. The other two failures are git-history tests needing commits
+  absent from this clone (`mega-dm-bakeoff-completion`, `mega-dm-living-smoke`); the 3 cancelled are `d2a-composition`,
+  as on the base.
 - **Files:** epilogues `docs/runs/epilogue-1-epilogues/<campaign>.md`; record copies with the epilogue as the final entry
   `docs/runs/epilogue-1-records/<campaign>.json`; sources, state and ledger beside them.
 - **Next:** the owner's reading; the stage's RESEARCH_LOG paragraph is drafted in the report (the log lives on

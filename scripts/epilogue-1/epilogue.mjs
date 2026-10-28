@@ -369,9 +369,10 @@ export function reportMarkdown(sources, state, { log = "" } = {}) {
 function option(args, name, fallback) { const at = args.indexOf(name); return at >= 0 && args[at + 1] !== undefined ? args[at + 1] : fallback; }
 async function writeAtomic(file, text) { await writeFile(`${file}.tmp`, text); await rename(`${file}.tmp`, file); }
 const readState = () => (existsSync(STATE_FILE) ? JSON.parse(readFileSync(STATE_FILE, "utf8")) : { designSha256: null, done: {}, spentUsd: 0, refusals: 0, spendChecks: [], ledgerRuns: [] });
-export async function spendCheck(apiKey, fetcher = fetch) {
+/** OpenRouter's credit, read before and after the paid calls; its URL is the door's own (the endpoint helper names hosts). */
+export async function spendCheck(door, fetcher = fetch) {
   try {
-    const r = await fetcher("https://openrouter.ai/api/v1/credits", { headers: { authorization: `Bearer ${apiKey}` }, signal: AbortSignal.timeout(30_000) });
+    const r = await fetcher(new URL("credits", door.messagesUrl).href, { headers: { authorization: `Bearer ${door.apiKey}` }, signal: AbortSignal.timeout(30_000) });
     const v = await r.json().catch(() => null);
     if (!r.ok || !v?.data) return { error: `HTTP ${r.status}` };
     return { totalCredits: v.data.total_credits, totalUsage: Math.round(v.data.total_usage * 10000) / 10000, left: Math.round((v.data.total_credits - v.data.total_usage) * 10000) / 10000 };
@@ -395,7 +396,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
     const { runKeys } = await import("../game-player-1/run.mjs");
     const keys = await runKeys();
     if (keys.door?.provider !== "openrouter" || !keys.anthropic) throw new Error("this stage runs through OpenRouter: ANTHROPIC_PROVIDER=openrouter and its key");
-    const before = await spendCheck(keys.anthropic);
+    const before = await spendCheck(keys.door);
     state.spendChecks.push({ at: new Date().toISOString(), when: "before", ...before });
     out(`spend check (before): ${before.error ? `not read (${before.error})` : `OpenRouter $${before.left.toFixed(2)} of credit left`}; this stage $${state.spentUsd.toFixed(4)} of $${CAP_USD}`);
     if (before.error) throw new Error("STOP: OpenRouter's credit could not be read");
@@ -417,7 +418,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
       state.refusals = (state.refusals ?? 0) + ledger.calls.filter((c) => c.refusal && !c.counted).map((c) => { c.counted = true; return c; }).length;
       await writeAtomic(STATE_FILE, `${JSON.stringify(state, null, 2)}\n`);
     }
-    const after = await spendCheck(keys.anthropic);
+    const after = await spendCheck(keys.door);
     state.spendChecks.push({ at: new Date().toISOString(), when: "after", ...after });
     state.ledgerRuns.push({ finishedAt: new Date().toISOString(), what: only ? `--only ${only}` : "the rest", spentUsd: Math.round(ledger.runUsd * 10000) / 10000, stopped: meter.stopped ?? null, calls: ledger.calls });
     await writeAtomic(STATE_FILE, `${JSON.stringify(state, null, 2)}\n`);
@@ -430,7 +431,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
     const { runKeys } = await import("../game-player-1/run.mjs");
     const keys = await runKeys();
     if (keys.door?.provider !== "openrouter" || !keys.anthropic) throw new Error("this stage runs through OpenRouter: ANTHROPIC_PROVIDER=openrouter and its key");
-    const before = await spendCheck(keys.anthropic);
+    const before = await spendCheck(keys.door);
     state.spendChecks.push({ at: new Date().toISOString(), when: "before the own-thread reading", ...before });
     if (before.error) throw new Error("STOP: OpenRouter's credit could not be read");
     out(`spend check: OpenRouter $${before.left.toFixed(2)} of credit left; this stage $${state.spentUsd.toFixed(4)} of $${CAP_USD}`);
