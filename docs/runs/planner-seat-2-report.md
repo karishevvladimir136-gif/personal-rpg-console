@@ -236,3 +236,17 @@ As SEAT_1. No deception: B's and B′'s session is the model's own and said so a
 
 - Stops as SEAT_1: the first refusal, HTTP 401/402/403, an error naming suspension, access or policy, a 429 after the bounded waits; 5xx or a timeout asked again at most twice. A seat starts only while its ledger can hold its estimate; a family starts only while OpenRouter's credit covers its estimate + $1.
 - Estimate at list prices (first message ≈ held session + T1 at 3.6 characters a token, written to the cache, T2 and T3 reading it; SEAT_1's assumed answers; judges $0.14 a seat): Opus 5.5 B $2.30, B′ $2.31, C $2.18; Fable 5.1 B $5.14, B′ $5.18, C $4.74; GPT-6 Astra B $5.76, B′ $5.79, C $5.98; GPT-6.1 Sol B $2.00, B′ $2.01, C $2.02; DeepSeek V4 Pro B $0.83, B′ $0.83, C $0.85 (three seats each) → the grid ≈ OpenRouter $26.88, OpenAI $21.03. Measured so far below list: the first dry run's Sol seats $0.40 against $0.65; SEAT_1's Astra $0.38 against $1.52. The first dry run's spend (OpenAI $0.80, OpenRouter $0.10) is in this stage's ledgers and counts against the caps.
+
+## The second dry run (GPT-6.1 Sol: one B, one B′ and one C seat at Table A) — 2026-10-28 00:41 UTC
+
+Record `docs/runs/planner-seat-2-dry-20261028-004114.json`; each seat's context message by message (checked against the builder by sha256), the three answers and the tags in `docs/runs/planner-seat-2-dry-run-2.md`; transcripts in `docs/runs/planner-seat-2-transcripts/dry2/`. All three seats answered all three turns; no welfare flag, no decline, no refusal, no 429, no question back. Every request as sent equals the builder's messages (3 of 3 per seat), no system prompt. The T2s are shown both ways (B and C T2a, B′ T2b), not by the coin.
+
+| Seat | Held | Context before T1 | T2 | Words T1/T2/T3 | N0 | N1 | N2 | N7 | N8 (answer 1) | Classes, answers 1 / 2 / 3 | asks |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| dry2/B/sol/0 | `gp1/A-sol` (its own) | 68 turns (34 user, 34 its own), then the line + T1 | T2a | 793 / 367 / 440 | 0 | none | none | none | own (own) | a+b / b / – | 0 |
+| dry2/Bp/sol/0 | `gp1/A-sol` (its own) | one user message: the line + the document (85 545 characters) + T1 | T2b | 970 / 454 / 428 | 0 | continue | dropped | both, the held session singled out | other (other) | b / b / – | 0 |
+| dry2/C/sol/0 | `gp1/A-fable` (Fable's) | one user message: the document (102 044 characters) + the line + T1 | T2a | 807 / 406 / 527 | 0 | continue | kept | others | none (none) | b / b / – | 0 |
+
+No class (c) in any answer. Spend: OpenAI $1.19 (three Sol seats, $0.40 a seat), OpenRouter $0.19 (the frozen tags $0.14, the session tags $0.04, the classes $0.007, the checks $0.004). The stage so far: OpenAI $1.99 of $15, OpenRouter $0.29 of $50. Re-estimate for the grid from the measured seats: OpenAI ≈ $9–10 (Sol ≈ $3.6, Astra ≈ $6), OpenRouter ≈ $15–18 (Opus ≈ $4, Fable ≈ $9, DeepSeek ≈ $1, the judges ≈ $3) — within the caps with the dry runs' spend.
+
+**Stopped here for the owner's word.** The grid has not started; A's classes (judge calls only) have not been read.
