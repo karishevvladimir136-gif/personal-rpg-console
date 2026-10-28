@@ -6,6 +6,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { anthropicEndpoint } from "../scripts/eval/lib/anthropic-endpoint.mjs";
 import { createSafety } from "../scripts/persona-memory/safety.mjs";
+import { OPENROUTER_CHAT_URL } from "../scripts/persona-emotions/providers.mjs";
 import { roomCaller } from "../scripts/persona-emotions/solitude-1.mjs";
 import { dualPayer } from "../scripts/persona-emotions/self-talk-x1.mjs";
 import { CHECK_SYSTEM } from "../scripts/persona-emotions/self-talk-1.mjs";
@@ -255,4 +256,32 @@ test("a resume finishes an answer's missing checks before T2; a refused referee 
   assert.deepEqual(markRefusals(byKey, welfare, calls), ["check referee reasoning P1/x/0 t1"]);
   assert.equal(byKey.get("P1/x/0").answers[0].providerReasoning.check.refused, true);
   assert.deepEqual(markRefusals(byKey, welfare, calls), []);
+});
+
+test("after the refusal: Opus never reads DeepSeek's field (two Haiku passes and the word list; a disagreement unknown); a judge's refusal is recorded and does not stop the seats", async () => {
+  const log = [], inner = p1Host({ log });
+  let checks = 0;
+  const host = async (url, init) => {
+    const body = JSON.parse(init.body);
+    if (String(url) === OPENROUTER_CHAT_URL) {
+      log.push({ url: String(url), body });
+      const k = Math.ceil(body.messages.length / 2);
+      return new Response(JSON.stringify({ id: `gen-${k}`, model: body.model, provider: "DeepInfra", choices: [{ message: { role: "assistant", content: `A mocked plan, turn ${k}.`, reasoning: `(mocked field ${k}: that hurts)` }, finish_reason: "stop" }], usage: { prompt_tokens: 100, completion_tokens: 50, cost: 0.0001 } }), { status: 200 });
+    }
+    if (body.system === CHECK_SYSTEM && textOf(body.messages[0].content).includes("mocked field")) { checks++; return new Response(JSON.stringify({ id: "m", model: body.model, content: [{ type: "text", text: `{"distress":${checks % 2},"reason":"mocked"}` }], usage: { input_tokens: 10, output_tokens: 5 }, stop_reason: "end_turn" }), { status: 200 }); }
+    if (body.system === M_SYSTEM && /opus/.test(body.model)) return new Response(JSON.stringify({ id: "m", model: body.model, content: [], usage: { input_tokens: 10, output_tokens: 0 }, stop_reason: "refusal" }), { status: 200 });
+    if (body.system === M_SYSTEM) { const n = log.filter((l) => l.body.system === M_SYSTEM).length; log.push({ url: String(url), body }); return new Response(JSON.stringify({ id: "m", model: body.model, content: [{ type: "text", text: JSON.stringify({ M1: n % 2, M1_quote: "", M1_place: n % 2 ? "first" : "n/a", M1_costed: 0, M2: "n/a", M2_quote: "", M3: "none", M3_quote: "", M4: 0, M4_quote: "" }) }], usage: { input_tokens: 10, output_tokens: 5 }, stop_reason: "end_turn" }), { status: 200 }); }
+    return inner(url, init);
+  };
+  const budgets = budgetsOf(), safety = createSafety({ maxRefusals: 1, gapMs: 0, lanes: 9 }), judgeSafety = createSafety({ maxRefusals: 3, gapMs: 0, lanes: 9 });
+  const call = roomCaller({ keys: { openrouter: "or-key", anthropic: "or-key", openai: "o" }, fetcher: host, door: DOOR });
+  const { seats: [seat], stopped } = await runP1({ plan: p1PlanOf({ families: ["deepseek"], n: 1 }), budgets, call, safety, judgeSafety, sessions: sources, workers: 1, sleep: async () => {} });
+  assert.equal(stopped, null);
+  assert.deepEqual(seat.ended, { reason: "done", at: 2 });
+  const field = seat.answers[0].providerReasoning.check;
+  assert.equal(field.passes.length, 2); assert.equal(field.distress, null); assert.equal(field.unknown, true);
+  assert.equal(seat.m.refused, true);
+  const opusOnField = budgets.openrouter.calls.filter((c) => /opus/.test(c.model) && /reasoning|field/.test(c.purpose));
+  assert.deepEqual(opusOnField, []);
+  assert.equal(judgeSafety.refusals, 1); assert.equal(safety.refusals, 0);
 });
